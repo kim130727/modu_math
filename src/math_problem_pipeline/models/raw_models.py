@@ -20,7 +20,7 @@ class SourceDocument(BaseModel):
     """Top-level source document metadata."""
 
     document_id: str
-    source_pdf: str
+    source_path: str
     page_count: int = 0
     metadata: dict[str, Any] = Field(default_factory=dict)
 
@@ -49,7 +49,7 @@ class SourcePage(BaseModel):
 
     page_id: str
     document_id: str
-    source_pdf: str
+    source_path: str
     page_number: int
     width: float
     height: float
@@ -58,14 +58,18 @@ class SourcePage(BaseModel):
 
 
 class RawProblemRegion(BaseModel):
-    """Candidate problem region grouped from source blocks."""
+    """Candidate region grouped from page text blocks."""
 
     region_id: str
     document_id: str
-    source_pdf: str
+    source_path: str
     page_number: int
     problem_number: str | None = None
     bbox: BBox
     text_block_ids: list[str] = Field(default_factory=list)
     visual_block_ids: list[str] = Field(default_factory=list)
     notes: list[str] = Field(default_factory=list)
+    segmentation_score: float = 0.0
+    segmentation_reason: str = "unknown"
+    is_probable_problem: bool = True
+

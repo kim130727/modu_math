@@ -1,0 +1,88 @@
+{
+  "problem_id": "6rd_p0001_q0005",
+  "source_path": "input\\6rd.hwpx",
+  "page_number": 1,
+  "type_guess": "multiple_choice_text",
+  "type_guess_reason": "choice_markers_detected",
+  "rejected": false,
+  "fallback_render_used": false,
+  "anomaly_flags": [
+    "choice_structure_unclear",
+    "missing_problem_number"
+  ],
+  "recommended_action": "manual_review_required",
+  "raw_fields": {
+    "text": "④ 수식입니다. 6 {5} over {6} DIVIDE 5",
+    "bbox": {
+      "x0": 42.0,
+      "y0": 432.0,
+      "x1": 207.6,
+      "y1": 481.0
+    },
+    "warnings": [
+      "missing_problem_number"
+    ],
+    "is_probable_problem": true,
+    "segmentation_reason": "explicit_problem_marker",
+    "source_block_ids": [
+      "6rd_p0001_tb0021",
+      "6rd_p0001_tb0022",
+      "6rd_p0001_tb0023"
+    ]
+  },
+  "semantic_fields": {
+    "schema_version": "0.2.0",
+    "problem_id": "6rd_p0001_q0005",
+    "source_path": "input\\6rd.hwpx",
+    "page_number": 1,
+    "type": "generic_text_problem",
+    "question_text": "④ 수식입니다. 6 {5} over {6} DIVIDE 5",
+    "answer": null,
+    "explanation": null,
+    "bbox": {
+      "x0": 42.0,
+      "y0": 432.0,
+      "x1": 207.6,
+      "y1": 481.0
+    },
+    "confidence": 0.5433333333333333,
+    "confidence_breakdown": {
+      "segmentation_confidence": 0.95,
+      "type_confidence": 0.68,
+      "structure_confidence": 0.0
+    },
+    "warnings": [
+      "choice_structure_unclear",
+      "missing_problem_number"
+    ],
+    "render_hint": {
+      "question_anchor": null,
+      "choices_anchor": null,
+      "relative_position": null,
+      "alignment": "left"
+    },
+    "coordinates": {
+      "source_coordinates": {
+        "page_width": 595.0,
+        "page_height": 842.0
+      },
+      "semantic_coordinates": {},
+      "render_coordinates": {}
+    },
+    "type_guess": "multiple_choice_text",
+    "type_guess_reason": "choice_markers_detected",
+    "rejected": false
+  },
+  "renderer_usage": {
+    "problem_id": "6rd_p0001_q0005",
+    "rendered": true,
+    "output_svg": "output\\svg\\6rd_p0001_q0005.render.svg",
+    "used_fields": [
+      "question_text",
+      "type",
+      "render_hint"
+    ],
+    "fallback_render_used": false,
+    "fallback_reason": null
+  }
+}

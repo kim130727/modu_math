@@ -13,7 +13,7 @@ SAMPLES: list[tuple[str, dict]] = [
         {
             "schema_version": "0.1.0",
             "problem_id": "sample_p0001_q0001",
-            "source_pdf": "sample_book.pdf",
+            "source_path": "sample_book.hwpx",
             "page_number": 1,
             "type": "multiple_choice_text",
             "question_text": "다음 중 8의 약수는 무엇인가요?",
@@ -35,7 +35,7 @@ SAMPLES: list[tuple[str, dict]] = [
         {
             "schema_version": "0.1.0",
             "problem_id": "sample_p0001_q0002",
-            "source_pdf": "sample_book.pdf",
+            "source_path": "sample_book.hwpx",
             "page_number": 1,
             "type": "arithmetic_expression",
             "question_text": "식을 계산하세요.",
@@ -57,7 +57,7 @@ SAMPLES: list[tuple[str, dict]] = [
         {
             "schema_version": "0.1.0",
             "problem_id": "sample_p0001_q0003",
-            "source_pdf": "sample_book.pdf",
+            "source_path": "sample_book.hwpx",
             "page_number": 1,
             "type": "fraction_shaded_area",
             "question_text": "8칸 중 3칸이 색칠된 분수를 구하세요.",
@@ -87,7 +87,7 @@ SAMPLES: list[tuple[str, dict]] = [
         {
             "schema_version": "0.1.0",
             "problem_id": "sample_p0001_q0004",
-            "source_pdf": "sample_book.pdf",
+            "source_path": "sample_book.hwpx",
             "page_number": 1,
             "type": "clock_reading",
             "question_text": "시계가 가리키는 시각을 쓰세요.",
@@ -109,7 +109,7 @@ SAMPLES: list[tuple[str, dict]] = [
         {
             "schema_version": "0.1.0",
             "problem_id": "sample_p0002_q0001",
-            "source_pdf": "sample_book.pdf",
+            "source_path": "sample_book.hwpx",
             "page_number": 2,
             "type": "geometry_basic",
             "question_text": "삼각형 ABC에서 변 AB의 길이가 5일 때 둘레를 구하세요.",
@@ -144,7 +144,7 @@ SAMPLES: list[tuple[str, dict]] = [
         {
             "schema_version": "0.1.0",
             "problem_id": "sample_p0002_q0002",
-            "source_pdf": "sample_book.pdf",
+            "source_path": "sample_book.hwpx",
             "page_number": 2,
             "type": "table_or_chart_basic",
             "question_text": "다음 표를 보고 사과가 바나나보다 몇 개 더 많은지 구하세요.",
@@ -174,3 +174,5 @@ def write_sample_semantics(output_dir: Path) -> None:
     ensure_dir(output_dir)
     for name, payload in SAMPLES:
         write_json(output_dir / name, payload)
+
+

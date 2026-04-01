@@ -1,4 +1,4 @@
-﻿"""Typer CLI for PDF -> semantic JSON -> TikZ/Manim pipeline."""
+﻿"""Typer CLI for conservative HWPX -> raw -> semantic -> render pipeline."""
 
 from __future__ import annotations
 
@@ -9,16 +9,20 @@ import typer
 from pydantic import TypeAdapter
 
 from math_problem_pipeline.compare.debug_report import build_schema_refinement_report, write_report
-from math_problem_pipeline.extract.page_extractor import extract_pages
-from math_problem_pipeline.extract.pdf_reader import open_pdf_document
-from math_problem_pipeline.extract.problem_pdf_splitter import split_pdf_into_problem_pdfs
-from math_problem_pipeline.extract.problem_segmenter import regions_to_candidates, segment_page_to_regions
+from math_problem_pipeline.extract.hwpx_extractor import extract_pages_from_hwpx
+from math_problem_pipeline.extract.hwpx_reader import open_hwpx_document
+from math_problem_pipeline.extract.problem_segmenter import (
+    filter_obvious_non_problems,
+    regions_to_candidates,
+    segment_page_to_regions,
+)
 from math_problem_pipeline.models.problem_models import ProblemCandidate
 from math_problem_pipeline.models.raw_models import SourcePage
 from math_problem_pipeline.models.semantic_models import SemanticProblem
 from math_problem_pipeline.normalize.semantic_builder import candidate_to_extracted, extracted_to_semantic
+from math_problem_pipeline.normalize.validators import validate_candidate
 from math_problem_pipeline.render.manim_renderer import render_problem_to_png
-from math_problem_pipeline.render.tikz_renderer import render_problem_to_tikz_tex
+from math_problem_pipeline.render.svg_renderer import render_problem_to_svg
 from math_problem_pipeline.utils.io import ensure_dir, list_json_files, read_json, write_json
 from math_problem_pipeline.utils.logging_utils import setup_logger
 
@@ -27,14 +31,14 @@ logger = setup_logger(__name__)
 semantic_adapter = TypeAdapter(SemanticProblem)
 
 
-@app.command("parse-pdf")
-def parse_pdf(
-    pdf_path: Path = typer.Argument(..., help="Input PDF path"),
+@app.command("parse-hwpx")
+def parse_hwpx(
+    hwpx_path: Path = typer.Argument(..., help="Input HWPX path"),
     output_dir: Path = typer.Option(Path("output/raw/pages"), help="Raw page JSON output dir"),
 ) -> None:
-    """Read a PDF and save page-level raw extraction."""
-    doc = open_pdf_document(pdf_path)
-    pages = extract_pages(pdf_path, doc.document_id)
+    """Stage 1: extract pages from HWPX."""
+    doc = open_hwpx_document(hwpx_path)
+    pages = extract_pages_from_hwpx(hwpx_path, doc.document_id)
 
     ensure_dir(output_dir)
     for page in pages:
@@ -44,75 +48,64 @@ def parse_pdf(
     logger.info("Saved %d raw pages to %s", len(pages), output_dir)
 
 
-@app.command("split-problem-pdfs")
-def split_problem_pdfs(
-    input_dir: Path = typer.Option(Path("input"), help="Input PDF folder"),
-    output_dir: Path = typer.Option(Path("output/pdf"), help="Per-problem PDF output folder"),
-    padding: float = typer.Option(6.0, help="BBox padding in PDF points"),
-    resolution: int = typer.Option(220, help="Rasterization DPI for cropped PDF pages"),
-) -> None:
-    """Split all PDFs in input folder into one-problem-per-file PDFs."""
-    ensure_dir(output_dir)
-    pdf_files = sorted(input_dir.glob("*.pdf"))
-    if not pdf_files:
-        logger.warning("No PDF files found in %s", input_dir)
-        return
-
-    total = 0
-    for pdf_path in pdf_files:
-        doc_output = output_dir / pdf_path.stem
-        written = split_pdf_into_problem_pdfs(
-            pdf_path=pdf_path,
-            output_dir=doc_output,
-            padding=padding,
-            resolution=resolution,
-        )
-        logger.info("Split %s -> %d problem PDFs", pdf_path.name, len(written))
-        total += len(written)
-
-    logger.info("Wrote %d problem PDFs to %s", total, output_dir)
-
-
 @app.command("segment-problems")
 def segment_problems(
     raw_pages_dir: Path = typer.Option(Path("output/raw/pages"), help="Raw page JSON directory"),
     output_dir: Path = typer.Option(Path("output/raw/problems"), help="Problem candidate output dir"),
+    rejected_output_dir: Path = typer.Option(Path("output/raw/rejected"), help="Rejected candidate output dir"),
 ) -> None:
-    """Segment raw page extractions into problem candidates."""
+    """Stages 2~4: segment -> candidate -> filter/reject obvious non-problems."""
     ensure_dir(output_dir)
+    ensure_dir(rejected_output_dir)
     page_files = list_json_files(raw_pages_dir)
-    total = 0
+    accepted_total = 0
+    rejected_total = 0
 
     for page_file in page_files:
         page = SourcePage.model_validate(read_json(page_file))
         regions = segment_page_to_regions(page)
         candidates = regions_to_candidates(regions, page)
+        accepted, rejected = filter_obvious_non_problems(candidates)
 
-        for candidate in candidates:
+        for candidate in accepted:
             out = output_dir / f"{candidate.candidate_id}.raw.json"
             write_json(out, candidate.model_dump())
-            total += 1
+            accepted_total += 1
 
-    logger.info("Saved %d problem candidates to %s", total, output_dir)
+        for candidate in rejected:
+            out = rejected_output_dir / f"{candidate.candidate_id}.raw.json"
+            write_json(out, candidate.model_dump())
+            rejected_total += 1
+
+    logger.info("Saved accepted=%d rejected=%d candidates", accepted_total, rejected_total)
 
 
 @app.command("build-semantic")
 def build_semantic(
     raw_problem_dir: Path = typer.Option(Path("output/raw/problems"), help="Raw problem JSON directory"),
     output_dir: Path = typer.Option(Path("output/semantic"), help="Semantic JSON output directory"),
+    rejected_output_dir: Path = typer.Option(Path("output/semantic_rejected"), help="Rejected semantic output directory"),
 ) -> None:
-    """Build semantic JSON from problem candidates."""
+    """Stages 5~7: classify conservatively -> build minimal semantic -> validate."""
     ensure_dir(output_dir)
+    ensure_dir(rejected_output_dir)
     raw_files = list_json_files(raw_problem_dir)
 
+    rejected = 0
     for raw_file in raw_files:
         candidate = ProblemCandidate.model_validate(read_json(raw_file))
+        candidate.warnings.extend(validate_candidate(candidate))
         extracted = candidate_to_extracted(candidate)
         semantic = extracted_to_semantic(extracted)
-        out = output_dir / f"{semantic.problem_id}.semantic.json"
+
+        if semantic.type == "rejected_candidate":
+            out = rejected_output_dir / f"{semantic.problem_id}.semantic.json"
+            rejected += 1
+        else:
+            out = output_dir / f"{semantic.problem_id}.semantic.json"
         write_json(out, semantic.model_dump())
 
-    logger.info("Built %d semantic problems to %s", len(raw_files), output_dir)
+    logger.info("Built %d semantic problems (%d rejected)", len(raw_files), rejected)
 
 
 @app.command("render-problem")
@@ -121,7 +114,7 @@ def render_problem(
     output_dir: Path = typer.Option(Path("output/renders"), help="PNG output directory"),
     manim_media_dir: Path = typer.Option(Path("output/renders/.manim"), help="Manim temp media root"),
 ) -> None:
-    """Render one semantic problem into static PNG."""
+    """Render one semantic problem into static PNG (with scene-level fallback safety)."""
     ensure_dir(output_dir)
     semantic = semantic_adapter.validate_python(read_json(semantic_json))
     out_png = output_dir / f"{semantic.problem_id}.render.png"
@@ -129,57 +122,34 @@ def render_problem(
     logger.info("Render result: %s", meta)
 
 
-@app.command("render-all")
-def render_all(
-    semantic_dir: Path = typer.Option(Path("output/semantic"), help="Semantic JSON directory"),
-    output_dir: Path = typer.Option(Path("output/renders"), help="PNG output directory"),
-    manim_media_dir: Path = typer.Option(Path("output/renders/.manim"), help="Manim temp media root"),
-) -> None:
-    """Render all semantic problems in a folder."""
-    ensure_dir(output_dir)
-    files = list_json_files(semantic_dir)
-    success = 0
-
-    for f in files:
-        semantic = semantic_adapter.validate_python(read_json(f))
-        out_png = output_dir / f"{semantic.problem_id}.render.png"
-        meta = render_problem_to_png(semantic, out_png, manim_media_dir)
-        if meta.get("rendered"):
-            success += 1
-
-    logger.info("Rendered %d/%d problems", success, len(files))
-
-
-@app.command("render-tikz")
-def render_tikz(
+@app.command("render-svg")
+def render_svg(
     semantic_json: Path = typer.Argument(..., help="Semantic JSON file path"),
-    output_dir: Path = typer.Option(Path("output/tikz"), help="TikZ .tex output directory"),
-    compile_pdf: bool = typer.Option(True, "--compile-pdf/--no-compile-pdf", help="Compile .tex to .pdf for visual check"),
+    output_dir: Path = typer.Option(Path("output/svg"), help="SVG output directory"),
 ) -> None:
-    """Render one semantic problem into standalone LaTeX/TikZ .tex."""
+    """Render one semantic problem into standalone SVG for visual validation."""
     ensure_dir(output_dir)
     semantic = semantic_adapter.validate_python(read_json(semantic_json))
-    out_tex = output_dir / f"{semantic.problem_id}.tikz.tex"
-    meta = render_problem_to_tikz_tex(semantic, out_tex, compile_pdf=compile_pdf)
-    logger.info("TikZ render result: %s", meta)
+    out_svg = output_dir / f"{semantic.problem_id}.render.svg"
+    meta = render_problem_to_svg(semantic, out_svg)
+    logger.info("SVG render result: %s", meta)
 
 
-@app.command("render-tikz-all")
-def render_tikz_all(
+@app.command("render-svg-all")
+def render_svg_all(
     semantic_dir: Path = typer.Option(Path("output/semantic"), help="Semantic JSON directory"),
-    output_dir: Path = typer.Option(Path("output/tikz"), help="TikZ .tex output directory"),
-    compile_pdf: bool = typer.Option(True, "--compile-pdf/--no-compile-pdf", help="Compile each .tex to .pdf for visual check"),
+    output_dir: Path = typer.Option(Path("output/svg"), help="SVG output directory"),
 ) -> None:
-    """Render all semantic problems into standalone LaTeX/TikZ .tex files."""
+    """Render all semantic problems into standalone SVG files."""
     ensure_dir(output_dir)
     files = list_json_files(semantic_dir)
 
     for f in files:
         semantic = semantic_adapter.validate_python(read_json(f))
-        out_tex = output_dir / f"{semantic.problem_id}.tikz.tex"
-        render_problem_to_tikz_tex(semantic, out_tex, compile_pdf=compile_pdf)
+        out_svg = output_dir / f"{semantic.problem_id}.render.svg"
+        render_problem_to_svg(semantic, out_svg)
 
-    logger.info("Rendered %d TikZ files to %s", len(files), output_dir)
+    logger.info("Rendered %d SVG files to %s", len(files), output_dir)
 
 
 @app.command("debug-compare")
@@ -207,6 +177,7 @@ def debug_compare(
             "rendered": render_png.exists(),
             "output_png": str(render_png) if render_png.exists() else None,
             "used_fields": ["question_text", "type", "render_hint"],
+            "fallback_render_used": "render_fallback" in " ".join(semantic.warnings),
         }
 
         report = build_schema_refinement_report(candidate, semantic, render_meta)
@@ -217,11 +188,75 @@ def debug_compare(
     logger.info("Wrote %d reports to %s", count, report_dir)
 
 
+@app.command("run-pipeline")
+def run_pipeline(
+    hwpx_path: Path = typer.Argument(..., help="Input HWPX path"),
+    output_root: Path = typer.Option(Path("output"), help="Root output directory"),
+) -> None:
+    """Single command conservative pipeline for HWPX."""
+    raw_pages_dir = output_root / "raw/pages"
+    raw_problem_dir = output_root / "raw/problems"
+    raw_rejected_dir = output_root / "raw/rejected"
+    semantic_dir = output_root / "semantic"
+    semantic_rejected_dir = output_root / "semantic_rejected"
+    svg_dir = output_root / "svg"
+    report_dir = output_root / "reports"
+
+    for d in [raw_pages_dir, raw_problem_dir, raw_rejected_dir, semantic_dir, semantic_rejected_dir, svg_dir, report_dir]:
+        ensure_dir(d)
+
+    doc = open_hwpx_document(hwpx_path)
+    pages = extract_pages_from_hwpx(hwpx_path, doc.document_id)
+
+    all_accepted: list[ProblemCandidate] = []
+    all_rejected: list[ProblemCandidate] = []
+
+    for page in pages:
+        write_json(raw_pages_dir / f"{page.page_id}.json", page.model_dump())
+        regions = segment_page_to_regions(page)
+        candidates = regions_to_candidates(regions, page)
+        accepted, rejected = filter_obvious_non_problems(candidates)
+        all_accepted.extend(accepted)
+        all_rejected.extend(rejected)
+
+    for c in all_accepted:
+        write_json(raw_problem_dir / f"{c.candidate_id}.raw.json", c.model_dump())
+    for c in all_rejected:
+        write_json(raw_rejected_dir / f"{c.candidate_id}.raw.json", c.model_dump())
+
+    for cand in [*all_accepted, *all_rejected]:
+        cand.warnings.extend(validate_candidate(cand))
+        extracted = candidate_to_extracted(cand)
+        semantic = extracted_to_semantic(extracted)
+
+        if semantic.type == "rejected_candidate":
+            sem_path = semantic_rejected_dir / f"{semantic.problem_id}.semantic.json"
+            render_meta = {"rendered": False, "fallback_render_used": False, "reason": "rejected_candidate"}
+        else:
+            sem_path = semantic_dir / f"{semantic.problem_id}.semantic.json"
+            render_meta = render_problem_to_svg(
+                semantic,
+                svg_dir / f"{semantic.problem_id}.render.svg",
+            )
+
+        write_json(sem_path, semantic.model_dump())
+        report = build_schema_refinement_report(cand, semantic, render_meta)
+        write_report(report, report_dir / f"{semantic.problem_id}.report.json")
+
+    logger.info(
+        "Pipeline done: pages=%d accepted=%d rejected=%d semantic=%d",
+        len(pages),
+        len(all_accepted),
+        len(all_rejected),
+        len(all_accepted) + len(all_rejected),
+    )
+
+
 @app.command("bootstrap-samples")
 def bootstrap_samples(
     output_dir: Path = typer.Option(Path("input/sample_semantic"), help="Sample semantic JSON output directory"),
 ) -> None:
-    """Write built-in sample semantic JSONs for the six target problem types."""
+    """Write built-in sample semantic JSONs for the target problem types."""
     from math_problem_pipeline.samples import write_sample_semantics
 
     write_sample_semantics(output_dir)

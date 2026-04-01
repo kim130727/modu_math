@@ -5,11 +5,8 @@ from __future__ import annotations
 from pathlib import Path
 
 from math_problem_pipeline.models.problem_models import ProblemCandidate
-from math_problem_pipeline.models.semantic_models import (
-    FractionShadedAreaProblem,
-    GeometryBasicProblem,
-    SemanticProblem,
-)
+from math_problem_pipeline.models.semantic_models import SemanticProblem
+from math_problem_pipeline.normalize.validators import validate_candidate
 from math_problem_pipeline.utils.io import write_json
 
 
@@ -18,48 +15,48 @@ def build_schema_refinement_report(
     semantic: SemanticProblem,
     render_meta: dict,
 ) -> dict:
-    missing = []
-    simplifications = []
-    improvement_points = []
+    anomaly_flags = sorted(set(candidate.warnings + validate_candidate(candidate) + semantic.warnings))
+    fallback_used = bool(render_meta.get("fallback_render_used"))
+    rejected = bool(getattr(semantic, "rejected", False) or semantic.type == "rejected_candidate")
 
-    if semantic.type == "multiple_choice_text" and not getattr(semantic, "choices", []):
-        missing.append("choices")
-        improvement_points.append("choice_positions_not_available")
-
-    if isinstance(semantic, FractionShadedAreaProblem):
-        if semantic.fraction.partition == "grid" and (semantic.fraction.rows is None or semantic.fraction.cols is None):
-            missing.append("fraction.rows_or_cols")
-            improvement_points.append("ambiguous_fraction_partition")
-
-    if isinstance(semantic, GeometryBasicProblem) and not semantic.points:
-        missing.append("geometry.points")
-        improvement_points.append("missing_geometry_vertices")
-
-    if semantic.type == "clock_reading":
-        clock = getattr(semantic, "clock", None)
-        if clock and clock.hour_angle is None and clock.minute_angle is None:
-            simplifications.append("clock_hand_angle_inferred")
-
-    if semantic.render_hint.question_anchor is None:
-        simplifications.append("fallback_layout_used")
+    recommended_action = _recommended_action(rejected, fallback_used, anomaly_flags)
 
     report = {
         "problem_id": semantic.problem_id,
-        "source_pdf": semantic.source_pdf,
+        "source_path": semantic.source_path,
         "page_number": semantic.page_number,
+        "type_guess": semantic.type_guess,
+        "type_guess_reason": semantic.type_guess_reason,
+        "rejected": rejected,
+        "fallback_render_used": fallback_used,
+        "anomaly_flags": anomaly_flags,
+        "recommended_action": recommended_action,
         "raw_fields": {
             "text": candidate.text,
             "bbox": candidate.bbox.model_dump(),
             "warnings": candidate.warnings,
+            "is_probable_problem": candidate.is_probable_problem,
+            "segmentation_reason": candidate.segmentation_reason,
+            "source_block_ids": candidate.source_block_ids,
         },
         "semantic_fields": semantic.model_dump(),
         "renderer_usage": render_meta,
-        "missing_information": missing,
-        "simplifications": simplifications,
-        "schema_refinement_points": sorted(set(improvement_points + semantic.warnings)),
     }
     return report
 
 
 def write_report(report: dict, output_path: Path) -> None:
     write_json(output_path, report)
+
+
+def _recommended_action(rejected: bool, fallback_used: bool, anomaly_flags: list[str]) -> str:
+    if rejected:
+        return "resegment_required"
+    if "merged_multiple_problems_suspected" in anomaly_flags or "oversized_candidate" in anomaly_flags:
+        return "resegment_required"
+    if fallback_used or "visual_structure_detection_needed" in anomaly_flags:
+        return "structure_detection_needed"
+    if anomaly_flags:
+        return "manual_review_required"
+    return "safe_to_render"
+

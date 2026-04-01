@@ -1,4 +1,4 @@
-﻿"""Semantic models optimized for renderable math problem representation."""
+﻿"""Semantic models optimized for conservative, debuggable rendering."""
 
 from __future__ import annotations
 
@@ -11,24 +11,27 @@ from .render_models import LayoutHint
 
 
 class CoordinateSystemRef(BaseModel):
-    """Explicit coordinate layering reference.
-
-    - source_coordinates: PDF page coordinate info.
-    - semantic_coordinates: normalized shape relation data.
-    - render_coordinates: final placement in scene space.
-    """
+    """Explicit coordinate layering reference."""
 
     source_coordinates: dict = Field(default_factory=dict)
     semantic_coordinates: dict = Field(default_factory=dict)
     render_coordinates: dict = Field(default_factory=dict)
 
 
+class ConfidenceBreakdown(BaseModel):
+    """Confidence per stage to simplify debugging."""
+
+    segmentation_confidence: float = 0.0
+    type_confidence: float = 0.0
+    structure_confidence: float = 0.0
+
+
 class SemanticProblemBase(BaseModel):
     """Base semantic problem fields shared by all types."""
 
-    schema_version: str = "0.1.0"
+    schema_version: str = "0.2.0"
     problem_id: str
-    source_pdf: str
+    source_path: str
     page_number: int
     type: str
     question_text: str
@@ -36,9 +39,32 @@ class SemanticProblemBase(BaseModel):
     explanation: str | None = None
     bbox: BBox | None = None
     confidence: float = 0.0
+    confidence_breakdown: ConfidenceBreakdown = Field(default_factory=ConfidenceBreakdown)
     warnings: list[str] = Field(default_factory=list)
     render_hint: LayoutHint = Field(default_factory=LayoutHint)
     coordinates: CoordinateSystemRef = Field(default_factory=CoordinateSystemRef)
+    type_guess: str | None = None
+    type_guess_reason: str | None = None
+    rejected: bool = False
+
+
+class GenericTextProblem(SemanticProblemBase):
+    type: Literal["generic_text_problem"]
+
+
+class UnknownVisualMathProblem(SemanticProblemBase):
+    type: Literal["unknown_visual_math_problem"]
+
+
+class MultiPartProblem(SemanticProblemBase):
+    type: Literal["multi_part_problem"]
+    parts: list[str] = Field(default_factory=list)
+
+
+class RejectedCandidateProblem(SemanticProblemBase):
+    type: Literal["rejected_candidate"]
+    rejection_reason: str = "non_problem_candidate"
+    rejected: bool = True
 
 
 class MultipleChoiceTextProblem(SemanticProblemBase):
@@ -129,6 +155,10 @@ class TableOrChartBasicProblem(SemanticProblemBase):
 
 SemanticProblem = Annotated[
     Union[
+        GenericTextProblem,
+        UnknownVisualMathProblem,
+        MultiPartProblem,
+        RejectedCandidateProblem,
         MultipleChoiceTextProblem,
         ArithmeticExpressionProblem,
         FractionShadedAreaProblem,
@@ -138,3 +168,4 @@ SemanticProblem = Annotated[
     ],
     Field(discriminator="type"),
 ]
+
