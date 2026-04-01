@@ -1,4 +1,4 @@
-﻿"""Typer CLI for PDF -> semantic JSON -> Manim pipeline."""
+﻿"""Typer CLI for PDF -> semantic JSON -> TikZ/Manim pipeline."""
 
 from __future__ import annotations
 
@@ -11,12 +11,14 @@ from pydantic import TypeAdapter
 from math_problem_pipeline.compare.debug_report import build_schema_refinement_report, write_report
 from math_problem_pipeline.extract.page_extractor import extract_pages
 from math_problem_pipeline.extract.pdf_reader import open_pdf_document
+from math_problem_pipeline.extract.problem_pdf_splitter import split_pdf_into_problem_pdfs
 from math_problem_pipeline.extract.problem_segmenter import regions_to_candidates, segment_page_to_regions
 from math_problem_pipeline.models.problem_models import ProblemCandidate
 from math_problem_pipeline.models.raw_models import SourcePage
 from math_problem_pipeline.models.semantic_models import SemanticProblem
 from math_problem_pipeline.normalize.semantic_builder import candidate_to_extracted, extracted_to_semantic
 from math_problem_pipeline.render.manim_renderer import render_problem_to_png
+from math_problem_pipeline.render.tikz_renderer import render_problem_to_tikz_tex
 from math_problem_pipeline.utils.io import ensure_dir, list_json_files, read_json, write_json
 from math_problem_pipeline.utils.logging_utils import setup_logger
 
@@ -40,6 +42,35 @@ def parse_pdf(
         write_json(page_path, page.model_dump())
 
     logger.info("Saved %d raw pages to %s", len(pages), output_dir)
+
+
+@app.command("split-problem-pdfs")
+def split_problem_pdfs(
+    input_dir: Path = typer.Option(Path("input"), help="Input PDF folder"),
+    output_dir: Path = typer.Option(Path("output/pdf"), help="Per-problem PDF output folder"),
+    padding: float = typer.Option(6.0, help="BBox padding in PDF points"),
+    resolution: int = typer.Option(220, help="Rasterization DPI for cropped PDF pages"),
+) -> None:
+    """Split all PDFs in input folder into one-problem-per-file PDFs."""
+    ensure_dir(output_dir)
+    pdf_files = sorted(input_dir.glob("*.pdf"))
+    if not pdf_files:
+        logger.warning("No PDF files found in %s", input_dir)
+        return
+
+    total = 0
+    for pdf_path in pdf_files:
+        doc_output = output_dir / pdf_path.stem
+        written = split_pdf_into_problem_pdfs(
+            pdf_path=pdf_path,
+            output_dir=doc_output,
+            padding=padding,
+            resolution=resolution,
+        )
+        logger.info("Split %s -> %d problem PDFs", pdf_path.name, len(written))
+        total += len(written)
+
+    logger.info("Wrote %d problem PDFs to %s", total, output_dir)
 
 
 @app.command("segment-problems")
@@ -117,6 +148,38 @@ def render_all(
             success += 1
 
     logger.info("Rendered %d/%d problems", success, len(files))
+
+
+@app.command("render-tikz")
+def render_tikz(
+    semantic_json: Path = typer.Argument(..., help="Semantic JSON file path"),
+    output_dir: Path = typer.Option(Path("output/tikz"), help="TikZ .tex output directory"),
+    compile_pdf: bool = typer.Option(True, "--compile-pdf/--no-compile-pdf", help="Compile .tex to .pdf for visual check"),
+) -> None:
+    """Render one semantic problem into standalone LaTeX/TikZ .tex."""
+    ensure_dir(output_dir)
+    semantic = semantic_adapter.validate_python(read_json(semantic_json))
+    out_tex = output_dir / f"{semantic.problem_id}.tikz.tex"
+    meta = render_problem_to_tikz_tex(semantic, out_tex, compile_pdf=compile_pdf)
+    logger.info("TikZ render result: %s", meta)
+
+
+@app.command("render-tikz-all")
+def render_tikz_all(
+    semantic_dir: Path = typer.Option(Path("output/semantic"), help="Semantic JSON directory"),
+    output_dir: Path = typer.Option(Path("output/tikz"), help="TikZ .tex output directory"),
+    compile_pdf: bool = typer.Option(True, "--compile-pdf/--no-compile-pdf", help="Compile each .tex to .pdf for visual check"),
+) -> None:
+    """Render all semantic problems into standalone LaTeX/TikZ .tex files."""
+    ensure_dir(output_dir)
+    files = list_json_files(semantic_dir)
+
+    for f in files:
+        semantic = semantic_adapter.validate_python(read_json(f))
+        out_tex = output_dir / f"{semantic.problem_id}.tikz.tex"
+        render_problem_to_tikz_tex(semantic, out_tex, compile_pdf=compile_pdf)
+
+    logger.info("Rendered %d TikZ files to %s", len(files), output_dir)
 
 
 @app.command("debug-compare")
