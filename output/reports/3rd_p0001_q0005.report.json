@@ -2,37 +2,33 @@
   "problem_id": "3rd_p0001_q0005",
   "source_path": "input\\3rd.hwpx",
   "page_number": 1,
-  "type_guess": "rejected_candidate",
-  "type_guess_reason": "candidate_marked_as_non_problem",
-  "rejected": true,
+  "type_guess": "clock_reading",
+  "type_guess_reason": "explicit_clock_time_keywords",
+  "rejected": false,
   "fallback_render_used": false,
   "anomaly_flags": [
     "choice_marker_not_found",
     "missing_problem_number",
-    "non_problem_candidate",
-    "rejected_non_problem_candidate"
+    "truncated_problem_suspected"
   ],
-  "recommended_action": "resegment_required",
+  "recommended_action": "manual_review_required",
   "raw_fields": {
-    "text": "예은이가 시계를 보았더니 7시 17분 25초였습니다. 36분 47초 후의 시각이 ㉠시 ㉡분 ㉢초일 때 ㉠+㉡+㉢을 구하시오. 점수 사각형입니다.",
+    "text": "예은이가 시계를 보았더니 7시 17분 25초였습니다. 36분 47초 후의 시각이 ㉠시 ㉡분 ㉢초일 때 ㉠+㉡+㉢을 구하시오.",
     "bbox": {
       "x0": 42.0,
       "y0": 396.0,
       "x1": 538.8,
-      "y1": 445.0
+      "y1": 409.0
     },
     "warnings": [
-      "missing_problem_number",
       "choice_marker_not_found",
-      "rejected_non_problem_candidate",
-      "rejected_non_problem_candidate"
+      "missing_problem_number",
+      "truncated_problem_suspected"
     ],
-    "is_probable_problem": false,
+    "is_probable_problem": true,
     "segmentation_reason": "question_cue_start",
     "source_block_ids": [
-      "3rd_p0001_tb0019",
-      "3rd_p0001_tb0020",
-      "3rd_p0001_tb0021"
+      "3rd_p0001_tb0019"
     ]
   },
   "semantic_fields": {
@@ -40,27 +36,26 @@
     "problem_id": "3rd_p0001_q0005",
     "source_path": "input\\3rd.hwpx",
     "page_number": 1,
-    "type": "rejected_candidate",
-    "question_text": "예은이가 시계를 보았더니 7시 17분 25초였습니다. 36분 47초 후의 시각이 ㉠시 ㉡분 ㉢초일 때 ㉠+㉡+㉢을 구하시오. 점수 사각형입니다.",
+    "type": "clock_reading",
+    "question_text": "예은이가 시계를 보았더니 7시 17분 25초였습니다. 36분 47초 후의 시각이 ㉠시 ㉡분 ㉢초일 때 ㉠+㉡+㉢을 구하시오.",
     "answer": null,
     "explanation": null,
     "bbox": {
       "x0": 42.0,
       "y0": 396.0,
       "x1": 538.8,
-      "y1": 445.0
+      "y1": 409.0
     },
-    "confidence": 0.5333333333333333,
+    "confidence": 0.8533333333333332,
     "confidence_breakdown": {
-      "segmentation_confidence": 0.62,
-      "type_confidence": 0.98,
-      "structure_confidence": 0.0
+      "segmentation_confidence": 1.0,
+      "type_confidence": 0.86,
+      "structure_confidence": 0.7
     },
     "warnings": [
       "choice_marker_not_found",
       "missing_problem_number",
-      "non_problem_candidate",
-      "rejected_non_problem_candidate"
+      "truncated_problem_suspected"
     ],
     "render_hint": {
       "question_anchor": null,
@@ -76,14 +71,26 @@
       "semantic_coordinates": {},
       "render_coordinates": {}
     },
-    "type_guess": "rejected_candidate",
-    "type_guess_reason": "candidate_marked_as_non_problem",
-    "rejected": true,
-    "rejection_reason": "segmentation_marked_non_problem"
+    "type_guess": "clock_reading",
+    "type_guess_reason": "explicit_clock_time_keywords",
+    "rejected": false,
+    "clock": {
+      "hour": 7,
+      "minute": 17,
+      "hour_angle": null,
+      "minute_angle": null
+    }
   },
   "renderer_usage": {
-    "rendered": false,
+    "problem_id": "3rd_p0001_q0005",
+    "rendered": true,
+    "output_svg": "output\\svg\\3rd_p0001_q0005.render.svg",
+    "used_fields": [
+      "question_text",
+      "type",
+      "render_hint"
+    ],
     "fallback_render_used": false,
-    "reason": "rejected_candidate"
+    "fallback_reason": null
   }
 }

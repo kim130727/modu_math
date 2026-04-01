@@ -2,32 +2,33 @@
   "problem_id": "6rd_p0001_q0001",
   "source_path": "input\\6rd.hwpx",
   "page_number": 1,
-  "type_guess": "arithmetic_expression",
-  "type_guess_reason": "short_math_expression_dominant",
+  "type_guess": "generic_text_problem",
+  "type_guess_reason": "no_reliable_type_signal",
   "rejected": false,
   "fallback_render_used": false,
   "anomaly_flags": [
-    "arithmetic_expression_not_reliably_extracted",
-    "choice_marker_not_found"
+    "choice_marker_not_found",
+    "missing_problem_number",
+    "truncated_problem_suspected"
   ],
   "recommended_action": "manual_review_required",
   "raw_fields": {
-    "text": "41.44div7=㉠ 모서리가 둥근사각형입니다. 나눗셈의 몫이 진분수인 것은 어느 것입니까?",
+    "text": "※ 단위를 꼭 쓰세요.",
     "bbox": {
       "x0": 42.0,
-      "y0": 216.0,
-      "x1": 214.8,
-      "y1": 265.0
+      "y0": 90.0,
+      "x1": 128.4,
+      "y1": 103.0
     },
     "warnings": [
-      "choice_marker_not_found"
+      "choice_marker_not_found",
+      "missing_problem_number",
+      "truncated_problem_suspected"
     ],
     "is_probable_problem": true,
-    "segmentation_reason": "explicit_problem_marker",
+    "segmentation_reason": "question_sentence_after_gap",
     "source_block_ids": [
-      "6rd_p0001_tb0009",
-      "6rd_p0001_tb0010",
-      "6rd_p0001_tb0011"
+      "6rd_p0001_tb0002"
     ]
   },
   "semantic_fields": {
@@ -36,24 +37,25 @@
     "source_path": "input\\6rd.hwpx",
     "page_number": 1,
     "type": "generic_text_problem",
-    "question_text": "41.44div7=㉠ 모서리가 둥근사각형입니다. 나눗셈의 몫이 진분수인 것은 어느 것입니까?",
+    "question_text": "※ 단위를 꼭 쓰세요.",
     "answer": null,
     "explanation": null,
     "bbox": {
       "x0": 42.0,
-      "y0": 216.0,
-      "x1": 214.8,
-      "y1": 265.0
+      "y0": 90.0,
+      "x1": 128.4,
+      "y1": 103.0
     },
-    "confidence": 0.5566666666666666,
+    "confidence": 0.42333333333333334,
     "confidence_breakdown": {
-      "segmentation_confidence": 0.95,
-      "type_confidence": 0.72,
+      "segmentation_confidence": 0.77,
+      "type_confidence": 0.5,
       "structure_confidence": 0.0
     },
     "warnings": [
-      "arithmetic_expression_not_reliably_extracted",
-      "choice_marker_not_found"
+      "choice_marker_not_found",
+      "missing_problem_number",
+      "truncated_problem_suspected"
     ],
     "render_hint": {
       "question_anchor": null,
@@ -69,8 +71,8 @@
       "semantic_coordinates": {},
       "render_coordinates": {}
     },
-    "type_guess": "arithmetic_expression",
-    "type_guess_reason": "short_math_expression_dominant",
+    "type_guess": "generic_text_problem",
+    "type_guess_reason": "no_reliable_type_signal",
     "rejected": false
   },
   "renderer_usage": {

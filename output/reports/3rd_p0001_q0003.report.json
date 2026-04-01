@@ -2,33 +2,48 @@
   "problem_id": "3rd_p0001_q0003",
   "source_path": "input\\3rd.hwpx",
   "page_number": 1,
-  "type_guess": "generic_text_problem",
-  "type_guess_reason": "no_reliable_type_signal",
-  "rejected": false,
+  "type_guess": "rejected_candidate",
+  "type_guess_reason": "candidate_marked_as_non_problem",
+  "rejected": true,
   "fallback_render_used": false,
   "anomaly_flags": [
     "choice_marker_not_found",
-    "missing_problem_number"
+    "merged_problem_suspected",
+    "missing_problem_number",
+    "non_problem_candidate",
+    "placeholder_mixed_with_text",
+    "placeholder_then_new_question",
+    "rejected_non_problem_candidate",
+    "truncated_problem_suspected"
   ],
-  "recommended_action": "manual_review_required",
+  "recommended_action": "resegment_required",
   "raw_fields": {
-    "text": "지우개의 길이는 몇 mm입니까? ( * 눈금을 잘 보아야해요) 3장의 수 카드를 모두 한 번씩만 사용하여",
+    "text": "이름: 안에 알맞은 수를 구하시오. 410초 수식입니다. 6분 초 모서리가 둥근사각형입니다.",
     "bbox": {
       "x0": 42.0,
-      "y0": 252.0,
-      "x1": 207.6,
-      "y1": 301.0
+      "y0": 126.0,
+      "x1": 150.0,
+      "y1": 247.0
     },
     "warnings": [
+      "choice_marker_not_found",
+      "merged_problem_suspected",
       "missing_problem_number",
-      "choice_marker_not_found"
+      "placeholder_mixed_with_text",
+      "placeholder_then_new_question",
+      "rejected_non_problem_candidate",
+      "truncated_problem_suspected"
     ],
-    "is_probable_problem": true,
-    "segmentation_reason": "question_cue_start",
+    "is_probable_problem": false,
+    "segmentation_reason": "meta_line",
     "source_block_ids": [
-      "3rd_p0001_tb0011",
-      "3rd_p0001_tb0012",
-      "3rd_p0001_tb0013"
+      "3rd_p0001_tb0004",
+      "3rd_p0001_tb0005",
+      "3rd_p0001_tb0006",
+      "3rd_p0001_tb0007",
+      "3rd_p0001_tb0008",
+      "3rd_p0001_tb0009",
+      "3rd_p0001_tb0010"
     ]
   },
   "semantic_fields": {
@@ -36,25 +51,31 @@
     "problem_id": "3rd_p0001_q0003",
     "source_path": "input\\3rd.hwpx",
     "page_number": 1,
-    "type": "generic_text_problem",
-    "question_text": "지우개의 길이는 몇 mm입니까? ( * 눈금을 잘 보아야해요) 3장의 수 카드를 모두 한 번씩만 사용하여",
+    "type": "rejected_candidate",
+    "question_text": "이름: 안에 알맞은 수를 구하시오. 410초 수식입니다. 6분 초 모서리가 둥근사각형입니다.",
     "answer": null,
     "explanation": null,
     "bbox": {
       "x0": 42.0,
-      "y0": 252.0,
-      "x1": 207.6,
-      "y1": 301.0
+      "y0": 126.0,
+      "x1": 150.0,
+      "y1": 247.0
     },
-    "confidence": 0.37333333333333335,
+    "confidence": 0.33,
     "confidence_breakdown": {
-      "segmentation_confidence": 0.62,
-      "type_confidence": 0.5,
+      "segmentation_confidence": 0.010000000000000023,
+      "type_confidence": 0.98,
       "structure_confidence": 0.0
     },
     "warnings": [
       "choice_marker_not_found",
-      "missing_problem_number"
+      "merged_problem_suspected",
+      "missing_problem_number",
+      "non_problem_candidate",
+      "placeholder_mixed_with_text",
+      "placeholder_then_new_question",
+      "rejected_non_problem_candidate",
+      "truncated_problem_suspected"
     ],
     "render_hint": {
       "question_anchor": null,
@@ -70,23 +91,14 @@
       "semantic_coordinates": {},
       "render_coordinates": {}
     },
-    "type_guess": "generic_text_problem",
-    "type_guess_reason": "no_reliable_type_signal",
-    "rejected": false
+    "type_guess": "rejected_candidate",
+    "type_guess_reason": "candidate_marked_as_non_problem",
+    "rejected": true,
+    "rejection_reason": "segmentation_marked_non_problem"
   },
   "renderer_usage": {
-    "problem_id": "3rd_p0001_q0003",
-    "rendered": true,
-    "output_tex": "output\\tikz\\3rd_p0001_q0003.tikz.tex",
-    "used_fields": [
-      "question_text",
-      "type",
-      "render_hint"
-    ],
+    "rendered": false,
     "fallback_render_used": false,
-    "fallback_reason": null,
-    "compiled_pdf": false,
-    "compile_reason": "pdflatex_failed",
-    "latex_log_tail": "\r\nIt seems that this is a fresh TeX installation.\r\nPlease finish the setup before proceeding.\r\nFor more information, visit:\r\nhttps://miktex.org/howto/install-miktex-win\r\n"
+    "reason": "rejected_candidate"
   }
 }

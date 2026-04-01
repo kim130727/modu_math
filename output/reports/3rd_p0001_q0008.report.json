@@ -8,25 +8,30 @@
   "fallback_render_used": false,
   "anomaly_flags": [
     "choice_marker_not_found",
-    "missing_problem_number"
+    "missing_problem_number",
+    "placeholder_mixed_with_text",
+    "placeholder_then_new_question"
   ],
   "recommended_action": "manual_review_required",
   "raw_fields": {
-    "text": "1부터 9까지의 한 자리 홀수 중에서",
+    "text": "큰 수를 작은 수로 나눈 몫을 구하고 그 몫에 23을 다시 곱하시오. 모서리가 둥근사각형입니다.",
     "bbox": {
       "x0": 42.0,
-      "y0": 522.0,
-      "x1": 186.0,
-      "y1": 535.0
+      "y0": 594.0,
+      "x1": 315.6,
+      "y1": 625.0
     },
     "warnings": [
+      "choice_marker_not_found",
       "missing_problem_number",
-      "choice_marker_not_found"
+      "placeholder_mixed_with_text",
+      "placeholder_then_new_question"
     ],
     "is_probable_problem": true,
-    "segmentation_reason": "question_cue_start",
+    "segmentation_reason": "continuation",
     "source_block_ids": [
-      "3rd_p0001_tb0026"
+      "3rd_p0001_tb0030",
+      "3rd_p0001_tb0031"
     ]
   },
   "semantic_fields": {
@@ -35,24 +40,26 @@
     "source_path": "input\\3rd.hwpx",
     "page_number": 1,
     "type": "generic_text_problem",
-    "question_text": "1부터 9까지의 한 자리 홀수 중에서",
+    "question_text": "큰 수를 작은 수로 나눈 몫을 구하고 그 몫에 23을 다시 곱하시오. 모서리가 둥근사각형입니다.",
     "answer": null,
     "explanation": null,
     "bbox": {
       "x0": 42.0,
-      "y0": 522.0,
-      "x1": 186.0,
-      "y1": 535.0
+      "y0": 594.0,
+      "x1": 315.6,
+      "y1": 625.0
     },
-    "confidence": 0.37333333333333335,
+    "confidence": 0.30333333333333334,
     "confidence_breakdown": {
-      "segmentation_confidence": 0.62,
+      "segmentation_confidence": 0.41000000000000003,
       "type_confidence": 0.5,
       "structure_confidence": 0.0
     },
     "warnings": [
       "choice_marker_not_found",
-      "missing_problem_number"
+      "missing_problem_number",
+      "placeholder_mixed_with_text",
+      "placeholder_then_new_question"
     ],
     "render_hint": {
       "question_anchor": null,
@@ -75,16 +82,13 @@
   "renderer_usage": {
     "problem_id": "3rd_p0001_q0008",
     "rendered": true,
-    "output_tex": "output\\tikz\\3rd_p0001_q0008.tikz.tex",
+    "output_svg": "output\\svg\\3rd_p0001_q0008.render.svg",
     "used_fields": [
       "question_text",
       "type",
       "render_hint"
     ],
     "fallback_render_used": false,
-    "fallback_reason": null,
-    "compiled_pdf": false,
-    "compile_reason": "pdflatex_failed",
-    "latex_log_tail": "\r\nIt seems that this is a fresh TeX installation.\r\nPlease finish the setup before proceeding.\r\nFor more information, visit:\r\nhttps://miktex.org/howto/install-miktex-win\r\n"
+    "fallback_reason": null
   }
 }

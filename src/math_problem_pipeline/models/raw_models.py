@@ -55,6 +55,16 @@ class SourcePage(BaseModel):
     height: float
     text_blocks: list[RawTextBlock] = Field(default_factory=list)
     visual_blocks: list[RawVisualBlock] = Field(default_factory=list)
+    page_image_ids: list[str] = Field(default_factory=list)
+
+
+class RawSubItem(BaseModel):
+    """Optional segmented sub-item metadata."""
+
+    label: str
+    text: str
+    source_block_ids: list[str] = Field(default_factory=list)
+    bbox: BBox | None = None
 
 
 class RawProblemRegion(BaseModel):
@@ -72,4 +82,4 @@ class RawProblemRegion(BaseModel):
     segmentation_score: float = 0.0
     segmentation_reason: str = "unknown"
     is_probable_problem: bool = True
-
+    subitems: list[RawSubItem] = Field(default_factory=list)

@@ -2,32 +2,41 @@
   "problem_id": "3rd_p0001_q0006",
   "source_path": "input\\3rd.hwpx",
   "page_number": 1,
-  "type_guess": "geometry_basic",
-  "type_guess_reason": "shape_plus_point_or_measure_keywords",
-  "rejected": false,
+  "type_guess": "rejected_candidate",
+  "type_guess_reason": "candidate_marked_as_non_problem",
+  "rejected": true,
   "fallback_render_used": false,
   "anomaly_flags": [
     "choice_marker_not_found",
     "missing_problem_number",
-    "visual_structure_detection_needed"
+    "non_problem_candidate",
+    "placeholder_mixed_with_text",
+    "placeholder_then_new_question",
+    "rejected_non_problem_candidate",
+    "truncated_problem_suspected"
   ],
-  "recommended_action": "structure_detection_needed",
+  "recommended_action": "resegment_required",
   "raw_fields": {
-    "text": "여러 가지 크기의 정사각형을 겹치지 않게 놓아 다음과 같은 직사각형 ㄱㄴㄷㄹ을 만들었습니다. 색칠된 정사각형의 한 변의 길이는 15cm 일 때, 직사각형 ㄱㄴㄷㄹ의 네 변의 길이의 합은 몇 cm입니까? (단, 가장 작은 두 정사각형의 크기는 같습니다.)",
+    "text": "점수 사각형입니다.",
     "bbox": {
       "x0": 42.0,
-      "y0": 450.0,
-      "x1": 542.0,
-      "y1": 463.0
+      "y0": 414.0,
+      "x1": 102.0,
+      "y1": 445.0
     },
     "warnings": [
+      "choice_marker_not_found",
       "missing_problem_number",
-      "choice_marker_not_found"
+      "placeholder_mixed_with_text",
+      "placeholder_then_new_question",
+      "rejected_non_problem_candidate",
+      "truncated_problem_suspected"
     ],
-    "is_probable_problem": true,
-    "segmentation_reason": "question_cue_start",
+    "is_probable_problem": false,
+    "segmentation_reason": "meta_line",
     "source_block_ids": [
-      "3rd_p0001_tb0022"
+      "3rd_p0001_tb0020",
+      "3rd_p0001_tb0021"
     ]
   },
   "semantic_fields": {
@@ -35,26 +44,30 @@
     "problem_id": "3rd_p0001_q0006",
     "source_path": "input\\3rd.hwpx",
     "page_number": 1,
-    "type": "unknown_visual_math_problem",
-    "question_text": "여러 가지 크기의 정사각형을 겹치지 않게 놓아 다음과 같은 직사각형 ㄱㄴㄷㄹ을 만들었습니다. 색칠된 정사각형의 한 변의 길이는 15cm 일 때, 직사각형 ㄱㄴㄷㄹ의 네 변의 길이의 합은 몇 cm입니까? (단, 가장 작은 두 정사각형의 크기는 같습니다.)",
+    "type": "rejected_candidate",
+    "question_text": "점수 사각형입니다.",
     "answer": null,
     "explanation": null,
     "bbox": {
       "x0": 42.0,
-      "y0": 450.0,
-      "x1": 542.0,
-      "y1": 463.0
+      "y0": 414.0,
+      "x1": 102.0,
+      "y1": 445.0
     },
-    "confidence": 0.4666666666666666,
+    "confidence": 0.32666666666666666,
     "confidence_breakdown": {
-      "segmentation_confidence": 0.62,
-      "type_confidence": 0.78,
+      "segmentation_confidence": 0.0,
+      "type_confidence": 0.98,
       "structure_confidence": 0.0
     },
     "warnings": [
       "choice_marker_not_found",
       "missing_problem_number",
-      "visual_structure_detection_needed"
+      "non_problem_candidate",
+      "placeholder_mixed_with_text",
+      "placeholder_then_new_question",
+      "rejected_non_problem_candidate",
+      "truncated_problem_suspected"
     ],
     "render_hint": {
       "question_anchor": null,
@@ -70,23 +83,14 @@
       "semantic_coordinates": {},
       "render_coordinates": {}
     },
-    "type_guess": "geometry_basic",
-    "type_guess_reason": "shape_plus_point_or_measure_keywords",
-    "rejected": false
+    "type_guess": "rejected_candidate",
+    "type_guess_reason": "candidate_marked_as_non_problem",
+    "rejected": true,
+    "rejection_reason": "segmentation_marked_non_problem"
   },
   "renderer_usage": {
-    "problem_id": "3rd_p0001_q0006",
-    "rendered": true,
-    "output_tex": "output\\tikz\\3rd_p0001_q0006.tikz.tex",
-    "used_fields": [
-      "question_text",
-      "type",
-      "render_hint"
-    ],
+    "rendered": false,
     "fallback_render_used": false,
-    "fallback_reason": null,
-    "compiled_pdf": false,
-    "compile_reason": "pdflatex_failed",
-    "latex_log_tail": "\r\nIt seems that this is a fresh TeX installation.\r\nPlease finish the setup before proceeding.\r\nFor more information, visit:\r\nhttps://miktex.org/howto/install-miktex-win\r\n"
+    "reason": "rejected_candidate"
   }
 }

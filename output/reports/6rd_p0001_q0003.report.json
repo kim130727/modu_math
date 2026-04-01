@@ -2,32 +2,46 @@
   "problem_id": "6rd_p0001_q0003",
   "source_path": "input\\6rd.hwpx",
   "page_number": 1,
-  "type_guess": "multiple_choice_text",
-  "type_guess_reason": "choice_markers_detected",
-  "rejected": false,
+  "type_guess": "rejected_candidate",
+  "type_guess_reason": "candidate_marked_as_non_problem",
+  "rejected": true,
   "fallback_render_used": false,
   "anomaly_flags": [
-    "choice_structure_unclear",
-    "missing_problem_number"
+    "choice_marker_not_found",
+    "merged_problem_suspected",
+    "missing_problem_number",
+    "new_question_cue_detected",
+    "non_problem_candidate",
+    "placeholder_mixed_with_text",
+    "rejected_non_problem_candidate",
+    "truncated_problem_suspected"
   ],
-  "recommended_action": "manual_review_required",
+  "recommended_action": "resegment_required",
   "raw_fields": {
-    "text": "② 수식입니다. 9 {3} over {4} DIVIDE 8",
+    "text": "이름: 수식입니다. ㉠times100 을 구하시오. 수식입니다.",
     "bbox": {
       "x0": 42.0,
-      "y0": 324.0,
-      "x1": 207.6,
-      "y1": 373.0
+      "y0": 126.0,
+      "x1": 106.8,
+      "y1": 211.0
     },
     "warnings": [
-      "missing_problem_number"
+      "choice_marker_not_found",
+      "merged_problem_suspected",
+      "missing_problem_number",
+      "new_question_cue_detected",
+      "placeholder_mixed_with_text",
+      "rejected_non_problem_candidate",
+      "truncated_problem_suspected"
     ],
-    "is_probable_problem": true,
-    "segmentation_reason": "explicit_problem_marker",
+    "is_probable_problem": false,
+    "segmentation_reason": "meta_line",
     "source_block_ids": [
-      "6rd_p0001_tb0015",
-      "6rd_p0001_tb0016",
-      "6rd_p0001_tb0017"
+      "6rd_p0001_tb0004",
+      "6rd_p0001_tb0005",
+      "6rd_p0001_tb0006",
+      "6rd_p0001_tb0007",
+      "6rd_p0001_tb0008"
     ]
   },
   "semantic_fields": {
@@ -35,25 +49,31 @@
     "problem_id": "6rd_p0001_q0003",
     "source_path": "input\\6rd.hwpx",
     "page_number": 1,
-    "type": "generic_text_problem",
-    "question_text": "② 수식입니다. 9 {3} over {4} DIVIDE 8",
+    "type": "rejected_candidate",
+    "question_text": "이름: 수식입니다. ㉠times100 을 구하시오. 수식입니다.",
     "answer": null,
     "explanation": null,
     "bbox": {
       "x0": 42.0,
-      "y0": 324.0,
-      "x1": 207.6,
-      "y1": 373.0
+      "y0": 126.0,
+      "x1": 106.8,
+      "y1": 211.0
     },
-    "confidence": 0.5433333333333333,
+    "confidence": 0.33,
     "confidence_breakdown": {
-      "segmentation_confidence": 0.95,
-      "type_confidence": 0.68,
+      "segmentation_confidence": 0.010000000000000023,
+      "type_confidence": 0.98,
       "structure_confidence": 0.0
     },
     "warnings": [
-      "choice_structure_unclear",
-      "missing_problem_number"
+      "choice_marker_not_found",
+      "merged_problem_suspected",
+      "missing_problem_number",
+      "new_question_cue_detected",
+      "non_problem_candidate",
+      "placeholder_mixed_with_text",
+      "rejected_non_problem_candidate",
+      "truncated_problem_suspected"
     ],
     "render_hint": {
       "question_anchor": null,
@@ -69,20 +89,14 @@
       "semantic_coordinates": {},
       "render_coordinates": {}
     },
-    "type_guess": "multiple_choice_text",
-    "type_guess_reason": "choice_markers_detected",
-    "rejected": false
+    "type_guess": "rejected_candidate",
+    "type_guess_reason": "candidate_marked_as_non_problem",
+    "rejected": true,
+    "rejection_reason": "segmentation_marked_non_problem"
   },
   "renderer_usage": {
-    "problem_id": "6rd_p0001_q0003",
-    "rendered": true,
-    "output_svg": "output\\svg\\6rd_p0001_q0003.render.svg",
-    "used_fields": [
-      "question_text",
-      "type",
-      "render_hint"
-    ],
+    "rendered": false,
     "fallback_render_used": false,
-    "fallback_reason": null
+    "reason": "rejected_candidate"
   }
 }

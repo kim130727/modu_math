@@ -7,6 +7,15 @@ from pydantic import BaseModel, Field
 from .raw_models import BBox
 
 
+class ProblemSubItem(BaseModel):
+    """Optional sub-item extracted from composite problems."""
+
+    label: str
+    text: str
+    source_block_ids: list[str] = Field(default_factory=list)
+    bbox: BBox | None = None
+
+
 class ProblemCandidate(BaseModel):
     """Raw candidate with conservative segmentation metadata."""
 
@@ -23,6 +32,8 @@ class ProblemCandidate(BaseModel):
     segmentation_reason: str = "unknown"
     page_width: float | None = None
     page_height: float | None = None
+    subitems: list[ProblemSubItem] = Field(default_factory=list)
+    image_ids: list[str] = Field(default_factory=list)
 
 
 class ExtractedProblem(BaseModel):

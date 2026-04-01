@@ -22,11 +22,13 @@ STYLE_TOKENS = {
     "BOTH",
     "HORIZONTAL",
 }
+IMAGE_EXTS = {".png", ".jpg", ".jpeg", ".bmp", ".gif", ".webp", ".svg"}
 
 
-def extract_pages_from_hwpx(hwpx_path: Path, document_id: str) -> list[SourcePage]:
+def extract_pages_from_hwpx(hwpx_path: Path, document_id: str, page_image_ids: list[str] | None = None) -> list[SourcePage]:
     """Extract text blocks from HWPX section XML parts."""
     pages: list[SourcePage] = []
+    image_ids = list(page_image_ids or [])
 
     with zipfile.ZipFile(hwpx_path, "r") as zf:
         section_names = sorted(
@@ -48,6 +50,7 @@ def extract_pages_from_hwpx(hwpx_path: Path, document_id: str) -> list[SourcePag
                     height=842.0,
                     text_blocks=[],
                     visual_blocks=[],
+                    page_image_ids=image_ids,
                 )
             ]
 
@@ -67,10 +70,41 @@ def extract_pages_from_hwpx(hwpx_path: Path, document_id: str) -> list[SourcePag
                     height=842.0,
                     text_blocks=text_blocks,
                     visual_blocks=[],
+                    page_image_ids=image_ids,
                 )
             )
 
     return pages
+
+
+def extract_images_from_hwpx(hwpx_path: Path, output_dir: Path, document_id: str) -> list[str]:
+    """Extract image assets from HWPX (BinData + Preview) to output_dir.
+
+    Returns relative file names saved in output_dir.
+    """
+    output_dir.mkdir(parents=True, exist_ok=True)
+    saved: list[str] = []
+
+    with zipfile.ZipFile(hwpx_path, "r") as zf:
+        image_members = [
+            name
+            for name in zf.namelist()
+            if (
+                name.lower().startswith("bindata/")
+                or name.lower().startswith("preview/")
+            )
+            and Path(name).suffix.lower() in IMAGE_EXTS
+        ]
+
+        for idx, member in enumerate(sorted(image_members), start=1):
+            src_name = Path(member).name
+            suffix = Path(src_name).suffix.lower() or ".bin"
+            out_name = f"{document_id}_img{idx:04d}{suffix}"
+            out_path = output_dir / out_name
+            out_path.write_bytes(zf.read(member))
+            saved.append(out_name)
+
+    return saved
 
 
 def _extract_text_lines(xml_data: bytes) -> list[str]:
@@ -156,4 +190,3 @@ def _is_meaningful(text: str) -> bool:
         return False
 
     return True
-

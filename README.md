@@ -12,7 +12,7 @@ HWPX의 수학 문서를 추출하고, semantic JSON으로 정규화한 뒤 SVG/
 
 1. HWPX raw 추출
 ```bash
-math-pipeline parse-hwpx input/book1.hwpx --output-dir output/raw/pages
+math-pipeline parse-hwpx input/book1.hwpx --output-dir output/raw/pages --images-dir output/raw/images
 ```
 
 2. 문제 분리 + 비문항 거절
@@ -38,8 +38,13 @@ math-pipeline run-pipeline input/book1.hwpx --output-root output
 ## 출력 구조
 
 - `output/raw/pages/*.json`
-- `output/raw/problems/*.raw.json`
+- `output/raw/images/*` (HWPX 이미지 자산)
+- `output/raw/problems/*.raw.json` (기존 호환)
+- `output/raw/problems/<problem_id>/raw.json`
+
 - `output/raw/rejected/*.raw.json`
+- `output/raw/rejected/<problem_id>/raw.json`
+
 - `output/semantic/*.semantic.json`
 - `output/semantic_rejected/*.semantic.json`
 - `output/svg/*.render.svg`
@@ -51,5 +56,4 @@ math-pipeline run-pipeline input/book1.hwpx --output-root output
 - 시각 구조(도형/표/그래프) 신뢰도가 낮으면 `unknown_visual_math_problem`으로 유지합니다.
 - 렌더 단계는 invalid 구조에서 자동 fallback(text only) 됩니다.
 - SVG 렌더는 semantic 이상치가 있으면 자동 fallback(text only)로 내려갑니다.
-
 

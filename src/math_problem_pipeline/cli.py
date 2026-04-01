@@ -9,7 +9,7 @@ import typer
 from pydantic import TypeAdapter
 
 from math_problem_pipeline.compare.debug_report import build_schema_refinement_report, write_report
-from math_problem_pipeline.extract.hwpx_extractor import extract_pages_from_hwpx
+from math_problem_pipeline.extract.hwpx_extractor import extract_images_from_hwpx, extract_pages_from_hwpx
 from math_problem_pipeline.extract.hwpx_reader import open_hwpx_document
 from math_problem_pipeline.extract.problem_segmenter import (
     filter_obvious_non_problems,
@@ -31,21 +31,59 @@ logger = setup_logger(__name__)
 semantic_adapter = TypeAdapter(SemanticProblem)
 
 
+def _write_candidate_bundle(
+    candidate: ProblemCandidate,
+    flat_dir: Path,
+    bundle_root: Path,
+) -> None:
+    """Write legacy flat raw.json and new per-problem bundle (raw.json only)."""
+    write_json(flat_dir / f"{candidate.candidate_id}.raw.json", candidate.model_dump())
+
+    bundle_dir = ensure_dir(bundle_root / candidate.candidate_id)
+    write_json(bundle_dir / "raw.json", candidate.model_dump())
+
+
+def _list_raw_candidate_files(raw_problem_dir: Path) -> list[Path]:
+    """Support both flat *.raw.json and bundle */raw.json."""
+    flat = list_json_files(raw_problem_dir)
+    bundled = sorted(p for p in raw_problem_dir.glob("*/raw.json") if p.is_file())
+
+    by_id: dict[str, Path] = {}
+    for p in flat:
+        by_id[p.stem.replace(".raw", "")] = p
+    for p in bundled:
+        candidate_id = p.parent.name
+        by_id.setdefault(candidate_id, p)
+    return sorted(by_id.values())
+
+
+def _resolve_raw_candidate_path(raw_problem_dir: Path, problem_id: str) -> Path | None:
+    flat = raw_problem_dir / f"{problem_id}.raw.json"
+    if flat.exists():
+        return flat
+    bundled = raw_problem_dir / problem_id / "raw.json"
+    if bundled.exists():
+        return bundled
+    return None
+
+
 @app.command("parse-hwpx")
 def parse_hwpx(
     hwpx_path: Path = typer.Argument(..., help="Input HWPX path"),
     output_dir: Path = typer.Option(Path("output/raw/pages"), help="Raw page JSON output dir"),
+    images_dir: Path = typer.Option(Path("output/raw/images"), help="Raw image output dir"),
 ) -> None:
-    """Stage 1: extract pages from HWPX."""
+    """Stage 1: extract pages and image assets from HWPX."""
     doc = open_hwpx_document(hwpx_path)
-    pages = extract_pages_from_hwpx(hwpx_path, doc.document_id)
+    image_ids = extract_images_from_hwpx(hwpx_path, images_dir, doc.document_id)
+    pages = extract_pages_from_hwpx(hwpx_path, doc.document_id, page_image_ids=image_ids)
 
     ensure_dir(output_dir)
     for page in pages:
         page_path = output_dir / f"{page.page_id}.json"
         write_json(page_path, page.model_dump())
 
-    logger.info("Saved %d raw pages to %s", len(pages), output_dir)
+    logger.info("Saved %d raw pages to %s (images=%d in %s)", len(pages), output_dir, len(image_ids), images_dir)
 
 
 @app.command("segment-problems")
@@ -68,13 +106,11 @@ def segment_problems(
         accepted, rejected = filter_obvious_non_problems(candidates)
 
         for candidate in accepted:
-            out = output_dir / f"{candidate.candidate_id}.raw.json"
-            write_json(out, candidate.model_dump())
+            _write_candidate_bundle(candidate, output_dir, output_dir)
             accepted_total += 1
 
         for candidate in rejected:
-            out = rejected_output_dir / f"{candidate.candidate_id}.raw.json"
-            write_json(out, candidate.model_dump())
+            _write_candidate_bundle(candidate, rejected_output_dir, rejected_output_dir)
             rejected_total += 1
 
     logger.info("Saved accepted=%d rejected=%d candidates", accepted_total, rejected_total)
@@ -89,12 +125,13 @@ def build_semantic(
     """Stages 5~7: classify conservatively -> build minimal semantic -> validate."""
     ensure_dir(output_dir)
     ensure_dir(rejected_output_dir)
-    raw_files = list_json_files(raw_problem_dir)
+    raw_files = _list_raw_candidate_files(raw_problem_dir)
 
     rejected = 0
     for raw_file in raw_files:
         candidate = ProblemCandidate.model_validate(read_json(raw_file))
         candidate.warnings.extend(validate_candidate(candidate))
+        candidate.warnings = sorted(set(candidate.warnings))
         extracted = candidate_to_extracted(candidate)
         semantic = extracted_to_semantic(extracted)
 
@@ -166,8 +203,8 @@ def debug_compare(
     count = 0
     for semantic_file in semantic_files:
         semantic = semantic_adapter.validate_python(read_json(semantic_file))
-        raw_path = raw_problem_dir / f"{semantic.problem_id}.raw.json"
-        if not raw_path.exists():
+        raw_path = _resolve_raw_candidate_path(raw_problem_dir, semantic.problem_id)
+        if raw_path is None:
             logger.warning("Missing raw problem for %s", semantic.problem_id)
             continue
 
@@ -194,19 +231,22 @@ def run_pipeline(
     output_root: Path = typer.Option(Path("output"), help="Root output directory"),
 ) -> None:
     """Single command conservative pipeline for HWPX."""
-    raw_pages_dir = output_root / "raw/pages"
-    raw_problem_dir = output_root / "raw/problems"
-    raw_rejected_dir = output_root / "raw/rejected"
+    raw_root = output_root / "raw"
+    raw_pages_dir = raw_root / "pages"
+    raw_images_dir = raw_root / "images"
+    raw_problem_dir = raw_root / "problems"
+    raw_rejected_dir = raw_root / "rejected"
     semantic_dir = output_root / "semantic"
     semantic_rejected_dir = output_root / "semantic_rejected"
     svg_dir = output_root / "svg"
     report_dir = output_root / "reports"
 
-    for d in [raw_pages_dir, raw_problem_dir, raw_rejected_dir, semantic_dir, semantic_rejected_dir, svg_dir, report_dir]:
+    for d in [raw_pages_dir, raw_images_dir, raw_problem_dir, raw_rejected_dir, semantic_dir, semantic_rejected_dir, svg_dir, report_dir]:
         ensure_dir(d)
 
     doc = open_hwpx_document(hwpx_path)
-    pages = extract_pages_from_hwpx(hwpx_path, doc.document_id)
+    image_ids = extract_images_from_hwpx(hwpx_path, raw_images_dir, doc.document_id)
+    pages = extract_pages_from_hwpx(hwpx_path, doc.document_id, page_image_ids=image_ids)
 
     all_accepted: list[ProblemCandidate] = []
     all_rejected: list[ProblemCandidate] = []
@@ -220,12 +260,13 @@ def run_pipeline(
         all_rejected.extend(rejected)
 
     for c in all_accepted:
-        write_json(raw_problem_dir / f"{c.candidate_id}.raw.json", c.model_dump())
+        _write_candidate_bundle(c, raw_problem_dir, raw_problem_dir)
     for c in all_rejected:
-        write_json(raw_rejected_dir / f"{c.candidate_id}.raw.json", c.model_dump())
+        _write_candidate_bundle(c, raw_rejected_dir, raw_rejected_dir)
 
     for cand in [*all_accepted, *all_rejected]:
         cand.warnings.extend(validate_candidate(cand))
+        cand.warnings = sorted(set(cand.warnings))
         extracted = candidate_to_extracted(cand)
         semantic = extracted_to_semantic(extracted)
 
@@ -244,11 +285,12 @@ def run_pipeline(
         write_report(report, report_dir / f"{semantic.problem_id}.report.json")
 
     logger.info(
-        "Pipeline done: pages=%d accepted=%d rejected=%d semantic=%d",
+        "Pipeline done: pages=%d accepted=%d rejected=%d semantic=%d images=%d",
         len(pages),
         len(all_accepted),
         len(all_rejected),
         len(all_accepted) + len(all_rejected),
+        len(image_ids),
     )
 
 

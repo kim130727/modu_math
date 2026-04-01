@@ -2,32 +2,40 @@
   "problem_id": "6rd_p0001_q0002",
   "source_path": "input\\6rd.hwpx",
   "page_number": 1,
-  "type_guess": "multiple_choice_text",
-  "type_guess_reason": "choice_markers_detected",
-  "rejected": false,
+  "type_guess": "rejected_candidate",
+  "type_guess_reason": "candidate_marked_as_non_problem",
+  "rejected": true,
   "fallback_render_used": false,
   "anomaly_flags": [
-    "choice_structure_unclear",
-    "missing_problem_number"
+    "choice_marker_not_found",
+    "hard_reject",
+    "missing_problem_number",
+    "non_problem_candidate",
+    "rejected_non_problem_candidate",
+    "top_meta_without_problem_number",
+    "truncated_problem_suspected"
   ],
-  "recommended_action": "manual_review_required",
+  "recommended_action": "resegment_required",
   "raw_fields": {
-    "text": "① 수식입니다. 7 5over6}div7",
+    "text": "날짜:",
     "bbox": {
       "x0": 42.0,
-      "y0": 270.0,
-      "x1": 135.60000000000002,
-      "y1": 319.0
+      "y0": 108.0,
+      "x1": 102.0,
+      "y1": 121.0
     },
     "warnings": [
-      "missing_problem_number"
+      "choice_marker_not_found",
+      "hard_reject",
+      "missing_problem_number",
+      "rejected_non_problem_candidate",
+      "top_meta_without_problem_number",
+      "truncated_problem_suspected"
     ],
-    "is_probable_problem": true,
-    "segmentation_reason": "explicit_problem_marker",
+    "is_probable_problem": false,
+    "segmentation_reason": "meta_line",
     "source_block_ids": [
-      "6rd_p0001_tb0012",
-      "6rd_p0001_tb0013",
-      "6rd_p0001_tb0014"
+      "6rd_p0001_tb0003"
     ]
   },
   "semantic_fields": {
@@ -35,25 +43,30 @@
     "problem_id": "6rd_p0001_q0002",
     "source_path": "input\\6rd.hwpx",
     "page_number": 1,
-    "type": "generic_text_problem",
-    "question_text": "① 수식입니다. 7 5over6}div7",
+    "type": "rejected_candidate",
+    "question_text": "날짜:",
     "answer": null,
     "explanation": null,
     "bbox": {
       "x0": 42.0,
-      "y0": 270.0,
-      "x1": 135.60000000000002,
-      "y1": 319.0
+      "y0": 108.0,
+      "x1": 102.0,
+      "y1": 121.0
     },
-    "confidence": 0.5433333333333333,
+    "confidence": 0.32666666666666666,
     "confidence_breakdown": {
-      "segmentation_confidence": 0.95,
-      "type_confidence": 0.68,
+      "segmentation_confidence": 0.0,
+      "type_confidence": 0.98,
       "structure_confidence": 0.0
     },
     "warnings": [
-      "choice_structure_unclear",
-      "missing_problem_number"
+      "choice_marker_not_found",
+      "hard_reject",
+      "missing_problem_number",
+      "non_problem_candidate",
+      "rejected_non_problem_candidate",
+      "top_meta_without_problem_number",
+      "truncated_problem_suspected"
     ],
     "render_hint": {
       "question_anchor": null,
@@ -69,20 +82,14 @@
       "semantic_coordinates": {},
       "render_coordinates": {}
     },
-    "type_guess": "multiple_choice_text",
-    "type_guess_reason": "choice_markers_detected",
-    "rejected": false
+    "type_guess": "rejected_candidate",
+    "type_guess_reason": "candidate_marked_as_non_problem",
+    "rejected": true,
+    "rejection_reason": "segmentation_marked_non_problem"
   },
   "renderer_usage": {
-    "problem_id": "6rd_p0001_q0002",
-    "rendered": true,
-    "output_svg": "output\\svg\\6rd_p0001_q0002.render.svg",
-    "used_fields": [
-      "question_text",
-      "type",
-      "render_hint"
-    ],
+    "rendered": false,
     "fallback_render_used": false,
-    "fallback_reason": null
+    "reason": "rejected_candidate"
   }
 }

@@ -2,52 +2,40 @@
   "problem_id": "6rd_p0001_q0006",
   "source_path": "input\\6rd.hwpx",
   "page_number": 1,
-  "type_guess": "rejected_candidate",
-  "type_guess_reason": "candidate_marked_as_non_problem",
-  "rejected": true,
+  "type_guess": "geometry_basic",
+  "type_guess_reason": "shape_plus_point_or_measure_keywords",
+  "rejected": false,
   "fallback_render_used": false,
   "anomaly_flags": [
-    "merged_multiple_problems_suspected",
+    "choice_marker_not_found",
+    "merged_problem_suspected",
     "missing_problem_number",
-    "non_problem_candidate",
-    "rejected_non_problem_candidate"
+    "placeholder_mixed_with_text",
+    "placeholder_then_new_question",
+    "visual_structure_detection_needed"
   ],
-  "recommended_action": "resegment_required",
+  "recommended_action": "structure_detection_needed",
   "raw_fields": {
-    "text": "⑤ 수식입니다. 환율은 자기 나라 돈과 다른 나라 돈의 교환 비율을 말합니다. 중국 돈 180위안을 은행에서 우리나라 돈 34560원으로 교환하였을 때 이날 중국 돈 위안에 대한 우리나라 돈 원의 환율은 얼마인지 구하시오. (단, 교환할 때 수수료는 없는 것으로 생각합니다.) 빈 곳에 알맞은 수를 구하시오. 그림입니다. 원본 그림의 이름: CLP000019340022.bmp 원본 그림의 크기: 가로 876pixel, 세로 318pixel 둘레가 38.4 cm로 같은 정사각형과 정육각형이 있습니다. 두 도형의 한 변의 길이의 합은 몇 cm입니까? 점수 사각형입니다. 수 카드 를 모두 한 번씩만 사용하여 다음과 같이 (대분수) 수식입니다. (자연수)를 만들려고 합니다. 만들 수 있는 식 중 몫이 가장 작을 때의 몫을 ㉠, 몫이 가장 클 때의 몫을 ㉡이라고 할 때 ㉠과 ㉡ 사이에 있는 자연수는 모두 몇 개입니까? 수식입니다. □ □over□}div□ 모서리가 둥근사각형입니다. 시계가 2시 48분을 가리킬 때 시계의 짧은바늘과 긴바늘이 이루는 작은 쪽의 각의 크기를 구하시오. 모든 면이 정사각형이고 한 면의 넓이가 8 수식입니다.",
+    "text": "환율은 자기 나라 돈과 다른 나라 돈의 교환 비율을 말합니다. 중국 돈 180위안을 은행에서 우리나라 돈 34560원으로 교환하였을 때 이날 중국 돈 위안에 대한 우리나라 돈 원의 환율은 얼마인지 구하시오. (단, 교환할 때 수수료는 없는 것으로 생각합니다.) 빈 곳에 알맞은 수를 구하시오. 그림입니다. 원본 그림의 이름: CLP000019340022.bmp 원본 그림의 크기: 가로 876pixel, 세로 318pixel",
     "bbox": {
       "x0": 42.0,
-      "y0": 486.0,
+      "y0": 522.0,
       "x1": 542.0,
-      "y1": 805.0
+      "y1": 571.0
     },
     "warnings": [
+      "choice_marker_not_found",
+      "merged_problem_suspected",
       "missing_problem_number",
-      "rejected_non_problem_candidate",
-      "merged_multiple_problems_suspected",
-      "rejected_non_problem_candidate"
+      "placeholder_mixed_with_text",
+      "placeholder_then_new_question"
     ],
-    "is_probable_problem": false,
-    "segmentation_reason": "explicit_problem_marker",
+    "is_probable_problem": true,
+    "segmentation_reason": "continuation",
     "source_block_ids": [
-      "6rd_p0001_tb0024",
-      "6rd_p0001_tb0025",
       "6rd_p0001_tb0026",
       "6rd_p0001_tb0027",
-      "6rd_p0001_tb0028",
-      "6rd_p0001_tb0029",
-      "6rd_p0001_tb0030",
-      "6rd_p0001_tb0031",
-      "6rd_p0001_tb0032",
-      "6rd_p0001_tb0033",
-      "6rd_p0001_tb0034",
-      "6rd_p0001_tb0035",
-      "6rd_p0001_tb0036",
-      "6rd_p0001_tb0037",
-      "6rd_p0001_tb0038",
-      "6rd_p0001_tb0039",
-      "6rd_p0001_tb0040",
-      "6rd_p0001_tb0041"
+      "6rd_p0001_tb0028"
     ]
   },
   "semantic_fields": {
@@ -55,27 +43,29 @@
     "problem_id": "6rd_p0001_q0006",
     "source_path": "input\\6rd.hwpx",
     "page_number": 1,
-    "type": "rejected_candidate",
-    "question_text": "⑤ 수식입니다. 환율은 자기 나라 돈과 다른 나라 돈의 교환 비율을 말합니다. 중국 돈 180위안을 은행에서 우리나라 돈 34560원으로 교환하였을 때 이날 중국 돈 위안에 대한 우리나라 돈 원의 환율은 얼마인지 구하시오. (단, 교환할 때 수수료는 없는 것으로 생각합니다.) 빈 곳에 알맞은 수를 구하시오. 그림입니다. 원본 그림의 이름: CLP000019340022.bmp 원본 그림의 크기: 가로 876pixel, 세로 318pixel 둘레가 38.4 cm로 같은 정사각형과 정육각형이 있습니다. 두 도형의 한 변의 길이의 합은 몇 cm입니까? 점수 사각형입니다. 수 카드 를 모두 한 번씩만 사용하여 다음과 같이 (대분수) 수식입니다. (자연수)를 만들려고 합니다. 만들 수 있는 식 중 몫이 가장 작을 때의 몫을 ㉠, 몫이 가장 클 때의 몫을 ㉡이라고 할 때 ㉠과 ㉡ 사이에 있는 자연수는 모두 몇 개입니까? 수식입니다. □ □over□}div□ 모서리가 둥근사각형입니다. 시계가 2시 48분을 가리킬 때 시계의 짧은바늘과 긴바늘이 이루는 작은 쪽의 각의 크기를 구하시오. 모든 면이 정사각형이고 한 면의 넓이가 8 수식입니다.",
+    "type": "unknown_visual_math_problem",
+    "question_text": "환율은 자기 나라 돈과 다른 나라 돈의 교환 비율을 말합니다. 중국 돈 180위안을 은행에서 우리나라 돈 34560원으로 교환하였을 때 이날 중국 돈 위안에 대한 우리나라 돈 원의 환율은 얼마인지 구하시오. (단, 교환할 때 수수료는 없는 것으로 생각합니다.) 빈 곳에 알맞은 수를 구하시오. 그림입니다. 원본 그림의 이름: CLP000019340022.bmp 원본 그림의 크기: 가로 876pixel, 세로 318pixel",
     "answer": null,
     "explanation": null,
     "bbox": {
       "x0": 42.0,
-      "y0": 486.0,
+      "y0": 522.0,
       "x1": 542.0,
-      "y1": 805.0
+      "y1": 571.0
     },
-    "confidence": 0.6433333333333333,
+    "confidence": 0.44333333333333336,
     "confidence_breakdown": {
-      "segmentation_confidence": 0.95,
-      "type_confidence": 0.98,
+      "segmentation_confidence": 0.55,
+      "type_confidence": 0.78,
       "structure_confidence": 0.0
     },
     "warnings": [
-      "merged_multiple_problems_suspected",
+      "choice_marker_not_found",
+      "merged_problem_suspected",
       "missing_problem_number",
-      "non_problem_candidate",
-      "rejected_non_problem_candidate"
+      "placeholder_mixed_with_text",
+      "placeholder_then_new_question",
+      "visual_structure_detection_needed"
     ],
     "render_hint": {
       "question_anchor": null,
@@ -91,14 +81,20 @@
       "semantic_coordinates": {},
       "render_coordinates": {}
     },
-    "type_guess": "rejected_candidate",
-    "type_guess_reason": "candidate_marked_as_non_problem",
-    "rejected": true,
-    "rejection_reason": "segmentation_marked_non_problem"
+    "type_guess": "geometry_basic",
+    "type_guess_reason": "shape_plus_point_or_measure_keywords",
+    "rejected": false
   },
   "renderer_usage": {
-    "rendered": false,
+    "problem_id": "6rd_p0001_q0006",
+    "rendered": true,
+    "output_svg": "output\\svg\\6rd_p0001_q0006.render.svg",
+    "used_fields": [
+      "question_text",
+      "type",
+      "render_hint"
+    ],
     "fallback_render_used": false,
-    "reason": "rejected_candidate"
+    "fallback_reason": null
   }
 }

@@ -4,24 +4,26 @@
   "source_path": "input\\6rd.hwpx",
   "page_number": 1,
   "type": "generic_text_problem",
-  "question_text": "③ 수식입니다. 3 {7} over {8} DIVIDE 4",
+  "question_text": "41.44div7=㉠ 모서리가 둥근사각형입니다.",
   "answer": null,
   "explanation": null,
   "bbox": {
     "x0": 42.0,
-    "y0": 378.0,
-    "x1": 207.6,
-    "y1": 427.0
+    "y0": 216.0,
+    "x1": 142.8,
+    "y1": 247.0
   },
-  "confidence": 0.5433333333333333,
+  "confidence": 0.5733333333333334,
   "confidence_breakdown": {
-    "segmentation_confidence": 0.95,
-    "type_confidence": 0.68,
+    "segmentation_confidence": 1.0,
+    "type_confidence": 0.72,
     "structure_confidence": 0.0
   },
   "warnings": [
-    "choice_structure_unclear",
-    "missing_problem_number"
+    "arithmetic_expression_not_reliably_extracted",
+    "choice_marker_not_found",
+    "placeholder_mixed_with_text",
+    "placeholder_then_new_question"
   ],
   "render_hint": {
     "question_anchor": null,
@@ -37,7 +39,7 @@
     "semantic_coordinates": {},
     "render_coordinates": {}
   },
-  "type_guess": "multiple_choice_text",
-  "type_guess_reason": "choice_markers_detected",
+  "type_guess": "arithmetic_expression",
+  "type_guess_reason": "short_math_expression_dominant",
   "rejected": false
 }
