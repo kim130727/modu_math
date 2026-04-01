@@ -1,0 +1,46 @@
+{
+  "schema_version": "0.1.0",
+  "problem_id": "sample_p0001_q0003",
+  "source_pdf": "sample_book.pdf",
+  "page_number": 1,
+  "type": "fraction_shaded_area",
+  "question_text": "8칸 중 3칸이 색칠된 분수를 구하세요.",
+  "fraction": {
+    "shape": "rectangle",
+    "total_parts": 8,
+    "shaded_parts": 3,
+    "rows": 2,
+    "cols": 4,
+    "partition": "grid",
+    "shaded_indices": [
+      0,
+      1,
+      2
+    ]
+  },
+  "answer": "3/8",
+  "bbox": {
+    "x0": 50,
+    "y0": 340,
+    "x1": 500,
+    "y1": 480
+  },
+  "confidence": 0.9,
+  "warnings": [],
+  "render_hint": {
+    "alignment": "left"
+  },
+  "coordinates": {
+    "source_coordinates": {
+      "page_width": 595,
+      "page_height": 842
+    },
+    "semantic_coordinates": {
+      "grid_origin": [
+        0,
+        0
+      ]
+    },
+    "render_coordinates": {}
+  }
+}
