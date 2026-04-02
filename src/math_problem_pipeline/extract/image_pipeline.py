@@ -10,6 +10,7 @@ from pathlib import Path
 
 from PIL import Image, UnidentifiedImageError
 
+from math_problem_pipeline.extract.image_structure_analyzer import analyze_image_structure
 from math_problem_pipeline.models.semantic_models import UnknownVisualMathProblem
 
 SUPPORTED_IMAGE_EXTS = {".png", ".bmp"}
@@ -64,15 +65,17 @@ def build_image_semantic(
     w, h, fmt = detect_image_meta(image_path)
     digest = sha256_file(image_path)
     data_uri = image_data_uri(image_path)
+    structure = analyze_image_structure(image_path)
+    layout = str(structure.get("summary", {}).get("estimated_problem_layout") or "unknown")
 
     return UnknownVisualMathProblem(
         problem_id=problem_id,
         source_path=source_path,
         page_number=1,
         type="unknown_visual_math_problem",
-        question_text=f"Image problem: {image_path.stem}",
+        question_text=f"Image problem ({layout}): {image_path.stem}",
         type_guess="unknown_visual_math_problem",
-        type_guess_reason="image_input_pipeline",
+        type_guess_reason=f"image_input_pipeline:{layout}",
         confidence=0.95,
         coordinates={
             "source_coordinates": {
@@ -84,8 +87,12 @@ def build_image_semantic(
                 "file_size": image_path.stat().st_size,
                 "image_data_uri": data_uri,
             },
-            "semantic_coordinates": {},
-            "render_coordinates": {},
+            "semantic_coordinates": {
+                "layout_analysis": structure,
+            },
+            "render_coordinates": {
+                "show_layout_overlay": True,
+            },
         },
     )
 

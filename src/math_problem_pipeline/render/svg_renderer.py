@@ -1,4 +1,4 @@
-"""SVG renderer entrypoints for intermediate semantic checks."""
+﻿"""SVG renderer entrypoints for intermediate semantic checks."""
 
 from __future__ import annotations
 
@@ -100,6 +100,8 @@ def _problem_body(problem: SemanticProblem) -> list[str]:
 
 def _unknown_visual_block(problem: UnknownVisualMathProblem) -> list[str]:
     src = problem.coordinates.source_coordinates if problem.coordinates else {}
+    sem = problem.coordinates.semantic_coordinates if problem.coordinates else {}
+    render = problem.coordinates.render_coordinates if problem.coordinates else {}
     href = str(src.get("image_data_uri") or src.get("image_path") or "").replace("\\", "/")
 
     x = 56.0
@@ -130,8 +132,51 @@ def _unknown_visual_block(problem: UnknownVisualMathProblem) -> list[str]:
             f'<text x="{x + 12:.2f}" y="{y + 36:.2f}" font-size="20" font-family="Arial, sans-serif" fill="#777">image_path missing in semantic source_coordinates</text>'
         )
 
-    return out
+    show_overlay = bool(render.get("show_layout_overlay"))
+    layout = sem.get("layout_analysis") if isinstance(sem, dict) else None
+    regions = layout.get("regions", []) if isinstance(layout, dict) else []
 
+    if show_overlay and isinstance(regions, list):
+        color_map = {
+            "text_block": "#1f77b4",
+            "choice_like": "#2ca02c",
+            "diagram_like": "#d62728",
+            "table_like": "#9467bd",
+            "other": "#ff7f0e",
+        }
+
+        src_w = float(w) if isinstance(w, int) and w > 0 else draw_w
+        src_h = float(h) if isinstance(h, int) and h > 0 else draw_h
+        sx = draw_w / max(1.0, src_w)
+        sy = draw_h / max(1.0, src_h)
+
+        for idx, r in enumerate(regions, start=1):
+            bbox = r.get("bbox", {}) if isinstance(r, dict) else {}
+            kind = str(r.get("kind") or "other") if isinstance(r, dict) else "other"
+            conf = r.get("confidence", 0.0) if isinstance(r, dict) else 0.0
+            try:
+                rx = float(bbox.get("x", 0.0))
+                ry = float(bbox.get("y", 0.0))
+                rw = float(bbox.get("width", 0.0))
+                rh = float(bbox.get("height", 0.0))
+            except Exception:
+                continue
+
+            ox = x + rx * sx
+            oy = y + ry * sy
+            ow = max(1.0, rw * sx)
+            oh = max(1.0, rh * sy)
+            color = color_map.get(kind, "#ff7f0e")
+
+            out.append(
+                f'<rect x="{ox:.2f}" y="{oy:.2f}" width="{ow:.2f}" height="{oh:.2f}" fill="none" stroke="{color}" stroke-width="2" opacity="0.8"/>'
+            )
+            label = f"{idx}:{kind} ({float(conf):.2f})"
+            out.append(
+                f'<text x="{ox + 2:.2f}" y="{max(y + 14, oy - 4):.2f}" font-size="12" font-family="Arial, sans-serif" fill="{color}">{_escape_xml(label)}</text>'
+            )
+
+    return out
 
 def _multiple_choice_block(problem: MultipleChoiceTextProblem) -> list[str]:
     if not problem.choices:
@@ -423,3 +468,5 @@ def _render_multiline_text(
             out.append(f'<tspan x="{x}" dy="{line_height}">{_escape_xml(line)}</tspan>')
     out.append('</text>')
     return "".join(out), y + (len(lines) - 1) * line_height
+
+
