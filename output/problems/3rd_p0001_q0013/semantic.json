@@ -1,0 +1,51 @@
+{
+  "schema_version": "0.2.0",
+  "problem_id": "3rd_p0001_q0013",
+  "source_path": "input\\3rd.hwpx",
+  "page_number": 1,
+  "type": "clock_reading",
+  "question_text": "영화가 오전 8시 30분에 처음 시작하여 2시간 05분 후에 끝났습니다. 다음 영화의 시작 시간은 끝난 시간의 25분 후입니다. 희서는 5번째로 시작하는 영화를 보기로 하였다면 몇 시 몇 분에 영화를 봅니까? (단, 매 영화가 끝난 후 25분 동안은 영화가 시작하지 않습니다.)",
+  "answer": null,
+  "explanation": null,
+  "bbox": {
+    "x0": 42.0,
+    "y0": 630.0,
+    "x1": 542.0,
+    "y1": 643.0
+  },
+  "confidence": 0.8533333333333332,
+  "confidence_breakdown": {
+    "segmentation_confidence": 1.0,
+    "type_confidence": 0.86,
+    "structure_confidence": 0.7
+  },
+  "warnings": [
+    "choice_marker_not_found",
+    "merged_problem_suspected",
+    "missing_problem_number",
+    "new_question_cue_detected"
+  ],
+  "render_hint": {
+    "question_anchor": null,
+    "choices_anchor": null,
+    "relative_position": null,
+    "alignment": "left"
+  },
+  "coordinates": {
+    "source_coordinates": {
+      "page_width": 595.0,
+      "page_height": 842.0
+    },
+    "semantic_coordinates": {},
+    "render_coordinates": {}
+  },
+  "type_guess": "clock_reading",
+  "type_guess_reason": "explicit_clock_time_keywords",
+  "rejected": false,
+  "clock": {
+    "hour": 8,
+    "minute": 30,
+    "hour_angle": null,
+    "minute_angle": null
+  }
+}

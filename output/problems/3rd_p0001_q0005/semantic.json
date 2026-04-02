@@ -3,26 +3,29 @@
   "problem_id": "3rd_p0001_q0005",
   "source_path": "input\\3rd.hwpx",
   "page_number": 1,
-  "type": "clock_reading",
-  "question_text": "예은이가 시계를 보았더니 7시 17분 25초였습니다. 36분 47초 후의 시각이 ㉠시 ㉡분 ㉢초일 때 ㉠+㉡+㉢을 구하시오.",
+  "type": "generic_text_problem",
+  "question_text": "같은 모양은 같은 수를 나타낼 때 ■는 얼마를 나타냅니까? 17×▲=■ 64÷▲=8 모서리가 둥근사각형입니다.",
   "answer": null,
   "explanation": null,
   "bbox": {
     "x0": 42.0,
-    "y0": 396.0,
-    "x1": 538.8,
-    "y1": 409.0
+    "y0": 324.0,
+    "x1": 272.4,
+    "y1": 391.0
   },
-  "confidence": 0.8533333333333332,
+  "confidence": 0.3433333333333333,
   "confidence_breakdown": {
-    "segmentation_confidence": 1.0,
-    "type_confidence": 0.86,
-    "structure_confidence": 0.7
+    "segmentation_confidence": 0.31000000000000005,
+    "type_confidence": 0.72,
+    "structure_confidence": 0.0
   },
   "warnings": [
+    "arithmetic_expression_not_reliably_extracted",
     "choice_marker_not_found",
+    "merged_problem_suspected",
     "missing_problem_number",
-    "truncated_problem_suspected"
+    "new_question_cue_detected",
+    "placeholder_mixed_with_text"
   ],
   "render_hint": {
     "question_anchor": null,
@@ -38,13 +41,7 @@
     "semantic_coordinates": {},
     "render_coordinates": {}
   },
-  "type_guess": "clock_reading",
-  "type_guess_reason": "explicit_clock_time_keywords",
-  "rejected": false,
-  "clock": {
-    "hour": 7,
-    "minute": 17,
-    "hour_angle": null,
-    "minute_angle": null
-  }
+  "type_guess": "arithmetic_expression",
+  "type_guess_reason": "short_math_expression_dominant",
+  "rejected": false
 }

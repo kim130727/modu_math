@@ -624,6 +624,10 @@ def _is_secondary_problem_start(block: _Line, prev: _Line | None) -> bool:
     if _is_question_like_text(block.text):
         if prev is None:
             return True
+        # In flattened HWPX extraction, vertical gaps are often unreliable.
+        # If adjacent lines both look question-like, split conservatively.
+        if _is_question_like_text(prev.text):
+            return True
         return (block.y0 - prev.y1) > 12
     return False
 
@@ -757,6 +761,8 @@ def _is_oversized(region: RawProblemRegion, page: SourcePage) -> bool:
 def _is_hard_reject_candidate(cand: ProblemCandidate) -> bool:
     text = cand.text.strip()
     if len(text) < 4:
+        return True
+    if text.startswith("\u203b") and not _is_question_like_text(text):
         return True
     if PAGE_NUMBER_ONLY.match(text):
         return True

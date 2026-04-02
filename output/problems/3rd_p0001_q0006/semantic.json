@@ -3,29 +3,25 @@
   "problem_id": "3rd_p0001_q0006",
   "source_path": "input\\3rd.hwpx",
   "page_number": 1,
-  "type": "rejected_candidate",
-  "question_text": "점수 사각형입니다.",
+  "type": "clock_reading",
+  "question_text": "예은이가 시계를 보았더니 7시 17분 25초였습니다. 36분 47초 후의 시각이 ㉠시 ㉡분 ㉢초일 때 ㉠+㉡+㉢을 구하시오.",
   "answer": null,
   "explanation": null,
   "bbox": {
     "x0": 42.0,
-    "y0": 414.0,
-    "x1": 102.0,
-    "y1": 445.0
+    "y0": 396.0,
+    "x1": 538.8,
+    "y1": 409.0
   },
-  "confidence": 0.32666666666666666,
+  "confidence": 0.8533333333333332,
   "confidence_breakdown": {
-    "segmentation_confidence": 0.0,
-    "type_confidence": 0.98,
-    "structure_confidence": 0.0
+    "segmentation_confidence": 1.0,
+    "type_confidence": 0.86,
+    "structure_confidence": 0.7
   },
   "warnings": [
     "choice_marker_not_found",
     "missing_problem_number",
-    "non_problem_candidate",
-    "placeholder_mixed_with_text",
-    "placeholder_then_new_question",
-    "rejected_non_problem_candidate",
     "truncated_problem_suspected"
   ],
   "render_hint": {
@@ -42,8 +38,13 @@
     "semantic_coordinates": {},
     "render_coordinates": {}
   },
-  "type_guess": "rejected_candidate",
-  "type_guess_reason": "candidate_marked_as_non_problem",
-  "rejected": true,
-  "rejection_reason": "segmentation_marked_non_problem"
+  "type_guess": "clock_reading",
+  "type_guess_reason": "explicit_clock_time_keywords",
+  "rejected": false,
+  "clock": {
+    "hour": 7,
+    "minute": 17,
+    "hour_angle": null,
+    "minute_angle": null
+  }
 }

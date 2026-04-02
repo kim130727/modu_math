@@ -3,27 +3,28 @@
   "problem_id": "3rd_p0001_q0008",
   "source_path": "input\\3rd.hwpx",
   "page_number": 1,
-  "type": "generic_text_problem",
-  "question_text": "큰 수를 작은 수로 나눈 몫을 구하고 그 몫에 23을 다시 곱하시오. 모서리가 둥근사각형입니다.",
+  "type": "unknown_visual_math_problem",
+  "question_text": "여러 가지 크기의 정사각형을 겹치지 않게 놓아 다음과 같은 직사각형 ㄱㄴㄷㄹ을 만들었습니다. 색칠된 정사각형의 한 변의 길이는 15cm 일 때, 직사각형 ㄱㄴㄷㄹ의 네 변의 길이의 합은 몇 cm입니까? (단, 가장 작은 두 정사각형의 크기는 같습니다.)",
   "answer": null,
   "explanation": null,
   "bbox": {
     "x0": 42.0,
-    "y0": 594.0,
-    "x1": 315.6,
-    "y1": 625.0
+    "y0": 450.0,
+    "x1": 542.0,
+    "y1": 463.0
   },
-  "confidence": 0.30333333333333334,
+  "confidence": 0.5933333333333334,
   "confidence_breakdown": {
-    "segmentation_confidence": 0.41000000000000003,
-    "type_confidence": 0.5,
+    "segmentation_confidence": 1.0,
+    "type_confidence": 0.78,
     "structure_confidence": 0.0
   },
   "warnings": [
     "choice_marker_not_found",
+    "merged_problem_suspected",
     "missing_problem_number",
-    "placeholder_mixed_with_text",
-    "placeholder_then_new_question"
+    "new_question_cue_detected",
+    "visual_structure_detection_needed"
   ],
   "render_hint": {
     "question_anchor": null,
@@ -39,7 +40,7 @@
     "semantic_coordinates": {},
     "render_coordinates": {}
   },
-  "type_guess": "generic_text_problem",
-  "type_guess_reason": "no_reliable_type_signal",
+  "type_guess": "geometry_basic",
+  "type_guess_reason": "shape_plus_point_or_measure_keywords",
   "rejected": false
 }

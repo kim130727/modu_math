@@ -1,15 +1,17 @@
-﻿"""SVG renderer entrypoints for intermediate semantic checks."""
+"""SVG renderer entrypoints for intermediate semantic checks."""
 
 from __future__ import annotations
 
 import math
 from pathlib import Path
+import unicodedata
 
 from math_problem_pipeline.models.semantic_models import (
     ArithmeticExpressionProblem,
     ClockReadingProblem,
     FractionShadedAreaProblem,
     GeometryBasicProblem,
+    UnknownVisualMathProblem,
     MultipleChoiceTextProblem,
     SemanticProblem,
     TableOrChartBasicProblem,
@@ -43,10 +45,22 @@ def render_problem_to_svg(problem: SemanticProblem, output_svg: Path) -> dict:
 
 
 def build_svg_document(problem: SemanticProblem, fallback_reason: str | None = None) -> str:
+    question_lines = _wrap_text_lines(problem.question_text, font_size=30, max_width=SVG_WIDTH - 72)
+    question_text_svg, question_last_y = _render_multiline_text(
+        question_lines,
+        x=36,
+        y=64,
+        font_size=30,
+        font_family="Noto Sans KR, Arial, sans-serif",
+        line_height=38,
+    )
+    body_start_y = question_last_y + 56
+    body_shift = max(0.0, body_start_y - 140.0)
+
     parts = [
         f'<svg xmlns="http://www.w3.org/2000/svg" width="{SVG_WIDTH}" height="{SVG_HEIGHT}" viewBox="0 0 {SVG_WIDTH} {SVG_HEIGHT}">',
         '<rect x="0" y="0" width="100%" height="100%" fill="white"/>',
-        f'<text x="36" y="64" font-size="30" font-family="Noto Sans KR, Arial, sans-serif">{_escape_xml(problem.question_text)}</text>',
+        question_text_svg,
     ]
 
     if fallback_reason:
@@ -54,13 +68,21 @@ def build_svg_document(problem: SemanticProblem, fallback_reason: str | None = N
             f'<text x="36" y="110" fill="#777" font-size="20" font-family="Arial, sans-serif">[fallback render] {_escape_xml(fallback_reason)}</text>'
         )
     else:
-        parts.extend(_problem_body(problem))
+        body = _problem_body(problem)
+        if body_shift > 0:
+            parts.append(f'<g transform="translate(0,{body_shift:.2f})">')
+            parts.extend(body)
+            parts.append('</g>')
+        else:
+            parts.extend(body)
 
     parts.append("</svg>")
     return "\n".join(parts)
 
 
 def _problem_body(problem: SemanticProblem) -> list[str]:
+    if isinstance(problem, UnknownVisualMathProblem):
+        return _unknown_visual_block(problem)
     if isinstance(problem, MultipleChoiceTextProblem):
         return _multiple_choice_block(problem)
     if isinstance(problem, ArithmeticExpressionProblem):
@@ -74,6 +96,41 @@ def _problem_body(problem: SemanticProblem) -> list[str]:
     if isinstance(problem, TableOrChartBasicProblem):
         return _table_or_chart_block(problem)
     return []
+
+
+def _unknown_visual_block(problem: UnknownVisualMathProblem) -> list[str]:
+    src = problem.coordinates.source_coordinates if problem.coordinates else {}
+    href = str(src.get("image_data_uri") or src.get("image_path") or "").replace("\\", "/")
+
+    x = 56.0
+    y = 180.0
+    max_w = SVG_WIDTH - 112.0
+    max_h = SVG_HEIGHT - 220.0
+
+    w = src.get("image_width")
+    h = src.get("image_height")
+    if isinstance(w, int) and isinstance(h, int) and w > 0 and h > 0:
+        scale = min(max_w / float(w), max_h / float(h))
+        draw_w = max(1.0, float(w) * scale)
+        draw_h = max(1.0, float(h) * scale)
+    else:
+        draw_w = max_w
+        draw_h = max_h
+
+    out = [
+        f'<rect x="{x:.2f}" y="{y:.2f}" width="{draw_w:.2f}" height="{draw_h:.2f}" fill="white" stroke="#222" stroke-width="1"/>',
+    ]
+
+    if href:
+        out.append(
+            f'<image href="{_escape_xml(href)}" x="{x:.2f}" y="{y:.2f}" width="{draw_w:.2f}" height="{draw_h:.2f}" preserveAspectRatio="xMidYMid meet"/>'
+        )
+    else:
+        out.append(
+            f'<text x="{x + 12:.2f}" y="{y + 36:.2f}" font-size="20" font-family="Arial, sans-serif" fill="#777">image_path missing in semantic source_coordinates</text>'
+        )
+
+    return out
 
 
 def _multiple_choice_block(problem: MultipleChoiceTextProblem) -> list[str]:
@@ -293,3 +350,76 @@ def _escape_xml(text: str) -> str:
         .replace('"', "&quot;")
         .replace("'", "&apos;")
     )
+
+
+
+def _wrap_text_lines(text: str, font_size: float, max_width: float) -> list[str]:
+    """Greedy wrap for mixed Korean/ASCII text without relying on browser text measurement."""
+    src = " ".join((text or "").split())
+    if not src:
+        return [""]
+
+    tokens = src.split(" ")
+    lines: list[str] = []
+    cur = ""
+
+    for tok in tokens:
+        candidate = tok if not cur else f"{cur} {tok}"
+        if _estimate_text_width(candidate, font_size) <= max_width:
+            cur = candidate
+            continue
+        if cur:
+            lines.append(cur)
+            cur = tok
+        else:
+            buf = ""
+            for ch in tok:
+                cand = buf + ch
+                if _estimate_text_width(cand, font_size) <= max_width:
+                    buf = cand
+                else:
+                    if buf:
+                        lines.append(buf)
+                    buf = ch
+            cur = buf
+
+    if cur:
+        lines.append(cur)
+    return lines
+
+
+def _estimate_text_width(text: str, font_size: float) -> float:
+    width = 0.0
+    for ch in text:
+        if ch.isspace():
+            width += font_size * 0.33
+            continue
+        east_asian = unicodedata.east_asian_width(ch)
+        if east_asian in {"W", "F"}:
+            width += font_size * 1.0
+        elif ch.isascii():
+            width += font_size * 0.56
+        else:
+            width += font_size * 0.85
+    return width
+
+
+def _render_multiline_text(
+    lines: list[str],
+    x: float,
+    y: float,
+    font_size: int,
+    font_family: str,
+    line_height: float,
+) -> tuple[str, float]:
+    if not lines:
+        lines = [""]
+
+    out = [f'<text x="{x}" y="{y}" font-size="{font_size}" font-family="{font_family}">']
+    for idx, line in enumerate(lines):
+        if idx == 0:
+            out.append(f'<tspan>{_escape_xml(line)}</tspan>')
+        else:
+            out.append(f'<tspan x="{x}" dy="{line_height}">{_escape_xml(line)}</tspan>')
+    out.append('</text>')
+    return "".join(out), y + (len(lines) - 1) * line_height
