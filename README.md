@@ -1,39 +1,53 @@
-# Math Problem Pipeline
+﻿# modu_math 전략 재구성 (UTF-8)
 
-HWPX 수학 문서를 보수적으로 추출하고 문제 단위 산출물로 정리하는 파이프라인입니다.
+이 저장소는 아래 단계형 전략으로만 운영합니다.
 
-## 목표
+## 폴더 구조
 
-- `HWPX -> problem bundle(raw + semantic + svg)` 단순 파이프라인
-- 보수적 분류/최소 추론(모르면 `unknown`)
-- 디버깅이 쉬운 문제별 출력 구조
-
-## 핵심 명령
-
-1. 단일 실행 (권장)
-```bash
-math-pipeline run-pipeline input/book1.hwpx --output-root output
+```text
+problem/
+  문제id/
+    input/   # 입력 문제 원본(hwp, png 등)
+    manim/   # JSON을 코드에 포함한 manim .py, manim 렌더 결과 png
+    json/    # manim 결과가 검증 완료된 뒤 생성하는 semantic json
+    svg/     # semantic json 기반 생성 + 검증 완료 svg
 ```
 
-2. 단계 실행 (선택)
-```bash
-math-pipeline parse-hwpx input/book1.hwpx --output-dir output/raw/pages --images-dir output/images
-math-pipeline segment-problems --raw-pages-dir output/raw/pages --output-dir output/raw/problems --rejected-output-dir output/raw/rejected
-math-pipeline build-semantic --raw-problem-dir output/raw/problems --output-dir output/semantic --rejected-output-dir output/semantic_rejected
-math-pipeline render-svg-all --semantic-dir output/semantic --output-dir output/svg
+## 사용 원칙
+
+1. 문제별로 `problem/문제id`를 생성합니다.
+2. `input -> manim -> json -> svg` 순서로만 진행합니다.
+3. 각 단계 명령은 개별 실행 가능해야 하며, 필요 시 마지막에 일괄 실행합니다.
+
+## 단계별 개별 명령어 (PowerShell)
+
+아래에서 `문제id`는 실제 ID로 바꿔서 사용하세요.
+
+```powershell
+# 0) 문제 디렉터리 생성
+New-Item -ItemType Directory -Force `
+  problem\문제id, `
+  problem\문제id\input, `
+  problem\문제id\manim, `
+  problem\문제id\json, `
+  problem\문제id\svg
+
+# 1) 입력 데이터 배치 (예시)
+# problem\문제id\input 안에 hwp/png 파일 복사
+
+# 2) manim 파일 실행(예시)
+# manim -pql problem\문제id\manim\scene.py SceneClass
+# 결과 png는 problem\문제id\manim 에 저장
+
+# 3) semantic json 생성(예시)
+# uv run python tools\build_semantic_json.py --src problem\문제id\manim\scene.py --out problem\문제id\json\semantic.json
+
+# 4) svg 생성 및 검증(예시)
+# uv run python tools\build_svg.py --semantic problem\문제id\json\semantic.json --out problem\문제id\svg\result.svg
+# uv run python tools\verify_svg.py --svg problem\문제id\svg\result.svg
 ```
 
-## 출력 구조 (`run-pipeline` 기준)
+## 나중에 한꺼번에 실행할 때
 
-- `output/images/*` (HWPX에서 파싱된 이미지 자산)
-- `output/problems/<problem_id>/raw.json`
-- `output/problems/<problem_id>/semantic.json`
-- `output/problems/<problem_id>/render.svg`
-
-`report.json`은 생성하지 않습니다.
-
-## 비고
-
-- 현재 추출기는 HWPX XML 텍스트 기반 보수 추출기입니다.
-- 시각 구조(도형/표/그래프) 신뢰도가 낮으면 `unknown_visual_math_problem`으로 유지합니다.
-- SVG 렌더 단계는 invalid 구조에서 자동 fallback(text only) 됩니다.
+`run_all.ps1` 같은 스크립트에 위 2~4단계 명령을 순서대로 넣어 일괄 실행합니다.
+(현재 저장소에는 강제 실행 스크립트를 두지 않고, 문제별 커맨드를 명시적으로 관리합니다.)
