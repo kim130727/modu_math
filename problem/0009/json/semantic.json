@@ -1,0 +1,181 @@
+{
+  "meta": {
+    "schema": "modu_math.semantic.v2",
+    "problem_id": "0009",
+    "source": "problem/0009/manim/0009_manim.py"
+  },
+  "problem": {
+    "id": 9,
+    "type": "number_line_missing_total",
+    "instruction": "? ?? ??? ?? ?????.",
+    "left_to_mid": 261,
+    "mid_to_right": 588,
+    "total": 849
+  },
+  "canvas": {
+    "width": 860,
+    "height": 247,
+    "background": "#F6F6F6"
+  },
+  "elements": [
+    {
+      "id": "num",
+      "type": "text",
+      "text": "9",
+      "x": 20,
+      "y": 67,
+      "anchor": "start",
+      "font_family": "Malgun Gothic",
+      "font_size": 54,
+      "fill": "#6F3FA2",
+      "semantic_role": "decorative",
+      "group": "default"
+    },
+    {
+      "id": "inst",
+      "type": "text",
+      "text": "? ?? ??? ?? ?????.",
+      "x": 89,
+      "y": 67,
+      "anchor": "start",
+      "font_family": "Malgun Gothic",
+      "font_size": 47,
+      "fill": "#222222",
+      "semantic_role": "decorative",
+      "group": "default"
+    },
+    {
+      "id": "inst_blank",
+      "type": "rect",
+      "x": 92,
+      "y": 45,
+      "width": 28,
+      "height": 28,
+      "rx": 6,
+      "stroke": "#69BEEA",
+      "stroke_width": 3,
+      "fill": "none",
+      "semantic_role": "decorative",
+      "group": "default"
+    },
+    {
+      "id": "line",
+      "type": "line",
+      "x1": 208,
+      "y1": 168,
+      "x2": 818,
+      "y2": 168,
+      "stroke": "#3A3539",
+      "stroke_width": 3,
+      "semantic_role": "decorative",
+      "group": "default"
+    },
+    {
+      "id": "tick_l",
+      "type": "line",
+      "x1": 208,
+      "y1": 153,
+      "x2": 208,
+      "y2": 183,
+      "stroke": "#3A3539",
+      "stroke_width": 3,
+      "semantic_role": "decorative",
+      "group": "default"
+    },
+    {
+      "id": "tick_m",
+      "type": "line",
+      "x1": 396,
+      "y1": 153,
+      "x2": 396,
+      "y2": 183,
+      "stroke": "#3A3539",
+      "stroke_width": 3,
+      "semantic_role": "decorative",
+      "group": "default"
+    },
+    {
+      "id": "tick_r",
+      "type": "line",
+      "x1": 818,
+      "y1": 153,
+      "x2": 818,
+      "y2": 183,
+      "stroke": "#3A3539",
+      "stroke_width": 3,
+      "semantic_role": "decorative",
+      "group": "default"
+    },
+    {
+      "id": "seg_1",
+      "type": "line",
+      "x1": 208,
+      "y1": 170,
+      "x2": 396,
+      "y2": 170,
+      "stroke": "#17B2F5",
+      "stroke_width": 2,
+      "dasharray": "4 8",
+      "semantic_role": "decorative",
+      "group": "default"
+    },
+    {
+      "id": "seg_1_text",
+      "type": "text",
+      "text": "261",
+      "x": 302.0,
+      "y": 210,
+      "anchor": "middle",
+      "font_family": "Cambria",
+      "font_size": 40,
+      "fill": "#222222",
+      "semantic_role": "decorative",
+      "group": "default"
+    },
+    {
+      "id": "seg_2",
+      "type": "line",
+      "x1": 396,
+      "y1": 204,
+      "x2": 818,
+      "y2": 204,
+      "stroke": "#17B2F5",
+      "stroke_width": 2,
+      "dasharray": "4 8",
+      "semantic_role": "decorative",
+      "group": "default"
+    },
+    {
+      "id": "seg_2_text",
+      "type": "text",
+      "text": "588",
+      "x": 607.0,
+      "y": 210,
+      "anchor": "middle",
+      "font_family": "Cambria",
+      "font_size": 40,
+      "fill": "#222222",
+      "semantic_role": "decorative",
+      "group": "default"
+    },
+    {
+      "id": "total_blank",
+      "type": "rect",
+      "x": 492,
+      "y": 96,
+      "width": 96,
+      "height": 46,
+      "rx": 6,
+      "stroke": "#69BEEA",
+      "stroke_width": 3,
+      "fill": "none",
+      "semantic_role": "answer_blank",
+      "answer_blank": true,
+      "choice": {
+        "index": 1,
+        "value": "849"
+      },
+      "group": "default"
+    }
+  ]
+}
