@@ -22,3 +22,11 @@ def semantic_json_path(problem_dir: Path) -> Path:
 
 def semantic_svg_path(problem_dir: Path) -> Path:
     return problem_dir / "svg" / "semantic.svg"
+
+
+def problem_input_json_path(problem_dir: Path) -> Path:
+    return problem_dir / "input" / "problem.json"
+
+
+def baseline_dir_path(problem_dir: Path) -> Path:
+    return problem_dir / "baseline"

@@ -3,18 +3,15 @@
 import argparse
 import json
 import sys
+import tempfile
 from pathlib import Path
 
-from manim import *
+from manim import Scene, config
 
+sys.dont_write_bytecode = True
 
 def _ensure_repo_root_on_path() -> None:
-    """
-    Add repository root to sys.path so shared modules can be imported reliably.
-
-    This keeps script execution stable on Windows regardless of current working
-    directory (for example when launched from IDE or terminal in another path).
-    """
+    """Add repository root to sys.path for stable local imports."""
     current = Path(__file__).resolve()
     for parent in current.parents:
         if (parent / "problem").is_dir() and (parent / "README.md").exists():
@@ -27,27 +24,26 @@ def _ensure_repo_root_on_path() -> None:
 
 _ensure_repo_root_on_path()
 
-from problem.common.paths import find_problem_dir, semantic_json_path, semantic_svg_path
+from problem.common.manim_renderer import render_manim_from_semantic
+from problem.common.paths import (
+    find_problem_dir,
+    problem_input_json_path,
+    semantic_json_path,
+    semantic_svg_path,
+)
 from problem.common.svg_renderer import render_svg_from_semantic
-from problem.common.validator import validate_semantic
+from problem.common.validator import validate_logic, validate_structure
 
 
 def _configure_manim_output_dirs() -> None:
-    """
-    Keep all Manim artifacts inside this problem folder.
-
-    Why:
-    - Prevents writes to repository-level `media/`
-    - Makes per-problem review/debugging easier (`problem/{id}/manim/*`)
-    """
+    """Keep all Manim artifacts in this problem's manim directory."""
     problem_dir = find_problem_dir(Path(__file__))
     manim_dir = problem_dir / "manim"
-    cache_dir = manim_dir / "cache"
+    cache_dir = Path(tempfile.gettempdir()) / "modu_math_manim_cache" / problem_dir.name
 
     config.media_dir = str(manim_dir)
     config.images_dir = str(manim_dir / "images")
     config.video_dir = str(manim_dir / "videos")
-    # Avoid creating a visible top-level `texts/` folder in manim output root.
     config.text_dir = str(cache_dir / "text")
     config.tex_dir = str(cache_dir / "tex")
     config.partial_movie_dir = str(cache_dir / "partial_movie_files")
@@ -56,38 +52,17 @@ def _configure_manim_output_dirs() -> None:
 _configure_manim_output_dirs()
 
 
-PROBLEM_JSON = r"""
-{
-  "id": 2,
-  "type": "measure_length_with_ruler",
-  "instruction": "2. 지우개의 길이는 몇 mm입니까?",
-  "sub_instruction": "(* 눈금을 잘 보아야 해요)",
-  "object_label": "지우개",
-  "ruler": {
-    "start_cm": 2,
-    "end_cm": 5,
-    "major_ticks": [2, 3, 4, 5],
-    "minor_per_cm": 10
-  },
-  "measurement": {
-    "left_cm": 3.0,
-    "right_cm": 4.6
-  },
-  "answer_mm": 16
-}
-"""
-
-
-def load_problem_data() -> dict:
-    return json.loads(PROBLEM_JSON)
+def load_problem_data(problem_json_path: Path | None = None) -> dict:
+    problem_dir = find_problem_dir(Path(__file__))
+    path = problem_json_path or problem_input_json_path(problem_dir)
+    return json.loads(path.read_text(encoding="utf-8-sig"))
 
 
 def build_layout(data: dict) -> dict:
     """
     Build all geometric values in one place.
 
-    Why: this centralizes coordinates so Manim and SVG consume one source of
-    truth instead of maintaining duplicated hard-coded positions.
+    Why: a single source of coordinates avoids drift between Manim/SVG layers.
     """
     canvas = {
         "width": 1280,
@@ -129,16 +104,10 @@ def build_layout(data: dict) -> dict:
         "fill": "#D9E5CF",
     }
 
-    layout = {
+    return {
         "canvas": canvas,
-        "title": {
-            "x": 72,
-            "y": 80,
-        },
-        "subtitle": {
-            "x": 72,
-            "y": 128,
-        },
+        "title": {"x": 72, "y": 80},
+        "subtitle": {"x": 72, "y": 128},
         "ruler": ruler,
         "ticks": {
             "top_y": ruler["y"],
@@ -151,9 +120,7 @@ def build_layout(data: dict) -> dict:
             "minor_per_cm": minor_per_cm,
             "x_from_cm": x_from_cm,
         },
-        "numbers": {
-            "y": ruler["y"] + ruler["height"] - 38,
-        },
+        "numbers": {"y": ruler["y"] + ruler["height"] - 38},
         "eraser": eraser,
         "dash": {
             "top_y": eraser["y"] - 20,
@@ -169,7 +136,6 @@ def build_layout(data: dict) -> dict:
             "right_paren": {"x": 900, "y": 640},
         },
     }
-    return layout
 
 
 def create_semantic_payload(data: dict) -> dict:
@@ -187,6 +153,8 @@ def create_semantic_payload(data: dict) -> dict:
             "font_family": "Malgun Gothic",
             "font_size": 42,
             "fill": "#000000",
+            "group": "header",
+            "semantic_role": "instruction",
         },
         {
             "id": "sub_instruction",
@@ -198,6 +166,8 @@ def create_semantic_payload(data: dict) -> dict:
             "font_family": "Malgun Gothic",
             "font_size": 30,
             "fill": "#000000",
+            "group": "header",
+            "semantic_role": "sub_instruction",
         },
         {
             "id": "ruler_body",
@@ -209,6 +179,9 @@ def create_semantic_payload(data: dict) -> dict:
             "stroke": layout["ruler"]["stroke"],
             "stroke_width": layout["ruler"]["stroke_width"],
             "fill": "none",
+            "group": "ruler",
+            "semantic_role": "scale",
+            "figure_type": "ruler",
         },
         {
             "id": "eraser_body",
@@ -221,6 +194,9 @@ def create_semantic_payload(data: dict) -> dict:
             "stroke": layout["eraser"]["stroke"],
             "stroke_width": layout["eraser"]["stroke_width"],
             "fill": layout["eraser"]["fill"],
+            "group": "object",
+            "semantic_role": "target_object",
+            "figure_type": "eraser",
         },
         {
             "id": "eraser_label",
@@ -233,6 +209,8 @@ def create_semantic_payload(data: dict) -> dict:
             "font_size": 42,
             "font_weight": "bold",
             "fill": "#000000",
+            "group": "object",
+            "semantic_role": "object_label",
         },
         {
             "id": "dash_left",
@@ -244,6 +222,9 @@ def create_semantic_payload(data: dict) -> dict:
             "stroke": layout["dash"]["stroke"],
             "stroke_width": layout["dash"]["stroke_width"],
             "dasharray": layout["dash"]["dasharray"],
+            "group": "guide",
+            "semantic_role": "measurement_guide",
+            "figure_type": "dashed_line",
         },
         {
             "id": "dash_right",
@@ -255,6 +236,9 @@ def create_semantic_payload(data: dict) -> dict:
             "stroke": layout["dash"]["stroke"],
             "stroke_width": layout["dash"]["stroke_width"],
             "dasharray": layout["dash"]["dasharray"],
+            "group": "guide",
+            "semantic_role": "measurement_guide",
+            "figure_type": "dashed_line",
         },
         {
             "id": "answer_left_paren",
@@ -266,6 +250,8 @@ def create_semantic_payload(data: dict) -> dict:
             "font_family": "Arial",
             "font_size": 54,
             "fill": "#000000",
+            "group": "answer_area",
+            "semantic_role": "answer_wrapper",
         },
         {
             "id": "answer_right_paren",
@@ -277,6 +263,9 @@ def create_semantic_payload(data: dict) -> dict:
             "font_family": "Arial",
             "font_size": 54,
             "fill": "#000000",
+            "group": "answer_area",
+            "semantic_role": "answer_wrapper",
+            "choice": {"index": 1, "value": str(data["answer_mm"])},
         },
     ]
 
@@ -296,6 +285,9 @@ def create_semantic_payload(data: dict) -> dict:
                 "y2": ticks["top_y"] + (ticks["major_len"] if is_major else ticks["minor_len"]),
                 "stroke": layout["ruler"]["stroke"],
                 "stroke_width": ticks["major_stroke"] if is_major else ticks["minor_stroke"],
+                "group": "ruler",
+                "semantic_role": "tick_major" if is_major else "tick_minor",
+                "figure_type": "scale_tick",
             }
         )
 
@@ -311,12 +303,14 @@ def create_semantic_payload(data: dict) -> dict:
                 "font_family": "Arial",
                 "font_size": 40,
                 "fill": "#000000",
+                "group": "ruler",
+                "semantic_role": "scale_number",
             }
         )
 
     return {
         "meta": {
-            "schema": "modu_math.semantic.v1",
+            "schema": "modu_math.semantic.v2",
             "problem_id": problem_id,
             "source": f"problem/{problem_id}/manim/{problem_id}_manim.py",
         },
@@ -338,147 +332,18 @@ def default_paths() -> tuple[Path, Path]:
 
 
 def validate_or_raise(semantic: dict) -> None:
-    errors = validate_semantic(semantic)
-    if errors:
-        issue_text = "\n".join(f"- {error}" for error in errors)
-        raise ValueError(f"Semantic validation failed:\n{issue_text}")
+    structure_errors = validate_structure(semantic)
+    logic_errors = validate_logic(semantic)
 
-
-def _px_to_scene_x(x: float, canvas_width: float) -> float:
-    return (x / canvas_width - 0.5) * config.frame_width
-
-
-def _px_to_scene_y(y: float, canvas_height: float) -> float:
-    return (0.5 - y / canvas_height) * config.frame_height
-
-
-def _px_to_scene_w(width: float, canvas_width: float) -> float:
-    return width / canvas_width * config.frame_width
-
-
-def _px_to_scene_h(height: float, canvas_height: float) -> float:
-    return height / canvas_height * config.frame_height
-
-
-def render_manim_from_semantic(scene: Scene, semantic: dict) -> None:
-    """
-    Render Manim objects from semantic elements.
-
-    This enables the gradual transition to "semantic-first" where the scene no
-    longer owns layout constants directly.
-    """
-    canvas = semantic["canvas"]
-    scene.camera.background_color = canvas["background"]
-
-    for element in semantic["elements"]:
-        manim_obj = _element_to_mobject(element, canvas)
-        if manim_obj is not None:
-            scene.add(manim_obj)
-
-
-def _element_to_mobject(element: dict, canvas: dict) -> Mobject | None:
-    elem_type = element["type"]
-
-    if elem_type == "text":
-        return _build_text_mobject(element, canvas)
-
-    if elem_type == "rect":
-        return _build_rect_mobject(element, canvas)
-
-    if elem_type == "line":
-        return _build_line_mobject(element, canvas)
-
-    return None
-
-
-def _build_text_mobject(element: dict, canvas: dict) -> Text:
-    font_weight = element.get("font_weight", "normal").lower()
-    weight = BOLD if font_weight == "bold" else NORMAL
-
-    text = Text(
-        element["text"],
-        font=element.get("font_family", "Malgun Gothic"),
-        font_size=element.get("font_size", 24),
-        color=element.get("fill", "#000000"),
-        weight=weight,
-    )
-
-    x = _px_to_scene_x(float(element["x"]), float(canvas["width"]))
-    y = _px_to_scene_y(float(element["y"]), float(canvas["height"]))
-
-    anchor = element.get("anchor", "middle")
-    text.move_to([x, y, 0])
-
-    if anchor == "start":
-        # In semantic SVG, start anchor means x is the left text edge.
-        text.set_x(x + text.width / 2)
-
-    return text
-
-
-def _build_rect_mobject(element: dict, canvas: dict) -> Mobject:
-    width = _px_to_scene_w(float(element["width"]), float(canvas["width"]))
-    height = _px_to_scene_h(float(element["height"]), float(canvas["height"]))
-    x = _px_to_scene_x(float(element["x"]), float(canvas["width"])) + width / 2
-    y = _px_to_scene_y(float(element["y"]), float(canvas["height"])) - height / 2
-
-    stroke_color = element.get("stroke", "#000000")
-    stroke_width = float(element.get("stroke_width", 1))
-    fill = element.get("fill", "none")
-
-    if float(element.get("rx", 0)) > 0:
-        corner_radius = _px_to_scene_w(float(element.get("rx", 0)), float(canvas["width"]))
-        shape: Mobject = RoundedRectangle(
-            corner_radius=corner_radius,
-            width=width,
-            height=height,
-            stroke_color=stroke_color,
-            stroke_width=stroke_width,
-            fill_color=fill if fill != "none" else stroke_color,
-            fill_opacity=1.0 if fill != "none" else 0.0,
-        )
-    else:
-        shape = Rectangle(
-            width=width,
-            height=height,
-            stroke_color=stroke_color,
-            stroke_width=stroke_width,
-            fill_color=fill if fill != "none" else stroke_color,
-            fill_opacity=1.0 if fill != "none" else 0.0,
-        )
-
-    shape.move_to([x, y, 0])
-    return shape
-
-
-def _build_line_mobject(element: dict, canvas: dict) -> Mobject:
-    start = [
-        _px_to_scene_x(float(element["x1"]), float(canvas["width"])),
-        _px_to_scene_y(float(element["y1"]), float(canvas["height"])),
-        0,
-    ]
-    end = [
-        _px_to_scene_x(float(element["x2"]), float(canvas["width"])),
-        _px_to_scene_y(float(element["y2"]), float(canvas["height"])),
-        0,
-    ]
-
-    color = element.get("stroke", "#000000")
-    stroke_width = float(element.get("stroke_width", 1))
-
-    dasharray = element.get("dasharray")
-    if dasharray:
-        first_dash_px = float(str(dasharray).split()[0])
-        dash_length = _px_to_scene_w(first_dash_px, float(canvas["width"]))
-        return DashedLine(
-            start=start,
-            end=end,
-            color=color,
-            stroke_width=stroke_width,
-            dash_length=max(0.03, dash_length),
-        )
-
-    return Line(start=start, end=end, color=color, stroke_width=stroke_width)
+    if structure_errors or logic_errors:
+        lines = ["Semantic validation failed:"]
+        if structure_errors:
+            lines.append("[structure]")
+            lines.extend(f"- {item}" for item in structure_errors)
+        if logic_errors:
+            lines.append("[logic]")
+            lines.extend(f"- {item}" for item in logic_errors)
+        raise ValueError("\n".join(lines))
 
 
 def run_cli() -> None:
@@ -489,6 +354,7 @@ def run_cli() -> None:
     parser.add_argument("--render-svg", action="store_true", help="Render SVG from semantic JSON")
     parser.add_argument("--validate", action="store_true", help="Validate semantic payload only")
     parser.add_argument("--all", action="store_true", help="Run export + validate + render")
+    parser.add_argument("--problem-in", type=Path, help="Input path for problem JSON data")
     parser.add_argument("--semantic-out", type=Path, help="Output path for semantic JSON")
     parser.add_argument("--semantic-in", type=Path, help="Input semantic JSON path")
     parser.add_argument("--svg-out", type=Path, help="Output path for SVG")
@@ -508,11 +374,11 @@ def run_cli() -> None:
     svg_out = args.svg_out or default_svg
 
     semantic = None
-    if semantic_in.exists():
-        semantic = json.loads(semantic_in.read_text(encoding="utf-8"))
+    if semantic_in.exists() and not do_export:
+        semantic = json.loads(semantic_in.read_text(encoding="utf-8-sig"))
 
     if semantic is None:
-        semantic = create_semantic_payload(load_problem_data())
+        semantic = create_semantic_payload(load_problem_data(args.problem_in))
 
     if do_export:
         validate_or_raise(semantic)
@@ -539,3 +405,5 @@ class RulerEraserProblem(Scene):
 
 if __name__ == "__main__":
     run_cli()
+
+

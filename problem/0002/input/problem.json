@@ -1,0 +1,32 @@
+﻿{
+  "id": 2,
+  "type": "measure_length_with_ruler",
+  "instruction": "2. 지우개의 길이는 몇 mm입니까?",
+  "sub_instruction": "(* 눈금을 잘 보아야 해요)",
+  "object_label": "지우개",
+  "ruler": {
+    "start_cm": 2,
+    "end_cm": 5,
+    "major_ticks": [2, 3, 4, 5],
+    "minor_per_cm": 10
+  },
+  "measurement": {
+    "left_cm": 3.0,
+    "right_cm": 4.6
+  },
+  "answer_mm": 16,
+  "choices": [
+    {
+      "value": "14",
+      "is_correct": false
+    },
+    {
+      "value": "16",
+      "is_correct": true
+    },
+    {
+      "value": "18",
+      "is_correct": false
+    }
+  ]
+}

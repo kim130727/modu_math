@@ -7,10 +7,11 @@
 ```text
 problem/
   문제id/
-    input/   # 입력 문제 원본(hwp, png 등)
-    manim/   # JSON을 코드에 포함한 manim .py, manim 렌더 결과 png
+    input/   # 입력 문제 원본(hwp, png 등) + 문제 데이터(problem.json)
+    manim/   # manim .py, manim 렌더 결과 png
     json/    # manim 결과가 검증 완료된 뒤 생성하는 semantic json
     svg/     # semantic json 기반 생성 + 검증 완료 svg
+    baseline/# 회귀 검증용 기준 semantic/svg/png
 ```
 
 ## 사용 원칙
@@ -34,6 +35,7 @@ New-Item -ItemType Directory -Force `
 
 # 1) 입력 데이터 배치 (예시)
 # problem\문제id\input 안에 hwp/png 파일 복사
+# 문제 데이터는 problem\문제id\input\problem.json 에 저장
 
 # 2) manim 파일 실행(예시)
 # manim -ql -s problem\문제id\manim\문제id_manim.py SceneClass
@@ -44,11 +46,19 @@ New-Item -ItemType Directory -Force `
 
 # 3) semantic json 생성(예시)
 # python problem\문제id\manim\문제id_manim.py --export-semantic
+# (문제 데이터 경로를 직접 지정할 때)
+# python problem\문제id\manim\문제id_manim.py --export-semantic --problem-in problem\문제id\input\problem.json
 
 # 4) svg 생성 및 검증(예시)
 # python problem\문제id\manim\문제id_manim.py --validate
 # python problem\문제id\manim\문제id_manim.py --render-svg
 # (한 번에 실행) python problem\문제id\manim\문제id_manim.py --all
+
+# 5) 회귀 검증(예시)
+# .\.venv\Scripts\python.exe -m pytest -q tests\test_regression_render.py
+# (캐시 폴더 생성 없이 실행)
+# $env:PYTHONDONTWRITEBYTECODE=1
+# .\.venv\Scripts\python.exe -m pytest -q -p no:cacheprovider tests\test_regression_render.py
 ```
 
 ## 나중에 한꺼번에 실행할 때
