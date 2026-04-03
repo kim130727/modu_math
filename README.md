@@ -36,15 +36,19 @@ New-Item -ItemType Directory -Force `
 # problem\문제id\input 안에 hwp/png 파일 복사
 
 # 2) manim 파일 실행(예시)
-# manim -pql problem\문제id\manim\scene.py SceneClass
-# 결과 png는 problem\문제id\manim 에 저장
+# manim -ql -s problem\문제id\manim\문제id_manim.py SceneClass
+# 위의 SceneClass는 자리표시자이며, 실제 코드의 Scene 클래스명을 넣어야 함
+# 예) manim -ql -s problem\0002\manim\0002_manim.py RulerEraserProblem
+# 결과 png는 problem\문제id\manim\images 에 저장
+# (미리보기까지 원하면 -p 추가. 단, Windows 파일 연결이 없으면 preview 단계에서 오류가 날 수 있음)
 
 # 3) semantic json 생성(예시)
-# uv run python tools\build_semantic_json.py --src problem\문제id\manim\scene.py --out problem\문제id\json\semantic.json
+# python problem\문제id\manim\문제id_manim.py --export-semantic
 
 # 4) svg 생성 및 검증(예시)
-# uv run python tools\build_svg.py --semantic problem\문제id\json\semantic.json --out problem\문제id\svg\result.svg
-# uv run python tools\verify_svg.py --svg problem\문제id\svg\result.svg
+# python problem\문제id\manim\문제id_manim.py --validate
+# python problem\문제id\manim\문제id_manim.py --render-svg
+# (한 번에 실행) python problem\문제id\manim\문제id_manim.py --all
 ```
 
 ## 나중에 한꺼번에 실행할 때
