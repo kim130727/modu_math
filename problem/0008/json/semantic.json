@@ -48,9 +48,9 @@
       "y": 74,
       "anchor": "start",
       "font_family": "Malgun Gothic",
-      "font_size": 72,
+      "font_size": 60,
       "fill": "#6F3FA2",
-      "semantic_role": "decorative",
+      "semantic_role": "problem_number",
       "group": "default"
     },
     {
@@ -61,23 +61,10 @@
       "y": 69,
       "anchor": "start",
       "font_family": "Malgun Gothic",
-      "font_size": 50,
+      "font_size": 36,
+      "manim_font_size": 32,
       "fill": "#222222",
-      "semantic_role": "decorative",
-      "group": "default"
-    },
-    {
-      "id": "inst_blank",
-      "type": "rect",
-      "x": 116,
-      "y": 45,
-      "width": 28,
-      "height": 28,
-      "rx": 6,
-      "stroke": "#69BEEA",
-      "stroke_width": 3,
-      "fill": "none",
-      "semantic_role": "decorative",
+      "semantic_role": "instruction",
       "group": "default"
     },
     {
@@ -91,33 +78,33 @@
       "stroke": "#B58D61",
       "stroke_width": 10,
       "fill": "#EFDDBB",
-      "semantic_role": "decorative",
+      "semantic_role": "container",
       "group": "default"
     },
     {
       "id": "eq1_top",
       "type": "text",
       "text": "127",
-      "x": 405,
+      "x": 492,
       "y": 259,
-      "anchor": "middle",
+      "anchor": "end",
       "font_family": "Cambria",
       "font_size": 62,
       "fill": "#222222",
-      "semantic_role": "decorative",
+      "semantic_role": "equation_operand",
       "group": "default"
     },
     {
       "id": "eq1_mid",
       "type": "text",
       "text": "+621",
-      "x": 405,
+      "x": 492,
       "y": 335,
-      "anchor": "middle",
+      "anchor": "end",
       "font_family": "Cambria",
       "font_size": 62,
       "fill": "#222222",
-      "semantic_role": "decorative",
+      "semantic_role": "equation_operand",
       "group": "default"
     },
     {
@@ -129,33 +116,33 @@
       "y2": 378,
       "stroke": "#333333",
       "stroke_width": 2,
-      "semantic_role": "decorative",
+      "semantic_role": "equation_bar",
       "group": "default"
     },
     {
       "id": "eq2_top",
       "type": "text",
       "text": "231",
-      "x": 677,
+      "x": 765,
       "y": 259,
-      "anchor": "middle",
+      "anchor": "end",
       "font_family": "Cambria",
       "font_size": 62,
       "fill": "#222222",
-      "semantic_role": "decorative",
+      "semantic_role": "equation_operand",
       "group": "default"
     },
     {
       "id": "eq2_mid",
       "type": "text",
       "text": "+764",
-      "x": 677,
+      "x": 765,
       "y": 335,
-      "anchor": "middle",
+      "anchor": "end",
       "font_family": "Cambria",
       "font_size": 62,
       "fill": "#222222",
-      "semantic_role": "decorative",
+      "semantic_role": "equation_operand",
       "group": "default"
     },
     {
@@ -167,7 +154,7 @@
       "y2": 378,
       "stroke": "#333333",
       "stroke_width": 2,
-      "semantic_role": "decorative",
+      "semantic_role": "equation_bar",
       "group": "default"
     },
     {
@@ -178,10 +165,10 @@
       "width": 560,
       "height": 148,
       "rx": 34,
-      "stroke": "none",
+      "stroke": "#000000",
       "stroke_width": 0,
       "fill": "#F9F9F9",
-      "semantic_role": "decorative",
+      "semantic_role": "hint_box",
       "group": "default"
     },
     {
@@ -192,9 +179,9 @@
       "y": 522,
       "anchor": "middle",
       "font_family": "Malgun Gothic",
-      "font_size": 30,
+      "font_size": 34,
       "fill": "#333333",
-      "semantic_role": "decorative",
+      "semantic_role": "hint_text",
       "group": "default"
     },
     {
@@ -205,9 +192,9 @@
       "y": 580,
       "anchor": "middle",
       "font_family": "Malgun Gothic",
-      "font_size": 30,
+      "font_size": 34,
       "fill": "#333333",
-      "semantic_role": "decorative",
+      "semantic_role": "hint_text",
       "group": "default"
     },
     {
@@ -220,7 +207,7 @@
       "font_family": "Cambria",
       "font_size": 58,
       "fill": "#222222",
-      "semantic_role": "decorative",
+      "semantic_role": "answer_wrapper",
       "group": "default"
     },
     {
@@ -233,32 +220,13 @@
       "font_family": "Cambria",
       "font_size": 58,
       "fill": "#222222",
-      "semantic_role": "decorative",
-      "group": "default"
-    },
-    {
-      "id": "final_blank",
-      "type": "rect",
-      "x": 595,
-      "y": 752,
-      "width": 320,
-      "height": 46,
-      "rx": 8,
-      "stroke": "#69BEEA",
-      "stroke_width": 3,
-      "fill": "none",
-      "semantic_role": "answer_blank",
-      "answer_blank": true,
-      "choice": {
-        "index": 1,
-        "value": "친구와짝짝꿍"
-      },
+      "semantic_role": "answer_wrapper",
       "group": "default"
     },
     {
       "id": "eq1_blank_0",
       "type": "rect",
-      "x": 340,
+      "x": 342,
       "y": 386,
       "width": 46,
       "height": 46,
@@ -277,7 +245,7 @@
     {
       "id": "eq1_blank_1",
       "type": "rect",
-      "x": 394,
+      "x": 396,
       "y": 386,
       "width": 46,
       "height": 46,
@@ -296,7 +264,7 @@
     {
       "id": "eq1_blank_2",
       "type": "rect",
-      "x": 448,
+      "x": 450,
       "y": 386,
       "width": 46,
       "height": 46,
@@ -315,7 +283,7 @@
     {
       "id": "eq2_blank_0",
       "type": "rect",
-      "x": 612,
+      "x": 616,
       "y": 386,
       "width": 46,
       "height": 46,
@@ -334,7 +302,7 @@
     {
       "id": "eq2_blank_1",
       "type": "rect",
-      "x": 666,
+      "x": 670,
       "y": 386,
       "width": 46,
       "height": 46,
@@ -353,7 +321,7 @@
     {
       "id": "eq2_blank_2",
       "type": "rect",
-      "x": 720,
+      "x": 724,
       "y": 386,
       "width": 46,
       "height": 46,

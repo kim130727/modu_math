@@ -34,8 +34,7 @@ def create_semantic_payload(data: dict) -> dict:
 
     elements: list[dict] = [
         {"id": "instruction", "type": "text", "text": data["instruction"], "x": 44, "y": 106, "anchor": "start", "font_family": "Malgun Gothic", "font_size": 72, "fill": "#222222"},
-        {"id": "circle_marker", "type": "circle", "cx": 695, "cy": 102, "r": 28, "stroke": "#E01392", "stroke_width": 6, "fill": "none"},
-        {"id": "left_box", "type": "rect", "x": 320, "y": 180, "width": 590, "height": 210, "rx": 75, "stroke": "none", "stroke_width": 0, "fill": "#D0CABB", "semantic_role": "choice", "choice": {"index": 1, "value": left_expr, "is_correct": correct_index == 0}},
+                {"id": "left_box", "type": "rect", "x": 320, "y": 180, "width": 590, "height": 210, "rx": 75, "stroke": "none", "stroke_width": 0, "fill": "#D0CABB", "semantic_role": "choice", "choice": {"index": 1, "value": left_expr, "is_correct": correct_index == 0}},
         {"id": "right_box", "type": "rect", "x": 1200, "y": 180, "width": 590, "height": 210, "rx": 75, "stroke": "none", "stroke_width": 0, "fill": "#D0CABB", "semantic_role": "choice", "choice": {"index": 2, "value": right_expr, "is_correct": correct_index == 1}},
         {"id": "left_expr", "type": "text", "text": left_expr, "x": 615, "y": 294, "anchor": "middle", "font_family": "Cambria", "font_size": 74, "fill": "#222222"},
         {"id": "right_expr", "type": "text", "text": right_expr, "x": 1495, "y": 294, "anchor": "middle", "font_family": "Cambria", "font_size": 74, "fill": "#222222"},

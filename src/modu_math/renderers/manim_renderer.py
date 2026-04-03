@@ -4,6 +4,11 @@ from manim import Circle, DashedLine, Line, Polygon, Rectangle, Scene, Text, con
 
 
 class ManimRenderer:
+    def __init__(self, default_text_scale: float = 0.78) -> None:
+        # Manim text tends to look larger than SVG text at the same numeric size.
+        # Apply a conservative default scale so cross-render output is visually closer.
+        self.default_text_scale = default_text_scale
+
     def render_scene(self, scene: Scene, semantic: dict) -> None:
         render = semantic["render"]
         canvas = render["canvas"]
@@ -47,17 +52,27 @@ class ManimRenderer:
         return px / h * config.frame_height
 
     def _text(self, e: dict, c: dict) -> Text:
+        if "manim_font_size" in e:
+            resolved_font_size = float(e["manim_font_size"])
+        else:
+            resolved_font_size = float(e.get("font_size", 24)) * float(
+                e.get("manim_font_scale", self.default_text_scale)
+            )
+
         m = Text(
             e["text"],
             font=e.get("font_family", "Malgun Gothic"),
-            font_size=e.get("font_size", 24),
+            font_size=resolved_font_size,
             color=e.get("fill", "#000000"),
         )
         x = self._px_x(float(e["x"]), float(c["width"]))
         y = self._px_y(float(e["y"]), float(c["height"]))
         m.move_to([x, y, 0])
-        if e.get("anchor", "middle") == "start":
+        anchor = str(e.get("anchor", "middle")).lower()
+        if anchor == "start":
             m.set_x(x + m.width / 2)
+        elif anchor == "end":
+            m.set_x(x - m.width / 2)
         return m
 
     def _rect(self, e: dict, c: dict) -> Rectangle:
