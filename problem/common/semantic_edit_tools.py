@@ -89,6 +89,8 @@ def build_semantic_edit_from_svg(base_semantic_json: Path, edit_svg: Path, out_j
                 "font_size",
                 "font_weight",
                 "dasharray",
+                "transform",
+                "style",
             }:
                 elem[k] = v
 

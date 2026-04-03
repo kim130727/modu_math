@@ -1,0 +1,167 @@
+{
+  "meta": {
+    "schema": "modu_math.semantic.v2",
+    "problem_id": "0005",
+    "source": "problem/0005/manim/0005_manim.py",
+    "source_svg": "C:/projects/modu_math/problem/0005/svg/edit/semantic_edit.svg",
+    "derived_from": "C:/projects/modu_math/problem/0005/json/semantic/semantic.json",
+    "stage": "edit"
+  },
+  "problem": {
+    "id": 5,
+    "type": "compare_two_sums",
+    "instruction": "계산 결과가 더 큰 것에 ○표 하세요.",
+    "expressions": [
+      "605+298",
+      "567+385"
+    ],
+    "values": [
+      903,
+      952
+    ],
+    "correct_index": 1
+  },
+  "canvas": {
+    "width": 1852,
+    "height": 554,
+    "background": "#F6F6F6"
+  },
+  "elements": [
+    {
+      "id": "instruction",
+      "type": "text",
+      "text": "계산 결과가 더 큰 것에 ○표 하세요.",
+      "x": 44,
+      "y": 106,
+      "anchor": "start",
+      "font_family": "Malgun Gothic",
+      "font_size": 72,
+      "fill": "#222222",
+      "semantic_role": "decorative",
+      "group": "default",
+      "font_weight": "normal"
+    },
+    {
+      "id": "left_box",
+      "type": "rect",
+      "x": 320,
+      "y": 180,
+      "width": 590,
+      "height": 210,
+      "rx": 75,
+      "stroke": "none",
+      "stroke_width": 0,
+      "fill": "#D0CABB",
+      "semantic_role": "choice",
+      "choice": {
+        "index": 1,
+        "value": "605+298",
+        "is_correct": false
+      },
+      "group": "default"
+    },
+    {
+      "id": "right_box",
+      "type": "rect",
+      "x": 1200,
+      "y": 180,
+      "width": 590,
+      "height": 210,
+      "rx": 75,
+      "stroke": "none",
+      "stroke_width": 0,
+      "fill": "#D0CABB",
+      "semantic_role": "choice",
+      "choice": {
+        "index": 2,
+        "value": "567+385",
+        "is_correct": true
+      },
+      "group": "default"
+    },
+    {
+      "id": "left_expr",
+      "type": "text",
+      "text": "605+298",
+      "x": 615,
+      "y": 294,
+      "anchor": "middle",
+      "font_family": "Cambria",
+      "font_size": 74,
+      "fill": "#222222",
+      "semantic_role": "decorative",
+      "group": "default",
+      "font_weight": "normal"
+    },
+    {
+      "id": "right_expr",
+      "type": "text",
+      "text": "567+385",
+      "x": 1495,
+      "y": 294,
+      "anchor": "middle",
+      "font_family": "Cambria",
+      "font_size": 74,
+      "fill": "#222222",
+      "semantic_role": "decorative",
+      "group": "default",
+      "font_weight": "normal"
+    },
+    {
+      "id": "left_paren_l",
+      "type": "text",
+      "text": "(",
+      "x": 500,
+      "y": 478,
+      "anchor": "middle",
+      "font_family": "Cambria",
+      "font_size": 92,
+      "fill": "#222222",
+      "semantic_role": "decorative",
+      "group": "default",
+      "font_weight": "normal"
+    },
+    {
+      "id": "left_paren_r",
+      "type": "text",
+      "text": ")",
+      "x": 735,
+      "y": 478,
+      "anchor": "middle",
+      "font_family": "Cambria",
+      "font_size": 92,
+      "fill": "#222222",
+      "semantic_role": "decorative",
+      "group": "default",
+      "font_weight": "normal"
+    },
+    {
+      "id": "right_paren_l",
+      "type": "text",
+      "text": "(",
+      "x": 1380,
+      "y": 478,
+      "anchor": "middle",
+      "font_family": "Cambria",
+      "font_size": 92,
+      "fill": "#222222",
+      "semantic_role": "decorative",
+      "group": "default",
+      "font_weight": "normal"
+    },
+    {
+      "id": "right_paren_r",
+      "type": "text",
+      "text": ")",
+      "x": 1620,
+      "y": 478,
+      "anchor": "middle",
+      "font_family": "Cambria",
+      "font_size": 92,
+      "fill": "#222222",
+      "semantic_role": "decorative",
+      "group": "default",
+      "font_weight": "normal"
+    }
+  ]
+}

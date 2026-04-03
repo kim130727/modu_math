@@ -1,14 +1,26 @@
-# modu_math Pipeline (Staged)
+# modu_math 작업 흐름 안내 (UTF-8)
 
-이 저장소는 문제별로 아래 단계 파이프라인을 사용합니다.
+이 프로젝트는 문제별로 아래 3단계로 작업합니다.
 
-1. `stage1`: `input -> manim -> json/semantic -> svg -> json/layout`
-2. `stage2`: 사람이 `svg/edit`를 편집한 뒤 `json/semantic_edit`, `json/layout_edit` 생성
-3. `final`: `semantic_edit`를 기준으로 `json/semantic_final`, `json/layout_final`, `svg/final` 생성
+1. `stage1`  
+   입력(`input/problem.json`)으로 기본 산출물 생성  
+   - `json/semantic/semantic.json`
+   - `svg/semantic.svg`
+   - `json/layout/layout.json`
+2. `stage2`  
+   사람이 `svg/edit/semantic_edit.svg`를 수정한 뒤 편집 산출물 생성  
+   - `json/semantic_edit/semantic_edit.json`
+   - `json/layout_edit/layout_edit.json`
+   - `json/layout_edit/layout_diff_stage1_to_edit.json`
+3. `final`  
+   편집 결과를 최종본으로 확정  
+   - `json/semantic_final/semantic_final.json`
+   - `json/layout_final/layout_final.json`
+   - `svg/final/semantic_final.svg`
 
-기존 `baseline` 폴더는 사용하지 않습니다.
+`baseline` 폴더는 더 이상 사용하지 않습니다.
 
-## Directory Structure
+## 폴더 구조 예시
 
 ```text
 problem/
@@ -21,18 +33,11 @@ problem/
         0003_manim_edit.py
     json/
       semantic/
-        semantic.json
       layout/
-        layout.json
       semantic_edit/
-        semantic_edit.json
       layout_edit/
-        layout_edit.json
-        layout_diff_stage1_to_edit.json
       semantic_final/
-        semantic_final.json
       layout_final/
-        layout_final.json
     svg/
       semantic.svg
       edit/
@@ -41,33 +46,34 @@ problem/
         semantic_final.svg
 ```
 
-## Quick Start
+## 가장 많이 쓰는 명령
 
-아래 명령은 `0003` 기준 예시입니다.
+아래는 `0003` 예시입니다.
 
 ```powershell
-# 0) 구조 초기화(필요 폴더/편집용 manim 파일 자동 생성)
+# 0) 폴더/편집용 파일 초기화
 .\.venv\Scripts\python.exe problem\common\stage_cli.py --problem-id 0003 --step init
 
-# 1) 1단계 실행
+# 1) 기본 산출물 생성
 .\.venv\Scripts\python.exe problem\common\stage_cli.py --problem-id 0003 --step stage1
 
-# 2) 2단계 실행
-# - svg/edit/semantic_edit.svg가 없으면 stage1 svg를 자동 복사해 seed 파일 생성
+# 2) 편집 반영
 .\.venv\Scripts\python.exe problem\common\stage_cli.py --problem-id 0003 --step stage2
 
-# 3) final 실행
+# 3) 최종 확정
 .\.venv\Scripts\python.exe problem\common\stage_cli.py --problem-id 0003 --step final
 ```
 
-한 번에 전체 실행:
+한 번에 모두 실행:
 
 ```powershell
 .\.venv\Scripts\python.exe problem\common\stage_cli.py --problem-id 0003 --step all
 ```
 
-## Notes
+## 자주 묻는 점
 
-- 문제별 기존 스크립트(`problem/{id}/manim/{id}_manim.py`)는 기본 semantic 출력 경로가 `json/semantic/semantic.json`으로 변경되었습니다.
-- `stage2`에서는 `svg/semantic.svg`와 `svg/edit/semantic_edit.svg`의 레이아웃 차이를 `json/layout_edit/layout_diff_stage1_to_edit.json`에 저장합니다.
-- 사람이 편집한 파일이 아직 없어도 바로 실행할 수 있도록 `stage2`에서 edit SVG seed를 자동 생성합니다.
+- `stage2`에서 `svg/edit/semantic_edit.svg`가 없으면?
+  - `svg/semantic.svg`를 자동 복사해서 편집용 파일을 만들어 줍니다.
+- `manim/edit/*.py`는 자동으로 숫자 좌표를 다시 쓰나요?
+  - 아니요. 이 파일은 `semantic_edit.json`을 읽어 렌더하는 템플릿입니다.
+  - 그래서 코드 자체를 고치지 않아도 편집 결과가 반영됩니다.
