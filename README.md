@@ -59,6 +59,10 @@ New-Item -ItemType Directory -Force `
 # (캐시 폴더 생성 없이 실행)
 # $env:PYTHONDONTWRITEBYTECODE=1
 # .\.venv\Scripts\python.exe -m pytest -q -p no:cacheprovider tests\test_regression_render.py
+
+# 6) 신규 src 기반 러너(점진 이전용)
+# python src\modu_math\cli\run_problem.py --problem-id 0001 --all
+# python src\modu_math\cli\validate_problem.py --semantic problem\0001\json\semantic.json
 ```
 
 ## 나중에 한꺼번에 실행할 때

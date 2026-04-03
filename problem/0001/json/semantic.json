@@ -1,23 +1,103 @@
 {
-  "meta": {
-    "schema": "modu_math.semantic.v2",
-    "problem_id": "0001",
-    "source": "problem/0001/manim/0001_manim.py"
+  "schema_version": "modu_math.semantic.v3",
+  "problem_id": "0001",
+  "problem_type": "fill_in_blank",
+  "metadata": {
+    "grade_band": "unknown",
+    "source_file": "C:\\projects\\modu_math\\problem\\0001\\input\\problem.json",
+    "language": "ko-KR"
   },
-  "problem": {
-    "id": 1,
-    "type": "fill_in_blank",
-    "category": "time_conversion",
-    "instruction": "□안에 알맞은 수를 구하시오.",
-    "question": {
-      "left_seconds": 410,
-      "minutes": 6,
-      "blank_symbol": "□",
-      "unit_from": "초",
-      "unit_mid": "분",
-      "unit_to": "초"
+  "domain": {
+    "left_seconds": 410,
+    "minutes": 6,
+    "unit_from": "초",
+    "unit_mid": "분",
+    "unit_to": "초",
+    "blank_symbol": "□",
+    "computed_answer": 50
+  },
+  "render": {
+    "canvas": {
+      "width": 1280,
+      "height": 720,
+      "background": "#F6F6F6"
     },
-    "answer": 50,
+    "groups": [
+      {
+        "id": "question"
+      },
+      {
+        "id": "answer"
+      }
+    ],
+    "elements": [
+      {
+        "id": "instruction",
+        "type": "text",
+        "text": "□안에 알맞은 수를 구하시오.",
+        "x": 72,
+        "y": 92,
+        "anchor": "start",
+        "font_family": "Malgun Gothic",
+        "font_size": 42,
+        "fill": "#000000",
+        "group": "question",
+        "semantic_role": "instruction"
+      },
+      {
+        "id": "question_box",
+        "type": "rect",
+        "x": 280,
+        "y": 240,
+        "width": 720,
+        "height": 180,
+        "rx": 24,
+        "stroke": "#000000",
+        "stroke_width": 3,
+        "fill": "none",
+        "group": "question",
+        "semantic_role": "question_container",
+        "figure_type": "rounded_box"
+      },
+      {
+        "id": "equation",
+        "type": "text",
+        "text": "410초=6분 □초",
+        "x": 640,
+        "y": 345,
+        "anchor": "middle",
+        "font_family": "Malgun Gothic",
+        "font_size": 54,
+        "fill": "#000000",
+        "group": "question",
+        "semantic_role": "equation"
+      },
+      {
+        "id": "answer_blank",
+        "type": "rect",
+        "x": 818,
+        "y": 526,
+        "width": 122,
+        "height": 50,
+        "rx": 8,
+        "stroke": "#000000",
+        "stroke_width": 2,
+        "fill": "none",
+        "group": "answer",
+        "semantic_role": "answer_blank",
+        "figure_type": "blank_box"
+      }
+    ]
+  },
+  "answer": {
+    "blanks": [
+      {
+        "id": "answer_blank",
+        "kind": "numeric",
+        "value": "50",
+        "unit": "초"
+      }
+    ],
     "choices": [
       {
         "value": "40",
@@ -31,100 +111,12 @@
         "value": "60",
         "is_correct": false
       }
-    ]
-  },
-  "canvas": {
-    "width": 1280,
-    "height": 720,
-    "background": "#F6F6F6"
-  },
-  "elements": [
-    {
-      "id": "instruction",
-      "type": "text",
-      "text": "□안에 알맞은 수를 구하시오.",
-      "x": 72,
-      "y": 92,
-      "anchor": "start",
-      "font_family": "Malgun Gothic",
-      "font_size": 42,
-      "fill": "#000000",
-      "group": "header",
-      "semantic_role": "instruction"
-    },
-    {
-      "id": "question_box",
-      "type": "rect",
-      "x": 280,
-      "y": 240,
-      "width": 720,
-      "height": 180,
-      "rx": 24,
-      "stroke": "#000000",
-      "stroke_width": 3,
-      "fill": "none",
-      "group": "question",
-      "semantic_role": "question_container",
-      "figure_type": "rounded_box"
-    },
-    {
-      "id": "expression",
-      "type": "text",
-      "text": "410초=6분 □초",
-      "x": 640,
-      "y": 345,
-      "anchor": "middle",
-      "font_family": "Malgun Gothic",
-      "font_size": 54,
-      "fill": "#000000",
-      "group": "question",
-      "semantic_role": "equation"
-    },
-    {
-      "id": "answer_left_paren",
-      "type": "text",
-      "text": "(",
-      "x": 780,
-      "y": 560,
-      "anchor": "middle",
-      "font_family": "Malgun Gothic",
-      "font_size": 56,
-      "fill": "#000000",
-      "group": "answer_area",
-      "semantic_role": "answer_wrapper"
-    },
-    {
-      "id": "answer_blank_slot",
-      "type": "rect",
-      "x": 818,
-      "y": 526,
-      "width": 122,
-      "height": 50,
-      "rx": 8,
-      "stroke": "#000000",
-      "stroke_width": 2,
-      "fill": "none",
-      "group": "answer_area",
-      "semantic_role": "answer_blank",
-      "answer_blank": true,
-      "figure_type": "blank_box",
-      "choice": {
-        "index": 1,
+    ],
+    "answer_key": [
+      {
+        "target": "answer_blank",
         "value": "50"
       }
-    },
-    {
-      "id": "answer_right_paren",
-      "type": "text",
-      "text": ")",
-      "x": 960,
-      "y": 560,
-      "anchor": "middle",
-      "font_family": "Malgun Gothic",
-      "font_size": 56,
-      "fill": "#000000",
-      "group": "answer_area",
-      "semantic_role": "answer_wrapper"
-    }
-  ]
+    ]
+  }
 }
