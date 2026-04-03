@@ -110,11 +110,26 @@ def build_layout() -> dict:
         "equation": {
             "text_x": 900,
             "text_y": 615,
-            "blank_x": 1045,
-            "blank_y": 567,
+            "blank_x": 1024.6238,
+            "blank_y": 560.51666,
             "blank_w": 155,
             "blank_h": 78,
             "blank_rx": 10,
+        },
+        "place_offsets": {
+            # Offsets tuned from semantic_modify.json reference.
+            "addend1": {
+                "tens_dx": -17.59769,
+                "tens_dy": -5.55716,
+                "ones_dx": 0.0,
+                "ones_dy": -39.82634,
+            },
+            "addend2": {
+                "tens_dx": -19.45007,
+                "tens_dy": -7.40955,
+                "ones_dx": -2.77856,
+                "ones_dy": -43.53113,
+            },
         },
         "colors": {
             "black": "#222222",
@@ -239,8 +254,12 @@ def create_semantic_payload(data: dict) -> dict:
 
 def _build_place_value_blocks(prefix: str, place: dict, base_x: float, base_y: float, layout: dict) -> list[dict]:
     blocks = layout["blocks"]
-    colors = layout["colors"]
     elements: list[dict] = []
+    offsets = layout.get("place_offsets", {}).get(prefix, {})
+    tens_dx = float(offsets.get("tens_dx", 0.0))
+    tens_dy = float(offsets.get("tens_dy", 0.0))
+    ones_dx = float(offsets.get("ones_dx", 0.0))
+    ones_dy = float(offsets.get("ones_dy", 0.0))
 
     # Hundreds: render each 100-block as a 10x10 fake-3D cube array.
     for i in range(place["hundreds"]):
@@ -262,8 +281,8 @@ def _build_place_value_blocks(prefix: str, place: dict, base_x: float, base_y: f
 
     # Tens: render each 10-block as a 1x10 fake-3D cube rod.
     rod_w = blocks["hundred_cols"] * (blocks["cube_size"] + blocks["cube_gap"]) - blocks["cube_gap"]
-    rods_x = base_x + 230
-    rods_start_y = base_y + 8
+    rods_x = base_x + 230 + tens_dx
+    rods_start_y = base_y + 8 + tens_dy
     for i in range(place["tens"]):
         y = rods_start_y + i * (blocks["cube_size"] + blocks["ten_group_gap"])
         elements.extend(
@@ -281,8 +300,8 @@ def _build_place_value_blocks(prefix: str, place: dict, base_x: float, base_y: f
         )
 
     # Ones: single fake-3D cubes.
-    ones_x = rods_x + rod_w + 25
-    ones_y = base_y + 44
+    ones_x = base_x + 230 + rod_w + 25 + ones_dx
+    ones_y = base_y + 44 + ones_dy
     for i in range(place["ones"]):
         x = ones_x + i * (blocks["cube_size"] + blocks["one_group_gap"])
         y = ones_y
@@ -367,6 +386,7 @@ def _build_fake3d_cube(
             "y": y + 1,
             "width": s,
             "height": s,
+            "rx": 0,
             "fill": colors["yellow_shadow_fill"],
             **common,
         },
@@ -377,6 +397,7 @@ def _build_fake3d_cube(
             "y": y,
             "width": s,
             "height": s,
+            "rx": 0,
             "fill": colors["yellow_fill"],
             **common,
         },
@@ -387,6 +408,7 @@ def _build_fake3d_cube(
             "y": y - dy,
             "width": s,
             "height": dy,
+            "rx": 0,
             "fill": colors["yellow_top_fill"],
             **common,
         },
@@ -397,6 +419,7 @@ def _build_fake3d_cube(
             "y": y,
             "width": dx,
             "height": s,
+            "rx": 0,
             "fill": colors["yellow_side_fill"],
             **common,
         },
