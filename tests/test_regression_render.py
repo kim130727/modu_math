@@ -27,6 +27,13 @@ class RegressionRenderTests(unittest.TestCase):
             rendered_png=REPO_ROOT / "problem" / "0002" / "manim" / "images" / "RulerEraserProblem_ManimCE_v0.20.1.png",
         )
 
+    def test_problem_0003_regression(self) -> None:
+        self._run_and_compare(
+            problem_id="0003",
+            scene_class="BaseTenBlockAdditionProblem",
+            rendered_png=REPO_ROOT / "problem" / "0003" / "manim" / "images" / "BaseTenBlockAdditionProblem_ManimCE_v0.20.1.png",
+        )
+
     def _run_and_compare(self, problem_id: str, scene_class: str, rendered_png: Path) -> None:
         script = REPO_ROOT / "problem" / problem_id / "manim" / f"{problem_id}_manim.py"
         problem_dir = REPO_ROOT / "problem" / problem_id
@@ -67,3 +74,4 @@ def _normalize_svg(svg: str) -> str:
 
 if __name__ == "__main__":
     unittest.main()
+
