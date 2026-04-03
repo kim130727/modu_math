@@ -1,92 +1,73 @@
-# modu_math 전략 재구성 (UTF-8)
+# modu_math Pipeline (Staged)
 
-이 저장소는 아래 단계형 전략으로만 운영합니다.
+이 저장소는 문제별로 아래 단계 파이프라인을 사용합니다.
 
-## 폴더 구조
+1. `stage1`: `input -> manim -> json/semantic -> svg -> json/layout`
+2. `stage2`: 사람이 `svg/edit`를 편집한 뒤 `json/semantic_edit`, `json/layout_edit` 생성
+3. `final`: `semantic_edit`를 기준으로 `json/semantic_final`, `json/layout_final`, `svg/final` 생성
+
+기존 `baseline` 폴더는 사용하지 않습니다.
+
+## Directory Structure
 
 ```text
 problem/
-  문제id/
-    input/   # 입력 문제 원본(hwp, png 등) + 문제 데이터(problem.json)
-    manim/   # manim .py, manim 렌더 결과 png
-    json/    # manim 결과가 검증 완료된 뒤 생성하는 semantic json
-    svg/     # semantic json 기반 생성 + 검증 완료 svg
-    baseline/# 회귀 검증용 기준 semantic/svg/png
+  0003/
+    input/
+      problem.json
+    manim/
+      0003_manim.py
+      edit/
+        0003_manim_edit.py
+    json/
+      semantic/
+        semantic.json
+      layout/
+        layout.json
+      semantic_edit/
+        semantic_edit.json
+      layout_edit/
+        layout_edit.json
+        layout_diff_stage1_to_edit.json
+      semantic_final/
+        semantic_final.json
+      layout_final/
+        layout_final.json
+    svg/
+      semantic.svg
+      edit/
+        semantic_edit.svg
+      final/
+        semantic_final.svg
 ```
 
-## 사용 원칙
+## Quick Start
 
-1. 문제별로 `problem/문제id`를 생성합니다.
-2. `input -> manim -> json -> svg` 순서로만 진행합니다.
-3. 각 단계 명령은 개별 실행 가능해야 하며, 필요 시 마지막에 일괄 실행합니다.
-
-## 단계별 개별 명령어 (PowerShell)
-
-아래에서 `문제id`는 실제 ID로 바꿔서 사용하세요.
+아래 명령은 `0003` 기준 예시입니다.
 
 ```powershell
-# 0) 문제 디렉터리 생성
-New-Item -ItemType Directory -Force `
-  problem\문제id, `
-  problem\문제id\input, `
-  problem\문제id\manim, `
-  problem\문제id\json, `
-  problem\문제id\svg
+# 0) 구조 초기화(필요 폴더/편집용 manim 파일 자동 생성)
+.\.venv\Scripts\python.exe problem\common\stage_cli.py --problem-id 0003 --step init
 
-# 1) 입력 데이터 배치 (예시)
-# problem\문제id\input 안에 hwp/png 파일 복사
-# 문제 데이터는 problem\문제id\input\problem.json 에 저장
+# 1) 1단계 실행
+.\.venv\Scripts\python.exe problem\common\stage_cli.py --problem-id 0003 --step stage1
 
-# 2) manim 파일 실행(예시)
-# manim -ql -s problem\문제id\manim\문제id_manim.py SceneClass
-# 위의 SceneClass는 자리표시자이며, 실제 코드의 Scene 클래스명을 넣어야 함
-# 예) manim -ql -s problem\0002\manim\0002_manim.py RulerEraserProblem
-# 결과 png는 problem\문제id\manim\images 에 저장
-# (미리보기까지 원하면 -p 추가. 단, Windows 파일 연결이 없으면 preview 단계에서 오류가 날 수 있음)
+# 2) 2단계 실행
+# - svg/edit/semantic_edit.svg가 없으면 stage1 svg를 자동 복사해 seed 파일 생성
+.\.venv\Scripts\python.exe problem\common\stage_cli.py --problem-id 0003 --step stage2
 
-# 3) semantic json 생성(예시)
-# python problem\문제id\manim\문제id_manim.py --export-semantic
-# (문제 데이터 경로를 직접 지정할 때)
-# python problem\문제id\manim\문제id_manim.py --export-semantic --problem-in problem\문제id\input\problem.json
-
-# 4) svg 생성 및 검증(예시)
-# python problem\문제id\manim\문제id_manim.py --validate
-# python problem\문제id\manim\문제id_manim.py --render-svg
-# (한 번에 실행) python problem\문제id\manim\문제id_manim.py --all
-
-# 5) 회귀 검증(예시)
-# .\.venv\Scripts\python.exe -m pytest -q tests\test_regression_render.py
-# (캐시 폴더 생성 없이 실행)
-# $env:PYTHONDONTWRITEBYTECODE=1
-# .\.venv\Scripts\python.exe -m pytest -q -p no:cacheprovider tests\test_regression_render.py
-
-# 6) 신규 src 기반 러너(점진 이전용)
-# python src\modu_math\cli\run_problem.py --problem-id 0001 --all
-# python src\modu_math\cli\validate_problem.py --semantic problem\0001\json\semantic.json
+# 3) final 실행
+.\.venv\Scripts\python.exe problem\common\stage_cli.py --problem-id 0003 --step final
 ```
 
-## 나중에 한꺼번에 실행할 때
+한 번에 전체 실행:
 
-`run_all.ps1` 같은 스크립트에 위 2~4단계 명령을 순서대로 넣어 일괄 실행합니다.
-(현재 저장소에는 강제 실행 스크립트를 두지 않고, 문제별 커맨드를 명시적으로 관리합니다.)
-
-## ?? ?? import (UTF-8)
-
-?? ?? ????? `problem.common`?? ?? ??? ? ?? ??? ? ????.
-
-```python
-from problem.common import (
-    find_problem_dir,
-    problem_input_json_path,
-    semantic_json_path,
-    semantic_svg_path,
-    render_svg_from_semantic,
-    render_manim_from_semantic,  # manim ??? ????? None? ? ??
-    validate_structure,
-    validate_logic,
-)
+```powershell
+.\.venv\Scripts\python.exe problem\common\stage_cli.py --problem-id 0003 --step all
 ```
 
-??: ?? ??? ????? `src/modu_math/...` ?? import? ?????.
-??: ?? ??? `problem.common` import? ??? ???? ?????.
+## Notes
 
+- 문제별 기존 스크립트(`problem/{id}/manim/{id}_manim.py`)는 기본 semantic 출력 경로가 `json/semantic/semantic.json`으로 변경되었습니다.
+- `stage2`에서는 `svg/semantic.svg`와 `svg/edit/semantic_edit.svg`의 레이아웃 차이를 `json/layout_edit/layout_diff_stage1_to_edit.json`에 저장합니다.
+- 사람이 편집한 파일이 아직 없어도 바로 실행할 수 있도록 `stage2`에서 edit SVG seed를 자동 생성합니다.

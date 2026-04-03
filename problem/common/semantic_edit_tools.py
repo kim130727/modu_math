@@ -1,0 +1,105 @@
+from __future__ import annotations
+
+import json
+from pathlib import Path
+from typing import Any
+import xml.etree.ElementTree as ET
+
+
+def _strip_ns(tag: str) -> str:
+    return tag.split("}", 1)[1] if "}" in tag else tag
+
+
+def _to_num(value: str) -> float | int | str:
+    raw = value.strip()
+    for suffix in ("px", "pt", "em", "rem", "%"):
+        if raw.endswith(suffix):
+            raw = raw[: -len(suffix)]
+            break
+    try:
+        f = float(raw)
+        return int(round(f)) if abs(f - round(f)) < 1e-9 else f
+    except ValueError:
+        return value
+
+
+def build_semantic_edit_from_svg(base_semantic_json: Path, edit_svg: Path, out_json: Path) -> Path:
+    base = json.loads(base_semantic_json.read_text(encoding="utf-8"))
+    root = ET.parse(edit_svg).getroot()
+
+    svg_by_id: dict[str, ET.Element] = {}
+    for node in root.iter():
+        tag = _strip_ns(node.tag)
+        if tag in {"svg", "defs", "namedview"} or ":" in tag:
+            continue
+        node_id = node.attrib.get("id")
+        if node_id:
+            svg_by_id[node_id] = node
+
+    attr_map = {
+        "font-family": "font_family",
+        "font-size": "font_size",
+        "stroke-width": "stroke_width",
+        "text-anchor": "anchor",
+        "font-weight": "font_weight",
+    }
+    numeric = {
+        "x",
+        "y",
+        "x1",
+        "y1",
+        "x2",
+        "y2",
+        "width",
+        "height",
+        "rx",
+        "ry",
+        "r",
+        "cx",
+        "cy",
+        "stroke_width",
+        "font_size",
+    }
+
+    for elem in base.get("elements", []):
+        if not isinstance(elem, dict):
+            continue
+        elem_id = elem.get("id")
+        if not elem_id:
+            continue
+        node = svg_by_id.get(elem_id)
+        if node is None:
+            continue
+
+        attrs = dict(node.attrib)
+        normalized: dict[str, Any] = {}
+        for k, v in attrs.items():
+            normalized[attr_map.get(k, k.replace("-", "_"))] = v
+
+        for k, v in normalized.items():
+            if k == "id":
+                continue
+            if k in numeric:
+                elem[k] = _to_num(v)
+            elif k in elem or k in {
+                "fill",
+                "stroke",
+                "anchor",
+                "font_family",
+                "font_size",
+                "font_weight",
+                "dasharray",
+            }:
+                elem[k] = v
+
+        if _strip_ns(node.tag) == "text":
+            elem["text"] = "".join(node.itertext()).strip()
+
+    meta = base.setdefault("meta", {})
+    meta["source_svg"] = str(edit_svg).replace("\\", "/")
+    meta["derived_from"] = str(base_semantic_json).replace("\\", "/")
+    meta["stage"] = "edit"
+
+    out_json.parent.mkdir(parents=True, exist_ok=True)
+    out_json.write_text(json.dumps(base, ensure_ascii=False, indent=2), encoding="utf-8")
+    return out_json

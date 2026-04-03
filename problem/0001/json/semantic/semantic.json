@@ -1,0 +1,130 @@
+{
+  "meta": {
+    "schema": "modu_math.semantic.v2",
+    "problem_id": "0001",
+    "source": "problem/0001/manim/0001_manim.py"
+  },
+  "problem": {
+    "id": 1,
+    "type": "fill_in_blank",
+    "category": "time_conversion",
+    "instruction": "□안에 알맞은 수를 구하시오.",
+    "question": {
+      "left_seconds": 410,
+      "minutes": 6,
+      "blank_symbol": "□",
+      "unit_from": "초",
+      "unit_mid": "분",
+      "unit_to": "초"
+    },
+    "answer": 50,
+    "choices": [
+      {
+        "value": "40",
+        "is_correct": false
+      },
+      {
+        "value": "50",
+        "is_correct": true
+      },
+      {
+        "value": "60",
+        "is_correct": false
+      }
+    ]
+  },
+  "canvas": {
+    "width": 1280,
+    "height": 720,
+    "background": "#F6F6F6"
+  },
+  "elements": [
+    {
+      "id": "instruction",
+      "type": "text",
+      "text": "□안에 알맞은 수를 구하시오.",
+      "x": 72,
+      "y": 92,
+      "anchor": "start",
+      "font_family": "Malgun Gothic",
+      "font_size": 42,
+      "fill": "#000000",
+      "group": "header",
+      "semantic_role": "instruction"
+    },
+    {
+      "id": "question_box",
+      "type": "rect",
+      "x": 280,
+      "y": 240,
+      "width": 720,
+      "height": 180,
+      "rx": 24,
+      "stroke": "#000000",
+      "stroke_width": 3,
+      "fill": "none",
+      "group": "question",
+      "semantic_role": "question_container",
+      "figure_type": "rounded_box"
+    },
+    {
+      "id": "expression",
+      "type": "text",
+      "text": "410초=6분 □초",
+      "x": 640,
+      "y": 345,
+      "anchor": "middle",
+      "font_family": "Malgun Gothic",
+      "font_size": 54,
+      "fill": "#000000",
+      "group": "question",
+      "semantic_role": "equation"
+    },
+    {
+      "id": "answer_left_paren",
+      "type": "text",
+      "text": "(",
+      "x": 780,
+      "y": 560,
+      "anchor": "middle",
+      "font_family": "Malgun Gothic",
+      "font_size": 56,
+      "fill": "#000000",
+      "group": "answer_area",
+      "semantic_role": "answer_wrapper"
+    },
+    {
+      "id": "answer_blank_slot",
+      "type": "rect",
+      "x": 818,
+      "y": 526,
+      "width": 122,
+      "height": 50,
+      "rx": 8,
+      "stroke": "#000000",
+      "stroke_width": 2,
+      "fill": "none",
+      "group": "answer_area",
+      "semantic_role": "answer_blank",
+      "answer_blank": true,
+      "figure_type": "blank_box",
+      "choice": {
+        "index": 1,
+        "value": "50"
+      }
+    },
+    {
+      "id": "answer_right_paren",
+      "type": "text",
+      "text": ")",
+      "x": 960,
+      "y": 560,
+      "anchor": "middle",
+      "font_family": "Malgun Gothic",
+      "font_size": 56,
+      "fill": "#000000",
+      "group": "answer_area",
+      "semantic_role": "answer_wrapper"
+    }
+  ]
+}

@@ -18,7 +18,7 @@ def find_problem_dir(from_file: Path) -> Path:
 
 
 def semantic_json_path(problem_dir: Path) -> Path:
-    return problem_dir / "json" / "semantic.json"
+    return problem_dir / "json" / "semantic" / "semantic.json"
 
 
 def semantic_svg_path(problem_dir: Path) -> Path:
