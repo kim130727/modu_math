@@ -26,6 +26,10 @@ def manim_edit_dir(repo_root: Path, problem_id: str) -> Path:
     return manim_dir(repo_root, problem_id) / "edit"
 
 
+def manim_final_dir(repo_root: Path, problem_id: str) -> Path:
+    return manim_dir(repo_root, problem_id) / "final"
+
+
 def json_semantic_dir(repo_root: Path, problem_id: str) -> Path:
     return problem_dir(repo_root, problem_id) / "json" / "semantic"
 
@@ -74,6 +78,10 @@ def manim_edit_source(repo_root: Path, problem_id: str) -> Path:
     return manim_edit_dir(repo_root, problem_id) / f"{ensure_problem_id(problem_id)}_manim_edit.py"
 
 
+def manim_final_source(repo_root: Path, problem_id: str) -> Path:
+    return manim_final_dir(repo_root, problem_id) / f"{ensure_problem_id(problem_id)}_manim_final.py"
+
+
 def semantic_stage1_json(repo_root: Path, problem_id: str) -> Path:
     return json_semantic_dir(repo_root, problem_id) / "semantic.json"
 
@@ -115,6 +123,7 @@ def all_required_dirs(repo_root: Path, problem_id: str) -> list[Path]:
         input_dir(repo_root, problem_id),
         manim_dir(repo_root, problem_id),
         manim_edit_dir(repo_root, problem_id),
+        manim_final_dir(repo_root, problem_id),
         json_semantic_dir(repo_root, problem_id),
         json_layout_dir(repo_root, problem_id),
         json_semantic_edit_dir(repo_root, problem_id),

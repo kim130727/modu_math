@@ -27,6 +27,7 @@ from problem.common.stage_paths import (
     layout_final_json,
     layout_stage1_json,
     manim_edit_source,
+    manim_final_source,
     manim_source,
     problem_dir,
     problem_input_json,
@@ -137,6 +138,82 @@ class ProblemEditScene(Scene):
     return out
 
 
+def _write_final_manim_if_missing(repo_root: Path, problem_id: str) -> Path:
+    sem_final = semantic_final_json(repo_root, problem_id)
+    if not sem_final.exists():
+        raise FileNotFoundError(f"Missing semantic_final.json: {sem_final}")
+
+    out = manim_final_source(repo_root, problem_id)
+    if out.exists():
+        return out
+
+    template = f'''from __future__ import annotations
+
+import json
+import sys
+from pathlib import Path
+
+from manim import Scene
+
+sys.dont_write_bytecode = True
+
+
+def _ensure_repo_root_on_path() -> Path:
+    current = Path(__file__).resolve()
+    for parent in current.parents:
+        if (parent / "problem").is_dir() and (parent / "README.md").exists():
+            root = str(parent)
+            if root not in sys.path:
+                sys.path.insert(0, root)
+            return parent
+    raise RuntimeError("Repository root could not be resolved.")
+
+
+REPO_ROOT = _ensure_repo_root_on_path()
+
+from problem.common.manim_renderer import render_manim_from_semantic
+from problem.common.validator import validate_logic, validate_structure
+
+
+PROBLEM_ID = "{problem_id}"
+SEMANTIC_FINAL_PATH = REPO_ROOT / "problem" / PROBLEM_ID / "json" / "semantic_final" / "semantic_final.json"
+
+
+def _load_semantic() -> dict:
+    if not SEMANTIC_FINAL_PATH.exists():
+        raise FileNotFoundError(f"Missing semantic_final.json: {{SEMANTIC_FINAL_PATH}}")
+    return json.loads(SEMANTIC_FINAL_PATH.read_text(encoding="utf-8"))
+
+
+def _validate_or_raise(semantic: dict) -> None:
+    structure_errors = validate_structure(semantic)
+    logic_errors = validate_logic(semantic)
+    if structure_errors or logic_errors:
+        lines = ["semantic validation failed:"]
+        if structure_errors:
+            lines.append("[structure]")
+            lines.extend(f"- {{x}}" for x in structure_errors)
+        if logic_errors:
+            lines.append("[logic]")
+            lines.extend(f"- {{x}}" for x in logic_errors)
+        raise ValueError("\\n".join(lines))
+
+
+class ProblemFinalScene(Scene):
+    def construct(self) -> None:
+        semantic = _load_semantic()
+        _validate_or_raise(semantic)
+        render_manim_from_semantic(self, semantic)
+        self.wait(2)
+
+
+SceneClass = ProblemFinalScene
+'''
+    out.parent.mkdir(parents=True, exist_ok=True)
+    out.write_text(template, encoding="utf-8")
+    return out
+
+
 def init_problem_structure(repo_root: Path, problem_id: str) -> None:
     for d in all_required_dirs(repo_root, problem_id):
         d.mkdir(parents=True, exist_ok=True)
@@ -213,13 +290,20 @@ def run_final(repo_root: Path, problem_id: str) -> None:
     sem_final.parent.mkdir(parents=True, exist_ok=True)
     shutil.copy2(sem_edit, sem_final)
 
-    from problem.common.svg_renderer import render_svg_from_semantic
-    import json
-
-    semantic = json.loads(sem_final.read_text(encoding="utf-8"))
+    edit_svg = svg_stage_edit(repo_root, problem_id)
     _validate_semantic_file(sem_final)
-    render_svg_from_semantic(semantic, svg_out)
+    # Preserve user-edited SVG fidelity by promoting edit SVG as final SVG when available.
+    if edit_svg.exists():
+        svg_out.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(edit_svg, svg_out)
+    else:
+        from problem.common.svg_renderer import render_svg_from_semantic
+        import json
+
+        semantic = json.loads(sem_final.read_text(encoding="utf-8"))
+        render_svg_from_semantic(semantic, svg_out)
     write_layout(svg_out, lay_final)
+    _write_final_manim_if_missing(repo_root, problem_id)
     print(f"[OK] final complete: semantic/layout/svg final generated for {problem_id}")
 
 

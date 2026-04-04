@@ -23,6 +23,44 @@ def _to_num(value: str) -> float | int | str:
         return value
 
 
+def _build_element_from_svg_node(
+    node: ET.Element,
+    attr_map: dict[str, str],
+    numeric: set[str],
+) -> dict[str, Any] | None:
+    tag = _strip_ns(node.tag)
+    if tag not in {"text", "rect", "line", "circle", "polygon"}:
+        return None
+
+    attrs = dict(node.attrib)
+    normalized: dict[str, Any] = {}
+    for k, v in attrs.items():
+        normalized[attr_map.get(k, k.replace("-", "_"))] = v
+
+    elem_id = normalized.get("id")
+    if not elem_id:
+        return None
+
+    elem: dict[str, Any] = {
+        "id": elem_id,
+        "type": tag,
+        "semantic_role": "decorative",
+        "group": "default",
+    }
+    for k, v in normalized.items():
+        if k == "id":
+            continue
+        if k in numeric:
+            elem[k] = _to_num(v)
+        else:
+            elem[k] = v
+
+    if tag == "text":
+        elem["text"] = "".join(node.itertext()).strip()
+
+    return elem
+
+
 def build_semantic_edit_from_svg(base_semantic_json: Path, edit_svg: Path, out_json: Path) -> Path:
     base = json.loads(base_semantic_json.read_text(encoding="utf-8"))
     root = ET.parse(edit_svg).getroot()
@@ -64,6 +102,8 @@ def build_semantic_edit_from_svg(base_semantic_json: Path, edit_svg: Path, out_j
     kept_elements: list[dict[str, Any]] = []
     removed_element_ids: list[str] = []
 
+    used_ids: set[str] = set()
+
     for elem in base.get("elements", []):
         if not isinstance(elem, dict):
             kept_elements.append(elem)
@@ -76,6 +116,7 @@ def build_semantic_edit_from_svg(base_semantic_json: Path, edit_svg: Path, out_j
         if node is None:
             removed_element_ids.append(elem_id)
             continue
+        used_ids.add(elem_id)
 
         attrs = dict(node.attrib)
         normalized: dict[str, Any] = {}
@@ -104,6 +145,14 @@ def build_semantic_edit_from_svg(base_semantic_json: Path, edit_svg: Path, out_j
             elem["text"] = "".join(node.itertext()).strip()
 
         kept_elements.append(elem)
+
+    # Include newly added SVG elements that did not exist in stage1 semantic.
+    for node_id, node in svg_by_id.items():
+        if node_id in used_ids:
+            continue
+        extra = _build_element_from_svg_node(node, attr_map, numeric)
+        if extra is not None:
+            kept_elements.append(extra)
 
     base["elements"] = kept_elements
 
