@@ -61,14 +61,20 @@ def build_semantic_edit_from_svg(base_semantic_json: Path, edit_svg: Path, out_j
         "font_size",
     }
 
+    kept_elements: list[dict[str, Any]] = []
+    removed_element_ids: list[str] = []
+
     for elem in base.get("elements", []):
         if not isinstance(elem, dict):
+            kept_elements.append(elem)
             continue
         elem_id = elem.get("id")
         if not elem_id:
+            kept_elements.append(elem)
             continue
         node = svg_by_id.get(elem_id)
         if node is None:
+            removed_element_ids.append(elem_id)
             continue
 
         attrs = dict(node.attrib)
@@ -97,10 +103,16 @@ def build_semantic_edit_from_svg(base_semantic_json: Path, edit_svg: Path, out_j
         if _strip_ns(node.tag) == "text":
             elem["text"] = "".join(node.itertext()).strip()
 
+        kept_elements.append(elem)
+
+    base["elements"] = kept_elements
+
     meta = base.setdefault("meta", {})
     meta["source_svg"] = str(edit_svg).replace("\\", "/")
     meta["derived_from"] = str(base_semantic_json).replace("\\", "/")
     meta["stage"] = "edit"
+    if removed_element_ids:
+        meta["removed_element_ids"] = removed_element_ids
 
     out_json.parent.mkdir(parents=True, exist_ok=True)
     out_json.write_text(json.dumps(base, ensure_ascii=False, indent=2), encoding="utf-8")
