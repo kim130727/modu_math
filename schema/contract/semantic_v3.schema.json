@@ -1,0 +1,111 @@
+﻿{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "modu_math.semantic.v3",
+  "title": "modu_math semantic v3 contract",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "render_contract_version",
+    "problem_id",
+    "problem_type",
+    "metadata",
+    "domain",
+    "render",
+    "answer"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "modu_math.semantic.v3"
+    },
+    "render_contract_version": {
+      "type": "string",
+      "const": "modu_math.render.v1"
+    },
+    "problem_id": {
+      "type": "string"
+    },
+    "problem_type": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "metadata": {
+      "type": "object"
+    },
+    "domain": {
+      "type": "object"
+    },
+    "render": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "canvas",
+        "elements"
+      ],
+      "properties": {
+        "canvas": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "width",
+            "height",
+            "background"
+          ],
+          "properties": {
+            "width": {
+              "type": [
+                "integer",
+                "number"
+              ]
+            },
+            "height": {
+              "type": [
+                "integer",
+                "number"
+              ]
+            },
+            "background": {
+              "type": "string"
+            },
+            "auto_layout_shift": {
+              "type": "boolean"
+            }
+          }
+        },
+        "elements": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "id",
+              "type"
+            ]
+          }
+        }
+      }
+    },
+    "answer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "blanks",
+        "choices",
+        "answer_key"
+      ],
+      "properties": {
+        "blanks": {
+          "type": "array"
+        },
+        "choices": {
+          "type": "array"
+        },
+        "answer_key": {
+          "type": "array"
+        }
+      }
+    }
+  }
+}

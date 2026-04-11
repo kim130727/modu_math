@@ -1,0 +1,12 @@
+#!/usr/bin/env sh
+set -eu
+
+if command -v python >/dev/null 2>&1; then
+  python tools/check_utf8_no_unicode_escape.py
+elif command -v py >/dev/null 2>&1; then
+  py -3 tools/check_utf8_no_unicode_escape.py
+else
+  echo "[pre-commit] python 실행 파일을 찾을 수 없습니다." >&2
+  exit 1
+fi
+

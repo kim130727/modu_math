@@ -1,0 +1,90 @@
+{
+  "schema_version": "modu_math.semantic.v3",
+  "render_contract_version": "modu_math.render.v1",
+  "problem_id": "sample_001",
+  "problem_type": "demo_geometry",
+  "metadata": {
+    "source": {
+      "input_type": "python_dsl",
+      "generator": "modu_semantic"
+    },
+    "warnings": []
+  },
+  "domain": {},
+  "render": {
+    "canvas": {
+      "width": 800.0,
+      "height": 600.0,
+      "background": "#F6F6F6"
+    },
+    "elements": [
+      {
+        "id": "box1",
+        "group": "question",
+        "z_index": 1,
+        "anchor": "start",
+        "alignment": "left",
+        "stroke": "#222222",
+        "stroke_width": 2,
+        "fill": "#F5F5F5",
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "type": "rect",
+        "x": 100,
+        "y": 120,
+        "width": 220,
+        "height": 120
+      },
+      {
+        "id": "title",
+        "group": "question",
+        "z_index": 2,
+        "anchor": "start",
+        "alignment": "left",
+        "fill": "#111111",
+        "font_family": "Malgun Gothic",
+        "font_size": 24,
+        "font_weight": "normal",
+        "type": "text",
+        "text": "삼각형의 넓이",
+        "x": 120,
+        "y": 160
+      },
+      {
+        "id": "divider",
+        "z_index": 2,
+        "anchor": "start",
+        "alignment": "left",
+        "stroke": "#666666",
+        "stroke_width": 1,
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "type": "line",
+        "x1": 100,
+        "y1": 190,
+        "x2": 320,
+        "y2": 190
+      },
+      {
+        "id": "eq1",
+        "group": "question",
+        "z_index": 2,
+        "anchor": "start",
+        "alignment": "left",
+        "fill": "#111111",
+        "font_family": "Malgun Gothic",
+        "font_size": 20,
+        "font_weight": "normal",
+        "type": "formula",
+        "expr": "A = (b * h) / 2",
+        "x": 120,
+        "y": 220
+      }
+    ]
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": []
+  }
+}

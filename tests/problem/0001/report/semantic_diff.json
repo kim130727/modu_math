@@ -1,0 +1,497 @@
+{
+  "summary": {
+    "total_fields": 81,
+    "same": 46,
+    "different": 2,
+    "missing_in_generated": 22,
+    "missing_in_reference": 11
+  },
+  "diffs": [
+    {
+      "path": "$.answer.answer_key",
+      "status": "same",
+      "reference": [],
+      "generated": []
+    },
+    {
+      "path": "$.answer.blanks",
+      "status": "same",
+      "reference": [],
+      "generated": []
+    },
+    {
+      "path": "$.answer.choices",
+      "status": "missing_in_reference",
+      "reference": null,
+      "generated": []
+    },
+    {
+      "path": "$.answer.choices[0].is_correct",
+      "status": "missing_in_generated",
+      "reference": false,
+      "generated": null
+    },
+    {
+      "path": "$.answer.choices[0].value",
+      "status": "missing_in_generated",
+      "reference": "40",
+      "generated": null
+    },
+    {
+      "path": "$.answer.choices[1].is_correct",
+      "status": "missing_in_generated",
+      "reference": true,
+      "generated": null
+    },
+    {
+      "path": "$.answer.choices[1].value",
+      "status": "missing_in_generated",
+      "reference": "50",
+      "generated": null
+    },
+    {
+      "path": "$.answer.choices[2].is_correct",
+      "status": "missing_in_generated",
+      "reference": false,
+      "generated": null
+    },
+    {
+      "path": "$.answer.choices[2].value",
+      "status": "missing_in_generated",
+      "reference": "60",
+      "generated": null
+    },
+    {
+      "path": "$.domain",
+      "status": "missing_in_reference",
+      "reference": null,
+      "generated": {}
+    },
+    {
+      "path": "$.domain.blank_symbol",
+      "status": "missing_in_generated",
+      "reference": "□",
+      "generated": null
+    },
+    {
+      "path": "$.domain.computed_answer",
+      "status": "missing_in_generated",
+      "reference": 50,
+      "generated": null
+    },
+    {
+      "path": "$.domain.left_seconds",
+      "status": "missing_in_generated",
+      "reference": 410,
+      "generated": null
+    },
+    {
+      "path": "$.domain.minutes",
+      "status": "missing_in_generated",
+      "reference": 6,
+      "generated": null
+    },
+    {
+      "path": "$.domain.unit_from",
+      "status": "missing_in_generated",
+      "reference": "초",
+      "generated": null
+    },
+    {
+      "path": "$.domain.unit_mid",
+      "status": "missing_in_generated",
+      "reference": "분",
+      "generated": null
+    },
+    {
+      "path": "$.domain.unit_to",
+      "status": "missing_in_generated",
+      "reference": "초",
+      "generated": null
+    },
+    {
+      "path": "$.meta.derived_from",
+      "status": "missing_in_generated",
+      "reference": "C:/projects/modu_math/problem/0001/json/semantic/semantic.json",
+      "generated": null
+    },
+    {
+      "path": "$.meta.removed_element_ids[0]",
+      "status": "missing_in_generated",
+      "reference": "answer_blank",
+      "generated": null
+    },
+    {
+      "path": "$.meta.source_svg",
+      "status": "missing_in_generated",
+      "reference": "C:/projects/modu_math/problem/0001/svg/edit/semantic_edit.svg",
+      "generated": null
+    },
+    {
+      "path": "$.meta.stage",
+      "status": "missing_in_generated",
+      "reference": "edit",
+      "generated": null
+    },
+    {
+      "path": "$.metadata.source.confidence",
+      "status": "missing_in_generated",
+      "reference": 0.6,
+      "generated": null
+    },
+    {
+      "path": "$.metadata.source.created_at",
+      "status": "missing_in_generated",
+      "reference": "2026-04-07T01:05:45.296672+00:00",
+      "generated": null
+    },
+    {
+      "path": "$.metadata.source.generator",
+      "status": "different",
+      "reference": "rule_parser",
+      "generated": "modu_semantic"
+    },
+    {
+      "path": "$.metadata.source.input_path",
+      "status": "missing_in_generated",
+      "reference": "C:/projects/modu_math/problem/0001/input/0001.png",
+      "generated": null
+    },
+    {
+      "path": "$.metadata.source.input_type",
+      "status": "different",
+      "reference": "png",
+      "generated": "python_dsl"
+    },
+    {
+      "path": "$.metadata.source.parser_name",
+      "status": "missing_in_generated",
+      "reference": "PngToSemanticDraftParser",
+      "generated": null
+    },
+    {
+      "path": "$.metadata.warnings",
+      "status": "same",
+      "reference": [],
+      "generated": []
+    },
+    {
+      "path": "$.problem_id",
+      "status": "same",
+      "reference": "0001",
+      "generated": "0001"
+    },
+    {
+      "path": "$.problem_type",
+      "status": "same",
+      "reference": "fill_in_blank",
+      "generated": "fill_in_blank"
+    },
+    {
+      "path": "$.render.canvas.background",
+      "status": "same",
+      "reference": "#F6F6F6",
+      "generated": "#F6F6F6"
+    },
+    {
+      "path": "$.render.canvas.height",
+      "status": "same",
+      "reference": 720.0,
+      "generated": 720.0
+    },
+    {
+      "path": "$.render.canvas.width",
+      "status": "same",
+      "reference": 1280.0,
+      "generated": 1280.0
+    },
+    {
+      "path": "$.render.elements[0].alignment",
+      "status": "missing_in_reference",
+      "reference": null,
+      "generated": "left"
+    },
+    {
+      "path": "$.render.elements[0].anchor",
+      "status": "same",
+      "reference": "start",
+      "generated": "start"
+    },
+    {
+      "path": "$.render.elements[0].fill",
+      "status": "same",
+      "reference": "#000000",
+      "generated": "#000000"
+    },
+    {
+      "path": "$.render.elements[0].font_family",
+      "status": "same",
+      "reference": "Malgun Gothic",
+      "generated": "Malgun Gothic"
+    },
+    {
+      "path": "$.render.elements[0].font_size",
+      "status": "same",
+      "reference": 42,
+      "generated": 42
+    },
+    {
+      "path": "$.render.elements[0].font_weight",
+      "status": "same",
+      "reference": "normal",
+      "generated": "normal"
+    },
+    {
+      "path": "$.render.elements[0].group",
+      "status": "same",
+      "reference": "question",
+      "generated": "question"
+    },
+    {
+      "path": "$.render.elements[0].id",
+      "status": "same",
+      "reference": "instruction",
+      "generated": "instruction"
+    },
+    {
+      "path": "$.render.elements[0].semantic_role",
+      "status": "same",
+      "reference": "instruction",
+      "generated": "instruction"
+    },
+    {
+      "path": "$.render.elements[0].text",
+      "status": "same",
+      "reference": "□안에 알맞은 수를 구하시오.",
+      "generated": "□안에 알맞은 수를 구하시오."
+    },
+    {
+      "path": "$.render.elements[0].type",
+      "status": "same",
+      "reference": "text",
+      "generated": "text"
+    },
+    {
+      "path": "$.render.elements[0].x",
+      "status": "same",
+      "reference": 72,
+      "generated": 72.0
+    },
+    {
+      "path": "$.render.elements[0].y",
+      "status": "same",
+      "reference": 92,
+      "generated": 92.0
+    },
+    {
+      "path": "$.render.elements[0].z_index",
+      "status": "missing_in_reference",
+      "reference": null,
+      "generated": 0
+    },
+    {
+      "path": "$.render.elements[1].alignment",
+      "status": "missing_in_reference",
+      "reference": null,
+      "generated": "left"
+    },
+    {
+      "path": "$.render.elements[1].anchor",
+      "status": "missing_in_reference",
+      "reference": null,
+      "generated": "start"
+    },
+    {
+      "path": "$.render.elements[1].figure_type",
+      "status": "missing_in_generated",
+      "reference": "rounded_box",
+      "generated": null
+    },
+    {
+      "path": "$.render.elements[1].fill",
+      "status": "same",
+      "reference": "none",
+      "generated": "none"
+    },
+    {
+      "path": "$.render.elements[1].font_family",
+      "status": "missing_in_reference",
+      "reference": null,
+      "generated": "Malgun Gothic"
+    },
+    {
+      "path": "$.render.elements[1].font_weight",
+      "status": "missing_in_reference",
+      "reference": null,
+      "generated": "normal"
+    },
+    {
+      "path": "$.render.elements[1].group",
+      "status": "same",
+      "reference": "question",
+      "generated": "question"
+    },
+    {
+      "path": "$.render.elements[1].height",
+      "status": "same",
+      "reference": 180,
+      "generated": 180.0
+    },
+    {
+      "path": "$.render.elements[1].id",
+      "status": "same",
+      "reference": "question_box",
+      "generated": "question_box"
+    },
+    {
+      "path": "$.render.elements[1].rx",
+      "status": "same",
+      "reference": 24,
+      "generated": 24
+    },
+    {
+      "path": "$.render.elements[1].semantic_role",
+      "status": "same",
+      "reference": "question_container",
+      "generated": "question_container"
+    },
+    {
+      "path": "$.render.elements[1].stroke",
+      "status": "same",
+      "reference": "#000000",
+      "generated": "#000000"
+    },
+    {
+      "path": "$.render.elements[1].stroke_width",
+      "status": "same",
+      "reference": 3,
+      "generated": 3
+    },
+    {
+      "path": "$.render.elements[1].type",
+      "status": "same",
+      "reference": "rect",
+      "generated": "rect"
+    },
+    {
+      "path": "$.render.elements[1].width",
+      "status": "same",
+      "reference": 720,
+      "generated": 720.0
+    },
+    {
+      "path": "$.render.elements[1].x",
+      "status": "same",
+      "reference": 280,
+      "generated": 280.0
+    },
+    {
+      "path": "$.render.elements[1].y",
+      "status": "same",
+      "reference": 240,
+      "generated": 240.0
+    },
+    {
+      "path": "$.render.elements[1].z_index",
+      "status": "missing_in_reference",
+      "reference": null,
+      "generated": 0
+    },
+    {
+      "path": "$.render.elements[2].alignment",
+      "status": "missing_in_reference",
+      "reference": null,
+      "generated": "left"
+    },
+    {
+      "path": "$.render.elements[2].anchor",
+      "status": "same",
+      "reference": "middle",
+      "generated": "middle"
+    },
+    {
+      "path": "$.render.elements[2].fill",
+      "status": "same",
+      "reference": "#000000",
+      "generated": "#000000"
+    },
+    {
+      "path": "$.render.elements[2].font_family",
+      "status": "same",
+      "reference": "Malgun Gothic",
+      "generated": "Malgun Gothic"
+    },
+    {
+      "path": "$.render.elements[2].font_size",
+      "status": "same",
+      "reference": 54,
+      "generated": 54
+    },
+    {
+      "path": "$.render.elements[2].font_weight",
+      "status": "same",
+      "reference": "normal",
+      "generated": "normal"
+    },
+    {
+      "path": "$.render.elements[2].group",
+      "status": "same",
+      "reference": "question",
+      "generated": "question"
+    },
+    {
+      "path": "$.render.elements[2].id",
+      "status": "same",
+      "reference": "equation",
+      "generated": "equation"
+    },
+    {
+      "path": "$.render.elements[2].semantic_role",
+      "status": "same",
+      "reference": "equation",
+      "generated": "equation"
+    },
+    {
+      "path": "$.render.elements[2].text",
+      "status": "same",
+      "reference": "410초=6분 □초",
+      "generated": "410초=6분 □초"
+    },
+    {
+      "path": "$.render.elements[2].type",
+      "status": "same",
+      "reference": "text",
+      "generated": "text"
+    },
+    {
+      "path": "$.render.elements[2].x",
+      "status": "same",
+      "reference": 640,
+      "generated": 640.0
+    },
+    {
+      "path": "$.render.elements[2].y",
+      "status": "same",
+      "reference": 345,
+      "generated": 345.0
+    },
+    {
+      "path": "$.render.elements[2].z_index",
+      "status": "missing_in_reference",
+      "reference": null,
+      "generated": 0
+    },
+    {
+      "path": "$.render_contract_version",
+      "status": "same",
+      "reference": "modu_math.render.v1",
+      "generated": "modu_math.render.v1"
+    },
+    {
+      "path": "$.schema_version",
+      "status": "same",
+      "reference": "modu_math.semantic.v3",
+      "generated": "modu_math.semantic.v3"
+    }
+  ]
+}

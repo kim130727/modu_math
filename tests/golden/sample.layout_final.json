@@ -1,0 +1,124 @@
+{
+  "schema_version": "modu_math.layout.v1",
+  "problem_id": "sample_001",
+  "metadata": {
+    "source_svg": "generated://modu_semantic/semantic_final.svg",
+    "generator": "modu_semantic.compiler_json.compile_layout_json"
+  },
+  "canvas": {
+    "width": 800,
+    "height": 600,
+    "viewBox": "0 0 800.0 600.0"
+  },
+  "summary": {
+    "total_elements": 5,
+    "count_by_type": {
+      "rect": 2,
+      "text": 2,
+      "line": 1
+    },
+    "with_id": 4,
+    "without_id": 1
+  },
+  "elements": [
+    {
+      "index": 1,
+      "id": null,
+      "type": "rect",
+      "x": 0,
+      "y": 0,
+      "width": 800,
+      "height": 600,
+      "attrs": {
+        "x": "0",
+        "y": "0",
+        "width": "800.0",
+        "height": "600.0",
+        "fill": "#F6F6F6"
+      }
+    },
+    {
+      "index": 2,
+      "id": "box1",
+      "type": "rect",
+      "x": 100,
+      "y": 120,
+      "width": 220,
+      "height": 120,
+      "attrs": {
+        "id": "box1",
+        "stroke": "#222222",
+        "stroke-width": "2",
+        "fill": "#F5F5F5",
+        "font-family": "Malgun Gothic",
+        "font-weight": "normal",
+        "x": "100",
+        "y": "120",
+        "width": "220",
+        "height": "120"
+      }
+    },
+    {
+      "index": 3,
+      "id": "title",
+      "type": "text",
+      "x": 120,
+      "y": 160,
+      "width": 0,
+      "height": 0,
+      "attrs": {
+        "id": "title",
+        "fill": "#111111",
+        "font-family": "Malgun Gothic",
+        "font-size": "24",
+        "font-weight": "normal",
+        "text": "삼각형의 넓이",
+        "x": "120",
+        "y": "160"
+      },
+      "text": "삼각형의 넓이",
+      "font_size": 24
+    },
+    {
+      "index": 4,
+      "id": "divider",
+      "type": "line",
+      "x": 100,
+      "y": 190,
+      "width": 220,
+      "height": 0,
+      "attrs": {
+        "id": "divider",
+        "stroke": "#666666",
+        "stroke-width": "1",
+        "font-family": "Malgun Gothic",
+        "font-weight": "normal",
+        "x1": "100",
+        "y1": "190",
+        "x2": "320",
+        "y2": "190"
+      }
+    },
+    {
+      "index": 5,
+      "id": "eq1",
+      "type": "text",
+      "x": 120,
+      "y": 220,
+      "width": 0,
+      "height": 0,
+      "attrs": {
+        "id": "eq1",
+        "fill": "#111111",
+        "font-family": "Malgun Gothic",
+        "font-size": "20",
+        "font-weight": "normal",
+        "expr": "A = (b * h) / 2",
+        "x": "120",
+        "y": "220"
+      },
+      "text": "A = (b * h) / 2",
+      "font_size": 20
+    }
+  ]
+}

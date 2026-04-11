@@ -1,0 +1,491 @@
+{
+  "summary": {
+    "total_fields": 80,
+    "same": 56,
+    "different": 10,
+    "missing_in_generated": 4,
+    "missing_in_reference": 10
+  },
+  "diffs": [
+    {
+      "path": "$.canvas.height",
+      "status": "same",
+      "reference": 720,
+      "generated": 720.0
+    },
+    {
+      "path": "$.canvas.viewBox",
+      "status": "same",
+      "reference": "0 0 1280.0 720.0",
+      "generated": "0 0 1280.0 720.0"
+    },
+    {
+      "path": "$.canvas.width",
+      "status": "same",
+      "reference": 1280,
+      "generated": 1280.0
+    },
+    {
+      "path": "$.elements[0].attrs.fill",
+      "status": "same",
+      "reference": "#F6F6F6",
+      "generated": "#F6F6F6"
+    },
+    {
+      "path": "$.elements[0].attrs.height",
+      "status": "same",
+      "reference": "720.0",
+      "generated": "720.0"
+    },
+    {
+      "path": "$.elements[0].attrs.width",
+      "status": "same",
+      "reference": "1280.0",
+      "generated": "1280.0"
+    },
+    {
+      "path": "$.elements[0].attrs.x",
+      "status": "same",
+      "reference": "0",
+      "generated": "0"
+    },
+    {
+      "path": "$.elements[0].attrs.y",
+      "status": "same",
+      "reference": "0",
+      "generated": "0"
+    },
+    {
+      "path": "$.elements[0].height",
+      "status": "same",
+      "reference": 720,
+      "generated": 720.0
+    },
+    {
+      "path": "$.elements[0].id",
+      "status": "same",
+      "reference": null,
+      "generated": null
+    },
+    {
+      "path": "$.elements[0].index",
+      "status": "same",
+      "reference": 1,
+      "generated": 1
+    },
+    {
+      "path": "$.elements[0].type",
+      "status": "same",
+      "reference": "rect",
+      "generated": "rect"
+    },
+    {
+      "path": "$.elements[0].width",
+      "status": "same",
+      "reference": 1280,
+      "generated": 1280.0
+    },
+    {
+      "path": "$.elements[0].x",
+      "status": "same",
+      "reference": 0,
+      "generated": 0
+    },
+    {
+      "path": "$.elements[0].y",
+      "status": "same",
+      "reference": 0,
+      "generated": 0
+    },
+    {
+      "path": "$.elements[1].attrs.fill",
+      "status": "same",
+      "reference": "#000000",
+      "generated": "#000000"
+    },
+    {
+      "path": "$.elements[1].attrs.font-family",
+      "status": "same",
+      "reference": "Malgun Gothic",
+      "generated": "Malgun Gothic"
+    },
+    {
+      "path": "$.elements[1].attrs.font-size",
+      "status": "different",
+      "reference": "42px",
+      "generated": "42"
+    },
+    {
+      "path": "$.elements[1].attrs.font-weight",
+      "status": "same",
+      "reference": "normal",
+      "generated": "normal"
+    },
+    {
+      "path": "$.elements[1].attrs.id",
+      "status": "same",
+      "reference": "instruction",
+      "generated": "instruction"
+    },
+    {
+      "path": "$.elements[1].attrs.text",
+      "status": "missing_in_reference",
+      "reference": null,
+      "generated": "□안에 알맞은 수를 구하시오."
+    },
+    {
+      "path": "$.elements[1].attrs.text-anchor",
+      "status": "missing_in_generated",
+      "reference": "start",
+      "generated": null
+    },
+    {
+      "path": "$.elements[1].attrs.x",
+      "status": "different",
+      "reference": "72",
+      "generated": "72.0"
+    },
+    {
+      "path": "$.elements[1].attrs.y",
+      "status": "different",
+      "reference": "92",
+      "generated": "92.0"
+    },
+    {
+      "path": "$.elements[1].font_size",
+      "status": "missing_in_reference",
+      "reference": null,
+      "generated": 42
+    },
+    {
+      "path": "$.elements[1].height",
+      "status": "same",
+      "reference": 0,
+      "generated": 0
+    },
+    {
+      "path": "$.elements[1].id",
+      "status": "same",
+      "reference": "instruction",
+      "generated": "instruction"
+    },
+    {
+      "path": "$.elements[1].index",
+      "status": "same",
+      "reference": 2,
+      "generated": 2
+    },
+    {
+      "path": "$.elements[1].text",
+      "status": "same",
+      "reference": "□안에 알맞은 수를 구하시오.",
+      "generated": "□안에 알맞은 수를 구하시오."
+    },
+    {
+      "path": "$.elements[1].type",
+      "status": "same",
+      "reference": "text",
+      "generated": "text"
+    },
+    {
+      "path": "$.elements[1].width",
+      "status": "same",
+      "reference": 0,
+      "generated": 0
+    },
+    {
+      "path": "$.elements[1].x",
+      "status": "same",
+      "reference": 72,
+      "generated": 72
+    },
+    {
+      "path": "$.elements[1].y",
+      "status": "same",
+      "reference": 92,
+      "generated": 92
+    },
+    {
+      "path": "$.elements[2].attrs.fill",
+      "status": "same",
+      "reference": "none",
+      "generated": "none"
+    },
+    {
+      "path": "$.elements[2].attrs.font-family",
+      "status": "missing_in_reference",
+      "reference": null,
+      "generated": "Malgun Gothic"
+    },
+    {
+      "path": "$.elements[2].attrs.font-weight",
+      "status": "missing_in_reference",
+      "reference": null,
+      "generated": "normal"
+    },
+    {
+      "path": "$.elements[2].attrs.height",
+      "status": "different",
+      "reference": "180",
+      "generated": "180.0"
+    },
+    {
+      "path": "$.elements[2].attrs.id",
+      "status": "same",
+      "reference": "question_box",
+      "generated": "question_box"
+    },
+    {
+      "path": "$.elements[2].attrs.rx",
+      "status": "same",
+      "reference": "24",
+      "generated": "24"
+    },
+    {
+      "path": "$.elements[2].attrs.stroke",
+      "status": "same",
+      "reference": "#000000",
+      "generated": "#000000"
+    },
+    {
+      "path": "$.elements[2].attrs.stroke-width",
+      "status": "same",
+      "reference": "3",
+      "generated": "3"
+    },
+    {
+      "path": "$.elements[2].attrs.width",
+      "status": "different",
+      "reference": "720",
+      "generated": "720.0"
+    },
+    {
+      "path": "$.elements[2].attrs.x",
+      "status": "different",
+      "reference": "280",
+      "generated": "280.0"
+    },
+    {
+      "path": "$.elements[2].attrs.y",
+      "status": "different",
+      "reference": "240",
+      "generated": "240.0"
+    },
+    {
+      "path": "$.elements[2].height",
+      "status": "same",
+      "reference": 180,
+      "generated": 180
+    },
+    {
+      "path": "$.elements[2].id",
+      "status": "same",
+      "reference": "question_box",
+      "generated": "question_box"
+    },
+    {
+      "path": "$.elements[2].index",
+      "status": "same",
+      "reference": 3,
+      "generated": 3
+    },
+    {
+      "path": "$.elements[2].type",
+      "status": "same",
+      "reference": "rect",
+      "generated": "rect"
+    },
+    {
+      "path": "$.elements[2].width",
+      "status": "same",
+      "reference": 720,
+      "generated": 720
+    },
+    {
+      "path": "$.elements[2].x",
+      "status": "same",
+      "reference": 280,
+      "generated": 280
+    },
+    {
+      "path": "$.elements[2].y",
+      "status": "same",
+      "reference": 240,
+      "generated": 240
+    },
+    {
+      "path": "$.elements[3].attrs.fill",
+      "status": "same",
+      "reference": "#000000",
+      "generated": "#000000"
+    },
+    {
+      "path": "$.elements[3].attrs.font-family",
+      "status": "same",
+      "reference": "Malgun Gothic",
+      "generated": "Malgun Gothic"
+    },
+    {
+      "path": "$.elements[3].attrs.font-size",
+      "status": "different",
+      "reference": "54px",
+      "generated": "54"
+    },
+    {
+      "path": "$.elements[3].attrs.font-weight",
+      "status": "same",
+      "reference": "normal",
+      "generated": "normal"
+    },
+    {
+      "path": "$.elements[3].attrs.id",
+      "status": "same",
+      "reference": "equation",
+      "generated": "equation"
+    },
+    {
+      "path": "$.elements[3].attrs.text",
+      "status": "missing_in_reference",
+      "reference": null,
+      "generated": "410초=6분 □초"
+    },
+    {
+      "path": "$.elements[3].attrs.text-anchor",
+      "status": "missing_in_generated",
+      "reference": "middle",
+      "generated": null
+    },
+    {
+      "path": "$.elements[3].attrs.x",
+      "status": "different",
+      "reference": "640",
+      "generated": "640.0"
+    },
+    {
+      "path": "$.elements[3].attrs.y",
+      "status": "different",
+      "reference": "345",
+      "generated": "345.0"
+    },
+    {
+      "path": "$.elements[3].font_size",
+      "status": "missing_in_reference",
+      "reference": null,
+      "generated": 54
+    },
+    {
+      "path": "$.elements[3].height",
+      "status": "same",
+      "reference": 0,
+      "generated": 0
+    },
+    {
+      "path": "$.elements[3].id",
+      "status": "same",
+      "reference": "equation",
+      "generated": "equation"
+    },
+    {
+      "path": "$.elements[3].index",
+      "status": "same",
+      "reference": 4,
+      "generated": 4
+    },
+    {
+      "path": "$.elements[3].text",
+      "status": "same",
+      "reference": "410초=6분 □초",
+      "generated": "410초=6분 □초"
+    },
+    {
+      "path": "$.elements[3].type",
+      "status": "same",
+      "reference": "text",
+      "generated": "text"
+    },
+    {
+      "path": "$.elements[3].width",
+      "status": "same",
+      "reference": 0,
+      "generated": 0
+    },
+    {
+      "path": "$.elements[3].x",
+      "status": "same",
+      "reference": 640,
+      "generated": 640
+    },
+    {
+      "path": "$.elements[3].y",
+      "status": "same",
+      "reference": 345,
+      "generated": 345
+    },
+    {
+      "path": "$.meta.generator",
+      "status": "missing_in_generated",
+      "reference": "problem.common.layout_tools.write_layout",
+      "generated": null
+    },
+    {
+      "path": "$.meta.source_svg",
+      "status": "missing_in_generated",
+      "reference": "C:/projects/modu_math/problem/0001/svg/final/semantic_final.svg",
+      "generated": null
+    },
+    {
+      "path": "$.metadata.generator",
+      "status": "missing_in_reference",
+      "reference": null,
+      "generated": "modu_semantic.compiler_json.compile_layout_json"
+    },
+    {
+      "path": "$.metadata.source_svg",
+      "status": "missing_in_reference",
+      "reference": null,
+      "generated": "generated://modu_semantic/semantic_final.svg"
+    },
+    {
+      "path": "$.problem_id",
+      "status": "missing_in_reference",
+      "reference": null,
+      "generated": "0001"
+    },
+    {
+      "path": "$.schema_version",
+      "status": "missing_in_reference",
+      "reference": null,
+      "generated": "modu_math.layout.v1"
+    },
+    {
+      "path": "$.summary.count_by_type.rect",
+      "status": "same",
+      "reference": 2,
+      "generated": 2
+    },
+    {
+      "path": "$.summary.count_by_type.text",
+      "status": "same",
+      "reference": 2,
+      "generated": 2
+    },
+    {
+      "path": "$.summary.total_elements",
+      "status": "same",
+      "reference": 4,
+      "generated": 4
+    },
+    {
+      "path": "$.summary.with_id",
+      "status": "same",
+      "reference": 3,
+      "generated": 3
+    },
+    {
+      "path": "$.summary.without_id",
+      "status": "same",
+      "reference": 1,
+      "generated": 1
+    }
+  ]
+}

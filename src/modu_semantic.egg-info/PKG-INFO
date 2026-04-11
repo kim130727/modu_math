@@ -1,0 +1,83 @@
+Metadata-Version: 2.4
+Name: modu-semantic
+Version: 0.1.0
+Summary: Python DSL library that compiles geometry/problem layouts to semantic JSON and SVG
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+
+﻿# modu-semantic
+
+`modu-semantic`은 수학 문제/도형을 Python으로 정의하고, semantic JSON을 중심 계약으로 내보내는 라이브러리입니다.
+
+## 핵심 방향
+
+- 겉보기 API는 단순하게: `Problem`, `Rect`, `Text` 등 바로 import
+- semantic JSON을 canonical contract로 고정
+- SVG는 렌더러 중 하나로 유지
+
+## 빠른 시작
+
+```python
+from modu_semantic import Problem, Rect, Text
+
+p = Problem(width=800, height=600, problem_id="demo_001")
+p.add(Rect(id="box", x=100, y=100, width=200, height=100))
+p.add(Text(id="label", x=120, y=160, text="Hello modu"))
+
+p.save("out/demo")
+```
+
+생성 결과:
+
+- `out/demo.semantic.json`
+- `out/demo.layout.json`
+- `out/demo.svg`
+
+## CLI
+
+```bash
+modu build examples/01_basic_rect_text.py -o out/basic_rect_text
+```
+
+입력 파일은 `build() -> Problem` 함수를 정의해야 합니다.
+
+## 패키지 구조
+
+- `src/modu_semantic/__init__.py`: 공개 API
+- `src/modu_semantic/problem.py`: 사용자 진입점 모델
+- `src/modu_semantic/primitives.py`: 기본 요소
+- `src/modu_semantic/groups.py`: 그룹 모델
+- `src/modu_semantic/regions.py`: 박스 기반 레이아웃 분할
+- `src/modu_semantic/compiler_json.py`: canonical semantic/layout 컴파일러
+- `src/modu_semantic/compiler_svg.py`: SVG 렌더러
+- `src/modu_semantic/recipes/`: 도메인 템플릿
+- `schema/contract/`: semantic/layout 스키마 및 canonical order 프로파일
+
+## 테스트
+
+```bash
+pytest
+```
+
+## 인코딩/커밋 규칙
+
+- 한글은 반드시 **UTF-8 리터럴(직접 한글)** 로 작성합니다.
+- `\uXXXX`, `\xNN` 같은 유니코드 이스케이프 표기는 사용하지 않습니다.
+- 커밋 전 자동 검사 훅(pre-commit)으로 위 규칙을 확인합니다.
+  - 훅 스크립트: `.githooks/pre-commit`
+  - 검사 코드: `tools/check_utf8_no_unicode_escape.py`
+
+### `--no-verify` 사용 정책
+
+- 원칙: `git commit --no-verify`는 사용하지 않습니다.
+- 예외(긴급 상황)에서만 허용:
+  1. 검사 스크립트 오작동이 확인된 경우
+  2. 배포/핫픽스 등 시간 제한이 명확한 경우
+- 예외 사용 시 필수:
+  1. 커밋 메시지에 `no-verify 사유`를 명시
+  2. 같은 날 후속 커밋으로 훅 검사를 통과하도록 즉시 보정
+  3. PR/작업 기록에 원인과 재발 방지 조치를 남김
+
+## 참고
+
+기존 계약 번들 파이프라인(`include_layout_diff`, `baseline_layout_path`)도 `Problem.save()`에서 호환 모드로 유지됩니다.

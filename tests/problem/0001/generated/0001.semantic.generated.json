@@ -1,0 +1,79 @@
+{
+  "schema_version": "modu_math.semantic.v3",
+  "render_contract_version": "modu_math.render.v1",
+  "problem_id": "0001",
+  "problem_type": "fill_in_blank",
+  "metadata": {
+    "source": {
+      "input_type": "python_dsl",
+      "generator": "modu_semantic"
+    },
+    "warnings": []
+  },
+  "domain": {},
+  "render": {
+    "canvas": {
+      "width": 1280.0,
+      "height": 720.0,
+      "background": "#F6F6F6"
+    },
+    "elements": [
+      {
+        "id": "instruction",
+        "group": "question",
+        "semantic_role": "instruction",
+        "z_index": 0,
+        "anchor": "start",
+        "alignment": "left",
+        "fill": "#000000",
+        "font_family": "Malgun Gothic",
+        "font_size": 42,
+        "font_weight": "normal",
+        "type": "text",
+        "text": "□안에 알맞은 수를 구하시오.",
+        "x": 72.0,
+        "y": 92.0
+      },
+      {
+        "id": "question_box",
+        "group": "question",
+        "semantic_role": "question_container",
+        "z_index": 0,
+        "anchor": "start",
+        "alignment": "left",
+        "stroke": "#000000",
+        "stroke_width": 3,
+        "fill": "none",
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "type": "rect",
+        "x": 280.0,
+        "y": 240.0,
+        "width": 720.0,
+        "height": 180.0,
+        "rx": 24
+      },
+      {
+        "id": "equation",
+        "group": "question",
+        "semantic_role": "equation",
+        "z_index": 0,
+        "anchor": "middle",
+        "alignment": "left",
+        "fill": "#000000",
+        "font_family": "Malgun Gothic",
+        "font_size": 54,
+        "font_weight": "normal",
+        "type": "text",
+        "text": "410초=6분 □초",
+        "x": 640.0,
+        "y": 345.0
+      }
+    ]
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": []
+  }
+}
