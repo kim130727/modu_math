@@ -20,6 +20,41 @@ _SUPPORTED_TYPES = set(_CANONICAL_TYPES) | {"problem_text", "multiple_choice", "
 _DEFAULT_SCHEMA_VERSION = "modu_math.semantic.v3"
 _DEFAULT_RENDER_CONTRACT_VERSION = "modu_math.render.v1"
 _DEFAULT_FONT_SCALE = 3.0
+_PROBLEM_TEXT_MAX_SCALE = 2.0
+_MAX_RENDER_FONT_SIZE = 48.0
+_WRAPPED_ID_RE = re.compile(r"^(.*?)(?:_ln\d+)+$")
+
+
+def _is_geometry_render_artifact(element: dict[str, Any]) -> bool:
+    role = _to_str(element.get("semantic_role")).strip().lower()
+    element_id = _to_str(element.get("id")).strip().lower()
+    if role.startswith("geometry_"):
+        return True
+    if element_id.startswith("geom_"):
+        return True
+    return False
+
+
+def _scaled_font_value(size: float, scale: float) -> float:
+    return min(_MAX_RENDER_FONT_SIZE, max(1.0, size * scale))
+
+
+def _effective_text_scale(element: dict[str, Any], default_scale: float) -> float:
+    element_id = _to_str(element.get("id"))
+    element_type = _to_str(element.get("type"))
+    if "_ln" in element_id:
+        return 1.0
+    if element_type in {"problem_text", "multiple_choice", "diagram_logic"}:
+        return min(default_scale, _PROBLEM_TEXT_MAX_SCALE)
+    return default_scale
+
+
+def _base_id_if_wrapped(element_id: str) -> str | None:
+    m = _WRAPPED_ID_RE.match(element_id)
+    if not m:
+        return None
+    base = m.group(1).strip()
+    return base or None
 
 
 def _normalize_math_markup(text: str) -> str:
@@ -188,6 +223,7 @@ def _element_from_semantic(
 ) -> ir.Element:
     element_type = _to_str(element.get("type"))
     attrs = _common_attrs(element)
+    text_scale = _effective_text_scale(element, font_scale)
 
     if element_type == "rect":
         return ir.Rect(
@@ -222,7 +258,7 @@ def _element_from_semantic(
     if element_type == "text":
         font_size = attrs["font_size"]
         if font_size is not None:
-            attrs["font_size"] = font_size * font_scale
+            attrs["font_size"] = _scaled_font_value(float(font_size), text_scale)
         return ir.Text(
             **attrs,
             x=_to_float(element.get("x")),
@@ -232,7 +268,7 @@ def _element_from_semantic(
     if element_type == "formula":
         font_size = attrs["font_size"]
         if font_size is not None:
-            attrs["font_size"] = font_size * font_scale
+            attrs["font_size"] = _scaled_font_value(float(font_size), text_scale)
         expr = element.get("expr")
         if expr is None:
             expr = element.get("text")
@@ -246,7 +282,7 @@ def _element_from_semantic(
         custom_attrs = dict(attrs)
         custom_attrs["semantic_role"] = attrs["semantic_role"] or "problem_text"
         base_size = custom_attrs["font_size"] if custom_attrs["font_size"] is not None else 16.0
-        custom_attrs["font_size"] = base_size * font_scale
+        custom_attrs["font_size"] = _scaled_font_value(float(base_size), text_scale)
         return ir.Text(
             **custom_attrs,
             x=40.0,
@@ -263,7 +299,7 @@ def _element_from_semantic(
         custom_attrs = dict(attrs)
         custom_attrs["semantic_role"] = attrs["semantic_role"] or "multiple_choice"
         base_size = attrs["font_size"] if attrs["font_size"] is not None else 16.0
-        custom_attrs["font_size"] = base_size * font_scale
+        custom_attrs["font_size"] = _scaled_font_value(float(base_size), text_scale)
         return ir.Text(
             **custom_attrs,
             x=40.0,
@@ -284,7 +320,7 @@ def _element_from_semantic(
             "source_type": "diagram_logic",
         }
         base_size = attrs["font_size"] if attrs["font_size"] is not None else 14.0
-        custom_attrs["font_size"] = base_size * font_scale
+        custom_attrs["font_size"] = _scaled_font_value(float(base_size), text_scale)
         return ir.Text(
             **custom_attrs,
             x=40.0,
@@ -370,11 +406,12 @@ def _recommended_canvas_size(
     w = float(width)
     h = float(height)
     if has_diagram:
-        w = max(w * 2.6, 1400.0)
-        h = max(h * 2.2, 900.0)
+        # Keep geometry diagram canvas stable across repeated rebuilds.
+        w = max(w, 1400.0)
+        h = max(h, 900.0)
     elif is_geometry:
-        w = max(w * 1.35, 1400.0)
-        h = max(h * 1.35, 800.0)
+        w = max(w, 1400.0)
+        h = max(h, 800.0)
     return int(round(max(1.0, w))), int(round(max(1.0, h)))
 
 
@@ -429,6 +466,50 @@ def _fit_transform_for_points(
     for name, (x, y) in points.items():
         mapped[name] = (x * s + tx, y * s + ty)
     return mapped
+
+
+def _level_triangle_base_if_needed(
+    *,
+    source_points: dict[str, tuple[float, float]],
+    mapped_points: dict[str, tuple[float, float]],
+) -> dict[str, tuple[float, float]]:
+    if len(source_points) != 3 or len(mapped_points) != 3:
+        return mapped_points
+
+    names = list(source_points.keys())
+    pairs = [(names[0], names[1]), (names[0], names[2]), (names[1], names[2])]
+
+    src_ys = [pt[1] for pt in source_points.values()]
+    src_span_y = max(src_ys) - min(src_ys)
+    if src_span_y <= 1e-6:
+        return mapped_points
+
+    best_pair: tuple[str, str] | None = None
+    best_diff = float("inf")
+    for a, b in pairs:
+        diff = abs(source_points[a][1] - source_points[b][1])
+        if diff < best_diff:
+            best_diff = diff
+            best_pair = (a, b)
+    if best_pair is None:
+        return mapped_points
+
+    if best_diff > max(2.0, src_span_y * 0.04):
+        return mapped_points
+
+    a, b = best_pair
+    apex = next((n for n in names if n not in {a, b}), None)
+    if apex is None:
+        return mapped_points
+    pair_mean_y = (source_points[a][1] + source_points[b][1]) / 2.0
+    if abs(source_points[apex][1] - pair_mean_y) < max(6.0, src_span_y * 0.12):
+        return mapped_points
+
+    adjusted = dict(mapped_points)
+    level_y = (mapped_points[a][1] + mapped_points[b][1]) / 2.0
+    adjusted[a] = (mapped_points[a][0], level_y)
+    adjusted[b] = (mapped_points[b][0], level_y)
+    return adjusted
 
 
 def _parse_line_instances(logic: dict[str, Any]) -> list[tuple[str, str]]:
@@ -543,6 +624,9 @@ def build_problem_from_semantic_dict(
     canvas_width = float(canvas_w)
     for raw in elements:
         if not isinstance(raw, dict):
+            continue
+        if has_geometry_diagram and _is_geometry_render_artifact(raw):
+            # Avoid compounding geometry overlays when rebuilding from prior semantic outputs.
             continue
         if has_geometry_diagram and _to_str(raw.get("type")) == "diagram_logic":
             # diagram_logic is rendered via geometry reconstruction visuals.
@@ -755,17 +839,22 @@ def _render_canonical_element_lines(
 ) -> list[str]:
     etype = _to_str(element.get("type"))
     element_id = _to_str(element.get("id"), default=f"el_{idx}")
-    common: list[str] = []
-    _append_optional(common, "semantic_role", element.get("semantic_role"))
-    _append_optional(common, "stroke", element.get("stroke"))
-    _append_optional(common, "stroke_width", element.get("stroke_width"))
-    _append_optional(common, "fill", element.get("fill"))
-    _append_optional(common, "font_family", element.get("font_family"))
-    _append_optional(common, "font_weight", element.get("font_weight"))
-    _append_optional(common, "anchor", element.get("anchor"))
+    common_geom: list[str] = []
+    _append_optional(common_geom, "semantic_role", element.get("semantic_role"))
+    _append_optional(common_geom, "stroke", element.get("stroke"))
+    _append_optional(common_geom, "stroke_width", element.get("stroke_width"))
+    _append_optional(common_geom, "fill", element.get("fill"))
     metadata = element.get("metadata")
     if isinstance(metadata, dict) and metadata:
-        _append_optional(common, "metadata", metadata)
+        _append_optional(common_geom, "metadata", metadata)
+
+    common_text: list[str] = []
+    _append_optional(common_text, "semantic_role", element.get("semantic_role"))
+    _append_optional(common_text, "fill", element.get("fill"))
+    _append_optional(common_text, "font_family", element.get("font_family"))
+    _append_optional(common_text, "anchor", element.get("anchor"))
+    if isinstance(metadata, dict) and metadata:
+        _append_optional(common_text, "metadata", metadata)
 
     lines: list[str] = []
     if etype == "rect":
@@ -782,7 +871,7 @@ def _render_canonical_element_lines(
         )
         _append_optional(lines, "rx", element.get("rx"))
         _append_optional(lines, "ry", element.get("ry"))
-        lines.extend(common)
+        lines.extend(common_geom)
         lines.extend(["        )", "    )"])
         return lines
     if etype == "circle":
@@ -796,7 +885,7 @@ def _render_canonical_element_lines(
                 f"            r={_repr_value(element.get('r', 0))},",
             ]
         )
-        lines.extend(common)
+        lines.extend(common_geom)
         lines.extend(["        )", "    )"])
         return lines
     if etype == "line":
@@ -811,7 +900,7 @@ def _render_canonical_element_lines(
                 f"            y2={_repr_value(element.get('y2', 0))},",
             ]
         )
-        lines.extend(common)
+        lines.extend(common_geom)
         lines.extend(["        )", "    )"])
         return lines
     if etype == "polygon":
@@ -823,7 +912,7 @@ def _render_canonical_element_lines(
                 f"            points={_py_literal(element.get('points', []))},",
             ]
         )
-        lines.extend(common)
+        lines.extend(common_geom)
         lines.extend(["        )", "    )"])
         return lines
     if etype == "text":
@@ -838,7 +927,7 @@ def _render_canonical_element_lines(
             content=_to_str(element.get("text")),
             font_size=font_size,
             canvas_width=canvas_width,
-            common_attrs=common,
+            common_attrs=common_text,
         )
         return lines
     if etype == "formula":
@@ -856,7 +945,7 @@ def _render_canonical_element_lines(
             content=_to_str(expr),
             font_size=font_size,
             canvas_width=canvas_width,
-            common_attrs=common,
+            common_attrs=common_text,
         )
         return lines
     return []
@@ -1054,6 +1143,7 @@ def _build_geometry_reconstruction_elements(
         target_w=region_w,
         target_h=region_h,
     )
+    mapped = _level_triangle_base_if_needed(source_points=points, mapped_points=mapped)
     edges = _parse_line_instances(logic)
     diagram_logic_raw = logic.get("diagram_logic_form")
     diagram_logic = diagram_logic_raw if isinstance(diagram_logic_raw, list) else []
@@ -1538,6 +1628,9 @@ def _render_build_scaffold_text(
     lines.append("    # elements")
     for idx, element in enumerate(elements):
         if not isinstance(element, dict):
+            continue
+        if is_geometry3k and _is_geometry_render_artifact(element):
+            # geometry3k scaffold emits a dedicated reconstruction block below.
             continue
         etype = _to_str(element.get("type"))
         block = []
