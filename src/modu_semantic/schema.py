@@ -66,6 +66,9 @@ def _validate_schema(value: Any, schema: dict[str, Any], path: str) -> None:
     if "const" in schema and value != schema["const"]:
         raise SchemaValidationError(f"{path} must be {schema['const']!r}, got {value!r}")
 
+    if "enum" in schema and value not in schema["enum"]:
+        raise SchemaValidationError(f"{path} must be one of {schema['enum']}, got {value!r}")
+
     expected_type = schema.get("type")
     if expected_type is not None:
         if isinstance(expected_type, list):
@@ -98,10 +101,38 @@ def _validate_schema(value: Any, schema: dict[str, Any], path: str) -> None:
             _validate_schema(child, child_schema, f"{path}.{key}")
 
     if isinstance(value, list):
+        min_items = schema.get("minItems")
+        if isinstance(min_items, int) and len(value) < min_items:
+            raise SchemaValidationError(f"{path} must contain at least {min_items} items, got {len(value)}")
         item_schema = schema.get("items")
         if isinstance(item_schema, dict):
             for idx, item in enumerate(value):
                 _validate_schema(item, item_schema, f"{path}[{idx}]")
+
+    all_of = schema.get("allOf")
+    if isinstance(all_of, list):
+        for idx, sub_schema in enumerate(all_of):
+            if isinstance(sub_schema, dict):
+                _validate_schema(value, sub_schema, f"{path}.allOf[{idx}]")
+
+    if_schema = schema.get("if")
+    if isinstance(if_schema, dict):
+        if _schema_matches(value, if_schema, path):
+            then_schema = schema.get("then")
+            if isinstance(then_schema, dict):
+                _validate_schema(value, then_schema, path)
+        else:
+            else_schema = schema.get("else")
+            if isinstance(else_schema, dict):
+                _validate_schema(value, else_schema, path)
+
+
+def _schema_matches(value: Any, schema: dict[str, Any], path: str) -> bool:
+    try:
+        _validate_schema(value, schema, path)
+        return True
+    except SchemaValidationError:
+        return False
 
 
 def _validate_root_order(data: dict[str, Any], expected: list[str], path: str) -> None:
