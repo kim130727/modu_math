@@ -133,23 +133,35 @@ def add_mid_arrow_marker(
     arrow_style: LineStyle = LineStyle(semantic_role="geometry_arrow_head"),
     arrow_size: float = 12.0,
     arrow_spread: float = 10.0,
+    draw_segment: bool = True,
 ) -> None:
     ux, uy = _unit(end[0] - start[0], end[1] - start[1])
     mx, my = (start[0] + end[0]) * 0.5, (start[1] + end[1]) * 0.5
-    s = (mx - ux * marker_len * 0.5, my - uy * marker_len * 0.5)
-    e = (mx + ux * marker_len * 0.5, my + uy * marker_len * 0.5)
-    add_arrow_line(
-        p,
-        line_id=line_id,
-        start=s,
-        end=e,
-        arrow_start=False,
-        arrow_end=True,
-        line_style=line_style,
-        arrow_style=arrow_style,
-        arrow_size=arrow_size,
-        arrow_spread=arrow_spread,
-    )
+    if draw_segment:
+        s = (mx - ux * marker_len * 0.5, my - uy * marker_len * 0.5)
+        e = (mx + ux * marker_len * 0.5, my + uy * marker_len * 0.5)
+        add_arrow_line(
+            p,
+            line_id=line_id,
+            start=s,
+            end=e,
+            arrow_start=False,
+            arrow_end=True,
+            line_style=line_style,
+            arrow_style=arrow_style,
+            arrow_size=arrow_size,
+            arrow_spread=arrow_spread,
+        )
+    else:
+        add_arrow_head(
+            p,
+            base_id=f"{line_id}_mid_ah",
+            tip=(mx, my),
+            direction=(ux, uy),
+            size=arrow_size,
+            spread=arrow_spread,
+            style=arrow_style,
+        )
 
 
 def add_text_label(
@@ -278,6 +290,146 @@ def add_equal_length_marks(
             size=size,
             style=style,
         )
+
+
+def add_dimension_marker(
+    p: Problem,
+    *,
+    base_id: str,
+    start: Point,
+    end: Point,
+    cap_len: float = 44.0,
+    inset: float = 4.0,
+    line_style: LineStyle = LineStyle(stroke="#111111", stroke_width=2.0, semantic_role="geometry_dimension"),
+    arrow_style: LineStyle = LineStyle(stroke="#111111", stroke_width=2.0, semantic_role="geometry_arrow_head"),
+    arrow_size: float = 16.0,
+    arrow_spread: float = 14.0,
+    inward: bool = True,
+    label: str | None = None,
+    label_offset: Point = (20.0, 8.0),
+    label_style: TextStyle = TextStyle(font_size=48, fill="#111111", semantic_role="geometry_length_label"),
+) -> None:
+    sx, sy = start
+    ex, ey = end
+    ux, uy = _unit(ex - sx, ey - sy)
+    nx, ny = -uy, ux
+    half_cap = cap_len * 0.5
+
+    p.add(
+        Line(
+            id=f"{base_id}_line",
+            x1=sx,
+            y1=sy,
+            x2=ex,
+            y2=ey,
+            semantic_role=line_style.semantic_role,
+            stroke=line_style.stroke,
+            stroke_width=line_style.stroke_width,
+        )
+    )
+    p.add(
+        Line(
+            id=f"{base_id}_cap_start",
+            x1=sx - nx * half_cap,
+            y1=sy - ny * half_cap,
+            x2=sx + nx * half_cap,
+            y2=sy + ny * half_cap,
+            semantic_role=line_style.semantic_role,
+            stroke=line_style.stroke,
+            stroke_width=line_style.stroke_width,
+        )
+    )
+    p.add(
+        Line(
+            id=f"{base_id}_cap_end",
+            x1=ex - nx * half_cap,
+            y1=ey - ny * half_cap,
+            x2=ex + nx * half_cap,
+            y2=ey + ny * half_cap,
+            semantic_role=line_style.semantic_role,
+            stroke=line_style.stroke,
+            stroke_width=line_style.stroke_width,
+        )
+    )
+
+    if inward:
+        start_tip = (sx + ux * inset, sy + uy * inset)
+        start_dir = (ux, uy)
+        end_tip = (ex - ux * inset, ey - uy * inset)
+        end_dir = (-ux, -uy)
+    else:
+        start_tip = (sx + ux * inset, sy + uy * inset)
+        start_dir = (-ux, -uy)
+        end_tip = (ex - ux * inset, ey - uy * inset)
+        end_dir = (ux, uy)
+
+    add_arrow_head(
+        p,
+        base_id=f"{base_id}_arrow_start",
+        tip=start_tip,
+        direction=start_dir,
+        size=arrow_size,
+        spread=arrow_spread,
+        style=arrow_style,
+    )
+    add_arrow_head(
+        p,
+        base_id=f"{base_id}_arrow_end",
+        tip=end_tip,
+        direction=end_dir,
+        size=arrow_size,
+        spread=arrow_spread,
+        style=arrow_style,
+    )
+
+    if label is not None:
+        mx, my = (sx + ex) * 0.5, (sy + ey) * 0.5
+        lx = mx + nx * label_offset[0] + ux * label_offset[1]
+        ly = my + ny * label_offset[0] + uy * label_offset[1]
+        add_text_label(
+            p,
+            label_id=f"{base_id}_label",
+            at=(lx, ly),
+            text=label,
+            style=label_style,
+        )
+
+
+def parallelogram_fourth_point(a: Point, b: Point, d: Point) -> Point:
+    # For vertices ordered A-B-C-D, C = B + D - A.
+    return (b[0] + d[0] - a[0], b[1] + d[1] - a[1])
+
+
+def add_parallelogram_from_three_points(
+    p: Problem,
+    *,
+    base_id: str,
+    a: Point,
+    b: Point,
+    d: Point,
+    line_style: LineStyle = LineStyle(),
+) -> Point:
+    c = parallelogram_fourth_point(a, b, d)
+    edges = [
+        ("AB", a, b),
+        ("BC", b, c),
+        ("CD", c, d),
+        ("DA", d, a),
+    ]
+    for suffix, s, e in edges:
+        p.add(
+            Line(
+                id=f"{base_id}_{suffix}",
+                x1=s[0],
+                y1=s[1],
+                x2=e[0],
+                y2=e[1],
+                semantic_role=line_style.semantic_role,
+                stroke=line_style.stroke,
+                stroke_width=line_style.stroke_width,
+            )
+        )
+    return c
 
 
 def add_choice_block(
