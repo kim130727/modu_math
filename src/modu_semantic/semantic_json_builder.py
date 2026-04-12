@@ -402,6 +402,7 @@ def _recommended_canvas_size(
     height: float,
     is_geometry: bool,
     has_diagram: bool,
+    point_positions: dict[str, tuple[float, float]] | None = None,
 ) -> tuple[int, int]:
     w = float(width)
     h = float(height)
@@ -409,6 +410,18 @@ def _recommended_canvas_size(
         # Keep geometry diagram canvas stable across repeated rebuilds.
         w = max(w, 1400.0)
         h = max(h, 900.0)
+        # Clamp runaway legacy canvases using source point bbox as a stable reference.
+        if point_positions and len(point_positions) >= 2:
+            xs = [pt[0] for pt in point_positions.values()]
+            ys = [pt[1] for pt in point_positions.values()]
+            src_w = max(1.0, max(xs) - min(xs))
+            src_h = max(1.0, max(ys) - min(ys))
+            target_w = max(1400.0, (src_w * 3.2) + 240.0)
+            target_h = max(900.0, (src_h * 3.2) + 240.0)
+            if w > (target_w * 1.8):
+                w = target_w
+            if h > (target_h * 1.8):
+                h = target_h
     elif is_geometry:
         w = max(w, 1400.0)
         h = max(h, 800.0)
@@ -567,6 +580,8 @@ def build_problem_from_semantic_dict(
         validate_semantic_json(payload)
 
     domain_obj = _to_dict(payload.get("domain"))
+    logic = _extract_logic_form(domain_obj)
+    point_positions = _parse_point_positions(logic)
     is_geometry = _is_geometry_problem(payload)
     has_geometry_diagram = _has_geometry_diagram_data(domain_obj)
     canvas_w, canvas_h = _recommended_canvas_size(
@@ -574,6 +589,7 @@ def build_problem_from_semantic_dict(
         height=_to_float(canvas.get("height"), default=1.0),
         is_geometry=is_geometry,
         has_diagram=has_geometry_diagram,
+        point_positions=point_positions,
     )
 
     normalized_title = _normalize_text_value(_to_str(payload.get("title"), default=""))

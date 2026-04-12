@@ -1,4 +1,16 @@
-﻿from .elementary.geometry import triangle_area_problem
+from .diagram_templates import (
+    LineStyle,
+    TextStyle,
+    add_arrow_line,
+    add_degree_label,
+    add_equal_length_marks,
+    add_mid_arrow_marker,
+    add_segment_tick,
+    add_choice_block,
+    add_right_angle_marker,
+    add_text_label,
+)
+from .elementary.geometry import triangle_area_problem
 from .layout_blocks import (
     BlankAnswer,
     ChoiceRow,
@@ -16,6 +28,16 @@ from .layout_blocks import (
 
 __all__ = [
     "triangle_area_problem",
+    "add_arrow_line",
+    "add_degree_label",
+    "add_equal_length_marks",
+    "add_mid_arrow_marker",
+    "add_segment_tick",
+    "add_right_angle_marker",
+    "add_text_label",
+    "add_choice_block",
+    "LineStyle",
+    "TextStyle",
     "problem_box",
     "choice_row",
     "figure_area",
