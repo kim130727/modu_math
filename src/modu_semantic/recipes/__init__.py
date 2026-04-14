@@ -1,11 +1,15 @@
 from .diagram_templates import (
     LineStyle,
     TextStyle,
+    add_angle_ellipse_marker,
+    add_angle_ellipse_markers,
     add_arrow_line,
     add_degree_label,
     add_dimension_marker,
     add_equal_length_marks,
+    add_fraction_text,
     add_mid_arrow_marker,
+    add_mixed_fraction_text,
     add_parallelogram_from_three_points,
     add_segment_tick,
     add_choice_block,
@@ -53,8 +57,12 @@ from .layout_blocks import (
 
 __all__ = [
     "triangle_area_problem",
+    "add_fraction_text",
+    "add_mixed_fraction_text",
     "add_arrow_line",
     "add_degree_label",
+    "add_angle_ellipse_marker",
+    "add_angle_ellipse_markers",
     "add_dimension_marker",
     "add_equal_length_marks",
     "add_mid_arrow_marker",

@@ -448,6 +448,214 @@ def add_choice_block(
     add_text_label(p, label_id=base_id, at=(x, y), text=rendered, style=style)
 
 
+def add_fraction_text(
+    p: Problem,
+    *,
+    base_id: str,
+    center: Point,
+    numerator: str | int,
+    denominator: str | int,
+    bar_width: float = 64.0,
+    bar_gap: float = 8.0,
+    font_size: int = 40,
+    fill: str = "#111111",
+    stroke: str = "#111111",
+    stroke_width: float = 2.0,
+    semantic_role: str = "fraction",
+    font_family: str = "Malgun Gothic",
+) -> None:
+    cx, cy = center
+    num_y = cy - bar_gap
+    den_y = cy + bar_gap + (font_size * 0.72)
+    half = bar_width * 0.5
+    p.add(
+        Text(
+            id=f"{base_id}_num",
+            x=cx,
+            y=num_y,
+            text=str(numerator),
+            font_size=font_size,
+            fill=fill,
+            font_family=font_family,
+            anchor="middle",
+            semantic_role=semantic_role,
+        )
+    )
+    p.add(
+        Line(
+            id=f"{base_id}_bar",
+            x1=cx - half,
+            y1=cy,
+            x2=cx + half,
+            y2=cy,
+            stroke=stroke,
+            stroke_width=stroke_width,
+            semantic_role=semantic_role,
+        )
+    )
+    p.add(
+        Text(
+            id=f"{base_id}_den",
+            x=cx,
+            y=den_y,
+            text=str(denominator),
+            font_size=font_size,
+            fill=fill,
+            font_family=font_family,
+            anchor="middle",
+            semantic_role=semantic_role,
+        )
+    )
+
+
+def add_mixed_fraction_text(
+    p: Problem,
+    *,
+    base_id: str,
+    origin: Point,
+    whole: str | int,
+    numerator: str | int,
+    denominator: str | int,
+    whole_font_size: int = 42,
+    frac_font_size: int = 34,
+    whole_fraction_gap: float = 16.0,
+    bar_width: float = 56.0,
+    bar_gap: float = 7.0,
+    fill: str = "#111111",
+    stroke: str = "#111111",
+    stroke_width: float = 2.0,
+    semantic_role: str = "mixed_fraction",
+    font_family: str = "Malgun Gothic",
+) -> None:
+    ox, oy = origin
+    whole_text = str(whole)
+    p.add(
+        Text(
+            id=f"{base_id}_whole",
+            x=ox,
+            y=oy,
+            text=whole_text,
+            font_size=whole_font_size,
+            fill=fill,
+            font_family=font_family,
+            anchor="start",
+            semantic_role=semantic_role,
+        )
+    )
+    whole_w = max(16.0, len(whole_text) * whole_font_size * 0.58)
+    frac_cx = ox + whole_w + whole_fraction_gap + (bar_width * 0.5)
+    frac_cy = oy - (whole_font_size * 0.28)
+    add_fraction_text(
+        p,
+        base_id=f"{base_id}_frac",
+        center=(frac_cx, frac_cy),
+        numerator=numerator,
+        denominator=denominator,
+        bar_width=bar_width,
+        bar_gap=bar_gap,
+        font_size=frac_font_size,
+        fill=fill,
+        stroke=stroke,
+        stroke_width=stroke_width,
+        semantic_role=semantic_role,
+        font_family=font_family,
+    )
+
+
+def _ellipse_polygon_points(
+    *,
+    cx: float,
+    cy: float,
+    rx: float,
+    ry: float,
+    rotation_deg: float = 0.0,
+    segments: int = 36,
+) -> list[Point]:
+    seg = max(12, segments)
+    points: list[Point] = []
+    rot = math.radians(rotation_deg)
+    cos_r = math.cos(rot)
+    sin_r = math.sin(rot)
+    for i in range(seg):
+        t = (2.0 * math.pi * i) / seg
+        ex = rx * math.cos(t)
+        ey = ry * math.sin(t)
+        x = cx + (ex * cos_r) - (ey * sin_r)
+        y = cy + (ex * sin_r) + (ey * cos_r)
+        points.append((x, y))
+    return points
+
+
+def add_angle_ellipse_marker(
+    p: Problem,
+    *,
+    marker_id: str,
+    center: Point,
+    rx: float = 20.0,
+    ry: float = 12.0,
+    rotation_deg: float = 0.0,
+    stroke: str = "#111111",
+    stroke_width: float = 2.2,
+    fill: str = "none",
+    semantic_role: str = "geometry_angle_ellipse",
+    segments: int = 40,
+) -> None:
+    cx, cy = center
+    p.add(
+        Polygon(
+            id=marker_id,
+            points=_ellipse_polygon_points(
+                cx=cx,
+                cy=cy,
+                rx=max(1.0, rx),
+                ry=max(1.0, ry),
+                rotation_deg=rotation_deg,
+                segments=segments,
+            ),
+            fill=fill,
+            stroke=stroke,
+            stroke_width=stroke_width,
+            semantic_role=semantic_role,
+        )
+    )
+
+
+def add_angle_ellipse_markers(
+    p: Problem,
+    *,
+    base_id: str,
+    center: Point,
+    count: int = 2,
+    rx: float = 20.0,
+    ry: float = 12.0,
+    ring_gap: float = 6.0,
+    rotation_deg: float = 0.0,
+    stroke: str = "#111111",
+    stroke_width: float = 2.2,
+    fill: str = "none",
+    semantic_role: str = "geometry_angle_ellipse",
+    segments: int = 40,
+) -> None:
+    ring_count = max(1, count)
+    ratio = ry / rx if rx > 1e-9 else 1.0
+    for i in range(ring_count):
+        rx_i = rx + (ring_gap * i)
+        ry_i = ry + (ring_gap * ratio * i)
+        add_angle_ellipse_marker(
+            p,
+            marker_id=f"{base_id}_{i + 1}",
+            center=center,
+            rx=rx_i,
+            ry=ry_i,
+            rotation_deg=rotation_deg,
+            stroke=stroke,
+            stroke_width=stroke_width,
+            fill=fill,
+            semantic_role=semantic_role,
+            segments=segments,
+        )
+
+
 def _anchor_point(box: ShapeBox, anchor: str) -> tuple[float, float]:
     x, y, width, height = box
     if anchor == "left_mid":

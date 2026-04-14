@@ -259,10 +259,21 @@ def _element_from_semantic(
         font_size = attrs["font_size"]
         if font_size is not None:
             attrs["font_size"] = _scaled_font_value(float(font_size), text_scale)
+        semantic_role = _to_str(attrs.get("semantic_role")).strip().lower()
+        if semantic_role == "problem_text":
+            x_value = 40.0
+        elif semantic_role == "multiple_choice":
+            x_value = 860.0
+        else:
+            x_value = _to_float(element.get("x"), default=0.0)
+        y_default = fallback_y if semantic_role in {"problem_text", "multiple_choice", "diagram_logic"} else 0.0
+        y_value = _to_float(element.get("y"), default=y_default)
+        if semantic_role == "multiple_choice":
+            y_value = max(320.0, y_value)
         return ir.Text(
             **attrs,
-            x=_to_float(element.get("x")),
-            y=_to_float(element.get("y")),
+            x=x_value,
+            y=y_value,
             text=_normalize_text_value(_to_str(element.get("text"))),
         )
     if element_type == "formula":
@@ -302,8 +313,8 @@ def _element_from_semantic(
         custom_attrs["font_size"] = _scaled_font_value(float(base_size), text_scale)
         return ir.Text(
             **custom_attrs,
-            x=40.0,
-            y=fallback_y,
+            x=860.0,
+            y=max(320.0, fallback_y),
             text=joined if joined else "choices",
         )
     if element_type == "diagram_logic":
@@ -351,7 +362,11 @@ def _elements_from_semantic(
         default_font = 18.0
 
     font_size = float(base.font_size if base.font_size is not None else default_font)
-    max_width = max(80.0, canvas_width - float(base.x) - 16.0)
+    semantic_role = _to_str(getattr(base, "semantic_role", "")).strip().lower()
+    if element_type == "problem_text" or semantic_role == "problem_text":
+        max_width = max(80.0, canvas_width * 0.95)
+    else:
+        max_width = max(80.0, canvas_width - float(base.x) - 16.0)
     wrapped_lines = _wrap_text_lines(raw_text, max_width=max_width, font_size=font_size)
     if len(wrapped_lines) <= 1:
         return [base], fallback_y + 36.0 if element_type in {"problem_text", "multiple_choice", "diagram_logic"} else fallback_y
@@ -371,6 +386,68 @@ def _elements_from_semantic(
     if element_type in {"problem_text", "multiple_choice", "diagram_logic"}:
         next_fallback_y = max(fallback_y + 36.0, float(base.y) + (line_gap * len(wrapped_lines)))
     return line_elements, next_fallback_y
+
+
+def _collapse_wrapped_text_artifacts(elements: list[Any]) -> list[Any]:
+    target_roles = {"problem_text", "multiple_choice", "diagram_logic"}
+    buckets: dict[str, list[tuple[int, dict[str, Any]]]] = {}
+    first_index_by_base: dict[str, int] = {}
+    base_by_index: dict[int, str] = {}
+
+    for idx, raw in enumerate(elements):
+        if not isinstance(raw, dict):
+            continue
+        element_id = _to_str(raw.get("id")).strip()
+        base_id = _base_id_if_wrapped(element_id)
+        if not base_id:
+            continue
+        role = _to_str(raw.get("semantic_role")).strip().lower()
+        etype = _to_str(raw.get("type")).strip().lower()
+        if role not in target_roles or etype not in {"text", "formula"}:
+            continue
+        buckets.setdefault(base_id, []).append((idx, raw))
+        if base_id not in first_index_by_base:
+            first_index_by_base[base_id] = idx
+        base_by_index[idx] = base_id
+
+    if not buckets:
+        return elements
+
+    first_index_to_base = {v: k for k, v in first_index_by_base.items()}
+    collapsed: list[Any] = []
+
+    for idx, raw in enumerate(elements):
+        base_id = base_by_index.get(idx)
+        if base_id is not None:
+            if first_index_by_base[base_id] != idx:
+                continue
+            parts = buckets[base_id]
+            sorted_parts = sorted(parts, key=lambda item: (_to_float(item[1].get("y"), default=0.0), item[0]))
+            first = dict(sorted_parts[0][1])
+            chunks: list[str] = []
+            for _, part in sorted_parts:
+                if _to_str(part.get("type")).strip().lower() == "formula":
+                    chunks.append(_to_str(part.get("expr") if part.get("expr") is not None else part.get("text")))
+                else:
+                    chunks.append(_to_str(part.get("text")))
+            joined = " ".join(" ".join(chunks).split())
+            first["id"] = base_id
+            if _to_str(first.get("type")).strip().lower() == "formula":
+                first["expr"] = joined
+            else:
+                first["text"] = joined
+            role = _to_str(first.get("semantic_role")).strip().lower()
+            if role == "multiple_choice":
+                first["x"] = 860.0
+            collapsed.append(first)
+            continue
+
+        if idx in first_index_to_base:
+            # Defensive; handled above via base_by_index.
+            continue
+        collapsed.append(raw)
+
+    return collapsed
 
 
 def _is_geometry_problem(payload: dict[str, Any]) -> bool:
@@ -558,6 +635,7 @@ def build_problem_from_semantic_dict(
     canvas = _to_dict(render.get("canvas"))
     raw_elements = render.get("elements")
     elements = raw_elements if isinstance(raw_elements, list) else []
+    elements = _collapse_wrapped_text_artifacts(elements)
 
     incoming_types = sorted(
         {
@@ -824,9 +902,17 @@ def _append_text_like_lines(
     font_size: int,
     canvas_width: float,
     common_attrs: list[str],
+    disable_wrap: bool = False,
+    max_width_override: float | None = None,
 ) -> None:
-    max_width = max(80.0, canvas_width - float(x) - 16.0)
-    wrapped = _wrap_text_lines(content, max_width=max_width, font_size=float(font_size))
+    if disable_wrap:
+        wrapped = [content.strip() or ""]
+    else:
+        if max_width_override is not None:
+            max_width = max(80.0, float(max_width_override))
+        else:
+            max_width = max(80.0, canvas_width - float(x) - 16.0)
+        wrapped = _wrap_text_lines(content, max_width=max_width, font_size=float(font_size))
     line_gap = float(font_size) * 1.35
     for i, part in enumerate(wrapped):
         line_id = element_id if len(wrapped) == 1 else f"{element_id}_ln{i+1}"
@@ -933,17 +1019,29 @@ def _render_canonical_element_lines(
         return lines
     if etype == "text":
         font_size = _scaled_font_size(element.get("font_size"), default=16, scale=font_scale)
+        semantic_role = _to_str(element.get("semantic_role")).strip().lower()
+        if semantic_role == "problem_text":
+            x_value = 40.0
+        elif semantic_role == "multiple_choice":
+            x_value = 860.0
+        else:
+            x_value = _to_float(element.get("x"), default=0.0)
+        y_default = 80.0 if semantic_role in {"problem_text", "multiple_choice", "diagram_logic"} else 0.0
+        y_value = _to_float(element.get("y"), default=y_default)
+        if semantic_role == "multiple_choice":
+            y_value = max(320.0, y_value)
         _append_text_like_lines(
             lines=lines,
             ctor="Text",
             element_id=element_id,
-            x=_to_float(element.get("x"), default=0.0),
-            y=_to_float(element.get("y"), default=0.0),
+            x=x_value,
+            y=y_value,
             content_key="text",
             content=_to_str(element.get("text")),
             font_size=font_size,
             canvas_width=canvas_width,
             common_attrs=common_text,
+            max_width_override=(canvas_width * 0.95) if semantic_role == "problem_text" else None,
         )
         return lines
     if etype == "formula":
@@ -992,6 +1090,7 @@ def _render_custom_element_lines(
             font_size=_scaled_font_size(element.get("font_size"), default=16, scale=font_scale),
             canvas_width=canvas_width,
             common_attrs=["            semantic_role=\"problem_text\","],
+            max_width_override=canvas_width * 0.95,
         )
         return lines
     if etype == "multiple_choice":
@@ -1006,8 +1105,8 @@ def _render_custom_element_lines(
             lines=lines,
             ctor="Text",
             element_id=element_id,
-            x=40.0,
-            y=80.0 + (idx * 36.0),
+            x=860.0,
+            y=max(320.0, 80.0 + (idx * 36.0)),
             content_key="text",
             content=rendered,
             font_size=_scaled_font_size(element.get("font_size"), default=16, scale=font_scale),
@@ -1564,6 +1663,7 @@ def _render_build_scaffold_text(
     canvas = _to_dict(render.get("canvas"))
     elements_raw = render.get("elements")
     elements = elements_raw if isinstance(elements_raw, list) else []
+    elements = _collapse_wrapped_text_artifacts(elements)
 
     imports = {"Problem"}
     semantic_path_norm = semantic_relative_path.replace("\\", "/")
