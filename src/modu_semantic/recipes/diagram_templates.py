@@ -2,13 +2,15 @@ from __future__ import annotations
 
 import math
 from dataclasses import dataclass
-from typing import Iterable
+from typing import Iterable, Mapping
 
-from ..primitives import Line, Text
+from ..primitives import Line, Polygon, Text
 from ..problem import Problem
+from ..regions import Region
 
 
 Point = tuple[float, float]
+ShapeBox = tuple[float, float, float, float]
 
 
 @dataclass(frozen=True)
@@ -444,3 +446,133 @@ def add_choice_block(
 ) -> None:
     rendered = separator.join(f"{idx + 1}. {choice}" for idx, choice in enumerate(choices))
     add_text_label(p, label_id=base_id, at=(x, y), text=rendered, style=style)
+
+
+def _anchor_point(box: ShapeBox, anchor: str) -> tuple[float, float]:
+    x, y, width, height = box
+    if anchor == "left_mid":
+        return (x, y + (height / 2.0))
+    if anchor == "right_mid":
+        return (x + width, y + (height / 2.0))
+    if anchor == "top_mid":
+        return (x + (width / 2.0), y)
+    if anchor == "bottom_mid":
+        return (x + (width / 2.0), y + height)
+    raise ValueError(f"Unsupported anchor: {anchor}")
+
+
+def _control_point_from_bend(start: tuple[float, float], end: tuple[float, float], bend: float) -> tuple[float, float]:
+    sx, sy = start
+    ex, ey = end
+    mx = (sx + ex) / 2.0
+    my = (sy + ey) / 2.0
+    vx = ex - sx
+    vy = ey - sy
+    dist = math.hypot(vx, vy) or 1.0
+    nx = -vy / dist
+    ny = vx / dist
+    return (mx + (nx * dist * bend), my + (ny * dist * bend))
+
+
+def add_curved_connector(
+    root: Region,
+    *,
+    aid: str,
+    start: tuple[float, float],
+    end: tuple[float, float],
+    control: tuple[float, float] | None = None,
+    bend: float = 0.2,
+    arrow: bool = True,
+    segments: int = 14,
+    stroke: str = "#222222",
+    stroke_width: float = 2.0,
+    semantic_role: str = "guide",
+) -> None:
+    cx, cy = control if control is not None else _control_point_from_bend(start, end, bend)
+    x0, y0 = start
+    x1, y1 = end
+
+    points: list[tuple[float, float]] = []
+    for i in range(segments + 1):
+        t = i / segments
+        omt = 1.0 - t
+        x = (omt * omt * x0) + (2 * omt * t * cx) + (t * t * x1)
+        y = (omt * omt * y0) + (2 * omt * t * cy) + (t * t * y1)
+        points.append((x, y))
+
+    for i in range(segments):
+        a = points[i]
+        b = points[i + 1]
+        root.add(
+            Line(
+                id=f"{aid}_{i:02d}",
+                x1=a[0],
+                y1=a[1],
+                x2=b[0],
+                y2=b[1],
+                stroke=stroke,
+                stroke_width=stroke_width,
+                semantic_role=semantic_role,
+            )
+        )
+
+    if not arrow:
+        return
+
+    tx = points[-1][0] - points[-2][0]
+    ty = points[-1][1] - points[-2][1]
+    norm = math.hypot(tx, ty) or 1.0
+    ux = tx / norm
+    uy = ty / norm
+    px = -uy
+    py = ux
+    hx, hy = points[-1]
+    size = 7.0
+    root.add(
+        Polygon(
+            id=f"{aid}_head",
+            points=[
+                (hx, hy),
+                (hx - (ux * size) + (px * 4.5), hy - (uy * size) + (py * 4.5)),
+                (hx - (ux * size) - (px * 4.5), hy - (uy * size) - (py * 4.5)),
+            ],
+            fill=stroke,
+            stroke=stroke,
+            stroke_width=1,
+            semantic_role=semantic_role,
+        )
+    )
+
+
+def add_curved_connector_by_anchor(
+    root: Region,
+    *,
+    aid: str,
+    boxes: Mapping[str, ShapeBox],
+    from_box: str,
+    from_anchor: str,
+    to_box: str,
+    to_anchor: str,
+    control: tuple[float, float] | None = None,
+    bend: float = 0.2,
+    arrow: bool = True,
+    segments: int = 14,
+    stroke: str = "#222222",
+    stroke_width: float = 2.0,
+    semantic_role: str = "guide",
+) -> None:
+    start = _anchor_point(boxes[from_box], from_anchor)
+    end = _anchor_point(boxes[to_box], to_anchor)
+    add_curved_connector(
+        root,
+        aid=aid,
+        start=start,
+        end=end,
+        control=control,
+        bend=bend,
+        arrow=arrow,
+        segments=segments,
+        stroke=stroke,
+        stroke_width=stroke_width,
+        semantic_role=semantic_role,
+    )
