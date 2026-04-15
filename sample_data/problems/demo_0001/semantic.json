@@ -1,0 +1,72 @@
+{
+  "schema_version": "modu_math.semantic.v3",
+  "render_contract_version": "modu_math.render.v1",
+  "problem_id": "demo_0001",
+  "problem_type": "demo_geometry",
+  "title": "MVP Editor 샘플 문제",
+  "metadata": {
+    "source": {
+      "input_type": "manual",
+      "generator": "webapp.editor"
+    }
+  },
+  "domain": {},
+  "render": {
+    "canvas": {
+      "width": 1000,
+      "height": 620,
+      "background": "#F6F6F6"
+    },
+    "elements": [
+      {
+        "id": "frame",
+        "z_index": 1,
+        "anchor": "start",
+        "alignment": "left",
+        "stroke": "#222222",
+        "stroke_width": 2,
+        "fill": "none",
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "type": "rect",
+        "x": 100,
+        "y": 100,
+        "width": 420,
+        "height": 240
+      },
+      {
+        "id": "q_text",
+        "z_index": 2,
+        "anchor": "start",
+        "alignment": "left",
+        "fill": "#111111",
+        "font_family": "Malgun Gothic",
+        "font_size": 24,
+        "font_weight": "normal",
+        "type": "text",
+        "text": "직사각형의 둘레를 구하세요.",
+        "x": 130,
+        "y": 160
+      },
+      {
+        "id": "f_01",
+        "z_index": 2,
+        "anchor": "start",
+        "alignment": "left",
+        "fill": "#111111",
+        "font_family": "Malgun Gothic",
+        "font_size": 22,
+        "font_weight": "normal",
+        "type": "formula",
+        "expr": "P = 2 * (w + h)",
+        "x": 130,
+        "y": 220
+      }
+    ]
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": []
+  }
+}

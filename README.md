@@ -176,6 +176,30 @@ python tools/run_rag_generation.py --meta-path examples/problem/_rag/input_meta.
 pytest
 ```
 
+## Django Web Editor MVP
+
+같은 리포 안에서 코어(`src/modu_semantic`)와 웹 에디터(`webapp/`)를 분리한 MVP 구조입니다.
+
+### 폴더
+
+- `webapp/config/settings/base.py|local.py|prod.py`: settings 분리
+- `webapp/apps/editor`: 편집 UI + 저장/검증/내보내기
+- `webapp/apps/problems`: 문제 관리용 앱(초기 메타 모델)
+- `sample_data/problems/<problem_id>/semantic.json`: canonical semantic 원본 저장소
+
+### 실행
+
+```bash
+uv sync
+uv run python webapp/manage.py migrate
+uv run python webapp/manage.py runserver
+```
+
+접속:
+
+- `http://127.0.0.1:8000/editor/`
+- 샘플 문제: `demo_0001`
+
 ## 인코딩/커밋 규칙
 
 - 한글은 반드시 **UTF-8 리터럴(직접 한글)** 로 작성합니다.

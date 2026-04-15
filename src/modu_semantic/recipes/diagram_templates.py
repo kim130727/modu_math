@@ -444,7 +444,7 @@ def add_choice_block(
     separator: str = "    ",
     style: TextStyle = TextStyle(font_size=38, fill="#000000", semantic_role="multiple_choice", font_family="sans-serif"),
 ) -> None:
-    rendered = separator.join(f"{idx + 1}. {choice}" for idx, choice in enumerate(choices))
+    rendered = separator.join(f"no.{idx + 1} {choice}" for idx, choice in enumerate(choices))
     add_text_label(p, label_id=base_id, at=(x, y), text=rendered, style=style)
 
 

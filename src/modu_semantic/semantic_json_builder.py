@@ -9,6 +9,30 @@ from pathlib import Path
 from typing import Any
 
 from . import ir
+from .semantic_geometry import (
+    build_angle_marker_elements,
+    build_circle_elements,
+    build_geometry_reconstruction_elements,
+    build_geometry_template_elements,
+    build_length_dimension_elements,
+    build_parallel_marker_elements,
+    build_perpendicular_marker_elements,
+    build_equal_length_tick_elements,
+    extract_logic_form,
+    has_geometry_diagram_data,
+    parse_angle_constraints,
+    parse_circle_constraints,
+    parse_point_on_line_constraints,
+    parse_line_instances,
+    parse_length_constraints,
+    parse_equal_segment_constraints,
+    parse_parallel_constraints,
+    parse_perpendicular_constraints,
+    parse_point_positions,
+    simplify_collinear_edges,
+    apply_point_on_line_constraints,
+    auto_snap_points_to_segments,
+)
 from .normalizer import normalize_semantic
 from .orderer import order_semantic
 from .problem import Problem
@@ -305,7 +329,7 @@ def _element_from_semantic(
         rendered_choices: list[str] = []
         if isinstance(choices, list):
             for idx, choice in enumerate(choices, start=1):
-                rendered_choices.append(f"{idx}. {_normalize_text_value(_to_str(choice))}")
+                rendered_choices.append(f"no.{idx} {_normalize_text_value(_to_str(choice))}")
         joined = " / ".join(rendered_choices)
         custom_attrs = dict(attrs)
         custom_attrs["semantic_role"] = attrs["semantic_role"] or "multiple_choice"
@@ -463,14 +487,11 @@ def _is_geometry_problem(payload: dict[str, Any]) -> bool:
 
 
 def _extract_logic_form(domain: dict[str, Any]) -> dict[str, Any]:
-    logic = domain.get("logic_form")
-    return logic if isinstance(logic, dict) else {}
+    return extract_logic_form(domain)
 
 
 def _has_geometry_diagram_data(domain: dict[str, Any]) -> bool:
-    logic = _extract_logic_form(domain)
-    points = logic.get("point_positions")
-    return isinstance(points, dict) and len(points) >= 2
+    return has_geometry_diagram_data(domain)
 
 
 def _recommended_canvas_size(
@@ -506,122 +527,11 @@ def _recommended_canvas_size(
 
 
 def _parse_point_positions(logic: dict[str, Any]) -> dict[str, tuple[float, float]]:
-    raw = logic.get("point_positions")
-    points: dict[str, tuple[float, float]] = {}
-    if not isinstance(raw, dict):
-        return points
-    for key, value in raw.items():
-        if not isinstance(value, (list, tuple)) or len(value) != 2:
-            continue
-        name = _to_str(key).strip()
-        if not name:
-            continue
-        points[name] = (_to_float(value[0]), _to_float(value[1]))
-    return points
+    return parse_point_positions(logic)
 
 
-def _geometry_region(canvas_w: float, canvas_h: float) -> tuple[float, float, float, float]:
-    x = 40.0
-    y = 200.0
-    w = max(260.0, (canvas_w * 0.58) - 60.0)
-    h = max(220.0, canvas_h - y - 40.0)
-    return x, y, w, h
 
-
-def _fit_transform_for_points(
-    points: dict[str, tuple[float, float]],
-    *,
-    target_x: float,
-    target_y: float,
-    target_w: float,
-    target_h: float,
-    padding: float = 24.0,
-) -> dict[str, tuple[float, float]]:
-    xs = [p[0] for p in points.values()]
-    ys = [p[1] for p in points.values()]
-    min_x, max_x = min(xs), max(xs)
-    min_y, max_y = min(ys), max(ys)
-    src_w = max(1e-6, max_x - min_x)
-    src_h = max(1e-6, max_y - min_y)
-
-    avail_w = max(20.0, target_w - (padding * 2.0))
-    avail_h = max(20.0, target_h - (padding * 2.0))
-    s = min(avail_w / src_w, avail_h / src_h)
-    used_w = src_w * s
-    used_h = src_h * s
-    tx = target_x + ((target_w - used_w) / 2.0) - (min_x * s)
-    ty = target_y + ((target_h - used_h) / 2.0) - (min_y * s)
-
-    mapped: dict[str, tuple[float, float]] = {}
-    for name, (x, y) in points.items():
-        mapped[name] = (x * s + tx, y * s + ty)
-    return mapped
-
-
-def _level_triangle_base_if_needed(
-    *,
-    source_points: dict[str, tuple[float, float]],
-    mapped_points: dict[str, tuple[float, float]],
-) -> dict[str, tuple[float, float]]:
-    if len(source_points) != 3 or len(mapped_points) != 3:
-        return mapped_points
-
-    names = list(source_points.keys())
-    pairs = [(names[0], names[1]), (names[0], names[2]), (names[1], names[2])]
-
-    src_ys = [pt[1] for pt in source_points.values()]
-    src_span_y = max(src_ys) - min(src_ys)
-    if src_span_y <= 1e-6:
-        return mapped_points
-
-    best_pair: tuple[str, str] | None = None
-    best_diff = float("inf")
-    for a, b in pairs:
-        diff = abs(source_points[a][1] - source_points[b][1])
-        if diff < best_diff:
-            best_diff = diff
-            best_pair = (a, b)
-    if best_pair is None:
-        return mapped_points
-
-    if best_diff > max(2.0, src_span_y * 0.04):
-        return mapped_points
-
-    a, b = best_pair
-    apex = next((n for n in names if n not in {a, b}), None)
-    if apex is None:
-        return mapped_points
-    pair_mean_y = (source_points[a][1] + source_points[b][1]) / 2.0
-    if abs(source_points[apex][1] - pair_mean_y) < max(6.0, src_span_y * 0.12):
-        return mapped_points
-
-    adjusted = dict(mapped_points)
-    level_y = (mapped_points[a][1] + mapped_points[b][1]) / 2.0
-    adjusted[a] = (mapped_points[a][0], level_y)
-    adjusted[b] = (mapped_points[b][0], level_y)
-    return adjusted
-
-
-def _parse_line_instances(logic: dict[str, Any]) -> list[tuple[str, str]]:
-    raw = logic.get("line_instances")
-    if not isinstance(raw, list):
-        return []
-    edges: list[tuple[str, str]] = []
-    seen: set[tuple[str, str]] = set()
-    for item in raw:
-        token = _to_str(item).strip()
-        if len(token) != 2:
-            continue
-        a, b = token[0], token[1]
-        if a == b:
-            continue
-        key = tuple(sorted((a, b)))
-        if key in seen:
-            continue
-        seen.add(key)
-        edges.append((a, b))
-    return edges
-
+# geometry transform/line helpers moved to semantic_geometry.py
 
 def build_problem_from_semantic_dict(
     semantic: dict[str, Any],
@@ -695,7 +605,7 @@ def build_problem_from_semantic_dict(
     )
 
     if has_geometry_diagram:
-        for geom in _build_geometry_reconstruction_elements(
+        for geom in build_geometry_reconstruction_elements(
             domain=domain_obj,
             canvas_w=float(canvas_w),
             canvas_h=float(canvas_h),
@@ -703,7 +613,7 @@ def build_problem_from_semantic_dict(
         ):
             problem.add(geom)
     elif is_geometry:
-        for geom in _build_geometry_template_elements(
+        for geom in build_geometry_template_elements(
             problem_type=_to_str(payload.get("problem_type")),
             domain=domain_obj,
             title=_to_str(payload.get("title"), default="") or None,
@@ -1098,7 +1008,7 @@ def _render_custom_element_lines(
         choices: list[str] = []
         if isinstance(raw_choices, list):
             for i, choice in enumerate(raw_choices, start=1):
-                choices.append(f"{i}. {_to_str(choice)}")
+                choices.append(f"no.{i} {_to_str(choice)}")
         rendered = " / ".join(choices) if choices else "choices"
         lines = ["    # original type: multiple_choice"]
         _append_text_like_lines(
@@ -1146,407 +1056,8 @@ def _render_custom_element_lines(
     return []
 
 
-def _parse_length_constraints(diagram_logic_form: list[Any]) -> list[tuple[str, str, str]]:
-    out: list[tuple[str, str, str]] = []
-    pattern = re.compile(r"Equals\(LengthOf\(Line\(([A-Za-z]),\s*([A-Za-z])\)\),\s*([^\)]+)\)")
-    for raw in diagram_logic_form:
-        line = _to_str(raw)
-        m = pattern.search(line)
-        if not m:
-            continue
-        out.append((m.group(1), m.group(2), m.group(3).strip()))
-    return out
 
-
-def _parse_perpendicular_constraints(diagram_logic_form: list[Any]) -> list[tuple[str, str, str]]:
-    out: list[tuple[str, str, str]] = []
-    pattern = re.compile(
-        r"Perpendicular\(Line\(([A-Za-z]),\s*([A-Za-z])\),\s*Line\(([A-Za-z]),\s*([A-Za-z])\)\)"
-    )
-    for raw in diagram_logic_form:
-        line = _to_str(raw)
-        m = pattern.search(line)
-        if not m:
-            continue
-        a, b, c, d = m.group(1), m.group(2), m.group(3), m.group(4)
-        shared = set((a, b)).intersection((c, d))
-        if not shared:
-            continue
-        pivot = next(iter(shared))
-        other1 = b if a == pivot else a
-        other2 = d if c == pivot else c
-        out.append((pivot, other1, other2))
-    return out
-
-
-def _unit_vector(ax: float, ay: float, bx: float, by: float) -> tuple[float, float]:
-    vx = bx - ax
-    vy = by - ay
-    norm = (vx * vx + vy * vy) ** 0.5
-    if norm <= 1e-9:
-        return 0.0, 0.0
-    return vx / norm, vy / norm
-
-
-def _build_perpendicular_marker_elements(
-    *,
-    mapped_points: dict[str, tuple[float, float]],
-    constraints: list[tuple[str, str, str]],
-) -> list[ir.Element]:
-    out: list[ir.Element] = []
-    size = 18.0
-    for idx, (pivot, p1, p2) in enumerate(constraints, start=1):
-        if pivot not in mapped_points or p1 not in mapped_points or p2 not in mapped_points:
-            continue
-        px, py = mapped_points[pivot]
-        x1, y1 = mapped_points[p1]
-        x2, y2 = mapped_points[p2]
-        u1x, u1y = _unit_vector(px, py, x1, y1)
-        u2x, u2y = _unit_vector(px, py, x2, y2)
-        if (u1x == 0.0 and u1y == 0.0) or (u2x == 0.0 and u2y == 0.0):
-            continue
-        a_x = px + (u1x * size)
-        a_y = py + (u1y * size)
-        b_x = a_x + (u2x * size)
-        b_y = a_y + (u2y * size)
-        c_x = px + (u2x * size)
-        c_y = py + (u2y * size)
-        out.append(
-            ir.Line(
-                id=f"geom_perp_{idx}_1",
-                x1=a_x,
-                y1=a_y,
-                x2=b_x,
-                y2=b_y,
-                stroke="#D97706",
-                stroke_width=2.0,
-                semantic_role="geometry_right_angle",
-            )
-        )
-        out.append(
-            ir.Line(
-                id=f"geom_perp_{idx}_2",
-                x1=b_x,
-                y1=b_y,
-                x2=c_x,
-                y2=c_y,
-                stroke="#D97706",
-                stroke_width=2.0,
-                semantic_role="geometry_right_angle",
-            )
-        )
-    return out
-
-
-def _build_geometry_reconstruction_elements(
-    *,
-    domain: dict[str, Any],
-    canvas_w: float,
-    canvas_h: float,
-    font_scale: float,
-) -> list[ir.Element]:
-    logic = _extract_logic_form(domain)
-    points = _parse_point_positions(logic)
-    if len(points) < 2:
-        return []
-
-    region_x, region_y, region_w, region_h = _geometry_region(canvas_w, canvas_h)
-    mapped = _fit_transform_for_points(
-        points,
-        target_x=region_x,
-        target_y=region_y,
-        target_w=region_w,
-        target_h=region_h,
-    )
-    mapped = _level_triangle_base_if_needed(source_points=points, mapped_points=mapped)
-    edges = _parse_line_instances(logic)
-    diagram_logic_raw = logic.get("diagram_logic_form")
-    diagram_logic = diagram_logic_raw if isinstance(diagram_logic_raw, list) else []
-    length_constraints = _parse_length_constraints(diagram_logic)
-    perp_constraints = _parse_perpendicular_constraints(diagram_logic)
-
-    label_font = max(12, int(round(12 * font_scale)))
-    out: list[ir.Element] = []
-
-    out.append(
-        ir.Rect(
-            id="geom_diagram_region",
-            x=region_x,
-            y=region_y,
-            width=region_w,
-            height=region_h,
-            fill="none",
-            stroke="#D1D5DB",
-            stroke_width=1.0,
-            semantic_role="geometry_diagram_region",
-        )
-    )
-
-    for idx, (a, b) in enumerate(edges, start=1):
-        if a not in mapped or b not in mapped:
-            continue
-        ax, ay = mapped[a]
-        bx, by = mapped[b]
-        out.append(
-            ir.Line(
-                id=f"geom_line_{idx}_{a}{b}",
-                x1=ax,
-                y1=ay,
-                x2=bx,
-                y2=by,
-                stroke="#374151",
-                stroke_width=2.2,
-                semantic_role="geometry_edge",
-            )
-        )
-
-    for name, (x, y) in mapped.items():
-        out.append(
-            ir.Circle(
-                id=f"geom_point_{name}",
-                x=x,
-                y=y,
-                r=3.8,
-                fill="#111111",
-                stroke="#111111",
-                stroke_width=1.0,
-                semantic_role="geometry_point",
-            )
-        )
-        out.append(
-            ir.Text(
-                id=f"geom_label_{name}",
-                x=x + 6.0,
-                y=y - 6.0,
-                text=name,
-                font_size=label_font,
-                fill="#111111",
-                semantic_role="geometry_point_label",
-            )
-        )
-
-    for idx, (a, b, value) in enumerate(length_constraints, start=1):
-        if a not in mapped or b not in mapped:
-            continue
-        ax, ay = mapped[a]
-        bx, by = mapped[b]
-        mx = (ax + bx) / 2.0
-        my = (ay + by) / 2.0
-        out.append(
-            ir.Text(
-                id=f"geom_len_{idx}_{a}{b}",
-                x=mx + 4.0,
-                y=my - 4.0,
-                text=value,
-                font_size=label_font,
-                fill="#1F2937",
-                semantic_role="geometry_length_label",
-            )
-        )
-
-    out.extend(_build_perpendicular_marker_elements(mapped_points=mapped, constraints=perp_constraints))
-    return out
-
-
-def _infer_geometry_shape(
-    *,
-    problem_type: str,
-    domain: dict[str, Any],
-    title: str | None,
-) -> str:
-    text_parts = [problem_type, _to_str(title)]
-    for key in ("question_text", "question_expression"):
-        text_parts.append(_to_str(domain.get(key)))
-    lowered = " ".join(text_parts).lower()
-    if "triangle" in lowered:
-        return "triangle"
-    if "circle" in lowered:
-        return "circle"
-    if "trapezoid" in lowered:
-        return "trapezoid"
-    if "parallelogram" in lowered:
-        return "parallelogram"
-    if "rectangle" in lowered:
-        return "rectangle"
-    if "line" in lowered:
-        return "line"
-    return "triangle"
-
-
-def _extract_numeric_tokens(text: str, limit: int = 8) -> list[str]:
-    out: list[str] = []
-    for m in re.finditer(r"-?\d+(?:\.\d+)?", text):
-        out.append(m.group(0))
-        if len(out) >= limit:
-            break
-    return out
-
-
-def _build_geometry_template_elements(
-    *,
-    problem_type: str,
-    domain: dict[str, Any],
-    title: str | None,
-    canvas_w: float,
-    canvas_h: float,
-    font_scale: float,
-) -> list[ir.Element]:
-    region_x, region_y, region_w, region_h = _geometry_region(canvas_w, canvas_h)
-    label_font = max(11, int(round(11 * font_scale)))
-    question_text = _to_str(domain.get("question_text"))
-    numeric_tokens = _extract_numeric_tokens(question_text or _to_str(title), limit=6)
-    shape = _infer_geometry_shape(problem_type=problem_type, domain=domain, title=title)
-
-    out: list[ir.Element] = [
-        ir.Rect(
-            id="geom_template_region",
-            x=region_x,
-            y=region_y,
-            width=region_w,
-            height=region_h,
-            fill="none",
-            stroke="#D1D5DB",
-            stroke_width=1.0,
-            semantic_role="geometry_template_region",
-        )
-    ]
-
-    if shape == "triangle":
-        p1 = (region_x + (region_w * 0.16), region_y + (region_h * 0.86))
-        p2 = (region_x + (region_w * 0.50), region_y + (region_h * 0.16))
-        p3 = (region_x + (region_w * 0.84), region_y + (region_h * 0.86))
-        out.append(
-            ir.Polygon(
-                id="geom_template_shape",
-                points=[p1, p2, p3],
-                fill="none",
-                stroke="#374151",
-                stroke_width=2.2,
-                semantic_role="geometry_shape",
-            )
-        )
-        labels = ["A", "B", "C"]
-        for idx, (x, y) in enumerate((p1, p2, p3)):
-            out.append(
-                ir.Text(
-                    id=f"geom_template_pt_{labels[idx]}",
-                    x=x + 6.0,
-                    y=y - 8.0,
-                    text=labels[idx],
-                    font_size=label_font,
-                    fill="#111111",
-                    semantic_role="geometry_point_label",
-                )
-            )
-    elif shape == "circle":
-        cx = region_x + (region_w * 0.5)
-        cy = region_y + (region_h * 0.52)
-        r = min(region_w, region_h) * 0.32
-        out.append(
-            ir.Circle(
-                id="geom_template_shape",
-                x=cx,
-                y=cy,
-                r=r,
-                fill="none",
-                stroke="#374151",
-                stroke_width=2.2,
-                semantic_role="geometry_shape",
-            )
-        )
-        out.append(
-            ir.Line(
-                id="geom_template_radius",
-                x1=cx,
-                y1=cy,
-                x2=cx + (r * 0.86),
-                y2=cy,
-                stroke="#6B7280",
-                stroke_width=1.8,
-                semantic_role="geometry_radius",
-            )
-        )
-    elif shape == "rectangle":
-        out.append(
-            ir.Rect(
-                id="geom_template_shape",
-                x=region_x + (region_w * 0.18),
-                y=region_y + (region_h * 0.26),
-                width=region_w * 0.64,
-                height=region_h * 0.48,
-                fill="none",
-                stroke="#374151",
-                stroke_width=2.2,
-                semantic_role="geometry_shape",
-            )
-        )
-    elif shape == "parallelogram":
-        x0 = region_x + (region_w * 0.16)
-        y0 = region_y + (region_h * 0.30)
-        w = region_w * 0.66
-        h = region_h * 0.42
-        skew = region_w * 0.14
-        out.append(
-            ir.Polygon(
-                id="geom_template_shape",
-                points=[(x0 + skew, y0), (x0 + w + skew, y0), (x0 + w, y0 + h), (x0, y0 + h)],
-                fill="none",
-                stroke="#374151",
-                stroke_width=2.2,
-                semantic_role="geometry_shape",
-            )
-        )
-    elif shape == "trapezoid":
-        x0 = region_x + (region_w * 0.14)
-        y0 = region_y + (region_h * 0.28)
-        top_w = region_w * 0.42
-        bot_w = region_w * 0.72
-        h = region_h * 0.46
-        out.append(
-            ir.Polygon(
-                id="geom_template_shape",
-                points=[
-                    (x0 + ((bot_w - top_w) / 2.0), y0),
-                    (x0 + ((bot_w + top_w) / 2.0), y0),
-                    (x0 + bot_w, y0 + h),
-                    (x0, y0 + h),
-                ],
-                fill="none",
-                stroke="#374151",
-                stroke_width=2.2,
-                semantic_role="geometry_shape",
-            )
-        )
-    else:  # line
-        y = region_y + (region_h * 0.55)
-        out.append(
-            ir.Line(
-                id="geom_template_shape",
-                x1=region_x + (region_w * 0.12),
-                y1=y,
-                x2=region_x + (region_w * 0.88),
-                y2=y,
-                stroke="#374151",
-                stroke_width=2.2,
-                semantic_role="geometry_shape",
-            )
-        )
-
-    for idx, token in enumerate(numeric_tokens[:3], start=1):
-        out.append(
-            ir.Text(
-                id=f"geom_template_hint_{idx}",
-                x=region_x + region_w + 24.0,
-                y=region_y + 36.0 + (idx * (label_font * 1.6)),
-                text=token,
-                font_size=label_font,
-                fill="#1F2937",
-                semantic_role="geometry_hint",
-            )
-        )
-
-    return out
-
+# geometry reconstruction/template helpers moved to semantic_geometry.py
 
 def _render_geometry3k_reconstruction_lines(
     *,
@@ -1566,29 +1077,31 @@ def _render_geometry3k_reconstruction_lines(
     if not point_positions:
         return []
 
-    line_instances_raw = logic.get("line_instances")
-    line_instances = line_instances_raw if isinstance(line_instances_raw, list) else []
     diagram_logic_raw = logic.get("diagram_logic_form")
     diagram_logic = diagram_logic_raw if isinstance(diagram_logic_raw, list) else []
-    length_constraints = _parse_length_constraints(diagram_logic)
+    point_on_line_constraints = parse_point_on_line_constraints(diagram_logic)
+    point_positions = apply_point_on_line_constraints(point_positions, point_on_line_constraints)
+    line_instances = parse_line_instances(logic)
+    point_positions = auto_snap_points_to_segments(point_positions, line_instances)
+    length_constraints = parse_length_constraints(diagram_logic)
+    equal_constraints = parse_equal_segment_constraints(diagram_logic)
+    circle_constraints = parse_circle_constraints(logic, diagram_logic)
+    angle_constraints = parse_angle_constraints(diagram_logic)
+    perp_constraints = parse_perpendicular_constraints(diagram_logic)
+    parallel_constraints = parse_parallel_constraints(diagram_logic)
 
     label_font = _scaled_font_size(12, default=12, scale=font_scale)
     lines: list[str] = []
     lines.append("    # geometry3k template: diagram reconstruction")
-    for item in line_instances:
-        token = _to_str(item).strip()
-        if len(token) != 2:
-            continue
-        a, b = token[0], token[1]
-        if a not in point_positions or b not in point_positions:
-            continue
-        ax, ay = point_positions[a]
-        bx, by = point_positions[b]
+    merged_edges = simplify_collinear_edges(mapped_points=point_positions, edges=line_instances)
+    for idx, (start_pt, end_pt) in enumerate(merged_edges, start=1):
+        ax, ay = start_pt
+        bx, by = end_pt
         lines.extend(
             [
                 "    p.add(",
                 "        Line(",
-                f"            id={_repr_text(f'geom_line_{a}{b}')},",
+                f"            id={_repr_text(f'geom_line_{idx}')},",
                 f"            x1={_repr_value(ax)},",
                 f"            y1={_repr_value(ay)},",
                 f"            x2={_repr_value(bx)},",
@@ -1600,6 +1113,33 @@ def _render_geometry3k_reconstruction_lines(
                 "    )",
             ]
         )
+
+    circle_elements = build_circle_elements(
+        source_points=point_positions,
+        mapped_points=point_positions,
+        circle_constraints=circle_constraints,
+        default_radius=36.0,
+    )
+    for el in circle_elements:
+        if not isinstance(el, ir.Circle):
+            continue
+        lines.extend(
+            [
+                "    p.add(",
+                "        Circle(",
+                f"            id={_repr_text(el.id)},",
+                f"            cx={_repr_value(el.x)},",
+                f"            cy={_repr_value(el.y)},",
+                f"            r={_repr_value(el.r)},",
+                f"            fill={_repr_text(el.fill or 'none')},",
+                f"            stroke={_repr_text(el.stroke or '#2563EB')},",
+                f"            stroke_width={_repr_value(el.stroke_width or 2.0)},",
+                "            semantic_role=\"geometry_circle\",",
+                "        )",
+                "    )",
+            ]
+        )
+
     for name, (px, py) in point_positions.items():
         lines.extend(
             [
@@ -1650,6 +1190,50 @@ def _render_geometry3k_reconstruction_lines(
                 "    )",
             ]
         )
+
+    perp_elements = build_perpendicular_marker_elements(mapped_points=point_positions, constraints=perp_constraints)
+    parallel_elements = build_parallel_marker_elements(mapped_points=point_positions, constraints=parallel_constraints)
+    dim_elements = build_length_dimension_elements(mapped_points=point_positions, constraints=length_constraints)
+    equal_tick_elements = build_equal_length_tick_elements(mapped_points=point_positions, constraints=equal_constraints)
+    angle_elements = build_angle_marker_elements(
+        mapped_points=point_positions,
+        constraints=angle_constraints,
+        font_size=label_font,
+    )
+    for el in [*perp_elements, *parallel_elements, *dim_elements, *equal_tick_elements, *angle_elements]:
+        if isinstance(el, ir.Line):
+            lines.extend(
+                [
+                    "    p.add(",
+                    "        Line(",
+                    f"            id={_repr_text(el.id)},",
+                    f"            x1={_repr_value(el.x1)},",
+                    f"            y1={_repr_value(el.y1)},",
+                    f"            x2={_repr_value(el.x2)},",
+                    f"            y2={_repr_value(el.y2)},",
+                    f"            stroke={_repr_text(el.stroke or '#111111')},",
+                    f"            stroke_width={_repr_value(el.stroke_width or 2.0)},",
+                    f"            semantic_role={_repr_text(el.semantic_role or 'geometry_marker')},",
+                    "        )",
+                    "    )",
+                ]
+            )
+        elif isinstance(el, ir.Text):
+            lines.extend(
+                [
+                    "    p.add(",
+                    "        Text(",
+                    f"            id={_repr_text(el.id)},",
+                    f"            x={_repr_value(el.x)},",
+                    f"            y={_repr_value(el.y)},",
+                    f"            text={_repr_text(el.text)},",
+                    f"            font_size={_repr_value(el.font_size or label_font)},",
+                    f"            fill={_repr_text(el.fill or '#111111')},",
+                    f"            semantic_role={_repr_text(el.semantic_role or 'geometry_label')},",
+                    "        )",
+                    "    )",
+                ]
+            )
     return lines
 
 
@@ -1827,6 +1411,18 @@ def build_from_semantic_file(
 ) -> dict[str, Path]:
     semantic_path = Path(input_semantic_path)
     semantic = json.loads(semantic_path.read_text(encoding="utf-8"))
+    sidecar_logic_path = semantic_path.parent / "logic_form.json"
+    if sidecar_logic_path.exists():
+        try:
+            raw_logic = json.loads(sidecar_logic_path.read_text(encoding="utf-8"))
+            if isinstance(raw_logic, dict):
+                domain = semantic.get("domain")
+                if not isinstance(domain, dict):
+                    domain = {}
+                    semantic["domain"] = domain
+                domain["logic_form"] = raw_logic
+        except Exception:
+            pass
     problem = build_problem_from_semantic_dict(
         semantic,
         validate_input=validate_input,

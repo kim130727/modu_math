@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}문제 목록 | modu_math Editor{% endblock %}
+{% block content %}
+<section class="panel">
+  <h1>문제 목록</h1>
+  <p class="muted">semantic JSON이 단일 원본입니다. 항목을 선택해 편집을 시작하세요.</p>
+  <div class="list-grid">
+    {% for row in problems %}
+      <a class="problem-card" href="{% url 'editor:problem_edit' row.problem_id %}">
+        <strong>{{ row.problem_id }}</strong>
+        <span>{{ row.title }}</span>
+        <small>{{ row.problem_type }}</small>
+      </a>
+    {% empty %}
+      <div class="empty">등록된 문제가 없습니다. `sample_data/problems/<id>/semantic.json` 파일을 추가해 주세요.</div>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}
+
