@@ -145,7 +145,6 @@ def main(argv: list[str] | None = None) -> int:
         else:
             persisted_files = [
                 output_dir / f"{artifact_prefix}_built.semantic.json",
-                output_dir / f"{artifact_prefix}_built.layout.json",
                 output_dir / f"{artifact_prefix}_built.svg",
             ]
 
@@ -161,12 +160,10 @@ def main(argv: list[str] | None = None) -> int:
 
         if persisted_files and validation_success:
             latest_semantic = output_dir / f"{latest_prefix}.latest.semantic.json"
-            latest_layout = output_dir / f"{latest_prefix}.latest.layout.json"
             latest_svg = output_dir / f"{latest_prefix}.latest.svg"
             shutil.copyfile(persisted_files[0], latest_semantic)
-            shutil.copyfile(persisted_files[1], latest_layout)
-            shutil.copyfile(persisted_files[2], latest_svg)
-            latest_files.extend([str(latest_semantic), str(latest_layout), str(latest_svg)])
+            shutil.copyfile(persisted_files[1], latest_svg)
+            latest_files.extend([str(latest_semantic), str(latest_svg)])
 
     append_run_log(
         runs_path=args.runs_path,

@@ -1,0 +1,170 @@
+{
+  "schema_version": "modu_math.semantic.v3",
+  "render_contract_version": "modu_math.render.v1",
+  "problem_id": "0012",
+  "problem_type": "prism_net_edge_count",
+  "metadata": {
+    "source": {
+      "input_type": "png",
+      "input_path": "C:/projects/modu_math/problem/0012/input/0012.png",
+      "generator": "rule_parser",
+      "parser_name": "PngToSemanticDraftParser",
+      "confidence": 0.6,
+      "created_at": "2026-04-07T04:19:43.810524+00:00"
+    },
+    "warnings": []
+  },
+  "domain": {
+    "instruction": "다음은 각기둥의 전개도입니다.",
+    "question": "전개도를 접었을 때 만들어지는 각기둥에서 높이를 잴 수 있는 모서리는 모두 몇 개입니까?",
+    "answer_count": 6,
+    "prism_face_count": 6,
+    "show_instruction": false,
+    "show_answer_blank": false
+  },
+  "render": {
+    "canvas": {
+      "width": 800.0,
+      "height": 520.0,
+      "background": "#F6F6F6"
+    },
+    "elements": [
+      {
+        "id": "q1",
+        "type": "text",
+        "text": "전개도를 접었을 때 만들어지는 각기둥에서 높이를 잴",
+        "x": 18.599386,
+        "y": 47.650887,
+        "anchor": "start",
+        "font_family": "Malgun Gothic",
+        "font_size": 29.6293,
+        "fill": "#222222",
+        "group": "text",
+        "semantic_role": "instruction",
+        "font_weight": "normal"
+      },
+      {
+        "id": "q2",
+        "type": "text",
+        "text": "수 있는 모서리는 모두 몇 개입니까?",
+        "x": 16.128691,
+        "y": 89.903282,
+        "anchor": "start",
+        "font_family": "Malgun Gothic",
+        "font_size": 30.7385,
+        "fill": "#222222",
+        "group": "text",
+        "semantic_role": "instruction",
+        "font_weight": "normal"
+      },
+      {
+        "id": "strip_rect",
+        "type": "rect",
+        "x": 250,
+        "y": 210,
+        "width": 300,
+        "height": 130,
+        "stroke": "#333333",
+        "stroke_width": 2,
+        "fill": "#CFCFCF",
+        "group": "shape",
+        "semantic_role": "net"
+      },
+      {
+        "id": "fold_1",
+        "type": "line",
+        "x1": 300,
+        "y1": 210,
+        "x2": 300,
+        "y2": 340,
+        "stroke": "#333333",
+        "stroke_width": 1,
+        "dasharray": "4 4",
+        "group": "shape",
+        "semantic_role": "fold_line"
+      },
+      {
+        "id": "fold_2",
+        "type": "line",
+        "x1": 350,
+        "y1": 210,
+        "x2": 350,
+        "y2": 340,
+        "stroke": "#333333",
+        "stroke_width": 1,
+        "dasharray": "4 4",
+        "group": "shape",
+        "semantic_role": "fold_line"
+      },
+      {
+        "id": "fold_3",
+        "type": "line",
+        "x1": 400,
+        "y1": 210,
+        "x2": 400,
+        "y2": 340,
+        "stroke": "#333333",
+        "stroke_width": 1,
+        "dasharray": "4 4",
+        "group": "shape",
+        "semantic_role": "fold_line"
+      },
+      {
+        "id": "fold_4",
+        "type": "line",
+        "x1": 450,
+        "y1": 210,
+        "x2": 450,
+        "y2": 340,
+        "stroke": "#333333",
+        "stroke_width": 1,
+        "dasharray": "4 4",
+        "group": "shape",
+        "semantic_role": "fold_line"
+      },
+      {
+        "id": "fold_5",
+        "type": "line",
+        "x1": 500,
+        "y1": 210,
+        "x2": 500,
+        "y2": 340,
+        "stroke": "#333333",
+        "stroke_width": 1,
+        "dasharray": "4 4",
+        "group": "shape",
+        "semantic_role": "fold_line"
+      },
+      {
+        "id": "top_hex",
+        "type": "polygon",
+        "points": "350.466,209.104 320.48,160.912 350.466,112.72 399.534,112.72 429.52,160.912 399.534,209.104 ",
+        "stroke": "#333333",
+        "stroke_width": 2,
+        "fill": "#CFCFCF",
+        "group": "shape",
+        "semantic_role": "net"
+      },
+      {
+        "id": "bot_hex",
+        "type": "polygon",
+        "points": "350.647,340.269 320.489,389.088 350.647,437.907 399.997,437.907 430.155,389.088 399.997,340.269 ",
+        "stroke": "#333333",
+        "stroke_width": 2,
+        "fill": "#CFCFCF",
+        "group": "shape",
+        "semantic_role": "net"
+      }
+    ]
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": []
+  },
+  "meta": {
+    "source_svg": "C:/projects/modu_math/problem/0012/svg/edit/semantic_edit.svg",
+    "derived_from": "C:/projects/modu_math/problem/0012/json/semantic/semantic.json",
+    "stage": "edit"
+  }
+}

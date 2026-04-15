@@ -20,5 +20,4 @@ def test_rag_pipeline_persist_generated_outputs(tmp_path: Path) -> None:
     assert error == ""
     assert (out_dir / "p_test_readable.generated.py").exists()
     assert (out_dir / "p_test_readable_built.semantic.json").exists()
-    assert (out_dir / "p_test_readable_built.layout.json").exists()
     assert (out_dir / "p_test_readable_built.svg").exists()

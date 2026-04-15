@@ -45,7 +45,7 @@ def build_few_shot_prompt(
     lines.append(json.dumps(input_meta, ensure_ascii=False, indent=2))
     lines.append("")
     lines.append("# Contract Rules")
-    lines.append("- Keep semantic/layout canonical contract valid.")
+    lines.append("- Keep semantic canonical contract valid.")
     lines.append("- Prefer simple, readable DSL composition.")
     lines.append("- Do not invent unsupported primitives.")
     lines.append("")

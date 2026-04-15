@@ -9,7 +9,6 @@ def _write_index(index_path: Path) -> None:
         "problem_id": "0017",
         "py_path": "0017/0017.py",
         "semantic_path": "0017/output/json/0017.semantic.json",
-        "layout_path": "0017/output/json/0017.layout.json",
         "tags": ["word_problem", "multiplication"],
         "validation_passed": True,
         "updated_at": "2026-01-01T00:00:00+00:00",

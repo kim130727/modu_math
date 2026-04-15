@@ -7,7 +7,6 @@ class RagIndexEntry(TypedDict):
     problem_id: str
     py_path: str
     semantic_path: str
-    layout_path: str
     tags: list[str]
     validation_passed: bool
     updated_at: str

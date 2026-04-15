@@ -5,7 +5,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-from ..schema import validate_layout_json, validate_semantic_json
+from ..schema import validate_semantic_json
 from ..validator import validate_problem_bundle
 from .index_schema import RagIndexEntry
 
@@ -42,20 +42,6 @@ def _find_semantic_file(problem_dir: Path) -> Path | None:
     return None
 
 
-def _find_layout_file(problem_dir: Path) -> Path | None:
-    output_json_dir = problem_dir / "output" / "json"
-    if output_json_dir.exists():
-        layout_candidates = sorted(output_json_dir.glob("*.layout.json"))
-        if layout_candidates:
-            return layout_candidates[0]
-
-    input_layout = problem_dir / "input" / "json" / "layout_final.json"
-    if input_layout.exists():
-        return input_layout
-
-    return None
-
-
 def _infer_tags(problem_id: str, problem_type: str, topic: str) -> list[str]:
     tokens = [token for token in problem_id.replace("-", "_").split("_") if token]
     tags = set(tokens)
@@ -71,9 +57,7 @@ def _validate_discovered_files(
     *,
     problem_dir: Path,
     semantic_path: Path | None,
-    layout_path: Path | None,
     semantic: dict[str, Any],
-    layout: dict[str, Any],
 ) -> tuple[bool, list[str]]:
     errors = validate_problem_bundle(problem_dir)
     if not errors:
@@ -88,30 +72,22 @@ def _validate_discovered_files(
         except Exception as exc:  # noqa: BLE001
             fallback_errors.append(f"Discovered semantic validation failed ({semantic_path}): {exc}")
 
-    if layout_path is None or not layout:
-        fallback_errors.append("Missing discovered layout file.")
-    else:
-        try:
-            validate_layout_json(layout)
-        except Exception as exc:  # noqa: BLE001
-            fallback_errors.append(f"Discovered layout validation failed ({layout_path}): {exc}")
-
     if not fallback_errors:
         return True, []
     return False, fallback_errors
 
 
-def _infer_layout_pattern(layout: dict[str, Any]) -> str:
-    summary = layout.get("summary") if isinstance(layout, dict) else None
-    if isinstance(summary, dict):
-        total = summary.get("total_elements")
-        if isinstance(total, int):
-            if total <= 10:
-                return "simple"
-            if total <= 30:
-                return "medium"
-            return "dense"
-    return "unknown"
+def _infer_layout_pattern_from_semantic(semantic: dict[str, Any]) -> str:
+    render = semantic.get("render") if isinstance(semantic, dict) else None
+    elements = render.get("elements") if isinstance(render, dict) else None
+    total = len(elements) if isinstance(elements, list) else 0
+    if total <= 0:
+        return "unknown"
+    if total <= 10:
+        return "simple"
+    if total <= 30:
+        return "medium"
+    return "dense"
 
 
 def _infer_answer_style(semantic: dict[str, Any]) -> str:
@@ -146,17 +122,12 @@ def build_index_entries(examples_root: str | Path = "examples/problem") -> list[
 
         py_path = _find_python_file(problem_dir)
         semantic_path = _find_semantic_file(problem_dir)
-        layout_path = _find_layout_file(problem_dir)
-
         semantic = _load_json(semantic_path) if semantic_path and semantic_path.exists() else {}
-        layout = _load_json(layout_path) if layout_path and layout_path.exists() else {}
 
         validation_passed, validation_errors = _validate_discovered_files(
             problem_dir=problem_dir,
             semantic_path=semantic_path,
-            layout_path=layout_path,
             semantic=semantic,
-            layout=layout,
         )
 
         problem_id = str(semantic.get("problem_id") or problem_dir.name)
@@ -179,7 +150,6 @@ def build_index_entries(examples_root: str | Path = "examples/problem") -> list[
             "problem_id": problem_id,
             "py_path": _relative(py_path, root),
             "semantic_path": _relative(semantic_path, root),
-            "layout_path": _relative(layout_path, root),
             "tags": tags,
             "validation_passed": validation_passed,
             "updated_at": _now_iso(),
@@ -187,7 +157,7 @@ def build_index_entries(examples_root: str | Path = "examples/problem") -> list[
             "grade": grade,
             "topic": topic,
             "visual_primitives": visual_primitives,
-            "layout_pattern": _infer_layout_pattern(layout),
+            "layout_pattern": _infer_layout_pattern_from_semantic(semantic),
             "answer_style": _infer_answer_style(semantic),
             "failure_notes": "; ".join(validation_errors),
             "source_image_hash": "",

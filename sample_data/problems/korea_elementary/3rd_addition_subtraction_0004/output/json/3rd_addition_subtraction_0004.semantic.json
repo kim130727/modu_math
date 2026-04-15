@@ -1,0 +1,181 @@
+{
+  "schema_version": "modu_math.semantic.v3",
+  "render_contract_version": "modu_math.render.v1",
+  "problem_id": "3rd_addition_subtraction_0004",
+  "problem_type": "inequality_digit_count",
+  "title": "부등식 가능한 수",
+  "metadata": {
+    "source": {
+      "input_type": "python_dsl",
+      "generator": "modu_semantic"
+    },
+    "warnings": []
+  },
+  "domain": {
+    "inequality": "4□5 + 298 > 763",
+    "digit_range": [
+      0,
+      9
+    ],
+    "count": 3,
+    "valid_digits": [
+      7,
+      8,
+      9
+    ]
+  },
+  "render": {
+    "canvas": {
+      "width": 406.0,
+      "height": 181.0,
+      "background": "#F6F6F6"
+    },
+    "elements": [
+      {
+        "id": "bg",
+        "z_index": 0,
+        "anchor": "start",
+        "alignment": "left",
+        "stroke": "none",
+        "stroke_width": 0,
+        "fill": "#FFFFFF",
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "type": "rect",
+        "x": 0.0,
+        "y": 0.0,
+        "width": 406,
+        "height": 181
+      },
+      {
+        "id": "i1",
+        "z_index": 0,
+        "anchor": "start",
+        "alignment": "left",
+        "fill": "#222222",
+        "font_family": "Malgun Gothic",
+        "font_size": 17,
+        "font_weight": "normal",
+        "type": "text",
+        "text": "0부터 9까지의 수 중에서 □에 들어갈 수를",
+        "x": 6.0,
+        "y": 30.0
+      },
+      {
+        "id": "i2",
+        "z_index": 0,
+        "anchor": "start",
+        "alignment": "left",
+        "fill": "#222222",
+        "font_family": "Malgun Gothic",
+        "font_size": 17,
+        "font_weight": "normal",
+        "type": "text",
+        "text": "모두 구하고 개수를 쓰시오.",
+        "x": 6.0,
+        "y": 60.0
+      },
+      {
+        "id": "eq_box",
+        "z_index": 0,
+        "anchor": "start",
+        "alignment": "left",
+        "stroke": "#666666",
+        "stroke_width": 1.5,
+        "fill": "none",
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "type": "rect",
+        "x": 2.0,
+        "y": 78.0,
+        "width": 402,
+        "height": 56,
+        "rx": 10,
+        "ry": 10
+      },
+      {
+        "id": "eq",
+        "z_index": 0,
+        "anchor": "middle",
+        "alignment": "left",
+        "fill": "#222222",
+        "font_family": "Malgun Gothic",
+        "font_size": 17,
+        "font_weight": "normal",
+        "type": "text",
+        "text": "4□5+298>763",
+        "x": 201.0,
+        "y": 112.0
+      },
+      {
+        "id": "lp",
+        "z_index": 0,
+        "anchor": "start",
+        "alignment": "left",
+        "fill": "#222222",
+        "font_family": "Malgun Gothic",
+        "font_size": 24,
+        "font_weight": "normal",
+        "type": "text",
+        "text": "(",
+        "x": 230.0,
+        "y": 168.0
+      },
+      {
+        "id": "rp",
+        "z_index": 0,
+        "anchor": "start",
+        "alignment": "left",
+        "fill": "#222222",
+        "font_family": "Malgun Gothic",
+        "font_size": 24,
+        "font_weight": "normal",
+        "type": "text",
+        "text": ")",
+        "x": 364.0,
+        "y": 168.0
+      },
+      {
+        "id": "gaesu",
+        "z_index": 0,
+        "anchor": "start",
+        "alignment": "left",
+        "fill": "#222222",
+        "font_family": "Malgun Gothic",
+        "font_size": 17,
+        "font_weight": "normal",
+        "type": "text",
+        "text": "개",
+        "x": 378.0,
+        "y": 166.0
+      },
+      {
+        "id": "answer_count",
+        "semantic_role": "answer_anchor",
+        "z_index": 0,
+        "anchor": "start",
+        "alignment": "left",
+        "stroke": "none",
+        "stroke_width": 0,
+        "fill": "none",
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "type": "rect",
+        "x": 246.0,
+        "y": 146.0,
+        "width": 110,
+        "height": 28
+      }
+    ]
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [
+      {
+        "target": "answer_count",
+        "value": "3"
+      }
+    ]
+  }
+}

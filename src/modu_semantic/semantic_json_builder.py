@@ -1435,7 +1435,6 @@ def build_from_semantic_file(
 
     outputs = {
         "semantic": prefix.with_suffix(".semantic.json"),
-        "layout": prefix.with_suffix(".layout.json"),
         "svg": prefix.with_suffix(".svg"),
     }
     problem_svg = outputs["svg"].read_text(encoding="utf-8")

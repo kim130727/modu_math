@@ -1,0 +1,1317 @@
+{
+  "schema_version": "modu_math.semantic.v3",
+  "render_contract_version": "modu_math.render.v1",
+  "problem_id": "0013",
+  "problem_type": "pie_chart_total_from_part",
+  "title": "좋아하는 과일별 학생 수",
+  "metadata": {
+    "source": {
+      "input_type": "python_dsl",
+      "generator": "modu_semantic"
+    },
+    "warnings": []
+  },
+  "domain": {
+    "instruction": "준호네 학교 학생들이 좋아하는 과일을 조사한 원그래프입니다.",
+    "question": "바나나를 좋아하는 학생이 60명이면 전체 학생 수는 몇 명인가요?",
+    "title": "좋아하는 과일별 학생 수",
+    "banana_count": 60,
+    "banana_ratio_percent": 15,
+    "answer_value": 400
+  },
+  "render": {
+    "canvas": {
+      "width": 805.0,
+      "height": 591.0,
+      "background": "#F6F6F6"
+    },
+    "elements": [
+      {
+        "id": "q1",
+        "semantic_role": "instruction",
+        "z_index": 0,
+        "anchor": "start",
+        "alignment": "left",
+        "fill": "#222222",
+        "font_family": "Malgun Gothic",
+        "font_size": 30,
+        "font_weight": "normal",
+        "type": "text",
+        "text": "준호네 학교 학생들이 좋아하는 과일을 조사한 원그래프입니다.",
+        "x": 14.0,
+        "y": 44.0
+      },
+      {
+        "id": "q2",
+        "semantic_role": "instruction",
+        "z_index": 0,
+        "anchor": "start",
+        "alignment": "left",
+        "fill": "#222222",
+        "font_family": "Malgun Gothic",
+        "font_size": 30,
+        "font_weight": "normal",
+        "type": "text",
+        "text": "바나나를 좋아하는 학생이 60명이면 전체 학생 수는",
+        "x": 14.0,
+        "y": 94.0
+      },
+      {
+        "id": "q3",
+        "semantic_role": "instruction",
+        "z_index": 0,
+        "anchor": "start",
+        "alignment": "left",
+        "fill": "#222222",
+        "font_family": "Malgun Gothic",
+        "font_size": 30,
+        "font_weight": "normal",
+        "type": "text",
+        "text": "몇 명인가요?",
+        "x": 14.0,
+        "y": 142.0
+      },
+      {
+        "id": "title",
+        "semantic_role": "label",
+        "z_index": 0,
+        "anchor": "start",
+        "alignment": "left",
+        "fill": "#222222",
+        "font_family": "Malgun Gothic",
+        "font_size": 32,
+        "font_weight": "normal",
+        "type": "text",
+        "text": "좋아하는 과일별 학생 수",
+        "x": 206.0,
+        "y": 204.0
+      },
+      {
+        "id": "sector_1",
+        "semantic_role": "chart_sector",
+        "z_index": 0,
+        "anchor": "start",
+        "alignment": "left",
+        "stroke": "#222222",
+        "stroke_width": 1.6,
+        "fill": "#EFEFEF",
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "type": "polygon",
+        "points": [
+          [
+            400.0,
+            392.0
+          ],
+          [
+            400.0,
+            252.0
+          ],
+          [
+            407.8498626132068,
+            252.22024589750566
+          ],
+          [
+            415.6750266544631,
+            252.88029061494603
+          ],
+          [
+            423.4508712626631,
+            253.97805740744698
+          ],
+          [
+            431.152930753884,
+            255.5100922945447
+          ],
+          [
+            438.7569715994789,
+            257.4715749276861
+          ],
+          [
+            446.23906867372335,
+            259.8563337568286
+          ],
+          [
+            453.5756805311126,
+            262.65686544841986
+          ],
+          [
+            460.7437234764581,
+            265.8643584936613
+          ],
+          [
+            467.72064419473355,
+            269.4687209327745
+          ],
+          [
+            474.48449071214714,
+            273.45861210804026
+          ],
+          [
+            481.01398146517283,
+            277.82147834570355
+          ],
+          [
+            487.28857226022274,
+            282.54359245447586
+          ],
+          [
+            493.28852091328054,
+            287.61009691635684
+          ],
+          [
+            498.99494936611666,
+            293.00505063388334
+          ],
+          [
+            504.38990308364316,
+            298.71147908671946
+          ],
+          [
+            509.45640754552414,
+            304.71142773977726
+          ],
+          [
+            514.1785216542964,
+            310.98601853482717
+          ],
+          [
+            518.5413878919597,
+            317.51550928785286
+          ],
+          [
+            522.5312790672256,
+            324.27935580526645
+          ],
+          [
+            526.1356415063387,
+            331.2562765235419
+          ],
+          [
+            529.3431345515801,
+            338.42431946888746
+          ],
+          [
+            532.1436662431714,
+            345.7609313262766
+          ],
+          [
+            534.5284250723139,
+            353.2430284005211
+          ],
+          [
+            536.4899077054553,
+            360.84706924611595
+          ],
+          [
+            538.021942592553,
+            368.5491287373369
+          ],
+          [
+            539.119709385054,
+            376.3249733455369
+          ],
+          [
+            539.7797541024943,
+            384.1501373867932
+          ],
+          [
+            540.0,
+            392.0
+          ]
+        ]
+      },
+      {
+        "id": "radial_1",
+        "semantic_role": "chart_radial",
+        "z_index": 0,
+        "anchor": "start",
+        "alignment": "left",
+        "stroke": "#222222",
+        "stroke_width": 1.6,
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "type": "line",
+        "x1": 400.0,
+        "y1": 392.0,
+        "x2": 400.0,
+        "y2": 252.0
+      },
+      {
+        "id": "fruit_1",
+        "semantic_role": "chart_label",
+        "z_index": 0,
+        "anchor": "middle",
+        "alignment": "left",
+        "fill": "#222222",
+        "font_family": "Malgun Gothic",
+        "font_size": 26,
+        "font_weight": "normal",
+        "type": "text",
+        "text": "사과",
+        "x": 461.37686860699233,
+        "y": 330.62313139300767
+      },
+      {
+        "id": "sector_2",
+        "semantic_role": "chart_sector",
+        "z_index": 0,
+        "anchor": "start",
+        "alignment": "left",
+        "stroke": "#222222",
+        "stroke_width": 1.6,
+        "fill": "#E8E8E8",
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "type": "polygon",
+        "points": [
+          [
+            400.0,
+            392.0
+          ],
+          [
+            540.0,
+            392.0
+          ],
+          [
+            539.859029315784,
+            398.2810762490721
+          ],
+          [
+            539.4364011593334,
+            404.5495032464807
+          ],
+          [
+            538.7329666475109,
+            410.7926572144718
+          ],
+          [
+            537.7501424038081,
+            416.9979652718091
+          ],
+          [
+            536.4899077054553,
+            423.152930753884
+          ],
+          [
+            534.9548004974195,
+            429.2451583793345
+          ],
+          [
+            533.1479122813215,
+            435.26237921249265
+          ],
+          [
+            531.0728818895632,
+            441.19247537138796
+          ],
+          [
+            528.7338881572031,
+            447.0235044315493
+          ],
+          [
+            526.1356415063387,
+            452.7437234764581
+          ],
+          [
+            523.2833744599433,
+            458.3416127462198
+          ],
+          [
+            520.1828311042613,
+            463.8058988368268
+          ],
+          [
+            516.8402555209824,
+            469.12557740329436
+          ],
+          [
+            513.2623792124926,
+            474.28993532094626
+          ],
+          [
+            509.45640754552414,
+            479.2885722602227
+          ],
+          [
+            505.4300052405055,
+            484.1114216315598
+          ],
+          [
+            501.1912809358348,
+            488.74877085816104
+          ],
+          [
+            496.74877085816104,
+            493.1912809358348
+          ],
+          [
+            492.1114216315598,
+            497.4300052405055
+          ],
+          [
+            487.28857226022274,
+            501.45640754552414
+          ],
+          [
+            482.28993532094626,
+            505.26237921249265
+          ],
+          [
+            477.12557740329436,
+            508.8402555209824
+          ],
+          [
+            471.8058988368268,
+            512.1828311042613
+          ],
+          [
+            466.3416127462198,
+            515.2833744599433
+          ],
+          [
+            460.7437234764581,
+            518.1356415063387
+          ],
+          [
+            455.0235044315493,
+            520.7338881572031
+          ],
+          [
+            449.192475371388,
+            523.0728818895632
+          ],
+          [
+            443.26237921249265,
+            525.1479122813215
+          ]
+        ]
+      },
+      {
+        "id": "radial_2",
+        "semantic_role": "chart_radial",
+        "z_index": 0,
+        "anchor": "start",
+        "alignment": "left",
+        "stroke": "#222222",
+        "stroke_width": 1.6,
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "type": "line",
+        "x1": 400.0,
+        "y1": 392.0,
+        "x2": 540.0,
+        "y2": 392.0
+      },
+      {
+        "id": "fruit_2",
+        "semantic_role": "chart_label",
+        "z_index": 0,
+        "anchor": "middle",
+        "alignment": "left",
+        "fill": "#222222",
+        "font_family": "Malgun Gothic",
+        "font_size": 26,
+        "font_weight": "normal",
+        "type": "text",
+        "text": "포도",
+        "x": 470.22267511174545,
+        "y": 443.01975989898665
+      },
+      {
+        "id": "sector_3",
+        "semantic_role": "chart_sector",
+        "z_index": 0,
+        "anchor": "start",
+        "alignment": "left",
+        "stroke": "#222222",
+        "stroke_width": 1.6,
+        "fill": "#DDDDDD",
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "type": "polygon",
+        "points": [
+          [
+            400.0,
+            392.0
+          ],
+          [
+            443.26237921249265,
+            525.1479122813215
+          ],
+          [
+            438.7569715994789,
+            526.5284250723139
+          ],
+          [
+            434.2076568593052,
+            527.7565328527362
+          ],
+          [
+            429.6195888348168,
+            528.8308443197527
+          ],
+          [
+            424.99796527180916,
+            529.7501424038081
+          ],
+          [
+            420.3480219305878,
+            530.5133856474251
+          ],
+          [
+            415.6750266544631,
+            531.119709385054
+          ],
+          [
+            410.9842734018983,
+            531.5684267226379
+          ],
+          [
+            406.2810762490721,
+            531.859029315784
+          ],
+          [
+            401.5707633696504,
+            531.9911879456581
+          ],
+          [
+            396.85867099858734,
+            531.9647528919509
+          ],
+          [
+            392.1501373867931,
+            531.7797541024943
+          ],
+          [
+            387.4504967535193,
+            531.4364011593334
+          ],
+          [
+            382.76507324331,
+            530.935083041295
+          ],
+          [
+            378.0991748943677,
+            530.2763676833192
+          ],
+          [
+            373.45808762516504,
+            529.4610013330566
+          ],
+          [
+            368.847069246116,
+            528.4899077054553
+          ],
+          [
+            364.27134350309007,
+            527.3641869363009
+          ],
+          [
+            359.73609415951756,
+            526.0851143358902
+          ],
+          [
+            355.2464591237906,
+            524.6541389442541
+          ],
+          [
+            350.80752462861204,
+            523.0728818895632
+          ],
+          [
+            346.42431946888746,
+            521.3431345515801
+          ],
+          [
+            342.1018093046871,
+            519.4668565322343
+          ],
+          [
+            337.84489103573253,
+            517.4461734356215
+          ],
+          [
+            333.65838725378023,
+            515.2833744599433
+          ],
+          [
+            329.547040779188,
+            512.9809098041117
+          ],
+          [
+            325.51550928785286,
+            510.5413878919598
+          ],
+          [
+            321.5683600346076,
+            507.9675724172023
+          ],
+          [
+            317.71006467905374,
+            505.26237921249265
+          ]
+        ]
+      },
+      {
+        "id": "radial_3",
+        "semantic_role": "chart_radial",
+        "z_index": 0,
+        "anchor": "start",
+        "alignment": "left",
+        "stroke": "#222222",
+        "stroke_width": 1.6,
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "type": "line",
+        "x1": 400.0,
+        "y1": 392.0,
+        "x2": 443.26237921249265,
+        "y2": 525.1479122813215
+      },
+      {
+        "id": "fruit_3",
+        "semantic_role": "chart_label",
+        "z_index": 0,
+        "anchor": "middle",
+        "alignment": "left",
+        "fill": "#222222",
+        "font_family": "Malgun Gothic",
+        "font_size": 26,
+        "font_weight": "normal",
+        "type": "text",
+        "text": "바나나",
+        "x": 386.421488434508,
+        "y": 477.731347963658
+      },
+      {
+        "id": "sector_4",
+        "semantic_role": "chart_sector",
+        "z_index": 0,
+        "anchor": "start",
+        "alignment": "left",
+        "stroke": "#222222",
+        "stroke_width": 1.6,
+        "fill": "#C9C9C9",
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "type": "polygon",
+        "points": [
+          [
+            400.0,
+            392.0
+          ],
+          [
+            317.71006467905374,
+            505.26237921249265
+          ],
+          [
+            312.71142773977726,
+            501.45640754552414
+          ],
+          [
+            307.8885783684402,
+            497.4300052405055
+          ],
+          [
+            303.25122914183896,
+            493.1912809358348
+          ],
+          [
+            298.8087190641652,
+            488.74877085816104
+          ],
+          [
+            294.5699947594945,
+            484.1114216315598
+          ],
+          [
+            290.54359245447586,
+            479.28857226022274
+          ],
+          [
+            286.73762078750735,
+            474.28993532094626
+          ],
+          [
+            283.15974447901766,
+            469.1255774032944
+          ],
+          [
+            279.81716889573875,
+            463.8058988368269
+          ],
+          [
+            276.71662554005667,
+            458.3416127462198
+          ],
+          [
+            273.86435849366137,
+            452.7437234764582
+          ],
+          [
+            271.26611184279693,
+            447.0235044315493
+          ],
+          [
+            268.92711811043677,
+            441.19247537138796
+          ],
+          [
+            266.8520877186785,
+            435.26237921249265
+          ],
+          [
+            265.04519950258054,
+            429.24515837933455
+          ],
+          [
+            263.51009229454473,
+            423.15293075388405
+          ],
+          [
+            262.2498575961919,
+            416.99796527180916
+          ],
+          [
+            261.26703335248914,
+            410.7926572144718
+          ],
+          [
+            260.56359884066654,
+            404.5495032464807
+          ],
+          [
+            260.140970684216,
+            398.28107624907204
+          ],
+          [
+            260.0,
+            392.0
+          ],
+          [
+            260.140970684216,
+            385.71892375092796
+          ],
+          [
+            260.56359884066654,
+            379.4504967535193
+          ],
+          [
+            261.26703335248914,
+            373.2073427855282
+          ],
+          [
+            262.2498575961919,
+            367.0020347281909
+          ],
+          [
+            263.51009229454473,
+            360.847069246116
+          ],
+          [
+            265.04519950258054,
+            354.75484162066545
+          ],
+          [
+            266.8520877186785,
+            348.73762078750735
+          ]
+        ]
+      },
+      {
+        "id": "radial_4",
+        "semantic_role": "chart_radial",
+        "z_index": 0,
+        "anchor": "start",
+        "alignment": "left",
+        "stroke": "#222222",
+        "stroke_width": 1.6,
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "type": "line",
+        "x1": 400.0,
+        "y1": 392.0,
+        "x2": 317.71006467905374,
+        "y2": 505.26237921249265
+      },
+      {
+        "id": "fruit_4",
+        "semantic_role": "chart_label",
+        "z_index": 0,
+        "anchor": "middle",
+        "alignment": "left",
+        "fill": "#222222",
+        "font_family": "Malgun Gothic",
+        "font_size": 26,
+        "font_weight": "normal",
+        "type": "text",
+        "text": "복숭아",
+        "x": 317.44829438558065,
+        "y": 418.82267511174547
+      },
+      {
+        "id": "sector_5",
+        "semantic_role": "chart_sector",
+        "z_index": 0,
+        "anchor": "start",
+        "alignment": "left",
+        "stroke": "#222222",
+        "stroke_width": 1.6,
+        "fill": "#B3B3B3",
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "type": "polygon",
+        "points": [
+          [
+            400.0,
+            392.0
+          ],
+          [
+            266.8520877186785,
+            348.73762078750735
+          ],
+          [
+            268.9271181104368,
+            342.807524628612
+          ],
+          [
+            271.26611184279693,
+            336.97649556845073
+          ],
+          [
+            273.8643584936613,
+            331.2562765235419
+          ],
+          [
+            276.71662554005667,
+            325.65838725378023
+          ],
+          [
+            279.81716889573875,
+            320.1941011631732
+          ],
+          [
+            283.1597444790176,
+            314.87442259670564
+          ],
+          [
+            286.73762078750735,
+            309.71006467905374
+          ],
+          [
+            290.5435924544758,
+            304.7114277397773
+          ],
+          [
+            294.5699947594945,
+            299.8885783684402
+          ],
+          [
+            298.8087190641652,
+            295.2512291418389
+          ],
+          [
+            303.25122914183896,
+            290.8087190641652
+          ],
+          [
+            307.8885783684402,
+            286.5699947594945
+          ],
+          [
+            312.71142773977726,
+            282.54359245447586
+          ],
+          [
+            317.71006467905374,
+            278.73762078750735
+          ],
+          [
+            322.87442259670564,
+            275.15974447901766
+          ],
+          [
+            328.1941011631731,
+            271.81716889573875
+          ],
+          [
+            333.6583872537802,
+            268.7166255400567
+          ],
+          [
+            339.2562765235418,
+            265.86435849366137
+          ],
+          [
+            344.9764955684507,
+            263.26611184279693
+          ],
+          [
+            350.807524628612,
+            260.9271181104368
+          ],
+          [
+            356.73762078750735,
+            258.8520877186785
+          ],
+          [
+            362.75484162066545,
+            257.04519950258054
+          ],
+          [
+            368.84706924611584,
+            255.51009229454473
+          ],
+          [
+            375.00203472819084,
+            254.24985759619184
+          ],
+          [
+            381.2073427855282,
+            253.26703335248914
+          ],
+          [
+            387.4504967535194,
+            252.56359884066654
+          ],
+          [
+            393.7189237509279,
+            252.14097068421594
+          ],
+          [
+            400.0,
+            252.0
+          ]
+        ]
+      },
+      {
+        "id": "radial_5",
+        "semantic_role": "chart_radial",
+        "z_index": 0,
+        "anchor": "start",
+        "alignment": "left",
+        "stroke": "#222222",
+        "stroke_width": 1.6,
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "type": "line",
+        "x1": 400.0,
+        "y1": 392.0,
+        "x2": 266.8520877186785,
+        "y2": 348.73762078750735
+      },
+      {
+        "id": "fruit_5",
+        "semantic_role": "chart_label",
+        "z_index": 0,
+        "anchor": "middle",
+        "alignment": "left",
+        "fill": "#222222",
+        "font_family": "Malgun Gothic",
+        "font_size": 26,
+        "font_weight": "normal",
+        "type": "text",
+        "text": "기타",
+        "x": 348.98024010101335,
+        "y": 321.77732488825455
+      },
+      {
+        "id": "tick_00",
+        "semantic_role": "scale_tick",
+        "z_index": 0,
+        "anchor": "start",
+        "alignment": "left",
+        "stroke": "#222222",
+        "stroke_width": 1.4,
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "type": "line",
+        "x1": 400.0,
+        "y1": 253.0,
+        "x2": 400.0,
+        "y2": 266.0
+      },
+      {
+        "id": "tick_01",
+        "semantic_role": "scale_tick",
+        "z_index": 0,
+        "anchor": "start",
+        "alignment": "left",
+        "stroke": "#222222",
+        "stroke_width": 1.4,
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "type": "line",
+        "x1": 442.9533622181177,
+        "y1": 259.8031442349737,
+        "x2": 438.93614129124336,
+        "y2": 272.16687894681064
+      },
+      {
+        "id": "tick_02",
+        "semantic_role": "scale_tick",
+        "z_index": 0,
+        "anchor": "start",
+        "alignment": "left",
+        "stroke": "#222222",
+        "stroke_width": 1.4,
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "type": "line",
+        "x1": 481.70215006865374,
+        "y1": 279.5466377818823,
+        "x2": 474.0609417888516,
+        "y2": 290.06385870875664
+      },
+      {
+        "id": "tick_03",
+        "semantic_role": "scale_tick",
+        "z_index": 0,
+        "anchor": "start",
+        "alignment": "left",
+        "stroke": "#222222",
+        "stroke_width": 1.4,
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "type": "line",
+        "x1": 512.4533622181177,
+        "y1": 310.29784993134626,
+        "x2": 501.93614129124336,
+        "y2": 317.9390582111484
+      },
+      {
+        "id": "tick_04",
+        "semantic_role": "scale_tick",
+        "z_index": 0,
+        "anchor": "start",
+        "alignment": "left",
+        "stroke": "#222222",
+        "stroke_width": 1.4,
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "type": "line",
+        "x1": 532.1968557650264,
+        "y1": 349.0466377818823,
+        "x2": 519.8331210531893,
+        "y2": 353.06385870875664
+      },
+      {
+        "id": "tick_05",
+        "semantic_role": "scale_tick",
+        "z_index": 0,
+        "anchor": "start",
+        "alignment": "left",
+        "stroke": "#222222",
+        "stroke_width": 1.4,
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "type": "line",
+        "x1": 539.0,
+        "y1": 392.0,
+        "x2": 526.0,
+        "y2": 392.0
+      },
+      {
+        "id": "tick_06",
+        "semantic_role": "scale_tick",
+        "z_index": 0,
+        "anchor": "start",
+        "alignment": "left",
+        "stroke": "#222222",
+        "stroke_width": 1.4,
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "type": "line",
+        "x1": 532.1968557650264,
+        "y1": 434.9533622181177,
+        "x2": 519.8331210531893,
+        "y2": 430.93614129124336
+      },
+      {
+        "id": "tick_07",
+        "semantic_role": "scale_tick",
+        "z_index": 0,
+        "anchor": "start",
+        "alignment": "left",
+        "stroke": "#222222",
+        "stroke_width": 1.4,
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "type": "line",
+        "x1": 512.4533622181177,
+        "y1": 473.70215006865374,
+        "x2": 501.93614129124336,
+        "y2": 466.0609417888516
+      },
+      {
+        "id": "tick_08",
+        "semantic_role": "scale_tick",
+        "z_index": 0,
+        "anchor": "start",
+        "alignment": "left",
+        "stroke": "#222222",
+        "stroke_width": 1.4,
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "type": "line",
+        "x1": 481.70215006865374,
+        "y1": 504.4533622181177,
+        "x2": 474.0609417888516,
+        "y2": 493.93614129124336
+      },
+      {
+        "id": "tick_09",
+        "semantic_role": "scale_tick",
+        "z_index": 0,
+        "anchor": "start",
+        "alignment": "left",
+        "stroke": "#222222",
+        "stroke_width": 1.4,
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "type": "line",
+        "x1": 442.9533622181177,
+        "y1": 524.1968557650264,
+        "x2": 438.93614129124336,
+        "y2": 511.83312105318936
+      },
+      {
+        "id": "tick_10",
+        "semantic_role": "scale_tick",
+        "z_index": 0,
+        "anchor": "start",
+        "alignment": "left",
+        "stroke": "#222222",
+        "stroke_width": 1.4,
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "type": "line",
+        "x1": 400.0,
+        "y1": 531.0,
+        "x2": 400.0,
+        "y2": 518.0
+      },
+      {
+        "id": "tick_11",
+        "semantic_role": "scale_tick",
+        "z_index": 0,
+        "anchor": "start",
+        "alignment": "left",
+        "stroke": "#222222",
+        "stroke_width": 1.4,
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "type": "line",
+        "x1": 357.04663778188234,
+        "y1": 524.1968557650264,
+        "x2": 361.06385870875664,
+        "y2": 511.83312105318936
+      },
+      {
+        "id": "tick_12",
+        "semantic_role": "scale_tick",
+        "z_index": 0,
+        "anchor": "start",
+        "alignment": "left",
+        "stroke": "#222222",
+        "stroke_width": 1.4,
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "type": "line",
+        "x1": 318.29784993134626,
+        "y1": 504.4533622181177,
+        "x2": 325.9390582111484,
+        "y2": 493.93614129124336
+      },
+      {
+        "id": "tick_13",
+        "semantic_role": "scale_tick",
+        "z_index": 0,
+        "anchor": "start",
+        "alignment": "left",
+        "stroke": "#222222",
+        "stroke_width": 1.4,
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "type": "line",
+        "x1": 287.54663778188234,
+        "y1": 473.7021500686538,
+        "x2": 298.06385870875664,
+        "y2": 466.06094178885166
+      },
+      {
+        "id": "tick_14",
+        "semantic_role": "scale_tick",
+        "z_index": 0,
+        "anchor": "start",
+        "alignment": "left",
+        "stroke": "#222222",
+        "stroke_width": 1.4,
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "type": "line",
+        "x1": 267.8031442349737,
+        "y1": 434.9533622181177,
+        "x2": 280.16687894681064,
+        "y2": 430.9361412912434
+      },
+      {
+        "id": "tick_15",
+        "semantic_role": "scale_tick",
+        "z_index": 0,
+        "anchor": "start",
+        "alignment": "left",
+        "stroke": "#222222",
+        "stroke_width": 1.4,
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "type": "line",
+        "x1": 261.0,
+        "y1": 392.0,
+        "x2": 274.0,
+        "y2": 392.0
+      },
+      {
+        "id": "tick_16",
+        "semantic_role": "scale_tick",
+        "z_index": 0,
+        "anchor": "start",
+        "alignment": "left",
+        "stroke": "#222222",
+        "stroke_width": 1.4,
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "type": "line",
+        "x1": 267.8031442349736,
+        "y1": 349.04663778188234,
+        "x2": 280.16687894681064,
+        "y2": 353.06385870875664
+      },
+      {
+        "id": "tick_17",
+        "semantic_role": "scale_tick",
+        "z_index": 0,
+        "anchor": "start",
+        "alignment": "left",
+        "stroke": "#222222",
+        "stroke_width": 1.4,
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "type": "line",
+        "x1": 287.5466377818823,
+        "y1": 310.29784993134626,
+        "x2": 298.06385870875664,
+        "y2": 317.9390582111484
+      },
+      {
+        "id": "tick_18",
+        "semantic_role": "scale_tick",
+        "z_index": 0,
+        "anchor": "start",
+        "alignment": "left",
+        "stroke": "#222222",
+        "stroke_width": 1.4,
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "type": "line",
+        "x1": 318.2978499313462,
+        "y1": 279.54663778188234,
+        "x2": 325.93905821114834,
+        "y2": 290.06385870875664
+      },
+      {
+        "id": "tick_19",
+        "semantic_role": "scale_tick",
+        "z_index": 0,
+        "anchor": "start",
+        "alignment": "left",
+        "stroke": "#222222",
+        "stroke_width": 1.4,
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "type": "line",
+        "x1": 357.0466377818823,
+        "y1": 259.8031442349737,
+        "x2": 361.0638587087566,
+        "y2": 272.16687894681064
+      },
+      {
+        "id": "scale_0",
+        "semantic_role": "scale_label",
+        "z_index": 0,
+        "anchor": "middle",
+        "alignment": "left",
+        "fill": "#222222",
+        "font_family": "Malgun Gothic",
+        "font_size": 30,
+        "font_weight": "normal",
+        "type": "text",
+        "text": "0",
+        "x": 400.0,
+        "y": 241.0
+      },
+      {
+        "id": "scale_25",
+        "semantic_role": "scale_label",
+        "z_index": 0,
+        "anchor": "middle",
+        "alignment": "left",
+        "fill": "#222222",
+        "font_family": "Malgun Gothic",
+        "font_size": 30,
+        "font_weight": "normal",
+        "type": "text",
+        "text": "25",
+        "x": 565.0,
+        "y": 400.0
+      },
+      {
+        "id": "scale_50",
+        "semantic_role": "scale_label",
+        "z_index": 0,
+        "anchor": "middle",
+        "alignment": "left",
+        "fill": "#222222",
+        "font_family": "Malgun Gothic",
+        "font_size": 30,
+        "font_weight": "normal",
+        "type": "text",
+        "text": "50",
+        "x": 400.0,
+        "y": 565.0
+      },
+      {
+        "id": "scale_75",
+        "semantic_role": "scale_label",
+        "z_index": 0,
+        "anchor": "middle",
+        "alignment": "left",
+        "fill": "#222222",
+        "font_family": "Malgun Gothic",
+        "font_size": 30,
+        "font_weight": "normal",
+        "type": "text",
+        "text": "75",
+        "x": 235.0,
+        "y": 400.0
+      }
+    ]
+  },
+  "answer": {
+    "blanks": [
+      {
+        "id": "value",
+        "kind": "numeric",
+        "value": "400"
+      }
+    ],
+    "choices": [],
+    "answer_key": [
+      {
+        "target": "value",
+        "value": "400"
+      }
+    ]
+  }
+}

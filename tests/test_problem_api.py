@@ -7,12 +7,10 @@ def test_problem_add_and_export() -> None:
     p.add(Text(id="txt1", x=10, y=20, text="hello"))
 
     semantic = p.to_semantic_dict()
-    layout = p.to_layout_dict()
     svg = p.to_svg()
 
     assert semantic["problem_id"] == "t1"
     assert len(semantic["render"]["elements"]) == 2
-    assert layout["canvas"]["width"] == 800
     assert "<svg" in svg
     assert 'id="r1"' in svg
 

@@ -158,6 +158,18 @@ button:hover,
   margin-top: 8px;
 }
 
+.section-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.section-head h2 {
+  margin: 0;
+}
+
 .status.error {
   color: var(--danger);
 }
@@ -190,4 +202,3 @@ button:hover,
     grid-template-columns: 1fr;
   }
 }
-

@@ -1,0 +1,263 @@
+{
+  "schema_version": "modu_math.semantic.v3",
+  "render_contract_version": "modu_math.render.v1",
+  "problem_id": "0006",
+  "problem_type": "find_wrong_and_correct_addition",
+  "metadata": {
+    "source": {
+      "input_type": "python_dsl",
+      "generator": "modu_semantic"
+    },
+    "warnings": []
+  },
+  "domain": {
+    "correct_result": 1321,
+    "wrong": {
+      "bottom": 998,
+      "shown_result": 1221,
+      "top": 323,
+      "wrong_place": "hundreds"
+    },
+    "answer_overlay": {
+      "style": "vertical_recompute",
+      "line_y_shift": -16,
+      "wrong_digit_circle": {
+        "target": "left_result",
+        "shown_result": "1221",
+        "wrong_place": "hundreds",
+        "index_from_left": 1,
+        "marker": "circle"
+      },
+      "right_stack": {
+        "top": 323,
+        "bottom": 998,
+        "result": 1321
+      }
+    }
+  },
+  "render": {
+    "canvas": {
+      "width": 1744.0,
+      "height": 725.0,
+      "background": "#F6F6F6"
+    },
+    "elements": [
+      {
+        "id": "instruction",
+        "semantic_role": "instruction",
+        "z_index": 0,
+        "anchor": "start",
+        "alignment": "left",
+        "fill": "#222222",
+        "font_family": "Malgun Gothic",
+        "font_size": 66,
+        "font_weight": "normal",
+        "type": "text",
+        "text": "잘못 계산한 곳에 ○표 하고, 바르게 계산해 보세요.",
+        "x": 115.52105,
+        "y": 95.168732
+      },
+      {
+        "id": "left_panel",
+        "semantic_role": "panel",
+        "z_index": 0,
+        "anchor": "start",
+        "alignment": "left",
+        "stroke": "#CFC8BA",
+        "stroke_width": 9,
+        "fill": "none",
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "type": "rect",
+        "x": 203.9678,
+        "y": 215.6675,
+        "width": 585,
+        "height": 435,
+        "rx": 70
+      },
+      {
+        "id": "right_panel",
+        "semantic_role": "panel",
+        "z_index": 0,
+        "anchor": "start",
+        "alignment": "left",
+        "stroke": "#CFC8BA",
+        "stroke_width": 9,
+        "fill": "none",
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "type": "rect",
+        "x": 966.96783,
+        "y": 205.6675,
+        "width": 615,
+        "height": 455,
+        "rx": 70
+      },
+      {
+        "id": "right_tab",
+        "semantic_role": "tab",
+        "z_index": 0,
+        "anchor": "start",
+        "alignment": "left",
+        "stroke": "none",
+        "stroke_width": 0,
+        "fill": "#CE8D61",
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "type": "rect",
+        "x": 1089.9678,
+        "y": 169.6675,
+        "width": 400,
+        "height": 100,
+        "rx": 38
+      },
+      {
+        "id": "right_tab_text",
+        "semantic_role": "tab_label",
+        "z_index": 0,
+        "anchor": "middle",
+        "alignment": "left",
+        "fill": "#FFFFFF",
+        "font_family": "Malgun Gothic",
+        "font_size": 42,
+        "font_weight": "normal",
+        "type": "text",
+        "text": "바르게 계산하기",
+        "x": 1289.9678,
+        "y": 231.6675
+      },
+      {
+        "id": "left_top",
+        "semantic_role": "equation",
+        "z_index": 0,
+        "anchor": "end",
+        "alignment": "left",
+        "fill": "#222222",
+        "font_family": "Cambria",
+        "font_size": 88,
+        "font_weight": "normal",
+        "type": "text",
+        "text": "323",
+        "x": 622.57715,
+        "y": 360.0
+      },
+      {
+        "id": "left_mid",
+        "semantic_role": "equation",
+        "z_index": 0,
+        "anchor": "end",
+        "alignment": "left",
+        "fill": "#222222",
+        "font_family": "Cambria",
+        "font_size": 88,
+        "font_weight": "normal",
+        "type": "text",
+        "text": "+998",
+        "x": 622.57715,
+        "y": 460.0
+      },
+      {
+        "id": "left_line",
+        "semantic_role": "equation_line",
+        "z_index": 0,
+        "anchor": "start",
+        "alignment": "left",
+        "stroke": "#333333",
+        "stroke_width": 3,
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "type": "line",
+        "x1": 296.30759,
+        "y1": 486.0,
+        "x2": 636.30762,
+        "y2": 486.0
+      },
+      {
+        "id": "left_result",
+        "semantic_role": "wrong_result",
+        "z_index": 0,
+        "anchor": "end",
+        "alignment": "left",
+        "fill": "#222222",
+        "font_family": "Cambria",
+        "font_size": 87,
+        "font_weight": "normal",
+        "type": "text",
+        "text": "1221",
+        "x": 622.57715,
+        "y": 560.0
+      },
+      {
+        "id": "arrow_body",
+        "semantic_role": "arrow",
+        "z_index": 0,
+        "anchor": "start",
+        "alignment": "left",
+        "stroke": "#9AAAB2",
+        "stroke_width": 14,
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "type": "line",
+        "x1": 852.96783,
+        "y1": 435.66748,
+        "x2": 892.96783,
+        "y2": 435.66748
+      },
+      {
+        "id": "arrow_head",
+        "semantic_role": "arrow",
+        "z_index": 0,
+        "anchor": "start",
+        "alignment": "left",
+        "stroke": "none",
+        "stroke_width": 0,
+        "fill": "#9AAAB2",
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "type": "polygon",
+        "points": [
+          [
+            892.96783,
+            408.66748
+          ],
+          [
+            914.96783,
+            435.66748
+          ],
+          [
+            892.96783,
+            462.66748
+          ]
+        ]
+      }
+    ]
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [
+      {
+        "target": "left_result",
+        "value": "1221"
+      },
+      {
+        "target": "left_result",
+        "value": "1321"
+      }
+    ],
+    "annotations": [
+      {
+        "type": "wrong_digit_circle",
+        "target": "left_result",
+        "index_from_left": 1,
+        "wrong_place": "hundreds"
+      },
+      {
+        "type": "recompute_vertical",
+        "top": 323,
+        "bottom": 998,
+        "result": 1321
+      }
+    ]
+  }
+}

@@ -6,7 +6,6 @@ from modu_semantic.problem import Problem
 
 
 GOLDEN_JSON = Path("tests/goldens/0001/semantic.json")
-GOLDEN_LAYOUT_JSON = Path("tests/goldens/0001/layout.json")
 
 
 def build_sample_problem() -> Problem:
@@ -70,10 +69,5 @@ def test_semantic_json_matches_golden() -> None:
     expected = json.loads(GOLDEN_JSON.read_text(encoding="utf-8"))
     assert actual == expected
 
-
-def test_layout_json_matches_golden() -> None:
-    actual = build_sample_problem().to_layout_json()
-    expected = json.loads(GOLDEN_LAYOUT_JSON.read_text(encoding="utf-8"))
-    assert actual == expected
 
 

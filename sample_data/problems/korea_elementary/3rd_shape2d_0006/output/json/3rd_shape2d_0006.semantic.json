@@ -1,0 +1,188 @@
+{
+  "schema_version": "modu_math.semantic.v3",
+  "render_contract_version": "modu_math.render.v1",
+  "problem_id": "3rd_shape2d_0006",
+  "problem_type": "count_right_angles_from_rays",
+  "title": "직각 개수 세기",
+  "metadata": {
+    "source": {
+      "input_type": "python_dsl",
+      "generator": "modu_semantic"
+    },
+    "warnings": []
+  },
+  "domain": {
+    "instruction": "다음 도형에서 찾을 수 있는 직각은 모두 몇 개인지 구하세요.",
+    "right_angle_count": 3
+  },
+  "render": {
+    "canvas": {
+      "width": 400.0,
+      "height": 220.0,
+      "background": "#F6F6F6"
+    },
+    "elements": [
+      {
+        "id": "bg",
+        "z_index": 0,
+        "anchor": "start",
+        "alignment": "left",
+        "stroke": "none",
+        "stroke_width": 0,
+        "fill": "#F4F4F4",
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "type": "rect",
+        "x": 0.0,
+        "y": 0.0,
+        "width": 400,
+        "height": 220
+      },
+      {
+        "id": "i1",
+        "z_index": 0,
+        "anchor": "start",
+        "alignment": "left",
+        "fill": "#222222",
+        "font_family": "Malgun Gothic",
+        "font_size": 17,
+        "font_weight": "normal",
+        "type": "text",
+        "text": "다음 도형에서 찾을 수 있는 직각은 모두 몇",
+        "x": 4.0,
+        "y": 34.0
+      },
+      {
+        "id": "i2",
+        "z_index": 0,
+        "anchor": "start",
+        "alignment": "left",
+        "fill": "#222222",
+        "font_family": "Malgun Gothic",
+        "font_size": 17,
+        "font_weight": "normal",
+        "type": "text",
+        "text": "개인지 구하세요.",
+        "x": 4.0,
+        "y": 64.0
+      },
+      {
+        "id": "ray_1",
+        "z_index": 0,
+        "anchor": "start",
+        "alignment": "left",
+        "stroke": "#4A4A4A",
+        "stroke_width": 2.0,
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "type": "line",
+        "x1": 202.0,
+        "y1": 134.0,
+        "x2": 147.0,
+        "y2": 134.0
+      },
+      {
+        "id": "ray_2",
+        "z_index": 0,
+        "anchor": "start",
+        "alignment": "left",
+        "stroke": "#4A4A4A",
+        "stroke_width": 2.0,
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "type": "line",
+        "x1": 202.0,
+        "y1": 134.0,
+        "x2": 146.0,
+        "y2": 78.0
+      },
+      {
+        "id": "ray_3",
+        "z_index": 0,
+        "anchor": "start",
+        "alignment": "left",
+        "stroke": "#4A4A4A",
+        "stroke_width": 2.0,
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "type": "line",
+        "x1": 202.0,
+        "y1": 134.0,
+        "x2": 258.0,
+        "y2": 78.0
+      },
+      {
+        "id": "ray_4",
+        "z_index": 0,
+        "anchor": "start",
+        "alignment": "left",
+        "stroke": "#4A4A4A",
+        "stroke_width": 2.0,
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "type": "line",
+        "x1": 202.0,
+        "y1": 134.0,
+        "x2": 303.0,
+        "y2": 170.0
+      },
+      {
+        "id": "ray_5",
+        "z_index": 0,
+        "anchor": "start",
+        "alignment": "left",
+        "stroke": "#4A4A4A",
+        "stroke_width": 2.0,
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "type": "line",
+        "x1": 202.0,
+        "y1": 134.0,
+        "x2": 204.0,
+        "y2": 210.0
+      },
+      {
+        "id": "ray_6",
+        "z_index": 0,
+        "anchor": "start",
+        "alignment": "left",
+        "stroke": "#4A4A4A",
+        "stroke_width": 2.0,
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "type": "line",
+        "x1": 202.0,
+        "y1": 134.0,
+        "x2": 146.0,
+        "y2": 186.0
+      },
+      {
+        "id": "answer_value",
+        "semantic_role": "answer_anchor",
+        "z_index": 0,
+        "anchor": "start",
+        "alignment": "left",
+        "stroke": "none",
+        "stroke_width": 0,
+        "fill": "none",
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "type": "rect",
+        "x": 344.0,
+        "y": 186.0,
+        "width": 48,
+        "height": 28
+      }
+    ]
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [
+      {
+        "target": "answer_value",
+        "value": "3"
+      }
+    ]
+  }
+}

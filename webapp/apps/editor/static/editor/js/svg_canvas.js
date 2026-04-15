@@ -13,8 +13,8 @@ function num(value, fallback = 0) {
 
 function drawElement(el, selectedId) {
   const selected = el.id === selectedId;
-  const stroke = selected ? "#0f766e" : (el.stroke ?? "#222");
-  const strokeWidth = selected ? Math.max(2, num(el.stroke_width, 1) + 1) : num(el.stroke_width, 1);
+  const stroke = selected ? "#D32222" : (el.stroke ?? "#222");
+  const strokeWidth = selected ? Math.max(4, num(el.stroke_width, 1) + 2) : num(el.stroke_width, 1);
   const fill = el.fill ?? "none";
   const shared = `data-element-id="${esc(el.id)}" stroke="${esc(stroke)}" stroke-width="${strokeWidth}" fill="${esc(fill)}"`;
 
@@ -28,10 +28,14 @@ function drawElement(el, selectedId) {
     return `<circle ${shared} cx="${num(el.x)}" cy="${num(el.y)}" r="${num(el.r, 35)}" />`;
   }
   if (el.type === "text") {
-    return `<text data-element-id="${esc(el.id)}" x="${num(el.x)}" y="${num(el.y)}" fill="${esc(el.fill ?? "#111")}" font-size="${num(el.font_size, 24)}">${esc(el.text ?? "")}</text>`;
+    const textFill = selected ? "#D32222" : (el.fill ?? "#111");
+    const textStroke = selected ? ' stroke="#D32222" stroke-width="1.2" font-weight="700"' : "";
+    return `<text data-element-id="${esc(el.id)}" x="${num(el.x)}" y="${num(el.y)}" fill="${esc(textFill)}" font-size="${num(el.font_size, 24)}"${textStroke}>${esc(el.text ?? "")}</text>`;
   }
   if (el.type === "formula") {
-    return `<text data-element-id="${esc(el.id)}" x="${num(el.x)}" y="${num(el.y)}" fill="${esc(el.fill ?? "#111")}" font-size="${num(el.font_size, 24)}" class="formula">${esc(el.expr ?? "")}</text>`;
+    const textFill = selected ? "#D32222" : (el.fill ?? "#111");
+    const textStroke = selected ? ' stroke="#D32222" stroke-width="1.2" font-weight="700"' : "";
+    return `<text data-element-id="${esc(el.id)}" x="${num(el.x)}" y="${num(el.y)}" fill="${esc(textFill)}" font-size="${num(el.font_size, 24)}" class="formula"${textStroke}>${esc(el.expr ?? "")}</text>`;
   }
   return "";
 }
@@ -59,4 +63,3 @@ export function eventToSvgPoint(svg, event) {
   point.y = event.clientY;
   return point.matrixTransform(svg.getScreenCTM().inverse());
 }
-

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1852" height="554" viewBox="0 0 1852 554">
+  <rect x="0" y="0" width="1852" height="554" fill="#F6F6F6" />
+  <text id="instruction" data-semantic-role="decorative" fill="#222222" font-family="Malgun Gothic" font-size="72px" font-weight="normal" x="44" y="106" text-anchor="start">계산 결과가 더 큰 것에 ○표 하세요.</text>
+  <rect id="left_box" data-semantic-role="choice" stroke="none" stroke-width="0" fill="#D0CABB" font-family="Malgun Gothic" font-weight="normal" x="320" y="180" width="590" height="210" rx="75" />
+  <text id="left_expr" data-semantic-role="decorative" fill="#222222" font-family="Cambria" font-size="74px" font-weight="normal" x="615" y="294" text-anchor="middle">605+298</text>
+  <text id="left_paren_l" data-semantic-role="decorative" fill="#222222" font-family="Cambria" font-size="92px" font-weight="normal" x="500" y="478" text-anchor="middle">(</text>
+  <text id="left_paren_r" data-semantic-role="decorative" fill="#222222" font-family="Cambria" font-size="92px" font-weight="normal" x="735" y="478" text-anchor="middle">)</text>
+  <rect id="right_box" data-semantic-role="choice" stroke="none" stroke-width="0" fill="#D0CABB" font-family="Malgun Gothic" font-weight="normal" x="1200" y="180" width="590" height="210" rx="75" />
+  <text id="right_expr" data-semantic-role="decorative" fill="#222222" font-family="Cambria" font-size="74px" font-weight="normal" x="1495" y="294" text-anchor="middle">567+385</text>
+  <text id="right_paren_l" data-semantic-role="decorative" fill="#222222" font-family="Cambria" font-size="92px" font-weight="normal" x="1380" y="478" text-anchor="middle">(</text>
+  <text id="right_paren_r" data-semantic-role="decorative" fill="#222222" font-family="Cambria" font-size="92px" font-weight="normal" x="1615" y="478" text-anchor="middle">)</text>
+  <!-- Compare-two-sums answer marker -->
+  <circle id="answer_choice_o" data-target="right_box" cx="1497.5" cy="478" r="46" fill="none" stroke="#D32222" stroke-width="7" />
+</svg>

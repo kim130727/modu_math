@@ -1,0 +1,294 @@
+{
+  "schema_version": "modu_math.semantic.v3",
+  "render_contract_version": "modu_math.render.v1",
+  "problem_id": "0015",
+  "problem_type": "rectangle_perimeter_from_square_tiling",
+  "metadata": {
+    "source": {
+      "input_type": "png",
+      "input_path": "C:/projects/modu_math/problem/0015/input/0015.png",
+      "generator": "rule_parser",
+      "parser_name": "PngToSemanticDraftParser",
+      "confidence": 0.6,
+      "created_at": "2026-04-07T11:51:47.243277+00:00"
+    },
+    "warnings": []
+  },
+  "domain": {
+    "small_square_side_cm": 15,
+    "width_units": 8,
+    "height_units": 5,
+    "perimeter_units": 26,
+    "computed_answer": 390,
+    "instruction": "여러 가지 크기의 정사각형을 겹치지 않게 놓아 다음과 같은 직사각형 ㄱㄴㄷㄹ을 만들었습니다.",
+    "question": "색칠된 정사각형의 한 변의 길이는 15cm일 때, 직사각형 ㄱㄴㄷㄹ의 네 변의 길이의 합은 몇 cm입니까? (단, 가장 작은 두 정사각형의 크기는 같습니다.)",
+    "question_lines": [
+      "여러 가지 크기의 정사각형을 겹치지 않게 놓아 다음과",
+      "같은 직사각형 ㄱㄴㄷㄹ을 만들었습니다. 색칠된 정사각",
+      "형의 한 변의 길이는 15cm일 때, 직사각형 ㄱㄴㄷㄹ의",
+      "네 변의 길이의 합은 몇 cm입니까? (단, 가장 작은 두",
+      "정사각형의 크기는 같습니다.)"
+    ],
+    "show_answer_parentheses": false,
+    "show_answer_blank": false,
+    "render_profile": "rectangle_perimeter_from_square_tiling.v2"
+  },
+  "render": {
+    "canvas": {
+      "width": 856.0,
+      "height": 730.0,
+      "background": "#F6F6F6"
+    },
+    "elements": [
+      {
+        "id": "q1",
+        "type": "text",
+        "text": "여러 가지 크기의 정사각형을 겹치지 않게 놓아 다음과",
+        "x": 29,
+        "y": 60,
+        "anchor": "start",
+        "font_family": "Malgun Gothic",
+        "font_size": 31,
+        "fill": "#222222",
+        "group": "text",
+        "semantic_role": "instruction",
+        "font_weight": "normal"
+      },
+      {
+        "id": "q2",
+        "type": "text",
+        "text": "같은 직사각형 ㄱㄴㄷㄹ을 만들었습니다. 색칠된 정사각",
+        "x": 29,
+        "y": 104,
+        "anchor": "start",
+        "font_family": "Malgun Gothic",
+        "font_size": 31,
+        "fill": "#222222",
+        "group": "text",
+        "semantic_role": "instruction",
+        "font_weight": "normal"
+      },
+      {
+        "id": "q3",
+        "type": "text",
+        "text": "형의 한 변의 길이는 15cm일 때, 직사각형 ㄱㄴㄷㄹ의",
+        "x": 29,
+        "y": 148,
+        "anchor": "start",
+        "font_family": "Malgun Gothic",
+        "font_size": 31,
+        "fill": "#222222",
+        "group": "text",
+        "semantic_role": "instruction",
+        "font_weight": "normal"
+      },
+      {
+        "id": "q4",
+        "type": "text",
+        "text": "네 변의 길이의 합은 몇 cm입니까? (단, 가장 작은 두",
+        "x": 29,
+        "y": 192,
+        "anchor": "start",
+        "font_family": "Malgun Gothic",
+        "font_size": 31,
+        "fill": "#222222",
+        "group": "text",
+        "semantic_role": "instruction",
+        "font_weight": "normal"
+      },
+      {
+        "id": "q5",
+        "type": "text",
+        "text": "정사각형의 크기는 같습니다.)",
+        "x": 29,
+        "y": 236,
+        "anchor": "start",
+        "font_family": "Malgun Gothic",
+        "font_size": 31,
+        "fill": "#222222",
+        "group": "text",
+        "semantic_role": "instruction",
+        "font_weight": "normal"
+      },
+      {
+        "id": "outer_top",
+        "type": "line",
+        "x1": 202.59975,
+        "y1": 346.61462,
+        "x2": 650.59975,
+        "y2": 346.61462,
+        "stroke": "#222222",
+        "stroke_width": 2,
+        "group": "figure",
+        "semantic_role": "segment"
+      },
+      {
+        "id": "outer_right",
+        "type": "line",
+        "x1": 650.59975,
+        "y1": 346.61462,
+        "x2": 650.59975,
+        "y2": 626.6146200000001,
+        "stroke": "#222222",
+        "stroke_width": 2,
+        "group": "figure",
+        "semantic_role": "segment"
+      },
+      {
+        "id": "outer_bottom",
+        "type": "line",
+        "x1": 202.59975,
+        "y1": 626.6146200000001,
+        "x2": 650.59975,
+        "y2": 626.6146200000001,
+        "stroke": "#222222",
+        "stroke_width": 2,
+        "group": "figure",
+        "semantic_role": "segment"
+      },
+      {
+        "id": "outer_left",
+        "type": "line",
+        "x1": 202.59975,
+        "y1": 346.61462,
+        "x2": 202.59975,
+        "y2": 626.6146200000001,
+        "stroke": "#222222",
+        "stroke_width": 2,
+        "group": "figure",
+        "semantic_role": "segment"
+      },
+      {
+        "id": "v_main",
+        "type": "line",
+        "x1": 370.59975,
+        "y1": 346.61462,
+        "x2": 370.59975,
+        "y2": 626.6146200000001,
+        "stroke": "#222222",
+        "stroke_width": 2,
+        "group": "figure",
+        "semantic_role": "segment"
+      },
+      {
+        "id": "h_main",
+        "type": "line",
+        "x1": 202.59975,
+        "y1": 514.6146200000001,
+        "x2": 370.59975,
+        "y2": 514.6146200000001,
+        "stroke": "#222222",
+        "stroke_width": 2,
+        "group": "figure",
+        "semantic_role": "segment"
+      },
+      {
+        "id": "v_small",
+        "type": "line",
+        "x1": 258.59975,
+        "y1": 514.6146200000001,
+        "x2": 258.59975,
+        "y2": 626.6146200000001,
+        "stroke": "#222222",
+        "stroke_width": 2,
+        "group": "figure",
+        "semantic_role": "segment"
+      },
+      {
+        "id": "h_small",
+        "type": "line",
+        "x1": 202.59975,
+        "y1": 570.6146200000001,
+        "x2": 258.59975,
+        "y2": 570.6146200000001,
+        "stroke": "#222222",
+        "stroke_width": 2,
+        "group": "figure",
+        "semantic_role": "segment"
+      },
+      {
+        "id": "colored_square",
+        "type": "rect",
+        "x": 202.59975,
+        "y": 570.6146200000001,
+        "width": 56,
+        "height": 56,
+        "stroke": "none",
+        "fill": "#4E78C2",
+        "group": "figure",
+        "semantic_role": "highlight"
+      },
+      {
+        "id": "label_g",
+        "type": "text",
+        "text": "ㄱ",
+        "x": 180.59975,
+        "y": 342.61462,
+        "anchor": "start",
+        "font_family": "Malgun Gothic",
+        "font_size": 42,
+        "fill": "#222222",
+        "group": "text",
+        "semantic_role": "instruction",
+        "font_weight": "normal"
+      },
+      {
+        "id": "label_n",
+        "type": "text",
+        "text": "ㄴ",
+        "x": 658.59973,
+        "y": 342.61462,
+        "anchor": "start",
+        "font_family": "Malgun Gothic",
+        "font_size": 42,
+        "fill": "#222222",
+        "group": "text",
+        "semantic_role": "instruction",
+        "font_weight": "normal"
+      },
+      {
+        "id": "label_d",
+        "type": "text",
+        "text": "ㄷ",
+        "x": 658.59973,
+        "y": 654.61462,
+        "anchor": "start",
+        "font_family": "Malgun Gothic",
+        "font_size": 42,
+        "fill": "#222222",
+        "group": "text",
+        "semantic_role": "instruction",
+        "font_weight": "normal"
+      },
+      {
+        "id": "label_r",
+        "type": "text",
+        "text": "ㄹ",
+        "x": 180.59975,
+        "y": 654.61462,
+        "anchor": "start",
+        "font_family": "Malgun Gothic",
+        "font_size": 42,
+        "fill": "#222222",
+        "group": "text",
+        "semantic_role": "instruction",
+        "font_weight": "normal"
+      }
+    ]
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [
+      {
+        "target": "value",
+        "value": "390"
+      }
+    ]
+  },
+  "meta": {
+    "source_svg": "C:/projects/modu_math/problem/0015/svg/edit/semantic_edit.svg",
+    "derived_from": "C:/projects/modu_math/problem/0015/json/semantic/semantic.json",
+    "stage": "edit"
+  }
+}

@@ -1,0 +1,164 @@
+{
+  "schema_version": "modu_math.semantic.v3",
+  "render_contract_version": "modu_math.render.v1",
+  "problem_id": "3rd_addition_subtraction_0008",
+  "problem_type": "max_subtraction_pick_two",
+  "title": "가장 큰 뺄셈",
+  "metadata": {
+    "source": {
+      "input_type": "python_dsl",
+      "generator": "modu_semantic"
+    },
+    "warnings": []
+  },
+  "domain": {
+    "numbers": [
+      326,
+      412,
+      481,
+      112
+    ],
+    "best_expression": "481-112",
+    "result": 369
+  },
+  "render": {
+    "canvas": {
+      "width": 767.0,
+      "height": 155.0,
+      "background": "#F6F6F6"
+    },
+    "elements": [
+      {
+        "id": "bg",
+        "z_index": 0,
+        "anchor": "start",
+        "alignment": "left",
+        "stroke": "none",
+        "stroke_width": 0,
+        "fill": "#FFFFFF",
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "type": "rect",
+        "x": 0.0,
+        "y": 0.0,
+        "width": 767,
+        "height": 155
+      },
+      {
+        "id": "i1",
+        "z_index": 0,
+        "anchor": "start",
+        "alignment": "left",
+        "fill": "#222222",
+        "font_family": "Malgun Gothic",
+        "font_size": 17,
+        "font_weight": "normal",
+        "type": "text",
+        "text": "다음 수 중에서 2개를 골라 가장 큰 뺄셈식을 만들려고 합니다. 식과 답을 구하시오.",
+        "x": 6.0,
+        "y": 34.0
+      },
+      {
+        "id": "num_box",
+        "z_index": 0,
+        "anchor": "start",
+        "alignment": "left",
+        "stroke": "#666666",
+        "stroke_width": 1.5,
+        "fill": "none",
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "type": "rect",
+        "x": 168.0,
+        "y": 86.0,
+        "width": 389,
+        "height": 56,
+        "rx": 10,
+        "ry": 10
+      },
+      {
+        "id": "n1",
+        "z_index": 0,
+        "anchor": "middle",
+        "alignment": "left",
+        "fill": "#222222",
+        "font_family": "Malgun Gothic",
+        "font_size": 17,
+        "font_weight": "normal",
+        "type": "text",
+        "text": "326",
+        "x": 259.0,
+        "y": 123.0
+      },
+      {
+        "id": "n2",
+        "z_index": 0,
+        "anchor": "middle",
+        "alignment": "left",
+        "fill": "#222222",
+        "font_family": "Malgun Gothic",
+        "font_size": 17,
+        "font_weight": "normal",
+        "type": "text",
+        "text": "412",
+        "x": 334.0,
+        "y": 123.0
+      },
+      {
+        "id": "n3",
+        "z_index": 0,
+        "anchor": "middle",
+        "alignment": "left",
+        "fill": "#222222",
+        "font_family": "Malgun Gothic",
+        "font_size": 17,
+        "font_weight": "normal",
+        "type": "text",
+        "text": "481",
+        "x": 409.0,
+        "y": 123.0
+      },
+      {
+        "id": "n4",
+        "z_index": 0,
+        "anchor": "middle",
+        "alignment": "left",
+        "fill": "#222222",
+        "font_family": "Malgun Gothic",
+        "font_size": 17,
+        "font_weight": "normal",
+        "type": "text",
+        "text": "112",
+        "x": 484.0,
+        "y": 123.0
+      },
+      {
+        "id": "answer_expr",
+        "semantic_role": "answer_anchor",
+        "z_index": 0,
+        "anchor": "start",
+        "alignment": "left",
+        "stroke": "none",
+        "stroke_width": 0,
+        "fill": "none",
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "type": "rect",
+        "x": 520.0,
+        "y": 121.0,
+        "width": 238,
+        "height": 28
+      }
+    ]
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [
+      {
+        "target": "answer_expr",
+        "value": "481-112=369"
+      }
+    ]
+  }
+}

@@ -1,0 +1,343 @@
+{
+  "schema_version": "modu_math.semantic.v3",
+  "render_contract_version": "modu_math.render.v1",
+  "problem_id": "0014",
+  "problem_type": "mixed_fraction_division_range_count",
+  "metadata": {
+    "edit_trace": {
+      "derived_from": "C:/projects/modu_math_lab/problem/0014/json/semantic/semantic.json",
+      "source_svg": "C:/projects/modu_math_lab/problem/0014/svg/edit/semantic_edit.svg",
+      "stage": "edit"
+    },
+    "source": {
+      "confidence": 0.6,
+      "created_at": "2026-04-08T07:27:19.190453+00:00",
+      "generator": "rule_parser",
+      "input_path": "C:/projects/modu_math_lab/problem/0014/input/0014.png",
+      "input_type": "png",
+      "parser_name": "PngToSemanticDraftParser"
+    },
+    "warnings": []
+  },
+  "domain": {
+    "answer_value": 3,
+    "cards": [
+      3,
+      5,
+      7,
+      9
+    ],
+    "line_map": {
+      "l1a": "숫자 카드",
+      "l1b": "를 모두 한 번씩만 사용",
+      "l2": "하여 다음과 같이 (대분수) ÷ (자연수)를 만들려고 합니다.",
+      "l3": "만들 수 있는 식 중 몫이 가장 작을 때의 몫을 ㄱ, 몫이",
+      "l4": "가장 클 때의 몫을 ㄴ이라고 할 때 ㄱ과 ㄴ 사이에 있는",
+      "l5": "자연수는 모두 몇 개입니까?"
+    },
+    "render_profile": "mixed_fraction_division_range_count.v1"
+  },
+  "render": {
+    "canvas": {
+      "width": 842,
+      "height": 493,
+      "background": "#F6F6F6"
+    },
+    "elements": [
+      {
+        "id": "l1a",
+        "type": "text",
+        "semantic_role": "decorative",
+        "group": "default",
+        "text": "숫자 카드",
+        "x": 21.451954,
+        "y": 56.561783,
+        "anchor": "start",
+        "font_family": "Malgun Gothic",
+        "font_size": 34.0178,
+        "font_weight": "normal",
+        "fill": "#222222"
+      },
+      {
+        "id": "card_1",
+        "type": "rect",
+        "semantic_role": "decorative",
+        "group": "default",
+        "x": 188,
+        "y": 13.95428,
+        "width": 50.869633,
+        "height": 52.316967,
+        "fill": "#BDBDBD",
+        "stroke": "#000000",
+        "stroke_width": 1
+      },
+      {
+        "id": "card_t_1",
+        "type": "text",
+        "semantic_role": "decorative",
+        "group": "default",
+        "text": "3",
+        "x": 213.4348165,
+        "y": 55,
+        "anchor": "middle",
+        "font_family": "Malgun Gothic",
+        "font_size": 46,
+        "font_weight": "normal",
+        "fill": "#222222"
+      },
+      {
+        "id": "card_2",
+        "type": "rect",
+        "semantic_role": "decorative",
+        "group": "default",
+        "x": 256.5,
+        "y": 13.954006,
+        "width": 49.648369,
+        "height": 53.539326,
+        "fill": "#BDBDBD",
+        "stroke": "#000000",
+        "stroke_width": 1
+      },
+      {
+        "id": "card_t_2",
+        "type": "text",
+        "semantic_role": "decorative",
+        "group": "default",
+        "text": "5",
+        "x": 281.3241845,
+        "y": 55,
+        "anchor": "middle",
+        "font_family": "Malgun Gothic",
+        "font_size": 46,
+        "font_weight": "normal",
+        "fill": "#222222"
+      },
+      {
+        "id": "card_3",
+        "type": "rect",
+        "semantic_role": "decorative",
+        "group": "default",
+        "x": 322.5,
+        "y": 13.970038,
+        "width": 52.059925,
+        "height": 54.729069,
+        "fill": "#BDBDBD",
+        "stroke": "#000000",
+        "stroke_width": 1
+      },
+      {
+        "id": "card_t_3",
+        "type": "text",
+        "semantic_role": "decorative",
+        "group": "default",
+        "text": "7",
+        "x": 348.5299625,
+        "y": 55,
+        "anchor": "middle",
+        "font_family": "Malgun Gothic",
+        "font_size": 46,
+        "font_weight": "normal",
+        "fill": "#222222"
+      },
+      {
+        "id": "card_4",
+        "type": "rect",
+        "semantic_role": "decorative",
+        "group": "default",
+        "x": 389.8,
+        "y": 13.975165,
+        "width": 52.049667,
+        "height": 55.940624,
+        "fill": "#BDBDBD",
+        "stroke": "#000000",
+        "stroke_width": 1
+      },
+      {
+        "id": "card_t_4",
+        "type": "text",
+        "semantic_role": "decorative",
+        "group": "default",
+        "text": "9",
+        "x": 415.8248335,
+        "y": 55,
+        "anchor": "middle",
+        "font_family": "Malgun Gothic",
+        "font_size": 46,
+        "font_weight": "normal",
+        "fill": "#222222"
+      },
+      {
+        "id": "l1b",
+        "type": "text",
+        "semantic_role": "decorative",
+        "group": "default",
+        "text": "를 모두 한 번씩만 사용",
+        "x": 458.349667,
+        "y": 54.104523,
+        "anchor": "start",
+        "font_family": "Malgun Gothic",
+        "font_size": 32.6441,
+        "font_weight": "normal",
+        "fill": "#222222"
+      },
+      {
+        "id": "l2",
+        "type": "text",
+        "semantic_role": "decorative",
+        "group": "default",
+        "text": "하여 다음과 같이 (대분수) ÷ (자연수)를 만들려고 합니다.",
+        "x": 21.7194,
+        "y": 114.21901,
+        "anchor": "start",
+        "font_family": "Malgun Gothic",
+        "font_size": 31.6425,
+        "font_weight": "normal",
+        "fill": "#222222"
+      },
+      {
+        "id": "l3",
+        "type": "text",
+        "semantic_role": "decorative",
+        "group": "default",
+        "text": "만들 수 있는 식 중 몫이 가장 작을 때의 몫을 ㄱ, 몫이",
+        "x": 19.617764,
+        "y": 164.03259,
+        "anchor": "start",
+        "font_family": "Malgun Gothic",
+        "font_size": 31.623,
+        "font_weight": "normal",
+        "fill": "#222222"
+      },
+      {
+        "id": "l4",
+        "type": "text",
+        "semantic_role": "decorative",
+        "group": "default",
+        "text": "가장 클 때의 몫을 ㄴ이라고 할 때 ㄱ과 ㄴ 사이에 있는",
+        "x": 18.351141,
+        "y": 215.79146,
+        "anchor": "start",
+        "font_family": "Malgun Gothic",
+        "font_size": 32.8986,
+        "font_weight": "normal",
+        "fill": "#222222"
+      },
+      {
+        "id": "l5",
+        "type": "text",
+        "semantic_role": "decorative",
+        "group": "default",
+        "text": "자연수는 모두 몇 개입니까?",
+        "x": 16.264236,
+        "y": 271.79117,
+        "anchor": "start",
+        "font_family": "Malgun Gothic",
+        "font_size": 32.3366,
+        "font_weight": "normal",
+        "fill": "#222222"
+      },
+      {
+        "id": "expr_box",
+        "type": "rect",
+        "semantic_role": "decorative",
+        "group": "default",
+        "x": 268.9859,
+        "y": 308.46298,
+        "width": 315.14096,
+        "height": 160.19426,
+        "fill": "none",
+        "stroke": "#000000",
+        "stroke_width": 0.805746,
+        "rx": 14.26564
+      },
+      {
+        "id": "whole_blank",
+        "type": "rect",
+        "semantic_role": "decorative",
+        "group": "default",
+        "x": 321.11276,
+        "y": 373.78561,
+        "width": 36,
+        "height": 34,
+        "fill": "none",
+        "stroke": "#000000",
+        "stroke_width": 1
+      },
+      {
+        "id": "frac_num_blank",
+        "type": "rect",
+        "semantic_role": "decorative",
+        "group": "default",
+        "x": 383.11276,
+        "y": 343.78561,
+        "width": 36,
+        "height": 34,
+        "fill": "none",
+        "stroke": "#000000",
+        "stroke_width": 1
+      },
+      {
+        "id": "frac_den_blank",
+        "type": "rect",
+        "semantic_role": "decorative",
+        "group": "default",
+        "x": 383.11276,
+        "y": 405.78561,
+        "width": 36,
+        "height": 34,
+        "fill": "none",
+        "stroke": "#000000",
+        "stroke_width": 1
+      },
+      {
+        "id": "frac_bar",
+        "type": "line",
+        "semantic_role": "decorative",
+        "group": "default",
+        "x1": 369.11276,
+        "y1": 390.78561,
+        "x2": 433.11276,
+        "y2": 390.78561,
+        "stroke": "#222222",
+        "stroke_width": 2
+      },
+      {
+        "id": "div_sign",
+        "type": "text",
+        "semantic_role": "decorative",
+        "group": "default",
+        "text": "÷",
+        "x": 457.11276,
+        "y": 406.78561,
+        "anchor": "middle",
+        "font_family": "Malgun Gothic",
+        "font_size": 64,
+        "font_weight": "normal",
+        "fill": "#222222"
+      },
+      {
+        "id": "div_blank",
+        "type": "rect",
+        "semantic_role": "decorative",
+        "group": "default",
+        "x": 486.11276,
+        "y": 373.78561,
+        "width": 36,
+        "height": 34,
+        "fill": "none",
+        "stroke": "#000000",
+        "stroke_width": 1
+      }
+    ]
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [
+      {
+        "target": "value",
+        "value": "3"
+      }
+    ]
+  }
+}

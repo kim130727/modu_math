@@ -1,0 +1,371 @@
+{
+  "schema_version": "modu_math.semantic.v3",
+  "render_contract_version": "modu_math.render.v1",
+  "problem_id": "0008",
+  "problem_type": "addition_code_word",
+  "metadata": {
+    "source": {
+      "input_type": "png",
+      "input_path": "C:/projects/modu_math/problem/0008/input/0008.png",
+      "generator": "rule_parser",
+      "parser_name": "PngToSemanticDraftParser",
+      "confidence": 0.6,
+      "created_at": "2026-04-07T02:41:37.302716+00:00"
+    },
+    "warnings": []
+  },
+  "domain": {
+    "instruction": "□ 안에 알맞은 수를 써넣고, 그 수를 이용하여 숨어 있는 글자를 찾아 보세요.",
+    "equations": [
+      {
+        "a": 127,
+        "b": 621,
+        "sum": 748
+      },
+      {
+        "a": 231,
+        "b": 764,
+        "sum": 995
+      }
+    ],
+    "digit_map": {
+      "0": "너",
+      "1": "나",
+      "2": "이",
+      "3": "요",
+      "4": "구",
+      "5": "꿍",
+      "6": "월",
+      "7": "친",
+      "8": "와",
+      "9": "짝"
+    },
+    "hidden_word": "친구와짝짝꿍"
+  },
+  "render": {
+    "canvas": {
+      "width": 981.0,
+      "height": 818.0,
+      "background": "#F6F6F6"
+    },
+    "elements": [
+      {
+        "id": "inst",
+        "type": "text",
+        "text": "□ 안에 알맞은 수를 써넣고, 그 수를 이용하여",
+        "x": 50.109848,
+        "y": 80.148636,
+        "anchor": "start",
+        "font_family": "'Malgun Gothic'",
+        "font_size": 45.3238,
+        "fill": "#222222",
+        "semantic_role": "instruction",
+        "group": "default",
+        "font_weight": "normal",
+        "transform": "scale(0.90755385,1.101863)",
+        "style": "font-size:40px;stroke-width:1.25899"
+      },
+      {
+        "id": "board",
+        "type": "rect",
+        "x": 176.71027,
+        "y": 238.9496,
+        "width": 634.32971,
+        "height": 475.86401,
+        "rx": 32.739597,
+        "stroke": "#b58d61",
+        "stroke_width": 8.29893,
+        "fill": "#efddbb",
+        "semantic_role": "container",
+        "group": "default"
+      },
+      {
+        "id": "eq1_top",
+        "type": "text",
+        "text": "127",
+        "x": 426.39066,
+        "y": 327.78397,
+        "anchor": "end",
+        "font_family": "Cambria",
+        "font_size": 62,
+        "fill": "#222222",
+        "semantic_role": "equation_operand",
+        "group": "default",
+        "font_weight": "normal"
+      },
+      {
+        "id": "eq1_mid",
+        "type": "text",
+        "text": "+621",
+        "x": 426.39066,
+        "y": 403.78397,
+        "anchor": "end",
+        "font_family": "Cambria",
+        "font_size": 62,
+        "fill": "#222222",
+        "semantic_role": "equation_operand",
+        "group": "default",
+        "font_weight": "normal"
+      },
+      {
+        "id": "eq1_line",
+        "type": "line",
+        "x1": 224.39067,
+        "y1": 446.78397,
+        "x2": 439.39066,
+        "y2": 446.78397,
+        "stroke": "#333333",
+        "stroke_width": 2,
+        "semantic_role": "equation_bar",
+        "group": "default"
+      },
+      {
+        "id": "eq2_top",
+        "type": "text",
+        "text": "231",
+        "x": 699.39069,
+        "y": 327.78397,
+        "anchor": "end",
+        "font_family": "Cambria",
+        "font_size": 62,
+        "fill": "#222222",
+        "semantic_role": "equation_operand",
+        "group": "default",
+        "font_weight": "normal"
+      },
+      {
+        "id": "eq2_mid",
+        "type": "text",
+        "text": "+764",
+        "x": 699.39069,
+        "y": 403.78397,
+        "anchor": "end",
+        "font_family": "Cambria",
+        "font_size": 62,
+        "fill": "#222222",
+        "semantic_role": "equation_operand",
+        "group": "default",
+        "font_weight": "normal"
+      },
+      {
+        "id": "eq2_line",
+        "type": "line",
+        "x1": 497.39066,
+        "y1": 446.78397,
+        "x2": 712.39069,
+        "y2": 446.78397,
+        "stroke": "#333333",
+        "stroke_width": 2,
+        "semantic_role": "equation_bar",
+        "group": "default"
+      },
+      {
+        "id": "map_box",
+        "type": "rect",
+        "x": 215.84605,
+        "y": 521.72571,
+        "width": 560,
+        "height": 148,
+        "rx": 34,
+        "stroke": "#000000",
+        "stroke_width": 0,
+        "fill": "#f9f9f9",
+        "semantic_role": "hint_box",
+        "group": "default"
+      },
+      {
+        "id": "map_line_1",
+        "type": "text",
+        "text": "1=나 2=이 3=요 4=구 5=꿍",
+        "x": 495.84604,
+        "y": 589.72571,
+        "anchor": "middle",
+        "font_family": "'Malgun Gothic'",
+        "font_size": 34,
+        "fill": "#333333",
+        "semantic_role": "hint_text",
+        "group": "default",
+        "font_weight": "normal"
+      },
+      {
+        "id": "map_line_2",
+        "type": "text",
+        "text": "6=월 7=친 8=와 9=짝 0=너",
+        "x": 495.84604,
+        "y": 647.72571,
+        "anchor": "middle",
+        "font_family": "'Malgun Gothic'",
+        "font_size": 34,
+        "fill": "#333333",
+        "semantic_role": "hint_text",
+        "group": "default",
+        "font_weight": "normal"
+      },
+      {
+        "id": "eq1_blank_0",
+        "type": "rect",
+        "x": 276.39066,
+        "y": 454.78397,
+        "width": 46,
+        "height": 46,
+        "rx": 6,
+        "stroke": "#69beea",
+        "stroke_width": 3,
+        "fill": "none",
+        "semantic_role": "answer_blank",
+        "answer_blank": true,
+        "choice": {
+          "index": 2,
+          "value": "7"
+        },
+        "group": "default"
+      },
+      {
+        "id": "eq1_blank_1",
+        "type": "rect",
+        "x": 330.39066,
+        "y": 454.78397,
+        "width": 46,
+        "height": 46,
+        "rx": 6,
+        "stroke": "#69beea",
+        "stroke_width": 3,
+        "fill": "none",
+        "semantic_role": "answer_blank",
+        "answer_blank": true,
+        "choice": {
+          "index": 3,
+          "value": "4"
+        },
+        "group": "default"
+      },
+      {
+        "id": "eq1_blank_2",
+        "type": "rect",
+        "x": 384.39066,
+        "y": 454.78397,
+        "width": 46,
+        "height": 46,
+        "rx": 6,
+        "stroke": "#69beea",
+        "stroke_width": 3,
+        "fill": "none",
+        "semantic_role": "answer_blank",
+        "answer_blank": true,
+        "choice": {
+          "index": 4,
+          "value": "8"
+        },
+        "group": "default"
+      },
+      {
+        "id": "eq2_blank_0",
+        "type": "rect",
+        "x": 550.39069,
+        "y": 454.78397,
+        "width": 46,
+        "height": 46,
+        "rx": 6,
+        "stroke": "#69beea",
+        "stroke_width": 3,
+        "fill": "none",
+        "semantic_role": "answer_blank",
+        "answer_blank": true,
+        "choice": {
+          "index": 5,
+          "value": "9"
+        },
+        "group": "default"
+      },
+      {
+        "id": "eq2_blank_1",
+        "type": "rect",
+        "x": 604.39069,
+        "y": 454.78397,
+        "width": 46,
+        "height": 46,
+        "rx": 6,
+        "stroke": "#69beea",
+        "stroke_width": 3,
+        "fill": "none",
+        "semantic_role": "answer_blank",
+        "answer_blank": true,
+        "choice": {
+          "index": 6,
+          "value": "9"
+        },
+        "group": "default"
+      },
+      {
+        "id": "eq2_blank_2",
+        "type": "rect",
+        "x": 658.39069,
+        "y": 454.78397,
+        "width": 46,
+        "height": 46,
+        "rx": 6,
+        "stroke": "#69beea",
+        "stroke_width": 3,
+        "fill": "none",
+        "semantic_role": "answer_blank",
+        "answer_blank": true,
+        "choice": {
+          "index": 7,
+          "value": "5"
+        },
+        "group": "default"
+      },
+      {
+        "id": "inst-8",
+        "type": "text",
+        "semantic_role": "decorative",
+        "group": "default",
+        "x": 46.293472,
+        "y": 146.62199,
+        "font_family": "'Malgun Gothic'",
+        "font_size": 44.3844,
+        "fill": "#222222",
+        "font_weight": "normal",
+        "anchor": "start",
+        "transform": "scale(0.94172316,1.0618832)",
+        "style": "stroke-width:1.2329",
+        "text": "숨어 있는 글자를 찾아 보세요."
+      }
+    ]
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [
+      {
+        "target": "eq1_blank_0",
+        "value": "7"
+      },
+      {
+        "target": "eq1_blank_1",
+        "value": "4"
+      },
+      {
+        "target": "eq1_blank_2",
+        "value": "8"
+      },
+      {
+        "target": "eq2_blank_0",
+        "value": "9"
+      },
+      {
+        "target": "eq2_blank_1",
+        "value": "9"
+      },
+      {
+        "target": "eq2_blank_2",
+        "value": "5"
+      }
+    ]
+  },
+  "meta": {
+    "source_svg": "C:/projects/modu_math/problem/0008/svg/edit/semantic_edit.svg",
+    "derived_from": "C:/projects/modu_math/problem/0008/json/semantic/semantic.json",
+    "stage": "edit"
+  }
+}

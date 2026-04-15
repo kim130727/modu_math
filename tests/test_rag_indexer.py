@@ -15,21 +15,17 @@ def test_build_rag_index_entries_and_jsonl(tmp_path: Path) -> None:
     problem_dir = root / "p001"
     problem_dir.mkdir(parents=True)
 
-    # python source
     (problem_dir / "p001.py").write_text(
         "from modu_semantic import Problem, Rect\n\ndef build():\n    p=Problem(width=100,height=100,problem_id='p001')\n    p.add(Rect(id='r1',x=1,y=2,width=3,height=4))\n    return p\n",
         encoding="utf-8",
     )
 
-    # create valid bundle for validation_passed check
     p = Problem(width=100, height=100, problem_id="p001", problem_type="demo")
     p.add(Rect(id="r1", x=1, y=2, width=3, height=4))
     p.save(problem_dir, include_layout_diff=False)
 
     semantic = json.loads((problem_dir / "json" / "semantic_final" / "semantic_final.json").read_text(encoding="utf-8"))
-    layout = json.loads((problem_dir / "json" / "layout_final" / "layout_final.json").read_text(encoding="utf-8"))
     _write_json(problem_dir / "output" / "json" / "p001.semantic.json", semantic)
-    _write_json(problem_dir / "output" / "json" / "p001.layout.json", layout)
 
     entries = build_index_entries(examples_root=root)
     assert len(entries) == 1
@@ -38,7 +34,7 @@ def test_build_rag_index_entries_and_jsonl(tmp_path: Path) -> None:
     assert entry["problem_id"] == "p001"
     assert entry["py_path"] == "p001/p001.py"
     assert entry["semantic_path"] == "p001/output/json/p001.semantic.json"
-    assert entry["layout_path"] == "p001/output/json/p001.layout.json"
+    assert "layout_path" not in entry
     assert entry["validation_passed"] is True
     assert isinstance(entry["visual_primitives"], list)
 

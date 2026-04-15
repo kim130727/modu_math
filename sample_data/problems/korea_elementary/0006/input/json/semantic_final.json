@@ -1,0 +1,214 @@
+{
+  "schema_version": "modu_math.semantic.v3",
+  "render_contract_version": "modu_math.render.v1",
+  "problem_id": "0006",
+  "problem_type": "find_wrong_and_correct_addition",
+  "metadata": {
+    "edit_trace": {
+      "derived_from": "C:/projects/modu_math_lab/problem/0006/json/semantic/semantic.json",
+      "source_svg": "C:/projects/modu_math_lab/problem/0006/svg/edit/semantic_edit.svg",
+      "stage": "edit"
+    },
+    "source": {
+      "confidence": 0.6,
+      "created_at": "2026-04-08T08:09:40.950146+00:00",
+      "generator": "rule_parser",
+      "input_path": "C:/projects/modu_math_lab/problem/0006/input/0006.png",
+      "input_type": "png",
+      "parser_name": "PngToSemanticDraftParser"
+    },
+    "warnings": []
+  },
+  "domain": {
+    "correct_result": 1321,
+    "wrong": {
+      "bottom": 998,
+      "shown_result": 1221,
+      "top": 323,
+      "wrong_place": "hundreds"
+    }
+  },
+  "render": {
+    "canvas": {
+      "width": 1744,
+      "height": 725,
+      "background": "#F6F6F6"
+    },
+    "elements": [
+      {
+        "id": "instruction",
+        "type": "text",
+        "semantic_role": "instruction",
+        "group": "default",
+        "text": "잘못 계산한 곳에 ○표 하고, 바르게 계산해 보세요.",
+        "x": 115.52105,
+        "y": 95.168732,
+        "anchor": "start",
+        "font_family": "Malgun Gothic",
+        "font_size": 66,
+        "font_weight": "normal",
+        "fill": "#222222"
+      },
+      {
+        "id": "left_panel",
+        "type": "rect",
+        "semantic_role": "panel",
+        "group": "default",
+        "x": 203.9678,
+        "y": 215.6675,
+        "width": 585,
+        "height": 435,
+        "fill": "none",
+        "stroke": "#CFC8BA",
+        "stroke_width": 9,
+        "rx": 70
+      },
+      {
+        "id": "right_panel",
+        "type": "rect",
+        "semantic_role": "panel",
+        "group": "default",
+        "x": 966.96783,
+        "y": 205.6675,
+        "width": 615,
+        "height": 455,
+        "fill": "none",
+        "stroke": "#CFC8BA",
+        "stroke_width": 9,
+        "rx": 70
+      },
+      {
+        "id": "right_tab",
+        "type": "rect",
+        "semantic_role": "label_box",
+        "group": "default",
+        "x": 1089.9678,
+        "y": 169.6675,
+        "width": 400,
+        "height": 100,
+        "fill": "#CE8D61",
+        "stroke": "none",
+        "stroke_width": 0,
+        "rx": 38
+      },
+      {
+        "id": "right_tab_text",
+        "type": "text",
+        "semantic_role": "label",
+        "group": "default",
+        "text": "바르게 계산하기",
+        "x": 1289.9678,
+        "y": 231.6675,
+        "anchor": "middle",
+        "font_family": "Malgun Gothic",
+        "font_size": 42,
+        "font_weight": "bold",
+        "fill": "#FFFFFF"
+      },
+      {
+        "id": "left_top",
+        "type": "text",
+        "semantic_role": "equation_term",
+        "group": "default",
+        "text": "323",
+        "x": 622.57715,
+        "y": 360,
+        "anchor": "end",
+        "font_family": "Cambria",
+        "font_size": 87.5627,
+        "font_weight": "normal",
+        "fill": "#222222"
+      },
+      {
+        "id": "left_mid",
+        "type": "text",
+        "semantic_role": "equation_term",
+        "group": "default",
+        "text": "+998",
+        "x": 622.57715,
+        "y": 460,
+        "anchor": "end",
+        "font_family": "Cambria",
+        "font_size": 87.5627,
+        "font_weight": "normal",
+        "fill": "#222222"
+      },
+      {
+        "id": "left_line",
+        "type": "line",
+        "semantic_role": "equation_bar",
+        "group": "default",
+        "x1": 296.30759,
+        "y1": 510,
+        "x2": 636.30762,
+        "y2": 510,
+        "stroke": "#333333",
+        "stroke_width": 3
+      },
+      {
+        "id": "left_result",
+        "type": "text",
+        "semantic_role": "wrong_result",
+        "group": "default",
+        "text": "1221",
+        "x": 622.57715,
+        "y": 560,
+        "anchor": "end",
+        "font_family": "Cambria",
+        "font_size": 87.0081,
+        "font_weight": "normal",
+        "fill": "#222222"
+      },
+      {
+        "id": "arrow_body",
+        "type": "line",
+        "semantic_role": "arrow",
+        "group": "default",
+        "x1": 852.96783,
+        "y1": 435.66748,
+        "x2": 914.96783,
+        "y2": 435.66748,
+        "stroke": "#9AAAB2",
+        "stroke_width": 14
+      },
+      {
+        "id": "arrow_head1",
+        "type": "line",
+        "semantic_role": "arrow",
+        "group": "default",
+        "x1": 914.96783,
+        "y1": 435.66748,
+        "x2": 884.96783,
+        "y2": 408.66748,
+        "stroke": "#9AAAB2",
+        "stroke_width": 14
+      },
+      {
+        "id": "arrow_head2",
+        "type": "line",
+        "semantic_role": "arrow",
+        "group": "default",
+        "x1": 914.96783,
+        "y1": 435.66748,
+        "x2": 884.96783,
+        "y2": 462.66748,
+        "stroke": "#9AAAB2",
+        "stroke_width": 14
+      }
+    ]
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [
+      {
+        "target": "left_result",
+        "value": "1221"
+      },
+      {
+        "target": "left_result",
+        "value": "1321"
+      }
+    ]
+  }
+}

@@ -1,0 +1,142 @@
+{
+  "schema_version": "modu_math.semantic.v3",
+  "render_contract_version": "modu_math.render.v1",
+  "problem_id": "0017",
+  "problem_type": "shape_number_equation",
+  "metadata": {
+    "source": {
+      "input_type": "python_dsl",
+      "generator": "modu_semantic"
+    },
+    "warnings": []
+  },
+  "domain": {
+    "triangle": "8",
+    "square": "136",
+    "computed_answer": "136"
+  },
+  "render": {
+    "canvas": {
+      "width": 736.0,
+      "height": 340.0,
+      "background": "#F6F6F6"
+    },
+    "elements": [
+      {
+        "id": "line1",
+        "z_index": 0,
+        "anchor": "start",
+        "alignment": "left",
+        "fill": "#000000",
+        "font_family": "Malgun Gothic",
+        "font_size": 22,
+        "font_weight": "normal",
+        "type": "text",
+        "text": "같은 모양은 같은 수를 나타낼 때 ■는 얼마를 나타냅니까?",
+        "x": 20.0,
+        "y": 42.0
+      },
+      {
+        "id": "equation_box",
+        "z_index": 0,
+        "anchor": "start",
+        "alignment": "left",
+        "stroke": "#111111",
+        "stroke_width": 1,
+        "fill": "none",
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "type": "rect",
+        "x": 165.0,
+        "y": 112.0,
+        "width": 402,
+        "height": 140,
+        "rx": 22,
+        "ry": 22
+      },
+      {
+        "id": "eq1",
+        "z_index": 0,
+        "anchor": "start",
+        "alignment": "left",
+        "fill": "#000000",
+        "font_family": "Malgun Gothic",
+        "font_size": 44,
+        "font_weight": "normal",
+        "type": "text",
+        "text": "17×▲=■",
+        "x": 290.0,
+        "y": 164.0
+      },
+      {
+        "id": "eq2",
+        "z_index": 0,
+        "anchor": "start",
+        "alignment": "left",
+        "fill": "#000000",
+        "font_family": "Malgun Gothic",
+        "font_size": 44,
+        "font_weight": "normal",
+        "type": "text",
+        "text": "64÷▲=8",
+        "x": 290.0,
+        "y": 224.0
+      },
+      {
+        "id": "answer_left_paren",
+        "z_index": 0,
+        "anchor": "start",
+        "alignment": "left",
+        "fill": "#000000",
+        "font_family": "Malgun Gothic",
+        "font_size": 40,
+        "font_weight": "normal",
+        "type": "text",
+        "text": "(",
+        "x": 398.0,
+        "y": 304.0
+      },
+      {
+        "id": "answer_right_paren",
+        "z_index": 0,
+        "anchor": "start",
+        "alignment": "left",
+        "fill": "#000000",
+        "font_family": "Malgun Gothic",
+        "font_size": 40,
+        "font_weight": "normal",
+        "type": "text",
+        "text": ")",
+        "x": 700.0,
+        "y": 304.0
+      },
+      {
+        "id": "answer_blank",
+        "semantic_role": "blank_answer",
+        "z_index": 0,
+        "anchor": "start",
+        "alignment": "left",
+        "stroke": "none",
+        "stroke_width": 1.0,
+        "fill": "none",
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "type": "rect",
+        "x": 430.0,
+        "y": 272.0,
+        "width": 235,
+        "height": 44
+      }
+    ]
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [
+      {
+        "target": "answer_blank",
+        "value": "136"
+      }
+    ]
+  }
+}

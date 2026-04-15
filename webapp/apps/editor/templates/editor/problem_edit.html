@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+﻿{% extends "base.html" %}
 {% load static %}
 {% block title %}{{ problem_id }} 편집 | modu_math Editor{% endblock %}
 {% block content %}
@@ -26,7 +26,7 @@
   </aside>
 
   <div class="panel canvas-pane">
-    <h2>SVG 편집 캔버스</h2>
+    <h2>SVG 캔버스 (편집 + 미리보기)</h2>
     <div id="canvas-host" class="canvas-host"></div>
   </div>
 
@@ -52,18 +52,15 @@
 </section>
 
 <section class="panel">
-  <h2>Semantic JSON</h2>
-  <textarea id="semantic-json-text">{{ semantic_json }}</textarea>
+  <div class="section-head">
+    <h2>Semantic JSON</h2>
+    <button id="apply-json-btn" type="button">JSON 캔버스 반영</button>
+  </div>
+  <textarea id="semantic-json-text">{{ semantic_text }}</textarea>
   <p id="status-line" class="status"></p>
 </section>
 
-<section class="panel">
-  <h2>서버 SVG 미리보기</h2>
-  <div id="server-preview" class="svg-preview">{{ svg_preview|safe }}</div>
-</section>
-
-{{ semantic_json|json_script:"initial-semantic" }}
+{{ semantic_payload|json_script:"initial-semantic" }}
 {{ problem_id|json_script:"problem-id" }}
-<script type="module" src="{% static 'editor/js/editor.js' %}"></script>
+<script type="module" src="{% static 'editor/js/editor.js' %}?v={{ asset_version }}"></script>
 {% endblock %}
-

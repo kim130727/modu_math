@@ -121,7 +121,6 @@ def test_problem_save_flat_outputs_canonical_json(tmp_path) -> None:
     assert result is None
 
     semantic = json.loads(out_prefix.with_suffix(".semantic.json").read_text(encoding="utf-8"))
-    layout = json.loads(out_prefix.with_suffix(".layout.json").read_text(encoding="utf-8"))
 
     assert list(semantic.keys())[:4] == [
         "schema_version",
@@ -129,4 +128,3 @@ def test_problem_save_flat_outputs_canonical_json(tmp_path) -> None:
         "problem_id",
         "problem_type",
     ]
-    assert list(layout.keys())[:3] == ["schema_version", "problem_id", "metadata"]

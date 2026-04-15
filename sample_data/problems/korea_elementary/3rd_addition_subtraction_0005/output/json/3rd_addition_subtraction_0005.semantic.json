@@ -1,0 +1,99 @@
+{
+  "schema_version": "modu_math.semantic.v3",
+  "render_contract_version": "modu_math.render.v1",
+  "problem_id": "3rd_addition_subtraction_0005",
+  "problem_type": "word_problem_total",
+  "title": "종이별 개수",
+  "metadata": {
+    "source": {
+      "input_type": "python_dsl",
+      "generator": "modu_semantic"
+    },
+    "warnings": []
+  },
+  "domain": {
+    "sohui": 399,
+    "eunbyeol_more": 115,
+    "total": 913
+  },
+  "render": {
+    "canvas": {
+      "width": 767.0,
+      "height": 162.0,
+      "background": "#F6F6F6"
+    },
+    "elements": [
+      {
+        "id": "bg",
+        "z_index": 0,
+        "anchor": "start",
+        "alignment": "left",
+        "stroke": "none",
+        "stroke_width": 0,
+        "fill": "#FFFFFF",
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "type": "rect",
+        "x": 0.0,
+        "y": 0.0,
+        "width": 767,
+        "height": 162
+      },
+      {
+        "id": "t1",
+        "z_index": 0,
+        "anchor": "start",
+        "alignment": "left",
+        "fill": "#222222",
+        "font_family": "Malgun Gothic",
+        "font_size": 17,
+        "font_weight": "normal",
+        "type": "text",
+        "text": "소희는 종이별을 399개 접었고, 은별이는 소희보다 115개만큼 더 많이 접었습니다.",
+        "x": 8.0,
+        "y": 32.0
+      },
+      {
+        "id": "t2",
+        "z_index": 0,
+        "anchor": "start",
+        "alignment": "left",
+        "fill": "#222222",
+        "font_family": "Malgun Gothic",
+        "font_size": 17,
+        "font_weight": "normal",
+        "type": "text",
+        "text": "두 사람이 접은 종이별은 모두 몇 개인지 식과 답을 구하시오.",
+        "x": 8.0,
+        "y": 60.0
+      },
+      {
+        "id": "answer_total",
+        "semantic_role": "answer_anchor",
+        "z_index": 0,
+        "anchor": "start",
+        "alignment": "left",
+        "stroke": "none",
+        "stroke_width": 0,
+        "fill": "none",
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "type": "rect",
+        "x": 689.0,
+        "y": 120.0,
+        "width": 60,
+        "height": 30
+      }
+    ]
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [
+      {
+        "target": "answer_total",
+        "value": "913"
+      }
+    ]
+  }
+}

@@ -6,7 +6,6 @@ def _entry(problem_id: str, **kwargs):
         "problem_id": problem_id,
         "py_path": f"{problem_id}/{problem_id}.py",
         "semantic_path": f"{problem_id}/output/json/{problem_id}.semantic.json",
-        "layout_path": f"{problem_id}/output/json/{problem_id}.layout.json",
         "tags": [],
         "validation_passed": True,
         "updated_at": "2026-01-01T00:00:00+00:00",

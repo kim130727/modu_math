@@ -1,6 +1,6 @@
-import { saveSemantic } from "./api.js";
-import { fillPropertiesForm, applyPropertiesForm } from "./properties.js";
-import { renderCanvas, eventToSvgPoint } from "./svg_canvas.js";
+﻿import { applySemantic, saveSemantic } from "./api.js?v=20260415a";
+import { fillPropertiesForm, applyPropertiesForm } from "./properties.js?v=20260415a";
+import { renderCanvas, eventToSvgPoint } from "./svg_canvas.js?v=20260415a";
 
 function byId(id) {
   return document.getElementById(id);
@@ -49,6 +49,7 @@ const state = {
   selectedId: null,
   drag: null,
   mouseupBound: false,
+  jsonDirty: false,
 };
 
 ensureShape(state.semantic);
@@ -58,7 +59,7 @@ const elementList = byId("element-list");
 const form = byId("properties-form");
 const jsonTextarea = byId("semantic-json-text");
 const statusLine = byId("status-line");
-const serverPreview = byId("server-preview");
+const applyJsonBtn = byId("apply-json-btn");
 
 function selectedElement() {
   return getElements(state.semantic).find((el) => el.id === state.selectedId) ?? null;
@@ -74,12 +75,19 @@ function renderElementList() {
   elementList.innerHTML = items;
 }
 
-function renderAll() {
+function renderAll(forceJsonSync = false) {
   renderCanvas(canvasHost, state.semantic, state.selectedId);
   renderElementList();
   fillPropertiesForm(form, selectedElement());
-  jsonTextarea.value = JSON.stringify(state.semantic, null, 2);
+  if (forceJsonSync || !state.jsonDirty) {
+    jsonTextarea.value = JSON.stringify(state.semantic, null, 2);
+  }
   wireCanvasHandlers();
+}
+
+function syncJsonFromState() {
+  state.jsonDirty = false;
+  renderAll(true);
 }
 
 function updateStatus(message, isError = false) {
@@ -128,6 +136,9 @@ function wireCanvasHandlers() {
 
   if (!state.mouseupBound) {
     window.addEventListener("mouseup", () => {
+      if (state.drag) {
+        syncJsonFromState();
+      }
       state.drag = null;
     });
     state.mouseupBound = true;
@@ -147,7 +158,7 @@ form.addEventListener("submit", (event) => {
   if (!el) return;
   applyPropertiesForm(form, el);
   state.selectedId = el.id;
-  renderAll();
+  syncJsonFromState();
 });
 
 document.querySelectorAll("[data-add-type]").forEach((button) => {
@@ -157,7 +168,7 @@ document.querySelectorAll("[data-add-type]").forEach((button) => {
     const created = newElement(type, elements);
     elements.push(created);
     state.selectedId = created.id;
-    renderAll();
+    syncJsonFromState();
   });
 });
 
@@ -165,27 +176,88 @@ byId("delete-element-btn").addEventListener("click", () => {
   if (!state.selectedId) return;
   state.semantic.render.elements = getElements(state.semantic).filter((el) => el.id !== state.selectedId);
   state.selectedId = null;
-  renderAll();
+  syncJsonFromState();
 });
 
-byId("save-btn").addEventListener("click", async () => {
+async function applyJsonEditorToState() {
+  let parsed;
   try {
-    state.semantic = JSON.parse(jsonTextarea.value);
+    parsed = JSON.parse(jsonTextarea.value);
+  } catch (error) {
+    updateStatus("semantic JSON 형식이 올바르지 않습니다.", true);
+    return false;
+  }
+
+  // 즉시 로컬 반영
+  state.semantic = parsed;
+  ensureShape(state.semantic);
+  state.jsonDirty = false;
+  renderAll(true);
+
+  // 서버 canonicalize/validate 반영
+  let result;
+  try {
+    result = await applySemantic(state.problemId, parsed);
+  } catch (error) {
+    updateStatus("캔버스는 반영했지만 서버 통신 중 오류가 발생했습니다.", true);
+    return true;
+  }
+
+  if (!result.ok) {
+    updateStatus(`캔버스는 반영했지만 서버 검증 실패: ${(result.errors ?? ["JSON 반영 실패"]).join(" | ")}`, true);
+    return true;
+  }
+
+  state.semantic = result.semantic;
+  ensureShape(state.semantic);
+  state.jsonDirty = false;
+  renderAll(true);
+  updateStatus("JSON 내용을 검증/정규화 후 캔버스에 반영했습니다.");
+  return true;
+}
+
+jsonTextarea.addEventListener("input", () => {
+  state.jsonDirty = true;
+});
+
+if (applyJsonBtn) {
+  applyJsonBtn.addEventListener("click", async () => {
+    await applyJsonEditorToState();
+  });
+}
+
+byId("save-btn").addEventListener("click", async () => {
+  let parsed;
+  try {
+    parsed = JSON.parse(jsonTextarea.value);
   } catch (error) {
     updateStatus("semantic JSON 형식이 올바르지 않습니다.", true);
     return;
   }
 
-  const result = await saveSemantic(state.problemId, state.semantic);
+  state.semantic = parsed;
+  ensureShape(state.semantic);
+  state.jsonDirty = false;
+  renderAll(true);
+
+  let result;
+  try {
+    result = await saveSemantic(state.problemId, state.semantic);
+  } catch (error) {
+    updateStatus("서버 통신 중 오류가 발생했습니다.", true);
+    return;
+  }
+
   if (!result.ok) {
     updateStatus((result.errors ?? ["저장 실패"]).join(" | "), true);
     return;
   }
 
   state.semantic = result.semantic;
-  serverPreview.innerHTML = result.svg_preview;
-  updateStatus("저장 완료: canonical JSON + 검증 + SVG 재생성 완료");
-  renderAll();
+  state.jsonDirty = false;
+  updateStatus("저장 완료: semantic JSON 파일까지 반영했습니다.");
+  renderAll(true);
 });
 
-renderAll();
+renderAll(true);
+

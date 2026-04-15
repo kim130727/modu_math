@@ -213,9 +213,7 @@ def validate_problem_bundle(path: str | Path) -> list[str]:
         except Exception as exc:  # noqa: BLE001
             errors.append(f"Semantic validation failed ({semantic_path}): {exc}")
 
-    if not layout_path.exists():
-        errors.append(f"Missing layout file: {layout_path}")
-    else:
+    if layout_path.exists():
         try:
             layout = _read_json(layout_path)
             validate_layout(layout)
