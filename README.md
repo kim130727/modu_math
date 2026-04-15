@@ -49,8 +49,8 @@
 
 ### canonical key order
 
-- semantic/layout/layout_diff root key 순서는 반드시 `schema/contract/canonical_order_profile.json`을 따릅니다.
-- 저장 경로(`Problem.save()`/bundle)는 normalize -> canonical order -> validate 파이프라인으로 출력됩니다.
+- semantic root key 순서는 `schema/contract/canonical_order_profile.json`을 따릅니다.
+- 저장 경로(`Problem.save()`)는 normalize -> canonical order -> validate 파이프라인으로 출력됩니다.
 
 ## 빠른 시작
 
@@ -67,7 +67,6 @@ p.save("out/demo")
 생성 결과:
 
 - `out/demo.semantic.json`
-- `out/demo.layout.json`
 - `out/demo.svg`
 
 ## CLI
@@ -87,7 +86,6 @@ modu build-semantic examples/korea_elementary/3rd_addition_subtraction_0001/outp
 생성 결과:
 
 - `out/from_semantic/3rd_addition_subtraction_0001.semantic.json`
-- `out/from_semantic/3rd_addition_subtraction_0001.layout.json`
 - `out/from_semantic/3rd_addition_subtraction_0001.svg`
 - `out/from_semantic/3rd_addition_subtraction_0001.generated.py`
 
@@ -138,7 +136,7 @@ python tools/run_rag_generation.py --meta-path examples/problem/_rag/input_meta.
 - 기본 파일명 prefix는 `problem_id`를 사용합니다. (없으면 `run_id`)
 - `problem_id`가 있으면 `latest` 별칭도 함께 갱신됩니다.
   - 예: `0016.latest.generated.py`, `0016.latest.prompt.txt`
-  - `--persist-output` 사용 시 `0016.latest.semantic.json`, `0016.latest.layout.json`, `0016.latest.svg`
+  - `--persist-output` 사용 시 `0016.latest.semantic.json`, `0016.latest.svg`
 - 필요하면 `--artifact-prefix my_name`으로 직접 지정할 수 있습니다.
 
 생성 산출물:
@@ -148,7 +146,6 @@ python tools/run_rag_generation.py --meta-path examples/problem/_rag/input_meta.
 - `examples/problem/_rag/generated/<prefix>.prompt.txt`
 - `examples/problem/_rag/generated/<prefix>.generated.py`
 - (`--persist-output` 사용 시) `examples/problem/_rag/generated/<prefix>_built.semantic.json`
-- (`--persist-output` 사용 시) `examples/problem/_rag/generated/<prefix>_built.layout.json`
 - (`--persist-output` 사용 시) `examples/problem/_rag/generated/<prefix>_built.svg`
 
 정리 팁:
@@ -165,10 +162,10 @@ python tools/run_rag_generation.py --meta-path examples/problem/_rag/input_meta.
 - `src/modu_semantic/primitives.py`: 기본 요소
 - `src/modu_semantic/groups.py`: 그룹 모델
 - `src/modu_semantic/regions.py`: 박스 기반 레이아웃 분할
-- `src/modu_semantic/compiler_json.py`: canonical semantic/layout 컴파일러
+- `src/modu_semantic/compiler_json.py`: canonical semantic 컴파일러
 - `src/modu_semantic/compiler_svg.py`: SVG 렌더러
 - `src/modu_semantic/recipes/`: 도메인 템플릿
-- `schema/contract/`: semantic/layout 스키마 및 canonical order 프로파일
+- `schema/contract/`: semantic 스키마 및 canonical order 프로파일
 
 ## 테스트
 
@@ -221,7 +218,7 @@ uv run python webapp/manage.py runserver
 
 ## 참고
 
-기존 계약 번들 파이프라인(`include_layout_diff`, `baseline_layout_path`)도 `Problem.save()`에서 호환 모드로 유지됩니다.
+`Problem.save()`는 semantic JSON을 단일 canonical 산출물로 저장합니다.
 
 ## 빌드 파이프라인 용어
 

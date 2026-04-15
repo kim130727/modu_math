@@ -48,8 +48,8 @@ def test_relative_coords_become_absolute_in_layout_and_svg() -> None:
 
     p.add(problem_box)
 
-    layout = p.to_layout_dict()
-    by_id = {item["id"]: item for item in layout["elements"] if "id" in item}
+    semantic = p.to_semantic_dict()
+    by_id = {item["id"]: item for item in semantic["render"]["elements"] if "id" in item}
 
     # instruction absolute origin = (100,100)
     assert by_id["instr"]["x"] == 100

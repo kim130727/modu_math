@@ -76,7 +76,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument(
         "--persist-output",
         action="store_true",
-        help="Persist semantic/layout/svg outputs next to generated artifacts when validation succeeds.",
+        help="Persist semantic/svg outputs next to generated artifacts when validation succeeds.",
     )
     args = parser.parse_args(argv)
 

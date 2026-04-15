@@ -1,0 +1,145 @@
+{
+  "schema_version": "modu_math.semantic.v3",
+  "render_contract_version": "modu_math.render.v1",
+  "problem_id": "3rd_addition_subtraction_0006",
+  "problem_type": "find_wrong_reason",
+  "title": "잘못 계산한 사람",
+  "metadata": {
+    "source": {
+      "input_type": "python_dsl",
+      "generator": "modu_semantic"
+    },
+    "warnings": []
+  },
+  "domain": {
+    "expression": "875-328",
+    "wrong_person": "건우",
+    "reason": "75-28에서 30을 빼면 2를 더해야 하는데 2를 뺐다."
+  },
+  "render": {
+    "canvas": {
+      "width": 767.0,
+      "height": 276.0,
+      "background": "#F6F6F6"
+    },
+    "elements": [
+      {
+        "id": "bg",
+        "z_index": 0,
+        "anchor": "start",
+        "alignment": "left",
+        "stroke": "none",
+        "stroke_width": 0,
+        "fill": "#FFFFFF",
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "type": "rect",
+        "x": 0.0,
+        "y": 0.0,
+        "width": 767,
+        "height": 276
+      },
+      {
+        "id": "i1",
+        "z_index": 0,
+        "anchor": "start",
+        "alignment": "left",
+        "fill": "#222222",
+        "font_family": "Malgun Gothic",
+        "font_size": 17,
+        "font_weight": "normal",
+        "type": "text",
+        "text": "지은이와 건우가 875-328을 계산한 방법을 대화로 나타낸 것입니다. 잘못 계산한",
+        "x": 6.0,
+        "y": 34.0
+      },
+      {
+        "id": "i2",
+        "z_index": 0,
+        "anchor": "start",
+        "alignment": "left",
+        "fill": "#222222",
+        "font_family": "Malgun Gothic",
+        "font_size": 17,
+        "font_weight": "normal",
+        "type": "text",
+        "text": "사람과 이유를 쓰세요.",
+        "x": 6.0,
+        "y": 62.0
+      },
+      {
+        "id": "bubble",
+        "z_index": 0,
+        "anchor": "start",
+        "alignment": "left",
+        "stroke": "#666666",
+        "stroke_width": 1.5,
+        "fill": "none",
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "type": "rect",
+        "x": 14.0,
+        "y": 98.0,
+        "width": 740,
+        "height": 116,
+        "rx": 10,
+        "ry": 10
+      },
+      {
+        "id": "jy",
+        "z_index": 0,
+        "anchor": "start",
+        "alignment": "left",
+        "fill": "#222222",
+        "font_family": "Malgun Gothic",
+        "font_size": 17,
+        "font_weight": "normal",
+        "type": "text",
+        "text": "• 지은: 800에서 300을 빼고, 75에서 28을 뺀 다음 두 결과를 더했어.",
+        "x": 24.0,
+        "y": 132.0
+      },
+      {
+        "id": "gw",
+        "z_index": 0,
+        "anchor": "start",
+        "alignment": "left",
+        "fill": "#222222",
+        "font_family": "Malgun Gothic",
+        "font_size": 17,
+        "font_weight": "normal",
+        "type": "text",
+        "text": "• 건우: 800에서 300을 빼고 75에서 30을 뺀 다음 2를 빼서 결과를 더했어.",
+        "x": 24.0,
+        "y": 174.0
+      },
+      {
+        "id": "answer_text",
+        "semantic_role": "answer_anchor",
+        "z_index": 0,
+        "anchor": "start",
+        "alignment": "left",
+        "stroke": "none",
+        "stroke_width": 0,
+        "fill": "none",
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "type": "rect",
+        "x": 400.0,
+        "y": 236.0,
+        "width": 350,
+        "height": 30
+      }
+    ]
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [
+      {
+        "target": "answer_text",
+        "value": "건우, 30으로 바꾸면 2를 더해야 하는데 뺐다."
+      }
+    ]
+  }
+}

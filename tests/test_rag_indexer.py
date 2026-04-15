@@ -22,9 +22,9 @@ def test_build_rag_index_entries_and_jsonl(tmp_path: Path) -> None:
 
     p = Problem(width=100, height=100, problem_id="p001", problem_type="demo")
     p.add(Rect(id="r1", x=1, y=2, width=3, height=4))
-    p.save(problem_dir, include_layout_diff=False)
+    p.save(problem_dir / "p001", include_layout_diff=False)
 
-    semantic = json.loads((problem_dir / "json" / "semantic_final" / "semantic_final.json").read_text(encoding="utf-8"))
+    semantic = json.loads((problem_dir / "p001.semantic.json").read_text(encoding="utf-8"))
     _write_json(problem_dir / "output" / "json" / "p001.semantic.json", semantic)
 
     entries = build_index_entries(examples_root=root)

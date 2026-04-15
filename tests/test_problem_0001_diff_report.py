@@ -8,12 +8,9 @@ def test_generate_0001_outputs_and_reports() -> None:
     base = Path("tests/problem/0001")
     expected_files = [
         base / "generated/0001.semantic.generated.json",
-        base / "generated/0001.layout.generated.json",
         base / "generated/0001.semantic.generated.svg",
         base / "report/semantic_diff.json",
-        base / "report/layout_diff.json",
         base / "report/semantic_diff.md",
-        base / "report/layout_diff.md",
         base / "report/svg_diff.md",
         base / "report/run_summary.json",
     ]

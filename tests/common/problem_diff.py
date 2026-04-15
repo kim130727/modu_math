@@ -224,45 +224,35 @@ def run_problem_diff_report(problem_id: str) -> dict[str, Any]:
     report_dir = target_root / "report"
 
     reference_semantic = load_json(base / "json/semantic_final/semantic_final.json")
-    reference_layout = load_json(base / "json/layout_final/layout_final.json")
     reference_svg = (base / "svg/final/semantic_final.svg").read_text(encoding="utf-8")
 
     problem, warnings = build_problem_from_semantic(reference_semantic)
 
     generated_semantic = problem.to_semantic_json(validate=False)
-    generated_layout = problem.to_layout_json()
     generated_svg = problem.to_svg()
 
     write_json(out_dir / f"{problem_id}.semantic.generated.json", generated_semantic)
-    write_json(out_dir / f"{problem_id}.layout.generated.json", generated_layout)
     write_text(out_dir / f"{problem_id}.semantic.generated.svg", generated_svg)
 
     semantic_diff = compare_json_fields(reference_semantic, generated_semantic)
-    layout_diff = compare_json_fields(reference_layout, generated_layout)
 
     write_json(report_dir / "semantic_diff.json", semantic_diff)
-    write_json(report_dir / "layout_diff.json", layout_diff)
     write_text(report_dir / "semantic_diff.md", to_markdown_report("Semantic JSON Diff Report", semantic_diff))
-    write_text(report_dir / "layout_diff.md", to_markdown_report("Layout JSON Diff Report", layout_diff))
     write_text(report_dir / "svg_diff.md", svg_diff_report(reference_svg, generated_svg))
 
     summary = {
         "warnings": warnings,
         "outputs": {
             "semantic": str(out_dir / f"{problem_id}.semantic.generated.json"),
-            "layout": str(out_dir / f"{problem_id}.layout.generated.json"),
             "svg": str(out_dir / f"{problem_id}.semantic.generated.svg"),
         },
         "reports": {
             "semantic": str(report_dir / "semantic_diff.md"),
-            "layout": str(report_dir / "layout_diff.md"),
             "svg": str(report_dir / "svg_diff.md"),
         },
         "summary": {
             "semantic": semantic_diff["summary"],
-            "layout": layout_diff["summary"],
         },
     }
     write_json(report_dir / "run_summary.json", summary)
     return summary
-

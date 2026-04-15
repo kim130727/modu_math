@@ -84,7 +84,6 @@ def test_build_from_semantic_file_writes_outputs_and_scaffold(tmp_path: Path) ->
     )
 
     assert outputs["semantic"].exists()
-    assert outputs["layout"].exists()
     assert outputs["svg"].exists()
     assert outputs["answer_svg"].exists()
     assert outputs["py"].exists()
