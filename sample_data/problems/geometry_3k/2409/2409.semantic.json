@@ -1,9 +1,6 @@
 {
-  "schema_version": "modu_math.semantic.v3",
-  "render_contract_version": "modu_math.render.v1",
   "problem_id": "2409",
   "problem_type": "Length::Triangle",
-  "title": "Find y.",
   "metadata": {
     "source": "textbook1_chapter_8.pdf",
     "warnings": [],
@@ -82,341 +79,6 @@
       "circle_instances": []
     }
   },
-  "render": {
-    "elements": [
-      {
-        "id": "geom_diagram_region",
-        "semantic_role": "geometry_diagram_region",
-        "type": "rect"
-      },
-      {
-        "id": "geom_line_1",
-        "semantic_role": "geometry_edge",
-        "type": "line"
-      },
-      {
-        "id": "geom_line_2",
-        "semantic_role": "geometry_edge",
-        "type": "line"
-      },
-      {
-        "id": "geom_line_3",
-        "semantic_role": "geometry_edge",
-        "type": "line"
-      },
-      {
-        "id": "geom_point_A",
-        "semantic_role": "geometry_point",
-        "type": "circle"
-      },
-      {
-        "id": "geom_label_A",
-        "semantic_role": "geometry_point_label",
-        "type": "text",
-        "text": "A"
-      },
-      {
-        "id": "geom_point_B",
-        "semantic_role": "geometry_point",
-        "type": "circle"
-      },
-      {
-        "id": "geom_label_B",
-        "semantic_role": "geometry_point_label",
-        "type": "text",
-        "text": "B"
-      },
-      {
-        "id": "geom_point_C",
-        "semantic_role": "geometry_point",
-        "type": "circle"
-      },
-      {
-        "id": "geom_label_C",
-        "semantic_role": "geometry_point_label",
-        "type": "text",
-        "text": "C"
-      },
-      {
-        "id": "geom_len_1_AC",
-        "semantic_role": "geometry_length_label",
-        "type": "text",
-        "text": "21"
-      },
-      {
-        "id": "geom_len_2_AB",
-        "semantic_role": "geometry_length_label",
-        "type": "text",
-        "text": "y"
-      },
-      {
-        "id": "geom_len_3_BC",
-        "semantic_role": "geometry_length_label",
-        "type": "text",
-        "text": "x"
-      },
-      {
-        "id": "geom_dim_1_cap_a",
-        "semantic_role": "geometry_dimension_cap",
-        "type": "line"
-      },
-      {
-        "id": "geom_dim_1_cap_b",
-        "semantic_role": "geometry_dimension_cap",
-        "type": "line"
-      },
-      {
-        "id": "geom_dim_1_arr_a_a",
-        "semantic_role": "geometry_dimension_arrow",
-        "type": "line"
-      },
-      {
-        "id": "geom_dim_1_arr_a_b",
-        "semantic_role": "geometry_dimension_arrow",
-        "type": "line"
-      },
-      {
-        "id": "geom_dim_1_arr_b_a",
-        "semantic_role": "geometry_dimension_arrow",
-        "type": "line"
-      },
-      {
-        "id": "geom_dim_1_arr_b_b",
-        "semantic_role": "geometry_dimension_arrow",
-        "type": "line"
-      },
-      {
-        "id": "geom_dim_2_cap_a",
-        "semantic_role": "geometry_dimension_cap",
-        "type": "line"
-      },
-      {
-        "id": "geom_dim_2_cap_b",
-        "semantic_role": "geometry_dimension_cap",
-        "type": "line"
-      },
-      {
-        "id": "geom_dim_2_arr_a_a",
-        "semantic_role": "geometry_dimension_arrow",
-        "type": "line"
-      },
-      {
-        "id": "geom_dim_2_arr_a_b",
-        "semantic_role": "geometry_dimension_arrow",
-        "type": "line"
-      },
-      {
-        "id": "geom_dim_2_arr_b_a",
-        "semantic_role": "geometry_dimension_arrow",
-        "type": "line"
-      },
-      {
-        "id": "geom_dim_2_arr_b_b",
-        "semantic_role": "geometry_dimension_arrow",
-        "type": "line"
-      },
-      {
-        "id": "geom_dim_3_cap_a",
-        "semantic_role": "geometry_dimension_cap",
-        "type": "line"
-      },
-      {
-        "id": "geom_dim_3_cap_b",
-        "semantic_role": "geometry_dimension_cap",
-        "type": "line"
-      },
-      {
-        "id": "geom_dim_3_arr_a_a",
-        "semantic_role": "geometry_dimension_arrow",
-        "type": "line"
-      },
-      {
-        "id": "geom_dim_3_arr_a_b",
-        "semantic_role": "geometry_dimension_arrow",
-        "type": "line"
-      },
-      {
-        "id": "geom_dim_3_arr_b_a",
-        "semantic_role": "geometry_dimension_arrow",
-        "type": "line"
-      },
-      {
-        "id": "geom_dim_3_arr_b_b",
-        "semantic_role": "geometry_dimension_arrow",
-        "type": "line"
-      },
-      {
-        "id": "geom_angle_1_01",
-        "semantic_role": "geometry_angle_marker",
-        "type": "line"
-      },
-      {
-        "id": "geom_angle_1_02",
-        "semantic_role": "geometry_angle_marker",
-        "type": "line"
-      },
-      {
-        "id": "geom_angle_1_03",
-        "semantic_role": "geometry_angle_marker",
-        "type": "line"
-      },
-      {
-        "id": "geom_angle_1_04",
-        "semantic_role": "geometry_angle_marker",
-        "type": "line"
-      },
-      {
-        "id": "geom_angle_1_05",
-        "semantic_role": "geometry_angle_marker",
-        "type": "line"
-      },
-      {
-        "id": "geom_angle_1_06",
-        "semantic_role": "geometry_angle_marker",
-        "type": "line"
-      },
-      {
-        "id": "geom_angle_1_07",
-        "semantic_role": "geometry_angle_marker",
-        "type": "line"
-      },
-      {
-        "id": "geom_angle_1_08",
-        "semantic_role": "geometry_angle_marker",
-        "type": "line"
-      },
-      {
-        "id": "geom_angle_1_09",
-        "semantic_role": "geometry_angle_marker",
-        "type": "line"
-      },
-      {
-        "id": "geom_angle_1_10",
-        "semantic_role": "geometry_angle_marker",
-        "type": "line"
-      },
-      {
-        "id": "geom_angle_1_11",
-        "semantic_role": "geometry_angle_marker",
-        "type": "line"
-      },
-      {
-        "id": "geom_angle_1_12",
-        "semantic_role": "geometry_angle_marker",
-        "type": "line"
-      },
-      {
-        "id": "geom_angle_1_13",
-        "semantic_role": "geometry_angle_marker",
-        "type": "line"
-      },
-      {
-        "id": "geom_angle_1_14",
-        "semantic_role": "geometry_angle_marker",
-        "type": "line"
-      },
-      {
-        "id": "geom_angle_label_1",
-        "semantic_role": "geometry_angle_label",
-        "type": "text",
-        "text": "60"
-      },
-      {
-        "id": "geom_angle_2_01",
-        "semantic_role": "geometry_angle_marker",
-        "type": "line"
-      },
-      {
-        "id": "geom_angle_2_02",
-        "semantic_role": "geometry_angle_marker",
-        "type": "line"
-      },
-      {
-        "id": "geom_angle_2_03",
-        "semantic_role": "geometry_angle_marker",
-        "type": "line"
-      },
-      {
-        "id": "geom_angle_2_04",
-        "semantic_role": "geometry_angle_marker",
-        "type": "line"
-      },
-      {
-        "id": "geom_angle_2_05",
-        "semantic_role": "geometry_angle_marker",
-        "type": "line"
-      },
-      {
-        "id": "geom_angle_2_06",
-        "semantic_role": "geometry_angle_marker",
-        "type": "line"
-      },
-      {
-        "id": "geom_angle_2_07",
-        "semantic_role": "geometry_angle_marker",
-        "type": "line"
-      },
-      {
-        "id": "geom_angle_2_08",
-        "semantic_role": "geometry_angle_marker",
-        "type": "line"
-      },
-      {
-        "id": "geom_angle_2_09",
-        "semantic_role": "geometry_angle_marker",
-        "type": "line"
-      },
-      {
-        "id": "geom_angle_2_10",
-        "semantic_role": "geometry_angle_marker",
-        "type": "line"
-      },
-      {
-        "id": "geom_angle_2_11",
-        "semantic_role": "geometry_angle_marker",
-        "type": "line"
-      },
-      {
-        "id": "geom_angle_2_12",
-        "semantic_role": "geometry_angle_marker",
-        "type": "line"
-      },
-      {
-        "id": "geom_angle_2_13",
-        "semantic_role": "geometry_angle_marker",
-        "type": "line"
-      },
-      {
-        "id": "geom_angle_2_14",
-        "semantic_role": "geometry_angle_marker",
-        "type": "line"
-      },
-      {
-        "id": "geom_angle_label_2",
-        "semantic_role": "geometry_angle_label",
-        "type": "text",
-        "text": "30"
-      },
-      {
-        "id": "text.problem",
-        "semantic_role": "problem_text",
-        "type": "text",
-        "text": "Find y."
-      },
-      {
-        "id": "text.choices_ln1",
-        "semantic_role": "multiple_choice",
-        "type": "text",
-        "text": "1. 21 / 2. 21 √(2) /"
-      },
-      {
-        "id": "text.choices_ln2",
-        "semantic_role": "multiple_choice",
-        "type": "text",
-        "text": "3. 21 √(3) / 4."
-      }
-    ]
-  },
   "answer": {
     "blanks": [],
     "choices": [
@@ -430,6 +92,280 @@
         "label": "no.3",
         "index": 2,
         "value": "21 √(3)"
+      }
+    ]
+  },
+  "schema_version": "modu_math.semantic.v3",
+  "render_contract_version": "modu_math.render.v1",
+  "title": "Find y.",
+  "render": {
+    "elements": [
+      {
+        "id": "geom_diagram_region",
+        "type": "rect"
+      },
+      {
+        "id": "geom_line_1",
+        "type": "line"
+      },
+      {
+        "id": "geom_line_2",
+        "type": "line"
+      },
+      {
+        "id": "geom_line_3",
+        "type": "line"
+      },
+      {
+        "id": "geom_point_A",
+        "type": "circle"
+      },
+      {
+        "id": "geom_label_A",
+        "type": "text",
+        "text": "A"
+      },
+      {
+        "id": "geom_point_B",
+        "type": "circle"
+      },
+      {
+        "id": "geom_label_B",
+        "type": "text",
+        "text": "B"
+      },
+      {
+        "id": "geom_point_C",
+        "type": "circle"
+      },
+      {
+        "id": "geom_label_C",
+        "type": "text",
+        "text": "C"
+      },
+      {
+        "id": "geom_len_1_AC",
+        "type": "text",
+        "text": "21"
+      },
+      {
+        "id": "geom_len_2_AB",
+        "type": "text",
+        "text": "y"
+      },
+      {
+        "id": "geom_len_3_BC",
+        "type": "text",
+        "text": "x"
+      },
+      {
+        "id": "geom_dim_1_cap_a",
+        "type": "line"
+      },
+      {
+        "id": "geom_dim_1_cap_b",
+        "type": "line"
+      },
+      {
+        "id": "geom_dim_1_arr_a_a",
+        "type": "line"
+      },
+      {
+        "id": "geom_dim_1_arr_a_b",
+        "type": "line"
+      },
+      {
+        "id": "geom_dim_1_arr_b_a",
+        "type": "line"
+      },
+      {
+        "id": "geom_dim_1_arr_b_b",
+        "type": "line"
+      },
+      {
+        "id": "geom_dim_2_cap_a",
+        "type": "line"
+      },
+      {
+        "id": "geom_dim_2_cap_b",
+        "type": "line"
+      },
+      {
+        "id": "geom_dim_2_arr_a_a",
+        "type": "line"
+      },
+      {
+        "id": "geom_dim_2_arr_a_b",
+        "type": "line"
+      },
+      {
+        "id": "geom_dim_2_arr_b_a",
+        "type": "line"
+      },
+      {
+        "id": "geom_dim_2_arr_b_b",
+        "type": "line"
+      },
+      {
+        "id": "geom_dim_3_cap_a",
+        "type": "line"
+      },
+      {
+        "id": "geom_dim_3_cap_b",
+        "type": "line"
+      },
+      {
+        "id": "geom_dim_3_arr_a_a",
+        "type": "line"
+      },
+      {
+        "id": "geom_dim_3_arr_a_b",
+        "type": "line"
+      },
+      {
+        "id": "geom_dim_3_arr_b_a",
+        "type": "line"
+      },
+      {
+        "id": "geom_dim_3_arr_b_b",
+        "type": "line"
+      },
+      {
+        "id": "geom_angle_1_01",
+        "type": "line"
+      },
+      {
+        "id": "geom_angle_1_02",
+        "type": "line"
+      },
+      {
+        "id": "geom_angle_1_03",
+        "type": "line"
+      },
+      {
+        "id": "geom_angle_1_04",
+        "type": "line"
+      },
+      {
+        "id": "geom_angle_1_05",
+        "type": "line"
+      },
+      {
+        "id": "geom_angle_1_06",
+        "type": "line"
+      },
+      {
+        "id": "geom_angle_1_07",
+        "type": "line"
+      },
+      {
+        "id": "geom_angle_1_08",
+        "type": "line"
+      },
+      {
+        "id": "geom_angle_1_09",
+        "type": "line"
+      },
+      {
+        "id": "geom_angle_1_10",
+        "type": "line"
+      },
+      {
+        "id": "geom_angle_1_11",
+        "type": "line"
+      },
+      {
+        "id": "geom_angle_1_12",
+        "type": "line"
+      },
+      {
+        "id": "geom_angle_1_13",
+        "type": "line"
+      },
+      {
+        "id": "geom_angle_1_14",
+        "type": "line"
+      },
+      {
+        "id": "geom_angle_label_1",
+        "type": "text",
+        "text": "60"
+      },
+      {
+        "id": "geom_angle_2_01",
+        "type": "line"
+      },
+      {
+        "id": "geom_angle_2_02",
+        "type": "line"
+      },
+      {
+        "id": "geom_angle_2_03",
+        "type": "line"
+      },
+      {
+        "id": "geom_angle_2_04",
+        "type": "line"
+      },
+      {
+        "id": "geom_angle_2_05",
+        "type": "line"
+      },
+      {
+        "id": "geom_angle_2_06",
+        "type": "line"
+      },
+      {
+        "id": "geom_angle_2_07",
+        "type": "line"
+      },
+      {
+        "id": "geom_angle_2_08",
+        "type": "line"
+      },
+      {
+        "id": "geom_angle_2_09",
+        "type": "line"
+      },
+      {
+        "id": "geom_angle_2_10",
+        "type": "line"
+      },
+      {
+        "id": "geom_angle_2_11",
+        "type": "line"
+      },
+      {
+        "id": "geom_angle_2_12",
+        "type": "line"
+      },
+      {
+        "id": "geom_angle_2_13",
+        "type": "line"
+      },
+      {
+        "id": "geom_angle_2_14",
+        "type": "line"
+      },
+      {
+        "id": "geom_angle_label_2",
+        "type": "text",
+        "text": "30"
+      },
+      {
+        "id": "text.problem",
+        "type": "text",
+        "text": "Find y."
+      },
+      {
+        "id": "text.choices_ln1",
+        "type": "text",
+        "text": "1. 21 / 2. 21 √(2) /"
+      },
+      {
+        "id": "text.choices_ln2",
+        "type": "text",
+        "text": "3. 21 √(3) / 4."
       }
     ]
   }

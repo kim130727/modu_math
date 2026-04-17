@@ -16,6 +16,13 @@ from .services.export_py import export_bundle
 from .services.validate import canonicalize_and_validate
 
 
+def _build_layout_renderer(problem_id: str, semantic: dict[str, Any]) -> tuple[dict[str, Any], dict[str, Any]]:
+    normalized_id = io_service.normalize_problem_id(problem_id)
+    layout = io_service._layout_from_semantic_render(normalized_id, semantic)
+    renderer = io_service._renderer_from_layout(layout)
+    return layout, renderer
+
+
 @require_GET
 def problem_list(request: HttpRequest) -> HttpResponse:
     problems = io_service.list_problems()
@@ -28,11 +35,16 @@ def problem_edit(request: HttpRequest, problem_id: str) -> HttpResponse:
     semantic = io_service.load_semantic(problem_id)
     canonical = canonicalize_and_validate(semantic)
     io_service.save_semantic(problem_id, canonical)
+    layout, renderer = _build_layout_renderer(problem_id, canonical)
 
     context = {
         "problem_id": io_service.normalize_problem_id(problem_id),
         "semantic_text": json.dumps(canonical, ensure_ascii=False, indent=2),
+        "layout_text": json.dumps(layout, ensure_ascii=False, indent=2),
+        "renderer_text": json.dumps(renderer, ensure_ascii=False, indent=2),
         "semantic_payload": canonical,
+        "layout_payload": layout,
+        "renderer_payload": renderer,
         "asset_version": str(int(time.time())),
     }
     return render(request, "editor/problem_edit.html", context)
@@ -52,6 +64,7 @@ def save_problem(request: HttpRequest, problem_id: str) -> JsonResponse:
         canonical = canonicalize_and_validate(raw_semantic)
         if not canonical.get("problem_id"):
             canonical["problem_id"] = io_service.normalize_problem_id(problem_id).replace("/", "_")
+        layout, renderer = _build_layout_renderer(problem_id, canonical)
         if not dry_run:
             io_service.save_semantic(problem_id, canonical)
     except Exception as exc:
@@ -62,7 +75,11 @@ def save_problem(request: HttpRequest, problem_id: str) -> JsonResponse:
             "ok": True,
             "dry_run": dry_run,
             "semantic": canonical,
+            "layout": layout,
+            "renderer": renderer,
             "semantic_text": json.dumps(canonical, ensure_ascii=False, indent=2),
+            "layout_text": json.dumps(layout, ensure_ascii=False, indent=2),
+            "renderer_text": json.dumps(renderer, ensure_ascii=False, indent=2),
         }
     )
 

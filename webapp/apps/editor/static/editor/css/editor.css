@@ -134,6 +134,25 @@ button:hover,
   font-size: 13px;
 }
 
+.json-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.json-pane h3 {
+  margin: 0 0 6px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.json-pane textarea {
+  width: 100%;
+  min-height: 240px;
+  font-family: Consolas, monospace;
+  font-size: 13px;
+}
+
 .canvas-host {
   min-height: 480px;
   background: #fff;
@@ -221,6 +240,10 @@ button:hover,
 
 @media (max-width: 1080px) {
   .editor-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .json-grid {
     grid-template-columns: 1fr;
   }
 }

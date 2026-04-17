@@ -57,14 +57,29 @@
 
 <section class="panel">
   <div class="section-head">
-    <h2>편집 뷰 JSON</h2>
-    <button id="apply-json-btn" type="button">JSON 캔버스 반영</button>
+    <h2>편집 JSON (Semantic / Layout / Renderer)</h2>
+    <button id="apply-json-btn" type="button">Semantic 반영</button>
   </div>
-  <textarea id="semantic-json-text">{{ semantic_text }}</textarea>
+  <div class="json-grid">
+    <div class="json-pane">
+      <h3>Semantic (Editable)</h3>
+      <textarea id="semantic-json-text">{{ semantic_text }}</textarea>
+    </div>
+    <div class="json-pane">
+      <h3>Layout (Read-only)</h3>
+      <textarea id="layout-json-text" readonly>{{ layout_text }}</textarea>
+    </div>
+    <div class="json-pane">
+      <h3>Renderer (Read-only)</h3>
+      <textarea id="renderer-json-text" readonly>{{ renderer_text }}</textarea>
+    </div>
+  </div>
   <p id="status-line" class="status"></p>
 </section>
 
 {{ semantic_payload|json_script:"initial-semantic" }}
+{{ layout_payload|json_script:"initial-layout" }}
+{{ renderer_payload|json_script:"initial-renderer" }}
 {{ problem_id|json_script:"problem-id" }}
 <script type="module" src="{% static 'editor/js/editor.js' %}?v={{ asset_version }}"></script>
 {% endblock %}

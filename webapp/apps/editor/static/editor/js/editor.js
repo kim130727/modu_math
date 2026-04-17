@@ -1,4 +1,4 @@
-﻿import { applySemantic, saveSemantic } from "./api.js?v=20260415a";
+import { applySemantic, saveSemantic } from "./api.js?v=20260415a";
 import { fillPropertiesForm, applyPropertiesForm } from "./properties.js?v=20260415a";
 import { renderCanvas, eventToSvgPoint } from "./svg_canvas.js?v=20260415a";
 
@@ -43,9 +43,149 @@ function newElement(type, elements) {
   return { id: makeId("formula", elements), type: "formula", x: 120, y: 100, expr: "x + y = 10", fill: "#111", font_size: 24 };
 }
 
+function normalizeProblemId(problemId) {
+  return String(problemId ?? "").replaceAll("/", "_");
+}
+
+function deriveLayoutFromSemantic(problemId, semantic) {
+  ensureShape(semantic);
+  const render = semantic.render ?? {};
+  const canvas = render.canvas ?? {};
+  const elements = Array.isArray(render.elements) ? render.elements : [];
+  const nodes = [];
+
+  for (const element of elements) {
+    if (!element || typeof element !== "object") continue;
+    const etype = String(element.type ?? "shape");
+    const node = {
+      id: String(element.id ?? ""),
+      x: element.x ?? element.x1 ?? 0,
+      y: element.y ?? element.y1 ?? 0,
+    };
+    if (element.width !== undefined) node.width = element.width;
+    if (element.height !== undefined) node.height = element.height;
+    if (element.anchor !== undefined) node.anchor = element.anchor;
+    if (element.z_index !== undefined) node.z_order = element.z_index;
+
+    const props = {};
+    if (etype === "text" || etype === "formula") {
+      node.type = "text";
+      props.text = etype === "formula" ? String(element.expr ?? "") : String(element.text ?? "");
+      if (etype === "formula") props.is_formula = true;
+    } else {
+      node.type = "shape";
+      props.shape_type = etype;
+      if (etype === "line") {
+        if (element.x1 !== undefined) props.x1 = element.x1;
+        if (element.y1 !== undefined) props.y1 = element.y1;
+        if (element.x2 !== undefined) props.x2 = element.x2;
+        if (element.y2 !== undefined) props.y2 = element.y2;
+      }
+      if (etype === "circle" && element.r !== undefined) props.r = element.r;
+      if (etype === "polygon" && element.points !== undefined) props.points = element.points;
+      if (etype === "rect") {
+        if (element.rx !== undefined) props.rx = element.rx;
+        if (element.ry !== undefined) props.ry = element.ry;
+      }
+    }
+
+    for (const key of ["fill", "stroke", "stroke_width", "font_family", "font_size", "font_weight", "font_style", "opacity", "transform"]) {
+      if (element[key] !== undefined) props[key] = element[key];
+    }
+    node.properties = props;
+    nodes.push(node);
+  }
+
+  return {
+    problem_id: semantic.problem_id ?? normalizeProblemId(problemId),
+    canvas: {
+      width: canvas.width ?? 1200,
+      height: canvas.height ?? 700,
+      background: canvas.background ?? "#F6F6F6",
+    },
+    nodes,
+  };
+}
+
+function deriveRendererFromLayout(layout) {
+  const canvas = layout?.canvas ?? {};
+  const rawNodes = Array.isArray(layout?.nodes) ? layout.nodes : [];
+  const orderedNodes = [...rawNodes].sort((a, b) => Number(a?.z_order ?? 0) - Number(b?.z_order ?? 0));
+  const elements = [];
+
+  for (const node of orderedNodes) {
+    if (!node || typeof node !== "object") continue;
+    const props = node.properties && typeof node.properties === "object" ? node.properties : {};
+    const nodeType = String(node.type ?? "");
+    const nodeId = String(node.id ?? "");
+
+    if (nodeType === "text") {
+      const attrs = { x: node.x ?? 0, y: node.y ?? 0 };
+      if (node.anchor !== undefined) attrs["text-anchor"] = node.anchor;
+      for (const key of ["fill", "stroke", "stroke_width", "font_family", "font_size", "font_weight", "font_style", "opacity", "transform"]) {
+        if (props[key] !== undefined) attrs[key.replaceAll("_", "-")] = props[key];
+      }
+      if (props.is_formula) {
+        attrs["data-formula"] = props.text ?? "";
+        attrs.class = "formula-placeholder";
+      }
+      elements.push({
+        id: nodeId,
+        type: "text",
+        attributes: attrs,
+        text: String(props.text ?? ""),
+      });
+      continue;
+    }
+
+    const shapeType = String(props.shape_type ?? "shape");
+    const attrs = {};
+    for (const key of ["fill", "stroke", "stroke_width", "opacity", "transform"]) {
+      if (props[key] !== undefined) attrs[key.replaceAll("_", "-")] = props[key];
+    }
+    if (shapeType === "rect") {
+      attrs.x = node.x ?? 0;
+      attrs.y = node.y ?? 0;
+      if (node.width !== undefined) attrs.width = node.width;
+      if (node.height !== undefined) attrs.height = node.height;
+      if (props.rx !== undefined) attrs.rx = props.rx;
+      if (props.ry !== undefined) attrs.ry = props.ry;
+    } else if (shapeType === "circle") {
+      attrs.cx = node.x ?? 0;
+      attrs.cy = node.y ?? 0;
+      if (props.r !== undefined) attrs.r = props.r;
+    } else if (shapeType === "line") {
+      attrs.x1 = props.x1 ?? node.x ?? 0;
+      attrs.y1 = props.y1 ?? node.y ?? 0;
+      if (props.x2 !== undefined) attrs.x2 = props.x2;
+      if (props.y2 !== undefined) attrs.y2 = props.y2;
+    } else if (shapeType === "polygon") {
+      if (props.points !== undefined) attrs.points = props.points;
+    } else {
+      attrs.x = node.x ?? 0;
+      attrs.y = node.y ?? 0;
+      if (node.width !== undefined) attrs.width = node.width;
+      if (node.height !== undefined) attrs.height = node.height;
+    }
+    elements.push({ id: nodeId, type: shapeType, attributes: attrs });
+  }
+
+  return {
+    problem_id: layout?.problem_id ?? "",
+    view_box: {
+      width: canvas.width ?? 1200,
+      height: canvas.height ?? 700,
+      background: canvas.background ?? "#F6F6F6",
+    },
+    elements,
+  };
+}
+
 const state = {
   problemId: parseJsonScript("problem-id"),
   semantic: parseJsonScript("initial-semantic"),
+  layout: parseJsonScript("initial-layout"),
+  renderer: parseJsonScript("initial-renderer"),
   selectedId: null,
   drag: null,
   mouseupBound: false,
@@ -58,9 +198,16 @@ const canvasHost = byId("canvas-host");
 const cursorPosition = byId("cursor-position");
 const elementList = byId("element-list");
 const form = byId("properties-form");
-const jsonTextarea = byId("semantic-json-text");
+const semanticTextarea = byId("semantic-json-text");
+const layoutTextarea = byId("layout-json-text");
+const rendererTextarea = byId("renderer-json-text");
 const statusLine = byId("status-line");
 const applyJsonBtn = byId("apply-json-btn");
+
+function refreshDerivedBundle() {
+  state.layout = deriveLayoutFromSemantic(state.problemId, state.semantic);
+  state.renderer = deriveRendererFromLayout(state.layout);
+}
 
 function selectedElement() {
   return getElements(state.semantic).find((el) => el.id === state.selectedId) ?? null;
@@ -81,12 +228,15 @@ function renderAll(forceJsonSync = false) {
   renderElementList();
   fillPropertiesForm(form, selectedElement());
   if (forceJsonSync || !state.jsonDirty) {
-    jsonTextarea.value = JSON.stringify(state.semantic, null, 2);
+    semanticTextarea.value = JSON.stringify(state.semantic, null, 2);
   }
+  layoutTextarea.value = JSON.stringify(state.layout, null, 2);
+  rendererTextarea.value = JSON.stringify(state.renderer, null, 2);
   wireCanvasHandlers();
 }
 
 function syncJsonFromState() {
+  refreshDerivedBundle();
   state.jsonDirty = false;
   renderAll(true);
 }
@@ -197,19 +347,18 @@ byId("delete-element-btn").addEventListener("click", () => {
 async function applyJsonEditorToState() {
   let parsed;
   try {
-    parsed = JSON.parse(jsonTextarea.value);
+    parsed = JSON.parse(semanticTextarea.value);
   } catch (error) {
-    updateStatus("편집 뷰 JSON 형식이 올바르지 않습니다.", true);
+    updateStatus("Semantic JSON 형식이 올바르지 않습니다.", true);
     return false;
   }
 
-  // 즉시 로컬 반영
   state.semantic = parsed;
   ensureShape(state.semantic);
+  refreshDerivedBundle();
   state.jsonDirty = false;
   renderAll(true);
 
-  // 서버 canonicalize/validate 반영
   let result;
   try {
     result = await applySemantic(state.problemId, parsed);
@@ -225,13 +374,15 @@ async function applyJsonEditorToState() {
 
   state.semantic = result.semantic;
   ensureShape(state.semantic);
+  state.layout = result.layout ?? deriveLayoutFromSemantic(state.problemId, state.semantic);
+  state.renderer = result.renderer ?? deriveRendererFromLayout(state.layout);
   state.jsonDirty = false;
   renderAll(true);
-  updateStatus("JSON 내용을 검증/정규화 후 캔버스에 반영했습니다.");
+  updateStatus("Semantic 검증 후 Layout/Renderer까지 동기화했습니다.");
   return true;
 }
 
-jsonTextarea.addEventListener("input", () => {
+semanticTextarea.addEventListener("input", () => {
   state.jsonDirty = true;
 });
 
@@ -244,14 +395,15 @@ if (applyJsonBtn) {
 byId("save-btn").addEventListener("click", async () => {
   let parsed;
   try {
-    parsed = JSON.parse(jsonTextarea.value);
+    parsed = JSON.parse(semanticTextarea.value);
   } catch (error) {
-    updateStatus("편집 뷰 JSON 형식이 올바르지 않습니다.", true);
+    updateStatus("Semantic JSON 형식이 올바르지 않습니다.", true);
     return;
   }
 
   state.semantic = parsed;
   ensureShape(state.semantic);
+  refreshDerivedBundle();
   state.jsonDirty = false;
   renderAll(true);
 
@@ -269,11 +421,14 @@ byId("save-btn").addEventListener("click", async () => {
   }
 
   state.semantic = result.semantic;
+  ensureShape(state.semantic);
+  state.layout = result.layout ?? deriveLayoutFromSemantic(state.problemId, state.semantic);
+  state.renderer = result.renderer ?? deriveRendererFromLayout(state.layout);
   state.jsonDirty = false;
   updateStatus("저장 완료: semantic/layout/renderer 파일에 반영했습니다.");
   renderAll(true);
 });
 
+refreshDerivedBundle();
 renderAll(true);
 updateCursorPosition(NaN, NaN);
-
