@@ -698,7 +698,7 @@ function _updateMarqueeSelection() {
   if (!state.drag || state.drag.type !== "selection") return;
   
   // 캔버스 크기 가져오기
-  const canvas = state.semantic.render?.canvas || {};
+  const canvas = state.semantic.render?.canvas || state.layout?.canvas || {};
   const cw = Number(canvas.width || 1200);
   const ch = Number(canvas.height || 700);
   
@@ -707,27 +707,37 @@ function _updateMarqueeSelection() {
   const x2 = Math.max(0, Math.min(cw, Math.max(state.drag.startX, state.drag.currentX)));
   const y2 = Math.max(0, Math.min(ch, Math.max(state.drag.startY, state.drag.currentY)));
 
-  const elements = getElements(state.semantic);
-  state.selectedIds = elements.filter(el => {
-    // 배경 영역(rect)은 선택에서 제외
-    if (el.id === "geom_diagram_region") return false;
+  // layout 데이터를 기준으로 위치 판단 (실제 화면 좌표가 여기 있음)
+  const layoutNodes = state.layout?.nodes || [];
+  state.selectedIds = layoutNodes.filter(node => {
+    // 배경 영역 제외
+    if (node.id === "geom_diagram_region" || node.id === "canvas-background") return false;
 
-    const ex = Number(el.x ?? el.x1 ?? (el.points ? el.points[0][0] : 0));
-    const ey = Number(el.y ?? el.y1 ?? (el.points ? el.points[0][1] : 0));
+    // 노드의 좌표 (points가 있으면 첫 번째 점, 없으면 x, y)
+    const props = node.properties || {};
+    const ex = Number(node.x ?? props.x1 ?? (props.points ? props.points[0][0] : 0));
+    const ey = Number(node.y ?? props.y1 ?? (props.points ? props.points[0][1] : 0));
+    
     return ex >= x1 && ex <= x2 && ey >= y1 && ey <= y2;
-  }).map(el => el.id);
+  }).map(node => node.id);
 }
 
 function scaleSelectedElements(factor) {
   if (state.selectedIds.length === 0) return;
   pushHistory();
+  
   const allElements = getElements(state.semantic);
-  const selected = allElements.filter(e => state.selectedIds.includes(e.id));
+  const layoutNodes = state.layout?.nodes || [];
+  
+  // 선택된 요소들의 현재 '실제' 위치 정보(layout) 수집
+  const selectedNodes = layoutNodes.filter(n => state.selectedIds.includes(n.id));
+  if (selectedNodes.length === 0) return;
 
   // 전체 선택 그룹의 중심점 계산
   let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
-  selected.forEach(el => {
-    const pts = el.points || [[el.x ?? el.x1 ?? 0, el.y ?? el.y1 ?? 0], [el.x2 ?? el.x ?? 0, el.y2 ?? el.y ?? 0]];
+  selectedNodes.forEach(node => {
+    const props = node.properties || {};
+    const pts = props.points || [[node.x ?? props.x1 ?? 0, node.y ?? props.y1 ?? 0], [props.x2 ?? node.x ?? 0, props.y2 ?? node.y ?? 0]];
     pts.forEach(p => {
       minX = Math.min(minX, Number(p[0] || 0));
       minY = Math.min(minY, Number(p[1] || 0));
@@ -738,28 +748,41 @@ function scaleSelectedElements(factor) {
   const cx = (minX + maxX) / 2;
   const cy = (minY + maxY) / 2;
 
-  selected.forEach(el => {
-    if (el.points) {
-      el.points = el.points.map(p => [
+  // semantic 데이터 업데이트
+  state.selectedIds.forEach(id => {
+    const el = allElements.find(e => e.id === id);
+    if (!el) return;
+    const node = layoutNodes.find(n => n.id === id);
+    if (!node) return;
+    const props = node.properties || {};
+
+    // 1. 현재 레이아웃 정보를 semantic으로 강제 동기화 (좌표가 없는 경우 대비)
+    if (el.type === "polygon" || props.shape_type === "polygon") {
+      el.type = "polygon";
+      el.points = (props.points || []).map(p => [
         (p[0] - cx) * factor + cx,
         (p[1] - cy) * factor + cy
       ]);
+    } else if (el.type === "circle" || props.shape_type === "circle") {
+      const nx = (Number(node.x) - cx) * factor + cx;
+      const ny = (Number(node.y) - cy) * factor + cy;
+      el.x = nx; el.y = ny;
+      el.r = Number(props.r || 35) * factor;
+    } else if (el.type === "line" || props.shape_type === "line") {
+      el.x1 = (Number(props.x1) - cx) * factor + cx;
+      el.y1 = (Number(props.y1) - cy) * factor + cy;
+      el.x2 = (Number(props.x2) - cx) * factor + cx;
+      el.y2 = (Number(props.y2) - cy) * factor + cy;
     } else {
-      const x = Number(el.x ?? el.x1 ?? 0);
-      const y = Number(el.y ?? el.y1 ?? 0);
-      const nx = (x - cx) * factor + cx;
-      const ny = (y - cy) * factor + cy;
-      if (el.x !== undefined) el.x = nx;
-      if (el.y !== undefined) el.y = ny;
-      if (el.x1 !== undefined) el.x1 = nx;
-      if (el.y1 !== undefined) el.y1 = ny;
-      if (el.x2 !== undefined) {
-        el.x2 = (Number(el.x2) - cx) * factor + cx;
-        el.y2 = (Number(el.y2) - cy) * factor + cy;
+      // 텍스트 등 일반 요소
+      const nx = (Number(node.x) - cx) * factor + cx;
+      const ny = (Number(node.y) - cy) * factor + cy;
+      el.x = nx; el.y = ny;
+      if (el.font_size || props.font_size) {
+        el.font_size = Number(el.font_size || props.font_size || 24) * factor;
       }
-      if (el.r !== undefined) el.r = Number(el.r) * factor;
-      if (el.font_size !== undefined) el.font_size = Number(el.font_size) * factor;
     }
   });
+  
   syncJsonFromState();
 }
