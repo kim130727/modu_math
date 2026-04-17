@@ -1,0 +1,153 @@
+{
+  "problem_id": "0005",
+  "canvas": {
+    "width": 1852,
+    "height": 554,
+    "background": "#F6F6F6"
+  },
+  "nodes": [
+    {
+      "id": "instruction",
+      "x": 44,
+      "y": 106,
+      "anchor": "start",
+      "z_order": 0,
+      "type": "text",
+      "properties": {
+        "fill": "#222222",
+        "font_family": "Malgun Gothic",
+        "font_size": 72,
+        "font_weight": "normal",
+        "text": "계산 결과가 더 큰 것에 ○표 하세요."
+      }
+    },
+    {
+      "id": "left_box",
+      "x": 320,
+      "y": 180,
+      "width": 590,
+      "height": 210,
+      "anchor": "start",
+      "z_order": 0,
+      "type": "shape",
+      "properties": {
+        "stroke": "none",
+        "stroke_width": 0,
+        "fill": "#D0CABB",
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "rx": 75,
+        "shape_type": "rect"
+      }
+    },
+    {
+      "id": "left_expr",
+      "x": 480,
+      "y": 294,
+      "anchor": "middle",
+      "z_order": 0,
+      "type": "text",
+      "properties": {
+        "fill": "#222222",
+        "font_family": "Cambria",
+        "font_size": 74,
+        "font_weight": "normal",
+        "text": "605+298"
+      }
+    },
+    {
+      "id": "left_paren_l",
+      "x": 500,
+      "y": 478,
+      "anchor": "middle",
+      "z_order": 0,
+      "type": "text",
+      "properties": {
+        "fill": "#222222",
+        "font_family": "Cambria",
+        "font_size": 92,
+        "font_weight": "normal",
+        "text": "("
+      }
+    },
+    {
+      "id": "left_paren_r",
+      "x": 735,
+      "y": 478,
+      "anchor": "middle",
+      "z_order": 0,
+      "type": "text",
+      "properties": {
+        "fill": "#222222",
+        "font_family": "Cambria",
+        "font_size": 92,
+        "font_weight": "normal",
+        "text": ")"
+      }
+    },
+    {
+      "id": "right_box",
+      "x": 1200,
+      "y": 180,
+      "width": 590,
+      "height": 210,
+      "anchor": "start",
+      "z_order": 0,
+      "type": "shape",
+      "properties": {
+        "stroke": "none",
+        "stroke_width": 0,
+        "fill": "#D0CABB",
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "rx": 75,
+        "shape_type": "rect"
+      }
+    },
+    {
+      "id": "right_expr",
+      "x": 1350,
+      "y": 294,
+      "anchor": "middle",
+      "z_order": 0,
+      "type": "text",
+      "properties": {
+        "fill": "#222222",
+        "font_family": "Cambria",
+        "font_size": 74,
+        "font_weight": "normal",
+        "text": "567+385"
+      }
+    },
+    {
+      "id": "right_paren_l",
+      "x": 1380,
+      "y": 478,
+      "anchor": "middle",
+      "z_order": 0,
+      "type": "text",
+      "properties": {
+        "fill": "#222222",
+        "font_family": "Cambria",
+        "font_size": 92,
+        "font_weight": "normal",
+        "text": "("
+      }
+    },
+    {
+      "id": "right_paren_r",
+      "x": 1615,
+      "y": 478,
+      "anchor": "middle",
+      "z_order": 0,
+      "type": "text",
+      "properties": {
+        "fill": "#222222",
+        "font_family": "Cambria",
+        "font_size": 92,
+        "font_weight": "normal",
+        "text": ")"
+      }
+    }
+  ]
+}

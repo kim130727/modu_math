@@ -1,0 +1,181 @@
+{
+  "problem_id": "0012",
+  "view_box": {
+    "width": 800.0,
+    "height": 520.0,
+    "background": "#F6F6F6"
+  },
+  "elements": [
+    {
+      "id": "q1",
+      "type": "text",
+      "attributes": {
+        "x": 18.6,
+        "y": 47.7,
+        "text-anchor": "start",
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 30,
+        "font-weight": "normal"
+      },
+      "text": "다음은 각기둥의 전개도입니다."
+    },
+    {
+      "id": "q2",
+      "type": "text",
+      "attributes": {
+        "x": 16.1,
+        "y": 89.9,
+        "text-anchor": "start",
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 30,
+        "font-weight": "normal"
+      },
+      "text": "전개도를 접어서 만든 입체도형의 모서리는 모두 몇 개인가요?"
+    },
+    {
+      "id": "strip_rect",
+      "type": "rect",
+      "attributes": {
+        "fill": "#CFCFCF",
+        "stroke": "#333333",
+        "stroke-width": 2,
+        "x": 250.0,
+        "y": 210.0,
+        "width": 300,
+        "height": 130
+      }
+    },
+    {
+      "id": "fold_1",
+      "type": "line",
+      "attributes": {
+        "stroke": "#333333",
+        "stroke-width": 1,
+        "x1": 300.0,
+        "y1": 210.0,
+        "x2": 300.0,
+        "y2": 340.0
+      }
+    },
+    {
+      "id": "fold_2",
+      "type": "line",
+      "attributes": {
+        "stroke": "#333333",
+        "stroke-width": 1,
+        "x1": 350.0,
+        "y1": 210.0,
+        "x2": 350.0,
+        "y2": 340.0
+      }
+    },
+    {
+      "id": "fold_3",
+      "type": "line",
+      "attributes": {
+        "stroke": "#333333",
+        "stroke-width": 1,
+        "x1": 400.0,
+        "y1": 210.0,
+        "x2": 400.0,
+        "y2": 340.0
+      }
+    },
+    {
+      "id": "fold_4",
+      "type": "line",
+      "attributes": {
+        "stroke": "#333333",
+        "stroke-width": 1,
+        "x1": 450.0,
+        "y1": 210.0,
+        "x2": 450.0,
+        "y2": 340.0
+      }
+    },
+    {
+      "id": "fold_5",
+      "type": "line",
+      "attributes": {
+        "stroke": "#333333",
+        "stroke-width": 1,
+        "x1": 500.0,
+        "y1": 210.0,
+        "x2": 500.0,
+        "y2": 340.0
+      }
+    },
+    {
+      "id": "top_hex",
+      "type": "polygon",
+      "attributes": {
+        "fill": "#CFCFCF",
+        "stroke": "#333333",
+        "stroke-width": 2,
+        "points": [
+          [
+            350.466,
+            209.104
+          ],
+          [
+            320.48,
+            160.912
+          ],
+          [
+            350.466,
+            112.72
+          ],
+          [
+            399.534,
+            112.72
+          ],
+          [
+            429.52,
+            160.912
+          ],
+          [
+            399.534,
+            209.104
+          ]
+        ]
+      }
+    },
+    {
+      "id": "bot_hex",
+      "type": "polygon",
+      "attributes": {
+        "fill": "#CFCFCF",
+        "stroke": "#333333",
+        "stroke-width": 2,
+        "points": [
+          [
+            350.788,
+            437.28000000000003
+          ],
+          [
+            320.802,
+            389.088
+          ],
+          [
+            350.788,
+            340.896
+          ],
+          [
+            399.856,
+            340.896
+          ],
+          [
+            429.842,
+            389.088
+          ],
+          [
+            399.856,
+            437.28000000000003
+          ]
+        ]
+      }
+    }
+  ]
+}

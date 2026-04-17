@@ -1,0 +1,151 @@
+{
+  "problem_id": "3rd_shape2d_0010",
+  "canvas": {
+    "width": 400.0,
+    "height": 210.0,
+    "background": "#F6F6F6"
+  },
+  "nodes": [
+    {
+      "id": "bg",
+      "x": 0.0,
+      "y": 0.0,
+      "width": 400,
+      "height": 210,
+      "anchor": "start",
+      "z_order": 0,
+      "type": "shape",
+      "properties": {
+        "stroke": "none",
+        "stroke_width": 0,
+        "fill": "#F4F4F4",
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "shape_type": "rect"
+      }
+    },
+    {
+      "id": "i1",
+      "x": 4.0,
+      "y": 34.0,
+      "anchor": "start",
+      "z_order": 0,
+      "type": "text",
+      "properties": {
+        "fill": "#222222",
+        "font_family": "Malgun Gothic",
+        "font_size": 17,
+        "font_weight": "normal",
+        "text": "다음 도형에서 찾을 수 있는 크고 작은"
+      }
+    },
+    {
+      "id": "i2",
+      "x": 4.0,
+      "y": 64.0,
+      "anchor": "start",
+      "z_order": 0,
+      "type": "text",
+      "properties": {
+        "fill": "#222222",
+        "font_family": "Malgun Gothic",
+        "font_size": 17,
+        "font_weight": "normal",
+        "text": "직사각형은 모두 몇 개인지 구하세요."
+      }
+    },
+    {
+      "id": "outer",
+      "x": 148.0,
+      "y": 104.0,
+      "width": 126,
+      "height": 96,
+      "anchor": "start",
+      "z_order": 0,
+      "type": "shape",
+      "properties": {
+        "stroke": "#4A4A4A",
+        "stroke_width": 2.0,
+        "fill": "none",
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "shape_type": "rect"
+      }
+    },
+    {
+      "id": "v1",
+      "x": 190.0,
+      "y": 104.0,
+      "anchor": "start",
+      "z_order": 0,
+      "type": "shape",
+      "properties": {
+        "stroke": "#4A4A4A",
+        "stroke_width": 2.0,
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "x1": 190.0,
+        "y1": 104.0,
+        "x2": 190.0,
+        "y2": 200.0,
+        "shape_type": "line"
+      }
+    },
+    {
+      "id": "v2",
+      "x": 224.0,
+      "y": 104.0,
+      "anchor": "start",
+      "z_order": 0,
+      "type": "shape",
+      "properties": {
+        "stroke": "#4A4A4A",
+        "stroke_width": 2.0,
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "x1": 224.0,
+        "y1": 104.0,
+        "x2": 224.0,
+        "y2": 200.0,
+        "shape_type": "line"
+      }
+    },
+    {
+      "id": "h1",
+      "x": 148.0,
+      "y": 152.0,
+      "anchor": "start",
+      "z_order": 0,
+      "type": "shape",
+      "properties": {
+        "stroke": "#4A4A4A",
+        "stroke_width": 2.0,
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "x1": 148.0,
+        "y1": 152.0,
+        "x2": 224.0,
+        "y2": 152.0,
+        "shape_type": "line"
+      }
+    },
+    {
+      "id": "answer_value",
+      "x": 336.0,
+      "y": 176.0,
+      "width": 56,
+      "height": 28,
+      "anchor": "start",
+      "z_order": 0,
+      "type": "shape",
+      "properties": {
+        "stroke": "none",
+        "stroke_width": 0,
+        "fill": "none",
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "shape_type": "rect"
+      }
+    }
+  ]
+}

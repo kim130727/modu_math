@@ -1,0 +1,294 @@
+{
+  "problem_id": "0014",
+  "view_box": {
+    "width": 842,
+    "height": 493,
+    "background": "#F6F6F6"
+  },
+  "elements": [
+    {
+      "id": "l1a",
+      "type": "text",
+      "attributes": {
+        "x": 21.451954,
+        "y": 56.561783,
+        "text-anchor": "start",
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 34.0178,
+        "font-weight": "normal"
+      },
+      "text": "숫자 카드"
+    },
+    {
+      "id": "card_1",
+      "type": "rect",
+      "attributes": {
+        "fill": "#BDBDBD",
+        "stroke": "#000000",
+        "stroke-width": 1,
+        "x": 188,
+        "y": 13.95428,
+        "width": 50.869633,
+        "height": 52.316967
+      }
+    },
+    {
+      "id": "card_t_1",
+      "type": "text",
+      "attributes": {
+        "x": 213.4348165,
+        "y": 55,
+        "text-anchor": "middle",
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 46,
+        "font-weight": "normal"
+      },
+      "text": "3"
+    },
+    {
+      "id": "card_2",
+      "type": "rect",
+      "attributes": {
+        "fill": "#BDBDBD",
+        "stroke": "#000000",
+        "stroke-width": 1,
+        "x": 256.5,
+        "y": 13.954006,
+        "width": 49.648369,
+        "height": 53.539326
+      }
+    },
+    {
+      "id": "card_t_2",
+      "type": "text",
+      "attributes": {
+        "x": 281.3241845,
+        "y": 55,
+        "text-anchor": "middle",
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 46,
+        "font-weight": "normal"
+      },
+      "text": "5"
+    },
+    {
+      "id": "card_3",
+      "type": "rect",
+      "attributes": {
+        "fill": "#BDBDBD",
+        "stroke": "#000000",
+        "stroke-width": 1,
+        "x": 322.5,
+        "y": 13.970038,
+        "width": 52.059925,
+        "height": 54.729069
+      }
+    },
+    {
+      "id": "card_t_3",
+      "type": "text",
+      "attributes": {
+        "x": 348.5299625,
+        "y": 55,
+        "text-anchor": "middle",
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 46,
+        "font-weight": "normal"
+      },
+      "text": "7"
+    },
+    {
+      "id": "card_4",
+      "type": "rect",
+      "attributes": {
+        "fill": "#BDBDBD",
+        "stroke": "#000000",
+        "stroke-width": 1,
+        "x": 389.8,
+        "y": 13.975165,
+        "width": 52.049667,
+        "height": 55.940624
+      }
+    },
+    {
+      "id": "card_t_4",
+      "type": "text",
+      "attributes": {
+        "x": 415.8248335,
+        "y": 55,
+        "text-anchor": "middle",
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 46,
+        "font-weight": "normal"
+      },
+      "text": "9"
+    },
+    {
+      "id": "l1b",
+      "type": "text",
+      "attributes": {
+        "x": 458.349667,
+        "y": 54.104523,
+        "text-anchor": "start",
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 32.6441,
+        "font-weight": "normal"
+      },
+      "text": "를 모두 한 번씩만 사용"
+    },
+    {
+      "id": "l2",
+      "type": "text",
+      "attributes": {
+        "x": 21.7194,
+        "y": 114.21901,
+        "text-anchor": "start",
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 31.6425,
+        "font-weight": "normal"
+      },
+      "text": "하여 다음과 같이 (대분수) ÷ (자연수)를 만들려고 합니다."
+    },
+    {
+      "id": "l3",
+      "type": "text",
+      "attributes": {
+        "x": 19.617764,
+        "y": 164.03259,
+        "text-anchor": "start",
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 31.623,
+        "font-weight": "normal"
+      },
+      "text": "만들 수 있는 식 중 몫이 가장 작을 때의 몫을 ㄱ, 몫이"
+    },
+    {
+      "id": "l4",
+      "type": "text",
+      "attributes": {
+        "x": 18.351141,
+        "y": 215.79146,
+        "text-anchor": "start",
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 32.8986,
+        "font-weight": "normal"
+      },
+      "text": "가장 클 때의 몫을 ㄴ이라고 할 때 ㄱ과 ㄴ 사이에 있는"
+    },
+    {
+      "id": "l5",
+      "type": "text",
+      "attributes": {
+        "x": 16.264236,
+        "y": 271.79117,
+        "text-anchor": "start",
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 32.3366,
+        "font-weight": "normal"
+      },
+      "text": "자연수는 모두 몇 개입니까?"
+    },
+    {
+      "id": "expr_box",
+      "type": "rect",
+      "attributes": {
+        "fill": "none",
+        "stroke": "#000000",
+        "stroke-width": 0.805746,
+        "x": 268.9859,
+        "y": 308.46298,
+        "width": 315.14096,
+        "height": 160.19426,
+        "rx": 14.26564
+      }
+    },
+    {
+      "id": "whole_blank",
+      "type": "rect",
+      "attributes": {
+        "fill": "none",
+        "stroke": "#000000",
+        "stroke-width": 1,
+        "x": 321.11276,
+        "y": 373.78561,
+        "width": 36,
+        "height": 34
+      }
+    },
+    {
+      "id": "frac_num_blank",
+      "type": "rect",
+      "attributes": {
+        "fill": "none",
+        "stroke": "#000000",
+        "stroke-width": 1,
+        "x": 383.11276,
+        "y": 343.78561,
+        "width": 36,
+        "height": 34
+      }
+    },
+    {
+      "id": "frac_den_blank",
+      "type": "rect",
+      "attributes": {
+        "fill": "none",
+        "stroke": "#000000",
+        "stroke-width": 1,
+        "x": 383.11276,
+        "y": 405.78561,
+        "width": 36,
+        "height": 34
+      }
+    },
+    {
+      "id": "frac_bar",
+      "type": "line",
+      "attributes": {
+        "stroke": "#222222",
+        "stroke-width": 2,
+        "x1": 369.11276,
+        "y1": 390.78561,
+        "x2": 433.11276,
+        "y2": 390.78561
+      }
+    },
+    {
+      "id": "div_sign",
+      "type": "text",
+      "attributes": {
+        "x": 457.11276,
+        "y": 406.78561,
+        "text-anchor": "middle",
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 64,
+        "font-weight": "normal"
+      },
+      "text": "÷"
+    },
+    {
+      "id": "div_blank",
+      "type": "rect",
+      "attributes": {
+        "fill": "none",
+        "stroke": "#000000",
+        "stroke-width": 1,
+        "x": 486.11276,
+        "y": 373.78561,
+        "width": 36,
+        "height": 34
+      }
+    }
+  ]
+}

@@ -1,0 +1,450 @@
+{
+  "problem_id": "3rd_shape2d_0003",
+  "canvas": {
+    "width": 440.0,
+    "height": 361.0,
+    "background": "#F6F6F6"
+  },
+  "nodes": [
+    {
+      "id": "bg",
+      "x": 0.0,
+      "y": 0.0,
+      "width": 440,
+      "height": 361,
+      "anchor": "start",
+      "z_order": 0,
+      "type": "shape",
+      "properties": {
+        "stroke": "none",
+        "stroke_width": 0,
+        "fill": "#F4F4F4",
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "shape_type": "rect"
+      }
+    },
+    {
+      "id": "instruction_1",
+      "x": 4.0,
+      "y": 33.0,
+      "anchor": "start",
+      "z_order": 0,
+      "type": "text",
+      "properties": {
+        "fill": "#222222",
+        "font_family": "Malgun Gothic",
+        "font_size": 17,
+        "font_weight": "normal",
+        "text": "도형의 이름으로 알맞은 것을 모두 찾아 기호를"
+      }
+    },
+    {
+      "id": "instruction_2",
+      "x": 4.0,
+      "y": 65.0,
+      "anchor": "start",
+      "z_order": 0,
+      "type": "text",
+      "properties": {
+        "fill": "#222222",
+        "font_family": "Malgun Gothic",
+        "font_size": 17,
+        "font_weight": "normal",
+        "text": "쓰시오."
+      }
+    },
+    {
+      "id": "grid_box",
+      "x": 149.0,
+      "y": 78.0,
+      "width": 110,
+      "height": 110,
+      "anchor": "start",
+      "z_order": 0,
+      "type": "shape",
+      "properties": {
+        "stroke": "#767676",
+        "stroke_width": 1.2,
+        "fill": "none",
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "shape_type": "rect"
+      }
+    },
+    {
+      "id": "grid_v_0",
+      "x": 149.0,
+      "y": 78.0,
+      "anchor": "start",
+      "z_order": 0,
+      "type": "shape",
+      "properties": {
+        "stroke": "#767676",
+        "stroke_width": 1.2,
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "x1": 149.0,
+        "y1": 78.0,
+        "x2": 149.0,
+        "y2": 188.0,
+        "shape_type": "line"
+      }
+    },
+    {
+      "id": "grid_v_1",
+      "x": 171.0,
+      "y": 78.0,
+      "anchor": "start",
+      "z_order": 0,
+      "type": "shape",
+      "properties": {
+        "stroke": "#767676",
+        "stroke_width": 1.2,
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "x1": 171.0,
+        "y1": 78.0,
+        "x2": 171.0,
+        "y2": 188.0,
+        "shape_type": "line"
+      }
+    },
+    {
+      "id": "grid_v_2",
+      "x": 193.0,
+      "y": 78.0,
+      "anchor": "start",
+      "z_order": 0,
+      "type": "shape",
+      "properties": {
+        "stroke": "#767676",
+        "stroke_width": 1.2,
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "x1": 193.0,
+        "y1": 78.0,
+        "x2": 193.0,
+        "y2": 188.0,
+        "shape_type": "line"
+      }
+    },
+    {
+      "id": "grid_v_3",
+      "x": 215.0,
+      "y": 78.0,
+      "anchor": "start",
+      "z_order": 0,
+      "type": "shape",
+      "properties": {
+        "stroke": "#767676",
+        "stroke_width": 1.2,
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "x1": 215.0,
+        "y1": 78.0,
+        "x2": 215.0,
+        "y2": 188.0,
+        "shape_type": "line"
+      }
+    },
+    {
+      "id": "grid_v_4",
+      "x": 237.0,
+      "y": 78.0,
+      "anchor": "start",
+      "z_order": 0,
+      "type": "shape",
+      "properties": {
+        "stroke": "#767676",
+        "stroke_width": 1.2,
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "x1": 237.0,
+        "y1": 78.0,
+        "x2": 237.0,
+        "y2": 188.0,
+        "shape_type": "line"
+      }
+    },
+    {
+      "id": "grid_v_5",
+      "x": 259.0,
+      "y": 78.0,
+      "anchor": "start",
+      "z_order": 0,
+      "type": "shape",
+      "properties": {
+        "stroke": "#767676",
+        "stroke_width": 1.2,
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "x1": 259.0,
+        "y1": 78.0,
+        "x2": 259.0,
+        "y2": 188.0,
+        "shape_type": "line"
+      }
+    },
+    {
+      "id": "grid_h_0",
+      "x": 149.0,
+      "y": 78.0,
+      "anchor": "start",
+      "z_order": 0,
+      "type": "shape",
+      "properties": {
+        "stroke": "#767676",
+        "stroke_width": 1.2,
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "x1": 149.0,
+        "y1": 78.0,
+        "x2": 259.0,
+        "y2": 78.0,
+        "shape_type": "line"
+      }
+    },
+    {
+      "id": "grid_h_1",
+      "x": 149.0,
+      "y": 100.0,
+      "anchor": "start",
+      "z_order": 0,
+      "type": "shape",
+      "properties": {
+        "stroke": "#767676",
+        "stroke_width": 1.2,
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "x1": 149.0,
+        "y1": 100.0,
+        "x2": 259.0,
+        "y2": 100.0,
+        "shape_type": "line"
+      }
+    },
+    {
+      "id": "grid_h_2",
+      "x": 149.0,
+      "y": 122.0,
+      "anchor": "start",
+      "z_order": 0,
+      "type": "shape",
+      "properties": {
+        "stroke": "#767676",
+        "stroke_width": 1.2,
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "x1": 149.0,
+        "y1": 122.0,
+        "x2": 259.0,
+        "y2": 122.0,
+        "shape_type": "line"
+      }
+    },
+    {
+      "id": "grid_h_3",
+      "x": 149.0,
+      "y": 144.0,
+      "anchor": "start",
+      "z_order": 0,
+      "type": "shape",
+      "properties": {
+        "stroke": "#767676",
+        "stroke_width": 1.2,
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "x1": 149.0,
+        "y1": 144.0,
+        "x2": 259.0,
+        "y2": 144.0,
+        "shape_type": "line"
+      }
+    },
+    {
+      "id": "grid_h_4",
+      "x": 149.0,
+      "y": 166.0,
+      "anchor": "start",
+      "z_order": 0,
+      "type": "shape",
+      "properties": {
+        "stroke": "#767676",
+        "stroke_width": 1.2,
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "x1": 149.0,
+        "y1": 166.0,
+        "x2": 259.0,
+        "y2": 166.0,
+        "shape_type": "line"
+      }
+    },
+    {
+      "id": "grid_h_5",
+      "x": 149.0,
+      "y": 188.0,
+      "anchor": "start",
+      "z_order": 0,
+      "type": "shape",
+      "properties": {
+        "stroke": "#767676",
+        "stroke_width": 1.2,
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "x1": 149.0,
+        "y1": 188.0,
+        "x2": 259.0,
+        "y2": 188.0,
+        "shape_type": "line"
+      }
+    },
+    {
+      "id": "target_shape",
+      "x": 171.0,
+      "y": 100.0,
+      "width": 66,
+      "height": 66,
+      "anchor": "start",
+      "z_order": 0,
+      "type": "shape",
+      "properties": {
+        "stroke": "#2D2D2D",
+        "stroke_width": 3,
+        "fill": "none",
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "shape_type": "rect"
+      }
+    },
+    {
+      "id": "choice_box",
+      "x": 4.0,
+      "y": 213.0,
+      "width": 399,
+      "height": 88,
+      "anchor": "start",
+      "z_order": 0,
+      "type": "shape",
+      "properties": {
+        "stroke": "#6D6D6D",
+        "stroke_width": 1.8,
+        "fill": "none",
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "rx": 12,
+        "ry": 12,
+        "shape_type": "rect"
+      }
+    },
+    {
+      "id": "choice_key_㉠",
+      "x": 20.0,
+      "y": 248.0,
+      "anchor": "start",
+      "z_order": 0,
+      "type": "text",
+      "properties": {
+        "fill": "#222222",
+        "font_family": "Malgun Gothic",
+        "font_size": 17,
+        "font_weight": "normal",
+        "text": "㉠ 직사각형"
+      }
+    },
+    {
+      "id": "choice_key_㉡",
+      "x": 206.0,
+      "y": 248.0,
+      "anchor": "start",
+      "z_order": 0,
+      "type": "text",
+      "properties": {
+        "fill": "#222222",
+        "font_family": "Malgun Gothic",
+        "font_size": 17,
+        "font_weight": "normal",
+        "text": "㉡ 사각형"
+      }
+    },
+    {
+      "id": "choice_key_㉢",
+      "x": 20.0,
+      "y": 280.0,
+      "anchor": "start",
+      "z_order": 0,
+      "type": "text",
+      "properties": {
+        "fill": "#222222",
+        "font_family": "Malgun Gothic",
+        "font_size": 17,
+        "font_weight": "normal",
+        "text": "㉢ 직각삼각형"
+      }
+    },
+    {
+      "id": "choice_key_㉣",
+      "x": 206.0,
+      "y": 280.0,
+      "anchor": "start",
+      "z_order": 0,
+      "type": "text",
+      "properties": {
+        "fill": "#222222",
+        "font_family": "Malgun Gothic",
+        "font_size": 17,
+        "font_weight": "normal",
+        "text": "㉣ 정사각형"
+      }
+    },
+    {
+      "id": "answer_left_paren",
+      "x": 170.0,
+      "y": 345.0,
+      "anchor": "start",
+      "z_order": 0,
+      "type": "text",
+      "properties": {
+        "fill": "#222222",
+        "font_family": "Malgun Gothic",
+        "font_size": 44,
+        "font_weight": "normal",
+        "text": "("
+      }
+    },
+    {
+      "id": "answer_right_paren",
+      "x": 394.0,
+      "y": 345.0,
+      "anchor": "start",
+      "z_order": 0,
+      "type": "text",
+      "properties": {
+        "fill": "#222222",
+        "font_family": "Malgun Gothic",
+        "font_size": 44,
+        "font_weight": "normal",
+        "text": ")"
+      }
+    },
+    {
+      "id": "answer_blank",
+      "x": 188.0,
+      "y": 318.0,
+      "width": 188,
+      "height": 34,
+      "anchor": "start",
+      "z_order": 0,
+      "type": "shape",
+      "properties": {
+        "stroke": "none",
+        "stroke_width": 0,
+        "fill": "none",
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "shape_type": "rect"
+      }
+    }
+  ]
+}

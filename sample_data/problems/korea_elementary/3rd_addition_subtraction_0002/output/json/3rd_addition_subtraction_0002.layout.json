@@ -1,0 +1,204 @@
+{
+  "problem_id": "3rd_addition_subtraction_0002",
+  "canvas": {
+    "width": 408.0,
+    "height": 212.0,
+    "background": "#F6F6F6"
+  },
+  "nodes": [
+    {
+      "id": "bg",
+      "x": 0.0,
+      "y": 0.0,
+      "width": 408,
+      "height": 212,
+      "anchor": "start",
+      "z_order": 0,
+      "type": "shape",
+      "properties": {
+        "stroke": "none",
+        "stroke_width": 0,
+        "fill": "#FFFFFF",
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "shape_type": "rect"
+      }
+    },
+    {
+      "id": "instruction_1",
+      "x": 6.0,
+      "y": 30.0,
+      "anchor": "start",
+      "z_order": 0,
+      "type": "text",
+      "properties": {
+        "fill": "#222222",
+        "font_family": "Malgun Gothic",
+        "font_size": 17,
+        "font_weight": "normal",
+        "text": "다음 수 중에서 2개를 골라 덧셈식을 만들려고"
+      }
+    },
+    {
+      "id": "instruction_2",
+      "x": 6.0,
+      "y": 60.0,
+      "anchor": "start",
+      "z_order": 0,
+      "type": "text",
+      "properties": {
+        "fill": "#222222",
+        "font_family": "Malgun Gothic",
+        "font_size": 17,
+        "font_weight": "normal",
+        "text": "합니다. □ 안에 알맞은 수를 써넣으세요."
+      }
+    },
+    {
+      "id": "candidate_box",
+      "x": 6.0,
+      "y": 78.0,
+      "width": 396,
+      "height": 56,
+      "anchor": "start",
+      "z_order": 0,
+      "type": "shape",
+      "properties": {
+        "stroke": "#666666",
+        "stroke_width": 1.5,
+        "fill": "none",
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "rx": 10,
+        "ry": 10,
+        "shape_type": "rect"
+      }
+    },
+    {
+      "id": "candidate_1",
+      "x": 74.0,
+      "y": 113.0,
+      "anchor": "middle",
+      "z_order": 0,
+      "type": "text",
+      "properties": {
+        "fill": "#222222",
+        "font_family": "Malgun Gothic",
+        "font_size": 17,
+        "font_weight": "normal",
+        "text": "718"
+      }
+    },
+    {
+      "id": "candidate_2",
+      "x": 160.0,
+      "y": 113.0,
+      "anchor": "middle",
+      "z_order": 0,
+      "type": "text",
+      "properties": {
+        "fill": "#222222",
+        "font_family": "Malgun Gothic",
+        "font_size": 17,
+        "font_weight": "normal",
+        "text": "295"
+      }
+    },
+    {
+      "id": "candidate_3",
+      "x": 246.0,
+      "y": 113.0,
+      "anchor": "middle",
+      "z_order": 0,
+      "type": "text",
+      "properties": {
+        "fill": "#222222",
+        "font_family": "Malgun Gothic",
+        "font_size": 17,
+        "font_weight": "normal",
+        "text": "658"
+      }
+    },
+    {
+      "id": "candidate_4",
+      "x": 332.0,
+      "y": 113.0,
+      "anchor": "middle",
+      "z_order": 0,
+      "type": "text",
+      "properties": {
+        "fill": "#222222",
+        "font_family": "Malgun Gothic",
+        "font_size": 17,
+        "font_weight": "normal",
+        "text": "245"
+      }
+    },
+    {
+      "id": "blank_left",
+      "x": 94.0,
+      "y": 150.0,
+      "width": 69,
+      "height": 36,
+      "anchor": "start",
+      "z_order": 0,
+      "type": "shape",
+      "properties": {
+        "stroke": "#666666",
+        "stroke_width": 1.5,
+        "fill": "none",
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "shape_type": "rect"
+      }
+    },
+    {
+      "id": "plus_sign",
+      "x": 173.0,
+      "y": 176.0,
+      "anchor": "middle",
+      "z_order": 0,
+      "type": "text",
+      "properties": {
+        "fill": "#222222",
+        "font_family": "Malgun Gothic",
+        "font_size": 34,
+        "font_weight": "normal",
+        "text": "+"
+      }
+    },
+    {
+      "id": "blank_right",
+      "x": 184.0,
+      "y": 150.0,
+      "width": 69,
+      "height": 36,
+      "anchor": "start",
+      "z_order": 0,
+      "type": "shape",
+      "properties": {
+        "stroke": "#666666",
+        "stroke_width": 1.5,
+        "fill": "none",
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "shape_type": "rect"
+      }
+    },
+    {
+      "id": "equal_expr",
+      "x": 300.0,
+      "y": 176.0,
+      "anchor": "middle",
+      "z_order": 0,
+      "type": "text",
+      "properties": {
+        "fill": "#222222",
+        "font_family": "Malgun Gothic",
+        "font_size": 34,
+        "font_weight": "normal",
+        "text": "=953"
+      }
+    }
+  ]
+}

@@ -1,0 +1,256 @@
+{
+  "problem_id": "0016",
+  "canvas": {
+    "width": 768.0,
+    "height": 341.0,
+    "background": "#F6F6F6"
+  },
+  "nodes": [
+    {
+      "id": "line1_prefix",
+      "x": 18.0,
+      "y": 46.0,
+      "anchor": "start",
+      "z_order": 0,
+      "type": "text",
+      "properties": {
+        "fill": "#000000",
+        "font_family": "Malgun Gothic",
+        "font_size": 22,
+        "font_weight": "normal",
+        "text": "3장의 수 카드를 모두 한 번씩만 사용하여"
+      }
+    },
+    {
+      "id": "expr_box_1",
+      "x": 486.0,
+      "y": 17.0,
+      "width": 33,
+      "height": 31,
+      "anchor": "start",
+      "z_order": 0,
+      "type": "shape",
+      "properties": {
+        "stroke": "#1f1f1f",
+        "stroke_width": 1,
+        "fill": "none",
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "shape_type": "rect"
+      }
+    },
+    {
+      "id": "expr_mul",
+      "x": 525.0,
+      "y": 45.0,
+      "anchor": "start",
+      "z_order": 0,
+      "type": "text",
+      "properties": {
+        "fill": "#000000",
+        "font_family": "Malgun Gothic",
+        "font_size": 45,
+        "font_weight": "normal",
+        "text": "×"
+      }
+    },
+    {
+      "id": "expr_box_2",
+      "x": 553.0,
+      "y": 17.0,
+      "width": 33,
+      "height": 31,
+      "anchor": "start",
+      "z_order": 0,
+      "type": "shape",
+      "properties": {
+        "stroke": "#1f1f1f",
+        "stroke_width": 1,
+        "fill": "none",
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "shape_type": "rect"
+      }
+    },
+    {
+      "id": "expr_box_3",
+      "x": 594.0,
+      "y": 17.0,
+      "width": 33,
+      "height": 31,
+      "anchor": "start",
+      "z_order": 0,
+      "type": "shape",
+      "properties": {
+        "stroke": "#1f1f1f",
+        "stroke_width": 1,
+        "fill": "none",
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "shape_type": "rect"
+      }
+    },
+    {
+      "id": "line2",
+      "x": 18.0,
+      "y": 102.0,
+      "anchor": "start",
+      "z_order": 0,
+      "type": "text",
+      "properties": {
+        "fill": "#000000",
+        "font_family": "Malgun Gothic",
+        "font_size": 22,
+        "font_weight": "normal",
+        "text": "을 만들려고 합니다. 곱이 가장 큰 곱셈식을 만들어 곱을 구하시오"
+      }
+    },
+    {
+      "id": "card_9",
+      "x": 182.0,
+      "y": 172.0,
+      "width": 73,
+      "height": 85,
+      "anchor": "start",
+      "z_order": 0,
+      "type": "shape",
+      "properties": {
+        "stroke": "#1f1f1f",
+        "stroke_width": 1,
+        "fill": "#b4b4b4",
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "shape_type": "rect"
+      }
+    },
+    {
+      "id": "num_9",
+      "x": 206.0,
+      "y": 230.0,
+      "anchor": "start",
+      "z_order": 0,
+      "type": "text",
+      "properties": {
+        "fill": "#000000",
+        "font_family": "Malgun Gothic",
+        "font_size": 53,
+        "font_weight": "normal",
+        "text": "9"
+      }
+    },
+    {
+      "id": "card_2",
+      "x": 327.0,
+      "y": 172.0,
+      "width": 73,
+      "height": 85,
+      "anchor": "start",
+      "z_order": 0,
+      "type": "shape",
+      "properties": {
+        "stroke": "#1f1f1f",
+        "stroke_width": 1,
+        "fill": "#b4b4b4",
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "shape_type": "rect"
+      }
+    },
+    {
+      "id": "num_2",
+      "x": 351.0,
+      "y": 230.0,
+      "anchor": "start",
+      "z_order": 0,
+      "type": "text",
+      "properties": {
+        "fill": "#000000",
+        "font_family": "Malgun Gothic",
+        "font_size": 53,
+        "font_weight": "normal",
+        "text": "2"
+      }
+    },
+    {
+      "id": "card_4",
+      "x": 472.0,
+      "y": 172.0,
+      "width": 73,
+      "height": 85,
+      "anchor": "start",
+      "z_order": 0,
+      "type": "shape",
+      "properties": {
+        "stroke": "#1f1f1f",
+        "stroke_width": 1,
+        "fill": "#b4b4b4",
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "shape_type": "rect"
+      }
+    },
+    {
+      "id": "num_4",
+      "x": 496.0,
+      "y": 230.0,
+      "anchor": "start",
+      "z_order": 0,
+      "type": "text",
+      "properties": {
+        "fill": "#000000",
+        "font_family": "Malgun Gothic",
+        "font_size": 53,
+        "font_weight": "normal",
+        "text": "4"
+      }
+    },
+    {
+      "id": "answer_left_paren",
+      "x": 396.0,
+      "y": 304.0,
+      "anchor": "start",
+      "z_order": 0,
+      "type": "text",
+      "properties": {
+        "fill": "#000000",
+        "font_family": "Malgun Gothic",
+        "font_size": 40,
+        "font_weight": "normal",
+        "text": "("
+      }
+    },
+    {
+      "id": "answer_right_paren",
+      "x": 697.0,
+      "y": 304.0,
+      "anchor": "start",
+      "z_order": 0,
+      "type": "text",
+      "properties": {
+        "fill": "#000000",
+        "font_family": "Malgun Gothic",
+        "font_size": 40,
+        "font_weight": "normal",
+        "text": ")"
+      }
+    },
+    {
+      "id": "answer_blank",
+      "x": 430.0,
+      "y": 272.0,
+      "width": 235,
+      "height": 44,
+      "anchor": "start",
+      "z_order": 0,
+      "type": "shape",
+      "properties": {
+        "stroke": "none",
+        "stroke_width": 1.0,
+        "fill": "none",
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "shape_type": "rect"
+      }
+    }
+  ]
+}

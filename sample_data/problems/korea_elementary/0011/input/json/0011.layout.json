@@ -1,0 +1,966 @@
+{
+  "problem_id": "0011",
+  "canvas": {
+    "width": 608,
+    "height": 580,
+    "background": "#F6F6F6"
+  },
+  "nodes": [
+    {
+      "id": "inst_l1",
+      "x": 47.156467,
+      "y": 33.714005,
+      "anchor": "start",
+      "type": "text",
+      "properties": {
+        "group": "default",
+        "text": "모든 면이 정사각형이고 한 면의 넓이가 8 cm²인 사각기둥이있습니다.",
+        "font_family": "'Malgun Gothic'",
+        "font_size": 17.3575,
+        "font_weight": "normal",
+        "fill": "#222222",
+        "style": "stroke-width:0.723229",
+        "transform": "scale(0.9781886,1.0222977)"
+      }
+    },
+    {
+      "id": "inst_l2",
+      "x": 41.718632,
+      "y": 61.648937,
+      "anchor": "start",
+      "type": "text",
+      "properties": {
+        "group": "default",
+        "text": "[보기]는 이 사각기둥에서 꼭짓점ㄴ을 각뿔의 꼭짓점으로 하는",
+        "font_family": "'Malgun Gothic'",
+        "font_size": 17.3575,
+        "font_weight": "normal",
+        "fill": "#222222",
+        "style": "stroke-width:0.723229",
+        "transform": "scale(0.97818862,1.0222977)"
+      }
+    },
+    {
+      "id": "inst_l3",
+      "x": 40.679558,
+      "y": 90.57811,
+      "anchor": "start",
+      "type": "text",
+      "properties": {
+        "group": "default",
+        "text": "ㄴ을 각뿔의 꼭짓점으로 하는 삼각뿔 모양을 자른 것입니다.",
+        "font_family": "'Malgun Gothic'",
+        "font_size": 17.3575,
+        "font_weight": "normal",
+        "fill": "#222222",
+        "style": "stroke-width:0.723229",
+        "transform": "scale(0.97818862,1.0222977)"
+      }
+    },
+    {
+      "id": "l_front_top",
+      "x": 90.660179,
+      "y": 210.48344,
+      "type": "shape",
+      "properties": {
+        "group": "default",
+        "x1": 90.660179,
+        "y1": 210.48344,
+        "x2": 206.06609,
+        "y2": 210.48344,
+        "stroke": "#333333",
+        "stroke_width": 1.29484,
+        "shape_type": "line"
+      }
+    },
+    {
+      "id": "l_front_right",
+      "x": 206.06609,
+      "y": 210.48344,
+      "type": "shape",
+      "properties": {
+        "group": "default",
+        "x1": 206.06609,
+        "y1": 210.48344,
+        "x2": 206.06609,
+        "y2": 328.15909,
+        "stroke": "#333333",
+        "stroke_width": 1.29484,
+        "shape_type": "line"
+      }
+    },
+    {
+      "id": "l_front_bottom",
+      "x": 90.660179,
+      "y": 328.15909,
+      "type": "shape",
+      "properties": {
+        "group": "default",
+        "x1": 90.660179,
+        "y1": 328.15909,
+        "x2": 206.06609,
+        "y2": 328.15909,
+        "stroke": "#333333",
+        "stroke_width": 1.29484,
+        "shape_type": "line"
+      }
+    },
+    {
+      "id": "l_front_left",
+      "x": 90.660179,
+      "y": 210.48344,
+      "type": "shape",
+      "properties": {
+        "group": "default",
+        "x1": 90.660179,
+        "y1": 210.48344,
+        "x2": 90.660179,
+        "y2": 328.15909,
+        "stroke": "#333333",
+        "stroke_width": 1.29484,
+        "shape_type": "line"
+      }
+    },
+    {
+      "id": "l_back_top",
+      "x": 129.1288,
+      "y": 177.79576,
+      "type": "shape",
+      "properties": {
+        "group": "default",
+        "x1": 129.1288,
+        "y1": 177.79576,
+        "x2": 244.53471,
+        "y2": 177.79576,
+        "stroke": "#333333",
+        "stroke_width": 1.29484,
+        "shape_type": "line"
+      }
+    },
+    {
+      "id": "l_back_right",
+      "x": 244.53471,
+      "y": 177.79576,
+      "type": "shape",
+      "properties": {
+        "group": "default",
+        "x1": 244.53471,
+        "y1": 177.79576,
+        "x2": 244.53471,
+        "y2": 295.47141,
+        "stroke": "#333333",
+        "stroke_width": 1.29484,
+        "shape_type": "line"
+      }
+    },
+    {
+      "id": "l_connect_lt",
+      "x": 90.660179,
+      "y": 210.48344,
+      "type": "shape",
+      "properties": {
+        "group": "default",
+        "x1": 90.660179,
+        "y1": 210.48344,
+        "x2": 129.1288,
+        "y2": 177.79576,
+        "stroke": "#333333",
+        "stroke_width": 1.29484,
+        "shape_type": "line"
+      }
+    },
+    {
+      "id": "l_connect_rt",
+      "x": 206.06609,
+      "y": 210.48344,
+      "type": "shape",
+      "properties": {
+        "group": "default",
+        "x1": 206.06609,
+        "y1": 210.48344,
+        "x2": 244.53471,
+        "y2": 177.79576,
+        "stroke": "#333333",
+        "stroke_width": 1.29484,
+        "shape_type": "line"
+      }
+    },
+    {
+      "id": "l_connect_rb",
+      "x": 206.06609,
+      "y": 328.15909,
+      "type": "shape",
+      "properties": {
+        "group": "default",
+        "x1": 206.06609,
+        "y1": 328.15909,
+        "x2": 244.53471,
+        "y2": 295.47141,
+        "stroke": "#333333",
+        "stroke_width": 1.29484,
+        "shape_type": "line"
+      }
+    },
+    {
+      "id": "l_back_left_hidden",
+      "x": 129.1288,
+      "y": 177.79576,
+      "type": "shape",
+      "properties": {
+        "group": "default",
+        "x1": 129.1288,
+        "y1": 177.79576,
+        "x2": 129.1288,
+        "y2": 295.47141,
+        "stroke": "#333333",
+        "stroke_width": 1.29484,
+        "dasharray": "4 4",
+        "shape_type": "line"
+      }
+    },
+    {
+      "id": "l_back_bottom_hidden",
+      "x": 129.1288,
+      "y": 295.47141,
+      "type": "shape",
+      "properties": {
+        "group": "default",
+        "x1": 129.1288,
+        "y1": 295.47141,
+        "x2": 244.53471,
+        "y2": 295.47141,
+        "stroke": "#333333",
+        "stroke_width": 1.29484,
+        "dasharray": "4 4",
+        "shape_type": "line"
+      }
+    },
+    {
+      "id": "l_connect_lb_hidden",
+      "x": 90.660179,
+      "y": 328.15909,
+      "type": "shape",
+      "properties": {
+        "group": "default",
+        "x1": 90.660179,
+        "y1": 328.15909,
+        "x2": 129.1288,
+        "y2": 295.47141,
+        "stroke": "#333333",
+        "stroke_width": 1.29484,
+        "dasharray": "4 4",
+        "shape_type": "line"
+      }
+    },
+    {
+      "id": "l_cut_ab",
+      "x": 150.4938,
+      "y": 210.57921,
+      "type": "shape",
+      "properties": {
+        "group": "default",
+        "x1": 150.4938,
+        "y1": 210.57921,
+        "x2": 205.96152,
+        "y2": 259.41919,
+        "stroke": "#333333",
+        "stroke_width": 1.55179,
+        "shape_type": "line"
+      }
+    },
+    {
+      "id": "l_cut_ac",
+      "x": 152.59784,
+      "y": 209.82402,
+      "type": "shape",
+      "properties": {
+        "group": "default",
+        "x1": 152.59784,
+        "y1": 209.82402,
+        "x2": 223.72261,
+        "y2": 195.50153,
+        "stroke": "#333333",
+        "stroke_width": 0.82409,
+        "shape_type": "line"
+      }
+    },
+    {
+      "id": "l_cut_bc",
+      "x": 205.81665,
+      "y": 259.65506,
+      "type": "shape",
+      "properties": {
+        "group": "default",
+        "x1": 205.81665,
+        "y1": 259.65506,
+        "x2": 223.39014,
+        "y2": 194.70203,
+        "stroke": "#333333",
+        "stroke_width": 0.780238,
+        "shape_type": "line"
+      }
+    },
+    {
+      "id": "l_lbl_ㄱ",
+      "x": 79.893829,
+      "y": 215.25363,
+      "anchor": "middle",
+      "type": "text",
+      "properties": {
+        "group": "default",
+        "text": "ㄱ",
+        "font_family": "'Malgun Gothic'",
+        "font_size": 16.8329,
+        "font_weight": "normal",
+        "fill": "#222222",
+        "style": "stroke-width:0.647418",
+        "transform": "scale(0.99030913,1.0097857)"
+      }
+    },
+    {
+      "id": "l_lbl_ㄹ",
+      "x": 112.82404,
+      "y": 192.31104,
+      "anchor": "middle",
+      "type": "text",
+      "properties": {
+        "group": "default",
+        "text": "ㄹ",
+        "font_family": "'Malgun Gothic'",
+        "font_size": 13.8975,
+        "font_weight": "normal",
+        "fill": "#222222",
+        "style": "stroke-width:0.53452",
+        "transform": "scale(1.1058518,0.9042803)"
+      }
+    },
+    {
+      "id": "l_lbl_ㄷ",
+      "x": 255.24081,
+      "y": 176.02519,
+      "anchor": "middle",
+      "type": "text",
+      "properties": {
+        "group": "default",
+        "text": "ㄷ",
+        "font_family": "'Malgun Gothic'",
+        "font_size": 16.9766,
+        "font_weight": "normal",
+        "fill": "#222222",
+        "style": "stroke-width:0.652946",
+        "transform": "scale(0.99106672,1.0090138)"
+      }
+    },
+    {
+      "id": "l_lbl_ㅁ",
+      "x": 85.770966,
+      "y": 336.74435,
+      "anchor": "middle",
+      "type": "text",
+      "properties": {
+        "group": "default",
+        "text": "ㅁ",
+        "font_family": "'Malgun Gothic'",
+        "font_size": 16.8329,
+        "font_weight": "normal",
+        "fill": "#222222",
+        "style": "stroke-width:0.647418",
+        "transform": "scale(0.99030913,1.0097857)"
+      }
+    },
+    {
+      "id": "l_lbl_ㅂ",
+      "x": 206.21735,
+      "y": 341.43353,
+      "anchor": "middle",
+      "type": "text",
+      "properties": {
+        "group": "default",
+        "text": "ㅂ",
+        "font_family": "'Malgun Gothic'",
+        "font_size": 16.8329,
+        "font_weight": "normal",
+        "fill": "#222222",
+        "style": "stroke-width:0.647418",
+        "transform": "scale(0.99030913,1.0097857)"
+      }
+    },
+    {
+      "id": "l_lbl_ㅅ",
+      "x": 255.97546,
+      "y": 303.20639,
+      "anchor": "middle",
+      "type": "text",
+      "properties": {
+        "group": "default",
+        "text": "ㅅ",
+        "font_family": "'Malgun Gothic'",
+        "font_size": 16.9766,
+        "font_weight": "normal",
+        "fill": "#222222",
+        "style": "stroke-width:0.652946",
+        "transform": "scale(0.99106672,1.0090138)"
+      }
+    },
+    {
+      "id": "l_lbl_ㅇ",
+      "x": 134.26361,
+      "y": 307.52274,
+      "anchor": "middle",
+      "type": "text",
+      "properties": {
+        "group": "default",
+        "text": "ㅇ",
+        "font_family": "'Malgun Gothic'",
+        "font_size": 16.8329,
+        "font_weight": "normal",
+        "fill": "#222222",
+        "style": "stroke-width:0.647418",
+        "transform": "scale(0.99030913,1.0097857)"
+      }
+    },
+    {
+      "id": "l_lbl_ㄴ",
+      "x": 196.82458,
+      "y": 224.29333,
+      "anchor": "middle",
+      "type": "text",
+      "properties": {
+        "group": "default",
+        "text": "ㄴ",
+        "font_family": "'Malgun Gothic'",
+        "font_size": 16.8329,
+        "font_weight": "normal",
+        "fill": "#222222",
+        "style": "stroke-width:0.647418",
+        "transform": "scale(0.99030913,1.0097857)"
+      }
+    },
+    {
+      "id": "arr_1",
+      "x": 290.51007,
+      "y": 256.33304,
+      "type": "shape",
+      "properties": {
+        "group": "default",
+        "x1": 290.51007,
+        "y1": 256.33304,
+        "x2": 310.32556,
+        "y2": 256.33304,
+        "stroke": "#333333",
+        "stroke_width": 1.98307,
+        "shape_type": "line"
+      }
+    },
+    {
+      "id": "arr_2",
+      "x": 310.32556,
+      "y": 256.33304,
+      "type": "shape",
+      "properties": {
+        "group": "default",
+        "x1": 310.32556,
+        "y1": 256.33304,
+        "x2": 304.38092,
+        "y2": 250.3793,
+        "stroke": "#333333",
+        "stroke_width": 1.98307,
+        "shape_type": "line"
+      }
+    },
+    {
+      "id": "arr_3",
+      "x": 310.32556,
+      "y": 256.33304,
+      "type": "shape",
+      "properties": {
+        "group": "default",
+        "x1": 310.32556,
+        "y1": 256.33304,
+        "x2": 304.38092,
+        "y2": 262.2868,
+        "stroke": "#333333",
+        "stroke_width": 1.98307,
+        "shape_type": "line"
+      }
+    },
+    {
+      "id": "q1",
+      "x": 49.340683,
+      "y": 383.02228,
+      "anchor": "start",
+      "type": "text",
+      "properties": {
+        "group": "default",
+        "text": "[보기]와 같은 방법으로 처음 사각기둥에서 각각 꼭짓점 ㄴ, ㄹ, ㅁ, ㅅ을",
+        "font_family": "'Malgun Gothic'",
+        "font_size": 16.7382,
+        "font_weight": "normal",
+        "fill": "#222222",
+        "style": "stroke-width:0.697426",
+        "transform": "scale(0.97524392,1.0253845)"
+      }
+    },
+    {
+      "id": "q2",
+      "x": 48.298473,
+      "y": 411.91052,
+      "anchor": "start",
+      "type": "text",
+      "properties": {
+        "group": "default",
+        "text": "각뿔의 꼭짓점으로 하는 삼각뿔 모양 4개를 자르려고 합니다.",
+        "font_family": "'Malgun Gothic'",
+        "font_size": 16.7382,
+        "font_weight": "normal",
+        "fill": "#222222",
+        "style": "stroke-width:0.697426",
+        "transform": "scale(0.97524392,1.0253845)"
+      }
+    },
+    {
+      "id": "q3",
+      "x": 48.29847,
+      "y": 438.81628,
+      "anchor": "start",
+      "type": "text",
+      "properties": {
+        "group": "default",
+        "text": "가장 큰 삼각뿔 모양이 되도록 모두 잘랐을때 자르고 남은 도형의",
+        "font_family": "'Malgun Gothic'",
+        "font_size": 16.7382,
+        "font_weight": "normal",
+        "fill": "#222222",
+        "style": "stroke-width:0.697426",
+        "transform": "scale(0.97524392,1.0253845)"
+      }
+    },
+    {
+      "id": "q4",
+      "x": 49.340683,
+      "y": 467.7045,
+      "anchor": "start",
+      "type": "text",
+      "properties": {
+        "group": "default",
+        "text": "모든 모서리의 길이의 합은 몇 cm입니까?",
+        "font_family": "'Malgun Gothic'",
+        "font_size": 16.7382,
+        "font_weight": "normal",
+        "fill": "#222222",
+        "style": "stroke-width:0.697426",
+        "transform": "scale(0.97524392,1.0253845)"
+      }
+    },
+    {
+      "id": "q5",
+      "x": 59.762806,
+      "y": 143.48862,
+      "anchor": "start",
+      "type": "text",
+      "properties": {
+        "group": "default",
+        "text": "[보기]",
+        "font_family": "'Malgun Gothic'",
+        "font_size": 16.7382,
+        "font_weight": "normal",
+        "fill": "#222222",
+        "style": "stroke-width:0.697426",
+        "transform": "scale(0.97524392,1.0253845)"
+      }
+    },
+    {
+      "id": "ans_l",
+      "x": 397.5665,
+      "y": 511.7941,
+      "anchor": "middle",
+      "type": "text",
+      "properties": {
+        "group": "default",
+        "text": "(",
+        "font_family": "'Malgun Gothic'",
+        "font_size": 27.897,
+        "font_weight": "normal",
+        "fill": "#222222",
+        "style": "stroke-width:0.697426",
+        "transform": "scale(0.97524392,1.0253845)"
+      }
+    },
+    {
+      "id": "ans_r",
+      "x": 557.97418,
+      "y": 511.7941,
+      "anchor": "middle",
+      "type": "text",
+      "properties": {
+        "group": "default",
+        "text": ")",
+        "font_family": "'Malgun Gothic'",
+        "font_size": 27.897,
+        "font_weight": "normal",
+        "fill": "#222222",
+        "style": "stroke-width:0.697426",
+        "transform": "scale(0.97524392,1.0253845)"
+      }
+    },
+    {
+      "id": "l_front_top-5",
+      "x": 358.42874,
+      "y": 212.38005,
+      "type": "shape",
+      "properties": {
+        "group": "default",
+        "x1": 358.42874,
+        "y1": 212.38005,
+        "x2": 419.21259,
+        "y2": 212.38005,
+        "stroke": "#333333",
+        "stroke_width": 0.939715,
+        "shape_type": "line"
+      }
+    },
+    {
+      "id": "l_front_right-5",
+      "x": 474.55338,
+      "y": 261.25244,
+      "type": "shape",
+      "properties": {
+        "group": "default",
+        "x1": 474.55338,
+        "y1": 261.25244,
+        "x2": 474.55338,
+        "y2": 330.05569,
+        "stroke": "#333333",
+        "stroke_width": 0.990096,
+        "shape_type": "line"
+      }
+    },
+    {
+      "id": "l_front_bottom-1",
+      "x": 358.42874,
+      "y": 330.05569,
+      "type": "shape",
+      "properties": {
+        "group": "default",
+        "x1": 358.42874,
+        "y1": 330.05569,
+        "x2": 473.83466,
+        "y2": 330.05569,
+        "stroke": "#333333",
+        "stroke_width": 1.29484,
+        "shape_type": "line"
+      }
+    },
+    {
+      "id": "l_front_left-7",
+      "x": 358.42874,
+      "y": 212.38005,
+      "type": "shape",
+      "properties": {
+        "group": "default",
+        "x1": 358.42874,
+        "y1": 212.38005,
+        "x2": 358.42874,
+        "y2": 330.05569,
+        "stroke": "#333333",
+        "stroke_width": 1.29484,
+        "shape_type": "line"
+      }
+    },
+    {
+      "id": "l_back_top-1",
+      "x": 396.89737,
+      "y": 179.69238,
+      "type": "shape",
+      "properties": {
+        "group": "default",
+        "x1": 396.89737,
+        "y1": 179.69238,
+        "x2": 512.30328,
+        "y2": 179.69238,
+        "stroke": "#333333",
+        "stroke_width": 1.29484,
+        "shape_type": "line"
+      }
+    },
+    {
+      "id": "l_back_right-1",
+      "x": 512.30328,
+      "y": 179.69238,
+      "type": "shape",
+      "properties": {
+        "group": "default",
+        "x1": 512.30328,
+        "y1": 179.69238,
+        "x2": 512.30328,
+        "y2": 297.36801,
+        "stroke": "#333333",
+        "stroke_width": 1.29484,
+        "shape_type": "line"
+      }
+    },
+    {
+      "id": "l_connect_lt-5",
+      "x": 358.42874,
+      "y": 212.38005,
+      "type": "shape",
+      "properties": {
+        "group": "default",
+        "x1": 358.42874,
+        "y1": 212.38005,
+        "x2": 396.89737,
+        "y2": 179.69238,
+        "stroke": "#333333",
+        "stroke_width": 1.29484,
+        "shape_type": "line"
+      }
+    },
+    {
+      "id": "l_connect_rt-2",
+      "x": 491.60794,
+      "y": 196.79727,
+      "type": "shape",
+      "properties": {
+        "group": "default",
+        "x1": 491.60794,
+        "y1": 196.79727,
+        "x2": 512.4978,
+        "y2": 179.46353,
+        "stroke": "#333333",
+        "stroke_width": 0.694839,
+        "shape_type": "line"
+      }
+    },
+    {
+      "id": "l_connect_rb-7",
+      "x": 473.83466,
+      "y": 330.05569,
+      "type": "shape",
+      "properties": {
+        "group": "default",
+        "x1": 473.83466,
+        "y1": 330.05569,
+        "x2": 512.30328,
+        "y2": 297.36801,
+        "stroke": "#333333",
+        "stroke_width": 1.29484,
+        "shape_type": "line"
+      }
+    },
+    {
+      "id": "l_back_left_hidden-6",
+      "x": 396.89737,
+      "y": 179.69238,
+      "type": "shape",
+      "properties": {
+        "group": "default",
+        "x1": 396.89737,
+        "y1": 179.69238,
+        "x2": 396.89737,
+        "y2": 297.36801,
+        "stroke": "#333333",
+        "stroke_width": 1.29484,
+        "shape_type": "line"
+      }
+    },
+    {
+      "id": "l_back_bottom_hidden-1",
+      "x": 396.89737,
+      "y": 297.36801,
+      "type": "shape",
+      "properties": {
+        "group": "default",
+        "x1": 396.89737,
+        "y1": 297.36801,
+        "x2": 512.30328,
+        "y2": 297.36801,
+        "stroke": "#333333",
+        "stroke_width": 1.29484,
+        "shape_type": "line"
+      }
+    },
+    {
+      "id": "l_connect_lb_hidden-4",
+      "x": 358.42874,
+      "y": 330.05569,
+      "type": "shape",
+      "properties": {
+        "group": "default",
+        "x1": 358.42874,
+        "y1": 330.05569,
+        "x2": 396.89737,
+        "y2": 297.36801,
+        "stroke": "#333333",
+        "stroke_width": 1.29484,
+        "shape_type": "line"
+      }
+    },
+    {
+      "id": "l_cut_ab-2",
+      "x": 418.26236,
+      "y": 212.47581,
+      "type": "shape",
+      "properties": {
+        "group": "default",
+        "x1": 418.26236,
+        "y1": 212.47581,
+        "x2": 473.73007,
+        "y2": 261.3158,
+        "stroke": "#333333",
+        "stroke_width": 1.55179,
+        "shape_type": "line"
+      }
+    },
+    {
+      "id": "l_cut_ac-3",
+      "x": 420.36639,
+      "y": 211.72063,
+      "type": "shape",
+      "properties": {
+        "group": "default",
+        "x1": 420.36639,
+        "y1": 211.72063,
+        "x2": 491.49118,
+        "y2": 197.39816,
+        "stroke": "#333333",
+        "stroke_width": 0.82409,
+        "shape_type": "line"
+      }
+    },
+    {
+      "id": "l_cut_bc-2",
+      "x": 473.58521,
+      "y": 261.55167,
+      "type": "shape",
+      "properties": {
+        "group": "default",
+        "x1": 473.58521,
+        "y1": 261.55167,
+        "x2": 491.15869,
+        "y2": 196.59866,
+        "stroke": "#333333",
+        "stroke_width": 0.780238,
+        "shape_type": "line"
+      }
+    },
+    {
+      "id": "l_lbl_ㄱ-2",
+      "x": 350.28271,
+      "y": 217.13187,
+      "anchor": "middle",
+      "type": "text",
+      "properties": {
+        "group": "default",
+        "text": "ㄱ",
+        "font_family": "'Malgun Gothic'",
+        "font_size": 16.8329,
+        "font_weight": "normal",
+        "fill": "#222222",
+        "style": "stroke-width:0.647418",
+        "transform": "scale(0.99030913,1.0097857)"
+      }
+    },
+    {
+      "id": "l_lbl_ㄹ-1",
+      "x": 354.96188,
+      "y": 194.40842,
+      "anchor": "middle",
+      "type": "text",
+      "properties": {
+        "group": "default",
+        "text": "ㄹ",
+        "font_family": "'Malgun Gothic'",
+        "font_size": 13.8975,
+        "font_weight": "normal",
+        "fill": "#222222",
+        "style": "stroke-width:0.53452",
+        "transform": "scale(1.1058518,0.9042803)"
+      }
+    },
+    {
+      "id": "l_lbl_ㄷ-6",
+      "x": 525.42297,
+      "y": 177.90488,
+      "anchor": "middle",
+      "type": "text",
+      "properties": {
+        "group": "default",
+        "text": "ㄷ",
+        "font_family": "'Malgun Gothic'",
+        "font_size": 16.9766,
+        "font_weight": "normal",
+        "fill": "#222222",
+        "style": "stroke-width:0.652946",
+        "transform": "scale(0.99106672,1.0090138)"
+      }
+    },
+    {
+      "id": "l_lbl_ㅁ-8",
+      "x": 356.15988,
+      "y": 338.62262,
+      "anchor": "middle",
+      "type": "text",
+      "properties": {
+        "group": "default",
+        "text": "ㅁ",
+        "font_family": "'Malgun Gothic'",
+        "font_size": 16.8329,
+        "font_weight": "normal",
+        "fill": "#222222",
+        "style": "stroke-width:0.647418",
+        "transform": "scale(0.99030913,1.0097857)"
+      }
+    },
+    {
+      "id": "l_lbl_ㅂ-5",
+      "x": 476.60623,
+      "y": 343.3118,
+      "anchor": "middle",
+      "type": "text",
+      "properties": {
+        "group": "default",
+        "text": "ㅂ",
+        "font_family": "'Malgun Gothic'",
+        "font_size": 16.8329,
+        "font_weight": "normal",
+        "fill": "#222222",
+        "style": "stroke-width:0.647418",
+        "transform": "scale(0.99030913,1.0097857)"
+      }
+    },
+    {
+      "id": "l_lbl_ㅅ-7",
+      "x": 526.15765,
+      "y": 305.08606,
+      "anchor": "middle",
+      "type": "text",
+      "properties": {
+        "group": "default",
+        "text": "ㅅ",
+        "font_family": "'Malgun Gothic'",
+        "font_size": 16.9766,
+        "font_weight": "normal",
+        "fill": "#222222",
+        "style": "stroke-width:0.652946",
+        "transform": "scale(0.99106672,1.0090138)"
+      }
+    },
+    {
+      "id": "l_lbl_ㅇ-6",
+      "x": 404.65253,
+      "y": 309.401,
+      "anchor": "middle",
+      "type": "text",
+      "properties": {
+        "group": "default",
+        "text": "ㅇ",
+        "font_family": "'Malgun Gothic'",
+        "font_size": 16.8329,
+        "font_weight": "normal",
+        "fill": "#222222",
+        "style": "stroke-width:0.647418",
+        "transform": "scale(0.99030913,1.0097857)"
+      }
+    }
+  ]
+}

@@ -26,201 +26,74 @@
     ]
   },
   "render": {
-    "canvas": {
-      "width": 408.0,
-      "height": 212.0,
-      "background": "#F6F6F6"
-    },
     "elements": [
       {
         "id": "bg",
         "semantic_role": "background",
-        "z_index": 0,
-        "anchor": "start",
-        "alignment": "left",
-        "stroke": "none",
-        "stroke_width": 0,
-        "fill": "#FFFFFF",
-        "font_family": "Malgun Gothic",
-        "font_weight": "normal",
-        "type": "rect",
-        "x": 0.0,
-        "y": 0.0,
-        "width": 408,
-        "height": 212
+        "type": "rect"
       },
       {
         "id": "instruction_1",
         "semantic_role": "instruction",
-        "z_index": 0,
-        "anchor": "start",
-        "alignment": "left",
-        "fill": "#222222",
-        "font_family": "Malgun Gothic",
-        "font_size": 17,
-        "font_weight": "normal",
         "type": "text",
-        "text": "다음 수 중에서 2개를 골라 덧셈식을 만들려고",
-        "x": 6.0,
-        "y": 30.0
+        "text": "다음 수 중에서 2개를 골라 덧셈식을 만들려고"
       },
       {
         "id": "instruction_2",
         "semantic_role": "instruction",
-        "z_index": 0,
-        "anchor": "start",
-        "alignment": "left",
-        "fill": "#222222",
-        "font_family": "Malgun Gothic",
-        "font_size": 17,
-        "font_weight": "normal",
         "type": "text",
-        "text": "합니다. □ 안에 알맞은 수를 써넣으세요.",
-        "x": 6.0,
-        "y": 60.0
+        "text": "합니다. □ 안에 알맞은 수를 써넣으세요."
       },
       {
         "id": "candidate_box",
         "semantic_role": "guide",
-        "z_index": 0,
-        "anchor": "start",
-        "alignment": "left",
-        "stroke": "#666666",
-        "stroke_width": 1.5,
-        "fill": "none",
-        "font_family": "Malgun Gothic",
-        "font_weight": "normal",
-        "type": "rect",
-        "x": 6.0,
-        "y": 78.0,
-        "width": 396,
-        "height": 56,
-        "rx": 10,
-        "ry": 10
+        "type": "rect"
       },
       {
         "id": "candidate_1",
         "semantic_role": "label",
-        "z_index": 0,
-        "anchor": "middle",
-        "alignment": "left",
-        "fill": "#222222",
-        "font_family": "Malgun Gothic",
-        "font_size": 17,
-        "font_weight": "normal",
         "type": "text",
-        "text": "718",
-        "x": 74.0,
-        "y": 113.0
+        "text": "718"
       },
       {
         "id": "candidate_2",
         "semantic_role": "label",
-        "z_index": 0,
-        "anchor": "middle",
-        "alignment": "left",
-        "fill": "#222222",
-        "font_family": "Malgun Gothic",
-        "font_size": 17,
-        "font_weight": "normal",
         "type": "text",
-        "text": "295",
-        "x": 160.0,
-        "y": 113.0
+        "text": "295"
       },
       {
         "id": "candidate_3",
         "semantic_role": "label",
-        "z_index": 0,
-        "anchor": "middle",
-        "alignment": "left",
-        "fill": "#222222",
-        "font_family": "Malgun Gothic",
-        "font_size": 17,
-        "font_weight": "normal",
         "type": "text",
-        "text": "658",
-        "x": 246.0,
-        "y": 113.0
+        "text": "658"
       },
       {
         "id": "candidate_4",
         "semantic_role": "label",
-        "z_index": 0,
-        "anchor": "middle",
-        "alignment": "left",
-        "fill": "#222222",
-        "font_family": "Malgun Gothic",
-        "font_size": 17,
-        "font_weight": "normal",
         "type": "text",
-        "text": "245",
-        "x": 332.0,
-        "y": 113.0
+        "text": "245"
       },
       {
         "id": "blank_left",
         "semantic_role": "answer_anchor",
-        "z_index": 0,
-        "anchor": "start",
-        "alignment": "left",
-        "stroke": "#666666",
-        "stroke_width": 1.5,
-        "fill": "none",
-        "font_family": "Malgun Gothic",
-        "font_weight": "normal",
-        "type": "rect",
-        "x": 94.0,
-        "y": 150.0,
-        "width": 69,
-        "height": 36
+        "type": "rect"
       },
       {
         "id": "plus_sign",
         "semantic_role": "label",
-        "z_index": 0,
-        "anchor": "middle",
-        "alignment": "left",
-        "fill": "#222222",
-        "font_family": "Malgun Gothic",
-        "font_size": 34,
-        "font_weight": "normal",
         "type": "text",
-        "text": "+",
-        "x": 173.0,
-        "y": 176.0
+        "text": "+"
       },
       {
         "id": "blank_right",
         "semantic_role": "answer_anchor",
-        "z_index": 0,
-        "anchor": "start",
-        "alignment": "left",
-        "stroke": "#666666",
-        "stroke_width": 1.5,
-        "fill": "none",
-        "font_family": "Malgun Gothic",
-        "font_weight": "normal",
-        "type": "rect",
-        "x": 184.0,
-        "y": 150.0,
-        "width": 69,
-        "height": 36
+        "type": "rect"
       },
       {
         "id": "equal_expr",
         "semantic_role": "label",
-        "z_index": 0,
-        "anchor": "middle",
-        "alignment": "left",
-        "fill": "#222222",
-        "font_family": "Malgun Gothic",
-        "font_size": 34,
-        "font_weight": "normal",
         "type": "text",
-        "text": "=953",
-        "x": 300.0,
-        "y": 176.0
+        "text": "=953"
       }
     ]
   },

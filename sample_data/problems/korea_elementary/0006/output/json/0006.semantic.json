@@ -36,199 +36,66 @@
     }
   },
   "render": {
-    "canvas": {
-      "width": 1744.0,
-      "height": 725.0,
-      "background": "#F6F6F6"
-    },
     "elements": [
       {
         "id": "instruction",
         "semantic_role": "instruction",
-        "z_index": 0,
-        "anchor": "start",
-        "alignment": "left",
-        "fill": "#222222",
-        "font_family": "Malgun Gothic",
-        "font_size": 66,
-        "font_weight": "normal",
         "type": "text",
-        "text": "잘못 계산한 곳에 ○표 하고, 바르게 계산해 보세요.",
-        "x": 115.52105,
-        "y": 95.168732
+        "text": "잘못 계산한 곳에 ○표 하고, 바르게 계산해 보세요."
       },
       {
         "id": "left_panel",
         "semantic_role": "panel",
-        "z_index": 0,
-        "anchor": "start",
-        "alignment": "left",
-        "stroke": "#CFC8BA",
-        "stroke_width": 9,
-        "fill": "none",
-        "font_family": "Malgun Gothic",
-        "font_weight": "normal",
-        "type": "rect",
-        "x": 203.9678,
-        "y": 215.6675,
-        "width": 585,
-        "height": 435,
-        "rx": 70
+        "type": "rect"
       },
       {
         "id": "right_panel",
         "semantic_role": "panel",
-        "z_index": 0,
-        "anchor": "start",
-        "alignment": "left",
-        "stroke": "#CFC8BA",
-        "stroke_width": 9,
-        "fill": "none",
-        "font_family": "Malgun Gothic",
-        "font_weight": "normal",
-        "type": "rect",
-        "x": 966.96783,
-        "y": 205.6675,
-        "width": 615,
-        "height": 455,
-        "rx": 70
+        "type": "rect"
       },
       {
         "id": "right_tab",
         "semantic_role": "tab",
-        "z_index": 0,
-        "anchor": "start",
-        "alignment": "left",
-        "stroke": "none",
-        "stroke_width": 0,
-        "fill": "#CE8D61",
-        "font_family": "Malgun Gothic",
-        "font_weight": "normal",
-        "type": "rect",
-        "x": 1089.9678,
-        "y": 169.6675,
-        "width": 400,
-        "height": 100,
-        "rx": 38
+        "type": "rect"
       },
       {
         "id": "right_tab_text",
         "semantic_role": "tab_label",
-        "z_index": 0,
-        "anchor": "middle",
-        "alignment": "left",
-        "fill": "#FFFFFF",
-        "font_family": "Malgun Gothic",
-        "font_size": 42,
-        "font_weight": "normal",
         "type": "text",
-        "text": "바르게 계산하기",
-        "x": 1289.9678,
-        "y": 231.6675
+        "text": "바르게 계산하기"
       },
       {
         "id": "left_top",
         "semantic_role": "equation",
-        "z_index": 0,
-        "anchor": "end",
-        "alignment": "left",
-        "fill": "#222222",
-        "font_family": "Cambria",
-        "font_size": 88,
-        "font_weight": "normal",
         "type": "text",
-        "text": "323",
-        "x": 622.57715,
-        "y": 360.0
+        "text": "323"
       },
       {
         "id": "left_mid",
         "semantic_role": "equation",
-        "z_index": 0,
-        "anchor": "end",
-        "alignment": "left",
-        "fill": "#222222",
-        "font_family": "Cambria",
-        "font_size": 88,
-        "font_weight": "normal",
         "type": "text",
-        "text": "+998",
-        "x": 622.57715,
-        "y": 460.0
+        "text": "+998"
       },
       {
         "id": "left_line",
         "semantic_role": "equation_line",
-        "z_index": 0,
-        "anchor": "start",
-        "alignment": "left",
-        "stroke": "#333333",
-        "stroke_width": 3,
-        "font_family": "Malgun Gothic",
-        "font_weight": "normal",
-        "type": "line",
-        "x1": 296.30759,
-        "y1": 486.0,
-        "x2": 636.30762,
-        "y2": 486.0
+        "type": "line"
       },
       {
         "id": "left_result",
         "semantic_role": "wrong_result",
-        "z_index": 0,
-        "anchor": "end",
-        "alignment": "left",
-        "fill": "#222222",
-        "font_family": "Cambria",
-        "font_size": 87,
-        "font_weight": "normal",
         "type": "text",
-        "text": "1221",
-        "x": 622.57715,
-        "y": 560.0
+        "text": "1221"
       },
       {
         "id": "arrow_body",
         "semantic_role": "arrow",
-        "z_index": 0,
-        "anchor": "start",
-        "alignment": "left",
-        "stroke": "#9AAAB2",
-        "stroke_width": 14,
-        "font_family": "Malgun Gothic",
-        "font_weight": "normal",
-        "type": "line",
-        "x1": 852.96783,
-        "y1": 435.66748,
-        "x2": 892.96783,
-        "y2": 435.66748
+        "type": "line"
       },
       {
         "id": "arrow_head",
         "semantic_role": "arrow",
-        "z_index": 0,
-        "anchor": "start",
-        "alignment": "left",
-        "stroke": "none",
-        "stroke_width": 0,
-        "fill": "#9AAAB2",
-        "font_family": "Malgun Gothic",
-        "font_weight": "normal",
-        "type": "polygon",
-        "points": [
-          [
-            892.96783,
-            408.66748
-          ],
-          [
-            914.96783,
-            435.66748
-          ],
-          [
-            892.96783,
-            462.66748
-          ]
-        ]
+        "type": "polygon"
       }
     ]
   },

@@ -1,0 +1,730 @@
+{
+  "problem_id": "3rd_shape2d_0002",
+  "canvas": {
+    "width": 768.0,
+    "height": 667.0,
+    "background": "#f4f4f4"
+  },
+  "nodes": [
+    {
+      "id": "instruction_1",
+      "x": 24,
+      "y": 58,
+      "anchor": "start",
+      "type": "text",
+      "properties": {
+        "text": "선분 ㄱㄴ을 한 변으로 하는 직각삼각형을 그리려고 합니다. 이어야 하는 점을 찾아 쓰고, 직각삼각형을 완성해 보세요.",
+        "font_family": "Malgun Gothic",
+        "font_size": 34,
+        "fill": "#222222",
+        "group": "text",
+        "font_weight": "normal"
+      }
+    },
+    {
+      "id": "grid_box",
+      "x": 58,
+      "y": 180,
+      "width": 640,
+      "height": 320,
+      "type": "shape",
+      "properties": {
+        "stroke": "#9CA3AF",
+        "stroke_width": 2,
+        "fill": "none",
+        "dasharray": "6 6",
+        "group": "grid",
+        "shape_type": "rect"
+      }
+    },
+    {
+      "id": "grid_v_00",
+      "x": 58,
+      "y": 180,
+      "type": "shape",
+      "properties": {
+        "x1": 58,
+        "y1": 180,
+        "x2": 58,
+        "y2": 500,
+        "stroke": "#9CA3AF",
+        "stroke_width": 1,
+        "group": "grid",
+        "dasharray": "5 7",
+        "shape_type": "line"
+      }
+    },
+    {
+      "id": "grid_v_01",
+      "x": 98,
+      "y": 180,
+      "type": "shape",
+      "properties": {
+        "x1": 98,
+        "y1": 180,
+        "x2": 98,
+        "y2": 500,
+        "stroke": "#9CA3AF",
+        "stroke_width": 1,
+        "group": "grid",
+        "dasharray": "5 7",
+        "shape_type": "line"
+      }
+    },
+    {
+      "id": "grid_v_02",
+      "x": 138,
+      "y": 180,
+      "type": "shape",
+      "properties": {
+        "x1": 138,
+        "y1": 180,
+        "x2": 138,
+        "y2": 500,
+        "stroke": "#9CA3AF",
+        "stroke_width": 1,
+        "group": "grid",
+        "dasharray": "5 7",
+        "shape_type": "line"
+      }
+    },
+    {
+      "id": "grid_v_03",
+      "x": 178,
+      "y": 180,
+      "type": "shape",
+      "properties": {
+        "x1": 178,
+        "y1": 180,
+        "x2": 178,
+        "y2": 500,
+        "stroke": "#9CA3AF",
+        "stroke_width": 1,
+        "group": "grid",
+        "dasharray": "5 7",
+        "shape_type": "line"
+      }
+    },
+    {
+      "id": "grid_v_04",
+      "x": 218,
+      "y": 180,
+      "type": "shape",
+      "properties": {
+        "x1": 218,
+        "y1": 180,
+        "x2": 218,
+        "y2": 500,
+        "stroke": "#9CA3AF",
+        "stroke_width": 1,
+        "group": "grid",
+        "dasharray": "5 7",
+        "shape_type": "line"
+      }
+    },
+    {
+      "id": "grid_v_05",
+      "x": 258,
+      "y": 180,
+      "type": "shape",
+      "properties": {
+        "x1": 258,
+        "y1": 180,
+        "x2": 258,
+        "y2": 500,
+        "stroke": "#9CA3AF",
+        "stroke_width": 1,
+        "group": "grid",
+        "dasharray": "5 7",
+        "shape_type": "line"
+      }
+    },
+    {
+      "id": "grid_v_06",
+      "x": 298,
+      "y": 180,
+      "type": "shape",
+      "properties": {
+        "x1": 298,
+        "y1": 180,
+        "x2": 298,
+        "y2": 500,
+        "stroke": "#9CA3AF",
+        "stroke_width": 1,
+        "group": "grid",
+        "dasharray": "5 7",
+        "shape_type": "line"
+      }
+    },
+    {
+      "id": "grid_v_07",
+      "x": 338,
+      "y": 180,
+      "type": "shape",
+      "properties": {
+        "x1": 338,
+        "y1": 180,
+        "x2": 338,
+        "y2": 500,
+        "stroke": "#9CA3AF",
+        "stroke_width": 1,
+        "group": "grid",
+        "dasharray": "5 7",
+        "shape_type": "line"
+      }
+    },
+    {
+      "id": "grid_v_08",
+      "x": 378,
+      "y": 180,
+      "type": "shape",
+      "properties": {
+        "x1": 378,
+        "y1": 180,
+        "x2": 378,
+        "y2": 500,
+        "stroke": "#9CA3AF",
+        "stroke_width": 1,
+        "group": "grid",
+        "dasharray": "5 7",
+        "shape_type": "line"
+      }
+    },
+    {
+      "id": "grid_v_09",
+      "x": 418,
+      "y": 180,
+      "type": "shape",
+      "properties": {
+        "x1": 418,
+        "y1": 180,
+        "x2": 418,
+        "y2": 500,
+        "stroke": "#9CA3AF",
+        "stroke_width": 1,
+        "group": "grid",
+        "dasharray": "5 7",
+        "shape_type": "line"
+      }
+    },
+    {
+      "id": "grid_v_10",
+      "x": 458,
+      "y": 180,
+      "type": "shape",
+      "properties": {
+        "x1": 458,
+        "y1": 180,
+        "x2": 458,
+        "y2": 500,
+        "stroke": "#9CA3AF",
+        "stroke_width": 1,
+        "group": "grid",
+        "dasharray": "5 7",
+        "shape_type": "line"
+      }
+    },
+    {
+      "id": "grid_v_11",
+      "x": 498,
+      "y": 180,
+      "type": "shape",
+      "properties": {
+        "x1": 498,
+        "y1": 180,
+        "x2": 498,
+        "y2": 500,
+        "stroke": "#9CA3AF",
+        "stroke_width": 1,
+        "group": "grid",
+        "dasharray": "5 7",
+        "shape_type": "line"
+      }
+    },
+    {
+      "id": "grid_v_12",
+      "x": 538,
+      "y": 180,
+      "type": "shape",
+      "properties": {
+        "x1": 538,
+        "y1": 180,
+        "x2": 538,
+        "y2": 500,
+        "stroke": "#9CA3AF",
+        "stroke_width": 1,
+        "group": "grid",
+        "dasharray": "5 7",
+        "shape_type": "line"
+      }
+    },
+    {
+      "id": "grid_v_13",
+      "x": 578,
+      "y": 180,
+      "type": "shape",
+      "properties": {
+        "x1": 578,
+        "y1": 180,
+        "x2": 578,
+        "y2": 500,
+        "stroke": "#9CA3AF",
+        "stroke_width": 1,
+        "group": "grid",
+        "dasharray": "5 7",
+        "shape_type": "line"
+      }
+    },
+    {
+      "id": "grid_v_14",
+      "x": 618,
+      "y": 180,
+      "type": "shape",
+      "properties": {
+        "x1": 618,
+        "y1": 180,
+        "x2": 618,
+        "y2": 500,
+        "stroke": "#9CA3AF",
+        "stroke_width": 1,
+        "group": "grid",
+        "dasharray": "5 7",
+        "shape_type": "line"
+      }
+    },
+    {
+      "id": "grid_v_15",
+      "x": 658,
+      "y": 180,
+      "type": "shape",
+      "properties": {
+        "x1": 658,
+        "y1": 180,
+        "x2": 658,
+        "y2": 500,
+        "stroke": "#9CA3AF",
+        "stroke_width": 1,
+        "group": "grid",
+        "dasharray": "5 7",
+        "shape_type": "line"
+      }
+    },
+    {
+      "id": "grid_v_16",
+      "x": 698,
+      "y": 180,
+      "type": "shape",
+      "properties": {
+        "x1": 698,
+        "y1": 180,
+        "x2": 698,
+        "y2": 500,
+        "stroke": "#9CA3AF",
+        "stroke_width": 1,
+        "group": "grid",
+        "dasharray": "5 7",
+        "shape_type": "line"
+      }
+    },
+    {
+      "id": "grid_h_00",
+      "x": 58,
+      "y": 180,
+      "type": "shape",
+      "properties": {
+        "x1": 58,
+        "y1": 180,
+        "x2": 698,
+        "y2": 180,
+        "stroke": "#9CA3AF",
+        "stroke_width": 1,
+        "group": "grid",
+        "dasharray": "5 7",
+        "shape_type": "line"
+      }
+    },
+    {
+      "id": "grid_h_01",
+      "x": 58,
+      "y": 220,
+      "type": "shape",
+      "properties": {
+        "x1": 58,
+        "y1": 220,
+        "x2": 698,
+        "y2": 220,
+        "stroke": "#9CA3AF",
+        "stroke_width": 1,
+        "group": "grid",
+        "dasharray": "5 7",
+        "shape_type": "line"
+      }
+    },
+    {
+      "id": "grid_h_02",
+      "x": 58,
+      "y": 260,
+      "type": "shape",
+      "properties": {
+        "x1": 58,
+        "y1": 260,
+        "x2": 698,
+        "y2": 260,
+        "stroke": "#9CA3AF",
+        "stroke_width": 1,
+        "group": "grid",
+        "dasharray": "5 7",
+        "shape_type": "line"
+      }
+    },
+    {
+      "id": "grid_h_03",
+      "x": 58,
+      "y": 300,
+      "type": "shape",
+      "properties": {
+        "x1": 58,
+        "y1": 300,
+        "x2": 698,
+        "y2": 300,
+        "stroke": "#9CA3AF",
+        "stroke_width": 1,
+        "group": "grid",
+        "dasharray": "5 7",
+        "shape_type": "line"
+      }
+    },
+    {
+      "id": "grid_h_04",
+      "x": 58,
+      "y": 340,
+      "type": "shape",
+      "properties": {
+        "x1": 58,
+        "y1": 340,
+        "x2": 698,
+        "y2": 340,
+        "stroke": "#9CA3AF",
+        "stroke_width": 1,
+        "group": "grid",
+        "dasharray": "5 7",
+        "shape_type": "line"
+      }
+    },
+    {
+      "id": "grid_h_05",
+      "x": 58,
+      "y": 380,
+      "type": "shape",
+      "properties": {
+        "x1": 58,
+        "y1": 380,
+        "x2": 698,
+        "y2": 380,
+        "stroke": "#9CA3AF",
+        "stroke_width": 1,
+        "group": "grid",
+        "dasharray": "5 7",
+        "shape_type": "line"
+      }
+    },
+    {
+      "id": "grid_h_06",
+      "x": 58,
+      "y": 420,
+      "type": "shape",
+      "properties": {
+        "x1": 58,
+        "y1": 420,
+        "x2": 698,
+        "y2": 420,
+        "stroke": "#9CA3AF",
+        "stroke_width": 1,
+        "group": "grid",
+        "dasharray": "5 7",
+        "shape_type": "line"
+      }
+    },
+    {
+      "id": "grid_h_07",
+      "x": 58,
+      "y": 460,
+      "type": "shape",
+      "properties": {
+        "x1": 58,
+        "y1": 460,
+        "x2": 698,
+        "y2": 460,
+        "stroke": "#9CA3AF",
+        "stroke_width": 1,
+        "group": "grid",
+        "dasharray": "5 7",
+        "shape_type": "line"
+      }
+    },
+    {
+      "id": "grid_h_08",
+      "x": 58,
+      "y": 500,
+      "type": "shape",
+      "properties": {
+        "x1": 58,
+        "y1": 500,
+        "x2": 698,
+        "y2": 500,
+        "stroke": "#9CA3AF",
+        "stroke_width": 1,
+        "group": "grid",
+        "dasharray": "5 7",
+        "shape_type": "line"
+      }
+    },
+    {
+      "id": "dot_base_start",
+      "x": 0.0,
+      "y": 0.0,
+      "type": "shape",
+      "properties": {
+        "cx": 257,
+        "cy": 459,
+        "r": 5,
+        "stroke": "none",
+        "fill": "#222222",
+        "group": "points",
+        "stroke_width": 0,
+        "shape_type": "circle"
+      }
+    },
+    {
+      "id": "label_base_start",
+      "x": 265,
+      "y": 451,
+      "anchor": "start",
+      "type": "text",
+      "properties": {
+        "text": "ㄱ",
+        "font_family": "Malgun Gothic",
+        "font_size": 34,
+        "fill": "#222222",
+        "group": "points",
+        "font_weight": "normal"
+      }
+    },
+    {
+      "id": "dot_base_end",
+      "x": 0.0,
+      "y": 0.0,
+      "type": "shape",
+      "properties": {
+        "cx": 539,
+        "cy": 459,
+        "r": 5,
+        "stroke": "none",
+        "fill": "#222222",
+        "group": "points",
+        "stroke_width": 0,
+        "shape_type": "circle"
+      }
+    },
+    {
+      "id": "label_base_end",
+      "x": 547,
+      "y": 451,
+      "anchor": "start",
+      "type": "text",
+      "properties": {
+        "text": "ㄴ",
+        "font_family": "Malgun Gothic",
+        "font_size": 34,
+        "fill": "#222222",
+        "group": "points",
+        "font_weight": "normal"
+      }
+    },
+    {
+      "id": "dot_choice_1",
+      "x": 0.0,
+      "y": 0.0,
+      "type": "shape",
+      "properties": {
+        "cx": 178,
+        "cy": 300,
+        "r": 5,
+        "stroke": "none",
+        "fill": "#222222",
+        "group": "points",
+        "stroke_width": 0,
+        "shape_type": "circle"
+      }
+    },
+    {
+      "id": "label_choice_1",
+      "x": 186,
+      "y": 292,
+      "anchor": "start",
+      "type": "text",
+      "properties": {
+        "text": "ㄷ",
+        "font_family": "Malgun Gothic",
+        "font_size": 34,
+        "fill": "#222222",
+        "group": "points",
+        "font_weight": "normal"
+      }
+    },
+    {
+      "id": "dot_choice_2",
+      "x": 0.0,
+      "y": 0.0,
+      "type": "shape",
+      "properties": {
+        "cx": 298,
+        "cy": 259,
+        "r": 5,
+        "stroke": "none",
+        "fill": "#222222",
+        "group": "points",
+        "stroke_width": 0,
+        "shape_type": "circle"
+      }
+    },
+    {
+      "id": "label_choice_2",
+      "x": 306,
+      "y": 251,
+      "anchor": "start",
+      "type": "text",
+      "properties": {
+        "text": "ㄹ",
+        "font_family": "Malgun Gothic",
+        "font_size": 34,
+        "fill": "#222222",
+        "group": "points",
+        "font_weight": "normal"
+      }
+    },
+    {
+      "id": "dot_choice_3",
+      "x": 0.0,
+      "y": 0.0,
+      "type": "shape",
+      "properties": {
+        "cx": 377,
+        "cy": 259,
+        "r": 5,
+        "stroke": "none",
+        "fill": "#222222",
+        "group": "points",
+        "stroke_width": 0,
+        "shape_type": "circle"
+      }
+    },
+    {
+      "id": "label_choice_3",
+      "x": 385,
+      "y": 251,
+      "anchor": "start",
+      "type": "text",
+      "properties": {
+        "text": "ㅁ",
+        "font_family": "Malgun Gothic",
+        "font_size": 34,
+        "fill": "#222222",
+        "group": "points",
+        "font_weight": "normal"
+      }
+    },
+    {
+      "id": "dot_choice_4",
+      "x": 0.0,
+      "y": 0.0,
+      "type": "shape",
+      "properties": {
+        "cx": 539,
+        "cy": 259,
+        "r": 5,
+        "stroke": "none",
+        "fill": "#222222",
+        "group": "points",
+        "stroke_width": 0,
+        "shape_type": "circle"
+      }
+    },
+    {
+      "id": "label_choice_4",
+      "x": 547,
+      "y": 251,
+      "anchor": "start",
+      "type": "text",
+      "properties": {
+        "text": "ㅂ",
+        "font_family": "Malgun Gothic",
+        "font_size": 34,
+        "fill": "#222222",
+        "group": "points",
+        "font_weight": "normal"
+      }
+    },
+    {
+      "id": "dot_choice_5",
+      "x": 0.0,
+      "y": 0.0,
+      "type": "shape",
+      "properties": {
+        "cx": 579,
+        "cy": 339,
+        "r": 5,
+        "stroke": "none",
+        "fill": "#222222",
+        "group": "points",
+        "stroke_width": 0,
+        "shape_type": "circle"
+      }
+    },
+    {
+      "id": "label_choice_5",
+      "x": 587,
+      "y": 331,
+      "anchor": "start",
+      "type": "text",
+      "properties": {
+        "text": "ㅅ",
+        "font_family": "Malgun Gothic",
+        "font_size": 34,
+        "fill": "#222222",
+        "group": "points",
+        "font_weight": "normal"
+      }
+    },
+    {
+      "id": "base_segment",
+      "x": 257,
+      "y": 459,
+      "type": "shape",
+      "properties": {
+        "x1": 257,
+        "y1": 459,
+        "x2": 539,
+        "y2": 459,
+        "stroke": "#222222",
+        "stroke_width": 4,
+        "group": "figure",
+        "shape_type": "line"
+      }
+    },
+    {
+      "id": "answer_point",
+      "x": 640,
+      "y": 611,
+      "width": 60,
+      "height": 42,
+      "type": "shape",
+      "properties": {
+        "stroke": "none",
+        "fill": "none",
+        "group": "answer",
+        "shape_type": "rect"
+      }
+    }
+  ]
+}

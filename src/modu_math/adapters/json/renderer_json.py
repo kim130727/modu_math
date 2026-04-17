@@ -17,39 +17,76 @@ from ...renderer.models.primitive import (
 )
 
 def _extract_render_attributes(node: LayoutNode) -> dict[str, Any]:
-    """Flattens layout properties into pure visual attributes."""
+    """Extract only SVG-relevant visual attributes for renderer output."""
     attrs: dict[str, Any] = {}
-    
-    # Common layout
+    props = node.properties if isinstance(node.properties, dict) else {}
+
+    if isinstance(node, TextNode):
+        attrs["x"] = node.x
+        attrs["y"] = node.y
+        if node.anchor:
+            attrs["text-anchor"] = node.anchor
+        for key in ["fill", "stroke", "stroke_width", "font_family", "font_size", "font_weight", "font_style", "opacity", "transform"]:
+            if key in props:
+                attrs[key.replace("_", "-")] = props[key]
+        if props.get("is_formula"):
+            attrs["data-formula"] = node.text
+            attrs["class"] = "formula-placeholder"
+        return attrs
+
+    if isinstance(node, ShapeNode):
+        shape_style_keys = ["fill", "stroke", "stroke_width", "opacity", "transform"]
+        for key in shape_style_keys:
+            if key in props:
+                attrs[key.replace("_", "-")] = props[key]
+
+        if node.shape_type == "rect":
+            attrs["x"] = node.x
+            attrs["y"] = node.y
+            if node.width is not None:
+                attrs["width"] = node.width
+            if node.height is not None:
+                attrs["height"] = node.height
+            for key in ["rx", "ry"]:
+                if key in props:
+                    attrs[key] = props[key]
+            return attrs
+
+        if node.shape_type == "circle":
+            attrs["cx"] = node.x
+            attrs["cy"] = node.y
+            if "r" in props:
+                attrs["r"] = props["r"]
+            return attrs
+
+        if node.shape_type == "line":
+            attrs["x1"] = props.get("x1", node.x)
+            attrs["y1"] = props.get("y1", node.y)
+            if "x2" in props:
+                attrs["x2"] = props["x2"]
+            if "y2" in props:
+                attrs["y2"] = props["y2"]
+            return attrs
+
+        if node.shape_type == "polygon":
+            if "points" in props:
+                attrs["points"] = props["points"]
+            return attrs
+
+        # Fallback shape type
+        attrs["x"] = node.x
+        attrs["y"] = node.y
+        if node.width is not None:
+            attrs["width"] = node.width
+        if node.height is not None:
+            attrs["height"] = node.height
+        return attrs
+
+    # Unknown node type fallback
     if hasattr(node, "x"):
         attrs["x"] = node.x
     if hasattr(node, "y"):
         attrs["y"] = node.y
-    if hasattr(node, "width") and node.width is not None:
-        attrs["width"] = node.width
-    if hasattr(node, "height") and node.height is not None:
-        attrs["height"] = node.height
-        
-    # Styles
-    for style_key in ["fill", "stroke", "stroke_width", "font_family", "font_size", "font_weight", "rx", "ry", "r", "x1", "y1", "x2", "y2", "points"]:
-        if style_key in node.properties:
-            # SVG attributes use dashes
-            svg_key = style_key.replace("_", "-")
-            attrs[svg_key] = node.properties[style_key]
-            
-    if isinstance(node, TextNode):
-        if node.anchor:
-            attrs["text-anchor"] = node.anchor
-        if node.properties.get("is_formula"):
-            attrs["data-formula"] = node.text
-            attrs["class"] = "formula-placeholder"
-
-    # Shape specific
-    if isinstance(node, ShapeNode):
-        if node.shape_type == "circle":
-            attrs["cx"] = attrs.pop("x", 0)
-            attrs["cy"] = attrs.pop("y", 0)
-
     return attrs
 
 def _node_to_render_element(node: LayoutNode) -> RenderElement | None:

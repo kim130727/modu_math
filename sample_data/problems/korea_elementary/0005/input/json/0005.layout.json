@@ -1,0 +1,157 @@
+{
+  "problem_id": "0005",
+  "canvas": {
+    "width": 1852.0,
+    "height": 554.0,
+    "background": "#F6F6F6"
+  },
+  "nodes": [
+    {
+      "id": "instruction",
+      "x": 44,
+      "y": 106,
+      "anchor": "start",
+      "type": "text",
+      "properties": {
+        "text": "계산 결과가 더 큰 것에 ○표 하세요.",
+        "font_family": "Malgun Gothic",
+        "font_size": 72,
+        "fill": "#222222",
+        "group": "default",
+        "font_weight": "normal"
+      }
+    },
+    {
+      "id": "left_box",
+      "x": 320,
+      "y": 180,
+      "width": 590,
+      "height": 210,
+      "type": "shape",
+      "properties": {
+        "rx": 75,
+        "stroke": "none",
+        "stroke_width": 0,
+        "fill": "#D0CABB",
+        "choice": {
+          "index": 1,
+          "value": "605+298",
+          "is_correct": false
+        },
+        "group": "default",
+        "shape_type": "rect"
+      }
+    },
+    {
+      "id": "right_box",
+      "x": 1200,
+      "y": 180,
+      "width": 590,
+      "height": 210,
+      "type": "shape",
+      "properties": {
+        "rx": 75,
+        "stroke": "none",
+        "stroke_width": 0,
+        "fill": "#D0CABB",
+        "choice": {
+          "index": 2,
+          "value": "567+385",
+          "is_correct": true
+        },
+        "group": "default",
+        "shape_type": "rect"
+      }
+    },
+    {
+      "id": "left_expr",
+      "x": 615,
+      "y": 294,
+      "anchor": "middle",
+      "type": "text",
+      "properties": {
+        "text": "605+298",
+        "font_family": "Cambria",
+        "font_size": 74,
+        "fill": "#222222",
+        "group": "default",
+        "font_weight": "normal"
+      }
+    },
+    {
+      "id": "right_expr",
+      "x": 1495,
+      "y": 294,
+      "anchor": "middle",
+      "type": "text",
+      "properties": {
+        "text": "567+385",
+        "font_family": "Cambria",
+        "font_size": 74,
+        "fill": "#222222",
+        "group": "default",
+        "font_weight": "normal"
+      }
+    },
+    {
+      "id": "left_paren_l",
+      "x": 500,
+      "y": 478,
+      "anchor": "middle",
+      "type": "text",
+      "properties": {
+        "text": "(",
+        "font_family": "Cambria",
+        "font_size": 92,
+        "fill": "#222222",
+        "group": "default",
+        "font_weight": "normal"
+      }
+    },
+    {
+      "id": "left_paren_r",
+      "x": 735,
+      "y": 478,
+      "anchor": "middle",
+      "type": "text",
+      "properties": {
+        "text": ")",
+        "font_family": "Cambria",
+        "font_size": 92,
+        "fill": "#222222",
+        "group": "default",
+        "font_weight": "normal"
+      }
+    },
+    {
+      "id": "right_paren_l",
+      "x": 1380,
+      "y": 478,
+      "anchor": "middle",
+      "type": "text",
+      "properties": {
+        "text": "(",
+        "font_family": "Cambria",
+        "font_size": 92,
+        "fill": "#222222",
+        "group": "default",
+        "font_weight": "normal"
+      }
+    },
+    {
+      "id": "right_paren_r",
+      "x": 1620,
+      "y": 478,
+      "anchor": "middle",
+      "type": "text",
+      "properties": {
+        "text": ")",
+        "font_family": "Cambria",
+        "font_size": 92,
+        "fill": "#222222",
+        "group": "default",
+        "font_weight": "normal"
+      }
+    }
+  ]
+}

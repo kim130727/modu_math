@@ -1,0 +1,333 @@
+{
+  "problem_id": "0015",
+  "canvas": {
+    "width": 980.0,
+    "height": 730.0,
+    "background": "#F6F6F6"
+  },
+  "nodes": [
+    {
+      "id": "bg",
+      "x": 0.0,
+      "y": 0.0,
+      "width": 980,
+      "height": 730,
+      "anchor": "start",
+      "z_order": 0,
+      "type": "shape",
+      "properties": {
+        "stroke": "none",
+        "stroke_width": 0,
+        "fill": "#F6F6F6",
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "shape_type": "rect"
+      }
+    },
+    {
+      "id": "q1",
+      "x": 29.0,
+      "y": 60.0,
+      "anchor": "start",
+      "z_order": 0,
+      "type": "text",
+      "properties": {
+        "fill": "#222222",
+        "font_family": "Malgun Gothic",
+        "font_size": 31,
+        "font_weight": "normal",
+        "text": "여러 가지 크기의 정사각형을 겹치지 않게 붙여 다음과"
+      }
+    },
+    {
+      "id": "q2",
+      "x": 29.0,
+      "y": 104.0,
+      "anchor": "start",
+      "z_order": 0,
+      "type": "text",
+      "properties": {
+        "fill": "#222222",
+        "font_family": "Malgun Gothic",
+        "font_size": 31,
+        "font_weight": "normal",
+        "text": "같은 직사각형 모양도형을 만들었습니다. 색칠한 정사각형의"
+      }
+    },
+    {
+      "id": "q3",
+      "x": 29.0,
+      "y": 148.0,
+      "anchor": "start",
+      "z_order": 0,
+      "type": "text",
+      "properties": {
+        "fill": "#222222",
+        "font_family": "Malgun Gothic",
+        "font_size": 31,
+        "font_weight": "normal",
+        "text": "한 변의 길이가 15cm일 때, 직사각형 모양도형의"
+      }
+    },
+    {
+      "id": "q4",
+      "x": 29.0,
+      "y": 192.0,
+      "anchor": "start",
+      "z_order": 0,
+      "type": "text",
+      "properties": {
+        "fill": "#222222",
+        "font_family": "Malgun Gothic",
+        "font_size": 31,
+        "font_weight": "normal",
+        "text": "네 변의 길이의 합은 몇 cm입니까?"
+      }
+    },
+    {
+      "id": "q5",
+      "x": 29.0,
+      "y": 236.0,
+      "anchor": "start",
+      "z_order": 0,
+      "type": "text",
+      "properties": {
+        "fill": "#222222",
+        "font_family": "Malgun Gothic",
+        "font_size": 31,
+        "font_weight": "normal",
+        "text": "(각 가로와 세로 정사각형의 크기는 같습니다.)"
+      }
+    },
+    {
+      "id": "outer_top",
+      "x": 202.59975,
+      "y": 346.61462,
+      "anchor": "start",
+      "z_order": 0,
+      "type": "shape",
+      "properties": {
+        "stroke": "#222222",
+        "stroke_width": 2,
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "x1": 202.59975,
+        "y1": 346.61462,
+        "x2": 650.59975,
+        "y2": 346.61462,
+        "shape_type": "line"
+      }
+    },
+    {
+      "id": "outer_right",
+      "x": 650.59975,
+      "y": 346.61462,
+      "anchor": "start",
+      "z_order": 0,
+      "type": "shape",
+      "properties": {
+        "stroke": "#222222",
+        "stroke_width": 2,
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "x1": 650.59975,
+        "y1": 346.61462,
+        "x2": 650.59975,
+        "y2": 626.6146200000001,
+        "shape_type": "line"
+      }
+    },
+    {
+      "id": "outer_bottom",
+      "x": 202.59975,
+      "y": 626.6146200000001,
+      "anchor": "start",
+      "z_order": 0,
+      "type": "shape",
+      "properties": {
+        "stroke": "#222222",
+        "stroke_width": 2,
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "x1": 202.59975,
+        "y1": 626.6146200000001,
+        "x2": 650.59975,
+        "y2": 626.6146200000001,
+        "shape_type": "line"
+      }
+    },
+    {
+      "id": "outer_left",
+      "x": 202.59975,
+      "y": 346.61462,
+      "anchor": "start",
+      "z_order": 0,
+      "type": "shape",
+      "properties": {
+        "stroke": "#222222",
+        "stroke_width": 2,
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "x1": 202.59975,
+        "y1": 346.61462,
+        "x2": 202.59975,
+        "y2": 626.6146200000001,
+        "shape_type": "line"
+      }
+    },
+    {
+      "id": "v_main",
+      "x": 370.59975,
+      "y": 346.61462,
+      "anchor": "start",
+      "z_order": 0,
+      "type": "shape",
+      "properties": {
+        "stroke": "#222222",
+        "stroke_width": 2,
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "x1": 370.59975,
+        "y1": 346.61462,
+        "x2": 370.59975,
+        "y2": 626.6146200000001,
+        "shape_type": "line"
+      }
+    },
+    {
+      "id": "h_main",
+      "x": 202.59975,
+      "y": 514.6146200000001,
+      "anchor": "start",
+      "z_order": 0,
+      "type": "shape",
+      "properties": {
+        "stroke": "#222222",
+        "stroke_width": 2,
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "x1": 202.59975,
+        "y1": 514.6146200000001,
+        "x2": 370.59975,
+        "y2": 514.6146200000001,
+        "shape_type": "line"
+      }
+    },
+    {
+      "id": "v_small",
+      "x": 258.59975,
+      "y": 514.6146200000001,
+      "anchor": "start",
+      "z_order": 0,
+      "type": "shape",
+      "properties": {
+        "stroke": "#222222",
+        "stroke_width": 2,
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "x1": 258.59975,
+        "y1": 514.6146200000001,
+        "x2": 258.59975,
+        "y2": 626.6146200000001,
+        "shape_type": "line"
+      }
+    },
+    {
+      "id": "h_small",
+      "x": 202.59975,
+      "y": 570.6146200000001,
+      "anchor": "start",
+      "z_order": 0,
+      "type": "shape",
+      "properties": {
+        "stroke": "#222222",
+        "stroke_width": 2,
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "x1": 202.59975,
+        "y1": 570.6146200000001,
+        "x2": 258.59975,
+        "y2": 570.6146200000001,
+        "shape_type": "line"
+      }
+    },
+    {
+      "id": "colored_square",
+      "x": 202.59975,
+      "y": 570.6146200000001,
+      "width": 56.0,
+      "height": 56.0,
+      "anchor": "start",
+      "z_order": 0,
+      "type": "shape",
+      "properties": {
+        "stroke": "none",
+        "stroke_width": 0,
+        "fill": "#4E78C2",
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "shape_type": "rect"
+      }
+    },
+    {
+      "id": "label_g",
+      "x": 180.59975,
+      "y": 342.61462,
+      "anchor": "start",
+      "z_order": 0,
+      "type": "text",
+      "properties": {
+        "fill": "#222222",
+        "font_family": "Malgun Gothic",
+        "font_size": 42,
+        "font_weight": "normal",
+        "text": "ㄱ"
+      }
+    },
+    {
+      "id": "label_n",
+      "x": 658.59975,
+      "y": 342.61462,
+      "anchor": "start",
+      "z_order": 0,
+      "type": "text",
+      "properties": {
+        "fill": "#222222",
+        "font_family": "Malgun Gothic",
+        "font_size": 42,
+        "font_weight": "normal",
+        "text": "ㄴ"
+      }
+    },
+    {
+      "id": "label_d",
+      "x": 658.59975,
+      "y": 654.6146200000001,
+      "anchor": "start",
+      "z_order": 0,
+      "type": "text",
+      "properties": {
+        "fill": "#222222",
+        "font_family": "Malgun Gothic",
+        "font_size": 42,
+        "font_weight": "normal",
+        "text": "ㄷ"
+      }
+    },
+    {
+      "id": "label_r",
+      "x": 180.59975,
+      "y": 654.6146200000001,
+      "anchor": "start",
+      "z_order": 0,
+      "type": "text",
+      "properties": {
+        "fill": "#222222",
+        "font_family": "Malgun Gothic",
+        "font_size": 42,
+        "font_weight": "normal",
+        "text": "ㄹ"
+      }
+    }
+  ]
+}

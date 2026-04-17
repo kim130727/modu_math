@@ -20,59 +20,23 @@
     "computed_answer": 50
   },
   "render": {
-    "canvas": {
-      "width": 1280,
-      "height": 720,
-      "background": "#F6F6F6"
-    },
     "elements": [
       {
         "id": "instruction",
         "semantic_role": "instruction",
-        "z_index": 0,
-        "anchor": "start",
-        "alignment": "left",
-        "fill": "#000000",
-        "font_family": "Malgun Gothic",
-        "font_size": 42,
-        "font_weight": "normal",
         "type": "text",
-        "text": "□안에 알맞은 수를 구하시오.",
-        "x": 72,
-        "y": 92
+        "text": "□안에 알맞은 수를 구하시오."
       },
       {
         "id": "question_box",
         "semantic_role": "question_container",
-        "z_index": 0,
-        "anchor": "start",
-        "alignment": "left",
-        "stroke": "#000000",
-        "stroke_width": 3,
-        "fill": "none",
-        "font_family": "Malgun Gothic",
-        "font_weight": "normal",
-        "type": "rect",
-        "x": 280,
-        "y": 240,
-        "width": 720,
-        "height": 180,
-        "rx": 24
+        "type": "rect"
       },
       {
         "id": "equation",
         "semantic_role": "equation",
-        "z_index": 0,
-        "anchor": "middle",
-        "alignment": "left",
-        "fill": "#000000",
-        "font_family": "Malgun Gothic",
-        "font_size": 54,
-        "font_weight": "normal",
         "type": "text",
-        "text": "410초=6분 □초",
-        "x": 459.6273193359375,
-        "y": 346.65631103515625
+        "text": "410초=6분 □초"
       }
     ]
   },

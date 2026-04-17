@@ -1,0 +1,176 @@
+{
+  "problem_id": "3rd_addition_subtraction_0002",
+  "view_box": {
+    "width": 408.0,
+    "height": 212.0,
+    "background": "#F6F6F6"
+  },
+  "elements": [
+    {
+      "id": "bg",
+      "type": "rect",
+      "attributes": {
+        "fill": "#FFFFFF",
+        "stroke": "none",
+        "stroke-width": 0,
+        "x": 0.0,
+        "y": 0.0,
+        "width": 408,
+        "height": 212
+      }
+    },
+    {
+      "id": "instruction_1",
+      "type": "text",
+      "attributes": {
+        "x": 6.0,
+        "y": 30.0,
+        "text-anchor": "start",
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 17,
+        "font-weight": "normal"
+      },
+      "text": "다음 수 중에서 2개를 골라 덧셈식을 만들려고"
+    },
+    {
+      "id": "instruction_2",
+      "type": "text",
+      "attributes": {
+        "x": 6.0,
+        "y": 60.0,
+        "text-anchor": "start",
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 17,
+        "font-weight": "normal"
+      },
+      "text": "합니다. □ 안에 알맞은 수를 써넣으세요."
+    },
+    {
+      "id": "candidate_box",
+      "type": "rect",
+      "attributes": {
+        "fill": "none",
+        "stroke": "#666666",
+        "stroke-width": 1.5,
+        "x": 6.0,
+        "y": 78.0,
+        "width": 396,
+        "height": 56,
+        "rx": 10,
+        "ry": 10
+      }
+    },
+    {
+      "id": "candidate_1",
+      "type": "text",
+      "attributes": {
+        "x": 74.0,
+        "y": 113.0,
+        "text-anchor": "middle",
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 17,
+        "font-weight": "normal"
+      },
+      "text": "718"
+    },
+    {
+      "id": "candidate_2",
+      "type": "text",
+      "attributes": {
+        "x": 160.0,
+        "y": 113.0,
+        "text-anchor": "middle",
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 17,
+        "font-weight": "normal"
+      },
+      "text": "295"
+    },
+    {
+      "id": "candidate_3",
+      "type": "text",
+      "attributes": {
+        "x": 246.0,
+        "y": 113.0,
+        "text-anchor": "middle",
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 17,
+        "font-weight": "normal"
+      },
+      "text": "658"
+    },
+    {
+      "id": "candidate_4",
+      "type": "text",
+      "attributes": {
+        "x": 332.0,
+        "y": 113.0,
+        "text-anchor": "middle",
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 17,
+        "font-weight": "normal"
+      },
+      "text": "245"
+    },
+    {
+      "id": "blank_left",
+      "type": "rect",
+      "attributes": {
+        "fill": "none",
+        "stroke": "#666666",
+        "stroke-width": 1.5,
+        "x": 94.0,
+        "y": 150.0,
+        "width": 69,
+        "height": 36
+      }
+    },
+    {
+      "id": "plus_sign",
+      "type": "text",
+      "attributes": {
+        "x": 173.0,
+        "y": 176.0,
+        "text-anchor": "middle",
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 34,
+        "font-weight": "normal"
+      },
+      "text": "+"
+    },
+    {
+      "id": "blank_right",
+      "type": "rect",
+      "attributes": {
+        "fill": "none",
+        "stroke": "#666666",
+        "stroke-width": 1.5,
+        "x": 184.0,
+        "y": 150.0,
+        "width": 69,
+        "height": 36
+      }
+    },
+    {
+      "id": "equal_expr",
+      "type": "text",
+      "attributes": {
+        "x": 300.0,
+        "y": 176.0,
+        "text-anchor": "middle",
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 34,
+        "font-weight": "normal"
+      },
+      "text": "=953"
+    }
+  ]
+}

@@ -1,0 +1,258 @@
+{
+  "problem_id": "0008",
+  "view_box": {
+    "width": 981,
+    "height": 818,
+    "background": "#F6F6F6"
+  },
+  "elements": [
+    {
+      "id": "inst",
+      "type": "text",
+      "attributes": {
+        "x": 50.109848,
+        "y": 80.148636,
+        "text-anchor": "start",
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 45,
+        "font-weight": "normal"
+      },
+      "text": "□안에 알맞은 수를 넣고 그 수를 이용하여"
+    },
+    {
+      "id": "inst_2",
+      "type": "text",
+      "attributes": {
+        "x": 46.293472,
+        "y": 146.62199,
+        "text-anchor": "start",
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 44,
+        "font-weight": "normal"
+      },
+      "text": "숨어 있는 글자를 찾아 보세요."
+    },
+    {
+      "id": "board",
+      "type": "rect",
+      "attributes": {
+        "fill": "#EFDDBB",
+        "stroke": "#B58D61",
+        "stroke-width": 8.29893,
+        "x": 176.71027,
+        "y": 238.9496,
+        "width": 634.32971,
+        "height": 475.86401,
+        "rx": 32.739597
+      }
+    },
+    {
+      "id": "eq1_top",
+      "type": "text",
+      "attributes": {
+        "x": 304.52606649414065,
+        "y": 339.2087441699219,
+        "text-anchor": "end",
+        "fill": "#222222",
+        "font-family": "Cambria",
+        "font-size": 62,
+        "font-weight": "normal"
+      },
+      "text": "127"
+    },
+    {
+      "id": "eq1_mid",
+      "type": "text",
+      "attributes": {
+        "x": 263.904576015625,
+        "y": 411.40048611328126,
+        "text-anchor": "end",
+        "fill": "#222222",
+        "font-family": "Cambria",
+        "font-size": 62,
+        "font-weight": "normal"
+      },
+      "text": "+621"
+    },
+    {
+      "id": "eq1_line",
+      "type": "line",
+      "attributes": {
+        "stroke": "#333333",
+        "stroke-width": 2,
+        "x1": 224.39067,
+        "y1": 446.78397,
+        "x2": 439.39066,
+        "y2": 446.78397
+      }
+    },
+    {
+      "id": "eq2_top",
+      "type": "text",
+      "attributes": {
+        "x": 577.5261270117187,
+        "y": 332.86166775390626,
+        "text-anchor": "end",
+        "fill": "#222222",
+        "font-family": "Cambria",
+        "font-size": 62,
+        "font-weight": "normal"
+      },
+      "text": "231"
+    },
+    {
+      "id": "eq2_mid",
+      "type": "text",
+      "attributes": {
+        "x": 534.3657266210937,
+        "y": 413.9393349902344,
+        "text-anchor": "end",
+        "fill": "#222222",
+        "font-family": "Cambria",
+        "font-size": 62,
+        "font-weight": "normal"
+      },
+      "text": "+764"
+    },
+    {
+      "id": "eq2_line",
+      "type": "line",
+      "attributes": {
+        "stroke": "#333333",
+        "stroke-width": 2,
+        "x1": 497.39066,
+        "y1": 446.78397,
+        "x2": 712.39069,
+        "y2": 446.78397
+      }
+    },
+    {
+      "id": "map_box",
+      "type": "rect",
+      "attributes": {
+        "fill": "#F9F9F9",
+        "stroke": "#000000",
+        "stroke-width": 0,
+        "x": 215.84605,
+        "y": 521.72571,
+        "width": 560,
+        "height": 148,
+        "rx": 34
+      }
+    },
+    {
+      "id": "map_line_1",
+      "type": "text",
+      "attributes": {
+        "x": 305.43265888671874,
+        "y": 582.264528359375,
+        "text-anchor": "middle",
+        "fill": "#333333",
+        "font-family": "Malgun Gothic",
+        "font-size": 30,
+        "font-weight": "normal"
+      },
+      "text": "1=나  2=이  3=요  4=구  5=꿍"
+    },
+    {
+      "id": "map_line_2",
+      "type": "text",
+      "attributes": {
+        "x": 306.70206806640624,
+        "y": 631.8811055078125,
+        "text-anchor": "middle",
+        "fill": "#333333",
+        "font-family": "Malgun Gothic",
+        "font-size": 30,
+        "font-weight": "normal"
+      },
+      "text": "6=월  7=친  8=와  9=짝  0=너"
+    },
+    {
+      "id": "eq1_blank_0",
+      "type": "rect",
+      "attributes": {
+        "fill": "none",
+        "stroke": "#69BEEA",
+        "stroke-width": 3,
+        "x": 276.39066,
+        "y": 454.78397,
+        "width": 46,
+        "height": 46,
+        "rx": 6
+      }
+    },
+    {
+      "id": "eq2_blank_0",
+      "type": "rect",
+      "attributes": {
+        "fill": "none",
+        "stroke": "#69BEEA",
+        "stroke-width": 3,
+        "x": 550.39069,
+        "y": 454.78397,
+        "width": 46,
+        "height": 46,
+        "rx": 6
+      }
+    },
+    {
+      "id": "eq1_blank_1",
+      "type": "rect",
+      "attributes": {
+        "fill": "none",
+        "stroke": "#69BEEA",
+        "stroke-width": 3,
+        "x": 330.39066,
+        "y": 454.78397,
+        "width": 46,
+        "height": 46,
+        "rx": 6
+      }
+    },
+    {
+      "id": "eq2_blank_1",
+      "type": "rect",
+      "attributes": {
+        "fill": "none",
+        "stroke": "#69BEEA",
+        "stroke-width": 3,
+        "x": 604.39069,
+        "y": 454.78397,
+        "width": 46,
+        "height": 46,
+        "rx": 6
+      }
+    },
+    {
+      "id": "eq1_blank_2",
+      "type": "rect",
+      "attributes": {
+        "fill": "none",
+        "stroke": "#69BEEA",
+        "stroke-width": 3,
+        "x": 384.39066,
+        "y": 454.78397,
+        "width": 46,
+        "height": 46,
+        "rx": 6
+      }
+    },
+    {
+      "id": "eq2_blank_2",
+      "type": "rect",
+      "attributes": {
+        "fill": "none",
+        "stroke": "#69BEEA",
+        "stroke-width": 3,
+        "x": 658.39069,
+        "y": 454.78397,
+        "width": 46,
+        "height": 46,
+        "rx": 6
+      }
+    }
+  ]
+}

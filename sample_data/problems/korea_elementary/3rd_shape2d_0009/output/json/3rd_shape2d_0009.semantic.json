@@ -23,142 +23,50 @@
     "correct": "③"
   },
   "render": {
-    "canvas": {
-      "width": 400.0,
-      "height": 180.0,
-      "background": "#F6F6F6"
-    },
     "elements": [
       {
         "id": "bg",
-        "z_index": 0,
-        "anchor": "start",
-        "alignment": "left",
-        "stroke": "none",
-        "stroke_width": 0,
-        "fill": "#F4F4F4",
-        "font_family": "Malgun Gothic",
-        "font_weight": "normal",
-        "type": "rect",
-        "x": 0.0,
-        "y": 0.0,
-        "width": 400,
-        "height": 180
+        "type": "rect"
       },
       {
         "id": "i1",
-        "z_index": 0,
-        "anchor": "start",
-        "alignment": "left",
-        "fill": "#222222",
-        "font_family": "Malgun Gothic",
-        "font_size": 17,
-        "font_weight": "normal",
         "type": "text",
-        "text": "시계의 긴바늘과 짧은바늘이 이루는 각이",
-        "x": 4.0,
-        "y": 34.0
+        "text": "시계의 긴바늘과 짧은바늘이 이루는 각이"
       },
       {
         "id": "i2",
-        "z_index": 0,
-        "anchor": "start",
-        "alignment": "left",
-        "fill": "#222222",
-        "font_family": "Malgun Gothic",
-        "font_size": 17,
-        "font_weight": "normal",
         "type": "text",
-        "text": "직각인 시각은 언제인가요?",
-        "x": 4.0,
-        "y": 64.0
+        "text": "직각인 시각은 언제인가요?"
       },
       {
         "id": "c1",
-        "z_index": 0,
-        "anchor": "start",
-        "alignment": "left",
-        "fill": "#222222",
-        "font_family": "Malgun Gothic",
-        "font_size": 17,
-        "font_weight": "normal",
         "type": "text",
-        "text": "① 2시",
-        "x": 4.0,
-        "y": 106.0
+        "text": "① 2시"
       },
       {
         "id": "c2",
-        "z_index": 0,
-        "anchor": "start",
-        "alignment": "left",
-        "fill": "#222222",
-        "font_family": "Malgun Gothic",
-        "font_size": 17,
-        "font_weight": "normal",
         "type": "text",
-        "text": "② 6시",
-        "x": 112.0,
-        "y": 106.0
+        "text": "② 6시"
       },
       {
         "id": "c3",
-        "z_index": 0,
-        "anchor": "start",
-        "alignment": "left",
-        "fill": "#222222",
-        "font_family": "Malgun Gothic",
-        "font_size": 17,
-        "font_weight": "normal",
         "type": "text",
-        "text": "③ 9시",
-        "x": 224.0,
-        "y": 106.0
+        "text": "③ 9시"
       },
       {
         "id": "c4",
-        "z_index": 0,
-        "anchor": "start",
-        "alignment": "left",
-        "fill": "#222222",
-        "font_family": "Malgun Gothic",
-        "font_size": 17,
-        "font_weight": "normal",
         "type": "text",
-        "text": "④ 10시",
-        "x": 4.0,
-        "y": 148.0
+        "text": "④ 10시"
       },
       {
         "id": "c5",
-        "z_index": 0,
-        "anchor": "start",
-        "alignment": "left",
-        "fill": "#222222",
-        "font_family": "Malgun Gothic",
-        "font_size": 17,
-        "font_weight": "normal",
         "type": "text",
-        "text": "⑤ 11시",
-        "x": 112.0,
-        "y": 148.0
+        "text": "⑤ 11시"
       },
       {
         "id": "answer_text",
         "semantic_role": "answer_anchor",
-        "z_index": 0,
-        "anchor": "start",
-        "alignment": "left",
-        "stroke": "none",
-        "stroke_width": 0,
-        "fill": "none",
-        "font_family": "Malgun Gothic",
-        "font_weight": "normal",
-        "type": "rect",
-        "x": 348.0,
-        "y": 146.0,
-        "width": 44,
-        "height": 28
+        "type": "rect"
       }
     ]
   },

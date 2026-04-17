@@ -30,133 +30,41 @@
     }
   },
   "render": {
-    "canvas": {
-      "width": 400.0,
-      "height": 210.0,
-      "background": "#F6F6F6"
-    },
     "elements": [
       {
         "id": "bg",
-        "z_index": 0,
-        "anchor": "start",
-        "alignment": "left",
-        "stroke": "none",
-        "stroke_width": 0,
-        "fill": "#F4F4F4",
-        "font_family": "Malgun Gothic",
-        "font_weight": "normal",
-        "type": "rect",
-        "x": 0.0,
-        "y": 0.0,
-        "width": 400,
-        "height": 210
+        "type": "rect"
       },
       {
         "id": "i1",
-        "z_index": 0,
-        "anchor": "start",
-        "alignment": "left",
-        "fill": "#222222",
-        "font_family": "Malgun Gothic",
-        "font_size": 17,
-        "font_weight": "normal",
         "type": "text",
-        "text": "다음 도형에서 찾을 수 있는 크고 작은",
-        "x": 4.0,
-        "y": 34.0
+        "text": "다음 도형에서 찾을 수 있는 크고 작은"
       },
       {
         "id": "i2",
-        "z_index": 0,
-        "anchor": "start",
-        "alignment": "left",
-        "fill": "#222222",
-        "font_family": "Malgun Gothic",
-        "font_size": 17,
-        "font_weight": "normal",
         "type": "text",
-        "text": "직사각형은 모두 몇 개인지 구하세요.",
-        "x": 4.0,
-        "y": 64.0
+        "text": "직사각형은 모두 몇 개인지 구하세요."
       },
       {
         "id": "outer",
-        "z_index": 0,
-        "anchor": "start",
-        "alignment": "left",
-        "stroke": "#4A4A4A",
-        "stroke_width": 2.0,
-        "fill": "none",
-        "font_family": "Malgun Gothic",
-        "font_weight": "normal",
-        "type": "rect",
-        "x": 148.0,
-        "y": 104.0,
-        "width": 126,
-        "height": 96
+        "type": "rect"
       },
       {
         "id": "v1",
-        "z_index": 0,
-        "anchor": "start",
-        "alignment": "left",
-        "stroke": "#4A4A4A",
-        "stroke_width": 2.0,
-        "font_family": "Malgun Gothic",
-        "font_weight": "normal",
-        "type": "line",
-        "x1": 190.0,
-        "y1": 104.0,
-        "x2": 190.0,
-        "y2": 200.0
+        "type": "line"
       },
       {
         "id": "v2",
-        "z_index": 0,
-        "anchor": "start",
-        "alignment": "left",
-        "stroke": "#4A4A4A",
-        "stroke_width": 2.0,
-        "font_family": "Malgun Gothic",
-        "font_weight": "normal",
-        "type": "line",
-        "x1": 224.0,
-        "y1": 104.0,
-        "x2": 224.0,
-        "y2": 200.0
+        "type": "line"
       },
       {
         "id": "h1",
-        "z_index": 0,
-        "anchor": "start",
-        "alignment": "left",
-        "stroke": "#4A4A4A",
-        "stroke_width": 2.0,
-        "font_family": "Malgun Gothic",
-        "font_weight": "normal",
-        "type": "line",
-        "x1": 148.0,
-        "y1": 152.0,
-        "x2": 224.0,
-        "y2": 152.0
+        "type": "line"
       },
       {
         "id": "answer_value",
         "semantic_role": "answer_anchor",
-        "z_index": 0,
-        "anchor": "start",
-        "alignment": "left",
-        "stroke": "none",
-        "stroke_width": 0,
-        "fill": "none",
-        "font_family": "Malgun Gothic",
-        "font_weight": "normal",
-        "type": "rect",
-        "x": 336.0,
-        "y": 176.0,
-        "width": 56,
-        "height": 28
+        "type": "rect"
       }
     ]
   },

@@ -1,0 +1,244 @@
+{
+  "problem_id": "0015",
+  "view_box": {
+    "width": 856.0,
+    "height": 730.0,
+    "background": "#F6F6F6"
+  },
+  "elements": [
+    {
+      "id": "q1",
+      "type": "text",
+      "attributes": {
+        "x": 29,
+        "y": 60,
+        "text-anchor": "start",
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 31,
+        "font-weight": "normal"
+      },
+      "text": "여러 가지 크기의 정사각형을 겹치지 않게 놓아 다음과"
+    },
+    {
+      "id": "q2",
+      "type": "text",
+      "attributes": {
+        "x": 29,
+        "y": 104,
+        "text-anchor": "start",
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 31,
+        "font-weight": "normal"
+      },
+      "text": "같은 직사각형 ㄱㄴㄷㄹ을 만들었습니다. 색칠된 정사각"
+    },
+    {
+      "id": "q3",
+      "type": "text",
+      "attributes": {
+        "x": 29,
+        "y": 148,
+        "text-anchor": "start",
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 31,
+        "font-weight": "normal"
+      },
+      "text": "형의 한 변의 길이는 15cm일 때, 직사각형 ㄱㄴㄷㄹ의"
+    },
+    {
+      "id": "q4",
+      "type": "text",
+      "attributes": {
+        "x": 29,
+        "y": 192,
+        "text-anchor": "start",
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 31,
+        "font-weight": "normal"
+      },
+      "text": "네 변의 길이의 합은 몇 cm입니까? (단, 가장 작은 두"
+    },
+    {
+      "id": "q5",
+      "type": "text",
+      "attributes": {
+        "x": 29,
+        "y": 236,
+        "text-anchor": "start",
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 31,
+        "font-weight": "normal"
+      },
+      "text": "정사각형의 크기는 같습니다.)"
+    },
+    {
+      "id": "outer_top",
+      "type": "line",
+      "attributes": {
+        "stroke": "#222222",
+        "stroke-width": 2,
+        "x1": 202.59975,
+        "y1": 346.61462,
+        "x2": 650.59975,
+        "y2": 346.61462
+      }
+    },
+    {
+      "id": "outer_right",
+      "type": "line",
+      "attributes": {
+        "stroke": "#222222",
+        "stroke-width": 2,
+        "x1": 650.59975,
+        "y1": 346.61462,
+        "x2": 650.59975,
+        "y2": 626.6146200000001
+      }
+    },
+    {
+      "id": "outer_bottom",
+      "type": "line",
+      "attributes": {
+        "stroke": "#222222",
+        "stroke-width": 2,
+        "x1": 202.59975,
+        "y1": 626.6146200000001,
+        "x2": 650.59975,
+        "y2": 626.6146200000001
+      }
+    },
+    {
+      "id": "outer_left",
+      "type": "line",
+      "attributes": {
+        "stroke": "#222222",
+        "stroke-width": 2,
+        "x1": 202.59975,
+        "y1": 346.61462,
+        "x2": 202.59975,
+        "y2": 626.6146200000001
+      }
+    },
+    {
+      "id": "v_main",
+      "type": "line",
+      "attributes": {
+        "stroke": "#222222",
+        "stroke-width": 2,
+        "x1": 370.59975,
+        "y1": 346.61462,
+        "x2": 370.59975,
+        "y2": 626.6146200000001
+      }
+    },
+    {
+      "id": "h_main",
+      "type": "line",
+      "attributes": {
+        "stroke": "#222222",
+        "stroke-width": 2,
+        "x1": 202.59975,
+        "y1": 514.6146200000001,
+        "x2": 370.59975,
+        "y2": 514.6146200000001
+      }
+    },
+    {
+      "id": "v_small",
+      "type": "line",
+      "attributes": {
+        "stroke": "#222222",
+        "stroke-width": 2,
+        "x1": 258.59975,
+        "y1": 514.6146200000001,
+        "x2": 258.59975,
+        "y2": 626.6146200000001
+      }
+    },
+    {
+      "id": "h_small",
+      "type": "line",
+      "attributes": {
+        "stroke": "#222222",
+        "stroke-width": 2,
+        "x1": 202.59975,
+        "y1": 570.6146200000001,
+        "x2": 258.59975,
+        "y2": 570.6146200000001
+      }
+    },
+    {
+      "id": "colored_square",
+      "type": "rect",
+      "attributes": {
+        "fill": "#4E78C2",
+        "stroke": "none",
+        "x": 202.59975,
+        "y": 570.6146200000001,
+        "width": 56,
+        "height": 56
+      }
+    },
+    {
+      "id": "label_g",
+      "type": "text",
+      "attributes": {
+        "x": 180.59975,
+        "y": 342.61462,
+        "text-anchor": "start",
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 42,
+        "font-weight": "normal"
+      },
+      "text": "ㄱ"
+    },
+    {
+      "id": "label_n",
+      "type": "text",
+      "attributes": {
+        "x": 658.59973,
+        "y": 342.61462,
+        "text-anchor": "start",
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 42,
+        "font-weight": "normal"
+      },
+      "text": "ㄴ"
+    },
+    {
+      "id": "label_d",
+      "type": "text",
+      "attributes": {
+        "x": 658.59973,
+        "y": 654.61462,
+        "text-anchor": "start",
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 42,
+        "font-weight": "normal"
+      },
+      "text": "ㄷ"
+    },
+    {
+      "id": "label_r",
+      "type": "text",
+      "attributes": {
+        "x": 180.59975,
+        "y": 654.61462,
+        "text-anchor": "start",
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 42,
+        "font-weight": "normal"
+      },
+      "text": "ㄹ"
+    }
+  ]
+}

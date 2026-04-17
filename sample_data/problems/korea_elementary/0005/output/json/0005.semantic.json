@@ -19,152 +19,58 @@
     "correct_choice_value": "567+385"
   },
   "render": {
-    "canvas": {
-      "width": 1852,
-      "height": 554,
-      "background": "#F6F6F6"
-    },
     "elements": [
       {
         "id": "instruction",
         "semantic_role": "decorative",
-        "z_index": 0,
-        "anchor": "start",
-        "alignment": "left",
-        "fill": "#222222",
-        "font_family": "Malgun Gothic",
-        "font_size": 72,
-        "font_weight": "normal",
         "type": "text",
-        "text": "계산 결과가 더 큰 것에 ○표 하세요.",
-        "x": 44,
-        "y": 106
+        "text": "계산 결과가 더 큰 것에 ○표 하세요."
       },
       {
         "id": "left_box",
         "semantic_role": "choice",
-        "z_index": 0,
-        "anchor": "start",
-        "alignment": "left",
-        "stroke": "none",
-        "stroke_width": 0,
-        "fill": "#D0CABB",
-        "font_family": "Malgun Gothic",
-        "font_weight": "normal",
-        "type": "rect",
-        "x": 320,
-        "y": 180,
-        "width": 590,
-        "height": 210,
-        "rx": 75
+        "type": "rect"
       },
       {
         "id": "left_expr",
         "semantic_role": "decorative",
-        "z_index": 0,
-        "anchor": "middle",
-        "alignment": "left",
-        "fill": "#222222",
-        "font_family": "Cambria",
-        "font_size": 74,
-        "font_weight": "normal",
         "type": "text",
-        "text": "605+298",
-        "x": 480,
-        "y": 294
+        "text": "605+298"
       },
       {
         "id": "left_paren_l",
         "semantic_role": "decorative",
-        "z_index": 0,
-        "anchor": "middle",
-        "alignment": "left",
-        "fill": "#222222",
-        "font_family": "Cambria",
-        "font_size": 92,
-        "font_weight": "normal",
         "type": "text",
-        "text": "(",
-        "x": 500,
-        "y": 478
+        "text": "("
       },
       {
         "id": "left_paren_r",
         "semantic_role": "decorative",
-        "z_index": 0,
-        "anchor": "middle",
-        "alignment": "left",
-        "fill": "#222222",
-        "font_family": "Cambria",
-        "font_size": 92,
-        "font_weight": "normal",
         "type": "text",
-        "text": ")",
-        "x": 735,
-        "y": 478
+        "text": ")"
       },
       {
         "id": "right_box",
         "semantic_role": "choice",
-        "z_index": 0,
-        "anchor": "start",
-        "alignment": "left",
-        "stroke": "none",
-        "stroke_width": 0,
-        "fill": "#D0CABB",
-        "font_family": "Malgun Gothic",
-        "font_weight": "normal",
-        "type": "rect",
-        "x": 1200,
-        "y": 180,
-        "width": 590,
-        "height": 210,
-        "rx": 75
+        "type": "rect"
       },
       {
         "id": "right_expr",
         "semantic_role": "decorative",
-        "z_index": 0,
-        "anchor": "middle",
-        "alignment": "left",
-        "fill": "#222222",
-        "font_family": "Cambria",
-        "font_size": 74,
-        "font_weight": "normal",
         "type": "text",
-        "text": "567+385",
-        "x": 1350,
-        "y": 294
+        "text": "567+385"
       },
       {
         "id": "right_paren_l",
         "semantic_role": "decorative",
-        "z_index": 0,
-        "anchor": "middle",
-        "alignment": "left",
-        "fill": "#222222",
-        "font_family": "Cambria",
-        "font_size": 92,
-        "font_weight": "normal",
         "type": "text",
-        "text": "(",
-        "x": 1380,
-        "y": 478
+        "text": "("
       },
       {
         "id": "right_paren_r",
         "semantic_role": "decorative",
-        "z_index": 0,
-        "anchor": "middle",
-        "alignment": "left",
-        "fill": "#222222",
-        "font_family": "Cambria",
-        "font_size": 92,
-        "font_weight": "normal",
         "type": "text",
-        "text": ")",
-        "x": 1615,
-        "y": 478
+        "text": ")"
       }
     ]
   },

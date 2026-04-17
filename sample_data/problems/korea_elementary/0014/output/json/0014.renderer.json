@@ -1,0 +1,293 @@
+{
+  "problem_id": "0014",
+  "view_box": {
+    "width": 980.0,
+    "height": 493.0,
+    "background": "#F6F6F6"
+  },
+  "elements": [
+    {
+      "id": "bg",
+      "type": "rect",
+      "attributes": {
+        "fill": "#F6F6F6",
+        "stroke": "none",
+        "stroke-width": 0,
+        "x": 0.0,
+        "y": 0.0,
+        "width": 980,
+        "height": 493
+      }
+    },
+    {
+      "id": "l1a",
+      "type": "text",
+      "attributes": {
+        "x": 21.45,
+        "y": 56.56,
+        "text-anchor": "start",
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 34,
+        "font-weight": "normal"
+      },
+      "text": "숫자 카드"
+    },
+    {
+      "id": "card_1",
+      "type": "rect",
+      "attributes": {
+        "fill": "#BDBDBD",
+        "stroke": "#000000",
+        "stroke-width": 1,
+        "x": 188.0,
+        "y": 13.95,
+        "width": 50.87,
+        "height": 52.32
+      }
+    },
+    {
+      "id": "card_t_1",
+      "type": "text",
+      "attributes": {
+        "x": 213.435,
+        "y": 55.0,
+        "text-anchor": "middle",
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 46,
+        "font-weight": "normal"
+      },
+      "text": "3"
+    },
+    {
+      "id": "card_2",
+      "type": "rect",
+      "attributes": {
+        "fill": "#BDBDBD",
+        "stroke": "#000000",
+        "stroke-width": 1,
+        "x": 256.5,
+        "y": 13.95,
+        "width": 49.65,
+        "height": 53.54
+      }
+    },
+    {
+      "id": "card_t_2",
+      "type": "text",
+      "attributes": {
+        "x": 281.325,
+        "y": 55.0,
+        "text-anchor": "middle",
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 46,
+        "font-weight": "normal"
+      },
+      "text": "5"
+    },
+    {
+      "id": "card_3",
+      "type": "rect",
+      "attributes": {
+        "fill": "#BDBDBD",
+        "stroke": "#000000",
+        "stroke-width": 1,
+        "x": 322.5,
+        "y": 13.97,
+        "width": 52.06,
+        "height": 54.73
+      }
+    },
+    {
+      "id": "card_t_3",
+      "type": "text",
+      "attributes": {
+        "x": 348.53,
+        "y": 55.0,
+        "text-anchor": "middle",
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 46,
+        "font-weight": "normal"
+      },
+      "text": "7"
+    },
+    {
+      "id": "card_4",
+      "type": "rect",
+      "attributes": {
+        "fill": "#BDBDBD",
+        "stroke": "#000000",
+        "stroke-width": 1,
+        "x": 389.8,
+        "y": 13.98,
+        "width": 52.05,
+        "height": 55.94
+      }
+    },
+    {
+      "id": "card_t_4",
+      "type": "text",
+      "attributes": {
+        "x": 415.825,
+        "y": 55.0,
+        "text-anchor": "middle",
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 46,
+        "font-weight": "normal"
+      },
+      "text": "9"
+    },
+    {
+      "id": "l1b",
+      "type": "text",
+      "attributes": {
+        "x": 458.35,
+        "y": 54.1,
+        "text-anchor": "start",
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 33,
+        "font-weight": "normal"
+      },
+      "text": "를 모두 한 번씩만 사용하여"
+    },
+    {
+      "id": "l2",
+      "type": "text",
+      "attributes": {
+        "x": 21.72,
+        "y": 114.22,
+        "text-anchor": "start",
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 32,
+        "font-weight": "normal"
+      },
+      "text": "다음과 같이 (대분수) ÷ (자연수)를 만들려고 합니다."
+    },
+    {
+      "id": "l3",
+      "type": "text",
+      "attributes": {
+        "x": 19.62,
+        "y": 164.03,
+        "text-anchor": "start",
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 32,
+        "font-weight": "normal"
+      },
+      "text": "만들 수 있는 값 중 몫이 가장 작을 때의 몫과 몫이"
+    },
+    {
+      "id": "l4",
+      "type": "text",
+      "attributes": {
+        "x": 18.35,
+        "y": 215.79,
+        "text-anchor": "start",
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 33,
+        "font-weight": "normal"
+      },
+      "text": "가장 클 때의 몫 사이에 있는 자연수는 모두 몇 개인가요?"
+    },
+    {
+      "id": "expr_box",
+      "type": "rect",
+      "attributes": {
+        "fill": "none",
+        "stroke": "#000000",
+        "stroke-width": 1,
+        "x": 268.99,
+        "y": 308.46,
+        "width": 315.14,
+        "height": 160.19,
+        "rx": 14
+      }
+    },
+    {
+      "id": "whole_blank",
+      "type": "rect",
+      "attributes": {
+        "fill": "none",
+        "stroke": "#000000",
+        "stroke-width": 1,
+        "x": 321.11,
+        "y": 373.79,
+        "width": 36.0,
+        "height": 34.0
+      }
+    },
+    {
+      "id": "frac_num_blank",
+      "type": "rect",
+      "attributes": {
+        "fill": "none",
+        "stroke": "#000000",
+        "stroke-width": 1,
+        "x": 383.11,
+        "y": 343.79,
+        "width": 36.0,
+        "height": 34.0
+      }
+    },
+    {
+      "id": "frac_den_blank",
+      "type": "rect",
+      "attributes": {
+        "fill": "none",
+        "stroke": "#000000",
+        "stroke-width": 1,
+        "x": 383.11,
+        "y": 405.79,
+        "width": 36.0,
+        "height": 34.0
+      }
+    },
+    {
+      "id": "frac_bar",
+      "type": "line",
+      "attributes": {
+        "stroke": "#222222",
+        "stroke-width": 2,
+        "x1": 369.11,
+        "y1": 390.79,
+        "x2": 433.11,
+        "y2": 390.79
+      }
+    },
+    {
+      "id": "div_sign",
+      "type": "text",
+      "attributes": {
+        "x": 457.11,
+        "y": 406.79,
+        "text-anchor": "middle",
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 64,
+        "font-weight": "normal"
+      },
+      "text": "÷"
+    },
+    {
+      "id": "div_blank",
+      "type": "rect",
+      "attributes": {
+        "fill": "none",
+        "stroke": "#000000",
+        "stroke-width": 1,
+        "x": 486.11,
+        "y": 373.79,
+        "width": 36.0,
+        "height": 34.0
+      }
+    }
+  ]
+}

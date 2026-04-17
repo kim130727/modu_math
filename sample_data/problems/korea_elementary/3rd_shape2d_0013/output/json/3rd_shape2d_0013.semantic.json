@@ -27,236 +27,60 @@
     }
   },
   "render": {
-    "canvas": {
-      "width": 790.0,
-      "height": 240.0,
-      "background": "#F6F6F6"
-    },
     "elements": [
       {
         "id": "bg",
-        "z_index": 0,
-        "anchor": "start",
-        "alignment": "left",
-        "stroke": "none",
-        "stroke_width": 0,
-        "fill": "#F4F4F4",
-        "font_family": "Malgun Gothic",
-        "font_weight": "normal",
-        "type": "rect",
-        "x": 0.0,
-        "y": 0.0,
-        "width": 790,
-        "height": 240
+        "type": "rect"
       },
       {
         "id": "i1",
-        "z_index": 0,
-        "anchor": "start",
-        "alignment": "left",
-        "fill": "#222222",
-        "font_family": "Malgun Gothic",
-        "font_size": 17,
-        "font_weight": "normal",
         "type": "text",
-        "text": "직각삼각형이 아닌 것을 찾아 기호를 쓰고 그 이유를 쓰세요.",
-        "x": 4.0,
-        "y": 34.0
+        "text": "직각삼각형이 아닌 것을 찾아 기호를 쓰고 그 이유를 쓰세요."
       },
       {
         "id": "frame",
-        "z_index": 0,
-        "anchor": "start",
-        "alignment": "left",
-        "stroke": "#8A8A8A",
-        "stroke_width": 1.4,
-        "fill": "none",
-        "font_family": "Malgun Gothic",
-        "font_weight": "normal",
-        "type": "rect",
-        "x": 112.0,
-        "y": 94.0,
-        "width": 552,
-        "height": 106,
-        "rx": 10,
-        "ry": 10
+        "type": "rect"
       },
       {
         "id": "ga",
-        "z_index": 0,
-        "anchor": "start",
-        "alignment": "left",
-        "stroke": "#303030",
-        "stroke_width": 2.1,
-        "fill": "none",
-        "font_family": "Malgun Gothic",
-        "font_weight": "normal",
-        "type": "polygon",
-        "points": [
-          [
-            128.0,
-            118.0
-          ],
-          [
-            236.0,
-            118.0
-          ],
-          [
-            236.0,
-            176.0
-          ]
-        ]
+        "type": "polygon"
       },
       {
         "id": "ga_t",
-        "z_index": 0,
-        "anchor": "middle",
-        "alignment": "left",
-        "fill": "#222222",
-        "font_family": "Malgun Gothic",
-        "font_size": 18,
-        "font_weight": "normal",
         "type": "text",
-        "text": "가",
-        "x": 205.0,
-        "y": 149.0
+        "text": "가"
       },
       {
         "id": "na",
-        "z_index": 0,
-        "anchor": "start",
-        "alignment": "left",
-        "stroke": "#303030",
-        "stroke_width": 2.1,
-        "fill": "none",
-        "font_family": "Malgun Gothic",
-        "font_weight": "normal",
-        "type": "polygon",
-        "points": [
-          [
-            282.0,
-            176.0
-          ],
-          [
-            282.0,
-            124.0
-          ],
-          [
-            356.0,
-            176.0
-          ]
-        ]
+        "type": "polygon"
       },
       {
         "id": "na_t",
-        "z_index": 0,
-        "anchor": "middle",
-        "alignment": "left",
-        "fill": "#222222",
-        "font_family": "Malgun Gothic",
-        "font_size": 18,
-        "font_weight": "normal",
         "type": "text",
-        "text": "나",
-        "x": 314.0,
-        "y": 156.0
+        "text": "나"
       },
       {
         "id": "da",
-        "z_index": 0,
-        "anchor": "start",
-        "alignment": "left",
-        "stroke": "#303030",
-        "stroke_width": 2.1,
-        "fill": "none",
-        "font_family": "Malgun Gothic",
-        "font_weight": "normal",
-        "type": "polygon",
-        "points": [
-          [
-            438.0,
-            124.0
-          ],
-          [
-            438.0,
-            186.0
-          ],
-          [
-            506.0,
-            186.0
-          ]
-        ]
+        "type": "polygon"
       },
       {
         "id": "da_t",
-        "z_index": 0,
-        "anchor": "middle",
-        "alignment": "left",
-        "fill": "#222222",
-        "font_family": "Malgun Gothic",
-        "font_size": 18,
-        "font_weight": "normal",
         "type": "text",
-        "text": "다",
-        "x": 460.0,
-        "y": 164.0
+        "text": "다"
       },
       {
         "id": "ra",
-        "z_index": 0,
-        "anchor": "start",
-        "alignment": "left",
-        "stroke": "#303030",
-        "stroke_width": 2.1,
-        "fill": "none",
-        "font_family": "Malgun Gothic",
-        "font_weight": "normal",
-        "type": "polygon",
-        "points": [
-          [
-            582.0,
-            112.0
-          ],
-          [
-            648.0,
-            114.0
-          ],
-          [
-            614.0,
-            186.0
-          ]
-        ]
+        "type": "polygon"
       },
       {
         "id": "ra_t",
-        "z_index": 0,
-        "anchor": "middle",
-        "alignment": "left",
-        "fill": "#222222",
-        "font_family": "Malgun Gothic",
-        "font_size": 18,
-        "font_weight": "normal",
         "type": "text",
-        "text": "라",
-        "x": 614.0,
-        "y": 149.0
+        "text": "라"
       },
       {
         "id": "answer_text",
         "semantic_role": "answer_anchor",
-        "z_index": 0,
-        "anchor": "start",
-        "alignment": "left",
-        "stroke": "none",
-        "stroke_width": 0,
-        "fill": "none",
-        "font_family": "Malgun Gothic",
-        "font_weight": "normal",
-        "type": "rect",
-        "x": 462.0,
-        "y": 206.0,
-        "width": 320,
-        "height": 28
+        "type": "rect"
       }
     ]
   },

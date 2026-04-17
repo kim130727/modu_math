@@ -18,171 +18,59 @@
     "perimeter_cm": 24
   },
   "render": {
-    "canvas": {
-      "width": 430.0,
-      "height": 280.0,
-      "background": "#F6F6F6"
-    },
     "elements": [
       {
         "id": "bg",
         "semantic_role": "background",
-        "z_index": 0,
-        "anchor": "start",
-        "alignment": "left",
-        "stroke": "none",
-        "stroke_width": 0,
-        "fill": "#F4F4F4",
-        "font_family": "Malgun Gothic",
-        "font_weight": "normal",
-        "type": "rect",
-        "x": 0.0,
-        "y": 0.0,
-        "width": 430,
-        "height": 280
+        "type": "rect"
       },
       {
         "id": "instruction_1",
         "semantic_role": "instruction",
-        "z_index": 0,
-        "anchor": "start",
-        "alignment": "left",
-        "fill": "#222222",
-        "font_family": "Malgun Gothic",
-        "font_size": 17,
-        "font_weight": "normal",
         "type": "text",
-        "text": "한 변의 길이가 6 cm인 정사각형의 네 변의",
-        "x": 6.0,
-        "y": 34.0
+        "text": "한 변의 길이가 6 cm인 정사각형의 네 변의"
       },
       {
         "id": "instruction_2",
         "semantic_role": "instruction",
-        "z_index": 0,
-        "anchor": "start",
-        "alignment": "left",
-        "fill": "#222222",
-        "font_family": "Malgun Gothic",
-        "font_size": 17,
-        "font_weight": "normal",
         "type": "text",
-        "text": "길이의 합은 몇 cm인지 구하세요.",
-        "x": 6.0,
-        "y": 66.0
+        "text": "길이의 합은 몇 cm인지 구하세요."
       },
       {
         "id": "square",
         "semantic_role": "shape",
-        "z_index": 0,
-        "anchor": "start",
-        "alignment": "left",
-        "stroke": "#2E2E2E",
-        "stroke_width": 2.4,
-        "fill": "none",
-        "font_family": "Malgun Gothic",
-        "font_weight": "normal",
-        "type": "rect",
-        "x": 150.0,
-        "y": 98.0,
-        "width": 136,
-        "height": 136
+        "type": "rect"
       },
       {
         "id": "side_length_arc_00",
         "semantic_role": "guide",
-        "z_index": 0,
-        "anchor": "start",
-        "alignment": "left",
-        "stroke": "#7A7A7A",
-        "stroke_width": 1.4,
-        "font_family": "Malgun Gothic",
-        "font_weight": "normal",
-        "type": "line",
-        "x1": 286.0,
-        "y1": 98.0,
-        "x2": 294.13536224850884,
-        "y2": 117.65889960662216
+        "type": "line"
       },
       {
         "id": "side_length_arc_01",
         "semantic_role": "guide",
-        "z_index": 0,
-        "anchor": "start",
-        "alignment": "left",
-        "stroke": "#7A7A7A",
-        "stroke_width": 1.4,
-        "font_family": "Malgun Gothic",
-        "font_weight": "normal",
-        "type": "line",
-        "x1": 298.94857035542924,
-        "y1": 135.64584346883746,
-        "x2": 301.71862923352876,
-        "y2": 156.74046900401993
+        "type": "line"
       },
       {
         "id": "side_length_arc_02",
         "semantic_role": "guide",
-        "z_index": 0,
-        "anchor": "start",
-        "alignment": "left",
-        "stroke": "#7A7A7A",
-        "stroke_width": 1.4,
-        "font_family": "Malgun Gothic",
-        "font_weight": "normal",
-        "type": "line",
-        "x1": 301.71246761657585,
-        "y1": 175.36027254265818,
-        "x2": 298.9284481894623,
-        "y2": 196.45306013669526
+        "type": "line"
       },
       {
         "id": "side_length_arc_03",
         "semantic_role": "guide",
-        "z_index": 0,
-        "anchor": "start",
-        "alignment": "left",
-        "stroke": "#7A7A7A",
-        "stroke_width": 1.4,
-        "font_family": "Malgun Gothic",
-        "font_weight": "normal",
-        "type": "line",
-        "x1": 294.10333675264894,
-        "y1": 214.43681451127853,
-        "x2": 286.0,
-        "y2": 233.99999999999994
+        "type": "line"
       },
       {
         "id": "side_length",
         "semantic_role": "label",
-        "z_index": 0,
-        "anchor": "start",
-        "alignment": "left",
-        "fill": "#222222",
-        "font_family": "Malgun Gothic",
-        "font_size": 17,
-        "font_weight": "normal",
         "type": "text",
-        "text": "6 cm",
-        "x": 306.0,
-        "y": 160.0
+        "text": "6 cm"
       },
       {
         "id": "answer_value",
         "semantic_role": "answer_anchor",
-        "z_index": 0,
-        "anchor": "start",
-        "alignment": "left",
-        "stroke": "none",
-        "stroke_width": 0,
-        "fill": "none",
-        "font_family": "Malgun Gothic",
-        "font_weight": "normal",
-        "type": "rect",
-        "x": 364.0,
-        "y": 214.0,
-        "width": 48,
-        "height": 30
+        "type": "rect"
       }
     ]
   },

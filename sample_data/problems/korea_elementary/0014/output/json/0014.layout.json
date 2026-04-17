@@ -1,0 +1,360 @@
+{
+  "problem_id": "0014",
+  "canvas": {
+    "width": 980.0,
+    "height": 493.0,
+    "background": "#F6F6F6"
+  },
+  "nodes": [
+    {
+      "id": "bg",
+      "x": 0.0,
+      "y": 0.0,
+      "width": 980,
+      "height": 493,
+      "anchor": "start",
+      "z_order": 0,
+      "type": "shape",
+      "properties": {
+        "stroke": "none",
+        "stroke_width": 0,
+        "fill": "#F6F6F6",
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "shape_type": "rect"
+      }
+    },
+    {
+      "id": "l1a",
+      "x": 21.45,
+      "y": 56.56,
+      "anchor": "start",
+      "z_order": 0,
+      "type": "text",
+      "properties": {
+        "fill": "#222222",
+        "font_family": "Malgun Gothic",
+        "font_size": 34,
+        "font_weight": "normal",
+        "text": "숫자 카드"
+      }
+    },
+    {
+      "id": "card_1",
+      "x": 188.0,
+      "y": 13.95,
+      "width": 50.87,
+      "height": 52.32,
+      "anchor": "start",
+      "z_order": 0,
+      "type": "shape",
+      "properties": {
+        "stroke": "#000000",
+        "stroke_width": 1,
+        "fill": "#BDBDBD",
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "shape_type": "rect"
+      }
+    },
+    {
+      "id": "card_t_1",
+      "x": 213.435,
+      "y": 55.0,
+      "anchor": "middle",
+      "z_order": 0,
+      "type": "text",
+      "properties": {
+        "fill": "#222222",
+        "font_family": "Malgun Gothic",
+        "font_size": 46,
+        "font_weight": "normal",
+        "text": "3"
+      }
+    },
+    {
+      "id": "card_2",
+      "x": 256.5,
+      "y": 13.95,
+      "width": 49.65,
+      "height": 53.54,
+      "anchor": "start",
+      "z_order": 0,
+      "type": "shape",
+      "properties": {
+        "stroke": "#000000",
+        "stroke_width": 1,
+        "fill": "#BDBDBD",
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "shape_type": "rect"
+      }
+    },
+    {
+      "id": "card_t_2",
+      "x": 281.325,
+      "y": 55.0,
+      "anchor": "middle",
+      "z_order": 0,
+      "type": "text",
+      "properties": {
+        "fill": "#222222",
+        "font_family": "Malgun Gothic",
+        "font_size": 46,
+        "font_weight": "normal",
+        "text": "5"
+      }
+    },
+    {
+      "id": "card_3",
+      "x": 322.5,
+      "y": 13.97,
+      "width": 52.06,
+      "height": 54.73,
+      "anchor": "start",
+      "z_order": 0,
+      "type": "shape",
+      "properties": {
+        "stroke": "#000000",
+        "stroke_width": 1,
+        "fill": "#BDBDBD",
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "shape_type": "rect"
+      }
+    },
+    {
+      "id": "card_t_3",
+      "x": 348.53,
+      "y": 55.0,
+      "anchor": "middle",
+      "z_order": 0,
+      "type": "text",
+      "properties": {
+        "fill": "#222222",
+        "font_family": "Malgun Gothic",
+        "font_size": 46,
+        "font_weight": "normal",
+        "text": "7"
+      }
+    },
+    {
+      "id": "card_4",
+      "x": 389.8,
+      "y": 13.98,
+      "width": 52.05,
+      "height": 55.94,
+      "anchor": "start",
+      "z_order": 0,
+      "type": "shape",
+      "properties": {
+        "stroke": "#000000",
+        "stroke_width": 1,
+        "fill": "#BDBDBD",
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "shape_type": "rect"
+      }
+    },
+    {
+      "id": "card_t_4",
+      "x": 415.825,
+      "y": 55.0,
+      "anchor": "middle",
+      "z_order": 0,
+      "type": "text",
+      "properties": {
+        "fill": "#222222",
+        "font_family": "Malgun Gothic",
+        "font_size": 46,
+        "font_weight": "normal",
+        "text": "9"
+      }
+    },
+    {
+      "id": "l1b",
+      "x": 458.35,
+      "y": 54.1,
+      "anchor": "start",
+      "z_order": 0,
+      "type": "text",
+      "properties": {
+        "fill": "#222222",
+        "font_family": "Malgun Gothic",
+        "font_size": 33,
+        "font_weight": "normal",
+        "text": "를 모두 한 번씩만 사용하여"
+      }
+    },
+    {
+      "id": "l2",
+      "x": 21.72,
+      "y": 114.22,
+      "anchor": "start",
+      "z_order": 0,
+      "type": "text",
+      "properties": {
+        "fill": "#222222",
+        "font_family": "Malgun Gothic",
+        "font_size": 32,
+        "font_weight": "normal",
+        "text": "다음과 같이 (대분수) ÷ (자연수)를 만들려고 합니다."
+      }
+    },
+    {
+      "id": "l3",
+      "x": 19.62,
+      "y": 164.03,
+      "anchor": "start",
+      "z_order": 0,
+      "type": "text",
+      "properties": {
+        "fill": "#222222",
+        "font_family": "Malgun Gothic",
+        "font_size": 32,
+        "font_weight": "normal",
+        "text": "만들 수 있는 값 중 몫이 가장 작을 때의 몫과 몫이"
+      }
+    },
+    {
+      "id": "l4",
+      "x": 18.35,
+      "y": 215.79,
+      "anchor": "start",
+      "z_order": 0,
+      "type": "text",
+      "properties": {
+        "fill": "#222222",
+        "font_family": "Malgun Gothic",
+        "font_size": 33,
+        "font_weight": "normal",
+        "text": "가장 클 때의 몫 사이에 있는 자연수는 모두 몇 개인가요?"
+      }
+    },
+    {
+      "id": "expr_box",
+      "x": 268.99,
+      "y": 308.46,
+      "width": 315.14,
+      "height": 160.19,
+      "anchor": "start",
+      "z_order": 0,
+      "type": "shape",
+      "properties": {
+        "stroke": "#000000",
+        "stroke_width": 1,
+        "fill": "none",
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "rx": 14,
+        "shape_type": "rect"
+      }
+    },
+    {
+      "id": "whole_blank",
+      "x": 321.11,
+      "y": 373.79,
+      "width": 36.0,
+      "height": 34.0,
+      "anchor": "start",
+      "z_order": 0,
+      "type": "shape",
+      "properties": {
+        "stroke": "#000000",
+        "stroke_width": 1,
+        "fill": "none",
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "shape_type": "rect"
+      }
+    },
+    {
+      "id": "frac_num_blank",
+      "x": 383.11,
+      "y": 343.79,
+      "width": 36.0,
+      "height": 34.0,
+      "anchor": "start",
+      "z_order": 0,
+      "type": "shape",
+      "properties": {
+        "stroke": "#000000",
+        "stroke_width": 1,
+        "fill": "none",
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "shape_type": "rect"
+      }
+    },
+    {
+      "id": "frac_den_blank",
+      "x": 383.11,
+      "y": 405.79,
+      "width": 36.0,
+      "height": 34.0,
+      "anchor": "start",
+      "z_order": 0,
+      "type": "shape",
+      "properties": {
+        "stroke": "#000000",
+        "stroke_width": 1,
+        "fill": "none",
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "shape_type": "rect"
+      }
+    },
+    {
+      "id": "frac_bar",
+      "x": 369.11,
+      "y": 390.79,
+      "anchor": "start",
+      "z_order": 0,
+      "type": "shape",
+      "properties": {
+        "stroke": "#222222",
+        "stroke_width": 2,
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "x1": 369.11,
+        "y1": 390.79,
+        "x2": 433.11,
+        "y2": 390.79,
+        "shape_type": "line"
+      }
+    },
+    {
+      "id": "div_sign",
+      "x": 457.11,
+      "y": 406.79,
+      "anchor": "middle",
+      "z_order": 0,
+      "type": "text",
+      "properties": {
+        "fill": "#222222",
+        "font_family": "Malgun Gothic",
+        "font_size": 64,
+        "font_weight": "normal",
+        "text": "÷"
+      }
+    },
+    {
+      "id": "div_blank",
+      "x": 486.11,
+      "y": 373.79,
+      "width": 36.0,
+      "height": 34.0,
+      "anchor": "start",
+      "z_order": 0,
+      "type": "shape",
+      "properties": {
+        "stroke": "#000000",
+        "stroke_width": 1,
+        "fill": "none",
+        "font_family": "Malgun Gothic",
+        "font_weight": "normal",
+        "shape_type": "rect"
+      }
+    }
+  ]
+}
