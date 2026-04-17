@@ -256,3 +256,8 @@ button:hover,
 .rotate-handle-group line {
   pointer-events: none;
 }
+
+/* 요소박스(배경 테두리)가 클릭을 방해하지 않도록 설정 */
+[data-element-id="geom_diagram_region"] {
+  pointer-events: none;
+}

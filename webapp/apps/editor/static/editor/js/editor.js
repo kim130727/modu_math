@@ -446,10 +446,9 @@ function wireCanvasHandlers() {
   svg.querySelectorAll("[data-element-id]").forEach((node) => {
     node.addEventListener("mousedown", (event) => {
       event.preventDefault();
-      event.stopPropagation(); // 배경 드래그(선택) 방지
+      event.stopPropagation();
       const elementId = node.getAttribute("data-element-id");
       
-      // 이미 선택된 그룹에 포함되어 있지 않다면 단일 선택으로 전환
       if (!state.selectedIds.includes(elementId)) {
         state.selectedIds = [elementId];
       }
