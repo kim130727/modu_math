@@ -1,0 +1,15 @@
+{
+  "type": "object",
+  "properties": {
+    "selection": {"type": "array"},
+    "zoom": {"type": "number"},
+    "pan": {
+      "type": "object",
+      "properties": {
+        "x": {"type": "number"},
+        "y": {"type": "number"}
+      }
+    },
+    "snap": {"type": "boolean"}
+  }
+}
