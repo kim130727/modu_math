@@ -6,7 +6,7 @@ from pathlib import Path
 from typing import Any
 
 from .validate import canonicalize_and_validate
-from modu_semantic.semantic_json_builder import build_from_semantic_file
+from modu_semantic_archive.semantic_json_builder import build_from_semantic_file
 
 
 def export_bundle(problem_id: str, semantic: dict[str, Any]) -> dict[str, bytes]:

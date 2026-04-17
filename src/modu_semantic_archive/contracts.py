@@ -30,18 +30,32 @@ def _reorder_by_profile(data: dict[str, Any], order: list[str]) -> dict[str, Any
 
 def canonicalize_semantic_json(data: dict[str, Any]) -> dict[str, Any]:
     profile = load_contract_json("canonical_order_profile.json")
-    semantic = _reorder_by_profile(data, profile["semantic_root_order"])
+    semantic_order = profile.get("semantic_root_order", ["problem_id", "problem_type", "metadata", "domain", "render", "answer"])
+    semantic = _reorder_by_profile(data, semantic_order)
+
+    domain = semantic.get("domain")
+    domain_order = profile.get("domain_order")
+    if isinstance(domain, dict) and isinstance(domain_order, list):
+        semantic["domain"] = _reorder_by_profile(domain, domain_order)
 
     render = semantic.get("render")
     if isinstance(render, dict):
-        semantic["render"] = _reorder_by_profile(render, profile["render_order"])
+        render_order = profile.get("render_order", ["canvas", "elements"])
+        if isinstance(render_order, list):
+            semantic["render"] = _reorder_by_profile(render, render_order)
+        else:
+            semantic["render"] = render
         canvas = semantic["render"].get("canvas")
         if isinstance(canvas, dict):
-            semantic["render"]["canvas"] = _reorder_by_profile(canvas, profile["canvas_order"])
+            canvas_order = profile.get("canvas_order", ["width", "height", "background"])
+            if isinstance(canvas_order, list):
+                semantic["render"]["canvas"] = _reorder_by_profile(canvas, canvas_order)
 
     answer = semantic.get("answer")
     if isinstance(answer, dict):
-        semantic["answer"] = _reorder_by_profile(answer, profile["answer_order"])
+        answer_order = profile.get("answer_order", ["blanks", "choices", "answer_key"])
+        if isinstance(answer_order, list):
+            semantic["answer"] = _reorder_by_profile(answer, answer_order)
 
     return semantic
 

@@ -207,18 +207,26 @@ def validate_semantic_json(data: dict[str, Any]) -> None:
     _validate_schema(data, schema, "$")
 
     profile = load_contract_json("canonical_order_profile.json")
-    _validate_root_order(data, profile["semantic_root_order"], "semantic")
+    semantic_order = profile.get("semantic_root_order")
+    if isinstance(semantic_order, list):
+        _validate_root_order(data, semantic_order, "semantic")
 
     render = data.get("render", {})
     if isinstance(render, dict):
-        _validate_root_order(render, profile["render_order"], "semantic.render")
+        render_order = profile.get("render_order")
+        if isinstance(render_order, list):
+            _validate_root_order(render, render_order, "semantic.render")
         canvas = render.get("canvas", {})
         if isinstance(canvas, dict):
-            _validate_root_order(canvas, profile["canvas_order"], "semantic.render.canvas")
+            canvas_order = profile.get("canvas_order")
+            if isinstance(canvas_order, list):
+                _validate_root_order(canvas, canvas_order, "semantic.render.canvas")
 
     answer = data.get("answer", {})
     if isinstance(answer, dict):
-        _validate_root_order(answer, profile["answer_order"], "semantic.answer")
+        answer_order = profile.get("answer_order")
+        if isinstance(answer_order, list):
+            _validate_root_order(answer, answer_order, "semantic.answer")
 
     _validate_semantic_elements(data)
 

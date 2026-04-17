@@ -1,9 +1,6 @@
 {
-  "schema_version": "modu_math.semantic.v3",
-  "render_contract_version": "modu_math.render.v1",
   "problem_id": "2401",
   "problem_type": "Area::Triangle",
-  "title": "Find the area of the figure.",
   "metadata": {
     "source": "textbook1_chapter_8.pdf",
     "warnings": []
@@ -30,215 +27,20 @@
       ],
       "point_positions": {
         "A": [
-          0.0,
-          188.0
+          0,
+          188
         ],
         "B": [
-          93.0,
-          1.0
+          93,
+          1
         ],
         "C": [
-          185.0,
-          185.0
+          185,
+          185
         ]
       },
       "circle_instances": []
     }
-  },
-  "render": {
-    "elements": [
-      {
-        "id": "geom_diagram_region",
-        "semantic_role": "geometry_diagram_region",
-        "type": "rect"
-      },
-      {
-        "id": "geom_line_1",
-        "semantic_role": "geometry_edge",
-        "type": "line"
-      },
-      {
-        "id": "geom_line_2",
-        "semantic_role": "geometry_edge",
-        "type": "line"
-      },
-      {
-        "id": "geom_line_3",
-        "semantic_role": "geometry_edge",
-        "type": "line"
-      },
-      {
-        "id": "geom_point_A",
-        "semantic_role": "geometry_point",
-        "type": "circle"
-      },
-      {
-        "id": "geom_label_A",
-        "semantic_role": "geometry_point_label",
-        "type": "text",
-        "text": "A"
-      },
-      {
-        "id": "geom_point_B",
-        "semantic_role": "geometry_point",
-        "type": "circle"
-      },
-      {
-        "id": "geom_label_B",
-        "semantic_role": "geometry_point_label",
-        "type": "text",
-        "text": "B"
-      },
-      {
-        "id": "geom_point_C",
-        "semantic_role": "geometry_point",
-        "type": "circle"
-      },
-      {
-        "id": "geom_label_C",
-        "semantic_role": "geometry_point_label",
-        "type": "text",
-        "text": "C"
-      },
-      {
-        "id": "geom_len_1_AB",
-        "semantic_role": "geometry_length_label",
-        "type": "text",
-        "text": "13"
-      },
-      {
-        "id": "geom_len_2_BC",
-        "semantic_role": "geometry_length_label",
-        "type": "text",
-        "text": "13"
-      },
-      {
-        "id": "geom_len_3_AC",
-        "semantic_role": "geometry_length_label",
-        "type": "text",
-        "text": "10"
-      },
-      {
-        "id": "geom_dim_1_cap_a",
-        "semantic_role": "geometry_dimension_cap",
-        "type": "line"
-      },
-      {
-        "id": "geom_dim_1_cap_b",
-        "semantic_role": "geometry_dimension_cap",
-        "type": "line"
-      },
-      {
-        "id": "geom_dim_1_arr_a_a",
-        "semantic_role": "geometry_dimension_arrow",
-        "type": "line"
-      },
-      {
-        "id": "geom_dim_1_arr_a_b",
-        "semantic_role": "geometry_dimension_arrow",
-        "type": "line"
-      },
-      {
-        "id": "geom_dim_1_arr_b_a",
-        "semantic_role": "geometry_dimension_arrow",
-        "type": "line"
-      },
-      {
-        "id": "geom_dim_1_arr_b_b",
-        "semantic_role": "geometry_dimension_arrow",
-        "type": "line"
-      },
-      {
-        "id": "geom_dim_2_cap_a",
-        "semantic_role": "geometry_dimension_cap",
-        "type": "line"
-      },
-      {
-        "id": "geom_dim_2_cap_b",
-        "semantic_role": "geometry_dimension_cap",
-        "type": "line"
-      },
-      {
-        "id": "geom_dim_2_arr_a_a",
-        "semantic_role": "geometry_dimension_arrow",
-        "type": "line"
-      },
-      {
-        "id": "geom_dim_2_arr_a_b",
-        "semantic_role": "geometry_dimension_arrow",
-        "type": "line"
-      },
-      {
-        "id": "geom_dim_2_arr_b_a",
-        "semantic_role": "geometry_dimension_arrow",
-        "type": "line"
-      },
-      {
-        "id": "geom_dim_2_arr_b_b",
-        "semantic_role": "geometry_dimension_arrow",
-        "type": "line"
-      },
-      {
-        "id": "geom_dim_3_cap_a",
-        "semantic_role": "geometry_dimension_cap",
-        "type": "line"
-      },
-      {
-        "id": "geom_dim_3_cap_b",
-        "semantic_role": "geometry_dimension_cap",
-        "type": "line"
-      },
-      {
-        "id": "geom_dim_3_arr_a_a",
-        "semantic_role": "geometry_dimension_arrow",
-        "type": "line"
-      },
-      {
-        "id": "geom_dim_3_arr_a_b",
-        "semantic_role": "geometry_dimension_arrow",
-        "type": "line"
-      },
-      {
-        "id": "geom_dim_3_arr_b_a",
-        "semantic_role": "geometry_dimension_arrow",
-        "type": "line"
-      },
-      {
-        "id": "geom_dim_3_arr_b_b",
-        "semantic_role": "geometry_dimension_arrow",
-        "type": "line"
-      },
-      {
-        "id": "text.problem",
-        "semantic_role": "problem_text",
-        "type": "text",
-        "text": "Find the area of the figure."
-      },
-      {
-        "id": "text.choice_1",
-        "semantic_role": "multiple_choice",
-        "type": "text",
-        "text": "1. 30"
-      },
-      {
-        "id": "text.choice_2",
-        "semantic_role": "multiple_choice",
-        "type": "text",
-        "text": "2. 60"
-      },
-      {
-        "id": "text.choice_3",
-        "semantic_role": "multiple_choice",
-        "type": "text",
-        "text": "3. 120"
-      },
-      {
-        "id": "text.choice_4",
-        "semantic_role": "multiple_choice",
-        "type": "text",
-        "text": "4. 240"
-      }
-    ]
   },
   "answer": {
     "blanks": [],
@@ -253,6 +55,168 @@
         "label": "no.2",
         "index": 1,
         "value": "60"
+      }
+    ]
+  },
+  "schema_version": "modu_math.semantic.v3",
+  "render_contract_version": "modu_math.render.v1",
+  "title": "Find the area of the figure.",
+  "render": {
+    "elements": [
+      {
+        "id": "geom_diagram_region",
+        "type": "rect"
+      },
+      {
+        "id": "geom_line_1",
+        "type": "line"
+      },
+      {
+        "id": "geom_line_2",
+        "type": "line"
+      },
+      {
+        "id": "geom_line_3",
+        "type": "line"
+      },
+      {
+        "id": "geom_point_A",
+        "type": "circle"
+      },
+      {
+        "id": "geom_label_A",
+        "type": "text",
+        "text": "A"
+      },
+      {
+        "id": "geom_point_B",
+        "type": "circle"
+      },
+      {
+        "id": "geom_label_B",
+        "type": "text",
+        "text": "B"
+      },
+      {
+        "id": "geom_point_C",
+        "type": "circle"
+      },
+      {
+        "id": "geom_label_C",
+        "type": "text",
+        "text": "C"
+      },
+      {
+        "id": "geom_len_1_AB",
+        "type": "text",
+        "text": "13"
+      },
+      {
+        "id": "geom_len_2_BC",
+        "type": "text",
+        "text": "13"
+      },
+      {
+        "id": "geom_len_3_AC",
+        "type": "text",
+        "text": "10"
+      },
+      {
+        "id": "geom_dim_1_cap_a",
+        "type": "line"
+      },
+      {
+        "id": "geom_dim_1_cap_b",
+        "type": "line"
+      },
+      {
+        "id": "geom_dim_1_arr_a_a",
+        "type": "line"
+      },
+      {
+        "id": "geom_dim_1_arr_a_b",
+        "type": "line"
+      },
+      {
+        "id": "geom_dim_1_arr_b_a",
+        "type": "line"
+      },
+      {
+        "id": "geom_dim_1_arr_b_b",
+        "type": "line"
+      },
+      {
+        "id": "geom_dim_2_cap_a",
+        "type": "line"
+      },
+      {
+        "id": "geom_dim_2_cap_b",
+        "type": "line"
+      },
+      {
+        "id": "geom_dim_2_arr_a_a",
+        "type": "line"
+      },
+      {
+        "id": "geom_dim_2_arr_a_b",
+        "type": "line"
+      },
+      {
+        "id": "geom_dim_2_arr_b_a",
+        "type": "line"
+      },
+      {
+        "id": "geom_dim_2_arr_b_b",
+        "type": "line"
+      },
+      {
+        "id": "geom_dim_3_cap_a",
+        "type": "line"
+      },
+      {
+        "id": "geom_dim_3_cap_b",
+        "type": "line"
+      },
+      {
+        "id": "geom_dim_3_arr_a_a",
+        "type": "line"
+      },
+      {
+        "id": "geom_dim_3_arr_a_b",
+        "type": "line"
+      },
+      {
+        "id": "geom_dim_3_arr_b_a",
+        "type": "line"
+      },
+      {
+        "id": "geom_dim_3_arr_b_b",
+        "type": "line"
+      },
+      {
+        "id": "text.problem",
+        "type": "text",
+        "text": "Find the area of the figure."
+      },
+      {
+        "id": "text.choice_1",
+        "type": "text",
+        "text": "1. 30"
+      },
+      {
+        "id": "text.choice_2",
+        "type": "text",
+        "text": "2. 60"
+      },
+      {
+        "id": "text.choice_3",
+        "type": "text",
+        "text": "3. 120"
+      },
+      {
+        "id": "text.choice_4",
+        "type": "text",
+        "text": "4. 240"
       }
     ]
   }

@@ -1,27 +1,25 @@
 {
   "problem_id": "2401",
   "canvas": {
-    "width": 1400.0,
-    "height": 980.0,
+    "width": 1400,
+    "height": 980,
     "background": "#FFFFFF"
   },
   "nodes": [
     {
       "id": "geom_diagram_region",
-      "x": 40.0,
-      "y": 200.0,
-      "width": 752.0,
-      "height": 740.0,
+      "x": 40,
+      "y": 200,
+      "width": 752,
+      "height": 740,
       "anchor": "start",
       "z_order": 0,
       "type": "shape",
       "properties": {
-        "stroke": "#D1D5DB",
-        "stroke_width": 1.0,
+        "shape_type": "rect",
         "fill": "none",
-        "font_family": "Malgun Gothic",
-        "font_weight": "normal",
-        "shape_type": "rect"
+        "stroke": "#D1D5DB",
+        "stroke_width": 1
       }
     },
     {
@@ -32,15 +30,13 @@
       "z_order": 0,
       "type": "shape",
       "properties": {
-        "stroke": "#374151",
-        "stroke_width": 2.2,
-        "font_family": "Malgun Gothic",
-        "font_weight": "normal",
+        "shape_type": "line",
         "x1": 73.70053475935828,
         "y1": 910.4491978609626,
         "x2": 417.8502673796791,
         "y2": 224.0000000000001,
-        "shape_type": "line"
+        "stroke": "#374151",
+        "stroke_width": 2.2
       }
     },
     {
@@ -51,34 +47,30 @@
       "z_order": 0,
       "type": "shape",
       "properties": {
-        "stroke": "#374151",
-        "stroke_width": 2.2,
-        "font_family": "Malgun Gothic",
-        "font_weight": "normal",
+        "shape_type": "line",
         "x1": 73.70053475935828,
         "y1": 910.4491978609626,
         "x2": 758.2994652406417,
         "y2": 910.4491978609626,
-        "shape_type": "line"
+        "stroke": "#374151",
+        "stroke_width": 2.2
       }
     },
     {
       "id": "geom_line_3",
       "x": 417.85026737967917,
-      "y": 224.0,
+      "y": 224,
       "anchor": "start",
       "z_order": 0,
       "type": "shape",
       "properties": {
-        "stroke": "#374151",
-        "stroke_width": 2.2,
-        "font_family": "Malgun Gothic",
-        "font_weight": "normal",
+        "shape_type": "line",
         "x1": 417.85026737967917,
-        "y1": 224.0,
+        "y1": 224,
         "x2": 758.2994652406417,
         "y2": 910.4491978609627,
-        "shape_type": "line"
+        "stroke": "#374151",
+        "stroke_width": 2.2
       }
     },
     {
@@ -89,60 +81,56 @@
       "z_order": 0,
       "type": "shape",
       "properties": {
-        "stroke": "#111111",
-        "stroke_width": 1.0,
-        "fill": "#111111",
-        "font_family": "Malgun Gothic",
-        "font_weight": "normal",
+        "shape_type": "circle",
         "r": 3.8,
-        "shape_type": "circle"
+        "fill": "#111111",
+        "stroke": "#111111",
+        "stroke_width": 1
       }
     },
     {
       "id": "geom_label_A",
-      "x": 79.70053475935828,
-      "y": 904.4491978609626,
+      "x": 57.96100228865515,
+      "y": 871.8399449312751,
       "anchor": "start",
       "z_order": 0,
       "type": "text",
       "properties": {
+        "text": "A",
         "fill": "#111111",
         "font_family": "Malgun Gothic",
         "font_size": 36,
-        "font_weight": "normal",
-        "text": "A"
+        "font_weight": "normal"
       }
     },
     {
       "id": "geom_point_B",
       "x": 417.85026737967917,
-      "y": 224.0,
+      "y": 224,
       "anchor": "start",
       "z_order": 0,
       "type": "shape",
       "properties": {
-        "stroke": "#111111",
-        "stroke_width": 1.0,
-        "fill": "#111111",
-        "font_family": "Malgun Gothic",
-        "font_weight": "normal",
+        "shape_type": "circle",
         "r": 3.8,
-        "shape_type": "circle"
+        "fill": "#111111",
+        "stroke": "#111111",
+        "stroke_width": 1
       }
     },
     {
       "id": "geom_label_B",
-      "x": 423.85026737967917,
-      "y": 218.0,
+      "x": 434.72001835624167,
+      "y": 237.9279022216797,
       "anchor": "start",
       "z_order": 0,
       "type": "text",
       "properties": {
+        "text": "B",
         "fill": "#111111",
         "font_family": "Malgun Gothic",
         "font_size": 36,
-        "font_weight": "normal",
-        "text": "B"
+        "font_weight": "normal"
       }
     },
     {
@@ -153,43 +141,41 @@
       "z_order": 0,
       "type": "shape",
       "properties": {
-        "stroke": "#111111",
-        "stroke_width": 1.0,
-        "fill": "#111111",
-        "font_family": "Malgun Gothic",
-        "font_weight": "normal",
+        "shape_type": "circle",
         "r": 3.8,
-        "shape_type": "circle"
+        "fill": "#111111",
+        "stroke": "#111111",
+        "stroke_width": 1
       }
     },
     {
       "id": "geom_label_C",
-      "x": 764.2994652406417,
-      "y": 904.4491978609626,
+      "x": 758.8645287172042,
+      "y": 879.0864048922126,
       "anchor": "start",
       "z_order": 0,
       "type": "text",
       "properties": {
+        "text": "C",
         "fill": "#111111",
         "font_family": "Malgun Gothic",
         "font_size": 36,
-        "font_weight": "normal",
-        "text": "C"
+        "font_weight": "normal"
       }
     },
     {
       "id": "geom_len_1_AB",
-      "x": 249.77540106951872,
-      "y": 563.2245989304813,
+      "x": 188.18004889666716,
+      "y": 550.5432024461063,
       "anchor": "start",
       "z_order": 0,
       "type": "text",
       "properties": {
+        "text": "13",
         "fill": "#1F2937",
         "font_family": "Malgun Gothic",
         "font_size": 36,
-        "font_weight": "normal",
-        "text": "13"
+        "font_weight": "normal"
       }
     },
     {
@@ -200,26 +186,26 @@
       "z_order": 0,
       "type": "text",
       "properties": {
+        "text": "13",
         "fill": "#1F2937",
         "font_family": "Malgun Gothic",
         "font_size": 36,
-        "font_weight": "normal",
-        "text": "13"
+        "font_weight": "normal"
       }
     },
     {
       "id": "geom_len_3_AC",
-      "x": 420.0,
+      "x": 420,
       "y": 906.4491978609626,
       "anchor": "start",
       "z_order": 0,
       "type": "text",
       "properties": {
+        "text": "10",
         "fill": "#1F2937",
         "font_family": "Malgun Gothic",
         "font_size": 36,
-        "font_weight": "normal",
-        "text": "10"
+        "font_weight": "normal"
       }
     },
     {
@@ -230,15 +216,13 @@
       "z_order": 0,
       "type": "shape",
       "properties": {
-        "stroke": "#111111",
-        "stroke_width": 1.5,
-        "font_family": "Malgun Gothic",
-        "font_weight": "normal",
+        "shape_type": "line",
         "x1": 66.54897667314026,
         "y1": 906.8637805994085,
         "x2": 80.8520928455763,
         "y2": 914.0346151225167,
-        "shape_type": "line"
+        "stroke": "#111111",
+        "stroke_width": 1.5
       }
     },
     {
@@ -249,15 +233,13 @@
       "z_order": 0,
       "type": "shape",
       "properties": {
-        "stroke": "#111111",
-        "stroke_width": 1.5,
-        "font_family": "Malgun Gothic",
-        "font_weight": "normal",
+        "shape_type": "line",
         "x1": 410.69870929346115,
         "y1": 220.41458273844594,
         "x2": 425.0018254658972,
         "y2": 227.58541726155406,
-        "shape_type": "line"
+        "stroke": "#111111",
+        "stroke_width": 1.5
       }
     },
     {
@@ -268,15 +250,13 @@
       "z_order": 0,
       "type": "shape",
       "properties": {
-        "stroke": "#111111",
-        "stroke_width": 1.8,
-        "font_family": "Malgun Gothic",
-        "font_weight": "normal",
+        "shape_type": "line",
         "x1": 75.94142054782955,
         "y1": 905.9794740570763,
         "x2": 75.03783756860726,
         "y2": 914.475563616377,
-        "shape_type": "line"
+        "stroke": "#111111",
+        "stroke_width": 1.8
       }
     },
     {
@@ -287,15 +267,13 @@
       "z_order": 0,
       "type": "shape",
       "properties": {
-        "stroke": "#111111",
-        "stroke_width": 1.8,
-        "font_family": "Malgun Gothic",
-        "font_weight": "normal",
+        "shape_type": "line",
         "x1": 75.94142054782955,
         "y1": 905.9794740570763,
         "x2": 69.67416900394376,
         "y2": 911.7865006702116,
-        "shape_type": "line"
+        "stroke": "#111111",
+        "stroke_width": 1.8
       }
     },
     {
@@ -306,15 +284,13 @@
       "z_order": 0,
       "type": "shape",
       "properties": {
-        "stroke": "#111111",
-        "stroke_width": 1.8,
-        "font_family": "Malgun Gothic",
-        "font_weight": "normal",
+        "shape_type": "line",
         "x1": 415.60938159120786,
         "y1": 228.46972380388627,
         "x2": 416.51296457043014,
         "y2": 219.9736342445855,
-        "shape_type": "line"
+        "stroke": "#111111",
+        "stroke_width": 1.8
       }
     },
     {
@@ -325,15 +301,13 @@
       "z_order": 0,
       "type": "shape",
       "properties": {
-        "stroke": "#111111",
-        "stroke_width": 1.8,
-        "font_family": "Malgun Gothic",
-        "font_weight": "normal",
+        "shape_type": "line",
         "x1": 415.60938159120786,
         "y1": 228.46972380388627,
         "x2": 421.87663313509364,
         "y2": 222.662697190751,
-        "shape_type": "line"
+        "stroke": "#111111",
+        "stroke_width": 1.8
       }
     },
     {
@@ -344,15 +318,13 @@
       "z_order": 0,
       "type": "shape",
       "properties": {
-        "stroke": "#111111",
-        "stroke_width": 1.5,
-        "font_family": "Malgun Gothic",
-        "font_weight": "normal",
+        "shape_type": "line",
         "x1": 425.01723814492664,
         "y1": 220.44549158812526,
         "x2": 410.6832966144317,
         "y2": 227.55450841187474,
-        "shape_type": "line"
+        "stroke": "#111111",
+        "stroke_width": 1.5
       }
     },
     {
@@ -363,15 +335,13 @@
       "z_order": 0,
       "type": "shape",
       "properties": {
-        "stroke": "#111111",
-        "stroke_width": 1.5,
-        "font_family": "Malgun Gothic",
-        "font_weight": "normal",
+        "shape_type": "line",
         "x1": 765.4664360058891,
         "y1": 906.8946894490879,
         "x2": 751.1324944753942,
         "y2": 914.0037062728373,
-        "shape_type": "line"
+        "stroke": "#111111",
+        "stroke_width": 1.5
       }
     },
     {
@@ -382,15 +352,13 @@
       "z_order": 0,
       "type": "shape",
       "properties": {
-        "stroke": "#111111",
-        "stroke_width": 1.8,
-        "font_family": "Malgun Gothic",
-        "font_weight": "normal",
+        "shape_type": "line",
         "x1": 420.0718351371009,
         "y1": 228.47935672827967,
         "x2": 413.8297126882584,
         "y2": 222.64532661748527,
-        "shape_type": "line"
+        "stroke": "#111111",
+        "stroke_width": 1.8
       }
     },
     {
@@ -401,15 +369,13 @@
       "z_order": 0,
       "type": "shape",
       "properties": {
-        "stroke": "#111111",
-        "stroke_width": 1.8,
-        "font_family": "Malgun Gothic",
-        "font_weight": "normal",
+        "shape_type": "line",
         "x1": 420.0718351371009,
         "y1": 228.47935672827967,
         "x2": 419.2049407621939,
         "y2": 219.9794453085792,
-        "shape_type": "line"
+        "stroke": "#111111",
+        "stroke_width": 1.8
       }
     },
     {
@@ -420,15 +386,13 @@
       "z_order": 0,
       "type": "shape",
       "properties": {
-        "stroke": "#111111",
-        "stroke_width": 1.8,
-        "font_family": "Malgun Gothic",
-        "font_weight": "normal",
+        "shape_type": "line",
         "x1": 756.07789748322,
         "y1": 905.969841132683,
         "x2": 762.3200199320626,
         "y2": 911.8038712434774,
-        "shape_type": "line"
+        "stroke": "#111111",
+        "stroke_width": 1.8
       }
     },
     {
@@ -439,15 +403,13 @@
       "z_order": 0,
       "type": "shape",
       "properties": {
-        "stroke": "#111111",
-        "stroke_width": 1.8,
-        "font_family": "Malgun Gothic",
-        "font_weight": "normal",
+        "shape_type": "line",
         "x1": 756.07789748322,
         "y1": 905.969841132683,
         "x2": 756.9447918581269,
         "y2": 914.4697525523835,
-        "shape_type": "line"
+        "stroke": "#111111",
+        "stroke_width": 1.8
       }
     },
     {
@@ -458,15 +420,13 @@
       "z_order": 0,
       "type": "shape",
       "properties": {
-        "stroke": "#111111",
-        "stroke_width": 1.5,
-        "font_family": "Malgun Gothic",
-        "font_weight": "normal",
+        "shape_type": "line",
         "x1": 73.70053475935828,
         "y1": 902.4491978609626,
         "x2": 73.70053475935828,
         "y2": 918.4491978609626,
-        "shape_type": "line"
+        "stroke": "#111111",
+        "stroke_width": 1.5
       }
     },
     {
@@ -477,15 +437,13 @@
       "z_order": 0,
       "type": "shape",
       "properties": {
-        "stroke": "#111111",
-        "stroke_width": 1.5,
-        "font_family": "Malgun Gothic",
-        "font_weight": "normal",
+        "shape_type": "line",
         "x1": 758.2994652406417,
         "y1": 902.4491978609626,
         "x2": 758.2994652406417,
         "y2": 918.4491978609626,
-        "shape_type": "line"
+        "stroke": "#111111",
+        "stroke_width": 1.5
       }
     },
     {
@@ -496,15 +454,13 @@
       "z_order": 0,
       "type": "shape",
       "properties": {
-        "stroke": "#111111",
-        "stroke_width": 1.8,
-        "font_family": "Malgun Gothic",
-        "font_weight": "normal",
+        "shape_type": "line",
         "x1": 78.70053475935828,
         "y1": 910.4491978609626,
         "x2": 70.70053475935828,
         "y2": 913.4491978609626,
-        "shape_type": "line"
+        "stroke": "#111111",
+        "stroke_width": 1.8
       }
     },
     {
@@ -515,15 +471,13 @@
       "z_order": 0,
       "type": "shape",
       "properties": {
-        "stroke": "#111111",
-        "stroke_width": 1.8,
-        "font_family": "Malgun Gothic",
-        "font_weight": "normal",
+        "shape_type": "line",
         "x1": 78.70053475935828,
         "y1": 910.4491978609626,
         "x2": 70.70053475935828,
         "y2": 907.4491978609626,
-        "shape_type": "line"
+        "stroke": "#111111",
+        "stroke_width": 1.8
       }
     },
     {
@@ -534,15 +488,13 @@
       "z_order": 0,
       "type": "shape",
       "properties": {
-        "stroke": "#111111",
-        "stroke_width": 1.8,
-        "font_family": "Malgun Gothic",
-        "font_weight": "normal",
+        "shape_type": "line",
         "x1": 753.2994652406417,
         "y1": 910.4491978609626,
         "x2": 761.2994652406417,
         "y2": 907.4491978609626,
-        "shape_type": "line"
+        "stroke": "#111111",
+        "stroke_width": 1.8
       }
     },
     {
@@ -553,90 +505,88 @@
       "z_order": 0,
       "type": "shape",
       "properties": {
-        "stroke": "#111111",
-        "stroke_width": 1.8,
-        "font_family": "Malgun Gothic",
-        "font_weight": "normal",
+        "shape_type": "line",
         "x1": 753.2994652406417,
         "y1": 910.4491978609626,
         "x2": 761.2994652406417,
         "y2": 913.4491978609626,
-        "shape_type": "line"
+        "stroke": "#111111",
+        "stroke_width": 1.8
       }
     },
     {
       "id": "text.problem",
-      "x": 40.0,
-      "y": 80.0,
+      "x": 40,
+      "y": 90.86976623535156,
       "anchor": "start",
       "z_order": 0,
       "type": "text",
       "properties": {
+        "text": "Find the area of the figure.",
         "fill": "#000000",
         "font_family": "sans-serif",
-        "font_size": 48.0,
-        "font_weight": "normal",
-        "text": "Find the area of the figure."
+        "font_size": 48,
+        "font_weight": "normal"
       }
     },
     {
       "id": "text.choice_1",
-      "x": 860.0,
-      "y": 320.0,
+      "x": 860,
+      "y": 320,
       "anchor": "start",
       "z_order": 0,
       "type": "text",
       "properties": {
+        "text": "1. 30",
         "fill": "#000000",
         "font_family": "sans-serif",
-        "font_size": 48.0,
-        "font_weight": "normal",
-        "text": "1. 30"
+        "font_size": 48,
+        "font_weight": "normal"
       }
     },
     {
       "id": "text.choice_2",
-      "x": 860.0,
-      "y": 380.0,
+      "x": 860,
+      "y": 389.0581359863281,
       "anchor": "start",
       "z_order": 0,
       "type": "text",
       "properties": {
+        "text": "2. 60",
         "fill": "#000000",
         "font_family": "sans-serif",
-        "font_size": 48.0,
-        "font_weight": "normal",
-        "text": "2. 60"
+        "font_size": 48,
+        "font_weight": "normal"
       }
     },
     {
       "id": "text.choice_3",
-      "x": 860.0,
-      "y": 460.0,
+      "x": 860,
+      "y": 460,
       "anchor": "start",
       "z_order": 0,
       "type": "text",
       "properties": {
+        "text": "3. 120",
         "fill": "#000000",
         "font_family": "sans-serif",
-        "font_size": 48.0,
-        "font_weight": "normal",
-        "text": "3. 120"
+        "font_size": 48,
+        "font_weight": "normal"
       }
     },
     {
       "id": "text.choice_4",
-      "x": 860.0,
-      "y": 540.0,
+      "x": 860,
+      "y": 540,
       "anchor": "start",
       "z_order": 0,
       "type": "text",
       "properties": {
+        "text": "4. 240",
         "fill": "#000000",
         "font_family": "sans-serif",
-        "font_size": 48.0,
-        "font_weight": "normal",
-        "text": "4. 240"
+        "font_size": 48,
+        "font_weight": "normal"
       }
     }
   ]
