@@ -47,6 +47,8 @@ class TextNode(LayoutNode):
     
     def to_dict(self) -> dict[str, Any]:
         d = super().to_dict()
+        if "properties" not in d:
+            d["properties"] = {}
         d["properties"]["text"] = self.text
         return d
 
@@ -57,5 +59,7 @@ class ShapeNode(LayoutNode):
     
     def to_dict(self) -> dict[str, Any]:
         d = super().to_dict()
+        if "properties" not in d:
+            d["properties"] = {}
         d["properties"]["shape_type"] = self.shape_type
         return d
