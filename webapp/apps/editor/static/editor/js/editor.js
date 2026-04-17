@@ -197,7 +197,9 @@ const state = {
   layout: parseJsonScript("initial-layout"),
   renderer: parseJsonScript("initial-renderer"),
   selectedIds: [], // 단일 ID 대신 배열로 관리
+  lockListSelectionHighlight: false,
   drag: null,
+  suppressListClickUntil: 0,
   mouseupBound: false,
   jsonDirty: false,
   undoStack: [],
@@ -251,9 +253,10 @@ function selectedElement() {
 }
 
 function renderElementList() {
+  const showActive = !state.lockListSelectionHighlight;
   const items = getElements(state.semantic)
     .map((el) => {
-      const cls = state.selectedIds.includes(el.id) ? "active" : "";
+      const cls = showActive && state.selectedIds.includes(el.id) ? "active" : "";
       return `<li class="${cls}" data-element-id="${el.id}"><strong>${el.id}</strong> <small>${el.type}</small></li>`;
     })
     .join("");
@@ -261,7 +264,7 @@ function renderElementList() {
 }
 
 function renderAll(forceJsonSync = false) {
-  renderCanvas(canvasHost, state.semantic, state.selectedIds, state.drag);
+  renderCanvas(canvasHost, state.semantic, state.selectedIds, state.drag, _selectionBoundsFromLayout(state.selectedIds));
   renderElementList();
   fillPropertiesForm(form, selectedElement());
   if (forceJsonSync || !state.jsonDirty) {
@@ -439,6 +442,222 @@ function rotateElement(el, da, cx, cy, allElements = []) {
   }
 }
 
+function _elementPointsForBounds(el) {
+  if (!el || typeof el !== "object") return [];
+  if (el.type === "line") {
+    return [
+      [Number(el.x1 ?? 0), Number(el.y1 ?? 0)],
+      [Number(el.x2 ?? 0), Number(el.y2 ?? 0)],
+    ];
+  }
+  if (el.type === "rect") {
+    const x = Number(el.x ?? 0);
+    const y = Number(el.y ?? 0);
+    const w = Number(el.width ?? 120);
+    const h = Number(el.height ?? 80);
+    return [
+      [x, y],
+      [x + w, y + h],
+    ];
+  }
+  if (el.type === "circle") {
+    const cx = Number(el.x ?? 0);
+    const cy = Number(el.y ?? 0);
+    const r = Number(el.r ?? 35);
+    return [
+      [cx - r, cy - r],
+      [cx + r, cy + r],
+    ];
+  }
+  if (el.type === "polygon" && Array.isArray(el.points)) {
+    return el.points.map((p) => [Number(p[0] ?? 0), Number(p[1] ?? 0)]);
+  }
+  if (el.type === "text" || el.type === "formula") {
+    return [[Number(el.x ?? 0), Number(el.y ?? 0)]];
+  }
+  const x = Number(el.x ?? 0);
+  const y = Number(el.y ?? 0);
+  const w = Number(el.width ?? 0);
+  const h = Number(el.height ?? 0);
+  return [
+    [x, y],
+    [x + w, y + h],
+  ];
+}
+
+function _selectionBoundsFromElements(allElements, selectedIds) {
+  if (!Array.isArray(selectedIds) || selectedIds.length === 0) return null;
+
+  let minX = Infinity;
+  let minY = Infinity;
+  let maxX = -Infinity;
+  let maxY = -Infinity;
+  let hasPoint = false;
+
+  for (const id of selectedIds) {
+    const el = allElements.find((item) => item.id === id);
+    if (!el) continue;
+    for (const [x, y] of _elementPointsForBounds(el)) {
+      hasPoint = true;
+      minX = Math.min(minX, x);
+      minY = Math.min(minY, y);
+      maxX = Math.max(maxX, x);
+      maxY = Math.max(maxY, y);
+    }
+  }
+
+  if (!hasPoint) return null;
+  if (Math.abs(maxX - minX) < 1) {
+    minX -= 12;
+    maxX += 12;
+  }
+  if (Math.abs(maxY - minY) < 1) {
+    minY -= 12;
+    maxY += 12;
+  }
+  return { minX, minY, maxX, maxY };
+}
+
+function _layoutNodePoints(node) {
+  if (!node || typeof node !== "object") return [];
+  const props = node.properties || {};
+  const shapeType = String(props.shape_type ?? "");
+
+  if (shapeType === "line") {
+    return [
+      [Number(props.x1 ?? node.x ?? 0), Number(props.y1 ?? node.y ?? 0)],
+      [Number(props.x2 ?? node.x ?? 0), Number(props.y2 ?? node.y ?? 0)],
+    ];
+  }
+  if (shapeType === "polygon" && Array.isArray(props.points)) {
+    return props.points.map((p) => [Number(p[0] ?? 0), Number(p[1] ?? 0)]);
+  }
+  if (shapeType === "circle") {
+    const cx = Number(node.x ?? 0);
+    const cy = Number(node.y ?? 0);
+    const r = Number(props.r ?? 35);
+    return [
+      [cx - r, cy - r],
+      [cx + r, cy + r],
+    ];
+  }
+  if (shapeType === "rect") {
+    const x = Number(node.x ?? 0);
+    const y = Number(node.y ?? 0);
+    const w = Number(node.width ?? 120);
+    const h = Number(node.height ?? 80);
+    return [
+      [x, y],
+      [x + w, y + h],
+    ];
+  }
+  if (String(node.type ?? "") === "text") {
+    return [[Number(node.x ?? 0), Number(node.y ?? 0)]];
+  }
+
+  const x = Number(node.x ?? 0);
+  const y = Number(node.y ?? 0);
+  const w = Number(node.width ?? 0);
+  const h = Number(node.height ?? 0);
+  return [
+    [x, y],
+    [x + w, y + h],
+  ];
+}
+
+function _selectionBoundsFromLayout(selectedIds) {
+  if (!Array.isArray(selectedIds) || selectedIds.length === 0) return null;
+  const layoutNodes = Array.isArray(state.layout?.nodes) ? state.layout.nodes : [];
+
+  let minX = Infinity;
+  let minY = Infinity;
+  let maxX = -Infinity;
+  let maxY = -Infinity;
+  let hasPoint = false;
+
+  for (const id of selectedIds) {
+    const node = layoutNodes.find((n) => n.id === id);
+    if (!node) continue;
+    for (const [x, y] of _layoutNodePoints(node)) {
+      hasPoint = true;
+      minX = Math.min(minX, x);
+      minY = Math.min(minY, y);
+      maxX = Math.max(maxX, x);
+      maxY = Math.max(maxY, y);
+    }
+  }
+
+  if (!hasPoint) return null;
+  if (Math.abs(maxX - minX) < 1) {
+    minX -= 12;
+    maxX += 12;
+  }
+  if (Math.abs(maxY - minY) < 1) {
+    minY -= 12;
+    maxY += 12;
+  }
+  return { minX, minY, maxX, maxY };
+}
+
+function _scalePoint(px, py, anchorX, anchorY, factor) {
+  return [
+    anchorX + (px - anchorX) * factor,
+    anchorY + (py - anchorY) * factor,
+  ];
+}
+
+function _applyResizeFromSnapshot(target, snapshot, factor, anchorX, anchorY) {
+  if (!target || !snapshot) return;
+
+  if (snapshot.type === "line") {
+    const [sx1, sy1] = _scalePoint(Number(snapshot.x1 ?? 0), Number(snapshot.y1 ?? 0), anchorX, anchorY, factor);
+    const [sx2, sy2] = _scalePoint(Number(snapshot.x2 ?? 0), Number(snapshot.y2 ?? 0), anchorX, anchorY, factor);
+    target.x1 = sx1;
+    target.y1 = sy1;
+    target.x2 = sx2;
+    target.y2 = sy2;
+    return;
+  }
+
+  if (snapshot.type === "polygon" && Array.isArray(snapshot.points)) {
+    target.points = snapshot.points.map((p) => _scalePoint(Number(p[0] ?? 0), Number(p[1] ?? 0), anchorX, anchorY, factor));
+    return;
+  }
+
+  if (snapshot.type === "circle") {
+    const [sx, sy] = _scalePoint(Number(snapshot.x ?? 0), Number(snapshot.y ?? 0), anchorX, anchorY, factor);
+    target.x = sx;
+    target.y = sy;
+    target.r = Math.max(1, Number(snapshot.r ?? 35) * factor);
+    return;
+  }
+
+  if (snapshot.type === "rect") {
+    const x = Number(snapshot.x ?? 0);
+    const y = Number(snapshot.y ?? 0);
+    const w = Number(snapshot.width ?? 120);
+    const h = Number(snapshot.height ?? 80);
+    const [p1x, p1y] = _scalePoint(x, y, anchorX, anchorY, factor);
+    const [p2x, p2y] = _scalePoint(x + w, y + h, anchorX, anchorY, factor);
+    target.x = Math.min(p1x, p2x);
+    target.y = Math.min(p1y, p2y);
+    target.width = Math.max(1, Math.abs(p2x - p1x));
+    target.height = Math.max(1, Math.abs(p2y - p1y));
+    return;
+  }
+
+  const [sx, sy] = _scalePoint(Number(snapshot.x ?? 0), Number(snapshot.y ?? 0), anchorX, anchorY, factor);
+  target.x = sx;
+  target.y = sy;
+  if (snapshot.font_size !== undefined) {
+    target.font_size = Math.max(1, Number(snapshot.font_size) * factor);
+  }
+  if (snapshot.width !== undefined && snapshot.height !== undefined) {
+    target.width = Math.max(1, Number(snapshot.width) * factor);
+    target.height = Math.max(1, Number(snapshot.height) * factor);
+  }
+}
+
 function wireCanvasHandlers() {
   const svg = byId("editor-svg");
   if (!svg) return;
@@ -452,6 +671,7 @@ function wireCanvasHandlers() {
       if (!state.selectedIds.includes(elementId)) {
         state.selectedIds = [elementId];
       }
+      state.lockListSelectionHighlight = false;
       
       const p = eventToSvgPoint(svg, event);
       pushHistory();
@@ -464,8 +684,11 @@ function wireCanvasHandlers() {
   svg.addEventListener("mousedown", (event) => {
     // 배경(canvas-background) 또는 SVG 본체를 클릭했을 때만 다중 선택 시작
     if (event.target === svg || event.target.id === "canvas-background") {
+      event.preventDefault();
       const p = eventToSvgPoint(svg, event);
       state.selectedIds = []; // 선택 해제
+      state.lockListSelectionHighlight = true;
+      elementList.style.pointerEvents = "none";
       state.drag = { type: "selection", startX: p.x, startY: p.y, currentX: p.x, currentY: p.y };
       renderAll();
     }
@@ -478,6 +701,7 @@ function wireCanvasHandlers() {
       event.stopPropagation();
       const elementId = node.getAttribute("data-rotate-handle");
       state.selectedIds = [elementId];
+      state.lockListSelectionHighlight = false;
       const p = eventToSvgPoint(svg, event);
       
       const el = selectedElement();
@@ -489,6 +713,57 @@ function wireCanvasHandlers() {
       const startAngle = Math.atan2(p.y - cy, p.x - cx);
       pushHistory();
       state.drag = { type: "rotate", cx, cy, startAngle, originId: elementId };
+      renderAll();
+    });
+  });
+
+  // 크기 조절 핸들 이벤트 바인딩
+  svg.querySelectorAll("[data-resize-handle]").forEach((node) => {
+    node.addEventListener("mousedown", (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+
+      if (state.selectedIds.length === 0) return;
+      const allElements = getElements(state.semantic);
+      const bounds = _selectionBoundsFromLayout(state.selectedIds) ?? _selectionBoundsFromElements(allElements, state.selectedIds);
+      if (!bounds) return;
+
+      const handle = node.getAttribute("data-resize-handle");
+      const anchorByHandle = {
+        nw: [bounds.maxX, bounds.maxY],
+        ne: [bounds.minX, bounds.maxY],
+        sw: [bounds.maxX, bounds.minY],
+        se: [bounds.minX, bounds.minY],
+      };
+      const anchor = anchorByHandle[handle];
+      if (!anchor) return;
+
+      const p = eventToSvgPoint(svg, event);
+      const startHandleByKey = {
+        nw: [bounds.minX, bounds.minY],
+        ne: [bounds.maxX, bounds.minY],
+        sw: [bounds.minX, bounds.maxY],
+        se: [bounds.maxX, bounds.maxY],
+      };
+      const startHandlePoint = startHandleByKey[handle] ?? [p.x, p.y];
+      const snapshots = {};
+      state.selectedIds.forEach((id) => {
+        const el = allElements.find((item) => item.id === id);
+        if (el) snapshots[id] = JSON.parse(JSON.stringify(el));
+      });
+
+      pushHistory();
+      state.lockListSelectionHighlight = false;
+      state.drag = {
+        type: "resize",
+        handle,
+        anchorX: anchor[0],
+        anchorY: anchor[1],
+        startHandleX: startHandlePoint[0],
+        startHandleY: startHandlePoint[1],
+        originIds: [...state.selectedIds],
+        snapshots,
+      };
       renderAll();
     });
   });
@@ -521,6 +796,38 @@ function wireCanvasHandlers() {
       state.drag.currentX = p.x;
       state.drag.currentY = p.y;
       _updateMarqueeSelection();
+    } else if (state.drag.type === "resize") {
+      const startVx = state.drag.startHandleX - state.drag.anchorX;
+      const startVy = state.drag.startHandleY - state.drag.anchorY;
+      const currentVx = p.x - state.drag.anchorX;
+      const currentVy = p.y - state.drag.anchorY;
+
+      const factorCandidates = [];
+      if (Math.abs(startVx) > 1e-6) {
+        const fx = currentVx / startVx;
+        if (Number.isFinite(fx) && fx > 0) factorCandidates.push(fx);
+      }
+      if (Math.abs(startVy) > 1e-6) {
+        const fy = currentVy / startVy;
+        if (Number.isFinite(fy) && fy > 0) factorCandidates.push(fy);
+      }
+
+      let factor = 0.05;
+      if (factorCandidates.length >= 2) {
+        factor = Math.sqrt(factorCandidates[0] * factorCandidates[1]);
+      } else if (factorCandidates.length === 1) {
+        factor = factorCandidates[0];
+      }
+      factor = Math.max(0.05, Math.min(20, factor));
+
+      const allElements = getElements(state.semantic);
+      state.drag.originIds.forEach((id) => {
+        const el = allElements.find((item) => item.id === id);
+        const snapshot = state.drag.snapshots?.[id];
+        if (el && snapshot) {
+          _applyResizeFromSnapshot(el, snapshot, factor, state.drag.anchorX, state.drag.anchorY);
+        }
+      });
     }
     renderAll();
   });
@@ -531,6 +838,7 @@ function wireCanvasHandlers() {
 
   if (!state.mouseupBound) {
     window.addEventListener("mouseup", () => {
+      const finishedDragType = state.drag?.type ?? null;
       if (state.drag) {
         // 드래그 시작 시점의 상태가 아닌, 변형 후 상태를 저장하기 위해 이전에 pushHistory를 호출하지 않았다면
         // 드래그 종료 시점에 현재 상태를 히스토리에 기록할 수 있도록 설계합니다.
@@ -538,15 +846,43 @@ function wireCanvasHandlers() {
         syncJsonFromState();
       }
       state.drag = null;
+      if (finishedDragType === "selection") {
+        state.suppressListClickUntil = Date.now() + 900;
+        setTimeout(() => {
+          elementList.style.pointerEvents = "";
+        }, 950);
+      } else {
+        elementList.style.pointerEvents = "";
+      }
     });
     state.mouseupBound = true;
   }
 }
 
-elementList.addEventListener("click", (event) => {
+function shouldBlockElementListEvent(event) {
+  return Date.now() < state.suppressListClickUntil && Boolean(event.target.closest("#element-list"));
+}
+
+["mousedown", "mouseup", "click"].forEach((eventName) => {
+  document.addEventListener(eventName, (event) => {
+    if (!shouldBlockElementListEvent(event)) return;
+    event.preventDefault();
+    event.stopImmediatePropagation();
+    event.stopPropagation();
+  }, true);
+});
+
+elementList.addEventListener("mousedown", (event) => {
+  if (Date.now() < state.suppressListClickUntil) {
+    event.preventDefault();
+    event.stopPropagation();
+    return;
+  }
   const li = event.target.closest("[data-element-id]");
   if (!li) return;
-  state.selectedId = li.getAttribute("data-element-id");
+  event.preventDefault();
+  state.lockListSelectionHighlight = false;
+  state.selectedIds = [li.getAttribute("data-element-id")];
   renderAll();
 });
 
@@ -556,7 +892,8 @@ form.addEventListener("submit", (event) => {
   if (!el) return;
   pushHistory(); // 속성 변경 전 저장
   applyPropertiesForm(form, el);
-  state.selectedId = el.id;
+  state.lockListSelectionHighlight = false;
+  state.selectedIds = [el.id];
   syncJsonFromState();
 });
 
@@ -567,16 +904,19 @@ document.querySelectorAll("[data-add-type]").forEach((button) => {
     pushHistory(); // 요소 추가 전 저장
     const created = newElement(type, elements);
     elements.push(created);
-    state.selectedId = created.id;
+    state.lockListSelectionHighlight = false;
+    state.selectedIds = [created.id];
     syncJsonFromState();
   });
 });
 
 byId("delete-element-btn").addEventListener("click", () => {
-  if (!state.selectedId) return;
+  if (state.selectedIds.length === 0) return;
   pushHistory(); // 삭제 전 저장
-  state.semantic.render.elements = getElements(state.semantic).filter((el) => el.id !== state.selectedId);
-  state.selectedId = null;
+  const selectedSet = new Set(state.selectedIds);
+  state.semantic.render.elements = getElements(state.semantic).filter((el) => !selectedSet.has(el.id));
+  state.lockListSelectionHighlight = false;
+  state.selectedIds = [];
   syncJsonFromState();
 });
 

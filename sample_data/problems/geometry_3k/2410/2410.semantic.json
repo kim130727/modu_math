@@ -1,9 +1,6 @@
 {
-  "schema_version": "modu_math.semantic.v3",
-  "render_contract_version": "modu_math.render.v1",
   "problem_id": "2410",
   "problem_type": "Length::Triangle",
-  "title": "Find CD if AC = x-3, BE = 20, AB = 16, and CD = x+5.",
   "metadata": {
     "source": {
       "input_type": "python_dsl",
@@ -67,138 +64,6 @@
       }
     }
   },
-  "render": {
-    "elements": [
-      {
-        "id": "geom_diagram_region",
-        "semantic_role": "geometry_diagram_region",
-        "type": "rect"
-      },
-      {
-        "id": "geom_line_1",
-        "semantic_role": "geometry_edge",
-        "type": "line"
-      },
-      {
-        "id": "geom_line_2",
-        "semantic_role": "geometry_edge",
-        "type": "line"
-      },
-      {
-        "id": "geom_line_3",
-        "semantic_role": "geometry_edge",
-        "type": "line"
-      },
-      {
-        "id": "geom_line_4",
-        "semantic_role": "geometry_edge",
-        "type": "line"
-      },
-      {
-        "id": "geom_point_E",
-        "semantic_role": "geometry_point",
-        "type": "circle"
-      },
-      {
-        "id": "geom_label_E",
-        "semantic_role": "geometry_point_label",
-        "type": "text",
-        "text": "E"
-      },
-      {
-        "id": "geom_point_A",
-        "semantic_role": "geometry_point",
-        "type": "circle"
-      },
-      {
-        "id": "geom_label_A",
-        "semantic_role": "geometry_point_label",
-        "type": "text",
-        "text": "A"
-      },
-      {
-        "id": "geom_point_D",
-        "semantic_role": "geometry_point",
-        "type": "circle"
-      },
-      {
-        "id": "geom_label_D",
-        "semantic_role": "geometry_point_label",
-        "type": "text",
-        "text": "D"
-      },
-      {
-        "id": "geom_point_C",
-        "semantic_role": "geometry_point",
-        "type": "circle"
-      },
-      {
-        "id": "geom_label_C",
-        "semantic_role": "geometry_point_label",
-        "type": "text",
-        "text": "C"
-      },
-      {
-        "id": "geom_point_B",
-        "semantic_role": "geometry_point",
-        "type": "circle"
-      },
-      {
-        "id": "geom_label_B",
-        "semantic_role": "geometry_point_label",
-        "type": "text",
-        "text": "B"
-      },
-      {
-        "id": "geom_parallel_1_ab_base",
-        "semantic_role": "geometry_parallel_marker",
-        "type": "line"
-      },
-      {
-        "id": "geom_parallel_1_ab_w1",
-        "semantic_role": "geometry_parallel_marker",
-        "type": "line"
-      },
-      {
-        "id": "geom_parallel_1_ab_w2",
-        "semantic_role": "geometry_parallel_marker",
-        "type": "line"
-      },
-      {
-        "id": "geom_parallel_1_cd_base",
-        "semantic_role": "geometry_parallel_marker",
-        "type": "line"
-      },
-      {
-        "id": "geom_parallel_1_cd_w1",
-        "semantic_role": "geometry_parallel_marker",
-        "type": "line"
-      },
-      {
-        "id": "geom_parallel_1_cd_w2",
-        "semantic_role": "geometry_parallel_marker",
-        "type": "line"
-      },
-      {
-        "id": "text.problem",
-        "semantic_role": "problem_text",
-        "type": "text",
-        "text": "Find CD if AC = x-3, BE = 20, AB = 16, and CD = x+5."
-      },
-      {
-        "id": "text.choices_ln1",
-        "semantic_role": "multiple_choice",
-        "type": "text",
-        "text": "1. 32 / 2. 35 / 3. 36"
-      },
-      {
-        "id": "text.choices_ln2",
-        "semantic_role": "multiple_choice",
-        "type": "text",
-        "text": "/ 4. 40"
-      }
-    ]
-  },
   "answer": {
     "blanks": [],
     "choices": [
@@ -212,6 +77,117 @@
         "label": "no.4",
         "index": 3,
         "value": "40"
+      }
+    ]
+  },
+  "schema_version": "modu_math.semantic.v3",
+  "render_contract_version": "modu_math.render.v1",
+  "title": "Find CD if AC = x-3, BE = 20, AB = 16, and CD = x+5.",
+  "render": {
+    "elements": [
+      {
+        "id": "geom_diagram_region",
+        "type": "rect"
+      },
+      {
+        "id": "geom_line_1",
+        "type": "line"
+      },
+      {
+        "id": "geom_line_2",
+        "type": "line"
+      },
+      {
+        "id": "geom_line_3",
+        "type": "line"
+      },
+      {
+        "id": "geom_line_4",
+        "type": "line"
+      },
+      {
+        "id": "geom_point_E",
+        "type": "circle"
+      },
+      {
+        "id": "geom_label_E",
+        "type": "text",
+        "text": "E"
+      },
+      {
+        "id": "geom_point_A",
+        "type": "circle"
+      },
+      {
+        "id": "geom_label_A",
+        "type": "text",
+        "text": "A"
+      },
+      {
+        "id": "geom_point_D",
+        "type": "circle"
+      },
+      {
+        "id": "geom_label_D",
+        "type": "text",
+        "text": "D"
+      },
+      {
+        "id": "geom_point_C",
+        "type": "circle"
+      },
+      {
+        "id": "geom_label_C",
+        "type": "text",
+        "text": "C"
+      },
+      {
+        "id": "geom_point_B",
+        "type": "circle"
+      },
+      {
+        "id": "geom_label_B",
+        "type": "text",
+        "text": "B"
+      },
+      {
+        "id": "geom_parallel_1_ab_base",
+        "type": "line"
+      },
+      {
+        "id": "geom_parallel_1_ab_w1",
+        "type": "line"
+      },
+      {
+        "id": "geom_parallel_1_ab_w2",
+        "type": "line"
+      },
+      {
+        "id": "geom_parallel_1_cd_base",
+        "type": "line"
+      },
+      {
+        "id": "geom_parallel_1_cd_w1",
+        "type": "line"
+      },
+      {
+        "id": "geom_parallel_1_cd_w2",
+        "type": "line"
+      },
+      {
+        "id": "text.problem",
+        "type": "text",
+        "text": "Find CD if AC = x-3, BE = 20, AB = 16, and CD = x+5."
+      },
+      {
+        "id": "text.choices_ln1",
+        "type": "text",
+        "text": "1. 32 / 2. 35 / 3. 36"
+      },
+      {
+        "id": "text.choices_ln2",
+        "type": "text",
+        "text": "/ 4. 40"
       }
     ]
   }

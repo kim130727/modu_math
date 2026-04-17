@@ -1,9 +1,6 @@
 {
-  "schema_version": "modu_math.semantic.v3",
-  "render_contract_version": "modu_math.render.v1",
   "problem_id": "2407",
   "problem_type": "Angle::Other",
-  "title": "Find the value of x.",
   "metadata": {
     "source": {
       "input_type": "python_dsl",
@@ -12,238 +9,6 @@
     "warnings": []
   },
   "domain": {},
-  "render": {
-    "elements": [
-      {
-        "id": "geom_diagram_region",
-        "semantic_role": "geometry_diagram_region",
-        "type": "rect"
-      },
-      {
-        "id": "geom_line_1_AC",
-        "semantic_role": "geometry_edge",
-        "type": "line"
-      },
-      {
-        "id": "geom_line_1_AC_end_ah_l",
-        "semantic_role": "geometry_arrow_head",
-        "type": "line"
-      },
-      {
-        "id": "geom_line_1_AC_end_ah_r",
-        "semantic_role": "geometry_arrow_head",
-        "type": "line"
-      },
-      {
-        "id": "geom_line_2_HE",
-        "semantic_role": "geometry_edge",
-        "type": "line"
-      },
-      {
-        "id": "geom_line_2_HE_end_ah_l",
-        "semantic_role": "geometry_arrow_head",
-        "type": "line"
-      },
-      {
-        "id": "geom_line_2_HE_end_ah_r",
-        "semantic_role": "geometry_arrow_head",
-        "type": "line"
-      },
-      {
-        "id": "geom_line_3_BI",
-        "semantic_role": "geometry_edge",
-        "type": "line"
-      },
-      {
-        "id": "geom_line_3_BI_end_ah_l",
-        "semantic_role": "geometry_arrow_head",
-        "type": "line"
-      },
-      {
-        "id": "geom_line_3_BI_end_ah_r",
-        "semantic_role": "geometry_arrow_head",
-        "type": "line"
-      },
-      {
-        "id": "geom_line_4_DF",
-        "semantic_role": "geometry_edge",
-        "type": "line"
-      },
-      {
-        "id": "geom_line_4_DF_end_ah_l",
-        "semantic_role": "geometry_arrow_head",
-        "type": "line"
-      },
-      {
-        "id": "geom_line_4_DF_end_ah_r",
-        "semantic_role": "geometry_arrow_head",
-        "type": "line"
-      },
-      {
-        "id": "geom_line_5_GJ",
-        "semantic_role": "geometry_edge",
-        "type": "line"
-      },
-      {
-        "id": "geom_line_5_GJ_end_ah_l",
-        "semantic_role": "geometry_arrow_head",
-        "type": "line"
-      },
-      {
-        "id": "geom_line_5_GJ_end_ah_r",
-        "semantic_role": "geometry_arrow_head",
-        "type": "line"
-      },
-      {
-        "id": "geom_line_6_AH",
-        "semantic_role": "geometry_edge",
-        "type": "line"
-      },
-      {
-        "id": "geom_line_7_BD",
-        "semantic_role": "geometry_edge",
-        "type": "line"
-      },
-      {
-        "id": "geom_line_8_BF",
-        "semantic_role": "geometry_edge",
-        "type": "line"
-      },
-      {
-        "id": "geom_line_9_CB",
-        "semantic_role": "geometry_edge",
-        "type": "line"
-      },
-      {
-        "id": "geom_line_10_CH",
-        "semantic_role": "geometry_edge",
-        "type": "line"
-      },
-      {
-        "id": "geom_line_11_CI",
-        "semantic_role": "geometry_edge",
-        "type": "line"
-      },
-      {
-        "id": "geom_line_12_DG",
-        "semantic_role": "geometry_edge",
-        "type": "line"
-      },
-      {
-        "id": "geom_line_13_DJ",
-        "semantic_role": "geometry_edge",
-        "type": "line"
-      },
-      {
-        "id": "geom_line_14_GE",
-        "semantic_role": "geometry_edge",
-        "type": "line"
-      },
-      {
-        "id": "geom_line_15_HG",
-        "semantic_role": "geometry_edge",
-        "type": "line"
-      },
-      {
-        "id": "geom_point_A",
-        "semantic_role": "geometry_point",
-        "type": "circle"
-      },
-      {
-        "id": "geom_point_B",
-        "semantic_role": "geometry_point",
-        "type": "circle"
-      },
-      {
-        "id": "geom_point_C",
-        "semantic_role": "geometry_point",
-        "type": "circle"
-      },
-      {
-        "id": "geom_point_D",
-        "semantic_role": "geometry_point",
-        "type": "circle"
-      },
-      {
-        "id": "geom_point_E",
-        "semantic_role": "geometry_point",
-        "type": "circle"
-      },
-      {
-        "id": "geom_point_F",
-        "semantic_role": "geometry_point",
-        "type": "circle"
-      },
-      {
-        "id": "geom_point_G",
-        "semantic_role": "geometry_point",
-        "type": "circle"
-      },
-      {
-        "id": "geom_point_H",
-        "semantic_role": "geometry_point",
-        "type": "circle"
-      },
-      {
-        "id": "geom_point_I",
-        "semantic_role": "geometry_point",
-        "type": "circle"
-      },
-      {
-        "id": "geom_point_J",
-        "semantic_role": "geometry_point",
-        "type": "circle"
-      },
-      {
-        "id": "geom_angle_x",
-        "semantic_role": "geometry_angle_label",
-        "type": "text",
-        "text": "X°"
-      },
-      {
-        "id": "geom_angle_xm6",
-        "semantic_role": "geometry_angle_label",
-        "type": "text",
-        "text": "(X-6)°"
-      },
-      {
-        "id": "geom_angle_xp10",
-        "semantic_role": "geometry_angle_label",
-        "type": "text",
-        "text": "(X+10)°"
-      },
-      {
-        "id": "geom_angle_56",
-        "semantic_role": "geometry_angle_label",
-        "type": "text",
-        "text": "56°"
-      },
-      {
-        "id": "geom_angle_xp4",
-        "semantic_role": "geometry_angle_label",
-        "type": "text",
-        "text": "(X+4)°"
-      },
-      {
-        "id": "text.problem",
-        "semantic_role": "problem_text",
-        "type": "text",
-        "text": "Find the value of x."
-      },
-      {
-        "id": "text.choices_ln1",
-        "semantic_role": "multiple_choice",
-        "type": "text",
-        "text": "1. 56 / 2. 68 / 3. 74 /"
-      },
-      {
-        "id": "text.choices_ln2",
-        "semantic_role": "multiple_choice",
-        "type": "text",
-        "text": "4. 84"
-      }
-    ]
-  },
   "answer": {
     "blanks": [],
     "choices": [
@@ -257,6 +22,197 @@
         "label": "no.3",
         "index": 2,
         "value": "74"
+      }
+    ]
+  },
+  "schema_version": "modu_math.semantic.v3",
+  "render_contract_version": "modu_math.render.v1",
+  "title": "Find the value of x.",
+  "render": {
+    "elements": [
+      {
+        "id": "geom_diagram_region",
+        "type": "rect"
+      },
+      {
+        "id": "geom_line_1_AC",
+        "type": "line"
+      },
+      {
+        "id": "geom_line_1_AC_end_ah_l",
+        "type": "line"
+      },
+      {
+        "id": "geom_line_1_AC_end_ah_r",
+        "type": "line"
+      },
+      {
+        "id": "geom_line_2_HE",
+        "type": "line"
+      },
+      {
+        "id": "geom_line_2_HE_end_ah_l",
+        "type": "line"
+      },
+      {
+        "id": "geom_line_2_HE_end_ah_r",
+        "type": "line"
+      },
+      {
+        "id": "geom_line_3_BI",
+        "type": "line"
+      },
+      {
+        "id": "geom_line_3_BI_end_ah_l",
+        "type": "line"
+      },
+      {
+        "id": "geom_line_3_BI_end_ah_r",
+        "type": "line"
+      },
+      {
+        "id": "geom_line_4_DF",
+        "type": "line"
+      },
+      {
+        "id": "geom_line_4_DF_end_ah_l",
+        "type": "line"
+      },
+      {
+        "id": "geom_line_4_DF_end_ah_r",
+        "type": "line"
+      },
+      {
+        "id": "geom_line_5_GJ",
+        "type": "line"
+      },
+      {
+        "id": "geom_line_5_GJ_end_ah_l",
+        "type": "line"
+      },
+      {
+        "id": "geom_line_5_GJ_end_ah_r",
+        "type": "line"
+      },
+      {
+        "id": "geom_line_6_AH",
+        "type": "line"
+      },
+      {
+        "id": "geom_line_7_BD",
+        "type": "line"
+      },
+      {
+        "id": "geom_line_8_BF",
+        "type": "line"
+      },
+      {
+        "id": "geom_line_9_CB",
+        "type": "line"
+      },
+      {
+        "id": "geom_line_10_CH",
+        "type": "line"
+      },
+      {
+        "id": "geom_line_11_CI",
+        "type": "line"
+      },
+      {
+        "id": "geom_line_12_DG",
+        "type": "line"
+      },
+      {
+        "id": "geom_line_13_DJ",
+        "type": "line"
+      },
+      {
+        "id": "geom_line_14_GE",
+        "type": "line"
+      },
+      {
+        "id": "geom_line_15_HG",
+        "type": "line"
+      },
+      {
+        "id": "geom_point_A",
+        "type": "circle"
+      },
+      {
+        "id": "geom_point_B",
+        "type": "circle"
+      },
+      {
+        "id": "geom_point_C",
+        "type": "circle"
+      },
+      {
+        "id": "geom_point_D",
+        "type": "circle"
+      },
+      {
+        "id": "geom_point_E",
+        "type": "circle"
+      },
+      {
+        "id": "geom_point_F",
+        "type": "circle"
+      },
+      {
+        "id": "geom_point_G",
+        "type": "circle"
+      },
+      {
+        "id": "geom_point_H",
+        "type": "circle"
+      },
+      {
+        "id": "geom_point_I",
+        "type": "circle"
+      },
+      {
+        "id": "geom_point_J",
+        "type": "circle"
+      },
+      {
+        "id": "geom_angle_x",
+        "type": "text",
+        "text": "X°"
+      },
+      {
+        "id": "geom_angle_xm6",
+        "type": "text",
+        "text": "(X-6)°"
+      },
+      {
+        "id": "geom_angle_xp10",
+        "type": "text",
+        "text": "(X+10)°"
+      },
+      {
+        "id": "geom_angle_56",
+        "type": "text",
+        "text": "56°"
+      },
+      {
+        "id": "geom_angle_xp4",
+        "type": "text",
+        "text": "(X+4)°"
+      },
+      {
+        "id": "text.problem",
+        "type": "text",
+        "text": "Find the value of x."
+      },
+      {
+        "id": "text.choices_ln1",
+        "type": "text",
+        "text": "1. 56 / 2. 68 / 3. 74 /"
+      },
+      {
+        "id": "text.choices_ln2",
+        "type": "text",
+        "text": "4. 84"
       }
     ]
   }

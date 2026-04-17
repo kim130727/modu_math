@@ -46,7 +46,7 @@ function drawElement(el, selectedIds = []) {
   return "";
 }
 
-export function renderCanvas(host, semantic, selectedIds = [], drag = null) {
+export function renderCanvas(host, semantic, selectedIds = [], drag = null, selectionBounds = null) {
   const render = semantic.render ?? {};
   const canvas = render.canvas ?? {};
   const width = num(canvas.width, 1200);
@@ -58,6 +58,7 @@ export function renderCanvas(host, semantic, selectedIds = [], drag = null) {
     `<svg id="editor-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${width} ${height}">`,
     `<rect id="canvas-background" x="0" y="0" width="${width}" height="${height}" fill="${esc(bg)}" />`,
     ...elements.map((el) => drawElement(el, selectedIds)),
+    _drawResizeHandles(elements, selectedIds, selectionBounds),
     _drawRotateHandle(elements, selectedIds),
     _drawMarquee(drag),
     "</svg>",
@@ -92,6 +93,105 @@ function _drawRotateHandle(elements, selectedIds) {
     <g class="rotate-handle-group">
       <line x1="${cx}" y1="${cy}" x2="${cx}" y2="${handleY}" stroke="#0f766e" stroke-width="1" stroke-dasharray="4" />
       <circle data-rotate-handle="${el.id}" cx="${cx}" cy="${handleY}" r="8" fill="#0f766e" stroke="#fff" stroke-width="2" style="cursor: alias;" />
+    </g>
+  `;
+}
+
+function _elementPoints(el) {
+  if (!el || typeof el !== "object") return [];
+  if (el.type === "line") {
+    return [
+      [num(el.x1), num(el.y1)],
+      [num(el.x2), num(el.y2)],
+    ];
+  }
+  if (el.type === "rect") {
+    const x = num(el.x);
+    const y = num(el.y);
+    const w = num(el.width, 120);
+    const h = num(el.height, 80);
+    return [
+      [x, y],
+      [x + w, y + h],
+    ];
+  }
+  if (el.type === "circle") {
+    const cx = num(el.x);
+    const cy = num(el.y);
+    const r = num(el.r, 35);
+    return [
+      [cx - r, cy - r],
+      [cx + r, cy + r],
+    ];
+  }
+  if (el.type === "polygon") {
+    return Array.isArray(el.points) ? el.points.map((p) => [num(p[0]), num(p[1])]) : [];
+  }
+  if (el.type === "text" || el.type === "formula") {
+    return [[num(el.x), num(el.y)]];
+  }
+  const x = num(el.x);
+  const y = num(el.y);
+  const w = num(el.width, 0);
+  const h = num(el.height, 0);
+  return [
+    [x, y],
+    [x + w, y + h],
+  ];
+}
+
+function _selectionBounds(elements, selectedIds) {
+  if (!Array.isArray(selectedIds) || selectedIds.length === 0) return null;
+  let minX = Infinity;
+  let minY = Infinity;
+  let maxX = -Infinity;
+  let maxY = -Infinity;
+  let hasPoint = false;
+
+  for (const id of selectedIds) {
+    const el = elements.find((item) => item.id === id);
+    if (!el) continue;
+    for (const [x, y] of _elementPoints(el)) {
+      hasPoint = true;
+      minX = Math.min(minX, x);
+      minY = Math.min(minY, y);
+      maxX = Math.max(maxX, x);
+      maxY = Math.max(maxY, y);
+    }
+  }
+
+  if (!hasPoint) return null;
+  if (Math.abs(maxX - minX) < 1) {
+    minX -= 12;
+    maxX += 12;
+  }
+  if (Math.abs(maxY - minY) < 1) {
+    minY -= 12;
+    maxY += 12;
+  }
+  return { minX, minY, maxX, maxY };
+}
+
+function _drawResizeHandles(elements, selectedIds, selectionBounds = null) {
+  if (!Array.isArray(selectedIds) || selectedIds.length === 0) return "";
+  const bounds = selectionBounds ?? _selectionBounds(elements, selectedIds);
+  if (!bounds) return "";
+
+  const { minX, minY, maxX, maxY } = bounds;
+  const w = maxX - minX;
+  const h = maxY - minY;
+  const handleRadius = Math.max(5, Math.min(8, Math.min(w, h) * 0.03));
+  const handles = [
+    { key: "nw", x: minX, y: minY, cursor: "nwse-resize" },
+    { key: "ne", x: maxX, y: minY, cursor: "nesw-resize" },
+    { key: "sw", x: minX, y: maxY, cursor: "nesw-resize" },
+    { key: "se", x: maxX, y: maxY, cursor: "nwse-resize" },
+  ];
+
+  return `
+    <g class="resize-handle-group">
+      <rect x="${minX}" y="${minY}" width="${w}" height="${h}" fill="none" stroke="#0f766e" stroke-width="1.2" stroke-dasharray="6 4" pointer-events="none" />
+      ${handles.map((hnd) => `<circle data-resize-handle="${hnd.key}" cx="${hnd.x}" cy="${hnd.y}" r="${handleRadius}" fill="#0f766e" stroke="#fff" stroke-width="2" style="cursor: ${hnd.cursor};" />`).join("")}
     </g>
   `;
 }

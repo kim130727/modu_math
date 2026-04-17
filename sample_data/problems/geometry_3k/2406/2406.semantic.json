@@ -1,9 +1,6 @@
 {
-  "schema_version": "modu_math.semantic.v3",
-  "render_contract_version": "modu_math.render.v1",
   "problem_id": "2406",
   "problem_type": "Angle::Other",
-  "title": "Find the value of x in the diagram.",
   "metadata": {
     "source": {
       "input_type": "python_dsl",
@@ -12,147 +9,6 @@
     "warnings": []
   },
   "domain": {},
-  "render": {
-    "elements": [
-      {
-        "id": "geom_base_line",
-        "semantic_role": "geometry_edge",
-        "type": "line"
-      },
-      {
-        "id": "geom_base_line_start_ah_l",
-        "semantic_role": "geometry_arrow_head",
-        "type": "line"
-      },
-      {
-        "id": "geom_base_line_start_ah_r",
-        "semantic_role": "geometry_arrow_head",
-        "type": "line"
-      },
-      {
-        "id": "geom_left_up_ray",
-        "semantic_role": "geometry_edge",
-        "type": "line"
-      },
-      {
-        "id": "geom_left_up_ray_end_ah_l",
-        "semantic_role": "geometry_arrow_head",
-        "type": "line"
-      },
-      {
-        "id": "geom_left_up_ray_end_ah_r",
-        "semantic_role": "geometry_arrow_head",
-        "type": "line"
-      },
-      {
-        "id": "geom_left_down_seg",
-        "semantic_role": "geometry_edge",
-        "type": "line"
-      },
-      {
-        "id": "geom_upper_ray",
-        "semantic_role": "geometry_edge",
-        "type": "line"
-      },
-      {
-        "id": "geom_upper_ray_end_ah_l",
-        "semantic_role": "geometry_arrow_head",
-        "type": "line"
-      },
-      {
-        "id": "geom_upper_ray_end_ah_r",
-        "semantic_role": "geometry_arrow_head",
-        "type": "line"
-      },
-      {
-        "id": "geom_diag_ray",
-        "semantic_role": "geometry_edge",
-        "type": "line"
-      },
-      {
-        "id": "geom_diag_ray_end_ah_l",
-        "semantic_role": "geometry_arrow_head",
-        "type": "line"
-      },
-      {
-        "id": "geom_diag_ray_end_ah_r",
-        "semantic_role": "geometry_arrow_head",
-        "type": "line"
-      },
-      {
-        "id": "geom_upper_to_c",
-        "semantic_role": "geometry_edge",
-        "type": "line"
-      },
-      {
-        "id": "geom_point_B",
-        "semantic_role": "geometry_point",
-        "type": "circle"
-      },
-      {
-        "id": "geom_point_C",
-        "semantic_role": "geometry_point",
-        "type": "circle"
-      },
-      {
-        "id": "geom_point_D",
-        "semantic_role": "geometry_point",
-        "type": "circle"
-      },
-      {
-        "id": "geom_point_E",
-        "semantic_role": "geometry_point",
-        "type": "circle"
-      },
-      {
-        "id": "geom_point_I",
-        "semantic_role": "geometry_point",
-        "type": "circle"
-      },
-      {
-        "id": "geom_angle_79",
-        "semantic_role": "geometry_angle_label",
-        "type": "text",
-        "text": "79°"
-      },
-      {
-        "id": "geom_angle_xm1",
-        "semantic_role": "geometry_angle_label",
-        "type": "text",
-        "text": "(x−1)°"
-      },
-      {
-        "id": "geom_angle_xp10",
-        "semantic_role": "geometry_angle_label",
-        "type": "text",
-        "text": "(x+10)°"
-      },
-      {
-        "id": "geom_angle_2x",
-        "semantic_role": "geometry_angle_label",
-        "type": "text",
-        "text": "2x°"
-      },
-      {
-        "id": "text.problem",
-        "semantic_role": "problem_text",
-        "type": "text",
-        "text": "Find the value of x in the diagram."
-      },
-      {
-        "id": "text.choices_ln1",
-        "semantic_role": "multiple_choice",
-        "type": "text",
-        "text": "1. 68 / 2. 78 / 3. 79"
-      },
-      {
-        "id": "text.choices_ln2",
-        "semantic_role": "multiple_choice",
-        "type": "text",
-        "text": "/ 4. 136"
-      }
-    ]
-  },
   "answer": {
     "blanks": [],
     "choices": [
@@ -166,6 +22,124 @@
         "label": "no.1",
         "index": 0,
         "value": "68"
+      }
+    ]
+  },
+  "schema_version": "modu_math.semantic.v3",
+  "render_contract_version": "modu_math.render.v1",
+  "title": "Find the value of x in the diagram.",
+  "render": {
+    "elements": [
+      {
+        "id": "geom_base_line",
+        "type": "line"
+      },
+      {
+        "id": "geom_base_line_start_ah_l",
+        "type": "line"
+      },
+      {
+        "id": "geom_base_line_start_ah_r",
+        "type": "line"
+      },
+      {
+        "id": "geom_left_up_ray",
+        "type": "line"
+      },
+      {
+        "id": "geom_left_up_ray_end_ah_l",
+        "type": "line"
+      },
+      {
+        "id": "geom_left_up_ray_end_ah_r",
+        "type": "line"
+      },
+      {
+        "id": "geom_left_down_seg",
+        "type": "line"
+      },
+      {
+        "id": "geom_upper_ray",
+        "type": "line"
+      },
+      {
+        "id": "geom_upper_ray_end_ah_l",
+        "type": "line"
+      },
+      {
+        "id": "geom_upper_ray_end_ah_r",
+        "type": "line"
+      },
+      {
+        "id": "geom_diag_ray",
+        "type": "line"
+      },
+      {
+        "id": "geom_diag_ray_end_ah_l",
+        "type": "line"
+      },
+      {
+        "id": "geom_diag_ray_end_ah_r",
+        "type": "line"
+      },
+      {
+        "id": "geom_upper_to_c",
+        "type": "line"
+      },
+      {
+        "id": "geom_point_B",
+        "type": "circle"
+      },
+      {
+        "id": "geom_point_C",
+        "type": "circle"
+      },
+      {
+        "id": "geom_point_D",
+        "type": "circle"
+      },
+      {
+        "id": "geom_point_E",
+        "type": "circle"
+      },
+      {
+        "id": "geom_point_I",
+        "type": "circle"
+      },
+      {
+        "id": "geom_angle_79",
+        "type": "text",
+        "text": "79°"
+      },
+      {
+        "id": "geom_angle_xm1",
+        "type": "text",
+        "text": "(x−1)°"
+      },
+      {
+        "id": "geom_angle_xp10",
+        "type": "text",
+        "text": "(x+10)°"
+      },
+      {
+        "id": "geom_angle_2x",
+        "type": "text",
+        "text": "2x°"
+      },
+      {
+        "id": "text.problem",
+        "type": "text",
+        "text": "Find the value of x in the diagram."
+      },
+      {
+        "id": "text.choices_ln1",
+        "type": "text",
+        "text": "1. 68 / 2. 78 / 3. 79"
+      },
+      {
+        "id": "text.choices_ln2",
+        "type": "text",
+        "text": "/ 4. 136"
       }
     ]
   }
