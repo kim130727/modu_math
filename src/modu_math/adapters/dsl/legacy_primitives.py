@@ -9,11 +9,14 @@ class Element:
     id: str
     semantic_role: str | None = None
     metadata: dict[str, Any] = field(default_factory=dict)
+    z_order: int = 0
     
     # Generic style defaults
     fill: str | None = "none"
     stroke: str | None = "#000000"
     stroke_width: float | None = 1.0
+    opacity: float | None = None
+    transform: str | None = None
     font_family: str | None = "sans-serif"
     font_size: float | None = 16.0
     font_weight: str | None = None
@@ -31,6 +34,10 @@ class Element:
             props["stroke"] = self.stroke
         if self.stroke_width is not None:
             props["stroke_width"] = self.stroke_width
+        if self.opacity is not None:
+            props["opacity"] = self.opacity
+        if self.transform is not None:
+            props["transform"] = self.transform
         return props
 
 @dataclass
@@ -55,7 +62,8 @@ class Rect(Element):
             y=self.y,
             width=self.width,
             height=self.height,
-            properties=props
+            properties=props,
+            z_order=self.z_order,
         )
 
 @dataclass
@@ -72,7 +80,8 @@ class Circle(Element):
             shape_type="circle",
             x=self.cx,
             y=self.cy,
-            properties=props
+            properties=props,
+            z_order=self.z_order,
         )
 
 @dataclass
@@ -93,7 +102,8 @@ class Line(Element):
             shape_type="line",
             x=min(self.x1, self.x2),
             y=min(self.y1, self.y2),
-            properties=props
+            properties=props,
+            z_order=self.z_order,
         )
 
 @dataclass
@@ -110,7 +120,8 @@ class Polygon(Element):
             shape_type="polygon",
             x=x,
             y=y,
-            properties=props
+            properties=props,
+            z_order=self.z_order,
         )
 
 @dataclass
@@ -121,6 +132,7 @@ class Text(Element):
     anchor: str | None = "middle"
     fill: str | None = "#000000"
     stroke: str | None = "none"
+    font_style: str | None = None
 
     def to_layout_node(self) -> TextNode:
         props = self._base_props()
@@ -130,6 +142,8 @@ class Text(Element):
             props["font_size"] = self.font_size
         if self.font_weight:
             props["font_weight"] = self.font_weight
+        if self.font_style:
+            props["font_style"] = self.font_style
             
         return TextNode(
             id=self.id,
@@ -137,7 +151,8 @@ class Text(Element):
             x=self.x,
             y=self.y,
             anchor=self.anchor,
-            properties=props
+            properties=props,
+            z_order=self.z_order,
         )
 
 @dataclass
