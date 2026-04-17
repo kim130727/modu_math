@@ -48,6 +48,12 @@
 - `diff`
 - `metrics`
 
+### renderer root keys
+
+- `problem_id`
+- `view_box`
+- `elements`
+
 ## Normalization policy (v3 유지)
 
 - old alias 허용 후 canonical 이름으로 매핑

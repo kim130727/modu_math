@@ -67,6 +67,8 @@ p.save("out/demo")
 생성 결과:
 
 - `out/demo.semantic.json`
+- `out/demo.layout.json`
+- `out/demo.renderer.json`
 - `out/demo.svg`
 
 ## CLI
@@ -86,6 +88,8 @@ modu build-semantic examples/korea_elementary/3rd_addition_subtraction_0001/outp
 생성 결과:
 
 - `out/from_semantic/3rd_addition_subtraction_0001.semantic.json`
+- `out/from_semantic/3rd_addition_subtraction_0001.layout.json`
+- `out/from_semantic/3rd_addition_subtraction_0001.renderer.json`
 - `out/from_semantic/3rd_addition_subtraction_0001.svg`
 - `out/from_semantic/3rd_addition_subtraction_0001.generated.py`
 
@@ -218,7 +222,7 @@ uv run python webapp/manage.py runserver
 
 ## 참고
 
-`Problem.save()`는 semantic JSON을 단일 canonical 산출물로 저장합니다.
+`Problem.save()`는 기본적으로 `semantic -> layout -> renderer -> svg` 산출물을 함께 저장합니다.
 
 ## 빌드 파이프라인 용어
 

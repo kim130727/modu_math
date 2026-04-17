@@ -5,11 +5,11 @@ from pathlib import Path
 from typing import Any
 
 from ..semantic.models.problem import SemanticProblem
-from ..semantic.validate import load_and_validate
 from ..layout.models.canvas import LayoutCanvas
 from ..layout.models.node import LayoutNode
 from ..layout.diff import apply_layout_diff
 from ..editor.models.state import EditorState
+from ..adapters.json.renderer_json import layout_to_renderer
 from ..renderer.svg.render import render_svg
 from ..adapters.json.semantic_json import problem_to_semantic_json
 
@@ -54,13 +54,20 @@ def compile_problem_pipeline(
     with open(layout_path, "w", encoding="utf-8") as f:
         json.dump(layout_json, f, ensure_ascii=False, indent=2)
         
-    # 3. Output SVG
-    svg_content = render_svg(canvas, nodes)
+    # 3. Output renderer JSON
+    renderer_ast = layout_to_renderer(problem.problem_id, canvas, nodes)
+    renderer_json = renderer_ast.to_dict()
+    renderer_path = out_prefix.with_suffix(".renderer.json")
+    with open(renderer_path, "w", encoding="utf-8") as f:
+        json.dump(renderer_json, f, ensure_ascii=False, indent=2)
+
+    # 4. Output SVG (pure renderer -> SVG)
+    svg_content = render_svg(renderer_ast)
     svg_path = out_prefix.with_suffix(".svg")
     with open(svg_path, "w", encoding="utf-8") as f:
         f.write(svg_content)
         
-    # 4. Optional Output Editor State
+    # 5. Optional Output Editor State
     if editor_state:
         editor_path = out_prefix.with_suffix(".editor_state.json")
         with open(editor_path, "w", encoding="utf-8") as f:

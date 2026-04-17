@@ -56,7 +56,21 @@ def test_pipeline_integration():
         assert layout_data["nodes"][1]["type"] == "shape"
         assert layout_data["nodes"][1]["properties"]["shape_type"] == "circle"
 
-        # 5. Verify SVG
+        # 5. Verify Renderer JSON
+        renderer_path = out_prefix.with_suffix(".renderer.json")
+        assert renderer_path.exists(), "renderer.json was not generated"
+        with open(renderer_path, "r", encoding="utf-8") as f:
+            renderer_data = json.load(f)
+
+        assert renderer_data["problem_id"] == "test_0001"
+        assert renderer_data["view_box"]["width"] == 400
+        assert renderer_data["view_box"]["height"] == 300
+        assert len(renderer_data["elements"]) == 3
+        assert renderer_data["elements"][1]["type"] == "circle"
+        assert renderer_data["elements"][2]["type"] == "text"
+        assert renderer_data["elements"][2]["text"] == "5"
+
+        # 6. Verify SVG
         svg_path = out_prefix.with_suffix(".svg")
         assert svg_path.exists(), "svg was not generated"
         svg_text = svg_path.read_text(encoding="utf-8")
@@ -69,4 +83,3 @@ def test_pipeline_integration():
 
 if __name__ == "__main__":
     test_pipeline_integration()
-

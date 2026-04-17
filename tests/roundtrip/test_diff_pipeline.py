@@ -51,8 +51,17 @@ def test_diff_pipeline():
         assert circle_node["x"] == 150.0  # 100 + 50
         assert circle_node["properties"]["fill"] == "red"
         assert text_node["properties"]["text"] == "World"
+
+        # 6. Verify Renderer JSON reflects updated layout
+        renderer_path = out_prefix.with_suffix(".renderer.json")
+        assert renderer_path.exists()
+        with open(renderer_path, "r", encoding="utf-8") as f:
+            renderer_data = json.load(f)
+        assert renderer_data["elements"][0]["attributes"]["cx"] == 150.0
+        assert renderer_data["elements"][0]["attributes"]["fill"] == "red"
+        assert renderer_data["elements"][1]["text"] == "World"
         
-        # 6. Verify Editor State JSON
+        # 7. Verify Editor State JSON
         editor_path = out_prefix.with_suffix(".editor_state.json")
         assert editor_path.exists()
         
@@ -63,7 +72,7 @@ def test_diff_pipeline():
         assert state_data["zoom"] == 1.5
         assert state_data["pan"]["x"] == 10.0
         
-        # 7. Verify Diff JSON
+        # 8. Verify Diff JSON
         diff_path = out_prefix.with_suffix(".layout.diff.json")
         assert diff_path.exists()
         with open(diff_path, "r", encoding="utf-8") as f:

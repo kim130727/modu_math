@@ -2,11 +2,22 @@ from __future__ import annotations
 from typing import Any
 
 from ...layout.models.canvas import LayoutCanvas
+from ...layout.models.group import LayoutGroup
 from ...layout.models.node import LayoutNode, ShapeNode, TextNode
-from ...renderer.models.primitive import RendererAST, RenderViewBox, RenderElement, RenderText
+from ...renderer.models.primitive import (
+    RenderCircle,
+    RenderElement,
+    RenderGroup,
+    RenderLine,
+    RenderPolygon,
+    RenderRect,
+    RendererAST,
+    RenderText,
+    RenderViewBox,
+)
 
 def _extract_render_attributes(node: LayoutNode) -> dict[str, Any]:
-    """Flattens layout and semantic properties into pure visual attributes."""
+    """Flattens layout properties into pure visual attributes."""
     attrs: dict[str, Any] = {}
     
     # Common layout
@@ -18,12 +29,6 @@ def _extract_render_attributes(node: LayoutNode) -> dict[str, Any]:
         attrs["width"] = node.width
     if hasattr(node, "height") and node.height is not None:
         attrs["height"] = node.height
-        
-    # Semantic roles translate to data- attributes for CSS targeting
-    if "semantic_role" in node.properties:
-        attrs["data-semantic-role"] = node.properties["semantic_role"]
-    if "group" in node.properties:
-        attrs["data-group"] = node.properties["group"]
         
     # Styles
     for style_key in ["fill", "stroke", "stroke_width", "font_family", "font_size", "font_weight", "rx", "ry", "r", "x1", "y1", "x2", "y2", "points"]:
@@ -47,6 +52,34 @@ def _extract_render_attributes(node: LayoutNode) -> dict[str, Any]:
 
     return attrs
 
+def _node_to_render_element(node: LayoutNode) -> RenderElement | None:
+    attrs = _extract_render_attributes(node)
+
+    if isinstance(node, ShapeNode):
+        if node.shape_type == "rect":
+            return RenderRect(id=node.id, attributes=attrs)
+        if node.shape_type == "circle":
+            return RenderCircle(id=node.id, attributes=attrs)
+        if node.shape_type == "line":
+            return RenderLine(id=node.id, attributes=attrs)
+        if node.shape_type == "polygon":
+            return RenderPolygon(id=node.id, attributes=attrs)
+        return RenderElement(id=node.id, type=node.shape_type, attributes=attrs)
+
+    if isinstance(node, TextNode):
+        return RenderText(id=node.id, attributes=attrs, text=node.text)
+
+    if isinstance(node, LayoutGroup):
+        children = sorted(node.children, key=lambda child: child.z_order)
+        group_elements: list[RenderElement] = []
+        for child in children:
+            child_element = _node_to_render_element(child)
+            if child_element:
+                group_elements.append(child_element)
+        return RenderGroup(id=node.id, attributes=attrs, elements=group_elements)
+
+    return None
+
 def layout_to_renderer(problem_id: str, canvas: LayoutCanvas, nodes: list[LayoutNode]) -> RendererAST:
     """Converts the Layout layer into a pure Renderer AST."""
     
@@ -62,19 +95,8 @@ def layout_to_renderer(problem_id: str, canvas: LayoutCanvas, nodes: list[Layout
     sorted_nodes = sorted(nodes, key=lambda n: n.z_order)
     
     for node in sorted_nodes:
-        attrs = _extract_render_attributes(node)
-        
-        if isinstance(node, ShapeNode):
-            elements.append(RenderElement(
-                id=node.id,
-                type=node.shape_type,
-                attributes=attrs
-            ))
-        elif isinstance(node, TextNode):
-            elements.append(RenderText(
-                id=node.id,
-                attributes=attrs,
-                text=node.text
-            ))
+        element = _node_to_render_element(node)
+        if element:
+            elements.append(element)
             
     return RendererAST(problem_id=problem_id, view_box=view_box, elements=elements)
