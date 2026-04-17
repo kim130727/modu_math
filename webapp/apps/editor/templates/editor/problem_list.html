@@ -3,7 +3,7 @@
 {% block content %}
 <section class="panel">
   <h1>문제 목록</h1>
-  <p class="muted">semantic JSON이 단일 원본입니다. 항목을 선택해 편집을 시작하세요.</p>
+  <p class="muted">에디터는 semantic/layout 정보를 결합한 편집 뷰 JSON을 표시합니다. 항목을 선택해 편집을 시작하세요.</p>
   <div class="list-grid">
     {% for row in problems %}
       <a class="problem-card" href="{% url 'editor:problem_edit' row.problem_id %}">
@@ -12,9 +12,8 @@
         <small>{{ row.problem_type }}</small>
       </a>
     {% empty %}
-      <div class="empty">등록된 문제가 없습니다. `sample_data/problems/<id>/semantic.json` 파일을 추가해 주세요.</div>
+      <div class="empty">등록된 문제가 없습니다. `sample_data/problems/<id>/` 아래 JSON 파일을 추가해 주세요.</div>
     {% endfor %}
   </div>
 </section>
 {% endblock %}
-

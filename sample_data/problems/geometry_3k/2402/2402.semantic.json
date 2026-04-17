@@ -1,155 +1,11 @@
 {
-  "schema_version": "modu_math.semantic.v3",
-  "render_contract_version": "modu_math.render.v1",
   "problem_id": "2402",
   "problem_type": "Length::Circle",
-  "title": "Circle O has a radius of 13 inches. Radius OB is perpendicular to chord CD which is 24 inches long. Find OX.",
   "metadata": {
     "source": "textbook2_chapter10.pdf page 19",
     "warnings": []
   },
   "domain": {},
-  "render": {
-    "elements": [
-      {
-        "id": "geom_diagram_region",
-        "semantic_role": "geometry_diagram_region",
-        "type": "rect"
-      },
-      {
-        "id": "geom_circle_O",
-        "semantic_role": "geometry_shape",
-        "type": "circle"
-      },
-      {
-        "id": "geom_line_CD",
-        "semantic_role": "geometry_edge",
-        "type": "line"
-      },
-      {
-        "id": "geom_line_OB",
-        "semantic_role": "geometry_edge",
-        "type": "line"
-      },
-      {
-        "id": "geom_line_OX",
-        "semantic_role": "geometry_edge",
-        "type": "line"
-      },
-      {
-        "id": "geom_line_OC",
-        "semantic_role": "geometry_helper",
-        "type": "line"
-      },
-      {
-        "id": "geom_perp_1",
-        "semantic_role": "geometry_right_angle",
-        "type": "line"
-      },
-      {
-        "id": "geom_perp_2",
-        "semantic_role": "geometry_right_angle",
-        "type": "line"
-      },
-      {
-        "id": "geom_point_C",
-        "semantic_role": "geometry_point",
-        "type": "circle"
-      },
-      {
-        "id": "geom_label_C",
-        "semantic_role": "geometry_point_label",
-        "type": "text",
-        "text": "C"
-      },
-      {
-        "id": "geom_point_B",
-        "semantic_role": "geometry_point",
-        "type": "circle"
-      },
-      {
-        "id": "geom_label_B",
-        "semantic_role": "geometry_point_label",
-        "type": "text",
-        "text": "B"
-      },
-      {
-        "id": "geom_point_D",
-        "semantic_role": "geometry_point",
-        "type": "circle"
-      },
-      {
-        "id": "geom_label_D",
-        "semantic_role": "geometry_point_label",
-        "type": "text",
-        "text": "D"
-      },
-      {
-        "id": "geom_point_O",
-        "semantic_role": "geometry_point",
-        "type": "circle"
-      },
-      {
-        "id": "geom_label_O",
-        "semantic_role": "geometry_point_label",
-        "type": "text",
-        "text": "O"
-      },
-      {
-        "id": "geom_point_X",
-        "semantic_role": "geometry_point",
-        "type": "circle"
-      },
-      {
-        "id": "geom_label_X",
-        "semantic_role": "geometry_point_label",
-        "type": "text",
-        "text": "X"
-      },
-      {
-        "id": "text.problem_ln1",
-        "semantic_role": "problem_text",
-        "type": "text",
-        "text": "Circle O has a radius of 13 inches. Radius OB is"
-      },
-      {
-        "id": "text.problem_ln2",
-        "semantic_role": "problem_text",
-        "type": "text",
-        "text": "perpendicular to chord CD, which is 24 inches long."
-      },
-      {
-        "id": "text.problem_ln3",
-        "semantic_role": "problem_text",
-        "type": "text",
-        "text": "Find OX."
-      },
-      {
-        "id": "text.choice_1",
-        "semantic_role": "multiple_choice",
-        "type": "text",
-        "text": "1. 5"
-      },
-      {
-        "id": "text.choice_2",
-        "semantic_role": "multiple_choice",
-        "type": "text",
-        "text": "2. 12"
-      },
-      {
-        "id": "text.choice_3",
-        "semantic_role": "multiple_choice",
-        "type": "text",
-        "text": "3. 13"
-      },
-      {
-        "id": "text.choice_4",
-        "semantic_role": "multiple_choice",
-        "type": "text",
-        "text": "4. 26"
-      }
-    ]
-  },
   "answer": {
     "blanks": [],
     "choices": [
@@ -163,6 +19,125 @@
         "label": "no.1",
         "index": 0,
         "value": "5"
+      }
+    ]
+  },
+  "schema_version": "modu_math.semantic.v3",
+  "render_contract_version": "modu_math.render.v1",
+  "title": "Circle O has a radius of 13 inches. Radius OB is perpendicular to chord CD which is 24 inches long. Find OX.",
+  "render": {
+    "elements": [
+      {
+        "id": "geom_diagram_region",
+        "type": "rect"
+      },
+      {
+        "id": "geom_circle_O",
+        "type": "circle"
+      },
+      {
+        "id": "geom_line_CD",
+        "type": "line"
+      },
+      {
+        "id": "geom_line_OB",
+        "type": "line"
+      },
+      {
+        "id": "geom_line_OX",
+        "type": "line"
+      },
+      {
+        "id": "geom_line_OC",
+        "type": "line"
+      },
+      {
+        "id": "geom_perp_1",
+        "type": "line"
+      },
+      {
+        "id": "geom_perp_2",
+        "type": "line"
+      },
+      {
+        "id": "geom_point_C",
+        "type": "circle"
+      },
+      {
+        "id": "geom_label_C",
+        "type": "text",
+        "text": "C"
+      },
+      {
+        "id": "geom_point_B",
+        "type": "circle"
+      },
+      {
+        "id": "geom_label_B",
+        "type": "text",
+        "text": "B"
+      },
+      {
+        "id": "geom_point_D",
+        "type": "circle"
+      },
+      {
+        "id": "geom_label_D",
+        "type": "text",
+        "text": "D"
+      },
+      {
+        "id": "geom_point_O",
+        "type": "circle"
+      },
+      {
+        "id": "geom_label_O",
+        "type": "text",
+        "text": "O"
+      },
+      {
+        "id": "geom_point_X",
+        "type": "circle"
+      },
+      {
+        "id": "geom_label_X",
+        "type": "text",
+        "text": "X"
+      },
+      {
+        "id": "text.problem_ln1",
+        "type": "text",
+        "text": "Circle O has a radius of 13 inches. Radius OB is"
+      },
+      {
+        "id": "text.problem_ln2",
+        "type": "text",
+        "text": "perpendicular to chord CD, which is 24 inches long."
+      },
+      {
+        "id": "text.problem_ln3",
+        "type": "text",
+        "text": "Find OX."
+      },
+      {
+        "id": "text.choice_1",
+        "type": "text",
+        "text": "1. 5"
+      },
+      {
+        "id": "text.choice_2",
+        "type": "text",
+        "text": "2. 12"
+      },
+      {
+        "id": "text.choice_3",
+        "type": "text",
+        "text": "3. 13"
+      },
+      {
+        "id": "text.choice_4",
+        "type": "text",
+        "text": "4. 26"
       }
     ]
   }

@@ -1,6 +1,4 @@
 {
-  "schema_version": "modu_math.semantic.v3",
-  "render_contract_version": "modu_math.render.v1",
   "problem_id": "0013",
   "problem_type": "pie_chart_total_from_part",
   "metadata": {
@@ -26,726 +24,6 @@
     "show_answer_blank": false,
     "title": "좋아하는 과일별 학생 수"
   },
-  "render": {
-    "elements": [
-      {
-        "id": "q1",
-        "type": "text",
-        "semantic_role": "label",
-        "group": "text",
-        "text": "준호네 학교 학생들이 좋아하는 과일을 조사하여 나타낸",
-        "auto_wrap": false
-      },
-      {
-        "id": "q2",
-        "type": "text",
-        "semantic_role": "label",
-        "group": "text",
-        "text": "원그래프입니다. 배를 좋아하는 학생이 60명이라면 전체",
-        "auto_wrap": false
-      },
-      {
-        "id": "title",
-        "type": "text",
-        "semantic_role": "label",
-        "group": "text",
-        "text": "좋아하는 과일별 학생 수",
-        "auto_wrap": false
-      },
-      {
-        "id": "sector_1",
-        "type": "polygon",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "sector_2",
-        "type": "polygon",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "sector_3",
-        "type": "polygon",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "sector_4",
-        "type": "polygon",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "sector_5",
-        "type": "polygon",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "outline_1",
-        "type": "line",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "outline_2",
-        "type": "line",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "outline_3",
-        "type": "line",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "outline_4",
-        "type": "line",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "outline_5",
-        "type": "line",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "outline_6",
-        "type": "line",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "outline_7",
-        "type": "line",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "outline_8",
-        "type": "line",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "outline_9",
-        "type": "line",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "outline_10",
-        "type": "line",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "outline_11",
-        "type": "line",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "outline_12",
-        "type": "line",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "outline_13",
-        "type": "line",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "outline_14",
-        "type": "line",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "outline_15",
-        "type": "line",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "outline_16",
-        "type": "line",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "outline_17",
-        "type": "line",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "outline_18",
-        "type": "line",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "outline_19",
-        "type": "line",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "outline_20",
-        "type": "line",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "outline_21",
-        "type": "line",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "outline_22",
-        "type": "line",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "outline_23",
-        "type": "line",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "outline_24",
-        "type": "line",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "outline_25",
-        "type": "line",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "outline_26",
-        "type": "line",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "outline_27",
-        "type": "line",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "outline_28",
-        "type": "line",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "outline_29",
-        "type": "line",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "outline_30",
-        "type": "line",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "outline_31",
-        "type": "line",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "outline_32",
-        "type": "line",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "outline_33",
-        "type": "line",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "outline_34",
-        "type": "line",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "outline_35",
-        "type": "line",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "outline_36",
-        "type": "line",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "outline_37",
-        "type": "line",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "outline_38",
-        "type": "line",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "outline_39",
-        "type": "line",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "outline_40",
-        "type": "line",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "outline_41",
-        "type": "line",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "outline_42",
-        "type": "line",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "outline_43",
-        "type": "line",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "outline_44",
-        "type": "line",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "outline_45",
-        "type": "line",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "outline_46",
-        "type": "line",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "outline_47",
-        "type": "line",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "outline_48",
-        "type": "line",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "outline_49",
-        "type": "line",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "outline_50",
-        "type": "line",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "outline_51",
-        "type": "line",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "outline_52",
-        "type": "line",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "outline_53",
-        "type": "line",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "outline_54",
-        "type": "line",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "outline_55",
-        "type": "line",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "outline_56",
-        "type": "line",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "outline_57",
-        "type": "line",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "outline_58",
-        "type": "line",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "outline_59",
-        "type": "line",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "outline_60",
-        "type": "line",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "outline_61",
-        "type": "line",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "outline_62",
-        "type": "line",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "outline_63",
-        "type": "line",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "outline_64",
-        "type": "line",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "outline_65",
-        "type": "line",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "outline_66",
-        "type": "line",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "outline_67",
-        "type": "line",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "outline_68",
-        "type": "line",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "outline_69",
-        "type": "line",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "outline_70",
-        "type": "line",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "outline_71",
-        "type": "line",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "outline_72",
-        "type": "line",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "radial_1",
-        "type": "line",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "radial_2",
-        "type": "line",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "radial_3",
-        "type": "line",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "radial_4",
-        "type": "line",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "radial_5",
-        "type": "line",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "tick_00",
-        "type": "line",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "tick_05",
-        "type": "line",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "tick_10",
-        "type": "line",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "tick_15",
-        "type": "line",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "tick_20",
-        "type": "line",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "tick_25",
-        "type": "line",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "tick_30",
-        "type": "line",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "tick_35",
-        "type": "line",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "tick_40",
-        "type": "line",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "tick_45",
-        "type": "line",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "tick_50",
-        "type": "line",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "tick_55",
-        "type": "line",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "tick_60",
-        "type": "line",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "tick_65",
-        "type": "line",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "tick_70",
-        "type": "line",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "tick_75",
-        "type": "line",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "tick_80",
-        "type": "line",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "tick_85",
-        "type": "line",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "tick_90",
-        "type": "line",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "tick_95",
-        "type": "line",
-        "semantic_role": "decorative",
-        "group": "chart"
-      },
-      {
-        "id": "scale_0",
-        "type": "text",
-        "semantic_role": "label",
-        "group": "text",
-        "text": "0",
-        "auto_wrap": false
-      },
-      {
-        "id": "scale_25",
-        "type": "text",
-        "semantic_role": "label",
-        "group": "text",
-        "text": "25",
-        "auto_wrap": false
-      },
-      {
-        "id": "scale_50",
-        "type": "text",
-        "semantic_role": "label",
-        "group": "text",
-        "text": "50",
-        "auto_wrap": false
-      },
-      {
-        "id": "scale_75",
-        "type": "text",
-        "semantic_role": "label",
-        "group": "text",
-        "text": "75",
-        "auto_wrap": false
-      },
-      {
-        "id": "fruit_1",
-        "type": "text",
-        "semantic_role": "label",
-        "group": "text",
-        "text": "사과",
-        "auto_wrap": false
-      },
-      {
-        "id": "fruit_2",
-        "type": "text",
-        "semantic_role": "label",
-        "group": "text",
-        "text": "귤",
-        "auto_wrap": false
-      },
-      {
-        "id": "fruit_3",
-        "type": "text",
-        "semantic_role": "label",
-        "group": "text",
-        "text": "배",
-        "auto_wrap": false
-      },
-      {
-        "id": "fruit_4",
-        "type": "text",
-        "semantic_role": "label",
-        "group": "text",
-        "text": "복숭아",
-        "auto_wrap": false
-      },
-      {
-        "id": "fruit_5",
-        "type": "text",
-        "semantic_role": "label",
-        "group": "text",
-        "text": "기타",
-        "auto_wrap": false
-      },
-      {
-        "id": "q2-8",
-        "type": "text",
-        "semantic_role": "label",
-        "group": "text",
-        "text": "전체 학생 수는 몇 명입니까?",
-        "auto_wrap": false
-      }
-    ]
-  },
   "answer": {
     "blanks": [],
     "choices": [],
@@ -753,6 +31,485 @@
       {
         "target": "value",
         "value": "400"
+      }
+    ]
+  },
+  "schema_version": "modu_math.semantic.v3",
+  "render_contract_version": "modu_math.render.v1",
+  "render": {
+    "elements": [
+      {
+        "id": "q1",
+        "type": "text",
+        "text": "준호네 학교 학생들이 좋아하는 과일을 조사하여 나타낸"
+      },
+      {
+        "id": "q2",
+        "type": "text",
+        "text": "원그래프입니다. 배를 좋아하는 학생이 60명이라면 전체"
+      },
+      {
+        "id": "title",
+        "type": "text",
+        "text": "좋아하는 과일별 학생 수"
+      },
+      {
+        "id": "sector_1",
+        "type": "polygon"
+      },
+      {
+        "id": "sector_2",
+        "type": "polygon"
+      },
+      {
+        "id": "sector_3",
+        "type": "polygon"
+      },
+      {
+        "id": "sector_4",
+        "type": "polygon"
+      },
+      {
+        "id": "sector_5",
+        "type": "polygon"
+      },
+      {
+        "id": "outline_1",
+        "type": "line"
+      },
+      {
+        "id": "outline_2",
+        "type": "line"
+      },
+      {
+        "id": "outline_3",
+        "type": "line"
+      },
+      {
+        "id": "outline_4",
+        "type": "line"
+      },
+      {
+        "id": "outline_5",
+        "type": "line"
+      },
+      {
+        "id": "outline_6",
+        "type": "line"
+      },
+      {
+        "id": "outline_7",
+        "type": "line"
+      },
+      {
+        "id": "outline_8",
+        "type": "line"
+      },
+      {
+        "id": "outline_9",
+        "type": "line"
+      },
+      {
+        "id": "outline_10",
+        "type": "line"
+      },
+      {
+        "id": "outline_11",
+        "type": "line"
+      },
+      {
+        "id": "outline_12",
+        "type": "line"
+      },
+      {
+        "id": "outline_13",
+        "type": "line"
+      },
+      {
+        "id": "outline_14",
+        "type": "line"
+      },
+      {
+        "id": "outline_15",
+        "type": "line"
+      },
+      {
+        "id": "outline_16",
+        "type": "line"
+      },
+      {
+        "id": "outline_17",
+        "type": "line"
+      },
+      {
+        "id": "outline_18",
+        "type": "line"
+      },
+      {
+        "id": "outline_19",
+        "type": "line"
+      },
+      {
+        "id": "outline_20",
+        "type": "line"
+      },
+      {
+        "id": "outline_21",
+        "type": "line"
+      },
+      {
+        "id": "outline_22",
+        "type": "line"
+      },
+      {
+        "id": "outline_23",
+        "type": "line"
+      },
+      {
+        "id": "outline_24",
+        "type": "line"
+      },
+      {
+        "id": "outline_25",
+        "type": "line"
+      },
+      {
+        "id": "outline_26",
+        "type": "line"
+      },
+      {
+        "id": "outline_27",
+        "type": "line"
+      },
+      {
+        "id": "outline_28",
+        "type": "line"
+      },
+      {
+        "id": "outline_29",
+        "type": "line"
+      },
+      {
+        "id": "outline_30",
+        "type": "line"
+      },
+      {
+        "id": "outline_31",
+        "type": "line"
+      },
+      {
+        "id": "outline_32",
+        "type": "line"
+      },
+      {
+        "id": "outline_33",
+        "type": "line"
+      },
+      {
+        "id": "outline_34",
+        "type": "line"
+      },
+      {
+        "id": "outline_35",
+        "type": "line"
+      },
+      {
+        "id": "outline_36",
+        "type": "line"
+      },
+      {
+        "id": "outline_37",
+        "type": "line"
+      },
+      {
+        "id": "outline_38",
+        "type": "line"
+      },
+      {
+        "id": "outline_39",
+        "type": "line"
+      },
+      {
+        "id": "outline_40",
+        "type": "line"
+      },
+      {
+        "id": "outline_41",
+        "type": "line"
+      },
+      {
+        "id": "outline_42",
+        "type": "line"
+      },
+      {
+        "id": "outline_43",
+        "type": "line"
+      },
+      {
+        "id": "outline_44",
+        "type": "line"
+      },
+      {
+        "id": "outline_45",
+        "type": "line"
+      },
+      {
+        "id": "outline_46",
+        "type": "line"
+      },
+      {
+        "id": "outline_47",
+        "type": "line"
+      },
+      {
+        "id": "outline_48",
+        "type": "line"
+      },
+      {
+        "id": "outline_49",
+        "type": "line"
+      },
+      {
+        "id": "outline_50",
+        "type": "line"
+      },
+      {
+        "id": "outline_51",
+        "type": "line"
+      },
+      {
+        "id": "outline_52",
+        "type": "line"
+      },
+      {
+        "id": "outline_53",
+        "type": "line"
+      },
+      {
+        "id": "outline_54",
+        "type": "line"
+      },
+      {
+        "id": "outline_55",
+        "type": "line"
+      },
+      {
+        "id": "outline_56",
+        "type": "line"
+      },
+      {
+        "id": "outline_57",
+        "type": "line"
+      },
+      {
+        "id": "outline_58",
+        "type": "line"
+      },
+      {
+        "id": "outline_59",
+        "type": "line"
+      },
+      {
+        "id": "outline_60",
+        "type": "line"
+      },
+      {
+        "id": "outline_61",
+        "type": "line"
+      },
+      {
+        "id": "outline_62",
+        "type": "line"
+      },
+      {
+        "id": "outline_63",
+        "type": "line"
+      },
+      {
+        "id": "outline_64",
+        "type": "line"
+      },
+      {
+        "id": "outline_65",
+        "type": "line"
+      },
+      {
+        "id": "outline_66",
+        "type": "line"
+      },
+      {
+        "id": "outline_67",
+        "type": "line"
+      },
+      {
+        "id": "outline_68",
+        "type": "line"
+      },
+      {
+        "id": "outline_69",
+        "type": "line"
+      },
+      {
+        "id": "outline_70",
+        "type": "line"
+      },
+      {
+        "id": "outline_71",
+        "type": "line"
+      },
+      {
+        "id": "outline_72",
+        "type": "line"
+      },
+      {
+        "id": "radial_1",
+        "type": "line"
+      },
+      {
+        "id": "radial_2",
+        "type": "line"
+      },
+      {
+        "id": "radial_3",
+        "type": "line"
+      },
+      {
+        "id": "radial_4",
+        "type": "line"
+      },
+      {
+        "id": "radial_5",
+        "type": "line"
+      },
+      {
+        "id": "tick_00",
+        "type": "line"
+      },
+      {
+        "id": "tick_05",
+        "type": "line"
+      },
+      {
+        "id": "tick_10",
+        "type": "line"
+      },
+      {
+        "id": "tick_15",
+        "type": "line"
+      },
+      {
+        "id": "tick_20",
+        "type": "line"
+      },
+      {
+        "id": "tick_25",
+        "type": "line"
+      },
+      {
+        "id": "tick_30",
+        "type": "line"
+      },
+      {
+        "id": "tick_35",
+        "type": "line"
+      },
+      {
+        "id": "tick_40",
+        "type": "line"
+      },
+      {
+        "id": "tick_45",
+        "type": "line"
+      },
+      {
+        "id": "tick_50",
+        "type": "line"
+      },
+      {
+        "id": "tick_55",
+        "type": "line"
+      },
+      {
+        "id": "tick_60",
+        "type": "line"
+      },
+      {
+        "id": "tick_65",
+        "type": "line"
+      },
+      {
+        "id": "tick_70",
+        "type": "line"
+      },
+      {
+        "id": "tick_75",
+        "type": "line"
+      },
+      {
+        "id": "tick_80",
+        "type": "line"
+      },
+      {
+        "id": "tick_85",
+        "type": "line"
+      },
+      {
+        "id": "tick_90",
+        "type": "line"
+      },
+      {
+        "id": "tick_95",
+        "type": "line"
+      },
+      {
+        "id": "scale_0",
+        "type": "text",
+        "text": "0"
+      },
+      {
+        "id": "scale_25",
+        "type": "text",
+        "text": "25"
+      },
+      {
+        "id": "scale_50",
+        "type": "text",
+        "text": "50"
+      },
+      {
+        "id": "scale_75",
+        "type": "text",
+        "text": "75"
+      },
+      {
+        "id": "fruit_1",
+        "type": "text",
+        "text": "사과"
+      },
+      {
+        "id": "fruit_2",
+        "type": "text",
+        "text": "귤"
+      },
+      {
+        "id": "fruit_3",
+        "type": "text",
+        "text": "배"
+      },
+      {
+        "id": "fruit_4",
+        "type": "text",
+        "text": "복숭아"
+      },
+      {
+        "id": "fruit_5",
+        "type": "text",
+        "text": "기타"
+      },
+      {
+        "id": "q2-8",
+        "type": "text",
+        "text": "전체 학생 수는 몇 명입니까?"
       }
     ]
   }

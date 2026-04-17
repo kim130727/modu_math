@@ -184,7 +184,7 @@ async function applyJsonEditorToState() {
   try {
     parsed = JSON.parse(jsonTextarea.value);
   } catch (error) {
-    updateStatus("semantic JSON 형식이 올바르지 않습니다.", true);
+    updateStatus("편집 뷰 JSON 형식이 올바르지 않습니다.", true);
     return false;
   }
 
@@ -231,7 +231,7 @@ byId("save-btn").addEventListener("click", async () => {
   try {
     parsed = JSON.parse(jsonTextarea.value);
   } catch (error) {
-    updateStatus("semantic JSON 형식이 올바르지 않습니다.", true);
+    updateStatus("편집 뷰 JSON 형식이 올바르지 않습니다.", true);
     return;
   }
 
@@ -255,7 +255,7 @@ byId("save-btn").addEventListener("click", async () => {
 
   state.semantic = result.semantic;
   state.jsonDirty = false;
-  updateStatus("저장 완료: semantic JSON 파일까지 반영했습니다.");
+  updateStatus("저장 완료: semantic/layout/renderer 파일에 반영했습니다.");
   renderAll(true);
 });
 
