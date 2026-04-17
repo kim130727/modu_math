@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from modu_semantic import Circle, Line, Problem, Rect, Text
+from modu_semantic import Circle, Line, Polygon, Problem, Rect, Text
 
 # source semantic: 2401.semantic.json
 
@@ -43,39 +43,15 @@ def build() -> Problem:
     )
 
     p.add(
-        Line(
-            id="geom_line_1",
-            x1=73.70053475935828,
-            y1=910.4491978609626,
-            x2=417.8502673796791,
-            y2=224.0000000000001,
+        Polygon(
+            id="geom_triangle",
+            points=[
+                (73.70053475935828, 910.4491978609626),
+                (417.85026737967917, 224.0),
+                (758.2994652406417, 910.4491978609626),
+            ],
             semantic_role="geometry_edge",
-            stroke="#374151",
-            stroke_width=2.2,
-        )
-    )
-
-    p.add(
-        Line(
-            id="geom_line_2",
-            x1=73.70053475935828,
-            y1=910.4491978609626,
-            x2=758.2994652406417,
-            y2=910.4491978609626,
-            semantic_role="geometry_edge",
-            stroke="#374151",
-            stroke_width=2.2,
-        )
-    )
-
-    p.add(
-        Line(
-            id="geom_line_3",
-            x1=417.85026737967917,
-            y1=224.0,
-            x2=758.2994652406417,
-            y2=910.4491978609627,
-            semantic_role="geometry_edge",
+            fill="none",
             stroke="#374151",
             stroke_width=2.2,
         )
@@ -201,240 +177,6 @@ def build() -> Problem:
             fill="#1F2937",
             font_family="Malgun Gothic",
             anchor="start",
-        )
-    )
-
-    p.add(
-        Line(
-            id="geom_dim_1_cap_a",
-            x1=66.54897667314026,
-            y1=906.8637805994085,
-            x2=80.8520928455763,
-            y2=914.0346151225167,
-            semantic_role="geometry_dimension_cap",
-            stroke="#111111",
-            stroke_width=1.5,
-        )
-    )
-
-    p.add(
-        Line(
-            id="geom_dim_1_cap_b",
-            x1=410.69870929346115,
-            y1=220.41458273844594,
-            x2=425.0018254658972,
-            y2=227.58541726155406,
-            semantic_role="geometry_dimension_cap",
-            stroke="#111111",
-            stroke_width=1.5,
-        )
-    )
-
-    p.add(
-        Line(
-            id="geom_dim_1_arr_a_a",
-            x1=75.94142054782955,
-            y1=905.9794740570763,
-            x2=75.03783756860726,
-            y2=914.475563616377,
-            semantic_role="geometry_dimension_arrow",
-            stroke="#111111",
-            stroke_width=1.8,
-        )
-    )
-
-    p.add(
-        Line(
-            id="geom_dim_1_arr_a_b",
-            x1=75.94142054782955,
-            y1=905.9794740570763,
-            x2=69.67416900394376,
-            y2=911.7865006702116,
-            semantic_role="geometry_dimension_arrow",
-            stroke="#111111",
-            stroke_width=1.8,
-        )
-    )
-
-    p.add(
-        Line(
-            id="geom_dim_1_arr_b_a",
-            x1=415.60938159120786,
-            y1=228.46972380388627,
-            x2=416.51296457043014,
-            y2=219.9736342445855,
-            semantic_role="geometry_dimension_arrow",
-            stroke="#111111",
-            stroke_width=1.8,
-        )
-    )
-
-    p.add(
-        Line(
-            id="geom_dim_1_arr_b_b",
-            x1=415.60938159120786,
-            y1=228.46972380388627,
-            x2=421.87663313509364,
-            y2=222.662697190751,
-            semantic_role="geometry_dimension_arrow",
-            stroke="#111111",
-            stroke_width=1.8,
-        )
-    )
-
-    p.add(
-        Line(
-            id="geom_dim_2_cap_a",
-            x1=425.01723814492664,
-            y1=220.44549158812526,
-            x2=410.6832966144317,
-            y2=227.55450841187474,
-            semantic_role="geometry_dimension_cap",
-            stroke="#111111",
-            stroke_width=1.5,
-        )
-    )
-
-    p.add(
-        Line(
-            id="geom_dim_2_cap_b",
-            x1=765.4664360058891,
-            y1=906.8946894490879,
-            x2=751.1324944753942,
-            y2=914.0037062728373,
-            semantic_role="geometry_dimension_cap",
-            stroke="#111111",
-            stroke_width=1.5,
-        )
-    )
-
-    p.add(
-        Line(
-            id="geom_dim_2_arr_a_a",
-            x1=420.0718351371009,
-            y1=228.47935672827967,
-            x2=413.8297126882584,
-            y2=222.64532661748527,
-            semantic_role="geometry_dimension_arrow",
-            stroke="#111111",
-            stroke_width=1.8,
-        )
-    )
-
-    p.add(
-        Line(
-            id="geom_dim_2_arr_a_b",
-            x1=420.0718351371009,
-            y1=228.47935672827967,
-            x2=419.2049407621939,
-            y2=219.9794453085792,
-            semantic_role="geometry_dimension_arrow",
-            stroke="#111111",
-            stroke_width=1.8,
-        )
-    )
-
-    p.add(
-        Line(
-            id="geom_dim_2_arr_b_a",
-            x1=756.07789748322,
-            y1=905.969841132683,
-            x2=762.3200199320626,
-            y2=911.8038712434774,
-            semantic_role="geometry_dimension_arrow",
-            stroke="#111111",
-            stroke_width=1.8,
-        )
-    )
-
-    p.add(
-        Line(
-            id="geom_dim_2_arr_b_b",
-            x1=756.07789748322,
-            y1=905.969841132683,
-            x2=756.9447918581269,
-            y2=914.4697525523835,
-            semantic_role="geometry_dimension_arrow",
-            stroke="#111111",
-            stroke_width=1.8,
-        )
-    )
-
-    p.add(
-        Line(
-            id="geom_dim_3_cap_a",
-            x1=73.70053475935828,
-            y1=902.4491978609626,
-            x2=73.70053475935828,
-            y2=918.4491978609626,
-            semantic_role="geometry_dimension_cap",
-            stroke="#111111",
-            stroke_width=1.5,
-        )
-    )
-
-    p.add(
-        Line(
-            id="geom_dim_3_cap_b",
-            x1=758.2994652406417,
-            y1=902.4491978609626,
-            x2=758.2994652406417,
-            y2=918.4491978609626,
-            semantic_role="geometry_dimension_cap",
-            stroke="#111111",
-            stroke_width=1.5,
-        )
-    )
-
-    p.add(
-        Line(
-            id="geom_dim_3_arr_a_a",
-            x1=78.70053475935828,
-            y1=910.4491978609626,
-            x2=70.70053475935828,
-            y2=913.4491978609626,
-            semantic_role="geometry_dimension_arrow",
-            stroke="#111111",
-            stroke_width=1.8,
-        )
-    )
-
-    p.add(
-        Line(
-            id="geom_dim_3_arr_a_b",
-            x1=78.70053475935828,
-            y1=910.4491978609626,
-            x2=70.70053475935828,
-            y2=907.4491978609626,
-            semantic_role="geometry_dimension_arrow",
-            stroke="#111111",
-            stroke_width=1.8,
-        )
-    )
-
-    p.add(
-        Line(
-            id="geom_dim_3_arr_b_a",
-            x1=753.2994652406417,
-            y1=910.4491978609626,
-            x2=761.2994652406417,
-            y2=907.4491978609626,
-            semantic_role="geometry_dimension_arrow",
-            stroke="#111111",
-            stroke_width=1.8,
-        )
-    )
-
-    p.add(
-        Line(
-            id="geom_dim_3_arr_b_b",
-            x1=753.2994652406417,
-            y1=910.4491978609626,
-            x2=761.2994652406417,
-            y2=913.4491978609626,
-            semantic_role="geometry_dimension_arrow",
-            stroke="#111111",
-            stroke_width=1.8,
         )
     )
 

@@ -1,116 +1,49 @@
 {
-  "schema_version": "modu_math.semantic.v3",
-  "render_contract_version": "modu_math.render.v1",
   "problem_id": "2403",
   "problem_type": "Length::Triangle",
-  "title": "Find x. Round to the nearest tenth.",
   "metadata": {
     "source": "textbook1_chapter_8.pdf",
     "warnings": []
   },
-  "domain": {},
-  "render": {
-    "elements": [
-      {
-        "id": "geom_diagram_region",
-        "semantic_role": "geometry_diagram_region",
-        "type": "rect"
-      },
-      {
-        "id": "geom_line_AB",
-        "semantic_role": "geometry_edge",
-        "type": "line"
-      },
-      {
-        "id": "geom_line_AC",
-        "semantic_role": "geometry_edge",
-        "type": "line"
-      },
-      {
-        "id": "geom_line_BC",
-        "semantic_role": "geometry_edge",
-        "type": "line"
-      },
-      {
-        "id": "geom_line_AD",
-        "semantic_role": "geometry_edge",
-        "type": "line"
-      },
-      {
-        "id": "geom_perp_D_1",
-        "semantic_role": "geometry_right_angle",
-        "type": "line"
-      },
-      {
-        "id": "geom_perp_D_2",
-        "semantic_role": "geometry_right_angle",
-        "type": "line"
-      },
-      {
-        "id": "geom_tick_1",
-        "semantic_role": "geometry_tick",
-        "type": "line"
-      },
-      {
-        "id": "geom_tick_2",
-        "semantic_role": "geometry_tick",
-        "type": "line"
-      },
-      {
-        "id": "geom_len_left",
-        "semantic_role": "geometry_length_label",
-        "type": "text",
-        "text": "32"
-      },
-      {
-        "id": "geom_len_x",
-        "semantic_role": "geometry_length_label",
-        "type": "text",
-        "text": "x"
-      },
-      {
-        "id": "geom_len_y",
-        "semantic_role": "geometry_length_label",
-        "type": "text",
-        "text": "y"
-      },
-      {
-        "id": "geom_angle_54",
-        "semantic_role": "geometry_angle_label",
-        "type": "text",
-        "text": "54°"
-      },
-      {
-        "id": "text.problem",
-        "semantic_role": "problem_text",
-        "type": "text",
-        "text": "Find x. Round to the nearest tenth."
-      },
-      {
-        "id": "text.choice_1",
-        "semantic_role": "multiple_choice",
-        "type": "text",
-        "text": "1. 18.8"
-      },
-      {
-        "id": "text.choice_2",
-        "semantic_role": "multiple_choice",
-        "type": "text",
-        "text": "2. 23.2"
-      },
-      {
-        "id": "text.choice_3",
-        "semantic_role": "multiple_choice",
-        "type": "text",
-        "text": "3. 25.9"
-      },
-      {
-        "id": "text.choice_4",
-        "semantic_role": "multiple_choice",
-        "type": "text",
-        "text": "4. 44.0"
+  "domain": {
+    "problem_type_goal": [
+      "Length"
+    ],
+    "problem_type_graph": [
+      "Triangle"
+    ],
+    "logic_form": {
+      "diagram_logic_form": [
+        "AB선 길이 = 32",
+        "AD선은 BC에 수직",
+        "각 C = 54도",
+        "AB = AC"
+      ],
+      "line_instances": [
+        "AB",
+        "AC",
+        "BC",
+        "AD"
+      ],
+      "point_positions": {
+        "A": [
+          410,
+          250
+        ],
+        "B": [
+          140,
+          700
+        ],
+        "C": [
+          680,
+          700
+        ],
+        "D": [
+          406,
+          700
+        ]
       }
-    ]
+    }
   },
   "answer": {
     "blanks": [],
@@ -125,6 +58,102 @@
         "label": "no.1",
         "index": 0,
         "value": "18.8"
+      }
+    ]
+  },
+  "schema_version": "modu_math.semantic.v3",
+  "render_contract_version": "modu_math.render.v1",
+  "title": "Find x. Round to the nearest tenth.",
+  "render": {
+    "elements": [
+      {
+        "id": "geom_diagram_region",
+        "type": "rect"
+      },
+      {
+        "id": "geom_triangle",
+        "type": "polygon"
+      },
+      {
+        "id": "geom_point_A",
+        "type": "circle"
+      },
+      {
+        "id": "geom_point_B",
+        "type": "circle"
+      },
+      {
+        "id": "geom_point_C",
+        "type": "circle"
+      },
+      {
+        "id": "geom_point_D",
+        "type": "circle"
+      },
+      {
+        "id": "geom_line_AD",
+        "type": "line"
+      },
+      {
+        "id": "geom_perp_D_1",
+        "type": "line"
+      },
+      {
+        "id": "geom_perp_D_2",
+        "type": "line"
+      },
+      {
+        "id": "geom_tick_1",
+        "type": "line"
+      },
+      {
+        "id": "geom_tick_2",
+        "type": "line"
+      },
+      {
+        "id": "geom_len_left",
+        "type": "text",
+        "text": "32"
+      },
+      {
+        "id": "geom_len_x",
+        "type": "text",
+        "text": "x"
+      },
+      {
+        "id": "geom_len_y",
+        "type": "text",
+        "text": "y"
+      },
+      {
+        "id": "geom_angle_54",
+        "type": "text",
+        "text": "54°"
+      },
+      {
+        "id": "text.problem",
+        "type": "text",
+        "text": "Find x. Round to the nearest tenth."
+      },
+      {
+        "id": "text.choice_1",
+        "type": "text",
+        "text": "1. 18.8"
+      },
+      {
+        "id": "text.choice_2",
+        "type": "text",
+        "text": "2. 23.2"
+      },
+      {
+        "id": "text.choice_3",
+        "type": "text",
+        "text": "3. 25.9"
+      },
+      {
+        "id": "text.choice_4",
+        "type": "text",
+        "text": "4. 44.0"
       }
     ]
   }

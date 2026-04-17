@@ -1,10 +1,12 @@
-﻿{% extends "base.html" %}
+{% extends "base.html" %}
 {% load static %}
 {% block title %}{{ problem_id }} 편집 | modu_math Editor{% endblock %}
 {% block content %}
 <section class="editor-header">
   <h1>{{ problem_id }}</h1>
   <div class="actions">
+    <button id="undo-btn" type="button" title="실행 취소 (Ctrl+Z)">↶ Undo</button>
+    <button id="redo-btn" type="button" title="다시 실행 (Ctrl+Y)">↷ Redo</button>
     <button id="save-btn" type="button">저장</button>
     <a href="{% url 'editor:export_problem' problem_id %}" class="link-btn">내보내기 ZIP</a>
     <a href="{% url 'editor:problem_list' %}" class="link-btn secondary">목록</a>
@@ -18,6 +20,7 @@
       <button data-add-type="line" type="button">+ Line</button>
       <button data-add-type="rect" type="button">+ Rect</button>
       <button data-add-type="circle" type="button">+ Circle</button>
+      <button data-add-type="polygon" type="button">+ Polygon</button>
       <button data-add-type="text" type="button">+ Text</button>
       <button data-add-type="formula" type="button">+ Formula</button>
     </div>
@@ -47,6 +50,7 @@
       <div class="field"><label>width</label><input name="width" /></div>
       <div class="field"><label>height</label><input name="height" /></div>
       <div class="field"><label>r</label><input name="r" /></div>
+      <div class="field"><label>points (JSON)</label><input name="points" placeholder='[[x1,y1],[x2,y2],...]' /></div>
       <div class="field"><label>text</label><input name="text" /></div>
       <div class="field"><label>expr</label><input name="expr" /></div>
       <div class="field"><label>font_size</label><input name="font_size" /></div>

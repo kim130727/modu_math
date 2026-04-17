@@ -247,3 +247,12 @@ button:hover,
     grid-template-columns: 1fr;
   }
 }
+.rotate-handle-group circle:hover {
+  fill: #14b8a6;
+  r: 10;
+  transition: all 0.2s ease;
+}
+
+.rotate-handle-group line {
+  pointer-events: none;
+}

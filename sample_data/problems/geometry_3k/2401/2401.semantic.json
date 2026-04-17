@@ -58,9 +58,6 @@
       }
     ]
   },
-  "schema_version": "modu_math.semantic.v3",
-  "render_contract_version": "modu_math.render.v1",
-  "title": "Find the area of the figure.",
   "render": {
     "elements": [
       {
@@ -68,16 +65,8 @@
         "type": "rect"
       },
       {
-        "id": "geom_line_1",
-        "type": "line"
-      },
-      {
-        "id": "geom_line_2",
-        "type": "line"
-      },
-      {
-        "id": "geom_line_3",
-        "type": "line"
+        "id": "geom_triangle",
+        "type": "polygon"
       },
       {
         "id": "geom_point_A",
@@ -122,78 +111,6 @@
         "text": "10"
       },
       {
-        "id": "geom_dim_1_cap_a",
-        "type": "line"
-      },
-      {
-        "id": "geom_dim_1_cap_b",
-        "type": "line"
-      },
-      {
-        "id": "geom_dim_1_arr_a_a",
-        "type": "line"
-      },
-      {
-        "id": "geom_dim_1_arr_a_b",
-        "type": "line"
-      },
-      {
-        "id": "geom_dim_1_arr_b_a",
-        "type": "line"
-      },
-      {
-        "id": "geom_dim_1_arr_b_b",
-        "type": "line"
-      },
-      {
-        "id": "geom_dim_2_cap_a",
-        "type": "line"
-      },
-      {
-        "id": "geom_dim_2_cap_b",
-        "type": "line"
-      },
-      {
-        "id": "geom_dim_2_arr_a_a",
-        "type": "line"
-      },
-      {
-        "id": "geom_dim_2_arr_a_b",
-        "type": "line"
-      },
-      {
-        "id": "geom_dim_2_arr_b_a",
-        "type": "line"
-      },
-      {
-        "id": "geom_dim_2_arr_b_b",
-        "type": "line"
-      },
-      {
-        "id": "geom_dim_3_cap_a",
-        "type": "line"
-      },
-      {
-        "id": "geom_dim_3_cap_b",
-        "type": "line"
-      },
-      {
-        "id": "geom_dim_3_arr_a_a",
-        "type": "line"
-      },
-      {
-        "id": "geom_dim_3_arr_a_b",
-        "type": "line"
-      },
-      {
-        "id": "geom_dim_3_arr_b_a",
-        "type": "line"
-      },
-      {
-        "id": "geom_dim_3_arr_b_b",
-        "type": "line"
-      },
-      {
         "id": "text.problem",
         "type": "text",
         "text": "Find the area of the figure."
@@ -201,23 +118,25 @@
       {
         "id": "text.choice_1",
         "type": "text",
-        "text": "1. 30"
+        "text": "no.1 30"
       },
       {
         "id": "text.choice_2",
         "type": "text",
-        "text": "2. 60"
+        "text": "no.2 60"
       },
       {
         "id": "text.choice_3",
         "type": "text",
-        "text": "3. 120"
+        "text": "no.3 120"
       },
       {
         "id": "text.choice_4",
         "type": "text",
-        "text": "4. 240"
+        "text": "no.4 240"
       }
     ]
-  }
+  },
+  "schema_version": "modu_math.semantic.v3",
+  "render_contract_version": "modu_math.render.v1"
 }

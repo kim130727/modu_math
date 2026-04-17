@@ -1,9 +1,6 @@
 {
-  "schema_version": "modu_math.semantic.v3",
-  "render_contract_version": "modu_math.render.v1",
   "problem_id": "2408",
   "problem_type": "Length::Line,Triangle",
-  "title": "If XN = 6, XM = 2, and XY = 10, find NZ.",
   "metadata": {
     "source": "textbook1_chapter_7.pdf",
     "warnings": [],
@@ -99,138 +96,6 @@
       "circle_instances": []
     }
   },
-  "render": {
-    "elements": [
-      {
-        "id": "geom_diagram_region",
-        "semantic_role": "geometry_diagram_region",
-        "type": "rect"
-      },
-      {
-        "id": "geom_line_1",
-        "semantic_role": "geometry_edge",
-        "type": "line"
-      },
-      {
-        "id": "geom_line_2",
-        "semantic_role": "geometry_edge",
-        "type": "line"
-      },
-      {
-        "id": "geom_line_3",
-        "semantic_role": "geometry_edge",
-        "type": "line"
-      },
-      {
-        "id": "geom_line_4",
-        "semantic_role": "geometry_edge",
-        "type": "line"
-      },
-      {
-        "id": "geom_point_X",
-        "semantic_role": "geometry_point",
-        "type": "circle"
-      },
-      {
-        "id": "geom_label_X",
-        "semantic_role": "geometry_point_label",
-        "type": "text",
-        "text": "X"
-      },
-      {
-        "id": "geom_point_Z",
-        "semantic_role": "geometry_point",
-        "type": "circle"
-      },
-      {
-        "id": "geom_label_Z",
-        "semantic_role": "geometry_point_label",
-        "type": "text",
-        "text": "Z"
-      },
-      {
-        "id": "geom_point_Y",
-        "semantic_role": "geometry_point",
-        "type": "circle"
-      },
-      {
-        "id": "geom_label_Y",
-        "semantic_role": "geometry_point_label",
-        "type": "text",
-        "text": "Y"
-      },
-      {
-        "id": "geom_point_N",
-        "semantic_role": "geometry_point",
-        "type": "circle"
-      },
-      {
-        "id": "geom_label_N",
-        "semantic_role": "geometry_point_label",
-        "type": "text",
-        "text": "N"
-      },
-      {
-        "id": "geom_point_M",
-        "semantic_role": "geometry_point",
-        "type": "circle"
-      },
-      {
-        "id": "geom_label_M",
-        "semantic_role": "geometry_point_label",
-        "type": "text",
-        "text": "M"
-      },
-      {
-        "id": "geom_parallel_1_ab_base",
-        "semantic_role": "geometry_parallel_marker",
-        "type": "line"
-      },
-      {
-        "id": "geom_parallel_1_ab_w1",
-        "semantic_role": "geometry_parallel_marker",
-        "type": "line"
-      },
-      {
-        "id": "geom_parallel_1_ab_w2",
-        "semantic_role": "geometry_parallel_marker",
-        "type": "line"
-      },
-      {
-        "id": "geom_parallel_1_cd_base",
-        "semantic_role": "geometry_parallel_marker",
-        "type": "line"
-      },
-      {
-        "id": "geom_parallel_1_cd_w1",
-        "semantic_role": "geometry_parallel_marker",
-        "type": "line"
-      },
-      {
-        "id": "geom_parallel_1_cd_w2",
-        "semantic_role": "geometry_parallel_marker",
-        "type": "line"
-      },
-      {
-        "id": "text.problem",
-        "semantic_role": "problem_text",
-        "type": "text",
-        "text": "If X N = 6, X M = 2, and X Y = 10, find N Z."
-      },
-      {
-        "id": "text.choices_ln1",
-        "semantic_role": "multiple_choice",
-        "type": "text",
-        "text": "1. 12 / 2. 16 / 3. 24"
-      },
-      {
-        "id": "text.choices_ln2",
-        "semantic_role": "multiple_choice",
-        "type": "text",
-        "text": "/ 4. 32"
-      }
-    ]
-  },
   "answer": {
     "blanks": [],
     "choices": [
@@ -244,6 +109,117 @@
         "label": "no.3",
         "index": 2,
         "value": "24"
+      }
+    ]
+  },
+  "schema_version": "modu_math.semantic.v3",
+  "render_contract_version": "modu_math.render.v1",
+  "title": "If XN = 6, XM = 2, and XY = 10, find NZ.",
+  "render": {
+    "elements": [
+      {
+        "id": "geom_diagram_region",
+        "type": "rect"
+      },
+      {
+        "id": "geom_line_1",
+        "type": "line"
+      },
+      {
+        "id": "geom_line_2",
+        "type": "line"
+      },
+      {
+        "id": "geom_line_3",
+        "type": "line"
+      },
+      {
+        "id": "geom_line_4",
+        "type": "line"
+      },
+      {
+        "id": "geom_point_X",
+        "type": "circle"
+      },
+      {
+        "id": "geom_label_X",
+        "type": "text",
+        "text": "X"
+      },
+      {
+        "id": "geom_point_Z",
+        "type": "circle"
+      },
+      {
+        "id": "geom_label_Z",
+        "type": "text",
+        "text": "Z"
+      },
+      {
+        "id": "geom_point_Y",
+        "type": "circle"
+      },
+      {
+        "id": "geom_label_Y",
+        "type": "text",
+        "text": "Y"
+      },
+      {
+        "id": "geom_point_N",
+        "type": "circle"
+      },
+      {
+        "id": "geom_label_N",
+        "type": "text",
+        "text": "N"
+      },
+      {
+        "id": "geom_point_M",
+        "type": "circle"
+      },
+      {
+        "id": "geom_label_M",
+        "type": "text",
+        "text": "M"
+      },
+      {
+        "id": "geom_parallel_1_ab_base",
+        "type": "line"
+      },
+      {
+        "id": "geom_parallel_1_ab_w1",
+        "type": "line"
+      },
+      {
+        "id": "geom_parallel_1_ab_w2",
+        "type": "line"
+      },
+      {
+        "id": "geom_parallel_1_cd_base",
+        "type": "line"
+      },
+      {
+        "id": "geom_parallel_1_cd_w1",
+        "type": "line"
+      },
+      {
+        "id": "geom_parallel_1_cd_w2",
+        "type": "line"
+      },
+      {
+        "id": "text.problem",
+        "type": "text",
+        "text": "If X N = 6, X M = 2, and X Y = 10, find N Z."
+      },
+      {
+        "id": "text.choices_ln1",
+        "type": "text",
+        "text": "1. 12 / 2. 16 / 3. 24"
+      },
+      {
+        "id": "text.choices_ln2",
+        "type": "text",
+        "text": "/ 4. 32"
       }
     ]
   }

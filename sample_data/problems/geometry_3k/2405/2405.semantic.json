@@ -1,9 +1,6 @@
 {
-  "schema_version": "modu_math.semantic.v3",
-  "render_contract_version": "modu_math.render.v1",
   "problem_id": "2405",
   "problem_type": "Angle::Line",
-  "title": "In the figure below, ∠ABC is intersected by parallel lines ℓ and m.",
   "metadata": {
     "source": {
       "input_type": "python_dsl",
@@ -12,162 +9,6 @@
     "warnings": []
   },
   "domain": {},
-  "render": {
-    "elements": [
-      {
-        "id": "geom_line_l",
-        "semantic_role": "geometry_edge",
-        "type": "line"
-      },
-      {
-        "id": "geom_line_l_end_ah_l",
-        "semantic_role": "geometry_arrow_head",
-        "type": "line"
-      },
-      {
-        "id": "geom_line_l_end_ah_r",
-        "semantic_role": "geometry_arrow_head",
-        "type": "line"
-      },
-      {
-        "id": "geom_line_l_start_ah_l",
-        "semantic_role": "geometry_arrow_head",
-        "type": "line"
-      },
-      {
-        "id": "geom_line_l_start_ah_r",
-        "semantic_role": "geometry_arrow_head",
-        "type": "line"
-      },
-      {
-        "id": "geom_line_m",
-        "semantic_role": "geometry_edge",
-        "type": "line"
-      },
-      {
-        "id": "geom_line_m_end_ah_l",
-        "semantic_role": "geometry_arrow_head",
-        "type": "line"
-      },
-      {
-        "id": "geom_line_m_end_ah_r",
-        "semantic_role": "geometry_arrow_head",
-        "type": "line"
-      },
-      {
-        "id": "geom_line_m_start_ah_l",
-        "semantic_role": "geometry_arrow_head",
-        "type": "line"
-      },
-      {
-        "id": "geom_line_m_start_ah_r",
-        "semantic_role": "geometry_arrow_head",
-        "type": "line"
-      },
-      {
-        "id": "geom_line_BA",
-        "semantic_role": "geometry_edge",
-        "type": "line"
-      },
-      {
-        "id": "geom_line_BA_end_ah_l",
-        "semantic_role": "geometry_arrow_head",
-        "type": "line"
-      },
-      {
-        "id": "geom_line_BA_end_ah_r",
-        "semantic_role": "geometry_arrow_head",
-        "type": "line"
-      },
-      {
-        "id": "geom_line_BC",
-        "semantic_role": "geometry_edge",
-        "type": "line"
-      },
-      {
-        "id": "geom_line_BC_end_ah_l",
-        "semantic_role": "geometry_arrow_head",
-        "type": "line"
-      },
-      {
-        "id": "geom_line_BC_end_ah_r",
-        "semantic_role": "geometry_arrow_head",
-        "type": "line"
-      },
-      {
-        "id": "geom_label_A",
-        "semantic_role": "geometry_point_label",
-        "type": "text",
-        "text": "A"
-      },
-      {
-        "id": "geom_label_B",
-        "semantic_role": "geometry_point_label",
-        "type": "text",
-        "text": "B"
-      },
-      {
-        "id": "geom_label_C",
-        "semantic_role": "geometry_point_label",
-        "type": "text",
-        "text": "C"
-      },
-      {
-        "id": "geom_label_l",
-        "semantic_role": "geometry_line_label",
-        "type": "text",
-        "text": "ℓ"
-      },
-      {
-        "id": "geom_label_m",
-        "semantic_role": "geometry_line_label",
-        "type": "text",
-        "text": "m"
-      },
-      {
-        "id": "geom_angle_38",
-        "semantic_role": "geometry_angle_label",
-        "type": "text",
-        "text": "38°"
-      },
-      {
-        "id": "geom_angle_33",
-        "semantic_role": "geometry_angle_label",
-        "type": "text",
-        "text": "33°"
-      },
-      {
-        "id": "text.problem_ln1",
-        "semantic_role": "problem_text",
-        "type": "text",
-        "text": "In the figure below, ∠ABC is intersected by parallel"
-      },
-      {
-        "id": "text.problem_ln2",
-        "semantic_role": "problem_text",
-        "type": "text",
-        "text": "lines ℓ and m. What is the measure of ∠ABC?"
-      },
-      {
-        "id": "text.problem_sub",
-        "semantic_role": "problem_text",
-        "type": "text",
-        "text": "Express your answer in degrees."
-      },
-      {
-        "id": "text.choices_ln1",
-        "semantic_role": "multiple_choice",
-        "type": "text",
-        "text": "1. 33 2. 38 3. 61 4."
-      },
-      {
-        "id": "text.choices_ln2",
-        "semantic_role": "multiple_choice",
-        "type": "text",
-        "text": "71"
-      }
-    ]
-  },
   "answer": {
     "blanks": [],
     "choices": [
@@ -181,6 +22,137 @@
         "label": "no.4",
         "index": 3,
         "value": "71"
+      }
+    ]
+  },
+  "schema_version": "modu_math.semantic.v3",
+  "render_contract_version": "modu_math.render.v1",
+  "title": "In the figure below, ∠ABC is intersected by parallel lines ℓ and m.",
+  "render": {
+    "elements": [
+      {
+        "id": "geom_line_l",
+        "type": "line"
+      },
+      {
+        "id": "geom_line_l_end_ah_l",
+        "type": "line"
+      },
+      {
+        "id": "geom_line_l_end_ah_r",
+        "type": "line"
+      },
+      {
+        "id": "geom_line_l_start_ah_l",
+        "type": "line"
+      },
+      {
+        "id": "geom_line_l_start_ah_r",
+        "type": "line"
+      },
+      {
+        "id": "geom_line_m",
+        "type": "line"
+      },
+      {
+        "id": "geom_line_m_end_ah_l",
+        "type": "line"
+      },
+      {
+        "id": "geom_line_m_end_ah_r",
+        "type": "line"
+      },
+      {
+        "id": "geom_line_m_start_ah_l",
+        "type": "line"
+      },
+      {
+        "id": "geom_line_m_start_ah_r",
+        "type": "line"
+      },
+      {
+        "id": "geom_line_BA",
+        "type": "line"
+      },
+      {
+        "id": "geom_line_BA_end_ah_l",
+        "type": "line"
+      },
+      {
+        "id": "geom_line_BA_end_ah_r",
+        "type": "line"
+      },
+      {
+        "id": "geom_line_BC",
+        "type": "line"
+      },
+      {
+        "id": "geom_line_BC_end_ah_l",
+        "type": "line"
+      },
+      {
+        "id": "geom_line_BC_end_ah_r",
+        "type": "line"
+      },
+      {
+        "id": "geom_label_A",
+        "type": "text",
+        "text": "A"
+      },
+      {
+        "id": "geom_label_B",
+        "type": "text",
+        "text": "B"
+      },
+      {
+        "id": "geom_label_C",
+        "type": "text",
+        "text": "C"
+      },
+      {
+        "id": "geom_label_l",
+        "type": "text",
+        "text": "ℓ"
+      },
+      {
+        "id": "geom_label_m",
+        "type": "text",
+        "text": "m"
+      },
+      {
+        "id": "geom_angle_38",
+        "type": "text",
+        "text": "38°"
+      },
+      {
+        "id": "geom_angle_33",
+        "type": "text",
+        "text": "33°"
+      },
+      {
+        "id": "text.problem_ln1",
+        "type": "text",
+        "text": "In the figure below, ∠ABC is intersected by parallel"
+      },
+      {
+        "id": "text.problem_ln2",
+        "type": "text",
+        "text": "lines ℓ and m. What is the measure of ∠ABC?"
+      },
+      {
+        "id": "text.problem_sub",
+        "type": "text",
+        "text": "Express your answer in degrees."
+      },
+      {
+        "id": "text.choices_ln1",
+        "type": "text",
+        "text": "1. 33 2. 38 3. 61 4."
+      },
+      {
+        "id": "text.choices_ln2",
+        "type": "text",
+        "text": "71"
       }
     ]
   }

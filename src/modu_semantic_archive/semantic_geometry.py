@@ -971,21 +971,35 @@ def build_geometry_reconstruction_elements(
     )
 
     merged_edges = simplify_collinear_edges(mapped_points=mapped, edges=edges)
-    for idx, (start_pt, end_pt) in enumerate(merged_edges, start=1):
-        ax, ay = start_pt
-        bx, by = end_pt
+    # 꼭지점이 정확히 3개이면 삼각형으로 판단하여 단일 Polygon으로 표현
+    if len(mapped) == 3:
+        vertices = list(mapped.values())
         out.append(
-            ir.Line(
-                id=f"geom_line_{idx}",
-                x1=ax,
-                y1=ay,
-                x2=bx,
-                y2=by,
+            ir.Polygon(
+                id="geom_triangle",
+                points=vertices,
+                fill="none",
                 stroke="#374151",
                 stroke_width=2.2,
                 semantic_role="geometry_edge",
             )
         )
+    else:
+        for idx, (start_pt, end_pt) in enumerate(merged_edges, start=1):
+            ax, ay = start_pt
+            bx, by = end_pt
+            out.append(
+                ir.Line(
+                    id=f"geom_line_{idx}",
+                    x1=ax,
+                    y1=ay,
+                    x2=bx,
+                    y2=by,
+                    stroke="#374151",
+                    stroke_width=2.2,
+                    semantic_role="geometry_edge",
+                )
+            )
 
     out.extend(
         build_circle_elements(
@@ -1040,7 +1054,7 @@ def build_geometry_reconstruction_elements(
             )
         )
 
-    out.extend(build_length_dimension_elements(mapped_points=mapped, constraints=length_constraints))
+    # out.extend(build_length_dimension_elements(mapped_points=mapped, constraints=length_constraints))
     out.extend(build_equal_length_tick_elements(mapped_points=mapped, constraints=equal_constraints))
     out.extend(build_perpendicular_marker_elements(mapped_points=mapped, constraints=perp_constraints))
     out.extend(build_parallel_marker_elements(mapped_points=mapped, constraints=parallel_constraints))

@@ -16,69 +16,90 @@
       "z_order": 0,
       "type": "shape",
       "properties": {
-        "stroke": "#D1D5DB",
-        "stroke_width": 1.0,
+        "shape_type": "rect",
         "fill": "none",
-        "font_family": "Malgun Gothic",
-        "font_weight": "normal",
-        "shape_type": "rect"
+        "stroke": "#D1D5DB",
+        "stroke_width": 1.0
       }
     },
     {
-      "id": "geom_line_AB",
-      "x": 410.62892619128183,
-      "y": 250.0,
+      "id": "geom_triangle",
+      "x": 0,
+      "y": 0,
       "anchor": "start",
       "z_order": 0,
       "type": "shape",
       "properties": {
+        "shape_type": "polygon",
+        "points": [
+          [
+            410.62892619128183,
+            250.0
+          ],
+          [
+            140.0,
+            700.0
+          ],
+          [
+            680.0,
+            700.0
+          ]
+        ],
+        "fill": "none",
         "stroke": "#1976D2",
-        "stroke_width": 4.0,
-        "font_family": "Malgun Gothic",
-        "font_weight": "normal",
-        "x1": 410.62892619128183,
-        "y1": 250.0,
-        "x2": 140.0,
-        "y2": 700.0,
-        "shape_type": "line"
+        "stroke_width": 4.0
       }
     },
     {
-      "id": "geom_line_AC",
+      "id": "geom_point_A",
       "x": 410.62892619128183,
       "y": 250.0,
-      "anchor": "start",
-      "z_order": 0,
       "type": "shape",
       "properties": {
-        "stroke": "#1976D2",
-        "stroke_width": 4.0,
-        "font_family": "Malgun Gothic",
-        "font_weight": "normal",
-        "x1": 410.62892619128183,
-        "y1": 250.0,
-        "x2": 680.0,
-        "y2": 700.0,
-        "shape_type": "line"
+        "shape_type": "circle",
+        "r": 4.5,
+        "fill": "#111111",
+        "stroke": "#111111",
+        "stroke_width": 1.0
       }
     },
     {
-      "id": "geom_line_BC",
+      "id": "geom_point_B",
       "x": 140.0,
       "y": 700.0,
-      "anchor": "start",
-      "z_order": 0,
       "type": "shape",
       "properties": {
-        "stroke": "#1976D2",
-        "stroke_width": 4.0,
-        "font_family": "Malgun Gothic",
-        "font_weight": "normal",
-        "x1": 140.0,
-        "y1": 700.0,
-        "x2": 680.0,
-        "y2": 700.0,
-        "shape_type": "line"
+        "shape_type": "circle",
+        "r": 4.5,
+        "fill": "#111111",
+        "stroke": "#111111",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "geom_point_C",
+      "x": 680.0,
+      "y": 700.0,
+      "type": "shape",
+      "properties": {
+        "shape_type": "circle",
+        "r": 4.5,
+        "fill": "#111111",
+        "stroke": "#111111",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "geom_point_D",
+      "x": 406.0371029673547,
+      "y": 700.0,
+      "type": "shape",
+      "properties": {
+        "shape_type": "circle",
+        "r": 4.5,
+        "fill": "#111111",
+        "stroke": "#111111",
+        "stroke_width": 1.0
       }
     },
     {
@@ -89,15 +110,13 @@
       "z_order": 0,
       "type": "shape",
       "properties": {
-        "stroke": "#1976D2",
-        "stroke_width": 4.0,
-        "font_family": "Malgun Gothic",
-        "font_weight": "normal",
+        "shape_type": "line",
         "x1": 410.62892619128183,
         "y1": 250.0,
         "x2": 406.0371029673547,
         "y2": 700.0,
-        "shape_type": "line"
+        "stroke": "#1976D2",
+        "stroke_width": 4.0
       }
     },
     {
@@ -108,15 +127,13 @@
       "z_order": 0,
       "type": "shape",
       "properties": {
-        "stroke": "#111111",
-        "stroke_width": 2.4,
-        "font_family": "Malgun Gothic",
-        "font_weight": "normal",
+        "shape_type": "line",
         "x1": 406.3840226614193,
         "y1": 666.0017699471595,
         "x2": 440.3840226614193,
         "y2": 666.0017699471595,
-        "shape_type": "line"
+        "stroke": "#111111",
+        "stroke_width": 2.4
       }
     },
     {
@@ -127,15 +144,13 @@
       "z_order": 0,
       "type": "shape",
       "properties": {
-        "stroke": "#111111",
-        "stroke_width": 2.4,
-        "font_family": "Malgun Gothic",
-        "font_weight": "normal",
+        "shape_type": "line",
         "x1": 440.0371029673547,
         "y1": 700.0,
         "x2": 440.3840226614193,
         "y2": 666.0017699471595,
-        "shape_type": "line"
+        "stroke": "#111111",
+        "stroke_width": 2.4
       }
     },
     {
@@ -146,15 +161,13 @@
       "z_order": 0,
       "type": "shape",
       "properties": {
-        "stroke": "#E91E63",
-        "stroke_width": 3.0,
-        "font_family": "Malgun Gothic",
-        "font_weight": "normal",
+        "shape_type": "line",
         "x1": 269.36029641591455,
         "y1": 508.18451379241895,
         "x2": 248.79315863241342,
         "y2": 495.81548620758105,
-        "shape_type": "line"
+        "stroke": "#E91E63",
+        "stroke_width": 3.0
       }
     },
     {
@@ -165,15 +178,13 @@
       "z_order": 0,
       "type": "shape",
       "properties": {
-        "stroke": "#E91E63",
-        "stroke_width": 3.0,
-        "font_family": "Malgun Gothic",
-        "font_weight": "normal",
+        "shape_type": "line",
         "x1": 571.7729858067509,
         "y1": 495.83663522268375,
         "x2": 551.1804692415773,
         "y2": 508.16336477731625,
-        "shape_type": "line"
+        "stroke": "#E91E63",
+        "stroke_width": 3.0
       }
     },
     {
@@ -184,11 +195,11 @@
       "z_order": 0,
       "type": "text",
       "properties": {
+        "text": "32",
         "fill": "#1F1F1F",
         "font_family": "Malgun Gothic",
         "font_size": 48.0,
-        "font_weight": "normal",
-        "text": "32"
+        "font_weight": "normal"
       }
     },
     {
@@ -199,11 +210,11 @@
       "z_order": 0,
       "type": "text",
       "properties": {
+        "text": "x",
         "fill": "#1F1F1F",
         "font_family": "Malgun Gothic",
         "font_size": 48.0,
-        "font_weight": "normal",
-        "text": "x"
+        "font_weight": "normal"
       }
     },
     {
@@ -214,11 +225,11 @@
       "z_order": 0,
       "type": "text",
       "properties": {
+        "text": "y",
         "fill": "#1F1F1F",
         "font_family": "Malgun Gothic",
         "font_size": 48.0,
-        "font_weight": "normal",
-        "text": "y"
+        "font_weight": "normal"
       }
     },
     {
@@ -229,11 +240,11 @@
       "z_order": 0,
       "type": "text",
       "properties": {
+        "text": "54°",
         "fill": "#1F1F1F",
         "font_family": "Malgun Gothic",
         "font_size": 48.0,
-        "font_weight": "normal",
-        "text": "54°"
+        "font_weight": "normal"
       }
     },
     {
@@ -244,11 +255,11 @@
       "z_order": 0,
       "type": "text",
       "properties": {
+        "text": "Find x. Round to the nearest tenth.",
         "fill": "#000000",
         "font_family": "sans-serif",
         "font_size": 48.0,
-        "font_weight": "normal",
-        "text": "Find x. Round to the nearest tenth."
+        "font_weight": "normal"
       }
     },
     {
@@ -259,11 +270,11 @@
       "z_order": 0,
       "type": "text",
       "properties": {
+        "text": "1. 18.8",
         "fill": "#000000",
         "font_family": "sans-serif",
         "font_size": 48.0,
-        "font_weight": "normal",
-        "text": "1. 18.8"
+        "font_weight": "normal"
       }
     },
     {
@@ -274,11 +285,11 @@
       "z_order": 0,
       "type": "text",
       "properties": {
+        "text": "2. 23.2",
         "fill": "#000000",
         "font_family": "sans-serif",
         "font_size": 48.0,
-        "font_weight": "normal",
-        "text": "2. 23.2"
+        "font_weight": "normal"
       }
     },
     {
@@ -289,11 +300,11 @@
       "z_order": 0,
       "type": "text",
       "properties": {
+        "text": "3. 25.9",
         "fill": "#000000",
         "font_family": "sans-serif",
         "font_size": 48.0,
-        "font_weight": "normal",
-        "text": "3. 25.9"
+        "font_weight": "normal"
       }
     },
     {
@@ -304,11 +315,11 @@
       "z_order": 0,
       "type": "text",
       "properties": {
+        "text": "4. 44.0",
         "fill": "#000000",
         "font_family": "sans-serif",
         "font_size": 48.0,
-        "font_weight": "normal",
-        "text": "4. 44.0"
+        "font_weight": "normal"
       }
     }
   ]

@@ -20,39 +20,74 @@
       }
     },
     {
-      "id": "geom_line_AB",
-      "type": "line",
+      "id": "geom_triangle",
+      "type": "polygon",
       "attributes": {
+        "fill": "none",
         "stroke": "#1976D2",
         "stroke-width": 4.0,
-        "x1": 410.62892619128183,
-        "y1": 250.0,
-        "x2": 140.0,
-        "y2": 700.0
+        "points": [
+          [
+            410.62892619128183,
+            250.0
+          ],
+          [
+            140.0,
+            700.0
+          ],
+          [
+            680.0,
+            700.0
+          ]
+        ]
       }
     },
     {
-      "id": "geom_line_AC",
-      "type": "line",
+      "id": "geom_point_A",
+      "type": "circle",
       "attributes": {
-        "stroke": "#1976D2",
-        "stroke-width": 4.0,
-        "x1": 410.62892619128183,
-        "y1": 250.0,
-        "x2": 680.0,
-        "y2": 700.0
+        "fill": "#111111",
+        "stroke": "#111111",
+        "stroke-width": 1.0,
+        "cx": 410.62892619128183,
+        "cy": 250.0,
+        "r": 4.5
       }
     },
     {
-      "id": "geom_line_BC",
-      "type": "line",
+      "id": "geom_point_B",
+      "type": "circle",
       "attributes": {
-        "stroke": "#1976D2",
-        "stroke-width": 4.0,
-        "x1": 140.0,
-        "y1": 700.0,
-        "x2": 680.0,
-        "y2": 700.0
+        "fill": "#111111",
+        "stroke": "#111111",
+        "stroke-width": 1.0,
+        "cx": 140.0,
+        "cy": 700.0,
+        "r": 4.5
+      }
+    },
+    {
+      "id": "geom_point_C",
+      "type": "circle",
+      "attributes": {
+        "fill": "#111111",
+        "stroke": "#111111",
+        "stroke-width": 1.0,
+        "cx": 680.0,
+        "cy": 700.0,
+        "r": 4.5
+      }
+    },
+    {
+      "id": "geom_point_D",
+      "type": "circle",
+      "attributes": {
+        "fill": "#111111",
+        "stroke": "#111111",
+        "stroke-width": 1.0,
+        "cx": 406.0371029673547,
+        "cy": 700.0,
+        "r": 4.5
       }
     },
     {

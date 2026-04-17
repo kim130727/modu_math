@@ -37,6 +37,16 @@ function newElement(type, elements) {
   if (type === "circle") {
     return { id: makeId("circle", elements), type, x: 240, y: 260, r: 60, stroke: "#222", stroke_width: 2, fill: "none" };
   }
+  if (type === "polygon") {
+    return {
+      id: makeId("polygon", elements),
+      type,
+      points: [[200, 400], [400, 150], [600, 400]],
+      stroke: "#222",
+      stroke_width: 2,
+      fill: "none",
+    };
+  }
   if (type === "text") {
     return { id: makeId("text", elements), type, x: 120, y: 100, text: "새 텍스트", fill: "#111", font_size: 24 };
   }
@@ -186,11 +196,35 @@ const state = {
   semantic: parseJsonScript("initial-semantic"),
   layout: parseJsonScript("initial-layout"),
   renderer: parseJsonScript("initial-renderer"),
-  selectedId: null,
+  selectedIds: [], // 단일 ID 대신 배열로 관리
   drag: null,
   mouseupBound: false,
   jsonDirty: false,
+  undoStack: [],
+  redoStack: [],
 };
+
+function pushHistory() {
+  state.undoStack.push(JSON.parse(JSON.stringify(state.semantic)));
+  state.redoStack = []; // 새로운 동작 시 Redo 스택 초기화
+  if (state.undoStack.length > 50) state.undoStack.shift(); // 최대 50개 유지
+}
+
+function undo() {
+  if (state.undoStack.length === 0) return;
+  state.redoStack.push(JSON.parse(JSON.stringify(state.semantic)));
+  state.semantic = state.undoStack.pop();
+  syncJsonFromState();
+  updateStatus("실행 취소(Undo) 완료");
+}
+
+function redo() {
+  if (state.redoStack.length === 0) return;
+  state.undoStack.push(JSON.parse(JSON.stringify(state.semantic)));
+  state.semantic = state.redoStack.pop();
+  syncJsonFromState();
+  updateStatus("다시 실행(Redo) 완료");
+}
 
 ensureShape(state.semantic);
 
@@ -203,6 +237,8 @@ const layoutTextarea = byId("layout-json-text");
 const rendererTextarea = byId("renderer-json-text");
 const statusLine = byId("status-line");
 const applyJsonBtn = byId("apply-json-btn");
+const undoBtn = byId("undo-btn");
+const redoBtn = byId("redo-btn");
 
 function refreshDerivedBundle() {
   state.layout = deriveLayoutFromSemantic(state.problemId, state.semantic);
@@ -210,13 +246,14 @@ function refreshDerivedBundle() {
 }
 
 function selectedElement() {
-  return getElements(state.semantic).find((el) => el.id === state.selectedId) ?? null;
+  const selId = state.selectedIds[0] ?? null;
+  return getElements(state.semantic).find((el) => el.id === selId) ?? null;
 }
 
 function renderElementList() {
   const items = getElements(state.semantic)
     .map((el) => {
-      const cls = el.id === state.selectedId ? "active" : "";
+      const cls = state.selectedIds.includes(el.id) ? "active" : "";
       return `<li class="${cls}" data-element-id="${el.id}"><strong>${el.id}</strong> <small>${el.type}</small></li>`;
     })
     .join("");
@@ -224,7 +261,7 @@ function renderElementList() {
 }
 
 function renderAll(forceJsonSync = false) {
-  renderCanvas(canvasHost, state.semantic, state.selectedId);
+  renderCanvas(canvasHost, state.semantic, state.selectedIds, state.drag);
   renderElementList();
   fillPropertiesForm(form, selectedElement());
   if (forceJsonSync || !state.jsonDirty) {
@@ -255,17 +292,151 @@ function updateCursorPosition(x, y) {
   cursorPosition.textContent = "x: -, y: -";
 }
 
-function moveElement(el, dx, dy) {
-  if (!el) return;
+function _applyMove(el, dx, dy) {
   if (el.type === "line") {
     el.x1 = Number(el.x1 ?? 0) + dx;
     el.y1 = Number(el.y1 ?? 0) + dy;
     el.x2 = Number(el.x2 ?? 0) + dx;
     el.y2 = Number(el.y2 ?? 0) + dy;
+  } else if (el.type === "polygon" && Array.isArray(el.points)) {
+    el.points = el.points.map((p) => [Number(p[0] ?? 0) + dx, Number(p[1] ?? 0) + dy]);
+  } else {
+    el.x = Number(el.x ?? 0) + dx;
+    el.y = Number(el.y ?? 0) + dy;
+  }
+}
+
+function moveElement(el, dx, dy, allElements = []) {
+  if (!el) return;
+
+  const oldX = Number(el.x ?? el.x1 ?? 0);
+  const oldY = Number(el.y ?? el.y1 ?? 0);
+
+  // 1. 기본 요소 이동
+  _applyMove(el, dx, dy);
+
+  // 2. 연동 드래그 로직 (geom_point_ 로 시작하는 경우에만 발동)
+  if (el.id.startsWith("geom_point_")) {
+    const suffix = el.id.replace("geom_point_", "");
+    const tolerance = 2.0; // 좌표 일치 판정 허용 오차
+
+    for (const other of allElements) {
+      if (other.id === el.id) continue;
+
+      // A. ID 기반 연동 (레이블 등)
+      if (other.id === `geom_label_${suffix}`) {
+        _applyMove(other, dx, dy);
+        continue;
+      }
+
+      // B. 좌표 기반 연동 (다각형 꼭지점)
+      if (other.type === "polygon" && Array.isArray(other.points)) {
+        let changed = false;
+        other.points = other.points.map((p) => {
+          if (Math.hypot(p[0] - oldX, p[1] - oldY) < tolerance) {
+            changed = true;
+            return [p[0] + dx, p[1] + dy];
+          }
+          return p;
+        });
+        continue;
+      }
+
+      // C. 좌표 기반 연동 (선, 치수선 끝점)
+      if (other.type === "line") {
+        if (Math.hypot(Number(other.x1 ?? 0) - oldX, Number(other.y1 ?? 0) - oldY) < tolerance) {
+          other.x1 = Number(other.x1 ?? 0) + dx;
+          other.y1 = Number(other.y1 ?? 0) + dy;
+        }
+        if (Math.hypot(Number(other.x2 ?? 0) - oldX, Number(other.y2 ?? 0) - oldY) < tolerance) {
+          other.x2 = Number(other.x2 ?? 0) + dx;
+          other.y2 = Number(other.y2 ?? 0) + dy;
+        }
+        continue;
+      }
+
+      // D. 좌표 기반 연동 (원 중심)
+      if (other.type === "circle") {
+        if (Math.hypot(Number(other.x ?? 0) - oldX, Number(other.y ?? 0) - oldY) < tolerance) {
+          other.x = Number(other.x ?? 0) + dx;
+          other.y = Number(other.y ?? 0) + dy;
+        }
+        continue;
+      }
+    }
     return;
   }
-  el.x = Number(el.x ?? 0) + dx;
-  el.y = Number(el.y ?? 0) + dy;
+
+  // 3. 반대 방향 연동: 다각형(Polygon)을 옮길 때 그 꼭지점에 있는 점/레이블들도 같이 이동
+  if (el.type === "polygon" && Array.isArray(el.points)) {
+    const tolerance = 2.0;
+    // 다각형의 '이동 전' 꼭지점 좌표들 (이미 _applyMove가 실행되었으므로 p - dx, p - dy 가 원래 좌표)
+    const originalPoints = el.points.map(p => [p[0] - dx, p[1] - dy]);
+
+    for (const other of allElements) {
+      if (other.id === el.id) continue;
+
+      // 점(Point)이나 레이블(Label)이 다각형의 어떤 꼭지점과 일치하는지 확인
+      const ox = Number(other.x ?? other.x1 ?? 0);
+      const oy = Number(other.y ?? other.y1 ?? 0);
+
+      const isMatchingPoint = originalPoints.some(p => Math.hypot(p[0] - ox, p[1] - oy) < tolerance);
+
+      if (isMatchingPoint) {
+        _applyMove(other, dx, dy);
+
+        // 점과 연결된 레이블이 있다면 그것도 함께 이동 (ID 규칙 기반)
+        if (other.id.startsWith("geom_point_")) {
+          const suffix = other.id.replace("geom_point_", "");
+          const label = allElements.find(a => a.id === `geom_label_${suffix}`);
+          if (label) _applyMove(label, dx, dy);
+        }
+      }
+    }
+  }
+}
+
+function rotateElement(el, da, cx, cy, allElements = []) {
+  if (!el || el.type !== "polygon" || !Array.isArray(el.points)) return;
+
+  const cos = Math.cos(da);
+  const sin = Math.sin(da);
+
+  // 다각형 회전
+  const oldPoints = el.points.map(p => [...p]);
+  el.points = el.points.map((p) => {
+    const dx = p[0] - cx;
+    const dy = p[1] - cy;
+    return [
+      dx * cos - dy * sin + cx,
+      dx * sin + dy * cos + cy
+    ];
+  });
+
+  // 연동된 요소들도 함께 회전
+  const tolerance = 2.0;
+  for (const other of allElements) {
+    if (other.id === el.id) continue;
+
+    const ox = Number(other.x ?? other.x1 ?? 0);
+    const oy = Number(other.y ?? other.y1 ?? 0);
+
+    const matchIdx = oldPoints.findIndex(p => Math.hypot(p[0] - ox, p[1] - oy) < tolerance);
+    if (matchIdx >= 0) {
+      // 해당 꼭지점의 새로운 좌표로 이동
+      const np = el.points[matchIdx];
+      const moveDx = np[0] - ox;
+      const moveDy = np[1] - oy;
+      _applyMove(other, moveDx, moveDy);
+
+      // 점과 연결된 레이블이 있다면 그것도 함께 이동
+      if (other.id.startsWith("geom_point_")) {
+        const suffix = other.id.replace("geom_point_", "");
+        const label = allElements.find(a => a.id === `geom_label_${suffix}`);
+        if (label) _applyMove(label, moveDx, moveDy);
+      }
+    }
+  }
 }
 
 function wireCanvasHandlers() {
@@ -275,10 +446,50 @@ function wireCanvasHandlers() {
   svg.querySelectorAll("[data-element-id]").forEach((node) => {
     node.addEventListener("mousedown", (event) => {
       event.preventDefault();
+      event.stopPropagation(); // 배경 드래그(선택) 방지
       const elementId = node.getAttribute("data-element-id");
-      state.selectedId = elementId;
+      
+      // 이미 선택된 그룹에 포함되어 있지 않다면 단일 선택으로 전환
+      if (!state.selectedIds.includes(elementId)) {
+        state.selectedIds = [elementId];
+      }
+      
       const p = eventToSvgPoint(svg, event);
-      state.drag = { startX: p.x, startY: p.y, originId: elementId };
+      pushHistory();
+      state.drag = { type: "move", startX: p.x, startY: p.y, originIds: [...state.selectedIds] };
+      renderAll();
+    });
+  });
+
+  // 배경(SVG 자체) mousedown: 다중 선택 시작
+  svg.addEventListener("mousedown", (event) => {
+    // 배경(canvas-background) 또는 SVG 본체를 클릭했을 때만 다중 선택 시작
+    if (event.target === svg || event.target.id === "canvas-background") {
+      const p = eventToSvgPoint(svg, event);
+      state.selectedIds = []; // 선택 해제
+      state.drag = { type: "selection", startX: p.x, startY: p.y, currentX: p.x, currentY: p.y };
+      renderAll();
+    }
+  });
+
+  // 회전 핸들 이벤트 바인딩
+  svg.querySelectorAll("[data-rotate-handle]").forEach((node) => {
+    node.addEventListener("mousedown", (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      const elementId = node.getAttribute("data-rotate-handle");
+      state.selectedIds = [elementId];
+      const p = eventToSvgPoint(svg, event);
+      
+      const el = selectedElement();
+      if (!el) return;
+      let cx = 0, cy = 0;
+      el.points.forEach((pt) => { cx += pt[0]; cy += pt[1]; });
+      cx /= el.points.length; cy /= el.points.length;
+
+      const startAngle = Math.atan2(p.y - cy, p.x - cx);
+      pushHistory();
+      state.drag = { type: "rotate", cx, cy, startAngle, originId: elementId };
       renderAll();
     });
   });
@@ -286,12 +497,32 @@ function wireCanvasHandlers() {
   svg.addEventListener("mousemove", (event) => {
     const p = eventToSvgPoint(svg, event);
     updateCursorPosition(p.x, p.y);
-    if (!state.drag || !state.selectedId) return;
-    const dx = p.x - state.drag.startX;
-    const dy = p.y - state.drag.startY;
-    state.drag.startX = p.x;
-    state.drag.startY = p.y;
-    moveElement(selectedElement(), dx, dy);
+    if (!state.drag) return;
+
+    if (state.drag.type === "move") {
+      const dx = p.x - state.drag.startX;
+      const dy = p.y - state.drag.startY;
+      state.drag.startX = p.x;
+      state.drag.startY = p.y;
+      
+      const allElements = getElements(state.semantic);
+      state.drag.originIds.forEach(id => {
+        const el = allElements.find(e => e.id === id);
+        if (el) moveElement(el, dx, dy, allElements);
+      });
+    } else if (state.drag.type === "rotate") {
+      const currentAngle = Math.atan2(p.y - state.drag.cy, p.x - state.drag.cx);
+      const da = currentAngle - state.drag.startAngle;
+      state.drag.startAngle = currentAngle;
+      
+      const allElements = getElements(state.semantic);
+      const el = allElements.find(e => e.id === state.drag.originId);
+      if (el) rotateElement(el, da, state.drag.cx, state.drag.cy, allElements);
+    } else if (state.drag.type === "selection") {
+      state.drag.currentX = p.x;
+      state.drag.currentY = p.y;
+      _updateMarqueeSelection();
+    }
     renderAll();
   });
 
@@ -302,6 +533,9 @@ function wireCanvasHandlers() {
   if (!state.mouseupBound) {
     window.addEventListener("mouseup", () => {
       if (state.drag) {
+        // 드래그 시작 시점의 상태가 아닌, 변형 후 상태를 저장하기 위해 이전에 pushHistory를 호출하지 않았다면
+        // 드래그 종료 시점에 현재 상태를 히스토리에 기록할 수 있도록 설계합니다.
+        // 다만 드래그는 연속적이므로 시작 시점에 한 번 저장하는 것이 일반적입니다.
         syncJsonFromState();
       }
       state.drag = null;
@@ -321,6 +555,7 @@ form.addEventListener("submit", (event) => {
   event.preventDefault();
   const el = selectedElement();
   if (!el) return;
+  pushHistory(); // 속성 변경 전 저장
   applyPropertiesForm(form, el);
   state.selectedId = el.id;
   syncJsonFromState();
@@ -330,6 +565,7 @@ document.querySelectorAll("[data-add-type]").forEach((button) => {
   button.addEventListener("click", () => {
     const type = button.getAttribute("data-add-type");
     const elements = getElements(state.semantic);
+    pushHistory(); // 요소 추가 전 저장
     const created = newElement(type, elements);
     elements.push(created);
     state.selectedId = created.id;
@@ -339,6 +575,7 @@ document.querySelectorAll("[data-add-type]").forEach((button) => {
 
 byId("delete-element-btn").addEventListener("click", () => {
   if (!state.selectedId) return;
+  pushHistory(); // 삭제 전 저장
   state.semantic.render.elements = getElements(state.semantic).filter((el) => el.id !== state.selectedId);
   state.selectedId = null;
   syncJsonFromState();
@@ -353,6 +590,7 @@ async function applyJsonEditorToState() {
     return false;
   }
 
+  pushHistory(); // 직접 편집 반영 전 저장
   state.semantic = parsed;
   ensureShape(state.semantic);
   refreshDerivedBundle();
@@ -429,6 +667,99 @@ byId("save-btn").addEventListener("click", async () => {
   renderAll(true);
 });
 
+if (undoBtn) undoBtn.addEventListener("click", undo);
+if (redoBtn) redoBtn.addEventListener("click", redo);
+
+window.addEventListener("keydown", (e) => {
+  if (e.target.tagName === "TEXTAREA" || e.target.tagName === "INPUT") return;
+  
+  if (e.ctrlKey || e.metaKey) {
+    if (e.key === "z") {
+      e.preventDefault();
+      undo();
+    } else if (e.key === "y" || (e.shiftKey && e.key === "Z")) {
+      e.preventDefault();
+      redo();
+    }
+  } else {
+    if (e.key === "[") {
+      scaleSelectedElements(0.9);
+    } else if (e.key === "]") {
+      scaleSelectedElements(1.1);
+    }
+  }
+});
+
 refreshDerivedBundle();
 renderAll(true);
 updateCursorPosition(NaN, NaN);
+
+function _updateMarqueeSelection() {
+  if (!state.drag || state.drag.type !== "selection") return;
+  
+  // 캔버스 크기 가져오기
+  const canvas = state.semantic.render?.canvas || {};
+  const cw = Number(canvas.width || 1200);
+  const ch = Number(canvas.height || 700);
+  
+  const x1 = Math.max(0, Math.min(cw, Math.min(state.drag.startX, state.drag.currentX)));
+  const y1 = Math.max(0, Math.min(ch, Math.min(state.drag.startY, state.drag.currentY)));
+  const x2 = Math.max(0, Math.min(cw, Math.max(state.drag.startX, state.drag.currentX)));
+  const y2 = Math.max(0, Math.min(ch, Math.max(state.drag.startY, state.drag.currentY)));
+
+  const elements = getElements(state.semantic);
+  state.selectedIds = elements.filter(el => {
+    // 배경 영역(rect)은 선택에서 제외
+    if (el.id === "geom_diagram_region") return false;
+
+    const ex = Number(el.x ?? el.x1 ?? (el.points ? el.points[0][0] : 0));
+    const ey = Number(el.y ?? el.y1 ?? (el.points ? el.points[0][1] : 0));
+    return ex >= x1 && ex <= x2 && ey >= y1 && ey <= y2;
+  }).map(el => el.id);
+}
+
+function scaleSelectedElements(factor) {
+  if (state.selectedIds.length === 0) return;
+  pushHistory();
+  const allElements = getElements(state.semantic);
+  const selected = allElements.filter(e => state.selectedIds.includes(e.id));
+
+  // 전체 선택 그룹의 중심점 계산
+  let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+  selected.forEach(el => {
+    const pts = el.points || [[el.x ?? el.x1 ?? 0, el.y ?? el.y1 ?? 0], [el.x2 ?? el.x ?? 0, el.y2 ?? el.y ?? 0]];
+    pts.forEach(p => {
+      minX = Math.min(minX, Number(p[0] || 0));
+      minY = Math.min(minY, Number(p[1] || 0));
+      maxX = Math.max(maxX, Number(p[0] || 0));
+      maxY = Math.max(maxY, Number(p[1] || 0));
+    });
+  });
+  const cx = (minX + maxX) / 2;
+  const cy = (minY + maxY) / 2;
+
+  selected.forEach(el => {
+    if (el.points) {
+      el.points = el.points.map(p => [
+        (p[0] - cx) * factor + cx,
+        (p[1] - cy) * factor + cy
+      ]);
+    } else {
+      const x = Number(el.x ?? el.x1 ?? 0);
+      const y = Number(el.y ?? el.y1 ?? 0);
+      const nx = (x - cx) * factor + cx;
+      const ny = (y - cy) * factor + cy;
+      if (el.x !== undefined) el.x = nx;
+      if (el.y !== undefined) el.y = ny;
+      if (el.x1 !== undefined) el.x1 = nx;
+      if (el.y1 !== undefined) el.y1 = ny;
+      if (el.x2 !== undefined) {
+        el.x2 = (Number(el.x2) - cx) * factor + cx;
+        el.y2 = (Number(el.y2) - cy) * factor + cy;
+      }
+      if (el.r !== undefined) el.r = Number(el.r) * factor;
+      if (el.font_size !== undefined) el.font_size = Number(el.font_size) * factor;
+    }
+  });
+  syncJsonFromState();
+}

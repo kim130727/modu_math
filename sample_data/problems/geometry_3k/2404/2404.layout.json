@@ -1,26 +1,24 @@
 {
   "problem_id": "2404",
   "canvas": {
-    "width": 960.0,
-    "height": 760.0,
+    "width": 960,
+    "height": 760,
     "background": "#FFFFFF"
   },
   "nodes": [
     {
       "id": "geom_circle_main",
-      "x": 430.0,
-      "y": 390.0,
+      "x": 430,
+      "y": 390,
       "anchor": "start",
       "z_order": 0,
       "type": "shape",
       "properties": {
-        "stroke": "#0B72D9",
-        "stroke_width": 6.0,
+        "shape_type": "circle",
+        "r": 250,
         "fill": "none",
-        "font_family": "Malgun Gothic",
-        "font_weight": "normal",
-        "r": 250.0,
-        "shape_type": "circle"
+        "stroke": "#0B72D9",
+        "stroke_width": 6
       }
     },
     {
@@ -31,15 +29,13 @@
       "z_order": 0,
       "type": "shape",
       "properties": {
-        "stroke": "#222222",
-        "stroke_width": 5.0,
-        "font_family": "Malgun Gothic",
-        "font_weight": "normal",
+        "shape_type": "line",
         "x1": 189.68457601542033,
         "y1": 321.0906610457501,
         "x2": 621.5111107797445,
         "y2": 229.3030975783652,
-        "shape_type": "line"
+        "stroke": "#222222",
+        "stroke_width": 5
       }
     },
     {
@@ -50,15 +46,13 @@
       "z_order": 0,
       "type": "shape",
       "properties": {
-        "stroke": "#222222",
-        "stroke_width": 5.0,
-        "font_family": "Malgun Gothic",
-        "font_weight": "normal",
+        "shape_type": "line",
         "x1": 238.4888892202555,
         "y1": 550.6969024216348,
         "x2": 621.5111107797445,
         "y2": 229.3030975783652,
-        "shape_type": "line"
+        "stroke": "#222222",
+        "stroke_width": 5
       }
     },
     {
@@ -69,72 +63,47 @@
       "z_order": 0,
       "type": "shape",
       "properties": {
-        "stroke": "#222222",
-        "stroke_width": 5.0,
-        "font_family": "Malgun Gothic",
-        "font_weight": "normal",
+        "shape_type": "line",
         "x1": 238.4888892202555,
         "y1": 550.6969024216348,
         "x2": 670.3154239845796,
         "y2": 458.9093389542498,
-        "shape_type": "line"
+        "stroke": "#222222",
+        "stroke_width": 5
       }
     },
     {
       "id": "geom_perp_M_CA",
-      "x": 430.0,
-      "y": 390.0,
+      "x": 430,
+      "y": 390,
       "anchor": "start",
       "z_order": 0,
       "type": "shape",
       "properties": {
-        "stroke": "#222222",
-        "stroke_width": 5.0,
-        "font_family": "Malgun Gothic",
-        "font_weight": "normal",
-        "x1": 430.0,
-        "y1": 390.0,
+        "shape_type": "line",
+        "x1": 430,
+        "y1": 390,
         "x2": 405.59784339758244,
         "y2": 275.19687931205766,
-        "shape_type": "line"
+        "stroke": "#222222",
+        "stroke_width": 5
       }
     },
     {
       "id": "geom_perp_M_TN",
-      "x": 430.0,
-      "y": 390.0,
+      "x": 430,
+      "y": 390,
       "anchor": "start",
       "z_order": 0,
       "type": "shape",
       "properties": {
-        "stroke": "#222222",
-        "stroke_width": 5.0,
-        "font_family": "Malgun Gothic",
-        "font_weight": "normal",
-        "x1": 430.0,
-        "y1": 390.0,
+        "shape_type": "line",
+        "x1": 430,
+        "y1": 390,
         "x2": 454.4021566024176,
         "y2": 504.8031206879423,
-        "shape_type": "line"
-      }
-    },
-    {
-      "id": "geom_ra_ca_a",
-      "x": 405.59784339758244,
-      "y": 275.19687931205766,
-      "anchor": "start",
-      "z_order": 0,
-      "type": "shape",
-      "properties": {
-        "stroke": "#E91E63",
-        "stroke_width": 3.0,
-        "font_family": "Malgun Gothic",
-        "font_weight": "normal",
-        "x1": 405.59784339758244,
-        "y1": 275.19687931205766,
-        "x2": 421.2482050093233,
-        "y2": 271.8702922589735,
-        "shape_type": "line"
+        "stroke": "#222222",
+        "stroke_width": 5
       }
     },
     {
@@ -145,15 +114,13 @@
       "z_order": 0,
       "type": "shape",
       "properties": {
-        "stroke": "#E91E63",
-        "stroke_width": 3.0,
-        "font_family": "Malgun Gothic",
-        "font_weight": "normal",
+        "shape_type": "line",
         "x1": 421.2482050093233,
         "y1": 271.8702922589735,
         "x2": 424.5747920624075,
         "y2": 287.5206538707144,
-        "shape_type": "line"
+        "stroke": "#E91E63",
+        "stroke_width": 3
       }
     },
     {
@@ -164,34 +131,13 @@
       "z_order": 0,
       "type": "shape",
       "properties": {
-        "stroke": "#E91E63",
-        "stroke_width": 3.0,
-        "font_family": "Malgun Gothic",
-        "font_weight": "normal",
+        "shape_type": "line",
         "x1": 424.5747920624075,
         "y1": 287.5206538707144,
         "x2": 408.9244304506666,
         "y2": 290.84724092379855,
-        "shape_type": "line"
-      }
-    },
-    {
-      "id": "geom_ra_tn_a",
-      "x": 454.4021566024176,
-      "y": 504.8031206879423,
-      "anchor": "start",
-      "z_order": 0,
-      "type": "shape",
-      "properties": {
         "stroke": "#E91E63",
-        "stroke_width": 3.0,
-        "font_family": "Malgun Gothic",
-        "font_weight": "normal",
-        "x1": 454.4021566024176,
-        "y1": 504.8031206879423,
-        "x2": 470.0525182141585,
-        "y2": 501.47653363485813,
-        "shape_type": "line"
+        "stroke_width": 3
       }
     },
     {
@@ -202,15 +148,13 @@
       "z_order": 0,
       "type": "shape",
       "properties": {
-        "stroke": "#E91E63",
-        "stroke_width": 3.0,
-        "font_family": "Malgun Gothic",
-        "font_weight": "normal",
+        "shape_type": "line",
         "x1": 470.0525182141585,
         "y1": 501.47653363485813,
         "x2": 466.72593116107436,
         "y2": 485.82617202311724,
-        "shape_type": "line"
+        "stroke": "#E91E63",
+        "stroke_width": 3
       }
     },
     {
@@ -221,15 +165,13 @@
       "z_order": 0,
       "type": "shape",
       "properties": {
-        "stroke": "#E91E63",
-        "stroke_width": 3.0,
-        "font_family": "Malgun Gothic",
-        "font_weight": "normal",
+        "shape_type": "line",
         "x1": 466.72593116107436,
         "y1": 485.82617202311724,
         "x2": 451.07556954933347,
         "y2": 489.1527590762014,
-        "shape_type": "line"
+        "stroke": "#E91E63",
+        "stroke_width": 3
       }
     },
     {
@@ -240,15 +182,13 @@
       "z_order": 0,
       "type": "shape",
       "properties": {
-        "stroke": "#E91E63",
-        "stroke_width": 3.0,
-        "font_family": "Malgun Gothic",
-        "font_weight": "normal",
+        "shape_type": "line",
         "x1": 410.7989216987912,
         "y1": 339.59843965602886,
         "x2": 424.7989216987912,
         "y2": 325.59843965602886,
-        "shape_type": "line"
+        "stroke": "#E91E63",
+        "stroke_width": 3
       }
     },
     {
@@ -259,15 +199,13 @@
       "z_order": 0,
       "type": "shape",
       "properties": {
-        "stroke": "#E91E63",
-        "stroke_width": 3.0,
-        "font_family": "Malgun Gothic",
-        "font_weight": "normal",
+        "shape_type": "line",
         "x1": 435.2010783012088,
         "y1": 454.40156034397114,
         "x2": 449.2010783012088,
         "y2": 440.40156034397114,
-        "shape_type": "line"
+        "stroke": "#E91E63",
+        "stroke_width": 3
       }
     },
     {
@@ -278,11 +216,11 @@
       "z_order": 0,
       "type": "text",
       "properties": {
+        "text": "C",
         "fill": "#000000",
         "font_family": "sans-serif",
-        "font_size": 48.0,
-        "font_weight": "normal",
-        "text": "C"
+        "font_size": 48,
+        "font_weight": "normal"
       }
     },
     {
@@ -293,11 +231,11 @@
       "z_order": 0,
       "type": "text",
       "properties": {
+        "text": "A",
         "fill": "#000000",
         "font_family": "sans-serif",
-        "font_size": 48.0,
-        "font_weight": "normal",
-        "text": "A"
+        "font_size": 48,
+        "font_weight": "normal"
       }
     },
     {
@@ -308,11 +246,11 @@
       "z_order": 0,
       "type": "text",
       "properties": {
+        "text": "N",
         "fill": "#000000",
         "font_family": "sans-serif",
-        "font_size": 48.0,
-        "font_weight": "normal",
-        "text": "N"
+        "font_size": 48,
+        "font_weight": "normal"
       }
     },
     {
@@ -323,26 +261,26 @@
       "z_order": 0,
       "type": "text",
       "properties": {
+        "text": "T",
         "fill": "#000000",
         "font_family": "sans-serif",
-        "font_size": 48.0,
-        "font_weight": "normal",
-        "text": "T"
+        "font_size": 48,
+        "font_weight": "normal"
       }
     },
     {
       "id": "geom_label_M",
-      "x": 410.0,
-      "y": 378.0,
+      "x": 356.6203918457031,
+      "y": 391.6552429199219,
       "anchor": "start",
       "z_order": 0,
       "type": "text",
       "properties": {
+        "text": "M",
         "fill": "#000000",
         "font_family": "sans-serif",
-        "font_size": 48.0,
-        "font_weight": "normal",
-        "text": "M"
+        "font_size": 48,
+        "font_weight": "normal"
       }
     },
     {
@@ -353,146 +291,146 @@
       "z_order": 0,
       "type": "text",
       "properties": {
+        "text": "28°",
         "fill": "#000000",
         "font_family": "sans-serif",
-        "font_size": 48.0,
-        "font_weight": "normal",
-        "text": "28°"
+        "font_size": 48,
+        "font_weight": "normal"
       }
     },
     {
       "id": "text.problem",
-      "x": 40.0,
-      "y": 72.0,
+      "x": 40,
+      "y": 72,
       "anchor": "start",
       "z_order": 0,
       "type": "text",
       "properties": {
+        "text": "Find m ∠CAM.",
         "fill": "#000000",
         "font_family": "sans-serif",
-        "font_size": 48.0,
-        "font_weight": "normal",
-        "text": "Find m ∠CAM."
+        "font_size": 48,
+        "font_weight": "normal"
       }
     },
     {
       "id": "text.choices_ln1",
-      "x": 860.0,
-      "y": 320.0,
+      "x": 794.20654296875,
+      "y": 154.89564514160156,
       "anchor": "start",
       "z_order": 0,
       "type": "text",
       "properties": {
+        "text": "1.",
         "fill": "#000000",
         "font_family": "sans-serif",
-        "font_size": 48.0,
-        "font_weight": "normal",
-        "text": "1."
+        "font_size": 48,
+        "font_weight": "normal"
       }
     },
     {
       "id": "text.choices_ln2",
-      "x": 860.0,
-      "y": 384.8,
+      "x": 853.7930908203125,
+      "y": 158.86768798828126,
       "anchor": "start",
       "z_order": 0,
       "type": "text",
       "properties": {
+        "text": "14",
         "fill": "#000000",
         "font_family": "sans-serif",
-        "font_size": 48.0,
-        "font_weight": "normal",
-        "text": "14"
+        "font_size": 48,
+        "font_weight": "normal"
       }
     },
     {
       "id": "text.choices_ln3",
-      "x": 860.0,
-      "y": 449.6,
+      "x": 796.6892700195312,
+      "y": 224.90908203125002,
       "anchor": "start",
       "z_order": 0,
       "type": "text",
       "properties": {
+        "text": "2.",
         "fill": "#000000",
         "font_family": "sans-serif",
-        "font_size": 48.0,
-        "font_weight": "normal",
-        "text": "2."
+        "font_size": 48,
+        "font_weight": "normal"
       }
     },
     {
       "id": "text.choices_ln4",
-      "x": 860.0,
-      "y": 514.4000000000001,
+      "x": 857.5172729492188,
+      "y": 226.3983673095704,
       "anchor": "start",
       "z_order": 0,
       "type": "text",
       "properties": {
+        "text": "28",
         "fill": "#000000",
         "font_family": "sans-serif",
-        "font_size": 48.0,
-        "font_weight": "normal",
-        "text": "28"
+        "font_size": 48,
+        "font_weight": "normal"
       }
     },
     {
       "id": "text.choices_ln5",
-      "x": 860.0,
-      "y": 579.2,
+      "x": 795.4479370117188,
+      "y": 301.1295043945313,
       "anchor": "start",
       "z_order": 0,
       "type": "text",
       "properties": {
+        "text": "3.",
         "fill": "#000000",
         "font_family": "sans-serif",
-        "font_size": 48.0,
-        "font_weight": "normal",
-        "text": "3."
+        "font_size": 48,
+        "font_weight": "normal"
       }
     },
     {
       "id": "text.choices_ln6",
-      "x": 860.0,
-      "y": 644.0,
+      "x": 853.7930908203125,
+      "y": 302.6187744140625,
       "anchor": "start",
       "z_order": 0,
       "type": "text",
       "properties": {
+        "text": "36",
         "fill": "#000000",
         "font_family": "sans-serif",
-        "font_size": 48.0,
-        "font_weight": "normal",
-        "text": "36"
+        "font_size": 48,
+        "font_weight": "normal"
       }
     },
     {
       "id": "text.choices_ln7",
-      "x": 860.0,
-      "y": 708.8000000000001,
+      "x": 795.4479370117188,
+      "y": 367.41874389648444,
       "anchor": "start",
       "z_order": 0,
       "type": "text",
       "properties": {
+        "text": "4.",
         "fill": "#000000",
         "font_family": "sans-serif",
-        "font_size": 48.0,
-        "font_weight": "normal",
-        "text": "4."
+        "font_size": 48,
+        "font_weight": "normal"
       }
     },
     {
       "id": "text.choices_ln8",
-      "x": 860.0,
-      "y": 773.6000000000001,
+      "x": 852.5516967773438,
+      "y": 368.9080444335939,
       "anchor": "start",
       "z_order": 0,
       "type": "text",
       "properties": {
+        "text": "90",
         "fill": "#000000",
         "font_family": "sans-serif",
-        "font_size": 48.0,
-        "font_weight": "normal",
-        "text": "90"
+        "font_size": 48,
+        "font_weight": "normal"
       }
     }
   ]
