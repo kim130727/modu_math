@@ -141,6 +141,28 @@ button:hover,
   overflow: auto;
 }
 
+.canvas-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.canvas-head h2 {
+  margin: 0;
+}
+
+.cursor-position {
+  color: var(--muted);
+  font-family: Consolas, monospace;
+  font-size: 12px;
+  padding: 4px 8px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #fff;
+}
+
 .canvas-host svg {
   width: 100%;
   height: auto;

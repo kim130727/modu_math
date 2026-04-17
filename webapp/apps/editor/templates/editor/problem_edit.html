@@ -26,7 +26,10 @@
   </aside>
 
   <div class="panel canvas-pane">
-    <h2>SVG 캔버스 (편집 + 미리보기)</h2>
+    <div class="canvas-head">
+      <h2>SVG 캔버스 (편집 + 미리보기)</h2>
+      <div id="cursor-position" class="cursor-position">x: -, y: -</div>
+    </div>
     <div id="canvas-host" class="canvas-host"></div>
   </div>
 
@@ -46,6 +49,7 @@
       <div class="field"><label>r</label><input name="r" /></div>
       <div class="field"><label>text</label><input name="text" /></div>
       <div class="field"><label>expr</label><input name="expr" /></div>
+      <div class="field"><label>font_size</label><input name="font_size" /></div>
       <button type="submit">속성 반영</button>
     </form>
   </aside>

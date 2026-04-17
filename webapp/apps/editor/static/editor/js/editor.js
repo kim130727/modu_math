@@ -55,6 +55,7 @@ const state = {
 ensureShape(state.semantic);
 
 const canvasHost = byId("canvas-host");
+const cursorPosition = byId("cursor-position");
 const elementList = byId("element-list");
 const form = byId("properties-form");
 const jsonTextarea = byId("semantic-json-text");
@@ -95,6 +96,15 @@ function updateStatus(message, isError = false) {
   statusLine.classList.toggle("error", isError);
 }
 
+function updateCursorPosition(x, y) {
+  if (!cursorPosition) return;
+  if (Number.isFinite(x) && Number.isFinite(y)) {
+    cursorPosition.textContent = `x: ${Math.round(x)}, y: ${Math.round(y)}`;
+    return;
+  }
+  cursorPosition.textContent = "x: -, y: -";
+}
+
 function moveElement(el, dx, dy) {
   if (!el) return;
   if (el.type === "line") {
@@ -124,14 +134,19 @@ function wireCanvasHandlers() {
   });
 
   svg.addEventListener("mousemove", (event) => {
-    if (!state.drag || !state.selectedId) return;
     const p = eventToSvgPoint(svg, event);
+    updateCursorPosition(p.x, p.y);
+    if (!state.drag || !state.selectedId) return;
     const dx = p.x - state.drag.startX;
     const dy = p.y - state.drag.startY;
     state.drag.startX = p.x;
     state.drag.startY = p.y;
     moveElement(selectedElement(), dx, dy);
     renderAll();
+  });
+
+  svg.addEventListener("mouseleave", () => {
+    updateCursorPosition(NaN, NaN);
   });
 
   if (!state.mouseupBound) {
@@ -260,4 +275,5 @@ byId("save-btn").addEventListener("click", async () => {
 });
 
 renderAll(true);
+updateCursorPosition(NaN, NaN);
 
