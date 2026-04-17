@@ -10,6 +10,7 @@ from ..layout.models.node import LayoutNode
 from ..layout.diff import apply_layout_diff
 from ..editor.models.state import EditorState
 from ..adapters.json.renderer_json import layout_to_renderer
+from ..renderer.validate import validate_renderer_json
 from ..renderer.svg.render import render_svg
 from ..adapters.json.semantic_json import problem_to_semantic_json
 
@@ -57,6 +58,7 @@ def compile_problem_pipeline(
     # 3. Output renderer JSON
     renderer_ast = layout_to_renderer(problem.problem_id, canvas, nodes)
     renderer_json = renderer_ast.to_dict()
+    validate_renderer_json(renderer_json)
     renderer_path = out_prefix.with_suffix(".renderer.json")
     with open(renderer_path, "w", encoding="utf-8") as f:
         json.dump(renderer_json, f, ensure_ascii=False, indent=2)

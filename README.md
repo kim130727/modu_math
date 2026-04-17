@@ -15,7 +15,8 @@
 1. `schema/contract/semantic_v3.schema.json`
 2. `schema/contract/layout_v1.schema.json`
 3. `schema/contract/layout_diff_v1.schema.json`
-4. `schema/contract/canonical_order_profile.json`
+4. `schema/renderer/renderer.v1.json`
+5. `schema/contract/canonical_order_profile.json`
 
 ### semantic top-level 필수 키
 

@@ -7,6 +7,7 @@
 - `semantic_v3.schema.json`
 - `layout_v1.schema.json`
 - `layout_diff_v1.schema.json`
+- `../renderer/renderer.v1.json`
 - `canonical_order_profile.json`
 
 경로: `schema/contract/`
