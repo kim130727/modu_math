@@ -9,12 +9,13 @@ from ...pipeline.compile_problem import compile_problem_pipeline
 from .legacy_primitives import Element
 
 class Problem:
-    def __init__(self):
-        self.width = 800
-        self.height = 600
-        self.background = "#F6F6F6"
-        self.problem_id: str | None = None
-        self.problem_type: str = "generic"
+    def __init__(self, width: int = 800, height: int = 600, background: str = "#F6F6F6", problem_id: str | None = None, problem_type: str = "generic"):
+        self.width = width
+        self.height = height
+        self.background = background
+        self.problem_id = problem_id
+        self.problem_type = problem_type
+        self.title = ""
         self.metadata: dict[str, Any] = {}
         self.domain: dict[str, Any] = {}
         self.answer: dict[str, Any] = {"blanks": [], "choices": [], "answer_key": []}
