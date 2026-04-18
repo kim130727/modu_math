@@ -1,0 +1,174 @@
+{
+  "schema_version": "modu_math.semantic.v3",
+  "render_contract_version": "modu_math.render.v1",
+  "problem_id": "3rd_shape2d_0003",
+  "problem_type": "shape2d_find_all_names",
+  "title": "각 이름 쓰기",
+  "metadata": {
+    "source": {
+      "input_type": "python_dsl",
+      "generator": "modu_semantic"
+    },
+    "warnings": []
+  },
+  "domain": {
+    "instruction": "도형의 이름으로 알맞은 것을 모두 찾아 기호를 쓰시오.",
+    "shape_name_choices": {
+      "㉠": "직사각형",
+      "㉡": "사각형",
+      "㉢": "직각삼각형",
+      "㉣": "정사각형"
+    },
+    "correct_labels": [
+      "㉡",
+      "㉣"
+    ]
+  },
+  "render": {
+    "elements": [
+      {
+        "id": "bg",
+        "semantic_role": "background",
+        "type": "rect"
+      },
+      {
+        "id": "instruction_1",
+        "semantic_role": "instruction",
+        "type": "text",
+        "text": "도형의 이름으로 알맞은 것을 모두 찾아 기호를"
+      },
+      {
+        "id": "instruction_2",
+        "semantic_role": "instruction",
+        "type": "text",
+        "text": "쓰시오."
+      },
+      {
+        "id": "grid_box",
+        "semantic_role": "guide",
+        "type": "rect"
+      },
+      {
+        "id": "grid_v_0",
+        "semantic_role": "guide",
+        "type": "line"
+      },
+      {
+        "id": "grid_v_1",
+        "semantic_role": "guide",
+        "type": "line"
+      },
+      {
+        "id": "grid_v_2",
+        "semantic_role": "guide",
+        "type": "line"
+      },
+      {
+        "id": "grid_v_3",
+        "semantic_role": "guide",
+        "type": "line"
+      },
+      {
+        "id": "grid_v_4",
+        "semantic_role": "guide",
+        "type": "line"
+      },
+      {
+        "id": "grid_v_5",
+        "semantic_role": "guide",
+        "type": "line"
+      },
+      {
+        "id": "grid_h_0",
+        "semantic_role": "guide",
+        "type": "line"
+      },
+      {
+        "id": "grid_h_1",
+        "semantic_role": "guide",
+        "type": "line"
+      },
+      {
+        "id": "grid_h_2",
+        "semantic_role": "guide",
+        "type": "line"
+      },
+      {
+        "id": "grid_h_3",
+        "semantic_role": "guide",
+        "type": "line"
+      },
+      {
+        "id": "grid_h_4",
+        "semantic_role": "guide",
+        "type": "line"
+      },
+      {
+        "id": "grid_h_5",
+        "semantic_role": "guide",
+        "type": "line"
+      },
+      {
+        "id": "target_shape",
+        "semantic_role": "shape",
+        "type": "rect"
+      },
+      {
+        "id": "choice_box",
+        "semantic_role": "guide",
+        "type": "rect"
+      },
+      {
+        "id": "choice_key_㉠",
+        "semantic_role": "choice",
+        "type": "text",
+        "text": "㉠ 직사각형"
+      },
+      {
+        "id": "choice_key_㉡",
+        "semantic_role": "choice",
+        "type": "text",
+        "text": "㉡ 사각형"
+      },
+      {
+        "id": "choice_key_㉢",
+        "semantic_role": "choice",
+        "type": "text",
+        "text": "㉢ 직각삼각형"
+      },
+      {
+        "id": "choice_key_㉣",
+        "semantic_role": "choice",
+        "type": "text",
+        "text": "㉣ 정사각형"
+      },
+      {
+        "id": "answer_left_paren",
+        "semantic_role": "guide",
+        "type": "text",
+        "text": "("
+      },
+      {
+        "id": "answer_right_paren",
+        "semantic_role": "guide",
+        "type": "text",
+        "text": ")"
+      },
+      {
+        "id": "answer_blank",
+        "semantic_role": "answer_anchor",
+        "type": "rect"
+      }
+    ]
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [
+      {
+        "target": "answer_blank",
+        "value": "㉡㉣"
+      }
+    ]
+  }
+}

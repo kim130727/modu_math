@@ -1,0 +1,52 @@
+{
+  "problem_id": "ke_3rd_0007",
+  "problem_type": "expression_maximization",
+  "metadata": {
+    "education": {
+      "level": "elementary",
+      "grade": 3,
+      "subject": "math",
+      "curriculum": "KR"
+    },
+    "classification": {
+      "topic": "Addition and Subtraction",
+      "sub_topic": "Expression Maximization",
+      "difficulty": "hard"
+    }
+  },
+  "domain": {
+    "available_numbers": [
+      365,
+      567,
+      827,
+      910
+    ],
+    "formula_template": "box1 - box2 + box3",
+    "optimal_selection": {
+      "box1": 910,
+      "box2": 365,
+      "box3": 827
+    },
+    "goal": "maximum_result"
+  },
+  "answer": {
+    "blanks": [
+      {
+        "id": "blank_1",
+        "type": "numeric"
+      },
+      {
+        "id": "blank_res",
+        "type": "numeric"
+      }
+    ],
+    "choices": [],
+    "answer_key": [
+      {
+        "blank_id": "blank_res",
+        "value": 1372
+      }
+    ]
+  },
+  "title": "계산 결과가 가장 큰 식 만들기"
+}

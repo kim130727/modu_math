@@ -1,0 +1,355 @@
+{
+  "schema_version": "modu_math.semantic.v3",
+  "render_contract_version": "modu_math.render.v1",
+  "problem_id": "0007",
+  "problem_type": "distance_on_line",
+  "metadata": {
+    "source": {
+      "input_type": "python_dsl",
+      "generator": "modu_semantic"
+    },
+    "warnings": [],
+    "education": {
+      "level": "elementary",
+      "grade": 3,
+      "subject": "math",
+      "curriculum": "KR"
+    },
+    "classification": {
+      "topic": "길이와 시간"
+    }
+  },
+  "domain": {
+    "points": [
+      "ㄱ",
+      "ㄴ",
+      "ㄷ",
+      "ㄹ"
+    ],
+    "segments_cm": {
+      "ㄱㄴ": 176,
+      "ㄴㄷ": 325,
+      "ㄴㄹ": 646
+    },
+    "ask": "ㄱㄹ",
+    "answer_cm": 822
+  },
+  "render": {
+    "elements": [
+      {
+        "id": "instruction",
+        "semantic_role": "instruction",
+        "type": "text",
+        "text": "ㄱ에서 ㄹ까지의 거리를 구해 보세요."
+      },
+      {
+        "id": "base_line",
+        "semantic_role": "number_line",
+        "type": "line"
+      },
+      {
+        "id": "tick_p0",
+        "semantic_role": "point_tick",
+        "type": "line"
+      },
+      {
+        "id": "label_circle_p0",
+        "semantic_role": "point_label",
+        "type": "circle"
+      },
+      {
+        "id": "label_p0",
+        "semantic_role": "point_name",
+        "type": "text",
+        "text": "ㄱ"
+      },
+      {
+        "id": "tick_p1",
+        "semantic_role": "point_tick",
+        "type": "line"
+      },
+      {
+        "id": "label_circle_p1",
+        "semantic_role": "point_label",
+        "type": "circle"
+      },
+      {
+        "id": "label_p1",
+        "semantic_role": "point_name",
+        "type": "text",
+        "text": "ㄴ"
+      },
+      {
+        "id": "tick_p2",
+        "semantic_role": "point_tick",
+        "type": "line"
+      },
+      {
+        "id": "label_circle_p2",
+        "semantic_role": "point_label",
+        "type": "circle"
+      },
+      {
+        "id": "label_p2",
+        "semantic_role": "point_name",
+        "type": "text",
+        "text": "ㄷ"
+      },
+      {
+        "id": "tick_p3",
+        "semantic_role": "point_tick",
+        "type": "line"
+      },
+      {
+        "id": "label_circle_p3",
+        "semantic_role": "point_label",
+        "type": "circle"
+      },
+      {
+        "id": "label_p3",
+        "semantic_role": "point_name",
+        "type": "text",
+        "text": "ㄹ"
+      },
+      {
+        "id": "dist_p0_p1_seg_0",
+        "semantic_role": "measurement_guide",
+        "type": "line"
+      },
+      {
+        "id": "dist_p0_p1_seg_2",
+        "semantic_role": "measurement_guide",
+        "type": "line"
+      },
+      {
+        "id": "dist_p0_p1_seg_4",
+        "semantic_role": "measurement_guide",
+        "type": "line"
+      },
+      {
+        "id": "dist_p0_p1_seg_6",
+        "semantic_role": "measurement_guide",
+        "type": "line"
+      },
+      {
+        "id": "dist_p0_p1_seg_8",
+        "semantic_role": "measurement_guide",
+        "type": "line"
+      },
+      {
+        "id": "dist_p0_p1_seg_10",
+        "semantic_role": "measurement_guide",
+        "type": "line"
+      },
+      {
+        "id": "dist_p0_p1_seg_12",
+        "semantic_role": "measurement_guide",
+        "type": "line"
+      },
+      {
+        "id": "dist_p0_p1_seg_14",
+        "semantic_role": "measurement_guide",
+        "type": "line"
+      },
+      {
+        "id": "dist_p0_p1_seg_16",
+        "semantic_role": "measurement_guide",
+        "type": "line"
+      },
+      {
+        "id": "dist_p0_p1_seg_18",
+        "semantic_role": "measurement_guide",
+        "type": "line"
+      },
+      {
+        "id": "dist_p0_p1_seg_20",
+        "semantic_role": "measurement_guide",
+        "type": "line"
+      },
+      {
+        "id": "dist_p0_p1_seg_22",
+        "semantic_role": "measurement_guide",
+        "type": "line"
+      },
+      {
+        "id": "dist_p0_p1_seg_24",
+        "semantic_role": "measurement_guide",
+        "type": "line"
+      },
+      {
+        "id": "dist_p0_p1_seg_26",
+        "semantic_role": "measurement_guide",
+        "type": "line"
+      },
+      {
+        "id": "dist_p1_p3_seg_0",
+        "semantic_role": "measurement_guide",
+        "type": "line"
+      },
+      {
+        "id": "dist_p1_p3_seg_2",
+        "semantic_role": "measurement_guide",
+        "type": "line"
+      },
+      {
+        "id": "dist_p1_p3_seg_4",
+        "semantic_role": "measurement_guide",
+        "type": "line"
+      },
+      {
+        "id": "dist_p1_p3_seg_6",
+        "semantic_role": "measurement_guide",
+        "type": "line"
+      },
+      {
+        "id": "dist_p1_p3_seg_8",
+        "semantic_role": "measurement_guide",
+        "type": "line"
+      },
+      {
+        "id": "dist_p1_p3_seg_10",
+        "semantic_role": "measurement_guide",
+        "type": "line"
+      },
+      {
+        "id": "dist_p1_p3_seg_12",
+        "semantic_role": "measurement_guide",
+        "type": "line"
+      },
+      {
+        "id": "dist_p1_p3_seg_14",
+        "semantic_role": "measurement_guide",
+        "type": "line"
+      },
+      {
+        "id": "dist_p1_p3_seg_16",
+        "semantic_role": "measurement_guide",
+        "type": "line"
+      },
+      {
+        "id": "dist_p1_p3_seg_18",
+        "semantic_role": "measurement_guide",
+        "type": "line"
+      },
+      {
+        "id": "dist_p1_p3_seg_20",
+        "semantic_role": "measurement_guide",
+        "type": "line"
+      },
+      {
+        "id": "dist_p1_p3_seg_22",
+        "semantic_role": "measurement_guide",
+        "type": "line"
+      },
+      {
+        "id": "dist_p1_p3_seg_24",
+        "semantic_role": "measurement_guide",
+        "type": "line"
+      },
+      {
+        "id": "dist_p1_p3_seg_26",
+        "semantic_role": "measurement_guide",
+        "type": "line"
+      },
+      {
+        "id": "dist_p1_p2_seg_0",
+        "semantic_role": "measurement_guide",
+        "type": "line"
+      },
+      {
+        "id": "dist_p1_p2_seg_2",
+        "semantic_role": "measurement_guide",
+        "type": "line"
+      },
+      {
+        "id": "dist_p1_p2_seg_4",
+        "semantic_role": "measurement_guide",
+        "type": "line"
+      },
+      {
+        "id": "dist_p1_p2_seg_6",
+        "semantic_role": "measurement_guide",
+        "type": "line"
+      },
+      {
+        "id": "dist_p1_p2_seg_8",
+        "semantic_role": "measurement_guide",
+        "type": "line"
+      },
+      {
+        "id": "dist_p1_p2_seg_10",
+        "semantic_role": "measurement_guide",
+        "type": "line"
+      },
+      {
+        "id": "dist_p1_p2_seg_12",
+        "semantic_role": "measurement_guide",
+        "type": "line"
+      },
+      {
+        "id": "dist_p1_p2_seg_14",
+        "semantic_role": "measurement_guide",
+        "type": "line"
+      },
+      {
+        "id": "dist_p1_p2_seg_16",
+        "semantic_role": "measurement_guide",
+        "type": "line"
+      },
+      {
+        "id": "dist_p1_p2_seg_18",
+        "semantic_role": "measurement_guide",
+        "type": "line"
+      },
+      {
+        "id": "dist_p1_p2_seg_20",
+        "semantic_role": "measurement_guide",
+        "type": "line"
+      },
+      {
+        "id": "dist_p1_p2_seg_22",
+        "semantic_role": "measurement_guide",
+        "type": "line"
+      },
+      {
+        "id": "dist_p1_p2_seg_24",
+        "semantic_role": "measurement_guide",
+        "type": "line"
+      },
+      {
+        "id": "dist_p1_p2_seg_26",
+        "semantic_role": "measurement_guide",
+        "type": "line"
+      },
+      {
+        "id": "dist_p0_p1_text",
+        "semantic_role": "distance_label",
+        "type": "text",
+        "text": "176 cm"
+      },
+      {
+        "id": "dist_p1_p3_text",
+        "semantic_role": "distance_label",
+        "type": "text",
+        "text": "646 cm"
+      },
+      {
+        "id": "dist_p1_p2_text",
+        "semantic_role": "distance_label",
+        "type": "text",
+        "text": "325 cm"
+      }
+    ]
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [
+      {
+        "target": "value",
+        "value": "822"
+      }
+    ]
+  },
+  "title": "선분 거리 계산"
+}

@@ -1,0 +1,60 @@
+{
+  "problem_id": "ke_3rd_0002",
+  "problem_type": "equation_system_word_problem",
+  "metadata": {
+    "education": {
+      "level": "elementary",
+      "grade": 3,
+      "subject": "math",
+      "curriculum": "KR"
+    },
+    "classification": {
+      "topic": "Addition and Subtraction",
+      "sub_topic": "Equation Puzzle",
+      "difficulty": "medium"
+    }
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "square",
+        "symbol": "■"
+      },
+      {
+        "id": "triangle",
+        "symbol": "▲"
+      }
+    ],
+    "relations": [
+      {
+        "id": "eq1",
+        "expr": "800 - 347 + square = 650"
+      },
+      {
+        "id": "eq2",
+        "expr": "543 - triangle = square"
+      }
+    ],
+    "values": {
+      "square": 197,
+      "triangle": 346
+    },
+    "goal": "triangle - square"
+  },
+  "answer": {
+    "blanks": [
+      {
+        "id": "blank_1",
+        "type": "numeric"
+      }
+    ],
+    "choices": [],
+    "answer_key": [
+      {
+        "blank_id": "blank_1",
+        "value": 149
+      }
+    ]
+  },
+  "title": "모양에 알맞은 수 구하기"
+}

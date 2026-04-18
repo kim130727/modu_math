@@ -1,0 +1,57 @@
+{
+  "problem_id": "ke_3rd_0005",
+  "canvas": {
+    "width": 1000,
+    "height": 500,
+    "background": "#F6F6F6"
+  },
+  "nodes": [
+    {
+      "id": "t1",
+      "type": "text",
+      "x": 50,
+      "y": 80,
+      "anchor": "start",
+      "properties": {
+        "fill": "#000000",
+        "stroke": "none",
+        "stroke_width": 1.0,
+        "font_family": "sans-serif",
+        "font_size": 24,
+        "text": "□ 안에 들어갈 수 있는 수 중에서 가장 큰 자연수를 구하시오."
+      }
+    },
+    {
+      "id": "box",
+      "type": "shape",
+      "x": 150,
+      "y": 150,
+      "width": 500,
+      "height": 100,
+      "properties": {
+        "fill": "none",
+        "stroke": "#000000",
+        "stroke_width": 2,
+        "rx": 10,
+        "ry": 10,
+        "shape_type": "rect"
+      }
+    },
+    {
+      "id": "f1",
+      "type": "text",
+      "x": 400,
+      "y": 210,
+      "anchor": "middle",
+      "properties": {
+        "fill": "#000000",
+        "stroke": "none",
+        "stroke_width": 1.0,
+        "font_family": "serif",
+        "font_size": 32,
+        "is_formula": true,
+        "text": "179 + 265 < 933 - □"
+      }
+    }
+  ]
+}

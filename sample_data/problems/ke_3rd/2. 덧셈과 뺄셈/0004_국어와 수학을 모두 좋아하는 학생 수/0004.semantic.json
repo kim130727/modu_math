@@ -1,0 +1,51 @@
+{
+  "problem_id": "ke_3rd_0004",
+  "problem_type": "set_word_problem",
+  "metadata": {
+    "education": {
+      "level": "elementary",
+      "grade": 3,
+      "subject": "math",
+      "curriculum": "KR"
+    },
+    "classification": {
+      "topic": "Addition and Subtraction",
+      "sub_topic": "Set Theory Word Problem",
+      "difficulty": "medium"
+    }
+  },
+  "domain": {
+    "groups": [
+      {
+        "id": "total",
+        "count": 780
+      },
+      {
+        "id": "korean_lovers",
+        "count": 621
+      },
+      {
+        "id": "math_lovers",
+        "count": 348
+      }
+    ],
+    "logic": "N(A union B) = N(A) + N(B) - N(A intersect B)",
+    "goal": "korean_lovers_and_math_lovers"
+  },
+  "answer": {
+    "blanks": [
+      {
+        "id": "blank_1",
+        "type": "numeric"
+      }
+    ],
+    "choices": [],
+    "answer_key": [
+      {
+        "blank_id": "blank_1",
+        "value": 189
+      }
+    ]
+  },
+  "title": "국어와 수학을 모두 좋아하는 학생 수"
+}

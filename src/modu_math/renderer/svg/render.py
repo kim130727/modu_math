@@ -40,7 +40,7 @@ def _element_to_svg_lines(element: RenderElement, depth: int = 1) -> list[str]:
         return lines
 
     tag = element.type
-    if tag in {"rect", "circle", "line", "polygon"}:
+    if tag in {"rect", "circle", "line", "polygon", "path"}:
         return [f"{indent}<{tag} {attrs_str} />"]
     return [f"{indent}<!-- Unsupported element type: {escape(tag)} -->"]
 

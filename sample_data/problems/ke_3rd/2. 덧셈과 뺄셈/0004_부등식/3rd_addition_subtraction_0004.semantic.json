@@ -1,0 +1,84 @@
+{
+  "schema_version": "modu_math.semantic.v3",
+  "render_contract_version": "modu_math.render.v1",
+  "problem_id": "3rd_addition_subtraction_0004",
+  "problem_type": "inequality_digit_count",
+  "title": "부등식",
+  "metadata": {
+    "source": {
+      "input_type": "python_dsl",
+      "generator": "modu_semantic"
+    },
+    "warnings": []
+  },
+  "domain": {
+    "inequality": "4□5 + 298 > 763",
+    "digit_range": [
+      0,
+      9
+    ],
+    "count": 3,
+    "valid_digits": [
+      7,
+      8,
+      9
+    ]
+  },
+  "render": {
+    "elements": [
+      {
+        "id": "bg",
+        "type": "rect"
+      },
+      {
+        "id": "i1",
+        "type": "text",
+        "text": "0부터 9까지의 수 중에서 □에 들어갈 수를"
+      },
+      {
+        "id": "i2",
+        "type": "text",
+        "text": "모두 구하고 개수를 쓰시오."
+      },
+      {
+        "id": "eq_box",
+        "type": "rect"
+      },
+      {
+        "id": "eq",
+        "type": "text",
+        "text": "4□5+298>763"
+      },
+      {
+        "id": "lp",
+        "type": "text",
+        "text": "("
+      },
+      {
+        "id": "rp",
+        "type": "text",
+        "text": ")"
+      },
+      {
+        "id": "gaesu",
+        "type": "text",
+        "text": "개"
+      },
+      {
+        "id": "answer_count",
+        "semantic_role": "answer_anchor",
+        "type": "rect"
+      }
+    ]
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [
+      {
+        "target": "answer_count",
+        "value": "3"
+      }
+    ]
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "problem_id": "ke_3rd_0009",
+  "problem_type": "shape_arithmetic_puzzle",
+  "metadata": {
+    "education": {
+      "level": "elementary",
+      "grade": 3,
+      "subject": "math",
+      "curriculum": "KR"
+    },
+    "classification": {
+      "topic": "Addition and Subtraction",
+      "sub_topic": "Vertical Arithmetic Puzzle",
+      "difficulty": "hard"
+    }
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "square",
+        "symbol": "■"
+      },
+      {
+        "id": "star",
+        "symbol": "★"
+      }
+    ],
+    "vertical_subtraction": {
+      "minuend": "■★■",
+      "subtrahend": "★■★",
+      "difference": "★73"
+    },
+    "values": {
+      "square": 5,
+      "star": 2
+    },
+    "goal": "square + star"
+  },
+  "answer": {
+    "blanks": [
+      {
+        "id": "blank_1",
+        "type": "numeric"
+      }
+    ],
+    "choices": [],
+    "answer_key": [
+      {
+        "blank_id": "blank_1",
+        "value": 7
+      }
+    ]
+  },
+  "title": "도형 복면산 뺄셈"
+}

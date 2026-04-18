@@ -20,6 +20,7 @@ class Element:
     font_family: str | None = "sans-serif"
     font_size: float | None = 16.0
     font_weight: str | None = None
+    stroke_dasharray: str | None = None
 
     def to_layout_node(self) -> LayoutNode:
         raise NotImplementedError
@@ -38,6 +39,8 @@ class Element:
             props["opacity"] = self.opacity
         if self.transform is not None:
             props["transform"] = self.transform
+        if self.stroke_dasharray is not None:
+            props["stroke_dasharray"] = self.stroke_dasharray
         return props
 
 @dataclass
@@ -171,3 +174,18 @@ class Formula(Text):
         node = super().to_layout_node()
         node.properties["is_formula"] = True
         return node
+
+
+@dataclass
+class Path(Element):
+    d: str = ""
+
+    def to_layout_node(self) -> ShapeNode:
+        props = self._base_props()
+        props["d"] = self.d
+        return ShapeNode(
+            id=self.id,
+            shape_type="path",
+            properties=props,
+            z_order=self.z_order,
+        )

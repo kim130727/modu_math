@@ -1,0 +1,139 @@
+{
+  "schema_version": "modu_math.semantic.v3",
+  "render_contract_version": "modu_math.render.v1",
+  "problem_id": "3rd_shape2d_0001",
+  "problem_type": "shape2d_count_right_angles",
+  "title": "직각 개수 비교",
+  "metadata": {
+    "source": {
+      "input_type": "python_dsl",
+      "generator": "modu_semantic"
+    },
+    "warnings": []
+  },
+  "domain": {
+    "instruction": "직각이 가장 많은 도형과 가장 적은 도형을 찾아 차례로 기호를 쓰세요.",
+    "shape_labels": [
+      "ㄱ",
+      "ㄴ",
+      "ㄷ",
+      "ㄹ"
+    ],
+    "most_right_angles": "ㄱ",
+    "least_right_angles": "ㄴ"
+  },
+  "render": {
+    "elements": [
+      {
+        "id": "bg",
+        "semantic_role": "background",
+        "type": "rect"
+      },
+      {
+        "id": "instruction_1",
+        "semantic_role": "instruction",
+        "type": "text",
+        "text": "직각이 가장 많은 도형과 가장 적은 도형을"
+      },
+      {
+        "id": "instruction_2",
+        "semantic_role": "instruction",
+        "type": "text",
+        "text": "찾아 차례로 기호를 쓰세요."
+      },
+      {
+        "id": "problem_frame",
+        "semantic_role": "guide",
+        "type": "rect"
+      },
+      {
+        "id": "label_circle_ㄱ",
+        "semantic_role": "label_marker",
+        "type": "circle"
+      },
+      {
+        "id": "label_text_ㄱ",
+        "semantic_role": "label",
+        "type": "text",
+        "text": "ㄱ"
+      },
+      {
+        "id": "label_circle_ㄴ",
+        "semantic_role": "label_marker",
+        "type": "circle"
+      },
+      {
+        "id": "label_text_ㄴ",
+        "semantic_role": "label",
+        "type": "text",
+        "text": "ㄴ"
+      },
+      {
+        "id": "label_circle_ㄷ",
+        "semantic_role": "label_marker",
+        "type": "circle"
+      },
+      {
+        "id": "label_text_ㄷ",
+        "semantic_role": "label",
+        "type": "text",
+        "text": "ㄷ"
+      },
+      {
+        "id": "label_circle_ㄹ",
+        "semantic_role": "label_marker",
+        "type": "circle"
+      },
+      {
+        "id": "label_text_ㄹ",
+        "semantic_role": "label",
+        "type": "text",
+        "text": "ㄹ"
+      },
+      {
+        "id": "shape_giyeok",
+        "semantic_role": "shape",
+        "type": "polygon"
+      },
+      {
+        "id": "shape_nieun",
+        "semantic_role": "shape",
+        "type": "polygon"
+      },
+      {
+        "id": "shape_digeut",
+        "semantic_role": "shape",
+        "type": "polygon"
+      },
+      {
+        "id": "shape_rieul",
+        "semantic_role": "shape",
+        "type": "polygon"
+      },
+      {
+        "id": "answer_most",
+        "semantic_role": "answer_anchor",
+        "type": "rect"
+      },
+      {
+        "id": "answer_least",
+        "semantic_role": "answer_anchor",
+        "type": "rect"
+      }
+    ]
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [
+      {
+        "target": "answer_most",
+        "value": "ㄱ"
+      },
+      {
+        "target": "answer_least",
+        "value": "ㄴ"
+      }
+    ]
+  }
+}

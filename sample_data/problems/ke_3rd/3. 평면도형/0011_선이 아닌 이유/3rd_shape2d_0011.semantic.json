@@ -1,0 +1,874 @@
+{
+  "schema_version": "modu_math.semantic.v3",
+  "render_contract_version": "modu_math.render.v1",
+  "problem_id": "3rd_shape2d_0011",
+  "problem_type": "why_not_line_segment",
+  "title": "선이 아닌 이유",
+  "metadata": {
+    "source": {
+      "input_type": "python_dsl",
+      "generator": "modu_semantic"
+    },
+    "warnings": []
+  },
+  "domain": {
+    "instruction": "다음 도형이 선분이 아닌 이유를 쓰세요.",
+    "reason": "곧은 선이 아니라 구부러진 선이기 때문이다."
+  },
+  "render": {
+    "elements": [
+      {
+        "id": "bg",
+        "type": "rect"
+      },
+      {
+        "id": "i1",
+        "type": "text",
+        "text": "다음 도형이 선분이 아닌 이유를 쓰세요."
+      },
+      {
+        "id": "frame",
+        "type": "rect"
+      },
+      {
+        "id": "w0",
+        "type": "line"
+      },
+      {
+        "id": "w1",
+        "type": "line"
+      },
+      {
+        "id": "w2",
+        "type": "line"
+      },
+      {
+        "id": "w3",
+        "type": "line"
+      },
+      {
+        "id": "w4",
+        "type": "line"
+      },
+      {
+        "id": "w5",
+        "type": "line"
+      },
+      {
+        "id": "w6",
+        "type": "line"
+      },
+      {
+        "id": "w7",
+        "type": "line"
+      },
+      {
+        "id": "w8",
+        "type": "line"
+      },
+      {
+        "id": "w9",
+        "type": "line"
+      },
+      {
+        "id": "w10",
+        "type": "line"
+      },
+      {
+        "id": "w11",
+        "type": "line"
+      },
+      {
+        "id": "w12",
+        "type": "line"
+      },
+      {
+        "id": "w13",
+        "type": "line"
+      },
+      {
+        "id": "w14",
+        "type": "line"
+      },
+      {
+        "id": "w15",
+        "type": "line"
+      },
+      {
+        "id": "w16",
+        "type": "line"
+      },
+      {
+        "id": "w17",
+        "type": "line"
+      },
+      {
+        "id": "w18",
+        "type": "line"
+      },
+      {
+        "id": "w19",
+        "type": "line"
+      },
+      {
+        "id": "w20",
+        "type": "line"
+      },
+      {
+        "id": "w21",
+        "type": "line"
+      },
+      {
+        "id": "w22",
+        "type": "line"
+      },
+      {
+        "id": "w23",
+        "type": "line"
+      },
+      {
+        "id": "w24",
+        "type": "line"
+      },
+      {
+        "id": "w25",
+        "type": "line"
+      },
+      {
+        "id": "w26",
+        "type": "line"
+      },
+      {
+        "id": "w27",
+        "type": "line"
+      },
+      {
+        "id": "w28",
+        "type": "line"
+      },
+      {
+        "id": "w29",
+        "type": "line"
+      },
+      {
+        "id": "w30",
+        "type": "line"
+      },
+      {
+        "id": "w31",
+        "type": "line"
+      },
+      {
+        "id": "w32",
+        "type": "line"
+      },
+      {
+        "id": "w33",
+        "type": "line"
+      },
+      {
+        "id": "w34",
+        "type": "line"
+      },
+      {
+        "id": "w35",
+        "type": "line"
+      },
+      {
+        "id": "w36",
+        "type": "line"
+      },
+      {
+        "id": "w37",
+        "type": "line"
+      },
+      {
+        "id": "w38",
+        "type": "line"
+      },
+      {
+        "id": "w39",
+        "type": "line"
+      },
+      {
+        "id": "w40",
+        "type": "line"
+      },
+      {
+        "id": "w41",
+        "type": "line"
+      },
+      {
+        "id": "w42",
+        "type": "line"
+      },
+      {
+        "id": "w43",
+        "type": "line"
+      },
+      {
+        "id": "w44",
+        "type": "line"
+      },
+      {
+        "id": "w45",
+        "type": "line"
+      },
+      {
+        "id": "w46",
+        "type": "line"
+      },
+      {
+        "id": "w47",
+        "type": "line"
+      },
+      {
+        "id": "w48",
+        "type": "line"
+      },
+      {
+        "id": "w49",
+        "type": "line"
+      },
+      {
+        "id": "w50",
+        "type": "line"
+      },
+      {
+        "id": "w51",
+        "type": "line"
+      },
+      {
+        "id": "w52",
+        "type": "line"
+      },
+      {
+        "id": "w53",
+        "type": "line"
+      },
+      {
+        "id": "w54",
+        "type": "line"
+      },
+      {
+        "id": "w55",
+        "type": "line"
+      },
+      {
+        "id": "w56",
+        "type": "line"
+      },
+      {
+        "id": "w57",
+        "type": "line"
+      },
+      {
+        "id": "w58",
+        "type": "line"
+      },
+      {
+        "id": "w59",
+        "type": "line"
+      },
+      {
+        "id": "w60",
+        "type": "line"
+      },
+      {
+        "id": "w61",
+        "type": "line"
+      },
+      {
+        "id": "w62",
+        "type": "line"
+      },
+      {
+        "id": "w63",
+        "type": "line"
+      },
+      {
+        "id": "w64",
+        "type": "line"
+      },
+      {
+        "id": "w65",
+        "type": "line"
+      },
+      {
+        "id": "w66",
+        "type": "line"
+      },
+      {
+        "id": "w67",
+        "type": "line"
+      },
+      {
+        "id": "w68",
+        "type": "line"
+      },
+      {
+        "id": "w69",
+        "type": "line"
+      },
+      {
+        "id": "w70",
+        "type": "line"
+      },
+      {
+        "id": "w71",
+        "type": "line"
+      },
+      {
+        "id": "w72",
+        "type": "line"
+      },
+      {
+        "id": "w73",
+        "type": "line"
+      },
+      {
+        "id": "w74",
+        "type": "line"
+      },
+      {
+        "id": "w75",
+        "type": "line"
+      },
+      {
+        "id": "w76",
+        "type": "line"
+      },
+      {
+        "id": "w77",
+        "type": "line"
+      },
+      {
+        "id": "w78",
+        "type": "line"
+      },
+      {
+        "id": "w79",
+        "type": "line"
+      },
+      {
+        "id": "w80",
+        "type": "line"
+      },
+      {
+        "id": "w81",
+        "type": "line"
+      },
+      {
+        "id": "w82",
+        "type": "line"
+      },
+      {
+        "id": "w83",
+        "type": "line"
+      },
+      {
+        "id": "w84",
+        "type": "line"
+      },
+      {
+        "id": "w85",
+        "type": "line"
+      },
+      {
+        "id": "w86",
+        "type": "line"
+      },
+      {
+        "id": "w87",
+        "type": "line"
+      },
+      {
+        "id": "w88",
+        "type": "line"
+      },
+      {
+        "id": "w89",
+        "type": "line"
+      },
+      {
+        "id": "w90",
+        "type": "line"
+      },
+      {
+        "id": "w91",
+        "type": "line"
+      },
+      {
+        "id": "w92",
+        "type": "line"
+      },
+      {
+        "id": "w93",
+        "type": "line"
+      },
+      {
+        "id": "w94",
+        "type": "line"
+      },
+      {
+        "id": "w95",
+        "type": "line"
+      },
+      {
+        "id": "w96",
+        "type": "line"
+      },
+      {
+        "id": "w97",
+        "type": "line"
+      },
+      {
+        "id": "w98",
+        "type": "line"
+      },
+      {
+        "id": "w99",
+        "type": "line"
+      },
+      {
+        "id": "w100",
+        "type": "line"
+      },
+      {
+        "id": "w101",
+        "type": "line"
+      },
+      {
+        "id": "w102",
+        "type": "line"
+      },
+      {
+        "id": "w103",
+        "type": "line"
+      },
+      {
+        "id": "w104",
+        "type": "line"
+      },
+      {
+        "id": "w105",
+        "type": "line"
+      },
+      {
+        "id": "w106",
+        "type": "line"
+      },
+      {
+        "id": "w107",
+        "type": "line"
+      },
+      {
+        "id": "w108",
+        "type": "line"
+      },
+      {
+        "id": "w109",
+        "type": "line"
+      },
+      {
+        "id": "w110",
+        "type": "line"
+      },
+      {
+        "id": "w111",
+        "type": "line"
+      },
+      {
+        "id": "w112",
+        "type": "line"
+      },
+      {
+        "id": "w113",
+        "type": "line"
+      },
+      {
+        "id": "w114",
+        "type": "line"
+      },
+      {
+        "id": "w115",
+        "type": "line"
+      },
+      {
+        "id": "w116",
+        "type": "line"
+      },
+      {
+        "id": "w117",
+        "type": "line"
+      },
+      {
+        "id": "w118",
+        "type": "line"
+      },
+      {
+        "id": "w119",
+        "type": "line"
+      },
+      {
+        "id": "w120",
+        "type": "line"
+      },
+      {
+        "id": "w121",
+        "type": "line"
+      },
+      {
+        "id": "w122",
+        "type": "line"
+      },
+      {
+        "id": "w123",
+        "type": "line"
+      },
+      {
+        "id": "w124",
+        "type": "line"
+      },
+      {
+        "id": "w125",
+        "type": "line"
+      },
+      {
+        "id": "w126",
+        "type": "line"
+      },
+      {
+        "id": "w127",
+        "type": "line"
+      },
+      {
+        "id": "w128",
+        "type": "line"
+      },
+      {
+        "id": "w129",
+        "type": "line"
+      },
+      {
+        "id": "w130",
+        "type": "line"
+      },
+      {
+        "id": "w131",
+        "type": "line"
+      },
+      {
+        "id": "w132",
+        "type": "line"
+      },
+      {
+        "id": "w133",
+        "type": "line"
+      },
+      {
+        "id": "w134",
+        "type": "line"
+      },
+      {
+        "id": "w135",
+        "type": "line"
+      },
+      {
+        "id": "w136",
+        "type": "line"
+      },
+      {
+        "id": "w137",
+        "type": "line"
+      },
+      {
+        "id": "w138",
+        "type": "line"
+      },
+      {
+        "id": "w139",
+        "type": "line"
+      },
+      {
+        "id": "w140",
+        "type": "line"
+      },
+      {
+        "id": "w141",
+        "type": "line"
+      },
+      {
+        "id": "w142",
+        "type": "line"
+      },
+      {
+        "id": "w143",
+        "type": "line"
+      },
+      {
+        "id": "w144",
+        "type": "line"
+      },
+      {
+        "id": "w145",
+        "type": "line"
+      },
+      {
+        "id": "w146",
+        "type": "line"
+      },
+      {
+        "id": "w147",
+        "type": "line"
+      },
+      {
+        "id": "w148",
+        "type": "line"
+      },
+      {
+        "id": "w149",
+        "type": "line"
+      },
+      {
+        "id": "w150",
+        "type": "line"
+      },
+      {
+        "id": "w151",
+        "type": "line"
+      },
+      {
+        "id": "w152",
+        "type": "line"
+      },
+      {
+        "id": "w153",
+        "type": "line"
+      },
+      {
+        "id": "w154",
+        "type": "line"
+      },
+      {
+        "id": "w155",
+        "type": "line"
+      },
+      {
+        "id": "w156",
+        "type": "line"
+      },
+      {
+        "id": "w157",
+        "type": "line"
+      },
+      {
+        "id": "w158",
+        "type": "line"
+      },
+      {
+        "id": "w159",
+        "type": "line"
+      },
+      {
+        "id": "w160",
+        "type": "line"
+      },
+      {
+        "id": "w161",
+        "type": "line"
+      },
+      {
+        "id": "w162",
+        "type": "line"
+      },
+      {
+        "id": "w163",
+        "type": "line"
+      },
+      {
+        "id": "w164",
+        "type": "line"
+      },
+      {
+        "id": "w165",
+        "type": "line"
+      },
+      {
+        "id": "w166",
+        "type": "line"
+      },
+      {
+        "id": "w167",
+        "type": "line"
+      },
+      {
+        "id": "w168",
+        "type": "line"
+      },
+      {
+        "id": "w169",
+        "type": "line"
+      },
+      {
+        "id": "w170",
+        "type": "line"
+      },
+      {
+        "id": "w171",
+        "type": "line"
+      },
+      {
+        "id": "w172",
+        "type": "line"
+      },
+      {
+        "id": "w173",
+        "type": "line"
+      },
+      {
+        "id": "w174",
+        "type": "line"
+      },
+      {
+        "id": "w175",
+        "type": "line"
+      },
+      {
+        "id": "w176",
+        "type": "line"
+      },
+      {
+        "id": "w177",
+        "type": "line"
+      },
+      {
+        "id": "w178",
+        "type": "line"
+      },
+      {
+        "id": "w179",
+        "type": "line"
+      },
+      {
+        "id": "w180",
+        "type": "line"
+      },
+      {
+        "id": "w181",
+        "type": "line"
+      },
+      {
+        "id": "w182",
+        "type": "line"
+      },
+      {
+        "id": "w183",
+        "type": "line"
+      },
+      {
+        "id": "w184",
+        "type": "line"
+      },
+      {
+        "id": "w185",
+        "type": "line"
+      },
+      {
+        "id": "w186",
+        "type": "line"
+      },
+      {
+        "id": "w187",
+        "type": "line"
+      },
+      {
+        "id": "w188",
+        "type": "line"
+      },
+      {
+        "id": "w189",
+        "type": "line"
+      },
+      {
+        "id": "w190",
+        "type": "line"
+      },
+      {
+        "id": "w191",
+        "type": "line"
+      },
+      {
+        "id": "w192",
+        "type": "line"
+      },
+      {
+        "id": "w193",
+        "type": "line"
+      },
+      {
+        "id": "w194",
+        "type": "line"
+      },
+      {
+        "id": "w195",
+        "type": "line"
+      },
+      {
+        "id": "w196",
+        "type": "line"
+      },
+      {
+        "id": "w197",
+        "type": "line"
+      },
+      {
+        "id": "w198",
+        "type": "line"
+      },
+      {
+        "id": "w199",
+        "type": "line"
+      },
+      {
+        "id": "w200",
+        "type": "line"
+      },
+      {
+        "id": "w201",
+        "type": "line"
+      },
+      {
+        "id": "w202",
+        "type": "line"
+      },
+      {
+        "id": "w203",
+        "type": "line"
+      },
+      {
+        "id": "dot_l",
+        "type": "rect"
+      },
+      {
+        "id": "dot_r",
+        "type": "rect"
+      },
+      {
+        "id": "answer_text",
+        "semantic_role": "answer_anchor",
+        "type": "rect"
+      }
+    ]
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [
+      {
+        "target": "answer_text",
+        "value": "구부러진 선이어서 선분이 아닙니다."
+      }
+    ]
+  }
+}

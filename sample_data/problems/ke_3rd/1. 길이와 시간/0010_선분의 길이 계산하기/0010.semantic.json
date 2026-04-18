@@ -1,0 +1,76 @@
+{
+  "problem_id": "ke_3rd_0010",
+  "problem_type": "length_calculation_puzzle",
+  "metadata": {
+    "education": {
+      "level": "elementary",
+      "grade": 3,
+      "subject": "math",
+      "curriculum": "KR"
+    },
+    "classification": {
+      "topic": "Length and Time",
+      "sub_topic": "Length Calculation",
+      "difficulty": "medium"
+    }
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "seg_left",
+        "length": 821,
+        "unit": "cm"
+      },
+      {
+        "id": "seg_middle",
+        "symbol": "㉡",
+        "length": 212,
+        "unit": "cm"
+      },
+      {
+        "id": "seg_right",
+        "length": 236,
+        "unit": "cm"
+      },
+      {
+        "id": "combo_left_mid",
+        "symbol": "㉠",
+        "formula": "seg_left + seg_middle",
+        "value": 1033
+      },
+      {
+        "id": "combo_mid_right",
+        "length": 448,
+        "formula": "seg_middle + seg_right"
+      }
+    ],
+    "goal": [
+      "㉠",
+      "㉡"
+    ]
+  },
+  "answer": {
+    "blanks": [
+      {
+        "id": "blank_a",
+        "type": "numeric"
+      },
+      {
+        "id": "blank_b",
+        "type": "numeric"
+      }
+    ],
+    "choices": [],
+    "answer_key": [
+      {
+        "blank_id": "blank_a",
+        "value": 1033
+      },
+      {
+        "blank_id": "blank_b",
+        "value": 212
+      }
+    ]
+  },
+  "title": "선분의 길이 계산하기"
+}

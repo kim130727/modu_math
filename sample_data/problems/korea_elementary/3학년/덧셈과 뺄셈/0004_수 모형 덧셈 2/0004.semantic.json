@@ -1,0 +1,989 @@
+{
+  "schema_version": "modu_math.semantic.v3",
+  "render_contract_version": "modu_math.render.v1",
+  "problem_id": "0004",
+  "problem_type": "base_ten_block_addition",
+  "metadata": {
+    "source": {
+      "input_type": "python_dsl",
+      "generator": "modu_semantic"
+    },
+    "warnings": [],
+    "education": {
+      "level": "elementary",
+      "grade": 3,
+      "subject": "math",
+      "curriculum": "KR"
+    },
+    "classification": {
+      "topic": "덧셈과 뺄셈"
+    }
+  },
+  "domain": {
+    "addends": [
+      137,
+      286
+    ],
+    "decomposed": {
+      "a": {
+        "hundreds": 1,
+        "ones": 7,
+        "tens": 3
+      },
+      "b": {
+        "hundreds": 2,
+        "ones": 6,
+        "tens": 8
+      }
+    },
+    "sum": 423
+  },
+  "render": {
+    "elements": [
+      {
+        "id": "instruction",
+        "semantic_role": "instruction",
+        "type": "text",
+        "text": "수 모형으로 137 + 286을 구해 보세요."
+      },
+      {
+        "id": "model_box",
+        "semantic_role": "container",
+        "type": "rect"
+      },
+      {
+        "id": "model_divider",
+        "semantic_role": "row_divider",
+        "type": "line"
+      },
+      {
+        "id": "equation_text",
+        "semantic_role": "equation",
+        "type": "text",
+        "text": "137+286="
+      },
+      {
+        "id": "answer_blank",
+        "semantic_role": "answer_blank",
+        "type": "rect"
+      },
+      {
+        "id": "top_0_hundred",
+        "semantic_role": "hundred_block",
+        "type": "rect"
+      },
+      {
+        "id": "top_0_hundred_grid_v_1",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "top_0_hundred_grid_h_1",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "top_0_hundred_grid_v_2",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "top_0_hundred_grid_h_2",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "top_0_hundred_grid_v_3",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "top_0_hundred_grid_h_3",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "top_0_hundred_grid_v_4",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "top_0_hundred_grid_h_4",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "top_0_hundred_grid_v_5",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "top_0_hundred_grid_h_5",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "top_0_hundred_grid_v_6",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "top_0_hundred_grid_h_6",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "top_0_hundred_grid_v_7",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "top_0_hundred_grid_h_7",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "top_0_hundred_grid_v_8",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "top_0_hundred_grid_h_8",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "top_0_hundred_grid_v_9",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "top_0_hundred_grid_h_9",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "top_ten_0_ten",
+        "semantic_role": "ten_block",
+        "type": "rect"
+      },
+      {
+        "id": "top_ten_0_ten_grid_1",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "top_ten_0_ten_grid_2",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "top_ten_0_ten_grid_3",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "top_ten_0_ten_grid_4",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "top_ten_0_ten_grid_5",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "top_ten_0_ten_grid_6",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "top_ten_0_ten_grid_7",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "top_ten_0_ten_grid_8",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "top_ten_0_ten_grid_9",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "top_ten_1_ten",
+        "semantic_role": "ten_block",
+        "type": "rect"
+      },
+      {
+        "id": "top_ten_1_ten_grid_1",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "top_ten_1_ten_grid_2",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "top_ten_1_ten_grid_3",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "top_ten_1_ten_grid_4",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "top_ten_1_ten_grid_5",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "top_ten_1_ten_grid_6",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "top_ten_1_ten_grid_7",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "top_ten_1_ten_grid_8",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "top_ten_1_ten_grid_9",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "top_ten_2_ten",
+        "semantic_role": "ten_block",
+        "type": "rect"
+      },
+      {
+        "id": "top_ten_2_ten_grid_1",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "top_ten_2_ten_grid_2",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "top_ten_2_ten_grid_3",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "top_ten_2_ten_grid_4",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "top_ten_2_ten_grid_5",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "top_ten_2_ten_grid_6",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "top_ten_2_ten_grid_7",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "top_ten_2_ten_grid_8",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "top_ten_2_ten_grid_9",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "top_one_0_one",
+        "semantic_role": "one_block",
+        "type": "rect"
+      },
+      {
+        "id": "top_one_1_one",
+        "semantic_role": "one_block",
+        "type": "rect"
+      },
+      {
+        "id": "top_one_2_one",
+        "semantic_role": "one_block",
+        "type": "rect"
+      },
+      {
+        "id": "top_one_3_one",
+        "semantic_role": "one_block",
+        "type": "rect"
+      },
+      {
+        "id": "top_one_4_one",
+        "semantic_role": "one_block",
+        "type": "rect"
+      },
+      {
+        "id": "top_one_5_one",
+        "semantic_role": "one_block",
+        "type": "rect"
+      },
+      {
+        "id": "top_one_6_one",
+        "semantic_role": "one_block",
+        "type": "rect"
+      },
+      {
+        "id": "bottom_0_hundred",
+        "semantic_role": "hundred_block",
+        "type": "rect"
+      },
+      {
+        "id": "bottom_0_hundred_grid_v_1",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_0_hundred_grid_h_1",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_0_hundred_grid_v_2",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_0_hundred_grid_h_2",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_0_hundred_grid_v_3",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_0_hundred_grid_h_3",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_0_hundred_grid_v_4",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_0_hundred_grid_h_4",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_0_hundred_grid_v_5",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_0_hundred_grid_h_5",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_0_hundred_grid_v_6",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_0_hundred_grid_h_6",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_0_hundred_grid_v_7",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_0_hundred_grid_h_7",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_0_hundred_grid_v_8",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_0_hundred_grid_h_8",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_0_hundred_grid_v_9",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_0_hundred_grid_h_9",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_1_hundred",
+        "semantic_role": "hundred_block",
+        "type": "rect"
+      },
+      {
+        "id": "bottom_1_hundred_grid_v_1",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_1_hundred_grid_h_1",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_1_hundred_grid_v_2",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_1_hundred_grid_h_2",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_1_hundred_grid_v_3",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_1_hundred_grid_h_3",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_1_hundred_grid_v_4",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_1_hundred_grid_h_4",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_1_hundred_grid_v_5",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_1_hundred_grid_h_5",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_1_hundred_grid_v_6",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_1_hundred_grid_h_6",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_1_hundred_grid_v_7",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_1_hundred_grid_h_7",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_1_hundred_grid_v_8",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_1_hundred_grid_h_8",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_1_hundred_grid_v_9",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_1_hundred_grid_h_9",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_ten_0_ten",
+        "semantic_role": "ten_block",
+        "type": "rect"
+      },
+      {
+        "id": "bottom_ten_0_ten_grid_1",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_ten_0_ten_grid_2",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_ten_0_ten_grid_3",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_ten_0_ten_grid_4",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_ten_0_ten_grid_5",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_ten_0_ten_grid_6",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_ten_0_ten_grid_7",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_ten_0_ten_grid_8",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_ten_0_ten_grid_9",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_ten_1_ten",
+        "semantic_role": "ten_block",
+        "type": "rect"
+      },
+      {
+        "id": "bottom_ten_1_ten_grid_1",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_ten_1_ten_grid_2",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_ten_1_ten_grid_3",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_ten_1_ten_grid_4",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_ten_1_ten_grid_5",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_ten_1_ten_grid_6",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_ten_1_ten_grid_7",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_ten_1_ten_grid_8",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_ten_1_ten_grid_9",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_ten_2_ten",
+        "semantic_role": "ten_block",
+        "type": "rect"
+      },
+      {
+        "id": "bottom_ten_2_ten_grid_1",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_ten_2_ten_grid_2",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_ten_2_ten_grid_3",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_ten_2_ten_grid_4",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_ten_2_ten_grid_5",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_ten_2_ten_grid_6",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_ten_2_ten_grid_7",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_ten_2_ten_grid_8",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_ten_2_ten_grid_9",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_ten_3_ten",
+        "semantic_role": "ten_block",
+        "type": "rect"
+      },
+      {
+        "id": "bottom_ten_3_ten_grid_1",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_ten_3_ten_grid_2",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_ten_3_ten_grid_3",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_ten_3_ten_grid_4",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_ten_3_ten_grid_5",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_ten_3_ten_grid_6",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_ten_3_ten_grid_7",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_ten_3_ten_grid_8",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_ten_3_ten_grid_9",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_ten_4_ten",
+        "semantic_role": "ten_block",
+        "type": "rect"
+      },
+      {
+        "id": "bottom_ten_4_ten_grid_1",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_ten_4_ten_grid_2",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_ten_4_ten_grid_3",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_ten_4_ten_grid_4",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_ten_4_ten_grid_5",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_ten_4_ten_grid_6",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_ten_4_ten_grid_7",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_ten_4_ten_grid_8",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_ten_4_ten_grid_9",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_ten_5_ten",
+        "semantic_role": "ten_block",
+        "type": "rect"
+      },
+      {
+        "id": "bottom_ten_5_ten_grid_1",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_ten_5_ten_grid_2",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_ten_5_ten_grid_3",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_ten_5_ten_grid_4",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_ten_5_ten_grid_5",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_ten_5_ten_grid_6",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_ten_5_ten_grid_7",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_ten_5_ten_grid_8",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_ten_5_ten_grid_9",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_ten_6_ten",
+        "semantic_role": "ten_block",
+        "type": "rect"
+      },
+      {
+        "id": "bottom_ten_6_ten_grid_1",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_ten_6_ten_grid_2",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_ten_6_ten_grid_3",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_ten_6_ten_grid_4",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_ten_6_ten_grid_5",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_ten_6_ten_grid_6",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_ten_6_ten_grid_7",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_ten_6_ten_grid_8",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_ten_6_ten_grid_9",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_ten_7_ten",
+        "semantic_role": "ten_block",
+        "type": "rect"
+      },
+      {
+        "id": "bottom_ten_7_ten_grid_1",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_ten_7_ten_grid_2",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_ten_7_ten_grid_3",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_ten_7_ten_grid_4",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_ten_7_ten_grid_5",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_ten_7_ten_grid_6",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_ten_7_ten_grid_7",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_ten_7_ten_grid_8",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_ten_7_ten_grid_9",
+        "semantic_role": "grid_line",
+        "type": "line"
+      },
+      {
+        "id": "bottom_one_0_one",
+        "semantic_role": "one_block",
+        "type": "rect"
+      },
+      {
+        "id": "bottom_one_1_one",
+        "semantic_role": "one_block",
+        "type": "rect"
+      },
+      {
+        "id": "bottom_one_2_one",
+        "semantic_role": "one_block",
+        "type": "rect"
+      },
+      {
+        "id": "bottom_one_3_one",
+        "semantic_role": "one_block",
+        "type": "rect"
+      },
+      {
+        "id": "bottom_one_4_one",
+        "semantic_role": "one_block",
+        "type": "rect"
+      },
+      {
+        "id": "bottom_one_5_one",
+        "semantic_role": "one_block",
+        "type": "rect"
+      }
+    ]
+  },
+  "answer": {
+    "blanks": [
+      {
+        "id": "answer_blank",
+        "kind": "numeric",
+        "value": "423"
+      }
+    ],
+    "choices": [],
+    "answer_key": [
+      {
+        "target": "answer_blank",
+        "value": "423"
+      }
+    ]
+  },
+  "title": "수 모형 덧셈 2"
+}

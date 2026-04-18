@@ -1,0 +1,60 @@
+{
+  "problem_id": "ke_3rd_0003",
+  "problem_type": "vertical_arithmetic_puzzle",
+  "metadata": {
+    "education": {
+      "level": "elementary",
+      "grade": 3,
+      "subject": "math",
+      "curriculum": "KR"
+    },
+    "classification": {
+      "topic": "Addition and Subtraction",
+      "sub_topic": "Vertical Arithmetic Puzzle",
+      "difficulty": "hard"
+    }
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "a",
+        "symbol": "㉠"
+      },
+      {
+        "id": "b",
+        "symbol": "㉡"
+      },
+      {
+        "id": "c",
+        "symbol": "㉢"
+      }
+    ],
+    "vertical_subtraction": {
+      "minuend": "ab2",
+      "subtrahend": "1ac",
+      "difference": "314"
+    },
+    "values": {
+      "a": 4,
+      "b": 6,
+      "c": 8
+    },
+    "goal": "a + b + c"
+  },
+  "answer": {
+    "blanks": [
+      {
+        "id": "blank_1",
+        "type": "numeric"
+      }
+    ],
+    "choices": [],
+    "answer_key": [
+      {
+        "blank_id": "blank_1",
+        "value": 18
+      }
+    ]
+  },
+  "title": "벌레 먹은 셈 (뺄셈)"
+}

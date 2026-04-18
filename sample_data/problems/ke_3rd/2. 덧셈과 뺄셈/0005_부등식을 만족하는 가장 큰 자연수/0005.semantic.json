@@ -1,0 +1,41 @@
+{
+  "problem_id": "ke_3rd_0005",
+  "problem_type": "inequality_puzzle",
+  "metadata": {
+    "education": {
+      "level": "elementary",
+      "grade": 3,
+      "subject": "math",
+      "curriculum": "KR"
+    },
+    "classification": {
+      "topic": "Addition and Subtraction",
+      "sub_topic": "Inequality Puzzle",
+      "difficulty": "medium"
+    }
+  },
+  "domain": {
+    "expression": "179 + 265 < 933 - square",
+    "evaluation": {
+      "left_sum": 444,
+      "max_square_value": 488
+    },
+    "goal": "max_natural_number_square"
+  },
+  "answer": {
+    "blanks": [
+      {
+        "id": "blank_1",
+        "type": "numeric"
+      }
+    ],
+    "choices": [],
+    "answer_key": [
+      {
+        "blank_id": "blank_1",
+        "value": 488
+      }
+    ]
+  },
+  "title": "부등식을 만족하는 가장 큰 자연수"
+}

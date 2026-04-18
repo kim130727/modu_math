@@ -26,7 +26,7 @@ def _extract_render_attributes(node: LayoutNode) -> dict[str, Any]:
         attrs["y"] = node.y
         if node.anchor:
             attrs["text-anchor"] = node.anchor
-        for key in ["fill", "stroke", "stroke_width", "font_family", "font_size", "font_weight", "font_style", "opacity", "transform"]:
+        for key in ["fill", "stroke", "stroke_width", "font_family", "font_size", "font_weight", "font_style", "opacity", "transform", "stroke_dasharray"]:
             if key in props:
                 attrs[key.replace("_", "-")] = props[key]
         if props.get("is_formula"):
@@ -35,7 +35,7 @@ def _extract_render_attributes(node: LayoutNode) -> dict[str, Any]:
         return attrs
 
     if isinstance(node, ShapeNode):
-        shape_style_keys = ["fill", "stroke", "stroke_width", "opacity", "transform"]
+        shape_style_keys = ["fill", "stroke", "stroke_width", "opacity", "transform", "stroke_dasharray"]
         for key in shape_style_keys:
             if key in props:
                 attrs[key.replace("_", "-")] = props[key]
@@ -73,6 +73,11 @@ def _extract_render_attributes(node: LayoutNode) -> dict[str, Any]:
                 attrs["points"] = props["points"]
             return attrs
 
+        if node.shape_type == "path":
+            if "d" in props:
+                attrs["d"] = props["d"]
+            return attrs
+
         # Fallback shape type
         attrs["x"] = node.x
         attrs["y"] = node.y
@@ -101,6 +106,8 @@ def _node_to_render_element(node: LayoutNode) -> RenderElement | None:
             return RenderLine(id=node.id, attributes=attrs)
         if node.shape_type == "polygon":
             return RenderPolygon(id=node.id, attributes=attrs)
+        if node.shape_type == "path":
+            return RenderElement(id=node.id, type="path", attributes=attrs)
         return RenderElement(id=node.id, type=node.shape_type, attributes=attrs)
 
     if isinstance(node, TextNode):

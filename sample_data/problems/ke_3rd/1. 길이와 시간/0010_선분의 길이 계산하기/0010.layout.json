@@ -1,0 +1,250 @@
+{
+  "problem_id": "ke_3rd_0010",
+  "canvas": {
+    "width": 1000,
+    "height": 600,
+    "background": "#F6F6F6"
+  },
+  "nodes": [
+    {
+      "id": "t1",
+      "type": "text",
+      "x": 50,
+      "y": 80,
+      "anchor": "start",
+      "properties": {
+        "fill": "#000000",
+        "stroke": "none",
+        "stroke_width": 1.0,
+        "font_family": "sans-serif",
+        "font_size": 24,
+        "text": "㉠과 ㉡의 길이는 각각 몇 cm입니까?"
+      }
+    },
+    {
+      "id": "main_line",
+      "type": "shape",
+      "x": 100,
+      "y": 350,
+      "properties": {
+        "fill": "none",
+        "stroke": "#000000",
+        "stroke_width": 3,
+        "x1": 100,
+        "y1": 350,
+        "x2": 800,
+        "y2": 350,
+        "shape_type": "line"
+      }
+    },
+    {
+      "id": "tick_0",
+      "type": "shape",
+      "x": 100,
+      "y": 340,
+      "properties": {
+        "fill": "none",
+        "stroke": "#000000",
+        "stroke_width": 2,
+        "x1": 100,
+        "y1": 340,
+        "x2": 100,
+        "y2": 360,
+        "shape_type": "line"
+      }
+    },
+    {
+      "id": "tick_1",
+      "type": "shape",
+      "x": 450,
+      "y": 340,
+      "properties": {
+        "fill": "none",
+        "stroke": "#000000",
+        "stroke_width": 2,
+        "x1": 450,
+        "y1": 340,
+        "x2": 450,
+        "y2": 360,
+        "shape_type": "line"
+      }
+    },
+    {
+      "id": "tick_2",
+      "type": "shape",
+      "x": 600,
+      "y": 340,
+      "properties": {
+        "fill": "none",
+        "stroke": "#000000",
+        "stroke_width": 2,
+        "x1": 600,
+        "y1": 340,
+        "x2": 600,
+        "y2": 360,
+        "shape_type": "line"
+      }
+    },
+    {
+      "id": "tick_3",
+      "type": "shape",
+      "x": 800,
+      "y": 340,
+      "properties": {
+        "fill": "none",
+        "stroke": "#000000",
+        "stroke_width": 2,
+        "x1": 800,
+        "y1": 340,
+        "x2": 800,
+        "y2": 360,
+        "shape_type": "line"
+      }
+    },
+    {
+      "id": "arc_l",
+      "type": "shape",
+      "x": 0.0,
+      "y": 0.0,
+      "properties": {
+        "fill": "none",
+        "stroke": "#000000",
+        "stroke_width": 1.5,
+        "stroke_dasharray": "5,5",
+        "d": "M 100 335 Q 275.0 270 450 335",
+        "shape_type": "path"
+      }
+    },
+    {
+      "id": "label_l",
+      "type": "text",
+      "x": 275.0,
+      "y": 290,
+      "anchor": "middle",
+      "properties": {
+        "fill": "#000000",
+        "stroke": "none",
+        "stroke_width": 1.0,
+        "font_family": "sans-serif",
+        "font_size": 20,
+        "text": "821 cm"
+      }
+    },
+    {
+      "id": "arc_mr",
+      "type": "shape",
+      "x": 0.0,
+      "y": 0.0,
+      "properties": {
+        "fill": "none",
+        "stroke": "#000000",
+        "stroke_width": 1.5,
+        "stroke_dasharray": "5,5",
+        "d": "M 450 335 Q 625.0 270 800 335",
+        "shape_type": "path"
+      }
+    },
+    {
+      "id": "label_mr",
+      "type": "text",
+      "x": 625.0,
+      "y": 290,
+      "anchor": "middle",
+      "properties": {
+        "fill": "#000000",
+        "stroke": "none",
+        "stroke_width": 1.0,
+        "font_family": "sans-serif",
+        "font_size": 20,
+        "text": "448 cm"
+      }
+    },
+    {
+      "id": "arc_lm",
+      "type": "shape",
+      "x": 0.0,
+      "y": 0.0,
+      "properties": {
+        "fill": "none",
+        "stroke": "#000000",
+        "stroke_width": 1.5,
+        "stroke_dasharray": "5,5",
+        "d": "M 100 365 Q 350.0 430 600 365",
+        "shape_type": "path"
+      }
+    },
+    {
+      "id": "label_lm",
+      "type": "text",
+      "x": 350.0,
+      "y": 420,
+      "anchor": "middle",
+      "properties": {
+        "fill": "#000000",
+        "stroke": "none",
+        "stroke_width": 1.0,
+        "font_family": "sans-serif",
+        "font_size": 20,
+        "text": "㉠"
+      }
+    },
+    {
+      "id": "arc_m",
+      "type": "shape",
+      "x": 0.0,
+      "y": 0.0,
+      "properties": {
+        "fill": "none",
+        "stroke": "#000000",
+        "stroke_width": 1.5,
+        "stroke_dasharray": "5,5",
+        "d": "M 450 365 Q 525.0 470 600 365",
+        "shape_type": "path"
+      }
+    },
+    {
+      "id": "label_m",
+      "type": "text",
+      "x": 525.0,
+      "y": 460,
+      "anchor": "middle",
+      "properties": {
+        "fill": "#000000",
+        "stroke": "none",
+        "stroke_width": 1.0,
+        "font_family": "sans-serif",
+        "font_size": 20,
+        "text": "㉡"
+      }
+    },
+    {
+      "id": "arc_r",
+      "type": "shape",
+      "x": 0.0,
+      "y": 0.0,
+      "properties": {
+        "fill": "none",
+        "stroke": "#000000",
+        "stroke_width": 1.5,
+        "stroke_dasharray": "5,5",
+        "d": "M 600 365 Q 700.0 430 800 365",
+        "shape_type": "path"
+      }
+    },
+    {
+      "id": "label_r",
+      "type": "text",
+      "x": 700.0,
+      "y": 420,
+      "anchor": "middle",
+      "properties": {
+        "fill": "#000000",
+        "stroke": "none",
+        "stroke_width": 1.0,
+        "font_family": "sans-serif",
+        "font_size": 20,
+        "text": "236 cm"
+      }
+    }
+  ]
+}

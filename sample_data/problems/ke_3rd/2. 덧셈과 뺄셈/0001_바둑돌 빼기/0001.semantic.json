@@ -1,0 +1,67 @@
+{
+  "problem_id": "ke_3rd_0001",
+  "problem_type": "subtraction_word_problem",
+  "metadata": {
+    "source": {
+      "input_type": "png",
+      "original_filename": "0001.png"
+    },
+    "education": {
+      "level": "elementary",
+      "grade": 3,
+      "subject": "math",
+      "curriculum": "KR"
+    },
+    "classification": {
+      "topic": "Addition and Subtraction",
+      "sub_topic": "Word Problem",
+      "difficulty": "easy"
+    }
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "black_stones",
+        "count": 374,
+        "unit": "개"
+      },
+      {
+        "id": "white_stones",
+        "count": 558,
+        "unit": "개"
+      },
+      {
+        "id": "total_stones",
+        "formula": "black_stones + white_stones",
+        "value": 932
+      },
+      {
+        "id": "remaining_stones",
+        "count": 463,
+        "unit": "개"
+      },
+      {
+        "id": "removed_stones",
+        "formula": "total_stones - remaining_stones",
+        "value": 469
+      }
+    ],
+    "goal": "removed_stones"
+  },
+  "answer": {
+    "blanks": [
+      {
+        "id": "blank_1",
+        "type": "numeric"
+      }
+    ],
+    "choices": [],
+    "answer_key": [
+      {
+        "blank_id": "blank_1",
+        "value": 469
+      }
+    ]
+  },
+  "title": "바둑돌 빼기"
+}

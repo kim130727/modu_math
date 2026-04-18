@@ -1,0 +1,188 @@
+{
+  "problem_id": "ke_3rd_0007",
+  "canvas": {
+    "width": 1000,
+    "height": 600,
+    "background": "#F6F6F6"
+  },
+  "nodes": [
+    {
+      "id": "t1",
+      "type": "text",
+      "x": 50,
+      "y": 80,
+      "anchor": "start",
+      "properties": {
+        "fill": "#000000",
+        "stroke": "none",
+        "stroke_width": 1.0,
+        "font_family": "sans-serif",
+        "font_size": 24,
+        "text": "주어진 수 중에서 세 수를 골라 다음과 같은 식을 만들려고 합니다. 계산 결과가"
+      }
+    },
+    {
+      "id": "t2",
+      "type": "text",
+      "x": 50,
+      "y": 120,
+      "anchor": "start",
+      "properties": {
+        "fill": "#000000",
+        "stroke": "none",
+        "stroke_width": 1.0,
+        "font_family": "sans-serif",
+        "font_size": 24,
+        "text": "가장 크게 되는 식을 만들려고 할 때 □ 안에 알맞은 수를 써넣고, 계산한 값을 구하시오."
+      }
+    },
+    {
+      "id": "num_box",
+      "type": "shape",
+      "x": 150,
+      "y": 180,
+      "width": 500,
+      "height": 80,
+      "properties": {
+        "fill": "none",
+        "stroke": "black",
+        "stroke_width": 1.0,
+        "rx": 10,
+        "ry": 10,
+        "shape_type": "rect"
+      }
+    },
+    {
+      "id": "n0",
+      "type": "text",
+      "x": 220,
+      "y": 230,
+      "anchor": "middle",
+      "properties": {
+        "fill": "#000000",
+        "stroke": "none",
+        "stroke_width": 1.0,
+        "font_family": "sans-serif",
+        "font_size": 28,
+        "text": "365"
+      }
+    },
+    {
+      "id": "n1",
+      "type": "text",
+      "x": 340,
+      "y": 230,
+      "anchor": "middle",
+      "properties": {
+        "fill": "#000000",
+        "stroke": "none",
+        "stroke_width": 1.0,
+        "font_family": "sans-serif",
+        "font_size": 28,
+        "text": "567"
+      }
+    },
+    {
+      "id": "n2",
+      "type": "text",
+      "x": 460,
+      "y": 230,
+      "anchor": "middle",
+      "properties": {
+        "fill": "#000000",
+        "stroke": "none",
+        "stroke_width": 1.0,
+        "font_family": "sans-serif",
+        "font_size": 28,
+        "text": "827"
+      }
+    },
+    {
+      "id": "n3",
+      "type": "text",
+      "x": 580,
+      "y": 230,
+      "anchor": "middle",
+      "properties": {
+        "fill": "#000000",
+        "stroke": "none",
+        "stroke_width": 1.0,
+        "font_family": "sans-serif",
+        "font_size": 28,
+        "text": "910"
+      }
+    },
+    {
+      "id": "b1",
+      "type": "shape",
+      "x": 150,
+      "y": 320,
+      "width": 100,
+      "height": 60,
+      "properties": {
+        "fill": "none",
+        "stroke": "black",
+        "stroke_width": 1.0,
+        "shape_type": "rect"
+      }
+    },
+    {
+      "id": "op1",
+      "type": "text",
+      "x": 275,
+      "y": 360,
+      "anchor": "middle",
+      "properties": {
+        "fill": "#000000",
+        "stroke": "none",
+        "stroke_width": 1.0,
+        "font_family": "sans-serif",
+        "font_size": 32,
+        "text": "-"
+      }
+    },
+    {
+      "id": "b2",
+      "type": "shape",
+      "x": 300,
+      "y": 320,
+      "width": 100,
+      "height": 60,
+      "properties": {
+        "fill": "none",
+        "stroke": "black",
+        "stroke_width": 1.0,
+        "shape_type": "rect"
+      }
+    },
+    {
+      "id": "op2",
+      "type": "text",
+      "x": 425,
+      "y": 360,
+      "anchor": "middle",
+      "properties": {
+        "fill": "#000000",
+        "stroke": "none",
+        "stroke_width": 1.0,
+        "font_family": "sans-serif",
+        "font_size": 32,
+        "text": "+"
+      }
+    },
+    {
+      "id": "b3",
+      "type": "shape",
+      "x": 450,
+      "y": 320,
+      "width": 100,
+      "height": 60,
+      "properties": {
+        "fill": "none",
+        "stroke": "black",
+        "stroke_width": 1.0,
+        "shape_type": "rect"
+      }
+    }
+  ]
+}

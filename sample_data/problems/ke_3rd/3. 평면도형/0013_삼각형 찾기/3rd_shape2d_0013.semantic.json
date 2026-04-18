@@ -1,0 +1,97 @@
+{
+  "schema_version": "modu_math.semantic.v3",
+  "render_contract_version": "modu_math.render.v1",
+  "problem_id": "3rd_shape2d_0013",
+  "problem_type": "find_non_right_triangle",
+  "title": "삼각형 찾기",
+  "metadata": {
+    "source": {
+      "input_type": "python_dsl",
+      "generator": "modu_semantic"
+    },
+    "warnings": []
+  },
+  "domain": {
+    "instruction": "직각삼각형이 아닌 것을 찾아 기호를 쓰고 그 이유를 쓰세요.",
+    "right_triangles": [
+      "가",
+      "나",
+      "다"
+    ],
+    "non_right": "라",
+    "reason": "라 도형은 90도인 각이 없다.",
+    "solution": {
+      "selected_label": "라",
+      "explanation": "라 도형은 90도인 각이 없다.",
+      "final_answer": "라"
+    }
+  },
+  "render": {
+    "elements": [
+      {
+        "id": "bg",
+        "type": "rect"
+      },
+      {
+        "id": "i1",
+        "type": "text",
+        "text": "직각삼각형이 아닌 것을 찾아 기호를 쓰고 그 이유를 쓰세요."
+      },
+      {
+        "id": "frame",
+        "type": "rect"
+      },
+      {
+        "id": "ga",
+        "type": "polygon"
+      },
+      {
+        "id": "ga_t",
+        "type": "text",
+        "text": "가"
+      },
+      {
+        "id": "na",
+        "type": "polygon"
+      },
+      {
+        "id": "na_t",
+        "type": "text",
+        "text": "나"
+      },
+      {
+        "id": "da",
+        "type": "polygon"
+      },
+      {
+        "id": "da_t",
+        "type": "text",
+        "text": "다"
+      },
+      {
+        "id": "ra",
+        "type": "polygon"
+      },
+      {
+        "id": "ra_t",
+        "type": "text",
+        "text": "라"
+      },
+      {
+        "id": "answer_text",
+        "semantic_role": "answer_anchor",
+        "type": "rect"
+      }
+    ]
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [
+      {
+        "target": "answer_text",
+        "value": "라, 라 도형은 90도인 각이 없다."
+      }
+    ]
+  }
+}

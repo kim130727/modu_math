@@ -1,0 +1,80 @@
+{
+  "problem_id": "ke_3rd_0008",
+  "problem_type": "sum_comparison_word_problem",
+  "metadata": {
+    "education": {
+      "level": "elementary",
+      "grade": 3,
+      "subject": "math",
+      "curriculum": "KR"
+    },
+    "classification": {
+      "topic": "Addition and Subtraction",
+      "sub_topic": "Word Problem",
+      "difficulty": "medium"
+    }
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "rice_cooker",
+        "name": "전기밥솥",
+        "power": 500,
+        "unit": "W"
+      },
+      {
+        "id": "water_purifier",
+        "name": "정수기",
+        "power": 770,
+        "unit": "W"
+      },
+      {
+        "id": "monitor",
+        "name": "모니터",
+        "power": 150,
+        "unit": "W"
+      }
+    ],
+    "threshold": 1000,
+    "combinations": [
+      {
+        "items": [
+          "rice_cooker",
+          "water_purifier"
+        ],
+        "sum": 1270
+      },
+      {
+        "items": [
+          "rice_cooker",
+          "monitor"
+        ],
+        "sum": 650
+      },
+      {
+        "items": [
+          "water_purifier",
+          "monitor"
+        ],
+        "sum": 920
+      }
+    ],
+    "goal": "sum_over_threshold"
+  },
+  "answer": {
+    "blanks": [
+      {
+        "id": "blank_1",
+        "type": "numeric"
+      }
+    ],
+    "choices": [],
+    "answer_key": [
+      {
+        "blank_id": "blank_1",
+        "value": 1270
+      }
+    ]
+  },
+  "title": "가전제품 소비전력 합산"
+}

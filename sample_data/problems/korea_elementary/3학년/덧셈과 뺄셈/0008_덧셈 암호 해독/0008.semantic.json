@@ -1,0 +1,183 @@
+{
+  "schema_version": "modu_math.semantic.v3",
+  "render_contract_version": "modu_math.render.v1",
+  "problem_id": "0008",
+  "problem_type": "addition_code_word",
+  "metadata": {
+    "source": {
+      "input_type": "python_dsl",
+      "generator": "modu_semantic"
+    },
+    "warnings": [],
+    "education": {
+      "level": "elementary",
+      "grade": 3,
+      "subject": "math",
+      "curriculum": "KR"
+    },
+    "classification": {
+      "topic": "덧셈과 뺄셈"
+    }
+  },
+  "domain": {
+    "instruction": "□ 안에 알맞은 수를 써넣고, 그 수를 이용하여 숨어 있는 글자를 찾아 보세요.",
+    "equations": [
+      {
+        "a": 127,
+        "b": 621,
+        "sum": 748
+      },
+      {
+        "a": 231,
+        "b": 764,
+        "sum": 995
+      }
+    ],
+    "digit_map": {
+      "0": "너",
+      "1": "나",
+      "2": "이",
+      "3": "요",
+      "4": "구",
+      "5": "꿍",
+      "6": "월",
+      "7": "친",
+      "8": "와",
+      "9": "짝"
+    },
+    "hidden_word": "친구와짝짝꿍"
+  },
+  "render": {
+    "elements": [
+      {
+        "id": "inst",
+        "semantic_role": "instruction",
+        "type": "text",
+        "text": "□안에 알맞은 수를 넣고 그 수를 이용하여"
+      },
+      {
+        "id": "inst_2",
+        "semantic_role": "instruction",
+        "type": "text",
+        "text": "숨어 있는 글자를 찾아 보세요."
+      },
+      {
+        "id": "board",
+        "semantic_role": "container",
+        "type": "rect"
+      },
+      {
+        "id": "eq1_top",
+        "semantic_role": "equation_operand",
+        "type": "text",
+        "text": "127"
+      },
+      {
+        "id": "eq1_mid",
+        "semantic_role": "equation_operand",
+        "type": "text",
+        "text": "+621"
+      },
+      {
+        "id": "eq1_line",
+        "semantic_role": "equation_bar",
+        "type": "line"
+      },
+      {
+        "id": "eq2_top",
+        "semantic_role": "equation_operand",
+        "type": "text",
+        "text": "231"
+      },
+      {
+        "id": "eq2_mid",
+        "semantic_role": "equation_operand",
+        "type": "text",
+        "text": "+764"
+      },
+      {
+        "id": "eq2_line",
+        "semantic_role": "equation_bar",
+        "type": "line"
+      },
+      {
+        "id": "map_box",
+        "semantic_role": "hint_box",
+        "type": "rect"
+      },
+      {
+        "id": "map_line_1",
+        "semantic_role": "hint_text",
+        "type": "text",
+        "text": "1=나  2=이  3=요  4=구  5=꿍"
+      },
+      {
+        "id": "map_line_2",
+        "semantic_role": "hint_text",
+        "type": "text",
+        "text": "6=월  7=친  8=와  9=짝  0=너"
+      },
+      {
+        "id": "eq1_blank_0",
+        "semantic_role": "answer_blank",
+        "type": "rect"
+      },
+      {
+        "id": "eq2_blank_0",
+        "semantic_role": "answer_blank",
+        "type": "rect"
+      },
+      {
+        "id": "eq1_blank_1",
+        "semantic_role": "answer_blank",
+        "type": "rect"
+      },
+      {
+        "id": "eq2_blank_1",
+        "semantic_role": "answer_blank",
+        "type": "rect"
+      },
+      {
+        "id": "eq1_blank_2",
+        "semantic_role": "answer_blank",
+        "type": "rect"
+      },
+      {
+        "id": "eq2_blank_2",
+        "semantic_role": "answer_blank",
+        "type": "rect"
+      }
+    ]
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [
+      {
+        "target": "eq1_blank_0",
+        "value": "7"
+      },
+      {
+        "target": "eq1_blank_1",
+        "value": "4"
+      },
+      {
+        "target": "eq1_blank_2",
+        "value": "8"
+      },
+      {
+        "target": "eq2_blank_0",
+        "value": "9"
+      },
+      {
+        "target": "eq2_blank_1",
+        "value": "9"
+      },
+      {
+        "target": "eq2_blank_2",
+        "value": "5"
+      }
+    ]
+  },
+  "title": "덧셈 암호 해독"
+}

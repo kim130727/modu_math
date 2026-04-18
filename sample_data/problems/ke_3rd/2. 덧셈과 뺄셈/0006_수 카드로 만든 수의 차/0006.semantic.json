@@ -1,0 +1,57 @@
+{
+  "problem_id": "ke_3rd_0006",
+  "problem_type": "card_number_puzzle",
+  "metadata": {
+    "education": {
+      "level": "elementary",
+      "grade": 3,
+      "subject": "math",
+      "curriculum": "KR"
+    },
+    "classification": {
+      "topic": "Addition and Subtraction",
+      "sub_topic": "Card Number Puzzle",
+      "difficulty": "hard"
+    }
+  },
+  "domain": {
+    "available_cards": [
+      0,
+      2,
+      4,
+      6,
+      8
+    ],
+    "conditions": [
+      {
+        "id": "num1",
+        "description": "Three-digit, tens digit 8, second largest"
+      },
+      {
+        "id": "num2",
+        "description": "Three-digit, ones digit 8, second smallest"
+      }
+    ],
+    "values": {
+      "num1": 682,
+      "num2": 248
+    },
+    "goal": "num1 - num2"
+  },
+  "answer": {
+    "blanks": [
+      {
+        "id": "blank_1",
+        "type": "numeric"
+      }
+    ],
+    "choices": [],
+    "answer_key": [
+      {
+        "blank_id": "blank_1",
+        "value": 434
+      }
+    ]
+  },
+  "title": "수 카드로 만든 수의 차"
+}

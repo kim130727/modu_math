@@ -1,0 +1,220 @@
+{
+  "problem_id": "ke_3rd_0010",
+  "view_box": {
+    "width": 1000,
+    "height": 600,
+    "background": "#F6F6F6"
+  },
+  "elements": [
+    {
+      "id": "t1",
+      "type": "text",
+      "attributes": {
+        "x": 50,
+        "y": 80,
+        "text-anchor": "start",
+        "fill": "#000000",
+        "stroke": "none",
+        "stroke-width": 1.0,
+        "font-family": "sans-serif",
+        "font-size": 24
+      },
+      "text": "㉠과 ㉡의 길이는 각각 몇 cm입니까?"
+    },
+    {
+      "id": "main_line",
+      "type": "line",
+      "attributes": {
+        "fill": "none",
+        "stroke": "#000000",
+        "stroke-width": 3,
+        "x1": 100,
+        "y1": 350,
+        "x2": 800,
+        "y2": 350
+      }
+    },
+    {
+      "id": "tick_0",
+      "type": "line",
+      "attributes": {
+        "fill": "none",
+        "stroke": "#000000",
+        "stroke-width": 2,
+        "x1": 100,
+        "y1": 340,
+        "x2": 100,
+        "y2": 360
+      }
+    },
+    {
+      "id": "tick_1",
+      "type": "line",
+      "attributes": {
+        "fill": "none",
+        "stroke": "#000000",
+        "stroke-width": 2,
+        "x1": 450,
+        "y1": 340,
+        "x2": 450,
+        "y2": 360
+      }
+    },
+    {
+      "id": "tick_2",
+      "type": "line",
+      "attributes": {
+        "fill": "none",
+        "stroke": "#000000",
+        "stroke-width": 2,
+        "x1": 600,
+        "y1": 340,
+        "x2": 600,
+        "y2": 360
+      }
+    },
+    {
+      "id": "tick_3",
+      "type": "line",
+      "attributes": {
+        "fill": "none",
+        "stroke": "#000000",
+        "stroke-width": 2,
+        "x1": 800,
+        "y1": 340,
+        "x2": 800,
+        "y2": 360
+      }
+    },
+    {
+      "id": "arc_l",
+      "type": "path",
+      "attributes": {
+        "fill": "none",
+        "stroke": "#000000",
+        "stroke-width": 1.5,
+        "stroke-dasharray": "5,5",
+        "d": "M 100 335 Q 275.0 270 450 335"
+      }
+    },
+    {
+      "id": "label_l",
+      "type": "text",
+      "attributes": {
+        "x": 275.0,
+        "y": 290,
+        "text-anchor": "middle",
+        "fill": "#000000",
+        "stroke": "none",
+        "stroke-width": 1.0,
+        "font-family": "sans-serif",
+        "font-size": 20
+      },
+      "text": "821 cm"
+    },
+    {
+      "id": "arc_mr",
+      "type": "path",
+      "attributes": {
+        "fill": "none",
+        "stroke": "#000000",
+        "stroke-width": 1.5,
+        "stroke-dasharray": "5,5",
+        "d": "M 450 335 Q 625.0 270 800 335"
+      }
+    },
+    {
+      "id": "label_mr",
+      "type": "text",
+      "attributes": {
+        "x": 625.0,
+        "y": 290,
+        "text-anchor": "middle",
+        "fill": "#000000",
+        "stroke": "none",
+        "stroke-width": 1.0,
+        "font-family": "sans-serif",
+        "font-size": 20
+      },
+      "text": "448 cm"
+    },
+    {
+      "id": "arc_lm",
+      "type": "path",
+      "attributes": {
+        "fill": "none",
+        "stroke": "#000000",
+        "stroke-width": 1.5,
+        "stroke-dasharray": "5,5",
+        "d": "M 100 365 Q 350.0 430 600 365"
+      }
+    },
+    {
+      "id": "label_lm",
+      "type": "text",
+      "attributes": {
+        "x": 350.0,
+        "y": 420,
+        "text-anchor": "middle",
+        "fill": "#000000",
+        "stroke": "none",
+        "stroke-width": 1.0,
+        "font-family": "sans-serif",
+        "font-size": 20
+      },
+      "text": "㉠"
+    },
+    {
+      "id": "arc_m",
+      "type": "path",
+      "attributes": {
+        "fill": "none",
+        "stroke": "#000000",
+        "stroke-width": 1.5,
+        "stroke-dasharray": "5,5",
+        "d": "M 450 365 Q 525.0 470 600 365"
+      }
+    },
+    {
+      "id": "label_m",
+      "type": "text",
+      "attributes": {
+        "x": 525.0,
+        "y": 460,
+        "text-anchor": "middle",
+        "fill": "#000000",
+        "stroke": "none",
+        "stroke-width": 1.0,
+        "font-family": "sans-serif",
+        "font-size": 20
+      },
+      "text": "㉡"
+    },
+    {
+      "id": "arc_r",
+      "type": "path",
+      "attributes": {
+        "fill": "none",
+        "stroke": "#000000",
+        "stroke-width": 1.5,
+        "stroke-dasharray": "5,5",
+        "d": "M 600 365 Q 700.0 430 800 365"
+      }
+    },
+    {
+      "id": "label_r",
+      "type": "text",
+      "attributes": {
+        "x": 700.0,
+        "y": 420,
+        "text-anchor": "middle",
+        "fill": "#000000",
+        "stroke": "none",
+        "stroke-width": 1.0,
+        "font-family": "sans-serif",
+        "font-size": 20
+      },
+      "text": "236 cm"
+    }
+  ]
+}

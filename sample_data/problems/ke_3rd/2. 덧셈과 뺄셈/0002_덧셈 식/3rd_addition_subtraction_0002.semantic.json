@@ -1,0 +1,114 @@
+{
+  "schema_version": "modu_math.semantic.v3",
+  "render_contract_version": "modu_math.render.v1",
+  "problem_id": "3rd_addition_subtraction_0002",
+  "problem_type": "addition_pick_two_numbers",
+  "title": "덧셈 식",
+  "metadata": {
+    "source": {
+      "input_type": "python_dsl",
+      "generator": "modu_semantic"
+    },
+    "warnings": []
+  },
+  "domain": {
+    "instruction": "다음 수 중에서 2개를 골라 덧셈식을 만들려고 합니다. □ 안에 알맞은 수를 써넣으세요.",
+    "candidates": [
+      718,
+      295,
+      658,
+      245
+    ],
+    "target_sum": 953,
+    "valid_pair": [
+      295,
+      658
+    ]
+  },
+  "render": {
+    "elements": [
+      {
+        "id": "bg",
+        "semantic_role": "background",
+        "type": "rect"
+      },
+      {
+        "id": "instruction_1",
+        "semantic_role": "instruction",
+        "type": "text",
+        "text": "다음 수 중에서 2개를 골라 덧셈식을 만들려고"
+      },
+      {
+        "id": "instruction_2",
+        "semantic_role": "instruction",
+        "type": "text",
+        "text": "합니다. □ 안에 알맞은 수를 써넣으세요."
+      },
+      {
+        "id": "candidate_box",
+        "semantic_role": "guide",
+        "type": "rect"
+      },
+      {
+        "id": "candidate_1",
+        "semantic_role": "label",
+        "type": "text",
+        "text": "718"
+      },
+      {
+        "id": "candidate_2",
+        "semantic_role": "label",
+        "type": "text",
+        "text": "295"
+      },
+      {
+        "id": "candidate_3",
+        "semantic_role": "label",
+        "type": "text",
+        "text": "658"
+      },
+      {
+        "id": "candidate_4",
+        "semantic_role": "label",
+        "type": "text",
+        "text": "245"
+      },
+      {
+        "id": "blank_left",
+        "semantic_role": "answer_anchor",
+        "type": "rect"
+      },
+      {
+        "id": "plus_sign",
+        "semantic_role": "label",
+        "type": "text",
+        "text": "+"
+      },
+      {
+        "id": "blank_right",
+        "semantic_role": "answer_anchor",
+        "type": "rect"
+      },
+      {
+        "id": "equal_expr",
+        "semantic_role": "label",
+        "type": "text",
+        "text": "=953"
+      }
+    ]
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [
+      {
+        "target": "blank_left",
+        "value": "295"
+      },
+      {
+        "target": "blank_right",
+        "value": "658"
+      }
+    ]
+  }
+}
