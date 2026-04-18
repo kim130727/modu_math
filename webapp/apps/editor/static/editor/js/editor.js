@@ -606,12 +606,14 @@ function _scalePoint(px, py, anchorX, anchorY, factor) {
   ];
 }
 
-function _applyResizeFromSnapshot(target, snapshot, factor, anchorX, anchorY) {
+function _applyResizeFromSnapshot(target, snapshot, factorX, factorY, anchorX, anchorY) {
   if (!target || !snapshot) return;
 
   if (snapshot.type === "line") {
-    const [sx1, sy1] = _scalePoint(Number(snapshot.x1 ?? 0), Number(snapshot.y1 ?? 0), anchorX, anchorY, factor);
-    const [sx2, sy2] = _scalePoint(Number(snapshot.x2 ?? 0), Number(snapshot.y2 ?? 0), anchorX, anchorY, factor);
+    const sx1 = anchorX + (Number(snapshot.x1 ?? 0) - anchorX) * factorX;
+    const sy1 = anchorY + (Number(snapshot.y1 ?? 0) - anchorY) * factorY;
+    const sx2 = anchorX + (Number(snapshot.x2 ?? 0) - anchorX) * factorX;
+    const sy2 = anchorY + (Number(snapshot.y2 ?? 0) - anchorY) * factorY;
     target.x1 = sx1;
     target.y1 = sy1;
     target.x2 = sx2;
@@ -620,15 +622,20 @@ function _applyResizeFromSnapshot(target, snapshot, factor, anchorX, anchorY) {
   }
 
   if (snapshot.type === "polygon" && Array.isArray(snapshot.points)) {
-    target.points = snapshot.points.map((p) => _scalePoint(Number(p[0] ?? 0), Number(p[1] ?? 0), anchorX, anchorY, factor));
+    target.points = snapshot.points.map((p) => [
+      anchorX + (Number(p[0] ?? 0) - anchorX) * factorX,
+      anchorY + (Number(p[1] ?? 0) - anchorY) * factorY,
+    ]);
     return;
   }
 
   if (snapshot.type === "circle") {
-    const [sx, sy] = _scalePoint(Number(snapshot.x ?? 0), Number(snapshot.y ?? 0), anchorX, anchorY, factor);
+    const sx = anchorX + (Number(snapshot.x ?? 0) - anchorX) * factorX;
+    const sy = anchorY + (Number(snapshot.y ?? 0) - anchorY) * factorY;
+    const uniform = Math.sqrt(Math.abs(factorX * factorY));
     target.x = sx;
     target.y = sy;
-    target.r = Math.max(1, Number(snapshot.r ?? 35) * factor);
+    target.r = Math.max(1, Number(snapshot.r ?? 35) * uniform);
     return;
   }
 
@@ -637,8 +644,10 @@ function _applyResizeFromSnapshot(target, snapshot, factor, anchorX, anchorY) {
     const y = Number(snapshot.y ?? 0);
     const w = Number(snapshot.width ?? 120);
     const h = Number(snapshot.height ?? 80);
-    const [p1x, p1y] = _scalePoint(x, y, anchorX, anchorY, factor);
-    const [p2x, p2y] = _scalePoint(x + w, y + h, anchorX, anchorY, factor);
+    const p1x = anchorX + (x - anchorX) * factorX;
+    const p1y = anchorY + (y - anchorY) * factorY;
+    const p2x = anchorX + (x + w - anchorX) * factorX;
+    const p2y = anchorY + (y + h - anchorY) * factorY;
     target.x = Math.min(p1x, p2x);
     target.y = Math.min(p1y, p2y);
     target.width = Math.max(1, Math.abs(p2x - p1x));
@@ -646,15 +655,17 @@ function _applyResizeFromSnapshot(target, snapshot, factor, anchorX, anchorY) {
     return;
   }
 
-  const [sx, sy] = _scalePoint(Number(snapshot.x ?? 0), Number(snapshot.y ?? 0), anchorX, anchorY, factor);
+  const sx = anchorX + (Number(snapshot.x ?? 0) - anchorX) * factorX;
+  const sy = anchorY + (Number(snapshot.y ?? 0) - anchorY) * factorY;
+  const uniform = Math.sqrt(Math.abs(factorX * factorY));
   target.x = sx;
   target.y = sy;
   if (snapshot.font_size !== undefined) {
-    target.font_size = Math.max(1, Number(snapshot.font_size) * factor);
+    target.font_size = Math.max(1, Number(snapshot.font_size) * uniform);
   }
   if (snapshot.width !== undefined && snapshot.height !== undefined) {
-    target.width = Math.max(1, Number(snapshot.width) * factor);
-    target.height = Math.max(1, Number(snapshot.height) * factor);
+    target.width = Math.max(1, Number(snapshot.width) * factorX);
+    target.height = Math.max(1, Number(snapshot.height) * factorY);
   }
 }
 
@@ -802,30 +813,40 @@ function wireCanvasHandlers() {
       const currentVx = p.x - state.drag.anchorX;
       const currentVy = p.y - state.drag.anchorY;
 
-      const factorCandidates = [];
+      let fx = NaN;
+      let fy = NaN;
       if (Math.abs(startVx) > 1e-6) {
-        const fx = currentVx / startVx;
-        if (Number.isFinite(fx) && fx > 0) factorCandidates.push(fx);
+        const value = currentVx / startVx;
+        if (Number.isFinite(value) && value > 0) fx = value;
       }
       if (Math.abs(startVy) > 1e-6) {
-        const fy = currentVy / startVy;
-        if (Number.isFinite(fy) && fy > 0) factorCandidates.push(fy);
+        const value = currentVy / startVy;
+        if (Number.isFinite(value) && value > 0) fy = value;
       }
 
-      let factor = 0.05;
-      if (factorCandidates.length >= 2) {
-        factor = Math.sqrt(factorCandidates[0] * factorCandidates[1]);
-      } else if (factorCandidates.length === 1) {
-        factor = factorCandidates[0];
+      if (!Number.isFinite(fx) && Number.isFinite(fy)) fx = fy;
+      if (!Number.isFinite(fy) && Number.isFinite(fx)) fy = fx;
+      if (!Number.isFinite(fx)) fx = 1;
+      if (!Number.isFinite(fy)) fy = 1;
+
+      let factorX = fx;
+      let factorY = fy;
+
+      // Shift: 정비율(비율 고정) 스케일
+      if (event.shiftKey) {
+        const uniform = Math.sqrt(Math.abs(fx * fy));
+        factorX = uniform;
+        factorY = uniform;
       }
-      factor = Math.max(0.05, Math.min(20, factor));
+      factorX = Math.max(0.05, Math.min(20, factorX));
+      factorY = Math.max(0.05, Math.min(20, factorY));
 
       const allElements = getElements(state.semantic);
       state.drag.originIds.forEach((id) => {
         const el = allElements.find((item) => item.id === id);
         const snapshot = state.drag.snapshots?.[id];
         if (el && snapshot) {
-          _applyResizeFromSnapshot(el, snapshot, factor, state.drag.anchorX, state.drag.anchorY);
+          _applyResizeFromSnapshot(el, snapshot, factorX, factorY, state.drag.anchorX, state.drag.anchorY);
         }
       });
     }
