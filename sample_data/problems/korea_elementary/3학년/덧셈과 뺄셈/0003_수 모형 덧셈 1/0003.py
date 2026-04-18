@@ -1,7 +1,7 @@
 import sys
-from pathlib import Path
+import pathlib
 
-def find_project_root(start_path: Path) -> Path:
+def find_project_root(start_path: pathlib.Path) -> pathlib.Path:
     curr = start_path.resolve()
     while curr.parent != curr:
         if (curr / "src").exists():
@@ -9,13 +9,13 @@ def find_project_root(start_path: Path) -> Path:
         curr = curr.parent
     return start_path.resolve()
 
-PROJECT_ROOT = find_project_root(Path(__file__).resolve().parent)
+PROJECT_ROOT = find_project_root(pathlib.Path(__file__).resolve().parent)
 if str(PROJECT_ROOT / "src") not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT / "src"))
 if str(PROJECT_ROOT / "sample_data" / "problems") not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT / "sample_data" / "problems"))
 
-from modu_semantic import Line, Problem, Rect, Region, Text, Path
+from modu_semantic import Line, Problem, Rect, Region, Text, Path as RenderPath
 
 ANSWER_LABEL_STYLE = {
     "use_answer_label": True,
@@ -90,7 +90,7 @@ def _add_hundred_block(root: Region, *, block_id: str, x: float, y: float) -> No
     v_lines = " ".join([f"M {x + 14 * i} {y} V {y + 140}" for i in range(1, 10)])
     h_lines = " ".join([f"M {x} {y + 14 * i} H {x + 140}" for i in range(1, 10)])
     root.add(
-        Path(
+        RenderPath(
             id=f"{block_id}_grid",
             d=f"{v_lines} {h_lines}",
             stroke="#D3AE1D",
@@ -117,7 +117,7 @@ def _add_ten_rod(root: Region, *, rod_id: str, x: float, y: float) -> None:
     # Draw grid as a single path
     v_lines = " ".join([f"M {x + 14 * i} {y} V {y + 20}" for i in range(1, 10)])
     root.add(
-        Path(
+        RenderPath(
             id=f"{rod_id}_grid",
             d=v_lines,
             stroke="#4B8FAF",
@@ -262,17 +262,9 @@ def build() -> Problem:
     return p
 
 
-from _problem_runner import save_built_problem_outputs
-
 if __name__ == "__main__":
-    current_dir = Path(__file__).resolve().parent
-    outputs = save_built_problem_outputs(
-        build(),
-        current_dir,
-        "0003",
-        answer_semantic_path=current_dir / "0003.semantic.json",
-        answer_overrides=ANSWER_LABEL_STYLE,
-    )
-    print("[0003] generated:")
-    print(f"  - {outputs['problem_svg']}")
-    print(f"  - {outputs['answer_svg']}")
+    current_dir = pathlib.Path(__file__).resolve().parent
+    p = build()
+    out_prefix = current_dir / "0003"
+    p.save(out_prefix)
+    print(f"[0003] generated artifacts at {current_dir}")

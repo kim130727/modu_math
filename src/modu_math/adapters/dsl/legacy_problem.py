@@ -62,9 +62,15 @@ class Problem:
         # Build layout canvas and nodes
         canvas = LayoutCanvas(width=self.width, height=self.height, background=self.background)
         nodes: list[LayoutNode] = []
-        for elem in self.elements:
-            if hasattr(elem, "to_layout_node"):
-                nodes.append(elem.to_layout_node())
+        
+        def collect_nodes(elements: Iterable[Element]):
+            for elem in elements:
+                if hasattr(elem, "to_layout_node"):
+                    nodes.append(elem.to_layout_node())
+                if hasattr(elem, "children") and elem.children:
+                    collect_nodes(elem.children)
+        
+        collect_nodes(self.elements)
 
         # Run canonical pipeline
         compile_problem_pipeline(semantic, canvas, nodes, out_prefix)

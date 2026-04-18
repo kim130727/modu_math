@@ -189,3 +189,24 @@ class Path(Element):
             properties=props,
             z_order=self.z_order,
         )
+
+@dataclass
+class Region(Element):
+    x: float = 0.0
+    y: float = 0.0
+    width: float = 0.0
+    height: float = 0.0
+    visible_debug: bool = False
+    children: list[Element] = field(default_factory=list)
+
+    def add(self, element: Element) -> None:
+        self.children.append(element)
+
+    def to_layout_node(self) -> LayoutNode:
+        # For simplicity in legacy adapter, we flatten children into the parent problem's elements list
+        # OR we could implement a true LayoutGroup. 
+        # But looking at legacy_problem.py, it expects to_layout_node to return a single node.
+        # So we'll return a container-like node or handle it in Problem.
+        props = self._base_props()
+        props.update({"x": self.x, "y": self.y, "width": self.width, "height": self.height})
+        return ShapeNode(id=self.id, shape_type="region", properties=props)

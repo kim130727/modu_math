@@ -1,5 +1,5 @@
 from .adapters.dsl.legacy_problem import Problem
-from .adapters.dsl.legacy_primitives import Element, Rect, Circle, Line, Polygon, Text, Formula, Path
+from .adapters.dsl.legacy_primitives import Element, Rect, Circle, Line, Polygon, Text, Formula, Path, Region
 
 __all__ = [
     "Problem",
@@ -11,4 +11,5 @@ __all__ = [
     "Text",
     "Formula",
     "Path",
+    "Region",
 ]
