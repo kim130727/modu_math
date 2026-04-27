@@ -128,6 +128,52 @@ def ensure_semantic_confidence_fields(
         metadata["extraction_confidence"] = default_confidence
 
 
+def enrich_semantic_answer_from_solvable(semantic: dict, solvable: dict) -> dict:
+    sol_answer = solvable.get("answer")
+    if not isinstance(sol_answer, dict):
+        return semantic
+    if "value" not in sol_answer:
+        return semantic
+
+    answer = semantic.get("answer")
+    if not isinstance(answer, dict):
+        answer = {}
+        semantic["answer"] = answer
+
+    if "value" not in answer:
+        answer["value"] = sol_answer.get("value")
+        answer.setdefault("source", "filled_from_solvable")
+
+    if "unit" not in answer and isinstance(sol_answer.get("unit"), str):
+        answer["unit"] = sol_answer["unit"]
+
+    return semantic
+
+
+def should_apply_ratio_override(problem_type: str) -> bool:
+    pt = problem_type.lower()
+    keywords = ("pie", "proportion", "ratio", "circle_graph", "circle-graph")
+    return any(k in pt for k in keywords)
+
+
+def extract_numeric_semantic_answer(semantic: dict) -> int | float | None:
+    answer = semantic.get("answer")
+    if not isinstance(answer, dict):
+        return None
+
+    value = answer.get("value")
+    if isinstance(value, (int, float)):
+        return value
+    if isinstance(value, str):
+        stripped = value.strip()
+        try:
+            num = float(stripped)
+            return int(num) if abs(num - round(num)) < 1e-9 else num
+        except ValueError:
+            return None
+    return None
+
+
 def generate_with_schema(
     client: OpenAI,
     model: str,
@@ -286,12 +332,17 @@ def generate_solvable(
     if isinstance(payload.get("answer"), dict):
         answer = payload["answer"]
         if "unit" not in answer:
-            answer["unit"] = "명"
+            answer["unit"] = "\uBA85"
 
-    # Deterministic arithmetic post-processing for current solvable schema.
+    # Deterministic arithmetic post-processing only for ratio/pie problems.
     inputs = payload.get("inputs")
     answer = payload.get("answer")
-    if isinstance(inputs, dict) and isinstance(answer, dict):
+    semantic_pt = semantic_payload.get("problem_type")
+    payload_pt = payload.get("problem_type")
+    resolved_pt = str(payload_pt or semantic_pt or "")
+    apply_ratio_override = should_apply_ratio_override(resolved_pt)
+
+    if apply_ratio_override and isinstance(inputs, dict) and isinstance(answer, dict):
         total_ticks = inputs.get("total_ticks")
         target_ticks = inputs.get("target_ticks")
         target_count = inputs.get("target_count")
@@ -318,6 +369,11 @@ def generate_solvable(
                     first_check["expected"] = target_count
                     first_check["actual"] = actual
                     first_check["pass"] = actual == target_count
+    else:
+        # For non-ratio problems, prefer semantic answer when available.
+        semantic_answer_num = extract_numeric_semantic_answer(semantic_payload)
+        if semantic_answer_num is not None and isinstance(answer, dict):
+            answer["value"] = semantic_answer_num
 
     Draft202012Validator(solvable_schema).validate(payload)
     return payload
@@ -372,6 +428,8 @@ def main() -> None:
         svg_text=svg_text,
         problem_id=args.problem_id,
     )
+    semantic = enrich_semantic_answer_from_solvable(semantic, solvable)
+    Draft202012Validator(semantic_schema).validate(semantic)
 
     out_dir = Path(args.out_dir).resolve()
     out_dir.mkdir(parents=True, exist_ok=True)
