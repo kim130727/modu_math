@@ -17,6 +17,7 @@ def compile_problem_template_to_semantic(
     problem: ProblemTemplate,
     *,
     problem_type: str | None = None,
+    default_confidence: float = 1.0,
 ) -> dict[str, Any]:
     _assert_unique_ids(problem)
 
@@ -266,7 +267,41 @@ def compile_problem_template_to_semantic(
         domain=SemanticDomain(objects=domain_objects, relations=domain_relations),
         answer=answer,
     )
-    return normalize_semantic(semantic.to_dict())
+    normalized = normalize_semantic(semantic.to_dict())
+    return _attach_confidence_defaults(normalized, default_confidence=default_confidence)
+
+
+def _attach_confidence_defaults(
+    semantic: dict[str, Any],
+    *,
+    default_confidence: float,
+) -> dict[str, Any]:
+    metadata = semantic.get("metadata")
+    if isinstance(metadata, dict) and "extraction_confidence" not in metadata:
+        metadata["extraction_confidence"] = float(default_confidence)
+
+    domain = semantic.get("domain")
+    if isinstance(domain, dict):
+        objects = domain.get("objects")
+        if isinstance(objects, list):
+            for obj in objects:
+                if isinstance(obj, dict) and "confidence" not in obj:
+                    obj["confidence"] = float(default_confidence)
+
+        relations = domain.get("relations")
+        if isinstance(relations, list):
+            for rel in relations:
+                if isinstance(rel, dict) and "confidence" not in rel:
+                    rel["confidence"] = float(default_confidence)
+
+        if "confidence" not in domain:
+            domain["confidence"] = float(default_confidence)
+
+    answer = semantic.get("answer")
+    if isinstance(answer, dict) and "confidence" not in answer:
+        answer["confidence"] = float(default_confidence)
+
+    return semantic
 
 
 def _assert_unique_ids(problem: ProblemTemplate) -> None:
