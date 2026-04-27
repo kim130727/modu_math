@@ -1,0 +1,119 @@
+{
+  "type": "object",
+  "properties": {
+    "schema": {
+      "type": "string",
+      "const": "modu.solvable.v1"
+    },
+    "problem_id": {
+      "type": "string"
+    },
+    "problem_type": {
+      "type": "string"
+    },
+    "inputs": {
+      "type": "object",
+      "properties": {
+        "total_ticks": {
+          "type": "number"
+        },
+        "target_label": {
+          "type": "string"
+        },
+        "target_ticks": {
+          "type": "number"
+        },
+        "target_count": {
+          "type": "number"
+        },
+        "unit": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "total_ticks",
+        "target_label",
+        "target_ticks",
+        "target_count",
+        "unit"
+      ]
+    },
+    "plan": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "steps": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "expr": {
+            "type": "string"
+          },
+          "value": {}
+        },
+        "required": [
+          "id",
+          "expr",
+          "value"
+        ]
+      }
+    },
+    "checks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "expr": {
+            "type": "string"
+          },
+          "expected": {},
+          "actual": {},
+          "pass": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "id",
+          "expr",
+          "expected",
+          "actual",
+          "pass"
+        ]
+      }
+    },
+    "answer": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "number"
+        },
+        "unit": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value",
+        "unit"
+      ]
+    }
+  },
+  "required": [
+    "schema",
+    "problem_id",
+    "problem_type",
+    "inputs",
+    "plan",
+    "steps",
+    "checks",
+    "answer"
+  ]
+}

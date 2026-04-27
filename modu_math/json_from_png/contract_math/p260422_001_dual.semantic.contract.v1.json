@@ -1,0 +1,100 @@
+{
+  "problem_id": "p260422_001",
+  "problem_type": "fill_in_the_blank_addition",
+  "metadata": {
+    "language": "ko",
+    "source_type": "png",
+    "notes": "Two blanks in decomposition formula and two blanks in intermediate/result equations.",
+    "source_path": "C:\\projects\\modu_math\\examples\\problems\\260422\\p260422_001.png",
+    "extraction_confidence": 0.5
+  },
+  "domain": {
+    "objects": [
+      {
+        "label": "expression",
+        "text": "229 + 985",
+        "confidence": 0.5
+      },
+      {
+        "label": "instruction",
+        "text": "220과 980을 먼저 더하고 9와 5를 더한 후 두 수를 더합니다.",
+        "confidence": 0.5
+      },
+      {
+        "label": "blank",
+        "id": "b1",
+        "position": "first_formula_after_220_plus",
+        "confidence": 0.5
+      },
+      {
+        "label": "blank",
+        "id": "b2",
+        "position": "first_formula_inside_second_parentheses",
+        "confidence": 0.5
+      },
+      {
+        "label": "blank",
+        "id": "b3",
+        "position": "second_line_first_blank",
+        "confidence": 0.5
+      },
+      {
+        "label": "blank",
+        "id": "b4",
+        "position": "second_line_second_blank",
+        "confidence": 0.5
+      }
+    ],
+    "relations": [
+      {
+        "type": "decompose",
+        "from": "229 + 985",
+        "to": "(220 + 9) + (980 + 5)",
+        "confidence": 0.5
+      },
+      {
+        "type": "add_partial_sums",
+        "from": "(220 + 9) + (980 + 5)",
+        "to": "229 + 985",
+        "confidence": 0.5
+      },
+      {
+        "type": "fill_blank",
+        "blank_id": "b1",
+        "value": "9",
+        "confidence": 0.5
+      },
+      {
+        "type": "fill_blank",
+        "blank_id": "b2",
+        "value": "980",
+        "confidence": 0.5
+      },
+      {
+        "type": "fill_blank",
+        "blank_id": "b3",
+        "value": "1200",
+        "confidence": 0.5
+      },
+      {
+        "type": "fill_blank",
+        "blank_id": "b4",
+        "value": "1214",
+        "confidence": 0.5
+      }
+    ],
+    "confidence": {
+      "objects": 0.92,
+      "relations": 0.95
+    }
+  },
+  "answer": {
+    "values": [
+      "9",
+      "980",
+      "1200",
+      "1214"
+    ],
+    "confidence": 0.97
+  }
+}

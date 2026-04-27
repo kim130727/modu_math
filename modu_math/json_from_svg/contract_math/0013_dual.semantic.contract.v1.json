@@ -1,0 +1,160 @@
+{
+  "problem_id": "0013",
+  "problem_type": "pie_chart_ratio_word_problem",
+  "metadata": {
+    "language": "ko",
+    "source_type": "svg",
+    "confidence": {
+      "domain.objects": 0.92,
+      "domain.relations": 0.88,
+      "answer": 0.64
+    },
+    "source_path": "C:\\projects\\modu_math\\examples\\problems\\korea_elementary\\6학년\\자료의 정리\\0013_과일 원그래프\\0013.svg",
+    "extraction_confidence": 0.5
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "chart",
+        "type": "pie_chart",
+        "label": "좋아하는 과일별 학생 수",
+        "confidence": 0.5
+      },
+      {
+        "id": "fruit_apple",
+        "type": "category",
+        "label": "사과",
+        "confidence": 0.5
+      },
+      {
+        "id": "fruit_grape",
+        "type": "category",
+        "label": "포도",
+        "confidence": 0.5
+      },
+      {
+        "id": "fruit_banana",
+        "type": "category",
+        "label": "바나나",
+        "confidence": 0.5
+      },
+      {
+        "id": "fruit_peach",
+        "type": "category",
+        "label": "복숭아",
+        "confidence": 0.5
+      },
+      {
+        "id": "fruit_other",
+        "type": "category",
+        "label": "기타",
+        "confidence": 0.5
+      },
+      {
+        "id": "scale_0",
+        "type": "scale_label",
+        "value": 0,
+        "confidence": 0.5
+      },
+      {
+        "id": "scale_25",
+        "type": "scale_label",
+        "value": 25,
+        "confidence": 0.5
+      },
+      {
+        "id": "scale_50",
+        "type": "scale_label",
+        "value": 50,
+        "confidence": 0.5
+      },
+      {
+        "id": "scale_75",
+        "type": "scale_label",
+        "value": 75,
+        "confidence": 0.5
+      },
+      {
+        "id": "given_value_banana",
+        "type": "quantity",
+        "value": 60,
+        "unit": "students",
+        "confidence": 0.5
+      }
+    ],
+    "relations": [
+      {
+        "type": "category_has_proportion",
+        "from": "fruit_apple",
+        "to": "chart",
+        "value": 0.2,
+        "confidence": 0.5
+      },
+      {
+        "type": "category_has_proportion",
+        "from": "fruit_grape",
+        "to": "chart",
+        "value": 0.2,
+        "confidence": 0.5
+      },
+      {
+        "type": "category_has_proportion",
+        "from": "fruit_banana",
+        "to": "chart",
+        "value": 0.2,
+        "confidence": 0.5
+      },
+      {
+        "type": "category_has_proportion",
+        "from": "fruit_peach",
+        "to": "chart",
+        "value": 0.2,
+        "confidence": 0.5
+      },
+      {
+        "type": "category_has_proportion",
+        "from": "fruit_other",
+        "to": "chart",
+        "value": 0.2,
+        "confidence": 0.5
+      },
+      {
+        "type": "given_value_applies_to",
+        "from": "given_value_banana",
+        "to": "fruit_banana",
+        "confidence": 0.5
+      },
+      {
+        "type": "pie_chart_scale",
+        "from": "chart",
+        "to": "scale_0",
+        "confidence": 0.5
+      },
+      {
+        "type": "pie_chart_scale",
+        "from": "chart",
+        "to": "scale_25",
+        "confidence": 0.5
+      },
+      {
+        "type": "pie_chart_scale",
+        "from": "chart",
+        "to": "scale_50",
+        "confidence": 0.5
+      },
+      {
+        "type": "pie_chart_scale",
+        "from": "chart",
+        "to": "scale_75",
+        "confidence": 0.5
+      }
+    ]
+  },
+  "answer": {
+    "type": "number",
+    "value": 300,
+    "unit": "students",
+    "method": "banana_is_one_fifth_of_total",
+    "confidence": 0.5
+  }
+}
