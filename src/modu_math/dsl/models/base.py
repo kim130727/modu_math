@@ -86,6 +86,8 @@ class LineSlot(SlotBase):
     y1: float = 0.0
     x2: float = 0.0
     y2: float = 0.0
+    x: float = 0.0
+    y: float = 0.0
     stroke: str | None = None
     stroke_width: float | None = None
     stroke_dasharray: str | None = None
@@ -120,6 +122,8 @@ class PolygonSlot(SlotBase):
 @dataclass(frozen=True)
 class PathSlot(SlotBase):
     d: str = ""
+    x: float = 0.0
+    y: float = 0.0
     stroke: str | None = None
     stroke_width: float | None = None
     stroke_dasharray: str | None = None

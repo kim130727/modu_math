@@ -543,6 +543,8 @@ def _compile_slots(layout: dict[str, Any], *, width: float) -> tuple[list[DrawEl
 
         if kind == "path":
             d = str(content.get("d", ""))
+            x_pos = float(content["x"]) if isinstance(content.get("x"), int | float) else 0.0
+            y_pos = float(content["y"]) if isinstance(content.get("y"), int | float) else 0.0
             stroke = str(content.get("stroke", _DEFAULT_STROKE))
             stroke_width = float(content.get("stroke_width", 2.0))
             stroke_dasharray = str(content["stroke_dasharray"]) if isinstance(content.get("stroke_dasharray"), str) else None
@@ -554,6 +556,8 @@ def _compile_slots(layout: dict[str, Any], *, width: float) -> tuple[list[DrawEl
                 "stroke-width": stroke_width,
                 "fill": fill,
             }
+            if x_pos != 0.0 or y_pos != 0.0:
+                attributes["transform"] = f"translate({x_pos}, {y_pos})"
             if stroke_dasharray:
                 attributes["stroke-dasharray"] = stroke_dasharray
             if semantic_role:

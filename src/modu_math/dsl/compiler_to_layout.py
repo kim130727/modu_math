@@ -192,10 +192,10 @@ def _normalize_slot(slot: AuthoringSlot) -> dict[str, Any]:
 
     if isinstance(slot, LineSlot):
         content: dict[str, Any] = {
-            "x1": float(slot.x1),
-            "y1": float(slot.y1),
-            "x2": float(slot.x2),
-            "y2": float(slot.y2),
+            "x1": float(slot.x1 + slot.x),
+            "y1": float(slot.y1 + slot.y),
+            "x2": float(slot.x2 + slot.x),
+            "y2": float(slot.y2 + slot.y),
         }
         if isinstance(slot.stroke, str):
             content["stroke"] = slot.stroke
@@ -255,6 +255,8 @@ def _normalize_slot(slot: AuthoringSlot) -> dict[str, Any]:
     if isinstance(slot, PathSlot):
         content: dict[str, Any] = {
             "d": slot.d,
+            "x": float(slot.x),
+            "y": float(slot.y),
         }
         if isinstance(slot.stroke, str):
             content["stroke"] = slot.stroke
