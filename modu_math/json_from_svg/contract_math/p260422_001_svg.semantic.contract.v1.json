@@ -1,0 +1,80 @@
+{
+  "problem_id": "p260422_001_svg",
+  "problem_type": "math_worksheet",
+  "metadata": {
+    "source": "svg",
+    "language": "ko",
+    "source_type": "svg",
+    "source_path": "C:\\projects\\modu_math\\examples\\problems\\260422\\p260422_001.svg",
+    "extraction_confidence": 0.5
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj1",
+        "type": "expression",
+        "text": "229+985",
+        "confidence": 0.5
+      },
+      {
+        "id": "obj2",
+        "type": "instruction",
+        "text": "□ 안에 알맞은 수를 써넣으시오.",
+        "confidence": 0.5
+      },
+      {
+        "id": "obj3",
+        "type": "explanation",
+        "text": "220과 980을 먼저 더하고 9와 5를 더한 후 두 수를 더합니다.",
+        "confidence": 0.5
+      },
+      {
+        "id": "obj4",
+        "type": "equation",
+        "text": "229+985=(220+□)+(□+5)=□+14=□",
+        "confidence": 0.5
+      },
+      {
+        "id": "obj5",
+        "type": "box_placeholder",
+        "text": "□",
+        "confidence": 0.5
+      }
+    ],
+    "relations": [
+      {
+        "type": "describes_method_for",
+        "from": "obj3",
+        "to": "obj1",
+        "confidence": 0.5
+      },
+      {
+        "type": "asks_fill_in",
+        "from": "obj2",
+        "to": "obj4",
+        "confidence": 0.5
+      },
+      {
+        "type": "represents_decomposition_of",
+        "from": "obj4",
+        "to": "obj1",
+        "confidence": 0.5
+      },
+      {
+        "type": "contains_placeholder",
+        "from": "obj4",
+        "to": "obj5",
+        "confidence": 0.5
+      }
+    ],
+    "confidence": {
+      "objects": 0.98,
+      "relations": 0.96
+    }
+  },
+  "answer": {
+    "text": "(220+9)+(980+5)=1200+14=1214",
+    "value": "1214",
+    "confidence": 0.97
+  }
+}
