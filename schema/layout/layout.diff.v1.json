@@ -1,0 +1,17 @@
+{
+  "type": "object",
+  "properties": {
+    "problem_id": {"type": "string"},
+    "patches": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "target": {"type": "string"},
+          "op": {"type": "string"}
+        }
+      }
+    }
+  },
+  "required": ["problem_id", "patches"]
+}
