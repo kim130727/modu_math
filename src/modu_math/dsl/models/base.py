@@ -1,4 +1,4 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
 from dataclasses import dataclass, field
 from typing import Literal
@@ -108,6 +108,8 @@ class CircleSlot(SlotBase):
 @dataclass(frozen=True)
 class PolygonSlot(SlotBase):
     points: tuple[tuple[float, float], ...] = ()
+    x: float = 0.0
+    y: float = 0.0
     stroke: str | None = None
     stroke_width: float | None = None
     fill: str | None = None

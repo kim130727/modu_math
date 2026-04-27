@@ -235,7 +235,7 @@ def _normalize_slot(slot: AuthoringSlot) -> dict[str, Any]:
 
     if isinstance(slot, PolygonSlot):
         content: dict[str, Any] = {
-            "points": [[float(x), float(y)] for x, y in slot.points],
+            "points": [[float(x + slot.x), float(y + slot.y)] for x, y in slot.points],
         }
         if isinstance(slot.stroke, str):
             content["stroke"] = slot.stroke
