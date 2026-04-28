@@ -1,6 +1,7 @@
 param(
     [Parameter(Mandatory=$true)]
     [string]$ProblemId,
+    [string]$DslPath,
     [switch]$Once,
     [int]$IntervalSec = 1
 )
@@ -11,16 +12,47 @@ $ErrorActionPreference = "Stop"
 $RepoRoot = (Resolve-Path (Join-Path $PSScriptRoot "..")).Path
 $PythonExe = Join-Path $RepoRoot ".venv\Scripts\python.exe"
 
-# Search for the DSL file recursively in examples/problems
-Write-Host "Searching for DSL file for problem: $ProblemId..." -ForegroundColor Gray
-$DslFile = Get-ChildItem -Path (Join-Path $RepoRoot "examples\problems") -Filter "*$ProblemId*.dsl.py" -Recurse | Select-Object -First 1
+function Resolve-DslPath {
+    param(
+        [string]$RepoRootPath,
+        [string]$ProblemIdValue,
+        [string]$DslPathValue
+    )
 
-if (-not $DslFile) {
-    throw "DSL file for problem $ProblemId not found in examples\problems"
+    if ($DslPathValue) {
+        $resolved = (Resolve-Path -LiteralPath $DslPathValue).Path
+        if (-not (Test-Path -LiteralPath $resolved)) {
+            throw "DSL file not found: $DslPathValue"
+        }
+        return $resolved
+    }
+
+    Write-Host "Searching for DSL file for problem: $ProblemIdValue..." -ForegroundColor Gray
+    $root = Join-Path $RepoRootPath "examples\problems"
+    $matches = @(Get-ChildItem -Path $root -Filter "*$ProblemIdValue*.dsl.py" -Recurse)
+    if ($matches.Count -eq 0) {
+        throw "DSL file for problem $ProblemIdValue not found in examples\problems"
+    }
+
+    # Prefer exact basename match first, then fallback to first partial match.
+    $exactName = "$ProblemIdValue.dsl.py"
+    $exact = $matches | Where-Object { $_.Name -eq $exactName } | Select-Object -First 1
+    if ($exact) {
+        return $exact.FullName
+    }
+    return ($matches | Select-Object -First 1).FullName
 }
 
-$DslPath = $DslFile.FullName
-$OutPrefix = $DslFile.FullName.Replace(".dsl.py", "")
+function Get-FileFingerprint {
+    param([string]$Path)
+    $item = Get-Item -LiteralPath $Path
+    $hash = (Get-FileHash -Algorithm SHA256 -LiteralPath $Path).Hash
+    return "$($item.Length)|$($item.LastWriteTimeUtc.Ticks)|$hash"
+}
+
+$DslPath = Resolve-DslPath -RepoRootPath $RepoRoot -ProblemIdValue $ProblemId -DslPathValue $DslPath
+$OutPrefix = $DslPath.Replace(".dsl.py", "")
+Write-Host "[watch_build] Target DSL: $DslPath" -ForegroundColor Gray
 
 function Invoke-Build {
     Write-Host "[watch_build] Building from DSL: $ProblemId" -ForegroundColor Cyan
@@ -139,14 +171,14 @@ if ($Once) {
 Write-Host "[watch_build] Watching: $DslPath" -ForegroundColor Yellow
 Write-Host "[watch_build] Press Ctrl+C to stop." -ForegroundColor Yellow
 
-$lastWrite = (Get-Item -LiteralPath $DslPath).LastWriteTimeUtc
+$lastFingerprint = Get-FileFingerprint -Path $DslPath
 Invoke-Build
 
 while ($true) {
     Start-Sleep -Seconds $IntervalSec
-    $currentWrite = (Get-Item -LiteralPath $DslPath).LastWriteTimeUtc
-    if ($currentWrite -ne $lastWrite) {
-        $lastWrite = $currentWrite
+    $currentFingerprint = Get-FileFingerprint -Path $DslPath
+    if ($currentFingerprint -ne $lastFingerprint) {
+        $lastFingerprint = $currentFingerprint
         Invoke-Build
     }
 }
