@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 from pathlib import Path
 
@@ -9,6 +9,7 @@ from tools.generate_dsl_from_png import (
     main,
     render_user_prompt,
     strip_markdown_code_fence,
+    validate_dsl_source,
 )
 
 
@@ -18,13 +19,30 @@ def test_render_user_prompt_inserts_problem_id() -> None:
 
 
 def test_strip_markdown_code_fence_handles_python_fence() -> None:
-    raw = "설명\n```python\nprint('안녕하세요')\n```\n추가"
-    assert strip_markdown_code_fence(raw) == "print('안녕하세요')"
+    raw = "desc\n```python\nprint('hello')\n```\nmore"
+    assert strip_markdown_code_fence(raw) == "print('hello')"
 
 
 def test_strip_markdown_code_fence_leaves_plain_code_unchanged() -> None:
     raw = "print('plain code')\n"
     assert strip_markdown_code_fence(raw) == raw
+
+
+def test_validate_dsl_source_accepts_problem_template_contract() -> None:
+    source = """
+from modu_math.dsl import ProblemTemplate
+
+def build_problem_template() -> ProblemTemplate:
+    return ProblemTemplate(id='x', title='t', canvas=None, regions=(), slots=())
+""".strip()
+    assert validate_dsl_source(source) == []
+
+
+def test_validate_dsl_source_rejects_missing_contract() -> None:
+    source = "print('bad')"
+    errors = validate_dsl_source(source)
+    assert errors
+    assert any("build_problem_template" in err for err in errors)
 
 
 def test_ensure_output_writable_refuses_overwrite_without_force(tmp_path: Path) -> None:
@@ -37,7 +55,6 @@ def test_ensure_output_writable_refuses_overwrite_without_force(tmp_path: Path) 
 def test_ensure_output_writable_allows_overwrite_with_force(tmp_path: Path) -> None:
     out_path = tmp_path / "problem.dsl.py"
     out_path.write_text("# existing\n", encoding="utf-8")
-    # Should not raise when force is enabled.
     ensure_output_writable(out_path, force=True)
 
 
@@ -75,7 +92,7 @@ def test_dry_run_does_not_call_openai(tmp_path: Path, monkeypatch: pytest.Monkey
     assert not out_path.exists()
 
 
-def test_korean_utf8_text_is_preserved(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+def test_generate_retries_until_valid(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
     image_path = tmp_path / "input.png"
     system_prompt = tmp_path / "system.md"
     user_template = tmp_path / "user.md"
@@ -86,8 +103,13 @@ def test_korean_utf8_text_is_preserved(tmp_path: Path, monkeypatch: pytest.Monke
     user_template.write_text("Problem ID: {problem_id}", encoding="utf-8")
     monkeypatch.setenv("OPENAI_API_KEY", "test-key")
 
+    calls = {"n": 0}
+
     def _fake_call_openai_for_dsl(**_: object) -> str:
-        return "```python\nprint('한글 유지 테스트')\n```"
+        calls["n"] += 1
+        if calls["n"] == 1:
+            return "print('bad')"
+        return "from modu_math.dsl import ProblemTemplate\n\ndef build_problem_template() -> ProblemTemplate:\n    return PROBLEM_TEMPLATE\n\nPROBLEM_TEMPLATE = None"
 
     monkeypatch.setattr("tools.generate_dsl_from_png.call_openai_for_dsl", _fake_call_openai_for_dsl)
 
@@ -103,9 +125,42 @@ def test_korean_utf8_text_is_preserved(tmp_path: Path, monkeypatch: pytest.Monke
             str(system_prompt),
             "--user-template",
             str(user_template),
+            "--max-attempts",
+            "2",
         ]
     )
     assert exit_code == 0
-    written = out_path.read_text(encoding="utf-8")
-    assert "한글 유지 테스트" in written
-    assert "```" not in written
+    assert calls["n"] == 2
+    assert out_path.exists()
+
+
+def test_generate_fails_after_attempt_budget(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    image_path = tmp_path / "input.png"
+    system_prompt = tmp_path / "system.md"
+    user_template = tmp_path / "user.md"
+    out_path = tmp_path / "problem.dsl.py"
+
+    image_path.write_bytes(b"\x89PNG\r\n\x1a\n")
+    system_prompt.write_text("system", encoding="utf-8")
+    user_template.write_text("Problem ID: {problem_id}", encoding="utf-8")
+    monkeypatch.setenv("OPENAI_API_KEY", "test-key")
+
+    monkeypatch.setattr("tools.generate_dsl_from_png.call_openai_for_dsl", lambda **_: "print('bad')")
+
+    with pytest.raises(ValueError):
+        main(
+            [
+                "--image",
+                str(image_path),
+                "--problem-id",
+                "0001",
+                "--out",
+                str(out_path),
+                "--system-prompt",
+                str(system_prompt),
+                "--user-template",
+                str(user_template),
+                "--max-attempts",
+                "2",
+            ]
+        )

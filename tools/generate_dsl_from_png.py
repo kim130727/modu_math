@@ -1,6 +1,7 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 import argparse
+import ast
 import base64
 import mimetypes
 import os
@@ -11,6 +12,7 @@ from pathlib import Path
 DEFAULT_SYSTEM_PROMPT = Path("prompts/dsl_agent_system.md")
 DEFAULT_USER_TEMPLATE = Path("prompts/dsl_agent_user_template.md")
 DEFAULT_MODEL = "gpt-5.4-mini"
+DEFAULT_MAX_ATTEMPTS = 3
 
 
 def read_text_utf8(path: Path) -> str:
@@ -32,6 +34,54 @@ def strip_markdown_code_fence(text: str) -> str:
     return text
 
 
+def _render_retry_feedback(attempt: int, errors: list[str]) -> str:
+    lines = [
+        "",
+        f"[RETRY {attempt}] Previous output failed validation.",
+        "Fix the following and regenerate full Python DSL:",
+    ]
+    for index, err in enumerate(errors, start=1):
+        lines.append(f"{index}. {err}")
+    lines.append("Return Python code only.")
+    return "\n".join(lines)
+
+
+def validate_dsl_source(source: str) -> list[str]:
+    errors: list[str] = []
+    try:
+        tree = ast.parse(source)
+    except SyntaxError as exc:
+        errors.append(f"Python syntax error at line {exc.lineno}: {exc.msg}")
+        return errors
+
+    import_from_dsl = False
+    imported_problem_template = False
+    has_build_problem_template = False
+    has_problem_template_symbol = False
+
+    for node in tree.body:
+        if isinstance(node, ast.ImportFrom) and node.module == "modu_math.dsl":
+            import_from_dsl = True
+            for alias in node.names:
+                if alias.name == "ProblemTemplate" or alias.name == "*":
+                    imported_problem_template = True
+        if isinstance(node, ast.FunctionDef) and node.name == "build_problem_template":
+            has_build_problem_template = True
+        if isinstance(node, ast.Assign):
+            for target in node.targets:
+                if isinstance(target, ast.Name) and target.id == "PROBLEM_TEMPLATE":
+                    has_problem_template_symbol = True
+
+    if not import_from_dsl:
+        errors.append("Must import from modu_math.dsl.")
+    if not imported_problem_template:
+        errors.append("Must import ProblemTemplate (or use wildcard import) from modu_math.dsl.")
+    if not (has_build_problem_template or has_problem_template_symbol):
+        errors.append("Must define build_problem_template() or PROBLEM_TEMPLATE.")
+
+    return errors
+
+
 def ensure_output_writable(path: Path, force: bool) -> None:
     if path.exists() and not force:
         raise FileExistsError(f"Refusing to overwrite existing output: {path} (pass --force to overwrite)")
@@ -46,6 +96,12 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--problem-id", required=True, help="Problem id for template rendering")
     parser.add_argument("--out", required=True, help="Path to output problem.dsl.py draft")
     parser.add_argument("--model", default=None, help="Optional model name (unused in this skeleton)")
+    parser.add_argument(
+        "--max-attempts",
+        type=int,
+        default=DEFAULT_MAX_ATTEMPTS,
+        help="Maximum regeneration attempts when generated DSL fails static validation.",
+    )
     parser.add_argument(
         "--system-prompt",
         default=str(DEFAULT_SYSTEM_PROMPT),
@@ -134,6 +190,7 @@ def generate_dsl_from_png(
     user_template_path: Path = DEFAULT_USER_TEMPLATE,
     force: bool = False,
     dry_run: bool = False,
+    max_attempts: int = DEFAULT_MAX_ATTEMPTS,
 ) -> dict[str, str]:
     resolved_model = resolve_model_name(model)
 
@@ -163,14 +220,31 @@ def generate_dsl_from_png(
     if not api_key:
         raise EnvironmentError("OPENAI_API_KEY is not set. Add it to your environment or .env file.")
 
-    raw_text = call_openai_for_dsl(
-        api_key=api_key,
-        model=resolved_model,
-        system_prompt=system_prompt,
-        user_prompt=rendered_user_prompt,
-        image_path=image_path,
-    )
-    dsl_text = strip_markdown_code_fence(raw_text)
+    attempts = max(1, int(max_attempts))
+    prompt_text = rendered_user_prompt
+    dsl_text = ""
+    validation_errors: list[str] = []
+
+    for attempt in range(1, attempts + 1):
+        raw_text = call_openai_for_dsl(
+            api_key=api_key,
+            model=resolved_model,
+            system_prompt=system_prompt,
+            user_prompt=prompt_text,
+            image_path=image_path,
+        )
+        dsl_text = strip_markdown_code_fence(raw_text)
+        validation_errors = validate_dsl_source(dsl_text)
+        if not validation_errors:
+            break
+        prompt_text = rendered_user_prompt + _render_retry_feedback(attempt=attempt + 1, errors=validation_errors)
+
+    if validation_errors:
+        raise ValueError(
+            "Generated DSL did not pass static validation after "
+            f"{attempts} attempts: {'; '.join(validation_errors)}"
+        )
+
     out_path.write_text(dsl_text, encoding="utf-8")
     return {
         "image": str(image_path),
@@ -206,6 +280,7 @@ def main(argv: list[str] | None = None) -> int:
         user_template_path=user_template_path,
         force=bool(args.force),
         dry_run=bool(args.dry_run),
+        max_attempts=max(1, int(args.max_attempts)),
     )
     if args.dry_run:
         print(f"image={result['image']}")
