@@ -6,6 +6,7 @@ import base64
 import mimetypes
 import os
 import re
+import tempfile
 from pathlib import Path
 
 
@@ -43,6 +44,8 @@ def _render_retry_feedback(attempt: int, errors: list[str]) -> str:
     for index, err in enumerate(errors, start=1):
         lines.append(f"{index}. {err}")
     lines.append("Return Python code only.")
+    lines.append("Must use ProblemTemplate(id=..., title=..., canvas=..., regions=..., slots=...).")
+    lines.append("Avoid legacy/problem_id keyword and avoid assigning problem.semantic/problem.layout dicts directly.")
     return "\n".join(lines)
 
 
@@ -79,6 +82,22 @@ def validate_dsl_source(source: str) -> list[str]:
     if not (has_build_problem_template or has_problem_template_symbol):
         errors.append("Must define build_problem_template() or PROBLEM_TEMPLATE.")
 
+    return errors
+
+
+def validate_dsl_buildable(source: str, *, strict: bool = True) -> list[str]:
+    from tools.validate_generated_dsl import _run_build
+
+    errors: list[str] = []
+    with tempfile.TemporaryDirectory(prefix="dsl_build_check_") as tmp:
+        tmp_dir = Path(tmp)
+        dsl_path = tmp_dir / "candidate.dsl.py"
+        out_prefix = tmp_dir / "candidate"
+        dsl_path.write_text(source, encoding="utf-8")
+        try:
+            _run_build(dsl_path=dsl_path, out_prefix=out_prefix, strict=bool(strict), emit_solvable=False)
+        except Exception as exc:
+            errors.append(f"Build validation failed: {type(exc).__name__}: {exc}")
     return errors
 
 
@@ -235,6 +254,8 @@ def generate_dsl_from_png(
         )
         dsl_text = strip_markdown_code_fence(raw_text)
         validation_errors = validate_dsl_source(dsl_text)
+        if not validation_errors:
+            validation_errors = validate_dsl_buildable(dsl_text, strict=True)
         if not validation_errors:
             break
         prompt_text = rendered_user_prompt + _render_retry_feedback(attempt=attempt + 1, errors=validation_errors)

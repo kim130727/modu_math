@@ -23,6 +23,11 @@ Rules:
 18. Treat semantic as contract-level meaning only; do not duplicate layout/renderer slots, coordinates, or shape styling in semantic.
 19. In semantic.domain, record only solve-relevant concept objects and their relationships.
 20. Consider `*.semantic.json` and `*.solvable.v1.json` the primary managed artifacts, with layout/renderer as derived outputs.
+21. DSL MUST target current `ProblemTemplate` API only.
+22. Use `ProblemTemplate(id=..., title=..., canvas=..., regions=..., slots=...)` exactly; do NOT use `problem_id=`.
+23. Do not assign `problem.semantic = ...`, `problem.layout = ...`, or `problem.renderer = ...`.
+24. Export one of: `def build_problem_template() -> ProblemTemplate` and/or `PROBLEM_TEMPLATE = build_problem_template()`.
+25. If available facts are enough, include `SEMANTIC_OVERRIDE` and `SOLVABLE` dict constants for richer semantic/solvable outputs.
 
 Pipeline assumption:
 PNG -> Python DSL -> semantic JSON -> layout JSON -> renderer JSON -> SVG

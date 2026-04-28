@@ -109,7 +109,17 @@ def test_generate_retries_until_valid(tmp_path: Path, monkeypatch: pytest.Monkey
         calls["n"] += 1
         if calls["n"] == 1:
             return "print('bad')"
-        return "from modu_math.dsl import ProblemTemplate\n\ndef build_problem_template() -> ProblemTemplate:\n    return PROBLEM_TEMPLATE\n\nPROBLEM_TEMPLATE = None"
+        return (
+            "from modu_math.dsl import Canvas, ProblemTemplate, Region, TextSlot\n\n"
+            "def build_problem_template() -> ProblemTemplate:\n"
+            "    return ProblemTemplate(\n"
+            "        id='0001',\n"
+            "        title='t',\n"
+            "        canvas=Canvas(width=100, height=100),\n"
+            "        regions=(Region(id='region.stem', role='stem', slot_ids=('slot.q',)),),\n"
+            "        slots=(TextSlot(id='slot.q', text='q', style_role='question'),),\n"
+            "    )\n"
+        )
 
     monkeypatch.setattr("tools.generate_dsl_from_png.call_openai_for_dsl", _fake_call_openai_for_dsl)
 

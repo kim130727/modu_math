@@ -15,6 +15,7 @@ from modu_math.renderer.compiler import compile_renderer_json
 from modu_math.renderer.svg.render import render_svg
 from modu_math.renderer.validate import validate_renderer_json
 from modu_math.semantic.validate import validate_semantic_json
+from jsonschema import Draft202012Validator
 
 
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
@@ -24,6 +25,11 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--dsl", required=True, help="Path to generated problem.dsl.py")
     parser.add_argument("--out-prefix", default=None, help="Output prefix path for generated artifacts")
     parser.add_argument("--strict", action="store_true", help="Enable strict cross-layer contract validation")
+    parser.add_argument(
+        "--emit-solvable",
+        action="store_true",
+        help="Emit solvable JSON when DSL defines SOLVABLE or build_solvable().",
+    )
     parser.add_argument(
         "--report",
         default=None,
@@ -54,8 +60,29 @@ def _collect_generated_files(out_prefix: Path) -> list[str]:
         out_prefix.with_suffix(".layout.json"),
         out_prefix.with_suffix(".renderer.json"),
         out_prefix.with_suffix(".svg"),
+        out_prefix.with_suffix(".solvable.v1.json"),
     ]
     return [str(path.resolve()) for path in candidates if path.exists()]
+
+
+def _deep_merge_dict(base: dict[str, Any], override: dict[str, Any]) -> dict[str, Any]:
+    out: dict[str, Any] = dict(base)
+    for key, value in override.items():
+        if key in out and isinstance(out[key], dict) and isinstance(value, dict):
+            out[key] = _deep_merge_dict(out[key], value)
+            continue
+        out[key] = value
+    return out
+
+
+def _resolve_solvable_object(module: ModuleType) -> dict[str, Any] | None:
+    if hasattr(module, "SOLVABLE") and isinstance(module.SOLVABLE, dict):
+        return module.SOLVABLE
+    if hasattr(module, "build_solvable"):
+        built = module.build_solvable()
+        if isinstance(built, dict):
+            return built
+    return None
 
 
 def _build_from_legacy_problem(problem: LegacyProblem, *, out_prefix: Path, strict: bool) -> None:
@@ -68,8 +95,21 @@ def _build_from_legacy_problem(problem: LegacyProblem, *, out_prefix: Path, stri
     )
 
 
-def _build_from_problem_template(problem: ProblemTemplate, *, out_prefix: Path, strict: bool) -> None:
+def _build_from_problem_template(
+    problem: ProblemTemplate,
+    *,
+    out_prefix: Path,
+    strict: bool,
+    module: ModuleType,
+    emit_solvable: bool,
+) -> None:
     semantic = compile_problem_template_to_semantic(problem)
+    if hasattr(module, "SEMANTIC_OVERRIDE") and isinstance(module.SEMANTIC_OVERRIDE, dict):
+        semantic = _deep_merge_dict(semantic, module.SEMANTIC_OVERRIDE)
+    if hasattr(module, "SEMANTIC_ANSWER") and isinstance(module.SEMANTIC_ANSWER, dict):
+        merged_answer = dict(semantic.get("answer", {}))
+        merged_answer.update(module.SEMANTIC_ANSWER)
+        semantic["answer"] = merged_answer
     validate_semantic_json(semantic)
 
     layout = compile_problem_template_to_layout(problem)
@@ -96,6 +136,18 @@ def _build_from_problem_template(problem: ProblemTemplate, *, out_prefix: Path, 
     )
     out_prefix.with_suffix(".svg").write_text(render_svg(renderer), encoding="utf-8")
 
+    if emit_solvable:
+        solvable = _resolve_solvable_object(module)
+        if isinstance(solvable, dict):
+            solvable_schema = json.loads(
+                Path("schema/solvable/solvable.v1.json").read_text(encoding="utf-8-sig")
+            )
+            Draft202012Validator(solvable_schema).validate(solvable)
+            out_prefix.with_suffix(".solvable.v1.json").write_text(
+                json.dumps(solvable, ensure_ascii=False, indent=2) + "\n",
+                encoding="utf-8",
+            )
+
 
 def _resolve_problem_object(module: ModuleType) -> Any:
     if hasattr(module, "build"):
@@ -109,14 +161,20 @@ def _resolve_problem_object(module: ModuleType) -> Any:
     )
 
 
-def _run_build(dsl_path: Path, out_prefix: Path, strict: bool) -> None:
+def _run_build(dsl_path: Path, out_prefix: Path, strict: bool, emit_solvable: bool) -> None:
     module = _load_module(dsl_path)
     problem_obj = _resolve_problem_object(module)
     if isinstance(problem_obj, LegacyProblem):
         _build_from_legacy_problem(problem_obj, out_prefix=out_prefix, strict=strict)
         return
     if isinstance(problem_obj, ProblemTemplate):
-        _build_from_problem_template(problem_obj, out_prefix=out_prefix, strict=strict)
+        _build_from_problem_template(
+            problem_obj,
+            out_prefix=out_prefix,
+            strict=strict,
+            module=module,
+            emit_solvable=emit_solvable,
+        )
         return
     raise RuntimeError(
         f"Unsupported DSL return type: {type(problem_obj)!r}. "
@@ -144,10 +202,16 @@ def main(argv: list[str] | None = None) -> int:
         "success": False,
         "generated_files": [],
         "strict": bool(args.strict),
+        "emit_solvable": bool(args.emit_solvable),
     }
 
     try:
-        _run_build(dsl_path=dsl_path, out_prefix=out_prefix, strict=bool(args.strict))
+        _run_build(
+            dsl_path=dsl_path,
+            out_prefix=out_prefix,
+            strict=bool(args.strict),
+            emit_solvable=bool(args.emit_solvable),
+        )
         report["success"] = True
         report["generated_files"] = _collect_generated_files(out_prefix)
     except Exception as exc:
