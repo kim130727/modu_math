@@ -70,6 +70,23 @@ layout = compile_problem_template_to_layout(problem)
 renderer = compile_renderer_json(layout)
 svg = render_svg(renderer)
 
+def deep_merge_dict(base: dict, override: dict) -> dict:
+    out = dict(base)
+    for key, value in override.items():
+        if key in out and isinstance(out[key], dict) and isinstance(value, dict):
+            out[key] = deep_merge_dict(out[key], value)
+        else:
+            out[key] = value
+    return out
+
+# Optional: Semantic override (inject/replace selected semantic fields from DSL)
+if hasattr(module, "SEMANTIC_OVERRIDE"):
+    semantic_override = module.SEMANTIC_OVERRIDE
+    if isinstance(semantic_override, dict):
+        semantic = deep_merge_dict(semantic, semantic_override)
+    else:
+        raise ValueError("SEMANTIC_OVERRIDE must be a dict when provided.")
+
 # Optional: Semantic Answer (inject if defined in DSL)
 if hasattr(module, "SEMANTIC_ANSWER"):
     semantic["answer"] = module.SEMANTIC_ANSWER
