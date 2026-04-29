@@ -12,3 +12,5 @@ Hard requirements:
 - do not use ParagraphRegion, Diagram, problem.semantic, problem.layout, or dict-based DSL
 - include PROBLEM_TEMPLATE = build_problem_template()
 - if unsure, prefer fewer slots but valid code
+- if facts are clear, you may include SEMANTIC_OVERRIDE and SOLVABLE dict constants after PROBLEM_TEMPLATE
+- keep SEMANTIC_OVERRIDE meaning-only and keep actual calculation steps in SOLVABLE

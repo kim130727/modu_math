@@ -19,17 +19,32 @@ Rules:
 14. If an image element is unclear, add a TODO comment in the DSL instead of inventing confident details.
 15. Prefer clear, readable, maintainable DSL over overfitted pixel-perfect drawing.
 16. Keep dots and labels visually separated in layout intent; avoid merged point-label placement.
-17. If text size is unclear, default to font size 28 in layout intent (not semantic meaning).
+17. If text size is unclear, default to font size 28 in layout intent, not semantic meaning.
 18. Treat semantic as contract-level meaning only; do not duplicate layout/renderer slots, coordinates, or shape styling in semantic.
-19. In semantic.domain, record only solve-relevant concept objects and their relationships.
-20. Consider `*.semantic.json` and `*.solvable.v1.json` the primary managed artifacts, with layout/renderer as derived outputs.
+19. In `semantic.domain`, record only solve-relevant concept objects and their relationships.
+20. Consider `*.semantic.json` and `*.solvable.v1.json` the primary managed artifacts, with layout/renderer/SVG as derived outputs.
 21. DSL MUST target current `ProblemTemplate` API only.
 22. Use `ProblemTemplate(id=..., title=..., canvas=..., regions=..., slots=...)` exactly; do NOT use `problem_id=`.
 23. Do not assign `problem.semantic = ...`, `problem.layout = ...`, or `problem.renderer = ...`.
-24. Export one of: `def build_problem_template() -> ProblemTemplate` and/or `PROBLEM_TEMPLATE = build_problem_template()`.
-25. If available facts are enough, include `SEMANTIC_OVERRIDE` and `SOLVABLE` dict constants for richer semantic/solvable outputs.
-26. semantic json 생성시 domain, answer가 solvable json의 내용이 잘 반영되고 layout json과 겹치지 않도록 준수
-27. solvable json 생성 스키마 준수
+24. Export one or both of:
+    - `def build_problem_template() -> ProblemTemplate`
+    - `PROBLEM_TEMPLATE = build_problem_template()`
+25. If available facts are enough, include `SEMANTIC_OVERRIDE` and `SOLVABLE` dict constants after `PROBLEM_TEMPLATE` for richer semantic/solvable outputs.
+26. `SEMANTIC_OVERRIDE` must remain meaning-focused. It may include `problem_type`, `metadata`, `domain.objects`, `domain.relations`, `domain.problem_solving`, and `answer`.
+27. In semantic JSON, `domain` and `answer` should support solvable generation, but must not duplicate layout JSON or renderer JSON details.
+28. `SOLVABLE` must follow schema `modu.solvable.v1` when included.
+29. When enough information is visible, add `domain.problem_solving` inside `SEMANTIC_OVERRIDE` as a lightweight Polya-style problem-solving hint.
+30. `domain.problem_solving` may contain four blocks: `understand`, `plan`, `execute`, and `review`.
+31. In semantic JSON, `problem_solving` must remain meaning-level only. Do not put detailed arithmetic steps, final computed values, layout coordinates, renderer styles, or SVG details there.
+32. Use `answer.target` to describe what must be found.
+33. Put computed final values in `SOLVABLE["answer"]` when they can be derived confidently.
+34. `SOLVABLE` should refine semantic problem-solving hints into concrete `given`, `target`, `method`, `steps`, `checks`, and `answer`.
+35. `SOLVABLE["steps"]` should contain concrete operations and intermediate values.
+36. `SOLVABLE["checks"]` should verify the final answer, inverse relation, or unit consistency when possible.
+37. If the solution is uncertain, keep `domain.problem_solving` minimal and add TODO comments rather than inventing a complete solution.
+38. If OCR or visual interpretation is uncertain, prefer valid minimal DSL over a detailed but unreliable solution.
+39. Do not use SVG or renderer output as the source of mathematical meaning.
+40. Visual similarity does not prove semantic correctness.
 
 Pipeline assumption:
-PNG -> Python DSL -> semantic JSON -> layout JSON -> renderer JSON -> SVG
+PNG -> Python DSL -> semantic JSON -> solvable JSON -> layout JSON -> renderer JSON -> SVG
