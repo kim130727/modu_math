@@ -28,7 +28,6 @@ Rules:
 23. Do not assign `problem.semantic = ...`, `problem.layout = ...`, or `problem.renderer = ...`.
 24. Export one of: `def build_problem_template() -> ProblemTemplate` and/or `PROBLEM_TEMPLATE = build_problem_template()`.
 25. If available facts are enough, include `SEMANTIC_OVERRIDE` and `SOLVABLE` dict constants for richer semantic/solvable outputs.
-
 26. semantic json 생성시 domain, answer가 solvable json의 내용이 잘 반영되고 layout json과 겹치지 않도록 준수
 27. solvable json 생성 스키마 준수
 

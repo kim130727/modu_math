@@ -12,6 +12,7 @@ from pathlib import Path
 
 DEFAULT_SYSTEM_PROMPT = Path("prompts/dsl_agent_system.md")
 DEFAULT_USER_TEMPLATE = Path("prompts/dsl_agent_user_template.md")
+DEFAULT_RULES_MD = Path("prompts/dsl_generation_rules.md")
 DEFAULT_MODEL = "gpt-5.4-mini"
 DEFAULT_MAX_ATTEMPTS = 3
 
@@ -86,7 +87,18 @@ def validate_dsl_source(source: str) -> list[str]:
 
 
 def validate_dsl_buildable(source: str, *, strict: bool = True) -> list[str]:
-    from tools.validate_generated_dsl import _run_build
+    try:
+        from tools.validate_generated_dsl import _run_build
+    except ModuleNotFoundError:
+        import importlib.util
+
+        validator_path = Path(__file__).with_name("validate_generated_dsl.py")
+        spec = importlib.util.spec_from_file_location("validate_generated_dsl_local", validator_path)
+        if spec is None or spec.loader is None:
+            return [f"Build validation bootstrap failed: cannot load {validator_path}"]
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        _run_build = module._run_build  # type: ignore[attr-defined]
 
     errors: list[str] = []
     with tempfile.TemporaryDirectory(prefix="dsl_build_check_") as tmp:
@@ -130,6 +142,11 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         "--user-template",
         default=str(DEFAULT_USER_TEMPLATE),
         help="User prompt template markdown path",
+    )
+    parser.add_argument(
+        "--rules-md",
+        default=str(DEFAULT_RULES_MD),
+        help="Optional markdown rules file path appended to system prompt when present.",
     )
     parser.add_argument("--force", action="store_true", help="Allow overwriting an existing --out file")
     parser.add_argument("--dry-run", action="store_true", help="Print metadata only; do not write output")
@@ -207,6 +224,7 @@ def generate_dsl_from_png(
     model: str | None = None,
     system_prompt_path: Path = DEFAULT_SYSTEM_PROMPT,
     user_template_path: Path = DEFAULT_USER_TEMPLATE,
+    rules_md_path: Path = DEFAULT_RULES_MD,
     force: bool = False,
     dry_run: bool = False,
     max_attempts: int = DEFAULT_MAX_ATTEMPTS,
@@ -221,6 +239,8 @@ def generate_dsl_from_png(
         raise FileNotFoundError(f"User template path does not exist: {user_template_path}")
 
     system_prompt = read_text_utf8(system_prompt_path)
+    if rules_md_path.exists():
+        system_prompt = f"{system_prompt}\n\n# Generation Rules\n\n{read_text_utf8(rules_md_path)}"
     user_template = read_text_utf8(user_template_path)
     rendered_user_prompt = render_user_prompt(user_template, problem_id)
 
@@ -232,6 +252,7 @@ def generate_dsl_from_png(
             "model": resolved_model,
             "system_prompt": str(system_prompt_path),
             "user_template": str(user_template_path),
+            "rules_md": str(rules_md_path),
         }
 
     ensure_output_writable(out_path, force=bool(force))
@@ -274,6 +295,7 @@ def generate_dsl_from_png(
         "model": resolved_model,
         "system_prompt": str(system_prompt_path),
         "user_template": str(user_template_path),
+        "rules_md": str(rules_md_path),
     }
 
 
@@ -291,6 +313,7 @@ def main(argv: list[str] | None = None) -> int:
     out_path = Path(args.out)
     system_prompt_path = Path(args.system_prompt)
     user_template_path = Path(args.user_template)
+    rules_md_path = Path(args.rules_md)
 
     result = generate_dsl_from_png(
         image_path=image_path,
@@ -299,6 +322,7 @@ def main(argv: list[str] | None = None) -> int:
         model=args.model,
         system_prompt_path=system_prompt_path,
         user_template_path=user_template_path,
+        rules_md_path=rules_md_path,
         force=bool(args.force),
         dry_run=bool(args.dry_run),
         max_attempts=max(1, int(args.max_attempts)),
@@ -310,6 +334,7 @@ def main(argv: list[str] | None = None) -> int:
         print(f"model={result['model']}")
         print(f"system_prompt={result['system_prompt']}")
         print(f"user_template={result['user_template']}")
+        print(f"rules_md={result['rules_md']}")
         return 0
 
     print(f"Wrote DSL draft: {result['out']}")
