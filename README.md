@@ -2,7 +2,7 @@
 
 This directory is an isolated core copy of `modu_math` focused on the canonical pipeline:
 
-`PNG -> semantic JSON -> Python DSL -> layout JSON -> renderer JSON -> SVG`
+`PNG -> Python DSL -> semantic JSON -> solvable JSON -> layout JSON -> renderer JSON -> SVG`
 
 ## Core Contracts
 
