@@ -1,4 +1,4 @@
-# DSL Generation Rules (Draft v1)
+﻿# DSL Generation Rules (Draft v2)
 
 This rulebook is distilled from validated DSL examples under `examples/problems/260427/*.dsl.py`.
 Follow this before writing any code.
@@ -18,11 +18,10 @@ Follow this before writing any code.
   - `slots=(...)`
 
 ## 2) Allowed Core Authoring Pattern
-- Define one `Region(id="region.stem", role="stem", flow="absolute", slot_ids=(...))`.
-- Define visual content in tuple `slots=(...)`.
+- Define at least one `Region(...)` and put all visible content into `slots=(...)`.
 - Prefer explicit slot ids:
   - question lines: `slot.q1`, `slot.q2`, ...
-  - shape/diagram nodes: `slot.*`
+  - diagram/grid nodes: `slot.grid.*`, `slot.pt.*`, `slot.lb.*`
 
 ## 3) Allowed Slot Classes
 - `TextSlot`
@@ -55,6 +54,30 @@ Keep semantic meaning-focused:
 - If uncertain on typography, default `font_size=28`.
 - Keep labels and points visually separated.
 - Keep coordinates simple and stable; avoid overfitting.
+
+## 6-1) Grid Pattern Rule (Geometry Dot Problems)
+- When the image clearly includes a dotted grid, represent it explicitly with `LineSlot` only.
+- Build grid as two line families:
+  - vertical: `slot.grid.v1`, `slot.grid.v2`, ...
+  - horizontal: `slot.grid.h1`, `slot.grid.h2`, ...
+- Use stable styling for school worksheet grids:
+  - `stroke="#9AA0A6"`
+  - `stroke_width=1.2`
+  - `stroke_dasharray="5 3"`
+- Keep grid spacing uniform. Extend width/height by whole-cell increments only.
+
+## 6-2) Point-on-Grid Rule
+- Plot marked points with `CircleSlot(cx=..., cy=..., r=...)`.
+- Never use legacy `CircleSlot(x=..., y=...)`.
+- Recommended defaults:
+  - `r` around `3.5 ~ 4.0`
+  - `fill="#222222"`
+- Korean point labels (`ㄱ`, `ㄴ`, `ㄷ`, `ㄹ`, `ㅁ`) should be separate `TextSlot`s, not merged into point ids.
+
+## 6-3) Slot Signature Guard
+- `style_role` is valid only for `TextSlot`.
+- For non-text slots (`RectSlot`, `LineSlot`, `CircleSlot`, `PolygonSlot`, `PathSlot`), do not emit `style_role`.
+- Prefer current keyword signatures from `src/modu_math/dsl/models/base.py`.
 
 ## 7) Minimal Valid Skeleton
 ```python
@@ -96,6 +119,10 @@ PROBLEM_TEMPLATE = build_problem_template()
 
 ## 8) Continuous Hardening Process
 After each successful manual fix:
-- Add one “Do” or “Don’t” rule from that incident.
-- Add a short snippet to this file if the pattern is reusable.
-- Keep rules short and testable by local validators.
+- Add one short, testable rule from that incident.
+- Add a short snippet if the pattern is reusable.
+- Keep rules concise and verifiable by local validators.
+
+## 9) Operational Safety Rule
+- Do not recover source DSL from `__pycache__` as an automatic generation path.
+- `__pycache__` recovery is allowed only as a manual emergency step and must be followed by full visual/semantic review.

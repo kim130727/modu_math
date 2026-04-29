@@ -15,6 +15,17 @@ DEFAULT_USER_TEMPLATE = Path("prompts/dsl_agent_user_template.md")
 DEFAULT_RULES_MD = Path("prompts/dsl_generation_rules.md")
 DEFAULT_MODEL = "gpt-5.4-mini"
 DEFAULT_MAX_ATTEMPTS = 3
+DSL_SCHEMA_HINT = """\
+Current DSL slot keyword signatures (must follow exactly):
+- TextSlot(id, prompt, text, style_role, x?, y?, font_size?, font_family?, anchor?, fill?, semantic_role?)
+- RectSlot(id, prompt, x, y, width, height, stroke?, stroke_width?, rx?, ry?, fill?, semantic_role?)
+- CircleSlot(id, prompt, cx, cy, r, stroke?, stroke_width?, fill?, semantic_role?)
+- LineSlot(id, prompt, x1, y1, x2, y2, stroke?, stroke_width?, stroke_dasharray?, semantic_role?)
+- PolygonSlot(id, prompt, points, x?, y?, stroke?, stroke_width?, fill?, semantic_role?)
+- PathSlot(id, prompt, d, x?, y?, stroke?, stroke_width?, stroke_dasharray?, fill?, semantic_role?)
+
+Do not use legacy CircleSlot(x=..., y=...) and do not use style_role on non-TextSlot.
+"""
 
 
 def read_text_utf8(path: Path) -> str:
@@ -47,7 +58,51 @@ def _render_retry_feedback(attempt: int, errors: list[str]) -> str:
     lines.append("Return Python code only.")
     lines.append("Must use ProblemTemplate(id=..., title=..., canvas=..., regions=..., slots=...).")
     lines.append("Avoid legacy/problem_id keyword and avoid assigning problem.semantic/problem.layout dicts directly.")
+    lines.append("")
+    lines.append(DSL_SCHEMA_HINT.strip())
     return "\n".join(lines)
+
+
+def _normalize_legacy_slot_kwargs(source: str) -> str:
+    """Normalize common legacy kwargs emitted by LLMs to current DSL signatures."""
+    try:
+        tree = ast.parse(source)
+    except SyntaxError:
+        return source
+
+    class _Transformer(ast.NodeTransformer):
+        def visit_Call(self, node: ast.Call) -> ast.AST:  # noqa: N802
+            self.generic_visit(node)
+            func_name = node.func.id if isinstance(node.func, ast.Name) else None
+            if func_name is None:
+                return node
+
+            kw_map = {kw.arg: kw for kw in node.keywords if kw.arg}
+            if func_name == "CircleSlot":
+                if "x" in kw_map and "cx" not in kw_map:
+                    kw_map["x"].arg = "cx"
+                if "y" in kw_map and "cy" not in kw_map:
+                    kw_map["y"].arg = "cy"
+
+            if func_name != "TextSlot":
+                node.keywords = [kw for kw in node.keywords if kw.arg != "style_role"]
+            return node
+
+    normalized = _Transformer().visit(tree)
+    ast.fix_missing_locations(normalized)
+    try:
+        return ast.unparse(normalized)
+    except Exception:
+        return source
+
+
+def _detect_text_corruption(source: str) -> list[str]:
+    errors: list[str] = []
+    if "�" in source:
+        errors.append("Detected replacement character '�' (encoding corruption).")
+    if "??" in source:
+        errors.append("Detected repeated '??' tokens (possible mojibake).")
+    return errors
 
 
 def validate_dsl_source(source: str) -> list[str]:
@@ -241,6 +296,7 @@ def generate_dsl_from_png(
     system_prompt = read_text_utf8(system_prompt_path)
     if rules_md_path.exists():
         system_prompt = f"{system_prompt}\n\n# Generation Rules\n\n{read_text_utf8(rules_md_path)}"
+    system_prompt = f"{system_prompt}\n\n# Current DSL Schema Snapshot\n\n{DSL_SCHEMA_HINT}"
     user_template = read_text_utf8(user_template_path)
     rendered_user_prompt = render_user_prompt(user_template, problem_id)
 
@@ -273,7 +329,11 @@ def generate_dsl_from_png(
             user_prompt=prompt_text,
             image_path=image_path,
         )
-        dsl_text = strip_markdown_code_fence(raw_text)
+        dsl_text = _normalize_legacy_slot_kwargs(strip_markdown_code_fence(raw_text))
+        validation_errors = _detect_text_corruption(dsl_text)
+        if validation_errors:
+            prompt_text = rendered_user_prompt + _render_retry_feedback(attempt=attempt + 1, errors=validation_errors)
+            continue
         validation_errors = validate_dsl_source(dsl_text)
         if not validation_errors:
             validation_errors = validate_dsl_buildable(dsl_text, strict=True)
