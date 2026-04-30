@@ -30,8 +30,18 @@ def _element_to_svg_lines(element: RenderElement, depth: int = 1) -> list[str]:
     attrs_str = _attrs_to_str(attrs)
 
     if isinstance(element, RenderText):
-        return [f"{indent}<text {attrs_str}>{escape(element.text)}</text>"]
-
+        text_lines = element.text.split("\n")
+        if len(text_lines) <= 1:
+            return [f"{indent}<text {attrs_str}>{escape(element.text)}</text>"]
+        
+        # Handle multiline text using <tspan>
+        x = attrs.get("x", 0)
+        res = [f"{indent}<text {attrs_str}>"]
+        for i, line in enumerate(text_lines):
+            dy = "0" if i == 0 else "1.2em"
+            res.append(f'{indent}  <tspan x="{_float_str(float(x))}" dy="{dy}">{escape(line)}</tspan>')
+        res.append(f"{indent}</text>")
+        return res
     if isinstance(element, RenderGroup):
         lines = [f"{indent}<g {attrs_str}>"] if attrs_str else [f"{indent}<g>"]
         for child in element.elements:
