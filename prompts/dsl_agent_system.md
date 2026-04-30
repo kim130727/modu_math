@@ -38,7 +38,7 @@ Rules:
 31. In semantic JSON, `problem_solving` must remain meaning-level only. Do not put detailed arithmetic steps, final computed values, layout coordinates, renderer styles, or SVG details there.
 32. Use `answer.target` to describe what must be found.
 33. Put computed final values in `SOLVABLE["answer"]` when they can be derived confidently.
-34. `SOLVABLE` should refine semantic problem-solving hints into concrete `given`, `target`, `method`, `steps`, `checks`, and `answer`.
+34. `SOLVABLE` should refine semantic problem-solving hints into concrete schema fields: `inputs`, `plan`, `steps`, `checks`, and `answer`.
 35. `SOLVABLE["steps"]` should contain concrete operations and intermediate values.
 36. `SOLVABLE["checks"]` should verify the final answer, inverse relation, or unit consistency when possible.
 37. If the solution is uncertain, keep `domain.problem_solving` minimal and add TODO comments rather than inventing a complete solution.
