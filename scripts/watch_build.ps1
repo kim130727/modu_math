@@ -1,10 +1,14 @@
 param(
-    [Parameter(Mandatory=$true)]
     [string]$ProblemId,
     [string]$DslPath,
     [switch]$Once,
     [int]$IntervalSec = 1
 )
+
+if (-not $ProblemId -and -not $DslPath) {
+    Write-Host "Error: Either -ProblemId or -DslPath must be provided." -ForegroundColor Red
+    exit 1
+}
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
@@ -25,6 +29,10 @@ function Resolve-DslPath {
             throw "DSL file not found: $DslPathValue"
         }
         return $resolved
+    }
+
+    if (-not $ProblemIdValue) {
+        throw "ProblemId must be provided if DslPath is not specified."
     }
 
     Write-Host "Searching for DSL file for problem: $ProblemIdValue..." -ForegroundColor Gray
@@ -51,11 +59,17 @@ function Get-FileFingerprint {
 }
 
 $DslPath = Resolve-DslPath -RepoRootPath $RepoRoot -ProblemIdValue $ProblemId -DslPathValue $DslPath
+
+if (-not $ProblemId) {
+    # Infer ProblemId from filename (e.g., Hpdf_xxx.dsl.py -> Hpdf_xxx)
+    $ProblemId = [System.IO.Path]::GetFileNameWithoutExtension($DslPath).Replace(".dsl", "")
+}
+
 $OutPrefix = $DslPath.Replace(".dsl.py", "")
 Write-Host "[watch_build] Target DSL: $DslPath" -ForegroundColor Gray
 
 function Invoke-Build {
-    Write-Host "[watch_build] Building from DSL: $ProblemId" -ForegroundColor Cyan
+    Write-Host "[watch_build] Building: $ProblemId" -ForegroundColor Cyan
     $env:PYTHONPATH = Join-Path $RepoRoot "src"
     
     # We pass the paths as environment variables to the Python script
