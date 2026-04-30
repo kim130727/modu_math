@@ -1,4 +1,4 @@
-﻿네. 아래는 **`dsl_generation_rules.md` 최종완성본**입니다.
+네. 아래는 **`dsl_generation_rules.md` 최종완성본**입니다.
 현재 올려주신 파일은 `5-1`의 Python 코드블록이 닫히지 않아 `## 6)` 이후가 코드블록 안으로 들어가는 문제가 있습니다. 그 부분까지 수정해서 완성했습니다. 
 
 ````md
@@ -138,33 +138,65 @@ Rules:
 
 ## 5-2) Minimal SOLVABLE Shape
 
-When adding `SOLVABLE`, prefer this minimal shape:
+When adding `SOLVABLE`, prefer this shape to strictly comply with `modu.solvable.v1`:
 
 ```python
 SOLVABLE = {
     "schema": "modu.solvable.v1",
     "problem_id": "...",
     "problem_type": "...",
+    "inputs": {
+        "total_ticks": 1,
+        "target_label": "",
+        "target_ticks": 1,
+        "target_count": 1,
+        "unit": ""
+    },
     "given": [],
     "target": {},
     "method": "",
-    "steps": [],
-    "checks": [],
-    "answer": {},
+    "plan": [
+        "단계별 풀이 과정을 문장으로 작성합니다."
+    ],
+    "steps": [
+        {
+            "id": "step.1",
+            "operation": "...",
+            "expr": "...",
+            "value": 1
+        }
+    ],
+    "checks": [
+        {
+            "id": "check.1",
+            "type": "...",
+            "expr": "...",
+            "expected": 1,
+            "actual": 1,
+            "pass": True
+        }
+    ],
+    "answer": {
+        "value": 1,
+        "unit": "",
+        "derived_from": "step.1"
+    }
 }
 ```
 
 Rules:
 
+* `inputs` is REQUIRED. `total_ticks`, `target_ticks`, `target_count` must be numbers. `unit` must be a string (use `""` instead of `None`).
+* `checks` array items MUST contain `id`, `expr`, `expected`, `actual`, and `pass`. Do not omit `expected` or `actual`.
+* `answer.value` MUST be a single Number. Do not use dictionaries, lists, or `None`.
+* `answer.unit` MUST be a string. Do not use `None`.
 * `given` should be derived from semantic domain objects.
 * `target` should match `SEMANTIC_OVERRIDE["answer"]["target"]`.
 * `method` should match `SEMANTIC_OVERRIDE["domain"]["problem_solving"]["plan"]["method"]` when available.
 * `steps` should contain concrete operations and values.
-* `checks` should verify the final answer, inverse relation, or unit consistency.
 * `answer.value` should be derived from the last relevant step.
 * Keep `SOLVABLE` small and verifiable.
-* Do not force a full solution when the image is ambiguous.
-* If the solution cannot be derived confidently, leave TODO comments and use conservative values.
+* If the solution cannot be derived confidently, leave TODO comments and use conservative numeric values (like `0`) just to pass schema validation.
 
 ## 5-3) Semantic Answer vs Solvable Answer
 
