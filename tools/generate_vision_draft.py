@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 import argparse
 import base64
@@ -23,9 +23,9 @@ Hard rules:
 
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="Generate a Korean vision draft markdown from PNG before DSL generation."
+        description="Generate a Korean vision draft markdown from PNG or SVG before DSL generation."
     )
-    parser.add_argument("--image", required=True, help="Path to input PNG image")
+    parser.add_argument("--image", required=True, help="Path to input image (.png or .svg)")
     parser.add_argument("--problem-id", required=True, help="Problem id to reference in prompt")
     parser.add_argument("--out", required=True, help="Path to output markdown file")
     parser.add_argument("--model", default=None, help="Optional model override")
@@ -84,7 +84,7 @@ def _extract_response_text(response: object) -> str:
 def build_user_prompt(problem_id: str) -> str:
     return f"""문제 ID: {problem_id}
 
-아래 PNG 이미지를 보고, Python DSL 작성 전에 사용할 '시각 분석 초안'을 한국어 마크다운으로 작성하세요.
+입력 시각 자료를 보고, Python DSL 작성 전에 사용할 '시각 분석 초안'을 한국어 마크다운으로 작성하세요.
 반드시 아래 섹션 헤더를 모두 포함하세요:
 
 [전체적인 구성]
@@ -108,6 +108,10 @@ def build_user_prompt(problem_id: str) -> str:
 """
 
 
+def build_svg_payload(svg_path: Path) -> str:
+    return svg_path.read_text(encoding="utf-8-sig")
+
+
 def generate_vision_draft(
     *,
     image_path: Path,
@@ -119,6 +123,10 @@ def generate_vision_draft(
 ) -> dict[str, str]:
     if not image_path.exists():
         raise FileNotFoundError(f"Image path does not exist: {image_path}")
+
+    suffix = image_path.suffix.lower()
+    if suffix not in (".png", ".svg"):
+        raise ValueError("Only .png or .svg is supported for --image.")
 
     ensure_output_writable(out_path, force=bool(force))
 
@@ -139,21 +147,32 @@ def generate_vision_draft(
         raise ImportError("openai package is required. Install with: pip install openai") from exc
 
     resolved_model = resolve_model_name(model)
-    data_url = image_to_data_url(image_path)
     user_prompt = build_user_prompt(problem_id)
+
+    user_content: list[dict[str, str]] = [{"type": "input_text", "text": user_prompt}]
+    if suffix == ".svg":
+        svg_text = build_svg_payload(image_path)
+        user_content.append(
+            {
+                "type": "input_text",
+                "text": (
+                    "Use the following SVG source as the visual input.\n"
+                    "<svg_source>\n"
+                    f"{svg_text}\n"
+                    "</svg_source>"
+                ),
+            }
+        )
+    else:
+        data_url = image_to_data_url(image_path)
+        user_content.append({"type": "input_image", "image_url": data_url, "detail": detail})
 
     client = OpenAI(api_key=api_key)
     response = client.responses.create(
         model=resolved_model,
         input=[
             {"role": "system", "content": [{"type": "input_text", "text": SYSTEM_PROMPT}]},
-            {
-                "role": "user",
-                "content": [
-                    {"type": "input_text", "text": user_prompt},
-                    {"type": "input_image", "image_url": data_url, "detail": detail},
-                ],
-            },
+            {"role": "user", "content": user_content},
         ],
     )
     draft_text = _extract_response_text(response)

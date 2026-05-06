@@ -66,6 +66,7 @@ def _assert_unique_ids(problem: ProblemTemplate) -> None:
 
 
 def _normalize_regions(regions: tuple[Region, ...], slots: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    slot_id_to_kind = {slot["id"]: slot["kind"] for slot in slots}
     slot_ids = [slot["id"] for slot in slots]
     known_slots = set(slot_ids)
     assigned: set[str] = set()
@@ -96,12 +97,31 @@ def _normalize_regions(regions: tuple[Region, ...], slots: list[dict[str, Any]])
                 "slot_ids": unassigned,
             }
         )
-        return normalized
-
-    if unassigned:
+    elif unassigned:
         target_region = next((region for region in normalized if region["role"] == "stem"), normalized[0])
         target_region["slot_ids"] = [*target_region["slot_ids"], *unassigned]
+
+    # Automatic Layering: Stable sort by z-priority to prevent background covering foreground.
+    for region in normalized:
+        region["slot_ids"].sort(key=lambda sid: _get_z_priority(slot_id_to_kind.get(sid, "")))
+
     return normalized
+
+
+def _get_z_priority(kind: str) -> int:
+    """Return the rendering priority for a slot kind (lower is back, higher is front)."""
+    priorities = {
+        "rect": 10,
+        "circle": 10,
+        "polygon": 10,
+        "path": 10,
+        "line": 20,
+        "text": 30,
+        "blank": 40,
+        "choice": 40,
+        "label": 50,
+    }
+    return priorities.get(kind, 100)  # Default to front for unknown kinds
 
 
 def _normalize_slot(slot: AuthoringSlot) -> dict[str, Any]:
