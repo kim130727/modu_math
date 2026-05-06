@@ -653,3 +653,19 @@ Rules:
 * Regenerate JSON/SVG artifacts from DSL.
 * Do not manually edit generated JSON unless doing emergency repair.
 * Do not use SVG as the source of mathematical meaning.
+
+## 12) Coordinate Precision Rule
+
+For all generated DSL files, normalize coordinate fields to one decimal place.
+
+Apply this to:
+
+* `x`, `y`
+* `cx`, `cy`
+* `x1`, `x2`, `y1`, `y2`
+
+Examples:
+
+* `x=40` -> `x=40.0`
+* `y1=224.037` -> `y1=224.0`
+* `cx=333.8389` -> `cx=333.8`
