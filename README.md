@@ -1,4 +1,4 @@
-﻿# modu_math Clean Core
+﻿# modu_math
 
 This directory is an isolated core copy of `modu_math` focused on the canonical pipeline:
 
