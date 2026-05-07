@@ -117,6 +117,8 @@ def validate_dsl_source(source: str) -> list[str]:
     imported_problem_template = False
     has_build_problem_template = False
     has_problem_template_symbol = False
+    has_semantic_override = False
+    has_solvable = False
 
     for node in tree.body:
         if isinstance(node, ast.ImportFrom) and node.module == "modu_math.dsl":
@@ -130,6 +132,10 @@ def validate_dsl_source(source: str) -> list[str]:
             for target in node.targets:
                 if isinstance(target, ast.Name) and target.id == "PROBLEM_TEMPLATE":
                     has_problem_template_symbol = True
+                if isinstance(target, ast.Name) and target.id == "SEMANTIC_OVERRIDE":
+                    has_semantic_override = True
+                if isinstance(target, ast.Name) and target.id == "SOLVABLE":
+                    has_solvable = True
 
     if not import_from_dsl:
         errors.append("Must import from modu_math.dsl.")
@@ -137,6 +143,10 @@ def validate_dsl_source(source: str) -> list[str]:
         errors.append("Must import ProblemTemplate (or use wildcard import) from modu_math.dsl.")
     if not (has_build_problem_template or has_problem_template_symbol):
         errors.append("Must define build_problem_template() or PROBLEM_TEMPLATE.")
+    if not has_semantic_override:
+        errors.append("Must define SEMANTIC_OVERRIDE dict.")
+    if not has_solvable:
+        errors.append("Must define SOLVABLE dict.")
 
     return errors
 
@@ -162,7 +172,7 @@ def validate_dsl_buildable(source: str, *, strict: bool = True) -> list[str]:
         out_prefix = tmp_dir / "candidate"
         dsl_path.write_text(source, encoding="utf-8")
         try:
-            _run_build(dsl_path=dsl_path, out_prefix=out_prefix, strict=bool(strict), emit_solvable=False)
+            _run_build(dsl_path=dsl_path, out_prefix=out_prefix, strict=bool(strict), emit_solvable=True)
         except Exception as exc:
             errors.append(f"Build validation failed: {type(exc).__name__}: {exc}")
     return errors

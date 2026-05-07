@@ -110,6 +110,9 @@ Primary source rule:
 Safety and authoring rules:
 - Output Python code only.
 - Do not output JSON.
+- `SEMANTIC_OVERRIDE` and `SOLVABLE` are mandatory.
+- `SEMANTIC_OVERRIDE` must be concise domain/answer-centric semantics, not slot-by-slot mirror listing.
+- `SOLVABLE` must include: schema, problem_id, problem_type, inputs, plan, steps, checks, answer.
 - Do not solve inferred answers and do not render inferred answers inside blanks unless printed in the image.
 - Preserve TODO comments for uncertain parts.
 - Keep structure faithful to visible layout: boxes, blanks, arrows, tables, fraction slots, diagrams, and spacing groups.

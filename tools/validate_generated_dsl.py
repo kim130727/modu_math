@@ -85,6 +85,51 @@ def _resolve_solvable_object(module: ModuleType) -> dict[str, Any] | None:
     return None
 
 
+def _assert_semantic_override_required(module: ModuleType) -> None:
+    value = getattr(module, "SEMANTIC_OVERRIDE", None)
+    if not isinstance(value, dict):
+        raise ValueError("DSL must define SEMANTIC_OVERRIDE as a dict.")
+    if not isinstance(value.get("domain"), dict):
+        raise ValueError("SEMANTIC_OVERRIDE must include a 'domain' object.")
+    if not isinstance(value.get("answer"), dict):
+        raise ValueError("SEMANTIC_OVERRIDE must include an 'answer' object.")
+
+
+def _assert_semantic_concise(semantic: dict[str, Any]) -> None:
+    domain = semantic.get("domain")
+    answer = semantic.get("answer")
+    if not isinstance(domain, dict) or not isinstance(answer, dict):
+        raise ValueError("semantic must contain object-valued 'domain' and 'answer'.")
+    objects = domain.get("objects")
+    if not isinstance(objects, list):
+        raise ValueError("semantic.domain.objects must be an array.")
+    slot_like = 0
+    typed = 0
+    for obj in objects:
+        if not isinstance(obj, dict):
+            continue
+        obj_type = obj.get("type")
+        if isinstance(obj_type, str):
+            typed += 1
+            if obj_type.endswith("_slot"):
+                slot_like += 1
+    if typed > 0 and slot_like / typed > 0.6:
+        raise ValueError(
+            "semantic appears slot-enumeration-heavy. Use concise domain/answer-centric semantics."
+        )
+
+
+def _assert_solvable_enriched(solvable: dict[str, Any], problem_id: str) -> None:
+    if solvable.get("schema") != "modu.solvable.v1":
+        raise ValueError("SOLVABLE.schema must be 'modu.solvable.v1'.")
+    if solvable.get("problem_id") != problem_id:
+        raise ValueError("SOLVABLE.problem_id must match semantic/problem id.")
+    for key in ("plan", "steps", "checks"):
+        value = solvable.get(key)
+        if not isinstance(value, list) or not value:
+            raise ValueError(f"SOLVABLE.{key} must be a non-empty array.")
+
+
 def _build_from_legacy_problem(problem: LegacyProblem, *, out_prefix: Path, strict: bool) -> None:
     # Reuse existing legacy build path; no execution of generated DSL beyond import/build object construction.
     problem.save(
@@ -103,6 +148,7 @@ def _build_from_problem_template(
     module: ModuleType,
     emit_solvable: bool,
 ) -> None:
+    _assert_semantic_override_required(module)
     semantic = compile_problem_template_to_semantic(problem)
     if hasattr(module, "SEMANTIC_OVERRIDE") and isinstance(module.SEMANTIC_OVERRIDE, dict):
         semantic = _deep_merge_dict(semantic, module.SEMANTIC_OVERRIDE)
@@ -111,6 +157,7 @@ def _build_from_problem_template(
         merged_answer.update(module.SEMANTIC_ANSWER)
         semantic["answer"] = merged_answer
     validate_semantic_json(semantic)
+    _assert_semantic_concise(semantic)
 
     layout = compile_problem_template_to_layout(problem)
     validate_layout_json(layout)
@@ -138,15 +185,17 @@ def _build_from_problem_template(
 
     if emit_solvable:
         solvable = _resolve_solvable_object(module)
-        if isinstance(solvable, dict):
-            solvable_schema = json.loads(
-                Path("schema/solvable/solvable.v1.json").read_text(encoding="utf-8-sig")
-            )
-            Draft202012Validator(solvable_schema).validate(solvable)
-            out_prefix.with_suffix(".solvable.v1.json").write_text(
-                json.dumps(solvable, ensure_ascii=False, indent=2) + "\n",
-                encoding="utf-8",
-            )
+        if not isinstance(solvable, dict):
+            raise ValueError("DSL must define SOLVABLE dict or build_solvable() dict.")
+        solvable_schema = json.loads(
+            Path("schema/solvable/solvable.v1.json").read_text(encoding="utf-8-sig")
+        )
+        Draft202012Validator(solvable_schema).validate(solvable)
+        _assert_solvable_enriched(solvable, str(semantic.get("problem_id", "")))
+        out_prefix.with_suffix(".solvable.v1.json").write_text(
+            json.dumps(solvable, ensure_ascii=False, indent=2) + "\n",
+            encoding="utf-8",
+        )
 
 
 def _resolve_problem_object(module: ModuleType) -> Any:
