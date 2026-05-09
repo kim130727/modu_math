@@ -5,6 +5,7 @@ import base64
 import mimetypes
 import os
 import logging
+import asyncio
 from pathlib import Path
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -121,7 +122,7 @@ def build_user_prompt(problem_id: str, vision_draft_text: str, has_image: bool) 
 """
 
 
-def refine_vision_draft(
+async def refine_vision_draft(
     *,
     vision_draft_path: Path,
     problem_id: str,
@@ -149,7 +150,7 @@ def refine_vision_draft(
         raise EnvironmentError("OPENAI_API_KEY is not set. Add it to your environment or .env file.")
 
     try:
-        from openai import OpenAI
+        from openai import AsyncOpenAI
     except ImportError as exc:
         raise ImportError("openai package is required. Install with: pip install openai") from exc
 
@@ -167,6 +168,8 @@ def refine_vision_draft(
 
     client = OpenAI(api_key=api_key)
     response = client.responses.create(
+    client = AsyncOpenAI(api_key=api_key)
+    response = await client.responses.create(
         model=resolved_model,
         input=[
             {"role": "system", "content": [{"type": "input_text", "text": SYSTEM_PROMPT}]},
@@ -188,9 +191,9 @@ def refine_vision_draft(
     return result
 
 
-def main(argv: list[str] | None = None) -> int:
+async def main(argv: list[str] | None = None) -> int:
     args = parse_args(argv)
-    result = refine_vision_draft(
+    result = await refine_vision_draft(
         vision_draft_path=Path(args.vision_draft),
         problem_id=args.problem_id,
         out_path=Path(args.out),
@@ -204,4 +207,4 @@ def main(argv: list[str] | None = None) -> int:
 
 
 if __name__ == "__main__":
-    raise SystemExit(main())
+    raise SystemExit(asyncio.run(main()))
