@@ -4,7 +4,11 @@ import argparse
 import base64
 import mimetypes
 import os
+import logging
 from pathlib import Path
+
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
 
 DEFAULT_MODEL = "gpt-5.4-mini"
 
@@ -194,8 +198,8 @@ def main(argv: list[str] | None = None) -> int:
         model=args.model,
         force=bool(args.force),
     )
-    print(f"Wrote refined draft: {result['out']}")
-    print(result["refined_text"])
+    logger.info(f"Wrote refined draft: {result['out']}")
+    logger.debug(result["refined_text"])
     return 0
 
 

@@ -66,6 +66,7 @@ When enough information is visible, add optional constants after `PROBLEM_TEMPLA
 - `problem_type`
 - `metadata.question`
 - `metadata.instruction`
+- `metadata.points` (optional: 문항 배점, e.g., 5)
 - solve-relevant `domain.objects`
 - solve-relevant `domain.relations`
 - `domain.problem_solving` if useful
