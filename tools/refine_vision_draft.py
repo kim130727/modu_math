@@ -166,8 +166,6 @@ async def refine_vision_draft(
     if image_path is not None:
         user_content.append({"type": "input_image", "image_url": image_to_data_url(image_path), "detail": "high"})
 
-    client = OpenAI(api_key=api_key)
-    response = client.responses.create(
     client = AsyncOpenAI(api_key=api_key)
     response = await client.responses.create(
         model=resolved_model,
