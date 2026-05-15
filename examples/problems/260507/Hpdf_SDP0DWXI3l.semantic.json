@@ -1,0 +1,69 @@
+{
+  "problem_id": "Hpdf_SDP0DWXI3l",
+  "problem_type": "geometry_rectangle_counting",
+  "metadata": {
+    "title": "직사각형 개수",
+    "tags": [],
+    "question": "다음 도형은 직사각형 7개를 겹치지 않게 이어 붙여서 만든 것입니다. 찾을 수 있는 크고 작은 직사각형 중에서 ★ 모양을 포함한 직사각형은 모두 몇 개입니까?",
+    "required_layout_ids": [
+      "slot.fig.v1",
+      "slot.fig.v2",
+      "slot.fig.v3",
+      "slot.fig.v4",
+      "slot.fig.h1",
+      "slot.fig.h2",
+      "slot.fig.h3",
+      "slot.fig.h4"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "특정 칸을 포함하는 직사각형의 개수를 체계적으로 센다."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.figure",
+        "type": "composite_rectangle",
+        "description": "7개의 작은 직사각형으로 구성된 도형"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.figure"
+        ],
+        "target_ref": "answer.target"
+      },
+      "plan": {
+        "method": "systematic_enumeration",
+        "description": "★를 포함하는 직사각형을 높이별로 분류하여 센다."
+      },
+      "execute": {
+        "expected_operations": [
+          "count_height_1",
+          "count_height_2",
+          "count_height_3"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "recounting"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "count",
+      "description": "★ 모양을 포함한 직사각형의 개수"
+    },
+    "value": 9,
+    "unit": "개"
+  }
+}

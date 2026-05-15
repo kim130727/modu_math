@@ -1,0 +1,570 @@
+{
+  "problem_id": "0003_각 이름 쓰기",
+  "problem_type": "diagram_problem",
+  "metadata": {
+    "title": "",
+    "tags": [],
+    "instruction": "쓰시오.",
+    "question": "도형의 이름으로 알맞은 것을 모두 찾아 기호를",
+    "required_layout_ids": [
+      "slot.bg",
+      "slot.grid_box",
+      "slot.grid_h_0",
+      "slot.grid_v_0",
+      "slot.grid_v_1",
+      "slot.grid_v_2",
+      "slot.grid_v_3",
+      "slot.grid_v_4",
+      "slot.grid_v_5",
+      "slot.grid_h_1",
+      "slot.target_shape",
+      "slot.grid_h_2",
+      "slot.grid_h_3",
+      "slot.grid_h_4",
+      "slot.grid_h_5",
+      "slot.choice_box",
+      "slot.answer_blank"
+    ],
+    "extraction_confidence": 1.0
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "slot.answer_blank",
+        "type": "rect_slot",
+        "properties": {
+          "x": 188.0,
+          "y": 318.0,
+          "width": 188.0,
+          "height": 34.0,
+          "stroke": "none",
+          "stroke_width": 0.0,
+          "rx": null,
+          "ry": null,
+          "fill": "none",
+          "semantic_role": "answer_anchor"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.answer_blank"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.answer_left_paren",
+        "type": "instruction",
+        "properties": {
+          "text": "("
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.answer_left_paren"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.answer_right_paren",
+        "type": "instruction",
+        "properties": {
+          "text": ")"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.answer_right_paren"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.bg",
+        "type": "rect_slot",
+        "properties": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 440.0,
+          "height": 361.0,
+          "stroke": "none",
+          "stroke_width": 0.0,
+          "rx": null,
+          "ry": null,
+          "fill": "#F4F4F4",
+          "semantic_role": "background"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.bg"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice_box",
+        "type": "rect_slot",
+        "properties": {
+          "x": 4.0,
+          "y": 213.0,
+          "width": 399.0,
+          "height": 88.0,
+          "stroke": "#6D6D6D",
+          "stroke_width": 1.8,
+          "rx": 12.0,
+          "ry": 12.0,
+          "fill": "none",
+          "semantic_role": "guide"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice_box"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice_key_㉠",
+        "type": "instruction",
+        "properties": {
+          "text": "㉠ 직사각형"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice_key_㉠"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice_key_㉡",
+        "type": "instruction",
+        "properties": {
+          "text": "㉡ 사각형"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice_key_㉡"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice_key_㉢",
+        "type": "instruction",
+        "properties": {
+          "text": "㉢ 직각삼각형"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice_key_㉢"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.choice_key_㉣",
+        "type": "instruction",
+        "properties": {
+          "text": "㉣ 정사각형"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.choice_key_㉣"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.grid_box",
+        "type": "rect_slot",
+        "properties": {
+          "x": 149.0,
+          "y": 78.0,
+          "width": 110.0,
+          "height": 110.0,
+          "stroke": "#767676",
+          "stroke_width": 1.2,
+          "rx": null,
+          "ry": null,
+          "fill": "none",
+          "semantic_role": "guide"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.grid_box"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.grid_h_0",
+        "type": "line_slot",
+        "properties": {
+          "x1": 149.0,
+          "y1": 78.0,
+          "x2": 259.0,
+          "y2": 78.0,
+          "stroke": "#767676",
+          "stroke_width": 1.2,
+          "stroke_dasharray": null,
+          "semantic_role": "guide"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.grid_h_0"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.grid_h_1",
+        "type": "line_slot",
+        "properties": {
+          "x1": 149.0,
+          "y1": 100.0,
+          "x2": 259.0,
+          "y2": 100.0,
+          "stroke": "#767676",
+          "stroke_width": 1.2,
+          "stroke_dasharray": null,
+          "semantic_role": "guide"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.grid_h_1"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.grid_h_2",
+        "type": "line_slot",
+        "properties": {
+          "x1": 149.0,
+          "y1": 122.0,
+          "x2": 259.0,
+          "y2": 122.0,
+          "stroke": "#767676",
+          "stroke_width": 1.2,
+          "stroke_dasharray": null,
+          "semantic_role": "guide"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.grid_h_2"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.grid_h_3",
+        "type": "line_slot",
+        "properties": {
+          "x1": 149.0,
+          "y1": 144.0,
+          "x2": 259.0,
+          "y2": 144.0,
+          "stroke": "#767676",
+          "stroke_width": 1.2,
+          "stroke_dasharray": null,
+          "semantic_role": "guide"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.grid_h_3"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.grid_h_4",
+        "type": "line_slot",
+        "properties": {
+          "x1": 149.0,
+          "y1": 166.0,
+          "x2": 259.0,
+          "y2": 166.0,
+          "stroke": "#767676",
+          "stroke_width": 1.2,
+          "stroke_dasharray": null,
+          "semantic_role": "guide"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.grid_h_4"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.grid_h_5",
+        "type": "line_slot",
+        "properties": {
+          "x1": 149.0,
+          "y1": 188.0,
+          "x2": 259.0,
+          "y2": 188.0,
+          "stroke": "#767676",
+          "stroke_width": 1.2,
+          "stroke_dasharray": null,
+          "semantic_role": "guide"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.grid_h_5"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.grid_v_0",
+        "type": "line_slot",
+        "properties": {
+          "x1": 149.0,
+          "y1": 78.0,
+          "x2": 149.0,
+          "y2": 188.0,
+          "stroke": "#767676",
+          "stroke_width": 1.2,
+          "stroke_dasharray": null,
+          "semantic_role": "guide"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.grid_v_0"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.grid_v_1",
+        "type": "line_slot",
+        "properties": {
+          "x1": 171.0,
+          "y1": 78.0,
+          "x2": 171.0,
+          "y2": 188.0,
+          "stroke": "#767676",
+          "stroke_width": 1.2,
+          "stroke_dasharray": null,
+          "semantic_role": "guide"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.grid_v_1"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.grid_v_2",
+        "type": "line_slot",
+        "properties": {
+          "x1": 193.0,
+          "y1": 78.0,
+          "x2": 193.0,
+          "y2": 188.0,
+          "stroke": "#767676",
+          "stroke_width": 1.2,
+          "stroke_dasharray": null,
+          "semantic_role": "guide"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.grid_v_2"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.grid_v_3",
+        "type": "line_slot",
+        "properties": {
+          "x1": 215.0,
+          "y1": 78.0,
+          "x2": 215.0,
+          "y2": 188.0,
+          "stroke": "#767676",
+          "stroke_width": 1.2,
+          "stroke_dasharray": null,
+          "semantic_role": "guide"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.grid_v_3"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.grid_v_4",
+        "type": "line_slot",
+        "properties": {
+          "x1": 237.0,
+          "y1": 78.0,
+          "x2": 237.0,
+          "y2": 188.0,
+          "stroke": "#767676",
+          "stroke_width": 1.2,
+          "stroke_dasharray": null,
+          "semantic_role": "guide"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.grid_v_4"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.grid_v_5",
+        "type": "line_slot",
+        "properties": {
+          "x1": 259.0,
+          "y1": 78.0,
+          "x2": 259.0,
+          "y2": 188.0,
+          "stroke": "#767676",
+          "stroke_width": 1.2,
+          "stroke_dasharray": null,
+          "semantic_role": "guide"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.grid_v_5"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.instruction_1",
+        "type": "question",
+        "properties": {
+          "text": "도형의 이름으로 알맞은 것을 모두 찾아 기호를"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.instruction_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.instruction_2",
+        "type": "instruction",
+        "properties": {
+          "text": "쓰시오."
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.instruction_2"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.target_shape",
+        "type": "rect_slot",
+        "properties": {
+          "x": 171.0,
+          "y": 100.0,
+          "width": 66.0,
+          "height": 66.0,
+          "stroke": "#2D2D2D",
+          "stroke_width": 3.0,
+          "rx": null,
+          "ry": null,
+          "fill": "none",
+          "semantic_role": "shape"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.target_shape"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0
+  }
+}

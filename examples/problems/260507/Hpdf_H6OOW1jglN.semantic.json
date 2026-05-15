@@ -1,0 +1,72 @@
+{
+  "problem_id": "Hpdf_H6OOW1jglN",
+  "problem_type": "geometry_rectangle_composite",
+  "metadata": {
+    "title": "직사각형 이어 붙이기",
+    "tags": [],
+    "question": "네 변의 길이의 합이 20 cm인 작은 직사각형 8개를 그림과 같이 겹치지 않게 이어 붙였더니 네 변의 길이의 합이 64 cm인 큰 직사각형이 되었습니다. 가장 작은 직사각형 한 개의 짧은 변은 몇 cm입니까?",
+    "required_layout_ids": [
+      "slot.fig.outer",
+      "slot.fig.v1",
+      "slot.fig.v2",
+      "slot.fig.v3",
+      "slot.fig.h1"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "작은 직사각형의 변의 길이를 미지수로 두고 연립방정식을 세워 푼다."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.small_rectangle",
+        "type": "rectangle",
+        "description": "둘레가 20 cm인 작은 직사각형"
+      },
+      {
+        "id": "obj.large_rectangle",
+        "type": "rectangle",
+        "description": "8개를 이어 붙여 만든 둘레 64 cm인 큰 직사각형"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.small_rectangle",
+          "obj.large_rectangle"
+        ],
+        "target_ref": "answer.target"
+      },
+      "plan": {
+        "method": "algebraic_modeling",
+        "description": "작은 직사각형의 긴 변을 a, 짧은 변을 b라 하고 둘레 관계식을 세운다."
+      },
+      "execute": {
+        "expected_operations": [
+          "set_small_perimeter_equation",
+          "set_large_perimeter_equation",
+          "solve_system"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "consistency_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "length",
+      "description": "가장 작은 직사각형 한 개의 짧은 변"
+    },
+    "value": 4,
+    "unit": "cm"
+  }
+}

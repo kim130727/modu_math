@@ -1,0 +1,60 @@
+{
+  "schema": "modu.solvable.v1",
+  "problem_id": "Hpdf_b0WWUB2Fq7",
+  "problem_type": "count_segments",
+  "inputs": {
+    "segment_slots": [
+      "slot.line.v",
+      "slot.line.d1",
+      "slot.line.d2",
+      "slot.line.d3",
+      "slot.line.d4"
+    ],
+    "boundary_slot": "slot.boundary",
+    "count_rule": "원 경계는 제외하고 직선 선분만 센다",
+    "unit": "개"
+  },
+  "plan": [
+    "도형에서 직선 선분에 해당하는 슬롯만 고른다.",
+    "선택된 선분 슬롯의 개수를 센다.",
+    "원 경계(slot.boundary)가 선분 집계에 포함되지 않았는지 확인한다."
+  ],
+  "steps": [
+    {
+      "id": "s1",
+      "expr": "segment_slots 추출",
+      "value": [
+        "slot.line.v",
+        "slot.line.d1",
+        "slot.line.d2",
+        "slot.line.d3",
+        "slot.line.d4"
+      ]
+    },
+    {
+      "id": "s2",
+      "expr": "count(segment_slots)",
+      "value": 5
+    }
+  ],
+  "checks": [
+    {
+      "id": "c1",
+      "expr": "slot.boundary not in segment_slots",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "id": "c2",
+      "expr": "count(segment_slots)",
+      "expected": 5,
+      "actual": 5,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "value": 5,
+    "unit": "개"
+  }
+}

@@ -1,0 +1,364 @@
+{
+  "problem_id": "0007_선분 거리 계산",
+  "view_box": {
+    "width": 1464.0,
+    "height": 382.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.guide_p0_p1.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 188 244 Q 304.47688564476886 170 420.9537712895377 236",
+        "stroke": "#0FA9F4",
+        "stroke-width": 3.0,
+        "fill": "none",
+        "stroke-dasharray": "10 8",
+        "data-semantic-role": "measurement_guide"
+      },
+      "source_ref": "slot.guide_p0_p1",
+      "refs": {
+        "layout_slot_id": "slot.guide_p0_p1"
+      }
+    },
+    {
+      "id": "slot.guide_p1_p3.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 420.9537712895377 236 Q 848.4768856447688 120 1276 230",
+        "stroke": "#0FA9F4",
+        "stroke-width": 3.0,
+        "fill": "none",
+        "stroke-dasharray": "10 8",
+        "data-semantic-role": "measurement_guide"
+      },
+      "source_ref": "slot.guide_p1_p3",
+      "refs": {
+        "layout_slot_id": "slot.guide_p1_p3"
+      }
+    },
+    {
+      "id": "slot.guide_p1_p2.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 420.9537712895377 307 Q 636.0389294403892 372 851.1240875912408 316",
+        "stroke": "#0FA9F4",
+        "stroke-width": 3.0,
+        "fill": "none",
+        "stroke-dasharray": "10 8",
+        "data-semantic-role": "measurement_guide"
+      },
+      "source_ref": "slot.guide_p1_p2",
+      "refs": {
+        "layout_slot_id": "slot.guide_p1_p2"
+      }
+    },
+    {
+      "id": "slot.label_circle_p0.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 188.0,
+        "cy": 316.0,
+        "r": 22.0,
+        "stroke": "#3A3336",
+        "stroke-width": 3.0,
+        "fill": "none",
+        "data-semantic-role": "point_label"
+      },
+      "source_ref": "slot.label_circle_p0",
+      "refs": {
+        "layout_slot_id": "slot.label_circle_p0"
+      }
+    },
+    {
+      "id": "slot.label_circle_p1.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 420.9537712895377,
+        "cy": 316.0,
+        "r": 22.0,
+        "stroke": "#3A3336",
+        "stroke-width": 3.0,
+        "fill": "none",
+        "data-semantic-role": "point_label"
+      },
+      "source_ref": "slot.label_circle_p1",
+      "refs": {
+        "layout_slot_id": "slot.label_circle_p1"
+      }
+    },
+    {
+      "id": "slot.label_circle_p2.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 851.1240875912408,
+        "cy": 316.0,
+        "r": 22.0,
+        "stroke": "#3A3336",
+        "stroke-width": 3.0,
+        "fill": "none",
+        "data-semantic-role": "point_label"
+      },
+      "source_ref": "slot.label_circle_p2",
+      "refs": {
+        "layout_slot_id": "slot.label_circle_p2"
+      }
+    },
+    {
+      "id": "slot.label_circle_p3.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 1276.0,
+        "cy": 316.0,
+        "r": 22.0,
+        "stroke": "#3A3336",
+        "stroke-width": 3.0,
+        "fill": "none",
+        "data-semantic-role": "point_label"
+      },
+      "source_ref": "slot.label_circle_p3",
+      "refs": {
+        "layout_slot_id": "slot.label_circle_p3"
+      }
+    },
+    {
+      "id": "slot.base_line.line",
+      "type": "line",
+      "attributes": {
+        "x1": 188.0,
+        "y1": 249.0,
+        "x2": 1276.0,
+        "y2": 249.0,
+        "stroke": "#2E2A2D",
+        "stroke-width": 5.0,
+        "data-semantic-role": "number_line"
+      },
+      "source_ref": "slot.base_line",
+      "refs": {
+        "layout_slot_id": "slot.base_line"
+      }
+    },
+    {
+      "id": "slot.tick_p0.line",
+      "type": "line",
+      "attributes": {
+        "x1": 188.0,
+        "y1": 218.0,
+        "x2": 188.0,
+        "y2": 279.0,
+        "stroke": "#2E2A2D",
+        "stroke-width": 4.0,
+        "data-semantic-role": "point_tick"
+      },
+      "source_ref": "slot.tick_p0",
+      "refs": {
+        "layout_slot_id": "slot.tick_p0"
+      }
+    },
+    {
+      "id": "slot.tick_p1.line",
+      "type": "line",
+      "attributes": {
+        "x1": 420.9537712895377,
+        "y1": 218.0,
+        "x2": 420.9537712895377,
+        "y2": 279.0,
+        "stroke": "#2E2A2D",
+        "stroke-width": 4.0,
+        "data-semantic-role": "point_tick"
+      },
+      "source_ref": "slot.tick_p1",
+      "refs": {
+        "layout_slot_id": "slot.tick_p1"
+      }
+    },
+    {
+      "id": "slot.tick_p2.line",
+      "type": "line",
+      "attributes": {
+        "x1": 851.1240875912408,
+        "y1": 218.0,
+        "x2": 851.1240875912408,
+        "y2": 279.0,
+        "stroke": "#2E2A2D",
+        "stroke-width": 4.0,
+        "data-semantic-role": "point_tick"
+      },
+      "source_ref": "slot.tick_p2",
+      "refs": {
+        "layout_slot_id": "slot.tick_p2"
+      }
+    },
+    {
+      "id": "slot.tick_p3.line",
+      "type": "line",
+      "attributes": {
+        "x1": 1276.0,
+        "y1": 218.0,
+        "x2": 1276.0,
+        "y2": 279.0,
+        "stroke": "#2E2A2D",
+        "stroke-width": 4.0,
+        "data-semantic-role": "point_tick"
+      },
+      "source_ref": "slot.tick_p3",
+      "refs": {
+        "layout_slot_id": "slot.tick_p3"
+      }
+    },
+    {
+      "id": "slot.instruction.text",
+      "type": "text",
+      "attributes": {
+        "x": 20.0,
+        "y": 76.0,
+        "max_width": 1336.0,
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 64,
+        "text-anchor": "start",
+        "data-semantic-role": "instruction"
+      },
+      "source_ref": "slot.instruction",
+      "refs": {
+        "layout_slot_id": "slot.instruction"
+      },
+      "text": "ㄱ에서 ㄹ까지의 거리를 구해 보세요."
+    },
+    {
+      "id": "slot.dist_p0_p1_text.text",
+      "type": "text",
+      "attributes": {
+        "x": 304.47688564476886,
+        "y": 198.0,
+        "max_width": 1336.0,
+        "fill": "#222222",
+        "font-family": "Cambria",
+        "font-size": 58,
+        "text-anchor": "middle",
+        "data-semantic-role": "distance_label"
+      },
+      "source_ref": "slot.dist_p0_p1_text",
+      "refs": {
+        "layout_slot_id": "slot.dist_p0_p1_text"
+      },
+      "text": "176 cm"
+    },
+    {
+      "id": "slot.dist_p1_p3_text.text",
+      "type": "text",
+      "attributes": {
+        "x": 848.4768856447688,
+        "y": 192.0,
+        "max_width": 1336.0,
+        "fill": "#222222",
+        "font-family": "Cambria",
+        "font-size": 58,
+        "text-anchor": "middle",
+        "data-semantic-role": "distance_label"
+      },
+      "source_ref": "slot.dist_p1_p3_text",
+      "refs": {
+        "layout_slot_id": "slot.dist_p1_p3_text"
+      },
+      "text": "646 cm"
+    },
+    {
+      "id": "slot.dist_p1_p2_text.text",
+      "type": "text",
+      "attributes": {
+        "x": 636.0389294403892,
+        "y": 334.0,
+        "max_width": 1336.0,
+        "fill": "#222222",
+        "font-family": "Cambria",
+        "font-size": 58,
+        "text-anchor": "middle",
+        "data-semantic-role": "distance_label"
+      },
+      "source_ref": "slot.dist_p1_p2_text",
+      "refs": {
+        "layout_slot_id": "slot.dist_p1_p2_text"
+      },
+      "text": "325 cm"
+    },
+    {
+      "id": "slot.label_p0.text",
+      "type": "text",
+      "attributes": {
+        "x": 188.0,
+        "y": 327.0,
+        "max_width": 1336.0,
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 34,
+        "text-anchor": "middle",
+        "data-semantic-role": "point_name"
+      },
+      "source_ref": "slot.label_p0",
+      "refs": {
+        "layout_slot_id": "slot.label_p0"
+      },
+      "text": "ㄱ"
+    },
+    {
+      "id": "slot.label_p1.text",
+      "type": "text",
+      "attributes": {
+        "x": 420.9537712895377,
+        "y": 327.0,
+        "max_width": 1336.0,
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 34,
+        "text-anchor": "middle",
+        "data-semantic-role": "point_name"
+      },
+      "source_ref": "slot.label_p1",
+      "refs": {
+        "layout_slot_id": "slot.label_p1"
+      },
+      "text": "ㄴ"
+    },
+    {
+      "id": "slot.label_p2.text",
+      "type": "text",
+      "attributes": {
+        "x": 851.1240875912408,
+        "y": 327.0,
+        "max_width": 1336.0,
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 34,
+        "text-anchor": "middle",
+        "data-semantic-role": "point_name"
+      },
+      "source_ref": "slot.label_p2",
+      "refs": {
+        "layout_slot_id": "slot.label_p2"
+      },
+      "text": "ㄷ"
+    },
+    {
+      "id": "slot.label_p3.text",
+      "type": "text",
+      "attributes": {
+        "x": 1276.0,
+        "y": 327.0,
+        "max_width": 1336.0,
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 34,
+        "text-anchor": "middle",
+        "data-semantic-role": "point_name"
+      },
+      "source_ref": "slot.label_p3",
+      "refs": {
+        "layout_slot_id": "slot.label_p3"
+      },
+      "text": "ㄹ"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

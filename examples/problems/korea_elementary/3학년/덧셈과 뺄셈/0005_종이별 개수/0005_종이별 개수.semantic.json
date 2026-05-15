@@ -1,0 +1,48 @@
+{
+  "problem_id": "0005_종이별 개수",
+  "problem_type": "arithmetic_word_problem_addition_multi_step",
+  "metadata": {
+    "title": "",
+    "tags": [],
+    "instruction": "두 사람이 접은 종이별은 모두 몇 개인지 식과 답을 구하시오.",
+    "question": "소희와 은별이가 접은 종이별의 총 개수를 구하는 문제 (은별이는 소희보다 일정량 더 많이 접음)",
+    "required_layout_ids": [
+      "slot.bg",
+      "slot.answer_total"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.sohee",
+        "type": "count",
+        "value": 399,
+        "description": "소희가 접은 별"
+      },
+      {
+        "id": "obj.diff",
+        "type": "count",
+        "value": 115,
+        "description": "은별이가 더 접은 양"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "plan": {
+        "method": "stepwise_addition",
+        "description": "은별이가 접은 별의 수를 먼저 구하고, 소희와 은별이의 별의 수를 합산한다."
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "value": 913,
+    "unit": "개"
+  }
+}

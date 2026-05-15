@@ -1,0 +1,84 @@
+{
+  "problem_id": "Hpdf_UaRGLE6WCS",
+  "problem_type": "area_division",
+  "metadata": {
+    "title": "정사각형 모양의 종이",
+    "tags": [],
+    "question": "한 변이 40 cm인 정사각형 모양의 종이를 잘라 한 변이 5 cm인 정사각형을 만들려고 합니다. 모두 몇 개까지 만들 수 있습니까?",
+    "required_layout_ids": [],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": ""
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.large_square_paper",
+        "type": "square",
+        "side_length_cm": 40
+      },
+      {
+        "id": "obj.small_square_piece",
+        "type": "square",
+        "side_length_cm": 5
+      }
+    ],
+    "relations": [
+      {
+        "id": "rel.side_ratio",
+        "type": "same_shape_scaling",
+        "from_id": "obj.large_square_paper",
+        "to_id": "obj.small_square_piece",
+        "ratio": 8
+      },
+      {
+        "id": "rel.partition_count",
+        "type": "count_by_side_division",
+        "from_id": "obj.large_square_paper",
+        "to_id": "obj.small_square_piece"
+      }
+    ],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.large_square_paper",
+          "obj.small_square_piece"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.side_ratio",
+          "rel.partition_count"
+        ]
+      },
+      "plan": {
+        "method": "side_division_and_area_count",
+        "description": "큰 정사각형의 한 변에 작은 정사각형이 몇 개 들어가는지 보고, 전체 개수를 구한다."
+      },
+      "execute": {
+        "expected_operations": [
+          "divide_side_length",
+          "square_the_result"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "area_ratio_check",
+          "unit_consistency_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "count",
+      "description": "만들 수 있는 5 cm 정사각형의 최대 개수"
+    },
+    "value": 64,
+    "unit": "개"
+  }
+}

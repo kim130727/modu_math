@@ -1,0 +1,63 @@
+{
+  "schema": "modu.solvable.v1",
+  "problem_id": "Hpdf_NncIZAqRcg",
+  "problem_type": "counting_right_triangles",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "직각삼각형의 개수",
+    "target_ticks": 0,
+    "target_count": 0,
+    "unit": "개"
+  },
+  "given": [
+    {
+      "ref": "obj.point_set",
+      "value": "2x4 점 격자"
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "count"
+  },
+  "method": "systematic_counting",
+  "plan": [
+    "1. 직각을 낀 두 변이 격자선과 나란한 경우: 각 점에서 가로/세로로 직각을 만들 수 있는 경우는 3가지씩 총 8*3=24개이다.",
+    "2. 직각을 낀 두 변이 대각선인 경우: 'ㅅ'자나 'v'자 모양으로 4개가 더 생긴다.",
+    "3. 모든 경우를 합하여 총 개수를 구한다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "operation": "count_axial",
+      "expr": "8 * 3",
+      "value": 24
+    },
+    {
+      "id": "step.2",
+      "operation": "count_diagonal",
+      "expr": "4",
+      "value": 4
+    },
+    {
+      "id": "step.3",
+      "operation": "sum",
+      "expr": "24 + 4",
+      "value": 28
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "type": "logic_check",
+      "expr": "24 + 4 = 28",
+      "expected": 28,
+      "actual": 28,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "value": 28,
+    "unit": "개",
+    "derived_from": "step.3"
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "schema": "modu.solvable.v1",
+  "problem_id": "Hpdf_RJJOU7cmRm",
+  "problem_type": "count_rectangles",
+  "given": [
+    {
+      "ref": "obj.figure",
+      "value": {
+        "type": "composite_rectangle_figure"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "count"
+  },
+  "method": "case_counting",
+  "steps": [
+    {
+      "id": "step.s1",
+      "operation": "identify_all_axis_aligned_rectangles",
+      "expr": "도형을 이루는 기본 칸들(7개)과 이들을 조합해 만들 수 있는 직사각형을 모두 찾는다.",
+      "value": 15
+    },
+    {
+      "id": "step.s2",
+      "operation": "sum_all_cases",
+      "expr": "왼쪽(5개) + 오른쪽(9개) + 전체(1개) = 15개",
+      "value": 15
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.c1",
+      "type": "no_double_counting",
+      "pass": true,
+      "expected": 15,
+      "actual": 15,
+      "expr": "check"
+    }
+  ],
+  "answer": {
+    "value": 15,
+    "unit": "개",
+    "derived_from": "step.s2"
+  },
+  "inputs": {
+    "total_ticks": 1,
+    "target_label": "답",
+    "target_ticks": 1,
+    "target_count": 1,
+    "unit": ""
+  },
+  "plan": [
+    "풀이 과정 없음"
+  ]
+}

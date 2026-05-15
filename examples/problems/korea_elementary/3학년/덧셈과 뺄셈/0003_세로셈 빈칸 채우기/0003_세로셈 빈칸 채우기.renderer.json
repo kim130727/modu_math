@@ -1,0 +1,269 @@
+{
+  "problem_id": "0003_세로셈 빈칸 채우기",
+  "view_box": {
+    "width": 311.0,
+    "height": 192.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.blank_top.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 167.0,
+        "y": 45.0,
+        "width": 34.0,
+        "height": 34.0,
+        "fill": "none",
+        "stroke": "#666666",
+        "stroke-width": 1.5,
+        "data-semantic-role": "answer_anchor"
+      },
+      "source_ref": "slot.blank_top",
+      "refs": {
+        "layout_slot_id": "slot.blank_top"
+      }
+    },
+    {
+      "id": "slot.blank_mid.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 208.0,
+        "y": 90.0,
+        "width": 34.0,
+        "height": 34.0,
+        "fill": "none",
+        "stroke": "#666666",
+        "stroke-width": 1.5,
+        "data-semantic-role": "answer_anchor"
+      },
+      "source_ref": "slot.blank_mid",
+      "refs": {
+        "layout_slot_id": "slot.blank_mid"
+      }
+    },
+    {
+      "id": "slot.blank_low.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 248.0,
+        "y": 90.0,
+        "width": 34.0,
+        "height": 34.0,
+        "fill": "none",
+        "stroke": "#666666",
+        "stroke-width": 1.5,
+        "data-semantic-role": "answer_anchor"
+      },
+      "source_ref": "slot.blank_low",
+      "refs": {
+        "layout_slot_id": "slot.blank_low"
+      }
+    },
+    {
+      "id": "slot.bg.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 311.0,
+        "height": 192.0,
+        "fill": "none",
+        "stroke": "none",
+        "stroke-width": 0.0
+      },
+      "source_ref": "slot.bg",
+      "refs": {
+        "layout_slot_id": "slot.bg"
+      }
+    },
+    {
+      "id": "slot.sep.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 112.0,
+        "y": 144.0,
+        "width": 182.0,
+        "height": 1.0,
+        "fill": "#777777",
+        "stroke": "none",
+        "stroke-width": 0.0
+      },
+      "source_ref": "slot.sep",
+      "refs": {
+        "layout_slot_id": "slot.sep"
+      }
+    },
+    {
+      "id": "slot.t1.text",
+      "type": "text",
+      "attributes": {
+        "x": 6.0,
+        "y": 30.0,
+        "max_width": 200.0,
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 17,
+        "text-anchor": "start"
+      },
+      "source_ref": "slot.t1",
+      "refs": {
+        "layout_slot_id": "slot.t1"
+      },
+      "text": "□ 안에 알맞은 수를 써넣으세요."
+    },
+    {
+      "id": "slot.top_2.text",
+      "type": "text",
+      "attributes": {
+        "x": 225.0,
+        "y": 72.0,
+        "max_width": 200.0,
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 17,
+        "text-anchor": "middle",
+        "data-semantic-role": "label"
+      },
+      "source_ref": "slot.top_2",
+      "refs": {
+        "layout_slot_id": "slot.top_2"
+      },
+      "text": "2"
+    },
+    {
+      "id": "slot.top_6.text",
+      "type": "text",
+      "attributes": {
+        "x": 265.0,
+        "y": 72.0,
+        "max_width": 200.0,
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 17,
+        "text-anchor": "middle",
+        "data-semantic-role": "label"
+      },
+      "source_ref": "slot.top_6",
+      "refs": {
+        "layout_slot_id": "slot.top_6"
+      },
+      "text": "6"
+    },
+    {
+      "id": "slot.plus.text",
+      "type": "text",
+      "attributes": {
+        "x": 140.0,
+        "y": 116.0,
+        "max_width": 200.0,
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 34,
+        "text-anchor": "start",
+        "data-semantic-role": "label"
+      },
+      "source_ref": "slot.plus",
+      "refs": {
+        "layout_slot_id": "slot.plus"
+      },
+      "text": "+"
+    },
+    {
+      "id": "slot.mid_5.text",
+      "type": "text",
+      "attributes": {
+        "x": 184.0,
+        "y": 115.0,
+        "max_width": 200.0,
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 17,
+        "text-anchor": "middle",
+        "data-semantic-role": "label"
+      },
+      "source_ref": "slot.mid_5",
+      "refs": {
+        "layout_slot_id": "slot.mid_5"
+      },
+      "text": "5"
+    },
+    {
+      "id": "slot.ans_1.text",
+      "type": "text",
+      "attributes": {
+        "x": 145.0,
+        "y": 174.0,
+        "max_width": 200.0,
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 17,
+        "text-anchor": "middle",
+        "data-semantic-role": "label"
+      },
+      "source_ref": "slot.ans_1",
+      "refs": {
+        "layout_slot_id": "slot.ans_1"
+      },
+      "text": "1"
+    },
+    {
+      "id": "slot.ans_3.text",
+      "type": "text",
+      "attributes": {
+        "x": 184.0,
+        "y": 174.0,
+        "max_width": 200.0,
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 17,
+        "text-anchor": "middle",
+        "data-semantic-role": "label"
+      },
+      "source_ref": "slot.ans_3",
+      "refs": {
+        "layout_slot_id": "slot.ans_3"
+      },
+      "text": "3"
+    },
+    {
+      "id": "slot.ans_0.text",
+      "type": "text",
+      "attributes": {
+        "x": 225.0,
+        "y": 174.0,
+        "max_width": 200.0,
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 17,
+        "text-anchor": "middle",
+        "data-semantic-role": "label"
+      },
+      "source_ref": "slot.ans_0",
+      "refs": {
+        "layout_slot_id": "slot.ans_0"
+      },
+      "text": "0"
+    },
+    {
+      "id": "slot.ans_4.text",
+      "type": "text",
+      "attributes": {
+        "x": 265.0,
+        "y": 174.0,
+        "max_width": 200.0,
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 17,
+        "text-anchor": "middle",
+        "data-semantic-role": "label"
+      },
+      "source_ref": "slot.ans_4",
+      "refs": {
+        "layout_slot_id": "slot.ans_4"
+      },
+      "text": "4"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

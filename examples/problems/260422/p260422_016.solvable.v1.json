@@ -1,0 +1,27 @@
+{
+  "schema": "modu.solvable.v1",
+  "problem_id": "p260422_016",
+  "problem_type": "arithmetic",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "정답",
+    "target_ticks": 0,
+    "target_count": 0,
+    "unit": ""
+  },
+  "plan": [
+    "분수의 나눗셈은 뒤의 수를 뒤집어 곱해야 하므로 7/9를 9/7로 바꿔 계산해야 한다. 따라서 4/5 ÷ 7/9 = 4/5 × 9/7 = 36/35이다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "분수의 나눗셈은 뒤의 수를 뒤집어 곱해야 하므로 7/9를 9/7로 바꿔 계산해야 한다. 따라서 4/5 ÷ 7/9 = 4/5 × 9/7 = 36/35이다.",
+      "value": "4/5 × 9/7 = 36/35"
+    }
+  ],
+  "checks": [],
+  "answer": {
+    "value": 0,
+    "unit": ""
+  }
+}

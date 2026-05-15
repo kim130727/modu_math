@@ -1,0 +1,48 @@
+{
+  "schema": "modu.solvable.v1",
+  "problem_id": "0013",
+  "problem_type": "pie_chart_proportion",
+  "inputs": {
+    "total_ticks": 20,
+    "target_label": "바나나",
+    "target_ticks": 3,
+    "target_count": 60,
+    "unit": "명"
+  },
+  "plan": [
+    "원그래프 전체 눈금(20칸) 중 바나나가 차지하는 눈금(3칸)의 비율을 먼저 확인한다.",
+    "바나나 3칸이 60명에 해당하므로, 1칸당 학생 수를 구한 뒤 전체 20칸으로 확장한다.",
+    "계산한 전체 학생 수를 다시 바나나 비율(3/20)에 대입해 60명이 맞는지 검산한다."
+  ],
+  "steps": [
+    {
+      "id": "s1",
+      "description_ko": "바나나가 전체에서 차지하는 비율을 구한다.",
+      "formula_ko": "바나나 비율 = 바나나 눈금 / 전체 눈금 = 3 / 20",
+      "expr": "ratio = target_ticks / total_ticks",
+      "value": 0.15
+    },
+    {
+      "id": "s2",
+      "description_ko": "비례식을 이용해 전체 학생 수를 구한다.",
+      "formula_ko": "전체 학생 수 = 바나나 학생 수 × 전체 눈금 / 바나나 눈금 = 60 × 20 / 3",
+      "expr": "total_count = target_count * total_ticks / target_ticks",
+      "value": 400
+    }
+  ],
+  "checks": [
+    {
+      "id": "c1",
+      "description_ko": "구한 전체 학생 수 400명에서 바나나 비율 3/20을 적용하면 60명이 나와야 한다.",
+      "expr": "total_count * target_ticks / total_ticks",
+      "expected": 60,
+      "actual": 60,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "value": 400,
+    "unit": "명",
+    "explanation_ko": "바나나 3칸이 60명이므로 1칸은 20명이다. 전체 20칸이므로 20 × 20 = 400명이다."
+  }
+}

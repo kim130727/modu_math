@@ -1,0 +1,78 @@
+{
+  "schema": "modu.solvable.v1",
+  "problem_id": "2401",
+  "problem_type": "geometry_area_multiple_choice",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "도형의 넓이",
+    "target_ticks": 0,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.triangle_abc",
+      "value": {
+        "vertices": [
+          "A",
+          "B",
+          "C"
+        ]
+      }
+    },
+    {
+      "ref": "obj.length_ab",
+      "value": 13
+    },
+    {
+      "ref": "obj.length_bc",
+      "value": 13
+    },
+    {
+      "ref": "obj.length_ac",
+      "value": 10
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "area"
+  },
+  "method": "read_visible_information_only",
+  "plan": [
+    "보이는 도형과 길이 표기를 확인한다.",
+    "추론 계산은 하지 않고, 정답 오버레이도 의미 계약에 사용하지 않는다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "operation": "identify_shape",
+      "expr": "triangle ABC",
+      "value": "triangle"
+    },
+    {
+      "id": "step.2",
+      "operation": "read_labels",
+      "expr": "AB=13, BC=13, AC=10",
+      "value": {
+        "ab": 13,
+        "bc": 13,
+        "ac": 10
+      }
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "type": "visible_label_match",
+      "expr": "labels match source image",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "value": 60,
+    "unit": "",
+    "derived_from": "choice.2"
+  }
+}

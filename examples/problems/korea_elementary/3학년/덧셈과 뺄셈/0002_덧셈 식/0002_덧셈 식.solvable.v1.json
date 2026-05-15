@@ -1,0 +1,58 @@
+{
+  "schema": "modu.solvable.v1",
+  "problem_id": "0002_덧셈 식",
+  "problem_type": "arithmetic_combination_sum",
+  "given": [
+    {
+      "ref": "obj.candidates",
+      "value": [
+        718,
+        295,
+        658,
+        245
+      ]
+    },
+    {
+      "ref": "obj.target_sum",
+      "value": 953
+    }
+  ],
+  "target": {
+    "type": "list",
+    "description": "합이 953인 두 수"
+  },
+  "method": "exhaustive_search",
+  "steps": [
+    {
+      "id": "step.s1",
+      "operation": "addition",
+      "expr": "295 + 658 = 953",
+      "value": 953
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.c1",
+      "type": "arithmetic_consistency_check",
+      "pass": true,
+      "expected": 953,
+      "actual": 953,
+      "expr": "295 + 658"
+    }
+  ],
+  "answer": {
+    "value": 953,
+    "unit": "",
+    "derived_from": "step.s1"
+  },
+  "inputs": {
+    "total_ticks": 2,
+    "target_label": "답",
+    "target_ticks": 2,
+    "target_count": 2,
+    "unit": ""
+  },
+  "plan": [
+    "295와 658을 더하면 953이 됨을 확인하여 빈칸을 채웁니다."
+  ]
+}

@@ -1,0 +1,140 @@
+{
+  "problem_id": "2402",
+  "problem_type": "geometry_circle_chord_perpendicular",
+  "metadata": {
+    "title": "OX를 구하시오",
+    "tags": [],
+    "question": "OX를 구하시오.",
+    "required_layout_ids": [
+      "slot.diagram_box",
+      "slot.circle_O",
+      "slot.line_CD",
+      "slot.line_OB",
+      "slot.line_OX",
+      "slot.line_OC",
+      "slot.perp_1",
+      "slot.perp_2",
+      "slot.point_C",
+      "slot.point_B",
+      "slot.point_D",
+      "slot.point_O",
+      "slot.point_X"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "보이는 내용을 그대로 읽고, 정답 오버레이는 본문과 분리한다."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.circle_O",
+        "type": "circle",
+        "center": "O"
+      },
+      {
+        "id": "obj.radius",
+        "type": "radius",
+        "value": 13,
+        "unit": "인치"
+      },
+      {
+        "id": "obj.chord_CD",
+        "type": "chord",
+        "label": "CD",
+        "value": 24,
+        "unit": "인치"
+      },
+      {
+        "id": "obj.segment_OB",
+        "type": "segment",
+        "label": "OB"
+      },
+      {
+        "id": "obj.point_X",
+        "type": "point",
+        "label": "X"
+      }
+    ],
+    "relations": [
+      {
+        "id": "rel.ob_perp_cd",
+        "type": "perpendicular",
+        "from_id": "obj.segment_OB",
+        "to_id": "obj.chord_CD"
+      },
+      {
+        "id": "rel.find_ox",
+        "type": "find_length",
+        "from_id": "obj.point_X",
+        "to_id": "obj.circle_O",
+        "label": "OX"
+      }
+    ],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.radius",
+          "obj.chord_CD",
+          "obj.segment_OB"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.ob_perp_cd"
+        ]
+      },
+      "plan": {
+        "method": "circle_chord_perpendicular_reading",
+        "description": "그림과 본문에 보이는 원, 현, 수직 관계를 읽고 OX가 무엇을 뜻하는지 확인한다."
+      },
+      "execute": {
+        "expected_operations": [
+          "identify_visible_segments",
+          "interpret_perpendicular_relation",
+          "match_target_label"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "verify_text_matches_image",
+          "avoid_using_overlay_as_stem_answer"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [
+      {
+        "index": 1,
+        "text": "1. 5",
+        "value": "5"
+      },
+      {
+        "index": 2,
+        "text": "2. 12",
+        "value": "12"
+      },
+      {
+        "index": 3,
+        "text": "3. 13",
+        "value": "13"
+      },
+      {
+        "index": 4,
+        "text": "4. 26",
+        "value": "26"
+      }
+    ],
+    "answer_key": [
+      1
+    ],
+    "confidence": 1.0,
+    "target": {
+      "type": "length",
+      "description": "OX의 길이"
+    },
+    "value": 5,
+    "unit": "인치"
+  }
+}

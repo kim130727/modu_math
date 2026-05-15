@@ -1,0 +1,682 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "0011_모서리의 합",
+  "title": "",
+  "canvas": {
+    "width": 608,
+    "height": 580,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "vertical",
+      "slot_ids": [
+        "slot.cube_l_connect_lt",
+        "slot.cube_l_back_left_hidden",
+        "slot.cube_l_back_top",
+        "slot.cube_l_connect_rt",
+        "slot.cube_l_back_right",
+        "slot.cube_r_connect_lt",
+        "slot.cube_r_back_left_hidden",
+        "slot.cube_r_back_top",
+        "slot.cube_r_connect_rt",
+        "slot.cube_r_back_right",
+        "slot.cube_l_cut_ac",
+        "slot.cube_l_cut_bc",
+        "slot.cube_r_cut_ac",
+        "slot.cube_r_cut_bc",
+        "slot.cube_l_front_left",
+        "slot.cube_l_front_top",
+        "slot.cube_l_cut_ab",
+        "slot.cube_l_front_right",
+        "slot.cube_r_front_left",
+        "slot.cube_r_front_top",
+        "slot.cube_r_cut_ab",
+        "slot.cube_r_front_right",
+        "slot.cube_l_front_bottom",
+        "slot.cube_r_front_bottom",
+        "slot.inst_1",
+        "slot.inst_2",
+        "slot.inst_3",
+        "slot.example_tag",
+        "slot.cube_l_lbl_3",
+        "slot.cube_r_lbl_3",
+        "slot.cube_l_lbl_2",
+        "slot.cube_r_lbl_2",
+        "slot.cube_l_lbl_1",
+        "slot.cube_r_lbl_1",
+        "slot.cube_l_lbl_8",
+        "slot.q_1",
+        "slot.q_2",
+        "slot.q_3",
+        "slot.q_4"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.inst_1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "모든 면이 정사각형이고 한 면의 넓이가 8 cm²인 사각기둥이 있습니다.",
+        "style_role": "body",
+        "x": 45.0,
+        "y": 36.0,
+        "font_size": 17,
+        "font_family": "Malgun Gothic",
+        "anchor": "start",
+        "fill": "#222222",
+        "semantic_role": "instruction"
+      }
+    },
+    {
+      "id": "slot.inst_2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "[보기]는 이 사각기둥에서 ㄴ을 각뿔의 꼭짓점으로 하는 삼각뿔 모양을",
+        "style_role": "body",
+        "x": 45.0,
+        "y": 64.0,
+        "font_size": 17,
+        "font_family": "Malgun Gothic",
+        "anchor": "start",
+        "fill": "#222222",
+        "semantic_role": "instruction"
+      }
+    },
+    {
+      "id": "slot.inst_3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "자른 것입니다.",
+        "style_role": "body",
+        "x": 45.0,
+        "y": 92.0,
+        "font_size": 17,
+        "font_family": "Malgun Gothic",
+        "anchor": "start",
+        "fill": "#222222",
+        "semantic_role": "instruction"
+      }
+    },
+    {
+      "id": "slot.example_tag",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "[보기]",
+        "style_role": "body",
+        "x": 58.0,
+        "y": 144.0,
+        "font_size": 17,
+        "font_family": "Malgun Gothic",
+        "anchor": "start",
+        "fill": "#222222",
+        "semantic_role": "label"
+      }
+    },
+    {
+      "id": "slot.cube_l_lbl_3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "C",
+        "style_role": "body",
+        "x": 256.9,
+        "y": 175.3,
+        "font_size": 16,
+        "font_family": "Malgun Gothic",
+        "anchor": "middle",
+        "fill": "#222222",
+        "semantic_role": "vertex_label"
+      }
+    },
+    {
+      "id": "slot.cube_l_connect_lt",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 91.0,
+        "y1": 210.0,
+        "x2": 129.5,
+        "y2": 177.3,
+        "stroke": "#333333",
+        "stroke_width": 1.3,
+        "semantic_role": "decorative"
+      }
+    },
+    {
+      "id": "slot.cube_l_back_left_hidden",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 129.5,
+        "y1": 177.3,
+        "x2": 129.5,
+        "y2": 292.7,
+        "stroke": "#333333",
+        "stroke_width": 1.3,
+        "semantic_role": "decorative"
+      }
+    },
+    {
+      "id": "slot.cube_l_back_top",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 129.5,
+        "y1": 177.3,
+        "x2": 244.9,
+        "y2": 177.3,
+        "stroke": "#333333",
+        "stroke_width": 1.3,
+        "semantic_role": "decorative"
+      }
+    },
+    {
+      "id": "slot.cube_l_connect_rt",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 206.4,
+        "y1": 210.0,
+        "x2": 244.9,
+        "y2": 177.3,
+        "stroke": "#333333",
+        "stroke_width": 1.3,
+        "semantic_role": "decorative"
+      }
+    },
+    {
+      "id": "slot.cube_l_back_right",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 244.9,
+        "y1": 177.3,
+        "x2": 244.9,
+        "y2": 292.7,
+        "stroke": "#333333",
+        "stroke_width": 1.3,
+        "semantic_role": "decorative"
+      }
+    },
+    {
+      "id": "slot.cube_r_lbl_3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "C",
+        "style_role": "body",
+        "x": 523.9,
+        "y": 177.3,
+        "font_size": 16,
+        "font_family": "Malgun Gothic",
+        "anchor": "middle",
+        "fill": "#222222",
+        "semantic_role": "vertex_label"
+      }
+    },
+    {
+      "id": "slot.cube_r_connect_lt",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 358.0,
+        "y1": 212.0,
+        "x2": 396.5,
+        "y2": 179.3,
+        "stroke": "#333333",
+        "stroke_width": 1.3,
+        "semantic_role": "decorative"
+      }
+    },
+    {
+      "id": "slot.cube_r_back_left_hidden",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 396.5,
+        "y1": 179.3,
+        "x2": 396.5,
+        "y2": 294.7,
+        "stroke": "#333333",
+        "stroke_width": 1.3,
+        "semantic_role": "decorative"
+      }
+    },
+    {
+      "id": "slot.cube_r_back_top",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 396.5,
+        "y1": 179.3,
+        "x2": 511.9,
+        "y2": 179.3,
+        "stroke": "#333333",
+        "stroke_width": 1.3,
+        "semantic_role": "decorative"
+      }
+    },
+    {
+      "id": "slot.cube_r_connect_rt",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 490.71,
+        "y1": 197.0,
+        "x2": 511.9,
+        "y2": 179.3,
+        "stroke": "#333333",
+        "stroke_width": 0.7,
+        "semantic_role": "decorative"
+      }
+    },
+    {
+      "id": "slot.cube_r_back_right",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 511.9,
+        "y1": 179.3,
+        "x2": 511.9,
+        "y2": 294.7,
+        "stroke": "#333333",
+        "stroke_width": 1.3,
+        "semantic_role": "decorative"
+      }
+    },
+    {
+      "id": "slot.cube_l_lbl_2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "B",
+        "style_role": "body",
+        "x": 115.5,
+        "y": 191.3,
+        "font_size": 16,
+        "font_family": "Malgun Gothic",
+        "anchor": "middle",
+        "fill": "#222222",
+        "semantic_role": "vertex_label"
+      }
+    },
+    {
+      "id": "slot.cube_r_lbl_2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "B",
+        "style_role": "body",
+        "x": 382.5,
+        "y": 193.3,
+        "font_size": 16,
+        "font_family": "Malgun Gothic",
+        "anchor": "middle",
+        "fill": "#222222",
+        "semantic_role": "vertex_label"
+      }
+    },
+    {
+      "id": "slot.cube_l_cut_ac",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 151.0,
+        "y1": 210.0,
+        "x2": 223.7,
+        "y2": 195.0,
+        "stroke": "#333333",
+        "stroke_width": 0.9,
+        "semantic_role": "decorative"
+      }
+    },
+    {
+      "id": "slot.cube_l_cut_bc",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 206.4,
+        "y1": 258.5,
+        "x2": 223.7,
+        "y2": 195.0,
+        "stroke": "#333333",
+        "stroke_width": 0.9,
+        "semantic_role": "decorative"
+      }
+    },
+    {
+      "id": "slot.cube_r_cut_ac",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 418.0,
+        "y1": 212.0,
+        "x2": 490.7,
+        "y2": 197.0,
+        "stroke": "#333333",
+        "stroke_width": 0.9,
+        "semantic_role": "decorative"
+      }
+    },
+    {
+      "id": "slot.cube_r_cut_bc",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 473.4,
+        "y1": 260.5,
+        "x2": 490.7,
+        "y2": 197.0,
+        "stroke": "#333333",
+        "stroke_width": 0.9,
+        "semantic_role": "decorative"
+      }
+    },
+    {
+      "id": "slot.cube_l_front_left",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 91.0,
+        "y1": 210.0,
+        "x2": 91.0,
+        "y2": 325.4,
+        "stroke": "#333333",
+        "stroke_width": 1.3,
+        "semantic_role": "decorative"
+      }
+    },
+    {
+      "id": "slot.cube_l_front_top",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 91.0,
+        "y1": 210.0,
+        "x2": 206.4,
+        "y2": 210.0,
+        "stroke": "#333333",
+        "stroke_width": 1.3,
+        "semantic_role": "decorative"
+      }
+    },
+    {
+      "id": "slot.cube_l_cut_ab",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 151.0,
+        "y1": 210.0,
+        "x2": 206.4,
+        "y2": 258.5,
+        "stroke": "#333333",
+        "stroke_width": 1.5,
+        "semantic_role": "decorative"
+      }
+    },
+    {
+      "id": "slot.cube_l_front_right",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 206.4,
+        "y1": 210.0,
+        "x2": 206.4,
+        "y2": 325.4,
+        "stroke": "#333333",
+        "stroke_width": 1.3,
+        "semantic_role": "decorative"
+      }
+    },
+    {
+      "id": "slot.cube_r_front_left",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 358.0,
+        "y1": 212.0,
+        "x2": 358.0,
+        "y2": 327.4,
+        "stroke": "#333333",
+        "stroke_width": 1.3,
+        "semantic_role": "decorative"
+      }
+    },
+    {
+      "id": "slot.cube_r_front_top",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 358.0,
+        "y1": 212.0,
+        "x2": 418.0,
+        "y2": 212.0,
+        "stroke": "#333333",
+        "stroke_width": 0.95,
+        "semantic_role": "decorative"
+      }
+    },
+    {
+      "id": "slot.cube_r_cut_ab",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 418.0,
+        "y1": 212.0,
+        "x2": 473.4,
+        "y2": 260.5,
+        "stroke": "#333333",
+        "stroke_width": 1.5,
+        "semantic_role": "decorative"
+      }
+    },
+    {
+      "id": "slot.cube_l_lbl_1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "A",
+        "style_role": "body",
+        "x": 80.0,
+        "y": 215.0,
+        "font_size": 16,
+        "font_family": "Malgun Gothic",
+        "anchor": "middle",
+        "fill": "#222222",
+        "semantic_role": "vertex_label"
+      }
+    },
+    {
+      "id": "slot.cube_r_lbl_1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "A",
+        "style_role": "body",
+        "x": 347.0,
+        "y": 217.0,
+        "font_size": 16,
+        "font_family": "Malgun Gothic",
+        "anchor": "middle",
+        "fill": "#222222",
+        "semantic_role": "vertex_label"
+      }
+    },
+    {
+      "id": "slot.cube_l_lbl_8",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "O",
+        "style_role": "body",
+        "x": 196.4,
+        "y": 224.0,
+        "font_size": 16,
+        "font_family": "Malgun Gothic",
+        "anchor": "middle",
+        "fill": "#222222",
+        "semantic_role": "vertex_label"
+      }
+    },
+    {
+      "id": "slot.cube_r_front_right",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 473.4,
+        "y1": 260.5,
+        "x2": 473.4,
+        "y2": 327.4,
+        "stroke": "#333333",
+        "stroke_width": 0.95,
+        "semantic_role": "decorative"
+      }
+    },
+    {
+      "id": "slot.cube_l_front_bottom",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 91.0,
+        "y1": 325.4,
+        "x2": 206.4,
+        "y2": 325.4,
+        "stroke": "#333333",
+        "stroke_width": 1.3,
+        "semantic_role": "decorative"
+      }
+    },
+    {
+      "id": "slot.cube_r_front_bottom",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 358.0,
+        "y1": 327.4,
+        "x2": 473.4,
+        "y2": 327.4,
+        "stroke": "#333333",
+        "stroke_width": 1.3,
+        "semantic_role": "decorative"
+      }
+    },
+    {
+      "id": "slot.q_1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "[보기]와 같은 방법으로 처음 사각기둥에서 각각 꼭짓점 B, O, D,",
+        "style_role": "body",
+        "x": 48.0,
+        "y": 383.0,
+        "font_size": 17,
+        "font_family": "Malgun Gothic",
+        "anchor": "start",
+        "fill": "#222222",
+        "semantic_role": "instruction"
+      }
+    },
+    {
+      "id": "slot.q_2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "F을 각뿔의 꼭젓점으로 하는 삼각뿔 모양 4개를 자르려고 합니다. 가장",
+        "style_role": "body",
+        "x": 48.0,
+        "y": 412.0,
+        "font_size": 17,
+        "font_family": "Malgun Gothic",
+        "anchor": "start",
+        "fill": "#222222",
+        "semantic_role": "instruction"
+      }
+    },
+    {
+      "id": "slot.q_3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "큰 삼각뿔 모양이 되도록 모두 잘랐을 때 자르고 남은 도형의 모든",
+        "style_role": "body",
+        "x": 48.0,
+        "y": 441.0,
+        "font_size": 17,
+        "font_family": "Malgun Gothic",
+        "anchor": "start",
+        "fill": "#222222",
+        "semantic_role": "instruction"
+      }
+    },
+    {
+      "id": "slot.q_4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "모서리의 길이의 합은 몇 cm입니까?",
+        "style_role": "body",
+        "x": 48.0,
+        "y": 470.0,
+        "font_size": 17,
+        "font_family": "Malgun Gothic",
+        "anchor": "start",
+        "fill": "#222222",
+        "semantic_role": "instruction"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.cube_l_connect_lt",
+    "slot.cube_l_back_left_hidden",
+    "slot.cube_l_back_top",
+    "slot.cube_l_connect_rt",
+    "slot.cube_l_back_right",
+    "slot.cube_r_connect_lt",
+    "slot.cube_r_back_left_hidden",
+    "slot.cube_r_back_top",
+    "slot.cube_r_connect_rt",
+    "slot.cube_r_back_right",
+    "slot.cube_l_cut_ac",
+    "slot.cube_l_cut_bc",
+    "slot.cube_r_cut_ac",
+    "slot.cube_r_cut_bc",
+    "slot.cube_l_front_left",
+    "slot.cube_l_front_top",
+    "slot.cube_l_cut_ab",
+    "slot.cube_l_front_right",
+    "slot.cube_r_front_left",
+    "slot.cube_r_front_top",
+    "slot.cube_r_cut_ab",
+    "slot.cube_r_front_right",
+    "slot.cube_l_front_bottom",
+    "slot.cube_r_front_bottom",
+    "slot.inst_1",
+    "slot.inst_2",
+    "slot.inst_3",
+    "slot.example_tag",
+    "slot.cube_l_lbl_3",
+    "slot.cube_r_lbl_3",
+    "slot.cube_l_lbl_2",
+    "slot.cube_r_lbl_2",
+    "slot.cube_l_lbl_1",
+    "slot.cube_r_lbl_1",
+    "slot.cube_l_lbl_8",
+    "slot.q_1",
+    "slot.q_2",
+    "slot.q_3",
+    "slot.q_4"
+  ]
+}

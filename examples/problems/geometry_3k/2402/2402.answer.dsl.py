@@ -1,0 +1,385 @@
+from __future__ import annotations
+from modu_math.dsl import (
+    Canvas,
+    ProblemTemplate,
+    Region,
+    TextSlot,
+    RectSlot,
+    CircleSlot,
+    LineSlot,
+)
+
+
+def build_problem_template() -> ProblemTemplate:
+    return ProblemTemplate(
+        id="2402.answer",
+        title="원의 반지름과 현의 수직 관계",
+        canvas=Canvas(width=960, height=720, coordinate_mode="logical"),
+        regions=(
+            Region(
+                id="region.stem",
+                role="stem",
+                flow="absolute",
+                slot_ids=("slot.q1", "slot.q2", "slot.q3"),
+            ),
+            Region(
+                id="region.choice",
+                role="choice",
+                flow="absolute",
+                slot_ids=("slot.c1", "slot.c2", "slot.c3", "slot.c4"),
+            ),
+            Region(
+                id="region.diagram",
+                role="diagram",
+                flow="absolute",
+                slot_ids=(
+                    "slot.box",
+                    "slot.circle",
+                    "slot.chord_cd",
+                    "slot.radius_ob",
+                    "slot.segment_oc",
+                    "slot.segment_ox",
+                    "slot.right_ob",
+                    "slot.right_x",
+                    "slot.pt.c",
+                    "slot.pt.b",
+                    "slot.pt.d",
+                    "slot.pt.o",
+                    "slot.pt.x",
+                    "slot.lb.c",
+                    "slot.lb.b",
+                    "slot.lb.d",
+                    "slot.lb.o",
+                    "slot.lb.x",
+                ),
+            ),
+        ),
+        slots=(
+            TextSlot(
+                id="slot.q1",
+                prompt="",
+                text="원 O의 반지름은 13인치이다. 반지름 OB는",
+                style_role="question",
+                x=40.0,
+                y=54.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.q2",
+                prompt="",
+                text="길이가 24인치인 현 CD에 수직이다.",
+                style_role="question",
+                x=40.0,
+                y=92.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.q3",
+                prompt="",
+                text="OX를 구하시오.",
+                style_role="question",
+                x=40.0,
+                y=130.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.c1",
+                prompt="",
+                text="1. 5",
+                style_role="choice",
+                x=760.0,
+                y=72.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.c2",
+                prompt="",
+                text="2. 12",
+                style_role="choice",
+                x=760.0,
+                y=118.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.c3",
+                prompt="",
+                text="3. 13",
+                style_role="choice",
+                x=760.0,
+                y=164.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.c4",
+                prompt="",
+                text="4. 26",
+                style_role="choice",
+                x=760.0,
+                y=210.0,
+                font_size=28,
+            ),
+            RectSlot(
+                id="slot.box",
+                prompt="",
+                x=54.0,
+                y=330.0,
+                width=420.0,
+                height=300.0,
+                stroke="#B8B8B8",
+                stroke_width=2.0,
+                fill="none",
+            ),
+            CircleSlot(
+                id="slot.circle",
+                prompt="",
+                cx=260.0,
+                cy=490.0,
+                r=118.0,
+                stroke="#2F6FE4",
+                stroke_width=3.0,
+                fill="none",
+            ),
+            LineSlot(
+                id="slot.chord_cd",
+                prompt="",
+                x1=164.0,
+                y1=442.0,
+                x2=364.0,
+                y2=442.0,
+                stroke="#2F6FE4",
+                stroke_width=3.0,
+            ),
+            LineSlot(
+                id="slot.radius_ob",
+                prompt="",
+                x1=260.0,
+                y1=490.0,
+                x2=260.0,
+                y2=388.0,
+                stroke="#2F6FE4",
+                stroke_width=3.0,
+            ),
+            LineSlot(
+                id="slot.segment_oc",
+                prompt="",
+                x1=260.0,
+                y1=490.0,
+                x2=200.0,
+                y2=430.0,
+                stroke="#E08AC7",
+                stroke_width=2.5,
+            ),
+            LineSlot(
+                id="slot.segment_ox",
+                prompt="",
+                x1=260.0,
+                y1=490.0,
+                x2=340.0,
+                y2=590.0,
+                stroke="#E08AC7",
+                stroke_width=2.5,
+            ),
+            LineSlot(
+                id="slot.right_ob",
+                prompt="",
+                x1=246.0,
+                y1=442.0,
+                x2=246.0,
+                y2=428.0,
+                stroke="#E08AC7",
+                stroke_width=2.5,
+            ),
+            LineSlot(
+                id="slot.right_x",
+                prompt="",
+                x1=340.0,
+                y1=590.0,
+                x2=326.0,
+                y2=590.0,
+                stroke="#E08AC7",
+                stroke_width=2.5,
+            ),
+            CircleSlot(
+                id="slot.pt.c", prompt="", cx=164.0, cy=442.0, r=4.0, fill="#222222"
+            ),
+            CircleSlot(
+                id="slot.pt.b", prompt="", cx=260.0, cy=388.0, r=4.0, fill="#222222"
+            ),
+            CircleSlot(
+                id="slot.pt.d", prompt="", cx=364.0, cy=442.0, r=4.0, fill="#222222"
+            ),
+            CircleSlot(
+                id="slot.pt.o", prompt="", cx=260.0, cy=490.0, r=4.0, fill="#222222"
+            ),
+            CircleSlot(
+                id="slot.pt.x", prompt="", cx=340.0, cy=590.0, r=4.0, fill="#222222"
+            ),
+            TextSlot(
+                id="slot.lb.c",
+                prompt="",
+                text="C",
+                style_role="label",
+                x=150.0,
+                y=432.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.lb.b",
+                prompt="",
+                text="B",
+                style_role="label",
+                x=270.0,
+                y=378.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.lb.d",
+                prompt="",
+                text="D",
+                style_role="label",
+                x=372.0,
+                y=432.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.lb.o",
+                prompt="",
+                text="O",
+                style_role="label",
+                x=270.0,
+                y=505.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.lb.x",
+                prompt="",
+                text="X",
+                style_role="label",
+                x=350.0,
+                y=606.0,
+                font_size=28,
+            ),
+        ),
+        diagrams=(),
+        groups=(),
+        constraints=(),
+        tags=("기하", "원", "현", "반지름", "수직"),
+    )
+
+
+PROBLEM_TEMPLATE = build_problem_template()
+SEMANTIC_OVERRIDE = {
+    "problem_id": "2402.answer",
+    "problem_type": "geometry_circle_chord_perpendicular",
+    "metadata": {
+        "language": "ko",
+        "question": "원의 반지름과 현의 수직 관계를 이용해 OX를 구하는 문제",
+        "instruction": "OX를 구하시오.",
+    },
+    "domain": {
+        "objects": [
+            {
+                "id": "obj.circle",
+                "type": "circle",
+                "center": "obj.O",
+                "radius": 13,
+                "unit": "inch",
+            },
+            {"id": "obj.O", "type": "point", "label": "O"},
+            {"id": "obj.B", "type": "point", "label": "B"},
+            {"id": "obj.C", "type": "point", "label": "C"},
+            {"id": "obj.D", "type": "point", "label": "D"},
+            {"id": "obj.X", "type": "point", "label": "X"},
+            {
+                "id": "obj.chord_cd",
+                "type": "chord",
+                "endpoints": ["obj.C", "obj.D"],
+                "length": 24,
+                "unit": "inch",
+            },
+            {
+                "id": "obj.radius_ob",
+                "type": "segment",
+                "endpoints": ["obj.O", "obj.B"],
+                "relation": "radius",
+                "unit": "inch",
+            },
+            {
+                "id": "obj.segment_ox",
+                "type": "segment",
+                "endpoints": ["obj.O", "obj.X"],
+                "unit": "inch",
+            },
+        ],
+        "relations": [
+            {
+                "id": "rel.ob_perp_cd",
+                "type": "perpendicular",
+                "from_id": "obj.radius_ob",
+                "to_id": "obj.chord_cd",
+            }
+        ],
+        "problem_solving": {
+            "understand": {
+                "given_refs": ["obj.circle", "obj.chord_cd", "rel.ob_perp_cd"],
+                "target_ref": "answer.target",
+                "condition_refs": ["obj.radius_ob", "obj.segment_ox"],
+            },
+            "plan": {
+                "method": "circle_chord_perpendicular",
+                "description": "원의 중심과 현의 수직 관계를 해석해 OX의 의미를 확인한다.",
+            },
+            "execute": {
+                "expected_operations": [
+                    "identify_center",
+                    "interpret_perpendicular_relation",
+                    "compare_segment_meaning",
+                ]
+            },
+            "review": {
+                "check_methods": ["diagram_label_consistency", "unit_consistency_check"]
+            },
+        },
+    },
+    "answer": {
+        "target": {"type": "segment_length", "description": "OX의 길이"},
+        "value": None,
+        "unit": "inch",
+    },
+}
+SOLVABLE = {
+    "schema": "modu.solvable.v1",
+    "problem_id": "2402.answer",
+    "problem_type": "geometry_circle_chord_perpendicular",
+    "inputs": {
+        "total_ticks": 1,
+        "target_label": "OX",
+        "target_ticks": 1,
+        "target_count": 1,
+        "unit": "inch",
+    },
+    "given": [
+        {"ref": "obj.circle", "value": {"radius": 13, "unit": "inch"}},
+        {"ref": "obj.chord_cd", "value": {"length": 24, "unit": "inch"}},
+        {"ref": "rel.ob_perp_cd", "value": True},
+    ],
+    "target": {"ref": "answer.target", "type": "segment_length"},
+    "method": "circle_chord_perpendicular",
+    "plan": [
+        "그림의 점과 선분 라벨을 확인한다.",
+        "수직 관계가 무엇을 뜻하는지 해석한다.",
+        "OX가 무엇인지 확인하되, 보이는 정보만으로 확정되지 않으면 답을 추론하지 않는다.",
+    ],
+    "steps": [],
+    "checks": [
+        {
+            "id": "check.1",
+            "type": "diagram_label_consistency",
+            "expr": "OX는 그림에서 보이지만 의미가 불명확하다",
+            "expected": True,
+            "actual": True,
+            "pass": True,
+        }
+    ],
+    "answer": {"value": 0, "unit": "inch", "derived_from": ""},
+}

@@ -1,0 +1,154 @@
+{
+  "problem_id": "Hpdf_6h0oMCBwYY",
+  "problem_type": "word_problem",
+  "metadata": {
+    "title": "가장 비싼 물건 찾기",
+    "tags": [
+      "price_table",
+      "change",
+      "selection",
+      "combinatorics"
+    ],
+    "instruction": "가격표의 6개 물건 중 서로 다른 3개를 각각 1개씩 산다.",
+    "question": "소민이가 산 물건 중 가장 비싼 것은 무엇입니까?",
+    "required_layout_ids": [
+      "slot.price.box"
+    ],
+    "extraction_confidence": 1.0
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "person.somin",
+        "type": "person",
+        "properties": {
+          "name": "소민"
+        },
+        "confidence": 1.0
+      },
+      {
+        "id": "coin.500",
+        "type": "coin",
+        "properties": {
+          "denomination": 500,
+          "currency": "KRW"
+        },
+        "confidence": 1.0
+      },
+      {
+        "id": "coin.10",
+        "type": "coin",
+        "properties": {
+          "denomination": 10,
+          "currency": "KRW"
+        },
+        "confidence": 1.0
+      },
+      {
+        "id": "item.eraser",
+        "type": "item",
+        "properties": {
+          "name": "지우개",
+          "price": 340,
+          "unit": "원"
+        },
+        "confidence": 1.0
+      },
+      {
+        "id": "item.glue",
+        "type": "item",
+        "properties": {
+          "name": "얌체공",
+          "price": 250,
+          "unit": "원"
+        },
+        "confidence": 1.0
+      },
+      {
+        "id": "item.protractor",
+        "type": "item",
+        "properties": {
+          "name": "각도기",
+          "price": 430,
+          "unit": "원"
+        },
+        "confidence": 1.0
+      },
+      {
+        "id": "item.ruler",
+        "type": "item",
+        "properties": {
+          "name": "자",
+          "price": 290,
+          "unit": "원"
+        },
+        "confidence": 1.0
+      },
+      {
+        "id": "item.paste",
+        "type": "item",
+        "properties": {
+          "name": "풀",
+          "price": 470,
+          "unit": "원"
+        },
+        "confidence": 1.0
+      },
+      {
+        "id": "item.knife",
+        "type": "item",
+        "properties": {
+          "name": "칼",
+          "price": 520,
+          "unit": "원"
+        },
+        "confidence": 1.0
+      }
+    ],
+    "relations": [
+      {
+        "id": "rel.purchase.count",
+        "type": "purchase_count",
+        "from_id": "person.somin",
+        "to_id": "item.eraser",
+        "properties": {
+          "distinct_items": 3,
+          "quantity_each": 1
+        },
+        "confidence": 1.0
+      },
+      {
+        "id": "rel.change.10won",
+        "type": "change",
+        "from_id": "person.somin",
+        "to_id": "coin.10",
+        "properties": {
+          "count": 3,
+          "total": 30,
+          "unit": "원"
+        },
+        "confidence": 1.0
+      },
+      {
+        "id": "rel.payment.500only",
+        "type": "payment_constraint",
+        "from_id": "person.somin",
+        "to_id": "coin.500",
+        "properties": {
+          "rule": "paid_amount_is_multiple_of_500"
+        },
+        "confidence": 1.0
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "value": "각도기",
+    "unit": "",
+    "source": "price_table_and_change_constraints"
+  }
+}

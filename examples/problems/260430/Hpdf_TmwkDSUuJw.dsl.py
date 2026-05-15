@@ -1,0 +1,191 @@
+from __future__ import annotations
+from modu_math.dsl import Canvas, ProblemTemplate, Region, TextSlot, RectSlot
+
+
+def build_problem_template() -> ProblemTemplate:
+    return ProblemTemplate(
+        id="Hpdf_TmwkDSUuJw",
+        title="같은 모양은 같은 수",
+        canvas=Canvas(width=561, height=304, coordinate_mode="logical"),
+        regions=(
+            Region(
+                id="region.stem",
+                role="stem",
+                flow="absolute",
+                slot_ids=(
+                    "slot.q1",
+                    "slot.q2",
+                    "slot.box",
+                    "slot.eq1",
+                    "slot.eq2",
+                    "slot.eq3",
+                ),
+            ),
+        ),
+        slots=(
+            TextSlot(
+                id="slot.q1",
+                prompt="",
+                text="같은 모양은 같은 수를 나타냅니다.",
+                style_role="question",
+                x=10.0,
+                y=30.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.q2",
+                prompt="",
+                text="●에 알맞은 수를 구하시오.",
+                style_role="question",
+                x=10.0,
+                y=68.0,
+                font_size=28,
+            ),
+            RectSlot(
+                id="slot.box",
+                prompt="",
+                x=94.0,
+                y=121.0,
+                width=363.0,
+                height=170.0,
+                stroke="#777777",
+                stroke_width=1.4,
+                rx=6.0,
+                ry=6.0,
+                fill="none",
+            ),
+            TextSlot(
+                id="slot.eq1",
+                prompt="",
+                text="700−425=■",
+                style_role="equation",
+                x=196.0,
+                y=169.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.eq2",
+                prompt="",
+                text="■+136=▲",
+                style_role="equation",
+                x=182.0,
+                y=211.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.eq3",
+                prompt="",
+                text="▲+●=610",
+                style_role="equation",
+                x=183.0,
+                y=253.0,
+                font_size=28,
+            ),
+        ),
+        diagrams=(),
+        groups=(),
+        constraints=(),
+        tags=(),
+    )
+
+
+PROBLEM_TEMPLATE = build_problem_template()
+SEMANTIC_OVERRIDE = {
+    "problem_id": "Hpdf_TmwkDSUuJw",
+    "problem_type": "symbol_equation",
+    "metadata": {
+        "language": "ko",
+        "question": "같은 모양은 같은 수를 나타냅니다. ●에 알맞은 수를 구하는 문제",
+        "instruction": "●에 알맞은 수를 구하시오.",
+    },
+    "domain": {
+        "objects": [
+            {"id": "obj.square", "type": "symbol", "symbol": "■"},
+            {"id": "obj.triangle", "type": "symbol", "symbol": "▲"},
+            {"id": "obj.circle", "type": "symbol", "symbol": "●"},
+            {"id": "obj.value_700", "type": "number", "value": 700},
+            {"id": "obj.value_425", "type": "number", "value": 425},
+            {"id": "obj.value_136", "type": "number", "value": 136},
+            {"id": "obj.value_610", "type": "number", "value": 610},
+        ],
+        "relations": [
+            {
+                "id": "rel.eq1",
+                "type": "equation",
+                "from_id": "obj.value_700",
+                "to_id": "obj.value_425",
+                "result": "obj.square",
+            },
+            {
+                "id": "rel.eq2",
+                "type": "equation",
+                "from_id": "obj.square",
+                "to_id": "obj.value_136",
+                "result": "obj.triangle",
+            },
+            {
+                "id": "rel.eq3",
+                "type": "equation",
+                "from_id": "obj.triangle",
+                "to_id": "obj.circle",
+                "result": "obj.value_610",
+            },
+        ],
+        "problem_solving": {
+            "understand": {
+                "given_refs": [
+                    "obj.value_700",
+                    "obj.value_425",
+                    "obj.value_136",
+                    "obj.value_610",
+                ],
+                "target_ref": "answer.target",
+                "condition_refs": ["rel.eq1", "rel.eq2", "rel.eq3"],
+            },
+            "plan": {
+                "method": "sequential_substitution",
+                "description": "첫 식에서 ■를 구한 뒤, 둘째 식에서 ▲를 구하고, 셋째 식에서 ●를 구한다.",
+            },
+            "execute": {"expected_operations": ["subtract", "add", "subtract"]},
+            "review": {
+                "check_methods": ["substitute_back_into_equations", "consistency_check"]
+            },
+        },
+    },
+    "answer": {
+        "target": {"type": "symbol_value", "description": "●의 값"},
+        "value": 199,
+        "unit": "",
+    },
+}
+SOLVABLE = {   'schema': 'modu.solvable.v1',
+    'problem_id': 'Hpdf_TmwkDSUuJw',
+    'problem_type': 'symbol_equation',
+    'given': [   {'ref': 'obj.value_700', 'value': 700},
+                 {'ref': 'obj.value_425', 'value': 425},
+                 {'ref': 'obj.value_136', 'value': 136},
+                 {'ref': 'obj.value_610', 'value': 610}],
+    'target': {'ref': 'answer.target', 'type': 'symbol_value'},
+    'method': 'sequential_substitution',
+    'steps': [   {'id': 'step.s1', 'operation': 'subtract', 'expr': '700 - 425', 'value': 275},
+                 {'id': 'step.s2', 'operation': 'add', 'expr': '275 + 136', 'value': 411},
+                 {'id': 'step.s3', 'operation': 'subtract', 'expr': '610 - 411', 'value': 199}],
+    'checks': [   {   'id': 'check.c1',
+                      'type': 'substitute_back_into_equations',
+                      'pass': True,
+                      'expected': 1,
+                      'actual': 1,
+                      'expr': 'check'},
+                  {   'id': 'check.c2',
+                      'type': 'consistency_check',
+                      'pass': True,
+                      'expected': 1,
+                      'actual': 1,
+                      'expr': 'check'}],
+    'answer': {'value': 199, 'unit': '', 'derived_from': 'step.s3'},
+    'inputs': {   'total_ticks': 1,
+                  'target_label': '답',
+                  'target_ticks': 1,
+                  'target_count': 1,
+                  'unit': ''},
+    'plan': ['풀이 과정 없음']}

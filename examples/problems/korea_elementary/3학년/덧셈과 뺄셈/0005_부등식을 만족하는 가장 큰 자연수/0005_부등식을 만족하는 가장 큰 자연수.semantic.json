@@ -1,0 +1,38 @@
+{
+  "problem_id": "0005_부등식을 만족하는 가장 큰 자연수",
+  "problem_type": "arithmetic_inequality_optimization",
+  "metadata": {
+    "title": "",
+    "tags": [],
+    "instruction": "□ 안에 들어갈 수 있는 수 중에서 가장 큰 자연수를 구하시오.",
+    "question": "부등식 179 + 265 < 933 - □를 만족하는 가장 큰 자연수를 구하는 문제",
+    "required_layout_ids": [],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.inequality",
+        "type": "inequality",
+        "value": "179 + 265 < 933 - □"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "plan": {
+        "method": "algebraic_isolation",
+        "description": "좌변을 계산하여 부등식을 단순화한 뒤, □의 범위를 구하고 그 중 가장 큰 자연수를 찾는다."
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "value": 488,
+    "unit": ""
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "schema": "modu.solvable.v1",
+  "problem_id": "Hpdf_cAV8nIGcoF",
+  "problem_type": "number_puzzle",
+  "inputs": {
+    "total_ticks": 5,
+    "target_label": "ㄱ",
+    "target_ticks": 1,
+    "target_count": 1,
+    "unit": ""
+  },
+  "plan": [
+    "각 변의 세 수 합을 공통값 K로 둔다.",
+    "각 변에서 미지수는 K - 양 끝 꼭짓점의 합으로 계산한다.",
+    "미지수 5개가 210, 188, 259, 162, 252를 중복 없이 정확히 사용하도록 K를 정한다.",
+    "결정된 값 중 ㄱ을 답으로 쓴다."
+  ],
+  "steps": [
+    {
+      "id": "s1",
+      "expr": "꼭짓점쌍 합 계산: 387+372, 372+339, 339+323, 323+346, 346+387",
+      "value": [
+        759,
+        711,
+        662,
+        669,
+        733
+      ]
+    },
+    {
+      "id": "s2",
+      "expr": "K=921일 때 각 미지수는 K-각 쌍합",
+      "value": [
+        162,
+        210,
+        259,
+        252,
+        188
+      ]
+    },
+    {
+      "id": "s3",
+      "expr": "계산값 집합과 후보 집합 비교",
+      "value": true
+    },
+    {
+      "id": "s4",
+      "expr": "ㄱ=921-(387+372)",
+      "value": 162
+    }
+  ],
+  "checks": [
+    {
+      "id": "c1",
+      "expr": "387+162+372",
+      "expected": 921,
+      "actual": 921,
+      "pass": true
+    },
+    {
+      "id": "c2",
+      "expr": "372+210+339",
+      "expected": 921,
+      "actual": 921,
+      "pass": true
+    },
+    {
+      "id": "c3",
+      "expr": "339+259+323",
+      "expected": 921,
+      "actual": 921,
+      "pass": true
+    },
+    {
+      "id": "c4",
+      "expr": "323+252+346",
+      "expected": 921,
+      "actual": 921,
+      "pass": true
+    },
+    {
+      "id": "c5",
+      "expr": "346+188+387",
+      "expected": 921,
+      "actual": 921,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "value": 162,
+    "unit": ""
+  }
+}

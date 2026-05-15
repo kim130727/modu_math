@@ -1,0 +1,231 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "0006_계산 검토",
+  "title": "",
+  "canvas": {
+    "width": 1744,
+    "height": 725,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "vertical",
+      "slot_ids": [
+        "slot.right_tab",
+        "slot.right_panel",
+        "slot.left_panel",
+        "slot.arrow_head",
+        "slot.arrow_body",
+        "slot.left_line",
+        "slot.instruction",
+        "slot.right_tab_text",
+        "slot.left_top",
+        "slot.left_mid",
+        "slot.left_result"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.instruction",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "잘못 계산한 곳에 ○표 하고, 바르게 계산해 보세요.",
+        "style_role": "body",
+        "x": 115.52105,
+        "y": 95.168732,
+        "font_size": 66,
+        "font_family": "Malgun Gothic",
+        "anchor": "start",
+        "fill": "#222222",
+        "semantic_role": "instruction"
+      }
+    },
+    {
+      "id": "slot.right_tab",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 1089.9678,
+        "y": 169.6675,
+        "width": 400.0,
+        "height": 100.0,
+        "stroke": "none",
+        "stroke_width": 0.0,
+        "rx": 38.0,
+        "fill": "#CE8D61",
+        "semantic_role": "tab"
+      }
+    },
+    {
+      "id": "slot.right_panel",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 966.96783,
+        "y": 205.6675,
+        "width": 615.0,
+        "height": 455.0,
+        "stroke": "#CFC8BA",
+        "stroke_width": 9.0,
+        "rx": 70.0,
+        "fill": "none",
+        "semantic_role": "panel"
+      }
+    },
+    {
+      "id": "slot.left_panel",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 203.9678,
+        "y": 215.6675,
+        "width": 585.0,
+        "height": 435.0,
+        "stroke": "#CFC8BA",
+        "stroke_width": 9.0,
+        "rx": 70.0,
+        "fill": "none",
+        "semantic_role": "panel"
+      }
+    },
+    {
+      "id": "slot.right_tab_text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "바르게 계산하기",
+        "style_role": "body",
+        "x": 1289.9678,
+        "y": 231.6675,
+        "font_size": 42,
+        "font_family": "Malgun Gothic",
+        "anchor": "middle",
+        "fill": "#FFFFFF",
+        "semantic_role": "tab_label"
+      }
+    },
+    {
+      "id": "slot.left_top",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "323",
+        "style_role": "body",
+        "x": 622.57715,
+        "y": 360.0,
+        "font_size": 88,
+        "font_family": "Cambria",
+        "anchor": "end",
+        "fill": "#222222",
+        "semantic_role": "equation"
+      }
+    },
+    {
+      "id": "slot.arrow_head",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            892.96783,
+            408.66748
+          ],
+          [
+            914.96783,
+            435.66748
+          ],
+          [
+            892.96783,
+            462.66748
+          ]
+        ],
+        "stroke": "none",
+        "stroke_width": 0.0,
+        "fill": "#9AAAB2",
+        "semantic_role": "arrow"
+      }
+    },
+    {
+      "id": "slot.arrow_body",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 852.96783,
+        "y1": 435.66748,
+        "x2": 892.96783,
+        "y2": 435.66748,
+        "stroke": "#9AAAB2",
+        "stroke_width": 14.0,
+        "semantic_role": "arrow"
+      }
+    },
+    {
+      "id": "slot.left_mid",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "+998",
+        "style_role": "body",
+        "x": 622.57715,
+        "y": 460.0,
+        "font_size": 88,
+        "font_family": "Cambria",
+        "anchor": "end",
+        "fill": "#222222",
+        "semantic_role": "equation"
+      }
+    },
+    {
+      "id": "slot.left_line",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 296.30759,
+        "y1": 486.0,
+        "x2": 636.30762,
+        "y2": 486.0,
+        "stroke": "#333333",
+        "stroke_width": 3.0,
+        "semantic_role": "equation_line"
+      }
+    },
+    {
+      "id": "slot.left_result",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "1221",
+        "style_role": "body",
+        "x": 622.57715,
+        "y": 560.0,
+        "font_size": 87,
+        "font_family": "Cambria",
+        "anchor": "end",
+        "fill": "#222222",
+        "semantic_role": "wrong_result"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.right_tab",
+    "slot.right_panel",
+    "slot.left_panel",
+    "slot.arrow_head",
+    "slot.arrow_body",
+    "slot.left_line",
+    "slot.instruction",
+    "slot.right_tab_text",
+    "slot.left_top",
+    "slot.left_mid",
+    "slot.left_result"
+  ]
+}

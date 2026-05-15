@@ -1,0 +1,79 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "0002_모양에 알맞은 수 구하기",
+  "title": "",
+  "canvas": {
+    "width": 1000,
+    "height": 500,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "vertical",
+      "slot_ids": [
+        "slot.t1",
+        "slot.eq1",
+        "slot.eq2"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.t1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "같은 모양은 같은 수를 나타냅니다. ■와 ▲에 알맞은 수의 차를 구하시오.",
+        "style_role": "body",
+        "x": 50.0,
+        "y": 80.0,
+        "font_size": 24,
+        "font_family": "sans-serif",
+        "anchor": "start",
+        "fill": "#000000"
+      }
+    },
+    {
+      "id": "slot.eq1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "800 - 347 + ■ = 650",
+        "style_role": "body",
+        "x": 80.0,
+        "y": 200.0,
+        "font_size": 28,
+        "font_family": "serif",
+        "anchor": "start",
+        "fill": "#000000"
+      }
+    },
+    {
+      "id": "slot.eq2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "543 - ▲ = ■",
+        "style_role": "body",
+        "x": 80.0,
+        "y": 300.0,
+        "font_size": 28,
+        "font_family": "serif",
+        "anchor": "start",
+        "fill": "#000000"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.t1",
+    "slot.eq1",
+    "slot.eq2"
+  ]
+}

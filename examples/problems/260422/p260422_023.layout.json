@@ -1,0 +1,344 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "msedge_z9mZBoibP0",
+  "title": "",
+  "canvas": {
+    "width": 1143,
+    "height": 368,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.question",
+        "slot.road",
+        "slot.house.1.body",
+        "slot.house.1.roof",
+        "slot.house.2.body",
+        "slot.house.2.roof",
+        "slot.house.3.body",
+        "slot.house.3.roof",
+        "slot.label.1.line1",
+        "slot.label.1.line2",
+        "slot.label.2.line1",
+        "slot.label.2.line2",
+        "slot.label.3.line1",
+        "slot.label.3.line2",
+        "slot.arc.total",
+        "slot.text.total",
+        "slot.arc.part",
+        "slot.text.part"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.question",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "석기네 집에서 한별이네 집까지의 거리는 몇 m입니까?",
+        "style_role": "body",
+        "x": 10.0,
+        "y": 50.0,
+        "font_size": 35,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.road",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 100.0,
+        "y1": 235.0,
+        "x2": 1040.0,
+        "y2": 235.0,
+        "stroke": "#666666",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.house.1.body",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 135.0,
+        "y": 175.0,
+        "width": 80.0,
+        "height": 60.0,
+        "stroke": "#444444",
+        "stroke_width": 1.5,
+        "fill": "#fef3c7"
+      }
+    },
+    {
+      "id": "slot.house.1.roof",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            135.0,
+            175.0
+          ],
+          [
+            175.0,
+            145.0
+          ],
+          [
+            215.0,
+            175.0
+          ]
+        ],
+        "stroke": "#444444",
+        "stroke_width": 1.5,
+        "fill": "#ef4444"
+      }
+    },
+    {
+      "id": "slot.label.1.line1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "한초네",
+        "style_role": "body",
+        "x": 175.0,
+        "y": 275.0,
+        "font_size": 35,
+        "anchor": "middle",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.label.1.line2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "집",
+        "style_role": "body",
+        "x": 175.0,
+        "y": 315.0,
+        "font_size": 35,
+        "anchor": "middle",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.house.2.body",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 542.5,
+        "y": 175.0,
+        "width": 80.0,
+        "height": 60.0,
+        "stroke": "#444444",
+        "stroke_width": 1.5,
+        "fill": "#dcfce7"
+      }
+    },
+    {
+      "id": "slot.house.2.roof",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            542.5,
+            175.0
+          ],
+          [
+            582.5,
+            145.0
+          ],
+          [
+            622.5,
+            175.0
+          ]
+        ],
+        "stroke": "#444444",
+        "stroke_width": 1.5,
+        "fill": "#10b981"
+      }
+    },
+    {
+      "id": "slot.label.2.line1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "석기네",
+        "style_role": "body",
+        "x": 582.5,
+        "y": 275.0,
+        "font_size": 35,
+        "anchor": "middle",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.label.2.line2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "집",
+        "style_role": "body",
+        "x": 582.5,
+        "y": 315.0,
+        "font_size": 35,
+        "anchor": "middle",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.house.3.body",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 932.5,
+        "y": 175.0,
+        "width": 80.0,
+        "height": 60.0,
+        "stroke": "#444444",
+        "stroke_width": 1.5,
+        "fill": "#dbeafe"
+      }
+    },
+    {
+      "id": "slot.house.3.roof",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            932.5,
+            175.0
+          ],
+          [
+            972.5,
+            145.0
+          ],
+          [
+            1012.5,
+            175.0
+          ]
+        ],
+        "stroke": "#444444",
+        "stroke_width": 1.5,
+        "fill": "#3b82f6"
+      }
+    },
+    {
+      "id": "slot.label.3.line1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "한별이네",
+        "style_role": "body",
+        "x": 972.5,
+        "y": 275.0,
+        "font_size": 35,
+        "anchor": "middle",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.label.3.line2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "집",
+        "style_role": "body",
+        "x": 972.5,
+        "y": 315.0,
+        "font_size": 35,
+        "anchor": "middle",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.arc.total",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 175 135 Q 573 20 972 135",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#444444",
+        "stroke_width": 2.0,
+        "stroke_dasharray": "5,5",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.text.total",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "732m",
+        "style_role": "body",
+        "x": 750.9855382064089,
+        "y": 139.21659722772347,
+        "font_size": 35,
+        "anchor": "middle",
+        "fill": "#444444"
+      }
+    },
+    {
+      "id": "slot.arc.part",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 182.06291262 151.9510089 Q 385.06291262 91.9510089 589.06291262 151.9510089",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#444444",
+        "stroke_width": 2.0,
+        "stroke_dasharray": "5,5",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.text.part",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "368m",
+        "style_role": "body",
+        "x": 365.286789609772,
+        "y": 166.5034079089963,
+        "font_size": 35,
+        "anchor": "middle",
+        "fill": "#444444"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.question",
+    "slot.road",
+    "slot.house.1.body",
+    "slot.house.1.roof",
+    "slot.house.2.body",
+    "slot.house.2.roof",
+    "slot.house.3.body",
+    "slot.house.3.roof",
+    "slot.label.1.line1",
+    "slot.label.1.line2",
+    "slot.label.2.line1",
+    "slot.label.2.line2",
+    "slot.label.3.line1",
+    "slot.label.3.line2",
+    "slot.arc.total",
+    "slot.text.total",
+    "slot.arc.part",
+    "slot.text.part"
+  ]
+}

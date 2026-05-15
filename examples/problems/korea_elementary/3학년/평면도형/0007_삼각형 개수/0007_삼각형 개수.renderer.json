@@ -1,0 +1,99 @@
+{
+  "problem_id": "0007_삼각형 개수",
+  "view_box": {
+    "width": 400.0,
+    "height": 230.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.bg.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 400.0,
+        "height": 230.0,
+        "fill": "#F6F6F6",
+        "stroke": "none",
+        "stroke-width": 0.0
+      },
+      "source_ref": "slot.bg",
+      "refs": {
+        "layout_slot_id": "slot.bg"
+      }
+    },
+    {
+      "id": "slot.paper.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 110.0,
+        "y": 82.0,
+        "width": 175.0,
+        "height": 120.0,
+        "fill": "#EEF4C8",
+        "stroke": "#6A6A6A",
+        "stroke-width": 1.8
+      },
+      "source_ref": "slot.paper",
+      "refs": {
+        "layout_slot_id": "slot.paper"
+      }
+    },
+    {
+      "id": "slot.answer_value.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 343.0,
+        "y": 196.0,
+        "width": 48.0,
+        "height": 28.0,
+        "fill": "none",
+        "stroke": "none",
+        "stroke-width": 0.0,
+        "data-semantic-role": "answer_anchor"
+      },
+      "source_ref": "slot.answer_value",
+      "refs": {
+        "layout_slot_id": "slot.answer_value"
+      }
+    },
+    {
+      "id": "slot.i1.text",
+      "type": "text",
+      "attributes": {
+        "x": 4.0,
+        "y": 34.0,
+        "max_width": 272.0,
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 17,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.i1",
+      "refs": {
+        "layout_slot_id": "slot.i1"
+      },
+      "text": "색종이를 점선을 따라 자르면 직각삼각형은 모두"
+    },
+    {
+      "id": "slot.i2.text",
+      "type": "text",
+      "attributes": {
+        "x": 4.0,
+        "y": 64.0,
+        "max_width": 272.0,
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 17,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.i2",
+      "refs": {
+        "layout_slot_id": "slot.i2"
+      },
+      "text": "몇 개 만들어지는지 구하세요."
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

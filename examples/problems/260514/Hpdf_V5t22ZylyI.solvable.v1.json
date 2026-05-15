@@ -1,0 +1,51 @@
+{
+  "schema": "modu.solvable.v1",
+  "problem_id": "Hpdf_V5t22ZylyI",
+  "problem_type": "geometry_perimeter",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "남은 색종이의 둘레",
+    "target_ticks": 0,
+    "target_count": 0,
+    "unit": "cm"
+  },
+  "given": [
+    {
+      "ref": "obj.square",
+      "value": "한 변 15 cm"
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "length"
+  },
+  "method": "perimeter_invariant_principle",
+  "plan": [
+    "1. 한 변이 15 cm인 정사각형의 둘레를 구한다.",
+    "2. 모서리에서 직사각형을 잘라내도 둘레는 변하지 않음을 확인한다.",
+    "3. 따라서 남은 색종이의 둘레도 원래 정사각형의 둘레와 같다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "operation": "multiply",
+      "expr": "15 * 4",
+      "value": 60
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "type": "logic_check",
+      "expr": "15 * 4 = 60",
+      "expected": 60,
+      "actual": 60,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "value": 60,
+    "unit": "cm",
+    "derived_from": "step.1"
+  }
+}

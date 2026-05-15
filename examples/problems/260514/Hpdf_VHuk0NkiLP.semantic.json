@@ -1,0 +1,78 @@
+{
+  "problem_id": "Hpdf_VHuk0NkiLP",
+  "problem_type": "geometry_pattern_perimeter",
+  "metadata": {
+    "title": "정사각형 블록의 둘레",
+    "tags": [],
+    "instruction": "규칙에 따라 7째 도형의 둘레를 구한다.",
+    "question": "한 변이 3 cm인 정사각형 모양을 그림과 같이 이어 붙여서 하나의 도형을 만들었습니다. 7째에 놓이는 도형의 둘레는 몇 cm입니까? (단, 둘레는 전체 도형의 바깥쪽 길이의 합입니다.)",
+    "required_layout_ids": [
+      "slot.block1",
+      "slot.block2a",
+      "slot.block2b",
+      "slot.block3a",
+      "slot.block3b",
+      "slot.block3c",
+      "slot.block3d",
+      "slot.block3e",
+      "slot.block4a",
+      "slot.block4b",
+      "slot.block4c",
+      "slot.block4d",
+      "slot.block4e",
+      "slot.block4f",
+      "slot.block4g",
+      "slot.block4h",
+      "slot.block4i",
+      "slot.block4j"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.pattern",
+        "type": "staircase_pattern",
+        "unit_side": 3
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.pattern"
+        ],
+        "target_ref": "answer.target"
+      },
+      "plan": {
+        "method": "perimeter_rule_derivation",
+        "description": "n번째 도형의 둘레가 한 변의 길이의 4n배임을 파악한다."
+      },
+      "execute": {
+        "expected_operations": [
+          "find_perimeter_formula",
+          "substitute_n_7"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "stepwise_verification"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "length",
+      "description": "7째 도형의 둘레"
+    },
+    "value": 84,
+    "unit": "cm"
+  }
+}

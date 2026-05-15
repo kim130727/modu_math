@@ -1,0 +1,114 @@
+{
+  "problem_id": "Hpdf_V62I1Tglne",
+  "problem_type": "linear_equation_word_problem",
+  "metadata": {
+    "title": "배의 수를 구하기",
+    "tags": [],
+    "instruction": "유라의 뼈의 수와 동생의 뼈의 수를 각각 구하시오.",
+    "question": "아빠, 유라, 동생의 뼈의 수 관계를 이용하여 유라와 동생의 뼈의 수를 구하는 문제",
+    "required_layout_ids": [
+      "slot.answer_box_1",
+      "slot.answer_box_2"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.father_bones",
+        "type": "quantity",
+        "quantity_type": "bone_count",
+        "person": "아빠"
+      },
+      {
+        "id": "obj.yura_bones",
+        "type": "quantity",
+        "quantity_type": "bone_count",
+        "person": "유라"
+      },
+      {
+        "id": "obj.younger_sibling_bones",
+        "type": "quantity",
+        "quantity_type": "bone_count",
+        "person": "동생"
+      }
+    ],
+    "relations": [
+      {
+        "id": "rel.sum_father_yura",
+        "type": "sum_equals",
+        "from_id": "obj.father_bones",
+        "to_id": "obj.yura_bones",
+        "value": 486
+      },
+      {
+        "id": "rel.yura_more_than_father",
+        "type": "difference",
+        "from_id": "obj.yura_bones",
+        "to_id": "obj.father_bones",
+        "value": 74
+      },
+      {
+        "id": "rel.younger_more_than_yura",
+        "type": "difference",
+        "from_id": "obj.younger_sibling_bones",
+        "to_id": "obj.yura_bones",
+        "value": 60
+      }
+    ],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.father_bones",
+          "obj.yura_bones",
+          "obj.younger_sibling_bones",
+          "rel.sum_father_yura",
+          "rel.yura_more_than_father",
+          "rel.younger_more_than_yura"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.sum_father_yura",
+          "rel.yura_more_than_father",
+          "rel.younger_more_than_yura"
+        ]
+      },
+      "plan": {
+        "method": "difference_and_sum",
+        "description": "아빠와 유라의 차이와 합을 이용해 각각의 뼈의 수를 구하고, 그다음 동생은 유라보다 60개 더 많음을 이용한다."
+      },
+      "execute": {
+        "expected_operations": [
+          "set_up_two_numbers_from_sum_and_difference",
+          "find_father_bones",
+          "find_yura_bones",
+          "add_difference_for_younger_sibling"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "substitute_back_into_sum_relation",
+          "substitute_back_into_difference_relation"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "bone_count_each",
+      "description": "유라의 뼈의 수와 동생의 뼈의 수",
+      "components": [
+        "유라",
+        "동생"
+      ]
+    },
+    "value": 0,
+    "unit": "개"
+  }
+}

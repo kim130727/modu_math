@@ -1,0 +1,157 @@
+from __future__ import annotations
+
+from modu_math.dsl import Arrow, BlankSlot, Canvas, ChoiceSlot, Circle, CircleSlot, Constraint, Cube, DiagramTemplate, FractionAreaModel, Grid, Group, LabelSlot, LineSlot, PathSlot, PolygonSlot, ProblemTemplate, RectSlot, Region, ShapeObject, TextSlot, Triangle
+
+def build_problem_template() -> ProblemTemplate:
+    canvas = Canvas(
+        width=430,
+        height=280,
+        coordinate_mode='logical',
+    )
+    regions = (
+        Region(
+            id='region.stem',
+            role='stem',
+            flow='vertical',
+            slot_ids=('slot.instruction_1', 'slot.instruction_2', 'slot.side_length'),
+        ),
+    )
+    slots = (
+        RectSlot(
+            id='slot.bg',
+            prompt='',
+            x=0.0,
+            y=0.0,
+            width=430.0,
+            height=280.0,
+            stroke='none',
+            stroke_width=0.0,
+            fill='#F4F4F4',
+            semantic_role='background',
+        ),
+        TextSlot(
+            id='slot.instruction_1',
+            prompt='',
+            text='한 변의 길이가 6 cm인 정사각형의 네 변의',
+            style_role='body',
+            x=6.0,
+            y=34.0,
+            font_size=17,
+            font_family='Malgun Gothic',
+            anchor='start',
+            fill='#222222',
+            semantic_role='instruction',
+        ),
+        TextSlot(
+            id='slot.instruction_2',
+            prompt='',
+            text='길이의 합은 몇 cm인지 구하세요.',
+            style_role='body',
+            x=6.0,
+            y=66.0,
+            font_size=17,
+            font_family='Malgun Gothic',
+            anchor='start',
+            fill='#222222',
+            semantic_role='instruction',
+        ),
+        RectSlot(
+            id='slot.square',
+            prompt='',
+            x=150.0,
+            y=98.0,
+            width=136.0,
+            height=136.0,
+            stroke='#2E2E2E',
+            stroke_width=2.4,
+            fill='none',
+            semantic_role='shape',
+        ),
+        LineSlot(
+            id='slot.side_length_arc_00',
+            prompt='',
+            x1=286.0,
+            y1=98.0,
+            x2=294.13536224850884,
+            y2=117.65889960662216,
+            stroke='#7A7A7A',
+            stroke_width=1.4,
+            semantic_role='guide',
+        ),
+        LineSlot(
+            id='slot.side_length_arc_01',
+            prompt='',
+            x1=298.94857035542924,
+            y1=135.64584346883746,
+            x2=301.71862923352876,
+            y2=156.74046900401993,
+            stroke='#7A7A7A',
+            stroke_width=1.4,
+            semantic_role='guide',
+        ),
+        TextSlot(
+            id='slot.side_length',
+            prompt='',
+            text='6 cm',
+            style_role='body',
+            x=306.0,
+            y=160.0,
+            font_size=17,
+            font_family='Malgun Gothic',
+            anchor='start',
+            fill='#222222',
+            semantic_role='label',
+        ),
+        LineSlot(
+            id='slot.side_length_arc_02',
+            prompt='',
+            x1=301.71246761657585,
+            y1=175.36027254265818,
+            x2=298.9284481894623,
+            y2=196.45306013669526,
+            stroke='#7A7A7A',
+            stroke_width=1.4,
+            semantic_role='guide',
+        ),
+        RectSlot(
+            id='slot.answer_value',
+            prompt='',
+            x=364.0,
+            y=214.0,
+            width=48.0,
+            height=30.0,
+            stroke='none',
+            stroke_width=0.0,
+            fill='none',
+            semantic_role='answer_anchor',
+        ),
+        LineSlot(
+            id='slot.side_length_arc_03',
+            prompt='',
+            x1=294.10333675264894,
+            y1=214.43681451127853,
+            x2=286.0,
+            y2=233.99999999999994,
+            stroke='#7A7A7A',
+            stroke_width=1.4,
+            semantic_role='guide',
+        ),
+    )
+    diagrams = (
+    )
+    groups = (
+    )
+    constraints = (
+    )
+    return ProblemTemplate(
+        id='0005_사각형 둘레 구하기',
+        title='',
+        canvas=canvas,
+        regions=regions,
+        slots=slots,
+        diagrams=diagrams,
+        groups=groups,
+        constraints=constraints,
+    )
+
+PROBLEM_TEMPLATE = build_problem_template()

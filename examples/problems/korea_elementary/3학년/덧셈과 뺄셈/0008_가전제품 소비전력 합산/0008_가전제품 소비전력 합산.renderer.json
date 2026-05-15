@@ -1,0 +1,147 @@
+{
+  "problem_id": "0008_가전제품 소비전력 합산",
+  "view_box": {
+    "width": 1000.0,
+    "height": 600.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.t1.text",
+      "type": "text",
+      "attributes": {
+        "x": 64.0,
+        "y": 72.0,
+        "max_width": 872.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 26
+      },
+      "source_ref": "slot.t1",
+      "refs": {
+        "layout_slot_id": "slot.t1"
+      },
+      "text": "다음 가전제품 중에서 2개를 골라 소비전력의 합이 1000 W가 넘는"
+    },
+    {
+      "id": "slot.t2.text",
+      "type": "text",
+      "attributes": {
+        "x": 64.0,
+        "y": 128.0,
+        "max_width": 872.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 26
+      },
+      "source_ref": "slot.t2",
+      "refs": {
+        "layout_slot_id": "slot.t2"
+      },
+      "text": "경우를 찾아 그 합을 구하시오."
+    },
+    {
+      "id": "slot.name_0.text",
+      "type": "text",
+      "attributes": {
+        "x": 64.0,
+        "y": 184.0,
+        "max_width": 872.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 26
+      },
+      "source_ref": "slot.name_0",
+      "refs": {
+        "layout_slot_id": "slot.name_0"
+      },
+      "text": "전기밥솥"
+    },
+    {
+      "id": "slot.name_1.text",
+      "type": "text",
+      "attributes": {
+        "x": 64.0,
+        "y": 240.0,
+        "max_width": 872.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 26
+      },
+      "source_ref": "slot.name_1",
+      "refs": {
+        "layout_slot_id": "slot.name_1"
+      },
+      "text": "정수기"
+    },
+    {
+      "id": "slot.name_2.text",
+      "type": "text",
+      "attributes": {
+        "x": 64.0,
+        "y": 296.0,
+        "max_width": 872.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 26
+      },
+      "source_ref": "slot.name_2",
+      "refs": {
+        "layout_slot_id": "slot.name_2"
+      },
+      "text": "모니터"
+    },
+    {
+      "id": "slot.val_0.text",
+      "type": "text",
+      "attributes": {
+        "x": 64.0,
+        "y": 352.0,
+        "max_width": 872.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 26
+      },
+      "source_ref": "slot.val_0",
+      "refs": {
+        "layout_slot_id": "slot.val_0"
+      },
+      "text": "500 W"
+    },
+    {
+      "id": "slot.val_1.text",
+      "type": "text",
+      "attributes": {
+        "x": 64.0,
+        "y": 408.0,
+        "max_width": 872.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 26
+      },
+      "source_ref": "slot.val_1",
+      "refs": {
+        "layout_slot_id": "slot.val_1"
+      },
+      "text": "770 W"
+    },
+    {
+      "id": "slot.val_2.text",
+      "type": "text",
+      "attributes": {
+        "x": 64.0,
+        "y": 464.0,
+        "max_width": 872.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 26
+      },
+      "source_ref": "slot.val_2",
+      "refs": {
+        "layout_slot_id": "slot.val_2"
+      },
+      "text": "150 W"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

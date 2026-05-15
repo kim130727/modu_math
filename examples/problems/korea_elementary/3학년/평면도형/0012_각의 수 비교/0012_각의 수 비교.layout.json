@@ -1,0 +1,339 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "0012_각의 수 비교",
+  "title": "",
+  "canvas": {
+    "width": 730,
+    "height": 435,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "vertical",
+      "slot_ids": [
+        "slot.bg",
+        "slot.frame",
+        "slot.na",
+        "slot.da",
+        "slot.ra",
+        "slot.ga_edge_1",
+        "slot.ga_edge_2",
+        "slot.i1",
+        "slot.ga_t",
+        "slot.na_t",
+        "slot.ra_t",
+        "slot.da_t",
+        "slot.solution_label",
+        "slot.sol_line1",
+        "slot.sol_line2",
+        "slot.answer_label"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.bg",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 730.0,
+        "height": 435.0,
+        "stroke": "none",
+        "stroke_width": 0.0,
+        "fill": "#F4F4F4"
+      }
+    },
+    {
+      "id": "slot.i1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "각이 많은 도형부터 차례로 기호를 쓰려고 합니다. 풀이 과정을 쓰고 답을 구하세요.",
+        "style_role": "body",
+        "x": 4.0,
+        "y": 34.0,
+        "font_size": 17,
+        "font_family": "Malgun Gothic",
+        "anchor": "middle",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.frame",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 190.0,
+        "y": 58.0,
+        "width": 408.0,
+        "height": 202.0,
+        "stroke": "#8A8A8A",
+        "stroke_width": 1.5,
+        "rx": 12.0,
+        "ry": 12.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.ga_edge_1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 236.0,
+        "y1": 166.0,
+        "x2": 292.0,
+        "y2": 84.0,
+        "stroke": "#303030",
+        "stroke_width": 2.2
+      }
+    },
+    {
+      "id": "slot.ga_edge_2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 236.0,
+        "y1": 166.0,
+        "x2": 342.0,
+        "y2": 170.0,
+        "stroke": "#303030",
+        "stroke_width": 2.2
+      }
+    },
+    {
+      "id": "slot.na",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            454.0,
+            94.0
+          ],
+          [
+            536.0,
+            96.0
+          ],
+          [
+            506.0,
+            162.0
+          ],
+          [
+            474.0,
+            160.0
+          ]
+        ],
+        "stroke": "#303030",
+        "stroke_width": 2.2,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.da",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            250.0,
+            210.0
+          ],
+          [
+            280.0,
+            180.0
+          ],
+          [
+            326.0,
+            180.0
+          ],
+          [
+            356.0,
+            210.0
+          ],
+          [
+            326.0,
+            242.0
+          ],
+          [
+            280.0,
+            242.0
+          ]
+        ],
+        "stroke": "#303030",
+        "stroke_width": 2.2,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.ra",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            398.0,
+            192.0
+          ],
+          [
+            514.0,
+            184.0
+          ],
+          [
+            560.0,
+            250.0
+          ]
+        ],
+        "stroke": "#303030",
+        "stroke_width": 2.2,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.ga_t",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "가",
+        "style_role": "body",
+        "x": 293.0,
+        "y": 128.0,
+        "font_size": 30,
+        "font_family": "Malgun Gothic",
+        "anchor": "middle",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.na_t",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "나",
+        "style_role": "body",
+        "x": 492.0,
+        "y": 132.0,
+        "font_size": 30,
+        "font_family": "Malgun Gothic",
+        "anchor": "middle",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.ra_t",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "라",
+        "style_role": "body",
+        "x": 492.0,
+        "y": 222.0,
+        "font_size": 30,
+        "font_family": "Malgun Gothic",
+        "anchor": "middle",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.da_t",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "다",
+        "style_role": "body",
+        "x": 304.0,
+        "y": 224.0,
+        "font_size": 30,
+        "font_family": "Malgun Gothic",
+        "anchor": "middle",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.solution_label",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "풀이:",
+        "style_role": "body",
+        "x": 40.0,
+        "y": 314.0,
+        "font_size": 17,
+        "font_family": "Malgun Gothic",
+        "anchor": "middle",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.sol_line1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "각 개수:",
+        "style_role": "body",
+        "x": 112.0,
+        "y": 324.0,
+        "font_size": 16,
+        "font_family": "Malgun Gothic",
+        "anchor": "middle",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.sol_line2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "많은 순서:",
+        "style_role": "body",
+        "x": 112.0,
+        "y": 356.0,
+        "font_size": 16,
+        "font_family": "Malgun Gothic",
+        "anchor": "middle",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.answer_label",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "답:",
+        "style_role": "body",
+        "x": 40.0,
+        "y": 404.0,
+        "font_size": 17,
+        "font_family": "Malgun Gothic",
+        "anchor": "middle",
+        "fill": "#222222"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.bg",
+    "slot.frame",
+    "slot.na",
+    "slot.da",
+    "slot.ra",
+    "slot.ga_edge_1",
+    "slot.ga_edge_2",
+    "slot.i1",
+    "slot.ga_t",
+    "slot.na_t",
+    "slot.ra_t",
+    "slot.da_t",
+    "slot.solution_label",
+    "slot.sol_line1",
+    "slot.sol_line2",
+    "slot.answer_label"
+  ]
+}

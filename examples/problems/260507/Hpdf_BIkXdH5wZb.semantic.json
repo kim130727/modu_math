@@ -1,0 +1,91 @@
+{
+  "problem_id": "Hpdf_BIkXdH5wZb",
+  "problem_type": "clock_angle_count",
+  "metadata": {
+    "title": "시계가 9시 정각을 가리키고 있습니다",
+    "tags": [],
+    "question": "시계가 9시 정각을 가리키고 있습니다. 지금부터 2시간 동안 긴바늘과 짧은바늘이 이루는 작은 쪽의 각이 직각인 시각은 모두 몇 번 있습니까?",
+    "required_layout_ids": [],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": ""
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.clock",
+        "type": "clock"
+      },
+      {
+        "id": "obj.start_time",
+        "type": "time",
+        "hour": 9,
+        "minute": 0
+      },
+      {
+        "id": "obj.duration",
+        "type": "duration",
+        "hour": 2
+      },
+      {
+        "id": "obj.hand.minute",
+        "type": "hand",
+        "name": "긴바늘"
+      },
+      {
+        "id": "obj.hand.hour",
+        "type": "hand",
+        "name": "짧은바늘"
+      },
+      {
+        "id": "obj.condition",
+        "type": "angle_condition",
+        "relation": "small_angle_is_right_angle"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.start_time",
+          "obj.duration",
+          "obj.hand.minute",
+          "obj.hand.hour",
+          "obj.condition"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": []
+      },
+      "plan": {
+        "method": "clock_angle_counting",
+        "description": "시작 시각부터 2시간 동안 작은 쪽의 각이 직각이 되는 시각의 개수를 센다."
+      },
+      "execute": {
+        "expected_operations": [
+          "시간구간해석",
+          "조건판별",
+          "개수세기"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "조건일치확인",
+          "구간포함확인"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "count",
+      "description": "지금부터 2시간 동안 긴바늘과 짧은바늘이 이루는 작은 쪽의 각이 직각인 시각의 수"
+    },
+    "value": 4,
+    "unit": "번"
+  }
+}

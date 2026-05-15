@@ -1,0 +1,76 @@
+{
+  "problem_id": "Hpdf_8emmiBLDHT",
+  "problem_type": "geometry_length",
+  "metadata": {
+    "title": "직각사각형의 세 변",
+    "tags": [],
+    "question": "직각삼각형의 세 변을 한 변으로 하는 정사각형 3개를 겹치지 않게 이어 붙여서 만든 도형입니다. 직각삼각형의 세 변의 길이의 합이 30 cm일 때 굵은 선의 길이는 몇 cm입니까?",
+    "required_layout_ids": [
+      "slot.left_square",
+      "slot.bottom_square",
+      "slot.right_square",
+      "slot.center_point",
+      "slot.black_vertical",
+      "slot.black_diagonal",
+      "slot.curve_hint",
+      "slot.right_angle"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "굵은 선의 길이를 구하시오."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.shape",
+        "type": "composite_figure",
+        "description": "직각삼각형의 세 변을 한 변으로 하는 정사각형 3개를 이어 붙인 도형"
+      },
+      {
+        "id": "obj.total_perimeter_sides",
+        "type": "length_sum",
+        "value": 30,
+        "unit": "cm",
+        "description": "직각삼각형의 세 변의 길이의 합"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.shape",
+          "obj.total_perimeter_sides"
+        ],
+        "target_ref": "answer.target"
+      },
+      "plan": {
+        "method": "perimeter_reasoning",
+        "description": "전체 도형의 굵은 선은 세 정사각형의 바깥쪽 변들로 이루어져 있음을 이해한다."
+      },
+      "execute": {
+        "expected_operations": [
+          "count_outer_segments",
+          "calculate_total_length"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "unit_consistency_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "length",
+      "description": "굵은 선의 길이"
+    },
+    "value": 90,
+    "unit": "cm"
+  }
+}

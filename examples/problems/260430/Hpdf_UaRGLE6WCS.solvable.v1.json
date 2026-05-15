@@ -1,0 +1,71 @@
+{
+  "schema": "modu.solvable.v1",
+  "problem_id": "Hpdf_UaRGLE6WCS",
+  "problem_type": "area_division",
+  "given": [
+    {
+      "ref": "obj.large_square_paper",
+      "value": {
+        "side_length_cm": 40
+      }
+    },
+    {
+      "ref": "obj.small_square_piece",
+      "value": {
+        "side_length_cm": 5
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "count"
+  },
+  "method": "side_division_and_area_count",
+  "steps": [
+    {
+      "id": "step.s1",
+      "operation": "divide_side_length",
+      "expr": "40 ÷ 5",
+      "value": 8
+    },
+    {
+      "id": "step.s2",
+      "operation": "square_the_result",
+      "expr": "8 × 8",
+      "value": 64
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.c1",
+      "type": "area_ratio_check",
+      "pass": true,
+      "expected": 1,
+      "actual": 1,
+      "expr": "check"
+    },
+    {
+      "id": "check.c2",
+      "type": "unit_consistency_check",
+      "pass": true,
+      "expected": 1,
+      "actual": 1,
+      "expr": "check"
+    }
+  ],
+  "answer": {
+    "value": 64,
+    "unit": "개",
+    "derived_from": "step.s2"
+  },
+  "inputs": {
+    "total_ticks": 1,
+    "target_label": "답",
+    "target_ticks": 1,
+    "target_count": 1,
+    "unit": ""
+  },
+  "plan": [
+    "풀이 과정 없음"
+  ]
+}

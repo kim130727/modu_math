@@ -1,0 +1,74 @@
+{
+  "problem_id": "Hpdf_peyglV6JPv",
+  "problem_type": "geometry_rectangle_perimeter",
+  "metadata": {
+    "title": "직사각형의 네 변의 길이의 합",
+    "tags": [],
+    "question": "다음 도형은 크기가 서로 다른 4가지 정사각형으로 만든 직사각형입니다. 가장 큰 직사각형의 네 변의 길이의 합은 몇 cm입니까?",
+    "required_layout_ids": [
+      "slot.outer",
+      "slot.inner.v1",
+      "slot.inner.v2",
+      "slot.inner.h1",
+      "slot.inner.h2",
+      "slot.ann.arrow"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "도형의 길이 관계를 보고 가장 큰 직사각형의 둘레를 구한다."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.outer_rectangle",
+        "type": "rectangle",
+        "description": "가장 큰 바깥 직사각형"
+      },
+      {
+        "id": "obj.length_marker",
+        "type": "length_label",
+        "description": "3 cm 표기"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.length_marker"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": []
+      },
+      "plan": {
+        "method": "length_relation",
+        "description": "도형 안의 정사각형 배치에서 길이 관계를 읽어 전체 둘레를 구한다."
+      },
+      "execute": {
+        "expected_operations": [
+          "read_length_label",
+          "analyze_square_partition",
+          "determine_outer_rectangle_perimeter"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "geometry_consistency_check",
+          "unit_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "perimeter",
+      "description": "가장 큰 직사각형의 네 변의 길이의 합"
+    },
+    "value": 78,
+    "unit": "cm"
+  }
+}

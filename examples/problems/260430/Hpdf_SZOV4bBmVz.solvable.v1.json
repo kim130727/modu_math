@@ -1,0 +1,83 @@
+{
+  "schema": "modu.solvable.v1",
+  "problem_id": "Hpdf_SZOV4bBmVz",
+  "problem_type": "vertical_subtraction_fill_in",
+  "given": [
+    {
+      "ref": "obj.minuend",
+      "value": 865
+    },
+    {
+      "ref": "obj.subtrahend",
+      "value": 497
+    },
+    {
+      "ref": "obj.difference",
+      "value": 368
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "digit_filling"
+  },
+  "method": "자리값과 세로셈 관계 확인",
+  "steps": [
+    {
+      "id": "step.s1",
+      "operation": "identify_place_values",
+      "expr": "15 - [ ] = 8에서 일의 자리는 7, 빌려온 십의 자리를 고려해 십의 자리는 6, 백의 자리는 8임을 구한다.",
+      "value": {
+        "top": [
+          8,
+          6,
+          5
+        ],
+        "middle": [
+          4,
+          9,
+          7
+        ],
+        "bottom": [
+          3,
+          6,
+          8
+        ]
+      }
+    },
+    {
+      "id": "step.s2",
+      "operation": "fill_digits",
+      "expr": "세로셈의 빈칸에 들어갈 숫자는 8, 6, 7이다.",
+      "value": [
+        8,
+        6,
+        7
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.c1",
+      "type": "place_value_consistency",
+      "pass": true,
+      "expected": 1,
+      "actual": 1,
+      "expr": "865 - 497 = 368"
+    }
+  ],
+  "answer": {
+    "value": 0,
+    "unit": "",
+    "derived_from": "step.s2"
+  },
+  "inputs": {
+    "total_ticks": 1,
+    "target_label": "답",
+    "target_ticks": 1,
+    "target_count": 1,
+    "unit": ""
+  },
+  "plan": [
+    "풀이 과정 없음"
+  ]
+}

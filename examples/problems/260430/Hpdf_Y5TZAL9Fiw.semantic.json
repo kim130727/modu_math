@@ -1,0 +1,83 @@
+{
+  "problem_id": "Hpdf_Y5TZAL9Fiw",
+  "problem_type": "digit_sum_counting",
+  "metadata": {
+    "title": "세 자리 수 덧셈",
+    "tags": [],
+    "question": "각 자리의 숫자가 모두 다른 세 자리 수 ㉠㉡㉢에 475를 더했더니 자릿의 숫자가 모두 같았습니다. 이와 같은 세 자리 수 ㉠㉡㉢은 모두 몇 개입니까?",
+    "required_layout_ids": [],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "세 자리 수의 개수를 구하시오."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.number",
+        "type": "three_digit_number",
+        "digit_distinct": true
+      },
+      {
+        "id": "obj.addend",
+        "type": "number",
+        "value": 475
+      },
+      {
+        "id": "obj.result",
+        "type": "three_digit_number",
+        "digit_same": true
+      }
+    ],
+    "relations": [
+      {
+        "id": "rel.addition",
+        "type": "addition",
+        "from_id": "obj.number",
+        "to_id": "obj.result",
+        "addend": "obj.addend"
+      }
+    ],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.number",
+          "obj.addend"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.addition"
+        ]
+      },
+      "plan": {
+        "method": "digit_case_analysis",
+        "description": "더한 뒤 세 자리 숫자의 각 자리 수가 모두 같아지는 조건을 자릿수별로 따져 가능한 원래 수를 센다."
+      },
+      "execute": {
+        "expected_operations": [
+          "analyze_digit_constraints",
+          "check_carry_cases",
+          "count_valid_numbers"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "addition_inverse_check",
+          "digit_distinctness_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "count",
+      "description": "조건을 만족하는 세 자리 수 ㉠㉡㉢의 개수"
+    },
+    "value": 3,
+    "unit": "개"
+  }
+}

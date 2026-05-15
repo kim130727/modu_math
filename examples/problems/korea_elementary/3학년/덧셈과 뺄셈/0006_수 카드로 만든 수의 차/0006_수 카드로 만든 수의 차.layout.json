@@ -1,0 +1,254 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "0006_수 카드로 만든 수의 차",
+  "title": "",
+  "canvas": {
+    "width": 1000,
+    "height": 600,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "vertical",
+      "slot_ids": [
+        "slot.card_0",
+        "slot.card_1",
+        "slot.card_2",
+        "slot.card_3",
+        "slot.card_4",
+        "slot.t1",
+        "slot.t2",
+        "slot.t3",
+        "slot.card_text_0",
+        "slot.card_text_1",
+        "slot.card_text_2",
+        "slot.card_text_3",
+        "slot.card_text_4"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.t1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "5장의 수 카드 중에서 3장을 골라 한 번씩만 사용하여 세 자리 수를 만들었습니다.",
+        "style_role": "body",
+        "x": 64.0,
+        "y": 72.0,
+        "font_size": 26,
+        "font_family": "Noto Sans KR, sans-serif",
+        "anchor": "start",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.t2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "세 자리 수 중에서 십의 자리 숫자가 8인 두 번째로 큰 수와 일의 자리 숫자가",
+        "style_role": "body",
+        "x": 64.0,
+        "y": 128.0,
+        "font_size": 26,
+        "font_family": "Noto Sans KR, sans-serif",
+        "anchor": "start",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.t3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "8인 두 번째로 작은 수의 차는 얼마입니까?",
+        "style_role": "body",
+        "x": 64.0,
+        "y": 184.0,
+        "font_size": 26,
+        "font_family": "Noto Sans KR, sans-serif",
+        "anchor": "start",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.card_0",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 100.0,
+        "y": 250.0,
+        "width": 120.0,
+        "height": 160.0,
+        "stroke": "#C7B173",
+        "stroke_width": 2.0,
+        "rx": 12.0,
+        "fill": "#FFF6D8",
+        "semantic_role": "card"
+      }
+    },
+    {
+      "id": "slot.card_1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 260.0,
+        "y": 250.0,
+        "width": 120.0,
+        "height": 160.0,
+        "stroke": "#C7B173",
+        "stroke_width": 2.0,
+        "rx": 12.0,
+        "fill": "#FFF6D8",
+        "semantic_role": "card"
+      }
+    },
+    {
+      "id": "slot.card_2",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 420.0,
+        "y": 250.0,
+        "width": 120.0,
+        "height": 160.0,
+        "stroke": "#C7B173",
+        "stroke_width": 2.0,
+        "rx": 12.0,
+        "fill": "#FFF6D8",
+        "semantic_role": "card"
+      }
+    },
+    {
+      "id": "slot.card_3",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 580.0,
+        "y": 250.0,
+        "width": 120.0,
+        "height": 160.0,
+        "stroke": "#C7B173",
+        "stroke_width": 2.0,
+        "rx": 12.0,
+        "fill": "#FFF6D8",
+        "semantic_role": "card"
+      }
+    },
+    {
+      "id": "slot.card_4",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 740.0,
+        "y": 250.0,
+        "width": 120.0,
+        "height": 160.0,
+        "stroke": "#C7B173",
+        "stroke_width": 2.0,
+        "rx": 12.0,
+        "fill": "#FFF6D8",
+        "semantic_role": "card"
+      }
+    },
+    {
+      "id": "slot.card_text_0",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "2",
+        "style_role": "body",
+        "x": 160.0,
+        "y": 350.0,
+        "font_size": 68,
+        "font_family": "Cambria",
+        "anchor": "middle",
+        "fill": "#1F1F1F"
+      }
+    },
+    {
+      "id": "slot.card_text_1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "0",
+        "style_role": "body",
+        "x": 320.0,
+        "y": 350.0,
+        "font_size": 68,
+        "font_family": "Cambria",
+        "anchor": "middle",
+        "fill": "#1F1F1F"
+      }
+    },
+    {
+      "id": "slot.card_text_2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "4",
+        "style_role": "body",
+        "x": 480.0,
+        "y": 350.0,
+        "font_size": 68,
+        "font_family": "Cambria",
+        "anchor": "middle",
+        "fill": "#1F1F1F"
+      }
+    },
+    {
+      "id": "slot.card_text_3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "6",
+        "style_role": "body",
+        "x": 640.0,
+        "y": 350.0,
+        "font_size": 68,
+        "font_family": "Cambria",
+        "anchor": "middle",
+        "fill": "#1F1F1F"
+      }
+    },
+    {
+      "id": "slot.card_text_4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "8",
+        "style_role": "body",
+        "x": 800.0,
+        "y": 350.0,
+        "font_size": 68,
+        "font_family": "Cambria",
+        "anchor": "middle",
+        "fill": "#1F1F1F"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.card_0",
+    "slot.card_1",
+    "slot.card_2",
+    "slot.card_3",
+    "slot.card_4",
+    "slot.t1",
+    "slot.t2",
+    "slot.t3",
+    "slot.card_text_0",
+    "slot.card_text_1",
+    "slot.card_text_2",
+    "slot.card_text_3",
+    "slot.card_text_4"
+  ]
+}

@@ -1,0 +1,112 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "Hpdf_V8u2dXLiPp",
+  "title": "수 카드로 만들 수 있는 수",
+  "canvas": {
+    "width": 568,
+    "height": 353,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q1",
+        "slot.q2",
+        "slot.q3",
+        "slot.q4",
+        "slot.q5",
+        "slot.q6"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "민하와 하리는 0부터 9까지의 수 카드를 5장",
+        "style_role": "question",
+        "x": 20.0,
+        "y": 40.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "씩 똑같이 나누어 가졌습니다. 민하가 수 카드",
+        "style_role": "question",
+        "x": 20.0,
+        "y": 84.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "로 만든 가장 큰 네 자리 수는 8742이고, 가장",
+        "style_role": "question",
+        "x": 20.0,
+        "y": 128.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "작은 네 자리 수는 2047입니다. 두 사람이 만",
+        "style_role": "question",
+        "x": 20.0,
+        "y": 172.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q5",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "들 수 있는 가장 큰 세 자리 수의 합을 구하시오.",
+        "style_role": "question",
+        "x": 20.0,
+        "y": 216.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q6",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "(단, 수를 만들 때 수 카드를 한 번씩만 사용합니다.)",
+        "style_role": "question",
+        "x": 20.0,
+        "y": 260.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q1",
+    "slot.q2",
+    "slot.q3",
+    "slot.q4",
+    "slot.q5",
+    "slot.q6"
+  ]
+}

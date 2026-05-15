@@ -1,0 +1,89 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "msedge_2zziXaAZVd",
+  "title": "",
+  "canvas": {
+    "width": 1050,
+    "height": 616,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "vertical",
+      "slot_ids": [
+        "slot.b1",
+        "slot.b2",
+        "slot.b3",
+        "slot.rect_6"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.b1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "229+985를 다음과 같은 방법으로 계산하였습니다.\n□ 안에 알맞은 수를 써넣으시오.",
+        "style_role": "body",
+        "x": 71.39065551757812,
+        "y": 101.47355270385742,
+        "font_size": 44,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.rect_6",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 77.65080261230469,
+        "y": 252.62855529785156,
+        "width": 900.0,
+        "height": 127.73997497558594,
+        "stroke": "#222",
+        "stroke_width": 2.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.b2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "220과 980을 먼저 더하고 9와 5를 더한 후 두 수를 더합니다.",
+        "style_role": "body",
+        "x": 115.4915771484375,
+        "y": 322.9292449951172,
+        "font_size": 34,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.b3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "229+985=(220+□)+(□+5)=□+14=□",
+        "style_role": "body",
+        "x": 96.42572021484375,
+        "y": 500.4971008300781,
+        "font_size": 45,
+        "fill": "#111111"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.b1",
+    "slot.b2",
+    "slot.b3",
+    "slot.rect_6"
+  ]
+}

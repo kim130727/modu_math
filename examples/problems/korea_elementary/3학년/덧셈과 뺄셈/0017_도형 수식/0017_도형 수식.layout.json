@@ -1,0 +1,148 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "0017_도형 수식",
+  "title": "",
+  "canvas": {
+    "width": 736,
+    "height": 340,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "vertical",
+      "slot_ids": [
+        "slot.equation_box",
+        "slot.answer_blank",
+        "slot.line1",
+        "slot.eq1",
+        "slot.eq2",
+        "slot.answer_left_paren",
+        "slot.answer_right_paren"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.line1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "같은 모양은 같은 수를 나타낼 때 ■는 얼마를 나타냅니까?",
+        "style_role": "body",
+        "x": 20.0,
+        "y": 42.0,
+        "font_size": 22,
+        "font_family": "Malgun Gothic",
+        "anchor": "middle",
+        "fill": "#000000"
+      }
+    },
+    {
+      "id": "slot.equation_box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 165.0,
+        "y": 112.0,
+        "width": 402.0,
+        "height": 140.0,
+        "stroke": "#111111",
+        "stroke_width": 1.0,
+        "rx": 22.0,
+        "ry": 22.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.eq1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "17×▲=■",
+        "style_role": "body",
+        "x": 290.0,
+        "y": 164.0,
+        "font_size": 44,
+        "font_family": "Malgun Gothic",
+        "anchor": "middle",
+        "fill": "#000000"
+      }
+    },
+    {
+      "id": "slot.eq2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "64÷▲=8",
+        "style_role": "body",
+        "x": 290.0,
+        "y": 224.0,
+        "font_size": 44,
+        "font_family": "Malgun Gothic",
+        "anchor": "middle",
+        "fill": "#000000"
+      }
+    },
+    {
+      "id": "slot.answer_blank",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 430.0,
+        "y": 272.0,
+        "width": 235.0,
+        "height": 44.0,
+        "stroke": "none",
+        "stroke_width": 1.0,
+        "fill": "none",
+        "semantic_role": "blank_answer"
+      }
+    },
+    {
+      "id": "slot.answer_left_paren",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "(",
+        "style_role": "body",
+        "x": 398.0,
+        "y": 304.0,
+        "font_size": 40,
+        "font_family": "Malgun Gothic",
+        "anchor": "middle",
+        "fill": "#000000"
+      }
+    },
+    {
+      "id": "slot.answer_right_paren",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": ")",
+        "style_role": "body",
+        "x": 700.0,
+        "y": 304.0,
+        "font_size": 40,
+        "font_family": "Malgun Gothic",
+        "anchor": "middle",
+        "fill": "#000000"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.equation_box",
+    "slot.answer_blank",
+    "slot.line1",
+    "slot.eq1",
+    "slot.eq2",
+    "slot.answer_left_paren",
+    "slot.answer_right_paren"
+  ]
+}

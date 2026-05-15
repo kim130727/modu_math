@@ -1,0 +1,258 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "Hpdf_8emmiBLDHT",
+  "title": "직각사각형의 세 변",
+  "canvas": {
+    "width": 880,
+    "height": 727,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q1",
+        "slot.q2",
+        "slot.q3",
+        "slot.q4"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.left_square",
+        "slot.bottom_square",
+        "slot.right_square",
+        "slot.center_point",
+        "slot.curve_hint",
+        "slot.right_angle",
+        "slot.black_vertical",
+        "slot.black_diagonal",
+        "slot.left_label",
+        "slot.bottom_label"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "직각삼각형의 세 변을 한 변으로 하는 정사각",
+        "style_role": "question",
+        "x": 10.0,
+        "y": 40.0,
+        "font_size": 35
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "형 3개를 겹치지 않게 이어 붙여서 만든 도형",
+        "style_role": "question",
+        "x": 10.0,
+        "y": 95.0,
+        "font_size": 35
+      }
+    },
+    {
+      "id": "slot.q3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "입니다. 직각삼각형의 세 변의 길이의 합이",
+        "style_role": "question",
+        "x": 10.0,
+        "y": 150.0,
+        "font_size": 35
+      }
+    },
+    {
+      "id": "slot.q4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "30 cm일 때 굵은 선의 길이는 몇 cm입니까?",
+        "style_role": "question",
+        "x": 10.0,
+        "y": 205.0,
+        "font_size": 35
+      }
+    },
+    {
+      "id": "slot.left_square",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 190.0,
+        "y": 424.0,
+        "width": 210.0,
+        "height": 210.0,
+        "stroke": "#8A8A8A",
+        "stroke_width": 5.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.bottom_square",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 400.0,
+        "y": 634.0,
+        "width": 87.5,
+        "height": 87.5,
+        "stroke": "#8A8A8A",
+        "stroke_width": 5.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.right_square",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            400.0,
+            424.0
+          ],
+          [
+            487.5,
+            634.0
+          ],
+          [
+            697.5,
+            546.5
+          ],
+          [
+            610.0,
+            336.5
+          ]
+        ],
+        "stroke": "#8A8A8A",
+        "stroke_width": 5.0,
+        "fill": "none",
+        "semantic_role": "diagram_shape"
+      }
+    },
+    {
+      "id": "slot.center_point",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 400.0,
+        "cy": 634.0,
+        "r": 3.5,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.black_vertical",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 400.0,
+        "y1": 424.0,
+        "x2": 400.0,
+        "y2": 634.0,
+        "stroke": "#222222",
+        "stroke_width": 3.0
+      }
+    },
+    {
+      "id": "slot.black_diagonal",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 400.0,
+        "y1": 424.0,
+        "x2": 487.5,
+        "y2": 634.0,
+        "stroke": "#222222",
+        "stroke_width": 3.0
+      }
+    },
+    {
+      "id": "slot.left_label",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "12 cm",
+        "style_role": "label",
+        "x": 250.0,
+        "y": 530.0,
+        "font_size": 35
+      }
+    },
+    {
+      "id": "slot.bottom_label",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "5 cm",
+        "style_role": "label",
+        "x": 410.0,
+        "y": 680.0,
+        "font_size": 35
+      }
+    },
+    {
+      "id": "slot.curve_hint",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 390 430 C 360 480, 360 580, 390 630",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#8A8A8A",
+        "stroke_width": 2.0,
+        "stroke_dasharray": "6 5",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.right_angle",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 400.0,
+        "y": 614.0,
+        "width": 20.0,
+        "height": 20.0,
+        "stroke": "#222222",
+        "stroke_width": 2.0,
+        "fill": "none"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q1",
+    "slot.q2",
+    "slot.q3",
+    "slot.q4",
+    "region.diagram",
+    "slot.left_square",
+    "slot.bottom_square",
+    "slot.right_square",
+    "slot.center_point",
+    "slot.curve_hint",
+    "slot.right_angle",
+    "slot.black_vertical",
+    "slot.black_diagonal",
+    "slot.left_label",
+    "slot.bottom_label"
+  ]
+}

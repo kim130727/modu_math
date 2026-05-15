@@ -1,0 +1,82 @@
+{
+  "problem_id": "0006_직각의 개수",
+  "view_box": {
+    "width": 400.0,
+    "height": 220.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.bg.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 400.0,
+        "height": 220.0,
+        "fill": "#F4F4F4",
+        "stroke": "none",
+        "stroke-width": 0.0
+      },
+      "source_ref": "slot.bg",
+      "refs": {
+        "layout_slot_id": "slot.bg"
+      }
+    },
+    {
+      "id": "slot.answer_value.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 344.0,
+        "y": 186.0,
+        "width": 48.0,
+        "height": 28.0,
+        "fill": "none",
+        "stroke": "none",
+        "stroke-width": 0.0,
+        "data-semantic-role": "answer_anchor"
+      },
+      "source_ref": "slot.answer_value",
+      "refs": {
+        "layout_slot_id": "slot.answer_value"
+      }
+    },
+    {
+      "id": "slot.i1.text",
+      "type": "text",
+      "attributes": {
+        "x": 4.0,
+        "y": 34.0,
+        "max_width": 272.0,
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 17,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.i1",
+      "refs": {
+        "layout_slot_id": "slot.i1"
+      },
+      "text": "다음 도형에서 찾을 수 있는 직각은 모두 몇"
+    },
+    {
+      "id": "slot.i2.text",
+      "type": "text",
+      "attributes": {
+        "x": 4.0,
+        "y": 64.0,
+        "max_width": 272.0,
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 17,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.i2",
+      "refs": {
+        "layout_slot_id": "slot.i2"
+      },
+      "text": "개인지 구하세요."
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

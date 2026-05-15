@@ -1,0 +1,61 @@
+{
+  "schema": "modu.solvable.v1",
+  "problem_id": "Hpdf_BIkXdH5wZb",
+  "problem_type": "clock_angle_count",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "직각인 시각의 수",
+    "target_ticks": 0,
+    "target_count": 0,
+    "unit": "번"
+  },
+  "given": [
+    {
+      "ref": "obj.start_time",
+      "value": {
+        "hour": 9,
+        "minute": 0
+      }
+    },
+    {
+      "ref": "obj.duration",
+      "value": {
+        "hour": 2
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "count"
+  },
+  "method": "clock_angle_counting",
+  "plan": [
+    "9시 정각부터 2시간 동안(9:00~11:00) 직각이 되는 시각을 찾는다.",
+    "9:00 정각에 직각이 된다.",
+    "9시와 10시 사이에 한 번 더 직각이 된다.",
+    "10시와 11시 사이에 두 번 직각이 된다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "operation": "count_times",
+      "expr": "1 (9:00) + 1 (9시 대) + 2 (10시 대)",
+      "value": 4
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "type": "interval_check",
+      "expr": "구간 해석이 9:00~11:00인지 확인",
+      "expected": 1,
+      "actual": 1,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "value": 4,
+    "unit": "번",
+    "derived_from": "step.1"
+  }
+}

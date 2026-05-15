@@ -1,0 +1,90 @@
+{
+  "problem_id": "Hpdf_VKtbeqlhlk",
+  "problem_type": "overlap_length",
+  "metadata": {
+    "title": "테이프 길이 합",
+    "tags": [],
+    "question": "초록색 테이프 294 cm와 노란색 테이프 215 cm를 겹치게 한 줄로 이어 붙였더니 374 cm가 되었습니다. 겹친 부분은 몇 cm입니까?",
+    "required_layout_ids": [],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "겹친 부분의 길이를 구하시오."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.tape.green",
+        "type": "tape",
+        "color": "green",
+        "length_cm": 294
+      },
+      {
+        "id": "obj.tape.yellow",
+        "type": "tape",
+        "color": "yellow",
+        "length_cm": 215
+      },
+      {
+        "id": "obj.result.length",
+        "type": "length",
+        "value_cm": 374
+      },
+      {
+        "id": "obj.overlap",
+        "type": "overlap"
+      }
+    ],
+    "relations": [
+      {
+        "id": "rel.combine_with_overlap",
+        "type": "combined_length_with_overlap",
+        "from_id": "obj.tape.green",
+        "to_id": "obj.tape.yellow",
+        "result": "obj.result.length",
+        "shared_part": "obj.overlap"
+      }
+    ],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.tape.green",
+          "obj.tape.yellow",
+          "obj.result.length"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.combine_with_overlap"
+        ]
+      },
+      "plan": {
+        "method": "subtract_overlap_from_sum",
+        "description": "두 테이프의 전체 길이의 합에서 이어 붙인 길이를 빼서 겹친 부분의 길이를 구한다."
+      },
+      "execute": {
+        "expected_operations": [
+          "add_two_lengths",
+          "subtract_combined_length"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "inverse_relation_check",
+          "unit_consistency_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "overlap_length",
+      "description": "겹친 부분의 길이"
+    },
+    "value": 135,
+    "unit": "cm"
+  }
+}

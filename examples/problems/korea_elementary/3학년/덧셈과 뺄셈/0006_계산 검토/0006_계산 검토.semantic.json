@@ -1,0 +1,46 @@
+{
+  "problem_id": "0006_계산 검토",
+  "problem_type": "arithmetic_error_correction",
+  "metadata": {
+    "title": "",
+    "tags": [],
+    "instruction": "잘못 계산한 곳에 ○표 하고, 바르게 계산해 보세요.",
+    "question": "잘못 계산된 세로 덧셈식(323+998=1221)을 찾아 바르게 고치는 문제",
+    "required_layout_ids": [
+      "slot.right_tab",
+      "slot.right_panel",
+      "slot.left_panel",
+      "slot.arrow_head",
+      "slot.arrow_body",
+      "slot.left_line"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.wrong_eq",
+        "type": "equation",
+        "value": "323+998=1221",
+        "description": "잘못된 식"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "plan": {
+        "method": "recalculation_and_correction",
+        "description": "받아올림을 주의하며 덧셈을 다시 수행하여 올바른 결과를 구한다."
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "value": 1321,
+    "unit": ""
+  }
+}

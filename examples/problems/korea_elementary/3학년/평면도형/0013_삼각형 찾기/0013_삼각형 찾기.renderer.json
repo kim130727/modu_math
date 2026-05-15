@@ -1,0 +1,245 @@
+{
+  "problem_id": "0013_삼각형 찾기",
+  "view_box": {
+    "width": 790.0,
+    "height": 240.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.bg.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 790.0,
+        "height": 240.0,
+        "fill": "#F4F4F4",
+        "stroke": "none",
+        "stroke-width": 0.0
+      },
+      "source_ref": "slot.bg",
+      "refs": {
+        "layout_slot_id": "slot.bg"
+      }
+    },
+    {
+      "id": "slot.frame.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 112.0,
+        "y": 94.0,
+        "width": 552.0,
+        "height": 106.0,
+        "fill": "none",
+        "stroke": "#8A8A8A",
+        "stroke-width": 1.4,
+        "rx": 10.0,
+        "ry": 10.0
+      },
+      "source_ref": "slot.frame",
+      "refs": {
+        "layout_slot_id": "slot.frame"
+      }
+    },
+    {
+      "id": "slot.ra.polygon",
+      "type": "polygon",
+      "attributes": {
+        "points": [
+          [
+            582.0,
+            112.0
+          ],
+          [
+            648.0,
+            114.0
+          ],
+          [
+            614.0,
+            186.0
+          ]
+        ],
+        "stroke": "#303030",
+        "stroke-width": 2.1,
+        "fill": "none"
+      },
+      "source_ref": "slot.ra",
+      "refs": {
+        "layout_slot_id": "slot.ra"
+      }
+    },
+    {
+      "id": "slot.ga.polygon",
+      "type": "polygon",
+      "attributes": {
+        "points": [
+          [
+            128.0,
+            118.0
+          ],
+          [
+            236.0,
+            118.0
+          ],
+          [
+            236.0,
+            176.0
+          ]
+        ],
+        "stroke": "#303030",
+        "stroke-width": 2.1,
+        "fill": "none"
+      },
+      "source_ref": "slot.ga",
+      "refs": {
+        "layout_slot_id": "slot.ga"
+      }
+    },
+    {
+      "id": "slot.na.polygon",
+      "type": "polygon",
+      "attributes": {
+        "points": [
+          [
+            282.0,
+            176.0
+          ],
+          [
+            282.0,
+            124.0
+          ],
+          [
+            356.0,
+            176.0
+          ]
+        ],
+        "stroke": "#303030",
+        "stroke-width": 2.1,
+        "fill": "none"
+      },
+      "source_ref": "slot.na",
+      "refs": {
+        "layout_slot_id": "slot.na"
+      }
+    },
+    {
+      "id": "slot.da.polygon",
+      "type": "polygon",
+      "attributes": {
+        "points": [
+          [
+            438.0,
+            124.0
+          ],
+          [
+            438.0,
+            186.0
+          ],
+          [
+            506.0,
+            186.0
+          ]
+        ],
+        "stroke": "#303030",
+        "stroke-width": 2.1,
+        "fill": "none"
+      },
+      "source_ref": "slot.da",
+      "refs": {
+        "layout_slot_id": "slot.da"
+      }
+    },
+    {
+      "id": "slot.i1.text",
+      "type": "text",
+      "attributes": {
+        "x": 4.0,
+        "y": 34.0,
+        "max_width": 662.0,
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 17,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.i1",
+      "refs": {
+        "layout_slot_id": "slot.i1"
+      },
+      "text": "직각삼각형이 아닌 것을 찾아 기호를 쓰고 그 이유를 쓰세요."
+    },
+    {
+      "id": "slot.ga_t.text",
+      "type": "text",
+      "attributes": {
+        "x": 205.0,
+        "y": 149.0,
+        "max_width": 662.0,
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 18,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.ga_t",
+      "refs": {
+        "layout_slot_id": "slot.ga_t"
+      },
+      "text": "가"
+    },
+    {
+      "id": "slot.ra_t.text",
+      "type": "text",
+      "attributes": {
+        "x": 614.0,
+        "y": 149.0,
+        "max_width": 662.0,
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 18,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.ra_t",
+      "refs": {
+        "layout_slot_id": "slot.ra_t"
+      },
+      "text": "라"
+    },
+    {
+      "id": "slot.na_t.text",
+      "type": "text",
+      "attributes": {
+        "x": 314.0,
+        "y": 156.0,
+        "max_width": 662.0,
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 18,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.na_t",
+      "refs": {
+        "layout_slot_id": "slot.na_t"
+      },
+      "text": "나"
+    },
+    {
+      "id": "slot.da_t.text",
+      "type": "text",
+      "attributes": {
+        "x": 460.0,
+        "y": 164.0,
+        "max_width": 662.0,
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 18,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.da_t",
+      "refs": {
+        "layout_slot_id": "slot.da_t"
+      },
+      "text": "다"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

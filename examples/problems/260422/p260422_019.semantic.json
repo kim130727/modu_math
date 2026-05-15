@@ -1,0 +1,166 @@
+{
+  "problem_id": "p260422_019",
+  "problem_type": "fill_in_blank",
+  "metadata": {
+    "title": "",
+    "tags": [],
+    "instruction": "안에 알맞은 수를 써넣으시오.",
+    "question": "(1) 827 + 493\n(2) 574 + 539",
+    "required_layout_ids": [
+      "slot.title.blank",
+      "slot.p1.box.top",
+      "slot.p1.box.mid",
+      "slot.p1.box.bot",
+      "slot.p2.box.top",
+      "slot.p2.box.mid",
+      "slot.p2.box.bot",
+      "slot.p1.gray.branch.left",
+      "slot.p1.gray.branch.right",
+      "slot.p1.pink",
+      "slot.p2.underline.57",
+      "slot.p2.underline.4",
+      "slot.p2.underline.53",
+      "slot.p2.underline.9",
+      "slot.p2.pink",
+      "slot.p1.gray.branch.right.line-5",
+      "slot.p1.gray.branch.right.line-5-9",
+      "slot.p1.gray.branch.right.line-5-7",
+      "slot.p1.gray.branch.right.line-5-1",
+      "slot.p1.gray.branch.right.line-5-1-2",
+      "slot.p1.gray.branch.right.line-5-1-2-1",
+      "slot.p1.gray.branch.right.line-5-1-2-1-7",
+      "slot.p1.gray.branch.right.line-5-7-5",
+      "slot.p1.gray.branch.right.line-5-1-2-4",
+      "slot.p1.gray.branch.right.line-5-1-2-9"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj_inst_1",
+        "type": "instruction",
+        "text": "안에 알맞은 수를 써넣으시오."
+      },
+      {
+        "id": "obj_q1",
+        "type": "question",
+        "text": "(1) 827 + 493"
+      },
+      {
+        "id": "obj_q2",
+        "type": "question",
+        "text": "(2) 574 + 539"
+      },
+      {
+        "id": "obj_n827",
+        "type": "number",
+        "value": 827,
+        "text": "827"
+      },
+      {
+        "id": "obj_n493",
+        "type": "number",
+        "value": 493,
+        "text": "493"
+      },
+      {
+        "id": "obj_n574",
+        "type": "number",
+        "value": 574,
+        "text": "574"
+      },
+      {
+        "id": "obj_n539",
+        "type": "number",
+        "value": 539,
+        "text": "539"
+      },
+      {
+        "id": "obj_blank_1a",
+        "type": "blank"
+      },
+      {
+        "id": "obj_blank_1b",
+        "type": "blank"
+      },
+      {
+        "id": "obj_blank_1c",
+        "type": "blank"
+      },
+      {
+        "id": "obj_blank_2a",
+        "type": "blank"
+      },
+      {
+        "id": "obj_blank_2b",
+        "type": "blank"
+      },
+      {
+        "id": "obj_blank_2c",
+        "type": "blank"
+      }
+    ],
+    "relations": [
+      {
+        "id": "rel_contains_1",
+        "type": "contains",
+        "from_id": "obj_q1",
+        "to_id": "obj_blank_1a"
+      },
+      {
+        "id": "rel_contains_2",
+        "type": "contains",
+        "from_id": "obj_q1",
+        "to_id": "obj_blank_1b"
+      },
+      {
+        "id": "rel_contains_3",
+        "type": "contains",
+        "from_id": "obj_q1",
+        "to_id": "obj_blank_1c"
+      },
+      {
+        "id": "rel_contains_4",
+        "type": "contains",
+        "from_id": "obj_q2",
+        "to_id": "obj_blank_2a"
+      },
+      {
+        "id": "rel_contains_5",
+        "type": "contains",
+        "from_id": "obj_q2",
+        "to_id": "obj_blank_2b"
+      },
+      {
+        "id": "rel_contains_6",
+        "type": "contains",
+        "from_id": "obj_q2",
+        "to_id": "obj_blank_2c"
+      }
+    ],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {},
+      "plan": {},
+      "execute": {},
+      "review": {}
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "number",
+      "description": "정답"
+    },
+    "value": [
+      1320,
+      1113
+    ],
+    "unit": ""
+  }
+}

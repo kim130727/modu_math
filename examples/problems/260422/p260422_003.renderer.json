@@ -1,0 +1,202 @@
+{
+  "problem_id": "p260422_003",
+  "view_box": {
+    "width": 702.0,
+    "height": 328.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.title.text",
+      "type": "text",
+      "attributes": {
+        "x": 12.0,
+        "y": 52.0,
+        "max_width": 574.0,
+        "fill": "#222222",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30
+      },
+      "source_ref": "slot.title",
+      "refs": {
+        "layout_slot_id": "slot.title"
+      },
+      "text": "큰 수를 작은 수로 나눈 몫을 빈칸에 써넣으시오."
+    },
+    {
+      "id": "slot.card.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 194.0,
+        "y": 92.0,
+        "width": 296.0,
+        "height": 206.0,
+        "fill": "#ececef",
+        "stroke": "#d9d9de",
+        "stroke-width": 1.6,
+        "rx": 22.0,
+        "ry": 22.0
+      },
+      "source_ref": "slot.card",
+      "refs": {
+        "layout_slot_id": "slot.card"
+      }
+    },
+    {
+      "id": "slot.card.split_h.line",
+      "type": "line",
+      "attributes": {
+        "x1": 194.0,
+        "y1": 196.0,
+        "x2": 490.0,
+        "y2": 196.0,
+        "stroke": "#d9d9de",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.card.split_h",
+      "refs": {
+        "layout_slot_id": "slot.card.split_h"
+      }
+    },
+    {
+      "id": "slot.card.split_v.line",
+      "type": "line",
+      "attributes": {
+        "x1": 342.0,
+        "y1": 92.0,
+        "x2": 342.0,
+        "y2": 196.0,
+        "stroke": "#d9d9de",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.card.split_v",
+      "refs": {
+        "layout_slot_id": "slot.card.split_v"
+      }
+    },
+    {
+      "id": "slot.blank.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 204.0,
+        "y": 204.0,
+        "width": 276.0,
+        "height": 84.0,
+        "fill": "#ffffff",
+        "stroke": "none",
+        "stroke-width": 1.5,
+        "rx": 10.0,
+        "ry": 10.0
+      },
+      "source_ref": "slot.blank",
+      "refs": {
+        "layout_slot_id": "slot.blank"
+      }
+    },
+    {
+      "id": "slot.frac_l_num.text",
+      "type": "text",
+      "attributes": {
+        "x": 268.0,
+        "y": 133.0,
+        "max_width": 574.0,
+        "fill": "#222222",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 40,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.frac_l_num",
+      "refs": {
+        "layout_slot_id": "slot.frac_l_num"
+      },
+      "text": "6"
+    },
+    {
+      "id": "slot.frac_l_bar.line",
+      "type": "line",
+      "attributes": {
+        "x1": 246.0,
+        "y1": 143.0,
+        "x2": 290.0,
+        "y2": 143.0,
+        "stroke": "#222222",
+        "stroke-width": 2.2
+      },
+      "source_ref": "slot.frac_l_bar",
+      "refs": {
+        "layout_slot_id": "slot.frac_l_bar"
+      }
+    },
+    {
+      "id": "slot.frac_l_den.text",
+      "type": "text",
+      "attributes": {
+        "x": 268.0,
+        "y": 180.0,
+        "max_width": 574.0,
+        "fill": "#222222",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 40,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.frac_l_den",
+      "refs": {
+        "layout_slot_id": "slot.frac_l_den"
+      },
+      "text": "7"
+    },
+    {
+      "id": "slot.frac_r_num.text",
+      "type": "text",
+      "attributes": {
+        "x": 416.0,
+        "y": 133.0,
+        "max_width": 574.0,
+        "fill": "#222222",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 40,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.frac_r_num",
+      "refs": {
+        "layout_slot_id": "slot.frac_r_num"
+      },
+      "text": "13"
+    },
+    {
+      "id": "slot.frac_r_bar.line",
+      "type": "line",
+      "attributes": {
+        "x1": 388.0,
+        "y1": 143.0,
+        "x2": 444.0,
+        "y2": 143.0,
+        "stroke": "#222222",
+        "stroke-width": 2.2
+      },
+      "source_ref": "slot.frac_r_bar",
+      "refs": {
+        "layout_slot_id": "slot.frac_r_bar"
+      }
+    },
+    {
+      "id": "slot.frac_r_den.text",
+      "type": "text",
+      "attributes": {
+        "x": 416.0,
+        "y": 180.0,
+        "max_width": 574.0,
+        "fill": "#222222",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 40,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.frac_r_den",
+      "refs": {
+        "layout_slot_id": "slot.frac_r_den"
+      },
+      "text": "4"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

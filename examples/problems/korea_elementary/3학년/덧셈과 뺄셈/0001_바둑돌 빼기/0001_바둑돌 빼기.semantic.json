@@ -1,0 +1,51 @@
+{
+  "problem_id": "0001_바둑돌 빼기",
+  "problem_type": "arithmetic_word_problem_subtraction",
+  "metadata": {
+    "title": "",
+    "tags": [],
+    "instruction": "뺀 바둑돌은 몇 개입니까?",
+    "question": "검은색 바둑돌 374개와 흰색 바둑돌 558개 중 일부를 뺀 후 463개가 남았을 때, 뺀 바둑돌의 수를 구하는 문제",
+    "required_layout_ids": [],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.black",
+        "type": "count",
+        "value": 374,
+        "description": "검은색 바둑돌"
+      },
+      {
+        "id": "obj.white",
+        "type": "count",
+        "value": 558,
+        "description": "흰색 바둑돌"
+      },
+      {
+        "id": "obj.remaining",
+        "type": "count",
+        "value": 463,
+        "description": "남은 바둑돌"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "plan": {
+        "method": "total_then_subtract",
+        "description": "먼저 검은색과 흰색 바둑돌을 합해 전체 바둑돌 수를 구하고, 거기서 남은 바둑돌 수를 빼서 뺀 바둑돌 수를 구한다."
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "value": 469,
+    "unit": "개"
+  }
+}

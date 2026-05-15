@@ -1,0 +1,202 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "p260422_003",
+  "title": "",
+  "canvas": {
+    "width": 702,
+    "height": 328,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.title",
+        "slot.card",
+        "slot.card.split_h",
+        "slot.card.split_v",
+        "slot.blank",
+        "slot.frac_l_num",
+        "slot.frac_l_bar",
+        "slot.frac_l_den",
+        "slot.frac_r_num",
+        "slot.frac_r_bar",
+        "slot.frac_r_den"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.title",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "큰 수를 작은 수로 나눈 몫을 빈칸에 써넣으시오.",
+        "style_role": "body",
+        "x": 12.0,
+        "y": 52.0,
+        "font_size": 30,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.card",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 194.0,
+        "y": 92.0,
+        "width": 296.0,
+        "height": 206.0,
+        "stroke": "#d9d9de",
+        "stroke_width": 1.6,
+        "rx": 22.0,
+        "ry": 22.0,
+        "fill": "#ececef"
+      }
+    },
+    {
+      "id": "slot.card.split_h",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 194.0,
+        "y1": 196.0,
+        "x2": 490.0,
+        "y2": 196.0,
+        "stroke": "#d9d9de",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.card.split_v",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 342.0,
+        "y1": 92.0,
+        "x2": 342.0,
+        "y2": 196.0,
+        "stroke": "#d9d9de",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.blank",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 204.0,
+        "y": 204.0,
+        "width": 276.0,
+        "height": 84.0,
+        "stroke": "none",
+        "rx": 10.0,
+        "ry": 10.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.frac_l_num",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "6",
+        "style_role": "body",
+        "x": 268.0,
+        "y": 133.0,
+        "font_size": 40,
+        "anchor": "middle",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.frac_l_bar",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 246.0,
+        "y1": 143.0,
+        "x2": 290.0,
+        "y2": 143.0,
+        "stroke": "#222222",
+        "stroke_width": 2.2
+      }
+    },
+    {
+      "id": "slot.frac_l_den",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "7",
+        "style_role": "body",
+        "x": 268.0,
+        "y": 180.0,
+        "font_size": 40,
+        "anchor": "middle",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.frac_r_num",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "13",
+        "style_role": "body",
+        "x": 416.0,
+        "y": 133.0,
+        "font_size": 40,
+        "anchor": "middle",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.frac_r_bar",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 388.0,
+        "y1": 143.0,
+        "x2": 444.0,
+        "y2": 143.0,
+        "stroke": "#222222",
+        "stroke_width": 2.2
+      }
+    },
+    {
+      "id": "slot.frac_r_den",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "4",
+        "style_role": "body",
+        "x": 416.0,
+        "y": 180.0,
+        "font_size": 40,
+        "anchor": "middle",
+        "fill": "#222222"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.title",
+    "slot.card",
+    "slot.card.split_h",
+    "slot.card.split_v",
+    "slot.blank",
+    "slot.frac_l_num",
+    "slot.frac_l_bar",
+    "slot.frac_l_den",
+    "slot.frac_r_num",
+    "slot.frac_r_bar",
+    "slot.frac_r_den"
+  ]
+}

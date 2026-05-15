@@ -1,0 +1,160 @@
+{
+  "problem_id": "2407",
+  "problem_type": "geometry_angle",
+  "metadata": {
+    "title": "x의 값을 구하시오.",
+    "tags": [
+      "angle",
+      "geometry",
+      "multiple_choice"
+    ],
+    "question": "x의 값을 구하시오.",
+    "required_layout_ids": [
+      "slot.line_ac",
+      "slot.line_ac_head_l",
+      "slot.line_ac_head_r",
+      "slot.line_he",
+      "slot.line_he_head_l",
+      "slot.line_he_head_r",
+      "slot.line_bi",
+      "slot.line_bi_head_l",
+      "slot.line_bi_head_r",
+      "slot.line_df",
+      "slot.line_df_head_l",
+      "slot.line_df_head_r",
+      "slot.line_gj",
+      "slot.line_gj_head_l",
+      "slot.line_gj_head_r",
+      "slot.line_ah",
+      "slot.line_bd",
+      "slot.line_bf",
+      "slot.line_cb",
+      "slot.line_ch",
+      "slot.line_ci",
+      "slot.line_dg",
+      "slot.line_dj",
+      "slot.line_ge",
+      "slot.line_hg",
+      "slot.pt_a",
+      "slot.pt_b",
+      "slot.pt_c",
+      "slot.pt_d",
+      "slot.pt_e",
+      "slot.pt_f",
+      "slot.pt_g",
+      "slot.pt_h",
+      "slot.pt_i",
+      "slot.pt_j"
+    ],
+    "extraction_confidence": 1.0,
+    "instruction": "보기에서 알맞은 값을 고르시오.",
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.diagram",
+        "type": "geometry_diagram"
+      },
+      {
+        "id": "obj.angle.x",
+        "type": "angle_label",
+        "label": "X°"
+      },
+      {
+        "id": "obj.angle.xm6",
+        "type": "angle_label",
+        "label": "(X-6)°"
+      },
+      {
+        "id": "obj.angle.xp10",
+        "type": "angle_label",
+        "label": "(X+10)°"
+      },
+      {
+        "id": "obj.angle.56",
+        "type": "angle_label",
+        "label": "56°"
+      },
+      {
+        "id": "obj.angle.xp4",
+        "type": "angle_label",
+        "label": "(X+4)°"
+      },
+      {
+        "id": "obj.choice.1",
+        "type": "choice",
+        "label": "56"
+      },
+      {
+        "id": "obj.choice.2",
+        "type": "choice",
+        "label": "68"
+      },
+      {
+        "id": "obj.choice.3",
+        "type": "choice",
+        "label": "74"
+      },
+      {
+        "id": "obj.choice.4",
+        "type": "choice",
+        "label": "84"
+      }
+    ],
+    "relations": [
+      {
+        "id": "rel.angle_labels_on_diagram",
+        "type": "label_placement",
+        "from_id": "obj.diagram",
+        "to_id": "obj.angle.x"
+      },
+      {
+        "id": "rel.find_x",
+        "type": "find",
+        "from_id": "obj.angle.x",
+        "to_id": "answer.target"
+      }
+    ],
+    "confidence": 1.0,
+    "problem_solving": {
+      "method": "geometry_angle_relations",
+      "description": "도형의 각도 관계를 이용해 x를 구한다."
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [
+      {
+        "index": 1,
+        "text": "1. 56",
+        "value": "56"
+      },
+      {
+        "index": 2,
+        "text": "2. 68",
+        "value": "68"
+      },
+      {
+        "index": 3,
+        "text": "3. 74",
+        "value": "74"
+      },
+      {
+        "index": 4,
+        "text": "4. 84",
+        "value": "84"
+      }
+    ],
+    "answer_key": [
+      3
+    ],
+    "confidence": 1.0,
+    "target": {
+      "type": "multiple_choice_value",
+      "description": "x의 값"
+    },
+    "value": 74,
+    "unit": "°"
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "schema": "modu.solvable.v1",
+  "problem_id": "0004_수 모형 덧셈 2",
+  "problem_type": "arithmetic_visual_model_addition",
+  "given": [
+    {
+      "ref": "obj.num1",
+      "value": 137
+    },
+    {
+      "ref": "obj.num2",
+      "value": 286
+    }
+  ],
+  "target": {
+    "type": "number",
+    "description": "137+286의 합"
+  },
+  "method": "visual_addition_with_regrouping",
+  "steps": [
+    {
+      "id": "step.s1",
+      "operation": "addition",
+      "expr": "137 + 286 = 423",
+      "value": 423
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.c1",
+      "type": "arithmetic_consistency_check",
+      "pass": true,
+      "expected": 423,
+      "actual": 423,
+      "expr": "137 + 286"
+    }
+  ],
+  "answer": {
+    "value": 423,
+    "unit": "",
+    "derived_from": "step.s1"
+  },
+  "inputs": {
+    "total_ticks": 1,
+    "target_label": "답",
+    "target_ticks": 1,
+    "target_count": 1,
+    "unit": ""
+  },
+  "plan": [
+    "일의 자리(7+6=13), 십의 자리(3+8=11), 백의 자리(1+2=3)를 합산하여 받아올림을 포함해 423을 구합니다."
+  ]
+}

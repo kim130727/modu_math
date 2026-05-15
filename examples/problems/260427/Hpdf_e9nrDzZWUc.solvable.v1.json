@@ -1,0 +1,47 @@
+{
+  "schema": "modu.solvable.v1",
+  "problem_id": "Hpdf_e9nrDzZWUc",
+  "problem_type": "counting_geometry",
+  "inputs": {
+    "total_ticks": 5,
+    "target_label": "반직선",
+    "target_ticks": 2,
+    "target_count": 20,
+    "unit": "개"
+  },
+  "plan": [
+    "5개의 점 중에서 서로 다른 2개의 점을 고른다.",
+    "고른 두 점의 쌍마다 방향이 다른 반직선 2개를 대응시킨다.",
+    "조합 5C2를 계산한 뒤 2를 곱해 전체 개수를 구한다."
+  ],
+  "steps": [
+    {
+      "id": "s1",
+      "expr": "5C2",
+      "value": 10
+    },
+    {
+      "expr": "각 점의 쌍은 반직선 2개(AB, BA)에 대응",
+      "id": "s2",
+      "value": 20
+    },
+    {
+      "expr": "5C2 × 2",
+      "id": "s3",
+      "value": 20
+    }
+  ],
+  "checks": [
+    {
+      "id": "c1",
+      "expr": "C(5,2)×2",
+      "expected": 20,
+      "actual": 20,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "value": 20,
+    "unit": "개"
+  }
+}

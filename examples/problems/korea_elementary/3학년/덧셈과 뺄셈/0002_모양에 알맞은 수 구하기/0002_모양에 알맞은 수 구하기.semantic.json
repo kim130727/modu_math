@@ -1,0 +1,43 @@
+{
+  "problem_id": "0002_모양에 알맞은 수 구하기",
+  "problem_type": "arithmetic_shape_puzzle",
+  "metadata": {
+    "title": "",
+    "tags": [],
+    "instruction": "■와 ▲에 알맞은 수의 차를 구하시오.",
+    "question": "기호 ■와 ▲가 포함된 두 식을 해결하여 두 수의 차를 구하는 문제",
+    "required_layout_ids": [],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.eq1",
+        "type": "equation",
+        "value": "800 - 347 + ■ = 650"
+      },
+      {
+        "id": "obj.eq2",
+        "type": "equation",
+        "value": "543 - ▲ = ■"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "plan": {
+        "method": "sequential_equation_solving",
+        "description": "첫 번째 식에서 ■를 구하고, 그 값을 두 번째 식에 대입하여 ▲를 구한 뒤 두 수의 차를 계산한다."
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "value": 149,
+    "unit": ""
+  }
+}

@@ -1,0 +1,333 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "0010_선분의 길이 계산하기",
+  "title": "",
+  "canvas": {
+    "width": 1537,
+    "height": 595,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "vertical",
+      "slot_ids": [
+        "slot.guide_left_mid_top",
+        "slot.guide_mid_right_top",
+        "slot.guide_left_mid2_bottom",
+        "slot.guide_mid_mid2_bottom",
+        "slot.guide_mid2_right_bottom",
+        "slot.circle_a",
+        "slot.circle_b",
+        "slot.base_line",
+        "slot.tick_left",
+        "slot.tick_mid",
+        "slot.tick_mid2",
+        "slot.tick_right",
+        "slot.instruction",
+        "slot.label_821",
+        "slot.label_448",
+        "slot.label_236",
+        "slot.text_a",
+        "slot.text_b"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.instruction",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "㉠과 ㉡의 길이는 각각 몇 cm입니까?",
+        "style_role": "body",
+        "x": 24.0,
+        "y": 105.0,
+        "font_size": 84,
+        "font_family": "Malgun Gothic",
+        "anchor": "start",
+        "fill": "#2B252A",
+        "semantic_role": "instruction"
+      }
+    },
+    {
+      "id": "slot.base_line",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 70.0,
+        "y1": 332.0,
+        "x2": 1481.0,
+        "y2": 332.0,
+        "stroke": "#2E2A2D",
+        "stroke_width": 6.0,
+        "semantic_role": "number_line"
+      }
+    },
+    {
+      "id": "slot.tick_left",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 70.0,
+        "y1": 298.0,
+        "x2": 70.0,
+        "y2": 368.0,
+        "stroke": "#2E2A2D",
+        "stroke_width": 4.0,
+        "semantic_role": "point_tick"
+      }
+    },
+    {
+      "id": "slot.tick_mid",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 982.0,
+        "y1": 298.0,
+        "x2": 982.0,
+        "y2": 368.0,
+        "stroke": "#2E2A2D",
+        "stroke_width": 4.0,
+        "semantic_role": "point_tick"
+      }
+    },
+    {
+      "id": "slot.tick_mid2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 1220.0,
+        "y1": 298.0,
+        "x2": 1220.0,
+        "y2": 368.0,
+        "stroke": "#2E2A2D",
+        "stroke_width": 4.0,
+        "semantic_role": "point_tick"
+      }
+    },
+    {
+      "id": "slot.tick_right",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 1481.0,
+        "y1": 298.0,
+        "x2": 1481.0,
+        "y2": 368.0,
+        "stroke": "#2E2A2D",
+        "stroke_width": 4.0,
+        "semantic_role": "point_tick"
+      }
+    },
+    {
+      "id": "slot.guide_left_mid_top",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 70 332 Q 520 170 982 332",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#2E2A2D",
+        "stroke_width": 3.0,
+        "stroke_dasharray": "16 9",
+        "fill": "none",
+        "semantic_role": "measurement_guide"
+      }
+    },
+    {
+      "id": "slot.guide_mid_right_top",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 982 332 Q 1230 150 1481 332",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#2E2A2D",
+        "stroke_width": 3.0,
+        "stroke_dasharray": "16 9",
+        "fill": "none",
+        "semantic_role": "measurement_guide"
+      }
+    },
+    {
+      "id": "slot.guide_left_mid2_bottom",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 70 332 Q 640 760 1220 332",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#2E2A2D",
+        "stroke_width": 3.0,
+        "stroke_dasharray": "16 9",
+        "fill": "none",
+        "semantic_role": "measurement_guide"
+      }
+    },
+    {
+      "id": "slot.guide_mid_mid2_bottom",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 982 332 Q 1100 440 1220 332",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#2E2A2D",
+        "stroke_width": 3.0,
+        "stroke_dasharray": "16 9",
+        "fill": "none",
+        "semantic_role": "measurement_guide"
+      }
+    },
+    {
+      "id": "slot.guide_mid2_right_bottom",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 1220 332 Q 1350 490 1481 332",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#2E2A2D",
+        "stroke_width": 3.0,
+        "stroke_dasharray": "16 9",
+        "fill": "none",
+        "semantic_role": "measurement_guide"
+      }
+    },
+    {
+      "id": "slot.label_821",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "821 cm",
+        "style_role": "body",
+        "x": 530.0,
+        "y": 268.0,
+        "font_size": 72,
+        "font_family": "Cambria",
+        "anchor": "middle",
+        "fill": "#2B252A",
+        "semantic_role": "distance_label"
+      }
+    },
+    {
+      "id": "slot.label_448",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "448 cm",
+        "style_role": "body",
+        "x": 1210.0,
+        "y": 272.0,
+        "font_size": 72,
+        "font_family": "Cambria",
+        "anchor": "middle",
+        "fill": "#2B252A",
+        "semantic_role": "distance_label"
+      }
+    },
+    {
+      "id": "slot.label_236",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "236 cm",
+        "style_role": "body",
+        "x": 1325.0,
+        "y": 424.0,
+        "font_size": 72,
+        "font_family": "Cambria",
+        "anchor": "middle",
+        "fill": "#2B252A",
+        "semantic_role": "distance_label"
+      }
+    },
+    {
+      "id": "slot.circle_a",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 660.0,
+        "cy": 545.0,
+        "r": 34.0,
+        "stroke": "#2E2A2D",
+        "stroke_width": 3.0,
+        "fill": "none",
+        "semantic_role": "point_label"
+      }
+    },
+    {
+      "id": "slot.text_a",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄱ",
+        "style_role": "body",
+        "x": 660.0,
+        "y": 556.0,
+        "font_size": 58,
+        "font_family": "Malgun Gothic",
+        "anchor": "middle",
+        "fill": "#2B252A",
+        "semantic_role": "point_name"
+      }
+    },
+    {
+      "id": "slot.circle_b",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 1100.0,
+        "cy": 382.0,
+        "r": 34.0,
+        "stroke": "#2E2A2D",
+        "stroke_width": 3.0,
+        "fill": "none",
+        "semantic_role": "point_label"
+      }
+    },
+    {
+      "id": "slot.text_b",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄴ",
+        "style_role": "body",
+        "x": 1100.0,
+        "y": 393.0,
+        "font_size": 58,
+        "font_family": "Malgun Gothic",
+        "anchor": "middle",
+        "fill": "#2B252A",
+        "semantic_role": "point_name"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.guide_left_mid_top",
+    "slot.guide_mid_right_top",
+    "slot.guide_left_mid2_bottom",
+    "slot.guide_mid_mid2_bottom",
+    "slot.guide_mid2_right_bottom",
+    "slot.circle_a",
+    "slot.circle_b",
+    "slot.base_line",
+    "slot.tick_left",
+    "slot.tick_mid",
+    "slot.tick_mid2",
+    "slot.tick_right",
+    "slot.instruction",
+    "slot.label_821",
+    "slot.label_448",
+    "slot.label_236",
+    "slot.text_a",
+    "slot.text_b"
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "schema": "modu.solvable.v1",
+  "problem_id": "Hpdf_8mse5GcDz6",
+  "problem_type": "geometry_right_angle_count",
+  "inputs": {
+    "total_ticks": 5,
+    "target_label": "직각의 수",
+    "target_ticks": 5,
+    "target_count": 1,
+    "unit": "개"
+  },
+  "plan": [
+    "점 5개에서 3개를 고르는 모든 경우를 확인한다.",
+    "각 경우에서 직각이 되는지 판별하고 개수를 합산한다."
+  ],
+  "steps": [
+    {
+      "id": "s1",
+      "expr": "C(5,3)",
+      "value": 10
+    },
+    {
+      "id": "s2",
+      "expr": "right-angle triples = {(ㄴ,ㄱ,ㄹ), (ㄱ,ㄴ,ㄷ), (ㄴ,ㄷ,ㄹ), (ㄱ,ㄹ,ㄷ), (ㄷ,ㅁ,ㄹ)}",
+      "value": 5
+    }
+  ],
+  "checks": [
+    {
+      "id": "c1",
+      "expr": "count(right-angle triples)",
+      "expected": 5,
+      "actual": 5,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "value": 5,
+    "unit": "개"
+  }
+}

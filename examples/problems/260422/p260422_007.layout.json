@@ -1,0 +1,58 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "msedge_ib0uSJwhd1",
+  "title": "",
+  "canvas": {
+    "width": 1179,
+    "height": 244,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "vertical",
+      "slot_ids": [
+        "slot.b1",
+        "slot.b2"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.b1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "오늘 동물원에 입장한 어른은 824명, 어린이는 647명입니다.",
+        "style_role": "body",
+        "x": 15.0,
+        "y": 80.0,
+        "font_size": 45,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.b2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "오늘 동물원에 입장한 어른은 어린이보다 몇 명 더 많습니까?",
+        "style_role": "body",
+        "x": 15.0,
+        "y": 150.0,
+        "font_size": 45,
+        "fill": "#111111"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.b1",
+    "slot.b2"
+  ]
+}

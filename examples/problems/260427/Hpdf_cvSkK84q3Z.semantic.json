@@ -1,0 +1,86 @@
+{
+  "problem_id": "Hpdf_cvSkK84q3Z",
+  "problem_type": "rectangle_perimeter_square_side",
+  "metadata": {
+    "title": "대화를 보고 직사각형의 한 변의 길이 구하기",
+    "tags": [],
+    "instruction": "대화를 읽고 건우의 정사각형 액자의 한 변의 길이를 구한다.",
+    "question": "대화를 보고 건우가 가진 액자의 한 변은 몇 cm인지 구하시오.",
+    "required_layout_ids": [
+      "slot.bubble1",
+      "slot.bubble2",
+      "slot.bubble3",
+      "slot.arrow1",
+      "slot.arrow2",
+      "slot.arrow3"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.dahee_frame",
+        "type": "rectangle",
+        "sides": {
+          "width_cm": 8,
+          "height_cm": 10
+        }
+      },
+      {
+        "id": "obj.gunwoo_frame",
+        "type": "square",
+        "side_cm": null
+      }
+    ],
+    "relations": [
+      {
+        "id": "rel.equal_perimeter",
+        "type": "same_perimeter",
+        "from_id": "obj.dahee_frame",
+        "to_id": "obj.gunwoo_frame"
+      }
+    ],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.dahee_frame",
+          "rel.equal_perimeter"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.equal_perimeter"
+        ]
+      },
+      "plan": {
+        "method": "perimeter_matching",
+        "description": "다희의 직사각형 둘레를 구한 뒤, 건우의 정사각형 둘레와 같다고 보고 한 변의 길이를 찾는다."
+      },
+      "execute": {
+        "expected_operations": [
+          "compute_rectangle_perimeter",
+          "divide_by_4_for_square_side"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "same_perimeter_check",
+          "unit_consistency_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "square_side_length",
+      "description": "건우가 가진 액자의 한 변의 길이"
+    },
+    "value": null,
+    "unit": "cm"
+  }
+}

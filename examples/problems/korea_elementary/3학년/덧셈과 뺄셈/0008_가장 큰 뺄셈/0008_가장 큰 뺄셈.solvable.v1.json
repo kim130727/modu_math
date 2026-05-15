@@ -1,0 +1,63 @@
+{
+  "schema": "modu.solvable.v1",
+  "problem_id": "0008_가장 큰 뺄셈",
+  "problem_type": "arithmetic_subtraction_optimization",
+  "given": [
+    {
+      "ref": "obj.nums",
+      "value": [
+        326,
+        412,
+        481,
+        112
+      ]
+    }
+  ],
+  "target": {
+    "type": "number",
+    "description": "최대 차"
+  },
+  "method": "extremes_difference",
+  "steps": [
+    {
+      "id": "step.s1",
+      "operation": "selection",
+      "expr": "max=481, min=112",
+      "value": [
+        481,
+        112
+      ]
+    },
+    {
+      "id": "step.s2",
+      "operation": "subtraction",
+      "expr": "481 - 112 = 369",
+      "value": 369
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.c1",
+      "type": "arithmetic_consistency_check",
+      "pass": true,
+      "expected": 369,
+      "actual": 369,
+      "expr": "481 - 112"
+    }
+  ],
+  "answer": {
+    "value": 369,
+    "unit": "",
+    "derived_from": "step.s2"
+  },
+  "inputs": {
+    "total_ticks": 1,
+    "target_label": "답",
+    "target_ticks": 1,
+    "target_count": 1,
+    "unit": ""
+  },
+  "plan": [
+    "가장 큰 481에서 가장 작은 112를 빼서 최대 차인 369를 구합니다."
+  ]
+}

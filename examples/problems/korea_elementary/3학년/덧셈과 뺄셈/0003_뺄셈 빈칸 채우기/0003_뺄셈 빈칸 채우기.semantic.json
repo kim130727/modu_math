@@ -1,0 +1,40 @@
+{
+  "problem_id": "0003_뺄셈 빈칸 채우기",
+  "problem_type": "arithmetic_vertical_subtraction_puzzle",
+  "metadata": {
+    "title": "",
+    "tags": [],
+    "instruction": "서로 다른 숫자 ㉠, ㉡, ㉢의 합을 구하시오.",
+    "question": "세로 뺄셈식 [㉠㉡2] - [1㉠㉢] = [314]에서 각 기호가 나타내는 숫자를 찾아 합을 구하는 문제",
+    "required_layout_ids": [
+      "slot.v3_line"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.vertical_sub",
+        "type": "vertical_arithmetic",
+        "description": "[㉠㉡2] - [1㉠㉢] = [314]"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "plan": {
+        "method": "digit_analysis",
+        "description": "각 자릿수별로 뺄셈 원리를 적용하여 기호의 값을 찾는다. 일의 자리에서 받아내림을 고려하고 백의 자리부터 확정한다."
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "value": 18,
+    "unit": ""
+  }
+}

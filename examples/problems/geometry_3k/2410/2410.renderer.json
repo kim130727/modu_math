@@ -1,0 +1,442 @@
+{
+  "problem_id": "2410",
+  "view_box": {
+    "width": 980.0,
+    "height": 620.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.diagram.frame.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 42.0,
+        "y": 92.0,
+        "width": 560.0,
+        "height": 440.0,
+        "fill": "none",
+        "stroke": "#D0D0D0",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.diagram.frame",
+      "refs": {
+        "layout_slot_id": "slot.diagram.frame"
+      }
+    },
+    {
+      "id": "slot.pt.A.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 120.0,
+        "cy": 460.0,
+        "r": 4.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#222222"
+      },
+      "source_ref": "slot.pt.A",
+      "refs": {
+        "layout_slot_id": "slot.pt.A"
+      }
+    },
+    {
+      "id": "slot.pt.B.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 307.0,
+        "cy": 455.6,
+        "r": 4.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#222222"
+      },
+      "source_ref": "slot.pt.B",
+      "refs": {
+        "layout_slot_id": "slot.pt.B"
+      }
+    },
+    {
+      "id": "slot.pt.C.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 253.6,
+        "cy": 326.7,
+        "r": 4.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#222222"
+      },
+      "source_ref": "slot.pt.C",
+      "refs": {
+        "layout_slot_id": "slot.pt.C"
+      }
+    },
+    {
+      "id": "slot.pt.D.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 420.0,
+        "cy": 170.0,
+        "r": 4.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#222222"
+      },
+      "source_ref": "slot.pt.D",
+      "refs": {
+        "layout_slot_id": "slot.pt.D"
+      }
+    },
+    {
+      "id": "slot.pt.E.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 540.0,
+        "cy": 450.0,
+        "r": 4.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#222222"
+      },
+      "source_ref": "slot.pt.E",
+      "refs": {
+        "layout_slot_id": "slot.pt.E"
+      }
+    },
+    {
+      "id": "slot.seg.AD.line",
+      "type": "line",
+      "attributes": {
+        "x1": 120.0,
+        "y1": 460.0,
+        "x2": 420.0,
+        "y2": 170.0,
+        "stroke": "#444444",
+        "stroke-width": 3.0
+      },
+      "source_ref": "slot.seg.AD",
+      "refs": {
+        "layout_slot_id": "slot.seg.AD"
+      }
+    },
+    {
+      "id": "slot.seg.DE.line",
+      "type": "line",
+      "attributes": {
+        "x1": 420.0,
+        "y1": 170.0,
+        "x2": 540.0,
+        "y2": 450.0,
+        "stroke": "#444444",
+        "stroke-width": 3.0
+      },
+      "source_ref": "slot.seg.DE",
+      "refs": {
+        "layout_slot_id": "slot.seg.DE"
+      }
+    },
+    {
+      "id": "slot.seg.AE.line",
+      "type": "line",
+      "attributes": {
+        "x1": 120.0,
+        "y1": 460.0,
+        "x2": 540.0,
+        "y2": 450.0,
+        "stroke": "#444444",
+        "stroke-width": 3.0
+      },
+      "source_ref": "slot.seg.AE",
+      "refs": {
+        "layout_slot_id": "slot.seg.AE"
+      }
+    },
+    {
+      "id": "slot.seg.BC.line",
+      "type": "line",
+      "attributes": {
+        "x1": 307.0,
+        "y1": 455.6,
+        "x2": 253.6,
+        "y2": 326.7,
+        "stroke": "#444444",
+        "stroke-width": 3.0
+      },
+      "source_ref": "slot.seg.BC",
+      "refs": {
+        "layout_slot_id": "slot.seg.BC"
+      }
+    },
+    {
+      "id": "slot.mark.parallel.bc.line",
+      "type": "line",
+      "attributes": {
+        "x1": 286.0,
+        "y1": 404.8,
+        "x2": 294.0,
+        "y2": 423.5,
+        "stroke": "#2D6CDF",
+        "stroke-width": 3.0
+      },
+      "source_ref": "slot.mark.parallel.bc",
+      "refs": {
+        "layout_slot_id": "slot.mark.parallel.bc"
+      }
+    },
+    {
+      "id": "slot.mark.parallel.de.line",
+      "type": "line",
+      "attributes": {
+        "x1": 468.0,
+        "y1": 282.0,
+        "x2": 476.0,
+        "y2": 300.7,
+        "stroke": "#2D6CDF",
+        "stroke-width": 3.0
+      },
+      "source_ref": "slot.mark.parallel.de",
+      "refs": {
+        "layout_slot_id": "slot.mark.parallel.de"
+      }
+    },
+    {
+      "id": "slot.q1.text",
+      "type": "text",
+      "attributes": {
+        "x": 34.0,
+        "y": 70.0,
+        "max_width": 852.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 24
+      },
+      "source_ref": "slot.q1",
+      "refs": {
+        "layout_slot_id": "slot.q1"
+      },
+      "text": "삼각형 ADE에서 BC는 내부 선분이고 DE와 평행하다. AB=16, BE=20, AC=x-3, CD=x+5일 때 CD를 구하시오."
+    },
+    {
+      "id": "slot.lb.A.text",
+      "type": "text",
+      "attributes": {
+        "x": 106.0,
+        "y": 490.0,
+        "max_width": 852.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.lb.A",
+      "refs": {
+        "layout_slot_id": "slot.lb.A"
+      },
+      "text": "A"
+    },
+    {
+      "id": "slot.lb.B.text",
+      "type": "text",
+      "attributes": {
+        "x": 311.0,
+        "y": 490.0,
+        "max_width": 852.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.lb.B",
+      "refs": {
+        "layout_slot_id": "slot.lb.B"
+      },
+      "text": "B"
+    },
+    {
+      "id": "slot.lb.C.text",
+      "type": "text",
+      "attributes": {
+        "x": 236.0,
+        "y": 324.0,
+        "max_width": 852.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.lb.C",
+      "refs": {
+        "layout_slot_id": "slot.lb.C"
+      },
+      "text": "C"
+    },
+    {
+      "id": "slot.lb.D.text",
+      "type": "text",
+      "attributes": {
+        "x": 424.0,
+        "y": 158.0,
+        "max_width": 852.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.lb.D",
+      "refs": {
+        "layout_slot_id": "slot.lb.D"
+      },
+      "text": "D"
+    },
+    {
+      "id": "slot.lb.E.text",
+      "type": "text",
+      "attributes": {
+        "x": 548.0,
+        "y": 490.0,
+        "max_width": 852.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.lb.E",
+      "refs": {
+        "layout_slot_id": "slot.lb.E"
+      },
+      "text": "E"
+    },
+    {
+      "id": "slot.len.AB.text",
+      "type": "text",
+      "attributes": {
+        "x": 210.0,
+        "y": 488.0,
+        "max_width": 852.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 24
+      },
+      "source_ref": "slot.len.AB",
+      "refs": {
+        "layout_slot_id": "slot.len.AB"
+      },
+      "text": "16"
+    },
+    {
+      "id": "slot.len.BE.text",
+      "type": "text",
+      "attributes": {
+        "x": 415.0,
+        "y": 488.0,
+        "max_width": 852.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 24
+      },
+      "source_ref": "slot.len.BE",
+      "refs": {
+        "layout_slot_id": "slot.len.BE"
+      },
+      "text": "20"
+    },
+    {
+      "id": "slot.len.AC.text",
+      "type": "text",
+      "attributes": {
+        "x": 174.0,
+        "y": 365.0,
+        "max_width": 852.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 24
+      },
+      "source_ref": "slot.len.AC",
+      "refs": {
+        "layout_slot_id": "slot.len.AC"
+      },
+      "text": "x-3"
+    },
+    {
+      "id": "slot.len.CD.text",
+      "type": "text",
+      "attributes": {
+        "x": 322.0,
+        "y": 222.0,
+        "max_width": 852.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 24
+      },
+      "source_ref": "slot.len.CD",
+      "refs": {
+        "layout_slot_id": "slot.len.CD"
+      },
+      "text": "x+5"
+    },
+    {
+      "id": "slot.choice.1.text",
+      "type": "text",
+      "attributes": {
+        "x": 684.0,
+        "y": 164.0,
+        "max_width": 852.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice.1",
+      "refs": {
+        "layout_slot_id": "slot.choice.1"
+      },
+      "text": "1. 32"
+    },
+    {
+      "id": "slot.choice.2.text",
+      "type": "text",
+      "attributes": {
+        "x": 684.0,
+        "y": 216.0,
+        "max_width": 852.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice.2",
+      "refs": {
+        "layout_slot_id": "slot.choice.2"
+      },
+      "text": "2. 35"
+    },
+    {
+      "id": "slot.choice.3.text",
+      "type": "text",
+      "attributes": {
+        "x": 684.0,
+        "y": 268.0,
+        "max_width": 852.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice.3",
+      "refs": {
+        "layout_slot_id": "slot.choice.3"
+      },
+      "text": "3. 36"
+    },
+    {
+      "id": "slot.choice.4.text",
+      "type": "text",
+      "attributes": {
+        "x": 684.0,
+        "y": 320.0,
+        "max_width": 852.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice.4",
+      "refs": {
+        "layout_slot_id": "slot.choice.4"
+      },
+      "text": "4. 40"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

@@ -1,0 +1,83 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "0009_도형 복면산 뺄셈",
+  "title": "",
+  "canvas": {
+    "width": 1000,
+    "height": 600,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "vertical",
+      "slot_ids": [
+        "slot.t1",
+        "slot.t2",
+        "slot.v1",
+        "slot.v2",
+        "slot.v3"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.t1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "다음 뺄셈식에서 같은 모양은 같은 숫자를 나타냅니다.",
+        "style_role": "body"
+      }
+    },
+    {
+      "id": "slot.t2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "■와 ★가 나타내는 숫자의 합을 구하시오.",
+        "style_role": "body"
+      }
+    },
+    {
+      "id": "slot.v1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "  ■ ★ ■",
+        "style_role": "body"
+      }
+    },
+    {
+      "id": "slot.v2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "- ★ ■ ★",
+        "style_role": "body"
+      }
+    },
+    {
+      "id": "slot.v3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "  ★ 7 3",
+        "style_role": "body"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.t1",
+    "slot.t2",
+    "slot.v1",
+    "slot.v2",
+    "slot.v3"
+  ]
+}

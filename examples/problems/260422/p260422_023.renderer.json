@@ -1,0 +1,350 @@
+{
+  "problem_id": "msedge_z9mZBoibP0",
+  "view_box": {
+    "width": 1143.0,
+    "height": 368.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.question.text",
+      "type": "text",
+      "attributes": {
+        "x": 10.0,
+        "y": 50.0,
+        "max_width": 1015.0,
+        "fill": "#222222",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 35
+      },
+      "source_ref": "slot.question",
+      "refs": {
+        "layout_slot_id": "slot.question"
+      },
+      "text": "석기네 집에서 한별이네 집까지의 거리는 몇 m입니까?"
+    },
+    {
+      "id": "slot.road.line",
+      "type": "line",
+      "attributes": {
+        "x1": 100.0,
+        "y1": 235.0,
+        "x2": 1040.0,
+        "y2": 235.0,
+        "stroke": "#666666",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.road",
+      "refs": {
+        "layout_slot_id": "slot.road"
+      }
+    },
+    {
+      "id": "slot.house.1.body.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 135.0,
+        "y": 175.0,
+        "width": 80.0,
+        "height": 60.0,
+        "fill": "#fef3c7",
+        "stroke": "#444444",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.house.1.body",
+      "refs": {
+        "layout_slot_id": "slot.house.1.body"
+      }
+    },
+    {
+      "id": "slot.house.1.roof.polygon",
+      "type": "polygon",
+      "attributes": {
+        "points": [
+          [
+            135.0,
+            175.0
+          ],
+          [
+            175.0,
+            145.0
+          ],
+          [
+            215.0,
+            175.0
+          ]
+        ],
+        "stroke": "#444444",
+        "stroke-width": 1.5,
+        "fill": "#ef4444"
+      },
+      "source_ref": "slot.house.1.roof",
+      "refs": {
+        "layout_slot_id": "slot.house.1.roof"
+      }
+    },
+    {
+      "id": "slot.house.2.body.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 542.5,
+        "y": 175.0,
+        "width": 80.0,
+        "height": 60.0,
+        "fill": "#dcfce7",
+        "stroke": "#444444",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.house.2.body",
+      "refs": {
+        "layout_slot_id": "slot.house.2.body"
+      }
+    },
+    {
+      "id": "slot.house.2.roof.polygon",
+      "type": "polygon",
+      "attributes": {
+        "points": [
+          [
+            542.5,
+            175.0
+          ],
+          [
+            582.5,
+            145.0
+          ],
+          [
+            622.5,
+            175.0
+          ]
+        ],
+        "stroke": "#444444",
+        "stroke-width": 1.5,
+        "fill": "#10b981"
+      },
+      "source_ref": "slot.house.2.roof",
+      "refs": {
+        "layout_slot_id": "slot.house.2.roof"
+      }
+    },
+    {
+      "id": "slot.house.3.body.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 932.5,
+        "y": 175.0,
+        "width": 80.0,
+        "height": 60.0,
+        "fill": "#dbeafe",
+        "stroke": "#444444",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.house.3.body",
+      "refs": {
+        "layout_slot_id": "slot.house.3.body"
+      }
+    },
+    {
+      "id": "slot.house.3.roof.polygon",
+      "type": "polygon",
+      "attributes": {
+        "points": [
+          [
+            932.5,
+            175.0
+          ],
+          [
+            972.5,
+            145.0
+          ],
+          [
+            1012.5,
+            175.0
+          ]
+        ],
+        "stroke": "#444444",
+        "stroke-width": 1.5,
+        "fill": "#3b82f6"
+      },
+      "source_ref": "slot.house.3.roof",
+      "refs": {
+        "layout_slot_id": "slot.house.3.roof"
+      }
+    },
+    {
+      "id": "slot.label.1.line1.text",
+      "type": "text",
+      "attributes": {
+        "x": 175.0,
+        "y": 275.0,
+        "max_width": 1015.0,
+        "fill": "#222222",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 35,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.label.1.line1",
+      "refs": {
+        "layout_slot_id": "slot.label.1.line1"
+      },
+      "text": "한초네"
+    },
+    {
+      "id": "slot.label.1.line2.text",
+      "type": "text",
+      "attributes": {
+        "x": 175.0,
+        "y": 315.0,
+        "max_width": 1015.0,
+        "fill": "#222222",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 35,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.label.1.line2",
+      "refs": {
+        "layout_slot_id": "slot.label.1.line2"
+      },
+      "text": "집"
+    },
+    {
+      "id": "slot.label.2.line1.text",
+      "type": "text",
+      "attributes": {
+        "x": 582.5,
+        "y": 275.0,
+        "max_width": 1015.0,
+        "fill": "#222222",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 35,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.label.2.line1",
+      "refs": {
+        "layout_slot_id": "slot.label.2.line1"
+      },
+      "text": "석기네"
+    },
+    {
+      "id": "slot.label.2.line2.text",
+      "type": "text",
+      "attributes": {
+        "x": 582.5,
+        "y": 315.0,
+        "max_width": 1015.0,
+        "fill": "#222222",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 35,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.label.2.line2",
+      "refs": {
+        "layout_slot_id": "slot.label.2.line2"
+      },
+      "text": "집"
+    },
+    {
+      "id": "slot.label.3.line1.text",
+      "type": "text",
+      "attributes": {
+        "x": 972.5,
+        "y": 275.0,
+        "max_width": 1015.0,
+        "fill": "#222222",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 35,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.label.3.line1",
+      "refs": {
+        "layout_slot_id": "slot.label.3.line1"
+      },
+      "text": "한별이네"
+    },
+    {
+      "id": "slot.label.3.line2.text",
+      "type": "text",
+      "attributes": {
+        "x": 972.5,
+        "y": 315.0,
+        "max_width": 1015.0,
+        "fill": "#222222",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 35,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.label.3.line2",
+      "refs": {
+        "layout_slot_id": "slot.label.3.line2"
+      },
+      "text": "집"
+    },
+    {
+      "id": "slot.arc.total.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 175 135 Q 573 20 972 135",
+        "stroke": "#444444",
+        "stroke-width": 2.0,
+        "fill": "none",
+        "stroke-dasharray": "5,5"
+      },
+      "source_ref": "slot.arc.total",
+      "refs": {
+        "layout_slot_id": "slot.arc.total"
+      }
+    },
+    {
+      "id": "slot.text.total.text",
+      "type": "text",
+      "attributes": {
+        "x": 750.9855382064089,
+        "y": 139.21659722772347,
+        "max_width": 1015.0,
+        "fill": "#444444",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 35,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.text.total",
+      "refs": {
+        "layout_slot_id": "slot.text.total"
+      },
+      "text": "732m"
+    },
+    {
+      "id": "slot.arc.part.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 182.06291262 151.9510089 Q 385.06291262 91.9510089 589.06291262 151.9510089",
+        "stroke": "#444444",
+        "stroke-width": 2.0,
+        "fill": "none",
+        "stroke-dasharray": "5,5"
+      },
+      "source_ref": "slot.arc.part",
+      "refs": {
+        "layout_slot_id": "slot.arc.part"
+      }
+    },
+    {
+      "id": "slot.text.part.text",
+      "type": "text",
+      "attributes": {
+        "x": 365.286789609772,
+        "y": 166.5034079089963,
+        "max_width": 1015.0,
+        "fill": "#444444",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 35,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.text.part",
+      "refs": {
+        "layout_slot_id": "slot.text.part"
+      },
+      "text": "368m"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

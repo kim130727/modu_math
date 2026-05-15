@@ -1,0 +1,232 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "Hpdf_8QQBoCf63S",
+  "title": "정사각형의 개수",
+  "canvas": {
+    "width": 880,
+    "height": 518,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.fig.1",
+        "slot.fig.2",
+        "slot.fig.3",
+        "slot.fig.4",
+        "slot.fig.5",
+        "slot.fig.6",
+        "slot.fig.7",
+        "slot.fig.8",
+        "slot.fig.9",
+        "slot.fig.10",
+        "slot.fig.11",
+        "slot.q1",
+        "slot.q2"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "도형에서 찾을 수 있는 크고 작은 정사각형은",
+        "style_role": "question",
+        "x": 12.0,
+        "y": 40.0,
+        "font_size": 35
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "모두 몇 개입니까?",
+        "style_role": "question",
+        "x": 12.0,
+        "y": 100.0,
+        "font_size": 35
+      }
+    },
+    {
+      "id": "slot.fig.1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 300.0,
+        "y": 150.0,
+        "width": 100.0,
+        "height": 100.0,
+        "stroke": "#222222",
+        "stroke_width": 1.5,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.fig.2",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 400.0,
+        "y": 150.0,
+        "width": 100.0,
+        "height": 100.0,
+        "stroke": "#222222",
+        "stroke_width": 1.5,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.fig.3",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 500.0,
+        "y": 150.0,
+        "width": 100.0,
+        "height": 100.0,
+        "stroke": "#222222",
+        "stroke_width": 1.5,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.fig.4",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 200.0,
+        "y": 250.0,
+        "width": 100.0,
+        "height": 100.0,
+        "stroke": "#222222",
+        "stroke_width": 1.5,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.fig.5",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 300.0,
+        "y": 250.0,
+        "width": 100.0,
+        "height": 100.0,
+        "stroke": "#222222",
+        "stroke_width": 1.5,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.fig.6",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 400.0,
+        "y": 250.0,
+        "width": 100.0,
+        "height": 100.0,
+        "stroke": "#222222",
+        "stroke_width": 1.5,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.fig.7",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 500.0,
+        "y": 250.0,
+        "width": 100.0,
+        "height": 100.0,
+        "stroke": "#222222",
+        "stroke_width": 1.5,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.fig.8",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 600.0,
+        "y": 250.0,
+        "width": 100.0,
+        "height": 100.0,
+        "stroke": "#222222",
+        "stroke_width": 1.5,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.fig.9",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 300.0,
+        "y": 350.0,
+        "width": 100.0,
+        "height": 100.0,
+        "stroke": "#222222",
+        "stroke_width": 1.5,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.fig.10",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 400.0,
+        "y": 350.0,
+        "width": 100.0,
+        "height": 100.0,
+        "stroke": "#222222",
+        "stroke_width": 1.5,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.fig.11",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 500.0,
+        "y": 350.0,
+        "width": 100.0,
+        "height": 100.0,
+        "stroke": "#222222",
+        "stroke_width": 1.5,
+        "fill": "none"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.fig.1",
+    "slot.fig.2",
+    "slot.fig.3",
+    "slot.fig.4",
+    "slot.fig.5",
+    "slot.fig.6",
+    "slot.fig.7",
+    "slot.fig.8",
+    "slot.fig.9",
+    "slot.fig.10",
+    "slot.fig.11",
+    "slot.q1",
+    "slot.q2"
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "problem_id": "0001",
+  "problem_type": "diagram_problem",
+  "metadata": {
+    "title": "",
+    "tags": [],
+    "instruction": "36분 47초 후의 시각이 ㉠시 ㉡분 ㉢초일 때 ㉠+㉡+㉢을 구하시오.",
+    "question": "예은이가 시계를 보았더니 7시 17분 25초였습니다.",
+    "required_layout_ids": [],
+    "extraction_confidence": 1.0
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "slot.answer",
+        "type": "instruction",
+        "properties": {
+          "text": "(            )"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.answer"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.line_1",
+        "type": "question",
+        "properties": {
+          "text": "예은이가 시계를 보았더니 7시 17분 25초였습니다."
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.line_1"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.line_2",
+        "type": "instruction",
+        "properties": {
+          "text": "36분 47초 후의 시각이 ㉠시 ㉡분 ㉢초일 때 ㉠+㉡+㉢을 구하시오."
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.line_2"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "confidence": 1.0
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0
+  }
+}

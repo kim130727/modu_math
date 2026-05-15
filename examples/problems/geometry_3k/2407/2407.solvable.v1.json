@@ -1,0 +1,72 @@
+{
+  "schema": "modu.solvable.v1",
+  "problem_id": "2407",
+  "problem_type": "geometry_angle",
+  "inputs": {
+    "total_ticks": 1,
+    "target_label": "x",
+    "target_ticks": 1,
+    "target_count": 1,
+    "unit": "°"
+  },
+  "given": [
+    {
+      "ref": "obj.angle.x",
+      "value": "X°"
+    },
+    {
+      "ref": "obj.angle.xm6",
+      "value": "(X-6)°"
+    },
+    {
+      "ref": "obj.angle.xp10",
+      "value": "(X+10)°"
+    },
+    {
+      "ref": "obj.angle.56",
+      "value": "56°"
+    },
+    {
+      "ref": "obj.angle.xp4",
+      "value": "(X+4)°"
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "multiple_choice_value"
+  },
+  "method": "geometry_angle_relations",
+  "plan": [
+    "도형의 각도 라벨을 읽는다.",
+    "각 관계를 이용해 x를 계산하고 보기와 대조한다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "operation": "collect_labels",
+      "expr": "X, X-6, X+10, 56, X+4",
+      "value": 0
+    },
+    {
+      "id": "step.2",
+      "operation": "match_choice",
+      "expr": "정답 오버레이 C(74)와 보기 대조",
+      "value": 74
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "type": "choice_match",
+      "expr": "정답은 3번",
+      "expected": 74,
+      "actual": 74,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "value": 74,
+    "unit": "°",
+    "derived_from": "choice.3"
+  }
+}

@@ -1,0 +1,395 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "0014_나눗셈 범위",
+  "title": "",
+  "canvas": {
+    "width": 980,
+    "height": 493,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "vertical",
+      "slot_ids": [
+        "slot.bg",
+        "slot.card_1",
+        "slot.card_2",
+        "slot.card_3",
+        "slot.card_4",
+        "slot.expr_box",
+        "slot.frac_num_blank",
+        "slot.whole_blank",
+        "slot.div_blank",
+        "slot.frac_den_blank",
+        "slot.frac_bar",
+        "slot.l1b",
+        "slot.card_t_1",
+        "slot.card_t_2",
+        "slot.card_t_3",
+        "slot.card_t_4",
+        "slot.l1a",
+        "slot.l2",
+        "slot.l3",
+        "slot.l4",
+        "slot.div_sign"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.bg",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 980.0,
+        "height": 493.0,
+        "stroke": "none",
+        "stroke_width": 0.0,
+        "fill": "#F6F6F6",
+        "semantic_role": "background"
+      }
+    },
+    {
+      "id": "slot.card_1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 188.0,
+        "y": 13.95,
+        "width": 50.87,
+        "height": 52.32,
+        "stroke": "#000000",
+        "stroke_width": 1.0,
+        "fill": "#BDBDBD",
+        "semantic_role": "card"
+      }
+    },
+    {
+      "id": "slot.card_2",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 256.5,
+        "y": 13.95,
+        "width": 49.65,
+        "height": 53.54,
+        "stroke": "#000000",
+        "stroke_width": 1.0,
+        "fill": "#BDBDBD",
+        "semantic_role": "card"
+      }
+    },
+    {
+      "id": "slot.card_3",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 322.5,
+        "y": 13.97,
+        "width": 52.06,
+        "height": 54.73,
+        "stroke": "#000000",
+        "stroke_width": 1.0,
+        "fill": "#BDBDBD",
+        "semantic_role": "card"
+      }
+    },
+    {
+      "id": "slot.card_4",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 389.8,
+        "y": 13.98,
+        "width": 52.05,
+        "height": 55.94,
+        "stroke": "#000000",
+        "stroke_width": 1.0,
+        "fill": "#BDBDBD",
+        "semantic_role": "card"
+      }
+    },
+    {
+      "id": "slot.l1b",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "를 모두 한 번씩만 사용하여",
+        "style_role": "body",
+        "x": 458.35,
+        "y": 54.1,
+        "font_size": 33,
+        "font_family": "Malgun Gothic",
+        "anchor": "start",
+        "fill": "#222222",
+        "semantic_role": "instruction"
+      }
+    },
+    {
+      "id": "slot.card_t_1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "3",
+        "style_role": "body",
+        "x": 213.435,
+        "y": 55.0,
+        "font_size": 46,
+        "font_family": "Malgun Gothic",
+        "anchor": "middle",
+        "fill": "#222222",
+        "semantic_role": "card_value"
+      }
+    },
+    {
+      "id": "slot.card_t_2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "5",
+        "style_role": "body",
+        "x": 281.325,
+        "y": 55.0,
+        "font_size": 46,
+        "font_family": "Malgun Gothic",
+        "anchor": "middle",
+        "fill": "#222222",
+        "semantic_role": "card_value"
+      }
+    },
+    {
+      "id": "slot.card_t_3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "7",
+        "style_role": "body",
+        "x": 348.53,
+        "y": 55.0,
+        "font_size": 46,
+        "font_family": "Malgun Gothic",
+        "anchor": "middle",
+        "fill": "#222222",
+        "semantic_role": "card_value"
+      }
+    },
+    {
+      "id": "slot.card_t_4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "9",
+        "style_role": "body",
+        "x": 415.825,
+        "y": 55.0,
+        "font_size": 46,
+        "font_family": "Malgun Gothic",
+        "anchor": "middle",
+        "fill": "#222222",
+        "semantic_role": "card_value"
+      }
+    },
+    {
+      "id": "slot.l1a",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "숫자 카드",
+        "style_role": "body",
+        "x": 21.45,
+        "y": 56.56,
+        "font_size": 34,
+        "font_family": "Malgun Gothic",
+        "anchor": "start",
+        "fill": "#222222",
+        "semantic_role": "instruction"
+      }
+    },
+    {
+      "id": "slot.l2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "다음과 같이 (대분수) ÷ (자연수)를 만들려고 합니다.",
+        "style_role": "body",
+        "x": 21.72,
+        "y": 114.22,
+        "font_size": 32,
+        "font_family": "Malgun Gothic",
+        "anchor": "start",
+        "fill": "#222222",
+        "semantic_role": "instruction"
+      }
+    },
+    {
+      "id": "slot.l3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "만들 수 있는 값 중 몫이 가장 작을 때의 몫과 몫이",
+        "style_role": "body",
+        "x": 19.62,
+        "y": 164.03,
+        "font_size": 32,
+        "font_family": "Malgun Gothic",
+        "anchor": "start",
+        "fill": "#222222",
+        "semantic_role": "instruction"
+      }
+    },
+    {
+      "id": "slot.l4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "가장 클 때의 몫 사이에 있는 자연수는 모두 몇 개인가요?",
+        "style_role": "body",
+        "x": 18.35,
+        "y": 215.79,
+        "font_size": 33,
+        "font_family": "Malgun Gothic",
+        "anchor": "start",
+        "fill": "#222222",
+        "semantic_role": "instruction"
+      }
+    },
+    {
+      "id": "slot.expr_box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 268.99,
+        "y": 308.46,
+        "width": 315.14,
+        "height": 160.19,
+        "stroke": "#000000",
+        "stroke_width": 1.0,
+        "rx": 14.0,
+        "fill": "none",
+        "semantic_role": "expression"
+      }
+    },
+    {
+      "id": "slot.frac_num_blank",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 383.11,
+        "y": 343.79,
+        "width": 36.0,
+        "height": 34.0,
+        "stroke": "#000000",
+        "stroke_width": 1.0,
+        "fill": "none",
+        "semantic_role": "answer_blank"
+      }
+    },
+    {
+      "id": "slot.whole_blank",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 321.11,
+        "y": 373.79,
+        "width": 36.0,
+        "height": 34.0,
+        "stroke": "#000000",
+        "stroke_width": 1.0,
+        "fill": "none",
+        "semantic_role": "answer_blank"
+      }
+    },
+    {
+      "id": "slot.div_blank",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 486.11,
+        "y": 373.79,
+        "width": 36.0,
+        "height": 34.0,
+        "stroke": "#000000",
+        "stroke_width": 1.0,
+        "fill": "none",
+        "semantic_role": "answer_blank"
+      }
+    },
+    {
+      "id": "slot.frac_bar",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 369.11,
+        "y1": 390.79,
+        "x2": 433.11,
+        "y2": 390.79,
+        "stroke": "#222222",
+        "stroke_width": 2.0,
+        "semantic_role": "operator"
+      }
+    },
+    {
+      "id": "slot.frac_den_blank",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 383.11,
+        "y": 405.79,
+        "width": 36.0,
+        "height": 34.0,
+        "stroke": "#000000",
+        "stroke_width": 1.0,
+        "fill": "none",
+        "semantic_role": "answer_blank"
+      }
+    },
+    {
+      "id": "slot.div_sign",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "÷",
+        "style_role": "body",
+        "x": 457.11,
+        "y": 406.79,
+        "font_size": 64,
+        "font_family": "Malgun Gothic",
+        "anchor": "middle",
+        "fill": "#222222",
+        "semantic_role": "operator"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.bg",
+    "slot.card_1",
+    "slot.card_2",
+    "slot.card_3",
+    "slot.card_4",
+    "slot.expr_box",
+    "slot.frac_num_blank",
+    "slot.whole_blank",
+    "slot.div_blank",
+    "slot.frac_den_blank",
+    "slot.frac_bar",
+    "slot.l1b",
+    "slot.card_t_1",
+    "slot.card_t_2",
+    "slot.card_t_3",
+    "slot.card_t_4",
+    "slot.l1a",
+    "slot.l2",
+    "slot.l3",
+    "slot.l4",
+    "slot.div_sign"
+  ]
+}

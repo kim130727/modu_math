@@ -1,0 +1,65 @@
+{
+  "problem_id": "0002_모양에 알맞은 수 구하기",
+  "view_box": {
+    "width": 1000.0,
+    "height": 500.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.t1.text",
+      "type": "text",
+      "attributes": {
+        "x": 50.0,
+        "y": 80.0,
+        "max_width": 872.0,
+        "fill": "#000000",
+        "font-family": "sans-serif",
+        "font-size": 24,
+        "text-anchor": "start"
+      },
+      "source_ref": "slot.t1",
+      "refs": {
+        "layout_slot_id": "slot.t1"
+      },
+      "text": "같은 모양은 같은 수를 나타냅니다. ■와 ▲에 알맞은 수의 차를 구하시오."
+    },
+    {
+      "id": "slot.eq1.text",
+      "type": "text",
+      "attributes": {
+        "x": 80.0,
+        "y": 200.0,
+        "max_width": 872.0,
+        "fill": "#000000",
+        "font-family": "serif",
+        "font-size": 28,
+        "text-anchor": "start"
+      },
+      "source_ref": "slot.eq1",
+      "refs": {
+        "layout_slot_id": "slot.eq1"
+      },
+      "text": "800 - 347 + ■ = 650"
+    },
+    {
+      "id": "slot.eq2.text",
+      "type": "text",
+      "attributes": {
+        "x": 80.0,
+        "y": 300.0,
+        "max_width": 872.0,
+        "fill": "#000000",
+        "font-family": "serif",
+        "font-size": 28,
+        "text-anchor": "start"
+      },
+      "source_ref": "slot.eq2",
+      "refs": {
+        "layout_slot_id": "slot.eq2"
+      },
+      "text": "543 - ▲ = ■"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

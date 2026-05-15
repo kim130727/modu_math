@@ -1,0 +1,202 @@
+{
+  "problem_id": "0003_뺄셈 빈칸 채우기",
+  "view_box": {
+    "width": 1000.0,
+    "height": 600.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.v3_line.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 328.235107421875,
+        "y": 359.2491149902344,
+        "width": 220.0,
+        "height": 3.0,
+        "fill": "black",
+        "stroke": "#000000",
+        "stroke-width": 1.0
+      },
+      "source_ref": "slot.v3_line",
+      "refs": {
+        "layout_slot_id": "slot.v3_line"
+      }
+    },
+    {
+      "id": "slot.t1.text",
+      "type": "text",
+      "attributes": {
+        "x": 50.29764150834108,
+        "y": 82.05971772177185,
+        "max_width": 872.0,
+        "fill": "#000000",
+        "font-family": "sans-serif",
+        "font-size": 35,
+        "text-anchor": "start"
+      },
+      "source_ref": "slot.t1",
+      "refs": {
+        "layout_slot_id": "slot.t1"
+      },
+      "text": "오른쪽 뺄셈식에서 같은 문자는 같은 숫자를 나타냅니다."
+    },
+    {
+      "id": "slot.t2.text",
+      "type": "text",
+      "attributes": {
+        "x": 48.02522586405705,
+        "y": 146.4619347708566,
+        "max_width": 872.0,
+        "fill": "#000000",
+        "font-family": "sans-serif",
+        "font-size": 35,
+        "text-anchor": "start"
+      },
+      "source_ref": "slot.t2",
+      "refs": {
+        "layout_slot_id": "slot.t2"
+      },
+      "text": "서로 다른 숫자 ㉠, ㉡, ㉢의 합을 구하시오."
+    },
+    {
+      "id": "slot.text_11.text",
+      "type": "text",
+      "attributes": {
+        "x": 482.7040710449219,
+        "y": 272.28443908691406,
+        "max_width": 872.0,
+        "fill": "#111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 45
+      },
+      "source_ref": "slot.text_11",
+      "refs": {
+        "layout_slot_id": "slot.text_11"
+      },
+      "text": "2"
+    },
+    {
+      "id": "slot.text_8.text",
+      "type": "text",
+      "attributes": {
+        "x": 419.2308349609375,
+        "y": 273.5798034667969,
+        "max_width": 872.0,
+        "fill": "#111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 45
+      },
+      "source_ref": "slot.text_8",
+      "refs": {
+        "layout_slot_id": "slot.text_8"
+      },
+      "text": "㉡"
+    },
+    {
+      "id": "slot.text_9.text",
+      "type": "text",
+      "attributes": {
+        "x": 368.7113494873047,
+        "y": 273.57981872558594,
+        "max_width": 872.0,
+        "fill": "#111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 45
+      },
+      "source_ref": "slot.text_9",
+      "refs": {
+        "layout_slot_id": "slot.text_9"
+      },
+      "text": "㉠"
+    },
+    {
+      "id": "slot.v2.text",
+      "type": "text",
+      "attributes": {
+        "x": 346.55812971635197,
+        "y": 333.8746022191541,
+        "max_width": 872.0,
+        "fill": "#000000",
+        "font-family": "sans-serif",
+        "font-size": 41,
+        "text-anchor": "start"
+      },
+      "source_ref": "slot.v2",
+      "refs": {
+        "layout_slot_id": "slot.v2"
+      },
+      "text": "-"
+    },
+    {
+      "id": "slot.text_12.text",
+      "type": "text",
+      "attributes": {
+        "x": 473.6365203857422,
+        "y": 338.3484344482422,
+        "max_width": 872.0,
+        "fill": "#111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 45
+      },
+      "source_ref": "slot.text_12",
+      "refs": {
+        "layout_slot_id": "slot.text_12"
+      },
+      "text": "㉢"
+    },
+    {
+      "id": "slot.text_10.text",
+      "type": "text",
+      "attributes": {
+        "x": 377.7789764404297,
+        "y": 338.34844970703125,
+        "max_width": 872.0,
+        "fill": "#111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 45
+      },
+      "source_ref": "slot.text_10",
+      "refs": {
+        "layout_slot_id": "slot.text_10"
+      },
+      "text": "1"
+    },
+    {
+      "id": "slot.text_7.text",
+      "type": "text",
+      "attributes": {
+        "x": 417.9355163574219,
+        "y": 339.64376068115234,
+        "max_width": 872.0,
+        "fill": "#111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 45
+      },
+      "source_ref": "slot.text_7",
+      "refs": {
+        "layout_slot_id": "slot.text_7"
+      },
+      "text": "㉠"
+    },
+    {
+      "id": "slot.v4.text",
+      "type": "text",
+      "attributes": {
+        "x": 378.6347557596757,
+        "y": 429.7482486748209,
+        "max_width": 872.0,
+        "fill": "#000000",
+        "font-family": "sans-serif",
+        "font-size": 53,
+        "text-anchor": "start"
+      },
+      "source_ref": "slot.v4",
+      "refs": {
+        "layout_slot_id": "slot.v4"
+      },
+      "text": "3 1 4"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

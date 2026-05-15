@@ -1,0 +1,43 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "Hpdf_clSChWU9m6",
+  "title": "색종이 문제",
+  "canvas": {
+    "width": 560,
+    "height": 170,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q1"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "색종이를 국진이는 456장, 수지는 372장 가지\n고 있습니다. 국진이와 수지가 가진 색종이의\n수가 같아지려면 국진이는 수지에게 색종이를\n몇 장 주어야 합니까?",
+        "style_role": "question",
+        "x": 10.0,
+        "y": 32.0,
+        "font_size": 28,
+        "anchor": "start"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q1"
+  ]
+}

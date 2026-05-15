@@ -1,0 +1,184 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "Hpdf_peyglV6JPv",
+  "title": "직사각형의 네 변의 길이의 합",
+  "canvas": {
+    "width": 700,
+    "height": 750,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q1",
+        "slot.q2",
+        "slot.q3"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.outer",
+        "slot.ann.arrow",
+        "slot.inner.v1",
+        "slot.inner.v2",
+        "slot.inner.h1",
+        "slot.inner.h2",
+        "slot.ann.text"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "다음 도형은 크기가 서로 다른 4가지 정사각형",
+        "style_role": "question",
+        "x": 22.0,
+        "y": 40.0,
+        "font_size": 35
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "으로 만든 직사각형입니다. 가장 큰 직사각형의",
+        "style_role": "question",
+        "x": 22.0,
+        "y": 90.0,
+        "font_size": 35
+      }
+    },
+    {
+      "id": "slot.q3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "네 변의 길이의 합은 몇 cm입니까?",
+        "style_role": "question",
+        "x": 22.0,
+        "y": 140.0,
+        "font_size": 35
+      }
+    },
+    {
+      "id": "slot.outer",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 186.0,
+        "y": 220.0,
+        "width": 300.0,
+        "height": 480.0,
+        "stroke": "#222222",
+        "stroke_width": 2.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.inner.v1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 306.0,
+        "y1": 220.0,
+        "x2": 306.0,
+        "y2": 400.0,
+        "stroke": "#222222",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.inner.v2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 246.0,
+        "y1": 220.0,
+        "x2": 246.0,
+        "y2": 280.0,
+        "stroke": "#222222",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.inner.h1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 186.0,
+        "y1": 280.0,
+        "x2": 306.0,
+        "y2": 280.0,
+        "stroke": "#222222",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.inner.h2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 186.0,
+        "y1": 400.0,
+        "x2": 486.0,
+        "y2": 400.0,
+        "stroke": "#222222",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.ann.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "3 cm",
+        "style_role": "label",
+        "x": 200.0,
+        "y": 180.0,
+        "font_size": 35
+      }
+    },
+    {
+      "id": "slot.ann.arrow",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 216 190 C 216 200, 216 210, 216 218",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#222222",
+        "stroke_width": 1.2,
+        "stroke_dasharray": "4 3",
+        "fill": "none"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q1",
+    "slot.q2",
+    "slot.q3",
+    "region.diagram",
+    "slot.outer",
+    "slot.ann.arrow",
+    "slot.inner.v1",
+    "slot.inner.v2",
+    "slot.inner.h1",
+    "slot.inner.h2",
+    "slot.ann.text"
+  ]
+}

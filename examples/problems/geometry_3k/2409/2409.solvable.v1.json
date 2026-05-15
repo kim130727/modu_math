@@ -1,0 +1,65 @@
+{
+  "schema": "modu.solvable.v1",
+  "problem_id": "2409",
+  "problem_type": "geometry_triangle",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "y",
+    "target_ticks": 0,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.segment.AC",
+      "value": 21
+    },
+    {
+      "ref": "obj.angle.B",
+      "value": 30
+    },
+    {
+      "ref": "obj.angle.C",
+      "value": 60
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "segment_length"
+  },
+  "method": "triangle_ratio_30_60_90",
+  "plan": [
+    "Infer angle A = 90 from angle sum.",
+    "Apply ratio 1:sqrt(3):2."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "operation": "infer_angle_A",
+      "expr": "A = 180 - 30 - 60",
+      "value": 90
+    },
+    {
+      "id": "step.2",
+      "operation": "apply_ratio",
+      "expr": "AB = AC*sqrt(3) = 21*sqrt(3)",
+      "value": 36.4
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "type": "choice_match",
+      "expr": "match with choices",
+      "expected": "21*sqrt(3)",
+      "actual": "21*sqrt(3)",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "value": 36.4,
+    "exact_form": "21*sqrt(3)",
+    "unit": "",
+    "derived_from": "choice.3"
+  }
+}

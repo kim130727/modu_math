@@ -1,0 +1,63 @@
+{
+  "schema": "modu.solvable.v1",
+  "problem_id": "0005_부등식을 만족하는 가장 큰 자연수",
+  "problem_type": "arithmetic_inequality_optimization",
+  "given": [
+    {
+      "ref": "obj.inequality",
+      "value": "179 + 265 < 933 - □"
+    }
+  ],
+  "target": {
+    "type": "number",
+    "description": "가장 큰 자연수 □"
+  },
+  "method": "algebraic_isolation",
+  "steps": [
+    {
+      "id": "step.s1",
+      "operation": "addition",
+      "expr": "179 + 265 = 444",
+      "value": 444
+    },
+    {
+      "id": "step.s2",
+      "operation": "subtraction",
+      "expr": "933 - 444 = 489",
+      "description": "444 < 933 - □ 이므로 □ < 489 입니다.",
+      "value": 489
+    },
+    {
+      "id": "step.s3",
+      "operation": "subtraction",
+      "expr": "489 - 1 = 488",
+      "description": "489보다 작은 자연수 중 가장 큰 수는 488입니다.",
+      "value": 488
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.c1",
+      "type": "arithmetic_consistency_check",
+      "pass": true,
+      "expected": true,
+      "actual": true,
+      "expr": "179 + 265 < 933 - 488"
+    }
+  ],
+  "answer": {
+    "value": 488,
+    "unit": "",
+    "derived_from": "step.s3"
+  },
+  "inputs": {
+    "total_ticks": 1,
+    "target_label": "답",
+    "target_ticks": 1,
+    "target_count": 1,
+    "unit": ""
+  },
+  "plan": [
+    "부등식을 정리하여 □ < 489임을 구한 뒤, 조건에 맞는 최대 자연수 488을 찾습니다."
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "schema": "modu.solvable.v1",
+  "problem_id": "p260422_008",
+  "problem_type": "table_interpretation",
+  "inputs": {
+    "total_ticks": 64,
+    "target_label": "정답",
+    "target_ticks": 64,
+    "target_count": 64,
+    "unit": "명"
+  },
+  "plan": [
+    "웅이네 학교 전체 학생 수는 372+385=757명, 가영이네 학교 전체 학생 수는 419+422=841명입니다. 차이는 841-757=64명입니다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "웅이네 학교 전체 학생 수는 372+385=757명, 가영이네 학교 전체 학생 수는 419+422=841명입니다. 차이는 841-757=64명입니다.",
+      "value": 64
+    }
+  ],
+  "checks": [],
+  "answer": {
+    "value": 64,
+    "unit": "명"
+  }
+}

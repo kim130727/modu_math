@@ -1,0 +1,276 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "0016_카드 곱셈",
+  "title": "",
+  "canvas": {
+    "width": 768,
+    "height": 341,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "vertical",
+      "slot_ids": [
+        "slot.expr_box_1.rect",
+        "slot.expr_box_2.rect",
+        "slot.expr_box_3.rect",
+        "slot.card_9.rect",
+        "slot.card_2.rect",
+        "slot.card_4.rect",
+        "slot.answer_blank.rect",
+        "slot.line1_prefix.text",
+        "slot.expr_mul.text",
+        "slot.line2.text",
+        "slot.num_4.text",
+        "slot.num_9.text",
+        "slot.num_2.text",
+        "slot.answer_left_paren.text",
+        "slot.answer_right_paren.text"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.expr_box_1.rect",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 458.19281005859375,
+        "y": 22.95867919921875,
+        "width": 33.0,
+        "height": 31.0,
+        "stroke": "#1f1f1f",
+        "stroke_width": 1.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.expr_box_2.rect",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 525.1928100585938,
+        "y": 22.95867919921875,
+        "width": 33.0,
+        "height": 31.0,
+        "stroke": "#1f1f1f",
+        "stroke_width": 1.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.expr_box_3.rect",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 566.1928100585938,
+        "y": 22.95867919921875,
+        "width": 33.0,
+        "height": 31.0,
+        "stroke": "#1f1f1f",
+        "stroke_width": 1.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.line1_prefix.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "3장의 수 카드를 모두 한 번씩만 사용하여",
+        "style_role": "body",
+        "x": 18.0,
+        "y": 46.0,
+        "font_size": 22,
+        "font_family": "Malgun Gothic",
+        "anchor": "start",
+        "fill": "#000000"
+      }
+    },
+    {
+      "id": "slot.expr_mul.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "×",
+        "style_role": "body",
+        "x": 509.1101989746094,
+        "y": 50.95867919921875,
+        "font_size": 45,
+        "font_family": "Malgun Gothic",
+        "anchor": "middle",
+        "fill": "#000000"
+      }
+    },
+    {
+      "id": "slot.line2.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "을 만들려고 합니다. 곱이 가장 큰 곱셈식을 만들어 곱을 구하시오",
+        "style_role": "body",
+        "x": 18.0,
+        "y": 102.0,
+        "font_size": 22,
+        "font_family": "Malgun Gothic",
+        "anchor": "start",
+        "fill": "#000000"
+      }
+    },
+    {
+      "id": "slot.card_9.rect",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 182.0,
+        "y": 172.0,
+        "width": 73.0,
+        "height": 85.0,
+        "stroke": "#1f1f1f",
+        "stroke_width": 1.0,
+        "fill": "#b4b4b4"
+      }
+    },
+    {
+      "id": "slot.card_2.rect",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 327.0,
+        "y": 172.0,
+        "width": 73.0,
+        "height": 85.0,
+        "stroke": "#1f1f1f",
+        "stroke_width": 1.0,
+        "fill": "#b4b4b4"
+      }
+    },
+    {
+      "id": "slot.card_4.rect",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 472.0,
+        "y": 172.0,
+        "width": 73.0,
+        "height": 85.0,
+        "stroke": "#1f1f1f",
+        "stroke_width": 1.0,
+        "fill": "#b4b4b4"
+      }
+    },
+    {
+      "id": "slot.num_4.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "4",
+        "style_role": "body",
+        "x": 505.9311218261719,
+        "y": 229.0068817138672,
+        "font_size": 53,
+        "font_family": "Malgun Gothic",
+        "anchor": "middle",
+        "fill": "#000000"
+      }
+    },
+    {
+      "id": "slot.num_9.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "9",
+        "style_role": "body",
+        "x": 214.93801879882812,
+        "y": 232.97933959960938,
+        "font_size": 53,
+        "font_family": "Malgun Gothic",
+        "anchor": "middle",
+        "fill": "#000000"
+      }
+    },
+    {
+      "id": "slot.num_2.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "2",
+        "style_role": "body",
+        "x": 360.93115234375,
+        "y": 232.97933959960938,
+        "font_size": 53,
+        "font_family": "Malgun Gothic",
+        "anchor": "middle",
+        "fill": "#000000"
+      }
+    },
+    {
+      "id": "slot.answer_blank.rect",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 430.0,
+        "y": 272.0,
+        "width": 235.0,
+        "height": 44.0,
+        "stroke": "none",
+        "stroke_width": 1.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.answer_left_paren.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "(",
+        "style_role": "body",
+        "x": 396.0,
+        "y": 304.0,
+        "font_size": 40,
+        "font_family": "Malgun Gothic",
+        "anchor": "middle",
+        "fill": "#000000"
+      }
+    },
+    {
+      "id": "slot.answer_right_paren.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": ")",
+        "style_role": "body",
+        "x": 697.0,
+        "y": 304.0,
+        "font_size": 40,
+        "font_family": "Malgun Gothic",
+        "anchor": "middle",
+        "fill": "#000000"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.expr_box_1.rect",
+    "slot.expr_box_2.rect",
+    "slot.expr_box_3.rect",
+    "slot.card_9.rect",
+    "slot.card_2.rect",
+    "slot.card_4.rect",
+    "slot.answer_blank.rect",
+    "slot.line1_prefix.text",
+    "slot.expr_mul.text",
+    "slot.line2.text",
+    "slot.num_4.text",
+    "slot.num_9.text",
+    "slot.num_2.text",
+    "slot.answer_left_paren.text",
+    "slot.answer_right_paren.text"
+  ]
+}

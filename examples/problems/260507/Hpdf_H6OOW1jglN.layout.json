@@ -1,0 +1,174 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "Hpdf_H6OOW1jglN",
+  "title": "직사각형 이어 붙이기",
+  "canvas": {
+    "width": 900,
+    "height": 675,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.fig.outer",
+        "slot.fig.v1",
+        "slot.fig.v2",
+        "slot.fig.v3",
+        "slot.fig.h1",
+        "slot.q1",
+        "slot.q2",
+        "slot.q3",
+        "slot.q4",
+        "slot.q5"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "네 변의 길이의 합이 20 cm인 작은 직사각형",
+        "style_role": "question",
+        "x": 12.0,
+        "y": 40.0,
+        "font_size": 35
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "8개를 그림과 같이 겹치지 않게 이어 붙였더니",
+        "style_role": "question",
+        "x": 12.0,
+        "y": 100.0,
+        "font_size": 35
+      }
+    },
+    {
+      "id": "slot.q3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "네 변의 길이의 합이 64 cm인 큰 직사각형이",
+        "style_role": "question",
+        "x": 12.0,
+        "y": 160.0,
+        "font_size": 35
+      }
+    },
+    {
+      "id": "slot.q4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "되었습니다. 가장 작은 직사각형 한 개의 짧은",
+        "style_role": "question",
+        "x": 12.0,
+        "y": 220.0,
+        "font_size": 35
+      }
+    },
+    {
+      "id": "slot.q5",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "변은 몇 cm입니까?",
+        "style_role": "question",
+        "x": 12.0,
+        "y": 280.0,
+        "font_size": 35
+      }
+    },
+    {
+      "id": "slot.fig.outer",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 150.0,
+        "y": 400.0,
+        "width": 600.0,
+        "height": 200.0,
+        "stroke": "#333333",
+        "stroke_width": 2.5,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.fig.v1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 300.0,
+        "y1": 400.0,
+        "x2": 300.0,
+        "y2": 600.0,
+        "stroke": "#333333",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.fig.v2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 450.0,
+        "y1": 400.0,
+        "x2": 450.0,
+        "y2": 600.0,
+        "stroke": "#333333",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.fig.v3",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 600.0,
+        "y1": 400.0,
+        "x2": 600.0,
+        "y2": 600.0,
+        "stroke": "#333333",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.fig.h1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 150.0,
+        "y1": 500.0,
+        "x2": 750.0,
+        "y2": 500.0,
+        "stroke": "#333333",
+        "stroke_width": 2.0
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.fig.outer",
+    "slot.fig.v1",
+    "slot.fig.v2",
+    "slot.fig.v3",
+    "slot.fig.h1",
+    "slot.q1",
+    "slot.q2",
+    "slot.q3",
+    "slot.q4",
+    "slot.q5"
+  ]
+}

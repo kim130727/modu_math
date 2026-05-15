@@ -1,0 +1,57 @@
+{
+  "schema": "modu.solvable.v1",
+  "problem_id": "2404",
+  "problem_type": "geometry_angle",
+  "inputs": {
+    "total_ticks": 1,
+    "target_label": "∠CAM",
+    "target_ticks": 1,
+    "target_count": 1,
+    "unit": "도"
+  },
+  "given": [
+    {
+      "ref": "obj.angle.mark_28",
+      "value": 28,
+      "unit": "도"
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "angle_measure"
+  },
+  "method": "angle_relation_reading",
+  "plan": [
+    "도형의 표시를 읽어 주어진 28°가 어떤 각과 대응하는지 확인한다.",
+    "그에 따라 ∠CAM의 크기를 선택지에서 찾는다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "operation": "read_given_angle",
+      "expr": "28°",
+      "value": 28
+    },
+    {
+      "id": "step.2",
+      "operation": "match_to_target_angle",
+      "expr": "∠CAM",
+      "value": 28
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "type": "choice_match_check",
+      "expr": "선택지 2번",
+      "expected": 28,
+      "actual": 28,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "value": 28,
+    "unit": "도",
+    "derived_from": "choice.2"
+  }
+}

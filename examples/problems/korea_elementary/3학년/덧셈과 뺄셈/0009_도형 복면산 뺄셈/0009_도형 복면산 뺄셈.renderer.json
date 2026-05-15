@@ -1,0 +1,96 @@
+{
+  "problem_id": "0009_도형 복면산 뺄셈",
+  "view_box": {
+    "width": 1000.0,
+    "height": 600.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.t1.text",
+      "type": "text",
+      "attributes": {
+        "x": 64.0,
+        "y": 72.0,
+        "max_width": 872.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 26
+      },
+      "source_ref": "slot.t1",
+      "refs": {
+        "layout_slot_id": "slot.t1"
+      },
+      "text": "다음 뺄셈식에서 같은 모양은 같은 숫자를 나타냅니다."
+    },
+    {
+      "id": "slot.t2.text",
+      "type": "text",
+      "attributes": {
+        "x": 64.0,
+        "y": 128.0,
+        "max_width": 872.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 26
+      },
+      "source_ref": "slot.t2",
+      "refs": {
+        "layout_slot_id": "slot.t2"
+      },
+      "text": "■와 ★가 나타내는 숫자의 합을 구하시오."
+    },
+    {
+      "id": "slot.v1.text",
+      "type": "text",
+      "attributes": {
+        "x": 64.0,
+        "y": 184.0,
+        "max_width": 872.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 26
+      },
+      "source_ref": "slot.v1",
+      "refs": {
+        "layout_slot_id": "slot.v1"
+      },
+      "text": "  ■ ★ ■"
+    },
+    {
+      "id": "slot.v2.text",
+      "type": "text",
+      "attributes": {
+        "x": 64.0,
+        "y": 240.0,
+        "max_width": 872.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 26
+      },
+      "source_ref": "slot.v2",
+      "refs": {
+        "layout_slot_id": "slot.v2"
+      },
+      "text": "- ★ ■ ★"
+    },
+    {
+      "id": "slot.v3.text",
+      "type": "text",
+      "attributes": {
+        "x": 64.0,
+        "y": 296.0,
+        "max_width": 872.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 26
+      },
+      "source_ref": "slot.v3",
+      "refs": {
+        "layout_slot_id": "slot.v3"
+      },
+      "text": "  ★ 7 3"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

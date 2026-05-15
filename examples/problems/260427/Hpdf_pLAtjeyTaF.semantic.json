@@ -1,0 +1,123 @@
+{
+  "problem_id": "Hpdf_pLAtjeyTaF",
+  "problem_type": "length_relation",
+  "metadata": {
+    "title": "ㄱ과 ㄴ의 길이",
+    "tags": [],
+    "instruction": "그림의 길이 관계를 보고 ㉠과 ㉡의 길이를 구하시오.",
+    "question": "㉠과 ㉡의 길이는 각각 몇 cm입니까?",
+    "required_layout_ids": [
+      "slot.line_main",
+      "slot.tick1",
+      "slot.tick2",
+      "slot.tick3",
+      "slot.tick4",
+      "slot.arc_top_821",
+      "slot.arc_top_448",
+      "slot.arc_bot_g",
+      "slot.circle_g",
+      "slot.arc_bot_n",
+      "slot.circle_n",
+      "slot.arc_bot_236"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.segment_total",
+        "type": "length",
+        "value": 821,
+        "unit": "cm"
+      },
+      {
+        "id": "obj.segment_part_right",
+        "type": "length",
+        "value": 448,
+        "unit": "cm"
+      },
+      {
+        "id": "obj.segment_part_small",
+        "type": "length",
+        "value": 236,
+        "unit": "cm"
+      },
+      {
+        "id": "obj.answer_giyeok",
+        "type": "unknown_length",
+        "label": "ㄱ",
+        "unit": "cm"
+      },
+      {
+        "id": "obj.answer_nieun",
+        "type": "unknown_length",
+        "label": "ㄴ",
+        "unit": "cm"
+      }
+    ],
+    "relations": [
+      {
+        "id": "rel.total_is_sum",
+        "type": "sum_relation",
+        "from_id": "obj.answer_giyeok",
+        "to_id": "obj.segment_total",
+        "via": [
+          "obj.answer_nieun"
+        ]
+      },
+      {
+        "id": "rel.right_is_sum",
+        "type": "sum_relation",
+        "from_id": "obj.answer_nieun",
+        "to_id": "obj.segment_part_right",
+        "via": [
+          "obj.segment_part_small"
+        ]
+      }
+    ],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.segment_total",
+          "obj.segment_part_right",
+          "obj.segment_part_small"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.total_is_sum",
+          "rel.right_is_sum"
+        ]
+      },
+      "plan": {
+        "method": "subtraction",
+        "description": "전체 길이에서 알려진 부분 길이를 빼서 ㄱ을 구하고, 또 다른 부분 길이의 차로 ㄴ을 구한다."
+      },
+      "execute": {
+        "expected_operations": [
+          "subtract_known_part",
+          "subtract_nested_part"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "inverse_operation_check",
+          "unit_consistency_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "two_lengths",
+      "description": "㉠과 ㉡의 길이"
+    },
+    "value": 609,
+    "unit": "cm"
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "problem_id": "0001",
+  "view_box": {
+    "width": 1200.0,
+    "height": 250.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.line_1.text",
+      "type": "text",
+      "attributes": {
+        "x": 30.0,
+        "y": 60.0,
+        "max_width": 1072.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 35
+      },
+      "source_ref": "slot.line_1",
+      "refs": {
+        "layout_slot_id": "slot.line_1"
+      },
+      "text": "예은이가 시계를 보았더니 7시 17분 25초였습니다."
+    },
+    {
+      "id": "slot.line_2.text",
+      "type": "text",
+      "attributes": {
+        "x": 30.0,
+        "y": 120.0,
+        "max_width": 1072.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 35
+      },
+      "source_ref": "slot.line_2",
+      "refs": {
+        "layout_slot_id": "slot.line_2"
+      },
+      "text": "36분 47초 후의 시각이 ㉠시 ㉡분 ㉢초일 때 ㉠+㉡+㉢을 구하시오."
+    },
+    {
+      "id": "slot.answer.text",
+      "type": "text",
+      "attributes": {
+        "x": 500.0,
+        "y": 180.0,
+        "max_width": 1072.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 35
+      },
+      "source_ref": "slot.answer",
+      "refs": {
+        "layout_slot_id": "slot.answer"
+      },
+      "text": "(            )"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

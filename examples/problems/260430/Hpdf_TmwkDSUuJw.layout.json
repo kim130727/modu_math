@@ -1,0 +1,116 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "Hpdf_TmwkDSUuJw",
+  "title": "같은 모양은 같은 수",
+  "canvas": {
+    "width": 561,
+    "height": 304,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q1",
+        "slot.q2",
+        "slot.box",
+        "slot.eq1",
+        "slot.eq2",
+        "slot.eq3"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "같은 모양은 같은 수를 나타냅니다.",
+        "style_role": "question",
+        "x": 10.0,
+        "y": 30.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "●에 알맞은 수를 구하시오.",
+        "style_role": "question",
+        "x": 10.0,
+        "y": 68.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 94.0,
+        "y": 121.0,
+        "width": 363.0,
+        "height": 170.0,
+        "stroke": "#777777",
+        "stroke_width": 1.4,
+        "rx": 6.0,
+        "ry": 6.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.eq1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "700−425=■",
+        "style_role": "equation",
+        "x": 196.0,
+        "y": 169.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.eq2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "■+136=▲",
+        "style_role": "equation",
+        "x": 182.0,
+        "y": 211.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.eq3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "▲+●=610",
+        "style_role": "equation",
+        "x": 183.0,
+        "y": 253.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q1",
+    "slot.q2",
+    "slot.box",
+    "slot.eq1",
+    "slot.eq2",
+    "slot.eq3"
+  ]
+}

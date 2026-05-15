@@ -1,0 +1,67 @@
+{
+  "schema": "modu.solvable.v1",
+  "problem_id": "0008_덧셈 암호 해독",
+  "problem_type": "arithmetic_crypto_puzzle",
+  "inputs": {
+    "total_ticks": 1,
+    "target_label": "",
+    "target_ticks": 1,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.eq1",
+      "value": "127+621"
+    },
+    {
+      "ref": "obj.eq2",
+      "value": "231+764"
+    },
+    {
+      "ref": "obj.map",
+      "value": {
+        "1": "나",
+        "2": "이",
+        "3": "요",
+        "4": "구",
+        "5": "꿍",
+        "6": "월",
+        "7": "친",
+        "8": "와",
+        "9": "짝",
+        "0": "너"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "unknown"
+  },
+  "method": "read_visible_information",
+  "plan": [
+    "주어진 조건을 읽고 목표 값을 계산한다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "operation": "identify_target",
+      "expr": "identify target from problem",
+      "value": 0
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "basic consistency check",
+      "expected": "친구와 짝짝꿍",
+      "actual": "친구와 짝짝꿍",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "value": 0,
+    "unit": "",
+    "derived_from": "step.1"
+  }
+}

@@ -1,0 +1,159 @@
+{
+  "problem_id": "2409",
+  "problem_type": "geometry_triangle",
+  "metadata": {
+    "title": "Find y in triangle ABC.",
+    "tags": [
+      "triangle",
+      "angle",
+      "geometry"
+    ],
+    "instruction": "Find y.",
+    "question": "Find y in triangle ABC.",
+    "required_layout_ids": [
+      "slot.diagram.frame",
+      "slot.edge.1",
+      "slot.edge.2",
+      "slot.edge.3",
+      "slot.pt.A",
+      "slot.pt.B",
+      "slot.pt.C",
+      "slot.arc.C.01",
+      "slot.arc.C.02",
+      "slot.arc.C.03",
+      "slot.arc.C.04",
+      "slot.arc.C.05",
+      "slot.arc.C.06",
+      "slot.arc.B.01",
+      "slot.arc.B.02",
+      "slot.arc.B.03",
+      "slot.arc.B.04",
+      "slot.arc.B.05",
+      "slot.arc.B.06"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "en"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.triangle.ABC",
+        "type": "triangle",
+        "name": "ABC"
+      },
+      {
+        "id": "obj.point.A",
+        "type": "point",
+        "name": "A"
+      },
+      {
+        "id": "obj.point.B",
+        "type": "point",
+        "name": "B"
+      },
+      {
+        "id": "obj.point.C",
+        "type": "point",
+        "name": "C"
+      },
+      {
+        "id": "obj.segment.AC",
+        "type": "segment",
+        "name": "AC",
+        "value": 21
+      },
+      {
+        "id": "obj.segment.AB",
+        "type": "segment",
+        "name": "AB"
+      },
+      {
+        "id": "obj.angle.B",
+        "type": "angle",
+        "name": "angle B",
+        "value": 30
+      },
+      {
+        "id": "obj.angle.C",
+        "type": "angle",
+        "name": "angle C",
+        "value": 60
+      }
+    ],
+    "relations": [
+      {
+        "id": "rel.find_AB",
+        "type": "find",
+        "from_id": "obj.segment.AB",
+        "to_id": "answer.target"
+      }
+    ],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.segment.AC",
+          "obj.angle.B",
+          "obj.angle.C"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.find_AB"
+        ]
+      },
+      "plan": {
+        "method": "triangle_ratio_30_60_90",
+        "description": "Use 30-60-90 triangle side ratios to compute AB."
+      },
+      "execute": {
+        "expected_operations": [
+          "infer_right_triangle",
+          "apply_ratio",
+          "compute_target_length"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "choice_match",
+          "value_consistency"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [
+      {
+        "index": 1,
+        "text": "1. 21",
+        "value": "21"
+      },
+      {
+        "index": 2,
+        "text": "2. 21*sqrt(2)",
+        "value": "21*sqrt(2)"
+      },
+      {
+        "index": 3,
+        "text": "3. 21*sqrt(3)",
+        "value": "21*sqrt(3)"
+      },
+      {
+        "index": 4,
+        "text": "4. (blank)",
+        "value": ""
+      }
+    ],
+    "answer_key": [
+      3
+    ],
+    "confidence": 1.0,
+    "target": {
+      "type": "segment_length",
+      "description": "AB (y)"
+    },
+    "value": 36.4,
+    "unit": "",
+    "exact_form": "21*sqrt(3)"
+  }
+}

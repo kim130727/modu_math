@@ -1,0 +1,71 @@
+{
+  "problem_id": "Hpdf_sFTsjxrlk6",
+  "problem_type": "geometry_perimeter_cut_fold",
+  "metadata": {
+    "title": "종이를 접고 자른 뒤 만든 사각형의 둘레",
+    "tags": [],
+    "instruction": "접기와 자르기 후 대응되는 변의 길이 관계를 이용해 둘레를 구합니다.",
+    "question": "직사각형 모양의 종이를 반듯하게 접은 뒤 선분 ㅁㅂ을 따라 자르고 다시 펴서 만든 새로운 사각형 ㄱㄴㅂㄷ의 둘레를 구하는 문제",
+    "required_layout_ids": [
+      "slot.left.rect",
+      "slot.left.arc",
+      "slot.left.arc2",
+      "slot.right.dash_box",
+      "slot.right.left_edge",
+      "slot.right.bottom_edge",
+      "slot.right.tri",
+      "slot.right.strip",
+      "slot.right.diag"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.paper",
+        "type": "rectangle",
+        "length": 10,
+        "width": 8
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.paper"
+        ],
+        "target_ref": "answer.target"
+      },
+      "plan": {
+        "method": "perimeter_from_transformed_shape",
+        "description": "접기와 자르기로 생긴 사각형의 대응 변 길이를 찾아 둘레를 계산한다."
+      },
+      "execute": {
+        "expected_operations": [
+          "identify_matching_sides",
+          "determine_perimeter_relation"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "unit_consistency_check",
+          "side_length_relation_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "perimeter",
+      "description": "새로 만든 사각형 ㄱㄴㅂㄷ의 둘레"
+    },
+    "value": 32,
+    "unit": "cm"
+  }
+}

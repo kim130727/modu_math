@@ -1,0 +1,65 @@
+{
+  "schema": "modu.solvable.v1",
+  "problem_id": "0014_나눗셈 범위",
+  "problem_type": "arithmetic_division_range_count",
+  "given": [
+    {
+      "ref": "obj.cards",
+      "values": [
+        3,
+        5,
+        7,
+        9
+      ]
+    }
+  ],
+  "target": {
+    "type": "number",
+    "description": "범위 내 자연수 개수"
+  },
+  "method": "extreme_value_analysis",
+  "steps": [
+    {
+      "id": "step.s1",
+      "operation": "calculation",
+      "expr": "최소_몫 = (3 + 5/7) / 9 = 26/63 ≈ 0.412",
+      "value": 0.412
+    },
+    {
+      "id": "step.s2",
+      "operation": "calculation",
+      "expr": "최대_몫 = (9 + 5/7) / 3 = 68/21 ≈ 3.238",
+      "value": 3.238
+    },
+    {
+      "id": "step.s3",
+      "operation": "counting",
+      "expr": "범위_내_자연수 = {1, 2, 3}",
+      "value": 3
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.c1",
+      "expr": "integer_range_counting_check",
+      "pass": true,
+      "expected": 3,
+      "actual": 3
+    }
+  ],
+  "answer": {
+    "value": 3,
+    "unit": "개",
+    "derived_from": "step.s3"
+  },
+  "inputs": {
+    "total_ticks": 1,
+    "target_label": "개수",
+    "target_ticks": 1,
+    "target_count": 1,
+    "unit": "개"
+  },
+  "plan": [
+    "카드를 조합하여 만든 최소 몫(약 0.412)과 최대 몫(약 3.238) 사이의 자연수 1, 2, 3의 개수를 구합니다."
+  ]
+}

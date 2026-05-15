@@ -1,0 +1,97 @@
+{
+  "problem_id": "Hpdf_krkIaX01xZ",
+  "problem_type": "inequality_count",
+  "metadata": {
+    "title": "□ 안에 들어갈 수 있는 세 자리 수",
+    "tags": [],
+    "instruction": "부등식 991－□ > 397+108을 만족하는 세 자리 수 □의 개수를 구한다.",
+    "question": "□ 안에 들어갈 수 있는 세 자리 수는 모두 몇 개인가?",
+    "required_layout_ids": [
+      "slot.box"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "var.box",
+        "type": "integer_variable",
+        "label": "□",
+        "range": [
+          100,
+          999
+        ]
+      },
+      {
+        "id": "expr.left",
+        "type": "subtraction_expression",
+        "left": 991,
+        "right": "var.box"
+      },
+      {
+        "id": "expr.right",
+        "type": "addition_expression",
+        "left": 397,
+        "right": 108
+      }
+    ],
+    "relations": [
+      {
+        "id": "rel.inequality",
+        "type": "greater_than",
+        "left": "expr.left",
+        "right": "expr.right"
+      },
+      {
+        "id": "rel.count_target",
+        "type": "count_satisfying_values",
+        "variable": "var.box",
+        "condition": "rel.inequality"
+      }
+    ],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "expr.left",
+          "expr.right"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.inequality"
+        ]
+      },
+      "plan": {
+        "method": "inequality_rearrangement",
+        "description": "991 - □ > 505 식을 □ < 991 - 505 형태로 변형하여 범위를 구한다."
+      },
+      "execute": {
+        "expected_operations": [
+          "compute_sum",
+          "compute_difference_limit",
+          "count_integers_in_range"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "boundary_verification",
+          "range_size_verification"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "count",
+      "ref": "rel.count_target",
+      "description": "부등식을 만족하는 세 자리 수 □의 개수"
+    },
+    "value": 386,
+    "unit": "개"
+  }
+}

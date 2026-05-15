@@ -1,0 +1,175 @@
+{
+  "problem_id": "2408",
+  "problem_type": "geometry_multiple_choice",
+  "metadata": {
+    "title": "도형 문제",
+    "tags": [],
+    "instruction": "NZ를 구하시오.",
+    "question": "XN = 6, XM = 2, XY = 10일 때, NZ를 구하시오.",
+    "required_layout_ids": [
+      "slot.diagram.frame",
+      "slot.edge.base",
+      "slot.edge.left",
+      "slot.edge.right",
+      "slot.edge.inner",
+      "slot.pt.X",
+      "slot.pt.Z",
+      "slot.pt.Y",
+      "slot.pt.N",
+      "slot.pt.M",
+      "slot.marker.1.base",
+      "slot.marker.1.w1",
+      "slot.marker.1.w2",
+      "slot.marker.2.base",
+      "slot.marker.2.w1",
+      "slot.marker.2.w2"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.triangle",
+        "type": "triangle",
+        "name": "XZY"
+      },
+      {
+        "id": "obj.point.X",
+        "type": "point",
+        "name": "X"
+      },
+      {
+        "id": "obj.point.Y",
+        "type": "point",
+        "name": "Y"
+      },
+      {
+        "id": "obj.point.Z",
+        "type": "point",
+        "name": "Z"
+      },
+      {
+        "id": "obj.point.N",
+        "type": "point",
+        "name": "N"
+      },
+      {
+        "id": "obj.point.M",
+        "type": "point",
+        "name": "M"
+      },
+      {
+        "id": "obj.segment.XN",
+        "type": "segment",
+        "name": "XN",
+        "value": 6
+      },
+      {
+        "id": "obj.segment.XM",
+        "type": "segment",
+        "name": "XM",
+        "value": 2
+      },
+      {
+        "id": "obj.segment.XY",
+        "type": "segment",
+        "name": "XY",
+        "value": 10
+      },
+      {
+        "id": "obj.segment.NZ",
+        "type": "segment",
+        "name": "NZ"
+      }
+    ],
+    "relations": [
+      {
+        "id": "rel.N_on_XZ",
+        "type": "lies_on",
+        "from_id": "obj.point.N",
+        "to_id": "obj.segment.XZ"
+      },
+      {
+        "id": "rel.M_on_XY",
+        "type": "lies_on",
+        "from_id": "obj.point.M",
+        "to_id": "obj.segment.XY"
+      },
+      {
+        "id": "rel.find_NZ",
+        "type": "find",
+        "from_id": "obj.segment.NZ",
+        "to_id": "answer.target"
+      }
+    ],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.segment.XN",
+          "obj.segment.XM",
+          "obj.segment.XY"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.N_on_XZ",
+          "rel.M_on_XY",
+          "rel.find_NZ"
+        ]
+      },
+      "plan": {
+        "method": "use_given_length_relations",
+        "description": "주어진 길이와 도형의 관계를 바탕으로 NZ를 구한다."
+      },
+      "execute": {
+        "expected_operations": [
+          "interpret_diagram_relations",
+          "compare_segment_lengths",
+          "determine_NZ"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "answer_matches_choice",
+          "check_unit_length_consistency"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [
+      {
+        "index": 1,
+        "text": "1. 12",
+        "value": "12"
+      },
+      {
+        "index": 2,
+        "text": "2. 16",
+        "value": "16"
+      },
+      {
+        "index": 3,
+        "text": "3. 24",
+        "value": "24"
+      },
+      {
+        "index": 4,
+        "text": "4. 32",
+        "value": "32"
+      }
+    ],
+    "answer_key": [
+      3
+    ],
+    "confidence": 1.0,
+    "target": {
+      "type": "segment_length",
+      "description": "NZ"
+    },
+    "value": 24,
+    "unit": ""
+  }
+}

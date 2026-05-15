@@ -1,0 +1,81 @@
+{
+  "schema": "modu.solvable.v1",
+  "problem_id": "Hpdf_TmwkDSUuJw",
+  "problem_type": "symbol_equation",
+  "given": [
+    {
+      "ref": "obj.value_700",
+      "value": 700
+    },
+    {
+      "ref": "obj.value_425",
+      "value": 425
+    },
+    {
+      "ref": "obj.value_136",
+      "value": 136
+    },
+    {
+      "ref": "obj.value_610",
+      "value": 610
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "symbol_value"
+  },
+  "method": "sequential_substitution",
+  "steps": [
+    {
+      "id": "step.s1",
+      "operation": "subtract",
+      "expr": "700 - 425",
+      "value": 275
+    },
+    {
+      "id": "step.s2",
+      "operation": "add",
+      "expr": "275 + 136",
+      "value": 411
+    },
+    {
+      "id": "step.s3",
+      "operation": "subtract",
+      "expr": "610 - 411",
+      "value": 199
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.c1",
+      "type": "substitute_back_into_equations",
+      "pass": true,
+      "expected": 1,
+      "actual": 1,
+      "expr": "check"
+    },
+    {
+      "id": "check.c2",
+      "type": "consistency_check",
+      "pass": true,
+      "expected": 1,
+      "actual": 1,
+      "expr": "check"
+    }
+  ],
+  "answer": {
+    "value": 199,
+    "unit": "",
+    "derived_from": "step.s3"
+  },
+  "inputs": {
+    "total_ticks": 1,
+    "target_label": "답",
+    "target_ticks": 1,
+    "target_count": 1,
+    "unit": ""
+  },
+  "plan": [
+    "풀이 과정 없음"
+  ]
+}

@@ -1,0 +1,83 @@
+{
+  "problem_id": "Hpdf_lah0OIGiEi",
+  "problem_type": "count_right_triangles",
+  "metadata": {
+    "title": "도형에서 직각삼각형 개수",
+    "tags": [],
+    "question": "도형에서 찾을 수 있는 크고 작은 직각삼각형은 모두 몇 개입니까?",
+    "required_layout_ids": [
+      "slot.shape.outer_left",
+      "slot.shape.outer_top",
+      "slot.shape.outer_mid",
+      "slot.shape.outer_bottom",
+      "slot.shape.left_diag1",
+      "slot.shape.left_diag2",
+      "slot.shape.top_diag1",
+      "slot.shape.top_diag2",
+      "slot.shape.mid_diag1",
+      "slot.shape.mid_diag2",
+      "slot.shape.bottom_diag1",
+      "slot.shape.bottom_diag2"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "직각삼각형의 개수를 구하시오."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.figure",
+        "type": "composite_shape",
+        "description": "정사각형 4개가 십자가 형태(일부 누락)로 결합되고 대각선이 그려진 도형"
+      }
+    ],
+    "relations": [
+      {
+        "id": "rel.count",
+        "type": "count_shape",
+        "shape_type": "right_triangle",
+        "target": "answer.target"
+      }
+    ],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.figure"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.count"
+        ]
+      },
+      "plan": {
+        "method": "systematic_counting_by_size",
+        "description": "가장 작은 직각삼각형부터 크기별로 분류하여 개수를 센다."
+      },
+      "execute": {
+        "expected_operations": [
+          "count_small_triangles",
+          "count_medium_triangles",
+          "count_large_triangles",
+          "count_extra_large_triangles",
+          "sum_all"
+        ]
+      },
+      "review": {
+        "check_methods": []
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "number",
+      "description": "크고 작은 직각삼각형의 총 개수"
+    },
+    "value": 40,
+    "unit": "개"
+  }
+}

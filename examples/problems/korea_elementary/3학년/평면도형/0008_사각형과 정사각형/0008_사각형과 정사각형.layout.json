@@ -1,0 +1,336 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "0008_사각형과 정사각형",
+  "title": "",
+  "canvas": {
+    "width": 400,
+    "height": 260,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "vertical",
+      "slot_ids": [
+        "slot.bg",
+        "slot.frame",
+        "slot.na",
+        "slot.ga",
+        "slot.da",
+        "slot.ra",
+        "slot.ba",
+        "slot.ma",
+        "slot.answer_value",
+        "slot.i1",
+        "slot.ga_t",
+        "slot.na_t",
+        "slot.da_t",
+        "slot.ra_t",
+        "slot.ma_t",
+        "slot.ba_t"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.bg",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 400.0,
+        "height": 260.0,
+        "stroke": "none",
+        "stroke_width": 0.0,
+        "fill": "#F4F4F4"
+      }
+    },
+    {
+      "id": "slot.i1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "직사각형은 정사각형보다 몇 개 더 많은지 구하세요.",
+        "style_role": "body",
+        "x": 4.0,
+        "y": 34.0,
+        "font_size": 17,
+        "font_family": "Malgun Gothic",
+        "anchor": "middle",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.frame",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 6.0,
+        "y": 52.0,
+        "width": 384.0,
+        "height": 194.0,
+        "stroke": "#8A8A8A",
+        "stroke_width": 1.4,
+        "rx": 10.0,
+        "ry": 10.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.na",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 162.0,
+        "y": 66.0,
+        "width": 64.0,
+        "height": 64.0,
+        "stroke": "#4A4A4A",
+        "stroke_width": 2.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.ga",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            26.0,
+            69.0
+          ],
+          [
+            106.0,
+            67.0
+          ],
+          [
+            84.0,
+            108.0
+          ],
+          [
+            36.0,
+            120.0
+          ]
+        ],
+        "stroke": "#4A4A4A",
+        "stroke_width": 2.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.da",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 284.0,
+        "y": 77.0,
+        "width": 80.0,
+        "height": 52.0,
+        "stroke": "#4A4A4A",
+        "stroke_width": 2.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.ga_t",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "가",
+        "style_role": "body",
+        "x": 58.0,
+        "y": 96.0,
+        "font_size": 32,
+        "font_family": "Malgun Gothic",
+        "anchor": "middle",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.na_t",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "나",
+        "style_role": "body",
+        "x": 194.0,
+        "y": 106.0,
+        "font_size": 32,
+        "font_family": "Malgun Gothic",
+        "anchor": "middle",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.da_t",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "다",
+        "style_role": "body",
+        "x": 324.0,
+        "y": 106.0,
+        "font_size": 32,
+        "font_family": "Malgun Gothic",
+        "anchor": "middle",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.ra",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            56.0,
+            134.0
+          ],
+          [
+            100.0,
+            170.0
+          ],
+          [
+            56.0,
+            206.0
+          ],
+          [
+            12.0,
+            170.0
+          ]
+        ],
+        "stroke": "#4A4A4A",
+        "stroke_width": 2.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.ba",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            328.0,
+            150.0
+          ],
+          [
+            371.0,
+            174.0
+          ],
+          [
+            328.0,
+            198.0
+          ],
+          [
+            285.0,
+            174.0
+          ]
+        ],
+        "stroke": "#4A4A4A",
+        "stroke_width": 2.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.ma",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 136.0,
+        "y": 154.0,
+        "width": 116.0,
+        "height": 42.0,
+        "stroke": "#4A4A4A",
+        "stroke_width": 2.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.ra_t",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "라",
+        "style_role": "body",
+        "x": 56.0,
+        "y": 184.0,
+        "font_size": 32,
+        "font_family": "Malgun Gothic",
+        "anchor": "middle",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.ma_t",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "마",
+        "style_role": "body",
+        "x": 194.0,
+        "y": 184.0,
+        "font_size": 32,
+        "font_family": "Malgun Gothic",
+        "anchor": "middle",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.ba_t",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "바",
+        "style_role": "body",
+        "x": 328.0,
+        "y": 186.0,
+        "font_size": 32,
+        "font_family": "Malgun Gothic",
+        "anchor": "middle",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.answer_value",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 304.0,
+        "y": 212.0,
+        "width": 48.0,
+        "height": 28.0,
+        "stroke": "none",
+        "stroke_width": 0.0,
+        "fill": "none",
+        "semantic_role": "answer_anchor"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.bg",
+    "slot.frame",
+    "slot.na",
+    "slot.ga",
+    "slot.da",
+    "slot.ra",
+    "slot.ba",
+    "slot.ma",
+    "slot.answer_value",
+    "slot.i1",
+    "slot.ga_t",
+    "slot.na_t",
+    "slot.da_t",
+    "slot.ra_t",
+    "slot.ma_t",
+    "slot.ba_t"
+  ]
+}

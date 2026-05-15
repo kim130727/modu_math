@@ -8,7 +8,9 @@ version = "0.1.0"
 description = "Python DSL library that compiles math problems into semantic, layout, renderer JSON contracts and SVG"
 readme = "README.md"
 requires-python = ">=3.10"
-dependencies = []
+dependencies = [
+    "django>=4.2.30",
+]
 
 [project.optional-dependencies]
 dev = [
@@ -21,6 +23,7 @@ llm = [
 ]
 web = [
     "django>=4.0,<5.0",
+    "libcst>=1.4.0",
 ]
 
 [project.scripts]

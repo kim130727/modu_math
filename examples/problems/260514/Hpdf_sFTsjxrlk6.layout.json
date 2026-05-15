@@ -1,0 +1,376 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "Hpdf_sFTsjxrlk6",
+  "title": "종이를 접고 자른 뒤 만든 사각형의 둘레",
+  "canvas": {
+    "width": 880,
+    "height": 732,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.left.rect",
+        "slot.left.arc",
+        "slot.left.arc2",
+        "slot.right.dash_box",
+        "slot.right.tri",
+        "slot.right.strip",
+        "slot.right.diag",
+        "slot.right.left_edge",
+        "slot.right.bottom_edge",
+        "slot.q1",
+        "slot.q2",
+        "slot.q3",
+        "slot.q4",
+        "slot.q5",
+        "slot.left.top_label",
+        "slot.left.right_label",
+        "slot.arrow",
+        "slot.right.label.dan1",
+        "slot.right.label.dan2",
+        "slot.right.label.dan3",
+        "slot.right.label.dan4",
+        "slot.right.label.dan5",
+        "slot.right.label.dan6"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "직사각형 모양의 종이를 다음과 같이 반듯하게 접은 뒤",
+        "style_role": "question",
+        "x": 12.0,
+        "y": 46.0,
+        "font_size": 32
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "선분 ㅁㅂ을 따라 자르고 다시 펴서 새로운 사각형 ㄱㄴㅂㄷ을",
+        "style_role": "question",
+        "x": 12.0,
+        "y": 92.0,
+        "font_size": 32
+      }
+    },
+    {
+      "id": "slot.q3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "만들었습니다.",
+        "style_role": "question",
+        "x": 12.0,
+        "y": 148.0,
+        "font_size": 32
+      }
+    },
+    {
+      "id": "slot.q4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "새로운 만든 사각형 ㄱㄴㅂㄷ의 네 변의 길이의 합은",
+        "style_role": "question",
+        "x": 12.0,
+        "y": 204.0,
+        "font_size": 32
+      }
+    },
+    {
+      "id": "slot.q5",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "몇 cm입니까?",
+        "style_role": "question",
+        "x": 12.0,
+        "y": 260.0,
+        "font_size": 32
+      }
+    },
+    {
+      "id": "slot.left.rect",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 28.0,
+        "y": 482.0,
+        "width": 252.0,
+        "height": 208.0,
+        "stroke": "#333333",
+        "stroke_width": 2.0,
+        "fill": "#DDDDDD"
+      }
+    },
+    {
+      "id": "slot.left.arc",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 26 480 C 60 426, 210 426, 280 482",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#666666",
+        "stroke_width": 1.5,
+        "stroke_dasharray": "8 5",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.left.arc2",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 280 488 C 300 520, 310 654, 280 690",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#666666",
+        "stroke_width": 1.5,
+        "stroke_dasharray": "8 5",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.left.top_label",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "10 cm",
+        "style_role": "label",
+        "x": 138.0,
+        "y": 430.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.left.right_label",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "8 cm",
+        "style_role": "label",
+        "x": 310.0,
+        "y": 600.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.arrow",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "→",
+        "style_role": "label",
+        "x": 430.0,
+        "y": 610.0,
+        "font_size": 64
+      }
+    },
+    {
+      "id": "slot.right.dash_box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 568.0,
+        "y": 482.0,
+        "width": 240.0,
+        "height": 208.0,
+        "stroke": "#444444",
+        "stroke_width": 2.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.right.left_edge",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 568.0,
+        "y1": 482.0,
+        "x2": 568.0,
+        "y2": 690.0,
+        "stroke": "#444444",
+        "stroke_width": 2.0,
+        "stroke_dasharray": "8 5"
+      }
+    },
+    {
+      "id": "slot.right.bottom_edge",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 568.0,
+        "y1": 690.0,
+        "x2": 808.0,
+        "y2": 690.0,
+        "stroke": "#444444",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.right.tri",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            568.0,
+            690.0
+          ],
+          [
+            768.0,
+            482.0
+          ],
+          [
+            768.0,
+            690.0
+          ]
+        ],
+        "stroke": "#333333",
+        "stroke_width": 2.0,
+        "fill": "#C9C9C9"
+      }
+    },
+    {
+      "id": "slot.right.strip",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 768.0,
+        "y": 482.0,
+        "width": 48.0,
+        "height": 208.0,
+        "stroke": "#333333",
+        "stroke_width": 2.0,
+        "fill": "#DDDDDD"
+      }
+    },
+    {
+      "id": "slot.right.diag",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 568.0,
+        "y1": 690.0,
+        "x2": 768.0,
+        "y2": 482.0,
+        "stroke": "#333333",
+        "stroke_width": 2.5
+      }
+    },
+    {
+      "id": "slot.right.label.dan1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄱ",
+        "style_role": "label",
+        "x": 548.0,
+        "y": 468.0,
+        "font_size": 35
+      }
+    },
+    {
+      "id": "slot.right.label.dan2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㅁ",
+        "style_role": "label",
+        "x": 750.0,
+        "y": 468.0,
+        "font_size": 35
+      }
+    },
+    {
+      "id": "slot.right.label.dan3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄹ",
+        "style_role": "label",
+        "x": 818.0,
+        "y": 468.0,
+        "font_size": 35
+      }
+    },
+    {
+      "id": "slot.right.label.dan4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄴ",
+        "style_role": "label",
+        "x": 548.0,
+        "y": 720.0,
+        "font_size": 35
+      }
+    },
+    {
+      "id": "slot.right.label.dan5",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄷ",
+        "style_role": "label",
+        "x": 818.0,
+        "y": 720.0,
+        "font_size": 35
+      }
+    },
+    {
+      "id": "slot.right.label.dan6",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㅂ",
+        "style_role": "label",
+        "x": 750.0,
+        "y": 720.0,
+        "font_size": 35
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.left.rect",
+    "slot.left.arc",
+    "slot.left.arc2",
+    "slot.right.dash_box",
+    "slot.right.tri",
+    "slot.right.strip",
+    "slot.right.diag",
+    "slot.right.left_edge",
+    "slot.right.bottom_edge",
+    "slot.q1",
+    "slot.q2",
+    "slot.q3",
+    "slot.q4",
+    "slot.q5",
+    "slot.left.top_label",
+    "slot.left.right_label",
+    "slot.arrow",
+    "slot.right.label.dan1",
+    "slot.right.label.dan2",
+    "slot.right.label.dan3",
+    "slot.right.label.dan4",
+    "slot.right.label.dan5",
+    "slot.right.label.dan6"
+  ]
+}

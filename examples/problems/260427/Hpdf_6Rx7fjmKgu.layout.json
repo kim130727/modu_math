@@ -1,0 +1,199 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "Hpdf_6Rx7fjmKgu",
+  "title": "집합 그림의 물음",
+  "canvas": {
+    "width": 560,
+    "height": 520,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q1",
+        "slot.q2",
+        "slot.c.top",
+        "slot.c.left",
+        "slot.c.right",
+        "slot.n.top",
+        "slot.n.left_center",
+        "slot.n.right_center",
+        "slot.n.bottom_center",
+        "slot.n.right_only",
+        "slot.n.left_only",
+        "slot.n.center_unknown"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "그림에서 색칠된 부분의 수의 합이 모두 같을 때",
+        "style_role": "body",
+        "x": 14.0,
+        "y": 48.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "가에 있는 수는 얼마입니까?",
+        "style_role": "question",
+        "x": 14.0,
+        "y": 96.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.c.top",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 290.0,
+        "cy": 210.0,
+        "r": 82.0,
+        "stroke": "#666666",
+        "stroke_width": 2.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.c.left",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 244.0,
+        "cy": 282.0,
+        "r": 82.0,
+        "stroke": "#666666",
+        "stroke_width": 2.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.c.right",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 340.0,
+        "cy": 282.0,
+        "r": 82.0,
+        "stroke": "#666666",
+        "stroke_width": 2.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.n.top",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "146",
+        "style_role": "body",
+        "x": 260.0,
+        "y": 185.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.n.left_center",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "177",
+        "style_role": "body",
+        "x": 220.0,
+        "y": 242.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.n.right_center",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "162",
+        "style_role": "body",
+        "x": 314.0,
+        "y": 242.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.n.bottom_center",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "133",
+        "style_role": "body",
+        "x": 268.0,
+        "y": 325.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.n.right_only",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "190",
+        "style_role": "body",
+        "x": 358.0,
+        "y": 312.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.n.left_only",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "가",
+        "style_role": "body",
+        "x": 180.0,
+        "y": 312.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.n.center_unknown",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "나",
+        "style_role": "body",
+        "x": 276.0,
+        "y": 276.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q1",
+    "slot.q2",
+    "slot.c.top",
+    "slot.c.left",
+    "slot.c.right",
+    "slot.n.top",
+    "slot.n.left_center",
+    "slot.n.right_center",
+    "slot.n.bottom_center",
+    "slot.n.right_only",
+    "slot.n.left_only",
+    "slot.n.center_unknown"
+  ]
+}

@@ -1,0 +1,74 @@
+{
+  "problem_id": "0008_덧셈 암호 해독",
+  "problem_type": "arithmetic_crypto_puzzle",
+  "metadata": {
+    "title": "",
+    "tags": [],
+    "instruction": "□안에 알맞은 수를 넣고 그 수를 이용하여 숨어 있는 글자를 찾아 보세요.",
+    "question": "두 덧셈식(127+621, 231+764)을 계산하고, 각 숫자에 대응하는 글자를 찾아 숨겨진 문장을 만드는 문제",
+    "required_layout_ids": [
+      "slot.board",
+      "slot.eq1_line",
+      "slot.eq2_line",
+      "slot.eq1_blank_0",
+      "slot.eq1_blank_1",
+      "slot.eq1_blank_2",
+      "slot.eq2_blank_0",
+      "slot.eq2_blank_1",
+      "slot.eq2_blank_2",
+      "slot.map_box"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.eq1",
+        "type": "equation",
+        "value": "127+621"
+      },
+      {
+        "id": "obj.eq2",
+        "type": "equation",
+        "value": "231+764"
+      },
+      {
+        "id": "obj.map",
+        "type": "map",
+        "value": {
+          "1": "나",
+          "2": "이",
+          "3": "요",
+          "4": "구",
+          "5": "꿍",
+          "6": "월",
+          "7": "친",
+          "8": "와",
+          "9": "짝",
+          "0": "너"
+        }
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "plan": {
+        "method": "calculation_and_substitution",
+        "description": "계산 결과를 구한 뒤, 숫자를 글자로 치환하여 문장을 완성한다."
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "value": 0,
+    "unit": "",
+    "target": {
+      "type": "unknown",
+      "description": ""
+    }
+  }
+}

@@ -1,0 +1,354 @@
+{
+  "problem_id": "0015_도형의 둘레",
+  "view_box": {
+    "width": 980.0,
+    "height": 730.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.bg.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 980.0,
+        "height": 730.0,
+        "fill": "#F6F6F6",
+        "stroke": "none",
+        "stroke-width": 0.0,
+        "data-semantic-role": "background"
+      },
+      "source_ref": "slot.bg",
+      "refs": {
+        "layout_slot_id": "slot.bg"
+      }
+    },
+    {
+      "id": "slot.colored_square.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 202.59975,
+        "y": 570.6146200000001,
+        "width": 56.0,
+        "height": 56.0,
+        "fill": "#4E78C2",
+        "stroke": "none",
+        "stroke-width": 0.0,
+        "data-semantic-role": "highlight"
+      },
+      "source_ref": "slot.colored_square",
+      "refs": {
+        "layout_slot_id": "slot.colored_square"
+      }
+    },
+    {
+      "id": "slot.outer_left.line",
+      "type": "line",
+      "attributes": {
+        "x1": 202.59975,
+        "y1": 346.61462,
+        "x2": 202.59975,
+        "y2": 626.6146200000001,
+        "stroke": "#222222",
+        "stroke-width": 2.0,
+        "data-semantic-role": "segment"
+      },
+      "source_ref": "slot.outer_left",
+      "refs": {
+        "layout_slot_id": "slot.outer_left"
+      }
+    },
+    {
+      "id": "slot.outer_top.line",
+      "type": "line",
+      "attributes": {
+        "x1": 202.59975,
+        "y1": 346.61462,
+        "x2": 650.59975,
+        "y2": 346.61462,
+        "stroke": "#222222",
+        "stroke-width": 2.0,
+        "data-semantic-role": "segment"
+      },
+      "source_ref": "slot.outer_top",
+      "refs": {
+        "layout_slot_id": "slot.outer_top"
+      }
+    },
+    {
+      "id": "slot.v_main.line",
+      "type": "line",
+      "attributes": {
+        "x1": 370.59975,
+        "y1": 346.61462,
+        "x2": 370.59975,
+        "y2": 626.6146200000001,
+        "stroke": "#222222",
+        "stroke-width": 2.0,
+        "data-semantic-role": "segment"
+      },
+      "source_ref": "slot.v_main",
+      "refs": {
+        "layout_slot_id": "slot.v_main"
+      }
+    },
+    {
+      "id": "slot.outer_right.line",
+      "type": "line",
+      "attributes": {
+        "x1": 650.59975,
+        "y1": 346.61462,
+        "x2": 650.59975,
+        "y2": 626.6146200000001,
+        "stroke": "#222222",
+        "stroke-width": 2.0,
+        "data-semantic-role": "segment"
+      },
+      "source_ref": "slot.outer_right",
+      "refs": {
+        "layout_slot_id": "slot.outer_right"
+      }
+    },
+    {
+      "id": "slot.h_main.line",
+      "type": "line",
+      "attributes": {
+        "x1": 202.59975,
+        "y1": 514.6146200000001,
+        "x2": 370.59975,
+        "y2": 514.6146200000001,
+        "stroke": "#222222",
+        "stroke-width": 2.0,
+        "data-semantic-role": "segment"
+      },
+      "source_ref": "slot.h_main",
+      "refs": {
+        "layout_slot_id": "slot.h_main"
+      }
+    },
+    {
+      "id": "slot.v_small.line",
+      "type": "line",
+      "attributes": {
+        "x1": 258.59975,
+        "y1": 514.6146200000001,
+        "x2": 258.59975,
+        "y2": 626.6146200000001,
+        "stroke": "#222222",
+        "stroke-width": 2.0,
+        "data-semantic-role": "segment"
+      },
+      "source_ref": "slot.v_small",
+      "refs": {
+        "layout_slot_id": "slot.v_small"
+      }
+    },
+    {
+      "id": "slot.h_small.line",
+      "type": "line",
+      "attributes": {
+        "x1": 202.59975,
+        "y1": 570.6146200000001,
+        "x2": 258.59975,
+        "y2": 570.6146200000001,
+        "stroke": "#222222",
+        "stroke-width": 2.0,
+        "data-semantic-role": "segment"
+      },
+      "source_ref": "slot.h_small",
+      "refs": {
+        "layout_slot_id": "slot.h_small"
+      }
+    },
+    {
+      "id": "slot.outer_bottom.line",
+      "type": "line",
+      "attributes": {
+        "x1": 202.59975,
+        "y1": 626.6146200000001,
+        "x2": 650.59975,
+        "y2": 626.6146200000001,
+        "stroke": "#222222",
+        "stroke-width": 2.0,
+        "data-semantic-role": "segment"
+      },
+      "source_ref": "slot.outer_bottom",
+      "refs": {
+        "layout_slot_id": "slot.outer_bottom"
+      }
+    },
+    {
+      "id": "slot.q1.text",
+      "type": "text",
+      "attributes": {
+        "x": 29.0,
+        "y": 60.0,
+        "max_width": 852.0,
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 31,
+        "text-anchor": "start",
+        "data-semantic-role": "instruction"
+      },
+      "source_ref": "slot.q1",
+      "refs": {
+        "layout_slot_id": "slot.q1"
+      },
+      "text": "여러 가지 크기의 정사각형을 겹치지 않게 붙여 다음과"
+    },
+    {
+      "id": "slot.q2.text",
+      "type": "text",
+      "attributes": {
+        "x": 29.0,
+        "y": 104.0,
+        "max_width": 852.0,
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 31,
+        "text-anchor": "start",
+        "data-semantic-role": "instruction"
+      },
+      "source_ref": "slot.q2",
+      "refs": {
+        "layout_slot_id": "slot.q2"
+      },
+      "text": "같은 직사각형 모양도형을 만들었습니다. 색칠한 정사각형의"
+    },
+    {
+      "id": "slot.q3.text",
+      "type": "text",
+      "attributes": {
+        "x": 29.0,
+        "y": 148.0,
+        "max_width": 852.0,
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 31,
+        "text-anchor": "start",
+        "data-semantic-role": "instruction"
+      },
+      "source_ref": "slot.q3",
+      "refs": {
+        "layout_slot_id": "slot.q3"
+      },
+      "text": "한 변의 길이가 15cm일 때, 직사각형 모양도형의"
+    },
+    {
+      "id": "slot.q4.text",
+      "type": "text",
+      "attributes": {
+        "x": 29.0,
+        "y": 192.0,
+        "max_width": 852.0,
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 31,
+        "text-anchor": "start",
+        "data-semantic-role": "instruction"
+      },
+      "source_ref": "slot.q4",
+      "refs": {
+        "layout_slot_id": "slot.q4"
+      },
+      "text": "네 변의 길이의 합은 몇 cm입니까?"
+    },
+    {
+      "id": "slot.q5.text",
+      "type": "text",
+      "attributes": {
+        "x": 29.0,
+        "y": 236.0,
+        "max_width": 852.0,
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 31,
+        "text-anchor": "start",
+        "data-semantic-role": "instruction"
+      },
+      "source_ref": "slot.q5",
+      "refs": {
+        "layout_slot_id": "slot.q5"
+      },
+      "text": "(각 가로와 세로 정사각형의 크기는 같습니다.)"
+    },
+    {
+      "id": "slot.label_g.text",
+      "type": "text",
+      "attributes": {
+        "x": 180.59975,
+        "y": 342.61462,
+        "max_width": 852.0,
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 42,
+        "text-anchor": "start",
+        "data-semantic-role": "label"
+      },
+      "source_ref": "slot.label_g",
+      "refs": {
+        "layout_slot_id": "slot.label_g"
+      },
+      "text": "ㄱ"
+    },
+    {
+      "id": "slot.label_n.text",
+      "type": "text",
+      "attributes": {
+        "x": 658.59975,
+        "y": 342.61462,
+        "max_width": 852.0,
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 42,
+        "text-anchor": "start",
+        "data-semantic-role": "label"
+      },
+      "source_ref": "slot.label_n",
+      "refs": {
+        "layout_slot_id": "slot.label_n"
+      },
+      "text": "ㄴ"
+    },
+    {
+      "id": "slot.label_r.text",
+      "type": "text",
+      "attributes": {
+        "x": 180.59975,
+        "y": 654.6146200000001,
+        "max_width": 852.0,
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 42,
+        "text-anchor": "start",
+        "data-semantic-role": "label"
+      },
+      "source_ref": "slot.label_r",
+      "refs": {
+        "layout_slot_id": "slot.label_r"
+      },
+      "text": "ㄹ"
+    },
+    {
+      "id": "slot.label_d.text",
+      "type": "text",
+      "attributes": {
+        "x": 658.59975,
+        "y": 654.6146200000001,
+        "max_width": 852.0,
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 42,
+        "text-anchor": "start",
+        "data-semantic-role": "label"
+      },
+      "source_ref": "slot.label_d",
+      "refs": {
+        "layout_slot_id": "slot.label_d"
+      },
+      "text": "ㄷ"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

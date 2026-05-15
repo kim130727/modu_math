@@ -1,0 +1,66 @@
+{
+  "problem_id": "0010_덧셈 기계",
+  "problem_type": "arithmetic_flow_table_addition",
+  "metadata": {
+    "title": "",
+    "tags": [],
+    "instruction": "빈칸에 알맞은 수를 써 넣으세요.",
+    "question": "덧셈 기계(두 수를 더하는 로직)를 통과하는 두 쌍의 수들의 합을 구하는 문제",
+    "required_layout_ids": [
+      "slot.arrow_head1",
+      "slot.plus_v",
+      "slot.arrow",
+      "slot.plus_h",
+      "slot.plus_circle",
+      "slot.arrow_head2",
+      "slot.table",
+      "slot.v1",
+      "slot.v2",
+      "slot.r1_blank",
+      "slot.h1",
+      "slot.r2_blank"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.row1",
+        "type": "input_pair",
+        "value": [
+          467,
+          359
+        ]
+      },
+      {
+        "id": "obj.row2",
+        "type": "input_pair",
+        "value": [
+          735,
+          418
+        ]
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "plan": {
+        "method": "repeated_addition",
+        "description": "각 행의 두 수를 더하여 결과를 산출한다."
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "value": 0,
+    "unit": "",
+    "target": {
+      "type": "unknown",
+      "description": ""
+    }
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "Hpdf_UaRGLE6WCS",
+  "title": "정사각형 모양의 종이",
+  "canvas": {
+    "width": 558,
+    "height": 154,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q1",
+        "slot.q2",
+        "slot.q3"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "한 변이 40 cm인 정사각형 모양의 종이를 잘라",
+        "style_role": "question",
+        "x": 8.0,
+        "y": 34.0,
+        "font_size": 28,
+        "anchor": "start"
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "한 변이 5 cm인 정사각형을 만들려고 합니다.",
+        "style_role": "question",
+        "x": 8.0,
+        "y": 74.0,
+        "font_size": 28,
+        "anchor": "start"
+      }
+    },
+    {
+      "id": "slot.q3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "모두 몇 개까지 만들 수 있습니까?",
+        "style_role": "question",
+        "x": 8.0,
+        "y": 114.0,
+        "font_size": 28,
+        "anchor": "start"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q1",
+    "slot.q2",
+    "slot.q3"
+  ]
+}

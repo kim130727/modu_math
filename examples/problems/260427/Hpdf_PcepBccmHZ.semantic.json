@@ -1,0 +1,100 @@
+{
+  "problem_id": "Hpdf_PcepBccmHZ",
+  "problem_type": "symbolic_subtraction",
+  "metadata": {
+    "title": "뺄셈식의 같은 모양 찾기",
+    "tags": [],
+    "question": "뺄셈식에서 같은 모양은 같은 숫자를 나타냅니다. ■와 ★에 알맞은 숫자의 합을 구하시오.",
+    "required_layout_ids": [
+      "slot.box",
+      "slot.line1"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "■와 ★에 알맞은 숫자의 합을 구하시오."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.square",
+        "type": "symbol",
+        "symbol": "■"
+      },
+      {
+        "id": "obj.star",
+        "type": "symbol",
+        "symbol": "★"
+      },
+      {
+        "id": "obj.equation",
+        "type": "subtraction_equation",
+        "expression": "■★■ - ★■★ = ★73"
+      }
+    ],
+    "relations": [
+      {
+        "id": "rel.same_shape_same_number",
+        "type": "same_symbol_same_digit",
+        "from_id": "obj.square",
+        "to_id": "obj.square"
+      },
+      {
+        "id": "rel.same_shape_same_number_2",
+        "type": "same_symbol_same_digit",
+        "from_id": "obj.star",
+        "to_id": "obj.star"
+      },
+      {
+        "id": "rel.equation_relation",
+        "type": "symbolic_subtraction",
+        "from_id": "obj.equation",
+        "to_id": "obj.square"
+      }
+    ],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.equation",
+          "obj.square",
+          "obj.star"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.same_shape_same_number",
+          "rel.equation_relation"
+        ]
+      },
+      "plan": {
+        "method": "digit_search_and_substitution",
+        "description": "같은 모양을 같은 숫자로 두고 식을 자리값에 맞게 해석하여 ■와 ★의 값을 찾는다."
+      },
+      "execute": {
+        "expected_operations": [
+          "identify_symbol_values",
+          "substitute_into_equation",
+          "find_digits",
+          "sum_the_values"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "substitute_back_into_equation",
+          "digit_validity_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "number",
+      "description": "■와 ★에 알맞은 숫자의 합"
+    },
+    "value": 7,
+    "unit": ""
+  }
+}

@@ -1,0 +1,259 @@
+{
+  "problem_id": "Hpdf_8emmiBLDHT",
+  "view_box": {
+    "width": 880.0,
+    "height": 727.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.q1.text",
+      "type": "text",
+      "attributes": {
+        "x": 10.0,
+        "y": 40.0,
+        "max_width": 752.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 35
+      },
+      "source_ref": "slot.q1",
+      "refs": {
+        "layout_slot_id": "slot.q1"
+      },
+      "text": "직각삼각형의 세 변을 한 변으로 하는 정사각"
+    },
+    {
+      "id": "slot.q2.text",
+      "type": "text",
+      "attributes": {
+        "x": 10.0,
+        "y": 95.0,
+        "max_width": 752.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 35
+      },
+      "source_ref": "slot.q2",
+      "refs": {
+        "layout_slot_id": "slot.q2"
+      },
+      "text": "형 3개를 겹치지 않게 이어 붙여서 만든 도형"
+    },
+    {
+      "id": "slot.q3.text",
+      "type": "text",
+      "attributes": {
+        "x": 10.0,
+        "y": 150.0,
+        "max_width": 752.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 35
+      },
+      "source_ref": "slot.q3",
+      "refs": {
+        "layout_slot_id": "slot.q3"
+      },
+      "text": "입니다. 직각삼각형의 세 변의 길이의 합이"
+    },
+    {
+      "id": "slot.q4.text",
+      "type": "text",
+      "attributes": {
+        "x": 10.0,
+        "y": 205.0,
+        "max_width": 752.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 35
+      },
+      "source_ref": "slot.q4",
+      "refs": {
+        "layout_slot_id": "slot.q4"
+      },
+      "text": "30 cm일 때 굵은 선의 길이는 몇 cm입니까?"
+    },
+    {
+      "id": "slot.left_square.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 190.0,
+        "y": 424.0,
+        "width": 210.0,
+        "height": 210.0,
+        "fill": "none",
+        "stroke": "#8A8A8A",
+        "stroke-width": 5.0
+      },
+      "source_ref": "slot.left_square",
+      "refs": {
+        "layout_slot_id": "slot.left_square"
+      }
+    },
+    {
+      "id": "slot.bottom_square.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 400.0,
+        "y": 634.0,
+        "width": 87.5,
+        "height": 87.5,
+        "fill": "none",
+        "stroke": "#8A8A8A",
+        "stroke-width": 5.0
+      },
+      "source_ref": "slot.bottom_square",
+      "refs": {
+        "layout_slot_id": "slot.bottom_square"
+      }
+    },
+    {
+      "id": "slot.right_square.polygon",
+      "type": "polygon",
+      "attributes": {
+        "points": [
+          [
+            400.0,
+            424.0
+          ],
+          [
+            487.5,
+            634.0
+          ],
+          [
+            697.5,
+            546.5
+          ],
+          [
+            610.0,
+            336.5
+          ]
+        ],
+        "stroke": "#8A8A8A",
+        "stroke-width": 5.0,
+        "fill": "none",
+        "data-semantic-role": "diagram_shape"
+      },
+      "source_ref": "slot.right_square",
+      "refs": {
+        "layout_slot_id": "slot.right_square"
+      }
+    },
+    {
+      "id": "slot.center_point.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 400.0,
+        "cy": 634.0,
+        "r": 3.5,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#222222"
+      },
+      "source_ref": "slot.center_point",
+      "refs": {
+        "layout_slot_id": "slot.center_point"
+      }
+    },
+    {
+      "id": "slot.curve_hint.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 390 430 C 360 480, 360 580, 390 630",
+        "stroke": "#8A8A8A",
+        "stroke-width": 2.0,
+        "fill": "none",
+        "stroke-dasharray": "6 5"
+      },
+      "source_ref": "slot.curve_hint",
+      "refs": {
+        "layout_slot_id": "slot.curve_hint"
+      }
+    },
+    {
+      "id": "slot.right_angle.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 400.0,
+        "y": 614.0,
+        "width": 20.0,
+        "height": 20.0,
+        "fill": "none",
+        "stroke": "#222222",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.right_angle",
+      "refs": {
+        "layout_slot_id": "slot.right_angle"
+      }
+    },
+    {
+      "id": "slot.black_vertical.line",
+      "type": "line",
+      "attributes": {
+        "x1": 400.0,
+        "y1": 424.0,
+        "x2": 400.0,
+        "y2": 634.0,
+        "stroke": "#222222",
+        "stroke-width": 3.0
+      },
+      "source_ref": "slot.black_vertical",
+      "refs": {
+        "layout_slot_id": "slot.black_vertical"
+      }
+    },
+    {
+      "id": "slot.black_diagonal.line",
+      "type": "line",
+      "attributes": {
+        "x1": 400.0,
+        "y1": 424.0,
+        "x2": 487.5,
+        "y2": 634.0,
+        "stroke": "#222222",
+        "stroke-width": 3.0
+      },
+      "source_ref": "slot.black_diagonal",
+      "refs": {
+        "layout_slot_id": "slot.black_diagonal"
+      }
+    },
+    {
+      "id": "slot.left_label.text",
+      "type": "text",
+      "attributes": {
+        "x": 250.0,
+        "y": 530.0,
+        "max_width": 752.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 35
+      },
+      "source_ref": "slot.left_label",
+      "refs": {
+        "layout_slot_id": "slot.left_label"
+      },
+      "text": "12 cm"
+    },
+    {
+      "id": "slot.bottom_label.text",
+      "type": "text",
+      "attributes": {
+        "x": 410.0,
+        "y": 680.0,
+        "max_width": 752.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 35
+      },
+      "source_ref": "slot.bottom_label",
+      "refs": {
+        "layout_slot_id": "slot.bottom_label"
+      },
+      "text": "5 cm"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

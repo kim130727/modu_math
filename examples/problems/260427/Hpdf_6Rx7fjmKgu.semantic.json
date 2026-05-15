@@ -1,0 +1,165 @@
+{
+  "problem_id": "Hpdf_6Rx7fjmKgu",
+  "problem_type": "set_overlap_word_problem",
+  "metadata": {
+    "title": "집합 그림의 물음",
+    "tags": [
+      "set",
+      "overlap",
+      "equal_sum",
+      "unknown"
+    ],
+    "instruction": "세 집합의 각 원 내부에 표시된 수를 사용해 합 조건을 세운다.",
+    "question": "그림에서 색칠된 부분의 수의 합이 모두 같을 때 가에 있는 수는 얼마인가?",
+    "required_layout_ids": [
+      "slot.c.top",
+      "slot.c.left",
+      "slot.c.right"
+    ],
+    "extraction_confidence": 1.0
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "set.top",
+        "type": "set",
+        "properties": {
+          "name": "윗 원"
+        },
+        "confidence": 1.0
+      },
+      {
+        "id": "set.left",
+        "type": "set",
+        "properties": {
+          "name": "왼쪽 원"
+        },
+        "confidence": 1.0
+      },
+      {
+        "id": "set.right",
+        "type": "set",
+        "properties": {
+          "name": "오른쪽 원"
+        },
+        "confidence": 1.0
+      },
+      {
+        "id": "value.top_only",
+        "type": "number",
+        "properties": {
+          "value": 146
+        },
+        "confidence": 1.0
+      },
+      {
+        "id": "value.left_top",
+        "type": "number",
+        "properties": {
+          "value": 177
+        },
+        "confidence": 1.0
+      },
+      {
+        "id": "value.right_top",
+        "type": "number",
+        "properties": {
+          "value": 162
+        },
+        "confidence": 1.0
+      },
+      {
+        "id": "value.bottom_overlap",
+        "type": "number",
+        "properties": {
+          "value": 133
+        },
+        "confidence": 1.0
+      },
+      {
+        "id": "value.right_only",
+        "type": "number",
+        "properties": {
+          "value": 190
+        },
+        "confidence": 1.0
+      },
+      {
+        "id": "value.left_only",
+        "type": "variable",
+        "properties": {
+          "symbol": "가"
+        },
+        "confidence": 1.0
+      },
+      {
+        "id": "value.center",
+        "type": "variable",
+        "properties": {
+          "symbol": "나"
+        },
+        "confidence": 1.0
+      },
+      {
+        "id": "condition.equal_sum",
+        "type": "constraint",
+        "properties": {
+          "description": "세 원의 합이 같다"
+        },
+        "confidence": 1.0
+      }
+    ],
+    "relations": [
+      {
+        "id": "rel.eq_top",
+        "type": "equation",
+        "from_id": "set.top",
+        "to_id": "condition.equal_sum",
+        "properties": {
+          "expr": "146 + 177 + 162 + 나"
+        },
+        "confidence": 1.0
+      },
+      {
+        "id": "rel.eq_right",
+        "type": "equation",
+        "from_id": "set.right",
+        "to_id": "condition.equal_sum",
+        "properties": {
+          "expr": "162 + 133 + 190 + 나"
+        },
+        "confidence": 1.0
+      },
+      {
+        "id": "rel.eq_left",
+        "type": "equation",
+        "from_id": "set.left",
+        "to_id": "condition.equal_sum",
+        "properties": {
+          "expr": "146 + 177 + 133 + 가 + 나"
+        },
+        "confidence": 1.0
+      },
+      {
+        "id": "rel.target",
+        "type": "target",
+        "from_id": "condition.equal_sum",
+        "to_id": "value.left_only",
+        "properties": {
+          "ask": "가"
+        },
+        "confidence": 1.0
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "value": 29,
+    "unit": "",
+    "source": "equal_sum_equations"
+  }
+}

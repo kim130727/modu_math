@@ -1,0 +1,124 @@
+{
+  "problem_id": "Hpdf_V8u2dXLiPp",
+  "problem_type": "number_construction",
+  "metadata": {
+    "title": "수 카드로 만들 수 있는 수",
+    "tags": [],
+    "question": "수 카드로 만들 수 있는 가장 큰 세 자리 수의 합을 구하는 문제",
+    "required_layout_ids": [],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "두 사람이 만들 수 있는 가장 큰 세 자리 수의 합을 구하시오."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.cards",
+        "type": "digit_cards",
+        "digits": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "count_each_per_person": 5
+      },
+      {
+        "id": "obj.minha_max",
+        "type": "number",
+        "value": 8742
+      },
+      {
+        "id": "obj.minha_min",
+        "type": "number",
+        "value": 2047
+      },
+      {
+        "id": "obj.hari_max3",
+        "type": "number",
+        "value": null
+      },
+      {
+        "id": "obj.minha_max3",
+        "type": "number",
+        "value": null
+      }
+    ],
+    "relations": [
+      {
+        "id": "rel.partition_cards",
+        "type": "disjoint_partition",
+        "from_id": "obj.cards",
+        "to_id": "obj.minha_max"
+      },
+      {
+        "id": "rel.construct_max",
+        "type": "make_largest_number",
+        "from_id": "obj.cards",
+        "to_id": "obj.minha_max"
+      },
+      {
+        "id": "rel.construct_min",
+        "type": "make_smallest_number",
+        "from_id": "obj.cards",
+        "to_id": "obj.minha_min"
+      },
+      {
+        "id": "rel.find_sum",
+        "type": "sum_numbers",
+        "from_id": "obj.minha_max3",
+        "to_id": "obj.hari_max3"
+      }
+    ],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.cards",
+          "obj.minha_max",
+          "obj.minha_min"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.construct_max",
+          "rel.construct_min"
+        ]
+      },
+      "plan": {
+        "method": "digit_complement_and_maximum_construction",
+        "description": "민하가 사용한 숫자를 제외해 하리가 가진 숫자를 찾고, 각 사람이 만들 수 있는 가장 큰 세 자리 수를 만든 뒤 합한다."
+      },
+      "execute": {
+        "expected_operations": [
+          "identify_remaining_digits",
+          "construct_largest_three_digit_number_for_each_person",
+          "add_two_numbers"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "digit_usage_check",
+          "sum_reasonableness_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "sum_of_largest_three_digit_numbers",
+      "description": "두 사람이 만들 수 있는 가장 큰 세 자리 수의 합"
+    },
+    "value": 1839,
+    "unit": ""
+  }
+}

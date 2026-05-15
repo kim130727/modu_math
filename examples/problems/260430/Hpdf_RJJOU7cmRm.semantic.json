@@ -1,0 +1,81 @@
+{
+  "problem_id": "Hpdf_RJJOU7cmRm",
+  "problem_type": "count_rectangles",
+  "metadata": {
+    "title": "도형에서 직사각형 개수 세기",
+    "tags": [],
+    "question": "도형에서 찾을 수 있는 크고 작은 직사각형은 모두 몇 개입니까?",
+    "required_layout_ids": [
+      "slot.diagram.border",
+      "slot.diagram.lines.v1",
+      "slot.diagram.lines.v2",
+      "slot.diagram.lines.v3",
+      "slot.diagram.lines.h1",
+      "slot.diagram.lines.h2"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": ""
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.figure",
+        "type": "composite_rectangle_figure"
+      },
+      {
+        "id": "obj.subrectangles",
+        "type": "rectangles"
+      }
+    ],
+    "relations": [
+      {
+        "id": "rel.count_rectangles",
+        "type": "contains_rectangles",
+        "from_id": "obj.figure",
+        "to_id": "obj.subrectangles"
+      }
+    ],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.figure"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.count_rectangles"
+        ]
+      },
+      "plan": {
+        "method": "case_counting",
+        "description": "도형 안에서 만들어지는 작은 직사각형과 여러 칸을 합친 큰 직사각형을 빠짐없이 분류해 센다."
+      },
+      "execute": {
+        "expected_operations": [
+          "identify_all_axis_aligned_rectangles",
+          "count_by_size_or_span",
+          "sum_all_cases"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "no_double_counting",
+          "edge_alignment_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "count",
+      "description": "도형에서 찾을 수 있는 크고 작은 직사각형의 개수"
+    },
+    "value": 15,
+    "unit": "개"
+  }
+}

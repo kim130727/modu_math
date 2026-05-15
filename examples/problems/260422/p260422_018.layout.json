@@ -1,0 +1,331 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "msedge_QTZDAUKaxK",
+  "title": "",
+  "canvas": {
+    "width": 512,
+    "height": 256,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.title.blank",
+        "slot.title.text",
+        "slot.eq.f1.num",
+        "slot.eq.f1.bar",
+        "slot.eq.f1.den",
+        "slot.eq.op1",
+        "slot.eq.f2.num",
+        "slot.eq.f2.bar",
+        "slot.eq.f2.den",
+        "slot.eq.eq1",
+        "slot.eq.f3.num",
+        "slot.eq.f3.bar",
+        "slot.eq.f3.den",
+        "slot.eq.op2",
+        "slot.eq.blank.num",
+        "slot.eq.blank.bar",
+        "slot.eq.blank.den",
+        "slot.eq.eq2",
+        "slot.eq.result.blank"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.title.blank",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 20.0,
+        "y": 22.0,
+        "width": 34.0,
+        "height": 34.0,
+        "stroke": "#333333",
+        "stroke_width": 1.8,
+        "rx": 6.0,
+        "ry": 6.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.title.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "안에 알맞은 수를 써넣으시오.",
+        "style_role": "body",
+        "x": 64.0,
+        "y": 48.0,
+        "font_size": 35,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.eq.f1.num",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "2",
+        "style_role": "body",
+        "x": 40.0,
+        "y": 133.0,
+        "font_size": 35,
+        "anchor": "middle",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.eq.f1.bar",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 25.0,
+        "y1": 146.0,
+        "x2": 55.0,
+        "y2": 146.0,
+        "stroke": "#222222",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.eq.f1.den",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "3",
+        "style_role": "body",
+        "x": 40.0,
+        "y": 186.0,
+        "font_size": 35,
+        "anchor": "middle",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.eq.op1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "÷",
+        "style_role": "body",
+        "x": 76.0,
+        "y": 165.0,
+        "font_size": 35,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.eq.f2.num",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "3",
+        "style_role": "body",
+        "x": 126.0,
+        "y": 133.0,
+        "font_size": 35,
+        "anchor": "middle",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.eq.f2.bar",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 111.0,
+        "y1": 146.0,
+        "x2": 141.0,
+        "y2": 146.0,
+        "stroke": "#222222",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.eq.f2.den",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "4",
+        "style_role": "body",
+        "x": 126.0,
+        "y": 186.0,
+        "font_size": 35,
+        "anchor": "middle",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.eq.eq1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "=",
+        "style_role": "body",
+        "x": 154.0,
+        "y": 165.0,
+        "font_size": 35,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.eq.f3.num",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "2",
+        "style_role": "body",
+        "x": 208.0,
+        "y": 133.0,
+        "font_size": 35,
+        "anchor": "middle",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.eq.f3.bar",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 193.0,
+        "y1": 146.0,
+        "x2": 223.0,
+        "y2": 146.0,
+        "stroke": "#222222",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.eq.f3.den",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "3",
+        "style_role": "body",
+        "x": 208.0,
+        "y": 186.0,
+        "font_size": 35,
+        "anchor": "middle",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.eq.op2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "×",
+        "style_role": "body",
+        "x": 244.0,
+        "y": 165.0,
+        "font_size": 35,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.eq.blank.num",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 289.0,
+        "y": 94.0,
+        "width": 51.0,
+        "height": 50.0,
+        "stroke": "#333333",
+        "stroke_width": 1.6,
+        "rx": 5.0,
+        "ry": 5.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.eq.blank.bar",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 290.0,
+        "y1": 153.0,
+        "x2": 339.0,
+        "y2": 153.0,
+        "stroke": "#333333",
+        "stroke_width": 1.8
+      }
+    },
+    {
+      "id": "slot.eq.blank.den",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 289.0,
+        "y": 163.0,
+        "width": 51.0,
+        "height": 50.0,
+        "stroke": "#333333",
+        "stroke_width": 1.6,
+        "rx": 5.0,
+        "ry": 5.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.eq.eq2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "=",
+        "style_role": "body",
+        "x": 350.0,
+        "y": 165.0,
+        "font_size": 35,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.eq.result.blank",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 398.0,
+        "y": 112.0,
+        "width": 60.0,
+        "height": 85.0,
+        "stroke": "#333333",
+        "stroke_width": 1.8,
+        "rx": 5.0,
+        "ry": 5.0,
+        "fill": "none"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.title.blank",
+    "slot.title.text",
+    "slot.eq.f1.num",
+    "slot.eq.f1.bar",
+    "slot.eq.f1.den",
+    "slot.eq.op1",
+    "slot.eq.f2.num",
+    "slot.eq.f2.bar",
+    "slot.eq.f2.den",
+    "slot.eq.eq1",
+    "slot.eq.f3.num",
+    "slot.eq.f3.bar",
+    "slot.eq.f3.den",
+    "slot.eq.op2",
+    "slot.eq.blank.num",
+    "slot.eq.blank.bar",
+    "slot.eq.blank.den",
+    "slot.eq.eq2",
+    "slot.eq.result.blank"
+  ]
+}

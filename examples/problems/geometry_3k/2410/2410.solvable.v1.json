@@ -1,0 +1,74 @@
+{
+  "schema": "modu.solvable.v1",
+  "problem_id": "2410",
+  "problem_type": "geometry_multiple_choice",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "CD",
+    "target_ticks": 0,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.segment.AB",
+      "value": 16
+    },
+    {
+      "ref": "obj.segment.BE",
+      "value": 20
+    },
+    {
+      "ref": "obj.segment.AC",
+      "value": "x-3"
+    },
+    {
+      "ref": "obj.segment.CD",
+      "value": "x+5"
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "segment_length"
+  },
+  "method": "similarity_from_parallel_segment",
+  "plan": [
+    "BC ∥ DE 이므로 닮음비를 세운다.",
+    "AB:BE = AC:CD를 이용해 x를 구하고 CD를 계산한다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "operation": "set_ratio",
+      "expr": "16:20 = (x-3):(x+5)",
+      "value": 0
+    },
+    {
+      "id": "step.2",
+      "operation": "solve_x",
+      "expr": "4/5 = (x-3)/(x+5)",
+      "value": 35
+    },
+    {
+      "id": "step.3",
+      "operation": "compute_CD",
+      "expr": "CD = x+5",
+      "value": 40
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "type": "choice_match",
+      "expr": "선택지 대조",
+      "expected": 40,
+      "actual": 40,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "value": 40,
+    "unit": "",
+    "derived_from": "choice.4"
+  }
+}

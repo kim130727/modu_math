@@ -1,0 +1,200 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "msedge_xcTaBBcRGU",
+  "title": "",
+  "canvas": {
+    "width": 730,
+    "height": 340,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.question",
+        "slot.box",
+        "slot.label.ㄱ",
+        "slot.frac.ㄱ.num",
+        "slot.frac.ㄱ.bar",
+        "slot.frac.ㄱ.den",
+        "slot.label.ㄴ",
+        "slot.frac.ㄴ.num",
+        "slot.frac.ㄴ.bar",
+        "slot.frac.ㄴ.den",
+        "slot.blank"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.question",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄱ은 ㄴ의 몇 배입니까?",
+        "style_role": "body",
+        "x": 18.0,
+        "y": 50.0,
+        "font_size": 35,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 134.0,
+        "y": 96.0,
+        "width": 441.0,
+        "height": 125.0,
+        "stroke": "#c4c4c4",
+        "stroke_width": 3.0,
+        "rx": 18.0,
+        "ry": 18.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.label.ㄱ",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄱ",
+        "style_role": "body",
+        "x": 214.0,
+        "y": 168.0,
+        "font_size": 35,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.frac.ㄱ.num",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "18",
+        "style_role": "body",
+        "x": 285.0,
+        "y": 146.0,
+        "font_size": 35,
+        "anchor": "middle",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.frac.ㄱ.bar",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 257.5,
+        "y1": 158.0,
+        "x2": 312.5,
+        "y2": 158.0,
+        "stroke": "#222222",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.frac.ㄱ.den",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "19",
+        "style_role": "body",
+        "x": 285.0,
+        "y": 190.0,
+        "font_size": 35,
+        "anchor": "middle",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.label.ㄴ",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄴ",
+        "style_role": "body",
+        "x": 376.0,
+        "y": 168.0,
+        "font_size": 35,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.frac.ㄴ.num",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "6",
+        "style_role": "body",
+        "x": 440.0,
+        "y": 146.0,
+        "font_size": 35,
+        "anchor": "middle",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.frac.ㄴ.bar",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 412.5,
+        "y1": 158.0,
+        "x2": 467.5,
+        "y2": 158.0,
+        "stroke": "#222222",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.frac.ㄴ.den",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "19",
+        "style_role": "body",
+        "x": 440.0,
+        "y": 190.0,
+        "font_size": 35,
+        "anchor": "middle",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.blank",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "(                         )",
+        "style_role": "body",
+        "x": 266.0,
+        "y": 290.0,
+        "font_size": 35,
+        "fill": "#222222"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.question",
+    "slot.box",
+    "slot.label.ㄱ",
+    "slot.frac.ㄱ.num",
+    "slot.frac.ㄱ.bar",
+    "slot.frac.ㄱ.den",
+    "slot.label.ㄴ",
+    "slot.frac.ㄴ.num",
+    "slot.frac.ㄴ.bar",
+    "slot.frac.ㄴ.den",
+    "slot.blank"
+  ]
+}

@@ -1,0 +1,82 @@
+﻿{
+  "problem_id": "Hpdf_PHt9lD4kUV",
+  "problem_type": "geometry_rectangle_counting",
+  "metadata": {
+    "title": "정사각형 모양 조각",
+    "tags": [],
+    "instruction": "규칙을 찾아 셋째 모양을 완성하고, 그 안에 있는 직사각형의 개수를 셉니다.",
+    "question": "크기가 같은 정사각형 조각을 규칙대로 놓았습니다. 셋째에 놓이는 모양에서 찾을 수 있는 크고 작은 직사각형은 모두 몇 개인가요?",
+    "required_layout_ids": [
+      "slot.box.third",
+      "slot.square.first",
+      "slot.square.second.1",
+      "slot.square.second.2",
+      "slot.square.second.3",
+      "slot.square.second.4",
+      "slot.square.fourth.1",
+      "slot.square.fourth.2",
+      "slot.square.fourth.3",
+      "slot.square.fourth.4",
+      "slot.square.fourth.5",
+      "slot.square.fourth.6",
+      "slot.square.fourth.7",
+      "slot.square.fourth.8",
+      "slot.square.fourth.9",
+      "slot.square.fourth.10",
+      "slot.square.fourth.11",
+      "slot.square.fourth.12",
+      "slot.square.fourth.13",
+      "slot.square.fourth.14",
+      "slot.square.fourth.15",
+      "slot.square.fourth.16"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.pattern",
+        "type": "pattern_sequence",
+        "description": "정사각형 조각의 계단형 배열 규칙"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.pattern"
+        ],
+        "target_ref": "answer.target"
+      },
+      "plan": {
+        "method": "systematic_counting",
+        "description": "셋째 모양(1, 3, 5개 층)을 기준으로 높이별 직사각형 수를 센다."
+      },
+      "execute": {
+        "expected_operations": [
+          "determine_third_shape",
+          "count_rectangles_by_height"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "recount"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "count",
+      "description": "셋째 모양에서 찾을 수 있는 크고 작은 직사각형의 개수"
+    },
+    "value": 30,
+    "unit": "개"
+  }
+}

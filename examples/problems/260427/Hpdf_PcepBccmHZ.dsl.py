@@ -1,0 +1,282 @@
+from __future__ import annotations
+from modu_math.dsl import Canvas, ProblemTemplate, Region, TextSlot, RectSlot, LineSlot
+
+def build_problem_template() -> ProblemTemplate:
+    return ProblemTemplate(
+        id="Hpdf_PcepBccmHZ",
+        title="뺄셈식의 같은 모양 찾기",
+        canvas=Canvas(width=560, height=300, coordinate_mode="logical"),
+        regions=(
+            Region(
+                id="region.stem",
+                role="stem",
+                flow="absolute",
+                slot_ids=("slot.q1", "slot.q2"),
+            ),
+            Region(
+                id="region.diagram",
+                role="diagram",
+                flow="absolute",
+                slot_ids=(
+                    "slot.box",
+                    "slot.a1",
+                    "slot.a2",
+                    "slot.a3",
+                    "slot.b1",
+                    "slot.b2",
+                    "slot.b3",
+                    "slot.b4",
+                    "slot.line1",
+                    "slot.c1",
+                    "slot.c2",
+                    "slot.c3",
+                ),
+            ),
+        ),
+        slots=(
+            TextSlot(
+                id="slot.q1",
+                prompt="",
+                text="뺄셈식에서 같은 모양은 같은 숫자를 나타냅니다.",
+                style_role="question",
+                x=8.0,
+                y=28.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.q2",
+                prompt="",
+                text="■와 ★에 알맞은 숫자의 합을 구하시오.",
+                style_role="question",
+                x=8.0,
+                y=62.0,
+                font_size=28,
+            ),
+            RectSlot(
+                id="slot.box",
+                prompt="",
+                x=166.0,
+                y=100.0,
+                width=224.0,
+                height=184.0,
+                stroke="#777777",
+                stroke_width=1.5,
+                rx=6.0,
+                ry=6.0,
+                fill="none",
+            ),
+            TextSlot(
+                id="slot.a1",
+                prompt="",
+                text="■",
+                style_role="diagram",
+                x=250.0,
+                y=140.0,
+                font_size=30,
+            ),
+            TextSlot(
+                id="slot.a2",
+                prompt="",
+                text="★",
+                style_role="diagram",
+                x=290.0,
+                y=140.0,
+                font_size=30,
+            ),
+            TextSlot(
+                id="slot.a3",
+                prompt="",
+                text="■",
+                style_role="diagram",
+                x=330.0,
+                y=140.0,
+                font_size=30,
+            ),
+            TextSlot(
+                id="slot.b1",
+                prompt="",
+                text="−",
+                style_role="diagram",
+                x=210.0,
+                y=190.0,
+                font_size=30,
+            ),
+            TextSlot(
+                id="slot.b2",
+                prompt="",
+                text="★",
+                style_role="diagram",
+                x=250.0,
+                y=190.0,
+                font_size=30,
+            ),
+            TextSlot(
+                id="slot.b3",
+                prompt="",
+                text="■",
+                style_role="diagram",
+                x=290.0,
+                y=190.0,
+                font_size=30,
+            ),
+            TextSlot(
+                id="slot.b4",
+                prompt="",
+                text="★",
+                style_role="diagram",
+                x=330.0,
+                y=190.0,
+                font_size=30,
+            ),
+            LineSlot(
+                id="slot.line1",
+                prompt="",
+                x1=200.0,
+                y1=220.0,
+                x2=356.0,
+                y2=220.0,
+                stroke="#222222",
+                stroke_width=2.0,
+            ),
+            TextSlot(
+                id="slot.c1",
+                prompt="",
+                text="★",
+                style_role="diagram",
+                x=250.0,
+                y=255.0,
+                font_size=30,
+            ),
+            TextSlot(
+                id="slot.c2",
+                prompt="",
+                text="7",
+                style_role="diagram",
+                x=290.0,
+                y=255.0,
+                font_size=30,
+            ),
+            TextSlot(
+                id="slot.c3",
+                prompt="",
+                text="3",
+                style_role="diagram",
+                x=330.0,
+                y=255.0,
+                font_size=30,
+            ),
+        ),
+        diagrams=(),
+        groups=(),
+        constraints=(),
+    )
+
+PROBLEM_TEMPLATE = build_problem_template()
+
+SEMANTIC_OVERRIDE = {
+    "problem_id": "Hpdf_PcepBccmHZ",
+    "problem_type": "symbolic_subtraction",
+    "metadata": {
+        "language": "ko",
+        "question": "뺄셈식에서 같은 모양은 같은 숫자를 나타냅니다. ■와 ★에 알맞은 숫자의 합을 구하시오.",
+        "instruction": "■와 ★에 알맞은 숫자의 합을 구하시오.",
+    },
+    "domain": {
+        "objects": [
+            {"id": "obj.square", "type": "symbol", "symbol": "■"},
+            {"id": "obj.star", "type": "symbol", "symbol": "★"},
+            {
+                "id": "obj.equation",
+                "type": "subtraction_equation",
+                "expression": "■★■ - ★■★ = ★73",
+            },
+        ],
+        "relations": [
+            {
+                "id": "rel.same_shape_same_number",
+                "type": "same_symbol_same_digit",
+                "from_id": "obj.square",
+                "to_id": "obj.square",
+            },
+            {
+                "id": "rel.same_shape_same_number_2",
+                "type": "same_symbol_same_digit",
+                "from_id": "obj.star",
+                "to_id": "obj.star",
+            },
+            {
+                "id": "rel.equation_relation",
+                "type": "symbolic_subtraction",
+                "from_id": "obj.equation",
+                "to_id": "obj.square",
+            },
+        ],
+        "problem_solving": {
+            "understand": {
+                "given_refs": ["obj.equation", "obj.square", "obj.star"],
+                "target_ref": "answer.target",
+                "condition_refs": [
+                    "rel.same_shape_same_number",
+                    "rel.equation_relation",
+                ],
+            },
+            "plan": {
+                "method": "digit_search_and_substitution",
+                "description": "같은 모양을 같은 숫자로 두고 식을 자리값에 맞게 해석하여 ■와 ★의 값을 찾는다.",
+            },
+            "execute": {
+                "expected_operations": [
+                    "identify_symbol_values",
+                    "substitute_into_equation",
+                    "find_digits",
+                    "sum_the_values",
+                ]
+            },
+            "review": {
+                "check_methods": [
+                    "substitute_back_into_equation",
+                    "digit_validity_check",
+                ]
+            },
+        },
+    },
+    "answer": {
+        "target": {
+            "type": "number",
+            "description": "■와 ★에 알맞은 숫자의 합",
+        },
+        "value": 7,
+        "unit": "",
+    },
+}
+
+SOLVABLE = {   'schema': 'modu.solvable.v1',
+    'problem_id': 'Hpdf_PcepBccmHZ',
+    'problem_type': 'symbolic_subtraction',
+    'inputs': {   'total_ticks': 7,
+                  'target_label': '합',
+                  'target_ticks': 7,
+                  'target_count': 7,
+                  'unit': ''},
+    'plan': [   '백의 자리, 십의 자리, 일의 자리 뺄셈을 순서대로 분석하여 기호가 나타내는 숫자를 알아낸다.',
+                '일의 자리: ■ - ★ = 3',
+                '십의 자리: ★ - ■ = 7. 여기서 ★이 ■보다 작아 받아내림이 발생했음을 알 수 있다. 즉, 10 + ★ - ■ = 7 이므로 ■ - ★ = '
+                '3과 일치한다.',
+                '백의 자리: (■ - 1) - ★ = ★. 여기서 일의 자리 조건(■ - ★ = 3)을 만족하면서 대입하면, ■ = 8, ★ = 5 이면 858 '
+                '- 585 = 273이 되어 백의 자리가 맞지 않다.',
+                '식을 다시 세워보면, 일의 자리에서 받아내림이 발생했는지 확인. 십의 자리가 ★ - ■ = 7 이므로 ★ < ■ 일 경우 일의 자리는 받아내림이 '
+                '없다. 즉 ■ - ★ = 3.',
+                '십의 자리에서 받아내림이 발생해 백의 자리는 ■ - 1 - ★ = ★ 이다. ■ - 2★ = 1.',
+                '두 식 (■ - ★ = 3, ■ - 2★ = 1)을 연립하면 ★ = 2, ■ = 5. 검산: 525 - 252 = 273. 맞다.',
+                '■ = 5, ★ = 2 이므로 합은 5 + 2 = 7이다.'],
+    'steps': [   {'id': 'step.1', 'expr': '■ - ★ = 3', 'value': 3},
+                 {'id': 'step.2', 'expr': '■ - 1 - ★ = ★', 'value': 1},
+                 {'id': 'step.3', 'expr': '★', 'value': 2},
+                 {'id': 'step.4', 'expr': '■', 'value': 5},
+                 {'id': 'step.5', 'expr': '■ + ★', 'value': 7}],
+    'checks': [   {   'id': 'check.1',
+                      'expr': '525 - 252',
+                      'expected': 273,
+                      'actual': 273,
+                      'pass': True}],
+    'answer': {'value': 7, 'unit': ''}}

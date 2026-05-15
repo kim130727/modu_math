@@ -1,0 +1,464 @@
+{
+  "problem_id": "2408",
+  "view_box": {
+    "width": 1400.0,
+    "height": 900.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.diagram.frame.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 40.0,
+        "y": 200.0,
+        "width": 752.0,
+        "height": 660.0,
+        "fill": "none",
+        "stroke": "#D1D5DB",
+        "stroke-width": 1.0,
+        "data-semantic-role": "geometry_diagram_region"
+      },
+      "source_ref": "slot.diagram.frame",
+      "refs": {
+        "layout_slot_id": "slot.diagram.frame"
+      }
+    },
+    {
+      "id": "slot.pt.X.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 64.0,
+        "cy": 746.0,
+        "r": 3.8,
+        "stroke": "#111111",
+        "stroke-width": 1.0,
+        "fill": "#111111",
+        "data-semantic-role": "geometry_point"
+      },
+      "source_ref": "slot.pt.X",
+      "refs": {
+        "layout_slot_id": "slot.pt.X"
+      }
+    },
+    {
+      "id": "slot.pt.Y.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 610.5,
+        "cy": 314.0,
+        "r": 3.8,
+        "stroke": "#111111",
+        "stroke-width": 1.0,
+        "fill": "#111111",
+        "data-semantic-role": "geometry_point"
+      },
+      "source_ref": "slot.pt.Y",
+      "refs": {
+        "layout_slot_id": "slot.pt.Y"
+      }
+    },
+    {
+      "id": "slot.pt.Z.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 768.0,
+        "cy": 746.0,
+        "r": 3.8,
+        "stroke": "#111111",
+        "stroke-width": 1.0,
+        "fill": "#111111",
+        "data-semantic-role": "geometry_point"
+      },
+      "source_ref": "slot.pt.Z",
+      "refs": {
+        "layout_slot_id": "slot.pt.Z"
+      }
+    },
+    {
+      "id": "slot.pt.N.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 315.9,
+        "cy": 746.0,
+        "r": 3.8,
+        "stroke": "#111111",
+        "stroke-width": 1.0,
+        "fill": "#111111",
+        "data-semantic-role": "geometry_point"
+      },
+      "source_ref": "slot.pt.N",
+      "refs": {
+        "layout_slot_id": "slot.pt.N"
+      }
+    },
+    {
+      "id": "slot.pt.M.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 258.6,
+        "cy": 592.1,
+        "r": 3.8,
+        "stroke": "#111111",
+        "stroke-width": 1.0,
+        "fill": "#111111",
+        "data-semantic-role": "geometry_point"
+      },
+      "source_ref": "slot.pt.M",
+      "refs": {
+        "layout_slot_id": "slot.pt.M"
+      }
+    },
+    {
+      "id": "slot.edge.base.line",
+      "type": "line",
+      "attributes": {
+        "x1": 64.0,
+        "y1": 746.0,
+        "x2": 768.0,
+        "y2": 746.0,
+        "stroke": "#374151",
+        "stroke-width": 2.2,
+        "data-semantic-role": "geometry_edge"
+      },
+      "source_ref": "slot.edge.base",
+      "refs": {
+        "layout_slot_id": "slot.edge.base"
+      }
+    },
+    {
+      "id": "slot.edge.left.line",
+      "type": "line",
+      "attributes": {
+        "x1": 64.0,
+        "y1": 746.0,
+        "x2": 610.5,
+        "y2": 314.0,
+        "stroke": "#374151",
+        "stroke-width": 2.2,
+        "data-semantic-role": "geometry_edge"
+      },
+      "source_ref": "slot.edge.left",
+      "refs": {
+        "layout_slot_id": "slot.edge.left"
+      }
+    },
+    {
+      "id": "slot.edge.right.line",
+      "type": "line",
+      "attributes": {
+        "x1": 610.5,
+        "y1": 314.0,
+        "x2": 768.0,
+        "y2": 746.0,
+        "stroke": "#374151",
+        "stroke-width": 2.2,
+        "data-semantic-role": "geometry_edge"
+      },
+      "source_ref": "slot.edge.right",
+      "refs": {
+        "layout_slot_id": "slot.edge.right"
+      }
+    },
+    {
+      "id": "slot.edge.inner.line",
+      "type": "line",
+      "attributes": {
+        "x1": 258.6,
+        "y1": 592.1,
+        "x2": 315.9,
+        "y2": 746.0,
+        "stroke": "#374151",
+        "stroke-width": 2.2,
+        "data-semantic-role": "geometry_edge"
+      },
+      "source_ref": "slot.edge.inner",
+      "refs": {
+        "layout_slot_id": "slot.edge.inner"
+      }
+    },
+    {
+      "id": "slot.marker.1.base.line",
+      "type": "line",
+      "attributes": {
+        "x1": 691.3,
+        "y1": 535.6,
+        "x2": 687.2,
+        "y2": 524.4,
+        "stroke": "#2563EB",
+        "stroke-width": 1.8,
+        "data-semantic-role": "geometry_parallel_marker"
+      },
+      "source_ref": "slot.marker.1.base",
+      "refs": {
+        "layout_slot_id": "slot.marker.1.base"
+      }
+    },
+    {
+      "id": "slot.marker.1.w1.line",
+      "type": "line",
+      "attributes": {
+        "x1": 687.2,
+        "y1": 524.4,
+        "x2": 693.4,
+        "y2": 529.0,
+        "stroke": "#2563EB",
+        "stroke-width": 1.8,
+        "data-semantic-role": "geometry_parallel_marker"
+      },
+      "source_ref": "slot.marker.1.w1",
+      "refs": {
+        "layout_slot_id": "slot.marker.1.w1"
+      }
+    },
+    {
+      "id": "slot.marker.1.w2.line",
+      "type": "line",
+      "attributes": {
+        "x1": 687.2,
+        "y1": 524.4,
+        "x2": 685.4,
+        "y2": 531.9,
+        "stroke": "#2563EB",
+        "stroke-width": 1.8,
+        "data-semantic-role": "geometry_parallel_marker"
+      },
+      "source_ref": "slot.marker.1.w2",
+      "refs": {
+        "layout_slot_id": "slot.marker.1.w2"
+      }
+    },
+    {
+      "id": "slot.marker.2.base.line",
+      "type": "line",
+      "attributes": {
+        "x1": 289.4,
+        "y1": 674.7,
+        "x2": 285.2,
+        "y2": 663.4,
+        "stroke": "#2563EB",
+        "stroke-width": 1.8,
+        "data-semantic-role": "geometry_parallel_marker"
+      },
+      "source_ref": "slot.marker.2.base",
+      "refs": {
+        "layout_slot_id": "slot.marker.2.base"
+      }
+    },
+    {
+      "id": "slot.marker.2.w1.line",
+      "type": "line",
+      "attributes": {
+        "x1": 285.2,
+        "y1": 663.4,
+        "x2": 291.4,
+        "y2": 668.0,
+        "stroke": "#2563EB",
+        "stroke-width": 1.8,
+        "data-semantic-role": "geometry_parallel_marker"
+      },
+      "source_ref": "slot.marker.2.w1",
+      "refs": {
+        "layout_slot_id": "slot.marker.2.w1"
+      }
+    },
+    {
+      "id": "slot.marker.2.w2.line",
+      "type": "line",
+      "attributes": {
+        "x1": 285.2,
+        "y1": 663.4,
+        "x2": 283.5,
+        "y2": 671.0,
+        "stroke": "#2563EB",
+        "stroke-width": 1.8,
+        "data-semantic-role": "geometry_parallel_marker"
+      },
+      "source_ref": "slot.marker.2.w2",
+      "refs": {
+        "layout_slot_id": "slot.marker.2.w2"
+      }
+    },
+    {
+      "id": "slot.problem.text",
+      "type": "text",
+      "attributes": {
+        "x": 40.0,
+        "y": 80.0,
+        "max_width": 1272.0,
+        "fill": "#000000",
+        "font-family": "sans-serif",
+        "font-size": 48,
+        "text-anchor": "start"
+      },
+      "source_ref": "slot.problem",
+      "refs": {
+        "layout_slot_id": "slot.problem"
+      },
+      "text": "XN = 6, XM = 2, XY = 10일 때, NZ를 구하시오."
+    },
+    {
+      "id": "slot.choice.1.text",
+      "type": "text",
+      "attributes": {
+        "x": 860.0,
+        "y": 320.0,
+        "max_width": 1272.0,
+        "fill": "#000000",
+        "font-family": "sans-serif",
+        "font-size": 48,
+        "text-anchor": "start"
+      },
+      "source_ref": "slot.choice.1",
+      "refs": {
+        "layout_slot_id": "slot.choice.1"
+      },
+      "text": "1. 12"
+    },
+    {
+      "id": "slot.choice.2.text",
+      "type": "text",
+      "attributes": {
+        "x": 860.0,
+        "y": 384.8,
+        "max_width": 1272.0,
+        "fill": "#000000",
+        "font-family": "sans-serif",
+        "font-size": 48,
+        "text-anchor": "start"
+      },
+      "source_ref": "slot.choice.2",
+      "refs": {
+        "layout_slot_id": "slot.choice.2"
+      },
+      "text": "2. 16"
+    },
+    {
+      "id": "slot.choice.3.text",
+      "type": "text",
+      "attributes": {
+        "x": 860.0,
+        "y": 449.6,
+        "max_width": 1272.0,
+        "fill": "#000000",
+        "font-family": "sans-serif",
+        "font-size": 48,
+        "text-anchor": "start"
+      },
+      "source_ref": "slot.choice.3",
+      "refs": {
+        "layout_slot_id": "slot.choice.3"
+      },
+      "text": "3. 24"
+    },
+    {
+      "id": "slot.choice.4.text",
+      "type": "text",
+      "attributes": {
+        "x": 860.0,
+        "y": 514.4,
+        "max_width": 1272.0,
+        "fill": "#000000",
+        "font-family": "sans-serif",
+        "font-size": 48,
+        "text-anchor": "start"
+      },
+      "source_ref": "slot.choice.4",
+      "refs": {
+        "layout_slot_id": "slot.choice.4"
+      },
+      "text": "4. 32"
+    },
+    {
+      "id": "slot.lb.X.text",
+      "type": "text",
+      "attributes": {
+        "x": 70.0,
+        "y": 740.0,
+        "max_width": 1272.0,
+        "fill": "#111111",
+        "font-family": "Malgun Gothic",
+        "font-size": 36,
+        "text-anchor": "start"
+      },
+      "source_ref": "slot.lb.X",
+      "refs": {
+        "layout_slot_id": "slot.lb.X"
+      },
+      "text": "X"
+    },
+    {
+      "id": "slot.lb.Y.text",
+      "type": "text",
+      "attributes": {
+        "x": 616.5,
+        "y": 308.0,
+        "max_width": 1272.0,
+        "fill": "#111111",
+        "font-family": "Malgun Gothic",
+        "font-size": 36,
+        "text-anchor": "start"
+      },
+      "source_ref": "slot.lb.Y",
+      "refs": {
+        "layout_slot_id": "slot.lb.Y"
+      },
+      "text": "Y"
+    },
+    {
+      "id": "slot.lb.Z.text",
+      "type": "text",
+      "attributes": {
+        "x": 774.0,
+        "y": 740.0,
+        "max_width": 1272.0,
+        "fill": "#111111",
+        "font-family": "Malgun Gothic",
+        "font-size": 36,
+        "text-anchor": "start"
+      },
+      "source_ref": "slot.lb.Z",
+      "refs": {
+        "layout_slot_id": "slot.lb.Z"
+      },
+      "text": "Z"
+    },
+    {
+      "id": "slot.lb.N.text",
+      "type": "text",
+      "attributes": {
+        "x": 321.9,
+        "y": 740.0,
+        "max_width": 1272.0,
+        "fill": "#111111",
+        "font-family": "Malgun Gothic",
+        "font-size": 36,
+        "text-anchor": "start"
+      },
+      "source_ref": "slot.lb.N",
+      "refs": {
+        "layout_slot_id": "slot.lb.N"
+      },
+      "text": "N"
+    },
+    {
+      "id": "slot.lb.M.text",
+      "type": "text",
+      "attributes": {
+        "x": 264.6,
+        "y": 586.1,
+        "max_width": 1272.0,
+        "fill": "#111111",
+        "font-family": "Malgun Gothic",
+        "font-size": 36,
+        "text-anchor": "start"
+      },
+      "source_ref": "slot.lb.M",
+      "refs": {
+        "layout_slot_id": "slot.lb.M"
+      },
+      "text": "M"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

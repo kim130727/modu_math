@@ -1,0 +1,54 @@
+{
+  "schema": "modu.solvable.v1",
+  "problem_id": "Hpdf_krkIaX01xZ",
+  "problem_type": "inequality_count",
+  "inputs": {
+    "total_ticks": 991,
+    "target_label": "조건을 만족하는 세 자리 수의 개수",
+    "target_ticks": 386,
+    "target_count": 386,
+    "unit": "개"
+  },
+  "plan": [
+    "부등식 우변의 합 397 + 108을 먼저 계산한다.",
+    "991 - □ > (우변의 합) 식을 정리하여 □의 범위를 찾는다.",
+    "□가 세 자리 수(100 이상)라는 조건을 고려하여 가능한 자연수의 개수를 구한다."
+  ],
+  "steps": [
+    {
+      "id": "step.s1",
+      "expr": "397 + 108",
+      "value": 505
+    },
+    {
+      "id": "step.s2",
+      "expr": "991 - 505",
+      "value": 486
+    },
+    {
+      "id": "step.s3",
+      "expr": "485 - 100 + 1",
+      "value": 386
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.c1",
+      "expr": "□=485일 때 부등식 성립 확인 (991 - 485 > 505)",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "id": "check.c2",
+      "expr": "□=486일 때 부등식 불성립 확인 (991 - 486 > 505)",
+      "expected": false,
+      "actual": false,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "value": 386,
+    "unit": "개"
+  }
+}

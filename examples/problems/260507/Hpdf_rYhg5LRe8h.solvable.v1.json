@@ -1,0 +1,60 @@
+{
+  "schema": "modu.solvable.v1",
+  "problem_id": "Hpdf_rYhg5LRe8h",
+  "problem_type": "geometry_segment_counting",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "선분의 개수",
+    "target_ticks": 0,
+    "target_count": 0,
+    "unit": "개"
+  },
+  "given": [
+    {
+      "ref": "obj.grid",
+      "value": "4x4 점 종이, 기준 선분(3x1)"
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "count"
+  },
+  "method": "case_analysis",
+  "plan": [
+    "1. 보기의 선분은 가로 3칸, 세로 1칸(또는 그 반대)의 대각선 길이이다.",
+    "2. 4x4 점 종이에서 가로 3칸, 세로 1칸인 경우를 센다.",
+    "   - 가로 3칸인 쌍은 (1,4) 1가지, 세로 1칸인 쌍은 (1,2), (2,3), (3,4) 3가지.",
+    "   - 각 조합마다 대각선 방향 2가지(우상향, 우하향)가 있으므로 1 * 3 * 2 = 6개.",
+    "3. 세로 3칸, 가로 1칸인 경우도 대칭으로 6개.",
+    "4. 총 개수는 6 + 6 = 12개이다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "operation": "multiply",
+      "expr": "1 * 3 * 2",
+      "value": 6
+    },
+    {
+      "id": "step.2",
+      "operation": "add",
+      "expr": "6 + 6",
+      "value": 12
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "type": "logic_check",
+      "expr": "6 + 6 = 12",
+      "expected": 12,
+      "actual": 12,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "value": 12,
+    "unit": "개",
+    "derived_from": "step.2"
+  }
+}

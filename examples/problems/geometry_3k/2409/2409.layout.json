@@ -1,0 +1,478 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "2409",
+  "title": "Find y in triangle ABC.",
+  "canvas": {
+    "width": 1400,
+    "height": 939,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.diagram.frame",
+        "slot.pt.A",
+        "slot.pt.B",
+        "slot.pt.C",
+        "slot.edge.1",
+        "slot.edge.2",
+        "slot.edge.3",
+        "slot.arc.C.01",
+        "slot.arc.C.02",
+        "slot.arc.C.03",
+        "slot.arc.C.04",
+        "slot.arc.C.05",
+        "slot.arc.C.06",
+        "slot.arc.B.01",
+        "slot.arc.B.02",
+        "slot.arc.B.03",
+        "slot.arc.B.04",
+        "slot.arc.B.05",
+        "slot.arc.B.06",
+        "slot.q1",
+        "slot.lb.A",
+        "slot.lb.B",
+        "slot.lb.C",
+        "slot.len.AC",
+        "slot.len.AB",
+        "slot.len.BC",
+        "slot.arc.C.lb",
+        "slot.arc.B.lb"
+      ]
+    },
+    {
+      "id": "region.choices",
+      "role": "choices",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice.1",
+        "slot.choice.2"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "Find y in triangle ABC.",
+        "style_role": "question",
+        "x": 40.0,
+        "y": 80.0,
+        "font_size": 48
+      }
+    },
+    {
+      "id": "slot.diagram.frame",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 40.0,
+        "y": 200.0,
+        "width": 752.0,
+        "height": 699.0,
+        "stroke": "#D1D5DB",
+        "stroke_width": 1.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.edge.1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 110.2,
+        "y1": 224.0,
+        "x2": 333.8,
+        "y2": 875.0,
+        "stroke": "#374151",
+        "stroke_width": 2.2
+      }
+    },
+    {
+      "id": "slot.edge.2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 333.8,
+        "y1": 875.0,
+        "x2": 721.8,
+        "y2": 750.0,
+        "stroke": "#374151",
+        "stroke_width": 2.2
+      }
+    },
+    {
+      "id": "slot.edge.3",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 110.2,
+        "y1": 224.0,
+        "x2": 721.8,
+        "y2": 750.0,
+        "stroke": "#374151",
+        "stroke_width": 2.2
+      }
+    },
+    {
+      "id": "slot.pt.A",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 333.8,
+        "cy": 875.0,
+        "r": 3.8,
+        "stroke": "#111111",
+        "stroke_width": 1.0,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.pt.B",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 110.2,
+        "cy": 224.0,
+        "r": 3.8,
+        "stroke": "#111111",
+        "stroke_width": 1.0,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.pt.C",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 721.8,
+        "cy": 750.0,
+        "r": 3.8,
+        "stroke": "#111111",
+        "stroke_width": 1.0,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.lb.A",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "A",
+        "style_role": "label",
+        "x": 339.8,
+        "y": 869.0,
+        "font_size": 36
+      }
+    },
+    {
+      "id": "slot.lb.B",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "B",
+        "style_role": "label",
+        "x": 116.2,
+        "y": 218.0,
+        "font_size": 36
+      }
+    },
+    {
+      "id": "slot.lb.C",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "C",
+        "style_role": "label",
+        "x": 727.8,
+        "y": 744.0,
+        "font_size": 36
+      }
+    },
+    {
+      "id": "slot.len.AC",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "21",
+        "style_role": "label",
+        "x": 531.8,
+        "y": 808.5,
+        "font_size": 36
+      }
+    },
+    {
+      "id": "slot.len.AB",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "y",
+        "style_role": "label",
+        "x": 226.0,
+        "y": 545.5,
+        "font_size": 36
+      }
+    },
+    {
+      "id": "slot.len.BC",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "x",
+        "style_role": "label",
+        "x": 420.0,
+        "y": 483.0,
+        "font_size": 36
+      }
+    },
+    {
+      "id": "slot.choice.1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "1. 21 / 2. 21 √2 /",
+        "style_role": "choice",
+        "x": 860.0,
+        "y": 320.0,
+        "font_size": 48,
+        "font_family": "Cambria Math"
+      }
+    },
+    {
+      "id": "slot.choice.2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "3. 21 √3 / 4.",
+        "style_role": "choice",
+        "x": 860.0,
+        "y": 384.8,
+        "font_size": 48,
+        "font_family": "Cambria Math"
+      }
+    },
+    {
+      "id": "slot.arc.C.01",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 705.1,
+        "y1": 752.1,
+        "x2": 704.5,
+        "y2": 750.4,
+        "stroke": "#7C3AED",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.arc.C.02",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 704.5,
+        "y1": 750.4,
+        "x2": 704.1,
+        "y2": 748.7,
+        "stroke": "#7C3AED",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.arc.C.03",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 704.1,
+        "y1": 748.7,
+        "x2": 704.0,
+        "y2": 747.0,
+        "stroke": "#7C3AED",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.arc.C.04",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 704.0,
+        "y1": 747.0,
+        "x2": 704.1,
+        "y2": 745.3,
+        "stroke": "#7C3AED",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.arc.C.05",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 704.1,
+        "y1": 745.3,
+        "x2": 704.5,
+        "y2": 743.6,
+        "stroke": "#7C3AED",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.arc.C.06",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 704.5,
+        "y1": 743.6,
+        "x2": 705.1,
+        "y2": 741.9,
+        "stroke": "#7C3AED",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.arc.B.01",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 129.4,
+        "y1": 231.1,
+        "x2": 127.9,
+        "y2": 232.5,
+        "stroke": "#7C3AED",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.arc.B.02",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 127.9,
+        "y1": 232.5,
+        "x2": 126.2,
+        "y2": 233.7,
+        "stroke": "#7C3AED",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.arc.B.03",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 126.2,
+        "y1": 233.7,
+        "x2": 124.3,
+        "y2": 234.5,
+        "stroke": "#7C3AED",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.arc.B.04",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 124.3,
+        "y1": 234.5,
+        "x2": 122.3,
+        "y2": 234.9,
+        "stroke": "#7C3AED",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.arc.B.05",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 122.3,
+        "y1": 234.9,
+        "x2": 120.2,
+        "y2": 235.0,
+        "stroke": "#7C3AED",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.arc.B.06",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 120.2,
+        "y1": 235.0,
+        "x2": 118.2,
+        "y2": 234.6,
+        "stroke": "#7C3AED",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.arc.C.lb",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "60",
+        "style_role": "label",
+        "x": 692.3,
+        "y": 745.6,
+        "font_size": 36
+      }
+    },
+    {
+      "id": "slot.arc.B.lb",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "30",
+        "style_role": "label",
+        "x": 127.1,
+        "y": 242.2,
+        "font_size": 36
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.diagram.frame",
+    "slot.pt.A",
+    "slot.pt.B",
+    "slot.pt.C",
+    "slot.edge.1",
+    "slot.edge.2",
+    "slot.edge.3",
+    "slot.arc.C.01",
+    "slot.arc.C.02",
+    "slot.arc.C.03",
+    "slot.arc.C.04",
+    "slot.arc.C.05",
+    "slot.arc.C.06",
+    "slot.arc.B.01",
+    "slot.arc.B.02",
+    "slot.arc.B.03",
+    "slot.arc.B.04",
+    "slot.arc.B.05",
+    "slot.arc.B.06",
+    "slot.q1",
+    "slot.lb.A",
+    "slot.lb.B",
+    "slot.lb.C",
+    "slot.len.AC",
+    "slot.len.AB",
+    "slot.len.BC",
+    "slot.arc.C.lb",
+    "slot.arc.B.lb",
+    "region.choices",
+    "slot.choice.1",
+    "slot.choice.2"
+  ]
+}

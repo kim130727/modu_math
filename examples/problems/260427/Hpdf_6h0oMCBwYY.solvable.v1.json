@@ -1,0 +1,61 @@
+{
+  "schema": "modu.solvable.v1",
+  "problem_id": "Hpdf_6h0oMCBwYY",
+  "problem_type": "word_problem",
+  "inputs": {
+    "total_ticks": 970,
+    "target_label": "가장 비싼 물건의 가격",
+    "target_ticks": 430,
+    "target_count": 1,
+    "unit": "원"
+  },
+  "plan": [
+    "거스름돈 10원짜리 3개이므로 거스름돈은 30원이다.",
+    "500원짜리 동전만 사용했으므로 지불 금액은 500의 배수이다.",
+    "따라서 산 3개 물건의 가격 합은 (500의 배수 - 30)이다.",
+    "가격표의 6개 물건 중 3개를 고르는 조합 중 합이 470, 970, 1470, ... 인 경우를 찾는다.",
+    "조건을 만족하는 조합의 물건 중 가장 비싼 물건을 고른다."
+  ],
+  "steps": [
+    {
+      "id": "s1",
+      "expr": "change_total = 10 * 3",
+      "value": 30
+    },
+    {
+      "id": "s2",
+      "expr": "sum(items) = 500*k - 30",
+      "value": 970
+    },
+    {
+      "id": "s3",
+      "expr": "250 + 290 + 430",
+      "value": 970
+    },
+    {
+      "id": "s4",
+      "expr": "max(250, 290, 430)",
+      "value": 430
+    }
+  ],
+  "checks": [
+    {
+      "id": "c1",
+      "expr": "970 + 30",
+      "expected": 1000,
+      "actual": 1000,
+      "pass": true
+    },
+    {
+      "id": "c2",
+      "expr": "max_price == 430",
+      "expected": 430,
+      "actual": 430,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "value": 430,
+    "unit": "원"
+  }
+}

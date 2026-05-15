@@ -1,0 +1,140 @@
+{
+  "problem_id": "p260422_024",
+  "problem_type": "arithmetic",
+  "metadata": {
+    "title": "",
+    "tags": [],
+    "instruction": "",
+    "question": "5/8 ÷ 2/8",
+    "required_layout_ids": [
+      "slot.frac1.bar",
+      "slot.frac2.bar"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "n1",
+        "type": "number",
+        "value": 5,
+        "text": "5"
+      },
+      {
+        "id": "n2",
+        "type": "number",
+        "value": 8,
+        "text": "8"
+      },
+      {
+        "id": "f1",
+        "type": "fraction",
+        "text": "5/8"
+      },
+      {
+        "id": "n3",
+        "type": "number",
+        "value": 2,
+        "text": "2"
+      },
+      {
+        "id": "n4",
+        "type": "number",
+        "value": 8,
+        "text": "8"
+      },
+      {
+        "id": "f2",
+        "type": "fraction",
+        "text": "2/8"
+      },
+      {
+        "id": "op1",
+        "type": "operator",
+        "value": "÷",
+        "text": "÷"
+      },
+      {
+        "id": "q1",
+        "type": "question",
+        "text": "5/8 ÷ 2/8"
+      }
+    ],
+    "relations": [
+      {
+        "id": "r1",
+        "type": "contains",
+        "from_id": "q1",
+        "to_id": "f1"
+      },
+      {
+        "id": "r2",
+        "type": "contains",
+        "from_id": "q1",
+        "to_id": "f2"
+      },
+      {
+        "id": "r3",
+        "type": "contains",
+        "from_id": "q1",
+        "to_id": "op1"
+      },
+      {
+        "id": "r4",
+        "type": "defines",
+        "from_id": "f1",
+        "to_id": "n1"
+      },
+      {
+        "id": "r5",
+        "type": "defines",
+        "from_id": "f1",
+        "to_id": "n2"
+      },
+      {
+        "id": "r6",
+        "type": "defines",
+        "from_id": "f2",
+        "to_id": "n3"
+      },
+      {
+        "id": "r7",
+        "type": "defines",
+        "from_id": "f2",
+        "to_id": "n4"
+      },
+      {
+        "id": "r8",
+        "type": "references",
+        "from_id": "op1",
+        "to_id": "f1"
+      },
+      {
+        "id": "r9",
+        "type": "references",
+        "from_id": "op1",
+        "to_id": "f2"
+      }
+    ],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {},
+      "plan": {},
+      "execute": {},
+      "review": {}
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "number",
+      "description": "정답"
+    },
+    "value": 2.5,
+    "unit": ""
+  }
+}

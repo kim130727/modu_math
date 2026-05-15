@@ -1,0 +1,136 @@
+{
+  "problem_id": "0007_삼각형 개수",
+  "problem_type": "diagram_problem",
+  "metadata": {
+    "title": "",
+    "tags": [],
+    "instruction": "몇 개 만들어지는지 구하세요.",
+    "question": "색종이를 점선을 따라 자르면 직각삼각형은 모두",
+    "required_layout_ids": [
+      "slot.bg",
+      "slot.paper",
+      "slot.answer_value"
+    ],
+    "extraction_confidence": 1.0
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "slot.answer_value",
+        "type": "rect_slot",
+        "properties": {
+          "x": 343.0,
+          "y": 196.0,
+          "width": 48.0,
+          "height": 28.0,
+          "stroke": "none",
+          "stroke_width": 0.0,
+          "rx": null,
+          "ry": null,
+          "fill": "none",
+          "semantic_role": "answer_anchor"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.answer_value"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.bg",
+        "type": "rect_slot",
+        "properties": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 400.0,
+          "height": 230.0,
+          "stroke": "none",
+          "stroke_width": 0.0,
+          "rx": null,
+          "ry": null,
+          "fill": "#F6F6F6",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.bg"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.i1",
+        "type": "question",
+        "properties": {
+          "text": "색종이를 점선을 따라 자르면 직각삼각형은 모두"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.i1"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.i2",
+        "type": "instruction",
+        "properties": {
+          "text": "몇 개 만들어지는지 구하세요."
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.i2"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.paper",
+        "type": "rect_slot",
+        "properties": {
+          "x": 110.0,
+          "y": 82.0,
+          "width": 175.0,
+          "height": 120.0,
+          "stroke": "#6A6A6A",
+          "stroke_width": 1.8,
+          "rx": null,
+          "ry": null,
+          "fill": "#EEF4C8",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.paper"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0
+  }
+}

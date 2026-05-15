@@ -1,0 +1,41 @@
+{
+  "schema": "modu.solvable.v1",
+  "problem_id": "Hpdf_cvSkK84q3Z",
+  "problem_type": "rectangle_perimeter_square_side",
+  "inputs": {
+    "total_ticks": 36,
+    "target_label": "건우가 가진 액자의 한 변의 길이",
+    "target_ticks": 9,
+    "target_count": 9,
+    "unit": "cm"
+  },
+  "plan": [
+    "다희의 직사각형 액자의 둘레를 구한다.",
+    "건우의 정사각형 액자 둘레와 다희의 액자 둘레가 같음을 이용해 한 변의 길이를 구한다."
+  ],
+  "steps": [
+    {
+      "id": "step.s1",
+      "expr": "2 × (8 + 10)",
+      "value": 36
+    },
+    {
+      "id": "step.s2",
+      "expr": "36 ÷ 4",
+      "value": 9
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.c1",
+      "expr": "정사각형 둘레 확인 (4 × 9)",
+      "expected": 36,
+      "actual": 36,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "value": 9,
+    "unit": "cm"
+  }
+}

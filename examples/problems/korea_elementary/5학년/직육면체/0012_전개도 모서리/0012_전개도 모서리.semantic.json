@@ -1,0 +1,57 @@
+{
+  "problem_id": "0012_전개도 모서리",
+  "problem_type": "geometry_net_edge_count",
+  "metadata": {
+    "title": "",
+    "tags": [],
+    "instruction": "전개도를 접어서 만든 입체도형의 모서리는 모두 몇 개인가요?",
+    "question": "주어진 전개도를 접어서 만든 입체도형(육각기둥)의 모서리 개수를 구하는 문제",
+    "required_layout_ids": [
+      "slot.top_hex",
+      "slot.strip_rect",
+      "slot.fold_1",
+      "slot.fold_2",
+      "slot.fold_3",
+      "slot.fold_4",
+      "slot.fold_5",
+      "slot.bot_hex"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.net",
+        "type": "net",
+        "base_shape": "hexagon",
+        "side_faces": 6
+      },
+      {
+        "id": "obj.result",
+        "type": "prism",
+        "base_sides": 6
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "plan": {
+        "method": "shape_identification_and_property",
+        "description": "전개도를 분석하여 육각기둥임을 파악하고, 각기둥의 모서리 공식(n*3)을 적용한다."
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "value": 18,
+    "unit": "개",
+    "target": {
+      "type": "unknown",
+      "description": ""
+    }
+  }
+}

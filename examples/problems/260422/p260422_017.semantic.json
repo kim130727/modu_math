@@ -1,0 +1,158 @@
+{
+  "problem_id": "p260422_017",
+  "problem_type": "short_answer",
+  "metadata": {
+    "title": "",
+    "tags": [],
+    "instruction": "계산 결과가 자연수인 것을 모두 찾아 기호를 써 보시오.",
+    "question": "계산 결과가 자연수인 것을 모두 찾아 기호를 쓰시오.",
+    "required_layout_ids": [
+      "slot.choice.box",
+      "slot.c1.frac.bar",
+      "slot.c2.left.bar",
+      "slot.c2.right.bar",
+      "slot.c3.frac.bar",
+      "slot.c4.left.bar",
+      "slot.c4.right.bar"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "instr1",
+        "type": "instruction",
+        "text": "계산 결과가 자연수인 것을 모두 찾아 기호를 써 보시오."
+      },
+      {
+        "id": "q1",
+        "type": "question",
+        "text": "계산 결과가 자연수인 것을 모두 찾아 기호를 쓰시오."
+      },
+      {
+        "id": "c1",
+        "type": "choice",
+        "value": "ㄱ",
+        "text": "4 ÷ 1/3"
+      },
+      {
+        "id": "c2",
+        "type": "choice",
+        "value": "ㄴ",
+        "text": "8/9 ÷ 2/9"
+      },
+      {
+        "id": "c3",
+        "type": "choice",
+        "value": "ㄷ",
+        "text": "15 ÷ 8/13"
+      },
+      {
+        "id": "c4",
+        "type": "choice",
+        "value": "ㄹ",
+        "text": "14/15 ÷ 7/45"
+      },
+      {
+        "id": "e1",
+        "type": "expression",
+        "text": "4 ÷ 1/3"
+      },
+      {
+        "id": "e2",
+        "type": "expression",
+        "text": "8/9 ÷ 2/9"
+      },
+      {
+        "id": "e3",
+        "type": "expression",
+        "text": "15 ÷ 8/13"
+      },
+      {
+        "id": "e4",
+        "type": "expression",
+        "text": "14/15 ÷ 7/45"
+      }
+    ],
+    "relations": [
+      {
+        "id": "r1",
+        "type": "contains",
+        "from_id": "q1",
+        "to_id": "instr1"
+      },
+      {
+        "id": "r2",
+        "type": "contains",
+        "from_id": "q1",
+        "to_id": "c1"
+      },
+      {
+        "id": "r3",
+        "type": "contains",
+        "from_id": "q1",
+        "to_id": "c2"
+      },
+      {
+        "id": "r4",
+        "type": "contains",
+        "from_id": "q1",
+        "to_id": "c3"
+      },
+      {
+        "id": "r5",
+        "type": "contains",
+        "from_id": "q1",
+        "to_id": "c4"
+      },
+      {
+        "id": "r6",
+        "type": "labels",
+        "from_id": "c1",
+        "to_id": "e1"
+      },
+      {
+        "id": "r7",
+        "type": "labels",
+        "from_id": "c2",
+        "to_id": "e2"
+      },
+      {
+        "id": "r8",
+        "type": "labels",
+        "from_id": "c3",
+        "to_id": "e3"
+      },
+      {
+        "id": "r9",
+        "type": "labels",
+        "from_id": "c4",
+        "to_id": "e4"
+      }
+    ],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {},
+      "plan": {},
+      "execute": {},
+      "review": {}
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "number",
+      "description": "정답"
+    },
+    "value": [
+      "ㄱ",
+      "ㄴ",
+      "ㄹ"
+    ],
+    "unit": ""
+  }
+}

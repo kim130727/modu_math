@@ -1,0 +1,100 @@
+{
+  "problem_id": "Hpdf_8FrirrzBkE",
+  "problem_type": "geometry_perimeter_word_problem",
+  "metadata": {
+    "title": "철사로 만든 도형의 가로 구하기",
+    "tags": [
+      "perimeter",
+      "rectangle",
+      "square",
+      "conservation"
+    ],
+    "instruction": "철사의 길이는 변하지 않는다.",
+    "question": "세로가 18cm인 가장 큰 직사각형 1개를 만들 때 가로는 몇 cm인가?",
+    "required_layout_ids": [
+      "slot.left.rect",
+      "slot.arrow",
+      "slot.arrow.head",
+      "slot.right.rect"
+    ],
+    "extraction_confidence": 1.0
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "shape.square",
+        "type": "square",
+        "properties": {
+          "side_cm": 13
+        },
+        "confidence": 1.0
+      },
+      {
+        "id": "shape.rectangle",
+        "type": "rectangle",
+        "properties": {
+          "height_cm": 18
+        },
+        "confidence": 1.0
+      },
+      {
+        "id": "wire",
+        "type": "wire",
+        "properties": {
+          "length_preserved": true
+        },
+        "confidence": 1.0
+      },
+      {
+        "id": "var.width",
+        "type": "variable",
+        "properties": {
+          "name": "가로"
+        },
+        "confidence": 1.0
+      }
+    ],
+    "relations": [
+      {
+        "id": "rel.perimeter.square",
+        "type": "equation",
+        "from_id": "shape.square",
+        "to_id": "wire",
+        "properties": {
+          "expr": "wire_length = 4 * 13"
+        },
+        "confidence": 1.0
+      },
+      {
+        "id": "rel.perimeter.rectangle",
+        "type": "equation",
+        "from_id": "shape.rectangle",
+        "to_id": "wire",
+        "properties": {
+          "expr": "2 * (18 + 가로) = wire_length"
+        },
+        "confidence": 1.0
+      },
+      {
+        "id": "rel.target",
+        "type": "target",
+        "from_id": "shape.rectangle",
+        "to_id": "var.width",
+        "properties": {
+          "ask": "가로"
+        },
+        "confidence": 1.0
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "value": 8,
+    "unit": "cm",
+    "source": "perimeter_conservation"
+  }
+}

@@ -1,0 +1,202 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "0003_뺄셈 빈칸 채우기",
+  "title": "",
+  "canvas": {
+    "width": 1000,
+    "height": 600,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "vertical",
+      "slot_ids": [
+        "slot.v3_line",
+        "slot.t1",
+        "slot.t2",
+        "slot.text_11",
+        "slot.text_8",
+        "slot.text_9",
+        "slot.v2",
+        "slot.text_12",
+        "slot.text_10",
+        "slot.text_7",
+        "slot.v4"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.t1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "오른쪽 뺄셈식에서 같은 문자는 같은 숫자를 나타냅니다.",
+        "style_role": "body",
+        "x": 50.29764150834108,
+        "y": 82.05971772177185,
+        "font_size": 35,
+        "font_family": "sans-serif",
+        "anchor": "start",
+        "fill": "#000000"
+      }
+    },
+    {
+      "id": "slot.t2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "서로 다른 숫자 ㉠, ㉡, ㉢의 합을 구하시오.",
+        "style_role": "body",
+        "x": 48.02522586405705,
+        "y": 146.4619347708566,
+        "font_size": 35,
+        "font_family": "sans-serif",
+        "anchor": "start",
+        "fill": "#000000"
+      }
+    },
+    {
+      "id": "slot.text_11",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "2",
+        "style_role": "body",
+        "x": 482.7040710449219,
+        "y": 272.28443908691406,
+        "font_size": 45,
+        "fill": "#111"
+      }
+    },
+    {
+      "id": "slot.text_8",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "㉡",
+        "style_role": "body",
+        "x": 419.2308349609375,
+        "y": 273.5798034667969,
+        "font_size": 45,
+        "fill": "#111"
+      }
+    },
+    {
+      "id": "slot.text_9",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "㉠",
+        "style_role": "body",
+        "x": 368.7113494873047,
+        "y": 273.57981872558594,
+        "font_size": 45,
+        "fill": "#111"
+      }
+    },
+    {
+      "id": "slot.v2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "-",
+        "style_role": "body",
+        "x": 346.55812971635197,
+        "y": 333.8746022191541,
+        "font_size": 41,
+        "font_family": "sans-serif",
+        "anchor": "start",
+        "fill": "#000000"
+      }
+    },
+    {
+      "id": "slot.text_12",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "㉢",
+        "style_role": "body",
+        "x": 473.6365203857422,
+        "y": 338.3484344482422,
+        "font_size": 45,
+        "fill": "#111"
+      }
+    },
+    {
+      "id": "slot.text_10",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "1",
+        "style_role": "body",
+        "x": 377.7789764404297,
+        "y": 338.34844970703125,
+        "font_size": 45,
+        "fill": "#111"
+      }
+    },
+    {
+      "id": "slot.text_7",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "㉠",
+        "style_role": "body",
+        "x": 417.9355163574219,
+        "y": 339.64376068115234,
+        "font_size": 45,
+        "fill": "#111"
+      }
+    },
+    {
+      "id": "slot.v3_line",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 328.235107421875,
+        "y": 359.2491149902344,
+        "width": 220.0,
+        "height": 3.0,
+        "stroke": "#000000",
+        "stroke_width": 1.0,
+        "fill": "black"
+      }
+    },
+    {
+      "id": "slot.v4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "3 1 4",
+        "style_role": "body",
+        "x": 378.6347557596757,
+        "y": 429.7482486748209,
+        "font_size": 53,
+        "font_family": "sans-serif",
+        "anchor": "start",
+        "fill": "#000000"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.v3_line",
+    "slot.t1",
+    "slot.t2",
+    "slot.text_11",
+    "slot.text_8",
+    "slot.text_9",
+    "slot.v2",
+    "slot.text_12",
+    "slot.text_10",
+    "slot.text_7",
+    "slot.v4"
+  ]
+}

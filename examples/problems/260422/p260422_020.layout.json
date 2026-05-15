@@ -1,0 +1,73 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "msedge_wtZFXPa9h9",
+  "title": "",
+  "canvas": {
+    "width": 1390,
+    "height": 216,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.text.1",
+        "slot.text.2",
+        "slot.text.3"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.text.1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "용희네 농장에서 닭과 오리를 키우고 있습니다. 닭이 498마리, 오",
+        "style_role": "body",
+        "x": 28.0,
+        "y": 60.0,
+        "font_size": 45,
+        "fill": "#000000"
+      }
+    },
+    {
+      "id": "slot.text.2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "리는 닭보다 117마리 더 많다고 합니다. 용희네 농장에서 키우고",
+        "style_role": "body",
+        "x": 28.0,
+        "y": 140.0,
+        "font_size": 45,
+        "fill": "#000000"
+      }
+    },
+    {
+      "id": "slot.text.3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "있는 닭과 오리는 모두 몇 마리입니까?",
+        "style_role": "body",
+        "x": 28.0,
+        "y": 210.0,
+        "font_size": 45,
+        "fill": "#000000"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.text.1",
+    "slot.text.2",
+    "slot.text.3"
+  ]
+}

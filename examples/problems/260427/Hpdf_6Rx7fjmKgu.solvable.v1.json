@@ -1,0 +1,66 @@
+{
+  "schema": "modu.solvable.v1",
+  "problem_id": "Hpdf_6Rx7fjmKgu",
+  "problem_type": "set_overlap_word_problem",
+  "inputs": {
+    "total_ticks": 499,
+    "target_label": "가",
+    "target_ticks": 29,
+    "target_count": 1,
+    "unit": ""
+  },
+  "plan": [
+    "세 원의 합이 모두 같다는 조건으로 식을 세운다.",
+    "윗 원과 오른쪽 원의 합이 같으므로 나의 값을 확인한다.",
+    "왼쪽 원의 합을 같은 값으로 두어 가를 구한다."
+  ],
+  "steps": [
+    {
+      "id": "s1",
+      "expr": "top_sum = 146 + 177 + 162 + 나",
+      "value": "485 + 나"
+    },
+    {
+      "id": "s2",
+      "expr": "right_sum = 162 + 133 + 190 + 나",
+      "value": "485 + 나"
+    },
+    {
+      "id": "s3",
+      "expr": "공통합 = 499 이면 나 = 14",
+      "value": 14
+    },
+    {
+      "id": "s4",
+      "expr": "146 + 177 + 133 + 가 + 14 = 499",
+      "value": 29
+    }
+  ],
+  "checks": [
+    {
+      "id": "c1",
+      "expr": "146+177+162+14",
+      "expected": 499,
+      "actual": 499,
+      "pass": true
+    },
+    {
+      "id": "c2",
+      "expr": "162+133+190+14",
+      "expected": 499,
+      "actual": 499,
+      "pass": true
+    },
+    {
+      "id": "c3",
+      "expr": "146+177+133+29+14",
+      "expected": 499,
+      "actual": 499,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "value": 29,
+    "unit": ""
+  }
+}

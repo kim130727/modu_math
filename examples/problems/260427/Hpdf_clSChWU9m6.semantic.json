@@ -1,0 +1,96 @@
+{
+  "problem_id": "Hpdf_clSChWU9m6",
+  "problem_type": "difference_equalization",
+  "metadata": {
+    "title": "색종이 문제",
+    "tags": [],
+    "question": "국진이와 수지가 가진 색종이의 수가 같아지려면 국진이는 수지에게 색종이를 몇 장 주어야 하는가?",
+    "required_layout_ids": [],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": ""
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.gukjin",
+        "type": "person",
+        "name": "국진이"
+      },
+      {
+        "id": "obj.suji",
+        "type": "person",
+        "name": "수지"
+      },
+      {
+        "id": "obj.gukjin_papers",
+        "type": "quantity",
+        "quantity_type": "paper_count",
+        "value": 456
+      },
+      {
+        "id": "obj.suji_papers",
+        "type": "quantity",
+        "quantity_type": "paper_count",
+        "value": 372
+      }
+    ],
+    "relations": [
+      {
+        "id": "rel.compare_counts",
+        "type": "compare",
+        "from_id": "obj.gukjin_papers",
+        "to_id": "obj.suji_papers",
+        "relation": "greater_than"
+      },
+      {
+        "id": "rel.equalize_by_transfer",
+        "type": "transfer_to_equalize",
+        "from_id": "obj.gukjin",
+        "to_id": "obj.suji",
+        "source_quantity": "obj.gukjin_papers",
+        "target_quantity": "obj.suji_papers"
+      }
+    ],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.gukjin_papers",
+          "obj.suji_papers"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.equalize_by_transfer"
+        ]
+      },
+      "plan": {
+        "method": "difference_then_half",
+        "description": "두 수의 차이를 구한 뒤, 같은 수가 되도록 옮길 양은 그 차이의 절반으로 본다."
+      },
+      "execute": {
+        "expected_operations": [
+          "compute_difference",
+          "divide_difference_by_2"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "equal_counts_after_transfer"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "transfer_amount",
+      "description": "국진이가 수지에게 주어야 하는 색종이 수"
+    },
+    "value": null,
+    "unit": "장"
+  }
+}

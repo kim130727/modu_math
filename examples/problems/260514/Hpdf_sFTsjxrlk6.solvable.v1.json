@@ -1,0 +1,50 @@
+{
+  "schema": "modu.solvable.v1",
+  "problem_id": "Hpdf_sFTsjxrlk6",
+  "problem_type": "geometry_perimeter_cut_fold",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "ㄱㄴㅂㄷ의 둘레",
+    "target_ticks": 0,
+    "target_count": 1,
+    "unit": "cm"
+  },
+  "given": [
+    {
+      "ref": "obj.paper",
+      "value": "10 cm x 8 cm"
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "perimeter"
+  },
+  "method": "perimeter_from_transformed_shape",
+  "plan": [
+    "그림에서 접기와 자르기 후 대응되는 변의 길이를 확인한다.",
+    "새 사각형의 네 변 길이를 더해 둘레를 구한다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "operation": "determine_perimeter_relation",
+      "expr": "8 * 4",
+      "value": 32
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "type": "unit_consistency_check",
+      "expr": "둘레 단위는 cm",
+      "expected": 1,
+      "actual": 1,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "value": 32,
+    "unit": "cm",
+    "derived_from": "step.1"
+  }
+}

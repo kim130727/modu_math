@@ -1,0 +1,455 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "2408",
+  "title": "도형 문제",
+  "canvas": {
+    "width": 1400,
+    "height": 900,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.diagram.frame",
+        "slot.pt.X",
+        "slot.pt.Y",
+        "slot.pt.Z",
+        "slot.pt.N",
+        "slot.pt.M",
+        "slot.edge.base",
+        "slot.edge.left",
+        "slot.edge.right",
+        "slot.edge.inner",
+        "slot.marker.1.base",
+        "slot.marker.1.w1",
+        "slot.marker.1.w2",
+        "slot.marker.2.base",
+        "slot.marker.2.w1",
+        "slot.marker.2.w2",
+        "slot.problem",
+        "slot.choice.1",
+        "slot.choice.2",
+        "slot.choice.3",
+        "slot.choice.4",
+        "slot.lb.X",
+        "slot.lb.Y",
+        "slot.lb.Z",
+        "slot.lb.N",
+        "slot.lb.M"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.problem",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "XN = 6, XM = 2, XY = 10일 때, NZ를 구하시오.",
+        "style_role": "question",
+        "x": 40.0,
+        "y": 80.0,
+        "font_size": 48,
+        "font_family": "sans-serif",
+        "anchor": "start",
+        "fill": "#000000"
+      }
+    },
+    {
+      "id": "slot.choice.1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "1. 12",
+        "style_role": "choice",
+        "x": 860.0,
+        "y": 320.0,
+        "font_size": 48,
+        "font_family": "sans-serif",
+        "anchor": "start",
+        "fill": "#000000"
+      }
+    },
+    {
+      "id": "slot.choice.2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "2. 16",
+        "style_role": "choice",
+        "x": 860.0,
+        "y": 384.8,
+        "font_size": 48,
+        "font_family": "sans-serif",
+        "anchor": "start",
+        "fill": "#000000"
+      }
+    },
+    {
+      "id": "slot.choice.3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "3. 24",
+        "style_role": "choice",
+        "x": 860.0,
+        "y": 449.6,
+        "font_size": 48,
+        "font_family": "sans-serif",
+        "anchor": "start",
+        "fill": "#000000"
+      }
+    },
+    {
+      "id": "slot.choice.4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "4. 32",
+        "style_role": "choice",
+        "x": 860.0,
+        "y": 514.4,
+        "font_size": 48,
+        "font_family": "sans-serif",
+        "anchor": "start",
+        "fill": "#000000"
+      }
+    },
+    {
+      "id": "slot.diagram.frame",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 40.0,
+        "y": 200.0,
+        "width": 752.0,
+        "height": 660.0,
+        "stroke": "#D1D5DB",
+        "stroke_width": 1.0,
+        "fill": "none",
+        "semantic_role": "geometry_diagram_region"
+      }
+    },
+    {
+      "id": "slot.edge.base",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 64.0,
+        "y1": 746.0,
+        "x2": 768.0,
+        "y2": 746.0,
+        "stroke": "#374151",
+        "stroke_width": 2.2,
+        "semantic_role": "geometry_edge"
+      }
+    },
+    {
+      "id": "slot.edge.left",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 64.0,
+        "y1": 746.0,
+        "x2": 610.5,
+        "y2": 314.0,
+        "stroke": "#374151",
+        "stroke_width": 2.2,
+        "semantic_role": "geometry_edge"
+      }
+    },
+    {
+      "id": "slot.edge.right",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 610.5,
+        "y1": 314.0,
+        "x2": 768.0,
+        "y2": 746.0,
+        "stroke": "#374151",
+        "stroke_width": 2.2,
+        "semantic_role": "geometry_edge"
+      }
+    },
+    {
+      "id": "slot.edge.inner",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 258.6,
+        "y1": 592.1,
+        "x2": 315.9,
+        "y2": 746.0,
+        "stroke": "#374151",
+        "stroke_width": 2.2,
+        "semantic_role": "geometry_edge"
+      }
+    },
+    {
+      "id": "slot.pt.X",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 64.0,
+        "cy": 746.0,
+        "r": 3.8,
+        "stroke": "#111111",
+        "stroke_width": 1.0,
+        "fill": "#111111",
+        "semantic_role": "geometry_point"
+      }
+    },
+    {
+      "id": "slot.pt.Z",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 768.0,
+        "cy": 746.0,
+        "r": 3.8,
+        "stroke": "#111111",
+        "stroke_width": 1.0,
+        "fill": "#111111",
+        "semantic_role": "geometry_point"
+      }
+    },
+    {
+      "id": "slot.pt.Y",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 610.5,
+        "cy": 314.0,
+        "r": 3.8,
+        "stroke": "#111111",
+        "stroke_width": 1.0,
+        "fill": "#111111",
+        "semantic_role": "geometry_point"
+      }
+    },
+    {
+      "id": "slot.pt.N",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 315.9,
+        "cy": 746.0,
+        "r": 3.8,
+        "stroke": "#111111",
+        "stroke_width": 1.0,
+        "fill": "#111111",
+        "semantic_role": "geometry_point"
+      }
+    },
+    {
+      "id": "slot.pt.M",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 258.6,
+        "cy": 592.1,
+        "r": 3.8,
+        "stroke": "#111111",
+        "stroke_width": 1.0,
+        "fill": "#111111",
+        "semantic_role": "geometry_point"
+      }
+    },
+    {
+      "id": "slot.lb.X",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "X",
+        "style_role": "label",
+        "x": 70.0,
+        "y": 740.0,
+        "font_size": 36,
+        "font_family": "Malgun Gothic",
+        "anchor": "start",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.lb.Z",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "Z",
+        "style_role": "label",
+        "x": 774.0,
+        "y": 740.0,
+        "font_size": 36,
+        "font_family": "Malgun Gothic",
+        "anchor": "start",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.lb.Y",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "Y",
+        "style_role": "label",
+        "x": 616.5,
+        "y": 308.0,
+        "font_size": 36,
+        "font_family": "Malgun Gothic",
+        "anchor": "start",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.lb.N",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "N",
+        "style_role": "label",
+        "x": 321.9,
+        "y": 740.0,
+        "font_size": 36,
+        "font_family": "Malgun Gothic",
+        "anchor": "start",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.lb.M",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "M",
+        "style_role": "label",
+        "x": 264.6,
+        "y": 586.1,
+        "font_size": 36,
+        "font_family": "Malgun Gothic",
+        "anchor": "start",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.marker.1.base",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 691.3,
+        "y1": 535.6,
+        "x2": 687.2,
+        "y2": 524.4,
+        "stroke": "#2563EB",
+        "stroke_width": 1.8,
+        "semantic_role": "geometry_parallel_marker"
+      }
+    },
+    {
+      "id": "slot.marker.1.w1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 687.2,
+        "y1": 524.4,
+        "x2": 693.4,
+        "y2": 529.0,
+        "stroke": "#2563EB",
+        "stroke_width": 1.8,
+        "semantic_role": "geometry_parallel_marker"
+      }
+    },
+    {
+      "id": "slot.marker.1.w2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 687.2,
+        "y1": 524.4,
+        "x2": 685.4,
+        "y2": 531.9,
+        "stroke": "#2563EB",
+        "stroke_width": 1.8,
+        "semantic_role": "geometry_parallel_marker"
+      }
+    },
+    {
+      "id": "slot.marker.2.base",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 289.4,
+        "y1": 674.7,
+        "x2": 285.2,
+        "y2": 663.4,
+        "stroke": "#2563EB",
+        "stroke_width": 1.8,
+        "semantic_role": "geometry_parallel_marker"
+      }
+    },
+    {
+      "id": "slot.marker.2.w1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 285.2,
+        "y1": 663.4,
+        "x2": 291.4,
+        "y2": 668.0,
+        "stroke": "#2563EB",
+        "stroke_width": 1.8,
+        "semantic_role": "geometry_parallel_marker"
+      }
+    },
+    {
+      "id": "slot.marker.2.w2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 285.2,
+        "y1": 663.4,
+        "x2": 283.5,
+        "y2": 671.0,
+        "stroke": "#2563EB",
+        "stroke_width": 1.8,
+        "semantic_role": "geometry_parallel_marker"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.diagram.frame",
+    "slot.pt.X",
+    "slot.pt.Y",
+    "slot.pt.Z",
+    "slot.pt.N",
+    "slot.pt.M",
+    "slot.edge.base",
+    "slot.edge.left",
+    "slot.edge.right",
+    "slot.edge.inner",
+    "slot.marker.1.base",
+    "slot.marker.1.w1",
+    "slot.marker.1.w2",
+    "slot.marker.2.base",
+    "slot.marker.2.w1",
+    "slot.marker.2.w2",
+    "slot.problem",
+    "slot.choice.1",
+    "slot.choice.2",
+    "slot.choice.3",
+    "slot.choice.4",
+    "slot.lb.X",
+    "slot.lb.Y",
+    "slot.lb.Z",
+    "slot.lb.N",
+    "slot.lb.M"
+  ]
+}

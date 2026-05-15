@@ -1,0 +1,156 @@
+{
+  "problem_id": "2405",
+  "problem_type": "geometry_angle",
+  "metadata": {
+    "title": "평행선과 각도",
+    "tags": [],
+    "instruction": "Express your answer in degrees.",
+    "question": "In the figure below, ∠ABC is intersected by parallel lines ℓ and m. What is the measure of ∠ABC?",
+    "required_layout_ids": [
+      "slot.line.l",
+      "slot.line.m",
+      "slot.line.BA",
+      "slot.line.BC",
+      "slot.line.l_start_ah_l",
+      "slot.line.l_start_ah_r",
+      "slot.line.l_end_ah_l",
+      "slot.line.l_end_ah_r",
+      "slot.line.m_start_ah_l",
+      "slot.line.m_start_ah_r",
+      "slot.line.m_end_ah_l",
+      "slot.line.m_end_ah_r",
+      "slot.line.BA_end_ah_l",
+      "slot.line.BA_end_ah_r",
+      "slot.line.BC_end_ah_l",
+      "slot.line.BC_end_ah_r"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "en"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.line.l",
+        "type": "line",
+        "label": "ℓ"
+      },
+      {
+        "id": "obj.line.m",
+        "type": "line",
+        "label": "m"
+      },
+      {
+        "id": "obj.point.A",
+        "type": "point",
+        "label": "A"
+      },
+      {
+        "id": "obj.point.B",
+        "type": "point",
+        "label": "B"
+      },
+      {
+        "id": "obj.point.C",
+        "type": "point",
+        "label": "C"
+      },
+      {
+        "id": "obj.angle.38",
+        "type": "angle_measure",
+        "value": 38,
+        "unit": "degree"
+      },
+      {
+        "id": "obj.angle.33",
+        "type": "angle_measure",
+        "value": 33,
+        "unit": "degree"
+      }
+    ],
+    "relations": [
+      {
+        "id": "rel.parallel",
+        "type": "parallel",
+        "from_id": "obj.line.l",
+        "to_id": "obj.line.m"
+      },
+      {
+        "id": "rel.transversal.AB",
+        "type": "intersects",
+        "from_id": "obj.point.B",
+        "to_id": "obj.line.l"
+      },
+      {
+        "id": "rel.transversal.BC",
+        "type": "intersects",
+        "from_id": "obj.point.B",
+        "to_id": "obj.line.m"
+      }
+    ],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.line.l",
+          "obj.line.m",
+          "obj.angle.38",
+          "obj.angle.33"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.parallel"
+        ]
+      },
+      "plan": {
+        "method": "parallel_lines_angle_relationship",
+        "description": "평행선과 사선이 이루는 각의 관계를 이용해 ∠ABC를 찾는다."
+      },
+      "execute": {
+        "expected_operations": [
+          "identify_corresponding_or_alternate_angles",
+          "combine_given_angle_measures"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "angle_relationship_consistency_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [
+      {
+        "index": 1,
+        "text": "1. 33 2. 38 3. 61 4. 71",
+        "value": "33 2. 38 3. 61 4. 71"
+      },
+      {
+        "index": 2,
+        "text": "2. 38",
+        "value": "38"
+      },
+      {
+        "index": 3,
+        "text": "3. 61",
+        "value": "61"
+      },
+      {
+        "index": 4,
+        "text": "4. 71",
+        "value": "71"
+      }
+    ],
+    "answer_key": [
+      4
+    ],
+    "confidence": 1.0,
+    "target": {
+      "type": "angle_measure",
+      "description": "∠ABC"
+    },
+    "value": 71,
+    "unit": "degree"
+  }
+}

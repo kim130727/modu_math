@@ -1,0 +1,60 @@
+{
+  "problem_id": "0015_도형의 둘레",
+  "problem_type": "diagram_rectangle_perimeter_from_squares",
+  "metadata": {
+    "title": "",
+    "tags": [],
+    "instruction": "직사각형 모양도형의 네 변의 길이의 합은 몇 cm입니까?",
+    "question": "정사각형들을 붙여 만든 큰 직사각형의 둘레를 구하는 문제",
+    "required_layout_ids": [
+      "slot.bg",
+      "slot.outer_left",
+      "slot.outer_top",
+      "slot.v_main",
+      "slot.outer_right",
+      "slot.h_main",
+      "slot.v_small",
+      "slot.colored_square",
+      "slot.h_small",
+      "slot.outer_bottom"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.colored_square",
+        "type": "square",
+        "side_length": 15,
+        "unit": "cm"
+      },
+      {
+        "id": "obj.large_rect",
+        "type": "rectangle",
+        "width_ratio": 8,
+        "height_ratio": 5
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "plan": {
+        "method": "proportional_measurement",
+        "description": "색칠된 정사각형의 변을 기준으로 큰 직사각형의 가로(8배), 세로(5배) 길이를 구한다."
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "value": 390,
+    "unit": "cm",
+    "target": {
+      "type": "unknown",
+      "description": ""
+    }
+  }
+}

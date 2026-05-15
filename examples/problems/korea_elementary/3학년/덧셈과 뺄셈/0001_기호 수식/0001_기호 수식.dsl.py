@@ -1,0 +1,370 @@
+from __future__ import annotations
+
+from modu_math.dsl import Arrow, BlankSlot, Canvas, ChoiceSlot, Circle, CircleSlot, Constraint, Cube, DiagramTemplate, FractionAreaModel, Grid, Group, LabelSlot, LineSlot, PathSlot, PolygonSlot, ProblemTemplate, RectSlot, Region, ShapeObject, TextSlot, Triangle
+
+def build_problem_template() -> ProblemTemplate:
+    canvas = Canvas(
+        width=417,
+        height=220,
+        coordinate_mode='logical',
+    )
+    regions = (
+        Region(
+            id='region.stem',
+            role='stem',
+            flow='vertical',
+            slot_ids=('slot.instruction_1',
+             'slot.plus_text',
+             'slot.minus_text',
+             'slot.left_value',
+             'slot.right_value',
+             'slot.answer_left_paren',
+             'slot.answer_right_paren'),
+        ),
+    )
+    slots = (
+        RectSlot(
+            id='slot.bg',
+            prompt='',
+            x=0.0,
+            y=0.0,
+            width=417.0,
+            height=220.0,
+            stroke='none',
+            stroke_width=0.0,
+            fill='none',
+            semantic_role='background',
+        ),
+        TextSlot(
+            id='slot.instruction_1',
+            prompt='',
+            text='괄호 안에 알맞은 수의 값을 구하시오.',
+            style_role='body',
+            x=6.0,
+            y=30.0,
+            font_size=17,
+            font_family='Malgun Gothic',
+            anchor='start',
+            fill='#222222',
+            semantic_role='instruction',
+        ),
+        RectSlot(
+            id='slot.plus_bubble',
+            prompt='',
+            x=84.0,
+            y=46.0,
+            width=88.0,
+            height=42.0,
+            stroke='#666666',
+            stroke_width=1.4,
+            rx=21.0,
+            ry=21.0,
+            fill='none',
+            semantic_role='guide',
+        ),
+        RectSlot(
+            id='slot.minus_bubble',
+            prompt='',
+            x=228.0,
+            y=46.0,
+            width=92.0,
+            height=42.0,
+            stroke='#666666',
+            stroke_width=1.4,
+            rx=21.0,
+            ry=21.0,
+            fill='none',
+            semantic_role='guide',
+        ),
+        TextSlot(
+            id='slot.plus_text',
+            prompt='',
+            text='+149',
+            style_role='body',
+            x=128.0,
+            y=73.0,
+            font_size=17,
+            font_family='Malgun Gothic',
+            anchor='middle',
+            fill='#222222',
+            semantic_role='label',
+        ),
+        TextSlot(
+            id='slot.minus_text',
+            prompt='',
+            text='-△',
+            style_role='body',
+            x=274.0,
+            y=73.0,
+            font_size=17,
+            font_family='Malgun Gothic',
+            anchor='middle',
+            fill='#222222',
+            semantic_role='label',
+        ),
+        PathSlot(
+            id='slot.curve_left_to_plus',
+            prompt='',
+            d='M 58 110 Q 70 84 84 67',
+            stroke='#222222',
+            stroke_width=2.0,
+            fill='none',
+            semantic_role='guide',
+        ),
+        PathSlot(
+            id='slot.curve_plus_to_circle',
+            prompt='',
+            d='M 172 67 Q 190 76 202 110',
+            stroke='#222222',
+            stroke_width=2.0,
+            fill='none',
+            semantic_role='guide',
+        ),
+        PolygonSlot(
+            id='slot.curve_plus_to_circle_head',
+            prompt='',
+            points=(
+                (202.0, 110.0),
+                (195.3552641966023, 104.9902608747516),
+                (203.7989517767937, 101.87511400050617),
+            ),
+            stroke='#222222',
+            stroke_width=1.0,
+            fill='#222222',
+            semantic_role='guide',
+        ),
+        PathSlot(
+            id='slot.curve_circle_to_minus',
+            prompt='',
+            d='M 202 110 Q 214 84 228 67',
+            stroke='#222222',
+            stroke_width=2.0,
+            fill='none',
+            semantic_role='guide',
+        ),
+        PathSlot(
+            id='slot.curve_minus_to_right',
+            prompt='',
+            d='M 320 67 Q 336 76 349 110',
+            stroke='#222222',
+            stroke_width=2.0,
+            fill='none',
+            semantic_role='guide',
+        ),
+        PolygonSlot(
+            id='slot.curve_minus_to_right_head',
+            prompt='',
+            points=(
+                (349.0, 110.0),
+                (342.23924825963746, 105.14796579719545),
+                (350.6073146894045, 101.83504197872246),
+            ),
+            stroke='#222222',
+            stroke_width=1.0,
+            fill='#222222',
+            semantic_role='guide',
+        ),
+        RectSlot(
+            id='slot.left_box',
+            prompt='',
+            x=18.0,
+            y=110.0,
+            width=80.0,
+            height=45.0,
+            stroke='#666666',
+            stroke_width=1.5,
+            fill='none',
+            semantic_role='value_box',
+        ),
+        RectSlot(
+            id='slot.circle_box',
+            prompt='',
+            x=161.0,
+            y=110.0,
+            width=82.0,
+            height=45.0,
+            stroke='#666666',
+            stroke_width=1.5,
+            fill='none',
+            semantic_role='value_box',
+        ),
+        RectSlot(
+            id='slot.right_box',
+            prompt='',
+            x=309.0,
+            y=110.0,
+            width=80.0,
+            height=45.0,
+            stroke='#666666',
+            stroke_width=1.5,
+            fill='none',
+            semantic_role='value_box',
+        ),
+        CircleSlot(
+            id='slot.circle_symbol',
+            prompt='',
+            cx=202.0,
+            cy=133.0,
+            r=7.0,
+            stroke='#000000',
+            stroke_width=1.0,
+            fill='#000000',
+            semantic_role='symbol',
+        ),
+        TextSlot(
+            id='slot.left_value',
+            prompt='',
+            text='472',
+            style_role='body',
+            x=58.0,
+            y=140.0,
+            font_size=17,
+            font_family='Malgun Gothic',
+            anchor='middle',
+            fill='#222222',
+            semantic_role='label',
+        ),
+        TextSlot(
+            id='slot.right_value',
+            prompt='',
+            text='285',
+            style_role='body',
+            x=349.0,
+            y=140.0,
+            font_size=17,
+            font_family='Malgun Gothic',
+            anchor='middle',
+            fill='#222222',
+            semantic_role='label',
+        ),
+        RectSlot(
+            id='slot.answer_value',
+            prompt='',
+            x=246.0,
+            y=178.0,
+            width=138.0,
+            height=32.0,
+            stroke='none',
+            stroke_width=0.0,
+            fill='none',
+            semantic_role='answer_anchor',
+        ),
+        TextSlot(
+            id='slot.answer_left_paren',
+            prompt='',
+            text='(',
+            style_role='body',
+            x=228.0,
+            y=206.0,
+            font_size=24,
+            font_family='Malgun Gothic',
+            anchor='start',
+            fill='#222222',
+            semantic_role='guide',
+        ),
+        TextSlot(
+            id='slot.answer_right_paren',
+            prompt='',
+            text=')',
+            style_role='body',
+            x=394.0,
+            y=206.0,
+            font_size=24,
+            font_family='Malgun Gothic',
+            anchor='start',
+            fill='#222222',
+            semantic_role='guide',
+        ),
+    )
+    diagrams = (
+    )
+    groups = (
+    )
+    constraints = (
+    )
+    return ProblemTemplate(
+        id='0001_기호 수식',
+        title='',
+        canvas=canvas,
+        regions=regions,
+        slots=slots,
+        diagrams=diagrams,
+        groups=groups,
+        constraints=constraints,
+    )
+
+PROBLEM_TEMPLATE = build_problem_template()
+
+SEMANTIC_OVERRIDE = {
+    'problem_id': '0001_기호 수식',
+    'problem_type': 'arithmetic_chained_operation',
+    'metadata': {
+        'language': 'ko',
+        'question': '연쇄적인 덧셈과 뺄셈 기호 규칙을 따라 빈칸에 알맞은 수 △의 값을 구하는 문제',
+        'instruction': '괄호 안에 알맞은 수의 값을 구하시오.',
+    },
+    'domain': {
+        'objects': [
+            {'id': 'obj.start', 'type': 'number', 'value': 472},
+            {'id': 'obj.middle_op', 'type': 'operation', 'description': '+149'},
+            {'id': 'obj.end_op', 'type': 'operation', 'description': '-△'},
+            {'id': 'obj.target', 'type': 'number', 'value': 285},
+        ],
+        'problem_solving': {
+            'plan': {
+                'method': 'stepwise_calculation',
+                'description': '먼저 472에 149를 더해 중간값을 구하고, 그 중간값에서 어떤 수 △를 뺐을 때 285가 되는지 계산한다.',
+            }
+        },
+    },
+    'answer': {
+        'value': 336,
+        'unit': '',
+    },
+}
+
+SOLVABLE = {
+    'schema': 'modu.solvable.v1',
+    'problem_id': '0001_기호 수식',
+    'problem_type': 'arithmetic_chained_operation',
+    'given': [
+        {'ref': 'obj.start', 'value': 472},
+        {'ref': 'obj.middle_op', 'value': '+149'},
+        {'ref': 'obj.target', 'value': 285}
+    ],
+    'target': {'type': 'number', 'description': '△의 값'},
+    'method': 'stepwise_calculation',
+    'steps': [
+        {
+            'id': 'step.s1',
+            'operation': 'addition',
+            'expr': '472 + 149 = 621',
+            'value': 621
+        },
+        {
+            'id': 'step.s2',
+            'operation': 'subtraction',
+            'expr': '621 - 285 = 336',
+            'value': 336
+        }
+    ],
+    'checks': [
+        {
+            'id': 'check.c1',
+            'type': 'arithmetic_consistency_check',
+            'pass': True,
+            'expected': 336,
+            'actual': 336,
+            'expr': '621 - 336 = 285'
+        }
+    ],
+    'answer': {'value': 336, 'unit': '', 'derived_from': 'step.s2'},
+    'inputs': {
+        'total_ticks': 1,
+        'target_label': '답',
+        'target_ticks': 1,
+        'target_count': 1,
+        'unit': ''
+    },
+    'plan': ['472+149=621을 구한 뒤, 621-△=285에서 △=336임을 구합니다.']
+}

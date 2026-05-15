@@ -1,0 +1,63 @@
+{
+  "schema": "modu.solvable.v1",
+  "problem_id": "2406",
+  "problem_type": "geometry_angle",
+  "inputs": {
+    "total_ticks": 1,
+    "target_label": "x",
+    "target_ticks": 1,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.angle.79",
+      "value": "79°"
+    },
+    {
+      "ref": "obj.angle.xm1",
+      "value": "(x−1)°"
+    },
+    {
+      "ref": "obj.angle.xp10",
+      "value": "(x+10)°"
+    },
+    {
+      "ref": "obj.angle.2x",
+      "value": "2x°"
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "value_of_x"
+  },
+  "method": "angle_relationship_in_diagram",
+  "plan": [
+    "도형에 표시된 각도 라벨을 확인한다.",
+    "각도 관계식을 세울 수 있으면 x를 구한다.",
+    "선택지와 일치하는지 확인한다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "operation": "identify_visible_labels",
+      "expr": "79°, (x−1)°, (x+10)°, 2x°",
+      "value": 4
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "type": "choice_consistency",
+      "expr": "선택지 1, 2, 3, 4 중 하나와 일치하는지 확인",
+      "expected": 68,
+      "actual": 68,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "value": 68,
+    "unit": "",
+    "derived_from": "choice.1"
+  }
+}

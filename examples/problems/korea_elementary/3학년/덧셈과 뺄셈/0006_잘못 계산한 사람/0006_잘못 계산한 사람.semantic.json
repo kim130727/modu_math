@@ -1,0 +1,56 @@
+{
+  "problem_id": "0006_잘못 계산한 사람",
+  "problem_type": "arithmetic_mental_math_critique",
+  "metadata": {
+    "title": "",
+    "tags": [],
+    "instruction": "잘못 계산한 사람과 이유를 쓰세요.",
+    "question": "875-328을 계산하는 두 가지 암산 방법 중 잘못된 것을 찾고 이유를 설명하는 문제",
+    "required_layout_ids": [
+      "slot.bg",
+      "slot.bubble",
+      "slot.answer_text"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.target_eq",
+        "type": "equation",
+        "value": "875-328"
+      },
+      {
+        "id": "obj.jieun",
+        "type": "person",
+        "strategy": "partial_subtraction_correct"
+      },
+      {
+        "id": "obj.kunwoo",
+        "type": "person",
+        "strategy": "partial_subtraction_incorrect"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "plan": {
+        "method": "logical_analysis_of_mental_math",
+        "description": "각 사람의 계산 과정을 수식으로 변환하여 오류를 찾는다."
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "value": 0,
+    "unit": "",
+    "target": {
+      "type": "unknown",
+      "description": ""
+    }
+  }
+}

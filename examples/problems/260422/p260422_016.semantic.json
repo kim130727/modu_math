@@ -1,0 +1,132 @@
+{
+  "problem_id": "p260422_016",
+  "problem_type": "arithmetic",
+  "metadata": {
+    "title": "",
+    "tags": [],
+    "instruction": "잘못 계산한 곳을 찾아 이유를 쓰고, 바르게 계산해 보시오.",
+    "question": "4/5 ÷ 7/9 = 4/5 × 7/9 = 28/45",
+    "required_layout_ids": [
+      "slot.box",
+      "slot.eq.f1.bar",
+      "slot.eq.f2.bar",
+      "slot.eq.f3.bar",
+      "slot.eq.f4.bar",
+      "slot.eq.f5.bar"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "o1",
+        "type": "instruction",
+        "text": "잘못 계산한 곳을 찾아 이유를 쓰고, 바르게 계산해 보시오."
+      },
+      {
+        "id": "o2",
+        "type": "equation",
+        "text": "4/5 ÷ 7/9 = 4/5 × 7/9 = 28/45"
+      },
+      {
+        "id": "o3",
+        "type": "fraction",
+        "value": "4/5",
+        "text": "4/5"
+      },
+      {
+        "id": "o4",
+        "type": "fraction",
+        "value": "7/9",
+        "text": "7/9"
+      },
+      {
+        "id": "o5",
+        "type": "operator",
+        "value": "÷",
+        "text": "÷"
+      },
+      {
+        "id": "o6",
+        "type": "operator",
+        "value": "×",
+        "text": "×"
+      },
+      {
+        "id": "o7",
+        "type": "fraction",
+        "value": "28/45",
+        "text": "28/45"
+      },
+      {
+        "id": "o8",
+        "type": "question",
+        "text": "잘못 계산한 곳을 찾아 이유를 쓰고, 바르게 계산해 보시오."
+      }
+    ],
+    "relations": [
+      {
+        "id": "r1",
+        "type": "contains",
+        "from_id": "o1",
+        "to_id": "o2"
+      },
+      {
+        "id": "r2",
+        "type": "contains",
+        "from_id": "o2",
+        "to_id": "o3"
+      },
+      {
+        "id": "r3",
+        "type": "contains",
+        "from_id": "o2",
+        "to_id": "o4"
+      },
+      {
+        "id": "r4",
+        "type": "contains",
+        "from_id": "o2",
+        "to_id": "o5"
+      },
+      {
+        "id": "r5",
+        "type": "contains",
+        "from_id": "o2",
+        "to_id": "o6"
+      },
+      {
+        "id": "r6",
+        "type": "contains",
+        "from_id": "o2",
+        "to_id": "o7"
+      },
+      {
+        "id": "r7",
+        "type": "asks_for",
+        "from_id": "o8",
+        "to_id": "o2"
+      }
+    ],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {},
+      "plan": {},
+      "execute": {},
+      "review": {}
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "number",
+      "description": "정답"
+    },
+    "value": "4/5 × 9/7 = 36/35",
+    "unit": ""
+  }
+}

@@ -1,0 +1,412 @@
+{
+  "problem_id": "0008_사각형과 정사각형",
+  "problem_type": "diagram_problem",
+  "metadata": {
+    "title": "",
+    "tags": [],
+    "instruction": "가",
+    "question": "직사각형은 정사각형보다 몇 개 더 많은지 구하세요.",
+    "required_layout_ids": [
+      "slot.bg",
+      "slot.frame",
+      "slot.na",
+      "slot.ga",
+      "slot.da",
+      "slot.ra",
+      "slot.ba",
+      "slot.ma",
+      "slot.answer_value"
+    ],
+    "extraction_confidence": 1.0
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "slot.answer_value",
+        "type": "rect_slot",
+        "properties": {
+          "x": 304.0,
+          "y": 212.0,
+          "width": 48.0,
+          "height": 28.0,
+          "stroke": "none",
+          "stroke_width": 0.0,
+          "rx": null,
+          "ry": null,
+          "fill": "none",
+          "semantic_role": "answer_anchor"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.answer_value"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.ba",
+        "type": "polygon_slot",
+        "properties": {
+          "points": [
+            [
+              328.0,
+              150.0
+            ],
+            [
+              371.0,
+              174.0
+            ],
+            [
+              328.0,
+              198.0
+            ],
+            [
+              285.0,
+              174.0
+            ]
+          ],
+          "stroke": "#4A4A4A",
+          "stroke_width": 2.0,
+          "fill": "none",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.ba"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.ba_t",
+        "type": "instruction",
+        "properties": {
+          "text": "바"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.ba_t"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.bg",
+        "type": "rect_slot",
+        "properties": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 400.0,
+          "height": 260.0,
+          "stroke": "none",
+          "stroke_width": 0.0,
+          "rx": null,
+          "ry": null,
+          "fill": "#F4F4F4",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.bg"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.da",
+        "type": "rect_slot",
+        "properties": {
+          "x": 284.0,
+          "y": 77.0,
+          "width": 80.0,
+          "height": 52.0,
+          "stroke": "#4A4A4A",
+          "stroke_width": 2.0,
+          "rx": null,
+          "ry": null,
+          "fill": "none",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.da"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.da_t",
+        "type": "instruction",
+        "properties": {
+          "text": "다"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.da_t"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.frame",
+        "type": "rect_slot",
+        "properties": {
+          "x": 6.0,
+          "y": 52.0,
+          "width": 384.0,
+          "height": 194.0,
+          "stroke": "#8A8A8A",
+          "stroke_width": 1.4,
+          "rx": 10.0,
+          "ry": 10.0,
+          "fill": "none",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.frame"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.ga",
+        "type": "polygon_slot",
+        "properties": {
+          "points": [
+            [
+              26.0,
+              69.0
+            ],
+            [
+              106.0,
+              67.0
+            ],
+            [
+              84.0,
+              108.0
+            ],
+            [
+              36.0,
+              120.0
+            ]
+          ],
+          "stroke": "#4A4A4A",
+          "stroke_width": 2.0,
+          "fill": "none",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.ga"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.ga_t",
+        "type": "instruction",
+        "properties": {
+          "text": "가"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.ga_t"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.i1",
+        "type": "question",
+        "properties": {
+          "text": "직사각형은 정사각형보다 몇 개 더 많은지 구하세요."
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.i1"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.ma",
+        "type": "rect_slot",
+        "properties": {
+          "x": 136.0,
+          "y": 154.0,
+          "width": 116.0,
+          "height": 42.0,
+          "stroke": "#4A4A4A",
+          "stroke_width": 2.0,
+          "rx": null,
+          "ry": null,
+          "fill": "none",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.ma"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.ma_t",
+        "type": "instruction",
+        "properties": {
+          "text": "마"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.ma_t"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.na",
+        "type": "rect_slot",
+        "properties": {
+          "x": 162.0,
+          "y": 66.0,
+          "width": 64.0,
+          "height": 64.0,
+          "stroke": "#4A4A4A",
+          "stroke_width": 2.0,
+          "rx": null,
+          "ry": null,
+          "fill": "none",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.na"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.na_t",
+        "type": "instruction",
+        "properties": {
+          "text": "나"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.na_t"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.ra",
+        "type": "polygon_slot",
+        "properties": {
+          "points": [
+            [
+              56.0,
+              134.0
+            ],
+            [
+              100.0,
+              170.0
+            ],
+            [
+              56.0,
+              206.0
+            ],
+            [
+              12.0,
+              170.0
+            ]
+          ],
+          "stroke": "#4A4A4A",
+          "stroke_width": 2.0,
+          "fill": "none",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.ra"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.ra_t",
+        "type": "instruction",
+        "properties": {
+          "text": "라"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.ra_t"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "confidence": 1.0
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0
+  }
+}

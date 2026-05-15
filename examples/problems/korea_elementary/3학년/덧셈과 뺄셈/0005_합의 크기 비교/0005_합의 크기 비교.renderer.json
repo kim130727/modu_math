@@ -1,0 +1,182 @@
+{
+  "problem_id": "0005_합의 크기 비교",
+  "view_box": {
+    "width": 1852.0,
+    "height": 554.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.left_box.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 320.0,
+        "y": 180.0,
+        "width": 590.0,
+        "height": 210.0,
+        "fill": "#D0CABB",
+        "stroke": "none",
+        "stroke-width": 0.0,
+        "rx": 75.0,
+        "data-semantic-role": "choice"
+      },
+      "source_ref": "slot.left_box",
+      "refs": {
+        "layout_slot_id": "slot.left_box"
+      }
+    },
+    {
+      "id": "slot.right_box.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 1200.0,
+        "y": 180.0,
+        "width": 590.0,
+        "height": 210.0,
+        "fill": "#D0CABB",
+        "stroke": "none",
+        "stroke-width": 0.0,
+        "rx": 75.0,
+        "data-semantic-role": "choice"
+      },
+      "source_ref": "slot.right_box",
+      "refs": {
+        "layout_slot_id": "slot.right_box"
+      }
+    },
+    {
+      "id": "slot.instruction.text",
+      "type": "text",
+      "attributes": {
+        "x": 44.0,
+        "y": 106.0,
+        "max_width": 1724.0,
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 72,
+        "text-anchor": "start",
+        "data-semantic-role": "decorative"
+      },
+      "source_ref": "slot.instruction",
+      "refs": {
+        "layout_slot_id": "slot.instruction"
+      },
+      "text": "계산 결과가 더 큰 것에 ○표 하세요."
+    },
+    {
+      "id": "slot.left_expr.text",
+      "type": "text",
+      "attributes": {
+        "x": 615.0,
+        "y": 294.0,
+        "max_width": 1724.0,
+        "fill": "#222222",
+        "font-family": "Cambria",
+        "font-size": 74,
+        "text-anchor": "middle",
+        "data-semantic-role": "decorative"
+      },
+      "source_ref": "slot.left_expr",
+      "refs": {
+        "layout_slot_id": "slot.left_expr"
+      },
+      "text": "605+298"
+    },
+    {
+      "id": "slot.right_expr.text",
+      "type": "text",
+      "attributes": {
+        "x": 1495.0,
+        "y": 294.0,
+        "max_width": 1724.0,
+        "fill": "#222222",
+        "font-family": "Cambria",
+        "font-size": 74,
+        "text-anchor": "middle",
+        "data-semantic-role": "decorative"
+      },
+      "source_ref": "slot.right_expr",
+      "refs": {
+        "layout_slot_id": "slot.right_expr"
+      },
+      "text": "567+385"
+    },
+    {
+      "id": "slot.left_paren_l.text",
+      "type": "text",
+      "attributes": {
+        "x": 500.0,
+        "y": 478.0,
+        "max_width": 1724.0,
+        "fill": "#222222",
+        "font-family": "Cambria",
+        "font-size": 92,
+        "text-anchor": "middle",
+        "data-semantic-role": "decorative"
+      },
+      "source_ref": "slot.left_paren_l",
+      "refs": {
+        "layout_slot_id": "slot.left_paren_l"
+      },
+      "text": "("
+    },
+    {
+      "id": "slot.left_paren_r.text",
+      "type": "text",
+      "attributes": {
+        "x": 735.0,
+        "y": 478.0,
+        "max_width": 1724.0,
+        "fill": "#222222",
+        "font-family": "Cambria",
+        "font-size": 92,
+        "text-anchor": "middle",
+        "data-semantic-role": "decorative"
+      },
+      "source_ref": "slot.left_paren_r",
+      "refs": {
+        "layout_slot_id": "slot.left_paren_r"
+      },
+      "text": ")"
+    },
+    {
+      "id": "slot.right_paren_l.text",
+      "type": "text",
+      "attributes": {
+        "x": 1380.0,
+        "y": 478.0,
+        "max_width": 1724.0,
+        "fill": "#222222",
+        "font-family": "Cambria",
+        "font-size": 92,
+        "text-anchor": "middle",
+        "data-semantic-role": "decorative"
+      },
+      "source_ref": "slot.right_paren_l",
+      "refs": {
+        "layout_slot_id": "slot.right_paren_l"
+      },
+      "text": "("
+    },
+    {
+      "id": "slot.right_paren_r.text",
+      "type": "text",
+      "attributes": {
+        "x": 1615.0,
+        "y": 478.0,
+        "max_width": 1724.0,
+        "fill": "#222222",
+        "font-family": "Cambria",
+        "font-size": 92,
+        "text-anchor": "middle",
+        "data-semantic-role": "decorative"
+      },
+      "source_ref": "slot.right_paren_r",
+      "refs": {
+        "layout_slot_id": "slot.right_paren_r"
+      },
+      "text": ")"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

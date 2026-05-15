@@ -1,0 +1,325 @@
+{
+  "problem_id": "0007_계산 결과가 가장 큰 식 만들기",
+  "view_box": {
+    "width": 1000.0,
+    "height": 600.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.card_0.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 140.0,
+        "y": 220.0,
+        "width": 120.0,
+        "height": 90.0,
+        "fill": "#EAF4FF",
+        "stroke": "#8FB3D9",
+        "stroke-width": 2.0,
+        "rx": 12.0,
+        "data-semantic-role": "card"
+      },
+      "source_ref": "slot.card_0",
+      "refs": {
+        "layout_slot_id": "slot.card_0"
+      }
+    },
+    {
+      "id": "slot.card_1.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 300.0,
+        "y": 220.0,
+        "width": 120.0,
+        "height": 90.0,
+        "fill": "#EAF4FF",
+        "stroke": "#8FB3D9",
+        "stroke-width": 2.0,
+        "rx": 12.0,
+        "data-semantic-role": "card"
+      },
+      "source_ref": "slot.card_1",
+      "refs": {
+        "layout_slot_id": "slot.card_1"
+      }
+    },
+    {
+      "id": "slot.card_2.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 460.0,
+        "y": 220.0,
+        "width": 120.0,
+        "height": 90.0,
+        "fill": "#EAF4FF",
+        "stroke": "#8FB3D9",
+        "stroke-width": 2.0,
+        "rx": 12.0,
+        "data-semantic-role": "card"
+      },
+      "source_ref": "slot.card_2",
+      "refs": {
+        "layout_slot_id": "slot.card_2"
+      }
+    },
+    {
+      "id": "slot.card_3.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 620.0,
+        "y": 220.0,
+        "width": 120.0,
+        "height": 90.0,
+        "fill": "#EAF4FF",
+        "stroke": "#8FB3D9",
+        "stroke-width": 2.0,
+        "rx": 12.0,
+        "data-semantic-role": "card"
+      },
+      "source_ref": "slot.card_3",
+      "refs": {
+        "layout_slot_id": "slot.card_3"
+      }
+    },
+    {
+      "id": "slot.box1.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 210.0,
+        "y": 390.0,
+        "width": 120.0,
+        "height": 70.0,
+        "fill": "none",
+        "stroke": "#666666",
+        "stroke-width": 2.0,
+        "rx": 10.0,
+        "data-semantic-role": "blank"
+      },
+      "source_ref": "slot.box1",
+      "refs": {
+        "layout_slot_id": "slot.box1"
+      }
+    },
+    {
+      "id": "slot.box2.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 390.0,
+        "y": 390.0,
+        "width": 120.0,
+        "height": 70.0,
+        "fill": "none",
+        "stroke": "#666666",
+        "stroke-width": 2.0,
+        "rx": 10.0,
+        "data-semantic-role": "blank"
+      },
+      "source_ref": "slot.box2",
+      "refs": {
+        "layout_slot_id": "slot.box2"
+      }
+    },
+    {
+      "id": "slot.box3.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 570.0,
+        "y": 390.0,
+        "width": 120.0,
+        "height": 70.0,
+        "fill": "none",
+        "stroke": "#666666",
+        "stroke-width": 2.0,
+        "rx": 10.0,
+        "data-semantic-role": "blank"
+      },
+      "source_ref": "slot.box3",
+      "refs": {
+        "layout_slot_id": "slot.box3"
+      }
+    },
+    {
+      "id": "slot.box_res.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 760.0,
+        "y": 390.0,
+        "width": 140.0,
+        "height": 70.0,
+        "fill": "none",
+        "stroke": "#69BEEA",
+        "stroke-width": 3.0,
+        "rx": 10.0,
+        "data-semantic-role": "answer_anchor"
+      },
+      "source_ref": "slot.box_res",
+      "refs": {
+        "layout_slot_id": "slot.box_res"
+      }
+    },
+    {
+      "id": "slot.t1.text",
+      "type": "text",
+      "attributes": {
+        "x": 64.0,
+        "y": 72.0,
+        "max_width": 872.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 26,
+        "text-anchor": "start"
+      },
+      "source_ref": "slot.t1",
+      "refs": {
+        "layout_slot_id": "slot.t1"
+      },
+      "text": "주어진 수 중에서 세 수를 골라 다음과 같은 식을 만들려고 합니다."
+    },
+    {
+      "id": "slot.t2.text",
+      "type": "text",
+      "attributes": {
+        "x": 64.0,
+        "y": 116.0,
+        "max_width": 872.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 26,
+        "text-anchor": "start"
+      },
+      "source_ref": "slot.t2",
+      "refs": {
+        "layout_slot_id": "slot.t2"
+      },
+      "text": "계산 결과가 가장 크게 되도록 □ 안에 알맞은 수를 써넣고, 계산한 값을 구하시오."
+    },
+    {
+      "id": "slot.n0.text",
+      "type": "text",
+      "attributes": {
+        "x": 200.0,
+        "y": 280.0,
+        "max_width": 872.0,
+        "fill": "#1F1F1F",
+        "font-family": "Cambria",
+        "font-size": 38,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.n0",
+      "refs": {
+        "layout_slot_id": "slot.n0"
+      },
+      "text": "365"
+    },
+    {
+      "id": "slot.n1.text",
+      "type": "text",
+      "attributes": {
+        "x": 360.0,
+        "y": 280.0,
+        "max_width": 872.0,
+        "fill": "#1F1F1F",
+        "font-family": "Cambria",
+        "font-size": 38,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.n1",
+      "refs": {
+        "layout_slot_id": "slot.n1"
+      },
+      "text": "567"
+    },
+    {
+      "id": "slot.n2.text",
+      "type": "text",
+      "attributes": {
+        "x": 520.0,
+        "y": 280.0,
+        "max_width": 872.0,
+        "fill": "#1F1F1F",
+        "font-family": "Cambria",
+        "font-size": 38,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.n2",
+      "refs": {
+        "layout_slot_id": "slot.n2"
+      },
+      "text": "827"
+    },
+    {
+      "id": "slot.n3.text",
+      "type": "text",
+      "attributes": {
+        "x": 680.0,
+        "y": 280.0,
+        "max_width": 872.0,
+        "fill": "#1F1F1F",
+        "font-family": "Cambria",
+        "font-size": 38,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.n3",
+      "refs": {
+        "layout_slot_id": "slot.n3"
+      },
+      "text": "910"
+    },
+    {
+      "id": "slot.op1.text",
+      "type": "text",
+      "attributes": {
+        "x": 360.0,
+        "y": 438.0,
+        "max_width": 872.0,
+        "fill": "#111111",
+        "font-family": "Cambria",
+        "font-size": 50,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.op1",
+      "refs": {
+        "layout_slot_id": "slot.op1"
+      },
+      "text": "-"
+    },
+    {
+      "id": "slot.op2.text",
+      "type": "text",
+      "attributes": {
+        "x": 540.0,
+        "y": 438.0,
+        "max_width": 872.0,
+        "fill": "#111111",
+        "font-family": "Cambria",
+        "font-size": 50,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.op2",
+      "refs": {
+        "layout_slot_id": "slot.op2"
+      },
+      "text": "+"
+    },
+    {
+      "id": "slot.eq.text",
+      "type": "text",
+      "attributes": {
+        "x": 730.0,
+        "y": 438.0,
+        "max_width": 872.0,
+        "fill": "#111111",
+        "font-family": "Cambria",
+        "font-size": 50,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.eq",
+      "refs": {
+        "layout_slot_id": "slot.eq"
+      },
+      "text": "="
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

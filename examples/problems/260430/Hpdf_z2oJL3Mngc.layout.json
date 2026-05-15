@@ -1,0 +1,410 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "Hpdf_z2oJL3Mngc",
+  "title": "세 수를 사용하여 계산하기",
+  "canvas": {
+    "width": 556,
+    "height": 425,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q1",
+        "slot.q2",
+        "slot.q3",
+        "slot.q4",
+        "slot.q5",
+        "slot.q6",
+        "slot.q7",
+        "slot.q8",
+        "slot.box1",
+        "slot.minus",
+        "slot.box2",
+        "slot.plus",
+        "slot.box3",
+        "slot.panel",
+        "slot.card1",
+        "slot.n1",
+        "slot.comma1",
+        "slot.card2",
+        "slot.n2",
+        "slot.comma2",
+        "slot.card3",
+        "slot.n3",
+        "slot.comma3",
+        "slot.card4",
+        "slot.n4"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "㉮, ㉯, ㉰ 세 수를 사용하여",
+        "style_role": "question",
+        "x": 14.0,
+        "y": 34.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.box1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 340.0,
+        "y": 8.0,
+        "width": 37.0,
+        "height": 36.0,
+        "stroke": "#444444",
+        "stroke_width": 1.4,
+        "rx": 0.0,
+        "ry": 0.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.minus",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "−",
+        "style_role": "question",
+        "x": 380.0,
+        "y": 37.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.box2",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 399.0,
+        "y": 8.0,
+        "width": 37.0,
+        "height": 36.0,
+        "stroke": "#444444",
+        "stroke_width": 1.4,
+        "rx": 0.0,
+        "ry": 0.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.plus",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "+",
+        "style_role": "question",
+        "x": 442.0,
+        "y": 37.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.box3",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 462.0,
+        "y": 8.0,
+        "width": 37.0,
+        "height": 36.0,
+        "stroke": "#444444",
+        "stroke_width": 1.4,
+        "rx": 0.0,
+        "ry": 0.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "의 계산 결과가 가장 클 때의 값을 구하시오.",
+        "style_role": "question",
+        "x": 14.0,
+        "y": 76.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.panel",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 6.0,
+        "y": 126.0,
+        "width": 540.0,
+        "height": 288.0,
+        "stroke": "#666666",
+        "stroke_width": 1.2,
+        "rx": 6.0,
+        "ry": 6.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.q3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "㉮ 100이 3개, 10이 32개, 1이 17개인 수",
+        "style_role": "question",
+        "x": 36.0,
+        "y": 160.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "㉯ 수 카드",
+        "style_role": "question",
+        "x": 36.0,
+        "y": 208.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.card1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 165.0,
+        "y": 178.0,
+        "width": 36.0,
+        "height": 42.0,
+        "stroke": "#666666",
+        "stroke_width": 1.4,
+        "rx": 4.0,
+        "ry": 4.0,
+        "fill": "#E6E6E6"
+      }
+    },
+    {
+      "id": "slot.n1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "3",
+        "style_role": "question",
+        "x": 177.0,
+        "y": 210.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.comma1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": ",",
+        "style_role": "question",
+        "x": 203.0,
+        "y": 220.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.card2",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 220.0,
+        "y": 178.0,
+        "width": 36.0,
+        "height": 42.0,
+        "stroke": "#666666",
+        "stroke_width": 1.4,
+        "rx": 4.0,
+        "ry": 4.0,
+        "fill": "#E6E6E6"
+      }
+    },
+    {
+      "id": "slot.n2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "4",
+        "style_role": "question",
+        "x": 232.0,
+        "y": 210.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.comma2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": ",",
+        "style_role": "question",
+        "x": 258.0,
+        "y": 220.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.card3",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 275.0,
+        "y": 178.0,
+        "width": 36.0,
+        "height": 42.0,
+        "stroke": "#666666",
+        "stroke_width": 1.4,
+        "rx": 4.0,
+        "ry": 4.0,
+        "fill": "#E6E6E6"
+      }
+    },
+    {
+      "id": "slot.n3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "5",
+        "style_role": "question",
+        "x": 287.0,
+        "y": 210.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.comma3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": ",",
+        "style_role": "question",
+        "x": 313.0,
+        "y": 220.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.card4",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 330.0,
+        "y": 178.0,
+        "width": 36.0,
+        "height": 42.0,
+        "stroke": "#666666",
+        "stroke_width": 1.4,
+        "rx": 4.0,
+        "ry": 4.0,
+        "fill": "#E6E6E6"
+      }
+    },
+    {
+      "id": "slot.n4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "6",
+        "style_role": "question",
+        "x": 342.0,
+        "y": 210.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q5",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "을 한 번",
+        "style_role": "question",
+        "x": 367.0,
+        "y": 208.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q6",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "씩만 사용하여 만들 수 있는 세 자리 수",
+        "style_role": "question",
+        "x": 82.0,
+        "y": 253.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q7",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "중에서 두 번째로 작은 수",
+        "style_role": "question",
+        "x": 82.0,
+        "y": 290.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q8",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "㉰ 131에서 120씩 4번 뛰어 센 수",
+        "style_role": "question",
+        "x": 36.0,
+        "y": 350.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q1",
+    "slot.q2",
+    "slot.q3",
+    "slot.q4",
+    "slot.q5",
+    "slot.q6",
+    "slot.q7",
+    "slot.q8",
+    "slot.box1",
+    "slot.minus",
+    "slot.box2",
+    "slot.plus",
+    "slot.box3",
+    "slot.panel",
+    "slot.card1",
+    "slot.n1",
+    "slot.comma1",
+    "slot.card2",
+    "slot.n2",
+    "slot.comma2",
+    "slot.card3",
+    "slot.n3",
+    "slot.comma3",
+    "slot.card4",
+    "slot.n4"
+  ]
+}

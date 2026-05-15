@@ -1,0 +1,46 @@
+{
+  "schema": "modu.solvable.v1",
+  "problem_id": "Hpdf_8FrirrzBkE",
+  "problem_type": "geometry_perimeter_word_problem",
+  "inputs": {
+    "total_ticks": 52,
+    "target_label": "직사각형 가로",
+    "target_ticks": 8,
+    "target_count": 1,
+    "unit": "cm"
+  },
+  "plan": [
+    "정사각형 둘레로 철사 길이를 구한다.",
+    "직사각형 둘레식과 철사 길이를 같다고 두고 가로를 구한다."
+  ],
+  "steps": [
+    {
+      "id": "s1",
+      "expr": "wire_length = 4 * 13",
+      "value": 52
+    },
+    {
+      "id": "s2",
+      "expr": "2 * (18 + w) = 52",
+      "value": "18 + w = 26"
+    },
+    {
+      "id": "s3",
+      "expr": "w = 26 - 18",
+      "value": 8
+    }
+  ],
+  "checks": [
+    {
+      "id": "c1",
+      "expr": "2 * (18 + 8)",
+      "expected": 52,
+      "actual": 52,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "value": 8,
+    "unit": "cm"
+  }
+}

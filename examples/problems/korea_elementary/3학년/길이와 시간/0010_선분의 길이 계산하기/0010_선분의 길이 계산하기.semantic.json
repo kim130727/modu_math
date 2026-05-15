@@ -1,0 +1,81 @@
+{
+  "problem_id": "0010_선분의 길이 계산하기",
+  "problem_type": "line_segment_distance_system",
+  "metadata": {
+    "title": "",
+    "tags": [],
+    "instruction": "㉠과 ㉡의 길이는 각각 몇 cm입니까?",
+    "question": "주어진 여러 선분의 길이를 이용하여 미지의 선분 ㄱ, ㄴ의 길이를 구하는 문제",
+    "required_layout_ids": [
+      "slot.base_line",
+      "slot.tick_left",
+      "slot.tick_mid",
+      "slot.tick_mid2",
+      "slot.tick_right",
+      "slot.guide_left_mid_top",
+      "slot.guide_mid_right_top",
+      "slot.guide_left_mid2_bottom",
+      "slot.guide_mid_mid2_bottom",
+      "slot.guide_mid2_right_bottom",
+      "slot.circle_a",
+      "slot.circle_b"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.p0",
+        "type": "point"
+      },
+      {
+        "id": "obj.p1",
+        "type": "point"
+      },
+      {
+        "id": "obj.p2",
+        "type": "point"
+      },
+      {
+        "id": "obj.p3",
+        "type": "point"
+      },
+      {
+        "id": "obj.dist_p0_p1",
+        "value": 821,
+        "unit": "cm"
+      },
+      {
+        "id": "obj.dist_p1_p3",
+        "value": 448,
+        "unit": "cm"
+      },
+      {
+        "id": "obj.dist_p2_p3",
+        "value": 236,
+        "unit": "cm"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "plan": {
+        "method": "segment_subtraction_addition",
+        "description": "ㄴ은 (P1~P3)-(P2~P3)로 구하고, ㄱ은 (P0~P1)+ㄴ으로 구한다."
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "value": 0,
+    "unit": "cm",
+    "target": {
+      "type": "unknown",
+      "description": ""
+    }
+  }
+}

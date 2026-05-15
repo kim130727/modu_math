@@ -1,0 +1,84 @@
+﻿{
+  "problem_id": "0013",
+  "problem_type": "pie_chart_proportion",
+  "metadata": {
+    "source": "svg",
+    "language": "ko",
+    "notes": "원그래프에서 바나나 60명에 해당하는 전체 학생 수를 묻는 문제",
+    "source_type": "svg",
+    "source_path": "C:\\projects\\modu_math\\examples\\problems\\korea_elementary\\6학년\\자료의 정리\\0013_과일 원그래프\\0013.svg",
+    "extraction_confidence": 0.5
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "chart",
+        "type": "pie_chart",
+        "label": "좋아하는 과일별 학생 수",
+        "confidence": 0.99
+      },
+      {
+        "id": "banana_slice",
+        "type": "pie_slice",
+        "label": "바나나",
+        "confidence": 0.98
+      },
+      {
+        "id": "apple_slice",
+        "type": "pie_slice",
+        "label": "사과",
+        "confidence": 0.95
+      },
+      {
+        "id": "grape_slice",
+        "type": "pie_slice",
+        "label": "포도",
+        "confidence": 0.95
+      },
+      {
+        "id": "peach_slice",
+        "type": "pie_slice",
+        "label": "복숭아",
+        "confidence": 0.95
+      },
+      {
+        "id": "other_slice",
+        "type": "pie_slice",
+        "label": "기타",
+        "confidence": 0.95
+      }
+    ],
+    "relations": [
+      {
+        "type": "slice_value_relation",
+        "from": "banana_slice",
+        "to": "chart",
+        "value": "60 students corresponds to 3 out of 20 ticks",
+        "confidence": 0.9
+      },
+      {
+        "type": "proportional_relation",
+        "from": "banana_slice",
+        "to": "chart",
+        "description": "바나나 조각이 전체 원그래프의 3/20에 해당함",
+        "confidence": 0.9
+      },
+      {
+        "type": "question_relation",
+        "from": "banana_slice",
+        "to": "answer",
+        "description": "바나나 60명에 대응하는 전체 학생 수를 구함",
+        "confidence": 0.96
+      }
+    ],
+    "confidence": {
+      "objects": 0.94,
+      "relations": 0.9
+    }
+  },
+  "answer": {
+    "value": 400,
+    "unit": "명",
+    "confidence": 0.95
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "problem_id": "0007_선분 거리 계산",
+  "problem_type": "line_segment_distance_calculation",
+  "metadata": {
+    "title": "",
+    "tags": [],
+    "instruction": "ㄱ에서 ㄹ까지의 거리를 구해 보세요.",
+    "question": "일직선 위의 지점 ㄱ, ㄴ, ㄷ, ㄹ에 대해 주어진 거리를 이용하여 ㄱ에서 ㄹ까지의 거리를 구하는 문제",
+    "required_layout_ids": [
+      "slot.guide_p0_p1",
+      "slot.guide_p1_p3",
+      "slot.guide_p1_p2",
+      "slot.base_line",
+      "slot.tick_p0",
+      "slot.tick_p1",
+      "slot.tick_p2",
+      "slot.tick_p3",
+      "slot.label_circle_p0",
+      "slot.label_circle_p1",
+      "slot.label_circle_p2",
+      "slot.label_circle_p3"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.p0",
+        "type": "point",
+        "description": "ㄱ"
+      },
+      {
+        "id": "obj.p1",
+        "type": "point",
+        "description": "ㄴ"
+      },
+      {
+        "id": "obj.p3",
+        "type": "point",
+        "description": "ㄹ"
+      },
+      {
+        "id": "obj.dist_p0_p1",
+        "type": "distance",
+        "value": 176,
+        "unit": "cm"
+      },
+      {
+        "id": "obj.dist_p1_p3",
+        "type": "distance",
+        "value": 646,
+        "unit": "cm"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "plan": {
+        "method": "segment_addition",
+        "description": "ㄱ~ㄴ 거리와 ㄴ~ㄹ 거리를 더하여 전체 거리를 구한다."
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "value": 822,
+    "unit": "cm"
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "schema": "modu.solvable.v1",
+  "problem_id": "Hpdf_IfXEqd2FAo",
+  "problem_type": "number_construction",
+  "inputs": {
+    "total_ticks": 9,
+    "target_label": "smallest_three_digit_number",
+    "target_ticks": 3,
+    "target_count": 1,
+    "unit": ""
+  },
+  "plan": [
+    "Use digits 1..9 exactly once to form 529, A, and B.",
+    "Keep A < B and make 529 + A + B closest to 1000.",
+    "Among valid cases, choose the minimum A."
+  ],
+  "steps": [
+    {
+      "id": "s1",
+      "expr": "generate candidates for A and B from remaining digits",
+      "value": "candidate enumeration"
+    },
+    {
+      "id": "s2",
+      "expr": "minimize abs((529 + A + B) - 1000) with A < B",
+      "value": "best candidate selected"
+    },
+    {
+      "id": "s3",
+      "expr": "final A",
+      "value": 136
+    }
+  ],
+  "checks": [
+    {
+      "id": "c1",
+      "expr": "digits 1..9 used exactly once",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "id": "c2",
+      "expr": "A < B",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "id": "c3",
+      "expr": "abs((529 + A + B) - 1000) is minimal",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "value": 136,
+    "unit": ""
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "schema": "modu.solvable.v1",
+  "problem_id": "0008_가전제품 소비전력 합산",
+  "problem_type": "arithmetic_combination_sum_threshold",
+  "given": [
+    {
+      "ref": "obj.rice_cooker",
+      "value": 500
+    },
+    {
+      "ref": "obj.purifier",
+      "value": 770
+    },
+    {
+      "ref": "obj.monitor",
+      "value": 150
+    }
+  ],
+  "target": {
+    "type": "number",
+    "description": "1000W를 넘는 합"
+  },
+  "method": "exhaustive_search",
+  "steps": [
+    {
+      "id": "step.s1",
+      "operation": "addition",
+      "expr": "500 + 770 = 1270",
+      "description": "전기밥솥과 정수기의 합은 1270W입니다.",
+      "value": 1270
+    },
+    {
+      "id": "step.s2",
+      "operation": "check",
+      "expr": "1270 > 1000",
+      "value": true
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.c1",
+      "type": "arithmetic_consistency_check",
+      "pass": true,
+      "expected": 1270,
+      "actual": 1270,
+      "expr": "500 + 770"
+    }
+  ],
+  "answer": {
+    "value": 1270,
+    "unit": "W",
+    "derived_from": "step.s1"
+  },
+  "inputs": {
+    "total_ticks": 1,
+    "target_label": "답",
+    "target_ticks": 1,
+    "target_count": 1,
+    "unit": "W"
+  },
+  "plan": [
+    "각 조합의 합을 구하여 1000이 넘는 1270(500+770)을 찾습니다."
+  ]
+}

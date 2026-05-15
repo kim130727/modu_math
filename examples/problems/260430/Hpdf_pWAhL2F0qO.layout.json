@@ -1,0 +1,470 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "Hpdf_pWAhL2F0qO",
+  "title": "세 자리 수 덧셈과 뺄셈",
+  "canvas": {
+    "width": 559,
+    "height": 339,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q1",
+        "slot.q2",
+        "slot.q3",
+        "slot.add.left.h",
+        "slot.add.right.h"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.box",
+        "slot.add.left.a",
+        "slot.add.left.b",
+        "slot.add.left.c",
+        "slot.add.left.d",
+        "slot.add.left.e",
+        "slot.add.left.f",
+        "slot.add.left.g",
+        "slot.add.left.line",
+        "slot.add.right.a",
+        "slot.add.right.b",
+        "slot.add.right.c",
+        "slot.add.right.d",
+        "slot.add.right.e",
+        "slot.add.right.f",
+        "slot.add.right.g",
+        "slot.add.right.line",
+        "slot.circle.1",
+        "slot.circle.2",
+        "slot.circle.3",
+        "slot.circle.4",
+        "slot.circle.5",
+        "slot.circle.6",
+        "slot.circle.7",
+        "slot.circle.8"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "서로 다른 두 개의 세 자리 수가 있습니다. 두 수의 합은 622이고, 차는 250일 때 두 수를",
+        "style_role": "question",
+        "x": 10.0,
+        "y": 28.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "큰 수부터 차례로 쓰시오.",
+        "style_role": "question",
+        "x": 10.0,
+        "y": 64.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "",
+        "style_role": "question",
+        "x": 10.0,
+        "y": 100.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 54.0,
+        "y": 140.0,
+        "width": 460.0,
+        "height": 160.0,
+        "stroke": "#555555",
+        "stroke_width": 1.5,
+        "rx": 6.0,
+        "ry": 6.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.add.left.a",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄱ",
+        "style_role": "label",
+        "x": 120.0,
+        "y": 186.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.add.left.b",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄴ",
+        "style_role": "label",
+        "x": 157.0,
+        "y": 186.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.add.left.c",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "6",
+        "style_role": "label",
+        "x": 192.0,
+        "y": 186.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.add.left.d",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "+",
+        "style_role": "label",
+        "x": 92.0,
+        "y": 223.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.add.left.e",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄷ",
+        "style_role": "label",
+        "x": 120.0,
+        "y": 223.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.add.left.f",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "8",
+        "style_role": "label",
+        "x": 164.0,
+        "y": 223.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.add.left.g",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄹ",
+        "style_role": "label",
+        "x": 201.0,
+        "y": 223.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.add.right.a",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄱ",
+        "style_role": "label",
+        "x": 336.0,
+        "y": 186.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.add.right.b",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄴ",
+        "style_role": "label",
+        "x": 373.0,
+        "y": 186.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.add.right.c",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "6",
+        "style_role": "label",
+        "x": 408.0,
+        "y": 186.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.add.right.d",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "−",
+        "style_role": "label",
+        "x": 308.0,
+        "y": 223.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.add.right.e",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄷ",
+        "style_role": "label",
+        "x": 336.0,
+        "y": 223.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.add.right.f",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "8",
+        "style_role": "label",
+        "x": 380.0,
+        "y": 223.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.add.right.g",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄹ",
+        "style_role": "label",
+        "x": 417.0,
+        "y": 223.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.add.left.h",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "6 2 2",
+        "style_role": "answer",
+        "x": 136.0,
+        "y": 265.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.add.right.h",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "2 5 0",
+        "style_role": "answer",
+        "x": 360.0,
+        "y": 265.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.add.left.line",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 85.0,
+        "y1": 245.0,
+        "x2": 245.0,
+        "y2": 245.0,
+        "stroke": "#555555",
+        "stroke_width": 1.5
+      }
+    },
+    {
+      "id": "slot.add.right.line",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 300.0,
+        "y1": 245.0,
+        "x2": 460.0,
+        "y2": 245.0,
+        "stroke": "#555555",
+        "stroke_width": 1.5
+      }
+    },
+    {
+      "id": "slot.circle.1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 131.0,
+        "cy": 173.0,
+        "r": 16.0,
+        "stroke": "#555555",
+        "stroke_width": 1.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.circle.2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 168.0,
+        "cy": 173.0,
+        "r": 16.0,
+        "stroke": "#555555",
+        "stroke_width": 1.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.circle.3",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 131.0,
+        "cy": 210.0,
+        "r": 16.0,
+        "stroke": "#555555",
+        "stroke_width": 1.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.circle.4",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 212.0,
+        "cy": 210.0,
+        "r": 16.0,
+        "stroke": "#555555",
+        "stroke_width": 1.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.circle.5",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 347.0,
+        "cy": 173.0,
+        "r": 16.0,
+        "stroke": "#555555",
+        "stroke_width": 1.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.circle.6",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 384.0,
+        "cy": 173.0,
+        "r": 16.0,
+        "stroke": "#555555",
+        "stroke_width": 1.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.circle.7",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 347.0,
+        "cy": 210.0,
+        "r": 16.0,
+        "stroke": "#555555",
+        "stroke_width": 1.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.circle.8",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 428.0,
+        "cy": 210.0,
+        "r": 16.0,
+        "stroke": "#555555",
+        "stroke_width": 1.0,
+        "fill": "none"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q1",
+    "slot.q2",
+    "slot.q3",
+    "slot.add.left.h",
+    "slot.add.right.h",
+    "region.diagram",
+    "slot.box",
+    "slot.add.left.a",
+    "slot.add.left.b",
+    "slot.add.left.c",
+    "slot.add.left.d",
+    "slot.add.left.e",
+    "slot.add.left.f",
+    "slot.add.left.g",
+    "slot.add.left.line",
+    "slot.add.right.a",
+    "slot.add.right.b",
+    "slot.add.right.c",
+    "slot.add.right.d",
+    "slot.add.right.e",
+    "slot.add.right.f",
+    "slot.add.right.g",
+    "slot.add.right.line",
+    "slot.circle.1",
+    "slot.circle.2",
+    "slot.circle.3",
+    "slot.circle.4",
+    "slot.circle.5",
+    "slot.circle.6",
+    "slot.circle.7",
+    "slot.circle.8"
+  ]
+}

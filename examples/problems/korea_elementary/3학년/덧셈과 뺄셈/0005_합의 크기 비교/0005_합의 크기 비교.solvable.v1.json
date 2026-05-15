@@ -1,0 +1,52 @@
+{
+  "schema": "modu.solvable.v1",
+  "problem_id": "0005_합의 크기 비교",
+  "problem_type": "arithmetic_comparison_sum",
+  "inputs": {
+    "total_ticks": 1,
+    "target_label": "",
+    "target_ticks": 1,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.expr1",
+      "value": "605+298"
+    },
+    {
+      "ref": "obj.expr2",
+      "value": "567+385"
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "unknown"
+  },
+  "method": "read_visible_information",
+  "plan": [
+    "주어진 조건을 읽고 목표 값을 계산한다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "operation": "identify_target",
+      "expr": "identify target from problem",
+      "value": 0
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "basic consistency check",
+      "expected": "567+385",
+      "actual": "567+385",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "value": 0,
+    "unit": "",
+    "derived_from": "step.1"
+  }
+}

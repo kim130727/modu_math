@@ -1,0 +1,61 @@
+{
+  "schema": "modu.solvable.v1",
+  "problem_id": "0005_종이별 개수",
+  "problem_type": "arithmetic_word_problem_addition_multi_step",
+  "given": [
+    {
+      "ref": "obj.sohee",
+      "value": 399
+    },
+    {
+      "ref": "obj.diff",
+      "value": 115
+    }
+  ],
+  "target": {
+    "type": "count",
+    "description": "전체 별의 수"
+  },
+  "method": "stepwise_addition",
+  "steps": [
+    {
+      "id": "step.s1",
+      "operation": "addition",
+      "expr": "399 + 115 = 514",
+      "description": "은별이가 접은 별은 514개입니다.",
+      "value": 514
+    },
+    {
+      "id": "step.s2",
+      "operation": "addition",
+      "expr": "399 + 514 = 913",
+      "description": "두 사람이 접은 별은 총 913개입니다.",
+      "value": 913
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.c1",
+      "type": "arithmetic_consistency_check",
+      "pass": true,
+      "expected": 913,
+      "actual": 913,
+      "expr": "399 + (399 + 115)"
+    }
+  ],
+  "answer": {
+    "value": 913,
+    "unit": "개",
+    "derived_from": "step.s2"
+  },
+  "inputs": {
+    "total_ticks": 1,
+    "target_label": "답",
+    "target_ticks": 1,
+    "target_count": 1,
+    "unit": "개"
+  },
+  "plan": [
+    "은별이가 접은 514개와 소희의 399개를 더해 총 913개를 구합니다."
+  ]
+}

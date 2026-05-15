@@ -1,0 +1,212 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "msedge_ntxZ4waQ7n",
+  "title": "",
+  "canvas": {
+    "width": 680,
+    "height": 315,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.l1.pre",
+        "slot.l1.frac.num",
+        "slot.l1.frac.bar",
+        "slot.l1.frac.den",
+        "slot.l1.post",
+        "slot.l2.pre",
+        "slot.l2.frac.num",
+        "slot.l2.frac.bar",
+        "slot.l2.frac.den",
+        "slot.l2.post",
+        "slot.l3",
+        "slot.l4"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.l1.pre",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "하트 모양 한 개를 만드는 데 철사가",
+        "style_role": "body",
+        "x": 4.0,
+        "y": 52.0,
+        "font_size": 35,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.l1.frac.num",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "3",
+        "style_role": "body",
+        "x": 556.0,
+        "y": 26.0,
+        "font_size": 35,
+        "anchor": "middle",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.l1.frac.bar",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 534.0,
+        "y1": 42.0,
+        "x2": 578.0,
+        "y2": 42.0,
+        "stroke": "#222222",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.l1.frac.den",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "16",
+        "style_role": "body",
+        "x": 556.0,
+        "y": 78.0,
+        "font_size": 35,
+        "anchor": "middle",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.l1.post",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "m",
+        "style_role": "body",
+        "x": 590.0,
+        "y": 52.0,
+        "font_size": 35,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.l2.pre",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "필요합니다. 철사",
+        "style_role": "body",
+        "x": 4.0,
+        "y": 143.0,
+        "font_size": 35,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.l2.frac.num",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "15",
+        "style_role": "body",
+        "x": 292.0,
+        "y": 111.0,
+        "font_size": 35,
+        "anchor": "middle",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.l2.frac.bar",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 263.0,
+        "y1": 128.0,
+        "x2": 321.0,
+        "y2": 128.0,
+        "stroke": "#222222",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.l2.frac.den",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "16",
+        "style_role": "body",
+        "x": 292.0,
+        "y": 166.0,
+        "font_size": 35,
+        "anchor": "middle",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.l2.post",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "m로 만들 수 있는 하트",
+        "style_role": "body",
+        "x": 330.0,
+        "y": 143.0,
+        "font_size": 35,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.l3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "모양은 몇 개인지 풀이 과정을 쓰고 답을 구해",
+        "style_role": "body",
+        "x": 4.0,
+        "y": 223.0,
+        "font_size": 35,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.l4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "보시오.",
+        "style_role": "body",
+        "x": 4.0,
+        "y": 299.0,
+        "font_size": 35,
+        "fill": "#222222"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.l1.pre",
+    "slot.l1.frac.num",
+    "slot.l1.frac.bar",
+    "slot.l1.frac.den",
+    "slot.l1.post",
+    "slot.l2.pre",
+    "slot.l2.frac.num",
+    "slot.l2.frac.bar",
+    "slot.l2.frac.den",
+    "slot.l2.post",
+    "slot.l3",
+    "slot.l4"
+  ]
+}

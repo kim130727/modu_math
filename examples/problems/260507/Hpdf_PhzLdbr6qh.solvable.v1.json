@@ -1,0 +1,51 @@
+{
+  "schema": "modu.solvable.v1",
+  "problem_id": "Hpdf_PhzLdbr6qh",
+  "problem_type": "geometry_angle_counting",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "각의 개수",
+    "target_ticks": 0,
+    "target_count": 0,
+    "unit": "개"
+  },
+  "given": [
+    {
+      "ref": "obj.points",
+      "value": 4
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "count"
+  },
+  "method": "combinatorial_counting",
+  "plan": [
+    "1. 한 점을 꼭짓점으로 정한다. (4가지 선택 가능)",
+    "2. 선택한 꼭짓점에서 나머지 3개의 점 중 2개를 골라 각을 만든다. (3C2 = 3가지 가능)",
+    "3. 따라서 총 각의 개수는 4 * 3 = 12개이다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "operation": "multiply",
+      "expr": "4 * 3",
+      "value": 12
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "type": "logic_check",
+      "expr": "4 * 3 = 12",
+      "expected": 12,
+      "actual": 12,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "value": 12,
+    "unit": "개",
+    "derived_from": "step.1"
+  }
+}

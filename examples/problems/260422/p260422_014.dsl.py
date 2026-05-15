@@ -1,0 +1,207 @@
+from __future__ import annotations
+
+from modu_math.dsl import Canvas, CircleSlot, ProblemTemplate, Region, TextSlot
+
+
+def build_problem_template() -> ProblemTemplate:
+    canvas = Canvas(
+        width=1177,
+        height=390,
+        coordinate_mode="logical",
+    )
+
+    regions = (
+        Region(
+            id="region.stem",
+            role="stem",
+            flow="absolute",
+            slot_ids=(
+                "slot.title.l1",
+                "slot.title.l2",
+                "slot.q1",
+                "slot.q1.left",
+                "slot.q1.circle",
+                "slot.q1.right",
+                "slot.q2",
+                "slot.q2.left",
+                "slot.q2.circle",
+                "slot.q2.right",
+            ),
+        ),
+    )
+
+    slots = (
+        TextSlot(
+            id="slot.title.l1",
+            prompt="",
+            text="계산 결과를 비교하여 ○ 안에 >, =, <를 알맞게 써넣으시오.",
+            style_role="body",
+            x=16.0,
+            y=74.0,
+            font_size=45,
+            fill="#222222",
+        ),
+        TextSlot(
+            id="slot.q1",
+            prompt="",
+            text="(1)",
+            style_role="body",
+            x=16.0,
+            y=241.0,
+            font_size=47,
+            fill="#222222",
+        ),
+        TextSlot(
+            id="slot.q1.left",
+            prompt="",
+            text="514+168",
+            style_role="body",
+            x=92.0,
+            y=241.0,
+            font_size=47,
+            fill="#222222",
+        ),
+        CircleSlot(
+            id="slot.q1.circle",
+            prompt="",
+            cx=365.0,
+            cy=223.0,
+            r=36.0,
+            stroke="#666666",
+            stroke_width=2.2,
+            fill="none",
+        ),
+        TextSlot(
+            id="slot.q1.right",
+            prompt="",
+            text="724−188",
+            style_role="body",
+            x=423.0,
+            y=241.0,
+            font_size=47,
+            fill="#222222",
+        ),
+        TextSlot(
+            id="slot.q2",
+            prompt="",
+            text="(2)",
+            style_role="body",
+            x=16.0,
+            y=343.0,
+            font_size=47,
+            fill="#222222",
+        ),
+        TextSlot(
+            id="slot.q2.left",
+            prompt="",
+            text="277+385",
+            style_role="body",
+            x=92.0,
+            y=343.0,
+            font_size=47,
+            fill="#222222",
+        ),
+        CircleSlot(
+            id="slot.q2.circle",
+            prompt="",
+            cx=365.0,
+            cy=325.0,
+            r=36.0,
+            stroke="#666666",
+            stroke_width=2.2,
+            fill="none",
+        ),
+        TextSlot(
+            id="slot.q2.right",
+            prompt="",
+            text="950−277",
+            style_role="body",
+            x=423.0,
+            y=343.0,
+            font_size=47,
+            fill="#222222",
+        ),
+    )
+
+    diagrams = ()
+    groups = ()
+    constraints = ()
+    return ProblemTemplate(
+        id="msedge_NL4PVZuqJr",
+        title="",
+        canvas=canvas,
+        regions=regions,
+        slots=slots,
+        diagrams=diagrams,
+        groups=groups,
+        constraints=constraints,
+    )
+
+
+PROBLEM_TEMPLATE = build_problem_template()
+
+
+SEMANTIC_OVERRIDE = {   'problem_id': 'p260422_014',
+    'problem_type': 'multiple_choice',
+    'metadata': {   'language': 'ko',
+                    'question': '(1) 514+168 ○ 724-188\n(2) 277+385 ○ 950-277',
+                    'instruction': '계산 결과를 비교하여 ○ 안에 >, =, <를 알맞게 써넣으시오.'},
+    'domain': {   'objects': [   {   'id': 'instr1',
+                                     'type': 'instruction',
+                                     'text': '계산 결과를 비교하여 ○ 안에 >, =, <를 알맞게 써넣으시오.'},
+                                 {'id': 'q1', 'type': 'question', 'text': '(1) 514+168 ○ 724-188'},
+                                 {'id': 'q2', 'type': 'question', 'text': '(2) 277+385 ○ 950-277'},
+                                 {   'id': 'expr1a',
+                                     'type': 'expression',
+                                     'value': '514+168',
+                                     'text': '514+168'},
+                                 {   'id': 'expr1b',
+                                     'type': 'expression',
+                                     'value': '724-188',
+                                     'text': '724-188'},
+                                 {   'id': 'expr2a',
+                                     'type': 'expression',
+                                     'value': '277+385',
+                                     'text': '277+385'},
+                                 {   'id': 'expr2b',
+                                     'type': 'expression',
+                                     'value': '950-277',
+                                     'text': '950-277'},
+                                 {'id': 'blank1', 'type': 'blank', 'text': '○'},
+                                 {'id': 'blank2', 'type': 'blank', 'text': '○'}],
+                  'relations': [   {   'id': 'r1',
+                                       'type': 'compares',
+                                       'from_id': 'expr1a',
+                                       'to_id': 'expr1b'},
+                                   {   'id': 'r2',
+                                       'type': 'compares',
+                                       'from_id': 'expr2a',
+                                       'to_id': 'expr2b'},
+                                   {   'id': 'r3',
+                                       'type': 'asks_for',
+                                       'from_id': 'instr1',
+                                       'to_id': 'q1'},
+                                   {   'id': 'r4',
+                                       'type': 'asks_for',
+                                       'from_id': 'instr1',
+                                       'to_id': 'q2'}],
+                  'problem_solving': {'understand': {}, 'plan': {}, 'execute': {}, 'review': {}}},
+    'answer': {   'target': {'type': 'number', 'description': '정답'},
+                  'value': ['>', '<'],
+                  'unit': ''}}
+
+SOLVABLE = {   'schema': 'modu.solvable.v1',
+    'problem_id': 'p260422_014',
+    'problem_type': 'multiple_choice',
+    'inputs': {   'total_ticks': 0,
+                  'target_label': '정답',
+                  'target_ticks': 0,
+                  'target_count': 0,
+                  'unit': ''},
+    'plan': ['514+168=682, 724-188=536, so 682>536. 277+385=662, 950-277=673, so 662<673.'],
+    'steps': [   {   'id': 'step.1',
+                     'expr': '514+168=682, 724-188=536, so 682>536. 277+385=662, 950-277=673, so '
+                             '662<673.',
+                     'value': ['>', '<']}],
+    'checks': [],
+    'answer': {'value': 0, 'unit': ''}}

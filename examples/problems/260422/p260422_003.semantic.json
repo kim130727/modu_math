@@ -1,0 +1,93 @@
+{
+  "problem_id": "p260422_003",
+  "problem_type": "fill_in_blank",
+  "metadata": {
+    "title": "",
+    "tags": [],
+    "instruction": "큰 수를 작은 수로 나눈 몫을 빈칸에 써넣으시오.",
+    "question": "6/7, 13/4가 제시된 빈칸에 몫을 써넣는 문제",
+    "required_layout_ids": [
+      "slot.card",
+      "slot.card.split_h",
+      "slot.card.split_v",
+      "slot.blank",
+      "slot.frac_l_bar",
+      "slot.frac_r_bar"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj1",
+        "type": "instruction",
+        "text": "큰 수를 작은 수로 나눈 몫을 빈칸에 써넣으시오."
+      },
+      {
+        "id": "obj2",
+        "type": "fraction",
+        "text": "6/7"
+      },
+      {
+        "id": "obj3",
+        "type": "fraction",
+        "text": "13/4"
+      },
+      {
+        "id": "obj4",
+        "type": "blank"
+      },
+      {
+        "id": "obj5",
+        "type": "question",
+        "text": "빈칸에 들어갈 몫"
+      }
+    ],
+    "relations": [
+      {
+        "id": "rel1",
+        "type": "asks_for",
+        "from_id": "obj1",
+        "to_id": "obj5"
+      },
+      {
+        "id": "rel2",
+        "type": "contains",
+        "from_id": "obj4",
+        "to_id": "obj5"
+      },
+      {
+        "id": "rel3",
+        "type": "references",
+        "from_id": "obj5",
+        "to_id": "obj2"
+      },
+      {
+        "id": "rel4",
+        "type": "references",
+        "from_id": "obj5",
+        "to_id": "obj3"
+      }
+    ],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {},
+      "plan": {},
+      "execute": {},
+      "review": {}
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "number",
+      "description": "정답"
+    },
+    "value": "91/24",
+    "unit": ""
+  }
+}

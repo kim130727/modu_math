@@ -1,0 +1,95 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "0005_종이별 개수",
+  "title": "",
+  "canvas": {
+    "width": 767,
+    "height": 162,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "vertical",
+      "slot_ids": [
+        "slot.bg",
+        "slot.answer_total",
+        "slot.t1",
+        "slot.t2"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.bg",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 767.0,
+        "height": 162.0,
+        "stroke": "none",
+        "stroke_width": 0.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.t1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "소희는 종이별을 399개 접었고, 은별이는 소희보다 115개만큼 더 많이 접었습니다.",
+        "style_role": "body",
+        "x": 8.0,
+        "y": 32.0,
+        "font_size": 17,
+        "font_family": "Malgun Gothic",
+        "anchor": "start",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.t2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "두 사람이 접은 종이별은 모두 몇 개인지 식과 답을 구하시오.",
+        "style_role": "body",
+        "x": 8.0,
+        "y": 60.0,
+        "font_size": 17,
+        "font_family": "Malgun Gothic",
+        "anchor": "start",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.answer_total",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 689.0,
+        "y": 120.0,
+        "width": 60.0,
+        "height": 30.0,
+        "stroke": "none",
+        "stroke_width": 0.0,
+        "fill": "none",
+        "semantic_role": "answer_anchor"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.bg",
+    "slot.answer_total",
+    "slot.t1",
+    "slot.t2"
+  ]
+}

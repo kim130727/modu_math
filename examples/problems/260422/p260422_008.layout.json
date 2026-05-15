@@ -1,0 +1,345 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "p260422_008",
+  "title": "",
+  "canvas": {
+    "width": 1384,
+    "height": 620,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.title.1",
+        "slot.title.2",
+        "slot.table.left_bg",
+        "slot.table.header.woong",
+        "slot.table.header.gayeong",
+        "slot.table.grid.top",
+        "slot.table.grid.mid",
+        "slot.table.grid.v_mid",
+        "slot.table.grid.left_div_1",
+        "slot.table.grid.left_div_2",
+        "slot.table.grid.bottom",
+        "slot.table.label.row_m",
+        "slot.table.label.row_f",
+        "slot.table.label.col_woong",
+        "slot.table.label.col_gayeong",
+        "slot.table.value.m_woong",
+        "slot.table.value.m_gayeong",
+        "slot.table.value.f_woong",
+        "slot.table.value.f_gayeong"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.title.1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "웅이네 학교와 가영이네 학교의 학생 수를 나타낸 표입니다. 누구네",
+        "style_role": "body",
+        "x": 14.0,
+        "y": 49.0,
+        "font_size": 43,
+        "fill": "#333333"
+      }
+    },
+    {
+      "id": "slot.title.2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "학교의 학생이 몇 명 더 많습니까?",
+        "style_role": "body",
+        "x": 14.0,
+        "y": 116.0,
+        "font_size": 43,
+        "fill": "#333333"
+      }
+    },
+    {
+      "id": "slot.table.left_bg",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 214.0,
+        "y": 237.0,
+        "width": 390.0,
+        "height": 289.90000000000003,
+        "stroke": "#d7cf72",
+        "stroke_width": 1.3,
+        "rx": 28.6,
+        "ry": 28.6,
+        "fill": "#d7cf72",
+        "semantic_role": "table"
+      }
+    },
+    {
+      "id": "slot.table.header.woong",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 609.2,
+        "y": 238.3,
+        "width": 370.5,
+        "height": 91.0,
+        "stroke": "#e7d65d",
+        "stroke_width": 1.3,
+        "rx": 26.0,
+        "ry": 26.0,
+        "fill": "#e7d65d",
+        "semantic_role": "table"
+      }
+    },
+    {
+      "id": "slot.table.header.gayeong",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 987.5,
+        "y": 239.6,
+        "width": 413.40000000000003,
+        "height": 89.7,
+        "stroke": "#e7d65d",
+        "stroke_width": 1.3,
+        "rx": 26.0,
+        "ry": 26.0,
+        "fill": "#e7d65d",
+        "semantic_role": "table"
+      }
+    },
+    {
+      "id": "slot.table.grid.top",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 609.2,
+        "y1": 329.3,
+        "x2": 1399.6000000000001,
+        "y2": 329.3,
+        "stroke": "#222222",
+        "stroke_width": 2.6,
+        "semantic_role": "table_grid"
+      }
+    },
+    {
+      "id": "slot.table.grid.mid",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 611.8,
+        "y1": 428.1,
+        "x2": 1394.4,
+        "y2": 428.1,
+        "stroke": "#999999",
+        "stroke_width": 1.3,
+        "semantic_role": "table_grid"
+      }
+    },
+    {
+      "id": "slot.table.grid.v_mid",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 978.4,
+        "y1": 331.9,
+        "x2": 978.4,
+        "y2": 428.1,
+        "stroke": "#999999",
+        "stroke_width": 1.3,
+        "semantic_role": "table_grid"
+      }
+    },
+    {
+      "id": "slot.table.grid.left_div_1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 267.3,
+        "y1": 331.9,
+        "x2": 602.7,
+        "y2": 331.9,
+        "stroke": "#ffffff",
+        "stroke_width": 2.6,
+        "semantic_role": "table_grid"
+      }
+    },
+    {
+      "id": "slot.table.grid.left_div_2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 221.8,
+        "y1": 430.70000000000005,
+        "x2": 601.4000000000001,
+        "y2": 430.70000000000005,
+        "stroke": "#ffffff",
+        "stroke_width": 2.6,
+        "semantic_role": "table_grid"
+      }
+    },
+    {
+      "id": "slot.table.grid.bottom",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 215.3,
+        "y1": 524.3,
+        "x2": 1407.4,
+        "y2": 524.3,
+        "stroke": "#333333",
+        "stroke_width": 2.6,
+        "semantic_role": "table_grid"
+      }
+    },
+    {
+      "id": "slot.table.label.row_m",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "남학생 수(명)",
+        "style_role": "body",
+        "x": 264.7,
+        "y": 391.70000000000005,
+        "font_size": 40,
+        "fill": "#222222",
+        "semantic_role": "table_value"
+      }
+    },
+    {
+      "id": "slot.table.label.row_f",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "여학생 수(명)",
+        "style_role": "body",
+        "x": 264.7,
+        "y": 495.7,
+        "font_size": 40,
+        "fill": "#222222",
+        "semantic_role": "table_value"
+      }
+    },
+    {
+      "id": "slot.table.label.col_woong",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "웅이네 학교",
+        "style_role": "body",
+        "x": 793.8000000000001,
+        "y": 300.7,
+        "font_size": 44,
+        "anchor": "middle",
+        "fill": "#222222",
+        "semantic_role": "table_value"
+      }
+    },
+    {
+      "id": "slot.table.label.col_gayeong",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "가영이네 학교",
+        "style_role": "body",
+        "x": 1190.3000000000002,
+        "y": 300.7,
+        "font_size": 44,
+        "anchor": "middle",
+        "fill": "#222222",
+        "semantic_role": "table_value"
+      }
+    },
+    {
+      "id": "slot.table.value.m_woong",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "372",
+        "style_role": "body",
+        "x": 793.8000000000001,
+        "y": 391.70000000000005,
+        "font_size": 49,
+        "anchor": "middle",
+        "fill": "#333333",
+        "semantic_role": "table_value"
+      }
+    },
+    {
+      "id": "slot.table.value.m_gayeong",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "419",
+        "style_role": "body",
+        "x": 1208.5,
+        "y": 391.70000000000005,
+        "font_size": 49,
+        "anchor": "middle",
+        "fill": "#333333",
+        "semantic_role": "table_value"
+      }
+    },
+    {
+      "id": "slot.table.value.f_woong",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "385",
+        "style_role": "body",
+        "x": 793.8000000000001,
+        "y": 495.7,
+        "font_size": 49,
+        "anchor": "middle",
+        "fill": "#333333",
+        "semantic_role": "table_value"
+      }
+    },
+    {
+      "id": "slot.table.value.f_gayeong",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "422",
+        "style_role": "body",
+        "x": 1209.8000000000002,
+        "y": 495.7,
+        "font_size": 49,
+        "anchor": "middle",
+        "fill": "#333333",
+        "semantic_role": "table_value"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.title.1",
+    "slot.title.2",
+    "slot.table.left_bg",
+    "slot.table.header.woong",
+    "slot.table.header.gayeong",
+    "slot.table.grid.top",
+    "slot.table.grid.mid",
+    "slot.table.grid.v_mid",
+    "slot.table.grid.left_div_1",
+    "slot.table.grid.left_div_2",
+    "slot.table.grid.bottom",
+    "slot.table.label.row_m",
+    "slot.table.label.row_f",
+    "slot.table.label.col_woong",
+    "slot.table.label.col_gayeong",
+    "slot.table.value.m_woong",
+    "slot.table.value.m_gayeong",
+    "slot.table.value.f_woong",
+    "slot.table.value.f_gayeong"
+  ]
+}

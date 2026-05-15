@@ -1,0 +1,147 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "0006_잘못 계산한 사람",
+  "title": "",
+  "canvas": {
+    "width": 767,
+    "height": 276,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "vertical",
+      "slot_ids": [
+        "slot.bg",
+        "slot.bubble",
+        "slot.answer_text",
+        "slot.i1",
+        "slot.i2",
+        "slot.jy",
+        "slot.gw"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.bg",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 767.0,
+        "height": 276.0,
+        "stroke": "none",
+        "stroke_width": 0.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.i1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "지은이와 건우가 875-328을 계산한 방법을 대화로 나타낸 것입니다. 잘못 계산한",
+        "style_role": "body",
+        "x": 6.0,
+        "y": 34.0,
+        "font_size": 17,
+        "font_family": "Malgun Gothic",
+        "anchor": "start",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.i2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "사람과 이유를 쓰세요.",
+        "style_role": "body",
+        "x": 6.0,
+        "y": 62.0,
+        "font_size": 17,
+        "font_family": "Malgun Gothic",
+        "anchor": "start",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.bubble",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 14.0,
+        "y": 98.0,
+        "width": 740.0,
+        "height": 116.0,
+        "stroke": "#666666",
+        "stroke_width": 1.5,
+        "rx": 10.0,
+        "ry": 10.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.jy",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "• 지은: 800에서 300을 빼고, 75에서 28을 뺀 다음 두 결과를 더했어.",
+        "style_role": "body",
+        "x": 24.0,
+        "y": 132.0,
+        "font_size": 17,
+        "font_family": "Malgun Gothic",
+        "anchor": "start",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.gw",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "• 건우: 800에서 300을 빼고 75에서 30을 뺀 다음 2를 빼서 결과를 더했어.",
+        "style_role": "body",
+        "x": 24.0,
+        "y": 174.0,
+        "font_size": 17,
+        "font_family": "Malgun Gothic",
+        "anchor": "start",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.answer_text",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 400.0,
+        "y": 236.0,
+        "width": 350.0,
+        "height": 30.0,
+        "stroke": "none",
+        "stroke_width": 0.0,
+        "fill": "none",
+        "semantic_role": "answer_anchor"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.bg",
+    "slot.bubble",
+    "slot.answer_text",
+    "slot.i1",
+    "slot.i2",
+    "slot.jy",
+    "slot.gw"
+  ]
+}

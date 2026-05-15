@@ -1,0 +1,112 @@
+{
+  "problem_id": "p260422_006",
+  "problem_type": "measurement",
+  "metadata": {
+    "title": "",
+    "tags": [],
+    "instruction": "",
+    "question": "밑변의 길이가 2/3 m인 평행사변형의 넓이가 1 1/4 m^2입니다. 이 평행사변형의 높이는 몇 m입니까?",
+    "required_layout_ids": [
+      "slot.title.base.bar",
+      "slot.title.area.frac.bar",
+      "slot.diagram.parallelogram",
+      "slot.diagram.guide",
+      "slot.label.area.frac.bar",
+      "slot.label.arrow",
+      "slot.label.arrow.head",
+      "slot.base.bar"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj1",
+        "type": "fraction",
+        "value": "2/3",
+        "text": "2/3"
+      },
+      {
+        "id": "obj2",
+        "type": "fraction",
+        "value": "1 1/4",
+        "text": "1 1/4"
+      },
+      {
+        "id": "obj3",
+        "type": "unit",
+        "value": "m",
+        "text": "m"
+      },
+      {
+        "id": "obj4",
+        "type": "unit",
+        "value": "m^2",
+        "text": "m^2"
+      },
+      {
+        "id": "obj5",
+        "type": "shape",
+        "value": "parallelogram",
+        "text": "평행사변형"
+      },
+      {
+        "id": "obj6",
+        "type": "question",
+        "text": "이 평행사변형의 높이는 몇 m입니까?"
+      }
+    ],
+    "relations": [
+      {
+        "id": "rel1",
+        "type": "labels",
+        "from_id": "obj1",
+        "to_id": "obj3"
+      },
+      {
+        "id": "rel2",
+        "type": "labels",
+        "from_id": "obj2",
+        "to_id": "obj4"
+      },
+      {
+        "id": "rel3",
+        "type": "asks_for",
+        "from_id": "obj6",
+        "to_id": "obj5"
+      },
+      {
+        "id": "rel4",
+        "type": "references",
+        "from_id": "obj5",
+        "to_id": "obj1"
+      },
+      {
+        "id": "rel5",
+        "type": "references",
+        "from_id": "obj5",
+        "to_id": "obj2"
+      }
+    ],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {},
+      "plan": {},
+      "execute": {},
+      "review": {}
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "number",
+      "description": "정답"
+    },
+    "value": 1.875,
+    "unit": "m"
+  }
+}

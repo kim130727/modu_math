@@ -1,0 +1,30 @@
+{
+  "schema": "modu.solvable.v1",
+  "problem_id": "p260422_014",
+  "problem_type": "multiple_choice",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "정답",
+    "target_ticks": 0,
+    "target_count": 0,
+    "unit": ""
+  },
+  "plan": [
+    "514+168=682, 724-188=536, so 682>536. 277+385=662, 950-277=673, so 662<673."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "514+168=682, 724-188=536, so 682>536. 277+385=662, 950-277=673, so 662<673.",
+      "value": [
+        ">",
+        "<"
+      ]
+    }
+  ],
+  "checks": [],
+  "answer": {
+    "value": 0,
+    "unit": ""
+  }
+}

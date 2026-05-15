@@ -1,0 +1,95 @@
+{
+  "problem_id": "Hpdf_7wUe1bjA0G",
+  "problem_type": "perimeter_after_cutting_squares",
+  "metadata": {
+    "title": "도화지의 모든 변의 길이의 합",
+    "tags": [],
+    "question": "직사각형 모양의 도화지에서 한 변이 6 cm인 정사각형 모양 2개를 잘라 낸 뒤 남은 도화지의 모든 변의 길이의 합을 묻는 문제",
+    "required_layout_ids": [
+      "slot.shape.paper",
+      "slot.dim.bottom",
+      "slot.dim.right"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "남은 도화지의 모든 변의 길이의 합은 몇 cm입니까?"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.paper",
+        "type": "figure",
+        "shape": "rectangular_sheet_with_two_square_cuts"
+      },
+      {
+        "id": "obj.cut_square",
+        "type": "square",
+        "side_length_cm": 6,
+        "count": 2
+      },
+      {
+        "id": "obj.dim_bottom",
+        "type": "measurement",
+        "value_cm": 10,
+        "orientation": "horizontal"
+      },
+      {
+        "id": "obj.dim_right",
+        "type": "measurement",
+        "value_cm": 18,
+        "orientation": "vertical"
+      }
+    ],
+    "relations": [
+      {
+        "id": "rel.cut_from.paper",
+        "type": "removed_from",
+        "from_id": "obj.cut_square",
+        "to_id": "obj.paper"
+      }
+    ],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.paper",
+          "obj.cut_square",
+          "obj.dim_bottom",
+          "obj.dim_right"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.cut_from.paper"
+        ]
+      },
+      "plan": {
+        "method": "perimeter_calculation",
+        "description": "원래 직사각형의 둘레에서 잘라낸 부분에 의해 늘어난 변의 길이를 합산한다."
+      },
+      "execute": {
+        "expected_operations": [
+          "calculate_original_perimeter",
+          "add_extra_sides_from_cuts"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "measurement_consistency_check",
+          "shape_structure_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "perimeter_sum",
+      "description": "남은 도화지의 모든 변의 길이의 합"
+    },
+    "value": 80,
+    "unit": "cm"
+  }
+}

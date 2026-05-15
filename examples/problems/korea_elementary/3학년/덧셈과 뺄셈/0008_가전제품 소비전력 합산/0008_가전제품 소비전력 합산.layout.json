@@ -1,0 +1,116 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "0008_가전제품 소비전력 합산",
+  "title": "",
+  "canvas": {
+    "width": 1000,
+    "height": 600,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "vertical",
+      "slot_ids": [
+        "slot.t1",
+        "slot.t2",
+        "slot.name_0",
+        "slot.name_1",
+        "slot.name_2",
+        "slot.val_0",
+        "slot.val_1",
+        "slot.val_2"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.t1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "다음 가전제품 중에서 2개를 골라 소비전력의 합이 1000 W가 넘는",
+        "style_role": "body"
+      }
+    },
+    {
+      "id": "slot.t2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "경우를 찾아 그 합을 구하시오.",
+        "style_role": "body"
+      }
+    },
+    {
+      "id": "slot.name_0",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "전기밥솥",
+        "style_role": "body"
+      }
+    },
+    {
+      "id": "slot.name_1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "정수기",
+        "style_role": "body"
+      }
+    },
+    {
+      "id": "slot.name_2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "모니터",
+        "style_role": "body"
+      }
+    },
+    {
+      "id": "slot.val_0",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "500 W",
+        "style_role": "body"
+      }
+    },
+    {
+      "id": "slot.val_1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "770 W",
+        "style_role": "body"
+      }
+    },
+    {
+      "id": "slot.val_2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "150 W",
+        "style_role": "body"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.t1",
+    "slot.t2",
+    "slot.name_0",
+    "slot.name_1",
+    "slot.name_2",
+    "slot.val_0",
+    "slot.val_1",
+    "slot.val_2"
+  ]
+}

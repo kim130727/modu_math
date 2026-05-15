@@ -1,0 +1,103 @@
+{
+  "problem_id": "p260422_015",
+  "problem_type": "word_problem",
+  "metadata": {
+    "title": "",
+    "tags": [],
+    "instruction": "하트 모양 한 개를 만드는 데 철사가 3/16 m 필요합니다. 철사 15/16 m로 만들 수 있는 하트 모양은 몇 개인지 풀이 과정을 쓰고 답을 구해보시오.",
+    "question": "철사 15/16 m로 만들 수 있는 하트 모양은 몇 개인지",
+    "required_layout_ids": [
+      "slot.l1.frac.bar",
+      "slot.l2.frac.bar"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "o1",
+        "type": "question",
+        "text": "철사 15/16 m로 만들 수 있는 하트 모양은 몇 개인지"
+      },
+      {
+        "id": "o2",
+        "type": "fraction",
+        "value": "3/16",
+        "text": "3/16"
+      },
+      {
+        "id": "o3",
+        "type": "unit",
+        "value": "m",
+        "text": "m"
+      },
+      {
+        "id": "o4",
+        "type": "fraction",
+        "value": "15/16",
+        "text": "15/16"
+      },
+      {
+        "id": "o5",
+        "type": "unknown",
+        "text": "하트 모양"
+      },
+      {
+        "id": "o6",
+        "type": "unknown",
+        "text": "철사"
+      },
+      {
+        "id": "o7",
+        "type": "instruction",
+        "text": "풀이 과정을 쓰고 답을 구해보시오"
+      }
+    ],
+    "relations": [
+      {
+        "id": "r1",
+        "type": "applies_to",
+        "from_id": "o2",
+        "to_id": "o5"
+      },
+      {
+        "id": "r2",
+        "type": "references",
+        "from_id": "o4",
+        "to_id": "o6"
+      },
+      {
+        "id": "r3",
+        "type": "asks_for",
+        "from_id": "o1",
+        "to_id": "o5"
+      },
+      {
+        "id": "r4",
+        "type": "contains",
+        "from_id": "o7",
+        "to_id": "o1"
+      }
+    ],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {},
+      "plan": {},
+      "execute": {},
+      "review": {}
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "number",
+      "description": "정답"
+    },
+    "value": 5,
+    "unit": ""
+  }
+}

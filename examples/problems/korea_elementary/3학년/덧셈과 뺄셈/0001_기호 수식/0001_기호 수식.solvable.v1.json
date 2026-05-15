@@ -1,0 +1,63 @@
+{
+  "schema": "modu.solvable.v1",
+  "problem_id": "0001_기호 수식",
+  "problem_type": "arithmetic_chained_operation",
+  "given": [
+    {
+      "ref": "obj.start",
+      "value": 472
+    },
+    {
+      "ref": "obj.middle_op",
+      "value": "+149"
+    },
+    {
+      "ref": "obj.target",
+      "value": 285
+    }
+  ],
+  "target": {
+    "type": "number",
+    "description": "△의 값"
+  },
+  "method": "stepwise_calculation",
+  "steps": [
+    {
+      "id": "step.s1",
+      "operation": "addition",
+      "expr": "472 + 149 = 621",
+      "value": 621
+    },
+    {
+      "id": "step.s2",
+      "operation": "subtraction",
+      "expr": "621 - 285 = 336",
+      "value": 336
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.c1",
+      "type": "arithmetic_consistency_check",
+      "pass": true,
+      "expected": 336,
+      "actual": 336,
+      "expr": "621 - 336 = 285"
+    }
+  ],
+  "answer": {
+    "value": 336,
+    "unit": "",
+    "derived_from": "step.s2"
+  },
+  "inputs": {
+    "total_ticks": 1,
+    "target_label": "답",
+    "target_ticks": 1,
+    "target_count": 1,
+    "unit": ""
+  },
+  "plan": [
+    "472+149=621을 구한 뒤, 621-△=285에서 △=336임을 구합니다."
+  ]
+}

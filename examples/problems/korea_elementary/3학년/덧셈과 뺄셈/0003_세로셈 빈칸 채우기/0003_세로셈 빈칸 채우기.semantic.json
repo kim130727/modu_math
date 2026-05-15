@@ -1,0 +1,48 @@
+{
+  "problem_id": "0003_세로셈 빈칸 채우기",
+  "problem_type": "arithmetic_vertical_addition_puzzle",
+  "metadata": {
+    "title": "",
+    "tags": [],
+    "instruction": "□ 안에 알맞은 수를 써넣으세요.",
+    "question": "세로 덧셈식 [□26] + [5□□] = [1304]에서 빈칸에 알맞은 숫자를 구하는 문제",
+    "required_layout_ids": [
+      "slot.bg",
+      "slot.blank_top",
+      "slot.blank_mid",
+      "slot.blank_low",
+      "slot.sep"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.vertical_add",
+        "type": "vertical_arithmetic",
+        "description": "[□26] + [5□□] = [1304]"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "plan": {
+        "method": "digit_analysis",
+        "description": "일의 자리부터 시작하여 올림수를 고려하며 각 빈칸의 숫자를 찾아간다."
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "value": 0,
+    "unit": "",
+    "target": {
+      "type": "unknown",
+      "description": ""
+    }
+  }
+}

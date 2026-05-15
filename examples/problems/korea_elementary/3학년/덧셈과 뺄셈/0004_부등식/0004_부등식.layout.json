@@ -1,0 +1,165 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "0004_부등식",
+  "title": "",
+  "canvas": {
+    "width": 406,
+    "height": 181,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "vertical",
+      "slot_ids": [
+        "slot.eq_box",
+        "slot.answer_count",
+        "slot.i1",
+        "slot.i2",
+        "slot.eq",
+        "slot.gaesu",
+        "slot.lp",
+        "slot.rp"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.i1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "0부터 9까지의 수 중에서 □에 들어갈 수를",
+        "style_role": "body",
+        "x": 12.0,
+        "y": 30.0,
+        "font_size": 17,
+        "font_family": "Malgun Gothic",
+        "anchor": "start",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.i2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "모두 구하고 개수를 쓰시오.",
+        "style_role": "body",
+        "x": 12.0,
+        "y": 60.0,
+        "font_size": 17,
+        "font_family": "Malgun Gothic",
+        "anchor": "start",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.eq_box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 2.0,
+        "y": 78.0,
+        "width": 402.0,
+        "height": 56.0,
+        "stroke": "#666666",
+        "stroke_width": 1.5,
+        "rx": 10.0,
+        "ry": 10.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.eq",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "4□5+298>763",
+        "style_role": "body",
+        "x": 201.0,
+        "y": 112.0,
+        "font_size": 17,
+        "font_family": "Malgun Gothic",
+        "anchor": "middle",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.answer_count",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 246.0,
+        "y": 146.0,
+        "width": 110.0,
+        "height": 28.0,
+        "stroke": "none",
+        "stroke_width": 0.0,
+        "fill": "none",
+        "semantic_role": "answer_anchor"
+      }
+    },
+    {
+      "id": "slot.gaesu",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "개",
+        "style_role": "body",
+        "x": 378.0,
+        "y": 166.0,
+        "font_size": 17,
+        "font_family": "Malgun Gothic",
+        "anchor": "middle",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.lp",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "(",
+        "style_role": "body",
+        "x": 230.0,
+        "y": 168.0,
+        "font_size": 24,
+        "font_family": "Malgun Gothic",
+        "anchor": "middle",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.rp",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": ")",
+        "style_role": "body",
+        "x": 364.0,
+        "y": 168.0,
+        "font_size": 24,
+        "font_family": "Malgun Gothic",
+        "anchor": "middle",
+        "fill": "#222222"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.eq_box",
+    "slot.answer_count",
+    "slot.i1",
+    "slot.i2",
+    "slot.eq",
+    "slot.gaesu",
+    "slot.lp",
+    "slot.rp"
+  ]
+}

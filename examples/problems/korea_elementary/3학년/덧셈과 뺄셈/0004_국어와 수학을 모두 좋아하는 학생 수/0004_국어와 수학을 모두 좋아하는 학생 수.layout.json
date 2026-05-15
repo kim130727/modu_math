@@ -1,0 +1,61 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "0004_국어와 수학을 모두 좋아하는 학생 수",
+  "title": "",
+  "canvas": {
+    "width": 1000,
+    "height": 500,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "vertical",
+      "slot_ids": [
+        "slot.t1",
+        "slot.t2",
+        "slot.t3"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.t1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "국어나 수학을 좋아하는 학생 780명 중에서 국어를 좋아하는 학생이 621명,",
+        "style_role": "body"
+      }
+    },
+    {
+      "id": "slot.t2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "수학을 좋아하는 학생이 348명입니다. 국어와 수학을 모두 좋아하는 학생은",
+        "style_role": "body"
+      }
+    },
+    {
+      "id": "slot.t3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "몇 명입니까?",
+        "style_role": "body"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.t1",
+    "slot.t2",
+    "slot.t3"
+  ]
+}

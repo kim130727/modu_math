@@ -1,0 +1,99 @@
+{
+  "problem_id": "Hpdf_WOZc0ipjaC",
+  "view_box": {
+    "width": 600.0,
+    "height": 264.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.q1.text",
+      "type": "text",
+      "attributes": {
+        "x": 12.0,
+        "y": 42.0,
+        "max_width": 472.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 35
+      },
+      "source_ref": "slot.q1",
+      "refs": {
+        "layout_slot_id": "slot.q1"
+      },
+      "text": "기호 ◉를 ㉠◉㉡=㉠+㉡-482와 같이"
+    },
+    {
+      "id": "slot.q2.text",
+      "type": "text",
+      "attributes": {
+        "x": 12.0,
+        "y": 92.0,
+        "max_width": 472.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 35
+      },
+      "source_ref": "slot.q2",
+      "refs": {
+        "layout_slot_id": "slot.q2"
+      },
+      "text": "약속할 때 다음을 계산하시오."
+    },
+    {
+      "id": "slot.note.text",
+      "type": "text",
+      "attributes": {
+        "x": 12.0,
+        "y": 142.0,
+        "max_width": 472.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 35
+      },
+      "source_ref": "slot.note",
+      "refs": {
+        "layout_slot_id": "slot.note"
+      },
+      "text": "(단, 기호 ◉를 먼저 계산합니다.)"
+    },
+    {
+      "id": "slot.box.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 90.0,
+        "y": 180.0,
+        "width": 380.0,
+        "height": 70.0,
+        "fill": "#FFFFFF",
+        "stroke": "#8A8A8A",
+        "stroke-width": 1.5,
+        "rx": 10.0,
+        "ry": 10.0
+      },
+      "source_ref": "slot.box",
+      "refs": {
+        "layout_slot_id": "slot.box"
+      }
+    },
+    {
+      "id": "slot.expr.text",
+      "type": "text",
+      "attributes": {
+        "x": 280.0,
+        "y": 228.0,
+        "max_width": 472.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 35,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.expr",
+      "refs": {
+        "layout_slot_id": "slot.expr"
+      },
+      "text": "197 ◉ 631 + 197"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

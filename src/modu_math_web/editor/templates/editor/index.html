@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ModuMath Editor MVP</title>
+  <style>
+    :root {
+      --bg: #f4f6f8;
+      --panel: #ffffff;
+      --text: #111827;
+      --muted: #6b7280;
+      --line: #d1d5db;
+      --primary: #0f766e;
+      --danger: #b91c1c;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", "Pretendard", sans-serif;
+      color: var(--text);
+      background: radial-gradient(circle at 20% 0%, #e2f6f5, var(--bg));
+    }
+    .wrap { min-height: 100vh; padding: 12px; }
+    .main { display: grid; grid-template-rows: auto auto auto 1fr auto; gap: 10px; }
+    .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 12px; overflow: auto; }
+    h2 { margin: 0 0 8px; font-size: 14px; color: var(--muted); }
+    .row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+    .grow { flex: 1 1 420px; }
+    button {
+      border: 1px solid var(--line);
+      background: #fff;
+      border-radius: 8px;
+      padding: 8px 10px;
+      cursor: pointer;
+    }
+    button.primary { background: var(--primary); color: #fff; border-color: var(--primary); }
+    textarea, input {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 8px;
+      font-family: Consolas, monospace;
+    }
+    textarea { min-height: 180px; }
+    .grid { display: grid; grid-template-columns: 1fr; gap: 10px; min-height: 420px; }
+    .svg-box {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 8px;
+      background: #fff;
+      overflow: hidden;
+      height: 72vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .svg-box svg {
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      display: block;
+    }
+    .log {
+      white-space: pre-wrap;
+      font-family: Consolas, monospace;
+      font-size: 12px;
+      color: #111;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 8px;
+      background: #fff;
+    }
+    .err { color: var(--danger); }
+    .ok { color: #047857; }
+    .tree {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 8px;
+      max-height: 220px;
+      overflow: auto;
+      background: #fff;
+    }
+    .tree ul { list-style: none; margin: 0; padding-left: 14px; }
+    .tree li { margin: 3px 0; }
+    .tree .folder { color: var(--muted); font-weight: 600; }
+    .tree .file-btn {
+      border: none;
+      background: transparent;
+      padding: 2px 4px;
+      border-radius: 6px;
+      text-align: left;
+      width: auto;
+    }
+    .tree .file-btn:hover { background: #ecfeff; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="main">
+      <div class="panel">
+        <h2>문제 열기</h2>
+        <div class="row">
+          <div class="grow">
+            <input id="problemInput" list="problemOptions" placeholder="예: 0001 또는 260422/0013_과일 원그래프">
+            <datalist id="problemOptions"></datalist>
+          </div>
+          <button id="openBtn">Open</button>
+          <button id="refreshListBtn">Refresh List</button>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h2>선택된 문제</h2>
+        <div id="selectedProblem">없음</div>
+      </div>
+
+      <div class="panel">
+        <h2>파일 탐색</h2>
+        <div class="tree" id="problemTree"></div>
+      </div>
+
+      <div class="panel row">
+        <button id="reloadBtn">Reload</button>
+        <button id="saveBtn" class="primary">Save DSL</button>
+        <button id="buildBtn">Build</button>
+      </div>
+
+      <div class="grid">
+        <div class="panel">
+          <h2>SVG Preview</h2>
+          <div class="svg-box" id="svgPreview"></div>
+          <h2 style="margin-top:10px;">Build Stdout/Stderr</h2>
+          <div class="log" id="buildLog"></div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h2>DSL</h2>
+        <textarea id="dslEditor"></textarea>
+        <h2 style="margin-top:10px;">Layout Patch</h2>
+        <input id="slotId" placeholder="slot.q1">
+        <textarea id="patchJson" style="min-height:120px;">{"x":120.0,"y":80.0,"font_size":28}</textarea>
+        <div class="row" style="margin-top:8px;">
+          <button id="patchBtn">Patch</button>
+          <button id="patchBuildBtn">Patch + Build</button>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h2>상태</h2>
+        <div id="status"></div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    let currentProblemId = null;
+    let knownProblems = [];
+
+    function setStatus(text, ok = true) {
+      const el = document.getElementById("status");
+      el.className = ok ? "ok" : "err";
+      el.textContent = text;
+    }
+
+    async function api(url, options) {
+      const res = await fetch(url, options);
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || JSON.stringify(data));
+      return data;
+    }
+
+    function renderSvg(svgText) {
+      document.getElementById("svgPreview").innerHTML = svgText || "<em>SVG 없음</em>";
+    }
+
+    function renderLog(stdout, stderr) {
+      document.getElementById("buildLog").textContent = [stdout || "", stderr || ""].join("\n").trim();
+    }
+
+    function encodedProblemPath(problemId, suffix = "") {
+      const safe = problemId.split("/").map(encodeURIComponent).join("/");
+      return `/api/editor/problems/${safe}${suffix}`;
+    }
+
+    async function loadProblems() {
+      const data = await api("/api/editor/problems/");
+      knownProblems = data.problems || [];
+      const options = document.getElementById("problemOptions");
+      options.innerHTML = "";
+      for (const p of knownProblems) {
+        const option = document.createElement("option");
+        option.value = p.problem_id;
+        options.appendChild(option);
+      }
+      renderProblemTree(knownProblems.map((p) => p.problem_id));
+      if (!currentProblemId && knownProblems.length > 0) {
+        document.getElementById("problemInput").value = knownProblems[0].problem_id;
+      }
+    }
+
+    function buildTree(problemIds) {
+      const root = {};
+      for (const id of problemIds) {
+        const parts = id.split("/");
+        let node = root;
+        for (let i = 0; i < parts.length; i += 1) {
+          const part = parts[i];
+          if (!node[part]) node[part] = { __children: {}, __leaf: false, __id: null };
+          if (i === parts.length - 1) {
+            node[part].__leaf = true;
+            node[part].__id = id;
+          }
+          node = node[part].__children;
+        }
+      }
+      return root;
+    }
+
+    function renderTreeNode(container, nodeObj) {
+      const ul = document.createElement("ul");
+      const keys = Object.keys(nodeObj).sort((a, b) => a.localeCompare(b, "ko"));
+      for (const key of keys) {
+        const meta = nodeObj[key];
+        const li = document.createElement("li");
+        const childKeys = Object.keys(meta.__children);
+        if (childKeys.length > 0) {
+          const folder = document.createElement("div");
+          folder.className = "folder";
+          folder.textContent = key;
+          li.appendChild(folder);
+          renderTreeNode(li, meta.__children);
+        } else if (meta.__leaf) {
+          const btn = document.createElement("button");
+          btn.className = "file-btn";
+          btn.textContent = key;
+          btn.onclick = async () => {
+            document.getElementById("problemInput").value = meta.__id;
+            try { await selectProblem(meta.__id); } catch (e) { setStatus(String(e), false); }
+          };
+          li.appendChild(btn);
+        }
+        ul.appendChild(li);
+      }
+      container.appendChild(ul);
+    }
+
+    function renderProblemTree(problemIds) {
+      const tree = document.getElementById("problemTree");
+      tree.innerHTML = "";
+      if (!problemIds.length) {
+        tree.innerHTML = "<em>문제가 없습니다.</em>";
+        return;
+      }
+      const root = buildTree(problemIds);
+      renderTreeNode(tree, root);
+    }
+
+    async function selectProblem(problemId) {
+      const trimmed = (problemId || "").trim();
+      if (!trimmed) throw new Error("problem_id를 입력하세요.");
+      currentProblemId = trimmed;
+      document.getElementById("selectedProblem").textContent = trimmed;
+      const detail = await api(encodedProblemPath(trimmed, "/"));
+      document.getElementById("dslEditor").value = detail.dsl || "";
+      renderSvg(detail.svg);
+      renderLog("", "");
+      setStatus(`불러오기 완료: ${trimmed}`, true);
+    }
+
+    async function saveDsl() {
+      if (!currentProblemId) throw new Error("먼저 문제를 여세요.");
+      const dsl = document.getElementById("dslEditor").value;
+      await api(encodedProblemPath(currentProblemId, "/dsl/"), {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ dsl }),
+      });
+      setStatus("DSL 저장 완료", true);
+    }
+
+    async function buildProblem() {
+      if (!currentProblemId) throw new Error("먼저 문제를 여세요.");
+      const data = await api(encodedProblemPath(currentProblemId, "/build/"), { method: "POST" });
+      renderSvg(data.artifacts?.svg || null);
+      renderLog(data.stdout, data.stderr);
+      setStatus("빌드 완료", true);
+      await loadProblems();
+    }
+
+    function readPatchPayload() {
+      const target = document.getElementById("slotId").value.trim();
+      if (!target) throw new Error("slot id를 입력하세요.");
+      const value = JSON.parse(document.getElementById("patchJson").value);
+      return { patches: [{ target, op: "update", value }] };
+    }
+
+    async function patchOnly() {
+      if (!currentProblemId) throw new Error("먼저 문제를 여세요.");
+      const payload = readPatchPayload();
+      const data = await api(encodedProblemPath(currentProblemId, "/layout-patch/"), {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      document.getElementById("dslEditor").value = data.dsl || "";
+      setStatus("레이아웃 패치 완료", true);
+    }
+
+    async function patchAndBuild() {
+      if (!currentProblemId) throw new Error("먼저 문제를 여세요.");
+      const payload = readPatchPayload();
+      const data = await api(encodedProblemPath(currentProblemId, "/layout-patch-and-build/"), {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      document.getElementById("dslEditor").value = data.dsl || "";
+      renderSvg(data.artifacts?.svg || null);
+      renderLog(data.build?.stdout || "", data.build?.stderr || "");
+      setStatus("패치 + 빌드 완료", true);
+      await loadProblems();
+    }
+
+    document.getElementById("openBtn").onclick = async () => {
+      try { await selectProblem(document.getElementById("problemInput").value); }
+      catch (e) { setStatus(String(e), false); }
+    };
+    document.getElementById("refreshListBtn").onclick = async () => {
+      try { await loadProblems(); setStatus("문제 목록 갱신 완료", true); }
+      catch (e) { setStatus(String(e), false); }
+    };
+    document.getElementById("reloadBtn").onclick = async () => {
+      try { await selectProblem(currentProblemId); }
+      catch (e) { setStatus(String(e), false); }
+    };
+    document.getElementById("saveBtn").onclick = async () => {
+      try { await saveDsl(); }
+      catch (e) { setStatus(String(e), false); }
+    };
+    document.getElementById("buildBtn").onclick = async () => {
+      try { await buildProblem(); }
+      catch (e) { setStatus(String(e), false); }
+    };
+    document.getElementById("patchBtn").onclick = async () => {
+      try { await patchOnly(); }
+      catch (e) { setStatus(String(e), false); }
+    };
+    document.getElementById("patchBuildBtn").onclick = async () => {
+      try { await patchAndBuild(); }
+      catch (e) { setStatus(String(e), false); }
+    };
+
+    loadProblems().catch((e) => setStatus(String(e), false));
+  </script>
+</body>
+</html>

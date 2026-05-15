@@ -1,0 +1,77 @@
+{
+  "schema": "modu.solvable.v1",
+  "problem_id": "Hpdf_VKtbeqlhlk",
+  "problem_type": "overlap_length",
+  "given": [
+    {
+      "ref": "obj.tape.green",
+      "value": {
+        "length_cm": 294
+      }
+    },
+    {
+      "ref": "obj.tape.yellow",
+      "value": {
+        "length_cm": 215
+      }
+    },
+    {
+      "ref": "obj.result.length",
+      "value": {
+        "value_cm": 374
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "overlap_length"
+  },
+  "method": "subtract_overlap_from_sum",
+  "steps": [
+    {
+      "id": "step.s1",
+      "operation": "add_two_lengths",
+      "expr": "294 + 215",
+      "value": 509
+    },
+    {
+      "id": "step.s2",
+      "operation": "subtract_combined_length",
+      "expr": "509 - 374",
+      "value": 135
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.c1",
+      "type": "inverse_relation_check",
+      "pass": true,
+      "expr": "294 + 215 - 135 = 374",
+      "expected": 1,
+      "actual": 1
+    },
+    {
+      "id": "check.c2",
+      "type": "unit_consistency_check",
+      "pass": true,
+      "expected": 1,
+      "actual": 1,
+      "expr": "check"
+    }
+  ],
+  "answer": {
+    "value": 135,
+    "unit": "cm",
+    "derived_from": "step.s2"
+  },
+  "inputs": {
+    "total_ticks": 1,
+    "target_label": "답",
+    "target_ticks": 1,
+    "target_count": 1,
+    "unit": ""
+  },
+  "plan": [
+    "풀이 과정 없음"
+  ]
+}

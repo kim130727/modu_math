@@ -1,0 +1,126 @@
+{
+  "problem_id": "Hpdf_67IWfsGbkY",
+  "problem_type": "equation_word_problem",
+  "metadata": {
+    "title": "구슬 나눔",
+    "tags": [],
+    "question": "두 번의 게임 후 세 사람이 각각 240개일 때 시작 전 (나)의 구슬 수를 구하는 문제",
+    "required_layout_ids": [],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "게임 규칙과 최종 상태를 이용해 시작 전 (나)의 구슬 개수를 구하시오."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.A",
+        "type": "person",
+        "name": "(가)"
+      },
+      {
+        "id": "obj.B",
+        "type": "person",
+        "name": "(나)"
+      },
+      {
+        "id": "obj.C",
+        "type": "person",
+        "name": "(다)"
+      },
+      {
+        "id": "obj.final_each",
+        "type": "quantity",
+        "name": "게임 후 각 사람의 구슬 수"
+      },
+      {
+        "id": "obj.initial_B",
+        "type": "quantity",
+        "name": "시작 전 (나)의 구슬 수"
+      }
+    ],
+    "relations": [
+      {
+        "id": "rel.game1",
+        "type": "loses_to",
+        "from_id": "obj.B",
+        "to_id": "obj.A"
+      },
+      {
+        "id": "rel.game1_2",
+        "type": "loses_to",
+        "from_id": "obj.B",
+        "to_id": "obj.C"
+      },
+      {
+        "id": "rel.game2",
+        "type": "loses_to",
+        "from_id": "obj.A",
+        "to_id": "obj.B"
+      },
+      {
+        "id": "rel.game2_2",
+        "type": "loses_to",
+        "from_id": "obj.A",
+        "to_id": "obj.C"
+      },
+      {
+        "id": "rel.final_equal",
+        "type": "equal_amount",
+        "from_id": "obj.A",
+        "to_id": "obj.B"
+      },
+      {
+        "id": "rel.final_equal_2",
+        "type": "equal_amount",
+        "from_id": "obj.B",
+        "to_id": "obj.C"
+      }
+    ],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.final_each",
+          "rel.game1",
+          "rel.game1_2",
+          "rel.game2",
+          "rel.game2_2"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.final_equal",
+          "rel.final_equal_2"
+        ]
+      },
+      "plan": {
+        "method": "equation_modeling",
+        "description": "게임별 구슬 이동을 식으로 세우고 최종 A=B=C=240 조건으로 초기 (나)를 구한다."
+      },
+      "execute": {
+        "expected_operations": [
+          "각 게임 후 A, B, C 변화를 식으로 표현한다",
+          "최종 상태 A=B=C=240을 반영한다",
+          "초기 (나)의 값을 계산한다"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "계산한 초기값을 게임 규칙에 대입해 최종 240 검산",
+          "구슬 개수 단위 일치 확인"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "initial_amount",
+      "description": "게임 시작 전 (나)가 가지고 있던 구슬 수"
+    },
+    "value": 420,
+    "unit": "개"
+  }
+}

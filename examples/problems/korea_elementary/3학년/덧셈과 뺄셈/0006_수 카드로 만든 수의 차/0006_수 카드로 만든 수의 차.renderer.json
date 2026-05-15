@@ -1,0 +1,250 @@
+{
+  "problem_id": "0006_수 카드로 만든 수의 차",
+  "view_box": {
+    "width": 1000.0,
+    "height": 600.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.card_0.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 100.0,
+        "y": 250.0,
+        "width": 120.0,
+        "height": 160.0,
+        "fill": "#FFF6D8",
+        "stroke": "#C7B173",
+        "stroke-width": 2.0,
+        "rx": 12.0,
+        "data-semantic-role": "card"
+      },
+      "source_ref": "slot.card_0",
+      "refs": {
+        "layout_slot_id": "slot.card_0"
+      }
+    },
+    {
+      "id": "slot.card_1.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 260.0,
+        "y": 250.0,
+        "width": 120.0,
+        "height": 160.0,
+        "fill": "#FFF6D8",
+        "stroke": "#C7B173",
+        "stroke-width": 2.0,
+        "rx": 12.0,
+        "data-semantic-role": "card"
+      },
+      "source_ref": "slot.card_1",
+      "refs": {
+        "layout_slot_id": "slot.card_1"
+      }
+    },
+    {
+      "id": "slot.card_2.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 420.0,
+        "y": 250.0,
+        "width": 120.0,
+        "height": 160.0,
+        "fill": "#FFF6D8",
+        "stroke": "#C7B173",
+        "stroke-width": 2.0,
+        "rx": 12.0,
+        "data-semantic-role": "card"
+      },
+      "source_ref": "slot.card_2",
+      "refs": {
+        "layout_slot_id": "slot.card_2"
+      }
+    },
+    {
+      "id": "slot.card_3.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 580.0,
+        "y": 250.0,
+        "width": 120.0,
+        "height": 160.0,
+        "fill": "#FFF6D8",
+        "stroke": "#C7B173",
+        "stroke-width": 2.0,
+        "rx": 12.0,
+        "data-semantic-role": "card"
+      },
+      "source_ref": "slot.card_3",
+      "refs": {
+        "layout_slot_id": "slot.card_3"
+      }
+    },
+    {
+      "id": "slot.card_4.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 740.0,
+        "y": 250.0,
+        "width": 120.0,
+        "height": 160.0,
+        "fill": "#FFF6D8",
+        "stroke": "#C7B173",
+        "stroke-width": 2.0,
+        "rx": 12.0,
+        "data-semantic-role": "card"
+      },
+      "source_ref": "slot.card_4",
+      "refs": {
+        "layout_slot_id": "slot.card_4"
+      }
+    },
+    {
+      "id": "slot.t1.text",
+      "type": "text",
+      "attributes": {
+        "x": 64.0,
+        "y": 72.0,
+        "max_width": 872.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 26,
+        "text-anchor": "start"
+      },
+      "source_ref": "slot.t1",
+      "refs": {
+        "layout_slot_id": "slot.t1"
+      },
+      "text": "5장의 수 카드 중에서 3장을 골라 한 번씩만 사용하여 세 자리 수를 만들었습니다."
+    },
+    {
+      "id": "slot.t2.text",
+      "type": "text",
+      "attributes": {
+        "x": 64.0,
+        "y": 128.0,
+        "max_width": 872.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 26,
+        "text-anchor": "start"
+      },
+      "source_ref": "slot.t2",
+      "refs": {
+        "layout_slot_id": "slot.t2"
+      },
+      "text": "세 자리 수 중에서 십의 자리 숫자가 8인 두 번째로 큰 수와 일의 자리 숫자가"
+    },
+    {
+      "id": "slot.t3.text",
+      "type": "text",
+      "attributes": {
+        "x": 64.0,
+        "y": 184.0,
+        "max_width": 872.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 26,
+        "text-anchor": "start"
+      },
+      "source_ref": "slot.t3",
+      "refs": {
+        "layout_slot_id": "slot.t3"
+      },
+      "text": "8인 두 번째로 작은 수의 차는 얼마입니까?"
+    },
+    {
+      "id": "slot.card_text_0.text",
+      "type": "text",
+      "attributes": {
+        "x": 160.0,
+        "y": 350.0,
+        "max_width": 872.0,
+        "fill": "#1F1F1F",
+        "font-family": "Cambria",
+        "font-size": 68,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.card_text_0",
+      "refs": {
+        "layout_slot_id": "slot.card_text_0"
+      },
+      "text": "2"
+    },
+    {
+      "id": "slot.card_text_1.text",
+      "type": "text",
+      "attributes": {
+        "x": 320.0,
+        "y": 350.0,
+        "max_width": 872.0,
+        "fill": "#1F1F1F",
+        "font-family": "Cambria",
+        "font-size": 68,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.card_text_1",
+      "refs": {
+        "layout_slot_id": "slot.card_text_1"
+      },
+      "text": "0"
+    },
+    {
+      "id": "slot.card_text_2.text",
+      "type": "text",
+      "attributes": {
+        "x": 480.0,
+        "y": 350.0,
+        "max_width": 872.0,
+        "fill": "#1F1F1F",
+        "font-family": "Cambria",
+        "font-size": 68,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.card_text_2",
+      "refs": {
+        "layout_slot_id": "slot.card_text_2"
+      },
+      "text": "4"
+    },
+    {
+      "id": "slot.card_text_3.text",
+      "type": "text",
+      "attributes": {
+        "x": 640.0,
+        "y": 350.0,
+        "max_width": 872.0,
+        "fill": "#1F1F1F",
+        "font-family": "Cambria",
+        "font-size": 68,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.card_text_3",
+      "refs": {
+        "layout_slot_id": "slot.card_text_3"
+      },
+      "text": "6"
+    },
+    {
+      "id": "slot.card_text_4.text",
+      "type": "text",
+      "attributes": {
+        "x": 800.0,
+        "y": 350.0,
+        "max_width": 872.0,
+        "fill": "#1F1F1F",
+        "font-family": "Cambria",
+        "font-size": 68,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.card_text_4",
+      "refs": {
+        "layout_slot_id": "slot.card_text_4"
+      },
+      "text": "8"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

@@ -1,0 +1,123 @@
+{
+  "problem_id": "Hpdf_TmwkDSUuJw",
+  "problem_type": "symbol_equation",
+  "metadata": {
+    "title": "같은 모양은 같은 수",
+    "tags": [],
+    "instruction": "●에 알맞은 수를 구하시오.",
+    "question": "같은 모양은 같은 수를 나타냅니다. ●에 알맞은 수를 구하는 문제",
+    "required_layout_ids": [
+      "slot.box"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.square",
+        "type": "symbol",
+        "symbol": "■"
+      },
+      {
+        "id": "obj.triangle",
+        "type": "symbol",
+        "symbol": "▲"
+      },
+      {
+        "id": "obj.circle",
+        "type": "symbol",
+        "symbol": "●"
+      },
+      {
+        "id": "obj.value_700",
+        "type": "number",
+        "value": 700
+      },
+      {
+        "id": "obj.value_425",
+        "type": "number",
+        "value": 425
+      },
+      {
+        "id": "obj.value_136",
+        "type": "number",
+        "value": 136
+      },
+      {
+        "id": "obj.value_610",
+        "type": "number",
+        "value": 610
+      }
+    ],
+    "relations": [
+      {
+        "id": "rel.eq1",
+        "type": "equation",
+        "from_id": "obj.value_700",
+        "to_id": "obj.value_425",
+        "result": "obj.square"
+      },
+      {
+        "id": "rel.eq2",
+        "type": "equation",
+        "from_id": "obj.square",
+        "to_id": "obj.value_136",
+        "result": "obj.triangle"
+      },
+      {
+        "id": "rel.eq3",
+        "type": "equation",
+        "from_id": "obj.triangle",
+        "to_id": "obj.circle",
+        "result": "obj.value_610"
+      }
+    ],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.value_700",
+          "obj.value_425",
+          "obj.value_136",
+          "obj.value_610"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.eq1",
+          "rel.eq2",
+          "rel.eq3"
+        ]
+      },
+      "plan": {
+        "method": "sequential_substitution",
+        "description": "첫 식에서 ■를 구한 뒤, 둘째 식에서 ▲를 구하고, 셋째 식에서 ●를 구한다."
+      },
+      "execute": {
+        "expected_operations": [
+          "subtract",
+          "add",
+          "subtract"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "substitute_back_into_equations",
+          "consistency_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "symbol_value",
+      "description": "●의 값"
+    },
+    "value": 199,
+    "unit": ""
+  }
+}

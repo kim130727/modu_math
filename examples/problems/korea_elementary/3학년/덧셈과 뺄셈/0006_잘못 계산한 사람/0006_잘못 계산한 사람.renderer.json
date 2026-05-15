@@ -1,0 +1,137 @@
+{
+  "problem_id": "0006_잘못 계산한 사람",
+  "view_box": {
+    "width": 767.0,
+    "height": 276.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.bg.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 767.0,
+        "height": 276.0,
+        "fill": "none",
+        "stroke": "none",
+        "stroke-width": 0.0
+      },
+      "source_ref": "slot.bg",
+      "refs": {
+        "layout_slot_id": "slot.bg"
+      }
+    },
+    {
+      "id": "slot.bubble.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 14.0,
+        "y": 98.0,
+        "width": 740.0,
+        "height": 116.0,
+        "fill": "none",
+        "stroke": "#666666",
+        "stroke-width": 1.5,
+        "rx": 10.0,
+        "ry": 10.0
+      },
+      "source_ref": "slot.bubble",
+      "refs": {
+        "layout_slot_id": "slot.bubble"
+      }
+    },
+    {
+      "id": "slot.answer_text.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 400.0,
+        "y": 236.0,
+        "width": 350.0,
+        "height": 30.0,
+        "fill": "none",
+        "stroke": "none",
+        "stroke-width": 0.0,
+        "data-semantic-role": "answer_anchor"
+      },
+      "source_ref": "slot.answer_text",
+      "refs": {
+        "layout_slot_id": "slot.answer_text"
+      }
+    },
+    {
+      "id": "slot.i1.text",
+      "type": "text",
+      "attributes": {
+        "x": 6.0,
+        "y": 34.0,
+        "max_width": 639.0,
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 17,
+        "text-anchor": "start"
+      },
+      "source_ref": "slot.i1",
+      "refs": {
+        "layout_slot_id": "slot.i1"
+      },
+      "text": "지은이와 건우가 875-328을 계산한 방법을 대화로 나타낸 것입니다. 잘못 계산한"
+    },
+    {
+      "id": "slot.i2.text",
+      "type": "text",
+      "attributes": {
+        "x": 6.0,
+        "y": 62.0,
+        "max_width": 639.0,
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 17,
+        "text-anchor": "start"
+      },
+      "source_ref": "slot.i2",
+      "refs": {
+        "layout_slot_id": "slot.i2"
+      },
+      "text": "사람과 이유를 쓰세요."
+    },
+    {
+      "id": "slot.jy.text",
+      "type": "text",
+      "attributes": {
+        "x": 24.0,
+        "y": 132.0,
+        "max_width": 639.0,
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 17,
+        "text-anchor": "start"
+      },
+      "source_ref": "slot.jy",
+      "refs": {
+        "layout_slot_id": "slot.jy"
+      },
+      "text": "• 지은: 800에서 300을 빼고, 75에서 28을 뺀 다음 두 결과를 더했어."
+    },
+    {
+      "id": "slot.gw.text",
+      "type": "text",
+      "attributes": {
+        "x": 24.0,
+        "y": 174.0,
+        "max_width": 639.0,
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 17,
+        "text-anchor": "start"
+      },
+      "source_ref": "slot.gw",
+      "refs": {
+        "layout_slot_id": "slot.gw"
+      },
+      "text": "• 건우: 800에서 300을 빼고 75에서 30을 뺀 다음 2를 빼서 결과를 더했어."
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

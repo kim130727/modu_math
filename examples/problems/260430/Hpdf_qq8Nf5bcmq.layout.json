@@ -1,0 +1,224 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "Hpdf_qq8Nf5bcmq",
+  "title": "수 카드 만들기",
+  "canvas": {
+    "width": 558,
+    "height": 282,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q1",
+        "slot.q2",
+        "slot.q3",
+        "slot.q4",
+        "slot.card.1.text",
+        "slot.card.2.text",
+        "slot.card.3.text",
+        "slot.card.4.text"
+      ]
+    },
+    {
+      "id": "region.cards",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.card.1",
+        "slot.card.2",
+        "slot.card.3",
+        "slot.card.4"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "서로 다른 4장의 수 카드 중에서 3장을 골라 한",
+        "style_role": "question",
+        "x": 12.0,
+        "y": 38.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "번씩만 사용하여 세 자리 수를 만들려고 합니",
+        "style_role": "question",
+        "x": 12.0,
+        "y": 76.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "다. 만들 수 있는 가장 큰 수가 가장 작은 수보",
+        "style_role": "question",
+        "x": 12.0,
+        "y": 114.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "다 618만큼 더 크다면 ▲는 어떤 숫자입니까?",
+        "style_role": "question",
+        "x": 12.0,
+        "y": 152.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.card.1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 145.0,
+        "y": 221.0,
+        "width": 44.0,
+        "height": 49.0,
+        "stroke": "#6E6E6E",
+        "stroke_width": 1.6,
+        "rx": 6.0,
+        "ry": 6.0,
+        "fill": "#D9D9D9"
+      }
+    },
+    {
+      "id": "slot.card.1.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "6",
+        "style_role": "label",
+        "x": 167.0,
+        "y": 253.0,
+        "font_size": 28,
+        "anchor": "middle"
+      }
+    },
+    {
+      "id": "slot.card.2",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 220.0,
+        "y": 221.0,
+        "width": 44.0,
+        "height": 49.0,
+        "stroke": "#6E6E6E",
+        "stroke_width": 1.6,
+        "rx": 6.0,
+        "ry": 6.0,
+        "fill": "#D9D9D9"
+      }
+    },
+    {
+      "id": "slot.card.2.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "2",
+        "style_role": "label",
+        "x": 242.0,
+        "y": 253.0,
+        "font_size": 28,
+        "anchor": "middle"
+      }
+    },
+    {
+      "id": "slot.card.3",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 295.0,
+        "y": 221.0,
+        "width": 44.0,
+        "height": 49.0,
+        "stroke": "#6E6E6E",
+        "stroke_width": 1.6,
+        "rx": 6.0,
+        "ry": 6.0,
+        "fill": "#D9D9D9"
+      }
+    },
+    {
+      "id": "slot.card.3.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "▲",
+        "style_role": "label",
+        "x": 317.0,
+        "y": 253.0,
+        "font_size": 28,
+        "anchor": "middle"
+      }
+    },
+    {
+      "id": "slot.card.4",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 370.0,
+        "y": 221.0,
+        "width": 44.0,
+        "height": 49.0,
+        "stroke": "#6E6E6E",
+        "stroke_width": 1.6,
+        "rx": 6.0,
+        "ry": 6.0,
+        "fill": "#D9D9D9"
+      }
+    },
+    {
+      "id": "slot.card.4.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "8",
+        "style_role": "label",
+        "x": 392.0,
+        "y": 253.0,
+        "font_size": 28,
+        "anchor": "middle"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q1",
+    "slot.q2",
+    "slot.q3",
+    "slot.q4",
+    "slot.card.1.text",
+    "slot.card.2.text",
+    "slot.card.3.text",
+    "slot.card.4.text",
+    "region.cards",
+    "slot.card.1",
+    "slot.card.2",
+    "slot.card.3",
+    "slot.card.4"
+  ]
+}

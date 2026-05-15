@@ -1,0 +1,336 @@
+{
+  "problem_id": "2403",
+  "view_box": {
+    "width": 1400.0,
+    "height": 900.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.diagram_box.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 40.0,
+        "y": 200.0,
+        "width": 760.0,
+        "height": 620.0,
+        "fill": "none",
+        "stroke": "#D1D5DB",
+        "stroke-width": 1.0
+      },
+      "source_ref": "slot.diagram_box",
+      "refs": {
+        "layout_slot_id": "slot.diagram_box"
+      }
+    },
+    {
+      "id": "slot.geom_ab.line",
+      "type": "line",
+      "attributes": {
+        "x1": 410.6,
+        "y1": 250.0,
+        "x2": 140.0,
+        "y2": 700.0,
+        "stroke": "#1976D2",
+        "stroke-width": 4.0
+      },
+      "source_ref": "slot.geom_ab",
+      "refs": {
+        "layout_slot_id": "slot.geom_ab"
+      }
+    },
+    {
+      "id": "slot.geom_ac.line",
+      "type": "line",
+      "attributes": {
+        "x1": 410.6,
+        "y1": 250.0,
+        "x2": 680.0,
+        "y2": 700.0,
+        "stroke": "#1976D2",
+        "stroke-width": 4.0
+      },
+      "source_ref": "slot.geom_ac",
+      "refs": {
+        "layout_slot_id": "slot.geom_ac"
+      }
+    },
+    {
+      "id": "slot.geom_bc.line",
+      "type": "line",
+      "attributes": {
+        "x1": 140.0,
+        "y1": 700.0,
+        "x2": 680.0,
+        "y2": 700.0,
+        "stroke": "#1976D2",
+        "stroke-width": 4.0
+      },
+      "source_ref": "slot.geom_bc",
+      "refs": {
+        "layout_slot_id": "slot.geom_bc"
+      }
+    },
+    {
+      "id": "slot.geom_ad.line",
+      "type": "line",
+      "attributes": {
+        "x1": 410.6,
+        "y1": 250.0,
+        "x2": 406.0,
+        "y2": 700.0,
+        "stroke": "#1976D2",
+        "stroke-width": 4.0
+      },
+      "source_ref": "slot.geom_ad",
+      "refs": {
+        "layout_slot_id": "slot.geom_ad"
+      }
+    },
+    {
+      "id": "slot.geom_perp_1.line",
+      "type": "line",
+      "attributes": {
+        "x1": 406.4,
+        "y1": 666.0,
+        "x2": 440.4,
+        "y2": 666.0,
+        "stroke": "#111111",
+        "stroke-width": 2.4
+      },
+      "source_ref": "slot.geom_perp_1",
+      "refs": {
+        "layout_slot_id": "slot.geom_perp_1"
+      }
+    },
+    {
+      "id": "slot.geom_perp_2.line",
+      "type": "line",
+      "attributes": {
+        "x1": 440.0,
+        "y1": 700.0,
+        "x2": 440.4,
+        "y2": 666.0,
+        "stroke": "#111111",
+        "stroke-width": 2.4
+      },
+      "source_ref": "slot.geom_perp_2",
+      "refs": {
+        "layout_slot_id": "slot.geom_perp_2"
+      }
+    },
+    {
+      "id": "slot.geom_tick_1.line",
+      "type": "line",
+      "attributes": {
+        "x1": 269.4,
+        "y1": 508.2,
+        "x2": 248.8,
+        "y2": 495.8,
+        "stroke": "#E91E63",
+        "stroke-width": 3.0
+      },
+      "source_ref": "slot.geom_tick_1",
+      "refs": {
+        "layout_slot_id": "slot.geom_tick_1"
+      }
+    },
+    {
+      "id": "slot.geom_tick_2.line",
+      "type": "line",
+      "attributes": {
+        "x1": 571.8,
+        "y1": 495.8,
+        "x2": 551.2,
+        "y2": 508.2,
+        "stroke": "#E91E63",
+        "stroke-width": 3.0
+      },
+      "source_ref": "slot.geom_tick_2",
+      "refs": {
+        "layout_slot_id": "slot.geom_tick_2"
+      }
+    },
+    {
+      "id": "slot.problem_text.text",
+      "type": "text",
+      "attributes": {
+        "x": 40.0,
+        "y": 90.0,
+        "max_width": 1272.0,
+        "fill": "#111111",
+        "font-family": "sans-serif",
+        "font-size": 48,
+        "text-anchor": "start"
+      },
+      "source_ref": "slot.problem_text",
+      "refs": {
+        "layout_slot_id": "slot.problem_text"
+      },
+      "text": "x를 구하시오. 소수 첫째 자리까지 반올림하시오."
+    },
+    {
+      "id": "slot.choice_1.text",
+      "type": "text",
+      "attributes": {
+        "x": 860.0,
+        "y": 320.0,
+        "max_width": 1272.0,
+        "fill": "#111111",
+        "font-family": "sans-serif",
+        "font-size": 48,
+        "text-anchor": "start"
+      },
+      "source_ref": "slot.choice_1",
+      "refs": {
+        "layout_slot_id": "slot.choice_1"
+      },
+      "text": "1. 18.8"
+    },
+    {
+      "id": "slot.choice_2.text",
+      "type": "text",
+      "attributes": {
+        "x": 860.0,
+        "y": 390.0,
+        "max_width": 1272.0,
+        "fill": "#111111",
+        "font-family": "sans-serif",
+        "font-size": 48,
+        "text-anchor": "start"
+      },
+      "source_ref": "slot.choice_2",
+      "refs": {
+        "layout_slot_id": "slot.choice_2"
+      },
+      "text": "2. 23.2"
+    },
+    {
+      "id": "slot.choice_3.text",
+      "type": "text",
+      "attributes": {
+        "x": 860.0,
+        "y": 460.0,
+        "max_width": 1272.0,
+        "fill": "#111111",
+        "font-family": "sans-serif",
+        "font-size": 48,
+        "text-anchor": "start"
+      },
+      "source_ref": "slot.choice_3",
+      "refs": {
+        "layout_slot_id": "slot.choice_3"
+      },
+      "text": "3. 25.9"
+    },
+    {
+      "id": "slot.choice_4.text",
+      "type": "text",
+      "attributes": {
+        "x": 860.0,
+        "y": 530.0,
+        "max_width": 1272.0,
+        "fill": "#111111",
+        "font-family": "sans-serif",
+        "font-size": 48,
+        "text-anchor": "start"
+      },
+      "source_ref": "slot.choice_4",
+      "refs": {
+        "layout_slot_id": "slot.choice_4"
+      },
+      "text": "4. 44.0"
+    },
+    {
+      "id": "slot.answer_overlay.text",
+      "type": "text",
+      "attributes": {
+        "x": 1376.0,
+        "y": 876.0,
+        "max_width": 1272.0,
+        "fill": "#D32222",
+        "font-family": "Malgun Gothic",
+        "font-size": 56,
+        "text-anchor": "end"
+      },
+      "source_ref": "slot.answer_overlay",
+      "refs": {
+        "layout_slot_id": "slot.answer_overlay"
+      },
+      "text": "정답: A (18.8)"
+    },
+    {
+      "id": "slot.geom_len_left.text",
+      "type": "text",
+      "attributes": {
+        "x": 227.3,
+        "y": 465.0,
+        "max_width": 1272.0,
+        "fill": "#111111",
+        "font-family": "Malgun Gothic",
+        "font-size": 48,
+        "text-anchor": "start"
+      },
+      "source_ref": "slot.geom_len_left",
+      "refs": {
+        "layout_slot_id": "slot.geom_len_left"
+      },
+      "text": "32"
+    },
+    {
+      "id": "slot.geom_len_x.text",
+      "type": "text",
+      "attributes": {
+        "x": 255.0,
+        "y": 758.0,
+        "max_width": 1272.0,
+        "fill": "#111111",
+        "font-family": "Malgun Gothic",
+        "font-size": 48,
+        "text-anchor": "start"
+      },
+      "source_ref": "slot.geom_len_x",
+      "refs": {
+        "layout_slot_id": "slot.geom_len_x"
+      },
+      "text": "x"
+    },
+    {
+      "id": "slot.geom_len_y.text",
+      "type": "text",
+      "attributes": {
+        "x": 422.3,
+        "y": 483.0,
+        "max_width": 1272.0,
+        "fill": "#111111",
+        "font-family": "Malgun Gothic",
+        "font-size": 48,
+        "text-anchor": "start"
+      },
+      "source_ref": "slot.geom_len_y",
+      "refs": {
+        "layout_slot_id": "slot.geom_len_y"
+      },
+      "text": "y"
+    },
+    {
+      "id": "slot.geom_angle_54.text",
+      "type": "text",
+      "attributes": {
+        "x": 594.0,
+        "y": 682.0,
+        "max_width": 1272.0,
+        "fill": "#111111",
+        "font-family": "Malgun Gothic",
+        "font-size": 48,
+        "text-anchor": "start"
+      },
+      "source_ref": "slot.geom_angle_54",
+      "refs": {
+        "layout_slot_id": "slot.geom_angle_54"
+      },
+      "text": "54°"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

@@ -1,0 +1,697 @@
+{
+  "problem_id": "2407",
+  "view_box": {
+    "width": 1466.0,
+    "height": 1363.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.problem_text.text",
+      "type": "text",
+      "attributes": {
+        "x": 40.0,
+        "y": 80.0,
+        "max_width": 1338.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 48,
+        "text-anchor": "start"
+      },
+      "source_ref": "slot.problem_text",
+      "refs": {
+        "layout_slot_id": "slot.problem_text"
+      },
+      "text": "x의 값을 구하시오."
+    },
+    {
+      "id": "slot.choice_1.text",
+      "type": "text",
+      "attributes": {
+        "x": 860.0,
+        "y": 320.0,
+        "max_width": 1338.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 48,
+        "text-anchor": "start"
+      },
+      "source_ref": "slot.choice_1",
+      "refs": {
+        "layout_slot_id": "slot.choice_1"
+      },
+      "text": "1. 56 / 2. 68 / 3. 74 / 4. 84"
+    },
+    {
+      "id": "slot.pt_a.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 385.7,
+        "cy": 1101.6,
+        "r": 4.2,
+        "stroke": "#111111",
+        "stroke-width": 1.2,
+        "fill": "#111111"
+      },
+      "source_ref": "slot.pt_a",
+      "refs": {
+        "layout_slot_id": "slot.pt_a"
+      }
+    },
+    {
+      "id": "slot.pt_b.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 476.8,
+        "cy": 537.7,
+        "r": 4.2,
+        "stroke": "#111111",
+        "stroke-width": 1.2,
+        "fill": "#111111"
+      },
+      "source_ref": "slot.pt_b",
+      "refs": {
+        "layout_slot_id": "slot.pt_b"
+      }
+    },
+    {
+      "id": "slot.pt_c.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 221.0,
+        "cy": 688.8,
+        "r": 4.2,
+        "stroke": "#111111",
+        "stroke-width": 1.2,
+        "fill": "#111111"
+      },
+      "source_ref": "slot.pt_c",
+      "refs": {
+        "layout_slot_id": "slot.pt_c"
+      }
+    },
+    {
+      "id": "slot.pt_d.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 709.4,
+        "cy": 696.6,
+        "r": 4.2,
+        "stroke": "#111111",
+        "stroke-width": 1.2,
+        "fill": "#111111"
+      },
+      "source_ref": "slot.pt_d",
+      "refs": {
+        "layout_slot_id": "slot.pt_d"
+      }
+    },
+    {
+      "id": "slot.pt_e.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 806.3,
+        "cy": 938.8,
+        "r": 4.2,
+        "stroke": "#111111",
+        "stroke-width": 1.2,
+        "fill": "#111111"
+      },
+      "source_ref": "slot.pt_e",
+      "refs": {
+        "layout_slot_id": "slot.pt_e"
+      }
+    },
+    {
+      "id": "slot.pt_f.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 304.3,
+        "cy": 421.4,
+        "r": 4.2,
+        "stroke": "#111111",
+        "stroke-width": 1.2,
+        "fill": "#111111"
+      },
+      "source_ref": "slot.pt_f",
+      "refs": {
+        "layout_slot_id": "slot.pt_f"
+      }
+    },
+    {
+      "id": "slot.pt_g.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 612.5,
+        "cy": 940.8,
+        "r": 4.2,
+        "stroke": "#111111",
+        "stroke-width": 1.2,
+        "fill": "#111111"
+      },
+      "source_ref": "slot.pt_g",
+      "refs": {
+        "layout_slot_id": "slot.pt_g"
+      }
+    },
+    {
+      "id": "slot.pt_h.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 319.8,
+        "cy": 936.9,
+        "r": 4.2,
+        "stroke": "#111111",
+        "stroke-width": 1.2,
+        "fill": "#111111"
+      },
+      "source_ref": "slot.pt_h",
+      "refs": {
+        "layout_slot_id": "slot.pt_h"
+      }
+    },
+    {
+      "id": "slot.pt_i.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 64.0,
+        "cy": 785.7,
+        "r": 4.2,
+        "stroke": "#111111",
+        "stroke-width": 1.2,
+        "fill": "#111111"
+      },
+      "source_ref": "slot.pt_i",
+      "refs": {
+        "layout_slot_id": "slot.pt_i"
+      }
+    },
+    {
+      "id": "slot.pt_j.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 773.3,
+        "cy": 529.9,
+        "r": 4.2,
+        "stroke": "#111111",
+        "stroke-width": 1.2,
+        "fill": "#111111"
+      },
+      "source_ref": "slot.pt_j",
+      "refs": {
+        "layout_slot_id": "slot.pt_j"
+      }
+    },
+    {
+      "id": "slot.line_ac.line",
+      "type": "line",
+      "attributes": {
+        "x1": 221.0,
+        "y1": 688.8,
+        "x2": 385.7,
+        "y2": 1101.6,
+        "stroke": "#0B72B9",
+        "stroke-width": 4.0
+      },
+      "source_ref": "slot.line_ac",
+      "refs": {
+        "layout_slot_id": "slot.line_ac"
+      }
+    },
+    {
+      "id": "slot.line_ac_head_l.line",
+      "type": "line",
+      "attributes": {
+        "x1": 385.7,
+        "y1": 1101.6,
+        "x2": 370.3,
+        "y2": 1081.9,
+        "stroke": "#0B72B9",
+        "stroke-width": 4.0
+      },
+      "source_ref": "slot.line_ac_head_l",
+      "refs": {
+        "layout_slot_id": "slot.line_ac_head_l"
+      }
+    },
+    {
+      "id": "slot.line_ac_head_r.line",
+      "type": "line",
+      "attributes": {
+        "x1": 385.7,
+        "y1": 1101.6,
+        "x2": 383.3,
+        "y2": 1076.7,
+        "stroke": "#0B72B9",
+        "stroke-width": 4.0
+      },
+      "source_ref": "slot.line_ac_head_r",
+      "refs": {
+        "layout_slot_id": "slot.line_ac_head_r"
+      }
+    },
+    {
+      "id": "slot.line_he.line",
+      "type": "line",
+      "attributes": {
+        "x1": 319.8,
+        "y1": 936.9,
+        "x2": 806.3,
+        "y2": 938.8,
+        "stroke": "#0B72B9",
+        "stroke-width": 4.0
+      },
+      "source_ref": "slot.line_he",
+      "refs": {
+        "layout_slot_id": "slot.line_he"
+      }
+    },
+    {
+      "id": "slot.line_he_head_l.line",
+      "type": "line",
+      "attributes": {
+        "x1": 806.3,
+        "y1": 938.8,
+        "x2": 782.3,
+        "y2": 945.7,
+        "stroke": "#0B72B9",
+        "stroke-width": 4.0
+      },
+      "source_ref": "slot.line_he_head_l",
+      "refs": {
+        "layout_slot_id": "slot.line_he_head_l"
+      }
+    },
+    {
+      "id": "slot.line_he_head_r.line",
+      "type": "line",
+      "attributes": {
+        "x1": 806.3,
+        "y1": 938.8,
+        "x2": 782.3,
+        "y2": 931.7,
+        "stroke": "#0B72B9",
+        "stroke-width": 4.0
+      },
+      "source_ref": "slot.line_he_head_r",
+      "refs": {
+        "layout_slot_id": "slot.line_he_head_r"
+      }
+    },
+    {
+      "id": "slot.line_bi.line",
+      "type": "line",
+      "attributes": {
+        "x1": 476.8,
+        "y1": 537.7,
+        "x2": 64.0,
+        "y2": 785.7,
+        "stroke": "#0B72B9",
+        "stroke-width": 4.0
+      },
+      "source_ref": "slot.line_bi",
+      "refs": {
+        "layout_slot_id": "slot.line_bi"
+      }
+    },
+    {
+      "id": "slot.line_bi_head_l.line",
+      "type": "line",
+      "attributes": {
+        "x1": 64.0,
+        "y1": 785.7,
+        "x2": 81.0,
+        "y2": 767.4,
+        "stroke": "#0B72B9",
+        "stroke-width": 4.0
+      },
+      "source_ref": "slot.line_bi_head_l",
+      "refs": {
+        "layout_slot_id": "slot.line_bi_head_l"
+      }
+    },
+    {
+      "id": "slot.line_bi_head_r.line",
+      "type": "line",
+      "attributes": {
+        "x1": 64.0,
+        "y1": 785.7,
+        "x2": 88.2,
+        "y2": 779.4,
+        "stroke": "#0B72B9",
+        "stroke-width": 4.0
+      },
+      "source_ref": "slot.line_bi_head_r",
+      "refs": {
+        "layout_slot_id": "slot.line_bi_head_r"
+      }
+    },
+    {
+      "id": "slot.line_df.line",
+      "type": "line",
+      "attributes": {
+        "x1": 709.4,
+        "y1": 696.6,
+        "x2": 304.3,
+        "y2": 421.4,
+        "stroke": "#0B72B9",
+        "stroke-width": 4.0
+      },
+      "source_ref": "slot.line_df",
+      "refs": {
+        "layout_slot_id": "slot.line_df"
+      }
+    },
+    {
+      "id": "slot.line_df_head_l.line",
+      "type": "line",
+      "attributes": {
+        "x1": 304.3,
+        "y1": 421.4,
+        "x2": 328.1,
+        "y2": 429.1,
+        "stroke": "#0B72B9",
+        "stroke-width": 4.0
+      },
+      "source_ref": "slot.line_df_head_l",
+      "refs": {
+        "layout_slot_id": "slot.line_df_head_l"
+      }
+    },
+    {
+      "id": "slot.line_df_head_r.line",
+      "type": "line",
+      "attributes": {
+        "x1": 304.3,
+        "y1": 421.4,
+        "x2": 320.2,
+        "y2": 440.6,
+        "stroke": "#0B72B9",
+        "stroke-width": 4.0
+      },
+      "source_ref": "slot.line_df_head_r",
+      "refs": {
+        "layout_slot_id": "slot.line_df_head_r"
+      }
+    },
+    {
+      "id": "slot.line_gj.line",
+      "type": "line",
+      "attributes": {
+        "x1": 612.5,
+        "y1": 940.8,
+        "x2": 773.3,
+        "y2": 529.9,
+        "stroke": "#0B72B9",
+        "stroke-width": 4.0
+      },
+      "source_ref": "slot.line_gj",
+      "refs": {
+        "layout_slot_id": "slot.line_gj"
+      }
+    },
+    {
+      "id": "slot.line_gj_head_l.line",
+      "type": "line",
+      "attributes": {
+        "x1": 773.3,
+        "y1": 529.9,
+        "x2": 771.1,
+        "y2": 554.8,
+        "stroke": "#0B72B9",
+        "stroke-width": 4.0
+      },
+      "source_ref": "slot.line_gj_head_l",
+      "refs": {
+        "layout_slot_id": "slot.line_gj_head_l"
+      }
+    },
+    {
+      "id": "slot.line_gj_head_r.line",
+      "type": "line",
+      "attributes": {
+        "x1": 773.3,
+        "y1": 529.9,
+        "x2": 758.1,
+        "y2": 549.7,
+        "stroke": "#0B72B9",
+        "stroke-width": 4.0
+      },
+      "source_ref": "slot.line_gj_head_r",
+      "refs": {
+        "layout_slot_id": "slot.line_gj_head_r"
+      }
+    },
+    {
+      "id": "slot.line_ah.line",
+      "type": "line",
+      "attributes": {
+        "x1": 385.7,
+        "y1": 1101.6,
+        "x2": 319.8,
+        "y2": 936.9,
+        "stroke": "#0B72B9",
+        "stroke-width": 4.0
+      },
+      "source_ref": "slot.line_ah",
+      "refs": {
+        "layout_slot_id": "slot.line_ah"
+      }
+    },
+    {
+      "id": "slot.line_bd.line",
+      "type": "line",
+      "attributes": {
+        "x1": 476.8,
+        "y1": 537.7,
+        "x2": 709.4,
+        "y2": 696.6,
+        "stroke": "#0B72B9",
+        "stroke-width": 4.0
+      },
+      "source_ref": "slot.line_bd",
+      "refs": {
+        "layout_slot_id": "slot.line_bd"
+      }
+    },
+    {
+      "id": "slot.line_bf.line",
+      "type": "line",
+      "attributes": {
+        "x1": 476.8,
+        "y1": 537.7,
+        "x2": 304.3,
+        "y2": 421.4,
+        "stroke": "#0B72B9",
+        "stroke-width": 4.0
+      },
+      "source_ref": "slot.line_bf",
+      "refs": {
+        "layout_slot_id": "slot.line_bf"
+      }
+    },
+    {
+      "id": "slot.line_cb.line",
+      "type": "line",
+      "attributes": {
+        "x1": 221.0,
+        "y1": 688.8,
+        "x2": 476.8,
+        "y2": 537.7,
+        "stroke": "#0B72B9",
+        "stroke-width": 4.0
+      },
+      "source_ref": "slot.line_cb",
+      "refs": {
+        "layout_slot_id": "slot.line_cb"
+      }
+    },
+    {
+      "id": "slot.line_ch.line",
+      "type": "line",
+      "attributes": {
+        "x1": 221.0,
+        "y1": 688.8,
+        "x2": 319.8,
+        "y2": 936.9,
+        "stroke": "#0B72B9",
+        "stroke-width": 4.0
+      },
+      "source_ref": "slot.line_ch",
+      "refs": {
+        "layout_slot_id": "slot.line_ch"
+      }
+    },
+    {
+      "id": "slot.line_ci.line",
+      "type": "line",
+      "attributes": {
+        "x1": 221.0,
+        "y1": 688.8,
+        "x2": 64.0,
+        "y2": 785.7,
+        "stroke": "#0B72B9",
+        "stroke-width": 4.0
+      },
+      "source_ref": "slot.line_ci",
+      "refs": {
+        "layout_slot_id": "slot.line_ci"
+      }
+    },
+    {
+      "id": "slot.line_dg.line",
+      "type": "line",
+      "attributes": {
+        "x1": 709.4,
+        "y1": 696.6,
+        "x2": 612.5,
+        "y2": 940.8,
+        "stroke": "#0B72B9",
+        "stroke-width": 4.0
+      },
+      "source_ref": "slot.line_dg",
+      "refs": {
+        "layout_slot_id": "slot.line_dg"
+      }
+    },
+    {
+      "id": "slot.line_dj.line",
+      "type": "line",
+      "attributes": {
+        "x1": 709.4,
+        "y1": 696.6,
+        "x2": 773.3,
+        "y2": 529.9,
+        "stroke": "#0B72B9",
+        "stroke-width": 4.0
+      },
+      "source_ref": "slot.line_dj",
+      "refs": {
+        "layout_slot_id": "slot.line_dj"
+      }
+    },
+    {
+      "id": "slot.line_ge.line",
+      "type": "line",
+      "attributes": {
+        "x1": 612.5,
+        "y1": 940.8,
+        "x2": 806.3,
+        "y2": 938.8,
+        "stroke": "#0B72B9",
+        "stroke-width": 4.0
+      },
+      "source_ref": "slot.line_ge",
+      "refs": {
+        "layout_slot_id": "slot.line_ge"
+      }
+    },
+    {
+      "id": "slot.line_hg.line",
+      "type": "line",
+      "attributes": {
+        "x1": 319.8,
+        "y1": 936.9,
+        "x2": 612.5,
+        "y2": 940.8,
+        "stroke": "#0B72B9",
+        "stroke-width": 4.0
+      },
+      "source_ref": "slot.line_hg",
+      "refs": {
+        "layout_slot_id": "slot.line_hg"
+      }
+    },
+    {
+      "id": "slot.angle_x.text",
+      "type": "text",
+      "attributes": {
+        "x": 155.0,
+        "y": 760.0,
+        "max_width": 1338.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 48,
+        "text-anchor": "start"
+      },
+      "source_ref": "slot.angle_x",
+      "refs": {
+        "layout_slot_id": "slot.angle_x"
+      },
+      "text": "X°"
+    },
+    {
+      "id": "slot.angle_xm6.text",
+      "type": "text",
+      "attributes": {
+        "x": 250.0,
+        "y": 975.0,
+        "max_width": 1338.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 48,
+        "text-anchor": "start"
+      },
+      "source_ref": "slot.angle_xm6",
+      "refs": {
+        "layout_slot_id": "slot.angle_xm6"
+      },
+      "text": "(X-6)°"
+    },
+    {
+      "id": "slot.angle_xp10.text",
+      "type": "text",
+      "attributes": {
+        "x": 655.0,
+        "y": 1000.0,
+        "max_width": 1338.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 48,
+        "text-anchor": "start"
+      },
+      "source_ref": "slot.angle_xp10",
+      "refs": {
+        "layout_slot_id": "slot.angle_xp10"
+      },
+      "text": "(X+10)°"
+    },
+    {
+      "id": "slot.angle_56.text",
+      "type": "text",
+      "attributes": {
+        "x": 760.0,
+        "y": 620.0,
+        "max_width": 1338.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 48,
+        "text-anchor": "start"
+      },
+      "source_ref": "slot.angle_56",
+      "refs": {
+        "layout_slot_id": "slot.angle_56"
+      },
+      "text": "56°"
+    },
+    {
+      "id": "slot.angle_xp4.text",
+      "type": "text",
+      "attributes": {
+        "x": 340.0,
+        "y": 505.0,
+        "max_width": 1338.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 48,
+        "text-anchor": "start"
+      },
+      "source_ref": "slot.angle_xp4",
+      "refs": {
+        "layout_slot_id": "slot.angle_xp4"
+      },
+      "text": "(X+4)°"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

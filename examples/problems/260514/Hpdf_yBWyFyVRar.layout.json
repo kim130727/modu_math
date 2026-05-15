@@ -1,0 +1,146 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "Hpdf_yBWyFyVRar",
+  "title": "직사각형을 정사각형으로 나누기",
+  "canvas": {
+    "width": 860,
+    "height": 600,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.rect",
+        "slot.arc.top",
+        "slot.arc.right",
+        "slot.q1",
+        "slot.q2",
+        "slot.q3",
+        "slot.len.top",
+        "slot.len.right"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "다음 직사각형을 한 변이 9 cm인 정사각형 모",
+        "style_role": "question",
+        "x": 22.0,
+        "y": 40.0,
+        "font_size": 45
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "양으로 될 수 있는 대로 많이 나누려고 합니다.",
+        "style_role": "question",
+        "x": 22.0,
+        "y": 100.0,
+        "font_size": 45
+      }
+    },
+    {
+      "id": "slot.q3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "정사각형은 몇 개로 나누어집니까?",
+        "style_role": "question",
+        "x": 22.0,
+        "y": 160.0,
+        "font_size": 45
+      }
+    },
+    {
+      "id": "slot.rect",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 150.0,
+        "y": 300.0,
+        "width": 540.0,
+        "height": 270.0,
+        "stroke": "#333333",
+        "stroke_width": 2.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.len.top",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "54 cm",
+        "style_role": "label",
+        "x": 370.0,
+        "y": 260.0,
+        "font_size": 35
+      }
+    },
+    {
+      "id": "slot.len.right",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "27 cm",
+        "style_role": "label",
+        "x": 705.0,
+        "y": 435.0,
+        "font_size": 35
+      }
+    },
+    {
+      "id": "slot.arc.top",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 150 295 C 240 245, 450 245, 690 295",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#666666",
+        "stroke_width": 1.5,
+        "stroke_dasharray": "8 6",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.arc.right",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 695 300 C 745 335, 745 535, 695 570",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#666666",
+        "stroke_width": 1.5,
+        "stroke_dasharray": "8 6",
+        "fill": "none"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.rect",
+    "slot.arc.top",
+    "slot.arc.right",
+    "slot.q1",
+    "slot.q2",
+    "slot.q3",
+    "slot.len.top",
+    "slot.len.right"
+  ]
+}

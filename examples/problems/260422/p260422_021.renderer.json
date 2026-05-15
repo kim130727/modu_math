@@ -1,0 +1,149 @@
+{
+  "problem_id": "msedge_x2oCeterFn",
+  "view_box": {
+    "width": 300.0,
+    "height": 150.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.text.1.text",
+      "type": "text",
+      "attributes": {
+        "x": 20.0,
+        "y": 85.0,
+        "max_width": 200.0,
+        "fill": "#000000",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 35
+      },
+      "source_ref": "slot.text.1",
+      "refs": {
+        "layout_slot_id": "slot.text.1"
+      },
+      "text": "1"
+    },
+    {
+      "id": "slot.frac1.num.text",
+      "type": "text",
+      "attributes": {
+        "x": 60.0,
+        "y": 63.0,
+        "max_width": 200.0,
+        "fill": "#000000",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 35,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.frac1.num",
+      "refs": {
+        "layout_slot_id": "slot.frac1.num"
+      },
+      "text": "1"
+    },
+    {
+      "id": "slot.frac1.bar.line",
+      "type": "line",
+      "attributes": {
+        "x1": 40.0,
+        "y1": 75.0,
+        "x2": 80.0,
+        "y2": 75.0,
+        "stroke": "#000000",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.frac1.bar",
+      "refs": {
+        "layout_slot_id": "slot.frac1.bar"
+      }
+    },
+    {
+      "id": "slot.frac1.den.text",
+      "type": "text",
+      "attributes": {
+        "x": 60.0,
+        "y": 107.0,
+        "max_width": 200.0,
+        "fill": "#000000",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 35,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.frac1.den",
+      "refs": {
+        "layout_slot_id": "slot.frac1.den"
+      },
+      "text": "4"
+    },
+    {
+      "id": "slot.text.div.text",
+      "type": "text",
+      "attributes": {
+        "x": 105.0,
+        "y": 85.0,
+        "max_width": 200.0,
+        "fill": "#000000",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 35
+      },
+      "source_ref": "slot.text.div",
+      "refs": {
+        "layout_slot_id": "slot.text.div"
+      },
+      "text": "÷"
+    },
+    {
+      "id": "slot.frac2.num.text",
+      "type": "text",
+      "attributes": {
+        "x": 175.0,
+        "y": 63.0,
+        "max_width": 200.0,
+        "fill": "#000000",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 35,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.frac2.num",
+      "refs": {
+        "layout_slot_id": "slot.frac2.num"
+      },
+      "text": "1"
+    },
+    {
+      "id": "slot.frac2.bar.line",
+      "type": "line",
+      "attributes": {
+        "x1": 155.0,
+        "y1": 75.0,
+        "x2": 195.0,
+        "y2": 75.0,
+        "stroke": "#000000",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.frac2.bar",
+      "refs": {
+        "layout_slot_id": "slot.frac2.bar"
+      }
+    },
+    {
+      "id": "slot.frac2.den.text",
+      "type": "text",
+      "attributes": {
+        "x": 175.0,
+        "y": 107.0,
+        "max_width": 200.0,
+        "fill": "#000000",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 35,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.frac2.den",
+      "refs": {
+        "layout_slot_id": "slot.frac2.den"
+      },
+      "text": "3"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

@@ -1,0 +1,73 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "0001",
+  "title": "",
+  "canvas": {
+    "width": 1200,
+    "height": 250,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.line_1",
+        "slot.line_2",
+        "slot.answer"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.line_1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "예은이가 시계를 보았더니 7시 17분 25초였습니다.",
+        "style_role": "body",
+        "x": 30.0,
+        "y": 60.0,
+        "font_size": 35,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.line_2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "36분 47초 후의 시각이 ㉠시 ㉡분 ㉢초일 때 ㉠+㉡+㉢을 구하시오.",
+        "style_role": "body",
+        "x": 30.0,
+        "y": 120.0,
+        "font_size": 35,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.answer",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "(            )",
+        "style_role": "body",
+        "x": 500.0,
+        "y": 180.0,
+        "font_size": 35,
+        "fill": "#111111"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.line_1",
+    "slot.line_2",
+    "slot.answer"
+  ]
+}

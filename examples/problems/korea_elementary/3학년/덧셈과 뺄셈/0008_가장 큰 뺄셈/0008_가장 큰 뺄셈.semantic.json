@@ -1,0 +1,47 @@
+{
+  "problem_id": "0008_가장 큰 뺄셈",
+  "problem_type": "arithmetic_subtraction_optimization",
+  "metadata": {
+    "title": "",
+    "tags": [],
+    "instruction": "다음 수 중에서 2개를 골라 가장 큰 뺄셈식을 만들려고 합니다. 식과 답을 구하시오.",
+    "question": "네 개의 수(326, 412, 481, 112) 중 두 개를 골라 차가 최대가 되는 뺄셈식을 만드는 문제",
+    "required_layout_ids": [
+      "slot.bg",
+      "slot.num_box",
+      "slot.answer_expr"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.nums",
+        "type": "list",
+        "value": [
+          326,
+          412,
+          481,
+          112
+        ]
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "plan": {
+        "method": "extremes_difference",
+        "description": "가장 큰 수에서 가장 작은 수를 뺀다."
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "value": 369,
+    "unit": ""
+  }
+}

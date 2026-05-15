@@ -1,0 +1,71 @@
+{
+  "schema": "modu.solvable.v1",
+  "problem_id": "Hpdf_SDP0DWXI3l",
+  "problem_type": "geometry_rectangle_counting",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "직사각형의 개수",
+    "target_ticks": 0,
+    "target_count": 0,
+    "unit": "개"
+  },
+  "given": [
+    {
+      "ref": "obj.figure",
+      "value": "7개 조각 도형"
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "count"
+  },
+  "method": "systematic_enumeration",
+  "plan": [
+    "★를 포함하는 직사각형을 높이별로 나눈다.",
+    "높이 1: ★가 있는 줄에서 좌우로 확장하면 4개 (1x1, 1x2(좌), 1x2(우), 1x3)",
+    "높이 2: 위쪽 줄과 결합 2개, 아래쪽 줄과 결합 2개",
+    "높이 3: 위, 중간, 아래 세 줄을 모두 결합 1개",
+    "총합: 4 + 2 + 2 + 1 = 9개"
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "operation": "height_1",
+      "expr": "4",
+      "value": 4
+    },
+    {
+      "id": "step.2",
+      "operation": "height_2",
+      "expr": "2 + 2",
+      "value": 4
+    },
+    {
+      "id": "step.3",
+      "operation": "height_3",
+      "expr": "1",
+      "value": 1
+    },
+    {
+      "id": "step.4",
+      "operation": "sum",
+      "expr": "4 + 4 + 1",
+      "value": 9
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "type": "logic_check",
+      "expr": "4 + 4 + 1 = 9",
+      "expected": 9,
+      "actual": 9,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "value": 9,
+    "unit": "개",
+    "derived_from": "step.4"
+  }
+}

@@ -1,0 +1,108 @@
+{
+  "problem_id": "Hpdf_TAyFvV2InD",
+  "problem_type": "geometry_perimeter",
+  "metadata": {
+    "title": "정사각형 두 개로 만든 직사각형",
+    "tags": [],
+    "question": "정사각형 2개를 겹치지 않게 이어 붙여서 만든 직사각형에서 굵은 선의 길이가 30 cm일 때 정사각형의 한 변을 구하는 문제",
+    "required_layout_ids": [
+      "slot.rect",
+      "slot.midline"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "정사각형의 한 변의 길이를 구하시오."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.square_left",
+        "type": "square",
+        "count": 1
+      },
+      {
+        "id": "obj.square_right",
+        "type": "square",
+        "count": 1
+      },
+      {
+        "id": "obj.rectangle",
+        "type": "rectangle",
+        "composition": [
+          "obj.square_left",
+          "obj.square_right"
+        ]
+      },
+      {
+        "id": "obj.given_length",
+        "type": "length",
+        "role": "displayed_thick_edge",
+        "value": 30,
+        "unit": "cm"
+      }
+    ],
+    "relations": [
+      {
+        "id": "rel.compose_rectangle_from_two_squares",
+        "type": "composition",
+        "from_id": "obj.square_left",
+        "to_id": "obj.rectangle"
+      },
+      {
+        "id": "rel.shared_side_inside",
+        "type": "shared_edge",
+        "from_id": "obj.square_left",
+        "to_id": "obj.square_right"
+      },
+      {
+        "id": "rel.thick_edge_length_equals_three_sides",
+        "type": "perimeter_relation",
+        "from_id": "obj.rectangle",
+        "to_id": "obj.given_length"
+      }
+    ],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.given_length",
+          "obj.square_left",
+          "obj.square_right"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.thick_edge_length_equals_three_sides"
+        ]
+      },
+      "plan": {
+        "method": "perimeter_of_two_squares_as_rectangle",
+        "description": "두 정사각형을 붙여 만든 직사각형에서 굵은 선은 바깥 둘레의 일부이므로, 한 변을 x로 두고 전체 길이와의 관계를 이용한다."
+      },
+      "execute": {
+        "expected_operations": [
+          "set_variable_for_square_side",
+          "relate_thick_edge_to_multiple_sides",
+          "solve_for_side_length"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "substitute_back_into_length_relation",
+          "unit_consistency_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "square_side_length",
+      "description": "정사각형의 한 변의 길이"
+    },
+    "value": 5,
+    "unit": "cm"
+  }
+}

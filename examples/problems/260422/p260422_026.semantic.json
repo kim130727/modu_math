@@ -1,0 +1,146 @@
+{
+  "problem_id": "p260422_026",
+  "problem_type": "arithmetic",
+  "metadata": {
+    "title": "",
+    "tags": [],
+    "instruction": "계산 결과가 다른 하나에 ○표 하시오.",
+    "question": "다음 세 식 중 계산 결과가 다른 하나에 ○표 하시오.",
+    "required_layout_ids": [
+      "slot.q1.f.bar",
+      "slot.q2.f1.bar",
+      "slot.q2.f2.bar",
+      "slot.q3.f.bar"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "instr_1",
+        "type": "instruction",
+        "text": "계산 결과가 다른 하나에 ○표 하시오."
+      },
+      {
+        "id": "q_1",
+        "type": "question",
+        "text": "다음 세 식 중 계산 결과가 다른 하나에 ○표 하시오."
+      },
+      {
+        "id": "expr_1",
+        "type": "expression",
+        "value": "3 ÷ 1/2",
+        "text": "3 ÷ 1/2"
+      },
+      {
+        "id": "expr_2",
+        "type": "expression",
+        "value": "12/17 ÷ 5/17",
+        "text": "12/17 ÷ 5/17"
+      },
+      {
+        "id": "expr_3",
+        "type": "expression",
+        "value": "4 ÷ 2/3",
+        "text": "4 ÷ 2/3"
+      },
+      {
+        "id": "blank_1",
+        "type": "blank",
+        "text": "(    )"
+      },
+      {
+        "id": "blank_2",
+        "type": "blank",
+        "text": "(    )"
+      },
+      {
+        "id": "blank_3",
+        "type": "blank",
+        "text": "(    )"
+      }
+    ],
+    "relations": [
+      {
+        "id": "rel_1",
+        "type": "asks_for",
+        "from_id": "instr_1",
+        "to_id": "q_1"
+      },
+      {
+        "id": "rel_2",
+        "type": "applies_to",
+        "from_id": "instr_1",
+        "to_id": "expr_1"
+      },
+      {
+        "id": "rel_3",
+        "type": "applies_to",
+        "from_id": "instr_1",
+        "to_id": "expr_2"
+      },
+      {
+        "id": "rel_4",
+        "type": "applies_to",
+        "from_id": "instr_1",
+        "to_id": "expr_3"
+      },
+      {
+        "id": "rel_5",
+        "type": "contains",
+        "from_id": "q_1",
+        "to_id": "expr_1"
+      },
+      {
+        "id": "rel_6",
+        "type": "contains",
+        "from_id": "q_1",
+        "to_id": "expr_2"
+      },
+      {
+        "id": "rel_7",
+        "type": "contains",
+        "from_id": "q_1",
+        "to_id": "expr_3"
+      },
+      {
+        "id": "rel_8",
+        "type": "labels",
+        "from_id": "blank_1",
+        "to_id": "expr_1"
+      },
+      {
+        "id": "rel_9",
+        "type": "labels",
+        "from_id": "blank_2",
+        "to_id": "expr_2"
+      },
+      {
+        "id": "rel_10",
+        "type": "labels",
+        "from_id": "blank_3",
+        "to_id": "expr_3"
+      }
+    ],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {},
+      "plan": {},
+      "execute": {},
+      "review": {}
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "number",
+      "description": "정답"
+    },
+    "value": "12/17 ÷ 5/17",
+    "unit": ""
+  }
+}

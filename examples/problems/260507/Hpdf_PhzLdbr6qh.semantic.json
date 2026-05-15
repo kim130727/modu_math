@@ -1,0 +1,83 @@
+{
+  "problem_id": "Hpdf_PhzLdbr6qh",
+  "problem_type": "geometry_angle_counting",
+  "metadata": {
+    "title": "각의 개수",
+    "tags": [
+      "도형",
+      "각",
+      "점"
+    ],
+    "instruction": "주어진 점들로 만들 수 있는 모든 각의 가짓수를 구한다.",
+    "question": "4개의 점 중에서 3개의 점을 반직선으로 이어서 그릴 수 있는 각은 모두 몇 개입니까?",
+    "required_layout_ids": [
+      "slot.grid.border",
+      "slot.grid.v1",
+      "slot.grid.v2",
+      "slot.grid.v3",
+      "slot.grid.v4",
+      "slot.grid.v5",
+      "slot.grid.v6",
+      "slot.grid.v7",
+      "slot.grid.v8",
+      "slot.grid.h1",
+      "slot.grid.h2",
+      "slot.grid.h3",
+      "slot.grid.h4",
+      "slot.grid.h5",
+      "slot.grid.h6",
+      "slot.pt.1",
+      "slot.pt.2",
+      "slot.pt.3",
+      "slot.pt.4"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.points",
+        "type": "point_set",
+        "count": 4
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.points"
+        ],
+        "target_ref": "answer.target"
+      },
+      "plan": {
+        "method": "combinatorial_counting",
+        "description": "한 점을 꼭짓점으로 하고 나머지 점들 중 두 점을 이어 각을 만드는 경우의 수를 계산한다."
+      },
+      "execute": {
+        "expected_operations": [
+          "choose_vertex",
+          "choose_rays"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "enumeration"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "count",
+      "description": "만들 수 있는 각의 개수"
+    },
+    "value": 12,
+    "unit": "개"
+  }
+}

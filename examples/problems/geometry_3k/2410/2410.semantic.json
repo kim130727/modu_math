@@ -1,0 +1,124 @@
+{
+  "problem_id": "2410",
+  "problem_type": "geometry_multiple_choice",
+  "metadata": {
+    "title": "삼각형 ADE에서 CD의 길이를 구하시오.",
+    "tags": [
+      "triangle",
+      "parallel",
+      "segment",
+      "geometry"
+    ],
+    "instruction": "CD의 값을 구하시오.",
+    "question": "삼각형 ADE에서 BC는 내부 선분이고 DE와 평행하다. AB=16, BE=20, AC=x-3, CD=x+5일 때 CD를 구하시오.",
+    "required_layout_ids": [
+      "slot.diagram.frame",
+      "slot.seg.AD",
+      "slot.seg.DE",
+      "slot.seg.AE",
+      "slot.seg.BC",
+      "slot.mark.parallel.bc",
+      "slot.mark.parallel.de",
+      "slot.pt.A",
+      "slot.pt.B",
+      "slot.pt.C",
+      "slot.pt.D",
+      "slot.pt.E"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.triangle.ADE",
+        "type": "triangle",
+        "name": "ADE"
+      },
+      {
+        "id": "obj.segment.BC",
+        "type": "segment",
+        "name": "BC"
+      },
+      {
+        "id": "obj.segment.DE",
+        "type": "segment",
+        "name": "DE"
+      },
+      {
+        "id": "obj.segment.AB",
+        "type": "segment",
+        "name": "AB",
+        "value": 16
+      },
+      {
+        "id": "obj.segment.BE",
+        "type": "segment",
+        "name": "BE",
+        "value": 20
+      },
+      {
+        "id": "obj.segment.AC",
+        "type": "segment",
+        "name": "AC",
+        "expr": "x-3"
+      },
+      {
+        "id": "obj.segment.CD",
+        "type": "segment",
+        "name": "CD",
+        "expr": "x+5"
+      }
+    ],
+    "relations": [
+      {
+        "id": "rel.parallel",
+        "type": "parallel",
+        "from_id": "obj.segment.BC",
+        "to_id": "obj.segment.DE"
+      },
+      {
+        "id": "rel.find_CD",
+        "type": "find",
+        "from_id": "obj.segment.CD",
+        "to_id": "answer.target"
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [
+      {
+        "index": 1,
+        "text": "1. 32",
+        "value": "32"
+      },
+      {
+        "index": 2,
+        "text": "2. 35",
+        "value": "35"
+      },
+      {
+        "index": 3,
+        "text": "3. 36",
+        "value": "36"
+      },
+      {
+        "index": 4,
+        "text": "4. 40",
+        "value": "40"
+      }
+    ],
+    "answer_key": [
+      4
+    ],
+    "confidence": 1.0,
+    "target": {
+      "type": "segment_length",
+      "description": "CD"
+    },
+    "value": 40,
+    "unit": ""
+  }
+}

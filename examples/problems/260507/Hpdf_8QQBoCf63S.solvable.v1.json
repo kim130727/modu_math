@@ -1,0 +1,52 @@
+{
+  "schema": "modu.solvable.v1",
+  "problem_id": "Hpdf_8QQBoCf63S",
+  "problem_type": "counting_squares",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "정사각형의 총 개수",
+    "target_ticks": 0,
+    "target_count": 0,
+    "unit": "개"
+  },
+  "given": [
+    {
+      "ref": "obj.figure",
+      "value": "여러 개의 정사각형이 맞닿아 이루어진 도형"
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "count_total_squares"
+  },
+  "method": "systematic_counting",
+  "plan": [
+    "크기가 1x1인 정사각형 11개를 찾는다.",
+    "크기가 2x2인 정사각형 4개를 찾는다.",
+    "크기가 3x3인 정사각형 1개를 찾는다.",
+    "모든 개수를 더한다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "operation": "sum_counts",
+      "expr": "11 + 4 + 1",
+      "value": 16
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "type": "logic_check",
+      "expr": "11+4+1 = 16",
+      "expected": 16,
+      "actual": 16,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "value": 16,
+    "unit": "개",
+    "derived_from": "step.1"
+  }
+}

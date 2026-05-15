@@ -1,0 +1,81 @@
+{
+  "problem_id": "Hpdf_IfXEqd2FAo",
+  "view_box": {
+    "width": 750.0,
+    "height": 380.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.q1.text",
+      "type": "text",
+      "attributes": {
+        "x": 12.0,
+        "y": 34.0,
+        "max_width": 622.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q1",
+      "refs": {
+        "layout_slot_id": "slot.q1"
+      },
+      "text": "1부터 9까지의 숫자를 모두 한 번씩만 사용하여\n 3개의 세 자리 수 529, ㉠, ㉡를 만들려고 합니다.\n세 수가 다음을 모두 만족시킬 때, 가장 작은 수 ㉠를 구하시오."
+    },
+    {
+      "id": "slot.box.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 12.0,
+        "y": 148.0,
+        "width": 524.0,
+        "height": 162.0,
+        "fill": "none",
+        "stroke": "#777777",
+        "stroke-width": 1.4,
+        "rx": 6.0,
+        "ry": 6.0
+      },
+      "source_ref": "slot.box",
+      "refs": {
+        "layout_slot_id": "slot.box"
+      }
+    },
+    {
+      "id": "slot.b1.text",
+      "type": "text",
+      "attributes": {
+        "x": 38.0,
+        "y": 206.0,
+        "max_width": 622.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.b1",
+      "refs": {
+        "layout_slot_id": "slot.b1"
+      },
+      "text": "• ㉠는 ㉡보다 작은 수입니다."
+    },
+    {
+      "id": "slot.b2.text",
+      "type": "text",
+      "attributes": {
+        "x": 38.0,
+        "y": 252.0,
+        "max_width": 622.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.b2",
+      "refs": {
+        "layout_slot_id": "slot.b2"
+      },
+      "text": "• 세 수의 합과 1000의 차가 가장 작습니다."
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

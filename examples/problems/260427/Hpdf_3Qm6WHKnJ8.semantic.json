@@ -1,0 +1,753 @@
+{
+  "problem_id": "Hpdf_3Qm6WHKnJ8",
+  "problem_type": "generic",
+  "metadata": {
+    "title": "",
+    "tags": [],
+    "instruction": "고 합니다. ㉠에 알맞은 수를 구하시오.",
+    "question": "732★567을 보기와 같은 방법으로 계산하려",
+    "required_layout_ids": [
+      "slot.badge.bg",
+      "slot.left.panel",
+      "slot.left.top",
+      "slot.left.top.star",
+      "slot.left.arrow1",
+      "slot.left.diamond",
+      "slot.left.arrow2",
+      "slot.left.bottom",
+      "slot.right.top",
+      "slot.right.top.star",
+      "slot.right.arrow1",
+      "slot.right.diamond",
+      "slot.right.arrow2",
+      "slot.right.bottom"
+    ],
+    "extraction_confidence": 1.0
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "slot.badge.bg",
+        "type": "rect_slot",
+        "properties": {
+          "x": 80.0,
+          "y": 128.0,
+          "width": 52.0,
+          "height": 30.0,
+          "stroke": "#8a8d93",
+          "stroke_width": 1.0,
+          "rx": 10.0,
+          "ry": 10.0,
+          "fill": "#8a8d93",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.badge.bg"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.badge.text",
+        "type": "instruction",
+        "properties": {
+          "text": "보기"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.badge.text"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.left.arrow1",
+        "type": "line_slot",
+        "properties": {
+          "x1": 163.0,
+          "y1": 236.0,
+          "x2": 163.0,
+          "y2": 292.0,
+          "stroke": "#55585f",
+          "stroke_width": 2.0,
+          "stroke_dasharray": null,
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.left.arrow1"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.left.arrow2",
+        "type": "line_slot",
+        "properties": {
+          "x1": 163.0,
+          "y1": 366.0,
+          "x2": 163.0,
+          "y2": 419.0,
+          "stroke": "#55585f",
+          "stroke_width": 2.0,
+          "stroke_dasharray": null,
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.left.arrow2"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.left.bottom",
+        "type": "rect_slot",
+        "properties": {
+          "x": 82.0,
+          "y": 423.0,
+          "width": 160.0,
+          "height": 64.0,
+          "stroke": "#8a8d93",
+          "stroke_width": 2.0,
+          "rx": 32.0,
+          "ry": 32.0,
+          "fill": "#d1d3d8",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.left.bottom"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.left.bottom.text",
+        "type": "instruction",
+        "properties": {
+          "text": "라"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.left.bottom.text"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.left.diamond",
+        "type": "polygon_slot",
+        "properties": {
+          "points": [
+            [
+              163.0,
+              296.0
+            ],
+            [
+              242.0,
+              331.0
+            ],
+            [
+              163.0,
+              366.0
+            ],
+            [
+              84.0,
+              331.0
+            ]
+          ],
+          "stroke": "#8a8d93",
+          "stroke_width": 2.0,
+          "fill": "#d8dae0",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.left.diamond"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.left.diamond.text",
+        "type": "instruction",
+        "properties": {
+          "text": "다"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.left.diamond.text"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.left.panel",
+        "type": "rect_slot",
+        "properties": {
+          "x": 63.0,
+          "y": 145.0,
+          "width": 227.0,
+          "height": 358.0,
+          "stroke": "#8a8d93",
+          "stroke_width": 2.0,
+          "rx": 8.0,
+          "ry": 8.0,
+          "fill": "none",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.left.panel"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.left.rule1",
+        "type": "instruction",
+        "properties": {
+          "text": "가-나"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.left.rule1"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.left.rule2",
+        "type": "instruction",
+        "properties": {
+          "text": "다+348"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.left.rule2"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.left.top",
+        "type": "rect_slot",
+        "properties": {
+          "x": 82.0,
+          "y": 171.0,
+          "width": 160.0,
+          "height": 64.0,
+          "stroke": "#8a8d93",
+          "stroke_width": 2.0,
+          "rx": 32.0,
+          "ry": 32.0,
+          "fill": "#d1d3d8",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.left.top"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.left.top.left",
+        "type": "instruction",
+        "properties": {
+          "text": "가"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.left.top.left"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.left.top.right",
+        "type": "instruction",
+        "properties": {
+          "text": "나"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.left.top.right"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.left.top.star",
+        "type": "polygon_slot",
+        "properties": {
+          "points": [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              4.0,
+              10.0
+            ],
+            [
+              15.0,
+              10.0
+            ],
+            [
+              6.0,
+              17.0
+            ],
+            [
+              10.0,
+              28.0
+            ],
+            [
+              0.0,
+              21.0
+            ],
+            [
+              -10.0,
+              28.0
+            ],
+            [
+              -6.0,
+              17.0
+            ],
+            [
+              -15.0,
+              10.0
+            ],
+            [
+              -4.0,
+              10.0
+            ]
+          ],
+          "stroke": "#7d8087",
+          "stroke_width": 1.0,
+          "fill": "#7d8087",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.left.top.star"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.right.arrow1",
+        "type": "line_slot",
+        "properties": {
+          "x1": 405.0,
+          "y1": 236.0,
+          "x2": 405.0,
+          "y2": 292.0,
+          "stroke": "#55585f",
+          "stroke_width": 2.0,
+          "stroke_dasharray": null,
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.right.arrow1"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.right.arrow2",
+        "type": "line_slot",
+        "properties": {
+          "x1": 405.0,
+          "y1": 366.0,
+          "x2": 405.0,
+          "y2": 419.0,
+          "stroke": "#55585f",
+          "stroke_width": 2.0,
+          "stroke_dasharray": null,
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.right.arrow2"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.right.bottom",
+        "type": "rect_slot",
+        "properties": {
+          "x": 326.0,
+          "y": 423.0,
+          "width": 158.0,
+          "height": 64.0,
+          "stroke": "#8a8d93",
+          "stroke_width": 2.0,
+          "rx": 32.0,
+          "ry": 32.0,
+          "fill": "#d1d3d8",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.right.bottom"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.right.bottom.text",
+        "type": "instruction",
+        "properties": {
+          "text": "㉠"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.right.bottom.text"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.right.diamond",
+        "type": "polygon_slot",
+        "properties": {
+          "points": [
+            [
+              405.0,
+              296.0
+            ],
+            [
+              484.0,
+              331.0
+            ],
+            [
+              405.0,
+              366.0
+            ],
+            [
+              326.0,
+              331.0
+            ]
+          ],
+          "stroke": "#8a8d93",
+          "stroke_width": 2.0,
+          "fill": "#d8dae0",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.right.diamond"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.right.diamond.text",
+        "type": "instruction",
+        "properties": {
+          "text": "다"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.right.diamond.text"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.right.top",
+        "type": "rect_slot",
+        "properties": {
+          "x": 326.0,
+          "y": 171.0,
+          "width": 158.0,
+          "height": 64.0,
+          "stroke": "#8a8d93",
+          "stroke_width": 2.0,
+          "rx": 32.0,
+          "ry": 32.0,
+          "fill": "#d1d3d8",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.right.top"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.right.top.left",
+        "type": "instruction",
+        "properties": {
+          "text": "732"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.right.top.left"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.right.top.right",
+        "type": "instruction",
+        "properties": {
+          "text": "567"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.right.top.right"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.right.top.star",
+        "type": "polygon_slot",
+        "properties": {
+          "points": [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              4.0,
+              10.0
+            ],
+            [
+              15.0,
+              10.0
+            ],
+            [
+              6.0,
+              17.0
+            ],
+            [
+              10.0,
+              28.0
+            ],
+            [
+              0.0,
+              21.0
+            ],
+            [
+              -10.0,
+              28.0
+            ],
+            [
+              -6.0,
+              17.0
+            ],
+            [
+              -15.0,
+              10.0
+            ],
+            [
+              -4.0,
+              10.0
+            ]
+          ],
+          "stroke": "#7d8087",
+          "stroke_width": 1.0,
+          "fill": "#7d8087",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.right.top.star"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.title.l1",
+        "type": "question",
+        "properties": {
+          "text": "732★567을 보기와 같은 방법으로 계산하려"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.title.l1"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.title.l2",
+        "type": "instruction",
+        "properties": {
+          "text": "고 합니다. ㉠에 알맞은 수를 구하시오."
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.title.l2"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "confidence": 1.0
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0
+  }
+}

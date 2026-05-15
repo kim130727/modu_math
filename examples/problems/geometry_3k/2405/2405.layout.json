@@ -1,0 +1,435 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "2405",
+  "title": "평행선과 각도",
+  "canvas": {
+    "width": 1800,
+    "height": 1100,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.line.l",
+        "slot.line.m",
+        "slot.line.BA",
+        "slot.line.BC",
+        "slot.line.l_start_ah_l",
+        "slot.line.l_start_ah_r",
+        "slot.line.l_end_ah_l",
+        "slot.line.l_end_ah_r",
+        "slot.line.m_start_ah_l",
+        "slot.line.m_start_ah_r",
+        "slot.line.m_end_ah_l",
+        "slot.line.m_end_ah_r",
+        "slot.line.BA_end_ah_l",
+        "slot.line.BA_end_ah_r",
+        "slot.line.BC_end_ah_l",
+        "slot.line.BC_end_ah_r",
+        "slot.text.problem_ln1",
+        "slot.text.problem_sub",
+        "slot.choices_ln1",
+        "slot.text.A",
+        "slot.text.B",
+        "slot.text.C",
+        "slot.text.l",
+        "slot.text.m",
+        "slot.text.angle38",
+        "slot.text.angle33"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.text.problem_ln1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "아래 그림에서 ∠ABC를 평행한 직선 ℓ, m이 가로지를 때, ∠ABC의 크기는 얼마인가?",
+        "style_role": "question",
+        "x": 32.5,
+        "y": 44.7,
+        "font_size": 48,
+        "font_family": "sans-serif",
+        "anchor": "start"
+      }
+    },
+    {
+      "id": "slot.text.problem_sub",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "답은 도 단위로 쓰시오.",
+        "style_role": "question",
+        "x": 28.8,
+        "y": 114.7,
+        "font_size": 48,
+        "font_family": "sans-serif",
+        "anchor": "start"
+      }
+    },
+    {
+      "id": "slot.choices_ln1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "1. 33 2. 38 3. 61 4. 71",
+        "style_role": "question",
+        "x": 32.5,
+        "y": 950.0,
+        "font_size": 48,
+        "font_family": "sans-serif",
+        "anchor": "start"
+      }
+    },
+    {
+      "id": "slot.line.l",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 130.0,
+        "y1": 280.0,
+        "x2": 1290.0,
+        "y2": 280.0,
+        "stroke": "#222222",
+        "stroke_width": 4.4
+      }
+    },
+    {
+      "id": "slot.line.m",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 130.0,
+        "y1": 680.0,
+        "x2": 1290.0,
+        "y2": 680.0,
+        "stroke": "#222222",
+        "stroke_width": 4.4
+      }
+    },
+    {
+      "id": "slot.line.BA",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 520.0,
+        "y1": 510.0,
+        "x2": 1040.0,
+        "y2": 90.0,
+        "stroke": "#222222",
+        "stroke_width": 4.4
+      }
+    },
+    {
+      "id": "slot.line.BC",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 520.0,
+        "y1": 510.0,
+        "x2": 1160.0,
+        "y2": 890.0,
+        "stroke": "#222222",
+        "stroke_width": 4.4
+      }
+    },
+    {
+      "id": "slot.line.l_start_ah_l",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 130.0,
+        "y1": 280.0,
+        "x2": 154.0,
+        "y2": 273.0,
+        "stroke": "#222222",
+        "stroke_width": 4.4
+      }
+    },
+    {
+      "id": "slot.line.l_start_ah_r",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 130.0,
+        "y1": 280.0,
+        "x2": 154.0,
+        "y2": 287.0,
+        "stroke": "#222222",
+        "stroke_width": 4.4
+      }
+    },
+    {
+      "id": "slot.line.l_end_ah_l",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 1290.0,
+        "y1": 280.0,
+        "x2": 1266.0,
+        "y2": 287.0,
+        "stroke": "#222222",
+        "stroke_width": 4.4
+      }
+    },
+    {
+      "id": "slot.line.l_end_ah_r",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 1290.0,
+        "y1": 280.0,
+        "x2": 1266.0,
+        "y2": 273.0,
+        "stroke": "#222222",
+        "stroke_width": 4.4
+      }
+    },
+    {
+      "id": "slot.line.m_start_ah_l",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 130.0,
+        "y1": 680.0,
+        "x2": 154.0,
+        "y2": 673.0,
+        "stroke": "#222222",
+        "stroke_width": 4.4
+      }
+    },
+    {
+      "id": "slot.line.m_start_ah_r",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 130.0,
+        "y1": 680.0,
+        "x2": 154.0,
+        "y2": 687.0,
+        "stroke": "#222222",
+        "stroke_width": 4.4
+      }
+    },
+    {
+      "id": "slot.line.m_end_ah_l",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 1290.0,
+        "y1": 680.0,
+        "x2": 1266.0,
+        "y2": 687.0,
+        "stroke": "#222222",
+        "stroke_width": 4.4
+      }
+    },
+    {
+      "id": "slot.line.m_end_ah_r",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 1290.0,
+        "y1": 680.0,
+        "x2": 1266.0,
+        "y2": 673.0,
+        "stroke": "#222222",
+        "stroke_width": 4.4
+      }
+    },
+    {
+      "id": "slot.line.BA_end_ah_l",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 1040.0,
+        "y1": 90.0,
+        "x2": 1025.7,
+        "y2": 110.5,
+        "stroke": "#222222",
+        "stroke_width": 4.4
+      }
+    },
+    {
+      "id": "slot.line.BA_end_ah_r",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 1040.0,
+        "y1": 90.0,
+        "x2": 1016.9,
+        "y2": 99.6,
+        "stroke": "#222222",
+        "stroke_width": 4.4
+      }
+    },
+    {
+      "id": "slot.line.BC_end_ah_l",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 1160.0,
+        "y1": 890.0,
+        "x2": 1135.8,
+        "y2": 883.8,
+        "stroke": "#222222",
+        "stroke_width": 4.4
+      }
+    },
+    {
+      "id": "slot.line.BC_end_ah_r",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 1160.0,
+        "y1": 890.0,
+        "x2": 1142.9,
+        "y2": 871.7,
+        "stroke": "#222222",
+        "stroke_width": 4.4
+      }
+    },
+    {
+      "id": "slot.text.A",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "A",
+        "style_role": "label",
+        "x": 755.8,
+        "y": 260.3,
+        "font_size": 48,
+        "font_family": "'Malgun Gothic'",
+        "anchor": "start",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.text.B",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "B",
+        "style_role": "label",
+        "x": 477.1,
+        "y": 526.2,
+        "font_size": 48,
+        "font_family": "'Malgun Gothic'",
+        "anchor": "start",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.text.C",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "C",
+        "style_role": "label",
+        "x": 756.7,
+        "y": 735.7,
+        "font_size": 48,
+        "font_family": "'Malgun Gothic'",
+        "anchor": "start",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.text.l",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ℓ",
+        "style_role": "label",
+        "x": 52.0,
+        "y": 292.0,
+        "font_size": 48,
+        "font_family": "Malgun Gothic",
+        "anchor": "start",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.text.m",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "m",
+        "style_role": "label",
+        "x": 52.0,
+        "y": 692.0,
+        "font_size": 48,
+        "font_family": "Malgun Gothic",
+        "anchor": "start",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.text.angle38",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "38°",
+        "style_role": "label",
+        "x": 650.9,
+        "y": 331.8,
+        "font_size": 48,
+        "font_family": "'Malgun Gothic'",
+        "anchor": "start",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.text.angle33",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "33°",
+        "style_role": "label",
+        "x": 646.0,
+        "y": 668.0,
+        "font_size": 48,
+        "font_family": "Malgun Gothic",
+        "anchor": "start",
+        "fill": "#222222"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.line.l",
+    "slot.line.m",
+    "slot.line.BA",
+    "slot.line.BC",
+    "slot.line.l_start_ah_l",
+    "slot.line.l_start_ah_r",
+    "slot.line.l_end_ah_l",
+    "slot.line.l_end_ah_r",
+    "slot.line.m_start_ah_l",
+    "slot.line.m_start_ah_r",
+    "slot.line.m_end_ah_l",
+    "slot.line.m_end_ah_r",
+    "slot.line.BA_end_ah_l",
+    "slot.line.BA_end_ah_r",
+    "slot.line.BC_end_ah_l",
+    "slot.line.BC_end_ah_r",
+    "slot.text.problem_ln1",
+    "slot.text.problem_sub",
+    "slot.choices_ln1",
+    "slot.text.A",
+    "slot.text.B",
+    "slot.text.C",
+    "slot.text.l",
+    "slot.text.m",
+    "slot.text.angle38",
+    "slot.text.angle33"
+  ]
+}

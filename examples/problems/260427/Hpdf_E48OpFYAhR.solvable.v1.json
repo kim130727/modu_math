@@ -1,0 +1,66 @@
+{
+  "schema": "modu.solvable.v1",
+  "problem_id": "Hpdf_E48OpFYAhR",
+  "problem_type": "cryptarithmetic_subtraction",
+  "inputs": {
+    "total_ticks": 396,
+    "target_label": "가장 큰 세 자리 수 ㉠㉡㉢",
+    "target_ticks": 985,
+    "target_count": 985,
+    "unit": ""
+  },
+  "plan": [
+    "100*ㄱ + 10*ㄴ + ㄷ - (100*ㄷ + 10*ㄴ + ㄱ) = 99*(ㄱ - ㄷ) = 396 식을 세운다.",
+    "ㄱ - ㄷ = 4 이므로, ㄱ이 가장 큰 9일 때 ㄷ은 5가 된다.",
+    "ㄱ=9, ㄷ=5이면서 세 숫자가 모두 달라야 하므로 ㄴ은 9, 5를 제외한 가장 큰 수 8이 된다.",
+    "따라서 가장 큰 수는 985이다."
+  ],
+  "steps": [
+    {
+      "id": "step.s1",
+      "expr": "99 * (ㄱ - ㄷ) = 396",
+      "value": 396
+    },
+    {
+      "id": "step.s2",
+      "expr": "ㄱ - ㄷ = 396 / 99",
+      "value": 4
+    },
+    {
+      "id": "step.s3",
+      "expr": "ㄱ=9 일 때 ㄷ=9-4",
+      "value": 5
+    },
+    {
+      "id": "step.s4",
+      "expr": "ㄴ < 9, ㄴ ≠ 5 중 최대값",
+      "value": 8
+    },
+    {
+      "id": "step.s5",
+      "expr": "100*9 + 10*8 + 5",
+      "value": 985
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.c1",
+      "expr": "985 - 589",
+      "expected": 396,
+      "actual": 396,
+      "pass": true
+    },
+    {
+      "id": "check.c2",
+      "expr": "9 != 8 != 5",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "value": 985,
+    "unit": "",
+    "derived_from": "step.s5"
+  }
+}

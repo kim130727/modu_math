@@ -1,0 +1,126 @@
+{
+  "problem_id": "Hpdf_RJJOU7cmRm",
+  "view_box": {
+    "width": 568.0,
+    "height": 347.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.q1.text",
+      "type": "text",
+      "attributes": {
+        "x": 10.0,
+        "y": 28.0,
+        "max_width": 440.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28,
+        "text-anchor": "start"
+      },
+      "source_ref": "slot.q1",
+      "refs": {
+        "layout_slot_id": "slot.q1"
+      },
+      "text": "도형에서 찾을 수 있는 크고 작은 직사각형은 모두 몇 개입니까?"
+    },
+    {
+      "id": "slot.diagram.border.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 102.0,
+        "y": 124.0,
+        "width": 355.0,
+        "height": 215.0,
+        "fill": "none",
+        "stroke": "#222222",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.diagram.border",
+      "refs": {
+        "layout_slot_id": "slot.diagram.border"
+      }
+    },
+    {
+      "id": "slot.diagram.lines.v1.line",
+      "type": "line",
+      "attributes": {
+        "x1": 170.0,
+        "y1": 124.0,
+        "x2": 170.0,
+        "y2": 194.0,
+        "stroke": "#222222",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.diagram.lines.v1",
+      "refs": {
+        "layout_slot_id": "slot.diagram.lines.v1"
+      }
+    },
+    {
+      "id": "slot.diagram.lines.v2.line",
+      "type": "line",
+      "attributes": {
+        "x1": 240.0,
+        "y1": 124.0,
+        "x2": 240.0,
+        "y2": 339.0,
+        "stroke": "#222222",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.diagram.lines.v2",
+      "refs": {
+        "layout_slot_id": "slot.diagram.lines.v2"
+      }
+    },
+    {
+      "id": "slot.diagram.lines.v3.line",
+      "type": "line",
+      "attributes": {
+        "x1": 350.0,
+        "y1": 124.0,
+        "x2": 350.0,
+        "y2": 339.0,
+        "stroke": "#222222",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.diagram.lines.v3",
+      "refs": {
+        "layout_slot_id": "slot.diagram.lines.v3"
+      }
+    },
+    {
+      "id": "slot.diagram.lines.h1.line",
+      "type": "line",
+      "attributes": {
+        "x1": 102.0,
+        "y1": 194.0,
+        "x2": 240.0,
+        "y2": 194.0,
+        "stroke": "#222222",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.diagram.lines.h1",
+      "refs": {
+        "layout_slot_id": "slot.diagram.lines.h1"
+      }
+    },
+    {
+      "id": "slot.diagram.lines.h2.line",
+      "type": "line",
+      "attributes": {
+        "x1": 240.0,
+        "y1": 231.0,
+        "x2": 457.0,
+        "y2": 231.0,
+        "stroke": "#222222",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.diagram.lines.h2",
+      "refs": {
+        "layout_slot_id": "slot.diagram.lines.h2"
+      }
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

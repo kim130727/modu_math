@@ -1,0 +1,167 @@
+{
+  "problem_id": "p260422_008",
+  "problem_type": "table_interpretation",
+  "metadata": {
+    "title": "",
+    "tags": [],
+    "instruction": "웅이네 학교와 가영이네 학교의 학생 수를 나타낸 표입니다. 누가네 학교의 학생이 몇 명 더 많습니까?",
+    "question": "누가네 학교의 학생이 몇 명 더 많습니까?",
+    "required_layout_ids": [
+      "slot.table.left_bg",
+      "slot.table.header.woong",
+      "slot.table.header.gayeong",
+      "slot.table.grid.top",
+      "slot.table.grid.mid",
+      "slot.table.grid.v_mid",
+      "slot.table.grid.left_div_1",
+      "slot.table.grid.left_div_2",
+      "slot.table.grid.bottom"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj1",
+        "type": "instruction",
+        "text": "웅이네 학교와 가영이네 학교의 학생 수를 나타낸 표입니다."
+      },
+      {
+        "id": "obj2",
+        "type": "question",
+        "text": "누가네 학교의 학생이 몇 명 더 많습니까?"
+      },
+      {
+        "id": "obj3",
+        "type": "table",
+        "text": "학생 수 표"
+      },
+      {
+        "id": "obj4",
+        "type": "label",
+        "text": "남학생 수(명)"
+      },
+      {
+        "id": "obj5",
+        "type": "label",
+        "text": "여학생 수(명)"
+      },
+      {
+        "id": "obj6",
+        "type": "label",
+        "text": "웅이네 학교"
+      },
+      {
+        "id": "obj7",
+        "type": "label",
+        "text": "가영이네 학교"
+      },
+      {
+        "id": "obj8",
+        "type": "number",
+        "value": 372,
+        "text": "372"
+      },
+      {
+        "id": "obj9",
+        "type": "number",
+        "value": 419,
+        "text": "419"
+      },
+      {
+        "id": "obj10",
+        "type": "number",
+        "value": 385,
+        "text": "385"
+      },
+      {
+        "id": "obj11",
+        "type": "number",
+        "value": 422,
+        "text": "422"
+      }
+    ],
+    "relations": [
+      {
+        "id": "rel1",
+        "type": "contains",
+        "from_id": "obj3",
+        "to_id": "obj4"
+      },
+      {
+        "id": "rel2",
+        "type": "contains",
+        "from_id": "obj3",
+        "to_id": "obj5"
+      },
+      {
+        "id": "rel3",
+        "type": "contains",
+        "from_id": "obj3",
+        "to_id": "obj6"
+      },
+      {
+        "id": "rel4",
+        "type": "contains",
+        "from_id": "obj3",
+        "to_id": "obj7"
+      },
+      {
+        "id": "rel5",
+        "type": "contains",
+        "from_id": "obj3",
+        "to_id": "obj8"
+      },
+      {
+        "id": "rel6",
+        "type": "contains",
+        "from_id": "obj3",
+        "to_id": "obj9"
+      },
+      {
+        "id": "rel7",
+        "type": "contains",
+        "from_id": "obj3",
+        "to_id": "obj10"
+      },
+      {
+        "id": "rel8",
+        "type": "contains",
+        "from_id": "obj3",
+        "to_id": "obj11"
+      },
+      {
+        "id": "rel9",
+        "type": "compares",
+        "from_id": "obj9",
+        "to_id": "obj8"
+      },
+      {
+        "id": "rel10",
+        "type": "compares",
+        "from_id": "obj11",
+        "to_id": "obj10"
+      }
+    ],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {},
+      "plan": {},
+      "execute": {},
+      "review": {}
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "number",
+      "description": "정답"
+    },
+    "value": 64,
+    "unit": "명"
+  }
+}

@@ -1,0 +1,155 @@
+{
+  "problem_id": "p260422_012",
+  "problem_type": "fill_in_blank",
+  "metadata": {
+    "title": "",
+    "tags": [],
+    "instruction": "빈 곳에 두 수의 차를 써넣으시오.",
+    "question": "(1) 350 186\n(2) 426 702",
+    "required_layout_ids": [
+      "slot.left.oval",
+      "slot.left.divide.h",
+      "slot.left.divide.v",
+      "slot.right.oval",
+      "slot.right.divide.h",
+      "slot.right.divide.v"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj_instruction",
+        "type": "instruction",
+        "text": "빈 곳에 두 수의 차를 써넣으시오."
+      },
+      {
+        "id": "obj_q1",
+        "type": "question",
+        "value": 1,
+        "text": "(1)"
+      },
+      {
+        "id": "obj_q2",
+        "type": "question",
+        "value": 2,
+        "text": "(2)"
+      },
+      {
+        "id": "obj_n350",
+        "type": "number",
+        "value": 350,
+        "text": "350"
+      },
+      {
+        "id": "obj_n186",
+        "type": "number",
+        "value": 186,
+        "text": "186"
+      },
+      {
+        "id": "obj_n426",
+        "type": "number",
+        "value": 426,
+        "text": "426"
+      },
+      {
+        "id": "obj_n702",
+        "type": "number",
+        "value": 702,
+        "text": "702"
+      },
+      {
+        "id": "obj_blank1",
+        "type": "blank"
+      },
+      {
+        "id": "obj_blank2",
+        "type": "blank"
+      },
+      {
+        "id": "obj_shape1",
+        "type": "shape",
+        "text": "oval"
+      },
+      {
+        "id": "obj_shape2",
+        "type": "shape",
+        "text": "oval"
+      }
+    ],
+    "relations": [
+      {
+        "id": "rel1",
+        "type": "asks_for",
+        "from_id": "obj_instruction",
+        "to_id": "obj_blank1"
+      },
+      {
+        "id": "rel2",
+        "type": "asks_for",
+        "from_id": "obj_instruction",
+        "to_id": "obj_blank2"
+      },
+      {
+        "id": "rel3",
+        "type": "contains",
+        "from_id": "obj_shape1",
+        "to_id": "obj_n350"
+      },
+      {
+        "id": "rel4",
+        "type": "contains",
+        "from_id": "obj_shape1",
+        "to_id": "obj_n186"
+      },
+      {
+        "id": "rel5",
+        "type": "contains",
+        "from_id": "obj_shape2",
+        "to_id": "obj_n426"
+      },
+      {
+        "id": "rel6",
+        "type": "contains",
+        "from_id": "obj_shape2",
+        "to_id": "obj_n702"
+      },
+      {
+        "id": "rel7",
+        "type": "contains",
+        "from_id": "obj_shape1",
+        "to_id": "obj_blank1"
+      },
+      {
+        "id": "rel8",
+        "type": "contains",
+        "from_id": "obj_shape2",
+        "to_id": "obj_blank2"
+      }
+    ],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {},
+      "plan": {},
+      "execute": {},
+      "review": {}
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "number",
+      "description": "정답"
+    },
+    "value": [
+      164,
+      276
+    ],
+    "unit": ""
+  }
+}

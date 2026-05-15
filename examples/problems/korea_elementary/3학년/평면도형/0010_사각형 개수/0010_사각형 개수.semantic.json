@@ -1,0 +1,205 @@
+{
+  "problem_id": "0010_사각형 개수",
+  "problem_type": "diagram_problem",
+  "metadata": {
+    "title": "",
+    "tags": [],
+    "instruction": "직사각형은 모두 몇 개인지 구하세요.",
+    "question": "다음 도형에서 찾을 수 있는 크고 작은",
+    "required_layout_ids": [
+      "slot.bg",
+      "slot.outer",
+      "slot.v1",
+      "slot.v2",
+      "slot.h1",
+      "slot.answer_value"
+    ],
+    "extraction_confidence": 1.0
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "slot.answer_value",
+        "type": "rect_slot",
+        "properties": {
+          "x": 336.0,
+          "y": 176.0,
+          "width": 56.0,
+          "height": 28.0,
+          "stroke": "none",
+          "stroke_width": 0.0,
+          "rx": null,
+          "ry": null,
+          "fill": "none",
+          "semantic_role": "answer_anchor"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.answer_value"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.bg",
+        "type": "rect_slot",
+        "properties": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 400.0,
+          "height": 210.0,
+          "stroke": "none",
+          "stroke_width": 0.0,
+          "rx": null,
+          "ry": null,
+          "fill": "#F4F4F4",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.bg"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.h1",
+        "type": "line_slot",
+        "properties": {
+          "x1": 148.0,
+          "y1": 152.0,
+          "x2": 224.0,
+          "y2": 152.0,
+          "stroke": "#4A4A4A",
+          "stroke_width": 2.0,
+          "stroke_dasharray": null,
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.h1"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.i1",
+        "type": "question",
+        "properties": {
+          "text": "다음 도형에서 찾을 수 있는 크고 작은"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.i1"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.i2",
+        "type": "instruction",
+        "properties": {
+          "text": "직사각형은 모두 몇 개인지 구하세요."
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.i2"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.outer",
+        "type": "rect_slot",
+        "properties": {
+          "x": 148.0,
+          "y": 104.0,
+          "width": 126.0,
+          "height": 96.0,
+          "stroke": "#4A4A4A",
+          "stroke_width": 2.0,
+          "rx": null,
+          "ry": null,
+          "fill": "none",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.outer"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.v1",
+        "type": "line_slot",
+        "properties": {
+          "x1": 190.0,
+          "y1": 104.0,
+          "x2": 190.0,
+          "y2": 200.0,
+          "stroke": "#4A4A4A",
+          "stroke_width": 2.0,
+          "stroke_dasharray": null,
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.v1"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.v2",
+        "type": "line_slot",
+        "properties": {
+          "x1": 224.0,
+          "y1": 104.0,
+          "x2": 224.0,
+          "y2": 200.0,
+          "stroke": "#4A4A4A",
+          "stroke_width": 2.0,
+          "stroke_dasharray": null,
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.v2"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0
+  }
+}

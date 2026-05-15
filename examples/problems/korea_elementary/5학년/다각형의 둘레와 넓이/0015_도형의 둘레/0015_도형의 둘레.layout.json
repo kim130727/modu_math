@@ -1,0 +1,352 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "0015_도형의 둘레",
+  "title": "",
+  "canvas": {
+    "width": 980,
+    "height": 730,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "vertical",
+      "slot_ids": [
+        "slot.bg",
+        "slot.colored_square",
+        "slot.outer_left",
+        "slot.outer_top",
+        "slot.v_main",
+        "slot.outer_right",
+        "slot.h_main",
+        "slot.v_small",
+        "slot.h_small",
+        "slot.outer_bottom",
+        "slot.q1",
+        "slot.q2",
+        "slot.q3",
+        "slot.q4",
+        "slot.q5",
+        "slot.label_g",
+        "slot.label_n",
+        "slot.label_r",
+        "slot.label_d"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.bg",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 980.0,
+        "height": 730.0,
+        "stroke": "none",
+        "stroke_width": 0.0,
+        "fill": "#F6F6F6",
+        "semantic_role": "background"
+      }
+    },
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "여러 가지 크기의 정사각형을 겹치지 않게 붙여 다음과",
+        "style_role": "body",
+        "x": 29.0,
+        "y": 60.0,
+        "font_size": 31,
+        "font_family": "Malgun Gothic",
+        "anchor": "start",
+        "fill": "#222222",
+        "semantic_role": "instruction"
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "같은 직사각형 모양도형을 만들었습니다. 색칠한 정사각형의",
+        "style_role": "body",
+        "x": 29.0,
+        "y": 104.0,
+        "font_size": 31,
+        "font_family": "Malgun Gothic",
+        "anchor": "start",
+        "fill": "#222222",
+        "semantic_role": "instruction"
+      }
+    },
+    {
+      "id": "slot.q3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "한 변의 길이가 15cm일 때, 직사각형 모양도형의",
+        "style_role": "body",
+        "x": 29.0,
+        "y": 148.0,
+        "font_size": 31,
+        "font_family": "Malgun Gothic",
+        "anchor": "start",
+        "fill": "#222222",
+        "semantic_role": "instruction"
+      }
+    },
+    {
+      "id": "slot.q4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "네 변의 길이의 합은 몇 cm입니까?",
+        "style_role": "body",
+        "x": 29.0,
+        "y": 192.0,
+        "font_size": 31,
+        "font_family": "Malgun Gothic",
+        "anchor": "start",
+        "fill": "#222222",
+        "semantic_role": "instruction"
+      }
+    },
+    {
+      "id": "slot.q5",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "(각 가로와 세로 정사각형의 크기는 같습니다.)",
+        "style_role": "body",
+        "x": 29.0,
+        "y": 236.0,
+        "font_size": 31,
+        "font_family": "Malgun Gothic",
+        "anchor": "start",
+        "fill": "#222222",
+        "semantic_role": "instruction"
+      }
+    },
+    {
+      "id": "slot.label_g",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄱ",
+        "style_role": "body",
+        "x": 180.59975,
+        "y": 342.61462,
+        "font_size": 42,
+        "font_family": "Malgun Gothic",
+        "anchor": "start",
+        "fill": "#222222",
+        "semantic_role": "label"
+      }
+    },
+    {
+      "id": "slot.label_n",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄴ",
+        "style_role": "body",
+        "x": 658.59975,
+        "y": 342.61462,
+        "font_size": 42,
+        "font_family": "Malgun Gothic",
+        "anchor": "start",
+        "fill": "#222222",
+        "semantic_role": "label"
+      }
+    },
+    {
+      "id": "slot.outer_left",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 202.59975,
+        "y1": 346.61462,
+        "x2": 202.59975,
+        "y2": 626.6146200000001,
+        "stroke": "#222222",
+        "stroke_width": 2.0,
+        "semantic_role": "segment"
+      }
+    },
+    {
+      "id": "slot.outer_top",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 202.59975,
+        "y1": 346.61462,
+        "x2": 650.59975,
+        "y2": 346.61462,
+        "stroke": "#222222",
+        "stroke_width": 2.0,
+        "semantic_role": "segment"
+      }
+    },
+    {
+      "id": "slot.v_main",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 370.59975,
+        "y1": 346.61462,
+        "x2": 370.59975,
+        "y2": 626.6146200000001,
+        "stroke": "#222222",
+        "stroke_width": 2.0,
+        "semantic_role": "segment"
+      }
+    },
+    {
+      "id": "slot.outer_right",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 650.59975,
+        "y1": 346.61462,
+        "x2": 650.59975,
+        "y2": 626.6146200000001,
+        "stroke": "#222222",
+        "stroke_width": 2.0,
+        "semantic_role": "segment"
+      }
+    },
+    {
+      "id": "slot.h_main",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 202.59975,
+        "y1": 514.6146200000001,
+        "x2": 370.59975,
+        "y2": 514.6146200000001,
+        "stroke": "#222222",
+        "stroke_width": 2.0,
+        "semantic_role": "segment"
+      }
+    },
+    {
+      "id": "slot.v_small",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 258.59975,
+        "y1": 514.6146200000001,
+        "x2": 258.59975,
+        "y2": 626.6146200000001,
+        "stroke": "#222222",
+        "stroke_width": 2.0,
+        "semantic_role": "segment"
+      }
+    },
+    {
+      "id": "slot.colored_square",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 202.59975,
+        "y": 570.6146200000001,
+        "width": 56.0,
+        "height": 56.0,
+        "stroke": "none",
+        "stroke_width": 0.0,
+        "fill": "#4E78C2",
+        "semantic_role": "highlight"
+      }
+    },
+    {
+      "id": "slot.h_small",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 202.59975,
+        "y1": 570.6146200000001,
+        "x2": 258.59975,
+        "y2": 570.6146200000001,
+        "stroke": "#222222",
+        "stroke_width": 2.0,
+        "semantic_role": "segment"
+      }
+    },
+    {
+      "id": "slot.outer_bottom",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 202.59975,
+        "y1": 626.6146200000001,
+        "x2": 650.59975,
+        "y2": 626.6146200000001,
+        "stroke": "#222222",
+        "stroke_width": 2.0,
+        "semantic_role": "segment"
+      }
+    },
+    {
+      "id": "slot.label_r",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄹ",
+        "style_role": "body",
+        "x": 180.59975,
+        "y": 654.6146200000001,
+        "font_size": 42,
+        "font_family": "Malgun Gothic",
+        "anchor": "start",
+        "fill": "#222222",
+        "semantic_role": "label"
+      }
+    },
+    {
+      "id": "slot.label_d",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄷ",
+        "style_role": "body",
+        "x": 658.59975,
+        "y": 654.6146200000001,
+        "font_size": 42,
+        "font_family": "Malgun Gothic",
+        "anchor": "start",
+        "fill": "#222222",
+        "semantic_role": "label"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.bg",
+    "slot.colored_square",
+    "slot.outer_left",
+    "slot.outer_top",
+    "slot.v_main",
+    "slot.outer_right",
+    "slot.h_main",
+    "slot.v_small",
+    "slot.h_small",
+    "slot.outer_bottom",
+    "slot.q1",
+    "slot.q2",
+    "slot.q3",
+    "slot.q4",
+    "slot.q5",
+    "slot.label_g",
+    "slot.label_n",
+    "slot.label_r",
+    "slot.label_d"
+  ]
+}

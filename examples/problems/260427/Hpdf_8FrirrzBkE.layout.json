@@ -1,0 +1,171 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "Hpdf_8FrirrzBkE",
+  "title": "철사로 만든 도형의 가로 구하기",
+  "canvas": {
+    "width": 750,
+    "height": 550,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q1",
+        "slot.q2",
+        "slot.q3",
+        "slot.left.rect",
+        "slot.left.cm",
+        "slot.arrow",
+        "slot.arrow.head",
+        "slot.right.rect",
+        "slot.right.cm"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "철사를 사용하여 한 변이 13cm인 정사각형을 만들었습니다.",
+        "style_role": "body",
+        "x": 12.0,
+        "y": 50.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "이 철사를 펴서 세로가 18cm인 가장 큰 직사각형 1개를 만들 때,",
+        "style_role": "body",
+        "x": 12.0,
+        "y": 100.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "이 직사각형의 가로는 몇 cm입니까?",
+        "style_role": "question",
+        "x": 12.0,
+        "y": 150.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.left.rect",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 50.0,
+        "y": 280.0,
+        "width": 130.0,
+        "height": 130.0,
+        "stroke": "#888888",
+        "stroke_width": 2.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.left.cm",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "13cm",
+        "style_role": "body",
+        "x": 190.0,
+        "y": 350.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.arrow",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 290.0,
+        "y1": 340.0,
+        "x2": 376.0,
+        "y2": 340.0,
+        "stroke": "#666666",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.arrow.head",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            376.0,
+            340.0
+          ],
+          [
+            368.0,
+            334.0
+          ],
+          [
+            368.0,
+            346.0
+          ]
+        ],
+        "stroke": "#666666",
+        "stroke_width": 2.0,
+        "fill": "#666666"
+      }
+    },
+    {
+      "id": "slot.right.rect",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 450.0,
+        "y": 255.0,
+        "width": 80.0,
+        "height": 180.0,
+        "stroke": "#888888",
+        "stroke_width": 2.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.right.cm",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "18cm",
+        "style_role": "body",
+        "x": 540.0,
+        "y": 350.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q1",
+    "slot.q2",
+    "slot.q3",
+    "slot.left.rect",
+    "slot.left.cm",
+    "slot.arrow",
+    "slot.arrow.head",
+    "slot.right.rect",
+    "slot.right.cm"
+  ]
+}

@@ -1,0 +1,347 @@
+from __future__ import annotations
+
+from modu_math.dsl import Arrow, BlankSlot, Canvas, ChoiceSlot, Circle, CircleSlot, Constraint, Cube, DiagramTemplate, FractionAreaModel, Grid, Group, LabelSlot, LineSlot, PathSlot, PolygonSlot, ProblemTemplate, RectSlot, Region, ShapeObject, TextSlot, Triangle
+
+
+def build_problem_template() -> ProblemTemplate:
+    canvas = Canvas(
+        width=1464,
+        height=382,
+        coordinate_mode='logical',
+    )
+    regions = (
+        Region(
+            id='region.stem',
+            role='stem',
+            flow='vertical',
+            slot_ids=(
+                'slot.instruction',
+                'slot.dist_p0_p1_text',
+                'slot.dist_p1_p3_text',
+                'slot.dist_p1_p2_text',
+                'slot.label_p0',
+                'slot.label_p1',
+                'slot.label_p2',
+                'slot.label_p3',
+            ),
+        ),
+    )
+    slots = (
+        TextSlot(
+            id='slot.instruction',
+            prompt='',
+            text='ㄱ에서 ㄹ까지의 거리를 구해 보세요.',
+            style_role='body',
+            x=20.0,
+            y=76.0,
+            font_size=64,
+            font_family='Malgun Gothic',
+            anchor='start',
+            fill='#222222',
+            semantic_role='instruction',
+        ),
+        PathSlot(
+            id='slot.guide_p0_p1',
+            prompt='',
+            d='M 188 244 Q 304.47688564476886 170 420.9537712895377 236',
+            stroke='#0FA9F4',
+            stroke_width=3.0,
+            stroke_dasharray='10 8',
+            fill='none',
+            semantic_role='measurement_guide',
+        ),
+        PathSlot(
+            id='slot.guide_p1_p3',
+            prompt='',
+            d='M 420.9537712895377 236 Q 848.4768856447688 120 1276 230',
+            stroke='#0FA9F4',
+            stroke_width=3.0,
+            stroke_dasharray='10 8',
+            fill='none',
+            semantic_role='measurement_guide',
+        ),
+        PathSlot(
+            id='slot.guide_p1_p2',
+            prompt='',
+            d='M 420.9537712895377 307 Q 636.0389294403892 372 851.1240875912408 316',
+            stroke='#0FA9F4',
+            stroke_width=3.0,
+            stroke_dasharray='10 8',
+            fill='none',
+            semantic_role='measurement_guide',
+        ),
+        TextSlot(
+            id='slot.dist_p0_p1_text',
+            prompt='',
+            text='176 cm',
+            style_role='body',
+            x=304.47688564476886,
+            y=198.0,
+            font_size=58,
+            font_family='Cambria',
+            anchor='middle',
+            fill='#222222',
+            semantic_role='distance_label',
+        ),
+        TextSlot(
+            id='slot.dist_p1_p3_text',
+            prompt='',
+            text='646 cm',
+            style_role='body',
+            x=848.4768856447688,
+            y=192.0,
+            font_size=58,
+            font_family='Cambria',
+            anchor='middle',
+            fill='#222222',
+            semantic_role='distance_label',
+        ),
+        TextSlot(
+            id='slot.dist_p1_p2_text',
+            prompt='',
+            text='325 cm',
+            style_role='body',
+            x=636.0389294403892,
+            y=334.0,
+            font_size=58,
+            font_family='Cambria',
+            anchor='middle',
+            fill='#222222',
+            semantic_role='distance_label',
+        ),
+        LineSlot(
+            id='slot.base_line',
+            prompt='',
+            x1=188.0,
+            y1=249.0,
+            x2=1276.0,
+            y2=249.0,
+            stroke='#2E2A2D',
+            stroke_width=5.0,
+            semantic_role='number_line',
+        ),
+        LineSlot(
+            id='slot.tick_p0',
+            prompt='',
+            x1=188.0,
+            y1=218.0,
+            x2=188.0,
+            y2=279.0,
+            stroke='#2E2A2D',
+            stroke_width=4.0,
+            semantic_role='point_tick',
+        ),
+        LineSlot(
+            id='slot.tick_p1',
+            prompt='',
+            x1=420.9537712895377,
+            y1=218.0,
+            x2=420.9537712895377,
+            y2=279.0,
+            stroke='#2E2A2D',
+            stroke_width=4.0,
+            semantic_role='point_tick',
+        ),
+        LineSlot(
+            id='slot.tick_p2',
+            prompt='',
+            x1=851.1240875912408,
+            y1=218.0,
+            x2=851.1240875912408,
+            y2=279.0,
+            stroke='#2E2A2D',
+            stroke_width=4.0,
+            semantic_role='point_tick',
+        ),
+        LineSlot(
+            id='slot.tick_p3',
+            prompt='',
+            x1=1276.0,
+            y1=218.0,
+            x2=1276.0,
+            y2=279.0,
+            stroke='#2E2A2D',
+            stroke_width=4.0,
+            semantic_role='point_tick',
+        ),
+        CircleSlot(
+            id='slot.label_circle_p0',
+            prompt='',
+            cx=188.0,
+            cy=316.0,
+            r=22.0,
+            stroke='#3A3336',
+            stroke_width=3.0,
+            fill='none',
+            semantic_role='point_label',
+        ),
+        CircleSlot(
+            id='slot.label_circle_p1',
+            prompt='',
+            cx=420.9537712895377,
+            cy=316.0,
+            r=22.0,
+            stroke='#3A3336',
+            stroke_width=3.0,
+            fill='none',
+            semantic_role='point_label',
+        ),
+        CircleSlot(
+            id='slot.label_circle_p2',
+            prompt='',
+            cx=851.1240875912408,
+            cy=316.0,
+            r=22.0,
+            stroke='#3A3336',
+            stroke_width=3.0,
+            fill='none',
+            semantic_role='point_label',
+        ),
+        CircleSlot(
+            id='slot.label_circle_p3',
+            prompt='',
+            cx=1276.0,
+            cy=316.0,
+            r=22.0,
+            stroke='#3A3336',
+            stroke_width=3.0,
+            fill='none',
+            semantic_role='point_label',
+        ),
+        TextSlot(
+            id='slot.label_p0',
+            prompt='',
+            text='ㄱ',
+            style_role='body',
+            x=188.0,
+            y=327.0,
+            font_size=34,
+            font_family='Malgun Gothic',
+            anchor='middle',
+            fill='#222222',
+            semantic_role='point_name',
+        ),
+        TextSlot(
+            id='slot.label_p1',
+            prompt='',
+            text='ㄴ',
+            style_role='body',
+            x=420.9537712895377,
+            y=327.0,
+            font_size=34,
+            font_family='Malgun Gothic',
+            anchor='middle',
+            fill='#222222',
+            semantic_role='point_name',
+        ),
+        TextSlot(
+            id='slot.label_p2',
+            prompt='',
+            text='ㄷ',
+            style_role='body',
+            x=851.1240875912408,
+            y=327.0,
+            font_size=34,
+            font_family='Malgun Gothic',
+            anchor='middle',
+            fill='#222222',
+            semantic_role='point_name',
+        ),
+        TextSlot(
+            id='slot.label_p3',
+            prompt='',
+            text='ㄹ',
+            style_role='body',
+            x=1276.0,
+            y=327.0,
+            font_size=34,
+            font_family='Malgun Gothic',
+            anchor='middle',
+            fill='#222222',
+            semantic_role='point_name',
+        ),
+    )
+    diagrams = ()
+    groups = ()
+    constraints = ()
+    return ProblemTemplate(
+        id='0007_선분 거리 계산',
+        title='',
+        canvas=canvas,
+        regions=regions,
+        slots=slots,
+        diagrams=diagrams,
+        groups=groups,
+        constraints=constraints,
+    )
+
+
+PROBLEM_TEMPLATE = build_problem_template()
+
+SEMANTIC_OVERRIDE = {
+    'problem_id': '0007_선분 거리 계산',
+    'problem_type': 'line_segment_distance_calculation',
+    'metadata': {
+        'language': 'ko',
+        'question': '일직선 위의 지점 ㄱ, ㄴ, ㄷ, ㄹ에 대해 주어진 거리를 이용하여 ㄱ에서 ㄹ까지의 거리를 구하는 문제',
+        'instruction': 'ㄱ에서 ㄹ까지의 거리를 구해 보세요.',
+    },
+    'domain': {
+        'objects': [
+            {'id': 'obj.p0', 'type': 'point', 'description': 'ㄱ'},
+            {'id': 'obj.p1', 'type': 'point', 'description': 'ㄴ'},
+            {'id': 'obj.p3', 'type': 'point', 'description': 'ㄹ'},
+            {'id': 'obj.dist_p0_p1', 'type': 'distance', 'value': 176, 'unit': 'cm'},
+            {'id': 'obj.dist_p1_p3', 'type': 'distance', 'value': 646, 'unit': 'cm'},
+        ],
+        'problem_solving': {
+            'plan': {
+                'method': 'segment_addition',
+                'description': 'ㄱ~ㄴ 거리와 ㄴ~ㄹ 거리를 더하여 전체 거리를 구한다.',
+            }
+        },
+    },
+    'answer': {
+        'value': 822,
+        'unit': 'cm',
+    },
+}
+
+SOLVABLE = {
+    'schema': 'modu.solvable.v1',
+    'problem_id': '0007_선분 거리 계산',
+    'problem_type': 'line_segment_distance_calculation',
+    'given': [
+        {'ref': 'obj.dist_p0_p1', 'value': 176},
+        {'ref': 'obj.dist_p1_p3', 'value': 646}
+    ],
+    'target': {'type': 'number', 'description': 'ㄱ~ㄹ 전체 거리'},
+    'method': 'segment_addition',
+    'steps': [
+        {
+            'id': 'step.s1',
+            'operation': 'addition',
+            'expr': '176 + 646 = 822',
+            'value': 822
+        }
+    ],
+    'checks': [
+        {
+            'id': 'check.c1',
+            'type': 'arithmetic_consistency_check',
+            'pass': True,
+            'expected': 822,
+            'actual': 822,
+            'expr': '176 + 646'
+        }
+    ],
+    'answer': {'value': 822, 'unit': 'cm', 'derived_from': 'step.s1'},
+    'inputs': {
+        'total_ticks': 1,
+        'target_label': '답',
+        'target_ticks': 1,
+        'target_count': 1,
+        'unit': 'cm'
+    },
+    'plan': ['ㄱ~ㄴ 거리와 ㄴ~ㄹ 거리를 합산하여 전체 822cm를 구합니다.']
+}

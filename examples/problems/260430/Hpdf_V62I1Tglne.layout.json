@@ -1,0 +1,172 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "Hpdf_V62I1Tglne",
+  "title": "배의 수를 구하기",
+  "canvas": {
+    "width": 562,
+    "height": 423,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q1",
+        "slot.q2",
+        "slot.q3",
+        "slot.q4",
+        "slot.q5",
+        "slot.a1",
+        "slot.a2",
+        "slot.q6",
+        "slot.answer_box_1",
+        "slot.answer_box_2"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "사람의 뼈의 수는 어릴수록 많고 어른이 되어",
+        "style_role": "question",
+        "x": 10.0,
+        "y": 30.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "가면서 줄어든다고 합니다. 아빠의 뼈와 유라",
+        "style_role": "question",
+        "x": 10.0,
+        "y": 69.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "의 뼈의 수의 합은 486개이며, 유라의 뼈는 아",
+        "style_role": "question",
+        "x": 10.0,
+        "y": 108.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "빠의 뼈보다 74개 더 많습니다. 또한 동생의",
+        "style_role": "question",
+        "x": 10.0,
+        "y": 147.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q5",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "뼈는 유라의 뼈보다 60개 더 많습니다. 유라의",
+        "style_role": "question",
+        "x": 10.0,
+        "y": 186.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q6",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "뼈의 수와 동생의 뼈의 수를 각각 구하시오.",
+        "style_role": "question",
+        "x": 10.0,
+        "y": 225.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.a1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "유라 (                )",
+        "style_role": "answer",
+        "x": 128.0,
+        "y": 287.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.a2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "동생 (                )",
+        "style_role": "answer",
+        "x": 128.0,
+        "y": 326.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.answer_box_1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 214.0,
+        "y": 265.0,
+        "width": 300.0,
+        "height": 42.0,
+        "stroke": "#FFFFFF",
+        "stroke_width": 0.0,
+        "fill": "#FFFFFF"
+      }
+    },
+    {
+      "id": "slot.answer_box_2",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 214.0,
+        "y": 304.0,
+        "width": 300.0,
+        "height": 42.0,
+        "stroke": "#FFFFFF",
+        "stroke_width": 0.0,
+        "fill": "#FFFFFF"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q1",
+    "slot.q2",
+    "slot.q3",
+    "slot.q4",
+    "slot.q5",
+    "slot.a1",
+    "slot.a2",
+    "slot.q6",
+    "slot.answer_box_1",
+    "slot.answer_box_2"
+  ]
+}

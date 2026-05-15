@@ -1,0 +1,57 @@
+{
+  "schema": "modu.solvable.v1",
+  "problem_id": "Hpdf_riUadxZCRr",
+  "problem_type": "geometry_perimeter",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "직사각형의 둘레",
+    "target_ticks": 0,
+    "target_count": 0,
+    "unit": "cm"
+  },
+  "given": [
+    {
+      "ref": "obj.tape",
+      "value": "12 cm, 3 cm, 3장, 겹침 2 cm"
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "length"
+  },
+  "method": "composite_rectangle_perimeter",
+  "plan": [
+    "1. 전체 가로 길이를 구한다: (12 * 3) - (2 * 2) = 36 - 4 = 32 cm.",
+    "2. 세로 길이는 테이프의 짧은 변과 같으므로 3 cm이다.",
+    "3. 직사각형의 둘레를 구한다: (32 + 3) * 2 = 35 * 2 = 70 cm."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "operation": "subtract",
+      "expr": "12 * 3 - 2 * 2",
+      "value": 32
+    },
+    {
+      "id": "step.2",
+      "operation": "multiply",
+      "expr": "(32 + 3) * 2",
+      "value": 70
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "type": "unit_consistency_check",
+      "expr": "단위가 모두 cm인지 확인",
+      "expected": 1,
+      "actual": 1,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "value": 70,
+    "unit": "cm",
+    "derived_from": "step.2"
+  }
+}

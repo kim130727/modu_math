@@ -1,0 +1,134 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "Hpdf_RJJOU7cmRm",
+  "title": "도형에서 직사각형 개수 세기",
+  "canvas": {
+    "width": 568,
+    "height": 347,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q1",
+        "slot.diagram.border",
+        "slot.diagram.lines.v1",
+        "slot.diagram.lines.v2",
+        "slot.diagram.lines.v3",
+        "slot.diagram.lines.h1",
+        "slot.diagram.lines.h2"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "도형에서 찾을 수 있는 크고 작은 직사각형은 모두 몇 개입니까?",
+        "style_role": "question",
+        "x": 10.0,
+        "y": 28.0,
+        "font_size": 28,
+        "anchor": "start"
+      }
+    },
+    {
+      "id": "slot.diagram.border",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 102.0,
+        "y": 124.0,
+        "width": 355.0,
+        "height": 215.0,
+        "stroke": "#222222",
+        "stroke_width": 2.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.diagram.lines.v1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 170.0,
+        "y1": 124.0,
+        "x2": 170.0,
+        "y2": 194.0,
+        "stroke": "#222222",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.diagram.lines.v2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 240.0,
+        "y1": 124.0,
+        "x2": 240.0,
+        "y2": 339.0,
+        "stroke": "#222222",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.diagram.lines.v3",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 350.0,
+        "y1": 124.0,
+        "x2": 350.0,
+        "y2": 339.0,
+        "stroke": "#222222",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.diagram.lines.h1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 102.0,
+        "y1": 194.0,
+        "x2": 240.0,
+        "y2": 194.0,
+        "stroke": "#222222",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.diagram.lines.h2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 240.0,
+        "y1": 231.0,
+        "x2": 457.0,
+        "y2": 231.0,
+        "stroke": "#222222",
+        "stroke_width": 2.0
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q1",
+    "slot.diagram.border",
+    "slot.diagram.lines.v1",
+    "slot.diagram.lines.v2",
+    "slot.diagram.lines.v3",
+    "slot.diagram.lines.h1",
+    "slot.diagram.lines.h2"
+  ]
+}

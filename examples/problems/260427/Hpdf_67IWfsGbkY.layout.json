@@ -1,0 +1,124 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "Hpdf_67IWfsGbkY",
+  "title": "구슬 나눔",
+  "canvas": {
+    "width": 800,
+    "height": 294,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q1",
+        "slot.q2",
+        "slot.q3",
+        "slot.q4",
+        "slot.q5",
+        "slot.q6"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "(가), (나), (다) 세 사람은 구슬 게임을 합니다.",
+        "style_role": "question",
+        "x": 18.0,
+        "y": 34.0,
+        "font_size": 24,
+        "anchor": "start",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "게임에서 진 사람은 이긴 사람이 갖고 있는 수만큼 구슬을 주기로 하였습니다.",
+        "style_role": "question",
+        "x": 18.0,
+        "y": 70.0,
+        "font_size": 24,
+        "anchor": "start",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.q3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "첫 번째 게임에서 (나)는 (가)와 (다)에게 졌습니다.",
+        "style_role": "question",
+        "x": 18.0,
+        "y": 106.0,
+        "font_size": 24,
+        "anchor": "start",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.q4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "두 번째 게임에서 (가)는 (나)와 (다)에게 졌습니다.",
+        "style_role": "question",
+        "x": 18.0,
+        "y": 142.0,
+        "font_size": 24,
+        "anchor": "start",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.q5",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "두 번의 게임이 끝난 후 세 사람이 가지고 있는 구슬은 각각 240개로 같았습니다.",
+        "style_role": "question",
+        "x": 18.0,
+        "y": 178.0,
+        "font_size": 24,
+        "anchor": "start",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.q6",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "게임을 시작하기 전 (나)가 가지고 있던 구슬은 몇 개입니까?",
+        "style_role": "question",
+        "x": 18.0,
+        "y": 214.0,
+        "font_size": 24,
+        "anchor": "start",
+        "fill": "#111111"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q1",
+    "slot.q2",
+    "slot.q3",
+    "slot.q4",
+    "slot.q5",
+    "slot.q6"
+  ]
+}

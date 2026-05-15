@@ -1,0 +1,138 @@
+{
+  "problem_id": "0017_도형 수식",
+  "view_box": {
+    "width": 736.0,
+    "height": 340.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.equation_box.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 165.0,
+        "y": 112.0,
+        "width": 402.0,
+        "height": 140.0,
+        "fill": "none",
+        "stroke": "#111111",
+        "stroke-width": 1.0,
+        "rx": 22.0,
+        "ry": 22.0
+      },
+      "source_ref": "slot.equation_box",
+      "refs": {
+        "layout_slot_id": "slot.equation_box"
+      }
+    },
+    {
+      "id": "slot.answer_blank.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 430.0,
+        "y": 272.0,
+        "width": 235.0,
+        "height": 44.0,
+        "fill": "none",
+        "stroke": "none",
+        "stroke-width": 1.0,
+        "data-semantic-role": "blank_answer"
+      },
+      "source_ref": "slot.answer_blank",
+      "refs": {
+        "layout_slot_id": "slot.answer_blank"
+      }
+    },
+    {
+      "id": "slot.line1.text",
+      "type": "text",
+      "attributes": {
+        "x": 20.0,
+        "y": 42.0,
+        "max_width": 608.0,
+        "fill": "#000000",
+        "font-family": "Malgun Gothic",
+        "font-size": 22,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.line1",
+      "refs": {
+        "layout_slot_id": "slot.line1"
+      },
+      "text": "같은 모양은 같은 수를 나타낼 때 ■는 얼마를 나타냅니까?"
+    },
+    {
+      "id": "slot.eq1.text",
+      "type": "text",
+      "attributes": {
+        "x": 290.0,
+        "y": 164.0,
+        "max_width": 608.0,
+        "fill": "#000000",
+        "font-family": "Malgun Gothic",
+        "font-size": 44,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.eq1",
+      "refs": {
+        "layout_slot_id": "slot.eq1"
+      },
+      "text": "17×▲=■"
+    },
+    {
+      "id": "slot.eq2.text",
+      "type": "text",
+      "attributes": {
+        "x": 290.0,
+        "y": 224.0,
+        "max_width": 608.0,
+        "fill": "#000000",
+        "font-family": "Malgun Gothic",
+        "font-size": 44,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.eq2",
+      "refs": {
+        "layout_slot_id": "slot.eq2"
+      },
+      "text": "64÷▲=8"
+    },
+    {
+      "id": "slot.answer_left_paren.text",
+      "type": "text",
+      "attributes": {
+        "x": 398.0,
+        "y": 304.0,
+        "max_width": 608.0,
+        "fill": "#000000",
+        "font-family": "Malgun Gothic",
+        "font-size": 40,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.answer_left_paren",
+      "refs": {
+        "layout_slot_id": "slot.answer_left_paren"
+      },
+      "text": "("
+    },
+    {
+      "id": "slot.answer_right_paren.text",
+      "type": "text",
+      "attributes": {
+        "x": 700.0,
+        "y": 304.0,
+        "max_width": 608.0,
+        "fill": "#000000",
+        "font-family": "Malgun Gothic",
+        "font-size": 40,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.answer_right_paren",
+      "refs": {
+        "layout_slot_id": "slot.answer_right_paren"
+      },
+      "text": ")"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

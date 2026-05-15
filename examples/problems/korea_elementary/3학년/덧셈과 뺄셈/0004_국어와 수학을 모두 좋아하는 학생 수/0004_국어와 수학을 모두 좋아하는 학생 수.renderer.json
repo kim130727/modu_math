@@ -1,0 +1,62 @@
+{
+  "problem_id": "0004_국어와 수학을 모두 좋아하는 학생 수",
+  "view_box": {
+    "width": 1000.0,
+    "height": 500.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.t1.text",
+      "type": "text",
+      "attributes": {
+        "x": 64.0,
+        "y": 72.0,
+        "max_width": 872.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 26
+      },
+      "source_ref": "slot.t1",
+      "refs": {
+        "layout_slot_id": "slot.t1"
+      },
+      "text": "국어나 수학을 좋아하는 학생 780명 중에서 국어를 좋아하는 학생이 621명,"
+    },
+    {
+      "id": "slot.t2.text",
+      "type": "text",
+      "attributes": {
+        "x": 64.0,
+        "y": 128.0,
+        "max_width": 872.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 26
+      },
+      "source_ref": "slot.t2",
+      "refs": {
+        "layout_slot_id": "slot.t2"
+      },
+      "text": "수학을 좋아하는 학생이 348명입니다. 국어와 수학을 모두 좋아하는 학생은"
+    },
+    {
+      "id": "slot.t3.text",
+      "type": "text",
+      "attributes": {
+        "x": 64.0,
+        "y": 184.0,
+        "max_width": 872.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 26
+      },
+      "source_ref": "slot.t3",
+      "refs": {
+        "layout_slot_id": "slot.t3"
+      },
+      "text": "몇 명입니까?"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

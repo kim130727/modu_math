@@ -1,0 +1,62 @@
+{
+  "problem_id": "msedge_ZhOurRI2aQ",
+  "view_box": {
+    "width": 600.0,
+    "height": 250.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.instr.text",
+      "type": "text",
+      "attributes": {
+        "x": 20.0,
+        "y": 50.0,
+        "max_width": 472.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 35
+      },
+      "source_ref": "slot.instr",
+      "refs": {
+        "layout_slot_id": "slot.instr"
+      },
+      "text": "다음을 계산하시오."
+    },
+    {
+      "id": "slot.q1.text",
+      "type": "text",
+      "attributes": {
+        "x": 20.0,
+        "y": 120.0,
+        "max_width": 472.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 35
+      },
+      "source_ref": "slot.q1",
+      "refs": {
+        "layout_slot_id": "slot.q1"
+      },
+      "text": "(1) 196+198+202+204"
+    },
+    {
+      "id": "slot.q2.text",
+      "type": "text",
+      "attributes": {
+        "x": 20.0,
+        "y": 190.0,
+        "max_width": 472.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 35
+      },
+      "source_ref": "slot.q2",
+      "refs": {
+        "layout_slot_id": "slot.q2"
+      },
+      "text": "(2) 127+346+873+654"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

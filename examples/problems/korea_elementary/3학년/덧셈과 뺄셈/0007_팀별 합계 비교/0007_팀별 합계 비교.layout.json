@@ -1,0 +1,359 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "0007_팀별 합계 비교",
+  "title": "",
+  "canvas": {
+    "width": 767,
+    "height": 231,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "vertical",
+      "slot_ids": [
+        "slot.bg",
+        "slot.hline_124",
+        "slot.hline_158",
+        "slot.hline_192",
+        "slot.hline_226",
+        "slot.vline_188",
+        "slot.vline_308",
+        "slot.vline_430",
+        "slot.vline_552",
+        "slot.answer_text",
+        "slot.t1",
+        "slot.t2",
+        "slot.th_c",
+        "slot.th_b",
+        "slot.r_m",
+        "slot.r_f",
+        "slot.m_c",
+        "slot.m_b",
+        "slot.f_c",
+        "slot.f_b"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.bg",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 767.0,
+        "height": 231.0,
+        "stroke": "none",
+        "stroke_width": 0.0,
+        "fill": "#FFFFFF"
+      }
+    },
+    {
+      "id": "slot.t1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "주득이네 학교 3학년 학생을 청팀과 백팀으로 나누어 콩주머니 던지기 경기를 했습니다.",
+        "style_role": "body",
+        "x": 6.0,
+        "y": 34.0,
+        "font_size": 17,
+        "font_family": "Malgun Gothic",
+        "anchor": "start",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.t2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "청팀과 백팀 중 어느 쪽이 콩주머니를 몇 개 더 넣었는지 식과 답을 구하시오.",
+        "style_role": "body",
+        "x": 6.0,
+        "y": 62.0,
+        "font_size": 17,
+        "font_family": "Malgun Gothic",
+        "anchor": "start",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.hline_124",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 188.0,
+        "y": 124.0,
+        "width": 364.0,
+        "height": 1.0,
+        "stroke": "none",
+        "stroke_width": 0.0,
+        "fill": "#777777"
+      }
+    },
+    {
+      "id": "slot.hline_158",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 188.0,
+        "y": 158.0,
+        "width": 364.0,
+        "height": 1.0,
+        "stroke": "none",
+        "stroke_width": 0.0,
+        "fill": "#777777"
+      }
+    },
+    {
+      "id": "slot.hline_192",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 188.0,
+        "y": 192.0,
+        "width": 364.0,
+        "height": 1.0,
+        "stroke": "none",
+        "stroke_width": 0.0,
+        "fill": "#777777"
+      }
+    },
+    {
+      "id": "slot.hline_226",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 188.0,
+        "y": 226.0,
+        "width": 364.0,
+        "height": 1.0,
+        "stroke": "none",
+        "stroke_width": 0.0,
+        "fill": "#777777"
+      }
+    },
+    {
+      "id": "slot.vline_188",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 188.0,
+        "y": 124.0,
+        "width": 1.0,
+        "height": 102.0,
+        "stroke": "none",
+        "stroke_width": 0.0,
+        "fill": "#777777"
+      }
+    },
+    {
+      "id": "slot.vline_308",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 308.0,
+        "y": 124.0,
+        "width": 1.0,
+        "height": 102.0,
+        "stroke": "none",
+        "stroke_width": 0.0,
+        "fill": "#777777"
+      }
+    },
+    {
+      "id": "slot.vline_430",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 430.0,
+        "y": 124.0,
+        "width": 1.0,
+        "height": 102.0,
+        "stroke": "none",
+        "stroke_width": 0.0,
+        "fill": "#777777"
+      }
+    },
+    {
+      "id": "slot.vline_552",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 552.0,
+        "y": 124.0,
+        "width": 1.0,
+        "height": 102.0,
+        "stroke": "none",
+        "stroke_width": 0.0,
+        "fill": "#777777"
+      }
+    },
+    {
+      "id": "slot.th_c",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "청팀",
+        "style_role": "body",
+        "x": 369.0,
+        "y": 148.0,
+        "font_size": 17,
+        "font_family": "Malgun Gothic",
+        "anchor": "middle",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.th_b",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "백팀",
+        "style_role": "body",
+        "x": 491.0,
+        "y": 148.0,
+        "font_size": 17,
+        "font_family": "Malgun Gothic",
+        "anchor": "middle",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.r_m",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "남학생",
+        "style_role": "body",
+        "x": 248.0,
+        "y": 182.0,
+        "font_size": 17,
+        "font_family": "Malgun Gothic",
+        "anchor": "middle",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.r_f",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "여학생",
+        "style_role": "body",
+        "x": 248.0,
+        "y": 216.0,
+        "font_size": 17,
+        "font_family": "Malgun Gothic",
+        "anchor": "middle",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.m_c",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "174개",
+        "style_role": "body",
+        "x": 369.0,
+        "y": 182.0,
+        "font_size": 17,
+        "font_family": "Malgun Gothic",
+        "anchor": "middle",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.m_b",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "195개",
+        "style_role": "body",
+        "x": 491.0,
+        "y": 182.0,
+        "font_size": 17,
+        "font_family": "Malgun Gothic",
+        "anchor": "middle",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.f_c",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "168개",
+        "style_role": "body",
+        "x": 369.0,
+        "y": 216.0,
+        "font_size": 17,
+        "font_family": "Malgun Gothic",
+        "anchor": "middle",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.f_b",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "156개",
+        "style_role": "body",
+        "x": 491.0,
+        "y": 216.0,
+        "font_size": 17,
+        "font_family": "Malgun Gothic",
+        "anchor": "middle",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.answer_text",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 560.0,
+        "y": 200.0,
+        "width": 190.0,
+        "height": 26.0,
+        "stroke": "none",
+        "stroke_width": 0.0,
+        "fill": "none",
+        "semantic_role": "answer_anchor"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.bg",
+    "slot.hline_124",
+    "slot.hline_158",
+    "slot.hline_192",
+    "slot.hline_226",
+    "slot.vline_188",
+    "slot.vline_308",
+    "slot.vline_430",
+    "slot.vline_552",
+    "slot.answer_text",
+    "slot.t1",
+    "slot.t2",
+    "slot.th_c",
+    "slot.th_b",
+    "slot.r_m",
+    "slot.r_f",
+    "slot.m_c",
+    "slot.m_b",
+    "slot.f_c",
+    "slot.f_b"
+  ]
+}

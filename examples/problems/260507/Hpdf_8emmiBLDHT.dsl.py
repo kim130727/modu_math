@@ -1,0 +1,280 @@
+from __future__ import annotations
+from modu_math.dsl import (
+    Canvas,
+    ProblemTemplate,
+    Region,
+    TextSlot,
+    RectSlot,
+    PolygonSlot,
+    LineSlot,
+    PathSlot,
+    CircleSlot,
+)
+
+
+def build_problem_template() -> ProblemTemplate:
+    return ProblemTemplate(
+        id="Hpdf_8emmiBLDHT",
+        title="직각사각형의 세 변",
+        canvas=Canvas(width=880, height=727, coordinate_mode="logical"),
+        regions=(
+            Region(
+                id="region.stem",
+                role="stem",
+                flow="absolute",
+                slot_ids=("slot.q1", "slot.q2", "slot.q3", "slot.q4"),
+            ),
+            Region(
+                id="region.diagram",
+                role="diagram",
+                flow="absolute",
+                slot_ids=(
+                    "slot.left_square",
+                    "slot.bottom_square",
+                    "slot.right_square",
+                    "slot.center_point",
+                    "slot.black_vertical",
+                    "slot.black_diagonal",
+                    "slot.left_label",
+                    "slot.bottom_label",
+                    "slot.curve_hint",
+                    "slot.right_angle",
+                ),
+            ),
+        ),
+        slots=(
+            TextSlot(
+                id="slot.q1",
+                prompt="",
+                text="직각삼각형의 세 변을 한 변으로 하는 정사각",
+                style_role="question",
+                x=10.0,
+                y=40.0,
+                font_size=35,
+            ),
+            TextSlot(
+                id="slot.q2",
+                prompt="",
+                text="형 3개를 겹치지 않게 이어 붙여서 만든 도형",
+                style_role="question",
+                x=10.0,
+                y=95.0,
+                font_size=35,
+            ),
+            TextSlot(
+                id="slot.q3",
+                prompt="",
+                text="입니다. 직각삼각형의 세 변의 길이의 합이",
+                style_role="question",
+                x=10.0,
+                y=150.0,
+                font_size=35,
+            ),
+            TextSlot(
+                id="slot.q4",
+                prompt="",
+                text="30 cm일 때 굵은 선의 길이는 몇 cm입니까?",
+                style_role="question",
+                x=10.0,
+                y=205.0,
+                font_size=35,
+            ),
+            RectSlot(
+                id="slot.left_square",
+                prompt="",
+                x=190.0,
+                y=424.0,
+                width=210.0,
+                height=210.0,
+                stroke="#8A8A8A",
+                stroke_width=5.0,
+                fill="none",
+            ),
+            RectSlot(
+                id="slot.bottom_square",
+                prompt="",
+                x=400.0,
+                y=634.0,
+                width=87.5,
+                height=87.5,
+                stroke="#8A8A8A",
+                stroke_width=5.0,
+                fill="none",
+            ),
+            PolygonSlot(
+                id="slot.right_square",
+                prompt="",
+                points=(
+                    (400.0, 424.0),
+                    (487.5, 634.0),
+                    (697.5, 546.5),
+                    (610.0, 336.5),
+                ),
+                stroke="#8A8A8A",
+                stroke_width=5.0,
+                fill="none",
+                semantic_role="diagram_shape",
+            ),
+            CircleSlot(
+                id="slot.center_point",
+                prompt="",
+                cx=400.0,
+                cy=634.0,
+                r=3.5,
+                fill="#222222",
+            ),
+            LineSlot(
+                id="slot.black_vertical",
+                prompt="",
+                x1=400.0,
+                y1=424.0,
+                x2=400.0,
+                y2=634.0,
+                stroke="#222222",
+                stroke_width=3.0,
+            ),
+            LineSlot(
+                id="slot.black_diagonal",
+                prompt="",
+                x1=400.0,
+                y1=424.0,
+                x2=487.5,
+                y2=634.0,
+                stroke="#222222",
+                stroke_width=3.0,
+            ),
+            TextSlot(
+                id="slot.left_label",
+                prompt="",
+                text="12 cm",
+                style_role="label",
+                x=250.0,
+                y=530.0,
+                font_size=35,
+            ),
+            TextSlot(
+                id="slot.bottom_label",
+                prompt="",
+                text="5 cm",
+                style_role="label",
+                x=410.0,
+                y=680.0,
+                font_size=35,
+            ),
+            PathSlot(
+                id="slot.curve_hint",
+                prompt="",
+                d="M 390 430 C 360 480, 360 580, 390 630",
+                stroke="#8A8A8A",
+                stroke_width=2.0,
+                stroke_dasharray="6 5",
+                fill="none",
+            ),
+            RectSlot(
+                id="slot.right_angle",
+                prompt="",
+                x=400.0,
+                y=614.0,
+                width=20.0,
+                height=20.0,
+                stroke="#222222",
+                stroke_width=2.0,
+                fill="none",
+            ),
+        ),
+        diagrams=(),
+        groups=(),
+        constraints=(),
+        tags=(),
+    )
+
+
+PROBLEM_TEMPLATE = build_problem_template()
+SEMANTIC_OVERRIDE = {
+    "problem_id": "Hpdf_8emmiBLDHT",
+    "problem_type": "geometry_length",
+    "metadata": {
+        "language": "ko",
+        "question": "직각삼각형의 세 변을 한 변으로 하는 정사각형 3개를 겹치지 않게 이어 붙여서 만든 도형입니다. 직각삼각형의 세 변의 길이의 합이 30 cm일 때 굵은 선의 길이는 몇 cm입니까?",
+        "instruction": "굵은 선의 길이를 구하시오.",
+    },
+    "domain": {
+        "objects": [
+            {
+                "id": "obj.shape",
+                "type": "composite_figure",
+                "description": "직각삼각형의 세 변을 한 변으로 하는 정사각형 3개를 이어 붙인 도형",
+            },
+            {
+                "id": "obj.total_perimeter_sides",
+                "type": "length_sum",
+                "value": 30,
+                "unit": "cm",
+                "description": "직각삼각형의 세 변의 길이의 합",
+            },
+        ],
+        "relations": [],
+        "problem_solving": {
+            "understand": {
+                "given_refs": ["obj.shape", "obj.total_perimeter_sides"],
+                "target_ref": "answer.target",
+            },
+            "plan": {
+                "method": "perimeter_reasoning",
+                "description": "전체 도형의 굵은 선은 세 정사각형의 바깥쪽 변들로 이루어져 있음을 이해한다.",
+            },
+            "execute": {
+                "expected_operations": [
+                    "count_outer_segments",
+                    "calculate_total_length",
+                ]
+            },
+            "review": {"check_methods": ["unit_consistency_check"]},
+        },
+    },
+    "answer": {
+        "target": {"type": "length", "description": "굵은 선의 길이"},
+        "value": 90,
+        "unit": "cm",
+    },
+}
+SOLVABLE = {
+    "schema": "modu.solvable.v1",
+    "problem_id": "Hpdf_8emmiBLDHT",
+    "problem_type": "geometry_length",
+    "inputs": {
+        "total_ticks": 0,
+        "target_label": "굵은 선의 길이",
+        "target_ticks": 0,
+        "target_count": 1,
+        "unit": "cm",
+    },
+    "given": [
+        {"ref": "obj.total_perimeter_sides", "value": {"amount": 30, "unit": "cm"}},
+    ],
+    "target": {"ref": "answer.target", "type": "length"},
+    "method": "perimeter_reasoning",
+    "plan": [
+        "굵은 선은 각 정사각형의 바깥쪽 변 3개씩으로 이루어져 있다.",
+        "따라서 굵은 선의 전체 길이는 (직각삼각형의 세 변의 합) * 3 이 된다.",
+    ],
+    "steps": [
+        {
+            "id": "step.1",
+            "operation": "multiply",
+            "expr": "30 * 3",
+            "value": 90,
+        },
+    ],
+    "checks": [
+        {
+            "id": "check.1",
+            "type": "unit_consistency_check",
+            "expr": "단위는 cm인지 확인",
+            "expected": 1,
+            "actual": 1,
+            "pass": True,
+        }
+    ],
+    "answer": {"value": 90, "unit": "cm", "derived_from": "step.1"},
+}

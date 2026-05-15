@@ -1,0 +1,42 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "Hpdf_Y5TZAL9Fiw",
+  "title": "세 자리 수 덧셈",
+  "canvas": {
+    "width": 580,
+    "height": 206,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q1"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "각 자리의 숫자가 모두 다른 세 자리 수 ㉠㉡㉢에\n475를 더했더니 자리의 숫자가 모두 같았습니다.\n이와 같은 세 자리 수 ㉠㉡㉢은 모두 몇 개입니까?",
+        "style_role": "question",
+        "x": 18.0,
+        "y": 40.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q1"
+  ]
+}

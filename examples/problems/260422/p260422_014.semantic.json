@@ -1,0 +1,117 @@
+{
+  "problem_id": "p260422_014",
+  "problem_type": "multiple_choice",
+  "metadata": {
+    "title": "",
+    "tags": [],
+    "instruction": "계산 결과를 비교하여 ○ 안에 >, =, <를 알맞게 써넣으시오.",
+    "question": "(1) 514+168 ○ 724-188\n(2) 277+385 ○ 950-277",
+    "required_layout_ids": [
+      "slot.q1.circle",
+      "slot.q2.circle"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "instr1",
+        "type": "instruction",
+        "text": "계산 결과를 비교하여 ○ 안에 >, =, <를 알맞게 써넣으시오."
+      },
+      {
+        "id": "q1",
+        "type": "question",
+        "text": "(1) 514+168 ○ 724-188"
+      },
+      {
+        "id": "q2",
+        "type": "question",
+        "text": "(2) 277+385 ○ 950-277"
+      },
+      {
+        "id": "expr1a",
+        "type": "expression",
+        "value": "514+168",
+        "text": "514+168"
+      },
+      {
+        "id": "expr1b",
+        "type": "expression",
+        "value": "724-188",
+        "text": "724-188"
+      },
+      {
+        "id": "expr2a",
+        "type": "expression",
+        "value": "277+385",
+        "text": "277+385"
+      },
+      {
+        "id": "expr2b",
+        "type": "expression",
+        "value": "950-277",
+        "text": "950-277"
+      },
+      {
+        "id": "blank1",
+        "type": "blank",
+        "text": "○"
+      },
+      {
+        "id": "blank2",
+        "type": "blank",
+        "text": "○"
+      }
+    ],
+    "relations": [
+      {
+        "id": "r1",
+        "type": "compares",
+        "from_id": "expr1a",
+        "to_id": "expr1b"
+      },
+      {
+        "id": "r2",
+        "type": "compares",
+        "from_id": "expr2a",
+        "to_id": "expr2b"
+      },
+      {
+        "id": "r3",
+        "type": "asks_for",
+        "from_id": "instr1",
+        "to_id": "q1"
+      },
+      {
+        "id": "r4",
+        "type": "asks_for",
+        "from_id": "instr1",
+        "to_id": "q2"
+      }
+    ],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {},
+      "plan": {},
+      "execute": {},
+      "review": {}
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "number",
+      "description": "정답"
+    },
+    "value": [
+      ">",
+      "<"
+    ],
+    "unit": ""
+  }
+}

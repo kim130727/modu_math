@@ -1,0 +1,155 @@
+{
+  "problem_id": "p260422_023",
+  "problem_type": "word_problem",
+  "metadata": {
+    "title": "",
+    "tags": [],
+    "instruction": "",
+    "question": "석기네 집에서 한별이네 집까지의 거리는 몇 m입니까?",
+    "required_layout_ids": [
+      "slot.road",
+      "slot.house.1.body",
+      "slot.house.1.roof",
+      "slot.house.2.body",
+      "slot.house.2.roof",
+      "slot.house.3.body",
+      "slot.house.3.roof",
+      "slot.arc.total",
+      "slot.arc.part"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj1",
+        "type": "question",
+        "text": "석기네 집에서 한별이네 집까지의 거리는 몇 m입니까?"
+      },
+      {
+        "id": "obj2",
+        "type": "label",
+        "text": "한초네 집"
+      },
+      {
+        "id": "obj3",
+        "type": "label",
+        "text": "석기네 집"
+      },
+      {
+        "id": "obj4",
+        "type": "label",
+        "text": "한별이네 집"
+      },
+      {
+        "id": "obj5",
+        "type": "number",
+        "value": 368,
+        "text": "368m"
+      },
+      {
+        "id": "obj6",
+        "type": "number",
+        "value": 732,
+        "text": "732m"
+      },
+      {
+        "id": "obj7",
+        "type": "unit",
+        "value": "m",
+        "text": "m"
+      },
+      {
+        "id": "obj8",
+        "type": "segment",
+        "text": "한초네 집-석기네 집"
+      },
+      {
+        "id": "obj9",
+        "type": "segment",
+        "text": "한초네 집-한별이네 집"
+      },
+      {
+        "id": "obj10",
+        "type": "segment",
+        "text": "석기네 집-한별이네 집"
+      }
+    ],
+    "relations": [
+      {
+        "id": "rel1",
+        "type": "asks_for",
+        "from_id": "obj1",
+        "to_id": "obj10"
+      },
+      {
+        "id": "rel2",
+        "type": "labels",
+        "from_id": "obj2",
+        "to_id": "obj8"
+      },
+      {
+        "id": "rel3",
+        "type": "labels",
+        "from_id": "obj3",
+        "to_id": "obj8"
+      },
+      {
+        "id": "rel4",
+        "type": "labels",
+        "from_id": "obj3",
+        "to_id": "obj10"
+      },
+      {
+        "id": "rel5",
+        "type": "labels",
+        "from_id": "obj4",
+        "to_id": "obj9"
+      },
+      {
+        "id": "rel6",
+        "type": "maps_to",
+        "from_id": "obj5",
+        "to_id": "obj8"
+      },
+      {
+        "id": "rel7",
+        "type": "maps_to",
+        "from_id": "obj6",
+        "to_id": "obj9"
+      },
+      {
+        "id": "rel8",
+        "type": "precedes",
+        "from_id": "obj2",
+        "to_id": "obj3"
+      },
+      {
+        "id": "rel9",
+        "type": "precedes",
+        "from_id": "obj3",
+        "to_id": "obj4"
+      }
+    ],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {},
+      "plan": {},
+      "execute": {},
+      "review": {}
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "number",
+      "description": "정답"
+    },
+    "value": 364,
+    "unit": "m"
+  }
+}

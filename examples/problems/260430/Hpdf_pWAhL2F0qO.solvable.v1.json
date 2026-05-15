@@ -1,0 +1,82 @@
+{
+  "schema": "modu.solvable.v1",
+  "problem_id": "Hpdf_pWAhL2F0qO",
+  "problem_type": "unknown",
+  "given": [
+    {
+      "ref": "obj.sum",
+      "value": 622
+    },
+    {
+      "ref": "obj.difference",
+      "value": 250
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "ordered_numbers"
+  },
+  "method": "sum_and_difference",
+  "steps": [
+    {
+      "id": "step.s1",
+      "operation": "add_sum_and_difference",
+      "expr": "622 + 250",
+      "value": 872
+    },
+    {
+      "id": "step.s2",
+      "operation": "divide_by_two",
+      "expr": "872 ÷ 2",
+      "value": 436
+    },
+    {
+      "id": "step.s3",
+      "operation": "find_smaller_number",
+      "expr": "622 - 436",
+      "value": 186
+    },
+    {
+      "id": "step.s4",
+      "operation": "order_numbers",
+      "expr": "큰 수부터",
+      "value": [
+        436,
+        186
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.c1",
+      "type": "sum_check",
+      "pass": true,
+      "expr": "436 + 186 = 622",
+      "expected": 1,
+      "actual": 1
+    },
+    {
+      "id": "check.c2",
+      "type": "difference_check",
+      "pass": true,
+      "expr": "436 - 186 = 250",
+      "expected": 1,
+      "actual": 1
+    }
+  ],
+  "answer": {
+    "value": 0,
+    "unit": "",
+    "derived_from": "step.s4"
+  },
+  "inputs": {
+    "total_ticks": 1,
+    "target_label": "답",
+    "target_ticks": 1,
+    "target_count": 1,
+    "unit": ""
+  },
+  "plan": [
+    "풀이 과정 없음"
+  ]
+}

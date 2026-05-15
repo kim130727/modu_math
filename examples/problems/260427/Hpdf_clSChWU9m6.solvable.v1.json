@@ -1,0 +1,48 @@
+{
+  "schema": "modu.solvable.v1",
+  "problem_id": "Hpdf_clSChWU9m6",
+  "problem_type": "difference_equalization",
+  "inputs": {
+    "total_ticks": 456,
+    "target_label": "국진이가 수지에게 주어야 할 색종이 수",
+    "target_ticks": 42,
+    "target_count": 42,
+    "unit": "장"
+  },
+  "plan": [
+    "두 사람의 색종이 수의 차이를 구한다.",
+    "그 차이의 절반을 국진이가 수지에게 주면 두 사람이 갖게 되는 색종이 수가 같아진다."
+  ],
+  "steps": [
+    {
+      "id": "step.s1",
+      "expr": "456 - 372",
+      "value": 84
+    },
+    {
+      "id": "step.s2",
+      "expr": "84 / 2",
+      "value": 42
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.c1",
+      "expr": "국진이의 남은 색종이 수 (456 - 42)",
+      "expected": 414,
+      "actual": 414,
+      "pass": true
+    },
+    {
+      "id": "check.c2",
+      "expr": "수지의 늘어난 색종이 수 (372 + 42)",
+      "expected": 414,
+      "actual": 414,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "value": 42,
+    "unit": "장"
+  }
+}

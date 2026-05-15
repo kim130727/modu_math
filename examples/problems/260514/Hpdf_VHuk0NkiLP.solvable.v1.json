@@ -1,0 +1,62 @@
+{
+  "schema": "modu.solvable.v1",
+  "problem_id": "Hpdf_VHuk0NkiLP",
+  "problem_type": "geometry_pattern_perimeter",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "도형의 둘레",
+    "target_ticks": 0,
+    "target_count": 0,
+    "unit": "cm"
+  },
+  "given": [
+    {
+      "ref": "obj.pattern",
+      "value": "한 변 3 cm, n=7"
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "length"
+  },
+  "method": "perimeter_rule_derivation",
+  "plan": [
+    "1. n번째 도형의 둘레를 구성하는 선분의 개수를 확인한다.",
+    "   - 밑변: n개",
+    "   - 윗변(조각들의 합): n개",
+    "   - 왼쪽 옆변(조각들의 합): n개",
+    "   - 오른쪽 옆변(조각들의 합): n개",
+    "   - 총 선분 개수 = 4n개",
+    "2. 7번째 도형의 선분 개수는 4 * 7 = 28개이다.",
+    "3. 한 선분의 길이가 3 cm이므로 둘레는 28 * 3 = 84 cm이다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "operation": "multiply",
+      "expr": "4 * 7",
+      "value": 28
+    },
+    {
+      "id": "step.2",
+      "operation": "multiply",
+      "expr": "28 * 3",
+      "value": 84
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "type": "logic_check",
+      "expr": "4 * 7 * 3 = 84",
+      "expected": 84,
+      "actual": 84,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "value": 84,
+    "unit": "cm",
+    "derived_from": "step.2"
+  }
+}

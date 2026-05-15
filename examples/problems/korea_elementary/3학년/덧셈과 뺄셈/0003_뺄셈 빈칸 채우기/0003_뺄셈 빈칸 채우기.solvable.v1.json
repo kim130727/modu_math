@@ -1,0 +1,71 @@
+{
+  "schema": "modu.solvable.v1",
+  "problem_id": "0003_뺄셈 빈칸 채우기",
+  "problem_type": "arithmetic_vertical_subtraction_puzzle",
+  "given": [
+    {
+      "ref": "obj.vertical_sub",
+      "value": "[㉠㉡2] - [1㉠㉢] = [314]"
+    }
+  ],
+  "target": {
+    "type": "number",
+    "description": "㉠+㉡+㉢의 값"
+  },
+  "method": "digit_analysis",
+  "steps": [
+    {
+      "id": "step.s1",
+      "operation": "deduction",
+      "expr": "㉠ - 1 = 3",
+      "description": "백의 자리에서 ㉠=4임을 알 수 있습니다.",
+      "value": 4
+    },
+    {
+      "id": "step.s2",
+      "operation": "deduction",
+      "expr": "12 - ㉢ = 4",
+      "description": "일의 자리에서 ㉢=8임을 알 수 있습니다. (십의 자리에서 받아내림 발생)",
+      "value": 8
+    },
+    {
+      "id": "step.s3",
+      "operation": "deduction",
+      "expr": "(㉡ - 1) - 4 = 1",
+      "description": "십의 자리에서 받아내림을 고려하여 ㉡=6임을 알 수 있습니다.",
+      "value": 6
+    },
+    {
+      "id": "step.s4",
+      "operation": "addition",
+      "expr": "4 + 6 + 8 = 18",
+      "description": "세 숫자의 합을 구합니다.",
+      "value": 18
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.c1",
+      "type": "arithmetic_consistency_check",
+      "pass": true,
+      "expected": 314,
+      "actual": 314,
+      "expr": "462 - 148"
+    }
+  ],
+  "answer": {
+    "value": 18,
+    "unit": "",
+    "derived_from": "step.s4"
+  },
+  "inputs": {
+    "total_ticks": 1,
+    "target_label": "답",
+    "target_ticks": 1,
+    "target_count": 1,
+    "unit": ""
+  },
+  "plan": [
+    "백의 자리에서 ㉠=4, 일의 자리에서 ㉢=8, 십의 자리에서 ㉡=6임을 찾아 모두 더합니다."
+  ]
+}

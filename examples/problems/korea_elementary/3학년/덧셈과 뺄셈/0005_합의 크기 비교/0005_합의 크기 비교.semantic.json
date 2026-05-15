@@ -1,0 +1,50 @@
+{
+  "problem_id": "0005_합의 크기 비교",
+  "problem_type": "arithmetic_comparison_sum",
+  "metadata": {
+    "title": "",
+    "tags": [],
+    "instruction": "계산 결과가 더 큰 것에 ○표 하세요.",
+    "question": "두 덧셈식(605+298, 567+385)의 결과를 비교하여 더 큰 쪽을 찾는 문제",
+    "required_layout_ids": [
+      "slot.left_box",
+      "slot.right_box"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.expr1",
+        "type": "expression",
+        "value": "605+298"
+      },
+      {
+        "id": "obj.expr2",
+        "type": "expression",
+        "value": "567+385"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "plan": {
+        "method": "direct_calculation_and_comparison",
+        "description": "각 식을 계산한 뒤 두 결과를 비교한다."
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "value": 0,
+    "unit": "",
+    "target": {
+      "type": "unknown",
+      "description": ""
+    }
+  }
+}

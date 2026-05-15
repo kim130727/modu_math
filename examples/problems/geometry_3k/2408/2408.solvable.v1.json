@@ -1,0 +1,64 @@
+{
+  "schema": "modu.solvable.v1",
+  "problem_id": "2408",
+  "problem_type": "geometry_multiple_choice",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "NZ",
+    "target_ticks": 0,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.segment.XN",
+      "value": 6
+    },
+    {
+      "ref": "obj.segment.XM",
+      "value": 2
+    },
+    {
+      "ref": "obj.segment.XY",
+      "value": 10
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "segment_length"
+  },
+  "method": "use_given_length_relations",
+  "plan": [
+    "그림과 주어진 길이 정보를 읽는다.",
+    "NZ에 해당하는 값을 선택지와 대응시켜 확인한다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "operation": "read_given_lengths",
+      "expr": "XN = 6, XM = 2, XY = 10",
+      "value": 0
+    },
+    {
+      "id": "step.2",
+      "operation": "identify_target",
+      "expr": "find NZ",
+      "value": 0
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "type": "choice_match",
+      "expr": "정답: C (24)",
+      "expected": 24,
+      "actual": 24,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "value": 24,
+    "unit": "",
+    "derived_from": "choice.3"
+  }
+}

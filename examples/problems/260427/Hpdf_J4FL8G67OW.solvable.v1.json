@@ -1,0 +1,48 @@
+{
+  "schema": "modu.solvable.v1",
+  "problem_id": "Hpdf_J4FL8G67OW",
+  "problem_type": "subtraction_word_problem",
+  "inputs": {
+    "total_ticks": 1310,
+    "target_label": "남은 참외와 자두의 개수",
+    "target_ticks": 876,
+    "target_count": 876,
+    "unit": "개"
+  },
+  "plan": [
+    "처음 있던 참외 수에서 판 참외 수를 빼서 남은 참외 수를 구한다.",
+    "처음 있던 자두 수에서 판 자두 수를 빼서 남은 자두 수를 구한다."
+  ],
+  "steps": [
+    {
+      "id": "step.s1",
+      "expr": "748 - 259",
+      "value": 489
+    },
+    {
+      "id": "step.s2",
+      "expr": "562 - 175",
+      "value": 387
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.c1",
+      "expr": "남은 참외와 판 참외의 합 (489 + 259)",
+      "expected": 748,
+      "actual": 748,
+      "pass": true
+    },
+    {
+      "id": "check.c2",
+      "expr": "남은 자두와 판 자두의 합 (387 + 175)",
+      "expected": 562,
+      "actual": 562,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "value": 876,
+    "unit": "개"
+  }
+}

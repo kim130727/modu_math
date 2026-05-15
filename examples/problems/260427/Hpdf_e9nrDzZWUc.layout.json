@@ -1,0 +1,209 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "Hpdf_e9nrDzZWUc",
+  "title": "반직선 개수",
+  "canvas": {
+    "width": 560,
+    "height": 308,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q1",
+        "slot.q2",
+        "slot.diagram.frame",
+        "slot.pt.ㄱ",
+        "slot.pt.ㄴ",
+        "slot.pt.ㄷ",
+        "slot.pt.ㄹ",
+        "slot.pt.ㅁ",
+        "slot.lb.ㄱ",
+        "slot.lb.ㄴ",
+        "slot.lb.ㄷ",
+        "slot.lb.ㄹ",
+        "slot.lb.ㅁ"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "다음 5개의 점 중에서 2개의 점을 이어 그릴",
+        "style_role": "question",
+        "x": 8.0,
+        "y": 34.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "수 있는 반직선은 모두 몇 개인가?",
+        "style_role": "question",
+        "x": 8.0,
+        "y": 66.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.diagram.frame",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 165.0,
+        "y": 126.0,
+        "width": 220.0,
+        "height": 176.0,
+        "stroke": "#777777",
+        "stroke_width": 1.2,
+        "rx": 14.0,
+        "ry": 14.0,
+        "fill": "#FFFFFF"
+      }
+    },
+    {
+      "id": "slot.pt.ㄱ",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 250.0,
+        "cy": 155.0,
+        "r": 3.8,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.lb.ㄱ",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄱ",
+        "style_role": "label",
+        "x": 241.0,
+        "y": 148.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.pt.ㄴ",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 210.0,
+        "cy": 193.0,
+        "r": 3.8,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.lb.ㄴ",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄴ",
+        "style_role": "label",
+        "x": 186.0,
+        "y": 190.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.pt.ㄷ",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 220.0,
+        "cy": 249.0,
+        "r": 3.8,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.lb.ㄷ",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄷ",
+        "style_role": "label",
+        "x": 185.0,
+        "y": 255.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.pt.ㄹ",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 324.0,
+        "cy": 194.0,
+        "r": 3.8,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.lb.ㄹ",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄹ",
+        "style_role": "label",
+        "x": 332.0,
+        "y": 191.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.pt.ㅁ",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 302.0,
+        "cy": 250.0,
+        "r": 3.8,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.lb.ㅁ",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㅁ",
+        "style_role": "label",
+        "x": 310.0,
+        "y": 256.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q1",
+    "slot.q2",
+    "slot.diagram.frame",
+    "slot.pt.ㄱ",
+    "slot.pt.ㄴ",
+    "slot.pt.ㄷ",
+    "slot.pt.ㄹ",
+    "slot.pt.ㅁ",
+    "slot.lb.ㄱ",
+    "slot.lb.ㄴ",
+    "slot.lb.ㄷ",
+    "slot.lb.ㄹ",
+    "slot.lb.ㅁ"
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "problem_id": "Hpdf_NncIZAqRcg",
+  "problem_type": "counting_right_triangles",
+  "metadata": {
+    "title": "직각삼각형의 개수",
+    "tags": [],
+    "question": "일정한 간격으로 점이 찍힌 종이 위에 3개의 점을 꼭짓점으로 하는 직각삼각형을 그리려고 합니다. 그릴 수 있는 직각삼각형은 모두 몇 개입니까? (단, 모양과 크기가 같아도 위치가 다르면 다른 것으로 봅니다.)",
+    "required_layout_ids": [
+      "slot.frame",
+      "slot.pt.1",
+      "slot.pt.2",
+      "slot.pt.3",
+      "slot.pt.4",
+      "slot.pt.5",
+      "slot.pt.6",
+      "slot.pt.7",
+      "slot.pt.8"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "점의 배치를 보고 직각이 생기는 경우를 모두 찾는다."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.point_set",
+        "type": "point_grid",
+        "structure": "2x4"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.point_set"
+        ],
+        "target_ref": "answer.target"
+      },
+      "plan": {
+        "method": "systematic_counting",
+        "description": "한 꼭짓점에 직각이 생기는 경우를 분류하여 센다. 가로/세로 변을 가진 경우와 대각선 변을 가진 경우로 나눈다."
+      },
+      "execute": {
+        "expected_operations": [
+          "count_perpendicular_axial",
+          "count_perpendicular_diagonal"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "symmetry_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "count",
+      "description": "그릴 수 있는 직각삼각형의 개수"
+    },
+    "value": 28,
+    "unit": "개"
+  }
+}

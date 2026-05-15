@@ -1,0 +1,387 @@
+from __future__ import annotations
+from modu_math.dsl import (
+    Canvas,
+    ProblemTemplate,
+    Region,
+    TextSlot,
+    RectSlot,
+    LineSlot,
+    CircleSlot,
+)
+
+
+def build_problem_template() -> ProblemTemplate:
+    return ProblemTemplate(
+        id="2408.answer",
+        title="도형에서 NZ 구하기",
+        canvas=Canvas(width=980, height=620, coordinate_mode="logical"),
+        regions=(
+            Region(
+                id="region.stem", role="stem", flow="absolute", slot_ids=("slot.q1",)
+            ),
+            Region(
+                id="region.diagram",
+                role="diagram",
+                flow="absolute",
+                slot_ids=(
+                    "slot.box",
+                    "slot.tri.xz",
+                    "slot.tri.xy",
+                    "slot.tri.yz",
+                    "slot.seg.mn",
+                    "slot.pt.x",
+                    "slot.pt.y",
+                    "slot.pt.z",
+                    "slot.pt.n",
+                    "slot.pt.m",
+                    "slot.lb.x",
+                    "slot.lb.y",
+                    "slot.lb.z",
+                    "slot.lb.n",
+                    "slot.lb.m",
+                    "slot.mark1a",
+                    "slot.mark1b",
+                    "slot.mark2a",
+                    "slot.mark2b",
+                ),
+            ),
+            Region(
+                id="region.choices",
+                role="choices",
+                flow="absolute",
+                slot_ids=("slot.c1", "slot.c2", "slot.c3", "slot.c4"),
+            ),
+            Region(
+                id="region.answer",
+                role="annotation",
+                flow="absolute",
+                slot_ids=("slot.ans",),
+            ),
+        ),
+        slots=(
+            TextSlot(
+                id="slot.q1",
+                prompt="",
+                text="XN = 6, XM = 2, XY = 10일 때, NZ를 구하시오.",
+                style_role="question",
+                x=28.0,
+                y=44.0,
+                font_size=28,
+            ),
+            RectSlot(
+                id="slot.box",
+                prompt="",
+                x=34.0,
+                y=104.0,
+                width=520.0,
+                height=398.0,
+                stroke="#C9C9C9",
+                stroke_width=2.0,
+                fill="none",
+            ),
+            LineSlot(
+                id="slot.tri.xz",
+                prompt="",
+                x1=98.0,
+                y1=458.0,
+                x2=410.0,
+                y2=458.0,
+                stroke="#222222",
+                stroke_width=3.0,
+            ),
+            LineSlot(
+                id="slot.tri.xy",
+                prompt="",
+                x1=98.0,
+                y1=458.0,
+                x2=246.0,
+                y2=178.0,
+                stroke="#222222",
+                stroke_width=3.0,
+            ),
+            LineSlot(
+                id="slot.tri.yz",
+                prompt="",
+                x1=246.0,
+                y1=178.0,
+                x2=410.0,
+                y2=458.0,
+                stroke="#222222",
+                stroke_width=3.0,
+            ),
+            LineSlot(
+                id="slot.seg.mn",
+                prompt="",
+                x1=172.0,
+                y1=318.0,
+                x2=330.0,
+                y2=318.0,
+                stroke="#222222",
+                stroke_width=2.6,
+            ),
+            CircleSlot(
+                id="slot.pt.x", prompt="", cx=98.0, cy=458.0, r=4.0, fill="#222222"
+            ),
+            CircleSlot(
+                id="slot.pt.y", prompt="", cx=246.0, cy=178.0, r=4.0, fill="#222222"
+            ),
+            CircleSlot(
+                id="slot.pt.z", prompt="", cx=410.0, cy=458.0, r=4.0, fill="#222222"
+            ),
+            CircleSlot(
+                id="slot.pt.n", prompt="", cx=234.0, cy=458.0, r=4.0, fill="#222222"
+            ),
+            CircleSlot(
+                id="slot.pt.m", prompt="", cx=188.0, cy=300.0, r=4.0, fill="#222222"
+            ),
+            TextSlot(
+                id="slot.lb.x",
+                prompt="",
+                text="X",
+                style_role="label",
+                x=84.0,
+                y=486.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.lb.y",
+                prompt="",
+                text="Y",
+                style_role="label",
+                x=256.0,
+                y=164.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.lb.z",
+                prompt="",
+                text="Z",
+                style_role="label",
+                x=420.0,
+                y=486.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.lb.n",
+                prompt="",
+                text="N",
+                style_role="label",
+                x=224.0,
+                y=486.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.lb.m",
+                prompt="",
+                text="M",
+                style_role="label",
+                x=170.0,
+                y=294.0,
+                font_size=28,
+            ),
+            LineSlot(
+                id="slot.mark1a",
+                prompt="",
+                x1=135.0,
+                y1=451.0,
+                x2=145.0,
+                y2=435.0,
+                stroke="#2E7DE9",
+                stroke_width=3.0,
+            ),
+            LineSlot(
+                id="slot.mark1b",
+                prompt="",
+                x1=146.0,
+                y1=451.0,
+                x2=156.0,
+                y2=435.0,
+                stroke="#2E7DE9",
+                stroke_width=3.0,
+            ),
+            LineSlot(
+                id="slot.mark2a",
+                prompt="",
+                x1=290.0,
+                y1=336.0,
+                x2=300.0,
+                y2=320.0,
+                stroke="#2E7DE9",
+                stroke_width=3.0,
+            ),
+            LineSlot(
+                id="slot.mark2b",
+                prompt="",
+                x1=301.0,
+                y1=336.0,
+                x2=311.0,
+                y2=320.0,
+                stroke="#2E7DE9",
+                stroke_width=3.0,
+            ),
+            TextSlot(
+                id="slot.c1",
+                prompt="",
+                text="1. 12",
+                style_role="choice",
+                x=620.0,
+                y=176.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.c2",
+                prompt="",
+                text="2. 16",
+                style_role="choice",
+                x=620.0,
+                y=232.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.c3",
+                prompt="",
+                text="3. 24",
+                style_role="choice",
+                x=620.0,
+                y=288.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.c4",
+                prompt="",
+                text="4. 32",
+                style_role="choice",
+                x=620.0,
+                y=344.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.ans",
+                prompt="",
+                text="정답: C (24)",
+                style_role="annotation",
+                x=610.0,
+                y=470.0,
+                font_size=24,
+                fill="#C62828",
+            ),
+        ),
+        diagrams=(),
+        groups=(),
+        constraints=(),
+        tags=("기하", "객관식", "삼각형"),
+    )
+
+
+PROBLEM_TEMPLATE = build_problem_template()
+SEMANTIC_OVERRIDE = {
+    "problem_id": "2408.answer",
+    "problem_type": "geometry_length",
+    "metadata": {
+        "language": "ko",
+        "question": "XN = 6, XM = 2, XY = 10일 때, NZ를 구하시오.",
+        "instruction": "NZ를 구하시오.",
+    },
+    "domain": {
+        "objects": [
+            {
+                "id": "obj.triangle",
+                "type": "triangle",
+                "vertices": ["obj.point.x", "obj.point.y", "obj.point.z"],
+            },
+            {"id": "obj.point.x", "type": "point", "label": "X"},
+            {"id": "obj.point.y", "type": "point", "label": "Y"},
+            {"id": "obj.point.z", "type": "point", "label": "Z"},
+            {"id": "obj.point.n", "type": "point", "label": "N"},
+            {"id": "obj.point.m", "type": "point", "label": "M"},
+            {"id": "obj.length.xn", "type": "segment_length", "value": 6, "unit": ""},
+            {"id": "obj.length.xm", "type": "segment_length", "value": 2, "unit": ""},
+            {"id": "obj.length.xy", "type": "segment_length", "value": 10, "unit": ""},
+            {"id": "obj.target.nz", "type": "segment_length", "unit": ""},
+        ],
+        "relations": [
+            {
+                "id": "rel.n_on_xz",
+                "type": "point_on_segment",
+                "from_id": "obj.point.n",
+                "to_id": "obj.point.xz",
+                "segment": "XZ",
+            },
+            {
+                "id": "rel.m_on_xy",
+                "type": "point_on_segment",
+                "from_id": "obj.point.m",
+                "to_id": "obj.point.xy",
+                "segment": "XY",
+            },
+            {
+                "id": "rel.find_nz",
+                "type": "find_length",
+                "from_id": "obj.target.nz",
+                "to_id": "obj.point.n",
+                "segment": "NZ",
+            },
+        ],
+        "problem_solving": {
+            "understand": {
+                "given_refs": ["obj.length.xn", "obj.length.xm", "obj.length.xy"],
+                "target_ref": "answer.target",
+                "condition_refs": ["rel.n_on_xz", "rel.m_on_xy"],
+            },
+            "plan": {
+                "method": "geometry_length_relation",
+                "description": "그림의 점과 선분 관계를 바탕으로 NZ의 길이를 찾는다.",
+            },
+            "execute": {
+                "expected_operations": [
+                    "identify_segment_relations",
+                    "apply_length_relation",
+                    "determine_nz",
+                ]
+            },
+            "review": {
+                "check_methods": ["relation_consistency_check", "choice_match_check"]
+            },
+        },
+    },
+    "answer": {
+        "target": {"type": "segment_length", "description": "NZ"},
+        "value": None,
+        "unit": "",
+    },
+}
+SOLVABLE = {
+    "schema": "modu.solvable.v1",
+    "problem_id": "2408.answer",
+    "problem_type": "geometry_length",
+    "inputs": {
+        "total_ticks": 1,
+        "target_label": "NZ",
+        "target_ticks": 1,
+        "target_count": 1,
+        "unit": "",
+    },
+    "given": [
+        {"ref": "obj.length.xn", "value": 6},
+        {"ref": "obj.length.xm", "value": 2},
+        {"ref": "obj.length.xy", "value": 10},
+    ],
+    "target": {"ref": "answer.target", "type": "segment_length"},
+    "method": "geometry_length_relation",
+    "plan": [
+        "주어진 길이 정보를 도형의 선분 관계와 함께 해석한다.",
+        "NZ가 어떤 선분 길이인지 관계를 확인한 뒤 필요한 길이를 찾는다.",
+    ],
+    "steps": [],
+    "checks": [
+        {
+            "id": "check.1",
+            "type": "choice_match_check",
+            "expr": "정답 선택지와의 일치 여부",
+            "expected": 24,
+            "actual": 24,
+            "pass": True,
+        }
+    ],
+    "answer": {"value": 24, "unit": "", "derived_from": "choice_match"},
+}

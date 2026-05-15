@@ -1,0 +1,72 @@
+{
+  "problem_id": "Hpdf_riUadxZCRr",
+  "problem_type": "geometry_perimeter",
+  "metadata": {
+    "title": "종이테이프 직사각형",
+    "tags": [],
+    "instruction": "겹치게 이어 붙인 직사각형의 전체 가로 길이와 세로 길이를 구해 둘레를 계산한다.",
+    "question": "긴 변이 12 cm, 짧은 변이 3 cm인 직사각형 모양의 종이테이프 3장을 2 cm씩 겹치게 이어 붙여서 만든 직사각형의 네 변의 길이의 합은 몇 cm입니까?",
+    "required_layout_ids": [
+      "slot.diagram.base1",
+      "slot.diagram.base2",
+      "slot.diagram.base3",
+      "slot.diagram.overlap1",
+      "slot.diagram.overlap2",
+      "slot.diagram.top_arc",
+      "slot.diagram.left_arc",
+      "slot.diagram.bottom_arc",
+      "slot.diagram.overlap1_guide",
+      "slot.diagram.overlap2_guide"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.tape",
+        "type": "rectangle",
+        "length": 12,
+        "width": 3,
+        "count": 3
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.tape"
+        ],
+        "target_ref": "answer.target"
+      },
+      "plan": {
+        "method": "composite_rectangle_perimeter",
+        "description": "전체 가로 길이는 (테이프 길이 * 3) - (겹친 길이 * 2)이다."
+      },
+      "execute": {
+        "expected_operations": [
+          "calculate_total_length",
+          "calculate_perimeter"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "stepwise_verification"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "length",
+      "description": "만든 직사각형의 둘레"
+    },
+    "value": 70,
+    "unit": "cm"
+  }
+}

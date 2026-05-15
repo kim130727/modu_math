@@ -1,0 +1,51 @@
+{
+  "problem_id": "0004_국어와 수학을 모두 좋아하는 학생 수",
+  "problem_type": "arithmetic_set_theory_word_problem",
+  "metadata": {
+    "title": "",
+    "tags": [],
+    "instruction": "국어와 수학을 모두 좋아하는 학생은 몇 명입니까?",
+    "question": "전체 학생 수(합집합)와 각 과목을 좋아하는 학생 수를 알 때, 두 과목을 모두 좋아하는 학생 수(교집합)를 구하는 문제",
+    "required_layout_ids": [],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.total_union",
+        "type": "count",
+        "value": 780,
+        "description": "국어나 수학을 좋아하는 학생"
+      },
+      {
+        "id": "obj.korean",
+        "type": "count",
+        "value": 621,
+        "description": "국어를 좋아하는 학생"
+      },
+      {
+        "id": "obj.math",
+        "type": "count",
+        "value": 348,
+        "description": "수학을 좋아하는 학생"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "plan": {
+        "method": "inclusion_exclusion_principle",
+        "description": "교집합의 원소의 수 = n(A) + n(B) - n(A∪B) 공식을 이용한다."
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "value": 189,
+    "unit": "명"
+  }
+}

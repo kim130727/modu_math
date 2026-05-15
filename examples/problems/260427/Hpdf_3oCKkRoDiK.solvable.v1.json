@@ -1,0 +1,61 @@
+{
+  "schema": "modu.solvable.v1",
+  "problem_id": "Hpdf_3oCKkRoDiK",
+  "problem_type": "counting",
+  "inputs": {
+    "total_ticks": 5,
+    "target_label": "꼭짓점이 ㄹ인 각",
+    "target_ticks": 3,
+    "target_count": 6,
+    "unit": "개"
+  },
+  "plan": [
+    "점 5개 중에서 꼭짓점은 ㄹ로 고정한다.",
+    "나머지 4개 점 중에서 각의 두 팔을 만들 2개 점을 고른다.",
+    "조합 4C2를 계산해 각의 개수를 구한다."
+  ],
+  "steps": [
+    {
+      "id": "step1",
+      "expr": "ㄹ을 제외한 점의 개수",
+      "value": 4
+    },
+    {
+      "id": "step2",
+      "expr": "4개 중 2개 선택: 4C2",
+      "value": 6
+    },
+    {
+      "id": "step3",
+      "expr": "정답",
+      "value": 6
+    }
+  ],
+  "checks": [
+    {
+      "id": "check1",
+      "expr": "꼭짓점 고정 확인",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "id": "check2",
+      "expr": "4C2 계산값 확인",
+      "expected": 6,
+      "actual": 6,
+      "pass": true
+    },
+    {
+      "id": "check3",
+      "expr": "단위 확인",
+      "expected": "개",
+      "actual": "개",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "value": 6,
+    "unit": "개"
+  }
+}

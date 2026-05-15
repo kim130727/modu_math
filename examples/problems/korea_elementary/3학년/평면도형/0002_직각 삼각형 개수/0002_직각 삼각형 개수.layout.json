@@ -1,0 +1,803 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "0002_직각 삼각형 개수",
+  "title": "",
+  "canvas": {
+    "width": 768,
+    "height": 667,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "vertical",
+      "slot_ids": [
+        "slot.bg",
+        "slot.grid_box",
+        "slot.dot_choice_2",
+        "slot.dot_choice_3",
+        "slot.dot_choice_4",
+        "slot.dot_choice_1",
+        "slot.dot_choice_5",
+        "slot.dot_base_start",
+        "slot.dot_base_end",
+        "slot.answer_point",
+        "slot.grid_h_00",
+        "slot.grid_v_00",
+        "slot.grid_v_01",
+        "slot.grid_v_02",
+        "slot.grid_v_03",
+        "slot.grid_v_04",
+        "slot.grid_v_05",
+        "slot.grid_v_06",
+        "slot.grid_v_07",
+        "slot.grid_v_08",
+        "slot.grid_v_09",
+        "slot.grid_v_10",
+        "slot.grid_v_11",
+        "slot.grid_v_12",
+        "slot.grid_v_13",
+        "slot.grid_v_14",
+        "slot.grid_v_15",
+        "slot.grid_v_16",
+        "slot.grid_h_01",
+        "slot.grid_h_02",
+        "slot.grid_h_03",
+        "slot.grid_h_04",
+        "slot.grid_h_05",
+        "slot.grid_h_06",
+        "slot.base_segment",
+        "slot.grid_h_07",
+        "slot.grid_h_08",
+        "slot.instruction_1",
+        "slot.instruction_2",
+        "slot.instruction_3",
+        "slot.label_choice_2",
+        "slot.label_choice_3",
+        "slot.label_choice_4",
+        "slot.label_choice_1",
+        "slot.label_choice_5",
+        "slot.label_base_start",
+        "slot.label_base_end"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.bg",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 768.0,
+        "height": 667.0,
+        "stroke": "none",
+        "stroke_width": 0.0,
+        "fill": "#F4F4F4",
+        "semantic_role": "background"
+      }
+    },
+    {
+      "id": "slot.instruction_1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "선분 ㄱㄴ을 변으로 하는 직각삼각형을",
+        "style_role": "body",
+        "x": 24.0,
+        "y": 58.0,
+        "font_size": 34,
+        "font_family": "Malgun Gothic",
+        "anchor": "start",
+        "fill": "#222222",
+        "semantic_role": "instruction"
+      }
+    },
+    {
+      "id": "slot.instruction_2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "그리고 싶습니다. 이을 점을 찾아 선을",
+        "style_role": "body",
+        "x": 24.0,
+        "y": 100.0,
+        "font_size": 34,
+        "font_family": "Malgun Gothic",
+        "anchor": "start",
+        "fill": "#222222",
+        "semantic_role": "instruction"
+      }
+    },
+    {
+      "id": "slot.instruction_3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "긋고, 직각삼각형을 완성해 보세요.",
+        "style_role": "body",
+        "x": 24.0,
+        "y": 142.0,
+        "font_size": 34,
+        "font_family": "Malgun Gothic",
+        "anchor": "start",
+        "fill": "#222222",
+        "semantic_role": "instruction"
+      }
+    },
+    {
+      "id": "slot.grid_box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 58.0,
+        "y": 180.0,
+        "width": 640.0,
+        "height": 320.0,
+        "stroke": "#9CA3AF",
+        "stroke_width": 2.0,
+        "fill": "none",
+        "semantic_role": "guide"
+      }
+    },
+    {
+      "id": "slot.grid_h_00",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 58.0,
+        "y1": 180.0,
+        "x2": 698.0,
+        "y2": 180.0,
+        "stroke": "#9CA3AF",
+        "stroke_width": 1.0,
+        "semantic_role": "guide"
+      }
+    },
+    {
+      "id": "slot.grid_v_00",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 58.0,
+        "y1": 180.0,
+        "x2": 58.0,
+        "y2": 500.0,
+        "stroke": "#9CA3AF",
+        "stroke_width": 1.0,
+        "semantic_role": "guide"
+      }
+    },
+    {
+      "id": "slot.grid_v_01",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 98.0,
+        "y1": 180.0,
+        "x2": 98.0,
+        "y2": 500.0,
+        "stroke": "#9CA3AF",
+        "stroke_width": 1.0,
+        "semantic_role": "guide"
+      }
+    },
+    {
+      "id": "slot.grid_v_02",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 138.0,
+        "y1": 180.0,
+        "x2": 138.0,
+        "y2": 500.0,
+        "stroke": "#9CA3AF",
+        "stroke_width": 1.0,
+        "semantic_role": "guide"
+      }
+    },
+    {
+      "id": "slot.grid_v_03",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 178.0,
+        "y1": 180.0,
+        "x2": 178.0,
+        "y2": 500.0,
+        "stroke": "#9CA3AF",
+        "stroke_width": 1.0,
+        "semantic_role": "guide"
+      }
+    },
+    {
+      "id": "slot.grid_v_04",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 218.0,
+        "y1": 180.0,
+        "x2": 218.0,
+        "y2": 500.0,
+        "stroke": "#9CA3AF",
+        "stroke_width": 1.0,
+        "semantic_role": "guide"
+      }
+    },
+    {
+      "id": "slot.grid_v_05",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 258.0,
+        "y1": 180.0,
+        "x2": 258.0,
+        "y2": 500.0,
+        "stroke": "#9CA3AF",
+        "stroke_width": 1.0,
+        "semantic_role": "guide"
+      }
+    },
+    {
+      "id": "slot.grid_v_06",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 298.0,
+        "y1": 180.0,
+        "x2": 298.0,
+        "y2": 500.0,
+        "stroke": "#9CA3AF",
+        "stroke_width": 1.0,
+        "semantic_role": "guide"
+      }
+    },
+    {
+      "id": "slot.grid_v_07",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 338.0,
+        "y1": 180.0,
+        "x2": 338.0,
+        "y2": 500.0,
+        "stroke": "#9CA3AF",
+        "stroke_width": 1.0,
+        "semantic_role": "guide"
+      }
+    },
+    {
+      "id": "slot.grid_v_08",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 378.0,
+        "y1": 180.0,
+        "x2": 378.0,
+        "y2": 500.0,
+        "stroke": "#9CA3AF",
+        "stroke_width": 1.0,
+        "semantic_role": "guide"
+      }
+    },
+    {
+      "id": "slot.grid_v_09",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 418.0,
+        "y1": 180.0,
+        "x2": 418.0,
+        "y2": 500.0,
+        "stroke": "#9CA3AF",
+        "stroke_width": 1.0,
+        "semantic_role": "guide"
+      }
+    },
+    {
+      "id": "slot.grid_v_10",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 458.0,
+        "y1": 180.0,
+        "x2": 458.0,
+        "y2": 500.0,
+        "stroke": "#9CA3AF",
+        "stroke_width": 1.0,
+        "semantic_role": "guide"
+      }
+    },
+    {
+      "id": "slot.grid_v_11",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 498.0,
+        "y1": 180.0,
+        "x2": 498.0,
+        "y2": 500.0,
+        "stroke": "#9CA3AF",
+        "stroke_width": 1.0,
+        "semantic_role": "guide"
+      }
+    },
+    {
+      "id": "slot.grid_v_12",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 538.0,
+        "y1": 180.0,
+        "x2": 538.0,
+        "y2": 500.0,
+        "stroke": "#9CA3AF",
+        "stroke_width": 1.0,
+        "semantic_role": "guide"
+      }
+    },
+    {
+      "id": "slot.grid_v_13",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 578.0,
+        "y1": 180.0,
+        "x2": 578.0,
+        "y2": 500.0,
+        "stroke": "#9CA3AF",
+        "stroke_width": 1.0,
+        "semantic_role": "guide"
+      }
+    },
+    {
+      "id": "slot.grid_v_14",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 618.0,
+        "y1": 180.0,
+        "x2": 618.0,
+        "y2": 500.0,
+        "stroke": "#9CA3AF",
+        "stroke_width": 1.0,
+        "semantic_role": "guide"
+      }
+    },
+    {
+      "id": "slot.grid_v_15",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 658.0,
+        "y1": 180.0,
+        "x2": 658.0,
+        "y2": 500.0,
+        "stroke": "#9CA3AF",
+        "stroke_width": 1.0,
+        "semantic_role": "guide"
+      }
+    },
+    {
+      "id": "slot.grid_v_16",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 698.0,
+        "y1": 180.0,
+        "x2": 698.0,
+        "y2": 500.0,
+        "stroke": "#9CA3AF",
+        "stroke_width": 1.0,
+        "semantic_role": "guide"
+      }
+    },
+    {
+      "id": "slot.grid_h_01",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 58.0,
+        "y1": 220.0,
+        "x2": 698.0,
+        "y2": 220.0,
+        "stroke": "#9CA3AF",
+        "stroke_width": 1.0,
+        "semantic_role": "guide"
+      }
+    },
+    {
+      "id": "slot.label_choice_2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄹ",
+        "style_role": "body",
+        "x": 306.0,
+        "y": 251.0,
+        "font_size": 34,
+        "font_family": "Malgun Gothic",
+        "anchor": "start",
+        "fill": "#222222",
+        "semantic_role": "label"
+      }
+    },
+    {
+      "id": "slot.label_choice_3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㅁ",
+        "style_role": "body",
+        "x": 385.0,
+        "y": 251.0,
+        "font_size": 34,
+        "font_family": "Malgun Gothic",
+        "anchor": "start",
+        "fill": "#222222",
+        "semantic_role": "label"
+      }
+    },
+    {
+      "id": "slot.label_choice_4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㅂ",
+        "style_role": "body",
+        "x": 587.0,
+        "y": 251.0,
+        "font_size": 34,
+        "font_family": "Malgun Gothic",
+        "anchor": "start",
+        "fill": "#222222",
+        "semantic_role": "label"
+      }
+    },
+    {
+      "id": "slot.dot_choice_2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 298.0,
+        "cy": 259.0,
+        "r": 5.0,
+        "stroke": "none",
+        "stroke_width": 0.0,
+        "fill": "#222222",
+        "semantic_role": "point"
+      }
+    },
+    {
+      "id": "slot.dot_choice_3",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 377.0,
+        "cy": 259.0,
+        "r": 5.0,
+        "stroke": "none",
+        "stroke_width": 0.0,
+        "fill": "#222222",
+        "semantic_role": "point"
+      }
+    },
+    {
+      "id": "slot.dot_choice_4",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 579.0,
+        "cy": 259.0,
+        "r": 5.0,
+        "stroke": "none",
+        "stroke_width": 0.0,
+        "fill": "#222222",
+        "semantic_role": "point"
+      }
+    },
+    {
+      "id": "slot.grid_h_02",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 58.0,
+        "y1": 260.0,
+        "x2": 698.0,
+        "y2": 260.0,
+        "stroke": "#9CA3AF",
+        "stroke_width": 1.0,
+        "semantic_role": "guide"
+      }
+    },
+    {
+      "id": "slot.label_choice_1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄷ",
+        "style_role": "body",
+        "x": 186.0,
+        "y": 292.0,
+        "font_size": 34,
+        "font_family": "Malgun Gothic",
+        "anchor": "start",
+        "fill": "#222222",
+        "semantic_role": "label"
+      }
+    },
+    {
+      "id": "slot.grid_h_03",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 58.0,
+        "y1": 300.0,
+        "x2": 698.0,
+        "y2": 300.0,
+        "stroke": "#9CA3AF",
+        "stroke_width": 1.0,
+        "semantic_role": "guide"
+      }
+    },
+    {
+      "id": "slot.dot_choice_1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 178.0,
+        "cy": 300.0,
+        "r": 5.0,
+        "stroke": "none",
+        "stroke_width": 0.0,
+        "fill": "#222222",
+        "semantic_role": "point"
+      }
+    },
+    {
+      "id": "slot.label_choice_5",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㅅ",
+        "style_role": "body",
+        "x": 627.0,
+        "y": 331.0,
+        "font_size": 34,
+        "font_family": "Malgun Gothic",
+        "anchor": "start",
+        "fill": "#222222",
+        "semantic_role": "label"
+      }
+    },
+    {
+      "id": "slot.dot_choice_5",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 619.0,
+        "cy": 339.0,
+        "r": 5.0,
+        "stroke": "none",
+        "stroke_width": 0.0,
+        "fill": "#222222",
+        "semantic_role": "point"
+      }
+    },
+    {
+      "id": "slot.grid_h_04",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 58.0,
+        "y1": 340.0,
+        "x2": 698.0,
+        "y2": 340.0,
+        "stroke": "#9CA3AF",
+        "stroke_width": 1.0,
+        "semantic_role": "guide"
+      }
+    },
+    {
+      "id": "slot.grid_h_05",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 58.0,
+        "y1": 380.0,
+        "x2": 698.0,
+        "y2": 380.0,
+        "stroke": "#9CA3AF",
+        "stroke_width": 1.0,
+        "semantic_role": "guide"
+      }
+    },
+    {
+      "id": "slot.grid_h_06",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 58.0,
+        "y1": 420.0,
+        "x2": 698.0,
+        "y2": 420.0,
+        "stroke": "#9CA3AF",
+        "stroke_width": 1.0,
+        "semantic_role": "guide"
+      }
+    },
+    {
+      "id": "slot.label_base_start",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄱ",
+        "style_role": "body",
+        "x": 265.0,
+        "y": 451.0,
+        "font_size": 34,
+        "font_family": "Malgun Gothic",
+        "anchor": "start",
+        "fill": "#222222",
+        "semantic_role": "label"
+      }
+    },
+    {
+      "id": "slot.label_base_end",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄴ",
+        "style_role": "body",
+        "x": 587.0,
+        "y": 451.0,
+        "font_size": 34,
+        "font_family": "Malgun Gothic",
+        "anchor": "start",
+        "fill": "#222222",
+        "semantic_role": "label"
+      }
+    },
+    {
+      "id": "slot.base_segment",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 257.0,
+        "y1": 459.0,
+        "x2": 579.0,
+        "y2": 459.0,
+        "stroke": "#222222",
+        "stroke_width": 4.0,
+        "semantic_role": "given_segment"
+      }
+    },
+    {
+      "id": "slot.dot_base_start",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 257.0,
+        "cy": 459.0,
+        "r": 5.0,
+        "stroke": "none",
+        "stroke_width": 0.0,
+        "fill": "#222222",
+        "semantic_role": "point"
+      }
+    },
+    {
+      "id": "slot.dot_base_end",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 579.0,
+        "cy": 459.0,
+        "r": 5.0,
+        "stroke": "none",
+        "stroke_width": 0.0,
+        "fill": "#222222",
+        "semantic_role": "point"
+      }
+    },
+    {
+      "id": "slot.grid_h_07",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 58.0,
+        "y1": 460.0,
+        "x2": 698.0,
+        "y2": 460.0,
+        "stroke": "#9CA3AF",
+        "stroke_width": 1.0,
+        "semantic_role": "guide"
+      }
+    },
+    {
+      "id": "slot.grid_h_08",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 58.0,
+        "y1": 500.0,
+        "x2": 698.0,
+        "y2": 500.0,
+        "stroke": "#9CA3AF",
+        "stroke_width": 1.0,
+        "semantic_role": "guide"
+      }
+    },
+    {
+      "id": "slot.answer_point",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 640.0,
+        "y": 611.0,
+        "width": 60.0,
+        "height": 42.0,
+        "stroke": "none",
+        "stroke_width": 0.0,
+        "fill": "none",
+        "semantic_role": "answer_anchor"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.bg",
+    "slot.grid_box",
+    "slot.dot_choice_2",
+    "slot.dot_choice_3",
+    "slot.dot_choice_4",
+    "slot.dot_choice_1",
+    "slot.dot_choice_5",
+    "slot.dot_base_start",
+    "slot.dot_base_end",
+    "slot.answer_point",
+    "slot.grid_h_00",
+    "slot.grid_v_00",
+    "slot.grid_v_01",
+    "slot.grid_v_02",
+    "slot.grid_v_03",
+    "slot.grid_v_04",
+    "slot.grid_v_05",
+    "slot.grid_v_06",
+    "slot.grid_v_07",
+    "slot.grid_v_08",
+    "slot.grid_v_09",
+    "slot.grid_v_10",
+    "slot.grid_v_11",
+    "slot.grid_v_12",
+    "slot.grid_v_13",
+    "slot.grid_v_14",
+    "slot.grid_v_15",
+    "slot.grid_v_16",
+    "slot.grid_h_01",
+    "slot.grid_h_02",
+    "slot.grid_h_03",
+    "slot.grid_h_04",
+    "slot.grid_h_05",
+    "slot.grid_h_06",
+    "slot.base_segment",
+    "slot.grid_h_07",
+    "slot.grid_h_08",
+    "slot.instruction_1",
+    "slot.instruction_2",
+    "slot.instruction_3",
+    "slot.label_choice_2",
+    "slot.label_choice_3",
+    "slot.label_choice_4",
+    "slot.label_choice_1",
+    "slot.label_choice_5",
+    "slot.label_base_start",
+    "slot.label_base_end"
+  ]
+}

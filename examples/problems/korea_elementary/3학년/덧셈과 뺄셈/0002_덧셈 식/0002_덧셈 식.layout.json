@@ -1,0 +1,242 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "0002_덧셈 식",
+  "title": "",
+  "canvas": {
+    "width": 408,
+    "height": 212,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "vertical",
+      "slot_ids": [
+        "slot.bg",
+        "slot.candidate_box",
+        "slot.blank_left",
+        "slot.blank_right",
+        "slot.instruction_1",
+        "slot.instruction_2",
+        "slot.candidate_1",
+        "slot.candidate_2",
+        "slot.candidate_3",
+        "slot.candidate_4",
+        "slot.plus_sign",
+        "slot.equal_expr"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.bg",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 408.0,
+        "height": 212.0,
+        "stroke": "none",
+        "stroke_width": 0.0,
+        "fill": "none",
+        "semantic_role": "background"
+      }
+    },
+    {
+      "id": "slot.instruction_1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "다음 수 중에서 2개를 골라 덧셈식을 만들려고",
+        "style_role": "body",
+        "x": 6.0,
+        "y": 30.0,
+        "font_size": 17,
+        "font_family": "Malgun Gothic",
+        "anchor": "start",
+        "fill": "#222222",
+        "semantic_role": "instruction"
+      }
+    },
+    {
+      "id": "slot.instruction_2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "합니다. □ 안에 알맞은 수를 써넣으세요.",
+        "style_role": "body",
+        "x": 6.0,
+        "y": 60.0,
+        "font_size": 17,
+        "font_family": "Malgun Gothic",
+        "anchor": "start",
+        "fill": "#222222",
+        "semantic_role": "instruction"
+      }
+    },
+    {
+      "id": "slot.candidate_box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 6.0,
+        "y": 78.0,
+        "width": 396.0,
+        "height": 56.0,
+        "stroke": "#666666",
+        "stroke_width": 1.5,
+        "rx": 10.0,
+        "ry": 10.0,
+        "fill": "none",
+        "semantic_role": "guide"
+      }
+    },
+    {
+      "id": "slot.candidate_1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "718",
+        "style_role": "body",
+        "x": 74.0,
+        "y": 113.0,
+        "font_size": 17,
+        "font_family": "Malgun Gothic",
+        "anchor": "middle",
+        "fill": "#222222",
+        "semantic_role": "label"
+      }
+    },
+    {
+      "id": "slot.candidate_2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "295",
+        "style_role": "body",
+        "x": 160.0,
+        "y": 113.0,
+        "font_size": 17,
+        "font_family": "Malgun Gothic",
+        "anchor": "middle",
+        "fill": "#222222",
+        "semantic_role": "label"
+      }
+    },
+    {
+      "id": "slot.candidate_3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "658",
+        "style_role": "body",
+        "x": 246.0,
+        "y": 113.0,
+        "font_size": 17,
+        "font_family": "Malgun Gothic",
+        "anchor": "middle",
+        "fill": "#222222",
+        "semantic_role": "label"
+      }
+    },
+    {
+      "id": "slot.candidate_4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "245",
+        "style_role": "body",
+        "x": 332.0,
+        "y": 113.0,
+        "font_size": 17,
+        "font_family": "Malgun Gothic",
+        "anchor": "middle",
+        "fill": "#222222",
+        "semantic_role": "label"
+      }
+    },
+    {
+      "id": "slot.blank_left",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 94.0,
+        "y": 150.0,
+        "width": 69.0,
+        "height": 36.0,
+        "stroke": "#666666",
+        "stroke_width": 1.5,
+        "fill": "none",
+        "semantic_role": "answer_anchor"
+      }
+    },
+    {
+      "id": "slot.blank_right",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 184.0,
+        "y": 150.0,
+        "width": 69.0,
+        "height": 36.0,
+        "stroke": "#666666",
+        "stroke_width": 1.5,
+        "fill": "none",
+        "semantic_role": "answer_anchor"
+      }
+    },
+    {
+      "id": "slot.plus_sign",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "+",
+        "style_role": "body",
+        "x": 173.0,
+        "y": 176.0,
+        "font_size": 34,
+        "font_family": "Malgun Gothic",
+        "anchor": "middle",
+        "fill": "#222222",
+        "semantic_role": "label"
+      }
+    },
+    {
+      "id": "slot.equal_expr",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "=953",
+        "style_role": "body",
+        "x": 300.0,
+        "y": 176.0,
+        "font_size": 34,
+        "font_family": "Malgun Gothic",
+        "anchor": "middle",
+        "fill": "#222222",
+        "semantic_role": "label"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.bg",
+    "slot.candidate_box",
+    "slot.blank_left",
+    "slot.blank_right",
+    "slot.instruction_1",
+    "slot.instruction_2",
+    "slot.candidate_1",
+    "slot.candidate_2",
+    "slot.candidate_3",
+    "slot.candidate_4",
+    "slot.plus_sign",
+    "slot.equal_expr"
+  ]
+}

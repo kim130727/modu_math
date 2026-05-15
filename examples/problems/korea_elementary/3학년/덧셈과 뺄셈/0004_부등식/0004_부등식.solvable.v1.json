@@ -1,0 +1,67 @@
+{
+  "schema": "modu.solvable.v1",
+  "problem_id": "0004_부등식",
+  "problem_type": "arithmetic_inequality_puzzle",
+  "given": [
+    {
+      "ref": "obj.inequality",
+      "value": "4□5 + 298 > 763"
+    }
+  ],
+  "target": {
+    "type": "object",
+    "description": "□ 안의 수와 개수"
+  },
+  "method": "algebraic_simplification_and_trial",
+  "steps": [
+    {
+      "id": "step.s1",
+      "operation": "subtraction",
+      "expr": "763 - 298 = 465",
+      "description": "4□5 > 465가 되어야 함을 알 수 있습니다.",
+      "value": 465
+    },
+    {
+      "id": "step.s2",
+      "operation": "deduction",
+      "expr": "□ > 6",
+      "description": "4□5가 465보다 크려면 십의 자리 □는 6보다 커야 합니다.",
+      "value": [
+        7,
+        8,
+        9
+      ]
+    },
+    {
+      "id": "step.s3",
+      "operation": "counting",
+      "expr": "len([7, 8, 9]) = 3",
+      "value": 3
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.c1",
+      "type": "arithmetic_consistency_check",
+      "pass": true,
+      "expected": true,
+      "actual": true,
+      "expr": "475 + 298 > 763"
+    }
+  ],
+  "answer": {
+    "value": 3,
+    "unit": "개",
+    "derived_from": "step.s3"
+  },
+  "inputs": {
+    "total_ticks": 2,
+    "target_label": "답",
+    "target_ticks": 2,
+    "target_count": 2,
+    "unit": "개"
+  },
+  "plan": [
+    "부등식을 풀어 4□5 > 465임을 구한 뒤, □가 7, 8, 9가 될 수 있음을 확인하여 총 3개임을 구합니다."
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "problem_id": "0004_부등식",
+  "problem_type": "arithmetic_inequality_puzzle",
+  "metadata": {
+    "title": "",
+    "tags": [],
+    "instruction": "□ 안에 알맞은 수를 모두 구하고 개수를 쓰시오.",
+    "question": "부등식 4□5 + 298 > 763을 만족하는 □ 안의 숫자(0-9)를 모두 찾고 개수를 구하는 문제",
+    "required_layout_ids": [
+      "slot.eq_box",
+      "slot.answer_count"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.inequality",
+        "type": "inequality",
+        "value": "4□5 + 298 > 763"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "plan": {
+        "method": "algebraic_simplification_and_trial",
+        "description": "부등식을 단순화하여 4□5 > 465를 도출한 뒤, □에 들어갈 수 있는 숫자를 판별한다."
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "value": {
+      "numbers": [
+        7,
+        8,
+        9
+      ],
+      "count": 3
+    },
+    "unit": "개"
+  }
+}

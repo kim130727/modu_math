@@ -1,0 +1,88 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "Hpdf_krkIaX01xZ",
+  "title": "□ 안에 들어갈 수 있는 세 자리 수",
+  "canvas": {
+    "width": 650,
+    "height": 260,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q1",
+        "slot.q2",
+        "slot.box",
+        "slot.expr"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "□ 안에 들어갈 수 있는 세 자리 수는 모두 몇 개인가?",
+        "style_role": "question",
+        "x": 10.0,
+        "y": 34.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "",
+        "style_role": "question",
+        "x": 0.0,
+        "y": 0.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 68.0,
+        "y": 118.0,
+        "width": 402.0,
+        "height": 55.0,
+        "stroke": "#8A8A8A",
+        "stroke_width": 1.2,
+        "rx": 7.0,
+        "ry": 7.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.expr",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "991−□ > 397+108",
+        "style_role": "equation",
+        "x": 141.0,
+        "y": 152.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q1",
+    "slot.q2",
+    "slot.box",
+    "slot.expr"
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "problem_id": "0001_바둑돌 빼기",
+  "view_box": {
+    "width": 1000.0,
+    "height": 500.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.p1.text",
+      "type": "text",
+      "attributes": {
+        "x": 50.0,
+        "y": 80.0,
+        "max_width": 872.0,
+        "fill": "#000000",
+        "font-family": "sans-serif",
+        "font-size": 24,
+        "text-anchor": "start"
+      },
+      "source_ref": "slot.p1",
+      "refs": {
+        "layout_slot_id": "slot.p1"
+      },
+      "text": "바둑돌 통에 검은색 바둑돌 374개와 흰색 바둑돌 558개가 있었습니다."
+    },
+    {
+      "id": "slot.p2.text",
+      "type": "text",
+      "attributes": {
+        "x": 50.0,
+        "y": 180.0,
+        "max_width": 872.0,
+        "fill": "#000000",
+        "font-family": "sans-serif",
+        "font-size": 24,
+        "text-anchor": "start"
+      },
+      "source_ref": "slot.p2",
+      "refs": {
+        "layout_slot_id": "slot.p2"
+      },
+      "text": "그중에서 몇 개를 뺐더니 463개가 남았습니다."
+    },
+    {
+      "id": "slot.p3.text",
+      "type": "text",
+      "attributes": {
+        "x": 50.0,
+        "y": 260.0,
+        "max_width": 872.0,
+        "fill": "#000000",
+        "font-family": "sans-serif",
+        "font-size": 24,
+        "text-anchor": "start"
+      },
+      "source_ref": "slot.p3",
+      "refs": {
+        "layout_slot_id": "slot.p3"
+      },
+      "text": "뺀 바둑돌은 몇 개입니까?"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

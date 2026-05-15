@@ -1,0 +1,57 @@
+{
+  "schema": "modu.solvable.v1",
+  "problem_id": "Hpdf_67IWfsGbkY",
+  "problem_type": "equation_word_problem",
+  "inputs": {
+    "total_ticks": 3,
+    "target_label": "시작 전 (나)의 구슬 수",
+    "target_ticks": 1,
+    "target_count": 240,
+    "unit": "개"
+  },
+  "plan": [
+    "첫째/둘째 게임에서의 구슬 이동을 식으로 정리한다.",
+    "최종 상태가 A=B=C=240이라는 조건을 적용한다.",
+    "초기 (나)의 구슬 수를 계산하고 검산한다."
+  ],
+  "steps": [
+    {
+      "id": "step.s1",
+      "expr": "초기값을 A=a, B=b, C=c로 두고 규칙대로 게임 후 식을 만든다.",
+      "value": null
+    },
+    {
+      "id": "step.s2",
+      "expr": "최종식에서 C=240 -> c=60, B=240 -> b-a=180, A=240 -> 3a-b=300을 얻는다.",
+      "value": null
+    },
+    {
+      "id": "step.s3",
+      "expr": "연립하면 a=240, b=420, c=60이므로 시작 전 (나)는 420개이다.",
+      "value": 420
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.c1",
+      "expr": "a=240, b=420, c=60을 두 게임 규칙에 대입하면 최종 A=B=C=240인지 확인",
+      "expected": {
+        "A": 240,
+        "B": 240,
+        "C": 240,
+        "unit": "개"
+      },
+      "actual": {
+        "A": 240,
+        "B": 240,
+        "C": 240,
+        "unit": "개"
+      },
+      "pass": true
+    }
+  ],
+  "answer": {
+    "value": 420,
+    "unit": "개"
+  }
+}

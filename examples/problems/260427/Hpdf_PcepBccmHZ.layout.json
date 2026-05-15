@@ -1,0 +1,237 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "Hpdf_PcepBccmHZ",
+  "title": "뺄셈식의 같은 모양 찾기",
+  "canvas": {
+    "width": 560,
+    "height": 300,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q1",
+        "slot.q2"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.box",
+        "slot.a1",
+        "slot.a2",
+        "slot.a3",
+        "slot.b1",
+        "slot.b2",
+        "slot.b3",
+        "slot.b4",
+        "slot.line1",
+        "slot.c1",
+        "slot.c2",
+        "slot.c3"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "뺄셈식에서 같은 모양은 같은 숫자를 나타냅니다.",
+        "style_role": "question",
+        "x": 8.0,
+        "y": 28.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "■와 ★에 알맞은 숫자의 합을 구하시오.",
+        "style_role": "question",
+        "x": 8.0,
+        "y": 62.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 166.0,
+        "y": 100.0,
+        "width": 224.0,
+        "height": 184.0,
+        "stroke": "#777777",
+        "stroke_width": 1.5,
+        "rx": 6.0,
+        "ry": 6.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.a1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "■",
+        "style_role": "diagram",
+        "x": 250.0,
+        "y": 140.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.a2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "★",
+        "style_role": "diagram",
+        "x": 290.0,
+        "y": 140.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.a3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "■",
+        "style_role": "diagram",
+        "x": 330.0,
+        "y": 140.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.b1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "−",
+        "style_role": "diagram",
+        "x": 210.0,
+        "y": 190.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.b2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "★",
+        "style_role": "diagram",
+        "x": 250.0,
+        "y": 190.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.b3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "■",
+        "style_role": "diagram",
+        "x": 290.0,
+        "y": 190.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.b4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "★",
+        "style_role": "diagram",
+        "x": 330.0,
+        "y": 190.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.line1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 200.0,
+        "y1": 220.0,
+        "x2": 356.0,
+        "y2": 220.0,
+        "stroke": "#222222",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.c1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "★",
+        "style_role": "diagram",
+        "x": 250.0,
+        "y": 255.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.c2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "7",
+        "style_role": "diagram",
+        "x": 290.0,
+        "y": 255.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.c3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "3",
+        "style_role": "diagram",
+        "x": 330.0,
+        "y": 255.0,
+        "font_size": 30
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q1",
+    "slot.q2",
+    "region.diagram",
+    "slot.box",
+    "slot.a1",
+    "slot.a2",
+    "slot.a3",
+    "slot.b1",
+    "slot.b2",
+    "slot.b3",
+    "slot.b4",
+    "slot.line1",
+    "slot.c1",
+    "slot.c2",
+    "slot.c3"
+  ]
+}

@@ -1,0 +1,328 @@
+{
+  "problem_id": "Hpdf_3oCKkRoDiK",
+  "problem_type": "generic",
+  "metadata": {
+    "title": "",
+    "tags": [],
+    "instruction": "을 그릴 때 점 ㄹ을 꼭짓점으로 하는 각은 모두",
+    "question": "다음 5개의 점 중에서 3개의 점을 이용하여 각",
+    "required_layout_ids": [
+      "slot.box",
+      "slot.pt.g",
+      "slot.pt.d",
+      "slot.pt.n",
+      "slot.pt.r",
+      "slot.pt.m"
+    ],
+    "extraction_confidence": 1.0
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "slot.box",
+        "type": "rect_slot",
+        "properties": {
+          "x": 155.0,
+          "y": 179.0,
+          "width": 248.0,
+          "height": 179.0,
+          "stroke": "#777777",
+          "stroke_width": 2.0,
+          "rx": 15.0,
+          "ry": 15.0,
+          "fill": "none",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.box"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.lbl.d",
+        "type": "instruction",
+        "properties": {
+          "text": "ㄷ"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.lbl.d"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.lbl.g",
+        "type": "instruction",
+        "properties": {
+          "text": "ㄱ"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.lbl.g"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.lbl.m",
+        "type": "instruction",
+        "properties": {
+          "text": "ㅁ"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.lbl.m"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.lbl.n",
+        "type": "instruction",
+        "properties": {
+          "text": "ㄴ"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.lbl.n"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.lbl.r",
+        "type": "instruction",
+        "properties": {
+          "text": "ㄹ"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.lbl.r"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.pt.d",
+        "type": "circle_slot",
+        "properties": {
+          "cx": 313.0,
+          "cy": 200.0,
+          "r": 4.0,
+          "stroke": "#222222",
+          "stroke_width": 1.0,
+          "fill": "#222222",
+          "semantic_role": "vertex"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.pt.d"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.pt.g",
+        "type": "circle_slot",
+        "properties": {
+          "cx": 211.0,
+          "cy": 217.0,
+          "r": 4.0,
+          "stroke": "#222222",
+          "stroke_width": 1.0,
+          "fill": "#222222",
+          "semantic_role": "vertex"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.pt.g"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.pt.m",
+        "type": "circle_slot",
+        "properties": {
+          "cx": 363.0,
+          "cy": 267.0,
+          "r": 4.0,
+          "stroke": "#222222",
+          "stroke_width": 1.0,
+          "fill": "#222222",
+          "semantic_role": "vertex"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.pt.m"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.pt.n",
+        "type": "circle_slot",
+        "properties": {
+          "cx": 223.0,
+          "cy": 295.0,
+          "r": 4.0,
+          "stroke": "#222222",
+          "stroke_width": 1.0,
+          "fill": "#222222",
+          "semantic_role": "vertex"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.pt.n"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.pt.r",
+        "type": "circle_slot",
+        "properties": {
+          "cx": 305.0,
+          "cy": 320.0,
+          "r": 4.0,
+          "stroke": "#222222",
+          "stroke_width": 1.0,
+          "fill": "#222222",
+          "semantic_role": "vertex"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.pt.r"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.title.l1",
+        "type": "question",
+        "properties": {
+          "text": "다음 5개의 점 중에서 3개의 점을 이용하여 각"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.title.l1"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.title.l2",
+        "type": "instruction",
+        "properties": {
+          "text": "을 그릴 때 점 ㄹ을 꼭짓점으로 하는 각은 모두"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.title.l2"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.title.l3",
+        "type": "instruction",
+        "properties": {
+          "text": "몇 개입니까?"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.title.l3"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "confidence": 1.0
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0
+  }
+}

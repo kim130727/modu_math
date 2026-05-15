@@ -1,0 +1,88 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "msedge_41Shi9FWDB",
+  "title": "",
+  "canvas": {
+    "width": 650,
+    "height": 246,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "vertical",
+      "slot_ids": [
+        "slot.b1",
+        "slot.b4",
+        "slot.b2",
+        "slot.circle_4"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.b1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "계산 결과의 크기를 비교하여 ○ 안에 >, =, <를\n알맞게 써넣으시오.",
+        "style_role": "body",
+        "x": 16.5518798828125,
+        "y": 45.75864601135254,
+        "font_size": 30,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.circle_4",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 341.0,
+        "cy": 171.04651260375977,
+        "r": 21.24983717169655,
+        "stroke": "#222",
+        "stroke_width": 2.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.b4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "3/7 ÷ 1/7",
+        "style_role": "body",
+        "x": 377.0,
+        "y": 178.12066650390625,
+        "font_size": 30,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.b2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "8/9 ÷ 2/9",
+        "style_role": "body",
+        "x": 171.7586669921875,
+        "y": 179.8793182373047,
+        "font_size": 30,
+        "fill": "#111111"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.b1",
+    "slot.b4",
+    "slot.b2",
+    "slot.circle_4"
+  ]
+}

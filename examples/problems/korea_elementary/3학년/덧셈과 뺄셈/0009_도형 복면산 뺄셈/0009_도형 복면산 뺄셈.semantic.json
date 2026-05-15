@@ -1,0 +1,48 @@
+{
+  "problem_id": "0009_도형 복면산 뺄셈",
+  "problem_type": "arithmetic_alphametic_subtraction",
+  "metadata": {
+    "title": "",
+    "tags": [],
+    "instruction": "■와 ★가 나타내는 숫자의 합을 구하시오.",
+    "question": "도형(■, ★)이 포함된 복면산 뺄셈식(■★■ - ★■★ = ★73)에서 두 도형이 나타내는 숫자의 합을 구하는 문제",
+    "required_layout_ids": [],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.square",
+        "type": "variable",
+        "symbol": "■"
+      },
+      {
+        "id": "obj.star",
+        "type": "variable",
+        "symbol": "★"
+      },
+      {
+        "id": "obj.equation",
+        "type": "equation",
+        "value": "SquareStarSquare - StarSquareStar = Star73"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "plan": {
+        "method": "digit_deduction",
+        "description": "각 자릿수별로 받아내림을 고려하여 가능한 숫자를 추론한다."
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "value": 7,
+    "unit": ""
+  }
+}

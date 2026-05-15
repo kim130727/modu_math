@@ -1,0 +1,51 @@
+{
+  "schema": "modu.solvable.v1",
+  "problem_id": "Hpdf_pLAtjeyTaF",
+  "problem_type": "length_relation",
+  "inputs": {
+    "total_ticks": 609,
+    "target_label": "길이",
+    "target_ticks": 609,
+    "target_count": 609,
+    "unit": "cm"
+  },
+  "plan": [
+    "전체 구조를 보면, 821cm는 ㉠과 ㉡의 합이고, 448cm는 ㉡과 236cm의 합이다.",
+    "먼저 ㉡을 구하기 위해 448cm에서 236cm를 뺀다.",
+    "㉡ = 448 - 236 = 212 (cm)",
+    "이제 ㉠을 구하기 위해 821cm에서 구한 ㉡을 뺀다.",
+    "㉠ = 821 - 212 = 609 (cm)"
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "㉡ = 448 - 236",
+      "value": 212
+    },
+    {
+      "id": "step.2",
+      "expr": "㉠ = 821 - 212",
+      "value": 609
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "609 + 212",
+      "expected": 821,
+      "actual": 821,
+      "pass": true
+    },
+    {
+      "id": "check.2",
+      "expr": "212 + 236",
+      "expected": 448,
+      "actual": 448,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "value": 609,
+    "unit": "cm"
+  }
+}

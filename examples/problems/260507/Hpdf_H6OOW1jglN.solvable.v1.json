@@ -1,0 +1,68 @@
+{
+  "schema": "modu.solvable.v1",
+  "problem_id": "Hpdf_H6OOW1jglN",
+  "problem_type": "geometry_rectangle_composite",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "가장 작은 직사각형 한 개의 짧은 변",
+    "target_ticks": 0,
+    "target_count": 1,
+    "unit": "cm"
+  },
+  "given": [
+    {
+      "ref": "obj.small_rectangle",
+      "value": "둘레 20 cm"
+    },
+    {
+      "ref": "obj.large_rectangle",
+      "value": "둘레 64 cm"
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "length"
+  },
+  "method": "algebraic_modeling",
+  "plan": [
+    "작은 직사각형의 긴 변을 a, 짧은 변을 b라 하면 a+b=10이다.",
+    "그림과 같이 2행 4열로 배치하면 큰 직사각형의 가로는 4a, 세로는 2b이다.",
+    "큰 직사각형의 둘레는 2*(4a + 2b) = 8a + 4b = 64이다.",
+    "두 식을 연립하여 a와 b를 구한다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "operation": "sum_sides",
+      "expr": "a + b = 10",
+      "value": 10
+    },
+    {
+      "id": "step.2",
+      "operation": "large_perimeter",
+      "expr": "8a + 4b = 64",
+      "value": 64
+    },
+    {
+      "id": "step.3",
+      "operation": "solve",
+      "expr": "a=6, b=4",
+      "value": 4
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "type": "logic_check",
+      "expr": "2 * (4*6 + 2*4) = 2 * (24 + 8) = 64",
+      "expected": 64,
+      "actual": 64,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "value": 4,
+    "unit": "cm",
+    "derived_from": "step.3"
+  }
+}

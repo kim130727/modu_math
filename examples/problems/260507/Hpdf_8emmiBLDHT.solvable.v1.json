@@ -1,0 +1,53 @@
+{
+  "schema": "modu.solvable.v1",
+  "problem_id": "Hpdf_8emmiBLDHT",
+  "problem_type": "geometry_length",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "굵은 선의 길이",
+    "target_ticks": 0,
+    "target_count": 1,
+    "unit": "cm"
+  },
+  "given": [
+    {
+      "ref": "obj.total_perimeter_sides",
+      "value": {
+        "amount": 30,
+        "unit": "cm"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "length"
+  },
+  "method": "perimeter_reasoning",
+  "plan": [
+    "굵은 선은 각 정사각형의 바깥쪽 변 3개씩으로 이루어져 있다.",
+    "따라서 굵은 선의 전체 길이는 (직각삼각형의 세 변의 합) * 3 이 된다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "operation": "multiply",
+      "expr": "30 * 3",
+      "value": 90
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "type": "unit_consistency_check",
+      "expr": "단위는 cm인지 확인",
+      "expected": 1,
+      "actual": 1,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "value": 90,
+    "unit": "cm",
+    "derived_from": "step.1"
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "problem_id": "Hpdf_WOZc0ipjaC",
+  "problem_type": "symbol_rule_calculation",
+  "metadata": {
+    "title": "기호 규칙 계산",
+    "tags": [],
+    "instruction": "기호 ◉를 먼저 계산합니다.",
+    "question": "기호 ◉를 ㉠◉㉡=㉠+㉡-482와 같이 약속할 때 다음을 계산하는 문제",
+    "required_layout_ids": [
+      "slot.box"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.rule",
+        "type": "custom_operation_rule",
+        "description": "㉠ ◉ ㉡ = ㉠ + ㉡ - 482"
+      },
+      {
+        "id": "obj.expression",
+        "type": "expression",
+        "description": "197 ◉ 631 + 197"
+      }
+    ],
+    "relations": [
+      {
+        "id": "rel.apply_rule",
+        "type": "operation_definition_applied_to_expression",
+        "from_id": "obj.rule",
+        "to_id": "obj.expression"
+      }
+    ],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.rule",
+          "obj.expression"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.apply_rule"
+        ]
+      },
+      "plan": {
+        "method": "define_operation_then_substitute",
+        "description": "기호 ◉의 뜻을 식에 대입한 뒤, 먼저 ◉ 부분을 계산하고 그 결과에 197을 더한다."
+      },
+      "execute": {
+        "expected_operations": [
+          "evaluate_custom_operation",
+          "add_remaining_number"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "definition_substitution_check",
+          "arithmetic_consistency_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "value_of_expression",
+      "description": "197 ◉ 631 + 197의 값"
+    },
+    "value": 543,
+    "unit": ""
+  }
+}

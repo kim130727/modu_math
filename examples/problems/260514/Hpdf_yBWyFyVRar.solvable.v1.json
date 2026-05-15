@@ -1,0 +1,59 @@
+{
+  "schema": "modu.solvable.v1",
+  "problem_id": "Hpdf_yBWyFyVRar",
+  "problem_type": "rectangle_partition",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "정사각형은 몇 개로 나누어집니까?",
+    "target_ticks": 0,
+    "target_count": 0,
+    "unit": "개"
+  },
+  "given": [
+    {
+      "ref": "obj.rectangle",
+      "value": {
+        "width_cm": 54,
+        "height_cm": 27
+      }
+    },
+    {
+      "ref": "obj.square_side",
+      "value": {
+        "value_cm": 9
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "count_of_squares"
+  },
+  "method": "area_based_partition",
+  "plan": [
+    "직사각형과 정사각형의 길이 조건을 확인한다.",
+    "나누는 상황의 의미를 해석한다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "operation": "calculate_count",
+      "expr": "(54 / 9) * (27 / 9)",
+      "value": 18
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "type": "unit_consistency_check",
+      "expr": "cm 단위가 일치하는지 확인",
+      "expected": 0,
+      "actual": 0,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "value": 18,
+    "unit": "개",
+    "derived_from": "step.1"
+  }
+}

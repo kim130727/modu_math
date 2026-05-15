@@ -1,0 +1,54 @@
+{
+  "schema": "modu.solvable.v1",
+  "problem_id": "2403",
+  "problem_type": "geometry_triangle",
+  "inputs": {
+    "total_ticks": 2,
+    "target_label": "x",
+    "target_ticks": 0,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.side_label_32",
+      "value": 32
+    },
+    {
+      "ref": "obj.angle_54",
+      "value": 54
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "unknown_geometry_quantity"
+  },
+  "method": "geometry_relation_reading",
+  "plan": [
+    "도형에 표시된 라벨과 표식을 확인한다.",
+    "x가 가리키는 대상이 무엇인지 그림만으로 해석한다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "operation": "identify_labels",
+      "expr": "32, x, y, 54°",
+      "value": 0
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "type": "label_presence_check",
+      "expr": "x is visibly printed in the diagram",
+      "expected": 1,
+      "actual": 1,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "value": 18.8,
+    "unit": "",
+    "derived_from": "choice.1"
+  }
+}

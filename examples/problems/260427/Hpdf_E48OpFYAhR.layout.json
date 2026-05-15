@@ -1,0 +1,243 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "Hpdf_E48OpFYAhR",
+  "title": "세 자리 수 뺄셈 복면산",
+  "canvas": {
+    "width": 650,
+    "height": 400,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q1",
+        "slot.q2",
+        "slot.q3",
+        "slot.box",
+        "slot.num1.1",
+        "slot.num1.2",
+        "slot.num1.3",
+        "slot.num2.1",
+        "slot.num2.2",
+        "slot.num2.3",
+        "slot.minus",
+        "slot.line",
+        "slot.res.1",
+        "slot.res.2",
+        "slot.res.3"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "뺄셈식에서 같은 문자는 같은 숫자를 나타냅",
+        "style_role": "question",
+        "x": 12.0,
+        "y": 40.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "니다. 각 자리의 숫자가 모두 다른 세 자리 수",
+        "style_role": "question",
+        "x": 12.0,
+        "y": 80.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "㉠㉡㉢이 될 수 있는 수 중에서 가장 큰 수를 구하시오.",
+        "style_role": "question",
+        "x": 12.0,
+        "y": 120.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 160.0,
+        "y": 170.0,
+        "width": 240.0,
+        "height": 160.0,
+        "stroke": "#333333",
+        "stroke_width": 1.5,
+        "rx": 10.0,
+        "ry": 10.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.num1.1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "㉠",
+        "style_role": "label",
+        "x": 245.0,
+        "y": 210.0,
+        "font_size": 32
+      }
+    },
+    {
+      "id": "slot.num1.2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "㉡",
+        "style_role": "label",
+        "x": 285.0,
+        "y": 210.0,
+        "font_size": 32
+      }
+    },
+    {
+      "id": "slot.num1.3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "㉢",
+        "style_role": "label",
+        "x": 325.0,
+        "y": 210.0,
+        "font_size": 32
+      }
+    },
+    {
+      "id": "slot.minus",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "－",
+        "style_role": "label",
+        "x": 195.0,
+        "y": 250.0,
+        "font_size": 32
+      }
+    },
+    {
+      "id": "slot.num2.1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "㉢",
+        "style_role": "label",
+        "x": 245.0,
+        "y": 250.0,
+        "font_size": 32
+      }
+    },
+    {
+      "id": "slot.num2.2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "㉡",
+        "style_role": "label",
+        "x": 285.0,
+        "y": 250.0,
+        "font_size": 32
+      }
+    },
+    {
+      "id": "slot.num2.3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "㉠",
+        "style_role": "label",
+        "x": 325.0,
+        "y": 250.0,
+        "font_size": 32
+      }
+    },
+    {
+      "id": "slot.line",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 190.0,
+        "y1": 270.0,
+        "x2": 370.0,
+        "y2": 270.0,
+        "stroke": "#333333",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.res.1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "3",
+        "style_role": "label",
+        "x": 250.0,
+        "y": 305.0,
+        "font_size": 32
+      }
+    },
+    {
+      "id": "slot.res.2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "9",
+        "style_role": "label",
+        "x": 290.0,
+        "y": 305.0,
+        "font_size": 32
+      }
+    },
+    {
+      "id": "slot.res.3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "6",
+        "style_role": "label",
+        "x": 330.0,
+        "y": 305.0,
+        "font_size": 32
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q1",
+    "slot.q2",
+    "slot.q3",
+    "slot.box",
+    "slot.num1.1",
+    "slot.num1.2",
+    "slot.num1.3",
+    "slot.num2.1",
+    "slot.num2.2",
+    "slot.num2.3",
+    "slot.minus",
+    "slot.line",
+    "slot.res.1",
+    "slot.res.2",
+    "slot.res.3"
+  ]
+}

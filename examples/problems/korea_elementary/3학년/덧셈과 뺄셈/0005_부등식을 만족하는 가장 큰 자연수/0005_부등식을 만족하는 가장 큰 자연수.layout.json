@@ -1,0 +1,50 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "0005_부등식을 만족하는 가장 큰 자연수",
+  "title": "",
+  "canvas": {
+    "width": 1000,
+    "height": 500,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "vertical",
+      "slot_ids": [
+        "slot.t1",
+        "slot.f1"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.t1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "□ 안에 들어갈 수 있는 수 중에서 가장 큰 자연수를 구하시오.",
+        "style_role": "body"
+      }
+    },
+    {
+      "id": "slot.f1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "179 + 265 < 933 - □",
+        "style_role": "body"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.t1",
+    "slot.f1"
+  ]
+}

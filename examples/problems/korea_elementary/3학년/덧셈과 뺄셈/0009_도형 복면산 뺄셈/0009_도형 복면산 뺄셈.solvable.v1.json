@@ -1,0 +1,59 @@
+{
+  "schema": "modu.solvable.v1",
+  "problem_id": "0009_도형 복면산 뺄셈",
+  "problem_type": "arithmetic_alphametic_subtraction",
+  "given": [
+    {
+      "ref": "obj.equation",
+      "value": "■★■ - ★■★ = ★73"
+    }
+  ],
+  "target": {
+    "type": "number",
+    "description": "두 숫자의 합"
+  },
+  "method": "digit_deduction",
+  "steps": [
+    {
+      "id": "step.s1",
+      "operation": "deduction",
+      "expr": "525 - 252 = 273",
+      "description": "■=5, ★=2일 때 식이 성립합니다.",
+      "value": {
+        "■": 5,
+        "★": 2
+      }
+    },
+    {
+      "id": "step.s2",
+      "operation": "addition",
+      "expr": "5 + 2 = 7",
+      "value": 7
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.c1",
+      "type": "arithmetic_consistency_check",
+      "pass": true,
+      "expected": 7,
+      "actual": 7,
+      "expr": "5 + 2"
+    }
+  ],
+  "answer": {
+    "value": 7,
+    "unit": "",
+    "derived_from": "step.s2"
+  },
+  "inputs": {
+    "total_ticks": 1,
+    "target_label": "답",
+    "target_ticks": 1,
+    "target_count": 1,
+    "unit": ""
+  },
+  "plan": [
+    "각 자릿수를 비교하여 ■=5, ★=2임을 찾아내고, 두 수의 합인 7을 구합니다."
+  ]
+}

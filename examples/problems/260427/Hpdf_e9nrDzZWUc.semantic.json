@@ -1,0 +1,114 @@
+{
+  "problem_id": "Hpdf_e9nrDzZWUc",
+  "problem_type": "counting_geometry",
+  "metadata": {
+    "title": "반직선 개수",
+    "tags": [],
+    "question": "다음 5개의 점 중에서 2개의 점을 이어 그릴 수 있는 반직선은 모두 몇 개인가?",
+    "required_layout_ids": [
+      "slot.diagram.frame",
+      "slot.pt.ㄱ",
+      "slot.pt.ㄴ",
+      "slot.pt.ㄷ",
+      "slot.pt.ㄹ",
+      "slot.pt.ㅁ"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "반직선의 개수를 구하시오."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.pt.ㄱ",
+        "type": "point",
+        "label": "ㄱ"
+      },
+      {
+        "id": "obj.pt.ㄴ",
+        "type": "point",
+        "label": "ㄴ"
+      },
+      {
+        "id": "obj.pt.ㄷ",
+        "type": "point",
+        "label": "ㄷ"
+      },
+      {
+        "id": "obj.pt.ㄹ",
+        "type": "point",
+        "label": "ㄹ"
+      },
+      {
+        "id": "obj.pt.ㅁ",
+        "type": "point",
+        "label": "ㅁ"
+      },
+      {
+        "id": "obj.point_set",
+        "type": "point_set",
+        "count": 5,
+        "labels": [
+          "ㄱ",
+          "ㄴ",
+          "ㄷ",
+          "ㄹ",
+          "ㅁ"
+        ]
+      },
+      {
+        "id": "obj.ray_set",
+        "type": "ray_set"
+      }
+    ],
+    "relations": [
+      {
+        "id": "rel.select_two_points",
+        "type": "choose_2_points",
+        "from_id": "obj.point_set",
+        "to_id": "obj.ray_set",
+        "count": 20
+      }
+    ],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.point_set"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.select_two_points"
+        ]
+      },
+      "plan": {
+        "method": "combination_counting",
+        "description": "5개의 점에서 서로 다른 2개의 점을 고르면 반직선의 개수를 셀 수 있다."
+      },
+      "execute": {
+        "expected_operations": [
+          "count_pairs_from_5_points",
+          "interpret_each_pair_as_one_ray"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "counting_consistency_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "count_of_rays",
+      "description": "2개의 점을 이어 그릴 수 있는 반직선의 개수"
+    },
+    "value": 20,
+    "unit": "개",
+    "explanation": "5개의 점에서 서로 다른 2점을 고르는 경우의 수는 5C2=10이고, 각 점쌍마다 방향이 다른 반직선 2개가 가능하므로 10×2=20개이다."
+  }
+}

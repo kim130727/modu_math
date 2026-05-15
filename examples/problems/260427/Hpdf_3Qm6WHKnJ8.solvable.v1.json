@@ -1,0 +1,61 @@
+{
+  "schema": "modu.solvable.v1",
+  "problem_id": "Hpdf_3Qm6WHKnJ8",
+  "problem_type": "counting",
+  "inputs": {
+    "total_ticks": 2,
+    "target_label": "㉠값 계산",
+    "target_ticks": 1,
+    "target_count": 513,
+    "unit": "수"
+  },
+  "plan": [
+    "보기의 규칙에서 다=가-나, 라=다+348임을 확인한다.",
+    "가=732, 나=567을 대입해 다 값을 계산한다.",
+    "㉠=다+348을 계산해 정답을 구한다."
+  ],
+  "steps": [
+    {
+      "id": "step1",
+      "expr": "다 = 732 - 567",
+      "value": 165
+    },
+    {
+      "id": "step2",
+      "expr": "㉠ = 다 + 348 = 165 + 348",
+      "value": 513
+    },
+    {
+      "id": "step3",
+      "expr": "정답",
+      "value": 513
+    }
+  ],
+  "checks": [
+    {
+      "id": "check1",
+      "expr": "다 계산값 확인",
+      "expected": 165,
+      "actual": 165,
+      "pass": true
+    },
+    {
+      "id": "check2",
+      "expr": "㉠ 계산값 확인",
+      "expected": 513,
+      "actual": 513,
+      "pass": true
+    },
+    {
+      "id": "check3",
+      "expr": "단위 확인",
+      "expected": "수",
+      "actual": "수",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "value": 513,
+    "unit": "수"
+  }
+}

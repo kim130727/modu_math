@@ -1,0 +1,90 @@
+{
+  "problem_id": "0004_수 모형 덧셈 2",
+  "problem_type": "arithmetic_visual_model_addition",
+  "metadata": {
+    "title": "",
+    "tags": [],
+    "instruction": "수 모형으로 137+286을 구해 보세요.",
+    "question": "수 모형(백, 십, 일 모형)을 시각적으로 확인하여 137 + 286의 합을 구하는 문제",
+    "required_layout_ids": [
+      "slot.model_box",
+      "slot.model_divider",
+      "slot.top_0_hundred",
+      "slot.top_0_hundred_grid",
+      "slot.top_ten_0_ten",
+      "slot.top_ten_0_ten_grid",
+      "slot.top_ten_1_ten",
+      "slot.top_ten_1_ten_grid",
+      "slot.top_ten_2_ten",
+      "slot.top_ten_2_ten_grid",
+      "slot.top_one_0_one",
+      "slot.top_one_1_one",
+      "slot.top_one_2_one",
+      "slot.top_one_3_one",
+      "slot.top_one_4_one",
+      "slot.top_one_5_one",
+      "slot.top_one_6_one",
+      "slot.bottom_0_hundred",
+      "slot.bottom_0_hundred_grid",
+      "slot.bottom_1_hundred",
+      "slot.bottom_1_hundred_grid",
+      "slot.bottom_ten_0_ten",
+      "slot.bottom_ten_0_ten_grid",
+      "slot.bottom_ten_1_ten",
+      "slot.bottom_ten_1_ten_grid",
+      "slot.bottom_ten_2_ten",
+      "slot.bottom_ten_2_ten_grid",
+      "slot.bottom_ten_3_ten",
+      "slot.bottom_ten_3_ten_grid",
+      "slot.bottom_ten_4_ten",
+      "slot.bottom_ten_4_ten_grid",
+      "slot.bottom_ten_5_ten",
+      "slot.bottom_ten_5_ten_grid",
+      "slot.bottom_ten_6_ten",
+      "slot.bottom_ten_6_ten_grid",
+      "slot.bottom_ten_7_ten",
+      "slot.bottom_ten_7_ten_grid",
+      "slot.bottom_one_0_one",
+      "slot.bottom_one_1_one",
+      "slot.bottom_one_2_one",
+      "slot.bottom_one_3_one",
+      "slot.bottom_one_4_one",
+      "slot.bottom_one_5_one",
+      "slot.answer_blank"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.num1",
+        "type": "number_model",
+        "value": 137,
+        "description": "137을 나타내는 수 모형"
+      },
+      {
+        "id": "obj.num2",
+        "type": "number_model",
+        "value": 286,
+        "description": "286을 나타내는 수 모형"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "plan": {
+        "method": "visual_addition_with_regrouping",
+        "description": "각 자리 모형을 합산하되, 일의 자리와 십의 자리에서 올림(받아올림)을 고려하여 전체 합을 구한다."
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "value": 423,
+    "unit": ""
+  }
+}

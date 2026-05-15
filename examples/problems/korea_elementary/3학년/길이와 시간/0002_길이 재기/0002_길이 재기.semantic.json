@@ -1,0 +1,75 @@
+{
+  "problem_id": "0002_길이 재기",
+  "problem_type": "measurement_length_mm",
+  "metadata": {
+    "title": "",
+    "tags": [],
+    "instruction": "지우개의 길이는 몇 mm입니까?",
+    "question": "자 눈금을 이용하여 지우개의 길이를 mm 단위로 측정하는 문제",
+    "required_layout_ids": [
+      "slot.dash_left",
+      "slot.dash_right",
+      "slot.eraser_body",
+      "slot.ruler_body",
+      "slot.tick_00",
+      "slot.tick_01",
+      "slot.tick_02",
+      "slot.tick_03",
+      "slot.tick_04",
+      "slot.tick_05",
+      "slot.tick_06",
+      "slot.tick_07",
+      "slot.tick_08",
+      "slot.tick_09",
+      "slot.tick_10",
+      "slot.tick_11",
+      "slot.tick_12",
+      "slot.tick_13",
+      "slot.tick_14",
+      "slot.tick_15"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.eraser",
+        "type": "object",
+        "name": "지우개"
+      },
+      {
+        "id": "obj.ruler",
+        "type": "tool",
+        "name": "자",
+        "unit": "mm"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "plan": {
+        "method": "visual_measurement",
+        "description": "자 눈금의 시작과 끝을 확인하여 길이를 mm 단위로 읽는다."
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [
+      {
+        "index": 2,
+        "text": "2. 지우개의 길이는 몇 mm입니까?",
+        "value": "지우개의 길이는 몇 mm입니까?"
+      }
+    ],
+    "answer_key": [],
+    "confidence": 1.0,
+    "value": 16,
+    "unit": "mm",
+    "target": {
+      "type": "unknown",
+      "description": ""
+    }
+  }
+}

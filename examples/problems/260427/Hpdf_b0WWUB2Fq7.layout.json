@@ -1,0 +1,154 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "Hpdf_b0WWUB2Fq7",
+  "title": "한붓그리기",
+  "canvas": {
+    "width": 560,
+    "height": 319,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q1",
+        "slot.q2"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.boundary",
+        "slot.line.v",
+        "slot.line.d1",
+        "slot.line.d2",
+        "slot.line.d3",
+        "slot.line.d4"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "다음은 한붓그리기로 그린 그림입니다. 다음",
+        "style_role": "question",
+        "x": 18.0,
+        "y": 44.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "그림에서 선분은 몇 개 있습니까?",
+        "style_role": "question",
+        "x": 18.0,
+        "y": 83.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.boundary",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 279.0,
+        "cy": 220.0,
+        "r": 85.0,
+        "stroke": "#222222",
+        "stroke_width": 1.5,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.line.v",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 279.0,
+        "y1": 135.0,
+        "x2": 279.0,
+        "y2": 305.0,
+        "stroke": "#222222",
+        "stroke_width": 1.5
+      }
+    },
+    {
+      "id": "slot.line.d1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 279.0,
+        "y1": 135.0,
+        "x2": 194.0,
+        "y2": 220.0,
+        "stroke": "#222222",
+        "stroke_width": 1.5
+      }
+    },
+    {
+      "id": "slot.line.d2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 194.0,
+        "y1": 220.0,
+        "x2": 279.0,
+        "y2": 305.0,
+        "stroke": "#222222",
+        "stroke_width": 1.5
+      }
+    },
+    {
+      "id": "slot.line.d3",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 279.0,
+        "y1": 135.0,
+        "x2": 364.0,
+        "y2": 220.0,
+        "stroke": "#222222",
+        "stroke_width": 1.5
+      }
+    },
+    {
+      "id": "slot.line.d4",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 364.0,
+        "y1": 220.0,
+        "x2": 279.0,
+        "y2": 305.0,
+        "stroke": "#222222",
+        "stroke_width": 1.5
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q1",
+    "slot.q2",
+    "region.diagram",
+    "slot.boundary",
+    "slot.line.v",
+    "slot.line.d1",
+    "slot.line.d2",
+    "slot.line.d3",
+    "slot.line.d4"
+  ]
+}

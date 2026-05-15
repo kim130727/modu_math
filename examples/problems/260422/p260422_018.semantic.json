@@ -1,0 +1,133 @@
+{
+  "problem_id": "p260422_018",
+  "problem_type": "fill_in_blank",
+  "metadata": {
+    "title": "",
+    "tags": [],
+    "instruction": "안에 알맞은 수를 써넣으시오.",
+    "question": "2/3 ÷ 3/4 = 2/3 × [ ]/[ ] = [ ]",
+    "required_layout_ids": [
+      "slot.title.blank",
+      "slot.eq.f1.bar",
+      "slot.eq.f2.bar",
+      "slot.eq.f3.bar",
+      "slot.eq.blank.num",
+      "slot.eq.blank.bar",
+      "slot.eq.blank.den",
+      "slot.eq.result.blank"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "instr1",
+        "type": "instruction",
+        "text": "안에 알맞은 수를 써넣으시오."
+      },
+      {
+        "id": "eq1",
+        "type": "equation",
+        "text": "2/3 ÷ 3/4 = 2/3 × [ ]/[ ] = [ ]"
+      },
+      {
+        "id": "frac1",
+        "type": "fraction",
+        "value": "2/3",
+        "text": "2/3"
+      },
+      {
+        "id": "op1",
+        "type": "operator",
+        "value": "÷",
+        "text": "÷"
+      },
+      {
+        "id": "frac2",
+        "type": "fraction",
+        "value": "3/4",
+        "text": "3/4"
+      },
+      {
+        "id": "op2",
+        "type": "operator",
+        "value": "×",
+        "text": "×"
+      },
+      {
+        "id": "blank1",
+        "type": "blank"
+      },
+      {
+        "id": "blank2",
+        "type": "blank"
+      },
+      {
+        "id": "blank3",
+        "type": "blank"
+      }
+    ],
+    "relations": [
+      {
+        "id": "rel1",
+        "type": "contains",
+        "from_id": "eq1",
+        "to_id": "frac1"
+      },
+      {
+        "id": "rel2",
+        "type": "contains",
+        "from_id": "eq1",
+        "to_id": "frac2"
+      },
+      {
+        "id": "rel3",
+        "type": "contains",
+        "from_id": "eq1",
+        "to_id": "blank1"
+      },
+      {
+        "id": "rel4",
+        "type": "contains",
+        "from_id": "eq1",
+        "to_id": "blank2"
+      },
+      {
+        "id": "rel5",
+        "type": "contains",
+        "from_id": "eq1",
+        "to_id": "blank3"
+      },
+      {
+        "id": "rel6",
+        "type": "evaluates_to",
+        "from_id": "eq1",
+        "to_id": "blank3"
+      }
+    ],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {},
+      "plan": {},
+      "execute": {},
+      "review": {}
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "number",
+      "description": "정답"
+    },
+    "value": [
+      "4",
+      "3",
+      "8/9"
+    ],
+    "unit": ""
+  }
+}

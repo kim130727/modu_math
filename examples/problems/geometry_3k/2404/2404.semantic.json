@@ -1,0 +1,184 @@
+{
+  "problem_id": "2404",
+  "problem_type": "geometry_angle",
+  "metadata": {
+    "title": "∠CAM의 크기를 구하시오.",
+    "tags": [],
+    "question": "∠CAM의 크기를 구하시오.",
+    "required_layout_ids": [
+      "slot.circle.main",
+      "slot.seg.ca",
+      "slot.seg.ta",
+      "slot.seg.tn",
+      "slot.seg.m_ca",
+      "slot.seg.m_tn",
+      "slot.ra.ca.a",
+      "slot.ra.ca.b",
+      "slot.ra.ca.c",
+      "slot.ra.tn.a",
+      "slot.ra.tn.b",
+      "slot.ra.tn.c",
+      "slot.eq.1",
+      "slot.eq.2",
+      "slot.pt.c",
+      "slot.pt.a",
+      "slot.pt.n",
+      "slot.pt.t",
+      "slot.pt.m"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "보기에서 알맞은 값을 고르시오."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.circle",
+        "type": "circle"
+      },
+      {
+        "id": "obj.point.c",
+        "type": "point",
+        "label": "C"
+      },
+      {
+        "id": "obj.point.a",
+        "type": "point",
+        "label": "A"
+      },
+      {
+        "id": "obj.point.n",
+        "type": "point",
+        "label": "N"
+      },
+      {
+        "id": "obj.point.t",
+        "type": "point",
+        "label": "T"
+      },
+      {
+        "id": "obj.point.m",
+        "type": "point",
+        "label": "M"
+      },
+      {
+        "id": "obj.angle.cam",
+        "type": "angle",
+        "vertex": "obj.point.a",
+        "arms": [
+          "obj.point.c",
+          "obj.point.m"
+        ]
+      },
+      {
+        "id": "obj.angle.mark_28",
+        "type": "angle_measure",
+        "value": 28,
+        "unit": "도"
+      }
+    ],
+    "relations": [
+      {
+        "id": "rel.connect.ca",
+        "type": "segment",
+        "from_id": "obj.point.c",
+        "to_id": "obj.point.a"
+      },
+      {
+        "id": "rel.connect.ta",
+        "type": "segment",
+        "from_id": "obj.point.t",
+        "to_id": "obj.point.a"
+      },
+      {
+        "id": "rel.connect.tn",
+        "type": "segment",
+        "from_id": "obj.point.t",
+        "to_id": "obj.point.n"
+      },
+      {
+        "id": "rel.connect.am",
+        "type": "segment",
+        "from_id": "obj.point.a",
+        "to_id": "obj.point.m"
+      },
+      {
+        "id": "rel.mark.right_angle_1",
+        "type": "right_angle_mark",
+        "from_id": "obj.point.a",
+        "to_id": "obj.angle.cam"
+      },
+      {
+        "id": "rel.mark.right_angle_2",
+        "type": "right_angle_mark",
+        "from_id": "obj.point.t",
+        "to_id": "obj.point.n"
+      }
+    ],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.angle.mark_28"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.connect.ca",
+          "rel.connect.ta",
+          "rel.connect.tn"
+        ]
+      },
+      "plan": {
+        "method": "angle_relation_reading",
+        "description": "도형의 표시와 주어진 각도 표기를 읽어 ∠CAM의 값을 찾는다."
+      },
+      "execute": {
+        "expected_operations": [
+          "identify_angle_marks",
+          "match_given_measure_to_corresponding_angle"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "choice_match_check",
+          "label_consistency_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [
+      {
+        "index": 1,
+        "text": "1. 14",
+        "value": "14"
+      },
+      {
+        "index": 2,
+        "text": "2. 28",
+        "value": "28"
+      },
+      {
+        "index": 3,
+        "text": "3. 36",
+        "value": "36"
+      },
+      {
+        "index": 4,
+        "text": "4. 90",
+        "value": "90"
+      }
+    ],
+    "answer_key": [
+      2
+    ],
+    "confidence": 1.0,
+    "target": {
+      "type": "angle_measure",
+      "description": "∠CAM의 크기"
+    },
+    "value": 28,
+    "unit": "도"
+  }
+}

@@ -1,0 +1,132 @@
+{
+  "problem_id": "2403",
+  "problem_type": "geometry_triangle",
+  "metadata": {
+    "title": "x를 구하시오. 소수 첫째 자리까지 반올림하시오.",
+    "tags": [],
+    "instruction": "도형의 라벨과 표식을 바탕으로 x를 찾는 기하 문제",
+    "question": "x를 구하시오. 소수 첫째 자리까지 반올림하시오.",
+    "required_layout_ids": [
+      "slot.diagram_box",
+      "slot.geom_ab",
+      "slot.geom_ac",
+      "slot.geom_bc",
+      "slot.geom_ad",
+      "slot.geom_perp_1",
+      "slot.geom_perp_2",
+      "slot.geom_tick_1",
+      "slot.geom_tick_2"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.triangle",
+        "type": "triangle"
+      },
+      {
+        "id": "obj.side_label_32",
+        "type": "length_label",
+        "value": 32
+      },
+      {
+        "id": "obj.side_label_x",
+        "type": "length_label",
+        "value": null
+      },
+      {
+        "id": "obj.side_label_y",
+        "type": "length_label",
+        "value": null
+      },
+      {
+        "id": "obj.angle_54",
+        "type": "angle_label",
+        "value": 54,
+        "unit": "deg"
+      }
+    ],
+    "relations": [
+      {
+        "id": "rel.tick_marks_equal",
+        "type": "equal_side_mark",
+        "from_id": "obj.triangle",
+        "to_id": "obj.triangle"
+      },
+      {
+        "id": "rel.perpendicular_altitude",
+        "type": "perpendicular",
+        "from_id": "obj.triangle",
+        "to_id": "obj.triangle"
+      }
+    ],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.side_label_32",
+          "obj.angle_54"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.tick_marks_equal",
+          "rel.perpendicular_altitude"
+        ]
+      },
+      "plan": {
+        "method": "geometry_relation_reading",
+        "description": "도형의 길이 표기와 각도 표기를 확인하고 x가 무엇을 뜻하는지 해석한다."
+      },
+      "execute": {
+        "expected_operations": [
+          "identify_labeled_parts",
+          "match_labels_to_segments",
+          "determine_target_quantity"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "label_position_check",
+          "diagram_relation_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [
+      {
+        "index": 1,
+        "text": "1. 18.8",
+        "value": "18.8"
+      },
+      {
+        "index": 2,
+        "text": "2. 23.2",
+        "value": "23.2"
+      },
+      {
+        "index": 3,
+        "text": "3. 2",
+        "value": "2"
+      },
+      {
+        "index": 4,
+        "text": "4. 44.0",
+        "value": "44.0"
+      }
+    ],
+    "answer_key": [
+      1
+    ],
+    "confidence": 1.0,
+    "target": {
+      "type": "unknown_geometry_quantity",
+      "description": "x"
+    },
+    "value": 18.8,
+    "unit": ""
+  }
+}

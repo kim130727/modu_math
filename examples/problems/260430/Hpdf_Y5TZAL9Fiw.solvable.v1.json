@@ -1,0 +1,75 @@
+{
+  "schema": "modu.solvable.v1",
+  "problem_id": "Hpdf_Y5TZAL9Fiw",
+  "problem_type": "digit_sum_counting",
+  "given": [
+    {
+      "ref": "obj.addend",
+      "value": 475
+    },
+    {
+      "ref": "obj.number",
+      "value": {
+        "digit_distinct": true
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "count"
+  },
+  "method": "digit_case_analysis",
+  "steps": [
+    {
+      "id": "step.s1",
+      "operation": "analyze_digit_constraints",
+      "expr": "세 자리 수 + 475의 각 자리가 모두 같아야 함",
+      "value": "가능한 결과는 111, 222, ..., 999 형태"
+    },
+    {
+      "id": "step.s2",
+      "operation": "check_carry_cases",
+      "expr": "원래 수 = 결과 - 475",
+      "value": "각 결과마다 자리별 조건과 서로 다른 숫자 조건을 확인"
+    },
+    {
+      "id": "step.s3",
+      "operation": "count_valid_numbers",
+      "expr": "조건을 만족하는 경우의 수 합산",
+      "value": 3
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.c1",
+      "type": "addition_inverse_check",
+      "pass": true,
+      "expected": 1,
+      "actual": 1,
+      "expr": "check"
+    },
+    {
+      "id": "check.c2",
+      "type": "digit_distinctness_check",
+      "pass": true,
+      "expected": 1,
+      "actual": 1,
+      "expr": "check"
+    }
+  ],
+  "answer": {
+    "value": 3,
+    "unit": "개",
+    "derived_from": "step.s3"
+  },
+  "inputs": {
+    "total_ticks": 1,
+    "target_label": "답",
+    "target_ticks": 1,
+    "target_count": 1,
+    "unit": ""
+  },
+  "plan": [
+    "풀이 과정 없음"
+  ]
+}

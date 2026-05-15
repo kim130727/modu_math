@@ -1,0 +1,64 @@
+{
+  "problem_id": "0007_팀별 합계 비교",
+  "problem_type": "arithmetic_table_comparison",
+  "metadata": {
+    "title": "",
+    "tags": [],
+    "instruction": "청팀과 백팀 중 어느 쪽이 콩주머니를 몇 개 더 넣었는지 식과 답을 구하시오.",
+    "question": "표에 제시된 청팀과 백팀의 남/여학생 점수를 합산하여 어느 팀이 얼마나 더 많은지 구하는 문제",
+    "required_layout_ids": [
+      "slot.bg",
+      "slot.hline_124",
+      "slot.hline_158",
+      "slot.hline_192",
+      "slot.hline_226",
+      "slot.vline_188",
+      "slot.vline_308",
+      "slot.vline_430",
+      "slot.vline_552",
+      "slot.answer_text"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.blue_team",
+        "type": "team",
+        "scores": {
+          "male": 174,
+          "female": 168
+        }
+      },
+      {
+        "id": "obj.white_team",
+        "type": "team",
+        "scores": {
+          "male": 195,
+          "female": 156
+        }
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "plan": {
+        "method": "summation_and_comparison",
+        "description": "각 팀의 총합을 구하고 두 총합의 차이를 구한다."
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "value": 0,
+    "unit": "개",
+    "target": {
+      "type": "unknown",
+      "description": ""
+    }
+  }
+}

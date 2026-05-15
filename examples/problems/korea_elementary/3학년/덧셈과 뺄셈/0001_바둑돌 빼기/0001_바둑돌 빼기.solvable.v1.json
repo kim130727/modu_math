@@ -1,0 +1,63 @@
+{
+  "schema": "modu.solvable.v1",
+  "problem_id": "0001_바둑돌 빼기",
+  "problem_type": "arithmetic_word_problem_subtraction",
+  "given": [
+    {
+      "ref": "obj.black",
+      "value": 374
+    },
+    {
+      "ref": "obj.white",
+      "value": 558
+    },
+    {
+      "ref": "obj.remaining",
+      "value": 463
+    }
+  ],
+  "target": {
+    "type": "count",
+    "description": "뺀 바둑돌의 수"
+  },
+  "method": "total_then_subtract",
+  "steps": [
+    {
+      "id": "step.s1",
+      "operation": "addition",
+      "expr": "374 + 558 = 932",
+      "value": 932
+    },
+    {
+      "id": "step.s2",
+      "operation": "subtraction",
+      "expr": "932 - 463 = 469",
+      "value": 469
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.c1",
+      "type": "arithmetic_consistency_check",
+      "pass": true,
+      "expected": 469,
+      "actual": 469,
+      "expr": "932 - 469 = 463"
+    }
+  ],
+  "answer": {
+    "value": 469,
+    "unit": "개",
+    "derived_from": "step.s2"
+  },
+  "inputs": {
+    "total_ticks": 1,
+    "target_label": "답",
+    "target_ticks": 1,
+    "target_count": 1,
+    "unit": "개"
+  },
+  "plan": [
+    "전체 바둑돌 932개에서 남은 463개를 빼서 469개를 구합니다."
+  ]
+}

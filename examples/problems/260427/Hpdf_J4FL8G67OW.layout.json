@@ -1,0 +1,42 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "Hpdf_J4FL8G67OW",
+  "title": "과일 가게 나눗셈 문제",
+  "canvas": {
+    "width": 640,
+    "height": 160,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q1"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "과일 가게에 참외 748개, 자두 562개가 있었습니다.\n 그중에서 참외는 259개, 자두는 175개 팔았다면\n 남은 참외와 자두는 몇 개인가요?",
+        "style_role": "question",
+        "x": 8.0,
+        "y": 34.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q1"
+  ]
+}

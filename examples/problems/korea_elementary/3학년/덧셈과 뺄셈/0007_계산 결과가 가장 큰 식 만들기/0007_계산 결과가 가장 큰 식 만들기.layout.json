@@ -1,0 +1,325 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "0007_계산 결과가 가장 큰 식 만들기",
+  "title": "",
+  "canvas": {
+    "width": 1000,
+    "height": 600,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "vertical",
+      "slot_ids": [
+        "slot.card_0",
+        "slot.card_1",
+        "slot.card_2",
+        "slot.card_3",
+        "slot.box1",
+        "slot.box2",
+        "slot.box3",
+        "slot.box_res",
+        "slot.t1",
+        "slot.t2",
+        "slot.n0",
+        "slot.n1",
+        "slot.n2",
+        "slot.n3",
+        "slot.op1",
+        "slot.op2",
+        "slot.eq"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.t1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "주어진 수 중에서 세 수를 골라 다음과 같은 식을 만들려고 합니다.",
+        "style_role": "body",
+        "x": 64.0,
+        "y": 72.0,
+        "font_size": 26,
+        "font_family": "Noto Sans KR, sans-serif",
+        "anchor": "start",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.t2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "계산 결과가 가장 크게 되도록 □ 안에 알맞은 수를 써넣고, 계산한 값을 구하시오.",
+        "style_role": "body",
+        "x": 64.0,
+        "y": 116.0,
+        "font_size": 26,
+        "font_family": "Noto Sans KR, sans-serif",
+        "anchor": "start",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.card_0",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 140.0,
+        "y": 220.0,
+        "width": 120.0,
+        "height": 90.0,
+        "stroke": "#8FB3D9",
+        "stroke_width": 2.0,
+        "rx": 12.0,
+        "fill": "#EAF4FF",
+        "semantic_role": "card"
+      }
+    },
+    {
+      "id": "slot.card_1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 300.0,
+        "y": 220.0,
+        "width": 120.0,
+        "height": 90.0,
+        "stroke": "#8FB3D9",
+        "stroke_width": 2.0,
+        "rx": 12.0,
+        "fill": "#EAF4FF",
+        "semantic_role": "card"
+      }
+    },
+    {
+      "id": "slot.card_2",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 460.0,
+        "y": 220.0,
+        "width": 120.0,
+        "height": 90.0,
+        "stroke": "#8FB3D9",
+        "stroke_width": 2.0,
+        "rx": 12.0,
+        "fill": "#EAF4FF",
+        "semantic_role": "card"
+      }
+    },
+    {
+      "id": "slot.card_3",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 620.0,
+        "y": 220.0,
+        "width": 120.0,
+        "height": 90.0,
+        "stroke": "#8FB3D9",
+        "stroke_width": 2.0,
+        "rx": 12.0,
+        "fill": "#EAF4FF",
+        "semantic_role": "card"
+      }
+    },
+    {
+      "id": "slot.n0",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "365",
+        "style_role": "body",
+        "x": 200.0,
+        "y": 280.0,
+        "font_size": 38,
+        "font_family": "Cambria",
+        "anchor": "middle",
+        "fill": "#1F1F1F"
+      }
+    },
+    {
+      "id": "slot.n1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "567",
+        "style_role": "body",
+        "x": 360.0,
+        "y": 280.0,
+        "font_size": 38,
+        "font_family": "Cambria",
+        "anchor": "middle",
+        "fill": "#1F1F1F"
+      }
+    },
+    {
+      "id": "slot.n2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "827",
+        "style_role": "body",
+        "x": 520.0,
+        "y": 280.0,
+        "font_size": 38,
+        "font_family": "Cambria",
+        "anchor": "middle",
+        "fill": "#1F1F1F"
+      }
+    },
+    {
+      "id": "slot.n3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "910",
+        "style_role": "body",
+        "x": 680.0,
+        "y": 280.0,
+        "font_size": 38,
+        "font_family": "Cambria",
+        "anchor": "middle",
+        "fill": "#1F1F1F"
+      }
+    },
+    {
+      "id": "slot.box1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 210.0,
+        "y": 390.0,
+        "width": 120.0,
+        "height": 70.0,
+        "stroke": "#666666",
+        "stroke_width": 2.0,
+        "rx": 10.0,
+        "fill": "none",
+        "semantic_role": "blank"
+      }
+    },
+    {
+      "id": "slot.op1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "-",
+        "style_role": "body",
+        "x": 360.0,
+        "y": 438.0,
+        "font_size": 50,
+        "font_family": "Cambria",
+        "anchor": "middle",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.box2",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 390.0,
+        "y": 390.0,
+        "width": 120.0,
+        "height": 70.0,
+        "stroke": "#666666",
+        "stroke_width": 2.0,
+        "rx": 10.0,
+        "fill": "none",
+        "semantic_role": "blank"
+      }
+    },
+    {
+      "id": "slot.op2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "+",
+        "style_role": "body",
+        "x": 540.0,
+        "y": 438.0,
+        "font_size": 50,
+        "font_family": "Cambria",
+        "anchor": "middle",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.box3",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 570.0,
+        "y": 390.0,
+        "width": 120.0,
+        "height": 70.0,
+        "stroke": "#666666",
+        "stroke_width": 2.0,
+        "rx": 10.0,
+        "fill": "none",
+        "semantic_role": "blank"
+      }
+    },
+    {
+      "id": "slot.eq",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "=",
+        "style_role": "body",
+        "x": 730.0,
+        "y": 438.0,
+        "font_size": 50,
+        "font_family": "Cambria",
+        "anchor": "middle",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.box_res",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 760.0,
+        "y": 390.0,
+        "width": 140.0,
+        "height": 70.0,
+        "stroke": "#69BEEA",
+        "stroke_width": 3.0,
+        "rx": 10.0,
+        "fill": "none",
+        "semantic_role": "answer_anchor"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.card_0",
+    "slot.card_1",
+    "slot.card_2",
+    "slot.card_3",
+    "slot.box1",
+    "slot.box2",
+    "slot.box3",
+    "slot.box_res",
+    "slot.t1",
+    "slot.t2",
+    "slot.n0",
+    "slot.n1",
+    "slot.n2",
+    "slot.n3",
+    "slot.op1",
+    "slot.op2",
+    "slot.eq"
+  ]
+}

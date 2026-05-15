@@ -1,0 +1,50 @@
+{
+  "problem_id": "0006_수 카드로 만든 수의 차",
+  "problem_type": "arithmetic_number_combination_optimization",
+  "metadata": {
+    "title": "",
+    "tags": [],
+    "instruction": "세 자리 수 중에서 십의 자리 숫자가 8인 두 번째로 큰 수와 일의 자리 숫자가 8인 두 번째로 작은 수의 차는 얼마입니까?",
+    "question": "수 카드(2, 0, 4, 6, 8)로 조건(십의 자리 8, 일의 자리 8)을 만족하는 특정 수들의 차를 구하는 문제",
+    "required_layout_ids": [
+      "slot.card_0",
+      "slot.card_1",
+      "slot.card_2",
+      "slot.card_3",
+      "slot.card_4"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.cards",
+        "type": "list",
+        "value": [
+          2,
+          0,
+          4,
+          6,
+          8
+        ]
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "plan": {
+        "method": "conditional_enumeration",
+        "description": "각 조건을 만족하는 수들을 나열하여 해당되는 두 수(682, 248)를 찾고 차를 구한다."
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "value": 434,
+    "unit": ""
+  }
+}

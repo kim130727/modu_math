@@ -1,0 +1,74 @@
+{
+  "schema": "modu.solvable.v1",
+  "problem_id": "0002_모양에 알맞은 수 구하기",
+  "problem_type": "arithmetic_shape_puzzle",
+  "given": [
+    {
+      "ref": "obj.eq1",
+      "value": "800 - 347 + ■ = 650"
+    },
+    {
+      "ref": "obj.eq2",
+      "value": "543 - ▲ = ■"
+    }
+  ],
+  "target": {
+    "type": "number",
+    "description": "■와 ▲의 차"
+  },
+  "method": "sequential_equation_solving",
+  "steps": [
+    {
+      "id": "step.s1",
+      "operation": "subtraction",
+      "expr": "800 - 347 = 453",
+      "value": 453
+    },
+    {
+      "id": "step.s2",
+      "operation": "subtraction",
+      "expr": "650 - 453 = 197",
+      "description": "■의 값은 197입니다.",
+      "value": 197
+    },
+    {
+      "id": "step.s3",
+      "operation": "subtraction",
+      "expr": "543 - 197 = 346",
+      "description": "▲의 값은 346입니다.",
+      "value": 346
+    },
+    {
+      "id": "step.s4",
+      "operation": "subtraction",
+      "expr": "346 - 197 = 149",
+      "description": "두 수의 차를 구합니다.",
+      "value": 149
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.c1",
+      "type": "arithmetic_consistency_check",
+      "pass": true,
+      "expected": 149,
+      "actual": 149,
+      "expr": "346 - 197"
+    }
+  ],
+  "answer": {
+    "value": 149,
+    "unit": "",
+    "derived_from": "step.s4"
+  },
+  "inputs": {
+    "total_ticks": 1,
+    "target_label": "답",
+    "target_ticks": 1,
+    "target_count": 1,
+    "unit": ""
+  },
+  "plan": [
+    "첫 번째 식에서 ■=197을 구하고, 두 번째 식에서 ▲=346을 구한 뒤 차이인 149를 계산합니다."
+  ]
+}

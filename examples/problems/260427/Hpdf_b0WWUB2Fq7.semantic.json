@@ -1,0 +1,106 @@
+{
+  "problem_id": "Hpdf_b0WWUB2Fq7",
+  "problem_type": "count_segments",
+  "metadata": {
+    "title": "선분 그리기",
+    "tags": [
+      "선분 그리기",
+      "선분 개수"
+    ],
+    "question": "다음은 선분그리기로 그린 그림입니다. 다음 그림에서 선분은 몇 개 있습니까?",
+    "required_layout_ids": [
+      "slot.boundary",
+      "slot.line.v",
+      "slot.line.d1",
+      "slot.line.d2",
+      "slot.line.d3",
+      "slot.line.d4"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "그림의 선분 개수를 구하시오."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.figure",
+        "type": "drawing",
+        "description": "원과 직선으로 구성된 도형"
+      },
+      {
+        "id": "obj.boundary",
+        "type": "circle",
+        "description": "바깥 경계 원",
+        "layout_ref": "slot.boundary"
+      },
+      {
+        "id": "obj.segment_set",
+        "type": "segment_set",
+        "description": "그림 안의 직선 선분 집합"
+      }
+    ],
+    "relations": [
+      {
+        "id": "rel.figure_has_boundary",
+        "type": "has_part",
+        "from_id": "obj.figure",
+        "to_id": "obj.boundary"
+      },
+      {
+        "id": "rel.figure_has_segments",
+        "type": "has_parts",
+        "from_id": "obj.figure",
+        "to_id": "obj.segment_set",
+        "members": [
+          "slot.line.v",
+          "slot.line.d1",
+          "slot.line.d2",
+          "slot.line.d3",
+          "slot.line.d4"
+        ],
+        "count": 5
+      }
+    ],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.figure"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.figure_has_segments"
+        ]
+      },
+      "plan": {
+        "method": "count_segments",
+        "description": "원은 선분으로 세지 않고, 그려진 직선 선분만 하나씩 센다."
+      },
+      "execute": {
+        "expected_operations": [
+          "identify_line_slots",
+          "count_all_segments"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "recount_segments",
+          "verify_boundary_excluded"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "segment_count",
+      "description": "그림에서 선분의 개수"
+    },
+    "value": 5,
+    "unit": "개",
+    "explanation": "선분 슬롯은 slot.line.v, slot.line.d1, slot.line.d2, slot.line.d3, slot.line.d4의 5개이며 원 경계는 선분이 아니다."
+  }
+}

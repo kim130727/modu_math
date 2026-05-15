@@ -1,0 +1,173 @@
+{
+  "problem_id": "Hpdf_cAV8nIGcoF",
+  "problem_type": "number_puzzle",
+  "metadata": {
+    "title": "오각형의 각 변의 합",
+    "tags": [
+      "수배치",
+      "합 일정",
+      "오각형"
+    ],
+    "question": "오각형의 각 변에 있는 세 수의 합이 모두 같도록 ㄱ~ㅁ에 210, 188, 259, 162, 252를 알맞게 써넣으려고 합니다. ㄱ에 들어갈 수를 구하시오.",
+    "required_layout_ids": [
+      "slot.node.387",
+      "slot.node.372",
+      "slot.node.339",
+      "slot.node.323",
+      "slot.node.346"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "ㄱ에 들어갈 수를 구하시오."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.v_top",
+        "type": "given_number",
+        "value": 387
+      },
+      {
+        "id": "obj.v_right",
+        "type": "given_number",
+        "value": 372
+      },
+      {
+        "id": "obj.v_bottom_right",
+        "type": "given_number",
+        "value": 339
+      },
+      {
+        "id": "obj.v_bottom_left",
+        "type": "given_number",
+        "value": 323
+      },
+      {
+        "id": "obj.v_left",
+        "type": "given_number",
+        "value": 346
+      },
+      {
+        "id": "obj.g",
+        "type": "unknown_number",
+        "symbol": "ㄱ"
+      },
+      {
+        "id": "obj.n",
+        "type": "unknown_number",
+        "symbol": "ㄴ"
+      },
+      {
+        "id": "obj.d",
+        "type": "unknown_number",
+        "symbol": "ㄷ"
+      },
+      {
+        "id": "obj.r",
+        "type": "unknown_number",
+        "symbol": "ㄹ"
+      },
+      {
+        "id": "obj.m",
+        "type": "unknown_number",
+        "symbol": "ㅁ"
+      },
+      {
+        "id": "obj.target",
+        "type": "unknown_number",
+        "symbol": "ㄱ",
+        "alias_of": "obj.g"
+      },
+      {
+        "id": "obj.candidates",
+        "type": "number_set",
+        "members": [
+          210,
+          188,
+          259,
+          162,
+          252
+        ]
+      }
+    ],
+    "relations": [
+      {
+        "id": "rel.equal_edge_sum",
+        "type": "all_equal",
+        "expressions": [
+          "387 + ㄱ + 372",
+          "372 + ㄴ + 339",
+          "339 + ㄷ + 323",
+          "323 + ㄹ + 346",
+          "346 + ㅁ + 387"
+        ]
+      },
+      {
+        "id": "rel.one_to_one_assignment",
+        "type": "bijection",
+        "left": [
+          "ㄱ",
+          "ㄴ",
+          "ㄷ",
+          "ㄹ",
+          "ㅁ"
+        ],
+        "right": [
+          210,
+          188,
+          259,
+          162,
+          252
+        ]
+      }
+    ],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.v_top",
+          "obj.v_right",
+          "obj.v_bottom_right",
+          "obj.v_bottom_left",
+          "obj.v_left",
+          "obj.candidates"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.equal_edge_sum",
+          "rel.one_to_one_assignment"
+        ]
+      },
+      "plan": {
+        "method": "equal_edge_sum_balance",
+        "description": "각 변의 합을 공통값 K로 두고, K - 양 끝 꼭짓점의 합으로 ㄱ~ㅁ 값을 구해 후보 집합과 일치시키며 결정한다."
+      },
+      "execute": {
+        "expected_operations": [
+          "set_common_sum_K",
+          "derive_each_unknown_by_subtraction",
+          "match_with_candidate_set"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "equal_sum_check",
+          "all_candidates_used_once"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "missing_number",
+      "description": "기호 ㄱ에 들어갈 수"
+    },
+    "value": 162,
+    "unit": "",
+    "explanation": "공통합 K를 921로 두면 387+ㄱ+372=921이므로 ㄱ=162이다. 나머지는 ㄴ=210, ㄷ=259, ㄹ=252, ㅁ=188로 후보 수를 정확히 한 번씩 사용한다."
+  }
+}

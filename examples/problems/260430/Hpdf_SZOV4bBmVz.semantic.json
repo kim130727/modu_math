@@ -1,0 +1,117 @@
+{
+  "problem_id": "Hpdf_SZOV4bBmVz",
+  "problem_type": "vertical_subtraction_fill_in",
+  "metadata": {
+    "title": "안에 알맞은 숫자를 써넣으시오",
+    "tags": [
+      "받아내림",
+      "세로셈",
+      "숫자채우기"
+    ],
+    "question": "□ 안에 알맞은 숫자를 써넣으시오.",
+    "required_layout_ids": [
+      "slot.q2",
+      "slot.q3",
+      "slot.q4",
+      "slot.q10",
+      "slot.q11"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "세로셈의 빈칸에 알맞은 숫자를 넣는다."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.minuend",
+        "type": "number",
+        "value": 55
+      },
+      {
+        "id": "obj.subtrahend",
+        "type": "number",
+        "value": 49
+      },
+      {
+        "id": "obj.difference",
+        "type": "number",
+        "value": 368
+      },
+      {
+        "id": "obj.blank.left_tens",
+        "type": "digit_blank",
+        "position": "top_left"
+      },
+      {
+        "id": "obj.blank.left_ones",
+        "type": "digit_blank",
+        "position": "top_middle"
+      },
+      {
+        "id": "obj.blank.right_ones",
+        "type": "digit_blank",
+        "position": "subtrahend_ones"
+      }
+    ],
+    "relations": [
+      {
+        "id": "rel.vertical_subtraction",
+        "type": "subtraction_layout",
+        "from_id": "obj.minuend",
+        "to_id": "obj.subtrahend",
+        "result_id": "obj.difference"
+      },
+      {
+        "id": "rel.blank_fills",
+        "type": "digit_filling",
+        "from_id": "obj.blank.left_tens",
+        "to_id": "obj.blank.left_ones",
+        "result_id": "obj.blank.right_ones"
+      }
+    ],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.minuend",
+          "obj.subtrahend",
+          "obj.difference"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.vertical_subtraction",
+          "rel.blank_fills"
+        ]
+      },
+      "plan": {
+        "method": "자리값과 뺄셈의 관계를 보고 빈칸의 숫자를 찾는다.",
+        "description": "윗수, 아랫수, 결과의 자리값을 맞춰서 빈칸에 들어갈 숫자를 정한다."
+      },
+      "execute": {
+        "expected_operations": [
+          "자리값 확인",
+          "세로셈 맞추기",
+          "빈칸 숫자 결정"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "뺄셈 관계 확인",
+          "자리값 일치 확인"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "digit_filling",
+      "description": "□ 안에 들어갈 숫자"
+    },
+    "value": 0,
+    "unit": ""
+  }
+}

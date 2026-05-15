@@ -1,0 +1,56 @@
+{
+  "schema": "modu.solvable.v1",
+  "problem_id": "2405",
+  "problem_type": "geometry_angle",
+  "inputs": {
+    "total_ticks": 1,
+    "target_label": "∠ABC",
+    "target_ticks": 1,
+    "target_count": 1,
+    "unit": "degree"
+  },
+  "given": [
+    {
+      "ref": "obj.line.l",
+      "value": {
+        "label": "ℓ"
+      }
+    },
+    {
+      "ref": "obj.line.m",
+      "value": {
+        "label": "m"
+      }
+    },
+    {
+      "ref": "obj.angle.38",
+      "value": {
+        "value": 38,
+        "unit": "degree"
+      }
+    },
+    {
+      "ref": "obj.angle.33",
+      "value": {
+        "value": 33,
+        "unit": "degree"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "angle_measure"
+  },
+  "method": "parallel_lines_angle_relationship",
+  "plan": [
+    "평행선 ℓ, m과 사선의 관계를 확인한다.",
+    "도형에 표시된 각도 38°와 33°의 의미를 이용해 ∠ABC를 해석한다."
+  ],
+  "steps": [],
+  "checks": [],
+  "answer": {
+    "value": 71,
+    "unit": "degree",
+    "derived_from": "choice.4"
+  }
+}

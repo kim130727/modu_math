@@ -1,0 +1,284 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "Hpdf_riUadxZCRr",
+  "title": "종이테이프 직사각형",
+  "canvas": {
+    "width": 904,
+    "height": 552,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.diagram.base1",
+        "slot.diagram.base2",
+        "slot.diagram.base3",
+        "slot.diagram.overlap1",
+        "slot.diagram.overlap2",
+        "slot.diagram.top_arc",
+        "slot.diagram.left_arc",
+        "slot.diagram.bottom_arc",
+        "slot.diagram.overlap1_guide",
+        "slot.diagram.overlap2_guide",
+        "slot.q1",
+        "slot.q2",
+        "slot.q3",
+        "slot.q4",
+        "slot.diagram.left_dim",
+        "slot.diagram.top_dim",
+        "slot.diagram.bottom_dim"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "긴 변이 12 cm, 짧은 변이 3 cm인 직사각형",
+        "style_role": "question",
+        "x": 24.0,
+        "y": 40.0,
+        "font_size": 35
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "모양의 종이테이프 3장을 2 cm씩 겹치게 이",
+        "style_role": "question",
+        "x": 24.0,
+        "y": 100.0,
+        "font_size": 35
+      }
+    },
+    {
+      "id": "slot.q3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "어 붙여서 직사각형을 만들었습니다. 만든 직",
+        "style_role": "question",
+        "x": 24.0,
+        "y": 160.0,
+        "font_size": 35
+      }
+    },
+    {
+      "id": "slot.q4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "사각형의 네 변의 길이의 합은 몇 cm입니까?",
+        "style_role": "question",
+        "x": 24.0,
+        "y": 220.0,
+        "font_size": 35
+      }
+    },
+    {
+      "id": "slot.diagram.base1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 100.0,
+        "y": 400.0,
+        "width": 240.0,
+        "height": 60.0,
+        "stroke": "#3A3A3A",
+        "stroke_width": 2.0,
+        "fill": "#E9EAED"
+      }
+    },
+    {
+      "id": "slot.diagram.base2",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 300.0,
+        "y": 400.0,
+        "width": 240.0,
+        "height": 60.0,
+        "stroke": "#3A3A3A",
+        "stroke_width": 2.0,
+        "fill": "#E9EAED"
+      }
+    },
+    {
+      "id": "slot.diagram.base3",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 500.0,
+        "y": 400.0,
+        "width": 240.0,
+        "height": 60.0,
+        "stroke": "#3A3A3A",
+        "stroke_width": 2.0,
+        "fill": "#E9EAED"
+      }
+    },
+    {
+      "id": "slot.diagram.overlap1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 300.0,
+        "y": 400.0,
+        "width": 40.0,
+        "height": 60.0,
+        "stroke": "#3A3A3A",
+        "stroke_width": 2.0,
+        "fill": "#C2C4C8"
+      }
+    },
+    {
+      "id": "slot.diagram.overlap2",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 500.0,
+        "y": 400.0,
+        "width": 40.0,
+        "height": 60.0,
+        "stroke": "#3A3A3A",
+        "stroke_width": 2.0,
+        "fill": "#C2C4C8"
+      }
+    },
+    {
+      "id": "slot.diagram.left_dim",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "3 cm",
+        "style_role": "label",
+        "x": 15.0,
+        "y": 430.0,
+        "font_size": 35
+      }
+    },
+    {
+      "id": "slot.diagram.top_dim",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "12 cm",
+        "style_role": "label",
+        "x": 190.0,
+        "y": 340.0,
+        "font_size": 35
+      }
+    },
+    {
+      "id": "slot.diagram.bottom_dim",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "2 cm",
+        "style_role": "label",
+        "x": 300.0,
+        "y": 530.0,
+        "font_size": 35
+      }
+    },
+    {
+      "id": "slot.diagram.top_arc",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 100 395 Q 220 330 340 395",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#3A3A3A",
+        "stroke_width": 1.5,
+        "stroke_dasharray": "7 5",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.diagram.left_arc",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 95 400 Q 60 430 95 460",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#3A3A3A",
+        "stroke_width": 1.5,
+        "stroke_dasharray": "7 5",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.diagram.bottom_arc",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 300 465 Q 320 500 340 465",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#3A3A3A",
+        "stroke_width": 1.5,
+        "stroke_dasharray": "7 5",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.diagram.overlap1_guide",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 300.0,
+        "y1": 460.0,
+        "x2": 300.0,
+        "y2": 475.0,
+        "stroke": "#3A3A3A",
+        "stroke_width": 1.2
+      }
+    },
+    {
+      "id": "slot.diagram.overlap2_guide",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 340.0,
+        "y1": 460.0,
+        "x2": 340.0,
+        "y2": 475.0,
+        "stroke": "#3A3A3A",
+        "stroke_width": 1.2
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.diagram.base1",
+    "slot.diagram.base2",
+    "slot.diagram.base3",
+    "slot.diagram.overlap1",
+    "slot.diagram.overlap2",
+    "slot.diagram.top_arc",
+    "slot.diagram.left_arc",
+    "slot.diagram.bottom_arc",
+    "slot.diagram.overlap1_guide",
+    "slot.diagram.overlap2_guide",
+    "slot.q1",
+    "slot.q2",
+    "slot.q3",
+    "slot.q4",
+    "slot.diagram.left_dim",
+    "slot.diagram.top_dim",
+    "slot.diagram.bottom_dim"
+  ]
+}

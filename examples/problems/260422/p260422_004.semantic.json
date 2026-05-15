@@ -1,0 +1,161 @@
+{
+  "problem_id": "p260422_004",
+  "problem_type": "fill_in_blank",
+  "metadata": {
+    "title": "",
+    "tags": [],
+    "instruction": "그림을 보고 □ 안에 알맞은 수를 써넣으시오.",
+    "question": "5/8에서 1/8을 □번 덜어 낼 수 있습니다. 5/8 ÷ 1/8 = □",
+    "required_layout_ids": [
+      "slot.topfrac.0.bar",
+      "slot.topfrac.1.bar",
+      "slot.topfrac.2.bar",
+      "slot.topfrac.3.bar",
+      "slot.topfrac.4.bar",
+      "slot.bar.outer",
+      "slot.bar.filled",
+      "slot.tick.1",
+      "slot.tick.2",
+      "slot.tick.3",
+      "slot.tick.4",
+      "slot.tick.5",
+      "slot.tick.6",
+      "slot.tick.7",
+      "slot.arc.0",
+      "slot.arc.1",
+      "slot.arc.2",
+      "slot.arc.3",
+      "slot.arc.4",
+      "slot.exp.left.bar",
+      "slot.exp.mid.bar",
+      "slot.exp.blank",
+      "slot.eq.left.bar",
+      "slot.eq.mid.bar",
+      "slot.eq.blank"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj_instruction",
+        "type": "instruction",
+        "text": "그림을 보고 □ 안에 알맞은 수를 써넣으시오."
+      },
+      {
+        "id": "obj_question1",
+        "type": "question",
+        "text": "5/8에서 1/8을 □번 덜어 낼 수 있습니다."
+      },
+      {
+        "id": "obj_question2",
+        "type": "question",
+        "text": "5/8 ÷ 1/8 = □"
+      },
+      {
+        "id": "obj_frac_5_8",
+        "type": "fraction",
+        "value": "5/8",
+        "text": "5/8"
+      },
+      {
+        "id": "obj_frac_1_8",
+        "type": "fraction",
+        "value": "1/8",
+        "text": "1/8"
+      },
+      {
+        "id": "obj_blank1",
+        "type": "blank",
+        "text": "□"
+      },
+      {
+        "id": "obj_blank2",
+        "type": "blank",
+        "text": "□"
+      },
+      {
+        "id": "obj_diagram",
+        "type": "shape",
+        "value": "bar_model",
+        "text": "0 to 1 partitioned into eighths with 5 shaded parts"
+      },
+      {
+        "id": "obj_number0",
+        "type": "number",
+        "value": 0,
+        "text": "0"
+      },
+      {
+        "id": "obj_number1",
+        "type": "number",
+        "value": 1,
+        "text": "1"
+      },
+      {
+        "id": "obj_unit_piece",
+        "type": "fraction",
+        "value": "1/8",
+        "text": "1/8"
+      }
+    ],
+    "relations": [
+      {
+        "id": "rel1",
+        "type": "references",
+        "from_id": "obj_question1",
+        "to_id": "obj_frac_5_8"
+      },
+      {
+        "id": "rel2",
+        "type": "references",
+        "from_id": "obj_question1",
+        "to_id": "obj_frac_1_8"
+      },
+      {
+        "id": "rel3",
+        "type": "applies_to",
+        "from_id": "obj_diagram",
+        "to_id": "obj_question1"
+      },
+      {
+        "id": "rel4",
+        "type": "asks_for",
+        "from_id": "obj_question1",
+        "to_id": "obj_blank1"
+      },
+      {
+        "id": "rel5",
+        "type": "asks_for",
+        "from_id": "obj_question2",
+        "to_id": "obj_blank2"
+      },
+      {
+        "id": "rel6",
+        "type": "evaluates_to",
+        "from_id": "obj_question2",
+        "to_id": "obj_blank2"
+      }
+    ],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {},
+      "plan": {},
+      "execute": {},
+      "review": {}
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "number",
+      "description": "정답"
+    },
+    "value": 5,
+    "unit": ""
+  }
+}

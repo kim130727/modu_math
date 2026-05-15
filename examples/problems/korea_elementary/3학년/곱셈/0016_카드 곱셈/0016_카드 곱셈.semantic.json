@@ -1,0 +1,55 @@
+{
+  "problem_id": "0016_카드 곱셈",
+  "problem_type": "arithmetic_multiplication_maximization",
+  "metadata": {
+    "title": "",
+    "tags": [],
+    "instruction": "곱이 가장 큰 곱셈식을 만들어 곱을 구하시오",
+    "question": "3장의 수 카드(4, 9, 2)를 모두 한 번씩만 사용하여 곱이 가장 큰 (1자리 수) × (2자리 수)를 만들고 그 곱을 구하는 문제",
+    "required_layout_ids": [
+      "slot.expr_box_1.rect",
+      "slot.expr_box_2.rect",
+      "slot.expr_box_3.rect",
+      "slot.card_9.rect",
+      "slot.card_2.rect",
+      "slot.card_4.rect",
+      "slot.answer_blank.rect"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.cards",
+        "type": "digit_cards",
+        "value": [
+          4,
+          9,
+          2
+        ]
+      },
+      {
+        "id": "obj.template",
+        "type": "expression_template",
+        "value": "[ ] × [ ][ ]"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "plan": {
+        "method": "maximization_strategy",
+        "description": "가장 큰 숫자를 한 자리 수에 배치하고 그 다음 큰 숫자를 십의 자리에 배치한다."
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "value": 378,
+    "unit": ""
+  }
+}

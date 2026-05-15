@@ -1,0 +1,156 @@
+{
+  "problem_id": "0004_부등식",
+  "view_box": {
+    "width": 406.0,
+    "height": 181.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.eq_box.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 2.0,
+        "y": 78.0,
+        "width": 402.0,
+        "height": 56.0,
+        "fill": "none",
+        "stroke": "#666666",
+        "stroke-width": 1.5,
+        "rx": 10.0,
+        "ry": 10.0
+      },
+      "source_ref": "slot.eq_box",
+      "refs": {
+        "layout_slot_id": "slot.eq_box"
+      }
+    },
+    {
+      "id": "slot.answer_count.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 246.0,
+        "y": 146.0,
+        "width": 110.0,
+        "height": 28.0,
+        "fill": "none",
+        "stroke": "none",
+        "stroke-width": 0.0,
+        "data-semantic-role": "answer_anchor"
+      },
+      "source_ref": "slot.answer_count",
+      "refs": {
+        "layout_slot_id": "slot.answer_count"
+      }
+    },
+    {
+      "id": "slot.i1.text",
+      "type": "text",
+      "attributes": {
+        "x": 12.0,
+        "y": 30.0,
+        "max_width": 278.0,
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 17,
+        "text-anchor": "start"
+      },
+      "source_ref": "slot.i1",
+      "refs": {
+        "layout_slot_id": "slot.i1"
+      },
+      "text": "0부터 9까지의 수 중에서 □에 들어갈 수를"
+    },
+    {
+      "id": "slot.i2.text",
+      "type": "text",
+      "attributes": {
+        "x": 12.0,
+        "y": 60.0,
+        "max_width": 278.0,
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 17,
+        "text-anchor": "start"
+      },
+      "source_ref": "slot.i2",
+      "refs": {
+        "layout_slot_id": "slot.i2"
+      },
+      "text": "모두 구하고 개수를 쓰시오."
+    },
+    {
+      "id": "slot.eq.text",
+      "type": "text",
+      "attributes": {
+        "x": 201.0,
+        "y": 112.0,
+        "max_width": 278.0,
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 17,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.eq",
+      "refs": {
+        "layout_slot_id": "slot.eq"
+      },
+      "text": "4□5+298>763"
+    },
+    {
+      "id": "slot.gaesu.text",
+      "type": "text",
+      "attributes": {
+        "x": 378.0,
+        "y": 166.0,
+        "max_width": 278.0,
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 17,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.gaesu",
+      "refs": {
+        "layout_slot_id": "slot.gaesu"
+      },
+      "text": "개"
+    },
+    {
+      "id": "slot.lp.text",
+      "type": "text",
+      "attributes": {
+        "x": 230.0,
+        "y": 168.0,
+        "max_width": 278.0,
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 24,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.lp",
+      "refs": {
+        "layout_slot_id": "slot.lp"
+      },
+      "text": "("
+    },
+    {
+      "id": "slot.rp.text",
+      "type": "text",
+      "attributes": {
+        "x": 364.0,
+        "y": 168.0,
+        "max_width": 278.0,
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 24,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.rp",
+      "refs": {
+        "layout_slot_id": "slot.rp"
+      },
+      "text": ")"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

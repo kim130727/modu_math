@@ -1,0 +1,60 @@
+{
+  "problem_id": "Hpdf_V5t22ZylyI",
+  "problem_type": "geometry_perimeter",
+  "metadata": {
+    "title": "남은 색종이의 모든 변의 길이의 합",
+    "tags": [],
+    "question": "한 변이 15 cm인 정사각형 모양의 색종이에서 작은 직사각형 2개를 잘라 낸 뒤 남은 색종이의 모든 변의 길이의 합을 구하시오.",
+    "required_layout_ids": [
+      "slot.shape"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "도형의 모서리를 잘라냈을 때 둘레가 변하지 않는 원리를 이용한다."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.square",
+        "type": "square",
+        "side_length": 15
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.square"
+        ],
+        "target_ref": "answer.target"
+      },
+      "plan": {
+        "method": "perimeter_invariant_principle",
+        "description": "정사각형의 모서리에서 직사각형을 잘라내도 전체 둘레는 원래 정사각형의 둘레와 같음을 이용한다."
+      },
+      "execute": {
+        "expected_operations": [
+          "calculate_original_perimeter"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "visual_verification"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "length",
+      "description": "남은 색종이의 모든 변의 길이의 합"
+    },
+    "value": 60,
+    "unit": "cm"
+  }
+}

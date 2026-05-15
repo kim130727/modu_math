@@ -1,0 +1,155 @@
+{
+  "problem_id": "0008_가장 큰 뺄셈",
+  "view_box": {
+    "width": 767.0,
+    "height": 155.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.bg.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 767.0,
+        "height": 155.0,
+        "fill": "#FFFFFF",
+        "stroke": "none",
+        "stroke-width": 0.0
+      },
+      "source_ref": "slot.bg",
+      "refs": {
+        "layout_slot_id": "slot.bg"
+      }
+    },
+    {
+      "id": "slot.num_box.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 168.0,
+        "y": 86.0,
+        "width": 389.0,
+        "height": 56.0,
+        "fill": "none",
+        "stroke": "#666666",
+        "stroke-width": 1.5,
+        "rx": 10.0,
+        "ry": 10.0
+      },
+      "source_ref": "slot.num_box",
+      "refs": {
+        "layout_slot_id": "slot.num_box"
+      }
+    },
+    {
+      "id": "slot.answer_expr.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 520.0,
+        "y": 121.0,
+        "width": 238.0,
+        "height": 28.0,
+        "fill": "none",
+        "stroke": "none",
+        "stroke-width": 0.0,
+        "data-semantic-role": "answer_anchor"
+      },
+      "source_ref": "slot.answer_expr",
+      "refs": {
+        "layout_slot_id": "slot.answer_expr"
+      }
+    },
+    {
+      "id": "slot.i1.text",
+      "type": "text",
+      "attributes": {
+        "x": 6.0,
+        "y": 34.0,
+        "max_width": 639.0,
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 17,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.i1",
+      "refs": {
+        "layout_slot_id": "slot.i1"
+      },
+      "text": "다음 수 중에서 2개를 골라 가장 큰 뺄셈식을 만들려고 합니다. 식과 답을 구하시오."
+    },
+    {
+      "id": "slot.n1.text",
+      "type": "text",
+      "attributes": {
+        "x": 259.0,
+        "y": 123.0,
+        "max_width": 639.0,
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 17,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.n1",
+      "refs": {
+        "layout_slot_id": "slot.n1"
+      },
+      "text": "326"
+    },
+    {
+      "id": "slot.n2.text",
+      "type": "text",
+      "attributes": {
+        "x": 334.0,
+        "y": 123.0,
+        "max_width": 639.0,
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 17,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.n2",
+      "refs": {
+        "layout_slot_id": "slot.n2"
+      },
+      "text": "412"
+    },
+    {
+      "id": "slot.n3.text",
+      "type": "text",
+      "attributes": {
+        "x": 409.0,
+        "y": 123.0,
+        "max_width": 639.0,
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 17,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.n3",
+      "refs": {
+        "layout_slot_id": "slot.n3"
+      },
+      "text": "481"
+    },
+    {
+      "id": "slot.n4.text",
+      "type": "text",
+      "attributes": {
+        "x": 484.0,
+        "y": 123.0,
+        "max_width": 639.0,
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 17,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.n4",
+      "refs": {
+        "layout_slot_id": "slot.n4"
+      },
+      "text": "112"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

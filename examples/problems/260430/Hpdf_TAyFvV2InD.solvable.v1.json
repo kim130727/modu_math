@@ -1,0 +1,66 @@
+{
+  "schema": "modu.solvable.v1",
+  "problem_id": "Hpdf_TAyFvV2InD",
+  "problem_type": "geometry_perimeter",
+  "given": [
+    {
+      "ref": "obj.given_length",
+      "value": {
+        "length": 30,
+        "unit": "cm"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "square_side_length"
+  },
+  "method": "perimeter_of_two_squares_as_rectangle",
+  "steps": [
+    {
+      "id": "step.s1",
+      "operation": "model_thick_edge_as_six_sides_of_square",
+      "expr": "6x = 30",
+      "value": 30
+    },
+    {
+      "id": "step.s2",
+      "operation": "solve_for_side_length",
+      "expr": "x = 30 ÷ 6",
+      "value": 5
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.c1",
+      "type": "unit_consistency_check",
+      "pass": true,
+      "expected": 1,
+      "actual": 1,
+      "expr": "check"
+    },
+    {
+      "id": "check.c2",
+      "type": "substitution_check",
+      "expr": "6 × 5 = 30",
+      "pass": true,
+      "expected": 1,
+      "actual": 1
+    }
+  ],
+  "answer": {
+    "value": 5,
+    "unit": "cm",
+    "derived_from": "step.s2"
+  },
+  "inputs": {
+    "total_ticks": 1,
+    "target_label": "답",
+    "target_ticks": 1,
+    "target_count": 1,
+    "unit": ""
+  },
+  "plan": [
+    "풀이 과정 없음"
+  ]
+}

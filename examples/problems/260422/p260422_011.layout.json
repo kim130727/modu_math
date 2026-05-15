@@ -1,0 +1,212 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "msedge_mvG3o5s2c5",
+  "title": "",
+  "canvas": {
+    "width": 694,
+    "height": 305,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.l1.pre",
+        "slot.l1.frac.num",
+        "slot.l1.frac.bar",
+        "slot.l1.frac.den",
+        "slot.l1.post",
+        "slot.l2.pre",
+        "slot.l2.frac.num",
+        "slot.l2.frac.bar",
+        "slot.l2.frac.den",
+        "slot.l2.post",
+        "slot.l3",
+        "slot.l4"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.l1.pre",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "영재네 반 학생들에게 찰흙",
+        "style_role": "body",
+        "x": 10.0,
+        "y": 54.0,
+        "font_size": 35,
+        "fill": "#2a2728"
+      }
+    },
+    {
+      "id": "slot.l1.frac.num",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "7",
+        "style_role": "body",
+        "x": 434.0,
+        "y": 34.0,
+        "font_size": 35,
+        "anchor": "middle",
+        "fill": "#2a2728"
+      }
+    },
+    {
+      "id": "slot.l1.frac.bar",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 415.0,
+        "y1": 49.0,
+        "x2": 453.0,
+        "y2": 49.0,
+        "stroke": "#2a2728",
+        "stroke_width": 2.1
+      }
+    },
+    {
+      "id": "slot.l1.frac.den",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "2",
+        "style_role": "body",
+        "x": 434.0,
+        "y": 86.0,
+        "font_size": 35,
+        "anchor": "middle",
+        "fill": "#2a2728"
+      }
+    },
+    {
+      "id": "slot.l1.post",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "kg을 똑같이",
+        "style_role": "body",
+        "x": 475.0,
+        "y": 54.0,
+        "font_size": 35,
+        "fill": "#2a2728"
+      }
+    },
+    {
+      "id": "slot.l2.pre",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "나누어 주었더니 한 사람이",
+        "style_role": "body",
+        "x": 10.0,
+        "y": 134.0,
+        "font_size": 35,
+        "fill": "#2a2728"
+      }
+    },
+    {
+      "id": "slot.l2.frac.num",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "1",
+        "style_role": "body",
+        "x": 444.0,
+        "y": 112.0,
+        "font_size": 35,
+        "anchor": "middle",
+        "fill": "#2a2728"
+      }
+    },
+    {
+      "id": "slot.l2.frac.bar",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 425.0,
+        "y1": 127.0,
+        "x2": 463.0,
+        "y2": 127.0,
+        "stroke": "#2a2728",
+        "stroke_width": 2.1
+      }
+    },
+    {
+      "id": "slot.l2.frac.den",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "4",
+        "style_role": "body",
+        "x": 444.0,
+        "y": 164.0,
+        "font_size": 35,
+        "anchor": "middle",
+        "fill": "#2a2728"
+      }
+    },
+    {
+      "id": "slot.l2.post",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "kg씩 가지게",
+        "style_role": "body",
+        "x": 485.0,
+        "y": 134.0,
+        "font_size": 35,
+        "fill": "#2a2728"
+      }
+    },
+    {
+      "id": "slot.l3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "되었습니다. 찰흙을 몇 명에게 나누어 주었습",
+        "style_role": "body",
+        "x": 10.0,
+        "y": 214.0,
+        "font_size": 35,
+        "fill": "#2a2728"
+      }
+    },
+    {
+      "id": "slot.l4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "니까?",
+        "style_role": "body",
+        "x": 10.0,
+        "y": 284.0,
+        "font_size": 35,
+        "fill": "#2a2728"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.l1.pre",
+    "slot.l1.frac.num",
+    "slot.l1.frac.bar",
+    "slot.l1.frac.den",
+    "slot.l1.post",
+    "slot.l2.pre",
+    "slot.l2.frac.num",
+    "slot.l2.frac.bar",
+    "slot.l2.frac.den",
+    "slot.l2.post",
+    "slot.l3",
+    "slot.l4"
+  ]
+}

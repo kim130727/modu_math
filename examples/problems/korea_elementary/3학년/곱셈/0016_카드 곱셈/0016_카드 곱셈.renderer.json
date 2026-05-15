@@ -1,0 +1,274 @@
+{
+  "problem_id": "0016_카드 곱셈",
+  "view_box": {
+    "width": 768.0,
+    "height": 341.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.expr_box_1.rect.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 458.19281005859375,
+        "y": 22.95867919921875,
+        "width": 33.0,
+        "height": 31.0,
+        "fill": "none",
+        "stroke": "#1f1f1f",
+        "stroke-width": 1.0
+      },
+      "source_ref": "slot.expr_box_1.rect",
+      "refs": {
+        "layout_slot_id": "slot.expr_box_1.rect"
+      }
+    },
+    {
+      "id": "slot.expr_box_2.rect.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 525.1928100585938,
+        "y": 22.95867919921875,
+        "width": 33.0,
+        "height": 31.0,
+        "fill": "none",
+        "stroke": "#1f1f1f",
+        "stroke-width": 1.0
+      },
+      "source_ref": "slot.expr_box_2.rect",
+      "refs": {
+        "layout_slot_id": "slot.expr_box_2.rect"
+      }
+    },
+    {
+      "id": "slot.expr_box_3.rect.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 566.1928100585938,
+        "y": 22.95867919921875,
+        "width": 33.0,
+        "height": 31.0,
+        "fill": "none",
+        "stroke": "#1f1f1f",
+        "stroke-width": 1.0
+      },
+      "source_ref": "slot.expr_box_3.rect",
+      "refs": {
+        "layout_slot_id": "slot.expr_box_3.rect"
+      }
+    },
+    {
+      "id": "slot.card_9.rect.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 182.0,
+        "y": 172.0,
+        "width": 73.0,
+        "height": 85.0,
+        "fill": "#b4b4b4",
+        "stroke": "#1f1f1f",
+        "stroke-width": 1.0
+      },
+      "source_ref": "slot.card_9.rect",
+      "refs": {
+        "layout_slot_id": "slot.card_9.rect"
+      }
+    },
+    {
+      "id": "slot.card_2.rect.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 327.0,
+        "y": 172.0,
+        "width": 73.0,
+        "height": 85.0,
+        "fill": "#b4b4b4",
+        "stroke": "#1f1f1f",
+        "stroke-width": 1.0
+      },
+      "source_ref": "slot.card_2.rect",
+      "refs": {
+        "layout_slot_id": "slot.card_2.rect"
+      }
+    },
+    {
+      "id": "slot.card_4.rect.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 472.0,
+        "y": 172.0,
+        "width": 73.0,
+        "height": 85.0,
+        "fill": "#b4b4b4",
+        "stroke": "#1f1f1f",
+        "stroke-width": 1.0
+      },
+      "source_ref": "slot.card_4.rect",
+      "refs": {
+        "layout_slot_id": "slot.card_4.rect"
+      }
+    },
+    {
+      "id": "slot.answer_blank.rect.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 430.0,
+        "y": 272.0,
+        "width": 235.0,
+        "height": 44.0,
+        "fill": "none",
+        "stroke": "none",
+        "stroke-width": 1.0
+      },
+      "source_ref": "slot.answer_blank.rect",
+      "refs": {
+        "layout_slot_id": "slot.answer_blank.rect"
+      }
+    },
+    {
+      "id": "slot.line1_prefix.text.text",
+      "type": "text",
+      "attributes": {
+        "x": 18.0,
+        "y": 46.0,
+        "max_width": 640.0,
+        "fill": "#000000",
+        "font-family": "Malgun Gothic",
+        "font-size": 22,
+        "text-anchor": "start"
+      },
+      "source_ref": "slot.line1_prefix.text",
+      "refs": {
+        "layout_slot_id": "slot.line1_prefix.text"
+      },
+      "text": "3장의 수 카드를 모두 한 번씩만 사용하여"
+    },
+    {
+      "id": "slot.expr_mul.text.text",
+      "type": "text",
+      "attributes": {
+        "x": 509.1101989746094,
+        "y": 50.95867919921875,
+        "max_width": 640.0,
+        "fill": "#000000",
+        "font-family": "Malgun Gothic",
+        "font-size": 45,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.expr_mul.text",
+      "refs": {
+        "layout_slot_id": "slot.expr_mul.text"
+      },
+      "text": "×"
+    },
+    {
+      "id": "slot.line2.text.text",
+      "type": "text",
+      "attributes": {
+        "x": 18.0,
+        "y": 102.0,
+        "max_width": 640.0,
+        "fill": "#000000",
+        "font-family": "Malgun Gothic",
+        "font-size": 22,
+        "text-anchor": "start"
+      },
+      "source_ref": "slot.line2.text",
+      "refs": {
+        "layout_slot_id": "slot.line2.text"
+      },
+      "text": "을 만들려고 합니다. 곱이 가장 큰 곱셈식을 만들어 곱을 구하시오"
+    },
+    {
+      "id": "slot.num_4.text.text",
+      "type": "text",
+      "attributes": {
+        "x": 505.9311218261719,
+        "y": 229.0068817138672,
+        "max_width": 640.0,
+        "fill": "#000000",
+        "font-family": "Malgun Gothic",
+        "font-size": 53,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.num_4.text",
+      "refs": {
+        "layout_slot_id": "slot.num_4.text"
+      },
+      "text": "4"
+    },
+    {
+      "id": "slot.num_9.text.text",
+      "type": "text",
+      "attributes": {
+        "x": 214.93801879882812,
+        "y": 232.97933959960938,
+        "max_width": 640.0,
+        "fill": "#000000",
+        "font-family": "Malgun Gothic",
+        "font-size": 53,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.num_9.text",
+      "refs": {
+        "layout_slot_id": "slot.num_9.text"
+      },
+      "text": "9"
+    },
+    {
+      "id": "slot.num_2.text.text",
+      "type": "text",
+      "attributes": {
+        "x": 360.93115234375,
+        "y": 232.97933959960938,
+        "max_width": 640.0,
+        "fill": "#000000",
+        "font-family": "Malgun Gothic",
+        "font-size": 53,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.num_2.text",
+      "refs": {
+        "layout_slot_id": "slot.num_2.text"
+      },
+      "text": "2"
+    },
+    {
+      "id": "slot.answer_left_paren.text.text",
+      "type": "text",
+      "attributes": {
+        "x": 396.0,
+        "y": 304.0,
+        "max_width": 640.0,
+        "fill": "#000000",
+        "font-family": "Malgun Gothic",
+        "font-size": 40,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.answer_left_paren.text",
+      "refs": {
+        "layout_slot_id": "slot.answer_left_paren.text"
+      },
+      "text": "("
+    },
+    {
+      "id": "slot.answer_right_paren.text.text",
+      "type": "text",
+      "attributes": {
+        "x": 697.0,
+        "y": 304.0,
+        "max_width": 640.0,
+        "fill": "#000000",
+        "font-family": "Malgun Gothic",
+        "font-size": 40,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.answer_right_paren.text",
+      "refs": {
+        "layout_slot_id": "slot.answer_right_paren.text"
+      },
+      "text": ")"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

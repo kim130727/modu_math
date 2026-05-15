@@ -1,0 +1,67 @@
+{
+  "schema": "modu.solvable.v1",
+  "problem_id": "Hpdf_7wUe1bjA0G",
+  "problem_type": "perimeter_after_cutting_squares",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "남은 도화지의 모든 변의 길이의 합",
+    "target_ticks": 0,
+    "target_count": 1,
+    "unit": "cm"
+  },
+  "given": [
+    {
+      "ref": "obj.cut_square",
+      "value": {
+        "side_length_cm": 6,
+        "count": 2
+      }
+    },
+    {
+      "ref": "obj.dim_bottom",
+      "value": {
+        "value_cm": 10,
+        "orientation": "horizontal"
+      }
+    },
+    {
+      "ref": "obj.dim_right",
+      "value": {
+        "value_cm": 18,
+        "orientation": "vertical"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "perimeter_sum"
+  },
+  "method": "perimeter_calculation",
+  "plan": [
+    "직사각형의 둘레를 구하고, 잘라낸 정사각형에 의해 늘어난 길이를 더한다.",
+    "정사각형 하나를 잘라낼 때마다 가로 변은 유지되고 세로 변 2개가 추가되므로, 한 변의 길이의 2배만큼 늘어난다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "operation": "calculate_perimeter",
+      "expr": "2 * (10 + 18) + 2 * (2 * 6)",
+      "value": 80
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "type": "logic_check",
+      "expr": "56 + 24 = 80",
+      "expected": 80,
+      "actual": 80,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "value": 80,
+    "unit": "cm",
+    "derived_from": "step.1"
+  }
+}

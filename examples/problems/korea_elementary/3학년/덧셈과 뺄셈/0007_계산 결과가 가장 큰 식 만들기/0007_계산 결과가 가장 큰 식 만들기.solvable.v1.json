@@ -1,0 +1,65 @@
+{
+  "schema": "modu.solvable.v1",
+  "problem_id": "0007_계산 결과가 가장 큰 식 만들기",
+  "problem_type": "arithmetic_expression_optimization",
+  "given": [
+    {
+      "ref": "obj.nums",
+      "value": [
+        365,
+        567,
+        827,
+        910
+      ]
+    }
+  ],
+  "target": {
+    "type": "number",
+    "description": "최대 계산 결과"
+  },
+  "method": "optimization_strategy",
+  "steps": [
+    {
+      "id": "step.s1",
+      "operation": "selection",
+      "expr": "A=910, B=365, C=827",
+      "description": "가장 큰 910과 827을 더하고, 가장 작은 365를 뺍니다.",
+      "value": [
+        910,
+        365,
+        827
+      ]
+    },
+    {
+      "id": "step.s2",
+      "operation": "calculation",
+      "expr": "910 - 365 + 827 = 1372",
+      "value": 1372
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.c1",
+      "type": "arithmetic_consistency_check",
+      "pass": true,
+      "expected": 1372,
+      "actual": 1372,
+      "expr": "910 - 365 + 827"
+    }
+  ],
+  "answer": {
+    "value": 1372,
+    "unit": "",
+    "derived_from": "step.s2"
+  },
+  "inputs": {
+    "total_ticks": 4,
+    "target_label": "답",
+    "target_ticks": 4,
+    "target_count": 4,
+    "unit": ""
+  },
+  "plan": [
+    "가장 큰 두 수(910, 827)를 양의 항에, 가장 작은 수(365)를 음의 항에 배치하여 1372를 구합니다."
+  ]
+}

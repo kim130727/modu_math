@@ -1,0 +1,68 @@
+{
+  "problem_id": "0001_기호 수식",
+  "problem_type": "arithmetic_chained_operation",
+  "metadata": {
+    "title": "",
+    "tags": [],
+    "instruction": "괄호 안에 알맞은 수의 값을 구하시오.",
+    "question": "연쇄적인 덧셈과 뺄셈 기호 규칙을 따라 빈칸에 알맞은 수 △의 값을 구하는 문제",
+    "required_layout_ids": [
+      "slot.bg",
+      "slot.plus_bubble",
+      "slot.minus_bubble",
+      "slot.curve_left_to_plus",
+      "slot.curve_plus_to_circle",
+      "slot.curve_plus_to_circle_head",
+      "slot.curve_circle_to_minus",
+      "slot.curve_minus_to_right",
+      "slot.curve_minus_to_right_head",
+      "slot.left_box",
+      "slot.circle_box",
+      "slot.right_box",
+      "slot.circle_symbol",
+      "slot.answer_value"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.start",
+        "type": "number",
+        "value": 472
+      },
+      {
+        "id": "obj.middle_op",
+        "type": "operation",
+        "description": "+149"
+      },
+      {
+        "id": "obj.end_op",
+        "type": "operation",
+        "description": "-△"
+      },
+      {
+        "id": "obj.target",
+        "type": "number",
+        "value": 285
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "plan": {
+        "method": "stepwise_calculation",
+        "description": "먼저 472에 149를 더해 중간값을 구하고, 그 중간값에서 어떤 수 △를 뺐을 때 285가 되는지 계산한다."
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "value": 336,
+    "unit": ""
+  }
+}

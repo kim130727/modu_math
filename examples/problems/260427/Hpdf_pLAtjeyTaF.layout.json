@@ -1,0 +1,297 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "Hpdf_pLAtjeyTaF",
+  "title": "ㄱ과 ㄴ의 길이",
+  "canvas": {
+    "width": 560,
+    "height": 320,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q1",
+        "slot.line_main",
+        "slot.tick1",
+        "slot.tick2",
+        "slot.tick3",
+        "slot.tick4",
+        "slot.arc_top_821",
+        "slot.text_821",
+        "slot.arc_top_448",
+        "slot.text_448",
+        "slot.arc_bot_g",
+        "slot.circle_g",
+        "slot.text_g",
+        "slot.arc_bot_n",
+        "slot.circle_n",
+        "slot.text_n",
+        "slot.arc_bot_236",
+        "slot.text_236"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "㉠과 ㉡의 길이는 각각 몇 cm입니까?",
+        "style_role": "question",
+        "x": 18.0,
+        "y": 34.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.line_main",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 30.0,
+        "y1": 125.0,
+        "x2": 530.0,
+        "y2": 125.0,
+        "stroke": "#222222",
+        "stroke_width": 1.4
+      }
+    },
+    {
+      "id": "slot.tick1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 30.0,
+        "y1": 116.0,
+        "x2": 30.0,
+        "y2": 135.0,
+        "stroke": "#222222",
+        "stroke_width": 1.4
+      }
+    },
+    {
+      "id": "slot.tick2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 320.0,
+        "y1": 116.0,
+        "x2": 320.0,
+        "y2": 135.0,
+        "stroke": "#222222",
+        "stroke_width": 1.4
+      }
+    },
+    {
+      "id": "slot.tick3",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 420.0,
+        "y1": 116.0,
+        "x2": 420.0,
+        "y2": 135.0,
+        "stroke": "#222222",
+        "stroke_width": 1.4
+      }
+    },
+    {
+      "id": "slot.tick4",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 530.0,
+        "y1": 116.0,
+        "x2": 530.0,
+        "y2": 135.0,
+        "stroke": "#222222",
+        "stroke_width": 1.4
+      }
+    },
+    {
+      "id": "slot.arc_top_821",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 30 125 Q 225 30 420 125",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#666666",
+        "stroke_width": 1.2,
+        "stroke_dasharray": "5 3",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.text_821",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "821 cm",
+        "style_role": "label",
+        "x": 190.0,
+        "y": 70.0,
+        "font_size": 26
+      }
+    },
+    {
+      "id": "slot.arc_top_448",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 320 125 Q 425 30 530 125",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#666666",
+        "stroke_width": 1.2,
+        "stroke_dasharray": "5 3",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.text_448",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "448 cm",
+        "style_role": "label",
+        "x": 390.0,
+        "y": 70.0,
+        "font_size": 26
+      }
+    },
+    {
+      "id": "slot.arc_bot_g",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 30 125 Q 175 250 320 125",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#666666",
+        "stroke_width": 1.2,
+        "stroke_dasharray": "5 3",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.circle_g",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 175.0,
+        "cy": 187.5,
+        "r": 16.0,
+        "stroke": "#666666",
+        "stroke_width": 1.1,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.text_g",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄱ",
+        "style_role": "label",
+        "x": 168.0,
+        "y": 196.0,
+        "font_size": 24
+      }
+    },
+    {
+      "id": "slot.arc_bot_n",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 320 125 Q 370 200 420 125",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#666666",
+        "stroke_width": 1.2,
+        "stroke_dasharray": "5 3",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.circle_n",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 370.0,
+        "cy": 162.5,
+        "r": 16.0,
+        "stroke": "#666666",
+        "stroke_width": 1.1,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.text_n",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄴ",
+        "style_role": "label",
+        "x": 363.0,
+        "y": 171.0,
+        "font_size": 24
+      }
+    },
+    {
+      "id": "slot.arc_bot_236",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 420 125 Q 475 200 530 125",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#666666",
+        "stroke_width": 1.2,
+        "stroke_dasharray": "5 3",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.text_236",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "236 cm",
+        "style_role": "label",
+        "x": 440.0,
+        "y": 180.0,
+        "font_size": 26
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q1",
+    "slot.line_main",
+    "slot.tick1",
+    "slot.tick2",
+    "slot.tick3",
+    "slot.tick4",
+    "slot.arc_top_821",
+    "slot.text_821",
+    "slot.arc_top_448",
+    "slot.text_448",
+    "slot.arc_bot_g",
+    "slot.circle_g",
+    "slot.text_g",
+    "slot.arc_bot_n",
+    "slot.circle_n",
+    "slot.text_n",
+    "slot.arc_bot_236",
+    "slot.text_236"
+  ]
+}

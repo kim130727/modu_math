@@ -1,0 +1,84 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "Hpdf_VKtbeqlhlk",
+  "title": "테이프 길이 합",
+  "canvas": {
+    "width": 566,
+    "height": 201,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q1",
+        "slot.q2",
+        "slot.q3",
+        "slot.q4"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "초록색 테이프 294 cm와 노란색 테이프",
+        "style_role": "question",
+        "x": 14.0,
+        "y": 36.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "215 cm를 겹치게 한 줄로 이어 붙였더니",
+        "style_role": "question",
+        "x": 14.0,
+        "y": 75.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "374 cm가 되었습니다. 겹친 부분은 몇 cm입",
+        "style_role": "question",
+        "x": 14.0,
+        "y": 114.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "니까?",
+        "style_role": "question",
+        "x": 14.0,
+        "y": 153.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q1",
+    "slot.q2",
+    "slot.q3",
+    "slot.q4"
+  ]
+}

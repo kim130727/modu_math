@@ -1,0 +1,106 @@
+{
+  "problem_id": "Hpdf_pWAhL2F0qO",
+  "problem_type": "unknown",
+  "metadata": {
+    "title": "세 자리 수 덧셈과 뺄셈",
+    "tags": [],
+    "question": "서로 다른 두 개의 세 자리 수가 있습니다. 두 수의 합은 622이고, 차는 250일 때 두 수를 큰 수부터 차례로 쓰시오.",
+    "required_layout_ids": [
+      "slot.box",
+      "slot.add.left.line",
+      "slot.add.right.line",
+      "slot.circle.1",
+      "slot.circle.2",
+      "slot.circle.3",
+      "slot.circle.4",
+      "slot.circle.5",
+      "slot.circle.6",
+      "slot.circle.7",
+      "slot.circle.8"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "두 수를 큰 수부터 차례로 쓰시오."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.number_a",
+        "type": "three_digit_number"
+      },
+      {
+        "id": "obj.number_b",
+        "type": "three_digit_number"
+      },
+      {
+        "id": "obj.sum",
+        "type": "sum",
+        "value": 622
+      },
+      {
+        "id": "obj.difference",
+        "type": "difference",
+        "value": 250
+      }
+    ],
+    "relations": [
+      {
+        "id": "rel.sum",
+        "type": "sum_equals",
+        "from_id": "obj.number_a",
+        "to_id": "obj.number_b",
+        "value": 622
+      },
+      {
+        "id": "rel.diff",
+        "type": "difference_equals",
+        "from_id": "obj.number_a",
+        "to_id": "obj.number_b",
+        "value": 250
+      }
+    ],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.sum",
+          "obj.difference"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.sum",
+          "rel.diff"
+        ]
+      },
+      "plan": {
+        "method": "sum_and_difference",
+        "description": "두 수의 합과 차를 이용해 큰 수와 작은 수를 구한다."
+      },
+      "execute": {
+        "expected_operations": [
+          "add_sum_and_difference",
+          "divide_by_two",
+          "subtract_difference_from_sum"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "sum_check",
+          "difference_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "ordered_numbers",
+      "description": "큰 수부터 차례로 쓰는 두 개의 세 자리 수"
+    },
+    "value": 0,
+    "unit": ""
+  }
+}

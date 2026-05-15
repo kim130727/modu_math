@@ -1,0 +1,101 @@
+{
+  "problem_id": "Hpdf_qq8Nf5bcmq",
+  "problem_type": "number_construction",
+  "metadata": {
+    "title": "수 카드 만들기",
+    "tags": [],
+    "question": "서로 다른 4장의 수 카드 중에서 3장을 골라 한 번씩만 사용하여 세 자리 수를 만들려고 한다. 만들 수 있는 가장 큰 수가 가장 작은 수보다 618만큼 더 크다. ▲는 어떤 숫자입니까?",
+    "required_layout_ids": [
+      "slot.card.1",
+      "slot.card.2",
+      "slot.card.3",
+      "slot.card.4"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "▲에 알맞은 숫자를 구하시오."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.card_6",
+        "type": "digit_card",
+        "value": 6
+      },
+      {
+        "id": "obj.card_2",
+        "type": "digit_card",
+        "value": 2
+      },
+      {
+        "id": "obj.card_triangle",
+        "type": "digit_card",
+        "symbol": "▲"
+      },
+      {
+        "id": "obj.card_8",
+        "type": "digit_card",
+        "value": 8
+      }
+    ],
+    "relations": [
+      {
+        "id": "rel.construct_three_digit_numbers",
+        "type": "choose_3_from_4_and_arrange",
+        "from_id": "obj.card_6",
+        "to_id": "obj.card_triangle"
+      },
+      {
+        "id": "rel.range_difference",
+        "type": "difference_between_max_and_min",
+        "from_id": "obj.card_6",
+        "to_id": "obj.card_8"
+      }
+    ],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.card_6",
+          "obj.card_2",
+          "obj.card_triangle",
+          "obj.card_8"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.construct_three_digit_numbers",
+          "rel.range_difference"
+        ]
+      },
+      "plan": {
+        "method": "digit_search",
+        "description": "세 자리 수의 최댓값과 최솟값을 만들고, 두 수의 차가 618이 되도록 ▲를 찾는다."
+      },
+      "execute": {
+        "expected_operations": [
+          "identify_max_and_min_numbers",
+          "compare_difference",
+          "find_missing_digit"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "difference_check",
+          "digit_validity_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "digit",
+      "description": "▲에 들어갈 숫자"
+    },
+    "value": 4,
+    "unit": ""
+  }
+}

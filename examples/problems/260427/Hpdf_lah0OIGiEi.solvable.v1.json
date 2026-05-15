@@ -1,0 +1,59 @@
+{
+  "schema": "modu.solvable.v1",
+  "problem_id": "Hpdf_lah0OIGiEi",
+  "problem_type": "count_right_triangles",
+  "inputs": {
+    "total_ticks": 40,
+    "target_label": "직각삼각형 개수",
+    "target_ticks": 40,
+    "target_count": 40,
+    "unit": "개"
+  },
+  "plan": [
+    "크기가 가장 작은 직각삼각형 (정사각형의 1/4 크기) 개수를 구한다: 4개의 정사각형에 각각 4개씩 있으므로 16개.",
+    "중간 크기의 직각삼각형 (정사각형의 1/2 크기) 개수를 구한다: 4개의 정사각형에 각각 4개씩 있으므로 16개.",
+    "큰 직각삼각형 (정사각형 1개 크기, 인접한 두 정사각형으로 만들어짐) 개수를 구한다: 맞닿은 부분마다 2개씩 생기며, 맞닿은 변이 3곳이므로 3 x 2 = 6개.",
+    "가장 큰 직각삼각형 (정사각형 2개 크기) 개수를 구한다: 2개.",
+    "모두 합하면 16 + 16 + 6 + 2 = 40개이다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "가장 작은 직각삼각형",
+      "value": 16
+    },
+    {
+      "id": "step.2",
+      "expr": "중간 크기 직각삼각형",
+      "value": 16
+    },
+    {
+      "id": "step.3",
+      "expr": "큰 직각삼각형",
+      "value": 6
+    },
+    {
+      "id": "step.4",
+      "expr": "가장 큰 직각삼각형",
+      "value": 2
+    },
+    {
+      "id": "step.5",
+      "expr": "16 + 16 + 6 + 2",
+      "value": 40
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "16 + 16 + 6 + 2",
+      "expected": 40,
+      "actual": 40,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "value": 40,
+    "unit": "개"
+  }
+}

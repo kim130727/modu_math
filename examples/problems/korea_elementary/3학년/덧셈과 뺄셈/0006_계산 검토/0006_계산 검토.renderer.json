@@ -1,0 +1,225 @@
+{
+  "problem_id": "0006_계산 검토",
+  "view_box": {
+    "width": 1744.0,
+    "height": 725.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.right_tab.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 1089.9678,
+        "y": 169.6675,
+        "width": 400.0,
+        "height": 100.0,
+        "fill": "#CE8D61",
+        "stroke": "none",
+        "stroke-width": 0.0,
+        "rx": 38.0,
+        "data-semantic-role": "tab"
+      },
+      "source_ref": "slot.right_tab",
+      "refs": {
+        "layout_slot_id": "slot.right_tab"
+      }
+    },
+    {
+      "id": "slot.right_panel.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 966.96783,
+        "y": 205.6675,
+        "width": 615.0,
+        "height": 455.0,
+        "fill": "none",
+        "stroke": "#CFC8BA",
+        "stroke-width": 9.0,
+        "rx": 70.0,
+        "data-semantic-role": "panel"
+      },
+      "source_ref": "slot.right_panel",
+      "refs": {
+        "layout_slot_id": "slot.right_panel"
+      }
+    },
+    {
+      "id": "slot.left_panel.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 203.9678,
+        "y": 215.6675,
+        "width": 585.0,
+        "height": 435.0,
+        "fill": "none",
+        "stroke": "#CFC8BA",
+        "stroke-width": 9.0,
+        "rx": 70.0,
+        "data-semantic-role": "panel"
+      },
+      "source_ref": "slot.left_panel",
+      "refs": {
+        "layout_slot_id": "slot.left_panel"
+      }
+    },
+    {
+      "id": "slot.arrow_head.polygon",
+      "type": "polygon",
+      "attributes": {
+        "points": [
+          [
+            892.96783,
+            408.66748
+          ],
+          [
+            914.96783,
+            435.66748
+          ],
+          [
+            892.96783,
+            462.66748
+          ]
+        ],
+        "stroke": "none",
+        "stroke-width": 0.0,
+        "fill": "#9AAAB2",
+        "data-semantic-role": "arrow"
+      },
+      "source_ref": "slot.arrow_head",
+      "refs": {
+        "layout_slot_id": "slot.arrow_head"
+      }
+    },
+    {
+      "id": "slot.arrow_body.line",
+      "type": "line",
+      "attributes": {
+        "x1": 852.96783,
+        "y1": 435.66748,
+        "x2": 892.96783,
+        "y2": 435.66748,
+        "stroke": "#9AAAB2",
+        "stroke-width": 14.0,
+        "data-semantic-role": "arrow"
+      },
+      "source_ref": "slot.arrow_body",
+      "refs": {
+        "layout_slot_id": "slot.arrow_body"
+      }
+    },
+    {
+      "id": "slot.left_line.line",
+      "type": "line",
+      "attributes": {
+        "x1": 296.30759,
+        "y1": 486.0,
+        "x2": 636.30762,
+        "y2": 486.0,
+        "stroke": "#333333",
+        "stroke-width": 3.0,
+        "data-semantic-role": "equation_line"
+      },
+      "source_ref": "slot.left_line",
+      "refs": {
+        "layout_slot_id": "slot.left_line"
+      }
+    },
+    {
+      "id": "slot.instruction.text",
+      "type": "text",
+      "attributes": {
+        "x": 115.52105,
+        "y": 95.168732,
+        "max_width": 1616.0,
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 66,
+        "text-anchor": "start",
+        "data-semantic-role": "instruction"
+      },
+      "source_ref": "slot.instruction",
+      "refs": {
+        "layout_slot_id": "slot.instruction"
+      },
+      "text": "잘못 계산한 곳에 ○표 하고, 바르게 계산해 보세요."
+    },
+    {
+      "id": "slot.right_tab_text.text",
+      "type": "text",
+      "attributes": {
+        "x": 1289.9678,
+        "y": 231.6675,
+        "max_width": 1616.0,
+        "fill": "#FFFFFF",
+        "font-family": "Malgun Gothic",
+        "font-size": 42,
+        "text-anchor": "middle",
+        "data-semantic-role": "tab_label"
+      },
+      "source_ref": "slot.right_tab_text",
+      "refs": {
+        "layout_slot_id": "slot.right_tab_text"
+      },
+      "text": "바르게 계산하기"
+    },
+    {
+      "id": "slot.left_top.text",
+      "type": "text",
+      "attributes": {
+        "x": 622.57715,
+        "y": 360.0,
+        "max_width": 1616.0,
+        "fill": "#222222",
+        "font-family": "Cambria",
+        "font-size": 88,
+        "text-anchor": "end",
+        "data-semantic-role": "equation"
+      },
+      "source_ref": "slot.left_top",
+      "refs": {
+        "layout_slot_id": "slot.left_top"
+      },
+      "text": "323"
+    },
+    {
+      "id": "slot.left_mid.text",
+      "type": "text",
+      "attributes": {
+        "x": 622.57715,
+        "y": 460.0,
+        "max_width": 1616.0,
+        "fill": "#222222",
+        "font-family": "Cambria",
+        "font-size": 88,
+        "text-anchor": "end",
+        "data-semantic-role": "equation"
+      },
+      "source_ref": "slot.left_mid",
+      "refs": {
+        "layout_slot_id": "slot.left_mid"
+      },
+      "text": "+998"
+    },
+    {
+      "id": "slot.left_result.text",
+      "type": "text",
+      "attributes": {
+        "x": 622.57715,
+        "y": 560.0,
+        "max_width": 1616.0,
+        "fill": "#222222",
+        "font-family": "Cambria",
+        "font-size": 87,
+        "text-anchor": "end",
+        "data-semantic-role": "wrong_result"
+      },
+      "source_ref": "slot.left_result",
+      "refs": {
+        "layout_slot_id": "slot.left_result"
+      },
+      "text": "1221"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

@@ -1,0 +1,407 @@
+from __future__ import annotations
+from modu_math.dsl import (
+    Canvas,
+    ProblemTemplate,
+    Region,
+    TextSlot,
+    RectSlot,
+    LineSlot,
+    CircleSlot,
+    PolygonSlot,
+)
+
+
+def build_problem_template() -> ProblemTemplate:
+    return ProblemTemplate(
+        id="2403.answer",
+        title="기하 도형에서 x 구하기",
+        canvas=Canvas(width=960, height=720, coordinate_mode="logical"),
+        regions=(
+            Region(
+                id="region.header", role="stem", flow="absolute", slot_ids=("slot.q1",)
+            ),
+            Region(
+                id="region.diagram",
+                role="diagram",
+                flow="absolute",
+                slot_ids=(
+                    "slot.box.left",
+                    "slot.box.right",
+                    "slot.tri.outer",
+                    "slot.tri.inner",
+                    "slot.altitude",
+                    "slot.right_angle",
+                    "slot.tick.left",
+                    "slot.tick.right",
+                    "slot.pt.top",
+                    "slot.pt.left",
+                    "slot.pt.right",
+                    "slot.lb.32",
+                    "slot.lb.x",
+                    "slot.lb.y",
+                    "slot.lb.54deg",
+                ),
+            ),
+            Region(
+                id="region.options",
+                role="choices",
+                flow="absolute",
+                slot_ids=("slot.opt.1", "slot.opt.2", "slot.opt.3", "slot.opt.4"),
+            ),
+            Region(
+                id="region.overlay",
+                role="note",
+                flow="absolute",
+                slot_ids=("slot.note.answer",),
+            ),
+        ),
+        slots=(
+            TextSlot(
+                id="slot.q1",
+                prompt="",
+                text="x를 구하시오. 소수 첫째 자리까지 반올림하시오.",
+                style_role="question",
+                x=42.0,
+                y=54.0,
+                font_size=28,
+            ),
+            RectSlot(
+                id="slot.box.left",
+                prompt="",
+                x=38.0,
+                y=114.0,
+                width=520.0,
+                height=470.0,
+                stroke="#2F80ED",
+                stroke_width=3.0,
+                fill="none",
+            ),
+            RectSlot(
+                id="slot.box.right",
+                prompt="",
+                x=604.0,
+                y=114.0,
+                width=314.0,
+                height=470.0,
+                stroke="#FFFFFF",
+                stroke_width=0.0,
+                fill="none",
+            ),
+            PolygonSlot(
+                id="slot.tri.outer",
+                prompt="",
+                points=((156.0, 470.0), (300.0, 194.0), (448.0, 470.0)),
+                stroke="#2F80ED",
+                stroke_width=6.0,
+                fill="none",
+            ),
+            LineSlot(
+                id="slot.tri.inner",
+                prompt="",
+                x1=300.0,
+                y1=194.0,
+                x2=300.0,
+                y2=470.0,
+                stroke="#2F80ED",
+                stroke_width=4.0,
+            ),
+            LineSlot(
+                id="slot.altitude",
+                prompt="",
+                x1=300.0,
+                y1=194.0,
+                x2=300.0,
+                y2=470.0,
+                stroke="#2F80ED",
+                stroke_width=2.5,
+                stroke_dasharray="8 6",
+            ),
+            LineSlot(
+                id="slot.right_angle",
+                prompt="",
+                x1=288.0,
+                y1=452.0,
+                x2=288.0,
+                y2=470.0,
+                stroke="#2F80ED",
+                stroke_width=3.0,
+            ),
+            LineSlot(
+                id="slot.tick.left",
+                prompt="",
+                x1=190.0,
+                y1=328.0,
+                x2=206.0,
+                y2=318.0,
+                stroke="#2F80ED",
+                stroke_width=4.0,
+            ),
+            LineSlot(
+                id="slot.tick.right",
+                prompt="",
+                x1=406.0,
+                y1=320.0,
+                x2=390.0,
+                y2=330.0,
+                stroke="#2F80ED",
+                stroke_width=4.0,
+            ),
+            CircleSlot(
+                id="slot.pt.top", prompt="", cx=300.0, cy=194.0, r=4.0, fill="#2F80ED"
+            ),
+            CircleSlot(
+                id="slot.pt.left", prompt="", cx=156.0, cy=470.0, r=4.0, fill="#2F80ED"
+            ),
+            CircleSlot(
+                id="slot.pt.right", prompt="", cx=448.0, cy=470.0, r=4.0, fill="#2F80ED"
+            ),
+            TextSlot(
+                id="slot.lb.32",
+                prompt="",
+                text="32",
+                style_role="label",
+                x=208.0,
+                y=276.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.lb.x",
+                prompt="",
+                text="x",
+                style_role="label",
+                x=287.0,
+                y=504.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.lb.y",
+                prompt="",
+                text="y",
+                style_role="label",
+                x=322.0,
+                y=340.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.lb.54deg",
+                prompt="",
+                text="54°",
+                style_role="label",
+                x=346.0,
+                y=238.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.opt.1",
+                prompt="",
+                text="1. 18.8",
+                style_role="choice",
+                x=650.0,
+                y=214.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.opt.2",
+                prompt="",
+                text="2. 23.2",
+                style_role="choice",
+                x=650.0,
+                y=284.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.opt.3",
+                prompt="",
+                text="3. 25.9",
+                style_role="choice",
+                x=650.0,
+                y=354.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.opt.4",
+                prompt="",
+                text="4. 44.0",
+                style_role="choice",
+                x=650.0,
+                y=424.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.note.answer",
+                prompt="",
+                text="정답: A (18.8)",
+                style_role="note",
+                x=684.0,
+                y=606.0,
+                font_size=24,
+            ),
+        ),
+        diagrams=(),
+        groups=(),
+        constraints=(),
+        tags=("기하", "삼각형", "선택지"),
+    )
+
+
+PROBLEM_TEMPLATE = build_problem_template()
+SEMANTIC_OVERRIDE = {
+    "problem_id": "2403.answer",
+    "problem_type": "geometry_triangle",
+    "metadata": {
+        "language": "ko",
+        "question": "x를 구하시오. 소수 첫째 자리까지 반올림하시오.",
+        "instruction": "도형의 관계를 보고 x를 구한다.",
+    },
+    "domain": {
+        "objects": [
+            {"id": "obj.triangle", "type": "triangle"},
+            {
+                "id": "obj.altitude",
+                "type": "segment",
+                "description": "꼭짓점에서 밑변으로 내려간 수직 보조선",
+            },
+            {
+                "id": "obj.left_side",
+                "type": "segment",
+                "description": "삼각형의 왼쪽 변",
+            },
+            {
+                "id": "obj.right_side",
+                "type": "segment",
+                "description": "삼각형의 오른쪽 변",
+            },
+            {"id": "obj.base", "type": "segment", "description": "삼각형의 밑변"},
+            {"id": "obj.length_32", "type": "quantity", "value": 32, "unit": ""},
+            {"id": "obj.angle_54", "type": "angle", "value": 54, "unit": "degree"},
+            {
+                "id": "obj.unknown_x",
+                "type": "quantity",
+                "description": "도형에서 구해야 하는 x",
+            },
+            {
+                "id": "obj.unknown_y",
+                "type": "quantity",
+                "description": "도형에서 표시된 y",
+            },
+        ],
+        "relations": [
+            {
+                "id": "rel.altitude_perpendicular_to_base",
+                "type": "perpendicular",
+                "from_id": "obj.altitude",
+                "to_id": "obj.base",
+            },
+            {
+                "id": "rel.left_right_equal_marks",
+                "type": "equal_mark",
+                "from_id": "obj.left_side",
+                "to_id": "obj.right_side",
+            },
+            {
+                "id": "rel.label_association_x",
+                "type": "label_to_quantity",
+                "from_id": "obj.unknown_x",
+                "to_id": "obj.base",
+            },
+            {
+                "id": "rel.label_association_y",
+                "type": "label_to_quantity",
+                "from_id": "obj.unknown_y",
+                "to_id": "obj.altitude",
+            },
+        ],
+        "problem_solving": {
+            "understand": {
+                "given_refs": [
+                    "obj.length_32",
+                    "obj.angle_54",
+                    "obj.left_side",
+                    "obj.right_side",
+                ],
+                "target_ref": "answer.target",
+                "condition_refs": [
+                    "rel.altitude_perpendicular_to_base",
+                    "rel.left_right_equal_marks",
+                ],
+            },
+            "plan": {
+                "method": "triangle_relationship_reading",
+                "description": "도형의 라벨과 표식을 읽어 변수 x가 무엇을 가리키는지 확인한다.",
+            },
+            "execute": {
+                "expected_operations": [
+                    "identify_labeled_segments",
+                    "match_tick_marks",
+                    "locate_right_angle_marker",
+                ]
+            },
+            "review": {
+                "check_methods": ["label_position_check", "mark_consistency_check"]
+            },
+        },
+    },
+    "answer": {
+        "target": {"type": "unknown_quantity", "description": "도형에서 x로 표시된 값"},
+        "value": None,
+        "unit": "",
+    },
+}
+SOLVABLE = {
+    "schema": "modu.solvable.v1",
+    "problem_id": "2403.answer",
+    "problem_type": "geometry_triangle",
+    "inputs": {
+        "total_ticks": 2,
+        "target_label": "x",
+        "target_ticks": 1,
+        "target_count": 1,
+        "unit": "",
+    },
+    "given": [
+        {"ref": "obj.length_32", "value": 32},
+        {"ref": "obj.angle_54", "value": 54, "unit": "degree"},
+        {"ref": "obj.left_side", "value": "marked_equal"},
+        {"ref": "obj.right_side", "value": "marked_equal"},
+    ],
+    "target": {"ref": "answer.target", "type": "unknown_quantity"},
+    "method": "triangle_relationship_reading",
+    "plan": [
+        "도형에서 x 표기가 어디에 붙어 있는지 확인한다.",
+        "동일 표시선과 직각 표시를 읽어 도형의 관계를 파악한다.",
+        "원본에 명시된 정보만으로는 계산을 확정하지 않고, 라벨 의미를 우선 보존한다.",
+    ],
+    "steps": [
+        {
+            "id": "step.1",
+            "operation": "identify_label",
+            "expr": "x is a labeled value in the diagram",
+            "value": 0,
+        },
+        {
+            "id": "step.2",
+            "operation": "preserve_uncertainty",
+            "expr": "no confident computation from text-only draft",
+            "value": 0,
+        },
+    ],
+    "checks": [
+        {
+            "id": "check.1",
+            "type": "label_position_check",
+            "expr": "x appears as a diagram label, not as a solved blank",
+            "expected": 1,
+            "actual": 1,
+            "pass": True,
+        },
+        {
+            "id": "check.2",
+            "type": "data_consistency_check",
+            "expr": "solution is not inferred from overlay note",
+            "expected": 1,
+            "actual": 1,
+            "pass": True,
+        },
+    ],
+    "answer": {"value": 0, "unit": "", "derived_from": "step.2"},
+}

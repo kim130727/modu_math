@@ -1,0 +1,190 @@
+{
+  "problem_id": "0005_사각형 둘레 구하기",
+  "view_box": {
+    "width": 430.0,
+    "height": 280.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.bg.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 430.0,
+        "height": 280.0,
+        "fill": "#F4F4F4",
+        "stroke": "none",
+        "stroke-width": 0.0,
+        "data-semantic-role": "background"
+      },
+      "source_ref": "slot.bg",
+      "refs": {
+        "layout_slot_id": "slot.bg"
+      }
+    },
+    {
+      "id": "slot.square.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 150.0,
+        "y": 98.0,
+        "width": 136.0,
+        "height": 136.0,
+        "fill": "none",
+        "stroke": "#2E2E2E",
+        "stroke-width": 2.4,
+        "data-semantic-role": "shape"
+      },
+      "source_ref": "slot.square",
+      "refs": {
+        "layout_slot_id": "slot.square"
+      }
+    },
+    {
+      "id": "slot.answer_value.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 364.0,
+        "y": 214.0,
+        "width": 48.0,
+        "height": 30.0,
+        "fill": "none",
+        "stroke": "none",
+        "stroke-width": 0.0,
+        "data-semantic-role": "answer_anchor"
+      },
+      "source_ref": "slot.answer_value",
+      "refs": {
+        "layout_slot_id": "slot.answer_value"
+      }
+    },
+    {
+      "id": "slot.side_length_arc_00.line",
+      "type": "line",
+      "attributes": {
+        "x1": 286.0,
+        "y1": 98.0,
+        "x2": 294.13536224850884,
+        "y2": 117.65889960662216,
+        "stroke": "#7A7A7A",
+        "stroke-width": 1.4,
+        "data-semantic-role": "guide"
+      },
+      "source_ref": "slot.side_length_arc_00",
+      "refs": {
+        "layout_slot_id": "slot.side_length_arc_00"
+      }
+    },
+    {
+      "id": "slot.side_length_arc_01.line",
+      "type": "line",
+      "attributes": {
+        "x1": 298.94857035542924,
+        "y1": 135.64584346883746,
+        "x2": 301.71862923352876,
+        "y2": 156.74046900401993,
+        "stroke": "#7A7A7A",
+        "stroke-width": 1.4,
+        "data-semantic-role": "guide"
+      },
+      "source_ref": "slot.side_length_arc_01",
+      "refs": {
+        "layout_slot_id": "slot.side_length_arc_01"
+      }
+    },
+    {
+      "id": "slot.side_length_arc_02.line",
+      "type": "line",
+      "attributes": {
+        "x1": 301.71246761657585,
+        "y1": 175.36027254265818,
+        "x2": 298.9284481894623,
+        "y2": 196.45306013669526,
+        "stroke": "#7A7A7A",
+        "stroke-width": 1.4,
+        "data-semantic-role": "guide"
+      },
+      "source_ref": "slot.side_length_arc_02",
+      "refs": {
+        "layout_slot_id": "slot.side_length_arc_02"
+      }
+    },
+    {
+      "id": "slot.side_length_arc_03.line",
+      "type": "line",
+      "attributes": {
+        "x1": 294.10333675264894,
+        "y1": 214.43681451127853,
+        "x2": 286.0,
+        "y2": 233.99999999999994,
+        "stroke": "#7A7A7A",
+        "stroke-width": 1.4,
+        "data-semantic-role": "guide"
+      },
+      "source_ref": "slot.side_length_arc_03",
+      "refs": {
+        "layout_slot_id": "slot.side_length_arc_03"
+      }
+    },
+    {
+      "id": "slot.instruction_1.text",
+      "type": "text",
+      "attributes": {
+        "x": 6.0,
+        "y": 34.0,
+        "max_width": 302.0,
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 17,
+        "text-anchor": "start",
+        "data-semantic-role": "instruction"
+      },
+      "source_ref": "slot.instruction_1",
+      "refs": {
+        "layout_slot_id": "slot.instruction_1"
+      },
+      "text": "한 변의 길이가 6 cm인 정사각형의 네 변의"
+    },
+    {
+      "id": "slot.instruction_2.text",
+      "type": "text",
+      "attributes": {
+        "x": 6.0,
+        "y": 66.0,
+        "max_width": 302.0,
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 17,
+        "text-anchor": "start",
+        "data-semantic-role": "instruction"
+      },
+      "source_ref": "slot.instruction_2",
+      "refs": {
+        "layout_slot_id": "slot.instruction_2"
+      },
+      "text": "길이의 합은 몇 cm인지 구하세요."
+    },
+    {
+      "id": "slot.side_length.text",
+      "type": "text",
+      "attributes": {
+        "x": 306.0,
+        "y": 160.0,
+        "max_width": 302.0,
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 17,
+        "text-anchor": "start",
+        "data-semantic-role": "label"
+      },
+      "source_ref": "slot.side_length",
+      "refs": {
+        "layout_slot_id": "slot.side_length"
+      },
+      "text": "6 cm"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

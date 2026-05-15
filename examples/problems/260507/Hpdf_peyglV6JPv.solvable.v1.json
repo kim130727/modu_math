@@ -1,0 +1,64 @@
+{
+  "schema": "modu.solvable.v1",
+  "problem_id": "Hpdf_peyglV6JPv",
+  "problem_type": "geometry_rectangle_perimeter",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "가장 큰 직사각형의 네 변의 길이의 합",
+    "target_ticks": 0,
+    "target_count": 1,
+    "unit": "cm"
+  },
+  "given": [
+    {
+      "ref": "obj.length_marker",
+      "value": "3 cm"
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "perimeter"
+  },
+  "method": "length_relation_inference",
+  "plan": [
+    "가장 작은 두 정사각형의 한 변이 3cm임을 확인한다.",
+    "그 아래의 정사각형은 3+3=6cm, 그 옆의 정사각형은 3+6=9cm임을 구한다.",
+    "맨 아래의 큰 정사각형은 6+9=15cm임을 구한다.",
+    "전체 직사각형의 가로는 15cm, 세로는 9+15=24cm이므로 둘레를 계산한다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "operation": "identify_small_square",
+      "expr": "3",
+      "value": 3
+    },
+    {
+      "id": "step.2",
+      "operation": "calculate_sides",
+      "expr": "6, 9, 15",
+      "value": 15
+    },
+    {
+      "id": "step.3",
+      "operation": "calculate_perimeter",
+      "expr": "2 * (15 + (9 + 15))",
+      "value": 78
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "type": "logic_check",
+      "expr": "2 * (15 + 24) = 78",
+      "expected": 78,
+      "actual": 78,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "value": 78,
+    "unit": "cm",
+    "derived_from": "step.3"
+  }
+}

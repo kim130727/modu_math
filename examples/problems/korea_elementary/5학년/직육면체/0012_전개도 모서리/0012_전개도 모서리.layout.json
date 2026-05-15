@@ -1,0 +1,239 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "0012_전개도 모서리",
+  "title": "",
+  "canvas": {
+    "width": 800,
+    "height": 520,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "vertical",
+      "slot_ids": [
+        "slot.top_hex",
+        "slot.strip_rect",
+        "slot.bot_hex",
+        "slot.fold_1",
+        "slot.fold_2",
+        "slot.fold_3",
+        "slot.fold_4",
+        "slot.fold_5",
+        "slot.q1",
+        "slot.q2"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "다음은 각기둥의 전개도입니다.",
+        "style_role": "body",
+        "x": 18.6,
+        "y": 47.7,
+        "font_size": 30,
+        "font_family": "Malgun Gothic",
+        "anchor": "start",
+        "fill": "#222222",
+        "semantic_role": "instruction"
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "전개도를 접어서 만든 입체도형의 모서리는 모두 몇 개인가요?",
+        "style_role": "body",
+        "x": 16.1,
+        "y": 89.9,
+        "font_size": 30,
+        "font_family": "Malgun Gothic",
+        "anchor": "start",
+        "fill": "#222222",
+        "semantic_role": "instruction"
+      }
+    },
+    {
+      "id": "slot.top_hex",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            350.466,
+            209.104
+          ],
+          [
+            320.48,
+            160.912
+          ],
+          [
+            350.466,
+            112.72
+          ],
+          [
+            399.534,
+            112.72
+          ],
+          [
+            429.52,
+            160.912
+          ],
+          [
+            399.534,
+            209.104
+          ]
+        ],
+        "stroke": "#333333",
+        "stroke_width": 2.0,
+        "fill": "#CFCFCF",
+        "semantic_role": "net"
+      }
+    },
+    {
+      "id": "slot.strip_rect",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 250.0,
+        "y": 210.0,
+        "width": 300.0,
+        "height": 130.0,
+        "stroke": "#333333",
+        "stroke_width": 2.0,
+        "fill": "#CFCFCF",
+        "semantic_role": "net"
+      }
+    },
+    {
+      "id": "slot.fold_1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 300.0,
+        "y1": 210.0,
+        "x2": 300.0,
+        "y2": 340.0,
+        "stroke": "#333333",
+        "stroke_width": 1.0,
+        "semantic_role": "fold_line"
+      }
+    },
+    {
+      "id": "slot.fold_2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 350.0,
+        "y1": 210.0,
+        "x2": 350.0,
+        "y2": 340.0,
+        "stroke": "#333333",
+        "stroke_width": 1.0,
+        "semantic_role": "fold_line"
+      }
+    },
+    {
+      "id": "slot.fold_3",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 400.0,
+        "y1": 210.0,
+        "x2": 400.0,
+        "y2": 340.0,
+        "stroke": "#333333",
+        "stroke_width": 1.0,
+        "semantic_role": "fold_line"
+      }
+    },
+    {
+      "id": "slot.fold_4",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 450.0,
+        "y1": 210.0,
+        "x2": 450.0,
+        "y2": 340.0,
+        "stroke": "#333333",
+        "stroke_width": 1.0,
+        "semantic_role": "fold_line"
+      }
+    },
+    {
+      "id": "slot.fold_5",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 500.0,
+        "y1": 210.0,
+        "x2": 500.0,
+        "y2": 340.0,
+        "stroke": "#333333",
+        "stroke_width": 1.0,
+        "semantic_role": "fold_line"
+      }
+    },
+    {
+      "id": "slot.bot_hex",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            350.788,
+            437.28000000000003
+          ],
+          [
+            320.802,
+            389.088
+          ],
+          [
+            350.788,
+            340.896
+          ],
+          [
+            399.856,
+            340.896
+          ],
+          [
+            429.842,
+            389.088
+          ],
+          [
+            399.856,
+            437.28000000000003
+          ]
+        ],
+        "stroke": "#333333",
+        "stroke_width": 2.0,
+        "fill": "#CFCFCF",
+        "semantic_role": "net"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.top_hex",
+    "slot.strip_rect",
+    "slot.bot_hex",
+    "slot.fold_1",
+    "slot.fold_2",
+    "slot.fold_3",
+    "slot.fold_4",
+    "slot.fold_5",
+    "slot.q1",
+    "slot.q2"
+  ]
+}

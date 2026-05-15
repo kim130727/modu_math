@@ -1,0 +1,367 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "0007_선분 거리 계산",
+  "title": "",
+  "canvas": {
+    "width": 1464,
+    "height": 382,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "vertical",
+      "slot_ids": [
+        "slot.guide_p0_p1",
+        "slot.guide_p1_p3",
+        "slot.guide_p1_p2",
+        "slot.label_circle_p0",
+        "slot.label_circle_p1",
+        "slot.label_circle_p2",
+        "slot.label_circle_p3",
+        "slot.base_line",
+        "slot.tick_p0",
+        "slot.tick_p1",
+        "slot.tick_p2",
+        "slot.tick_p3",
+        "slot.instruction",
+        "slot.dist_p0_p1_text",
+        "slot.dist_p1_p3_text",
+        "slot.dist_p1_p2_text",
+        "slot.label_p0",
+        "slot.label_p1",
+        "slot.label_p2",
+        "slot.label_p3"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.instruction",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄱ에서 ㄹ까지의 거리를 구해 보세요.",
+        "style_role": "body",
+        "x": 20.0,
+        "y": 76.0,
+        "font_size": 64,
+        "font_family": "Malgun Gothic",
+        "anchor": "start",
+        "fill": "#222222",
+        "semantic_role": "instruction"
+      }
+    },
+    {
+      "id": "slot.guide_p0_p1",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 188 244 Q 304.47688564476886 170 420.9537712895377 236",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#0FA9F4",
+        "stroke_width": 3.0,
+        "stroke_dasharray": "10 8",
+        "fill": "none",
+        "semantic_role": "measurement_guide"
+      }
+    },
+    {
+      "id": "slot.guide_p1_p3",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 420.9537712895377 236 Q 848.4768856447688 120 1276 230",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#0FA9F4",
+        "stroke_width": 3.0,
+        "stroke_dasharray": "10 8",
+        "fill": "none",
+        "semantic_role": "measurement_guide"
+      }
+    },
+    {
+      "id": "slot.guide_p1_p2",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 420.9537712895377 307 Q 636.0389294403892 372 851.1240875912408 316",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#0FA9F4",
+        "stroke_width": 3.0,
+        "stroke_dasharray": "10 8",
+        "fill": "none",
+        "semantic_role": "measurement_guide"
+      }
+    },
+    {
+      "id": "slot.dist_p0_p1_text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "176 cm",
+        "style_role": "body",
+        "x": 304.47688564476886,
+        "y": 198.0,
+        "font_size": 58,
+        "font_family": "Cambria",
+        "anchor": "middle",
+        "fill": "#222222",
+        "semantic_role": "distance_label"
+      }
+    },
+    {
+      "id": "slot.dist_p1_p3_text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "646 cm",
+        "style_role": "body",
+        "x": 848.4768856447688,
+        "y": 192.0,
+        "font_size": 58,
+        "font_family": "Cambria",
+        "anchor": "middle",
+        "fill": "#222222",
+        "semantic_role": "distance_label"
+      }
+    },
+    {
+      "id": "slot.dist_p1_p2_text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "325 cm",
+        "style_role": "body",
+        "x": 636.0389294403892,
+        "y": 334.0,
+        "font_size": 58,
+        "font_family": "Cambria",
+        "anchor": "middle",
+        "fill": "#222222",
+        "semantic_role": "distance_label"
+      }
+    },
+    {
+      "id": "slot.base_line",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 188.0,
+        "y1": 249.0,
+        "x2": 1276.0,
+        "y2": 249.0,
+        "stroke": "#2E2A2D",
+        "stroke_width": 5.0,
+        "semantic_role": "number_line"
+      }
+    },
+    {
+      "id": "slot.tick_p0",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 188.0,
+        "y1": 218.0,
+        "x2": 188.0,
+        "y2": 279.0,
+        "stroke": "#2E2A2D",
+        "stroke_width": 4.0,
+        "semantic_role": "point_tick"
+      }
+    },
+    {
+      "id": "slot.tick_p1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 420.9537712895377,
+        "y1": 218.0,
+        "x2": 420.9537712895377,
+        "y2": 279.0,
+        "stroke": "#2E2A2D",
+        "stroke_width": 4.0,
+        "semantic_role": "point_tick"
+      }
+    },
+    {
+      "id": "slot.tick_p2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 851.1240875912408,
+        "y1": 218.0,
+        "x2": 851.1240875912408,
+        "y2": 279.0,
+        "stroke": "#2E2A2D",
+        "stroke_width": 4.0,
+        "semantic_role": "point_tick"
+      }
+    },
+    {
+      "id": "slot.tick_p3",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 1276.0,
+        "y1": 218.0,
+        "x2": 1276.0,
+        "y2": 279.0,
+        "stroke": "#2E2A2D",
+        "stroke_width": 4.0,
+        "semantic_role": "point_tick"
+      }
+    },
+    {
+      "id": "slot.label_circle_p0",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 188.0,
+        "cy": 316.0,
+        "r": 22.0,
+        "stroke": "#3A3336",
+        "stroke_width": 3.0,
+        "fill": "none",
+        "semantic_role": "point_label"
+      }
+    },
+    {
+      "id": "slot.label_circle_p1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 420.9537712895377,
+        "cy": 316.0,
+        "r": 22.0,
+        "stroke": "#3A3336",
+        "stroke_width": 3.0,
+        "fill": "none",
+        "semantic_role": "point_label"
+      }
+    },
+    {
+      "id": "slot.label_circle_p2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 851.1240875912408,
+        "cy": 316.0,
+        "r": 22.0,
+        "stroke": "#3A3336",
+        "stroke_width": 3.0,
+        "fill": "none",
+        "semantic_role": "point_label"
+      }
+    },
+    {
+      "id": "slot.label_circle_p3",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 1276.0,
+        "cy": 316.0,
+        "r": 22.0,
+        "stroke": "#3A3336",
+        "stroke_width": 3.0,
+        "fill": "none",
+        "semantic_role": "point_label"
+      }
+    },
+    {
+      "id": "slot.label_p0",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄱ",
+        "style_role": "body",
+        "x": 188.0,
+        "y": 327.0,
+        "font_size": 34,
+        "font_family": "Malgun Gothic",
+        "anchor": "middle",
+        "fill": "#222222",
+        "semantic_role": "point_name"
+      }
+    },
+    {
+      "id": "slot.label_p1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄴ",
+        "style_role": "body",
+        "x": 420.9537712895377,
+        "y": 327.0,
+        "font_size": 34,
+        "font_family": "Malgun Gothic",
+        "anchor": "middle",
+        "fill": "#222222",
+        "semantic_role": "point_name"
+      }
+    },
+    {
+      "id": "slot.label_p2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄷ",
+        "style_role": "body",
+        "x": 851.1240875912408,
+        "y": 327.0,
+        "font_size": 34,
+        "font_family": "Malgun Gothic",
+        "anchor": "middle",
+        "fill": "#222222",
+        "semantic_role": "point_name"
+      }
+    },
+    {
+      "id": "slot.label_p3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄹ",
+        "style_role": "body",
+        "x": 1276.0,
+        "y": 327.0,
+        "font_size": 34,
+        "font_family": "Malgun Gothic",
+        "anchor": "middle",
+        "fill": "#222222",
+        "semantic_role": "point_name"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.guide_p0_p1",
+    "slot.guide_p1_p3",
+    "slot.guide_p1_p2",
+    "slot.label_circle_p0",
+    "slot.label_circle_p1",
+    "slot.label_circle_p2",
+    "slot.label_circle_p3",
+    "slot.base_line",
+    "slot.tick_p0",
+    "slot.tick_p1",
+    "slot.tick_p2",
+    "slot.tick_p3",
+    "slot.instruction",
+    "slot.dist_p0_p1_text",
+    "slot.dist_p1_p3_text",
+    "slot.dist_p1_p2_text",
+    "slot.label_p0",
+    "slot.label_p1",
+    "slot.label_p2",
+    "slot.label_p3"
+  ]
+}

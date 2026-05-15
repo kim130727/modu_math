@@ -1,0 +1,53 @@
+{
+  "schema": "modu.solvable.v1",
+  "problem_id": "2402",
+  "problem_type": "geometry_circle_chord_perpendicular",
+  "inputs": {
+    "total_ticks": 1,
+    "target_label": "OX",
+    "target_ticks": 1,
+    "target_count": 1,
+    "unit": "인치"
+  },
+  "given": [
+    {
+      "ref": "obj.radius",
+      "value": 13,
+      "unit": "인치"
+    },
+    {
+      "ref": "obj.chord_CD",
+      "value": 24,
+      "unit": "인치"
+    },
+    {
+      "ref": "rel.ob_perp_cd",
+      "value": true
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "length"
+  },
+  "method": "identify_visible_geometry",
+  "plan": [
+    "본문과 도형에서 주어진 길이와 수직 관계를 확인한다.",
+    "OX가 무엇을 뜻하는지 그림의 표시를 기준으로 해석한다."
+  ],
+  "steps": [],
+  "checks": [
+    {
+      "id": "check.1",
+      "type": "text_match",
+      "expr": "본문의 OX 표기와 도형의 X 표기를 일치시킨다.",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "value": 5,
+    "unit": "인치",
+    "derived_from": "choice.1"
+  }
+}

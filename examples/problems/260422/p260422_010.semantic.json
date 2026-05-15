@@ -1,0 +1,105 @@
+{
+  "problem_id": "p260422_010",
+  "problem_type": "fill_in_blank",
+  "metadata": {
+    "title": "",
+    "tags": [],
+    "instruction": "□ 안에 알맞은 수를 구해 보시오.",
+    "question": "□ × 7/10 = 4 1/5",
+    "required_layout_ids": [
+      "slot.eq.box",
+      "slot.eq.blank",
+      "slot.eq.left_frac.bar",
+      "slot.eq.mixed.frac.bar"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj_instruction",
+        "type": "instruction",
+        "text": "□ 안에 알맞은 수를 구해 보시오."
+      },
+      {
+        "id": "obj_question",
+        "type": "question",
+        "text": "□ × 7/10 = 4 1/5"
+      },
+      {
+        "id": "obj_blank",
+        "type": "blank",
+        "text": "□"
+      },
+      {
+        "id": "obj_fraction",
+        "type": "fraction",
+        "value": "7/10",
+        "text": "7/10"
+      },
+      {
+        "id": "obj_mixed_number",
+        "type": "number",
+        "value": "4 1/5",
+        "text": "4 1/5"
+      },
+      {
+        "id": "obj_equation",
+        "type": "equation",
+        "text": "□ × 7/10 = 4 1/5"
+      },
+      {
+        "id": "obj_operator",
+        "type": "operator",
+        "value": "×",
+        "text": "×"
+      }
+    ],
+    "relations": [
+      {
+        "id": "rel_contains_1",
+        "type": "contains",
+        "from_id": "obj_instruction",
+        "to_id": "obj_blank"
+      },
+      {
+        "id": "rel_contains_2",
+        "type": "contains",
+        "from_id": "obj_question",
+        "to_id": "obj_equation"
+      },
+      {
+        "id": "rel_defines_1",
+        "type": "defines",
+        "from_id": "obj_equation",
+        "to_id": "obj_blank"
+      },
+      {
+        "id": "rel_applies_1",
+        "type": "applies_to",
+        "from_id": "obj_operator",
+        "to_id": "obj_equation"
+      }
+    ],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {},
+      "plan": {},
+      "execute": {},
+      "review": {}
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "number",
+      "description": "정답"
+    },
+    "value": 6,
+    "unit": ""
+  }
+}

@@ -1,0 +1,114 @@
+{
+  "schema": "modu.solvable.v1",
+  "problem_id": "Hpdf_z2oJL3Mngc",
+  "problem_type": "arithmetic_comparison",
+  "given": [
+    {
+      "ref": "obj.a",
+      "value": 637
+    },
+    {
+      "ref": "obj.b",
+      "value": 346
+    },
+    {
+      "ref": "obj.c",
+      "value": 611
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "maximum_value_of_expression"
+  },
+  "method": "value_compare",
+  "steps": [
+    {
+      "id": "step.s1",
+      "operation": "interpret_number_composition",
+      "expr": "100×3 + 10×32 + 1×17",
+      "value": 637
+    },
+    {
+      "id": "step.s2",
+      "operation": "find_ordinal_number_from_cards",
+      "expr": "3, 4, 5, 6으로 만들 수 있는 세 자리 수를 작은 순서로 나열",
+      "value": [
+        345,
+        346,
+        354,
+        356,
+        364,
+        365,
+        435,
+        436,
+        453,
+        456,
+        463,
+        465,
+        534,
+        536,
+        543,
+        546,
+        563,
+        564,
+        634,
+        635,
+        643,
+        645,
+        653,
+        654
+      ]
+    },
+    {
+      "id": "step.s3",
+      "operation": "select_second_smallest",
+      "expr": "두 번째로 작은 수",
+      "value": 346
+    },
+    {
+      "id": "step.s4",
+      "operation": "count_by_120",
+      "expr": "131 + 120×4",
+      "value": 611
+    },
+    {
+      "id": "step.s5",
+      "operation": "maximize_expression",
+      "expr": "637 - 346 + 611",
+      "value": 902
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.c1",
+      "type": "value_substitution_check",
+      "pass": true,
+      "expected": 902,
+      "actual": 902,
+      "expr": "check"
+    },
+    {
+      "id": "check.c2",
+      "type": "ordering_check",
+      "pass": true,
+      "expected": 1,
+      "actual": 1,
+      "expr": "check"
+    }
+  ],
+  "answer": {
+    "value": 902,
+    "unit": "",
+    "derived_from": "step.s5"
+  },
+  "inputs": {
+    "total_ticks": 1,
+    "target_label": "답",
+    "target_ticks": 1,
+    "target_count": 1,
+    "unit": ""
+  },
+  "plan": [
+    "풀이 과정 없음"
+  ]
+}

@@ -1,0 +1,148 @@
+{
+  "problem_id": "p260422_013",
+  "problem_type": "fill_in_blank",
+  "metadata": {
+    "title": "",
+    "tags": [],
+    "instruction": "□ 안에 알맞은 숫자를 써넣으시오.",
+    "question": "(1) □83 - 4□□ = 486\n(2) 6□5 - 23□ = □76",
+    "required_layout_ids": [
+      "slot.title.blank",
+      "slot.left.top.h.blank",
+      "slot.left.mid.t.blank",
+      "slot.left.mid.o.blank",
+      "slot.left.bar",
+      "slot.right.top.t.blank",
+      "slot.right.mid.o.blank",
+      "slot.right.bar",
+      "slot.right.bot.h.blank"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "instr1",
+        "type": "instruction",
+        "text": "□ 안에 알맞은 숫자를 써넣으시오."
+      },
+      {
+        "id": "q1",
+        "type": "question",
+        "text": "(1) □83 - 4□□ = 486"
+      },
+      {
+        "id": "q2",
+        "type": "question",
+        "text": "(2) 6□5 - 23□ = □76"
+      },
+      {
+        "id": "b1",
+        "type": "blank",
+        "text": "(1) hundreds digit of minuend"
+      },
+      {
+        "id": "b2",
+        "type": "blank",
+        "text": "(1) tens digit of subtrahend"
+      },
+      {
+        "id": "b3",
+        "type": "blank",
+        "text": "(1) ones digit of subtrahend"
+      },
+      {
+        "id": "b4",
+        "type": "blank",
+        "text": "(2) tens digit of minuend"
+      },
+      {
+        "id": "b5",
+        "type": "blank",
+        "text": "(2) ones digit of subtrahend"
+      },
+      {
+        "id": "b6",
+        "type": "blank",
+        "text": "(2) hundreds digit of result"
+      }
+    ],
+    "relations": [
+      {
+        "id": "r1",
+        "type": "asks_for",
+        "from_id": "instr1",
+        "to_id": "q1"
+      },
+      {
+        "id": "r2",
+        "type": "asks_for",
+        "from_id": "instr1",
+        "to_id": "q2"
+      },
+      {
+        "id": "r3",
+        "type": "contains",
+        "from_id": "q1",
+        "to_id": "b1"
+      },
+      {
+        "id": "r4",
+        "type": "contains",
+        "from_id": "q1",
+        "to_id": "b2"
+      },
+      {
+        "id": "r5",
+        "type": "contains",
+        "from_id": "q1",
+        "to_id": "b3"
+      },
+      {
+        "id": "r6",
+        "type": "contains",
+        "from_id": "q2",
+        "to_id": "b4"
+      },
+      {
+        "id": "r7",
+        "type": "contains",
+        "from_id": "q2",
+        "to_id": "b5"
+      },
+      {
+        "id": "r8",
+        "type": "contains",
+        "from_id": "q2",
+        "to_id": "b6"
+      }
+    ],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {},
+      "plan": {},
+      "execute": {},
+      "review": {}
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "number",
+      "description": "정답"
+    },
+    "value": [
+      9,
+      9,
+      7,
+      1,
+      9,
+      3
+    ],
+    "unit": ""
+  }
+}

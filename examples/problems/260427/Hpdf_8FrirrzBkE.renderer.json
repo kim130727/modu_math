@@ -1,0 +1,173 @@
+{
+  "problem_id": "Hpdf_8FrirrzBkE",
+  "view_box": {
+    "width": 750.0,
+    "height": 550.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.q1.text",
+      "type": "text",
+      "attributes": {
+        "x": 12.0,
+        "y": 50.0,
+        "max_width": 622.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q1",
+      "refs": {
+        "layout_slot_id": "slot.q1"
+      },
+      "text": "철사를 사용하여 한 변이 13cm인 정사각형을 만들었습니다."
+    },
+    {
+      "id": "slot.q2.text",
+      "type": "text",
+      "attributes": {
+        "x": 12.0,
+        "y": 100.0,
+        "max_width": 622.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q2",
+      "refs": {
+        "layout_slot_id": "slot.q2"
+      },
+      "text": "이 철사를 펴서 세로가 18cm인 가장 큰 직사각형 1개를 만들 때,"
+    },
+    {
+      "id": "slot.q3.text",
+      "type": "text",
+      "attributes": {
+        "x": 12.0,
+        "y": 150.0,
+        "max_width": 622.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q3",
+      "refs": {
+        "layout_slot_id": "slot.q3"
+      },
+      "text": "이 직사각형의 가로는 몇 cm입니까?"
+    },
+    {
+      "id": "slot.left.rect.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 50.0,
+        "y": 280.0,
+        "width": 130.0,
+        "height": 130.0,
+        "fill": "none",
+        "stroke": "#888888",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.left.rect",
+      "refs": {
+        "layout_slot_id": "slot.left.rect"
+      }
+    },
+    {
+      "id": "slot.left.cm.text",
+      "type": "text",
+      "attributes": {
+        "x": 190.0,
+        "y": 350.0,
+        "max_width": 622.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.left.cm",
+      "refs": {
+        "layout_slot_id": "slot.left.cm"
+      },
+      "text": "13cm"
+    },
+    {
+      "id": "slot.arrow.line",
+      "type": "line",
+      "attributes": {
+        "x1": 290.0,
+        "y1": 340.0,
+        "x2": 376.0,
+        "y2": 340.0,
+        "stroke": "#666666",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.arrow",
+      "refs": {
+        "layout_slot_id": "slot.arrow"
+      }
+    },
+    {
+      "id": "slot.arrow.head.polygon",
+      "type": "polygon",
+      "attributes": {
+        "points": [
+          [
+            376.0,
+            340.0
+          ],
+          [
+            368.0,
+            334.0
+          ],
+          [
+            368.0,
+            346.0
+          ]
+        ],
+        "stroke": "#666666",
+        "stroke-width": 2.0,
+        "fill": "#666666"
+      },
+      "source_ref": "slot.arrow.head",
+      "refs": {
+        "layout_slot_id": "slot.arrow.head"
+      }
+    },
+    {
+      "id": "slot.right.rect.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 450.0,
+        "y": 255.0,
+        "width": 80.0,
+        "height": 180.0,
+        "fill": "none",
+        "stroke": "#888888",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.right.rect",
+      "refs": {
+        "layout_slot_id": "slot.right.rect"
+      }
+    },
+    {
+      "id": "slot.right.cm.text",
+      "type": "text",
+      "attributes": {
+        "x": 540.0,
+        "y": 350.0,
+        "max_width": 622.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.right.cm",
+      "refs": {
+        "layout_slot_id": "slot.right.cm"
+      },
+      "text": "18cm"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

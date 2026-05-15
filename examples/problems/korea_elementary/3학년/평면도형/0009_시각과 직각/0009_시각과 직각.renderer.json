@@ -1,0 +1,172 @@
+{
+  "problem_id": "0009_시각과 직각",
+  "view_box": {
+    "width": 400.0,
+    "height": 180.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.bg.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 400.0,
+        "height": 180.0,
+        "fill": "#F4F4F4",
+        "stroke": "none",
+        "stroke-width": 0.0
+      },
+      "source_ref": "slot.bg",
+      "refs": {
+        "layout_slot_id": "slot.bg"
+      }
+    },
+    {
+      "id": "slot.answer_text.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 348.0,
+        "y": 146.0,
+        "width": 44.0,
+        "height": 28.0,
+        "fill": "none",
+        "stroke": "none",
+        "stroke-width": 0.0,
+        "data-semantic-role": "answer_anchor"
+      },
+      "source_ref": "slot.answer_text",
+      "refs": {
+        "layout_slot_id": "slot.answer_text"
+      }
+    },
+    {
+      "id": "slot.i1.text",
+      "type": "text",
+      "attributes": {
+        "x": 4.0,
+        "y": 34.0,
+        "max_width": 272.0,
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 17,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.i1",
+      "refs": {
+        "layout_slot_id": "slot.i1"
+      },
+      "text": "시계의 긴바늘과 짧은바늘이 이루는 각이"
+    },
+    {
+      "id": "slot.i2.text",
+      "type": "text",
+      "attributes": {
+        "x": 4.0,
+        "y": 64.0,
+        "max_width": 272.0,
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 17,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.i2",
+      "refs": {
+        "layout_slot_id": "slot.i2"
+      },
+      "text": "직각인 시각은 언제인가요?"
+    },
+    {
+      "id": "slot.c1.text",
+      "type": "text",
+      "attributes": {
+        "x": 4.0,
+        "y": 106.0,
+        "max_width": 272.0,
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 17,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.c1",
+      "refs": {
+        "layout_slot_id": "slot.c1"
+      },
+      "text": "① 2시"
+    },
+    {
+      "id": "slot.c2.text",
+      "type": "text",
+      "attributes": {
+        "x": 112.0,
+        "y": 106.0,
+        "max_width": 272.0,
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 17,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.c2",
+      "refs": {
+        "layout_slot_id": "slot.c2"
+      },
+      "text": "② 6시"
+    },
+    {
+      "id": "slot.c3.text",
+      "type": "text",
+      "attributes": {
+        "x": 224.0,
+        "y": 106.0,
+        "max_width": 272.0,
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 17,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.c3",
+      "refs": {
+        "layout_slot_id": "slot.c3"
+      },
+      "text": "③ 9시"
+    },
+    {
+      "id": "slot.c4.text",
+      "type": "text",
+      "attributes": {
+        "x": 4.0,
+        "y": 148.0,
+        "max_width": 272.0,
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 17,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.c4",
+      "refs": {
+        "layout_slot_id": "slot.c4"
+      },
+      "text": "④ 10시"
+    },
+    {
+      "id": "slot.c5.text",
+      "type": "text",
+      "attributes": {
+        "x": 112.0,
+        "y": 148.0,
+        "max_width": 272.0,
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 17,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.c5",
+      "refs": {
+        "layout_slot_id": "slot.c5"
+      },
+      "text": "⑤ 11시"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

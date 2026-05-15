@@ -1,0 +1,213 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "msedge_iOAdFL5Owr",
+  "title": "",
+  "canvas": {
+    "width": 700,
+    "height": 384,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.b1",
+        "slot.b3",
+        "slot.b2",
+        "slot.b4.pre",
+        "slot.b4.frac.num",
+        "slot.b4.frac.bar",
+        "slot.b4.frac.den",
+        "slot.b4.suffix",
+        "slot.b5.pre",
+        "slot.b5.frac.num",
+        "slot.b5.frac.bar",
+        "slot.b5.frac.den"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.b1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "(보기)와 같은 방법으로 계산해 보시오.",
+        "style_role": "body",
+        "x": 28.0,
+        "y": 45.0,
+        "font_size": 22,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.b3",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 16.67450670498039,
+        "y": 83.37232286892387,
+        "width": 669.0,
+        "height": 136.0,
+        "stroke": "#111827",
+        "stroke_width": 1.6,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.b2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "(보기)",
+        "style_role": "body",
+        "x": 57.0,
+        "y": 127.0,
+        "font_size": 22,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.b4.pre",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "10 ÷",
+        "style_role": "body",
+        "x": 158.0,
+        "y": 157.0,
+        "font_size": 24,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.b4.frac.num",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "5",
+        "style_role": "body",
+        "x": 237.0,
+        "y": 142.0,
+        "font_size": 24,
+        "anchor": "middle",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.b4.frac.bar",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 222.0,
+        "y1": 150.0,
+        "x2": 252.0,
+        "y2": 150.0,
+        "stroke": "#111111",
+        "stroke_width": 1.8
+      }
+    },
+    {
+      "id": "slot.b4.frac.den",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "7",
+        "style_role": "body",
+        "x": 237.0,
+        "y": 172.0,
+        "font_size": 24,
+        "anchor": "middle",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.b4.suffix",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "= 10 ÷ 5 × 7 = 14",
+        "style_role": "body",
+        "x": 265.0,
+        "y": 157.0,
+        "font_size": 24,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.b5.pre",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "18 ÷",
+        "style_role": "body",
+        "x": 25.0,
+        "y": 296.0,
+        "font_size": 22,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.b5.frac.num",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "2",
+        "style_role": "body",
+        "x": 96.0,
+        "y": 282.0,
+        "font_size": 22,
+        "anchor": "middle",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.b5.frac.bar",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 82.0,
+        "y1": 289.0,
+        "x2": 110.0,
+        "y2": 289.0,
+        "stroke": "#111111",
+        "stroke_width": 1.8
+      }
+    },
+    {
+      "id": "slot.b5.frac.den",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "3",
+        "style_role": "body",
+        "x": 96.0,
+        "y": 311.0,
+        "font_size": 22,
+        "anchor": "middle",
+        "fill": "#111111"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.b1",
+    "slot.b3",
+    "slot.b2",
+    "slot.b4.pre",
+    "slot.b4.frac.num",
+    "slot.b4.frac.bar",
+    "slot.b4.frac.den",
+    "slot.b4.suffix",
+    "slot.b5.pre",
+    "slot.b5.frac.num",
+    "slot.b5.frac.bar",
+    "slot.b5.frac.den"
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "problem_id": "0014_나눗셈 범위",
+  "problem_type": "arithmetic_division_range_count",
+  "metadata": {
+    "title": "",
+    "tags": [],
+    "instruction": "몫이 가장 작을 때와 가장 클 때의 몫 사이에 있는 자연수는 모두 몇 개인가요?",
+    "question": "숫자 카드를 사용하여 만든 나눗셈 식의 몫의 최소값과 최대값 사이의 자연수 개수를 구하는 문제",
+    "required_layout_ids": [
+      "slot.bg",
+      "slot.card_1",
+      "slot.card_2",
+      "slot.card_3",
+      "slot.card_4",
+      "slot.expr_box",
+      "slot.frac_num_blank",
+      "slot.whole_blank",
+      "slot.div_blank",
+      "slot.frac_bar",
+      "slot.frac_den_blank"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.cards",
+        "type": "number_cards",
+        "values": [
+          3,
+          5,
+          7,
+          9
+        ]
+      },
+      {
+        "id": "obj.expr",
+        "type": "division_expression",
+        "form": "(A B/C) / D"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "plan": {
+        "method": "extreme_value_analysis",
+        "description": "몫을 최소화(A=3, D=9, C=7, B=5)하고 최대화(A=9, D=3, C=7, B=5)하는 조합을 찾아 범위를 구한다."
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "value": 3,
+    "unit": "개"
+  }
+}

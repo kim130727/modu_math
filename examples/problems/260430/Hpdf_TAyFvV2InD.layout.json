@@ -1,0 +1,115 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "Hpdf_TAyFvV2InD",
+  "title": "정사각형 두 개로 만든 직사각형",
+  "canvas": {
+    "width": 564,
+    "height": 336,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q1",
+        "slot.q2",
+        "slot.q3",
+        "slot.q4",
+        "slot.rect",
+        "slot.midline"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "정사각형 2개를 겹치지 않게 이어 붙여서 다음",
+        "style_role": "question",
+        "x": 12.0,
+        "y": 28.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "과 같은 직사각형을 만들었습니다. 굵은 선의",
+        "style_role": "question",
+        "x": 12.0,
+        "y": 64.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "길이가 30 cm일 때, 정사각형의 한 변은 몇",
+        "style_role": "question",
+        "x": 12.0,
+        "y": 100.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "cm입니까?",
+        "style_role": "question",
+        "x": 12.0,
+        "y": 136.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.rect",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 175.0,
+        "y": 222.0,
+        "width": 221.0,
+        "height": 108.0,
+        "stroke": "#222222",
+        "stroke_width": 3.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.midline",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 285.5,
+        "y1": 222.0,
+        "x2": 285.5,
+        "y2": 330.0,
+        "stroke": "#222222",
+        "stroke_width": 1.5
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q1",
+    "slot.q2",
+    "slot.q3",
+    "slot.q4",
+    "slot.rect",
+    "slot.midline"
+  ]
+}

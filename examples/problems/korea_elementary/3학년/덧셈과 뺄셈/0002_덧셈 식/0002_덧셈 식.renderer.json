@@ -1,0 +1,237 @@
+{
+  "problem_id": "0002_덧셈 식",
+  "view_box": {
+    "width": 408.0,
+    "height": 212.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.bg.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 408.0,
+        "height": 212.0,
+        "fill": "none",
+        "stroke": "none",
+        "stroke-width": 0.0,
+        "data-semantic-role": "background"
+      },
+      "source_ref": "slot.bg",
+      "refs": {
+        "layout_slot_id": "slot.bg"
+      }
+    },
+    {
+      "id": "slot.candidate_box.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 6.0,
+        "y": 78.0,
+        "width": 396.0,
+        "height": 56.0,
+        "fill": "none",
+        "stroke": "#666666",
+        "stroke-width": 1.5,
+        "rx": 10.0,
+        "ry": 10.0,
+        "data-semantic-role": "guide"
+      },
+      "source_ref": "slot.candidate_box",
+      "refs": {
+        "layout_slot_id": "slot.candidate_box"
+      }
+    },
+    {
+      "id": "slot.blank_left.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 94.0,
+        "y": 150.0,
+        "width": 69.0,
+        "height": 36.0,
+        "fill": "none",
+        "stroke": "#666666",
+        "stroke-width": 1.5,
+        "data-semantic-role": "answer_anchor"
+      },
+      "source_ref": "slot.blank_left",
+      "refs": {
+        "layout_slot_id": "slot.blank_left"
+      }
+    },
+    {
+      "id": "slot.blank_right.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 184.0,
+        "y": 150.0,
+        "width": 69.0,
+        "height": 36.0,
+        "fill": "none",
+        "stroke": "#666666",
+        "stroke-width": 1.5,
+        "data-semantic-role": "answer_anchor"
+      },
+      "source_ref": "slot.blank_right",
+      "refs": {
+        "layout_slot_id": "slot.blank_right"
+      }
+    },
+    {
+      "id": "slot.instruction_1.text",
+      "type": "text",
+      "attributes": {
+        "x": 6.0,
+        "y": 30.0,
+        "max_width": 280.0,
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 17,
+        "text-anchor": "start",
+        "data-semantic-role": "instruction"
+      },
+      "source_ref": "slot.instruction_1",
+      "refs": {
+        "layout_slot_id": "slot.instruction_1"
+      },
+      "text": "다음 수 중에서 2개를 골라 덧셈식을 만들려고"
+    },
+    {
+      "id": "slot.instruction_2.text",
+      "type": "text",
+      "attributes": {
+        "x": 6.0,
+        "y": 60.0,
+        "max_width": 280.0,
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 17,
+        "text-anchor": "start",
+        "data-semantic-role": "instruction"
+      },
+      "source_ref": "slot.instruction_2",
+      "refs": {
+        "layout_slot_id": "slot.instruction_2"
+      },
+      "text": "합니다. □ 안에 알맞은 수를 써넣으세요."
+    },
+    {
+      "id": "slot.candidate_1.text",
+      "type": "text",
+      "attributes": {
+        "x": 74.0,
+        "y": 113.0,
+        "max_width": 280.0,
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 17,
+        "text-anchor": "middle",
+        "data-semantic-role": "label"
+      },
+      "source_ref": "slot.candidate_1",
+      "refs": {
+        "layout_slot_id": "slot.candidate_1"
+      },
+      "text": "718"
+    },
+    {
+      "id": "slot.candidate_2.text",
+      "type": "text",
+      "attributes": {
+        "x": 160.0,
+        "y": 113.0,
+        "max_width": 280.0,
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 17,
+        "text-anchor": "middle",
+        "data-semantic-role": "label"
+      },
+      "source_ref": "slot.candidate_2",
+      "refs": {
+        "layout_slot_id": "slot.candidate_2"
+      },
+      "text": "295"
+    },
+    {
+      "id": "slot.candidate_3.text",
+      "type": "text",
+      "attributes": {
+        "x": 246.0,
+        "y": 113.0,
+        "max_width": 280.0,
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 17,
+        "text-anchor": "middle",
+        "data-semantic-role": "label"
+      },
+      "source_ref": "slot.candidate_3",
+      "refs": {
+        "layout_slot_id": "slot.candidate_3"
+      },
+      "text": "658"
+    },
+    {
+      "id": "slot.candidate_4.text",
+      "type": "text",
+      "attributes": {
+        "x": 332.0,
+        "y": 113.0,
+        "max_width": 280.0,
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 17,
+        "text-anchor": "middle",
+        "data-semantic-role": "label"
+      },
+      "source_ref": "slot.candidate_4",
+      "refs": {
+        "layout_slot_id": "slot.candidate_4"
+      },
+      "text": "245"
+    },
+    {
+      "id": "slot.plus_sign.text",
+      "type": "text",
+      "attributes": {
+        "x": 173.0,
+        "y": 176.0,
+        "max_width": 280.0,
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 34,
+        "text-anchor": "middle",
+        "data-semantic-role": "label"
+      },
+      "source_ref": "slot.plus_sign",
+      "refs": {
+        "layout_slot_id": "slot.plus_sign"
+      },
+      "text": "+"
+    },
+    {
+      "id": "slot.equal_expr.text",
+      "type": "text",
+      "attributes": {
+        "x": 300.0,
+        "y": 176.0,
+        "max_width": 280.0,
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 34,
+        "text-anchor": "middle",
+        "data-semantic-role": "label"
+      },
+      "source_ref": "slot.equal_expr",
+      "refs": {
+        "layout_slot_id": "slot.equal_expr"
+      },
+      "text": "=953"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

@@ -1,0 +1,559 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "Hpdf_3Qm6WHKnJ8",
+  "title": "",
+  "canvas": {
+    "width": 557,
+    "height": 520,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.title.l1",
+        "slot.title.l2",
+        "slot.left.panel",
+        "slot.badge.bg",
+        "slot.badge.text",
+        "slot.left.top",
+        "slot.left.top.left",
+        "slot.left.top.star",
+        "slot.left.top.right",
+        "slot.left.arrow1",
+        "slot.left.rule1",
+        "slot.left.diamond",
+        "slot.left.diamond.text",
+        "slot.left.arrow2",
+        "slot.left.rule2",
+        "slot.left.bottom",
+        "slot.left.bottom.text",
+        "slot.right.top",
+        "slot.right.top.left",
+        "slot.right.top.star",
+        "slot.right.top.right",
+        "slot.right.arrow1",
+        "slot.right.diamond",
+        "slot.right.diamond.text",
+        "slot.right.arrow2",
+        "slot.right.bottom",
+        "slot.right.bottom.text"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.title.l1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "732★567을 보기와 같은 방법으로 계산하려",
+        "style_role": "body",
+        "x": 10.0,
+        "y": 50.0,
+        "font_size": 28,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.title.l2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "고 합니다. ㉠에 알맞은 수를 구하시오.",
+        "style_role": "body",
+        "x": 10.0,
+        "y": 100.0,
+        "font_size": 28,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.badge.bg",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 80.0,
+        "y": 128.0,
+        "width": 52.0,
+        "height": 30.0,
+        "stroke": "#8a8d93",
+        "stroke_width": 1.0,
+        "rx": 10.0,
+        "ry": 10.0,
+        "fill": "#8a8d93"
+      }
+    },
+    {
+      "id": "slot.badge.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "보기",
+        "style_role": "body",
+        "x": 85.4,
+        "y": 150.6,
+        "font_size": 22,
+        "fill": "#1f2328"
+      }
+    },
+    {
+      "id": "slot.left.panel",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 63.0,
+        "y": 145.0,
+        "width": 227.0,
+        "height": 358.0,
+        "stroke": "#8a8d93",
+        "stroke_width": 2.0,
+        "rx": 8.0,
+        "ry": 8.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.left.top",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 82.0,
+        "y": 171.0,
+        "width": 160.0,
+        "height": 64.0,
+        "stroke": "#8a8d93",
+        "stroke_width": 2.0,
+        "rx": 32.0,
+        "ry": 32.0,
+        "fill": "#d1d3d8"
+      }
+    },
+    {
+      "id": "slot.left.top.left",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "가",
+        "style_role": "body",
+        "x": 112.0,
+        "y": 214.0,
+        "font_size": 28,
+        "fill": "#1f2328"
+      }
+    },
+    {
+      "id": "slot.left.top.star",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            163.0,
+            188.0
+          ],
+          [
+            167.0,
+            198.0
+          ],
+          [
+            178.0,
+            198.0
+          ],
+          [
+            169.0,
+            205.0
+          ],
+          [
+            173.0,
+            216.0
+          ],
+          [
+            163.0,
+            209.0
+          ],
+          [
+            153.0,
+            216.0
+          ],
+          [
+            157.0,
+            205.0
+          ],
+          [
+            148.0,
+            198.0
+          ],
+          [
+            159.0,
+            198.0
+          ]
+        ],
+        "stroke": "#7d8087",
+        "stroke_width": 1.0,
+        "fill": "#7d8087"
+      }
+    },
+    {
+      "id": "slot.left.top.right",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "나",
+        "style_role": "body",
+        "x": 186.0,
+        "y": 214.0,
+        "font_size": 28,
+        "fill": "#1f2328"
+      }
+    },
+    {
+      "id": "slot.left.arrow1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 163.0,
+        "y1": 236.0,
+        "x2": 163.0,
+        "y2": 292.0,
+        "stroke": "#55585f",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.left.rule1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "가-나",
+        "style_role": "body",
+        "x": 188.0,
+        "y": 272.0,
+        "font_size": 28,
+        "fill": "#1f2328"
+      }
+    },
+    {
+      "id": "slot.left.diamond",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            163.0,
+            296.0
+          ],
+          [
+            242.0,
+            331.0
+          ],
+          [
+            163.0,
+            366.0
+          ],
+          [
+            84.0,
+            331.0
+          ]
+        ],
+        "stroke": "#8a8d93",
+        "stroke_width": 2.0,
+        "fill": "#d8dae0"
+      }
+    },
+    {
+      "id": "slot.left.diamond.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "다",
+        "style_role": "body",
+        "x": 149.0,
+        "y": 340.0,
+        "font_size": 28,
+        "fill": "#1f2328"
+      }
+    },
+    {
+      "id": "slot.left.arrow2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 163.0,
+        "y1": 366.0,
+        "x2": 163.0,
+        "y2": 419.0,
+        "stroke": "#55585f",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.left.rule2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "다+348",
+        "style_role": "body",
+        "x": 181.0,
+        "y": 395.0,
+        "font_size": 28,
+        "fill": "#1f2328"
+      }
+    },
+    {
+      "id": "slot.left.bottom",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 82.0,
+        "y": 423.0,
+        "width": 160.0,
+        "height": 64.0,
+        "stroke": "#8a8d93",
+        "stroke_width": 2.0,
+        "rx": 32.0,
+        "ry": 32.0,
+        "fill": "#d1d3d8"
+      }
+    },
+    {
+      "id": "slot.left.bottom.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "라",
+        "style_role": "body",
+        "x": 150.0,
+        "y": 466.0,
+        "font_size": 28,
+        "fill": "#1f2328"
+      }
+    },
+    {
+      "id": "slot.right.top",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 326.0,
+        "y": 171.0,
+        "width": 158.0,
+        "height": 64.0,
+        "stroke": "#8a8d93",
+        "stroke_width": 2.0,
+        "rx": 32.0,
+        "ry": 32.0,
+        "fill": "#d1d3d8"
+      }
+    },
+    {
+      "id": "slot.right.top.left",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "732",
+        "style_role": "body",
+        "x": 344.0,
+        "y": 214.0,
+        "font_size": 28,
+        "fill": "#1f2328"
+      }
+    },
+    {
+      "id": "slot.right.top.star",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            405.0,
+            188.0
+          ],
+          [
+            409.0,
+            198.0
+          ],
+          [
+            420.0,
+            198.0
+          ],
+          [
+            411.0,
+            205.0
+          ],
+          [
+            415.0,
+            216.0
+          ],
+          [
+            405.0,
+            209.0
+          ],
+          [
+            395.0,
+            216.0
+          ],
+          [
+            399.0,
+            205.0
+          ],
+          [
+            390.0,
+            198.0
+          ],
+          [
+            401.0,
+            198.0
+          ]
+        ],
+        "stroke": "#7d8087",
+        "stroke_width": 1.0,
+        "fill": "#7d8087"
+      }
+    },
+    {
+      "id": "slot.right.top.right",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "567",
+        "style_role": "body",
+        "x": 425.0,
+        "y": 214.0,
+        "font_size": 28,
+        "fill": "#1f2328"
+      }
+    },
+    {
+      "id": "slot.right.arrow1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 405.0,
+        "y1": 236.0,
+        "x2": 405.0,
+        "y2": 292.0,
+        "stroke": "#55585f",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.right.diamond",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            405.0,
+            296.0
+          ],
+          [
+            484.0,
+            331.0
+          ],
+          [
+            405.0,
+            366.0
+          ],
+          [
+            326.0,
+            331.0
+          ]
+        ],
+        "stroke": "#8a8d93",
+        "stroke_width": 2.0,
+        "fill": "#d8dae0"
+      }
+    },
+    {
+      "id": "slot.right.diamond.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "다",
+        "style_role": "body",
+        "x": 391.0,
+        "y": 340.0,
+        "font_size": 28,
+        "fill": "#1f2328"
+      }
+    },
+    {
+      "id": "slot.right.arrow2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 405.0,
+        "y1": 366.0,
+        "x2": 405.0,
+        "y2": 419.0,
+        "stroke": "#55585f",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.right.bottom",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 326.0,
+        "y": 423.0,
+        "width": 158.0,
+        "height": 64.0,
+        "stroke": "#8a8d93",
+        "stroke_width": 2.0,
+        "rx": 32.0,
+        "ry": 32.0,
+        "fill": "#d1d3d8"
+      }
+    },
+    {
+      "id": "slot.right.bottom.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "㉠",
+        "style_role": "body",
+        "x": 392.0,
+        "y": 466.0,
+        "font_size": 28,
+        "fill": "#1f2328"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.title.l1",
+    "slot.title.l2",
+    "slot.left.panel",
+    "slot.badge.bg",
+    "slot.badge.text",
+    "slot.left.top",
+    "slot.left.top.left",
+    "slot.left.top.star",
+    "slot.left.top.right",
+    "slot.left.arrow1",
+    "slot.left.rule1",
+    "slot.left.diamond",
+    "slot.left.diamond.text",
+    "slot.left.arrow2",
+    "slot.left.rule2",
+    "slot.left.bottom",
+    "slot.left.bottom.text",
+    "slot.right.top",
+    "slot.right.top.left",
+    "slot.right.top.star",
+    "slot.right.top.right",
+    "slot.right.arrow1",
+    "slot.right.diamond",
+    "slot.right.diamond.text",
+    "slot.right.arrow2",
+    "slot.right.bottom",
+    "slot.right.bottom.text"
+  ]
+}

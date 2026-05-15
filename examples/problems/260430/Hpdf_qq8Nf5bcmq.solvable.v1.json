@@ -1,0 +1,75 @@
+{
+  "schema": "modu.solvable.v1",
+  "problem_id": "Hpdf_qq8Nf5bcmq",
+  "problem_type": "number_construction",
+  "given": [
+    {
+      "ref": "obj.card_6",
+      "value": 6
+    },
+    {
+      "ref": "obj.card_2",
+      "value": 2
+    },
+    {
+      "ref": "obj.card_8",
+      "value": 8
+    },
+    {
+      "ref": "obj.card_triangle",
+      "value": null
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "digit"
+  },
+  "method": "digit_search",
+  "steps": [
+    {
+      "id": "step.s1",
+      "operation": "compare_candidate_digits",
+      "expr": "세 자리 수의 최댓값과 최솟값의 차가 618이 되도록 ▲를 찾는다.",
+      "value": null
+    },
+    {
+      "id": "step.s2",
+      "operation": "solve_digit",
+      "expr": "▲ = 4",
+      "value": 4
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.c1",
+      "type": "difference_check",
+      "expr": "최댓값 - 최솟값 = 618",
+      "pass": true,
+      "expected": 1,
+      "actual": 1
+    },
+    {
+      "id": "check.c2",
+      "type": "digit_validity_check",
+      "expr": "▲는 한 자리 숫자",
+      "pass": true,
+      "expected": 1,
+      "actual": 1
+    }
+  ],
+  "answer": {
+    "value": 4,
+    "unit": "",
+    "derived_from": "step.s2"
+  },
+  "inputs": {
+    "total_ticks": 1,
+    "target_label": "답",
+    "target_ticks": 1,
+    "target_count": 1,
+    "unit": ""
+  },
+  "plan": [
+    "풀이 과정 없음"
+  ]
+}

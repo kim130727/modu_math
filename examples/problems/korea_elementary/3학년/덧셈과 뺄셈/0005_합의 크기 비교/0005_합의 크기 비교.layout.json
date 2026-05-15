@@ -1,0 +1,190 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "0005_합의 크기 비교",
+  "title": "",
+  "canvas": {
+    "width": 1852,
+    "height": 554,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "vertical",
+      "slot_ids": [
+        "slot.left_box",
+        "slot.right_box",
+        "slot.instruction",
+        "slot.left_expr",
+        "slot.right_expr",
+        "slot.left_paren_l",
+        "slot.left_paren_r",
+        "slot.right_paren_l",
+        "slot.right_paren_r"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.instruction",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "계산 결과가 더 큰 것에 ○표 하세요.",
+        "style_role": "body",
+        "x": 44.0,
+        "y": 106.0,
+        "font_size": 72,
+        "font_family": "Malgun Gothic",
+        "anchor": "start",
+        "fill": "#222222",
+        "semantic_role": "decorative"
+      }
+    },
+    {
+      "id": "slot.left_box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 320.0,
+        "y": 180.0,
+        "width": 590.0,
+        "height": 210.0,
+        "stroke": "none",
+        "stroke_width": 0.0,
+        "rx": 75.0,
+        "fill": "#D0CABB",
+        "semantic_role": "choice"
+      }
+    },
+    {
+      "id": "slot.right_box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 1200.0,
+        "y": 180.0,
+        "width": 590.0,
+        "height": 210.0,
+        "stroke": "none",
+        "stroke_width": 0.0,
+        "rx": 75.0,
+        "fill": "#D0CABB",
+        "semantic_role": "choice"
+      }
+    },
+    {
+      "id": "slot.left_expr",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "605+298",
+        "style_role": "body",
+        "x": 615.0,
+        "y": 294.0,
+        "font_size": 74,
+        "font_family": "Cambria",
+        "anchor": "middle",
+        "fill": "#222222",
+        "semantic_role": "decorative"
+      }
+    },
+    {
+      "id": "slot.right_expr",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "567+385",
+        "style_role": "body",
+        "x": 1495.0,
+        "y": 294.0,
+        "font_size": 74,
+        "font_family": "Cambria",
+        "anchor": "middle",
+        "fill": "#222222",
+        "semantic_role": "decorative"
+      }
+    },
+    {
+      "id": "slot.left_paren_l",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "(",
+        "style_role": "body",
+        "x": 500.0,
+        "y": 478.0,
+        "font_size": 92,
+        "font_family": "Cambria",
+        "anchor": "middle",
+        "fill": "#222222",
+        "semantic_role": "decorative"
+      }
+    },
+    {
+      "id": "slot.left_paren_r",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": ")",
+        "style_role": "body",
+        "x": 735.0,
+        "y": 478.0,
+        "font_size": 92,
+        "font_family": "Cambria",
+        "anchor": "middle",
+        "fill": "#222222",
+        "semantic_role": "decorative"
+      }
+    },
+    {
+      "id": "slot.right_paren_l",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "(",
+        "style_role": "body",
+        "x": 1380.0,
+        "y": 478.0,
+        "font_size": 92,
+        "font_family": "Cambria",
+        "anchor": "middle",
+        "fill": "#222222",
+        "semantic_role": "decorative"
+      }
+    },
+    {
+      "id": "slot.right_paren_r",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": ")",
+        "style_role": "body",
+        "x": 1615.0,
+        "y": 478.0,
+        "font_size": 92,
+        "font_family": "Cambria",
+        "anchor": "middle",
+        "fill": "#222222",
+        "semantic_role": "decorative"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.left_box",
+    "slot.right_box",
+    "slot.instruction",
+    "slot.left_expr",
+    "slot.right_expr",
+    "slot.left_paren_l",
+    "slot.left_paren_r",
+    "slot.right_paren_l",
+    "slot.right_paren_r"
+  ]
+}

@@ -1,0 +1,225 @@
+{
+  "problem_id": "p260422_001",
+  "problem_type": "fill_in_blank",
+  "metadata": {
+    "title": "",
+    "tags": [],
+    "instruction": "229+985를 다음과 같은 방법으로 계산하였습니다. □ 안에 알맞은 수를 써넣으시오.",
+    "question": "229+985 = (220+□) + (□+5) = □ + 14 = □",
+    "required_layout_ids": [
+      "slot.rect_6"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "n229",
+        "type": "number",
+        "value": 229,
+        "text": "229"
+      },
+      {
+        "id": "n985",
+        "type": "number",
+        "value": 985,
+        "text": "985"
+      },
+      {
+        "id": "n220",
+        "type": "number",
+        "value": 220,
+        "text": "220"
+      },
+      {
+        "id": "n980",
+        "type": "number",
+        "value": 980,
+        "text": "980"
+      },
+      {
+        "id": "n9",
+        "type": "number",
+        "value": 9,
+        "text": "9"
+      },
+      {
+        "id": "n5",
+        "type": "number",
+        "value": 5,
+        "text": "5"
+      },
+      {
+        "id": "n14",
+        "type": "number",
+        "value": 14,
+        "text": "14"
+      },
+      {
+        "id": "n1200",
+        "type": "number",
+        "value": 1200,
+        "text": "1200"
+      },
+      {
+        "id": "n1214",
+        "type": "number",
+        "value": 1214,
+        "text": "1214"
+      },
+      {
+        "id": "blank1",
+        "type": "blank",
+        "text": "220+□의 □"
+      },
+      {
+        "id": "blank2",
+        "type": "blank",
+        "text": "(□+5)의 □"
+      },
+      {
+        "id": "blank3",
+        "type": "blank",
+        "text": "= □ + 14의 □"
+      },
+      {
+        "id": "blank4",
+        "type": "blank",
+        "text": "= □의 □"
+      },
+      {
+        "id": "instr1",
+        "type": "instruction",
+        "text": "□ 안에 알맞은 수를 써넣으시오."
+      },
+      {
+        "id": "q1",
+        "type": "question",
+        "text": "229+985를 다음과 같은 방법으로 계산하였습니다."
+      },
+      {
+        "id": "expr1",
+        "type": "expression",
+        "value": "229+985",
+        "text": "229+985"
+      },
+      {
+        "id": "expr2",
+        "type": "expression",
+        "value": "(220+9)+(980+5)",
+        "text": "(220+□)+(□+5)"
+      },
+      {
+        "id": "expr3",
+        "type": "expression",
+        "value": "1200+14",
+        "text": "□+14"
+      }
+    ],
+    "relations": [
+      {
+        "id": "r1",
+        "type": "asks_for",
+        "from_id": "instr1",
+        "to_id": "blank1"
+      },
+      {
+        "id": "r2",
+        "type": "asks_for",
+        "from_id": "instr1",
+        "to_id": "blank2"
+      },
+      {
+        "id": "r3",
+        "type": "asks_for",
+        "from_id": "instr1",
+        "to_id": "blank3"
+      },
+      {
+        "id": "r4",
+        "type": "asks_for",
+        "from_id": "instr1",
+        "to_id": "blank4"
+      },
+      {
+        "id": "r5",
+        "type": "decomposes_into",
+        "from_id": "n229",
+        "to_id": "n220"
+      },
+      {
+        "id": "r6",
+        "type": "decomposes_into",
+        "from_id": "n985",
+        "to_id": "n980"
+      },
+      {
+        "id": "r7",
+        "type": "blank_value",
+        "from_id": "blank1",
+        "to_id": "n9"
+      },
+      {
+        "id": "r8",
+        "type": "blank_value",
+        "from_id": "blank2",
+        "to_id": "n980"
+      },
+      {
+        "id": "r9",
+        "type": "blank_value",
+        "from_id": "blank3",
+        "to_id": "n1200"
+      },
+      {
+        "id": "r10",
+        "type": "blank_value",
+        "from_id": "blank4",
+        "to_id": "n1214"
+      },
+      {
+        "id": "r11",
+        "type": "rewrites_to",
+        "from_id": "expr1",
+        "to_id": "expr2"
+      },
+      {
+        "id": "r12",
+        "type": "rewrites_to",
+        "from_id": "expr2",
+        "to_id": "expr3"
+      },
+      {
+        "id": "r13",
+        "type": "computes_to",
+        "from_id": "expr3",
+        "to_id": "n1214"
+      }
+    ],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {},
+      "plan": {},
+      "execute": {},
+      "review": {}
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "number",
+      "description": "정답"
+    },
+    "value": {
+      "blank1": 9,
+      "blank2": 980,
+      "blank3": 1200,
+      "blank4": 1214
+    },
+    "unit": ""
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "problem_id": "0005_종이별 개수",
+  "view_box": {
+    "width": 767.0,
+    "height": 162.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.bg.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 767.0,
+        "height": 162.0,
+        "fill": "none",
+        "stroke": "none",
+        "stroke-width": 0.0
+      },
+      "source_ref": "slot.bg",
+      "refs": {
+        "layout_slot_id": "slot.bg"
+      }
+    },
+    {
+      "id": "slot.answer_total.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 689.0,
+        "y": 120.0,
+        "width": 60.0,
+        "height": 30.0,
+        "fill": "none",
+        "stroke": "none",
+        "stroke-width": 0.0,
+        "data-semantic-role": "answer_anchor"
+      },
+      "source_ref": "slot.answer_total",
+      "refs": {
+        "layout_slot_id": "slot.answer_total"
+      }
+    },
+    {
+      "id": "slot.t1.text",
+      "type": "text",
+      "attributes": {
+        "x": 8.0,
+        "y": 32.0,
+        "max_width": 639.0,
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 17,
+        "text-anchor": "start"
+      },
+      "source_ref": "slot.t1",
+      "refs": {
+        "layout_slot_id": "slot.t1"
+      },
+      "text": "소희는 종이별을 399개 접었고, 은별이는 소희보다 115개만큼 더 많이 접었습니다."
+    },
+    {
+      "id": "slot.t2.text",
+      "type": "text",
+      "attributes": {
+        "x": 8.0,
+        "y": 60.0,
+        "max_width": 639.0,
+        "fill": "#222222",
+        "font-family": "Malgun Gothic",
+        "font-size": 17,
+        "text-anchor": "start"
+      },
+      "source_ref": "slot.t2",
+      "refs": {
+        "layout_slot_id": "slot.t2"
+      },
+      "text": "두 사람이 접은 종이별은 모두 몇 개인지 식과 답을 구하시오."
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}
