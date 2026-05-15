@@ -4,7 +4,12 @@ import argparse
 import base64
 import mimetypes
 import os
+import logging
+import asyncio
 from pathlib import Path
+
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
 
 DEFAULT_MODEL = "gpt-5.4-mini"
 
@@ -117,7 +122,7 @@ def build_user_prompt(problem_id: str, vision_draft_text: str, has_image: bool) 
 """
 
 
-def refine_vision_draft(
+async def refine_vision_draft(
     *,
     vision_draft_path: Path,
     problem_id: str,
@@ -145,7 +150,7 @@ def refine_vision_draft(
         raise EnvironmentError("OPENAI_API_KEY is not set. Add it to your environment or .env file.")
 
     try:
-        from openai import OpenAI
+        from openai import AsyncOpenAI
     except ImportError as exc:
         raise ImportError("openai package is required. Install with: pip install openai") from exc
 
@@ -161,8 +166,8 @@ def refine_vision_draft(
     if image_path is not None:
         user_content.append({"type": "input_image", "image_url": image_to_data_url(image_path), "detail": "high"})
 
-    client = OpenAI(api_key=api_key)
-    response = client.responses.create(
+    client = AsyncOpenAI(api_key=api_key)
+    response = await client.responses.create(
         model=resolved_model,
         input=[
             {"role": "system", "content": [{"type": "input_text", "text": SYSTEM_PROMPT}]},
@@ -184,9 +189,9 @@ def refine_vision_draft(
     return result
 
 
-def main(argv: list[str] | None = None) -> int:
+async def main(argv: list[str] | None = None) -> int:
     args = parse_args(argv)
-    result = refine_vision_draft(
+    result = await refine_vision_draft(
         vision_draft_path=Path(args.vision_draft),
         problem_id=args.problem_id,
         out_path=Path(args.out),
@@ -194,10 +199,10 @@ def main(argv: list[str] | None = None) -> int:
         model=args.model,
         force=bool(args.force),
     )
-    print(f"Wrote refined draft: {result['out']}")
-    print(result["refined_text"])
+    logger.info(f"Wrote refined draft: {result['out']}")
+    logger.debug(result["refined_text"])
     return 0
 
 
 if __name__ == "__main__":
-    raise SystemExit(main())
+    raise SystemExit(asyncio.run(main()))
