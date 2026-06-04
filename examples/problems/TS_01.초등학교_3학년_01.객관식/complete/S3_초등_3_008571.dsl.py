@@ -7,7 +7,7 @@ def build_problem_template() -> ProblemTemplate:
     return ProblemTemplate(
         id="S3_초등_3_008571",
         title="값이 더 작은 것을 선택하세요.",
-        canvas=Canvas(width=650, height=300, coordinate_mode="logical"),
+        canvas=Canvas(width = 610, height = 245, coordinate_mode="logical"),
         regions=(
             Region(id="region.top", role="stem", flow="absolute", slot_ids=("slot.qtext",)),
             Region(id="region.main", role="diagram", flow="absolute", slot_ids=("slot.box", "slot.choice1", "slot.choice2")),

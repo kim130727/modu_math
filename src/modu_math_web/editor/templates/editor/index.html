@@ -124,7 +124,8 @@
       -webkit-user-select: none;
       -ms-user-select: none;
     }
-    .svg-box svg [id^="slot."] { cursor: move; }
+    .svg-box svg [id] { cursor: move; }
+    .svg-box svg text[id] { pointer-events: bounding-box; }
     .svg-box svg .slot-selected { filter: drop-shadow(0 0 3px #0f766e); }
     .svg-box svg .pick-disabled { pointer-events: none; opacity: 0.35; }
     .svg-box svg .selection-bounds {
@@ -500,17 +501,6 @@
       return { left, top, right, bottom, width: right - left, height: bottom - top };
     }
 
-    function isTextCenterEditHit(el, ev) {
-      if (!el || el.tagName.toLowerCase() !== "text") return false;
-      if (ev.shiftKey || ev.ctrlKey || ev.metaKey || ev.altKey) return false;
-      const rect = svgBBoxClientRect(el);
-      if (!rect || rect.width < 8 || rect.height < 8) return false;
-      const edge = Math.min(12, Math.max(5, Math.min(rect.width, rect.height) * 0.28));
-      const x = ev.clientX;
-      const y = ev.clientY;
-      return x > rect.left + edge && x < rect.right - edge && y > rect.top + edge && y < rect.bottom - edge;
-    }
-
     function hideInlineTextEditor() {
       const editor = document.getElementById("inlineTextEditor");
       if (editor) editor.style.display = "none";
@@ -697,6 +687,19 @@
       return tag === "text" || tag === "rect" || tag === "circle" || tag === "line" || tag === "path" || tag === "polygon";
     }
 
+    function draggableSlotElements(svg, prefix = null) {
+      if (!svg) return [];
+      const out = [];
+      for (const node of svg.querySelectorAll("[id]")) {
+        if (!isDraggableSlotElement(node)) continue;
+        const sid = slotIdFromElement(node);
+        if (!sid || !extractDslSlotIds().has(sid)) continue;
+        if (prefix && !sid.startsWith(prefix)) continue;
+        out.push(node);
+      }
+      return out;
+    }
+
     function matchesPickMode(el) {
       if (!el) return false;
       const tag = el.tagName.toLowerCase();
@@ -742,9 +745,8 @@
       const svg = document.getElementById("svgPreview").querySelector("svg");
       if (!svg) return [slotId];
       const out = new Set([slotId]);
-      const nodes = svg.querySelectorAll('[id^="slot."]');
+      const nodes = draggableSlotElements(svg);
       for (const node of nodes) {
-        if (!isDraggableSlotElement(node)) continue;
         const sid = slotIdFromElement(node);
         if (!sid) continue;
         if (sid === base || sid.startsWith(`${base}_head`) || sid.startsWith(`${base}_body`) || sid.startsWith(`${base}.head`) || sid.startsWith(`${base}.body`)) {
@@ -766,8 +768,7 @@
       const svg = document.getElementById("svgPreview").querySelector("svg");
       if (!svg) return null;
       const out = [];
-      for (const node of svg.querySelectorAll('[id^="slot.figure."]')) {
-        if (!isDraggableSlotElement(node)) continue;
+      for (const node of draggableSlotElements(svg, "slot.figure.")) {
         const sid = slotIdFromElement(node);
         if (sid && sid.startsWith(`${base}.`) && !out.includes(sid)) out.push(sid);
       }
@@ -778,8 +779,7 @@
       const svg = document.getElementById("svgPreview").querySelector("svg");
       if (!svg) return [];
       const out = [];
-      for (const node of svg.querySelectorAll('[id^="slot."]')) {
-        if (!isDraggableSlotElement(node)) continue;
+      for (const node of draggableSlotElements(svg)) {
         const sid = slotIdFromElement(node);
         if (slotIds.includes(sid)) out.push(node);
       }
@@ -789,9 +789,8 @@
     function applyPickMode() {
       const svg = document.getElementById("svgPreview").querySelector("svg");
       if (!svg) return;
-      const nodes = svg.querySelectorAll('[id^="slot."]');
+      const nodes = draggableSlotElements(svg);
       for (const node of nodes) {
-        if (!isDraggableSlotElement(node)) continue;
         if (matchesPickMode(node)) node.classList.remove("pick-disabled");
         else node.classList.add("pick-disabled");
       }
@@ -857,12 +856,15 @@
         width: Math.abs(end.x - local.startSvg.x),
         height: Math.abs(end.y - local.startSvg.y),
       };
-      if (pickRect.width < 2 && pickRect.height < 2) return;
+      if (pickRect.width < 2 && pickRect.height < 2) {
+        selectCanvas();
+        return;
+      }
 
       clearSelection();
-      const nodes = local.svg.querySelectorAll('[id^="slot."]');
+      const nodes = draggableSlotElements(local.svg);
       for (const node of nodes) {
-        if (!isDraggableSlotElement(node) || !matchesPickMode(node)) continue;
+        if (!matchesPickMode(node)) continue;
         let bb = null;
         try {
           bb = node.getBBox();
@@ -871,7 +873,7 @@
         }
         if (!bb || !intersects(pickRect, bb)) continue;
         const slotId = slotIdFromElement(node);
-        if (!slotId || !slotId.startsWith("slot.")) continue;
+        if (!slotId) continue;
         setSelectedElement(node, slotId, true);
       }
       setStatus(`영역 선택: ${selectedSlots.size}개`, true);
@@ -880,7 +882,7 @@
     function findDraggableSlotAncestor(node) {
       let cur = node;
       while (cur && cur.tagName && cur.tagName.toLowerCase() !== "svg") {
-        if (cur.id && cur.id.startsWith("slot.") && isDraggableSlotElement(cur)) return cur;
+        if (cur.id && isDraggableSlotElement(cur) && slotIdsFromElement(cur).length) return cur;
         cur = cur.parentNode;
       }
       return null;
@@ -1147,6 +1149,21 @@
       return { x: left, y: top, width: right - left, height: bottom - top };
     }
 
+    function adjustedCanvasBox(startBox, handle, dx, dy) {
+      let width = startBox.width;
+      let height = startBox.height;
+      if (handle.includes("e")) width = startBox.width + dx;
+      if (handle.includes("w")) width = startBox.width - dx;
+      if (handle.includes("s")) height = startBox.height + dy;
+      if (handle.includes("n")) height = startBox.height - dy;
+      return {
+        x: 0,
+        y: 0,
+        width: Math.max(20, width),
+        height: Math.max(20, height),
+      };
+    }
+
     function resizePatchForElement(el, handle, startValue, startBox, nextBox) {
       const snap = (v) => (snapEnabled ? snapValue(v) : v);
       const tag = el.tagName.toLowerCase();
@@ -1297,6 +1314,7 @@
 
     function clearSelection() {
       for (const item of selectedSlots.values()) {
+        if (item.isCanvas) continue;
         const nodes = item.elements || [item.el];
         for (const node of nodes) node.classList.remove("slot-selected");
       }
@@ -1305,6 +1323,18 @@
       selectedSlotId = null;
       updateSelectionHandles();
       updateTextEditControls();
+    }
+
+    function selectCanvas() {
+      const svg = document.getElementById("svgPreview").querySelector("svg");
+      if (!svg) return;
+      clearSelection();
+      selectedSlots.set("__canvas__", { el: svg, slotId: "__canvas__", elements: [], isCanvas: true });
+      selectedElement = svg;
+      selectedSlotId = "__canvas__";
+      updateSelectionHandles();
+      updateTextEditControls();
+      setStatus("캔버스 선택: 핸들을 드래그해 크기 조절", true);
     }
 
     function setSelectedElement(el, slotId, append = false) {
@@ -1342,7 +1372,7 @@
       const arrowGroupIds = collectArrowGroupSlotIds(slotId);
       const svg = document.getElementById("svgPreview").querySelector("svg");
       if (!svg) return;
-      const allNodes = svg.querySelectorAll('[id^="slot."]');
+      const allNodes = draggableSlotElements(svg);
 
       const toggleOff = append && arrowGroupIds.every((id) => selectedSlots.has(id));
       if (toggleOff) {
@@ -1356,7 +1386,6 @@
         for (const gid of arrowGroupIds) {
           let nodeForId = null;
           for (const n of allNodes) {
-            if (!isDraggableSlotElement(n)) continue;
             if (slotIdFromElement(n) === gid) {
               nodeForId = n;
               break;
@@ -1457,6 +1486,17 @@
       }
     }
 
+    function applyCanvasPatchValue(value) {
+      const svg = document.getElementById("svgPreview").querySelector("svg");
+      if (!svg || !value) return;
+      const width = Number(value.width || 0);
+      const height = Number(value.height || 0);
+      if (width <= 0 || height <= 0) return;
+      svg.setAttribute("width", String(width));
+      svg.setAttribute("height", String(height));
+      svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
+    }
+
     function snapPatchValue(value) {
       if (!snapEnabled || !value) return value;
       if (value.x !== undefined && value.y !== undefined) {
@@ -1521,9 +1561,8 @@
     function findElementBySlotId(slotId) {
       const svg = document.getElementById("svgPreview").querySelector("svg");
       if (!svg) return null;
-      const nodes = svg.querySelectorAll('[id^="slot."]');
+      const nodes = draggableSlotElements(svg);
       for (const node of nodes) {
-        if (!isDraggableSlotElement(node)) continue;
         const mapped = toDslSlotId(node.getAttribute("id"));
         if (mapped === slotId) return node;
       }
@@ -1532,8 +1571,11 @@
 
     function resizePatchForCanvas(svg, handle, startValue, startBox, nextBox) {
       const snap = (v) => (snapEnabled ? snapValue(v) : v);
-      const width = Math.max(20, snap(nextBox.width));
-      const height = Math.max(20, snap(nextBox.height));
+      const changesWidth = handle.includes("e") || handle.includes("w");
+      const changesHeight = handle.includes("n") || handle.includes("s");
+      const width = Math.max(20, snap(changesWidth ? nextBox.width : startValue.width));
+      const height = Math.max(20, snap(changesHeight ? nextBox.height : startValue.height));
+      if (width === startValue.width && height === startValue.height) return null;
       svg.setAttribute("width", String(width));
       svg.setAttribute("height", String(height));
       svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
@@ -1637,6 +1679,10 @@
       const states = useBefore ? entry.before : entry.after;
       const patches = states.map((s) => ({ target: s.slotId, op: "update", value: s.value }));
       for (const s of states) {
+        if (s.slotId === "__canvas__") {
+          applyCanvasPatchValue(s.value);
+          continue;
+        }
         const el = findElementBySlotId(s.slotId);
         if (el) applyPatchValueToElement(el, s.value);
       }
@@ -1674,6 +1720,9 @@
       if (!svg) return;
       const box = itemBBox(item);
       if (!box) return;
+      const svgClientRect = svg.getBoundingClientRect();
+      const canvasScaleX = item.isCanvas && svgClientRect.width > 0 ? box.width / svgClientRect.width : 1;
+      const canvasScaleY = item.isCanvas && svgClientRect.height > 0 ? box.height / svgClientRect.height : 1;
       const startValue = item.isFigureGroup
         ? (item.elements || [])
             .map((el) => ({ el, slotId: slotIdFromElement(el), value: readSlotPatchValue(el) }))
@@ -1688,6 +1737,10 @@
         item,
         handle,
         startPoint: getSvgPoint(svg, ev.clientX, ev.clientY),
+        startClientX: ev.clientX,
+        startClientY: ev.clientY,
+        canvasScaleX,
+        canvasScaleY,
         startBox: cloneBBox(box),
         startValue: item.isFigureGroup
           ? startValue.map((entry) => ({ ...entry, value: JSON.parse(JSON.stringify(entry.value)) }))
@@ -1708,10 +1761,16 @@
 
     function updateResize(ev) {
       if (!resizeState) return;
-      const p = getSvgPoint(resizeState.svg, ev.clientX, ev.clientY);
-      const dx = p.x - resizeState.startPoint.x;
-      const dy = p.y - resizeState.startPoint.y;
-      const nextBox = adjustedBBox(resizeState.startBox, resizeState.handle, dx, dy);
+      const p = resizeState.item.isCanvas ? null : getSvgPoint(resizeState.svg, ev.clientX, ev.clientY);
+      const dx = resizeState.item.isCanvas
+        ? (ev.clientX - resizeState.startClientX) * resizeState.canvasScaleX
+        : p.x - resizeState.startPoint.x;
+      const dy = resizeState.item.isCanvas
+        ? (ev.clientY - resizeState.startClientY) * resizeState.canvasScaleY
+        : p.y - resizeState.startPoint.y;
+      const nextBox = resizeState.item.isCanvas
+        ? adjustedCanvasBox(resizeState.startBox, resizeState.handle, dx, dy)
+        : adjustedBBox(resizeState.startBox, resizeState.handle, dx, dy);
       const value = resizeState.item.isFigureGroup
         ? resizeFigureGroup(resizeState, nextBox)
         : resizeState.item.isCanvas
@@ -1771,6 +1830,7 @@
         const after = [{ slotId: "__canvas__", value: JSON.parse(JSON.stringify(value)) }];
         try {
           await commitPatches([{ target: "__canvas__", op: "update", value }], "캔버스 크기 저장 완료");
+          selectCanvas();
           if (!historyBusy) pushHistory(before, after, "캔버스 크기");
         } catch (e) {
           setStatus(String(e), false);
@@ -1798,9 +1858,17 @@
       if (svg.dataset.dragBound === "1") return;
       svg.dataset.dragBound = "1";
 
-      const slotElements = svg.querySelectorAll('[id^="slot."]');
+      const slotElements = draggableSlotElements(svg);
       for (const el of slotElements) {
-        if (!isDraggableSlotElement(el)) continue;
+        if (el.tagName.toLowerCase() === "text") {
+          el.addEventListener("dblclick", (ev) => {
+            if (!matchesPickMode(el)) return;
+            const rawId = el.getAttribute("id");
+            const resolvedSlotIds = toDslSlotIds(rawId);
+            if (resolvedSlotIds.length !== 1) return;
+            beginInlineTextEdit(el, resolvedSlotIds[0], ev);
+          });
+        }
         el.addEventListener("pointerdown", (ev) => {
           if (ev.button !== 0) return;
           if (!matchesPickMode(el)) return;
@@ -1810,11 +1878,8 @@
           const slotId = resolvedSlotIds[0] || rawId;
           const dslIds = extractDslSlotIds();
           const slotKnown = resolvedSlotIds.length > 0 && resolvedSlotIds.every((id) => dslIds.has(id));
-          if (!slotId || !slotId.startsWith("slot.") || (!slotKnown && !fracInfo)) {
+          if (!slotId || (!slotKnown && !fracInfo)) {
             setStatus(`드래그 불가 요소: ${el.getAttribute("id") || "(unknown id)"}`, false);
-            return;
-          }
-          if (resolvedSlotIds.length === 1 && isTextCenterEditHit(el, ev) && beginInlineTextEdit(el, slotId, ev)) {
             return;
           }
           const appendSelection = ev.shiftKey || ev.ctrlKey || ev.metaKey;
@@ -2009,6 +2074,7 @@
     function selectedItemsWithValues() {
       const items = [];
       for (const item of selectedSlots.values()) {
+        if (item.isCanvas) continue;
         const value = (item.isFraction || item.isFigureGroup) ? { move_dx: 0, move_dy: 0 } : readSlotPatchValue(item.el);
         if (!value) continue;
         let bbox = null;
@@ -2322,7 +2388,10 @@
 
     async function deleteSelectedSlots() {
       if (!selectedSlots.size) throw new Error("삭제할 요소를 먼저 선택하세요.");
-      const uniqueSlotIds = Array.from(new Set(Array.from(selectedSlots.values()).map((i) => i.slotId)));
+      const uniqueSlotIds = Array.from(
+        new Set(Array.from(selectedSlots.values()).filter((i) => !i.isCanvas).map((i) => i.slotId))
+      );
+      if (!uniqueSlotIds.length) throw new Error("캔버스는 삭제할 수 없습니다.");
       const patches = uniqueSlotIds.map((slotId) => ({ target: slotId, op: "delete" }));
       await commitPatches(patches, `요소 삭제 완료: ${patches.length}개`);
       clearSelection();

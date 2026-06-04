@@ -1,38 +1,21 @@
 {
   "problem_id": "S3_초등_3_008574",
   "view_box": {
-    "width": 756.0,
-    "height": 374.0,
+    "width": 800.0,
+    "height": 290.0,
     "background": "#FFFFFF"
   },
   "elements": [
     {
-      "id": "slot.q_num.text",
-      "type": "text",
-      "attributes": {
-        "x": 28.0,
-        "y": 24.0,
-        "max_width": 628.0,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
-      },
-      "source_ref": "slot.q_num",
-      "refs": {
-        "layout_slot_id": "slot.q_num"
-      },
-      "text": "40."
-    },
-    {
       "id": "slot.q_text.text",
       "type": "text",
       "attributes": {
-        "x": 68.0,
-        "y": 24.0,
-        "max_width": 628.0,
+        "x": 80.0,
+        "y": 40.0,
+        "max_width": 672.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 30
       },
       "source_ref": "slot.q_text",
       "refs": {
@@ -44,10 +27,10 @@
       "id": "slot.lb.left.rect",
       "type": "rect",
       "attributes": {
-        "x": 209.0,
-        "y": 89.0,
-        "width": 46.0,
-        "height": 28.0,
+        "x": 170.0,
+        "y": 120.0,
+        "width": 45.0,
+        "height": 30.0,
         "fill": "#FFFFFF",
         "stroke": "#B9C2D0",
         "stroke-width": 1.5,
@@ -63,10 +46,10 @@
       "id": "slot.lb.right.rect",
       "type": "rect",
       "attributes": {
-        "x": 678.0,
-        "y": 89.0,
-        "width": 46.0,
-        "height": 28.0,
+        "x": 480.0,
+        "y": 120.0,
+        "width": 45.0,
+        "height": 30.0,
         "fill": "#FFFFFF",
         "stroke": "#B9C2D0",
         "stroke-width": 1.5,
@@ -82,10 +65,10 @@
       "id": "slot.card.left.rect",
       "type": "rect",
       "attributes": {
-        "x": 262.0,
-        "y": 127.0,
+        "x": 180.0,
+        "y": 190.0,
         "width": 120.0,
-        "height": 61.0,
+        "height": 60.0,
         "fill": "#F8C54A",
         "stroke": "#F8C54A",
         "stroke-width": 1.5,
@@ -101,10 +84,10 @@
       "id": "slot.card.right.rect",
       "type": "rect",
       "attributes": {
-        "x": 503.0,
-        "y": 127.0,
+        "x": 495.0,
+        "y": 190.0,
         "width": 120.0,
-        "height": 61.0,
+        "height": 60.0,
         "fill": "#F8C54A",
         "stroke": "#F8C54A",
         "stroke-width": 1.5,
@@ -120,8 +103,8 @@
       "id": "slot.figure.left.head.circle",
       "type": "circle",
       "attributes": {
-        "cx": 312.0,
-        "cy": 84.0,
+        "cx": 275.0,
+        "cy": 115.0,
         "r": 30.0,
         "stroke": "#111111",
         "stroke-width": 2.0,
@@ -136,10 +119,10 @@
       "id": "slot.figure.left.body.rect",
       "type": "rect",
       "attributes": {
-        "x": 297.0,
-        "y": 104.0,
+        "x": 260.0,
+        "y": 135.0,
         "width": 30.0,
-        "height": 38.0,
+        "height": 40.0,
         "fill": "#D7A0D7",
         "stroke": "#D7A0D7",
         "stroke-width": 1.5,
@@ -155,9 +138,9 @@
       "id": "slot.figure.left.eye1.circle",
       "type": "circle",
       "attributes": {
-        "cx": 304.0,
-        "cy": 81.0,
-        "r": 4.0,
+        "cx": 265.0,
+        "cy": 110.0,
+        "r": 5.0,
         "stroke": "#111111",
         "stroke-width": 2.0,
         "fill": "#222222"
@@ -171,9 +154,9 @@
       "id": "slot.figure.left.eye2.circle",
       "type": "circle",
       "attributes": {
-        "cx": 320.0,
-        "cy": 81.0,
-        "r": 4.0,
+        "cx": 280.0,
+        "cy": 110.0,
+        "r": 5.0,
         "stroke": "#111111",
         "stroke-width": 2.0,
         "fill": "#222222"
@@ -187,8 +170,8 @@
       "id": "slot.figure.right.head.circle",
       "type": "circle",
       "attributes": {
-        "cx": 555.0,
-        "cy": 84.0,
+        "cx": 575.0,
+        "cy": 115.0,
         "r": 30.0,
         "stroke": "#111111",
         "stroke-width": 2.0,
@@ -203,10 +186,10 @@
       "id": "slot.figure.right.body.rect",
       "type": "rect",
       "attributes": {
-        "x": 540.0,
-        "y": 104.0,
+        "x": 560.0,
+        "y": 135.0,
         "width": 30.0,
-        "height": 38.0,
+        "height": 40.0,
         "fill": "#8ED7E6",
         "stroke": "#8ED7E6",
         "stroke-width": 1.5,
@@ -222,9 +205,9 @@
       "id": "slot.figure.right.eye1.circle",
       "type": "circle",
       "attributes": {
-        "cx": 547.0,
-        "cy": 81.0,
-        "r": 4.0,
+        "cx": 565.0,
+        "cy": 115.0,
+        "r": 5.0,
         "stroke": "#111111",
         "stroke-width": 2.0,
         "fill": "#222222"
@@ -238,9 +221,9 @@
       "id": "slot.figure.right.eye2.circle",
       "type": "circle",
       "attributes": {
-        "cx": 563.0,
-        "cy": 81.0,
-        "r": 4.0,
+        "cx": 580.0,
+        "cy": 115.0,
+        "r": 5.0,
         "stroke": "#111111",
         "stroke-width": 2.0,
         "fill": "#222222"
@@ -254,10 +237,10 @@
       "id": "slot.figure.left.mouth.line",
       "type": "line",
       "attributes": {
-        "x1": 305.0,
-        "y1": 92.0,
-        "x2": 319.0,
-        "y2": 92.0,
+        "x1": 265.0,
+        "y1": 120.0,
+        "x2": 280.0,
+        "y2": 120.0,
         "stroke": "#C36A6A",
         "stroke-width": 2.0
       },
@@ -270,10 +253,10 @@
       "id": "slot.figure.right.mouth.line",
       "type": "line",
       "attributes": {
-        "x1": 548.0,
-        "y1": 92.0,
-        "x2": 562.0,
-        "y2": 92.0,
+        "x1": 565.0,
+        "y1": 125.0,
+        "x2": 580.0,
+        "y2": 125.0,
         "stroke": "#C36A6A",
         "stroke-width": 2.0
       },
@@ -286,9 +269,9 @@
       "id": "slot.lb.left.text.text",
       "type": "text",
       "attributes": {
-        "x": 219.0,
-        "y": 110.0,
-        "max_width": 628.0,
+        "x": 180.0,
+        "y": 140.0,
+        "max_width": 672.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 20
@@ -303,9 +286,9 @@
       "id": "slot.lb.right.text.text",
       "type": "text",
       "attributes": {
-        "x": 688.0,
-        "y": 110.0,
-        "max_width": 628.0,
+        "x": 485.0,
+        "y": 140.0,
+        "max_width": 672.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 20
@@ -320,12 +303,12 @@
       "id": "slot.card.left_text.text",
       "type": "text",
       "attributes": {
-        "x": 285.0,
-        "y": 158.0,
-        "max_width": 628.0,
+        "x": 185.0,
+        "y": 230.0,
+        "max_width": 672.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 30
       },
       "source_ref": "slot.card.left_text",
       "refs": {
@@ -337,12 +320,12 @@
       "id": "slot.card.right_text.text",
       "type": "text",
       "attributes": {
-        "x": 532.0,
-        "y": 158.0,
-        "max_width": 628.0,
+        "x": 505.0,
+        "y": 230.0,
+        "max_width": 672.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 30
       },
       "source_ref": "slot.card.right_text",
       "refs": {
@@ -351,80 +334,12 @@
       "text": "23 × 41"
     },
     {
-      "id": "slot.answer.text",
-      "type": "text",
-      "attributes": {
-        "x": 90.0,
-        "y": 286.0,
-        "max_width": 628.0,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 22
-      },
-      "source_ref": "slot.answer",
-      "refs": {
-        "layout_slot_id": "slot.answer"
-      },
-      "text": "(정답) 은우"
-    },
-    {
-      "id": "slot.explain.1.text",
-      "type": "text",
-      "attributes": {
-        "x": 90.0,
-        "y": 314.0,
-        "max_width": 628.0,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 20
-      },
-      "source_ref": "slot.explain.1",
-      "refs": {
-        "layout_slot_id": "slot.explain.1"
-      },
-      "text": "(해설) 은우: 51 × 18 = 918,"
-    },
-    {
-      "id": "slot.explain.2.text",
-      "type": "text",
-      "attributes": {
-        "x": 350.0,
-        "y": 314.0,
-        "max_width": 628.0,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 20
-      },
-      "source_ref": "slot.explain.2",
-      "refs": {
-        "layout_slot_id": "slot.explain.2"
-      },
-      "text": "도윤: 23 × 41 = 943"
-    },
-    {
-      "id": "slot.explain.3.text",
-      "type": "text",
-      "attributes": {
-        "x": 566.0,
-        "y": 314.0,
-        "max_width": 628.0,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 20
-      },
-      "source_ref": "slot.explain.3",
-      "refs": {
-        "layout_slot_id": "slot.explain.3"
-      },
-      "text": "918<943"
-    },
-    {
       "id": "slot.colon.text",
       "type": "text",
       "attributes": {
         "x": 12.0,
         "y": 360.0,
-        "max_width": 628.0,
+        "max_width": 672.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 1
@@ -441,7 +356,7 @@
       "attributes": {
         "x": 16.0,
         "y": 360.0,
-        "max_width": 628.0,
+        "max_width": 672.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 1
@@ -458,7 +373,7 @@
       "attributes": {
         "x": 20.0,
         "y": 360.0,
-        "max_width": 628.0,
+        "max_width": 672.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 1
@@ -475,7 +390,7 @@
       "attributes": {
         "x": 24.0,
         "y": 360.0,
-        "max_width": 628.0,
+        "max_width": 672.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 1
@@ -492,7 +407,7 @@
       "attributes": {
         "x": 28.0,
         "y": 360.0,
-        "max_width": 628.0,
+        "max_width": 672.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 1

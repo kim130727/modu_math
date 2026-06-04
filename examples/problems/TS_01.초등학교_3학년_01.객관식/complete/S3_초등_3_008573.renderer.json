@@ -1,35 +1,18 @@
 {
   "problem_id": "S3_초등_3_008573",
   "view_box": {
-    "width": 872.0,
-    "height": 422.0,
+    "width": 735.0,
+    "height": 325.0,
     "background": "#FFFFFF"
   },
   "elements": [
-    {
-      "id": "slot.q_num.text",
-      "type": "text",
-      "attributes": {
-        "x": 16.0,
-        "y": 28.0,
-        "max_width": 744.0,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
-      },
-      "source_ref": "slot.q_num",
-      "refs": {
-        "layout_slot_id": "slot.q_num"
-      },
-      "text": "38."
-    },
     {
       "id": "slot.q_text.text",
       "type": "text",
       "attributes": {
         "x": 64.0,
         "y": 28.0,
-        "max_width": 744.0,
+        "max_width": 607.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 26
@@ -44,10 +27,10 @@
       "id": "slot.main_box.rect",
       "type": "rect",
       "attributes": {
-        "x": 260.0,
-        "y": 72.0,
+        "x": 155.0,
+        "y": 65.0,
         "width": 420.0,
-        "height": 128.0,
+        "height": 130.0,
         "fill": "#FFFFFF",
         "stroke": "#EAB5C2",
         "stroke-width": 2.0
@@ -61,12 +44,12 @@
       "id": "slot.expr_g.text",
       "type": "text",
       "attributes": {
-        "x": 286.0,
-        "y": 114.0,
-        "max_width": 744.0,
+        "x": 200.0,
+        "y": 110.0,
+        "max_width": 607.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 26
+        "font-size": 25
       },
       "source_ref": "slot.expr_g",
       "refs": {
@@ -78,12 +61,12 @@
       "id": "slot.expr_n.text",
       "type": "text",
       "attributes": {
-        "x": 492.0,
-        "y": 114.0,
-        "max_width": 744.0,
+        "x": 375.0,
+        "y": 105.0,
+        "max_width": 607.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 26
+        "font-size": 25
       },
       "source_ref": "slot.expr_n",
       "refs": {
@@ -95,12 +78,12 @@
       "id": "slot.expr_d.text",
       "type": "text",
       "attributes": {
-        "x": 286.0,
-        "y": 168.0,
-        "max_width": 744.0,
+        "x": 200.0,
+        "y": 160.0,
+        "max_width": 607.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 26
+        "font-size": 25
       },
       "source_ref": "slot.expr_d",
       "refs": {
@@ -112,12 +95,12 @@
       "id": "slot.expr_r.text",
       "type": "text",
       "attributes": {
-        "x": 492.0,
-        "y": 168.0,
-        "max_width": 744.0,
+        "x": 375.0,
+        "y": 155.0,
+        "max_width": 607.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 26
+        "font-size": 25
       },
       "source_ref": "slot.expr_r",
       "refs": {
@@ -131,7 +114,7 @@
       "attributes": {
         "x": 96.0,
         "y": 242.0,
-        "max_width": 744.0,
+        "max_width": 607.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 24
@@ -148,7 +131,7 @@
       "attributes": {
         "x": 316.0,
         "y": 242.0,
-        "max_width": 744.0,
+        "max_width": 607.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 24
@@ -165,7 +148,7 @@
       "attributes": {
         "x": 536.0,
         "y": 242.0,
-        "max_width": 744.0,
+        "max_width": 607.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 24
@@ -182,7 +165,7 @@
       "attributes": {
         "x": 206.0,
         "y": 278.0,
-        "max_width": 744.0,
+        "max_width": 607.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 24
@@ -199,7 +182,7 @@
       "attributes": {
         "x": 446.0,
         "y": 278.0,
-        "max_width": 744.0,
+        "max_width": 607.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 24
@@ -209,40 +192,6 @@
         "layout_slot_id": "slot.choice5"
       },
       "text": "⑤ ㄹ, ㄷ, ㄴ, ㄷ"
-    },
-    {
-      "id": "slot.answer_text.text",
-      "type": "text",
-      "attributes": {
-        "x": 16.0,
-        "y": 330.0,
-        "max_width": 744.0,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 22
-      },
-      "source_ref": "slot.answer_text",
-      "refs": {
-        "layout_slot_id": "slot.answer_text"
-      },
-      "text": "(정답) ③"
-    },
-    {
-      "id": "slot.explain_text.text",
-      "type": "text",
-      "attributes": {
-        "x": 16.0,
-        "y": 366.0,
-        "max_width": 744.0,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 20
-      },
-      "source_ref": "slot.explain_text",
-      "refs": {
-        "layout_slot_id": "slot.explain_text"
-      },
-      "text": "(해설) ㄱ 42 × 83 = 3486, ㄴ 58 × 55 = 3190, ㄷ 67 × 54 = 3618, ㄹ 91 × 37 = 3367 → 3618>3486>3367>3190"
     }
   ],
   "contract_version": "modu_math.renderer.v2"

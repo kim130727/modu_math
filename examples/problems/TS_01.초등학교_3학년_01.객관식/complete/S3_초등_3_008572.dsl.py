@@ -2,13 +2,13 @@ from modu_math.dsl import Canvas, LineSlot, ProblemTemplate, RectSlot, Region, T
 
 
 def build_problem_template() -> ProblemTemplate:
-    canvas = Canvas(width=808, height=428)
+    canvas = Canvas(width = 750, height = 350)
     regions = (
         Region(
             id="header",
             role="stem",
             flow="absolute",
-            slot_ids=("q_num", "question", "box_frame"),
+            slot_ids=("question", "box_frame"),
         ),
         Region(
             id="main",
@@ -26,19 +26,10 @@ def build_problem_template() -> ProblemTemplate:
             id="footer",
             role="supporting",
             flow="absolute",
-            slot_ids=("answer_line", "explain_line"),
+            slot_ids=(),
         ),
     )
     slots = (
-        TextSlot(
-            id="q_num",
-            text="37.",
-            font_size=28,
-            prompt="",
-            style_role="question",
-            x=18.0,
-            y=30.0,
-        ),
         TextSlot(
             id="question",
             text="계산에서 □ 안의 두 수의 곱은 실제로 얼마를 나타낼까요?",
@@ -51,47 +42,29 @@ def build_problem_template() -> ProblemTemplate:
         RectSlot(
             id="box_frame",
             prompt="",
-            x=410.0,
-            y=62.0,
-            width=240.0,
-            height=140.0,
-            stroke="#EAB5C2",
+            x = 245, y = 60, width = 240, height = 140, stroke="#EAB5C2",
             stroke_width=2.0,
             fill="#FFFFFF",
         ),
-        RectSlot(id="boxed_3", prompt="", x=455.0, y=78.0, width=30.0, height=30.0, stroke="#777777", stroke_width=1.5),
-        RectSlot(id="boxed_4", prompt="", x=564.0, y=124.0, width=30.0, height=30.0, stroke="#777777", stroke_width=1.5),
-        TextSlot(id="inner_3", text="3", font_size=28, prompt="", style_role="diagram", x=464.0, y=100.0),
-        TextSlot(id="inner_2", text="2", font_size=28, prompt="", style_role="diagram", x=520.0, y=100.0),
-        TextSlot(id="inner_x", text="×", font_size=28, prompt="", style_role="diagram", x=470.0, y=145.0),
-        TextSlot(id="inner_1", text="1", font_size=28, prompt="", style_role="diagram", x=520.0, y=145.0),
-        TextSlot(id="inner_4", text="4", font_size=28, prompt="", style_role="diagram", x=572.0, y=145.0),
-        LineSlot(id="mul_bar", prompt="", x1=450.0, y1=163.0, x2=603.0, y2=163.0, stroke="#555555", stroke_width=1.5),
+        RectSlot(id="boxed_3", prompt="", x = 350, y = 75, width = 30, height = 30, stroke="#777777", stroke_width=1.5),
+        RectSlot(id="boxed_4", prompt="", x = 400, y = 120, width = 30, height = 30, stroke="#777777", stroke_width=1.5),
+        TextSlot(id="inner_3", text = '3', font_size = 30, prompt="", style_role="diagram", x = 355, y = 100),
+        TextSlot(id="inner_2", text = '2', font_size = 30, prompt="", style_role="diagram", x = 405, y = 100),
+        TextSlot(id="inner_x", text = '×', font_size = 30, prompt="", style_role="diagram", x = 305, y = 145),
+        TextSlot(id="inner_1", text = '1', font_size = 30, prompt="", style_role="diagram", x = 355, y = 145),
+        TextSlot(id="inner_4", text = '4', font_size = 30, prompt="", style_role="diagram", x = 405, y = 145),
+        LineSlot(id="mul_bar", prompt="", x1 = 285, y1 = 170, x2 = 440, y2 = 170, stroke="#555555", stroke_width=1.5),
         TextSlot(
-            id="choice_1", text="① 10", font_size=28, prompt="", style_role="diagram", x=120.0, y=250.0
-        ),
+            id="choice_1", text = '① 10', font_size = 30, prompt="", style_role="diagram", x = 175, y = 260),
         TextSlot(
-            id="choice_2", text="② 12", font_size=28, prompt="", style_role="diagram", x=280.0, y=250.0
-        ),
+            id="choice_2", text = '② 12', font_size = 30, prompt="", style_role="diagram", x = 335, y = 260),
         TextSlot(
-            id="choice_3", text="③ 100", font_size=28, prompt="", style_role="diagram", x=450.0, y=250.0
-        ),
+            id="choice_3", text = '③ 100', font_size = 30, prompt="", style_role="diagram", x = 475, y = 260),
         TextSlot(
-            id="choice_4", text="④ 120", font_size=28, prompt="", style_role="diagram", x=620.0, y=250.0
-        ),
+            id="choice_4", text = '④ 120', font_size = 30, prompt="", style_role="diagram", x = 335, y = 310),
         TextSlot(
-            id="choice_5", text="⑤ 1000", font_size=28, prompt="", style_role="diagram", x=180.0, y=288.0
-        ),
-        TextSlot(id="answer_line", text="(정답) ④", font_size=22, prompt="", style_role="supporting", x=20.0, y=346.0),
-        TextSlot(
-            id="explain_line",
-            text="(해설) 3은 30, 4는 4를 나타내므로 두 수의 곱이 실제로 나타내는 값은 30 × 4 = 120입니다.",
-            font_size=20,
-            prompt="",
-            style_role="supporting",
-            x=20.0,
-            y=382.0,
-        ),
+            id="choice_5", text = '⑤ 1000', font_size = 30, prompt="", style_role="diagram", x = 175, y = 310),
+        
     )
     return ProblemTemplate(
         id="S3_초등_3_008572",

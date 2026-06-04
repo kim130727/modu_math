@@ -3,8 +3,8 @@
   "problem_id": "S3_초등_3_008572",
   "title": "계산에서 □ 안의 두 수의 곱은 실제로 얼마를 나타낼까요?",
   "canvas": {
-    "width": 808,
-    "height": 428,
+    "width": 750,
+    "height": 350,
     "coordinate_mode": "logical",
     "background": "#FFFFFF"
   },
@@ -15,7 +15,6 @@
       "flow": "absolute",
       "slot_ids": [
         "box_frame",
-        "q_num",
         "question"
       ]
     },
@@ -50,25 +49,10 @@
       "id": "footer",
       "role": "supporting",
       "flow": "absolute",
-      "slot_ids": [
-        "answer_line",
-        "explain_line"
-      ]
+      "slot_ids": []
     }
   ],
   "slots": [
-    {
-      "id": "q_num",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "37.",
-        "style_role": "question",
-        "x": 18.0,
-        "y": 30.0,
-        "font_size": 28
-      }
-    },
     {
       "id": "question",
       "kind": "text",
@@ -86,8 +70,8 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 410.0,
-        "y": 62.0,
+        "x": 245.0,
+        "y": 60.0,
         "width": 240.0,
         "height": 140.0,
         "stroke": "#EAB5C2",
@@ -100,8 +84,8 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 455.0,
-        "y": 78.0,
+        "x": 350.0,
+        "y": 75.0,
         "width": 30.0,
         "height": 30.0,
         "stroke": "#777777",
@@ -113,8 +97,8 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 564.0,
-        "y": 124.0,
+        "x": 400.0,
+        "y": 120.0,
         "width": 30.0,
         "height": 30.0,
         "stroke": "#777777",
@@ -128,9 +112,9 @@
       "content": {
         "text": "3",
         "style_role": "diagram",
-        "x": 464.0,
+        "x": 355.0,
         "y": 100.0,
-        "font_size": 28
+        "font_size": 30
       }
     },
     {
@@ -140,9 +124,9 @@
       "content": {
         "text": "2",
         "style_role": "diagram",
-        "x": 520.0,
+        "x": 405.0,
         "y": 100.0,
-        "font_size": 28
+        "font_size": 30
       }
     },
     {
@@ -152,9 +136,9 @@
       "content": {
         "text": "×",
         "style_role": "diagram",
-        "x": 470.0,
+        "x": 305.0,
         "y": 145.0,
-        "font_size": 28
+        "font_size": 30
       }
     },
     {
@@ -164,9 +148,9 @@
       "content": {
         "text": "1",
         "style_role": "diagram",
-        "x": 520.0,
+        "x": 355.0,
         "y": 145.0,
-        "font_size": 28
+        "font_size": 30
       }
     },
     {
@@ -176,9 +160,9 @@
       "content": {
         "text": "4",
         "style_role": "diagram",
-        "x": 572.0,
+        "x": 405.0,
         "y": 145.0,
-        "font_size": 28
+        "font_size": 30
       }
     },
     {
@@ -186,10 +170,10 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 450.0,
-        "y1": 163.0,
-        "x2": 603.0,
-        "y2": 163.0,
+        "x1": 285.0,
+        "y1": 170.0,
+        "x2": 440.0,
+        "y2": 170.0,
         "stroke": "#555555",
         "stroke_width": 1.5
       }
@@ -201,9 +185,9 @@
       "content": {
         "text": "① 10",
         "style_role": "diagram",
-        "x": 120.0,
-        "y": 250.0,
-        "font_size": 28
+        "x": 175.0,
+        "y": 260.0,
+        "font_size": 30
       }
     },
     {
@@ -213,9 +197,9 @@
       "content": {
         "text": "② 12",
         "style_role": "diagram",
-        "x": 280.0,
-        "y": 250.0,
-        "font_size": 28
+        "x": 335.0,
+        "y": 260.0,
+        "font_size": 30
       }
     },
     {
@@ -225,9 +209,9 @@
       "content": {
         "text": "③ 100",
         "style_role": "diagram",
-        "x": 450.0,
-        "y": 250.0,
-        "font_size": 28
+        "x": 475.0,
+        "y": 260.0,
+        "font_size": 30
       }
     },
     {
@@ -237,9 +221,9 @@
       "content": {
         "text": "④ 120",
         "style_role": "diagram",
-        "x": 620.0,
-        "y": 250.0,
-        "font_size": 28
+        "x": 335.0,
+        "y": 310.0,
+        "font_size": 30
       }
     },
     {
@@ -249,33 +233,9 @@
       "content": {
         "text": "⑤ 1000",
         "style_role": "diagram",
-        "x": 180.0,
-        "y": 288.0,
-        "font_size": 28
-      }
-    },
-    {
-      "id": "answer_line",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "(정답) ④",
-        "style_role": "supporting",
-        "x": 20.0,
-        "y": 346.0,
-        "font_size": 22
-      }
-    },
-    {
-      "id": "explain_line",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "(해설) 3은 30, 4는 4를 나타내므로 두 수의 곱이 실제로 나타내는 값은 30 × 4 = 120입니다.",
-        "style_role": "supporting",
-        "x": 20.0,
-        "y": 382.0,
-        "font_size": 20
+        "x": 175.0,
+        "y": 310.0,
+        "font_size": 30
       }
     }
   ],
@@ -285,7 +245,6 @@
   "reading_order": [
     "header",
     "box_frame",
-    "q_num",
     "question",
     "main",
     "boxed_3",
@@ -302,8 +261,6 @@
     "choice_3",
     "choice_4",
     "choice_5",
-    "footer",
-    "answer_line",
-    "explain_line"
+    "footer"
   ]
 }
