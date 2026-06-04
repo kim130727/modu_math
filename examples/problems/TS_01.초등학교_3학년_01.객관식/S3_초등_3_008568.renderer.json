@@ -1,129 +1,196 @@
 {
   "problem_id": "S3_초등_3_008568",
   "view_box": {
-    "width": 786.0,
-    "height": 360.0,
+    "width": 920.0,
+    "height": 470.0,
     "background": "#FFFFFF"
   },
   "elements": [
     {
-      "id": "slot.qnum.text",
-      "type": "text",
-      "attributes": {
-        "x": 24.0,
-        "y": 24.0,
-        "max_width": 658.0,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
-      },
-      "source_ref": "slot.qnum",
-      "refs": {
-        "layout_slot_id": "slot.qnum"
-      },
-      "text": "33."
-    },
-    {
       "id": "slot.qtext.text",
       "type": "text",
       "attributes": {
-        "x": 84.0,
-        "y": 24.0,
-        "max_width": 658.0,
+        "x": 45.0,
+        "y": 55.0,
+        "max_width": 792.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 24
+        "font-size": 30
       },
       "source_ref": "slot.qtext",
       "refs": {
         "layout_slot_id": "slot.qtext"
       },
-      "text": "4 × 9 = 36에서 6은 어느 자리에 써야 하는지 기호를 선택하세요."
+      "text": "곱셈을 계산할 때 4 × 9 = 36의 6은 어느 자리에 써야 하는지\n 기호를 선택하세요."
     },
     {
-      "id": "slot.box.rect",
+      "id": "slot.box.frame.rect",
       "type": "rect",
       "attributes": {
-        "x": 210.0,
-        "y": 84.0,
-        "width": 520.0,
-        "height": 110.0,
+        "x": 285.0,
+        "y": 145.0,
+        "width": 210.0,
+        "height": 160.0,
         "fill": "#ffffff",
         "stroke": "#111111",
         "stroke-width": 1.5
       },
-      "source_ref": "slot.box",
+      "source_ref": "slot.box.frame",
       "refs": {
-        "layout_slot_id": "slot.box"
+        "layout_slot_id": "slot.box.frame"
       }
     },
     {
-      "id": "slot.choice1.text",
-      "type": "text",
+      "id": "slot.box.line5.line",
+      "type": "line",
       "attributes": {
-        "x": 236.0,
-        "y": 126.0,
-        "max_width": 658.0,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 24
+        "x1": 300.0,
+        "y1": 245.0,
+        "x2": 470.0,
+        "y2": 245.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
       },
-      "source_ref": "slot.choice1",
+      "source_ref": "slot.box.line5",
       "refs": {
-        "layout_slot_id": "slot.choice1"
-      },
-      "text": "세로셈: 40 × 90"
+        "layout_slot_id": "slot.box.line5"
+      }
     },
     {
-      "id": "slot.choice2.text",
+      "id": "slot.box.line1.text",
       "type": "text",
       "attributes": {
-        "x": 236.0,
-        "y": 166.0,
-        "max_width": 658.0,
+        "x": 395.0,
+        "y": 185.0,
+        "max_width": 792.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 24
+        "font-size": 30
       },
-      "source_ref": "slot.choice2",
+      "source_ref": "slot.box.line1",
       "refs": {
-        "layout_slot_id": "slot.choice2"
+        "layout_slot_id": "slot.box.line1"
       },
-      "text": "선택지: ㄱ, ㄴ, ㄷ, ㄹ"
+      "text": "4"
     },
     {
-      "id": "slot.note1.text",
+      "id": "slot.box.line2.text",
       "type": "text",
       "attributes": {
-        "x": 24.0,
-        "y": 266.0,
-        "max_width": 658.0,
+        "x": 430.0,
+        "y": 185.0,
+        "max_width": 792.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 20
+        "font-size": 30
       },
-      "source_ref": "slot.note1",
+      "source_ref": "slot.box.line2",
       "refs": {
-        "layout_slot_id": "slot.note1"
+        "layout_slot_id": "slot.box.line2"
       },
-      "text": "비교 대상의 계산 결과를 확인합니다."
+      "text": "0"
     },
     {
-      "id": "slot.note2.text",
+      "id": "slot.box.line3.text",
       "type": "text",
       "attributes": {
-        "x": 24.0,
-        "y": 300.0,
-        "max_width": 658.0,
+        "x": 355.0,
+        "y": 230.0,
+        "max_width": 792.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 20
+        "font-size": 30
       },
-      "source_ref": "slot.note2",
+      "source_ref": "slot.box.line3",
       "refs": {
-        "layout_slot_id": "slot.note2"
+        "layout_slot_id": "slot.box.line3"
       },
-      "text": "조건에 맞는 기호(또는 식)를 선택합니다."
+      "text": "×   9"
+    },
+    {
+      "id": "slot.box.line4.text",
+      "type": "text",
+      "attributes": {
+        "x": 430.0,
+        "y": 230.0,
+        "max_width": 792.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30
+      },
+      "source_ref": "slot.box.line4",
+      "refs": {
+        "layout_slot_id": "slot.box.line4"
+      },
+      "text": "0"
+    },
+    {
+      "id": "slot.box.answer1.text",
+      "type": "text",
+      "attributes": {
+        "x": 315.0,
+        "y": 285.0,
+        "max_width": 792.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30
+      },
+      "source_ref": "slot.box.answer1",
+      "refs": {
+        "layout_slot_id": "slot.box.answer1"
+      },
+      "text": "㉠"
+    },
+    {
+      "id": "slot.box.answer2.text",
+      "type": "text",
+      "attributes": {
+        "x": 350.0,
+        "y": 285.0,
+        "max_width": 792.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30
+      },
+      "source_ref": "slot.box.answer2",
+      "refs": {
+        "layout_slot_id": "slot.box.answer2"
+      },
+      "text": "㉡"
+    },
+    {
+      "id": "slot.box.answer3.text",
+      "type": "text",
+      "attributes": {
+        "x": 385.0,
+        "y": 285.0,
+        "max_width": 792.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30
+      },
+      "source_ref": "slot.box.answer3",
+      "refs": {
+        "layout_slot_id": "slot.box.answer3"
+      },
+      "text": "㉢"
+    },
+    {
+      "id": "slot.box.answer4.text",
+      "type": "text",
+      "attributes": {
+        "x": 425.0,
+        "y": 285.0,
+        "max_width": 792.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30
+      },
+      "source_ref": "slot.box.answer4",
+      "refs": {
+        "layout_slot_id": "slot.box.answer4"
+      },
+      "text": "㉣"
     }
   ],
   "contract_version": "modu_math.renderer.v2"

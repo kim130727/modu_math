@@ -7,32 +7,15 @@
   },
   "elements": [
     {
-      "id": "slot.qnum.text",
-      "type": "text",
-      "attributes": {
-        "x": 24.0,
-        "y": 24.0,
-        "max_width": 658.0,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
-      },
-      "source_ref": "slot.qnum",
-      "refs": {
-        "layout_slot_id": "slot.qnum"
-      },
-      "text": "32."
-    },
-    {
       "id": "slot.qtext.text",
       "type": "text",
       "attributes": {
-        "x": 84.0,
-        "y": 24.0,
+        "x": 75.0,
+        "y": 40.0,
         "max_width": 658.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 24
+        "font-size": 25
       },
       "source_ref": "slot.qtext",
       "refs": {
@@ -44,10 +27,10 @@
       "id": "slot.box.rect",
       "type": "rect",
       "attributes": {
-        "x": 210.0,
-        "y": 84.0,
+        "x": 80.0,
+        "y": 70.0,
         "width": 520.0,
-        "height": 110.0,
+        "height": 160.0,
         "fill": "#ffffff",
         "stroke": "#111111",
         "stroke-width": 1.5
@@ -61,12 +44,12 @@
       "id": "slot.choice1.text",
       "type": "text",
       "attributes": {
-        "x": 236.0,
-        "y": 126.0,
+        "x": 215.0,
+        "y": 110.0,
         "max_width": 658.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 24
+        "font-size": 25
       },
       "source_ref": "slot.choice1",
       "refs": {
@@ -78,52 +61,35 @@
       "id": "slot.choice2.text",
       "type": "text",
       "attributes": {
-        "x": 236.0,
-        "y": 166.0,
+        "x": 265.0,
+        "y": 150.0,
         "max_width": 658.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 24
+        "font-size": 25
       },
       "source_ref": "slot.choice2",
       "refs": {
         "layout_slot_id": "slot.choice2"
       },
-      "text": "㉡ 214 × 3, ㉢ 214 + 3"
+      "text": "㉡ 214 × 3"
     },
     {
-      "id": "slot.note1.text",
+      "id": "slot.choice3.text",
       "type": "text",
       "attributes": {
-        "x": 24.0,
-        "y": 266.0,
+        "x": 265.0,
+        "y": 195.0,
         "max_width": 658.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 20
+        "font-size": 25
       },
-      "source_ref": "slot.note1",
+      "source_ref": "slot.choice3",
       "refs": {
-        "layout_slot_id": "slot.note1"
+        "layout_slot_id": "slot.choice3"
       },
-      "text": "비교 대상의 계산 결과를 확인합니다."
-    },
-    {
-      "id": "slot.note2.text",
-      "type": "text",
-      "attributes": {
-        "x": 24.0,
-        "y": 300.0,
-        "max_width": 658.0,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 20
-      },
-      "source_ref": "slot.note2",
-      "refs": {
-        "layout_slot_id": "slot.note2"
-      },
-      "text": "조건에 맞는 기호(또는 식)를 선택합니다."
+      "text": "㉢ 214 + 3"
     }
   ],
   "contract_version": "modu_math.renderer.v2"

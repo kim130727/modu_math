@@ -1,33 +1,113 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
-from modu_math.dsl import Canvas, ProblemTemplate, RectSlot, Region, TextSlot
-
+from modu_math.dsl import Canvas, ProblemTemplate, RectSlot, Region, TextSlot,LineSlot
 
 def build_problem_template() -> ProblemTemplate:
     return ProblemTemplate(
         id="S3_초등_3_008568",
-        title="4 × 9 = 36에서 6은 어느 자리에 써야 하는지 기호를 선택하세요.",
-        canvas=Canvas(width=786, height=360, coordinate_mode="logical"),
+        title="6의 자리를 찾기",
+        canvas=Canvas(width=920, height=470, coordinate_mode="logical"),
         regions=(
-            Region(id="region.top", role="stem", flow="absolute", slot_ids=("slot.qnum", "slot.qtext")),
-            Region(id="region.main", role="diagram", flow="absolute", slot_ids=("slot.box", "slot.choice1", "slot.choice2")),
-            Region(id="region.note", role="supporting", flow="absolute", slot_ids=("slot.note1", "slot.note2")),
+            Region(
+                id="region.stem",
+                role="stem",
+                flow="absolute",
+                slot_ids=("slot.qtext",),
+            ),
+            Region(
+                id="region.box",
+                role="diagram",
+                flow="absolute",
+                slot_ids=(
+                    "slot.box.frame",
+                    "slot.box.line1",
+                    "slot.box.line2",
+                    "slot.box.line3",
+                    "slot.box.line4",
+                    "slot.box.line5",
+                    "slot.box.answer1",
+                    "slot.box.answer2",
+                    "slot.box.answer3",
+                    "slot.box.answer4",
+                ),
+            ),
+            Region(
+                id="region.answer",
+                role="answer",
+                flow="absolute",
+                slot_ids=(),
+            ),
+            Region(
+                id="region.explain",
+                role="explanation",
+                flow="absolute",
+                slot_ids=(),
+            ),
         ),
         slots=(
-            TextSlot(id="slot.qnum", prompt="", text="33.", style_role="question", x=24.0, y=24.0, font_size=28),
-            TextSlot(id="slot.qtext", prompt="", text="4 × 9 = 36에서 6은 어느 자리에 써야 하는지 기호를 선택하세요.", style_role="question", x=84.0, y=24.0, font_size=24),
-            RectSlot(id="slot.box", prompt="", x=210.0, y=84.0, width=520.0, height=110.0),
-            TextSlot(id="slot.choice1", prompt="", text="세로셈: 40 × 90", style_role="diagram", x=236.0, y=126.0, font_size=24),
-            TextSlot(id="slot.choice2", prompt="", text="선택지: ㄱ, ㄴ, ㄷ, ㄹ", style_role="diagram", x=236.0, y=166.0, font_size=24),
-            TextSlot(id="slot.note1", prompt="", text="비교 대상의 계산 결과를 확인합니다.", style_role="supporting", x=24.0, y=266.0, font_size=20),
-            TextSlot(id="slot.note2", prompt="", text="조건에 맞는 기호(또는 식)를 선택합니다.", style_role="supporting", x=24.0, y=300.0, font_size=20),
+            TextSlot(
+                id="slot.qtext",
+                prompt="",
+                text="곱셈을 계산할 때 4 × 9 = 36의 6은 어느 자리에 써야 하는지\n 기호를 선택하세요.",
+                style_role="question",
+                x=45,
+                y=55,
+                font_size=30,
+            ),
+            RectSlot(
+                id="slot.box.frame",
+                prompt="",
+                x = 285, y = 145, width = 210, height = 160),
+            TextSlot(
+                id="slot.box.line1",
+                prompt="",
+                text = '4', style_role="body",
+                x = 395, y = 185, font_size = 30),
+            TextSlot(
+                id="slot.box.line2",
+                prompt="",
+                text = '0', style_role="body",
+                x = 430, y = 185, font_size = 30),
+            TextSlot(
+                id="slot.box.line3",
+                prompt="",
+                text = '×   9', style_role="body",
+                x = 355, y = 230, font_size = 30),
+            TextSlot(
+                id="slot.box.line4",
+                prompt="",
+                text = '0', style_role="body",
+                x = 430, y = 230, font_size = 30),
+            LineSlot(
+                id="slot.box.line5",
+                prompt="",
+                x1 = 300, y1 = 245, x2 = 470, y2 = 245),
+            TextSlot(
+                id="slot.box.answer1",
+                prompt="",
+                text = '㉠', style_role="body",
+                x = 315, y = 285, font_size = 30),
+            TextSlot(
+                id="slot.box.answer2",
+                prompt="",
+                text = '㉡', style_role="body",
+                x = 350, y = 285, font_size = 30),
+            TextSlot(
+                id="slot.box.answer3",
+                prompt="",
+                text = '㉢', style_role="body",
+                x = 385, y = 285, font_size = 30),
+            TextSlot(
+                id="slot.box.answer4",
+                prompt="",
+                text = '㉣', style_role="body",
+                x = 425, y = 285, font_size = 30),
         ),
         diagrams=(),
         groups=(),
         constraints=(),
         tags=(),
     )
-
 
 PROBLEM_TEMPLATE = build_problem_template()
 

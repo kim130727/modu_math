@@ -24,7 +24,8 @@
       "slot_ids": [
         "slot.box",
         "slot.choice1",
-        "slot.choice2"
+        "slot.choice2",
+        "slot.choice3"
       ]
     },
     {
@@ -63,7 +64,7 @@
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "ㄱ 23 × 59, ㄴ 61 × 34",
+        "text": "㉠ 23 × 59",
         "style_role": "diagram",
         "x": 120.0,
         "y": 120.0,
@@ -75,11 +76,23 @@
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "ㄷ 82 × 18",
+        "text": "㉡ 61 × 34",
         "style_role": "diagram",
-        "x": 445.0,
+        "x": 280.0,
         "y": 120.0,
-        "font_size": 24
+        "font_size": 25
+      }
+    },
+    {
+      "id": "slot.choice3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "㉢ 82 × 18",
+        "style_role": "diagram",
+        "x": 430.0,
+        "y": 120.0,
+        "font_size": 25
       }
     }
   ],
@@ -93,6 +106,7 @@
     "slot.box",
     "slot.choice1",
     "slot.choice2",
+    "slot.choice3",
     "region.note"
   ]
 }

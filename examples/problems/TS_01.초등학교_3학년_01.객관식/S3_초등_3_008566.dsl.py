@@ -10,14 +10,15 @@ def build_problem_template() -> ProblemTemplate:
         canvas=Canvas(width=786, height=360, coordinate_mode="logical"),
         regions=(
             Region(id="region.top", role="stem", flow="absolute", slot_ids=("slot.qnum", "slot.qtext")),
-            Region(id="region.main", role="diagram", flow="absolute", slot_ids=("slot.box", "slot.choice1", "slot.choice2")),
+            Region(id="region.main", role="diagram", flow="absolute", slot_ids=("slot.box", "slot.choice1", "slot.choice2","slot.choice3")),
             Region(id="region.note", role="supporting", flow="absolute", slot_ids=("slot.note1", "slot.note2")),
         ),
         slots=(
             TextSlot(id="slot.qtext", prompt="", text="계산 결과가 가장 큰 것을 찾아 기호를 선택해 보세요.", style_role="question", x=84.0, y=24.0, font_size=24),
             RectSlot(id="slot.box", prompt="", x = 85, y = 55, width=520.0, height=110.0),
-            TextSlot(id="slot.choice1", prompt="", text="ㄱ 23 × 59, ㄴ 61 × 34", style_role="diagram", x = 120, y = 120, font_size=24),
-            TextSlot(id="slot.choice2", prompt="", text="ㄷ 82 × 18", style_role="diagram", x = 445, y = 120, font_size=24),
+            TextSlot(id="slot.choice1", prompt="", text="㉠ 23 × 59", style_role="diagram", x = 120, y = 120, font_size=24),
+            TextSlot(id="slot.choice2", prompt="", text = '㉡ 61 × 34', style_role="diagram", x = 280, y = 120, font_size = 25),
+            TextSlot(id="slot.choice3", prompt="", text = '㉢ 82 × 18', style_role="diagram", x = 430, y = 120, font_size = 25),
         ),
         diagrams=(),
         groups=(),
@@ -34,8 +35,8 @@ SEMANTIC_OVERRIDE = {
     "metadata": {"grade": 3, "subject": "수학", "topic": "곱셈 결과 비교"},
     "domain": {
         "objects": [
-            {"id": "expr_1", "type": "expression", "text": "ㄱ 23 × 59, ㄴ 61 × 34"},
-            {"id": "expr_2", "type": "expression", "text": "ㄷ 82 × 18"},
+            {"id": "expr_1", "type": "expression", "text": "㉠ 23 × 59, ㉡ 61 × 34"},
+            {"id": "expr_2", "type": "expression", "text": "㉢ 82 × 18"},
         ],
         "relations": [],
         "problem_solving": {
@@ -63,13 +64,15 @@ SOLVABLE = {
         "target_label": "조건에 맞는 항목",
         "unit": "",
         "quantities": {
-            "expr_1": "ㄱ 23 × 59, ㄴ 61 × 34",
-            "expr_2": "ㄷ 82 × 18",
+            "expr_1": "㉠ 23 × 59",
+            "expr_2": "㉡ 61 × 34",
+            "expr_3": "㉢ 82 × 18",
         },
     },
     "given": [
-        {"ref": "expr_1", "value": "ㄱ 23 × 59, ㄴ 61 × 34"},
-        {"ref": "expr_2", "value": "ㄷ 82 × 18"},
+        {"ref": "expr_1", "value": "㉠ 23 × 59"},
+        {"ref": "expr_2", "value": "㉡ 61 × 34"},
+        {"ref": "expr_3", "value": "㉢ 82 × 18"},
     ],
     "target": {"ref": "answer.target", "type": "selected_option"},
     "method": "compare_and_select",

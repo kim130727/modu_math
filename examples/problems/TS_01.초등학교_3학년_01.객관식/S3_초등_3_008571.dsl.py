@@ -1,4 +1,4 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
 from modu_math.dsl import Canvas, ProblemTemplate, RectSlot, Region, TextSlot
 
@@ -7,20 +7,18 @@ def build_problem_template() -> ProblemTemplate:
     return ProblemTemplate(
         id="S3_초등_3_008571",
         title="값이 더 작은 것을 선택하세요.",
-        canvas=Canvas(width=786, height=360, coordinate_mode="logical"),
+        canvas=Canvas(width=650, height=300, coordinate_mode="logical"),
         regions=(
-            Region(id="region.top", role="stem", flow="absolute", slot_ids=("slot.qnum", "slot.qtext")),
+            Region(id="region.top", role="stem", flow="absolute", slot_ids=("slot.qtext",)),
             Region(id="region.main", role="diagram", flow="absolute", slot_ids=("slot.box", "slot.choice1", "slot.choice2")),
-            Region(id="region.note", role="supporting", flow="absolute", slot_ids=("slot.note1", "slot.note2")),
+            Region(id="region.note", role="supporting", flow="absolute", slot_ids=()),
         ),
         slots=(
-            TextSlot(id="slot.qnum", prompt="", text="36.", style_role="question", x=24.0, y=24.0, font_size=28),
-            TextSlot(id="slot.qtext", prompt="", text="값이 더 작은 것을 선택하세요.", style_role="question", x=84.0, y=24.0, font_size=24),
-            RectSlot(id="slot.box", prompt="", x=210.0, y=84.0, width=520.0, height=110.0),
-            TextSlot(id="slot.choice1", prompt="", text="54 × 80", style_role="diagram", x=236.0, y=126.0, font_size=24),
-            TextSlot(id="slot.choice2", prompt="", text="4410", style_role="diagram", x=236.0, y=166.0, font_size=24),
-            TextSlot(id="slot.note1", prompt="", text="비교 대상의 계산 결과를 확인합니다.", style_role="supporting", x=24.0, y=266.0, font_size=20),
-            TextSlot(id="slot.note2", prompt="", text="조건에 맞는 기호(또는 식)를 선택합니다.", style_role="supporting", x=24.0, y=300.0, font_size=20),
+            TextSlot(id="slot.qtext", prompt="", text = '값이 더 작은 것을 선택하세요.', style_role="question", x = 120, y = 45, font_size = 25),
+            RectSlot(id="slot.box", prompt="", x = 35, y = 75, width = 520, height = 110),
+            TextSlot(id="slot.choice1", prompt="", text = '54 × 80', style_role="diagram", x = 120, y = 140, font_size = 25),
+            TextSlot(id="slot.choice2", prompt="", text = '4410', style_role="diagram", x = 360, y = 140, font_size = 25),
+            
         ),
         diagrams=(),
         groups=(),

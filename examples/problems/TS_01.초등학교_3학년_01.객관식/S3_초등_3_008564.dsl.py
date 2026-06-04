@@ -74,7 +74,7 @@ def build_problem_template() -> ProblemTemplate:
     return ProblemTemplate(
         id="S3_초등_3_008564",
         title="계산 결과가 더 작은 사람을 선택해 보세요.",
-        canvas=Canvas(width=786, height=360, coordinate_mode="logical"),
+        canvas=Canvas(width=600, height=300, coordinate_mode="logical"),
         regions=(
             Region(id="region.top", role="stem", flow="absolute", slot_ids=("slot.qnum", "slot.qtext")),
             Region(
@@ -93,11 +93,11 @@ def build_problem_template() -> ProblemTemplate:
         ),
         slots=(
             TextSlot(id="slot.qtext", prompt="", text="계산 결과가 더 작은 사람을 선택해 보세요.", style_role="question", x=84.0, y=24.0, font_size=24),
-            RectSlot(id="slot.box", prompt="", x = 105, y = 130, width = 425, height = 65),
-            *person_slots("slot.figure.left", cx=340.0, head_cy=56.0, body_fill="#D7A0D7"),
-            *person_slots("slot.figure.right", cx=600.0, head_cy=56.0, body_fill="#8ED7E6"),
-            TextSlot(id="slot.choice1", prompt="", text = '민재 73 × 28', style_role="diagram", x = 130, y = 170, font_size = 25),
-            TextSlot(id="slot.choice2", prompt="", text = '서윤 31 × 65', style_role="diagram", x = 355, y = 170, font_size = 25),
+            RectSlot(id="slot.box", prompt="", x = 85, y = 150, width = 425, height = 65),
+            *person_slots("slot.figure.left", cx = 202.5, head_cy = 85.0, body_fill="#D7A0D7"),
+            *person_slots("slot.figure.right", cx = 400.0, head_cy = 85.0, body_fill="#8ED7E6"),
+            TextSlot(id="slot.choice1", prompt="", text = '민재 73 × 28', style_role="diagram", x = 130, y = 190, font_size = 25),
+            TextSlot(id="slot.choice2", prompt="", text = '서윤 31 × 65', style_role="diagram", x = 335, y = 190, font_size = 25),
         ),
         diagrams=(),
         groups=(),

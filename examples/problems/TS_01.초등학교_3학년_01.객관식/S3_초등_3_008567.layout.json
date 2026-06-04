@@ -14,7 +14,6 @@
       "role": "stem",
       "flow": "absolute",
       "slot_ids": [
-        "slot.qnum",
         "slot.qtext"
       ]
     },
@@ -25,32 +24,18 @@
       "slot_ids": [
         "slot.box",
         "slot.choice1",
-        "slot.choice2"
+        "slot.choice2",
+        "slot.choice3"
       ]
     },
     {
       "id": "region.note",
       "role": "supporting",
       "flow": "absolute",
-      "slot_ids": [
-        "slot.note1",
-        "slot.note2"
-      ]
+      "slot_ids": []
     }
   ],
   "slots": [
-    {
-      "id": "slot.qnum",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "32.",
-        "style_role": "question",
-        "x": 24.0,
-        "y": 24.0,
-        "font_size": 28
-      }
-    },
     {
       "id": "slot.qtext",
       "kind": "text",
@@ -58,9 +43,9 @@
       "content": {
         "text": "나타내는 수가 다른 하나를 찾아 기호를 선택하세요.",
         "style_role": "question",
-        "x": 84.0,
-        "y": 24.0,
-        "font_size": 24
+        "x": 75.0,
+        "y": 40.0,
+        "font_size": 25
       }
     },
     {
@@ -68,10 +53,10 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 210.0,
-        "y": 84.0,
+        "x": 80.0,
+        "y": 70.0,
         "width": 520.0,
-        "height": 110.0
+        "height": 160.0
       }
     },
     {
@@ -81,9 +66,9 @@
       "content": {
         "text": "㉠ 214 + 214 + 214",
         "style_role": "diagram",
-        "x": 236.0,
-        "y": 126.0,
-        "font_size": 24
+        "x": 215.0,
+        "y": 110.0,
+        "font_size": 25
       }
     },
     {
@@ -91,35 +76,23 @@
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "㉡ 214 × 3, ㉢ 214 + 3",
+        "text": "㉡ 214 × 3",
         "style_role": "diagram",
-        "x": 236.0,
-        "y": 166.0,
-        "font_size": 24
+        "x": 265.0,
+        "y": 150.0,
+        "font_size": 25
       }
     },
     {
-      "id": "slot.note1",
+      "id": "slot.choice3",
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "비교 대상의 계산 결과를 확인합니다.",
-        "style_role": "supporting",
-        "x": 24.0,
-        "y": 266.0,
-        "font_size": 20
-      }
-    },
-    {
-      "id": "slot.note2",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "조건에 맞는 기호(또는 식)를 선택합니다.",
-        "style_role": "supporting",
-        "x": 24.0,
-        "y": 300.0,
-        "font_size": 20
+        "text": "㉢ 214 + 3",
+        "style_role": "diagram",
+        "x": 265.0,
+        "y": 195.0,
+        "font_size": 25
       }
     }
   ],
@@ -128,14 +101,12 @@
   "diagrams": [],
   "reading_order": [
     "region.top",
-    "slot.qnum",
     "slot.qtext",
     "region.main",
     "slot.box",
     "slot.choice1",
     "slot.choice2",
-    "region.note",
-    "slot.note1",
-    "slot.note2"
+    "slot.choice3",
+    "region.note"
   ]
 }

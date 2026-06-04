@@ -4,7 +4,7 @@
   "metadata": {
     "title": "계산 결과가 가장 큰 것의 기호를 선택하세요.",
     "tags": [],
-    "question": "35.",
+    "question": "계산 결과가 가장 큰 것의 기호를 선택하세요.",
     "required_layout_ids": [
       "slot.box"
     ],
@@ -18,10 +18,15 @@
       {
         "id": "expr_1",
         "type": "expression",
-        "text": "ㄱ 512 × 3, ㄴ 35 × 29"
+        "text": "ㄱ 512 × 3"
       },
       {
         "id": "expr_2",
+        "type": "expression",
+        "text": "ㄴ 35 × 29"
+      },
+      {
+        "id": "expr_3",
         "type": "expression",
         "text": "ㄷ 16 × 90"
       }

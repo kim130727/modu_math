@@ -141,3 +141,116 @@ SLOTS = (
     assert "y = 15.0" in updated
     assert "width = 120.0" in updated
     assert "height = 80.0" in updated
+
+
+def test_layout_patch_updates_person_slots_helper_anchor(tmp_path: Path) -> None:
+    client = _setup_django(tmp_path)
+    dsl_text = """
+from modu_math.dsl import CircleSlot
+
+def person_slots(prefix: str, *, cx: float, head_cy: float):
+    return (
+        CircleSlot(id=f"{prefix}.head", cx=cx, cy=head_cy, r=28),
+        CircleSlot(id=f"{prefix}.eye1", cx=cx - 8, cy=head_cy - 3, r=3.5),
+    )
+
+SLOTS = (
+    *person_slots("slot.figure.left", cx=200.0, head_cy=70.0),
+)
+""".lstrip()
+    problem_dir = _write_problem(tmp_path, "0001", dsl_text)
+
+    payload = {
+        "patches": [
+            {
+                "target": "slot.figure.left.head",
+                "op": "update",
+                "value": {"cx": 220.0, "cy": 85.0, "r": 28},
+            }
+        ]
+    }
+    response = client.post(
+        "/api/editor/problems/0001/layout-patch/",
+        data=json.dumps(payload),
+        content_type="application/json",
+    )
+
+    assert response.status_code == 200
+    updated = (problem_dir / "problem.dsl.py").read_text(encoding="utf-8")
+    assert 'person_slots("slot.figure.left", cx = 220.0, head_cy = 85.0)' in updated
+
+
+def test_layout_patch_adds_copied_slot_to_slots_and_region(tmp_path: Path) -> None:
+    client = _setup_django(tmp_path)
+    dsl_text = """
+from modu_math.dsl import Canvas, ProblemTemplate, Region, TextSlot
+
+PROBLEM_TEMPLATE = ProblemTemplate(
+    id="0001",
+    title="copy",
+    canvas=Canvas(width=100, height=100),
+    regions=(Region(id="region.main", role="diagram", flow="absolute", slot_ids=("slot.a",)),),
+    slots=(TextSlot(id="slot.a", prompt="", text="A", x=10, y=20, font_size=12),),
+)
+""".lstrip()
+    problem_dir = _write_problem(tmp_path, "0001", dsl_text)
+
+    payload = {
+        "patches": [
+            {
+                "target": "slot.a.copy1",
+                "op": "add",
+                "value": {
+                    "kind": "text",
+                    "region_id": "region.main",
+                    "content": {"text": "A", "x": 20, "y": 30, "font_size": 12, "fill": "#111111"},
+                },
+            }
+        ]
+    }
+    response = client.post(
+        "/api/editor/problems/0001/layout-patch/",
+        data=json.dumps(payload),
+        content_type="application/json",
+    )
+
+    assert response.status_code == 200
+    updated = (problem_dir / "problem.dsl.py").read_text(encoding="utf-8")
+    assert "slot.a.copy1" in updated
+    assert "TextSlot" in updated
+    assert "fill = '#111111'" in updated
+
+
+def test_layout_patch_updates_canvas_size(tmp_path: Path) -> None:
+    client = _setup_django(tmp_path)
+    dsl_text = """
+from modu_math.dsl import Canvas, ProblemTemplate
+
+PROBLEM_TEMPLATE = ProblemTemplate(
+    id="0001",
+    title="canvas",
+    canvas=Canvas(width=100, height=120),
+    regions=(),
+    slots=(),
+)
+""".lstrip()
+    problem_dir = _write_problem(tmp_path, "0001", dsl_text)
+
+    payload = {
+        "patches": [
+            {
+                "target": "__canvas__",
+                "op": "update",
+                "value": {"width": 180, "height": 160},
+            }
+        ]
+    }
+    response = client.post(
+        "/api/editor/problems/0001/layout-patch/",
+        data=json.dumps(payload),
+        content_type="application/json",
+    )
+
+    assert response.status_code == 200
+    updated = (problem_dir / "problem.dsl.py").read_text(encoding="utf-8")
+    assert "Canvas(width = 180, height = 160)" in updated

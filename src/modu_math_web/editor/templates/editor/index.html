@@ -134,6 +134,10 @@
       stroke-dasharray: 5 3;
       pointer-events: none;
     }
+    .svg-box svg .selection-bounds.canvas-selected {
+      stroke: #2563eb;
+      stroke-dasharray: 8 4;
+    }
     .svg-box svg .selection-handle {
       fill: #ffffff;
       stroke: #0f766e;
@@ -388,6 +392,8 @@
     let dragFrameRequested = false;
     let lastDragStatusAt = 0;
     let dragCommitTimer = null;
+    let copyBuffer = null;
+    let pasteSequence = 0;
     let pickMode = "all";
     let marqueeState = null;
     let inlineTextEditState = null;
@@ -882,12 +888,22 @@
 
     function readSlotPatchValue(el) {
       const tag = el.tagName.toLowerCase();
+      const styleAttrs = (names) => {
+        const out = {};
+        for (const name of names) {
+          const attrName = name.replace(/_/g, "-");
+          const raw = el.getAttribute(attrName) || el.style?.getPropertyValue(attrName) || "";
+          if (raw && raw !== "none") out[name] = name === "stroke_width" ? Number(raw) : raw;
+        }
+        return out;
+      };
       if (tag === "text") {
         return {
           text: el.textContent || "",
           x: Number(el.getAttribute("x") || 0),
           y: Number(el.getAttribute("y") || 0),
           font_size: Number(el.getAttribute("font-size") || el.getAttribute("font_size") || 0) || undefined,
+          ...styleAttrs(["fill"]),
         };
       }
       if (tag === "rect") {
@@ -896,6 +912,9 @@
           y: Number(el.getAttribute("y") || 0),
           width: Number(el.getAttribute("width") || 0),
           height: Number(el.getAttribute("height") || 0),
+          rx: Number(el.getAttribute("rx") || 0) || undefined,
+          ry: Number(el.getAttribute("ry") || 0) || undefined,
+          ...styleAttrs(["fill", "stroke", "stroke_width"]),
         };
       }
       if (tag === "circle") {
@@ -903,6 +922,7 @@
           cx: Number(el.getAttribute("cx") || 0),
           cy: Number(el.getAttribute("cy") || 0),
           r: Number(el.getAttribute("r") || 0),
+          ...styleAttrs(["fill", "stroke", "stroke_width"]),
         };
       }
       if (tag === "line") {
@@ -911,10 +931,11 @@
           y1: Number(el.getAttribute("y1") || 0),
           x2: Number(el.getAttribute("x2") || 0),
           y2: Number(el.getAttribute("y2") || 0),
+          ...styleAttrs(["stroke", "stroke_width", "stroke_dasharray"]),
         };
       }
       if (tag === "path") {
-        return { d: el.getAttribute("d") || "" };
+        return { d: el.getAttribute("d") || "", ...styleAttrs(["fill", "stroke", "stroke_width", "stroke_dasharray"]) };
       }
       if (tag === "polygon") {
         const raw = el.getAttribute("points") || "";
@@ -926,7 +947,7 @@
             const [x, y] = pair.split(",");
             return [Number(x), Number(y)];
           });
-        return { points: pts };
+        return { points: pts, ...styleAttrs(["fill", "stroke", "stroke_width"]) };
       }
       return null;
     }
@@ -1024,6 +1045,7 @@
       if (selectedSlots.size !== 1) return null;
       const item = Array.from(selectedSlots.values())[0];
       if (!item || item.isFraction || !item.el) return null;
+      if (item.isCanvas) return item;
       if (item.isFigureGroup) return item;
       const tag = item.el.tagName.toLowerCase();
       if (!["text", "rect", "circle", "line"].includes(tag)) return null;
@@ -1031,6 +1053,9 @@
     }
 
     function itemBBox(item) {
+      if (item && item.isCanvas) {
+        return getSvgCanvasBounds();
+      }
       const elements = item && (item.isFigureGroup || item.isFraction) ? (item.elements || []) : [item.el];
       const boxes = [];
       for (const el of elements) {
@@ -1068,6 +1093,7 @@
       const w = Math.max(box.width, minSize);
       const h = Math.max(box.height, minSize);
       const bounds = layer.querySelector(".selection-bounds");
+      bounds.classList.toggle("canvas-selected", !!item.isCanvas);
       bounds.setAttribute("x", String(x));
       bounds.setAttribute("y", String(y));
       bounds.setAttribute("width", String(w));
@@ -1504,6 +1530,103 @@
       return null;
     }
 
+    function resizePatchForCanvas(svg, handle, startValue, startBox, nextBox) {
+      const snap = (v) => (snapEnabled ? snapValue(v) : v);
+      const width = Math.max(20, snap(nextBox.width));
+      const height = Math.max(20, snap(nextBox.height));
+      svg.setAttribute("width", String(width));
+      svg.setAttribute("height", String(height));
+      svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
+      return { width, height };
+    }
+
+    function layoutRegionBySlotId(slotId) {
+      const layoutText = document.getElementById("layoutView")?.value || "";
+      if (!layoutText.trim()) return null;
+      try {
+        const layout = JSON.parse(layoutText);
+        for (const region of layout.regions || []) {
+          if (Array.isArray(region.slot_ids) && region.slot_ids.includes(slotId)) return region.id || null;
+        }
+      } catch (_) {
+        return null;
+      }
+      return null;
+    }
+
+    function selectedCopyItems() {
+      const seen = new Set();
+      const out = [];
+      for (const item of selectedSlots.values()) {
+        const nodes = item.elements || [item.el];
+        for (const node of nodes) {
+          const slotId = slotIdFromElement(node);
+          if (!slotId || seen.has(slotId)) continue;
+          const value = readSlotPatchValue(node);
+          if (!value) continue;
+          seen.add(slotId);
+          out.push({
+            sourceId: slotId,
+            kind: node.tagName.toLowerCase(),
+            regionId: layoutRegionBySlotId(slotId),
+            content: JSON.parse(JSON.stringify(value)),
+          });
+        }
+      }
+      return out;
+    }
+
+    function cloneSlotId(sourceId, suffix) {
+      const fig = sourceId.match(/^slot\.figure\.([^.]+)\.(.+)$/);
+      if (fig) return `slot.figure.${fig[1]}_${suffix}.${fig[2]}`;
+      return `${sourceId}.${suffix}`;
+    }
+
+    function shiftedCopyContent(content, dx, dy) {
+      const out = JSON.parse(JSON.stringify(content || {}));
+      if (out.x !== undefined) out.x += dx;
+      if (out.y !== undefined) out.y += dy;
+      if (out.cx !== undefined) out.cx += dx;
+      if (out.cy !== undefined) out.cy += dy;
+      if (out.x1 !== undefined) out.x1 += dx;
+      if (out.y1 !== undefined) out.y1 += dy;
+      if (out.x2 !== undefined) out.x2 += dx;
+      if (out.y2 !== undefined) out.y2 += dy;
+      if (Array.isArray(out.points)) out.points = out.points.map(([x, y]) => [x + dx, y + dy]);
+      if (out.d !== undefined) out.d = shiftPathD(out.d, dx, dy, false);
+      return out;
+    }
+
+    function copySelectedSlots() {
+      const items = selectedCopyItems();
+      if (!items.length) throw new Error("복사할 요소를 먼저 선택하세요.");
+      copyBuffer = { items };
+      setStatus(`복사 완료: ${items.length}개`, true);
+    }
+
+    async function pasteCopiedSlots() {
+      if (!copyBuffer || !copyBuffer.items || !copyBuffer.items.length) throw new Error("붙여넣을 복사본이 없습니다.");
+      const existingIds = extractDslSlotIds();
+      let suffix = "";
+      let offset = 0;
+      do {
+        pasteSequence += 1;
+        suffix = `copy${pasteSequence}`;
+        offset = 15 * pasteSequence;
+      } while (copyBuffer.items.some((item) => existingIds.has(cloneSlotId(item.sourceId, suffix))));
+      const patches = copyBuffer.items.map((item) => ({
+        target: cloneSlotId(item.sourceId, suffix),
+        op: "add",
+        value: {
+          kind: item.kind,
+          region_id: item.regionId,
+          content: shiftedCopyContent(item.content, offset, offset),
+        },
+      }));
+      await commitPatches(patches, `붙여넣기 완료: ${patches.length}개`);
+      restoreSelection(patches.map((p) => p.target));
+    }
+
     function pushHistory(before, after, label) {
       undoStack.push({ before, after, label });
       if (undoStack.length > 100) undoStack.shift();
@@ -1555,6 +1678,8 @@
         ? (item.elements || [])
             .map((el) => ({ el, slotId: slotIdFromElement(el), value: readSlotPatchValue(el) }))
             .filter((entry) => entry.slotId && entry.value)
+        : item.isCanvas
+          ? { width: box.width, height: box.height }
         : readSlotPatchValue(item.el);
       if (!startValue || (Array.isArray(startValue) && !startValue.length)) return;
       const handle = ev.currentTarget.getAttribute("data-handle") || "c";
@@ -1589,6 +1714,8 @@
       const nextBox = adjustedBBox(resizeState.startBox, resizeState.handle, dx, dy);
       const value = resizeState.item.isFigureGroup
         ? resizeFigureGroup(resizeState, nextBox)
+        : resizeState.item.isCanvas
+          ? resizePatchForCanvas(resizeState.svg, resizeState.handle, resizeState.startValue, resizeState.startBox, nextBox)
         : resizePatchForElement(
             resizeState.item.el,
             resizeState.handle,
@@ -1632,6 +1759,19 @@
         try {
           await commitPatches(patches, `크기 조절 저장 완료: ${local.item.slotId}`);
           if (!historyBusy && before.length === after.length && before.length > 0) pushHistory(before, after, "크기 조절");
+        } catch (e) {
+          setStatus(String(e), false);
+        }
+        return;
+      }
+      if (local.item.isCanvas) {
+        const value = local.lastValue;
+        updateSelectionHandles();
+        const before = [{ slotId: "__canvas__", value: local.startValue }];
+        const after = [{ slotId: "__canvas__", value: JSON.parse(JSON.stringify(value)) }];
+        try {
+          await commitPatches([{ target: "__canvas__", op: "update", value }], "캔버스 크기 저장 완료");
+          if (!historyBusy) pushHistory(before, after, "캔버스 크기");
         } catch (e) {
           setStatus(String(e), false);
         }
@@ -2271,6 +2411,17 @@
       if ((ev.ctrlKey || ev.metaKey) && (ev.key.toLowerCase() === "y" || (ev.shiftKey && ev.key.toLowerCase() === "z"))) {
         ev.preventDefault();
         redoAction().catch((e) => setStatus(String(e), false));
+        return;
+      }
+      if ((ev.ctrlKey || ev.metaKey) && !ev.shiftKey && ev.key.toLowerCase() === "c") {
+        ev.preventDefault();
+        try { copySelectedSlots(); }
+        catch (e) { setStatus(String(e), false); }
+        return;
+      }
+      if ((ev.ctrlKey || ev.metaKey) && !ev.shiftKey && ev.key.toLowerCase() === "v") {
+        ev.preventDefault();
+        pasteCopiedSlots().catch((e) => setStatus(String(e), false));
         return;
       }
       if (!selectedSlots.size) return;

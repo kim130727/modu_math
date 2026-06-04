@@ -1,4 +1,4 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
 from modu_math.dsl import Canvas, ProblemTemplate, RectSlot, Region, TextSlot
 
@@ -9,18 +9,17 @@ def build_problem_template() -> ProblemTemplate:
         title="나타내는 수가 다른 하나를 찾아 기호를 선택하세요.",
         canvas=Canvas(width=786, height=360, coordinate_mode="logical"),
         regions=(
-            Region(id="region.top", role="stem", flow="absolute", slot_ids=("slot.qnum", "slot.qtext")),
-            Region(id="region.main", role="diagram", flow="absolute", slot_ids=("slot.box", "slot.choice1", "slot.choice2")),
-            Region(id="region.note", role="supporting", flow="absolute", slot_ids=("slot.note1", "slot.note2")),
+            Region(id="region.top", role="stem", flow="absolute", slot_ids=("slot.qtext",)),
+            Region(id="region.main", role="diagram", flow="absolute", slot_ids=("slot.box", "slot.choice1", "slot.choice2", "slot.choice3")),
+            Region(id="region.note", role="supporting", flow="absolute", slot_ids=()),
         ),
         slots=(
-            TextSlot(id="slot.qnum", prompt="", text="32.", style_role="question", x=24.0, y=24.0, font_size=28),
-            TextSlot(id="slot.qtext", prompt="", text="나타내는 수가 다른 하나를 찾아 기호를 선택하세요.", style_role="question", x=84.0, y=24.0, font_size=24),
-            RectSlot(id="slot.box", prompt="", x=210.0, y=84.0, width=520.0, height=110.0),
-            TextSlot(id="slot.choice1", prompt="", text="㉠ 214 + 214 + 214", style_role="diagram", x=236.0, y=126.0, font_size=24),
-            TextSlot(id="slot.choice2", prompt="", text="㉡ 214 × 3, ㉢ 214 + 3", style_role="diagram", x=236.0, y=166.0, font_size=24),
-            TextSlot(id="slot.note1", prompt="", text="비교 대상의 계산 결과를 확인합니다.", style_role="supporting", x=24.0, y=266.0, font_size=20),
-            TextSlot(id="slot.note2", prompt="", text="조건에 맞는 기호(또는 식)를 선택합니다.", style_role="supporting", x=24.0, y=300.0, font_size=20),
+            TextSlot(id="slot.qtext", prompt="", text = '나타내는 수가 다른 하나를 찾아 기호를 선택하세요.', style_role="question", x = 75, y = 40, font_size = 25),
+            RectSlot(id="slot.box", prompt="", x = 80, y = 70, width = 520, height = 160),
+            TextSlot(id="slot.choice1", prompt="", text = '㉠ 214 + 214 + 214', style_role="diagram", x = 215, y = 110, font_size = 25),
+            TextSlot(id="slot.choice2", prompt="", text = '㉡ 214 × 3', style_role="diagram", x = 265, y = 150, font_size = 25),
+            TextSlot(id="slot.choice3", prompt="", text = '㉢ 214 + 3', style_role="diagram", x = 265, y = 195, font_size = 25),
+            
         ),
         diagrams=(),
         groups=(),
@@ -38,7 +37,8 @@ SEMANTIC_OVERRIDE = {
     "domain": {
         "objects": [
             {"id": "expr_1", "type": "expression", "text": "㉠ 214 + 214 + 214"},
-            {"id": "expr_2", "type": "expression", "text": "㉡ 214 × 3, ㉢ 214 + 3"},
+            {"id": "expr_2", "type": "expression", "text": "㉡ 214 × 3"},
+            {"id": "expr_3", "type": "expression", "text": "㉢ 214 + 3"},
         ],
         "relations": [],
         "problem_solving": {
@@ -67,12 +67,14 @@ SOLVABLE = {
         "unit": "",
         "quantities": {
             "expr_1": "㉠ 214 + 214 + 214",
-            "expr_2": "㉡ 214 × 3, ㉢ 214 + 3",
+            "expr_2": "㉡ 214 × 3",
+            "expr_3": "㉢ 214 + 3",
         },
     },
     "given": [
         {"ref": "expr_1", "value": "㉠ 214 + 214 + 214"},
-        {"ref": "expr_2", "value": "㉡ 214 × 3, ㉢ 214 + 3"},
+        {"ref": "expr_2", "value": "㉡ 214 × 3"},
+        {"ref": "expr_3", "value": "㉢ 214 + 3"},
     ],
     "target": {"ref": "answer.target", "type": "selected_option"},
     "method": "compare_and_select",
