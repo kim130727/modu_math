@@ -4,7 +4,7 @@
   "title": "계산 결과가 더 큰 것을 찾아 기호를 선택하세요.",
   "canvas": {
     "width": 670,
-    "height": 400,
+    "height": 300,
     "coordinate_mode": "logical",
     "background": "#FFFFFF"
   },
@@ -14,7 +14,6 @@
       "role": "stem",
       "flow": "absolute",
       "slot_ids": [
-        "slot.qnum",
         "slot.qtext"
       ]
     },
@@ -32,26 +31,10 @@
       "id": "region.work",
       "role": "supporting",
       "flow": "absolute",
-      "slot_ids": [
-        "slot.work1",
-        "slot.work2",
-        "slot.compare"
-      ]
+      "slot_ids": []
     }
   ],
   "slots": [
-    {
-      "id": "slot.qnum",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "27.",
-        "style_role": "question",
-        "x": 24.0,
-        "y": 26.0,
-        "font_size": 28
-      }
-    },
     {
       "id": "slot.qtext",
       "kind": "text",
@@ -69,10 +52,10 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 332.0,
-        "y": 66.0,
-        "width": 282.0,
-        "height": 98.0,
+        "x": 125.0,
+        "y": 65.0,
+        "width": 430.0,
+        "height": 100.0,
         "stroke": "#8F6ED5",
         "stroke_width": 2.0,
         "fill": "#FFFFFF"
@@ -83,11 +66,11 @@
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "① 4 × 93",
+        "text": "㉠ 4 × 93",
         "style_role": "diagram",
-        "x": 362.0,
-        "y": 103.0,
-        "font_size": 28
+        "x": 170.0,
+        "y": 130.0,
+        "font_size": 30
       }
     },
     {
@@ -95,47 +78,11 @@
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "ㄴ 7 × 54",
+        "text": "㉡ 7 × 54",
         "style_role": "diagram",
-        "x": 478.0,
-        "y": 103.0,
-        "font_size": 28
-      }
-    },
-    {
-      "id": "slot.work1",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "① 4 × 93 = 372",
-        "style_role": "supporting",
-        "x": 58.0,
-        "y": 252.0,
-        "font_size": 24
-      }
-    },
-    {
-      "id": "slot.work2",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "ㄴ 7 × 54 = 378",
-        "style_role": "supporting",
-        "x": 58.0,
-        "y": 292.0,
-        "font_size": 24
-      }
-    },
-    {
-      "id": "slot.compare",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "372 < 378",
-        "style_role": "supporting",
-        "x": 58.0,
-        "y": 332.0,
-        "font_size": 24
+        "x": 365.0,
+        "y": 130.0,
+        "font_size": 30
       }
     }
   ],
@@ -144,15 +91,11 @@
   "diagrams": [],
   "reading_order": [
     "region.stem",
-    "slot.qnum",
     "slot.qtext",
     "region.choices",
     "slot.choice_box",
     "slot.opt1",
     "slot.opt2",
-    "region.work",
-    "slot.work1",
-    "slot.work2",
-    "slot.compare"
+    "region.work"
   ]
 }

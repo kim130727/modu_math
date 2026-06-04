@@ -1,4 +1,4 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
 from modu_math.dsl import Canvas, ProblemTemplate, RectSlot, Region, TextSlot
 
@@ -7,13 +7,13 @@ def build_problem_template() -> ProblemTemplate:
     return ProblemTemplate(
         id="S3_초등_3_008562",
         title="계산 결과가 더 큰 것을 찾아 기호를 선택하세요.",
-        canvas=Canvas(width=670, height=400, coordinate_mode="logical"),
+        canvas=Canvas(width=670, height=300, coordinate_mode="logical"),
         regions=(
             Region(
                 id="region.stem",
                 role="stem",
                 flow="absolute",
-                slot_ids=("slot.qnum", "slot.qtext"),
+                slot_ids=("slot.qtext",),
             ),
             Region(
                 id="region.choices",
@@ -30,15 +30,6 @@ def build_problem_template() -> ProblemTemplate:
         ),
         slots=(
             TextSlot(
-                id="slot.qnum",
-                prompt="",
-                text="27.",
-                style_role="question",
-                x=24.0,
-                y=26.0,
-                font_size=28,
-            ),
-            TextSlot(
                 id="slot.qtext",
                 prompt="",
                 text="계산 결과가 더 큰 것을 찾아 기호를 선택하세요.",
@@ -50,59 +41,20 @@ def build_problem_template() -> ProblemTemplate:
             RectSlot(
                 id="slot.choice_box",
                 prompt="",
-                x=332.0,
-                y=66.0,
-                width=282.0,
-                height=98.0,
-                stroke="#8F6ED5",
+                x = 125, y = 65, width = 430, height = 100, stroke="#8F6ED5",
                 stroke_width=2.0,
                 fill="#FFFFFF",
             ),
             TextSlot(
                 id="slot.opt1",
                 prompt="",
-                text="① 4 × 93",
-                style_role="diagram",
-                x=362.0,
-                y=103.0,
-                font_size=28,
-            ),
+                text = '㉠ 4 × 93', style_role="diagram",
+                x = 170, y = 130, font_size = 30),
             TextSlot(
                 id="slot.opt2",
                 prompt="",
-                text="ㄴ 7 × 54",
-                style_role="diagram",
-                x=478.0,
-                y=103.0,
-                font_size=28,
-            ),
-            TextSlot(
-                id="slot.work1",
-                prompt="",
-                text="① 4 × 93 = 372",
-                style_role="supporting",
-                x=58.0,
-                y=252.0,
-                font_size=24,
-            ),
-            TextSlot(
-                id="slot.work2",
-                prompt="",
-                text="ㄴ 7 × 54 = 378",
-                style_role="supporting",
-                x=58.0,
-                y=292.0,
-                font_size=24,
-            ),
-            TextSlot(
-                id="slot.compare",
-                prompt="",
-                text="372 < 378",
-                style_role="supporting",
-                x=58.0,
-                y=332.0,
-                font_size=24,
-            ),
+                text = '㉡ 7 × 54', style_role="diagram",
+                x = 365, y = 130, font_size = 30),
         ),
         diagrams=(),
         groups=(),

@@ -1,39 +1,100 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
 from modu_math.dsl import Canvas, CircleSlot, LineSlot, ProblemTemplate, RectSlot, Region, TextSlot
+
+
+def person_slot_ids(prefix: str) -> tuple[str, ...]:
+    return (
+        f"{prefix}.body",
+        f"{prefix}.head",
+        f"{prefix}.eye1",
+        f"{prefix}.eye2",
+        f"{prefix}.mouth",
+    )
+
+
+def person_slots(
+    prefix: str,
+    *,
+    cx: float,
+    head_cy: float,
+    body_fill: str,
+) -> tuple[CircleSlot, RectSlot, CircleSlot, CircleSlot, LineSlot]:
+    return (
+        RectSlot(
+            id=f"{prefix}.body",
+            prompt="",
+            x=cx - 15,
+            y=head_cy + 20,
+            width=30,
+            height=36,
+            rx=10,
+            ry=10,
+            fill=body_fill,
+            stroke=body_fill,
+        ),
+        CircleSlot(
+            id=f"{prefix}.head",
+            prompt="",
+            cx=cx,
+            cy=head_cy,
+            r=28,
+            fill="#F3C0AD",
+        ),
+        CircleSlot(
+            id=f"{prefix}.eye1",
+            prompt="",
+            cx=cx - 8,
+            cy=head_cy - 3,
+            r=3.5,
+            fill="#222222",
+        ),
+        CircleSlot(
+            id=f"{prefix}.eye2",
+            prompt="",
+            cx=cx + 8,
+            cy=head_cy - 3,
+            r=3.5,
+            fill="#222222",
+        ),
+        LineSlot(
+            id=f"{prefix}.mouth",
+            prompt="",
+            x1=cx - 7,
+            y1=head_cy + 10,
+            x2=cx + 7,
+            y2=head_cy + 10,
+            stroke="#C36A6A",
+            stroke_dasharray="",
+        ),
+    )
 
 
 def build_problem_template() -> ProblemTemplate:
     return ProblemTemplate(
         id="S3_초등_3_008563",
         title="계산 결과가 더 큰 사람을 선택해 보세요.",
-        canvas=Canvas(width=786, height=301, coordinate_mode="logical"),
+        canvas=Canvas(width=550, height=300, coordinate_mode="logical"),
         regions=(
             Region(
                 id="region.top",
                 role="stem",
                 flow="absolute",
-                slot_ids=("slot.q_text"),
+                slot_ids=("slot.q_text",),
             ),
             Region(
                 id="region.middle",
                 role="diagram",
                 flow="absolute",
                 slot_ids=(
-                    "slot.left_head",
-                    "slot.left_body",
-                    "slot.left_leg1",
-                    "slot.left_leg2",
-                    "slot.right_head",
-                    "slot.right_body",
-                    "slot.right_leg1",
-                    "slot.right_leg2",
                     "slot.left_card",
                     "slot.right_card",
                     "slot.left_name_box",
                     "slot.right_name_box",
                     "slot.left_name",
                     "slot.right_name",
+                    *person_slot_ids("slot.figure.left"),
+                    *person_slot_ids("slot.figure.right"),
                     "slot.left_expr",
                     "slot.right_expr",
                 ),
@@ -42,35 +103,25 @@ def build_problem_template() -> ProblemTemplate:
                 id="region.bottom",
                 role="supporting",
                 flow="absolute",
-                slot_ids=("slot.note1", "slot.note2"),
+                slot_ids=(),
             ),
         ),
         slots=(
             TextSlot(
                 id="slot.q_text",
                 prompt="",
-                text="계산 결과가 더 큰 사람을 선택해 보세요.",
-                style_role="question",
-                x=74.0,
-                y=20.0,
-                font_size=24,
-            ),
-            RectSlot(id="slot.left_card", prompt="", x=302.0, y=70.0, width=122.0, height=61.0),
-            RectSlot(id="slot.right_card", prompt="", x=562.0, y=70.0, width=121.0, height=61.0),
-            CircleSlot(id="slot.left_head", prompt="", cx=340.0, cy=56.0, r=17.0, fill="#FFD9B3"),
-            RectSlot(id="slot.left_body", prompt="", x=323.0, y=73.0, width=34.0, height=36.0, fill="#9ED3FF"),
-            LineSlot(id="slot.left_leg1", prompt="", x1=332.0, y1=109.0, x2=326.0, y2=124.0),
-            LineSlot(id="slot.left_leg2", prompt="", x1=348.0, y1=109.0, x2=354.0, y2=124.0),
-            CircleSlot(id="slot.right_head", prompt="", cx=600.0, cy=56.0, r=17.0, fill="#FFD9B3"),
-            RectSlot(id="slot.right_body", prompt="", x=583.0, y=73.0, width=34.0, height=36.0, fill="#B7E7A1"),
-            LineSlot(id="slot.right_leg1", prompt="", x1=592.0, y1=109.0, x2=586.0, y2=124.0),
-            LineSlot(id="slot.right_leg2", prompt="", x1=608.0, y1=109.0, x2=614.0, y2=124.0),
-            RectSlot(id="slot.left_name_box", prompt="", x=201.0, y=48.0, width=58.0, height=27.0),
-            RectSlot(id="slot.right_name_box", prompt="", x=724.0, y=48.0, width=52.0, height=27.0),
-            TextSlot(id="slot.left_name", prompt="", text="은우", style_role="diagram", x=210.0, y=67.0, font_size=18),
-            TextSlot(id="slot.right_name", prompt="", text="도윤", style_role="diagram", x=732.0, y=67.0, font_size=18),
-            TextSlot(id="slot.left_expr", prompt="", text="24 × 42", style_role="diagram", x=330.0, y=104.0, font_size=24),
-            TextSlot(id="slot.right_expr", prompt="", text="19 × 78", style_role="diagram", x=588.0, y=104.0, font_size=24),
+                text = '계산 결과가 더 큰 사람을 선택해 보세요.', style_role="question",
+                x = 75, y = 40, font_size = 25),
+            RectSlot(id="slot.left_card", prompt="", x = 120, y = 180, width = 120, height = 60),
+            RectSlot(id="slot.right_card", prompt="", x = 310, y = 180, width = 120, height = 60),
+            RectSlot(id="slot.left_name_box", prompt="", x = 150, y = 70, width = 60, height = 25),
+            RectSlot(id="slot.right_name_box", prompt="", x = 345, y = 70, width = 50, height = 25),
+            TextSlot(id="slot.left_name", prompt="", text = '은우', style_role="diagram", x = 165, y = 90, font_size = 20),
+            TextSlot(id="slot.right_name", prompt="", text = '도윤', style_role="diagram", x = 355, y = 90, font_size = 20),
+            *person_slots("slot.figure.left", cx=180, head_cy=128, body_fill="#D7A0D7"),
+            *person_slots("slot.figure.right", cx=370, head_cy=128, body_fill="#8ED7E6"),
+            TextSlot(id="slot.left_expr", prompt="", text = '24 × 42', style_role="diagram", x = 130, y = 220, font_size = 25),
+            TextSlot(id="slot.right_expr", prompt="", text = '19 × 78', style_role="diagram", x = 325, y = 220, font_size = 25),
         ),
         diagrams=(),
         groups=(),

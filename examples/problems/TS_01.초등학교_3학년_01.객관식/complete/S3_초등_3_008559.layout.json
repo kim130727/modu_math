@@ -1,7 +1,7 @@
 {
   "schema": "modu.layout.v1",
-  "problem_id": "S3_초등_3_008556",
-  "title": "색칠된 부분은 실제 어떤 수의 곱인지를 찾아 선택하세요.",
+  "problem_id": "S3_초등_3_008559",
+  "title": "색칠된 부분은 실제 어떤 수의 곱인지 찾아 선택하세요.",
   "canvas": {
     "width": 900,
     "height": 420,
@@ -33,7 +33,8 @@
         "slot.f3",
         "slot.c1",
         "slot.c2",
-        "slot.c3"
+        "slot.c3",
+        "slot.c4"
       ]
     },
     {
@@ -61,7 +62,7 @@
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "색칠된 부분은 실제 어떤 수의 곱인지를 찾아 선택하세요.",
+        "text": "색칠된 부분은 실제 어떤 수의 곱인지 찾아 선택하세요.",
         "style_role": "question",
         "x": 40.0,
         "y": 40.0,
@@ -143,11 +144,11 @@
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "5 1 2",
+        "text": "7 6 2",
         "style_role": "diagram",
         "x": 480.0,
         "y": 95.0,
-        "font_size": 44
+        "font_size": 45
       }
     },
     {
@@ -167,9 +168,9 @@
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "3",
+        "text": "4",
         "style_role": "diagram",
-        "x": 552.0,
+        "x": 555.0,
         "y": 135.0,
         "font_size": 44
       }
@@ -190,11 +191,11 @@
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "6",
+        "text": "8",
         "style_role": "diagram",
-        "x": 550.0,
-        "y": 185.0,
-        "font_size": 44
+        "x": 555.0,
+        "y": 180.0,
+        "font_size": 45
       }
     },
     {
@@ -202,9 +203,9 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 505.0,
-        "y": 190.0,
-        "width": 78.0,
+        "x": 440.0,
+        "y": 225.0,
+        "width": 145.0,
         "height": 40.0,
         "fill": "#efc8b9"
       }
@@ -214,11 +215,11 @@
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "3 0",
+        "text": "2 4 0",
         "style_role": "diagram",
-        "x": 515.0,
-        "y": 225.0,
-        "font_size": 44
+        "x": 480.0,
+        "y": 220.0,
+        "font_size": 45
       }
     },
     {
@@ -226,10 +227,10 @@
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "1 5 0 0",
+        "text": "2 8 0 0",
         "style_role": "diagram",
-        "x": 442.0,
-        "y": 265.0,
+        "x": 445.0,
+        "y": 260.0,
         "font_size": 44
       }
     },
@@ -249,9 +250,9 @@
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "1 5 3 6",
+        "text": "3 0 4 8",
         "style_role": "diagram",
-        "x": 442.0,
+        "x": 445.0,
         "y": 310.0,
         "font_size": 44
       }
@@ -261,10 +262,10 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 190.0,
+        "x": 45.0,
         "y": 335.0,
-        "width": 514.0,
-        "height": 76.0,
+        "width": 790.0,
+        "height": 75.0,
         "stroke": "#D8A100",
         "stroke_width": 2.0,
         "fill": "none"
@@ -275,10 +276,10 @@
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "1 × 3",
+        "text": "6 × 4",
         "style_role": "choice",
-        "x": 260.0,
-        "y": 385.0,
+        "x": 110.0,
+        "y": 390.0,
         "font_size": 40
       }
     },
@@ -287,10 +288,10 @@
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "10 × 3",
+        "text": "60 × 4",
         "style_role": "choice",
-        "x": 395.0,
-        "y": 385.0,
+        "x": 290.0,
+        "y": 390.0,
         "font_size": 40
       }
     },
@@ -299,9 +300,21 @@
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "100 × 3",
+        "text": "62 × 4",
         "style_role": "choice",
-        "x": 540.0,
+        "x": 485.0,
+        "y": 390.0,
+        "font_size": 40
+      }
+    },
+    {
+      "id": "slot.c4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "600 × 4",
+        "style_role": "choice",
+        "x": 665.0,
         "y": 385.0,
         "font_size": 40
       }
@@ -332,6 +345,7 @@
     "slot.c1",
     "slot.c2",
     "slot.c3",
+    "slot.c4",
     "region.work",
     "region.choice",
     "region.footer"

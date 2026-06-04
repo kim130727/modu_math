@@ -1,10 +1,10 @@
 {
   "schema": "modu.layout.v1",
-  "problem_id": "S3_초등_3_008564",
-  "title": "계산 결과가 더 작은 사람을 선택해 보세요.",
+  "problem_id": "S3_초등_3_008563",
+  "title": "계산 결과가 더 큰 사람을 선택해 보세요.",
   "canvas": {
-    "width": 786,
-    "height": 360,
+    "width": 550,
+    "height": 300,
     "coordinate_mode": "logical",
     "background": "#FFFFFF"
   },
@@ -14,15 +14,18 @@
       "role": "stem",
       "flow": "absolute",
       "slot_ids": [
-        "slot.qtext"
+        "slot.q_text"
       ]
     },
     {
-      "id": "region.main",
+      "id": "region.middle",
       "role": "diagram",
       "flow": "absolute",
       "slot_ids": [
-        "slot.box",
+        "slot.left_card",
+        "slot.right_card",
+        "slot.left_name_box",
+        "slot.right_name_box",
         "slot.figure.left.body",
         "slot.figure.left.head",
         "slot.figure.left.eye1",
@@ -33,12 +36,14 @@
         "slot.figure.right.eye2",
         "slot.figure.left.mouth",
         "slot.figure.right.mouth",
-        "slot.choice1",
-        "slot.choice2"
+        "slot.left_name",
+        "slot.right_name",
+        "slot.left_expr",
+        "slot.right_expr"
       ]
     },
     {
-      "id": "region.note",
+      "id": "region.bottom",
       "role": "supporting",
       "flow": "absolute",
       "slot_ids": []
@@ -46,26 +51,83 @@
   ],
   "slots": [
     {
-      "id": "slot.qtext",
+      "id": "slot.q_text",
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "계산 결과가 더 작은 사람을 선택해 보세요.",
+        "text": "계산 결과가 더 큰 사람을 선택해 보세요.",
         "style_role": "question",
-        "x": 84.0,
-        "y": 24.0,
-        "font_size": 24
+        "x": 75.0,
+        "y": 40.0,
+        "font_size": 25
       }
     },
     {
-      "id": "slot.box",
+      "id": "slot.left_card",
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 105.0,
-        "y": 130.0,
-        "width": 425.0,
-        "height": 65.0
+        "x": 120.0,
+        "y": 180.0,
+        "width": 120.0,
+        "height": 60.0
+      }
+    },
+    {
+      "id": "slot.right_card",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 310.0,
+        "y": 180.0,
+        "width": 120.0,
+        "height": 60.0
+      }
+    },
+    {
+      "id": "slot.left_name_box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 150.0,
+        "y": 70.0,
+        "width": 60.0,
+        "height": 25.0
+      }
+    },
+    {
+      "id": "slot.right_name_box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 345.0,
+        "y": 70.0,
+        "width": 50.0,
+        "height": 25.0
+      }
+    },
+    {
+      "id": "slot.left_name",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "은우",
+        "style_role": "diagram",
+        "x": 165.0,
+        "y": 90.0,
+        "font_size": 20
+      }
+    },
+    {
+      "id": "slot.right_name",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "도윤",
+        "style_role": "diagram",
+        "x": 355.0,
+        "y": 90.0,
+        "font_size": 20
       }
     },
     {
@@ -73,8 +135,8 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 325.0,
-        "y": 76.0,
+        "x": 165.0,
+        "y": 148.0,
         "width": 30.0,
         "height": 36.0,
         "stroke": "#D7A0D7",
@@ -88,8 +150,8 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 340.0,
-        "cy": 56.0,
+        "cx": 180.0,
+        "cy": 128.0,
         "r": 28.0,
         "fill": "#F3C0AD"
       }
@@ -99,8 +161,8 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 332.0,
-        "cy": 53.0,
+        "cx": 172.0,
+        "cy": 125.0,
         "r": 3.5,
         "fill": "#222222"
       }
@@ -110,8 +172,8 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 348.0,
-        "cy": 53.0,
+        "cx": 188.0,
+        "cy": 125.0,
         "r": 3.5,
         "fill": "#222222"
       }
@@ -121,10 +183,10 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 333.0,
-        "y1": 66.0,
-        "x2": 347.0,
-        "y2": 66.0,
+        "x1": 173.0,
+        "y1": 138.0,
+        "x2": 187.0,
+        "y2": 138.0,
         "stroke": "#C36A6A"
       }
     },
@@ -133,8 +195,8 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 585.0,
-        "y": 76.0,
+        "x": 355.0,
+        "y": 148.0,
         "width": 30.0,
         "height": 36.0,
         "stroke": "#8ED7E6",
@@ -148,8 +210,8 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 600.0,
-        "cy": 56.0,
+        "cx": 370.0,
+        "cy": 128.0,
         "r": 28.0,
         "fill": "#F3C0AD"
       }
@@ -159,8 +221,8 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 592.0,
-        "cy": 53.0,
+        "cx": 362.0,
+        "cy": 125.0,
         "r": 3.5,
         "fill": "#222222"
       }
@@ -170,8 +232,8 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 608.0,
-        "cy": 53.0,
+        "cx": 378.0,
+        "cy": 125.0,
         "r": 3.5,
         "fill": "#222222"
       }
@@ -181,34 +243,34 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 593.0,
-        "y1": 66.0,
-        "x2": 607.0,
-        "y2": 66.0,
+        "x1": 363.0,
+        "y1": 138.0,
+        "x2": 377.0,
+        "y2": 138.0,
         "stroke": "#C36A6A"
       }
     },
     {
-      "id": "slot.choice1",
+      "id": "slot.left_expr",
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "민재 73 × 28",
+        "text": "24 × 42",
         "style_role": "diagram",
         "x": 130.0,
-        "y": 170.0,
+        "y": 220.0,
         "font_size": 25
       }
     },
     {
-      "id": "slot.choice2",
+      "id": "slot.right_expr",
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "서윤 31 × 65",
+        "text": "19 × 78",
         "style_role": "diagram",
-        "x": 355.0,
-        "y": 170.0,
+        "x": 325.0,
+        "y": 220.0,
         "font_size": 25
       }
     }
@@ -218,9 +280,12 @@
   "diagrams": [],
   "reading_order": [
     "region.top",
-    "slot.qtext",
-    "region.main",
-    "slot.box",
+    "slot.q_text",
+    "region.middle",
+    "slot.left_card",
+    "slot.right_card",
+    "slot.left_name_box",
+    "slot.right_name_box",
     "slot.figure.left.body",
     "slot.figure.left.head",
     "slot.figure.left.eye1",
@@ -231,8 +296,10 @@
     "slot.figure.right.eye2",
     "slot.figure.left.mouth",
     "slot.figure.right.mouth",
-    "slot.choice1",
-    "slot.choice2",
-    "region.note"
+    "slot.left_name",
+    "slot.right_name",
+    "slot.left_expr",
+    "slot.right_expr",
+    "region.bottom"
   ]
 }

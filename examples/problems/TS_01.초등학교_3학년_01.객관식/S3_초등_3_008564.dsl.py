@@ -1,6 +1,73 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
 from modu_math.dsl import Canvas, CircleSlot, LineSlot, ProblemTemplate, RectSlot, Region, TextSlot
+
+
+def person_slot_ids(prefix: str) -> tuple[str, ...]:
+    return (
+        f"{prefix}.body",
+        f"{prefix}.head",
+        f"{prefix}.eye1",
+        f"{prefix}.eye2",
+        f"{prefix}.mouth",
+    )
+
+
+def person_slots(
+    prefix: str,
+    *,
+    cx: float,
+    head_cy: float,
+    body_fill: str,
+) -> tuple[RectSlot, CircleSlot, CircleSlot, CircleSlot, LineSlot]:
+    return (
+        RectSlot(
+            id=f"{prefix}.body",
+            prompt="",
+            x=cx - 15,
+            y=head_cy + 20,
+            width=30,
+            height=36,
+            rx=10,
+            ry=10,
+            fill=body_fill,
+            stroke=body_fill,
+        ),
+        CircleSlot(
+            id=f"{prefix}.head",
+            prompt="",
+            cx=cx,
+            cy=head_cy,
+            r=28,
+            fill="#F3C0AD",
+        ),
+        CircleSlot(
+            id=f"{prefix}.eye1",
+            prompt="",
+            cx=cx - 8,
+            cy=head_cy - 3,
+            r=3.5,
+            fill="#222222",
+        ),
+        CircleSlot(
+            id=f"{prefix}.eye2",
+            prompt="",
+            cx=cx + 8,
+            cy=head_cy - 3,
+            r=3.5,
+            fill="#222222",
+        ),
+        LineSlot(
+            id=f"{prefix}.mouth",
+            prompt="",
+            x1=cx - 7,
+            y1=head_cy + 10,
+            x2=cx + 7,
+            y2=head_cy + 10,
+            stroke="#C36A6A",
+            stroke_dasharray="",
+        ),
+    )
 
 
 def build_problem_template() -> ProblemTemplate:
@@ -16,14 +83,8 @@ def build_problem_template() -> ProblemTemplate:
                 flow="absolute",
                 slot_ids=(
                     "slot.box",
-                    "slot.left_head",
-                    "slot.left_body",
-                    "slot.left_leg1",
-                    "slot.left_leg2",
-                    "slot.right_head",
-                    "slot.right_body",
-                    "slot.right_leg1",
-                    "slot.right_leg2",
+                    *person_slot_ids("slot.figure.left"),
+                    *person_slot_ids("slot.figure.right"),
                     "slot.choice1",
                     "slot.choice2",
                 ),
@@ -32,17 +93,11 @@ def build_problem_template() -> ProblemTemplate:
         ),
         slots=(
             TextSlot(id="slot.qtext", prompt="", text="계산 결과가 더 작은 사람을 선택해 보세요.", style_role="question", x=84.0, y=24.0, font_size=24),
-            RectSlot(id="slot.box", prompt="", x=210.0, y=84.0, width=520.0, height=110.0),
-            CircleSlot(id="slot.left_head", prompt="", cx=340.0, cy=56.0, r=17.0, fill="#FFD9B3"),
-            RectSlot(id="slot.left_body", prompt="", x=323.0, y=73.0, width=34.0, height=36.0, fill="#F2BE8B"),
-            LineSlot(id="slot.left_leg1", prompt="", x1=332.0, y1=109.0, x2=326.0, y2=124.0),
-            LineSlot(id="slot.left_leg2", prompt="", x1=348.0, y1=109.0, x2=354.0, y2=124.0),
-            CircleSlot(id="slot.right_head", prompt="", cx=600.0, cy=56.0, r=17.0, fill="#FFD9B3"),
-            RectSlot(id="slot.right_body", prompt="", x=583.0, y=73.0, width=34.0, height=36.0, fill="#9ED3FF"),
-            LineSlot(id="slot.right_leg1", prompt="", x1=592.0, y1=109.0, x2=586.0, y2=124.0),
-            LineSlot(id="slot.right_leg2", prompt="", x1=608.0, y1=109.0, x2=614.0, y2=124.0),
-            TextSlot(id="slot.choice1", prompt="", text="민재 73 × 28", style_role="diagram", x=236.0, y=126.0, font_size=24),
-            TextSlot(id="slot.choice2", prompt="", text="서윤 31 × 65", style_role="diagram", x=236.0, y=166.0, font_size=24),
+            RectSlot(id="slot.box", prompt="", x = 105, y = 130, width = 425, height = 65),
+            *person_slots("slot.figure.left", cx=340.0, head_cy=56.0, body_fill="#D7A0D7"),
+            *person_slots("slot.figure.right", cx=600.0, head_cy=56.0, body_fill="#8ED7E6"),
+            TextSlot(id="slot.choice1", prompt="", text = '민재 73 × 28', style_role="diagram", x = 130, y = 170, font_size = 25),
+            TextSlot(id="slot.choice2", prompt="", text = '서윤 31 × 65', style_role="diagram", x = 355, y = 170, font_size = 25),
         ),
         diagrams=(),
         groups=(),

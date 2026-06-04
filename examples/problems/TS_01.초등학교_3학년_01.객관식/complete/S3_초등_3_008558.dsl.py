@@ -3,126 +3,100 @@ from __future__ import annotations
 from modu_math.dsl import Canvas, LineSlot, ProblemTemplate, RectSlot, Region, TextSlot
 
 
-PROBLEM_ID = "S3_초등_3_008558"
-QUESTION_TEXT = "바르게 계산한 것을 선택하세요."
-ANSWER_EXPR = "50 × 60 = 3000"
-TARGET_LABEL = "바르게 계산한 것"
+QUESTION = "바르게 계산한 것을 선택하세요."
+TARGET_EXPRESSION = "50 × 60 = 3000"
+TARGET_DESCRIPTION = "바르게 계산한 식"
 
 
 def build_problem_template() -> ProblemTemplate:
     return ProblemTemplate(
-        id=PROBLEM_ID,
-        title=QUESTION_TEXT,
-        canvas=Canvas(width=900, height=420, coordinate_mode="logical"),
+        id="S3_초등_3_008558",
+        title=QUESTION,
+        canvas=Canvas(width=700, height=420, coordinate_mode="logical"),
         regions=(
-            Region(
-                id="region.stem",
-                role="stem",
-                flow="absolute",
-                slot_ids=(
-                    "slot.q.text",
-                    "slot.b1",
-                    "slot.b2",
-                    "slot.t1",
-                    "slot.t2",
-                    "slot.l1",
-                    "slot.t3",
-                    "slot.t4",
-                    "slot.t5",
-                    "slot.l2",
-                    "slot.t6",
-                ),
-            ),
+            Region(id="region.stem", role="stem", flow="absolute", slot_ids=("slot.q.text",)),
         ),
         slots=(
-            TextSlot(
-                id="slot.q.text",
-                prompt="",
-                text=QUESTION_TEXT,
-                style_role="question",
-                x=60,
-                y=55,
-                font_size=45,
-            ),
-            RectSlot(
-                id="slot.b1",
-                prompt="",
-                x=120,
-                y=90,
-                width=180,
-                height=180,
-                fill="none",
-                stroke="#8E44AD",
-                stroke_width=2.0,
-            ),
-            RectSlot(
-                id="slot.b2",
-                prompt="",
-                x=405,
-                y=90,
-                width=170,
-                height=180,
-                fill="none",
-                stroke="#8E44AD",
-                stroke_width=2.0,
-            ),
-            TextSlot(id="slot.t1", prompt="", text="5  0", style_role="diagram", x=200, y=140, font_size=45),
-            TextSlot(id="slot.t2", prompt="", text="× 6  0", style_role="diagram", x=145, y=190, font_size=44),
-            LineSlot(id="slot.l1", prompt="", x1=148, y1=210, x2=270, y2=210),
-            TextSlot(id="slot.t3", prompt="", text="3  0  0", style_role="diagram", x=165, y=250, font_size=45),
-            TextSlot(id="slot.t4", prompt="", text="5  0", style_role="diagram", x=500, y=140, font_size=44),
-            TextSlot(id="slot.t5", prompt="", text="× 6  0", style_role="diagram", x=445, y=195, font_size=44),
-            LineSlot(id="slot.l2", prompt="", x1=435, y1=205, x2=560, y2=205),
-            TextSlot(id="slot.t6", prompt="", text="3  0  0  0", style_role="diagram", x=430, y=250, font_size=44),
+            TextSlot(id="slot.q.text", prompt="", text=QUESTION, style_role="question", x=50, y=50, font_size=44),
+            RectSlot(id="slot.b1", prompt="", x = 90, y = 110, width = 220, height = 230, fill="none"),
+            RectSlot(id="slot.b2", prompt="", x = 350, y = 110, width = 215, height = 230, fill="none"),
+            TextSlot(id="slot.t1", prompt="", text = '5  0', style_role="diagram", x = 210, y = 160, font_size = 45),
+            TextSlot(id="slot.t2", prompt="", text = '× 6  0', style_role="diagram", x = 155, y = 225, font_size = 45),
+            LineSlot(id="slot.l1", prompt="", x1 = 120, y1 = 250, x2 = 290, y2 = 250),
+            TextSlot(id="slot.t3", prompt="", text = '3  0  0', style_role="diagram", x = 175, y = 310, font_size = 45),
+            TextSlot(id="slot.t4", prompt="", text = '5  0', style_role="diagram", x = 465, y = 160, font_size = 45),
+            TextSlot(id="slot.t5", prompt="", text = '× 6  0', style_role="diagram", x = 410, y = 225, font_size = 45),
+            LineSlot(id="slot.l2", prompt="", x1 = 370, y1 = 250, x2 = 540, y2 = 250),
+            TextSlot(id="slot.t6", prompt="", text = '3  0  0  0', style_role="diagram", x = 395, y = 310, font_size = 45),
         ),
         diagrams=(),
         groups=(),
         constraints=(),
-        tags=(),
+        tags=("초등", "수학", "곱셈", "계산", "선택"),
     )
 
 
 PROBLEM_TEMPLATE = build_problem_template()
 
 SEMANTIC_OVERRIDE = {
-    "problem_id": PROBLEM_ID,
-    "problem_type": "multiplication_place_value_choice",
+    "problem_id": "S3_초등_3_008558",
+    "problem_type": "multiplication_correct_calculation_choice",
     "metadata": {
         "language": "ko",
-        "question": QUESTION_TEXT,
-        "instruction": "보기에서 바르게 계산한 것을 고르세요.",
+        "question": QUESTION,
+        "instruction": "두 계산 중 바르게 계산한 것을 고르세요.",
     },
     "domain": {
-        "objects": [{"id": "obj.target", "type": "expression", "text": ANSWER_EXPR}],
+        "objects": [
+            {"id": "obj.choice1", "type": "equation", "text": "50 × 60 = 300"},
+            {"id": "obj.choice2", "type": "equation", "text": TARGET_EXPRESSION},
+        ],
         "relations": [],
     },
     "answer": {
         "blanks": [],
         "choices": [],
         "answer_key": [],
-        "target": {"type": "selected_expression", "description": TARGET_LABEL},
-        "value": ANSWER_EXPR,
+        "target": {"type": "selected_expression", "description": TARGET_DESCRIPTION},
+        "value": TARGET_EXPRESSION,
         "unit": "",
     },
 }
 
 SOLVABLE = {
     "schema": "modu.solvable.v1.1",
-    "problem_id": PROBLEM_ID,
-    "problem_type": "multiplication_place_value_choice",
-    "inputs": {"total_ticks": 0, "target_label": TARGET_LABEL, "target_ticks": 0, "target_count": 1, "unit": ""},
-    "given": [{"ref": "obj.target", "value": ANSWER_EXPR}],
+    "problem_id": "S3_초등_3_008558",
+    "problem_type": "multiplication_correct_calculation_choice",
+    "inputs": {
+        "total_ticks": 0,
+        "target_label": TARGET_DESCRIPTION,
+        "target_ticks": 0,
+        "target_count": 1,
+        "unit": "",
+    },
+    "given": [
+        {"ref": "obj.choice1", "value": "50 × 60 = 300"},
+        {"ref": "obj.choice2", "value": TARGET_EXPRESSION},
+    ],
     "target": {"ref": "answer.target", "type": "selected_expression"},
-    "method": "multiplication_by_tens",
-    "plan": ["50 × 60의 계산 원리를 확인한다.", "결과가 3000인 보기를 고른다."],
-    "steps": [{"id": "step.1", "expr": "50 × 60", "value": "3000"}],
-    "checks": [{"id": "check.1", "expr": "5 × 6 = 30, 0을 2개 붙임", "expected": "3000", "actual": "3000", "pass": True}],
+    "method": "compute_and_compare",
+    "plan": [
+        "50 × 60의 값을 계산합니다.",
+        "50 × 60 = 3000이므로 3000이라고 쓴 계산을 고릅니다.",
+    ],
+    "steps": [
+        {"id": "step.1", "expr": "50 × 60 = 3000", "value": 3000},
+        {"id": "step.2", "expr": "바르게 계산한 식", "value": TARGET_EXPRESSION},
+    ],
+    "checks": [
+        {"id": "check.1", "expr": "50 × 60 = 3000", "expected": True, "actual": True, "pass": True},
+    ],
     "answer": {
         "blanks": [],
         "choices": [],
         "answer_key": [],
-        "target": {"type": "selected_expression", "description": TARGET_LABEL},
-        "value": ANSWER_EXPR,
+        "target": {"type": "selected_expression", "description": TARGET_DESCRIPTION},
+        "value": TARGET_EXPRESSION,
         "unit": "",
     },
 }

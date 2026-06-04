@@ -1,6 +1,5 @@
 {
   "problem_id": "S3_초등_3_008558",
-<<<<<<< HEAD:examples/problems/TS_01.초등학교_3학년_01.객관식/S3_초등_3_008558.semantic.json
   "problem_type": "multiplication_correct_calculation_choice",
   "metadata": {
     "title": "바르게 계산한 것을 선택하세요.",
@@ -11,13 +10,6 @@
       "계산",
       "선택"
     ],
-=======
-  "problem_type": "multiplication_place_value_choice",
-  "metadata": {
-    "title": "바르게 계산한 것을 선택하세요.",
-    "tags": [],
-    "instruction": "보기에서 바르게 계산한 것을 고르세요.",
->>>>>>> 71a328bd333ac522efc2b16e3372d00a762fe4a9:examples/problems/TS_01.초등학교_3학년_01.객관식/complete/S3_초등_3_008558.semantic.json
     "question": "바르게 계산한 것을 선택하세요.",
     "required_layout_ids": [
       "slot.b1",
@@ -26,17 +18,12 @@
       "slot.l2"
     ],
     "extraction_confidence": 1.0,
-<<<<<<< HEAD:examples/problems/TS_01.초등학교_3학년_01.객관식/S3_초등_3_008558.semantic.json
     "language": "ko",
     "instruction": "두 계산 중 바르게 계산한 것을 고르세요."
-=======
-    "language": "ko"
->>>>>>> 71a328bd333ac522efc2b16e3372d00a762fe4a9:examples/problems/TS_01.초등학교_3학년_01.객관식/complete/S3_초등_3_008558.semantic.json
   },
   "domain": {
     "objects": [
       {
-<<<<<<< HEAD:examples/problems/TS_01.초등학교_3학년_01.객관식/S3_초등_3_008558.semantic.json
         "id": "obj.choice1",
         "type": "equation",
         "text": "50 × 60 = 300"
@@ -44,10 +31,6 @@
       {
         "id": "obj.choice2",
         "type": "equation",
-=======
-        "id": "obj.target",
-        "type": "expression",
->>>>>>> 71a328bd333ac522efc2b16e3372d00a762fe4a9:examples/problems/TS_01.초등학교_3학년_01.객관식/complete/S3_초등_3_008558.semantic.json
         "text": "50 × 60 = 3000"
       }
     ],
@@ -58,13 +41,10 @@
     "blanks": [],
     "choices": [],
     "answer_key": [],
+    "confidence": 1.0,
     "target": {
       "type": "selected_expression",
-<<<<<<< HEAD:examples/problems/TS_01.초등학교_3학년_01.객관식/S3_초등_3_008558.semantic.json
       "description": "바르게 계산한 식"
-=======
-      "description": "바르게 계산한 것"
->>>>>>> 71a328bd333ac522efc2b16e3372d00a762fe4a9:examples/problems/TS_01.초등학교_3학년_01.객관식/complete/S3_초등_3_008558.semantic.json
     },
     "value": "50 × 60 = 3000",
     "unit": ""

@@ -1,10 +1,10 @@
 {
   "schema": "modu.layout.v1",
-  "problem_id": "S3_초등_3_008540",
-  "title": "색칠한 부분이 실제 어떤 수의 곱인지 찾아 선택하세요.",
+  "problem_id": "S3_초등_3_008556",
+  "title": "색칠된 부분은 실제 어떤 수의 곱인지를 찾아 선택하세요.",
   "canvas": {
-    "width": 886,
-    "height": 396,
+    "width": 900,
+    "height": 420,
     "coordinate_mode": "logical",
     "background": "#FFFFFF"
   },
@@ -14,246 +14,246 @@
       "role": "stem",
       "flow": "absolute",
       "slot_ids": [
-        "slot.q1"
+        "slot.hl",
+        "slot.choice.box",
+        "slot.v1",
+        "slot.v2",
+        "slot.v3",
+        "slot.v4",
+        "slot.v5",
+        "slot.bar1",
+        "slot.bar2",
+        "slot.q.text",
+        "slot.top2",
+        "slot.mulx",
+        "slot.mul0",
+        "slot.p0",
+        "slot.p11",
+        "slot.p23",
+        "slot.f3",
+        "slot.c1",
+        "slot.c2",
+        "slot.c3"
       ]
     },
     {
-      "id": "region.left",
+      "id": "region.work",
       "role": "diagram",
       "flow": "absolute",
-      "slot_ids": [
-        "slot.mul.highlight",
-        "slot.mul.vline1",
-        "slot.mul.vline2",
-        "slot.mul.vline3",
-        "slot.mul.vline4",
-        "slot.mul.vline5",
-        "slot.mul.hline1",
-        "slot.mul.hline3",
-        "slot.mul.869",
-        "slot.mul.x",
-        "slot.mul.4",
-        "slot.mul.36",
-        "slot.mul.240",
-        "slot.mul.3200",
-        "slot.mul.3476"
-      ]
+      "slot_ids": []
     },
     {
       "id": "region.choice",
-      "role": "diagram",
+      "role": "choices",
       "flow": "absolute",
-      "slot_ids": [
-        "slot.choice.box",
-        "slot.choice.1",
-        "slot.choice.2",
-        "slot.choice.3"
-      ]
+      "slot_ids": []
+    },
+    {
+      "id": "region.footer",
+      "role": "footer",
+      "flow": "absolute",
+      "slot_ids": []
     }
   ],
   "slots": [
     {
-      "id": "slot.q1",
+      "id": "slot.q.text",
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "색칠한 부분이 실제 어떤 수의 곱인지 찾아 선택하세요.",
+        "text": "색칠된 부분은 실제 어떤 수의 곱인지를 찾아 선택하세요.",
         "style_role": "question",
-        "x": 10.0,
-        "y": 30.0,
-        "font_size": 28
+        "x": 40.0,
+        "y": 40.0,
+        "font_size": 36
       }
     },
     {
-      "id": "slot.mul.vline1",
+      "id": "slot.v1",
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 275.0,
-        "y1": 40.0,
-        "x2": 275.0,
-        "y2": 285.0,
+        "x1": 425.0,
+        "y1": 60.0,
+        "x2": 425.0,
+        "y2": 315.0,
         "stroke": "#9AA0A6",
         "stroke_width": 1.2,
         "stroke_dasharray": "5 3"
       }
     },
     {
-      "id": "slot.mul.vline2",
+      "id": "slot.v2",
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 300.0,
-        "y1": 40.0,
-        "x2": 300.0,
-        "y2": 285.0,
+        "x1": 465.0,
+        "y1": 60.0,
+        "x2": 465.0,
+        "y2": 315.0,
         "stroke": "#9AA0A6",
         "stroke_width": 1.2,
         "stroke_dasharray": "5 3"
       }
     },
     {
-      "id": "slot.mul.vline3",
+      "id": "slot.v3",
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 322.0,
-        "y1": 40.0,
-        "x2": 322.0,
-        "y2": 285.0,
+        "x1": 505.0,
+        "y1": 60.0,
+        "x2": 505.0,
+        "y2": 315.0,
         "stroke": "#9AA0A6",
         "stroke_width": 1.2,
         "stroke_dasharray": "5 3"
       }
     },
     {
-      "id": "slot.mul.vline4",
+      "id": "slot.v4",
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 342.0,
-        "y1": 40.0,
-        "x2": 342.0,
-        "y2": 285.0,
+        "x1": 545.0,
+        "y1": 60.0,
+        "x2": 545.0,
+        "y2": 315.0,
         "stroke": "#9AA0A6",
         "stroke_width": 1.2,
         "stroke_dasharray": "5 3"
       }
     },
     {
-      "id": "slot.mul.vline5",
+      "id": "slot.v5",
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 366.0,
-        "y1": 40.0,
-        "x2": 366.0,
-        "y2": 290.0,
+        "x1": 585.0,
+        "y1": 60.0,
+        "x2": 585.0,
+        "y2": 315.0,
         "stroke": "#9AA0A6",
         "stroke_width": 1.2,
         "stroke_dasharray": "5 3"
       }
     },
     {
-      "id": "slot.mul.hline1",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 245.0,
-        "y1": 125.0,
-        "x2": 365.0,
-        "y2": 125.0,
-        "stroke": "#222222",
-        "stroke_width": 1.2
-      }
-    },
-    {
-      "id": "slot.mul.hline3",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 245.0,
-        "y1": 240.0,
-        "x2": 365.0,
-        "y2": 240.0,
-        "stroke": "#222222",
-        "stroke_width": 1.2
-      }
-    },
-    {
-      "id": "slot.mul.869",
+      "id": "slot.top2",
       "kind": "text",
       "prompt": "",
       "content": {
         "text": "5 1 2",
         "style_role": "diagram",
-        "x": 304.0,
-        "y": 75.0,
-        "font_size": 28
+        "x": 480.0,
+        "y": 95.0,
+        "font_size": 44
       }
     },
     {
-      "id": "slot.mul.x",
+      "id": "slot.mulx",
       "kind": "text",
       "prompt": "",
       "content": {
         "text": "×",
         "style_role": "diagram",
-        "x": 240.0,
-        "y": 112.0,
-        "font_size": 28
+        "x": 425.0,
+        "y": 135.0,
+        "font_size": 44
       }
     },
     {
-      "id": "slot.mul.4",
+      "id": "slot.mul0",
       "kind": "text",
       "prompt": "",
       "content": {
         "text": "3",
         "style_role": "diagram",
-        "x": 350.0,
-        "y": 110.0,
-        "font_size": 28
+        "x": 552.0,
+        "y": 135.0,
+        "font_size": 44
       }
     },
     {
-      "id": "slot.mul.36",
+      "id": "slot.bar1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 415.0,
+        "y1": 140.0,
+        "x2": 585.0,
+        "y2": 140.0
+      }
+    },
+    {
+      "id": "slot.p0",
       "kind": "text",
       "prompt": "",
       "content": {
         "text": "6",
         "style_role": "diagram",
-        "x": 350.0,
-        "y": 160.0,
-        "font_size": 28
+        "x": 550.0,
+        "y": 185.0,
+        "font_size": 44
       }
     },
     {
-      "id": "slot.mul.highlight",
+      "id": "slot.hl",
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 290.0,
-        "y": 168.0,
-        "width": 80.0,
-        "height": 38.0,
-        "fill": "#F4C6D8"
+        "x": 505.0,
+        "y": 190.0,
+        "width": 78.0,
+        "height": 40.0,
+        "fill": "#efc8b9"
       }
     },
     {
-      "id": "slot.mul.240",
+      "id": "slot.p11",
       "kind": "text",
       "prompt": "",
       "content": {
         "text": "3 0",
         "style_role": "diagram",
-        "x": 328.0,
-        "y": 195.0,
-        "font_size": 28
+        "x": 515.0,
+        "y": 225.0,
+        "font_size": 44
       }
     },
     {
-      "id": "slot.mul.3200",
+      "id": "slot.p23",
       "kind": "text",
       "prompt": "",
       "content": {
         "text": "1 5 0 0",
         "style_role": "diagram",
-        "x": 281.0,
-        "y": 230.0,
-        "font_size": 28
+        "x": 442.0,
+        "y": 265.0,
+        "font_size": 44
       }
     },
     {
-      "id": "slot.mul.3476",
+      "id": "slot.bar2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 415.0,
+        "y1": 270.0,
+        "x2": 585.0,
+        "y2": 270.0
+      }
+    },
+    {
+      "id": "slot.f3",
       "kind": "text",
       "prompt": "",
       "content": {
         "text": "1 5 3 6",
         "style_role": "diagram",
-        "x": 281.0,
-        "y": 265.0,
-        "font_size": 28
+        "x": 442.0,
+        "y": 310.0,
+        "font_size": 44
       }
     },
     {
@@ -261,49 +261,49 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 452.0,
-        "y": 84.0,
-        "width": 292.0,
-        "height": 168.0,
-        "stroke": "#F39C12",
+        "x": 40.0,
+        "y": 335.0,
+        "width": 835.0,
+        "height": 75.0,
+        "stroke": "#D8A100",
         "stroke_width": 2.0,
         "fill": "none"
       }
     },
     {
-      "id": "slot.choice.1",
+      "id": "slot.c1",
       "kind": "text",
       "prompt": "",
       "content": {
         "text": "1 × 3",
-        "style_role": "diagram",
-        "x": 495.0,
-        "y": 145.0,
-        "font_size": 28
+        "style_role": "choice",
+        "x": 120.0,
+        "y": 385.0,
+        "font_size": 40
       }
     },
     {
-      "id": "slot.choice.2",
+      "id": "slot.c2",
       "kind": "text",
       "prompt": "",
       "content": {
         "text": "10 × 3",
-        "style_role": "diagram",
-        "x": 610.0,
-        "y": 145.0,
-        "font_size": 28
+        "style_role": "choice",
+        "x": 375.0,
+        "y": 385.0,
+        "font_size": 40
       }
     },
     {
-      "id": "slot.choice.3",
+      "id": "slot.c3",
       "kind": "text",
       "prompt": "",
       "content": {
         "text": "100 × 3",
-        "style_role": "diagram",
-        "x": 485.0,
-        "y": 205.0,
-        "font_size": 28
+        "style_role": "choice",
+        "x": 655.0,
+        "y": 385.0,
+        "font_size": 40
       }
     }
   ],
@@ -312,27 +312,28 @@
   "diagrams": [],
   "reading_order": [
     "region.stem",
-    "slot.q1",
-    "region.left",
-    "slot.mul.highlight",
-    "slot.mul.vline1",
-    "slot.mul.vline2",
-    "slot.mul.vline3",
-    "slot.mul.vline4",
-    "slot.mul.vline5",
-    "slot.mul.hline1",
-    "slot.mul.hline3",
-    "slot.mul.869",
-    "slot.mul.x",
-    "slot.mul.4",
-    "slot.mul.36",
-    "slot.mul.240",
-    "slot.mul.3200",
-    "slot.mul.3476",
-    "region.choice",
+    "slot.hl",
     "slot.choice.box",
-    "slot.choice.1",
-    "slot.choice.2",
-    "slot.choice.3"
+    "slot.v1",
+    "slot.v2",
+    "slot.v3",
+    "slot.v4",
+    "slot.v5",
+    "slot.bar1",
+    "slot.bar2",
+    "slot.q.text",
+    "slot.top2",
+    "slot.mulx",
+    "slot.mul0",
+    "slot.p0",
+    "slot.p11",
+    "slot.p23",
+    "slot.f3",
+    "slot.c1",
+    "slot.c2",
+    "slot.c3",
+    "region.work",
+    "region.choice",
+    "region.footer"
   ]
 }

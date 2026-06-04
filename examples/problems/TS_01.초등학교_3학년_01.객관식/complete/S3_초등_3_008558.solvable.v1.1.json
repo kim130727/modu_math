@@ -1,32 +1,21 @@
 {
   "schema": "modu.solvable.v1.1",
   "problem_id": "S3_초등_3_008558",
-<<<<<<< HEAD:examples/problems/TS_01.초등학교_3학년_01.객관식/S3_초등_3_008558.solvable.v1.1.json
   "problem_type": "multiplication_correct_calculation_choice",
   "inputs": {
     "total_ticks": 0,
     "target_label": "바르게 계산한 식",
-=======
-  "problem_type": "multiplication_place_value_choice",
-  "inputs": {
-    "total_ticks": 0,
-    "target_label": "바르게 계산한 것",
->>>>>>> 71a328bd333ac522efc2b16e3372d00a762fe4a9:examples/problems/TS_01.초등학교_3학년_01.객관식/complete/S3_초등_3_008558.solvable.v1.1.json
     "target_ticks": 0,
     "target_count": 1,
     "unit": ""
   },
   "given": [
     {
-<<<<<<< HEAD:examples/problems/TS_01.초등학교_3학년_01.객관식/S3_초등_3_008558.solvable.v1.1.json
       "ref": "obj.choice1",
       "value": "50 × 60 = 300"
     },
     {
       "ref": "obj.choice2",
-=======
-      "ref": "obj.target",
->>>>>>> 71a328bd333ac522efc2b16e3372d00a762fe4a9:examples/problems/TS_01.초등학교_3학년_01.객관식/complete/S3_초등_3_008558.solvable.v1.1.json
       "value": "50 × 60 = 3000"
     }
   ],
@@ -34,22 +23,14 @@
     "ref": "answer.target",
     "type": "selected_expression"
   },
-<<<<<<< HEAD:examples/problems/TS_01.초등학교_3학년_01.객관식/S3_초등_3_008558.solvable.v1.1.json
   "method": "compute_and_compare",
   "plan": [
     "50 × 60의 값을 계산합니다.",
     "50 × 60 = 3000이므로 3000이라고 쓴 계산을 고릅니다."
-=======
-  "method": "multiplication_by_tens",
-  "plan": [
-    "50 × 60의 계산 원리를 확인한다.",
-    "결과가 3000인 보기를 고른다."
->>>>>>> 71a328bd333ac522efc2b16e3372d00a762fe4a9:examples/problems/TS_01.초등학교_3학년_01.객관식/complete/S3_초등_3_008558.solvable.v1.1.json
   ],
   "steps": [
     {
       "id": "step.1",
-<<<<<<< HEAD:examples/problems/TS_01.초등학교_3학년_01.객관식/S3_초등_3_008558.solvable.v1.1.json
       "expr": "50 × 60 = 3000",
       "value": 3000
     },
@@ -57,24 +38,14 @@
       "id": "step.2",
       "expr": "바르게 계산한 식",
       "value": "50 × 60 = 3000"
-=======
-      "expr": "50 × 60",
-      "value": "3000"
->>>>>>> 71a328bd333ac522efc2b16e3372d00a762fe4a9:examples/problems/TS_01.초등학교_3학년_01.객관식/complete/S3_초등_3_008558.solvable.v1.1.json
     }
   ],
   "checks": [
     {
       "id": "check.1",
-<<<<<<< HEAD:examples/problems/TS_01.초등학교_3학년_01.객관식/S3_초등_3_008558.solvable.v1.1.json
       "expr": "50 × 60 = 3000",
       "expected": true,
       "actual": true,
-=======
-      "expr": "5 × 6 = 30, 0을 2개 붙임",
-      "expected": "3000",
-      "actual": "3000",
->>>>>>> 71a328bd333ac522efc2b16e3372d00a762fe4a9:examples/problems/TS_01.초등학교_3학년_01.객관식/complete/S3_초등_3_008558.solvable.v1.1.json
       "pass": true
     }
   ],
@@ -84,11 +55,7 @@
     "answer_key": [],
     "target": {
       "type": "selected_expression",
-<<<<<<< HEAD:examples/problems/TS_01.초등학교_3학년_01.객관식/S3_초등_3_008558.solvable.v1.1.json
       "description": "바르게 계산한 식"
-=======
-      "description": "바르게 계산한 것"
->>>>>>> 71a328bd333ac522efc2b16e3372d00a762fe4a9:examples/problems/TS_01.초등학교_3학년_01.객관식/complete/S3_초등_3_008558.solvable.v1.1.json
     },
     "value": "50 × 60 = 3000",
     "unit": ""

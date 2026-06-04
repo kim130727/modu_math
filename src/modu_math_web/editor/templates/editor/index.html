@@ -127,21 +127,6 @@
     .svg-box svg [id^="slot."] { cursor: move; }
     .svg-box svg .slot-selected { filter: drop-shadow(0 0 3px #0f766e); }
     .svg-box svg .pick-disabled { pointer-events: none; opacity: 0.35; }
-<<<<<<< HEAD
-    .svg-box svg .selection-frame {
-      fill: none;
-      stroke: #0f766e;
-      stroke-width: 1;
-      stroke-dasharray: 4 3;
-      pointer-events: none;
-    }
-    .svg-box svg .resize-handle {
-      fill: #ffffff;
-      stroke: #0f766e;
-      stroke-width: 1.5;
-      vector-effect: non-scaling-stroke;
-    }
-=======
     .svg-box svg .selection-bounds {
       fill: none;
       stroke: #0f766e;
@@ -164,7 +149,20 @@
     .svg-box svg .selection-handle[data-handle="ne"],
     .svg-box svg .selection-handle[data-handle="sw"] { cursor: nesw-resize; }
     .svg-box svg .selection-handle[data-handle="c"] { cursor: move; fill: #0f766e; }
->>>>>>> 71a328bd333ac522efc2b16e3372d00a762fe4a9
+    .inline-text-editor {
+      position: absolute;
+      display: none;
+      z-index: 3;
+      min-width: 48px;
+      border: 1px solid #0f766e;
+      border-radius: 4px;
+      padding: 2px 4px;
+      background: #ffffff;
+      color: #111827;
+      box-shadow: 0 0 0 2px rgba(15, 118, 110, 0.12);
+      font-family: "Segoe UI", "Pretendard", sans-serif;
+      line-height: 1.2;
+    }
     .marquee {
       position: absolute;
       border: 1px dashed #0f766e;
@@ -199,13 +197,31 @@
       border: 1px solid var(--line);
       border-radius: 8px;
       padding: 8px;
-      max-height: 220px;
+      max-height: 320px;
       overflow: auto;
       background: #fff;
     }
     .tree ul { list-style: none; margin: 0; padding-left: 14px; }
     .tree li { margin: 3px 0; }
-    .tree .folder { color: var(--muted); font-weight: 600; }
+    .tree .folder {
+      border: none;
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      font-weight: 600;
+      padding: 2px 4px;
+      text-align: left;
+      width: 100%;
+    }
+    .tree .folder:hover { background: #f8fafc; }
+    .tree .folder::before {
+      content: "▸";
+      display: inline-block;
+      margin-right: 4px;
+      width: 12px;
+    }
+    .tree .folder.open::before { content: "▾"; }
+    .tree .children.collapsed { display: none; }
     .tree .file-btn {
       border: none;
       background: transparent;
@@ -215,6 +231,22 @@
       width: auto;
     }
     .tree .file-btn:hover { background: #ecfeff; }
+    .tree .file-btn.active {
+      background: #ccfbf1;
+      color: #0f766e;
+      font-weight: 700;
+    }
+    .tree-tools {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+    .tree-tools input { min-width: 0; }
+    .tree-count {
+      color: var(--muted);
+      font-size: 12px;
+      margin-bottom: 6px;
+    }
   </style>
 </head>
 <body>
@@ -257,6 +289,10 @@
 
       <div class="panel">
         <h2>파일 탐색</h2>
+        <div class="tree-tools">
+          <input id="problemFilterInput" placeholder="파일명 또는 폴더 검색">
+        </div>
+        <div class="tree-count" id="problemTreeCount"></div>
         <div class="tree" id="problemTree"></div>
       </div>
 
@@ -354,8 +390,9 @@
     let dragCommitTimer = null;
     let pickMode = "all";
     let marqueeState = null;
-    let resizeState = null;
+    let inlineTextEditState = null;
     let snapEnabled = true;
+    let collapsedProblemFolders = new Set();
     const SNAP_STEP = 5;
 
     function setStatus(text, ok = true) {
@@ -387,7 +424,8 @@
 
     function renderSvg(svgText) {
       const preview = document.getElementById("svgPreview");
-      preview.innerHTML = (svgText || "<em>SVG 없음</em>") + '<div class="marquee" id="marqueeBox"></div>';
+      inlineTextEditState = null;
+      preview.innerHTML = (svgText || "<em>SVG 없음</em>") + '<div class="marquee" id="marqueeBox"></div><input id="inlineTextEditor" class="inline-text-editor" autocomplete="off" spellcheck="false">';
       selectedSlots = new Map();
       selectedSlotId = null;
       selectedElement = null;
@@ -423,6 +461,122 @@
       const ctm = svg.getScreenCTM();
       if (!ctm) return { x: 0, y: 0 };
       return pt.matrixTransform(ctm.inverse());
+    }
+
+    function svgBBoxClientRect(el) {
+      const svg = document.getElementById("svgPreview").querySelector("svg");
+      if (!svg || !el || !el.getBBox) return null;
+      let box = null;
+      try {
+        box = el.getBBox();
+      } catch (_) {
+        return null;
+      }
+      const ctm = svg.getScreenCTM();
+      if (!ctm) return null;
+      const point = svg.createSVGPoint();
+      const corners = [
+        [box.x, box.y],
+        [box.x + box.width, box.y],
+        [box.x, box.y + box.height],
+        [box.x + box.width, box.y + box.height],
+      ].map(([x, y]) => {
+        point.x = x;
+        point.y = y;
+        return point.matrixTransform(ctm);
+      });
+      const xs = corners.map((p) => p.x);
+      const ys = corners.map((p) => p.y);
+      const left = Math.min(...xs);
+      const right = Math.max(...xs);
+      const top = Math.min(...ys);
+      const bottom = Math.max(...ys);
+      return { left, top, right, bottom, width: right - left, height: bottom - top };
+    }
+
+    function isTextCenterEditHit(el, ev) {
+      if (!el || el.tagName.toLowerCase() !== "text") return false;
+      if (ev.shiftKey || ev.ctrlKey || ev.metaKey || ev.altKey) return false;
+      const rect = svgBBoxClientRect(el);
+      if (!rect || rect.width < 8 || rect.height < 8) return false;
+      const edge = Math.min(12, Math.max(5, Math.min(rect.width, rect.height) * 0.28));
+      const x = ev.clientX;
+      const y = ev.clientY;
+      return x > rect.left + edge && x < rect.right - edge && y > rect.top + edge && y < rect.bottom - edge;
+    }
+
+    function hideInlineTextEditor() {
+      const editor = document.getElementById("inlineTextEditor");
+      if (editor) editor.style.display = "none";
+      inlineTextEditState = null;
+    }
+
+    async function finishInlineTextEdit(commit = true) {
+      const state = inlineTextEditState;
+      const editor = document.getElementById("inlineTextEditor");
+      if (!state || !editor) return;
+      inlineTextEditState = null;
+      editor.style.display = "none";
+      if (!commit) {
+        state.el.textContent = state.originalText;
+        updateTextEditControls();
+        return;
+      }
+      const text = editor.value;
+      if (text === state.originalText) {
+        updateTextEditControls();
+        return;
+      }
+      state.el.textContent = text;
+      updateSelectionHandles();
+      updateTextEditControls();
+      try {
+        await commitPatches([{ target: state.slotId, op: "update", value: { text } }], `텍스트 수정 완료: ${state.slotId}`);
+      } catch (e) {
+        setStatus(String(e), false);
+      }
+    }
+
+    function beginInlineTextEdit(el, slotId, ev) {
+      const editor = document.getElementById("inlineTextEditor");
+      const container = document.getElementById("svgPreview");
+      const rect = svgBBoxClientRect(el);
+      if (!editor || !container || !rect) return false;
+      setSelectedElement(el, slotId, false);
+      const containerRect = container.getBoundingClientRect();
+      const scale = (() => {
+        const svg = container.querySelector("svg");
+        const ctm = svg ? svg.getScreenCTM() : null;
+        return ctm ? Math.sqrt(ctm.a * ctm.a + ctm.b * ctm.b) : 1;
+      })();
+      const fontSize = Number(el.getAttribute("font-size") || 28) * scale;
+      editor.value = el.textContent || "";
+      editor.style.left = `${rect.left - containerRect.left - 2}px`;
+      editor.style.top = `${rect.top - containerRect.top - 2}px`;
+      editor.style.width = `${Math.max(48, rect.width + 12)}px`;
+      editor.style.height = `${Math.max(24, rect.height + 8)}px`;
+      editor.style.fontSize = `${Math.max(12, fontSize)}px`;
+      editor.style.fontFamily = el.getAttribute("font-family") || '"Segoe UI", "Pretendard", sans-serif';
+      editor.style.display = "block";
+      inlineTextEditState = { el, slotId, originalText: el.textContent || "" };
+      editor.onkeydown = (keyEv) => {
+        if (keyEv.key === "Enter") {
+          keyEv.preventDefault();
+          finishInlineTextEdit(true);
+        } else if (keyEv.key === "Escape") {
+          keyEv.preventDefault();
+          finishInlineTextEdit(false);
+        }
+      };
+      editor.onblur = () => finishInlineTextEdit(true);
+      requestAnimationFrame(() => {
+        editor.focus();
+        editor.select();
+      });
+      setStatus(`텍스트 편집: ${slotId}`, true);
+      ev.preventDefault();
+      ev.stopPropagation();
+      return true;
     }
 
     async function commitPatches(patches, reason = "저장 완료", withBuild = true) {
@@ -474,8 +628,21 @@
     }
 
     function extractDslSlotIds() {
-      const dsl = document.getElementById("dslEditor").value || "";
       const ids = new Set();
+      const layoutText = document.getElementById("layoutView")?.value || "";
+      if (layoutText.trim()) {
+        try {
+          const layout = JSON.parse(layoutText);
+          const slots = Array.isArray(layout.slots) ? layout.slots : [];
+          for (const slot of slots) {
+            if (slot && typeof slot.id === "string" && slot.id) ids.add(slot.id);
+          }
+        } catch (_) {
+          // Fall back to source scanning below while the layout pane is stale or invalid.
+        }
+      }
+
+      const dsl = document.getElementById("dslEditor").value || "";
       const re = /\bid\s*=\s*["']([^"']+)["']/g;
       let m = null;
       while ((m = re.exec(dsl)) !== null) {
@@ -489,16 +656,25 @@
     }
 
     function toDslSlotId(svgElementId) {
-      if (!svgElementId) return svgElementId;
+      const ids = toDslSlotIds(svgElementId);
+      return ids.length ? ids[0] : svgElementId;
+    }
+
+    function toDslSlotIds(svgElementId) {
+      if (!svgElementId) return [];
       const dslIds = extractDslSlotIds();
-      if (dslIds.has(svgElementId)) return svgElementId;
+      if (dslIds.has(svgElementId)) return [svgElementId];
       const parts = svgElementId.split(".");
       while (parts.length > 1) {
         parts.pop();
         const candidate = parts.join(".");
-        if (dslIds.has(candidate)) return candidate;
+        if (dslIds.has(candidate)) return [candidate];
+        const splitCandidates = Array.from(dslIds)
+          .filter((id) => id.startsWith(`${candidate}_`))
+          .sort((a, b) => a.localeCompare(b, "ko"));
+        if (splitCandidates.length > 0) return splitCandidates;
       }
-      return svgElementId;
+      return [];
     }
 
     function parseFractionPartId(svgElementId) {
@@ -536,6 +712,12 @@
       return fracInfo ? fracInfo.prefix : toDslSlotId(rawId);
     }
 
+    function slotIdsFromElement(el) {
+      const rawId = el ? el.getAttribute("id") : "";
+      const fracInfo = parseFractionPartId(rawId);
+      return fracInfo ? [fracInfo.prefix] : toDslSlotIds(rawId);
+    }
+
     function arrowBaseFromSlotId(slotId) {
       if (!slotId || !slotId.includes("arrow")) return null;
       // e.g. slot.arrow_head, slot.arrow_body, slot.arrow.head -> slot.arrow
@@ -564,6 +746,38 @@
         }
       }
       return Array.from(out);
+    }
+
+    function figureBaseFromSlotId(slotId) {
+      if (!slotId) return null;
+      const m = slotId.match(/^(slot\.figure\.[^.]+)\./);
+      return m ? m[1] : null;
+    }
+
+    function collectFigureGroupSlotIds(slotId) {
+      const base = figureBaseFromSlotId(slotId);
+      if (!base) return null;
+      const svg = document.getElementById("svgPreview").querySelector("svg");
+      if (!svg) return null;
+      const out = [];
+      for (const node of svg.querySelectorAll('[id^="slot.figure."]')) {
+        if (!isDraggableSlotElement(node)) continue;
+        const sid = slotIdFromElement(node);
+        if (sid && sid.startsWith(`${base}.`) && !out.includes(sid)) out.push(sid);
+      }
+      return out.length ? { base, slotIds: out } : null;
+    }
+
+    function elementsForSlotIds(slotIds) {
+      const svg = document.getElementById("svgPreview").querySelector("svg");
+      if (!svg) return [];
+      const out = [];
+      for (const node of svg.querySelectorAll('[id^="slot."]')) {
+        if (!isDraggableSlotElement(node)) continue;
+        const sid = slotIdFromElement(node);
+        if (slotIds.includes(sid)) out.push(node);
+      }
+      return out;
     }
 
     function applyPickMode() {
@@ -600,7 +814,11 @@
       box.style.top = `${ev.clientY - container.getBoundingClientRect().top}px`;
       box.style.width = "0px";
       box.style.height = "0px";
-      svg.setPointerCapture(ev.pointerId);
+      try {
+        svg.setPointerCapture(ev.pointerId);
+      } catch (_) {
+        // Synthetic pointer events in tests may not have an active pointer.
+      }
     }
 
     function updateMarquee(ev) {
@@ -665,24 +883,12 @@
     function readSlotPatchValue(el) {
       const tag = el.tagName.toLowerCase();
       if (tag === "text") {
-<<<<<<< HEAD
-        return { x: Number(el.getAttribute("x") || 0), y: Number(el.getAttribute("y") || 0) };
-=======
         return {
           text: el.textContent || "",
           x: Number(el.getAttribute("x") || 0),
           y: Number(el.getAttribute("y") || 0),
           font_size: Number(el.getAttribute("font-size") || el.getAttribute("font_size") || 0) || undefined,
         };
-      }
-      if (tag === "rect") {
-        return {
-          x: Number(el.getAttribute("x") || 0),
-          y: Number(el.getAttribute("y") || 0),
-          width: Number(el.getAttribute("width") || 0),
-          height: Number(el.getAttribute("height") || 0),
-        };
->>>>>>> 71a328bd333ac522efc2b16e3372d00a762fe4a9
       }
       if (tag === "rect") {
         return {
@@ -818,9 +1024,28 @@
       if (selectedSlots.size !== 1) return null;
       const item = Array.from(selectedSlots.values())[0];
       if (!item || item.isFraction || !item.el) return null;
+      if (item.isFigureGroup) return item;
       const tag = item.el.tagName.toLowerCase();
       if (!["text", "rect", "circle", "line"].includes(tag)) return null;
       return item;
+    }
+
+    function itemBBox(item) {
+      const elements = item && (item.isFigureGroup || item.isFraction) ? (item.elements || []) : [item.el];
+      const boxes = [];
+      for (const el of elements) {
+        try {
+          boxes.push(el.getBBox());
+        } catch (_) {
+          // Ignore elements that do not expose a bbox.
+        }
+      }
+      if (!boxes.length) return null;
+      const minX = Math.min(...boxes.map((b) => b.x));
+      const minY = Math.min(...boxes.map((b) => b.y));
+      const maxX = Math.max(...boxes.map((b) => b.x + b.width));
+      const maxY = Math.max(...boxes.map((b) => b.y + b.height));
+      return { x: minX, y: minY, width: maxX - minX, height: maxY - minY };
     }
 
     function updateSelectionHandles() {
@@ -832,12 +1057,7 @@
         layer.style.display = "none";
         return;
       }
-      let box = null;
-      try {
-        box = item.el.getBBox();
-      } catch (_) {
-        box = null;
-      }
+      const box = itemBBox(item);
       if (!box || box.width < 0 || box.height < 0) {
         layer.style.display = "none";
         return;
@@ -992,8 +1212,64 @@
       return null;
     }
 
+    function mapPointBetweenBoxes(x, y, startBox, nextBox) {
+      const sx = nextBox.width / Math.max(startBox.width, 1);
+      const sy = nextBox.height / Math.max(startBox.height, 1);
+      return {
+        x: nextBox.x + (x - startBox.x) * sx,
+        y: nextBox.y + (y - startBox.y) * sy,
+      };
+    }
+
+    function resizePatchForGroupElement(el, startValue, startBox, nextBox) {
+      const snap = (v) => (snapEnabled ? snapValue(v) : v);
+      const tag = el.tagName.toLowerCase();
+      const sx = nextBox.width / Math.max(startBox.width, 1);
+      const sy = nextBox.height / Math.max(startBox.height, 1);
+      const scale = Math.max(sx, sy);
+      if (tag === "text" || tag === "rect") {
+        const p = mapPointBetweenBoxes(startValue.x, startValue.y, startBox, nextBox);
+        const out = { x: snap(p.x), y: snap(p.y) };
+        if (tag === "rect") {
+          out.width = Math.max(4, snap((startValue.width || 0) * sx));
+          out.height = Math.max(4, snap((startValue.height || 0) * sy));
+        }
+        if (tag === "text" && startValue.font_size !== undefined) {
+          out.font_size = Math.max(6, snap(startValue.font_size * scale));
+        }
+        applyPatchValueToElement(el, out);
+        return out;
+      }
+      if (tag === "circle") {
+        const p = mapPointBetweenBoxes(startValue.cx, startValue.cy, startBox, nextBox);
+        const out = {
+          cx: snap(p.x),
+          cy: snap(p.y),
+          r: Math.max(2, snap((startValue.r || 0) * scale)),
+        };
+        applyPatchValueToElement(el, out);
+        return out;
+      }
+      if (tag === "line") {
+        const p1 = mapPointBetweenBoxes(startValue.x1, startValue.y1, startBox, nextBox);
+        const p2 = mapPointBetweenBoxes(startValue.x2, startValue.y2, startBox, nextBox);
+        const out = { x1: snap(p1.x), y1: snap(p1.y), x2: snap(p2.x), y2: snap(p2.y) };
+        applyPatchValueToElement(el, out);
+        return out;
+      }
+      return null;
+    }
+
+    function resizeFigureGroup(state, nextBox) {
+      const values = [];
+      for (const entry of state.startValue || []) {
+        const value = resizePatchForGroupElement(entry.el, entry.value, state.startBox, nextBox);
+        if (value) values.push({ slotId: entry.slotId, el: entry.el, value });
+      }
+      return values;
+    }
+
     function clearSelection() {
-      removeResizeHandles();
       for (const item of selectedSlots.values()) {
         const nodes = item.elements || [item.el];
         for (const node of nodes) node.classList.remove("slot-selected");
@@ -1008,9 +1284,35 @@
     function setSelectedElement(el, slotId, append = false) {
       if (!append) clearSelection();
       if (!el || !slotId) return;
+      const figureGroup = collectFigureGroupSlotIds(slotId);
+      if (figureGroup) {
+        const elements = elementsForSlotIds(figureGroup.slotIds);
+        if (!elements.length) return;
+        if (append && selectedSlots.has(figureGroup.base)) {
+          const existing = selectedSlots.get(figureGroup.base);
+          for (const node of (existing.elements || [])) node.classList.remove("slot-selected");
+          selectedSlots.delete(figureGroup.base);
+        } else {
+          selectedSlots.set(figureGroup.base, {
+            el: elements[0],
+            slotId: figureGroup.base,
+            slotIds: figureGroup.slotIds,
+            elements,
+            isFigureGroup: true,
+          });
+          for (const node of elements) node.classList.add("slot-selected");
+        }
+        const last = Array.from(selectedSlots.values()).at(-1) || null;
+        selectedElement = last ? last.el : null;
+        selectedSlotId = last ? last.slotId : null;
+        updateSelectionHandles();
+        updateTextEditControls();
+        return;
+      }
       const fracInfo = parseFractionPartId(el.getAttribute("id"));
       const elements = (fracInfo && fracInfo.prefix === slotId) ? fractionPartElements(slotId) : [el];
       const isFraction = elements.length > 1;
+      const resolvedSlotIds = isFraction ? [slotId] : (slotIdsFromElement(el).length ? slotIdsFromElement(el) : [slotId]);
       const arrowGroupIds = collectArrowGroupSlotIds(slotId);
       const svg = document.getElementById("svgPreview").querySelector("svg");
       if (!svg) return;
@@ -1038,16 +1340,13 @@
           const fi = parseFractionPartId(nodeForId.getAttribute("id"));
           const els = (fi && fi.prefix === gid) ? fractionPartElements(gid) : [nodeForId];
           const frac = els.length > 1;
-          selectedSlots.set(gid, { el: nodeForId, slotId: gid, elements: els, isFraction: frac });
+          selectedSlots.set(gid, { el: nodeForId, slotId: gid, slotIds: gid === slotId ? resolvedSlotIds : [gid], elements: els, isFraction: frac });
           for (const node of els) node.classList.add("slot-selected");
         }
       }
       const last = Array.from(selectedSlots.values()).at(-1) || null;
       selectedElement = last ? last.el : null;
       selectedSlotId = last ? last.slotId : null;
-<<<<<<< HEAD
-      updateResizeHandles();
-=======
       updateSelectionHandles();
       updateTextEditControls();
     }
@@ -1082,12 +1381,19 @@
       item.el.textContent = text;
       updateSelectionHandles();
       await commitPatches([{ target: item.slotId, op: "update", value: { text } }], `텍스트 수정 완료: ${item.slotId}`);
->>>>>>> 71a328bd333ac522efc2b16e3372d00a762fe4a9
     }
 
     function readSelectedStates() {
       const states = [];
       for (const item of selectedSlots.values()) {
+        if (item.isFigureGroup) {
+          for (const node of item.elements || []) {
+            const slotId = slotIdFromElement(node);
+            const value = readSlotPatchValue(node);
+            if (slotId && value) states.push({ slotId, value: JSON.parse(JSON.stringify(value)) });
+          }
+          continue;
+        }
         const value = readSlotPatchValue(item.el);
         if (value) states.push({ slotId: item.slotId, value: JSON.parse(JSON.stringify(value)) });
       }
@@ -1104,11 +1410,7 @@
       } else if (tag === "rect" && value.x !== undefined && value.y !== undefined) {
         el.setAttribute("x", String(value.x));
         el.setAttribute("y", String(value.y));
-<<<<<<< HEAD
-        if (tag === "rect" && value.width !== undefined && value.height !== undefined) {
-=======
         if (value.width !== undefined && value.height !== undefined) {
->>>>>>> 71a328bd333ac522efc2b16e3372d00a762fe4a9
           el.setAttribute("width", String(value.width));
           el.setAttribute("height", String(value.height));
         }
@@ -1132,17 +1434,11 @@
     function snapPatchValue(value) {
       if (!snapEnabled || !value) return value;
       if (value.x !== undefined && value.y !== undefined) {
-<<<<<<< HEAD
-        const out = { ...value, x: snapValue(value.x), y: snapValue(value.y) };
-        if (out.width !== undefined) out.width = snapValue(out.width);
-        if (out.height !== undefined) out.height = snapValue(out.height);
-=======
         const out = { x: snapValue(value.x), y: snapValue(value.y) };
         if (value.text !== undefined) out.text = value.text;
         if (value.width !== undefined) out.width = snapValue(value.width);
         if (value.height !== undefined) out.height = snapValue(value.height);
         if (value.font_size !== undefined) out.font_size = snapValue(value.font_size);
->>>>>>> 71a328bd333ac522efc2b16e3372d00a762fe4a9
         return out;
       }
       if (value.text !== undefined) return { text: value.text };
@@ -1230,12 +1526,12 @@
       }
     }
 
-    function queueKeyboardCommit(patches, label) {
+    function queueKeyboardCommit(patches, label, beforeStates = null) {
       if (keyboardCommitTimer) clearTimeout(keyboardCommitTimer);
       keyboardCommitTimer = setTimeout(async () => {
         keyboardCommitTimer = null;
         try {
-          const before = readSelectedStates();
+          const before = beforeStates || readSelectedStates();
           await commitPatches(patches, label);
           if (!historyBusy) {
             const after = readSelectedStates();
@@ -1247,184 +1543,40 @@
       }, 140);
     }
 
-<<<<<<< HEAD
-    function removeResizeHandles() {
-      const svg = document.getElementById("svgPreview").querySelector("svg");
-      if (!svg) return;
-      svg.querySelectorAll(".selection-frame, .resize-handle").forEach((node) => node.remove());
-    }
-
-    function selectedResizableRect() {
-      if (selectedSlots.size !== 1) return null;
-      const item = Array.from(selectedSlots.values())[0];
-      if (!item || !item.el || item.el.tagName.toLowerCase() !== "rect") return null;
-      return item;
-    }
-
-    function rectGeometry(el) {
-      return {
-        x: Number(el.getAttribute("x") || 0),
-        y: Number(el.getAttribute("y") || 0),
-        width: Number(el.getAttribute("width") || 0),
-        height: Number(el.getAttribute("height") || 0),
-      };
-    }
-
-    function handlePositions(r) {
-      const cx = r.x + r.width / 2;
-      const cy = r.y + r.height / 2;
-      const right = r.x + r.width;
-      const bottom = r.y + r.height;
-      return [
-        ["nw", r.x, r.y],
-        ["n", cx, r.y],
-        ["ne", right, r.y],
-        ["e", right, cy],
-        ["se", right, bottom],
-        ["s", cx, bottom],
-        ["sw", r.x, bottom],
-        ["w", r.x, cy],
-      ];
-    }
-
-    function cursorForHandle(handle) {
-      if (handle === "n" || handle === "s") return "ns-resize";
-      if (handle === "e" || handle === "w") return "ew-resize";
-      if (handle === "nw" || handle === "se") return "nwse-resize";
-      return "nesw-resize";
-    }
-
-    function updateResizeHandles() {
-      removeResizeHandles();
-      const item = selectedResizableRect();
-      if (!item) return;
-      const svg = document.getElementById("svgPreview").querySelector("svg");
-      if (!svg) return;
-      const r = rectGeometry(item.el);
-      if (r.width <= 0 || r.height <= 0) return;
-
-      const ns = "http://www.w3.org/2000/svg";
-      const frame = document.createElementNS(ns, "rect");
-      frame.setAttribute("class", "selection-frame");
-      frame.setAttribute("x", String(r.x));
-      frame.setAttribute("y", String(r.y));
-      frame.setAttribute("width", String(r.width));
-      frame.setAttribute("height", String(r.height));
-      svg.appendChild(frame);
-
-      for (const [handle, x, y] of handlePositions(r)) {
-        const h = document.createElementNS(ns, "rect");
-        h.setAttribute("class", "resize-handle");
-        h.setAttribute("data-handle", handle);
-        h.setAttribute("x", String(x - 4));
-        h.setAttribute("y", String(y - 4));
-        h.setAttribute("width", "8");
-        h.setAttribute("height", "8");
-        h.style.cursor = cursorForHandle(handle);
-        h.addEventListener("pointerdown", (ev) => beginResize(ev, item, handle));
-        svg.appendChild(h);
-      }
-    }
-
-    function refreshResizeHandlePositions() {
-      const item = selectedResizableRect();
-      const svg = document.getElementById("svgPreview").querySelector("svg");
-      if (!item || !svg) return;
-      const r = rectGeometry(item.el);
-      const frame = svg.querySelector(".selection-frame");
-      if (frame) {
-        frame.setAttribute("x", String(r.x));
-        frame.setAttribute("y", String(r.y));
-        frame.setAttribute("width", String(r.width));
-        frame.setAttribute("height", String(r.height));
-      }
-      const positions = new Map(handlePositions(r).map(([handle, x, y]) => [handle, { x, y }]));
-      for (const h of svg.querySelectorAll(".resize-handle")) {
-        const handle = h.getAttribute("data-handle");
-        const pos = positions.get(handle);
-        if (!pos) continue;
-        h.setAttribute("x", String(pos.x - 4));
-        h.setAttribute("y", String(pos.y - 4));
-      }
-    }
-
-    function resizeRectFromHandle(start, handle, dx, dy) {
-      let left = start.x;
-      let top = start.y;
-      let right = start.x + start.width;
-      let bottom = start.y + start.height;
-      const minSize = 4;
-
-      if (handle.includes("w")) left += dx;
-      if (handle.includes("e")) right += dx;
-      if (handle.includes("n")) top += dy;
-      if (handle.includes("s")) bottom += dy;
-
-      if (right - left < minSize) {
-        if (handle.includes("w")) left = right - minSize;
-        else right = left + minSize;
-      }
-      if (bottom - top < minSize) {
-        if (handle.includes("n")) top = bottom - minSize;
-        else bottom = top + minSize;
-      }
-
-      const value = {
-        x: left,
-        y: top,
-        width: right - left,
-        height: bottom - top,
-      };
-      return snapPatchValue(value);
-    }
-
-    function beginResize(ev, item, handle) {
-      if (ev.button !== 0) return;
-      const svg = document.getElementById("svgPreview").querySelector("svg");
-      if (!svg || !item || !item.el) return;
-      const start = getSvgPoint(svg, ev.clientX, ev.clientY);
-=======
     function beginResizeFromHandle(ev) {
       if (ev.button !== 0) return;
       const item = selectedResizableItem();
       if (!item) return;
       const svg = document.getElementById("svgPreview").querySelector("svg");
       if (!svg) return;
-      let box = null;
-      try {
-        box = item.el.getBBox();
-      } catch (_) {
-        box = null;
-      }
+      const box = itemBBox(item);
       if (!box) return;
-      const startValue = readSlotPatchValue(item.el);
-      if (!startValue) return;
+      const startValue = item.isFigureGroup
+        ? (item.elements || [])
+            .map((el) => ({ el, slotId: slotIdFromElement(el), value: readSlotPatchValue(el) }))
+            .filter((entry) => entry.slotId && entry.value)
+        : readSlotPatchValue(item.el);
+      if (!startValue || (Array.isArray(startValue) && !startValue.length)) return;
       const handle = ev.currentTarget.getAttribute("data-handle") || "c";
->>>>>>> 71a328bd333ac522efc2b16e3372d00a762fe4a9
       resizeState = {
         svg,
         item,
         handle,
-<<<<<<< HEAD
-        start,
-        startValue: rectGeometry(item.el),
-        moved: false,
-        pointerId: ev.pointerId,
-        captureEl: ev.currentTarget,
-      };
-      ev.currentTarget.setPointerCapture(ev.pointerId);
-      ev.stopPropagation();
-      ev.preventDefault();
-=======
         startPoint: getSvgPoint(svg, ev.clientX, ev.clientY),
         startBox: cloneBBox(box),
-        startValue: JSON.parse(JSON.stringify(startValue)),
+        startValue: item.isFigureGroup
+          ? startValue.map((entry) => ({ ...entry, value: JSON.parse(JSON.stringify(entry.value)) }))
+          : JSON.parse(JSON.stringify(startValue)),
         lastValue: null,
         moved: false,
         pointerId: ev.pointerId,
         handleEl: ev.currentTarget,
       };
-      ev.currentTarget.setPointerCapture(ev.pointerId);
+      try {
+        ev.currentTarget.setPointerCapture(ev.pointerId);
+      } catch (_) {
+        // Synthetic pointer events in tests may not have an active pointer.
+      }
       ev.preventDefault();
       ev.stopPropagation();
     }
@@ -1435,13 +1587,15 @@
       const dx = p.x - resizeState.startPoint.x;
       const dy = p.y - resizeState.startPoint.y;
       const nextBox = adjustedBBox(resizeState.startBox, resizeState.handle, dx, dy);
-      const value = resizePatchForElement(
-        resizeState.item.el,
-        resizeState.handle,
-        resizeState.startValue,
-        resizeState.startBox,
-        nextBox
-      );
+      const value = resizeState.item.isFigureGroup
+        ? resizeFigureGroup(resizeState, nextBox)
+        : resizePatchForElement(
+            resizeState.item.el,
+            resizeState.handle,
+            resizeState.startValue,
+            resizeState.startBox,
+            nextBox
+          );
       if (!value) return;
       resizeState.lastValue = value;
       resizeState.moved = true;
@@ -1460,18 +1614,41 @@
         updateSelectionHandles();
         return;
       }
+      if (local.item.isFigureGroup) {
+        const before = [];
+        const after = [];
+        const patches = [];
+        for (const entry of local.startValue || []) {
+          before.push({ slotId: entry.slotId, value: JSON.parse(JSON.stringify(entry.value)) });
+        }
+        for (const entry of local.lastValue || []) {
+          const value = snapPatchValue(entry.value);
+          if (!entry.slotId || !value) continue;
+          applyPatchValueToElement(entry.el, value);
+          after.push({ slotId: entry.slotId, value: JSON.parse(JSON.stringify(value)) });
+          patches.push({ target: entry.slotId, op: "update", value });
+        }
+        updateSelectionHandles();
+        try {
+          await commitPatches(patches, `크기 조절 저장 완료: ${local.item.slotId}`);
+          if (!historyBusy && before.length === after.length && before.length > 0) pushHistory(before, after, "크기 조절");
+        } catch (e) {
+          setStatus(String(e), false);
+        }
+        return;
+      }
       const value = snapPatchValue(local.lastValue);
       applyPatchValueToElement(local.item.el, value);
       updateSelectionHandles();
       const before = [{ slotId: local.item.slotId, value: local.startValue }];
       const after = [{ slotId: local.item.slotId, value: JSON.parse(JSON.stringify(value)) }];
       try {
-        await commitPatches([{ target: local.item.slotId, op: "update", value }], `크기 조절 저장 완료: ${local.item.slotId}`);
+        const targets = local.item.slotIds || [local.item.slotId];
+        await commitPatches(targets.map((target) => ({ target, op: "update", value })), `크기 조절 저장 완료: ${local.item.slotId}`);
         if (!historyBusy) pushHistory(before, after, "크기 조절");
       } catch (e) {
         setStatus(String(e), false);
       }
->>>>>>> 71a328bd333ac522efc2b16e3372d00a762fe4a9
     }
 
     function bindSlotInteractions() {
@@ -1480,7 +1657,6 @@
       if (!svg) return;
       if (svg.dataset.dragBound === "1") return;
       svg.dataset.dragBound = "1";
-      const dslIds = extractDslSlotIds();
 
       const slotElements = svg.querySelectorAll('[id^="slot."]');
       for (const el of slotElements) {
@@ -1490,28 +1666,46 @@
           if (!matchesPickMode(el)) return;
           const rawId = el.getAttribute("id");
           const fracInfo = parseFractionPartId(rawId);
-          const slotId = fracInfo ? fracInfo.prefix : toDslSlotId(rawId);
-          const slotKnown = dslIds.has(slotId);
+          const resolvedSlotIds = fracInfo ? [fracInfo.prefix] : toDslSlotIds(rawId);
+          const slotId = resolvedSlotIds[0] || rawId;
+          const dslIds = extractDslSlotIds();
+          const slotKnown = resolvedSlotIds.length > 0 && resolvedSlotIds.every((id) => dslIds.has(id));
           if (!slotId || !slotId.startsWith("slot.") || (!slotKnown && !fracInfo)) {
             setStatus(`드래그 불가 요소: ${el.getAttribute("id") || "(unknown id)"}`, false);
             return;
           }
+          if (resolvedSlotIds.length === 1 && isTextCenterEditHit(el, ev) && beginInlineTextEdit(el, slotId, ev)) {
+            return;
+          }
           const appendSelection = ev.shiftKey || ev.ctrlKey || ev.metaKey;
-          const keepGroupSelection = !appendSelection && selectedSlots.size > 1 && selectedSlots.has(slotId);
+          const selectionKey = figureBaseFromSlotId(slotId) || slotId;
+          const keepGroupSelection = !appendSelection && selectedSlots.has(selectionKey);
           if (!keepGroupSelection) setSelectedElement(el, slotId, appendSelection);
+          const selected = selectedSlots.get(selectionKey);
+          if (selected && !selected.isFigureGroup) selected.slotIds = resolvedSlotIds;
           const start = getSvgPoint(svg, ev.clientX, ev.clientY);
           const beforeMap = new Map();
           for (const item of selectedSlots.values()) {
             if (item.isFraction) {
               beforeMap.set(item.slotId, { move_dx: 0, move_dy: 0 });
+            } else if (item.isFigureGroup) {
+              for (const node of item.elements || []) {
+                const sid = slotIdFromElement(node);
+                const value = readSlotPatchValue(node);
+                if (sid && value) beforeMap.set(sid, JSON.parse(JSON.stringify(value)));
+              }
             } else {
               const value = readSlotPatchValue(item.el);
-              if (value) beforeMap.set(item.slotId, JSON.parse(JSON.stringify(value)));
+              if (value) {
+                for (const id of item.slotIds || [item.slotId]) {
+                  beforeMap.set(id, JSON.parse(JSON.stringify(value)));
+                }
+              }
             }
           }
           dragState = {
             svg,
-            slotId,
+            slotId: selectionKey,
             start,
             moved: false,
             beforeMap,
@@ -1531,7 +1725,11 @@
               return m;
             })(),
           };
-          el.setPointerCapture(ev.pointerId);
+          try {
+            el.setPointerCapture(ev.pointerId);
+          } catch (_) {
+            // Synthetic pointer events in tests may not have an active pointer.
+          }
           ev.preventDefault();
         });
       }
@@ -1548,18 +1746,7 @@
 
       svg.addEventListener("pointermove", (ev) => {
         if (resizeState) {
-<<<<<<< HEAD
-          const p = getSvgPoint(svg, ev.clientX, ev.clientY);
-          const dx = p.x - resizeState.start.x;
-          const dy = p.y - resizeState.start.y;
-          const value = resizeRectFromHandle(resizeState.startValue, resizeState.handle, dx, dy);
-          applyPatchValueToElement(resizeState.item.el, value);
-          resizeState.moved = true;
-          refreshResizeHandlePositions();
-          setStatus(`크기 조절 중: ${resizeState.item.slotId}`, true);
-=======
           updateResize(ev);
->>>>>>> 71a328bd333ac522efc2b16e3372d00a762fe4a9
           return;
         }
         if (marqueeState) {
@@ -1589,17 +1776,15 @@
           for (const item of selectedSlots.values()) {
             if (item.isFraction) {
               for (const node of item.elements || []) lastValue = applyElementDelta(node, pdx, pdy, false);
+            } else if (item.isFigureGroup) {
+              for (const node of item.elements || []) lastValue = applyElementDelta(node, pdx, pdy, false);
             } else {
               lastValue = applyElementDelta(item.el, pdx, pdy, false);
             }
           }
           if (!lastValue) return;
           dragState.moved = true;
-<<<<<<< HEAD
-          updateResizeHandles();
-=======
           updateSelectionHandles();
->>>>>>> 71a328bd333ac522efc2b16e3372d00a762fe4a9
           const now = Date.now();
           if (now - lastDragStatusAt > 90) {
             lastDragStatusAt = now;
@@ -1610,29 +1795,7 @@
 
       svg.addEventListener("pointerup", async (ev) => {
         if (resizeState) {
-<<<<<<< HEAD
-          const local = resizeState;
-          resizeState = null;
-          if (local.captureEl && local.pointerId !== undefined) {
-            local.captureEl.releasePointerCapture(local.pointerId);
-          }
-          if (!local.moved) return;
-          const value = snapPatchValue(rectGeometry(local.item.el));
-          applyPatchValueToElement(local.item.el, value);
-          updateResizeHandles();
-          const before = [{ slotId: local.item.slotId, value: local.startValue }];
-          const after = [{ slotId: local.item.slotId, value: JSON.parse(JSON.stringify(value)) }];
-          queueDragCommit(async () => {
-            try {
-              await commitPatches([{ target: local.item.slotId, op: "update", value }], `크기 조절 저장 완료: ${local.item.slotId}`);
-              if (!historyBusy) pushHistory(before, after, "크기 조절");
-            } catch (e) {
-              setStatus(String(e), false);
-            }
-          });
-=======
           await endResize(ev);
->>>>>>> 71a328bd333ac522efc2b16e3372d00a762fe4a9
           return;
         }
         if (marqueeState) {
@@ -1664,11 +1827,24 @@
             after.push({ slotId: item.slotId, value: snappedMove });
             continue;
           }
+          if (item.isFigureGroup) {
+            for (const node of item.elements || []) {
+              const sid = slotIdFromElement(node);
+              const value = snapPatchValue(readSlotPatchValue(node));
+              if (!sid || !value) continue;
+              applyPatchValueToElement(node, value);
+              after.push({ slotId: sid, value: JSON.parse(JSON.stringify(value)) });
+              patches.push({ target: sid, op: "update", value });
+            }
+            continue;
+          }
           const value = snapPatchValue(readSlotPatchValue(item.el));
           if (!value) continue;
           applyPatchValueToElement(item.el, value);
-          after.push({ slotId: item.slotId, value: JSON.parse(JSON.stringify(value)) });
-          patches.push({ target: item.slotId, op: "update", value });
+          for (const id of item.slotIds || [item.slotId]) {
+            after.push({ slotId: id, value: JSON.parse(JSON.stringify(value)) });
+            patches.push({ target: id, op: "update", value });
+          }
         }
         if (!patches.length) return;
         queueDragCommit(async () => {
@@ -1693,24 +1869,28 @@
     function selectedItemsWithValues() {
       const items = [];
       for (const item of selectedSlots.values()) {
-        const value = item.isFraction ? { move_dx: 0, move_dy: 0 } : readSlotPatchValue(item.el);
+        const value = (item.isFraction || item.isFigureGroup) ? { move_dx: 0, move_dy: 0 } : readSlotPatchValue(item.el);
         if (!value) continue;
         let bbox = null;
         try {
-          if (item.isFraction) {
-            const boxes = (item.elements || []).map((e) => e.getBBox());
-            const minX = Math.min(...boxes.map((b) => b.x));
-            const minY = Math.min(...boxes.map((b) => b.y));
-            const maxX = Math.max(...boxes.map((b) => b.x + b.width));
-            const maxY = Math.max(...boxes.map((b) => b.y + b.height));
-            bbox = { x: minX, y: minY, width: maxX - minX, height: maxY - minY };
+          if (item.isFraction || item.isFigureGroup) {
+            bbox = itemBBox(item);
           } else {
             bbox = item.el.getBBox();
           }
         } catch (_) {
           bbox = null;
         }
-        items.push({ slotId: item.slotId, el: item.el, value, bbox, isFraction: !!item.isFraction, elements: item.elements || [item.el] });
+        items.push({
+          slotId: item.slotId,
+          slotIds: item.slotIds || [item.slotId],
+          el: item.el,
+          value,
+          bbox,
+          isFraction: !!item.isFraction,
+          isFigureGroup: !!item.isFigureGroup,
+          elements: item.elements || [item.el],
+        });
       }
       return items;
     }
@@ -1739,7 +1919,7 @@
         setStatus("정렬용 bbox 정보를 가져오지 못했습니다.", false);
         return;
       }
-      const before = items.map((i) => ({ slotId: i.slotId, value: JSON.parse(JSON.stringify(i.value)) }));
+      const before = readSelectedStates();
       const bounds = getSvgCanvasBounds();
       const lefts = itemsWithBox.map((i) => i.bbox.x);
       const rights = itemsWithBox.map((i) => i.bbox.x + i.bbox.width);
@@ -1786,16 +1966,25 @@
             for (const node of item.elements) applyElementDelta(node, fixDx, fixDy, false);
           }
           patches.push({ target: item.slotId, op: "update", value: snappedMove });
+        } else if (item.isFigureGroup) {
+          for (const node of item.elements) applyElementDelta(node, dx, dy, true);
+          for (const node of item.elements) {
+            const slotId = slotIdFromElement(node);
+            const value = readSlotPatchValue(node);
+            if (slotId && value) patches.push({ target: slotId, op: "update", value });
+          }
         } else {
           const patchValue = applyElementDelta(item.el, dx, dy, true);
           if (!patchValue) continue;
-          patches.push({ target: item.slotId, op: "update", value: patchValue });
+          for (const target of item.slotIds || [item.slotId]) {
+            patches.push({ target, op: "update", value: patchValue });
+          }
         }
       }
       if (!patches.length) return;
       await commitPatches(patches, `정렬 저장 완료: ${mode}`);
       updateSelectionHandles();
-      const after = selectedItemsWithValues().map((i) => ({ slotId: i.slotId, value: JSON.parse(JSON.stringify(i.value)) }));
+      const after = readSelectedStates();
       if (!historyBusy && before.length === after.length) pushHistory(before, after, `정렬(${mode})`);
     }
 
@@ -1823,6 +2012,10 @@
     }
 
     async function loadProblems() {
+      const tree = document.getElementById("problemTree");
+      const count = document.getElementById("problemTreeCount");
+      if (tree) tree.innerHTML = "<em>문제 목록을 불러오는 중입니다.</em>";
+      if (count) count.textContent = "";
       const data = await api("/api/editor/problems/");
       knownProblems = data.problems || [];
       const options = document.getElementById("problemOptions");
@@ -1832,10 +2025,18 @@
         option.value = p.problem_id;
         options.appendChild(option);
       }
-      renderProblemTree(knownProblems.map((p) => p.problem_id));
+      renderProblemTree();
       if (!currentProblemId && knownProblems.length > 0) {
         document.getElementById("problemInput").value = knownProblems[0].problem_id;
       }
+      setStatus(`문제 목록 로드 완료: ${knownProblems.length}개`, true);
+    }
+
+    function filteredProblemIds() {
+      const filter = (document.getElementById("problemFilterInput")?.value || "").trim().toLocaleLowerCase("ko");
+      const ids = knownProblems.map((p) => p.problem_id);
+      if (!filter) return ids;
+      return ids.filter((id) => id.toLocaleLowerCase("ko").includes(filter));
     }
 
     function buildTree(problemIds) {
@@ -1856,7 +2057,7 @@
       return root;
     }
 
-    function renderTreeNode(container, nodeObj) {
+    function renderTreeNode(container, nodeObj, parentPath = "", forceOpen = false) {
       const ul = document.createElement("ul");
       const keys = Object.keys(nodeObj).sort((a, b) => a.localeCompare(b, "ko"));
       for (const key of keys) {
@@ -1864,14 +2065,27 @@
         const li = document.createElement("li");
         const childKeys = Object.keys(meta.__children);
         if (childKeys.length > 0) {
-          const folder = document.createElement("div");
+          const folderPath = parentPath ? `${parentPath}/${key}` : key;
+          const isOpen = forceOpen || !collapsedProblemFolders.has(folderPath);
+          const folder = document.createElement("button");
           folder.className = "folder";
+          folder.classList.toggle("open", isOpen);
           folder.textContent = key;
+          folder.onclick = () => {
+            if (collapsedProblemFolders.has(folderPath)) collapsedProblemFolders.delete(folderPath);
+            else collapsedProblemFolders.add(folderPath);
+            renderProblemTree();
+          };
           li.appendChild(folder);
-          renderTreeNode(li, meta.__children);
+          const childContainer = document.createElement("div");
+          childContainer.className = "children";
+          childContainer.classList.toggle("collapsed", !isOpen);
+          renderTreeNode(childContainer, meta.__children, folderPath, forceOpen);
+          li.appendChild(childContainer);
         } else if (meta.__leaf) {
           const btn = document.createElement("button");
           btn.className = "file-btn";
+          btn.classList.toggle("active", meta.__id === currentProblemId);
           btn.textContent = key;
           btn.onclick = async () => {
             document.getElementById("problemInput").value = meta.__id;
@@ -1884,15 +2098,19 @@
       container.appendChild(ul);
     }
 
-    function renderProblemTree(problemIds) {
+    function renderProblemTree() {
       const tree = document.getElementById("problemTree");
+      const count = document.getElementById("problemTreeCount");
+      const problemIds = filteredProblemIds();
+      const filterActive = (document.getElementById("problemFilterInput")?.value || "").trim().length > 0;
       tree.innerHTML = "";
+      if (count) count.textContent = `${problemIds.length} / ${knownProblems.length}개`;
       if (!problemIds.length) {
         tree.innerHTML = "<em>문제가 없습니다.</em>";
         return;
       }
       const root = buildTree(problemIds);
-      renderTreeNode(tree, root);
+      renderTreeNode(tree, root, "", filterActive);
     }
 
     async function selectProblem(problemId) {
@@ -1904,6 +2122,7 @@
       document.getElementById("dslEditor").value = detail.dsl || "";
       renderArtifacts(detail);
       renderLog("", "");
+      renderProblemTree();
       setStatus(`불러오기 완료: ${trimmed}`, true);
     }
 
@@ -1977,6 +2196,7 @@
       try { await loadProblems(); setStatus("문제 목록 갱신 완료", true); }
       catch (e) { setStatus(String(e), false); }
     };
+    document.getElementById("problemFilterInput").addEventListener("input", () => renderProblemTree());
     document.getElementById("reloadBtn").onclick = async () => {
       try { await selectProblem(currentProblemId); }
       catch (e) { setStatus(String(e), false); }
@@ -2071,9 +2291,19 @@
       if (dx === 0 && dy === 0) return;
       ev.preventDefault();
 
+      const beforeStates = readSelectedStates();
       const patches = [];
       const handledFractionPrefixes = new Set();
       for (const item of selectedSlots.values()) {
+        if (item.isFigureGroup) {
+          for (const node of item.elements || []) applyElementDelta(node, dx, dy, false);
+          for (const node of item.elements || []) {
+            const slotId = slotIdFromElement(node);
+            const value = readSlotPatchValue(node);
+            if (slotId && value) patches.push({ target: slotId, op: "update", value });
+          }
+          continue;
+        }
         const fracInfo = parseFractionPartId(item.el.getAttribute("id"));
         if (fracInfo && fracInfo.prefix === item.slotId) {
           if (handledFractionPrefixes.has(fracInfo.prefix)) continue;
@@ -2085,15 +2315,21 @@
         }
         const value = applyElementDelta(item.el, dx, dy, false);
         if (!value) continue;
-        patches.push({ target: item.slotId, op: "update", value });
+        for (const target of item.slotIds || [item.slotId]) {
+          patches.push({ target, op: "update", value });
+        }
       }
       if (!patches.length) return;
       updateSelectionHandles();
       setStatus(`키보드 이동 중 ${patches.length}개 선택${snapEnabled ? " (snap 5px)" : ""}`, true);
-      queueKeyboardCommit(patches, `키보드 이동 저장 완료: ${patches.length}개`);
+      queueKeyboardCommit(patches, `키보드 이동 저장 완료: ${patches.length}개`, beforeStates);
     });
 
-    loadProblems().catch((e) => setStatus(String(e), false));
+    loadProblems().catch((e) => {
+      const tree = document.getElementById("problemTree");
+      if (tree) tree.innerHTML = `<em>${String(e)}</em>`;
+      setStatus(String(e), false);
+    });
   </script>
 </body>
 </html>
