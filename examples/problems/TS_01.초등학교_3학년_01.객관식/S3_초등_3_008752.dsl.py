@@ -1,0 +1,307 @@
+from __future__ import annotations
+from modu_math.dsl import Canvas, ProblemTemplate, RectSlot, Region, TextSlot
+
+
+def build_problem_template() -> ProblemTemplate:
+    return ProblemTemplate(
+        id="S3_초등_3_008752",
+        title="주전자와 냄비에 물을 가득 채우기",
+        canvas=Canvas(width=960, height=520, coordinate_mode="logical"),
+        regions=(
+            Region(
+                id="region.header",
+                role="stem",
+                flow="absolute",
+                slot_ids=("slot.box0", "slot.q1", "slot.q2"),
+            ),
+            Region(
+                id="region.table",
+                role="diagram",
+                flow="absolute",
+                slot_ids=(
+                    "slot.table.bg",
+                    "slot.table.hdr1",
+                    "slot.table.hdr2",
+                    "slot.table.row1",
+                    "slot.table.row2",
+                    "slot.table.c11",
+                    "slot.table.c12",
+                    "slot.table.c21",
+                    "slot.table.c22",
+                ),
+            ),
+            Region(
+                id="region.statements",
+                role="body",
+                flow="absolute",
+                slot_ids=("slot.box1", "slot.stmt1", "slot.stmt2", "slot.stmt3"),
+            ),
+            Region(id="region.footer", role="footer", flow="absolute", slot_ids=()),
+        ),
+        slots=(
+            RectSlot(
+                id="slot.box0", prompt="", x=19.0, y=18.0, width=16.0, height=16.0
+            ),
+            TextSlot(
+                id="slot.q1",
+                prompt="",
+                text="49. 주전자와 냄비에 물을 가득 채우려면 ㉠ 컵과 ㉡ 컵을 다음과 같이 각각",
+                style_role="question",
+                x=50.0,
+                y=30.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.q2",
+                prompt="",
+                text="부어야 합니다. 바르게 이야기한 것을 선택하세요.",
+                style_role="question",
+                x=50.0,
+                y=63.0,
+                font_size=28,
+            ),
+            RectSlot(
+                id="slot.table.bg",
+                prompt="",
+                x=300.0,
+                y=87.0,
+                width=383.0,
+                height=124.0,
+            ),
+            TextSlot(
+                id="slot.table.hdr1",
+                prompt="",
+                text="㉠ 컵",
+                style_role="label",
+                x=455.0,
+                y=116.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.table.hdr2",
+                prompt="",
+                text="㉡ 컵",
+                style_role="label",
+                x=572.0,
+                y=116.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.table.row1",
+                prompt="",
+                text="주전자",
+                style_role="label",
+                x=352.0,
+                y=153.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.table.row2",
+                prompt="",
+                text="냄비",
+                style_role="label",
+                x=366.0,
+                y=190.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.table.c11",
+                prompt="",
+                text="3개",
+                style_role="number",
+                x=463.0,
+                y=153.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.table.c12",
+                prompt="",
+                text="2개",
+                style_role="number",
+                x=585.0,
+                y=153.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.table.c21",
+                prompt="",
+                text="6개",
+                style_role="number",
+                x=463.0,
+                y=190.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.table.c22",
+                prompt="",
+                text="4개",
+                style_role="number",
+                x=585.0,
+                y=190.0,
+                font_size=28,
+            ),
+            RectSlot(
+                id="slot.box1", prompt="", x=87.0, y=220.0, width=795.0, height=157.0
+            ),
+            TextSlot(
+                id="slot.stmt1",
+                prompt="",
+                text="· 경호: 냄비보다 주전자에 물을 더 많이 담을 수 있어.",
+                style_role="body",
+                x=118.0,
+                y=270.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.stmt2",
+                prompt="",
+                text="· 해원: ㉠ 컵과 ㉡ 컵 중에 들이가 더 많은 컵은 ㉡ 컵이야.",
+                style_role="body",
+                x=118.0,
+                y=311.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.stmt3",
+                prompt="",
+                text="· 동주: 주전자의 들이는 냄비의 들이의 2배야.",
+                style_role="body",
+                x=118.0,
+                y=352.0,
+                font_size=28,
+            ),
+        ),
+        diagrams=(),
+        groups=(),
+        constraints=(),
+        tags=("초등3", "비교", "들이", "표"),
+    )
+
+
+PROBLEM_TEMPLATE = build_problem_template()
+
+SEMANTIC_OVERRIDE = {
+    "problem_id": "S3_초등_3_008752",
+    "problem_type": "truth_evaluation",
+    "metadata": {
+        "language": "ko",
+        "question": "주전자와 냄비에 물을 가득 채우려면 ㉠ 컵과 ㉡ 컵을 다음과 같이 각각 부어야 합니다. 바르게 이야기한 것을 선택하세요.",
+        "instruction": "바르게 이야기한 것을 선택하세요.",
+    },
+    "domain": {
+        "objects": [
+            {"id": "obj.teapot", "type": "container", "name": "주전자"},
+            {"id": "obj.pot", "type": "container", "name": "냄비"},
+            {"id": "obj.cup_a", "type": "cup", "name": "㉠ 컵"},
+            {"id": "obj.cup_b", "type": "cup", "name": "㉡ 컵"},
+            {"id": "obj.statement.haewon", "type": "statement", "speaker": "해원"},
+        ],
+        "relations": [],
+        "problem_solving": {
+            "understand": {
+                "given_refs": [
+                    "rel.table.teapot",
+                    "rel.table.pot",
+                    "rel.compare.capacity",
+                    "rel.compare.cups",
+                ],
+                "target_ref": "answer.target",
+                "condition_refs": [],
+            },
+            "plan": {
+                "method": "statement_verification",
+                "description": "표의 수치를 바탕으로 각 발화가 맞는지 확인한다.",
+            },
+            "execute": {
+                "expected_operations": [
+                    "compare_container_capacity",
+                    "compare_cup_capacity",
+                    "check_ratio_relation",
+                ]
+            },
+            "review": {
+                "check_methods": ["table_consistency_check", "statement_truth_check"]
+            },
+        },
+    },
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {"type": "correct_speaker", "description": "바르게 이야기한 사람"},
+        "value": 0,
+        "unit": "",
+    },
+}
+
+SOLVABLE = {
+    "schema": "modu.solvable.v1.1",
+    "problem_id": "S3_초등_3_008752",
+    "problem_type": "truth_evaluation",
+    "inputs": {
+        "total_ticks": 4,
+        "target_label": "바르게 이야기한 사람",
+        "target_ticks": 1,
+        "target_count": 1,
+        "unit": "",
+    },
+    "given": [
+        {"ref": "rel.table.teapot", "value": {"cup_a_count": 3, "cup_b_count": 2}},
+        {"ref": "rel.table.pot", "value": {"cup_a_count": 6, "cup_b_count": 4}},
+        {"ref": "rel.compare.capacity", "value": "pot_greater_than_teapot"},
+        {"ref": "rel.compare.cups", "value": "cup_b_greater_than_cup_a"},
+    ],
+    "target": {"ref": "answer.target", "type": "correct_speaker"},
+    "method": "statement_verification",
+    "plan": [
+        "표의 수치를 읽어 각 대상과 컵의 관계를 비교한다.",
+        "세 사람의 발화가 표와 맞는지 확인한다.",
+    ],
+    "steps": [
+        {
+            "id": "step.1",
+            "expr": "주전자: ㉠ 컵 3개, ㉡ 컵 2개",
+            "value": {"cup_a_count": 3, "cup_b_count": 2},
+        },
+        {
+            "id": "step.2",
+            "expr": "냄비: ㉠ 컵 6개, ㉡ 컵 4개",
+            "value": {"cup_a_count": 6, "cup_b_count": 4},
+        },
+        {
+            "id": "step.3",
+            "expr": "냄비는 주전자보다 더 많은 물을 담을 수 있음",
+            "value": True,
+        },
+        {"id": "step.4", "expr": "㉡ 컵이 ㉠ 컵보다 더 큼", "value": True},
+        {
+            "id": "step.5",
+            "expr": "주전자의 들이와 냄비의 들이 비교",
+            "value": "냄비가 2배",
+        },
+    ],
+    "checks": [
+        {
+            "id": "check.1",
+            "expr": "표의 수치가 발화와 일치하는가",
+            "expected": True,
+            "actual": True,
+            "pass": True,
+        },
+        {
+            "id": "check.2",
+            "expr": "정답이 해원인가",
+            "expected": "해원",
+            "actual": "해원",
+            "pass": True,
+        },
+    ],
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {"type": "correct_speaker", "description": "바르게 이야기한 사람"},
+        "value": 0,
+        "unit": "",
+    },
+}

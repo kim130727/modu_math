@@ -1,0 +1,94 @@
+{
+  "problem_id": "S3_초등_3_008667",
+  "problem_type": "geometry_point_selection",
+  "metadata": {
+    "title": "원의 중심 찾기",
+    "tags": [],
+    "instruction": "그림에서 원의 중심을 찾아 선택하기",
+    "question": "그림에서 원의 중심을 찾아 선택해 보세요.",
+    "required_layout_ids": [
+      "slot.diagram.circle",
+      "slot.diagram.pt.g",
+      "slot.diagram.pt.n",
+      "slot.diagram.pt.d",
+      "slot.diagram.pt.r"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.circle",
+        "type": "circle"
+      },
+      {
+        "id": "obj.point_g",
+        "type": "point",
+        "label": "ㄱ",
+        "role": "candidate"
+      },
+      {
+        "id": "obj.point_n",
+        "type": "point",
+        "label": "ㄴ",
+        "role": "candidate_center"
+      },
+      {
+        "id": "obj.point_d",
+        "type": "point",
+        "label": "ㄷ",
+        "role": "candidate"
+      },
+      {
+        "id": "obj.point_r",
+        "type": "point",
+        "label": "ㄹ",
+        "role": "candidate"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.circle",
+          "obj.point_g",
+          "obj.point_n",
+          "obj.point_d",
+          "obj.point_r"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.center_of"
+        ]
+      },
+      "plan": {
+        "method": "center_identification",
+        "description": "원 안의 후보 점들 중 원의 중심에 해당하는 점을 찾는다."
+      },
+      "execute": {
+        "expected_operations": [
+          "compare_candidate_positions",
+          "identify_central_point"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "center_position_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "selected_label",
+      "description": "원의 중심으로 선택할 점"
+    },
+    "value": "ㄴ",
+    "unit": ""
+  }
+}

@@ -1,0 +1,142 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008542",
+  "problem_type": "comparison_selection",
+  "inputs": {
+    "total_ticks": 4,
+    "target_label": "3000보다 큰 곱셈식",
+    "target_ticks": 2,
+    "target_count": 2,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.expr1",
+      "value": {
+        "expression": "80 × 40"
+      }
+    },
+    {
+      "ref": "obj.expr2",
+      "value": {
+        "expression": "62 × 50"
+      }
+    },
+    {
+      "ref": "obj.expr3",
+      "value": {
+        "expression": "90 × 30"
+      }
+    },
+    {
+      "ref": "obj.expr4",
+      "value": {
+        "expression": "43 × 60"
+      }
+    },
+    {
+      "ref": "obj.threshold",
+      "value": 3000
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "selected_multiplication_expressions"
+  },
+  "method": "compute_and_compare",
+  "plan": [
+    "각 곱셈식을 계산한다.",
+    "각 결과를 3000과 비교한다.",
+    "3000보다 큰 식만 고른다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "80 × 40",
+      "value": 3200
+    },
+    {
+      "id": "step.2",
+      "expr": "62 × 50",
+      "value": 3100
+    },
+    {
+      "id": "step.3",
+      "expr": "90 × 30",
+      "value": 2700
+    },
+    {
+      "id": "step.4",
+      "expr": "43 × 60",
+      "value": 2580
+    },
+    {
+      "id": "step.5",
+      "expr": "3200 > 3000",
+      "value": true
+    },
+    {
+      "id": "step.6",
+      "expr": "3100 > 3000",
+      "value": true
+    },
+    {
+      "id": "step.7",
+      "expr": "2700 > 3000",
+      "value": false
+    },
+    {
+      "id": "step.8",
+      "expr": "2580 > 3000",
+      "value": false
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "80 × 40 = 3200",
+      "expected": 3200,
+      "actual": 3200,
+      "pass": true
+    },
+    {
+      "id": "check.2",
+      "expr": "62 × 50 = 3100",
+      "expected": 3100,
+      "actual": 3100,
+      "pass": true
+    },
+    {
+      "id": "check.3",
+      "expr": "90 × 30 = 2700",
+      "expected": 2700,
+      "actual": 2700,
+      "pass": true
+    },
+    {
+      "id": "check.4",
+      "expr": "43 × 60 = 2580",
+      "expected": 2580,
+      "actual": 2580,
+      "pass": true
+    },
+    {
+      "id": "check.5",
+      "expr": "선택 결과가 3000보다 큰 식만 포함하는지 확인",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "selected_multiplication_expressions",
+      "description": "계산 결과가 3000보다 큰 곱셈식"
+    },
+    "value": 2,
+    "unit": ""
+  }
+}

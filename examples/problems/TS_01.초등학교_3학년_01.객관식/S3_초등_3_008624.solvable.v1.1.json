@@ -1,0 +1,121 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008624",
+  "problem_type": "order_by_remainder",
+  "inputs": {
+    "total_ticks": 3,
+    "target_label": "ordered_symbols",
+    "target_ticks": 3,
+    "target_count": 3,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.a",
+      "value": {
+        "symbol": "ㄱ",
+        "dividend": 29,
+        "divisor": 6
+      }
+    },
+    {
+      "ref": "obj.b",
+      "value": {
+        "symbol": "ㄴ",
+        "dividend": 92,
+        "divisor": 4
+      }
+    },
+    {
+      "ref": "obj.c",
+      "value": {
+        "symbol": "ㄷ",
+        "dividend": 84,
+        "divisor": 8
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "ordered_symbols"
+  },
+  "method": "compare_remainders",
+  "plan": [
+    "각 나눗셈의 나머지를 확인한다.",
+    "나머지가 큰 것부터 기호를 순서대로 정한다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "29 ÷ 6",
+      "value": {
+        "quotient": 4,
+        "remainder": 5
+      }
+    },
+    {
+      "id": "step.2",
+      "expr": "92 ÷ 4",
+      "value": {
+        "quotient": 23,
+        "remainder": 0
+      }
+    },
+    {
+      "id": "step.3",
+      "expr": "84 ÷ 8",
+      "value": {
+        "quotient": 10,
+        "remainder": 4
+      }
+    },
+    {
+      "id": "step.4",
+      "expr": "나머지 비교 결과",
+      "value": [
+        "ㄱ",
+        "ㄷ",
+        "ㄴ"
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "5 > 4 > 0",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "id": "check.2",
+      "expr": "순서가 ㄱ, ㄷ, ㄴ인지 확인",
+      "expected": [
+        "ㄱ",
+        "ㄷ",
+        "ㄴ"
+      ],
+      "actual": [
+        "ㄱ",
+        "ㄷ",
+        "ㄴ"
+      ],
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "ordered_symbols",
+      "description": "나머지가 큰 것부터 차례로 기호"
+    },
+    "value": [
+      "ㄱ",
+      "ㄷ",
+      "ㄴ"
+    ],
+    "unit": ""
+  }
+}

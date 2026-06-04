@@ -1,0 +1,105 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008593",
+  "title": "나누어떨어지는 나눗셈을 선택하세요",
+  "canvas": {
+    "width": 736,
+    "height": 384,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice_box",
+        "slot.q1",
+        "slot.choice_1",
+        "slot.choice_2",
+        "slot.choice_3"
+      ]
+    },
+    {
+      "id": "region.answer",
+      "role": "answer",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "□ 61.  나누어떨어지는 나눗셈을 선택하세요.",
+        "style_role": "question",
+        "x": 6.0,
+        "y": 22.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice_box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 207.0,
+        "y": 48.0,
+        "width": 498.0,
+        "height": 78.0,
+        "fill": "#F8E7CA"
+      }
+    },
+    {
+      "id": "slot.choice_1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "35 ÷ 4",
+        "style_role": "choice",
+        "x": 272.0,
+        "y": 91.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice_2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "54 ÷ 9",
+        "style_role": "choice",
+        "x": 429.0,
+        "y": 91.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice_3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "28 ÷ 3",
+        "style_role": "choice",
+        "x": 573.0,
+        "y": 91.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.choice_box",
+    "slot.q1",
+    "slot.choice_1",
+    "slot.choice_2",
+    "slot.choice_3",
+    "region.answer"
+  ]
+}

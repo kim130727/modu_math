@@ -1,0 +1,104 @@
+{
+  "problem_id": "S3_초등_3_008669",
+  "problem_type": "도형_판별",
+  "metadata": {
+    "title": "원의 중심과 반지름",
+    "tags": [],
+    "question": "원의 중심을 옮기지 않고 반지름만 다르게 하여 그린 것을 찾아 선택하세요.",
+    "required_layout_ids": [
+      "slot.choice_box",
+      "slot.choice.a.outer",
+      "slot.choice.a.left",
+      "slot.choice.a.right",
+      "slot.choice.b.outer",
+      "slot.choice.b.middle",
+      "slot.choice.b.inner",
+      "slot.choice.c.outer",
+      "slot.choice.c.inner",
+      "slot.ans.outer1",
+      "slot.ans.outer2",
+      "slot.ans.inner",
+      "slot.ex1.outer",
+      "slot.ex1.left",
+      "slot.ex1.right",
+      "slot.ex1.dot1",
+      "slot.ex1.dot2",
+      "slot.ex2.outer",
+      "slot.ex2.middle",
+      "slot.ex2.inner",
+      "slot.ex2.dot",
+      "slot.ex3.outer",
+      "slot.ex3.inner",
+      "slot.ex3.inner2",
+      "slot.ex3.dot1",
+      "slot.ex3.dot2"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "정답을 고르기"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.choice_1",
+        "type": "circle_figure"
+      },
+      {
+        "id": "obj.choice_2",
+        "type": "circle_figure"
+      },
+      {
+        "id": "obj.choice_3",
+        "type": "circle_figure"
+      },
+      {
+        "id": "obj.example",
+        "type": "circle_figure"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.choice_1",
+          "obj.choice_2",
+          "obj.choice_3"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.center_same",
+          "rel.radius_different"
+        ]
+      },
+      "plan": {
+        "method": "도형 비교",
+        "description": "각 그림에서 중심이 같은지와 반지름만 달라졌는지를 비교한다."
+      },
+      "execute": {
+        "expected_operations": [
+          "중심 비교",
+          "반지름 비교",
+          "해설 문장 확인"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "중심 이동 여부 확인",
+          "반지름만 변화했는지 확인"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "selected_figure",
+      "description": "원의 중심을 옮기지 않고 반지름만 다르게 하여 그린 것"
+    },
+    "value": 2,
+    "unit": ""
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008614",
+  "problem_type": "multiple_choice_division_remainder",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "나머지가 6이 나올 수 없는 식",
+    "target_ticks": 0,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.choice.1",
+      "value": {
+        "divisor": 8
+      }
+    },
+    {
+      "ref": "obj.choice.2",
+      "value": {
+        "divisor": 6
+      }
+    },
+    {
+      "ref": "obj.choice.3",
+      "value": {
+        "divisor": 9
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "selected_expression"
+  },
+  "method": "compare_remainder_with_divisor",
+  "plan": [
+    "각 보기에서 나머지 6이 가능한지 나누는 수와 비교해 본다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "나머지는 나누는 수보다 작아야 한다.",
+      "value": 0
+    },
+    {
+      "id": "step.2",
+      "expr": "6 < 8 ?",
+      "value": true
+    },
+    {
+      "id": "step.3",
+      "expr": "6 < 6 ?",
+      "value": false
+    },
+    {
+      "id": "step.4",
+      "expr": "6 < 9 ?",
+      "value": true
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "remainder_range_check",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "selected_expression",
+      "description": "나머지가 6이 나올 수 없는 식"
+    },
+    "value": 0,
+    "unit": ""
+  }
+}

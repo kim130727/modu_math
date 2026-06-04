@@ -1,0 +1,141 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008567",
+  "title": "나타내는 수가 다른 하나를 찾아 기호를 선택하세요.",
+  "canvas": {
+    "width": 786,
+    "height": 360,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.top",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.qnum",
+        "slot.qtext"
+      ]
+    },
+    {
+      "id": "region.main",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.box",
+        "slot.choice1",
+        "slot.choice2"
+      ]
+    },
+    {
+      "id": "region.note",
+      "role": "supporting",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.note1",
+        "slot.note2"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.qnum",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "32.",
+        "style_role": "question",
+        "x": 24.0,
+        "y": 24.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.qtext",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "나타내는 수가 다른 하나를 찾아 기호를 선택하세요.",
+        "style_role": "question",
+        "x": 84.0,
+        "y": 24.0,
+        "font_size": 24
+      }
+    },
+    {
+      "id": "slot.box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 210.0,
+        "y": 84.0,
+        "width": 520.0,
+        "height": 110.0
+      }
+    },
+    {
+      "id": "slot.choice1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "㉠ 214 + 214 + 214",
+        "style_role": "diagram",
+        "x": 236.0,
+        "y": 126.0,
+        "font_size": 24
+      }
+    },
+    {
+      "id": "slot.choice2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "㉡ 214 × 3, ㉢ 214 + 3",
+        "style_role": "diagram",
+        "x": 236.0,
+        "y": 166.0,
+        "font_size": 24
+      }
+    },
+    {
+      "id": "slot.note1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "비교 대상의 계산 결과를 확인합니다.",
+        "style_role": "supporting",
+        "x": 24.0,
+        "y": 266.0,
+        "font_size": 20
+      }
+    },
+    {
+      "id": "slot.note2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "조건에 맞는 기호(또는 식)를 선택합니다.",
+        "style_role": "supporting",
+        "x": 24.0,
+        "y": 300.0,
+        "font_size": 20
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.top",
+    "slot.qnum",
+    "slot.qtext",
+    "region.main",
+    "slot.box",
+    "slot.choice1",
+    "slot.choice2",
+    "region.note",
+    "slot.note1",
+    "slot.note2"
+  ]
+}

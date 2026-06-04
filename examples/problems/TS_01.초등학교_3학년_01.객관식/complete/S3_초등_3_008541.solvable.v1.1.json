@@ -1,0 +1,98 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008541",
+  "problem_type": "multiple_choice_ordering",
+  "inputs": {
+    "total_ticks": 3,
+    "target_label": "보기 번호",
+    "target_ticks": 1,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.a",
+      "value": {
+        "label": "ㄱ",
+        "expr": "397 × 6"
+      }
+    },
+    {
+      "ref": "obj.b",
+      "value": {
+        "label": "ㄴ",
+        "expr": "549 × 4"
+      }
+    },
+    {
+      "ref": "obj.c",
+      "value": {
+        "label": "ㄷ",
+        "expr": "456 × 5"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "choice_number"
+  },
+  "method": "compare_results_descending",
+  "plan": [
+    "각 곱셈식의 결과를 구한 뒤 큰 값부터 작은 값 순서로 비교합니다.",
+    "비교한 순서와 같은 보기 번호를 찾습니다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "397 × 6",
+      "value": 2382
+    },
+    {
+      "id": "step.2",
+      "expr": "549 × 4",
+      "value": 2196
+    },
+    {
+      "id": "step.3",
+      "expr": "456 × 5",
+      "value": 2280
+    },
+    {
+      "id": "step.4",
+      "expr": "2382 > 2280 > 2196",
+      "value": "ㄱ, ㄷ, ㄴ"
+    },
+    {
+      "id": "step.5",
+      "expr": "보기 대조",
+      "value": "②"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "2382 > 2280 > 2196",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "id": "check.2",
+      "expr": "보기 ②의 순서",
+      "expected": "ㄱ, ㄷ, ㄴ",
+      "actual": "ㄱ, ㄷ, ㄴ",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "choice_number",
+      "description": "계산 결과가 큰 것부터 차례대로 나열한 보기 번호"
+    },
+    "value": 2,
+    "unit": ""
+  }
+}

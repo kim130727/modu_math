@@ -1,0 +1,127 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008634",
+  "problem_type": "multiple_choice_division_remainder",
+  "inputs": {
+    "total_ticks": 4,
+    "target_label": "나머지가 다른 하나의 기호",
+    "target_ticks": 1,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.1",
+      "value": {
+        "dividend": 29,
+        "divisor": 7
+      }
+    },
+    {
+      "ref": "obj.2",
+      "value": {
+        "dividend": 31,
+        "divisor": 6
+      }
+    },
+    {
+      "ref": "obj.3",
+      "value": {
+        "dividend": 74,
+        "divisor": 8
+      }
+    },
+    {
+      "ref": "obj.4",
+      "value": {
+        "dividend": 64,
+        "divisor": 9
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "choice"
+  },
+  "method": "division_remainder_comparison",
+  "plan": [
+    "각 보기의 나눗셈을 하고 나머지를 비교한다.",
+    "나머지가 다른 보기를 찾는다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "29 ÷ 7",
+      "value": {
+        "quotient": 4,
+        "remainder": 1
+      }
+    },
+    {
+      "id": "step.2",
+      "expr": "31 ÷ 6",
+      "value": {
+        "quotient": 5,
+        "remainder": 1
+      }
+    },
+    {
+      "id": "step.3",
+      "expr": "74 ÷ 8",
+      "value": {
+        "quotient": 9,
+        "remainder": 2
+      }
+    },
+    {
+      "id": "step.4",
+      "expr": "64 ÷ 9",
+      "value": {
+        "quotient": 7,
+        "remainder": 1
+      }
+    },
+    {
+      "id": "step.5",
+      "expr": "compare remainders 1, 1, 2, 1",
+      "value": "③"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "remainder_pattern == [1, 1, 2, 1]",
+      "expected": [
+        1,
+        1,
+        2,
+        1
+      ],
+      "actual": [
+        1,
+        1,
+        2,
+        1
+      ],
+      "pass": true
+    },
+    {
+      "id": "check.2",
+      "expr": "selected_choice == ③",
+      "expected": "③",
+      "actual": "③",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "choice",
+      "description": "나머지가 다른 하나의 기호"
+    },
+    "value": "③",
+    "unit": ""
+  }
+}

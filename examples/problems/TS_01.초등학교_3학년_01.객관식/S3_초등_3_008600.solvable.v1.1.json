@@ -1,0 +1,104 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008600",
+  "problem_type": "multiple_choice_division",
+  "inputs": {
+    "total_ticks": 3,
+    "target_label": "몫이 다른 나눗셈식의 기호",
+    "target_ticks": 1,
+    "target_count": 3,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.choice.a",
+      "value": {
+        "dividend": 39,
+        "divisor": 5
+      }
+    },
+    {
+      "ref": "obj.choice.b",
+      "value": {
+        "dividend": 45,
+        "divisor": 6
+      }
+    },
+    {
+      "ref": "obj.choice.c",
+      "value": {
+        "dividend": 62,
+        "divisor": 9
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "choice_symbol"
+  },
+  "method": "compare_division_results",
+  "plan": [
+    "각 나눗셈식의 몫을 비교해서 다른 보기의 기호를 찾는다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "39 ÷ 5",
+      "value": {
+        "quotient": 7,
+        "remainder": 4
+      }
+    },
+    {
+      "id": "step.2",
+      "expr": "45 ÷ 6",
+      "value": {
+        "quotient": 7,
+        "remainder": 3
+      }
+    },
+    {
+      "id": "step.3",
+      "expr": "62 ÷ 9",
+      "value": {
+        "quotient": 6,
+        "remainder": 8
+      }
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "몫 비교",
+      "expected": {
+        "a": 7,
+        "b": 7,
+        "c": 6
+      },
+      "actual": {
+        "a": 7,
+        "b": 7,
+        "c": 6
+      },
+      "pass": true
+    },
+    {
+      "id": "check.2",
+      "expr": "정답 기호 일치",
+      "expected": "③",
+      "actual": "③",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "choice_symbol",
+      "description": "몫이 다른 나눗셈식의 기호"
+    },
+    "value": "③",
+    "unit": ""
+  }
+}

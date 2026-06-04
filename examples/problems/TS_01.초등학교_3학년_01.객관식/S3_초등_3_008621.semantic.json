@@ -1,0 +1,74 @@
+{
+  "problem_id": "S3_초등_3_008621",
+  "problem_type": "multiple_choice",
+  "metadata": {
+    "title": "묶이 다른 하나를 찾아 선택하세요.",
+    "tags": [],
+    "question": "묶이 다른 하나를 찾아 선택하세요.",
+    "required_layout_ids": [
+      "slot.box"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "보기 중 묶이 다른 하나를 고르는 문제이다."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.opt1",
+        "type": "division_expression",
+        "expression": "24 ÷ 2"
+      },
+      {
+        "id": "obj.opt2",
+        "type": "division_expression",
+        "expression": "48 ÷ 4"
+      },
+      {
+        "id": "obj.opt3",
+        "type": "division_expression",
+        "expression": "77 ÷ 7"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.opt1",
+          "obj.opt2",
+          "obj.opt3"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.same_form"
+        ]
+      },
+      "plan": {
+        "method": "compare_options",
+        "description": "보기의 식들을 비교하여 다른 하나를 찾는다."
+      },
+      "execute": {
+        "expected_operations": [
+          "compare_division_expressions"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "verify_option_selection_with_visible_answer"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "selected_option",
+      "description": "묶이 다른 하나"
+    },
+    "value": 77,
+    "unit": ""
+  }
+}

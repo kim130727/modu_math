@@ -1,0 +1,72 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008567",
+  "problem_type": "선택형 비교",
+  "inputs": {
+    "target_label": "조건에 맞는 항목",
+    "unit": "",
+    "quantities": {
+      "expr_1": "㉠ 214 + 214 + 214",
+      "expr_2": "㉡ 214 × 3, ㉢ 214 + 3"
+    }
+  },
+  "given": [
+    {
+      "ref": "expr_1",
+      "value": "㉠ 214 + 214 + 214"
+    },
+    {
+      "ref": "expr_2",
+      "value": "㉡ 214 × 3, ㉢ 214 + 3"
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "selected_option"
+  },
+  "method": "compare_and_select",
+  "plan": [
+    "조건을 확인한다.",
+    "대상을 비교한다.",
+    "알맞은 답을 선택한다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "비교 조건 확인",
+      "value": "완료"
+    },
+    {
+      "id": "step.2",
+      "expr": "정답 선택",
+      "value": "㉢"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "선택값 존재 여부",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "id": "check.2",
+      "expr": "정답 일치",
+      "expected": "㉢",
+      "actual": "㉢",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "selected_option",
+      "description": "조건에 맞는 항목"
+    },
+    "value": "㉢",
+    "unit": ""
+  }
+}

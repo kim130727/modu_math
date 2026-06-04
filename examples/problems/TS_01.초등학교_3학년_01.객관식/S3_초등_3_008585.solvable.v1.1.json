@@ -1,0 +1,108 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008585",
+  "problem_type": "comparison_ordering",
+  "inputs": {
+    "total_ticks": 3,
+    "target_label": "기호 순서",
+    "target_ticks": 3,
+    "target_count": 3,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.a",
+      "value": {
+        "symbol": "ㄱ",
+        "dividend": 51,
+        "divisor": 3
+      }
+    },
+    {
+      "ref": "obj.b",
+      "value": {
+        "symbol": "ㄴ",
+        "dividend": 44,
+        "divisor": 2
+      }
+    },
+    {
+      "ref": "obj.c",
+      "value": {
+        "symbol": "ㄷ",
+        "dividend": 77,
+        "divisor": 7
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "symbol_order"
+  },
+  "method": "compute_and_compare",
+  "plan": [
+    "각 나눗셈의 몫을 구합니다.",
+    "몫을 큰 것부터 작은 것 순으로 비교합니다.",
+    "그 순서에 맞는 기호 배열을 찾습니다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "51 ÷ 3",
+      "value": 17
+    },
+    {
+      "id": "step.2",
+      "expr": "44 ÷ 2",
+      "value": 22
+    },
+    {
+      "id": "step.3",
+      "expr": "77 ÷ 7",
+      "value": 11
+    },
+    {
+      "id": "step.4",
+      "expr": "22 > 17 > 11",
+      "value": [
+        "ㄴ",
+        "ㄱ",
+        "ㄷ"
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "17 == 51 ÷ 3",
+      "expected": 17,
+      "actual": 17,
+      "pass": true
+    },
+    {
+      "id": "check.2",
+      "expr": "22 == 44 ÷ 2",
+      "expected": 22,
+      "actual": 22,
+      "pass": true
+    },
+    {
+      "id": "check.3",
+      "expr": "11 == 77 ÷ 7",
+      "expected": 11,
+      "actual": 11,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "symbol_order",
+      "description": "몫이 큰 것부터의 기호 순서"
+    },
+    "value": 3,
+    "unit": ""
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008655",
+  "problem_type": "geometry_circle_radius_comparison",
+  "inputs": {
+    "total_ticks": 3,
+    "target_label": "한 원에서 원의 반지름은 모두 ( 같습니다, 다릅니다 ).",
+    "target_ticks": 2,
+    "target_count": 3,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.radius_1",
+      "value": "ㅇㄱ"
+    },
+    {
+      "ref": "obj.radius_2",
+      "value": "ㅇㄴ"
+    },
+    {
+      "ref": "obj.radius_3",
+      "value": "ㅇㄷ"
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "choice"
+  },
+  "method": "compare_equal_radii",
+  "plan": [
+    "한 원의 반지름들은 길이가 같은지 확인한다.",
+    "보기에서 알맞은 말을 고른다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "선분 ㅇㄱ, 선분 ㅇㄴ, 선분 ㅇㄷ은 모두 같은 원의 반지름이다.",
+      "value": "same_radius"
+    },
+    {
+      "id": "step.2",
+      "expr": "한 원의 반지름은 모두 같다.",
+      "value": "같습니다"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "원의 반지름 성질 확인",
+      "expected": "같습니다",
+      "actual": "같습니다",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "choice",
+      "description": "한 원에서 원의 반지름은 모두 ( 같습니다, 다릅니다 )."
+    },
+    "value": 1,
+    "unit": ""
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "problem_id": "S3_초등_3_008551",
+  "view_box": {
+    "width": 872.0,
+    "height": 267.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.choice.box.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 97.0,
+        "y": 45.0,
+        "width": 744.0,
+        "height": 79.0,
+        "fill": "#D9DDF3",
+        "stroke": "#A79CDC",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.choice.box",
+      "refs": {
+        "layout_slot_id": "slot.choice.box"
+      }
+    },
+    {
+      "id": "slot.q.text.text",
+      "type": "text",
+      "attributes": {
+        "x": 60.0,
+        "y": 29.0,
+        "max_width": 744.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q.text",
+      "refs": {
+        "layout_slot_id": "slot.q.text"
+      },
+      "text": "곱이 가장 큰 것을 선택하십시오."
+    },
+    {
+      "id": "slot.choice.a.text",
+      "type": "text",
+      "attributes": {
+        "x": 185.0,
+        "y": 93.0,
+        "max_width": 744.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice.a",
+      "refs": {
+        "layout_slot_id": "slot.choice.a"
+      },
+      "text": "83 × 60"
+    },
+    {
+      "id": "slot.choice.b.text",
+      "type": "text",
+      "attributes": {
+        "x": 426.0,
+        "y": 93.0,
+        "max_width": 744.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice.b",
+      "refs": {
+        "layout_slot_id": "slot.choice.b"
+      },
+      "text": "77 × 70"
+    },
+    {
+      "id": "slot.choice.c.text",
+      "type": "text",
+      "attributes": {
+        "x": 673.0,
+        "y": 93.0,
+        "max_width": 744.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice.c",
+      "refs": {
+        "layout_slot_id": "slot.choice.c"
+      },
+      "text": "95 × 40"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

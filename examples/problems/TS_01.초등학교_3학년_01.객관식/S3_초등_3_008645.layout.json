@@ -1,0 +1,466 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008645",
+  "title": "원의 지름",
+  "canvas": {
+    "width": 960,
+    "height": 540,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.circle.outer",
+        "slot.circle.center",
+        "slot.table.outer",
+        "slot.line.gm",
+        "slot.line.nb",
+        "slot.line.ls",
+        "slot.line.d",
+        "slot.table.v1",
+        "slot.table.v2",
+        "slot.table.v3",
+        "slot.table.h1",
+        "slot.q0",
+        "slot.q1",
+        "slot.q2",
+        "slot.q3",
+        "slot.lb.o",
+        "slot.lb.ㄱ",
+        "slot.lb.ㄴ",
+        "slot.lb.ㄷ",
+        "slot.lb.ㄹ",
+        "slot.lb.ㅁ",
+        "slot.lb.ㅂ",
+        "slot.lb.ㅅ",
+        "slot.t1",
+        "slot.t2",
+        "slot.t3",
+        "slot.t4",
+        "slot.t5",
+        "slot.t6",
+        "slot.t7",
+        "slot.t8",
+        "slot.arrow"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q0",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "□",
+        "style_role": "question",
+        "x": 8.0,
+        "y": 28.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "17.",
+        "style_role": "question",
+        "x": 44.0,
+        "y": 30.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "지름을 나타내는 선분을 찾아 길이를 잰 값을 보고, 맞는 말을 선택해 보세요.",
+        "style_role": "question",
+        "x": 76.0,
+        "y": 30.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.circle.outer",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 526.0,
+        "cy": 170.0,
+        "r": 79.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.circle.center",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 526.0,
+        "cy": 170.0,
+        "r": 3.6,
+        "fill": "#d81b60"
+      }
+    },
+    {
+      "id": "slot.lb.o",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㅇ",
+        "style_role": "label",
+        "x": 535.0,
+        "y": 168.0,
+        "font_size": 18
+      }
+    },
+    {
+      "id": "slot.line.gm",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 501.0,
+        "y1": 103.0,
+        "x2": 552.0,
+        "y2": 237.0
+      }
+    },
+    {
+      "id": "slot.line.nb",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 446.0,
+        "y1": 162.0,
+        "x2": 609.0,
+        "y2": 179.0
+      }
+    },
+    {
+      "id": "slot.line.ls",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 514.0,
+        "y1": 91.0,
+        "x2": 504.0,
+        "y2": 248.0
+      }
+    },
+    {
+      "id": "slot.line.d",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 480.0,
+        "y1": 232.0,
+        "x2": 531.0,
+        "y2": 173.0
+      }
+    },
+    {
+      "id": "slot.lb.ㄱ",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄱ",
+        "style_role": "label",
+        "x": 485.0,
+        "y": 86.0,
+        "font_size": 18
+      }
+    },
+    {
+      "id": "slot.lb.ㄴ",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄴ",
+        "style_role": "label",
+        "x": 421.0,
+        "y": 171.0,
+        "font_size": 18
+      }
+    },
+    {
+      "id": "slot.lb.ㄷ",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄷ",
+        "style_role": "label",
+        "x": 457.0,
+        "y": 246.0,
+        "font_size": 18
+      }
+    },
+    {
+      "id": "slot.lb.ㄹ",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄹ",
+        "style_role": "label",
+        "x": 495.0,
+        "y": 255.0,
+        "font_size": 18
+      }
+    },
+    {
+      "id": "slot.lb.ㅁ",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㅁ",
+        "style_role": "label",
+        "x": 571.0,
+        "y": 245.0,
+        "font_size": 18
+      }
+    },
+    {
+      "id": "slot.lb.ㅂ",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㅂ",
+        "style_role": "label",
+        "x": 613.0,
+        "y": 184.0,
+        "font_size": 18
+      }
+    },
+    {
+      "id": "slot.lb.ㅅ",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㅅ",
+        "style_role": "label",
+        "x": 531.0,
+        "y": 84.0,
+        "font_size": 18
+      }
+    },
+    {
+      "id": "slot.table.outer",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 238.0,
+        "y": 286.0,
+        "width": 515.0,
+        "height": 76.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.table.v1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 391.0,
+        "y1": 286.0,
+        "x2": 391.0,
+        "y2": 362.0
+      }
+    },
+    {
+      "id": "slot.table.v2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 494.0,
+        "y1": 286.0,
+        "x2": 494.0,
+        "y2": 362.0
+      }
+    },
+    {
+      "id": "slot.table.v3",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 597.0,
+        "y1": 286.0,
+        "x2": 597.0,
+        "y2": 362.0
+      }
+    },
+    {
+      "id": "slot.table.h1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 238.0,
+        "y1": 323.0,
+        "x2": 753.0,
+        "y2": 323.0
+      }
+    },
+    {
+      "id": "slot.t1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "지름",
+        "style_role": "table",
+        "x": 281.0,
+        "y": 313.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.t2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "선분 ㄱㅁ",
+        "style_role": "table",
+        "x": 405.0,
+        "y": 313.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.t3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "선분 ㄴㅂ",
+        "style_role": "table",
+        "x": 505.0,
+        "y": 313.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.t4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "선분 ㄹㅅ",
+        "style_role": "table",
+        "x": 610.0,
+        "y": 313.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.t5",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "길이(cm)",
+        "style_role": "table",
+        "x": 263.0,
+        "y": 351.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.t6",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "3",
+        "style_role": "table",
+        "x": 431.0,
+        "y": 351.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.t7",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "3",
+        "style_role": "table",
+        "x": 535.0,
+        "y": 351.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.t8",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "3",
+        "style_role": "table",
+        "x": 638.0,
+        "y": 351.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.arrow",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "➜",
+        "style_role": "instruction",
+        "x": 134.0,
+        "y": 409.0,
+        "font_size": 34
+      }
+    },
+    {
+      "id": "slot.q3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "한 원에서 원의 지름은 모두 ( 같습니다 , 다릅니다 ).",
+        "style_role": "question",
+        "x": 188.0,
+        "y": 411.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.circle.outer",
+    "slot.circle.center",
+    "slot.table.outer",
+    "slot.line.gm",
+    "slot.line.nb",
+    "slot.line.ls",
+    "slot.line.d",
+    "slot.table.v1",
+    "slot.table.v2",
+    "slot.table.v3",
+    "slot.table.h1",
+    "slot.q0",
+    "slot.q1",
+    "slot.q2",
+    "slot.q3",
+    "slot.lb.o",
+    "slot.lb.ㄱ",
+    "slot.lb.ㄴ",
+    "slot.lb.ㄷ",
+    "slot.lb.ㄹ",
+    "slot.lb.ㅁ",
+    "slot.lb.ㅂ",
+    "slot.lb.ㅅ",
+    "slot.t1",
+    "slot.t2",
+    "slot.t3",
+    "slot.t4",
+    "slot.t5",
+    "slot.t6",
+    "slot.t7",
+    "slot.t8",
+    "slot.arrow"
+  ]
+}

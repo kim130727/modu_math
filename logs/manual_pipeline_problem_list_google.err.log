@@ -1,0 +1,82 @@
+2026-05-28 12:59:57,277 - INFO - Prompt bundle written. Add --llm-output-file later to generate refined draft.
+2026-05-28 12:59:57,277 - INFO - Wrote prompt bundle: examples\problems\TS_01.Ï¥àÎì±ÌïôÍµê_3ÌïôÎÖÑ_01.Í∞ùÍ¥ÄÏãù\S3_Ï¥àÎì±_3_008540.refine_prompt.md
+2026-05-28 12:59:59,887 - INFO - AFC is enabled with max remote calls: 10.
+2026-05-28 13:00:18,859 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2026-05-28 13:00:18,874 - INFO - Wrote refined draft: examples\problems\TS_01.Ï¥àÎì±ÌïôÍµê_3ÌïôÎÖÑ_01.Í∞ùÍ¥ÄÏãù\S3_Ï¥àÎì±_3_008540.refined_draft.md
+Traceback (most recent call last):
+  File "C:\projects\modu_math\tools\generate_dsl_from_refined_draft.py", line 540, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "C:\projects\modu_math\tools\generate_dsl_from_refined_draft.py", line 490, in main
+    result = generate_dsl_from_refined_draft(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\projects\modu_math\tools\generate_dsl_from_refined_draft.py", line 362, in generate_dsl_from_refined_draft
+    raw_text = call_llm_for_dsl(
+               ^^^^^^^^^^^^^^^^^
+  File "C:\projects\modu_math\tools\generate_dsl_from_refined_draft.py", line 280, in call_llm_for_dsl
+    return run_llm_or_load_output(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\projects\modu_math\tools\llm_client.py", line 148, in run_llm_or_load_output
+    output_text = call_llm_text_with_optional_image(
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\projects\modu_math\tools\llm_client.py", line 102, in call_llm_text_with_optional_image
+    return _call_google(
+           ^^^^^^^^^^^^^
+  File "C:\projects\modu_math\tools\llm_client.py", line 246, in _call_google
+    response = client.models.generate_content(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kim13\AppData\Local\Programs\Python\Python312\Lib\site-packages\google\genai\models.py", line 6495, in generate_content
+    response = self._generate_content(
+               ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kim13\AppData\Local\Programs\Python\Python312\Lib\site-packages\google\genai\models.py", line 4931, in _generate_content
+    response = self._api_client.request(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kim13\AppData\Local\Programs\Python\Python312\Lib\site-packages\google\genai\_api_client.py", line 1611, in request
+    response = self._request(http_request, http_options, stream=False)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kim13\AppData\Local\Programs\Python\Python312\Lib\site-packages\google\genai\_api_client.py", line 1404, in _request
+    return self._retry(self._request_once, http_request, stream)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kim13\AppData\Local\Programs\Python\Python312\Lib\site-packages\tenacity\__init__.py", line 470, in __call__
+    do = self.iter(retry_state=retry_state)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kim13\AppData\Local\Programs\Python\Python312\Lib\site-packages\tenacity\__init__.py", line 371, in iter
+    result = action(retry_state)
+             ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kim13\AppData\Local\Programs\Python\Python312\Lib\site-packages\tenacity\__init__.py", line 413, in exc_check
+    raise retry_exc.reraise()
+          ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kim13\AppData\Local\Programs\Python\Python312\Lib\site-packages\tenacity\__init__.py", line 184, in reraise
+    raise self.last_attempt.result()
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kim13\AppData\Local\Programs\Python\Python312\Lib\concurrent\futures\_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kim13\AppData\Local\Programs\Python\Python312\Lib\concurrent\futures\_base.py", line 401, in __get_result
+    raise self._exception
+  File "C:\Users\kim13\AppData\Local\Programs\Python\Python312\Lib\site-packages\tenacity\__init__.py", line 473, in __call__
+    result = fn(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kim13\AppData\Local\Programs\Python\Python312\Lib\site-packages\google\genai\_api_client.py", line 1381, in _request_once
+    errors.APIError.raise_for_response(response)
+  File "C:\Users\kim13\AppData\Local\Programs\Python\Python312\Lib\site-packages\google\genai\errors.py", line 155, in raise_for_response
+    cls.raise_error(response.status_code, response_json, response)
+  File "C:\Users\kim13\AppData\Local\Programs\Python\Python312\Lib\site-packages\google\genai\errors.py", line 186, in raise_error
+    raise ServerError(status_code, response_json, response)
+google.genai.errors.ServerError: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}
+python command failed: tools/generate_dsl_from_refined_draft.py --draft examples\problems\TS_01.√ µÓ«–±≥_3«–≥‚_01.∞¥∞¸
+Ωƒ\S3_√ µÓ_3_008540.refined_draft.md --image examples\problems\TS_01.√ µÓ«–±≥_3«–≥‚_01.∞¥∞¸Ωƒ\S3_√ µÓ_3_008540.png --pr
+oblem-id S3_√ µÓ_3_008540 --out examples\problems\TS_01.√ µÓ«–±≥_3«–≥‚_01.∞¥∞¸Ωƒ\S3_√ µÓ_3_008540.dsl.py --mode api --p
+rovider google --system-prompt prompts/dsl_agent_system.md --rules-md prompts/dsl_generation_rules.md --max-attempts 10
+ --force --source-problem-json examples\problems\TS_01.√ µÓ«–±≥_3«–≥‚_01.∞¥∞¸Ωƒ\S3_√ µÓ_3_008540.json
+¿ßƒ° C:\projects\modu_math\tools\run_manual_pipeline.ps1:29 πÆ¿⁄:5
++     throw "python command failed: $($Args -join ' ')"
++     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (python command ...µÓ_3_008540.json:String) [], RuntimeException
+    + FullyQualifiedErrorId : python command failed: tools/generate_dsl_from_refined_draft.py --draft examples\problem 
+   s\TS_01.√ µÓ«–±≥_3«–≥‚_01.∞¥∞¸Ωƒ\S3_√ µÓ_3_008540.refined_draft.md --image examples\problems\TS_01.√ µÓ«–±≥_3«–≥‚_01
+.∞¥∞¸Ωƒ\S3_√ µÓ_3_00    8540.png --problem-id S3_√ µÓ_3_008540 --out examples\problems\TS_01.√ µÓ«–±≥_3«–≥‚_01.∞¥∞¸Ωƒ\S
+3_√ µÓ_3_008540.dsl.py --mode ap    i --provider google --system-prompt prompts/dsl_agent_system.md --rules-md prompts/
+dsl_generation_rules.md --max-a    ttempts 10 --force --source-problem-json examples\problems\TS_01.√ µÓ«–±≥_3«–≥‚_01.
+∞¥∞¸Ωƒ\S3_√ µÓ_3_008540.json
+ 

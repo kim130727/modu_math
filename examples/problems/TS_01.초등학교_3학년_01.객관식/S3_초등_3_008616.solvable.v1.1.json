@@ -1,0 +1,100 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008616",
+  "problem_type": "division_reasoning",
+  "inputs": {
+    "total_ticks": 1,
+    "target_label": "문제를 바르게 설명한 사람",
+    "target_ticks": 1,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.dividend",
+      "value": 99
+    },
+    {
+      "ref": "obj.divisor",
+      "value": 8
+    },
+    {
+      "ref": "obj.claim.left",
+      "value": "묶은 10보다 작아."
+    },
+    {
+      "ref": "obj.claim.mid",
+      "value": "나머지는 0으로 나누어떨어져."
+    },
+    {
+      "ref": "obj.claim.right",
+      "value": "나머지는 8보다 작아."
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "correct_speaker"
+  },
+  "method": "division_with_remainder_check",
+  "plan": [
+    "99를 8로 나눈 몫과 나머지를 확인한다.",
+    "각 학생의 설명이 몫 또는 나머지의 성질과 맞는지 비교한다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "99 ÷ 8의 몫과 나머지를 구한다",
+      "value": {
+        "quotient": 12,
+        "remainder": 3
+      }
+    },
+    {
+      "id": "step.2",
+      "expr": "나머지 3은 8보다 작은지 확인한다",
+      "value": true
+    },
+    {
+      "id": "step.3",
+      "expr": "나머지가 0인지 확인한다",
+      "value": false
+    },
+    {
+      "id": "step.4",
+      "expr": "몫이 10보다 작은지 확인한다",
+      "value": false
+    },
+    {
+      "id": "step.5",
+      "expr": "바른 설명을 한 사람을 고른다",
+      "value": "슬기"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "99 = 8 × 12 + 3",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "id": "check.2",
+      "expr": "3 < 8",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "correct_speaker",
+      "description": "문제를 바르게 설명한 사람"
+    },
+    "value": "슬기",
+    "unit": ""
+  }
+}

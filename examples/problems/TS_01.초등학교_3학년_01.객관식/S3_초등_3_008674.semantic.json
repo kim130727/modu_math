@@ -1,0 +1,81 @@
+{
+  "problem_id": "S3_초등_3_008674",
+  "problem_type": "도형_선택",
+  "metadata": {
+    "title": "원을 바르게 완성한 것을 선택하세요",
+    "tags": [],
+    "question": "원을 바르게 완성한 것을 선택하세요.",
+    "required_layout_ids": [
+      "slot.top.square",
+      "slot.top.arc",
+      "slot.top.center",
+      "slot.mid.left.square",
+      "slot.mid.left.arc",
+      "slot.mid.left.red",
+      "slot.mid.left.center",
+      "slot.mid.mid.square",
+      "slot.mid.mid.arc",
+      "slot.mid.mid.red",
+      "slot.mid.mid.center",
+      "slot.mid.right.square",
+      "slot.mid.right.arc",
+      "slot.mid.right.red",
+      "slot.mid.right.center",
+      "slot.answer.square",
+      "slot.answer.arc",
+      "slot.answer.center"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "정답을 고르는 도형 문제"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.circle_completion",
+        "type": "circle_completion_task",
+        "description": "원호가 이어져 원이 완성되는 그림을 고르는 문제"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.circle_completion"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.compare_options"
+        ]
+      },
+      "plan": {
+        "method": "visual_comparison",
+        "description": "각 그림에서 원호가 자연스럽게 이어져 원이 완성되는지 비교한다."
+      },
+      "execute": {
+        "expected_operations": [
+          "compare_shapes",
+          "identify_completed_circle"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "completion_of_curve",
+          "consistency_with_explanation"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "selected_picture",
+      "description": "원을 바르게 완성한 그림"
+    },
+    "value": 0,
+    "unit": ""
+  }
+}

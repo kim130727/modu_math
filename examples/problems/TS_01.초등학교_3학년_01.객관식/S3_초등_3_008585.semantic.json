@@ -1,0 +1,88 @@
+{
+  "problem_id": "S3_초등_3_008585",
+  "problem_type": "comparison_ordering",
+  "metadata": {
+    "title": "나눗셈의 몫이 큰 것부터 기호를 쓰기",
+    "tags": [],
+    "instruction": "나눗셈의 몫이 큰 것부터 차례로 기호를 고른다.",
+    "question": "묵이 큰 것부터 차례로 기호를 쓴 것으로 알맞은 것을 선택하는 문제",
+    "required_layout_ids": [
+      "slot.box",
+      "slot.sym1",
+      "slot.sym2",
+      "slot.sym3",
+      "slot.arrow"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "points": 5
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.a",
+        "type": "division_expression",
+        "symbol": "ㄱ",
+        "dividend": 51,
+        "divisor": 3
+      },
+      {
+        "id": "obj.b",
+        "type": "division_expression",
+        "symbol": "ㄴ",
+        "dividend": 44,
+        "divisor": 2
+      },
+      {
+        "id": "obj.c",
+        "type": "division_expression",
+        "symbol": "ㄷ",
+        "dividend": 77,
+        "divisor": 7
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.a",
+          "obj.b",
+          "obj.c"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.order"
+        ]
+      },
+      "plan": {
+        "method": "compute_and_compare",
+        "description": "각 나눗셈의 몫을 구한 뒤 큰 것부터 순서를 정한다."
+      },
+      "execute": {
+        "expected_operations": [
+          "division",
+          "comparison",
+          "ordering"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "compare_quotients",
+          "match_choice_order"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "symbol_order",
+      "description": "몫이 큰 것부터의 기호 순서"
+    },
+    "value": 3,
+    "unit": ""
+  }
+}

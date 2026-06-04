@@ -1,0 +1,125 @@
+{
+  "problem_id": "S3_초등_3_008631",
+  "problem_type": "multiple_choice_division",
+  "metadata": {
+    "title": "수 모형을 보고 알맞은 수 고르기",
+    "tags": [],
+    "question": "수 모형을 보고 □ 안에 알맞은 수를 고르세요.",
+    "required_layout_ids": [
+      "slot.big_box",
+      "slot.big_rod1",
+      "slot.big_rod2",
+      "slot.big_rod3",
+      "slot.big_rod4",
+      "slot.big_rod5",
+      "slot.big_rod6",
+      "slot.big_cube1",
+      "slot.big_cube2",
+      "slot.big_cube3",
+      "slot.big_cube4",
+      "slot.big_cube5",
+      "slot.big_cube6",
+      "slot.big_cube7",
+      "slot.big_cube8",
+      "slot.arrow",
+      "slot.small_box1",
+      "slot.small_box2",
+      "slot.small_box3",
+      "slot.s1_rod1",
+      "slot.s1_rod2",
+      "slot.s1_cube1",
+      "slot.s1_cube2",
+      "slot.s1_cube3",
+      "slot.s2_rod1",
+      "slot.s2_rod2",
+      "slot.s2_cube1",
+      "slot.s2_cube2",
+      "slot.s2_cube3",
+      "slot.s3_rod1",
+      "slot.s3_rod2",
+      "slot.s3_cube1",
+      "slot.s3_cube2",
+      "slot.s3_cube3",
+      "slot.blank",
+      "slot.opt1_num",
+      "slot.opt2_num",
+      "slot.opt3_num",
+      "slot.opt4_num",
+      "slot.opt5_num"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "수 모형과 나눗셈 식을 보고 알맞은 값을 고르는 문제"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.dividend",
+        "type": "number",
+        "value": 69
+      },
+      {
+        "id": "obj.divisor",
+        "type": "number",
+        "value": 3
+      },
+      {
+        "id": "obj.blank",
+        "type": "answer_blank"
+      },
+      {
+        "id": "obj.options",
+        "type": "choices",
+        "values": [
+          21,
+          22,
+          23,
+          24,
+          25
+        ]
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.dividend",
+          "obj.divisor",
+          "obj.options"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.division"
+        ]
+      },
+      "plan": {
+        "method": "division_value_selection",
+        "description": "나눗셈의 결과를 구해 보기 중 알맞은 값을 고른다."
+      },
+      "execute": {
+        "expected_operations": [
+          "compute_69_div_3",
+          "match_option"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "division_inverse_check",
+          "option_match_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "division_quotient",
+      "description": "69 ÷ 3의 몫"
+    },
+    "value": 23,
+    "unit": ""
+  }
+}

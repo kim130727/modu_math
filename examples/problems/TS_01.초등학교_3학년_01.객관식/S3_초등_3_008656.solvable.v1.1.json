@@ -1,0 +1,71 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008656",
+  "problem_type": "geometry_circle_diameter_selection",
+  "inputs": {
+    "total_ticks": 1,
+    "target_label": "원의 지름이 아닌 것",
+    "target_ticks": 2,
+    "target_count": 2,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.labels",
+      "value": [
+        "ㄴ",
+        "ㄷ",
+        "ㄹ",
+        "ㅁ",
+        "ㅂ",
+        "ㅅ",
+        "ㄱ"
+      ]
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "selected_labels"
+  },
+  "method": "center_membership_check",
+  "plan": [
+    "각 기호가 나타내는 선이 원의 중심을 지나는지 확인한다.",
+    "중심을 지나지 않는 기호를 지름이 아닌 것으로 고른다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "중심을 지나지 않는 선 확인",
+      "value": [
+        "ㄷ",
+        "ㅁ"
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "선이 중심을 지나는지 여부",
+      "expected": [
+        "ㄷ",
+        "ㅁ"
+      ],
+      "actual": [
+        "ㄷ",
+        "ㅁ"
+      ],
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "selected_labels",
+      "description": "원의 지름이 아닌 기호"
+    },
+    "value": 2,
+    "unit": ""
+  }
+}

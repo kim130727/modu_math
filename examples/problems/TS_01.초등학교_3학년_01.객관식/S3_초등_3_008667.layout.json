@@ -1,0 +1,163 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008667",
+  "title": "원의 중심 찾기",
+  "canvas": {
+    "width": 700,
+    "height": 300,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.diagram.circle",
+        "slot.diagram.pt.g",
+        "slot.diagram.pt.n",
+        "slot.diagram.pt.d",
+        "slot.diagram.pt.r",
+        "slot.q1",
+        "slot.diagram.lb.g",
+        "slot.diagram.lb.n",
+        "slot.diagram.lb.d",
+        "slot.diagram.lb.r"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "□ 44. 그림에서 원의 중심을 찾아 선택해 보세요.",
+        "style_role": "question",
+        "x": 18.0,
+        "y": 32.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.diagram.circle",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 514.0,
+        "cy": 107.0,
+        "r": 72.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.diagram.pt.g",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 478.0,
+        "cy": 57.0,
+        "r": 3.8,
+        "fill": "#ff2a9a"
+      }
+    },
+    {
+      "id": "slot.diagram.pt.n",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 519.0,
+        "cy": 100.0,
+        "r": 3.8,
+        "fill": "#ff2a9a"
+      }
+    },
+    {
+      "id": "slot.diagram.pt.d",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 492.0,
+        "cy": 153.0,
+        "r": 3.8,
+        "fill": "#ff2a9a"
+      }
+    },
+    {
+      "id": "slot.diagram.pt.r",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 527.0,
+        "cy": 153.0,
+        "r": 3.8,
+        "fill": "#ff2a9a"
+      }
+    },
+    {
+      "id": "slot.diagram.lb.g",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄱ",
+        "style_role": "label",
+        "x": 461.0,
+        "y": 64.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.diagram.lb.n",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄴ",
+        "style_role": "label",
+        "x": 498.0,
+        "y": 104.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.diagram.lb.d",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄷ",
+        "style_role": "label",
+        "x": 486.0,
+        "y": 169.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.diagram.lb.r",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄹ",
+        "style_role": "label",
+        "x": 521.0,
+        "y": 169.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.diagram.circle",
+    "slot.diagram.pt.g",
+    "slot.diagram.pt.n",
+    "slot.diagram.pt.d",
+    "slot.diagram.pt.r",
+    "slot.q1",
+    "slot.diagram.lb.g",
+    "slot.diagram.lb.n",
+    "slot.diagram.lb.d",
+    "slot.diagram.lb.r"
+  ]
+}

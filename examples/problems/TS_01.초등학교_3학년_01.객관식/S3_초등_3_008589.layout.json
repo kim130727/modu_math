@@ -1,0 +1,110 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008589",
+  "title": "나머지가 더 큰 것을 선택하세요.",
+  "canvas": {
+    "width": 720,
+    "height": 352,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.box.left",
+        "slot.box.right",
+        "slot.q1",
+        "slot.q2",
+        "slot.q3",
+        "slot.q7"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "56. 나머지가 더 큰 것을 선택하세요.",
+        "style_role": "question",
+        "x": 12.0,
+        "y": 28.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.box.left",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 180.0,
+        "y": 48.0,
+        "width": 190.0,
+        "height": 80.0
+      }
+    },
+    {
+      "id": "slot.box.right",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 440.0,
+        "y": 48.0,
+        "width": 190.0,
+        "height": 80.0
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "24 ÷ 7",
+        "style_role": "question",
+        "x": 233.0,
+        "y": 96.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "49 ÷ 5",
+        "style_role": "question",
+        "x": 493.0,
+        "y": 96.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q7",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "",
+        "style_role": "note",
+        "x": 0.0,
+        "y": 0.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.box.left",
+    "slot.box.right",
+    "slot.q1",
+    "slot.q2",
+    "slot.q3",
+    "slot.q7"
+  ]
+}

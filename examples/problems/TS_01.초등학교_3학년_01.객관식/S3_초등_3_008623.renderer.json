@@ -1,0 +1,226 @@
+{
+  "problem_id": "S3_초등_3_008623",
+  "view_box": {
+    "width": 760.0,
+    "height": 460.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.qnum.text",
+      "type": "text",
+      "attributes": {
+        "x": 36.0,
+        "y": 42.0,
+        "max_width": 632.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.qnum",
+      "refs": {
+        "layout_slot_id": "slot.qnum"
+      },
+      "text": "93."
+    },
+    {
+      "id": "slot.question.text",
+      "type": "text",
+      "attributes": {
+        "x": 79.0,
+        "y": 42.0,
+        "max_width": 632.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.question",
+      "refs": {
+        "layout_slot_id": "slot.question"
+      },
+      "text": "나누어떨어지는 나눗셈은 어느 것일까요?"
+    },
+    {
+      "id": "slot.opt1.num.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 52.0,
+        "cy": 98.0,
+        "r": 8.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#EAF4FF"
+      },
+      "source_ref": "slot.opt1.num",
+      "refs": {
+        "layout_slot_id": "slot.opt1.num"
+      }
+    },
+    {
+      "id": "slot.opt2.num.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 313.0,
+        "cy": 98.0,
+        "r": 8.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#EAF4FF"
+      },
+      "source_ref": "slot.opt2.num",
+      "refs": {
+        "layout_slot_id": "slot.opt2.num"
+      }
+    },
+    {
+      "id": "slot.opt3.num.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 612.0,
+        "cy": 98.0,
+        "r": 8.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#EAF4FF"
+      },
+      "source_ref": "slot.opt3.num",
+      "refs": {
+        "layout_slot_id": "slot.opt3.num"
+      }
+    },
+    {
+      "id": "slot.opt4.num.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 52.0,
+        "cy": 146.0,
+        "r": 8.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#EAF4FF"
+      },
+      "source_ref": "slot.opt4.num",
+      "refs": {
+        "layout_slot_id": "slot.opt4.num"
+      }
+    },
+    {
+      "id": "slot.opt5.num.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 313.0,
+        "cy": 146.0,
+        "r": 8.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#EAF4FF"
+      },
+      "source_ref": "slot.opt5.num",
+      "refs": {
+        "layout_slot_id": "slot.opt5.num"
+      }
+    },
+    {
+      "id": "slot.opt1.text.text",
+      "type": "text",
+      "attributes": {
+        "x": 68.0,
+        "y": 103.0,
+        "max_width": 632.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.opt1.text",
+      "refs": {
+        "layout_slot_id": "slot.opt1.text"
+      },
+      "text": "① 11 ÷ 2"
+    },
+    {
+      "id": "slot.opt2.text.text",
+      "type": "text",
+      "attributes": {
+        "x": 329.0,
+        "y": 103.0,
+        "max_width": 632.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.opt2.text",
+      "refs": {
+        "layout_slot_id": "slot.opt2.text"
+      },
+      "text": "② 27 ÷ 3"
+    },
+    {
+      "id": "slot.opt3.text.text",
+      "type": "text",
+      "attributes": {
+        "x": 628.0,
+        "y": 103.0,
+        "max_width": 632.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.opt3.text",
+      "refs": {
+        "layout_slot_id": "slot.opt3.text"
+      },
+      "text": "③ 35 ÷ 6"
+    },
+    {
+      "id": "slot.opt4.text.text",
+      "type": "text",
+      "attributes": {
+        "x": 68.0,
+        "y": 151.0,
+        "max_width": 632.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.opt4.text",
+      "refs": {
+        "layout_slot_id": "slot.opt4.text"
+      },
+      "text": "④ 42 ÷ 5"
+    },
+    {
+      "id": "slot.opt5.text.text",
+      "type": "text",
+      "attributes": {
+        "x": 329.0,
+        "y": 151.0,
+        "max_width": 632.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.opt5.text",
+      "refs": {
+        "layout_slot_id": "slot.opt5.text"
+      },
+      "text": "⑤ 66 ÷ 7"
+    },
+    {
+      "id": "slot.arrow.line",
+      "type": "line",
+      "attributes": {
+        "x1": 36.0,
+        "y1": 388.0,
+        "x2": 58.0,
+        "y2": 388.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.arrow",
+      "refs": {
+        "layout_slot_id": "slot.arrow"
+      }
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

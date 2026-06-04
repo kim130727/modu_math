@@ -1,0 +1,62 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008657",
+  "problem_type": "도형_보기선택",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "컴퍼스를 바르게 사용하는 보기",
+    "target_ticks": 0,
+    "target_count": 3,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.choice.a",
+      "value": "가"
+    },
+    {
+      "ref": "obj.choice.b",
+      "value": "나"
+    },
+    {
+      "ref": "obj.choice.c",
+      "value": "다"
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "selected_option"
+  },
+  "method": "visual_choice",
+  "plan": [
+    "세 보기에서 컴퍼스 침의 위치를 비교한다.",
+    "원의 중심에 침이 놓인 보기를 찾는다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "보기 가, 나, 다 비교",
+      "value": "나"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "해설의 선택지와 일치하는지 확인",
+      "expected": "나",
+      "actual": "나",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "selected_option",
+      "description": "컴퍼스를 바르게 사용하는 보기"
+    },
+    "value": "나",
+    "unit": ""
+  }
+}

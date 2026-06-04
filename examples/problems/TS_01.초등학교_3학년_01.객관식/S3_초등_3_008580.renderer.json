@@ -1,0 +1,147 @@
+{
+  "problem_id": "S3_초등_3_008580",
+  "view_box": {
+    "width": 680.0,
+    "height": 360.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.box.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 8.0,
+        "y": 8.0,
+        "width": 12.0,
+        "height": 12.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.box",
+      "refs": {
+        "layout_slot_id": "slot.box"
+      }
+    },
+    {
+      "id": "slot.num.text",
+      "type": "text",
+      "attributes": {
+        "x": 28.0,
+        "y": 20.0,
+        "max_width": 552.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.num",
+      "refs": {
+        "layout_slot_id": "slot.num"
+      },
+      "text": "46."
+    },
+    {
+      "id": "slot.question.text",
+      "type": "text",
+      "attributes": {
+        "x": 66.0,
+        "y": 20.0,
+        "max_width": 552.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.question",
+      "refs": {
+        "layout_slot_id": "slot.question"
+      },
+      "text": "계산한 값이 옳지 않은 것을 고르세요."
+    },
+    {
+      "id": "slot.opt1.text",
+      "type": "text",
+      "attributes": {
+        "x": 30.0,
+        "y": 72.0,
+        "max_width": 552.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.opt1",
+      "refs": {
+        "layout_slot_id": "slot.opt1"
+      },
+      "text": "① 30 × 20 = 600"
+    },
+    {
+      "id": "slot.opt2.text",
+      "type": "text",
+      "attributes": {
+        "x": 455.0,
+        "y": 72.0,
+        "max_width": 552.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.opt2",
+      "refs": {
+        "layout_slot_id": "slot.opt2"
+      },
+      "text": "② 21 × 20 = 420"
+    },
+    {
+      "id": "slot.opt3.text",
+      "type": "text",
+      "attributes": {
+        "x": 30.0,
+        "y": 122.0,
+        "max_width": 552.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.opt3",
+      "refs": {
+        "layout_slot_id": "slot.opt3"
+      },
+      "text": "③ 24 × 80 = 1820"
+    },
+    {
+      "id": "slot.opt4.text",
+      "type": "text",
+      "attributes": {
+        "x": 455.0,
+        "y": 122.0,
+        "max_width": 552.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.opt4",
+      "refs": {
+        "layout_slot_id": "slot.opt4"
+      },
+      "text": "④ 20 × 60 = 1200"
+    },
+    {
+      "id": "slot.opt5.text",
+      "type": "text",
+      "attributes": {
+        "x": 30.0,
+        "y": 172.0,
+        "max_width": 552.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.opt5",
+      "refs": {
+        "layout_slot_id": "slot.opt5"
+      },
+      "text": "⑤ 42 × 30 = 1260"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

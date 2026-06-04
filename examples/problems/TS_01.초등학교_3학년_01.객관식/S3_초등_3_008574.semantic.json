@@ -1,0 +1,96 @@
+{
+  "problem_id": "S3_초등_3_008574",
+  "problem_type": "compare_multiplication_values",
+  "metadata": {
+    "title": "계산 결과가 더 작은 사람의 이름을 선택해 보세요.",
+    "tags": [],
+    "question": "계산 결과가 더 작은 사람의 이름을 선택해 보세요.",
+    "required_layout_ids": [
+      "slot.lb.left",
+      "slot.lb.right",
+      "slot.card.left",
+      "slot.card.right",
+      "slot.figure.left.head",
+      "slot.figure.left.body",
+      "slot.figure.left.eye1",
+      "slot.figure.left.eye2",
+      "slot.figure.left.mouth",
+      "slot.figure.right.head",
+      "slot.figure.right.body",
+      "slot.figure.right.eye1",
+      "slot.figure.right.eye2",
+      "slot.figure.right.mouth"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "두 곱셈식의 결과를 비교하여 더 작은 쪽의 이름을 고른다."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.person.left",
+        "type": "person",
+        "name": "은우"
+      },
+      {
+        "id": "obj.person.right",
+        "type": "person",
+        "name": "도윤"
+      },
+      {
+        "id": "obj.expr.left",
+        "type": "multiplication_expression",
+        "expression": "51 × 18"
+      },
+      {
+        "id": "obj.expr.right",
+        "type": "multiplication_expression",
+        "expression": "23 × 41"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.person.left",
+          "obj.person.right",
+          "obj.expr.left",
+          "obj.expr.right"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.compare_results"
+        ]
+      },
+      "plan": {
+        "method": "compare_two_products",
+        "description": "두 계산 결과를 비교해 더 작은 값을 찾는다."
+      },
+      "execute": {
+        "expected_operations": [
+          "compute_product_left",
+          "compute_product_right",
+          "compare_two_results"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "result_order_check",
+          "name_to_expression_match_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "person_name",
+      "description": "계산 결과가 더 작은 사람의 이름"
+    },
+    "value": "은우",
+    "unit": ""
+  }
+}

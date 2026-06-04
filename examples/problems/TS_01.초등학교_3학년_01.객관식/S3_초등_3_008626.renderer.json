@@ -1,0 +1,147 @@
+{
+  "problem_id": "S3_초등_3_008626",
+  "view_box": {
+    "width": 784.0,
+    "height": 274.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.icon.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 8.0,
+        "y": 19.0,
+        "width": 13.0,
+        "height": 13.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.icon",
+      "refs": {
+        "layout_slot_id": "slot.icon"
+      }
+    },
+    {
+      "id": "slot.qnum.text",
+      "type": "text",
+      "attributes": {
+        "x": 33.0,
+        "y": 29.0,
+        "max_width": 656.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.qnum",
+      "refs": {
+        "layout_slot_id": "slot.qnum"
+      },
+      "text": "96."
+    },
+    {
+      "id": "slot.question.text",
+      "type": "text",
+      "attributes": {
+        "x": 67.0,
+        "y": 29.0,
+        "max_width": 656.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.question",
+      "refs": {
+        "layout_slot_id": "slot.question"
+      },
+      "text": "나머지가 4가 될 수 없는 식은 어느 것일까요?"
+    },
+    {
+      "id": "slot.choice.1.text",
+      "type": "text",
+      "attributes": {
+        "x": 22.0,
+        "y": 79.0,
+        "max_width": 656.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice.1",
+      "refs": {
+        "layout_slot_id": "slot.choice.1"
+      },
+      "text": "① □ ÷ 5"
+    },
+    {
+      "id": "slot.choice.2.text",
+      "type": "text",
+      "attributes": {
+        "x": 328.0,
+        "y": 79.0,
+        "max_width": 656.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice.2",
+      "refs": {
+        "layout_slot_id": "slot.choice.2"
+      },
+      "text": "② □ ÷ 9"
+    },
+    {
+      "id": "slot.choice.3.text",
+      "type": "text",
+      "attributes": {
+        "x": 645.0,
+        "y": 79.0,
+        "max_width": 656.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice.3",
+      "refs": {
+        "layout_slot_id": "slot.choice.3"
+      },
+      "text": "③ □ ÷ 4"
+    },
+    {
+      "id": "slot.choice.4.text",
+      "type": "text",
+      "attributes": {
+        "x": 22.0,
+        "y": 122.0,
+        "max_width": 656.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice.4",
+      "refs": {
+        "layout_slot_id": "slot.choice.4"
+      },
+      "text": "④ □ ÷ 8"
+    },
+    {
+      "id": "slot.choice.5.text",
+      "type": "text",
+      "attributes": {
+        "x": 328.0,
+        "y": 122.0,
+        "max_width": 656.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice.5",
+      "refs": {
+        "layout_slot_id": "slot.choice.5"
+      },
+      "text": "⑤ □ ÷ 6"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

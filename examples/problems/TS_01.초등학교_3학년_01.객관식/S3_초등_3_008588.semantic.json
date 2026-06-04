@@ -1,0 +1,87 @@
+{
+  "problem_id": "S3_초등_3_008588",
+  "problem_type": "multiple_choice",
+  "metadata": {
+    "title": "나머지가 4가 될 수 없는 식을 찾아 선택하세요",
+    "tags": [],
+    "question": "나머지가 4가 될 수 없는 식을 찾아 선택하세요.",
+    "required_layout_ids": [
+      "slot.box",
+      "slot.choice_1_blank",
+      "slot.choice_2_blank",
+      "slot.choice_3_blank",
+      "slot.choice_4_blank",
+      "slot.answer_blank"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "보기 중에서 조건에 맞는 식을 고른다."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.choice1",
+        "type": "division_expression",
+        "divisor": 6
+      },
+      {
+        "id": "obj.choice2",
+        "type": "division_expression",
+        "divisor": 5
+      },
+      {
+        "id": "obj.choice3",
+        "type": "division_expression",
+        "divisor": 9
+      },
+      {
+        "id": "obj.choice4",
+        "type": "division_expression",
+        "divisor": 4
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.choice1",
+          "obj.choice2",
+          "obj.choice3",
+          "obj.choice4"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.evaluate_remainder_condition"
+        ]
+      },
+      "plan": {
+        "method": "compare_divisors",
+        "description": "각 보기의 나누는 수가 나머지 4를 만들 수 있는지 조건을 비교한다."
+      },
+      "execute": {
+        "expected_operations": [
+          "inspect_divisors",
+          "select_incompatible_expression"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "answer_matches_prompt_condition"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "select_expression",
+      "description": "나머지가 4가 될 수 없는 식"
+    },
+    "value": 4,
+    "unit": ""
+  }
+}

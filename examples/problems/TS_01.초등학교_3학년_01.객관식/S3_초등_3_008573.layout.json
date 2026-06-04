@@ -1,0 +1,250 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008573",
+  "title": "계산 결과가 큰 것부터 순서 고르기",
+  "canvas": {
+    "width": 872,
+    "height": 422,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q_num",
+        "slot.q_text"
+      ]
+    },
+    {
+      "id": "region.center_box",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.main_box",
+        "slot.expr_g",
+        "slot.expr_n",
+        "slot.expr_d",
+        "slot.expr_r"
+      ]
+    },
+    {
+      "id": "region.choices",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice1",
+        "slot.choice2",
+        "slot.choice3",
+        "slot.choice4",
+        "slot.choice5"
+      ]
+    },
+    {
+      "id": "region.support",
+      "role": "supporting",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.answer_text",
+        "slot.explain_text"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q_num",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "38.",
+        "style_role": "question",
+        "x": 16.0,
+        "y": 28.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q_text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "계산 결과가 큰 것부터 차례대로 나타낸 것을 고르세요.",
+        "style_role": "question",
+        "x": 64.0,
+        "y": 28.0,
+        "font_size": 26
+      }
+    },
+    {
+      "id": "slot.main_box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 260.0,
+        "y": 72.0,
+        "width": 420.0,
+        "height": 128.0,
+        "stroke": "#EAB5C2",
+        "stroke_width": 2.0,
+        "fill": "#FFFFFF"
+      }
+    },
+    {
+      "id": "slot.expr_g",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄱ 42 × 83",
+        "style_role": "diagram",
+        "x": 286.0,
+        "y": 114.0,
+        "font_size": 26
+      }
+    },
+    {
+      "id": "slot.expr_n",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄴ 58 × 55",
+        "style_role": "diagram",
+        "x": 492.0,
+        "y": 114.0,
+        "font_size": 26
+      }
+    },
+    {
+      "id": "slot.expr_d",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄷ 67 × 54",
+        "style_role": "diagram",
+        "x": 286.0,
+        "y": 168.0,
+        "font_size": 26
+      }
+    },
+    {
+      "id": "slot.expr_r",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄹ 91 × 37",
+        "style_role": "diagram",
+        "x": 492.0,
+        "y": 168.0,
+        "font_size": 26
+      }
+    },
+    {
+      "id": "slot.choice1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "① ㄱ, ㄷ, ㄴ, ㄹ",
+        "style_role": "diagram",
+        "x": 96.0,
+        "y": 242.0,
+        "font_size": 24
+      }
+    },
+    {
+      "id": "slot.choice2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "② ㄴ, ㄱ, ㄷ, ㄹ",
+        "style_role": "diagram",
+        "x": 316.0,
+        "y": 242.0,
+        "font_size": 24
+      }
+    },
+    {
+      "id": "slot.choice3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "③ ㄷ, ㄱ, ㄹ, ㄴ",
+        "style_role": "diagram",
+        "x": 536.0,
+        "y": 242.0,
+        "font_size": 24
+      }
+    },
+    {
+      "id": "slot.choice4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "④ ㄷ, ㄱ, ㄴ, ㄹ",
+        "style_role": "diagram",
+        "x": 206.0,
+        "y": 278.0,
+        "font_size": 24
+      }
+    },
+    {
+      "id": "slot.choice5",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "⑤ ㄹ, ㄷ, ㄴ, ㄷ",
+        "style_role": "diagram",
+        "x": 446.0,
+        "y": 278.0,
+        "font_size": 24
+      }
+    },
+    {
+      "id": "slot.answer_text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "(정답) ③",
+        "style_role": "supporting",
+        "x": 16.0,
+        "y": 330.0,
+        "font_size": 22
+      }
+    },
+    {
+      "id": "slot.explain_text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "(해설) ㄱ 42 × 83 = 3486, ㄴ 58 × 55 = 3190, ㄷ 67 × 54 = 3618, ㄹ 91 × 37 = 3367 → 3618>3486>3367>3190",
+        "style_role": "supporting",
+        "x": 16.0,
+        "y": 366.0,
+        "font_size": 20
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q_num",
+    "slot.q_text",
+    "region.center_box",
+    "slot.main_box",
+    "slot.expr_g",
+    "slot.expr_n",
+    "slot.expr_d",
+    "slot.expr_r",
+    "region.choices",
+    "slot.choice1",
+    "slot.choice2",
+    "slot.choice3",
+    "slot.choice4",
+    "slot.choice5",
+    "region.support",
+    "slot.answer_text",
+    "slot.explain_text"
+  ]
+}

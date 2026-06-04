@@ -1,0 +1,745 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008631",
+  "title": "수 모형을 보고 알맞은 수 고르기",
+  "canvas": {
+    "width": 720,
+    "height": 560,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q1",
+        "slot.q2"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.big_box",
+        "slot.big_rod1",
+        "slot.big_rod2",
+        "slot.big_rod3",
+        "slot.big_rod4",
+        "slot.big_rod5",
+        "slot.big_rod6",
+        "slot.big_cube1",
+        "slot.big_cube2",
+        "slot.big_cube3",
+        "slot.big_cube4",
+        "slot.big_cube5",
+        "slot.big_cube6",
+        "slot.big_cube7",
+        "slot.big_cube8",
+        "slot.small_box1",
+        "slot.small_box2",
+        "slot.small_box3",
+        "slot.s1_rod1",
+        "slot.s1_rod2",
+        "slot.s1_cube1",
+        "slot.s1_cube2",
+        "slot.s1_cube3",
+        "slot.s2_rod1",
+        "slot.s2_rod2",
+        "slot.s2_cube1",
+        "slot.s2_cube2",
+        "slot.s2_cube3",
+        "slot.s3_rod1",
+        "slot.s3_rod2",
+        "slot.s3_cube1",
+        "slot.s3_cube2",
+        "slot.s3_cube3",
+        "slot.blank",
+        "slot.arrow",
+        "slot.equation"
+      ]
+    },
+    {
+      "id": "region.options",
+      "role": "options",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.opt1_num",
+        "slot.opt2_num",
+        "slot.opt3_num",
+        "slot.opt4_num",
+        "slot.opt5_num",
+        "slot.opt1_text",
+        "slot.opt2_text",
+        "slot.opt3_text",
+        "slot.opt4_text",
+        "slot.opt5_text"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "□",
+        "style_role": "question",
+        "x": 20.0,
+        "y": 28.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "2. 수 모형을 보고 □ 안에 알맞은 수를 고르세요.",
+        "style_role": "question",
+        "x": 50.0,
+        "y": 28.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.big_box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 360.0,
+        "y": 52.0,
+        "width": 246.0,
+        "height": 96.0,
+        "stroke": "#4A78B8",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.big_rod1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 380.0,
+        "y": 66.0,
+        "width": 10.0,
+        "height": 72.0,
+        "stroke": "#6BBCE8",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.big_rod2",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 404.0,
+        "y": 66.0,
+        "width": 10.0,
+        "height": 72.0,
+        "stroke": "#6BBCE8",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.big_rod3",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 428.0,
+        "y": 66.0,
+        "width": 10.0,
+        "height": 72.0,
+        "stroke": "#6BBCE8",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.big_rod4",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 452.0,
+        "y": 66.0,
+        "width": 10.0,
+        "height": 72.0,
+        "stroke": "#6BBCE8",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.big_rod5",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 476.0,
+        "y": 66.0,
+        "width": 10.0,
+        "height": 72.0,
+        "stroke": "#6BBCE8",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.big_rod6",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 500.0,
+        "y": 66.0,
+        "width": 10.0,
+        "height": 72.0,
+        "stroke": "#6BBCE8",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.big_cube1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 526.0,
+        "y": 70.0,
+        "width": 10.0,
+        "height": 10.0,
+        "stroke": "#6BBCE8",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.big_cube2",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 546.0,
+        "y": 70.0,
+        "width": 10.0,
+        "height": 10.0,
+        "stroke": "#6BBCE8",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.big_cube3",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 526.0,
+        "y": 90.0,
+        "width": 10.0,
+        "height": 10.0,
+        "stroke": "#6BBCE8",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.big_cube4",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 546.0,
+        "y": 90.0,
+        "width": 10.0,
+        "height": 10.0,
+        "stroke": "#6BBCE8",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.big_cube5",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 526.0,
+        "y": 110.0,
+        "width": 10.0,
+        "height": 10.0,
+        "stroke": "#6BBCE8",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.big_cube6",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 546.0,
+        "y": 110.0,
+        "width": 10.0,
+        "height": 10.0,
+        "stroke": "#6BBCE8",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.big_cube7",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 526.0,
+        "y": 130.0,
+        "width": 10.0,
+        "height": 10.0,
+        "stroke": "#6BBCE8",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.big_cube8",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 546.0,
+        "y": 130.0,
+        "width": 10.0,
+        "height": 10.0,
+        "stroke": "#6BBCE8",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.arrow",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 483.0,
+        "y1": 150.0,
+        "x2": 483.0,
+        "y2": 185.0,
+        "stroke": "#888888"
+      }
+    },
+    {
+      "id": "slot.small_box1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 300.0,
+        "y": 206.0,
+        "width": 84.0,
+        "height": 128.0,
+        "stroke": "#4A78B8",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.small_box2",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 404.0,
+        "y": 206.0,
+        "width": 84.0,
+        "height": 128.0,
+        "stroke": "#4A78B8",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.small_box3",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 508.0,
+        "y": 206.0,
+        "width": 84.0,
+        "height": 128.0,
+        "stroke": "#4A78B8",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.s1_rod1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 312.0,
+        "y": 220.0,
+        "width": 10.0,
+        "height": 82.0,
+        "stroke": "#6BBCE8",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.s1_rod2",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 332.0,
+        "y": 220.0,
+        "width": 10.0,
+        "height": 82.0,
+        "stroke": "#6BBCE8",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.s1_cube1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 348.0,
+        "y": 250.0,
+        "width": 10.0,
+        "height": 10.0,
+        "stroke": "#6BBCE8",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.s1_cube2",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 348.0,
+        "y": 270.0,
+        "width": 10.0,
+        "height": 10.0,
+        "stroke": "#6BBCE8",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.s1_cube3",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 348.0,
+        "y": 290.0,
+        "width": 10.0,
+        "height": 10.0,
+        "stroke": "#6BBCE8",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.s2_rod1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 416.0,
+        "y": 220.0,
+        "width": 10.0,
+        "height": 82.0,
+        "stroke": "#6BBCE8",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.s2_rod2",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 436.0,
+        "y": 220.0,
+        "width": 10.0,
+        "height": 82.0,
+        "stroke": "#6BBCE8",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.s2_cube1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 452.0,
+        "y": 250.0,
+        "width": 10.0,
+        "height": 10.0,
+        "stroke": "#6BBCE8",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.s2_cube2",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 452.0,
+        "y": 270.0,
+        "width": 10.0,
+        "height": 10.0,
+        "stroke": "#6BBCE8",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.s2_cube3",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 452.0,
+        "y": 290.0,
+        "width": 10.0,
+        "height": 10.0,
+        "stroke": "#6BBCE8",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.s3_rod1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 520.0,
+        "y": 220.0,
+        "width": 10.0,
+        "height": 82.0,
+        "stroke": "#6BBCE8",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.s3_rod2",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 540.0,
+        "y": 220.0,
+        "width": 10.0,
+        "height": 82.0,
+        "stroke": "#6BBCE8",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.s3_cube1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 556.0,
+        "y": 250.0,
+        "width": 10.0,
+        "height": 10.0,
+        "stroke": "#6BBCE8",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.s3_cube2",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 556.0,
+        "y": 270.0,
+        "width": 10.0,
+        "height": 10.0,
+        "stroke": "#6BBCE8",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.s3_cube3",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 556.0,
+        "y": 290.0,
+        "width": 10.0,
+        "height": 10.0,
+        "stroke": "#6BBCE8",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.equation",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "69 ÷ 3 =",
+        "style_role": "question",
+        "x": 380.0,
+        "y": 362.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.blank",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 530.0,
+        "y": 338.0,
+        "width": 26.0,
+        "height": 26.0,
+        "stroke": "#222222",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.opt1_num",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 44.0,
+        "cy": 423.0,
+        "r": 7.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.opt1_text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "21",
+        "style_role": "choice",
+        "x": 58.0,
+        "y": 430.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.opt2_num",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 320.0,
+        "cy": 423.0,
+        "r": 7.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.opt2_text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "22",
+        "style_role": "choice",
+        "x": 334.0,
+        "y": 430.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.opt3_num",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 584.0,
+        "cy": 423.0,
+        "r": 7.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.opt3_text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "23",
+        "style_role": "choice",
+        "x": 598.0,
+        "y": 430.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.opt4_num",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 44.0,
+        "cy": 462.0,
+        "r": 7.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.opt4_text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "24",
+        "style_role": "choice",
+        "x": 58.0,
+        "y": 469.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.opt5_num",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 320.0,
+        "cy": 462.0,
+        "r": 7.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.opt5_text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "25",
+        "style_role": "choice",
+        "x": 334.0,
+        "y": 469.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q1",
+    "slot.q2",
+    "region.diagram",
+    "slot.big_box",
+    "slot.big_rod1",
+    "slot.big_rod2",
+    "slot.big_rod3",
+    "slot.big_rod4",
+    "slot.big_rod5",
+    "slot.big_rod6",
+    "slot.big_cube1",
+    "slot.big_cube2",
+    "slot.big_cube3",
+    "slot.big_cube4",
+    "slot.big_cube5",
+    "slot.big_cube6",
+    "slot.big_cube7",
+    "slot.big_cube8",
+    "slot.small_box1",
+    "slot.small_box2",
+    "slot.small_box3",
+    "slot.s1_rod1",
+    "slot.s1_rod2",
+    "slot.s1_cube1",
+    "slot.s1_cube2",
+    "slot.s1_cube3",
+    "slot.s2_rod1",
+    "slot.s2_rod2",
+    "slot.s2_cube1",
+    "slot.s2_cube2",
+    "slot.s2_cube3",
+    "slot.s3_rod1",
+    "slot.s3_rod2",
+    "slot.s3_cube1",
+    "slot.s3_cube2",
+    "slot.s3_cube3",
+    "slot.blank",
+    "slot.arrow",
+    "slot.equation",
+    "region.options",
+    "slot.opt1_num",
+    "slot.opt2_num",
+    "slot.opt3_num",
+    "slot.opt4_num",
+    "slot.opt5_num",
+    "slot.opt1_text",
+    "slot.opt2_text",
+    "slot.opt3_text",
+    "slot.opt4_text",
+    "slot.opt5_text"
+  ]
+}

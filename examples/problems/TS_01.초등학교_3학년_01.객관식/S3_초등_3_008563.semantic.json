@@ -1,0 +1,71 @@
+{
+  "problem_id": "S3_초등_3_008563",
+  "problem_type": "선택형 비교",
+  "metadata": {
+    "title": "계산 결과가 더 큰 사람을 선택해 보세요.",
+    "tags": [],
+    "question": "계산 결과가 더 큰 사람을 선택해 보세요.",
+    "required_layout_ids": [
+      "slot.left_card",
+      "slot.right_card",
+      "slot.left_head",
+      "slot.left_body",
+      "slot.left_leg1",
+      "slot.left_leg2",
+      "slot.right_head",
+      "slot.right_body",
+      "slot.right_leg1",
+      "slot.right_leg2",
+      "slot.left_name_box",
+      "slot.right_name_box"
+    ],
+    "extraction_confidence": 1.0,
+    "grade": 3,
+    "subject": "수학",
+    "topic": "곱셈 결과 비교"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "expr_1",
+        "type": "multiplication",
+        "text": "24 × 42"
+      },
+      {
+        "id": "expr_2",
+        "type": "multiplication",
+        "text": "19 × 78"
+      },
+      {
+        "id": "person_1",
+        "type": "person",
+        "text": "은우"
+      },
+      {
+        "id": "person_2",
+        "type": "person",
+        "text": "도윤"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": "두 사람의 곱셈식 결과를 비교해 더 큰 사람을 고르는 문제이다.",
+      "plan": "각 식의 결과를 확인하고 크기를 비교한다.",
+      "execute": "더 큰 결과에 해당하는 사람을 선택한다.",
+      "review": "선택 결과가 조건과 일치하는지 확인한다."
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "selected_person",
+      "description": "계산 결과가 더 큰 사람"
+    },
+    "value": "도윤",
+    "unit": ""
+  }
+}

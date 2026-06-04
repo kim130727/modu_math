@@ -1,0 +1,59 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008674",
+  "problem_type": "도형_선택",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "원을 바르게 완성한 그림",
+    "target_ticks": 0,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.circle_completion",
+      "value": "여러 개의 원호 그림"
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "selected_picture"
+  },
+  "method": "visual_comparison",
+  "plan": [
+    "각 그림의 원호가 끊기지 않고 자연스럽게 이어지는지 확인한다.",
+    "원으로 완성된 모양인지 비교한다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "그림들에서 원호의 연결 상태를 비교한다.",
+      "value": "비교 수행"
+    },
+    {
+      "id": "step.2",
+      "expr": "원이 바르게 완성된 그림을 고른다.",
+      "value": "정답 선택 필요"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "선택한 그림이 원의 시작점과 끝점이 자연스럽게 만나도록 완성되었는지 확인한다.",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "selected_picture",
+      "description": "원을 바르게 완성한 그림"
+    },
+    "value": 0,
+    "unit": ""
+  }
+}

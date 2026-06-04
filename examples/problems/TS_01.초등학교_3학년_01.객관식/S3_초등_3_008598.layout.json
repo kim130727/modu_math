@@ -1,0 +1,140 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008598",
+  "title": "나머지가 더 큰 것을 선택해 보세요.",
+  "canvas": {
+    "width": 728,
+    "height": 270,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.header",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.qnum",
+        "slot.title"
+      ]
+    },
+    {
+      "id": "region.choice",
+      "role": "choices",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.box.left",
+        "slot.box.right",
+        "slot.text.left",
+        "slot.text.right"
+      ]
+    },
+    {
+      "id": "region.explanation",
+      "role": "explanation",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.compare"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.qnum",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "67.",
+        "style_role": "question",
+        "x": 28.0,
+        "y": 26.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.title",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "나머지가 더 큰 것을 선택해 보세요.",
+        "style_role": "question",
+        "x": 70.0,
+        "y": 26.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.box.left",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 249.0,
+        "y": 46.0,
+        "width": 184.0,
+        "height": 76.0
+      }
+    },
+    {
+      "id": "slot.text.left",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "504 ÷ 5",
+        "style_role": "choice",
+        "x": 295.0,
+        "y": 95.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.box.right",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 504.0,
+        "y": 46.0,
+        "width": 184.0,
+        "height": 76.0
+      }
+    },
+    {
+      "id": "slot.text.right",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "467 ÷ 3",
+        "style_role": "choice",
+        "x": 550.0,
+        "y": 95.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.compare",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "나머지의 크기를 비교하면 4 > 2 입니다.",
+        "style_role": "body",
+        "x": 66.0,
+        "y": 236.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.header",
+    "slot.qnum",
+    "slot.title",
+    "region.choice",
+    "slot.box.left",
+    "slot.box.right",
+    "slot.text.left",
+    "slot.text.right",
+    "region.explanation",
+    "slot.compare"
+  ]
+}

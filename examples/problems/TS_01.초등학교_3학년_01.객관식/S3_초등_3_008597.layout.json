@@ -1,0 +1,153 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008597",
+  "title": "4로 나누어떨어지는 수가 아닌 것을 모두 고르기",
+  "canvas": {
+    "width": 840,
+    "height": 334,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.icon.box",
+        "slot.qnum",
+        "slot.question",
+        "slot.choice.1",
+        "slot.choice.2",
+        "slot.choice.3",
+        "slot.choice.4",
+        "slot.choice.5"
+      ]
+    },
+    {
+      "id": "region.answer",
+      "role": "answer",
+      "flow": "absolute",
+      "slot_ids": []
+    },
+    {
+      "id": "region.explanation",
+      "role": "explanation",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.icon.box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 13.0,
+        "y": 16.0,
+        "width": 11.0,
+        "height": 11.0
+      }
+    },
+    {
+      "id": "slot.qnum",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "66.",
+        "style_role": "question",
+        "x": 30.0,
+        "y": 25.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.question",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "4로 나누어떨어지는 수가 아닌 것을 모두 고르세요.",
+        "style_role": "question",
+        "x": 70.0,
+        "y": 25.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice.1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "① 28",
+        "style_role": "choice",
+        "x": 46.0,
+        "y": 77.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice.2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "② 56",
+        "style_role": "choice",
+        "x": 216.0,
+        "y": 77.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice.3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "③ 84",
+        "style_role": "choice",
+        "x": 388.0,
+        "y": 77.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice.4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "④ 62",
+        "style_role": "choice",
+        "x": 562.0,
+        "y": 77.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice.5",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "⑤ 70",
+        "style_role": "choice",
+        "x": 734.0,
+        "y": 77.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.icon.box",
+    "slot.qnum",
+    "slot.question",
+    "slot.choice.1",
+    "slot.choice.2",
+    "slot.choice.3",
+    "slot.choice.4",
+    "slot.choice.5",
+    "region.answer",
+    "region.explanation"
+  ]
+}

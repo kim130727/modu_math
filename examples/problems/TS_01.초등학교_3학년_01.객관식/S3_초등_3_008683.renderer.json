@@ -1,0 +1,653 @@
+{
+  "problem_id": "S3_초등_3_008683",
+  "view_box": {
+    "width": 940.0,
+    "height": 900.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.box1.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 98.0,
+        "y": 82.0,
+        "width": 760.0,
+        "height": 118.0,
+        "fill": "#dcd7ef",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.box1",
+      "refs": {
+        "layout_slot_id": "slot.box1"
+      }
+    },
+    {
+      "id": "slot.diagram1.frame.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 576.0,
+        "y": 210.0,
+        "width": 236.0,
+        "height": 240.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.diagram1.frame",
+      "refs": {
+        "layout_slot_id": "slot.diagram1.frame"
+      }
+    },
+    {
+      "id": "slot.diagram1.circle.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 694.0,
+        "cy": 330.0,
+        "r": 118.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "none"
+      },
+      "source_ref": "slot.diagram1.circle",
+      "refs": {
+        "layout_slot_id": "slot.diagram1.circle"
+      }
+    },
+    {
+      "id": "slot.diagram1.center.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 694.0,
+        "cy": 330.0,
+        "r": 4.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#ff4db8"
+      },
+      "source_ref": "slot.diagram1.center",
+      "refs": {
+        "layout_slot_id": "slot.diagram1.center"
+      }
+    },
+    {
+      "id": "slot.box3.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 100.0,
+        "y": 458.0,
+        "width": 760.0,
+        "height": 116.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.box3",
+      "refs": {
+        "layout_slot_id": "slot.box3"
+      }
+    },
+    {
+      "id": "slot.diagram2.frame.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 88.0,
+        "y": 658.0,
+        "width": 236.0,
+        "height": 236.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.diagram2.frame",
+      "refs": {
+        "layout_slot_id": "slot.diagram2.frame"
+      }
+    },
+    {
+      "id": "slot.diagram2.circle.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 206.0,
+        "cy": 776.0,
+        "r": 118.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "none"
+      },
+      "source_ref": "slot.diagram2.circle",
+      "refs": {
+        "layout_slot_id": "slot.diagram2.circle"
+      }
+    },
+    {
+      "id": "slot.diagram2.center.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 206.0,
+        "cy": 776.0,
+        "r": 4.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#ff4db8"
+      },
+      "source_ref": "slot.diagram2.center",
+      "refs": {
+        "layout_slot_id": "slot.diagram2.center"
+      }
+    },
+    {
+      "id": "slot.diagram1.ray1.line",
+      "type": "line",
+      "attributes": {
+        "x1": 694.0,
+        "y1": 330.0,
+        "x2": 694.0,
+        "y2": 212.0,
+        "stroke": "#5dbbff",
+        "stroke-width": 2.0,
+        "stroke-dasharray": "6 6"
+      },
+      "source_ref": "slot.diagram1.ray1",
+      "refs": {
+        "layout_slot_id": "slot.diagram1.ray1"
+      }
+    },
+    {
+      "id": "slot.diagram1.ray2.line",
+      "type": "line",
+      "attributes": {
+        "x1": 694.0,
+        "y1": 330.0,
+        "x2": 755.0,
+        "y2": 226.0,
+        "stroke": "#5dbbff",
+        "stroke-width": 2.0,
+        "stroke-dasharray": "6 6"
+      },
+      "source_ref": "slot.diagram1.ray2",
+      "refs": {
+        "layout_slot_id": "slot.diagram1.ray2"
+      }
+    },
+    {
+      "id": "slot.diagram1.ray3.line",
+      "type": "line",
+      "attributes": {
+        "x1": 694.0,
+        "y1": 330.0,
+        "x2": 794.0,
+        "y2": 270.0,
+        "stroke": "#5dbbff",
+        "stroke-width": 2.0,
+        "stroke-dasharray": "6 6"
+      },
+      "source_ref": "slot.diagram1.ray3",
+      "refs": {
+        "layout_slot_id": "slot.diagram1.ray3"
+      }
+    },
+    {
+      "id": "slot.diagram1.ray4.line",
+      "type": "line",
+      "attributes": {
+        "x1": 694.0,
+        "y1": 330.0,
+        "x2": 812.0,
+        "y2": 330.0,
+        "stroke": "#5dbbff",
+        "stroke-width": 2.0,
+        "stroke-dasharray": "6 6"
+      },
+      "source_ref": "slot.diagram1.ray4",
+      "refs": {
+        "layout_slot_id": "slot.diagram1.ray4"
+      }
+    },
+    {
+      "id": "slot.diagram1.ray5.line",
+      "type": "line",
+      "attributes": {
+        "x1": 694.0,
+        "y1": 330.0,
+        "x2": 796.0,
+        "y2": 388.0,
+        "stroke": "#9aa0a6",
+        "stroke-width": 2.0,
+        "stroke-dasharray": "6 6"
+      },
+      "source_ref": "slot.diagram1.ray5",
+      "refs": {
+        "layout_slot_id": "slot.diagram1.ray5"
+      }
+    },
+    {
+      "id": "slot.diagram2.ray1.line",
+      "type": "line",
+      "attributes": {
+        "x1": 206.0,
+        "y1": 776.0,
+        "x2": 206.0,
+        "y2": 658.0,
+        "stroke": "#5dbbff",
+        "stroke-width": 2.0,
+        "stroke-dasharray": "6 6"
+      },
+      "source_ref": "slot.diagram2.ray1",
+      "refs": {
+        "layout_slot_id": "slot.diagram2.ray1"
+      }
+    },
+    {
+      "id": "slot.diagram2.ray2.line",
+      "type": "line",
+      "attributes": {
+        "x1": 206.0,
+        "y1": 776.0,
+        "x2": 267.0,
+        "y2": 674.0,
+        "stroke": "#5dbbff",
+        "stroke-width": 2.0,
+        "stroke-dasharray": "6 6"
+      },
+      "source_ref": "slot.diagram2.ray2",
+      "refs": {
+        "layout_slot_id": "slot.diagram2.ray2"
+      }
+    },
+    {
+      "id": "slot.diagram2.ray3.line",
+      "type": "line",
+      "attributes": {
+        "x1": 206.0,
+        "y1": 776.0,
+        "x2": 308.0,
+        "y2": 718.0,
+        "stroke": "#5dbbff",
+        "stroke-width": 2.0,
+        "stroke-dasharray": "6 6"
+      },
+      "source_ref": "slot.diagram2.ray3",
+      "refs": {
+        "layout_slot_id": "slot.diagram2.ray3"
+      }
+    },
+    {
+      "id": "slot.diagram2.ray4.line",
+      "type": "line",
+      "attributes": {
+        "x1": 206.0,
+        "y1": 776.0,
+        "x2": 324.0,
+        "y2": 776.0,
+        "stroke": "#5dbbff",
+        "stroke-width": 2.0,
+        "stroke-dasharray": "6 6"
+      },
+      "source_ref": "slot.diagram2.ray4",
+      "refs": {
+        "layout_slot_id": "slot.diagram2.ray4"
+      }
+    },
+    {
+      "id": "slot.diagram2.ray5.line",
+      "type": "line",
+      "attributes": {
+        "x1": 206.0,
+        "y1": 776.0,
+        "x2": 308.0,
+        "y2": 836.0,
+        "stroke": "#9aa0a6",
+        "stroke-width": 2.0,
+        "stroke-dasharray": "6 6"
+      },
+      "source_ref": "slot.diagram2.ray5",
+      "refs": {
+        "layout_slot_id": "slot.diagram2.ray5"
+      }
+    },
+    {
+      "id": "slot.q1.text",
+      "type": "text",
+      "attributes": {
+        "x": 16.0,
+        "y": 28.0,
+        "max_width": 812.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q1",
+      "refs": {
+        "layout_slot_id": "slot.q1"
+      },
+      "text": "☐ 71. 다음과 같은 방법으로 원을 그렸습니다. 그린 원을 보고 알맞은 말을 선"
+    },
+    {
+      "id": "slot.q2.text",
+      "type": "text",
+      "attributes": {
+        "x": 16.0,
+        "y": 62.0,
+        "max_width": 812.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q2",
+      "refs": {
+        "layout_slot_id": "slot.q2"
+      },
+      "text": "택하세요."
+    },
+    {
+      "id": "slot.box2.text",
+      "type": "text",
+      "attributes": {
+        "x": 120.0,
+        "y": 123.0,
+        "max_width": 812.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.box2",
+      "refs": {
+        "layout_slot_id": "slot.box2"
+      },
+      "text": "① 빨간색 점에서 2 cm 떨어진 위치에 점을 찍습니다."
+    },
+    {
+      "id": "slot.box2_2.text",
+      "type": "text",
+      "attributes": {
+        "x": 120.0,
+        "y": 163.0,
+        "max_width": 812.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.box2_2",
+      "refs": {
+        "layout_slot_id": "slot.box2_2"
+      },
+      "text": "② 찍은 점들을 이어 원을 그립니다."
+    },
+    {
+      "id": "slot.diagram1.label1.text",
+      "type": "text",
+      "attributes": {
+        "x": 700.0,
+        "y": 246.0,
+        "max_width": 812.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.diagram1.label1",
+      "refs": {
+        "layout_slot_id": "slot.diagram1.label1"
+      },
+      "text": "2 cm"
+    },
+    {
+      "id": "slot.diagram1.label2.text",
+      "type": "text",
+      "attributes": {
+        "x": 653.0,
+        "y": 281.0,
+        "max_width": 812.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.diagram1.label2",
+      "refs": {
+        "layout_slot_id": "slot.diagram1.label2"
+      },
+      "text": "2 cm"
+    },
+    {
+      "id": "slot.diagram1.label3.text",
+      "type": "text",
+      "attributes": {
+        "x": 734.0,
+        "y": 286.0,
+        "max_width": 812.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.diagram1.label3",
+      "refs": {
+        "layout_slot_id": "slot.diagram1.label3"
+      },
+      "text": "2 cm"
+    },
+    {
+      "id": "slot.diagram1.label4.text",
+      "type": "text",
+      "attributes": {
+        "x": 748.0,
+        "y": 334.0,
+        "max_width": 812.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.diagram1.label4",
+      "refs": {
+        "layout_slot_id": "slot.diagram1.label4"
+      },
+      "text": "2 cm"
+    },
+    {
+      "id": "slot.diagram1.label5.text",
+      "type": "text",
+      "attributes": {
+        "x": 742.0,
+        "y": 364.0,
+        "max_width": 812.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.diagram1.label5",
+      "refs": {
+        "layout_slot_id": "slot.diagram1.label5"
+      },
+      "text": "2 cm"
+    },
+    {
+      "id": "slot.bubble1.text",
+      "type": "text",
+      "attributes": {
+        "x": 270.0,
+        "y": 275.0,
+        "max_width": 812.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.bubble1",
+      "refs": {
+        "layout_slot_id": "slot.bubble1"
+      },
+      "text": "줄로 연결한 막대를\n돌려 그린 원과 비슷한\n원이 그려지는구나."
+    },
+    {
+      "id": "slot.choice1.text",
+      "type": "text",
+      "attributes": {
+        "x": 120.0,
+        "y": 514.0,
+        "max_width": 812.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice1",
+      "refs": {
+        "layout_slot_id": "slot.choice1"
+      },
+      "text": "자를 이용하여 점을 더 ( 많이 , 적게 ) 찍은 다음, 점들을 이"
+    },
+    {
+      "id": "slot.choice2.text",
+      "type": "text",
+      "attributes": {
+        "x": 120.0,
+        "y": 556.0,
+        "max_width": 812.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice2",
+      "refs": {
+        "layout_slot_id": "slot.choice2"
+      },
+      "text": "으면 원을 좀 더 정확하게 그릴 수 있습니다."
+    },
+    {
+      "id": "slot.answer.text",
+      "type": "text",
+      "attributes": {
+        "x": 10.0,
+        "y": 612.0,
+        "max_width": 812.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.answer",
+      "refs": {
+        "layout_slot_id": "slot.answer"
+      },
+      "text": "(정답) 많이"
+    },
+    {
+      "id": "slot.explain.text",
+      "type": "text",
+      "attributes": {
+        "x": 10.0,
+        "y": 648.0,
+        "max_width": 812.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.explain",
+      "refs": {
+        "layout_slot_id": "slot.explain"
+      },
+      "text": "(해설)"
+    },
+    {
+      "id": "slot.example.text",
+      "type": "text",
+      "attributes": {
+        "x": 34.0,
+        "y": 676.0,
+        "max_width": 812.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.example",
+      "refs": {
+        "layout_slot_id": "slot.example"
+      },
+      "text": "예)"
+    },
+    {
+      "id": "slot.diagram2.label1.text",
+      "type": "text",
+      "attributes": {
+        "x": 210.0,
+        "y": 694.0,
+        "max_width": 812.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.diagram2.label1",
+      "refs": {
+        "layout_slot_id": "slot.diagram2.label1"
+      },
+      "text": "2 cm"
+    },
+    {
+      "id": "slot.diagram2.label2.text",
+      "type": "text",
+      "attributes": {
+        "x": 152.0,
+        "y": 718.0,
+        "max_width": 812.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.diagram2.label2",
+      "refs": {
+        "layout_slot_id": "slot.diagram2.label2"
+      },
+      "text": "2 cm"
+    },
+    {
+      "id": "slot.diagram2.label3.text",
+      "type": "text",
+      "attributes": {
+        "x": 246.0,
+        "y": 724.0,
+        "max_width": 812.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.diagram2.label3",
+      "refs": {
+        "layout_slot_id": "slot.diagram2.label3"
+      },
+      "text": "2 cm"
+    },
+    {
+      "id": "slot.diagram2.label4.text",
+      "type": "text",
+      "attributes": {
+        "x": 252.0,
+        "y": 770.0,
+        "max_width": 812.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.diagram2.label4",
+      "refs": {
+        "layout_slot_id": "slot.diagram2.label4"
+      },
+      "text": "2 cm"
+    },
+    {
+      "id": "slot.diagram2.label5.text",
+      "type": "text",
+      "attributes": {
+        "x": 248.0,
+        "y": 802.0,
+        "max_width": 812.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.diagram2.label5",
+      "refs": {
+        "layout_slot_id": "slot.diagram2.label5"
+      },
+      "text": "2 cm"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

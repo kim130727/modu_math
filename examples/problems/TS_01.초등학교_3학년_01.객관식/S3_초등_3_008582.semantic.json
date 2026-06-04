@@ -1,0 +1,100 @@
+{
+  "problem_id": "S3_초등_3_008582",
+  "problem_type": "comparison_selection",
+  "metadata": {
+    "title": "계산 결과가 더 큰 사람의 이름을 선택해 보세요.",
+    "tags": [
+      "초등",
+      "수학",
+      "곱셈",
+      "비교",
+      "선택형"
+    ],
+    "question": "계산 결과가 더 큰 사람의 이름을 선택해 보세요.",
+    "required_layout_ids": [
+      "slot.face_left.head",
+      "slot.face_left.body",
+      "slot.face_left.eye1",
+      "slot.face_left.eye2",
+      "slot.face_left.mouth",
+      "slot.card_left",
+      "slot.face_right.head",
+      "slot.face_right.body",
+      "slot.face_right.eye1",
+      "slot.face_right.eye2",
+      "slot.face_right.mouth",
+      "slot.card_right"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "두 사람의 곱셈 결과를 비교하여 더 큰 사람을 고르세요."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.person.jinsu",
+        "type": "person",
+        "name": "진수"
+      },
+      {
+        "id": "obj.person.suho",
+        "type": "person",
+        "name": "수호"
+      },
+      {
+        "id": "obj.expr.jinsu",
+        "type": "multiplication_expression",
+        "expression": "63 × 12"
+      },
+      {
+        "id": "obj.expr.suho",
+        "type": "multiplication_expression",
+        "expression": "24 × 31"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.person.jinsu",
+          "obj.person.suho",
+          "obj.expr.jinsu",
+          "obj.expr.suho"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.compare.results"
+        ]
+      },
+      "plan": {
+        "method": "compute_and_compare",
+        "description": "곱셈 결과를 구해 큰 값을 가진 사람을 고른다."
+      },
+      "execute": {
+        "expected_operations": [
+          "multiply",
+          "compare_results",
+          "select_name"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "compare_computed_values"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "person_name",
+      "description": "계산 결과가 더 큰 사람의 이름"
+    },
+    "value": "진수",
+    "unit": ""
+  }
+}

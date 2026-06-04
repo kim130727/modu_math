@@ -1,0 +1,78 @@
+{
+  "problem_id": "S3_초등_3_008544",
+  "problem_type": "multiple_choice_ordering",
+  "metadata": {
+    "title": "계산 결과가 큰 것부터 순서대로 나열한 것 고르기",
+    "tags": [],
+    "question": "계산 결과가 큰 것부터 순서대로 나열한 것을 고르세요.",
+    "required_layout_ids": [
+      "slot.box"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "계산 결과의 크기를 비교하여 순서를 고른다."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.expr1",
+        "type": "multiplication_expression",
+        "expression": "9 × 85"
+      },
+      {
+        "id": "obj.expr2",
+        "type": "multiplication_expression",
+        "expression": "8 × 65"
+      },
+      {
+        "id": "obj.expr3",
+        "type": "multiplication_expression",
+        "expression": "6 × 73"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.expr1",
+          "obj.expr2",
+          "obj.expr3"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.compare_results"
+        ]
+      },
+      "plan": {
+        "method": "compute_and_compare",
+        "description": "각 곱셈식의 결과를 구한 뒤 크기를 비교한다."
+      },
+      "execute": {
+        "expected_operations": [
+          "multiply",
+          "compare",
+          "order_from_largest"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "compare_results",
+          "match_chosen_order_with_descending_values"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "choice_order",
+      "description": "계산 결과가 큰 것부터 순서대로 나열한 보기"
+    },
+    "value": 1,
+    "unit": ""
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008621",
+  "problem_type": "multiple_choice",
+  "inputs": {
+    "total_ticks": 3,
+    "target_label": "묶이 다른 하나",
+    "target_ticks": 1,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.opt1",
+      "value": {
+        "expression": "24 ÷ 2"
+      }
+    },
+    {
+      "ref": "obj.opt2",
+      "value": {
+        "expression": "48 ÷ 4"
+      }
+    },
+    {
+      "ref": "obj.opt3",
+      "value": {
+        "expression": "77 ÷ 7"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "selected_option"
+  },
+  "method": "compare_options",
+  "plan": [
+    "보기의 식들을 서로 비교한다.",
+    "같은 묶음이 아닌 하나를 찾는다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "compare 24 ÷ 2, 48 ÷ 4, 77 ÷ 7",
+      "value": "compare_division_expressions"
+    },
+    {
+      "id": "step.2",
+      "expr": "identify the odd one out from the visible options",
+      "value": "77 ÷ 7"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "visible answer label matches selected option",
+      "expected": "77 ÷ 7",
+      "actual": "77 ÷ 7",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "selected_option",
+      "description": "묶이 다른 하나"
+    },
+    "value": 77,
+    "unit": ""
+  }
+}

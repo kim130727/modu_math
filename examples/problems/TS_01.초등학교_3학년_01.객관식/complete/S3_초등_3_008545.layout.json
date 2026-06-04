@@ -1,0 +1,151 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008545",
+  "title": "보기와 계산 결과가 같은 것을 선택하세요",
+  "canvas": {
+    "width": 700,
+    "height": 350,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q1"
+      ]
+    },
+    {
+      "id": "region.view_box",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.view_box",
+        "slot.view_label",
+        "slot.view_expr"
+      ]
+    },
+    {
+      "id": "region.choice_box",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice_box",
+        "slot.choice_left",
+        "slot.choice_right"
+      ]
+    },
+    {
+      "id": "region.answer_explain",
+      "role": "explanation",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.view_box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 145.0,
+        "y": 50.0,
+        "width": 379.0,
+        "height": 117.0,
+        "stroke": "#9A9A9A",
+        "fill": "#FFFFFF"
+      }
+    },
+    {
+      "id": "slot.choice_box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 145.0,
+        "y": 180.0,
+        "width": 377.0,
+        "height": 79.0,
+        "stroke": "#D7DBF2",
+        "fill": "#D7DBF2"
+      }
+    },
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "<보기>와 계산 결과가 같은 것을 선택하세요.",
+        "style_role": "question",
+        "x": 13.0,
+        "y": 28.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.view_label",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "<보기>",
+        "style_role": "label",
+        "x": 220.0,
+        "y": 110.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.view_expr",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "789 × 2",
+        "style_role": "equation",
+        "x": 315.0,
+        "y": 110.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice_left",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "412 × 4",
+        "style_role": "equation",
+        "x": 200.0,
+        "y": 230.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice_right",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "526 × 3",
+        "style_role": "equation",
+        "x": 365.0,
+        "y": 230.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q1",
+    "region.view_box",
+    "slot.view_box",
+    "slot.view_label",
+    "slot.view_expr",
+    "region.choice_box",
+    "slot.choice_box",
+    "slot.choice_left",
+    "slot.choice_right",
+    "region.answer_explain"
+  ]
+}

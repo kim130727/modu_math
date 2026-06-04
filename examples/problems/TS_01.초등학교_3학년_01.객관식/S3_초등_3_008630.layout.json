@@ -1,0 +1,338 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008630",
+  "title": "나머지가 큰 것부터 차례대로 기호를 쓰기",
+  "canvas": {
+    "width": 860,
+    "height": 494,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q_num",
+        "slot.q_text"
+      ]
+    },
+    {
+      "id": "region.box",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.box.outer",
+        "slot.box.l1",
+        "slot.box.l2",
+        "slot.box.a1",
+        "slot.box.a2",
+        "slot.box.a3",
+        "slot.box.a4"
+      ]
+    },
+    {
+      "id": "region.options",
+      "role": "choices",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.opt1.no",
+        "slot.opt1.text",
+        "slot.opt2.no",
+        "slot.opt2.text",
+        "slot.opt3.no",
+        "slot.opt3.text",
+        "slot.opt4.no",
+        "slot.opt4.text",
+        "slot.opt5.no",
+        "slot.opt5.text"
+      ]
+    },
+    {
+      "id": "region.answer",
+      "role": "answer",
+      "flow": "absolute",
+      "slot_ids": []
+    },
+    {
+      "id": "region.solution",
+      "role": "solution",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.concl"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q_num",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "1.",
+        "style_role": "question",
+        "x": 14.0,
+        "y": 34.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q_text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "나머지가 큰 것부터 차례대로 기호를 쓰세요.",
+        "style_role": "question",
+        "x": 57.0,
+        "y": 34.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.box.outer",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 304.0,
+        "y": 47.0,
+        "width": 347.0,
+        "height": 84.0
+      }
+    },
+    {
+      "id": "slot.box.a1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄱ 70 ÷ 4",
+        "style_role": "diagram",
+        "x": 358.0,
+        "y": 79.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.box.a2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄴ 83 ÷ 5",
+        "style_role": "diagram",
+        "x": 511.0,
+        "y": 79.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.box.a3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄷ 89 ÷ 6",
+        "style_role": "diagram",
+        "x": 358.0,
+        "y": 118.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.box.a4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄹ 92 ÷ 7",
+        "style_role": "diagram",
+        "x": 511.0,
+        "y": 118.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.box.l1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "",
+        "style_role": "diagram",
+        "x": 476.0,
+        "y": 49.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.box.l2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "",
+        "style_role": "diagram",
+        "x": 476.0,
+        "y": 131.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.opt1.no",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "①",
+        "style_role": "choice",
+        "x": 20.0,
+        "y": 198.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.opt1.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄱ, ㄴ, ㄷ, ㄹ",
+        "style_role": "choice",
+        "x": 61.0,
+        "y": 198.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.opt2.no",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "②",
+        "style_role": "choice",
+        "x": 319.0,
+        "y": 198.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.opt2.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄴ, ㄱ, ㄷ, ㄹ",
+        "style_role": "choice",
+        "x": 360.0,
+        "y": 198.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.opt3.no",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "③",
+        "style_role": "choice",
+        "x": 622.0,
+        "y": 198.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.opt3.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄴ, ㄷ, ㄱ, ㄹ",
+        "style_role": "choice",
+        "x": 663.0,
+        "y": 198.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.opt4.no",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "④",
+        "style_role": "choice",
+        "x": 20.0,
+        "y": 243.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.opt4.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄷ, ㄱ, ㄴ, ㄹ",
+        "style_role": "choice",
+        "x": 61.0,
+        "y": 243.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.opt5.no",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "⑤",
+        "style_role": "choice",
+        "x": 319.0,
+        "y": 243.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.opt5.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄷ, ㄴ, ㄱ, ㄹ",
+        "style_role": "choice",
+        "x": 360.0,
+        "y": 243.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.concl",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "따라서 나머지가 큰 것부터 차례대로 기호를 쓰면 ㄷ, ㄴ, ㄱ, ㄹ입니다.",
+        "style_role": "solution",
+        "x": 28.0,
+        "y": 493.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q_num",
+    "slot.q_text",
+    "region.box",
+    "slot.box.outer",
+    "slot.box.l1",
+    "slot.box.l2",
+    "slot.box.a1",
+    "slot.box.a2",
+    "slot.box.a3",
+    "slot.box.a4",
+    "region.options",
+    "slot.opt1.no",
+    "slot.opt1.text",
+    "slot.opt2.no",
+    "slot.opt2.text",
+    "slot.opt3.no",
+    "slot.opt3.text",
+    "slot.opt4.no",
+    "slot.opt4.text",
+    "slot.opt5.no",
+    "slot.opt5.text",
+    "region.answer",
+    "region.solution",
+    "slot.concl"
+  ]
+}

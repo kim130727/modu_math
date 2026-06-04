@@ -1,0 +1,155 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008612",
+  "title": "다음 나눗셈이 나누어떨어지는지 판단하기",
+  "canvas": {
+    "width": 940.0,
+    "height": 364.0,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.expr.box",
+        "slot.q.no",
+        "slot.q.text",
+        "slot.expr.text"
+      ]
+    },
+    {
+      "id": "region.choice",
+      "role": "choices",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice.circle",
+        "slot.choice.cross"
+      ]
+    },
+    {
+      "id": "region.explanation",
+      "role": "explanation",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.explain.answer",
+        "slot.explain.text"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q.no",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "82.",
+        "style_role": "question",
+        "x": 12.0,
+        "y": 26.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "다음 나눗셈이 나누어떨어지면 O표, 나누어떨어지지 않으면 X표를 선택하세요.",
+        "style_role": "question",
+        "x": 104.0,
+        "y": 26.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.expr.box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 400.0,
+        "y": 60.0,
+        "width": 188.0,
+        "height": 78.0
+      }
+    },
+    {
+      "id": "slot.expr.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "28 ÷ 3",
+        "style_role": "choice",
+        "x": 446.0,
+        "y": 108.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice.circle",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "O",
+        "style_role": "choice",
+        "x": 34.0,
+        "y": 188.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice.cross",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "X",
+        "style_role": "choice",
+        "x": 34.0,
+        "y": 219.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.explain.answer",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "(정답) X",
+        "style_role": "body",
+        "x": 29.0,
+        "y": 318.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.explain.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "(해설) 28 ÷ 3 = 9...1 이므로 나누어떨어지지 않습니다.",
+        "style_role": "body",
+        "x": 71.0,
+        "y": 352.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.expr.box",
+    "slot.q.no",
+    "slot.q.text",
+    "slot.expr.text",
+    "region.choice",
+    "slot.choice.circle",
+    "slot.choice.cross",
+    "region.explanation",
+    "slot.explain.answer",
+    "slot.explain.text"
+  ]
+}

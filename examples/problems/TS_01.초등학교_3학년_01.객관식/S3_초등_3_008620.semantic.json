@@ -1,0 +1,74 @@
+{
+  "problem_id": "S3_초등_3_008620",
+  "problem_type": "selection_comparison",
+  "metadata": {
+    "title": "70보다 큰 것을 고르기",
+    "tags": [],
+    "question": "70보다 큰 것을 선택하는 문제",
+    "required_layout_ids": [
+      "slot.choice_box"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "70보다 큰 것을 선택해 보세요."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.choice1",
+        "type": "division_expression",
+        "expr": "268 ÷ 5"
+      },
+      {
+        "id": "obj.choice2",
+        "type": "division_expression",
+        "expr": "402 ÷ 4"
+      },
+      {
+        "id": "obj.choice3",
+        "type": "division_expression",
+        "expr": "397 ÷ 6"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.choice1",
+          "obj.choice2",
+          "obj.choice3"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": []
+      },
+      "plan": {
+        "method": "compare_results",
+        "description": "각 나눗셈의 값을 비교해 70보다 큰 것을 고른다."
+      },
+      "execute": {
+        "expected_operations": [
+          "evaluate_each_expression",
+          "compare_with_threshold"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "threshold_check",
+          "choice_consistency_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "selected_expression",
+      "description": "70보다 큰 것"
+    },
+    "value": null,
+    "unit": ""
+  }
+}

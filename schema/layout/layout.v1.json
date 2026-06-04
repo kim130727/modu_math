@@ -1,0 +1,126 @@
+{
+  "type": "object",
+  "properties": {
+    "schema": {
+      "type": "string",
+      "const": "modu.layout.v1"
+    },
+    "problem_id": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "canvas": {
+      "type": "object",
+      "properties": {
+        "width": {
+          "type": "number"
+        },
+        "height": {
+          "type": "number"
+        },
+        "coordinate_mode": {
+          "type": "string"
+        },
+        "background": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "width",
+        "height"
+      ]
+    },
+    "regions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string"
+          },
+          "flow": {
+            "type": "string"
+          },
+          "slot_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "id",
+          "role",
+          "flow",
+          "slot_ids"
+        ]
+      }
+    },
+    "slots": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "kind": {
+            "type": "string"
+          },
+          "prompt": {
+            "type": "string"
+          },
+          "content": {
+            "type": "object"
+          }
+        },
+        "required": [
+          "id",
+          "kind",
+          "prompt",
+          "content"
+        ]
+      }
+    },
+    "groups": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "constraints": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "diagrams": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "reading_order": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "schema",
+    "problem_id",
+    "canvas",
+    "regions",
+    "slots",
+    "groups",
+    "constraints",
+    "diagrams",
+    "reading_order"
+  ]
+}

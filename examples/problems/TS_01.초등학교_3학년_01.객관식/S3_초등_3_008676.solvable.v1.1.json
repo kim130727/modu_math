@@ -1,0 +1,92 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008676",
+  "problem_type": "geometry_circle_diameter",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "선분 ㄱㄹ",
+    "target_ticks": 0,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.circle",
+      "value": "circle"
+    },
+    {
+      "ref": "obj.center",
+      "value": "center_point"
+    },
+    {
+      "ref": "obj.segment.gh",
+      "value": "candidate_segment"
+    },
+    {
+      "ref": "obj.segment.og",
+      "value": "candidate_segment"
+    },
+    {
+      "ref": "obj.segment.on",
+      "value": "candidate_segment"
+    },
+    {
+      "ref": "obj.segment.dr",
+      "value": "candidate_segment"
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "selected_segment"
+  },
+  "method": "center_intersection_check",
+  "plan": [
+    "원 위의 두 점을 이은 선분인지 확인한다.",
+    "원의 중심을 지나는지 확인한다.",
+    "조건을 만족하는 선분을 고른다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "선분 ㄱㄹ은 원의 중심을 지난다.",
+      "value": true
+    },
+    {
+      "id": "step.2",
+      "expr": "다른 보기들은 원의 지름 조건을 만족하지 않는다.",
+      "value": true
+    },
+    {
+      "id": "step.3",
+      "expr": "정답 선택",
+      "value": "선분 ㄱㄹ"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "중심을 지나는가?",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "id": "check.2",
+      "expr": "답이 보기와 일치하는가?",
+      "expected": "선분 ㄱㄹ",
+      "actual": "선분 ㄱㄹ",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "selected_segment",
+      "description": "원의 지름을 나타내는 선분"
+    },
+    "value": 1,
+    "unit": ""
+  }
+}

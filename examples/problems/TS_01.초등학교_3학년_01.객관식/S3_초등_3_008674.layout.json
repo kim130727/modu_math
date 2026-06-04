@@ -1,0 +1,314 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008674",
+  "title": "원을 바르게 완성한 것을 선택하세요",
+  "canvas": {
+    "width": 926.0,
+    "height": 658.0,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.header",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.header.mark",
+        "slot.header.text"
+      ]
+    },
+    {
+      "id": "region.options.top",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.top.square",
+        "slot.top.arc",
+        "slot.top.center"
+      ]
+    },
+    {
+      "id": "region.options.middle",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.mid.left.square",
+        "slot.mid.left.arc",
+        "slot.mid.left.red",
+        "slot.mid.left.center",
+        "slot.mid.mid.square",
+        "slot.mid.mid.arc",
+        "slot.mid.mid.center",
+        "slot.mid.right.square",
+        "slot.mid.right.arc",
+        "slot.mid.right.red",
+        "slot.mid.right.center",
+        "slot.mid.mid.red"
+      ]
+    },
+    {
+      "id": "region.answer",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.answer.square",
+        "slot.answer.arc",
+        "slot.answer.center"
+      ]
+    },
+    {
+      "id": "region.explanation",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.header.mark",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "☐ 55.",
+        "style_role": "question",
+        "x": 10.0,
+        "y": 32.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.header.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "원을 바르게 완성한 것을 선택하세요.",
+        "style_role": "question",
+        "x": 70.0,
+        "y": 32.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.top.square",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 410.0,
+        "y": 48.0,
+        "width": 160.0,
+        "height": 160.0
+      }
+    },
+    {
+      "id": "slot.top.arc",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 490.0 48.0 A 80.0 80.0 0 1 0 570.0 128.0",
+        "x": 0.0,
+        "y": 0.0
+      }
+    },
+    {
+      "id": "slot.top.center",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 490.0,
+        "cy": 128.0,
+        "r": 4.0,
+        "fill": "#e91e63"
+      }
+    },
+    {
+      "id": "slot.mid.left.square",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 140.0,
+        "y": 226.0,
+        "width": 160.0,
+        "height": 160.0
+      }
+    },
+    {
+      "id": "slot.mid.left.arc",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 140.0 306.0 A 80.0 80.0 0 1 1 220.0 226.0",
+        "x": 0.0,
+        "y": 0.0
+      }
+    },
+    {
+      "id": "slot.mid.left.red",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 220.0 226.0 A 80.0 80.0 0 0 0 300.0 306.0",
+        "x": 0.0,
+        "y": 0.0
+      }
+    },
+    {
+      "id": "slot.mid.left.center",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 220.0,
+        "cy": 306.0,
+        "r": 4.0,
+        "fill": "#e91e63"
+      }
+    },
+    {
+      "id": "slot.mid.mid.square",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 410.0,
+        "y": 226.0,
+        "width": 160.0,
+        "height": 160.0
+      }
+    },
+    {
+      "id": "slot.mid.mid.arc",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 410.0 306.0 A 80.0 80.0 0 1 1 490.0 226.0",
+        "x": 0.0,
+        "y": 0.0
+      }
+    },
+    {
+      "id": "slot.mid.mid.red",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 490.0,
+        "y1": 226.0,
+        "x2": 570.0,
+        "y2": 306.0
+      }
+    },
+    {
+      "id": "slot.mid.mid.center",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 490.0,
+        "cy": 306.0,
+        "r": 4.0,
+        "fill": "#e91e63"
+      }
+    },
+    {
+      "id": "slot.mid.right.square",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 700.0,
+        "y": 226.0,
+        "width": 160.0,
+        "height": 160.0
+      }
+    },
+    {
+      "id": "slot.mid.right.arc",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 700.0 306.0 A 80.0 80.0 0 1 1 780.0 226.0",
+        "x": 0.0,
+        "y": 0.0
+      }
+    },
+    {
+      "id": "slot.mid.right.red",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 780.0 226.0 A 80.0 80.0 0 0 1 860.0 306.0",
+        "x": 0.0,
+        "y": 0.0
+      }
+    },
+    {
+      "id": "slot.mid.right.center",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 780.0,
+        "cy": 306.0,
+        "r": 4.0,
+        "fill": "#e91e63"
+      }
+    },
+    {
+      "id": "slot.answer.square",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 60.0,
+        "y": 412.0,
+        "width": 160.0,
+        "height": 160.0
+      }
+    },
+    {
+      "id": "slot.answer.arc",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 60.0 492.0 A 80.0 80.0 0 1 1 140.0 412.0",
+        "x": 0.0,
+        "y": 0.0
+      }
+    },
+    {
+      "id": "slot.answer.center",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 140.0,
+        "cy": 492.0,
+        "r": 4.0,
+        "fill": "#e91e63"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.header",
+    "slot.header.mark",
+    "slot.header.text",
+    "region.options.top",
+    "slot.top.square",
+    "slot.top.arc",
+    "slot.top.center",
+    "region.options.middle",
+    "slot.mid.left.square",
+    "slot.mid.left.arc",
+    "slot.mid.left.red",
+    "slot.mid.left.center",
+    "slot.mid.mid.square",
+    "slot.mid.mid.arc",
+    "slot.mid.mid.center",
+    "slot.mid.right.square",
+    "slot.mid.right.arc",
+    "slot.mid.right.red",
+    "slot.mid.right.center",
+    "slot.mid.mid.red",
+    "region.answer",
+    "slot.answer.square",
+    "slot.answer.arc",
+    "slot.answer.center",
+    "region.explanation"
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008610",
+  "problem_type": "multiple_choice_calculation_check",
+  "inputs": {
+    "target_label": "바르게 계산한 식의 기호",
+    "unit": "",
+    "target_ticks": 0,
+    "target_count": 1,
+    "total_ticks": 0
+  },
+  "given": [
+    {
+      "ref": "obj.choice.1",
+      "value": {
+        "symbol": "㉠",
+        "text": "54 ÷ 3 = 17"
+      }
+    },
+    {
+      "ref": "obj.choice.2",
+      "value": {
+        "symbol": "㉡",
+        "text": "96 ÷ 8 = 12"
+      }
+    },
+    {
+      "ref": "obj.ref.correct",
+      "value": {
+        "text": "54 ÷ 3 = 18"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "symbol"
+  },
+  "method": "compare_calculation_results",
+  "plan": [
+    "각 보기의 계산이 맞는지 확인하고 바른 식의 기호를 선택한다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "54 ÷ 3 = 18",
+      "value": false
+    },
+    {
+      "id": "step.2",
+      "expr": "96 ÷ 8 = 12",
+      "value": true
+    },
+    {
+      "id": "step.3",
+      "expr": "선택한 기호",
+      "value": "㉡"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "selected_symbol_check",
+      "expected": "㉡",
+      "actual": "㉡",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "symbol",
+      "description": "바르게 계산한 식의 기호"
+    },
+    "value": "㉡",
+    "unit": ""
+  }
+}

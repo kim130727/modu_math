@@ -1,0 +1,68 @@
+{
+  "problem_id": "S3_초등_3_008618",
+  "problem_type": "compare_division_results",
+  "metadata": {
+    "title": "묶이 가장 큰 나눗셈을 말한 사람을 선택해 보세요.",
+    "tags": [],
+    "question": "묶이 가장 큰 나눗셈을 말한 사람을 선택해 보세요.",
+    "required_layout_ids": [
+      "slot.check",
+      "slot.bubble.left",
+      "slot.bubble.mid",
+      "slot.bubble.right",
+      "slot.name.left",
+      "slot.name.mid",
+      "slot.name.right"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "세 나눗셈의 결과를 비교하여 가장 큰 값을 말한 사람을 찾는다."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.sojin",
+        "type": "person",
+        "name": "소진"
+      },
+      {
+        "id": "obj.gyeongsu",
+        "type": "person",
+        "name": "경수"
+      },
+      {
+        "id": "obj.taehee",
+        "type": "person",
+        "name": "태희"
+      },
+      {
+        "id": "obj.expr1",
+        "type": "division_expression",
+        "expression": "262 ÷ 2"
+      },
+      {
+        "id": "obj.expr2",
+        "type": "division_expression",
+        "expression": "440 ÷ 5"
+      },
+      {
+        "id": "obj.expr3",
+        "type": "division_expression",
+        "expression": "552 ÷ 6"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "person_name",
+      "description": "가장 큰 나눗셈 결과를 말한 사람"
+    },
+    "value": "소진",
+    "unit": ""
+  }
+}

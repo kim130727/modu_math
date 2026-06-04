@@ -1,0 +1,154 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008627",
+  "title": "나머지가 다른 하나는 어느 것일까요?",
+  "canvas": {
+    "width": 736.0,
+    "height": 317.0,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.box",
+        "slot.num",
+        "slot.q",
+        "slot.opt1",
+        "slot.opt2",
+        "slot.opt3",
+        "slot.opt4",
+        "slot.opt5",
+        "slot.conclusion"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.box",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "□",
+        "style_role": "question",
+        "x": 8.0,
+        "y": 23.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.num",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "97.",
+        "style_role": "question",
+        "x": 31.0,
+        "y": 23.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "나머지가 다른 하나는 어느 것일까요?",
+        "style_role": "question",
+        "x": 86.0,
+        "y": 23.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.opt1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "① 37 ÷ 7",
+        "style_role": "question",
+        "x": 18.0,
+        "y": 72.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.opt2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "② 22 ÷ 5",
+        "style_role": "question",
+        "x": 238.0,
+        "y": 72.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.opt3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "③ 26 ÷ 4",
+        "style_role": "question",
+        "x": 478.0,
+        "y": 72.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.opt4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "④ 58 ÷ 9",
+        "style_role": "question",
+        "x": 18.0,
+        "y": 121.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.opt5",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "⑤ 66 ÷ 8",
+        "style_role": "question",
+        "x": 238.0,
+        "y": 121.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.conclusion",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "따라서 나머지가 다른 하나는 ④입니다.",
+        "style_role": "question",
+        "x": 12.0,
+        "y": 284.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.box",
+    "slot.num",
+    "slot.q",
+    "slot.opt1",
+    "slot.opt2",
+    "slot.opt3",
+    "slot.opt4",
+    "slot.opt5",
+    "slot.conclusion"
+  ]
+}

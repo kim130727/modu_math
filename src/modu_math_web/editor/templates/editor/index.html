@@ -1,0 +1,2101 @@
+﻿<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ModuMath Editor MVP</title>
+  <style>
+    :root {
+      --bg: #f4f6f8;
+      --panel: #ffffff;
+      --text: #111827;
+      --muted: #6b7280;
+      --line: #d1d5db;
+      --primary: #0f766e;
+      --danger: #b91c1c;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", "Pretendard", sans-serif;
+      color: var(--text);
+      background: radial-gradient(circle at 20% 0%, #e2f6f5, var(--bg));
+    }
+    .wrap { min-height: 100vh; padding: 12px; }
+    .main { display: grid; grid-template-rows: auto auto auto 1fr auto; gap: 10px; }
+    .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 12px; overflow: auto; }
+    h2 { margin: 0 0 8px; font-size: 14px; color: var(--muted); }
+    .row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+    .grow { flex: 1 1 420px; }
+    button {
+      border: 1px solid var(--line);
+      background: #fff;
+      border-radius: 8px;
+      padding: 8px 10px;
+      cursor: pointer;
+      color: var(--text);
+    }
+    button.primary { background: var(--primary); color: #fff; border-color: var(--primary); }
+    .toolbar {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      align-items: center;
+      padding: 8px;
+    }
+    .tool-group {
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+      padding: 3px;
+      border: 1px solid #e5e7eb;
+      border-radius: 9px;
+      background: #f9fafb;
+    }
+    .icon-btn {
+      width: 36px;
+      height: 34px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      border-color: transparent;
+      border-radius: 7px;
+      background: transparent;
+    }
+    .icon-btn:hover {
+      background: #eef6f5;
+      border-color: #c9dcda;
+    }
+    .icon-btn.primary,
+    .icon-btn.active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #fff;
+    }
+    .icon-btn.danger:hover {
+      background: #fef2f2;
+      border-color: #fecaca;
+      color: var(--danger);
+    }
+    .icon-btn svg {
+      width: 19px;
+      height: 19px;
+      stroke: currentColor;
+      stroke-width: 1.9;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      fill: none;
+      pointer-events: none;
+    }
+    textarea, input {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 8px;
+      font-family: Consolas, monospace;
+    }
+    textarea { min-height: 180px; }
+    .grid { display: grid; grid-template-columns: 1fr; gap: 10px; min-height: 420px; }
+    .svg-box {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 8px;
+      background: #fff;
+      overflow: hidden;
+      height: 72vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .svg-box svg {
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      display: block;
+      user-select: none;
+      -webkit-user-select: none;
+      -ms-user-select: none;
+    }
+    .svg-box, .svg-box svg text {
+      user-select: none;
+      -webkit-user-select: none;
+      -ms-user-select: none;
+    }
+    .svg-box svg [id^="slot."] { cursor: move; }
+    .svg-box svg .slot-selected { filter: drop-shadow(0 0 3px #0f766e); }
+    .svg-box svg .pick-disabled { pointer-events: none; opacity: 0.35; }
+<<<<<<< HEAD
+    .svg-box svg .selection-frame {
+      fill: none;
+      stroke: #0f766e;
+      stroke-width: 1;
+      stroke-dasharray: 4 3;
+      pointer-events: none;
+    }
+    .svg-box svg .resize-handle {
+      fill: #ffffff;
+      stroke: #0f766e;
+      stroke-width: 1.5;
+      vector-effect: non-scaling-stroke;
+    }
+=======
+    .svg-box svg .selection-bounds {
+      fill: none;
+      stroke: #0f766e;
+      stroke-width: 1.5;
+      stroke-dasharray: 5 3;
+      pointer-events: none;
+    }
+    .svg-box svg .selection-handle {
+      fill: #ffffff;
+      stroke: #0f766e;
+      stroke-width: 1.5;
+      cursor: pointer;
+    }
+    .svg-box svg .selection-handle[data-handle="n"],
+    .svg-box svg .selection-handle[data-handle="s"] { cursor: ns-resize; }
+    .svg-box svg .selection-handle[data-handle="e"],
+    .svg-box svg .selection-handle[data-handle="w"] { cursor: ew-resize; }
+    .svg-box svg .selection-handle[data-handle="nw"],
+    .svg-box svg .selection-handle[data-handle="se"] { cursor: nwse-resize; }
+    .svg-box svg .selection-handle[data-handle="ne"],
+    .svg-box svg .selection-handle[data-handle="sw"] { cursor: nesw-resize; }
+    .svg-box svg .selection-handle[data-handle="c"] { cursor: move; fill: #0f766e; }
+>>>>>>> 71a328bd333ac522efc2b16e3372d00a762fe4a9
+    .marquee {
+      position: absolute;
+      border: 1px dashed #0f766e;
+      background: rgba(15, 118, 110, 0.12);
+      pointer-events: none;
+      display: none;
+      z-index: 2;
+    }
+    .log {
+      white-space: pre-wrap;
+      font-family: Consolas, monospace;
+      font-size: 12px;
+      color: #111;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 8px;
+      background: #fff;
+    }
+    .artifact-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+      margin-top: 10px;
+    }
+    .artifact-grid textarea {
+      min-height: 160px;
+      font-size: 12px;
+    }
+    .err { color: var(--danger); }
+    .ok { color: #047857; }
+    .tree {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 8px;
+      max-height: 220px;
+      overflow: auto;
+      background: #fff;
+    }
+    .tree ul { list-style: none; margin: 0; padding-left: 14px; }
+    .tree li { margin: 3px 0; }
+    .tree .folder { color: var(--muted); font-weight: 600; }
+    .tree .file-btn {
+      border: none;
+      background: transparent;
+      padding: 2px 4px;
+      border-radius: 6px;
+      text-align: left;
+      width: auto;
+    }
+    .tree .file-btn:hover { background: #ecfeff; }
+  </style>
+</head>
+<body>
+  <svg width="0" height="0" style="position:absolute;overflow:hidden" aria-hidden="true" focusable="false">
+    <symbol id="icon-reload" viewBox="0 0 24 24"><path d="M20 11a8 8 0 1 0-2.3 5.7"/><path d="M20 4v7h-7"/></symbol>
+    <symbol id="icon-save" viewBox="0 0 24 24"><path d="M5 4h12l2 2v14H5z"/><path d="M8 4v6h8V4"/><path d="M8 20v-6h8v6"/></symbol>
+    <symbol id="icon-build" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></symbol>
+    <symbol id="icon-snap" viewBox="0 0 24 24"><path d="M6 4v7a6 6 0 0 0 12 0V4"/><path d="M6 8h5"/><path d="M13 8h5"/><path d="M6 18l12-12"/></symbol>
+    <symbol id="icon-align-left" viewBox="0 0 24 24"><path d="M5 4v16"/><path d="M9 7h10"/><path d="M9 12h7"/><path d="M9 17h11"/></symbol>
+    <symbol id="icon-align-center" viewBox="0 0 24 24"><path d="M12 4v16"/><path d="M7 7h10"/><path d="M9 12h6"/><path d="M6 17h12"/></symbol>
+    <symbol id="icon-align-right" viewBox="0 0 24 24"><path d="M19 4v16"/><path d="M5 7h10"/><path d="M8 12h7"/><path d="M4 17h11"/></symbol>
+    <symbol id="icon-align-top" viewBox="0 0 24 24"><path d="M4 5h16"/><path d="M7 9v10"/><path d="M12 9v7"/><path d="M17 9v11"/></symbol>
+    <symbol id="icon-align-middle" viewBox="0 0 24 24"><path d="M4 12h16"/><path d="M7 6v12"/><path d="M12 8v8"/><path d="M17 5v14"/></symbol>
+    <symbol id="icon-align-bottom" viewBox="0 0 24 24"><path d="M4 19h16"/><path d="M7 5v10"/><path d="M12 8v7"/><path d="M17 4v11"/></symbol>
+    <symbol id="icon-undo" viewBox="0 0 24 24"><path d="M9 7H4v5"/><path d="M4 12a8 8 0 0 1 13.7-4.7"/></symbol>
+    <symbol id="icon-redo" viewBox="0 0 24 24"><path d="M15 7h5v5"/><path d="M20 12A8 8 0 0 0 6.3 7.3"/></symbol>
+    <symbol id="icon-trash" viewBox="0 0 24 24"><path d="M4 7h16"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M6 7l1 13h10l1-13"/><path d="M9 7V4h6v3"/></symbol>
+    <symbol id="icon-pick-all" viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="M8 8h3v3H8z"/><path d="M13 8h3v3h-3z"/><path d="M8 13h8v3H8z"/></symbol>
+    <symbol id="icon-pick-line" viewBox="0 0 24 24"><path d="M5 18 19 6"/><path d="M6 6h12v12"/></symbol>
+    <symbol id="icon-pick-shape" viewBox="0 0 24 24"><path d="M5 5h8v8H5z"/><path d="M15 15h4v4h-4z"/><path d="M6 19h6"/></symbol>
+  </svg>
+  <div class="wrap">
+    <section class="main">
+      <div class="panel">
+        <h2>문제 열기</h2>
+        <div class="row">
+          <div class="grow">
+            <input id="problemInput" list="problemOptions" placeholder="예: 0001 또는 260422/0013_과일 원그래프">
+            <datalist id="problemOptions"></datalist>
+          </div>
+          <button id="openBtn">Open</button>
+          <button id="refreshListBtn">Refresh List</button>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h2>선택된 문제</h2>
+        <div id="selectedProblem">없음</div>
+      </div>
+
+      <div class="panel">
+        <h2>파일 탐색</h2>
+        <div class="tree" id="problemTree"></div>
+      </div>
+
+      <div class="panel toolbar">
+        <div class="tool-group">
+          <button id="reloadBtn" class="icon-btn" title="Reload" aria-label="Reload"><svg><use href="#icon-reload"></use></svg></button>
+          <button id="saveBtn" class="icon-btn primary" title="Save DSL" aria-label="Save DSL"><svg><use href="#icon-save"></use></svg></button>
+          <button id="buildBtn" class="icon-btn" title="Build" aria-label="Build"><svg><use href="#icon-build"></use></svg></button>
+        </div>
+        <div class="tool-group">
+          <button id="snapToggleBtn" class="icon-btn active" title="Snap: ON (5px)" aria-label="Snap: ON (5px)"><svg><use href="#icon-snap"></use></svg></button>
+          <button id="pickAllBtn" class="icon-btn active" title="Pick: All" aria-label="Pick: All"><svg><use href="#icon-pick-all"></use></svg></button>
+          <button id="pickLinePathBtn" class="icon-btn" title="Pick: Line/Path" aria-label="Pick: Line/Path"><svg><use href="#icon-pick-line"></use></svg></button>
+          <button id="pickTextRectBtn" class="icon-btn" title="Pick: Text/Rect" aria-label="Pick: Text/Rect"><svg><use href="#icon-pick-shape"></use></svg></button>
+        </div>
+        <div class="tool-group">
+          <button id="alignLeftBtn" class="icon-btn" title="Align Left" aria-label="Align Left"><svg><use href="#icon-align-left"></use></svg></button>
+          <button id="alignCenterBtn" class="icon-btn" title="Align Center" aria-label="Align Center"><svg><use href="#icon-align-center"></use></svg></button>
+          <button id="alignRightBtn" class="icon-btn" title="Align Right" aria-label="Align Right"><svg><use href="#icon-align-right"></use></svg></button>
+          <button id="alignTopBtn" class="icon-btn" title="Align Top" aria-label="Align Top"><svg><use href="#icon-align-top"></use></svg></button>
+          <button id="alignMiddleBtn" class="icon-btn" title="Align Middle" aria-label="Align Middle"><svg><use href="#icon-align-middle"></use></svg></button>
+          <button id="alignBottomBtn" class="icon-btn" title="Align Bottom" aria-label="Align Bottom"><svg><use href="#icon-align-bottom"></use></svg></button>
+        </div>
+        <div class="tool-group">
+          <button id="undoBtn" class="icon-btn" title="Undo" aria-label="Undo"><svg><use href="#icon-undo"></use></svg></button>
+          <button id="redoBtn" class="icon-btn" title="Redo" aria-label="Redo"><svg><use href="#icon-redo"></use></svg></button>
+          <button id="deleteBtn" class="icon-btn danger" title="Delete Selected" aria-label="Delete Selected"><svg><use href="#icon-trash"></use></svg></button>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h2>상태</h2>
+        <div id="status"></div>
+      </div>
+
+      <div class="grid">
+        <div class="panel">
+          <h2>SVG Preview</h2>
+          <div class="svg-box" id="svgPreview"><div class="marquee" id="marqueeBox"></div></div>
+          <h2 style="margin-top:10px;">Build Stdout/Stderr</h2>
+          <div class="log" id="buildLog"></div>
+          <div class="artifact-grid">
+            <div>
+              <h2>Semantic</h2>
+              <textarea id="semanticView" readonly></textarea>
+            </div>
+            <div>
+              <h2>Solvable</h2>
+              <textarea id="solvableView" readonly></textarea>
+            </div>
+            <div>
+              <h2>Layout</h2>
+              <textarea id="layoutView" readonly></textarea>
+            </div>
+            <div>
+              <h2>Renderer</h2>
+              <textarea id="rendererView" readonly></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h2>DSL</h2>
+        <textarea id="dslEditor"></textarea>
+        <h2 style="margin-top:10px;">Layout Patch</h2>
+        <input id="slotId" placeholder="slot.q1">
+        <textarea id="patchJson" style="min-height:120px;">{"x":120.0,"y":80.0,"font_size":28}</textarea>
+        <h2 style="margin-top:10px;">Selected Text</h2>
+        <input id="textEditInput" placeholder="텍스트 요소를 선택하세요" disabled>
+        <div class="row" style="margin-top:8px;">
+          <button id="patchBtn">Patch</button>
+          <button id="patchBuildBtn">Patch + Build</button>
+          <button id="textEditBtn" disabled>Update Text</button>
+        </div>
+      </div>
+
+    </section>
+  </div>
+
+  <script>
+    let currentProblemId = null;
+    let knownProblems = [];
+    let dragState = null;
+    let resizeState = null;
+    let selectedSlots = new Map();
+    let selectedSlotId = null;
+    let selectedElement = null;
+    let keyboardCommitTimer = null;
+    let undoStack = [];
+    let redoStack = [];
+    let historyBusy = false;
+    let dragFrameRequested = false;
+    let lastDragStatusAt = 0;
+    let dragCommitTimer = null;
+    let pickMode = "all";
+    let marqueeState = null;
+    let resizeState = null;
+    let snapEnabled = true;
+    const SNAP_STEP = 5;
+
+    function setStatus(text, ok = true) {
+      const el = document.getElementById("status");
+      el.className = ok ? "ok" : "err";
+      el.textContent = text;
+    }
+
+    function snapValue(v) {
+      if (!snapEnabled) return v;
+      return Math.round(v / SNAP_STEP) * SNAP_STEP;
+    }
+
+    function updateSnapButton() {
+      const btn = document.getElementById("snapToggleBtn");
+      if (!btn) return;
+      const label = snapEnabled ? "Snap: ON (5px)" : "Snap: OFF";
+      btn.classList.toggle("active", snapEnabled);
+      btn.title = label;
+      btn.setAttribute("aria-label", label);
+    }
+
+    async function api(url, options) {
+      const res = await fetch(url, options);
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || JSON.stringify(data));
+      return data;
+    }
+
+    function renderSvg(svgText) {
+      const preview = document.getElementById("svgPreview");
+      preview.innerHTML = (svgText || "<em>SVG 없음</em>") + '<div class="marquee" id="marqueeBox"></div>';
+      selectedSlots = new Map();
+      selectedSlotId = null;
+      selectedElement = null;
+      resizeState = null;
+      bindSlotInteractions();
+      applyPickMode();
+      updateSelectionHandles();
+      updateTextEditControls();
+    }
+
+    function renderJsonView(id, value) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      if (value === null || value === undefined) {
+        el.value = "";
+        return;
+      }
+      el.value = typeof value === "string" ? value : JSON.stringify(value, null, 2);
+    }
+
+    function renderArtifacts(artifacts) {
+      renderSvg(artifacts?.svg || null);
+      renderJsonView("semanticView", artifacts?.semantic || null);
+      renderJsonView("solvableView", artifacts?.solvable || null);
+      renderJsonView("layoutView", artifacts?.layout || null);
+      renderJsonView("rendererView", artifacts?.renderer || null);
+    }
+
+    function getSvgPoint(svg, clientX, clientY) {
+      const pt = svg.createSVGPoint();
+      pt.x = clientX;
+      pt.y = clientY;
+      const ctm = svg.getScreenCTM();
+      if (!ctm) return { x: 0, y: 0 };
+      return pt.matrixTransform(ctm.inverse());
+    }
+
+    async function commitPatches(patches, reason = "저장 완료", withBuild = true) {
+      if (!currentProblemId) return;
+      if (!patches || !patches.length) return;
+      const preserveSelection = Array.from(selectedSlots.keys());
+      const payload = { patches };
+      const endpoint = withBuild ? "/layout-patch-and-build/" : "/layout-patch/";
+      const data = await api(encodedProblemPath(currentProblemId, endpoint), {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      document.getElementById("dslEditor").value = data.dsl || "";
+      if (withBuild) {
+        renderArtifacts(data.artifacts || null);
+        renderLog(data.build?.stdout || "", data.build?.stderr || "");
+        restoreSelection(preserveSelection);
+      }
+      const last = patches[patches.length - 1];
+      const slotId = last.target;
+      const value = last.value;
+      document.getElementById("slotId").value = slotId;
+      document.getElementById("patchJson").value = value === undefined ? "" : JSON.stringify(value, null, 2);
+      setStatus(reason, true);
+    }
+
+    function restoreSelection(slotIds) {
+      if (!slotIds || !slotIds.length) return;
+      clearSelection();
+      for (const slotId of slotIds) {
+        const el = findElementBySlotId(slotId);
+        if (el) setSelectedElement(el, slotId, true);
+      }
+      updateSelectionHandles();
+      updateTextEditControls();
+    }
+
+    async function commitSlotPatch(slotId, value, reason = "저장 완료", withBuild = true) {
+      await commitPatches([{ target: slotId, op: "update", value }], reason, withBuild);
+    }
+
+    function queueDragCommit(task) {
+      if (dragCommitTimer) clearTimeout(dragCommitTimer);
+      dragCommitTimer = setTimeout(async () => {
+        dragCommitTimer = null;
+        await task();
+      }, 120);
+    }
+
+    function extractDslSlotIds() {
+      const dsl = document.getElementById("dslEditor").value || "";
+      const ids = new Set();
+      const re = /\bid\s*=\s*["']([^"']+)["']/g;
+      let m = null;
+      while ((m = re.exec(dsl)) !== null) {
+        ids.add(m[1]);
+      }
+      return ids;
+    }
+
+    function isDirectDslSlotId(slotId) {
+      return extractDslSlotIds().has(slotId);
+    }
+
+    function toDslSlotId(svgElementId) {
+      if (!svgElementId) return svgElementId;
+      const dslIds = extractDslSlotIds();
+      if (dslIds.has(svgElementId)) return svgElementId;
+      const parts = svgElementId.split(".");
+      while (parts.length > 1) {
+        parts.pop();
+        const candidate = parts.join(".");
+        if (dslIds.has(candidate)) return candidate;
+      }
+      return svgElementId;
+    }
+
+    function parseFractionPartId(svgElementId) {
+      if (!svgElementId) return null;
+      const base = svgElementId.replace(/\.(text|line|rect|path|polygon|circle)$/i, "");
+      const m = base.match(/^(slot\..+)\.(num|bar|den)$/);
+      if (!m) return null;
+      return { prefix: m[1], part: m[2] };
+    }
+
+    function isDraggableSlotElement(el) {
+      if (!el) return false;
+      const tag = el.tagName.toLowerCase();
+      return tag === "text" || tag === "rect" || tag === "circle" || tag === "line" || tag === "path" || tag === "polygon";
+    }
+
+    function matchesPickMode(el) {
+      if (!el) return false;
+      const tag = el.tagName.toLowerCase();
+      if (pickMode === "all") return true;
+      if (pickMode === "linepath") {
+        if (!(tag === "line" || tag === "path")) return false;
+        const id = el.getAttribute("id") || "";
+        // Exclude fraction bars in line/path pick mode.
+        if (/^slot\..+\.bar\.line$/i.test(id)) return false;
+        return true;
+      }
+      if (pickMode === "textrect") return tag === "text" || tag === "rect";
+      return true;
+    }
+
+    function slotIdFromElement(el) {
+      const rawId = el ? el.getAttribute("id") : "";
+      const fracInfo = parseFractionPartId(rawId);
+      return fracInfo ? fracInfo.prefix : toDslSlotId(rawId);
+    }
+
+    function arrowBaseFromSlotId(slotId) {
+      if (!slotId || !slotId.includes("arrow")) return null;
+      // e.g. slot.arrow_head, slot.arrow_body, slot.arrow.head -> slot.arrow
+      const base = slotId
+        .replace(/(?:_head\d*|_body\d*)$/i, "")
+        .replace(/(?:\.head\d*|\.body\d*)$/i, "");
+      if (base !== slotId) return base;
+      // body id can be already base-shaped: slot.label.arrow
+      if (/(?:^|[._])arrow$/i.test(slotId)) return slotId;
+      return null;
+    }
+
+    function collectArrowGroupSlotIds(slotId) {
+      const base = arrowBaseFromSlotId(slotId);
+      if (!base) return [slotId];
+      const svg = document.getElementById("svgPreview").querySelector("svg");
+      if (!svg) return [slotId];
+      const out = new Set([slotId]);
+      const nodes = svg.querySelectorAll('[id^="slot."]');
+      for (const node of nodes) {
+        if (!isDraggableSlotElement(node)) continue;
+        const sid = slotIdFromElement(node);
+        if (!sid) continue;
+        if (sid === base || sid.startsWith(`${base}_head`) || sid.startsWith(`${base}_body`) || sid.startsWith(`${base}.head`) || sid.startsWith(`${base}.body`)) {
+          out.add(sid);
+        }
+      }
+      return Array.from(out);
+    }
+
+    function applyPickMode() {
+      const svg = document.getElementById("svgPreview").querySelector("svg");
+      if (!svg) return;
+      const nodes = svg.querySelectorAll('[id^="slot."]');
+      for (const node of nodes) {
+        if (!isDraggableSlotElement(node)) continue;
+        if (matchesPickMode(node)) node.classList.remove("pick-disabled");
+        else node.classList.add("pick-disabled");
+      }
+      document.getElementById("pickAllBtn").classList.toggle("active", pickMode === "all");
+      document.getElementById("pickLinePathBtn").classList.toggle("active", pickMode === "linepath");
+      document.getElementById("pickTextRectBtn").classList.toggle("active", pickMode === "textrect");
+    }
+
+    function intersects(a, b) {
+      return a.x <= b.x + b.width && a.x + a.width >= b.x && a.y <= b.y + b.height && a.y + a.height >= b.y;
+    }
+
+    function beginMarquee(svg, ev) {
+      const container = document.getElementById("svgPreview");
+      const box = document.getElementById("marqueeBox");
+      const start = getSvgPoint(svg, ev.clientX, ev.clientY);
+      marqueeState = {
+        svg,
+        pointerId: ev.pointerId,
+        startSvg: start,
+        startClientX: ev.clientX,
+        startClientY: ev.clientY,
+      };
+      box.style.display = "block";
+      box.style.left = `${ev.clientX - container.getBoundingClientRect().left}px`;
+      box.style.top = `${ev.clientY - container.getBoundingClientRect().top}px`;
+      box.style.width = "0px";
+      box.style.height = "0px";
+      svg.setPointerCapture(ev.pointerId);
+    }
+
+    function updateMarquee(ev) {
+      if (!marqueeState) return;
+      const container = document.getElementById("svgPreview");
+      const box = document.getElementById("marqueeBox");
+      const cr = container.getBoundingClientRect();
+      const x1 = marqueeState.startClientX - cr.left;
+      const y1 = marqueeState.startClientY - cr.top;
+      const x2 = ev.clientX - cr.left;
+      const y2 = ev.clientY - cr.top;
+      box.style.left = `${Math.min(x1, x2)}px`;
+      box.style.top = `${Math.min(y1, y2)}px`;
+      box.style.width = `${Math.abs(x2 - x1)}px`;
+      box.style.height = `${Math.abs(y2 - y1)}px`;
+    }
+
+    function endMarquee(ev) {
+      if (!marqueeState) return;
+      const local = marqueeState;
+      marqueeState = null;
+      const box = document.getElementById("marqueeBox");
+      box.style.display = "none";
+      if (local.svg.hasPointerCapture(local.pointerId)) local.svg.releasePointerCapture(local.pointerId);
+
+      const end = getSvgPoint(local.svg, ev.clientX, ev.clientY);
+      const pickRect = {
+        x: Math.min(local.startSvg.x, end.x),
+        y: Math.min(local.startSvg.y, end.y),
+        width: Math.abs(end.x - local.startSvg.x),
+        height: Math.abs(end.y - local.startSvg.y),
+      };
+      if (pickRect.width < 2 && pickRect.height < 2) return;
+
+      clearSelection();
+      const nodes = local.svg.querySelectorAll('[id^="slot."]');
+      for (const node of nodes) {
+        if (!isDraggableSlotElement(node) || !matchesPickMode(node)) continue;
+        let bb = null;
+        try {
+          bb = node.getBBox();
+        } catch (_) {
+          bb = null;
+        }
+        if (!bb || !intersects(pickRect, bb)) continue;
+        const slotId = slotIdFromElement(node);
+        if (!slotId || !slotId.startsWith("slot.")) continue;
+        setSelectedElement(node, slotId, true);
+      }
+      setStatus(`영역 선택: ${selectedSlots.size}개`, true);
+    }
+
+    function findDraggableSlotAncestor(node) {
+      let cur = node;
+      while (cur && cur.tagName && cur.tagName.toLowerCase() !== "svg") {
+        if (cur.id && cur.id.startsWith("slot.") && isDraggableSlotElement(cur)) return cur;
+        cur = cur.parentNode;
+      }
+      return null;
+    }
+
+    function readSlotPatchValue(el) {
+      const tag = el.tagName.toLowerCase();
+      if (tag === "text") {
+<<<<<<< HEAD
+        return { x: Number(el.getAttribute("x") || 0), y: Number(el.getAttribute("y") || 0) };
+=======
+        return {
+          text: el.textContent || "",
+          x: Number(el.getAttribute("x") || 0),
+          y: Number(el.getAttribute("y") || 0),
+          font_size: Number(el.getAttribute("font-size") || el.getAttribute("font_size") || 0) || undefined,
+        };
+      }
+      if (tag === "rect") {
+        return {
+          x: Number(el.getAttribute("x") || 0),
+          y: Number(el.getAttribute("y") || 0),
+          width: Number(el.getAttribute("width") || 0),
+          height: Number(el.getAttribute("height") || 0),
+        };
+>>>>>>> 71a328bd333ac522efc2b16e3372d00a762fe4a9
+      }
+      if (tag === "rect") {
+        return {
+          x: Number(el.getAttribute("x") || 0),
+          y: Number(el.getAttribute("y") || 0),
+          width: Number(el.getAttribute("width") || 0),
+          height: Number(el.getAttribute("height") || 0),
+        };
+      }
+      if (tag === "circle") {
+        return {
+          cx: Number(el.getAttribute("cx") || 0),
+          cy: Number(el.getAttribute("cy") || 0),
+          r: Number(el.getAttribute("r") || 0),
+        };
+      }
+      if (tag === "line") {
+        return {
+          x1: Number(el.getAttribute("x1") || 0),
+          y1: Number(el.getAttribute("y1") || 0),
+          x2: Number(el.getAttribute("x2") || 0),
+          y2: Number(el.getAttribute("y2") || 0),
+        };
+      }
+      if (tag === "path") {
+        return { d: el.getAttribute("d") || "" };
+      }
+      if (tag === "polygon") {
+        const raw = el.getAttribute("points") || "";
+        const pts = raw
+          .trim()
+          .split(/\s+/)
+          .filter(Boolean)
+          .map((pair) => {
+            const [x, y] = pair.split(",");
+            return [Number(x), Number(y)];
+          });
+        return { points: pts };
+      }
+      return null;
+    }
+
+    function shiftPathD(d, dx, dy, useSnap = true) {
+      const values = [];
+      const shifted = (d || "").replace(/-?\d*\.?\d+(?:e[-+]?\d+)?/gi, (m) => {
+        values.push(Number(m));
+        return `__N${values.length - 1}__`;
+      });
+      const moved = values.map((v, idx) => {
+        const delta = (idx % 2 === 0) ? dx : dy;
+        const nv = v + delta;
+        return useSnap ? snapValue(nv) : nv;
+      });
+      return shifted.replace(/__N(\d+)__/g, (_, i) => String(moved[Number(i)]));
+    }
+
+    function applyElementDelta(el, dx, dy, useSnap = true) {
+      const snap = (v) => (useSnap ? snapValue(v) : v);
+      const tag = el.tagName.toLowerCase();
+      if (tag === "text" || tag === "rect") {
+        const nx = snap(Number(el.getAttribute("x") || 0) + dx);
+        const ny = snap(Number(el.getAttribute("y") || 0) + dy);
+        el.setAttribute("x", String(nx));
+        el.setAttribute("y", String(ny));
+        return { x: nx, y: ny };
+      }
+      if (tag === "circle") {
+        const ncx = snap(Number(el.getAttribute("cx") || 0) + dx);
+        const ncy = snap(Number(el.getAttribute("cy") || 0) + dy);
+        el.setAttribute("cx", String(ncx));
+        el.setAttribute("cy", String(ncy));
+        return { cx: ncx, cy: ncy };
+      }
+      if (tag === "line") {
+        const nx1 = snap(Number(el.getAttribute("x1") || 0) + dx);
+        const ny1 = snap(Number(el.getAttribute("y1") || 0) + dy);
+        const nx2 = snap(Number(el.getAttribute("x2") || 0) + dx);
+        const ny2 = snap(Number(el.getAttribute("y2") || 0) + dy);
+        el.setAttribute("x1", String(nx1));
+        el.setAttribute("y1", String(ny1));
+        el.setAttribute("x2", String(nx2));
+        el.setAttribute("y2", String(ny2));
+        return { x1: nx1, y1: ny1, x2: nx2, y2: ny2 };
+      }
+      if (tag === "path") {
+        const nd = shiftPathD(el.getAttribute("d") || "", dx, dy, useSnap);
+        el.setAttribute("d", nd);
+        return { d: nd };
+      }
+      if (tag === "polygon") {
+        const raw = el.getAttribute("points") || "";
+        const pts = raw
+          .trim()
+          .split(/\s+/)
+          .filter(Boolean)
+          .map((pair) => {
+            const [x, y] = pair.split(",");
+            return [Number(x), Number(y)];
+          });
+        const moved = pts.map(([x, y]) => {
+          const nx = useSnap ? snapValue(x + dx) : x + dx;
+          const ny = useSnap ? snapValue(y + dy) : y + dy;
+          return [nx, ny];
+        });
+        el.setAttribute("points", moved.map(([x, y]) => `${x},${y}`).join(" "));
+        return { points: moved };
+      }
+      return null;
+    }
+
+    function ensureSelectionOverlay(svg) {
+      let layer = svg.querySelector("#selectionOverlay");
+      if (layer) return layer;
+      layer = document.createElementNS("http://www.w3.org/2000/svg", "g");
+      layer.setAttribute("id", "selectionOverlay");
+      layer.setAttribute("class", "selection-overlay");
+      const bounds = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+      bounds.setAttribute("class", "selection-bounds");
+      layer.appendChild(bounds);
+      for (const name of ["nw", "n", "ne", "w", "c", "e", "sw", "s", "se"]) {
+        const handle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+        handle.setAttribute("class", "selection-handle");
+        handle.setAttribute("data-handle", name);
+        handle.setAttribute("r", "5");
+        handle.addEventListener("pointerdown", beginResizeFromHandle);
+        layer.appendChild(handle);
+      }
+      svg.appendChild(layer);
+      return layer;
+    }
+
+    function selectedResizableItem() {
+      if (selectedSlots.size !== 1) return null;
+      const item = Array.from(selectedSlots.values())[0];
+      if (!item || item.isFraction || !item.el) return null;
+      const tag = item.el.tagName.toLowerCase();
+      if (!["text", "rect", "circle", "line"].includes(tag)) return null;
+      return item;
+    }
+
+    function updateSelectionHandles() {
+      const svg = document.getElementById("svgPreview").querySelector("svg");
+      if (!svg) return;
+      const layer = ensureSelectionOverlay(svg);
+      const item = selectedResizableItem();
+      if (!item) {
+        layer.style.display = "none";
+        return;
+      }
+      let box = null;
+      try {
+        box = item.el.getBBox();
+      } catch (_) {
+        box = null;
+      }
+      if (!box || box.width < 0 || box.height < 0) {
+        layer.style.display = "none";
+        return;
+      }
+      const minSize = 1;
+      const x = box.x;
+      const y = box.y;
+      const w = Math.max(box.width, minSize);
+      const h = Math.max(box.height, minSize);
+      const bounds = layer.querySelector(".selection-bounds");
+      bounds.setAttribute("x", String(x));
+      bounds.setAttribute("y", String(y));
+      bounds.setAttribute("width", String(w));
+      bounds.setAttribute("height", String(h));
+      const points = {
+        nw: [x, y],
+        n: [x + w / 2, y],
+        ne: [x + w, y],
+        w: [x, y + h / 2],
+        c: [x + w / 2, y + h / 2],
+        e: [x + w, y + h / 2],
+        sw: [x, y + h],
+        s: [x + w / 2, y + h],
+        se: [x + w, y + h],
+      };
+      for (const handle of layer.querySelectorAll(".selection-handle")) {
+        const name = handle.getAttribute("data-handle");
+        const p = points[name];
+        handle.setAttribute("cx", String(p[0]));
+        handle.setAttribute("cy", String(p[1]));
+      }
+      layer.style.display = "";
+      svg.appendChild(layer);
+    }
+
+    function cloneBBox(box) {
+      return { x: box.x, y: box.y, width: box.width, height: box.height };
+    }
+
+    function adjustedBBox(startBox, handle, dx, dy) {
+      if (handle === "c") {
+        return { x: startBox.x + dx, y: startBox.y + dy, width: startBox.width, height: startBox.height };
+      }
+      let left = startBox.x;
+      let right = startBox.x + startBox.width;
+      let top = startBox.y;
+      let bottom = startBox.y + startBox.height;
+      if (handle.includes("w")) left += dx;
+      if (handle.includes("e")) right += dx;
+      if (handle.includes("n")) top += dy;
+      if (handle.includes("s")) bottom += dy;
+      const minSize = 4;
+      if (right - left < minSize) {
+        if (handle.includes("w")) left = right - minSize;
+        else right = left + minSize;
+      }
+      if (bottom - top < minSize) {
+        if (handle.includes("n")) top = bottom - minSize;
+        else bottom = top + minSize;
+      }
+      return { x: left, y: top, width: right - left, height: bottom - top };
+    }
+
+    function resizePatchForElement(el, handle, startValue, startBox, nextBox) {
+      const snap = (v) => (snapEnabled ? snapValue(v) : v);
+      const tag = el.tagName.toLowerCase();
+      if (handle === "c") {
+        const dx = nextBox.x - startBox.x;
+        const dy = nextBox.y - startBox.y;
+        if (tag === "text" || tag === "rect") {
+          const x = snap(startValue.x + dx);
+          const y = snap(startValue.y + dy);
+          el.setAttribute("x", String(x));
+          el.setAttribute("y", String(y));
+          const out = { x, y };
+          if (tag === "rect") {
+            out.width = startValue.width;
+            out.height = startValue.height;
+          }
+          if (tag === "text" && startValue.font_size !== undefined) out.font_size = startValue.font_size;
+          return out;
+        }
+        if (tag === "circle") {
+          const cx = snap(startValue.cx + dx);
+          const cy = snap(startValue.cy + dy);
+          el.setAttribute("cx", String(cx));
+          el.setAttribute("cy", String(cy));
+          return { cx, cy, r: startValue.r };
+        }
+        if (tag === "line") {
+          const x1 = snap(startValue.x1 + dx);
+          const y1 = snap(startValue.y1 + dy);
+          const x2 = snap(startValue.x2 + dx);
+          const y2 = snap(startValue.y2 + dy);
+          el.setAttribute("x1", String(x1));
+          el.setAttribute("y1", String(y1));
+          el.setAttribute("x2", String(x2));
+          el.setAttribute("y2", String(y2));
+          return { x1, y1, x2, y2 };
+        }
+        return null;
+      }
+      if (tag === "rect") {
+        const x = snap(nextBox.x);
+        const y = snap(nextBox.y);
+        const width = Math.max(4, snap(nextBox.width));
+        const height = Math.max(4, snap(nextBox.height));
+        el.setAttribute("x", String(x));
+        el.setAttribute("y", String(y));
+        el.setAttribute("width", String(width));
+        el.setAttribute("height", String(height));
+        return { x, y, width, height };
+      }
+      if (tag === "circle") {
+        const cx = snap(nextBox.x + nextBox.width / 2);
+        const cy = snap(nextBox.y + nextBox.height / 2);
+        const r = Math.max(2, snap(Math.max(nextBox.width, nextBox.height) / 2));
+        el.setAttribute("cx", String(cx));
+        el.setAttribute("cy", String(cy));
+        el.setAttribute("r", String(r));
+        return { cx, cy, r };
+      }
+      if (tag === "line") {
+        let x1 = startValue.x1;
+        let y1 = startValue.y1;
+        let x2 = startValue.x2;
+        let y2 = startValue.y2;
+        if (handle.includes("w")) x1 += nextBox.x - startBox.x;
+        if (handle.includes("e")) x2 += (nextBox.x + nextBox.width) - (startBox.x + startBox.width);
+        if (handle.includes("n")) y1 += nextBox.y - startBox.y;
+        if (handle.includes("s")) y2 += (nextBox.y + nextBox.height) - (startBox.y + startBox.height);
+        x1 = snap(x1);
+        y1 = snap(y1);
+        x2 = snap(x2);
+        y2 = snap(y2);
+        el.setAttribute("x1", String(x1));
+        el.setAttribute("y1", String(y1));
+        el.setAttribute("x2", String(x2));
+        el.setAttribute("y2", String(y2));
+        return { x1, y1, x2, y2 };
+      }
+      if (tag === "text") {
+        const scale = Math.max(nextBox.width / Math.max(startBox.width, 1), nextBox.height / Math.max(startBox.height, 1));
+        const fontSize = Math.max(6, snap((startValue.font_size || Number(el.getAttribute("font-size") || 28)) * scale));
+        const x = snap(nextBox.x);
+        const y = snap(nextBox.y + nextBox.height);
+        el.setAttribute("x", String(x));
+        el.setAttribute("y", String(y));
+        el.setAttribute("font-size", String(fontSize));
+        return { x, y, font_size: fontSize };
+      }
+      return null;
+    }
+
+    function clearSelection() {
+      removeResizeHandles();
+      for (const item of selectedSlots.values()) {
+        const nodes = item.elements || [item.el];
+        for (const node of nodes) node.classList.remove("slot-selected");
+      }
+      selectedSlots = new Map();
+      selectedElement = null;
+      selectedSlotId = null;
+      updateSelectionHandles();
+      updateTextEditControls();
+    }
+
+    function setSelectedElement(el, slotId, append = false) {
+      if (!append) clearSelection();
+      if (!el || !slotId) return;
+      const fracInfo = parseFractionPartId(el.getAttribute("id"));
+      const elements = (fracInfo && fracInfo.prefix === slotId) ? fractionPartElements(slotId) : [el];
+      const isFraction = elements.length > 1;
+      const arrowGroupIds = collectArrowGroupSlotIds(slotId);
+      const svg = document.getElementById("svgPreview").querySelector("svg");
+      if (!svg) return;
+      const allNodes = svg.querySelectorAll('[id^="slot."]');
+
+      const toggleOff = append && arrowGroupIds.every((id) => selectedSlots.has(id));
+      if (toggleOff) {
+        for (const gid of arrowGroupIds) {
+          const existing = selectedSlots.get(gid);
+          if (!existing) continue;
+          for (const node of (existing.elements || [existing.el])) node.classList.remove("slot-selected");
+          selectedSlots.delete(gid);
+        }
+      } else {
+        for (const gid of arrowGroupIds) {
+          let nodeForId = null;
+          for (const n of allNodes) {
+            if (!isDraggableSlotElement(n)) continue;
+            if (slotIdFromElement(n) === gid) {
+              nodeForId = n;
+              break;
+            }
+          }
+          if (!nodeForId) continue;
+          const fi = parseFractionPartId(nodeForId.getAttribute("id"));
+          const els = (fi && fi.prefix === gid) ? fractionPartElements(gid) : [nodeForId];
+          const frac = els.length > 1;
+          selectedSlots.set(gid, { el: nodeForId, slotId: gid, elements: els, isFraction: frac });
+          for (const node of els) node.classList.add("slot-selected");
+        }
+      }
+      const last = Array.from(selectedSlots.values()).at(-1) || null;
+      selectedElement = last ? last.el : null;
+      selectedSlotId = last ? last.slotId : null;
+<<<<<<< HEAD
+      updateResizeHandles();
+=======
+      updateSelectionHandles();
+      updateTextEditControls();
+    }
+
+    function selectedTextItem() {
+      if (selectedSlots.size !== 1) return null;
+      const item = Array.from(selectedSlots.values())[0];
+      if (!item || !item.el || item.el.tagName.toLowerCase() !== "text") return null;
+      return item;
+    }
+
+    function updateTextEditControls() {
+      const input = document.getElementById("textEditInput");
+      const button = document.getElementById("textEditBtn");
+      if (!input || !button) return;
+      const item = selectedTextItem();
+      if (!item) {
+        input.value = "";
+        input.disabled = true;
+        button.disabled = true;
+        return;
+      }
+      input.disabled = false;
+      button.disabled = false;
+      input.value = item.el.textContent || "";
+    }
+
+    async function updateSelectedText() {
+      const item = selectedTextItem();
+      if (!item) throw new Error("텍스트 요소를 먼저 선택하세요.");
+      const text = document.getElementById("textEditInput").value;
+      item.el.textContent = text;
+      updateSelectionHandles();
+      await commitPatches([{ target: item.slotId, op: "update", value: { text } }], `텍스트 수정 완료: ${item.slotId}`);
+>>>>>>> 71a328bd333ac522efc2b16e3372d00a762fe4a9
+    }
+
+    function readSelectedStates() {
+      const states = [];
+      for (const item of selectedSlots.values()) {
+        const value = readSlotPatchValue(item.el);
+        if (value) states.push({ slotId: item.slotId, value: JSON.parse(JSON.stringify(value)) });
+      }
+      return states;
+    }
+
+    function applyPatchValueToElement(el, value) {
+      const tag = el.tagName.toLowerCase();
+      if (tag === "text") {
+        if (value.text !== undefined) el.textContent = String(value.text);
+        if (value.x !== undefined) el.setAttribute("x", String(value.x));
+        if (value.y !== undefined) el.setAttribute("y", String(value.y));
+        if (value.font_size !== undefined) el.setAttribute("font-size", String(value.font_size));
+      } else if (tag === "rect" && value.x !== undefined && value.y !== undefined) {
+        el.setAttribute("x", String(value.x));
+        el.setAttribute("y", String(value.y));
+<<<<<<< HEAD
+        if (tag === "rect" && value.width !== undefined && value.height !== undefined) {
+=======
+        if (value.width !== undefined && value.height !== undefined) {
+>>>>>>> 71a328bd333ac522efc2b16e3372d00a762fe4a9
+          el.setAttribute("width", String(value.width));
+          el.setAttribute("height", String(value.height));
+        }
+      } else if (tag === "circle" && value.cx !== undefined && value.cy !== undefined) {
+        el.setAttribute("cx", String(value.cx));
+        el.setAttribute("cy", String(value.cy));
+        if (value.r !== undefined) el.setAttribute("r", String(value.r));
+      } else if (tag === "line" && value.x1 !== undefined) {
+        el.setAttribute("x1", String(value.x1));
+        el.setAttribute("y1", String(value.y1));
+        el.setAttribute("x2", String(value.x2));
+        el.setAttribute("y2", String(value.y2));
+      } else if (tag === "path" && value.d !== undefined) {
+        el.setAttribute("d", String(value.d));
+      } else if (tag === "polygon" && value.points !== undefined) {
+        const pts = (value.points || []).map((p) => `${p[0]},${p[1]}`).join(" ");
+        el.setAttribute("points", pts);
+      }
+    }
+
+    function snapPatchValue(value) {
+      if (!snapEnabled || !value) return value;
+      if (value.x !== undefined && value.y !== undefined) {
+<<<<<<< HEAD
+        const out = { ...value, x: snapValue(value.x), y: snapValue(value.y) };
+        if (out.width !== undefined) out.width = snapValue(out.width);
+        if (out.height !== undefined) out.height = snapValue(out.height);
+=======
+        const out = { x: snapValue(value.x), y: snapValue(value.y) };
+        if (value.text !== undefined) out.text = value.text;
+        if (value.width !== undefined) out.width = snapValue(value.width);
+        if (value.height !== undefined) out.height = snapValue(value.height);
+        if (value.font_size !== undefined) out.font_size = snapValue(value.font_size);
+>>>>>>> 71a328bd333ac522efc2b16e3372d00a762fe4a9
+        return out;
+      }
+      if (value.text !== undefined) return { text: value.text };
+      if (value.cx !== undefined && value.cy !== undefined) {
+        const out = { cx: snapValue(value.cx), cy: snapValue(value.cy) };
+        if (value.r !== undefined) out.r = snapValue(value.r);
+        return out;
+      }
+      if (value.x1 !== undefined && value.y1 !== undefined) {
+        return {
+          x1: snapValue(value.x1),
+          y1: snapValue(value.y1),
+          x2: snapValue(value.x2),
+          y2: snapValue(value.y2),
+        };
+      }
+      if (value.move_dx !== undefined && value.move_dy !== undefined) {
+        return { move_dx: snapValue(value.move_dx), move_dy: snapValue(value.move_dy) };
+      }
+      return value;
+    }
+
+    function fractionPartElements(prefix) {
+      const svg = document.getElementById("svgPreview").querySelector("svg");
+      if (!svg) return [];
+      const parts = [];
+      const num = svg.querySelector(`[id^="${prefix}.num."]`);
+      const den = svg.querySelector(`[id^="${prefix}.den."]`);
+      const bar = svg.querySelector(`[id^="${prefix}.bar."]`);
+      if (num instanceof SVGElement) parts.push(num);
+      if (den instanceof SVGElement) parts.push(den);
+      if (bar instanceof SVGElement) parts.push(bar);
+      return parts;
+    }
+
+    function elementAnchor(el) {
+      if (!el) return null;
+      const tag = el.tagName.toLowerCase();
+      if (tag === "text") return { x: Number(el.getAttribute("x") || 0), y: Number(el.getAttribute("y") || 0) };
+      if (tag === "line") return { x: Number(el.getAttribute("x1") || 0), y: Number(el.getAttribute("y1") || 0) };
+      if (tag === "rect") return { x: Number(el.getAttribute("x") || 0), y: Number(el.getAttribute("y") || 0) };
+      if (tag === "circle") return { x: Number(el.getAttribute("cx") || 0), y: Number(el.getAttribute("cy") || 0) };
+      return null;
+    }
+
+    function fractionVisualDelta(prefix, startAnchor) {
+      const elems = fractionPartElements(prefix);
+      if (!elems.length || !startAnchor) return { dx: 0, dy: 0 };
+      const now = elementAnchor(elems[0]);
+      if (!now) return { dx: 0, dy: 0 };
+      return { dx: now.x - startAnchor.x, dy: now.y - startAnchor.y };
+    }
+
+    function findElementBySlotId(slotId) {
+      const svg = document.getElementById("svgPreview").querySelector("svg");
+      if (!svg) return null;
+      const nodes = svg.querySelectorAll('[id^="slot."]');
+      for (const node of nodes) {
+        if (!isDraggableSlotElement(node)) continue;
+        const mapped = toDslSlotId(node.getAttribute("id"));
+        if (mapped === slotId) return node;
+      }
+      return null;
+    }
+
+    function pushHistory(before, after, label) {
+      undoStack.push({ before, after, label });
+      if (undoStack.length > 100) undoStack.shift();
+      redoStack = [];
+    }
+
+    async function applyHistoryEntry(entry, useBefore) {
+      const states = useBefore ? entry.before : entry.after;
+      const patches = states.map((s) => ({ target: s.slotId, op: "update", value: s.value }));
+      for (const s of states) {
+        const el = findElementBySlotId(s.slotId);
+        if (el) applyPatchValueToElement(el, s.value);
+      }
+      updateSelectionHandles();
+      historyBusy = true;
+      try {
+        await commitPatches(patches, useBefore ? `Undo: ${entry.label}` : `Redo: ${entry.label}`);
+      } finally {
+        historyBusy = false;
+      }
+    }
+
+    function queueKeyboardCommit(patches, label) {
+      if (keyboardCommitTimer) clearTimeout(keyboardCommitTimer);
+      keyboardCommitTimer = setTimeout(async () => {
+        keyboardCommitTimer = null;
+        try {
+          const before = readSelectedStates();
+          await commitPatches(patches, label);
+          if (!historyBusy) {
+            const after = readSelectedStates();
+            if (before.length === after.length && after.length > 0) pushHistory(before, after, "키보드 이동");
+          }
+        } catch (e) {
+          setStatus(String(e), false);
+        }
+      }, 140);
+    }
+
+<<<<<<< HEAD
+    function removeResizeHandles() {
+      const svg = document.getElementById("svgPreview").querySelector("svg");
+      if (!svg) return;
+      svg.querySelectorAll(".selection-frame, .resize-handle").forEach((node) => node.remove());
+    }
+
+    function selectedResizableRect() {
+      if (selectedSlots.size !== 1) return null;
+      const item = Array.from(selectedSlots.values())[0];
+      if (!item || !item.el || item.el.tagName.toLowerCase() !== "rect") return null;
+      return item;
+    }
+
+    function rectGeometry(el) {
+      return {
+        x: Number(el.getAttribute("x") || 0),
+        y: Number(el.getAttribute("y") || 0),
+        width: Number(el.getAttribute("width") || 0),
+        height: Number(el.getAttribute("height") || 0),
+      };
+    }
+
+    function handlePositions(r) {
+      const cx = r.x + r.width / 2;
+      const cy = r.y + r.height / 2;
+      const right = r.x + r.width;
+      const bottom = r.y + r.height;
+      return [
+        ["nw", r.x, r.y],
+        ["n", cx, r.y],
+        ["ne", right, r.y],
+        ["e", right, cy],
+        ["se", right, bottom],
+        ["s", cx, bottom],
+        ["sw", r.x, bottom],
+        ["w", r.x, cy],
+      ];
+    }
+
+    function cursorForHandle(handle) {
+      if (handle === "n" || handle === "s") return "ns-resize";
+      if (handle === "e" || handle === "w") return "ew-resize";
+      if (handle === "nw" || handle === "se") return "nwse-resize";
+      return "nesw-resize";
+    }
+
+    function updateResizeHandles() {
+      removeResizeHandles();
+      const item = selectedResizableRect();
+      if (!item) return;
+      const svg = document.getElementById("svgPreview").querySelector("svg");
+      if (!svg) return;
+      const r = rectGeometry(item.el);
+      if (r.width <= 0 || r.height <= 0) return;
+
+      const ns = "http://www.w3.org/2000/svg";
+      const frame = document.createElementNS(ns, "rect");
+      frame.setAttribute("class", "selection-frame");
+      frame.setAttribute("x", String(r.x));
+      frame.setAttribute("y", String(r.y));
+      frame.setAttribute("width", String(r.width));
+      frame.setAttribute("height", String(r.height));
+      svg.appendChild(frame);
+
+      for (const [handle, x, y] of handlePositions(r)) {
+        const h = document.createElementNS(ns, "rect");
+        h.setAttribute("class", "resize-handle");
+        h.setAttribute("data-handle", handle);
+        h.setAttribute("x", String(x - 4));
+        h.setAttribute("y", String(y - 4));
+        h.setAttribute("width", "8");
+        h.setAttribute("height", "8");
+        h.style.cursor = cursorForHandle(handle);
+        h.addEventListener("pointerdown", (ev) => beginResize(ev, item, handle));
+        svg.appendChild(h);
+      }
+    }
+
+    function refreshResizeHandlePositions() {
+      const item = selectedResizableRect();
+      const svg = document.getElementById("svgPreview").querySelector("svg");
+      if (!item || !svg) return;
+      const r = rectGeometry(item.el);
+      const frame = svg.querySelector(".selection-frame");
+      if (frame) {
+        frame.setAttribute("x", String(r.x));
+        frame.setAttribute("y", String(r.y));
+        frame.setAttribute("width", String(r.width));
+        frame.setAttribute("height", String(r.height));
+      }
+      const positions = new Map(handlePositions(r).map(([handle, x, y]) => [handle, { x, y }]));
+      for (const h of svg.querySelectorAll(".resize-handle")) {
+        const handle = h.getAttribute("data-handle");
+        const pos = positions.get(handle);
+        if (!pos) continue;
+        h.setAttribute("x", String(pos.x - 4));
+        h.setAttribute("y", String(pos.y - 4));
+      }
+    }
+
+    function resizeRectFromHandle(start, handle, dx, dy) {
+      let left = start.x;
+      let top = start.y;
+      let right = start.x + start.width;
+      let bottom = start.y + start.height;
+      const minSize = 4;
+
+      if (handle.includes("w")) left += dx;
+      if (handle.includes("e")) right += dx;
+      if (handle.includes("n")) top += dy;
+      if (handle.includes("s")) bottom += dy;
+
+      if (right - left < minSize) {
+        if (handle.includes("w")) left = right - minSize;
+        else right = left + minSize;
+      }
+      if (bottom - top < minSize) {
+        if (handle.includes("n")) top = bottom - minSize;
+        else bottom = top + minSize;
+      }
+
+      const value = {
+        x: left,
+        y: top,
+        width: right - left,
+        height: bottom - top,
+      };
+      return snapPatchValue(value);
+    }
+
+    function beginResize(ev, item, handle) {
+      if (ev.button !== 0) return;
+      const svg = document.getElementById("svgPreview").querySelector("svg");
+      if (!svg || !item || !item.el) return;
+      const start = getSvgPoint(svg, ev.clientX, ev.clientY);
+=======
+    function beginResizeFromHandle(ev) {
+      if (ev.button !== 0) return;
+      const item = selectedResizableItem();
+      if (!item) return;
+      const svg = document.getElementById("svgPreview").querySelector("svg");
+      if (!svg) return;
+      let box = null;
+      try {
+        box = item.el.getBBox();
+      } catch (_) {
+        box = null;
+      }
+      if (!box) return;
+      const startValue = readSlotPatchValue(item.el);
+      if (!startValue) return;
+      const handle = ev.currentTarget.getAttribute("data-handle") || "c";
+>>>>>>> 71a328bd333ac522efc2b16e3372d00a762fe4a9
+      resizeState = {
+        svg,
+        item,
+        handle,
+<<<<<<< HEAD
+        start,
+        startValue: rectGeometry(item.el),
+        moved: false,
+        pointerId: ev.pointerId,
+        captureEl: ev.currentTarget,
+      };
+      ev.currentTarget.setPointerCapture(ev.pointerId);
+      ev.stopPropagation();
+      ev.preventDefault();
+=======
+        startPoint: getSvgPoint(svg, ev.clientX, ev.clientY),
+        startBox: cloneBBox(box),
+        startValue: JSON.parse(JSON.stringify(startValue)),
+        lastValue: null,
+        moved: false,
+        pointerId: ev.pointerId,
+        handleEl: ev.currentTarget,
+      };
+      ev.currentTarget.setPointerCapture(ev.pointerId);
+      ev.preventDefault();
+      ev.stopPropagation();
+    }
+
+    function updateResize(ev) {
+      if (!resizeState) return;
+      const p = getSvgPoint(resizeState.svg, ev.clientX, ev.clientY);
+      const dx = p.x - resizeState.startPoint.x;
+      const dy = p.y - resizeState.startPoint.y;
+      const nextBox = adjustedBBox(resizeState.startBox, resizeState.handle, dx, dy);
+      const value = resizePatchForElement(
+        resizeState.item.el,
+        resizeState.handle,
+        resizeState.startValue,
+        resizeState.startBox,
+        nextBox
+      );
+      if (!value) return;
+      resizeState.lastValue = value;
+      resizeState.moved = true;
+      updateSelectionHandles();
+      setStatus(`크기 조절 중: ${resizeState.item.slotId}${snapEnabled ? " (snap 5px)" : ""}`, true);
+    }
+
+    async function endResize(ev) {
+      if (!resizeState) return;
+      const local = resizeState;
+      resizeState = null;
+      if (local.handleEl && local.pointerId !== undefined && local.handleEl.hasPointerCapture(local.pointerId)) {
+        local.handleEl.releasePointerCapture(local.pointerId);
+      }
+      if (!local.moved || !local.lastValue) {
+        updateSelectionHandles();
+        return;
+      }
+      const value = snapPatchValue(local.lastValue);
+      applyPatchValueToElement(local.item.el, value);
+      updateSelectionHandles();
+      const before = [{ slotId: local.item.slotId, value: local.startValue }];
+      const after = [{ slotId: local.item.slotId, value: JSON.parse(JSON.stringify(value)) }];
+      try {
+        await commitPatches([{ target: local.item.slotId, op: "update", value }], `크기 조절 저장 완료: ${local.item.slotId}`);
+        if (!historyBusy) pushHistory(before, after, "크기 조절");
+      } catch (e) {
+        setStatus(String(e), false);
+      }
+>>>>>>> 71a328bd333ac522efc2b16e3372d00a762fe4a9
+    }
+
+    function bindSlotInteractions() {
+      const container = document.getElementById("svgPreview");
+      const svg = container.querySelector("svg");
+      if (!svg) return;
+      if (svg.dataset.dragBound === "1") return;
+      svg.dataset.dragBound = "1";
+      const dslIds = extractDslSlotIds();
+
+      const slotElements = svg.querySelectorAll('[id^="slot."]');
+      for (const el of slotElements) {
+        if (!isDraggableSlotElement(el)) continue;
+        el.addEventListener("pointerdown", (ev) => {
+          if (ev.button !== 0) return;
+          if (!matchesPickMode(el)) return;
+          const rawId = el.getAttribute("id");
+          const fracInfo = parseFractionPartId(rawId);
+          const slotId = fracInfo ? fracInfo.prefix : toDslSlotId(rawId);
+          const slotKnown = dslIds.has(slotId);
+          if (!slotId || !slotId.startsWith("slot.") || (!slotKnown && !fracInfo)) {
+            setStatus(`드래그 불가 요소: ${el.getAttribute("id") || "(unknown id)"}`, false);
+            return;
+          }
+          const appendSelection = ev.shiftKey || ev.ctrlKey || ev.metaKey;
+          const keepGroupSelection = !appendSelection && selectedSlots.size > 1 && selectedSlots.has(slotId);
+          if (!keepGroupSelection) setSelectedElement(el, slotId, appendSelection);
+          const start = getSvgPoint(svg, ev.clientX, ev.clientY);
+          const beforeMap = new Map();
+          for (const item of selectedSlots.values()) {
+            if (item.isFraction) {
+              beforeMap.set(item.slotId, { move_dx: 0, move_dy: 0 });
+            } else {
+              const value = readSlotPatchValue(item.el);
+              if (value) beforeMap.set(item.slotId, JSON.parse(JSON.stringify(value)));
+            }
+          }
+          dragState = {
+            svg,
+            slotId,
+            start,
+            moved: false,
+            beforeMap,
+            captureEl: el,
+            pointerId: ev.pointerId,
+            totalDx: 0,
+            totalDy: 0,
+            fractionStartAnchors: (() => {
+              const m = new Map();
+              for (const s of selectedSlots.values()) {
+                if (!s.isFraction) continue;
+                const elems = s.elements || [];
+                if (!elems.length) continue;
+                const a = elementAnchor(elems[0]);
+                if (a) m.set(s.slotId, a);
+              }
+              return m;
+            })(),
+          };
+          el.setPointerCapture(ev.pointerId);
+          ev.preventDefault();
+        });
+      }
+
+      svg.addEventListener("pointerdown", (ev) => {
+        const target = ev.target;
+        if (!(target instanceof SVGElement)) return;
+        const slotTarget = findDraggableSlotAncestor(target);
+        if (!slotTarget) {
+          clearSelection();
+          if (ev.button === 0) beginMarquee(svg, ev);
+        }
+      });
+
+      svg.addEventListener("pointermove", (ev) => {
+        if (resizeState) {
+<<<<<<< HEAD
+          const p = getSvgPoint(svg, ev.clientX, ev.clientY);
+          const dx = p.x - resizeState.start.x;
+          const dy = p.y - resizeState.start.y;
+          const value = resizeRectFromHandle(resizeState.startValue, resizeState.handle, dx, dy);
+          applyPatchValueToElement(resizeState.item.el, value);
+          resizeState.moved = true;
+          refreshResizeHandlePositions();
+          setStatus(`크기 조절 중: ${resizeState.item.slotId}`, true);
+=======
+          updateResize(ev);
+>>>>>>> 71a328bd333ac522efc2b16e3372d00a762fe4a9
+          return;
+        }
+        if (marqueeState) {
+          updateMarquee(ev);
+          return;
+        }
+        if (!dragState) return;
+        const p = getSvgPoint(svg, ev.clientX, ev.clientY);
+        const dx = p.x - dragState.start.x;
+        const dy = p.y - dragState.start.y;
+        dragState.start = p;
+        dragState.totalDx += dx;
+        dragState.totalDy += dy;
+        dragState.pendingDx = (dragState.pendingDx || 0) + dx;
+        dragState.pendingDy = (dragState.pendingDy || 0) + dy;
+        if (dragFrameRequested) return;
+        dragFrameRequested = true;
+        requestAnimationFrame(() => {
+          dragFrameRequested = false;
+          if (!dragState) return;
+          const pdx = dragState.pendingDx || 0;
+          const pdy = dragState.pendingDy || 0;
+          dragState.pendingDx = 0;
+          dragState.pendingDy = 0;
+          if (pdx === 0 && pdy === 0) return;
+          let lastValue = null;
+          for (const item of selectedSlots.values()) {
+            if (item.isFraction) {
+              for (const node of item.elements || []) lastValue = applyElementDelta(node, pdx, pdy, false);
+            } else {
+              lastValue = applyElementDelta(item.el, pdx, pdy, false);
+            }
+          }
+          if (!lastValue) return;
+          dragState.moved = true;
+<<<<<<< HEAD
+          updateResizeHandles();
+=======
+          updateSelectionHandles();
+>>>>>>> 71a328bd333ac522efc2b16e3372d00a762fe4a9
+          const now = Date.now();
+          if (now - lastDragStatusAt > 90) {
+            lastDragStatusAt = now;
+            setStatus(`드래그 중: ${selectedSlots.size}개 선택${snapEnabled ? " (snap 5px)" : ""}`, true);
+          }
+        });
+      });
+
+      svg.addEventListener("pointerup", async (ev) => {
+        if (resizeState) {
+<<<<<<< HEAD
+          const local = resizeState;
+          resizeState = null;
+          if (local.captureEl && local.pointerId !== undefined) {
+            local.captureEl.releasePointerCapture(local.pointerId);
+          }
+          if (!local.moved) return;
+          const value = snapPatchValue(rectGeometry(local.item.el));
+          applyPatchValueToElement(local.item.el, value);
+          updateResizeHandles();
+          const before = [{ slotId: local.item.slotId, value: local.startValue }];
+          const after = [{ slotId: local.item.slotId, value: JSON.parse(JSON.stringify(value)) }];
+          queueDragCommit(async () => {
+            try {
+              await commitPatches([{ target: local.item.slotId, op: "update", value }], `크기 조절 저장 완료: ${local.item.slotId}`);
+              if (!historyBusy) pushHistory(before, after, "크기 조절");
+            } catch (e) {
+              setStatus(String(e), false);
+            }
+          });
+=======
+          await endResize(ev);
+>>>>>>> 71a328bd333ac522efc2b16e3372d00a762fe4a9
+          return;
+        }
+        if (marqueeState) {
+          endMarquee(ev);
+          return;
+        }
+        if (!dragState) return;
+        const local = dragState;
+        dragState = null;
+        if (local.captureEl && local.pointerId !== undefined) {
+          local.captureEl.releasePointerCapture(local.pointerId);
+        }
+        if (!local.moved) return;
+        updateSelectionHandles();
+        const before = [];
+        const after = [];
+        const patches = [];
+        for (const item of selectedSlots.values()) {
+          if (item.isFraction) {
+            const startAnchor = local.fractionStartAnchors ? local.fractionStartAnchors.get(item.slotId) : null;
+            const moved = fractionVisualDelta(item.slotId, startAnchor);
+            const snappedMove = snapPatchValue({ move_dx: moved.dx, move_dy: moved.dy });
+            const fixDx = snappedMove.move_dx - moved.dx;
+            const fixDy = snappedMove.move_dy - moved.dy;
+            if (fixDx !== 0 || fixDy !== 0) {
+              for (const node of item.elements || []) applyElementDelta(node, fixDx, fixDy, false);
+            }
+            patches.push({ target: item.slotId, op: "update", value: snappedMove });
+            after.push({ slotId: item.slotId, value: snappedMove });
+            continue;
+          }
+          const value = snapPatchValue(readSlotPatchValue(item.el));
+          if (!value) continue;
+          applyPatchValueToElement(item.el, value);
+          after.push({ slotId: item.slotId, value: JSON.parse(JSON.stringify(value)) });
+          patches.push({ target: item.slotId, op: "update", value });
+        }
+        if (!patches.length) return;
+        queueDragCommit(async () => {
+          try {
+            await commitPatches(patches, `드래그 저장 완료: ${patches.length}개`);
+            if (!historyBusy) {
+              for (const pch of patches) {
+                const found = local.beforeMap.get(pch.target);
+                if (found) before.push({ slotId: pch.target, value: found });
+              }
+              if (before.length === after.length && before.length > 0) {
+                pushHistory(before, after, "드래그 이동");
+              }
+            }
+          } catch (e) {
+            setStatus(String(e), false);
+          }
+        });
+      });
+    }
+
+    function selectedItemsWithValues() {
+      const items = [];
+      for (const item of selectedSlots.values()) {
+        const value = item.isFraction ? { move_dx: 0, move_dy: 0 } : readSlotPatchValue(item.el);
+        if (!value) continue;
+        let bbox = null;
+        try {
+          if (item.isFraction) {
+            const boxes = (item.elements || []).map((e) => e.getBBox());
+            const minX = Math.min(...boxes.map((b) => b.x));
+            const minY = Math.min(...boxes.map((b) => b.y));
+            const maxX = Math.max(...boxes.map((b) => b.x + b.width));
+            const maxY = Math.max(...boxes.map((b) => b.y + b.height));
+            bbox = { x: minX, y: minY, width: maxX - minX, height: maxY - minY };
+          } else {
+            bbox = item.el.getBBox();
+          }
+        } catch (_) {
+          bbox = null;
+        }
+        items.push({ slotId: item.slotId, el: item.el, value, bbox, isFraction: !!item.isFraction, elements: item.elements || [item.el] });
+      }
+      return items;
+    }
+
+    function getSvgCanvasBounds() {
+      const svg = document.getElementById("svgPreview").querySelector("svg");
+      if (!svg) return null;
+      const vb = svg.viewBox && svg.viewBox.baseVal ? svg.viewBox.baseVal : null;
+      if (vb && vb.width > 0 && vb.height > 0) {
+        return { x: vb.x, y: vb.y, width: vb.width, height: vb.height };
+      }
+      const w = Number(svg.getAttribute("width") || 0);
+      const h = Number(svg.getAttribute("height") || 0);
+      if (w > 0 && h > 0) return { x: 0, y: 0, width: w, height: h };
+      return null;
+    }
+
+    async function alignSelected(mode) {
+      const items = selectedItemsWithValues();
+      if (items.length < 2) {
+        setStatus("정렬은 2개 이상 선택 시 사용하세요.", false);
+        return;
+      }
+      const itemsWithBox = items.filter((i) => i.bbox);
+      if (itemsWithBox.length < 2) {
+        setStatus("정렬용 bbox 정보를 가져오지 못했습니다.", false);
+        return;
+      }
+      const before = items.map((i) => ({ slotId: i.slotId, value: JSON.parse(JSON.stringify(i.value)) }));
+      const bounds = getSvgCanvasBounds();
+      const lefts = itemsWithBox.map((i) => i.bbox.x);
+      const rights = itemsWithBox.map((i) => i.bbox.x + i.bbox.width);
+      const tops = itemsWithBox.map((i) => i.bbox.y);
+      const bottoms = itemsWithBox.map((i) => i.bbox.y + i.bbox.height);
+      const centersX = itemsWithBox.map((i) => i.bbox.x + i.bbox.width / 2);
+      const centersY = itemsWithBox.map((i) => i.bbox.y + i.bbox.height / 2);
+
+      let targetMetric = 0;
+      if (mode === "left") targetMetric = Math.min(...lefts);
+      if (mode === "center") targetMetric = centersX.reduce((s, v) => s + v, 0) / centersX.length;
+      if (mode === "right") targetMetric = Math.max(...rights);
+      if (mode === "top") targetMetric = Math.min(...tops);
+      if (mode === "middle") targetMetric = centersY.reduce((s, v) => s + v, 0) / centersY.length;
+      if (mode === "bottom") targetMetric = Math.max(...bottoms);
+
+      const patches = [];
+      for (const item of itemsWithBox) {
+        const b = item.bbox;
+        let dx = 0;
+        let dy = 0;
+        if (mode === "left") dx = targetMetric - b.x;
+        if (mode === "center") dx = targetMetric - (b.x + b.width / 2);
+        if (mode === "right") dx = targetMetric - (b.x + b.width);
+        if (mode === "top") dy = targetMetric - b.y;
+        if (mode === "middle") dy = targetMetric - (b.y + b.height / 2);
+        if (mode === "bottom") dy = targetMetric - (b.y + b.height);
+
+        if (bounds) {
+          const minDx = bounds.x - b.x;
+          const maxDx = bounds.x + bounds.width - (b.x + b.width);
+          const minDy = bounds.y - b.y;
+          const maxDy = bounds.y + bounds.height - (b.y + b.height);
+          dx = Math.max(minDx, Math.min(maxDx, dx));
+          dy = Math.max(minDy, Math.min(maxDy, dy));
+        }
+
+        if (item.isFraction) {
+          for (const node of item.elements) applyElementDelta(node, dx, dy, false);
+          const snappedMove = snapPatchValue({ move_dx: dx, move_dy: dy });
+          const fixDx = snappedMove.move_dx - dx;
+          const fixDy = snappedMove.move_dy - dy;
+          if (fixDx !== 0 || fixDy !== 0) {
+            for (const node of item.elements) applyElementDelta(node, fixDx, fixDy, false);
+          }
+          patches.push({ target: item.slotId, op: "update", value: snappedMove });
+        } else {
+          const patchValue = applyElementDelta(item.el, dx, dy, true);
+          if (!patchValue) continue;
+          patches.push({ target: item.slotId, op: "update", value: patchValue });
+        }
+      }
+      if (!patches.length) return;
+      await commitPatches(patches, `정렬 저장 완료: ${mode}`);
+      updateSelectionHandles();
+      const after = selectedItemsWithValues().map((i) => ({ slotId: i.slotId, value: JSON.parse(JSON.stringify(i.value)) }));
+      if (!historyBusy && before.length === after.length) pushHistory(before, after, `정렬(${mode})`);
+    }
+
+    async function undoAction() {
+      if (!undoStack.length) return setStatus("Undo 이력이 없습니다.", false);
+      const entry = undoStack.pop();
+      await applyHistoryEntry(entry, true);
+      redoStack.push(entry);
+    }
+
+    async function redoAction() {
+      if (!redoStack.length) return setStatus("Redo 이력이 없습니다.", false);
+      const entry = redoStack.pop();
+      await applyHistoryEntry(entry, false);
+      undoStack.push(entry);
+    }
+
+    function renderLog(stdout, stderr) {
+      document.getElementById("buildLog").textContent = [stdout || "", stderr || ""].join("\n").trim();
+    }
+
+    function encodedProblemPath(problemId, suffix = "") {
+      const safe = problemId.split("/").map(encodeURIComponent).join("/");
+      return `/api/editor/problems/${safe}${suffix}`;
+    }
+
+    async function loadProblems() {
+      const data = await api("/api/editor/problems/");
+      knownProblems = data.problems || [];
+      const options = document.getElementById("problemOptions");
+      options.innerHTML = "";
+      for (const p of knownProblems) {
+        const option = document.createElement("option");
+        option.value = p.problem_id;
+        options.appendChild(option);
+      }
+      renderProblemTree(knownProblems.map((p) => p.problem_id));
+      if (!currentProblemId && knownProblems.length > 0) {
+        document.getElementById("problemInput").value = knownProblems[0].problem_id;
+      }
+    }
+
+    function buildTree(problemIds) {
+      const root = {};
+      for (const id of problemIds) {
+        const parts = id.split("/");
+        let node = root;
+        for (let i = 0; i < parts.length; i += 1) {
+          const part = parts[i];
+          if (!node[part]) node[part] = { __children: {}, __leaf: false, __id: null };
+          if (i === parts.length - 1) {
+            node[part].__leaf = true;
+            node[part].__id = id;
+          }
+          node = node[part].__children;
+        }
+      }
+      return root;
+    }
+
+    function renderTreeNode(container, nodeObj) {
+      const ul = document.createElement("ul");
+      const keys = Object.keys(nodeObj).sort((a, b) => a.localeCompare(b, "ko"));
+      for (const key of keys) {
+        const meta = nodeObj[key];
+        const li = document.createElement("li");
+        const childKeys = Object.keys(meta.__children);
+        if (childKeys.length > 0) {
+          const folder = document.createElement("div");
+          folder.className = "folder";
+          folder.textContent = key;
+          li.appendChild(folder);
+          renderTreeNode(li, meta.__children);
+        } else if (meta.__leaf) {
+          const btn = document.createElement("button");
+          btn.className = "file-btn";
+          btn.textContent = key;
+          btn.onclick = async () => {
+            document.getElementById("problemInput").value = meta.__id;
+            try { await selectProblem(meta.__id); } catch (e) { setStatus(String(e), false); }
+          };
+          li.appendChild(btn);
+        }
+        ul.appendChild(li);
+      }
+      container.appendChild(ul);
+    }
+
+    function renderProblemTree(problemIds) {
+      const tree = document.getElementById("problemTree");
+      tree.innerHTML = "";
+      if (!problemIds.length) {
+        tree.innerHTML = "<em>문제가 없습니다.</em>";
+        return;
+      }
+      const root = buildTree(problemIds);
+      renderTreeNode(tree, root);
+    }
+
+    async function selectProblem(problemId) {
+      const trimmed = (problemId || "").trim();
+      if (!trimmed) throw new Error("problem_id를 입력하세요.");
+      currentProblemId = trimmed;
+      document.getElementById("selectedProblem").textContent = trimmed;
+      const detail = await api(encodedProblemPath(trimmed, "/"));
+      document.getElementById("dslEditor").value = detail.dsl || "";
+      renderArtifacts(detail);
+      renderLog("", "");
+      setStatus(`불러오기 완료: ${trimmed}`, true);
+    }
+
+    async function saveDsl() {
+      if (!currentProblemId) throw new Error("먼저 문제를 선택하세요.");
+      const dsl = document.getElementById("dslEditor").value;
+      await api(encodedProblemPath(currentProblemId, "/dsl/"), {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ dsl }),
+      });
+      setStatus("DSL 저장 완료", true);
+    }
+
+    async function buildProblem() {
+      if (!currentProblemId) throw new Error("먼저 문제를 선택하세요.");
+      const data = await api(encodedProblemPath(currentProblemId, "/build/"), { method: "POST" });
+      renderArtifacts(data.artifacts || null);
+      renderLog(data.stdout, data.stderr);
+      setStatus("빌드 완료", true);
+      await loadProblems();
+    }
+
+    function readPatchPayload() {
+      const target = document.getElementById("slotId").value.trim();
+      if (!target) throw new Error("slot id를 입력하세요.");
+      const value = JSON.parse(document.getElementById("patchJson").value);
+      return { patches: [{ target, op: "update", value }] };
+    }
+
+    async function patchOnly() {
+      if (!currentProblemId) throw new Error("먼저 문제를 선택하세요.");
+      const payload = readPatchPayload();
+      const data = await api(encodedProblemPath(currentProblemId, "/layout-patch/"), {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      document.getElementById("dslEditor").value = data.dsl || "";
+      setStatus("레이아웃 패치 완료", true);
+    }
+
+    async function patchAndBuild() {
+      if (!currentProblemId) throw new Error("먼저 문제를 선택하세요.");
+      const payload = readPatchPayload();
+      const data = await api(encodedProblemPath(currentProblemId, "/layout-patch-and-build/"), {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      document.getElementById("dslEditor").value = data.dsl || "";
+      renderArtifacts(data.artifacts || null);
+      renderLog(data.build?.stdout || "", data.build?.stderr || "");
+      setStatus("패치 + 빌드 완료", true);
+      await loadProblems();
+    }
+
+    async function deleteSelectedSlots() {
+      if (!selectedSlots.size) throw new Error("삭제할 요소를 먼저 선택하세요.");
+      const uniqueSlotIds = Array.from(new Set(Array.from(selectedSlots.values()).map((i) => i.slotId)));
+      const patches = uniqueSlotIds.map((slotId) => ({ target: slotId, op: "delete" }));
+      await commitPatches(patches, `요소 삭제 완료: ${patches.length}개`);
+      clearSelection();
+    }
+
+    document.getElementById("openBtn").onclick = async () => {
+      try { await selectProblem(document.getElementById("problemInput").value); }
+      catch (e) { setStatus(String(e), false); }
+    };
+    document.getElementById("refreshListBtn").onclick = async () => {
+      try { await loadProblems(); setStatus("문제 목록 갱신 완료", true); }
+      catch (e) { setStatus(String(e), false); }
+    };
+    document.getElementById("reloadBtn").onclick = async () => {
+      try { await selectProblem(currentProblemId); }
+      catch (e) { setStatus(String(e), false); }
+    };
+    document.getElementById("saveBtn").onclick = async () => {
+      try { await saveDsl(); }
+      catch (e) { setStatus(String(e), false); }
+    };
+    document.getElementById("buildBtn").onclick = async () => {
+      try { await buildProblem(); }
+      catch (e) { setStatus(String(e), false); }
+    };
+    document.getElementById("patchBtn").onclick = async () => {
+      try { await patchOnly(); }
+      catch (e) { setStatus(String(e), false); }
+    };
+    document.getElementById("patchBuildBtn").onclick = async () => {
+      try { await patchAndBuild(); }
+      catch (e) { setStatus(String(e), false); }
+    };
+    document.getElementById("textEditBtn").onclick = async () => {
+      try { await updateSelectedText(); }
+      catch (e) { setStatus(String(e), false); }
+    };
+    document.getElementById("textEditInput").addEventListener("keydown", async (ev) => {
+      if (ev.key !== "Enter") return;
+      ev.preventDefault();
+      try { await updateSelectedText(); }
+      catch (e) { setStatus(String(e), false); }
+    });
+    document.getElementById("snapToggleBtn").onclick = () => {
+      snapEnabled = !snapEnabled;
+      updateSnapButton();
+      setStatus(snapEnabled ? "5px 스냅 활성화" : "5px 스냅 비활성화", true);
+    };
+    document.getElementById("alignLeftBtn").onclick = async () => { try { await alignSelected("left"); } catch (e) { setStatus(String(e), false); } };
+    document.getElementById("alignCenterBtn").onclick = async () => { try { await alignSelected("center"); } catch (e) { setStatus(String(e), false); } };
+    document.getElementById("alignRightBtn").onclick = async () => { try { await alignSelected("right"); } catch (e) { setStatus(String(e), false); } };
+    document.getElementById("alignTopBtn").onclick = async () => { try { await alignSelected("top"); } catch (e) { setStatus(String(e), false); } };
+    document.getElementById("alignMiddleBtn").onclick = async () => { try { await alignSelected("middle"); } catch (e) { setStatus(String(e), false); } };
+    document.getElementById("alignBottomBtn").onclick = async () => { try { await alignSelected("bottom"); } catch (e) { setStatus(String(e), false); } };
+    document.getElementById("undoBtn").onclick = async () => { try { await undoAction(); } catch (e) { setStatus(String(e), false); } };
+    document.getElementById("redoBtn").onclick = async () => { try { await redoAction(); } catch (e) { setStatus(String(e), false); } };
+    document.getElementById("deleteBtn").onclick = async () => {
+      try { await deleteSelectedSlots(); }
+      catch (e) { setStatus(String(e), false); }
+    };
+    document.getElementById("pickAllBtn").onclick = () => {
+      pickMode = "all";
+      applyPickMode();
+      setStatus("선택 모드: All", true);
+    };
+    document.getElementById("pickLinePathBtn").onclick = () => {
+      pickMode = "linepath";
+      applyPickMode();
+      setStatus("선택 모드: Line/Path", true);
+    };
+    document.getElementById("pickTextRectBtn").onclick = () => {
+      pickMode = "textrect";
+      applyPickMode();
+      setStatus("선택 모드: Text/Rect", true);
+    };
+    document.addEventListener("keydown", (ev) => {
+      const active = document.activeElement;
+      if (active && (active.tagName === "INPUT" || active.tagName === "TEXTAREA")) return;
+
+      if ((ev.ctrlKey || ev.metaKey) && !ev.shiftKey && ev.key.toLowerCase() === "z") {
+        ev.preventDefault();
+        undoAction().catch((e) => setStatus(String(e), false));
+        return;
+      }
+      if ((ev.ctrlKey || ev.metaKey) && (ev.key.toLowerCase() === "y" || (ev.shiftKey && ev.key.toLowerCase() === "z"))) {
+        ev.preventDefault();
+        redoAction().catch((e) => setStatus(String(e), false));
+        return;
+      }
+      if (!selectedSlots.size) return;
+
+      if (ev.key === "Delete" || ev.key === "Backspace") {
+        ev.preventDefault();
+        deleteSelectedSlots().catch((e) => setStatus(String(e), false));
+        return;
+      }
+
+      let dx = 0;
+      let dy = 0;
+      const step = ev.shiftKey ? 10 : 1;
+      if (ev.key === "ArrowLeft") dx = -step;
+      if (ev.key === "ArrowRight") dx = step;
+      if (ev.key === "ArrowUp") dy = -step;
+      if (ev.key === "ArrowDown") dy = step;
+      if (dx === 0 && dy === 0) return;
+      ev.preventDefault();
+
+      const patches = [];
+      const handledFractionPrefixes = new Set();
+      for (const item of selectedSlots.values()) {
+        const fracInfo = parseFractionPartId(item.el.getAttribute("id"));
+        if (fracInfo && fracInfo.prefix === item.slotId) {
+          if (handledFractionPrefixes.has(fracInfo.prefix)) continue;
+          const elems = fractionPartElements(fracInfo.prefix);
+          for (const el of elems) applyElementDelta(el, dx, dy, false);
+          patches.push({ target: fracInfo.prefix, op: "update", value: { move_dx: dx, move_dy: dy } });
+          handledFractionPrefixes.add(fracInfo.prefix);
+          continue;
+        }
+        const value = applyElementDelta(item.el, dx, dy, false);
+        if (!value) continue;
+        patches.push({ target: item.slotId, op: "update", value });
+      }
+      if (!patches.length) return;
+      updateSelectionHandles();
+      setStatus(`키보드 이동 중 ${patches.length}개 선택${snapEnabled ? " (snap 5px)" : ""}`, true);
+      queueKeyboardCommit(patches, `키보드 이동 저장 완료: ${patches.length}개`);
+    });
+
+    loadProblems().catch((e) => setStatus(String(e), false));
+  </script>
+</body>
+</html>
+
+

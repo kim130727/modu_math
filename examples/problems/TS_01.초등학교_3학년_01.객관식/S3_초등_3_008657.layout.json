@@ -1,0 +1,452 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008657",
+  "title": "원을 그릴 때 컴퍼스를 바르게 사용하는 것",
+  "canvas": {
+    "width": 940.0,
+    "height": 366.0,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.title.mark",
+        "slot.title.no",
+        "slot.title.text"
+      ]
+    },
+    {
+      "id": "region.options",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.box",
+        "slot.opt.a.circle",
+        "slot.opt.a.center",
+        "slot.opt.a.center2",
+        "slot.opt.b.circle",
+        "slot.opt.b.center",
+        "slot.opt.b.center2",
+        "slot.opt.c.circle",
+        "slot.opt.c.center",
+        "slot.opt.c.center2",
+        "slot.opt.a.compass.left",
+        "slot.opt.a.compass.right",
+        "slot.opt.a.compass.tip",
+        "slot.opt.a.compass.lead",
+        "slot.opt.b.compass.left",
+        "slot.opt.b.compass.right",
+        "slot.opt.b.compass.tip",
+        "slot.opt.b.compass.lead",
+        "slot.opt.c.compass.left",
+        "slot.opt.c.compass.right",
+        "slot.opt.c.compass.tip",
+        "slot.opt.c.compass.lead",
+        "slot.opt.a.label",
+        "slot.opt.b.label",
+        "slot.opt.c.label"
+      ]
+    },
+    {
+      "id": "region.footer",
+      "role": "answer",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.title.mark",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "□",
+        "style_role": "question",
+        "x": 12.0,
+        "y": 22.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.title.no",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "32.",
+        "style_role": "question",
+        "x": 36.0,
+        "y": 22.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.title.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "원을 그릴 때 컴퍼스를 바르게 사용하는 것을 찾아 선택해보세요.",
+        "style_role": "question",
+        "x": 82.0,
+        "y": 22.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 203.0,
+        "y": 52.0,
+        "width": 596.0,
+        "height": 191.0,
+        "stroke": "#18B7AF",
+        "stroke_width": 2.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.opt.a.label",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "가",
+        "style_role": "label",
+        "x": 242.0,
+        "y": 90.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.opt.a.circle",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 292.0,
+        "cy": 162.0,
+        "r": 40.0,
+        "stroke": "#A9A9A9",
+        "stroke_width": 1.5,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.opt.a.center",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 293.0,
+        "cy": 154.0,
+        "r": 3.0,
+        "fill": "#E91E63"
+      }
+    },
+    {
+      "id": "slot.opt.a.center2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 292.0,
+        "cy": 179.0,
+        "r": 4.0,
+        "stroke": "#666666",
+        "stroke_width": 1.5,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.opt.a.compass.left",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 291.0,
+        "y1": 102.0,
+        "x2": 259.0,
+        "y2": 152.0,
+        "stroke": "#95A5A6",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.opt.a.compass.right",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 291.0,
+        "y1": 102.0,
+        "x2": 327.0,
+        "y2": 151.0,
+        "stroke": "#95A5A6",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.opt.a.compass.tip",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 338.0,
+        "y1": 107.0,
+        "x2": 338.0,
+        "y2": 170.0,
+        "stroke": "#B6B84B",
+        "stroke_width": 4.0
+      }
+    },
+    {
+      "id": "slot.opt.a.compass.lead",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 338.0,
+        "y1": 158.0,
+        "x2": 338.0,
+        "y2": 168.0,
+        "stroke": "#E2AF4A",
+        "stroke_width": 2.5
+      }
+    },
+    {
+      "id": "slot.opt.b.label",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "나",
+        "style_role": "label",
+        "x": 471.0,
+        "y": 90.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.opt.b.circle",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 522.0,
+        "cy": 162.0,
+        "r": 40.0,
+        "stroke": "#A9A9A9",
+        "stroke_width": 1.5,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.opt.b.center",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 523.0,
+        "cy": 154.0,
+        "r": 3.0,
+        "fill": "#E91E63"
+      }
+    },
+    {
+      "id": "slot.opt.b.center2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 522.0,
+        "cy": 179.0,
+        "r": 4.0,
+        "stroke": "#666666",
+        "stroke_width": 1.5,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.opt.b.compass.left",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 521.0,
+        "y1": 102.0,
+        "x2": 507.0,
+        "y2": 151.0,
+        "stroke": "#95A5A6",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.opt.b.compass.right",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 521.0,
+        "y1": 102.0,
+        "x2": 551.0,
+        "y2": 152.0,
+        "stroke": "#95A5A6",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.opt.b.compass.tip",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 559.0,
+        "y1": 107.0,
+        "x2": 559.0,
+        "y2": 170.0,
+        "stroke": "#B6B84B",
+        "stroke_width": 4.0
+      }
+    },
+    {
+      "id": "slot.opt.b.compass.lead",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 559.0,
+        "y1": 158.0,
+        "x2": 559.0,
+        "y2": 168.0,
+        "stroke": "#E2AF4A",
+        "stroke_width": 2.5
+      }
+    },
+    {
+      "id": "slot.opt.c.label",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "다",
+        "style_role": "label",
+        "x": 650.0,
+        "y": 90.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.opt.c.circle",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 706.0,
+        "cy": 162.0,
+        "r": 40.0,
+        "stroke": "#A9A9A9",
+        "stroke_width": 1.5,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.opt.c.center",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 707.0,
+        "cy": 154.0,
+        "r": 3.0,
+        "fill": "#E91E63"
+      }
+    },
+    {
+      "id": "slot.opt.c.center2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 706.0,
+        "cy": 179.0,
+        "r": 4.0,
+        "stroke": "#666666",
+        "stroke_width": 1.5,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.opt.c.compass.left",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 705.0,
+        "y1": 102.0,
+        "x2": 691.0,
+        "y2": 151.0,
+        "stroke": "#95A5A6",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.opt.c.compass.right",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 705.0,
+        "y1": 102.0,
+        "x2": 734.0,
+        "y2": 152.0,
+        "stroke": "#95A5A6",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.opt.c.compass.tip",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 675.0,
+        "y1": 107.0,
+        "x2": 675.0,
+        "y2": 170.0,
+        "stroke": "#B6B84B",
+        "stroke_width": 4.0
+      }
+    },
+    {
+      "id": "slot.opt.c.compass.lead",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 675.0,
+        "y1": 158.0,
+        "x2": 675.0,
+        "y2": 168.0,
+        "stroke": "#E2AF4A",
+        "stroke_width": 2.5
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.title.mark",
+    "slot.title.no",
+    "slot.title.text",
+    "region.options",
+    "slot.box",
+    "slot.opt.a.circle",
+    "slot.opt.a.center",
+    "slot.opt.a.center2",
+    "slot.opt.b.circle",
+    "slot.opt.b.center",
+    "slot.opt.b.center2",
+    "slot.opt.c.circle",
+    "slot.opt.c.center",
+    "slot.opt.c.center2",
+    "slot.opt.a.compass.left",
+    "slot.opt.a.compass.right",
+    "slot.opt.a.compass.tip",
+    "slot.opt.a.compass.lead",
+    "slot.opt.b.compass.left",
+    "slot.opt.b.compass.right",
+    "slot.opt.b.compass.tip",
+    "slot.opt.b.compass.lead",
+    "slot.opt.c.compass.left",
+    "slot.opt.c.compass.right",
+    "slot.opt.c.compass.tip",
+    "slot.opt.c.compass.lead",
+    "slot.opt.a.label",
+    "slot.opt.b.label",
+    "slot.opt.c.label",
+    "region.footer"
+  ]
+}

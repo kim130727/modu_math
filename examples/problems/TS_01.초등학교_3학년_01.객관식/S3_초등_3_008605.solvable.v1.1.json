@@ -1,0 +1,148 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008605",
+  "problem_type": "multiple_choice_divisibility",
+  "inputs": {
+    "total_ticks": 5,
+    "target_label": "3으로 나누어떨어지는 수가 아닌 것",
+    "target_ticks": 2,
+    "target_count": 2,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.divisor",
+      "value": 3
+    },
+    {
+      "ref": "obj.choice.1",
+      "value": 27
+    },
+    {
+      "ref": "obj.choice.2",
+      "value": 56
+    },
+    {
+      "ref": "obj.choice.3",
+      "value": 84
+    },
+    {
+      "ref": "obj.choice.4",
+      "value": 63
+    },
+    {
+      "ref": "obj.choice.5",
+      "value": 70
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "selected_choices"
+  },
+  "method": "divisibility_check",
+  "plan": [
+    "각 수를 3으로 나누어 나머지가 0인지 확인한다.",
+    "나머지가 0이 아닌 보기를 고른다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "27 ÷ 3",
+      "value": {
+        "quotient": 9,
+        "remainder": 0
+      }
+    },
+    {
+      "id": "step.2",
+      "expr": "56 ÷ 3",
+      "value": {
+        "quotient": 18,
+        "remainder": 2
+      }
+    },
+    {
+      "id": "step.3",
+      "expr": "84 ÷ 3",
+      "value": {
+        "quotient": 28,
+        "remainder": 0
+      }
+    },
+    {
+      "id": "step.4",
+      "expr": "63 ÷ 3",
+      "value": {
+        "quotient": 21,
+        "remainder": 0
+      }
+    },
+    {
+      "id": "step.5",
+      "expr": "70 ÷ 3",
+      "value": {
+        "quotient": 23,
+        "remainder": 1
+      }
+    },
+    {
+      "id": "step.6",
+      "expr": "나누어떨어지지 않는 보기 선택",
+      "value": [
+        2,
+        5
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "remainder(27 ÷ 3) == 0",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "id": "check.2",
+      "expr": "remainder(56 ÷ 3) != 0",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "id": "check.3",
+      "expr": "remainder(84 ÷ 3) == 0",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "id": "check.4",
+      "expr": "remainder(63 ÷ 3) == 0",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "id": "check.5",
+      "expr": "remainder(70 ÷ 3) != 0",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "selected_choices",
+      "description": "3으로 나누어떨어지지 않는 보기"
+    },
+    "value": [
+      2,
+      5
+    ],
+    "unit": ""
+  }
+}

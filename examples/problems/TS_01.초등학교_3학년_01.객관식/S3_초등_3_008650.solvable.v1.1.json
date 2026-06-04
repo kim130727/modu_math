@@ -1,0 +1,68 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008650",
+  "problem_type": "circle_relationship_choice",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "지름과 반지름의 관계",
+    "target_ticks": 0,
+    "target_count": 0,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.circle",
+      "value": {
+        "type": "circle"
+      }
+    },
+    {
+      "ref": "obj.diameter",
+      "value": {
+        "role": "지름"
+      }
+    },
+    {
+      "ref": "obj.radius",
+      "value": {
+        "role": "반지름"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "choice"
+  },
+  "method": "개념_판별",
+  "plan": [
+    "그림과 해설 문장을 보고 지름과 반지름의 관계를 확인한다.",
+    "보기에서 알맞은 말을 고른다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "한 원에서 지름은 반지름의 2배이다.",
+      "value": "지름, 반지름"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "해설 문장과 선택 결과가 일치하는가",
+      "expected": "지름, 반지름",
+      "actual": "지름, 반지름",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "choice",
+      "description": "지름과 반지름의 관계를 나타내는 알맞은 것을 선택"
+    },
+    "value": 0,
+    "unit": ""
+  }
+}

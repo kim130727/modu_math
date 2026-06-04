@@ -1,0 +1,122 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008592",
+  "problem_type": "division_remainder_selection",
+  "inputs": {
+    "total_ticks": 5,
+    "target_label": "나머지가 5가 될 수 없는 식",
+    "target_ticks": 2,
+    "target_count": 2,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.choice_1",
+      "value": {
+        "divisor": 5
+      }
+    },
+    {
+      "ref": "obj.choice_2",
+      "value": {
+        "divisor": 4
+      }
+    },
+    {
+      "ref": "obj.choice_3",
+      "value": {
+        "divisor": 8
+      }
+    },
+    {
+      "ref": "obj.choice_4",
+      "value": {
+        "divisor": 7
+      }
+    },
+    {
+      "ref": "obj.choice_5",
+      "value": {
+        "divisor": 6
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "selection"
+  },
+  "method": "compare_divisor_to_five",
+  "plan": [
+    "나머지는 나누는 수보다 작아야 한다.",
+    "각 보기의 나누는 수가 5 이하인지 확인한다.",
+    "5 이하이면 나머지가 5가 될 수 없다고 판단한다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "5 <= 5",
+      "value": true
+    },
+    {
+      "id": "step.2",
+      "expr": "4 <= 5",
+      "value": true
+    },
+    {
+      "id": "step.3",
+      "expr": "8 <= 5",
+      "value": false
+    },
+    {
+      "id": "step.4",
+      "expr": "7 <= 5",
+      "value": false
+    },
+    {
+      "id": "step.5",
+      "expr": "6 <= 5",
+      "value": false
+    },
+    {
+      "id": "step.6",
+      "expr": "선택할 보기 번호",
+      "value": [
+        1,
+        2
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "나머지는 나누는 수보다 작아야 한다",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "id": "check.2",
+      "expr": "선택된 보기 번호가 1, 2인가",
+      "expected": [
+        1,
+        2
+      ],
+      "actual": [
+        1,
+        2
+      ],
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "selection",
+      "description": "나머지가 5가 될 수 없는 식"
+    },
+    "value": 2,
+    "unit": ""
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "problem_id": "S3_초등_3_008584",
+  "problem_type": "classification_division_expression",
+  "metadata": {
+    "title": "묶이 다른 것을 선택하세요",
+    "tags": [],
+    "question": "묶이 다른 것을 선택하세요.",
+    "required_layout_ids": [
+      "slot.box",
+      "slot.opt1.body",
+      "slot.opt1.wheel1",
+      "slot.opt1.wheel2",
+      "slot.opt2.body",
+      "slot.opt2.wheel1",
+      "slot.opt2.wheel2",
+      "slot.opt3.body",
+      "slot.opt3.wheel1",
+      "slot.opt3.wheel2",
+      "slot.ans.body",
+      "slot.ans.wheel1",
+      "slot.ans.wheel2"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "묶이 다른 것을 선택하세요."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.expr1",
+        "type": "division_expression",
+        "expression": "72 ÷ 3"
+      },
+      {
+        "id": "obj.expr2",
+        "type": "division_expression",
+        "expression": "84 ÷ 2"
+      },
+      {
+        "id": "obj.expr3",
+        "type": "division_expression",
+        "expression": "96 ÷ 4"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.expr1",
+          "obj.expr2",
+          "obj.expr3"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.compare"
+        ]
+      },
+      "plan": {
+        "method": "compare_by_calculation_result",
+        "description": "각 나눗셈 식의 결과를 비교하여 묶이 다른 대상을 찾는다."
+      },
+      "execute": {
+        "expected_operations": [
+          "evaluate_expression",
+          "compare_groups"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "result_comparison_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "different_group_expression",
+      "description": "묶이 다른 것"
+    },
+    "value": 2,
+    "unit": ""
+  }
+}

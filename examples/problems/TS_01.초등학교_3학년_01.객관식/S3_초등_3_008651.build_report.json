@@ -1,0 +1,12 @@
+{
+  "dsl_path": "C:\\projects\\modu_math\\examples\\problems\\TS_01.초등학교_3학년_01.객관식\\S3_초등_3_008651.dsl.py",
+  "out_prefix": "C:\\projects\\modu_math\\examples\\problems\\TS_01.초등학교_3학년_01.객관식\\S3_초등_3_008651",
+  "success": false,
+  "generated_files": [],
+  "strict": true,
+  "emit_solvable": true,
+  "error": {
+    "type": "ValidationError",
+    "message": "Additional properties are not allowed ('unit' was unexpected)\n\nFailed validating 'additionalProperties' in schema['properties']['given']['items']:\n    {'type': 'object',\n     'additionalProperties': False,\n     'properties': {'ref': {'type': 'string'}, 'value': {}},\n     'required': ['ref', 'value']}\n\nOn instance['given'][0]:\n    {'ref': 'obj.length', 'value': 3, 'unit': 'cm'}"
+  }
+}

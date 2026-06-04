@@ -1,0 +1,136 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008555",
+  "title": "500보다 큰 계산 결과 찾기",
+  "canvas": {
+    "width": 600,
+    "height": 250,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.question"
+      ]
+    },
+    {
+      "id": "region.choices",
+      "role": "choices",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice1_box",
+        "slot.choice2_box",
+        "slot.choice1_text",
+        "slot.choice2_text"
+      ]
+    },
+    {
+      "id": "region.answer_explain",
+      "role": "supporting",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.question",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "계산 결과가 500보다 큰 것을 선택해 보세요.",
+        "style_role": "question",
+<<<<<<< HEAD:examples/problems/TS_01.초등학교_3학년_01.객관식/S3_초등_3_008555.layout.json
+        "x": 70.0,
+        "y": 35.0,
+=======
+        "x": 40.0,
+        "y": 60.0,
+>>>>>>> 71a328bd333ac522efc2b16e3372d00a762fe4a9:examples/problems/TS_01.초등학교_3학년_01.객관식/complete/S3_초등_3_008555.layout.json
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice1_box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+<<<<<<< HEAD:examples/problems/TS_01.초등학교_3학년_01.객관식/S3_초등_3_008555.layout.json
+        "x": 105.0,
+        "y": 70.0,
+=======
+        "x": 60.0,
+        "y": 120.0,
+>>>>>>> 71a328bd333ac522efc2b16e3372d00a762fe4a9:examples/problems/TS_01.초등학교_3학년_01.객관식/complete/S3_초등_3_008555.layout.json
+        "width": 178.0,
+        "height": 76.0
+      }
+    },
+    {
+      "id": "slot.choice1_text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "35 × 13",
+        "style_role": "choice",
+<<<<<<< HEAD:examples/problems/TS_01.초등학교_3학년_01.객관식/S3_초등_3_008555.layout.json
+        "x": 140.0,
+        "y": 120.0,
+=======
+        "x": 100.0,
+        "y": 163.0,
+>>>>>>> 71a328bd333ac522efc2b16e3372d00a762fe4a9:examples/problems/TS_01.초등학교_3학년_01.객관식/complete/S3_초등_3_008555.layout.json
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice2_box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+<<<<<<< HEAD:examples/problems/TS_01.초등학교_3학년_01.객관식/S3_초등_3_008555.layout.json
+        "x": 365.0,
+        "y": 70.0,
+=======
+        "x": 300.0,
+        "y": 120.0,
+>>>>>>> 71a328bd333ac522efc2b16e3372d00a762fe4a9:examples/problems/TS_01.초등학교_3학년_01.객관식/complete/S3_초등_3_008555.layout.json
+        "width": 178.0,
+        "height": 76.0
+      }
+    },
+    {
+      "id": "slot.choice2_text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "28 × 19",
+        "style_role": "choice",
+<<<<<<< HEAD:examples/problems/TS_01.초등학교_3학년_01.객관식/S3_초등_3_008555.layout.json
+        "x": 400.0,
+        "y": 120.0,
+=======
+        "x": 340.0,
+        "y": 163.0,
+>>>>>>> 71a328bd333ac522efc2b16e3372d00a762fe4a9:examples/problems/TS_01.초등학교_3학년_01.객관식/complete/S3_초등_3_008555.layout.json
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.question",
+    "region.choices",
+    "slot.choice1_box",
+    "slot.choice2_box",
+    "slot.choice1_text",
+    "slot.choice2_text",
+    "region.answer_explain"
+  ]
+}

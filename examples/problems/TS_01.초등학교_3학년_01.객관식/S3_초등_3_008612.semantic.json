@@ -1,0 +1,83 @@
+{
+  "problem_id": "S3_초등_3_008612",
+  "problem_type": "divisibility_judgment",
+  "metadata": {
+    "title": "다음 나눗셈이 나누어떨어지는지 판단하기",
+    "tags": [
+      "초등",
+      "수학",
+      "나눗셈",
+      "나누어떨어짐",
+      "판단"
+    ],
+    "instruction": "나누어떨어지면 O, 나누어떨어지지 않으면 X를 선택한다.",
+    "question": "28 ÷ 3이 나누어떨어지는지 판단하는 문제",
+    "required_layout_ids": [
+      "slot.expr.box"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.dividend",
+        "type": "number",
+        "value": 28
+      },
+      {
+        "id": "obj.divisor",
+        "type": "number",
+        "value": 3
+      },
+      {
+        "id": "obj.selected_symbol",
+        "type": "symbol",
+        "value": "X"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.dividend",
+          "obj.divisor"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.divisibility"
+        ]
+      },
+      "plan": {
+        "method": "division_remainder_check",
+        "description": "나눗셈의 나머지가 0인지 확인해 O/X를 판단한다."
+      },
+      "execute": {
+        "expected_operations": [
+          "divide",
+          "check_remainder",
+          "select_symbol"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "remainder_zero_check",
+          "symbol_match_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "selection_symbol",
+      "description": "정답 기호"
+    },
+    "value": "X",
+    "unit": ""
+  }
+}

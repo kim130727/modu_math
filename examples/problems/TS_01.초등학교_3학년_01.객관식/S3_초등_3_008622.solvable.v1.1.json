@@ -1,0 +1,82 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008622",
+  "problem_type": "multiple_choice_remainder",
+  "inputs": {
+    "total_ticks": 6,
+    "target_label": "나머지가 될 수 있는 수",
+    "target_ticks": 4,
+    "target_count": 4,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.divisor",
+      "value": 5
+    },
+    {
+      "ref": "obj.candidates",
+      "value": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "selected_numbers"
+  },
+  "method": "compare_to_divisor",
+  "plan": [
+    "나머지는 나누는 수보다 작다.",
+    "후보를 5와 비교해 5보다 작은 수를 고른다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "1<5,2<5,3<5,4<5,5<5,6<5",
+      "value": [
+        true,
+        true,
+        true,
+        true,
+        false,
+        false
+      ]
+    },
+    {
+      "id": "step.2",
+      "expr": "선택한 수",
+      "value": [
+        1,
+        2,
+        3,
+        4
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "selected < 5",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "selected_numbers",
+      "description": "나머지가 될 수 있는 수"
+    },
+    "value": 4,
+    "unit": ""
+  }
+}

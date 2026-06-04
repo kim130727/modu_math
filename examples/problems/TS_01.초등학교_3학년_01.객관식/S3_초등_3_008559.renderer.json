@@ -1,0 +1,502 @@
+{
+  "problem_id": "S3_초등_3_008559",
+  "view_box": {
+    "width": 800.0,
+    "height": 420.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.choice.box.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 513.0,
+        "y": 63.0,
+        "width": 150.0,
+        "height": 219.0,
+        "fill": "none",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.choice.box",
+      "refs": {
+        "layout_slot_id": "slot.choice.box"
+      }
+    },
+    {
+      "id": "hl.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 368.0,
+        "y": 168.0,
+        "width": 88.0,
+        "height": 38.0,
+        "fill": "#e9c8dc",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "hl",
+      "refs": {
+        "layout_slot_id": "hl"
+      }
+    },
+    {
+      "id": "l1.line",
+      "type": "line",
+      "attributes": {
+        "x1": 298.0,
+        "y1": 122.0,
+        "x2": 438.0,
+        "y2": 122.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "l1",
+      "refs": {
+        "layout_slot_id": "l1"
+      }
+    },
+    {
+      "id": "l2.line",
+      "type": "line",
+      "attributes": {
+        "x1": 298.0,
+        "y1": 242.0,
+        "x2": 458.0,
+        "y2": 242.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "l2",
+      "refs": {
+        "layout_slot_id": "l2"
+      }
+    },
+    {
+      "id": "slot.q.no.text",
+      "type": "text",
+      "attributes": {
+        "x": 12.0,
+        "y": 30.0,
+        "max_width": 672.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 38
+      },
+      "source_ref": "slot.q.no",
+      "refs": {
+        "layout_slot_id": "slot.q.no"
+      },
+      "text": "23."
+    },
+    {
+      "id": "slot.q.text.text",
+      "type": "text",
+      "attributes": {
+        "x": 48.0,
+        "y": 30.0,
+        "max_width": 672.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 44
+      },
+      "source_ref": "slot.q.text",
+      "refs": {
+        "layout_slot_id": "slot.q.text"
+      },
+      "text": "색칠된 부분은 실제 어떤 수의 곱인지 찾아 선택하세요."
+    },
+    {
+      "id": "t2.text",
+      "type": "text",
+      "attributes": {
+        "x": 344.0,
+        "y": 74.0,
+        "max_width": 672.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 44
+      },
+      "source_ref": "t2",
+      "refs": {
+        "layout_slot_id": "t2"
+      },
+      "text": "7"
+    },
+    {
+      "id": "t1.text",
+      "type": "text",
+      "attributes": {
+        "x": 384.0,
+        "y": 74.0,
+        "max_width": 672.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 44
+      },
+      "source_ref": "t1",
+      "refs": {
+        "layout_slot_id": "t1"
+      },
+      "text": "6"
+    },
+    {
+      "id": "t0.text",
+      "type": "text",
+      "attributes": {
+        "x": 424.0,
+        "y": 74.0,
+        "max_width": 672.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 44
+      },
+      "source_ref": "t0",
+      "refs": {
+        "layout_slot_id": "t0"
+      },
+      "text": "2"
+    },
+    {
+      "id": "mx.text",
+      "type": "text",
+      "attributes": {
+        "x": 300.0,
+        "y": 114.0,
+        "max_width": 672.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 44
+      },
+      "source_ref": "mx",
+      "refs": {
+        "layout_slot_id": "mx"
+      },
+      "text": "×"
+    },
+    {
+      "id": "m0.text",
+      "type": "text",
+      "attributes": {
+        "x": 424.0,
+        "y": 114.0,
+        "max_width": 672.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 44
+      },
+      "source_ref": "m0",
+      "refs": {
+        "layout_slot_id": "m0"
+      },
+      "text": "4"
+    },
+    {
+      "id": "p0.text",
+      "type": "text",
+      "attributes": {
+        "x": 424.0,
+        "y": 156.0,
+        "max_width": 672.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 44
+      },
+      "source_ref": "p0",
+      "refs": {
+        "layout_slot_id": "p0"
+      },
+      "text": "8"
+    },
+    {
+      "id": "h2.text",
+      "type": "text",
+      "attributes": {
+        "x": 374.0,
+        "y": 200.0,
+        "max_width": 672.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 44
+      },
+      "source_ref": "h2",
+      "refs": {
+        "layout_slot_id": "h2"
+      },
+      "text": "2"
+    },
+    {
+      "id": "h1.text",
+      "type": "text",
+      "attributes": {
+        "x": 408.0,
+        "y": 200.0,
+        "max_width": 672.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 44
+      },
+      "source_ref": "h1",
+      "refs": {
+        "layout_slot_id": "h1"
+      },
+      "text": "4"
+    },
+    {
+      "id": "h0.text",
+      "type": "text",
+      "attributes": {
+        "x": 442.0,
+        "y": 200.0,
+        "max_width": 672.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 44
+      },
+      "source_ref": "h0",
+      "refs": {
+        "layout_slot_id": "h0"
+      },
+      "text": "0"
+    },
+    {
+      "id": "p23.text",
+      "type": "text",
+      "attributes": {
+        "x": 304.0,
+        "y": 240.0,
+        "max_width": 672.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 44
+      },
+      "source_ref": "p23",
+      "refs": {
+        "layout_slot_id": "p23"
+      },
+      "text": "2"
+    },
+    {
+      "id": "p22.text",
+      "type": "text",
+      "attributes": {
+        "x": 344.0,
+        "y": 240.0,
+        "max_width": 672.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 44
+      },
+      "source_ref": "p22",
+      "refs": {
+        "layout_slot_id": "p22"
+      },
+      "text": "8"
+    },
+    {
+      "id": "p21.text",
+      "type": "text",
+      "attributes": {
+        "x": 384.0,
+        "y": 240.0,
+        "max_width": 672.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 44
+      },
+      "source_ref": "p21",
+      "refs": {
+        "layout_slot_id": "p21"
+      },
+      "text": "0"
+    },
+    {
+      "id": "p20.text",
+      "type": "text",
+      "attributes": {
+        "x": 424.0,
+        "y": 240.0,
+        "max_width": 672.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 44
+      },
+      "source_ref": "p20",
+      "refs": {
+        "layout_slot_id": "p20"
+      },
+      "text": "0"
+    },
+    {
+      "id": "f3.text",
+      "type": "text",
+      "attributes": {
+        "x": 304.0,
+        "y": 280.0,
+        "max_width": 672.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 44
+      },
+      "source_ref": "f3",
+      "refs": {
+        "layout_slot_id": "f3"
+      },
+      "text": "3"
+    },
+    {
+      "id": "f2.text",
+      "type": "text",
+      "attributes": {
+        "x": 344.0,
+        "y": 280.0,
+        "max_width": 672.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 44
+      },
+      "source_ref": "f2",
+      "refs": {
+        "layout_slot_id": "f2"
+      },
+      "text": "0"
+    },
+    {
+      "id": "f1.text",
+      "type": "text",
+      "attributes": {
+        "x": 384.0,
+        "y": 280.0,
+        "max_width": 672.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 44
+      },
+      "source_ref": "f1",
+      "refs": {
+        "layout_slot_id": "f1"
+      },
+      "text": "4"
+    },
+    {
+      "id": "f0.text",
+      "type": "text",
+      "attributes": {
+        "x": 424.0,
+        "y": 280.0,
+        "max_width": 672.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 44
+      },
+      "source_ref": "f0",
+      "refs": {
+        "layout_slot_id": "f0"
+      },
+      "text": "8"
+    },
+    {
+      "id": "c1.text",
+      "type": "text",
+      "attributes": {
+        "x": 536.0,
+        "y": 112.0,
+        "max_width": 672.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 40
+      },
+      "source_ref": "c1",
+      "refs": {
+        "layout_slot_id": "c1"
+      },
+      "text": "6 × 4"
+    },
+    {
+      "id": "c2.text",
+      "type": "text",
+      "attributes": {
+        "x": 536.0,
+        "y": 154.0,
+        "max_width": 672.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 40
+      },
+      "source_ref": "c2",
+      "refs": {
+        "layout_slot_id": "c2"
+      },
+      "text": "60 × 4"
+    },
+    {
+      "id": "c3.text",
+      "type": "text",
+      "attributes": {
+        "x": 536.0,
+        "y": 196.0,
+        "max_width": 672.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 40
+      },
+      "source_ref": "c3",
+      "refs": {
+        "layout_slot_id": "c3"
+      },
+      "text": "62 × 4"
+    },
+    {
+      "id": "c4.text",
+      "type": "text",
+      "attributes": {
+        "x": 536.0,
+        "y": 238.0,
+        "max_width": 672.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 40
+      },
+      "source_ref": "c4",
+      "refs": {
+        "layout_slot_id": "c4"
+      },
+      "text": "600 × 4"
+    },
+    {
+      "id": "a.text",
+      "type": "text",
+      "attributes": {
+        "x": 8.0,
+        "y": 334.0,
+        "max_width": 672.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 36
+      },
+      "source_ref": "a",
+      "refs": {
+        "layout_slot_id": "a"
+      },
+      "text": "(답) 60 × 4"
+    },
+    {
+      "id": "e.text",
+      "type": "text",
+      "attributes": {
+        "x": 8.0,
+        "y": 382.0,
+        "max_width": 672.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 40
+      },
+      "source_ref": "e",
+      "refs": {
+        "layout_slot_id": "e"
+      },
+      "text": "(풀이) 762에서 6은 십의 자리이므로 60 × 4 = 240입니다."
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

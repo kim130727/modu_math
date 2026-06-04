@@ -1,0 +1,101 @@
+{
+  "problem_id": "S3_초등_3_008671",
+  "problem_type": "multiple_choice",
+  "metadata": {
+    "title": "누름 못과 띠 종이",
+    "tags": [],
+    "question": "누름 못과 띠 종이를 사용하여 원을 그리는 방법을 보고, 원을 가장 크게 그리기 위해 어느 구멍에 연필을 꽂아야 하는지 알맞은 기호를 고르는 문제",
+    "required_layout_ids": [
+      "slot.band",
+      "slot.pin",
+      "slot.hole.1",
+      "slot.hole.2",
+      "slot.hole.3",
+      "slot.hole.4",
+      "slot.arrow.1",
+      "slot.arrow.2",
+      "slot.arrow.3",
+      "slot.arrow.4",
+      "slot.choice.1",
+      "slot.choice.2",
+      "slot.choice.3",
+      "slot.choice.4"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "알맞은 기호를 선택하세요."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.pin",
+        "type": "fixed_point",
+        "name": "누름 못"
+      },
+      {
+        "id": "obj.paper_strip",
+        "type": "strip",
+        "name": "띠 종이"
+      },
+      {
+        "id": "obj.holes",
+        "type": "ordered_positions",
+        "count": 4
+      },
+      {
+        "id": "obj.options",
+        "type": "choice_labels",
+        "labels": [
+          "ㄱ",
+          "ㄴ",
+          "ㄷ",
+          "ㄹ"
+        ]
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.pin",
+          "obj.paper_strip",
+          "obj.holes",
+          "obj.options"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.distance_circle_size"
+        ]
+      },
+      "plan": {
+        "method": "compare_distance_to_select",
+        "description": "누름 못과 연필심 사이의 거리가 가장 멀어지도록 대응되는 구멍을 찾는다."
+      },
+      "execute": {
+        "expected_operations": [
+          "compare_hole_positions",
+          "select_farthest_hole",
+          "match_option_label"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "distance_order_check",
+          "answer_label_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "choice_label",
+      "description": "원을 가장 크게 그리기 위해 선택할 기호"
+    },
+    "value": "ㄹ",
+    "unit": ""
+  }
+}

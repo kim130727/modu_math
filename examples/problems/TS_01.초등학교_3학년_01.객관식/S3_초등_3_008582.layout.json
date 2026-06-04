@@ -1,0 +1,296 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008582",
+  "title": "계산 결과가 더 큰 사람의 이름을 선택해 보세요.",
+  "canvas": {
+    "width": 766.0,
+    "height": 396.0,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.header",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q_num",
+        "slot.q_text"
+      ]
+    },
+    {
+      "id": "region.left",
+      "role": "content",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.card_left",
+        "slot.face_left.head",
+        "slot.face_left.body",
+        "slot.face_left.eye1",
+        "slot.face_left.eye2",
+        "slot.face_left.mouth",
+        "slot.name_left",
+        "slot.card_left_text"
+      ]
+    },
+    {
+      "id": "region.right",
+      "role": "content",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.card_right",
+        "slot.face_right.head",
+        "slot.face_right.body",
+        "slot.face_right.eye1",
+        "slot.face_right.eye2",
+        "slot.face_right.mouth",
+        "slot.name_right",
+        "slot.card_right_text"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q_num",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "48.",
+        "style_role": "question",
+        "x": 12.0,
+        "y": 37.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q_text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "계산 결과가 더 큰 사람의 이름을 선택해 보세요.",
+        "style_role": "question",
+        "x": 60.0,
+        "y": 37.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.face_left.head",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 230.0,
+        "cy": 88.0,
+        "r": 20.0,
+        "fill": "#F3C0AD"
+      }
+    },
+    {
+      "id": "slot.face_left.body",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 220.0,
+        "y": 102.0,
+        "width": 20.0,
+        "height": 24.0,
+        "stroke": "#D7A0D7",
+        "rx": 8.0,
+        "ry": 8.0,
+        "fill": "#D7A0D7"
+      }
+    },
+    {
+      "id": "slot.face_left.eye1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 225.0,
+        "cy": 85.0,
+        "r": 2.0,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.face_left.eye2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 235.0,
+        "cy": 85.0,
+        "r": 2.0,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.face_left.mouth",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 225.0,
+        "y1": 92.0,
+        "x2": 235.0,
+        "y2": 92.0,
+        "stroke": "#C36A6A"
+      }
+    },
+    {
+      "id": "slot.name_left",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "진수",
+        "style_role": "label",
+        "x": 200.0,
+        "y": 126.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.card_left",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 170.0,
+        "y": 140.0,
+        "width": 129.0,
+        "height": 64.0,
+        "fill": "#F6C344"
+      }
+    },
+    {
+      "id": "slot.card_left_text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "63 × 12",
+        "style_role": "math",
+        "x": 180.0,
+        "y": 180.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.face_right.head",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 430.0,
+        "cy": 88.0,
+        "r": 20.0,
+        "fill": "#F3C0AD"
+      }
+    },
+    {
+      "id": "slot.face_right.body",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 420.0,
+        "y": 102.0,
+        "width": 20.0,
+        "height": 24.0,
+        "stroke": "#8ED7E6",
+        "rx": 8.0,
+        "ry": 8.0,
+        "fill": "#8ED7E6"
+      }
+    },
+    {
+      "id": "slot.face_right.eye1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 425.0,
+        "cy": 85.0,
+        "r": 2.0,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.face_right.eye2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 435.0,
+        "cy": 85.0,
+        "r": 2.0,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.face_right.mouth",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 425.0,
+        "y1": 92.0,
+        "x2": 435.0,
+        "y2": 92.0,
+        "stroke": "#C36A6A"
+      }
+    },
+    {
+      "id": "slot.name_right",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "수호",
+        "style_role": "label",
+        "x": 400.0,
+        "y": 126.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.card_right",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 365.0,
+        "y": 140.0,
+        "width": 129.0,
+        "height": 64.0,
+        "fill": "#F6C344"
+      }
+    },
+    {
+      "id": "slot.card_right_text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "24 × 31",
+        "style_role": "math",
+        "x": 380.0,
+        "y": 180.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.header",
+    "slot.q_num",
+    "slot.q_text",
+    "region.left",
+    "slot.card_left",
+    "slot.face_left.head",
+    "slot.face_left.body",
+    "slot.face_left.eye1",
+    "slot.face_left.eye2",
+    "slot.face_left.mouth",
+    "slot.name_left",
+    "slot.card_left_text",
+    "region.right",
+    "slot.card_right",
+    "slot.face_right.head",
+    "slot.face_right.body",
+    "slot.face_right.eye1",
+    "slot.face_right.eye2",
+    "slot.face_right.mouth",
+    "slot.name_right",
+    "slot.card_right_text"
+  ]
+}

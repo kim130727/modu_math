@@ -1,0 +1,92 @@
+{
+  "problem_id": "S3_초등_3_008656",
+  "problem_type": "geometry_circle_diameter_selection",
+  "metadata": {
+    "title": "원의 지름이 아닌 것을 찾아 기호를 모두 선택하기",
+    "tags": [],
+    "question": "원의 지름이 아닌 것을 찾아 기호를 모두 선택하세요.",
+    "required_layout_ids": [
+      "slot.header.box",
+      "slot.circle.outer",
+      "slot.circle.center",
+      "slot.line.v",
+      "slot.line.h",
+      "slot.line.d1",
+      "slot.line.d2",
+      "slot.line.d3",
+      "slot.line.d4",
+      "slot.line.d5"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "도형에서 지름이 아닌 기호를 고른다."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.circle",
+        "type": "circle"
+      },
+      {
+        "id": "obj.center",
+        "type": "point",
+        "role": "center"
+      },
+      {
+        "id": "obj.labels",
+        "type": "label_set",
+        "items": [
+          "ㄴ",
+          "ㄷ",
+          "ㄹ",
+          "ㅁ",
+          "ㅂ",
+          "ㅅ",
+          "ㄱ"
+        ]
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.circle",
+          "obj.center",
+          "obj.labels"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.diameter_test"
+        ]
+      },
+      "plan": {
+        "method": "center_membership_check",
+        "description": "각 선이 중심을 지나는지 보고 지름인지 아닌지 구분한다."
+      },
+      "execute": {
+        "expected_operations": [
+          "center_check",
+          "select_non_diameter_labels"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "verify_center_crossing",
+          "compare_with_answer_text"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "selected_labels",
+      "description": "원의 지름이 아닌 기호"
+    },
+    "value": 2,
+    "unit": ""
+  }
+}

@@ -1,0 +1,209 @@
+{
+  "problem_id": "S3_초등_3_008640",
+  "view_box": {
+    "width": 960.0,
+    "height": 650.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.q1.text",
+      "type": "text",
+      "attributes": {
+        "x": 16.0,
+        "y": 34.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q1",
+      "refs": {
+        "layout_slot_id": "slot.q1"
+      },
+      "text": "□ 12. 원에 반지를를 3개 그은 것입니다. 한 원에 반지를를 몇 개 그을 수 있는지"
+    },
+    {
+      "id": "slot.q2.text",
+      "type": "text",
+      "attributes": {
+        "x": 16.0,
+        "y": 70.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q2",
+      "refs": {
+        "layout_slot_id": "slot.q2"
+      },
+      "text": "알맞은 것을 선택하세요."
+    },
+    {
+      "id": "slot.circle.boundary.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 471.0,
+        "cy": 206.0,
+        "r": 134.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "none"
+      },
+      "source_ref": "slot.circle.boundary",
+      "refs": {
+        "layout_slot_id": "slot.circle.boundary"
+      }
+    },
+    {
+      "id": "slot.circle.center.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 490.0,
+        "cy": 208.0,
+        "r": 3.5,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#e91e63"
+      },
+      "source_ref": "slot.circle.center",
+      "refs": {
+        "layout_slot_id": "slot.circle.center"
+      }
+    },
+    {
+      "id": "slot.circle.marker.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 484.0,
+        "cy": 193.0,
+        "r": 4.5,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "none"
+      },
+      "source_ref": "slot.circle.marker",
+      "refs": {
+        "layout_slot_id": "slot.circle.marker"
+      }
+    },
+    {
+      "id": "slot.radius.left.line",
+      "type": "line",
+      "attributes": {
+        "x1": 490.0,
+        "y1": 208.0,
+        "x2": 355.0,
+        "y2": 214.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.radius.left",
+      "refs": {
+        "layout_slot_id": "slot.radius.left"
+      }
+    },
+    {
+      "id": "slot.radius.up_right.line",
+      "type": "line",
+      "attributes": {
+        "x1": 490.0,
+        "y1": 208.0,
+        "x2": 580.0,
+        "y2": 131.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.radius.up_right",
+      "refs": {
+        "layout_slot_id": "slot.radius.up_right"
+      }
+    },
+    {
+      "id": "slot.radius.down.line",
+      "type": "line",
+      "attributes": {
+        "x1": 490.0,
+        "y1": 208.0,
+        "x2": 474.0,
+        "y2": 344.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.radius.down",
+      "refs": {
+        "layout_slot_id": "slot.radius.down"
+      }
+    },
+    {
+      "id": "slot.choice.box.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 95.0,
+        "y": 328.0,
+        "width": 760.0,
+        "height": 78.0,
+        "fill": "none",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.choice.box",
+      "refs": {
+        "layout_slot_id": "slot.choice.box"
+      }
+    },
+    {
+      "id": "slot.choice.text.text",
+      "type": "text",
+      "attributes": {
+        "x": 500.0,
+        "y": 373.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice.text",
+      "refs": {
+        "layout_slot_id": "slot.choice.text"
+      },
+      "text": "( 무수히 많이 그을 수 있습니다. , 3개 )"
+    },
+    {
+      "id": "slot.ans.text",
+      "type": "text",
+      "attributes": {
+        "x": 16.0,
+        "y": 435.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 22
+      },
+      "source_ref": "slot.ans",
+      "refs": {
+        "layout_slot_id": "slot.ans"
+      },
+      "text": "(정답)무수히 많이 그을 수 있습니다."
+    },
+    {
+      "id": "slot.exp.text",
+      "type": "text",
+      "attributes": {
+        "x": 16.0,
+        "y": 478.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 20
+      },
+      "source_ref": "slot.exp",
+      "refs": {
+        "layout_slot_id": "slot.exp"
+      },
+      "text": "(해설)반지름은 원의 중심과 원 위의 한 점을 이은 선분이이므로 무수히 많이 그을 수 있습니다."
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

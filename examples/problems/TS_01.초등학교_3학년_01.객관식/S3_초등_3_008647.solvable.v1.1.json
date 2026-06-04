@@ -1,0 +1,74 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008647",
+  "problem_type": "geometry_comparison",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "ㄷ",
+    "target_ticks": 1,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.circle",
+      "value": {
+        "type": "circle"
+      }
+    },
+    {
+      "ref": "obj.segment.d",
+      "value": {
+        "symbol": "ㄷ",
+        "property": "passes_through_center"
+      }
+    },
+    {
+      "ref": "obj.segment.others",
+      "value": {
+        "description": "other segments in the circle"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "symbol_choice"
+  },
+  "method": "compare_segments_by_circle_property",
+  "plan": [
+    "원의 중심을 지나는 선분을 찾는다.",
+    "그 선분에 대응하는 기호를 확인한다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "원의 중심을 지나는 선분 확인",
+      "value": "ㄷ"
+    },
+    {
+      "id": "step.2",
+      "expr": "가장 긴 선분의 기호 선택",
+      "value": "ㄷ"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "중심을 지나는 선분이 가장 긴가?",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "symbol_choice",
+      "description": "길이가 가장 긴 선분의 기호"
+    },
+    "value": "ㄷ",
+    "unit": ""
+  }
+}

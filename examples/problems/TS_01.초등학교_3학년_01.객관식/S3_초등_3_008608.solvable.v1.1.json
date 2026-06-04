@@ -1,0 +1,84 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008608",
+  "problem_type": "selection_by_division_result",
+  "inputs": {
+    "total_ticks": 3,
+    "target_label": "몫이 다른 사람",
+    "target_ticks": 1,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.expr.1",
+      "value": {
+        "text": "30 ÷ 3"
+      }
+    },
+    {
+      "ref": "obj.expr.2",
+      "value": {
+        "text": "40 ÷ 2"
+      }
+    },
+    {
+      "ref": "obj.expr.3",
+      "value": {
+        "text": "70 ÷ 7"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "selected_person"
+  },
+  "method": "compare_results",
+  "plan": [
+    "세 식의 몫을 구한다.",
+    "몫이 다른 값을 찾는다.",
+    "해당 사람을 선택한다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "30 ÷ 3",
+      "value": 10
+    },
+    {
+      "id": "step.2",
+      "expr": "40 ÷ 2",
+      "value": 20
+    },
+    {
+      "id": "step.3",
+      "expr": "70 ÷ 7",
+      "value": 10
+    },
+    {
+      "id": "step.4",
+      "expr": "다른 몫의 사람",
+      "value": "상환"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "10,20,10 비교",
+      "expected": "상환",
+      "actual": "상환",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "selected_person",
+      "description": "몫이 다른 사람"
+    },
+    "value": "상환",
+    "unit": ""
+  }
+}

@@ -1,0 +1,331 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008755",
+  "title": "주스병과 우유갑의 단위 선택",
+  "canvas": {
+    "width": 960,
+    "height": 386,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.connect.bottle.1",
+        "slot.connect.bottle.2",
+        "slot.connect.carton.1",
+        "slot.connect.carton.2",
+        "slot.q1",
+        "slot.bottle.label",
+        "slot.carton.label",
+        "slot.balloon.text",
+        "slot.choice.text"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.bottle.body",
+        "slot.bottle.cap",
+        "slot.bottle.zoom",
+        "slot.carton.body",
+        "slot.carton.cap",
+        "slot.carton.zoom",
+        "slot.balloon.shape",
+        "slot.girl.face",
+        "slot.girl.hair",
+        "slot.bottle.label_inner",
+        "slot.bottle.zoom_text",
+        "slot.carton.label_inner",
+        "slot.carton.zoom_text"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "52. 주스병과 우유갑에는 각각 어떤 단위가 표시되어 있는지 선택해 보세요.",
+        "style_role": "question",
+        "x": 18.0,
+        "y": 34.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.bottle.body",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 205.0,
+        "y": 96.0,
+        "width": 52.0,
+        "height": 136.0
+      }
+    },
+    {
+      "id": "slot.bottle.cap",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 219.0,
+        "y": 78.0,
+        "width": 24.0,
+        "height": 18.0
+      }
+    },
+    {
+      "id": "slot.bottle.label_inner",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "1L",
+        "style_role": "diagram",
+        "x": 214.0,
+        "y": 183.0,
+        "font_size": 24
+      }
+    },
+    {
+      "id": "slot.bottle.label",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "주스병",
+        "style_role": "label",
+        "x": 173.0,
+        "y": 246.0,
+        "font_size": 24
+      }
+    },
+    {
+      "id": "slot.bottle.zoom",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 126.0,
+        "cy": 126.0,
+        "r": 32.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.bottle.zoom_text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "1L",
+        "style_role": "diagram",
+        "x": 108.0,
+        "y": 136.0,
+        "font_size": 34
+      }
+    },
+    {
+      "id": "slot.carton.body",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 348.0,
+        "y": 158.0,
+        "width": 44.0,
+        "height": 70.0
+      }
+    },
+    {
+      "id": "slot.carton.cap",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 355.0,
+        "y": 146.0,
+        "width": 18.0,
+        "height": 12.0
+      }
+    },
+    {
+      "id": "slot.carton.label_inner",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "200mL",
+        "style_role": "diagram",
+        "x": 350.0,
+        "y": 192.0,
+        "font_size": 18
+      }
+    },
+    {
+      "id": "slot.carton.label",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "우유갑",
+        "style_role": "label",
+        "x": 342.0,
+        "y": 246.0,
+        "font_size": 24
+      }
+    },
+    {
+      "id": "slot.carton.zoom",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 427.0,
+        "cy": 126.0,
+        "r": 32.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.carton.zoom_text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "200mL",
+        "style_role": "diagram",
+        "x": 398.0,
+        "y": 136.0,
+        "font_size": 24
+      }
+    },
+    {
+      "id": "slot.connect.bottle.1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 151.0,
+        "y1": 124.0,
+        "x2": 203.0,
+        "y2": 166.0
+      }
+    },
+    {
+      "id": "slot.connect.bottle.2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 153.0,
+        "y1": 146.0,
+        "x2": 206.0,
+        "y2": 186.0
+      }
+    },
+    {
+      "id": "slot.connect.carton.1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 399.0,
+        "y1": 122.0,
+        "x2": 383.0,
+        "y2": 158.0
+      }
+    },
+    {
+      "id": "slot.connect.carton.2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 403.0,
+        "y1": 144.0,
+        "x2": 388.0,
+        "y2": 176.0
+      }
+    },
+    {
+      "id": "slot.balloon.shape",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 522.0,
+        "y": 102.0,
+        "width": 260.0,
+        "height": 104.0
+      }
+    },
+    {
+      "id": "slot.balloon.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "들이의 단위에는 리터와\n밀리리터 등이 있어.",
+        "style_role": "speech",
+        "x": 545.0,
+        "y": 136.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.girl.face",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 836.0,
+        "cy": 164.0,
+        "r": 26.0,
+        "fill": "#f4c7a1"
+      }
+    },
+    {
+      "id": "slot.girl.hair",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 836.0,
+        "cy": 156.0,
+        "r": 31.0,
+        "fill": "#5b8bd8"
+      }
+    },
+    {
+      "id": "slot.choice.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "주스병 → ( L, mL ), 우유갑 → ( L, mL )",
+        "style_role": "question",
+        "x": 424.0,
+        "y": 272.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.connect.bottle.1",
+    "slot.connect.bottle.2",
+    "slot.connect.carton.1",
+    "slot.connect.carton.2",
+    "slot.q1",
+    "slot.bottle.label",
+    "slot.carton.label",
+    "slot.balloon.text",
+    "slot.choice.text",
+    "region.diagram",
+    "slot.bottle.body",
+    "slot.bottle.cap",
+    "slot.bottle.zoom",
+    "slot.carton.body",
+    "slot.carton.cap",
+    "slot.carton.zoom",
+    "slot.balloon.shape",
+    "slot.girl.face",
+    "slot.girl.hair",
+    "slot.bottle.label_inner",
+    "slot.bottle.zoom_text",
+    "slot.carton.label_inner",
+    "slot.carton.zoom_text"
+  ]
+}

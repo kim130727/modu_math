@@ -1,0 +1,218 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008642",
+  "title": "지름의 개수",
+  "canvas": {
+    "width": 945.0,
+    "height": 650.0,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.diagram.circle",
+        "slot.diagram.center",
+        "slot.choice.box",
+        "slot.diagram.diameter1",
+        "slot.diagram.diameter2",
+        "slot.diagram.diameter3",
+        "slot.diagram.arrow",
+        "slot.q1",
+        "slot.title_marker",
+        "slot.diagram.label.eunji",
+        "slot.diagram.label.jina",
+        "slot.diagram.label.hyeonjun",
+        "slot.diagram.note",
+        "slot.choice.text"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.title_marker",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "□ 14.",
+        "style_role": "question",
+        "x": 10.0,
+        "y": 32.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "은지, 진아, 현준이가 한 원에 지름을 그은 것입니다. 한 원에 지름을 몇 개 그을 수 있는지 알맞은 것을 선택하세요.",
+        "style_role": "question",
+        "x": 48.0,
+        "y": 32.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.diagram.circle",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 456.0,
+        "cy": 230.0,
+        "r": 117.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.diagram.diameter1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 456.0,
+        "y1": 113.0,
+        "x2": 456.0,
+        "y2": 347.0
+      }
+    },
+    {
+      "id": "slot.diagram.diameter2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 365.0,
+        "y1": 173.0,
+        "x2": 547.0,
+        "y2": 287.0
+      }
+    },
+    {
+      "id": "slot.diagram.diameter3",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 352.0,
+        "y1": 263.0,
+        "x2": 560.0,
+        "y2": 198.0
+      }
+    },
+    {
+      "id": "slot.diagram.center",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 456.0,
+        "cy": 230.0,
+        "r": 3.8,
+        "fill": "#cc2aa5"
+      }
+    },
+    {
+      "id": "slot.diagram.label.eunji",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "은지",
+        "style_role": "label",
+        "x": 462.0,
+        "y": 100.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.diagram.label.jina",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "진아",
+        "style_role": "label",
+        "x": 592.0,
+        "y": 197.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.diagram.label.hyeonjun",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "현준",
+        "style_role": "label",
+        "x": 578.0,
+        "y": 301.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.diagram.note",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "지름은 모두\n원의 중심을\n지나요.",
+        "style_role": "annotation",
+        "x": 512.0,
+        "y": 386.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.diagram.arrow",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 507.0,
+        "y1": 373.0,
+        "x2": 457.0,
+        "y2": 232.0
+      }
+    },
+    {
+      "id": "slot.choice.box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 102.0,
+        "y": 413.0,
+        "width": 749.0,
+        "height": 79.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.choice.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "( 무수히 많이 그을 수 있습니다. , 3개 )",
+        "style_role": "choice",
+        "x": 239.0,
+        "y": 463.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.diagram.circle",
+    "slot.diagram.center",
+    "slot.choice.box",
+    "slot.diagram.diameter1",
+    "slot.diagram.diameter2",
+    "slot.diagram.diameter3",
+    "slot.diagram.arrow",
+    "slot.q1",
+    "slot.title_marker",
+    "slot.diagram.label.eunji",
+    "slot.diagram.label.jina",
+    "slot.diagram.label.hyeonjun",
+    "slot.diagram.note",
+    "slot.choice.text"
+  ]
+}

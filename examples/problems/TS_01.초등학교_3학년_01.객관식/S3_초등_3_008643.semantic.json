@@ -1,0 +1,127 @@
+{
+  "problem_id": "S3_초등_3_008643",
+  "problem_type": "geometry_circle_center",
+  "metadata": {
+    "title": "원의 중심",
+    "tags": [],
+    "question": "원의 중심을 찾아 선택해 보세요.",
+    "required_layout_ids": [
+      "slot.grid.top.v1",
+      "slot.grid.top.v2",
+      "slot.grid.top.v3",
+      "slot.grid.top.v4",
+      "slot.grid.top.v5",
+      "slot.grid.top.v6",
+      "slot.grid.top.v7",
+      "slot.grid.top.v8",
+      "slot.grid.top.v9",
+      "slot.grid.top.h1",
+      "slot.grid.top.h2",
+      "slot.grid.top.h3",
+      "slot.grid.top.h4",
+      "slot.grid.top.h5",
+      "slot.grid.top.h6",
+      "slot.grid.top.h7",
+      "slot.grid.top.h8",
+      "slot.grid.top.h9",
+      "slot.circle.top",
+      "slot.pt.top.ga",
+      "slot.pt.top.na",
+      "slot.pt.top.da",
+      "slot.pt.top.ra",
+      "slot.pt.top.ma",
+      "slot.grid.bottom.v1",
+      "slot.grid.bottom.v2",
+      "slot.grid.bottom.v3",
+      "slot.grid.bottom.v4",
+      "slot.grid.bottom.v5",
+      "slot.grid.bottom.v6",
+      "slot.grid.bottom.v7",
+      "slot.grid.bottom.v8",
+      "slot.grid.bottom.v9",
+      "slot.grid.bottom.h1",
+      "slot.grid.bottom.h2",
+      "slot.grid.bottom.h3",
+      "slot.grid.bottom.h4",
+      "slot.grid.bottom.h5",
+      "slot.grid.bottom.h6",
+      "slot.grid.bottom.h7",
+      "slot.grid.bottom.h8",
+      "slot.grid.bottom.h9",
+      "slot.circle.bottom",
+      "slot.emph.bottom",
+      "slot.pt.bottom.ga",
+      "slot.pt.bottom.na",
+      "slot.pt.bottom.da",
+      "slot.pt.bottom.ra",
+      "slot.pt.bottom.ma"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "정답을 선택한다.",
+    "points": 0
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.circle",
+        "type": "circle"
+      },
+      {
+        "id": "obj.center_candidate",
+        "type": "point",
+        "label": "ㄴ"
+      },
+      {
+        "id": "obj.points_on_figure",
+        "type": "point_set",
+        "labels": [
+          "ㄱ",
+          "ㄷ",
+          "ㄹ",
+          "ㅁ"
+        ]
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.circle",
+          "obj.points_on_figure"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.center_property"
+        ]
+      },
+      "plan": {
+        "method": "circle_center_identification",
+        "description": "원 위의 점들과 같은 거리를 가지는 중심 후보를 찾는다."
+      },
+      "execute": {
+        "expected_operations": [
+          "identify_center_candidate",
+          "match_visual_center"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "center_property_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "selected_point",
+      "description": "원의 중심"
+    },
+    "value": "ㄴ",
+    "unit": ""
+  }
+}

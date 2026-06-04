@@ -1,0 +1,188 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008635",
+  "title": "두 식의 계산 결과가 같을 때 알맞은 수",
+  "canvas": {
+    "width": 841,
+    "height": 374,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.expr.left",
+        "slot.expr.right",
+        "slot.qbox",
+        "slot.qtext",
+        "slot.opt.1",
+        "slot.opt.2",
+        "slot.opt.3",
+        "slot.opt.4",
+        "slot.opt.5"
+      ]
+    },
+    {
+      "id": "region.answer_explanation",
+      "role": "explanation",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.ans",
+        "slot.exp"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.qbox",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "□",
+        "style_role": "question",
+        "x": 9.0,
+        "y": 28.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.qtext",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "7. 다음 두 식의 계산 결과가 같을 때 □ 안에 알맞은 수를 고르세요.",
+        "style_role": "question",
+        "x": 38.0,
+        "y": 28.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.expr.left",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 231.0,
+        "y": 50.0,
+        "width": 175.0,
+        "height": 43.0
+      }
+    },
+    {
+      "id": "slot.expr.right",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 462.0,
+        "y": 50.0,
+        "width": 187.0,
+        "height": 43.0
+      }
+    },
+    {
+      "id": "slot.opt.1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "① 2",
+        "style_role": "question",
+        "x": 17.0,
+        "y": 130.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.opt.2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "② 3",
+        "style_role": "question",
+        "x": 250.0,
+        "y": 130.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.opt.3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "③ 4",
+        "style_role": "question",
+        "x": 582.0,
+        "y": 130.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.opt.4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "④ 6",
+        "style_role": "question",
+        "x": 17.0,
+        "y": 184.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.opt.5",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "⑤ 8",
+        "style_role": "question",
+        "x": 250.0,
+        "y": 184.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.ans",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "(정답) ③",
+        "style_role": "supporting",
+        "x": 17.0,
+        "y": 240.0,
+        "font_size": 22
+      }
+    },
+    {
+      "id": "slot.exp",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "(해설) 80 ÷ 5 = 16이고 □ × 4 = 16에서 4 × 4 = 16이므로 □ = 4입니다.",
+        "style_role": "supporting",
+        "x": 17.0,
+        "y": 280.0,
+        "font_size": 20
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.expr.left",
+    "slot.expr.right",
+    "slot.qbox",
+    "slot.qtext",
+    "slot.opt.1",
+    "slot.opt.2",
+    "slot.opt.3",
+    "slot.opt.4",
+    "slot.opt.5",
+    "region.answer_explanation",
+    "slot.ans",
+    "slot.exp"
+  ]
+}

@@ -1,0 +1,351 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008661",
+  "title": "길이가 가장 긴 선분은 어느 것인가요?",
+  "canvas": {
+    "width": 673.0,
+    "height": 401.0,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q_box",
+        "slot.q_num",
+        "slot.q_text"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.circle.outer",
+        "slot.circle.center",
+        "slot.dot.center",
+        "slot.line.top",
+        "slot.line.middle1",
+        "slot.line.middle2",
+        "slot.line.bottom",
+        "slot.lb.giyeok",
+        "slot.lb.nieun",
+        "slot.lb.digeut",
+        "slot.lb.rieul",
+        "slot.lb.mieum",
+        "slot.lb.bieup",
+        "slot.lb.sieut1",
+        "slot.lb.sieut2"
+      ]
+    },
+    {
+      "id": "region.options",
+      "role": "choices",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.opt1",
+        "slot.opt2",
+        "slot.opt3",
+        "slot.opt4"
+      ]
+    },
+    {
+      "id": "region.answer",
+      "role": "answer",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q_box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 10.0,
+        "y": 16.0,
+        "width": 13.0,
+        "height": 13.0
+      }
+    },
+    {
+      "id": "slot.q_num",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "36.",
+        "style_role": "question",
+        "x": 35.0,
+        "y": 28.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q_text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "길이가 가장 긴 선분은 어느 것인가요?",
+        "style_role": "question",
+        "x": 83.0,
+        "y": 28.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.circle.outer",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 490.0,
+        "cy": 124.0,
+        "r": 76.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.circle.center",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 490.0,
+        "cy": 124.0,
+        "r": 4.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.line.top",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 438.0,
+        "y1": 84.0,
+        "x2": 542.0,
+        "y2": 84.0
+      }
+    },
+    {
+      "id": "slot.line.middle1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 426.0,
+        "y1": 120.0,
+        "x2": 554.0,
+        "y2": 120.0
+      }
+    },
+    {
+      "id": "slot.line.middle2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 430.0,
+        "y1": 149.0,
+        "x2": 550.0,
+        "y2": 149.0
+      }
+    },
+    {
+      "id": "slot.line.bottom",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 438.0,
+        "y1": 188.0,
+        "x2": 542.0,
+        "y2": 188.0
+      }
+    },
+    {
+      "id": "slot.lb.giyeok",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄱ",
+        "style_role": "label",
+        "x": 421.0,
+        "y": 88.0,
+        "font_size": 24
+      }
+    },
+    {
+      "id": "slot.lb.nieun",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄴ",
+        "style_role": "label",
+        "x": 546.0,
+        "y": 88.0,
+        "font_size": 24
+      }
+    },
+    {
+      "id": "slot.lb.digeut",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄷ",
+        "style_role": "label",
+        "x": 404.0,
+        "y": 124.0,
+        "font_size": 24
+      }
+    },
+    {
+      "id": "slot.lb.rieul",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄹ",
+        "style_role": "label",
+        "x": 559.0,
+        "y": 124.0,
+        "font_size": 24
+      }
+    },
+    {
+      "id": "slot.lb.mieum",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㅁ",
+        "style_role": "label",
+        "x": 404.0,
+        "y": 154.0,
+        "font_size": 24
+      }
+    },
+    {
+      "id": "slot.lb.bieup",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㅂ",
+        "style_role": "label",
+        "x": 559.0,
+        "y": 154.0,
+        "font_size": 24
+      }
+    },
+    {
+      "id": "slot.lb.sieut1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "스",
+        "style_role": "label",
+        "x": 408.0,
+        "y": 196.0,
+        "font_size": 24
+      }
+    },
+    {
+      "id": "slot.lb.sieut2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㅅ",
+        "style_role": "label",
+        "x": 556.0,
+        "y": 196.0,
+        "font_size": 24
+      }
+    },
+    {
+      "id": "slot.dot.center",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 490.0,
+        "cy": 126.0,
+        "r": 3.2,
+        "fill": "#ff1493"
+      }
+    },
+    {
+      "id": "slot.opt1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "① 선분 ㄱㄴ",
+        "style_role": "choice",
+        "x": 26.0,
+        "y": 238.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.opt2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "② 선분 ㄷㄹ",
+        "style_role": "choice",
+        "x": 482.0,
+        "y": 238.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.opt3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "③ 선분 ㅁㅂ",
+        "style_role": "choice",
+        "x": 26.0,
+        "y": 283.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.opt4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "④ 선분 스ㅅ",
+        "style_role": "choice",
+        "x": 482.0,
+        "y": 283.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q_box",
+    "slot.q_num",
+    "slot.q_text",
+    "region.diagram",
+    "slot.circle.outer",
+    "slot.circle.center",
+    "slot.dot.center",
+    "slot.line.top",
+    "slot.line.middle1",
+    "slot.line.middle2",
+    "slot.line.bottom",
+    "slot.lb.giyeok",
+    "slot.lb.nieun",
+    "slot.lb.digeut",
+    "slot.lb.rieul",
+    "slot.lb.mieum",
+    "slot.lb.bieup",
+    "slot.lb.sieut1",
+    "slot.lb.sieut2",
+    "region.options",
+    "slot.opt1",
+    "slot.opt2",
+    "slot.opt3",
+    "slot.opt4",
+    "region.answer"
+  ]
+}

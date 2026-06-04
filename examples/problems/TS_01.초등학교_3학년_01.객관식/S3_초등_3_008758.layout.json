@@ -1,0 +1,150 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008758",
+  "title": "주스병의 들이를 어림한 친구를 선택해 보세요",
+  "canvas": {
+    "width": 840.0,
+    "height": 380.0,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.name.jinyoung",
+        "slot.name.chanho",
+        "slot.bubble.top",
+        "slot.bubble.bottom",
+        "slot.q.square",
+        "slot.q.number",
+        "slot.q.text",
+        "slot.top.text",
+        "slot.bottom.text"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q.square",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "□",
+        "style_role": "question",
+        "x": 12.0,
+        "y": 26.0,
+        "font_size": 26
+      }
+    },
+    {
+      "id": "slot.q.number",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "57.",
+        "style_role": "question",
+        "x": 38.0,
+        "y": 26.0,
+        "font_size": 26
+      }
+    },
+    {
+      "id": "slot.q.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "주스병의 들이를 적절히 어림한 친구를 선택해 보세요.",
+        "style_role": "question",
+        "x": 85.0,
+        "y": 26.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.name.jinyoung",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 115.0,
+        "y": 96.0,
+        "width": 62.0,
+        "height": 30.0
+      }
+    },
+    {
+      "id": "slot.name.chanho",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 745.0,
+        "y": 243.0,
+        "width": 62.0,
+        "height": 30.0
+      }
+    },
+    {
+      "id": "slot.bubble.top",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 337.0,
+        "y": 62.0,
+        "width": 350.0,
+        "height": 110.0
+      }
+    },
+    {
+      "id": "slot.bubble.bottom",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 225.0,
+        "y": 200.0,
+        "width": 362.0,
+        "height": 104.0
+      }
+    },
+    {
+      "id": "slot.top.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "주스병에는 200 mL 유우컵으로 4번쯤\n들어갈 것 같아. 들이는 약 800 mL야.",
+        "style_role": "question",
+        "x": 352.0,
+        "y": 96.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.bottom.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "주스병은 1 L 유우컵과 들이가\n비슷할 것 같아. 들이는 약 100 mL야.",
+        "style_role": "question",
+        "x": 264.0,
+        "y": 228.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.name.jinyoung",
+    "slot.name.chanho",
+    "slot.bubble.top",
+    "slot.bubble.bottom",
+    "slot.q.square",
+    "slot.q.number",
+    "slot.q.text",
+    "slot.top.text",
+    "slot.bottom.text"
+  ]
+}

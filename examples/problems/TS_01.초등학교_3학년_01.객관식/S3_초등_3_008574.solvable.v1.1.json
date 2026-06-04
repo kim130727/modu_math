@@ -1,0 +1,98 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008574",
+  "problem_type": "compare_multiplication_values",
+  "inputs": {
+    "total_ticks": 2,
+    "target_label": "결과가 더 작은 사람 이름",
+    "target_ticks": 1,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.person.left",
+      "value": {
+        "name": "은우"
+      }
+    },
+    {
+      "ref": "obj.person.right",
+      "value": {
+        "name": "도윤"
+      }
+    },
+    {
+      "ref": "obj.expr.left",
+      "value": {
+        "expression": "51 × 18"
+      }
+    },
+    {
+      "ref": "obj.expr.right",
+      "value": {
+        "expression": "23 × 41"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "person_name"
+  },
+  "method": "compare_two_products",
+  "plan": [
+    "왼쪽과 오른쪽의 곱셈 결과를 각각 구한다.",
+    "두 값을 비교해 더 작은 값의 이름을 찾는다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "51 × 18",
+      "value": 918
+    },
+    {
+      "id": "step.2",
+      "expr": "23 × 41",
+      "value": 943
+    },
+    {
+      "id": "step.3",
+      "expr": "918 < 943",
+      "value": true
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "51 × 18 = 918",
+      "expected": 918,
+      "actual": 918,
+      "pass": true
+    },
+    {
+      "id": "check.2",
+      "expr": "23 × 41 = 943",
+      "expected": 943,
+      "actual": 943,
+      "pass": true
+    },
+    {
+      "id": "check.3",
+      "expr": "918 < 943",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "person_name",
+      "description": "계산 결과가 더 작은 사람의 이름"
+    },
+    "value": "은우",
+    "unit": ""
+  }
+}

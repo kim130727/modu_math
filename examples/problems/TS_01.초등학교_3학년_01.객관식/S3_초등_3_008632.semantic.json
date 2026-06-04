@@ -1,0 +1,90 @@
+{
+  "problem_id": "S3_초등_3_008632",
+  "problem_type": "multiple_choice_division_remainder_comparison",
+  "metadata": {
+    "title": "나눗셈에서 나머지가 다른 것 고르기",
+    "tags": [],
+    "question": "나눗셈 중에서 나머지가 다른 하나를 고르세요.",
+    "required_layout_ids": [
+      "slot.q.box"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "보기의 나눗셈식들에서 나머지를 비교하여 다른 하나를 찾는다."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.choice.1",
+        "type": "division_expression",
+        "expression": "39 ÷ 3"
+      },
+      {
+        "id": "obj.choice.2",
+        "type": "division_expression",
+        "expression": "17 ÷ 4"
+      },
+      {
+        "id": "obj.choice.3",
+        "type": "division_expression",
+        "expression": "16 ÷ 5"
+      },
+      {
+        "id": "obj.choice.4",
+        "type": "division_expression",
+        "expression": "31 ÷ 6"
+      },
+      {
+        "id": "obj.choice.5",
+        "type": "division_expression",
+        "expression": "27 ÷ 2"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.choice.1",
+          "obj.choice.2",
+          "obj.choice.3",
+          "obj.choice.4",
+          "obj.choice.5"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.compare.remainder"
+        ]
+      },
+      "plan": {
+        "method": "remainder_comparison",
+        "description": "각 나눗셈식의 나머지를 비교하여 다른 하나를 찾는다."
+      },
+      "execute": {
+        "expected_operations": [
+          "identify_remainder",
+          "compare_remainders",
+          "select_different_one"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "verify_remainder_pattern",
+          "confirm_selected_choice_matches_statement"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "different_remainder_choice",
+      "description": "나머지가 다른 하나"
+    },
+    "value": 1,
+    "unit": ""
+  }
+}

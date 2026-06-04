@@ -1,0 +1,246 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008618",
+  "title": "묶이 가장 큰 나눗셈을 말한 사람을 선택해 보세요.",
+  "canvas": {
+    "width": 886.0,
+    "height": 430.0,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.check",
+        "slot.qnum",
+        "slot.qtext",
+        "slot.name_text.left",
+        "slot.name_text.mid",
+        "slot.name_text.right"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.bubble.left",
+        "slot.bubble.mid",
+        "slot.bubble.right",
+        "slot.name.left",
+        "slot.name.mid",
+        "slot.name.right",
+        "slot.face.left",
+        "slot.face.mid",
+        "slot.face.right"
+      ]
+    },
+    {
+      "id": "region.answer",
+      "role": "answer",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.check",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 17.0,
+        "y": 18.0,
+        "width": 12.0,
+        "height": 12.0
+      }
+    },
+    {
+      "id": "slot.qnum",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "88.",
+        "style_role": "question",
+        "x": 40.0,
+        "y": 30.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.qtext",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "묶이 가장 큰 나눗셈을 말한 사람을 선택해 보세요.",
+        "style_role": "question",
+        "x": 84.0,
+        "y": 30.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.bubble.left",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 113.0,
+        "y": 52.0,
+        "width": 196.0,
+        "height": 52.0
+      }
+    },
+    {
+      "id": "slot.bubble.mid",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 355.0,
+        "y": 52.0,
+        "width": 188.0,
+        "height": 52.0
+      }
+    },
+    {
+      "id": "slot.bubble.right",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 588.0,
+        "y": 52.0,
+        "width": 188.0,
+        "height": 52.0
+      }
+    },
+    {
+      "id": "slot.face.left",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "인물",
+        "style_role": "body",
+        "x": 167.0,
+        "y": 175.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.face.mid",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "인물",
+        "style_role": "body",
+        "x": 408.0,
+        "y": 175.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.face.right",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "인물",
+        "style_role": "body",
+        "x": 650.0,
+        "y": 175.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.name.left",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 174.0,
+        "y": 247.0,
+        "width": 67.0,
+        "height": 33.0
+      }
+    },
+    {
+      "id": "slot.name.mid",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 416.0,
+        "y": 247.0,
+        "width": 67.0,
+        "height": 33.0
+      }
+    },
+    {
+      "id": "slot.name.right",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 649.0,
+        "y": 247.0,
+        "width": 67.0,
+        "height": 33.0
+      }
+    },
+    {
+      "id": "slot.name_text.left",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "소진",
+        "style_role": "label",
+        "x": 191.0,
+        "y": 269.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.name_text.mid",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "경수",
+        "style_role": "label",
+        "x": 434.0,
+        "y": 269.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.name_text.right",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "태희",
+        "style_role": "label",
+        "x": 667.0,
+        "y": 269.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.check",
+    "slot.qnum",
+    "slot.qtext",
+    "slot.name_text.left",
+    "slot.name_text.mid",
+    "slot.name_text.right",
+    "region.diagram",
+    "slot.bubble.left",
+    "slot.bubble.mid",
+    "slot.bubble.right",
+    "slot.name.left",
+    "slot.name.mid",
+    "slot.name.right",
+    "slot.face.left",
+    "slot.face.mid",
+    "slot.face.right",
+    "region.answer"
+  ]
+}

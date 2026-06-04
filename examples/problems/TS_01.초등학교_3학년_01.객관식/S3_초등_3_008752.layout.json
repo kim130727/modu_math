@@ -1,0 +1,272 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008752",
+  "title": "주전자와 냄비에 물을 가득 채우기",
+  "canvas": {
+    "width": 960,
+    "height": 520,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.header",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.box0",
+        "slot.q1",
+        "slot.q2"
+      ]
+    },
+    {
+      "id": "region.table",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.table.bg",
+        "slot.table.hdr1",
+        "slot.table.hdr2",
+        "slot.table.row1",
+        "slot.table.row2",
+        "slot.table.c11",
+        "slot.table.c12",
+        "slot.table.c21",
+        "slot.table.c22"
+      ]
+    },
+    {
+      "id": "region.statements",
+      "role": "body",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.box1",
+        "slot.stmt1",
+        "slot.stmt2",
+        "slot.stmt3"
+      ]
+    },
+    {
+      "id": "region.footer",
+      "role": "footer",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.box0",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 19.0,
+        "y": 18.0,
+        "width": 16.0,
+        "height": 16.0
+      }
+    },
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "49. 주전자와 냄비에 물을 가득 채우려면 ㉠ 컵과 ㉡ 컵을 다음과 같이 각각",
+        "style_role": "question",
+        "x": 50.0,
+        "y": 30.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "부어야 합니다. 바르게 이야기한 것을 선택하세요.",
+        "style_role": "question",
+        "x": 50.0,
+        "y": 63.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.bg",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 300.0,
+        "y": 87.0,
+        "width": 383.0,
+        "height": 124.0
+      }
+    },
+    {
+      "id": "slot.table.hdr1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "㉠ 컵",
+        "style_role": "label",
+        "x": 455.0,
+        "y": 116.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.hdr2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "㉡ 컵",
+        "style_role": "label",
+        "x": 572.0,
+        "y": 116.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.row1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "주전자",
+        "style_role": "label",
+        "x": 352.0,
+        "y": 153.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.row2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "냄비",
+        "style_role": "label",
+        "x": 366.0,
+        "y": 190.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.c11",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "3개",
+        "style_role": "number",
+        "x": 463.0,
+        "y": 153.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.c12",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "2개",
+        "style_role": "number",
+        "x": 585.0,
+        "y": 153.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.c21",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "6개",
+        "style_role": "number",
+        "x": 463.0,
+        "y": 190.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.c22",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "4개",
+        "style_role": "number",
+        "x": 585.0,
+        "y": 190.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.box1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 87.0,
+        "y": 220.0,
+        "width": 795.0,
+        "height": 157.0
+      }
+    },
+    {
+      "id": "slot.stmt1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "· 경호: 냄비보다 주전자에 물을 더 많이 담을 수 있어.",
+        "style_role": "body",
+        "x": 118.0,
+        "y": 270.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.stmt2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "· 해원: ㉠ 컵과 ㉡ 컵 중에 들이가 더 많은 컵은 ㉡ 컵이야.",
+        "style_role": "body",
+        "x": 118.0,
+        "y": 311.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.stmt3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "· 동주: 주전자의 들이는 냄비의 들이의 2배야.",
+        "style_role": "body",
+        "x": 118.0,
+        "y": 352.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.header",
+    "slot.box0",
+    "slot.q1",
+    "slot.q2",
+    "region.table",
+    "slot.table.bg",
+    "slot.table.hdr1",
+    "slot.table.hdr2",
+    "slot.table.row1",
+    "slot.table.row2",
+    "slot.table.c11",
+    "slot.table.c12",
+    "slot.table.c21",
+    "slot.table.c22",
+    "region.statements",
+    "slot.box1",
+    "slot.stmt1",
+    "slot.stmt2",
+    "slot.stmt3",
+    "region.footer"
+  ]
+}

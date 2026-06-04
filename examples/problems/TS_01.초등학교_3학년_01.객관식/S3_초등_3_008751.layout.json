@@ -1,0 +1,588 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008751",
+  "title": "물병과 우유병의 높이 비교",
+  "canvas": {
+    "width": 940,
+    "height": 395,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q1",
+        "slot.q2",
+        "slot.q3",
+        "slot.q4",
+        "slot.q5",
+        "slot.q6",
+        "slot.q7",
+        "slot.q8",
+        "slot.q9",
+        "slot.q10",
+        "slot.q15",
+        "slot.q16",
+        "slot.q17",
+        "slot.q18",
+        "slot.q19",
+        "slot.q20",
+        "slot.q21",
+        "slot.q22",
+        "slot.q23",
+        "slot.q24",
+        "slot.q25",
+        "slot.q26",
+        "slot.q27",
+        "slot.q28",
+        "slot.q29",
+        "slot.q30",
+        "slot.q31",
+        "slot.q32",
+        "slot.q33",
+        "slot.q34",
+        "slot.q35",
+        "slot.q36",
+        "slot.q37",
+        "slot.q38",
+        "slot.q39",
+        "slot.q40",
+        "slot.q41",
+        "slot.q42",
+        "slot.q43",
+        "slot.q44"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "□",
+        "style_role": "question",
+        "x": 18.0,
+        "y": 29.0,
+        "font_size": 20
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "48.",
+        "style_role": "question",
+        "x": 61.0,
+        "y": 31.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "물병과 우유병의 높이를 비교하려고 합니다. 두 병의 높이를 비교하는",
+        "style_role": "question",
+        "x": 106.0,
+        "y": 29.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "방법을 바르게 설명했으면 ○표, 그렇지 않으면 ×를 선택하세요.",
+        "style_role": "question",
+        "x": 55.0,
+        "y": 61.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q5",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "물병",
+        "style_role": "label",
+        "x": 190.0,
+        "y": 224.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q6",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "우유병",
+        "style_role": "label",
+        "x": 276.0,
+        "y": 224.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q7",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "물병에 물을 가득 채운 후",
+        "style_role": "speech",
+        "x": 394.0,
+        "y": 180.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q8",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "우유병에 옮겨 담아 보면 돼.",
+        "style_role": "speech",
+        "x": 402.0,
+        "y": 213.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q9",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "○",
+        "style_role": "choice",
+        "x": 30.0,
+        "y": 250.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q10",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "×",
+        "style_role": "choice",
+        "x": 31.0,
+        "y": 283.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q15",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "●",
+        "style_role": "diagram",
+        "x": 29.0,
+        "y": 244.0,
+        "font_size": 14
+      }
+    },
+    {
+      "id": "slot.q16",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "●",
+        "style_role": "diagram",
+        "x": 29.0,
+        "y": 275.0,
+        "font_size": 14
+      }
+    },
+    {
+      "id": "slot.q17",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "물병 그림",
+        "style_role": "diagram",
+        "x": 135.0,
+        "y": 120.0,
+        "font_size": 20
+      }
+    },
+    {
+      "id": "slot.q18",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "우유병 그림",
+        "style_role": "diagram",
+        "x": 231.0,
+        "y": 120.0,
+        "font_size": 20
+      }
+    },
+    {
+      "id": "slot.q19",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "말풍선",
+        "style_role": "diagram",
+        "x": 392.0,
+        "y": 105.0,
+        "font_size": 20
+      }
+    },
+    {
+      "id": "slot.q20",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "여자아이",
+        "style_role": "diagram",
+        "x": 702.0,
+        "y": 115.0,
+        "font_size": 20
+      }
+    },
+    {
+      "id": "slot.q21",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "높이 비교",
+        "style_role": "diagram",
+        "x": 458.0,
+        "y": 257.0,
+        "font_size": 20
+      }
+    },
+    {
+      "id": "slot.q22",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "○표",
+        "style_role": "question",
+        "x": 574.0,
+        "y": 61.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q23",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "×를",
+        "style_role": "question",
+        "x": 659.0,
+        "y": 61.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q24",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "선택하세요.",
+        "style_role": "question",
+        "x": 722.0,
+        "y": 61.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q25",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "가득",
+        "style_role": "speech",
+        "x": 495.0,
+        "y": 181.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q26",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "채운",
+        "style_role": "speech",
+        "x": 495.0,
+        "y": 214.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q27",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "후",
+        "style_role": "speech",
+        "x": 495.0,
+        "y": 247.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q28",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "옮겨",
+        "style_role": "speech",
+        "x": 629.0,
+        "y": 214.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q29",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "담아",
+        "style_role": "speech",
+        "x": 629.0,
+        "y": 247.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q30",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "보면",
+        "style_role": "speech",
+        "x": 629.0,
+        "y": 180.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q31",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "돼.",
+        "style_role": "speech",
+        "x": 709.0,
+        "y": 214.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q32",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "물병에",
+        "style_role": "speech",
+        "x": 402.0,
+        "y": 180.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q33",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "물을",
+        "style_role": "speech",
+        "x": 547.0,
+        "y": 180.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q34",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "가득",
+        "style_role": "speech",
+        "x": 585.0,
+        "y": 180.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q35",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "채운",
+        "style_role": "speech",
+        "x": 635.0,
+        "y": 180.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q36",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "후",
+        "style_role": "speech",
+        "x": 685.0,
+        "y": 180.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q37",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "우유병에",
+        "style_role": "speech",
+        "x": 402.0,
+        "y": 213.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q38",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "옮겨",
+        "style_role": "speech",
+        "x": 545.0,
+        "y": 213.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q39",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "담아",
+        "style_role": "speech",
+        "x": 608.0,
+        "y": 213.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q40",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "보면",
+        "style_role": "speech",
+        "x": 671.0,
+        "y": 213.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q41",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "돼.",
+        "style_role": "speech",
+        "x": 734.0,
+        "y": 213.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q42",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "○",
+        "style_role": "diagram",
+        "x": 23.0,
+        "y": 253.0,
+        "font_size": 16
+      }
+    },
+    {
+      "id": "slot.q43",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "×",
+        "style_role": "diagram",
+        "x": 24.0,
+        "y": 285.0,
+        "font_size": 16
+      }
+    },
+    {
+      "id": "slot.q44",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "※ TODO: 물병/우유병/인물의 세부 외형은 이미지 기반 도형으로 별도 보강 가능",
+        "style_role": "note",
+        "x": 52.0,
+        "y": 20.0,
+        "font_size": 12
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q1",
+    "slot.q2",
+    "slot.q3",
+    "slot.q4",
+    "slot.q5",
+    "slot.q6",
+    "slot.q7",
+    "slot.q8",
+    "slot.q9",
+    "slot.q10",
+    "slot.q15",
+    "slot.q16",
+    "slot.q17",
+    "slot.q18",
+    "slot.q19",
+    "slot.q20",
+    "slot.q21",
+    "slot.q22",
+    "slot.q23",
+    "slot.q24",
+    "slot.q25",
+    "slot.q26",
+    "slot.q27",
+    "slot.q28",
+    "slot.q29",
+    "slot.q30",
+    "slot.q31",
+    "slot.q32",
+    "slot.q33",
+    "slot.q34",
+    "slot.q35",
+    "slot.q36",
+    "slot.q37",
+    "slot.q38",
+    "slot.q39",
+    "slot.q40",
+    "slot.q41",
+    "slot.q42",
+    "slot.q43",
+    "slot.q44"
+  ]
+}

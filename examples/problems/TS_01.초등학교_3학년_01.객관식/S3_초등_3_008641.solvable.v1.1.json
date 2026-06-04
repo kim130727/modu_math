@@ -1,0 +1,82 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008641",
+  "problem_type": "concept_choice",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "같습니다",
+    "target_ticks": 0,
+    "target_count": 3,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.circle",
+      "value": {
+        "type": "circle"
+      }
+    },
+    {
+      "ref": "obj.diameter.1",
+      "value": {
+        "owner": "은지",
+        "type": "diameter"
+      }
+    },
+    {
+      "ref": "obj.diameter.2",
+      "value": {
+        "owner": "진아",
+        "type": "diameter"
+      }
+    },
+    {
+      "ref": "obj.diameter.3",
+      "value": {
+        "owner": "현준",
+        "type": "diameter"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "choice_word"
+  },
+  "method": "concept_recognition",
+  "plan": [
+    "한 원에서 지름의 성질을 확인한다.",
+    "보기의 두 말 중 알맞은 말을 고른다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "한 원의 지름은 모두 같은 성질을 가진다.",
+      "value": "같다"
+    },
+    {
+      "id": "step.2",
+      "expr": "선택지 ( 같습니다, 다릅니다 ) 중 알맞은 말 선택",
+      "value": "같습니다"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "지름의 성질과 선택어가 일치하는가",
+      "expected": "같습니다",
+      "actual": "같습니다",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "choice_word",
+      "description": "한 원에서 원의 지름은 모두 ( 같습니다, 다릅니다 )에서 알맞은 말"
+    },
+    "value": "같습니다",
+    "unit": ""
+  }
+}

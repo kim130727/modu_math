@@ -1,0 +1,54 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_??_3_008576",
+  "problem_type": "multiplication_place_value_choice",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "??? ??? ???? ?",
+    "target_ticks": 0,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.target",
+      "value": "50 ? 6"
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "selected_expression"
+  },
+  "method": "place_value_matching",
+  "plan": [
+    "??? ??? ???? ????.",
+    "?? ?? ???."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "??? ??? ?? ??",
+      "value": "50 ? 6"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "??",
+      "expected": "??",
+      "actual": "??",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "selected_expression",
+      "description": "??? ??? ???? ?"
+    },
+    "value": "50 ? 6",
+    "unit": ""
+  }
+}

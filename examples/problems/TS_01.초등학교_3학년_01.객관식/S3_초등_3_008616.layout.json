@@ -1,0 +1,206 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008616",
+  "title": "문제를 바르게 설명한 사람 찾기",
+  "canvas": {
+    "width": 872,
+    "height": 650,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q.box",
+        "slot.eq.box",
+        "slot.sp1",
+        "slot.sp3",
+        "slot.q.num",
+        "slot.q.text",
+        "slot.sp2",
+        "slot.balloon.left",
+        "slot.balloon.mid",
+        "slot.balloon.right",
+        "slot.name.left",
+        "slot.name.mid",
+        "slot.name.right"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q.box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 18.0,
+        "y": 14.0,
+        "width": 14.0,
+        "height": 14.0
+      }
+    },
+    {
+      "id": "slot.q.num",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "86.",
+        "style_role": "question",
+        "x": 42.0,
+        "y": 28.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "문제를 바르게 설명한 사람이 누구인지 찾아 선택하세요.",
+        "style_role": "question",
+        "x": 96.0,
+        "y": 28.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.eq.box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 308.0,
+        "y": 44.0,
+        "width": 370.0,
+        "height": 78.0
+      }
+    },
+    {
+      "id": "slot.sp1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 489.0,
+        "y": 72.0,
+        "width": 24.0,
+        "height": 24.0
+      }
+    },
+    {
+      "id": "slot.sp2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "···",
+        "style_role": "math",
+        "x": 518.0,
+        "y": 92.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.sp3",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 562.0,
+        "y": 72.0,
+        "width": 24.0,
+        "height": 24.0
+      }
+    },
+    {
+      "id": "slot.balloon.left",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "묶은\n10보다 작아.",
+        "style_role": "speech",
+        "x": 186.0,
+        "y": 214.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.balloon.mid",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "나머지는 0으로\n나누어떨어져.",
+        "style_role": "speech",
+        "x": 434.0,
+        "y": 214.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.balloon.right",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "나머지는\n8보다 작아.",
+        "style_role": "speech",
+        "x": 674.0,
+        "y": 214.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.name.left",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "근희",
+        "style_role": "label",
+        "x": 228.0,
+        "y": 402.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.name.mid",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "영표",
+        "style_role": "label",
+        "x": 474.0,
+        "y": 402.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.name.right",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "슬기",
+        "style_role": "label",
+        "x": 710.0,
+        "y": 402.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q.box",
+    "slot.eq.box",
+    "slot.sp1",
+    "slot.sp3",
+    "slot.q.num",
+    "slot.q.text",
+    "slot.sp2",
+    "slot.balloon.left",
+    "slot.balloon.mid",
+    "slot.balloon.right",
+    "slot.name.left",
+    "slot.name.mid",
+    "slot.name.right"
+  ]
+}

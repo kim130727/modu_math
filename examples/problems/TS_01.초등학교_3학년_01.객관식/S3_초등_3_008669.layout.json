@@ -1,0 +1,421 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008669",
+  "title": "원의 중심과 반지름",
+  "canvas": {
+    "width": 960,
+    "height": 500,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice_box",
+        "slot.choice.a.outer",
+        "slot.choice.a.left",
+        "slot.choice.a.right",
+        "slot.choice.b.outer",
+        "slot.choice.b.middle",
+        "slot.choice.b.inner",
+        "slot.choice.c.outer",
+        "slot.choice.c.inner",
+        "slot.ans.outer1",
+        "slot.ans.outer2",
+        "slot.ans.inner",
+        "slot.ex1.outer",
+        "slot.ex1.left",
+        "slot.ex1.right",
+        "slot.ex1.dot1",
+        "slot.ex1.dot2",
+        "slot.ex2.outer",
+        "slot.ex2.middle",
+        "slot.ex2.inner",
+        "slot.ex2.dot",
+        "slot.ex3.outer",
+        "slot.ex3.inner",
+        "slot.ex3.inner2",
+        "slot.ex3.dot1",
+        "slot.ex3.dot2",
+        "slot.q1",
+        "slot.q2"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "□ 48.  원의 중심을 옮기지 않고 반지름만 다르게 하여 그린 것을 찾아 선택하",
+        "style_role": "question",
+        "x": 16.0,
+        "y": 22.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "세요.",
+        "style_role": "question",
+        "x": 16.0,
+        "y": 58.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice_box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 200.0,
+        "y": 88.0,
+        "width": 582.0,
+        "height": 130.0,
+        "stroke": "#A89BEA",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.choice.a.outer",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 295.0,
+        "cy": 149.0,
+        "r": 44.0,
+        "stroke": "#333333",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.choice.a.left",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 280.0,
+        "cy": 149.0,
+        "r": 22.0,
+        "stroke": "#333333",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.choice.a.right",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 310.0,
+        "cy": 149.0,
+        "r": 22.0,
+        "stroke": "#333333",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.choice.b.outer",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 484.0,
+        "cy": 149.0,
+        "r": 44.0,
+        "stroke": "#333333",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.choice.b.middle",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 484.0,
+        "cy": 149.0,
+        "r": 31.0,
+        "stroke": "#333333",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.choice.b.inner",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 484.0,
+        "cy": 149.0,
+        "r": 16.0,
+        "stroke": "#333333",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.choice.c.outer",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 683.0,
+        "cy": 149.0,
+        "r": 44.0,
+        "stroke": "#333333",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.choice.c.inner",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 683.0,
+        "cy": 173.0,
+        "r": 24.0,
+        "stroke": "#333333",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.ans.outer1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 92.0,
+        "cy": 267.0,
+        "r": 35.0,
+        "stroke": "#333333",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.ans.outer2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 92.0,
+        "cy": 267.0,
+        "r": 22.0,
+        "stroke": "#333333",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.ans.inner",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 92.0,
+        "cy": 267.0,
+        "r": 11.0,
+        "stroke": "#333333",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.ex1.outer",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 93.0,
+        "cy": 434.0,
+        "r": 42.0,
+        "stroke": "#333333",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.ex1.left",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 74.0,
+        "cy": 434.0,
+        "r": 22.0,
+        "stroke": "#333333",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.ex1.right",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 112.0,
+        "cy": 434.0,
+        "r": 22.0,
+        "stroke": "#333333",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.ex1.dot1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 73.0,
+        "cy": 436.0,
+        "r": 3.8,
+        "stroke": "none",
+        "fill": "#1DA1F2"
+      }
+    },
+    {
+      "id": "slot.ex1.dot2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 113.0,
+        "cy": 436.0,
+        "r": 3.8,
+        "stroke": "none",
+        "fill": "#1DA1F2"
+      }
+    },
+    {
+      "id": "slot.ex2.outer",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 239.0,
+        "cy": 434.0,
+        "r": 42.0,
+        "stroke": "#333333",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.ex2.middle",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 239.0,
+        "cy": 434.0,
+        "r": 31.0,
+        "stroke": "#333333",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.ex2.inner",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 239.0,
+        "cy": 434.0,
+        "r": 16.0,
+        "stroke": "#333333",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.ex2.dot",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 239.0,
+        "cy": 434.0,
+        "r": 3.8,
+        "stroke": "none",
+        "fill": "#1DA1F2"
+      }
+    },
+    {
+      "id": "slot.ex3.outer",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 372.0,
+        "cy": 434.0,
+        "r": 42.0,
+        "stroke": "#333333",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.ex3.inner",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 372.0,
+        "cy": 460.0,
+        "r": 20.0,
+        "stroke": "#333333",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.ex3.inner2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 372.0,
+        "cy": 446.0,
+        "r": 13.0,
+        "stroke": "#333333",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.ex3.dot1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 372.0,
+        "cy": 436.0,
+        "r": 3.8,
+        "stroke": "none",
+        "fill": "#1DA1F2"
+      }
+    },
+    {
+      "id": "slot.ex3.dot2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 372.0,
+        "cy": 459.0,
+        "r": 3.8,
+        "stroke": "none",
+        "fill": "#1DA1F2"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.choice_box",
+    "slot.choice.a.outer",
+    "slot.choice.a.left",
+    "slot.choice.a.right",
+    "slot.choice.b.outer",
+    "slot.choice.b.middle",
+    "slot.choice.b.inner",
+    "slot.choice.c.outer",
+    "slot.choice.c.inner",
+    "slot.ans.outer1",
+    "slot.ans.outer2",
+    "slot.ans.inner",
+    "slot.ex1.outer",
+    "slot.ex1.left",
+    "slot.ex1.right",
+    "slot.ex1.dot1",
+    "slot.ex1.dot2",
+    "slot.ex2.outer",
+    "slot.ex2.middle",
+    "slot.ex2.inner",
+    "slot.ex2.dot",
+    "slot.ex3.outer",
+    "slot.ex3.inner",
+    "slot.ex3.inner2",
+    "slot.ex3.dot1",
+    "slot.ex3.dot2",
+    "slot.q1",
+    "slot.q2"
+  ]
+}

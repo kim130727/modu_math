@@ -1,0 +1,377 @@
+{
+  "problem_id": "S3_초등_3_008755",
+  "view_box": {
+    "width": 960.0,
+    "height": 386.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.connect.bottle.1.line",
+      "type": "line",
+      "attributes": {
+        "x1": 151.0,
+        "y1": 124.0,
+        "x2": 203.0,
+        "y2": 166.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.connect.bottle.1",
+      "refs": {
+        "layout_slot_id": "slot.connect.bottle.1"
+      }
+    },
+    {
+      "id": "slot.connect.bottle.2.line",
+      "type": "line",
+      "attributes": {
+        "x1": 153.0,
+        "y1": 146.0,
+        "x2": 206.0,
+        "y2": 186.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.connect.bottle.2",
+      "refs": {
+        "layout_slot_id": "slot.connect.bottle.2"
+      }
+    },
+    {
+      "id": "slot.connect.carton.1.line",
+      "type": "line",
+      "attributes": {
+        "x1": 399.0,
+        "y1": 122.0,
+        "x2": 383.0,
+        "y2": 158.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.connect.carton.1",
+      "refs": {
+        "layout_slot_id": "slot.connect.carton.1"
+      }
+    },
+    {
+      "id": "slot.connect.carton.2.line",
+      "type": "line",
+      "attributes": {
+        "x1": 403.0,
+        "y1": 144.0,
+        "x2": 388.0,
+        "y2": 176.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.connect.carton.2",
+      "refs": {
+        "layout_slot_id": "slot.connect.carton.2"
+      }
+    },
+    {
+      "id": "slot.q1.text",
+      "type": "text",
+      "attributes": {
+        "x": 18.0,
+        "y": 34.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q1",
+      "refs": {
+        "layout_slot_id": "slot.q1"
+      },
+      "text": "52. 주스병과 우유갑에는 각각 어떤 단위가 표시되어 있는지 선택해 보세요."
+    },
+    {
+      "id": "slot.bottle.label.text",
+      "type": "text",
+      "attributes": {
+        "x": 173.0,
+        "y": 246.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 24
+      },
+      "source_ref": "slot.bottle.label",
+      "refs": {
+        "layout_slot_id": "slot.bottle.label"
+      },
+      "text": "주스병"
+    },
+    {
+      "id": "slot.carton.label.text",
+      "type": "text",
+      "attributes": {
+        "x": 342.0,
+        "y": 246.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 24
+      },
+      "source_ref": "slot.carton.label",
+      "refs": {
+        "layout_slot_id": "slot.carton.label"
+      },
+      "text": "우유갑"
+    },
+    {
+      "id": "slot.balloon.text.text",
+      "type": "text",
+      "attributes": {
+        "x": 545.0,
+        "y": 136.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.balloon.text",
+      "refs": {
+        "layout_slot_id": "slot.balloon.text"
+      },
+      "text": "들이의 단위에는 리터와\n밀리리터 등이 있어."
+    },
+    {
+      "id": "slot.choice.text.text",
+      "type": "text",
+      "attributes": {
+        "x": 424.0,
+        "y": 272.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice.text",
+      "refs": {
+        "layout_slot_id": "slot.choice.text"
+      },
+      "text": "주스병 → ( L, mL ), 우유갑 → ( L, mL )"
+    },
+    {
+      "id": "slot.bottle.body.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 205.0,
+        "y": 96.0,
+        "width": 52.0,
+        "height": 136.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.bottle.body",
+      "refs": {
+        "layout_slot_id": "slot.bottle.body"
+      }
+    },
+    {
+      "id": "slot.bottle.cap.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 219.0,
+        "y": 78.0,
+        "width": 24.0,
+        "height": 18.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.bottle.cap",
+      "refs": {
+        "layout_slot_id": "slot.bottle.cap"
+      }
+    },
+    {
+      "id": "slot.bottle.zoom.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 126.0,
+        "cy": 126.0,
+        "r": 32.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#ffffff"
+      },
+      "source_ref": "slot.bottle.zoom",
+      "refs": {
+        "layout_slot_id": "slot.bottle.zoom"
+      }
+    },
+    {
+      "id": "slot.carton.body.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 348.0,
+        "y": 158.0,
+        "width": 44.0,
+        "height": 70.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.carton.body",
+      "refs": {
+        "layout_slot_id": "slot.carton.body"
+      }
+    },
+    {
+      "id": "slot.carton.cap.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 355.0,
+        "y": 146.0,
+        "width": 18.0,
+        "height": 12.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.carton.cap",
+      "refs": {
+        "layout_slot_id": "slot.carton.cap"
+      }
+    },
+    {
+      "id": "slot.carton.zoom.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 427.0,
+        "cy": 126.0,
+        "r": 32.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#ffffff"
+      },
+      "source_ref": "slot.carton.zoom",
+      "refs": {
+        "layout_slot_id": "slot.carton.zoom"
+      }
+    },
+    {
+      "id": "slot.balloon.shape.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 522.0,
+        "y": 102.0,
+        "width": 260.0,
+        "height": 104.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.balloon.shape",
+      "refs": {
+        "layout_slot_id": "slot.balloon.shape"
+      }
+    },
+    {
+      "id": "slot.girl.face.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 836.0,
+        "cy": 164.0,
+        "r": 26.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#f4c7a1"
+      },
+      "source_ref": "slot.girl.face",
+      "refs": {
+        "layout_slot_id": "slot.girl.face"
+      }
+    },
+    {
+      "id": "slot.girl.hair.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 836.0,
+        "cy": 156.0,
+        "r": 31.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#5b8bd8"
+      },
+      "source_ref": "slot.girl.hair",
+      "refs": {
+        "layout_slot_id": "slot.girl.hair"
+      }
+    },
+    {
+      "id": "slot.bottle.label_inner.text",
+      "type": "text",
+      "attributes": {
+        "x": 214.0,
+        "y": 183.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 24
+      },
+      "source_ref": "slot.bottle.label_inner",
+      "refs": {
+        "layout_slot_id": "slot.bottle.label_inner"
+      },
+      "text": "1L"
+    },
+    {
+      "id": "slot.bottle.zoom_text.text",
+      "type": "text",
+      "attributes": {
+        "x": 108.0,
+        "y": 136.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 34
+      },
+      "source_ref": "slot.bottle.zoom_text",
+      "refs": {
+        "layout_slot_id": "slot.bottle.zoom_text"
+      },
+      "text": "1L"
+    },
+    {
+      "id": "slot.carton.label_inner.text",
+      "type": "text",
+      "attributes": {
+        "x": 350.0,
+        "y": 192.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 18
+      },
+      "source_ref": "slot.carton.label_inner",
+      "refs": {
+        "layout_slot_id": "slot.carton.label_inner"
+      },
+      "text": "200mL"
+    },
+    {
+      "id": "slot.carton.zoom_text.text",
+      "type": "text",
+      "attributes": {
+        "x": 398.0,
+        "y": 136.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 24
+      },
+      "source_ref": "slot.carton.zoom_text",
+      "refs": {
+        "layout_slot_id": "slot.carton.zoom_text"
+      },
+      "text": "200mL"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

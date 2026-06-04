@@ -1,0 +1,119 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008586",
+  "title": "나누어떨어지는 나눗셈을 찾아 선택하세요.",
+  "canvas": {
+    "width": 692,
+    "height": 308,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.qnum",
+        "slot.question"
+      ]
+    },
+    {
+      "id": "region.choices",
+      "role": "choices",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice_box",
+        "slot.choice.a",
+        "slot.choice.b"
+      ]
+    },
+    {
+      "id": "region.answer",
+      "role": "answer",
+      "flow": "absolute",
+      "slot_ids": []
+    },
+    {
+      "id": "region.explanation",
+      "role": "explanation",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.qnum",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "53.",
+        "style_role": "question",
+        "x": 46.0,
+        "y": 28.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.question",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "나누어떨어지는 나눗셈을 찾아 선택하세요.",
+        "style_role": "question",
+        "x": 89.0,
+        "y": 28.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice_box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 289.0,
+        "y": 48.0,
+        "width": 385.0,
+        "height": 77.0
+      }
+    },
+    {
+      "id": "slot.choice.a",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄱ 16 ÷ 3",
+        "style_role": "choice",
+        "x": 340.0,
+        "y": 89.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice.b",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄴ 49 ÷ 7",
+        "style_role": "choice",
+        "x": 521.0,
+        "y": 89.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.qnum",
+    "slot.question",
+    "region.choices",
+    "slot.choice_box",
+    "slot.choice.a",
+    "slot.choice.b",
+    "region.answer",
+    "region.explanation"
+  ]
+}

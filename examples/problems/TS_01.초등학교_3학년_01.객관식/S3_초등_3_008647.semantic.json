@@ -1,0 +1,92 @@
+{
+  "problem_id": "S3_초등_3_008647",
+  "problem_type": "geometry_comparison",
+  "metadata": {
+    "title": "원 안의 선분 중 길이가 가장 긴 선분 찾기",
+    "tags": [],
+    "instruction": "가장 긴 선분의 기호를 고른다.",
+    "question": "원 안의 선분 중 길이가 가장 긴 선분을 찾아 기호를 선택하세요.",
+    "required_layout_ids": [
+      "slot.q.circle",
+      "slot.q.top.circle",
+      "slot.q.top.center",
+      "slot.q.top.radius1",
+      "slot.q.top.radius2",
+      "slot.q.top.radius3",
+      "slot.q.top.radius4",
+      "slot.q.top.diameter",
+      "slot.expl.circle",
+      "slot.expl.top.circle",
+      "slot.expl.top.center",
+      "slot.expl.top.radius1",
+      "slot.expl.top.radius2",
+      "slot.expl.top.radius3",
+      "slot.expl.top.radius4",
+      "slot.expl.top.diameter"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "points": 5
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.circle",
+        "type": "circle"
+      },
+      {
+        "id": "obj.segment.d",
+        "type": "segment",
+        "symbol": "ㄷ",
+        "role": "diameter_candidate"
+      },
+      {
+        "id": "obj.segment.others",
+        "type": "segment_set",
+        "description": "원 안의 다른 선분들"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.circle",
+          "obj.segment.d",
+          "obj.segment.others"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.longest",
+          "rel.center_pass"
+        ]
+      },
+      "plan": {
+        "method": "compare_segments_by_circle_property",
+        "description": "원 안의 선분들 가운데 원의 중심을 지나는 선분을 찾는다."
+      },
+      "execute": {
+        "expected_operations": [
+          "identify_center_passing_segment",
+          "match_symbol_to_segment"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "property_check_longest_segment_is_diameter"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "symbol_choice",
+      "description": "길이가 가장 긴 선분의 기호"
+    },
+    "value": "ㄷ",
+    "unit": ""
+  }
+}

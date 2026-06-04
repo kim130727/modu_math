@@ -1,0 +1,94 @@
+{
+  "problem_id": "S3_초등_3_008758",
+  "problem_type": "choice_estimation_comparison",
+  "metadata": {
+    "title": "주스병의 들이를 어림한 친구를 선택해 보세요",
+    "tags": [],
+    "question": "주스병의 들이를 적절히 어림한 친구를 선택해 보세요.",
+    "required_layout_ids": [
+      "slot.name.jinyoung",
+      "slot.name.chanho",
+      "slot.bubble.top",
+      "slot.bubble.bottom"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "보이는 말풍선과 하단 정답/해설 문장을 읽는다."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.jinyoung",
+        "type": "student",
+        "name": "진영"
+      },
+      {
+        "id": "obj.chanho",
+        "type": "student",
+        "name": "찬호"
+      },
+      {
+        "id": "obj.juice_bottle",
+        "type": "container",
+        "description": "주스병"
+      },
+      {
+        "id": "obj.cup_200ml",
+        "type": "cup",
+        "capacity": {
+          "value": 200,
+          "unit": "mL"
+        }
+      },
+      {
+        "id": "obj.cup_1l",
+        "type": "cup",
+        "capacity": {
+          "value": 1,
+          "unit": "L"
+        }
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.jinyoung",
+          "obj.chanho",
+          "obj.juice_bottle"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.jinyoung_estimate",
+          "rel.chanho_estimate"
+        ]
+      },
+      "plan": {
+        "method": "compare_estimates",
+        "description": "말풍선의 어림값이 주스병의 들이에 어울리는지 비교한다."
+      },
+      "execute": {
+        "expected_operations": [
+          "compare_capacity_estimates"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "consistency_with_printed_answer"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "selected_friend",
+      "description": "주스병의 들이를 적절히 어림한 친구"
+    },
+    "value": 0,
+    "unit": ""
+  }
+}

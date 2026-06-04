@@ -1,0 +1,385 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008750",
+  "title": "들이가 더 적은 병 고르기",
+  "canvas": {
+    "width": 960,
+    "height": 480,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q1",
+        "slot.q2",
+        "slot.q3"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.bottle.left.body",
+        "slot.bottle.left.neck",
+        "slot.bottle.left.cap",
+        "slot.bottle.left.label",
+        "slot.cup.left.body",
+        "slot.cup.left.water",
+        "slot.bottle.right.body",
+        "slot.bottle.right.neck",
+        "slot.bottle.right.cap",
+        "slot.bottle.right.label",
+        "slot.cup.right.body",
+        "slot.cup.right.water",
+        "slot.arrow.left",
+        "slot.cup.left.rim",
+        "slot.arrow.right",
+        "slot.cup.right.rim",
+        "slot.label.ga",
+        "slot.label.na"
+      ]
+    },
+    {
+      "id": "region.choice",
+      "role": "answer_choice",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice"
+      ]
+    },
+    {
+      "id": "region.answer",
+      "role": "answer",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "47. ㉠ 병과 ㉡ 병에 물을 가득 채운 후 높이와 크기가 같은 그릇에 옮겨 담았",
+        "style_role": "question",
+        "x": 14.0,
+        "y": 28.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "습니다. 그림과 같이 물을 채웠을 때에 들이가 더 적은 병을 선택해 보세",
+        "style_role": "question",
+        "x": 14.0,
+        "y": 66.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "요.",
+        "style_role": "question",
+        "x": 14.0,
+        "y": 104.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.bottle.left.body",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 240.0,
+        "y": 161.0,
+        "width": 42.0,
+        "height": 89.0,
+        "stroke": "#E59AB0",
+        "stroke_width": 2.0,
+        "fill": "#F7C9D5"
+      }
+    },
+    {
+      "id": "slot.bottle.left.neck",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 251.5,
+        "y": 149.0,
+        "width": 19.0,
+        "height": 16.0,
+        "stroke": "#E59AB0",
+        "stroke_width": 2.0,
+        "fill": "#F7C9D5"
+      }
+    },
+    {
+      "id": "slot.bottle.left.cap",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 261.0,
+        "cy": 148.0,
+        "r": 9.0,
+        "stroke": "#D79AAF",
+        "stroke_width": 2.0,
+        "fill": "#FFFFFF"
+      }
+    },
+    {
+      "id": "slot.bottle.left.label",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 248.0,
+        "y": 188.0,
+        "width": 26.0,
+        "height": 34.0,
+        "stroke": "#C9B89A",
+        "stroke_width": 1.2,
+        "fill": "#FFF3D9"
+      }
+    },
+    {
+      "id": "slot.label.ga",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "가",
+        "style_role": "label",
+        "x": 252.5,
+        "y": 212.0,
+        "font_size": 20
+      }
+    },
+    {
+      "id": "slot.arrow.left",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 293.0,
+        "y1": 204.0,
+        "x2": 331.0,
+        "y2": 204.0,
+        "stroke": "#9AA0A6",
+        "stroke_width": 4.0
+      }
+    },
+    {
+      "id": "slot.cup.left.body",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 344.0,
+        "y": 145.0,
+        "width": 74.0,
+        "height": 110.0,
+        "stroke": "#8A9CC9",
+        "stroke_width": 2.0,
+        "fill": "#FFFFFF"
+      }
+    },
+    {
+      "id": "slot.cup.left.rim",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 349.0,
+        "y1": 157.0,
+        "x2": 416.0,
+        "y2": 157.0,
+        "stroke": "#8A9CC9",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.cup.left.water",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 347.5,
+        "y": 199.0,
+        "width": 69.0,
+        "height": 50.0,
+        "stroke": "#56B6E8",
+        "stroke_width": 1.0,
+        "fill": "#56B6E8"
+      }
+    },
+    {
+      "id": "slot.bottle.right.body",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 541.0,
+        "y": 151.0,
+        "width": 43.0,
+        "height": 99.0,
+        "stroke": "#9BC44D",
+        "stroke_width": 2.0,
+        "fill": "#DDF0A6"
+      }
+    },
+    {
+      "id": "slot.bottle.right.neck",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 552.5,
+        "y": 138.0,
+        "width": 20.0,
+        "height": 18.0,
+        "stroke": "#9BC44D",
+        "stroke_width": 2.0,
+        "fill": "#DDF0A6"
+      }
+    },
+    {
+      "id": "slot.bottle.right.cap",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 562.5,
+        "cy": 137.0,
+        "r": 9.0,
+        "stroke": "#8BB44A",
+        "stroke_width": 2.0,
+        "fill": "#FFFFFF"
+      }
+    },
+    {
+      "id": "slot.bottle.right.label",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 549.0,
+        "y": 181.0,
+        "width": 27.0,
+        "height": 35.0,
+        "stroke": "#C9B89A",
+        "stroke_width": 1.2,
+        "fill": "#FFF5D8"
+      }
+    },
+    {
+      "id": "slot.label.na",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "나",
+        "style_role": "label",
+        "x": 553.5,
+        "y": 205.0,
+        "font_size": 20
+      }
+    },
+    {
+      "id": "slot.arrow.right",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 595.0,
+        "y1": 204.0,
+        "x2": 632.0,
+        "y2": 204.0,
+        "stroke": "#9AA0A6",
+        "stroke_width": 4.0
+      }
+    },
+    {
+      "id": "slot.cup.right.body",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 642.0,
+        "y": 145.0,
+        "width": 74.0,
+        "height": 110.0,
+        "stroke": "#8A9CC9",
+        "stroke_width": 2.0,
+        "fill": "#FFFFFF"
+      }
+    },
+    {
+      "id": "slot.cup.right.rim",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 647.0,
+        "y1": 157.0,
+        "x2": 714.0,
+        "y2": 157.0,
+        "stroke": "#8A9CC9",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.cup.right.water",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 645.5,
+        "y": 183.0,
+        "width": 69.0,
+        "height": 66.0,
+        "stroke": "#56B6E8",
+        "stroke_width": 1.0,
+        "fill": "#56B6E8"
+      }
+    },
+    {
+      "id": "slot.choice",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "( 가 병 , 나 병 )",
+        "style_role": "answer_choice",
+        "x": 752.0,
+        "y": 330.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q1",
+    "slot.q2",
+    "slot.q3",
+    "region.diagram",
+    "slot.bottle.left.body",
+    "slot.bottle.left.neck",
+    "slot.bottle.left.cap",
+    "slot.bottle.left.label",
+    "slot.cup.left.body",
+    "slot.cup.left.water",
+    "slot.bottle.right.body",
+    "slot.bottle.right.neck",
+    "slot.bottle.right.cap",
+    "slot.bottle.right.label",
+    "slot.cup.right.body",
+    "slot.cup.right.water",
+    "slot.arrow.left",
+    "slot.cup.left.rim",
+    "slot.arrow.right",
+    "slot.cup.right.rim",
+    "slot.label.ga",
+    "slot.label.na",
+    "region.choice",
+    "slot.choice",
+    "region.answer"
+  ]
+}

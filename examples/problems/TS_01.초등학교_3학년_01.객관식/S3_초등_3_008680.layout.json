@@ -1,0 +1,222 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008680",
+  "title": "원을 똑같이 둘로 나누는 선분 찾기",
+  "canvas": {
+    "width": 940,
+    "height": 343,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q1"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.circle",
+        "slot.center.dot",
+        "slot.seg.h",
+        "slot.seg.v",
+        "slot.label.center",
+        "slot.label.left",
+        "slot.label.right",
+        "slot.label.bottom"
+      ]
+    },
+    {
+      "id": "region.choice",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice"
+      ]
+    },
+    {
+      "id": "region.answer",
+      "role": "answer",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.answer",
+        "slot.explain"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "□ 62. 원을 똑같이 둘로 나누는 선분을 찾아 기호를 선택하세요.",
+        "style_role": "question",
+        "x": 10.0,
+        "y": 28.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.circle",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 479.0,
+        "cy": 116.0,
+        "r": 68.0,
+        "stroke": "#222222",
+        "stroke_width": 1.8,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.seg.h",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 411.0,
+        "y1": 116.0,
+        "x2": 547.0,
+        "y2": 116.0,
+        "stroke": "#333333",
+        "stroke_width": 1.8
+      }
+    },
+    {
+      "id": "slot.seg.v",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 479.0,
+        "y1": 116.0,
+        "x2": 479.0,
+        "y2": 184.0,
+        "stroke": "#333333",
+        "stroke_width": 1.8
+      }
+    },
+    {
+      "id": "slot.center.dot",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 479.0,
+        "cy": 116.0,
+        "r": 3.2,
+        "fill": "#d61f9d"
+      }
+    },
+    {
+      "id": "slot.label.center",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㅇ",
+        "style_role": "diagram",
+        "x": 473.0,
+        "y": 108.0,
+        "font_size": 24
+      }
+    },
+    {
+      "id": "slot.label.left",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄱ",
+        "style_role": "diagram",
+        "x": 392.0,
+        "y": 124.0,
+        "font_size": 24
+      }
+    },
+    {
+      "id": "slot.label.right",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄷ",
+        "style_role": "diagram",
+        "x": 551.0,
+        "y": 124.0,
+        "font_size": 24
+      }
+    },
+    {
+      "id": "slot.label.bottom",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄴ",
+        "style_role": "diagram",
+        "x": 472.0,
+        "y": 198.0,
+        "font_size": 24
+      }
+    },
+    {
+      "id": "slot.choice",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "① 선분 ㅇㄱ      ② 선분 ㅇㄷ      ③ 선분 ㅇㄴ      ④ 선분 ㄱㄷ",
+        "style_role": "question",
+        "x": 86.0,
+        "y": 228.0,
+        "font_size": 40
+      }
+    },
+    {
+      "id": "slot.answer",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "(정답) ④",
+        "style_role": "question",
+        "x": 10.0,
+        "y": 278.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.explain",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "(해설) 선분 ㄱㄷ이 원을 똑같이 둘로 나누는 선분입니다.",
+        "style_role": "question",
+        "x": 10.0,
+        "y": 324.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q1",
+    "region.diagram",
+    "slot.circle",
+    "slot.center.dot",
+    "slot.seg.h",
+    "slot.seg.v",
+    "slot.label.center",
+    "slot.label.left",
+    "slot.label.right",
+    "slot.label.bottom",
+    "region.choice",
+    "slot.choice",
+    "region.answer",
+    "slot.answer",
+    "slot.explain"
+  ]
+}

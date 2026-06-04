@@ -1,0 +1,75 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008750",
+  "problem_type": "comparison_choice",
+  "inputs": {
+    "total_ticks": 2,
+    "target_label": "들이가 더 적은 병",
+    "target_ticks": 1,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.bottle_a",
+      "value": "가 병"
+    },
+    {
+      "ref": "obj.bottle_b",
+      "value": "나 병"
+    },
+    {
+      "ref": "rel.compare_volume",
+      "value": "같은 그릇에 옮겨 담았을 때 물의 높이 비교"
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "choice"
+  },
+  "method": "visual_comparison",
+  "plan": [
+    "같은 크기의 그릇에 옮겨 담은 물의 높이를 비교한다.",
+    "물의 높이가 더 낮은 쪽이 들이가 더 적다.",
+    "그림에서 더 낮게 보이는 쪽을 고른다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "왼쪽 그릇의 물 높이와 오른쪽 그릇의 물 높이를 비교한다.",
+      "value": "왼쪽 그릇의 물 높이가 더 낮다"
+    },
+    {
+      "id": "step.2",
+      "expr": "물 높이가 더 낮은 병을 고른다.",
+      "value": "가 병"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "같은 그릇에서 물 높이가 더 낮은 쪽이 들이가 더 적은가?",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "id": "check.2",
+      "expr": "선택한 병이 가 병인가?",
+      "expected": "가 병",
+      "actual": "가 병",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "choice",
+      "description": "들이가 더 적은 병"
+    },
+    "value": 0,
+    "unit": ""
+  }
+}

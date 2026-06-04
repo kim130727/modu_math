@@ -1,0 +1,147 @@
+{
+  "problem_id": "S3_초등_3_008613",
+  "view_box": {
+    "width": 880.0,
+    "height": 240.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.q.no.text",
+      "type": "text",
+      "attributes": {
+        "x": 44.0,
+        "y": 28.0,
+        "max_width": 752.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q.no",
+      "refs": {
+        "layout_slot_id": "slot.q.no"
+      },
+      "text": "83."
+    },
+    {
+      "id": "slot.q.text.text",
+      "type": "text",
+      "attributes": {
+        "x": 88.0,
+        "y": 28.0,
+        "max_width": 752.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q.text",
+      "refs": {
+        "layout_slot_id": "slot.q.text"
+      },
+      "text": "나머지가 3이 나올 수 없는 식을 찾아 선택해 보세요."
+    },
+    {
+      "id": "slot.choice.1.box.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 124.0,
+        "y": 50.0,
+        "width": 182.0,
+        "height": 80.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.choice.1.box",
+      "refs": {
+        "layout_slot_id": "slot.choice.1.box"
+      }
+    },
+    {
+      "id": "slot.choice.2.box.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 350.0,
+        "y": 50.0,
+        "width": 182.0,
+        "height": 80.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.choice.2.box",
+      "refs": {
+        "layout_slot_id": "slot.choice.2.box"
+      }
+    },
+    {
+      "id": "slot.choice.3.box.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 576.0,
+        "y": 50.0,
+        "width": 182.0,
+        "height": 80.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.choice.3.box",
+      "refs": {
+        "layout_slot_id": "slot.choice.3.box"
+      }
+    },
+    {
+      "id": "slot.choice.1.text.text",
+      "type": "text",
+      "attributes": {
+        "x": 176.0,
+        "y": 100.0,
+        "max_width": 752.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice.1.text",
+      "refs": {
+        "layout_slot_id": "slot.choice.1.text"
+      },
+      "text": "□ ÷ 3"
+    },
+    {
+      "id": "slot.choice.2.text.text",
+      "type": "text",
+      "attributes": {
+        "x": 402.0,
+        "y": 100.0,
+        "max_width": 752.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice.2.text",
+      "refs": {
+        "layout_slot_id": "slot.choice.2.text"
+      },
+      "text": "□ ÷ 5"
+    },
+    {
+      "id": "slot.choice.3.text.text",
+      "type": "text",
+      "attributes": {
+        "x": 628.0,
+        "y": 100.0,
+        "max_width": 752.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice.3.text",
+      "refs": {
+        "layout_slot_id": "slot.choice.3.text"
+      },
+      "text": "□ ÷ 7"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

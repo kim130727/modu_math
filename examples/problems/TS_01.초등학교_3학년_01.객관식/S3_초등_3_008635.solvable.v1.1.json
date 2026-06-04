@@ -1,0 +1,91 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008635",
+  "problem_type": "equation_comparison_multiple_choice",
+  "inputs": {
+    "total_ticks": 5,
+    "target_label": "□",
+    "target_ticks": 1,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.left_expression",
+      "value": "80 ÷ 5"
+    },
+    {
+      "ref": "obj.right_expression",
+      "value": "□ × 4"
+    },
+    {
+      "ref": "obj.options",
+      "value": [
+        2,
+        3,
+        4,
+        6,
+        8
+      ]
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "missing_number"
+  },
+  "method": "compare_results",
+  "plan": [
+    "왼쪽 식의 값을 구한다.",
+    "오른쪽 식이 같은 값이 되도록 □에 들어갈 수를 찾는다.",
+    "보기에서 해당 값을 고른다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "80 ÷ 5",
+      "value": 16
+    },
+    {
+      "id": "step.2",
+      "expr": "□ × 4 = 16",
+      "value": 16
+    },
+    {
+      "id": "step.3",
+      "expr": "16 ÷ 4",
+      "value": 4
+    },
+    {
+      "id": "step.4",
+      "expr": "보기에서 4를 고른다",
+      "value": 4
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "4 × 4",
+      "expected": 16,
+      "actual": 16,
+      "pass": true
+    },
+    {
+      "id": "check.2",
+      "expr": "80 ÷ 5 == 4 × 4",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "missing_number",
+      "description": "□에 들어갈 수"
+    },
+    "value": 4,
+    "unit": ""
+  }
+}

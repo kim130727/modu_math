@@ -1,0 +1,83 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008665",
+  "problem_type": "geometry_circle_diameter_selection",
+  "inputs": {
+    "total_ticks": 1,
+    "target_label": "원의 지름이 아닌 것",
+    "target_ticks": 2,
+    "target_count": 2,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.circle",
+      "value": "circle"
+    },
+    {
+      "ref": "obj.center",
+      "value": "center"
+    },
+    {
+      "ref": "obj.labels",
+      "value": [
+        "ㄱ",
+        "ㄴ",
+        "ㄷ",
+        "ㄹ",
+        "ㅁ"
+      ]
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "non_diameter_selection"
+  },
+  "method": "diameter_classification",
+  "plan": [
+    "각 표시가 가리키는 선분이 원의 중심을 지나는지 확인한다.",
+    "중심을 지나지 않으면 지름이 아니다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "표시된 선분들을 원의 중심 통과 여부로 분류",
+      "value": "classification"
+    },
+    {
+      "id": "step.2",
+      "expr": "지름이 아닌 표시 선택",
+      "value": [
+        "ㄹ",
+        "ㅁ"
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "선택 개수 확인",
+      "expected": 2,
+      "actual": 2,
+      "pass": true
+    },
+    {
+      "id": "check.2",
+      "expr": "선택된 항목이 지름이 아님",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "non_diameter_selection",
+      "description": "원의 지름이 아닌 것 모두"
+    },
+    "value": 2,
+    "unit": ""
+  }
+}

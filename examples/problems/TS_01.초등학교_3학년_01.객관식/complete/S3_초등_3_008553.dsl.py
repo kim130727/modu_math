@@ -1,0 +1,90 @@
+from __future__ import annotations
+
+from modu_math.dsl import Canvas, LineSlot, ProblemTemplate, RectSlot, Region, TextSlot
+
+
+def build_problem_template() -> ProblemTemplate:
+    return ProblemTemplate(
+        id="S3_초등_3_008553",
+        title="색칠된 부분은 실제 어떤 수의 곱인지 찾아 기호를 선택해 보세요.",
+        canvas=Canvas(width=900, height=420, coordinate_mode="logical"),
+        regions=(
+            Region(id="region.stem", role="stem", flow="absolute", slot_ids=("slot.q.text")),
+            Region(id="region.work", role="diagram", flow="absolute", slot_ids=()),
+            Region(id="region.choices", role="choices", flow="absolute", slot_ids=()),
+            Region(id="region.footer", role="footer", flow="absolute", slot_ids=()),
+        ),
+        slots=(
+            TextSlot(
+                id="slot.q.text",
+                prompt="",
+                text="색칠된 부분은 실제 어떤 수의 곱인지 찾아 기호를 선택해 보세요.",
+                style_role="question",
+                x=20.0,
+                y=40.0,
+                font_size=32,
+            ),
+            TextSlot(id="slot.top.d0", prompt="", text="5 7 4", style_role="diagram", x = 315, y = 105, font_size=36),
+            TextSlot(id="slot.mul.sign", prompt="", text="×", style_role="diagram", x=274.0, y=146.0, font_size=36),
+            TextSlot(id="slot.mul.d0", prompt="", text="3", style_role="diagram", x=374.0, y=146.0, font_size=36),
+            LineSlot(id="slot.bar.1", prompt="", x1 = 275, y1 = 160, x2 = 395, y2 = 160),
+            TextSlot(id="slot.part0.d0", prompt="", text="1 2", style_role="diagram", x=340.0, y=200.0, font_size=36),
+            RectSlot(id="slot.highlight", prompt="", x = 300, y = 205, width=100.0, height=50.0, fill="#d9ddb7"),
+            TextSlot(id="slot.part1.d0", prompt="", text="2 1 0", style_role="diagram", x = 310, y = 245, font_size=36),
+            TextSlot(id="slot.part2.d0", prompt="", text="1 5 0 0", style_role="diagram", x = 280, y = 290, font_size=36),
+            LineSlot(id="slot.bar.2", prompt="", x1=270.0, y1=300.0, x2=392.0, y2=300.0),
+            TextSlot(id="slot.final.d0", prompt="", text="1 7 2 2", style_role="diagram", x = 280, y = 340, font_size=36),
+            RectSlot(id="slot.choice.box", prompt="", x=510.0, y=77.0, width=214.0, height=252.0, fill="none"),
+            TextSlot(id="slot.choice.1", prompt="", text="㉠ 7 × 3", style_role="choice", x=520.0, y=142.0, font_size=36),
+            TextSlot(id="slot.choice.2", prompt="", text="㉡ 7 × 30", style_role="choice", x=520.0, y=186.0, font_size=36),
+            TextSlot(id="slot.choice.3", prompt="", text="㉢ 70 × 3", style_role="choice", x=520.0, y=230.0, font_size=36),
+            TextSlot(id="slot.choice.4", prompt="", text="㉣ 700 × 3", style_role="choice", x=520.0, y=274.0, font_size=36),
+        ),
+        diagrams=(),
+        groups=(),
+        constraints=(),
+        tags=("초등", "수학", "곱셈", "세로셈", "자리값"),
+    )
+
+
+PROBLEM_TEMPLATE = build_problem_template()
+
+SEMANTIC_OVERRIDE = {
+    "problem_id": "S3_초등_3_008553",
+    "problem_type": "multiplication_place_value_choice",
+    "metadata": {
+        "language": "ko",
+        "question": "색칠된 부분은 실제 어떤 수의 곱인지 찾아 기호를 선택해 보세요.",
+        "instruction": "보기에서 알맞은 식을 고르세요.",
+    },
+    "domain": {"objects": [{"id": "obj.target", "type": "expression", "text": "70 × 3"}], "relations": []},
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {"type": "selected_expression", "description": "색칠된 부분에 해당하는 식"},
+        "value": "㉢ 70 × 3",
+        "unit": "",
+    },
+}
+
+SOLVABLE = {
+    "schema": "modu.solvable.v1.1",
+    "problem_id": "S3_초등_3_008553",
+    "problem_type": "multiplication_place_value_choice",
+    "inputs": {"total_ticks": 0, "target_label": "색칠된 부분에 해당하는 식", "target_ticks": 0, "target_count": 1, "unit": ""},
+    "given": [{"ref": "obj.target", "value": "70 × 3"}],
+    "target": {"ref": "answer.target", "type": "selected_expression"},
+    "method": "place_value_matching",
+    "plan": ["세로셈에서 색칠된 210이 어떤 자리값 곱인지 확인한다.", "보기 중 같은 식을 고른다."],
+    "steps": [{"id": "step.1", "expr": "색칠된 부분과 보기 비교", "value": "70 × 3"}],
+    "checks": [{"id": "check.1", "expr": "선택한 식 검산", "expected": "일치", "actual": "일치", "pass": True}],
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {"type": "selected_expression", "description": "색칠된 부분에 해당하는 식"},
+        "value": "㉢ 70 × 3",
+        "unit": "",
+    },
+}

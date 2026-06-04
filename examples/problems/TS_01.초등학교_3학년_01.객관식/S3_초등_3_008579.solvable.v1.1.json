@@ -1,0 +1,98 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008579",
+  "problem_type": "comparison_of_products",
+  "inputs": {
+    "total_ticks": 3,
+    "target_label": "㉡",
+    "target_ticks": 1,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.choice.1",
+      "value": {
+        "expression": "224 × 6<1160"
+      }
+    },
+    {
+      "ref": "obj.choice.2",
+      "value": {
+        "expression": "2023>337 × 6"
+      }
+    },
+    {
+      "ref": "obj.choice.3",
+      "value": {
+        "expression": "2907<352 × 8"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "correct_choice"
+  },
+  "method": "compute_and_check",
+  "plan": [
+    "각 보기의 곱을 계산한다.",
+    "계산한 값으로 부등호가 맞는지 확인한다.",
+    "맞는 비교식을 고른다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "224 × 6",
+      "value": 1344
+    },
+    {
+      "id": "step.2",
+      "expr": "337 × 6",
+      "value": 2022
+    },
+    {
+      "id": "step.3",
+      "expr": "352 × 8",
+      "value": 2816
+    },
+    {
+      "id": "step.4",
+      "expr": "비교식 확인",
+      "value": "㉡ 2023>337 × 6"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "224 × 6<1160",
+      "expected": false,
+      "actual": true,
+      "pass": false
+    },
+    {
+      "id": "check.2",
+      "expr": "2023>337 × 6",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "id": "check.3",
+      "expr": "2907<352 × 8",
+      "expected": false,
+      "actual": false,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "correct_choice",
+      "description": "곱의 크기를 바르게 비교한 보기의 기호"
+    },
+    "value": 2,
+    "unit": ""
+  }
+}

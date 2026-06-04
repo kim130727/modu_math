@@ -1,0 +1,77 @@
+{
+  "problem_id": "S3_초등_3_008545",
+  "problem_type": "비교_곱셈_선택",
+  "metadata": {
+    "title": "보기와 계산 결과가 같은 것을 선택하세요",
+    "tags": [],
+    "question": "보기와 계산 결과가 같은 것을 선택하는 문제",
+    "required_layout_ids": [
+      "slot.view_box",
+      "slot.choice_box"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "보기와 계산 결과가 같은 것을 선택하세요."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.view_expr",
+        "type": "multiplication",
+        "expression": "789 × 2"
+      },
+      {
+        "id": "obj.choice_1",
+        "type": "multiplication",
+        "expression": "412 × 4"
+      },
+      {
+        "id": "obj.choice_2",
+        "type": "multiplication",
+        "expression": "526 × 3"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.view_expr",
+          "obj.choice_1",
+          "obj.choice_2"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.compare_result"
+        ]
+      },
+      "plan": {
+        "method": "compare_calculated_results",
+        "description": "보기의 계산 결과와 각 선택지의 계산 결과를 비교한다."
+      },
+      "execute": {
+        "expected_operations": [
+          "compute_multiplication",
+          "compare_results"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "match_against_view_result"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "selected_expression",
+      "description": "보기와 계산 결과가 같은 식"
+    },
+    "value": "526 × 3",
+    "unit": ""
+  }
+}

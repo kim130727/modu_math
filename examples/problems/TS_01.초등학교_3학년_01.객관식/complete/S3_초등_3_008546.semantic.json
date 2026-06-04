@@ -1,0 +1,87 @@
+{
+  "problem_id": "S3_초등_3_008546",
+  "problem_type": "multiple_choice_comparison",
+  "metadata": {
+    "title": "계산 결과가 가장 큰 것을 찾아 기호를 선택하세요.",
+    "tags": [
+      "선택형",
+      "곱셈",
+      "비교"
+    ],
+    "instruction": "보기의 곱셈 결과를 비교하여 가장 큰 기호를 고른다.",
+    "question": "계산 결과가 가장 큰 것을 찾아 기호를 선택하세요.",
+    "required_layout_ids": [
+      "slot.choice_box"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.choice_a",
+        "type": "multiplication_expression",
+        "symbol": "ㄱ",
+        "left": 18,
+        "right": 50
+      },
+      {
+        "id": "obj.choice_b",
+        "type": "multiplication_expression",
+        "symbol": "ㄴ",
+        "left": 66,
+        "right": 20
+      },
+      {
+        "id": "obj.choice_c",
+        "type": "multiplication_expression",
+        "symbol": "ㄷ",
+        "left": 42,
+        "right": 30
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.choice_a",
+          "obj.choice_b",
+          "obj.choice_c"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.compare_1",
+          "rel.compare_2"
+        ]
+      },
+      "plan": {
+        "method": "compare_products",
+        "description": "각 곱셈식의 결과를 비교하여 가장 큰 기호를 찾는다."
+      },
+      "execute": {
+        "expected_operations": [
+          "calculate_product",
+          "compare_results"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "largest_value_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "selected_symbol",
+      "description": "계산 결과가 가장 큰 보기의 기호"
+    },
+    "value": "ㄴ",
+    "unit": ""
+  }
+}

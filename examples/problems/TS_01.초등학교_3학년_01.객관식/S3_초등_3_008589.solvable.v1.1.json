@@ -1,0 +1,83 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008589",
+  "problem_type": "division_remainder_compare",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "selected_expression",
+    "target_ticks": 0,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.left_division",
+      "value": {
+        "expression": "24 ÷ 7"
+      }
+    },
+    {
+      "ref": "obj.right_division",
+      "value": {
+        "expression": "49 ÷ 5"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "selected_expression"
+  },
+  "method": "compare_remainders",
+  "plan": [
+    "각 나눗셈의 나머지를 비교하여 더 큰 나머지를 가진 식을 선택한다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "24 ÷ 7의 나머지 확인",
+      "value": 3
+    },
+    {
+      "id": "step.2",
+      "expr": "49 ÷ 5의 나머지 확인",
+      "value": 4
+    },
+    {
+      "id": "step.3",
+      "expr": "4 > 3",
+      "value": true
+    },
+    {
+      "id": "step.4",
+      "expr": "나머지가 더 큰 식 선택",
+      "value": "49 ÷ 5"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "선택한 식의 나머지가 더 큰가",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "id": "check.2",
+      "expr": "49 ÷ 5의 나머지가 24 ÷ 7의 나머지보다 큰가",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "selected_expression",
+      "description": "나머지가 더 큰 나눗셈식"
+    },
+    "value": "49 ÷ 5",
+    "unit": ""
+  }
+}

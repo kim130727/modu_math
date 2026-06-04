@@ -1,0 +1,63 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008663",
+  "problem_type": "multiple_choice_geometry",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "반지름 3 cm에 맞는 컴퍼스 벌림",
+    "target_ticks": 3,
+    "target_count": 1,
+    "unit": "cm"
+  },
+  "given": [
+    {
+      "ref": "obj.radius",
+      "value": {
+        "value": 3,
+        "unit": "cm"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "correct_choice"
+  },
+  "method": "compare_spread_to_radius",
+  "plan": [
+    "컴퍼스의 벌린 정도를 눈금자와 비교한다.",
+    "반지름 3 cm와 같은 벌림을 찾는다.",
+    "해당하는 그림을 정답으로 고른다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "r = 3 cm",
+      "value": 3
+    },
+    {
+      "id": "step.2",
+      "expr": "컴퍼스 벌림과 3 cm 비교",
+      "value": "match"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "컴퍼스의 벌림이 3 cm와 같은가",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "correct_choice",
+      "description": "반지름 3 cm에 맞게 컴퍼스를 벌린 그림"
+    },
+    "value": 1,
+    "unit": ""
+  }
+}

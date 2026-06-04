@@ -1,0 +1,147 @@
+{
+  "problem_id": "S3_초등_3_008682",
+  "problem_type": "geometry_construction_term_selection",
+  "metadata": {
+    "title": "알맞은 말을 선택하기",
+    "tags": [
+      "기하",
+      "작도",
+      "용어선택"
+    ],
+    "question": "주어진 모양과 똑같이 그리는 방법을 설명한 것이다.",
+    "required_layout_ids": [
+      "slot.grid.left.box",
+      "slot.grid.left.v1",
+      "slot.grid.left.v2",
+      "slot.grid.left.v3",
+      "slot.grid.left.v4",
+      "slot.grid.left.v5",
+      "slot.grid.left.v6",
+      "slot.grid.left.v7",
+      "slot.grid.left.v8",
+      "slot.grid.left.v9",
+      "slot.grid.left.v10",
+      "slot.grid.left.h1",
+      "slot.grid.left.h2",
+      "slot.grid.left.h3",
+      "slot.grid.left.h4",
+      "slot.grid.left.h5",
+      "slot.grid.left.h6",
+      "slot.grid.left.h7",
+      "slot.grid.left.h8",
+      "slot.grid.left.h9",
+      "slot.grid.left.h10",
+      "slot.left.outer_circle",
+      "slot.left.inner_circle_1",
+      "slot.left.inner_circle_2",
+      "slot.grid.right.box",
+      "slot.grid.right.v1",
+      "slot.grid.right.v2",
+      "slot.grid.right.v3",
+      "slot.grid.right.v4",
+      "slot.grid.right.v5",
+      "slot.grid.right.v6",
+      "slot.grid.right.v7",
+      "slot.grid.right.v8",
+      "slot.grid.right.v9",
+      "slot.grid.right.v10",
+      "slot.grid.right.h1",
+      "slot.grid.right.h2",
+      "slot.grid.right.h3",
+      "slot.grid.right.h4",
+      "slot.grid.right.h5",
+      "slot.grid.right.h6",
+      "slot.grid.right.h7",
+      "slot.grid.right.h8",
+      "slot.grid.right.h9",
+      "slot.grid.right.h10",
+      "slot.arrow",
+      "slot.boy.head",
+      "slot.boy.body",
+      "slot.boy.hair",
+      "slot.boy.eye1",
+      "slot.boy.eye2",
+      "slot.boy.mouth",
+      "slot.boy.speech_tail",
+      "slot.bubble.left",
+      "slot.girl.head",
+      "slot.girl.body",
+      "slot.girl.hair",
+      "slot.girl.eye1",
+      "slot.girl.eye2",
+      "slot.girl.mouth",
+      "slot.girl.hand_left",
+      "slot.girl.hand_right",
+      "slot.girl.speech_tail",
+      "slot.bubble.right"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "알맞은 말을 선택하세요."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.big_circle",
+        "type": "circle",
+        "role": "reference_shape"
+      },
+      {
+        "id": "obj.small_circle_pair",
+        "type": "circle_pair",
+        "role": "derived_shape",
+        "count": 2
+      },
+      {
+        "id": "obj.radius_unit",
+        "type": "length",
+        "role": "construction_measure",
+        "value_description": "큰 원의 반지름"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.big_circle",
+          "obj.small_circle_pair",
+          "obj.radius_unit"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.construction_order",
+          "rel.measurement_relation"
+        ]
+      },
+      "plan": {
+        "method": "construction_term_selection",
+        "description": "작도 설명에서 반지름과 지름의 관계를 확인해 알맞은 용어를 고른다."
+      },
+      "execute": {
+        "expected_operations": [
+          "identify_reference_measure",
+          "match_term_to_measure",
+          "select_correct_word"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "term_consistency_check",
+          "construction_description_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "selected_term",
+      "description": "(지름, 반지름) 중 알맞은 말"
+    },
+    "value": "지름",
+    "unit": ""
+  }
+}

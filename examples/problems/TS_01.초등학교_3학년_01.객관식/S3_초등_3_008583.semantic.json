@@ -1,0 +1,78 @@
+{
+  "problem_id": "S3_초등_3_008583",
+  "problem_type": "multiple_choice_comparison",
+  "metadata": {
+    "title": "몫이 가장 큰 것을 선택하세요.",
+    "tags": [],
+    "question": "몫이 가장 큰 것을 선택하세요.",
+    "required_layout_ids": [
+      "slot.icon",
+      "slot.choice.1",
+      "slot.choice.2",
+      "slot.choice.3"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "나눗셈 식의 결과를 비교하여 가장 큰 것을 고른다."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.choice1",
+        "type": "division_expression",
+        "expression": "70 ÷ 7"
+      },
+      {
+        "id": "obj.choice2",
+        "type": "division_expression",
+        "expression": "90 ÷ 5"
+      },
+      {
+        "id": "obj.choice3",
+        "type": "division_expression",
+        "expression": "60 ÷ 3"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.choice1",
+          "obj.choice2",
+          "obj.choice3"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.compare"
+        ]
+      },
+      "plan": {
+        "method": "compute_and_compare",
+        "description": "각 나눗셈 식의 값을 구한 뒤 가장 큰 값을 가지는 선택지를 찾는다."
+      },
+      "execute": {
+        "expected_operations": [
+          "division",
+          "comparison"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "largest_value_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "largest_expression",
+      "description": "결과가 가장 큰 나눗셈 식"
+    },
+    "value": "60 ÷ 3",
+    "unit": ""
+  }
+}

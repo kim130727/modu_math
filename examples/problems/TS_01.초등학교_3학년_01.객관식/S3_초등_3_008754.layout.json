@@ -1,0 +1,240 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008754",
+  "title": "들이가 더 적은 것 고르기",
+  "canvas": {
+    "width": 960,
+    "height": 540,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.right.cap.knob",
+        "slot.right.cap.stem",
+        "slot.q1",
+        "slot.q2",
+        "slot.q3",
+        "slot.q4"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.left.bag",
+        "slot.right.bottle",
+        "slot.right.cap",
+        "slot.arrow",
+        "slot.left.label",
+        "slot.right.label",
+        "slot.choice"
+      ]
+    },
+    {
+      "id": "region.answer",
+      "role": "answer",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "51.",
+        "style_role": "question",
+        "x": 18.0,
+        "y": 34.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "지아 어머니께서 리필용 샴푸를 사서 비닐봉투에 모두 부었더니 다음",
+        "style_role": "question",
+        "x": 58.0,
+        "y": 34.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "그림과 같았습니다. 리필용 샴푸 용기와 샴푸통 중 들이가 더 적은 것을 선",
+        "style_role": "question",
+        "x": 18.0,
+        "y": 66.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "택하세요. (단, 리필용 샴푸 용기에는 샴푸가 가득 차 있었습니다.)",
+        "style_role": "question",
+        "x": 18.0,
+        "y": 98.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.left.bag",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 365.0,
+        "y": 160.0,
+        "width": 78.0,
+        "height": 120.0,
+        "stroke": "#5bbfd6",
+        "stroke_width": 2.0,
+        "rx": 4.0,
+        "ry": 4.0,
+        "fill": "#b8ecf7"
+      }
+    },
+    {
+      "id": "slot.left.label",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "리필용\n샴푸",
+        "style_role": "label",
+        "x": 384.0,
+        "y": 210.0,
+        "font_size": 26
+      }
+    },
+    {
+      "id": "slot.arrow",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 475.0,
+        "y1": 218.0,
+        "x2": 516.0,
+        "y2": 218.0,
+        "stroke": "#9a9a9a",
+        "stroke_width": 6.0
+      }
+    },
+    {
+      "id": "slot.right.bottle",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 550.0,
+        "y": 165.0,
+        "width": 72.0,
+        "height": 116.0,
+        "stroke": "#9db64e",
+        "stroke_width": 2.0,
+        "rx": 18.0,
+        "ry": 18.0,
+        "fill": "#ecf6a7"
+      }
+    },
+    {
+      "id": "slot.right.cap",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 570.0,
+        "y": 135.0,
+        "width": 32.0,
+        "height": 30.0,
+        "stroke": "#9db64e",
+        "stroke_width": 2.0,
+        "rx": 10.0,
+        "ry": 10.0,
+        "fill": "#eef6c0"
+      }
+    },
+    {
+      "id": "slot.right.cap.knob",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 586.0,
+        "cy": 126.0,
+        "r": 8.0,
+        "stroke": "#9db64e",
+        "stroke_width": 2.0,
+        "fill": "#eef6c0"
+      }
+    },
+    {
+      "id": "slot.right.cap.stem",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 586.0,
+        "y1": 126.0,
+        "x2": 586.0,
+        "y2": 154.0,
+        "stroke": "#9db64e",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.right.label",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "샴푸통",
+        "style_role": "label",
+        "x": 566.0,
+        "y": 253.0,
+        "font_size": 26
+      }
+    },
+    {
+      "id": "slot.choice",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "( 리필용 샴푸 용기 , 샴푸통 )",
+        "style_role": "choice",
+        "x": 586.0,
+        "y": 340.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.right.cap.knob",
+    "slot.right.cap.stem",
+    "slot.q1",
+    "slot.q2",
+    "slot.q3",
+    "slot.q4",
+    "region.diagram",
+    "slot.left.bag",
+    "slot.right.bottle",
+    "slot.right.cap",
+    "slot.arrow",
+    "slot.left.label",
+    "slot.right.label",
+    "slot.choice",
+    "region.answer"
+  ]
+}

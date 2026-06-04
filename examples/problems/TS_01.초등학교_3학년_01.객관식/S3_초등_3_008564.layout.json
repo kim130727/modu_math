@@ -1,0 +1,204 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008564",
+  "title": "계산 결과가 더 작은 사람을 선택해 보세요.",
+  "canvas": {
+    "width": 786,
+    "height": 360,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.top",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.qtext"
+      ]
+    },
+    {
+      "id": "region.main",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.box",
+        "slot.left_head",
+        "slot.left_body",
+        "slot.right_head",
+        "slot.right_body",
+        "slot.left_leg1",
+        "slot.left_leg2",
+        "slot.right_leg1",
+        "slot.right_leg2",
+        "slot.choice1",
+        "slot.choice2"
+      ]
+    },
+    {
+      "id": "region.note",
+      "role": "supporting",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.qtext",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "계산 결과가 더 작은 사람을 선택해 보세요.",
+        "style_role": "question",
+        "x": 84.0,
+        "y": 24.0,
+        "font_size": 24
+      }
+    },
+    {
+      "id": "slot.box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 210.0,
+        "y": 84.0,
+        "width": 520.0,
+        "height": 110.0
+      }
+    },
+    {
+      "id": "slot.left_head",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 340.0,
+        "cy": 56.0,
+        "r": 17.0,
+        "fill": "#FFD9B3"
+      }
+    },
+    {
+      "id": "slot.left_body",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 323.0,
+        "y": 73.0,
+        "width": 34.0,
+        "height": 36.0,
+        "fill": "#F2BE8B"
+      }
+    },
+    {
+      "id": "slot.left_leg1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 332.0,
+        "y1": 109.0,
+        "x2": 326.0,
+        "y2": 124.0
+      }
+    },
+    {
+      "id": "slot.left_leg2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 348.0,
+        "y1": 109.0,
+        "x2": 354.0,
+        "y2": 124.0
+      }
+    },
+    {
+      "id": "slot.right_head",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 600.0,
+        "cy": 56.0,
+        "r": 17.0,
+        "fill": "#FFD9B3"
+      }
+    },
+    {
+      "id": "slot.right_body",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 583.0,
+        "y": 73.0,
+        "width": 34.0,
+        "height": 36.0,
+        "fill": "#9ED3FF"
+      }
+    },
+    {
+      "id": "slot.right_leg1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 592.0,
+        "y1": 109.0,
+        "x2": 586.0,
+        "y2": 124.0
+      }
+    },
+    {
+      "id": "slot.right_leg2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 608.0,
+        "y1": 109.0,
+        "x2": 614.0,
+        "y2": 124.0
+      }
+    },
+    {
+      "id": "slot.choice1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "민재 73 × 28",
+        "style_role": "diagram",
+        "x": 236.0,
+        "y": 126.0,
+        "font_size": 24
+      }
+    },
+    {
+      "id": "slot.choice2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "서윤 31 × 65",
+        "style_role": "diagram",
+        "x": 236.0,
+        "y": 166.0,
+        "font_size": 24
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.top",
+    "slot.qtext",
+    "region.main",
+    "slot.box",
+    "slot.left_head",
+    "slot.left_body",
+    "slot.right_head",
+    "slot.right_body",
+    "slot.left_leg1",
+    "slot.left_leg2",
+    "slot.right_leg1",
+    "slot.right_leg2",
+    "slot.choice1",
+    "slot.choice2",
+    "region.note"
+  ]
+}

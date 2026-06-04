@@ -1,0 +1,96 @@
+{
+  "problem_id": "S3_초등_3_008586",
+  "view_box": {
+    "width": 692.0,
+    "height": 308.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.qnum.text",
+      "type": "text",
+      "attributes": {
+        "x": 46.0,
+        "y": 28.0,
+        "max_width": 564.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.qnum",
+      "refs": {
+        "layout_slot_id": "slot.qnum"
+      },
+      "text": "53."
+    },
+    {
+      "id": "slot.question.text",
+      "type": "text",
+      "attributes": {
+        "x": 89.0,
+        "y": 28.0,
+        "max_width": 564.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.question",
+      "refs": {
+        "layout_slot_id": "slot.question"
+      },
+      "text": "나누어떨어지는 나눗셈을 찾아 선택하세요."
+    },
+    {
+      "id": "slot.choice_box.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 289.0,
+        "y": 48.0,
+        "width": 385.0,
+        "height": 77.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.choice_box",
+      "refs": {
+        "layout_slot_id": "slot.choice_box"
+      }
+    },
+    {
+      "id": "slot.choice.a.text",
+      "type": "text",
+      "attributes": {
+        "x": 340.0,
+        "y": 89.0,
+        "max_width": 564.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice.a",
+      "refs": {
+        "layout_slot_id": "slot.choice.a"
+      },
+      "text": "ㄱ 16 ÷ 3"
+    },
+    {
+      "id": "slot.choice.b.text",
+      "type": "text",
+      "attributes": {
+        "x": 521.0,
+        "y": 89.0,
+        "max_width": 564.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice.b",
+      "refs": {
+        "layout_slot_id": "slot.choice.b"
+      },
+      "text": "ㄴ 49 ÷ 7"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

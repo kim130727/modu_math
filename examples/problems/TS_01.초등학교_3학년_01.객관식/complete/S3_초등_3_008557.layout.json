@@ -1,0 +1,338 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008557",
+  "title": "색칠된 부분은 실제 어떤 수의 곱인지 찾아 선택하세요.",
+  "canvas": {
+    "width": 886,
+    "height": 396,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q1"
+      ]
+    },
+    {
+      "id": "region.left",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.mul.highlight",
+        "slot.mul.vline1",
+        "slot.mul.vline2",
+        "slot.mul.vline3",
+        "slot.mul.vline4",
+        "slot.mul.vline5",
+        "slot.mul.hline1",
+        "slot.mul.hline3",
+        "slot.mul.869",
+        "slot.mul.x",
+        "slot.mul.4",
+        "slot.mul.36",
+        "slot.mul.240",
+        "slot.mul.3200",
+        "slot.mul.3476"
+      ]
+    },
+    {
+      "id": "region.choice",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice.box",
+        "slot.choice.1",
+        "slot.choice.2",
+        "slot.choice.3"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "색칠된 부분은 실제 어떤 수의 곱인지 찾아 선택하세요.",
+        "style_role": "question",
+        "x": 10.0,
+        "y": 30.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.mul.vline1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 275.0,
+        "y1": 40.0,
+        "x2": 275.0,
+        "y2": 285.0,
+        "stroke": "#9AA0A6",
+        "stroke_width": 1.2,
+        "stroke_dasharray": "5 3"
+      }
+    },
+    {
+      "id": "slot.mul.vline2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 300.0,
+        "y1": 40.0,
+        "x2": 300.0,
+        "y2": 285.0,
+        "stroke": "#9AA0A6",
+        "stroke_width": 1.2,
+        "stroke_dasharray": "5 3"
+      }
+    },
+    {
+      "id": "slot.mul.vline3",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 322.0,
+        "y1": 40.0,
+        "x2": 322.0,
+        "y2": 285.0,
+        "stroke": "#9AA0A6",
+        "stroke_width": 1.2,
+        "stroke_dasharray": "5 3"
+      }
+    },
+    {
+      "id": "slot.mul.vline4",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 342.0,
+        "y1": 40.0,
+        "x2": 342.0,
+        "y2": 285.0,
+        "stroke": "#9AA0A6",
+        "stroke_width": 1.2,
+        "stroke_dasharray": "5 3"
+      }
+    },
+    {
+      "id": "slot.mul.vline5",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 366.0,
+        "y1": 40.0,
+        "x2": 366.0,
+        "y2": 290.0,
+        "stroke": "#9AA0A6",
+        "stroke_width": 1.2,
+        "stroke_dasharray": "5 3"
+      }
+    },
+    {
+      "id": "slot.mul.hline1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 245.0,
+        "y1": 125.0,
+        "x2": 365.0,
+        "y2": 125.0,
+        "stroke": "#222222",
+        "stroke_width": 1.2
+      }
+    },
+    {
+      "id": "slot.mul.hline3",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 245.0,
+        "y1": 240.0,
+        "x2": 365.0,
+        "y2": 240.0,
+        "stroke": "#222222",
+        "stroke_width": 1.2
+      }
+    },
+    {
+      "id": "slot.mul.869",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "3 9 5",
+        "style_role": "diagram",
+        "x": 304.0,
+        "y": 75.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.mul.x",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "×",
+        "style_role": "diagram",
+        "x": 240.0,
+        "y": 112.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.mul.4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "4",
+        "style_role": "diagram",
+        "x": 350.0,
+        "y": 110.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.mul.36",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "2 0",
+        "style_role": "diagram",
+        "x": 329.0,
+        "y": 160.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.mul.240",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "3 6 0",
+        "style_role": "diagram",
+        "x": 304.0,
+        "y": 195.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.mul.highlight",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 255.0,
+        "y": 200.0,
+        "width": 115.0,
+        "height": 38.0,
+        "fill": "#F4C6D8"
+      }
+    },
+    {
+      "id": "slot.mul.3200",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "1 2 0 0",
+        "style_role": "diagram",
+        "x": 281.0,
+        "y": 230.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.mul.3476",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "1 5 8 0",
+        "style_role": "diagram",
+        "x": 281.0,
+        "y": 270.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice.box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 452.0,
+        "y": 90.0,
+        "width": 292.0,
+        "height": 168.0,
+        "stroke": "#8E44AD",
+        "stroke_width": 2.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.choice.1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "3 × 4",
+        "style_role": "diagram",
+        "x": 495.0,
+        "y": 145.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice.2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "30 × 4",
+        "style_role": "diagram",
+        "x": 610.0,
+        "y": 145.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice.3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "300 × 4",
+        "style_role": "diagram",
+        "x": 485.0,
+        "y": 205.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q1",
+    "region.left",
+    "slot.mul.highlight",
+    "slot.mul.vline1",
+    "slot.mul.vline2",
+    "slot.mul.vline3",
+    "slot.mul.vline4",
+    "slot.mul.vline5",
+    "slot.mul.hline1",
+    "slot.mul.hline3",
+    "slot.mul.869",
+    "slot.mul.x",
+    "slot.mul.4",
+    "slot.mul.36",
+    "slot.mul.240",
+    "slot.mul.3200",
+    "slot.mul.3476",
+    "region.choice",
+    "slot.choice.box",
+    "slot.choice.1",
+    "slot.choice.2",
+    "slot.choice.3"
+  ]
+}

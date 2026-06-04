@@ -1,0 +1,96 @@
+{
+  "problem_id": "S3_초등_3_008622",
+  "view_box": {
+    "width": 952.0,
+    "height": 272.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.box.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 383.0,
+        "y": 43.0,
+        "width": 196.0,
+        "height": 76.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.box",
+      "refs": {
+        "layout_slot_id": "slot.box"
+      }
+    },
+    {
+      "id": "slot.no.text",
+      "type": "text",
+      "attributes": {
+        "x": 18.0,
+        "y": 24.0,
+        "max_width": 824.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.no",
+      "refs": {
+        "layout_slot_id": "slot.no"
+      },
+      "text": "92."
+    },
+    {
+      "id": "slot.prompt.text",
+      "type": "text",
+      "attributes": {
+        "x": 70.0,
+        "y": 24.0,
+        "max_width": 824.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.prompt",
+      "refs": {
+        "layout_slot_id": "slot.prompt"
+      },
+      "text": "나눗셈의 나머지가 될 수 있는 수를 모두 선택해 보세요."
+    },
+    {
+      "id": "slot.box.text.text",
+      "type": "text",
+      "attributes": {
+        "x": 440.0,
+        "y": 92.0,
+        "max_width": 824.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.box.text",
+      "refs": {
+        "layout_slot_id": "slot.box.text"
+      },
+      "text": "□ ÷ 5"
+    },
+    {
+      "id": "slot.candidates.text",
+      "type": "text",
+      "attributes": {
+        "x": 377.0,
+        "y": 148.0,
+        "max_width": 824.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.candidates",
+      "refs": {
+        "layout_slot_id": "slot.candidates"
+      },
+      "text": "( 1 , 2 , 3 , 4 , 5 , 6 )"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

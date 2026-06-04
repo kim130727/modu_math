@@ -1,0 +1,123 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008663",
+  "title": "반지름이 3 cm인 원을 그리기 위한 컴퍼스 벌리기",
+  "canvas": {
+    "width": 950,
+    "height": 370,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q1",
+        "slot.q2"
+      ]
+    },
+    {
+      "id": "region.choices",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice1",
+        "slot.choice2",
+        "slot.choice3",
+        "slot.answer_diagram"
+      ]
+    },
+    {
+      "id": "region.explanation",
+      "role": "explanation",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "□ 38. 다음 중 반지름이 3 cm인 원을 그릴 수 있도록 컴퍼스를 바르게 벌린 것",
+        "style_role": "question",
+        "x": 12.0,
+        "y": 32.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "을 선택하세요.",
+        "style_role": "question",
+        "x": 12.0,
+        "y": 66.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 170.0,
+        "y": 120.0,
+        "width": 150.0,
+        "height": 120.0
+      }
+    },
+    {
+      "id": "slot.choice2",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 405.0,
+        "y": 120.0,
+        "width": 150.0,
+        "height": 120.0
+      }
+    },
+    {
+      "id": "slot.choice3",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 640.0,
+        "y": 120.0,
+        "width": 150.0,
+        "height": 120.0
+      }
+    },
+    {
+      "id": "slot.answer_diagram",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 40.0,
+        "y": 245.0,
+        "width": 120.0,
+        "height": 95.0
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q1",
+    "slot.q2",
+    "region.choices",
+    "slot.choice1",
+    "slot.choice2",
+    "slot.choice3",
+    "slot.answer_diagram",
+    "region.explanation"
+  ]
+}

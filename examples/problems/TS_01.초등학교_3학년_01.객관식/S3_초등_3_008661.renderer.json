@@ -1,0 +1,378 @@
+{
+  "problem_id": "S3_초등_3_008661",
+  "view_box": {
+    "width": 673.0,
+    "height": 401.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.q_box.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 10.0,
+        "y": 16.0,
+        "width": 13.0,
+        "height": 13.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.q_box",
+      "refs": {
+        "layout_slot_id": "slot.q_box"
+      }
+    },
+    {
+      "id": "slot.q_num.text",
+      "type": "text",
+      "attributes": {
+        "x": 35.0,
+        "y": 28.0,
+        "max_width": 545.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q_num",
+      "refs": {
+        "layout_slot_id": "slot.q_num"
+      },
+      "text": "36."
+    },
+    {
+      "id": "slot.q_text.text",
+      "type": "text",
+      "attributes": {
+        "x": 83.0,
+        "y": 28.0,
+        "max_width": 545.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q_text",
+      "refs": {
+        "layout_slot_id": "slot.q_text"
+      },
+      "text": "길이가 가장 긴 선분은 어느 것인가요?"
+    },
+    {
+      "id": "slot.circle.outer.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 490.0,
+        "cy": 124.0,
+        "r": 76.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "none"
+      },
+      "source_ref": "slot.circle.outer",
+      "refs": {
+        "layout_slot_id": "slot.circle.outer"
+      }
+    },
+    {
+      "id": "slot.circle.center.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 490.0,
+        "cy": 124.0,
+        "r": 4.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "none"
+      },
+      "source_ref": "slot.circle.center",
+      "refs": {
+        "layout_slot_id": "slot.circle.center"
+      }
+    },
+    {
+      "id": "slot.dot.center.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 490.0,
+        "cy": 126.0,
+        "r": 3.2,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#ff1493"
+      },
+      "source_ref": "slot.dot.center",
+      "refs": {
+        "layout_slot_id": "slot.dot.center"
+      }
+    },
+    {
+      "id": "slot.line.top.line",
+      "type": "line",
+      "attributes": {
+        "x1": 438.0,
+        "y1": 84.0,
+        "x2": 542.0,
+        "y2": 84.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.line.top",
+      "refs": {
+        "layout_slot_id": "slot.line.top"
+      }
+    },
+    {
+      "id": "slot.line.middle1.line",
+      "type": "line",
+      "attributes": {
+        "x1": 426.0,
+        "y1": 120.0,
+        "x2": 554.0,
+        "y2": 120.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.line.middle1",
+      "refs": {
+        "layout_slot_id": "slot.line.middle1"
+      }
+    },
+    {
+      "id": "slot.line.middle2.line",
+      "type": "line",
+      "attributes": {
+        "x1": 430.0,
+        "y1": 149.0,
+        "x2": 550.0,
+        "y2": 149.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.line.middle2",
+      "refs": {
+        "layout_slot_id": "slot.line.middle2"
+      }
+    },
+    {
+      "id": "slot.line.bottom.line",
+      "type": "line",
+      "attributes": {
+        "x1": 438.0,
+        "y1": 188.0,
+        "x2": 542.0,
+        "y2": 188.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.line.bottom",
+      "refs": {
+        "layout_slot_id": "slot.line.bottom"
+      }
+    },
+    {
+      "id": "slot.lb.giyeok.text",
+      "type": "text",
+      "attributes": {
+        "x": 421.0,
+        "y": 88.0,
+        "max_width": 545.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 24
+      },
+      "source_ref": "slot.lb.giyeok",
+      "refs": {
+        "layout_slot_id": "slot.lb.giyeok"
+      },
+      "text": "ㄱ"
+    },
+    {
+      "id": "slot.lb.nieun.text",
+      "type": "text",
+      "attributes": {
+        "x": 546.0,
+        "y": 88.0,
+        "max_width": 545.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 24
+      },
+      "source_ref": "slot.lb.nieun",
+      "refs": {
+        "layout_slot_id": "slot.lb.nieun"
+      },
+      "text": "ㄴ"
+    },
+    {
+      "id": "slot.lb.digeut.text",
+      "type": "text",
+      "attributes": {
+        "x": 404.0,
+        "y": 124.0,
+        "max_width": 545.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 24
+      },
+      "source_ref": "slot.lb.digeut",
+      "refs": {
+        "layout_slot_id": "slot.lb.digeut"
+      },
+      "text": "ㄷ"
+    },
+    {
+      "id": "slot.lb.rieul.text",
+      "type": "text",
+      "attributes": {
+        "x": 559.0,
+        "y": 124.0,
+        "max_width": 545.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 24
+      },
+      "source_ref": "slot.lb.rieul",
+      "refs": {
+        "layout_slot_id": "slot.lb.rieul"
+      },
+      "text": "ㄹ"
+    },
+    {
+      "id": "slot.lb.mieum.text",
+      "type": "text",
+      "attributes": {
+        "x": 404.0,
+        "y": 154.0,
+        "max_width": 545.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 24
+      },
+      "source_ref": "slot.lb.mieum",
+      "refs": {
+        "layout_slot_id": "slot.lb.mieum"
+      },
+      "text": "ㅁ"
+    },
+    {
+      "id": "slot.lb.bieup.text",
+      "type": "text",
+      "attributes": {
+        "x": 559.0,
+        "y": 154.0,
+        "max_width": 545.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 24
+      },
+      "source_ref": "slot.lb.bieup",
+      "refs": {
+        "layout_slot_id": "slot.lb.bieup"
+      },
+      "text": "ㅂ"
+    },
+    {
+      "id": "slot.lb.sieut1.text",
+      "type": "text",
+      "attributes": {
+        "x": 408.0,
+        "y": 196.0,
+        "max_width": 545.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 24
+      },
+      "source_ref": "slot.lb.sieut1",
+      "refs": {
+        "layout_slot_id": "slot.lb.sieut1"
+      },
+      "text": "스"
+    },
+    {
+      "id": "slot.lb.sieut2.text",
+      "type": "text",
+      "attributes": {
+        "x": 556.0,
+        "y": 196.0,
+        "max_width": 545.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 24
+      },
+      "source_ref": "slot.lb.sieut2",
+      "refs": {
+        "layout_slot_id": "slot.lb.sieut2"
+      },
+      "text": "ㅅ"
+    },
+    {
+      "id": "slot.opt1.text",
+      "type": "text",
+      "attributes": {
+        "x": 26.0,
+        "y": 238.0,
+        "max_width": 545.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.opt1",
+      "refs": {
+        "layout_slot_id": "slot.opt1"
+      },
+      "text": "① 선분 ㄱㄴ"
+    },
+    {
+      "id": "slot.opt2.text",
+      "type": "text",
+      "attributes": {
+        "x": 482.0,
+        "y": 238.0,
+        "max_width": 545.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.opt2",
+      "refs": {
+        "layout_slot_id": "slot.opt2"
+      },
+      "text": "② 선분 ㄷㄹ"
+    },
+    {
+      "id": "slot.opt3.text",
+      "type": "text",
+      "attributes": {
+        "x": 26.0,
+        "y": 283.0,
+        "max_width": 545.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.opt3",
+      "refs": {
+        "layout_slot_id": "slot.opt3"
+      },
+      "text": "③ 선분 ㅁㅂ"
+    },
+    {
+      "id": "slot.opt4.text",
+      "type": "text",
+      "attributes": {
+        "x": 482.0,
+        "y": 283.0,
+        "max_width": 545.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.opt4",
+      "refs": {
+        "layout_slot_id": "slot.opt4"
+      },
+      "text": "④ 선분 스ㅅ"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

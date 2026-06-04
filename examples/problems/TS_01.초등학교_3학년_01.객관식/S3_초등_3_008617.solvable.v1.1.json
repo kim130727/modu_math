@@ -1,0 +1,83 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008617",
+  "problem_type": "multiple_choice_division_correctness",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "420 ÷ 5의 바른 계산 결과",
+    "target_ticks": 0,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.dividend",
+      "value": 420
+    },
+    {
+      "ref": "obj.divisor",
+      "value": 5
+    },
+    {
+      "ref": "obj.choice.left",
+      "value": 104
+    },
+    {
+      "ref": "obj.choice.right",
+      "value": 84
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "correct_division_result"
+  },
+  "method": "division_verification",
+  "plan": [
+    "주어진 나눗셈식 420 ÷ 5의 결과와 보기의 결과를 비교한다.",
+    "해설의 세로셈과 맞는 결과를 확인한다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "420 ÷ 5",
+      "value": 84
+    },
+    {
+      "id": "step.2",
+      "expr": "보기의 결과 104와 비교",
+      "value": false
+    },
+    {
+      "id": "step.3",
+      "expr": "보기의 결과 84와 비교",
+      "value": true
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "5 × 84 = 420",
+      "expected": 420,
+      "actual": 420,
+      "pass": true
+    },
+    {
+      "id": "check.2",
+      "expr": "5 × 104 = 420",
+      "expected": 420,
+      "actual": 520,
+      "pass": false
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "correct_division_result",
+      "description": "420 ÷ 5의 바른 계산 결과"
+    },
+    "value": 84,
+    "unit": ""
+  }
+}

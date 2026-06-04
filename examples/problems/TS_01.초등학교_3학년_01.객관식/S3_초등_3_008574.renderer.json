@@ -1,0 +1,508 @@
+{
+  "problem_id": "S3_초등_3_008574",
+  "view_box": {
+    "width": 756.0,
+    "height": 374.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.q_num.text",
+      "type": "text",
+      "attributes": {
+        "x": 28.0,
+        "y": 24.0,
+        "max_width": 628.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q_num",
+      "refs": {
+        "layout_slot_id": "slot.q_num"
+      },
+      "text": "40."
+    },
+    {
+      "id": "slot.q_text.text",
+      "type": "text",
+      "attributes": {
+        "x": 68.0,
+        "y": 24.0,
+        "max_width": 628.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q_text",
+      "refs": {
+        "layout_slot_id": "slot.q_text"
+      },
+      "text": "계산 결과가 더 작은 사람의 이름을 선택해 보세요."
+    },
+    {
+      "id": "slot.lb.left.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 209.0,
+        "y": 89.0,
+        "width": 46.0,
+        "height": 28.0,
+        "fill": "#FFFFFF",
+        "stroke": "#B9C2D0",
+        "stroke-width": 1.5,
+        "rx": 4.0,
+        "ry": 4.0
+      },
+      "source_ref": "slot.lb.left",
+      "refs": {
+        "layout_slot_id": "slot.lb.left"
+      }
+    },
+    {
+      "id": "slot.lb.right.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 678.0,
+        "y": 89.0,
+        "width": 46.0,
+        "height": 28.0,
+        "fill": "#FFFFFF",
+        "stroke": "#B9C2D0",
+        "stroke-width": 1.5,
+        "rx": 4.0,
+        "ry": 4.0
+      },
+      "source_ref": "slot.lb.right",
+      "refs": {
+        "layout_slot_id": "slot.lb.right"
+      }
+    },
+    {
+      "id": "slot.card.left.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 262.0,
+        "y": 127.0,
+        "width": 120.0,
+        "height": 61.0,
+        "fill": "#F8C54A",
+        "stroke": "#F8C54A",
+        "stroke-width": 1.5,
+        "rx": 2.0,
+        "ry": 2.0
+      },
+      "source_ref": "slot.card.left",
+      "refs": {
+        "layout_slot_id": "slot.card.left"
+      }
+    },
+    {
+      "id": "slot.card.right.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 503.0,
+        "y": 127.0,
+        "width": 120.0,
+        "height": 61.0,
+        "fill": "#F8C54A",
+        "stroke": "#F8C54A",
+        "stroke-width": 1.5,
+        "rx": 2.0,
+        "ry": 2.0
+      },
+      "source_ref": "slot.card.right",
+      "refs": {
+        "layout_slot_id": "slot.card.right"
+      }
+    },
+    {
+      "id": "slot.figure.left.head.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 312.0,
+        "cy": 84.0,
+        "r": 30.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#F3C0AD"
+      },
+      "source_ref": "slot.figure.left.head",
+      "refs": {
+        "layout_slot_id": "slot.figure.left.head"
+      }
+    },
+    {
+      "id": "slot.figure.left.body.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 297.0,
+        "y": 104.0,
+        "width": 30.0,
+        "height": 38.0,
+        "fill": "#D7A0D7",
+        "stroke": "#D7A0D7",
+        "stroke-width": 1.5,
+        "rx": 10.0,
+        "ry": 10.0
+      },
+      "source_ref": "slot.figure.left.body",
+      "refs": {
+        "layout_slot_id": "slot.figure.left.body"
+      }
+    },
+    {
+      "id": "slot.figure.left.eye1.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 304.0,
+        "cy": 81.0,
+        "r": 4.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#222222"
+      },
+      "source_ref": "slot.figure.left.eye1",
+      "refs": {
+        "layout_slot_id": "slot.figure.left.eye1"
+      }
+    },
+    {
+      "id": "slot.figure.left.eye2.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 320.0,
+        "cy": 81.0,
+        "r": 4.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#222222"
+      },
+      "source_ref": "slot.figure.left.eye2",
+      "refs": {
+        "layout_slot_id": "slot.figure.left.eye2"
+      }
+    },
+    {
+      "id": "slot.figure.right.head.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 555.0,
+        "cy": 84.0,
+        "r": 30.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#F3C0AD"
+      },
+      "source_ref": "slot.figure.right.head",
+      "refs": {
+        "layout_slot_id": "slot.figure.right.head"
+      }
+    },
+    {
+      "id": "slot.figure.right.body.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 540.0,
+        "y": 104.0,
+        "width": 30.0,
+        "height": 38.0,
+        "fill": "#8ED7E6",
+        "stroke": "#8ED7E6",
+        "stroke-width": 1.5,
+        "rx": 10.0,
+        "ry": 10.0
+      },
+      "source_ref": "slot.figure.right.body",
+      "refs": {
+        "layout_slot_id": "slot.figure.right.body"
+      }
+    },
+    {
+      "id": "slot.figure.right.eye1.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 547.0,
+        "cy": 81.0,
+        "r": 4.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#222222"
+      },
+      "source_ref": "slot.figure.right.eye1",
+      "refs": {
+        "layout_slot_id": "slot.figure.right.eye1"
+      }
+    },
+    {
+      "id": "slot.figure.right.eye2.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 563.0,
+        "cy": 81.0,
+        "r": 4.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#222222"
+      },
+      "source_ref": "slot.figure.right.eye2",
+      "refs": {
+        "layout_slot_id": "slot.figure.right.eye2"
+      }
+    },
+    {
+      "id": "slot.figure.left.mouth.line",
+      "type": "line",
+      "attributes": {
+        "x1": 305.0,
+        "y1": 92.0,
+        "x2": 319.0,
+        "y2": 92.0,
+        "stroke": "#C36A6A",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.figure.left.mouth",
+      "refs": {
+        "layout_slot_id": "slot.figure.left.mouth"
+      }
+    },
+    {
+      "id": "slot.figure.right.mouth.line",
+      "type": "line",
+      "attributes": {
+        "x1": 548.0,
+        "y1": 92.0,
+        "x2": 562.0,
+        "y2": 92.0,
+        "stroke": "#C36A6A",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.figure.right.mouth",
+      "refs": {
+        "layout_slot_id": "slot.figure.right.mouth"
+      }
+    },
+    {
+      "id": "slot.lb.left.text.text",
+      "type": "text",
+      "attributes": {
+        "x": 219.0,
+        "y": 110.0,
+        "max_width": 628.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 20
+      },
+      "source_ref": "slot.lb.left.text",
+      "refs": {
+        "layout_slot_id": "slot.lb.left.text"
+      },
+      "text": "은우"
+    },
+    {
+      "id": "slot.lb.right.text.text",
+      "type": "text",
+      "attributes": {
+        "x": 688.0,
+        "y": 110.0,
+        "max_width": 628.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 20
+      },
+      "source_ref": "slot.lb.right.text",
+      "refs": {
+        "layout_slot_id": "slot.lb.right.text"
+      },
+      "text": "도윤"
+    },
+    {
+      "id": "slot.card.left_text.text",
+      "type": "text",
+      "attributes": {
+        "x": 285.0,
+        "y": 158.0,
+        "max_width": 628.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.card.left_text",
+      "refs": {
+        "layout_slot_id": "slot.card.left_text"
+      },
+      "text": "51 × 18"
+    },
+    {
+      "id": "slot.card.right_text.text",
+      "type": "text",
+      "attributes": {
+        "x": 532.0,
+        "y": 158.0,
+        "max_width": 628.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.card.right_text",
+      "refs": {
+        "layout_slot_id": "slot.card.right_text"
+      },
+      "text": "23 × 41"
+    },
+    {
+      "id": "slot.answer.text",
+      "type": "text",
+      "attributes": {
+        "x": 90.0,
+        "y": 286.0,
+        "max_width": 628.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 22
+      },
+      "source_ref": "slot.answer",
+      "refs": {
+        "layout_slot_id": "slot.answer"
+      },
+      "text": "(정답) 은우"
+    },
+    {
+      "id": "slot.explain.1.text",
+      "type": "text",
+      "attributes": {
+        "x": 90.0,
+        "y": 314.0,
+        "max_width": 628.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 20
+      },
+      "source_ref": "slot.explain.1",
+      "refs": {
+        "layout_slot_id": "slot.explain.1"
+      },
+      "text": "(해설) 은우: 51 × 18 = 918,"
+    },
+    {
+      "id": "slot.explain.2.text",
+      "type": "text",
+      "attributes": {
+        "x": 350.0,
+        "y": 314.0,
+        "max_width": 628.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 20
+      },
+      "source_ref": "slot.explain.2",
+      "refs": {
+        "layout_slot_id": "slot.explain.2"
+      },
+      "text": "도윤: 23 × 41 = 943"
+    },
+    {
+      "id": "slot.explain.3.text",
+      "type": "text",
+      "attributes": {
+        "x": 566.0,
+        "y": 314.0,
+        "max_width": 628.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 20
+      },
+      "source_ref": "slot.explain.3",
+      "refs": {
+        "layout_slot_id": "slot.explain.3"
+      },
+      "text": "918<943"
+    },
+    {
+      "id": "slot.colon.text",
+      "type": "text",
+      "attributes": {
+        "x": 12.0,
+        "y": 360.0,
+        "max_width": 628.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 1
+      },
+      "source_ref": "slot.colon",
+      "refs": {
+        "layout_slot_id": "slot.colon"
+      },
+      "text": ":"
+    },
+    {
+      "id": "slot.lt.text",
+      "type": "text",
+      "attributes": {
+        "x": 16.0,
+        "y": 360.0,
+        "max_width": 628.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 1
+      },
+      "source_ref": "slot.lt",
+      "refs": {
+        "layout_slot_id": "slot.lt"
+      },
+      "text": "<"
+    },
+    {
+      "id": "slot.eq1.text",
+      "type": "text",
+      "attributes": {
+        "x": 20.0,
+        "y": 360.0,
+        "max_width": 628.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 1
+      },
+      "source_ref": "slot.eq1",
+      "refs": {
+        "layout_slot_id": "slot.eq1"
+      },
+      "text": "="
+    },
+    {
+      "id": "slot.eq2.text",
+      "type": "text",
+      "attributes": {
+        "x": 24.0,
+        "y": 360.0,
+        "max_width": 628.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 1
+      },
+      "source_ref": "slot.eq2",
+      "refs": {
+        "layout_slot_id": "slot.eq2"
+      },
+      "text": "="
+    },
+    {
+      "id": "slot.comp.text",
+      "type": "text",
+      "attributes": {
+        "x": 28.0,
+        "y": 360.0,
+        "max_width": 628.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 1
+      },
+      "source_ref": "slot.comp",
+      "refs": {
+        "layout_slot_id": "slot.comp"
+      },
+      "text": "918<943"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

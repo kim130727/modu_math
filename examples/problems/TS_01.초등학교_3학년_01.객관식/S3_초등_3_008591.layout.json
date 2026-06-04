@@ -1,0 +1,180 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008591",
+  "title": "나머지가 가장 큰 것 찾기",
+  "canvas": {
+    "width": 840,
+    "height": 320,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.qmark",
+        "slot.qnum",
+        "slot.qtext"
+      ]
+    },
+    {
+      "id": "region.choices",
+      "role": "body",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice.1.box",
+        "slot.choice.2.box",
+        "slot.choice.3.box",
+        "slot.choice.1.text",
+        "slot.choice.2.text",
+        "slot.choice.3.text"
+      ]
+    },
+    {
+      "id": "region.answer",
+      "role": "answer",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.conclusion"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.qmark",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 2.0,
+        "y": 20.0,
+        "width": 14.0,
+        "height": 14.0
+      }
+    },
+    {
+      "id": "slot.qnum",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "58.",
+        "style_role": "question",
+        "x": 22.0,
+        "y": 32.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.qtext",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "나머지가 가장 큰 것을 찾아 선택해보세요.",
+        "style_role": "question",
+        "x": 58.0,
+        "y": 32.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice.1.box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 112.0,
+        "y": 90.0,
+        "width": 182.0,
+        "height": 80.0
+      }
+    },
+    {
+      "id": "slot.choice.1.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "583 ÷ 5",
+        "style_role": "body",
+        "x": 203.0,
+        "y": 136.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice.2.box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 369.0,
+        "y": 90.0,
+        "width": 182.0,
+        "height": 80.0
+      }
+    },
+    {
+      "id": "slot.choice.2.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "584 ÷ 6",
+        "style_role": "body",
+        "x": 460.0,
+        "y": 136.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice.3.box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 625.0,
+        "y": 90.0,
+        "width": 182.0,
+        "height": 80.0
+      }
+    },
+    {
+      "id": "slot.choice.3.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "585 ÷ 7",
+        "style_role": "body",
+        "x": 716.0,
+        "y": 136.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.conclusion",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "따라서 4>3>2이므로 나머지가 가장 큰 것은 585 ÷ 7입니다.",
+        "style_role": "body",
+        "x": 24.0,
+        "y": 292.0,
+        "font_size": 24
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.qmark",
+    "slot.qnum",
+    "slot.qtext",
+    "region.choices",
+    "slot.choice.1.box",
+    "slot.choice.2.box",
+    "slot.choice.3.box",
+    "slot.choice.1.text",
+    "slot.choice.2.text",
+    "slot.choice.3.text",
+    "region.answer",
+    "slot.conclusion"
+  ]
+}

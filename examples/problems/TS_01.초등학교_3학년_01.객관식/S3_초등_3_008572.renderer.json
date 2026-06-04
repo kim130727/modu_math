@@ -1,0 +1,316 @@
+{
+  "problem_id": "S3_초등_3_008572",
+  "view_box": {
+    "width": 808.0,
+    "height": 428.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "box_frame.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 410.0,
+        "y": 62.0,
+        "width": 240.0,
+        "height": 140.0,
+        "fill": "#FFFFFF",
+        "stroke": "#EAB5C2",
+        "stroke-width": 2.0
+      },
+      "source_ref": "box_frame",
+      "refs": {
+        "layout_slot_id": "box_frame"
+      }
+    },
+    {
+      "id": "q_num.text",
+      "type": "text",
+      "attributes": {
+        "x": 18.0,
+        "y": 30.0,
+        "max_width": 680.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "q_num",
+      "refs": {
+        "layout_slot_id": "q_num"
+      },
+      "text": "37."
+    },
+    {
+      "id": "question.text",
+      "type": "text",
+      "attributes": {
+        "x": 66.0,
+        "y": 30.0,
+        "max_width": 680.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 26
+      },
+      "source_ref": "question",
+      "refs": {
+        "layout_slot_id": "question"
+      },
+      "text": "계산에서 □ 안의 두 수의 곱은 실제로 얼마를 나타낼까요?"
+    },
+    {
+      "id": "boxed_3.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 455.0,
+        "y": 78.0,
+        "width": 30.0,
+        "height": 30.0,
+        "fill": "#ffffff",
+        "stroke": "#777777",
+        "stroke-width": 1.5
+      },
+      "source_ref": "boxed_3",
+      "refs": {
+        "layout_slot_id": "boxed_3"
+      }
+    },
+    {
+      "id": "boxed_4.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 564.0,
+        "y": 124.0,
+        "width": 30.0,
+        "height": 30.0,
+        "fill": "#ffffff",
+        "stroke": "#777777",
+        "stroke-width": 1.5
+      },
+      "source_ref": "boxed_4",
+      "refs": {
+        "layout_slot_id": "boxed_4"
+      }
+    },
+    {
+      "id": "mul_bar.line",
+      "type": "line",
+      "attributes": {
+        "x1": 450.0,
+        "y1": 163.0,
+        "x2": 603.0,
+        "y2": 163.0,
+        "stroke": "#555555",
+        "stroke-width": 1.5
+      },
+      "source_ref": "mul_bar",
+      "refs": {
+        "layout_slot_id": "mul_bar"
+      }
+    },
+    {
+      "id": "inner_3.text",
+      "type": "text",
+      "attributes": {
+        "x": 464.0,
+        "y": 100.0,
+        "max_width": 680.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "inner_3",
+      "refs": {
+        "layout_slot_id": "inner_3"
+      },
+      "text": "3"
+    },
+    {
+      "id": "inner_2.text",
+      "type": "text",
+      "attributes": {
+        "x": 520.0,
+        "y": 100.0,
+        "max_width": 680.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "inner_2",
+      "refs": {
+        "layout_slot_id": "inner_2"
+      },
+      "text": "2"
+    },
+    {
+      "id": "inner_x.text",
+      "type": "text",
+      "attributes": {
+        "x": 470.0,
+        "y": 145.0,
+        "max_width": 680.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "inner_x",
+      "refs": {
+        "layout_slot_id": "inner_x"
+      },
+      "text": "×"
+    },
+    {
+      "id": "inner_1.text",
+      "type": "text",
+      "attributes": {
+        "x": 520.0,
+        "y": 145.0,
+        "max_width": 680.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "inner_1",
+      "refs": {
+        "layout_slot_id": "inner_1"
+      },
+      "text": "1"
+    },
+    {
+      "id": "inner_4.text",
+      "type": "text",
+      "attributes": {
+        "x": 572.0,
+        "y": 145.0,
+        "max_width": 680.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "inner_4",
+      "refs": {
+        "layout_slot_id": "inner_4"
+      },
+      "text": "4"
+    },
+    {
+      "id": "choice_1.text",
+      "type": "text",
+      "attributes": {
+        "x": 120.0,
+        "y": 250.0,
+        "max_width": 680.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "choice_1",
+      "refs": {
+        "layout_slot_id": "choice_1"
+      },
+      "text": "① 10"
+    },
+    {
+      "id": "choice_2.text",
+      "type": "text",
+      "attributes": {
+        "x": 280.0,
+        "y": 250.0,
+        "max_width": 680.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "choice_2",
+      "refs": {
+        "layout_slot_id": "choice_2"
+      },
+      "text": "② 12"
+    },
+    {
+      "id": "choice_3.text",
+      "type": "text",
+      "attributes": {
+        "x": 450.0,
+        "y": 250.0,
+        "max_width": 680.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "choice_3",
+      "refs": {
+        "layout_slot_id": "choice_3"
+      },
+      "text": "③ 100"
+    },
+    {
+      "id": "choice_4.text",
+      "type": "text",
+      "attributes": {
+        "x": 620.0,
+        "y": 250.0,
+        "max_width": 680.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "choice_4",
+      "refs": {
+        "layout_slot_id": "choice_4"
+      },
+      "text": "④ 120"
+    },
+    {
+      "id": "choice_5.text",
+      "type": "text",
+      "attributes": {
+        "x": 180.0,
+        "y": 288.0,
+        "max_width": 680.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "choice_5",
+      "refs": {
+        "layout_slot_id": "choice_5"
+      },
+      "text": "⑤ 1000"
+    },
+    {
+      "id": "answer_line.text",
+      "type": "text",
+      "attributes": {
+        "x": 20.0,
+        "y": 346.0,
+        "max_width": 680.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 22
+      },
+      "source_ref": "answer_line",
+      "refs": {
+        "layout_slot_id": "answer_line"
+      },
+      "text": "(정답) ④"
+    },
+    {
+      "id": "explain_line.text",
+      "type": "text",
+      "attributes": {
+        "x": 20.0,
+        "y": 382.0,
+        "max_width": 680.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 20
+      },
+      "source_ref": "explain_line",
+      "refs": {
+        "layout_slot_id": "explain_line"
+      },
+      "text": "(해설) 3은 30, 4는 4를 나타내므로 두 수의 곱이 실제로 나타내는 값은 30 × 4 = 120입니다."
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

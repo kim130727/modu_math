@@ -1,0 +1,96 @@
+{
+  "problem_id": "S3_초등_3_008630",
+  "problem_type": "compare_remainders_ordering",
+  "metadata": {
+    "title": "나머지가 큰 것부터 차례대로 기호를 쓰기",
+    "tags": [
+      "초등수학",
+      "나눗셈",
+      "나머지비교",
+      "객관식"
+    ],
+    "question": "나머지가 큰 것부터 차례대로 기호를 쓰는 문제",
+    "required_layout_ids": [
+      "slot.box.outer"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "나머지가 큰 것부터 차례대로 기호를 고른다."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.a",
+        "type": "division_expression",
+        "symbol": "ㄱ",
+        "dividend": 70,
+        "divisor": 4
+      },
+      {
+        "id": "obj.b",
+        "type": "division_expression",
+        "symbol": "ㄴ",
+        "dividend": 83,
+        "divisor": 5
+      },
+      {
+        "id": "obj.c",
+        "type": "division_expression",
+        "symbol": "ㄷ",
+        "dividend": 89,
+        "divisor": 6
+      },
+      {
+        "id": "obj.d",
+        "type": "division_expression",
+        "symbol": "ㄹ",
+        "dividend": 92,
+        "divisor": 7
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.a",
+          "obj.b",
+          "obj.c",
+          "obj.d"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.compare_remainders"
+        ]
+      },
+      "plan": {
+        "method": "compare_remainders",
+        "description": "각 나눗셈의 나머지를 비교하여 큰 것부터 기호를 나열한다."
+      },
+      "execute": {
+        "expected_operations": [
+          "compute_remainder_each",
+          "sort_descending_by_remainder",
+          "match_symbol_sequence"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "order_matches_remainders",
+          "choice_consistency_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "symbol_sequence",
+      "description": "나머지가 큰 것부터 차례대로 쓰는 기호의 순서"
+    },
+    "value": 5,
+    "unit": ""
+  }
+}

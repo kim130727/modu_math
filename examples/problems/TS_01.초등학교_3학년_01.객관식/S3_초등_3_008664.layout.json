@@ -1,0 +1,411 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008664",
+  "title": "원을 가장 크게 그릴 수 있는 구멍 고르기",
+  "canvas": {
+    "width": 951.0,
+    "height": 360.0,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q1",
+        "slot.q2"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.bar",
+        "slot.tool",
+        "slot.hole.1",
+        "slot.hole.2",
+        "slot.hole.3",
+        "slot.hole.4",
+        "slot.hole.5",
+        "slot.choice.1",
+        "slot.choice.2",
+        "slot.choice.3",
+        "slot.choice.4",
+        "slot.choice.5",
+        "slot.link.1",
+        "slot.link.2",
+        "slot.link.3",
+        "slot.link.4",
+        "slot.link.5",
+        "slot.choice.lb.1",
+        "slot.choice.lb.2",
+        "slot.choice.lb.3",
+        "slot.choice.lb.4",
+        "slot.choice.lb.5"
+      ]
+    },
+    {
+      "id": "region.answer",
+      "role": "answer",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.ans.circle"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "□ 39. 눈물 못과 띠 종이를 사용하여 원을 그리려고 합니다.",
+        "style_role": "question",
+        "x": 15.0,
+        "y": 22.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "원을 가장 크게 그리려고 할 때 연필을 꽂아야 하는 구멍의 기호를 선택해 보세요.",
+        "style_role": "question",
+        "x": 15.0,
+        "y": 57.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.bar",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 272.0,
+        "y": 126.0,
+        "width": 434.0,
+        "height": 42.0,
+        "stroke": "#8fcfd0",
+        "stroke_width": 1.0,
+        "fill": "#bfeaed"
+      }
+    },
+    {
+      "id": "slot.tool",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 328.0,
+        "cy": 141.0,
+        "r": 9.0,
+        "fill": "#7f8c99"
+      }
+    },
+    {
+      "id": "slot.hole.1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 375.0,
+        "cy": 136.0,
+        "r": 4.0,
+        "stroke": "#8a8a8a",
+        "stroke_width": 1.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.hole.2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 437.0,
+        "cy": 136.0,
+        "r": 4.0,
+        "stroke": "#8a8a8a",
+        "stroke_width": 1.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.hole.3",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 498.0,
+        "cy": 136.0,
+        "r": 4.0,
+        "stroke": "#8a8a8a",
+        "stroke_width": 1.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.hole.4",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 560.0,
+        "cy": 136.0,
+        "r": 4.0,
+        "stroke": "#8a8a8a",
+        "stroke_width": 1.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.hole.5",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 622.0,
+        "cy": 136.0,
+        "r": 4.0,
+        "stroke": "#8a8a8a",
+        "stroke_width": 1.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.link.1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 375.0,
+        "y1": 141.0,
+        "x2": 375.0,
+        "y2": 176.0,
+        "stroke": "#ff6bb6",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.link.2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 437.0,
+        "y1": 141.0,
+        "x2": 437.0,
+        "y2": 176.0,
+        "stroke": "#ff6bb6",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.link.3",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 498.0,
+        "y1": 141.0,
+        "x2": 498.0,
+        "y2": 176.0,
+        "stroke": "#ff6bb6",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.link.4",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 560.0,
+        "y1": 141.0,
+        "x2": 560.0,
+        "y2": 176.0,
+        "stroke": "#ff6bb6",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.link.5",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 622.0,
+        "y1": 141.0,
+        "x2": 622.0,
+        "y2": 176.0,
+        "stroke": "#ff6bb6",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.choice.1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 375.0,
+        "cy": 190.0,
+        "r": 11.0,
+        "stroke": "#7f7f7f",
+        "stroke_width": 1.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.choice.2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 437.0,
+        "cy": 190.0,
+        "r": 11.0,
+        "stroke": "#7f7f7f",
+        "stroke_width": 1.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.choice.3",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 498.0,
+        "cy": 190.0,
+        "r": 11.0,
+        "stroke": "#7f7f7f",
+        "stroke_width": 1.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.choice.4",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 560.0,
+        "cy": 190.0,
+        "r": 11.0,
+        "stroke": "#7f7f7f",
+        "stroke_width": 1.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.choice.5",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 622.0,
+        "cy": 190.0,
+        "r": 11.0,
+        "stroke": "#7f7f7f",
+        "stroke_width": 1.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.choice.lb.1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄱ",
+        "style_role": "label",
+        "x": 368.0,
+        "y": 196.0,
+        "font_size": 24
+      }
+    },
+    {
+      "id": "slot.choice.lb.2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄴ",
+        "style_role": "label",
+        "x": 430.0,
+        "y": 196.0,
+        "font_size": 24
+      }
+    },
+    {
+      "id": "slot.choice.lb.3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄷ",
+        "style_role": "label",
+        "x": 491.0,
+        "y": 196.0,
+        "font_size": 24
+      }
+    },
+    {
+      "id": "slot.choice.lb.4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄹ",
+        "style_role": "label",
+        "x": 553.0,
+        "y": 196.0,
+        "font_size": 24
+      }
+    },
+    {
+      "id": "slot.choice.lb.5",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㅁ",
+        "style_role": "label",
+        "x": 615.0,
+        "y": 196.0,
+        "font_size": 24
+      }
+    },
+    {
+      "id": "slot.ans.circle",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 79.0,
+        "cy": 259.0,
+        "r": 11.0,
+        "stroke": "#2f7de1",
+        "stroke_width": 1.4,
+        "fill": "#ffffff"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q1",
+    "slot.q2",
+    "region.diagram",
+    "slot.bar",
+    "slot.tool",
+    "slot.hole.1",
+    "slot.hole.2",
+    "slot.hole.3",
+    "slot.hole.4",
+    "slot.hole.5",
+    "slot.choice.1",
+    "slot.choice.2",
+    "slot.choice.3",
+    "slot.choice.4",
+    "slot.choice.5",
+    "slot.link.1",
+    "slot.link.2",
+    "slot.link.3",
+    "slot.link.4",
+    "slot.link.5",
+    "slot.choice.lb.1",
+    "slot.choice.lb.2",
+    "slot.choice.lb.3",
+    "slot.choice.lb.4",
+    "slot.choice.lb.5",
+    "region.answer",
+    "slot.ans.circle"
+  ]
+}

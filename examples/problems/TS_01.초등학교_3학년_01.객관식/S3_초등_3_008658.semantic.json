@@ -1,0 +1,101 @@
+{
+  "problem_id": "S3_초등_3_008658",
+  "problem_type": "geometry_compass_centers",
+  "metadata": {
+    "title": "컴퍼스의 침을 꽂을 곳",
+    "tags": [],
+    "question": "주어진 모양을 그리기 위하여 컴퍼스의 침을 꽂아야 할 곳을 모두 선택해 보세요.",
+    "required_layout_ids": [
+      "slot.grid.v1",
+      "slot.grid.v2",
+      "slot.grid.v3",
+      "slot.grid.v4",
+      "slot.grid.v5",
+      "slot.grid.v6",
+      "slot.grid.v7",
+      "slot.grid.v8",
+      "slot.grid.v9",
+      "slot.grid.v10",
+      "slot.grid.v11",
+      "slot.grid.h1",
+      "slot.grid.h2",
+      "slot.grid.h3",
+      "slot.grid.h4",
+      "slot.grid.h5",
+      "slot.grid.h6",
+      "slot.grid.h7",
+      "slot.grid.h8",
+      "slot.grid.h9",
+      "slot.grid.h10",
+      "slot.grid.h11",
+      "slot.circle1",
+      "slot.circle2",
+      "slot.circle3",
+      "slot.circle4",
+      "slot.pt1",
+      "slot.pt2",
+      "slot.pt3",
+      "slot.pt4"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "컴퍼스의 침을 꽂아야 할 곳을 모두 선택한다."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.circle_set",
+        "type": "circle_collection",
+        "count": 4
+      },
+      {
+        "id": "obj.center_candidates",
+        "type": "point_collection",
+        "count": 4
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.circle_set",
+          "obj.center_candidates"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.center_to_circle",
+          "rel.distinct_centers"
+        ]
+      },
+      "plan": {
+        "method": "center_matching",
+        "description": "각 원의 중심이 서로 다른지 살피고, 중심 후보를 모두 선택한다."
+      },
+      "execute": {
+        "expected_operations": [
+          "identify_centers",
+          "match_each_center_to_one_circle",
+          "select_all_candidates"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "count_selected_points",
+          "one_center_per_circle"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "selected_points",
+      "description": "컴퍼스의 침을 꽂아야 할 곳"
+    },
+    "value": 4,
+    "unit": ""
+  }
+}

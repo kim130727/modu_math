@@ -1,0 +1,98 @@
+{
+  "problem_id": "S3_초등_3_008623",
+  "problem_type": "multiple_choice_division",
+  "metadata": {
+    "title": "나누어떨어지는 나눗셈",
+    "tags": [],
+    "question": "나누어떨어지는 나눗셈은 어느 것일까요?",
+    "required_layout_ids": [
+      "slot.opt1.num",
+      "slot.opt2.num",
+      "slot.opt3.num",
+      "slot.opt4.num",
+      "slot.opt5.num",
+      "slot.arrow"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "보기 중 나머지 없이 나누어떨어지는 식을 고른다."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.opt1",
+        "type": "division_expression",
+        "expression": "11 ÷ 2"
+      },
+      {
+        "id": "obj.opt2",
+        "type": "division_expression",
+        "expression": "27 ÷ 3"
+      },
+      {
+        "id": "obj.opt3",
+        "type": "division_expression",
+        "expression": "35 ÷ 6"
+      },
+      {
+        "id": "obj.opt4",
+        "type": "division_expression",
+        "expression": "42 ÷ 5"
+      },
+      {
+        "id": "obj.opt5",
+        "type": "division_expression",
+        "expression": "66 ÷ 7"
+      },
+      {
+        "id": "obj.answer_choice",
+        "type": "choice_label",
+        "label": "②"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.opt1",
+          "obj.opt2",
+          "obj.opt3",
+          "obj.opt4",
+          "obj.opt5"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.select_divisible"
+        ]
+      },
+      "plan": {
+        "method": "divisibility_check",
+        "description": "각 나눗셈의 나머지 유무를 비교해 나머지 없이 끝나는 보기를 찾는다."
+      },
+      "execute": {
+        "expected_operations": [
+          "compare_remainders",
+          "identify_no_remainder_choice"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "choice_consistency_check",
+          "expression_match_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "divisible_choice",
+      "description": "나누어떨어지는 나눗셈"
+    },
+    "value": 2,
+    "unit": ""
+  }
+}

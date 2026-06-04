@@ -1,0 +1,102 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008618",
+  "problem_type": "compare_division_results",
+  "inputs": {
+    "total_ticks": 3,
+    "target_label": "가장 큰 나눗셈을 말한 사람",
+    "target_ticks": 1,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.expr1",
+      "value": {
+        "expression": "262 ÷ 2",
+        "left": 262,
+        "right": 2
+      }
+    },
+    {
+      "ref": "obj.expr2",
+      "value": {
+        "expression": "440 ÷ 5",
+        "left": 440,
+        "right": 5
+      }
+    },
+    {
+      "ref": "obj.expr3",
+      "value": {
+        "expression": "552 ÷ 6",
+        "left": 552,
+        "right": 6
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "person_name"
+  },
+  "method": "compare_division_results",
+  "plan": [
+    "각 나눗셈의 결과를 계산한다.",
+    "세 결과 중 가장 큰 값을 찾는다.",
+    "그 값을 말한 사람을 고른다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "262 ÷ 2",
+      "value": 131
+    },
+    {
+      "id": "step.2",
+      "expr": "440 ÷ 5",
+      "value": 88
+    },
+    {
+      "id": "step.3",
+      "expr": "552 ÷ 6",
+      "value": 92
+    },
+    {
+      "id": "step.4",
+      "expr": "max(131, 88, 92)",
+      "value": 131
+    },
+    {
+      "id": "step.5",
+      "expr": "가장 큰 결과를 말한 사람 찾기",
+      "value": "소진"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "131 > 92 > 88",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "id": "check.2",
+      "expr": "max(131, 88, 92) == 131",
+      "expected": 131,
+      "actual": 131,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "person_name",
+      "description": "가장 큰 나눗셈 결과를 말한 사람"
+    },
+    "value": "소진",
+    "unit": ""
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008658",
+  "problem_type": "geometry_compass_centers",
+  "inputs": {
+    "total_ticks": 4,
+    "target_label": "컴퍼스의 침을 꽂아야 할 곳",
+    "target_ticks": 4,
+    "target_count": 4,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.circle_set",
+      "value": {
+        "count": 4
+      }
+    },
+    {
+      "ref": "obj.center_candidates",
+      "value": {
+        "count": 4
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "selected_points"
+  },
+  "method": "center_matching",
+  "plan": [
+    "원의 중심이 각각 따로 있는지 확인한다.",
+    "중심과 대응하는 점을 모두 고른다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "원의 개수 = 4",
+      "value": 4
+    },
+    {
+      "id": "step.2",
+      "expr": "서로 다른 중심 후보의 개수 = 4",
+      "value": 4
+    },
+    {
+      "id": "step.3",
+      "expr": "선택할 점 = ㄱ, ㄴ, ㄷ, ㄹ",
+      "value": 4
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "선택한 점의 수가 원의 수와 같은가",
+      "expected": 4,
+      "actual": 4,
+      "pass": true
+    },
+    {
+      "id": "check.2",
+      "expr": "각 원마다 중심이 하나씩 대응하는가",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "selected_points",
+      "description": "컴퍼스의 침을 꽂아야 할 곳"
+    },
+    "value": 4,
+    "unit": ""
+  }
+}

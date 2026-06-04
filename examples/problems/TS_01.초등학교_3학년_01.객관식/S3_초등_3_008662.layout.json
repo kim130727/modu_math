@@ -1,0 +1,351 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008662",
+  "title": "원의 지름은 어느 선분인가요?",
+  "canvas": {
+    "width": 661.0,
+    "height": 388.0,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.header",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.icon",
+        "slot.qnum",
+        "slot.question"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.circle",
+        "slot.pt.o",
+        "slot.pt.pink",
+        "slot.line.1",
+        "slot.line.2",
+        "slot.line.3",
+        "slot.line.4",
+        "slot.lb.g1",
+        "slot.lb.g2",
+        "slot.lb.d1",
+        "slot.lb.d2",
+        "slot.lb.m1",
+        "slot.lb.m2",
+        "slot.lb.s1",
+        "slot.lb.s2"
+      ]
+    },
+    {
+      "id": "region.options",
+      "role": "choices",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.opt.1",
+        "slot.opt.2",
+        "slot.opt.3",
+        "slot.opt.4"
+      ]
+    },
+    {
+      "id": "region.footer",
+      "role": "explanation",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.icon",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 16.0,
+        "y": 17.0,
+        "width": 10.0,
+        "height": 10.0
+      }
+    },
+    {
+      "id": "slot.qnum",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "37.",
+        "style_role": "question",
+        "x": 37.0,
+        "y": 29.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.question",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "원의 지름은 어느 선분인가요?",
+        "style_role": "question",
+        "x": 85.0,
+        "y": 30.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.circle",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 482.0,
+        "cy": 115.0,
+        "r": 75.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.line.1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 440.0,
+        "y1": 75.0,
+        "x2": 548.0,
+        "y2": 75.0
+      }
+    },
+    {
+      "id": "slot.line.2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 430.0,
+        "y1": 104.0,
+        "x2": 552.0,
+        "y2": 104.0
+      }
+    },
+    {
+      "id": "slot.line.3",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 430.0,
+        "y1": 125.0,
+        "x2": 552.0,
+        "y2": 125.0
+      }
+    },
+    {
+      "id": "slot.line.4",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 430.0,
+        "y1": 154.0,
+        "x2": 552.0,
+        "y2": 154.0
+      }
+    },
+    {
+      "id": "slot.pt.o",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 482.0,
+        "cy": 107.0,
+        "r": 4.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.pt.pink",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 482.0,
+        "cy": 118.0,
+        "r": 2.6,
+        "fill": "#ff3aa0"
+      }
+    },
+    {
+      "id": "slot.lb.g1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄱ",
+        "style_role": "label",
+        "x": 418.0,
+        "y": 78.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.lb.g2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄴ",
+        "style_role": "label",
+        "x": 556.0,
+        "y": 78.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.lb.d1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄷ",
+        "style_role": "label",
+        "x": 416.0,
+        "y": 108.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.lb.d2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄹ",
+        "style_role": "label",
+        "x": 556.0,
+        "y": 108.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.lb.m1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㅁ",
+        "style_role": "label",
+        "x": 416.0,
+        "y": 131.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.lb.m2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㅂ",
+        "style_role": "label",
+        "x": 556.0,
+        "y": 131.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.lb.s1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㅅ",
+        "style_role": "label",
+        "x": 416.0,
+        "y": 159.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.lb.s2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㅈ",
+        "style_role": "label",
+        "x": 556.0,
+        "y": 159.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.opt.1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "① 선분 ㄱㄴ",
+        "style_role": "choice",
+        "x": 31.0,
+        "y": 241.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.opt.2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "② 선분 ㄷㄹ",
+        "style_role": "choice",
+        "x": 483.0,
+        "y": 241.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.opt.3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "③ 선분 ㅁㅂ",
+        "style_role": "choice",
+        "x": 31.0,
+        "y": 282.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.opt.4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "④ 선분 ㅅㅈ",
+        "style_role": "choice",
+        "x": 483.0,
+        "y": 282.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.header",
+    "slot.icon",
+    "slot.qnum",
+    "slot.question",
+    "region.diagram",
+    "slot.circle",
+    "slot.pt.o",
+    "slot.pt.pink",
+    "slot.line.1",
+    "slot.line.2",
+    "slot.line.3",
+    "slot.line.4",
+    "slot.lb.g1",
+    "slot.lb.g2",
+    "slot.lb.d1",
+    "slot.lb.d2",
+    "slot.lb.m1",
+    "slot.lb.m2",
+    "slot.lb.s1",
+    "slot.lb.s2",
+    "region.options",
+    "slot.opt.1",
+    "slot.opt.2",
+    "slot.opt.3",
+    "slot.opt.4",
+    "region.footer"
+  ]
+}

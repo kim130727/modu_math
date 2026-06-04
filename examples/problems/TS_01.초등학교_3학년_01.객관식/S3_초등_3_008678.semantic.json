@@ -1,0 +1,87 @@
+{
+  "problem_id": "S3_초등_3_008678",
+  "problem_type": "도형의 성질_선택형",
+  "metadata": {
+    "title": "반을 접어 생긴 선",
+    "tags": [],
+    "question": "원 모양 종이를 똑같이 둘로 나누어지도록 반을 접었다가 펴니 선이 생겼습니다. 알맞은 말을 선택하세요.",
+    "required_layout_ids": [
+      "slot.paper.left",
+      "slot.arrow",
+      "slot.paper.right",
+      "slot.foldline"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "알맞은 말을 선택하세요."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.paper",
+        "type": "paper_shape",
+        "shape": "circle"
+      },
+      {
+        "id": "obj.folded_shape",
+        "type": "paper_shape",
+        "shape": "semicircle"
+      },
+      {
+        "id": "obj.fold_line",
+        "type": "line"
+      },
+      {
+        "id": "obj.choice_diameter",
+        "type": "term",
+        "text": "지름"
+      },
+      {
+        "id": "obj.choice_radius",
+        "type": "term",
+        "text": "반지름"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.paper",
+          "obj.folded_shape"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.fold_creates_line",
+          "rel.line_divides_circle"
+        ]
+      },
+      "plan": {
+        "method": "도형의 성질 확인",
+        "description": "접어서 생긴 선이 원을 똑같이 둘로 나누는 선인지 살펴본다."
+      },
+      "execute": {
+        "expected_operations": [
+          "folding_relation_check",
+          "circle_line_property_check"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "choice_match_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "choice_word",
+      "description": "빈칸에 들어갈 알맞은 말"
+    },
+    "value": 0,
+    "unit": ""
+  }
+}

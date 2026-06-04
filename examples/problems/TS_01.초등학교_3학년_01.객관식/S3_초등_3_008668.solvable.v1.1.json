@@ -1,0 +1,86 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008668",
+  "problem_type": "true_false_geometry",
+  "inputs": {
+    "total_ticks": 1,
+    "target_label": "×",
+    "target_ticks": 1,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.circle",
+      "value": {
+        "type": "circle"
+      }
+    },
+    {
+      "ref": "obj.segment.db",
+      "value": {
+        "label": "ㄷㄹ"
+      }
+    },
+    {
+      "ref": "obj.segment.mb",
+      "value": {
+        "label": "ㅁㅂ"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "truth_value"
+  },
+  "method": "truth_value_judgment",
+  "plan": [
+    "그림에서 원의 중심을 지나가는 선분이 지름인지 확인한다.",
+    "문장에 적힌 두 주장(가장 긴 선분, 지름)을 그림과 비교한다.",
+    "진술이 맞으면 ○, 틀리면 ×로 판단한다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "원의 중심을 지나는 선분 확인",
+      "value": "ㄷㄹ"
+    },
+    {
+      "id": "step.2",
+      "expr": "가장 긴 선분에 대한 문장 판단",
+      "value": "거짓"
+    },
+    {
+      "id": "step.3",
+      "expr": "전체 설명의 진위",
+      "value": "거짓"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "지름은 중심을 지난다",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "id": "check.2",
+      "expr": "문장 전체가 바른가",
+      "expected": false,
+      "actual": false,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "truth_value",
+      "description": "제시된 설명이 바른지 판단"
+    },
+    "value": 0,
+    "unit": ""
+  }
+}

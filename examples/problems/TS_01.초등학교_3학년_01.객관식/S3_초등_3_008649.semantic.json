@@ -1,0 +1,84 @@
+{
+  "problem_id": "S3_초등_3_008649",
+  "problem_type": "circle_concept_choice",
+  "metadata": {
+    "title": "원의 지름",
+    "tags": [],
+    "question": "그림을 보고 알맞은 말을 선택하세요.",
+    "required_layout_ids": [
+      "slot.circle_outline",
+      "slot.center_point",
+      "slot.line_top_right",
+      "slot.line_left_right",
+      "slot.line_center_down"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "원의 구성 요소 이름을 고르는 문제"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.circle",
+        "type": "circle"
+      },
+      {
+        "id": "obj.center",
+        "type": "point",
+        "role": "center"
+      },
+      {
+        "id": "obj.diameter",
+        "type": "segment",
+        "role": "diameter"
+      },
+      {
+        "id": "obj.radius",
+        "type": "segment",
+        "role": "radius"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.circle",
+          "obj.center",
+          "obj.diameter",
+          "obj.radius"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.diameter_divides_circle"
+        ]
+      },
+      "plan": {
+        "method": "concept_choice",
+        "description": "그림과 문장을 보고 원을 둘로 똑같이 나누는 이름을 찾는다."
+      },
+      "execute": {
+        "expected_operations": [
+          "identify_circle_part_name",
+          "match_sentence_to_concept"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "concept_consistency_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "concept_name",
+      "description": "원을 둘로 똑같이 나누는 말"
+    },
+    "value": "지름",
+    "unit": ""
+  }
+}

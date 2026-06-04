@@ -1,0 +1,192 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008624",
+  "title": "나머지가 큰 것부터 차례로 기호를 나열한 것을 고르기",
+  "canvas": {
+    "width": 780,
+    "height": 540,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.box",
+        "slot.qnum",
+        "slot.qtext",
+        "slot.div.a",
+        "slot.div.b",
+        "slot.div.c"
+      ]
+    },
+    {
+      "id": "region.choices",
+      "role": "choices",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.ch1",
+        "slot.ch2",
+        "slot.ch3",
+        "slot.ch4"
+      ]
+    },
+    {
+      "id": "region.answer",
+      "role": "answer",
+      "flow": "absolute",
+      "slot_ids": []
+    },
+    {
+      "id": "region.explanation",
+      "role": "explanation",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.qnum",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "□ 94.",
+        "style_role": "question",
+        "x": 12.0,
+        "y": 28.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.qtext",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "나머지가 큰 것부터 차례로 기호를 나열한 것을 고르세요.",
+        "style_role": "question",
+        "x": 86.0,
+        "y": 28.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 382.0,
+        "y": 52.0,
+        "width": 208.0,
+        "height": 160.0,
+        "stroke": "#A79BD5",
+        "stroke_width": 1.5,
+        "fill": "#E3DDF2"
+      }
+    },
+    {
+      "id": "slot.div.a",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄱ 29 ÷ 6",
+        "style_role": "body",
+        "x": 430.0,
+        "y": 96.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.div.b",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄴ 92 ÷ 4",
+        "style_role": "body",
+        "x": 430.0,
+        "y": 136.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.div.c",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄷ 84 ÷ 8",
+        "style_role": "body",
+        "x": 430.0,
+        "y": 176.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.ch1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "① ㄱ ㄴ ㄷ",
+        "style_role": "body",
+        "x": 18.0,
+        "y": 250.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.ch2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "② ㄴ ㄷ ㄱ",
+        "style_role": "body",
+        "x": 486.0,
+        "y": 250.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.ch3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "③ ㄷ ㄱ ㄴ",
+        "style_role": "body",
+        "x": 18.0,
+        "y": 292.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.ch4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "④ ㄱ ㄷ ㄴ",
+        "style_role": "body",
+        "x": 486.0,
+        "y": 292.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.box",
+    "slot.qnum",
+    "slot.qtext",
+    "slot.div.a",
+    "slot.div.b",
+    "slot.div.c",
+    "region.choices",
+    "slot.ch1",
+    "slot.ch2",
+    "slot.ch3",
+    "slot.ch4",
+    "region.answer",
+    "region.explanation"
+  ]
+}

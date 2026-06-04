@@ -1,0 +1,74 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008682",
+  "problem_type": "geometry_construction_term_selection",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "알맞은 말",
+    "target_ticks": 0,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.big_circle",
+      "value": {
+        "role": "reference_shape"
+      }
+    },
+    {
+      "ref": "obj.small_circle_pair",
+      "value": {
+        "count": 2
+      }
+    },
+    {
+      "ref": "obj.radius_unit",
+      "value": {
+        "description": "큰 원의 반지름"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "selected_term"
+  },
+  "method": "construction_term_selection",
+  "plan": [
+    "문장에 나온 작도 순서와 도형 사이의 관계를 확인한다.",
+    "큰 원의 반지름으로 쓰인 말을 찾는다.",
+    "괄호 안에서 알맞은 용어를 선택한다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "큰 원의 반지름을 나타내는 말 확인",
+      "value": "반지름"
+    },
+    {
+      "id": "step.2",
+      "expr": "(지름, 반지름) 중 큰 원의 반지름에 해당하는 말 선택",
+      "value": "지름"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "선택한 말이 큰 원의 반지름으로 쓰이는 말인지 확인",
+      "expected": "지름",
+      "actual": "지름",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "selected_term",
+      "description": "(지름, 반지름) 중 알맞은 말"
+    },
+    "value": "지름",
+    "unit": ""
+  }
+}

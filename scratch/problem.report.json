@@ -1,0 +1,12 @@
+{
+  "dsl_path": "C:\\projects\\modu_math\\examples\\problems\\0001\\problem.dsl.py",
+  "out_prefix": "C:\\projects\\modu_math\\examples\\problems\\0001\\problem",
+  "success": false,
+  "generated_files": [],
+  "strict": true,
+  "emit_solvable": true,
+  "error": {
+    "type": "ValidationError",
+    "message": "'total_ticks' is a required property\n\nFailed validating 'required' in schema['properties']['inputs']:\n    {'type': 'object',\n     'properties': {'total_ticks': {'type': 'number'},\n                    'target_label': {'type': 'string'},\n                    'target_ticks': {'type': 'number'},\n                    'target_count': {'type': 'number'},\n                    'unit': {'type': 'string'}},\n     'required': ['total_ticks',\n                  'target_label',\n                  'target_ticks',\n                  'target_count',\n                  'unit']}\n\nOn instance['inputs']:\n    {'start_time': '7:17:25',\n     'delta_seconds': 2207,\n     'target_label': 'a+b+c',\n     'unit': ''}"
+  }
+}

@@ -1,0 +1,285 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008656",
+  "title": "원의 지름이 아닌 것을 찾아 기호를 모두 선택하기",
+  "canvas": {
+    "width": 720,
+    "height": 400,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.header",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.header.box",
+        "slot.header.text"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.circle.outer",
+        "slot.circle.center",
+        "slot.line.v",
+        "slot.line.h",
+        "slot.line.d1",
+        "slot.line.d2",
+        "slot.line.d3",
+        "slot.line.d4",
+        "slot.line.d5",
+        "slot.lb.ㄴ",
+        "slot.lb.ㄷ",
+        "slot.lb.ㄹ",
+        "slot.lb.ㅁ",
+        "slot.lb.ㅂ",
+        "slot.lb.ㅅ",
+        "slot.lb.ㄱ"
+      ]
+    },
+    {
+      "id": "region.footer",
+      "role": "answer",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.header.box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 6.0,
+        "y": 14.0,
+        "width": 12.0,
+        "height": 12.0
+      }
+    },
+    {
+      "id": "slot.header.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "31. 원의 지름이 아닌 것을 찾아 기호를 모두 선택하세요.",
+        "style_role": "question",
+        "x": 22.0,
+        "y": 24.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.circle.outer",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 524.0,
+        "cy": 132.0,
+        "r": 88.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.circle.center",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 524.0,
+        "cy": 132.0,
+        "r": 2.5,
+        "fill": "#d81b60"
+      }
+    },
+    {
+      "id": "slot.line.v",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 524.0,
+        "y1": 44.0,
+        "x2": 524.0,
+        "y2": 220.0
+      }
+    },
+    {
+      "id": "slot.line.h",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 436.0,
+        "y1": 132.0,
+        "x2": 612.0,
+        "y2": 132.0
+      }
+    },
+    {
+      "id": "slot.line.d1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 448.0,
+        "y1": 74.0,
+        "x2": 600.0,
+        "y2": 170.0
+      }
+    },
+    {
+      "id": "slot.line.d2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 448.0,
+        "y1": 186.0,
+        "x2": 592.0,
+        "y2": 92.0
+      }
+    },
+    {
+      "id": "slot.line.d3",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 524.0,
+        "y1": 220.0,
+        "x2": 592.0,
+        "y2": 68.0
+      }
+    },
+    {
+      "id": "slot.line.d4",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 476.0,
+        "y1": 208.0,
+        "x2": 580.0,
+        "y2": 52.0
+      }
+    },
+    {
+      "id": "slot.line.d5",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 476.0,
+        "y1": 208.0,
+        "x2": 436.0,
+        "y2": 132.0
+      }
+    },
+    {
+      "id": "slot.lb.ㄴ",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄴ",
+        "style_role": "label",
+        "x": 448.0,
+        "y": 66.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.lb.ㄷ",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄷ",
+        "style_role": "label",
+        "x": 518.0,
+        "y": 30.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.lb.ㄹ",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄹ",
+        "style_role": "label",
+        "x": 586.0,
+        "y": 54.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.lb.ㅁ",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㅁ",
+        "style_role": "label",
+        "x": 608.0,
+        "y": 96.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.lb.ㅂ",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㅂ",
+        "style_role": "label",
+        "x": 610.0,
+        "y": 186.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.lb.ㅅ",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㅅ",
+        "style_role": "label",
+        "x": 432.0,
+        "y": 148.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.lb.ㄱ",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄱ",
+        "style_role": "label",
+        "x": 436.0,
+        "y": 116.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.header",
+    "slot.header.box",
+    "slot.header.text",
+    "region.diagram",
+    "slot.circle.outer",
+    "slot.circle.center",
+    "slot.line.v",
+    "slot.line.h",
+    "slot.line.d1",
+    "slot.line.d2",
+    "slot.line.d3",
+    "slot.line.d4",
+    "slot.line.d5",
+    "slot.lb.ㄴ",
+    "slot.lb.ㄷ",
+    "slot.lb.ㄹ",
+    "slot.lb.ㅁ",
+    "slot.lb.ㅂ",
+    "slot.lb.ㅅ",
+    "slot.lb.ㄱ",
+    "region.footer"
+  ]
+}

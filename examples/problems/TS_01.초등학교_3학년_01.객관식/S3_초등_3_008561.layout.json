@@ -1,0 +1,439 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008561",
+  "title": "계산 결과가 2000보다 큰 곱셈식을 모두 선택해 보세요.",
+  "canvas": {
+    "width": 760,
+    "height": 367,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q_num",
+        "slot.q_text"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.road",
+        "slot.car1.body",
+        "slot.car1.roof",
+        "slot.car1.wheel1",
+        "slot.car1.wheel2",
+        "slot.car1.window",
+        "slot.car2.body",
+        "slot.car2.roof",
+        "slot.car2.wheel1",
+        "slot.car2.wheel2",
+        "slot.car2.window",
+        "slot.car3.body",
+        "slot.car3.roof",
+        "slot.car3.wheel1",
+        "slot.car3.wheel2",
+        "slot.car3.window",
+        "slot.road_dash",
+        "slot.car1.text",
+        "slot.car2.text",
+        "slot.car3.text"
+      ]
+    },
+    {
+      "id": "region.answer",
+      "role": "answer",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.answer_label",
+        "slot.answer_text"
+      ]
+    },
+    {
+      "id": "region.explanation",
+      "role": "explanation",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.explain_label",
+        "slot.explain1",
+        "slot.explain2",
+        "slot.explain3"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q_num",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "25.",
+        "style_role": "question",
+        "x": 28.0,
+        "y": 24.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q_text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "계산 결과가 2000보다 큰 곱셈식을 모두 선택해 보세요.",
+        "style_role": "question",
+        "x": 76.0,
+        "y": 24.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.road",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 225.0,
+        "y": 91.0,
+        "width": 507.0,
+        "height": 81.0,
+        "fill": "#D8D8D8"
+      }
+    },
+    {
+      "id": "slot.road_dash",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 225.0,
+        "y1": 130.0,
+        "x2": 732.0,
+        "y2": 130.0,
+        "stroke": "#F4F4F4",
+        "stroke_dasharray": "8 5"
+      }
+    },
+    {
+      "id": "slot.car1.body",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 272.0,
+        "y": 49.0,
+        "width": 126.0,
+        "height": 56.0,
+        "fill": "#BFE6E0"
+      }
+    },
+    {
+      "id": "slot.car1.roof",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 287.0,
+        "y": 38.0,
+        "width": 72.0,
+        "height": 18.0,
+        "fill": "#BFE6E0"
+      }
+    },
+    {
+      "id": "slot.car1.wheel1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 284.0,
+        "cy": 102.0,
+        "r": 11.0,
+        "fill": "#7A7A7A"
+      }
+    },
+    {
+      "id": "slot.car1.wheel2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 368.0,
+        "cy": 102.0,
+        "r": 11.0,
+        "fill": "#7A7A7A"
+      }
+    },
+    {
+      "id": "slot.car1.window",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 295.0,
+        "y": 45.0,
+        "width": 57.0,
+        "height": 24.0,
+        "fill": "#DDF3F1"
+      }
+    },
+    {
+      "id": "slot.car1.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "37 × 60",
+        "style_role": "question",
+        "x": 306.0,
+        "y": 78.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.car2.body",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 434.0,
+        "y": 49.0,
+        "width": 126.0,
+        "height": 56.0,
+        "fill": "#BFE6E0"
+      }
+    },
+    {
+      "id": "slot.car2.roof",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 449.0,
+        "y": 38.0,
+        "width": 72.0,
+        "height": 18.0,
+        "fill": "#BFE6E0"
+      }
+    },
+    {
+      "id": "slot.car2.wheel1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 446.0,
+        "cy": 102.0,
+        "r": 11.0,
+        "fill": "#7A7A7A"
+      }
+    },
+    {
+      "id": "slot.car2.wheel2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 530.0,
+        "cy": 102.0,
+        "r": 11.0,
+        "fill": "#7A7A7A"
+      }
+    },
+    {
+      "id": "slot.car2.window",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 457.0,
+        "y": 45.0,
+        "width": 57.0,
+        "height": 24.0,
+        "fill": "#DDF3F1"
+      }
+    },
+    {
+      "id": "slot.car2.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "80 × 20",
+        "style_role": "question",
+        "x": 468.0,
+        "y": 78.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.car3.body",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 594.0,
+        "y": 49.0,
+        "width": 126.0,
+        "height": 56.0,
+        "fill": "#BFE6E0"
+      }
+    },
+    {
+      "id": "slot.car3.roof",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 609.0,
+        "y": 38.0,
+        "width": 72.0,
+        "height": 18.0,
+        "fill": "#BFE6E0"
+      }
+    },
+    {
+      "id": "slot.car3.wheel1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 606.0,
+        "cy": 102.0,
+        "r": 11.0,
+        "fill": "#7A7A7A"
+      }
+    },
+    {
+      "id": "slot.car3.wheel2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 690.0,
+        "cy": 102.0,
+        "r": 11.0,
+        "fill": "#7A7A7A"
+      }
+    },
+    {
+      "id": "slot.car3.window",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 617.0,
+        "y": 45.0,
+        "width": 57.0,
+        "height": 24.0,
+        "fill": "#DDF3F1"
+      }
+    },
+    {
+      "id": "slot.car3.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "70 × 40",
+        "style_role": "question",
+        "x": 628.0,
+        "y": 78.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.answer_label",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "(정답)",
+        "style_role": "label",
+        "x": 10.0,
+        "y": 211.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.answer_text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "37 × 60, 70 × 40",
+        "style_role": "answer",
+        "x": 65.0,
+        "y": 211.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.explain_label",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "(해설)",
+        "style_role": "label",
+        "x": 10.0,
+        "y": 264.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.explain1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "37 × 60 = 2220 > 2000",
+        "style_role": "explanation",
+        "x": 65.0,
+        "y": 264.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.explain2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "80 × 20 = 1600 < 2000",
+        "style_role": "explanation",
+        "x": 65.0,
+        "y": 299.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.explain3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "70 × 40 = 2800 > 2000",
+        "style_role": "explanation",
+        "x": 65.0,
+        "y": 334.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q_num",
+    "slot.q_text",
+    "region.diagram",
+    "slot.road",
+    "slot.car1.body",
+    "slot.car1.roof",
+    "slot.car1.wheel1",
+    "slot.car1.wheel2",
+    "slot.car1.window",
+    "slot.car2.body",
+    "slot.car2.roof",
+    "slot.car2.wheel1",
+    "slot.car2.wheel2",
+    "slot.car2.window",
+    "slot.car3.body",
+    "slot.car3.roof",
+    "slot.car3.wheel1",
+    "slot.car3.wheel2",
+    "slot.car3.window",
+    "slot.road_dash",
+    "slot.car1.text",
+    "slot.car2.text",
+    "slot.car3.text",
+    "region.answer",
+    "slot.answer_label",
+    "slot.answer_text",
+    "region.explanation",
+    "slot.explain_label",
+    "slot.explain1",
+    "slot.explain2",
+    "slot.explain3"
+  ]
+}

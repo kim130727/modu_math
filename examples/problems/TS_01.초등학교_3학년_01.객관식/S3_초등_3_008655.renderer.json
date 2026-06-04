@@ -1,0 +1,176 @@
+{
+  "problem_id": "S3_초등_3_008655",
+  "view_box": {
+    "width": 960.0,
+    "height": 520.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.diagram.circle.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 475.0,
+        "cy": 215.0,
+        "r": 112.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "none"
+      },
+      "source_ref": "slot.diagram.circle",
+      "refs": {
+        "layout_slot_id": "slot.diagram.circle"
+      }
+    },
+    {
+      "id": "slot.diagram.center.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 475.0,
+        "cy": 215.0,
+        "r": 3.5,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#d81b60"
+      },
+      "source_ref": "slot.diagram.center",
+      "refs": {
+        "layout_slot_id": "slot.diagram.center"
+      }
+    },
+    {
+      "id": "slot.diagram.r1.line",
+      "type": "line",
+      "attributes": {
+        "x1": 475.0,
+        "y1": 215.0,
+        "x2": 375.0,
+        "y2": 300.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.diagram.r1",
+      "refs": {
+        "layout_slot_id": "slot.diagram.r1"
+      }
+    },
+    {
+      "id": "slot.diagram.r2.line",
+      "type": "line",
+      "attributes": {
+        "x1": 475.0,
+        "y1": 215.0,
+        "x2": 547.0,
+        "y2": 293.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.diagram.r2",
+      "refs": {
+        "layout_slot_id": "slot.diagram.r2"
+      }
+    },
+    {
+      "id": "slot.diagram.r3.line",
+      "type": "line",
+      "attributes": {
+        "x1": 475.0,
+        "y1": 215.0,
+        "x2": 577.0,
+        "y2": 193.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.diagram.r3",
+      "refs": {
+        "layout_slot_id": "slot.diagram.r3"
+      }
+    },
+    {
+      "id": "slot.q1.text",
+      "type": "text",
+      "attributes": {
+        "x": 18.0,
+        "y": 34.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q1",
+      "refs": {
+        "layout_slot_id": "slot.q1"
+      },
+      "text": "□ 30. 선분 ㅇㄱ, 선분 ㅇㄴ, 선분 ㅇㄷ은 모두 원의 반지름입니다. 각 선분의 길이를 재어 알맞은 말을 선택하세요."
+    },
+    {
+      "id": "slot.diagram.lb.g.text",
+      "type": "text",
+      "attributes": {
+        "x": 365.0,
+        "y": 312.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.diagram.lb.g",
+      "refs": {
+        "layout_slot_id": "slot.diagram.lb.g"
+      },
+      "text": "ㄱ"
+    },
+    {
+      "id": "slot.diagram.lb.n.text",
+      "type": "text",
+      "attributes": {
+        "x": 555.0,
+        "y": 310.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.diagram.lb.n",
+      "refs": {
+        "layout_slot_id": "slot.diagram.lb.n"
+      },
+      "text": "ㄴ"
+    },
+    {
+      "id": "slot.diagram.lb.d.text",
+      "type": "text",
+      "attributes": {
+        "x": 586.0,
+        "y": 190.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.diagram.lb.d",
+      "refs": {
+        "layout_slot_id": "slot.diagram.lb.d"
+      },
+      "text": "ㄷ"
+    },
+    {
+      "id": "slot.choice.text",
+      "type": "text",
+      "attributes": {
+        "x": 175.0,
+        "y": 355.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice",
+      "refs": {
+        "layout_slot_id": "slot.choice"
+      },
+      "text": "한 원에서 원의 반지름은 모두 ( 같습니다, 다릅니다 )."
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

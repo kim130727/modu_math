@@ -1,0 +1,136 @@
+2026-05-31 21:00:54,519 - INFO - Prompt bundle written. Add --llm-output-file later to generate refined draft.
+2026-05-31 21:00:54,520 - INFO - Wrote prompt bundle: examples\problems\TS_01.초등학교_3학년_01.객관식\S3_초등_3_008671.refine_prompt.md
+2026-05-31 21:01:05,836 - INFO - HTTP Request: POST https://api.openai.com/v1/responses "HTTP/1.1 200 OK"
+2026-05-31 21:01:05,914 - INFO - Wrote refined draft: examples\problems\TS_01.초등학교_3학년_01.객관식\S3_초등_3_008671.refined_draft.md
+2026-05-31 21:01:33,738 - INFO - Prompt bundle written. Add --llm-output-file later to generate refined draft.
+2026-05-31 21:01:33,738 - INFO - Wrote prompt bundle: examples\problems\TS_01.초등학교_3학년_01.객관식\S3_초등_3_008672.refine_prompt.md
+2026-05-31 21:01:50,753 - INFO - HTTP Request: POST https://api.openai.com/v1/responses "HTTP/1.1 200 OK"
+2026-05-31 21:01:50,829 - INFO - Wrote refined draft: examples\problems\TS_01.초등학교_3학년_01.객관식\S3_초등_3_008672.refined_draft.md
+2026-05-31 21:02:17,969 - INFO - Prompt bundle written. Add --llm-output-file later to generate refined draft.
+2026-05-31 21:02:17,969 - INFO - Wrote prompt bundle: examples\problems\TS_01.초등학교_3학년_01.객관식\S3_초등_3_008673.refine_prompt.md
+2026-05-31 21:02:30,082 - INFO - HTTP Request: POST https://api.openai.com/v1/responses "HTTP/1.1 200 OK"
+2026-05-31 21:02:30,158 - INFO - Wrote refined draft: examples\problems\TS_01.초등학교_3학년_01.객관식\S3_초등_3_008673.refined_draft.md
+2026-05-31 21:03:04,195 - INFO - Prompt bundle written. Add --llm-output-file later to generate refined draft.
+2026-05-31 21:03:04,195 - INFO - Wrote prompt bundle: examples\problems\TS_01.초등학교_3학년_01.객관식\S3_초등_3_008674.refine_prompt.md
+2026-05-31 21:03:16,122 - INFO - HTTP Request: POST https://api.openai.com/v1/responses "HTTP/1.1 200 OK"
+2026-05-31 21:03:16,198 - INFO - Wrote refined draft: examples\problems\TS_01.초등학교_3학년_01.객관식\S3_초등_3_008674.refined_draft.md
+2026-05-31 21:03:44,243 - INFO - Prompt bundle written. Add --llm-output-file later to generate refined draft.
+2026-05-31 21:03:44,244 - INFO - Wrote prompt bundle: examples\problems\TS_01.초등학교_3학년_01.객관식\S3_초등_3_008675.refine_prompt.md
+2026-05-31 21:03:55,929 - INFO - HTTP Request: POST https://api.openai.com/v1/responses "HTTP/1.1 200 OK"
+2026-05-31 21:03:56,006 - INFO - Wrote refined draft: examples\problems\TS_01.초등학교_3학년_01.객관식\S3_초등_3_008675.refined_draft.md
+Traceback (most recent call last):
+  File "C:\projects\modu_math\tools\sync_semantic_solvable_answer.py", line 109, in <module>
+    raise SystemExit(main())
+  File "C:\projects\modu_math\tools\sync_semantic_solvable_answer.py", line 82, in main
+    semantic = compile_problem_template_to_semantic(problem_template, problem_type="diagram_problem")
+  File "C:\projects\modu_math\src\modu_math\dsl\compiler_to_semantic.py", line 22, in compile_problem_template_to_semantic
+    _assert_unique_ids(problem)
+  File "C:\projects\modu_math\src\modu_math\dsl\compiler_to_semantic.py", line 319, in _assert_unique_ids
+    consume(slot.id, "slots")
+  File "C:\projects\modu_math\src\modu_math\dsl\compiler_to_semantic.py", line 312, in consume
+    raise ValueError(f"Duplicate id '{node_id}' in {scope}")
+ValueError: Duplicate id 'slot.choice.3.red_arc' in slots
+2026-05-31 21:04:25,269 - INFO - Prompt bundle written. Add --llm-output-file later to generate refined draft.
+2026-05-31 21:04:25,269 - INFO - Wrote prompt bundle: examples\problems\TS_01.초등학교_3학년_01.객관식\S3_초등_3_008676.refine_prompt.md
+2026-05-31 21:04:36,673 - INFO - HTTP Request: POST https://api.openai.com/v1/responses "HTTP/1.1 200 OK"
+2026-05-31 21:04:36,747 - INFO - Wrote refined draft: examples\problems\TS_01.초등학교_3학년_01.객관식\S3_초등_3_008676.refined_draft.md
+2026-05-31 21:05:05,736 - INFO - Prompt bundle written. Add --llm-output-file later to generate refined draft.
+2026-05-31 21:05:05,738 - INFO - Wrote prompt bundle: examples\problems\TS_01.초등학교_3학년_01.객관식\S3_초등_3_008677.refine_prompt.md
+2026-05-31 21:05:15,722 - INFO - HTTP Request: POST https://api.openai.com/v1/responses "HTTP/1.1 200 OK"
+2026-05-31 21:05:15,797 - INFO - Wrote refined draft: examples\problems\TS_01.초등학교_3학년_01.객관식\S3_초등_3_008677.refined_draft.md
+2026-05-31 21:05:42,400 - INFO - Prompt bundle written. Add --llm-output-file later to generate refined draft.
+2026-05-31 21:05:42,402 - INFO - Wrote prompt bundle: examples\problems\TS_01.초등학교_3학년_01.객관식\S3_초등_3_008678.refine_prompt.md
+2026-05-31 21:05:52,394 - INFO - HTTP Request: POST https://api.openai.com/v1/responses "HTTP/1.1 200 OK"
+2026-05-31 21:05:52,469 - INFO - Wrote refined draft: examples\problems\TS_01.초등학교_3학년_01.객관식\S3_초등_3_008678.refined_draft.md
+2026-05-31 21:06:19,650 - INFO - Prompt bundle written. Add --llm-output-file later to generate refined draft.
+2026-05-31 21:06:19,651 - INFO - Wrote prompt bundle: examples\problems\TS_01.초등학교_3학년_01.객관식\S3_초등_3_008679.refine_prompt.md
+2026-05-31 21:06:33,356 - INFO - HTTP Request: POST https://api.openai.com/v1/responses "HTTP/1.1 200 OK"
+2026-05-31 21:06:33,440 - INFO - Wrote refined draft: examples\problems\TS_01.초등학교_3학년_01.객관식\S3_초등_3_008679.refined_draft.md
+Traceback (most recent call last):
+  File "C:\Users\user\AppData\Local\Programs\Python\Python310\lib\site-packages\httpx\_transports\default.py", line 101, in map_httpcore_exceptions
+    yield
+  File "C:\Users\user\AppData\Local\Programs\Python\Python310\lib\site-packages\httpx\_transports\default.py", line 250, in handle_request
+    resp = self._pool.handle_request(req)
+  File "C:\Users\user\AppData\Local\Programs\Python\Python310\lib\site-packages\httpcore\_sync\connection_pool.py", line 256, in handle_request
+    raise exc from None
+  File "C:\Users\user\AppData\Local\Programs\Python\Python310\lib\site-packages\httpcore\_sync\connection_pool.py", line 236, in handle_request
+    response = connection.handle_request(
+  File "C:\Users\user\AppData\Local\Programs\Python\Python310\lib\site-packages\httpcore\_sync\connection.py", line 101, in handle_request
+    raise exc
+  File "C:\Users\user\AppData\Local\Programs\Python\Python310\lib\site-packages\httpcore\_sync\connection.py", line 78, in handle_request
+    stream = self._connect(request)
+  File "C:\Users\user\AppData\Local\Programs\Python\Python310\lib\site-packages\httpcore\_sync\connection.py", line 124, in _connect
+    stream = self._network_backend.connect_tcp(**kwargs)
+  File "C:\Users\user\AppData\Local\Programs\Python\Python310\lib\site-packages\httpcore\_backends\sync.py", line 207, in connect_tcp
+    with map_exceptions(exc_map):
+  File "C:\Users\user\AppData\Local\Programs\Python\Python310\lib\contextlib.py", line 153, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "C:\Users\user\AppData\Local\Programs\Python\Python310\lib\site-packages\httpcore\_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+httpcore.ConnectError: [Errno 11001] getaddrinfo failed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\user\AppData\Local\Programs\Python\Python310\lib\site-packages\openai\_base_client.py", line 1037, in request
+    response = self._send_request(
+  File "C:\Users\user\AppData\Local\Programs\Python\Python310\lib\site-packages\openai\_client.py", line 440, in _send_request
+    return self._send_with_auth_retry(request, stream=stream, **kwargs)
+  File "C:\Users\user\AppData\Local\Programs\Python\Python310\lib\site-packages\openai\_client.py", line 418, in _send_with_auth_retry
+    response = super()._send_request(request, stream=stream, **kwargs)
+  File "C:\Users\user\AppData\Local\Programs\Python\Python310\lib\site-packages\openai\_base_client.py", line 964, in _send_request
+    return self._client.send(request, stream=stream, **kwargs)
+  File "C:\Users\user\AppData\Local\Programs\Python\Python310\lib\site-packages\httpx\_client.py", line 914, in send
+    response = self._send_handling_auth(
+  File "C:\Users\user\AppData\Local\Programs\Python\Python310\lib\site-packages\httpx\_client.py", line 942, in _send_handling_auth
+    response = self._send_handling_redirects(
+  File "C:\Users\user\AppData\Local\Programs\Python\Python310\lib\site-packages\httpx\_client.py", line 979, in _send_handling_redirects
+    response = self._send_single_request(request)
+  File "C:\Users\user\AppData\Local\Programs\Python\Python310\lib\site-packages\httpx\_client.py", line 1014, in _send_single_request
+    response = transport.handle_request(request)
+  File "C:\Users\user\AppData\Local\Programs\Python\Python310\lib\site-packages\httpx\_transports\default.py", line 249, in handle_request
+    with map_httpcore_exceptions():
+  File "C:\Users\user\AppData\Local\Programs\Python\Python310\lib\contextlib.py", line 153, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "C:\Users\user\AppData\Local\Programs\Python\Python310\lib\site-packages\httpx\_transports\default.py", line 118, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+httpx.ConnectError: [Errno 11001] getaddrinfo failed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\projects\modu_math\tools\generate_vision_draft.py", line 206, in <module>
+    raise SystemExit(main())
+  File "C:\projects\modu_math\tools\generate_vision_draft.py", line 178, in main
+    result = generate_vision_draft(
+  File "C:\projects\modu_math\tools\generate_vision_draft.py", line 136, in generate_vision_draft
+    draft_text = run_llm_or_load_output(
+  File "C:\projects\modu_math\tools\llm_client.py", line 148, in run_llm_or_load_output
+    output_text = call_llm_text_with_optional_image(
+  File "C:\projects\modu_math\tools\llm_client.py", line 109, in call_llm_text_with_optional_image
+    return _call_openai(
+  File "C:\projects\modu_math\tools\llm_client.py", line 192, in _call_openai
+    response = client.responses.create(
+  File "C:\Users\user\AppData\Local\Programs\Python\Python310\lib\site-packages\openai\resources\responses\responses.py", line 920, in create
+    return self._post(
+  File "C:\Users\user\AppData\Local\Programs\Python\Python310\lib\site-packages\openai\_base_client.py", line 1332, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+  File "C:\Users\user\AppData\Local\Programs\Python\Python310\lib\site-packages\openai\_base_client.py", line 1072, in request
+    raise APIConnectionError(request=request) from err
+openai.APIConnectionError: Connection error.
+2026-05-31 22:01:17,122 - INFO - Prompt bundle written. Add --llm-output-file later to generate refined draft.
+2026-05-31 22:01:17,123 - INFO - Wrote prompt bundle: examples\problems\TS_01.초등학교_3학년_01.객관식\S3_초등_3_008681.refine_prompt.md
+2026-05-31 22:01:28,713 - INFO - HTTP Request: POST https://api.openai.com/v1/responses "HTTP/1.1 200 OK"
+2026-05-31 22:01:28,781 - INFO - Wrote refined draft: examples\problems\TS_01.초등학교_3학년_01.객관식\S3_초등_3_008681.refined_draft.md
+2026-05-31 22:02:01,072 - INFO - Prompt bundle written. Add --llm-output-file later to generate refined draft.
+2026-05-31 22:02:01,073 - INFO - Wrote prompt bundle: examples\problems\TS_01.초등학교_3학년_01.객관식\S3_초등_3_008682.refine_prompt.md
+2026-05-31 22:02:14,180 - INFO - HTTP Request: POST https://api.openai.com/v1/responses "HTTP/1.1 200 OK"
+2026-05-31 22:02:14,257 - INFO - Wrote refined draft: examples\problems\TS_01.초등학교_3학년_01.객관식\S3_초등_3_008682.refined_draft.md
+2026-05-31 22:03:06,809 - INFO - Prompt bundle written. Add --llm-output-file later to generate refined draft.
+2026-05-31 22:03:06,810 - INFO - Wrote prompt bundle: examples\problems\TS_01.초등학교_3학년_01.객관식\S3_초등_3_008683.refine_prompt.md
+2026-05-31 22:03:19,186 - INFO - HTTP Request: POST https://api.openai.com/v1/responses "HTTP/1.1 200 OK"
+2026-05-31 22:03:19,264 - INFO - Wrote refined draft: examples\problems\TS_01.초등학교_3학년_01.객관식\S3_초등_3_008683.refined_draft.md
+2026-05-31 22:03:49,972 - INFO - Prompt bundle written. Add --llm-output-file later to generate refined draft.
+2026-05-31 22:03:49,972 - INFO - Wrote prompt bundle: examples\problems\TS_01.초등학교_3학년_01.객관식\S3_초등_3_008684.refine_prompt.md
+2026-05-31 22:04:02,113 - INFO - HTTP Request: POST https://api.openai.com/v1/responses "HTTP/1.1 200 OK"
+2026-05-31 22:04:02,189 - INFO - Wrote refined draft: examples\problems\TS_01.초등학교_3학년_01.객관식\S3_초등_3_008684.refined_draft.md

@@ -1,0 +1,73 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008631",
+  "problem_type": "multiple_choice_division",
+  "inputs": {
+    "total_ticks": 69,
+    "target_label": "몫",
+    "target_ticks": 3,
+    "target_count": 1,
+    "unit": ""
+  },
+  "plan": [
+    "69를 3으로 나눈 몫을 구한다.",
+    "보기 중 계산 결과와 같은 수를 찾는다."
+  ],
+  "given": [
+    {
+      "ref": "obj.dividend",
+      "value": 69
+    },
+    {
+      "ref": "obj.divisor",
+      "value": 3
+    },
+    {
+      "ref": "obj.options",
+      "value": [
+        21,
+        22,
+        23,
+        24,
+        25
+      ]
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "division_quotient"
+  },
+  "method": "division_value_selection",
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "69 ÷ 3",
+      "value": 23
+    },
+    {
+      "id": "step.2",
+      "expr": "보기에서 23 찾기",
+      "value": 3
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "23 × 3 = 69",
+      "expected": 69,
+      "actual": 69,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "division_quotient",
+      "description": "69 ÷ 3의 몫"
+    },
+    "value": 23,
+    "unit": ""
+  }
+}

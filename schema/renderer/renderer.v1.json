@@ -1,0 +1,59 @@
+{
+  "type": "object",
+  "properties": {
+    "problem_id": {
+      "type": "string"
+    },
+    "view_box": {
+      "type": "object",
+      "properties": {
+        "width": {
+          "type": "number"
+        },
+        "height": {
+          "type": "number"
+        },
+        "background": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "width",
+        "height"
+      ]
+    },
+    "elements": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "attributes": {
+            "type": "object"
+          },
+          "text": {
+            "type": "string"
+          },
+          "elements": {
+            "type": "array"
+          }
+        },
+        "required": [
+          "id",
+          "type",
+          "attributes"
+        ]
+      }
+    }
+  },
+  "required": [
+    "problem_id",
+    "view_box",
+    "elements"
+  ]
+}

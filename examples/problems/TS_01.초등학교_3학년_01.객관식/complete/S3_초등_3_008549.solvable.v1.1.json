@@ -1,0 +1,80 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008549",
+  "problem_type": "multiple_choice_comparison",
+  "inputs": {
+    "total_ticks": 2,
+    "target_label": "500보다 큰 식",
+    "target_ticks": 1,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.option1",
+      "value": "37 × 12"
+    },
+    {
+      "ref": "obj.option2",
+      "value": "25 × 21"
+    },
+    {
+      "ref": "obj.threshold",
+      "value": 500
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "selected_option"
+  },
+  "method": "compute_and_compare",
+  "plan": [
+    "각 식의 곱을 계산한다.",
+    "500과 비교한다.",
+    "500보다 큰 식을 선택한다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "37 × 12 = 444",
+      "value": 444
+    },
+    {
+      "id": "step.2",
+      "expr": "25 × 21 = 525",
+      "value": 525
+    },
+    {
+      "id": "step.3",
+      "expr": "444<500, 525>500",
+      "value": "25 × 21"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "444 < 500",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "id": "check.2",
+      "expr": "525 > 500",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "selected_option",
+      "description": "500보다 큰 계산 결과를 만드는 보기"
+    },
+    "value": "25 × 21",
+    "unit": ""
+  }
+}

@@ -1,0 +1,94 @@
+{
+  "problem_id": "S3_초등_3_008684",
+  "problem_type": "choice_geometry_circle",
+  "metadata": {
+    "title": "누름 못과 띠 종이",
+    "tags": [],
+    "question": "누름 못과 띠 종이를 이용하여 원을 그렸습니다. 그림을 보고 알맞은 말을 선택하세요.",
+    "required_layout_ids": [
+      "slot.left.frame",
+      "slot.left.circle",
+      "slot.left.ribbon",
+      "slot.left.pin",
+      "slot.left.hand",
+      "slot.left.pencil",
+      "slot.left.arrow1",
+      "slot.left.arrow2",
+      "slot.right.frame",
+      "slot.right.circle",
+      "slot.right.center",
+      "slot.right.cross_v",
+      "slot.right.cross_h",
+      "slot.right.p1",
+      "slot.right.p2",
+      "slot.right.p3",
+      "slot.right.p4",
+      "slot.choice.frame"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "같습니다, 다릅니다 중 알맞은 말을 고르는 문제"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.pin_point",
+        "type": "point",
+        "label": "누름 못이 꽂힌 점"
+      },
+      {
+        "id": "obj.circle_points",
+        "type": "set_of_points",
+        "label": "원 위에 찍은 4개의 점",
+        "count": 4
+      },
+      {
+        "id": "obj.circle",
+        "type": "circle"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.pin_point",
+          "obj.circle_points",
+          "obj.circle"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.equal_radii_like_distances"
+        ]
+      },
+      "plan": {
+        "method": "circle_distance_property",
+        "description": "원 위의 점들은 중심에서 같은 거리에 있다는 성질을 이용해 문장을 판단한다."
+      },
+      "execute": {
+        "expected_operations": [
+          "identify_center_like_point",
+          "compare_distances_to_points",
+          "select_matching_word"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "circle_property_check",
+          "choice_consistency_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "choice_word",
+      "description": "괄호 안에 들어갈 알맞은 말"
+    },
+    "value": 1,
+    "unit": ""
+  }
+}

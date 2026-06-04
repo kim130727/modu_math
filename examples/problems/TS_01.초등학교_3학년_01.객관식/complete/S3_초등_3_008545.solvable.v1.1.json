@@ -1,0 +1,84 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008545",
+  "problem_type": "비교_곱셈_선택",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "같은 계산 결과를 갖는 식",
+    "target_ticks": 0,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.view_expr",
+      "value": {
+        "expression": "789 × 2"
+      }
+    },
+    {
+      "ref": "obj.choice_1",
+      "value": {
+        "expression": "412 × 4"
+      }
+    },
+    {
+      "ref": "obj.choice_2",
+      "value": {
+        "expression": "526 × 3"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "selected_expression"
+  },
+  "method": "compare_calculated_results",
+  "plan": [
+    "보기의 곱셈 결과를 구한다.",
+    "각 선택지의 곱셈 결과를 구한다.",
+    "보기와 같은 결과를 가진 식을 찾는다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "789 × 2",
+      "value": 1578
+    },
+    {
+      "id": "step.2",
+      "expr": "412 × 4",
+      "value": 1648
+    },
+    {
+      "id": "step.3",
+      "expr": "526 × 3",
+      "value": 1578
+    },
+    {
+      "id": "step.4",
+      "expr": "보기와 같은 계산 결과를 가진 식 확인",
+      "value": "526 × 3"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "789 × 2 == 526 × 3",
+      "expected": 1578,
+      "actual": 1578,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "selected_expression",
+      "description": "보기와 계산 결과가 같은 식"
+    },
+    "value": "526 × 3",
+    "unit": ""
+  }
+}

@@ -1,0 +1,211 @@
+{
+  "problem_id": "S3_초등_3_008680",
+  "view_box": {
+    "width": 940.0,
+    "height": 343.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.q1.text",
+      "type": "text",
+      "attributes": {
+        "x": 10.0,
+        "y": 28.0,
+        "max_width": 812.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q1",
+      "refs": {
+        "layout_slot_id": "slot.q1"
+      },
+      "text": "□ 62. 원을 똑같이 둘로 나누는 선분을 찾아 기호를 선택하세요."
+    },
+    {
+      "id": "slot.circle.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 479.0,
+        "cy": 116.0,
+        "r": 68.0,
+        "stroke": "#222222",
+        "stroke-width": 1.8,
+        "fill": "none"
+      },
+      "source_ref": "slot.circle",
+      "refs": {
+        "layout_slot_id": "slot.circle"
+      }
+    },
+    {
+      "id": "slot.center.dot.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 479.0,
+        "cy": 116.0,
+        "r": 3.2,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#d61f9d"
+      },
+      "source_ref": "slot.center.dot",
+      "refs": {
+        "layout_slot_id": "slot.center.dot"
+      }
+    },
+    {
+      "id": "slot.seg.h.line",
+      "type": "line",
+      "attributes": {
+        "x1": 411.0,
+        "y1": 116.0,
+        "x2": 547.0,
+        "y2": 116.0,
+        "stroke": "#333333",
+        "stroke-width": 1.8
+      },
+      "source_ref": "slot.seg.h",
+      "refs": {
+        "layout_slot_id": "slot.seg.h"
+      }
+    },
+    {
+      "id": "slot.seg.v.line",
+      "type": "line",
+      "attributes": {
+        "x1": 479.0,
+        "y1": 116.0,
+        "x2": 479.0,
+        "y2": 184.0,
+        "stroke": "#333333",
+        "stroke-width": 1.8
+      },
+      "source_ref": "slot.seg.v",
+      "refs": {
+        "layout_slot_id": "slot.seg.v"
+      }
+    },
+    {
+      "id": "slot.label.center.text",
+      "type": "text",
+      "attributes": {
+        "x": 473.0,
+        "y": 108.0,
+        "max_width": 812.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 24
+      },
+      "source_ref": "slot.label.center",
+      "refs": {
+        "layout_slot_id": "slot.label.center"
+      },
+      "text": "ㅇ"
+    },
+    {
+      "id": "slot.label.left.text",
+      "type": "text",
+      "attributes": {
+        "x": 392.0,
+        "y": 124.0,
+        "max_width": 812.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 24
+      },
+      "source_ref": "slot.label.left",
+      "refs": {
+        "layout_slot_id": "slot.label.left"
+      },
+      "text": "ㄱ"
+    },
+    {
+      "id": "slot.label.right.text",
+      "type": "text",
+      "attributes": {
+        "x": 551.0,
+        "y": 124.0,
+        "max_width": 812.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 24
+      },
+      "source_ref": "slot.label.right",
+      "refs": {
+        "layout_slot_id": "slot.label.right"
+      },
+      "text": "ㄷ"
+    },
+    {
+      "id": "slot.label.bottom.text",
+      "type": "text",
+      "attributes": {
+        "x": 472.0,
+        "y": 198.0,
+        "max_width": 812.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 24
+      },
+      "source_ref": "slot.label.bottom",
+      "refs": {
+        "layout_slot_id": "slot.label.bottom"
+      },
+      "text": "ㄴ"
+    },
+    {
+      "id": "slot.choice.text",
+      "type": "text",
+      "attributes": {
+        "x": 86.0,
+        "y": 228.0,
+        "max_width": 812.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 40
+      },
+      "source_ref": "slot.choice",
+      "refs": {
+        "layout_slot_id": "slot.choice"
+      },
+      "text": "① 선분 ㅇㄱ      ② 선분 ㅇㄷ      ③ 선분 ㅇㄴ      ④ 선분 ㄱㄷ"
+    },
+    {
+      "id": "slot.answer.text",
+      "type": "text",
+      "attributes": {
+        "x": 10.0,
+        "y": 278.0,
+        "max_width": 812.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.answer",
+      "refs": {
+        "layout_slot_id": "slot.answer"
+      },
+      "text": "(정답) ④"
+    },
+    {
+      "id": "slot.explain.text",
+      "type": "text",
+      "attributes": {
+        "x": 10.0,
+        "y": 324.0,
+        "max_width": 812.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.explain",
+      "refs": {
+        "layout_slot_id": "slot.explain"
+      },
+      "text": "(해설) 선분 ㄱㄷ이 원을 똑같이 둘로 나누는 선분입니다."
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

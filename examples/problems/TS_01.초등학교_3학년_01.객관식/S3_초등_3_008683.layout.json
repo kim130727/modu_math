@@ -1,0 +1,564 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008683",
+  "title": "원을 그리는 방법",
+  "canvas": {
+    "width": 940,
+    "height": 900,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.box1",
+        "slot.diagram1.frame",
+        "slot.diagram1.circle",
+        "slot.diagram1.center",
+        "slot.box3",
+        "slot.diagram2.frame",
+        "slot.diagram2.circle",
+        "slot.diagram2.center",
+        "slot.diagram1.ray1",
+        "slot.diagram1.ray2",
+        "slot.diagram1.ray3",
+        "slot.diagram1.ray4",
+        "slot.diagram1.ray5",
+        "slot.diagram2.ray1",
+        "slot.diagram2.ray2",
+        "slot.diagram2.ray3",
+        "slot.diagram2.ray4",
+        "slot.diagram2.ray5",
+        "slot.q1",
+        "slot.q2",
+        "slot.box2",
+        "slot.box2_2",
+        "slot.diagram1.label1",
+        "slot.diagram1.label2",
+        "slot.diagram1.label3",
+        "slot.diagram1.label4",
+        "slot.diagram1.label5",
+        "slot.bubble1",
+        "slot.choice1",
+        "slot.choice2",
+        "slot.answer",
+        "slot.explain",
+        "slot.example",
+        "slot.diagram2.label1",
+        "slot.diagram2.label2",
+        "slot.diagram2.label3",
+        "slot.diagram2.label4",
+        "slot.diagram2.label5"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "☐ 71. 다음과 같은 방법으로 원을 그렸습니다. 그린 원을 보고 알맞은 말을 선",
+        "style_role": "question",
+        "x": 16.0,
+        "y": 28.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "택하세요.",
+        "style_role": "question",
+        "x": 16.0,
+        "y": 62.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.box1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 98.0,
+        "y": 82.0,
+        "width": 760.0,
+        "height": 118.0,
+        "fill": "#dcd7ef"
+      }
+    },
+    {
+      "id": "slot.box2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "① 빨간색 점에서 2 cm 떨어진 위치에 점을 찍습니다.",
+        "style_role": "question",
+        "x": 120.0,
+        "y": 123.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.box2_2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "② 찍은 점들을 이어 원을 그립니다.",
+        "style_role": "question",
+        "x": 120.0,
+        "y": 163.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.diagram1.frame",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 576.0,
+        "y": 210.0,
+        "width": 236.0,
+        "height": 240.0
+      }
+    },
+    {
+      "id": "slot.diagram1.circle",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 694.0,
+        "cy": 330.0,
+        "r": 118.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.diagram1.center",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 694.0,
+        "cy": 330.0,
+        "r": 4.0,
+        "fill": "#ff4db8"
+      }
+    },
+    {
+      "id": "slot.diagram1.ray1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 694.0,
+        "y1": 330.0,
+        "x2": 694.0,
+        "y2": 212.0,
+        "stroke": "#5dbbff",
+        "stroke_dasharray": "6 6"
+      }
+    },
+    {
+      "id": "slot.diagram1.ray2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 694.0,
+        "y1": 330.0,
+        "x2": 755.0,
+        "y2": 226.0,
+        "stroke": "#5dbbff",
+        "stroke_dasharray": "6 6"
+      }
+    },
+    {
+      "id": "slot.diagram1.ray3",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 694.0,
+        "y1": 330.0,
+        "x2": 794.0,
+        "y2": 270.0,
+        "stroke": "#5dbbff",
+        "stroke_dasharray": "6 6"
+      }
+    },
+    {
+      "id": "slot.diagram1.ray4",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 694.0,
+        "y1": 330.0,
+        "x2": 812.0,
+        "y2": 330.0,
+        "stroke": "#5dbbff",
+        "stroke_dasharray": "6 6"
+      }
+    },
+    {
+      "id": "slot.diagram1.ray5",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 694.0,
+        "y1": 330.0,
+        "x2": 796.0,
+        "y2": 388.0,
+        "stroke": "#9aa0a6",
+        "stroke_dasharray": "6 6"
+      }
+    },
+    {
+      "id": "slot.diagram1.label1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "2 cm",
+        "style_role": "question",
+        "x": 700.0,
+        "y": 246.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.diagram1.label2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "2 cm",
+        "style_role": "question",
+        "x": 653.0,
+        "y": 281.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.diagram1.label3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "2 cm",
+        "style_role": "question",
+        "x": 734.0,
+        "y": 286.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.diagram1.label4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "2 cm",
+        "style_role": "question",
+        "x": 748.0,
+        "y": 334.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.diagram1.label5",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "2 cm",
+        "style_role": "question",
+        "x": 742.0,
+        "y": 364.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.bubble1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "줄로 연결한 막대를\n돌려 그린 원과 비슷한\n원이 그려지는구나.",
+        "style_role": "question",
+        "x": 270.0,
+        "y": 275.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.box3",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 100.0,
+        "y": 458.0,
+        "width": 760.0,
+        "height": 116.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.choice1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "자를 이용하여 점을 더 ( 많이 , 적게 ) 찍은 다음, 점들을 이",
+        "style_role": "question",
+        "x": 120.0,
+        "y": 514.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "으면 원을 좀 더 정확하게 그릴 수 있습니다.",
+        "style_role": "question",
+        "x": 120.0,
+        "y": 556.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.answer",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "(정답) 많이",
+        "style_role": "question",
+        "x": 10.0,
+        "y": 612.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.explain",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "(해설)",
+        "style_role": "question",
+        "x": 10.0,
+        "y": 648.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.example",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "예)",
+        "style_role": "question",
+        "x": 34.0,
+        "y": 676.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.diagram2.frame",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 88.0,
+        "y": 658.0,
+        "width": 236.0,
+        "height": 236.0
+      }
+    },
+    {
+      "id": "slot.diagram2.circle",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 206.0,
+        "cy": 776.0,
+        "r": 118.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.diagram2.center",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 206.0,
+        "cy": 776.0,
+        "r": 4.0,
+        "fill": "#ff4db8"
+      }
+    },
+    {
+      "id": "slot.diagram2.ray1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 206.0,
+        "y1": 776.0,
+        "x2": 206.0,
+        "y2": 658.0,
+        "stroke": "#5dbbff",
+        "stroke_dasharray": "6 6"
+      }
+    },
+    {
+      "id": "slot.diagram2.ray2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 206.0,
+        "y1": 776.0,
+        "x2": 267.0,
+        "y2": 674.0,
+        "stroke": "#5dbbff",
+        "stroke_dasharray": "6 6"
+      }
+    },
+    {
+      "id": "slot.diagram2.ray3",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 206.0,
+        "y1": 776.0,
+        "x2": 308.0,
+        "y2": 718.0,
+        "stroke": "#5dbbff",
+        "stroke_dasharray": "6 6"
+      }
+    },
+    {
+      "id": "slot.diagram2.ray4",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 206.0,
+        "y1": 776.0,
+        "x2": 324.0,
+        "y2": 776.0,
+        "stroke": "#5dbbff",
+        "stroke_dasharray": "6 6"
+      }
+    },
+    {
+      "id": "slot.diagram2.ray5",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 206.0,
+        "y1": 776.0,
+        "x2": 308.0,
+        "y2": 836.0,
+        "stroke": "#9aa0a6",
+        "stroke_dasharray": "6 6"
+      }
+    },
+    {
+      "id": "slot.diagram2.label1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "2 cm",
+        "style_role": "question",
+        "x": 210.0,
+        "y": 694.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.diagram2.label2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "2 cm",
+        "style_role": "question",
+        "x": 152.0,
+        "y": 718.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.diagram2.label3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "2 cm",
+        "style_role": "question",
+        "x": 246.0,
+        "y": 724.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.diagram2.label4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "2 cm",
+        "style_role": "question",
+        "x": 252.0,
+        "y": 770.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.diagram2.label5",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "2 cm",
+        "style_role": "question",
+        "x": 248.0,
+        "y": 802.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.box1",
+    "slot.diagram1.frame",
+    "slot.diagram1.circle",
+    "slot.diagram1.center",
+    "slot.box3",
+    "slot.diagram2.frame",
+    "slot.diagram2.circle",
+    "slot.diagram2.center",
+    "slot.diagram1.ray1",
+    "slot.diagram1.ray2",
+    "slot.diagram1.ray3",
+    "slot.diagram1.ray4",
+    "slot.diagram1.ray5",
+    "slot.diagram2.ray1",
+    "slot.diagram2.ray2",
+    "slot.diagram2.ray3",
+    "slot.diagram2.ray4",
+    "slot.diagram2.ray5",
+    "slot.q1",
+    "slot.q2",
+    "slot.box2",
+    "slot.box2_2",
+    "slot.diagram1.label1",
+    "slot.diagram1.label2",
+    "slot.diagram1.label3",
+    "slot.diagram1.label4",
+    "slot.diagram1.label5",
+    "slot.bubble1",
+    "slot.choice1",
+    "slot.choice2",
+    "slot.answer",
+    "slot.explain",
+    "slot.example",
+    "slot.diagram2.label1",
+    "slot.diagram2.label2",
+    "slot.diagram2.label3",
+    "slot.diagram2.label4",
+    "slot.diagram2.label5"
+  ]
+}
