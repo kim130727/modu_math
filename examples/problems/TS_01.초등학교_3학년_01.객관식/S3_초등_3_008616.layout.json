@@ -16,17 +16,61 @@
       "slot_ids": [
         "slot.q.box",
         "slot.eq.box",
-        "slot.sp1",
-        "slot.sp3",
+        "slot.eq.blank1",
+        "slot.eq.blank2",
+        "slot.left.bubble",
+        "slot.left.tail",
+        "slot.mid.bubble",
+        "slot.mid.tail",
+        "slot.right.bubble",
+        "slot.right.tail",
+        "slot.left.person.body",
+        "slot.left.person.head",
+        "slot.left.person.hair.cap",
+        "slot.left.person.eye.left",
+        "slot.left.person.eye.right",
+        "slot.left.person.smile",
+        "slot.left.person.tail.left",
+        "slot.left.person.tail.right",
+        "slot.left.person.bow.left",
+        "slot.left.person.bow.right",
+        "slot.mid.person.body",
+        "slot.mid.person.head",
+        "slot.mid.person.hair.cap",
+        "slot.mid.person.eye.left",
+        "slot.mid.person.eye.right",
+        "slot.mid.person.smile",
+        "slot.mid.person.bow.left",
+        "slot.mid.person.bow.right",
+        "slot.right.person.body",
+        "slot.right.person.head",
+        "slot.right.person.hair.cap",
+        "slot.right.person.eye.left",
+        "slot.right.person.eye.right",
+        "slot.right.person.smile",
+        "slot.right.person.bow.left",
+        "slot.right.person.bow.right",
+        "slot.name.left.box",
+        "slot.name.mid.box",
+        "slot.name.right.box",
         "slot.q.num",
         "slot.q.text",
-        "slot.sp2",
-        "slot.balloon.left",
-        "slot.balloon.mid",
-        "slot.balloon.right",
-        "slot.name.left",
-        "slot.name.mid",
-        "slot.name.right"
+        "slot.eq.text",
+        "slot.eq.dots",
+        "slot.left.text",
+        "slot.mid.text",
+        "slot.right.text",
+        "slot.name.left.text",
+        "slot.name.mid.text",
+        "slot.name.right.text",
+        "slot.answer.label",
+        "slot.answer.value",
+        "slot.explain.label",
+        "slot.explain.eq",
+        "slot.explain.left",
+        "slot.explain.mid",
+        "slot.explain.right",
+        "slot.explain.final"
       ]
     }
   ],
@@ -37,9 +81,12 @@
       "prompt": "",
       "content": {
         "x": 18.0,
-        "y": 14.0,
-        "width": 14.0,
-        "height": 14.0
+        "y": 15.0,
+        "width": 12.0,
+        "height": 12.0,
+        "stroke": "#333333",
+        "stroke_width": 1.0,
+        "fill": "#ffffff"
       }
     },
     {
@@ -49,9 +96,9 @@
       "content": {
         "text": "86.",
         "style_role": "question",
-        "x": 42.0,
+        "x": 39.0,
         "y": 28.0,
-        "font_size": 28
+        "font_size": 25
       }
     },
     {
@@ -61,9 +108,9 @@
       "content": {
         "text": "문제를 바르게 설명한 사람이 누구인지 찾아 선택하세요.",
         "style_role": "question",
-        "x": 96.0,
+        "x": 80.0,
         "y": 28.0,
-        "font_size": 28
+        "font_size": 27
       }
     },
     {
@@ -71,116 +118,826 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 308.0,
-        "y": 44.0,
-        "width": 370.0,
-        "height": 78.0
+        "x": 296.0,
+        "y": 43.0,
+        "width": 378.0,
+        "height": 78.0,
+        "stroke": "#75bd3a",
+        "stroke_width": 2.0,
+        "fill": "#eef4d8"
       }
     },
     {
-      "id": "slot.sp1",
-      "kind": "rect",
-      "prompt": "",
-      "content": {
-        "x": 489.0,
-        "y": 72.0,
-        "width": 24.0,
-        "height": 24.0
-      }
-    },
-    {
-      "id": "slot.sp2",
+      "id": "slot.eq.text",
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "···",
+        "text": "99 ÷ 8 =",
         "style_role": "math",
-        "x": 518.0,
-        "y": 92.0,
-        "font_size": 30
+        "x": 392.0,
+        "y": 91.0,
+        "font_size": 25
       }
     },
     {
-      "id": "slot.sp3",
+      "id": "slot.eq.blank1",
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 562.0,
-        "y": 72.0,
-        "width": 24.0,
-        "height": 24.0
+        "x": 500.0,
+        "y": 70.0,
+        "width": 26.0,
+        "height": 26.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0,
+        "fill": "#f5f7e8"
       }
     },
     {
-      "id": "slot.balloon.left",
+      "id": "slot.eq.dots",
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "묶은\n10보다 작아.",
-        "style_role": "speech",
-        "x": 186.0,
-        "y": 214.0,
-        "font_size": 28
+        "text": "⋯",
+        "style_role": "math",
+        "x": 532.0,
+        "y": 91.0,
+        "font_size": 27
       }
     },
     {
-      "id": "slot.balloon.mid",
+      "id": "slot.eq.blank2",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 551.0,
+        "y": 70.0,
+        "width": 26.0,
+        "height": 26.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0,
+        "fill": "#f5f7e8"
+      }
+    },
+    {
+      "id": "slot.left.bubble",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 157.0 211 C 157.0 181.48, 190.82 170.0, 246 170.0 C 301.18 170.0, 335.0 181.48, 335.0 211 C 335.0 240.52, 301.18 252.0, 246 252.0 C 190.82 252.0, 157.0 240.52, 157.0 211 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#222222",
+        "stroke_width": 1.6,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.left.tail",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            237.0,
+            246.0
+          ],
+          [
+            257.0,
+            246.0
+          ],
+          [
+            247.0,
+            267.0
+          ]
+        ],
+        "stroke": "#222222",
+        "stroke_width": 1.4,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.left.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "몫은\n10보다 작아.",
+        "style_role": "speech",
+        "x": 246.0,
+        "y": 202.0,
+        "font_size": 24,
+        "anchor": "middle"
+      }
+    },
+    {
+      "id": "slot.mid.bubble",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 397.0 210 C 397.0 180.48, 430.82 169.0, 486 169.0 C 541.18 169.0, 575.0 180.48, 575.0 210 C 575.0 239.52, 541.18 251.0, 486 251.0 C 430.82 251.0, 397.0 239.52, 397.0 210 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#222222",
+        "stroke_width": 1.6,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.mid.tail",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            475.0,
+            245.0
+          ],
+          [
+            495.0,
+            245.0
+          ],
+          [
+            485.0,
+            265.0
+          ]
+        ],
+        "stroke": "#222222",
+        "stroke_width": 1.4,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.mid.text",
       "kind": "text",
       "prompt": "",
       "content": {
         "text": "나머지는 0으로\n나누어떨어져.",
         "style_role": "speech",
-        "x": 434.0,
-        "y": 214.0,
-        "font_size": 28
+        "x": 486.0,
+        "y": 201.0,
+        "font_size": 24,
+        "anchor": "middle"
       }
     },
     {
-      "id": "slot.balloon.right",
+      "id": "slot.right.bubble",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 634.0 211 C 634.0 181.48, 668.2 170.0, 724 170.0 C 779.8 170.0, 814.0 181.48, 814.0 211 C 814.0 240.52, 779.8 252.0, 724 252.0 C 668.2 252.0, 634.0 240.52, 634.0 211 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#222222",
+        "stroke_width": 1.6,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.right.tail",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            714.0,
+            246.0
+          ],
+          [
+            734.0,
+            246.0
+          ],
+          [
+            724.0,
+            267.0
+          ]
+        ],
+        "stroke": "#222222",
+        "stroke_width": 1.4,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.right.text",
       "kind": "text",
       "prompt": "",
       "content": {
         "text": "나머지는\n8보다 작아.",
         "style_role": "speech",
-        "x": 674.0,
-        "y": 214.0,
-        "font_size": 28
+        "x": 724.0,
+        "y": 202.0,
+        "font_size": 24,
+        "anchor": "middle"
       }
     },
     {
-      "id": "slot.name.left",
+      "id": "slot.left.person.body",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            217.0,
+            395.0
+          ],
+          [
+            273.0,
+            395.0
+          ],
+          [
+            263.0,
+            359.0
+          ],
+          [
+            227.0,
+            359.0
+          ]
+        ],
+        "stroke": "none",
+        "fill": "#f5ae12"
+      }
+    },
+    {
+      "id": "slot.left.person.head",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 245.0,
+        "cy": 322.0,
+        "r": 28.0,
+        "stroke": "none",
+        "fill": "#ffd9ad"
+      }
+    },
+    {
+      "id": "slot.left.person.hair.cap",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 217 321 C 219 292, 270 287, 274 321 C 255 305, 233 312, 217 321 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "none",
+        "fill": "#c77816"
+      }
+    },
+    {
+      "id": "slot.left.person.eye.left",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 235.0,
+        "cy": 326.0,
+        "r": 2.3,
+        "stroke": "none",
+        "fill": "#2b2118"
+      }
+    },
+    {
+      "id": "slot.left.person.eye.right",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 255.0,
+        "cy": 326.0,
+        "r": 2.3,
+        "stroke": "none",
+        "fill": "#2b2118"
+      }
+    },
+    {
+      "id": "slot.left.person.smile",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 238 338 Q 245 344 252 338",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#b86e39",
+        "stroke_width": 1.3,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.left.person.tail.left",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 218 319 C 193 323, 207 364, 195 370",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#c77816",
+        "stroke_width": 7.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.left.person.tail.right",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 272 319 C 297 323, 283 364, 295 370",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#c77816",
+        "stroke_width": 7.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.left.person.bow.left",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            238.0,
+            365.0
+          ],
+          [
+            219.0,
+            357.0
+          ],
+          [
+            231.0,
+            378.0
+          ]
+        ],
+        "stroke": "none",
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.left.person.bow.right",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            252.0,
+            365.0
+          ],
+          [
+            271.0,
+            357.0
+          ],
+          [
+            259.0,
+            378.0
+          ]
+        ],
+        "stroke": "none",
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.mid.person.body",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            458.0,
+            394.0
+          ],
+          [
+            514.0,
+            394.0
+          ],
+          [
+            504.0,
+            358.0
+          ],
+          [
+            468.0,
+            358.0
+          ]
+        ],
+        "stroke": "none",
+        "fill": "#f5ae12"
+      }
+    },
+    {
+      "id": "slot.mid.person.head",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 486.0,
+        "cy": 321.0,
+        "r": 28.0,
+        "stroke": "none",
+        "fill": "#ffd9ad"
+      }
+    },
+    {
+      "id": "slot.mid.person.hair.cap",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 458 320 C 460 291, 511 286, 515 320 C 496 304, 474 311, 458 320 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "none",
+        "fill": "#4c3a25"
+      }
+    },
+    {
+      "id": "slot.mid.person.eye.left",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 476.0,
+        "cy": 325.0,
+        "r": 2.3,
+        "stroke": "none",
+        "fill": "#2b2118"
+      }
+    },
+    {
+      "id": "slot.mid.person.eye.right",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 496.0,
+        "cy": 325.0,
+        "r": 2.3,
+        "stroke": "none",
+        "fill": "#2b2118"
+      }
+    },
+    {
+      "id": "slot.mid.person.smile",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 479 337 Q 486 343 493 337",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#b86e39",
+        "stroke_width": 1.3,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.mid.person.bow.left",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            479.0,
+            364.0
+          ],
+          [
+            460.0,
+            356.0
+          ],
+          [
+            472.0,
+            377.0
+          ]
+        ],
+        "stroke": "none",
+        "fill": "#5da6df"
+      }
+    },
+    {
+      "id": "slot.mid.person.bow.right",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            493.0,
+            364.0
+          ],
+          [
+            512.0,
+            356.0
+          ],
+          [
+            500.0,
+            377.0
+          ]
+        ],
+        "stroke": "none",
+        "fill": "#5da6df"
+      }
+    },
+    {
+      "id": "slot.right.person.body",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            696.0,
+            395.0
+          ],
+          [
+            752.0,
+            395.0
+          ],
+          [
+            742.0,
+            359.0
+          ],
+          [
+            706.0,
+            359.0
+          ]
+        ],
+        "stroke": "none",
+        "fill": "#c9648f"
+      }
+    },
+    {
+      "id": "slot.right.person.head",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 724.0,
+        "cy": 322.0,
+        "r": 28.0,
+        "stroke": "none",
+        "fill": "#ffd9ad"
+      }
+    },
+    {
+      "id": "slot.right.person.hair.cap",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 696 321 C 698 292, 749 287, 753 321 C 734 305, 712 312, 696 321 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "none",
+        "fill": "#9d4136"
+      }
+    },
+    {
+      "id": "slot.right.person.eye.left",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 714.0,
+        "cy": 326.0,
+        "r": 2.3,
+        "stroke": "none",
+        "fill": "#2b2118"
+      }
+    },
+    {
+      "id": "slot.right.person.eye.right",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 734.0,
+        "cy": 326.0,
+        "r": 2.3,
+        "stroke": "none",
+        "fill": "#2b2118"
+      }
+    },
+    {
+      "id": "slot.right.person.smile",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 717 338 Q 724 344 731 338",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#b86e39",
+        "stroke_width": 1.3,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.right.person.bow.left",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            717.0,
+            365.0
+          ],
+          [
+            698.0,
+            357.0
+          ],
+          [
+            710.0,
+            378.0
+          ]
+        ],
+        "stroke": "none",
+        "fill": "#e33f83"
+      }
+    },
+    {
+      "id": "slot.right.person.bow.right",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            731.0,
+            365.0
+          ],
+          [
+            750.0,
+            357.0
+          ],
+          [
+            738.0,
+            378.0
+          ]
+        ],
+        "stroke": "none",
+        "fill": "#e33f83"
+      }
+    },
+    {
+      "id": "slot.name.left.box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 210.0,
+        "y": 383.0,
+        "width": 71.0,
+        "height": 36.0,
+        "stroke": "#6fcf83",
+        "stroke_width": 2.0,
+        "rx": 9.0,
+        "ry": 9.0,
+        "fill": "#e9f7dd"
+      }
+    },
+    {
+      "id": "slot.name.left.text",
       "kind": "text",
       "prompt": "",
       "content": {
         "text": "근희",
         "style_role": "label",
-        "x": 228.0,
-        "y": 402.0,
-        "font_size": 28
+        "x": 245.0,
+        "y": 409.0,
+        "font_size": 25,
+        "anchor": "middle"
       }
     },
     {
-      "id": "slot.name.mid",
+      "id": "slot.name.mid.box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 450.0,
+        "y": 383.0,
+        "width": 72.0,
+        "height": 36.0,
+        "stroke": "#6fcf83",
+        "stroke_width": 2.0,
+        "rx": 9.0,
+        "ry": 9.0,
+        "fill": "#e9f7dd"
+      }
+    },
+    {
+      "id": "slot.name.mid.text",
       "kind": "text",
       "prompt": "",
       "content": {
         "text": "영표",
         "style_role": "label",
-        "x": 474.0,
-        "y": 402.0,
-        "font_size": 28
+        "x": 486.0,
+        "y": 409.0,
+        "font_size": 25,
+        "anchor": "middle"
       }
     },
     {
-      "id": "slot.name.right",
+      "id": "slot.name.right.box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 689.0,
+        "y": 383.0,
+        "width": 70.0,
+        "height": 36.0,
+        "stroke": "#6fcf83",
+        "stroke_width": 2.0,
+        "rx": 9.0,
+        "ry": 9.0,
+        "fill": "#e9f7dd"
+      }
+    },
+    {
+      "id": "slot.name.right.text",
       "kind": "text",
       "prompt": "",
       "content": {
         "text": "슬기",
         "style_role": "label",
-        "x": 710.0,
-        "y": 402.0,
-        "font_size": 28
+        "x": 724.0,
+        "y": 409.0,
+        "font_size": 25,
+        "anchor": "middle"
+      }
+    },
+    {
+      "id": "slot.answer.label",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "(정답)",
+        "style_role": "body",
+        "x": 18.0,
+        "y": 457.0,
+        "font_size": 17
+      }
+    },
+    {
+      "id": "slot.answer.value",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "슬기",
+        "style_role": "body",
+        "x": 63.0,
+        "y": 457.0,
+        "font_size": 22
+      }
+    },
+    {
+      "id": "slot.explain.label",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "(해설)",
+        "style_role": "body",
+        "x": 18.0,
+        "y": 506.0,
+        "font_size": 17
+      }
+    },
+    {
+      "id": "slot.explain.eq",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "99 ÷ 8 = 12⋯3",
+        "style_role": "math",
+        "x": 63.0,
+        "y": 506.0,
+        "font_size": 23
+      }
+    },
+    {
+      "id": "slot.explain.left",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "근희: 몫은 12이므로 10보다 큽니다.",
+        "style_role": "body",
+        "x": 37.0,
+        "y": 540.0,
+        "font_size": 22
+      }
+    },
+    {
+      "id": "slot.explain.mid",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "영표: 나머지는 3이므로 나누어떨어지지 않습니다.",
+        "style_role": "body",
+        "x": 37.0,
+        "y": 573.0,
+        "font_size": 22
+      }
+    },
+    {
+      "id": "slot.explain.right",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "슬기: 나머지는 3이므로 8보다 작습니다.",
+        "style_role": "body",
+        "x": 37.0,
+        "y": 607.0,
+        "font_size": 22
+      }
+    },
+    {
+      "id": "slot.explain.final",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "따라서 문제를 바르게 설명한 사람은 슬기입니다.",
+        "style_role": "body",
+        "x": 37.0,
+        "y": 641.0,
+        "font_size": 22
       }
     }
   ],
@@ -191,16 +948,60 @@
     "region.stem",
     "slot.q.box",
     "slot.eq.box",
-    "slot.sp1",
-    "slot.sp3",
+    "slot.eq.blank1",
+    "slot.eq.blank2",
+    "slot.left.bubble",
+    "slot.left.tail",
+    "slot.mid.bubble",
+    "slot.mid.tail",
+    "slot.right.bubble",
+    "slot.right.tail",
+    "slot.left.person.body",
+    "slot.left.person.head",
+    "slot.left.person.hair.cap",
+    "slot.left.person.eye.left",
+    "slot.left.person.eye.right",
+    "slot.left.person.smile",
+    "slot.left.person.tail.left",
+    "slot.left.person.tail.right",
+    "slot.left.person.bow.left",
+    "slot.left.person.bow.right",
+    "slot.mid.person.body",
+    "slot.mid.person.head",
+    "slot.mid.person.hair.cap",
+    "slot.mid.person.eye.left",
+    "slot.mid.person.eye.right",
+    "slot.mid.person.smile",
+    "slot.mid.person.bow.left",
+    "slot.mid.person.bow.right",
+    "slot.right.person.body",
+    "slot.right.person.head",
+    "slot.right.person.hair.cap",
+    "slot.right.person.eye.left",
+    "slot.right.person.eye.right",
+    "slot.right.person.smile",
+    "slot.right.person.bow.left",
+    "slot.right.person.bow.right",
+    "slot.name.left.box",
+    "slot.name.mid.box",
+    "slot.name.right.box",
     "slot.q.num",
     "slot.q.text",
-    "slot.sp2",
-    "slot.balloon.left",
-    "slot.balloon.mid",
-    "slot.balloon.right",
-    "slot.name.left",
-    "slot.name.mid",
-    "slot.name.right"
+    "slot.eq.text",
+    "slot.eq.dots",
+    "slot.left.text",
+    "slot.mid.text",
+    "slot.right.text",
+    "slot.name.left.text",
+    "slot.name.mid.text",
+    "slot.name.right.text",
+    "slot.answer.label",
+    "slot.answer.value",
+    "slot.explain.label",
+    "slot.explain.eq",
+    "slot.explain.left",
+    "slot.explain.mid",
+    "slot.explain.right",
+    "slot.explain.final"
   ]
 }
