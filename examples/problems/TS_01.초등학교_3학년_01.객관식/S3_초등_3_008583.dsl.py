@@ -13,7 +13,7 @@ def build_problem_template() -> ProblemTemplate:
                 id="region.stem",
                 role="stem",
                 flow="absolute",
-                slot_ids=("slot.icon", "slot.qnum", "slot.qtext"),
+                slot_ids=("slot.qtext",),
             ),
             Region(
                 id="region.choices",
@@ -33,9 +33,6 @@ def build_problem_template() -> ProblemTemplate:
                 role="supporting",
                 flow="absolute",
                 slot_ids=(
-                    "slot.answer",
-                    "slot.solution",
-                    "slot.solution.final",
                     "slot.t10",
                     "slot.t18",
                     "slot.t20",
@@ -45,88 +42,35 @@ def build_problem_template() -> ProblemTemplate:
             ),
         ),
         slots=(
-            RectSlot(id="slot.icon", prompt="", x=5.0, y=18.0, width=12.0, height=12.0),
-            TextSlot(
-                id="slot.qnum",
-                prompt="",
-                text="50.",
-                style_role="question",
-                x=28.0,
-                y=29.0,
-                font_size=28,
-            ),
             TextSlot(
                 id="slot.qtext",
                 prompt="",
-                text="몫이 가장 큰 것을 선택하세요.",
-                style_role="question",
-                x=80.0,
-                y=29.0,
-                font_size=28,
-            ),
+                text = '몫이 가장 큰 것을 선택하세요.', style_role="question",
+                x = 75, y = 40, font_size = 30),
             RectSlot(
-                id="slot.choice.1", prompt="", x=114.0, y=49.0, width=186.0, height=68.0
+                id="slot.choice.1", prompt="", x = 105, y = 60, width = 185, height = 70, stroke="#0000D8", stroke_width=2.0, fill="none"
             ),
             TextSlot(
                 id="slot.choice.1.text",
                 prompt="",
-                text="70 ÷ 7",
-                style_role="choice",
-                x=183.0,
-                y=93.0,
-                font_size=28,
-            ),
+                text = '70 ÷ 7', style_role="choice",
+                x = 150, y = 105, font_size = 30),
             RectSlot(
-                id="slot.choice.2", prompt="", x=357.0, y=49.0, width=186.0, height=68.0
+                id="slot.choice.2", prompt="", x = 350, y = 60, width = 185, height = 70, stroke="#D8A100", stroke_width=2.0, fill="none"
             ),
             TextSlot(
                 id="slot.choice.2.text",
                 prompt="",
-                text="90 ÷ 5",
-                style_role="choice",
-                x=425.0,
-                y=93.0,
-                font_size=28,
-            ),
+                text = '90 ÷ 5', style_role="choice",
+                x = 395, y = 105, font_size = 30),
             RectSlot(
-                id="slot.choice.3", prompt="", x=604.0, y=49.0, width=186.0, height=68.0
+                id="slot.choice.3", prompt="", x = 595, y = 60, width = 185, height = 70, stroke="#00D807", stroke_width=2.0, fill="none"
             ),
             TextSlot(
                 id="slot.choice.3.text",
                 prompt="",
-                text="60 ÷ 3",
-                style_role="choice",
-                x=672.0,
-                y=93.0,
-                font_size=28,
-            ),
-            TextSlot(
-                id="slot.answer",
-                prompt="",
-                text="(정답) 60 ÷ 3",
-                style_role="body",
-                x=96.0,
-                y=165.0,
-                font_size=22,
-            ),
-            TextSlot(
-                id="slot.solution",
-                prompt="",
-                text="(해설) 70 ÷ 7 = 10, 90 ÷ 5 = 18, 60 ÷ 3 = 20",
-                style_role="body",
-                x=96.0,
-                y=194.0,
-                font_size=20,
-            ),
-            TextSlot(
-                id="slot.solution.final",
-                prompt="",
-                text="따라서 10<18<20 이므로 몫이 가장 큰 것은 60 ÷ 3 입니다.",
-                style_role="body",
-                x=96.0,
-                y=220.0,
-                font_size=20,
-            ),
+                text = '60 ÷ 3', style_role="choice",
+                x = 640, y = 105, font_size = 30),
             TextSlot(
                 id="slot.t10",
                 prompt="",

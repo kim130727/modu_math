@@ -1,5 +1,5 @@
-﻿from __future__ import annotations
-from modu_math.dsl import Canvas, CircleSlot, LineSlot, ProblemTemplate, RectSlot, Region, TextSlot
+from __future__ import annotations
+from modu_math.dsl import Canvas, ProblemTemplate, RectSlot, Region, TextSlot, character_body_slot_ids, character_body_slots, character_hand_slot_ids, character_hand_slots
 
 
 def build_problem_template() -> ProblemTemplate:
@@ -8,30 +8,49 @@ def build_problem_template() -> ProblemTemplate:
         title="계산 결과가 더 큰 사람의 이름을 선택해 보세요.",
         canvas=Canvas(width=766.0, height=396.0, coordinate_mode="logical"),
         regions=(
-            Region(id="region.header", role="stem", flow="absolute", slot_ids=("slot.q_num", "slot.q_text")),
-            Region(id="region.left", role="content", flow="absolute", slot_ids=("slot.name_left", "slot.card_left", "slot.card_left_text", "slot.face_left.head", "slot.face_left.body", "slot.face_left.eye1", "slot.face_left.eye2", "slot.face_left.mouth")),
-            Region(id="region.right", role="content", flow="absolute", slot_ids=("slot.name_right", "slot.card_right", "slot.card_right_text", "slot.face_right.head", "slot.face_right.body", "slot.face_right.eye1", "slot.face_right.eye2", "slot.face_right.mouth")),
+            Region(id="region.header", role="stem", flow="absolute", slot_ids=("slot.q_text",)),
+            Region(
+                id="region.left",
+                role="content",
+                flow="absolute",
+                slot_ids=(
+                    *character_body_slot_ids("slot.person_left"),
+                    "slot.name_left_box",
+                    "slot.name_left",
+                    "slot.card_left",
+                    *character_hand_slot_ids("slot.person_left"),
+                    "slot.card_left_text",
+                ),
+            ),
+            Region(
+                id="region.right",
+                role="content",
+                flow="absolute",
+                slot_ids=(
+                    *character_body_slot_ids("slot.person_right", glasses=True),
+                    "slot.name_right_box",
+                    "slot.name_right",
+                    "slot.card_right",
+                    *character_hand_slot_ids("slot.person_right"),
+                    "slot.card_right_text",
+                ),
+            ),
         ),
         slots=(
-            TextSlot(id="slot.q_num", prompt="", text="48.", style_role="question", x=12.0, y=37.0, font_size=28),
             TextSlot(id="slot.q_text", prompt="", text="계산 결과가 더 큰 사람의 이름을 선택해 보세요.", style_role="question", x=60.0, y=37.0, font_size=28),
-            CircleSlot(id="slot.face_left.head", prompt="", cx=230.0, cy=88.0, r=20.0, fill="#F3C0AD"),
-            RectSlot(id="slot.face_left.body", prompt="", x=220.0, y=102.0, width=20.0, height=24.0, rx=8.0, ry=8.0, fill="#D7A0D7", stroke="#D7A0D7"),
-            CircleSlot(id="slot.face_left.eye1", prompt="", cx=225.0, cy=85.0, r=2.0, fill="#222222"),
-            CircleSlot(id="slot.face_left.eye2", prompt="", cx=235.0, cy=85.0, r=2.0, fill="#222222"),
-            LineSlot(id="slot.face_left.mouth", prompt="", x1=225.0, y1=92.0, x2=235.0, y2=92.0, stroke="#C36A6A", stroke_dasharray=""),
-            TextSlot(id="slot.name_left", prompt="", text="진수", style_role="label", x=200.0, y=126.0, font_size=28),
-            RectSlot(id="slot.card_left", prompt="", x=170.0, y=140.0, width=129.0, height=64.0, fill="#F6C344"),
-            TextSlot(id="slot.card_left_text", prompt="", text="63 × 12", style_role="math", x=180.0, y=180.0, font_size=28),
+            *character_body_slots("slot.person_left", cx=367, head_cy=97, hair="#4b1f16", shirt="#d28bc8"),
+            RectSlot(id="slot.name_left_box", prompt="", x = 207, y = 116, width = 70, height = 38, rx=8, ry=8, stroke="#b8c7dc", stroke_width=1.8, fill="#ffffff"),
+            TextSlot(id="slot.name_left", prompt="", text = '진수', style_role="label", x = 222, y = 143, font_size = 25),
+            RectSlot(id="slot.card_left", prompt="", x = 306, y = 136, width = 130, height = 59, fill="#F6C344"),
+            *character_hand_slots("slot.person_left", card_x=306, card_y=136, card_width=130),
+            TextSlot(id="slot.card_left_text", prompt="", text = '63 × 12', style_role="math", x = 330, y = 171, font_size = 25),
 
-            CircleSlot(id="slot.face_right.head", prompt="", cx=430.0, cy=88.0, r=20.0, fill="#F3C0AD"),
-            RectSlot(id="slot.face_right.body", prompt="", x=420.0, y=102.0, width=20.0, height=24.0, rx=8.0, ry=8.0, fill="#8ED7E6", stroke="#8ED7E6"),
-            CircleSlot(id="slot.face_right.eye1", prompt="", cx=425.0, cy=85.0, r=2.0, fill="#222222"),
-            CircleSlot(id="slot.face_right.eye2", prompt="", cx=435.0, cy=85.0, r=2.0, fill="#222222"),
-            LineSlot(id="slot.face_right.mouth", prompt="", x1=425.0, y1=92.0, x2=435.0, y2=92.0, stroke="#C36A6A", stroke_dasharray=""),
-            TextSlot(id="slot.name_right", prompt="", text="수호", style_role="label", x=400.0, y=126.0, font_size=28),
-            RectSlot(id="slot.card_right", prompt="", x=365.0, y=140.0, width=129.0, height=64.0, fill="#F6C344"),
-            TextSlot(id="slot.card_right_text", prompt="", text="24 × 31", style_role="math", x=380.0, y=180.0, font_size=28),
+            *character_body_slots("slot.person_right", cx=582, head_cy=97, hair="#1d1714", shirt="#e85d50", glasses=True),
+            RectSlot(id="slot.name_right_box", prompt="", x = 676, y = 112, width = 72, height = 38, rx=8, ry=8, stroke="#b8c7dc", stroke_width=1.8, fill="#ffffff"),
+            TextSlot(id="slot.name_right", prompt="", text = '수호', style_role="label", x = 690, y = 139, font_size = 25),
+            RectSlot(id="slot.card_right", prompt="", x = 522, y = 136, width = 130, height = 59, fill="#F6C344"),
+            *character_hand_slots("slot.person_right", card_x=522, card_y=136, card_width=130),
+            TextSlot(id="slot.card_right_text", prompt="", text = '24 × 31', style_role="math", x = 545, y = 171, font_size = 25),
         ),
         diagrams=(), groups=(), constraints=(), tags=("초등", "수학", "곱셈", "비교", "선택형"),
     )

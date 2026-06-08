@@ -1,5 +1,5 @@
 {
-  "problem_id": "S3_??_3_008577",
+  "problem_id": "S3_초등_3_008576",
   "view_box": {
     "width": 900.0,
     "height": 420.0,
@@ -7,31 +7,14 @@
   },
   "elements": [
     {
-      "id": "slot.choice.box.rect",
-      "type": "rect",
-      "attributes": {
-        "x": 513.0,
-        "y": 63.0,
-        "width": 150.0,
-        "height": 219.0,
-        "fill": "none",
-        "stroke": "#111111",
-        "stroke-width": 1.5
-      },
-      "source_ref": "slot.choice.box",
-      "refs": {
-        "layout_slot_id": "slot.choice.box"
-      }
-    },
-    {
       "id": "slot.hl1.rect",
       "type": "rect",
       "attributes": {
-        "x": 367.0,
-        "y": 122.0,
-        "width": 30.0,
-        "height": 30.0,
-        "fill": "#c8d8cc",
+        "x": 550.0,
+        "y": 100.0,
+        "width": 40.0,
+        "height": 40.0,
+        "fill": "#efc8b9",
         "stroke": "#111111",
         "stroke-width": 1.5
       },
@@ -44,11 +27,11 @@
       "id": "slot.hl2.rect",
       "type": "rect",
       "attributes": {
-        "x": 396.0,
-        "y": 162.0,
-        "width": 34.0,
+        "x": 510.0,
+        "y": 60.0,
+        "width": 40.0,
         "height": 40.0,
-        "fill": "#c8d8cc",
+        "fill": "#efc8b9",
         "stroke": "#111111",
         "stroke-width": 1.5
       },
@@ -58,48 +41,133 @@
       }
     },
     {
-      "id": "slot.l.line",
-      "type": "line",
+      "id": "slot.choice.box.rect",
+      "type": "rect",
       "attributes": {
-        "x1": 300.0,
-        "y1": 202.0,
-        "x2": 436.0,
-        "y2": 202.0,
-        "stroke": "#111111",
+        "x": 40.0,
+        "y": 335.0,
+        "width": 835.0,
+        "height": 75.0,
+        "fill": "none",
+        "stroke": "#D8A100",
         "stroke-width": 2.0
       },
-      "source_ref": "slot.l",
+      "source_ref": "slot.choice.box",
       "refs": {
-        "layout_slot_id": "slot.l"
+        "layout_slot_id": "slot.choice.box"
       }
     },
     {
-      "id": "slot.q.no.text",
-      "type": "text",
+      "id": "slot.v1.line",
+      "type": "line",
       "attributes": {
-        "x": 12.0,
-        "y": 30.0,
-        "max_width": 772.0,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 38
+        "x1": 425.0,
+        "y1": 60.0,
+        "x2": 425.0,
+        "y2": 250.0,
+        "stroke": "#9AA0A6",
+        "stroke-width": 1.2,
+        "stroke-dasharray": "5 3"
       },
-      "source_ref": "slot.q.no",
+      "source_ref": "slot.v1",
       "refs": {
-        "layout_slot_id": "slot.q.no"
+        "layout_slot_id": "slot.v1"
+      }
+    },
+    {
+      "id": "slot.v2.line",
+      "type": "line",
+      "attributes": {
+        "x1": 465.0,
+        "y1": 60.0,
+        "x2": 465.0,
+        "y2": 250.0,
+        "stroke": "#9AA0A6",
+        "stroke-width": 1.2,
+        "stroke-dasharray": "5 3"
       },
-      "text": "43."
+      "source_ref": "slot.v2",
+      "refs": {
+        "layout_slot_id": "slot.v2"
+      }
+    },
+    {
+      "id": "slot.v3.line",
+      "type": "line",
+      "attributes": {
+        "x1": 505.0,
+        "y1": 60.0,
+        "x2": 505.0,
+        "y2": 250.0,
+        "stroke": "#9AA0A6",
+        "stroke-width": 1.2,
+        "stroke-dasharray": "5 3"
+      },
+      "source_ref": "slot.v3",
+      "refs": {
+        "layout_slot_id": "slot.v3"
+      }
+    },
+    {
+      "id": "slot.v4.line",
+      "type": "line",
+      "attributes": {
+        "x1": 545.0,
+        "y1": 60.0,
+        "x2": 545.0,
+        "y2": 250.0,
+        "stroke": "#9AA0A6",
+        "stroke-width": 1.2,
+        "stroke-dasharray": "5 3"
+      },
+      "source_ref": "slot.v4",
+      "refs": {
+        "layout_slot_id": "slot.v4"
+      }
+    },
+    {
+      "id": "slot.v5.line",
+      "type": "line",
+      "attributes": {
+        "x1": 585.0,
+        "y1": 60.0,
+        "x2": 585.0,
+        "y2": 250.0,
+        "stroke": "#9AA0A6",
+        "stroke-width": 1.2,
+        "stroke-dasharray": "5 3"
+      },
+      "source_ref": "slot.v5",
+      "refs": {
+        "layout_slot_id": "slot.v5"
+      }
+    },
+    {
+      "id": "slot.bar1.line",
+      "type": "line",
+      "attributes": {
+        "x1": 415.0,
+        "y1": 140.0,
+        "x2": 585.0,
+        "y2": 140.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.bar1",
+      "refs": {
+        "layout_slot_id": "slot.bar1"
+      }
     },
     {
       "id": "slot.q.text.text",
       "type": "text",
       "attributes": {
-        "x": 48.0,
-        "y": 30.0,
+        "x": 40.0,
+        "y": 40.0,
         "max_width": 772.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 44
+        "font-size": 36
       },
       "source_ref": "slot.q.text",
       "refs": {
@@ -108,87 +176,53 @@
       "text": "색칠된 부분은 실제 어떤 수의 곱인지를 찾아 선택하세요."
     },
     {
-      "id": "slot.t2.text",
+      "id": "slot.top2.text",
       "type": "text",
       "attributes": {
-        "x": 344.0,
-        "y": 154.0,
+        "x": 480.0,
+        "y": 95.0,
         "max_width": 772.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 44
+        "font-size": 45
       },
-      "source_ref": "slot.t2",
+      "source_ref": "slot.top2",
       "refs": {
-        "layout_slot_id": "slot.t2"
+        "layout_slot_id": "slot.top2"
       },
-      "text": "5"
+      "text": "5 9 3"
     },
     {
-      "id": "slot.t1.text",
+      "id": "slot.mulx.text",
       "type": "text",
       "attributes": {
-        "x": 384.0,
-        "y": 154.0,
+        "x": 425.0,
+        "y": 135.0,
         "max_width": 772.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 44
       },
-      "source_ref": "slot.t1",
+      "source_ref": "slot.mulx",
       "refs": {
-        "layout_slot_id": "slot.t1"
+        "layout_slot_id": "slot.mulx"
       },
-      "text": "9"
+      "text": "×"
     },
     {
-      "id": "slot.t0.text",
+      "id": "slot.mul0.text",
       "type": "text",
       "attributes": {
-        "x": 424.0,
-        "y": 154.0,
+        "x": 555.0,
+        "y": 135.0,
         "max_width": 772.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 44
       },
-      "source_ref": "slot.t0",
+      "source_ref": "slot.mul0",
       "refs": {
-        "layout_slot_id": "slot.t0"
-      },
-      "text": "3"
-    },
-    {
-      "id": "slot.mx.text",
-      "type": "text",
-      "attributes": {
-        "x": 314.0,
-        "y": 195.0,
-        "max_width": 772.0,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 44
-      },
-      "source_ref": "slot.mx",
-      "refs": {
-        "layout_slot_id": "slot.mx"
-      },
-      "text": "?"
-    },
-    {
-      "id": "slot.m0.text",
-      "type": "text",
-      "attributes": {
-        "x": 424.0,
-        "y": 196.0,
-        "max_width": 772.0,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 44
-      },
-      "source_ref": "slot.m0",
-      "refs": {
-        "layout_slot_id": "slot.m0"
+        "layout_slot_id": "slot.mul0"
       },
       "text": "2"
     },
@@ -196,8 +230,8 @@
       "id": "slot.c1.text",
       "type": "text",
       "attributes": {
-        "x": 536.0,
-        "y": 112.0,
+        "x": 120.0,
+        "y": 385.0,
         "max_width": 772.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
@@ -207,14 +241,14 @@
       "refs": {
         "layout_slot_id": "slot.c1"
       },
-      "text": "90 ? 20"
+      "text": "90 × 20"
     },
     {
       "id": "slot.c2.text",
       "type": "text",
       "attributes": {
-        "x": 552.0,
-        "y": 154.0,
+        "x": 315.0,
+        "y": 385.0,
         "max_width": 772.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
@@ -224,14 +258,14 @@
       "refs": {
         "layout_slot_id": "slot.c2"
       },
-      "text": "9 ? 2"
+      "text": "9 × 2"
     },
     {
       "id": "slot.c3.text",
       "type": "text",
       "attributes": {
-        "x": 536.0,
-        "y": 196.0,
+        "x": 470.0,
+        "y": 385.0,
         "max_width": 772.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
@@ -241,14 +275,14 @@
       "refs": {
         "layout_slot_id": "slot.c3"
       },
-      "text": "900 ? 2"
+      "text": "90 × 2"
     },
     {
       "id": "slot.c4.text",
       "type": "text",
       "attributes": {
-        "x": 552.0,
-        "y": 238.0,
+        "x": 645.0,
+        "y": 385.0,
         "max_width": 772.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
@@ -258,41 +292,7 @@
       "refs": {
         "layout_slot_id": "slot.c4"
       },
-      "text": "90 ? 2"
-    },
-    {
-      "id": "slot.a.text",
-      "type": "text",
-      "attributes": {
-        "x": 8.0,
-        "y": 334.0,
-        "max_width": 772.0,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 36
-      },
-      "source_ref": "slot.a",
-      "refs": {
-        "layout_slot_id": "slot.a"
-      },
-      "text": "(??)90 ? 2"
-    },
-    {
-      "id": "slot.e.text",
-      "type": "text",
-      "attributes": {
-        "x": 8.0,
-        "y": 382.0,
-        "max_width": 772.0,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 40
-      },
-      "source_ref": "slot.e",
-      "refs": {
-        "layout_slot_id": "slot.e"
-      },
-      "text": "(??)593?? 9? ?? ?? ????? 90 ? 2 = 180???."
+      "text": "900 × 2"
     }
   ],
   "contract_version": "modu_math.renderer.v2"

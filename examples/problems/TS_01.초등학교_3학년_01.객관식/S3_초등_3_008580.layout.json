@@ -14,8 +14,6 @@
       "role": "stem",
       "flow": "absolute",
       "slot_ids": [
-        "slot.box",
-        "slot.num",
         "slot.question"
       ]
     },
@@ -40,38 +38,15 @@
   ],
   "slots": [
     {
-      "id": "slot.box",
-      "kind": "rect",
-      "prompt": "",
-      "content": {
-        "x": 8.0,
-        "y": 8.0,
-        "width": 12.0,
-        "height": 12.0
-      }
-    },
-    {
-      "id": "slot.num",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "46.",
-        "style_role": "question",
-        "x": 28.0,
-        "y": 20.0,
-        "font_size": 28
-      }
-    },
-    {
       "id": "slot.question",
       "kind": "text",
       "prompt": "",
       "content": {
         "text": "계산한 값이 옳지 않은 것을 고르세요.",
         "style_role": "question",
-        "x": 66.0,
-        "y": 20.0,
-        "font_size": 28
+        "x": 10.0,
+        "y": 60.0,
+        "font_size": 30
       }
     },
     {
@@ -81,9 +56,9 @@
       "content": {
         "text": "① 30 × 20 = 600",
         "style_role": "question",
-        "x": 30.0,
-        "y": 72.0,
-        "font_size": 28
+        "x": 10.0,
+        "y": 115.0,
+        "font_size": 30
       }
     },
     {
@@ -93,9 +68,9 @@
       "content": {
         "text": "② 21 × 20 = 420",
         "style_role": "question",
-        "x": 455.0,
-        "y": 72.0,
-        "font_size": 28
+        "x": 345.0,
+        "y": 115.0,
+        "font_size": 30
       }
     },
     {
@@ -105,9 +80,9 @@
       "content": {
         "text": "③ 24 × 80 = 1820",
         "style_role": "question",
-        "x": 30.0,
-        "y": 122.0,
-        "font_size": 28
+        "x": 10.0,
+        "y": 165.0,
+        "font_size": 30
       }
     },
     {
@@ -117,9 +92,9 @@
       "content": {
         "text": "④ 20 × 60 = 1200",
         "style_role": "question",
-        "x": 455.0,
-        "y": 122.0,
-        "font_size": 28
+        "x": 345.0,
+        "y": 165.0,
+        "font_size": 30
       }
     },
     {
@@ -129,9 +104,9 @@
       "content": {
         "text": "⑤ 42 × 30 = 1260",
         "style_role": "question",
-        "x": 30.0,
-        "y": 172.0,
-        "font_size": 28
+        "x": 10.0,
+        "y": 215.0,
+        "font_size": 30
       }
     }
   ],
@@ -140,8 +115,6 @@
   "diagrams": [],
   "reading_order": [
     "region.stem",
-    "slot.box",
-    "slot.num",
     "slot.question",
     "region.options",
     "slot.opt1",

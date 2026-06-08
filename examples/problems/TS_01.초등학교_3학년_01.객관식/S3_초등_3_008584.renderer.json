@@ -7,64 +7,30 @@
   },
   "elements": [
     {
-      "id": "slot.box.rect",
-      "type": "rect",
-      "attributes": {
-        "x": 14.0,
-        "y": 15.0,
-        "width": 12.0,
-        "height": 12.0,
-        "fill": "#ffffff",
-        "stroke": "#111111",
-        "stroke-width": 1.5
-      },
-      "source_ref": "slot.box",
-      "refs": {
-        "layout_slot_id": "slot.box"
-      }
-    },
-    {
-      "id": "slot.qnum.text",
-      "type": "text",
-      "attributes": {
-        "x": 34.0,
-        "y": 26.0,
-        "max_width": 694.0,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
-      },
-      "source_ref": "slot.qnum",
-      "refs": {
-        "layout_slot_id": "slot.qnum"
-      },
-      "text": "51."
-    },
-    {
       "id": "slot.qtext.text",
       "type": "text",
       "attributes": {
-        "x": 82.0,
-        "y": 26.0,
+        "x": 105.0,
+        "y": 60.0,
         "max_width": 694.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 30
       },
       "source_ref": "slot.qtext",
       "refs": {
         "layout_slot_id": "slot.qtext"
       },
-      "text": "묶이 다른 것을 선택하세요."
+      "text": "몫이 다른 것을 선택하세요."
     },
     {
       "id": "slot.opt1.body.rect",
       "type": "rect",
       "attributes": {
-        "x": 155.0,
-        "y": 48.0,
+        "x": 110.0,
+        "y": 100.0,
         "width": 135.0,
-        "height": 58.0,
+        "height": 60.0,
         "fill": "#ffffff",
         "stroke": "#111111",
         "stroke-width": 1.5
@@ -78,9 +44,9 @@
       "id": "slot.opt1.wheel1.circle",
       "type": "circle",
       "attributes": {
-        "cx": 175.0,
-        "cy": 108.0,
-        "r": 7.0,
+        "cx": 135.0,
+        "cy": 160.0,
+        "r": 5.0,
         "stroke": "#111111",
         "stroke-width": 2.0,
         "fill": "#1aa7a7"
@@ -94,9 +60,9 @@
       "id": "slot.opt1.wheel2.circle",
       "type": "circle",
       "attributes": {
-        "cx": 227.0,
-        "cy": 108.0,
-        "r": 7.0,
+        "cx": 230.0,
+        "cy": 160.0,
+        "r": 5.0,
         "stroke": "#111111",
         "stroke-width": 2.0,
         "fill": "#1aa7a7"
@@ -110,10 +76,10 @@
       "id": "slot.opt2.body.rect",
       "type": "rect",
       "attributes": {
-        "x": 380.0,
-        "y": 48.0,
+        "x": 335.0,
+        "y": 100.0,
         "width": 135.0,
-        "height": 58.0,
+        "height": 60.0,
         "fill": "#ffffff",
         "stroke": "#111111",
         "stroke-width": 1.5
@@ -127,9 +93,9 @@
       "id": "slot.opt2.wheel1.circle",
       "type": "circle",
       "attributes": {
-        "cx": 400.0,
-        "cy": 108.0,
-        "r": 7.0,
+        "cx": 355.0,
+        "cy": 160.0,
+        "r": 5.0,
         "stroke": "#111111",
         "stroke-width": 2.0,
         "fill": "#1aa7a7"
@@ -143,9 +109,9 @@
       "id": "slot.opt2.wheel2.circle",
       "type": "circle",
       "attributes": {
-        "cx": 452.0,
-        "cy": 108.0,
-        "r": 7.0,
+        "cx": 455.0,
+        "cy": 160.0,
+        "r": 5.0,
         "stroke": "#111111",
         "stroke-width": 2.0,
         "fill": "#1aa7a7"
@@ -159,10 +125,10 @@
       "id": "slot.opt3.body.rect",
       "type": "rect",
       "attributes": {
-        "x": 617.0,
-        "y": 48.0,
+        "x": 570.0,
+        "y": 100.0,
         "width": 135.0,
-        "height": 58.0,
+        "height": 60.0,
         "fill": "#ffffff",
         "stroke": "#111111",
         "stroke-width": 1.5
@@ -176,9 +142,9 @@
       "id": "slot.opt3.wheel1.circle",
       "type": "circle",
       "attributes": {
-        "cx": 637.0,
-        "cy": 108.0,
-        "r": 7.0,
+        "cx": 590.0,
+        "cy": 160.0,
+        "r": 5.0,
         "stroke": "#111111",
         "stroke-width": 2.0,
         "fill": "#1aa7a7"
@@ -192,9 +158,9 @@
       "id": "slot.opt3.wheel2.circle",
       "type": "circle",
       "attributes": {
-        "cx": 689.0,
-        "cy": 108.0,
-        "r": 7.0,
+        "cx": 685.0,
+        "cy": 160.0,
+        "r": 5.0,
         "stroke": "#111111",
         "stroke-width": 2.0,
         "fill": "#1aa7a7"
@@ -208,12 +174,12 @@
       "id": "slot.opt1.text.text",
       "type": "text",
       "attributes": {
-        "x": 188.0,
-        "y": 87.0,
+        "x": 130.0,
+        "y": 140.0,
         "max_width": 694.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 30
       },
       "source_ref": "slot.opt1.text",
       "refs": {
@@ -225,12 +191,12 @@
       "id": "slot.opt2.text.text",
       "type": "text",
       "attributes": {
-        "x": 413.0,
-        "y": 87.0,
+        "x": 360.0,
+        "y": 140.0,
         "max_width": 694.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 30
       },
       "source_ref": "slot.opt2.text",
       "refs": {
@@ -242,84 +208,18 @@
       "id": "slot.opt3.text.text",
       "type": "text",
       "attributes": {
-        "x": 650.0,
-        "y": 87.0,
+        "x": 595.0,
+        "y": 140.0,
         "max_width": 694.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 30
       },
       "source_ref": "slot.opt3.text",
       "refs": {
         "layout_slot_id": "slot.opt3.text"
       },
       "text": "96 ÷ 4"
-    },
-    {
-      "id": "slot.ans.body.rect",
-      "type": "rect",
-      "attributes": {
-        "x": 78.0,
-        "y": 119.0,
-        "width": 135.0,
-        "height": 58.0,
-        "fill": "#ffffff",
-        "stroke": "#111111",
-        "stroke-width": 1.5
-      },
-      "source_ref": "slot.ans.body",
-      "refs": {
-        "layout_slot_id": "slot.ans.body"
-      }
-    },
-    {
-      "id": "slot.ans.wheel1.circle",
-      "type": "circle",
-      "attributes": {
-        "cx": 98.0,
-        "cy": 179.0,
-        "r": 7.0,
-        "stroke": "#111111",
-        "stroke-width": 2.0,
-        "fill": "#1aa7a7"
-      },
-      "source_ref": "slot.ans.wheel1",
-      "refs": {
-        "layout_slot_id": "slot.ans.wheel1"
-      }
-    },
-    {
-      "id": "slot.ans.wheel2.circle",
-      "type": "circle",
-      "attributes": {
-        "cx": 150.0,
-        "cy": 179.0,
-        "r": 7.0,
-        "stroke": "#111111",
-        "stroke-width": 2.0,
-        "fill": "#1aa7a7"
-      },
-      "source_ref": "slot.ans.wheel2",
-      "refs": {
-        "layout_slot_id": "slot.ans.wheel2"
-      }
-    },
-    {
-      "id": "slot.conclusion.text",
-      "type": "text",
-      "attributes": {
-        "x": 34.0,
-        "y": 264.0,
-        "max_width": 694.0,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
-      },
-      "source_ref": "slot.conclusion",
-      "refs": {
-        "layout_slot_id": "slot.conclusion"
-      },
-      "text": "따라서 묶이 다른 것은 84 ÷ 2입니다."
     }
   ],
   "contract_version": "modu_math.renderer.v2"

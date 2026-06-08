@@ -14,8 +14,6 @@
       "role": "stem",
       "flow": "absolute",
       "slot_ids": [
-        "slot.icon",
-        "slot.qnum",
         "slot.qtext"
       ]
     },
@@ -37,9 +35,6 @@
       "role": "supporting",
       "flow": "absolute",
       "slot_ids": [
-        "slot.answer",
-        "slot.solution",
-        "slot.solution.final",
         "slot.t10",
         "slot.t18",
         "slot.t20",
@@ -50,38 +45,15 @@
   ],
   "slots": [
     {
-      "id": "slot.icon",
-      "kind": "rect",
-      "prompt": "",
-      "content": {
-        "x": 5.0,
-        "y": 18.0,
-        "width": 12.0,
-        "height": 12.0
-      }
-    },
-    {
-      "id": "slot.qnum",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "50.",
-        "style_role": "question",
-        "x": 28.0,
-        "y": 29.0,
-        "font_size": 28
-      }
-    },
-    {
       "id": "slot.qtext",
       "kind": "text",
       "prompt": "",
       "content": {
         "text": "몫이 가장 큰 것을 선택하세요.",
         "style_role": "question",
-        "x": 80.0,
-        "y": 29.0,
-        "font_size": 28
+        "x": 75.0,
+        "y": 40.0,
+        "font_size": 30
       }
     },
     {
@@ -89,10 +61,13 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 114.0,
-        "y": 49.0,
-        "width": 186.0,
-        "height": 68.0
+        "x": 105.0,
+        "y": 60.0,
+        "width": 185.0,
+        "height": 70.0,
+        "stroke": "#0000D8",
+        "stroke_width": 2.0,
+        "fill": "none"
       }
     },
     {
@@ -102,9 +77,9 @@
       "content": {
         "text": "70 ÷ 7",
         "style_role": "choice",
-        "x": 183.0,
-        "y": 93.0,
-        "font_size": 28
+        "x": 150.0,
+        "y": 105.0,
+        "font_size": 30
       }
     },
     {
@@ -112,10 +87,13 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 357.0,
-        "y": 49.0,
-        "width": 186.0,
-        "height": 68.0
+        "x": 350.0,
+        "y": 60.0,
+        "width": 185.0,
+        "height": 70.0,
+        "stroke": "#D8A100",
+        "stroke_width": 2.0,
+        "fill": "none"
       }
     },
     {
@@ -125,9 +103,9 @@
       "content": {
         "text": "90 ÷ 5",
         "style_role": "choice",
-        "x": 425.0,
-        "y": 93.0,
-        "font_size": 28
+        "x": 395.0,
+        "y": 105.0,
+        "font_size": 30
       }
     },
     {
@@ -135,10 +113,13 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 604.0,
-        "y": 49.0,
-        "width": 186.0,
-        "height": 68.0
+        "x": 595.0,
+        "y": 60.0,
+        "width": 185.0,
+        "height": 70.0,
+        "stroke": "#00D807",
+        "stroke_width": 2.0,
+        "fill": "none"
       }
     },
     {
@@ -148,45 +129,9 @@
       "content": {
         "text": "60 ÷ 3",
         "style_role": "choice",
-        "x": 672.0,
-        "y": 93.0,
-        "font_size": 28
-      }
-    },
-    {
-      "id": "slot.answer",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "(정답) 60 ÷ 3",
-        "style_role": "body",
-        "x": 96.0,
-        "y": 165.0,
-        "font_size": 22
-      }
-    },
-    {
-      "id": "slot.solution",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "(해설) 70 ÷ 7 = 10, 90 ÷ 5 = 18, 60 ÷ 3 = 20",
-        "style_role": "body",
-        "x": 96.0,
-        "y": 194.0,
-        "font_size": 20
-      }
-    },
-    {
-      "id": "slot.solution.final",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "따라서 10<18<20 이므로 몫이 가장 큰 것은 60 ÷ 3 입니다.",
-        "style_role": "body",
-        "x": 96.0,
-        "y": 220.0,
-        "font_size": 20
+        "x": 640.0,
+        "y": 105.0,
+        "font_size": 30
       }
     },
     {
@@ -255,8 +200,6 @@
   "diagrams": [],
   "reading_order": [
     "region.stem",
-    "slot.icon",
-    "slot.qnum",
     "slot.qtext",
     "region.choices",
     "slot.choice.1",
@@ -266,9 +209,6 @@
     "slot.choice.2.text",
     "slot.choice.3.text",
     "region.explanation",
-    "slot.answer",
-    "slot.solution",
-    "slot.solution.final",
     "slot.t10",
     "slot.t18",
     "slot.t20",

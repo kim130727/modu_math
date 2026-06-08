@@ -1,5 +1,18 @@
 from .compiler_to_layout import compile_problem_template_to_layout
 from .compiler_to_semantic import compile_problem_template_to_semantic
+from .characters import (
+    SpeakerSpec,
+    character_body_slot_ids,
+    character_body_slots,
+    character_hand_slot_ids,
+    character_hand_slots,
+    person_slots,
+    speaker_group_slot_ids,
+    speaker_group_slots,
+    speaker_slot_ids,
+    speaker_slots,
+    speech_balloon_slots,
+)
 from .exporter import export_layout_to_dsl_source, problem_template_from_layout
 from .fraction import fraction_slots
 from .models import (
@@ -50,12 +63,23 @@ __all__ = [
     "RectSlot",
     "Region",
     "ShapeObject",
+    "SpeakerSpec",
     "TextSlot",
     "Triangle",
+    "character_body_slot_ids",
+    "character_body_slots",
+    "character_hand_slot_ids",
+    "character_hand_slots",
     "compile_problem_template_to_layout",
     "compile_problem_template_to_semantic",
     "export_layout_to_dsl_source",
     "problem_template_from_layout",
     "export_problem_template",
     "fraction_slots",
+    "person_slots",
+    "speaker_group_slot_ids",
+    "speaker_group_slots",
+    "speaker_slot_ids",
+    "speaker_slots",
+    "speech_balloon_slots",
 ]

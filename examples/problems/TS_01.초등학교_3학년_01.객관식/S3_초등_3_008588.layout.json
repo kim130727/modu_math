@@ -14,7 +14,6 @@
       "role": "stem",
       "flow": "absolute",
       "slot_ids": [
-        "slot.q_num",
         "slot.q_text"
       ]
     },
@@ -42,24 +41,10 @@
       "id": "region.answer_explanation",
       "role": "answer",
       "flow": "absolute",
-      "slot_ids": [
-        "slot.answer_blank"
-      ]
+      "slot_ids": []
     }
   ],
   "slots": [
-    {
-      "id": "slot.q_num",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "55.",
-        "style_role": "question",
-        "x": 15.0,
-        "y": 26.0,
-        "font_size": 28
-      }
-    },
     {
       "id": "slot.q_text",
       "kind": "text",
@@ -67,9 +52,9 @@
       "content": {
         "text": "나머지가 4가 될 수 없는 식을 찾아 선택하세요.",
         "style_role": "question",
-        "x": 69.0,
-        "y": 26.0,
-        "font_size": 28
+        "x": 65.0,
+        "y": 50.0,
+        "font_size": 30
       }
     },
     {
@@ -77,10 +62,10 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 88.0,
-        "y": 48.0,
-        "width": 744.0,
-        "height": 46.0
+        "x": 90.0,
+        "y": 75.0,
+        "width": 745.0,
+        "height": 80.0
       }
     },
     {
@@ -88,10 +73,10 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 161.0,
-        "y": 76.0,
-        "width": 24.0,
-        "height": 26.0
+        "x": 160.0,
+        "y": 100.0,
+        "width": 25.0,
+        "height": 25.0
       }
     },
     {
@@ -101,9 +86,9 @@
       "content": {
         "text": "÷",
         "style_role": "body",
-        "x": 193.0,
-        "y": 97.0,
-        "font_size": 28
+        "x": 192.0,
+        "y": 120.0,
+        "font_size": 30
       }
     },
     {
@@ -113,9 +98,9 @@
       "content": {
         "text": "6",
         "style_role": "body",
-        "x": 217.0,
-        "y": 97.0,
-        "font_size": 28
+        "x": 223.0,
+        "y": 120.0,
+        "font_size": 30
       }
     },
     {
@@ -123,10 +108,10 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 352.0,
-        "y": 76.0,
-        "width": 24.0,
-        "height": 26.0
+        "x": 350.0,
+        "y": 100.0,
+        "width": 25.0,
+        "height": 25.0
       }
     },
     {
@@ -136,9 +121,9 @@
       "content": {
         "text": "÷",
         "style_role": "body",
-        "x": 384.0,
-        "y": 97.0,
-        "font_size": 28
+        "x": 380.0,
+        "y": 120.0,
+        "font_size": 30
       }
     },
     {
@@ -148,9 +133,9 @@
       "content": {
         "text": "5",
         "style_role": "body",
-        "x": 408.0,
-        "y": 97.0,
-        "font_size": 28
+        "x": 409.0,
+        "y": 120.0,
+        "font_size": 30
       }
     },
     {
@@ -158,10 +143,10 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 546.0,
-        "y": 76.0,
-        "width": 24.0,
-        "height": 26.0
+        "x": 545.0,
+        "y": 100.0,
+        "width": 25.0,
+        "height": 25.0
       }
     },
     {
@@ -171,9 +156,9 @@
       "content": {
         "text": "÷",
         "style_role": "body",
-        "x": 578.0,
-        "y": 97.0,
-        "font_size": 28
+        "x": 575.0,
+        "y": 120.0,
+        "font_size": 30
       }
     },
     {
@@ -183,9 +168,9 @@
       "content": {
         "text": "9",
         "style_role": "body",
-        "x": 602.0,
-        "y": 97.0,
-        "font_size": 28
+        "x": 610.0,
+        "y": 120.0,
+        "font_size": 30
       }
     },
     {
@@ -193,10 +178,10 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 739.0,
-        "y": 76.0,
-        "width": 24.0,
-        "height": 26.0
+        "x": 725.0,
+        "y": 100.0,
+        "width": 25.0,
+        "height": 25.0
       }
     },
     {
@@ -206,9 +191,9 @@
       "content": {
         "text": "÷",
         "style_role": "body",
-        "x": 771.0,
-        "y": 97.0,
-        "font_size": 28
+        "x": 760.0,
+        "y": 120.0,
+        "font_size": 30
       }
     },
     {
@@ -219,19 +204,8 @@
         "text": "4",
         "style_role": "body",
         "x": 795.0,
-        "y": 97.0,
-        "font_size": 28
-      }
-    },
-    {
-      "id": "slot.answer_blank",
-      "kind": "rect",
-      "prompt": "",
-      "content": {
-        "x": 56.0,
-        "y": 144.0,
-        "width": 24.0,
-        "height": 26.0
+        "y": 120.0,
+        "font_size": 30
       }
     }
   ],
@@ -240,7 +214,6 @@
   "diagrams": [],
   "reading_order": [
     "region.stem",
-    "slot.q_num",
     "slot.q_text",
     "region.choices",
     "slot.box",
@@ -256,7 +229,6 @@
     "slot.choice_3_num",
     "slot.choice_4_div",
     "slot.choice_4_num",
-    "region.answer_explanation",
-    "slot.answer_blank"
+    "region.answer_explanation"
   ]
 }

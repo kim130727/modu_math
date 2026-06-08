@@ -1,282 +1,45 @@
 from __future__ import annotations
 
+from typing import Any
+
 from modu_math.dsl import (
     Canvas,
-    CircleSlot,
-    PathSlot,
-    PolygonSlot,
     ProblemTemplate,
     RectSlot,
     Region,
+    SpeakerSpec,
     TextSlot,
+    speaker_group_slot_ids,
+    speaker_group_slots,
 )
 
 
-CharacterSlot = CircleSlot | PathSlot | PolygonSlot | RectSlot | TextSlot
-
-
-class SpeakerSpec:
-    def __init__(
-        self,
-        *,
-        key: str,
-        cx: float,
-        bubble_cy: float,
-        head_cy: float,
-        text: str,
-        name: str,
-        hair: str,
-        shirt: str,
-        bow: str | None = None,
-        pigtails: bool = False,
-        bubble_width: float = 190,
-        bubble_height: float = 52,
-        tail_y: float | None = None,
-        name_width: float = 68,
-        name_y: float = 242,
-    ) -> None:
-        self.key = key
-        self.cx = cx
-        self.bubble_cy = bubble_cy
-        self.head_cy = head_cy
-        self.text = text
-        self.name = name
-        self.hair = hair
-        self.shirt = shirt
-        self.bow = bow
-        self.pigtails = pigtails
-        self.bubble_width = bubble_width
-        self.bubble_height = bubble_height
-        self.tail_y = tail_y
-        self.name_width = name_width
-        self.name_y = name_y
-
-
-def speech_balloon_slots(
-    prefix: str,
-    *,
-    cx: float,
-    cy: float,
-    width: float,
-    height: float,
-    tail_x: float,
-    tail_y: float,
-    text: str,
-) -> tuple[PathSlot, PolygonSlot, TextSlot]:
-    rx = width / 2
-    ry = height / 2
-    d = (
-        f"M {cx - rx} {cy} "
-        f"C {cx - rx} {cy - ry * 0.72}, {cx - rx * 0.62} {cy - ry}, {cx} {cy - ry} "
-        f"C {cx + rx * 0.62} {cy - ry}, {cx + rx} {cy - ry * 0.72}, {cx + rx} {cy} "
-        f"C {cx + rx} {cy + ry * 0.72}, {cx + rx * 0.62} {cy + ry}, {cx} {cy + ry} "
-        f"C {cx - rx * 0.62} {cy + ry}, {cx - rx} {cy + ry * 0.72}, {cx - rx} {cy} Z"
+def comparison_speaker(**kwargs: Any) -> SpeakerSpec:
+    return SpeakerSpec(
+        bubble_height=52,
+        tail_half_width=9,
+        tail_base_dy=-5,
+        bubble_stroke="#f5a000",
+        bubble_stroke_width=2,
+        tail_stroke_width=1.6,
+        speech_style_role="math",
+        speech_font_size=28,
+        speech_text_dy=8,
+        name_width=68,
+        name_y=242,
+        name_height=34,
+        name_rx=8,
+        name_ry=8,
+        name_stroke="#d58cc3",
+        name_fill="#ffffff",
+        name_text_dy=25,
+        **kwargs,
     )
-    return (
-        PathSlot(
-            id=f"{prefix}.bubble",
-            prompt="",
-            d=d,
-            stroke="#f5a000",
-            stroke_width=2,
-            fill="#ffffff",
-        ),
-        PolygonSlot(
-            id=f"{prefix}.tail",
-            prompt="",
-            points=((tail_x - 9, cy + ry - 5), (tail_x + 9, cy + ry - 5), (tail_x, tail_y)),
-            stroke="#f5a000",
-            stroke_width=1.6,
-            fill="#ffffff",
-        ),
-        TextSlot(
-            id=f"{prefix}.text",
-            prompt="",
-            text=text,
-            style_role="math",
-            x=cx,
-            y=cy + 8,
-            font_size=28,
-            anchor="middle",
-        ),
-    )
-
-
-def person_slots(
-    prefix: str,
-    *,
-    cx: float,
-    head_cy: float,
-    hair: str,
-    shirt: str,
-    bow: str | None = None,
-    pigtails: bool = False,
-) -> tuple[CharacterSlot, ...]:
-    face = "#ffd9ad"
-    slots: list[CharacterSlot] = [
-        PolygonSlot(
-            id=f"{prefix}.body",
-            prompt="",
-            points=((cx - 28, head_cy + 73), (cx + 28, head_cy + 73), (cx + 18, head_cy + 37), (cx - 18, head_cy + 37)),
-            stroke="none",
-            fill=shirt,
-        ),
-        CircleSlot(
-            id=f"{prefix}.head",
-            prompt="",
-            cx=cx,
-            cy=head_cy,
-            r=28,
-            stroke="none",
-            fill=face,
-        ),
-        PathSlot(
-            id=f"{prefix}.hair.cap",
-            prompt="",
-            d=(
-                f"M {cx - 28} {head_cy - 1} "
-                f"C {cx - 26} {head_cy - 30}, {cx + 25} {head_cy - 35}, {cx + 29} {head_cy - 1} "
-                f"C {cx + 10} {head_cy - 17}, {cx - 12} {head_cy - 10}, {cx - 28} {head_cy - 1} Z"
-            ),
-            stroke="none",
-            fill=hair,
-        ),
-        CircleSlot(id=f"{prefix}.eye.left", prompt="", cx=cx - 10, cy=head_cy + 4, r=2.3, stroke="none", fill="#2b2118"),
-        CircleSlot(id=f"{prefix}.eye.right", prompt="", cx=cx + 10, cy=head_cy + 4, r=2.3, stroke="none", fill="#2b2118"),
-        PathSlot(
-            id=f"{prefix}.smile",
-            prompt="",
-            d=f"M {cx - 7} {head_cy + 16} Q {cx} {head_cy + 22} {cx + 7} {head_cy + 16}",
-            stroke="#b86e39",
-            stroke_width=1.3,
-            fill="none",
-        ),
-    ]
-    if pigtails:
-        slots.extend(
-            [
-                PathSlot(
-                    id=f"{prefix}.tail.left",
-                    prompt="",
-                    d=f"M {cx - 27} {head_cy - 3} C {cx - 52} {head_cy + 1}, {cx - 38} {head_cy + 42}, {cx - 50} {head_cy + 48}",
-                    stroke=hair,
-                    stroke_width=7,
-                    fill="none",
-                ),
-                PathSlot(
-                    id=f"{prefix}.tail.right",
-                    prompt="",
-                    d=f"M {cx + 27} {head_cy - 3} C {cx + 52} {head_cy + 1}, {cx + 38} {head_cy + 42}, {cx + 50} {head_cy + 48}",
-                    stroke=hair,
-                    stroke_width=7,
-                    fill="none",
-                ),
-            ]
-        )
-    if bow:
-        slots.extend(
-            [
-                PolygonSlot(
-                    id=f"{prefix}.bow.left",
-                    prompt="",
-                    points=((cx - 7, head_cy + 43), (cx - 26, head_cy + 35), (cx - 14, head_cy + 56)),
-                    stroke="none",
-                    fill=bow,
-                ),
-                PolygonSlot(
-                    id=f"{prefix}.bow.right",
-                    prompt="",
-                    points=((cx + 7, head_cy + 43), (cx + 26, head_cy + 35), (cx + 14, head_cy + 56)),
-                    stroke="none",
-                    fill=bow,
-                ),
-            ]
-        )
-    return tuple(slots)
-
-
-def speaker_slot_ids(speaker: SpeakerSpec) -> tuple[str, ...]:
-    prefix = f"slot.{speaker.key}"
-    person_prefix = f"{prefix}.person"
-    ids = [
-        f"{prefix}.bubble",
-        f"{prefix}.tail",
-        f"{prefix}.text",
-        f"{person_prefix}.body",
-        f"{person_prefix}.head",
-        f"{person_prefix}.hair.cap",
-        f"{person_prefix}.eye.left",
-        f"{person_prefix}.eye.right",
-        f"{person_prefix}.smile",
-    ]
-    if speaker.pigtails:
-        ids.extend((f"{person_prefix}.tail.left", f"{person_prefix}.tail.right"))
-    if speaker.bow:
-        ids.extend((f"{person_prefix}.bow.left", f"{person_prefix}.bow.right"))
-    ids.extend((f"slot.name.{speaker.key}.box", f"slot.name.{speaker.key}.text"))
-    return tuple(ids)
-
-
-def speaker_group_slot_ids(speakers: tuple[SpeakerSpec, ...]) -> tuple[str, ...]:
-    return tuple(slot_id for speaker in speakers for slot_id in speaker_slot_ids(speaker))
-
-
-def speaker_slots(speaker: SpeakerSpec) -> tuple[CharacterSlot, ...]:
-    prefix = f"slot.{speaker.key}"
-    tail_y = speaker.tail_y if speaker.tail_y is not None else speaker.head_cy - 55
-    return (
-        *speech_balloon_slots(
-            prefix,
-            cx=speaker.cx,
-            cy=speaker.bubble_cy,
-            width=speaker.bubble_width,
-            height=speaker.bubble_height,
-            tail_x=speaker.cx,
-            tail_y=tail_y,
-            text=speaker.text,
-        ),
-        *person_slots(
-            f"{prefix}.person",
-            cx=speaker.cx,
-            head_cy=speaker.head_cy,
-            hair=speaker.hair,
-            shirt=speaker.shirt,
-            bow=speaker.bow,
-            pigtails=speaker.pigtails,
-        ),
-        RectSlot(
-            id=f"slot.name.{speaker.key}.box",
-            prompt="",
-            x=speaker.cx - speaker.name_width / 2,
-            y=speaker.name_y,
-            width=speaker.name_width,
-            height=34,
-            rx=8,
-            ry=8,
-            stroke="#d58cc3",
-            stroke_width=2,
-            fill="#ffffff",
-        ),
-        TextSlot(
-            id=f"slot.name.{speaker.key}.text",
-            prompt="",
-            text=speaker.name,
-            style_role="label",
-            x=speaker.cx,
-            y=speaker.name_y + 25,
-            font_size=25,
-            anchor="middle",
-        ),
-    )
-
-
-def speaker_group_slots(speakers: tuple[SpeakerSpec, ...]) -> tuple[CharacterSlot, ...]:
-    return tuple(slot for speaker in speakers for slot in speaker_slots(speaker))
 
 
 def build_problem_template() -> ProblemTemplate:
     speakers = (
-        SpeakerSpec(
+        comparison_speaker(
             key="left",
             cx=246,
             bubble_cy=78,
@@ -290,7 +53,7 @@ def build_problem_template() -> ProblemTemplate:
             bubble_width=198,
             tail_y=122,
         ),
-        SpeakerSpec(
+        comparison_speaker(
             key="mid",
             cx=486,
             bubble_cy=78,
@@ -302,7 +65,7 @@ def build_problem_template() -> ProblemTemplate:
             bubble_width=190,
             tail_y=122,
         ),
-        SpeakerSpec(
+        comparison_speaker(
             key="right",
             cx=724,
             bubble_cy=78,

@@ -180,6 +180,61 @@ SLOTS = (
     assert 'person_slots("slot.figure.left", cx = 220.0, head_cy = 85.0)' in updated
 
 
+def test_layout_patch_moves_card_character_group(tmp_path: Path) -> None:
+    client = _setup_django(tmp_path)
+    dsl_text = """
+from modu_math.dsl import RectSlot, TextSlot, character_body_slots, character_hand_slots
+
+SLOTS = (
+    *character_body_slots("slot.person_left", cx=100.0, head_cy=70.0, hair="#111", shirt="#eee"),
+    RectSlot(id="slot.name_left_box", x=20.0, y=30.0, width=50.0, height=20.0),
+    TextSlot(id="slot.name_left", text="A", x=25.0, y=45.0),
+    RectSlot(id="slot.card_left", x=80.0, y=120.0, width=70.0, height=30.0),
+    *character_hand_slots("slot.person_left", card_x=80.0, card_y=120.0, card_width=70.0),
+    TextSlot(id="slot.card_left_text", text="1", x=90.0, y=140.0),
+)
+""".lstrip()
+    problem_dir = _write_problem(tmp_path, "0001", dsl_text)
+
+    payload = {"patches": [{"target": "slot.character.left", "op": "update", "value": {"move_dx": 7.0, "move_dy": 11.0}}]}
+    response = client.post(
+        "/api/editor/problems/0001/layout-patch/",
+        data=json.dumps(payload),
+        content_type="application/json",
+    )
+
+    assert response.status_code == 200
+    updated = (problem_dir / "problem.dsl.py").read_text(encoding="utf-8")
+    assert 'character_body_slots("slot.person_left", cx = (100.0) + (7.0), head_cy = (70.0) + (11.0)' in updated
+    assert 'character_hand_slots("slot.person_left", card_x = (80.0) + (7.0), card_y = (120.0) + (11.0)' in updated
+    assert 'RectSlot(id="slot.card_left", x = (80.0) + (7.0), y = (120.0) + (11.0)' in updated
+
+
+def test_layout_patch_moves_speaker_character_group(tmp_path: Path) -> None:
+    client = _setup_django(tmp_path)
+    dsl_text = """
+from modu_math.dsl import SpeakerSpec
+
+SPEAKERS = (
+    SpeakerSpec(key="left", cx=245.0, bubble_cy=211.0, head_cy=322.0, text="A", name="B", hair="#111", shirt="#eee", tail_y=267.0),
+)
+""".lstrip()
+    problem_dir = _write_problem(tmp_path, "0001", dsl_text)
+
+    payload = {"patches": [{"target": "slot.character.left", "op": "update", "value": {"move_dx": 7.0, "move_dy": 11.0}}]}
+    response = client.post(
+        "/api/editor/problems/0001/layout-patch/",
+        data=json.dumps(payload),
+        content_type="application/json",
+    )
+
+    assert response.status_code == 200
+    updated = (problem_dir / "problem.dsl.py").read_text(encoding="utf-8")
+    assert 'SpeakerSpec(key="left", cx = (245.0) + (7.0), bubble_cy = (211.0) + (11.0), head_cy = (322.0) + (11.0)' in updated
+    assert "tail_y = (267.0) + (11.0)" in updated
+    assert "name_y = 394.0" in updated
+
+
 def test_layout_patch_adds_copied_slot_to_slots_and_region(tmp_path: Path) -> None:
     client = _setup_django(tmp_path)
     dsl_text = """

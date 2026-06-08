@@ -78,7 +78,7 @@
       "id": "slot.left.bubble.path",
       "type": "path",
       "attributes": {
-        "d": "M 157.0 211 C 157.0 181.48, 190.82 170.0, 246 170.0 C 301.18 170.0, 335.0 181.48, 335.0 211 C 335.0 240.52, 301.18 252.0, 246 252.0 C 190.82 252.0, 157.0 240.52, 157.0 211 Z",
+        "d": "M 156.0 211 C 156.0 181.48, 189.82 170.0, 245 170.0 C 300.18 170.0, 334.0 181.48, 334.0 211 C 334.0 240.52, 300.18 252.0, 245 252.0 C 189.82 252.0, 156.0 240.52, 156.0 211 Z",
         "stroke": "#222222",
         "stroke-width": 1.6,
         "fill": "#ffffff"
@@ -94,15 +94,15 @@
       "attributes": {
         "points": [
           [
-            237.0,
+            235.0,
             246.0
           ],
           [
-            257.0,
+            255.0,
             246.0
           ],
           [
-            247.0,
+            245.0,
             267.0
           ]
         ],
@@ -113,88 +113,6 @@
       "source_ref": "slot.left.tail",
       "refs": {
         "layout_slot_id": "slot.left.tail"
-      }
-    },
-    {
-      "id": "slot.mid.bubble.path",
-      "type": "path",
-      "attributes": {
-        "d": "M 397.0 210 C 397.0 180.48, 430.82 169.0, 486 169.0 C 541.18 169.0, 575.0 180.48, 575.0 210 C 575.0 239.52, 541.18 251.0, 486 251.0 C 430.82 251.0, 397.0 239.52, 397.0 210 Z",
-        "stroke": "#222222",
-        "stroke-width": 1.6,
-        "fill": "#ffffff"
-      },
-      "source_ref": "slot.mid.bubble",
-      "refs": {
-        "layout_slot_id": "slot.mid.bubble"
-      }
-    },
-    {
-      "id": "slot.mid.tail.polygon",
-      "type": "polygon",
-      "attributes": {
-        "points": [
-          [
-            475.0,
-            245.0
-          ],
-          [
-            495.0,
-            245.0
-          ],
-          [
-            485.0,
-            265.0
-          ]
-        ],
-        "stroke": "#222222",
-        "stroke-width": 1.4,
-        "fill": "#ffffff"
-      },
-      "source_ref": "slot.mid.tail",
-      "refs": {
-        "layout_slot_id": "slot.mid.tail"
-      }
-    },
-    {
-      "id": "slot.right.bubble.path",
-      "type": "path",
-      "attributes": {
-        "d": "M 634.0 211 C 634.0 181.48, 668.2 170.0, 724 170.0 C 779.8 170.0, 814.0 181.48, 814.0 211 C 814.0 240.52, 779.8 252.0, 724 252.0 C 668.2 252.0, 634.0 240.52, 634.0 211 Z",
-        "stroke": "#222222",
-        "stroke-width": 1.6,
-        "fill": "#ffffff"
-      },
-      "source_ref": "slot.right.bubble",
-      "refs": {
-        "layout_slot_id": "slot.right.bubble"
-      }
-    },
-    {
-      "id": "slot.right.tail.polygon",
-      "type": "polygon",
-      "attributes": {
-        "points": [
-          [
-            714.0,
-            246.0
-          ],
-          [
-            734.0,
-            246.0
-          ],
-          [
-            724.0,
-            267.0
-          ]
-        ],
-        "stroke": "#222222",
-        "stroke-width": 1.4,
-        "fill": "#ffffff"
-      },
-      "source_ref": "slot.right.tail",
-      "refs": {
-        "layout_slot_id": "slot.right.tail"
       }
     },
     {
@@ -387,6 +305,66 @@
       }
     },
     {
+      "id": "slot.name.left.box.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 209.5,
+        "y": 383.0,
+        "width": 71.0,
+        "height": 36.0,
+        "fill": "#e9f7dd",
+        "stroke": "#6fcf83",
+        "stroke-width": 2.0,
+        "rx": 9.0,
+        "ry": 9.0
+      },
+      "source_ref": "slot.name.left.box",
+      "refs": {
+        "layout_slot_id": "slot.name.left.box"
+      }
+    },
+    {
+      "id": "slot.mid.bubble.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 397.0 210 C 397.0 180.48, 430.82 169.0, 486 169.0 C 541.18 169.0, 575.0 180.48, 575.0 210 C 575.0 239.52, 541.18 251.0, 486 251.0 C 430.82 251.0, 397.0 239.52, 397.0 210 Z",
+        "stroke": "#222222",
+        "stroke-width": 1.6,
+        "fill": "#ffffff"
+      },
+      "source_ref": "slot.mid.bubble",
+      "refs": {
+        "layout_slot_id": "slot.mid.bubble"
+      }
+    },
+    {
+      "id": "slot.mid.tail.polygon",
+      "type": "polygon",
+      "attributes": {
+        "points": [
+          [
+            476.0,
+            245.0
+          ],
+          [
+            496.0,
+            245.0
+          ],
+          [
+            486.0,
+            265.0
+          ]
+        ],
+        "stroke": "#222222",
+        "stroke-width": 1.4,
+        "fill": "#ffffff"
+      },
+      "source_ref": "slot.mid.tail",
+      "refs": {
+        "layout_slot_id": "slot.mid.tail"
+      }
+    },
+    {
       "id": "slot.mid.person.body.polygon",
       "type": "polygon",
       "attributes": {
@@ -545,6 +523,66 @@
       "source_ref": "slot.mid.person.bow.right",
       "refs": {
         "layout_slot_id": "slot.mid.person.bow.right"
+      }
+    },
+    {
+      "id": "slot.name.mid.box.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 450.0,
+        "y": 383.0,
+        "width": 72.0,
+        "height": 36.0,
+        "fill": "#e9f7dd",
+        "stroke": "#6fcf83",
+        "stroke-width": 2.0,
+        "rx": 9.0,
+        "ry": 9.0
+      },
+      "source_ref": "slot.name.mid.box",
+      "refs": {
+        "layout_slot_id": "slot.name.mid.box"
+      }
+    },
+    {
+      "id": "slot.right.bubble.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 634.0 211 C 634.0 181.48, 668.2 170.0, 724 170.0 C 779.8 170.0, 814.0 181.48, 814.0 211 C 814.0 240.52, 779.8 252.0, 724 252.0 C 668.2 252.0, 634.0 240.52, 634.0 211 Z",
+        "stroke": "#222222",
+        "stroke-width": 1.6,
+        "fill": "#ffffff"
+      },
+      "source_ref": "slot.right.bubble",
+      "refs": {
+        "layout_slot_id": "slot.right.bubble"
+      }
+    },
+    {
+      "id": "slot.right.tail.polygon",
+      "type": "polygon",
+      "attributes": {
+        "points": [
+          [
+            714.0,
+            246.0
+          ],
+          [
+            734.0,
+            246.0
+          ],
+          [
+            724.0,
+            267.0
+          ]
+        ],
+        "stroke": "#222222",
+        "stroke-width": 1.4,
+        "fill": "#ffffff"
+      },
+      "source_ref": "slot.right.tail",
+      "refs": {
+        "layout_slot_id": "slot.right.tail"
       }
     },
     {
@@ -709,44 +747,6 @@
       }
     },
     {
-      "id": "slot.name.left.box.rect",
-      "type": "rect",
-      "attributes": {
-        "x": 210.0,
-        "y": 383.0,
-        "width": 71.0,
-        "height": 36.0,
-        "fill": "#e9f7dd",
-        "stroke": "#6fcf83",
-        "stroke-width": 2.0,
-        "rx": 9.0,
-        "ry": 9.0
-      },
-      "source_ref": "slot.name.left.box",
-      "refs": {
-        "layout_slot_id": "slot.name.left.box"
-      }
-    },
-    {
-      "id": "slot.name.mid.box.rect",
-      "type": "rect",
-      "attributes": {
-        "x": 450.0,
-        "y": 383.0,
-        "width": 72.0,
-        "height": 36.0,
-        "fill": "#e9f7dd",
-        "stroke": "#6fcf83",
-        "stroke-width": 2.0,
-        "rx": 9.0,
-        "ry": 9.0
-      },
-      "source_ref": "slot.name.mid.box",
-      "refs": {
-        "layout_slot_id": "slot.name.mid.box"
-      }
-    },
-    {
       "id": "slot.name.right.box.rect",
       "type": "rect",
       "attributes": {
@@ -837,7 +837,7 @@
       "id": "slot.left.text.text",
       "type": "text",
       "attributes": {
-        "x": 246.0,
+        "x": 245.0,
         "y": 202.0,
         "max_width": 744.0,
         "fill": "#111111",
@@ -849,43 +849,7 @@
       "refs": {
         "layout_slot_id": "slot.left.text"
       },
-      "text": "몫은\n10보다 작아."
-    },
-    {
-      "id": "slot.mid.text.text",
-      "type": "text",
-      "attributes": {
-        "x": 486.0,
-        "y": 201.0,
-        "max_width": 744.0,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 24,
-        "text-anchor": "middle"
-      },
-      "source_ref": "slot.mid.text",
-      "refs": {
-        "layout_slot_id": "slot.mid.text"
-      },
-      "text": "나머지는 0으로\n나누어떨어져."
-    },
-    {
-      "id": "slot.right.text.text",
-      "type": "text",
-      "attributes": {
-        "x": 724.0,
-        "y": 202.0,
-        "max_width": 744.0,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 24,
-        "text-anchor": "middle"
-      },
-      "source_ref": "slot.right.text",
-      "refs": {
-        "layout_slot_id": "slot.right.text"
-      },
-      "text": "나머지는\n8보다 작아."
+      "text": "몫이\n10보다 작아."
     },
     {
       "id": "slot.name.left.text.text",
@@ -906,6 +870,24 @@
       "text": "근희"
     },
     {
+      "id": "slot.mid.text.text",
+      "type": "text",
+      "attributes": {
+        "x": 486.0,
+        "y": 201.0,
+        "max_width": 744.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 24,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.mid.text",
+      "refs": {
+        "layout_slot_id": "slot.mid.text"
+      },
+      "text": "나머지가 0으로\n나누어떨어져."
+    },
+    {
       "id": "slot.name.mid.text.text",
       "type": "text",
       "attributes": {
@@ -922,6 +904,24 @@
         "layout_slot_id": "slot.name.mid.text"
       },
       "text": "영표"
+    },
+    {
+      "id": "slot.right.text.text",
+      "type": "text",
+      "attributes": {
+        "x": 724.0,
+        "y": 202.0,
+        "max_width": 744.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 24,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.right.text",
+      "refs": {
+        "layout_slot_id": "slot.right.text"
+      },
+      "text": "나머지가\n8보다 작아."
     },
     {
       "id": "slot.name.right.text.text",

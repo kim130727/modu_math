@@ -26,6 +26,7 @@ SLOT_KIND_TO_CTOR = {
 FRACTION_SLOT_PARTS = {"num", "bar", "den"}
 FRACTION_MOVE_FIELDS = {"move_dx", "move_dy"}
 PERSON_SLOT_PARTS = {"body", "head", "eye1", "eye2", "mouth"}
+CHARACTER_MOVE_FIELDS = {"move_dx", "move_dy"}
 CANVAS_TARGETS = {"__canvas__", "canvas"}
 CANVAS_FIELDS = {"width", "height"}
 
@@ -256,6 +257,33 @@ def _replace_or_append_arg(args: list[cst.Arg], name: str, value: Any) -> None:
     args.append(replacement)
 
 
+def _shift_or_append_numeric_arg(args: list[cst.Arg], name: str, delta: float, default: float | None = None) -> bool:
+    if delta == 0 and default is None:
+        return False
+    for idx, arg in enumerate(args):
+        if arg.keyword and arg.keyword.value == name:
+            args[idx] = cst.Arg(keyword=cst.Name(name), value=_shift_numeric_expr(arg.value, delta))
+            return True
+    if default is not None:
+        args.append(cst.Arg(keyword=cst.Name(name), value=_arg_value_to_cst(default + delta)))
+        return True
+    return False
+
+
+def _shift_slot_call_args(args: list[cst.Arg], slot_type: str, dx: float, dy: float) -> bool:
+    changed = False
+    if slot_type in {"TextSlot", "RectSlot"}:
+        changed = _shift_or_append_numeric_arg(args, "x", dx) or changed
+        changed = _shift_or_append_numeric_arg(args, "y", dy) or changed
+    elif slot_type == "CircleSlot":
+        changed = _shift_or_append_numeric_arg(args, "cx", dx) or changed
+        changed = _shift_or_append_numeric_arg(args, "cy", dy) or changed
+    elif slot_type == "LineSlot":
+        for name, delta in (("x1", dx), ("x2", dx), ("y1", dy), ("y2", dy)):
+            changed = _shift_or_append_numeric_arg(args, name, delta) or changed
+    return changed
+
+
 def _first_string_arg(call: cst.Call, keyword_name: str) -> str | None:
     arg: cst.Arg | None = None
     if call.args and call.args[0].keyword is None:
@@ -336,6 +364,100 @@ class PersonSlotsUpdater(cst.CSTTransformer):
 
         self.updated = True
         return updated_node.with_changes(args=tuple(args))
+
+
+def _character_group_key(target: str) -> str | None:
+    prefix = "slot.character."
+    if not target.startswith(prefix):
+        return None
+    key = target[len(prefix) :]
+    return key or None
+
+
+def _speaker_name_y_default(call_name: str) -> float:
+    return 242.0 if call_name == "comparison_speaker" else 383.0
+
+
+class CharacterGroupMoveUpdater(cst.CSTTransformer):
+    def __init__(self, target: str, fields: dict[str, Any]):
+        self.key = _character_group_key(target)
+        self.fields = fields
+        self.updated = False
+
+    def leave_Call(self, original_node: cst.Call, updated_node: cst.Call) -> cst.BaseExpression:
+        if not self.key:
+            return updated_node
+
+        invalid = sorted(set(self.fields) - CHARACTER_MOVE_FIELDS)
+        if invalid:
+            raise DslPatchError(f"unsupported field(s) for character group: {', '.join(invalid)}")
+
+        dx = float(self.fields.get("move_dx", 0.0))
+        dy = float(self.fields.get("move_dy", 0.0))
+        call_name = _call_name(original_node)
+        args = list(updated_node.args)
+
+        if call_name in {"SpeakerSpec", "comparison_speaker"}:
+            key_arg = _keyword_arg(original_node, "key")
+            if key_arg is None or _string_literal_value(key_arg.value) != self.key:
+                return updated_node
+            changed = False
+            changed = _shift_or_append_numeric_arg(args, "cx", dx) or changed
+            changed = _shift_or_append_numeric_arg(args, "bubble_cy", dy) or changed
+            changed = _shift_or_append_numeric_arg(args, "head_cy", dy) or changed
+            changed = _shift_or_append_numeric_arg(args, "tail_y", dy) or changed
+            changed = _shift_or_append_numeric_arg(args, "name_y", dy, _speaker_name_y_default(call_name)) or changed
+            if changed:
+                self.updated = True
+                return updated_node.with_changes(args=tuple(args))
+            return updated_node
+
+        if call_name == "character_body_slots":
+            prefix = _first_string_arg(original_node, "prefix")
+            if prefix != f"slot.person_{self.key}":
+                return updated_node
+            changed = False
+            changed = _shift_or_append_numeric_arg(args, "cx", dx) or changed
+            changed = _shift_or_append_numeric_arg(args, "head_cy", dy) or changed
+            if changed:
+                self.updated = True
+                return updated_node.with_changes(args=tuple(args))
+            return updated_node
+
+        if call_name == "character_hand_slots":
+            prefix = _first_string_arg(original_node, "prefix")
+            if prefix != f"slot.person_{self.key}":
+                return updated_node
+            changed = False
+            changed = _shift_or_append_numeric_arg(args, "card_x", dx) or changed
+            changed = _shift_or_append_numeric_arg(args, "card_y", dy) or changed
+            if changed:
+                self.updated = True
+                return updated_node.with_changes(args=tuple(args))
+            return updated_node
+
+        if call_name in SUPPORTED_SLOTS:
+            id_arg = _keyword_arg(original_node, "id")
+            if id_arg is None or not isinstance(id_arg.value, cst.SimpleString):
+                return updated_node
+            try:
+                slot_id = cst.parse_expression(id_arg.value.value).evaluated_value
+            except Exception:
+                return updated_node
+            if not isinstance(slot_id, str):
+                return updated_node
+            if not (
+                slot_id == f"slot.name_{self.key}"
+                or slot_id.startswith(f"slot.name_{self.key}_")
+                or slot_id == f"slot.card_{self.key}"
+                or slot_id.startswith(f"slot.card_{self.key}_")
+            ):
+                return updated_node
+            if _shift_slot_call_args(args, call_name, dx, dy):
+                self.updated = True
+                return updated_node.with_changes(args=tuple(args))
+
+        return updated_node
 
 
 def _string_literal_value(expr: cst.BaseExpression) -> str | None:
@@ -579,6 +701,14 @@ def apply_layout_patches(problem_id: str, patches: list[dict[str, Any]]) -> tupl
             if not updater.updated:
                 raise DslPatchError("Canvas not found")
             applied.append(AppliedPatch(target="__canvas__", op=op, fields=list(value.keys())))
+            continue
+
+        if _character_group_key(target):
+            updater = CharacterGroupMoveUpdater(target=target, fields=value)
+            transformed = transformed.visit(updater)
+            if not updater.updated:
+                raise DslPatchError(f"target character group not found: {target}")
+            applied.append(AppliedPatch(target=target, op=op, fields=list(value.keys())))
             continue
 
         target = _resolve_target_slot_id(transformed, target)

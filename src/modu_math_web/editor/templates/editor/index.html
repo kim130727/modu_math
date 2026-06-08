@@ -271,7 +271,8 @@
     <symbol id="icon-trash" viewBox="0 0 24 24"><path d="M4 7h16"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M6 7l1 13h10l1-13"/><path d="M9 7V4h6v3"/></symbol>
     <symbol id="icon-pick-all" viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="M8 8h3v3H8z"/><path d="M13 8h3v3h-3z"/><path d="M8 13h8v3H8z"/></symbol>
     <symbol id="icon-pick-line" viewBox="0 0 24 24"><path d="M5 18 19 6"/><path d="M6 6h12v12"/></symbol>
-    <symbol id="icon-pick-shape" viewBox="0 0 24 24"><path d="M5 5h8v8H5z"/><path d="M15 15h4v4h-4z"/><path d="M6 19h6"/></symbol>
+    <symbol id="icon-pick-text" viewBox="0 0 24 24"><path d="M5 6h14"/><path d="M12 6v14"/><path d="M8 20h8"/></symbol>
+    <symbol id="icon-pick-shape" viewBox="0 0 24 24"><path d="M5 5h8v8H5z"/><path d="M16 6a3 3 0 1 0 0.1 0"/><path d="M15 16h4v4h-4z"/></symbol>
   </svg>
   <div class="wrap">
     <section class="main">
@@ -311,7 +312,8 @@
           <button id="snapToggleBtn" class="icon-btn active" title="Snap: ON (5px)" aria-label="Snap: ON (5px)"><svg><use href="#icon-snap"></use></svg></button>
           <button id="pickAllBtn" class="icon-btn active" title="Pick: All" aria-label="Pick: All"><svg><use href="#icon-pick-all"></use></svg></button>
           <button id="pickLinePathBtn" class="icon-btn" title="Pick: Line/Path" aria-label="Pick: Line/Path"><svg><use href="#icon-pick-line"></use></svg></button>
-          <button id="pickTextRectBtn" class="icon-btn" title="Pick: Text/Rect" aria-label="Pick: Text/Rect"><svg><use href="#icon-pick-shape"></use></svg></button>
+          <button id="pickTextBtn" class="icon-btn" title="Pick: Text" aria-label="Pick: Text"><svg><use href="#icon-pick-text"></use></svg></button>
+          <button id="pickShapeBtn" class="icon-btn" title="Pick: Shape" aria-label="Pick: Shape"><svg><use href="#icon-pick-shape"></use></svg></button>
         </div>
         <div class="tool-group">
           <button id="alignLeftBtn" class="icon-btn" title="Align Left" aria-label="Align Left"><svg><use href="#icon-align-left"></use></svg></button>
@@ -711,7 +713,8 @@
         if (/^slot\..+\.bar\.line$/i.test(id)) return false;
         return true;
       }
-      if (pickMode === "textrect") return tag === "text" || tag === "rect";
+      if (pickMode === "text") return tag === "text";
+      if (pickMode === "shape") return tag === "rect" || tag === "circle" || tag === "polygon";
       return true;
     }
 
@@ -762,6 +765,30 @@
       return m ? m[1] : null;
     }
 
+    function characterGroupInfoFromSlotId(slotId) {
+      if (!slotId) return null;
+      let m = slotId.match(/^slot\.([^.]+)\.(?:bubble|tail|text|person(?:\.|$))/);
+      if (m) return { kind: "speaker", key: m[1], base: `slot.character.${m[1]}` };
+      m = slotId.match(/^slot\.name\.([^.]+)\.(?:box|text)$/);
+      if (m) return { kind: "speaker", key: m[1], base: `slot.character.${m[1]}` };
+      m = slotId.match(/^slot\.person_(left|mid|right)(?:\.|$)/);
+      if (m) return { kind: "cardPerson", key: m[1], base: `slot.character.${m[1]}` };
+      m = slotId.match(/^slot\.(?:name|card)_(left|mid|right)(?:$|_)/);
+      if (m) return { kind: "cardPerson", key: m[1], base: `slot.character.${m[1]}` };
+      return null;
+    }
+
+    function characterGroupBaseFromSlotId(slotId) {
+      const info = characterGroupInfoFromSlotId(slotId);
+      if (!info) return null;
+      const group = collectCharacterGroupSlotIds(slotId);
+      return group ? group.base : null;
+    }
+
+    function selectableGroupBaseFromSlotId(slotId) {
+      return figureBaseFromSlotId(slotId) || characterGroupBaseFromSlotId(slotId);
+    }
+
     function collectFigureGroupSlotIds(slotId) {
       const base = figureBaseFromSlotId(slotId);
       if (!base) return null;
@@ -772,7 +799,34 @@
         const sid = slotIdFromElement(node);
         if (sid && sid.startsWith(`${base}.`) && !out.includes(sid)) out.push(sid);
       }
-      return out.length ? { base, slotIds: out } : null;
+      return out.length ? { base, slotIds: out, groupKind: "figure" } : null;
+    }
+
+    function collectCharacterGroupSlotIds(slotId) {
+      const info = characterGroupInfoFromSlotId(slotId);
+      if (!info) return null;
+      const svg = document.getElementById("svgPreview").querySelector("svg");
+      if (!svg) return null;
+      const out = [];
+      let hasPerson = false;
+      for (const node of draggableSlotElements(svg)) {
+        const sid = slotIdFromElement(node);
+        if (!sid) continue;
+        let include = false;
+        if (info.kind === "speaker") {
+          include = sid.startsWith(`slot.${info.key}.`) || sid.startsWith(`slot.name.${info.key}.`);
+          if (sid.startsWith(`slot.${info.key}.person.`)) hasPerson = true;
+        } else if (info.kind === "cardPerson") {
+          include = sid.startsWith(`slot.person_${info.key}.`) || sid === `slot.name_${info.key}` || sid.startsWith(`slot.name_${info.key}_`) || sid === `slot.card_${info.key}` || sid.startsWith(`slot.card_${info.key}_`);
+          if (sid.startsWith(`slot.person_${info.key}.`)) hasPerson = true;
+        }
+        if (include && !out.includes(sid)) out.push(sid);
+      }
+      return hasPerson && out.length > 1 ? { base: info.base, slotIds: out, groupKind: "character" } : null;
+    }
+
+    function collectSelectableGroupSlotIds(slotId) {
+      return collectFigureGroupSlotIds(slotId) || collectCharacterGroupSlotIds(slotId);
     }
 
     function elementsForSlotIds(slotIds) {
@@ -796,7 +850,8 @@
       }
       document.getElementById("pickAllBtn").classList.toggle("active", pickMode === "all");
       document.getElementById("pickLinePathBtn").classList.toggle("active", pickMode === "linepath");
-      document.getElementById("pickTextRectBtn").classList.toggle("active", pickMode === "textrect");
+      document.getElementById("pickTextBtn").classList.toggle("active", pickMode === "text");
+      document.getElementById("pickShapeBtn").classList.toggle("active", pickMode === "shape");
     }
 
     function intersects(a, b) {
@@ -857,7 +912,7 @@
         height: Math.abs(end.y - local.startSvg.y),
       };
       if (pickRect.width < 2 && pickRect.height < 2) {
-        selectCanvas();
+        clearSelection();
         return;
       }
 
@@ -884,6 +939,18 @@
       while (cur && cur.tagName && cur.tagName.toLowerCase() !== "svg") {
         if (cur.id && isDraggableSlotElement(cur) && slotIdsFromElement(cur).length) return cur;
         cur = cur.parentNode;
+      }
+      return null;
+    }
+
+    function matchingSlotElementAtPoint(svg, clientX, clientY) {
+      const seen = new Set();
+      for (const node of document.elementsFromPoint(clientX, clientY)) {
+        if (!(node instanceof SVGElement) || !svg.contains(node)) continue;
+        const slotTarget = findDraggableSlotAncestor(node);
+        if (!slotTarget || seen.has(slotTarget)) continue;
+        seen.add(slotTarget);
+        if (matchesPickMode(slotTarget)) return slotTarget;
       }
       return null;
     }
@@ -1048,6 +1115,7 @@
       const item = Array.from(selectedSlots.values())[0];
       if (!item || item.isFraction || !item.el) return null;
       if (item.isCanvas) return item;
+      if (item.isCharacterGroup) return null;
       if (item.isFigureGroup) return item;
       const tag = item.el.tagName.toLowerCase();
       if (!["text", "rect", "circle", "line"].includes(tag)) return null;
@@ -1340,21 +1408,22 @@
     function setSelectedElement(el, slotId, append = false) {
       if (!append) clearSelection();
       if (!el || !slotId) return;
-      const figureGroup = collectFigureGroupSlotIds(slotId);
-      if (figureGroup) {
-        const elements = elementsForSlotIds(figureGroup.slotIds);
+      const selectableGroup = collectSelectableGroupSlotIds(slotId);
+      if (selectableGroup) {
+        const elements = elementsForSlotIds(selectableGroup.slotIds);
         if (!elements.length) return;
-        if (append && selectedSlots.has(figureGroup.base)) {
-          const existing = selectedSlots.get(figureGroup.base);
+        if (append && selectedSlots.has(selectableGroup.base)) {
+          const existing = selectedSlots.get(selectableGroup.base);
           for (const node of (existing.elements || [])) node.classList.remove("slot-selected");
-          selectedSlots.delete(figureGroup.base);
+          selectedSlots.delete(selectableGroup.base);
         } else {
-          selectedSlots.set(figureGroup.base, {
+          selectedSlots.set(selectableGroup.base, {
             el: elements[0],
-            slotId: figureGroup.base,
-            slotIds: figureGroup.slotIds,
+            slotId: selectableGroup.base,
+            slotIds: selectableGroup.slotIds,
             elements,
             isFigureGroup: true,
+            isCharacterGroup: selectableGroup.groupKind === "character",
           });
           for (const node of elements) node.classList.add("slot-selected");
         }
@@ -1859,6 +1928,78 @@
       svg.dataset.dragBound = "1";
 
       const slotElements = draggableSlotElements(svg);
+      function beginSlotPointerDown(el, ev) {
+        if (ev.button !== 0) return false;
+        if (!matchesPickMode(el)) return false;
+        const rawId = el.getAttribute("id");
+        const fracInfo = parseFractionPartId(rawId);
+        const resolvedSlotIds = fracInfo ? [fracInfo.prefix] : toDslSlotIds(rawId);
+        const slotId = resolvedSlotIds[0] || rawId;
+        const dslIds = extractDslSlotIds();
+        const slotKnown = resolvedSlotIds.length > 0 && resolvedSlotIds.every((id) => dslIds.has(id));
+        if (!slotId || (!slotKnown && !fracInfo)) {
+          setStatus(`드래그 불가 요소: ${el.getAttribute("id") || "(unknown id)"}`, false);
+          return false;
+        }
+        const appendSelection = ev.shiftKey || ev.ctrlKey || ev.metaKey;
+        const selectionKey = selectableGroupBaseFromSlotId(slotId) || slotId;
+        const keepGroupSelection = !appendSelection && selectedSlots.has(selectionKey);
+        if (!keepGroupSelection) setSelectedElement(el, slotId, appendSelection);
+        const selected = selectedSlots.get(selectionKey);
+        if (selected && !selected.isFigureGroup) selected.slotIds = resolvedSlotIds;
+        const start = getSvgPoint(svg, ev.clientX, ev.clientY);
+        const beforeMap = new Map();
+        for (const item of selectedSlots.values()) {
+          if (item.isFraction) {
+            beforeMap.set(item.slotId, { move_dx: 0, move_dy: 0 });
+          } else if (item.isCharacterGroup) {
+            beforeMap.set(item.slotId, { move_dx: 0, move_dy: 0 });
+          } else if (item.isFigureGroup) {
+            for (const node of item.elements || []) {
+              const sid = slotIdFromElement(node);
+              const value = readSlotPatchValue(node);
+              if (sid && value) beforeMap.set(sid, JSON.parse(JSON.stringify(value)));
+            }
+          } else {
+            const value = readSlotPatchValue(item.el);
+            if (value) {
+              for (const id of item.slotIds || [item.slotId]) {
+                beforeMap.set(id, JSON.parse(JSON.stringify(value)));
+              }
+            }
+          }
+        }
+        dragState = {
+          svg,
+          slotId: selectionKey,
+          start,
+          moved: false,
+          beforeMap,
+          captureEl: el,
+          pointerId: ev.pointerId,
+          totalDx: 0,
+          totalDy: 0,
+          fractionStartAnchors: (() => {
+            const m = new Map();
+            for (const s of selectedSlots.values()) {
+              if (!s.isFraction) continue;
+              const elems = s.elements || [];
+              if (!elems.length) continue;
+              const a = elementAnchor(elems[0]);
+              if (a) m.set(s.slotId, a);
+            }
+            return m;
+          })(),
+        };
+        try {
+          el.setPointerCapture(ev.pointerId);
+        } catch (_) {
+          // Synthetic pointer events in tests may not have an active pointer.
+        }
+        ev.preventDefault();
+        return true;
+      }
+
       for (const el of slotElements) {
         if (el.tagName.toLowerCase() === "text") {
           el.addEventListener("dblclick", (ev) => {
@@ -1870,72 +2011,7 @@
           });
         }
         el.addEventListener("pointerdown", (ev) => {
-          if (ev.button !== 0) return;
-          if (!matchesPickMode(el)) return;
-          const rawId = el.getAttribute("id");
-          const fracInfo = parseFractionPartId(rawId);
-          const resolvedSlotIds = fracInfo ? [fracInfo.prefix] : toDslSlotIds(rawId);
-          const slotId = resolvedSlotIds[0] || rawId;
-          const dslIds = extractDslSlotIds();
-          const slotKnown = resolvedSlotIds.length > 0 && resolvedSlotIds.every((id) => dslIds.has(id));
-          if (!slotId || (!slotKnown && !fracInfo)) {
-            setStatus(`드래그 불가 요소: ${el.getAttribute("id") || "(unknown id)"}`, false);
-            return;
-          }
-          const appendSelection = ev.shiftKey || ev.ctrlKey || ev.metaKey;
-          const selectionKey = figureBaseFromSlotId(slotId) || slotId;
-          const keepGroupSelection = !appendSelection && selectedSlots.has(selectionKey);
-          if (!keepGroupSelection) setSelectedElement(el, slotId, appendSelection);
-          const selected = selectedSlots.get(selectionKey);
-          if (selected && !selected.isFigureGroup) selected.slotIds = resolvedSlotIds;
-          const start = getSvgPoint(svg, ev.clientX, ev.clientY);
-          const beforeMap = new Map();
-          for (const item of selectedSlots.values()) {
-            if (item.isFraction) {
-              beforeMap.set(item.slotId, { move_dx: 0, move_dy: 0 });
-            } else if (item.isFigureGroup) {
-              for (const node of item.elements || []) {
-                const sid = slotIdFromElement(node);
-                const value = readSlotPatchValue(node);
-                if (sid && value) beforeMap.set(sid, JSON.parse(JSON.stringify(value)));
-              }
-            } else {
-              const value = readSlotPatchValue(item.el);
-              if (value) {
-                for (const id of item.slotIds || [item.slotId]) {
-                  beforeMap.set(id, JSON.parse(JSON.stringify(value)));
-                }
-              }
-            }
-          }
-          dragState = {
-            svg,
-            slotId: selectionKey,
-            start,
-            moved: false,
-            beforeMap,
-            captureEl: el,
-            pointerId: ev.pointerId,
-            totalDx: 0,
-            totalDy: 0,
-            fractionStartAnchors: (() => {
-              const m = new Map();
-              for (const s of selectedSlots.values()) {
-                if (!s.isFraction) continue;
-                const elems = s.elements || [];
-                if (!elems.length) continue;
-                const a = elementAnchor(elems[0]);
-                if (a) m.set(s.slotId, a);
-              }
-              return m;
-            })(),
-          };
-          try {
-            el.setPointerCapture(ev.pointerId);
-          } catch (_) {
-            // Synthetic pointer events in tests may not have an active pointer.
-          }
-          ev.preventDefault();
+          beginSlotPointerDown(el, ev);
         });
       }
 
@@ -1943,6 +2019,10 @@
         const target = ev.target;
         if (!(target instanceof SVGElement)) return;
         const slotTarget = findDraggableSlotAncestor(target);
+        if (slotTarget && !matchesPickMode(slotTarget)) {
+          const matched = matchingSlotElementAtPoint(svg, ev.clientX, ev.clientY);
+          if (matched && beginSlotPointerDown(matched, ev)) return;
+        }
         if (!slotTarget) {
           clearSelection();
           if (ev.button === 0) beginMarquee(svg, ev);
@@ -1981,7 +2061,7 @@
           for (const item of selectedSlots.values()) {
             if (item.isFraction) {
               for (const node of item.elements || []) lastValue = applyElementDelta(node, pdx, pdy, false);
-            } else if (item.isFigureGroup) {
+          } else if (item.isFigureGroup) {
               for (const node of item.elements || []) lastValue = applyElementDelta(node, pdx, pdy, false);
             } else {
               lastValue = applyElementDelta(item.el, pdx, pdy, false);
@@ -2025,6 +2105,17 @@
             const snappedMove = snapPatchValue({ move_dx: moved.dx, move_dy: moved.dy });
             const fixDx = snappedMove.move_dx - moved.dx;
             const fixDy = snappedMove.move_dy - moved.dy;
+            if (fixDx !== 0 || fixDy !== 0) {
+              for (const node of item.elements || []) applyElementDelta(node, fixDx, fixDy, false);
+            }
+            patches.push({ target: item.slotId, op: "update", value: snappedMove });
+            after.push({ slotId: item.slotId, value: snappedMove });
+            continue;
+          }
+          if (item.isCharacterGroup) {
+            const snappedMove = snapPatchValue({ move_dx: local.totalDx, move_dy: local.totalDy });
+            const fixDx = snappedMove.move_dx - local.totalDx;
+            const fixDy = snappedMove.move_dy - local.totalDy;
             if (fixDx !== 0 || fixDy !== 0) {
               for (const node of item.elements || []) applyElementDelta(node, fixDx, fixDy, false);
             }
@@ -2463,10 +2554,15 @@
       applyPickMode();
       setStatus("선택 모드: Line/Path", true);
     };
-    document.getElementById("pickTextRectBtn").onclick = () => {
-      pickMode = "textrect";
+    document.getElementById("pickTextBtn").onclick = () => {
+      pickMode = "text";
       applyPickMode();
-      setStatus("선택 모드: Text/Rect", true);
+      setStatus("선택 모드: Text", true);
+    };
+    document.getElementById("pickShapeBtn").onclick = () => {
+      pickMode = "shape";
+      applyPickMode();
+      setStatus("선택 모드: Shape", true);
     };
     document.addEventListener("keydown", (ev) => {
       const active = document.activeElement;
@@ -2515,6 +2611,11 @@
       const patches = [];
       const handledFractionPrefixes = new Set();
       for (const item of selectedSlots.values()) {
+        if (item.isCharacterGroup) {
+          for (const node of item.elements || []) applyElementDelta(node, dx, dy, false);
+          patches.push({ target: item.slotId, op: "update", value: { move_dx: dx, move_dy: dy } });
+          continue;
+        }
         if (item.isFigureGroup) {
           for (const node of item.elements || []) applyElementDelta(node, dx, dy, false);
           for (const node of item.elements || []) {

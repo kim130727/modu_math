@@ -7,32 +7,15 @@
   },
   "elements": [
     {
-      "id": "slot.q1.text",
-      "type": "text",
-      "attributes": {
-        "x": 10.0,
-        "y": 24.0,
-        "max_width": 632.0,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
-      },
-      "source_ref": "slot.q1",
-      "refs": {
-        "layout_slot_id": "slot.q1"
-      },
-      "text": "45."
-    },
-    {
       "id": "slot.q2.text",
       "type": "text",
       "attributes": {
-        "x": 62.0,
-        "y": 24.0,
+        "x": 60.0,
+        "y": 40.0,
         "max_width": 632.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 30
       },
       "source_ref": "slot.q2",
       "refs": {
@@ -44,10 +27,10 @@
       "id": "slot.box.rect",
       "type": "rect",
       "attributes": {
-        "x": 260.0,
-        "y": 46.0,
-        "width": 382.0,
-        "height": 152.0,
+        "x": 190.0,
+        "y": 80.0,
+        "width": 380.0,
+        "height": 150.0,
         "fill": "#ffffff",
         "stroke": "#111111",
         "stroke-width": 1.5
@@ -61,12 +44,12 @@
       "id": "slot.a1.text",
       "type": "text",
       "attributes": {
-        "x": 316.0,
-        "y": 86.0,
+        "x": 245.0,
+        "y": 120.0,
         "max_width": 632.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 30
       },
       "source_ref": "slot.a1",
       "refs": {
@@ -78,12 +61,12 @@
       "id": "slot.a2.text",
       "type": "text",
       "attributes": {
-        "x": 316.0,
-        "y": 124.0,
+        "x": 245.0,
+        "y": 160.0,
         "max_width": 632.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 30
       },
       "source_ref": "slot.a2",
       "refs": {
@@ -95,12 +78,12 @@
       "id": "slot.a3.text",
       "type": "text",
       "attributes": {
-        "x": 316.0,
-        "y": 162.0,
+        "x": 245.0,
+        "y": 205.0,
         "max_width": 632.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 30
       },
       "source_ref": "slot.a3",
       "refs": {
@@ -112,35 +95,18 @@
       "id": "slot.choices.text",
       "type": "text",
       "attributes": {
-        "x": 389.0,
-        "y": 228.0,
+        "x": 290.0,
+        "y": 280.0,
         "max_width": 632.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 30
       },
       "source_ref": "slot.choices",
       "refs": {
         "layout_slot_id": "slot.choices"
       },
       "text": "( ㉠ , ㉡ , ㉢ )"
-    },
-    {
-      "id": "slot.conclusion.text",
-      "type": "text",
-      "attributes": {
-        "x": 28.0,
-        "y": 425.0,
-        "max_width": 632.0,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
-      },
-      "source_ref": "slot.conclusion",
-      "refs": {
-        "layout_slot_id": "slot.conclusion"
-      },
-      "text": "따라서 크기를 바르게 비교한 것은 ㉡ 2023>337 × 6입니다."
     }
   ],
   "contract_version": "modu_math.renderer.v2"

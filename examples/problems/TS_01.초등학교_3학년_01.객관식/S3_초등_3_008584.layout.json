@@ -14,8 +14,6 @@
       "role": "stem",
       "flow": "absolute",
       "slot_ids": [
-        "slot.box",
-        "slot.qnum",
         "slot.qtext"
       ]
     },
@@ -42,55 +40,26 @@
       "id": "region.answer",
       "role": "supplement",
       "flow": "absolute",
-      "slot_ids": [
-        "slot.ans.body",
-        "slot.ans.wheel1",
-        "slot.ans.wheel2"
-      ]
+      "slot_ids": []
     },
     {
       "id": "region.explanation",
       "role": "explanation",
       "flow": "absolute",
-      "slot_ids": [
-        "slot.conclusion"
-      ]
+      "slot_ids": []
     }
   ],
   "slots": [
-    {
-      "id": "slot.box",
-      "kind": "rect",
-      "prompt": "",
-      "content": {
-        "x": 14.0,
-        "y": 15.0,
-        "width": 12.0,
-        "height": 12.0
-      }
-    },
-    {
-      "id": "slot.qnum",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "51.",
-        "style_role": "question",
-        "x": 34.0,
-        "y": 26.0,
-        "font_size": 28
-      }
-    },
     {
       "id": "slot.qtext",
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "묶이 다른 것을 선택하세요.",
+        "text": "몫이 다른 것을 선택하세요.",
         "style_role": "question",
-        "x": 82.0,
-        "y": 26.0,
-        "font_size": 28
+        "x": 105.0,
+        "y": 60.0,
+        "font_size": 30
       }
     },
     {
@@ -98,10 +67,10 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 155.0,
-        "y": 48.0,
+        "x": 110.0,
+        "y": 100.0,
         "width": 135.0,
-        "height": 58.0
+        "height": 60.0
       }
     },
     {
@@ -109,9 +78,9 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 175.0,
-        "cy": 108.0,
-        "r": 7.0,
+        "cx": 135.0,
+        "cy": 160.0,
+        "r": 5.0,
         "fill": "#1aa7a7"
       }
     },
@@ -120,9 +89,9 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 227.0,
-        "cy": 108.0,
-        "r": 7.0,
+        "cx": 230.0,
+        "cy": 160.0,
+        "r": 5.0,
         "fill": "#1aa7a7"
       }
     },
@@ -133,9 +102,9 @@
       "content": {
         "text": "72 ÷ 3",
         "style_role": "question",
-        "x": 188.0,
-        "y": 87.0,
-        "font_size": 28
+        "x": 130.0,
+        "y": 140.0,
+        "font_size": 30
       }
     },
     {
@@ -143,10 +112,10 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 380.0,
-        "y": 48.0,
+        "x": 335.0,
+        "y": 100.0,
         "width": 135.0,
-        "height": 58.0
+        "height": 60.0
       }
     },
     {
@@ -154,9 +123,9 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 400.0,
-        "cy": 108.0,
-        "r": 7.0,
+        "cx": 355.0,
+        "cy": 160.0,
+        "r": 5.0,
         "fill": "#1aa7a7"
       }
     },
@@ -165,9 +134,9 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 452.0,
-        "cy": 108.0,
-        "r": 7.0,
+        "cx": 455.0,
+        "cy": 160.0,
+        "r": 5.0,
         "fill": "#1aa7a7"
       }
     },
@@ -178,9 +147,9 @@
       "content": {
         "text": "84 ÷ 2",
         "style_role": "question",
-        "x": 413.0,
-        "y": 87.0,
-        "font_size": 28
+        "x": 360.0,
+        "y": 140.0,
+        "font_size": 30
       }
     },
     {
@@ -188,10 +157,10 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 617.0,
-        "y": 48.0,
+        "x": 570.0,
+        "y": 100.0,
         "width": 135.0,
-        "height": 58.0
+        "height": 60.0
       }
     },
     {
@@ -199,9 +168,9 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 637.0,
-        "cy": 108.0,
-        "r": 7.0,
+        "cx": 590.0,
+        "cy": 160.0,
+        "r": 5.0,
         "fill": "#1aa7a7"
       }
     },
@@ -210,9 +179,9 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 689.0,
-        "cy": 108.0,
-        "r": 7.0,
+        "cx": 685.0,
+        "cy": 160.0,
+        "r": 5.0,
         "fill": "#1aa7a7"
       }
     },
@@ -223,54 +192,9 @@
       "content": {
         "text": "96 ÷ 4",
         "style_role": "question",
-        "x": 650.0,
-        "y": 87.0,
-        "font_size": 28
-      }
-    },
-    {
-      "id": "slot.ans.body",
-      "kind": "rect",
-      "prompt": "",
-      "content": {
-        "x": 78.0,
-        "y": 119.0,
-        "width": 135.0,
-        "height": 58.0
-      }
-    },
-    {
-      "id": "slot.ans.wheel1",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 98.0,
-        "cy": 179.0,
-        "r": 7.0,
-        "fill": "#1aa7a7"
-      }
-    },
-    {
-      "id": "slot.ans.wheel2",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 150.0,
-        "cy": 179.0,
-        "r": 7.0,
-        "fill": "#1aa7a7"
-      }
-    },
-    {
-      "id": "slot.conclusion",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "따라서 묶이 다른 것은 84 ÷ 2입니다.",
-        "style_role": "question",
-        "x": 34.0,
-        "y": 264.0,
-        "font_size": 28
+        "x": 595.0,
+        "y": 140.0,
+        "font_size": 30
       }
     }
   ],
@@ -279,8 +203,6 @@
   "diagrams": [],
   "reading_order": [
     "region.header",
-    "slot.box",
-    "slot.qnum",
     "slot.qtext",
     "region.options",
     "slot.opt1.body",
@@ -296,10 +218,6 @@
     "slot.opt2.text",
     "slot.opt3.text",
     "region.answer",
-    "slot.ans.body",
-    "slot.ans.wheel1",
-    "slot.ans.wheel2",
-    "region.explanation",
-    "slot.conclusion"
+    "region.explanation"
   ]
 }

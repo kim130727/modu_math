@@ -1,10 +1,10 @@
 {
   "schema": "modu.solvable.v1.1",
-  "problem_id": "S3_??_3_008577",
+  "problem_id": "S3_초등_3_008577",
   "problem_type": "multiplication_place_value_choice",
   "inputs": {
     "total_ticks": 0,
-    "target_label": "??? ??? ???? ?",
+    "target_label": "색칠된 부분에 해당하는 식",
     "target_ticks": 0,
     "target_count": 1,
     "unit": ""
@@ -12,7 +12,7 @@
   "given": [
     {
       "ref": "obj.target",
-      "value": "90 ? 2"
+      "value": "90 × 2"
     }
   ],
   "target": {
@@ -21,22 +21,22 @@
   },
   "method": "place_value_matching",
   "plan": [
-    "??? ??? ???? ????.",
-    "?? ?? ???."
+    "색칠된 부분과 자리값을 확인한다.",
+    "같은 식을 고른다."
   ],
   "steps": [
     {
       "id": "step.1",
-      "expr": "??? ??? ?? ??",
-      "value": "90 ? 2"
+      "expr": "색칠된 부분과 보기 비교",
+      "value": "90 × 2"
     }
   ],
   "checks": [
     {
       "id": "check.1",
-      "expr": "??",
-      "expected": "??",
-      "actual": "??",
+      "expr": "검토",
+      "expected": "일치",
+      "actual": "일치",
       "pass": true
     }
   ],
@@ -46,9 +46,9 @@
     "answer_key": [],
     "target": {
       "type": "selected_expression",
-      "description": "??? ??? ???? ?"
+      "description": "색칠된 부분에 해당하는 식"
     },
-    "value": "90 ? 2",
+    "value": "90 × 2",
     "unit": ""
   }
 }

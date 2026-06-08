@@ -1,4 +1,4 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 from modu_math.dsl import Canvas, CircleSlot, LineSlot, ProblemTemplate, RectSlot, Region, TextSlot
 
 
@@ -34,7 +34,7 @@ def build_problem_template() -> ProblemTemplate:
             CircleSlot(id="slot.opt1.face.eye1", prompt="", cx=203.0, cy=321.0, r=2.5, fill="#222222"),
             CircleSlot(id="slot.opt1.face.eye2", prompt="", cx=215.0, cy=321.0, r=2.5, fill="#222222"),
             LineSlot(id="slot.opt1.face.mouth", prompt="", x1=203.0, y1=331.0, x2=215.0, y2=331.0, stroke="#C36A6A", stroke_dasharray=""),
-            TextSlot(id="slot.opt1.name", prompt="", text="정우", style_role="question", x=182.0, y=430.0, font_size=28),
+            TextSlot(id="slot.opt1.name", prompt="", text="형우", style_role="question", x=182.0, y=430.0, font_size=28),
 
             RectSlot(id="slot.opt2.bubble", prompt="", x=405.0, y=165.0, width=145.0, height=105.0),
             TextSlot(id="slot.opt2.text", prompt="", text="나머지는\n5보다 작아.", style_role="question", x=430.0, y=198.0, font_size=28),
@@ -43,7 +43,7 @@ def build_problem_template() -> ProblemTemplate:
             CircleSlot(id="slot.opt2.face.eye1", prompt="", cx=458.0, cy=321.0, r=2.5, fill="#222222"),
             CircleSlot(id="slot.opt2.face.eye2", prompt="", cx=470.0, cy=321.0, r=2.5, fill="#222222"),
             LineSlot(id="slot.opt2.face.mouth", prompt="", x1=458.0, y1=331.0, x2=470.0, y2=331.0, stroke="#C36A6A", stroke_dasharray=""),
-            TextSlot(id="slot.opt2.name", prompt="", text="소영", style_role="question", x=438.0, y=430.0, font_size=28),
+            TextSlot(id="slot.opt2.name", prompt="", text = '희영', style_role="question", x=438.0, y=430.0, font_size=28),
 
             RectSlot(id="slot.opt3.bubble", prompt="", x=660.0, y=165.0, width=145.0, height=105.0),
             TextSlot(id="slot.opt3.text", prompt="", text="나누어떨어지지\n않아.", style_role="question", x=684.0, y=198.0, font_size=28),
@@ -52,7 +52,7 @@ def build_problem_template() -> ProblemTemplate:
             CircleSlot(id="slot.opt3.face.eye1", prompt="", cx=713.0, cy=321.0, r=2.5, fill="#222222"),
             CircleSlot(id="slot.opt3.face.eye2", prompt="", cx=725.0, cy=321.0, r=2.5, fill="#222222"),
             LineSlot(id="slot.opt3.face.mouth", prompt="", x1=713.0, y1=331.0, x2=725.0, y2=331.0, stroke="#C36A6A", stroke_dasharray=""),
-            TextSlot(id="slot.opt3.name", prompt="", text="상태", style_role="question", x=693.0, y=430.0, font_size=28),
+            TextSlot(id="slot.opt3.name", prompt="", text = '성태', style_role="question", x=693.0, y=430.0, font_size=28),
         ),
         diagrams=(), groups=(), constraints=(), tags=("초등", "수학", "나눗셈", "몫", "나머지", "선택형"),
     )
@@ -68,9 +68,9 @@ SEMANTIC_OVERRIDE = {
         "objects": [
             {"id": "obj.dividend", "type": "number", "value": 68},
             {"id": "obj.divisor", "type": "number", "value": 5},
-            {"id": "obj.person.left", "type": "person", "name": "정우"},
-            {"id": "obj.person.middle", "type": "person", "name": "소영"},
-            {"id": "obj.person.right", "type": "person", "name": "상태"},
+            {"id": "obj.person.left", "type": "person", "name": "형우"},
+            {"id": "obj.person.middle", "type": "person", "name": "희영"},
+            {"id": "obj.person.right", "type": "person", "name": "성태"},
         ],
         "relations": [],
         "problem_solving": {
@@ -80,7 +80,7 @@ SEMANTIC_OVERRIDE = {
             "review": {"check_methods": ["remainder_less_than_divisor", "selected_person_match"]},
         },
     },
-    "answer": {"blanks": [], "choices": [], "answer_key": [], "target": {"type": "person_selection", "description": "문제를 바르게 설명한 사람"}, "value": "상태", "unit": ""},
+    "answer": {"blanks": [], "choices": [], "answer_key": [], "target": {"type": "person_selection", "description": "문제를 바르게 설명한 사람"}, "value": "성태", "unit": ""},
 }
 
 SOLVABLE = {
@@ -91,9 +91,9 @@ SOLVABLE = {
     "given": [
         {"ref": "obj.dividend", "value": 68},
         {"ref": "obj.divisor", "value": 5},
-        {"ref": "obj.person.left", "value": "정우"},
-        {"ref": "obj.person.middle", "value": "소영"},
-        {"ref": "obj.person.right", "value": "상태"},
+        {"ref": "obj.person.left", "value": "형우"},
+        {"ref": "obj.person.middle", "value": "희영"},
+        {"ref": "obj.person.right", "value": "성태"},
     ],
     "target": {"ref": "answer.target", "type": "person_selection"},
     "method": "division_result_check",
@@ -101,11 +101,11 @@ SOLVABLE = {
     "steps": [
         {"id": "step.1", "expr": "68 ÷ 5", "value": {"quotient": 13, "remainder": 3}},
         {"id": "step.2", "expr": "나머지 < 나누는 수", "value": True},
-        {"id": "step.3", "expr": "선택한 사람", "value": "상태"},
+        {"id": "step.3", "expr": "선택한 사람", "value": "성태"},
     ],
     "checks": [
         {"id": "check.1", "expr": "68 = 5 × 13 + 3", "expected": True, "actual": True, "pass": True},
         {"id": "check.2", "expr": "3 < 5", "expected": True, "actual": True, "pass": True},
     ],
-    "answer": {"blanks": [], "choices": [], "answer_key": [], "target": {"type": "person_selection", "description": "문제를 바르게 설명한 사람"}, "value": "상태", "unit": ""},
+    "answer": {"blanks": [], "choices": [], "answer_key": [], "target": {"type": "person_selection", "description": "문제를 바르게 설명한 사람"}, "value": "성태", "unit": ""},
 }

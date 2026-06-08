@@ -1,4 +1,4 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 from modu_math.dsl import Canvas, ProblemTemplate, Region, RectSlot, TextSlot
 
 
@@ -19,41 +19,24 @@ def build_problem_template() -> ProblemTemplate:
             TextSlot(
                 id="slot.q1",
                 prompt="",
-                text="56. 나머지가 더 큰 것을 선택하세요.",
-                style_role="question",
-                x=12.0,
-                y=28.0,
-                font_size=28,
-            ),
+                text = '나머지가 더 큰 것을 선택하세요.', style_role="question",
+                x = 45, y = 45, font_size = 30),
             RectSlot(
-                id="slot.box.left", prompt="", x=180.0, y=48.0, width=190.0, height=80.0
-            ),
+                id="slot.box.left", prompt="", x = 105, y = 85, width = 190, height = 80),
             RectSlot(
                 id="slot.box.right",
                 prompt="",
-                x=440.0,
-                y=48.0,
-                width=190.0,
-                height=80.0,
-            ),
+                x = 365, y = 85, width = 190, height = 80),
             TextSlot(
                 id="slot.q2",
                 prompt="",
-                text="24 ÷ 7",
-                style_role="question",
-                x=233.0,
-                y=96.0,
-                font_size=28,
-            ),
+                text = '24 ÷ 7', style_role="question",
+                x = 155, y = 130, font_size = 30),
             TextSlot(
                 id="slot.q3",
                 prompt="",
-                text="49 ÷ 5",
-                style_role="question",
-                x=493.0,
-                y=96.0,
-                font_size=28,
-            ),
+                text = '49 ÷ 5', style_role="question",
+                x = 415, y = 130, font_size = 30),
             TextSlot(
                 id="slot.q7",
                 prompt="",

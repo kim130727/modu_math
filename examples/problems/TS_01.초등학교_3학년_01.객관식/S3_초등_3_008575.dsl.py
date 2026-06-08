@@ -2,25 +2,51 @@ from __future__ import annotations
 from modu_math.dsl import Canvas, LineSlot, ProblemTemplate, RectSlot, Region, TextSlot
 
 def build_problem_template() -> ProblemTemplate:
-    return ProblemTemplate(id="S3_??_3_008575", title="색칠된 부분은 실제 어떤 수의 곱인지를 찾아 선택하세요.", canvas=Canvas(width=900,height=420,coordinate_mode="logical"),
-    regions=(Region(id="region.stem",role="stem",flow="absolute",slot_ids=("slot.q.no","slot.q.text")),),
-    slots=(
-    TextSlot(id="slot.q.no",prompt="",text="41.",style_role="question",x=12,y=30,font_size=38),
-    TextSlot(id="slot.q.text",prompt="",text="색칠된 부분은 실제 어떤 수의 곱인지를 찾아 선택하세요.",style_role="question",x=48,y=30,font_size=44),
-    RectSlot(id="slot.choice.box",prompt="",x=513,y=63,width=150,height=219,fill="none"),
-    TextSlot(id="t2",prompt="",text="4",style_role="diagram",x=344,y=74,font_size=44),TextSlot(id="t1",prompt="",text="7",style_role="diagram",x=384,y=74,font_size=44),TextSlot(id="t0",prompt="",text="3",style_role="diagram",x=424,y=74,font_size=44),
-    TextSlot(id="mx",prompt="",text="?",style_role="diagram",x=300,y=114,font_size=44),TextSlot(id="m0",prompt="",text="3",style_role="diagram",x=424,y=114,font_size=44),
-    LineSlot(id="l1",prompt="",x1=298,y1=122,x2=438,y2=122),
-    TextSlot(id="p0",prompt="",text="9",style_role="diagram",x=424,y=156,font_size=44),
-    RectSlot(id="hl",prompt="",x=368,y=168,width=88,height=38,fill="#e9c8dc"),
-    TextSlot(id="h2",prompt="",text="2",style_role="diagram",x=374,y=200,font_size=44),TextSlot(id="h1",prompt="",text="1",style_role="diagram",x=408,y=200,font_size=44),TextSlot(id="h0",prompt="",text="0",style_role="diagram",x=442,y=200,font_size=44),
-    TextSlot(id="p23",prompt="",text="1",style_role="diagram",x=304,y=240,font_size=44),TextSlot(id="p22",prompt="",text="2",style_role="diagram",x=344,y=240,font_size=44),TextSlot(id="p21",prompt="",text="0",style_role="diagram",x=384,y=240,font_size=44),TextSlot(id="p20",prompt="",text="0",style_role="diagram",x=424,y=240,font_size=44),
-    LineSlot(id="l2",prompt="",x1=298,y1=242,x2=458,y2=242),
-    TextSlot(id="f3",prompt="",text="1",style_role="diagram",x=304,y=280,font_size=44),TextSlot(id="f2",prompt="",text="4",style_role="diagram",x=344,y=280,font_size=44),TextSlot(id="f1",prompt="",text="1",style_role="diagram",x=384,y=280,font_size=44),TextSlot(id="f0",prompt="",text="9",style_role="diagram",x=424,y=280,font_size=44),
-    TextSlot(id="c1",prompt="",text="7 ? 3",style_role="choice",x=536,y=112,font_size=40),TextSlot(id="c2",prompt="",text="73 ? 3",style_role="choice",x=536,y=154,font_size=40),TextSlot(id="c3",prompt="",text="70 ? 3",style_role="choice",x=536,y=196,font_size=40),TextSlot(id="c4",prompt="",text="700 ? 3",style_role="choice",x=536,y=238,font_size=40),
-    TextSlot(id="a",prompt="",text="(??)73 ? 3",style_role="body",x=8,y=334,font_size=36),
-    TextSlot(id="e",prompt="",text="(??)473?? 7? ?? ?? ????? 70 ? 3 = 210???.",style_role="body",x=8,y=382,font_size=40),
-    ),diagrams=(),groups=(),constraints=(),tags=("??","??","??"))
+    return ProblemTemplate(
+        id="S3_초등_3_008575",
+        title="색칠된 부분은 실제 어떤 수의 곱인지를 찾아 선택하세요.",
+        canvas=Canvas(width=900, height=420, coordinate_mode="logical"),
+        regions=(
+            Region(id="region.stem", role="stem", flow="absolute", slot_ids=("slot.q.text")),
+            Region(id="region.work", role="diagram", flow="absolute", slot_ids=()),
+            Region(id="region.choice", role="choices", flow="absolute", slot_ids=()),
+            Region(id="region.footer", role="footer", flow="absolute", slot_ids=()),
+        ),
+        slots=(
+            TextSlot(id="slot.q.text", prompt="", text="색칠된 부분은 실제 어떤 수의 곱인지를 찾아 선택하세요.", style_role="question", x = 40, y = 40, font_size=36),
+
+            LineSlot(id="slot.v1", prompt="", x1 = 425, y1 = 60, x2 = 425, y2 = 315, stroke="#9AA0A6", stroke_width=1.2, stroke_dasharray="5 3"),
+            LineSlot(id="slot.v2", prompt="", x1 = 465, y1 = 60, x2 = 465, y2 = 315, stroke="#9AA0A6", stroke_width=1.2, stroke_dasharray="5 3"),
+            LineSlot(id="slot.v3", prompt="", x1 = 505, y1 = 60, x2 = 505, y2 = 315, stroke="#9AA0A6", stroke_width=1.2, stroke_dasharray="5 3"),
+            LineSlot(id="slot.v4", prompt="", x1 = 545, y1 = 60, x2 = 545, y2 = 315, stroke="#9AA0A6", stroke_width=1.2, stroke_dasharray="5 3"),
+            LineSlot(id="slot.v5", prompt="", x1 = 585, y1 = 60, x2 = 585, y2 = 315, stroke="#9AA0A6", stroke_width=1.2, stroke_dasharray="5 3"),
+
+            TextSlot(id="slot.top2", prompt="", text="4 7 3", style_role="diagram", x = 480, y = 95, font_size=44),
+            TextSlot(id="slot.mulx", prompt="", text="×", style_role="diagram", x = 425, y = 135, font_size=44),
+            TextSlot(id="slot.mul0", prompt="", text = '3', style_role="diagram", x = 555, y = 135, font_size = 45),
+            LineSlot(id="slot.bar1", prompt="", x1 = 415, y1 = 140, x2 = 585, y2 = 140),
+
+            TextSlot(id="slot.p0", prompt="", text="9", style_role="diagram", x = 555, y = 185, font_size=44),
+            RectSlot(id="slot.hl", prompt="", x = 434.4956970214844, y = 190, width = 148.50430297851562, height = 40, fill="#efc8b9"),
+            TextSlot(id="slot.p11", prompt="", text = '2 1 0', style_role="diagram", x = 480, y = 225, font_size = 45, fill = '#111111'),
+
+            TextSlot(id="slot.p23", prompt="", text="1 2 0 0", style_role="diagram", x = 445, y = 265, font_size=44),
+            LineSlot(id="slot.bar2", prompt="", x1 = 415, y1 = 270, x2 = 585, y2 = 270),
+
+            TextSlot(id="slot.f3", prompt="", text="1 4 1 9", style_role="diagram", x = 445, y = 310, font_size=44),
+
+            RectSlot(id="slot.choice.box", prompt="", x = 40, y = 335, width = 835, height = 75, stroke="#D8A100", stroke_width=2.0, fill="none"),
+            TextSlot(id="slot.c1", prompt="", text = '7 × 3', style_role="choice", x = 120, y = 385, font_size = 40),
+            TextSlot(id="slot.c2", prompt="", text = '73 × 3', style_role="choice", x = 295, y = 385, font_size = 40),
+            TextSlot(id="slot.c3", prompt="", text = '70 × 3', style_role="choice", x = 490, y = 385, font_size = 40),
+            TextSlot(id="slot.c4", prompt="", text = '700 × 3', style_role="choice", x = 685, y = 385, font_size = 40),
+        ),
+        diagrams=(),
+        groups=(),
+        constraints=(),
+        tags=("초등", "수학", "곱셈", "세로셈", "자리값"),
+    )
+
 PROBLEM_TEMPLATE = build_problem_template()
-SEMANTIC_OVERRIDE={"problem_id":"S3_??_3_008575","problem_type":"multiplication_place_value_choice","metadata":{"language":"ko","question":"색칠된 부분은 실제 어떤 수의 곱인지를 찾아 선택하세요.","instruction":"???? ??? ?? ????."},"domain":{"objects":[{"id":"obj.target","type":"expression","text":"73 ? 3"}],"relations":[]},"answer":{"blanks":[],"choices":[],"answer_key":[],"target":{"type":"selected_expression","description":"??? ??? ???? ?"},"value":"73 ? 3","unit":""}}
-SOLVABLE={"schema":"modu.solvable.v1.1","problem_id":"S3_??_3_008575","problem_type":"multiplication_place_value_choice","inputs":{"total_ticks":0,"target_label":"??? ??? ???? ?","target_ticks":0,"target_count":1,"unit":""},"given":[{"ref":"obj.target","value":"73 ? 3"}],"target":{"ref":"answer.target","type":"selected_expression"},"method":"place_value_matching","plan":["??? ??? ???? ????.","?? ?? ???."],"steps":[{"id":"step.1","expr":"??? ??? ?? ??","value":"73 ? 3"}],"checks":[{"id":"check.1","expr":"??","expected":"??","actual":"??","pass":True}],"answer":{"blanks":[],"choices":[],"answer_key":[],"target":{"type":"selected_expression","description":"??? ??? ???? ?"},"value":"73 ? 3","unit":""}}
+SEMANTIC_OVERRIDE={"problem_id":"S3_초등_3_008575","problem_type":"multiplication_place_value_choice","metadata":{"language":"ko","question":"색칠된 부분은 실제 어떤 수의 곱인지를 찾아 선택하세요.","instruction":"보기에서 알맞은 식을 고르세요."},"domain":{"objects":[{"id":"obj.target","type":"expression","text":"73 × 3"}],"relations":[]},"answer":{"blanks":[],"choices":[],"answer_key":[],"target":{"type":"selected_expression","description":"색칠된 부분에 해당하는 식"},"value":"73 × 3","unit":""}}
+SOLVABLE={"schema":"modu.solvable.v1.1","problem_id":"S3_초등_3_008575","problem_type":"multiplication_place_value_choice","inputs":{"total_ticks":0,"target_label":"색칠된 부분에 해당하는 식","target_ticks":0,"target_count":1,"unit":""},"given":[{"ref":"obj.target","value":"73 × 3"}],"target":{"ref":"answer.target","type":"selected_expression"},"method":"place_value_matching","plan":["색칠된 부분과 자리값을 확인한다.","같은 식을 고른다."],"steps":[{"id":"step.1","expr":"색칠된 부분과 보기 비교","value":"73 × 3"}],"checks":[{"id":"check.1","expr":"검토","expected":"일치","actual":"일치","pass":True}],"answer":{"blanks":[],"choices":[],"answer_key":[],"target":{"type":"selected_expression","description":"색칠된 부분에 해당하는 식"},"value":"73 × 3","unit":""}}

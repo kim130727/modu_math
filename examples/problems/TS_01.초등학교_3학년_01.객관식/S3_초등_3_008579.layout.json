@@ -14,7 +14,6 @@
       "role": "stem",
       "flow": "absolute",
       "slot_ids": [
-        "slot.q1",
         "slot.q2"
       ]
     },
@@ -34,24 +33,10 @@
       "id": "region.answer_explain",
       "role": "explanation",
       "flow": "absolute",
-      "slot_ids": [
-        "slot.conclusion"
-      ]
+      "slot_ids": []
     }
   ],
   "slots": [
-    {
-      "id": "slot.q1",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "45.",
-        "style_role": "question",
-        "x": 10.0,
-        "y": 24.0,
-        "font_size": 28
-      }
-    },
     {
       "id": "slot.q2",
       "kind": "text",
@@ -59,9 +44,9 @@
       "content": {
         "text": "곱의 크기를 바르게 비교한 것을 찾아 기호를 선택하세요.",
         "style_role": "question",
-        "x": 62.0,
-        "y": 24.0,
-        "font_size": 28
+        "x": 60.0,
+        "y": 40.0,
+        "font_size": 30
       }
     },
     {
@@ -69,10 +54,10 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 260.0,
-        "y": 46.0,
-        "width": 382.0,
-        "height": 152.0
+        "x": 190.0,
+        "y": 80.0,
+        "width": 380.0,
+        "height": 150.0
       }
     },
     {
@@ -82,9 +67,9 @@
       "content": {
         "text": "㉠ 224 × 6<1160",
         "style_role": "body",
-        "x": 316.0,
-        "y": 86.0,
-        "font_size": 28
+        "x": 245.0,
+        "y": 120.0,
+        "font_size": 30
       }
     },
     {
@@ -94,9 +79,9 @@
       "content": {
         "text": "㉡ 2023>337 × 6",
         "style_role": "body",
-        "x": 316.0,
-        "y": 124.0,
-        "font_size": 28
+        "x": 245.0,
+        "y": 160.0,
+        "font_size": 30
       }
     },
     {
@@ -106,9 +91,9 @@
       "content": {
         "text": "㉢ 2907<352 × 8",
         "style_role": "body",
-        "x": 316.0,
-        "y": 162.0,
-        "font_size": 28
+        "x": 245.0,
+        "y": 205.0,
+        "font_size": 30
       }
     },
     {
@@ -118,21 +103,9 @@
       "content": {
         "text": "( ㉠ , ㉡ , ㉢ )",
         "style_role": "body",
-        "x": 389.0,
-        "y": 228.0,
-        "font_size": 28
-      }
-    },
-    {
-      "id": "slot.conclusion",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "따라서 크기를 바르게 비교한 것은 ㉡ 2023>337 × 6입니다.",
-        "style_role": "body",
-        "x": 28.0,
-        "y": 425.0,
-        "font_size": 28
+        "x": 290.0,
+        "y": 280.0,
+        "font_size": 30
       }
     }
   ],
@@ -141,7 +114,6 @@
   "diagrams": [],
   "reading_order": [
     "region.stem",
-    "slot.q1",
     "slot.q2",
     "region.choice_box",
     "slot.box",
@@ -149,7 +121,6 @@
     "slot.a2",
     "slot.a3",
     "slot.choices",
-    "region.answer_explain",
-    "slot.conclusion"
+    "region.answer_explain"
   ]
 }
