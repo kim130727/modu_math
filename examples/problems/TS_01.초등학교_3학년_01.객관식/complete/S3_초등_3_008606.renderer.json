@@ -1,0 +1,96 @@
+{
+  "problem_id": "S3_초등_3_008606",
+  "view_box": {
+    "width": 720.0,
+    "height": 265.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.box1.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 85.0,
+        "y": 95.0,
+        "width": 190.0,
+        "height": 80.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.box1",
+      "refs": {
+        "layout_slot_id": "slot.box1"
+      }
+    },
+    {
+      "id": "slot.box2.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 340.0,
+        "y": 95.0,
+        "width": 190.0,
+        "height": 80.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.box2",
+      "refs": {
+        "layout_slot_id": "slot.box2"
+      }
+    },
+    {
+      "id": "slot.q.text",
+      "type": "text",
+      "attributes": {
+        "x": 30.0,
+        "y": 45.0,
+        "max_width": 592.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30
+      },
+      "source_ref": "slot.q",
+      "refs": {
+        "layout_slot_id": "slot.q"
+      },
+      "text": "나머지가 더 큰 것을 선택하세요."
+    },
+    {
+      "id": "slot.box1.text.text",
+      "type": "text",
+      "attributes": {
+        "x": 125.0,
+        "y": 145.0,
+        "max_width": 592.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30
+      },
+      "source_ref": "slot.box1.text",
+      "refs": {
+        "layout_slot_id": "slot.box1.text"
+      },
+      "text": "491 ÷ 3"
+    },
+    {
+      "id": "slot.box2.text.text",
+      "type": "text",
+      "attributes": {
+        "x": 385.0,
+        "y": 145.0,
+        "max_width": 592.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30
+      },
+      "source_ref": "slot.box2.text",
+      "refs": {
+        "layout_slot_id": "slot.box2.text"
+      },
+      "text": "709 ÷ 6"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

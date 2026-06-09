@@ -1,0 +1,150 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008614",
+  "title": "나머지가 6이 나올 수 없는 식",
+  "canvas": {
+    "width": 872,
+    "height": 240,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q.no"
+      ]
+    },
+    {
+      "id": "region.choices",
+      "role": "choices",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice.1.box",
+        "slot.choice.2.box",
+        "slot.choice.3.box",
+        "slot.choice.1.text",
+        "slot.choice.2.text",
+        "slot.choice.3.text"
+      ]
+    },
+    {
+      "id": "region.answer_explanation",
+      "role": "explanation",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q.no",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "나머지가 6이 나올 수 없는 식을 찾아 선택해 보세요.",
+        "style_role": "question",
+        "x": 25.0,
+        "y": 40.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.choice.1.box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 60.0,
+        "y": 70.0,
+        "width": 180.0,
+        "height": 80.0,
+        "stroke": "#111111",
+        "stroke_width": 1.5,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.choice.1.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "□ ÷ 8",
+        "style_role": "choice",
+        "x": 110.0,
+        "y": 120.0,
+        "font_size": 30,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.choice.2.box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 285.0,
+        "y": 70.0,
+        "width": 180.0,
+        "height": 80.0,
+        "stroke": "#111111",
+        "stroke_width": 1.5,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.choice.2.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "□ ÷ 6",
+        "style_role": "choice",
+        "x": 335.0,
+        "y": 120.0,
+        "font_size": 30,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.choice.3.box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 510.0,
+        "y": 70.0,
+        "width": 180.0,
+        "height": 80.0,
+        "stroke": "#111111",
+        "stroke_width": 1.5,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.choice.3.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "□ ÷ 9",
+        "style_role": "choice",
+        "x": 565.0,
+        "y": 120.0,
+        "font_size": 30,
+        "fill": "#111111"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q.no",
+    "region.choices",
+    "slot.choice.1.box",
+    "slot.choice.2.box",
+    "slot.choice.3.box",
+    "slot.choice.1.text",
+    "slot.choice.2.text",
+    "slot.choice.3.text",
+    "region.answer_explanation"
+  ]
+}

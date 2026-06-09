@@ -1,0 +1,461 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008596",
+  "title": "문제를 바르게 설명한 사람의 이름을 선택해 보세요.",
+  "canvas": {
+    "width": 728.0,
+    "height": 595.0,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.box",
+        "slot.left.bubble",
+        "slot.left.tail",
+        "slot.left.person.body",
+        "slot.left.person.head",
+        "slot.left.person.hair.cap",
+        "slot.left.person.eye.left",
+        "slot.left.person.eye.right",
+        "slot.left.person.smile",
+        "slot.name.left.box",
+        "slot.right.bubble",
+        "slot.right.tail",
+        "slot.right.person.body",
+        "slot.right.person.head",
+        "slot.right.person.hair.cap",
+        "slot.right.person.eye.left",
+        "slot.right.person.eye.right",
+        "slot.right.person.smile",
+        "slot.name.right.box",
+        "slot.q.text",
+        "slot.box.text",
+        "slot.left.text",
+        "slot.name.left.text",
+        "slot.right.text",
+        "slot.name.right.text",
+        "slot.choice"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "문제를 바르게 설명한 사람의 이름을 선택해 보세요.",
+        "style_role": "question",
+        "x": 76.0,
+        "y": 31.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 280.0,
+        "y": 55.0,
+        "width": 190.0,
+        "height": 65.0
+      }
+    },
+    {
+      "id": "slot.box.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "83 ÷ 6",
+        "style_role": "choice",
+        "x": 320.0,
+        "y": 100.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.left.bubble",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 175.5 177.5 C 175.5 148.34, 202.1 137.0, 245.5 137.0 C 288.9 137.0, 315.5 148.34, 315.5 177.5 C 315.5 206.66, 288.9 218.0, 245.5 218.0 C 202.1 218.0, 175.5 206.66, 175.5 177.5 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#222222",
+        "stroke_width": 1.6,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.left.tail",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            235.5,
+            212.0
+          ],
+          [
+            255.5,
+            212.0
+          ],
+          [
+            245.5,
+            227.0
+          ]
+        ],
+        "stroke": "#222222",
+        "stroke_width": 1.4,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.left.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "몫은 13이야.",
+        "style_role": "speech",
+        "x": 245.5,
+        "y": 181.5,
+        "font_size": 24,
+        "anchor": "middle"
+      }
+    },
+    {
+      "id": "slot.left.person.body",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            217.5,
+            355.0
+          ],
+          [
+            273.5,
+            355.0
+          ],
+          [
+            263.5,
+            319.0
+          ],
+          [
+            227.5,
+            319.0
+          ]
+        ],
+        "stroke": "none",
+        "fill": "#D7A0D7"
+      }
+    },
+    {
+      "id": "slot.left.person.head",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 245.5,
+        "cy": 282.0,
+        "r": 28.0,
+        "stroke": "none",
+        "fill": "#ffd9ad"
+      }
+    },
+    {
+      "id": "slot.left.person.hair.cap",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 217.5 281.0 C 219.5 252.0, 270.5 247.0, 274.5 281.0 C 255.5 265.0, 233.5 272.0, 217.5 281.0 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "none",
+        "fill": "#4b1f16"
+      }
+    },
+    {
+      "id": "slot.left.person.eye.left",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 235.5,
+        "cy": 286.0,
+        "r": 2.3,
+        "stroke": "none",
+        "fill": "#2b2118"
+      }
+    },
+    {
+      "id": "slot.left.person.eye.right",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 255.5,
+        "cy": 286.0,
+        "r": 2.3,
+        "stroke": "none",
+        "fill": "#2b2118"
+      }
+    },
+    {
+      "id": "slot.left.person.smile",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 238.5 298.0 Q 245.5 304.0 252.5 298.0",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#b86e39",
+        "stroke_width": 1.3,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.name.left.box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 207.5,
+        "y": 380.0,
+        "width": 76.0,
+        "height": 36.0,
+        "stroke": "#6fcf83",
+        "stroke_width": 2.0,
+        "rx": 9.0,
+        "ry": 9.0,
+        "fill": "#e9f7dd"
+      }
+    },
+    {
+      "id": "slot.name.left.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "종우",
+        "style_role": "label",
+        "x": 245.5,
+        "y": 406.0,
+        "font_size": 25,
+        "anchor": "middle"
+      }
+    },
+    {
+      "id": "slot.right.bubble",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 420.0 184.5 C 420.0 150.3, 450.02 137.0, 499.0 137.0 C 547.98 137.0, 578.0 150.3, 578.0 184.5 C 578.0 218.7, 547.98 232.0, 499.0 232.0 C 450.02 232.0, 420.0 218.7, 420.0 184.5 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#222222",
+        "stroke_width": 1.6,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.right.tail",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            489.0,
+            226.0
+          ],
+          [
+            509.0,
+            226.0
+          ],
+          [
+            499.0,
+            230.0
+          ]
+        ],
+        "stroke": "#222222",
+        "stroke_width": 1.4,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.right.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "나머지는 0으로\n나누어떨어져.",
+        "style_role": "speech",
+        "x": 499.0,
+        "y": 181.5,
+        "font_size": 22,
+        "anchor": "middle"
+      }
+    },
+    {
+      "id": "slot.right.person.body",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            471.0,
+            358.0
+          ],
+          [
+            527.0,
+            358.0
+          ],
+          [
+            517.0,
+            322.0
+          ],
+          [
+            481.0,
+            322.0
+          ]
+        ],
+        "stroke": "none",
+        "fill": "#8ED7E6"
+      }
+    },
+    {
+      "id": "slot.right.person.head",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 499.0,
+        "cy": 285.0,
+        "r": 28.0,
+        "stroke": "none",
+        "fill": "#ffd9ad"
+      }
+    },
+    {
+      "id": "slot.right.person.hair.cap",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 471.0 284.0 C 473.0 255.0, 524.0 250.0, 528.0 284.0 C 509.0 268.0, 487.0 275.0, 471.0 284.0 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "none",
+        "fill": "#1d1714"
+      }
+    },
+    {
+      "id": "slot.right.person.eye.left",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 489.0,
+        "cy": 289.0,
+        "r": 2.3,
+        "stroke": "none",
+        "fill": "#2b2118"
+      }
+    },
+    {
+      "id": "slot.right.person.eye.right",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 509.0,
+        "cy": 289.0,
+        "r": 2.3,
+        "stroke": "none",
+        "fill": "#2b2118"
+      }
+    },
+    {
+      "id": "slot.right.person.smile",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 492.0 301.0 Q 499.0 307.0 506.0 301.0",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#b86e39",
+        "stroke_width": 1.3,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.name.right.box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 461.0,
+        "y": 380.0,
+        "width": 76.0,
+        "height": 36.0,
+        "stroke": "#6fcf83",
+        "stroke_width": 2.0,
+        "rx": 9.0,
+        "ry": 9.0,
+        "fill": "#e9f7dd"
+      }
+    },
+    {
+      "id": "slot.name.right.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "은아",
+        "style_role": "label",
+        "x": 499.0,
+        "y": 406.0,
+        "font_size": 25,
+        "anchor": "middle"
+      }
+    },
+    {
+      "id": "slot.choice",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "( 종우 , 은아 )",
+        "style_role": "question",
+        "x": 280.0,
+        "y": 460.0,
+        "font_size": 30
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.box",
+    "slot.left.bubble",
+    "slot.left.tail",
+    "slot.left.person.body",
+    "slot.left.person.head",
+    "slot.left.person.hair.cap",
+    "slot.left.person.eye.left",
+    "slot.left.person.eye.right",
+    "slot.left.person.smile",
+    "slot.name.left.box",
+    "slot.right.bubble",
+    "slot.right.tail",
+    "slot.right.person.body",
+    "slot.right.person.head",
+    "slot.right.person.hair.cap",
+    "slot.right.person.eye.left",
+    "slot.right.person.eye.right",
+    "slot.right.person.smile",
+    "slot.name.right.box",
+    "slot.q.text",
+    "slot.box.text",
+    "slot.left.text",
+    "slot.name.left.text",
+    "slot.right.text",
+    "slot.name.right.text",
+    "slot.choice"
+  ]
+}

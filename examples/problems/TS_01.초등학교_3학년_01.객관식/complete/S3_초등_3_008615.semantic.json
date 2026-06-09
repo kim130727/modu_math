@@ -1,0 +1,58 @@
+{
+  "problem_id": "S3_초등_3_008615",
+  "problem_type": "selection_comparison",
+  "metadata": {
+    "title": "나머지가 가장 큰 것",
+    "tags": [
+      "나눗셈",
+      "나머지",
+      "비교",
+      "객관식"
+    ],
+    "question": "나머지가 가장 큰 것을 찾아 선택하세요.",
+    "required_layout_ids": [
+      "slot.opt.1.box",
+      "slot.opt.2.box",
+      "slot.opt.3.box"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "보기 중 나머지가 가장 큰 나눗셈식을 고른다."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.opt1",
+        "type": "division_expression",
+        "dividend": 35,
+        "divisor": 4
+      },
+      {
+        "id": "obj.opt2",
+        "type": "division_expression",
+        "dividend": 20,
+        "divisor": 7
+      },
+      {
+        "id": "obj.opt3",
+        "type": "division_expression",
+        "dividend": 65,
+        "divisor": 9
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "division_expression",
+      "description": "나머지가 가장 큰 보기"
+    },
+    "value": "20 ÷ 7",
+    "unit": ""
+  }
+}

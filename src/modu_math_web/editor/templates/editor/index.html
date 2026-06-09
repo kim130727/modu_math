@@ -126,6 +126,7 @@
     }
     .svg-box svg [id] { cursor: move; }
     .svg-box svg text[id] { pointer-events: bounding-box; }
+    .svg-box svg rect[id] { pointer-events: all; }
     .svg-box svg .slot-selected { filter: drop-shadow(0 0 3px #0f766e); }
     .svg-box svg .pick-disabled { pointer-events: none; opacity: 0.35; }
     .svg-box svg .selection-bounds {
@@ -943,7 +944,45 @@
       return null;
     }
 
+    function elementHitBox(node) {
+      const tag = node.tagName.toLowerCase();
+      if (tag === "rect") {
+        const x = Number(node.getAttribute("x") || 0);
+        const y = Number(node.getAttribute("y") || 0);
+        const width = Number(node.getAttribute("width") || 0);
+        const height = Number(node.getAttribute("height") || 0);
+        return width > 0 && height > 0 ? { x, y, width, height } : null;
+      }
+      if (tag === "text") {
+        const text = node.textContent || "";
+        const fontSize = Number(node.getAttribute("font-size") || node.getAttribute("font_size") || 28);
+        const x = Number(node.getAttribute("x") || 0);
+        const y = Number(node.getAttribute("y") || 0);
+        const lineCount = Math.max(1, text.split(/\n/).length);
+        const maxLineLength = Math.max(1, ...text.split(/\n/).map((line) => line.length));
+        const width = Math.max(fontSize * 0.8, maxLineLength * fontSize * 0.62);
+        const height = lineCount * fontSize * 1.25;
+        return { x: x - 6, y: y - fontSize, width: width + 12, height: height + 8 };
+      }
+      try {
+        return node.getBBox();
+      } catch (_) {
+        return null;
+      }
+    }
+
     function matchingSlotElementAtPoint(svg, clientX, clientY) {
+      const point = getSvgPoint(svg, clientX, clientY);
+      const nodes = draggableSlotElements(svg);
+      for (let i = nodes.length - 1; i >= 0; i -= 1) {
+        const node = nodes[i];
+        if (!matchesPickMode(node)) continue;
+        const bb = elementHitBox(node);
+        if (!bb) continue;
+        if (point.x >= bb.x && point.x <= bb.x + bb.width && point.y >= bb.y && point.y <= bb.y + bb.height) {
+          return node;
+        }
+      }
       const seen = new Set();
       for (const node of document.elementsFromPoint(clientX, clientY)) {
         if (!(node instanceof SVGElement) || !svg.contains(node)) continue;
@@ -2000,6 +2039,37 @@
         return true;
       }
 
+      function addTextHitProxies() {
+        for (const el of slotElements) {
+          if (el.tagName.toLowerCase() !== "text") continue;
+          const bb = elementHitBox(el);
+          if (!bb) continue;
+          const proxy = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+          proxy.setAttribute("x", String(bb.x));
+          proxy.setAttribute("y", String(bb.y));
+          proxy.setAttribute("width", String(bb.width));
+          proxy.setAttribute("height", String(bb.height));
+          proxy.setAttribute("fill", "transparent");
+          proxy.setAttribute("stroke", "none");
+          proxy.style.pointerEvents = "all";
+          proxy.style.cursor = "move";
+          proxy.classList.add("text-hit-proxy");
+          proxy.addEventListener("pointerdown", (ev) => {
+            if (beginSlotPointerDown(el, ev)) ev.stopPropagation();
+          });
+          svg.appendChild(proxy);
+        }
+      }
+
+      addTextHitProxies();
+
+      svg.addEventListener("pointerdown", (ev) => {
+        const target = ev.target;
+        if (target instanceof SVGElement && target.classList.contains("selection-handle")) return;
+        const matched = matchingSlotElementAtPoint(svg, ev.clientX, ev.clientY);
+        if (matched && beginSlotPointerDown(matched, ev)) ev.stopPropagation();
+      }, true);
+
       for (const el of slotElements) {
         if (el.tagName.toLowerCase() === "text") {
           el.addEventListener("dblclick", (ev) => {
@@ -2011,7 +2081,8 @@
           });
         }
         el.addEventListener("pointerdown", (ev) => {
-          beginSlotPointerDown(el, ev);
+          const matched = matchingSlotElementAtPoint(svg, ev.clientX, ev.clientY);
+          beginSlotPointerDown(matched || el, ev);
         });
       }
 
@@ -2024,6 +2095,8 @@
           if (matched && beginSlotPointerDown(matched, ev)) return;
         }
         if (!slotTarget) {
+          const matched = matchingSlotElementAtPoint(svg, ev.clientX, ev.clientY);
+          if (matched && beginSlotPointerDown(matched, ev)) return;
           clearSelection();
           if (ev.button === 0) beginMarquee(svg, ev);
         }
@@ -2091,7 +2164,13 @@
         const local = dragState;
         dragState = null;
         if (local.captureEl && local.pointerId !== undefined) {
-          local.captureEl.releasePointerCapture(local.pointerId);
+          try {
+            if (local.captureEl.hasPointerCapture(local.pointerId)) {
+              local.captureEl.releasePointerCapture(local.pointerId);
+            }
+          } catch (_) {
+            // Pointer capture may not exist when a proxy element started the drag.
+          }
         }
         if (!local.moved) return;
         updateSelectionHandles();

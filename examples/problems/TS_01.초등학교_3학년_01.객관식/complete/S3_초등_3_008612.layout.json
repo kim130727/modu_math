@@ -1,0 +1,98 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008612",
+  "title": "다음 나눗셈이 나누어떨어지는지 판단하기",
+  "canvas": {
+    "width": 940.0,
+    "height": 364.0,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.expr.box",
+        "slot.q.text",
+        "slot.expr.text",
+        "slot.q.text.copy2"
+      ]
+    },
+    {
+      "id": "region.choice",
+      "role": "choices",
+      "flow": "absolute",
+      "slot_ids": []
+    },
+    {
+      "id": "region.explanation",
+      "role": "explanation",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "다음 나눗셈이 나누어떨어지면 O표,",
+        "style_role": "question",
+        "x": 100.0,
+        "y": 55.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.expr.box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 230.0,
+        "y": 140.0,
+        "width": 190.0,
+        "height": 80.0
+      }
+    },
+    {
+      "id": "slot.expr.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "28 ÷ 3",
+        "style_role": "choice",
+        "x": 280.0,
+        "y": 190.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.q.text.copy2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "나누어떨어지지 않으면 X표를 선택하세요.",
+        "style_role": "body",
+        "x": 70.0,
+        "y": 110.0,
+        "font_size": 30,
+        "fill": "#111111"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.expr.box",
+    "slot.q.text",
+    "slot.expr.text",
+    "slot.q.text.copy2",
+    "region.choice",
+    "region.explanation"
+  ]
+}

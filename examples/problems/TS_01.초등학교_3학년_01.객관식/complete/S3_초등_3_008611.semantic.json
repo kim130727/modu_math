@@ -1,0 +1,79 @@
+{
+  "problem_id": "S3_초등_3_008611",
+  "problem_type": "multiple_choice_division",
+  "metadata": {
+    "title": "묶이 다른 하나를 찾아 선택하세요",
+    "tags": [],
+    "question": "묶이 다른 하나를 찾아 선택하세요.",
+    "required_layout_ids": [
+      "slot.opt1.box",
+      "slot.opt2.box",
+      "slot.opt3.box"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "보기 중 묶이 다른 하나를 고르는 문제"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.opt1",
+        "type": "division_expression",
+        "expression": "36 ÷ 3"
+      },
+      {
+        "id": "obj.opt2",
+        "type": "division_expression",
+        "expression": "55 ÷ 5"
+      },
+      {
+        "id": "obj.opt3",
+        "type": "division_expression",
+        "expression": "77 ÷ 7"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.opt1",
+          "obj.opt2",
+          "obj.opt3"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.compare_options"
+        ]
+      },
+      "plan": {
+        "method": "compare_division_expressions",
+        "description": "각 보기의 나눗셈 표현을 비교한다."
+      },
+      "execute": {
+        "expected_operations": [
+          "evaluate_each_expression",
+          "compare_results"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "compare_with_marked_answer",
+          "result_consistency"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "selected_option",
+      "description": "묶이 다른 하나"
+    },
+    "value": 1,
+    "unit": ""
+  }
+}

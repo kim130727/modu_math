@@ -1,0 +1,113 @@
+{
+  "problem_id": "S3_초등_3_008595",
+  "view_box": {
+    "width": 752.0,
+    "height": 321.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.q.text.text",
+      "type": "text",
+      "attributes": {
+        "x": 98.0,
+        "y": 31.0,
+        "max_width": 624.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q.text",
+      "refs": {
+        "layout_slot_id": "slot.q.text"
+      },
+      "text": "나누어 떨어지는 나눗셈식을 찾아 기호를 선택해 보세요."
+    },
+    {
+      "id": "slot.choice.box.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 100.0,
+        "y": 60.0,
+        "width": 600.0,
+        "height": 65.0,
+        "fill": "none",
+        "stroke": "#F4A259",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.choice.box",
+      "refs": {
+        "layout_slot_id": "slot.choice.box"
+      }
+    },
+    {
+      "id": "slot.choice.a.mark.text",
+      "type": "text",
+      "attributes": {
+        "x": 175.0,
+        "y": 100.0,
+        "max_width": 624.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30
+      },
+      "source_ref": "slot.choice.a.mark",
+      "refs": {
+        "layout_slot_id": "slot.choice.a.mark"
+      },
+      "text": "㉠"
+    },
+    {
+      "id": "slot.choice.a.text.text",
+      "type": "text",
+      "attributes": {
+        "x": 220.0,
+        "y": 100.0,
+        "max_width": 624.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30
+      },
+      "source_ref": "slot.choice.a.text",
+      "refs": {
+        "layout_slot_id": "slot.choice.a.text"
+      },
+      "text": "59 ÷ 5"
+    },
+    {
+      "id": "slot.choice.b.mark.text",
+      "type": "text",
+      "attributes": {
+        "x": 455.0,
+        "y": 100.0,
+        "max_width": 624.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30
+      },
+      "source_ref": "slot.choice.b.mark",
+      "refs": {
+        "layout_slot_id": "slot.choice.b.mark"
+      },
+      "text": "㉡"
+    },
+    {
+      "id": "slot.choice.b.text.text",
+      "type": "text",
+      "attributes": {
+        "x": 495.0,
+        "y": 100.0,
+        "max_width": 624.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30
+      },
+      "source_ref": "slot.choice.b.text",
+      "refs": {
+        "layout_slot_id": "slot.choice.b.text"
+      },
+      "text": "88 ÷ 4"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

@@ -1,0 +1,80 @@
+{
+  "problem_id": "S3_초등_3_008591",
+  "problem_type": "multiple_choice_remainder_comparison",
+  "metadata": {
+    "title": "나머지가 가장 큰 것 찾기",
+    "tags": [],
+    "question": "나머지가 가장 큰 것을 찾아 선택해보세요.",
+    "required_layout_ids": [
+      "slot.choice.1.box",
+      "slot.choice.2.box",
+      "slot.choice.3.box"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "나머지가 가장 큰 것을 찾아 선택하는 문제"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.div1",
+        "type": "division_expression",
+        "expression": "583 ÷ 5"
+      },
+      {
+        "id": "obj.div2",
+        "type": "division_expression",
+        "expression": "584 ÷ 6"
+      },
+      {
+        "id": "obj.div3",
+        "type": "division_expression",
+        "expression": "585 ÷ 7"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.div1",
+          "obj.div2",
+          "obj.div3"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.compare_remainders"
+        ]
+      },
+      "plan": {
+        "method": "compare_remainders",
+        "description": "각 나눗셈의 나머지를 비교해 가장 큰 값을 찾는다."
+      },
+      "execute": {
+        "expected_operations": [
+          "find_remainder_each_expression",
+          "compare_remainders",
+          "select_largest_remainder_expression"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "largest_remainder_check",
+          "choice_consistency_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "expression_with_largest_remainder",
+      "description": "나머지가 가장 큰 나눗셈식"
+    },
+    "value": "585 ÷ 7",
+    "unit": ""
+  }
+}

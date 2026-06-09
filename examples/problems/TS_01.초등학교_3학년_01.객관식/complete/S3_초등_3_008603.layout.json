@@ -1,0 +1,90 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008603",
+  "title": "나누어떨어지는 나눗셈식",
+  "canvas": {
+    "width": 760,
+    "height": 330,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.box",
+        "slot.q1",
+        "slot.v1",
+        "slot.v2"
+      ]
+    },
+    {
+      "id": "region.answer_explanation",
+      "role": "explanation",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "나누어떨어지는 나눗셈식을 찾아 기호를 선택해 보세요.",
+        "style_role": "question",
+        "x": 20.0,
+        "y": 45.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 165.0,
+        "y": 75.0,
+        "width": 380.0,
+        "height": 80.0
+      }
+    },
+    {
+      "id": "slot.v1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "㉠ 64 ÷ 6",
+        "style_role": "question",
+        "x": 195.0,
+        "y": 125.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.v2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "㉡ 92 ÷ 4",
+        "style_role": "question",
+        "x": 375.0,
+        "y": 125.0,
+        "font_size": 30
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.box",
+    "slot.q1",
+    "slot.v1",
+    "slot.v2",
+    "region.answer_explanation"
+  ]
+}

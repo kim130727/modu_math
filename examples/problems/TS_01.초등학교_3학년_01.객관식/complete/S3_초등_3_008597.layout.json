@@ -1,0 +1,126 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008597",
+  "title": "4로 나누어떨어지는 수가 아닌 것을 모두 고르기",
+  "canvas": {
+    "width": 840,
+    "height": 334,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.question",
+        "slot.choice.1",
+        "slot.choice.2",
+        "slot.choice.3",
+        "slot.choice.4",
+        "slot.choice.5"
+      ]
+    },
+    {
+      "id": "region.answer",
+      "role": "answer",
+      "flow": "absolute",
+      "slot_ids": []
+    },
+    {
+      "id": "region.explanation",
+      "role": "explanation",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.question",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "4로 나누어떨어지는 수가 아닌 것을 모두 고르세요.",
+        "style_role": "question",
+        "x": 40.0,
+        "y": 55.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.choice.1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "① 28",
+        "style_role": "choice",
+        "x": 40.0,
+        "y": 115.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.choice.2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "② 56",
+        "style_role": "choice",
+        "x": 210.0,
+        "y": 115.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.choice.3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "③ 84",
+        "style_role": "choice",
+        "x": 385.0,
+        "y": 115.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.choice.4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "④ 62",
+        "style_role": "choice",
+        "x": 560.0,
+        "y": 115.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.choice.5",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "⑤ 70",
+        "style_role": "choice",
+        "x": 730.0,
+        "y": 115.0,
+        "font_size": 30
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.question",
+    "slot.choice.1",
+    "slot.choice.2",
+    "slot.choice.3",
+    "slot.choice.4",
+    "slot.choice.5",
+    "region.answer",
+    "region.explanation"
+  ]
+}

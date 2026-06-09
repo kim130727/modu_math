@@ -1,0 +1,153 @@
+{
+  "problem_id": "S3_초등_3_008616",
+  "problem_type": "division_reasoning",
+  "metadata": {
+    "title": "문제를 바르게 설명한 사람 찾기",
+    "tags": [
+      "division",
+      "remainder",
+      "speech",
+      "characters"
+    ],
+    "instruction": "99를 8로 나눈 몫과 나머지를 확인해 바르게 설명한 사람을 고른다.",
+    "question": "문제를 바르게 설명한 사람이 누구인지 찾아 선택하세요.",
+    "required_layout_ids": [
+      "slot.eq.box",
+      "slot.left.bubble",
+      "slot.left.tail",
+      "slot.left.person.body",
+      "slot.left.person.head",
+      "slot.left.person.hair.cap",
+      "slot.left.person.eye.left",
+      "slot.left.person.eye.right",
+      "slot.left.person.smile",
+      "slot.left.person.tail.left",
+      "slot.left.person.tail.right",
+      "slot.left.person.bow.left",
+      "slot.left.person.bow.right",
+      "slot.name.left.box",
+      "slot.mid.bubble",
+      "slot.mid.tail",
+      "slot.mid.person.body",
+      "slot.mid.person.head",
+      "slot.mid.person.hair.cap",
+      "slot.mid.person.eye.left",
+      "slot.mid.person.eye.right",
+      "slot.mid.person.smile",
+      "slot.mid.person.bow.left",
+      "slot.mid.person.bow.right",
+      "slot.name.mid.box",
+      "slot.right.bubble",
+      "slot.right.tail",
+      "slot.right.person.body",
+      "slot.right.person.head",
+      "slot.right.person.hair.cap",
+      "slot.right.person.eye.left",
+      "slot.right.person.eye.right",
+      "slot.right.person.smile",
+      "slot.right.person.bow.left",
+      "slot.right.person.bow.right",
+      "slot.name.right.box"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.dividend",
+        "type": "number",
+        "value": 99
+      },
+      {
+        "id": "obj.divisor",
+        "type": "number",
+        "value": 8
+      },
+      {
+        "id": "obj.claim.geunhui",
+        "type": "student_claim",
+        "speaker": "근희",
+        "statement": "몫은 10보다 작다."
+      },
+      {
+        "id": "obj.claim.yeongpyo",
+        "type": "student_claim",
+        "speaker": "영표",
+        "statement": "나머지는 0으로 나누어떨어진다."
+      },
+      {
+        "id": "obj.claim.seulgi",
+        "type": "student_claim",
+        "speaker": "슬기",
+        "statement": "나머지는 8보다 작다."
+      }
+    ],
+    "relations": [
+      {
+        "id": "rel.division_result",
+        "type": "division_with_remainder",
+        "from_id": "obj.dividend",
+        "to_id": "obj.divisor",
+        "quotient": 12,
+        "remainder": 3
+      },
+      {
+        "id": "rel.correct_speaker",
+        "type": "correct_claim",
+        "from_id": "obj.claim.seulgi",
+        "to_id": "answer.target"
+      }
+    ],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.dividend",
+          "obj.divisor",
+          "obj.claim.geunhui",
+          "obj.claim.yeongpyo",
+          "obj.claim.seulgi"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.division_result",
+          "rel.correct_speaker"
+        ]
+      },
+      "plan": {
+        "method": "division_with_remainder_check",
+        "description": "99를 8로 나눈 몫과 나머지를 구하고 각 설명의 참거짓을 비교한다."
+      },
+      "execute": {
+        "expected_operations": [
+          "compute_quotient",
+          "compute_remainder",
+          "compare_claims"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "division_identity_check",
+          "remainder_less_than_divisor"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [
+      {
+        "value": "슬기"
+      }
+    ],
+    "confidence": 1.0,
+    "target": {
+      "type": "correct_speaker",
+      "description": "문제를 바르게 설명한 사람"
+    },
+    "value": "슬기",
+    "unit": ""
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "problem_id": "S3_초등_3_008620",
+  "view_box": {
+    "width": 808.0,
+    "height": 436.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.choice_box.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 75.0,
+        "y": 70.0,
+        "width": 610.0,
+        "height": 75.0,
+        "fill": "#CFEAF0",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.choice_box",
+      "refs": {
+        "layout_slot_id": "slot.choice_box"
+      }
+    },
+    {
+      "id": "slot.qtext.text",
+      "type": "text",
+      "attributes": {
+        "x": 75.0,
+        "y": 40.0,
+        "max_width": 680.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30
+      },
+      "source_ref": "slot.qtext",
+      "refs": {
+        "layout_slot_id": "slot.qtext"
+      },
+      "text": "몫이 70보다 큰 것을 선택해 보세요."
+    },
+    {
+      "id": "slot.c1.text",
+      "type": "text",
+      "attributes": {
+        "x": 150.0,
+        "y": 120.0,
+        "max_width": 680.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30
+      },
+      "source_ref": "slot.c1",
+      "refs": {
+        "layout_slot_id": "slot.c1"
+      },
+      "text": "268 ÷ 5"
+    },
+    {
+      "id": "slot.c2.text",
+      "type": "text",
+      "attributes": {
+        "x": 335.0,
+        "y": 120.0,
+        "max_width": 680.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30
+      },
+      "source_ref": "slot.c2",
+      "refs": {
+        "layout_slot_id": "slot.c2"
+      },
+      "text": "402 ÷ 4"
+    },
+    {
+      "id": "slot.c3.text",
+      "type": "text",
+      "attributes": {
+        "x": 525.0,
+        "y": 115.0,
+        "max_width": 680.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30
+      },
+      "source_ref": "slot.c3",
+      "refs": {
+        "layout_slot_id": "slot.c3"
+      },
+      "text": "397 ÷ 6"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

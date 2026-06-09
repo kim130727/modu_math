@@ -1,0 +1,480 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008608",
+  "title": "몫이 다른 사람을 선택해 보세요.",
+  "canvas": {
+    "width": 820,
+    "height": 390,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q1",
+        "slot.box.left.text",
+        "slot.box.mid.text",
+        "slot.box.right.text"
+      ]
+    },
+    {
+      "id": "region.figures",
+      "role": "choices",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.box.left",
+        "slot.box.mid",
+        "slot.box.right",
+        "slot.figure.left.body",
+        "slot.figure.left.head",
+        "slot.figure.left.hair.cap",
+        "slot.figure.left.eye.left",
+        "slot.figure.left.eye.right",
+        "slot.figure.left.smile",
+        "slot.figure.mid.body",
+        "slot.figure.mid.head",
+        "slot.figure.mid.hair.cap",
+        "slot.figure.mid.eye.left",
+        "slot.figure.mid.eye.right",
+        "slot.figure.mid.smile",
+        "slot.figure.right.body",
+        "slot.figure.right.head",
+        "slot.figure.right.hair.cap",
+        "slot.figure.right.eye.left",
+        "slot.figure.right.eye.right",
+        "slot.figure.right.smile",
+        "slot.name.left",
+        "slot.name.mid",
+        "slot.name.right"
+      ]
+    },
+    {
+      "id": "region.answer",
+      "role": "explanation",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "몫이 다른 사람을 선택해 보세요.",
+        "style_role": "question",
+        "x": 80.0,
+        "y": 50.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.box.left",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 157.0,
+        "y": 104.0,
+        "width": 118.0,
+        "height": 59.0
+      }
+    },
+    {
+      "id": "slot.box.left.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "30 ÷ 3",
+        "style_role": "choice",
+        "x": 170.0,
+        "y": 140.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.box.mid",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 377.0,
+        "y": 104.0,
+        "width": 118.0,
+        "height": 59.0
+      }
+    },
+    {
+      "id": "slot.box.mid.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "40 ÷ 2",
+        "style_role": "choice",
+        "x": 385.0,
+        "y": 145.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.box.right",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 598.0,
+        "y": 104.0,
+        "width": 118.0,
+        "height": 59.0
+      }
+    },
+    {
+      "id": "slot.box.right.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "70 ÷ 7",
+        "style_role": "choice",
+        "x": 610.0,
+        "y": 145.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.figure.left.body",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            188.0,
+            261.0
+          ],
+          [
+            244.0,
+            261.0
+          ],
+          [
+            234.0,
+            225.0
+          ],
+          [
+            198.0,
+            225.0
+          ]
+        ],
+        "stroke": "none",
+        "fill": "#D7A0D7"
+      }
+    },
+    {
+      "id": "slot.figure.left.head",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 216.0,
+        "cy": 188.0,
+        "r": 28.0,
+        "stroke": "none",
+        "fill": "#ffd9ad"
+      }
+    },
+    {
+      "id": "slot.figure.left.hair.cap",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 188.0 187.0 C 190.0 158.0, 241.0 153.0, 245.0 187.0 C 226.0 171.0, 204.0 178.0, 188.0 187.0 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "none",
+        "fill": "#4b1f16"
+      }
+    },
+    {
+      "id": "slot.figure.left.eye.left",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 206.0,
+        "cy": 192.0,
+        "r": 2.3,
+        "stroke": "none",
+        "fill": "#2b2118"
+      }
+    },
+    {
+      "id": "slot.figure.left.eye.right",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 226.0,
+        "cy": 192.0,
+        "r": 2.3,
+        "stroke": "none",
+        "fill": "#2b2118"
+      }
+    },
+    {
+      "id": "slot.figure.left.smile",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 209.0 204.0 Q 216.0 210.0 223.0 204.0",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#b86e39",
+        "stroke_width": 1.3,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.figure.mid.body",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            409.0,
+            261.0
+          ],
+          [
+            465.0,
+            261.0
+          ],
+          [
+            455.0,
+            225.0
+          ],
+          [
+            419.0,
+            225.0
+          ]
+        ],
+        "stroke": "none",
+        "fill": "#8ED7E6"
+      }
+    },
+    {
+      "id": "slot.figure.mid.head",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 437.0,
+        "cy": 188.0,
+        "r": 28.0,
+        "stroke": "none",
+        "fill": "#ffd9ad"
+      }
+    },
+    {
+      "id": "slot.figure.mid.hair.cap",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 409.0 187.0 C 411.0 158.0, 462.0 153.0, 466.0 187.0 C 447.0 171.0, 425.0 178.0, 409.0 187.0 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "none",
+        "fill": "#1d1714"
+      }
+    },
+    {
+      "id": "slot.figure.mid.eye.left",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 427.0,
+        "cy": 192.0,
+        "r": 2.3,
+        "stroke": "none",
+        "fill": "#2b2118"
+      }
+    },
+    {
+      "id": "slot.figure.mid.eye.right",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 447.0,
+        "cy": 192.0,
+        "r": 2.3,
+        "stroke": "none",
+        "fill": "#2b2118"
+      }
+    },
+    {
+      "id": "slot.figure.mid.smile",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 430.0 204.0 Q 437.0 210.0 444.0 204.0",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#b86e39",
+        "stroke_width": 1.3,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.figure.right.body",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            629.0,
+            261.0
+          ],
+          [
+            685.0,
+            261.0
+          ],
+          [
+            675.0,
+            225.0
+          ],
+          [
+            639.0,
+            225.0
+          ]
+        ],
+        "stroke": "none",
+        "fill": "#F2C66D"
+      }
+    },
+    {
+      "id": "slot.figure.right.head",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 657.0,
+        "cy": 188.0,
+        "r": 28.0,
+        "stroke": "none",
+        "fill": "#ffd9ad"
+      }
+    },
+    {
+      "id": "slot.figure.right.hair.cap",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 629.0 187.0 C 631.0 158.0, 682.0 153.0, 686.0 187.0 C 667.0 171.0, 645.0 178.0, 629.0 187.0 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "none",
+        "fill": "#5b3218"
+      }
+    },
+    {
+      "id": "slot.figure.right.eye.left",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 647.0,
+        "cy": 192.0,
+        "r": 2.3,
+        "stroke": "none",
+        "fill": "#2b2118"
+      }
+    },
+    {
+      "id": "slot.figure.right.eye.right",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 667.0,
+        "cy": 192.0,
+        "r": 2.3,
+        "stroke": "none",
+        "fill": "#2b2118"
+      }
+    },
+    {
+      "id": "slot.figure.right.smile",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 650.0 204.0 Q 657.0 210.0 664.0 204.0",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#b86e39",
+        "stroke_width": 1.3,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.name.left",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "은재",
+        "style_role": "choice",
+        "x": 190.0,
+        "y": 305.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.name.mid",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "성환",
+        "style_role": "choice",
+        "x": 415.0,
+        "y": 305.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.name.right",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "기영",
+        "style_role": "choice",
+        "x": 635.0,
+        "y": 305.0,
+        "font_size": 30
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q1",
+    "slot.box.left.text",
+    "slot.box.mid.text",
+    "slot.box.right.text",
+    "region.figures",
+    "slot.box.left",
+    "slot.box.mid",
+    "slot.box.right",
+    "slot.figure.left.body",
+    "slot.figure.left.head",
+    "slot.figure.left.hair.cap",
+    "slot.figure.left.eye.left",
+    "slot.figure.left.eye.right",
+    "slot.figure.left.smile",
+    "slot.figure.mid.body",
+    "slot.figure.mid.head",
+    "slot.figure.mid.hair.cap",
+    "slot.figure.mid.eye.left",
+    "slot.figure.mid.eye.right",
+    "slot.figure.mid.smile",
+    "slot.figure.right.body",
+    "slot.figure.right.head",
+    "slot.figure.right.hair.cap",
+    "slot.figure.right.eye.left",
+    "slot.figure.right.eye.right",
+    "slot.figure.right.smile",
+    "slot.name.left",
+    "slot.name.mid",
+    "slot.name.right",
+    "region.answer"
+  ]
+}

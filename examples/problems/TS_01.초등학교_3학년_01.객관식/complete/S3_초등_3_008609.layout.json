@@ -1,0 +1,100 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008609",
+  "title": "바르게 계산한 것을 찾아 기호를 선택해 보세요.",
+  "canvas": {
+    "width": 880,
+    "height": 280,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.header",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.stem"
+      ]
+    },
+    {
+      "id": "region.choice_box",
+      "role": "content",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.box",
+        "slot.choice.left",
+        "slot.choice.right"
+      ]
+    },
+    {
+      "id": "region.answer_explain",
+      "role": "supporting",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.stem",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "바르게 계산한 것을 찾아 기호를 선택해 보세요.",
+        "style_role": "question",
+        "x": 95.0,
+        "y": 35.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 95.0,
+        "y": 50.0,
+        "width": 740.0,
+        "height": 80.0,
+        "stroke": "#F2A34A",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.choice.left",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "㉠ 28 ÷ 2 = 14",
+        "style_role": "question",
+        "x": 210.0,
+        "y": 101.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice.right",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "㉡ 55 ÷ 5 = 15",
+        "style_role": "question",
+        "x": 575.0,
+        "y": 101.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.header",
+    "slot.stem",
+    "region.choice_box",
+    "slot.box",
+    "slot.choice.left",
+    "slot.choice.right",
+    "region.answer_explain"
+  ]
+}

@@ -1,0 +1,111 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008598",
+  "title": "나머지가 더 큰 것을 선택해 보세요.",
+  "canvas": {
+    "width": 728,
+    "height": 270,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.header",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.title"
+      ]
+    },
+    {
+      "id": "region.choice",
+      "role": "choices",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.box.left",
+        "slot.box.right",
+        "slot.text.left",
+        "slot.text.right"
+      ]
+    },
+    {
+      "id": "region.explanation",
+      "role": "explanation",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.title",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "나머지가 더 큰 것을 선택해 보세요.",
+        "style_role": "question",
+        "x": 70.0,
+        "y": 26.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.box.left",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 80.0,
+        "y": 60.0,
+        "width": 185.0,
+        "height": 75.0
+      }
+    },
+    {
+      "id": "slot.text.left",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "504 ÷ 5",
+        "style_role": "choice",
+        "x": 125.0,
+        "y": 110.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.box.right",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 335.0,
+        "y": 60.0,
+        "width": 185.0,
+        "height": 75.0
+      }
+    },
+    {
+      "id": "slot.text.right",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "467 ÷ 3",
+        "style_role": "choice",
+        "x": 380.0,
+        "y": 110.0,
+        "font_size": 30
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.header",
+    "slot.title",
+    "region.choice",
+    "slot.box.left",
+    "slot.box.right",
+    "slot.text.left",
+    "slot.text.right",
+    "region.explanation"
+  ]
+}

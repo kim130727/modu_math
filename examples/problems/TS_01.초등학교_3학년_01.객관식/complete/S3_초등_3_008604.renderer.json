@@ -1,0 +1,485 @@
+{
+  "problem_id": "S3_초등_3_008604",
+  "view_box": {
+    "width": 785.0,
+    "height": 559.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.expr_box.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 390.0,
+        "y": 41.0,
+        "width": 186.0,
+        "height": 62.0,
+        "fill": "none",
+        "stroke": "#F4A340",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.expr_box",
+      "refs": {
+        "layout_slot_id": "slot.expr_box"
+      }
+    },
+    {
+      "id": "slot.left.bubble.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 192.0 145.0 C 192.0 115.48, 216.7 104.0, 257.0 104.0 C 297.3 104.0, 322.0 115.48, 322.0 145.0 C 322.0 174.52, 297.3 186.0, 257.0 186.0 C 216.7 186.0, 192.0 174.52, 192.0 145.0 Z",
+        "stroke": "#222222",
+        "stroke-width": 1.6,
+        "fill": "#ffffff"
+      },
+      "source_ref": "slot.left.bubble",
+      "refs": {
+        "layout_slot_id": "slot.left.bubble"
+      }
+    },
+    {
+      "id": "slot.left.tail.polygon",
+      "type": "polygon",
+      "attributes": {
+        "points": [
+          [
+            247.0,
+            180.0
+          ],
+          [
+            267.0,
+            180.0
+          ],
+          [
+            257.0,
+            225.0
+          ]
+        ],
+        "stroke": "#222222",
+        "stroke-width": 1.4,
+        "fill": "#ffffff"
+      },
+      "source_ref": "slot.left.tail",
+      "refs": {
+        "layout_slot_id": "slot.left.tail"
+      }
+    },
+    {
+      "id": "slot.left.person.body.polygon",
+      "type": "polygon",
+      "attributes": {
+        "points": [
+          [
+            229.0,
+            365.0
+          ],
+          [
+            285.0,
+            365.0
+          ],
+          [
+            275.0,
+            329.0
+          ],
+          [
+            239.0,
+            329.0
+          ]
+        ],
+        "stroke": "none",
+        "stroke-width": 2.0,
+        "fill": "#D7A0D7"
+      },
+      "source_ref": "slot.left.person.body",
+      "refs": {
+        "layout_slot_id": "slot.left.person.body"
+      }
+    },
+    {
+      "id": "slot.left.person.head.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 257.0,
+        "cy": 292.0,
+        "r": 28.0,
+        "stroke": "none",
+        "stroke-width": 2.0,
+        "fill": "#ffd9ad"
+      },
+      "source_ref": "slot.left.person.head",
+      "refs": {
+        "layout_slot_id": "slot.left.person.head"
+      }
+    },
+    {
+      "id": "slot.left.person.hair.cap.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 229.0 291.0 C 231.0 262.0, 282.0 257.0, 286.0 291.0 C 267.0 275.0, 245.0 282.0, 229.0 291.0 Z",
+        "stroke": "none",
+        "stroke-width": 2.0,
+        "fill": "#4b1f16"
+      },
+      "source_ref": "slot.left.person.hair.cap",
+      "refs": {
+        "layout_slot_id": "slot.left.person.hair.cap"
+      }
+    },
+    {
+      "id": "slot.left.person.eye.left.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 247.0,
+        "cy": 296.0,
+        "r": 2.3,
+        "stroke": "none",
+        "stroke-width": 2.0,
+        "fill": "#2b2118"
+      },
+      "source_ref": "slot.left.person.eye.left",
+      "refs": {
+        "layout_slot_id": "slot.left.person.eye.left"
+      }
+    },
+    {
+      "id": "slot.left.person.eye.right.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 267.0,
+        "cy": 296.0,
+        "r": 2.3,
+        "stroke": "none",
+        "stroke-width": 2.0,
+        "fill": "#2b2118"
+      },
+      "source_ref": "slot.left.person.eye.right",
+      "refs": {
+        "layout_slot_id": "slot.left.person.eye.right"
+      }
+    },
+    {
+      "id": "slot.left.person.smile.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 250.0 308.0 Q 257.0 314.0 264.0 308.0",
+        "stroke": "#b86e39",
+        "stroke-width": 1.3,
+        "fill": "none"
+      },
+      "source_ref": "slot.left.person.smile",
+      "refs": {
+        "layout_slot_id": "slot.left.person.smile"
+      }
+    },
+    {
+      "id": "slot.name.left.box.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 219.0,
+        "y": 363.0,
+        "width": 76.0,
+        "height": 36.0,
+        "fill": "#e9f7dd",
+        "stroke": "#6fcf83",
+        "stroke-width": 2.0,
+        "rx": 9.0,
+        "ry": 9.0
+      },
+      "source_ref": "slot.name.left.box",
+      "refs": {
+        "layout_slot_id": "slot.name.left.box"
+      }
+    },
+    {
+      "id": "slot.right.bubble.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 586.0 194.0 C 586.0 160.16, 614.12 147.0, 660.0 147.0 C 705.88 147.0, 734.0 160.16, 734.0 194.0 C 734.0 227.84, 705.88 241.0, 660.0 241.0 C 614.12 241.0, 586.0 227.84, 586.0 194.0 Z",
+        "stroke": "#222222",
+        "stroke-width": 1.6,
+        "fill": "#ffffff"
+      },
+      "source_ref": "slot.right.bubble",
+      "refs": {
+        "layout_slot_id": "slot.right.bubble"
+      }
+    },
+    {
+      "id": "slot.right.tail.polygon",
+      "type": "polygon",
+      "attributes": {
+        "points": [
+          [
+            650.0,
+            235.0
+          ],
+          [
+            670.0,
+            235.0
+          ],
+          [
+            660.0,
+            277.0
+          ]
+        ],
+        "stroke": "#222222",
+        "stroke-width": 1.4,
+        "fill": "#ffffff"
+      },
+      "source_ref": "slot.right.tail",
+      "refs": {
+        "layout_slot_id": "slot.right.tail"
+      }
+    },
+    {
+      "id": "slot.right.person.body.polygon",
+      "type": "polygon",
+      "attributes": {
+        "points": [
+          [
+            632.0,
+            377.0
+          ],
+          [
+            688.0,
+            377.0
+          ],
+          [
+            678.0,
+            341.0
+          ],
+          [
+            642.0,
+            341.0
+          ]
+        ],
+        "stroke": "none",
+        "stroke-width": 2.0,
+        "fill": "#8ED7E6"
+      },
+      "source_ref": "slot.right.person.body",
+      "refs": {
+        "layout_slot_id": "slot.right.person.body"
+      }
+    },
+    {
+      "id": "slot.right.person.head.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 660.0,
+        "cy": 304.0,
+        "r": 28.0,
+        "stroke": "none",
+        "stroke-width": 2.0,
+        "fill": "#ffd9ad"
+      },
+      "source_ref": "slot.right.person.head",
+      "refs": {
+        "layout_slot_id": "slot.right.person.head"
+      }
+    },
+    {
+      "id": "slot.right.person.hair.cap.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 632.0 303.0 C 634.0 274.0, 685.0 269.0, 689.0 303.0 C 670.0 287.0, 648.0 294.0, 632.0 303.0 Z",
+        "stroke": "none",
+        "stroke-width": 2.0,
+        "fill": "#1d1714"
+      },
+      "source_ref": "slot.right.person.hair.cap",
+      "refs": {
+        "layout_slot_id": "slot.right.person.hair.cap"
+      }
+    },
+    {
+      "id": "slot.right.person.eye.left.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 650.0,
+        "cy": 308.0,
+        "r": 2.3,
+        "stroke": "none",
+        "stroke-width": 2.0,
+        "fill": "#2b2118"
+      },
+      "source_ref": "slot.right.person.eye.left",
+      "refs": {
+        "layout_slot_id": "slot.right.person.eye.left"
+      }
+    },
+    {
+      "id": "slot.right.person.eye.right.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 670.0,
+        "cy": 308.0,
+        "r": 2.3,
+        "stroke": "none",
+        "stroke-width": 2.0,
+        "fill": "#2b2118"
+      },
+      "source_ref": "slot.right.person.eye.right",
+      "refs": {
+        "layout_slot_id": "slot.right.person.eye.right"
+      }
+    },
+    {
+      "id": "slot.right.person.smile.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 653.0 320.0 Q 660.0 326.0 667.0 320.0",
+        "stroke": "#b86e39",
+        "stroke-width": 1.3,
+        "fill": "none"
+      },
+      "source_ref": "slot.right.person.smile",
+      "refs": {
+        "layout_slot_id": "slot.right.person.smile"
+      }
+    },
+    {
+      "id": "slot.name.right.box.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 622.0,
+        "y": 363.0,
+        "width": 76.0,
+        "height": 36.0,
+        "fill": "#e9f7dd",
+        "stroke": "#6fcf83",
+        "stroke-width": 2.0,
+        "rx": 9.0,
+        "ry": 9.0
+      },
+      "source_ref": "slot.name.right.box",
+      "refs": {
+        "layout_slot_id": "slot.name.right.box"
+      }
+    },
+    {
+      "id": "slot.q1.text",
+      "type": "text",
+      "attributes": {
+        "x": 12.0,
+        "y": 28.0,
+        "max_width": 657.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q1",
+      "refs": {
+        "layout_slot_id": "slot.q1"
+      },
+      "text": "74. 문제를 바르게 설명한 사람의 이름을 선택하세요."
+    },
+    {
+      "id": "slot.expr_text.text",
+      "type": "text",
+      "attributes": {
+        "x": 442.0,
+        "y": 84.0,
+        "max_width": 657.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.expr_text",
+      "refs": {
+        "layout_slot_id": "slot.expr_text"
+      },
+      "text": "67 ÷ 5"
+    },
+    {
+      "id": "slot.left.text.text",
+      "type": "text",
+      "attributes": {
+        "x": 257.0,
+        "y": 136.0,
+        "max_width": 657.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 24,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.left.text",
+      "refs": {
+        "layout_slot_id": "slot.left.text"
+      },
+      "text": "몫은 13이야."
+    },
+    {
+      "id": "slot.name.left.text.text",
+      "type": "text",
+      "attributes": {
+        "x": 257.0,
+        "y": 389.0,
+        "max_width": 657.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 25,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.name.left.text",
+      "refs": {
+        "layout_slot_id": "slot.name.left.text"
+      },
+      "text": "현태"
+    },
+    {
+      "id": "slot.right.text.text",
+      "type": "text",
+      "attributes": {
+        "x": 660.0,
+        "y": 191.0,
+        "max_width": 657.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 22,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.right.text",
+      "refs": {
+        "layout_slot_id": "slot.right.text"
+      },
+      "text": "나머지는 0으로\n나누어떨어져."
+    },
+    {
+      "id": "slot.name.right.text.text",
+      "type": "text",
+      "attributes": {
+        "x": 660.0,
+        "y": 389.0,
+        "max_width": 657.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 25,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.name.right.text",
+      "refs": {
+        "layout_slot_id": "slot.name.right.text"
+      },
+      "text": "은수"
+    },
+    {
+      "id": "slot.choice.text",
+      "type": "text",
+      "attributes": {
+        "x": 411.0,
+        "y": 420.0,
+        "max_width": 657.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice",
+      "refs": {
+        "layout_slot_id": "slot.choice"
+      },
+      "text": "( 현태 , 은수 )"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

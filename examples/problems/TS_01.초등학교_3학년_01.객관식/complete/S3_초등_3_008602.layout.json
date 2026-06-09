@@ -1,0 +1,114 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008602",
+  "title": "나머지가 가장 작은 것을 찾아 기호를 선택하세요.",
+  "canvas": {
+    "width": 860.0,
+    "height": 360.0,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q.text"
+      ]
+    },
+    {
+      "id": "region.choices",
+      "role": "choices",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice.1",
+        "slot.choice.2",
+        "slot.choice.3"
+      ]
+    },
+    {
+      "id": "region.explain",
+      "role": "explanation",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.conclusion"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "나머지가 가장 작은 것을 찾아 기호를 선택하세요.",
+        "style_role": "question",
+        "x": 70.0,
+        "y": 45.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.choice.1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "㉠ 77 ÷ 6",
+        "style_role": "choice",
+        "x": 120.0,
+        "y": 110.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice.2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "㉡ 264 ÷ 5",
+        "style_role": "choice",
+        "x": 340.0,
+        "y": 110.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice.3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "㉢ 307 ÷ 3",
+        "style_role": "choice",
+        "x": 580.0,
+        "y": 110.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.conclusion",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "따라서 나머지가 가장 작은 것은 ㉢입니다.",
+        "style_role": "body",
+        "x": 24.0,
+        "y": 322.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q.text",
+    "region.choices",
+    "slot.choice.1",
+    "slot.choice.2",
+    "slot.choice.3",
+    "region.explain",
+    "slot.conclusion"
+  ]
+}
