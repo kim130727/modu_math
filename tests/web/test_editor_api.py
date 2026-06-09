@@ -143,6 +143,37 @@ SLOTS = (
     assert "height = 80.0" in updated
 
 
+def test_layout_patch_updates_transform_field(tmp_path: Path) -> None:
+    client = _setup_django(tmp_path)
+    dsl_text = """
+from modu_math.dsl import LineSlot
+
+SLOTS = (
+    LineSlot(id="slot.line", x1=10.0, y1=20.0, x2=80.0, y2=20.0),
+)
+""".lstrip()
+    problem_dir = _write_problem(tmp_path, "0001", dsl_text)
+
+    payload = {
+        "patches": [
+            {
+                "target": "slot.line",
+                "op": "update",
+                "value": {"transform": "rotate(25 45 20)"},
+            }
+        ]
+    }
+    response = client.post(
+        "/api/editor/problems/0001/layout-patch/",
+        data=json.dumps(payload),
+        content_type="application/json",
+    )
+
+    assert response.status_code == 200
+    updated = (problem_dir / "problem.dsl.py").read_text(encoding="utf-8")
+    assert "transform = 'rotate(25 45 20)'" in updated
+
+
 def test_layout_patch_updates_person_slots_helper_anchor(tmp_path: Path) -> None:
     client = _setup_django(tmp_path)
     dsl_text = """
@@ -208,6 +239,46 @@ SLOTS = (
     assert 'character_body_slots("slot.person_left", cx = (100.0) + (7.0), head_cy = (70.0) + (11.0)' in updated
     assert 'character_hand_slots("slot.person_left", card_x = (80.0) + (7.0), card_y = (120.0) + (11.0)' in updated
     assert 'RectSlot(id="slot.card_left", x = (80.0) + (7.0), y = (120.0) + (11.0)' in updated
+
+
+def test_layout_patch_moves_base_ten_figure_helper(tmp_path: Path) -> None:
+    client = _setup_django(tmp_path)
+    dsl_text = """
+from modu_math.dsl import RectSlot
+
+def _base_ten_model(slot_id: str, *, x: float, y: float, rods: int, ones: int):
+    return (
+        RectSlot(id=f"{slot_id}.rod.1.front", x=x, y=y, width=10, height=80),
+    )
+
+def _partition_box(slot_id: str, *, x: float, y: float):
+    return (
+        RectSlot(id=f"{slot_id}.box", x=x, y=y, width=80, height=100),
+    )
+
+SLOTS = (
+    *_base_ten_model("slot.figure.top", x=100.0, y=50.0, rods=6, ones=9),
+    *_partition_box("slot.figure.group1", x=200.0, y=150.0),
+)
+""".lstrip()
+    problem_dir = _write_problem(tmp_path, "0001", dsl_text)
+
+    payload = {
+        "patches": [
+            {"target": "slot.figure.top", "op": "update", "value": {"move_dx": 15.0, "move_dy": 25.0}},
+            {"target": "slot.figure.group1", "op": "update", "value": {"move_dx": -5.0, "move_dy": 10.0}},
+        ]
+    }
+    response = client.post(
+        "/api/editor/problems/0001/layout-patch/",
+        data=json.dumps(payload),
+        content_type="application/json",
+    )
+
+    assert response.status_code == 200
+    updated = (problem_dir / "problem.dsl.py").read_text(encoding="utf-8")
+    assert '_base_ten_model("slot.figure.top", x = (100.0) + (15.0), y = (50.0) + (25.0)' in updated
+    assert '_partition_box("slot.figure.group1", x = (200.0) + (-5.0), y = (150.0) + (10.0))' in updated
 
 
 def test_layout_patch_moves_speaker_character_group(tmp_path: Path) -> None:

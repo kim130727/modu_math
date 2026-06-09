@@ -1,10 +1,10 @@
 {
   "schema": "modu.layout.v1",
   "problem_id": "S3_초등_3_008644",
-  "title": "원의 반지름",
+  "title": "원의 반지름 고르기",
   "canvas": {
-    "width": 960,
-    "height": 540,
+    "width": 746,
+    "height": 537,
     "coordinate_mode": "logical",
     "background": "#FFFFFF"
   },
@@ -14,31 +14,33 @@
       "role": "stem",
       "flow": "absolute",
       "slot_ids": [
-        "slot.chk",
-        "slot.circle",
-        "slot.grid_marker_1",
-        "slot.grid_marker_2",
-        "slot.grid_marker_3",
-        "slot.grid_marker_4",
-        "slot.grid_marker_5",
-        "slot.grid_marker_6",
-        "slot.grid_marker_7",
-        "slot.qnum",
-        "slot.qtext1",
-        "slot.qtext2",
-        "slot.grid_marker_8",
-        "slot.grid_marker_9",
-        "slot.grid_marker_10",
-        "slot.grid_marker_11",
-        "slot.grid_marker_12",
-        "slot.grid_marker_13",
-        "slot.grid_marker_14",
-        "slot.grid_marker_15",
-        "slot.grid_marker_16",
-        "slot.grid_marker_17",
-        "slot.grid_marker_18",
-        "slot.grid_marker_19",
-        "slot.grid_marker_20"
+        "slot.checkbox",
+        "slot.problem_no",
+        "slot.question.line1",
+        "slot.question.line2"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.figure.circle",
+        "slot.center.dot",
+        "slot.segment.ga",
+        "slot.segment.na_to_sa",
+        "slot.segment.la_ba",
+        "slot.segment.o_na",
+        "slot.segment.o_da",
+        "slot.segment.o_ma",
+        "slot.label.giyeok",
+        "slot.label.siot",
+        "slot.label.bieup",
+        "slot.label.nieun",
+        "slot.label.mieum",
+        "slot.label.digeut",
+        "slot.label.rieul",
+        "slot.label.center_o"
       ]
     },
     {
@@ -46,383 +48,369 @@
       "role": "choices",
       "flow": "absolute",
       "slot_ids": [
-        "slot.choice_a",
-        "slot.choice_b",
-        "slot.choice_c",
-        "slot.choice_d",
-        "slot.choice_e",
-        "slot.choice_f"
+        "slot.choice.ga",
+        "slot.choice.na",
+        "slot.choice.da",
+        "slot.choice.ra",
+        "slot.choice.ma",
+        "slot.choice.ba"
       ]
     },
     {
-      "id": "region.footer",
-      "role": "footer",
+      "id": "region.answer",
+      "role": "answer",
       "flow": "absolute",
-      "slot_ids": []
+      "slot_ids": [
+        "slot.answer",
+        "slot.explanation"
+      ]
     }
   ],
   "slots": [
     {
-      "id": "slot.chk",
+      "id": "slot.checkbox",
       "kind": "rect",
       "prompt": "",
       "content": {
         "x": 14.0,
-        "y": 20.0,
+        "y": 21.0,
         "width": 12.0,
-        "height": 12.0
+        "height": 12.0,
+        "stroke": "#333333",
+        "stroke_width": 0.8,
+        "fill": "none"
       }
     },
     {
-      "id": "slot.qnum",
+      "id": "slot.problem_no",
       "kind": "text",
       "prompt": "",
       "content": {
         "text": "16.",
         "style_role": "question",
-        "x": 34.0,
-        "y": 30.0,
-        "font_size": 28
+        "x": 36.0,
+        "y": 32.0,
+        "font_size": 21
       }
     },
     {
-      "id": "slot.qtext1",
+      "id": "slot.question.line1",
       "kind": "text",
       "prompt": "",
       "content": {
         "text": "점 O는 원의 중심입니다. 원의 반지름은 어느 선분인지 모두 선택해 보",
         "style_role": "question",
         "x": 76.0,
-        "y": 30.0,
-        "font_size": 28
+        "y": 32.0,
+        "font_size": 23
       }
     },
     {
-      "id": "slot.qtext2",
+      "id": "slot.question.line2",
       "kind": "text",
       "prompt": "",
       "content": {
         "text": "세요.",
         "style_role": "question",
-        "x": 18.0,
-        "y": 62.0,
-        "font_size": 28
+        "x": 36.0,
+        "y": 70.0,
+        "font_size": 23
       }
     },
     {
-      "id": "slot.circle",
+      "id": "slot.figure.circle",
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 479.0,
-        "cy": 170.0,
-        "r": 83.0,
+        "cx": 480.0,
+        "cy": 172.0,
+        "r": 82.0,
+        "stroke": "#333333",
+        "stroke_width": 1.3,
         "fill": "none"
       }
     },
     {
-      "id": "slot.grid_marker_1",
+      "id": "slot.segment.ga",
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 447.0,
-        "y1": 93.0,
-        "x2": 520.0,
-        "y2": 93.0
+        "x1": 420.0,
+        "y1": 102.0,
+        "x2": 522.0,
+        "y2": 96.0,
+        "stroke": "#333333",
+        "stroke_width": 1.3
       }
     },
     {
-      "id": "slot.grid_marker_2",
+      "id": "slot.segment.na_to_sa",
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 447.0,
-        "y1": 93.0,
-        "x2": 523.0,
-        "y2": 121.0
+        "x1": 405.0,
+        "y1": 132.0,
+        "x2": 522.0,
+        "y2": 96.0,
+        "stroke": "#333333",
+        "stroke_width": 1.3
       }
     },
     {
-      "id": "slot.grid_marker_3",
+      "id": "slot.segment.la_ba",
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 523.0,
-        "y1": 121.0,
-        "x2": 479.0,
-        "y2": 170.0
+        "x1": 522.0,
+        "y1": 240.0,
+        "x2": 542.0,
+        "y2": 116.0,
+        "stroke": "#333333",
+        "stroke_width": 1.3
       }
     },
     {
-      "id": "slot.grid_marker_4",
+      "id": "slot.segment.o_na",
       "kind": "line",
       "prompt": "",
       "content": {
         "x1": 480.0,
-        "y1": 170.0,
-        "x2": 418.0,
-        "y2": 142.0
+        "y1": 172.0,
+        "x2": 405.0,
+        "y2": 132.0,
+        "stroke": "#333333",
+        "stroke_width": 1.3
       }
     },
     {
-      "id": "slot.grid_marker_5",
+      "id": "slot.segment.o_da",
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 418.0,
-        "y1": 142.0,
-        "x2": 522.0,
-        "y2": 93.0
+        "x1": 480.0,
+        "y1": 172.0,
+        "x2": 435.0,
+        "y2": 238.0,
+        "stroke": "#333333",
+        "stroke_width": 1.3
       }
     },
     {
-      "id": "slot.grid_marker_6",
+      "id": "slot.segment.o_ma",
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 479.0,
-        "y1": 170.0,
-        "x2": 479.0,
-        "y2": 253.0
+        "x1": 480.0,
+        "y1": 172.0,
+        "x2": 562.0,
+        "y2": 171.0,
+        "stroke": "#333333",
+        "stroke_width": 1.3
       }
     },
     {
-      "id": "slot.grid_marker_7",
-      "kind": "line",
+      "id": "slot.center.dot",
+      "kind": "circle",
       "prompt": "",
       "content": {
-        "x1": 479.0,
-        "y1": 170.0,
-        "x2": 418.0,
-        "y2": 253.0
+        "cx": 480.0,
+        "cy": 172.0,
+        "r": 3.2,
+        "stroke": "#ec2aa0",
+        "stroke_width": 1.0,
+        "fill": "#ec2aa0"
       }
     },
     {
-      "id": "slot.grid_marker_8",
+      "id": "slot.label.giyeok",
       "kind": "text",
       "prompt": "",
       "content": {
         "text": "ㄱ",
         "style_role": "label",
-        "x": 401.0,
-        "y": 91.0,
-        "font_size": 24
+        "x": 415.0,
+        "y": 101.0,
+        "font_size": 17
       }
     },
     {
-      "id": "slot.grid_marker_9",
+      "id": "slot.label.siot",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㅅ",
+        "style_role": "label",
+        "x": 525.0,
+        "y": 101.0,
+        "font_size": 17
+      }
+    },
+    {
+      "id": "slot.label.bieup",
       "kind": "text",
       "prompt": "",
       "content": {
         "text": "ㅂ",
         "style_role": "label",
-        "x": 530.0,
-        "y": 117.0,
-        "font_size": 24
+        "x": 543.0,
+        "y": 121.0,
+        "font_size": 17
       }
     },
     {
-      "id": "slot.grid_marker_10",
+      "id": "slot.label.nieun",
       "kind": "text",
       "prompt": "",
       "content": {
         "text": "ㄴ",
         "style_role": "label",
-        "x": 388.0,
-        "y": 138.0,
-        "font_size": 24
+        "x": 389.0,
+        "y": 135.0,
+        "font_size": 17
       }
     },
     {
-      "id": "slot.grid_marker_11",
+      "id": "slot.label.mieum",
       "kind": "text",
       "prompt": "",
       "content": {
         "text": "ㅁ",
         "style_role": "label",
-        "x": 563.0,
-        "y": 173.0,
-        "font_size": 24
+        "x": 568.0,
+        "y": 177.0,
+        "font_size": 17
       }
     },
     {
-      "id": "slot.grid_marker_12",
+      "id": "slot.label.digeut",
       "kind": "text",
       "prompt": "",
       "content": {
         "text": "ㄷ",
         "style_role": "label",
-        "x": 401.0,
-        "y": 266.0,
-        "font_size": 24
+        "x": 421.0,
+        "y": 255.0,
+        "font_size": 17
       }
     },
     {
-      "id": "slot.grid_marker_13",
+      "id": "slot.label.rieul",
       "kind": "text",
       "prompt": "",
       "content": {
         "text": "ㄹ",
         "style_role": "label",
-        "x": 534.0,
-        "y": 265.0,
-        "font_size": 24
+        "x": 518.0,
+        "y": 255.0,
+        "font_size": 17
       }
     },
     {
-      "id": "slot.grid_marker_14",
+      "id": "slot.label.center_o",
       "kind": "text",
       "prompt": "",
       "content": {
         "text": "O",
         "style_role": "label",
-        "x": 475.0,
-        "y": 190.0,
-        "font_size": 24
+        "x": 477.0,
+        "y": 188.0,
+        "font_size": 17
       }
     },
     {
-      "id": "slot.grid_marker_15",
+      "id": "slot.choice.ga",
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "ㅅ",
-        "style_role": "label",
-        "x": 344.0,
-        "y": 84.0,
-        "font_size": 24
-      }
-    },
-    {
-      "id": "slot.grid_marker_16",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "ㄱ",
-        "style_role": "label",
-        "x": 513.0,
-        "y": 80.0,
-        "font_size": 24
-      }
-    },
-    {
-      "id": "slot.grid_marker_17",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "ㅅ",
-        "style_role": "label",
-        "x": 524.0,
-        "y": 269.0,
-        "font_size": 24
-      }
-    },
-    {
-      "id": "slot.grid_marker_18",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "ㅂ",
-        "style_role": "label",
-        "x": 545.0,
-        "y": 94.0,
-        "font_size": 24
-      }
-    },
-    {
-      "id": "slot.grid_marker_19",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "ㄴ",
-        "style_role": "label",
-        "x": 384.0,
-        "y": 247.0,
-        "font_size": 24
-      }
-    },
-    {
-      "id": "slot.grid_marker_20",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "ㄷ",
-        "style_role": "label",
-        "x": 479.0,
-        "y": 292.0,
-        "font_size": 24
-      }
-    },
-    {
-      "id": "slot.choice_a",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "가 선분 ㄱㅅ",
+        "text": "㉮ 선분 ㄱㅅ",
         "style_role": "choice",
-        "x": 170.0,
-        "y": 330.0,
-        "font_size": 28
+        "x": 165.0,
+        "y": 337.0,
+        "font_size": 22
       }
     },
     {
-      "id": "slot.choice_b",
+      "id": "slot.choice.na",
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "나 선분 Oㄴ",
+        "text": "㉯ 선분 Oㄴ",
         "style_role": "choice",
-        "x": 420.0,
-        "y": 330.0,
-        "font_size": 28
+        "x": 408.0,
+        "y": 337.0,
+        "font_size": 22
       }
     },
     {
-      "id": "slot.choice_c",
+      "id": "slot.choice.da",
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "다 선분 Oㄷ",
+        "text": "㉰ 선분 Oㄷ",
         "style_role": "choice",
-        "x": 670.0,
-        "y": 330.0,
-        "font_size": 28
+        "x": 610.0,
+        "y": 337.0,
+        "font_size": 22
       }
     },
     {
-      "id": "slot.choice_d",
+      "id": "slot.choice.ra",
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "라 선분 Oㅁ",
+        "text": "㉱ 선분 Oㅁ",
         "style_role": "choice",
-        "x": 170.0,
-        "y": 390.0,
-        "font_size": 28
+        "x": 165.0,
+        "y": 398.0,
+        "font_size": 22
       }
     },
     {
-      "id": "slot.choice_e",
+      "id": "slot.choice.ma",
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "마 선분 ㄹㅂ",
+        "text": "㉲ 선분 ㄹㅂ",
         "style_role": "choice",
-        "x": 420.0,
-        "y": 390.0,
-        "font_size": 28
+        "x": 408.0,
+        "y": 398.0,
+        "font_size": 22
       }
     },
     {
-      "id": "slot.choice_f",
+      "id": "slot.choice.ba",
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "바 선분 ㄴㅅ",
+        "text": "㉳ 선분 ㄴㅅ",
         "style_role": "choice",
-        "x": 670.0,
-        "y": 390.0,
-        "font_size": 28
+        "x": 610.0,
+        "y": 398.0,
+        "font_size": 22
+      }
+    },
+    {
+      "id": "slot.answer",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "(정답) ㉯, ㉰, ㉱",
+        "style_role": "supporting",
+        "x": 15.0,
+        "y": 462.0,
+        "font_size": 18
+      }
+    },
+    {
+      "id": "slot.explanation",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "(해설)원의 반지름은 원의 중심과 원 위의 한 점을 이은 선분입니다.",
+        "style_role": "supporting",
+        "x": 15.0,
+        "y": 508.0,
+        "font_size": 18
       }
     }
   ],
@@ -431,38 +419,36 @@
   "diagrams": [],
   "reading_order": [
     "region.stem",
-    "slot.chk",
-    "slot.circle",
-    "slot.grid_marker_1",
-    "slot.grid_marker_2",
-    "slot.grid_marker_3",
-    "slot.grid_marker_4",
-    "slot.grid_marker_5",
-    "slot.grid_marker_6",
-    "slot.grid_marker_7",
-    "slot.qnum",
-    "slot.qtext1",
-    "slot.qtext2",
-    "slot.grid_marker_8",
-    "slot.grid_marker_9",
-    "slot.grid_marker_10",
-    "slot.grid_marker_11",
-    "slot.grid_marker_12",
-    "slot.grid_marker_13",
-    "slot.grid_marker_14",
-    "slot.grid_marker_15",
-    "slot.grid_marker_16",
-    "slot.grid_marker_17",
-    "slot.grid_marker_18",
-    "slot.grid_marker_19",
-    "slot.grid_marker_20",
+    "slot.checkbox",
+    "slot.problem_no",
+    "slot.question.line1",
+    "slot.question.line2",
+    "region.diagram",
+    "slot.figure.circle",
+    "slot.center.dot",
+    "slot.segment.ga",
+    "slot.segment.na_to_sa",
+    "slot.segment.la_ba",
+    "slot.segment.o_na",
+    "slot.segment.o_da",
+    "slot.segment.o_ma",
+    "slot.label.giyeok",
+    "slot.label.siot",
+    "slot.label.bieup",
+    "slot.label.nieun",
+    "slot.label.mieum",
+    "slot.label.digeut",
+    "slot.label.rieul",
+    "slot.label.center_o",
     "region.choices",
-    "slot.choice_a",
-    "slot.choice_b",
-    "slot.choice_c",
-    "slot.choice_d",
-    "slot.choice_e",
-    "slot.choice_f",
-    "region.footer"
+    "slot.choice.ga",
+    "slot.choice.na",
+    "slot.choice.da",
+    "slot.choice.ra",
+    "slot.choice.ma",
+    "slot.choice.ba",
+    "region.answer",
+    "slot.answer",
+    "slot.explanation"
   ]
 }

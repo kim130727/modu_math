@@ -19,133 +19,73 @@ def build_problem_template() -> ProblemTemplate:
                 id="region.stem",
                 role="stem",
                 flow="absolute",
-                slot_ids=("slot.q1", "slot.q2", "slot.q3", "slot.q4"),
+                slot_ids=("slot.q1", "slot.q2", "slot.q3", ),
             ),
             Region(
                 id="region.diagram",
                 role="diagram",
                 flow="absolute",
-                slot_ids=(
-                    "slot.circle",
+                slot_ids=("slot.circle",
                     "slot.center",
-                    "slot.pt.g",
-                    "slot.pt.n",
-                    "slot.pt.d",
-                    "slot.pt.r",
                     "slot.lb.g",
                     "slot.lb.n",
                     "slot.lb.d",
                     "slot.lb.r",
                     "slot.line.gr",
                     "slot.line.nr",
-                    "slot.line.cd",
-                ),
+                    "slot.line.cd",'slot.lb.d.copy2'),
             ),
             Region(
                 id="region.explain", role="explanation", flow="absolute", slot_ids=()
             ),
         ),
-        slots=(
-            TextSlot(
+        slots=(TextSlot(
                 id="slot.q1",
                 prompt="",
-                text="□ 20. 그림을 보고 알맞은 말을 선택하세요.",
-                style_role="question",
-                x=12.0,
-                y=28.0,
-                font_size=28,
-            ),
+                text = '그림을 보고 알맞은 말을 선택하세요.', style_role="question",
+                x = 40, y = 35, font_size = 30),
             TextSlot(
                 id="slot.q2",
                 prompt="",
-                text="길이가 가장 긴 선분은 선분 ( ㄱㄹ, ㄴㄹ, ㅇㄹ )이고, 이 선분을 원의 (",
-                style_role="question",
-                x=35.0,
-                y=226.0,
-                font_size=28,
-            ),
+                text = '길이가 가장 긴 선분은 선분 ( ㄱㄹ, ㄴㄹ, ㅇㄹ )이고,', style_role="question",
+                x = 40, y = 310, font_size = 30),
             TextSlot(
                 id="slot.q3",
                 prompt="",
-                text="지름, 반지름 )이라고 합니다.",
-                style_role="question",
-                x=35.0,
-                y=264.0,
-                font_size=28,
-            ),
-            TextSlot(
-                id="slot.q4",
-                prompt="",
-                text=")",
-                style_role="question",
-                x=8.0,
-                y=352.0,
-                font_size=28,
+                text = ' 이 선분을 원의 (지름, 반지름 )이라고 합니다.', style_role="question",
+                x = 45, y = 355, font_size = 30),
+            CircleSlot(
+                id="slot.circle", prompt="", cx = 430, cy = 165, r = 115, fill="none"
             ),
             CircleSlot(
-                id="slot.circle", prompt="", cx=541.0, cy=126.0, r=61.0, fill="none"
-            ),
-            CircleSlot(
-                id="slot.center", prompt="", cx=541.0, cy=126.0, r=3.0, fill="#d81b60"
-            ),
-            CircleSlot(
-                id="slot.pt.g", prompt="", cx=534.0, cy=67.0, r=3.5, fill="#222222"
-            ),
-            CircleSlot(
-                id="slot.pt.n", prompt="", cx=478.0, cy=177.0, r=3.5, fill="#222222"
-            ),
-            CircleSlot(
-                id="slot.pt.d", prompt="", cx=571.0, cy=196.0, r=3.5, fill="#222222"
-            ),
-            CircleSlot(
-                id="slot.pt.r", prompt="", cx=596.0, cy=112.0, r=3.5, fill="#222222"
+                id="slot.center", prompt="", cx = 430, cy = 165, r = 5, fill="#d81b60"
             ),
             TextSlot(
                 id="slot.lb.g",
                 prompt="",
-                text="ㄱ",
-                style_role="label",
-                x=521.0,
-                y=54.0,
-                font_size=28,
-            ),
+                text = 'ㄱ', style_role="label",
+                x = 390, y = 75, font_size = 30),
             TextSlot(
                 id="slot.lb.n",
                 prompt="",
-                text="ㄴ",
-                style_role="label",
-                x=455.0,
-                y=182.0,
-                font_size=28,
-            ),
+                text = 'ㄴ', style_role="label",
+                x = 295, y = 225, font_size = 30),
             TextSlot(
                 id="slot.lb.d",
                 prompt="",
-                text="ㄷ",
-                style_role="label",
-                x=572.0,
-                y=220.0,
-                font_size=28,
-            ),
+                text = 'ㄷ', style_role="label",
+                x = 495, y = 285, font_size = 30),
             TextSlot(
                 id="slot.lb.r",
                 prompt="",
-                text="ㄹ",
-                style_role="label",
-                x=606.0,
-                y=108.0,
-                font_size=28,
-            ),
+                text = 'ㄹ', style_role="label",
+                x = 545, y = 130, font_size = 30),
             LineSlot(
-                id="slot.line.gr", prompt="", x1=534.0, y1=67.0, x2=596.0, y2=112.0
-            ),
+                id="slot.line.gr", prompt="", x1 = 415, y1 = 50, x2 = 540, y2 = 125),
             LineSlot(
-                id="slot.line.nr", prompt="", x1=478.0, y1=177.0, x2=596.0, y2=112.0
-            ),
+                id="slot.line.nr", prompt="", x1 = 325, y1 = 210, x2 = 540, y2 = 125),
             LineSlot(
-                id="slot.line.cd", prompt="", x1=541.0, y1=126.0, x2=571.0, y2=196.0
-            ),
-        ),
+                id="slot.line.cd", prompt="", x1 = 430, y1 = 165, x2 = 495, y2 = 260),TextSlot(id = 'slot.lb.d.copy2', prompt = '', text = 'ㅇ', x = 415, y = 160, font_size = 30, fill = '#111111')),
         diagrams=(),
         groups=(),
         constraints=(),

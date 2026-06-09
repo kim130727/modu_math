@@ -272,6 +272,7 @@ def _compile_slots(layout: dict[str, Any], *, width: float) -> tuple[list[DrawEl
         if not isinstance(content, dict):
             content = {}
         refs = RenderRefs(layout_slot_id=slot_id)
+        transform = str(content["transform"]) if isinstance(content.get("transform"), str) and content.get("transform") else None
         if kind == "text":
             text = str(content.get("text", ""))
             tx = float(content["x"]) if isinstance(content.get("x"), int | float) else x
@@ -293,6 +294,8 @@ def _compile_slots(layout: dict[str, Any], *, width: float) -> tuple[list[DrawEl
                 attributes["text-anchor"] = text_anchor
             if semantic_role:
                 attributes["data-semantic-role"] = semantic_role
+            if transform:
+                attributes["transform"] = transform
             elements.append(
                 DrawElement(
                     id=f"{slot_id}.text",
@@ -436,6 +439,8 @@ def _compile_slots(layout: dict[str, Any], *, width: float) -> tuple[list[DrawEl
                 attributes["ry"] = corner_ry
             if semantic_role:
                 attributes["data-semantic-role"] = semantic_role
+            if transform:
+                attributes["transform"] = transform
             elements.append(
                 DrawElement(
                     id=f"{slot_id}.rect",
@@ -469,6 +474,8 @@ def _compile_slots(layout: dict[str, Any], *, width: float) -> tuple[list[DrawEl
                 attributes["stroke-dasharray"] = stroke_dasharray
             if semantic_role:
                 attributes["data-semantic-role"] = semantic_role
+            if transform:
+                attributes["transform"] = transform
             elements.append(
                 DrawElement(
                     id=f"{slot_id}.line",
@@ -499,6 +506,8 @@ def _compile_slots(layout: dict[str, Any], *, width: float) -> tuple[list[DrawEl
             }
             if semantic_role:
                 attributes["data-semantic-role"] = semantic_role
+            if transform:
+                attributes["transform"] = transform
             elements.append(
                 DrawElement(
                     id=f"{slot_id}.circle",
@@ -530,6 +539,8 @@ def _compile_slots(layout: dict[str, Any], *, width: float) -> tuple[list[DrawEl
             }
             if semantic_role:
                 attributes["data-semantic-role"] = semantic_role
+            if transform:
+                attributes["transform"] = transform
             elements.append(
                 DrawElement(
                     id=f"{slot_id}.polygon",
@@ -556,7 +567,9 @@ def _compile_slots(layout: dict[str, Any], *, width: float) -> tuple[list[DrawEl
                 "stroke-width": stroke_width,
                 "fill": fill,
             }
-            if x_pos != 0.0 or y_pos != 0.0:
+            if transform:
+                attributes["transform"] = transform
+            elif x_pos != 0.0 or y_pos != 0.0:
                 attributes["transform"] = f"translate({x_pos}, {y_pos})"
             if stroke_dasharray:
                 attributes["stroke-dasharray"] = stroke_dasharray

@@ -90,3 +90,24 @@ def test_compile_renderer_expands_cube_object_to_primitives() -> None:
     assert any(child["id"].endswith(".edge.connect.bl") for child in cube_primitives)
     assert all(child["type"] in {"line", "text"} for child in groups[0]["elements"])
 
+
+def test_compile_renderer_preserves_slot_transform() -> None:
+    layout = {
+        "problem_id": "transform_example_0001",
+        "canvas": {"width": 200, "height": 120, "background": "#ffffff"},
+        "regions": [{"id": "region_diagram", "role": "diagram", "flow": "absolute", "slot_ids": ["slot_line"]}],
+        "slots": [
+            {
+                "id": "slot_line",
+                "kind": "line",
+                "prompt": "",
+                "content": {"x1": 10, "y1": 20, "x2": 90, "y2": 20, "transform": "rotate(30 50 20)"},
+            }
+        ],
+        "diagrams": [],
+    }
+
+    renderer = compile_renderer_json(layout)
+
+    assert renderer["elements"][0]["attributes"]["transform"] == "rotate(30 50 20)"
+

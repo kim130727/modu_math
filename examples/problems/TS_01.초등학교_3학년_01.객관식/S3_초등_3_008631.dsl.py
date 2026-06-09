@@ -1,530 +1,256 @@
 from __future__ import annotations
+
 from modu_math.dsl import (
     Canvas,
+    CircleSlot,
+    LineSlot,
+    PolygonSlot,
     ProblemTemplate,
+    RectSlot,
     Region,
     TextSlot,
-    RectSlot,
-    LineSlot,
-    CircleSlot,
 )
 
 
+BLUE = "#1d6fa3"
+LIGHT_BLUE = "#5cc6ee"
+MID_BLUE = "#35abd8"
+PALE_BLUE = "#94dcf6"
+ARROW_GRAY = "#8a8a8a"
+
+
+def _ten_rod(slot_id: str, x: float, y: float, *, cell: float = 8.0) -> tuple:
+    width = cell * 1.35
+    height = cell * 10
+    depth = cell * 0.45
+    slots = [
+        RectSlot(
+            id=f"{slot_id}.front",
+            x=x,
+            y=y + depth,
+            width=width,
+            height=height,
+            fill=LIGHT_BLUE,
+            stroke=BLUE,
+            stroke_width=1.2,
+        ),
+        PolygonSlot(
+            id=f"{slot_id}.top",
+            points=((x, y + depth), (x + depth, y), (x + width + depth, y), (x + width, y + depth)),
+            fill=PALE_BLUE,
+            stroke=BLUE,
+            stroke_width=1.0,
+        ),
+        PolygonSlot(
+            id=f"{slot_id}.side",
+            points=(
+                (x + width, y + depth),
+                (x + width + depth, y),
+                (x + width + depth, y + height),
+                (x + width, y + height + depth),
+            ),
+            fill=MID_BLUE,
+            stroke=BLUE,
+            stroke_width=1.0,
+        ),
+    ]
+    for index in range(1, 10):
+        yy = y + depth + cell * index
+        slots.append(
+            LineSlot(
+                id=f"{slot_id}.cell.{index}",
+                x1=x,
+                y1=yy,
+                x2=x + width,
+                y2=yy,
+                stroke=BLUE,
+                stroke_width=0.7,
+            )
+        )
+    return tuple(slots)
+
+
+def _one_cube(slot_id: str, x: float, y: float, *, size: float = 11.0) -> tuple:
+    depth = size * 0.45
+    return (
+        RectSlot(
+            id=f"{slot_id}.front",
+            x=x,
+            y=y + depth,
+            width=size,
+            height=size,
+            fill=LIGHT_BLUE,
+            stroke=BLUE,
+            stroke_width=1.0,
+        ),
+        PolygonSlot(
+            id=f"{slot_id}.top",
+            points=((x, y + depth), (x + depth, y), (x + size + depth, y), (x + size, y + depth)),
+            fill=PALE_BLUE,
+            stroke=BLUE,
+            stroke_width=0.9,
+        ),
+        PolygonSlot(
+            id=f"{slot_id}.side",
+            points=(
+                (x + size, y + depth),
+                (x + size + depth, y),
+                (x + size + depth, y + size),
+                (x + size, y + size + depth),
+            ),
+            fill=MID_BLUE,
+            stroke=BLUE,
+            stroke_width=0.9,
+        ),
+    )
+
+
+def _base_ten_model(
+    slot_id: str,
+    x: float,
+    y: float,
+    *,
+    rods: int,
+    ones: int,
+    rod_gap: float = 24.0,
+    cube_x_offset: float = 158.0,
+    cube_gap_x: float = 25.0,
+    cube_gap_y: float = 21.0,
+    rod_cell: float = 8.0,
+    cube_size: float = 11.0,
+) -> tuple:
+    slots: list = []
+    for index in range(rods):
+        slots.extend(_ten_rod(f"{slot_id}.rod.{index + 1}", x + index * rod_gap, y, cell=rod_cell))
+
+    for index in range(ones):
+        # A 5-by-4 staggered stack mirrors the printed base-ten blocks better
+        # than a plain rectangular grid.
+        col = 0 if index < 5 else 1
+        row = index if index < 5 else index - 5
+        cube_x = x + cube_x_offset + col * cube_gap_x
+        cube_y = y + row * cube_gap_y + (0 if col == 0 else cube_gap_y * 0.8)
+        slots.extend(_one_cube(f"{slot_id}.cube.{index + 1}", cube_x, cube_y, size=cube_size))
+    return tuple(slots)
+
+
+def _partition_box(slot_id: str, x: float, y: float) -> tuple:
+    return (
+        RectSlot(
+            id=f"{slot_id}.box",
+            x=x,
+            y=y,
+            width=98,
+            height=126,
+            fill="none",
+            stroke=BLUE,
+            stroke_width=1.5,
+        ),
+        *_base_ten_model(
+            slot_id,
+            x + 18,
+            y + 12,
+            rods=2,
+            ones=3,
+            rod_gap=25,
+            cube_x_offset=56,
+            cube_gap_x=0,
+            cube_gap_y=21,
+            rod_cell=8.5,
+            cube_size=11,
+        ),
+    )
+
+
+def _choice(slot_id: str, number: str, value: str, x: float, y: float) -> tuple:
+    return (
+        TextSlot(
+            id=f"{slot_id}.marker",
+            text=number,
+            style_role="choice",
+            x=x,
+            y=y,
+            font_size=21,
+            fill="#0070c0",
+        ),
+        TextSlot(
+            id=f"{slot_id}.value",
+            text=value,
+            style_role="choice",
+            x=x + 24,
+            y=y,
+            font_size=24,
+        ),
+    )
+
+
+def _all_slot_ids(slots: tuple) -> tuple[str, ...]:
+    return tuple(slot.id for slot in slots)
+
+
 def build_problem_template() -> ProblemTemplate:
+    diagram_slots = (
+        RectSlot(id="slot.top.box", x=366, y=54, width=246, height=126, fill="none", stroke=BLUE, stroke_width=1.5),
+        *_base_ten_model(
+            "slot.figure.top",
+            x=389,
+            y=67,
+            rods=6,
+            ones=9,
+            rod_gap=26,
+            cube_x_offset=155,
+            cube_gap_x=25,
+            cube_gap_y=20,
+        ),
+        LineSlot(id="slot.arrow.stem", x1=496, y1=188, x2=496, y2=213, stroke=ARROW_GRAY, stroke_width=10),
+        PolygonSlot(
+            id="slot.arrow.head",
+            points=((483, 204), (509, 204), (496, 219)),
+            fill=ARROW_GRAY,
+            stroke=ARROW_GRAY,
+            stroke_width=1,
+        ),
+        *_partition_box("slot.figure.group1", x=315, y=225),
+        *_partition_box("slot.figure.group2", x=435, y=225),
+        *_partition_box("slot.figure.group3", x=555, y=225),
+        TextSlot(id="slot.equation", text="69 ÷ 3 =", style_role="question", x=417, y=392, font_size=27),
+        RectSlot(id="slot.blank", x=529, y=368, width=27, height=27, fill="none", stroke="#111111", stroke_width=1.2),
+    )
+    choice_slots = (
+        *_choice("slot.choice.1", "①", "21", 36, 431),
+        *_choice("slot.choice.2", "②", "22", 332, 431),
+        *_choice("slot.choice.3", "③", "23", 628, 431),
+        *_choice("slot.choice.4", "④", "24", 36, 476),
+        *_choice("slot.choice.5", "⑤", "25", 332, 476),
+    )
+    answer_slots = (
+        TextSlot(id="slot.answer", text="(정답) ③", style_role="supporting", x=15, y=522, font_size=18),
+        TextSlot(id="slot.explanation", text="(해설)69 ÷ 3 = 23입니다.", style_role="supporting", x=15, y=570, font_size=18),
+    )
+    stem_slots = (
+        RectSlot(id="slot.checkbox", x=14, y=18, width=12, height=12, fill="none", stroke="#333333", stroke_width=0.8),
+        TextSlot(id="slot.problem_no", text="2.", style_role="question", x=36, y=29, font_size=20),
+        TextSlot(id="slot.question.prefix", text="수 모형을 보고", style_role="question", x=62, y=29, font_size=25),
+        RectSlot(id="slot.inline_blank", x=247, y=10, width=27, height=27, fill="none", stroke="#111111", stroke_width=1.0),
+        TextSlot(id="slot.question.suffix", text="안에 알맞은 수를 고르세요.", style_role="question", x=288, y=29, font_size=25),
+    )
+    all_slots = (*stem_slots, *diagram_slots, *choice_slots, *answer_slots)
+
     return ProblemTemplate(
         id="S3_초등_3_008631",
         title="수 모형을 보고 알맞은 수 고르기",
-        canvas=Canvas(width=720, height=560, coordinate_mode="logical"),
+        canvas=Canvas(width=720, height=590, coordinate_mode="logical"),
         regions=(
-            Region(
-                id="region.stem",
-                role="stem",
-                flow="absolute",
-                slot_ids=("slot.q1", "slot.q2"),
-            ),
-            Region(
-                id="region.diagram",
-                role="diagram",
-                flow="absolute",
-                slot_ids=(
-                    "slot.big_box",
-                    "slot.big_rod1",
-                    "slot.big_rod2",
-                    "slot.big_rod3",
-                    "slot.big_rod4",
-                    "slot.big_rod5",
-                    "slot.big_rod6",
-                    "slot.big_cube1",
-                    "slot.big_cube2",
-                    "slot.big_cube3",
-                    "slot.big_cube4",
-                    "slot.big_cube5",
-                    "slot.big_cube6",
-                    "slot.big_cube7",
-                    "slot.big_cube8",
-                    "slot.arrow",
-                    "slot.small_box1",
-                    "slot.small_box2",
-                    "slot.small_box3",
-                    "slot.s1_rod1",
-                    "slot.s1_rod2",
-                    "slot.s1_cube1",
-                    "slot.s1_cube2",
-                    "slot.s1_cube3",
-                    "slot.s2_rod1",
-                    "slot.s2_rod2",
-                    "slot.s2_cube1",
-                    "slot.s2_cube2",
-                    "slot.s2_cube3",
-                    "slot.s3_rod1",
-                    "slot.s3_rod2",
-                    "slot.s3_cube1",
-                    "slot.s3_cube2",
-                    "slot.s3_cube3",
-                    "slot.equation",
-                    "slot.blank",
-                ),
-            ),
-            Region(
-                id="region.options",
-                role="options",
-                flow="absolute",
-                slot_ids=(
-                    "slot.opt1_num",
-                    "slot.opt1_text",
-                    "slot.opt2_num",
-                    "slot.opt2_text",
-                    "slot.opt3_num",
-                    "slot.opt3_text",
-                    "slot.opt4_num",
-                    "slot.opt4_text",
-                    "slot.opt5_num",
-                    "slot.opt5_text",
-                ),
-            ),
+            Region(id="region.stem", role="stem", flow="absolute", slot_ids=_all_slot_ids(stem_slots)),
+            Region(id="region.diagram", role="diagram", flow="absolute", slot_ids=_all_slot_ids(diagram_slots)),
+            Region(id="region.choices", role="choices", flow="absolute", slot_ids=_all_slot_ids(choice_slots)),
+            Region(id="region.answer", role="answer", flow="absolute", slot_ids=_all_slot_ids(answer_slots)),
         ),
-        slots=(
-            TextSlot(
-                id="slot.q1",
-                prompt="",
-                text="□",
-                style_role="question",
-                x=20.0,
-                y=28.0,
-                font_size=28,
-            ),
-            TextSlot(
-                id="slot.q2",
-                prompt="",
-                text="2. 수 모형을 보고 □ 안에 알맞은 수를 고르세요.",
-                style_role="question",
-                x=50.0,
-                y=28.0,
-                font_size=28,
-            ),
-            RectSlot(
-                id="slot.big_box",
-                prompt="",
-                x=360.0,
-                y=52.0,
-                width=246.0,
-                height=96.0,
-                fill="none",
-                stroke="#4A78B8",
-            ),
-            RectSlot(
-                id="slot.big_rod1",
-                prompt="",
-                x=380.0,
-                y=66.0,
-                width=10.0,
-                height=72.0,
-                fill="none",
-                stroke="#6BBCE8",
-            ),
-            RectSlot(
-                id="slot.big_rod2",
-                prompt="",
-                x=404.0,
-                y=66.0,
-                width=10.0,
-                height=72.0,
-                fill="none",
-                stroke="#6BBCE8",
-            ),
-            RectSlot(
-                id="slot.big_rod3",
-                prompt="",
-                x=428.0,
-                y=66.0,
-                width=10.0,
-                height=72.0,
-                fill="none",
-                stroke="#6BBCE8",
-            ),
-            RectSlot(
-                id="slot.big_rod4",
-                prompt="",
-                x=452.0,
-                y=66.0,
-                width=10.0,
-                height=72.0,
-                fill="none",
-                stroke="#6BBCE8",
-            ),
-            RectSlot(
-                id="slot.big_rod5",
-                prompt="",
-                x=476.0,
-                y=66.0,
-                width=10.0,
-                height=72.0,
-                fill="none",
-                stroke="#6BBCE8",
-            ),
-            RectSlot(
-                id="slot.big_rod6",
-                prompt="",
-                x=500.0,
-                y=66.0,
-                width=10.0,
-                height=72.0,
-                fill="none",
-                stroke="#6BBCE8",
-            ),
-            RectSlot(
-                id="slot.big_cube1",
-                prompt="",
-                x=526.0,
-                y=70.0,
-                width=10.0,
-                height=10.0,
-                fill="none",
-                stroke="#6BBCE8",
-            ),
-            RectSlot(
-                id="slot.big_cube2",
-                prompt="",
-                x=546.0,
-                y=70.0,
-                width=10.0,
-                height=10.0,
-                fill="none",
-                stroke="#6BBCE8",
-            ),
-            RectSlot(
-                id="slot.big_cube3",
-                prompt="",
-                x=526.0,
-                y=90.0,
-                width=10.0,
-                height=10.0,
-                fill="none",
-                stroke="#6BBCE8",
-            ),
-            RectSlot(
-                id="slot.big_cube4",
-                prompt="",
-                x=546.0,
-                y=90.0,
-                width=10.0,
-                height=10.0,
-                fill="none",
-                stroke="#6BBCE8",
-            ),
-            RectSlot(
-                id="slot.big_cube5",
-                prompt="",
-                x=526.0,
-                y=110.0,
-                width=10.0,
-                height=10.0,
-                fill="none",
-                stroke="#6BBCE8",
-            ),
-            RectSlot(
-                id="slot.big_cube6",
-                prompt="",
-                x=546.0,
-                y=110.0,
-                width=10.0,
-                height=10.0,
-                fill="none",
-                stroke="#6BBCE8",
-            ),
-            RectSlot(
-                id="slot.big_cube7",
-                prompt="",
-                x=526.0,
-                y=130.0,
-                width=10.0,
-                height=10.0,
-                fill="none",
-                stroke="#6BBCE8",
-            ),
-            RectSlot(
-                id="slot.big_cube8",
-                prompt="",
-                x=546.0,
-                y=130.0,
-                width=10.0,
-                height=10.0,
-                fill="none",
-                stroke="#6BBCE8",
-            ),
-            LineSlot(
-                id="slot.arrow",
-                prompt="",
-                x1=483.0,
-                y1=150.0,
-                x2=483.0,
-                y2=185.0,
-                stroke="#888888",
-            ),
-            RectSlot(
-                id="slot.small_box1",
-                prompt="",
-                x=300.0,
-                y=206.0,
-                width=84.0,
-                height=128.0,
-                fill="none",
-                stroke="#4A78B8",
-            ),
-            RectSlot(
-                id="slot.small_box2",
-                prompt="",
-                x=404.0,
-                y=206.0,
-                width=84.0,
-                height=128.0,
-                fill="none",
-                stroke="#4A78B8",
-            ),
-            RectSlot(
-                id="slot.small_box3",
-                prompt="",
-                x=508.0,
-                y=206.0,
-                width=84.0,
-                height=128.0,
-                fill="none",
-                stroke="#4A78B8",
-            ),
-            RectSlot(
-                id="slot.s1_rod1",
-                prompt="",
-                x=312.0,
-                y=220.0,
-                width=10.0,
-                height=82.0,
-                fill="none",
-                stroke="#6BBCE8",
-            ),
-            RectSlot(
-                id="slot.s1_rod2",
-                prompt="",
-                x=332.0,
-                y=220.0,
-                width=10.0,
-                height=82.0,
-                fill="none",
-                stroke="#6BBCE8",
-            ),
-            RectSlot(
-                id="slot.s1_cube1",
-                prompt="",
-                x=348.0,
-                y=250.0,
-                width=10.0,
-                height=10.0,
-                fill="none",
-                stroke="#6BBCE8",
-            ),
-            RectSlot(
-                id="slot.s1_cube2",
-                prompt="",
-                x=348.0,
-                y=270.0,
-                width=10.0,
-                height=10.0,
-                fill="none",
-                stroke="#6BBCE8",
-            ),
-            RectSlot(
-                id="slot.s1_cube3",
-                prompt="",
-                x=348.0,
-                y=290.0,
-                width=10.0,
-                height=10.0,
-                fill="none",
-                stroke="#6BBCE8",
-            ),
-            RectSlot(
-                id="slot.s2_rod1",
-                prompt="",
-                x=416.0,
-                y=220.0,
-                width=10.0,
-                height=82.0,
-                fill="none",
-                stroke="#6BBCE8",
-            ),
-            RectSlot(
-                id="slot.s2_rod2",
-                prompt="",
-                x=436.0,
-                y=220.0,
-                width=10.0,
-                height=82.0,
-                fill="none",
-                stroke="#6BBCE8",
-            ),
-            RectSlot(
-                id="slot.s2_cube1",
-                prompt="",
-                x=452.0,
-                y=250.0,
-                width=10.0,
-                height=10.0,
-                fill="none",
-                stroke="#6BBCE8",
-            ),
-            RectSlot(
-                id="slot.s2_cube2",
-                prompt="",
-                x=452.0,
-                y=270.0,
-                width=10.0,
-                height=10.0,
-                fill="none",
-                stroke="#6BBCE8",
-            ),
-            RectSlot(
-                id="slot.s2_cube3",
-                prompt="",
-                x=452.0,
-                y=290.0,
-                width=10.0,
-                height=10.0,
-                fill="none",
-                stroke="#6BBCE8",
-            ),
-            RectSlot(
-                id="slot.s3_rod1",
-                prompt="",
-                x=520.0,
-                y=220.0,
-                width=10.0,
-                height=82.0,
-                fill="none",
-                stroke="#6BBCE8",
-            ),
-            RectSlot(
-                id="slot.s3_rod2",
-                prompt="",
-                x=540.0,
-                y=220.0,
-                width=10.0,
-                height=82.0,
-                fill="none",
-                stroke="#6BBCE8",
-            ),
-            RectSlot(
-                id="slot.s3_cube1",
-                prompt="",
-                x=556.0,
-                y=250.0,
-                width=10.0,
-                height=10.0,
-                fill="none",
-                stroke="#6BBCE8",
-            ),
-            RectSlot(
-                id="slot.s3_cube2",
-                prompt="",
-                x=556.0,
-                y=270.0,
-                width=10.0,
-                height=10.0,
-                fill="none",
-                stroke="#6BBCE8",
-            ),
-            RectSlot(
-                id="slot.s3_cube3",
-                prompt="",
-                x=556.0,
-                y=290.0,
-                width=10.0,
-                height=10.0,
-                fill="none",
-                stroke="#6BBCE8",
-            ),
-            TextSlot(
-                id="slot.equation",
-                prompt="",
-                text="69 ÷ 3 =",
-                style_role="question",
-                x=380.0,
-                y=362.0,
-                font_size=28,
-            ),
-            RectSlot(
-                id="slot.blank",
-                prompt="",
-                x=530.0,
-                y=338.0,
-                width=26.0,
-                height=26.0,
-                fill="none",
-                stroke="#222222",
-            ),
-            CircleSlot(
-                id="slot.opt1_num", prompt="", cx=44.0, cy=423.0, r=7.0, fill="none"
-            ),
-            TextSlot(
-                id="slot.opt1_text",
-                prompt="",
-                text="21",
-                style_role="choice",
-                x=58.0,
-                y=430.0,
-                font_size=28,
-            ),
-            CircleSlot(
-                id="slot.opt2_num", prompt="", cx=320.0, cy=423.0, r=7.0, fill="none"
-            ),
-            TextSlot(
-                id="slot.opt2_text",
-                prompt="",
-                text="22",
-                style_role="choice",
-                x=334.0,
-                y=430.0,
-                font_size=28,
-            ),
-            CircleSlot(
-                id="slot.opt3_num", prompt="", cx=584.0, cy=423.0, r=7.0, fill="none"
-            ),
-            TextSlot(
-                id="slot.opt3_text",
-                prompt="",
-                text="23",
-                style_role="choice",
-                x=598.0,
-                y=430.0,
-                font_size=28,
-            ),
-            CircleSlot(
-                id="slot.opt4_num", prompt="", cx=44.0, cy=462.0, r=7.0, fill="none"
-            ),
-            TextSlot(
-                id="slot.opt4_text",
-                prompt="",
-                text="24",
-                style_role="choice",
-                x=58.0,
-                y=469.0,
-                font_size=28,
-            ),
-            CircleSlot(
-                id="slot.opt5_num", prompt="", cx=320.0, cy=462.0, r=7.0, fill="none"
-            ),
-            TextSlot(
-                id="slot.opt5_text",
-                prompt="",
-                text="25",
-                style_role="choice",
-                x=334.0,
-                y=469.0,
-                font_size=28,
-            ),
-        ),
+        slots=all_slots,
         diagrams=(),
         groups=(),
         constraints=(),
-        tags=(),
+        tags=("base_ten_model", "division", "multiple_choice"),
     )
 
 
@@ -536,7 +262,7 @@ SEMANTIC_OVERRIDE = {
     "metadata": {
         "language": "ko",
         "question": "수 모형을 보고 □ 안에 알맞은 수를 고르세요.",
-        "instruction": "수 모형과 나눗셈 식을 보고 알맞은 값을 고르는 문제",
+        "instruction": "69를 3묶음으로 나눈 수 모형을 보고 69 ÷ 3의 몫을 고르는 문제",
     },
     "domain": {
         "objects": [
@@ -544,22 +270,25 @@ SEMANTIC_OVERRIDE = {
             {"id": "obj.divisor", "type": "number", "value": 3},
             {"id": "obj.blank", "type": "answer_blank"},
             {"id": "obj.options", "type": "choices", "values": [21, 22, 23, 24, 25]},
+            {"id": "obj.base_ten.total", "type": "base_ten_model", "tens": 6, "ones": 9},
+            {"id": "obj.base_ten.group", "type": "base_ten_model", "tens": 2, "ones": 3, "count": 3},
         ],
-        "relations": [],
+        "relations": [
+            {"id": "rel.division", "type": "division", "dividend": 69, "divisor": 3, "quotient": 23},
+            {"id": "rel.partition", "type": "equal_partition", "total": 69, "parts": 3, "part_value": 23},
+        ],
         "problem_solving": {
             "understand": {
-                "given_refs": ["obj.dividend", "obj.divisor", "obj.options"],
+                "given_refs": ["obj.dividend", "obj.divisor", "obj.options", "obj.base_ten.total"],
                 "target_ref": "answer.target",
-                "condition_refs": ["rel.division"],
+                "condition_refs": ["rel.division", "rel.partition"],
             },
             "plan": {
                 "method": "division_value_selection",
-                "description": "나눗셈의 결과를 구해 보기 중 알맞은 값을 고른다.",
+                "description": "69를 3으로 나눈 몫을 구해 보기 중 같은 값을 고른다.",
             },
-            "execute": {"expected_operations": ["compute_69_div_3", "match_option"]},
-            "review": {
-                "check_methods": ["division_inverse_check", "option_match_check"]
-            },
+            "execute": {"expected_operations": ["compute_69_div_3", "match_option_23"]},
+            "review": {"check_methods": ["division_inverse_check", "base_ten_partition_check", "option_match_check"]},
         },
     },
     "answer": {
@@ -583,7 +312,6 @@ SOLVABLE = {
         "target_count": 1,
         "unit": "",
     },
-    "plan": ["69를 3으로 나눈 몫을 구한다.", "보기 중 계산 결과와 같은 수를 찾는다."],
     "given": [
         {"ref": "obj.dividend", "value": 69},
         {"ref": "obj.divisor", "value": 3},
@@ -591,18 +319,13 @@ SOLVABLE = {
     ],
     "target": {"ref": "answer.target", "type": "division_quotient"},
     "method": "division_value_selection",
+    "plan": ["69를 3으로 나눈 몫을 구한다.", "보기 중 계산 결과와 같은 수를 찾는다."],
     "steps": [
         {"id": "step.1", "expr": "69 ÷ 3", "value": 23},
         {"id": "step.2", "expr": "보기에서 23 찾기", "value": 3},
     ],
     "checks": [
-        {
-            "id": "check.1",
-            "expr": "23 × 3 = 69",
-            "expected": 69,
-            "actual": 69,
-            "pass": True,
-        }
+        {"id": "check.1", "expr": "23 × 3 = 69", "expected": 69, "actual": 69, "pass": True}
     ],
     "answer": {
         "blanks": [],

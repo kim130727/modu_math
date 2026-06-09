@@ -20,7 +20,7 @@ def build_problem_template() -> ProblemTemplate:
                 id="region.header",
                 role="stem",
                 flow="absolute",
-                slot_ids=("slot.qnum", "slot.q1", "slot.q2"),
+                slot_ids=("slot.q1", "slot.q2"),
             ),
             Region(
                 id="region.diagram",
@@ -31,11 +31,10 @@ def build_problem_template() -> ProblemTemplate:
                     "slot.center",
                     "slot.radius.right",
                     "slot.diameter",
-                    "slot.arc.left",
                     "slot.arc.right",
                     "slot.len4",
                     "slot.len2",
-                    "slot.smallmark",
+                    
                 ),
             ),
             Region(
@@ -48,23 +47,10 @@ def build_problem_template() -> ProblemTemplate:
         ),
         slots=(
             TextSlot(
-                id="slot.qnum",
-                prompt="",
-                text="□ 21.",
-                style_role="question",
-                x=12.0,
-                y=28.0,
-                font_size=28,
-            ),
-            TextSlot(
                 id="slot.q1",
                 prompt="",
-                text="그림을 보고 지름과 반지름 사이의 관계를 알아보려고 합니다. 알맞은",
-                style_role="question",
-                x=72.0,
-                y=28.0,
-                font_size=28,
-            ),
+                text = '그림을 보고 지름과 반지름 사이의 관계를 알아보려고 합니다. 알맞은', style_role="question",
+                x = 15, y = 30, font_size = 30),
             TextSlot(
                 id="slot.q2",
                 prompt="",
@@ -89,41 +75,20 @@ def build_problem_template() -> ProblemTemplate:
                 y2=205.0,
             ),
             LineSlot(
-                id="slot.diameter", prompt="", x1=432.0, y1=308.0, x2=571.0, y2=85.0
-            ),
-            LineSlot(
-                id="slot.arc.left", prompt="", x1=474.0, y1=100.0, x2=429.0, y2=287.0
-            ),
+                id="slot.diameter", prompt="", x1 = 375, y1 = 420, x2 = 625, y2 = 55),
             LineSlot(
                 id="slot.arc.right", prompt="", x1=512.0, y1=205.0, x2=607.0, y2=205.0
             ),
             TextSlot(
                 id="slot.len4",
                 prompt="",
-                text="4 cm",
-                style_role="label",
-                x=437.0,
-                y=197.0,
-                font_size=28,
-            ),
+                text = '4 cm', style_role="label",
+                x = 255, y = 195, font_size = 30),
             TextSlot(
                 id="slot.len2",
                 prompt="",
-                text="2 cm",
-                style_role="label",
-                x=547.0,
-                y=246.0,
-                font_size=28,
-            ),
-            TextSlot(
-                id="slot.smallmark",
-                prompt="",
-                text="○",
-                style_role="label",
-                x=519.0,
-                y=206.0,
-                font_size=18,
-            ),
+                text = '2 cm', style_role="label",
+                x = 530, y = 235, font_size = 30),
             RectSlot(
                 id="slot.choice.box",
                 prompt="",

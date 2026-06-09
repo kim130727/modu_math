@@ -8,12 +8,12 @@ import libcst as cst
 from .problems import resolve_problem_paths
 
 SUPPORTED_SLOTS = {
-    "TextSlot": {"text", "x", "y", "font_size", "font_family", "anchor", "fill", "style_role"},
-    "CircleSlot": {"cx", "cy", "r", "stroke", "stroke_width", "fill"},
-    "LineSlot": {"x1", "y1", "x2", "y2", "stroke", "stroke_width", "stroke_dasharray"},
-    "RectSlot": {"x", "y", "width", "height", "stroke", "stroke_width", "rx", "ry", "fill"},
-    "PolygonSlot": {"points", "stroke", "stroke_width", "fill"},
-    "PathSlot": {"d", "stroke", "stroke_width", "stroke_dasharray", "fill"},
+    "TextSlot": {"text", "x", "y", "font_size", "font_family", "anchor", "fill", "style_role", "transform"},
+    "CircleSlot": {"cx", "cy", "r", "stroke", "stroke_width", "fill", "transform"},
+    "LineSlot": {"x1", "y1", "x2", "y2", "stroke", "stroke_width", "stroke_dasharray", "transform"},
+    "RectSlot": {"x", "y", "width", "height", "stroke", "stroke_width", "rx", "ry", "fill", "transform"},
+    "PolygonSlot": {"points", "stroke", "stroke_width", "fill", "transform"},
+    "PathSlot": {"d", "stroke", "stroke_width", "stroke_dasharray", "fill", "transform"},
 }
 SLOT_KIND_TO_CTOR = {
     "text": "TextSlot",
@@ -27,6 +27,8 @@ FRACTION_SLOT_PARTS = {"num", "bar", "den"}
 FRACTION_MOVE_FIELDS = {"move_dx", "move_dy"}
 PERSON_SLOT_PARTS = {"body", "head", "eye1", "eye2", "mouth"}
 CHARACTER_MOVE_FIELDS = {"move_dx", "move_dy"}
+FIGURE_MOVE_FIELDS = {"move_dx", "move_dy"}
+BASE_TEN_HELPERS = {"_base_ten_model", "_partition_box"}
 CANVAS_TARGETS = {"__canvas__", "canvas"}
 CANVAS_FIELDS = {"width", "height"}
 
@@ -460,6 +462,44 @@ class CharacterGroupMoveUpdater(cst.CSTTransformer):
         return updated_node
 
 
+class FigureGroupMoveUpdater(cst.CSTTransformer):
+    def __init__(self, target: str, fields: dict[str, Any]):
+        self.target = target
+        self.fields = fields
+        self.updated = False
+
+    def leave_Call(self, original_node: cst.Call, updated_node: cst.Call) -> cst.BaseExpression:
+        call_name = _call_name(original_node)
+        if call_name not in BASE_TEN_HELPERS:
+            return updated_node
+
+        prefix = _first_string_arg(original_node, "slot_id")
+        if prefix != self.target:
+            return updated_node
+
+        invalid = sorted(set(self.fields) - FIGURE_MOVE_FIELDS)
+        if invalid:
+            raise DslPatchError(f"unsupported field(s) for figure group: {', '.join(invalid)}")
+
+        dx = float(self.fields.get("move_dx", 0.0))
+        dy = float(self.fields.get("move_dy", 0.0))
+        args = list(updated_node.args)
+        changed = False
+
+        if len(args) >= 3 and args[1].keyword is None and args[2].keyword is None:
+            args[1] = cst.Arg(value=_shift_numeric_expr(args[1].value, dx))
+            args[2] = cst.Arg(value=_shift_numeric_expr(args[2].value, dy))
+            changed = True
+        else:
+            changed = _shift_or_append_numeric_arg(args, "x", dx) or changed
+            changed = _shift_or_append_numeric_arg(args, "y", dy) or changed
+
+        if changed:
+            self.updated = True
+            return updated_node.with_changes(args=tuple(args))
+        return updated_node
+
+
 def _string_literal_value(expr: cst.BaseExpression) -> str | None:
     if not isinstance(expr, cst.SimpleString):
         return None
@@ -710,6 +750,13 @@ def apply_layout_patches(problem_id: str, patches: list[dict[str, Any]]) -> tupl
                 raise DslPatchError(f"target character group not found: {target}")
             applied.append(AppliedPatch(target=target, op=op, fields=list(value.keys())))
             continue
+
+        if target.startswith("slot.figure."):
+            updater = FigureGroupMoveUpdater(target=target, fields=value)
+            transformed = transformed.visit(updater)
+            if updater.updated:
+                applied.append(AppliedPatch(target=target, op=op, fields=list(value.keys())))
+                continue
 
         target = _resolve_target_slot_id(transformed, target)
 

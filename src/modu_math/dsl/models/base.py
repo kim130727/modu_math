@@ -38,6 +38,7 @@ class TextSlot(SlotBase):
     font_family: str | None = None
     anchor: str | None = None
     fill: str | None = None
+    transform: str | None = None
     semantic_role: str | None = None
     kind: str = "text"
 
@@ -76,6 +77,7 @@ class RectSlot(SlotBase):
     rx: float | None = None
     ry: float | None = None
     fill: str | None = None
+    transform: str | None = None
     semantic_role: str | None = None
     kind: str = "rect"
 
@@ -91,6 +93,7 @@ class LineSlot(SlotBase):
     stroke: str | None = None
     stroke_width: float | None = None
     stroke_dasharray: str | None = None
+    transform: str | None = None
     semantic_role: str | None = None
     kind: str = "line"
 
@@ -103,6 +106,7 @@ class CircleSlot(SlotBase):
     stroke: str | None = None
     stroke_width: float | None = None
     fill: str | None = None
+    transform: str | None = None
     semantic_role: str | None = None
     kind: str = "circle"
 
@@ -115,6 +119,7 @@ class PolygonSlot(SlotBase):
     stroke: str | None = None
     stroke_width: float | None = None
     fill: str | None = None
+    transform: str | None = None
     semantic_role: str | None = None
     kind: str = "polygon"
 
@@ -128,6 +133,7 @@ class PathSlot(SlotBase):
     stroke_width: float | None = None
     stroke_dasharray: str | None = None
     fill: str | None = None
+    transform: str | None = None
     semantic_role: str | None = None
     kind: str = "path"
 

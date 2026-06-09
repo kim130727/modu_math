@@ -4,7 +4,7 @@
   "title": "수 모형을 보고 알맞은 수 고르기",
   "canvas": {
     "width": 720,
-    "height": 560,
+    "height": 590,
     "coordinate_mode": "logical",
     "background": "#FFFFFF"
   },
@@ -14,8 +14,11 @@
       "role": "stem",
       "flow": "absolute",
       "slot_ids": [
-        "slot.q1",
-        "slot.q2"
+        "slot.checkbox",
+        "slot.inline_blank",
+        "slot.problem_no",
+        "slot.question.prefix",
+        "slot.question.suffix"
       ]
     },
     {
@@ -23,526 +26,3901 @@
       "role": "diagram",
       "flow": "absolute",
       "slot_ids": [
-        "slot.big_box",
-        "slot.big_rod1",
-        "slot.big_rod2",
-        "slot.big_rod3",
-        "slot.big_rod4",
-        "slot.big_rod5",
-        "slot.big_rod6",
-        "slot.big_cube1",
-        "slot.big_cube2",
-        "slot.big_cube3",
-        "slot.big_cube4",
-        "slot.big_cube5",
-        "slot.big_cube6",
-        "slot.big_cube7",
-        "slot.big_cube8",
-        "slot.small_box1",
-        "slot.small_box2",
-        "slot.small_box3",
-        "slot.s1_rod1",
-        "slot.s1_rod2",
-        "slot.s1_cube1",
-        "slot.s1_cube2",
-        "slot.s1_cube3",
-        "slot.s2_rod1",
-        "slot.s2_rod2",
-        "slot.s2_cube1",
-        "slot.s2_cube2",
-        "slot.s2_cube3",
-        "slot.s3_rod1",
-        "slot.s3_rod2",
-        "slot.s3_cube1",
-        "slot.s3_cube2",
-        "slot.s3_cube3",
+        "slot.top.box",
+        "slot.figure.top.rod.1.front",
+        "slot.figure.top.rod.1.top",
+        "slot.figure.top.rod.1.side",
+        "slot.figure.top.rod.2.front",
+        "slot.figure.top.rod.2.top",
+        "slot.figure.top.rod.2.side",
+        "slot.figure.top.rod.3.front",
+        "slot.figure.top.rod.3.top",
+        "slot.figure.top.rod.3.side",
+        "slot.figure.top.rod.4.front",
+        "slot.figure.top.rod.4.top",
+        "slot.figure.top.rod.4.side",
+        "slot.figure.top.rod.5.front",
+        "slot.figure.top.rod.5.top",
+        "slot.figure.top.rod.5.side",
+        "slot.figure.top.rod.6.front",
+        "slot.figure.top.rod.6.top",
+        "slot.figure.top.rod.6.side",
+        "slot.figure.top.cube.1.front",
+        "slot.figure.top.cube.1.top",
+        "slot.figure.top.cube.1.side",
+        "slot.figure.top.cube.2.front",
+        "slot.figure.top.cube.2.top",
+        "slot.figure.top.cube.2.side",
+        "slot.figure.top.cube.3.front",
+        "slot.figure.top.cube.3.top",
+        "slot.figure.top.cube.3.side",
+        "slot.figure.top.cube.4.front",
+        "slot.figure.top.cube.4.top",
+        "slot.figure.top.cube.4.side",
+        "slot.figure.top.cube.5.front",
+        "slot.figure.top.cube.5.top",
+        "slot.figure.top.cube.5.side",
+        "slot.figure.top.cube.6.front",
+        "slot.figure.top.cube.6.top",
+        "slot.figure.top.cube.6.side",
+        "slot.figure.top.cube.7.front",
+        "slot.figure.top.cube.7.top",
+        "slot.figure.top.cube.7.side",
+        "slot.figure.top.cube.8.front",
+        "slot.figure.top.cube.8.top",
+        "slot.figure.top.cube.8.side",
+        "slot.figure.top.cube.9.front",
+        "slot.figure.top.cube.9.top",
+        "slot.figure.top.cube.9.side",
+        "slot.arrow.head",
+        "slot.figure.group1.box",
+        "slot.figure.group1.rod.1.front",
+        "slot.figure.group1.rod.1.top",
+        "slot.figure.group1.rod.1.side",
+        "slot.figure.group1.rod.2.front",
+        "slot.figure.group1.rod.2.top",
+        "slot.figure.group1.rod.2.side",
+        "slot.figure.group1.cube.1.front",
+        "slot.figure.group1.cube.1.top",
+        "slot.figure.group1.cube.1.side",
+        "slot.figure.group1.cube.2.front",
+        "slot.figure.group1.cube.2.top",
+        "slot.figure.group1.cube.2.side",
+        "slot.figure.group1.cube.3.front",
+        "slot.figure.group1.cube.3.top",
+        "slot.figure.group1.cube.3.side",
+        "slot.figure.group2.box",
+        "slot.figure.group2.rod.1.front",
+        "slot.figure.group2.rod.1.top",
+        "slot.figure.group2.rod.1.side",
+        "slot.figure.group2.rod.2.front",
+        "slot.figure.group2.rod.2.top",
+        "slot.figure.group2.rod.2.side",
+        "slot.figure.group2.cube.1.front",
+        "slot.figure.group2.cube.1.top",
+        "slot.figure.group2.cube.1.side",
+        "slot.figure.group2.cube.2.front",
+        "slot.figure.group2.cube.2.top",
+        "slot.figure.group2.cube.2.side",
+        "slot.figure.group2.cube.3.front",
+        "slot.figure.group2.cube.3.top",
+        "slot.figure.group2.cube.3.side",
+        "slot.figure.group3.box",
+        "slot.figure.group3.rod.1.front",
+        "slot.figure.group3.rod.1.top",
+        "slot.figure.group3.rod.1.side",
+        "slot.figure.group3.rod.2.front",
+        "slot.figure.group3.rod.2.top",
+        "slot.figure.group3.rod.2.side",
+        "slot.figure.group3.cube.1.front",
+        "slot.figure.group3.cube.1.top",
+        "slot.figure.group3.cube.1.side",
+        "slot.figure.group3.cube.2.front",
+        "slot.figure.group3.cube.2.top",
+        "slot.figure.group3.cube.2.side",
+        "slot.figure.group3.cube.3.front",
+        "slot.figure.group3.cube.3.top",
+        "slot.figure.group3.cube.3.side",
         "slot.blank",
-        "slot.arrow",
+        "slot.figure.top.rod.1.cell.1",
+        "slot.figure.top.rod.1.cell.2",
+        "slot.figure.top.rod.1.cell.3",
+        "slot.figure.top.rod.1.cell.4",
+        "slot.figure.top.rod.1.cell.5",
+        "slot.figure.top.rod.1.cell.6",
+        "slot.figure.top.rod.1.cell.7",
+        "slot.figure.top.rod.1.cell.8",
+        "slot.figure.top.rod.1.cell.9",
+        "slot.figure.top.rod.2.cell.1",
+        "slot.figure.top.rod.2.cell.2",
+        "slot.figure.top.rod.2.cell.3",
+        "slot.figure.top.rod.2.cell.4",
+        "slot.figure.top.rod.2.cell.5",
+        "slot.figure.top.rod.2.cell.6",
+        "slot.figure.top.rod.2.cell.7",
+        "slot.figure.top.rod.2.cell.8",
+        "slot.figure.top.rod.2.cell.9",
+        "slot.figure.top.rod.3.cell.1",
+        "slot.figure.top.rod.3.cell.2",
+        "slot.figure.top.rod.3.cell.3",
+        "slot.figure.top.rod.3.cell.4",
+        "slot.figure.top.rod.3.cell.5",
+        "slot.figure.top.rod.3.cell.6",
+        "slot.figure.top.rod.3.cell.7",
+        "slot.figure.top.rod.3.cell.8",
+        "slot.figure.top.rod.3.cell.9",
+        "slot.figure.top.rod.4.cell.1",
+        "slot.figure.top.rod.4.cell.2",
+        "slot.figure.top.rod.4.cell.3",
+        "slot.figure.top.rod.4.cell.4",
+        "slot.figure.top.rod.4.cell.5",
+        "slot.figure.top.rod.4.cell.6",
+        "slot.figure.top.rod.4.cell.7",
+        "slot.figure.top.rod.4.cell.8",
+        "slot.figure.top.rod.4.cell.9",
+        "slot.figure.top.rod.5.cell.1",
+        "slot.figure.top.rod.5.cell.2",
+        "slot.figure.top.rod.5.cell.3",
+        "slot.figure.top.rod.5.cell.4",
+        "slot.figure.top.rod.5.cell.5",
+        "slot.figure.top.rod.5.cell.6",
+        "slot.figure.top.rod.5.cell.7",
+        "slot.figure.top.rod.5.cell.8",
+        "slot.figure.top.rod.5.cell.9",
+        "slot.figure.top.rod.6.cell.1",
+        "slot.figure.top.rod.6.cell.2",
+        "slot.figure.top.rod.6.cell.3",
+        "slot.figure.top.rod.6.cell.4",
+        "slot.figure.top.rod.6.cell.5",
+        "slot.figure.top.rod.6.cell.6",
+        "slot.figure.top.rod.6.cell.7",
+        "slot.figure.top.rod.6.cell.8",
+        "slot.figure.top.rod.6.cell.9",
+        "slot.arrow.stem",
+        "slot.figure.group1.rod.1.cell.1",
+        "slot.figure.group1.rod.1.cell.2",
+        "slot.figure.group1.rod.1.cell.3",
+        "slot.figure.group1.rod.1.cell.4",
+        "slot.figure.group1.rod.1.cell.5",
+        "slot.figure.group1.rod.1.cell.6",
+        "slot.figure.group1.rod.1.cell.7",
+        "slot.figure.group1.rod.1.cell.8",
+        "slot.figure.group1.rod.1.cell.9",
+        "slot.figure.group1.rod.2.cell.1",
+        "slot.figure.group1.rod.2.cell.2",
+        "slot.figure.group1.rod.2.cell.3",
+        "slot.figure.group1.rod.2.cell.4",
+        "slot.figure.group1.rod.2.cell.5",
+        "slot.figure.group1.rod.2.cell.6",
+        "slot.figure.group1.rod.2.cell.7",
+        "slot.figure.group1.rod.2.cell.8",
+        "slot.figure.group1.rod.2.cell.9",
+        "slot.figure.group2.rod.1.cell.1",
+        "slot.figure.group2.rod.1.cell.2",
+        "slot.figure.group2.rod.1.cell.3",
+        "slot.figure.group2.rod.1.cell.4",
+        "slot.figure.group2.rod.1.cell.5",
+        "slot.figure.group2.rod.1.cell.6",
+        "slot.figure.group2.rod.1.cell.7",
+        "slot.figure.group2.rod.1.cell.8",
+        "slot.figure.group2.rod.1.cell.9",
+        "slot.figure.group2.rod.2.cell.1",
+        "slot.figure.group2.rod.2.cell.2",
+        "slot.figure.group2.rod.2.cell.3",
+        "slot.figure.group2.rod.2.cell.4",
+        "slot.figure.group2.rod.2.cell.5",
+        "slot.figure.group2.rod.2.cell.6",
+        "slot.figure.group2.rod.2.cell.7",
+        "slot.figure.group2.rod.2.cell.8",
+        "slot.figure.group2.rod.2.cell.9",
+        "slot.figure.group3.rod.1.cell.1",
+        "slot.figure.group3.rod.1.cell.2",
+        "slot.figure.group3.rod.1.cell.3",
+        "slot.figure.group3.rod.1.cell.4",
+        "slot.figure.group3.rod.1.cell.5",
+        "slot.figure.group3.rod.1.cell.6",
+        "slot.figure.group3.rod.1.cell.7",
+        "slot.figure.group3.rod.1.cell.8",
+        "slot.figure.group3.rod.1.cell.9",
+        "slot.figure.group3.rod.2.cell.1",
+        "slot.figure.group3.rod.2.cell.2",
+        "slot.figure.group3.rod.2.cell.3",
+        "slot.figure.group3.rod.2.cell.4",
+        "slot.figure.group3.rod.2.cell.5",
+        "slot.figure.group3.rod.2.cell.6",
+        "slot.figure.group3.rod.2.cell.7",
+        "slot.figure.group3.rod.2.cell.8",
+        "slot.figure.group3.rod.2.cell.9",
         "slot.equation"
       ]
     },
     {
-      "id": "region.options",
-      "role": "options",
+      "id": "region.choices",
+      "role": "choices",
       "flow": "absolute",
       "slot_ids": [
-        "slot.opt1_num",
-        "slot.opt2_num",
-        "slot.opt3_num",
-        "slot.opt4_num",
-        "slot.opt5_num",
-        "slot.opt1_text",
-        "slot.opt2_text",
-        "slot.opt3_text",
-        "slot.opt4_text",
-        "slot.opt5_text"
+        "slot.choice.1.marker",
+        "slot.choice.1.value",
+        "slot.choice.2.marker",
+        "slot.choice.2.value",
+        "slot.choice.3.marker",
+        "slot.choice.3.value",
+        "slot.choice.4.marker",
+        "slot.choice.4.value",
+        "slot.choice.5.marker",
+        "slot.choice.5.value"
+      ]
+    },
+    {
+      "id": "region.answer",
+      "role": "answer",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.answer",
+        "slot.explanation"
       ]
     }
   ],
   "slots": [
     {
-      "id": "slot.q1",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "□",
-        "style_role": "question",
-        "x": 20.0,
-        "y": 28.0,
-        "font_size": 28
-      }
-    },
-    {
-      "id": "slot.q2",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "2. 수 모형을 보고 □ 안에 알맞은 수를 고르세요.",
-        "style_role": "question",
-        "x": 50.0,
-        "y": 28.0,
-        "font_size": 28
-      }
-    },
-    {
-      "id": "slot.big_box",
+      "id": "slot.checkbox",
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 360.0,
-        "y": 52.0,
+        "x": 14.0,
+        "y": 18.0,
+        "width": 12.0,
+        "height": 12.0,
+        "stroke": "#333333",
+        "stroke_width": 0.8,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.problem_no",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "2.",
+        "style_role": "question",
+        "x": 36.0,
+        "y": 29.0,
+        "font_size": 20
+      }
+    },
+    {
+      "id": "slot.question.prefix",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "수 모형을 보고",
+        "style_role": "question",
+        "x": 62.0,
+        "y": 29.0,
+        "font_size": 25
+      }
+    },
+    {
+      "id": "slot.inline_blank",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 247.0,
+        "y": 10.0,
+        "width": 27.0,
+        "height": 27.0,
+        "stroke": "#111111",
+        "stroke_width": 1.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.question.suffix",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "안에 알맞은 수를 고르세요.",
+        "style_role": "question",
+        "x": 288.0,
+        "y": 29.0,
+        "font_size": 25
+      }
+    },
+    {
+      "id": "slot.top.box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 366.0,
+        "y": 54.0,
         "width": 246.0,
-        "height": 96.0,
-        "stroke": "#4A78B8",
+        "height": 126.0,
+        "stroke": "#1d6fa3",
+        "stroke_width": 1.5,
         "fill": "none"
       }
     },
     {
-      "id": "slot.big_rod1",
+      "id": "slot.figure.top.rod.1.front",
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 380.0,
-        "y": 66.0,
-        "width": 10.0,
-        "height": 72.0,
-        "stroke": "#6BBCE8",
-        "fill": "none"
+        "x": 389.0,
+        "y": 70.6,
+        "width": 10.8,
+        "height": 80.0,
+        "stroke": "#1d6fa3",
+        "stroke_width": 1.2,
+        "fill": "#5cc6ee"
       }
     },
     {
-      "id": "slot.big_rod2",
-      "kind": "rect",
+      "id": "slot.figure.top.rod.1.top",
+      "kind": "polygon",
       "prompt": "",
       "content": {
-        "x": 404.0,
-        "y": 66.0,
-        "width": 10.0,
-        "height": 72.0,
-        "stroke": "#6BBCE8",
-        "fill": "none"
+        "points": [
+          [
+            389.0,
+            70.6
+          ],
+          [
+            392.6,
+            67.0
+          ],
+          [
+            403.40000000000003,
+            67.0
+          ],
+          [
+            399.8,
+            70.6
+          ]
+        ],
+        "stroke": "#1d6fa3",
+        "stroke_width": 1.0,
+        "fill": "#94dcf6"
       }
     },
     {
-      "id": "slot.big_rod3",
-      "kind": "rect",
+      "id": "slot.figure.top.rod.1.side",
+      "kind": "polygon",
       "prompt": "",
       "content": {
-        "x": 428.0,
-        "y": 66.0,
-        "width": 10.0,
-        "height": 72.0,
-        "stroke": "#6BBCE8",
-        "fill": "none"
+        "points": [
+          [
+            399.8,
+            70.6
+          ],
+          [
+            403.40000000000003,
+            67.0
+          ],
+          [
+            403.40000000000003,
+            147.0
+          ],
+          [
+            399.8,
+            150.6
+          ]
+        ],
+        "stroke": "#1d6fa3",
+        "stroke_width": 1.0,
+        "fill": "#35abd8"
       }
     },
     {
-      "id": "slot.big_rod4",
-      "kind": "rect",
-      "prompt": "",
-      "content": {
-        "x": 452.0,
-        "y": 66.0,
-        "width": 10.0,
-        "height": 72.0,
-        "stroke": "#6BBCE8",
-        "fill": "none"
-      }
-    },
-    {
-      "id": "slot.big_rod5",
-      "kind": "rect",
-      "prompt": "",
-      "content": {
-        "x": 476.0,
-        "y": 66.0,
-        "width": 10.0,
-        "height": 72.0,
-        "stroke": "#6BBCE8",
-        "fill": "none"
-      }
-    },
-    {
-      "id": "slot.big_rod6",
-      "kind": "rect",
-      "prompt": "",
-      "content": {
-        "x": 500.0,
-        "y": 66.0,
-        "width": 10.0,
-        "height": 72.0,
-        "stroke": "#6BBCE8",
-        "fill": "none"
-      }
-    },
-    {
-      "id": "slot.big_cube1",
-      "kind": "rect",
-      "prompt": "",
-      "content": {
-        "x": 526.0,
-        "y": 70.0,
-        "width": 10.0,
-        "height": 10.0,
-        "stroke": "#6BBCE8",
-        "fill": "none"
-      }
-    },
-    {
-      "id": "slot.big_cube2",
-      "kind": "rect",
-      "prompt": "",
-      "content": {
-        "x": 546.0,
-        "y": 70.0,
-        "width": 10.0,
-        "height": 10.0,
-        "stroke": "#6BBCE8",
-        "fill": "none"
-      }
-    },
-    {
-      "id": "slot.big_cube3",
-      "kind": "rect",
-      "prompt": "",
-      "content": {
-        "x": 526.0,
-        "y": 90.0,
-        "width": 10.0,
-        "height": 10.0,
-        "stroke": "#6BBCE8",
-        "fill": "none"
-      }
-    },
-    {
-      "id": "slot.big_cube4",
-      "kind": "rect",
-      "prompt": "",
-      "content": {
-        "x": 546.0,
-        "y": 90.0,
-        "width": 10.0,
-        "height": 10.0,
-        "stroke": "#6BBCE8",
-        "fill": "none"
-      }
-    },
-    {
-      "id": "slot.big_cube5",
-      "kind": "rect",
-      "prompt": "",
-      "content": {
-        "x": 526.0,
-        "y": 110.0,
-        "width": 10.0,
-        "height": 10.0,
-        "stroke": "#6BBCE8",
-        "fill": "none"
-      }
-    },
-    {
-      "id": "slot.big_cube6",
-      "kind": "rect",
-      "prompt": "",
-      "content": {
-        "x": 546.0,
-        "y": 110.0,
-        "width": 10.0,
-        "height": 10.0,
-        "stroke": "#6BBCE8",
-        "fill": "none"
-      }
-    },
-    {
-      "id": "slot.big_cube7",
-      "kind": "rect",
-      "prompt": "",
-      "content": {
-        "x": 526.0,
-        "y": 130.0,
-        "width": 10.0,
-        "height": 10.0,
-        "stroke": "#6BBCE8",
-        "fill": "none"
-      }
-    },
-    {
-      "id": "slot.big_cube8",
-      "kind": "rect",
-      "prompt": "",
-      "content": {
-        "x": 546.0,
-        "y": 130.0,
-        "width": 10.0,
-        "height": 10.0,
-        "stroke": "#6BBCE8",
-        "fill": "none"
-      }
-    },
-    {
-      "id": "slot.arrow",
+      "id": "slot.figure.top.rod.1.cell.1",
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 483.0,
-        "y1": 150.0,
-        "x2": 483.0,
-        "y2": 185.0,
-        "stroke": "#888888"
+        "x1": 389.0,
+        "y1": 78.6,
+        "x2": 399.8,
+        "y2": 78.6,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
       }
     },
     {
-      "id": "slot.small_box1",
+      "id": "slot.figure.top.rod.1.cell.2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 389.0,
+        "y1": 86.6,
+        "x2": 399.8,
+        "y2": 86.6,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.figure.top.rod.1.cell.3",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 389.0,
+        "y1": 94.6,
+        "x2": 399.8,
+        "y2": 94.6,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.figure.top.rod.1.cell.4",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 389.0,
+        "y1": 102.6,
+        "x2": 399.8,
+        "y2": 102.6,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.figure.top.rod.1.cell.5",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 389.0,
+        "y1": 110.6,
+        "x2": 399.8,
+        "y2": 110.6,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.figure.top.rod.1.cell.6",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 389.0,
+        "y1": 118.6,
+        "x2": 399.8,
+        "y2": 118.6,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.figure.top.rod.1.cell.7",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 389.0,
+        "y1": 126.6,
+        "x2": 399.8,
+        "y2": 126.6,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.figure.top.rod.1.cell.8",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 389.0,
+        "y1": 134.6,
+        "x2": 399.8,
+        "y2": 134.6,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.figure.top.rod.1.cell.9",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 389.0,
+        "y1": 142.6,
+        "x2": 399.8,
+        "y2": 142.6,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.figure.top.rod.2.front",
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 300.0,
-        "y": 206.0,
-        "width": 84.0,
-        "height": 128.0,
-        "stroke": "#4A78B8",
+        "x": 415.0,
+        "y": 70.6,
+        "width": 10.8,
+        "height": 80.0,
+        "stroke": "#1d6fa3",
+        "stroke_width": 1.2,
+        "fill": "#5cc6ee"
+      }
+    },
+    {
+      "id": "slot.figure.top.rod.2.top",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            415.0,
+            70.6
+          ],
+          [
+            418.6,
+            67.0
+          ],
+          [
+            429.40000000000003,
+            67.0
+          ],
+          [
+            425.8,
+            70.6
+          ]
+        ],
+        "stroke": "#1d6fa3",
+        "stroke_width": 1.0,
+        "fill": "#94dcf6"
+      }
+    },
+    {
+      "id": "slot.figure.top.rod.2.side",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            425.8,
+            70.6
+          ],
+          [
+            429.40000000000003,
+            67.0
+          ],
+          [
+            429.40000000000003,
+            147.0
+          ],
+          [
+            425.8,
+            150.6
+          ]
+        ],
+        "stroke": "#1d6fa3",
+        "stroke_width": 1.0,
+        "fill": "#35abd8"
+      }
+    },
+    {
+      "id": "slot.figure.top.rod.2.cell.1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 415.0,
+        "y1": 78.6,
+        "x2": 425.8,
+        "y2": 78.6,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.figure.top.rod.2.cell.2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 415.0,
+        "y1": 86.6,
+        "x2": 425.8,
+        "y2": 86.6,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.figure.top.rod.2.cell.3",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 415.0,
+        "y1": 94.6,
+        "x2": 425.8,
+        "y2": 94.6,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.figure.top.rod.2.cell.4",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 415.0,
+        "y1": 102.6,
+        "x2": 425.8,
+        "y2": 102.6,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.figure.top.rod.2.cell.5",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 415.0,
+        "y1": 110.6,
+        "x2": 425.8,
+        "y2": 110.6,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.figure.top.rod.2.cell.6",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 415.0,
+        "y1": 118.6,
+        "x2": 425.8,
+        "y2": 118.6,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.figure.top.rod.2.cell.7",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 415.0,
+        "y1": 126.6,
+        "x2": 425.8,
+        "y2": 126.6,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.figure.top.rod.2.cell.8",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 415.0,
+        "y1": 134.6,
+        "x2": 425.8,
+        "y2": 134.6,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.figure.top.rod.2.cell.9",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 415.0,
+        "y1": 142.6,
+        "x2": 425.8,
+        "y2": 142.6,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.figure.top.rod.3.front",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 441.0,
+        "y": 70.6,
+        "width": 10.8,
+        "height": 80.0,
+        "stroke": "#1d6fa3",
+        "stroke_width": 1.2,
+        "fill": "#5cc6ee"
+      }
+    },
+    {
+      "id": "slot.figure.top.rod.3.top",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            441.0,
+            70.6
+          ],
+          [
+            444.6,
+            67.0
+          ],
+          [
+            455.40000000000003,
+            67.0
+          ],
+          [
+            451.8,
+            70.6
+          ]
+        ],
+        "stroke": "#1d6fa3",
+        "stroke_width": 1.0,
+        "fill": "#94dcf6"
+      }
+    },
+    {
+      "id": "slot.figure.top.rod.3.side",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            451.8,
+            70.6
+          ],
+          [
+            455.40000000000003,
+            67.0
+          ],
+          [
+            455.40000000000003,
+            147.0
+          ],
+          [
+            451.8,
+            150.6
+          ]
+        ],
+        "stroke": "#1d6fa3",
+        "stroke_width": 1.0,
+        "fill": "#35abd8"
+      }
+    },
+    {
+      "id": "slot.figure.top.rod.3.cell.1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 441.0,
+        "y1": 78.6,
+        "x2": 451.8,
+        "y2": 78.6,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.figure.top.rod.3.cell.2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 441.0,
+        "y1": 86.6,
+        "x2": 451.8,
+        "y2": 86.6,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.figure.top.rod.3.cell.3",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 441.0,
+        "y1": 94.6,
+        "x2": 451.8,
+        "y2": 94.6,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.figure.top.rod.3.cell.4",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 441.0,
+        "y1": 102.6,
+        "x2": 451.8,
+        "y2": 102.6,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.figure.top.rod.3.cell.5",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 441.0,
+        "y1": 110.6,
+        "x2": 451.8,
+        "y2": 110.6,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.figure.top.rod.3.cell.6",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 441.0,
+        "y1": 118.6,
+        "x2": 451.8,
+        "y2": 118.6,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.figure.top.rod.3.cell.7",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 441.0,
+        "y1": 126.6,
+        "x2": 451.8,
+        "y2": 126.6,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.figure.top.rod.3.cell.8",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 441.0,
+        "y1": 134.6,
+        "x2": 451.8,
+        "y2": 134.6,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.figure.top.rod.3.cell.9",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 441.0,
+        "y1": 142.6,
+        "x2": 451.8,
+        "y2": 142.6,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.figure.top.rod.4.front",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 467.0,
+        "y": 70.6,
+        "width": 10.8,
+        "height": 80.0,
+        "stroke": "#1d6fa3",
+        "stroke_width": 1.2,
+        "fill": "#5cc6ee"
+      }
+    },
+    {
+      "id": "slot.figure.top.rod.4.top",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            467.0,
+            70.6
+          ],
+          [
+            470.6,
+            67.0
+          ],
+          [
+            481.40000000000003,
+            67.0
+          ],
+          [
+            477.8,
+            70.6
+          ]
+        ],
+        "stroke": "#1d6fa3",
+        "stroke_width": 1.0,
+        "fill": "#94dcf6"
+      }
+    },
+    {
+      "id": "slot.figure.top.rod.4.side",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            477.8,
+            70.6
+          ],
+          [
+            481.40000000000003,
+            67.0
+          ],
+          [
+            481.40000000000003,
+            147.0
+          ],
+          [
+            477.8,
+            150.6
+          ]
+        ],
+        "stroke": "#1d6fa3",
+        "stroke_width": 1.0,
+        "fill": "#35abd8"
+      }
+    },
+    {
+      "id": "slot.figure.top.rod.4.cell.1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 467.0,
+        "y1": 78.6,
+        "x2": 477.8,
+        "y2": 78.6,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.figure.top.rod.4.cell.2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 467.0,
+        "y1": 86.6,
+        "x2": 477.8,
+        "y2": 86.6,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.figure.top.rod.4.cell.3",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 467.0,
+        "y1": 94.6,
+        "x2": 477.8,
+        "y2": 94.6,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.figure.top.rod.4.cell.4",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 467.0,
+        "y1": 102.6,
+        "x2": 477.8,
+        "y2": 102.6,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.figure.top.rod.4.cell.5",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 467.0,
+        "y1": 110.6,
+        "x2": 477.8,
+        "y2": 110.6,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.figure.top.rod.4.cell.6",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 467.0,
+        "y1": 118.6,
+        "x2": 477.8,
+        "y2": 118.6,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.figure.top.rod.4.cell.7",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 467.0,
+        "y1": 126.6,
+        "x2": 477.8,
+        "y2": 126.6,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.figure.top.rod.4.cell.8",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 467.0,
+        "y1": 134.6,
+        "x2": 477.8,
+        "y2": 134.6,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.figure.top.rod.4.cell.9",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 467.0,
+        "y1": 142.6,
+        "x2": 477.8,
+        "y2": 142.6,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.figure.top.rod.5.front",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 493.0,
+        "y": 70.6,
+        "width": 10.8,
+        "height": 80.0,
+        "stroke": "#1d6fa3",
+        "stroke_width": 1.2,
+        "fill": "#5cc6ee"
+      }
+    },
+    {
+      "id": "slot.figure.top.rod.5.top",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            493.0,
+            70.6
+          ],
+          [
+            496.6,
+            67.0
+          ],
+          [
+            507.40000000000003,
+            67.0
+          ],
+          [
+            503.8,
+            70.6
+          ]
+        ],
+        "stroke": "#1d6fa3",
+        "stroke_width": 1.0,
+        "fill": "#94dcf6"
+      }
+    },
+    {
+      "id": "slot.figure.top.rod.5.side",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            503.8,
+            70.6
+          ],
+          [
+            507.40000000000003,
+            67.0
+          ],
+          [
+            507.40000000000003,
+            147.0
+          ],
+          [
+            503.8,
+            150.6
+          ]
+        ],
+        "stroke": "#1d6fa3",
+        "stroke_width": 1.0,
+        "fill": "#35abd8"
+      }
+    },
+    {
+      "id": "slot.figure.top.rod.5.cell.1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 493.0,
+        "y1": 78.6,
+        "x2": 503.8,
+        "y2": 78.6,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.figure.top.rod.5.cell.2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 493.0,
+        "y1": 86.6,
+        "x2": 503.8,
+        "y2": 86.6,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.figure.top.rod.5.cell.3",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 493.0,
+        "y1": 94.6,
+        "x2": 503.8,
+        "y2": 94.6,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.figure.top.rod.5.cell.4",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 493.0,
+        "y1": 102.6,
+        "x2": 503.8,
+        "y2": 102.6,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.figure.top.rod.5.cell.5",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 493.0,
+        "y1": 110.6,
+        "x2": 503.8,
+        "y2": 110.6,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.figure.top.rod.5.cell.6",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 493.0,
+        "y1": 118.6,
+        "x2": 503.8,
+        "y2": 118.6,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.figure.top.rod.5.cell.7",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 493.0,
+        "y1": 126.6,
+        "x2": 503.8,
+        "y2": 126.6,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.figure.top.rod.5.cell.8",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 493.0,
+        "y1": 134.6,
+        "x2": 503.8,
+        "y2": 134.6,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.figure.top.rod.5.cell.9",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 493.0,
+        "y1": 142.6,
+        "x2": 503.8,
+        "y2": 142.6,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.figure.top.rod.6.front",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 519.0,
+        "y": 70.6,
+        "width": 10.8,
+        "height": 80.0,
+        "stroke": "#1d6fa3",
+        "stroke_width": 1.2,
+        "fill": "#5cc6ee"
+      }
+    },
+    {
+      "id": "slot.figure.top.rod.6.top",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            519.0,
+            70.6
+          ],
+          [
+            522.6,
+            67.0
+          ],
+          [
+            533.4,
+            67.0
+          ],
+          [
+            529.8,
+            70.6
+          ]
+        ],
+        "stroke": "#1d6fa3",
+        "stroke_width": 1.0,
+        "fill": "#94dcf6"
+      }
+    },
+    {
+      "id": "slot.figure.top.rod.6.side",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            529.8,
+            70.6
+          ],
+          [
+            533.4,
+            67.0
+          ],
+          [
+            533.4,
+            147.0
+          ],
+          [
+            529.8,
+            150.6
+          ]
+        ],
+        "stroke": "#1d6fa3",
+        "stroke_width": 1.0,
+        "fill": "#35abd8"
+      }
+    },
+    {
+      "id": "slot.figure.top.rod.6.cell.1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 519.0,
+        "y1": 78.6,
+        "x2": 529.8,
+        "y2": 78.6,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.figure.top.rod.6.cell.2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 519.0,
+        "y1": 86.6,
+        "x2": 529.8,
+        "y2": 86.6,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.figure.top.rod.6.cell.3",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 519.0,
+        "y1": 94.6,
+        "x2": 529.8,
+        "y2": 94.6,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.figure.top.rod.6.cell.4",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 519.0,
+        "y1": 102.6,
+        "x2": 529.8,
+        "y2": 102.6,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.figure.top.rod.6.cell.5",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 519.0,
+        "y1": 110.6,
+        "x2": 529.8,
+        "y2": 110.6,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.figure.top.rod.6.cell.6",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 519.0,
+        "y1": 118.6,
+        "x2": 529.8,
+        "y2": 118.6,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.figure.top.rod.6.cell.7",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 519.0,
+        "y1": 126.6,
+        "x2": 529.8,
+        "y2": 126.6,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.figure.top.rod.6.cell.8",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 519.0,
+        "y1": 134.6,
+        "x2": 529.8,
+        "y2": 134.6,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.figure.top.rod.6.cell.9",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 519.0,
+        "y1": 142.6,
+        "x2": 529.8,
+        "y2": 142.6,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.figure.top.cube.1.front",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 544.0,
+        "y": 71.95,
+        "width": 11.0,
+        "height": 11.0,
+        "stroke": "#1d6fa3",
+        "stroke_width": 1.0,
+        "fill": "#5cc6ee"
+      }
+    },
+    {
+      "id": "slot.figure.top.cube.1.top",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            544.0,
+            71.95
+          ],
+          [
+            548.95,
+            67.0
+          ],
+          [
+            559.95,
+            67.0
+          ],
+          [
+            555.0,
+            71.95
+          ]
+        ],
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.9,
+        "fill": "#94dcf6"
+      }
+    },
+    {
+      "id": "slot.figure.top.cube.1.side",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            555.0,
+            71.95
+          ],
+          [
+            559.95,
+            67.0
+          ],
+          [
+            559.95,
+            78.0
+          ],
+          [
+            555.0,
+            82.95
+          ]
+        ],
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.9,
+        "fill": "#35abd8"
+      }
+    },
+    {
+      "id": "slot.figure.top.cube.2.front",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 544.0,
+        "y": 91.95,
+        "width": 11.0,
+        "height": 11.0,
+        "stroke": "#1d6fa3",
+        "stroke_width": 1.0,
+        "fill": "#5cc6ee"
+      }
+    },
+    {
+      "id": "slot.figure.top.cube.2.top",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            544.0,
+            91.95
+          ],
+          [
+            548.95,
+            87.0
+          ],
+          [
+            559.95,
+            87.0
+          ],
+          [
+            555.0,
+            91.95
+          ]
+        ],
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.9,
+        "fill": "#94dcf6"
+      }
+    },
+    {
+      "id": "slot.figure.top.cube.2.side",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            555.0,
+            91.95
+          ],
+          [
+            559.95,
+            87.0
+          ],
+          [
+            559.95,
+            98.0
+          ],
+          [
+            555.0,
+            102.95
+          ]
+        ],
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.9,
+        "fill": "#35abd8"
+      }
+    },
+    {
+      "id": "slot.figure.top.cube.3.front",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 544.0,
+        "y": 111.95,
+        "width": 11.0,
+        "height": 11.0,
+        "stroke": "#1d6fa3",
+        "stroke_width": 1.0,
+        "fill": "#5cc6ee"
+      }
+    },
+    {
+      "id": "slot.figure.top.cube.3.top",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            544.0,
+            111.95
+          ],
+          [
+            548.95,
+            107.0
+          ],
+          [
+            559.95,
+            107.0
+          ],
+          [
+            555.0,
+            111.95
+          ]
+        ],
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.9,
+        "fill": "#94dcf6"
+      }
+    },
+    {
+      "id": "slot.figure.top.cube.3.side",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            555.0,
+            111.95
+          ],
+          [
+            559.95,
+            107.0
+          ],
+          [
+            559.95,
+            118.0
+          ],
+          [
+            555.0,
+            122.95
+          ]
+        ],
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.9,
+        "fill": "#35abd8"
+      }
+    },
+    {
+      "id": "slot.figure.top.cube.4.front",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 544.0,
+        "y": 131.95,
+        "width": 11.0,
+        "height": 11.0,
+        "stroke": "#1d6fa3",
+        "stroke_width": 1.0,
+        "fill": "#5cc6ee"
+      }
+    },
+    {
+      "id": "slot.figure.top.cube.4.top",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            544.0,
+            131.95
+          ],
+          [
+            548.95,
+            127.0
+          ],
+          [
+            559.95,
+            127.0
+          ],
+          [
+            555.0,
+            131.95
+          ]
+        ],
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.9,
+        "fill": "#94dcf6"
+      }
+    },
+    {
+      "id": "slot.figure.top.cube.4.side",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            555.0,
+            131.95
+          ],
+          [
+            559.95,
+            127.0
+          ],
+          [
+            559.95,
+            138.0
+          ],
+          [
+            555.0,
+            142.95
+          ]
+        ],
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.9,
+        "fill": "#35abd8"
+      }
+    },
+    {
+      "id": "slot.figure.top.cube.5.front",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 544.0,
+        "y": 151.95,
+        "width": 11.0,
+        "height": 11.0,
+        "stroke": "#1d6fa3",
+        "stroke_width": 1.0,
+        "fill": "#5cc6ee"
+      }
+    },
+    {
+      "id": "slot.figure.top.cube.5.top",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            544.0,
+            151.95
+          ],
+          [
+            548.95,
+            147.0
+          ],
+          [
+            559.95,
+            147.0
+          ],
+          [
+            555.0,
+            151.95
+          ]
+        ],
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.9,
+        "fill": "#94dcf6"
+      }
+    },
+    {
+      "id": "slot.figure.top.cube.5.side",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            555.0,
+            151.95
+          ],
+          [
+            559.95,
+            147.0
+          ],
+          [
+            559.95,
+            158.0
+          ],
+          [
+            555.0,
+            162.95
+          ]
+        ],
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.9,
+        "fill": "#35abd8"
+      }
+    },
+    {
+      "id": "slot.figure.top.cube.6.front",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 569.0,
+        "y": 87.95,
+        "width": 11.0,
+        "height": 11.0,
+        "stroke": "#1d6fa3",
+        "stroke_width": 1.0,
+        "fill": "#5cc6ee"
+      }
+    },
+    {
+      "id": "slot.figure.top.cube.6.top",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            569.0,
+            87.95
+          ],
+          [
+            573.95,
+            83.0
+          ],
+          [
+            584.95,
+            83.0
+          ],
+          [
+            580.0,
+            87.95
+          ]
+        ],
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.9,
+        "fill": "#94dcf6"
+      }
+    },
+    {
+      "id": "slot.figure.top.cube.6.side",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            580.0,
+            87.95
+          ],
+          [
+            584.95,
+            83.0
+          ],
+          [
+            584.95,
+            94.0
+          ],
+          [
+            580.0,
+            98.95
+          ]
+        ],
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.9,
+        "fill": "#35abd8"
+      }
+    },
+    {
+      "id": "slot.figure.top.cube.7.front",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 569.0,
+        "y": 107.95,
+        "width": 11.0,
+        "height": 11.0,
+        "stroke": "#1d6fa3",
+        "stroke_width": 1.0,
+        "fill": "#5cc6ee"
+      }
+    },
+    {
+      "id": "slot.figure.top.cube.7.top",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            569.0,
+            107.95
+          ],
+          [
+            573.95,
+            103.0
+          ],
+          [
+            584.95,
+            103.0
+          ],
+          [
+            580.0,
+            107.95
+          ]
+        ],
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.9,
+        "fill": "#94dcf6"
+      }
+    },
+    {
+      "id": "slot.figure.top.cube.7.side",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            580.0,
+            107.95
+          ],
+          [
+            584.95,
+            103.0
+          ],
+          [
+            584.95,
+            114.0
+          ],
+          [
+            580.0,
+            118.95
+          ]
+        ],
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.9,
+        "fill": "#35abd8"
+      }
+    },
+    {
+      "id": "slot.figure.top.cube.8.front",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 569.0,
+        "y": 127.95,
+        "width": 11.0,
+        "height": 11.0,
+        "stroke": "#1d6fa3",
+        "stroke_width": 1.0,
+        "fill": "#5cc6ee"
+      }
+    },
+    {
+      "id": "slot.figure.top.cube.8.top",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            569.0,
+            127.95
+          ],
+          [
+            573.95,
+            123.0
+          ],
+          [
+            584.95,
+            123.0
+          ],
+          [
+            580.0,
+            127.95
+          ]
+        ],
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.9,
+        "fill": "#94dcf6"
+      }
+    },
+    {
+      "id": "slot.figure.top.cube.8.side",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            580.0,
+            127.95
+          ],
+          [
+            584.95,
+            123.0
+          ],
+          [
+            584.95,
+            134.0
+          ],
+          [
+            580.0,
+            138.95
+          ]
+        ],
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.9,
+        "fill": "#35abd8"
+      }
+    },
+    {
+      "id": "slot.figure.top.cube.9.front",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 569.0,
+        "y": 147.95,
+        "width": 11.0,
+        "height": 11.0,
+        "stroke": "#1d6fa3",
+        "stroke_width": 1.0,
+        "fill": "#5cc6ee"
+      }
+    },
+    {
+      "id": "slot.figure.top.cube.9.top",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            569.0,
+            147.95
+          ],
+          [
+            573.95,
+            143.0
+          ],
+          [
+            584.95,
+            143.0
+          ],
+          [
+            580.0,
+            147.95
+          ]
+        ],
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.9,
+        "fill": "#94dcf6"
+      }
+    },
+    {
+      "id": "slot.figure.top.cube.9.side",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            580.0,
+            147.95
+          ],
+          [
+            584.95,
+            143.0
+          ],
+          [
+            584.95,
+            154.0
+          ],
+          [
+            580.0,
+            158.95
+          ]
+        ],
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.9,
+        "fill": "#35abd8"
+      }
+    },
+    {
+      "id": "slot.arrow.stem",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 496.0,
+        "y1": 188.0,
+        "x2": 496.0,
+        "y2": 213.0,
+        "stroke": "#8a8a8a",
+        "stroke_width": 10.0
+      }
+    },
+    {
+      "id": "slot.arrow.head",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            483.0,
+            204.0
+          ],
+          [
+            509.0,
+            204.0
+          ],
+          [
+            496.0,
+            219.0
+          ]
+        ],
+        "stroke": "#8a8a8a",
+        "stroke_width": 1.0,
+        "fill": "#8a8a8a"
+      }
+    },
+    {
+      "id": "slot.figure.group1.box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 315.0,
+        "y": 225.0,
+        "width": 98.0,
+        "height": 126.0,
+        "stroke": "#1d6fa3",
+        "stroke_width": 1.5,
         "fill": "none"
       }
     },
     {
-      "id": "slot.small_box2",
+      "id": "slot.figure.group1.rod.1.front",
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 404.0,
-        "y": 206.0,
-        "width": 84.0,
-        "height": 128.0,
-        "stroke": "#4A78B8",
+        "x": 333.0,
+        "y": 240.825,
+        "width": 11.475000000000001,
+        "height": 85.0,
+        "stroke": "#1d6fa3",
+        "stroke_width": 1.2,
+        "fill": "#5cc6ee"
+      }
+    },
+    {
+      "id": "slot.figure.group1.rod.1.top",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            333.0,
+            240.825
+          ],
+          [
+            336.825,
+            237.0
+          ],
+          [
+            348.3,
+            237.0
+          ],
+          [
+            344.475,
+            240.825
+          ]
+        ],
+        "stroke": "#1d6fa3",
+        "stroke_width": 1.0,
+        "fill": "#94dcf6"
+      }
+    },
+    {
+      "id": "slot.figure.group1.rod.1.side",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            344.475,
+            240.825
+          ],
+          [
+            348.3,
+            237.0
+          ],
+          [
+            348.3,
+            322.0
+          ],
+          [
+            344.475,
+            325.825
+          ]
+        ],
+        "stroke": "#1d6fa3",
+        "stroke_width": 1.0,
+        "fill": "#35abd8"
+      }
+    },
+    {
+      "id": "slot.figure.group1.rod.1.cell.1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 333.0,
+        "y1": 249.325,
+        "x2": 344.475,
+        "y2": 249.325,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.figure.group1.rod.1.cell.2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 333.0,
+        "y1": 257.825,
+        "x2": 344.475,
+        "y2": 257.825,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.figure.group1.rod.1.cell.3",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 333.0,
+        "y1": 266.325,
+        "x2": 344.475,
+        "y2": 266.325,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.figure.group1.rod.1.cell.4",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 333.0,
+        "y1": 274.825,
+        "x2": 344.475,
+        "y2": 274.825,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.figure.group1.rod.1.cell.5",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 333.0,
+        "y1": 283.325,
+        "x2": 344.475,
+        "y2": 283.325,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.figure.group1.rod.1.cell.6",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 333.0,
+        "y1": 291.825,
+        "x2": 344.475,
+        "y2": 291.825,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.figure.group1.rod.1.cell.7",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 333.0,
+        "y1": 300.325,
+        "x2": 344.475,
+        "y2": 300.325,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.figure.group1.rod.1.cell.8",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 333.0,
+        "y1": 308.825,
+        "x2": 344.475,
+        "y2": 308.825,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.figure.group1.rod.1.cell.9",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 333.0,
+        "y1": 317.325,
+        "x2": 344.475,
+        "y2": 317.325,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.figure.group1.rod.2.front",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 358.0,
+        "y": 240.825,
+        "width": 11.475000000000001,
+        "height": 85.0,
+        "stroke": "#1d6fa3",
+        "stroke_width": 1.2,
+        "fill": "#5cc6ee"
+      }
+    },
+    {
+      "id": "slot.figure.group1.rod.2.top",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            358.0,
+            240.825
+          ],
+          [
+            361.825,
+            237.0
+          ],
+          [
+            373.3,
+            237.0
+          ],
+          [
+            369.475,
+            240.825
+          ]
+        ],
+        "stroke": "#1d6fa3",
+        "stroke_width": 1.0,
+        "fill": "#94dcf6"
+      }
+    },
+    {
+      "id": "slot.figure.group1.rod.2.side",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            369.475,
+            240.825
+          ],
+          [
+            373.3,
+            237.0
+          ],
+          [
+            373.3,
+            322.0
+          ],
+          [
+            369.475,
+            325.825
+          ]
+        ],
+        "stroke": "#1d6fa3",
+        "stroke_width": 1.0,
+        "fill": "#35abd8"
+      }
+    },
+    {
+      "id": "slot.figure.group1.rod.2.cell.1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 358.0,
+        "y1": 249.325,
+        "x2": 369.475,
+        "y2": 249.325,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.figure.group1.rod.2.cell.2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 358.0,
+        "y1": 257.825,
+        "x2": 369.475,
+        "y2": 257.825,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.figure.group1.rod.2.cell.3",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 358.0,
+        "y1": 266.325,
+        "x2": 369.475,
+        "y2": 266.325,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.figure.group1.rod.2.cell.4",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 358.0,
+        "y1": 274.825,
+        "x2": 369.475,
+        "y2": 274.825,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.figure.group1.rod.2.cell.5",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 358.0,
+        "y1": 283.325,
+        "x2": 369.475,
+        "y2": 283.325,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.figure.group1.rod.2.cell.6",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 358.0,
+        "y1": 291.825,
+        "x2": 369.475,
+        "y2": 291.825,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.figure.group1.rod.2.cell.7",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 358.0,
+        "y1": 300.325,
+        "x2": 369.475,
+        "y2": 300.325,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.figure.group1.rod.2.cell.8",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 358.0,
+        "y1": 308.825,
+        "x2": 369.475,
+        "y2": 308.825,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.figure.group1.rod.2.cell.9",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 358.0,
+        "y1": 317.325,
+        "x2": 369.475,
+        "y2": 317.325,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.figure.group1.cube.1.front",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 389.0,
+        "y": 241.95,
+        "width": 11.0,
+        "height": 11.0,
+        "stroke": "#1d6fa3",
+        "stroke_width": 1.0,
+        "fill": "#5cc6ee"
+      }
+    },
+    {
+      "id": "slot.figure.group1.cube.1.top",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            389.0,
+            241.95
+          ],
+          [
+            393.95,
+            237.0
+          ],
+          [
+            404.95,
+            237.0
+          ],
+          [
+            400.0,
+            241.95
+          ]
+        ],
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.9,
+        "fill": "#94dcf6"
+      }
+    },
+    {
+      "id": "slot.figure.group1.cube.1.side",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            400.0,
+            241.95
+          ],
+          [
+            404.95,
+            237.0
+          ],
+          [
+            404.95,
+            248.0
+          ],
+          [
+            400.0,
+            252.95
+          ]
+        ],
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.9,
+        "fill": "#35abd8"
+      }
+    },
+    {
+      "id": "slot.figure.group1.cube.2.front",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 389.0,
+        "y": 262.95,
+        "width": 11.0,
+        "height": 11.0,
+        "stroke": "#1d6fa3",
+        "stroke_width": 1.0,
+        "fill": "#5cc6ee"
+      }
+    },
+    {
+      "id": "slot.figure.group1.cube.2.top",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            389.0,
+            262.95
+          ],
+          [
+            393.95,
+            258.0
+          ],
+          [
+            404.95,
+            258.0
+          ],
+          [
+            400.0,
+            262.95
+          ]
+        ],
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.9,
+        "fill": "#94dcf6"
+      }
+    },
+    {
+      "id": "slot.figure.group1.cube.2.side",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            400.0,
+            262.95
+          ],
+          [
+            404.95,
+            258.0
+          ],
+          [
+            404.95,
+            269.0
+          ],
+          [
+            400.0,
+            273.95
+          ]
+        ],
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.9,
+        "fill": "#35abd8"
+      }
+    },
+    {
+      "id": "slot.figure.group1.cube.3.front",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 389.0,
+        "y": 283.95,
+        "width": 11.0,
+        "height": 11.0,
+        "stroke": "#1d6fa3",
+        "stroke_width": 1.0,
+        "fill": "#5cc6ee"
+      }
+    },
+    {
+      "id": "slot.figure.group1.cube.3.top",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            389.0,
+            283.95
+          ],
+          [
+            393.95,
+            279.0
+          ],
+          [
+            404.95,
+            279.0
+          ],
+          [
+            400.0,
+            283.95
+          ]
+        ],
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.9,
+        "fill": "#94dcf6"
+      }
+    },
+    {
+      "id": "slot.figure.group1.cube.3.side",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            400.0,
+            283.95
+          ],
+          [
+            404.95,
+            279.0
+          ],
+          [
+            404.95,
+            290.0
+          ],
+          [
+            400.0,
+            294.95
+          ]
+        ],
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.9,
+        "fill": "#35abd8"
+      }
+    },
+    {
+      "id": "slot.figure.group2.box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 435.0,
+        "y": 225.0,
+        "width": 98.0,
+        "height": 126.0,
+        "stroke": "#1d6fa3",
+        "stroke_width": 1.5,
         "fill": "none"
       }
     },
     {
-      "id": "slot.small_box3",
+      "id": "slot.figure.group2.rod.1.front",
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 508.0,
-        "y": 206.0,
-        "width": 84.0,
-        "height": 128.0,
-        "stroke": "#4A78B8",
+        "x": 453.0,
+        "y": 240.825,
+        "width": 11.475000000000001,
+        "height": 85.0,
+        "stroke": "#1d6fa3",
+        "stroke_width": 1.2,
+        "fill": "#5cc6ee"
+      }
+    },
+    {
+      "id": "slot.figure.group2.rod.1.top",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            453.0,
+            240.825
+          ],
+          [
+            456.825,
+            237.0
+          ],
+          [
+            468.3,
+            237.0
+          ],
+          [
+            464.475,
+            240.825
+          ]
+        ],
+        "stroke": "#1d6fa3",
+        "stroke_width": 1.0,
+        "fill": "#94dcf6"
+      }
+    },
+    {
+      "id": "slot.figure.group2.rod.1.side",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            464.475,
+            240.825
+          ],
+          [
+            468.3,
+            237.0
+          ],
+          [
+            468.3,
+            322.0
+          ],
+          [
+            464.475,
+            325.825
+          ]
+        ],
+        "stroke": "#1d6fa3",
+        "stroke_width": 1.0,
+        "fill": "#35abd8"
+      }
+    },
+    {
+      "id": "slot.figure.group2.rod.1.cell.1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 453.0,
+        "y1": 249.325,
+        "x2": 464.475,
+        "y2": 249.325,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.figure.group2.rod.1.cell.2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 453.0,
+        "y1": 257.825,
+        "x2": 464.475,
+        "y2": 257.825,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.figure.group2.rod.1.cell.3",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 453.0,
+        "y1": 266.325,
+        "x2": 464.475,
+        "y2": 266.325,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.figure.group2.rod.1.cell.4",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 453.0,
+        "y1": 274.825,
+        "x2": 464.475,
+        "y2": 274.825,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.figure.group2.rod.1.cell.5",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 453.0,
+        "y1": 283.325,
+        "x2": 464.475,
+        "y2": 283.325,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.figure.group2.rod.1.cell.6",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 453.0,
+        "y1": 291.825,
+        "x2": 464.475,
+        "y2": 291.825,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.figure.group2.rod.1.cell.7",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 453.0,
+        "y1": 300.325,
+        "x2": 464.475,
+        "y2": 300.325,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.figure.group2.rod.1.cell.8",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 453.0,
+        "y1": 308.825,
+        "x2": 464.475,
+        "y2": 308.825,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.figure.group2.rod.1.cell.9",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 453.0,
+        "y1": 317.325,
+        "x2": 464.475,
+        "y2": 317.325,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.figure.group2.rod.2.front",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 478.0,
+        "y": 240.825,
+        "width": 11.475000000000001,
+        "height": 85.0,
+        "stroke": "#1d6fa3",
+        "stroke_width": 1.2,
+        "fill": "#5cc6ee"
+      }
+    },
+    {
+      "id": "slot.figure.group2.rod.2.top",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            478.0,
+            240.825
+          ],
+          [
+            481.825,
+            237.0
+          ],
+          [
+            493.3,
+            237.0
+          ],
+          [
+            489.475,
+            240.825
+          ]
+        ],
+        "stroke": "#1d6fa3",
+        "stroke_width": 1.0,
+        "fill": "#94dcf6"
+      }
+    },
+    {
+      "id": "slot.figure.group2.rod.2.side",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            489.475,
+            240.825
+          ],
+          [
+            493.3,
+            237.0
+          ],
+          [
+            493.3,
+            322.0
+          ],
+          [
+            489.475,
+            325.825
+          ]
+        ],
+        "stroke": "#1d6fa3",
+        "stroke_width": 1.0,
+        "fill": "#35abd8"
+      }
+    },
+    {
+      "id": "slot.figure.group2.rod.2.cell.1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 478.0,
+        "y1": 249.325,
+        "x2": 489.475,
+        "y2": 249.325,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.figure.group2.rod.2.cell.2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 478.0,
+        "y1": 257.825,
+        "x2": 489.475,
+        "y2": 257.825,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.figure.group2.rod.2.cell.3",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 478.0,
+        "y1": 266.325,
+        "x2": 489.475,
+        "y2": 266.325,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.figure.group2.rod.2.cell.4",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 478.0,
+        "y1": 274.825,
+        "x2": 489.475,
+        "y2": 274.825,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.figure.group2.rod.2.cell.5",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 478.0,
+        "y1": 283.325,
+        "x2": 489.475,
+        "y2": 283.325,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.figure.group2.rod.2.cell.6",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 478.0,
+        "y1": 291.825,
+        "x2": 489.475,
+        "y2": 291.825,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.figure.group2.rod.2.cell.7",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 478.0,
+        "y1": 300.325,
+        "x2": 489.475,
+        "y2": 300.325,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.figure.group2.rod.2.cell.8",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 478.0,
+        "y1": 308.825,
+        "x2": 489.475,
+        "y2": 308.825,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.figure.group2.rod.2.cell.9",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 478.0,
+        "y1": 317.325,
+        "x2": 489.475,
+        "y2": 317.325,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.figure.group2.cube.1.front",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 509.0,
+        "y": 241.95,
+        "width": 11.0,
+        "height": 11.0,
+        "stroke": "#1d6fa3",
+        "stroke_width": 1.0,
+        "fill": "#5cc6ee"
+      }
+    },
+    {
+      "id": "slot.figure.group2.cube.1.top",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            509.0,
+            241.95
+          ],
+          [
+            513.95,
+            237.0
+          ],
+          [
+            524.95,
+            237.0
+          ],
+          [
+            520.0,
+            241.95
+          ]
+        ],
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.9,
+        "fill": "#94dcf6"
+      }
+    },
+    {
+      "id": "slot.figure.group2.cube.1.side",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            520.0,
+            241.95
+          ],
+          [
+            524.95,
+            237.0
+          ],
+          [
+            524.95,
+            248.0
+          ],
+          [
+            520.0,
+            252.95
+          ]
+        ],
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.9,
+        "fill": "#35abd8"
+      }
+    },
+    {
+      "id": "slot.figure.group2.cube.2.front",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 509.0,
+        "y": 262.95,
+        "width": 11.0,
+        "height": 11.0,
+        "stroke": "#1d6fa3",
+        "stroke_width": 1.0,
+        "fill": "#5cc6ee"
+      }
+    },
+    {
+      "id": "slot.figure.group2.cube.2.top",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            509.0,
+            262.95
+          ],
+          [
+            513.95,
+            258.0
+          ],
+          [
+            524.95,
+            258.0
+          ],
+          [
+            520.0,
+            262.95
+          ]
+        ],
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.9,
+        "fill": "#94dcf6"
+      }
+    },
+    {
+      "id": "slot.figure.group2.cube.2.side",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            520.0,
+            262.95
+          ],
+          [
+            524.95,
+            258.0
+          ],
+          [
+            524.95,
+            269.0
+          ],
+          [
+            520.0,
+            273.95
+          ]
+        ],
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.9,
+        "fill": "#35abd8"
+      }
+    },
+    {
+      "id": "slot.figure.group2.cube.3.front",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 509.0,
+        "y": 283.95,
+        "width": 11.0,
+        "height": 11.0,
+        "stroke": "#1d6fa3",
+        "stroke_width": 1.0,
+        "fill": "#5cc6ee"
+      }
+    },
+    {
+      "id": "slot.figure.group2.cube.3.top",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            509.0,
+            283.95
+          ],
+          [
+            513.95,
+            279.0
+          ],
+          [
+            524.95,
+            279.0
+          ],
+          [
+            520.0,
+            283.95
+          ]
+        ],
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.9,
+        "fill": "#94dcf6"
+      }
+    },
+    {
+      "id": "slot.figure.group2.cube.3.side",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            520.0,
+            283.95
+          ],
+          [
+            524.95,
+            279.0
+          ],
+          [
+            524.95,
+            290.0
+          ],
+          [
+            520.0,
+            294.95
+          ]
+        ],
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.9,
+        "fill": "#35abd8"
+      }
+    },
+    {
+      "id": "slot.figure.group3.box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 555.0,
+        "y": 225.0,
+        "width": 98.0,
+        "height": 126.0,
+        "stroke": "#1d6fa3",
+        "stroke_width": 1.5,
         "fill": "none"
       }
     },
     {
-      "id": "slot.s1_rod1",
+      "id": "slot.figure.group3.rod.1.front",
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 312.0,
-        "y": 220.0,
-        "width": 10.0,
-        "height": 82.0,
-        "stroke": "#6BBCE8",
-        "fill": "none"
+        "x": 573.0,
+        "y": 240.825,
+        "width": 11.475000000000001,
+        "height": 85.0,
+        "stroke": "#1d6fa3",
+        "stroke_width": 1.2,
+        "fill": "#5cc6ee"
       }
     },
     {
-      "id": "slot.s1_rod2",
-      "kind": "rect",
+      "id": "slot.figure.group3.rod.1.top",
+      "kind": "polygon",
       "prompt": "",
       "content": {
-        "x": 332.0,
-        "y": 220.0,
-        "width": 10.0,
-        "height": 82.0,
-        "stroke": "#6BBCE8",
-        "fill": "none"
+        "points": [
+          [
+            573.0,
+            240.825
+          ],
+          [
+            576.825,
+            237.0
+          ],
+          [
+            588.3000000000001,
+            237.0
+          ],
+          [
+            584.475,
+            240.825
+          ]
+        ],
+        "stroke": "#1d6fa3",
+        "stroke_width": 1.0,
+        "fill": "#94dcf6"
       }
     },
     {
-      "id": "slot.s1_cube1",
-      "kind": "rect",
+      "id": "slot.figure.group3.rod.1.side",
+      "kind": "polygon",
       "prompt": "",
       "content": {
-        "x": 348.0,
-        "y": 250.0,
-        "width": 10.0,
-        "height": 10.0,
-        "stroke": "#6BBCE8",
-        "fill": "none"
+        "points": [
+          [
+            584.475,
+            240.825
+          ],
+          [
+            588.3000000000001,
+            237.0
+          ],
+          [
+            588.3000000000001,
+            322.0
+          ],
+          [
+            584.475,
+            325.825
+          ]
+        ],
+        "stroke": "#1d6fa3",
+        "stroke_width": 1.0,
+        "fill": "#35abd8"
       }
     },
     {
-      "id": "slot.s1_cube2",
-      "kind": "rect",
+      "id": "slot.figure.group3.rod.1.cell.1",
+      "kind": "line",
       "prompt": "",
       "content": {
-        "x": 348.0,
-        "y": 270.0,
-        "width": 10.0,
-        "height": 10.0,
-        "stroke": "#6BBCE8",
-        "fill": "none"
+        "x1": 573.0,
+        "y1": 249.325,
+        "x2": 584.475,
+        "y2": 249.325,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
       }
     },
     {
-      "id": "slot.s1_cube3",
-      "kind": "rect",
+      "id": "slot.figure.group3.rod.1.cell.2",
+      "kind": "line",
       "prompt": "",
       "content": {
-        "x": 348.0,
-        "y": 290.0,
-        "width": 10.0,
-        "height": 10.0,
-        "stroke": "#6BBCE8",
-        "fill": "none"
+        "x1": 573.0,
+        "y1": 257.825,
+        "x2": 584.475,
+        "y2": 257.825,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
       }
     },
     {
-      "id": "slot.s2_rod1",
-      "kind": "rect",
+      "id": "slot.figure.group3.rod.1.cell.3",
+      "kind": "line",
       "prompt": "",
       "content": {
-        "x": 416.0,
-        "y": 220.0,
-        "width": 10.0,
-        "height": 82.0,
-        "stroke": "#6BBCE8",
-        "fill": "none"
+        "x1": 573.0,
+        "y1": 266.325,
+        "x2": 584.475,
+        "y2": 266.325,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
       }
     },
     {
-      "id": "slot.s2_rod2",
-      "kind": "rect",
+      "id": "slot.figure.group3.rod.1.cell.4",
+      "kind": "line",
       "prompt": "",
       "content": {
-        "x": 436.0,
-        "y": 220.0,
-        "width": 10.0,
-        "height": 82.0,
-        "stroke": "#6BBCE8",
-        "fill": "none"
+        "x1": 573.0,
+        "y1": 274.825,
+        "x2": 584.475,
+        "y2": 274.825,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
       }
     },
     {
-      "id": "slot.s2_cube1",
-      "kind": "rect",
+      "id": "slot.figure.group3.rod.1.cell.5",
+      "kind": "line",
       "prompt": "",
       "content": {
-        "x": 452.0,
-        "y": 250.0,
-        "width": 10.0,
-        "height": 10.0,
-        "stroke": "#6BBCE8",
-        "fill": "none"
+        "x1": 573.0,
+        "y1": 283.325,
+        "x2": 584.475,
+        "y2": 283.325,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
       }
     },
     {
-      "id": "slot.s2_cube2",
-      "kind": "rect",
+      "id": "slot.figure.group3.rod.1.cell.6",
+      "kind": "line",
       "prompt": "",
       "content": {
-        "x": 452.0,
-        "y": 270.0,
-        "width": 10.0,
-        "height": 10.0,
-        "stroke": "#6BBCE8",
-        "fill": "none"
+        "x1": 573.0,
+        "y1": 291.825,
+        "x2": 584.475,
+        "y2": 291.825,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
       }
     },
     {
-      "id": "slot.s2_cube3",
-      "kind": "rect",
+      "id": "slot.figure.group3.rod.1.cell.7",
+      "kind": "line",
       "prompt": "",
       "content": {
-        "x": 452.0,
-        "y": 290.0,
-        "width": 10.0,
-        "height": 10.0,
-        "stroke": "#6BBCE8",
-        "fill": "none"
+        "x1": 573.0,
+        "y1": 300.325,
+        "x2": 584.475,
+        "y2": 300.325,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
       }
     },
     {
-      "id": "slot.s3_rod1",
-      "kind": "rect",
+      "id": "slot.figure.group3.rod.1.cell.8",
+      "kind": "line",
       "prompt": "",
       "content": {
-        "x": 520.0,
-        "y": 220.0,
-        "width": 10.0,
-        "height": 82.0,
-        "stroke": "#6BBCE8",
-        "fill": "none"
+        "x1": 573.0,
+        "y1": 308.825,
+        "x2": 584.475,
+        "y2": 308.825,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
       }
     },
     {
-      "id": "slot.s3_rod2",
-      "kind": "rect",
+      "id": "slot.figure.group3.rod.1.cell.9",
+      "kind": "line",
       "prompt": "",
       "content": {
-        "x": 540.0,
-        "y": 220.0,
-        "width": 10.0,
-        "height": 82.0,
-        "stroke": "#6BBCE8",
-        "fill": "none"
+        "x1": 573.0,
+        "y1": 317.325,
+        "x2": 584.475,
+        "y2": 317.325,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
       }
     },
     {
-      "id": "slot.s3_cube1",
+      "id": "slot.figure.group3.rod.2.front",
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 556.0,
-        "y": 250.0,
-        "width": 10.0,
-        "height": 10.0,
-        "stroke": "#6BBCE8",
-        "fill": "none"
+        "x": 598.0,
+        "y": 240.825,
+        "width": 11.475000000000001,
+        "height": 85.0,
+        "stroke": "#1d6fa3",
+        "stroke_width": 1.2,
+        "fill": "#5cc6ee"
       }
     },
     {
-      "id": "slot.s3_cube2",
-      "kind": "rect",
+      "id": "slot.figure.group3.rod.2.top",
+      "kind": "polygon",
       "prompt": "",
       "content": {
-        "x": 556.0,
-        "y": 270.0,
-        "width": 10.0,
-        "height": 10.0,
-        "stroke": "#6BBCE8",
-        "fill": "none"
+        "points": [
+          [
+            598.0,
+            240.825
+          ],
+          [
+            601.825,
+            237.0
+          ],
+          [
+            613.3000000000001,
+            237.0
+          ],
+          [
+            609.475,
+            240.825
+          ]
+        ],
+        "stroke": "#1d6fa3",
+        "stroke_width": 1.0,
+        "fill": "#94dcf6"
       }
     },
     {
-      "id": "slot.s3_cube3",
+      "id": "slot.figure.group3.rod.2.side",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            609.475,
+            240.825
+          ],
+          [
+            613.3000000000001,
+            237.0
+          ],
+          [
+            613.3000000000001,
+            322.0
+          ],
+          [
+            609.475,
+            325.825
+          ]
+        ],
+        "stroke": "#1d6fa3",
+        "stroke_width": 1.0,
+        "fill": "#35abd8"
+      }
+    },
+    {
+      "id": "slot.figure.group3.rod.2.cell.1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 598.0,
+        "y1": 249.325,
+        "x2": 609.475,
+        "y2": 249.325,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.figure.group3.rod.2.cell.2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 598.0,
+        "y1": 257.825,
+        "x2": 609.475,
+        "y2": 257.825,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.figure.group3.rod.2.cell.3",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 598.0,
+        "y1": 266.325,
+        "x2": 609.475,
+        "y2": 266.325,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.figure.group3.rod.2.cell.4",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 598.0,
+        "y1": 274.825,
+        "x2": 609.475,
+        "y2": 274.825,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.figure.group3.rod.2.cell.5",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 598.0,
+        "y1": 283.325,
+        "x2": 609.475,
+        "y2": 283.325,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.figure.group3.rod.2.cell.6",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 598.0,
+        "y1": 291.825,
+        "x2": 609.475,
+        "y2": 291.825,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.figure.group3.rod.2.cell.7",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 598.0,
+        "y1": 300.325,
+        "x2": 609.475,
+        "y2": 300.325,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.figure.group3.rod.2.cell.8",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 598.0,
+        "y1": 308.825,
+        "x2": 609.475,
+        "y2": 308.825,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.figure.group3.rod.2.cell.9",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 598.0,
+        "y1": 317.325,
+        "x2": 609.475,
+        "y2": 317.325,
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.figure.group3.cube.1.front",
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 556.0,
-        "y": 290.0,
-        "width": 10.0,
-        "height": 10.0,
-        "stroke": "#6BBCE8",
-        "fill": "none"
+        "x": 629.0,
+        "y": 241.95,
+        "width": 11.0,
+        "height": 11.0,
+        "stroke": "#1d6fa3",
+        "stroke_width": 1.0,
+        "fill": "#5cc6ee"
+      }
+    },
+    {
+      "id": "slot.figure.group3.cube.1.top",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            629.0,
+            241.95
+          ],
+          [
+            633.95,
+            237.0
+          ],
+          [
+            644.95,
+            237.0
+          ],
+          [
+            640.0,
+            241.95
+          ]
+        ],
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.9,
+        "fill": "#94dcf6"
+      }
+    },
+    {
+      "id": "slot.figure.group3.cube.1.side",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            640.0,
+            241.95
+          ],
+          [
+            644.95,
+            237.0
+          ],
+          [
+            644.95,
+            248.0
+          ],
+          [
+            640.0,
+            252.95
+          ]
+        ],
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.9,
+        "fill": "#35abd8"
+      }
+    },
+    {
+      "id": "slot.figure.group3.cube.2.front",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 629.0,
+        "y": 262.95,
+        "width": 11.0,
+        "height": 11.0,
+        "stroke": "#1d6fa3",
+        "stroke_width": 1.0,
+        "fill": "#5cc6ee"
+      }
+    },
+    {
+      "id": "slot.figure.group3.cube.2.top",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            629.0,
+            262.95
+          ],
+          [
+            633.95,
+            258.0
+          ],
+          [
+            644.95,
+            258.0
+          ],
+          [
+            640.0,
+            262.95
+          ]
+        ],
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.9,
+        "fill": "#94dcf6"
+      }
+    },
+    {
+      "id": "slot.figure.group3.cube.2.side",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            640.0,
+            262.95
+          ],
+          [
+            644.95,
+            258.0
+          ],
+          [
+            644.95,
+            269.0
+          ],
+          [
+            640.0,
+            273.95
+          ]
+        ],
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.9,
+        "fill": "#35abd8"
+      }
+    },
+    {
+      "id": "slot.figure.group3.cube.3.front",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 629.0,
+        "y": 283.95,
+        "width": 11.0,
+        "height": 11.0,
+        "stroke": "#1d6fa3",
+        "stroke_width": 1.0,
+        "fill": "#5cc6ee"
+      }
+    },
+    {
+      "id": "slot.figure.group3.cube.3.top",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            629.0,
+            283.95
+          ],
+          [
+            633.95,
+            279.0
+          ],
+          [
+            644.95,
+            279.0
+          ],
+          [
+            640.0,
+            283.95
+          ]
+        ],
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.9,
+        "fill": "#94dcf6"
+      }
+    },
+    {
+      "id": "slot.figure.group3.cube.3.side",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            640.0,
+            283.95
+          ],
+          [
+            644.95,
+            279.0
+          ],
+          [
+            644.95,
+            290.0
+          ],
+          [
+            640.0,
+            294.95
+          ]
+        ],
+        "stroke": "#1d6fa3",
+        "stroke_width": 0.9,
+        "fill": "#35abd8"
       }
     },
     {
@@ -552,9 +3930,9 @@
       "content": {
         "text": "69 ÷ 3 =",
         "style_role": "question",
-        "x": 380.0,
-        "y": 362.0,
-        "font_size": 28
+        "x": 417.0,
+        "y": 392.0,
+        "font_size": 27
       }
     },
     {
@@ -562,127 +3940,162 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 530.0,
-        "y": 338.0,
-        "width": 26.0,
-        "height": 26.0,
-        "stroke": "#222222",
+        "x": 529.0,
+        "y": 368.0,
+        "width": 27.0,
+        "height": 27.0,
+        "stroke": "#111111",
+        "stroke_width": 1.2,
         "fill": "none"
       }
     },
     {
-      "id": "slot.opt1_num",
-      "kind": "circle",
+      "id": "slot.choice.1.marker",
+      "kind": "text",
       "prompt": "",
       "content": {
-        "cx": 44.0,
-        "cy": 423.0,
-        "r": 7.0,
-        "fill": "none"
+        "text": "①",
+        "style_role": "choice",
+        "x": 36.0,
+        "y": 431.0,
+        "font_size": 21,
+        "fill": "#0070c0"
       }
     },
     {
-      "id": "slot.opt1_text",
+      "id": "slot.choice.1.value",
       "kind": "text",
       "prompt": "",
       "content": {
         "text": "21",
         "style_role": "choice",
-        "x": 58.0,
-        "y": 430.0,
-        "font_size": 28
+        "x": 60.0,
+        "y": 431.0,
+        "font_size": 24
       }
     },
     {
-      "id": "slot.opt2_num",
-      "kind": "circle",
+      "id": "slot.choice.2.marker",
+      "kind": "text",
       "prompt": "",
       "content": {
-        "cx": 320.0,
-        "cy": 423.0,
-        "r": 7.0,
-        "fill": "none"
+        "text": "②",
+        "style_role": "choice",
+        "x": 332.0,
+        "y": 431.0,
+        "font_size": 21,
+        "fill": "#0070c0"
       }
     },
     {
-      "id": "slot.opt2_text",
+      "id": "slot.choice.2.value",
       "kind": "text",
       "prompt": "",
       "content": {
         "text": "22",
         "style_role": "choice",
-        "x": 334.0,
-        "y": 430.0,
-        "font_size": 28
+        "x": 356.0,
+        "y": 431.0,
+        "font_size": 24
       }
     },
     {
-      "id": "slot.opt3_num",
-      "kind": "circle",
+      "id": "slot.choice.3.marker",
+      "kind": "text",
       "prompt": "",
       "content": {
-        "cx": 584.0,
-        "cy": 423.0,
-        "r": 7.0,
-        "fill": "none"
+        "text": "③",
+        "style_role": "choice",
+        "x": 628.0,
+        "y": 431.0,
+        "font_size": 21,
+        "fill": "#0070c0"
       }
     },
     {
-      "id": "slot.opt3_text",
+      "id": "slot.choice.3.value",
       "kind": "text",
       "prompt": "",
       "content": {
         "text": "23",
         "style_role": "choice",
-        "x": 598.0,
-        "y": 430.0,
-        "font_size": 28
+        "x": 652.0,
+        "y": 431.0,
+        "font_size": 24
       }
     },
     {
-      "id": "slot.opt4_num",
-      "kind": "circle",
+      "id": "slot.choice.4.marker",
+      "kind": "text",
       "prompt": "",
       "content": {
-        "cx": 44.0,
-        "cy": 462.0,
-        "r": 7.0,
-        "fill": "none"
+        "text": "④",
+        "style_role": "choice",
+        "x": 36.0,
+        "y": 476.0,
+        "font_size": 21,
+        "fill": "#0070c0"
       }
     },
     {
-      "id": "slot.opt4_text",
+      "id": "slot.choice.4.value",
       "kind": "text",
       "prompt": "",
       "content": {
         "text": "24",
         "style_role": "choice",
-        "x": 58.0,
-        "y": 469.0,
-        "font_size": 28
+        "x": 60.0,
+        "y": 476.0,
+        "font_size": 24
       }
     },
     {
-      "id": "slot.opt5_num",
-      "kind": "circle",
+      "id": "slot.choice.5.marker",
+      "kind": "text",
       "prompt": "",
       "content": {
-        "cx": 320.0,
-        "cy": 462.0,
-        "r": 7.0,
-        "fill": "none"
+        "text": "⑤",
+        "style_role": "choice",
+        "x": 332.0,
+        "y": 476.0,
+        "font_size": 21,
+        "fill": "#0070c0"
       }
     },
     {
-      "id": "slot.opt5_text",
+      "id": "slot.choice.5.value",
       "kind": "text",
       "prompt": "",
       "content": {
         "text": "25",
         "style_role": "choice",
-        "x": 334.0,
-        "y": 469.0,
-        "font_size": 28
+        "x": 356.0,
+        "y": 476.0,
+        "font_size": 24
+      }
+    },
+    {
+      "id": "slot.answer",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "(정답) ③",
+        "style_role": "supporting",
+        "x": 15.0,
+        "y": 522.0,
+        "font_size": 18
+      }
+    },
+    {
+      "id": "slot.explanation",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "(해설)69 ÷ 3 = 23입니다.",
+        "style_role": "supporting",
+        "x": 15.0,
+        "y": 570.0,
+        "font_size": 18
       }
     }
   ],
@@ -691,55 +4104,231 @@
   "diagrams": [],
   "reading_order": [
     "region.stem",
-    "slot.q1",
-    "slot.q2",
+    "slot.checkbox",
+    "slot.inline_blank",
+    "slot.problem_no",
+    "slot.question.prefix",
+    "slot.question.suffix",
     "region.diagram",
-    "slot.big_box",
-    "slot.big_rod1",
-    "slot.big_rod2",
-    "slot.big_rod3",
-    "slot.big_rod4",
-    "slot.big_rod5",
-    "slot.big_rod6",
-    "slot.big_cube1",
-    "slot.big_cube2",
-    "slot.big_cube3",
-    "slot.big_cube4",
-    "slot.big_cube5",
-    "slot.big_cube6",
-    "slot.big_cube7",
-    "slot.big_cube8",
-    "slot.small_box1",
-    "slot.small_box2",
-    "slot.small_box3",
-    "slot.s1_rod1",
-    "slot.s1_rod2",
-    "slot.s1_cube1",
-    "slot.s1_cube2",
-    "slot.s1_cube3",
-    "slot.s2_rod1",
-    "slot.s2_rod2",
-    "slot.s2_cube1",
-    "slot.s2_cube2",
-    "slot.s2_cube3",
-    "slot.s3_rod1",
-    "slot.s3_rod2",
-    "slot.s3_cube1",
-    "slot.s3_cube2",
-    "slot.s3_cube3",
+    "slot.top.box",
+    "slot.figure.top.rod.1.front",
+    "slot.figure.top.rod.1.top",
+    "slot.figure.top.rod.1.side",
+    "slot.figure.top.rod.2.front",
+    "slot.figure.top.rod.2.top",
+    "slot.figure.top.rod.2.side",
+    "slot.figure.top.rod.3.front",
+    "slot.figure.top.rod.3.top",
+    "slot.figure.top.rod.3.side",
+    "slot.figure.top.rod.4.front",
+    "slot.figure.top.rod.4.top",
+    "slot.figure.top.rod.4.side",
+    "slot.figure.top.rod.5.front",
+    "slot.figure.top.rod.5.top",
+    "slot.figure.top.rod.5.side",
+    "slot.figure.top.rod.6.front",
+    "slot.figure.top.rod.6.top",
+    "slot.figure.top.rod.6.side",
+    "slot.figure.top.cube.1.front",
+    "slot.figure.top.cube.1.top",
+    "slot.figure.top.cube.1.side",
+    "slot.figure.top.cube.2.front",
+    "slot.figure.top.cube.2.top",
+    "slot.figure.top.cube.2.side",
+    "slot.figure.top.cube.3.front",
+    "slot.figure.top.cube.3.top",
+    "slot.figure.top.cube.3.side",
+    "slot.figure.top.cube.4.front",
+    "slot.figure.top.cube.4.top",
+    "slot.figure.top.cube.4.side",
+    "slot.figure.top.cube.5.front",
+    "slot.figure.top.cube.5.top",
+    "slot.figure.top.cube.5.side",
+    "slot.figure.top.cube.6.front",
+    "slot.figure.top.cube.6.top",
+    "slot.figure.top.cube.6.side",
+    "slot.figure.top.cube.7.front",
+    "slot.figure.top.cube.7.top",
+    "slot.figure.top.cube.7.side",
+    "slot.figure.top.cube.8.front",
+    "slot.figure.top.cube.8.top",
+    "slot.figure.top.cube.8.side",
+    "slot.figure.top.cube.9.front",
+    "slot.figure.top.cube.9.top",
+    "slot.figure.top.cube.9.side",
+    "slot.arrow.head",
+    "slot.figure.group1.box",
+    "slot.figure.group1.rod.1.front",
+    "slot.figure.group1.rod.1.top",
+    "slot.figure.group1.rod.1.side",
+    "slot.figure.group1.rod.2.front",
+    "slot.figure.group1.rod.2.top",
+    "slot.figure.group1.rod.2.side",
+    "slot.figure.group1.cube.1.front",
+    "slot.figure.group1.cube.1.top",
+    "slot.figure.group1.cube.1.side",
+    "slot.figure.group1.cube.2.front",
+    "slot.figure.group1.cube.2.top",
+    "slot.figure.group1.cube.2.side",
+    "slot.figure.group1.cube.3.front",
+    "slot.figure.group1.cube.3.top",
+    "slot.figure.group1.cube.3.side",
+    "slot.figure.group2.box",
+    "slot.figure.group2.rod.1.front",
+    "slot.figure.group2.rod.1.top",
+    "slot.figure.group2.rod.1.side",
+    "slot.figure.group2.rod.2.front",
+    "slot.figure.group2.rod.2.top",
+    "slot.figure.group2.rod.2.side",
+    "slot.figure.group2.cube.1.front",
+    "slot.figure.group2.cube.1.top",
+    "slot.figure.group2.cube.1.side",
+    "slot.figure.group2.cube.2.front",
+    "slot.figure.group2.cube.2.top",
+    "slot.figure.group2.cube.2.side",
+    "slot.figure.group2.cube.3.front",
+    "slot.figure.group2.cube.3.top",
+    "slot.figure.group2.cube.3.side",
+    "slot.figure.group3.box",
+    "slot.figure.group3.rod.1.front",
+    "slot.figure.group3.rod.1.top",
+    "slot.figure.group3.rod.1.side",
+    "slot.figure.group3.rod.2.front",
+    "slot.figure.group3.rod.2.top",
+    "slot.figure.group3.rod.2.side",
+    "slot.figure.group3.cube.1.front",
+    "slot.figure.group3.cube.1.top",
+    "slot.figure.group3.cube.1.side",
+    "slot.figure.group3.cube.2.front",
+    "slot.figure.group3.cube.2.top",
+    "slot.figure.group3.cube.2.side",
+    "slot.figure.group3.cube.3.front",
+    "slot.figure.group3.cube.3.top",
+    "slot.figure.group3.cube.3.side",
     "slot.blank",
-    "slot.arrow",
+    "slot.figure.top.rod.1.cell.1",
+    "slot.figure.top.rod.1.cell.2",
+    "slot.figure.top.rod.1.cell.3",
+    "slot.figure.top.rod.1.cell.4",
+    "slot.figure.top.rod.1.cell.5",
+    "slot.figure.top.rod.1.cell.6",
+    "slot.figure.top.rod.1.cell.7",
+    "slot.figure.top.rod.1.cell.8",
+    "slot.figure.top.rod.1.cell.9",
+    "slot.figure.top.rod.2.cell.1",
+    "slot.figure.top.rod.2.cell.2",
+    "slot.figure.top.rod.2.cell.3",
+    "slot.figure.top.rod.2.cell.4",
+    "slot.figure.top.rod.2.cell.5",
+    "slot.figure.top.rod.2.cell.6",
+    "slot.figure.top.rod.2.cell.7",
+    "slot.figure.top.rod.2.cell.8",
+    "slot.figure.top.rod.2.cell.9",
+    "slot.figure.top.rod.3.cell.1",
+    "slot.figure.top.rod.3.cell.2",
+    "slot.figure.top.rod.3.cell.3",
+    "slot.figure.top.rod.3.cell.4",
+    "slot.figure.top.rod.3.cell.5",
+    "slot.figure.top.rod.3.cell.6",
+    "slot.figure.top.rod.3.cell.7",
+    "slot.figure.top.rod.3.cell.8",
+    "slot.figure.top.rod.3.cell.9",
+    "slot.figure.top.rod.4.cell.1",
+    "slot.figure.top.rod.4.cell.2",
+    "slot.figure.top.rod.4.cell.3",
+    "slot.figure.top.rod.4.cell.4",
+    "slot.figure.top.rod.4.cell.5",
+    "slot.figure.top.rod.4.cell.6",
+    "slot.figure.top.rod.4.cell.7",
+    "slot.figure.top.rod.4.cell.8",
+    "slot.figure.top.rod.4.cell.9",
+    "slot.figure.top.rod.5.cell.1",
+    "slot.figure.top.rod.5.cell.2",
+    "slot.figure.top.rod.5.cell.3",
+    "slot.figure.top.rod.5.cell.4",
+    "slot.figure.top.rod.5.cell.5",
+    "slot.figure.top.rod.5.cell.6",
+    "slot.figure.top.rod.5.cell.7",
+    "slot.figure.top.rod.5.cell.8",
+    "slot.figure.top.rod.5.cell.9",
+    "slot.figure.top.rod.6.cell.1",
+    "slot.figure.top.rod.6.cell.2",
+    "slot.figure.top.rod.6.cell.3",
+    "slot.figure.top.rod.6.cell.4",
+    "slot.figure.top.rod.6.cell.5",
+    "slot.figure.top.rod.6.cell.6",
+    "slot.figure.top.rod.6.cell.7",
+    "slot.figure.top.rod.6.cell.8",
+    "slot.figure.top.rod.6.cell.9",
+    "slot.arrow.stem",
+    "slot.figure.group1.rod.1.cell.1",
+    "slot.figure.group1.rod.1.cell.2",
+    "slot.figure.group1.rod.1.cell.3",
+    "slot.figure.group1.rod.1.cell.4",
+    "slot.figure.group1.rod.1.cell.5",
+    "slot.figure.group1.rod.1.cell.6",
+    "slot.figure.group1.rod.1.cell.7",
+    "slot.figure.group1.rod.1.cell.8",
+    "slot.figure.group1.rod.1.cell.9",
+    "slot.figure.group1.rod.2.cell.1",
+    "slot.figure.group1.rod.2.cell.2",
+    "slot.figure.group1.rod.2.cell.3",
+    "slot.figure.group1.rod.2.cell.4",
+    "slot.figure.group1.rod.2.cell.5",
+    "slot.figure.group1.rod.2.cell.6",
+    "slot.figure.group1.rod.2.cell.7",
+    "slot.figure.group1.rod.2.cell.8",
+    "slot.figure.group1.rod.2.cell.9",
+    "slot.figure.group2.rod.1.cell.1",
+    "slot.figure.group2.rod.1.cell.2",
+    "slot.figure.group2.rod.1.cell.3",
+    "slot.figure.group2.rod.1.cell.4",
+    "slot.figure.group2.rod.1.cell.5",
+    "slot.figure.group2.rod.1.cell.6",
+    "slot.figure.group2.rod.1.cell.7",
+    "slot.figure.group2.rod.1.cell.8",
+    "slot.figure.group2.rod.1.cell.9",
+    "slot.figure.group2.rod.2.cell.1",
+    "slot.figure.group2.rod.2.cell.2",
+    "slot.figure.group2.rod.2.cell.3",
+    "slot.figure.group2.rod.2.cell.4",
+    "slot.figure.group2.rod.2.cell.5",
+    "slot.figure.group2.rod.2.cell.6",
+    "slot.figure.group2.rod.2.cell.7",
+    "slot.figure.group2.rod.2.cell.8",
+    "slot.figure.group2.rod.2.cell.9",
+    "slot.figure.group3.rod.1.cell.1",
+    "slot.figure.group3.rod.1.cell.2",
+    "slot.figure.group3.rod.1.cell.3",
+    "slot.figure.group3.rod.1.cell.4",
+    "slot.figure.group3.rod.1.cell.5",
+    "slot.figure.group3.rod.1.cell.6",
+    "slot.figure.group3.rod.1.cell.7",
+    "slot.figure.group3.rod.1.cell.8",
+    "slot.figure.group3.rod.1.cell.9",
+    "slot.figure.group3.rod.2.cell.1",
+    "slot.figure.group3.rod.2.cell.2",
+    "slot.figure.group3.rod.2.cell.3",
+    "slot.figure.group3.rod.2.cell.4",
+    "slot.figure.group3.rod.2.cell.5",
+    "slot.figure.group3.rod.2.cell.6",
+    "slot.figure.group3.rod.2.cell.7",
+    "slot.figure.group3.rod.2.cell.8",
+    "slot.figure.group3.rod.2.cell.9",
     "slot.equation",
-    "region.options",
-    "slot.opt1_num",
-    "slot.opt2_num",
-    "slot.opt3_num",
-    "slot.opt4_num",
-    "slot.opt5_num",
-    "slot.opt1_text",
-    "slot.opt2_text",
-    "slot.opt3_text",
-    "slot.opt4_text",
-    "slot.opt5_text"
+    "region.choices",
+    "slot.choice.1.marker",
+    "slot.choice.1.value",
+    "slot.choice.2.marker",
+    "slot.choice.2.value",
+    "slot.choice.3.marker",
+    "slot.choice.3.value",
+    "slot.choice.4.marker",
+    "slot.choice.4.value",
+    "slot.choice.5.marker",
+    "slot.choice.5.value",
+    "region.answer",
+    "slot.answer",
+    "slot.explanation"
   ]
 }

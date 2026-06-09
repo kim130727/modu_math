@@ -16,8 +16,7 @@
       "slot_ids": [
         "slot.q1",
         "slot.q2",
-        "slot.q3",
-        "slot.q4"
+        "slot.q3"
       ]
     },
     {
@@ -27,17 +26,14 @@
       "slot_ids": [
         "slot.circle",
         "slot.center",
-        "slot.pt.g",
-        "slot.pt.n",
-        "slot.pt.d",
-        "slot.pt.r",
         "slot.line.gr",
         "slot.line.nr",
         "slot.line.cd",
         "slot.lb.g",
         "slot.lb.n",
         "slot.lb.d",
-        "slot.lb.r"
+        "slot.lb.r",
+        "slot.lb.d.copy2"
       ]
     },
     {
@@ -53,11 +49,11 @@
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "□ 20. 그림을 보고 알맞은 말을 선택하세요.",
+        "text": "그림을 보고 알맞은 말을 선택하세요.",
         "style_role": "question",
-        "x": 12.0,
-        "y": 28.0,
-        "font_size": 28
+        "x": 40.0,
+        "y": 35.0,
+        "font_size": 30
       }
     },
     {
@@ -65,11 +61,11 @@
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "길이가 가장 긴 선분은 선분 ( ㄱㄹ, ㄴㄹ, ㅇㄹ )이고, 이 선분을 원의 (",
+        "text": "길이가 가장 긴 선분은 선분 ( ㄱㄹ, ㄴㄹ, ㅇㄹ )이고,",
         "style_role": "question",
-        "x": 35.0,
-        "y": 226.0,
-        "font_size": 28
+        "x": 40.0,
+        "y": 310.0,
+        "font_size": 30
       }
     },
     {
@@ -77,23 +73,11 @@
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "지름, 반지름 )이라고 합니다.",
+        "text": " 이 선분을 원의 (지름, 반지름 )이라고 합니다.",
         "style_role": "question",
-        "x": 35.0,
-        "y": 264.0,
-        "font_size": 28
-      }
-    },
-    {
-      "id": "slot.q4",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": ")",
-        "style_role": "question",
-        "x": 8.0,
-        "y": 352.0,
-        "font_size": 28
+        "x": 45.0,
+        "y": 355.0,
+        "font_size": 30
       }
     },
     {
@@ -101,9 +85,9 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 541.0,
-        "cy": 126.0,
-        "r": 61.0,
+        "cx": 430.0,
+        "cy": 165.0,
+        "r": 115.0,
         "fill": "none"
       }
     },
@@ -112,54 +96,10 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 541.0,
-        "cy": 126.0,
-        "r": 3.0,
+        "cx": 430.0,
+        "cy": 165.0,
+        "r": 5.0,
         "fill": "#d81b60"
-      }
-    },
-    {
-      "id": "slot.pt.g",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 534.0,
-        "cy": 67.0,
-        "r": 3.5,
-        "fill": "#222222"
-      }
-    },
-    {
-      "id": "slot.pt.n",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 478.0,
-        "cy": 177.0,
-        "r": 3.5,
-        "fill": "#222222"
-      }
-    },
-    {
-      "id": "slot.pt.d",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 571.0,
-        "cy": 196.0,
-        "r": 3.5,
-        "fill": "#222222"
-      }
-    },
-    {
-      "id": "slot.pt.r",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 596.0,
-        "cy": 112.0,
-        "r": 3.5,
-        "fill": "#222222"
       }
     },
     {
@@ -169,9 +109,9 @@
       "content": {
         "text": "ㄱ",
         "style_role": "label",
-        "x": 521.0,
-        "y": 54.0,
-        "font_size": 28
+        "x": 390.0,
+        "y": 75.0,
+        "font_size": 30
       }
     },
     {
@@ -181,9 +121,9 @@
       "content": {
         "text": "ㄴ",
         "style_role": "label",
-        "x": 455.0,
-        "y": 182.0,
-        "font_size": 28
+        "x": 295.0,
+        "y": 225.0,
+        "font_size": 30
       }
     },
     {
@@ -193,9 +133,9 @@
       "content": {
         "text": "ㄷ",
         "style_role": "label",
-        "x": 572.0,
-        "y": 220.0,
-        "font_size": 28
+        "x": 495.0,
+        "y": 285.0,
+        "font_size": 30
       }
     },
     {
@@ -205,9 +145,9 @@
       "content": {
         "text": "ㄹ",
         "style_role": "label",
-        "x": 606.0,
-        "y": 108.0,
-        "font_size": 28
+        "x": 545.0,
+        "y": 130.0,
+        "font_size": 30
       }
     },
     {
@@ -215,10 +155,10 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 534.0,
-        "y1": 67.0,
-        "x2": 596.0,
-        "y2": 112.0
+        "x1": 415.0,
+        "y1": 50.0,
+        "x2": 540.0,
+        "y2": 125.0
       }
     },
     {
@@ -226,10 +166,10 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 478.0,
-        "y1": 177.0,
-        "x2": 596.0,
-        "y2": 112.0
+        "x1": 325.0,
+        "y1": 210.0,
+        "x2": 540.0,
+        "y2": 125.0
       }
     },
     {
@@ -237,10 +177,23 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 541.0,
-        "y1": 126.0,
-        "x2": 571.0,
-        "y2": 196.0
+        "x1": 430.0,
+        "y1": 165.0,
+        "x2": 495.0,
+        "y2": 260.0
+      }
+    },
+    {
+      "id": "slot.lb.d.copy2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㅇ",
+        "style_role": "body",
+        "x": 415.0,
+        "y": 160.0,
+        "font_size": 30,
+        "fill": "#111111"
       }
     }
   ],
@@ -252,14 +205,9 @@
     "slot.q1",
     "slot.q2",
     "slot.q3",
-    "slot.q4",
     "region.diagram",
     "slot.circle",
     "slot.center",
-    "slot.pt.g",
-    "slot.pt.n",
-    "slot.pt.d",
-    "slot.pt.r",
     "slot.line.gr",
     "slot.line.nr",
     "slot.line.cd",
@@ -267,6 +215,7 @@
     "slot.lb.n",
     "slot.lb.d",
     "slot.lb.r",
+    "slot.lb.d.copy2",
     "region.explain"
   ]
 }

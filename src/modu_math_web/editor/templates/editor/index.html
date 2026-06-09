@@ -155,6 +155,7 @@
     .svg-box svg .selection-handle[data-handle="ne"],
     .svg-box svg .selection-handle[data-handle="sw"] { cursor: nesw-resize; }
     .svg-box svg .selection-handle[data-handle="c"] { cursor: move; fill: #0f766e; }
+    .svg-box svg .selection-handle[data-handle="r"] { cursor: grab; fill: #f59e0b; stroke: #92400e; }
     .inline-text-editor {
       position: absolute;
       display: none;
@@ -502,6 +503,86 @@
       const top = Math.min(...ys);
       const bottom = Math.max(...ys);
       return { left, top, right, bottom, width: right - left, height: bottom - top };
+    }
+
+    function clientRectToSvgBox(svg, rect) {
+      if (!svg || !rect || rect.width < 0 || rect.height < 0) return null;
+      const ctm = svg.getScreenCTM();
+      if (!ctm) return null;
+      const point = svg.createSVGPoint();
+      const inv = ctm.inverse();
+      const corners = [
+        [rect.left, rect.top],
+        [rect.right, rect.top],
+        [rect.right, rect.bottom],
+        [rect.left, rect.bottom],
+      ].map(([x, y]) => {
+        point.x = x;
+        point.y = y;
+        return point.matrixTransform(inv);
+      });
+      const xs = corners.map((p) => p.x);
+      const ys = corners.map((p) => p.y);
+      const minX = Math.min(...xs);
+      const minY = Math.min(...ys);
+      const maxX = Math.max(...xs);
+      const maxY = Math.max(...ys);
+      return { x: minX, y: minY, width: maxX - minX, height: maxY - minY };
+    }
+
+    function inflatedBoxForStroke(el, box) {
+      if (!el || !box) return box;
+      const raw = el.getAttribute("stroke-width") || el.style?.getPropertyValue("stroke-width") || "0";
+      const strokeWidth = Number.parseFloat(raw);
+      const pad = Number.isFinite(strokeWidth) ? strokeWidth / 2 : 0;
+      if (pad <= 0) return box;
+      return {
+        x: box.x - pad,
+        y: box.y - pad,
+        width: box.width + pad * 2,
+        height: box.height + pad * 2,
+      };
+    }
+
+    function visualSvgBox(el, svg) {
+      if (!el || !svg) return null;
+      const wasSelected = el.classList.contains("slot-selected");
+      if (wasSelected) el.classList.remove("slot-selected");
+      try {
+        const rect = el.getBoundingClientRect && el.getBoundingClientRect();
+        if (rect && (rect.width > 0 || rect.height > 0)) {
+          return inflatedBoxForStroke(el, clientRectToSvgBox(svg, rect));
+        }
+      } catch (_) {
+        // Fall through to geometry bbox.
+      } finally {
+        if (wasSelected) el.classList.add("slot-selected");
+      }
+      try {
+        const raw = el.getBBox();
+        const ctm = el.getCTM && el.getCTM();
+        if (!ctm) return inflatedBoxForStroke(el, raw);
+        const point = svg.createSVGPoint();
+        const corners = [
+          [raw.x, raw.y],
+          [raw.x + raw.width, raw.y],
+          [raw.x + raw.width, raw.y + raw.height],
+          [raw.x, raw.y + raw.height],
+        ].map(([x, y]) => {
+          point.x = x;
+          point.y = y;
+          return point.matrixTransform(ctm);
+        });
+        const xs = corners.map((p) => p.x);
+        const ys = corners.map((p) => p.y);
+        const minX = Math.min(...xs);
+        const minY = Math.min(...ys);
+        const maxX = Math.max(...xs);
+        const maxY = Math.max(...ys);
+        return inflatedBoxForStroke(el, { x: minX, y: minY, width: maxX - minX, height: maxY - minY });
+      } catch (_) {
+        return null;
+      }
     }
 
     function hideInlineTextEditor() {
@@ -996,6 +1077,11 @@
 
     function readSlotPatchValue(el) {
       const tag = el.tagName.toLowerCase();
+      const transform = el.getAttribute("transform") || "";
+      const withTransform = (value) => {
+        if (transform) value.transform = transform;
+        return value;
+      };
       const styleAttrs = (names) => {
         const out = {};
         for (const name of names) {
@@ -1006,16 +1092,16 @@
         return out;
       };
       if (tag === "text") {
-        return {
+        return withTransform({
           text: el.textContent || "",
           x: Number(el.getAttribute("x") || 0),
           y: Number(el.getAttribute("y") || 0),
           font_size: Number(el.getAttribute("font-size") || el.getAttribute("font_size") || 0) || undefined,
           ...styleAttrs(["fill"]),
-        };
+        });
       }
       if (tag === "rect") {
-        return {
+        return withTransform({
           x: Number(el.getAttribute("x") || 0),
           y: Number(el.getAttribute("y") || 0),
           width: Number(el.getAttribute("width") || 0),
@@ -1023,41 +1109,64 @@
           rx: Number(el.getAttribute("rx") || 0) || undefined,
           ry: Number(el.getAttribute("ry") || 0) || undefined,
           ...styleAttrs(["fill", "stroke", "stroke_width"]),
-        };
+        });
       }
       if (tag === "circle") {
-        return {
+        return withTransform({
           cx: Number(el.getAttribute("cx") || 0),
           cy: Number(el.getAttribute("cy") || 0),
           r: Number(el.getAttribute("r") || 0),
           ...styleAttrs(["fill", "stroke", "stroke_width"]),
-        };
+        });
       }
       if (tag === "line") {
-        return {
+        return withTransform({
           x1: Number(el.getAttribute("x1") || 0),
           y1: Number(el.getAttribute("y1") || 0),
           x2: Number(el.getAttribute("x2") || 0),
           y2: Number(el.getAttribute("y2") || 0),
           ...styleAttrs(["stroke", "stroke_width", "stroke_dasharray"]),
-        };
+        });
       }
       if (tag === "path") {
-        return { d: el.getAttribute("d") || "", ...styleAttrs(["fill", "stroke", "stroke_width", "stroke_dasharray"]) };
+        return withTransform({ d: el.getAttribute("d") || "", ...styleAttrs(["fill", "stroke", "stroke_width", "stroke_dasharray"]) });
       }
       if (tag === "polygon") {
-        const raw = el.getAttribute("points") || "";
-        const pts = raw
-          .trim()
-          .split(/\s+/)
-          .filter(Boolean)
-          .map((pair) => {
-            const [x, y] = pair.split(",");
-            return [Number(x), Number(y)];
-          });
-        return { points: pts, ...styleAttrs(["fill", "stroke", "stroke_width"]) };
+        const pts = parsePolygonPoints(el.getAttribute("points") || "");
+        return withTransform({ points: pts, ...styleAttrs(["fill", "stroke", "stroke_width"]) });
       }
       return null;
+    }
+
+    function parseRotateTransform(transform) {
+      const m = String(transform || "").match(/rotate\(\s*(-?\d+(?:\.\d+)?)\s+(-?\d+(?:\.\d+)?)\s+(-?\d+(?:\.\d+)?)\s*\)/);
+      if (!m) return { angle: 0, cx: null, cy: null };
+      return { angle: Number(m[1]) || 0, cx: Number(m[2]), cy: Number(m[3]) };
+    }
+
+    function rotateTransform(angle, cx, cy) {
+      const roundedAngle = Math.abs(angle) < 0.0001 ? 0 : Number(angle.toFixed(2));
+      const rx = Number(cx.toFixed(2));
+      const ry = Number(cy.toFixed(2));
+      return `rotate(${roundedAngle} ${rx} ${ry})`;
+    }
+
+    function rotationValueFromPointer(startValue, startBox, startPoint, pointerPoint) {
+      const cx = startBox.x + startBox.width / 2;
+      const cy = startBox.y + startBox.height / 2;
+      const a0 = Math.atan2(startPoint.y - cy, startPoint.x - cx);
+      const a1 = Math.atan2(pointerPoint.y - cy, pointerPoint.x - cx);
+      const prior = parseRotateTransform(startValue && startValue.transform);
+      let angle = prior.angle + ((a1 - a0) * 180) / Math.PI;
+      if (snapEnabled) angle = Math.round(angle / 5) * 5;
+      return { ...startValue, transform: rotateTransform(angle, cx, cy) };
+    }
+
+    function rotationValuesForGroup(startEntries, startBox, startPoint, pointerPoint) {
+      return (startEntries || []).map((entry) => ({
+        ...entry,
+        value: rotationValueFromPointer(entry.value, startBox, startPoint, pointerPoint),
+      }));
     }
 
     function shiftPathD(d, dx, dy, useSnap = true) {
@@ -1072,6 +1181,38 @@
         return useSnap ? snapValue(nv) : nv;
       });
       return shifted.replace(/__N(\d+)__/g, (_, i) => String(moved[Number(i)]));
+    }
+
+    function scalePathD(d, startBox, nextBox, useSnap = true) {
+      const snap = (v) => (useSnap ? snapValue(v) : v);
+      const sx = nextBox.width / Math.max(startBox.width, 1);
+      const sy = nextBox.height / Math.max(startBox.height, 1);
+      const values = [];
+      const shifted = (d || "").replace(/-?\d*\.?\d+(?:e[-+]?\d+)?/gi, (m) => {
+        values.push(Number(m));
+        return `__N${values.length - 1}__`;
+      });
+      const scaled = values.map((v, idx) => {
+        if (idx % 2 === 0) return snap(nextBox.x + (v - startBox.x) * sx);
+        return snap(nextBox.y + (v - startBox.y) * sy);
+      });
+      return shifted.replace(/__N(\d+)__/g, (_, i) => String(scaled[Number(i)]));
+    }
+
+    function parsePolygonPoints(raw) {
+      return (raw || "")
+        .trim()
+        .split(/\s+/)
+        .filter(Boolean)
+        .map((pair) => {
+          const [x, y] = pair.split(",");
+          return [Number(x), Number(y)];
+        })
+        .filter(([x, y]) => Number.isFinite(x) && Number.isFinite(y));
+    }
+
+    function formatPolygonPoints(points) {
+      return points.map(([x, y]) => `${x},${y}`).join(" ");
     }
 
     function applyElementDelta(el, dx, dy, useSnap = true) {
@@ -1108,21 +1249,13 @@
         return { d: nd };
       }
       if (tag === "polygon") {
-        const raw = el.getAttribute("points") || "";
-        const pts = raw
-          .trim()
-          .split(/\s+/)
-          .filter(Boolean)
-          .map((pair) => {
-            const [x, y] = pair.split(",");
-            return [Number(x), Number(y)];
-          });
+        const pts = parsePolygonPoints(el.getAttribute("points") || "");
         const moved = pts.map(([x, y]) => {
           const nx = useSnap ? snapValue(x + dx) : x + dx;
           const ny = useSnap ? snapValue(y + dy) : y + dy;
           return [nx, ny];
         });
-        el.setAttribute("points", moved.map(([x, y]) => `${x},${y}`).join(" "));
+        el.setAttribute("points", formatPolygonPoints(moved));
         return { points: moved };
       }
       return null;
@@ -1137,7 +1270,7 @@
       const bounds = document.createElementNS("http://www.w3.org/2000/svg", "rect");
       bounds.setAttribute("class", "selection-bounds");
       layer.appendChild(bounds);
-      for (const name of ["nw", "n", "ne", "w", "c", "e", "sw", "s", "se"]) {
+      for (const name of ["r", "nw", "n", "ne", "w", "c", "e", "sw", "s", "se"]) {
         const handle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
         handle.setAttribute("class", "selection-handle");
         handle.setAttribute("data-handle", name);
@@ -1157,7 +1290,7 @@
       if (item.isCharacterGroup) return null;
       if (item.isFigureGroup) return item;
       const tag = item.el.tagName.toLowerCase();
-      if (!["text", "rect", "circle", "line"].includes(tag)) return null;
+      if (!["text", "rect", "circle", "line", "path", "polygon"].includes(tag)) return null;
       return item;
     }
 
@@ -1165,14 +1298,12 @@
       if (item && item.isCanvas) {
         return getSvgCanvasBounds();
       }
+      const svg = document.getElementById("svgPreview").querySelector("svg");
       const elements = item && (item.isFigureGroup || item.isFraction) ? (item.elements || []) : [item.el];
       const boxes = [];
       for (const el of elements) {
-        try {
-          boxes.push(el.getBBox());
-        } catch (_) {
-          // Ignore elements that do not expose a bbox.
-        }
+        const box = visualSvgBox(el, svg);
+        if (box) boxes.push(box);
       }
       if (!boxes.length) return null;
       const minX = Math.min(...boxes.map((b) => b.x));
@@ -1211,6 +1342,7 @@
         nw: [x, y],
         n: [x + w / 2, y],
         ne: [x + w, y],
+        r: [x + w / 2, y - 24],
         w: [x, y + h / 2],
         c: [x + w / 2, y + h / 2],
         e: [x + w, y + h / 2],
@@ -1308,6 +1440,16 @@
           el.setAttribute("y2", String(y2));
           return { x1, y1, x2, y2 };
         }
+        if (tag === "path") {
+          const d = shiftPathD(startValue.d || "", dx, dy);
+          el.setAttribute("d", d);
+          return { d };
+        }
+        if (tag === "polygon") {
+          const points = (startValue.points || []).map(([x, y]) => [snap(x + dx), snap(y + dy)]);
+          el.setAttribute("points", formatPolygonPoints(points));
+          return { points };
+        }
         return null;
       }
       if (tag === "rect") {
@@ -1359,6 +1501,19 @@
         el.setAttribute("font-size", String(fontSize));
         return { x, y, font_size: fontSize };
       }
+      if (tag === "path") {
+        const d = scalePathD(startValue.d || "", startBox, nextBox);
+        el.setAttribute("d", d);
+        return { d };
+      }
+      if (tag === "polygon") {
+        const points = (startValue.points || []).map(([x, y]) => {
+          const p = mapPointBetweenBoxes(x, y, startBox, nextBox);
+          return [snap(p.x), snap(p.y)];
+        });
+        el.setAttribute("points", formatPolygonPoints(points));
+        return { points };
+      }
       return null;
     }
 
@@ -1404,6 +1559,21 @@
         const p1 = mapPointBetweenBoxes(startValue.x1, startValue.y1, startBox, nextBox);
         const p2 = mapPointBetweenBoxes(startValue.x2, startValue.y2, startBox, nextBox);
         const out = { x1: snap(p1.x), y1: snap(p1.y), x2: snap(p2.x), y2: snap(p2.y) };
+        applyPatchValueToElement(el, out);
+        return out;
+      }
+      if (tag === "path") {
+        const out = { d: scalePathD(startValue.d || "", startBox, nextBox) };
+        applyPatchValueToElement(el, out);
+        return out;
+      }
+      if (tag === "polygon") {
+        const out = {
+          points: (startValue.points || []).map(([x, y]) => {
+            const p = mapPointBetweenBoxes(x, y, startBox, nextBox);
+            return [snap(p.x), snap(p.y)];
+          }),
+        };
         applyPatchValueToElement(el, out);
         return out;
       }
@@ -1565,6 +1735,10 @@
 
     function applyPatchValueToElement(el, value) {
       const tag = el.tagName.toLowerCase();
+      if (value.transform !== undefined) {
+        if (value.transform) el.setAttribute("transform", String(value.transform));
+        else el.removeAttribute("transform");
+      }
       if (tag === "text") {
         if (value.text !== undefined) el.textContent = String(value.text);
         if (value.x !== undefined) el.setAttribute("x", String(value.x));
@@ -1870,6 +2044,21 @@
     function updateResize(ev) {
       if (!resizeState) return;
       const p = resizeState.item.isCanvas ? null : getSvgPoint(resizeState.svg, ev.clientX, ev.clientY);
+      if (resizeState.handle === "r" && !resizeState.item.isCanvas) {
+        const value = resizeState.item.isFigureGroup
+          ? rotationValuesForGroup(resizeState.startValue, resizeState.startBox, resizeState.startPoint, p)
+          : rotationValueFromPointer(resizeState.startValue, resizeState.startBox, resizeState.startPoint, p);
+        if (Array.isArray(value)) {
+          for (const entry of value) applyPatchValueToElement(entry.el, entry.value);
+        } else {
+          applyPatchValueToElement(resizeState.item.el, value);
+        }
+        resizeState.lastValue = value;
+        resizeState.moved = true;
+        updateSelectionHandles();
+        setStatus(`회전 중: ${resizeState.item.slotId}`, true);
+        return;
+      }
       const dx = resizeState.item.isCanvas
         ? (ev.clientX - resizeState.startClientX) * resizeState.canvasScaleX
         : p.x - resizeState.startPoint.x;
@@ -2203,14 +2392,14 @@
             continue;
           }
           if (item.isFigureGroup) {
-            for (const node of item.elements || []) {
-              const sid = slotIdFromElement(node);
-              const value = snapPatchValue(readSlotPatchValue(node));
-              if (!sid || !value) continue;
-              applyPatchValueToElement(node, value);
-              after.push({ slotId: sid, value: JSON.parse(JSON.stringify(value)) });
-              patches.push({ target: sid, op: "update", value });
+            const snappedMove = snapPatchValue({ move_dx: local.totalDx, move_dy: local.totalDy });
+            const fixDx = snappedMove.move_dx - local.totalDx;
+            const fixDy = snappedMove.move_dy - local.totalDy;
+            if (fixDx !== 0 || fixDy !== 0) {
+              for (const node of item.elements || []) applyElementDelta(node, fixDx, fixDy, false);
             }
+            patches.push({ target: item.slotId, op: "update", value: snappedMove });
+            after.push({ slotId: item.slotId, value: snappedMove });
             continue;
           }
           const value = snapPatchValue(readSlotPatchValue(item.el));
