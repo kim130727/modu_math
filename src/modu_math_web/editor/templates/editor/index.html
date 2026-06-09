@@ -585,6 +585,15 @@
       }
     }
 
+    function geometrySvgBox(el) {
+      if (!el || !el.getBBox) return null;
+      try {
+        return inflatedBoxForStroke(el, el.getBBox());
+      } catch (_) {
+        return null;
+      }
+    }
+
     function hideInlineTextEditor() {
       const editor = document.getElementById("inlineTextEditor");
       if (editor) editor.style.display = "none";
@@ -1144,6 +1153,19 @@
       return { angle: Number(m[1]) || 0, cx: Number(m[2]), cy: Number(m[3]) };
     }
 
+    function pointInRotatedFrame(point, rotation) {
+      if (!rotation || !rotation.angle || rotation.cx === null || rotation.cy === null) return point;
+      const radians = (-rotation.angle * Math.PI) / 180;
+      const cos = Math.cos(radians);
+      const sin = Math.sin(radians);
+      const dx = point.x - rotation.cx;
+      const dy = point.y - rotation.cy;
+      return {
+        x: rotation.cx + dx * cos - dy * sin,
+        y: rotation.cy + dx * sin + dy * cos,
+      };
+    }
+
     function rotateTransform(angle, cx, cy) {
       const roundedAngle = Math.abs(angle) < 0.0001 ? 0 : Number(angle.toFixed(2));
       const rx = Number(cx.toFixed(2));
@@ -1299,6 +1321,11 @@
         return getSvgCanvasBounds();
       }
       const svg = document.getElementById("svgPreview").querySelector("svg");
+      if (item && !item.isFigureGroup && !item.isFraction && item.el) {
+        const rotation = parseRotateTransform(item.el.getAttribute("transform") || "");
+        const rawBox = geometrySvgBox(item.el);
+        if (rawBox && rotation.angle && rotation.cx !== null && rotation.cy !== null) return rawBox;
+      }
       const elements = item && (item.isFigureGroup || item.isFraction) ? (item.elements || []) : [item.el];
       const boxes = [];
       for (const el of elements) {
@@ -1313,6 +1340,13 @@
       return { x: minX, y: minY, width: maxX - minX, height: maxY - minY };
     }
 
+    function selectionTransformForItem(item) {
+      if (!item || item.isCanvas || item.isFigureGroup || item.isFraction || !item.el) return { transform: "", rotation: null };
+      const rotation = parseRotateTransform(item.el.getAttribute("transform") || "");
+      if (!rotation.angle || rotation.cx === null || rotation.cy === null) return { transform: "", rotation: null };
+      return { transform: rotateTransform(rotation.angle, rotation.cx, rotation.cy), rotation };
+    }
+
     function updateSelectionHandles() {
       const svg = document.getElementById("svgPreview").querySelector("svg");
       if (!svg) return;
@@ -1320,13 +1354,18 @@
       const item = selectedResizableItem();
       if (!item) {
         layer.style.display = "none";
+        layer.removeAttribute("transform");
         return;
       }
       const box = itemBBox(item);
       if (!box || box.width < 0 || box.height < 0) {
         layer.style.display = "none";
+        layer.removeAttribute("transform");
         return;
       }
+      const selectionTransform = selectionTransformForItem(item);
+      if (selectionTransform.transform) layer.setAttribute("transform", selectionTransform.transform);
+      else layer.removeAttribute("transform");
       const minSize = 1;
       const x = box.x;
       const y = box.y;
@@ -1781,27 +1820,31 @@
 
     function snapPatchValue(value) {
       if (!snapEnabled || !value) return value;
+      const keepTransform = (out) => {
+        if (value.transform !== undefined) out.transform = value.transform;
+        return out;
+      };
       if (value.x !== undefined && value.y !== undefined) {
         const out = { x: snapValue(value.x), y: snapValue(value.y) };
         if (value.text !== undefined) out.text = value.text;
         if (value.width !== undefined) out.width = snapValue(value.width);
         if (value.height !== undefined) out.height = snapValue(value.height);
         if (value.font_size !== undefined) out.font_size = snapValue(value.font_size);
-        return out;
+        return keepTransform(out);
       }
-      if (value.text !== undefined) return { text: value.text };
+      if (value.text !== undefined) return keepTransform({ text: value.text });
       if (value.cx !== undefined && value.cy !== undefined) {
         const out = { cx: snapValue(value.cx), cy: snapValue(value.cy) };
         if (value.r !== undefined) out.r = snapValue(value.r);
-        return out;
+        return keepTransform(out);
       }
       if (value.x1 !== undefined && value.y1 !== undefined) {
-        return {
+        return keepTransform({
           x1: snapValue(value.x1),
           y1: snapValue(value.y1),
           x2: snapValue(value.x2),
           y2: snapValue(value.y2),
-        };
+        });
       }
       if (value.move_dx !== undefined && value.move_dy !== undefined) {
         return { move_dx: snapValue(value.move_dx), move_dy: snapValue(value.move_dy) };
@@ -2014,11 +2057,15 @@
         : readSlotPatchValue(item.el);
       if (!startValue || (Array.isArray(startValue) && !startValue.length)) return;
       const handle = ev.currentTarget.getAttribute("data-handle") || "c";
+      const startGlobalPoint = getSvgPoint(svg, ev.clientX, ev.clientY);
+      const selectionRotation = selectionTransformForItem(item).rotation;
       resizeState = {
         svg,
         item,
         handle,
-        startPoint: getSvgPoint(svg, ev.clientX, ev.clientY),
+        startPoint: pointInRotatedFrame(startGlobalPoint, selectionRotation),
+        startGlobalPoint,
+        selectionRotation,
         startClientX: ev.clientX,
         startClientY: ev.clientY,
         canvasScaleX,
@@ -2043,11 +2090,12 @@
 
     function updateResize(ev) {
       if (!resizeState) return;
-      const p = resizeState.item.isCanvas ? null : getSvgPoint(resizeState.svg, ev.clientX, ev.clientY);
+      const rawPoint = resizeState.item.isCanvas ? null : getSvgPoint(resizeState.svg, ev.clientX, ev.clientY);
+      const p = rawPoint ? pointInRotatedFrame(rawPoint, resizeState.selectionRotation) : null;
       if (resizeState.handle === "r" && !resizeState.item.isCanvas) {
         const value = resizeState.item.isFigureGroup
-          ? rotationValuesForGroup(resizeState.startValue, resizeState.startBox, resizeState.startPoint, p)
-          : rotationValueFromPointer(resizeState.startValue, resizeState.startBox, resizeState.startPoint, p);
+          ? rotationValuesForGroup(resizeState.startValue, resizeState.startBox, resizeState.startGlobalPoint, rawPoint)
+          : rotationValueFromPointer(resizeState.startValue, resizeState.startBox, resizeState.startGlobalPoint, rawPoint);
         if (Array.isArray(value)) {
           for (const entry of value) applyPatchValueToElement(entry.el, entry.value);
         } else {
@@ -2080,6 +2128,17 @@
             nextBox
           );
       if (!value) return;
+      if (!Array.isArray(value) && resizeState.startValue && resizeState.startValue.transform && value.transform === undefined) {
+        value.transform = resizeState.startValue.transform;
+      }
+      if (Array.isArray(value)) {
+        for (const entry of value) {
+          const startEntry = (resizeState.startValue || []).find((s) => s.slotId === entry.slotId);
+          if (startEntry && startEntry.value && startEntry.value.transform && entry.value.transform === undefined) {
+            entry.value.transform = startEntry.value.transform;
+          }
+        }
+      }
       resizeState.lastValue = value;
       resizeState.moved = true;
       updateSelectionHandles();
