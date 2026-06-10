@@ -16,48 +16,34 @@
       "slot_ids": [
         "slot.expr.left",
         "slot.expr.right",
-        "slot.qbox",
         "slot.qtext",
         "slot.opt.1",
         "slot.opt.2",
         "slot.opt.3",
         "slot.opt.4",
-        "slot.opt.5"
+        "slot.opt.5",
+        "slot.qtext.copy2",
+        "slot.qtext.copy3"
       ]
     },
     {
       "id": "region.answer_explanation",
       "role": "explanation",
       "flow": "absolute",
-      "slot_ids": [
-        "slot.ans",
-        "slot.exp"
-      ]
+      "slot_ids": []
     }
   ],
   "slots": [
-    {
-      "id": "slot.qbox",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "□",
-        "style_role": "question",
-        "x": 9.0,
-        "y": 28.0,
-        "font_size": 28
-      }
-    },
     {
       "id": "slot.qtext",
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "7. 다음 두 식의 계산 결과가 같을 때 □ 안에 알맞은 수를 고르세요.",
+        "text": "다음 두 식의 계산 결과가 같을 때 □ 안에 알맞은 수를 고르세요.",
         "style_role": "question",
-        "x": 38.0,
-        "y": 28.0,
-        "font_size": 28
+        "x": 35.0,
+        "y": 55.0,
+        "font_size": 30
       }
     },
     {
@@ -65,10 +51,10 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 231.0,
-        "y": 50.0,
+        "x": 220.0,
+        "y": 83.0,
         "width": 175.0,
-        "height": 43.0
+        "height": 45.0
       }
     },
     {
@@ -76,10 +62,10 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 462.0,
-        "y": 50.0,
-        "width": 187.0,
-        "height": 43.0
+        "x": 460.0,
+        "y": 83.0,
+        "width": 185.0,
+        "height": 45.0
       }
     },
     {
@@ -89,9 +75,9 @@
       "content": {
         "text": "① 2",
         "style_role": "question",
-        "x": 17.0,
-        "y": 130.0,
-        "font_size": 28
+        "x": 40.0,
+        "y": 185.0,
+        "font_size": 30
       }
     },
     {
@@ -101,9 +87,9 @@
       "content": {
         "text": "② 3",
         "style_role": "question",
-        "x": 250.0,
-        "y": 130.0,
-        "font_size": 28
+        "x": 175.0,
+        "y": 185.0,
+        "font_size": 30
       }
     },
     {
@@ -113,9 +99,9 @@
       "content": {
         "text": "③ 4",
         "style_role": "question",
-        "x": 582.0,
-        "y": 130.0,
-        "font_size": 28
+        "x": 310.0,
+        "y": 185.0,
+        "font_size": 30
       }
     },
     {
@@ -125,9 +111,9 @@
       "content": {
         "text": "④ 6",
         "style_role": "question",
-        "x": 17.0,
-        "y": 184.0,
-        "font_size": 28
+        "x": 455.0,
+        "y": 185.0,
+        "font_size": 30
       }
     },
     {
@@ -137,33 +123,35 @@
       "content": {
         "text": "⑤ 8",
         "style_role": "question",
-        "x": 250.0,
-        "y": 184.0,
-        "font_size": 28
+        "x": 600.0,
+        "y": 185.0,
+        "font_size": 30
       }
     },
     {
-      "id": "slot.ans",
+      "id": "slot.qtext.copy2",
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "(정답) ③",
-        "style_role": "supporting",
-        "x": 17.0,
-        "y": 240.0,
-        "font_size": 22
+        "text": "□ × 4",
+        "style_role": "body",
+        "x": 505.0,
+        "y": 118.0,
+        "font_size": 30,
+        "fill": "#111111"
       }
     },
     {
-      "id": "slot.exp",
+      "id": "slot.qtext.copy3",
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "(해설) 80 ÷ 5 = 16이고 □ × 4 = 16에서 4 × 4 = 16이므로 □ = 4입니다.",
-        "style_role": "supporting",
-        "x": 17.0,
-        "y": 280.0,
-        "font_size": 20
+        "text": "80 ÷ 5",
+        "style_role": "body",
+        "x": 260.0,
+        "y": 118.0,
+        "font_size": 30,
+        "fill": "#111111"
       }
     }
   ],
@@ -174,15 +162,14 @@
     "region.stem",
     "slot.expr.left",
     "slot.expr.right",
-    "slot.qbox",
     "slot.qtext",
     "slot.opt.1",
     "slot.opt.2",
     "slot.opt.3",
     "slot.opt.4",
     "slot.opt.5",
-    "region.answer_explanation",
-    "slot.ans",
-    "slot.exp"
+    "slot.qtext.copy2",
+    "slot.qtext.copy3",
+    "region.answer_explanation"
   ]
 }

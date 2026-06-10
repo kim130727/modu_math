@@ -7,49 +7,15 @@
   },
   "elements": [
     {
-      "id": "slot.qmark.text",
-      "type": "text",
-      "attributes": {
-        "x": 10.0,
-        "y": 28.0,
-        "max_width": 816.0,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
-      },
-      "source_ref": "slot.qmark",
-      "refs": {
-        "layout_slot_id": "slot.qmark"
-      },
-      "text": "□"
-    },
-    {
-      "id": "slot.qnum.text",
-      "type": "text",
-      "attributes": {
-        "x": 42.0,
-        "y": 28.0,
-        "max_width": 816.0,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
-      },
-      "source_ref": "slot.qnum",
-      "refs": {
-        "layout_slot_id": "slot.qnum"
-      },
-      "text": "5."
-    },
-    {
       "id": "slot.qtext1.text",
       "type": "text",
       "attributes": {
-        "x": 72.0,
-        "y": 28.0,
+        "x": 25.0,
+        "y": 35.0,
         "max_width": 816.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 30
       },
       "source_ref": "slot.qtext1",
       "refs": {
@@ -61,12 +27,12 @@
       "id": "slot.qtext2.text",
       "type": "text",
       "attributes": {
-        "x": 24.0,
-        "y": 62.0,
+        "x": 25.0,
+        "y": 85.0,
         "max_width": 816.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 30
       },
       "source_ref": "slot.qtext2",
       "refs": {
@@ -75,81 +41,13 @@
       "text": "카드의 수로 나누면 나머지는 얼마일까요?"
     },
     {
-      "id": "slot.card.6.text.text",
-      "type": "text",
-      "attributes": {
-        "x": 381.0,
-        "y": 127.0,
-        "max_width": 816.0,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
-      },
-      "source_ref": "slot.card.6.text",
-      "refs": {
-        "layout_slot_id": "slot.card.6.text"
-      },
-      "text": "6"
-    },
-    {
-      "id": "slot.card.8.text.text",
-      "type": "text",
-      "attributes": {
-        "x": 435.0,
-        "y": 127.0,
-        "max_width": 816.0,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
-      },
-      "source_ref": "slot.card.8.text",
-      "refs": {
-        "layout_slot_id": "slot.card.8.text"
-      },
-      "text": "8"
-    },
-    {
-      "id": "slot.card.9.text.text",
-      "type": "text",
-      "attributes": {
-        "x": 489.0,
-        "y": 127.0,
-        "max_width": 816.0,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
-      },
-      "source_ref": "slot.card.9.text",
-      "refs": {
-        "layout_slot_id": "slot.card.9.text"
-      },
-      "text": "9"
-    },
-    {
-      "id": "slot.card.7.text.text",
-      "type": "text",
-      "attributes": {
-        "x": 543.0,
-        "y": 127.0,
-        "max_width": 816.0,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
-      },
-      "source_ref": "slot.card.7.text",
-      "refs": {
-        "layout_slot_id": "slot.card.7.text"
-      },
-      "text": "7"
-    },
-    {
       "id": "slot.card.6.rect",
       "type": "rect",
       "attributes": {
-        "x": 366.0,
-        "y": 90.0,
+        "x": 320.0,
+        "y": 120.0,
         "width": 40.0,
-        "height": 54.0,
+        "height": 50.0,
         "fill": "#ffffff",
         "stroke": "#111111",
         "stroke-width": 1.5
@@ -163,10 +61,10 @@
       "id": "slot.card.8.rect",
       "type": "rect",
       "attributes": {
-        "x": 420.0,
-        "y": 90.0,
+        "x": 390.0,
+        "y": 120.0,
         "width": 40.0,
-        "height": 54.0,
+        "height": 50.0,
         "fill": "#ffffff",
         "stroke": "#111111",
         "stroke-width": 1.5
@@ -180,10 +78,10 @@
       "id": "slot.card.9.rect",
       "type": "rect",
       "attributes": {
-        "x": 474.0,
-        "y": 90.0,
+        "x": 460.0,
+        "y": 120.0,
         "width": 40.0,
-        "height": 54.0,
+        "height": 50.0,
         "fill": "#ffffff",
         "stroke": "#111111",
         "stroke-width": 1.5
@@ -197,10 +95,10 @@
       "id": "slot.card.7.rect",
       "type": "rect",
       "attributes": {
-        "x": 528.0,
-        "y": 90.0,
+        "x": 530.0,
+        "y": 120.0,
         "width": 40.0,
-        "height": 54.0,
+        "height": 50.0,
         "fill": "#ffffff",
         "stroke": "#111111",
         "stroke-width": 1.5
@@ -211,15 +109,83 @@
       }
     },
     {
-      "id": "slot.opt1.text",
+      "id": "slot.card.6.text.text",
       "type": "text",
       "attributes": {
-        "x": 24.0,
-        "y": 172.0,
+        "x": 333.0,
+        "y": 155.0,
         "max_width": 816.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 30
+      },
+      "source_ref": "slot.card.6.text",
+      "refs": {
+        "layout_slot_id": "slot.card.6.text"
+      },
+      "text": "6"
+    },
+    {
+      "id": "slot.card.8.text.text",
+      "type": "text",
+      "attributes": {
+        "x": 403.0,
+        "y": 155.0,
+        "max_width": 816.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30
+      },
+      "source_ref": "slot.card.8.text",
+      "refs": {
+        "layout_slot_id": "slot.card.8.text"
+      },
+      "text": "8"
+    },
+    {
+      "id": "slot.card.9.text.text",
+      "type": "text",
+      "attributes": {
+        "x": 474.0,
+        "y": 155.0,
+        "max_width": 816.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30
+      },
+      "source_ref": "slot.card.9.text",
+      "refs": {
+        "layout_slot_id": "slot.card.9.text"
+      },
+      "text": "9"
+    },
+    {
+      "id": "slot.card.7.text.text",
+      "type": "text",
+      "attributes": {
+        "x": 543.0,
+        "y": 155.0,
+        "max_width": 816.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30
+      },
+      "source_ref": "slot.card.7.text",
+      "refs": {
+        "layout_slot_id": "slot.card.7.text"
+      },
+      "text": "7"
+    },
+    {
+      "id": "slot.opt1.text",
+      "type": "text",
+      "attributes": {
+        "x": 30.0,
+        "y": 240.0,
+        "max_width": 816.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30
       },
       "source_ref": "slot.opt1",
       "refs": {
@@ -231,12 +197,12 @@
       "id": "slot.opt2.text",
       "type": "text",
       "attributes": {
-        "x": 332.0,
-        "y": 172.0,
+        "x": 335.0,
+        "y": 240.0,
         "max_width": 816.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 30
       },
       "source_ref": "slot.opt2",
       "refs": {
@@ -248,12 +214,12 @@
       "id": "slot.opt3.text",
       "type": "text",
       "attributes": {
-        "x": 636.0,
-        "y": 172.0,
+        "x": 640.0,
+        "y": 240.0,
         "max_width": 816.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 30
       },
       "source_ref": "slot.opt3",
       "refs": {
@@ -265,12 +231,12 @@
       "id": "slot.opt4.text",
       "type": "text",
       "attributes": {
-        "x": 24.0,
-        "y": 206.0,
+        "x": 30.0,
+        "y": 275.0,
         "max_width": 816.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 30
       },
       "source_ref": "slot.opt4",
       "refs": {
@@ -282,69 +248,18 @@
       "id": "slot.opt5.text",
       "type": "text",
       "attributes": {
-        "x": 332.0,
-        "y": 206.0,
+        "x": 335.0,
+        "y": 275.0,
         "max_width": 816.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 30
       },
       "source_ref": "slot.opt5",
       "refs": {
         "layout_slot_id": "slot.opt5"
       },
       "text": "⑤ 5"
-    },
-    {
-      "id": "slot.ans.text",
-      "type": "text",
-      "attributes": {
-        "x": 24.0,
-        "y": 250.0,
-        "max_width": 816.0,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 22
-      },
-      "source_ref": "slot.ans",
-      "refs": {
-        "layout_slot_id": "slot.ans"
-      },
-      "text": "(정답) ③"
-    },
-    {
-      "id": "slot.exp.text",
-      "type": "text",
-      "attributes": {
-        "x": 24.0,
-        "y": 290.0,
-        "max_width": 816.0,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 20
-      },
-      "source_ref": "slot.exp",
-      "refs": {
-        "layout_slot_id": "slot.exp"
-      },
-      "text": "(해설) 만들 수 있는 가장 큰 세 자리 수는 987이고, 남은 카드의 수는 6입니다."
-    },
-    {
-      "id": "slot.exp2.text",
-      "type": "text",
-      "attributes": {
-        "x": 24.0,
-        "y": 322.0,
-        "max_width": 816.0,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 20
-      },
-      "source_ref": "slot.exp2",
-      "refs": {
-        "layout_slot_id": "slot.exp2"
-      },
-      "text": "987 ÷ 6 = 164···3이므로 나머지는 3입니다."
     }
   ],
   "contract_version": "modu_math.renderer.v2"

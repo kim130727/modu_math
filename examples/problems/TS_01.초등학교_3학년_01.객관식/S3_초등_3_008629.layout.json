@@ -1,7 +1,7 @@
 {
   "schema": "modu.layout.v1",
   "problem_id": "S3_초등_3_008629",
-  "title": "묶이 더 작은 것을 선택하세요",
+  "title": "몫이 더 작은 것을 선택하세요",
   "canvas": {
     "width": 652,
     "height": 260,
@@ -14,9 +14,9 @@
       "role": "stem",
       "flow": "absolute",
       "slot_ids": [
-        "slot.icon",
-        "slot.qnum",
-        "slot.prompt"
+        "slot.prompt",
+        "slot.prompt.copy1",
+        "slot.prompt.copy1.copy2"
       ]
     },
     {
@@ -42,39 +42,15 @@
   ],
   "slots": [
     {
-      "id": "slot.icon",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "□",
-        "style_role": "question",
-        "x": 8.0,
-        "y": 22.0,
-        "font_size": 22
-      }
-    },
-    {
-      "id": "slot.qnum",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "99.",
-        "style_role": "question",
-        "x": 30.0,
-        "y": 22.0,
-        "font_size": 28
-      }
-    },
-    {
       "id": "slot.prompt",
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "묶이 더 작은 것을 선택하세요.",
+        "text": "몫이 더 작은 것을 선택하세요.",
         "style_role": "question",
-        "x": 68.0,
-        "y": 22.0,
-        "font_size": 28
+        "x": 65.0,
+        "y": 50.0,
+        "font_size": 30
       }
     },
     {
@@ -82,13 +58,39 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 356.0,
-        "y": 47.0,
-        "width": 252.0,
-        "height": 73.0,
+        "x": 65.0,
+        "y": 75.0,
+        "width": 460.0,
+        "height": 75.0,
         "stroke": "#EE9AD3",
         "stroke_width": 1.5,
         "fill": "none"
+      }
+    },
+    {
+      "id": "slot.prompt.copy1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "96 ÷ 3",
+        "style_role": "body",
+        "x": 150.0,
+        "y": 125.0,
+        "font_size": 30,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.prompt.copy1.copy2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "84 ÷ 2",
+        "style_role": "body",
+        "x": 355.0,
+        "y": 125.0,
+        "font_size": 30,
+        "fill": "#111111"
       }
     }
   ],
@@ -97,9 +99,9 @@
   "diagrams": [],
   "reading_order": [
     "region.header",
-    "slot.icon",
-    "slot.qnum",
     "slot.prompt",
+    "slot.prompt.copy1",
+    "slot.prompt.copy1.copy2",
     "region.compare_box",
     "slot.compare_box",
     "region.answer",

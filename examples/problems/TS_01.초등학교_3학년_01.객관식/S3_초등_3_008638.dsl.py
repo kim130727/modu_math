@@ -50,23 +50,10 @@ def _grid_slots(prefix: str, x0: float, y0: float, cell: float, cols: int, rows:
 def build_problem_template() -> ProblemTemplate:
     slots = [
         TextSlot(
-            id="slot.qnum",
-            prompt="",
-            text="10.",
-            style_role="question",
-            x=26.0,
-            y=18.0,
-            font_size=28,
-        ),
-        TextSlot(
             id="slot.qtext",
             prompt="",
-            text="원의 중심을 찾아 선택해 보세요.",
-            style_role="question",
-            x=74.0,
-            y=18.0,
-            font_size=28,
-        ),
+            text = '원의 중심을 찾아 선택해 보세요.', style_role="question",
+            x = 105, y = 70, font_size = 30, fill = '#111111'),
         RectSlot(
             id="slot.answer_blank",
             prompt="",
@@ -80,7 +67,7 @@ def build_problem_template() -> ProblemTemplate:
     ]
     slots.extend(
         _grid_slots(
-            prefix="slot.top.grid", x0=370.0, y0=40.0, cell=24.0, cols=8, rows=8
+            prefix="slot.top.grid", x0=200.0, y0=100.0, cell=24.0, cols=8, rows=8
         )
     )
     slots.extend(
@@ -88,176 +75,53 @@ def build_problem_template() -> ProblemTemplate:
             CircleSlot(
                 id="slot.top.circle",
                 prompt="",
-                cx=466.0,
-                cy=136.0,
-                r=78.0,
-                fill="none",
+                cx = 295, cy = 195, r = 70, fill="none",
                 stroke="#333333",
                 stroke_width=1.8,
             ),
             CircleSlot(
                 id="slot.top.pt.ga",
                 prompt="",
-                cx=430.0,
-                cy=138.0,
-                r=3.5,
-                fill="#ff3aa8",
+                cx = 297, cy = 196, r = 5, fill="#ff3aa8",
             ),
             CircleSlot(
                 id="slot.top.pt.na",
                 prompt="",
-                cx=490.0,
-                cy=138.0,
-                r=3.5,
-                fill="#ff3aa8",
+                cx = 345, cy = 197, r = 5, fill="#ff3aa8",
             ),
             CircleSlot(
                 id="slot.top.pt.da",
                 prompt="",
-                cx=430.0,
-                cy=196.0,
-                r=3.5,
-                fill="#ff3aa8",
+                cx = 297, cy = 244, r = 5, fill="#ff3aa8",
             ),
             TextSlot(
                 id="slot.top.lb.ga",
                 prompt="",
-                text="가",
-                style_role="label",
-                x=414.0,
-                y=127.0,
-                font_size=24,
-            ),
+                text = 'ㄱ', style_role="label",
+                x = 265, y = 190, font_size = 25),
             TextSlot(
                 id="slot.top.lb.na",
                 prompt="",
-                text="나",
-                style_role="label",
-                x=474.0,
-                y=127.0,
-                font_size=24,
-            ),
+                text = 'ㄴ', style_role="label",
+                x = 320, y = 190, font_size = 25),
             TextSlot(
                 id="slot.top.lb.da",
                 prompt="",
-                text="다",
-                style_role="label",
-                x=414.0,
-                y=189.0,
-                font_size=24,
-            ),
+                text = 'ㄷ', style_role="label",
+                x = 300, y = 240, font_size = 25),
         ]
     )
-    slots.extend(
-        _grid_slots(
-            prefix="slot.bottom.grid", x0=36.0, y0=382.0, cell=24.0, cols=8, rows=8
-        )
-    )
-    slots.extend(
-        [
-            CircleSlot(
-                id="slot.bottom.circle",
-                prompt="",
-                cx=132.0,
-                cy=478.0,
-                r=78.0,
-                fill="none",
-                stroke="#333333",
-                stroke_width=1.8,
-            ),
-            CircleSlot(
-                id="slot.bottom.pt.ga",
-                prompt="",
-                cx=96.0,
-                cy=480.0,
-                r=3.5,
-                fill="#ff3aa8",
-            ),
-            CircleSlot(
-                id="slot.bottom.pt.na",
-                prompt="",
-                cx=156.0,
-                cy=480.0,
-                r=3.5,
-                fill="#ff3aa8",
-            ),
-            CircleSlot(
-                id="slot.bottom.pt.da",
-                prompt="",
-                cx=96.0,
-                cy=538.0,
-                r=3.5,
-                fill="#ff3aa8",
-            ),
-            CircleSlot(
-                id="slot.bottom.center_hint",
-                prompt="",
-                cx=132.0,
-                cy=480.0,
-                r=16.0,
-                fill="none",
-                stroke="#b9b9b9",
-                stroke_width=1.2,
-            ),
-            TextSlot(
-                id="slot.bottom.lb.ga",
-                prompt="",
-                text="가",
-                style_role="label",
-                x=80.0,
-                y=469.0,
-                font_size=24,
-            ),
-            TextSlot(
-                id="slot.bottom.lb.na",
-                prompt="",
-                text="나",
-                style_role="label",
-                x=140.0,
-                y=469.0,
-                font_size=24,
-            ),
-            TextSlot(
-                id="slot.bottom.lb.da",
-                prompt="",
-                text="다",
-                style_role="label",
-                x=80.0,
-                y=531.0,
-                font_size=24,
-            ),
-        ]
-    )
-    slots.extend([
-        TextSlot(
-            id="slot.ans_label",
-            prompt="",
-            text="(정답)",
-            style_role="supporting",
-            x=26.0,
-            y=620.0,
-            font_size=22,
-        ),
-        TextSlot(
-            id="slot.exp",
-            prompt="",
-            text="(해설) 원의 중심은 원을 그릴 때 누름 못이 꽂혔던 점으로 한 원에는 원의 중심이 1개 있습니다.",
-            style_role="supporting",
-            x=26.0,
-            y=660.0,
-            font_size=20,
-        ),
-    ])
+    
     return ProblemTemplate(
         id="S3_초등_3_008638",
         title="원의 중심 찾기",
-        canvas=Canvas(width=939.0, height=700.0, coordinate_mode="logical"),
+        canvas=Canvas(width=600.0, height=400.0, coordinate_mode="logical"),
         regions=(
             Region(
                 id="region.stem",
                 role="stem",
                 flow="absolute",
-                slot_ids=("slot.qnum", "slot.qtext"),
+                slot_ids=("slot.qtext",),
             ),
             Region(
                 id="region.answer",
@@ -265,7 +129,7 @@ def build_problem_template() -> ProblemTemplate:
                 flow="absolute",
                 slot_ids=("slot.answer_blank",),
             ),
-            Region(id="region.explain", role="explain", flow="absolute", slot_ids=("slot.ans_label", "slot.exp")),
+            Region(id="region.explain", role="explain", flow="absolute", slot_ids=( )),
             Region(
                 id="region.diagram.top",
                 role="diagram",
@@ -334,7 +198,7 @@ SEMANTIC_OVERRIDE = {
             "type": "selected_point_label",
             "description": "원의 중심으로 선택할 점의 라벨",
         },
-        "value": 0,
+        "value": "ㄴ",
         "unit": "",
     },
 }
@@ -387,7 +251,7 @@ SOLVABLE = {
             "type": "selected_point_label",
             "description": "원의 중심으로 선택할 점의 라벨",
         },
-        "value": 0,
+        "value": "ㄴ",
         "unit": "",
     },
 }

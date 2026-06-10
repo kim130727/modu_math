@@ -5,14 +5,14 @@ from modu_math.dsl import Canvas, ProblemTemplate, RectSlot, Region, TextSlot
 def build_problem_template() -> ProblemTemplate:
     return ProblemTemplate(
         id="S3_초등_3_008629",
-        title="묶이 더 작은 것을 선택하세요",
+        title="몫이 더 작은 것을 선택하세요",
         canvas=Canvas(width=652, height=260, coordinate_mode="logical"),
         regions=(
             Region(
                 id="region.header",
                 role="stem",
                 flow="absolute",
-                slot_ids=("slot.icon", "slot.qnum", "slot.prompt"),
+                slot_ids=("slot.prompt",'slot.prompt.copy1', 'slot.prompt.copy1.copy2'),
             ),
             Region(
                 id="region.compare_box",
@@ -28,46 +28,18 @@ def build_problem_template() -> ProblemTemplate:
                 slot_ids=(),
             ),
         ),
-        slots=(
-            TextSlot(
-                id="slot.icon",
-                prompt="",
-                text="□",
-                style_role="question",
-                x=8.0,
-                y=22.0,
-                font_size=22,
-            ),
-            TextSlot(
-                id="slot.qnum",
-                prompt="",
-                text="99.",
-                style_role="question",
-                x=30.0,
-                y=22.0,
-                font_size=28,
-            ),
-            TextSlot(
+        slots=(TextSlot(
                 id="slot.prompt",
                 prompt="",
-                text="묶이 더 작은 것을 선택하세요.",
-                style_role="question",
-                x=68.0,
-                y=22.0,
-                font_size=28,
-            ),
+                text = '몫이 더 작은 것을 선택하세요.', style_role="question",
+                x = 65, y = 50, font_size = 30),
             RectSlot(
                 id="slot.compare_box",
                 prompt="",
-                x=356.0,
-                y=47.0,
-                width=252.0,
-                height=73.0,
-                fill="none",
+                x = 65, y = 75, width = 460, height = 75, fill="none",
                 stroke="#EE9AD3",
                 stroke_width=1.5,
-            ),
-        ),
+            ),TextSlot(id = 'slot.prompt.copy1', prompt = '', text = '96 ÷ 3', x = 150, y = 125, font_size = 30, fill = '#111111'), TextSlot(id = 'slot.prompt.copy1.copy2', prompt = '', text = '84 ÷ 2', x = 355, y = 125, font_size = 30, fill = '#111111')),
         diagrams=(),
         groups=(),
         constraints=(),
@@ -82,7 +54,7 @@ SEMANTIC_OVERRIDE = {
     "problem_type": "compare_division_expressions",
     "metadata": {
         "language": "ko",
-        "question": "묶이 더 작은 것을 선택하세요.",
+        "question": "몫이 더 작은 것을 선택하세요.",
         "instruction": "두 나눗셈 식을 비교하여 더 작은 것을 고른다.",
     },
     "domain": {
@@ -117,7 +89,7 @@ SEMANTIC_OVERRIDE = {
         "answer_key": [],
         "target": {
             "type": "smaller_expression",
-            "description": "묶이 더 작은 나눗셈 식",
+            "description": "몫이 더 작은 나눗셈 식",
         },
         "value": 0,
         "unit": "",
@@ -166,7 +138,7 @@ SOLVABLE = {
         "answer_key": [],
         "target": {
             "type": "smaller_expression",
-            "description": "묶이 더 작은 나눗셈 식",
+            "description": "몫이 더 작은 나눗셈 식",
         },
         "value": 0,
         "unit": "",

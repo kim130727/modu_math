@@ -15,7 +15,6 @@
       "flow": "absolute",
       "slot_ids": [
         "slot.box",
-        "slot.q.num",
         "slot.q.text",
         "slot.opt.1",
         "slot.opt.2",
@@ -28,26 +27,10 @@
       "id": "region.answer_explanation",
       "role": "explanation",
       "flow": "absolute",
-      "slot_ids": [
-        "slot.ans",
-        "slot.exp",
-        "slot.concl"
-      ]
+      "slot_ids": []
     }
   ],
   "slots": [
-    {
-      "id": "slot.q.num",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "6.",
-        "style_role": "question",
-        "x": 10.0,
-        "y": 24.0,
-        "font_size": 28
-      }
-    },
     {
       "id": "slot.q.text",
       "kind": "text",
@@ -55,9 +38,9 @@
       "content": {
         "text": "나머지가 다른 하나를 찾아 기호를 선택해 보세요.",
         "style_role": "question",
-        "x": 52.0,
-        "y": 24.0,
-        "font_size": 28
+        "x": 70.0,
+        "y": 50.0,
+        "font_size": 30
       }
     },
     {
@@ -65,10 +48,10 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 287.0,
-        "y": 44.0,
-        "width": 388.0,
-        "height": 76.0,
+        "x": 130.0,
+        "y": 95.0,
+        "width": 430.0,
+        "height": 105.0,
         "fill": "none"
       }
     },
@@ -79,9 +62,9 @@
       "content": {
         "text": "① 29 ÷ 7",
         "style_role": "body",
-        "x": 333.0,
-        "y": 72.0,
-        "font_size": 28
+        "x": 175.0,
+        "y": 140.0,
+        "font_size": 30
       }
     },
     {
@@ -91,9 +74,9 @@
       "content": {
         "text": "② 31 ÷ 6",
         "style_role": "body",
-        "x": 544.0,
-        "y": 72.0,
-        "font_size": 28
+        "x": 385.0,
+        "y": 140.0,
+        "font_size": 30
       }
     },
     {
@@ -103,9 +86,9 @@
       "content": {
         "text": "③ 74 ÷ 8",
         "style_role": "body",
-        "x": 333.0,
-        "y": 105.0,
-        "font_size": 28
+        "x": 175.0,
+        "y": 175.0,
+        "font_size": 30
       }
     },
     {
@@ -115,9 +98,9 @@
       "content": {
         "text": "④ 64 ÷ 9",
         "style_role": "body",
-        "x": 544.0,
-        "y": 105.0,
-        "font_size": 28
+        "x": 385.0,
+        "y": 175.0,
+        "font_size": 30
       }
     },
     {
@@ -127,45 +110,9 @@
       "content": {
         "text": "( ① , ② , ③ , ④ )",
         "style_role": "body",
-        "x": 376.0,
-        "y": 158.0,
-        "font_size": 28
-      }
-    },
-    {
-      "id": "slot.ans",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "(정답) ③",
-        "style_role": "supporting",
-        "x": 30.0,
-        "y": 210.0,
-        "font_size": 22
-      }
-    },
-    {
-      "id": "slot.exp",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "(해설) ① 29 ÷ 7 = 4··1   ② 31 ÷ 6 = 5··1   ③ 74 ÷ 8 = 9··2   ④ 64 ÷ 9 = 7··1",
-        "style_role": "supporting",
-        "x": 30.0,
-        "y": 255.0,
-        "font_size": 20
-      }
-    },
-    {
-      "id": "slot.concl",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "따라서 나머지가 다른 하나는 ③입니다.",
-        "style_role": "supporting",
-        "x": 30.0,
-        "y": 300.0,
-        "font_size": 20
+        "x": 245.0,
+        "y": 260.0,
+        "font_size": 30
       }
     }
   ],
@@ -175,16 +122,12 @@
   "reading_order": [
     "region.stem",
     "slot.box",
-    "slot.q.num",
     "slot.q.text",
     "slot.opt.1",
     "slot.opt.2",
     "slot.opt.3",
     "slot.opt.4",
     "slot.list",
-    "region.answer_explanation",
-    "slot.ans",
-    "slot.exp",
-    "slot.concl"
+    "region.answer_explanation"
   ]
 }

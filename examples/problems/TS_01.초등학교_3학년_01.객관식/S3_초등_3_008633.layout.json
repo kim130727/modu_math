@@ -14,14 +14,8 @@
       "role": "stem",
       "flow": "absolute",
       "slot_ids": [
-        "slot.qmark",
-        "slot.qnum",
         "slot.qtext1",
-        "slot.qtext2",
-        "slot.card.6.text",
-        "slot.card.8.text",
-        "slot.card.9.text",
-        "slot.card.7.text"
+        "slot.qtext2"
       ]
     },
     {
@@ -32,7 +26,11 @@
         "slot.card.6",
         "slot.card.8",
         "slot.card.9",
-        "slot.card.7"
+        "slot.card.7",
+        "slot.card.6.text",
+        "slot.card.8.text",
+        "slot.card.9.text",
+        "slot.card.7.text"
       ]
     },
     {
@@ -51,38 +49,10 @@
       "id": "region.bottom",
       "role": "explanation",
       "flow": "absolute",
-      "slot_ids": [
-        "slot.ans",
-        "slot.exp",
-        "slot.exp2"
-      ]
+      "slot_ids": []
     }
   ],
   "slots": [
-    {
-      "id": "slot.qmark",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "□",
-        "style_role": "question",
-        "x": 10.0,
-        "y": 28.0,
-        "font_size": 28
-      }
-    },
-    {
-      "id": "slot.qnum",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "5.",
-        "style_role": "question",
-        "x": 42.0,
-        "y": 28.0,
-        "font_size": 28
-      }
-    },
     {
       "id": "slot.qtext1",
       "kind": "text",
@@ -90,9 +60,9 @@
       "content": {
         "text": "수를 카드를 한 번씩만 사용하여 만들 수 있는 가장 큰 세 자리 수를 남은",
         "style_role": "question",
-        "x": 72.0,
-        "y": 28.0,
-        "font_size": 28
+        "x": 25.0,
+        "y": 35.0,
+        "font_size": 30
       }
     },
     {
@@ -102,9 +72,9 @@
       "content": {
         "text": "카드의 수로 나누면 나머지는 얼마일까요?",
         "style_role": "question",
-        "x": 24.0,
-        "y": 62.0,
-        "font_size": 28
+        "x": 25.0,
+        "y": 85.0,
+        "font_size": 30
       }
     },
     {
@@ -112,10 +82,10 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 366.0,
-        "y": 90.0,
+        "x": 320.0,
+        "y": 120.0,
         "width": 40.0,
-        "height": 54.0
+        "height": 50.0
       }
     },
     {
@@ -125,9 +95,9 @@
       "content": {
         "text": "6",
         "style_role": "label",
-        "x": 381.0,
-        "y": 127.0,
-        "font_size": 28
+        "x": 333.0,
+        "y": 155.0,
+        "font_size": 30
       }
     },
     {
@@ -135,10 +105,10 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 420.0,
-        "y": 90.0,
+        "x": 390.0,
+        "y": 120.0,
         "width": 40.0,
-        "height": 54.0
+        "height": 50.0
       }
     },
     {
@@ -148,9 +118,9 @@
       "content": {
         "text": "8",
         "style_role": "label",
-        "x": 435.0,
-        "y": 127.0,
-        "font_size": 28
+        "x": 403.0,
+        "y": 155.0,
+        "font_size": 30
       }
     },
     {
@@ -158,10 +128,10 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 474.0,
-        "y": 90.0,
+        "x": 460.0,
+        "y": 120.0,
         "width": 40.0,
-        "height": 54.0
+        "height": 50.0
       }
     },
     {
@@ -171,9 +141,9 @@
       "content": {
         "text": "9",
         "style_role": "label",
-        "x": 489.0,
-        "y": 127.0,
-        "font_size": 28
+        "x": 474.0,
+        "y": 155.0,
+        "font_size": 30
       }
     },
     {
@@ -181,10 +151,10 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 528.0,
-        "y": 90.0,
+        "x": 530.0,
+        "y": 120.0,
         "width": 40.0,
-        "height": 54.0
+        "height": 50.0
       }
     },
     {
@@ -195,8 +165,8 @@
         "text": "7",
         "style_role": "label",
         "x": 543.0,
-        "y": 127.0,
-        "font_size": 28
+        "y": 155.0,
+        "font_size": 30
       }
     },
     {
@@ -206,9 +176,9 @@
       "content": {
         "text": "① 1",
         "style_role": "choice",
-        "x": 24.0,
-        "y": 172.0,
-        "font_size": 28
+        "x": 30.0,
+        "y": 240.0,
+        "font_size": 30
       }
     },
     {
@@ -218,9 +188,9 @@
       "content": {
         "text": "② 2",
         "style_role": "choice",
-        "x": 332.0,
-        "y": 172.0,
-        "font_size": 28
+        "x": 335.0,
+        "y": 240.0,
+        "font_size": 30
       }
     },
     {
@@ -230,9 +200,9 @@
       "content": {
         "text": "③ 3",
         "style_role": "choice",
-        "x": 636.0,
-        "y": 172.0,
-        "font_size": 28
+        "x": 640.0,
+        "y": 240.0,
+        "font_size": 30
       }
     },
     {
@@ -242,9 +212,9 @@
       "content": {
         "text": "④ 4",
         "style_role": "choice",
-        "x": 24.0,
-        "y": 206.0,
-        "font_size": 28
+        "x": 30.0,
+        "y": 275.0,
+        "font_size": 30
       }
     },
     {
@@ -254,45 +224,9 @@
       "content": {
         "text": "⑤ 5",
         "style_role": "choice",
-        "x": 332.0,
-        "y": 206.0,
-        "font_size": 28
-      }
-    },
-    {
-      "id": "slot.ans",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "(정답) ③",
-        "style_role": "supporting",
-        "x": 24.0,
-        "y": 250.0,
-        "font_size": 22
-      }
-    },
-    {
-      "id": "slot.exp",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "(해설) 만들 수 있는 가장 큰 세 자리 수는 987이고, 남은 카드의 수는 6입니다.",
-        "style_role": "supporting",
-        "x": 24.0,
-        "y": 290.0,
-        "font_size": 20
-      }
-    },
-    {
-      "id": "slot.exp2",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "987 ÷ 6 = 164···3이므로 나머지는 3입니다.",
-        "style_role": "supporting",
-        "x": 24.0,
-        "y": 322.0,
-        "font_size": 20
+        "x": 335.0,
+        "y": 275.0,
+        "font_size": 30
       }
     }
   ],
@@ -301,28 +235,23 @@
   "diagrams": [],
   "reading_order": [
     "region.stem",
-    "slot.qmark",
-    "slot.qnum",
     "slot.qtext1",
     "slot.qtext2",
-    "slot.card.6.text",
-    "slot.card.8.text",
-    "slot.card.9.text",
-    "slot.card.7.text",
     "region.cards",
     "slot.card.6",
     "slot.card.8",
     "slot.card.9",
     "slot.card.7",
+    "slot.card.6.text",
+    "slot.card.8.text",
+    "slot.card.9.text",
+    "slot.card.7.text",
     "region.options",
     "slot.opt1",
     "slot.opt2",
     "slot.opt3",
     "slot.opt4",
     "slot.opt5",
-    "region.bottom",
-    "slot.ans",
-    "slot.exp",
-    "slot.exp2"
+    "region.bottom"
   ]
 }

@@ -3,8 +3,8 @@
   "problem_id": "S3_초등_3_008637",
   "title": "원의 중심 찾기",
   "canvas": {
-    "width": 940,
-    "height": 720,
+    "width": 600,
+    "height": 360,
     "coordinate_mode": "logical",
     "background": "#FFFFFF"
   },
@@ -53,40 +53,14 @@
       "role": "diagram",
       "flow": "absolute",
       "slot_ids": [
-        "slot.bottom.circle",
-        "slot.bottom.pt.giyeok",
-        "slot.bottom.pt.nieun",
-        "slot.bottom.pt.digeut",
-        "slot.bottom.grid.v1",
-        "slot.bottom.grid.v2",
-        "slot.bottom.grid.v3",
-        "slot.bottom.grid.v4",
-        "slot.bottom.grid.v5",
-        "slot.bottom.grid.v6",
-        "slot.bottom.grid.v7",
-        "slot.bottom.grid.v8",
-        "slot.bottom.grid.v9",
-        "slot.bottom.grid.h1",
-        "slot.bottom.grid.h2",
-        "slot.bottom.grid.h3",
-        "slot.bottom.grid.h4",
-        "slot.bottom.grid.h5",
-        "slot.bottom.grid.h6",
-        "slot.bottom.grid.h7",
-        "slot.bottom.grid.h8",
-        "slot.bottom.lb.giyeok",
-        "slot.bottom.lb.nieun",
-        "slot.bottom.lb.digeut"
+        "slot.bottom.grid.h1"
       ]
     },
     {
       "id": "region.explanation",
       "role": "explanation",
       "flow": "absolute",
-      "slot_ids": [
-        "slot.ans",
-        "slot.exp"
-      ]
+      "slot_ids": []
     }
   ],
   "slots": [
@@ -95,7 +69,7 @@
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "□ 9. 원의 중심을 찾아 선택해 보세요.",
+        "text": "원의 중심을 찾아 선택해 보세요.",
         "style_role": "question",
         "x": 10.0,
         "y": 32.0,
@@ -107,10 +81,10 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 375.0,
-        "y1": 50.0,
-        "x2": 375.0,
-        "y2": 262.0,
+        "x1": 235.0,
+        "y1": 95.0,
+        "x2": 235.0,
+        "y2": 310.0,
         "stroke": "#9AA0A6",
         "stroke_width": 1.2,
         "stroke_dasharray": "5 3"
@@ -121,10 +95,10 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 401.0,
-        "y1": 50.0,
-        "x2": 401.0,
-        "y2": 262.0,
+        "x1": 265.0,
+        "y1": 95.0,
+        "x2": 265.0,
+        "y2": 310.0,
         "stroke": "#9AA0A6",
         "stroke_width": 1.2,
         "stroke_dasharray": "5 3"
@@ -135,10 +109,10 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 427.0,
-        "y1": 50.0,
-        "x2": 427.0,
-        "y2": 262.0,
+        "x1": 290.0,
+        "y1": 95.0,
+        "x2": 290.0,
+        "y2": 310.0,
         "stroke": "#9AA0A6",
         "stroke_width": 1.2,
         "stroke_dasharray": "5 3"
@@ -149,10 +123,10 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 453.0,
-        "y1": 50.0,
-        "x2": 453.0,
-        "y2": 262.0,
+        "x1": 315.0,
+        "y1": 95.0,
+        "x2": 315.0,
+        "y2": 310.0,
         "stroke": "#9AA0A6",
         "stroke_width": 1.2,
         "stroke_dasharray": "5 3"
@@ -163,10 +137,10 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 479.0,
-        "y1": 50.0,
-        "x2": 479.0,
-        "y2": 262.0,
+        "x1": 340.0,
+        "y1": 95.0,
+        "x2": 340.0,
+        "y2": 310.0,
         "stroke": "#9AA0A6",
         "stroke_width": 1.2,
         "stroke_dasharray": "5 3"
@@ -177,10 +151,10 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 505.0,
-        "y1": 50.0,
-        "x2": 505.0,
-        "y2": 262.0,
+        "x1": 365.0,
+        "y1": 95.0,
+        "x2": 365.0,
+        "y2": 310.0,
         "stroke": "#9AA0A6",
         "stroke_width": 1.2,
         "stroke_dasharray": "5 3"
@@ -191,10 +165,10 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 531.0,
-        "y1": 50.0,
-        "x2": 531.0,
-        "y2": 262.0,
+        "x1": 395.0,
+        "y1": 95.0,
+        "x2": 395.0,
+        "y2": 310.0,
         "stroke": "#9AA0A6",
         "stroke_width": 1.2,
         "stroke_dasharray": "5 3"
@@ -205,10 +179,10 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 557.0,
-        "y1": 50.0,
-        "x2": 557.0,
-        "y2": 262.0,
+        "x1": 420.0,
+        "y1": 95.0,
+        "x2": 420.0,
+        "y2": 310.0,
         "stroke": "#9AA0A6",
         "stroke_width": 1.2,
         "stroke_dasharray": "5 3"
@@ -219,10 +193,10 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 583.0,
-        "y1": 50.0,
-        "x2": 583.0,
-        "y2": 262.0,
+        "x1": 445.0,
+        "y1": 95.0,
+        "x2": 445.0,
+        "y2": 310.0,
         "stroke": "#9AA0A6",
         "stroke_width": 1.2,
         "stroke_dasharray": "5 3"
@@ -233,10 +207,10 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 375.0,
-        "y1": 50.0,
-        "x2": 583.0,
-        "y2": 50.0,
+        "x1": 235.0,
+        "y1": 95.0,
+        "x2": 445.0,
+        "y2": 95.0,
         "stroke": "#9AA0A6",
         "stroke_width": 1.2,
         "stroke_dasharray": "5 3"
@@ -247,10 +221,10 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 375.0,
-        "y1": 76.0,
-        "x2": 583.0,
-        "y2": 76.0,
+        "x1": 235.0,
+        "y1": 120.0,
+        "x2": 445.0,
+        "y2": 120.0,
         "stroke": "#9AA0A6",
         "stroke_width": 1.2,
         "stroke_dasharray": "5 3"
@@ -261,10 +235,10 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 375.0,
-        "y1": 102.0,
-        "x2": 583.0,
-        "y2": 102.0,
+        "x1": 235.0,
+        "y1": 150.0,
+        "x2": 445.0,
+        "y2": 150.0,
         "stroke": "#9AA0A6",
         "stroke_width": 1.2,
         "stroke_dasharray": "5 3"
@@ -275,10 +249,10 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 375.0,
-        "y1": 128.0,
-        "x2": 583.0,
-        "y2": 128.0,
+        "x1": 235.0,
+        "y1": 175.0,
+        "x2": 445.0,
+        "y2": 175.0,
         "stroke": "#9AA0A6",
         "stroke_width": 1.2,
         "stroke_dasharray": "5 3"
@@ -289,10 +263,10 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 375.0,
-        "y1": 154.0,
-        "x2": 583.0,
-        "y2": 154.0,
+        "x1": 235.0,
+        "y1": 200.0,
+        "x2": 445.0,
+        "y2": 200.0,
         "stroke": "#9AA0A6",
         "stroke_width": 1.2,
         "stroke_dasharray": "5 3"
@@ -303,10 +277,10 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 375.0,
-        "y1": 180.0,
-        "x2": 583.0,
-        "y2": 180.0,
+        "x1": 235.0,
+        "y1": 225.0,
+        "x2": 445.0,
+        "y2": 225.0,
         "stroke": "#9AA0A6",
         "stroke_width": 1.2,
         "stroke_dasharray": "5 3"
@@ -317,10 +291,10 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 375.0,
-        "y1": 206.0,
-        "x2": 583.0,
-        "y2": 206.0,
+        "x1": 235.0,
+        "y1": 250.0,
+        "x2": 445.0,
+        "y2": 250.0,
         "stroke": "#9AA0A6",
         "stroke_width": 1.2,
         "stroke_dasharray": "5 3"
@@ -331,10 +305,10 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 375.0,
-        "y1": 232.0,
-        "x2": 583.0,
-        "y2": 232.0,
+        "x1": 235.0,
+        "y1": 280.0,
+        "x2": 445.0,
+        "y2": 280.0,
         "stroke": "#9AA0A6",
         "stroke_width": 1.2,
         "stroke_dasharray": "5 3"
@@ -345,9 +319,9 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 479.0,
-        "cy": 154.0,
-        "r": 52.0,
+        "cx": 342.0,
+        "cy": 201.0,
+        "r": 50.0,
         "fill": "none"
       }
     },
@@ -356,9 +330,9 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 427.0,
-        "cy": 154.0,
-        "r": 4.0,
+        "cx": 290.0,
+        "cy": 200.0,
+        "r": 5.0,
         "fill": "#ff4da6"
       }
     },
@@ -367,9 +341,9 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 479.0,
-        "cy": 154.0,
-        "r": 4.0,
+        "cx": 340.0,
+        "cy": 200.0,
+        "r": 5.0,
         "fill": "#ff4da6"
       }
     },
@@ -378,9 +352,9 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 531.0,
-        "cy": 154.0,
-        "r": 4.0,
+        "cx": 395.0,
+        "cy": 200.0,
+        "r": 5.0,
         "fill": "#ff4da6"
       }
     },
@@ -391,9 +365,9 @@
       "content": {
         "text": "ㄱ",
         "style_role": "label",
-        "x": 404.0,
-        "y": 147.0,
-        "font_size": 28
+        "x": 265.0,
+        "y": 195.0,
+        "font_size": 30
       }
     },
     {
@@ -403,9 +377,9 @@
       "content": {
         "text": "ㄴ",
         "style_role": "label",
-        "x": 470.0,
-        "y": 147.0,
-        "font_size": 28
+        "x": 330.0,
+        "y": 195.0,
+        "font_size": 30
       }
     },
     {
@@ -415,135 +389,9 @@
       "content": {
         "text": "ㄷ",
         "style_role": "label",
-        "x": 544.0,
-        "y": 147.0,
-        "font_size": 28
-      }
-    },
-    {
-      "id": "slot.bottom.grid.v1",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 36.0,
-        "y1": 402.0,
-        "x2": 36.0,
-        "y2": 588.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.bottom.grid.v2",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 62.0,
-        "y1": 402.0,
-        "x2": 62.0,
-        "y2": 588.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.bottom.grid.v3",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 88.0,
-        "y1": 402.0,
-        "x2": 88.0,
-        "y2": 588.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.bottom.grid.v4",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 114.0,
-        "y1": 402.0,
-        "x2": 114.0,
-        "y2": 588.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.bottom.grid.v5",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 140.0,
-        "y1": 402.0,
-        "x2": 140.0,
-        "y2": 588.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.bottom.grid.v6",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 166.0,
-        "y1": 402.0,
-        "x2": 166.0,
-        "y2": 588.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.bottom.grid.v7",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 192.0,
-        "y1": 402.0,
-        "x2": 192.0,
-        "y2": 588.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.bottom.grid.v8",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 218.0,
-        "y1": 402.0,
-        "x2": 218.0,
-        "y2": 588.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.bottom.grid.v9",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 244.0,
-        "y1": 402.0,
-        "x2": 244.0,
-        "y2": 588.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
+        "x": 405.0,
+        "y": 195.0,
+        "font_size": 30
       }
     },
     {
@@ -551,215 +399,13 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 36.0,
-        "y1": 402.0,
-        "x2": 244.0,
-        "y2": 402.0,
+        "x1": 235.0,
+        "y1": 305.0,
+        "x2": 445.0,
+        "y2": 305.0,
         "stroke": "#9AA0A6",
         "stroke_width": 1.2,
         "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.bottom.grid.h2",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 36.0,
-        "y1": 428.0,
-        "x2": 244.0,
-        "y2": 428.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.bottom.grid.h3",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 36.0,
-        "y1": 454.0,
-        "x2": 244.0,
-        "y2": 454.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.bottom.grid.h4",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 36.0,
-        "y1": 480.0,
-        "x2": 244.0,
-        "y2": 480.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.bottom.grid.h5",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 36.0,
-        "y1": 506.0,
-        "x2": 244.0,
-        "y2": 506.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.bottom.grid.h6",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 36.0,
-        "y1": 532.0,
-        "x2": 244.0,
-        "y2": 532.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.bottom.grid.h7",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 36.0,
-        "y1": 558.0,
-        "x2": 244.0,
-        "y2": 558.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.bottom.grid.h8",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 36.0,
-        "y1": 584.0,
-        "x2": 244.0,
-        "y2": 584.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.bottom.circle",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 140.0,
-        "cy": 506.0,
-        "r": 39.0,
-        "fill": "none"
-      }
-    },
-    {
-      "id": "slot.bottom.pt.giyeok",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 88.0,
-        "cy": 506.0,
-        "r": 4.0,
-        "fill": "#ff4da6"
-      }
-    },
-    {
-      "id": "slot.bottom.pt.nieun",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 140.0,
-        "cy": 506.0,
-        "r": 4.0,
-        "fill": "#ff4da6"
-      }
-    },
-    {
-      "id": "slot.bottom.pt.digeut",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 192.0,
-        "cy": 506.0,
-        "r": 4.0,
-        "fill": "#ff4da6"
-      }
-    },
-    {
-      "id": "slot.bottom.lb.giyeok",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "ㄱ",
-        "style_role": "label",
-        "x": 65.0,
-        "y": 499.0,
-        "font_size": 28
-      }
-    },
-    {
-      "id": "slot.bottom.lb.nieun",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "ㄴ",
-        "style_role": "label",
-        "x": 131.0,
-        "y": 499.0,
-        "font_size": 28
-      }
-    },
-    {
-      "id": "slot.bottom.lb.digeut",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "ㄷ",
-        "style_role": "label",
-        "x": 205.0,
-        "y": 499.0,
-        "font_size": 28
-      }
-    },
-    {
-      "id": "slot.ans",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "(정답) ㄴ",
-        "style_role": "supporting",
-        "x": 36.0,
-        "y": 612.0,
-        "font_size": 22
-      }
-    },
-    {
-      "id": "slot.exp",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "(해설) 원의 중심은 원을 그릴 때 누름 못이 꽂혔던 점으로 한 원에는 원의 중심이 1개 있습니다.",
-        "style_role": "supporting",
-        "x": 36.0,
-        "y": 655.0,
-        "font_size": 20
       }
     }
   ],
@@ -795,32 +441,7 @@
     "slot.top.lb.nieun",
     "slot.top.lb.digeut",
     "region.diagram.bottom",
-    "slot.bottom.circle",
-    "slot.bottom.pt.giyeok",
-    "slot.bottom.pt.nieun",
-    "slot.bottom.pt.digeut",
-    "slot.bottom.grid.v1",
-    "slot.bottom.grid.v2",
-    "slot.bottom.grid.v3",
-    "slot.bottom.grid.v4",
-    "slot.bottom.grid.v5",
-    "slot.bottom.grid.v6",
-    "slot.bottom.grid.v7",
-    "slot.bottom.grid.v8",
-    "slot.bottom.grid.v9",
     "slot.bottom.grid.h1",
-    "slot.bottom.grid.h2",
-    "slot.bottom.grid.h3",
-    "slot.bottom.grid.h4",
-    "slot.bottom.grid.h5",
-    "slot.bottom.grid.h6",
-    "slot.bottom.grid.h7",
-    "slot.bottom.grid.h8",
-    "slot.bottom.lb.giyeok",
-    "slot.bottom.lb.nieun",
-    "slot.bottom.lb.digeut",
-    "region.explanation",
-    "slot.ans",
-    "slot.exp"
+    "region.explanation"
   ]
 }

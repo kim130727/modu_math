@@ -140,6 +140,13 @@
       stroke: #2563eb;
       stroke-dasharray: 8 4;
     }
+    .svg-box svg .selection-line {
+      fill: none;
+      stroke: #0f766e;
+      stroke-width: 1.75;
+      stroke-dasharray: 5 3;
+      pointer-events: none;
+    }
     .svg-box svg .selection-handle {
       fill: #ffffff;
       stroke: #0f766e;
@@ -154,6 +161,8 @@
     .svg-box svg .selection-handle[data-handle="se"] { cursor: nwse-resize; }
     .svg-box svg .selection-handle[data-handle="ne"],
     .svg-box svg .selection-handle[data-handle="sw"] { cursor: nesw-resize; }
+    .svg-box svg .selection-handle[data-handle="p1"],
+    .svg-box svg .selection-handle[data-handle="p2"] { cursor: crosshair; }
     .svg-box svg .selection-handle[data-handle="c"] { cursor: move; fill: #0f766e; }
     .svg-box svg .selection-handle[data-handle="r"] { cursor: grab; fill: #f59e0b; stroke: #92400e; }
     .inline-text-editor {
@@ -254,6 +263,258 @@
       font-size: 12px;
       margin-bottom: 6px;
     }
+    .wrap.powerpoint {
+      height: 100vh;
+      padding: 0;
+      overflow: hidden;
+      background: #eef1f5;
+    }
+    .ppt-shell {
+      height: 100vh;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      min-width: 960px;
+    }
+    .ppt-titlebar {
+      height: 34px;
+      display: grid;
+      grid-template-columns: 280px 1fr 280px;
+      align-items: center;
+      gap: 12px;
+      padding: 0 12px;
+      background: #b7472a;
+      color: #fff;
+      font-size: 13px;
+    }
+    .ppt-titlebar .doc-name {
+      text-align: center;
+      font-weight: 600;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+    .ppt-titlebar input {
+      height: 24px;
+      border: 0;
+      border-radius: 4px;
+      padding: 3px 8px;
+      background: rgba(255,255,255,0.18);
+      color: #fff;
+      font-family: inherit;
+    }
+    .ppt-titlebar input::placeholder { color: rgba(255,255,255,0.78); }
+    .ppt-ribbon {
+      display: flex;
+      align-items: stretch;
+      gap: 0;
+      min-height: 92px;
+      padding: 8px 10px;
+      background: #ffffff;
+      border-bottom: 1px solid #cfd4dc;
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.05);
+    }
+    .ribbon-group {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      padding: 0 12px;
+      border-right: 1px solid #e5e7eb;
+      position: relative;
+    }
+    .ribbon-group::after {
+      content: attr(data-label);
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      text-align: center;
+      font-size: 11px;
+      color: #6b7280;
+    }
+    .ribbon-group .icon-btn {
+      width: 38px;
+      height: 38px;
+      border: 1px solid transparent;
+      border-radius: 4px;
+    }
+    .ribbon-group .icon-btn:hover {
+      border-color: #f2c6b7;
+      background: #fff4ef;
+    }
+    .ppt-workspace {
+      min-height: 0;
+      display: grid;
+      grid-template-columns: 260px minmax(520px, 1fr) 320px;
+      background: #dfe3ea;
+    }
+    .ppt-sidebar,
+    .ppt-inspector {
+      min-height: 0;
+      background: #f8fafc;
+      border-right: 1px solid #cfd4dc;
+      display: flex;
+      flex-direction: column;
+    }
+    .ppt-inspector {
+      border-right: 0;
+      border-left: 1px solid #cfd4dc;
+    }
+    .pane-title {
+      height: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 10px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #334155;
+      border-bottom: 1px solid #e5e7eb;
+      background: #fff;
+    }
+    .pane-body {
+      min-height: 0;
+      overflow: auto;
+      padding: 10px;
+    }
+    .ppt-stage {
+      min-width: 0;
+      min-height: 0;
+      display: grid;
+      grid-template-rows: 1fr auto;
+      padding: 18px;
+      gap: 10px;
+    }
+    .slide-frame {
+      min-height: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: auto;
+    }
+    .slide-frame .svg-box {
+      width: 100%;
+      height: 100%;
+      min-height: 420px;
+      border: 1px solid #b7bdc7;
+      border-radius: 2px;
+      background: #ffffff;
+      box-shadow: 0 16px 32px rgba(15, 23, 42, 0.18);
+    }
+    .ppt-notes {
+      min-height: 82px;
+      max-height: 180px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 220px;
+      gap: 10px;
+    }
+    .ppt-notes .log {
+      height: 100%;
+      min-height: 82px;
+      overflow: auto;
+      background: #fff;
+    }
+    .ppt-status-box {
+      border: 1px solid #cfd4dc;
+      background: #fff;
+      padding: 8px;
+      border-radius: 2px;
+      font-size: 12px;
+      overflow: auto;
+    }
+    .ppt-statusbar {
+      min-height: 26px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 10px;
+      background: #ffffff;
+      border-top: 1px solid #cfd4dc;
+      color: #475569;
+      font-size: 12px;
+    }
+    .inspector-section {
+      border-bottom: 1px solid #e5e7eb;
+      padding: 10px 0;
+    }
+    .inspector-section:first-child { padding-top: 0; }
+    .inspector-section h3 {
+      margin: 0 0 8px;
+      font-size: 12px;
+      color: #475569;
+    }
+    .field-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+    }
+    .field-grid label,
+    .single-field label {
+      display: grid;
+      gap: 4px;
+      font-size: 11px;
+      color: #64748b;
+    }
+    .field-grid input,
+    .single-field input,
+    .single-field textarea {
+      min-width: 0;
+      height: 30px;
+      padding: 5px 7px;
+      border-radius: 4px;
+      font-family: Consolas, monospace;
+      background: #fff;
+    }
+    .single-field textarea {
+      height: 86px;
+      resize: vertical;
+    }
+    .ppt-tabs {
+      display: flex;
+      gap: 4px;
+      padding: 8px 8px 0;
+      background: #fff;
+      border-bottom: 1px solid #e5e7eb;
+    }
+    .ppt-tab {
+      border: 1px solid #e5e7eb;
+      border-bottom: 0;
+      border-radius: 6px 6px 0 0;
+      padding: 6px 8px;
+      font-size: 12px;
+      background: #f8fafc;
+    }
+    .ppt-tab.active {
+      background: #fff;
+      color: #b7472a;
+      font-weight: 700;
+    }
+    .ppt-tab-panel { display: none; min-height: 0; }
+    .ppt-tab-panel.active { display: block; }
+    .ppt-tab-panel textarea {
+      min-height: 210px;
+      height: 34vh;
+      border-radius: 4px;
+      font-size: 12px;
+    }
+    .artifact-grid {
+      grid-template-columns: 1fr;
+      margin-top: 0;
+    }
+    .artifact-grid textarea {
+      min-height: 120px;
+      height: 18vh;
+    }
+    .tree {
+      max-height: none;
+      flex: 1 1 auto;
+      min-height: 0;
+      border-radius: 4px;
+    }
+    @media (max-width: 1180px) {
+      .ppt-shell { min-width: 0; }
+      .ppt-workspace { grid-template-columns: 220px minmax(420px, 1fr); }
+      .ppt-inspector { display: none; }
+    }
   </style>
 </head>
 <body>
@@ -276,109 +537,143 @@
     <symbol id="icon-pick-text" viewBox="0 0 24 24"><path d="M5 6h14"/><path d="M12 6v14"/><path d="M8 20h8"/></symbol>
     <symbol id="icon-pick-shape" viewBox="0 0 24 24"><path d="M5 5h8v8H5z"/><path d="M16 6a3 3 0 1 0 0.1 0"/><path d="M15 16h4v4h-4z"/></symbol>
   </svg>
-  <div class="wrap">
-    <section class="main">
-      <div class="panel">
-        <h2>문제 열기</h2>
-        <div class="row">
-          <div class="grow">
-            <input id="problemInput" list="problemOptions" placeholder="예: 0001 또는 260422/0013_과일 원그래프">
-            <datalist id="problemOptions"></datalist>
+  <div class="wrap powerpoint">
+    <section class="ppt-shell">
+      <div>
+        <div class="ppt-titlebar">
+          <div>ModuMath Editor</div>
+          <div id="selectedProblem" class="doc-name">없음</div>
+          <input id="problemInput" list="problemOptions" placeholder="문제 경로 입력">
+          <datalist id="problemOptions"></datalist>
+        </div>
+        <div class="ppt-ribbon">
+          <div class="ribbon-group" data-label="파일">
+            <button id="openBtn" class="icon-btn" title="Open" aria-label="Open"><svg><use href="#icon-reload"></use></svg></button>
+            <button id="reloadBtn" class="icon-btn" title="Reload" aria-label="Reload"><svg><use href="#icon-reload"></use></svg></button>
+            <button id="saveBtn" class="icon-btn primary" title="Save DSL" aria-label="Save DSL"><svg><use href="#icon-save"></use></svg></button>
+            <button id="buildBtn" class="icon-btn" title="Build" aria-label="Build"><svg><use href="#icon-build"></use></svg></button>
+            <button id="refreshListBtn" class="icon-btn" title="Refresh List" aria-label="Refresh List"><svg><use href="#icon-reload"></use></svg></button>
           </div>
-          <button id="openBtn">Open</button>
-          <button id="refreshListBtn">Refresh List</button>
-        </div>
-      </div>
-
-      <div class="panel">
-        <h2>선택된 문제</h2>
-        <div id="selectedProblem">없음</div>
-      </div>
-
-      <div class="panel">
-        <h2>파일 탐색</h2>
-        <div class="tree-tools">
-          <input id="problemFilterInput" placeholder="파일명 또는 폴더 검색">
-        </div>
-        <div class="tree-count" id="problemTreeCount"></div>
-        <div class="tree" id="problemTree"></div>
-      </div>
-
-      <div class="panel toolbar">
-        <div class="tool-group">
-          <button id="reloadBtn" class="icon-btn" title="Reload" aria-label="Reload"><svg><use href="#icon-reload"></use></svg></button>
-          <button id="saveBtn" class="icon-btn primary" title="Save DSL" aria-label="Save DSL"><svg><use href="#icon-save"></use></svg></button>
-          <button id="buildBtn" class="icon-btn" title="Build" aria-label="Build"><svg><use href="#icon-build"></use></svg></button>
-        </div>
-        <div class="tool-group">
-          <button id="snapToggleBtn" class="icon-btn active" title="Snap: ON (5px)" aria-label="Snap: ON (5px)"><svg><use href="#icon-snap"></use></svg></button>
-          <button id="pickAllBtn" class="icon-btn active" title="Pick: All" aria-label="Pick: All"><svg><use href="#icon-pick-all"></use></svg></button>
-          <button id="pickLinePathBtn" class="icon-btn" title="Pick: Line/Path" aria-label="Pick: Line/Path"><svg><use href="#icon-pick-line"></use></svg></button>
-          <button id="pickTextBtn" class="icon-btn" title="Pick: Text" aria-label="Pick: Text"><svg><use href="#icon-pick-text"></use></svg></button>
-          <button id="pickShapeBtn" class="icon-btn" title="Pick: Shape" aria-label="Pick: Shape"><svg><use href="#icon-pick-shape"></use></svg></button>
-        </div>
-        <div class="tool-group">
-          <button id="alignLeftBtn" class="icon-btn" title="Align Left" aria-label="Align Left"><svg><use href="#icon-align-left"></use></svg></button>
-          <button id="alignCenterBtn" class="icon-btn" title="Align Center" aria-label="Align Center"><svg><use href="#icon-align-center"></use></svg></button>
-          <button id="alignRightBtn" class="icon-btn" title="Align Right" aria-label="Align Right"><svg><use href="#icon-align-right"></use></svg></button>
-          <button id="alignTopBtn" class="icon-btn" title="Align Top" aria-label="Align Top"><svg><use href="#icon-align-top"></use></svg></button>
-          <button id="alignMiddleBtn" class="icon-btn" title="Align Middle" aria-label="Align Middle"><svg><use href="#icon-align-middle"></use></svg></button>
-          <button id="alignBottomBtn" class="icon-btn" title="Align Bottom" aria-label="Align Bottom"><svg><use href="#icon-align-bottom"></use></svg></button>
-        </div>
-        <div class="tool-group">
-          <button id="undoBtn" class="icon-btn" title="Undo" aria-label="Undo"><svg><use href="#icon-undo"></use></svg></button>
-          <button id="redoBtn" class="icon-btn" title="Redo" aria-label="Redo"><svg><use href="#icon-redo"></use></svg></button>
-          <button id="deleteBtn" class="icon-btn danger" title="Delete Selected" aria-label="Delete Selected"><svg><use href="#icon-trash"></use></svg></button>
-        </div>
-      </div>
-
-      <div class="panel">
-        <h2>상태</h2>
-        <div id="status"></div>
-      </div>
-
-      <div class="grid">
-        <div class="panel">
-          <h2>SVG Preview</h2>
-          <div class="svg-box" id="svgPreview"><div class="marquee" id="marqueeBox"></div></div>
-          <h2 style="margin-top:10px;">Build Stdout/Stderr</h2>
-          <div class="log" id="buildLog"></div>
-          <div class="artifact-grid">
-            <div>
-              <h2>Semantic</h2>
-              <textarea id="semanticView" readonly></textarea>
-            </div>
-            <div>
-              <h2>Solvable</h2>
-              <textarea id="solvableView" readonly></textarea>
-            </div>
-            <div>
-              <h2>Layout</h2>
-              <textarea id="layoutView" readonly></textarea>
-            </div>
-            <div>
-              <h2>Renderer</h2>
-              <textarea id="rendererView" readonly></textarea>
-            </div>
+          <div class="ribbon-group" data-label="선택">
+            <button id="snapToggleBtn" class="icon-btn active" title="Snap: ON (5px)" aria-label="Snap: ON (5px)"><svg><use href="#icon-snap"></use></svg></button>
+            <button id="pickAllBtn" class="icon-btn active" title="Pick: All" aria-label="Pick: All"><svg><use href="#icon-pick-all"></use></svg></button>
+            <button id="pickLinePathBtn" class="icon-btn" title="Pick: Line/Path" aria-label="Pick: Line/Path"><svg><use href="#icon-pick-line"></use></svg></button>
+            <button id="pickTextBtn" class="icon-btn" title="Pick: Text" aria-label="Pick: Text"><svg><use href="#icon-pick-text"></use></svg></button>
+            <button id="pickShapeBtn" class="icon-btn" title="Pick: Shape" aria-label="Pick: Shape"><svg><use href="#icon-pick-shape"></use></svg></button>
+          </div>
+          <div class="ribbon-group" data-label="정렬">
+            <button id="alignLeftBtn" class="icon-btn" title="Align Left" aria-label="Align Left"><svg><use href="#icon-align-left"></use></svg></button>
+            <button id="alignCenterBtn" class="icon-btn" title="Align Center" aria-label="Align Center"><svg><use href="#icon-align-center"></use></svg></button>
+            <button id="alignRightBtn" class="icon-btn" title="Align Right" aria-label="Align Right"><svg><use href="#icon-align-right"></use></svg></button>
+            <button id="alignTopBtn" class="icon-btn" title="Align Top" aria-label="Align Top"><svg><use href="#icon-align-top"></use></svg></button>
+            <button id="alignMiddleBtn" class="icon-btn" title="Align Middle" aria-label="Align Middle"><svg><use href="#icon-align-middle"></use></svg></button>
+            <button id="alignBottomBtn" class="icon-btn" title="Align Bottom" aria-label="Align Bottom"><svg><use href="#icon-align-bottom"></use></svg></button>
+          </div>
+          <div class="ribbon-group" data-label="편집">
+            <button id="undoBtn" class="icon-btn" title="Undo" aria-label="Undo"><svg><use href="#icon-undo"></use></svg></button>
+            <button id="redoBtn" class="icon-btn" title="Redo" aria-label="Redo"><svg><use href="#icon-redo"></use></svg></button>
+            <button id="deleteBtn" class="icon-btn danger" title="Delete Selected" aria-label="Delete Selected"><svg><use href="#icon-trash"></use></svg></button>
           </div>
         </div>
       </div>
 
-      <div class="panel">
-        <h2>DSL</h2>
-        <textarea id="dslEditor"></textarea>
-        <h2 style="margin-top:10px;">Layout Patch</h2>
-        <input id="slotId" placeholder="slot.q1">
-        <textarea id="patchJson" style="min-height:120px;">{"x":120.0,"y":80.0,"font_size":28}</textarea>
-        <h2 style="margin-top:10px;">Selected Text</h2>
-        <input id="textEditInput" placeholder="텍스트 요소를 선택하세요" disabled>
-        <div class="row" style="margin-top:8px;">
-          <button id="patchBtn">Patch</button>
-          <button id="patchBuildBtn">Patch + Build</button>
-          <button id="textEditBtn" disabled>Update Text</button>
-        </div>
+      <div class="ppt-workspace">
+        <aside class="ppt-sidebar">
+          <div class="pane-title">문제 탐색</div>
+          <div class="pane-body">
+            <div class="tree-tools">
+              <input id="problemFilterInput" placeholder="파일명 또는 폴더 검색">
+            </div>
+            <div class="tree-count" id="problemTreeCount"></div>
+            <div class="tree" id="problemTree"></div>
+          </div>
+        </aside>
+
+        <main class="ppt-stage">
+          <div class="slide-frame">
+            <div class="svg-box" id="svgPreview"><div class="marquee" id="marqueeBox"></div></div>
+          </div>
+          <div class="ppt-notes">
+            <div class="log" id="buildLog"></div>
+            <div class="ppt-status-box">
+              <strong>상태</strong>
+              <div id="status"></div>
+            </div>
+          </div>
+        </main>
+
+        <aside class="ppt-inspector">
+          <div class="pane-title">속성</div>
+          <div class="pane-body">
+            <div class="inspector-section">
+              <h3>선택</h3>
+              <div class="single-field">
+                <label>Slot ID<input id="slotId" placeholder="slot.q1"></label>
+              </div>
+            </div>
+            <div class="inspector-section">
+              <h3>위치/크기</h3>
+              <div class="field-grid">
+                <label>X<input id="propX" type="number" step="1"></label>
+                <label>Y<input id="propY" type="number" step="1"></label>
+                <label>W<input id="propW" type="number" step="1"></label>
+                <label>H<input id="propH" type="number" step="1"></label>
+                <label>Font<input id="propFontSize" type="number" step="1"></label>
+                <label>Rotate<input id="propRotate" type="text" placeholder="rotate(...)"></label>
+              </div>
+            </div>
+            <div class="inspector-section">
+              <h3>텍스트</h3>
+              <input id="textEditInput" placeholder="텍스트 요소를 선택하세요" disabled>
+              <div class="row" style="margin-top:8px;">
+                <button id="textEditBtn" disabled>Update Text</button>
+              </div>
+            </div>
+            <div class="inspector-section">
+              <h3>Patch</h3>
+              <div class="single-field">
+                <label>JSON<textarea id="patchJson">{"x":120.0,"y":80.0,"font_size":28}</textarea></label>
+              </div>
+              <div class="row" style="margin-top:8px;">
+                <button id="patchBtn">Patch</button>
+                <button id="patchBuildBtn">Patch + Build</button>
+              </div>
+            </div>
+            <div class="ppt-tabs">
+              <button class="ppt-tab active" data-tab="dslPanel">DSL</button>
+              <button class="ppt-tab" data-tab="artifactPanel">JSON</button>
+            </div>
+            <div id="dslPanel" class="ppt-tab-panel active">
+              <textarea id="dslEditor"></textarea>
+            </div>
+            <div id="artifactPanel" class="ppt-tab-panel">
+              <div class="artifact-grid">
+                <div>
+                  <h2>Semantic</h2>
+                  <textarea id="semanticView" readonly></textarea>
+                </div>
+                <div>
+                  <h2>Solvable</h2>
+                  <textarea id="solvableView" readonly></textarea>
+                </div>
+                <div>
+                  <h2>Layout</h2>
+                  <textarea id="layoutView" readonly></textarea>
+                </div>
+                <div>
+                  <h2>Renderer</h2>
+                  <textarea id="rendererView" readonly></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+        </aside>
       </div>
 
+      <div class="ppt-statusbar">
+        <span>Drag, resize, align, edit text</span>
+        <span>Snap 5px | Ctrl/Cmd+Z | Delete</span>
+      </div>
     </section>
   </div>
 
@@ -690,6 +985,7 @@
       const value = last.value;
       document.getElementById("slotId").value = slotId;
       document.getElementById("patchJson").value = value === undefined ? "" : JSON.stringify(value, null, 2);
+      updateInspectorControls();
       setStatus(reason, true);
     }
 
@@ -1054,6 +1350,19 @@
         const height = lineCount * fontSize * 1.25;
         return { x: x - 6, y: y - fontSize, width: width + 12, height: height + 8 };
       }
+      if (tag === "line") {
+        const x1 = Number(node.getAttribute("x1") || 0);
+        const y1 = Number(node.getAttribute("y1") || 0);
+        const x2 = Number(node.getAttribute("x2") || 0);
+        const y2 = Number(node.getAttribute("y2") || 0);
+        const pad = Math.max(8, Number(node.getAttribute("stroke-width") || 1) * 3);
+        return {
+          x: Math.min(x1, x2) - pad,
+          y: Math.min(y1, y2) - pad,
+          width: Math.abs(x2 - x1) + pad * 2,
+          height: Math.abs(y2 - y1) + pad * 2,
+        };
+      }
       try {
         return node.getBBox();
       } catch (_) {
@@ -1292,7 +1601,10 @@
       const bounds = document.createElementNS("http://www.w3.org/2000/svg", "rect");
       bounds.setAttribute("class", "selection-bounds");
       layer.appendChild(bounds);
-      for (const name of ["r", "nw", "n", "ne", "w", "c", "e", "sw", "s", "se"]) {
+      const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+      line.setAttribute("class", "selection-line");
+      layer.appendChild(line);
+      for (const name of ["r", "nw", "n", "ne", "w", "c", "e", "sw", "s", "se", "p1", "p2"]) {
         const handle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
         handle.setAttribute("class", "selection-handle");
         handle.setAttribute("data-handle", name);
@@ -1372,11 +1684,25 @@
       const w = Math.max(box.width, minSize);
       const h = Math.max(box.height, minSize);
       const bounds = layer.querySelector(".selection-bounds");
+      const line = layer.querySelector(".selection-line");
+      const isLine = !item.isCanvas && !item.isFigureGroup && item.el && item.el.tagName.toLowerCase() === "line";
       bounds.classList.toggle("canvas-selected", !!item.isCanvas);
       bounds.setAttribute("x", String(x));
       bounds.setAttribute("y", String(y));
       bounds.setAttribute("width", String(w));
       bounds.setAttribute("height", String(h));
+      bounds.style.display = isLine ? "none" : "";
+      if (line) {
+        if (isLine) {
+          line.style.display = "";
+          line.setAttribute("x1", item.el.getAttribute("x1") || "0");
+          line.setAttribute("y1", item.el.getAttribute("y1") || "0");
+          line.setAttribute("x2", item.el.getAttribute("x2") || "0");
+          line.setAttribute("y2", item.el.getAttribute("y2") || "0");
+        } else {
+          line.style.display = "none";
+        }
+      }
       const points = {
         nw: [x, y],
         n: [x + w / 2, y],
@@ -1389,9 +1715,28 @@
         s: [x + w / 2, y + h],
         se: [x + w, y + h],
       };
+      if (isLine) {
+        const x1 = Number(item.el.getAttribute("x1") || 0);
+        const y1 = Number(item.el.getAttribute("y1") || 0);
+        const x2 = Number(item.el.getAttribute("x2") || 0);
+        const y2 = Number(item.el.getAttribute("y2") || 0);
+        const mx = (x1 + x2) / 2;
+        const my = (y1 + y2) / 2;
+        const len = Math.hypot(x2 - x1, y2 - y1) || 1;
+        const nx = -(y2 - y1) / len;
+        const ny = (x2 - x1) / len;
+        points.p1 = [x1, y1];
+        points.p2 = [x2, y2];
+        points.c = [mx, my];
+        points.r = [mx + nx * 26, my + ny * 26];
+      }
       for (const handle of layer.querySelectorAll(".selection-handle")) {
         const name = handle.getAttribute("data-handle");
         const p = points[name];
+        const lineHandle = name === "p1" || name === "p2";
+        const visible = isLine ? (lineHandle || name === "c" || name === "r") : !lineHandle;
+        handle.style.display = visible ? "" : "none";
+        if (!p) continue;
         handle.setAttribute("cx", String(p[0]));
         handle.setAttribute("cy", String(p[1]));
       }
@@ -1440,6 +1785,59 @@
         width: Math.max(20, width),
         height: Math.max(20, height),
       };
+    }
+
+    function linePatchFromEndpoint(el, handle, startValue, point) {
+      const snap = (v) => (snapEnabled ? snapValue(v) : v);
+      const value = {
+        x1: startValue.x1,
+        y1: startValue.y1,
+        x2: startValue.x2,
+        y2: startValue.y2,
+      };
+      if (handle === "p1") {
+        value.x1 = snap(point.x);
+        value.y1 = snap(point.y);
+      } else {
+        value.x2 = snap(point.x);
+        value.y2 = snap(point.y);
+      }
+      el.setAttribute("x1", String(value.x1));
+      el.setAttribute("y1", String(value.y1));
+      el.setAttribute("x2", String(value.x2));
+      el.setAttribute("y2", String(value.y2));
+      return value;
+    }
+
+    function rotatePointAround(point, center, angleRadians) {
+      const cos = Math.cos(angleRadians);
+      const sin = Math.sin(angleRadians);
+      const dx = point.x - center.x;
+      const dy = point.y - center.y;
+      return {
+        x: center.x + dx * cos - dy * sin,
+        y: center.y + dx * sin + dy * cos,
+      };
+    }
+
+    function linePatchFromRotation(el, startValue, startPoint, pointerPoint) {
+      const snap = (v) => (snapEnabled ? snapValue(v) : v);
+      const center = {
+        x: (startValue.x1 + startValue.x2) / 2,
+        y: (startValue.y1 + startValue.y2) / 2,
+      };
+      const a0 = Math.atan2(startPoint.y - center.y, startPoint.x - center.x);
+      const a1 = Math.atan2(pointerPoint.y - center.y, pointerPoint.x - center.x);
+      let delta = a1 - a0;
+      if (snapEnabled) delta = (Math.round((delta * 180 / Math.PI) / 5) * 5) * Math.PI / 180;
+      const p1 = rotatePointAround({ x: startValue.x1, y: startValue.y1 }, center, delta);
+      const p2 = rotatePointAround({ x: startValue.x2, y: startValue.y2 }, center, delta);
+      const value = { x1: snap(p1.x), y1: snap(p1.y), x2: snap(p2.x), y2: snap(p2.y) };
+      el.setAttribute("x1", String(value.x1));
+      el.setAttribute("y1", String(value.y1));
+      el.setAttribute("x2", String(value.x2));
+      el.setAttribute("y2", String(value.y2));
+      return value;
     }
 
     function resizePatchForElement(el, handle, startValue, startBox, nextBox) {
@@ -1730,9 +2128,31 @@
       return item;
     }
 
+    function setInspectorField(id, value) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.value = value === undefined || value === null ? "" : String(value);
+    }
+
+    function updateInspectorControls() {
+      const selected = selectedSlots.size === 1 ? Array.from(selectedSlots.values())[0] : null;
+      const canInspect = selected && !selected.isCanvas && !selected.isFigureGroup && !selected.isCharacterGroup && !selected.isFraction && selected.el;
+      const value = canInspect ? readSlotPatchValue(selected.el) : null;
+      setInspectorField("slotId", selected ? selected.slotId : "");
+      setInspectorField("propX", value?.x ?? value?.cx ?? value?.x1 ?? "");
+      setInspectorField("propY", value?.y ?? value?.cy ?? value?.y1 ?? "");
+      setInspectorField("propW", value?.width ?? "");
+      setInspectorField("propH", value?.height ?? "");
+      setInspectorField("propFontSize", value?.font_size ?? "");
+      setInspectorField("propRotate", value?.transform ?? "");
+      const patch = document.getElementById("patchJson");
+      if (patch && value) patch.value = JSON.stringify(value, null, 2);
+    }
+
     function updateTextEditControls() {
       const input = document.getElementById("textEditInput");
       const button = document.getElementById("textEditBtn");
+      updateInspectorControls();
       if (!input || !button) return;
       const item = selectedTextItem();
       if (!item) {
@@ -1744,6 +2164,48 @@
       input.disabled = false;
       button.disabled = false;
       input.value = item.el.textContent || "";
+    }
+
+    async function commitInspectorFields() {
+      if (selectedSlots.size !== 1) throw new Error("요소 하나를 선택하세요.");
+      const item = Array.from(selectedSlots.values())[0];
+      if (!item || item.isCanvas || item.isFigureGroup || item.isCharacterGroup || item.isFraction || !item.el) {
+        throw new Error("선택한 요소를 속성 패널에서 수정할 수 없습니다.");
+      }
+      const current = readSlotPatchValue(item.el) || {};
+      const value = { ...current };
+      const readNumber = (id) => {
+        const raw = document.getElementById(id)?.value;
+        if (raw === undefined || raw === null || raw === "") return undefined;
+        const n = Number(raw);
+        return Number.isFinite(n) ? n : undefined;
+      };
+      const x = readNumber("propX");
+      const y = readNumber("propY");
+      const w = readNumber("propW");
+      const h = readNumber("propH");
+      const font = readNumber("propFontSize");
+      const transform = document.getElementById("propRotate")?.value || "";
+      const tag = item.el.tagName.toLowerCase();
+      if (tag === "circle") {
+        if (x !== undefined) value.cx = x;
+        if (y !== undefined) value.cy = y;
+      } else if (tag === "line") {
+        const dx = x !== undefined && current.x1 !== undefined ? x - current.x1 : 0;
+        const dy = y !== undefined && current.y1 !== undefined ? y - current.y1 : 0;
+        if (dx || dy) Object.assign(value, applyElementDelta(item.el, dx, dy, false));
+      } else {
+        if (x !== undefined) value.x = x;
+        if (y !== undefined) value.y = y;
+      }
+      if (w !== undefined) value.width = w;
+      if (h !== undefined) value.height = h;
+      if (font !== undefined) value.font_size = font;
+      if (transform) value.transform = transform;
+      else if (current.transform !== undefined) value.transform = "";
+      applyPatchValueToElement(item.el, value);
+      updateSelectionHandles();
+      await commitPatches([{ target: item.slotId, op: "update", value }], `속성 저장 완료: ${item.slotId}`);
     }
 
     async function updateSelectedText() {
@@ -2092,6 +2554,22 @@
       if (!resizeState) return;
       const rawPoint = resizeState.item.isCanvas ? null : getSvgPoint(resizeState.svg, ev.clientX, ev.clientY);
       const p = rawPoint ? pointInRotatedFrame(rawPoint, resizeState.selectionRotation) : null;
+      const singleTag = resizeState.item.el ? resizeState.item.el.tagName.toLowerCase() : "";
+      if (singleTag === "line" && !resizeState.item.isCanvas && !resizeState.item.isFigureGroup) {
+        let value = null;
+        if (resizeState.handle === "p1" || resizeState.handle === "p2") {
+          value = linePatchFromEndpoint(resizeState.item.el, resizeState.handle, resizeState.startValue, p);
+        } else if (resizeState.handle === "r") {
+          value = linePatchFromRotation(resizeState.item.el, resizeState.startValue, resizeState.startPoint, p);
+        }
+        if (value) {
+          resizeState.lastValue = value;
+          resizeState.moved = true;
+          updateSelectionHandles();
+          setStatus(`선 조절 중: ${resizeState.item.slotId}${snapEnabled ? " (snap 5px)" : ""}`, true);
+          return;
+        }
+      }
       if (resizeState.handle === "r" && !resizeState.item.isCanvas) {
         const value = resizeState.item.isFigureGroup
           ? rotationValuesForGroup(resizeState.startValue, resizeState.startBox, resizeState.startGlobalPoint, rawPoint)
@@ -2854,6 +3332,28 @@
       try { await updateSelectedText(); }
       catch (e) { setStatus(String(e), false); }
     });
+    for (const tab of document.querySelectorAll(".ppt-tab")) {
+      tab.addEventListener("click", () => {
+        const target = tab.dataset.tab;
+        for (const item of document.querySelectorAll(".ppt-tab")) {
+          item.classList.toggle("active", item === tab);
+        }
+        for (const panel of document.querySelectorAll(".ppt-tab-panel")) {
+          panel.classList.toggle("active", panel.id === target);
+        }
+      });
+    }
+    for (const id of ["propX", "propY", "propW", "propH", "propFontSize", "propRotate"]) {
+      const input = document.getElementById(id);
+      if (!input) continue;
+      const commit = () => commitInspectorFields().catch((e) => setStatus(String(e), false));
+      input.addEventListener("change", commit);
+      input.addEventListener("keydown", (ev) => {
+        if (ev.key !== "Enter") return;
+        ev.preventDefault();
+        commit();
+      });
+    }
     document.getElementById("snapToggleBtn").onclick = () => {
       snapEnabled = !snapEnabled;
       updateSnapButton();

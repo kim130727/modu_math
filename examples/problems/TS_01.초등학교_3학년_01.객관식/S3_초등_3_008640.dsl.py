@@ -13,7 +13,7 @@ from modu_math.dsl import (
 def build_problem_template() -> ProblemTemplate:
     return ProblemTemplate(
         id="S3_초등_3_008640",
-        title="반지름의 개수",
+        title="한 원의 반지름의 개수를 묻는 객관식 문제",
         canvas=Canvas(width=960, height=650, coordinate_mode="logical"),
         regions=(
             Region(
@@ -46,109 +46,59 @@ def build_problem_template() -> ProblemTemplate:
                 id="region.explanation",
                 role="explanation",
                 flow="absolute",
-                slot_ids=("slot.ans", "slot.exp"),
+                slot_ids=( ),
             ),
         ),
         slots=(
             TextSlot(
                 id="slot.q1",
                 prompt="",
-                text="□ 12. 원에 반지를를 3개 그은 것입니다. 한 원에 반지를를 몇 개 그을 수 있는지",
-                style_role="question",
+                text = '원에 반지름을 3개 그은 것입니다. 한 원에 반지름을 몇 개 그을 수 있는지\n알맞은 것을 선택하세요', style_role="question",
                 x=16.0,
                 y=34.0,
-                font_size=28,
-            ),
-            TextSlot(
-                id="slot.q2",
-                prompt="",
-                text="알맞은 것을 선택하세요.",
-                style_role="question",
-                x=16.0,
-                y=70.0,
                 font_size=28,
             ),
             CircleSlot(
                 id="slot.circle.boundary",
                 prompt="",
-                cx=471.0,
-                cy=206.0,
-                r=134.0,
-                fill="none",
+                cx = 395, cy = 215, r = 135, fill="none",
             ),
             CircleSlot(
                 id="slot.circle.center",
                 prompt="",
-                cx=490.0,
-                cy=208.0,
-                r=3.5,
-                fill="#e91e63",
+                cx = 400, cy = 220, r = 5, fill="#e91e63",
             ),
             CircleSlot(
                 id="slot.circle.marker",
                 prompt="",
-                cx=484.0,
-                cy=193.0,
-                r=4.5,
-                fill="none",
+                cx = 398, cy = 200, r = 5, fill="none",
             ),
             LineSlot(
-                id="slot.radius.left", prompt="", x1=490.0, y1=208.0, x2=355.0, y2=214.0
-            ),
+                id="slot.radius.left", prompt="", x1 = 401, y1 = 220, x2 = 261, y2 = 230),
             LineSlot(
                 id="slot.radius.up_right",
                 prompt="",
-                x1=490.0,
-                y1=208.0,
-                x2=580.0,
-                y2=131.0,
-            ),
+                x1 = 401, y1 = 217, x2 = 511, y2 = 147),
             LineSlot(
-                id="slot.radius.down", prompt="", x1=490.0, y1=208.0, x2=474.0, y2=344.0
-            ),
+                id="slot.radius.down", prompt="", x1 = 400, y1 = 220, x2 = 385, y2 = 350),
             RectSlot(
                 id="slot.choice.box",
                 prompt="",
-                x=95.0,
-                y=328.0,
-                width=760.0,
-                height=78.0,
-                fill="none",
+                x = 110, y = 385, width = 685, height = 80, fill="none",
             ),
             TextSlot(
                 id="slot.choice.text",
                 prompt="",
-                text="( 무수히 많이 그을 수 있습니다. , 3개 )",
-                style_role="choice",
-                x=500.0,
-                y=373.0,
-                font_size=28,
-            ),
-            TextSlot(
-                id="slot.ans",
-                prompt="",
-                text="(정답)무수히 많이 그을 수 있습니다.",
-                style_role="supporting",
-                x=16.0,
-                y=435.0,
-                font_size=22,
-            ),
-            TextSlot(
-                id="slot.exp",
-                prompt="",
-                text="(해설)반지름은 원의 중심과 원 위의 한 점을 이은 선분이이므로 무수히 많이 그을 수 있습니다.",
-                style_role="supporting",
-                x=16.0,
-                y=478.0,
-                font_size=20,
-            ),
+                text = '한원의 반지름은 모두 (같습니다, 다릅니다).', style_role="choice",
+                x = 190, y = 435, font_size = 30),
+            
+            
         ),
         diagrams=(),
         groups=(),
         constraints=(),
         tags=(),
     )
-
 
 PROBLEM_TEMPLATE = build_problem_template()
 
@@ -199,7 +149,7 @@ SEMANTIC_OVERRIDE = {
             "type": "correct_choice",
             "description": "반지름은 무수히 많이 그을 수 있다.",
         },
-        "value": 0,
+        "value": "무수히 많이 그을 수 있습니다.",
         "unit": "",
     },
 }
@@ -262,7 +212,7 @@ SOLVABLE = {
             "type": "correct_choice",
             "description": "반지름은 무수히 많이 그을 수 있다.",
         },
-        "value": 0,
+        "value": "무수히 많이 그을 수 있습니다.",
         "unit": "",
     },
 }

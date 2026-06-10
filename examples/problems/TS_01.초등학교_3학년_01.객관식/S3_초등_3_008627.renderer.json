@@ -7,49 +7,15 @@
   },
   "elements": [
     {
-      "id": "slot.box.text",
-      "type": "text",
-      "attributes": {
-        "x": 8.0,
-        "y": 23.0,
-        "max_width": 608.0,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
-      },
-      "source_ref": "slot.box",
-      "refs": {
-        "layout_slot_id": "slot.box"
-      },
-      "text": "□"
-    },
-    {
-      "id": "slot.num.text",
-      "type": "text",
-      "attributes": {
-        "x": 31.0,
-        "y": 23.0,
-        "max_width": 608.0,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
-      },
-      "source_ref": "slot.num",
-      "refs": {
-        "layout_slot_id": "slot.num"
-      },
-      "text": "97."
-    },
-    {
       "id": "slot.q.text",
       "type": "text",
       "attributes": {
-        "x": 86.0,
-        "y": 23.0,
+        "x": 25.0,
+        "y": 40.0,
         "max_width": 608.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 30
       },
       "source_ref": "slot.q",
       "refs": {
@@ -61,12 +27,12 @@
       "id": "slot.opt1.text",
       "type": "text",
       "attributes": {
-        "x": 18.0,
-        "y": 72.0,
+        "x": 20.0,
+        "y": 105.0,
         "max_width": 608.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 30
       },
       "source_ref": "slot.opt1",
       "refs": {
@@ -78,12 +44,12 @@
       "id": "slot.opt2.text",
       "type": "text",
       "attributes": {
-        "x": 238.0,
-        "y": 72.0,
+        "x": 240.0,
+        "y": 105.0,
         "max_width": 608.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 30
       },
       "source_ref": "slot.opt2",
       "refs": {
@@ -95,12 +61,12 @@
       "id": "slot.opt3.text",
       "type": "text",
       "attributes": {
-        "x": 478.0,
-        "y": 72.0,
+        "x": 480.0,
+        "y": 105.0,
         "max_width": 608.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 30
       },
       "source_ref": "slot.opt3",
       "refs": {
@@ -112,12 +78,12 @@
       "id": "slot.opt4.text",
       "type": "text",
       "attributes": {
-        "x": 18.0,
-        "y": 121.0,
+        "x": 20.0,
+        "y": 150.0,
         "max_width": 608.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 30
       },
       "source_ref": "slot.opt4",
       "refs": {
@@ -129,35 +95,18 @@
       "id": "slot.opt5.text",
       "type": "text",
       "attributes": {
-        "x": 238.0,
-        "y": 121.0,
+        "x": 240.0,
+        "y": 150.0,
         "max_width": 608.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 30
       },
       "source_ref": "slot.opt5",
       "refs": {
         "layout_slot_id": "slot.opt5"
       },
       "text": "⑤ 66 ÷ 8"
-    },
-    {
-      "id": "slot.conclusion.text",
-      "type": "text",
-      "attributes": {
-        "x": 12.0,
-        "y": 284.0,
-        "max_width": 608.0,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
-      },
-      "source_ref": "slot.conclusion",
-      "refs": {
-        "layout_slot_id": "slot.conclusion"
-      },
-      "text": "따라서 나머지가 다른 하나는 ④입니다."
     }
   ],
   "contract_version": "modu_math.renderer.v2"

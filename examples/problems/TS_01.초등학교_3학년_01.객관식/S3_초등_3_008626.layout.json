@@ -14,8 +14,6 @@
       "role": "stem",
       "flow": "absolute",
       "slot_ids": [
-        "slot.icon",
-        "slot.qnum",
         "slot.question"
       ]
     },
@@ -40,38 +38,15 @@
   ],
   "slots": [
     {
-      "id": "slot.icon",
-      "kind": "rect",
-      "prompt": "",
-      "content": {
-        "x": 8.0,
-        "y": 19.0,
-        "width": 13.0,
-        "height": 13.0
-      }
-    },
-    {
-      "id": "slot.qnum",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "96.",
-        "style_role": "question",
-        "x": 33.0,
-        "y": 29.0,
-        "font_size": 28
-      }
-    },
-    {
       "id": "slot.question",
       "kind": "text",
       "prompt": "",
       "content": {
         "text": "나머지가 4가 될 수 없는 식은 어느 것일까요?",
         "style_role": "question",
-        "x": 67.0,
-        "y": 29.0,
-        "font_size": 28
+        "x": 25.0,
+        "y": 40.0,
+        "font_size": 30
       }
     },
     {
@@ -81,9 +56,9 @@
       "content": {
         "text": "① □ ÷ 5",
         "style_role": "choice",
-        "x": 22.0,
-        "y": 79.0,
-        "font_size": 28
+        "x": 25.0,
+        "y": 95.0,
+        "font_size": 30
       }
     },
     {
@@ -93,9 +68,9 @@
       "content": {
         "text": "② □ ÷ 9",
         "style_role": "choice",
-        "x": 328.0,
-        "y": 79.0,
-        "font_size": 28
+        "x": 220.0,
+        "y": 95.0,
+        "font_size": 30
       }
     },
     {
@@ -105,9 +80,9 @@
       "content": {
         "text": "③ □ ÷ 4",
         "style_role": "choice",
-        "x": 645.0,
-        "y": 79.0,
-        "font_size": 28
+        "x": 395.0,
+        "y": 95.0,
+        "font_size": 30
       }
     },
     {
@@ -117,9 +92,9 @@
       "content": {
         "text": "④ □ ÷ 8",
         "style_role": "choice",
-        "x": 22.0,
-        "y": 122.0,
-        "font_size": 28
+        "x": 25.0,
+        "y": 140.0,
+        "font_size": 30
       }
     },
     {
@@ -129,9 +104,9 @@
       "content": {
         "text": "⑤ □ ÷ 6",
         "style_role": "choice",
-        "x": 328.0,
-        "y": 122.0,
-        "font_size": 28
+        "x": 220.0,
+        "y": 140.0,
+        "font_size": 30
       }
     }
   ],
@@ -140,8 +115,6 @@
   "diagrams": [],
   "reading_order": [
     "region.stem",
-    "slot.icon",
-    "slot.qnum",
     "slot.question",
     "region.options",
     "slot.choice.1",

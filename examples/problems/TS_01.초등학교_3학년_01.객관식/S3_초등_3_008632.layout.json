@@ -14,8 +14,6 @@
       "role": "stem",
       "flow": "absolute",
       "slot_ids": [
-        "slot.q.box",
-        "slot.q.number",
         "slot.q.text"
       ]
     },
@@ -35,45 +33,10 @@
       "id": "region.answer_explanation",
       "role": "explanation",
       "flow": "absolute",
-      "slot_ids": [
-        "slot.ans",
-        "slot.exp",
-        "slot.exp1",
-        "slot.exp2",
-        "slot.exp3",
-        "slot.exp4",
-        "slot.exp5",
-        "slot.concl"
-      ]
+      "slot_ids": []
     }
   ],
   "slots": [
-    {
-      "id": "slot.q.box",
-      "kind": "rect",
-      "prompt": "",
-      "content": {
-        "x": 14.0,
-        "y": 10.0,
-        "width": 16.0,
-        "height": 16.0,
-        "stroke": "#333333",
-        "stroke_width": 1.5,
-        "fill": "none"
-      }
-    },
-    {
-      "id": "slot.q.number",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "3.",
-        "style_role": "question",
-        "x": 38.0,
-        "y": 28.0,
-        "font_size": 28
-      }
-    },
     {
       "id": "slot.q.text",
       "kind": "text",
@@ -81,9 +44,9 @@
       "content": {
         "text": "나눗셈 중에서 나머지가 다른 하나를 고르세요.",
         "style_role": "question",
-        "x": 82.0,
-        "y": 28.0,
-        "font_size": 28
+        "x": 25.0,
+        "y": 40.0,
+        "font_size": 30
       }
     },
     {
@@ -93,9 +56,9 @@
       "content": {
         "text": "① 39 ÷ 3",
         "style_role": "question",
-        "x": 26.0,
-        "y": 86.0,
-        "font_size": 28
+        "x": 25.0,
+        "y": 105.0,
+        "font_size": 30
       }
     },
     {
@@ -105,9 +68,9 @@
       "content": {
         "text": "② 17 ÷ 4",
         "style_role": "question",
-        "x": 327.0,
-        "y": 86.0,
-        "font_size": 28
+        "x": 205.0,
+        "y": 105.0,
+        "font_size": 30
       }
     },
     {
@@ -117,9 +80,9 @@
       "content": {
         "text": "③ 16 ÷ 5",
         "style_role": "question",
-        "x": 580.0,
-        "y": 86.0,
-        "font_size": 28
+        "x": 390.0,
+        "y": 105.0,
+        "font_size": 30
       }
     },
     {
@@ -129,9 +92,9 @@
       "content": {
         "text": "④ 31 ÷ 6",
         "style_role": "question",
-        "x": 26.0,
-        "y": 131.0,
-        "font_size": 28
+        "x": 25.0,
+        "y": 150.0,
+        "font_size": 30
       }
     },
     {
@@ -141,105 +104,9 @@
       "content": {
         "text": "⑤ 27 ÷ 2",
         "style_role": "question",
-        "x": 327.0,
-        "y": 131.0,
-        "font_size": 28
-      }
-    },
-    {
-      "id": "slot.ans",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "(정답) ①",
-        "style_role": "supporting",
-        "x": 26.0,
-        "y": 190.0,
-        "font_size": 22
-      }
-    },
-    {
-      "id": "slot.exp",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "(해설)",
-        "style_role": "supporting",
-        "x": 26.0,
-        "y": 230.0,
-        "font_size": 22
-      }
-    },
-    {
-      "id": "slot.exp1",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "① 39 ÷ 3 = 13이므로 나머지가 0입니다.",
-        "style_role": "supporting",
-        "x": 26.0,
-        "y": 270.0,
-        "font_size": 20
-      }
-    },
-    {
-      "id": "slot.exp2",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "② 17 ÷ 4 = 4···1이므로 나머지가 1입니다.",
-        "style_role": "supporting",
-        "x": 26.0,
-        "y": 305.0,
-        "font_size": 20
-      }
-    },
-    {
-      "id": "slot.exp3",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "③ 16 ÷ 5 = 3···1이므로 나머지가 1입니다.",
-        "style_role": "supporting",
-        "x": 26.0,
-        "y": 340.0,
-        "font_size": 20
-      }
-    },
-    {
-      "id": "slot.exp4",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "④ 31 ÷ 6 = 5···1이므로 나머지가 1입니다.",
-        "style_role": "supporting",
-        "x": 26.0,
-        "y": 375.0,
-        "font_size": 20
-      }
-    },
-    {
-      "id": "slot.exp5",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "⑤ 27 ÷ 2 = 13···1이므로 나머지가 1입니다.",
-        "style_role": "supporting",
-        "x": 26.0,
-        "y": 410.0,
-        "font_size": 20
-      }
-    },
-    {
-      "id": "slot.concl",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "따라서 나머지가 다른 하나는 ① 39 ÷ 3입니다.",
-        "style_role": "supporting",
-        "x": 26.0,
-        "y": 445.0,
-        "font_size": 20
+        "x": 205.0,
+        "y": 150.0,
+        "font_size": 30
       }
     }
   ],
@@ -248,8 +115,6 @@
   "diagrams": [],
   "reading_order": [
     "region.stem",
-    "slot.q.box",
-    "slot.q.number",
     "slot.q.text",
     "region.choices",
     "slot.choice.1",
@@ -257,14 +122,6 @@
     "slot.choice.3",
     "slot.choice.4",
     "slot.choice.5",
-    "region.answer_explanation",
-    "slot.ans",
-    "slot.exp",
-    "slot.exp1",
-    "slot.exp2",
-    "slot.exp3",
-    "slot.exp4",
-    "slot.exp5",
-    "slot.concl"
+    "region.answer_explanation"
   ]
 }

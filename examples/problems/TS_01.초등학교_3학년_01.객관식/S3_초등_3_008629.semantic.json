@@ -2,15 +2,15 @@
   "problem_id": "S3_초등_3_008629",
   "problem_type": "compare_division_expressions",
   "metadata": {
-    "title": "묶이 더 작은 것을 선택하세요",
+    "title": "몫이 더 작은 것을 선택하세요",
     "tags": [],
-    "question": "묶이 더 작은 것을 선택하세요.",
+    "instruction": "두 나눗셈 식을 비교하여 더 작은 것을 고른다.",
+    "question": "몫이 더 작은 것을 선택하세요.",
     "required_layout_ids": [
       "slot.compare_box"
     ],
     "extraction_confidence": 1.0,
-    "language": "ko",
-    "instruction": "두 나눗셈 식을 비교하여 더 작은 것을 고른다."
+    "language": "ko"
   },
   "domain": {
     "objects": [
@@ -60,9 +60,10 @@
     "blanks": [],
     "choices": [],
     "answer_key": [],
+    "confidence": 1.0,
     "target": {
       "type": "smaller_expression",
-      "description": "묶이 더 작은 나눗셈 식"
+      "description": "몫이 더 작은 나눗셈 식"
     },
     "value": 0,
     "unit": ""

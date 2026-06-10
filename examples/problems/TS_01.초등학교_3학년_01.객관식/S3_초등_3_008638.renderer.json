@@ -1,38 +1,21 @@
 {
   "problem_id": "S3_초등_3_008638",
   "view_box": {
-    "width": 939.0,
-    "height": 700.0,
+    "width": 600.0,
+    "height": 400.0,
     "background": "#FFFFFF"
   },
   "elements": [
     {
-      "id": "slot.qnum.text",
-      "type": "text",
-      "attributes": {
-        "x": 26.0,
-        "y": 18.0,
-        "max_width": 811.0,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
-      },
-      "source_ref": "slot.qnum",
-      "refs": {
-        "layout_slot_id": "slot.qnum"
-      },
-      "text": "10."
-    },
-    {
       "id": "slot.qtext.text",
       "type": "text",
       "attributes": {
-        "x": 74.0,
-        "y": 18.0,
-        "max_width": 811.0,
+        "x": 105.0,
+        "y": 70.0,
+        "max_width": 472.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 30
       },
       "source_ref": "slot.qtext",
       "refs": {
@@ -58,46 +41,12 @@
       }
     },
     {
-      "id": "slot.ans_label.text",
-      "type": "text",
-      "attributes": {
-        "x": 26.0,
-        "y": 620.0,
-        "max_width": 811.0,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 22
-      },
-      "source_ref": "slot.ans_label",
-      "refs": {
-        "layout_slot_id": "slot.ans_label"
-      },
-      "text": "(정답)"
-    },
-    {
-      "id": "slot.exp.text",
-      "type": "text",
-      "attributes": {
-        "x": 26.0,
-        "y": 660.0,
-        "max_width": 811.0,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 20
-      },
-      "source_ref": "slot.exp",
-      "refs": {
-        "layout_slot_id": "slot.exp"
-      },
-      "text": "(해설) 원의 중심은 원을 그릴 때 누름 못이 꽂혔던 점으로 한 원에는 원의 중심이 1개 있습니다."
-    },
-    {
       "id": "slot.top.circle.circle",
       "type": "circle",
       "attributes": {
-        "cx": 466.0,
-        "cy": 136.0,
-        "r": 78.0,
+        "cx": 295.0,
+        "cy": 195.0,
+        "r": 70.0,
         "stroke": "#333333",
         "stroke-width": 1.8,
         "fill": "none"
@@ -111,9 +60,9 @@
       "id": "slot.top.pt.ga.circle",
       "type": "circle",
       "attributes": {
-        "cx": 430.0,
-        "cy": 138.0,
-        "r": 3.5,
+        "cx": 297.0,
+        "cy": 196.0,
+        "r": 5.0,
         "stroke": "#111111",
         "stroke-width": 2.0,
         "fill": "#ff3aa8"
@@ -127,9 +76,9 @@
       "id": "slot.top.pt.na.circle",
       "type": "circle",
       "attributes": {
-        "cx": 490.0,
-        "cy": 138.0,
-        "r": 3.5,
+        "cx": 345.0,
+        "cy": 197.0,
+        "r": 5.0,
         "stroke": "#111111",
         "stroke-width": 2.0,
         "fill": "#ff3aa8"
@@ -143,9 +92,9 @@
       "id": "slot.top.pt.da.circle",
       "type": "circle",
       "attributes": {
-        "cx": 430.0,
-        "cy": 196.0,
-        "r": 3.5,
+        "cx": 297.0,
+        "cy": 244.0,
+        "r": 5.0,
         "stroke": "#111111",
         "stroke-width": 2.0,
         "fill": "#ff3aa8"
@@ -159,10 +108,10 @@
       "id": "slot.top.grid.v0.line",
       "type": "line",
       "attributes": {
-        "x1": 370.0,
-        "y1": 40.0,
-        "x2": 370.0,
-        "y2": 232.0,
+        "x1": 200.0,
+        "y1": 100.0,
+        "x2": 200.0,
+        "y2": 292.0,
         "stroke": "#5FCBFF",
         "stroke-width": 1.2,
         "stroke-dasharray": "5 3"
@@ -176,10 +125,10 @@
       "id": "slot.top.grid.v1.line",
       "type": "line",
       "attributes": {
-        "x1": 394.0,
-        "y1": 40.0,
-        "x2": 394.0,
-        "y2": 232.0,
+        "x1": 224.0,
+        "y1": 100.0,
+        "x2": 224.0,
+        "y2": 292.0,
         "stroke": "#5FCBFF",
         "stroke-width": 1.2,
         "stroke-dasharray": "5 3"
@@ -193,10 +142,10 @@
       "id": "slot.top.grid.v2.line",
       "type": "line",
       "attributes": {
-        "x1": 418.0,
-        "y1": 40.0,
-        "x2": 418.0,
-        "y2": 232.0,
+        "x1": 248.0,
+        "y1": 100.0,
+        "x2": 248.0,
+        "y2": 292.0,
         "stroke": "#5FCBFF",
         "stroke-width": 1.2,
         "stroke-dasharray": "5 3"
@@ -210,10 +159,10 @@
       "id": "slot.top.grid.v3.line",
       "type": "line",
       "attributes": {
-        "x1": 442.0,
-        "y1": 40.0,
-        "x2": 442.0,
-        "y2": 232.0,
+        "x1": 272.0,
+        "y1": 100.0,
+        "x2": 272.0,
+        "y2": 292.0,
         "stroke": "#5FCBFF",
         "stroke-width": 1.2,
         "stroke-dasharray": "5 3"
@@ -227,10 +176,10 @@
       "id": "slot.top.grid.v4.line",
       "type": "line",
       "attributes": {
-        "x1": 466.0,
-        "y1": 40.0,
-        "x2": 466.0,
-        "y2": 232.0,
+        "x1": 296.0,
+        "y1": 100.0,
+        "x2": 296.0,
+        "y2": 292.0,
         "stroke": "#5FCBFF",
         "stroke-width": 1.2,
         "stroke-dasharray": "5 3"
@@ -244,10 +193,10 @@
       "id": "slot.top.grid.v5.line",
       "type": "line",
       "attributes": {
-        "x1": 490.0,
-        "y1": 40.0,
-        "x2": 490.0,
-        "y2": 232.0,
+        "x1": 320.0,
+        "y1": 100.0,
+        "x2": 320.0,
+        "y2": 292.0,
         "stroke": "#5FCBFF",
         "stroke-width": 1.2,
         "stroke-dasharray": "5 3"
@@ -261,10 +210,10 @@
       "id": "slot.top.grid.v6.line",
       "type": "line",
       "attributes": {
-        "x1": 514.0,
-        "y1": 40.0,
-        "x2": 514.0,
-        "y2": 232.0,
+        "x1": 344.0,
+        "y1": 100.0,
+        "x2": 344.0,
+        "y2": 292.0,
         "stroke": "#5FCBFF",
         "stroke-width": 1.2,
         "stroke-dasharray": "5 3"
@@ -278,10 +227,10 @@
       "id": "slot.top.grid.v7.line",
       "type": "line",
       "attributes": {
-        "x1": 538.0,
-        "y1": 40.0,
-        "x2": 538.0,
-        "y2": 232.0,
+        "x1": 368.0,
+        "y1": 100.0,
+        "x2": 368.0,
+        "y2": 292.0,
         "stroke": "#5FCBFF",
         "stroke-width": 1.2,
         "stroke-dasharray": "5 3"
@@ -295,10 +244,10 @@
       "id": "slot.top.grid.v8.line",
       "type": "line",
       "attributes": {
-        "x1": 562.0,
-        "y1": 40.0,
-        "x2": 562.0,
-        "y2": 232.0,
+        "x1": 392.0,
+        "y1": 100.0,
+        "x2": 392.0,
+        "y2": 292.0,
         "stroke": "#5FCBFF",
         "stroke-width": 1.2,
         "stroke-dasharray": "5 3"
@@ -312,10 +261,10 @@
       "id": "slot.top.grid.h0.line",
       "type": "line",
       "attributes": {
-        "x1": 370.0,
-        "y1": 40.0,
-        "x2": 562.0,
-        "y2": 40.0,
+        "x1": 200.0,
+        "y1": 100.0,
+        "x2": 392.0,
+        "y2": 100.0,
         "stroke": "#5FCBFF",
         "stroke-width": 1.2,
         "stroke-dasharray": "5 3"
@@ -329,10 +278,10 @@
       "id": "slot.top.grid.h1.line",
       "type": "line",
       "attributes": {
-        "x1": 370.0,
-        "y1": 64.0,
-        "x2": 562.0,
-        "y2": 64.0,
+        "x1": 200.0,
+        "y1": 124.0,
+        "x2": 392.0,
+        "y2": 124.0,
         "stroke": "#5FCBFF",
         "stroke-width": 1.2,
         "stroke-dasharray": "5 3"
@@ -346,10 +295,10 @@
       "id": "slot.top.grid.h2.line",
       "type": "line",
       "attributes": {
-        "x1": 370.0,
-        "y1": 88.0,
-        "x2": 562.0,
-        "y2": 88.0,
+        "x1": 200.0,
+        "y1": 148.0,
+        "x2": 392.0,
+        "y2": 148.0,
         "stroke": "#5FCBFF",
         "stroke-width": 1.2,
         "stroke-dasharray": "5 3"
@@ -363,10 +312,10 @@
       "id": "slot.top.grid.h3.line",
       "type": "line",
       "attributes": {
-        "x1": 370.0,
-        "y1": 112.0,
-        "x2": 562.0,
-        "y2": 112.0,
+        "x1": 200.0,
+        "y1": 172.0,
+        "x2": 392.0,
+        "y2": 172.0,
         "stroke": "#5FCBFF",
         "stroke-width": 1.2,
         "stroke-dasharray": "5 3"
@@ -380,10 +329,10 @@
       "id": "slot.top.grid.h4.line",
       "type": "line",
       "attributes": {
-        "x1": 370.0,
-        "y1": 136.0,
-        "x2": 562.0,
-        "y2": 136.0,
+        "x1": 200.0,
+        "y1": 196.0,
+        "x2": 392.0,
+        "y2": 196.0,
         "stroke": "#5FCBFF",
         "stroke-width": 1.2,
         "stroke-dasharray": "5 3"
@@ -397,10 +346,10 @@
       "id": "slot.top.grid.h5.line",
       "type": "line",
       "attributes": {
-        "x1": 370.0,
-        "y1": 160.0,
-        "x2": 562.0,
-        "y2": 160.0,
+        "x1": 200.0,
+        "y1": 220.0,
+        "x2": 392.0,
+        "y2": 220.0,
         "stroke": "#5FCBFF",
         "stroke-width": 1.2,
         "stroke-dasharray": "5 3"
@@ -414,10 +363,10 @@
       "id": "slot.top.grid.h6.line",
       "type": "line",
       "attributes": {
-        "x1": 370.0,
-        "y1": 184.0,
-        "x2": 562.0,
-        "y2": 184.0,
+        "x1": 200.0,
+        "y1": 244.0,
+        "x2": 392.0,
+        "y2": 244.0,
         "stroke": "#5FCBFF",
         "stroke-width": 1.2,
         "stroke-dasharray": "5 3"
@@ -431,10 +380,10 @@
       "id": "slot.top.grid.h7.line",
       "type": "line",
       "attributes": {
-        "x1": 370.0,
-        "y1": 208.0,
-        "x2": 562.0,
-        "y2": 208.0,
+        "x1": 200.0,
+        "y1": 268.0,
+        "x2": 392.0,
+        "y2": 268.0,
         "stroke": "#5FCBFF",
         "stroke-width": 1.2,
         "stroke-dasharray": "5 3"
@@ -448,10 +397,10 @@
       "id": "slot.top.grid.h8.line",
       "type": "line",
       "attributes": {
-        "x1": 370.0,
-        "y1": 232.0,
-        "x2": 562.0,
-        "y2": 232.0,
+        "x1": 200.0,
+        "y1": 292.0,
+        "x2": 392.0,
+        "y2": 292.0,
         "stroke": "#5FCBFF",
         "stroke-width": 1.2,
         "stroke-dasharray": "5 3"
@@ -465,489 +414,52 @@
       "id": "slot.top.lb.ga.text",
       "type": "text",
       "attributes": {
-        "x": 414.0,
-        "y": 127.0,
-        "max_width": 811.0,
+        "x": 265.0,
+        "y": 190.0,
+        "max_width": 472.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 24
+        "font-size": 25
       },
       "source_ref": "slot.top.lb.ga",
       "refs": {
         "layout_slot_id": "slot.top.lb.ga"
       },
-      "text": "가"
+      "text": "ㄱ"
     },
     {
       "id": "slot.top.lb.na.text",
       "type": "text",
       "attributes": {
-        "x": 474.0,
-        "y": 127.0,
-        "max_width": 811.0,
+        "x": 320.0,
+        "y": 190.0,
+        "max_width": 472.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 24
+        "font-size": 25
       },
       "source_ref": "slot.top.lb.na",
       "refs": {
         "layout_slot_id": "slot.top.lb.na"
       },
-      "text": "나"
+      "text": "ㄴ"
     },
     {
       "id": "slot.top.lb.da.text",
       "type": "text",
       "attributes": {
-        "x": 414.0,
-        "y": 189.0,
-        "max_width": 811.0,
+        "x": 300.0,
+        "y": 240.0,
+        "max_width": 472.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 24
+        "font-size": 25
       },
       "source_ref": "slot.top.lb.da",
       "refs": {
         "layout_slot_id": "slot.top.lb.da"
       },
-      "text": "다"
-    },
-    {
-      "id": "slot.bottom.circle.circle",
-      "type": "circle",
-      "attributes": {
-        "cx": 132.0,
-        "cy": 478.0,
-        "r": 78.0,
-        "stroke": "#333333",
-        "stroke-width": 1.8,
-        "fill": "none"
-      },
-      "source_ref": "slot.bottom.circle",
-      "refs": {
-        "layout_slot_id": "slot.bottom.circle"
-      }
-    },
-    {
-      "id": "slot.bottom.pt.ga.circle",
-      "type": "circle",
-      "attributes": {
-        "cx": 96.0,
-        "cy": 480.0,
-        "r": 3.5,
-        "stroke": "#111111",
-        "stroke-width": 2.0,
-        "fill": "#ff3aa8"
-      },
-      "source_ref": "slot.bottom.pt.ga",
-      "refs": {
-        "layout_slot_id": "slot.bottom.pt.ga"
-      }
-    },
-    {
-      "id": "slot.bottom.pt.na.circle",
-      "type": "circle",
-      "attributes": {
-        "cx": 156.0,
-        "cy": 480.0,
-        "r": 3.5,
-        "stroke": "#111111",
-        "stroke-width": 2.0,
-        "fill": "#ff3aa8"
-      },
-      "source_ref": "slot.bottom.pt.na",
-      "refs": {
-        "layout_slot_id": "slot.bottom.pt.na"
-      }
-    },
-    {
-      "id": "slot.bottom.pt.da.circle",
-      "type": "circle",
-      "attributes": {
-        "cx": 96.0,
-        "cy": 538.0,
-        "r": 3.5,
-        "stroke": "#111111",
-        "stroke-width": 2.0,
-        "fill": "#ff3aa8"
-      },
-      "source_ref": "slot.bottom.pt.da",
-      "refs": {
-        "layout_slot_id": "slot.bottom.pt.da"
-      }
-    },
-    {
-      "id": "slot.bottom.center_hint.circle",
-      "type": "circle",
-      "attributes": {
-        "cx": 132.0,
-        "cy": 480.0,
-        "r": 16.0,
-        "stroke": "#b9b9b9",
-        "stroke-width": 1.2,
-        "fill": "none"
-      },
-      "source_ref": "slot.bottom.center_hint",
-      "refs": {
-        "layout_slot_id": "slot.bottom.center_hint"
-      }
-    },
-    {
-      "id": "slot.bottom.grid.v0.line",
-      "type": "line",
-      "attributes": {
-        "x1": 36.0,
-        "y1": 382.0,
-        "x2": 36.0,
-        "y2": 574.0,
-        "stroke": "#5FCBFF",
-        "stroke-width": 1.2,
-        "stroke-dasharray": "5 3"
-      },
-      "source_ref": "slot.bottom.grid.v0",
-      "refs": {
-        "layout_slot_id": "slot.bottom.grid.v0"
-      }
-    },
-    {
-      "id": "slot.bottom.grid.v1.line",
-      "type": "line",
-      "attributes": {
-        "x1": 60.0,
-        "y1": 382.0,
-        "x2": 60.0,
-        "y2": 574.0,
-        "stroke": "#5FCBFF",
-        "stroke-width": 1.2,
-        "stroke-dasharray": "5 3"
-      },
-      "source_ref": "slot.bottom.grid.v1",
-      "refs": {
-        "layout_slot_id": "slot.bottom.grid.v1"
-      }
-    },
-    {
-      "id": "slot.bottom.grid.v2.line",
-      "type": "line",
-      "attributes": {
-        "x1": 84.0,
-        "y1": 382.0,
-        "x2": 84.0,
-        "y2": 574.0,
-        "stroke": "#5FCBFF",
-        "stroke-width": 1.2,
-        "stroke-dasharray": "5 3"
-      },
-      "source_ref": "slot.bottom.grid.v2",
-      "refs": {
-        "layout_slot_id": "slot.bottom.grid.v2"
-      }
-    },
-    {
-      "id": "slot.bottom.grid.v3.line",
-      "type": "line",
-      "attributes": {
-        "x1": 108.0,
-        "y1": 382.0,
-        "x2": 108.0,
-        "y2": 574.0,
-        "stroke": "#5FCBFF",
-        "stroke-width": 1.2,
-        "stroke-dasharray": "5 3"
-      },
-      "source_ref": "slot.bottom.grid.v3",
-      "refs": {
-        "layout_slot_id": "slot.bottom.grid.v3"
-      }
-    },
-    {
-      "id": "slot.bottom.grid.v4.line",
-      "type": "line",
-      "attributes": {
-        "x1": 132.0,
-        "y1": 382.0,
-        "x2": 132.0,
-        "y2": 574.0,
-        "stroke": "#5FCBFF",
-        "stroke-width": 1.2,
-        "stroke-dasharray": "5 3"
-      },
-      "source_ref": "slot.bottom.grid.v4",
-      "refs": {
-        "layout_slot_id": "slot.bottom.grid.v4"
-      }
-    },
-    {
-      "id": "slot.bottom.grid.v5.line",
-      "type": "line",
-      "attributes": {
-        "x1": 156.0,
-        "y1": 382.0,
-        "x2": 156.0,
-        "y2": 574.0,
-        "stroke": "#5FCBFF",
-        "stroke-width": 1.2,
-        "stroke-dasharray": "5 3"
-      },
-      "source_ref": "slot.bottom.grid.v5",
-      "refs": {
-        "layout_slot_id": "slot.bottom.grid.v5"
-      }
-    },
-    {
-      "id": "slot.bottom.grid.v6.line",
-      "type": "line",
-      "attributes": {
-        "x1": 180.0,
-        "y1": 382.0,
-        "x2": 180.0,
-        "y2": 574.0,
-        "stroke": "#5FCBFF",
-        "stroke-width": 1.2,
-        "stroke-dasharray": "5 3"
-      },
-      "source_ref": "slot.bottom.grid.v6",
-      "refs": {
-        "layout_slot_id": "slot.bottom.grid.v6"
-      }
-    },
-    {
-      "id": "slot.bottom.grid.v7.line",
-      "type": "line",
-      "attributes": {
-        "x1": 204.0,
-        "y1": 382.0,
-        "x2": 204.0,
-        "y2": 574.0,
-        "stroke": "#5FCBFF",
-        "stroke-width": 1.2,
-        "stroke-dasharray": "5 3"
-      },
-      "source_ref": "slot.bottom.grid.v7",
-      "refs": {
-        "layout_slot_id": "slot.bottom.grid.v7"
-      }
-    },
-    {
-      "id": "slot.bottom.grid.v8.line",
-      "type": "line",
-      "attributes": {
-        "x1": 228.0,
-        "y1": 382.0,
-        "x2": 228.0,
-        "y2": 574.0,
-        "stroke": "#5FCBFF",
-        "stroke-width": 1.2,
-        "stroke-dasharray": "5 3"
-      },
-      "source_ref": "slot.bottom.grid.v8",
-      "refs": {
-        "layout_slot_id": "slot.bottom.grid.v8"
-      }
-    },
-    {
-      "id": "slot.bottom.grid.h0.line",
-      "type": "line",
-      "attributes": {
-        "x1": 36.0,
-        "y1": 382.0,
-        "x2": 228.0,
-        "y2": 382.0,
-        "stroke": "#5FCBFF",
-        "stroke-width": 1.2,
-        "stroke-dasharray": "5 3"
-      },
-      "source_ref": "slot.bottom.grid.h0",
-      "refs": {
-        "layout_slot_id": "slot.bottom.grid.h0"
-      }
-    },
-    {
-      "id": "slot.bottom.grid.h1.line",
-      "type": "line",
-      "attributes": {
-        "x1": 36.0,
-        "y1": 406.0,
-        "x2": 228.0,
-        "y2": 406.0,
-        "stroke": "#5FCBFF",
-        "stroke-width": 1.2,
-        "stroke-dasharray": "5 3"
-      },
-      "source_ref": "slot.bottom.grid.h1",
-      "refs": {
-        "layout_slot_id": "slot.bottom.grid.h1"
-      }
-    },
-    {
-      "id": "slot.bottom.grid.h2.line",
-      "type": "line",
-      "attributes": {
-        "x1": 36.0,
-        "y1": 430.0,
-        "x2": 228.0,
-        "y2": 430.0,
-        "stroke": "#5FCBFF",
-        "stroke-width": 1.2,
-        "stroke-dasharray": "5 3"
-      },
-      "source_ref": "slot.bottom.grid.h2",
-      "refs": {
-        "layout_slot_id": "slot.bottom.grid.h2"
-      }
-    },
-    {
-      "id": "slot.bottom.grid.h3.line",
-      "type": "line",
-      "attributes": {
-        "x1": 36.0,
-        "y1": 454.0,
-        "x2": 228.0,
-        "y2": 454.0,
-        "stroke": "#5FCBFF",
-        "stroke-width": 1.2,
-        "stroke-dasharray": "5 3"
-      },
-      "source_ref": "slot.bottom.grid.h3",
-      "refs": {
-        "layout_slot_id": "slot.bottom.grid.h3"
-      }
-    },
-    {
-      "id": "slot.bottom.grid.h4.line",
-      "type": "line",
-      "attributes": {
-        "x1": 36.0,
-        "y1": 478.0,
-        "x2": 228.0,
-        "y2": 478.0,
-        "stroke": "#5FCBFF",
-        "stroke-width": 1.2,
-        "stroke-dasharray": "5 3"
-      },
-      "source_ref": "slot.bottom.grid.h4",
-      "refs": {
-        "layout_slot_id": "slot.bottom.grid.h4"
-      }
-    },
-    {
-      "id": "slot.bottom.grid.h5.line",
-      "type": "line",
-      "attributes": {
-        "x1": 36.0,
-        "y1": 502.0,
-        "x2": 228.0,
-        "y2": 502.0,
-        "stroke": "#5FCBFF",
-        "stroke-width": 1.2,
-        "stroke-dasharray": "5 3"
-      },
-      "source_ref": "slot.bottom.grid.h5",
-      "refs": {
-        "layout_slot_id": "slot.bottom.grid.h5"
-      }
-    },
-    {
-      "id": "slot.bottom.grid.h6.line",
-      "type": "line",
-      "attributes": {
-        "x1": 36.0,
-        "y1": 526.0,
-        "x2": 228.0,
-        "y2": 526.0,
-        "stroke": "#5FCBFF",
-        "stroke-width": 1.2,
-        "stroke-dasharray": "5 3"
-      },
-      "source_ref": "slot.bottom.grid.h6",
-      "refs": {
-        "layout_slot_id": "slot.bottom.grid.h6"
-      }
-    },
-    {
-      "id": "slot.bottom.grid.h7.line",
-      "type": "line",
-      "attributes": {
-        "x1": 36.0,
-        "y1": 550.0,
-        "x2": 228.0,
-        "y2": 550.0,
-        "stroke": "#5FCBFF",
-        "stroke-width": 1.2,
-        "stroke-dasharray": "5 3"
-      },
-      "source_ref": "slot.bottom.grid.h7",
-      "refs": {
-        "layout_slot_id": "slot.bottom.grid.h7"
-      }
-    },
-    {
-      "id": "slot.bottom.grid.h8.line",
-      "type": "line",
-      "attributes": {
-        "x1": 36.0,
-        "y1": 574.0,
-        "x2": 228.0,
-        "y2": 574.0,
-        "stroke": "#5FCBFF",
-        "stroke-width": 1.2,
-        "stroke-dasharray": "5 3"
-      },
-      "source_ref": "slot.bottom.grid.h8",
-      "refs": {
-        "layout_slot_id": "slot.bottom.grid.h8"
-      }
-    },
-    {
-      "id": "slot.bottom.lb.ga.text",
-      "type": "text",
-      "attributes": {
-        "x": 80.0,
-        "y": 469.0,
-        "max_width": 811.0,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 24
-      },
-      "source_ref": "slot.bottom.lb.ga",
-      "refs": {
-        "layout_slot_id": "slot.bottom.lb.ga"
-      },
-      "text": "가"
-    },
-    {
-      "id": "slot.bottom.lb.na.text",
-      "type": "text",
-      "attributes": {
-        "x": 140.0,
-        "y": 469.0,
-        "max_width": 811.0,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 24
-      },
-      "source_ref": "slot.bottom.lb.na",
-      "refs": {
-        "layout_slot_id": "slot.bottom.lb.na"
-      },
-      "text": "나"
-    },
-    {
-      "id": "slot.bottom.lb.da.text",
-      "type": "text",
-      "attributes": {
-        "x": 80.0,
-        "y": 531.0,
-        "max_width": 811.0,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 24
-      },
-      "source_ref": "slot.bottom.lb.da",
-      "refs": {
-        "layout_slot_id": "slot.bottom.lb.da"
-      },
-      "text": "다"
+      "text": "ㄷ"
     }
   ],
   "contract_version": "modu_math.renderer.v2"

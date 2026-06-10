@@ -48,17 +48,15 @@
       "role": "answer_choice",
       "flow": "absolute",
       "slot_ids": [
-        "slot.choice"
+        "slot.choice",
+        "slot.choice.copy4"
       ]
     },
     {
       "id": "region.explanation",
       "role": "explanation",
       "flow": "absolute",
-      "slot_ids": [
-        "slot.ans",
-        "slot.exp"
-      ]
+      "slot_ids": []
     }
   ],
   "slots": [
@@ -67,11 +65,11 @@
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "□ 8. 누름 못과 띠 종이로 원을 그렸습니다. 누름 못이 꽂힌 점에서 원 위에 찍힌",
+        "text": "누름 못과 띠 종이로 원을 그렸습니다. 누름 못이 꽂힌 점에서 원 위에 찍힌",
         "style_role": "question",
-        "x": 10.0,
-        "y": 26.0,
-        "font_size": 28
+        "x": 5.0,
+        "y": 65.0,
+        "font_size": 30
       }
     },
     {
@@ -81,9 +79,9 @@
       "content": {
         "text": "2개의 점까지의 길이를 각각 재어 알맞은 말을 선택하세요.",
         "style_role": "question",
-        "x": 40.0,
-        "y": 62.0,
-        "font_size": 28
+        "x": 8.0,
+        "y": 115.0,
+        "font_size": 30
       }
     },
     {
@@ -91,8 +89,8 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 327.0,
-        "cy": 177.0,
+        "cx": 330.0,
+        "cy": 230.0,
         "r": 90.0,
         "fill": "none"
       }
@@ -102,10 +100,10 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 307.0,
-        "y": 164.0,
+        "x": 310.0,
+        "y": 215.0,
         "width": 130.0,
-        "height": 26.0,
+        "height": 25.0,
         "rx": 4.0,
         "ry": 4.0,
         "fill": "#d2ecfb"
@@ -116,9 +114,9 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 327.0,
-        "cy": 177.0,
-        "r": 2.5,
+        "cx": 330.0,
+        "cy": 230.0,
+        "r": 5.0,
         "fill": "#7a7a7a"
       }
     },
@@ -127,9 +125,9 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 357.0,
-        "cy": 177.0,
-        "r": 2.5,
+        "cx": 360.0,
+        "cy": 230.0,
+        "r": 5.0,
         "fill": "#7a7a7a"
       }
     },
@@ -138,9 +136,9 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 387.0,
-        "cy": 177.0,
-        "r": 2.5,
+        "cx": 390.0,
+        "cy": 230.0,
+        "r": 5.0,
         "fill": "#7a7a7a"
       }
     },
@@ -149,9 +147,9 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 417.0,
-        "cy": 177.0,
-        "r": 2.5,
+        "cx": 420.0,
+        "cy": 230.0,
+        "r": 5.0,
         "fill": "#7a7a7a"
       }
     },
@@ -160,9 +158,9 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 327.0,
-        "cy": 177.0,
-        "r": 4.0,
+        "cx": 330.0,
+        "cy": 230.0,
+        "r": 5.0,
         "fill": "#8d8d8d"
       }
     },
@@ -173,22 +171,24 @@
       "content": {
         "points": [
           [
-            418.5,
-            166.3
+            421.39869689941406,
+            218.47747116088868
           ],
           [
-            443.5,
-            123.0
+            446.39869689941406,
+            175.17747116088867
           ],
           [
-            450.5,
-            127.0
+            453.39869689941406,
+            179.17747116088867
           ],
           [
-            425.5,
-            170.3
+            428.39869689941406,
+            222.47747116088868
           ]
         ],
+        "stroke": "#111111",
+        "stroke_width": 2.0,
         "fill": "#f39c82"
       }
     },
@@ -199,18 +199,20 @@
       "content": {
         "points": [
           [
-            417.0,
-            177.0
+            419.89869689941406,
+            229.17747116088867
           ],
           [
-            418.5,
-            166.3
+            421.39869689941406,
+            218.47747116088868
           ],
           [
-            425.5,
-            170.3
+            428.39869689941406,
+            222.47747116088868
           ]
         ],
+        "stroke": "#111111",
+        "stroke_width": 2.0,
         "fill": "#fce4c8"
       }
     },
@@ -219,10 +221,10 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 420.7,
-        "y1": 167.6,
-        "x2": 445.7,
-        "y2": 124.3
+        "x1": 425.0,
+        "y1": 220.0,
+        "x2": 450.0,
+        "y2": 175.0
       }
     },
     {
@@ -230,10 +232,10 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 423.3,
-        "y1": 169.1,
-        "x2": 448.3,
-        "y2": 125.8
+        "x1": 425.0,
+        "y1": 220.0,
+        "x2": 450.0,
+        "y2": 180.0
       }
     },
     {
@@ -243,9 +245,9 @@
       "content": {
         "text": "→",
         "style_role": "question",
-        "x": 495.0,
-        "y": 192.0,
-        "font_size": 44
+        "x": 500.0,
+        "y": 245.0,
+        "font_size": 45
       }
     },
     {
@@ -253,8 +255,8 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 645.0,
-        "cy": 177.0,
+        "cx": 650.0,
+        "cy": 230.0,
         "r": 90.0,
         "fill": "none"
       }
@@ -264,9 +266,9 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 645.0,
-        "cy": 177.0,
-        "r": 4.0,
+        "cx": 650.0,
+        "cy": 230.0,
+        "r": 5.0,
         "fill": "#8d8d8d"
       }
     },
@@ -275,10 +277,10 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 645.0,
-        "y1": 177.0,
-        "x2": 707.0,
-        "y2": 111.8,
+        "x1": 650.0,
+        "y1": 230.0,
+        "x2": 710.0,
+        "y2": 165.0,
         "stroke": "#3fa9f5",
         "stroke_width": 2.5
       }
@@ -288,10 +290,10 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 645.0,
-        "y1": 177.0,
-        "x2": 559.0,
-        "y2": 203.5,
+        "x1": 650.0,
+        "y1": 230.0,
+        "x2": 560.0,
+        "y2": 255.0,
         "stroke": "#3fa9f5",
         "stroke_width": 2.5
       }
@@ -301,9 +303,9 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 707.0,
-        "cy": 111.8,
-        "r": 4.0,
+        "cx": 710.0,
+        "cy": 165.0,
+        "r": 5.0,
         "fill": "#ff00aa"
       }
     },
@@ -312,9 +314,9 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 559.0,
-        "cy": 203.5,
-        "r": 4.0,
+        "cx": 560.0,
+        "cy": 255.0,
+        "r": 5.0,
         "fill": "#ff00aa"
       }
     },
@@ -323,36 +325,25 @@
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "누름 못이 꽂힌 점에서 원 위의 한 점까지의 길이는 모두 ( 같습니다 ,\n다릅니다 ).",
+        "text": "    누름 못이 꽂힌 점에서 원 위의 한 점까지의 길이는 모두",
         "style_role": "question",
-        "x": 470.0,
-        "y": 337.0,
-        "font_size": 28,
+        "x": 500.0,
+        "y": 375.0,
+        "font_size": 30,
         "anchor": "middle"
       }
     },
     {
-      "id": "slot.ans",
+      "id": "slot.choice.copy4",
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "(정답)같습니다",
-        "style_role": "supporting",
-        "x": 70.0,
-        "y": 410.0,
-        "font_size": 22
-      }
-    },
-    {
-      "id": "slot.exp",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "(해설)누름 못이 꽂힌 점에서 원 위의 한 점까지의 길이는 누름 못과 연필심 사이의 거리로 모두 같습니다.",
-        "style_role": "supporting",
-        "x": 70.0,
-        "y": 450.0,
-        "font_size": 20
+        "text": "( 같습니다 ,    다릅니다 ).  ",
+        "style_role": "body",
+        "x": 345.0,
+        "y": 430.0,
+        "font_size": 30,
+        "fill": "#111111"
       }
     }
   ],
@@ -384,8 +375,7 @@
     "slot.arrow",
     "region.choice",
     "slot.choice",
-    "region.explanation",
-    "slot.ans",
-    "slot.exp"
+    "slot.choice.copy4",
+    "region.explanation"
   ]
 }

@@ -21,6 +21,13 @@ param(
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
 
+$PythonExe = "python"
+$RepoVenvPython = Join-Path (Get-Location) ".venv\Scripts\python.exe"
+if (Test-Path -LiteralPath $RepoVenvPython) {
+  $PythonExe = $RepoVenvPython
+}
+Write-Host "Python=$PythonExe"
+
 function Invoke-Step {
   param(
     [Parameter(Mandatory = $true)][string]$Title,
@@ -33,9 +40,9 @@ function Invoke-Step {
 
 function Invoke-Python {
   param([Parameter(Mandatory = $true)][string[]]$Args)
-  & python @Args
+  & $PythonExe @Args
   if ($LASTEXITCODE -ne 0) {
-    throw "python command failed: $($Args -join ' ')"
+    throw "$PythonExe command failed: $($Args -join ' ')"
   }
 }
 

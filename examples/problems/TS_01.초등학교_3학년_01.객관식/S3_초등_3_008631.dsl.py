@@ -190,49 +190,41 @@ def _all_slot_ids(slots: tuple) -> tuple[str, ...]:
 
 def build_problem_template() -> ProblemTemplate:
     diagram_slots = (
-        RectSlot(id="slot.top.box", x=366, y=54, width=246, height=126, fill="none", stroke=BLUE, stroke_width=1.5),
+        RectSlot(id="slot.top.box", x = 190, y = 55, width = 245, height = 125, fill="none", stroke=BLUE, stroke_width=1.5),
         *_base_ten_model(
             "slot.figure.top",
-            x=389,
-            y=67,
-            rods=6,
+            x = ((389) + (-135.0)) + (-45.0), y = (67) + (5.0), rods=6,
             ones=9,
             rod_gap=26,
             cube_x_offset=155,
             cube_gap_x=25,
             cube_gap_y=20,
         ),
-        LineSlot(id="slot.arrow.stem", x1=496, y1=188, x2=496, y2=213, stroke=ARROW_GRAY, stroke_width=10),
+        LineSlot(id="slot.arrow.stem", x1 = 315, y1 = 185, x2 = 315, y2 = 210, stroke=ARROW_GRAY, stroke_width=10),
         PolygonSlot(
             id="slot.arrow.head",
-            points=((483, 204), (509, 204), (496, 219)),
-            fill=ARROW_GRAY,
-            stroke=ARROW_GRAY,
-            stroke_width=1,
-        ),
-        *_partition_box("slot.figure.group1", x=315, y=225),
-        *_partition_box("slot.figure.group2", x=435, y=225),
-        *_partition_box("slot.figure.group3", x=555, y=225),
-        TextSlot(id="slot.equation", text="69 ÷ 3 =", style_role="question", x=417, y=392, font_size=27),
-        RectSlot(id="slot.blank", x=529, y=368, width=27, height=27, fill="none", stroke="#111111", stroke_width=1.2),
+            points = [[300.9399108886719, 200.32200622558594], [326.9399108886719, 200.32200622558594], [313.9399108886719, 215.32200622558594]], fill = '#8a8a8a', stroke = '#8a8a8a', stroke_width = 1),
+        *_partition_box("slot.figure.group1", x = (315) + (-180.0), y = (225) + (5.0)),
+        *_partition_box("slot.figure.group2", x = ((435) + (-75.0)) + (-85.0), y = (225) + (5.0)),
+        *_partition_box("slot.figure.group3", x = (555) + (-135.0), y = (225) + (5.0)),
+        TextSlot(id="slot.equation", text = '69 ÷ 3 =', style_role="question", x = 250, y = 415, font_size = 25),
+        RectSlot(id="slot.blank", x = 360, y = 390, width = 25, height = 25, fill="none", stroke="#111111", stroke_width=1.2),
     )
     choice_slots = (
-        *_choice("slot.choice.1", "①", "21", 36, 431),
-        *_choice("slot.choice.2", "②", "22", 332, 431),
-        *_choice("slot.choice.3", "③", "23", 628, 431),
-        *_choice("slot.choice.4", "④", "24", 36, 476),
-        *_choice("slot.choice.5", "⑤", "25", 332, 476),
+        *_choice("slot.choice.1", "①", "21", 150, 470),
+        *_choice("slot.choice.2", "②", "22", 300, 470),
+        *_choice("slot.choice.3", "③", "23", 450, 470),
+        *_choice("slot.choice.4", "④", "24", 150, 510),
+        *_choice("slot.choice.5", "⑤", "25", 300, 510),
     )
     answer_slots = (
-        TextSlot(id="slot.answer", text="(정답) ③", style_role="supporting", x=15, y=522, font_size=18),
-        TextSlot(id="slot.explanation", text="(해설)69 ÷ 3 = 23입니다.", style_role="supporting", x=15, y=570, font_size=18),
+        
+        
     )
     stem_slots = (
-        RectSlot(id="slot.checkbox", x=14, y=18, width=12, height=12, fill="none", stroke="#333333", stroke_width=0.8),
-        TextSlot(id="slot.problem_no", text="2.", style_role="question", x=36, y=29, font_size=20),
         TextSlot(id="slot.question.prefix", text="수 모형을 보고", style_role="question", x=62, y=29, font_size=25),
-        RectSlot(id="slot.inline_blank", x=247, y=10, width=27, height=27, fill="none", stroke="#111111", stroke_width=1.0),
-        TextSlot(id="slot.question.suffix", text="안에 알맞은 수를 고르세요.", style_role="question", x=288, y=29, font_size=25),
+        RectSlot(id="slot.inline_blank", x = 233, y = 7, width=27, height=27, fill="none", stroke="#111111", stroke_width=1.0),
+        TextSlot(id="slot.question.suffix", text="안에 알맞은 수를 고르세요.", style_role="question", x = 269, y = 29, font_size=25),
     )
     all_slots = (*stem_slots, *diagram_slots, *choice_slots, *answer_slots)
 

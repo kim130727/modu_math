@@ -20,28 +20,10 @@ def build_problem_template() -> ProblemTemplate:
                 id="region.stem",
                 role="stem",
                 flow="absolute",
-                slot_ids=("slot.q0", "slot.q1", "slot.q2", "slot.q3"),
+                slot_ids=("slot.q2", "slot.q3"),
             ),
         ),
         slots=(
-            TextSlot(
-                id="slot.q0",
-                prompt="",
-                text="□",
-                style_role="question",
-                x=8.0,
-                y=28.0,
-                font_size=28,
-            ),
-            TextSlot(
-                id="slot.q1",
-                prompt="",
-                text="17.",
-                style_role="question",
-                x=44.0,
-                y=30.0,
-                font_size=28,
-            ),
             TextSlot(
                 id="slot.q2",
                 prompt="",
@@ -154,11 +136,7 @@ def build_problem_template() -> ProblemTemplate:
             RectSlot(
                 id="slot.table.outer",
                 prompt="",
-                x=238.0,
-                y=286.0,
-                width=515.0,
-                height=76.0,
-                fill="none",
+                x = 170, y = 285, width = 625, height = 80, fill="none",
             ),
             LineSlot(
                 id="slot.table.v1", prompt="", x1=391.0, y1=286.0, x2=391.0, y2=362.0
@@ -175,12 +153,8 @@ def build_problem_template() -> ProblemTemplate:
             TextSlot(
                 id="slot.t1",
                 prompt="",
-                text="지름",
-                style_role="table",
-                x=281.0,
-                y=313.0,
-                font_size=28,
-            ),
+                text = '지름', style_role="table",
+                x = 225, y = 310, font_size = 30),
             TextSlot(
                 id="slot.t2",
                 prompt="",
@@ -256,12 +230,8 @@ def build_problem_template() -> ProblemTemplate:
             TextSlot(
                 id="slot.q3",
                 prompt="",
-                text="한 원에서 원의 지름은 모두 ( 같습니다 , 다릅니다 ).",
-                style_role="question",
-                x=188.0,
-                y=411.0,
-                font_size=28,
-            ),
+                text = '한 원에서 원의 지름은 모두 ( 같습니다 , 다릅니다 ).', style_role="question",
+                x = 180, y = 410, font_size = 30),
         ),
         diagrams=(),
         groups=(),

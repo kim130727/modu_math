@@ -13,57 +13,43 @@ from modu_math.dsl import (
 
 def build_problem_template() -> ProblemTemplate:
     stem_slots = (
-        RectSlot(id="slot.checkbox", x=14, y=21, width=12, height=12, fill="none", stroke="#333333", stroke_width=0.8),
-        TextSlot(id="slot.problem_no", text="16.", style_role="question", x=36, y=32, font_size=21),
         TextSlot(
             id="slot.question.line1",
-            text="점 O는 원의 중심입니다. 원의 반지름은 어느 선분인지 모두 선택해 보",
-            style_role="question",
-            x=76,
-            y=32,
-            font_size=23,
-        ),
-        TextSlot(id="slot.question.line2", text="세요.", style_role="question", x=36, y=70, font_size=23),
+            text = '점 ㅇ는 원의 중심입니다. 원의 반지름은 어느 선분인지 모두 선택해 보세요.', style_role="question",
+            x = 40, y = 50, font_size = 25),
+        
     )
 
     diagram_slots = (
-        CircleSlot(id="slot.figure.circle", cx=480, cy=172, r=82, fill="none", stroke="#333333", stroke_width=1.3),
-        LineSlot(id="slot.segment.ga", x1=420, y1=102, x2=522, y2=96, stroke="#333333", stroke_width=1.3),
-        LineSlot(id="slot.segment.na_to_sa", x1=405, y1=132, x2=522, y2=96, stroke="#333333", stroke_width=1.3),
-        LineSlot(id="slot.segment.la_ba", x1=522, y1=240, x2=542, y2=116, stroke="#333333", stroke_width=1.3),
-        LineSlot(id="slot.segment.o_na", x1=480, y1=172, x2=405, y2=132, stroke="#333333", stroke_width=1.3),
-        LineSlot(id="slot.segment.o_da", x1=480, y1=172, x2=435, y2=238, stroke="#333333", stroke_width=1.3),
-        LineSlot(id="slot.segment.o_ma", x1=480, y1=172, x2=562, y2=171, stroke="#333333", stroke_width=1.3),
-        CircleSlot(id="slot.center.dot", cx=480, cy=172, r=3.2, fill="#ec2aa0", stroke="#ec2aa0", stroke_width=1),
-        TextSlot(id="slot.label.giyeok", text="ㄱ", style_role="label", x=415, y=101, font_size=17),
-        TextSlot(id="slot.label.siot", text="ㅅ", style_role="label", x=525, y=101, font_size=17),
-        TextSlot(id="slot.label.bieup", text="ㅂ", style_role="label", x=543, y=121, font_size=17),
-        TextSlot(id="slot.label.nieun", text="ㄴ", style_role="label", x=389, y=135, font_size=17),
-        TextSlot(id="slot.label.mieum", text="ㅁ", style_role="label", x=568, y=177, font_size=17),
-        TextSlot(id="slot.label.digeut", text="ㄷ", style_role="label", x=421, y=255, font_size=17),
-        TextSlot(id="slot.label.rieul", text="ㄹ", style_role="label", x=518, y=255, font_size=17),
-        TextSlot(id="slot.label.center_o", text="O", style_role="label", x=477, y=188, font_size=17),
+        CircleSlot(id="slot.figure.circle", cx = 380, cy = 190, r = 90, fill="none", stroke="#333333", stroke_width=1.3),
+        LineSlot(id="slot.segment.ga", x1 = 324, y1 = 118, x2 = 429, y2 = 113, stroke="#333333", stroke_width=1.3),
+        LineSlot(id="slot.segment.na_to_sa", x1 = 300, y1 = 150, x2 = 430, y2 = 115, stroke = '#333333', stroke_width = 1.3),
+        LineSlot(id="slot.segment.la_ba", x1 = 430, y1 = 266, x2 = 450, y2 = 136, stroke="#333333", stroke_width=1.3),
+        LineSlot(id="slot.segment.o_na", x1 = 380, y1 = 190, x2 = 300, y2 = 150, stroke="#333333", stroke_width=1.3, transform = 'rotate(-5 340 170)'),
+        LineSlot(id="slot.segment.o_da", x1 = 390, y1 = 195, x2 = 330, y2 = 265, stroke="#333333", stroke_width=1.3, transform = 'rotate(-15 370 225)'),
+        LineSlot(id="slot.segment.o_ma", x1 = 384, y1 = 188, x2 = 469, y2 = 188, stroke="#333333", stroke_width=1.3),
+        CircleSlot(id="slot.center.dot", cx = 384, cy = 188, r = 5, fill="#ec2aa0", stroke="#ec2aa0", stroke_width=1),
+        TextSlot(id="slot.label.giyeok", text = 'ㄱ', style_role="label", x = 300, y = 110, font_size = 15),
+        TextSlot(id="slot.label.siot", text = 'ㅅ', style_role="label", x = 435, y = 115, font_size = 15),
+        TextSlot(id="slot.label.bieup", text = 'ㅂ', style_role="label", x = 460, y = 135, font_size = 15),
+        TextSlot(id="slot.label.nieun", text = 'ㄴ', style_role="label", x = 275, y = 150, font_size = 15),
+        TextSlot(id="slot.label.mieum", text = 'ㅁ', style_role="label", x = 474, y = 193, font_size = 15),
+        TextSlot(id="slot.label.digeut", text = 'ㄷ', style_role="label", x = 300, y = 285, font_size = 15),
+        TextSlot(id="slot.label.rieul", text = 'ㄹ', style_role="label", x = 425, y = 295, font_size = 15, fill = '#111111'),
+        
     )
 
     choice_slots = (
-        TextSlot(id="slot.choice.ga", text="㉮ 선분 ㄱㅅ", style_role="choice", x=165, y=337, font_size=22),
-        TextSlot(id="slot.choice.na", text="㉯ 선분 Oㄴ", style_role="choice", x=408, y=337, font_size=22),
-        TextSlot(id="slot.choice.da", text="㉰ 선분 Oㄷ", style_role="choice", x=610, y=337, font_size=22),
-        TextSlot(id="slot.choice.ra", text="㉱ 선분 Oㅁ", style_role="choice", x=165, y=398, font_size=22),
-        TextSlot(id="slot.choice.ma", text="㉲ 선분 ㄹㅂ", style_role="choice", x=408, y=398, font_size=22),
-        TextSlot(id="slot.choice.ba", text="㉳ 선분 ㄴㅅ", style_role="choice", x=610, y=398, font_size=22),
+        TextSlot(id="slot.choice.ga", text = '㉮ 선분 ㄱㅅ', style_role="choice", x = 90, y = 330, font_size = 20),
+        TextSlot(id="slot.choice.na", text = '㉯ 선분 ㅇㄴ', style_role="choice", x = 325, y = 335, font_size = 20),
+        TextSlot(id="slot.choice.da", text = '㉰ 선분 ㅇㄷ', style_role="choice", x = 535, y = 335, font_size = 20),
+        TextSlot(id="slot.choice.ra", text = '㉱ 선분 ㅇㅁ', style_role="choice", x = 90, y = 390, font_size = 20),
+        TextSlot(id="slot.choice.ma", text = '㉲ 선분 ㄹㅂ', style_role="choice", x = 325, y = 395, font_size = 20),
+        TextSlot(id="slot.choice.ba", text = '㉳ 선분 ㄴㅅ', style_role="choice", x = 535, y = 395, font_size = 20),
     )
 
     answer_slots = (
-        TextSlot(id="slot.answer", text="(정답) ㉯, ㉰, ㉱", style_role="supporting", x=15, y=462, font_size=18),
-        TextSlot(
-            id="slot.explanation",
-            text="(해설)원의 반지름은 원의 중심과 원 위의 한 점을 이은 선분입니다.",
-            style_role="supporting",
-            x=15,
-            y=508,
-            font_size=18,
-        ),
+        
     )
 
     return ProblemTemplate(
@@ -72,11 +58,11 @@ def build_problem_template() -> ProblemTemplate:
         canvas=Canvas(width=746, height=537, coordinate_mode="logical"),
         regions=(
             Region(id="region.stem", role="stem", flow="absolute", slot_ids=tuple(slot.id for slot in stem_slots)),
-            Region(id="region.diagram", role="diagram", flow="absolute", slot_ids=tuple(slot.id for slot in diagram_slots)),
-            Region(id="region.choices", role="choices", flow="absolute", slot_ids=tuple(slot.id for slot in choice_slots)),
+            Region(id="region.diagram", role="diagram", flow="absolute", slot_ids=(tuple(slot.id for slot in diagram_slots), )),
+            Region(id="region.choices", role="choices", flow="absolute", slot_ids=(tuple(slot.id for slot in choice_slots), 'slot.choice.na.copy2')),
             Region(id="region.answer", role="answer", flow="absolute", slot_ids=tuple(slot.id for slot in answer_slots)),
         ),
-        slots=(*stem_slots, *diagram_slots, *choice_slots, *answer_slots),
+        slots=(*stem_slots, *diagram_slots, *choice_slots, *answer_slots, TextSlot(id = 'slot.choice.na.copy2', prompt = '', text = 'ㅇ', x = 385, y = 215, font_size = 20, fill = '#111111')),
         diagrams=(),
         groups=(),
         constraints=(),

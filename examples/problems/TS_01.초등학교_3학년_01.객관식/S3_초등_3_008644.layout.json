@@ -14,17 +14,6 @@
       "role": "stem",
       "flow": "absolute",
       "slot_ids": [
-        "slot.checkbox",
-        "slot.problem_no",
-        "slot.question.line1",
-        "slot.question.line2"
-      ]
-    },
-    {
-      "id": "region.diagram",
-      "role": "diagram",
-      "flow": "absolute",
-      "slot_ids": [
         "slot.figure.circle",
         "slot.center.dot",
         "slot.segment.ga",
@@ -33,6 +22,7 @@
         "slot.segment.o_na",
         "slot.segment.o_da",
         "slot.segment.o_ma",
+        "slot.question.line1",
         "slot.label.giyeok",
         "slot.label.siot",
         "slot.label.bieup",
@@ -40,14 +30,6 @@
         "slot.label.mieum",
         "slot.label.digeut",
         "slot.label.rieul",
-        "slot.label.center_o"
-      ]
-    },
-    {
-      "id": "region.choices",
-      "role": "choices",
-      "flow": "absolute",
-      "slot_ids": [
         "slot.choice.ga",
         "slot.choice.na",
         "slot.choice.da",
@@ -57,64 +39,37 @@
       ]
     },
     {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": []
+    },
+    {
+      "id": "region.choices",
+      "role": "choices",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice.na.copy2"
+      ]
+    },
+    {
       "id": "region.answer",
       "role": "answer",
       "flow": "absolute",
-      "slot_ids": [
-        "slot.answer",
-        "slot.explanation"
-      ]
+      "slot_ids": []
     }
   ],
   "slots": [
-    {
-      "id": "slot.checkbox",
-      "kind": "rect",
-      "prompt": "",
-      "content": {
-        "x": 14.0,
-        "y": 21.0,
-        "width": 12.0,
-        "height": 12.0,
-        "stroke": "#333333",
-        "stroke_width": 0.8,
-        "fill": "none"
-      }
-    },
-    {
-      "id": "slot.problem_no",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "16.",
-        "style_role": "question",
-        "x": 36.0,
-        "y": 32.0,
-        "font_size": 21
-      }
-    },
     {
       "id": "slot.question.line1",
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "점 O는 원의 중심입니다. 원의 반지름은 어느 선분인지 모두 선택해 보",
+        "text": "점 ㅇ는 원의 중심입니다. 원의 반지름은 어느 선분인지 모두 선택해 보세요.",
         "style_role": "question",
-        "x": 76.0,
-        "y": 32.0,
-        "font_size": 23
-      }
-    },
-    {
-      "id": "slot.question.line2",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "세요.",
-        "style_role": "question",
-        "x": 36.0,
-        "y": 70.0,
-        "font_size": 23
+        "x": 40.0,
+        "y": 50.0,
+        "font_size": 25
       }
     },
     {
@@ -122,9 +77,9 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 480.0,
-        "cy": 172.0,
-        "r": 82.0,
+        "cx": 380.0,
+        "cy": 190.0,
+        "r": 90.0,
         "stroke": "#333333",
         "stroke_width": 1.3,
         "fill": "none"
@@ -135,10 +90,10 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 420.0,
-        "y1": 102.0,
-        "x2": 522.0,
-        "y2": 96.0,
+        "x1": 324.0,
+        "y1": 118.0,
+        "x2": 429.0,
+        "y2": 113.0,
         "stroke": "#333333",
         "stroke_width": 1.3
       }
@@ -148,10 +103,10 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 405.0,
-        "y1": 132.0,
-        "x2": 522.0,
-        "y2": 96.0,
+        "x1": 300.0,
+        "y1": 150.0,
+        "x2": 430.0,
+        "y2": 115.0,
         "stroke": "#333333",
         "stroke_width": 1.3
       }
@@ -161,10 +116,10 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 522.0,
-        "y1": 240.0,
-        "x2": 542.0,
-        "y2": 116.0,
+        "x1": 430.0,
+        "y1": 266.0,
+        "x2": 450.0,
+        "y2": 136.0,
         "stroke": "#333333",
         "stroke_width": 1.3
       }
@@ -174,12 +129,13 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 480.0,
-        "y1": 172.0,
-        "x2": 405.0,
-        "y2": 132.0,
+        "x1": 380.0,
+        "y1": 190.0,
+        "x2": 300.0,
+        "y2": 150.0,
         "stroke": "#333333",
-        "stroke_width": 1.3
+        "stroke_width": 1.3,
+        "transform": "rotate(-5 340 170)"
       }
     },
     {
@@ -187,12 +143,13 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 480.0,
-        "y1": 172.0,
-        "x2": 435.0,
-        "y2": 238.0,
+        "x1": 390.0,
+        "y1": 195.0,
+        "x2": 330.0,
+        "y2": 265.0,
         "stroke": "#333333",
-        "stroke_width": 1.3
+        "stroke_width": 1.3,
+        "transform": "rotate(-15 370 225)"
       }
     },
     {
@@ -200,10 +157,10 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 480.0,
-        "y1": 172.0,
-        "x2": 562.0,
-        "y2": 171.0,
+        "x1": 384.0,
+        "y1": 188.0,
+        "x2": 469.0,
+        "y2": 188.0,
         "stroke": "#333333",
         "stroke_width": 1.3
       }
@@ -213,9 +170,9 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 480.0,
-        "cy": 172.0,
-        "r": 3.2,
+        "cx": 384.0,
+        "cy": 188.0,
+        "r": 5.0,
         "stroke": "#ec2aa0",
         "stroke_width": 1.0,
         "fill": "#ec2aa0"
@@ -228,9 +185,9 @@
       "content": {
         "text": "ㄱ",
         "style_role": "label",
-        "x": 415.0,
-        "y": 101.0,
-        "font_size": 17
+        "x": 300.0,
+        "y": 110.0,
+        "font_size": 15
       }
     },
     {
@@ -240,9 +197,9 @@
       "content": {
         "text": "ㅅ",
         "style_role": "label",
-        "x": 525.0,
-        "y": 101.0,
-        "font_size": 17
+        "x": 435.0,
+        "y": 115.0,
+        "font_size": 15
       }
     },
     {
@@ -252,9 +209,9 @@
       "content": {
         "text": "ㅂ",
         "style_role": "label",
-        "x": 543.0,
-        "y": 121.0,
-        "font_size": 17
+        "x": 460.0,
+        "y": 135.0,
+        "font_size": 15
       }
     },
     {
@@ -264,9 +221,9 @@
       "content": {
         "text": "ㄴ",
         "style_role": "label",
-        "x": 389.0,
-        "y": 135.0,
-        "font_size": 17
+        "x": 275.0,
+        "y": 150.0,
+        "font_size": 15
       }
     },
     {
@@ -276,9 +233,9 @@
       "content": {
         "text": "ㅁ",
         "style_role": "label",
-        "x": 568.0,
-        "y": 177.0,
-        "font_size": 17
+        "x": 474.0,
+        "y": 193.0,
+        "font_size": 15
       }
     },
     {
@@ -288,9 +245,9 @@
       "content": {
         "text": "ㄷ",
         "style_role": "label",
-        "x": 421.0,
-        "y": 255.0,
-        "font_size": 17
+        "x": 300.0,
+        "y": 285.0,
+        "font_size": 15
       }
     },
     {
@@ -300,21 +257,10 @@
       "content": {
         "text": "ㄹ",
         "style_role": "label",
-        "x": 518.0,
-        "y": 255.0,
-        "font_size": 17
-      }
-    },
-    {
-      "id": "slot.label.center_o",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "O",
-        "style_role": "label",
-        "x": 477.0,
-        "y": 188.0,
-        "font_size": 17
+        "x": 425.0,
+        "y": 295.0,
+        "font_size": 15,
+        "fill": "#111111"
       }
     },
     {
@@ -324,9 +270,9 @@
       "content": {
         "text": "㉮ 선분 ㄱㅅ",
         "style_role": "choice",
-        "x": 165.0,
-        "y": 337.0,
-        "font_size": 22
+        "x": 90.0,
+        "y": 330.0,
+        "font_size": 20
       }
     },
     {
@@ -334,11 +280,11 @@
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "㉯ 선분 Oㄴ",
+        "text": "㉯ 선분 ㅇㄴ",
         "style_role": "choice",
-        "x": 408.0,
-        "y": 337.0,
-        "font_size": 22
+        "x": 325.0,
+        "y": 335.0,
+        "font_size": 20
       }
     },
     {
@@ -346,11 +292,11 @@
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "㉰ 선분 Oㄷ",
+        "text": "㉰ 선분 ㅇㄷ",
         "style_role": "choice",
-        "x": 610.0,
-        "y": 337.0,
-        "font_size": 22
+        "x": 535.0,
+        "y": 335.0,
+        "font_size": 20
       }
     },
     {
@@ -358,11 +304,11 @@
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "㉱ 선분 Oㅁ",
+        "text": "㉱ 선분 ㅇㅁ",
         "style_role": "choice",
-        "x": 165.0,
-        "y": 398.0,
-        "font_size": 22
+        "x": 90.0,
+        "y": 390.0,
+        "font_size": 20
       }
     },
     {
@@ -372,9 +318,9 @@
       "content": {
         "text": "㉲ 선분 ㄹㅂ",
         "style_role": "choice",
-        "x": 408.0,
-        "y": 398.0,
-        "font_size": 22
+        "x": 325.0,
+        "y": 395.0,
+        "font_size": 20
       }
     },
     {
@@ -384,33 +330,22 @@
       "content": {
         "text": "㉳ 선분 ㄴㅅ",
         "style_role": "choice",
-        "x": 610.0,
-        "y": 398.0,
-        "font_size": 22
+        "x": 535.0,
+        "y": 395.0,
+        "font_size": 20
       }
     },
     {
-      "id": "slot.answer",
+      "id": "slot.choice.na.copy2",
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "(정답) ㉯, ㉰, ㉱",
-        "style_role": "supporting",
-        "x": 15.0,
-        "y": 462.0,
-        "font_size": 18
-      }
-    },
-    {
-      "id": "slot.explanation",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "(해설)원의 반지름은 원의 중심과 원 위의 한 점을 이은 선분입니다.",
-        "style_role": "supporting",
-        "x": 15.0,
-        "y": 508.0,
-        "font_size": 18
+        "text": "ㅇ",
+        "style_role": "body",
+        "x": 385.0,
+        "y": 215.0,
+        "font_size": 20,
+        "fill": "#111111"
       }
     }
   ],
@@ -419,11 +354,6 @@
   "diagrams": [],
   "reading_order": [
     "region.stem",
-    "slot.checkbox",
-    "slot.problem_no",
-    "slot.question.line1",
-    "slot.question.line2",
-    "region.diagram",
     "slot.figure.circle",
     "slot.center.dot",
     "slot.segment.ga",
@@ -432,6 +362,7 @@
     "slot.segment.o_na",
     "slot.segment.o_da",
     "slot.segment.o_ma",
+    "slot.question.line1",
     "slot.label.giyeok",
     "slot.label.siot",
     "slot.label.bieup",
@@ -439,16 +370,15 @@
     "slot.label.mieum",
     "slot.label.digeut",
     "slot.label.rieul",
-    "slot.label.center_o",
-    "region.choices",
     "slot.choice.ga",
     "slot.choice.na",
     "slot.choice.da",
     "slot.choice.ra",
     "slot.choice.ma",
     "slot.choice.ba",
-    "region.answer",
-    "slot.answer",
-    "slot.explanation"
+    "region.diagram",
+    "region.choices",
+    "slot.choice.na.copy2",
+    "region.answer"
   ]
 }

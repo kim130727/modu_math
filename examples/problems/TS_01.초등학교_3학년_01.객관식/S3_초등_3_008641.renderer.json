@@ -10,26 +10,43 @@
       "id": "slot.q1.text",
       "type": "text",
       "attributes": {
-        "x": 18.0,
-        "y": 34.0,
+        "x": 20.0,
+        "y": 40.0,
         "max_width": 812.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 30
       },
       "source_ref": "slot.q1",
       "refs": {
         "layout_slot_id": "slot.q1"
       },
-      "text": "13. 은지, 진아, 현준이가 한 원에 지름을 그은 것입니다. 지름을 재어 알맞은 말을 선택하세요."
+      "text": "은지, 진아, 현준이가 한 원에 지름을 그은 것입니다."
+    },
+    {
+      "id": "slot.q1.copy5.text",
+      "type": "text",
+      "attributes": {
+        "x": 20.0,
+        "y": 100.0,
+        "max_width": 812.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30
+      },
+      "source_ref": "slot.q1.copy5",
+      "refs": {
+        "layout_slot_id": "slot.q1.copy5"
+      },
+      "text": "지름을 재어 알맞은 말을 선택하세요."
     },
     {
       "id": "slot.circle.circle",
       "type": "circle",
       "attributes": {
-        "cx": 455.0,
-        "cy": 205.0,
-        "r": 100.0,
+        "cx": 385.0,
+        "cy": 325.0,
+        "r": 145.0,
         "stroke": "#111111",
         "stroke-width": 2.0,
         "fill": "none"
@@ -43,9 +60,9 @@
       "id": "slot.center.circle",
       "type": "circle",
       "attributes": {
-        "cx": 455.0,
-        "cy": 231.0,
-        "r": 3.5,
+        "cx": 390.0,
+        "cy": 325.0,
+        "r": 5.0,
         "stroke": "#111111",
         "stroke-width": 2.0,
         "fill": "#d02aa6"
@@ -59,10 +76,11 @@
       "id": "slot.note.arrow.path",
       "type": "path",
       "attributes": {
-        "d": "M 500.0 303.0 C 488.0 289.0, 484.0 272.0, 473.0 257.0 C 467.0 247.0, 461.0 239.0, 455.0 231.0",
+        "d": "M 605 325 C 555 305, 545 285, 495 260 C 475 245, 450 230, 430 215",
         "stroke": "#111111",
         "stroke-width": 2.0,
-        "fill": "none"
+        "fill": "none",
+        "transform": "rotate(-390 625 327.5)"
       },
       "source_ref": "slot.note.arrow",
       "refs": {
@@ -73,10 +91,10 @@
       "id": "slot.diameter.vertical.line",
       "type": "line",
       "attributes": {
-        "x1": 455.0,
-        "y1": 105.0,
-        "x2": 455.0,
-        "y2": 305.0,
+        "x1": 390.0,
+        "y1": 183.0,
+        "x2": 390.0,
+        "y2": 468.0,
         "stroke": "#111111",
         "stroke-width": 2.0
       },
@@ -89,10 +107,10 @@
       "id": "slot.diameter.green.line",
       "type": "line",
       "attributes": {
-        "x1": 366.0,
-        "y1": 151.0,
-        "x2": 544.0,
-        "y2": 259.0,
+        "x1": 264.0,
+        "y1": 246.0,
+        "x2": 509.0,
+        "y2": 401.0,
         "stroke": "#111111",
         "stroke-width": 2.0
       },
@@ -105,10 +123,10 @@
       "id": "slot.diameter.purple.line",
       "type": "line",
       "attributes": {
-        "x1": 363.0,
-        "y1": 261.0,
-        "x2": 547.0,
-        "y2": 199.0,
+        "x1": 251.0,
+        "y1": 382.0,
+        "x2": 521.0,
+        "y2": 272.0,
         "stroke": "#111111",
         "stroke-width": 2.0
       },
@@ -121,12 +139,12 @@
       "id": "slot.label.eunji.text",
       "type": "text",
       "attributes": {
-        "x": 438.0,
-        "y": 92.0,
+        "x": 360.0,
+        "y": 160.0,
         "max_width": 812.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 30
       },
       "source_ref": "slot.label.eunji",
       "refs": {
@@ -138,12 +156,12 @@
       "id": "slot.label.jina.text",
       "type": "text",
       "attributes": {
-        "x": 558.0,
-        "y": 170.0,
+        "x": 525.0,
+        "y": 270.0,
         "max_width": 812.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 30
       },
       "source_ref": "slot.label.jina",
       "refs": {
@@ -155,12 +173,12 @@
       "id": "slot.label.hyeonjun.text",
       "type": "text",
       "attributes": {
-        "x": 559.0,
-        "y": 288.0,
+        "x": 515.0,
+        "y": 430.0,
         "max_width": 812.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 30
       },
       "source_ref": "slot.label.hyeonjun",
       "refs": {
@@ -172,25 +190,42 @@
       "id": "slot.note.text.text",
       "type": "text",
       "attributes": {
-        "x": 500.0,
-        "y": 315.0,
+        "x": 615.0,
+        "y": 295.0,
         "max_width": 812.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 24
+        "font-size": 25
       },
       "source_ref": "slot.note.text",
       "refs": {
         "layout_slot_id": "slot.note.text"
       },
-      "text": "지름은 모두\n원의 중심을\n지나요."
+      "text": "\n    \n        \n            \n                \n                    \n                        \n                            \n                                \n                                    지름은 모두\n                                    원의 중심을\n                                    지나요.\n                                  \n                              \n                          \n                      \n                  \n              \n          \n      \n  "
+    },
+    {
+      "id": "slot.note.text.copy6.text",
+      "type": "text",
+      "attributes": {
+        "x": 365.0,
+        "y": 310.0,
+        "max_width": 812.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 25
+      },
+      "source_ref": "slot.note.text.copy6",
+      "refs": {
+        "layout_slot_id": "slot.note.text.copy6"
+      },
+      "text": "ㅇ"
     },
     {
       "id": "slot.choice.box.rect",
       "type": "rect",
       "attributes": {
-        "x": 95.0,
-        "y": 414.0,
+        "x": 10.0,
+        "y": 490.0,
         "width": 760.0,
         "height": 80.0,
         "fill": "#ffffff",
@@ -206,12 +241,12 @@
       "id": "slot.choice.text.text",
       "type": "text",
       "attributes": {
-        "x": 170.0,
-        "y": 469.0,
+        "x": 90.0,
+        "y": 540.0,
         "max_width": 812.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 30
       },
       "source_ref": "slot.choice.text",
       "refs": {

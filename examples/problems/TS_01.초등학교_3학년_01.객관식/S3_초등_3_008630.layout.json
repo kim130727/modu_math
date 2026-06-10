@@ -14,7 +14,6 @@
       "role": "stem",
       "flow": "absolute",
       "slot_ids": [
-        "slot.q_num",
         "slot.q_text"
       ]
     },
@@ -59,24 +58,10 @@
       "id": "region.solution",
       "role": "solution",
       "flow": "absolute",
-      "slot_ids": [
-        "slot.concl"
-      ]
+      "slot_ids": []
     }
   ],
   "slots": [
-    {
-      "id": "slot.q_num",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "1.",
-        "style_role": "question",
-        "x": 14.0,
-        "y": 34.0,
-        "font_size": 28
-      }
-    },
     {
       "id": "slot.q_text",
       "kind": "text",
@@ -84,9 +69,9 @@
       "content": {
         "text": "나머지가 큰 것부터 차례대로 기호를 쓰세요.",
         "style_role": "question",
-        "x": 57.0,
-        "y": 34.0,
-        "font_size": 28
+        "x": 25.0,
+        "y": 40.0,
+        "font_size": 30
       }
     },
     {
@@ -94,10 +79,10 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 304.0,
-        "y": 47.0,
-        "width": 347.0,
-        "height": 84.0
+        "x": 20.0,
+        "y": 60.0,
+        "width": 770.0,
+        "height": 85.0
       }
     },
     {
@@ -105,11 +90,11 @@
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "ㄱ 70 ÷ 4",
+        "text": "㉠ 70 ÷ 4",
         "style_role": "diagram",
-        "x": 358.0,
-        "y": 79.0,
-        "font_size": 28
+        "x": 75.0,
+        "y": 110.0,
+        "font_size": 30
       }
     },
     {
@@ -117,11 +102,11 @@
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "ㄴ 83 ÷ 5",
+        "text": "㉡ 83 ÷ 5",
         "style_role": "diagram",
-        "x": 511.0,
-        "y": 79.0,
-        "font_size": 28
+        "x": 265.0,
+        "y": 110.0,
+        "font_size": 30
       }
     },
     {
@@ -129,11 +114,11 @@
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "ㄷ 89 ÷ 6",
+        "text": "㉢ 89 ÷ 6",
         "style_role": "diagram",
-        "x": 358.0,
-        "y": 118.0,
-        "font_size": 28
+        "x": 440.0,
+        "y": 110.0,
+        "font_size": 30
       }
     },
     {
@@ -141,11 +126,11 @@
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "ㄹ 92 ÷ 7",
+        "text": "㉣ 92 ÷ 7",
         "style_role": "diagram",
-        "x": 511.0,
-        "y": 118.0,
-        "font_size": 28
+        "x": 615.0,
+        "y": 110.0,
+        "font_size": 30
       }
     },
     {
@@ -291,18 +276,6 @@
         "y": 243.0,
         "font_size": 28
       }
-    },
-    {
-      "id": "slot.concl",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "따라서 나머지가 큰 것부터 차례대로 기호를 쓰면 ㄷ, ㄴ, ㄱ, ㄹ입니다.",
-        "style_role": "solution",
-        "x": 28.0,
-        "y": 493.0,
-        "font_size": 28
-      }
     }
   ],
   "groups": [],
@@ -310,7 +283,6 @@
   "diagrams": [],
   "reading_order": [
     "region.stem",
-    "slot.q_num",
     "slot.q_text",
     "region.box",
     "slot.box.outer",
@@ -332,7 +304,6 @@
     "slot.opt5.no",
     "slot.opt5.text",
     "region.answer",
-    "region.solution",
-    "slot.concl"
+    "region.solution"
   ]
 }

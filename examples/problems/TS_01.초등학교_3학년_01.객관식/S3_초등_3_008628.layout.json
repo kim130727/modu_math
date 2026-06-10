@@ -14,8 +14,6 @@
       "role": "stem",
       "flow": "absolute",
       "slot_ids": [
-        "slot.icon",
-        "slot.qnum",
         "slot.stem"
       ]
     },
@@ -27,10 +25,7 @@
         "slot.box",
         "slot.choice.a",
         "slot.choice.b",
-        "slot.choice.c",
-        "slot.choice_mark.a",
-        "slot.choice_mark.b",
-        "slot.choice_mark.c"
+        "slot.choice.c"
       ]
     },
     {
@@ -50,30 +45,6 @@
   ],
   "slots": [
     {
-      "id": "slot.icon",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "□",
-        "style_role": "question",
-        "x": 12.0,
-        "y": 22.0,
-        "font_size": 28
-      }
-    },
-    {
-      "id": "slot.qnum",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "98.",
-        "style_role": "question",
-        "x": 36.0,
-        "y": 22.0,
-        "font_size": 28
-      }
-    },
-    {
       "id": "slot.stem",
       "kind": "text",
       "prompt": "",
@@ -90,22 +61,10 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 233.0,
-        "y": 50.0,
-        "width": 510.0,
+        "x": 85.0,
+        "y": 45.0,
+        "width": 610.0,
         "height": 75.0
-      }
-    },
-    {
-      "id": "slot.choice_mark.a",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "◯",
-        "style_role": "label",
-        "x": 262.0,
-        "y": 94.0,
-        "font_size": 28
       }
     },
     {
@@ -113,23 +72,11 @@
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "ㄱ 583 ÷ 5",
+        "text": "㉠ 583 ÷ 5",
         "style_role": "question",
-        "x": 292.0,
-        "y": 94.0,
-        "font_size": 28
-      }
-    },
-    {
-      "id": "slot.choice_mark.b",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "◯",
-        "style_role": "label",
-        "x": 446.0,
-        "y": 94.0,
-        "font_size": 28
+        "x": 115.0,
+        "y": 95.0,
+        "font_size": 30
       }
     },
     {
@@ -137,23 +84,11 @@
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "ㄴ 584 ÷ 6",
+        "text": "㉡ 584 ÷ 6",
         "style_role": "question",
-        "x": 476.0,
-        "y": 94.0,
-        "font_size": 28
-      }
-    },
-    {
-      "id": "slot.choice_mark.c",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "◯",
-        "style_role": "label",
-        "x": 642.0,
-        "y": 94.0,
-        "font_size": 28
+        "x": 325.0,
+        "y": 95.0,
+        "font_size": 30
       }
     },
     {
@@ -161,11 +96,11 @@
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "ㄷ 585 ÷ 7",
+        "text": "㉢ 585 ÷ 7",
         "style_role": "question",
-        "x": 672.0,
-        "y": 94.0,
-        "font_size": 28
+        "x": 530.0,
+        "y": 95.0,
+        "font_size": 30
       }
     },
     {
@@ -175,9 +110,9 @@
       "content": {
         "text": "( ㄱ , ㄴ , ㄷ )",
         "style_role": "label",
-        "x": 769.0,
-        "y": 138.0,
-        "font_size": 28
+        "x": 95.0,
+        "y": 180.0,
+        "font_size": 30
       }
     }
   ],
@@ -186,17 +121,12 @@
   "diagrams": [],
   "reading_order": [
     "region.header",
-    "slot.icon",
-    "slot.qnum",
     "slot.stem",
     "region.choice_box",
     "slot.box",
     "slot.choice.a",
     "slot.choice.b",
     "slot.choice.c",
-    "slot.choice_mark.a",
-    "slot.choice_mark.b",
-    "slot.choice_mark.c",
     "region.choice_list",
     "slot.choice_list",
     "region.answer_explanation"

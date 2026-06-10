@@ -10,10 +10,10 @@
       "id": "slot.box.rect",
       "type": "rect",
       "attributes": {
-        "x": 287.0,
-        "y": 44.0,
-        "width": 388.0,
-        "height": 76.0,
+        "x": 130.0,
+        "y": 95.0,
+        "width": 430.0,
+        "height": 105.0,
         "fill": "none",
         "stroke": "#111111",
         "stroke-width": 1.5
@@ -24,32 +24,15 @@
       }
     },
     {
-      "id": "slot.q.num.text",
-      "type": "text",
-      "attributes": {
-        "x": 10.0,
-        "y": 24.0,
-        "max_width": 732.0,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
-      },
-      "source_ref": "slot.q.num",
-      "refs": {
-        "layout_slot_id": "slot.q.num"
-      },
-      "text": "6."
-    },
-    {
       "id": "slot.q.text.text",
       "type": "text",
       "attributes": {
-        "x": 52.0,
-        "y": 24.0,
+        "x": 70.0,
+        "y": 50.0,
         "max_width": 732.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 30
       },
       "source_ref": "slot.q.text",
       "refs": {
@@ -61,12 +44,12 @@
       "id": "slot.opt.1.text",
       "type": "text",
       "attributes": {
-        "x": 333.0,
-        "y": 72.0,
+        "x": 175.0,
+        "y": 140.0,
         "max_width": 732.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 30
       },
       "source_ref": "slot.opt.1",
       "refs": {
@@ -78,12 +61,12 @@
       "id": "slot.opt.2.text",
       "type": "text",
       "attributes": {
-        "x": 544.0,
-        "y": 72.0,
+        "x": 385.0,
+        "y": 140.0,
         "max_width": 732.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 30
       },
       "source_ref": "slot.opt.2",
       "refs": {
@@ -95,12 +78,12 @@
       "id": "slot.opt.3.text",
       "type": "text",
       "attributes": {
-        "x": 333.0,
-        "y": 105.0,
+        "x": 175.0,
+        "y": 175.0,
         "max_width": 732.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 30
       },
       "source_ref": "slot.opt.3",
       "refs": {
@@ -112,12 +95,12 @@
       "id": "slot.opt.4.text",
       "type": "text",
       "attributes": {
-        "x": 544.0,
-        "y": 105.0,
+        "x": 385.0,
+        "y": 175.0,
         "max_width": 732.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 30
       },
       "source_ref": "slot.opt.4",
       "refs": {
@@ -129,69 +112,18 @@
       "id": "slot.list.text",
       "type": "text",
       "attributes": {
-        "x": 376.0,
-        "y": 158.0,
+        "x": 245.0,
+        "y": 260.0,
         "max_width": 732.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 30
       },
       "source_ref": "slot.list",
       "refs": {
         "layout_slot_id": "slot.list"
       },
       "text": "( ① , ② , ③ , ④ )"
-    },
-    {
-      "id": "slot.ans.text",
-      "type": "text",
-      "attributes": {
-        "x": 30.0,
-        "y": 210.0,
-        "max_width": 732.0,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 22
-      },
-      "source_ref": "slot.ans",
-      "refs": {
-        "layout_slot_id": "slot.ans"
-      },
-      "text": "(정답) ③"
-    },
-    {
-      "id": "slot.exp.text",
-      "type": "text",
-      "attributes": {
-        "x": 30.0,
-        "y": 255.0,
-        "max_width": 732.0,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 20
-      },
-      "source_ref": "slot.exp",
-      "refs": {
-        "layout_slot_id": "slot.exp"
-      },
-      "text": "(해설) ① 29 ÷ 7 = 4··1   ② 31 ÷ 6 = 5··1   ③ 74 ÷ 8 = 9··2   ④ 64 ÷ 9 = 7··1"
-    },
-    {
-      "id": "slot.concl.text",
-      "type": "text",
-      "attributes": {
-        "x": 30.0,
-        "y": 300.0,
-        "max_width": 732.0,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 20
-      },
-      "source_ref": "slot.concl",
-      "refs": {
-        "layout_slot_id": "slot.concl"
-      },
-      "text": "따라서 나머지가 다른 하나는 ③입니다."
     }
   ],
   "contract_version": "modu_math.renderer.v2"

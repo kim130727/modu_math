@@ -7,64 +7,64 @@
   },
   "elements": [
     {
-      "id": "slot.icon.text",
-      "type": "text",
-      "attributes": {
-        "x": 8.0,
-        "y": 22.0,
-        "max_width": 524.0,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 22
-      },
-      "source_ref": "slot.icon",
-      "refs": {
-        "layout_slot_id": "slot.icon"
-      },
-      "text": "□"
-    },
-    {
-      "id": "slot.qnum.text",
-      "type": "text",
-      "attributes": {
-        "x": 30.0,
-        "y": 22.0,
-        "max_width": 524.0,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
-      },
-      "source_ref": "slot.qnum",
-      "refs": {
-        "layout_slot_id": "slot.qnum"
-      },
-      "text": "99."
-    },
-    {
       "id": "slot.prompt.text",
       "type": "text",
       "attributes": {
-        "x": 68.0,
-        "y": 22.0,
+        "x": 65.0,
+        "y": 50.0,
         "max_width": 524.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 30
       },
       "source_ref": "slot.prompt",
       "refs": {
         "layout_slot_id": "slot.prompt"
       },
-      "text": "묶이 더 작은 것을 선택하세요."
+      "text": "몫이 더 작은 것을 선택하세요."
+    },
+    {
+      "id": "slot.prompt.copy1.text",
+      "type": "text",
+      "attributes": {
+        "x": 150.0,
+        "y": 125.0,
+        "max_width": 524.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30
+      },
+      "source_ref": "slot.prompt.copy1",
+      "refs": {
+        "layout_slot_id": "slot.prompt.copy1"
+      },
+      "text": "96 ÷ 3"
+    },
+    {
+      "id": "slot.prompt.copy1.copy2.text",
+      "type": "text",
+      "attributes": {
+        "x": 355.0,
+        "y": 125.0,
+        "max_width": 524.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30
+      },
+      "source_ref": "slot.prompt.copy1.copy2",
+      "refs": {
+        "layout_slot_id": "slot.prompt.copy1.copy2"
+      },
+      "text": "84 ÷ 2"
     },
     {
       "id": "slot.compare_box.rect",
       "type": "rect",
       "attributes": {
-        "x": 356.0,
-        "y": 47.0,
-        "width": 252.0,
-        "height": 73.0,
+        "x": 65.0,
+        "y": 75.0,
+        "width": 460.0,
+        "height": 75.0,
         "fill": "none",
         "stroke": "#EE9AD3",
         "stroke-width": 1.5

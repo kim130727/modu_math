@@ -10,10 +10,10 @@
       "id": "slot.expr.left.rect",
       "type": "rect",
       "attributes": {
-        "x": 231.0,
-        "y": 50.0,
+        "x": 220.0,
+        "y": 83.0,
         "width": 175.0,
-        "height": 43.0,
+        "height": 45.0,
         "fill": "#ffffff",
         "stroke": "#111111",
         "stroke-width": 1.5
@@ -27,10 +27,10 @@
       "id": "slot.expr.right.rect",
       "type": "rect",
       "attributes": {
-        "x": 462.0,
-        "y": 50.0,
-        "width": 187.0,
-        "height": 43.0,
+        "x": 460.0,
+        "y": 83.0,
+        "width": 185.0,
+        "height": 45.0,
         "fill": "#ffffff",
         "stroke": "#111111",
         "stroke-width": 1.5
@@ -41,49 +41,32 @@
       }
     },
     {
-      "id": "slot.qbox.text",
-      "type": "text",
-      "attributes": {
-        "x": 9.0,
-        "y": 28.0,
-        "max_width": 713.0,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
-      },
-      "source_ref": "slot.qbox",
-      "refs": {
-        "layout_slot_id": "slot.qbox"
-      },
-      "text": "□"
-    },
-    {
       "id": "slot.qtext.text",
       "type": "text",
       "attributes": {
-        "x": 38.0,
-        "y": 28.0,
+        "x": 35.0,
+        "y": 55.0,
         "max_width": 713.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 30
       },
       "source_ref": "slot.qtext",
       "refs": {
         "layout_slot_id": "slot.qtext"
       },
-      "text": "7. 다음 두 식의 계산 결과가 같을 때 □ 안에 알맞은 수를 고르세요."
+      "text": "다음 두 식의 계산 결과가 같을 때 □ 안에 알맞은 수를 고르세요."
     },
     {
       "id": "slot.opt.1.text",
       "type": "text",
       "attributes": {
-        "x": 17.0,
-        "y": 130.0,
+        "x": 40.0,
+        "y": 185.0,
         "max_width": 713.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 30
       },
       "source_ref": "slot.opt.1",
       "refs": {
@@ -95,12 +78,12 @@
       "id": "slot.opt.2.text",
       "type": "text",
       "attributes": {
-        "x": 250.0,
-        "y": 130.0,
+        "x": 175.0,
+        "y": 185.0,
         "max_width": 713.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 30
       },
       "source_ref": "slot.opt.2",
       "refs": {
@@ -112,12 +95,12 @@
       "id": "slot.opt.3.text",
       "type": "text",
       "attributes": {
-        "x": 582.0,
-        "y": 130.0,
+        "x": 310.0,
+        "y": 185.0,
         "max_width": 713.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 30
       },
       "source_ref": "slot.opt.3",
       "refs": {
@@ -129,12 +112,12 @@
       "id": "slot.opt.4.text",
       "type": "text",
       "attributes": {
-        "x": 17.0,
-        "y": 184.0,
+        "x": 455.0,
+        "y": 185.0,
         "max_width": 713.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 30
       },
       "source_ref": "slot.opt.4",
       "refs": {
@@ -146,12 +129,12 @@
       "id": "slot.opt.5.text",
       "type": "text",
       "attributes": {
-        "x": 250.0,
-        "y": 184.0,
+        "x": 600.0,
+        "y": 185.0,
         "max_width": 713.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 30
       },
       "source_ref": "slot.opt.5",
       "refs": {
@@ -160,38 +143,38 @@
       "text": "⑤ 8"
     },
     {
-      "id": "slot.ans.text",
+      "id": "slot.qtext.copy2.text",
       "type": "text",
       "attributes": {
-        "x": 17.0,
-        "y": 240.0,
+        "x": 505.0,
+        "y": 118.0,
         "max_width": 713.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 22
+        "font-size": 30
       },
-      "source_ref": "slot.ans",
+      "source_ref": "slot.qtext.copy2",
       "refs": {
-        "layout_slot_id": "slot.ans"
+        "layout_slot_id": "slot.qtext.copy2"
       },
-      "text": "(정답) ③"
+      "text": "□ × 4"
     },
     {
-      "id": "slot.exp.text",
+      "id": "slot.qtext.copy3.text",
       "type": "text",
       "attributes": {
-        "x": 17.0,
-        "y": 280.0,
+        "x": 260.0,
+        "y": 118.0,
         "max_width": 713.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 20
+        "font-size": 30
       },
-      "source_ref": "slot.exp",
+      "source_ref": "slot.qtext.copy3",
       "refs": {
-        "layout_slot_id": "slot.exp"
+        "layout_slot_id": "slot.qtext.copy3"
       },
-      "text": "(해설) 80 ÷ 5 = 16이고 □ × 4 = 16에서 4 × 4 = 16이므로 □ = 4입니다."
+      "text": "80 ÷ 5"
     }
   ],
   "contract_version": "modu_math.renderer.v2"

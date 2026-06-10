@@ -7,49 +7,15 @@
   },
   "elements": [
     {
-      "id": "slot.q.box.rect",
-      "type": "rect",
-      "attributes": {
-        "x": 14.0,
-        "y": 10.0,
-        "width": 16.0,
-        "height": 16.0,
-        "fill": "none",
-        "stroke": "#333333",
-        "stroke-width": 1.5
-      },
-      "source_ref": "slot.q.box",
-      "refs": {
-        "layout_slot_id": "slot.q.box"
-      }
-    },
-    {
-      "id": "slot.q.number.text",
-      "type": "text",
-      "attributes": {
-        "x": 38.0,
-        "y": 28.0,
-        "max_width": 632.0,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
-      },
-      "source_ref": "slot.q.number",
-      "refs": {
-        "layout_slot_id": "slot.q.number"
-      },
-      "text": "3."
-    },
-    {
       "id": "slot.q.text.text",
       "type": "text",
       "attributes": {
-        "x": 82.0,
-        "y": 28.0,
+        "x": 25.0,
+        "y": 40.0,
         "max_width": 632.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 30
       },
       "source_ref": "slot.q.text",
       "refs": {
@@ -61,12 +27,12 @@
       "id": "slot.choice.1.text",
       "type": "text",
       "attributes": {
-        "x": 26.0,
-        "y": 86.0,
+        "x": 25.0,
+        "y": 105.0,
         "max_width": 632.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 30
       },
       "source_ref": "slot.choice.1",
       "refs": {
@@ -78,12 +44,12 @@
       "id": "slot.choice.2.text",
       "type": "text",
       "attributes": {
-        "x": 327.0,
-        "y": 86.0,
+        "x": 205.0,
+        "y": 105.0,
         "max_width": 632.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 30
       },
       "source_ref": "slot.choice.2",
       "refs": {
@@ -95,12 +61,12 @@
       "id": "slot.choice.3.text",
       "type": "text",
       "attributes": {
-        "x": 580.0,
-        "y": 86.0,
+        "x": 390.0,
+        "y": 105.0,
         "max_width": 632.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 30
       },
       "source_ref": "slot.choice.3",
       "refs": {
@@ -112,12 +78,12 @@
       "id": "slot.choice.4.text",
       "type": "text",
       "attributes": {
-        "x": 26.0,
-        "y": 131.0,
+        "x": 25.0,
+        "y": 150.0,
         "max_width": 632.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 30
       },
       "source_ref": "slot.choice.4",
       "refs": {
@@ -129,154 +95,18 @@
       "id": "slot.choice.5.text",
       "type": "text",
       "attributes": {
-        "x": 327.0,
-        "y": 131.0,
+        "x": 205.0,
+        "y": 150.0,
         "max_width": 632.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 30
       },
       "source_ref": "slot.choice.5",
       "refs": {
         "layout_slot_id": "slot.choice.5"
       },
       "text": "⑤ 27 ÷ 2"
-    },
-    {
-      "id": "slot.ans.text",
-      "type": "text",
-      "attributes": {
-        "x": 26.0,
-        "y": 190.0,
-        "max_width": 632.0,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 22
-      },
-      "source_ref": "slot.ans",
-      "refs": {
-        "layout_slot_id": "slot.ans"
-      },
-      "text": "(정답) ①"
-    },
-    {
-      "id": "slot.exp.text",
-      "type": "text",
-      "attributes": {
-        "x": 26.0,
-        "y": 230.0,
-        "max_width": 632.0,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 22
-      },
-      "source_ref": "slot.exp",
-      "refs": {
-        "layout_slot_id": "slot.exp"
-      },
-      "text": "(해설)"
-    },
-    {
-      "id": "slot.exp1.text",
-      "type": "text",
-      "attributes": {
-        "x": 26.0,
-        "y": 270.0,
-        "max_width": 632.0,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 20
-      },
-      "source_ref": "slot.exp1",
-      "refs": {
-        "layout_slot_id": "slot.exp1"
-      },
-      "text": "① 39 ÷ 3 = 13이므로 나머지가 0입니다."
-    },
-    {
-      "id": "slot.exp2.text",
-      "type": "text",
-      "attributes": {
-        "x": 26.0,
-        "y": 305.0,
-        "max_width": 632.0,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 20
-      },
-      "source_ref": "slot.exp2",
-      "refs": {
-        "layout_slot_id": "slot.exp2"
-      },
-      "text": "② 17 ÷ 4 = 4···1이므로 나머지가 1입니다."
-    },
-    {
-      "id": "slot.exp3.text",
-      "type": "text",
-      "attributes": {
-        "x": 26.0,
-        "y": 340.0,
-        "max_width": 632.0,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 20
-      },
-      "source_ref": "slot.exp3",
-      "refs": {
-        "layout_slot_id": "slot.exp3"
-      },
-      "text": "③ 16 ÷ 5 = 3···1이므로 나머지가 1입니다."
-    },
-    {
-      "id": "slot.exp4.text",
-      "type": "text",
-      "attributes": {
-        "x": 26.0,
-        "y": 375.0,
-        "max_width": 632.0,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 20
-      },
-      "source_ref": "slot.exp4",
-      "refs": {
-        "layout_slot_id": "slot.exp4"
-      },
-      "text": "④ 31 ÷ 6 = 5···1이므로 나머지가 1입니다."
-    },
-    {
-      "id": "slot.exp5.text",
-      "type": "text",
-      "attributes": {
-        "x": 26.0,
-        "y": 410.0,
-        "max_width": 632.0,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 20
-      },
-      "source_ref": "slot.exp5",
-      "refs": {
-        "layout_slot_id": "slot.exp5"
-      },
-      "text": "⑤ 27 ÷ 2 = 13···1이므로 나머지가 1입니다."
-    },
-    {
-      "id": "slot.concl.text",
-      "type": "text",
-      "attributes": {
-        "x": 26.0,
-        "y": 445.0,
-        "max_width": 632.0,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 20
-      },
-      "source_ref": "slot.concl",
-      "refs": {
-        "layout_slot_id": "slot.concl"
-      },
-      "text": "따라서 나머지가 다른 하나는 ① 39 ÷ 3입니다."
     }
   ],
   "contract_version": "modu_math.renderer.v2"

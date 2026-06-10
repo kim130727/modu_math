@@ -18,14 +18,13 @@ def build_problem_template() -> ProblemTemplate:
         canvas=Canvas(width=940, height=640, coordinate_mode="logical"),
         regions=(
             Region(
-                id="region.stem", role="stem", flow="absolute", slot_ids=("slot.q1",)
+                id="region.stem", role="stem", flow="absolute", slot_ids=("slot.q1",'slot.q1.copy5')
             ),
             Region(
                 id="region.diagram",
                 role="diagram",
                 flow="absolute",
-                slot_ids=(
-                    "slot.circle",
+                slot_ids=("slot.circle",
                     "slot.center",
                     "slot.diameter.vertical",
                     "slot.diameter.green",
@@ -34,8 +33,7 @@ def build_problem_template() -> ProblemTemplate:
                     "slot.label.jina",
                     "slot.label.hyeonjun",
                     "slot.note.arrow",
-                    "slot.note.text",
-                ),
+                    "slot.note.text",'slot.note.text.copy6'),
             ),
             Region(
                 id="region.choice",
@@ -45,105 +43,62 @@ def build_problem_template() -> ProblemTemplate:
             ),
             Region(id="region.footer", role="footer", flow="absolute", slot_ids=()),
         ),
-        slots=(
-            TextSlot(
+        slots=(TextSlot(
                 id="slot.q1",
                 prompt="",
-                text="13. 은지, 진아, 현준이가 한 원에 지름을 그은 것입니다. 지름을 재어 알맞은 말을 선택하세요.",
-                style_role="question",
-                x=18.0,
-                y=34.0,
-                font_size=28,
+                text = '은지, 진아, 현준이가 한 원에 지름을 그은 것입니다.', style_role="question",
+                x = 20, y = 40, font_size = 30),
+            CircleSlot(
+                id="slot.circle", prompt="", cx = 385, cy = 325, r = 145, fill="none"
             ),
             CircleSlot(
-                id="slot.circle", prompt="", cx=455.0, cy=205.0, r=100.0, fill="none"
-            ),
-            CircleSlot(
-                id="slot.center", prompt="", cx=455.0, cy=231.0, r=3.5, fill="#d02aa6"
+                id="slot.center", prompt="", cx = 390, cy = 325, r = 5, fill="#d02aa6"
             ),
             LineSlot(
                 id="slot.diameter.vertical",
                 prompt="",
-                x1=455.0,
-                y1=105.0,
-                x2=455.0,
-                y2=305.0,
-            ),
+                x1 = 390, y1 = 183, x2 = 390, y2 = 468),
             LineSlot(
                 id="slot.diameter.green",
                 prompt="",
-                x1=366.0,
-                y1=151.0,
-                x2=544.0,
-                y2=259.0,
-            ),
+                x1 = 264, y1 = 246, x2 = 509, y2 = 401),
             LineSlot(
                 id="slot.diameter.purple",
                 prompt="",
-                x1=363.0,
-                y1=261.0,
-                x2=547.0,
-                y2=199.0,
-            ),
+                x1 = 251, y1 = 382, x2 = 521, y2 = 272),
             TextSlot(
                 id="slot.label.eunji",
                 prompt="",
-                text="은지",
-                style_role="label",
-                x=438.0,
-                y=92.0,
-                font_size=28,
-            ),
+                text = '은지', style_role="label",
+                x = 360, y = 160, font_size = 30),
             TextSlot(
                 id="slot.label.jina",
                 prompt="",
-                text="진아",
-                style_role="label",
-                x=558.0,
-                y=170.0,
-                font_size=28,
-            ),
+                text = '진아', style_role="label",
+                x = 525, y = 270, font_size = 30),
             TextSlot(
                 id="slot.label.hyeonjun",
                 prompt="",
-                text="현준",
-                style_role="label",
-                x=559.0,
-                y=288.0,
-                font_size=28,
-            ),
+                text = '현준', style_role="label",
+                x = 515, y = 430, font_size = 30),
             PathSlot(
                 id="slot.note.arrow",
                 prompt="",
-                d="M 500.0 303.0 C 488.0 289.0, 484.0 272.0, 473.0 257.0 C 467.0 247.0, 461.0 239.0, 455.0 231.0",
-            ),
+                d = 'M 605 325 C 555 305, 545 285, 495 260 C 475 245, 450 230, 430 215', stroke = '#111111', stroke_width = 2, transform = 'rotate(-390 625 327.5)'),
             TextSlot(
                 id="slot.note.text",
                 prompt="",
-                text="지름은 모두\n원의 중심을\n지나요.",
-                style_role="note",
-                x=500.0,
-                y=315.0,
-                font_size=24,
-            ),
+                text = '\n    \n        \n            \n                \n                    \n                        \n                            \n                                \n                                    지름은 모두\n                                    원의 중심을\n                                    지나요.\n                                  \n                              \n                          \n                      \n                  \n              \n          \n      \n  ', style_role="note",
+                x = 615, y = 295, font_size = 25),
             RectSlot(
                 id="slot.choice.box",
                 prompt="",
-                x=95.0,
-                y=414.0,
-                width=760.0,
-                height=80.0,
-            ),
+                x = 10, y = 490, width = 760, height = 80),
             TextSlot(
                 id="slot.choice.text",
                 prompt="",
-                text="한 원에서 원의 지름은 모두 ( 같습니다, 다릅니다 ).",
-                style_role="choice",
-                x=170.0,
-                y=469.0,
-                font_size=28,
-            ),
-        ),
+                text = '한 원에서 원의 지름은 모두 ( 같습니다, 다릅니다 ).', style_role="choice",
+                x = 90, y = 540, font_size = 30),TextSlot(id = 'slot.q1.copy5', prompt = '', text = '지름을 재어 알맞은 말을 선택하세요.', x = 20, y = 100, font_size = 30, fill = '#111111'), TextSlot(id = 'slot.note.text.copy6', prompt = '', text = 'ㅇ', x = 365, y = 310, font_size = 25, fill = '#111111')),
         diagrams=(),
         groups=(),
         constraints=(),
