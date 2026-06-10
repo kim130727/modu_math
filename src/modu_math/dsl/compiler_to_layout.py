@@ -136,6 +136,8 @@ def _normalize_slot(slot: AuthoringSlot) -> dict[str, Any]:
             content["y"] = float(slot.y)
         if slot.font_size is not None:
             content["font_size"] = int(slot.font_size)
+        if slot.max_width is not None:
+            content["max_width"] = float(slot.max_width)
         if isinstance(slot.font_family, str) and slot.font_family:
             content["font_family"] = slot.font_family
         if isinstance(slot.anchor, str) and slot.anchor:

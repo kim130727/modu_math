@@ -15,6 +15,7 @@ from .characters import (
 )
 from .exporter import export_layout_to_dsl_source, problem_template_from_layout
 from .fraction import fraction_slots
+from .table import table_slots
 from .models import (
     Arrow,
     BlankSlot,
@@ -76,6 +77,7 @@ __all__ = [
     "problem_template_from_layout",
     "export_problem_template",
     "fraction_slots",
+    "table_slots",
     "person_slots",
     "speaker_group_slot_ids",
     "speaker_group_slots",

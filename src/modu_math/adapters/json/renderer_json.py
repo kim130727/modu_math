@@ -26,7 +26,7 @@ def _extract_render_attributes(node: LayoutNode) -> dict[str, Any]:
         attrs["y"] = node.y
         if node.anchor:
             attrs["text-anchor"] = node.anchor
-        for key in ["fill", "stroke", "stroke_width", "font_family", "font_size", "font_weight", "font_style", "opacity", "transform", "stroke_dasharray"]:
+        for key in ["fill", "stroke", "stroke_width", "font_family", "font_size", "font_weight", "font_style", "opacity", "transform", "stroke_dasharray", "max_width"]:
             if key in props:
                 attrs[key.replace("_", "-")] = props[key]
         if props.get("is_formula"):

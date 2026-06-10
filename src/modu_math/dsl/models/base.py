@@ -35,6 +35,7 @@ class TextSlot(SlotBase):
     x: float | None = None
     y: float | None = None
     font_size: int | None = None
+    max_width: float | None = None
     font_family: str | None = None
     anchor: str | None = None
     fill: str | None = None

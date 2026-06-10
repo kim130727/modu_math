@@ -8,7 +8,7 @@ import libcst as cst
 from .problems import resolve_problem_paths
 
 SUPPORTED_SLOTS = {
-    "TextSlot": {"text", "x", "y", "font_size", "font_family", "anchor", "fill", "style_role", "transform"},
+    "TextSlot": {"text", "x", "y", "font_size", "max_width", "font_family", "anchor", "fill", "style_role", "transform"},
     "CircleSlot": {"cx", "cy", "r", "stroke", "stroke_width", "fill", "transform"},
     "LineSlot": {"x1", "y1", "x2", "y2", "stroke", "stroke_width", "stroke_dasharray", "transform"},
     "RectSlot": {"x", "y", "width", "height", "stroke", "stroke_width", "rx", "ry", "fill", "transform"},

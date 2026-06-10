@@ -230,6 +230,8 @@ def _slot_kwargs(slot: TextSlot | ChoiceSlot | BlankSlot | LabelSlot | RectSlot 
             out.append(("y", slot.y))
         if slot.font_size is not None:
             out.append(("font_size", slot.font_size))
+        if slot.max_width is not None:
+            out.append(("max_width", slot.max_width))
         if isinstance(slot.font_family, str) and slot.font_family:
             out.append(("font_family", slot.font_family))
         if isinstance(slot.anchor, str) and slot.anchor:
@@ -518,6 +520,8 @@ def _slot_expr(slot: TextSlot | ChoiceSlot | BlankSlot | LabelSlot | RectSlot | 
             keywords.append(ast.keyword(arg="y", value=ast.Constant(value=slot.y)))
         if slot.font_size is not None:
             keywords.append(ast.keyword(arg="font_size", value=ast.Constant(value=slot.font_size)))
+        if slot.max_width is not None:
+            keywords.append(ast.keyword(arg="max_width", value=ast.Constant(value=slot.max_width)))
         if isinstance(slot.font_family, str) and slot.font_family:
             keywords.append(ast.keyword(arg="font_family", value=ast.Constant(value=slot.font_family)))
         if isinstance(slot.anchor, str) and slot.anchor:
@@ -841,6 +845,7 @@ def _slot_from_layout(
             x=_number_or_none(content.get("x")),
             y=_number_or_none(content.get("y")),
             font_size=_int_or_none(content.get("font_size")),
+            max_width=_number_or_none(content.get("max_width")),
             font_family=_string(content.get("font_family"), None),
             anchor=_string(content.get("anchor"), None),
             fill=_string(content.get("fill"), None),

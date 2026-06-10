@@ -165,6 +165,13 @@
     .svg-box svg .selection-handle[data-handle="p2"] { cursor: crosshair; }
     .svg-box svg .selection-handle[data-handle="c"] { cursor: move; fill: #0f766e; }
     .svg-box svg .selection-handle[data-handle="r"] { cursor: grab; fill: #f59e0b; stroke: #92400e; }
+    .svg-box svg .table-adjust-handle {
+      fill: none;
+      stroke: #f59e0b;
+      stroke-width: 7;
+      stroke-opacity: 0.38;
+      stroke-linecap: round;
+    }
     .inline-text-editor {
       position: absolute;
       display: none;
@@ -627,6 +634,11 @@
               <input id="textEditInput" placeholder="텍스트 요소를 선택하세요" disabled>
               <div class="row" style="margin-top:8px;">
                 <button id="textEditBtn" disabled>Update Text</button>
+              </div>
+              <div class="row" style="margin-top:8px;">
+                <button id="textAlignLeftBtn" title="Align text left">Left</button>
+                <button id="textAlignCenterBtn" title="Align text center">Center</button>
+                <button id="textAlignRightBtn" title="Align text right">Right</button>
               </div>
             </div>
             <div class="inspector-section">
@@ -1172,8 +1184,47 @@
       return group ? group.base : null;
     }
 
+    function tableLayoutSlotIds() {
+      const ids = new Set();
+      const layoutText = document.getElementById("layoutView")?.value || "";
+      if (!layoutText.trim()) return ids;
+      try {
+        const layout = JSON.parse(layoutText);
+        for (const slot of Array.isArray(layout.slots) ? layout.slots : []) {
+          const id = typeof slot?.id === "string" ? slot.id : "";
+          const role = slot?.content?.style_role;
+          if (id.startsWith("slot.table.") || role === "table") ids.add(id);
+        }
+      } catch (_) {
+        // Layout pane can be stale while a problem is loading.
+      }
+      return ids;
+    }
+
+    function tableBaseFromSlotId(slotId) {
+      if (!slotId) return null;
+      const ids = tableLayoutSlotIds();
+      if (ids.has(slotId) || slotId.startsWith("slot.table.")) return "slot.table";
+      return null;
+    }
+
+    function collectTableGroupSlotIds(slotId) {
+      const base = tableBaseFromSlotId(slotId);
+      if (!base) return null;
+      const svg = document.getElementById("svgPreview").querySelector("svg");
+      if (!svg) return null;
+      const layoutIds = tableLayoutSlotIds();
+      const out = [];
+      for (const node of draggableSlotElements(svg)) {
+        const sid = slotIdFromElement(node);
+        if (!sid) continue;
+        if ((sid.startsWith(`${base}.`) || layoutIds.has(sid)) && !out.includes(sid)) out.push(sid);
+      }
+      return out.length ? { base, slotIds: out, groupKind: "table" } : null;
+    }
+
     function selectableGroupBaseFromSlotId(slotId) {
-      return figureBaseFromSlotId(slotId) || characterGroupBaseFromSlotId(slotId);
+      return figureBaseFromSlotId(slotId) || characterGroupBaseFromSlotId(slotId) || tableBaseFromSlotId(slotId);
     }
 
     function collectFigureGroupSlotIds(slotId) {
@@ -1213,7 +1264,7 @@
     }
 
     function collectSelectableGroupSlotIds(slotId) {
-      return collectFigureGroupSlotIds(slotId) || collectCharacterGroupSlotIds(slotId);
+      return collectFigureGroupSlotIds(slotId) || collectCharacterGroupSlotIds(slotId) || collectTableGroupSlotIds(slotId);
     }
 
     function elementsForSlotIds(slotIds) {
@@ -1415,6 +1466,8 @@
           x: Number(el.getAttribute("x") || 0),
           y: Number(el.getAttribute("y") || 0),
           font_size: Number(el.getAttribute("font-size") || el.getAttribute("font_size") || 0) || undefined,
+          max_width: Number(el.getAttribute("max_width") || el.getAttribute("max-width") || 0) || undefined,
+          anchor: el.getAttribute("text-anchor") || el.getAttribute("anchor") || undefined,
           ...styleAttrs(["fill"]),
         });
       }
@@ -1622,7 +1675,7 @@
       if (!item || item.isFraction || !item.el) return null;
       if (item.isCanvas) return item;
       if (item.isCharacterGroup) return null;
-      if (item.isFigureGroup) return item;
+      if (item.isFigureGroup || item.isTableGroup) return item;
       const tag = item.el.tagName.toLowerCase();
       if (!["text", "rect", "circle", "line", "path", "polygon"].includes(tag)) return null;
       return item;
@@ -1633,12 +1686,12 @@
         return getSvgCanvasBounds();
       }
       const svg = document.getElementById("svgPreview").querySelector("svg");
-      if (item && !item.isFigureGroup && !item.isFraction && item.el) {
+      if (item && !item.isFigureGroup && !item.isTableGroup && !item.isFraction && item.el) {
         const rotation = parseRotateTransform(item.el.getAttribute("transform") || "");
         const rawBox = geometrySvgBox(item.el);
         if (rawBox && rotation.angle && rotation.cx !== null && rotation.cy !== null) return rawBox;
       }
-      const elements = item && (item.isFigureGroup || item.isFraction) ? (item.elements || []) : [item.el];
+      const elements = item && (item.isFigureGroup || item.isTableGroup || item.isFraction) ? (item.elements || []) : [item.el];
       const boxes = [];
       for (const el of elements) {
         const box = visualSvgBox(el, svg);
@@ -1653,10 +1706,47 @@
     }
 
     function selectionTransformForItem(item) {
-      if (!item || item.isCanvas || item.isFigureGroup || item.isFraction || !item.el) return { transform: "", rotation: null };
+      if (!item || item.isCanvas || item.isFigureGroup || item.isTableGroup || item.isFraction || !item.el) return { transform: "", rotation: null };
       const rotation = parseRotateTransform(item.el.getAttribute("transform") || "");
       if (!rotation.angle || rotation.cx === null || rotation.cy === null) return { transform: "", rotation: null };
       return { transform: rotateTransform(rotation.angle, rotation.cx, rotation.cy), rotation };
+    }
+
+    function tableDividerInfo(el) {
+      const slotId = slotIdFromElement(el);
+      const m = slotId && slotId.match(/^slot\.table\.([vh])\d+$/);
+      if (!m) return null;
+      const value = readSlotPatchValue(el);
+      if (!value) return null;
+      const axis = m[1];
+      const tag = el.tagName.toLowerCase();
+      if (tag === "line" && value.x1 !== undefined) {
+        return { slotId, axis, x1: value.x1, y1: value.y1, x2: value.x2, y2: value.y2 };
+      }
+      if (tag === "rect" && value.x !== undefined) {
+        if (axis === "v") return { slotId, axis, x1: value.x, y1: value.y, x2: value.x, y2: value.y + (value.height || 0) };
+        return { slotId, axis, x1: value.x, y1: value.y, x2: value.x + (value.width || 0), y2: value.y };
+      }
+      return null;
+    }
+
+    function updateTableAdjustmentHandles(svg, layer, item) {
+      for (const old of layer.querySelectorAll(".table-adjust-handle")) old.remove();
+      if (!item || !item.isTableGroup) return;
+      for (const el of item.elements || []) {
+        const info = tableDividerInfo(el);
+        if (!info) continue;
+        const handle = document.createElementNS("http://www.w3.org/2000/svg", "line");
+        handle.setAttribute("class", "selection-handle table-adjust-handle");
+        handle.setAttribute("data-handle", `table-${info.axis}:${info.slotId}`);
+        handle.setAttribute("x1", String(info.x1));
+        handle.setAttribute("y1", String(info.y1));
+        handle.setAttribute("x2", String(info.x2));
+        handle.setAttribute("y2", String(info.y2));
+        handle.style.cursor = info.axis === "v" ? "ew-resize" : "ns-resize";
+        handle.addEventListener("pointerdown", beginResizeFromHandle);
+        layer.appendChild(handle);
+      }
     }
 
     function updateSelectionHandles() {
@@ -1665,12 +1755,14 @@
       const layer = ensureSelectionOverlay(svg);
       const item = selectedResizableItem();
       if (!item) {
+        updateTableAdjustmentHandles(svg, layer, null);
         layer.style.display = "none";
         layer.removeAttribute("transform");
         return;
       }
       const box = itemBBox(item);
       if (!box || box.width < 0 || box.height < 0) {
+        updateTableAdjustmentHandles(svg, layer, null);
         layer.style.display = "none";
         layer.removeAttribute("transform");
         return;
@@ -1740,6 +1832,7 @@
         handle.setAttribute("cx", String(p[0]));
         handle.setAttribute("cy", String(p[1]));
       }
+      updateTableAdjustmentHandles(svg, layer, item);
       layer.style.display = "";
       svg.appendChild(layer);
     }
@@ -1979,6 +2072,9 @@
         if (tag === "text" && startValue.font_size !== undefined) {
           out.font_size = Math.max(6, snap(startValue.font_size * scale));
         }
+        if (tag === "text" && startValue.max_width !== undefined) {
+          out.max_width = Math.max(8, snap(startValue.max_width * sx));
+        }
         applyPatchValueToElement(el, out);
         return out;
       }
@@ -2026,6 +2122,117 @@
       return values;
     }
 
+    function tableDividerValuesFromDrag(state, dx, dy) {
+      const m = String(state.handle || "").match(/^table-([vh]):(.+)$/);
+      if (!m) return null;
+      const axis = m[1];
+      const slotId = m[2];
+      const target = (state.startValue || []).find((entry) => entry.slotId === slotId);
+      if (!target || !target.value) return null;
+      const value = { ...target.value };
+      const delta = axis === "v" ? dx : dy;
+      const snap = (v) => (snapEnabled ? snapValue(v) : v);
+      const tag = target.el.tagName.toLowerCase();
+      if (tag === "line") {
+        if (axis === "v") {
+          value.x1 = snap(target.value.x1 + delta);
+          value.x2 = snap(target.value.x2 + delta);
+          value.y1 = target.value.y1;
+          value.y2 = target.value.y2;
+        } else {
+          value.y1 = snap(target.value.y1 + delta);
+          value.y2 = snap(target.value.y2 + delta);
+          value.x1 = target.value.x1;
+          value.x2 = target.value.x2;
+        }
+      } else if (tag === "rect") {
+        if (axis === "v") value.x = snap(target.value.x + delta);
+        else value.y = snap(target.value.y + delta);
+      } else {
+        return null;
+      }
+      applyPatchValueToElement(target.el, value);
+      const out = [{ slotId: target.slotId, el: target.el, value }];
+      out.push(...tableTextMaxWidthValues(state.item));
+      return out;
+    }
+
+    function tableTextMaxWidthValues(item) {
+      if (!item || !item.isTableGroup) return [];
+      const outer = (item.elements || []).find((el) => slotIdFromElement(el) === "slot.table.outer");
+      if (!outer) return [];
+      const outerValue = readSlotPatchValue(outer);
+      if (!outerValue || outerValue.x === undefined || outerValue.width === undefined) return [];
+      const left = Number(outerValue.x);
+      const right = left + Number(outerValue.width);
+      const dividers = [];
+      for (const el of item.elements || []) {
+        const info = tableDividerInfo(el);
+        if (info && info.axis === "v") dividers.push(Number(info.x1));
+      }
+      const edges = [left, ...dividers.sort((a, b) => a - b), right];
+      const values = [];
+      for (const el of item.elements || []) {
+        const slotId = slotIdFromElement(el);
+        const m = slotId && slotId.match(/^slot\.table\.r\d+c(\d+)$/);
+        if (!m || el.tagName.toLowerCase() !== "text") continue;
+        const col = Number(m[1]) - 1;
+        if (col < 0 || col + 1 >= edges.length) continue;
+        const current = readSlotPatchValue(el);
+        if (!current || current.x === undefined) continue;
+        const cellRight = edges[col + 1];
+        const maxWidth = Math.max(8, cellRight - Number(current.x) - 8);
+        const value = { ...current, max_width: snapEnabled ? snapValue(maxWidth) : maxWidth };
+        applyPatchValueToElement(el, value);
+        values.push({ slotId, el, value });
+      }
+      return values;
+    }
+
+    function tableColumnEdges(item) {
+      const outer = (item.elements || []).find((el) => slotIdFromElement(el) === "slot.table.outer");
+      if (!outer) return null;
+      const outerValue = readSlotPatchValue(outer);
+      if (!outerValue || outerValue.x === undefined || outerValue.width === undefined) return null;
+      const left = Number(outerValue.x);
+      const right = left + Number(outerValue.width);
+      const dividers = [];
+      for (const el of item.elements || []) {
+        const info = tableDividerInfo(el);
+        if (info && info.axis === "v") dividers.push(Number(info.x1));
+      }
+      return [left, ...dividers.sort((a, b) => a - b), right];
+    }
+
+    function tableTextAlignmentValues(item, align) {
+      const edges = tableColumnEdges(item);
+      if (!edges) return [];
+      const anchor = align === "center" ? "middle" : align === "right" ? "end" : "start";
+      const padding = 10;
+      const values = [];
+      for (const el of item.elements || []) {
+        const slotId = slotIdFromElement(el);
+        const m = slotId && slotId.match(/^slot\.table\.r\d+c(\d+)$/);
+        if (!m || el.tagName.toLowerCase() !== "text") continue;
+        const col = Number(m[1]) - 1;
+        if (col < 0 || col + 1 >= edges.length) continue;
+        const left = edges[col];
+        const right = edges[col + 1];
+        const current = readSlotPatchValue(el);
+        if (!current) continue;
+        const x = align === "center" ? (left + right) / 2 : align === "right" ? right - padding : left + padding;
+        const value = {
+          ...current,
+          x: snapEnabled ? snapValue(x) : x,
+          anchor,
+          max_width: Math.max(8, snapEnabled ? snapValue(right - left - padding * 2) : right - left - padding * 2),
+        };
+        applyPatchValueToElement(el, value);
+        values.push({ slotId, el, value });
+      }
+      return values;
+    }
+
     function clearSelection() {
       for (const item of selectedSlots.values()) {
         if (item.isCanvas) continue;
@@ -2068,7 +2275,8 @@
             slotId: selectableGroup.base,
             slotIds: selectableGroup.slotIds,
             elements,
-            isFigureGroup: true,
+            isFigureGroup: selectableGroup.groupKind === "figure",
+            isTableGroup: selectableGroup.groupKind === "table",
             isCharacterGroup: selectableGroup.groupKind === "character",
           });
           for (const node of elements) node.classList.add("slot-selected");
@@ -2136,7 +2344,7 @@
 
     function updateInspectorControls() {
       const selected = selectedSlots.size === 1 ? Array.from(selectedSlots.values())[0] : null;
-      const canInspect = selected && !selected.isCanvas && !selected.isFigureGroup && !selected.isCharacterGroup && !selected.isFraction && selected.el;
+      const canInspect = selected && !selected.isCanvas && !selected.isFigureGroup && !selected.isTableGroup && !selected.isCharacterGroup && !selected.isFraction && selected.el;
       const value = canInspect ? readSlotPatchValue(selected.el) : null;
       setInspectorField("slotId", selected ? selected.slotId : "");
       setInspectorField("propX", value?.x ?? value?.cx ?? value?.x1 ?? "");
@@ -2169,7 +2377,7 @@
     async function commitInspectorFields() {
       if (selectedSlots.size !== 1) throw new Error("요소 하나를 선택하세요.");
       const item = Array.from(selectedSlots.values())[0];
-      if (!item || item.isCanvas || item.isFigureGroup || item.isCharacterGroup || item.isFraction || !item.el) {
+      if (!item || item.isCanvas || item.isFigureGroup || item.isTableGroup || item.isCharacterGroup || item.isFraction || !item.el) {
         throw new Error("선택한 요소를 속성 패널에서 수정할 수 없습니다.");
       }
       const current = readSlotPatchValue(item.el) || {};
@@ -2217,10 +2425,28 @@
       await commitPatches([{ target: item.slotId, op: "update", value: { text } }], `텍스트 수정 완료: ${item.slotId}`);
     }
 
+    async function alignSelectedTextInCell(align) {
+      if (selectedSlots.size !== 1) throw new Error("표 또는 텍스트 하나를 선택하세요.");
+      const item = Array.from(selectedSlots.values())[0];
+      const anchor = align === "center" ? "middle" : align === "right" ? "end" : "start";
+      let patches = [];
+      if (item.isTableGroup) {
+        const values = tableTextAlignmentValues(item, align);
+        patches = values.map((entry) => ({ target: entry.slotId, op: "update", value: entry.value }));
+      } else if (item.el && item.el.tagName.toLowerCase() === "text") {
+        const value = { ...(readSlotPatchValue(item.el) || {}), anchor };
+        applyPatchValueToElement(item.el, value);
+        patches = [{ target: item.slotId, op: "update", value }];
+      }
+      if (!patches.length) throw new Error("정렬할 텍스트를 찾지 못했습니다.");
+      updateSelectionHandles();
+      await commitPatches(patches, `텍스트 ${align} 정렬 완료`);
+    }
+
     function readSelectedStates() {
       const states = [];
       for (const item of selectedSlots.values()) {
-        if (item.isFigureGroup) {
+        if (item.isFigureGroup || item.isTableGroup) {
           for (const node of item.elements || []) {
             const slotId = slotIdFromElement(node);
             const value = readSlotPatchValue(node);
@@ -2245,6 +2471,11 @@
         if (value.x !== undefined) el.setAttribute("x", String(value.x));
         if (value.y !== undefined) el.setAttribute("y", String(value.y));
         if (value.font_size !== undefined) el.setAttribute("font-size", String(value.font_size));
+        if (value.max_width !== undefined) el.setAttribute("max_width", String(value.max_width));
+        if (value.anchor !== undefined) {
+          if (value.anchor) el.setAttribute("text-anchor", String(value.anchor));
+          else el.removeAttribute("text-anchor");
+        }
       } else if (tag === "rect" && value.x !== undefined && value.y !== undefined) {
         el.setAttribute("x", String(value.x));
         el.setAttribute("y", String(value.y));
@@ -2292,6 +2523,8 @@
         if (value.width !== undefined) out.width = snapValue(value.width);
         if (value.height !== undefined) out.height = snapValue(value.height);
         if (value.font_size !== undefined) out.font_size = snapValue(value.font_size);
+        if (value.max_width !== undefined) out.max_width = snapValue(value.max_width);
+        if (value.anchor !== undefined) out.anchor = value.anchor;
         return keepTransform(out);
       }
       if (value.text !== undefined) return keepTransform({ text: value.text });
@@ -2510,7 +2743,7 @@
       const svgClientRect = svg.getBoundingClientRect();
       const canvasScaleX = item.isCanvas && svgClientRect.width > 0 ? box.width / svgClientRect.width : 1;
       const canvasScaleY = item.isCanvas && svgClientRect.height > 0 ? box.height / svgClientRect.height : 1;
-      const startValue = item.isFigureGroup
+      const startValue = (item.isFigureGroup || item.isTableGroup)
         ? (item.elements || [])
             .map((el) => ({ el, slotId: slotIdFromElement(el), value: readSlotPatchValue(el) }))
             .filter((entry) => entry.slotId && entry.value)
@@ -2533,7 +2766,7 @@
         canvasScaleX,
         canvasScaleY,
         startBox: cloneBBox(box),
-        startValue: item.isFigureGroup
+        startValue: (item.isFigureGroup || item.isTableGroup)
           ? startValue.map((entry) => ({ ...entry, value: JSON.parse(JSON.stringify(entry.value)) }))
           : JSON.parse(JSON.stringify(startValue)),
         lastValue: null,
@@ -2571,7 +2804,7 @@
         }
       }
       if (resizeState.handle === "r" && !resizeState.item.isCanvas) {
-        const value = resizeState.item.isFigureGroup
+        const value = (resizeState.item.isFigureGroup || resizeState.item.isTableGroup)
           ? rotationValuesForGroup(resizeState.startValue, resizeState.startBox, resizeState.startGlobalPoint, rawPoint)
           : rotationValueFromPointer(resizeState.startValue, resizeState.startBox, resizeState.startGlobalPoint, rawPoint);
         if (Array.isArray(value)) {
@@ -2591,10 +2824,19 @@
       const dy = resizeState.item.isCanvas
         ? (ev.clientY - resizeState.startClientY) * resizeState.canvasScaleY
         : p.y - resizeState.startPoint.y;
+      if (resizeState.item.isTableGroup && String(resizeState.handle || "").startsWith("table-")) {
+        const value = tableDividerValuesFromDrag(resizeState, dx, dy);
+        if (!value) return;
+        resizeState.lastValue = value;
+        resizeState.moved = true;
+        updateSelectionHandles();
+        setStatus(`표 ${resizeState.handle.includes("table-v:") ? "열" : "행"} 조절 중: ${resizeState.item.slotId}${snapEnabled ? " (snap 5px)" : ""}`, true);
+        return;
+      }
       const nextBox = resizeState.item.isCanvas
         ? adjustedCanvasBox(resizeState.startBox, resizeState.handle, dx, dy)
         : adjustedBBox(resizeState.startBox, resizeState.handle, dx, dy);
-      const value = resizeState.item.isFigureGroup
+      const value = (resizeState.item.isFigureGroup || resizeState.item.isTableGroup)
         ? resizeFigureGroup(resizeState, nextBox)
         : resizeState.item.isCanvas
           ? resizePatchForCanvas(resizeState.svg, resizeState.handle, resizeState.startValue, resizeState.startBox, nextBox)
@@ -2634,7 +2876,7 @@
         updateSelectionHandles();
         return;
       }
-      if (local.item.isFigureGroup) {
+      if (local.item.isFigureGroup || local.item.isTableGroup) {
         const before = [];
         const after = [];
         const patches = [];
@@ -2711,7 +2953,7 @@
         const keepGroupSelection = !appendSelection && selectedSlots.has(selectionKey);
         if (!keepGroupSelection) setSelectedElement(el, slotId, appendSelection);
         const selected = selectedSlots.get(selectionKey);
-        if (selected && !selected.isFigureGroup) selected.slotIds = resolvedSlotIds;
+        if (selected && !selected.isFigureGroup && !selected.isTableGroup) selected.slotIds = resolvedSlotIds;
         const start = getSvgPoint(svg, ev.clientX, ev.clientY);
         const beforeMap = new Map();
         for (const item of selectedSlots.values()) {
@@ -2719,7 +2961,7 @@
             beforeMap.set(item.slotId, { move_dx: 0, move_dy: 0 });
           } else if (item.isCharacterGroup) {
             beforeMap.set(item.slotId, { move_dx: 0, move_dy: 0 });
-          } else if (item.isFigureGroup) {
+          } else if (item.isFigureGroup || item.isTableGroup) {
             for (const node of item.elements || []) {
               const sid = slotIdFromElement(node);
               const value = readSlotPatchValue(node);
@@ -2782,6 +3024,12 @@
           proxy.classList.add("text-hit-proxy");
           proxy.addEventListener("pointerdown", (ev) => {
             if (beginSlotPointerDown(el, ev)) ev.stopPropagation();
+          });
+          proxy.addEventListener("dblclick", (ev) => {
+            if (!matchesPickMode(el)) return;
+            const resolvedSlotIds = toDslSlotIds(el.getAttribute("id"));
+            if (resolvedSlotIds.length !== 1) return;
+            beginInlineTextEdit(el, resolvedSlotIds[0], ev);
           });
           svg.appendChild(proxy);
         }
@@ -2860,7 +3108,7 @@
           for (const item of selectedSlots.values()) {
             if (item.isFraction) {
               for (const node of item.elements || []) lastValue = applyElementDelta(node, pdx, pdy, false);
-          } else if (item.isFigureGroup) {
+          } else if (item.isFigureGroup || item.isTableGroup) {
               for (const node of item.elements || []) lastValue = applyElementDelta(node, pdx, pdy, false);
             } else {
               lastValue = applyElementDelta(item.el, pdx, pdy, false);
@@ -2939,6 +3187,17 @@
             after.push({ slotId: item.slotId, value: snappedMove });
             continue;
           }
+          if (item.isTableGroup) {
+            for (const node of item.elements || []) {
+              const slotId = slotIdFromElement(node);
+              const value = snapPatchValue(readSlotPatchValue(node));
+              if (!slotId || !value) continue;
+              applyPatchValueToElement(node, value);
+              patches.push({ target: slotId, op: "update", value });
+              after.push({ slotId, value: JSON.parse(JSON.stringify(value)) });
+            }
+            continue;
+          }
           const value = snapPatchValue(readSlotPatchValue(item.el));
           if (!value) continue;
           applyPatchValueToElement(item.el, value);
@@ -2971,11 +3230,11 @@
       const items = [];
       for (const item of selectedSlots.values()) {
         if (item.isCanvas) continue;
-        const value = (item.isFraction || item.isFigureGroup) ? { move_dx: 0, move_dy: 0 } : readSlotPatchValue(item.el);
+        const value = (item.isFraction || item.isFigureGroup || item.isTableGroup) ? { move_dx: 0, move_dy: 0 } : readSlotPatchValue(item.el);
         if (!value) continue;
         let bbox = null;
         try {
-          if (item.isFraction || item.isFigureGroup) {
+          if (item.isFraction || item.isFigureGroup || item.isTableGroup) {
             bbox = itemBBox(item);
           } else {
             bbox = item.el.getBBox();
@@ -2991,6 +3250,7 @@
           bbox,
           isFraction: !!item.isFraction,
           isFigureGroup: !!item.isFigureGroup,
+          isTableGroup: !!item.isTableGroup,
           elements: item.elements || [item.el],
         });
       }
@@ -3068,7 +3328,7 @@
             for (const node of item.elements) applyElementDelta(node, fixDx, fixDy, false);
           }
           patches.push({ target: item.slotId, op: "update", value: snappedMove });
-        } else if (item.isFigureGroup) {
+        } else if (item.isFigureGroup || item.isTableGroup) {
           for (const node of item.elements) applyElementDelta(node, dx, dy, true);
           for (const node of item.elements) {
             const slotId = slotIdFromElement(node);
@@ -3332,6 +3592,18 @@
       try { await updateSelectedText(); }
       catch (e) { setStatus(String(e), false); }
     });
+    document.getElementById("textAlignLeftBtn").onclick = async () => {
+      try { await alignSelectedTextInCell("left"); }
+      catch (e) { setStatus(String(e), false); }
+    };
+    document.getElementById("textAlignCenterBtn").onclick = async () => {
+      try { await alignSelectedTextInCell("center"); }
+      catch (e) { setStatus(String(e), false); }
+    };
+    document.getElementById("textAlignRightBtn").onclick = async () => {
+      try { await alignSelectedTextInCell("right"); }
+      catch (e) { setStatus(String(e), false); }
+    };
     for (const tab of document.querySelectorAll(".ppt-tab")) {
       tab.addEventListener("click", () => {
         const target = tab.dataset.tab;
