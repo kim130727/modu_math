@@ -1,0 +1,394 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008954",
+  "title": "학생들이 여행 가고 싶은 나라",
+  "canvas": {
+    "width": 940.0,
+    "height": 406.0,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.title_box",
+        "slot.table.outer",
+        "slot.table.v1",
+        "slot.table.v2",
+        "slot.table.v3",
+        "slot.table.v4",
+        "slot.table.v5",
+        "slot.table.h1",
+        "slot.q_no",
+        "slot.q1",
+        "slot.q2",
+        "slot.title_text",
+        "slot.table.r1c1",
+        "slot.table.r1c2",
+        "slot.table.r1c3",
+        "slot.table.r1c4",
+        "slot.table.r1c5",
+        "slot.table.r1c6",
+        "slot.table.r2c1",
+        "slot.table.r2c2",
+        "slot.table.r2c3",
+        "slot.table.r2c4",
+        "slot.table.r2c5",
+        "slot.table.r2c6",
+        "slot.choice"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q_no",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "□ 24.",
+        "style_role": "question",
+        "x": 10.0,
+        "y": 26.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "영지네 반 학생들이 여행 가고 싶은 나라를 조사하여 표로 나타냈습니다.",
+        "style_role": "question",
+        "x": 63.0,
+        "y": 28.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "가장 많은 학생들이 가고 싶어 하는 나라를 선택하세요.",
+        "style_role": "question",
+        "x": 63.0,
+        "y": 68.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.title_box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 301.0,
+        "y": 86.0,
+        "width": 420.0,
+        "height": 44.0,
+        "stroke": "#cfdcbe",
+        "stroke_width": 1.0,
+        "fill": "#e7f1d6"
+      }
+    },
+    {
+      "id": "slot.title_text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "학생들이 여행 가고 싶은 나라",
+        "style_role": "title",
+        "x": 352.0,
+        "y": 115.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.outer",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 144.0,
+        "y": 137.0,
+        "width": 686.0,
+        "height": 87.0,
+        "stroke": "#92c35d",
+        "stroke_width": 1.0,
+        "fill": "#eaf4da"
+      }
+    },
+    {
+      "id": "slot.table.v1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 302.0,
+        "y": 137.0,
+        "width": 0.0,
+        "height": 87.0,
+        "stroke": "#92c35d",
+        "stroke_width": 1.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.table.v2",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 408.0,
+        "y": 137.0,
+        "width": 0.0,
+        "height": 87.0,
+        "stroke": "#92c35d",
+        "stroke_width": 1.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.table.v3",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 514.0,
+        "y": 137.0,
+        "width": 0.0,
+        "height": 87.0,
+        "stroke": "#92c35d",
+        "stroke_width": 1.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.table.v4",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 620.0,
+        "y": 137.0,
+        "width": 0.0,
+        "height": 87.0,
+        "stroke": "#92c35d",
+        "stroke_width": 1.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.table.v5",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 726.0,
+        "y": 137.0,
+        "width": 0.0,
+        "height": 87.0,
+        "stroke": "#92c35d",
+        "stroke_width": 1.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.table.h1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 144.0,
+        "y": 182.0,
+        "width": 686.0,
+        "height": 0.0,
+        "stroke": "#92c35d",
+        "stroke_width": 1.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.table.r1c1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "나라",
+        "style_role": "body",
+        "x": 180.0,
+        "y": 168.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.r1c2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "미국",
+        "style_role": "body",
+        "x": 333.0,
+        "y": 168.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.r1c3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "중국",
+        "style_role": "body",
+        "x": 439.0,
+        "y": 168.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.r1c4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "일본",
+        "style_role": "body",
+        "x": 545.0,
+        "y": 168.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.r1c5",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "호주",
+        "style_role": "body",
+        "x": 652.0,
+        "y": 168.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.r1c6",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "합계",
+        "style_role": "body",
+        "x": 758.0,
+        "y": 168.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.r2c1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "학생 수(명)",
+        "style_role": "body",
+        "x": 165.0,
+        "y": 210.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.r2c2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "12",
+        "style_role": "body",
+        "x": 334.0,
+        "y": 210.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.r2c3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "6",
+        "style_role": "body",
+        "x": 444.0,
+        "y": 210.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.r2c4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "7",
+        "style_role": "body",
+        "x": 550.0,
+        "y": 210.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.r2c5",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "10",
+        "style_role": "body",
+        "x": 649.0,
+        "y": 210.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.r2c6",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "35",
+        "style_role": "body",
+        "x": 755.0,
+        "y": 210.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "( 미국, 중국, 일본, 호주 )",
+        "style_role": "body",
+        "x": 594.0,
+        "y": 259.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.title_box",
+    "slot.table.outer",
+    "slot.table.v1",
+    "slot.table.v2",
+    "slot.table.v3",
+    "slot.table.v4",
+    "slot.table.v5",
+    "slot.table.h1",
+    "slot.q_no",
+    "slot.q1",
+    "slot.q2",
+    "slot.title_text",
+    "slot.table.r1c1",
+    "slot.table.r1c2",
+    "slot.table.r1c3",
+    "slot.table.r1c4",
+    "slot.table.r1c5",
+    "slot.table.r1c6",
+    "slot.table.r2c1",
+    "slot.table.r2c2",
+    "slot.table.r2c3",
+    "slot.table.r2c4",
+    "slot.table.r2c5",
+    "slot.table.r2c6",
+    "slot.choice"
+  ]
+}

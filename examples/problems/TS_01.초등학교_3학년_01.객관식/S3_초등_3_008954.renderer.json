@@ -1,0 +1,436 @@
+{
+  "problem_id": "S3_초등_3_008954",
+  "view_box": {
+    "width": 940.0,
+    "height": 406.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.title_box.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 301.0,
+        "y": 86.0,
+        "width": 420.0,
+        "height": 44.0,
+        "fill": "#e7f1d6",
+        "stroke": "#cfdcbe",
+        "stroke-width": 1.0
+      },
+      "source_ref": "slot.title_box",
+      "refs": {
+        "layout_slot_id": "slot.title_box"
+      }
+    },
+    {
+      "id": "slot.table.outer.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 144.0,
+        "y": 137.0,
+        "width": 686.0,
+        "height": 87.0,
+        "fill": "#eaf4da",
+        "stroke": "#92c35d",
+        "stroke-width": 1.0
+      },
+      "source_ref": "slot.table.outer",
+      "refs": {
+        "layout_slot_id": "slot.table.outer"
+      }
+    },
+    {
+      "id": "slot.table.v1.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 302.0,
+        "y": 137.0,
+        "width": 0.0,
+        "height": 87.0,
+        "fill": "none",
+        "stroke": "#92c35d",
+        "stroke-width": 1.0
+      },
+      "source_ref": "slot.table.v1",
+      "refs": {
+        "layout_slot_id": "slot.table.v1"
+      }
+    },
+    {
+      "id": "slot.table.v2.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 408.0,
+        "y": 137.0,
+        "width": 0.0,
+        "height": 87.0,
+        "fill": "none",
+        "stroke": "#92c35d",
+        "stroke-width": 1.0
+      },
+      "source_ref": "slot.table.v2",
+      "refs": {
+        "layout_slot_id": "slot.table.v2"
+      }
+    },
+    {
+      "id": "slot.table.v3.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 514.0,
+        "y": 137.0,
+        "width": 0.0,
+        "height": 87.0,
+        "fill": "none",
+        "stroke": "#92c35d",
+        "stroke-width": 1.0
+      },
+      "source_ref": "slot.table.v3",
+      "refs": {
+        "layout_slot_id": "slot.table.v3"
+      }
+    },
+    {
+      "id": "slot.table.v4.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 620.0,
+        "y": 137.0,
+        "width": 0.0,
+        "height": 87.0,
+        "fill": "none",
+        "stroke": "#92c35d",
+        "stroke-width": 1.0
+      },
+      "source_ref": "slot.table.v4",
+      "refs": {
+        "layout_slot_id": "slot.table.v4"
+      }
+    },
+    {
+      "id": "slot.table.v5.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 726.0,
+        "y": 137.0,
+        "width": 0.0,
+        "height": 87.0,
+        "fill": "none",
+        "stroke": "#92c35d",
+        "stroke-width": 1.0
+      },
+      "source_ref": "slot.table.v5",
+      "refs": {
+        "layout_slot_id": "slot.table.v5"
+      }
+    },
+    {
+      "id": "slot.table.h1.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 144.0,
+        "y": 182.0,
+        "width": 686.0,
+        "height": 0.0,
+        "fill": "none",
+        "stroke": "#92c35d",
+        "stroke-width": 1.0
+      },
+      "source_ref": "slot.table.h1",
+      "refs": {
+        "layout_slot_id": "slot.table.h1"
+      }
+    },
+    {
+      "id": "slot.q_no.text",
+      "type": "text",
+      "attributes": {
+        "x": 10.0,
+        "y": 26.0,
+        "max_width": 812.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q_no",
+      "refs": {
+        "layout_slot_id": "slot.q_no"
+      },
+      "text": "□ 24."
+    },
+    {
+      "id": "slot.q1.text",
+      "type": "text",
+      "attributes": {
+        "x": 63.0,
+        "y": 28.0,
+        "max_width": 812.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q1",
+      "refs": {
+        "layout_slot_id": "slot.q1"
+      },
+      "text": "영지네 반 학생들이 여행 가고 싶은 나라를 조사하여 표로 나타냈습니다."
+    },
+    {
+      "id": "slot.q2.text",
+      "type": "text",
+      "attributes": {
+        "x": 63.0,
+        "y": 68.0,
+        "max_width": 812.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q2",
+      "refs": {
+        "layout_slot_id": "slot.q2"
+      },
+      "text": "가장 많은 학생들이 가고 싶어 하는 나라를 선택하세요."
+    },
+    {
+      "id": "slot.title_text.text",
+      "type": "text",
+      "attributes": {
+        "x": 352.0,
+        "y": 115.0,
+        "max_width": 812.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.title_text",
+      "refs": {
+        "layout_slot_id": "slot.title_text"
+      },
+      "text": "학생들이 여행 가고 싶은 나라"
+    },
+    {
+      "id": "slot.table.r1c1.text",
+      "type": "text",
+      "attributes": {
+        "x": 180.0,
+        "y": 168.0,
+        "max_width": 812.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.r1c1",
+      "refs": {
+        "layout_slot_id": "slot.table.r1c1"
+      },
+      "text": "나라"
+    },
+    {
+      "id": "slot.table.r1c2.text",
+      "type": "text",
+      "attributes": {
+        "x": 333.0,
+        "y": 168.0,
+        "max_width": 812.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.r1c2",
+      "refs": {
+        "layout_slot_id": "slot.table.r1c2"
+      },
+      "text": "미국"
+    },
+    {
+      "id": "slot.table.r1c3.text",
+      "type": "text",
+      "attributes": {
+        "x": 439.0,
+        "y": 168.0,
+        "max_width": 812.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.r1c3",
+      "refs": {
+        "layout_slot_id": "slot.table.r1c3"
+      },
+      "text": "중국"
+    },
+    {
+      "id": "slot.table.r1c4.text",
+      "type": "text",
+      "attributes": {
+        "x": 545.0,
+        "y": 168.0,
+        "max_width": 812.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.r1c4",
+      "refs": {
+        "layout_slot_id": "slot.table.r1c4"
+      },
+      "text": "일본"
+    },
+    {
+      "id": "slot.table.r1c5.text",
+      "type": "text",
+      "attributes": {
+        "x": 652.0,
+        "y": 168.0,
+        "max_width": 812.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.r1c5",
+      "refs": {
+        "layout_slot_id": "slot.table.r1c5"
+      },
+      "text": "호주"
+    },
+    {
+      "id": "slot.table.r1c6.text",
+      "type": "text",
+      "attributes": {
+        "x": 758.0,
+        "y": 168.0,
+        "max_width": 812.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.r1c6",
+      "refs": {
+        "layout_slot_id": "slot.table.r1c6"
+      },
+      "text": "합계"
+    },
+    {
+      "id": "slot.table.r2c1.text",
+      "type": "text",
+      "attributes": {
+        "x": 165.0,
+        "y": 210.0,
+        "max_width": 812.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.r2c1",
+      "refs": {
+        "layout_slot_id": "slot.table.r2c1"
+      },
+      "text": "학생 수(명)"
+    },
+    {
+      "id": "slot.table.r2c2.text",
+      "type": "text",
+      "attributes": {
+        "x": 334.0,
+        "y": 210.0,
+        "max_width": 812.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.r2c2",
+      "refs": {
+        "layout_slot_id": "slot.table.r2c2"
+      },
+      "text": "12"
+    },
+    {
+      "id": "slot.table.r2c3.text",
+      "type": "text",
+      "attributes": {
+        "x": 444.0,
+        "y": 210.0,
+        "max_width": 812.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.r2c3",
+      "refs": {
+        "layout_slot_id": "slot.table.r2c3"
+      },
+      "text": "6"
+    },
+    {
+      "id": "slot.table.r2c4.text",
+      "type": "text",
+      "attributes": {
+        "x": 550.0,
+        "y": 210.0,
+        "max_width": 812.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.r2c4",
+      "refs": {
+        "layout_slot_id": "slot.table.r2c4"
+      },
+      "text": "7"
+    },
+    {
+      "id": "slot.table.r2c5.text",
+      "type": "text",
+      "attributes": {
+        "x": 649.0,
+        "y": 210.0,
+        "max_width": 812.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.r2c5",
+      "refs": {
+        "layout_slot_id": "slot.table.r2c5"
+      },
+      "text": "10"
+    },
+    {
+      "id": "slot.table.r2c6.text",
+      "type": "text",
+      "attributes": {
+        "x": 755.0,
+        "y": 210.0,
+        "max_width": 812.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.r2c6",
+      "refs": {
+        "layout_slot_id": "slot.table.r2c6"
+      },
+      "text": "35"
+    },
+    {
+      "id": "slot.choice.text",
+      "type": "text",
+      "attributes": {
+        "x": 594.0,
+        "y": 259.0,
+        "max_width": 812.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice",
+      "refs": {
+        "layout_slot_id": "slot.choice"
+      },
+      "text": "( 미국, 중국, 일본, 호주 )"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

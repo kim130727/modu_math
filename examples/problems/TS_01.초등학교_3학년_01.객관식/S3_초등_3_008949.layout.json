@@ -1,0 +1,370 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008949",
+  "title": "자료와 표",
+  "canvas": {
+    "width": 925,
+    "height": 810,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.title1",
+        "slot.grid1.1",
+        "slot.grid1.2",
+        "slot.grid1.3",
+        "slot.grid1.4",
+        "slot.grid1.5",
+        "slot.grid1.6",
+        "slot.grid1.7",
+        "slot.grid1.8",
+        "slot.title2",
+        "slot.table2",
+        "slot.q1",
+        "slot.grid1.9",
+        "slot.grid1.10",
+        "slot.grid1.11",
+        "slot.grid1.12",
+        "slot.legend1",
+        "slot.legend2",
+        "slot.legend3",
+        "slot.legend4",
+        "slot.note1",
+        "slot.title1.text",
+        "slot.title2.text",
+        "slot.table2.head",
+        "slot.table2.row"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "19. 서진이네 반 학생들이 좋아하는 운동을 조사하였습니다. 운동별 좋아하는 학생 수를 알아보려고 할 때 자료와 표 중에서 어느 것이 더 편리할까요?",
+        "style_role": "question",
+        "x": 8.0,
+        "y": 34.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.title1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 272.0,
+        "y": 113.0,
+        "width": 357.0,
+        "height": 53.0
+      }
+    },
+    {
+      "id": "slot.title1.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "학생들이 좋아하는 운동",
+        "style_role": "caption",
+        "x": 320.0,
+        "y": 145.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.grid1.1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 315.0,
+        "y": 166.0,
+        "width": 274.0,
+        "height": 77.0
+      }
+    },
+    {
+      "id": "slot.grid1.2",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 315.0,
+        "y": 243.0,
+        "width": 274.0,
+        "height": 77.0
+      }
+    },
+    {
+      "id": "slot.grid1.3",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 315.0,
+        "y": 320.0,
+        "width": 274.0,
+        "height": 77.0
+      }
+    },
+    {
+      "id": "slot.grid1.4",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 315.0,
+        "y": 397.0,
+        "width": 274.0,
+        "height": 77.0
+      }
+    },
+    {
+      "id": "slot.grid1.5",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 315.0,
+        "y": 166.0,
+        "width": 69.0,
+        "height": 308.0
+      }
+    },
+    {
+      "id": "slot.grid1.6",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 384.0,
+        "y": 166.0,
+        "width": 69.0,
+        "height": 308.0
+      }
+    },
+    {
+      "id": "slot.grid1.7",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 453.0,
+        "y": 166.0,
+        "width": 69.0,
+        "height": 308.0
+      }
+    },
+    {
+      "id": "slot.grid1.8",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 522.0,
+        "y": 166.0,
+        "width": 67.0,
+        "height": 308.0
+      }
+    },
+    {
+      "id": "slot.grid1.9",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "\n    \n    서진\n    희재\n    서연\n    인철\n    성민\n    은수\n    주영\n    정훈\n    재영\n    수호\n    희재\n    해주\n    영은\n    승우\n    윤아\n    준서\n  ",
+        "style_role": "body",
+        "x": 180.0,
+        "y": 135.0,
+        "font_size": 30,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.grid1.10",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "\n    \n    ⚽\n    ⚾\n    ⚾\n    🏀\n    🏐\n    🏐\n    ⚾\n    ⚽\n    ⚽\n    🏐\n    ⚾\n    🏐\n    ⚽\n    ⚾\n    ⚽\n    ⚾\n  ",
+        "style_role": "body",
+        "x": 530.0,
+        "y": 190.0,
+        "font_size": 30,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.grid1.11",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "축구\n야구\n농구\n배구",
+        "style_role": "caption",
+        "x": 286.0,
+        "y": 525.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.grid1.12",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "TODO: 아이콘/배치 세부는 이미지 기준으로 추가 확인 필요",
+        "style_role": "note",
+        "x": 60.0,
+        "y": 540.0,
+        "font_size": 28,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.legend1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "축구",
+        "style_role": "caption",
+        "x": 332.0,
+        "y": 522.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.legend2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "야구",
+        "style_role": "caption",
+        "x": 400.0,
+        "y": 522.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.legend3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "농구",
+        "style_role": "caption",
+        "x": 476.0,
+        "y": 522.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.legend4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "배구",
+        "style_role": "caption",
+        "x": 557.0,
+        "y": 522.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.title2",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 277.0,
+        "y": 543.0,
+        "width": 360.0,
+        "height": 53.0
+      }
+    },
+    {
+      "id": "slot.title2.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "좋아하는 운동별 학생 수",
+        "style_role": "caption",
+        "x": 331.0,
+        "y": 575.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table2",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 155.0,
+        "y": 597.0,
+        "width": 648.0,
+        "height": 88.0
+      }
+    },
+    {
+      "id": "slot.table2.head",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "운동    축구    야구    농구    배구    합계",
+        "style_role": "body",
+        "x": 192.0,
+        "y": 625.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table2.row",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "학생 수(명)    5    6    1    4    16",
+        "style_role": "body",
+        "x": 164.0,
+        "y": 670.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.note1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "( 자료 , 표 )",
+        "style_role": "note",
+        "x": 776.0,
+        "y": 724.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.title1",
+    "slot.grid1.1",
+    "slot.grid1.2",
+    "slot.grid1.3",
+    "slot.grid1.4",
+    "slot.grid1.5",
+    "slot.grid1.6",
+    "slot.grid1.7",
+    "slot.grid1.8",
+    "slot.title2",
+    "slot.table2",
+    "slot.q1",
+    "slot.grid1.9",
+    "slot.grid1.10",
+    "slot.grid1.11",
+    "slot.grid1.12",
+    "slot.legend1",
+    "slot.legend2",
+    "slot.legend3",
+    "slot.legend4",
+    "slot.note1",
+    "slot.title1.text",
+    "slot.title2.text",
+    "slot.table2.head",
+    "slot.table2.row"
+  ]
+}
