@@ -1,0 +1,133 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008634",
+  "title": "나머지가 다른 하나를 찾아 기호를 선택해 보세요.",
+  "canvas": {
+    "width": 800,
+    "height": 400,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.box",
+        "slot.q.text",
+        "slot.opt.1",
+        "slot.opt.2",
+        "slot.opt.3",
+        "slot.opt.4",
+        "slot.list"
+      ]
+    },
+    {
+      "id": "region.answer_explanation",
+      "role": "explanation",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "나머지가 다른 하나를 찾아 기호를 선택해 보세요.",
+        "style_role": "question",
+        "x": 70.0,
+        "y": 50.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 130.0,
+        "y": 95.0,
+        "width": 430.0,
+        "height": 105.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.opt.1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "① 29 ÷ 7",
+        "style_role": "body",
+        "x": 175.0,
+        "y": 140.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.opt.2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "② 31 ÷ 6",
+        "style_role": "body",
+        "x": 385.0,
+        "y": 140.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.opt.3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "③ 74 ÷ 8",
+        "style_role": "body",
+        "x": 175.0,
+        "y": 175.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.opt.4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "④ 64 ÷ 9",
+        "style_role": "body",
+        "x": 385.0,
+        "y": 175.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.list",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "( ① , ② , ③ , ④ )",
+        "style_role": "body",
+        "x": 245.0,
+        "y": 260.0,
+        "font_size": 30
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.box",
+    "slot.q.text",
+    "slot.opt.1",
+    "slot.opt.2",
+    "slot.opt.3",
+    "slot.opt.4",
+    "slot.list",
+    "region.answer_explanation"
+  ]
+}

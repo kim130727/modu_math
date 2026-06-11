@@ -15,6 +15,13 @@ from .characters import (
 )
 from .exporter import export_layout_to_dsl_source, problem_template_from_layout
 from .fraction import fraction_slots
+from .paper_folding import (
+    circle_fold_sequence_slots,
+    circle_paper_slot,
+    folded_circle_sector_slots,
+    folded_half_circle_slots,
+    opened_circle_with_fold_slots,
+)
 from .table import table_slots
 from .models import (
     Arrow,
@@ -77,6 +84,11 @@ __all__ = [
     "problem_template_from_layout",
     "export_problem_template",
     "fraction_slots",
+    "circle_fold_sequence_slots",
+    "circle_paper_slot",
+    "folded_circle_sector_slots",
+    "folded_half_circle_slots",
+    "opened_circle_with_fold_slots",
     "table_slots",
     "person_slots",
     "speaker_group_slot_ids",

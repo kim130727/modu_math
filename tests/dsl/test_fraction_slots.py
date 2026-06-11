@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from modu_math.dsl import Canvas, ProblemTemplate, Region, compile_problem_template_to_layout, fraction_slots
+from modu_math.dsl import Canvas, ProblemTemplate, Region, circle_fold_sequence_slots, compile_problem_template_to_layout, fraction_slots
 
 
 def test_fraction_slots_compiles_to_layout_slots() -> None:
@@ -42,3 +42,30 @@ def test_fraction_slots_compiles_to_layout_slots() -> None:
     assert bar_geom["y1"] == 540.0
     assert bar_geom["x2"] == 68.0
     assert bar_geom["y2"] == 540.0
+
+
+def test_circle_fold_sequence_slots_compiles_to_layout_slots() -> None:
+    problem = ProblemTemplate(
+        id="p_circle_fold_sequence_001",
+        title="circle fold sequence",
+        canvas=Canvas(width=640, height=360),
+        regions=(Region(id="region.diagram", role="diagram", flow="absolute", slot_ids=("slot.fold.stage1.paper", "slot.fold.stage5.center")),),
+        slots=(
+            *circle_fold_sequence_slots(
+                "slot.fold",
+                x=60.0,
+                y=180.0,
+                r=42.0,
+                gap=110.0,
+                stages=("circle", "half", "opened_horizontal", "folded_diagonal", "opened_cross"),
+            ),
+        ),
+    )
+
+    layout = compile_problem_template_to_layout(problem)
+    slots = {slot["id"]: slot for slot in layout["slots"]}
+
+    assert slots["slot.fold.stage1.paper"]["kind"] == "circle"
+    assert slots["slot.fold.stage3.fold_line"]["kind"] == "line"
+    assert slots["slot.fold.stage5.center"]["kind"] == "circle"
+    assert "slot.fold.arrow1.body" in slots

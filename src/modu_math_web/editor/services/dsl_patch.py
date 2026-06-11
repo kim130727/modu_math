@@ -29,6 +29,7 @@ PERSON_SLOT_PARTS = {"body", "head", "eye1", "eye2", "mouth"}
 CHARACTER_MOVE_FIELDS = {"move_dx", "move_dy"}
 FIGURE_MOVE_FIELDS = {"move_dx", "move_dy"}
 BASE_TEN_HELPERS = {"_base_ten_model", "_partition_box"}
+PAPER_FOLD_SEQUENCE_HELPERS = {"circle_fold_sequence_slots"}
 CANVAS_TARGETS = {"__canvas__", "canvas"}
 CANVAS_FIELDS = {"width", "height"}
 
@@ -500,6 +501,38 @@ class FigureGroupMoveUpdater(cst.CSTTransformer):
         return updated_node
 
 
+class PaperFoldSequenceMoveUpdater(cst.CSTTransformer):
+    def __init__(self, target: str, fields: dict[str, Any]):
+        self.target = target
+        self.fields = fields
+        self.updated = False
+
+    def leave_Call(self, original_node: cst.Call, updated_node: cst.Call) -> cst.BaseExpression:
+        call_name = _call_name(original_node)
+        if call_name not in PAPER_FOLD_SEQUENCE_HELPERS:
+            return updated_node
+
+        prefix = _first_string_arg(original_node, "prefix")
+        if prefix != self.target:
+            return updated_node
+
+        invalid = sorted(set(self.fields) - FIGURE_MOVE_FIELDS)
+        if invalid:
+            raise DslPatchError(f"unsupported field(s) for paper fold group: {', '.join(invalid)}")
+
+        dx = float(self.fields.get("move_dx", 0.0))
+        dy = float(self.fields.get("move_dy", 0.0))
+        args = list(updated_node.args)
+        changed = False
+        changed = _shift_or_append_numeric_arg(args, "x", dx) or changed
+        changed = _shift_or_append_numeric_arg(args, "y", dy) or changed
+
+        if changed:
+            self.updated = True
+            return updated_node.with_changes(args=tuple(args))
+        return updated_node
+
+
 def _string_literal_value(expr: cst.BaseExpression) -> str | None:
     if not isinstance(expr, cst.SimpleString):
         return None
@@ -757,6 +790,12 @@ def apply_layout_patches(problem_id: str, patches: list[dict[str, Any]]) -> tupl
             if updater.updated:
                 applied.append(AppliedPatch(target=target, op=op, fields=list(value.keys())))
                 continue
+
+        paper_fold_updater = PaperFoldSequenceMoveUpdater(target=target, fields=value)
+        transformed = transformed.visit(paper_fold_updater)
+        if paper_fold_updater.updated:
+            applied.append(AppliedPatch(target=target, op=op, fields=list(value.keys())))
+            continue
 
         target = _resolve_target_slot_id(transformed, target)
 

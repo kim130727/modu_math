@@ -1,10 +1,10 @@
 {
   "schema": "modu.layout.v1",
   "problem_id": "S3_초등_3_008646",
-  "title": "원을 두 번 접어 원의 성질 알아보기",
+  "title": "원을 접어 원의 성질 알아보기",
   "canvas": {
-    "width": 944.0,
-    "height": 654.0,
+    "width": 944,
+    "height": 654,
     "coordinate_mode": "logical",
     "background": "#FFFFFF"
   },
@@ -14,12 +14,36 @@
       "role": "stem",
       "flow": "absolute",
       "slot_ids": [
+        "slot.speech.bubble",
+        "slot.speech.tail",
+        "slot.person.left.body",
+        "slot.person.left.ear.left",
+        "slot.person.left.ear.right",
+        "slot.person.left.head",
+        "slot.person.left.hair.cap",
+        "slot.person.left.eye.left",
+        "slot.person.left.eye.right",
+        "slot.person.left.smile",
+        "slot.fold.arrow1.head",
+        "slot.fold.stage2.edge",
+        "slot.fold.arrow2.head",
+        "slot.fold.arrow3.head",
+        "slot.fold.stage4.edge",
+        "slot.fold.stage4.guide",
+        "slot.fold.arrow4.head",
+        "slot.note.equal.arrow",
+        "slot.note.center.arrow",
+        "slot.fold.arrow1.body",
+        "slot.fold.arrow2.body",
+        "slot.fold.arrow3.body",
+        "slot.fold.stage4.crease",
+        "slot.fold.arrow4.body",
         "slot.qnum",
         "slot.stem",
-        "slot.bubble",
-        "slot.bubble.text1",
-        "slot.bubble.text2",
-        "slot.bubble.text3"
+        "slot.speech.text",
+        "slot.checkbox",
+        "slot.correct",
+        "slot.explain"
       ]
     },
     {
@@ -27,23 +51,17 @@
       "role": "diagram",
       "flow": "absolute",
       "slot_ids": [
-        "slot.circle1",
-        "slot.fold1",
-        "slot.circle2",
-        "slot.fold2",
-        "slot.circle3",
-        "slot.fold3",
-        "slot.circle4",
-        "slot.pinkdot",
-        "slot.arrow1",
-        "slot.arrow2",
-        "slot.arrow3",
-        "slot.arrow4",
-        "slot.arrow5",
-        "slot.arrow6",
-        "slot.arrow7",
-        "slot.green1",
-        "slot.green2"
+        "slot.fold.stage1.paper",
+        "slot.fold.stage2.paper",
+        "slot.fold.stage3.paper",
+        "slot.fold.stage4.paper",
+        "slot.fold.stage5.paper",
+        "slot.fold.stage5.center",
+        "slot.fold.stage3.fold_line",
+        "slot.fold.stage5.fold_line",
+        "slot.fold.stage5.fold_line2",
+        "slot.note.equal",
+        "slot.note.center"
       ]
     },
     {
@@ -51,11 +69,24 @@
       "role": "answer",
       "flow": "absolute",
       "slot_ids": [
-        "slot.pinkbox"
+        "slot.answer.box",
+        "slot.answer.text"
       ]
     }
   ],
   "slots": [
+    {
+      "id": "slot.checkbox",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "□",
+        "style_role": "question",
+        "x": 12.0,
+        "y": 30.0,
+        "font_size": 18
+      }
+    },
     {
       "id": "slot.qnum",
       "kind": "text",
@@ -63,9 +94,9 @@
       "content": {
         "text": "18.",
         "style_role": "question",
-        "x": 14.0,
-        "y": 28.0,
-        "font_size": 28
+        "x": 35.0,
+        "y": 31.0,
+        "font_size": 22
       }
     },
     {
@@ -73,264 +104,593 @@
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "원 모양의 종이를 접어 위의 성질을 알아보고 알맞은 말을 선택하세요.",
+        "text": "원 모양의 종이를 접어 원의 성질을 알아보고 알맞은 말을 선택하세요.",
         "style_role": "question",
-        "x": 68.0,
-        "y": 28.0,
-        "font_size": 28
+        "x": 72.0,
+        "y": 31.0,
+        "font_size": 22
       }
     },
     {
-      "id": "slot.circle1",
+      "id": "slot.person.left.body",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            195.0,
+            223.0
+          ],
+          [
+            265.0,
+            223.0
+          ],
+          [
+            254.0,
+            170.0
+          ],
+          [
+            206.0,
+            170.0
+          ]
+        ],
+        "stroke": "none",
+        "fill": "#58C7BC"
+      }
+    },
+    {
+      "id": "slot.person.left.ear.left",
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 88.0,
-        "cy": 304.0,
-        "r": 58.0,
-        "fill": "#DFF2F0"
+        "cx": 199.0,
+        "cy": 131.0,
+        "r": 9.0,
+        "stroke": "none",
+        "fill": "#ffd8b3"
       }
     },
     {
-      "id": "slot.arrow1",
-      "kind": "line",
+      "id": "slot.person.left.ear.right",
+      "kind": "circle",
       "prompt": "",
       "content": {
-        "x1": 180.0,
-        "y1": 304.0,
-        "x2": 214.0,
-        "y2": 304.0,
-        "stroke": "#9A9A9A"
+        "cx": 261.0,
+        "cy": 131.0,
+        "r": 9.0,
+        "stroke": "none",
+        "fill": "#ffd8b3"
       }
     },
     {
-      "id": "slot.fold1",
+      "id": "slot.person.left.head",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 230.0,
+        "cy": 128.0,
+        "r": 29.0,
+        "stroke": "none",
+        "fill": "#ffd8b3"
+      }
+    },
+    {
+      "id": "slot.person.left.hair.cap",
       "kind": "path",
       "prompt": "",
       "content": {
-        "d": "M 262.0 306.0 C 224.0 306.0, 210.0 306.0, 208.0 306.0 C 210.0 338.0, 232.0 357.0, 262.0 357.0",
+        "d": "M 201.0 127.0 C 203.0 96.0, 258.0 93.0, 260.0 127.0 C 245.0 110.0, 233.0 120.0, 226.0 108.0 C 218.0 121.0, 208.0 110.0, 201.0 127.0 Z",
         "x": 0.0,
-        "y": 0.0
+        "y": 0.0,
+        "stroke": "none",
+        "fill": "#3B2417"
       }
     },
     {
-      "id": "slot.arrow2",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 392.0,
-        "y1": 304.0,
-        "x2": 426.0,
-        "y2": 304.0,
-        "stroke": "#9A9A9A"
-      }
-    },
-    {
-      "id": "slot.circle2",
+      "id": "slot.person.left.eye.left",
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 518.0,
-        "cy": 304.0,
-        "r": 58.0,
-        "fill": "#DFF2F0"
+        "cx": 220.0,
+        "cy": 134.0,
+        "r": 3.8,
+        "stroke": "none",
+        "fill": "#2b2118"
       }
     },
     {
-      "id": "slot.arrow3",
-      "kind": "line",
+      "id": "slot.person.left.eye.right",
+      "kind": "circle",
       "prompt": "",
       "content": {
-        "x1": 608.0,
-        "y1": 304.0,
-        "x2": 642.0,
-        "y2": 304.0,
-        "stroke": "#9A9A9A"
+        "cx": 240.0,
+        "cy": 134.0,
+        "r": 3.8,
+        "stroke": "none",
+        "fill": "#2b2118"
       }
     },
     {
-      "id": "slot.fold2",
+      "id": "slot.person.left.smile",
       "kind": "path",
       "prompt": "",
       "content": {
-        "d": "M 681.0 302.0 C 662.0 269.0, 656.0 248.0, 662.0 244.0 C 683.0 256.0, 702.0 286.0, 725.0 340.0 C 706.0 344.0, 692.0 342.0, 681.0 302.0",
+        "d": "M 222.0 146.0 Q 230.0 153.0 238.0 146.0",
         "x": 0.0,
-        "y": 0.0
+        "y": 0.0,
+        "stroke": "#b76b3a",
+        "stroke_width": 1.6,
+        "fill": "none"
       }
     },
     {
-      "id": "slot.arrow4",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 790.0,
-        "y1": 304.0,
-        "x2": 824.0,
-        "y2": 304.0,
-        "stroke": "#9A9A9A"
-      }
-    },
-    {
-      "id": "slot.circle3",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 878.0,
-        "cy": 304.0,
-        "r": 58.0,
-        "fill": "#DFF2F0"
-      }
-    },
-    {
-      "id": "slot.arrow5",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 512.0,
-        "y1": 230.0,
-        "x2": 528.0,
-        "y2": 210.0,
-        "stroke": "#2AAE96"
-      }
-    },
-    {
-      "id": "slot.fold3",
+      "id": "slot.speech.bubble",
       "kind": "path",
       "prompt": "",
       "content": {
-        "d": "M 872.0 305.0 C 840.0 281.0, 828.0 258.0, 826.0 246.0 C 846.0 242.0, 866.0 247.0, 878.0 304.0",
+        "d": "M 302.5 129.0 C 302.5 71.4, 392.75 49.0, 540.0 49.0 C 687.25 49.0, 777.5 71.4, 777.5 129.0 C 777.5 186.6, 687.25 209.0, 540.0 209.0 C 392.75 209.0, 302.5 186.6, 302.5 129.0 Z",
         "x": 0.0,
-        "y": 0.0
+        "y": 0.0,
+        "stroke": "#222222",
+        "stroke_width": 1.6,
+        "fill": "#ffffff"
       }
     },
     {
-      "id": "slot.arrow6",
-      "kind": "line",
+      "id": "slot.speech.tail",
+      "kind": "polygon",
       "prompt": "",
       "content": {
-        "x1": 878.0,
-        "y1": 304.0,
-        "x2": 878.0,
-        "y2": 248.0,
-        "stroke": "#67C5E2"
+        "points": [
+          [
+            280.0,
+            203.0
+          ],
+          [
+            300.0,
+            203.0
+          ],
+          [
+            290.0,
+            138.0
+          ]
+        ],
+        "stroke": "#222222",
+        "stroke_width": 1.4,
+        "fill": "#ffffff"
       }
     },
     {
-      "id": "slot.circle4",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 878.0,
-        "cy": 304.0,
-        "r": 58.0,
-        "fill": "#DFF2F0"
-      }
-    },
-    {
-      "id": "slot.arrow7",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 734.0,
-        "y1": 304.0,
-        "x2": 768.0,
-        "y2": 304.0,
-        "stroke": "#9A9A9A"
-      }
-    },
-    {
-      "id": "slot.green1",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 835.0,
-        "y1": 236.0,
-        "x2": 900.0,
-        "y2": 236.0,
-        "stroke": "#1E9B53"
-      }
-    },
-    {
-      "id": "slot.green2",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "접힌 선의 윗부분과 아랫부분이 똑같아요.",
-        "style_role": "annotation",
-        "x": 540.0,
-        "y": 241.0,
-        "font_size": 24
-      }
-    },
-    {
-      "id": "slot.pinkdot",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 866.0,
-        "cy": 304.0,
-        "r": 3.5,
-        "fill": "#E11A86"
-      }
-    },
-    {
-      "id": "slot.pinkbox",
-      "kind": "rect",
-      "prompt": "",
-      "content": {
-        "x": 98.0,
-        "y": 426.0,
-        "width": 734.0,
-        "height": 116.0,
-        "fill": "#F9E0DA"
-      }
-    },
-    {
-      "id": "slot.bubble",
+      "id": "slot.speech.text",
       "kind": "text",
       "prompt": "",
       "content": {
         "text": "원 모양의 종이를 둘로 똑같이 나누어지도록\n접었다가 펼친 다음 다른 방향으로 둘로 똑같이\n나누어지도록 접었다가 펼쳤어.",
         "style_role": "speech",
-        "x": 318.0,
-        "y": 74.0,
-        "font_size": 26
+        "x": 540.0,
+        "y": 105.0,
+        "font_size": 22,
+        "anchor": "middle"
       }
     },
     {
-      "id": "slot.bubble.text1",
-      "kind": "text",
+      "id": "slot.fold.stage1.paper",
+      "kind": "circle",
       "prompt": "",
       "content": {
-        "text": "",
-        "style_role": "speech",
-        "x": 0.0,
-        "y": 0.0,
-        "font_size": 28
+        "cx": 96.0,
+        "cy": 305.0,
+        "r": 56.0,
+        "stroke": "#00AFA8",
+        "stroke_width": 1.5,
+        "fill": "#DFF2F0"
       }
     },
     {
-      "id": "slot.bubble.text2",
-      "kind": "text",
+      "id": "slot.fold.arrow1.body",
+      "kind": "line",
       "prompt": "",
       "content": {
-        "text": "",
-        "style_role": "speech",
-        "x": 0.0,
-        "y": 0.0,
-        "font_size": 28
+        "x1": 180.0,
+        "y1": 305.0,
+        "x2": 207.0,
+        "y2": 305.0,
+        "stroke": "#9A9A9A",
+        "stroke_width": 8.0
       }
     },
     {
-      "id": "slot.bubble.text3",
+      "id": "slot.fold.arrow1.head",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            207.0,
+            305.0
+          ],
+          [
+            196.4046288856929,
+            310.63365875343067
+          ],
+          [
+            196.4046288856929,
+            299.36634124656933
+          ]
+        ],
+        "stroke": "#9A9A9A",
+        "stroke_width": 0.0,
+        "fill": "#9A9A9A"
+      }
+    },
+    {
+      "id": "slot.fold.stage2.paper",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 235 305 C 237.24 339.72, 264.12 356.52, 291 356.52 C 317.88 356.52, 344.76 339.72, 347 305 L 235 305 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#00AFA8",
+        "stroke_width": 1.5,
+        "fill": "#DFF2F0"
+      }
+    },
+    {
+      "id": "slot.fold.stage2.edge",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 245.08 310.6 C 274.2 367.72, 316.2 363.24, 338.6 309.48",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#00AFA8",
+        "stroke_width": 1.2,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.fold.arrow2.body",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 375.0,
+        "y1": 305.0,
+        "x2": 402.0,
+        "y2": 305.0,
+        "stroke": "#9A9A9A",
+        "stroke_width": 8.0
+      }
+    },
+    {
+      "id": "slot.fold.arrow2.head",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            402.0,
+            305.0
+          ],
+          [
+            391.4046288856929,
+            310.63365875343067
+          ],
+          [
+            391.4046288856929,
+            299.36634124656933
+          ]
+        ],
+        "stroke": "#9A9A9A",
+        "stroke_width": 0.0,
+        "fill": "#9A9A9A"
+      }
+    },
+    {
+      "id": "slot.fold.stage3.paper",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 486.0,
+        "cy": 305.0,
+        "r": 56.0,
+        "stroke": "#00AFA8",
+        "stroke_width": 1.5,
+        "fill": "#DFF2F0"
+      }
+    },
+    {
+      "id": "slot.fold.stage3.fold_line",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 430.0,
+        "y1": 305.0,
+        "x2": 542.0,
+        "y2": 305.0,
+        "stroke": "#00AFA8",
+        "stroke_width": 1.2,
+        "stroke_dasharray": "5 4"
+      }
+    },
+    {
+      "id": "slot.fold.arrow3.body",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 570.0,
+        "y1": 305.0,
+        "x2": 597.0,
+        "y2": 305.0,
+        "stroke": "#9A9A9A",
+        "stroke_width": 8.0
+      }
+    },
+    {
+      "id": "slot.fold.arrow3.head",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            597.0,
+            305.0
+          ],
+          [
+            586.4046288856929,
+            310.63365875343067
+          ],
+          [
+            586.4046288856929,
+            299.36634124656933
+          ]
+        ],
+        "stroke": "#9A9A9A",
+        "stroke_width": 0.0,
+        "fill": "#9A9A9A"
+      }
+    },
+    {
+      "id": "slot.fold.stage4.paper",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 659.72 261.32 C 631.72 289.32, 640.68 347.56, 691.08 357.08 C 706.76 361, 721.32 353.16, 732.52 341.96 L 659.72 261.32 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#00AFA8",
+        "stroke_width": 1.5,
+        "fill": "#DFF2F0"
+      }
+    },
+    {
+      "id": "slot.fold.stage4.crease",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 659.72,
+        "y1": 261.32,
+        "x2": 732.52,
+        "y2": 341.96,
+        "stroke": "#00AFA8",
+        "stroke_width": 1.5
+      }
+    },
+    {
+      "id": "slot.fold.stage4.edge",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 633.4 339.72 C 664.2 363.8, 704.52 359.88, 732.52 341.96",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#00AFA8",
+        "stroke_width": 1.2,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.fold.stage4.guide",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 687.5286053353531,
+        "cy": 294.5520474553528,
+        "r": 0.01,
+        "stroke": "none",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.fold.arrow4.body",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 765.0,
+        "y1": 305.0,
+        "x2": 792.0,
+        "y2": 305.0,
+        "stroke": "#9A9A9A",
+        "stroke_width": 8.0
+      }
+    },
+    {
+      "id": "slot.fold.arrow4.head",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            792.0,
+            305.0
+          ],
+          [
+            781.4046288856929,
+            310.63365875343067
+          ],
+          [
+            781.4046288856929,
+            299.36634124656933
+          ]
+        ],
+        "stroke": "#9A9A9A",
+        "stroke_width": 0.0,
+        "fill": "#9A9A9A"
+      }
+    },
+    {
+      "id": "slot.fold.stage5.paper",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 876.0,
+        "cy": 305.0,
+        "r": 56.0,
+        "stroke": "#00AFA8",
+        "stroke_width": 1.5,
+        "fill": "#DFF2F0"
+      }
+    },
+    {
+      "id": "slot.fold.stage5.fold_line",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 820.0,
+        "y1": 305.0,
+        "x2": 932.0,
+        "y2": 305.0,
+        "stroke": "#00AFA8",
+        "stroke_width": 1.2,
+        "stroke_dasharray": "5 4"
+      }
+    },
+    {
+      "id": "slot.fold.stage5.fold_line2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 849.12,
+        "y1": 255.72,
+        "x2": 902.88,
+        "y2": 354.28,
+        "stroke": "#00AFA8",
+        "stroke_width": 1.2,
+        "stroke_dasharray": "5 4"
+      }
+    },
+    {
+      "id": "slot.fold.stage5.center",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 876.0,
+        "cy": 305.0,
+        "r": 3.36,
+        "stroke": "none",
+        "fill": "#E11A86"
+      }
+    },
+    {
+      "id": "slot.note.equal.arrow",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 500 247 C 492 230, 506 218, 522 228",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#00843D",
+        "stroke_width": 2.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.note.equal",
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "",
-        "style_role": "speech",
+        "text": "접힌 선의 윗부분과 아랫부분이 똑같아요.",
+        "style_role": "annotation",
+        "x": 531.0,
+        "y": 241.0,
+        "font_size": 16,
+        "fill": "#00843D"
+      }
+    },
+    {
+      "id": "slot.note.center.arrow",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 828 374 C 812 350, 826 329, 856 307",
         "x": 0.0,
         "y": 0.0,
-        "font_size": 28
+        "stroke": "#00843D",
+        "stroke_width": 2.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.note.center",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "접었을 때 생기는\n선분들이 만나는 점",
+        "style_role": "annotation",
+        "x": 774.0,
+        "y": 386.0,
+        "font_size": 16,
+        "fill": "#00843D"
+      }
+    },
+    {
+      "id": "slot.answer.box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 103.0,
+        "y": 423.0,
+        "width": 756.0,
+        "height": 118.0,
+        "stroke": "none",
+        "fill": "#F9E0DA"
+      }
+    },
+    {
+      "id": "slot.answer.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "원을 둘로 똑같이 나누는 선분은 원의 중심을 지나므로\n원의 ( 지름 , 반지름 )입니다.",
+        "style_role": "answer",
+        "x": 481.0,
+        "y": 468.0,
+        "font_size": 25,
+        "anchor": "middle"
+      }
+    },
+    {
+      "id": "slot.correct",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "(정답)지름",
+        "style_role": "answer",
+        "x": 14.0,
+        "y": 577.0,
+        "font_size": 18
+      }
+    },
+    {
+      "id": "slot.explain",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "(해설)원을 둘로 똑같이 나누는 선분은 원의 중심을 지나므로 원의 지름입니다.",
+        "style_role": "explanation",
+        "x": 14.0,
+        "y": 623.0,
+        "font_size": 18
       }
     }
   ],
@@ -339,31 +699,50 @@
   "diagrams": [],
   "reading_order": [
     "region.stem",
+    "slot.speech.bubble",
+    "slot.speech.tail",
+    "slot.person.left.body",
+    "slot.person.left.ear.left",
+    "slot.person.left.ear.right",
+    "slot.person.left.head",
+    "slot.person.left.hair.cap",
+    "slot.person.left.eye.left",
+    "slot.person.left.eye.right",
+    "slot.person.left.smile",
+    "slot.fold.arrow1.head",
+    "slot.fold.stage2.edge",
+    "slot.fold.arrow2.head",
+    "slot.fold.arrow3.head",
+    "slot.fold.stage4.edge",
+    "slot.fold.stage4.guide",
+    "slot.fold.arrow4.head",
+    "slot.note.equal.arrow",
+    "slot.note.center.arrow",
+    "slot.fold.arrow1.body",
+    "slot.fold.arrow2.body",
+    "slot.fold.arrow3.body",
+    "slot.fold.stage4.crease",
+    "slot.fold.arrow4.body",
     "slot.qnum",
     "slot.stem",
-    "slot.bubble",
-    "slot.bubble.text1",
-    "slot.bubble.text2",
-    "slot.bubble.text3",
+    "slot.speech.text",
+    "slot.checkbox",
+    "slot.correct",
+    "slot.explain",
     "region.diagram",
-    "slot.circle1",
-    "slot.fold1",
-    "slot.circle2",
-    "slot.fold2",
-    "slot.circle3",
-    "slot.fold3",
-    "slot.circle4",
-    "slot.pinkdot",
-    "slot.arrow1",
-    "slot.arrow2",
-    "slot.arrow3",
-    "slot.arrow4",
-    "slot.arrow5",
-    "slot.arrow6",
-    "slot.arrow7",
-    "slot.green1",
-    "slot.green2",
+    "slot.fold.stage1.paper",
+    "slot.fold.stage2.paper",
+    "slot.fold.stage3.paper",
+    "slot.fold.stage4.paper",
+    "slot.fold.stage5.paper",
+    "slot.fold.stage5.center",
+    "slot.fold.stage3.fold_line",
+    "slot.fold.stage5.fold_line",
+    "slot.fold.stage5.fold_line2",
+    "slot.note.equal",
+    "slot.note.center",
     "region.answer",
-    "slot.pinkbox"
+    "slot.answer.box",
+    "slot.answer.text"
   ]
 }

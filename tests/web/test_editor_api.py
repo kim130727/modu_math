@@ -281,6 +281,33 @@ SLOTS = (
     assert '_partition_box("slot.figure.group1", x = (200.0) + (-5.0), y = (150.0) + (10.0))' in updated
 
 
+def test_layout_patch_moves_circle_fold_sequence_helper(tmp_path: Path) -> None:
+    client = _setup_django(tmp_path)
+    dsl_text = """
+from modu_math.dsl import circle_fold_sequence_slots
+
+SLOTS = (
+    *circle_fold_sequence_slots("slot.fold", x=40.0, y=245.0, r=56.0, gap=105.0),
+)
+""".lstrip()
+    problem_dir = _write_problem(tmp_path, "0001", dsl_text)
+
+    payload = {
+        "patches": [
+            {"target": "slot.fold", "op": "update", "value": {"move_dx": 12.0, "move_dy": -8.0}},
+        ]
+    }
+    response = client.post(
+        "/api/editor/problems/0001/layout-patch/",
+        data=json.dumps(payload),
+        content_type="application/json",
+    )
+
+    assert response.status_code == 200
+    updated = (problem_dir / "problem.dsl.py").read_text(encoding="utf-8")
+    assert 'circle_fold_sequence_slots("slot.fold", x = (40.0) + (12.0), y = (245.0) + (-8.0)' in updated
+
+
 def test_layout_patch_moves_speaker_character_group(tmp_path: Path) -> None:
     client = _setup_django(tmp_path)
     dsl_text = """

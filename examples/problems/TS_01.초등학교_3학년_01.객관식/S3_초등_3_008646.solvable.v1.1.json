@@ -3,9 +3,7 @@
   "problem_id": "S3_초등_3_008646",
   "problem_type": "geometry_concept_selection",
   "inputs": {
-    "total_ticks": 0,
     "target_label": "지름",
-    "target_ticks": 0,
     "target_count": 1,
     "unit": ""
   },
@@ -32,24 +30,24 @@
   "method": "concept_matching",
   "plan": [
     "접힌 선이 원을 둘로 똑같이 나누는지 확인한다.",
-    "그 선이 원의 중심을 지나면 지름인지 판단한다."
+    "그 선이 원의 중심을 지나므로 지름임을 판단한다."
   ],
   "steps": [
     {
       "id": "step.1",
-      "expr": "원을 둘로 똑같이 나누는 선분은 원의 중심을 지난다",
+      "expr": "원을 둘로 똑같이 나누는 선분은 원의 중심을 지난다.",
       "value": "center_passing_segment"
     },
     {
       "id": "step.2",
-      "expr": "center_passing_segment → diameter",
+      "expr": "center_passing_segment == diameter",
       "value": "지름"
     }
   ],
   "checks": [
     {
       "id": "check.1",
-      "expr": "정의 확인: 원의 중심을 지나면서 원을 둘로 똑같이 나누는가",
+      "expr": "원의 중심을 지나는 선분은 지름이다.",
       "expected": true,
       "actual": true,
       "pass": true
@@ -57,8 +55,13 @@
   ],
   "answer": {
     "blanks": [],
-    "choices": [],
-    "answer_key": [],
+    "choices": [
+      "지름",
+      "반지름"
+    ],
+    "answer_key": [
+      "지름"
+    ],
     "target": {
       "type": "concept_name",
       "description": "원을 둘로 똑같이 나누는 선분의 이름"

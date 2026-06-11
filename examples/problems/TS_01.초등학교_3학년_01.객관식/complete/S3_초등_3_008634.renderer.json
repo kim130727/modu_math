@@ -1,0 +1,130 @@
+{
+  "problem_id": "S3_초등_3_008634",
+  "view_box": {
+    "width": 800.0,
+    "height": 400.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.box.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 130.0,
+        "y": 95.0,
+        "width": 430.0,
+        "height": 105.0,
+        "fill": "none",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.box",
+      "refs": {
+        "layout_slot_id": "slot.box"
+      }
+    },
+    {
+      "id": "slot.q.text.text",
+      "type": "text",
+      "attributes": {
+        "x": 70.0,
+        "y": 50.0,
+        "max_width": 672.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30
+      },
+      "source_ref": "slot.q.text",
+      "refs": {
+        "layout_slot_id": "slot.q.text"
+      },
+      "text": "나머지가 다른 하나를 찾아 기호를 선택해 보세요."
+    },
+    {
+      "id": "slot.opt.1.text",
+      "type": "text",
+      "attributes": {
+        "x": 175.0,
+        "y": 140.0,
+        "max_width": 672.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30
+      },
+      "source_ref": "slot.opt.1",
+      "refs": {
+        "layout_slot_id": "slot.opt.1"
+      },
+      "text": "① 29 ÷ 7"
+    },
+    {
+      "id": "slot.opt.2.text",
+      "type": "text",
+      "attributes": {
+        "x": 385.0,
+        "y": 140.0,
+        "max_width": 672.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30
+      },
+      "source_ref": "slot.opt.2",
+      "refs": {
+        "layout_slot_id": "slot.opt.2"
+      },
+      "text": "② 31 ÷ 6"
+    },
+    {
+      "id": "slot.opt.3.text",
+      "type": "text",
+      "attributes": {
+        "x": 175.0,
+        "y": 175.0,
+        "max_width": 672.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30
+      },
+      "source_ref": "slot.opt.3",
+      "refs": {
+        "layout_slot_id": "slot.opt.3"
+      },
+      "text": "③ 74 ÷ 8"
+    },
+    {
+      "id": "slot.opt.4.text",
+      "type": "text",
+      "attributes": {
+        "x": 385.0,
+        "y": 175.0,
+        "max_width": 672.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30
+      },
+      "source_ref": "slot.opt.4",
+      "refs": {
+        "layout_slot_id": "slot.opt.4"
+      },
+      "text": "④ 64 ÷ 9"
+    },
+    {
+      "id": "slot.list.text",
+      "type": "text",
+      "attributes": {
+        "x": 245.0,
+        "y": 260.0,
+        "max_width": 672.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30
+      },
+      "source_ref": "slot.list",
+      "refs": {
+        "layout_slot_id": "slot.list"
+      },
+      "text": "( ① , ② , ③ , ④ )"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}
