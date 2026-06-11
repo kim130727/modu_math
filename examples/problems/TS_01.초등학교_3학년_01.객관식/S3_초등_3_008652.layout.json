@@ -14,8 +14,8 @@
       "role": "stem",
       "flow": "absolute",
       "slot_ids": [
-        "slot.qnum",
-        "slot.qtext"
+        "slot.qtext1",
+        "slot.qtext2"
       ]
     },
     {
@@ -24,34 +24,32 @@
       "flow": "absolute",
       "slot_ids": [
         "slot.grid.frame",
+        "slot.grid.v1",
+        "slot.grid.h1",
+        "slot.grid.v2",
+        "slot.grid.h2",
+        "slot.grid.v3",
+        "slot.grid.h3",
+        "slot.grid.v4",
+        "slot.grid.h4",
+        "slot.grid.v5",
+        "slot.grid.h5",
+        "slot.grid.v6",
+        "slot.grid.h6",
+        "slot.grid.v7",
+        "slot.grid.h7",
+        "slot.grid.v8",
+        "slot.grid.h8",
+        "slot.grid.v9",
+        "slot.grid.h9",
+        "slot.grid.v10",
+        "slot.grid.h10",
+        "slot.grid.v11",
+        "slot.grid.h11",
         "slot.circle.outer",
         "slot.circle.middle",
         "slot.circle.inner",
-        "slot.center",
-        "slot.grid.v1",
-        "slot.grid.v2",
-        "slot.grid.v3",
-        "slot.grid.v4",
-        "slot.grid.v5",
-        "slot.grid.v6",
-        "slot.grid.v7",
-        "slot.grid.v8",
-        "slot.grid.v9",
-        "slot.grid.v10",
-        "slot.grid.v11",
-        "slot.grid.v12",
-        "slot.grid.h1",
-        "slot.grid.h2",
-        "slot.grid.h3",
-        "slot.grid.h4",
-        "slot.grid.h5",
-        "slot.grid.h6",
-        "slot.grid.h7",
-        "slot.grid.h8",
-        "slot.grid.h9",
-        "slot.grid.h10",
-        "slot.grid.h11",
-        "slot.grid.h12"
+        "slot.center"
       ]
     },
     {
@@ -59,331 +57,392 @@
       "role": "diagram",
       "flow": "absolute",
       "slot_ids": [
-        "slot.sunga.face",
-        "slot.sunga.body",
+        "slot.sunga.character.body",
+        "slot.sunga.character.ear.left",
+        "slot.sunga.character.ear.right",
+        "slot.sunga.character.head",
+        "slot.sunga.character.hair.cap",
+        "slot.sunga.character.eye.left",
+        "slot.sunga.character.eye.right",
+        "slot.sunga.character.smile",
         "slot.sunga.namebox",
         "slot.sunga.bubble",
-        "slot.jaewon.face",
-        "slot.jaewon.body",
+        "slot.sunga.tail",
+        "slot.jaewon.character.body",
+        "slot.jaewon.character.ear.left",
+        "slot.jaewon.character.ear.right",
+        "slot.jaewon.character.head",
+        "slot.jaewon.character.hair.cap",
+        "slot.jaewon.character.eye.left",
+        "slot.jaewon.character.eye.right",
+        "slot.jaewon.character.smile",
         "slot.jaewon.namebox",
         "slot.jaewon.bubble",
+        "slot.jaewon.tail",
         "slot.sunga.name",
-        "slot.sunga.b1",
-        "slot.sunga.b2",
-        "slot.sunga.b3",
-        "slot.sunga.b4",
+        "slot.sunga.text1",
+        "slot.sunga.text2",
+        "slot.sunga.text3",
+        "slot.sunga.text4",
         "slot.jaewon.name",
-        "slot.jaewon.b1",
-        "slot.jaewon.b2",
-        "slot.jaewon.b3",
-        "slot.jaewon.b4"
+        "slot.jaewon.text1",
+        "slot.jaewon.text2",
+        "slot.jaewon.text3",
+        "slot.jaewon.text4"
       ]
     },
     {
       "id": "region.footer",
-      "role": "stem",
+      "role": "note",
       "flow": "absolute",
       "slot_ids": []
     }
   ],
   "slots": [
     {
-      "id": "slot.qnum",
+      "id": "slot.qtext1",
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "27.",
+        "text": "규칙에 따라 원을 그린 것입니다. 그린 규칙을 바르게 말한 사람을 선택",
         "style_role": "question",
-        "x": 20.0,
-        "y": 42.0,
-        "font_size": 28
+        "x": 35.0,
+        "y": 35.0,
+        "font_size": 25
       }
     },
     {
-      "id": "slot.qtext",
+      "id": "slot.qtext2",
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "규칙에 따라 원을 그린 것입니다. 그린 규칙을 바르게 말한 사람을 선택해 보세요.",
+        "text": "해 보세요.",
         "style_role": "question",
-        "x": 64.0,
-        "y": 42.0,
-        "font_size": 28
+        "x": 36.0,
+        "y": 70.0,
+        "font_size": 24
       }
     },
     {
       "id": "slot.grid.frame",
-      "kind": "rect",
+      "kind": "path",
       "prompt": "",
       "content": {
-        "x": 110.0,
-        "y": 150.0,
-        "width": 280.0,
-        "height": 280.0
+        "d": "M 118.0 150.0 L 400.0 150.0 L 400.0 432.0 L 118.0 432.0 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#37C7FF",
+        "stroke_width": 1.4,
+        "stroke_dasharray": "4 3",
+        "fill": "#ffffff"
       }
     },
     {
       "id": "slot.grid.v1",
-      "kind": "line",
+      "kind": "path",
       "prompt": "",
       "content": {
-        "x1": 110.0,
-        "y1": 150.0,
-        "x2": 110.0,
-        "y2": 430.0
-      }
-    },
-    {
-      "id": "slot.grid.v2",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 133.3,
-        "y1": 150.0,
-        "x2": 133.3,
-        "y2": 430.0
-      }
-    },
-    {
-      "id": "slot.grid.v3",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 156.7,
-        "y1": 150.0,
-        "x2": 156.7,
-        "y2": 430.0
-      }
-    },
-    {
-      "id": "slot.grid.v4",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 180.0,
-        "y1": 150.0,
-        "x2": 180.0,
-        "y2": 430.0
-      }
-    },
-    {
-      "id": "slot.grid.v5",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 203.3,
-        "y1": 150.0,
-        "x2": 203.3,
-        "y2": 430.0
-      }
-    },
-    {
-      "id": "slot.grid.v6",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 226.7,
-        "y1": 150.0,
-        "x2": 226.7,
-        "y2": 430.0
-      }
-    },
-    {
-      "id": "slot.grid.v7",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 250.0,
-        "y1": 150.0,
-        "x2": 250.0,
-        "y2": 430.0
-      }
-    },
-    {
-      "id": "slot.grid.v8",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 273.3,
-        "y1": 150.0,
-        "x2": 273.3,
-        "y2": 430.0
-      }
-    },
-    {
-      "id": "slot.grid.v9",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 296.7,
-        "y1": 150.0,
-        "x2": 296.7,
-        "y2": 430.0
-      }
-    },
-    {
-      "id": "slot.grid.v10",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 320.0,
-        "y1": 150.0,
-        "x2": 320.0,
-        "y2": 430.0
-      }
-    },
-    {
-      "id": "slot.grid.v11",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 343.3,
-        "y1": 150.0,
-        "x2": 343.3,
-        "y2": 430.0
-      }
-    },
-    {
-      "id": "slot.grid.v12",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 366.7,
-        "y1": 150.0,
-        "x2": 366.7,
-        "y2": 430.0
+        "d": "M 141.50 150.0 L 141.50 432.0",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#37C7FF",
+        "stroke_width": 1.0,
+        "stroke_dasharray": "4 3",
+        "fill": "none"
       }
     },
     {
       "id": "slot.grid.h1",
-      "kind": "line",
+      "kind": "path",
       "prompt": "",
       "content": {
-        "x1": 110.0,
-        "y1": 150.0,
-        "x2": 390.0,
-        "y2": 150.0
+        "d": "M 118.0 173.50 L 400.0 173.50",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#37C7FF",
+        "stroke_width": 1.0,
+        "stroke_dasharray": "4 3",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.grid.v2",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 165.00 150.0 L 165.00 432.0",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#37C7FF",
+        "stroke_width": 1.0,
+        "stroke_dasharray": "4 3",
+        "fill": "none"
       }
     },
     {
       "id": "slot.grid.h2",
-      "kind": "line",
+      "kind": "path",
       "prompt": "",
       "content": {
-        "x1": 110.0,
-        "y1": 173.3,
-        "x2": 390.0,
-        "y2": 173.3
+        "d": "M 118.0 197.00 L 400.0 197.00",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#37C7FF",
+        "stroke_width": 1.0,
+        "stroke_dasharray": "4 3",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.grid.v3",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 188.50 150.0 L 188.50 432.0",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#37C7FF",
+        "stroke_width": 1.0,
+        "stroke_dasharray": "4 3",
+        "fill": "none"
       }
     },
     {
       "id": "slot.grid.h3",
-      "kind": "line",
+      "kind": "path",
       "prompt": "",
       "content": {
-        "x1": 110.0,
-        "y1": 196.7,
-        "x2": 390.0,
-        "y2": 196.7
+        "d": "M 118.0 220.50 L 400.0 220.50",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#37C7FF",
+        "stroke_width": 1.0,
+        "stroke_dasharray": "4 3",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.grid.v4",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 212.00 150.0 L 212.00 432.0",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#37C7FF",
+        "stroke_width": 1.0,
+        "stroke_dasharray": "4 3",
+        "fill": "none"
       }
     },
     {
       "id": "slot.grid.h4",
-      "kind": "line",
+      "kind": "path",
       "prompt": "",
       "content": {
-        "x1": 110.0,
-        "y1": 220.0,
-        "x2": 390.0,
-        "y2": 220.0
+        "d": "M 118.0 244.00 L 400.0 244.00",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#37C7FF",
+        "stroke_width": 1.0,
+        "stroke_dasharray": "4 3",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.grid.v5",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 235.50 150.0 L 235.50 432.0",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#37C7FF",
+        "stroke_width": 1.0,
+        "stroke_dasharray": "4 3",
+        "fill": "none"
       }
     },
     {
       "id": "slot.grid.h5",
-      "kind": "line",
+      "kind": "path",
       "prompt": "",
       "content": {
-        "x1": 110.0,
-        "y1": 243.3,
-        "x2": 390.0,
-        "y2": 243.3
+        "d": "M 118.0 267.50 L 400.0 267.50",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#37C7FF",
+        "stroke_width": 1.0,
+        "stroke_dasharray": "4 3",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.grid.v6",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 259.00 150.0 L 259.00 432.0",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#37C7FF",
+        "stroke_width": 1.0,
+        "stroke_dasharray": "4 3",
+        "fill": "none"
       }
     },
     {
       "id": "slot.grid.h6",
-      "kind": "line",
+      "kind": "path",
       "prompt": "",
       "content": {
-        "x1": 110.0,
-        "y1": 266.7,
-        "x2": 390.0,
-        "y2": 266.7
+        "d": "M 118.0 291.00 L 400.0 291.00",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#37C7FF",
+        "stroke_width": 1.0,
+        "stroke_dasharray": "4 3",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.grid.v7",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 282.50 150.0 L 282.50 432.0",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#37C7FF",
+        "stroke_width": 1.0,
+        "stroke_dasharray": "4 3",
+        "fill": "none"
       }
     },
     {
       "id": "slot.grid.h7",
-      "kind": "line",
+      "kind": "path",
       "prompt": "",
       "content": {
-        "x1": 110.0,
-        "y1": 290.0,
-        "x2": 390.0,
-        "y2": 290.0
+        "d": "M 118.0 314.50 L 400.0 314.50",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#37C7FF",
+        "stroke_width": 1.0,
+        "stroke_dasharray": "4 3",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.grid.v8",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 306.00 150.0 L 306.00 432.0",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#37C7FF",
+        "stroke_width": 1.0,
+        "stroke_dasharray": "4 3",
+        "fill": "none"
       }
     },
     {
       "id": "slot.grid.h8",
-      "kind": "line",
+      "kind": "path",
       "prompt": "",
       "content": {
-        "x1": 110.0,
-        "y1": 313.3,
-        "x2": 390.0,
-        "y2": 313.3
+        "d": "M 118.0 338.00 L 400.0 338.00",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#37C7FF",
+        "stroke_width": 1.0,
+        "stroke_dasharray": "4 3",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.grid.v9",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 329.50 150.0 L 329.50 432.0",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#37C7FF",
+        "stroke_width": 1.0,
+        "stroke_dasharray": "4 3",
+        "fill": "none"
       }
     },
     {
       "id": "slot.grid.h9",
-      "kind": "line",
+      "kind": "path",
       "prompt": "",
       "content": {
-        "x1": 110.0,
-        "y1": 336.7,
-        "x2": 390.0,
-        "y2": 336.7
+        "d": "M 118.0 361.50 L 400.0 361.50",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#37C7FF",
+        "stroke_width": 1.0,
+        "stroke_dasharray": "4 3",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.grid.v10",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 353.00 150.0 L 353.00 432.0",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#37C7FF",
+        "stroke_width": 1.0,
+        "stroke_dasharray": "4 3",
+        "fill": "none"
       }
     },
     {
       "id": "slot.grid.h10",
-      "kind": "line",
+      "kind": "path",
       "prompt": "",
       "content": {
-        "x1": 110.0,
-        "y1": 360.0,
-        "x2": 390.0,
-        "y2": 360.0
+        "d": "M 118.0 385.00 L 400.0 385.00",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#37C7FF",
+        "stroke_width": 1.0,
+        "stroke_dasharray": "4 3",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.grid.v11",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 376.50 150.0 L 376.50 432.0",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#37C7FF",
+        "stroke_width": 1.0,
+        "stroke_dasharray": "4 3",
+        "fill": "none"
       }
     },
     {
       "id": "slot.grid.h11",
-      "kind": "line",
+      "kind": "path",
       "prompt": "",
       "content": {
-        "x1": 110.0,
-        "y1": 383.3,
-        "x2": 390.0,
-        "y2": 383.3
-      }
-    },
-    {
-      "id": "slot.grid.h12",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 110.0,
-        "y1": 406.7,
-        "x2": 390.0,
-        "y2": 406.7
+        "d": "M 118.0 408.50 L 400.0 408.50",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#37C7FF",
+        "stroke_width": 1.0,
+        "stroke_dasharray": "4 3",
+        "fill": "none"
       }
     },
     {
@@ -391,9 +450,11 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 250.0,
-        "cy": 290.0,
-        "r": 116.0,
+        "cx": 259.0,
+        "cy": 291.0,
+        "r": 118.0,
+        "stroke": "#444444",
+        "stroke_width": 1.4,
         "fill": "none"
       }
     },
@@ -402,9 +463,11 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 250.0,
-        "cy": 290.0,
+        "cx": 259.0,
+        "cy": 291.0,
         "r": 71.0,
+        "stroke": "#444444",
+        "stroke_width": 1.4,
         "fill": "none"
       }
     },
@@ -413,9 +476,11 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 250.0,
-        "cy": 290.0,
-        "r": 23.0,
+        "cx": 259.0,
+        "cy": 291.0,
+        "r": 23.5,
+        "stroke": "#444444",
+        "stroke_width": 1.4,
         "fill": "none"
       }
     },
@@ -424,32 +489,123 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 250.0,
-        "cy": 290.0,
+        "cx": 259.0,
+        "cy": 291.0,
         "r": 4.0,
-        "fill": "#ff4da6"
+        "stroke": "none",
+        "fill": "#E11A86"
       }
     },
     {
-      "id": "slot.sunga.face",
+      "id": "slot.sunga.character.body",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            497.0,
+            259.0
+          ],
+          [
+            567.0,
+            259.0
+          ],
+          [
+            556.0,
+            206.0
+          ],
+          [
+            508.0,
+            206.0
+          ]
+        ],
+        "stroke": "none",
+        "fill": "#F16078"
+      }
+    },
+    {
+      "id": "slot.sunga.character.ear.left",
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 565.0,
-        "cy": 145.0,
-        "r": 28.0,
-        "fill": "#f6d3b0"
+        "cx": 501.0,
+        "cy": 167.0,
+        "r": 9.0,
+        "stroke": "none",
+        "fill": "#ffd8b3"
       }
     },
     {
-      "id": "slot.sunga.body",
-      "kind": "rect",
+      "id": "slot.sunga.character.ear.right",
+      "kind": "circle",
       "prompt": "",
       "content": {
-        "x": 538.0,
-        "y": 168.0,
-        "width": 54.0,
-        "height": 50.0
+        "cx": 563.0,
+        "cy": 167.0,
+        "r": 9.0,
+        "stroke": "none",
+        "fill": "#ffd8b3"
+      }
+    },
+    {
+      "id": "slot.sunga.character.head",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 532.0,
+        "cy": 164.0,
+        "r": 29.0,
+        "stroke": "none",
+        "fill": "#ffd8b3"
+      }
+    },
+    {
+      "id": "slot.sunga.character.hair.cap",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 503.0 163.0 C 505.0 132.0, 560.0 129.0, 562.0 163.0 C 547.0 146.0, 535.0 156.0, 528.0 144.0 C 520.0 157.0, 510.0 146.0, 503.0 163.0 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "none",
+        "fill": "#3A2116"
+      }
+    },
+    {
+      "id": "slot.sunga.character.eye.left",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 522.0,
+        "cy": 170.0,
+        "r": 3.8,
+        "stroke": "none",
+        "fill": "#2b2118"
+      }
+    },
+    {
+      "id": "slot.sunga.character.eye.right",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 542.0,
+        "cy": 170.0,
+        "r": 3.8,
+        "stroke": "none",
+        "fill": "#2b2118"
+      }
+    },
+    {
+      "id": "slot.sunga.character.smile",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 524.0 182.0 Q 532.0 189.0 540.0 182.0",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#b76b3a",
+        "stroke_width": 1.6,
+        "fill": "none"
       }
     },
     {
@@ -457,10 +613,15 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 535.0,
+        "x": 493.0,
         "y": 236.0,
-        "width": 60.0,
-        "height": 36.0
+        "width": 74.0,
+        "height": 38.0,
+        "stroke": "#D77BBE",
+        "stroke_width": 1.4,
+        "rx": 10.0,
+        "ry": 10.0,
+        "fill": "#FCE6F5"
       }
     },
     {
@@ -470,90 +631,212 @@
       "content": {
         "text": "승아",
         "style_role": "label",
-        "x": 553.0,
-        "y": 262.0,
-        "font_size": 28
+        "x": 530.0,
+        "y": 263.0,
+        "font_size": 23,
+        "anchor": "middle",
+        "fill": "#333333"
       }
     },
     {
       "id": "slot.sunga.bubble",
-      "kind": "rect",
+      "kind": "path",
       "prompt": "",
       "content": {
-        "x": 610.0,
-        "y": 74.0,
-        "width": 250.0,
-        "height": 175.0
+        "d": "M 605.0 181.0 C 605.0 113.14, 655.4 94.0, 725.0 94.0 C 794.6 94.0, 845.0 113.14, 845.0 181.0 C 845.0 248.86, 794.6 268.0, 725.0 268.0 C 655.4 268.0, 605.0 248.86, 605.0 181.0 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#222222",
+        "stroke_width": 1.6,
+        "fill": "#ffffff"
       }
     },
     {
-      "id": "slot.sunga.b1",
+      "id": "slot.sunga.tail",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            612.0,
+            193.0
+          ],
+          [
+            631.0,
+            199.0
+          ],
+          [
+            590.0,
+            186.0
+          ]
+        ],
+        "stroke": "#222222",
+        "stroke_width": 1.4,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.sunga.text1",
       "kind": "text",
       "prompt": "",
       "content": {
         "text": "원의 중심이 모두",
         "style_role": "speech",
-        "x": 667.0,
-        "y": 114.0,
-        "font_size": 28
+        "x": 725.0,
+        "y": 137.0,
+        "font_size": 23,
+        "anchor": "middle"
       }
     },
     {
-      "id": "slot.sunga.b2",
+      "id": "slot.sunga.text2",
       "kind": "text",
       "prompt": "",
       "content": {
         "text": "다르고 원의 반지름이",
         "style_role": "speech",
-        "x": 640.0,
-        "y": 148.0,
-        "font_size": 28
+        "x": 725.0,
+        "y": 172.0,
+        "font_size": 23,
+        "anchor": "middle"
       }
     },
     {
-      "id": "slot.sunga.b3",
+      "id": "slot.sunga.text3",
       "kind": "text",
       "prompt": "",
       "content": {
         "text": "모눈 1칸씩 늘어나게",
         "style_role": "speech",
-        "x": 633.0,
-        "y": 182.0,
-        "font_size": 28
+        "x": 725.0,
+        "y": 207.0,
+        "font_size": 23,
+        "anchor": "middle"
       }
     },
     {
-      "id": "slot.sunga.b4",
+      "id": "slot.sunga.text4",
       "kind": "text",
       "prompt": "",
       "content": {
         "text": "그렸어요.",
         "style_role": "speech",
-        "x": 695.0,
-        "y": 216.0,
-        "font_size": 28
+        "x": 725.0,
+        "y": 242.0,
+        "font_size": 23,
+        "anchor": "middle"
       }
     },
     {
-      "id": "slot.jaewon.face",
+      "id": "slot.jaewon.character.body",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            497.0,
+            433.0
+          ],
+          [
+            567.0,
+            433.0
+          ],
+          [
+            556.0,
+            380.0
+          ],
+          [
+            508.0,
+            380.0
+          ]
+        ],
+        "stroke": "none",
+        "fill": "#1E8AD6"
+      }
+    },
+    {
+      "id": "slot.jaewon.character.ear.left",
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 565.0,
-        "cy": 360.0,
-        "r": 28.0,
-        "fill": "#f6d3b0"
+        "cx": 501.0,
+        "cy": 341.0,
+        "r": 9.0,
+        "stroke": "none",
+        "fill": "#ffd8b3"
       }
     },
     {
-      "id": "slot.jaewon.body",
-      "kind": "rect",
+      "id": "slot.jaewon.character.ear.right",
+      "kind": "circle",
       "prompt": "",
       "content": {
-        "x": 538.0,
-        "y": 383.0,
-        "width": 54.0,
-        "height": 50.0
+        "cx": 563.0,
+        "cy": 341.0,
+        "r": 9.0,
+        "stroke": "none",
+        "fill": "#ffd8b3"
+      }
+    },
+    {
+      "id": "slot.jaewon.character.head",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 532.0,
+        "cy": 338.0,
+        "r": 29.0,
+        "stroke": "none",
+        "fill": "#ffd8b3"
+      }
+    },
+    {
+      "id": "slot.jaewon.character.hair.cap",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 503.0 337.0 C 505.0 306.0, 560.0 303.0, 562.0 337.0 C 547.0 320.0, 535.0 330.0, 528.0 318.0 C 520.0 331.0, 510.0 320.0, 503.0 337.0 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "none",
+        "fill": "#4B260B"
+      }
+    },
+    {
+      "id": "slot.jaewon.character.eye.left",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 522.0,
+        "cy": 344.0,
+        "r": 3.8,
+        "stroke": "none",
+        "fill": "#2b2118"
+      }
+    },
+    {
+      "id": "slot.jaewon.character.eye.right",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 542.0,
+        "cy": 344.0,
+        "r": 3.8,
+        "stroke": "none",
+        "fill": "#2b2118"
+      }
+    },
+    {
+      "id": "slot.jaewon.character.smile",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 524.0 356.0 Q 532.0 363.0 540.0 356.0",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#b76b3a",
+        "stroke_width": 1.6,
+        "fill": "none"
       }
     },
     {
@@ -561,10 +844,15 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 535.0,
-        "y": 451.0,
-        "width": 60.0,
-        "height": 36.0
+        "x": 493.0,
+        "y": 416.0,
+        "width": 74.0,
+        "height": 38.0,
+        "stroke": "#D77BBE",
+        "stroke_width": 1.4,
+        "rx": 10.0,
+        "ry": 10.0,
+        "fill": "#FCE6F5"
       }
     },
     {
@@ -574,68 +862,100 @@
       "content": {
         "text": "재원",
         "style_role": "label",
-        "x": 553.0,
-        "y": 477.0,
-        "font_size": 28
+        "x": 530.0,
+        "y": 443.0,
+        "font_size": 23,
+        "anchor": "middle",
+        "fill": "#333333"
       }
     },
     {
       "id": "slot.jaewon.bubble",
-      "kind": "rect",
+      "kind": "path",
       "prompt": "",
       "content": {
-        "x": 610.0,
-        "y": 289.0,
-        "width": 250.0,
-        "height": 175.0
+        "d": "M 605.0 363.0 C 605.0 295.14, 655.4 276.0, 725.0 276.0 C 794.6 276.0, 845.0 295.14, 845.0 363.0 C 845.0 430.86, 794.6 450.0, 725.0 450.0 C 655.4 450.0, 605.0 430.86, 605.0 363.0 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#222222",
+        "stroke_width": 1.6,
+        "fill": "#ffffff"
       }
     },
     {
-      "id": "slot.jaewon.b1",
+      "id": "slot.jaewon.tail",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            612.0,
+            375.0
+          ],
+          [
+            631.0,
+            381.0
+          ],
+          [
+            590.0,
+            370.0
+          ]
+        ],
+        "stroke": "#222222",
+        "stroke_width": 1.4,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.jaewon.text1",
       "kind": "text",
       "prompt": "",
       "content": {
         "text": "원의 중심이 모두",
         "style_role": "speech",
-        "x": 667.0,
-        "y": 329.0,
-        "font_size": 28
+        "x": 725.0,
+        "y": 319.0,
+        "font_size": 23,
+        "anchor": "middle"
       }
     },
     {
-      "id": "slot.jaewon.b2",
+      "id": "slot.jaewon.text2",
       "kind": "text",
       "prompt": "",
       "content": {
         "text": "같고 원의 반지름이",
         "style_role": "speech",
-        "x": 640.0,
-        "y": 363.0,
-        "font_size": 28
+        "x": 725.0,
+        "y": 354.0,
+        "font_size": 23,
+        "anchor": "middle"
       }
     },
     {
-      "id": "slot.jaewon.b3",
+      "id": "slot.jaewon.text3",
       "kind": "text",
       "prompt": "",
       "content": {
         "text": "모눈 2칸씩 늘어나게",
         "style_role": "speech",
-        "x": 633.0,
-        "y": 397.0,
-        "font_size": 28
+        "x": 725.0,
+        "y": 389.0,
+        "font_size": 23,
+        "anchor": "middle"
       }
     },
     {
-      "id": "slot.jaewon.b4",
+      "id": "slot.jaewon.text4",
       "kind": "text",
       "prompt": "",
       "content": {
         "text": "그렸어요.",
         "style_role": "speech",
-        "x": 695.0,
-        "y": 431.0,
-        "font_size": 28
+        "x": 725.0,
+        "y": 424.0,
+        "font_size": 23,
+        "anchor": "middle"
       }
     }
   ],
@@ -644,57 +964,69 @@
   "diagrams": [],
   "reading_order": [
     "region.header",
-    "slot.qnum",
-    "slot.qtext",
+    "slot.qtext1",
+    "slot.qtext2",
     "region.diagram",
     "slot.grid.frame",
+    "slot.grid.v1",
+    "slot.grid.h1",
+    "slot.grid.v2",
+    "slot.grid.h2",
+    "slot.grid.v3",
+    "slot.grid.h3",
+    "slot.grid.v4",
+    "slot.grid.h4",
+    "slot.grid.v5",
+    "slot.grid.h5",
+    "slot.grid.v6",
+    "slot.grid.h6",
+    "slot.grid.v7",
+    "slot.grid.h7",
+    "slot.grid.v8",
+    "slot.grid.h8",
+    "slot.grid.v9",
+    "slot.grid.h9",
+    "slot.grid.v10",
+    "slot.grid.h10",
+    "slot.grid.v11",
+    "slot.grid.h11",
     "slot.circle.outer",
     "slot.circle.middle",
     "slot.circle.inner",
     "slot.center",
-    "slot.grid.v1",
-    "slot.grid.v2",
-    "slot.grid.v3",
-    "slot.grid.v4",
-    "slot.grid.v5",
-    "slot.grid.v6",
-    "slot.grid.v7",
-    "slot.grid.v8",
-    "slot.grid.v9",
-    "slot.grid.v10",
-    "slot.grid.v11",
-    "slot.grid.v12",
-    "slot.grid.h1",
-    "slot.grid.h2",
-    "slot.grid.h3",
-    "slot.grid.h4",
-    "slot.grid.h5",
-    "slot.grid.h6",
-    "slot.grid.h7",
-    "slot.grid.h8",
-    "slot.grid.h9",
-    "slot.grid.h10",
-    "slot.grid.h11",
-    "slot.grid.h12",
     "region.characters",
-    "slot.sunga.face",
-    "slot.sunga.body",
+    "slot.sunga.character.body",
+    "slot.sunga.character.ear.left",
+    "slot.sunga.character.ear.right",
+    "slot.sunga.character.head",
+    "slot.sunga.character.hair.cap",
+    "slot.sunga.character.eye.left",
+    "slot.sunga.character.eye.right",
+    "slot.sunga.character.smile",
     "slot.sunga.namebox",
     "slot.sunga.bubble",
-    "slot.jaewon.face",
-    "slot.jaewon.body",
+    "slot.sunga.tail",
+    "slot.jaewon.character.body",
+    "slot.jaewon.character.ear.left",
+    "slot.jaewon.character.ear.right",
+    "slot.jaewon.character.head",
+    "slot.jaewon.character.hair.cap",
+    "slot.jaewon.character.eye.left",
+    "slot.jaewon.character.eye.right",
+    "slot.jaewon.character.smile",
     "slot.jaewon.namebox",
     "slot.jaewon.bubble",
+    "slot.jaewon.tail",
     "slot.sunga.name",
-    "slot.sunga.b1",
-    "slot.sunga.b2",
-    "slot.sunga.b3",
-    "slot.sunga.b4",
+    "slot.sunga.text1",
+    "slot.sunga.text2",
+    "slot.sunga.text3",
+    "slot.sunga.text4",
     "slot.jaewon.name",
-    "slot.jaewon.b1",
-    "slot.jaewon.b2",
-    "slot.jaewon.b3",
-    "slot.jaewon.b4",
+    "slot.jaewon.text1",
+    "slot.jaewon.text2",
+    "slot.jaewon.text3",
+    "slot.jaewon.text4",
     "region.footer"
   ]
 }

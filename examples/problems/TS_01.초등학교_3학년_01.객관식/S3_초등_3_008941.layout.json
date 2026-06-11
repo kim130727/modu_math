@@ -1,0 +1,574 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008941",
+  "title": "운동회에서 하고 싶어 하는 경기",
+  "canvas": {
+    "width": 950,
+    "height": 460,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q1",
+        "slot.q2",
+        "slot.q3"
+      ]
+    },
+    {
+      "id": "region.table",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.table.frame",
+        "slot.table.cell.00",
+        "slot.table.cell.01",
+        "slot.table.cell.02",
+        "slot.table.cell.03",
+        "slot.table.cell.04",
+        "slot.table.cell.10",
+        "slot.table.cell.11",
+        "slot.table.cell.12",
+        "slot.table.cell.13",
+        "slot.table.cell.14",
+        "slot.table.cell.20",
+        "slot.table.cell.21",
+        "slot.table.cell.22",
+        "slot.table.cell.23",
+        "slot.table.cell.24",
+        "slot.table.title",
+        "slot.table.text.00",
+        "slot.table.text.01",
+        "slot.table.text.02",
+        "slot.table.text.03",
+        "slot.table.text.04",
+        "slot.table.text.10",
+        "slot.table.text.11",
+        "slot.table.text.12",
+        "slot.table.text.13",
+        "slot.table.text.14",
+        "slot.table.text.20",
+        "slot.table.text.21",
+        "slot.table.text.22",
+        "slot.table.text.23",
+        "slot.table.text.24"
+      ]
+    },
+    {
+      "id": "region.choices",
+      "role": "choices",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.c1",
+        "slot.c2",
+        "slot.c3",
+        "slot.c4"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "□ 9. 운영이는 반 학생들이 운동회에서 하고 싶어 하는 경기를 조사하여 표로 나타내었습니다.",
+        "style_role": "question",
+        "x": 20.0,
+        "y": 28.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "하고 싶어 하는 여학생 수와 남학생 수가 같은 경기는 무엇인가요?",
+        "style_role": "question",
+        "x": 20.0,
+        "y": 62.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "",
+        "style_role": "question",
+        "x": 20.0,
+        "y": 96.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.title",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "운동회에서 하고 싶어 하는 경기",
+        "style_role": "title",
+        "x": 260.0,
+        "y": 138.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.frame",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 120.0,
+        "y": 168.0,
+        "width": 720.0,
+        "height": 154.0
+      }
+    },
+    {
+      "id": "slot.table.cell.00",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 120.0,
+        "y": 168.0,
+        "width": 180.0,
+        "height": 38.5
+      }
+    },
+    {
+      "id": "slot.table.cell.01",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 300.0,
+        "y": 168.0,
+        "width": 110.0,
+        "height": 38.5
+      }
+    },
+    {
+      "id": "slot.table.cell.02",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 410.0,
+        "y": 168.0,
+        "width": 110.0,
+        "height": 38.5
+      }
+    },
+    {
+      "id": "slot.table.cell.03",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 520.0,
+        "y": 168.0,
+        "width": 110.0,
+        "height": 38.5
+      }
+    },
+    {
+      "id": "slot.table.cell.04",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 630.0,
+        "y": 168.0,
+        "width": 110.0,
+        "height": 38.5
+      }
+    },
+    {
+      "id": "slot.table.cell.10",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 120.0,
+        "y": 206.5,
+        "width": 180.0,
+        "height": 38.5
+      }
+    },
+    {
+      "id": "slot.table.cell.11",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 300.0,
+        "y": 206.5,
+        "width": 110.0,
+        "height": 38.5
+      }
+    },
+    {
+      "id": "slot.table.cell.12",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 410.0,
+        "y": 206.5,
+        "width": 110.0,
+        "height": 38.5
+      }
+    },
+    {
+      "id": "slot.table.cell.13",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 520.0,
+        "y": 206.5,
+        "width": 110.0,
+        "height": 38.5
+      }
+    },
+    {
+      "id": "slot.table.cell.14",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 630.0,
+        "y": 206.5,
+        "width": 110.0,
+        "height": 38.5
+      }
+    },
+    {
+      "id": "slot.table.cell.20",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 120.0,
+        "y": 245.0,
+        "width": 180.0,
+        "height": 77.0
+      }
+    },
+    {
+      "id": "slot.table.cell.21",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 300.0,
+        "y": 245.0,
+        "width": 110.0,
+        "height": 77.0
+      }
+    },
+    {
+      "id": "slot.table.cell.22",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 410.0,
+        "y": 245.0,
+        "width": 110.0,
+        "height": 77.0
+      }
+    },
+    {
+      "id": "slot.table.cell.23",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 520.0,
+        "y": 245.0,
+        "width": 110.0,
+        "height": 77.0
+      }
+    },
+    {
+      "id": "slot.table.cell.24",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 630.0,
+        "y": 245.0,
+        "width": 110.0,
+        "height": 77.0
+      }
+    },
+    {
+      "id": "slot.table.text.00",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "경기",
+        "style_role": "label",
+        "x": 168.0,
+        "y": 192.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.text.01",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "달리기",
+        "style_role": "label",
+        "x": 333.0,
+        "y": 192.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.text.02",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "공굴리기",
+        "style_role": "label",
+        "x": 438.0,
+        "y": 192.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.text.03",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "줄다리기",
+        "style_role": "label",
+        "x": 548.0,
+        "y": 192.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.text.04",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "○× 퀴즈",
+        "style_role": "label",
+        "x": 663.0,
+        "y": 192.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.text.10",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "여학생 수(명)",
+        "style_role": "label",
+        "x": 137.0,
+        "y": 230.5,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.text.11",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "1",
+        "style_role": "label",
+        "x": 348.0,
+        "y": 230.5,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.text.12",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "2",
+        "style_role": "label",
+        "x": 458.0,
+        "y": 230.5,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.text.13",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "3",
+        "style_role": "label",
+        "x": 568.0,
+        "y": 230.5,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.text.14",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "6",
+        "style_role": "label",
+        "x": 678.0,
+        "y": 230.5,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.text.20",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "남학생 수(명)",
+        "style_role": "label",
+        "x": 137.0,
+        "y": 269.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.text.21",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "4",
+        "style_role": "label",
+        "x": 348.0,
+        "y": 269.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.text.22",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "8",
+        "style_role": "label",
+        "x": 458.0,
+        "y": 269.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.text.23",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "3",
+        "style_role": "label",
+        "x": 568.0,
+        "y": 269.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.text.24",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "2",
+        "style_role": "label",
+        "x": 678.0,
+        "y": 269.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.c1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "① 달리기",
+        "style_role": "choice",
+        "x": 54.0,
+        "y": 342.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.c2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "② 공굴리기",
+        "style_role": "choice",
+        "x": 474.0,
+        "y": 342.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.c3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "③ 줄다리기",
+        "style_role": "choice",
+        "x": 54.0,
+        "y": 386.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.c4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "④ ○× 퀴즈",
+        "style_role": "choice",
+        "x": 474.0,
+        "y": 386.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q1",
+    "slot.q2",
+    "slot.q3",
+    "region.table",
+    "slot.table.frame",
+    "slot.table.cell.00",
+    "slot.table.cell.01",
+    "slot.table.cell.02",
+    "slot.table.cell.03",
+    "slot.table.cell.04",
+    "slot.table.cell.10",
+    "slot.table.cell.11",
+    "slot.table.cell.12",
+    "slot.table.cell.13",
+    "slot.table.cell.14",
+    "slot.table.cell.20",
+    "slot.table.cell.21",
+    "slot.table.cell.22",
+    "slot.table.cell.23",
+    "slot.table.cell.24",
+    "slot.table.title",
+    "slot.table.text.00",
+    "slot.table.text.01",
+    "slot.table.text.02",
+    "slot.table.text.03",
+    "slot.table.text.04",
+    "slot.table.text.10",
+    "slot.table.text.11",
+    "slot.table.text.12",
+    "slot.table.text.13",
+    "slot.table.text.14",
+    "slot.table.text.20",
+    "slot.table.text.21",
+    "slot.table.text.22",
+    "slot.table.text.23",
+    "slot.table.text.24",
+    "region.choices",
+    "slot.c1",
+    "slot.c2",
+    "slot.c3",
+    "slot.c4"
+  ]
+}

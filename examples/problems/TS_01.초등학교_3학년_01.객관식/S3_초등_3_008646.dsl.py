@@ -11,7 +11,6 @@ from modu_math.dsl import (
     TextSlot,
     character_body_slots,
     circle_fold_sequence_slots,
-    speech_balloon_slots,
 )
 
 
@@ -26,6 +25,7 @@ def build_problem_template() -> ProblemTemplate:
         show_arrows=True,
         fill="#DFF2F0",
         stroke="#00AFA8",
+        show_folded_sector_edge=False,
     )
 
     return ProblemTemplate(
@@ -37,7 +37,7 @@ def build_problem_template() -> ProblemTemplate:
                 id="region.stem",
                 role="stem",
                 flow="absolute",
-                slot_ids=("slot.stem", "slot.speech.bubble", "slot.speech.tail", "slot.speech.text"),
+                slot_ids=("slot.stem", "slot.speech.bubble", "slot.speech.text"),
             ),
             Region(
                 id="region.diagram",
@@ -68,17 +68,29 @@ def build_problem_template() -> ProblemTemplate:
                 text = '원 모양의 종이를 접어 원의 성질을 알아보고 알맞은 말을 선택하세요.', style_role="question",
                 x = 55, y = 35, font_size = 20),
             *character_body_slots("slot.person.left", cx=230.0, head_cy=128.0, hair="#3B2417", shirt="#58C7BC"),
-            *speech_balloon_slots(
-                "slot.speech",
-                cx=540.0,
-                cy=129.0,
-                width=475.0,
-                height=160.0,
-                tail_x=290.0,
-                tail_y=138.0,
+            PathSlot(
+                id="slot.speech.bubble",
+                prompt="",
+                d=(
+                    "M 302.5 129 "
+                    "C 302.5 71.4, 392.75 49, 540 49 "
+                    "C 687.25 49, 777.5 71.4, 777.5 129 "
+                    "C 777.5 186.6, 687.25 209, 540 209 "
+                    "C 392.75 209, 302.5 186.6, 302.5 129 Z"
+                ),
+                stroke="#222222",
+                stroke_width=1.6,
+                fill="#ffffff",
+            ),
+            TextSlot(
+                id="slot.speech.text",
+                prompt="",
                 text="원 모양의 종이를 둘로 똑같이 나누어지도록\n접었다가 펼친 다음 다른 방향으로 둘로 똑같이\n나누어지도록 접었다가 펼쳤어.",
+                style_role="speech",
+                x=540.0,
+                y=105.0,
                 font_size=22,
-                text_dy=-24.0,
+                anchor="middle",
             ),
             *fold_slots,
             PathSlot(
@@ -102,7 +114,7 @@ def build_problem_template() -> ProblemTemplate:
             PathSlot(
                 id="slot.note.center.arrow",
                 prompt="",
-                d="M 828 374 C 812 350, 826 329, 870 304",
+                d="M 826 372 C 810 350, 824 333, 858 318",
                 stroke="#00843D",
                 stroke_width=2.0,
                 fill="none",
@@ -112,8 +124,8 @@ def build_problem_template() -> ProblemTemplate:
                 prompt="",
                 text="접었을 때 생기는\n선분들이 만나는 점",
                 style_role="annotation",
-                x=774.0,
-                y=386.0,
+                x=772.0,
+                y=384.0,
                 font_size=16,
                 fill="#00843D",
             ),
@@ -124,8 +136,8 @@ def build_problem_template() -> ProblemTemplate:
                 text="원을 둘로 똑같이 나누는 선분은 원의 중심을 지나므로\n원의 ( 지름 , 반지름 )입니다.",
                 style_role="answer",
                 x=481.0,
-                y=468.0,
-                font_size=25,
+                y=466.0,
+                font_size=24,
                 anchor="middle",
             ),
             
@@ -156,8 +168,20 @@ SEMANTIC_OVERRIDE = {
             {"id": "obj.center", "type": "point", "description": "원의 중심"},
         ],
         "relations": [
-            {"id": "rel.divides_equally", "type": "equal_partition", "description": "선분이 원을 둘로 똑같이 나눈다."},
-            {"id": "rel.passes_center", "type": "incidence", "description": "선분이 원의 중심을 지난다."},
+            {
+                "id": "rel.divides_equally",
+                "type": "equal_partition",
+                "from_id": "obj.fold_line",
+                "to_id": "obj.circle_paper",
+                "description": "선분이 원을 둘로 똑같이 나눈다.",
+            },
+            {
+                "id": "rel.passes_center",
+                "type": "incidence",
+                "from_id": "obj.fold_line",
+                "to_id": "obj.center",
+                "description": "선분이 원의 중심을 지난다.",
+            },
         ],
         "problem_solving": {
             "understand": {
@@ -175,8 +199,11 @@ SEMANTIC_OVERRIDE = {
     },
     "answer": {
         "blanks": [],
-        "choices": ["지름", "반지름"],
-        "answer_key": ["지름"],
+        "choices": [
+            {"id": "choice.diameter", "value": "지름"},
+            {"id": "choice.radius", "value": "반지름"},
+        ],
+        "answer_key": [{"id": "choice.diameter", "value": "지름"}],
         "target": {"type": "concept_name", "description": "원을 둘로 똑같이 나누는 선분의 이름"},
         "value": "지름",
         "unit": "",
@@ -207,8 +234,11 @@ SOLVABLE = {
     ],
     "answer": {
         "blanks": [],
-        "choices": ["지름", "반지름"],
-        "answer_key": ["지름"],
+        "choices": [
+            {"id": "choice.diameter", "value": "지름"},
+            {"id": "choice.radius", "value": "반지름"},
+        ],
+        "answer_key": [{"id": "choice.diameter", "value": "지름"}],
         "target": {"type": "concept_name", "description": "원을 둘로 똑같이 나누는 선분의 이름"},
         "value": "지름",
         "unit": "",

@@ -1,10 +1,10 @@
 {
   "schema": "modu.layout.v1",
   "problem_id": "S3_초등_3_008654",
-  "title": "원의 규칙 비교",
+  "title": "가와 나의 원 그리기 규칙",
   "canvas": {
-    "width": 960,
-    "height": 480,
+    "width": 940,
+    "height": 350,
     "coordinate_mode": "logical",
     "background": "#FFFFFF"
   },
@@ -14,52 +14,60 @@
       "role": "stem",
       "flow": "absolute",
       "slot_ids": [
-        "slot.diagram.ga.circle1",
-        "slot.diagram.ga.circle2",
-        "slot.diagram.ga.circle3",
-        "slot.diagram.na.circle1",
-        "slot.diagram.na.circle2",
-        "slot.diagram.na.circle3",
-        "slot.diagram.ga.grid.v1",
-        "slot.diagram.ga.grid.v2",
-        "slot.diagram.ga.grid.v3",
-        "slot.diagram.ga.grid.v4",
-        "slot.diagram.ga.grid.v5",
-        "slot.diagram.ga.grid.v6",
-        "slot.diagram.ga.grid.v7",
-        "slot.diagram.ga.grid.v8",
-        "slot.diagram.ga.grid.v9",
-        "slot.diagram.ga.grid.h1",
-        "slot.diagram.ga.grid.h2",
-        "slot.diagram.ga.grid.h3",
-        "slot.diagram.ga.grid.h4",
-        "slot.diagram.ga.grid.h5",
-        "slot.diagram.ga.grid.h6",
-        "slot.diagram.ga.grid.h7",
-        "slot.diagram.ga.grid.h8",
-        "slot.diagram.na.grid.v1",
-        "slot.diagram.na.grid.v2",
-        "slot.diagram.na.grid.v3",
-        "slot.diagram.na.grid.v4",
-        "slot.diagram.na.grid.v5",
-        "slot.diagram.na.grid.v6",
-        "slot.diagram.na.grid.v7",
-        "slot.diagram.na.grid.v8",
-        "slot.diagram.na.grid.v9",
-        "slot.diagram.na.grid.h1",
-        "slot.diagram.na.grid.h2",
-        "slot.diagram.na.grid.h3",
-        "slot.diagram.na.grid.h4",
-        "slot.diagram.na.grid.h5",
-        "slot.diagram.na.grid.h6",
-        "slot.diagram.na.grid.h7",
-        "slot.diagram.na.grid.h8",
         "slot.q1",
-        "slot.label.ga",
-        "slot.label.na",
-        "slot.desc1",
-        "slot.desc2",
-        "slot.bottom"
+        "slot.q2"
+      ]
+    },
+    {
+      "id": "region.diagram.ga",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.ga.grid.frame",
+        "slot.ga.grid.v1",
+        "slot.ga.grid.h1",
+        "slot.ga.grid.v2",
+        "slot.ga.grid.h2",
+        "slot.ga.grid.v3",
+        "slot.ga.grid.h3",
+        "slot.ga.grid.v4",
+        "slot.ga.grid.h4",
+        "slot.ga.grid.v5",
+        "slot.ga.grid.h5",
+        "slot.ga.circle1.r1",
+        "slot.ga.circle2.r2",
+        "slot.ga.circle3.r3",
+        "slot.label.ga"
+      ]
+    },
+    {
+      "id": "region.diagram.na",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.na.grid.frame",
+        "slot.na.grid.v1",
+        "slot.na.grid.h1",
+        "slot.na.grid.v2",
+        "slot.na.grid.h2",
+        "slot.na.grid.v3",
+        "slot.na.grid.h3",
+        "slot.na.grid.v4",
+        "slot.na.grid.h4",
+        "slot.na.grid.v5",
+        "slot.na.grid.h5",
+        "slot.na.circle1.r1",
+        "slot.na.circle2.r2",
+        "slot.na.circle3.r3",
+        "slot.label.na"
+      ]
+    },
+    {
+      "id": "region.choice",
+      "role": "choices",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice1"
       ]
     }
   ],
@@ -69,11 +77,23 @@
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "29. 가와 나는 규칙에 따라 원을 그린 것입니다. 알맞은 것을 선택해 두 모양을 그린 규칙의 같은 점과 다른 점을 설명해 보세요.",
+        "text": "가와 나는 규칙에 따라 원을 그린 것입니다. 알맞은 것을 선택해 두 모양",
         "style_role": "question",
-        "x": 10.0,
-        "y": 28.0,
-        "font_size": 28
+        "x": 8.0,
+        "y": 30.0,
+        "font_size": 24
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "을 그린 규칙의 같은 점과 다른 점을 설명해 보세요.",
+        "style_role": "question",
+        "x": 8.0,
+        "y": 66.0,
+        "font_size": 24
       }
     },
     {
@@ -83,9 +103,202 @@
       "content": {
         "text": "가",
         "style_role": "label",
-        "x": 232.0,
-        "y": 82.0,
-        "font_size": 28
+        "x": 220.0,
+        "y": 103.0,
+        "font_size": 24
+      }
+    },
+    {
+      "id": "slot.ga.grid.frame",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 250.0 84.0 L 430.0 84.0 L 430.0 264.0 L 250.0 264.0 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#37C7FF",
+        "stroke_width": 1.2,
+        "stroke_dasharray": "4 3",
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.ga.grid.v1",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 280.0 84.0 L 280.0 264.0",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#37C7FF",
+        "stroke_width": 1.0,
+        "stroke_dasharray": "4 3",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.ga.grid.h1",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 250.0 114.0 L 430.0 114.0",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#37C7FF",
+        "stroke_width": 1.0,
+        "stroke_dasharray": "4 3",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.ga.grid.v2",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 310.0 84.0 L 310.0 264.0",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#37C7FF",
+        "stroke_width": 1.0,
+        "stroke_dasharray": "4 3",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.ga.grid.h2",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 250.0 144.0 L 430.0 144.0",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#37C7FF",
+        "stroke_width": 1.0,
+        "stroke_dasharray": "4 3",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.ga.grid.v3",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 340.0 84.0 L 340.0 264.0",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#37C7FF",
+        "stroke_width": 1.0,
+        "stroke_dasharray": "4 3",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.ga.grid.h3",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 250.0 174.0 L 430.0 174.0",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#37C7FF",
+        "stroke_width": 1.0,
+        "stroke_dasharray": "4 3",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.ga.grid.v4",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 370.0 84.0 L 370.0 264.0",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#37C7FF",
+        "stroke_width": 1.0,
+        "stroke_dasharray": "4 3",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.ga.grid.h4",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 250.0 204.0 L 430.0 204.0",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#37C7FF",
+        "stroke_width": 1.0,
+        "stroke_dasharray": "4 3",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.ga.grid.v5",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 400.0 84.0 L 400.0 264.0",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#37C7FF",
+        "stroke_width": 1.0,
+        "stroke_dasharray": "4 3",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.ga.grid.h5",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 250.0 234.0 L 430.0 234.0",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#37C7FF",
+        "stroke_width": 1.0,
+        "stroke_dasharray": "4 3",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.ga.circle1.r1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 280.0,
+        "cy": 174.0,
+        "r": 30.0,
+        "stroke": "#444444",
+        "stroke_width": 1.4,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.ga.circle2.r2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 310.0,
+        "cy": 174.0,
+        "r": 60.0,
+        "stroke": "#444444",
+        "stroke_width": 1.4,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.ga.circle3.r3",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 340.0,
+        "cy": 174.0,
+        "r": 90.0,
+        "stroke": "#444444",
+        "stroke_width": 1.4,
+        "fill": "none"
       }
     },
     {
@@ -95,587 +308,214 @@
       "content": {
         "text": "나",
         "style_role": "label",
-        "x": 516.0,
-        "y": 82.0,
-        "font_size": 28
+        "x": 505.0,
+        "y": 103.0,
+        "font_size": 24
       }
     },
     {
-      "id": "slot.diagram.ga.grid.v1",
-      "kind": "line",
+      "id": "slot.na.grid.frame",
+      "kind": "path",
       "prompt": "",
       "content": {
-        "x1": 252.0,
-        "y1": 82.0,
-        "x2": 252.0,
-        "y2": 261.0,
-        "stroke": "#9AA0A6",
+        "d": "M 535.0 84.0 L 715.0 84.0 L 715.0 264.0 L 535.0 264.0 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#37C7FF",
         "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
+        "stroke_dasharray": "4 3",
+        "fill": "#ffffff"
       }
     },
     {
-      "id": "slot.diagram.ga.grid.v2",
-      "kind": "line",
+      "id": "slot.na.grid.v1",
+      "kind": "path",
       "prompt": "",
       "content": {
-        "x1": 273.0,
-        "y1": 82.0,
-        "x2": 273.0,
-        "y2": 261.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.diagram.ga.grid.v3",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 294.0,
-        "y1": 82.0,
-        "x2": 294.0,
-        "y2": 261.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.diagram.ga.grid.v4",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 315.0,
-        "y1": 82.0,
-        "x2": 315.0,
-        "y2": 261.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.diagram.ga.grid.v5",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 336.0,
-        "y1": 82.0,
-        "x2": 336.0,
-        "y2": 261.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.diagram.ga.grid.v6",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 357.0,
-        "y1": 82.0,
-        "x2": 357.0,
-        "y2": 261.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.diagram.ga.grid.v7",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 378.0,
-        "y1": 82.0,
-        "x2": 378.0,
-        "y2": 261.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.diagram.ga.grid.v8",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 399.0,
-        "y1": 82.0,
-        "x2": 399.0,
-        "y2": 261.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.diagram.ga.grid.v9",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 420.0,
-        "y1": 82.0,
-        "x2": 420.0,
-        "y2": 261.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.diagram.ga.grid.h1",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 252.0,
-        "y1": 82.0,
-        "x2": 421.0,
-        "y2": 82.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.diagram.ga.grid.h2",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 252.0,
-        "y1": 103.0,
-        "x2": 421.0,
-        "y2": 103.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.diagram.ga.grid.h3",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 252.0,
-        "y1": 124.0,
-        "x2": 421.0,
-        "y2": 124.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.diagram.ga.grid.h4",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 252.0,
-        "y1": 145.0,
-        "x2": 421.0,
-        "y2": 145.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.diagram.ga.grid.h5",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 252.0,
-        "y1": 166.0,
-        "x2": 421.0,
-        "y2": 166.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.diagram.ga.grid.h6",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 252.0,
-        "y1": 187.0,
-        "x2": 421.0,
-        "y2": 187.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.diagram.ga.grid.h7",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 252.0,
-        "y1": 208.0,
-        "x2": 421.0,
-        "y2": 208.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.diagram.ga.grid.h8",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 252.0,
-        "y1": 229.0,
-        "x2": 421.0,
-        "y2": 229.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.diagram.ga.circle1",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 115.0,
-        "cy": 150.0,
-        "r": 75.0,
+        "d": "M 565.0 84.0 L 565.0 264.0",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#37C7FF",
+        "stroke_width": 1.0,
+        "stroke_dasharray": "4 3",
         "fill": "none"
       }
     },
     {
-      "id": "slot.diagram.ga.circle2",
-      "kind": "circle",
+      "id": "slot.na.grid.h1",
+      "kind": "path",
       "prompt": "",
       "content": {
-        "cx": 420.0,
-        "cy": 175.0,
-        "r": 55.0,
+        "d": "M 535.0 114.0 L 715.0 114.0",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#37C7FF",
+        "stroke_width": 1.0,
+        "stroke_dasharray": "4 3",
         "fill": "none"
       }
     },
     {
-      "id": "slot.diagram.ga.circle3",
+      "id": "slot.na.grid.v2",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 595.0 84.0 L 595.0 264.0",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#37C7FF",
+        "stroke_width": 1.0,
+        "stroke_dasharray": "4 3",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.na.grid.h2",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 535.0 144.0 L 715.0 144.0",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#37C7FF",
+        "stroke_width": 1.0,
+        "stroke_dasharray": "4 3",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.na.grid.v3",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 625.0 84.0 L 625.0 264.0",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#37C7FF",
+        "stroke_width": 1.0,
+        "stroke_dasharray": "4 3",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.na.grid.h3",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 535.0 174.0 L 715.0 174.0",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#37C7FF",
+        "stroke_width": 1.0,
+        "stroke_dasharray": "4 3",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.na.grid.v4",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 655.0 84.0 L 655.0 264.0",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#37C7FF",
+        "stroke_width": 1.0,
+        "stroke_dasharray": "4 3",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.na.grid.h4",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 535.0 204.0 L 715.0 204.0",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#37C7FF",
+        "stroke_width": 1.0,
+        "stroke_dasharray": "4 3",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.na.grid.v5",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 685.0 84.0 L 685.0 264.0",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#37C7FF",
+        "stroke_width": 1.0,
+        "stroke_dasharray": "4 3",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.na.grid.h5",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 535.0 234.0 L 715.0 234.0",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#37C7FF",
+        "stroke_width": 1.0,
+        "stroke_dasharray": "4 3",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.na.circle1.r1",
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 295.0,
-        "cy": 170.0,
+        "cx": 625.0,
+        "cy": 174.0,
         "r": 30.0,
+        "stroke": "#444444",
+        "stroke_width": 1.4,
         "fill": "none"
       }
     },
     {
-      "id": "slot.diagram.na.grid.v1",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 536.0,
-        "y1": 82.0,
-        "x2": 536.0,
-        "y2": 261.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.diagram.na.grid.v2",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 557.0,
-        "y1": 82.0,
-        "x2": 557.0,
-        "y2": 261.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.diagram.na.grid.v3",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 578.0,
-        "y1": 82.0,
-        "x2": 578.0,
-        "y2": 261.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.diagram.na.grid.v4",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 599.0,
-        "y1": 82.0,
-        "x2": 599.0,
-        "y2": 261.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.diagram.na.grid.v5",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 620.0,
-        "y1": 82.0,
-        "x2": 620.0,
-        "y2": 261.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.diagram.na.grid.v6",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 641.0,
-        "y1": 82.0,
-        "x2": 641.0,
-        "y2": 261.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.diagram.na.grid.v7",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 662.0,
-        "y1": 82.0,
-        "x2": 662.0,
-        "y2": 261.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.diagram.na.grid.v8",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 683.0,
-        "y1": 82.0,
-        "x2": 683.0,
-        "y2": 261.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.diagram.na.grid.v9",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 704.0,
-        "y1": 82.0,
-        "x2": 704.0,
-        "y2": 261.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.diagram.na.grid.h1",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 536.0,
-        "y1": 82.0,
-        "x2": 705.0,
-        "y2": 82.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.diagram.na.grid.h2",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 536.0,
-        "y1": 103.0,
-        "x2": 705.0,
-        "y2": 103.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.diagram.na.grid.h3",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 536.0,
-        "y1": 124.0,
-        "x2": 705.0,
-        "y2": 124.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.diagram.na.grid.h4",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 536.0,
-        "y1": 145.0,
-        "x2": 705.0,
-        "y2": 145.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.diagram.na.grid.h5",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 536.0,
-        "y1": 166.0,
-        "x2": 705.0,
-        "y2": 166.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.diagram.na.grid.h6",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 536.0,
-        "y1": 187.0,
-        "x2": 705.0,
-        "y2": 187.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.diagram.na.grid.h7",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 536.0,
-        "y1": 208.0,
-        "x2": 705.0,
-        "y2": 208.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.diagram.na.grid.h8",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 536.0,
-        "y1": 229.0,
-        "x2": 705.0,
-        "y2": 229.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.diagram.na.circle1",
+      "id": "slot.na.circle2.r2",
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 620.0,
-        "cy": 173.0,
-        "r": 88.0,
+        "cx": 625.0,
+        "cy": 174.0,
+        "r": 60.0,
+        "stroke": "#444444",
+        "stroke_width": 1.4,
         "fill": "none"
       }
     },
     {
-      "id": "slot.diagram.na.circle2",
+      "id": "slot.na.circle3.r3",
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 620.0,
-        "cy": 173.0,
-        "r": 56.0,
+        "cx": 625.0,
+        "cy": 174.0,
+        "r": 90.0,
+        "stroke": "#444444",
+        "stroke_width": 1.4,
         "fill": "none"
       }
     },
     {
-      "id": "slot.diagram.na.circle3",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 620.0,
-        "cy": 173.0,
-        "r": 29.0,
-        "fill": "none"
-      }
-    },
-    {
-      "id": "slot.desc1",
+      "id": "slot.choice1",
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "(2) 다른 점: ( 가, 나)는 원의 중심을 옮겨 가며 그렸고,( 가, 나)는 원의 중심이 모두 같게 그렸습니다.",
-        "style_role": "question",
-        "x": 10.0,
-        "y": 310.0,
-        "font_size": 28
-      }
-    },
-    {
-      "id": "slot.desc2",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "(2) 다른 점: 가는 원의 중심을 옮겨 가며 그렸고, 나는 원의 중심이 모두 같게 그렸습니다.",
-        "style_role": "question",
-        "x": 10.0,
-        "y": 386.0,
-        "font_size": 28
-      }
-    },
-    {
-      "id": "slot.bottom",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "(2) 가, 나",
-        "style_role": "question",
-        "x": 2.0,
-        "y": 462.0,
-        "font_size": 28
+        "text": "다른 점: (가,나)는 원의 중심을 옮겨가며 그렸고, (가,나)는 원의 중심이 모두 같게 그렸습니다.",
+        "style_role": "answer_option",
+        "x": 8.0,
+        "y": 315.0,
+        "font_size": 23
       }
     }
   ],
@@ -684,51 +524,41 @@
   "diagrams": [],
   "reading_order": [
     "region.stem",
-    "slot.diagram.ga.circle1",
-    "slot.diagram.ga.circle2",
-    "slot.diagram.ga.circle3",
-    "slot.diagram.na.circle1",
-    "slot.diagram.na.circle2",
-    "slot.diagram.na.circle3",
-    "slot.diagram.ga.grid.v1",
-    "slot.diagram.ga.grid.v2",
-    "slot.diagram.ga.grid.v3",
-    "slot.diagram.ga.grid.v4",
-    "slot.diagram.ga.grid.v5",
-    "slot.diagram.ga.grid.v6",
-    "slot.diagram.ga.grid.v7",
-    "slot.diagram.ga.grid.v8",
-    "slot.diagram.ga.grid.v9",
-    "slot.diagram.ga.grid.h1",
-    "slot.diagram.ga.grid.h2",
-    "slot.diagram.ga.grid.h3",
-    "slot.diagram.ga.grid.h4",
-    "slot.diagram.ga.grid.h5",
-    "slot.diagram.ga.grid.h6",
-    "slot.diagram.ga.grid.h7",
-    "slot.diagram.ga.grid.h8",
-    "slot.diagram.na.grid.v1",
-    "slot.diagram.na.grid.v2",
-    "slot.diagram.na.grid.v3",
-    "slot.diagram.na.grid.v4",
-    "slot.diagram.na.grid.v5",
-    "slot.diagram.na.grid.v6",
-    "slot.diagram.na.grid.v7",
-    "slot.diagram.na.grid.v8",
-    "slot.diagram.na.grid.v9",
-    "slot.diagram.na.grid.h1",
-    "slot.diagram.na.grid.h2",
-    "slot.diagram.na.grid.h3",
-    "slot.diagram.na.grid.h4",
-    "slot.diagram.na.grid.h5",
-    "slot.diagram.na.grid.h6",
-    "slot.diagram.na.grid.h7",
-    "slot.diagram.na.grid.h8",
     "slot.q1",
+    "slot.q2",
+    "region.diagram.ga",
+    "slot.ga.grid.frame",
+    "slot.ga.grid.v1",
+    "slot.ga.grid.h1",
+    "slot.ga.grid.v2",
+    "slot.ga.grid.h2",
+    "slot.ga.grid.v3",
+    "slot.ga.grid.h3",
+    "slot.ga.grid.v4",
+    "slot.ga.grid.h4",
+    "slot.ga.grid.v5",
+    "slot.ga.grid.h5",
+    "slot.ga.circle1.r1",
+    "slot.ga.circle2.r2",
+    "slot.ga.circle3.r3",
     "slot.label.ga",
+    "region.diagram.na",
+    "slot.na.grid.frame",
+    "slot.na.grid.v1",
+    "slot.na.grid.h1",
+    "slot.na.grid.v2",
+    "slot.na.grid.h2",
+    "slot.na.grid.v3",
+    "slot.na.grid.h3",
+    "slot.na.grid.v4",
+    "slot.na.grid.h4",
+    "slot.na.grid.v5",
+    "slot.na.grid.h5",
+    "slot.na.circle1.r1",
+    "slot.na.circle2.r2",
+    "slot.na.circle3.r3",
     "slot.label.na",
-    "slot.desc1",
-    "slot.desc2",
-    "slot.bottom"
+    "region.choice",
+    "slot.choice1"
   ]
 }

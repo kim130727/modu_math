@@ -1,0 +1,102 @@
+{
+  "problem_id": "S3_초등_3_008941",
+  "problem_type": "표 비교",
+  "metadata": {
+    "title": "운동회에서 하고 싶어 하는 경기",
+    "tags": [],
+    "question": "운동회에서 하고 싶어 하는 경기를 조사한 표를 보고 여학생 수와 남학생 수가 같은 경기를 찾는 문제",
+    "required_layout_ids": [
+      "slot.table.frame",
+      "slot.table.cell.00",
+      "slot.table.cell.01",
+      "slot.table.cell.02",
+      "slot.table.cell.03",
+      "slot.table.cell.04",
+      "slot.table.cell.10",
+      "slot.table.cell.11",
+      "slot.table.cell.12",
+      "slot.table.cell.13",
+      "slot.table.cell.14",
+      "slot.table.cell.20",
+      "slot.table.cell.21",
+      "slot.table.cell.22",
+      "slot.table.cell.23",
+      "slot.table.cell.24"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "표를 보고 여학생 수와 남학생 수가 같은 경기를 고르기"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.table",
+        "type": "survey_table"
+      },
+      {
+        "id": "obj.game.race",
+        "type": "game",
+        "name": "달리기"
+      },
+      {
+        "id": "obj.game.ball_roll",
+        "type": "game",
+        "name": "공굴리기"
+      },
+      {
+        "id": "obj.game.tug",
+        "type": "game",
+        "name": "줄다리기"
+      },
+      {
+        "id": "obj.game.quiz",
+        "type": "game",
+        "name": "○× 퀴즈"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.table",
+          "obj.game.race",
+          "obj.game.ball_roll",
+          "obj.game.tug",
+          "obj.game.quiz"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.compare_genders"
+        ]
+      },
+      "plan": {
+        "method": "표의 각 경기별 여학생 수와 남학생 수를 비교한다.",
+        "description": "같은 수인 경기 하나를 찾는다."
+      },
+      "execute": {
+        "expected_operations": [
+          "compare_counts_each_game",
+          "find_equal_pair"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "pairwise_equality_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "same_count_game",
+      "description": "여학생 수와 남학생 수가 같은 경기"
+    },
+    "value": 3,
+    "unit": ""
+  }
+}

@@ -7,23 +7,6 @@
   },
   "elements": [
     {
-      "id": "slot.q_num.text",
-      "type": "text",
-      "attributes": {
-        "x": 10.0,
-        "y": 34.0,
-        "max_width": 824.0,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
-      },
-      "source_ref": "slot.q_num",
-      "refs": {
-        "layout_slot_id": "slot.q_num"
-      },
-      "text": "35."
-    },
-    {
       "id": "slot.q_text_1.text",
       "type": "text",
       "attributes": {
@@ -38,32 +21,15 @@
       "refs": {
         "layout_slot_id": "slot.q_text_1"
       },
-      "text": "그림에서 원의 반지름을 나타내는 선분을 찾아 기호를 모두 선택해 보세"
-    },
-    {
-      "id": "slot.q_text_2.text",
-      "type": "text",
-      "attributes": {
-        "x": 25.0,
-        "y": 68.0,
-        "max_width": 824.0,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
-      },
-      "source_ref": "slot.q_text_2",
-      "refs": {
-        "layout_slot_id": "slot.q_text_2"
-      },
-      "text": "요."
+      "text": "\n    그림에서 원의 반지름을 나타내는 선분을 찾아 기호를 모두 선택해\n    보세요.\n  "
     },
     {
       "id": "slot.circle.circle",
       "type": "circle",
       "attributes": {
-        "cx": 497.0,
-        "cy": 160.0,
-        "r": 77.0,
+        "cx": 480.0,
+        "cy": 175.0,
+        "r": 90.0,
         "stroke": "#111111",
         "stroke-width": 2.0,
         "fill": "none"
@@ -77,9 +43,9 @@
       "id": "slot.center.circle",
       "type": "circle",
       "attributes": {
-        "cx": 486.0,
-        "cy": 155.0,
-        "r": 3.5,
+        "cx": 480.0,
+        "cy": 175.0,
+        "r": 5.0,
         "stroke": "#111111",
         "stroke-width": 2.0,
         "fill": "#ff4fa3"
@@ -106,27 +72,11 @@
       }
     },
     {
-      "id": "slot.pt.b.circle",
-      "type": "circle",
-      "attributes": {
-        "cx": 435.0,
-        "cy": 241.0,
-        "r": 2.8,
-        "stroke": "#111111",
-        "stroke-width": 2.0,
-        "fill": "#222222"
-      },
-      "source_ref": "slot.pt.b",
-      "refs": {
-        "layout_slot_id": "slot.pt.b"
-      }
-    },
-    {
       "id": "slot.pt.c.circle",
       "type": "circle",
       "attributes": {
-        "cx": 548.0,
-        "cy": 217.0,
+        "cx": 560.0,
+        "cy": 215.0,
         "r": 2.8,
         "stroke": "#111111",
         "stroke-width": 2.0,
@@ -138,45 +88,45 @@
       }
     },
     {
-      "id": "slot.pt.d.circle",
+      "id": "slot.pt.c.copy5.circle",
       "type": "circle",
       "attributes": {
-        "cx": 501.0,
-        "cy": 233.0,
+        "cx": 414.0,
+        "cy": 236.0,
         "r": 2.8,
         "stroke": "#111111",
         "stroke-width": 2.0,
         "fill": "#222222"
       },
-      "source_ref": "slot.pt.d",
+      "source_ref": "slot.pt.c.copy5",
       "refs": {
-        "layout_slot_id": "slot.pt.d"
+        "layout_slot_id": "slot.pt.c.copy5"
       }
     },
     {
-      "id": "slot.pt.e.circle",
+      "id": "slot.pt.c.copy6.circle",
       "type": "circle",
       "attributes": {
-        "cx": 501.0,
-        "cy": 86.0,
+        "cx": 500.0,
+        "cy": 262.0,
         "r": 2.8,
         "stroke": "#111111",
         "stroke-width": 2.0,
         "fill": "#222222"
       },
-      "source_ref": "slot.pt.e",
+      "source_ref": "slot.pt.c.copy6",
       "refs": {
-        "layout_slot_id": "slot.pt.e"
+        "layout_slot_id": "slot.pt.c.copy6"
       }
     },
     {
       "id": "slot.seg.1.line",
       "type": "line",
       "attributes": {
-        "x1": 418.0,
+        "x1": 420.0,
         "y1": 110.0,
-        "x2": 486.0,
-        "y2": 155.0,
+        "x2": 480.0,
+        "y2": 175.0,
         "stroke": "#222222",
         "stroke-width": 1.5
       },
@@ -189,10 +139,10 @@
       "id": "slot.seg.2.line",
       "type": "line",
       "attributes": {
-        "x1": 418.0,
+        "x1": 420.0,
         "y1": 110.0,
-        "x2": 501.0,
-        "y2": 233.0,
+        "x2": 500.0,
+        "y2": 260.0,
         "stroke": "#222222",
         "stroke-width": 1.5
       },
@@ -205,10 +155,10 @@
       "id": "slot.seg.3.line",
       "type": "line",
       "attributes": {
-        "x1": 435.0,
-        "y1": 241.0,
-        "x2": 486.0,
-        "y2": 155.0,
+        "x1": 415.0,
+        "y1": 235.0,
+        "x2": 560.0,
+        "y2": 215.0,
         "stroke": "#222222",
         "stroke-width": 1.5
       },
@@ -221,10 +171,10 @@
       "id": "slot.seg.4.line",
       "type": "line",
       "attributes": {
-        "x1": 435.0,
-        "y1": 241.0,
-        "x2": 548.0,
-        "y2": 217.0,
+        "x1": 415.0,
+        "y1": 235.0,
+        "x2": 480.0,
+        "y2": 175.0,
         "stroke": "#222222",
         "stroke-width": 1.5
       },
@@ -237,12 +187,12 @@
       "id": "slot.lb.o.text",
       "type": "text",
       "attributes": {
-        "x": 482.0,
-        "y": 141.0,
+        "x": 475.0,
+        "y": 155.0,
         "max_width": 824.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 24
+        "font-size": 25
       },
       "source_ref": "slot.lb.o",
       "refs": {
@@ -254,12 +204,12 @@
       "id": "slot.lb.ga.text",
       "type": "text",
       "attributes": {
-        "x": 407.0,
-        "y": 101.0,
+        "x": 390.0,
+        "y": 110.0,
         "max_width": 824.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 24
+        "font-size": 25
       },
       "source_ref": "slot.lb.ga",
       "refs": {
@@ -271,12 +221,12 @@
       "id": "slot.lb.na.text",
       "type": "text",
       "attributes": {
-        "x": 414.0,
-        "y": 253.0,
+        "x": 395.0,
+        "y": 255.0,
         "max_width": 824.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 24
+        "font-size": 25
       },
       "source_ref": "slot.lb.na",
       "refs": {
@@ -288,12 +238,12 @@
       "id": "slot.lb.da.text",
       "type": "text",
       "attributes": {
-        "x": 502.0,
-        "y": 248.0,
+        "x": 510.0,
+        "y": 280.0,
         "max_width": 824.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 24
+        "font-size": 25
       },
       "source_ref": "slot.lb.da",
       "refs": {
@@ -305,12 +255,12 @@
       "id": "slot.lb.ra.text",
       "type": "text",
       "attributes": {
-        "x": 559.0,
-        "y": 212.0,
+        "x": 590.0,
+        "y": 210.0,
         "max_width": 824.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 24
+        "font-size": 25
       },
       "source_ref": "slot.lb.ra",
       "refs": {
@@ -322,12 +272,12 @@
       "id": "slot.choice.ga.text",
       "type": "text",
       "attributes": {
-        "x": 115.0,
-        "y": 270.0,
-        "max_width": 824.0,
+        "x": 60.0,
+        "y": 320.0,
+        "max_width": 825.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 30
       },
       "source_ref": "slot.choice.ga",
       "refs": {
@@ -339,12 +289,12 @@
       "id": "slot.choice.na.text",
       "type": "text",
       "attributes": {
-        "x": 300.0,
-        "y": 270.0,
+        "x": 285.0,
+        "y": 320.0,
         "max_width": 824.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 30
       },
       "source_ref": "slot.choice.na",
       "refs": {
@@ -356,12 +306,12 @@
       "id": "slot.choice.da.text",
       "type": "text",
       "attributes": {
-        "x": 545.0,
-        "y": 270.0,
+        "x": 510.0,
+        "y": 320.0,
         "max_width": 824.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 30
       },
       "source_ref": "slot.choice.da",
       "refs": {
@@ -373,12 +323,12 @@
       "id": "slot.choice.ra.text",
       "type": "text",
       "attributes": {
-        "x": 735.0,
-        "y": 270.0,
+        "x": 720.0,
+        "y": 320.0,
         "max_width": 824.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 30
       },
       "source_ref": "slot.choice.ra",
       "refs": {

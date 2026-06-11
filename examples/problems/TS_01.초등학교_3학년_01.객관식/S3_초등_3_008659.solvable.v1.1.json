@@ -1,0 +1,96 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008659",
+  "problem_type": "diagram_choice",
+  "inputs": {
+    "target_label": "원의 중심",
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.circle",
+      "value": {
+        "center": "ㄹ",
+        "radius": 3
+      }
+    },
+    {
+      "ref": "obj.point.giyeok",
+      "value": {
+        "label": "ㄱ",
+        "coordinate": [
+          1,
+          4
+        ]
+      }
+    },
+    {
+      "ref": "obj.point.nieun",
+      "value": {
+        "label": "ㄴ",
+        "coordinate": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "ref": "obj.point.digeut",
+      "value": {
+        "label": "ㄷ",
+        "coordinate": [
+          4,
+          2
+        ]
+      }
+    },
+    {
+      "ref": "obj.point.rieul",
+      "value": {
+        "label": "ㄹ",
+        "coordinate": [
+          4,
+          4
+        ]
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "selected_point"
+  },
+  "method": "center_identification",
+  "plan": [
+    "후보점들의 위치를 비교한다.",
+    "원의 가운데에 있는 점을 찾는다.",
+    "점 ㄹ을 선택한다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "원의 중심에 있는 점은 ㄹ",
+      "value": "ㄹ"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "선택한 점이 원의 중심인가",
+      "expected": "ㄹ",
+      "actual": "ㄹ",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "selected_point",
+      "description": "원의 중심"
+    },
+    "value": "ㄹ",
+    "unit": ""
+  }
+}

@@ -2,18 +2,17 @@
   "problem_id": "S3_초등_3_008662",
   "problem_type": "geometry_multiple_choice",
   "metadata": {
-    "title": "원의 지름은 어느 선분인가요?",
+    "title": "원의 지름은 어떤 선분인가요?",
     "tags": [],
     "question": "원의 지름은 어느 선분인가요?",
     "required_layout_ids": [
-      "slot.icon",
-      "slot.circle",
-      "slot.line.1",
-      "slot.line.2",
-      "slot.line.3",
-      "slot.line.4",
-      "slot.pt.o",
-      "slot.pt.pink"
+      "slot.circle.outer",
+      "slot.circle.center",
+      "slot.line.top",
+      "slot.line.middle1",
+      "slot.line.middle2",
+      "slot.line.bottom",
+      "slot.dot.center"
     ],
     "extraction_confidence": 1.0,
     "language": "ko",
@@ -84,11 +83,12 @@
     "blanks": [],
     "choices": [],
     "answer_key": [],
+    "confidence": 1.0,
     "target": {
       "type": "choice",
       "description": "원의 지름에 해당하는 보기"
     },
-    "value": 2,
+    "value": "② 선분 ㄷㄹ",
     "unit": ""
   }
 }

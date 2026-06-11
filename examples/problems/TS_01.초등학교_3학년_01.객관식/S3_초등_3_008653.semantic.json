@@ -3,59 +3,46 @@
   "problem_type": "diagram_choice",
   "metadata": {
     "title": "가와 나의 원 그리기 규칙",
-    "tags": [],
-    "instruction": "그림을 보고 같은 점과 다른 점을 비교한다.",
+    "tags": [
+      "geometry",
+      "circle",
+      "grid",
+      "rule_comparison"
+    ],
     "question": "가와 나의 원 그리기 규칙을 비교하여 알맞은 설명을 고르는 문제",
     "required_layout_ids": [
-      "slot.left.frame",
-      "slot.left.grid.v1",
-      "slot.left.grid.v2",
-      "slot.left.grid.v3",
-      "slot.left.grid.v4",
-      "slot.left.grid.v5",
-      "slot.left.grid.v6",
-      "slot.left.grid.v7",
-      "slot.left.grid.v8",
-      "slot.left.grid.v9",
-      "slot.left.grid.h1",
-      "slot.left.grid.h2",
-      "slot.left.grid.h3",
-      "slot.left.grid.h4",
-      "slot.left.grid.h5",
-      "slot.left.grid.h6",
-      "slot.left.grid.h7",
-      "slot.left.grid.h8",
-      "slot.left.grid.h9",
-      "slot.left.grid.h10",
-      "slot.left.c1",
-      "slot.left.c2",
-      "slot.left.c3",
-      "slot.right.frame",
-      "slot.right.grid.v1",
-      "slot.right.grid.v2",
-      "slot.right.grid.v3",
-      "slot.right.grid.v4",
-      "slot.right.grid.v5",
-      "slot.right.grid.v6",
-      "slot.right.grid.v7",
-      "slot.right.grid.v8",
-      "slot.right.grid.v9",
-      "slot.right.grid.h1",
-      "slot.right.grid.h2",
-      "slot.right.grid.h3",
-      "slot.right.grid.h4",
-      "slot.right.grid.h5",
-      "slot.right.grid.h6",
-      "slot.right.grid.h7",
-      "slot.right.grid.h8",
-      "slot.right.grid.h9",
-      "slot.right.grid.h10",
-      "slot.right.c1",
-      "slot.right.c2",
-      "slot.right.c3"
+      "slot.ga.grid.frame",
+      "slot.ga.grid.v1",
+      "slot.ga.grid.h1",
+      "slot.ga.grid.v2",
+      "slot.ga.grid.h2",
+      "slot.ga.grid.v3",
+      "slot.ga.grid.h3",
+      "slot.ga.grid.v4",
+      "slot.ga.grid.h4",
+      "slot.ga.grid.v5",
+      "slot.ga.grid.h5",
+      "slot.ga.circle1.r1",
+      "slot.ga.circle2.r2",
+      "slot.ga.circle3.r3",
+      "slot.na.grid.frame",
+      "slot.na.grid.v1",
+      "slot.na.grid.h1",
+      "slot.na.grid.v2",
+      "slot.na.grid.h2",
+      "slot.na.grid.v3",
+      "slot.na.grid.h3",
+      "slot.na.grid.v4",
+      "slot.na.grid.h4",
+      "slot.na.grid.v5",
+      "slot.na.grid.h5",
+      "slot.na.circle1.r1",
+      "slot.na.circle2.r2",
+      "slot.na.circle3.r3"
     ],
     "extraction_confidence": 1.0,
-    "language": "ko"
+    "language": "ko",
+    "instruction": "그림을 보고 같은 점과 다른 점을 설명한다."
   },
   "domain": {
     "objects": [
@@ -72,15 +59,66 @@
       {
         "id": "obj.circle_set.ga",
         "type": "circles",
-        "figure": "obj.figure.ga"
+        "centers": [
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            3
+          ]
+        ],
+        "radii": [
+          1,
+          2,
+          3
+        ]
       },
       {
         "id": "obj.circle_set.na",
         "type": "circles",
-        "figure": "obj.figure.na"
+        "centers": [
+          [
+            3,
+            3
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            3,
+            3
+          ]
+        ],
+        "radii": [
+          1,
+          2,
+          3
+        ]
       }
     ],
-    "relations": [],
+    "relations": [
+      {
+        "id": "rel.same_radii_rule",
+        "type": "same_rule",
+        "from_id": "obj.circle_set.ga",
+        "to_id": "obj.circle_set.na",
+        "description": "가와 나는 모두 반지름이 1칸, 2칸, 3칸으로 커진다."
+      },
+      {
+        "id": "rel.different_centers_rule",
+        "type": "different_rule",
+        "from_id": "obj.circle_set.ga",
+        "to_id": "obj.circle_set.na",
+        "description": "가는 원의 중심이 모두 다르고, 나는 원의 중심이 모두 같다."
+      }
+    ],
     "confidence": 1.0,
     "problem_solving": {
       "understand": {
@@ -90,12 +128,13 @@
         ],
         "target_ref": "answer.target",
         "condition_refs": [
-          "rel.compare_figures"
+          "rel.same_radii_rule",
+          "rel.different_centers_rule"
         ]
       },
       "plan": {
         "method": "figure_comparison",
-        "description": "두 그림에서 원의 중심과 반지름이 같은지 또는 다른지 비교한다."
+        "description": "두 그림에서 원의 중심과 반지름 규칙을 비교한다."
       },
       "execute": {
         "expected_operations": [
@@ -106,8 +145,7 @@
       },
       "review": {
         "check_methods": [
-          "image_text_consistency_check",
-          "choice_fit_check"
+          "image_text_consistency_check"
         ]
       }
     }
@@ -118,10 +156,10 @@
     "answer_key": [],
     "confidence": 1.0,
     "target": {
-      "type": "multiple_choice_explanation",
-      "description": "두 그림의 원 그리기 규칙에서 같은 점과 다른 점을 설명하는 보기"
+      "type": "rule_description",
+      "description": "두 모양을 그린 규칙의 같은 점과 다른 점"
     },
-    "value": 0,
+    "value": "같은 점은 원의 반지름이 1칸, 2칸, 3칸으로 커지는 것이고, 다른 점은 가는 원의 중심이 모두 다르며 나는 원의 중심이 모두 같다는 점이다.",
     "unit": ""
   }
 }

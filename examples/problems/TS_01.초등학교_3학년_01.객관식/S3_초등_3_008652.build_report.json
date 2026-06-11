@@ -1,12 +1,14 @@
 {
   "dsl_path": "C:\\projects\\modu_math\\examples\\problems\\TS_01.초등학교_3학년_01.객관식\\S3_초등_3_008652.dsl.py",
   "out_prefix": "C:\\projects\\modu_math\\examples\\problems\\TS_01.초등학교_3학년_01.객관식\\S3_초등_3_008652",
-  "success": false,
-  "generated_files": [],
+  "success": true,
+  "generated_files": [
+    "C:\\projects\\modu_math\\examples\\problems\\TS_01.초등학교_3학년_01.객관식\\S3_초등_3_008652.semantic.json",
+    "C:\\projects\\modu_math\\examples\\problems\\TS_01.초등학교_3학년_01.객관식\\S3_초등_3_008652.layout.json",
+    "C:\\projects\\modu_math\\examples\\problems\\TS_01.초등학교_3학년_01.객관식\\S3_초등_3_008652.renderer.json",
+    "C:\\projects\\modu_math\\examples\\problems\\TS_01.초등학교_3학년_01.객관식\\S3_초등_3_008652.svg",
+    "C:\\projects\\modu_math\\examples\\problems\\TS_01.초등학교_3학년_01.객관식\\S3_초등_3_008652.solvable.v1.1.json"
+  ],
   "strict": true,
-  "emit_solvable": true,
-  "error": {
-    "type": "ValidationError",
-    "message": "'그림에서 같은 중심을 공유하는 원들의 반지름 규칙을 확인하고, 말풍선 내용과 맞는 학생을 찾는다.' is not of type 'array'\n\nFailed validating 'type' in schema['properties']['plan']:\n    {'type': 'array', 'description': '풀이 계획', 'items': {'type': 'string'}}\n\nOn instance['plan']:\n    '그림에서 같은 중심을 공유하는 원들의 반지름 규칙을 확인하고, 말풍선 내용과 맞는 학생을 찾는다.'"
-  }
+  "emit_solvable": true
 }

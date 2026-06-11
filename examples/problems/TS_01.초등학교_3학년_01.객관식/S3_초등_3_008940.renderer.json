@@ -1,0 +1,402 @@
+{
+  "problem_id": "S3_초등_3_008940",
+  "view_box": {
+    "width": 940.0,
+    "height": 470.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.qno.text",
+      "type": "text",
+      "attributes": {
+        "x": 12.0,
+        "y": 35.0,
+        "max_width": 812.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.qno",
+      "refs": {
+        "layout_slot_id": "slot.qno"
+      },
+      "text": "8."
+    },
+    {
+      "id": "slot.stem.text",
+      "type": "text",
+      "attributes": {
+        "x": 50.0,
+        "y": 34.0,
+        "max_width": 812.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.stem",
+      "refs": {
+        "layout_slot_id": "slot.stem"
+      },
+      "text": "은영이네 반 학생들이 운동회에서 하고 싶어 하는 경기를 조사하여 표로\n나타내었습니다. 남학생이 가장 많이 하고 싶어 하는 경기와 가장 적게 하\n고 싶어 하는 경기를 순서대로 쓰세요."
+    },
+    {
+      "id": "slot.table_title.text",
+      "type": "text",
+      "attributes": {
+        "x": 440.0,
+        "y": 174.0,
+        "max_width": 812.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table_title",
+      "refs": {
+        "layout_slot_id": "slot.table_title"
+      },
+      "text": "운동회에서 하고 싶어 하는 경기"
+    },
+    {
+      "id": "slot.table.frame.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 118.0,
+        "y": 201.0,
+        "width": 705.0,
+        "height": 80.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.table.frame",
+      "refs": {
+        "layout_slot_id": "slot.table.frame"
+      }
+    },
+    {
+      "id": "slot.table.h1.text",
+      "type": "text",
+      "attributes": {
+        "x": 177.0,
+        "y": 223.0,
+        "max_width": 812.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.h1",
+      "refs": {
+        "layout_slot_id": "slot.table.h1"
+      },
+      "text": "경기"
+    },
+    {
+      "id": "slot.table.h2.text",
+      "type": "text",
+      "attributes": {
+        "x": 303.0,
+        "y": 223.0,
+        "max_width": 812.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.h2",
+      "refs": {
+        "layout_slot_id": "slot.table.h2"
+      },
+      "text": "달리기"
+    },
+    {
+      "id": "slot.table.r1c1.text",
+      "type": "text",
+      "attributes": {
+        "x": 146.0,
+        "y": 256.0,
+        "max_width": 812.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.r1c1",
+      "refs": {
+        "layout_slot_id": "slot.table.r1c1"
+      },
+      "text": "여학생 수(명)"
+    },
+    {
+      "id": "slot.table.r1c2.text",
+      "type": "text",
+      "attributes": {
+        "x": 312.0,
+        "y": 256.0,
+        "max_width": 812.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.r1c2",
+      "refs": {
+        "layout_slot_id": "slot.table.r1c2"
+      },
+      "text": "1"
+    },
+    {
+      "id": "slot.table.r1c3.text",
+      "type": "text",
+      "attributes": {
+        "x": 410.0,
+        "y": 256.0,
+        "max_width": 812.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.r1c3",
+      "refs": {
+        "layout_slot_id": "slot.table.r1c3"
+      },
+      "text": "2"
+    },
+    {
+      "id": "slot.table.r1c4.text",
+      "type": "text",
+      "attributes": {
+        "x": 508.0,
+        "y": 256.0,
+        "max_width": 812.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.r1c4",
+      "refs": {
+        "layout_slot_id": "slot.table.r1c4"
+      },
+      "text": "3"
+    },
+    {
+      "id": "slot.table.r1c5.text",
+      "type": "text",
+      "attributes": {
+        "x": 606.0,
+        "y": 256.0,
+        "max_width": 812.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.r1c5",
+      "refs": {
+        "layout_slot_id": "slot.table.r1c5"
+      },
+      "text": "6"
+    },
+    {
+      "id": "slot.table.r2c1.text",
+      "type": "text",
+      "attributes": {
+        "x": 146.0,
+        "y": 289.0,
+        "max_width": 812.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.r2c1",
+      "refs": {
+        "layout_slot_id": "slot.table.r2c1"
+      },
+      "text": "남학생 수(명)"
+    },
+    {
+      "id": "slot.table.r2c2.text",
+      "type": "text",
+      "attributes": {
+        "x": 312.0,
+        "y": 289.0,
+        "max_width": 812.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.r2c2",
+      "refs": {
+        "layout_slot_id": "slot.table.r2c2"
+      },
+      "text": "4"
+    },
+    {
+      "id": "slot.table.r2c3.text",
+      "type": "text",
+      "attributes": {
+        "x": 410.0,
+        "y": 289.0,
+        "max_width": 812.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.r2c3",
+      "refs": {
+        "layout_slot_id": "slot.table.r2c3"
+      },
+      "text": "8"
+    },
+    {
+      "id": "slot.table.r2c4.text",
+      "type": "text",
+      "attributes": {
+        "x": 508.0,
+        "y": 289.0,
+        "max_width": 812.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.r2c4",
+      "refs": {
+        "layout_slot_id": "slot.table.r2c4"
+      },
+      "text": "3"
+    },
+    {
+      "id": "slot.table.r2c5.text",
+      "type": "text",
+      "attributes": {
+        "x": 606.0,
+        "y": 289.0,
+        "max_width": 812.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.r2c5",
+      "refs": {
+        "layout_slot_id": "slot.table.r2c5"
+      },
+      "text": "2"
+    },
+    {
+      "id": "slot.table.r3c1.text",
+      "type": "text",
+      "attributes": {
+        "x": 708.0,
+        "y": 223.0,
+        "max_width": 812.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.r3c1",
+      "refs": {
+        "layout_slot_id": "slot.table.r3c1"
+      },
+      "text": "합계"
+    },
+    {
+      "id": "slot.table.r3c2.text",
+      "type": "text",
+      "attributes": {
+        "x": 704.0,
+        "y": 256.0,
+        "max_width": 812.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.r3c2",
+      "refs": {
+        "layout_slot_id": "slot.table.r3c2"
+      },
+      "text": "12"
+    },
+    {
+      "id": "slot.table.r3c3.text",
+      "type": "text",
+      "attributes": {
+        "x": 704.0,
+        "y": 289.0,
+        "max_width": 812.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.r3c3",
+      "refs": {
+        "layout_slot_id": "slot.table.r3c3"
+      },
+      "text": "17"
+    },
+    {
+      "id": "slot.choice.1.text",
+      "type": "text",
+      "attributes": {
+        "x": 14.0,
+        "y": 340.0,
+        "max_width": 812.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice.1",
+      "refs": {
+        "layout_slot_id": "slot.choice.1"
+      },
+      "text": "① ○× 퀴즈, 달리기"
+    },
+    {
+      "id": "slot.choice.2.text",
+      "type": "text",
+      "attributes": {
+        "x": 463.0,
+        "y": 340.0,
+        "max_width": 812.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice.2",
+      "refs": {
+        "layout_slot_id": "slot.choice.2"
+      },
+      "text": "② 공굴리기, 달리기"
+    },
+    {
+      "id": "slot.choice.3.text",
+      "type": "text",
+      "attributes": {
+        "x": 14.0,
+        "y": 381.0,
+        "max_width": 812.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice.3",
+      "refs": {
+        "layout_slot_id": "slot.choice.3"
+      },
+      "text": "③ 줄다리기, ○× 퀴즈"
+    },
+    {
+      "id": "slot.choice.4.text",
+      "type": "text",
+      "attributes": {
+        "x": 463.0,
+        "y": 381.0,
+        "max_width": 812.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice.4",
+      "refs": {
+        "layout_slot_id": "slot.choice.4"
+      },
+      "text": "④ 공굴리기, ○× 퀴즈"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

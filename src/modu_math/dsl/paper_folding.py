@@ -104,24 +104,27 @@ def folded_circle_sector_slots(
     fill: str = "#DFF2F0",
     stroke: str = "#00AFA8",
     stroke_width: float = 1.5,
+    show_edge: bool = True,
 ) -> tuple[PaperFoldingSlot, ...]:
     rad = math.radians(angle)
     tip = (cx + r * 0.22 * math.cos(rad), cy + r * 0.22 * math.sin(rad))
-    left = (cx - r * 0.38, cy - r * 0.78)
-    right = (cx + r * 0.92, cy + r * 0.66)
+    left = (cx - r * 0.42, cy - r * 0.82)
+    right = (cx + r * 0.88, cy + r * 0.66)
     d = (
         f"M {_fmt(left[0])} {_fmt(left[1])} "
-        f"C {_fmt(cx - r * 0.88)} {_fmt(cy - r * 0.28)}, {_fmt(cx - r * 0.72)} {_fmt(cy + r * 0.76)}, {_fmt(cx + r * 0.18)} {_fmt(cy + r * 0.93)} "
-        f"C {_fmt(cx + r * 0.46)} {_fmt(cy + r)}, {_fmt(cx + r * 0.72)} {_fmt(cy + r * 0.86)}, {_fmt(right[0])} {_fmt(right[1])} "
+        f"C {_fmt(cx - r * 0.98)} {_fmt(cy - r * 0.22)}, {_fmt(cx - r * 0.82)} {_fmt(cy + r * 0.78)}, {_fmt(cx + r * 0.12)} {_fmt(cy + r * 0.96)} "
+        f"C {_fmt(cx + r * 0.42)} {_fmt(cy + r * 1.04)}, {_fmt(cx + r * 0.68)} {_fmt(cy + r * 0.88)}, {_fmt(right[0])} {_fmt(right[1])} "
         f"L {_fmt(left[0])} {_fmt(left[1])} Z"
     )
-    crease_d = f"M {_fmt(cx - r * 0.85)} {_fmt(cy + r * 0.62)} C {_fmt(cx - r * 0.3)} {_fmt(cy + r * 1.05)}, {_fmt(cx + r * 0.42)} {_fmt(cy + r * 0.98)}, {_fmt(right[0])} {_fmt(right[1])}"
-    return (
+    crease_d = f"M {_fmt(cx - r * 0.9)} {_fmt(cy + r * 0.62)} C {_fmt(cx - r * 0.34)} {_fmt(cy + r * 1.1)}, {_fmt(cx + r * 0.38)} {_fmt(cy + r * 1.0)}, {_fmt(right[0])} {_fmt(right[1])}"
+    slots: list[PaperFoldingSlot] = [
         PathSlot(id=f"{prefix}.paper", prompt="", d=d, fill=fill, stroke=stroke, stroke_width=stroke_width),
         LineSlot(id=f"{prefix}.crease", prompt="", x1=left[0], y1=left[1], x2=right[0], y2=right[1], stroke=stroke, stroke_width=1.5),
-        PathSlot(id=f"{prefix}.edge", prompt="", d=crease_d, fill="none", stroke=stroke, stroke_width=1.2),
         CircleSlot(id=f"{prefix}.guide", prompt="", cx=tip[0], cy=tip[1], r=0.01, fill="none", stroke="none"),
-    )
+    ]
+    if show_edge:
+        slots.append(PathSlot(id=f"{prefix}.edge", prompt="", d=crease_d, fill="none", stroke=stroke, stroke_width=1.2))
+    return tuple(slots)
 
 
 def circle_fold_sequence_slots(
@@ -137,6 +140,7 @@ def circle_fold_sequence_slots(
     stroke: str = "#00AFA8",
     stroke_width: float = 1.5,
     arrow_stroke: str = "#9A9A9A",
+    show_folded_sector_edge: bool = True,
 ) -> tuple[PaperFoldingSlot, ...]:
     """Build an editable circle-paper folding sequence from ordinary slots."""
     slots: list[PaperFoldingSlot] = []
@@ -153,7 +157,18 @@ def circle_fold_sequence_slots(
         elif stage == "opened_horizontal":
             slots.extend(opened_circle_with_fold_slots(stage_prefix, cx=cx, cy=cy, r=r, angle=0.0, fill=fill, stroke=stroke, stroke_width=stroke_width))
         elif stage == "folded_diagonal":
-            slots.extend(folded_circle_sector_slots(stage_prefix, cx=cx, cy=cy, r=r, fill=fill, stroke=stroke, stroke_width=stroke_width))
+            slots.extend(
+                folded_circle_sector_slots(
+                    stage_prefix,
+                    cx=cx,
+                    cy=cy,
+                    r=r,
+                    fill=fill,
+                    stroke=stroke,
+                    stroke_width=stroke_width,
+                    show_edge=show_folded_sector_edge,
+                )
+            )
         elif stage == "opened_cross":
             slots.extend(opened_circle_with_fold_slots(stage_prefix, cx=cx, cy=cy, r=r, angle=0.0, fill=fill, stroke=stroke, stroke_width=stroke_width))
             slots.append(

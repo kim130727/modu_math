@@ -1214,6 +1214,14 @@
       return m ? m[1] : null;
     }
 
+    function generatedHelperBaseFromSlotId(slotId) {
+      if (!slotId) return null;
+      if (slotId.startsWith("slot.grid.")) return "slot.grid";
+      const point = slotId.match(/^(slot\.pt\.[^.]+)\./);
+      if (point) return point[1];
+      return null;
+    }
+
     function collectTableGroupSlotIds(slotId) {
       const base = tableBaseFromSlotId(slotId);
       if (!base) return null;
@@ -1230,7 +1238,7 @@
     }
 
     function selectableGroupBaseFromSlotId(slotId) {
-      return figureBaseFromSlotId(slotId) || characterGroupBaseFromSlotId(slotId) || tableBaseFromSlotId(slotId) || paperFoldBaseFromSlotId(slotId);
+      return figureBaseFromSlotId(slotId) || characterGroupBaseFromSlotId(slotId) || tableBaseFromSlotId(slotId) || paperFoldBaseFromSlotId(slotId) || generatedHelperBaseFromSlotId(slotId);
     }
 
     function collectFigureGroupSlotIds(slotId) {
@@ -1282,8 +1290,21 @@
       return out.length > 1 ? { base, slotIds: out, groupKind: "paperFold" } : null;
     }
 
+    function collectGeneratedHelperGroupSlotIds(slotId) {
+      const base = generatedHelperBaseFromSlotId(slotId);
+      if (!base) return null;
+      const svg = document.getElementById("svgPreview").querySelector("svg");
+      if (!svg) return null;
+      const out = [];
+      for (const node of draggableSlotElements(svg, `${base}.`)) {
+        const sid = slotIdFromElement(node);
+        if (sid && sid.startsWith(`${base}.`) && !out.includes(sid)) out.push(sid);
+      }
+      return out.length > 1 ? { base, slotIds: out, groupKind: "generated" } : null;
+    }
+
     function collectSelectableGroupSlotIds(slotId) {
-      return collectFigureGroupSlotIds(slotId) || collectCharacterGroupSlotIds(slotId) || collectTableGroupSlotIds(slotId) || collectPaperFoldGroupSlotIds(slotId);
+      return collectFigureGroupSlotIds(slotId) || collectCharacterGroupSlotIds(slotId) || collectTableGroupSlotIds(slotId) || collectPaperFoldGroupSlotIds(slotId) || collectGeneratedHelperGroupSlotIds(slotId);
     }
 
     function elementsForSlotIds(slotIds) {
@@ -1693,7 +1714,7 @@
       const item = Array.from(selectedSlots.values())[0];
       if (!item || item.isFraction || !item.el) return null;
       if (item.isCanvas) return item;
-      if (item.isCharacterGroup || item.isPaperFoldGroup) return null;
+      if (item.isCharacterGroup || item.isPaperFoldGroup || item.isGeneratedGroup) return null;
       if (item.isFigureGroup || item.isTableGroup) return item;
       const tag = item.el.tagName.toLowerCase();
       if (!["text", "rect", "circle", "line", "path", "polygon"].includes(tag)) return null;
@@ -1710,7 +1731,7 @@
         const rawBox = geometrySvgBox(item.el);
         if (rawBox && rotation.angle && rotation.cx !== null && rotation.cy !== null) return rawBox;
       }
-      const elements = item && (item.isFigureGroup || item.isPaperFoldGroup || item.isTableGroup || item.isFraction) ? (item.elements || []) : [item.el];
+      const elements = item && (item.isFigureGroup || item.isPaperFoldGroup || item.isTableGroup || item.isFraction || item.isGeneratedGroup) ? (item.elements || []) : [item.el];
       const boxes = [];
       for (const el of elements) {
         const box = visualSvgBox(el, svg);
@@ -1725,7 +1746,7 @@
     }
 
     function selectionTransformForItem(item) {
-      if (!item || item.isCanvas || item.isFigureGroup || item.isPaperFoldGroup || item.isTableGroup || item.isFraction || !item.el) return { transform: "", rotation: null };
+      if (!item || item.isCanvas || item.isFigureGroup || item.isPaperFoldGroup || item.isTableGroup || item.isGeneratedGroup || item.isFraction || !item.el) return { transform: "", rotation: null };
       const rotation = parseRotateTransform(item.el.getAttribute("transform") || "");
       if (!rotation.angle || rotation.cx === null || rotation.cy === null) return { transform: "", rotation: null };
       return { transform: rotateTransform(rotation.angle, rotation.cx, rotation.cy), rotation };
@@ -2298,6 +2319,7 @@
             isPaperFoldGroup: selectableGroup.groupKind === "paperFold",
             isTableGroup: selectableGroup.groupKind === "table",
             isCharacterGroup: selectableGroup.groupKind === "character",
+            isGeneratedGroup: selectableGroup.groupKind === "generated",
           });
           for (const node of elements) node.classList.add("slot-selected");
         }
@@ -2364,7 +2386,7 @@
 
     function updateInspectorControls() {
       const selected = selectedSlots.size === 1 ? Array.from(selectedSlots.values())[0] : null;
-      const canInspect = selected && !selected.isCanvas && !selected.isFigureGroup && !selected.isPaperFoldGroup && !selected.isTableGroup && !selected.isCharacterGroup && !selected.isFraction && selected.el;
+      const canInspect = selected && !selected.isCanvas && !selected.isFigureGroup && !selected.isPaperFoldGroup && !selected.isTableGroup && !selected.isGeneratedGroup && !selected.isCharacterGroup && !selected.isFraction && selected.el;
       const value = canInspect ? readSlotPatchValue(selected.el) : null;
       setInspectorField("slotId", selected ? selected.slotId : "");
       setInspectorField("propX", value?.x ?? value?.cx ?? value?.x1 ?? "");
@@ -2397,7 +2419,7 @@
     async function commitInspectorFields() {
       if (selectedSlots.size !== 1) throw new Error("요소 하나를 선택하세요.");
       const item = Array.from(selectedSlots.values())[0];
-      if (!item || item.isCanvas || item.isFigureGroup || item.isPaperFoldGroup || item.isTableGroup || item.isCharacterGroup || item.isFraction || !item.el) {
+      if (!item || item.isCanvas || item.isFigureGroup || item.isPaperFoldGroup || item.isTableGroup || item.isGeneratedGroup || item.isCharacterGroup || item.isFraction || !item.el) {
         throw new Error("선택한 요소를 속성 패널에서 수정할 수 없습니다.");
       }
       const current = readSlotPatchValue(item.el) || {};
@@ -2466,7 +2488,7 @@
     function readSelectedStates() {
       const states = [];
       for (const item of selectedSlots.values()) {
-        if (item.isFigureGroup || item.isPaperFoldGroup || item.isTableGroup) {
+        if (item.isFigureGroup || item.isPaperFoldGroup || item.isTableGroup || item.isGeneratedGroup) {
           for (const node of item.elements || []) {
             const slotId = slotIdFromElement(node);
             const value = readSlotPatchValue(node);
@@ -2763,7 +2785,7 @@
       const svgClientRect = svg.getBoundingClientRect();
       const canvasScaleX = item.isCanvas && svgClientRect.width > 0 ? box.width / svgClientRect.width : 1;
       const canvasScaleY = item.isCanvas && svgClientRect.height > 0 ? box.height / svgClientRect.height : 1;
-      const startValue = (item.isFigureGroup || item.isPaperFoldGroup || item.isTableGroup)
+      const startValue = (item.isFigureGroup || item.isPaperFoldGroup || item.isTableGroup || item.isGeneratedGroup)
         ? (item.elements || [])
             .map((el) => ({ el, slotId: slotIdFromElement(el), value: readSlotPatchValue(el) }))
             .filter((entry) => entry.slotId && entry.value)
@@ -2786,7 +2808,7 @@
         canvasScaleX,
         canvasScaleY,
         startBox: cloneBBox(box),
-        startValue: (item.isFigureGroup || item.isPaperFoldGroup || item.isTableGroup)
+        startValue: (item.isFigureGroup || item.isPaperFoldGroup || item.isTableGroup || item.isGeneratedGroup)
           ? startValue.map((entry) => ({ ...entry, value: JSON.parse(JSON.stringify(entry.value)) }))
           : JSON.parse(JSON.stringify(startValue)),
         lastValue: null,
@@ -2979,7 +3001,7 @@
         for (const item of selectedSlots.values()) {
           if (item.isFraction) {
             beforeMap.set(item.slotId, { move_dx: 0, move_dy: 0 });
-          } else if (item.isCharacterGroup || item.isPaperFoldGroup) {
+          } else if (item.isCharacterGroup || item.isPaperFoldGroup || item.isGeneratedGroup) {
             beforeMap.set(item.slotId, { move_dx: 0, move_dy: 0 });
           } else if (item.isFigureGroup || item.isPaperFoldGroup || item.isTableGroup) {
             for (const node of item.elements || []) {
@@ -3128,7 +3150,7 @@
           for (const item of selectedSlots.values()) {
             if (item.isFraction) {
               for (const node of item.elements || []) lastValue = applyElementDelta(node, pdx, pdy, false);
-          } else if (item.isFigureGroup || item.isPaperFoldGroup || item.isTableGroup) {
+          } else if (item.isFigureGroup || item.isPaperFoldGroup || item.isTableGroup || item.isGeneratedGroup) {
               for (const node of item.elements || []) lastValue = applyElementDelta(node, pdx, pdy, false);
             } else {
               lastValue = applyElementDelta(item.el, pdx, pdy, false);
@@ -3185,7 +3207,7 @@
             after.push({ slotId: item.slotId, value: snappedMove });
             continue;
           }
-          if (item.isCharacterGroup) {
+          if (item.isCharacterGroup || item.isGeneratedGroup) {
             const snappedMove = snapPatchValue({ move_dx: local.totalDx, move_dy: local.totalDy });
             const fixDx = snappedMove.move_dx - local.totalDx;
             const fixDy = snappedMove.move_dy - local.totalDy;
@@ -3250,11 +3272,11 @@
       const items = [];
       for (const item of selectedSlots.values()) {
         if (item.isCanvas) continue;
-        const value = (item.isFraction || item.isFigureGroup || item.isPaperFoldGroup || item.isTableGroup) ? { move_dx: 0, move_dy: 0 } : readSlotPatchValue(item.el);
+        const value = (item.isFraction || item.isFigureGroup || item.isPaperFoldGroup || item.isTableGroup || item.isGeneratedGroup) ? { move_dx: 0, move_dy: 0 } : readSlotPatchValue(item.el);
         if (!value) continue;
         let bbox = null;
         try {
-          if (item.isFraction || item.isFigureGroup || item.isPaperFoldGroup || item.isTableGroup) {
+          if (item.isFraction || item.isFigureGroup || item.isPaperFoldGroup || item.isTableGroup || item.isGeneratedGroup) {
             bbox = itemBBox(item);
           } else {
             bbox = item.el.getBBox();
@@ -3272,6 +3294,7 @@
           isFigureGroup: !!item.isFigureGroup,
           isPaperFoldGroup: !!item.isPaperFoldGroup,
           isTableGroup: !!item.isTableGroup,
+          isGeneratedGroup: !!item.isGeneratedGroup,
           elements: item.elements || [item.el],
         });
       }
@@ -3349,7 +3372,7 @@
             for (const node of item.elements) applyElementDelta(node, fixDx, fixDy, false);
           }
           patches.push({ target: item.slotId, op: "update", value: snappedMove });
-        } else if (item.isFigureGroup || item.isPaperFoldGroup) {
+        } else if (item.isFigureGroup || item.isPaperFoldGroup || item.isGeneratedGroup) {
           for (const node of item.elements) applyElementDelta(node, dx, dy, false);
           const snappedMove = snapPatchValue({ move_dx: dx, move_dy: dy });
           const fixDx = snappedMove.move_dx - dx;
@@ -3745,7 +3768,7 @@
           patches.push({ target: item.slotId, op: "update", value: { move_dx: dx, move_dy: dy } });
           continue;
         }
-        if (item.isFigureGroup || item.isPaperFoldGroup) {
+        if (item.isFigureGroup || item.isPaperFoldGroup || item.isGeneratedGroup) {
           for (const node of item.elements || []) applyElementDelta(node, dx, dy, false);
           for (const node of item.elements || []) {
             const slotId = slotIdFromElement(node);

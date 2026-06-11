@@ -52,7 +52,7 @@ def build_problem_template() -> ProblemTemplate:
     return ProblemTemplate(
         id="S3_초등_3_008651",
         title="컴퍼스를 3 cm가 되도록 벌린 것 찾기",
-        canvas=Canvas(width=940, height=460, coordinate_mode="logical"),
+        canvas=Canvas(width=940, height=300, coordinate_mode="logical"),
         regions=(
             Region(
                 id="region.stem",
@@ -75,15 +75,6 @@ def build_problem_template() -> ProblemTemplate:
         ),
         slots=(
             TextSlot(
-                id="slot.q.prefix",
-                prompt="",
-                text="□ 24.",
-                style_role="question",
-                x=14.0,
-                y=31.0,
-                font_size=24,
-            ),
-            TextSlot(
                 id="slot.q.text",
                 prompt="",
                 text="컴퍼스를 3 cm가 되도록 벌린 것을 찾아 선택해 보세요.",
@@ -95,43 +86,6 @@ def build_problem_template() -> ProblemTemplate:
             *choice1,
             *choice2,
             *choice3,
-            TextSlot(
-                id="slot.answer.label",
-                prompt="",
-                text="(정답)",
-                style_role="answer",
-                x=14.0,
-                y=314.0,
-                font_size=17,
-            ),
-            *answer,
-            TextSlot(
-                id="slot.explanation.label",
-                prompt="",
-                text="(해설)",
-                style_role="explanation",
-                x=14.0,
-                y=421.0,
-                font_size=17,
-            ),
-            TextSlot(
-                id="slot.explanation.text1",
-                prompt="",
-                text="컴퍼스의 침을 자의 눈금 0에 맞추고 연필심을 자의 눈금 3에 오도록 컴퍼스를 벌",
-                style_role="explanation",
-                x=61.0,
-                y=421.0,
-                font_size=23,
-            ),
-            TextSlot(
-                id="slot.explanation.text2",
-                prompt="",
-                text="린 것을 찾습니다.",
-                style_role="explanation",
-                x=36.0,
-                y=452.0,
-                font_size=23,
-            ),
         ),
         diagrams=(),
         groups=(),

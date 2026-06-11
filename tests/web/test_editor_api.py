@@ -308,6 +308,47 @@ SLOTS = (
     assert 'circle_fold_sequence_slots("slot.fold", x = (40.0) + (12.0), y = (245.0) + (-8.0)' in updated
 
 
+def test_layout_patch_moves_grid_and_candidate_helpers(tmp_path: Path) -> None:
+    client = _setup_django(tmp_path)
+    dsl_text = """
+from modu_math.dsl import CircleSlot, LineSlot, TextSlot
+
+def _grid_slots(prefix: str, *, x: float, y: float, step: float = 30.0):
+    return (
+        LineSlot(id=f"{prefix}.v0", x1=x, y1=y, x2=x, y2=y + step),
+    )
+
+def _candidate_slots(prefix: str, *, origin_x: float, origin_y: float, step: float = 30.0):
+    return (
+        CircleSlot(id=f"{prefix}.point", cx=origin_x, cy=origin_y, r=4),
+        TextSlot(id=f"{prefix}.label", text="ㄹ", x=origin_x + 8, y=origin_y + 18),
+    )
+
+SLOTS = (
+    *_grid_slots("slot.grid", x=100.0, y=50.0, step=30.0),
+    *_candidate_slots("slot.pt.rieul", origin_x=140.0, origin_y=80.0, step=30.0),
+)
+""".lstrip()
+    problem_dir = _write_problem(tmp_path, "0001", dsl_text)
+
+    payload = {
+        "patches": [
+            {"target": "slot.grid", "op": "update", "value": {"move_dx": 11.0, "move_dy": -7.0}},
+            {"target": "slot.pt.rieul", "op": "update", "value": {"move_dx": -5.0, "move_dy": 13.0}},
+        ]
+    }
+    response = client.post(
+        "/api/editor/problems/0001/layout-patch/",
+        data=json.dumps(payload),
+        content_type="application/json",
+    )
+
+    assert response.status_code == 200
+    updated = (problem_dir / "problem.dsl.py").read_text(encoding="utf-8")
+    assert '_grid_slots("slot.grid", x = (100.0) + (11.0), y = (50.0) + (-7.0), step=30.0)' in updated
+    assert '_candidate_slots("slot.pt.rieul", origin_x = (140.0) + (-5.0), origin_y = (80.0) + (13.0), step=30.0)' in updated
+
+
 def test_layout_patch_moves_speaker_character_group(tmp_path: Path) -> None:
     client = _setup_django(tmp_path)
     dsl_text = """

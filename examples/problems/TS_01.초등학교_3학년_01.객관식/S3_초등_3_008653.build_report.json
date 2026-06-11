@@ -1,12 +1,14 @@
 {
   "dsl_path": "C:\\projects\\modu_math\\examples\\problems\\TS_01.초등학교_3학년_01.객관식\\S3_초등_3_008653.dsl.py",
   "out_prefix": "C:\\projects\\modu_math\\examples\\problems\\TS_01.초등학교_3학년_01.객관식\\S3_초등_3_008653",
-  "success": false,
-  "generated_files": [],
+  "success": true,
+  "generated_files": [
+    "C:\\projects\\modu_math\\examples\\problems\\TS_01.초등학교_3학년_01.객관식\\S3_초등_3_008653.semantic.json",
+    "C:\\projects\\modu_math\\examples\\problems\\TS_01.초등학교_3학년_01.객관식\\S3_초등_3_008653.layout.json",
+    "C:\\projects\\modu_math\\examples\\problems\\TS_01.초등학교_3학년_01.객관식\\S3_초등_3_008653.renderer.json",
+    "C:\\projects\\modu_math\\examples\\problems\\TS_01.초등학교_3학년_01.객관식\\S3_초등_3_008653.svg",
+    "C:\\projects\\modu_math\\examples\\problems\\TS_01.초등학교_3학년_01.객관식\\S3_초등_3_008653.solvable.v1.1.json"
+  ],
   "strict": true,
-  "emit_solvable": true,
-  "error": {
-    "type": "ValidationError",
-    "message": "'두 그림의 원들이 어떤 규칙으로 그려졌는지 중심과 반지름을 비교한다.' is not of type 'array'\n\nFailed validating 'type' in schema['properties']['plan']:\n    {'type': 'array', 'description': '풀이 계획', 'items': {'type': 'string'}}\n\nOn instance['plan']:\n    '두 그림의 원들이 어떤 규칙으로 그려졌는지 중심과 반지름을 비교한다.'"
-  }
+  "emit_solvable": true
 }

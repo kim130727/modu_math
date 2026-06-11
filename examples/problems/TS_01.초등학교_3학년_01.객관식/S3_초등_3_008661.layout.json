@@ -14,8 +14,6 @@
       "role": "stem",
       "flow": "absolute",
       "slot_ids": [
-        "slot.q_box",
-        "slot.q_num",
         "slot.q_text"
       ]
     },
@@ -61,38 +59,15 @@
   ],
   "slots": [
     {
-      "id": "slot.q_box",
-      "kind": "rect",
-      "prompt": "",
-      "content": {
-        "x": 10.0,
-        "y": 16.0,
-        "width": 13.0,
-        "height": 13.0
-      }
-    },
-    {
-      "id": "slot.q_num",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "36.",
-        "style_role": "question",
-        "x": 35.0,
-        "y": 28.0,
-        "font_size": 28
-      }
-    },
-    {
       "id": "slot.q_text",
       "kind": "text",
       "prompt": "",
       "content": {
         "text": "길이가 가장 긴 선분은 어느 것인가요?",
         "style_role": "question",
-        "x": 83.0,
-        "y": 28.0,
-        "font_size": 28
+        "x": 40.0,
+        "y": 35.0,
+        "font_size": 30
       }
     },
     {
@@ -100,9 +75,9 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 490.0,
-        "cy": 124.0,
-        "r": 76.0,
+        "cx": 320.0,
+        "cy": 170.0,
+        "r": 105.0,
         "fill": "none"
       }
     },
@@ -111,9 +86,9 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 490.0,
-        "cy": 124.0,
-        "r": 4.0,
+        "cx": 330.0,
+        "cy": 150.0,
+        "r": 5.0,
         "fill": "none"
       }
     },
@@ -122,10 +97,10 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 438.0,
-        "y1": 84.0,
-        "x2": 542.0,
-        "y2": 84.0
+        "x1": 230.0,
+        "y1": 115.0,
+        "x2": 410.0,
+        "y2": 115.0
       }
     },
     {
@@ -133,10 +108,10 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 426.0,
-        "y1": 120.0,
-        "x2": 554.0,
-        "y2": 120.0
+        "x1": 237.0,
+        "y1": 235.0,
+        "x2": 402.0,
+        "y2": 235.0
       }
     },
     {
@@ -144,10 +119,10 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 430.0,
-        "y1": 149.0,
-        "x2": 550.0,
-        "y2": 149.0
+        "x1": 215.0,
+        "y1": 170.0,
+        "x2": 425.0,
+        "y2": 170.0
       }
     },
     {
@@ -155,10 +130,10 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 438.0,
-        "y1": 188.0,
-        "x2": 542.0,
-        "y2": 188.0
+        "x1": 220.0,
+        "y1": 205.0,
+        "x2": 420.0,
+        "y2": 205.0
       }
     },
     {
@@ -168,9 +143,9 @@
       "content": {
         "text": "ㄱ",
         "style_role": "label",
-        "x": 421.0,
-        "y": 88.0,
-        "font_size": 24
+        "x": 195.0,
+        "y": 120.0,
+        "font_size": 25
       }
     },
     {
@@ -180,9 +155,9 @@
       "content": {
         "text": "ㄴ",
         "style_role": "label",
-        "x": 546.0,
-        "y": 88.0,
-        "font_size": 24
+        "x": 420.0,
+        "y": 120.0,
+        "font_size": 25
       }
     },
     {
@@ -192,9 +167,9 @@
       "content": {
         "text": "ㄷ",
         "style_role": "label",
-        "x": 404.0,
-        "y": 124.0,
-        "font_size": 24
+        "x": 180.0,
+        "y": 175.0,
+        "font_size": 25
       }
     },
     {
@@ -204,9 +179,9 @@
       "content": {
         "text": "ㄹ",
         "style_role": "label",
-        "x": 559.0,
-        "y": 124.0,
-        "font_size": 24
+        "x": 435.0,
+        "y": 175.0,
+        "font_size": 25
       }
     },
     {
@@ -216,9 +191,9 @@
       "content": {
         "text": "ㅁ",
         "style_role": "label",
-        "x": 404.0,
-        "y": 154.0,
-        "font_size": 24
+        "x": 190.0,
+        "y": 215.0,
+        "font_size": 25
       }
     },
     {
@@ -228,9 +203,9 @@
       "content": {
         "text": "ㅂ",
         "style_role": "label",
-        "x": 559.0,
-        "y": 154.0,
-        "font_size": 24
+        "x": 430.0,
+        "y": 215.0,
+        "font_size": 25
       }
     },
     {
@@ -238,11 +213,11 @@
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "스",
+        "text": "ㅈ",
         "style_role": "label",
-        "x": 408.0,
-        "y": 196.0,
-        "font_size": 24
+        "x": 410.0,
+        "y": 245.0,
+        "font_size": 25
       }
     },
     {
@@ -252,9 +227,9 @@
       "content": {
         "text": "ㅅ",
         "style_role": "label",
-        "x": 556.0,
-        "y": 196.0,
-        "font_size": 24
+        "x": 200.0,
+        "y": 250.0,
+        "font_size": 25
       }
     },
     {
@@ -262,9 +237,9 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 490.0,
-        "cy": 126.0,
-        "r": 3.2,
+        "cx": 320.0,
+        "cy": 170.0,
+        "r": 5.0,
         "fill": "#ff1493"
       }
     },
@@ -275,9 +250,9 @@
       "content": {
         "text": "① 선분 ㄱㄴ",
         "style_role": "choice",
-        "x": 26.0,
-        "y": 238.0,
-        "font_size": 28
+        "x": 50.0,
+        "y": 325.0,
+        "font_size": 30
       }
     },
     {
@@ -287,9 +262,9 @@
       "content": {
         "text": "② 선분 ㄷㄹ",
         "style_role": "choice",
-        "x": 482.0,
-        "y": 238.0,
-        "font_size": 28
+        "x": 240.0,
+        "y": 325.0,
+        "font_size": 30
       }
     },
     {
@@ -299,9 +274,9 @@
       "content": {
         "text": "③ 선분 ㅁㅂ",
         "style_role": "choice",
-        "x": 26.0,
-        "y": 283.0,
-        "font_size": 28
+        "x": 420.0,
+        "y": 325.0,
+        "font_size": 30
       }
     },
     {
@@ -309,11 +284,11 @@
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "④ 선분 스ㅅ",
+        "text": "④ 선분 ㅅㅈ",
         "style_role": "choice",
-        "x": 482.0,
-        "y": 283.0,
-        "font_size": 28
+        "x": 50.0,
+        "y": 370.0,
+        "font_size": 30
       }
     }
   ],
@@ -322,8 +297,6 @@
   "diagrams": [],
   "reading_order": [
     "region.stem",
-    "slot.q_box",
-    "slot.q_num",
     "slot.q_text",
     "region.diagram",
     "slot.circle.outer",

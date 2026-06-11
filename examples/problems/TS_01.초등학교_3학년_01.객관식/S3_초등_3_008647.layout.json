@@ -4,7 +4,7 @@
   "title": "원 안의 선분 중 길이가 가장 긴 선분 찾기",
   "canvas": {
     "width": 960,
-    "height": 720,
+    "height": 360,
     "coordinate_mode": "logical",
     "background": "#FFFFFF"
   },
@@ -14,7 +14,6 @@
       "role": "stem",
       "flow": "absolute",
       "slot_ids": [
-        "slot.q.no",
         "slot.q.text"
       ]
     },
@@ -47,44 +46,16 @@
       "id": "region.answer",
       "role": "answer",
       "flow": "absolute",
-      "slot_ids": [
-        "slot.answer"
-      ]
+      "slot_ids": []
     },
     {
       "id": "region.explanation",
       "role": "note",
       "flow": "absolute",
-      "slot_ids": [
-        "slot.diagram.solution.circle",
-        "slot.diagram.solution.label.c.circle",
-        "slot.diagram.solution.segment.a",
-        "slot.diagram.solution.segment.b",
-        "slot.diagram.solution.segment.c",
-        "slot.diagram.solution.segment.d",
-        "slot.diagram.solution.segment.e",
-        "slot.explanation.label",
-        "slot.diagram.solution.center.dot",
-        "slot.diagram.solution.center.label",
-        "slot.diagram.solution.label.c.text",
-        "slot.explanation.text1",
-        "slot.explanation.text2"
-      ]
+      "slot_ids": []
     }
   ],
   "slots": [
-    {
-      "id": "slot.q.no",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "□ 19.",
-        "style_role": "question",
-        "x": 14.0,
-        "y": 31.0,
-        "font_size": 24
-      }
-    },
     {
       "id": "slot.q.text",
       "kind": "text",
@@ -335,185 +306,6 @@
         "anchor": "middle",
         "fill": "#555555"
       }
-    },
-    {
-      "id": "slot.answer",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "(정답)㉢",
-        "style_role": "answer",
-        "x": 14.0,
-        "y": 322.0,
-        "font_size": 18
-      }
-    },
-    {
-      "id": "slot.explanation.label",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "(해설)",
-        "style_role": "explanation",
-        "x": 14.0,
-        "y": 468.0,
-        "font_size": 18
-      }
-    },
-    {
-      "id": "slot.diagram.solution.circle",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 195.0,
-        "cy": 484.0,
-        "r": 96.0,
-        "stroke": "#222222",
-        "stroke_width": 1.5,
-        "fill": "none"
-      }
-    },
-    {
-      "id": "slot.diagram.solution.segment.a",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 195.0,
-        "y1": 580.0,
-        "x2": 102.84,
-        "y2": 487.84,
-        "stroke": "#222222",
-        "stroke_width": 1.5
-      }
-    },
-    {
-      "id": "slot.diagram.solution.segment.b",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 195.0,
-        "y1": 580.0,
-        "x2": 137.4,
-        "y2": 409.12,
-        "stroke": "#222222",
-        "stroke_width": 1.5
-      }
-    },
-    {
-      "id": "slot.diagram.solution.segment.c",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 195.0,
-        "y1": 580.0,
-        "x2": 195.0,
-        "y2": 388.0,
-        "stroke": "#222222",
-        "stroke_width": 1.5
-      }
-    },
-    {
-      "id": "slot.diagram.solution.segment.d",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 195.0,
-        "y1": 580.0,
-        "x2": 252.6,
-        "y2": 409.12,
-        "stroke": "#222222",
-        "stroke_width": 1.5
-      }
-    },
-    {
-      "id": "slot.diagram.solution.segment.e",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 195.0,
-        "y1": 580.0,
-        "x2": 287.15999999999997,
-        "y2": 487.84,
-        "stroke": "#222222",
-        "stroke_width": 1.5
-      }
-    },
-    {
-      "id": "slot.diagram.solution.center.dot",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "●",
-        "style_role": "label",
-        "x": 195.0,
-        "y": 488.0,
-        "font_size": 12,
-        "anchor": "middle",
-        "fill": "#E11A86"
-      }
-    },
-    {
-      "id": "slot.diagram.solution.center.label",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "O",
-        "style_role": "label",
-        "x": 204.0,
-        "y": 490.0,
-        "font_size": 18
-      }
-    },
-    {
-      "id": "slot.diagram.solution.label.c.circle",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 195.0,
-        "cy": 370.0,
-        "r": 10.5,
-        "stroke": "#888888",
-        "stroke_width": 1.2,
-        "fill": "none"
-      }
-    },
-    {
-      "id": "slot.diagram.solution.label.c.text",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "ㄷ",
-        "style_role": "label",
-        "x": 195.0,
-        "y": 376.0,
-        "font_size": 17,
-        "anchor": "middle",
-        "fill": "#555555"
-      }
-    },
-    {
-      "id": "slot.explanation.text1",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "원 안에 그을 수 있는 선분 중 길이가 가장 긴 선분은 원의 중심을 지나는 원의",
-        "style_role": "explanation",
-        "x": 36.0,
-        "y": 612.0,
-        "font_size": 24
-      }
-    },
-    {
-      "id": "slot.explanation.text2",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "지름이므로 ㉢입니다.",
-        "style_role": "explanation",
-        "x": 36.0,
-        "y": 647.0,
-        "font_size": 24
-      }
     }
   ],
   "groups": [],
@@ -521,7 +313,6 @@
   "diagrams": [],
   "reading_order": [
     "region.stem",
-    "slot.q.no",
     "slot.q.text",
     "region.diagram",
     "slot.diagram.top.circle",
@@ -543,20 +334,6 @@
     "slot.diagram.top.label.d.text",
     "slot.diagram.top.label.e.text",
     "region.answer",
-    "slot.answer",
-    "region.explanation",
-    "slot.diagram.solution.circle",
-    "slot.diagram.solution.label.c.circle",
-    "slot.diagram.solution.segment.a",
-    "slot.diagram.solution.segment.b",
-    "slot.diagram.solution.segment.c",
-    "slot.diagram.solution.segment.d",
-    "slot.diagram.solution.segment.e",
-    "slot.explanation.label",
-    "slot.diagram.solution.center.dot",
-    "slot.diagram.solution.center.label",
-    "slot.diagram.solution.label.c.text",
-    "slot.explanation.text1",
-    "slot.explanation.text2"
+    "region.explanation"
   ]
 }

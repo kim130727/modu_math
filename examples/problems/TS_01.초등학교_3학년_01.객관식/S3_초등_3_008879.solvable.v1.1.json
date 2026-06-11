@@ -1,0 +1,86 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008879",
+  "problem_type": "비교",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "가장 무거운 것",
+    "target_ticks": 0,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.strawberry",
+      "value": "딸기"
+    },
+    {
+      "ref": "obj.peach",
+      "value": "복숭아"
+    },
+    {
+      "ref": "obj.pear",
+      "value": "배"
+    },
+    {
+      "ref": "rel.compare.1",
+      "value": {
+        "left": "딸기",
+        "right": "복숭아"
+      }
+    },
+    {
+      "ref": "rel.compare.2",
+      "value": {
+        "left": "복숭아",
+        "right": "배"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "heaviest_fruit"
+  },
+  "method": "비교하기",
+  "plan": [
+    "가와 나의 비교 결과를 살펴서 더 무거운 대상을 찾는다.",
+    "두 비교를 연결하여 세 과일 중 가장 무거운 것을 고른다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "가: 딸기와 복숭아 비교",
+      "value": "복숭아"
+    },
+    {
+      "id": "step.2",
+      "expr": "나: 복숭아와 배 비교",
+      "value": "배"
+    },
+    {
+      "id": "step.3",
+      "expr": "가장 무거운 것 선택",
+      "value": "배"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "비교 결과가 문제의 해설과 일치하는가",
+      "expected": "배",
+      "actual": "배",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "heaviest_fruit",
+      "description": "가장 무거운 것"
+    },
+    "value": "배",
+    "unit": ""
+  }
+}

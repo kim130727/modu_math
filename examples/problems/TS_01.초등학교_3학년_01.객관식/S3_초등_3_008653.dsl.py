@@ -1,512 +1,148 @@
 from __future__ import annotations
-from modu_math.dsl import (
-    Canvas,
-    ProblemTemplate,
-    Region,
-    TextSlot,
-    RectSlot,
-    CircleSlot,
-    LineSlot,
-)
+
+from modu_math.dsl import Canvas, CircleSlot, PathSlot, ProblemTemplate, Region, TextSlot
+
+
+ANSWER = {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {"type": "rule_description", "description": "두 모양을 그린 규칙의 같은 점과 다른 점"},
+    "value": "같은 점은 원의 반지름이 1칸, 2칸, 3칸으로 커지는 것이고, 다른 점은 가는 원의 중심이 모두 다르며 나는 원의 중심이 모두 같다는 점이다.",
+    "unit": "",
+}
+
+
+def _grid_slots(prefix: str, *, x: float, y: float, cells: int = 6, step: float = 30.0) -> tuple[PathSlot, ...]:
+    size = cells * step
+    slots: list[PathSlot] = [
+        PathSlot(
+            id=f"{prefix}.frame",
+            prompt="",
+            d=f"M {x} {y} L {x + size} {y} L {x + size} {y + size} L {x} {y + size} Z",
+            stroke="#37C7FF",
+            stroke_width=1.2,
+            stroke_dasharray="4 3",
+            fill="#ffffff",
+        )
+    ]
+    for i in range(1, cells):
+        gx = x + i * step
+        gy = y + i * step
+        slots.append(
+            PathSlot(
+                id=f"{prefix}.v{i}",
+                prompt="",
+                d=f"M {gx} {y} L {gx} {y + size}",
+                stroke="#37C7FF",
+                stroke_width=1.0,
+                stroke_dasharray="4 3",
+                fill="none",
+            )
+        )
+        slots.append(
+            PathSlot(
+                id=f"{prefix}.h{i}",
+                prompt="",
+                d=f"M {x} {gy} L {x + size} {gy}",
+                stroke="#37C7FF",
+                stroke_width=1.0,
+                stroke_dasharray="4 3",
+                fill="none",
+            )
+        )
+    return tuple(slots)
+
+
+def _circle_at(prefix: str, *, grid_x: float, grid_y: float, step: float, center: tuple[int, int], radius: int) -> CircleSlot:
+    return CircleSlot(
+        id=f"{prefix}.r{radius}",
+        prompt="",
+        cx=grid_x + center[0] * step,
+        cy=grid_y + center[1] * step,
+        r=radius * step,
+        fill="none",
+        stroke="#444444",
+        stroke_width=1.4,
+    )
 
 
 def build_problem_template() -> ProblemTemplate:
+    step = 30.0
+    ga_x, ga_y = 250.0, 84.0
+    na_x, na_y = 535.0, 84.0
+
+    ga_grid = _grid_slots("slot.ga.grid", x=ga_x, y=ga_y, step=step)
+    na_grid = _grid_slots("slot.na.grid", x=na_x, y=na_y, step=step)
+    ga_circles = (
+        _circle_at("slot.ga.circle1", grid_x=ga_x, grid_y=ga_y, step=step, center=(1, 3), radius=1),
+        _circle_at("slot.ga.circle2", grid_x=ga_x, grid_y=ga_y, step=step, center=(2, 3), radius=2),
+        _circle_at("slot.ga.circle3", grid_x=ga_x, grid_y=ga_y, step=step, center=(3, 3), radius=3),
+    )
+    na_circles = (
+        _circle_at("slot.na.circle1", grid_x=na_x, grid_y=na_y, step=step, center=(3, 3), radius=1),
+        _circle_at("slot.na.circle2", grid_x=na_x, grid_y=na_y, step=step, center=(3, 3), radius=2),
+        _circle_at("slot.na.circle3", grid_x=na_x, grid_y=na_y, step=step, center=(3, 3), radius=3),
+    )
+
     return ProblemTemplate(
         id="S3_초등_3_008653",
         title="가와 나의 원 그리기 규칙",
-        canvas=Canvas(width=940.0, height=560.0, coordinate_mode="logical"),
+        canvas=Canvas(width=940, height=350, coordinate_mode="logical"),
         regions=(
+            Region(id="region.stem", role="stem", flow="absolute", slot_ids=("slot.q1", "slot.q2")),
             Region(
-                id="region.stem",
-                role="stem",
-                flow="absolute",
-                slot_ids=("slot.q1", "slot.q2", "slot.q3"),
-            ),
-            Region(
-                id="region.diagram.left",
+                id="region.diagram.ga",
                 role="diagram",
                 flow="absolute",
-                slot_ids=(
-                    "slot.left.frame",
-                    "slot.left.grid.v1",
-                    "slot.left.grid.v2",
-                    "slot.left.grid.v3",
-                    "slot.left.grid.v4",
-                    "slot.left.grid.v5",
-                    "slot.left.grid.v6",
-                    "slot.left.grid.v7",
-                    "slot.left.grid.v8",
-                    "slot.left.grid.v9",
-                    "slot.left.grid.h1",
-                    "slot.left.grid.h2",
-                    "slot.left.grid.h3",
-                    "slot.left.grid.h4",
-                    "slot.left.grid.h5",
-                    "slot.left.grid.h6",
-                    "slot.left.grid.h7",
-                    "slot.left.grid.h8",
-                    "slot.left.grid.h9",
-                    "slot.left.grid.h10",
-                    "slot.left.c1",
-                    "slot.left.c2",
-                    "slot.left.c3",
-                    "slot.left.label",
-                ),
+                slot_ids=("slot.label.ga", *(slot.id for slot in ga_grid), *(slot.id for slot in ga_circles)),
             ),
             Region(
-                id="region.diagram.right",
+                id="region.diagram.na",
                 role="diagram",
                 flow="absolute",
-                slot_ids=(
-                    "slot.right.frame",
-                    "slot.right.grid.v1",
-                    "slot.right.grid.v2",
-                    "slot.right.grid.v3",
-                    "slot.right.grid.v4",
-                    "slot.right.grid.v5",
-                    "slot.right.grid.v6",
-                    "slot.right.grid.v7",
-                    "slot.right.grid.v8",
-                    "slot.right.grid.v9",
-                    "slot.right.grid.h1",
-                    "slot.right.grid.h2",
-                    "slot.right.grid.h3",
-                    "slot.right.grid.h4",
-                    "slot.right.grid.h5",
-                    "slot.right.grid.h6",
-                    "slot.right.grid.h7",
-                    "slot.right.grid.h8",
-                    "slot.right.grid.h9",
-                    "slot.right.grid.h10",
-                    "slot.right.c1",
-                    "slot.right.c2",
-                    "slot.right.c3",
-                    "slot.right.label",
-                ),
+                slot_ids=("slot.label.na", *(slot.id for slot in na_grid), *(slot.id for slot in na_circles)),
             ),
-            Region(
-                id="region.choice",
-                role="stem",
-                flow="absolute",
-                slot_ids=("slot.a1", "slot.a2", "slot.a3"),
-            ),
+            Region(id="region.choice", role="choices", flow="absolute", slot_ids=("slot.choice1", )),
         ),
         slots=(
             TextSlot(
                 id="slot.q1",
                 prompt="",
-                text="□ 29.  가와 나 는 규칙에 따라 원을 그린 것입니다. 알맞은 것을 선택해 보세요.",
-                style_role="question",
-                x=10.0,
-                y=28.0,
-                font_size=28,
+                text = '가와 나는 규칙에 따라 원을 그린 것입니다. 알맞은 것을 선택해 두 모양', style_role="question",
+                x=8.0,
+                y=30.0,
+                font_size=24,
             ),
             TextSlot(
                 id="slot.q2",
                 prompt="",
-                text="무엇을 그린 규칙의 같은 점과 점을 설명해 보세요.",
+                text="을 그린 규칙의 같은 점과 다른 점을 설명해 보세요.",
                 style_role="question",
-                x=10.0,
-                y=61.0,
-                font_size=28,
+                x=8.0,
+                y=66.0,
+                font_size=24,
             ),
+            TextSlot(id="slot.label.ga", prompt="", text="가", style_role="label", x=220.0, y=103.0, font_size=24),
+            *ga_grid,
+            *ga_circles,
+            TextSlot(id="slot.label.na", prompt="", text="나", style_role="label", x=505.0, y=103.0, font_size=24),
+            *na_grid,
+            *na_circles,
             TextSlot(
-                id="slot.q3",
+                id="slot.choice1",
                 prompt="",
-                text="",
-                style_role="question",
-                x=10.0,
-                y=94.0,
-                font_size=28,
+                text = '같은 점: 원의 ( 중심 , 반지름 )을 모두 다르게 하여 그렸습니다.', style_role="answer_option",
+                x=8.0,
+                y=315.0,
+                font_size=23,
             ),
-            RectSlot(
-                id="slot.left.frame",
-                prompt="",
-                x=226.0,
-                y=114.0,
-                width=180.0,
-                height=180.0,
-            ),
-            LineSlot(
-                id="slot.left.grid.v1",
-                prompt="",
-                x1=226.0,
-                y1=114.0,
-                x2=226.0,
-                y2=294.0,
-            ),
-            LineSlot(
-                id="slot.left.grid.v2",
-                prompt="",
-                x1=246.0,
-                y1=114.0,
-                x2=246.0,
-                y2=294.0,
-            ),
-            LineSlot(
-                id="slot.left.grid.v3",
-                prompt="",
-                x1=266.0,
-                y1=114.0,
-                x2=266.0,
-                y2=294.0,
-            ),
-            LineSlot(
-                id="slot.left.grid.v4",
-                prompt="",
-                x1=286.0,
-                y1=114.0,
-                x2=286.0,
-                y2=294.0,
-            ),
-            LineSlot(
-                id="slot.left.grid.v5",
-                prompt="",
-                x1=306.0,
-                y1=114.0,
-                x2=306.0,
-                y2=294.0,
-            ),
-            LineSlot(
-                id="slot.left.grid.v6",
-                prompt="",
-                x1=326.0,
-                y1=114.0,
-                x2=326.0,
-                y2=294.0,
-            ),
-            LineSlot(
-                id="slot.left.grid.v7",
-                prompt="",
-                x1=346.0,
-                y1=114.0,
-                x2=346.0,
-                y2=294.0,
-            ),
-            LineSlot(
-                id="slot.left.grid.v8",
-                prompt="",
-                x1=366.0,
-                y1=114.0,
-                x2=366.0,
-                y2=294.0,
-            ),
-            LineSlot(
-                id="slot.left.grid.v9",
-                prompt="",
-                x1=386.0,
-                y1=114.0,
-                x2=386.0,
-                y2=294.0,
-            ),
-            LineSlot(
-                id="slot.left.grid.h1",
-                prompt="",
-                x1=226.0,
-                y1=114.0,
-                x2=406.0,
-                y2=114.0,
-            ),
-            LineSlot(
-                id="slot.left.grid.h2",
-                prompt="",
-                x1=226.0,
-                y1=134.0,
-                x2=406.0,
-                y2=134.0,
-            ),
-            LineSlot(
-                id="slot.left.grid.h3",
-                prompt="",
-                x1=226.0,
-                y1=154.0,
-                x2=406.0,
-                y2=154.0,
-            ),
-            LineSlot(
-                id="slot.left.grid.h4",
-                prompt="",
-                x1=226.0,
-                y1=174.0,
-                x2=406.0,
-                y2=174.0,
-            ),
-            LineSlot(
-                id="slot.left.grid.h5",
-                prompt="",
-                x1=226.0,
-                y1=194.0,
-                x2=406.0,
-                y2=194.0,
-            ),
-            LineSlot(
-                id="slot.left.grid.h6",
-                prompt="",
-                x1=226.0,
-                y1=214.0,
-                x2=406.0,
-                y2=214.0,
-            ),
-            LineSlot(
-                id="slot.left.grid.h7",
-                prompt="",
-                x1=226.0,
-                y1=234.0,
-                x2=406.0,
-                y2=234.0,
-            ),
-            LineSlot(
-                id="slot.left.grid.h8",
-                prompt="",
-                x1=226.0,
-                y1=254.0,
-                x2=406.0,
-                y2=254.0,
-            ),
-            LineSlot(
-                id="slot.left.grid.h9",
-                prompt="",
-                x1=226.0,
-                y1=274.0,
-                x2=406.0,
-                y2=274.0,
-            ),
-            LineSlot(
-                id="slot.left.grid.h10",
-                prompt="",
-                x1=226.0,
-                y1=294.0,
-                x2=406.0,
-                y2=294.0,
-            ),
-            CircleSlot(
-                id="slot.left.c1", prompt="", cx=286.0, cy=202.0, r=92.0, fill="none"
-            ),
-            CircleSlot(
-                id="slot.left.c2", prompt="", cx=260.0, cy=184.0, r=46.0, fill="none"
-            ),
-            CircleSlot(
-                id="slot.left.c3", prompt="", cx=246.0, cy=197.0, r=26.0, fill="none"
-            ),
-            TextSlot(
-                id="slot.left.label",
-                prompt="",
-                text="가",
-                style_role="label",
-                x=194.0,
-                y=132.0,
-                font_size=28,
-            ),
-            RectSlot(
-                id="slot.right.frame",
-                prompt="",
-                x=508.0,
-                y=114.0,
-                width=180.0,
-                height=180.0,
-            ),
-            LineSlot(
-                id="slot.right.grid.v1",
-                prompt="",
-                x1=508.0,
-                y1=114.0,
-                x2=508.0,
-                y2=294.0,
-            ),
-            LineSlot(
-                id="slot.right.grid.v2",
-                prompt="",
-                x1=528.0,
-                y1=114.0,
-                x2=528.0,
-                y2=294.0,
-            ),
-            LineSlot(
-                id="slot.right.grid.v3",
-                prompt="",
-                x1=548.0,
-                y1=114.0,
-                x2=548.0,
-                y2=294.0,
-            ),
-            LineSlot(
-                id="slot.right.grid.v4",
-                prompt="",
-                x1=568.0,
-                y1=114.0,
-                x2=568.0,
-                y2=294.0,
-            ),
-            LineSlot(
-                id="slot.right.grid.v5",
-                prompt="",
-                x1=588.0,
-                y1=114.0,
-                x2=588.0,
-                y2=294.0,
-            ),
-            LineSlot(
-                id="slot.right.grid.v6",
-                prompt="",
-                x1=608.0,
-                y1=114.0,
-                x2=608.0,
-                y2=294.0,
-            ),
-            LineSlot(
-                id="slot.right.grid.v7",
-                prompt="",
-                x1=628.0,
-                y1=114.0,
-                x2=628.0,
-                y2=294.0,
-            ),
-            LineSlot(
-                id="slot.right.grid.v8",
-                prompt="",
-                x1=648.0,
-                y1=114.0,
-                x2=648.0,
-                y2=294.0,
-            ),
-            LineSlot(
-                id="slot.right.grid.v9",
-                prompt="",
-                x1=668.0,
-                y1=114.0,
-                x2=668.0,
-                y2=294.0,
-            ),
-            LineSlot(
-                id="slot.right.grid.h1",
-                prompt="",
-                x1=508.0,
-                y1=114.0,
-                x2=688.0,
-                y2=114.0,
-            ),
-            LineSlot(
-                id="slot.right.grid.h2",
-                prompt="",
-                x1=508.0,
-                y1=134.0,
-                x2=688.0,
-                y2=134.0,
-            ),
-            LineSlot(
-                id="slot.right.grid.h3",
-                prompt="",
-                x1=508.0,
-                y1=154.0,
-                x2=688.0,
-                y2=154.0,
-            ),
-            LineSlot(
-                id="slot.right.grid.h4",
-                prompt="",
-                x1=508.0,
-                y1=174.0,
-                x2=688.0,
-                y2=174.0,
-            ),
-            LineSlot(
-                id="slot.right.grid.h5",
-                prompt="",
-                x1=508.0,
-                y1=194.0,
-                x2=688.0,
-                y2=194.0,
-            ),
-            LineSlot(
-                id="slot.right.grid.h6",
-                prompt="",
-                x1=508.0,
-                y1=214.0,
-                x2=688.0,
-                y2=214.0,
-            ),
-            LineSlot(
-                id="slot.right.grid.h7",
-                prompt="",
-                x1=508.0,
-                y1=234.0,
-                x2=688.0,
-                y2=234.0,
-            ),
-            LineSlot(
-                id="slot.right.grid.h8",
-                prompt="",
-                x1=508.0,
-                y1=254.0,
-                x2=688.0,
-                y2=254.0,
-            ),
-            LineSlot(
-                id="slot.right.grid.h9",
-                prompt="",
-                x1=508.0,
-                y1=274.0,
-                x2=688.0,
-                y2=274.0,
-            ),
-            LineSlot(
-                id="slot.right.grid.h10",
-                prompt="",
-                x1=508.0,
-                y1=294.0,
-                x2=688.0,
-                y2=294.0,
-            ),
-            CircleSlot(
-                id="slot.right.c1", prompt="", cx=598.0, cy=202.0, r=92.0, fill="none"
-            ),
-            CircleSlot(
-                id="slot.right.c2", prompt="", cx=598.0, cy=202.0, r=54.0, fill="none"
-            ),
-            CircleSlot(
-                id="slot.right.c3", prompt="", cx=598.0, cy=202.0, r=26.0, fill="none"
-            ),
-            TextSlot(
-                id="slot.right.label",
-                prompt="",
-                text="나",
-                style_role="label",
-                x=480.0,
-                y=132.0,
-                font_size=28,
-            ),
-            TextSlot(
-                id="slot.a1",
-                prompt="",
-                text="(1) 같은 점: 원의 ( 중심, 반지름 )을 모두 다르게 하여 그렸습니다.",
-                style_role="answer_option",
-                x=10.0,
-                y=347.0,
-                font_size=28,
-            ),
-            TextSlot(
-                id="slot.a2",
-                prompt="",
-                text="(1) 같은 점: 원의 반지름을 모두 다르게 하여 그렸습니다.",
-                style_role="answer_option",
-                x=10.0,
-                y=392.0,
-                font_size=28,
-            ),
-            TextSlot(
-                id="slot.a3",
-                prompt="",
-                text="(1) 반지름",
-                style_role="answer_option",
-                x=10.0,
-                y=438.0,
-                font_size=28,
-            ),
+            
         ),
         diagrams=(),
         groups=(),
         constraints=(),
-        tags=(),
+        tags=("geometry", "circle", "grid", "rule_comparison"),
     )
 
 
@@ -518,100 +154,84 @@ SEMANTIC_OVERRIDE = {
     "metadata": {
         "language": "ko",
         "question": "가와 나의 원 그리기 규칙을 비교하여 알맞은 설명을 고르는 문제",
-        "instruction": "그림을 보고 같은 점과 다른 점을 비교한다.",
+        "instruction": "그림을 보고 같은 점과 다른 점을 설명한다.",
     },
     "domain": {
         "objects": [
             {"id": "obj.figure.ga", "type": "figure", "label": "가"},
             {"id": "obj.figure.na", "type": "figure", "label": "나"},
-            {"id": "obj.circle_set.ga", "type": "circles", "figure": "obj.figure.ga"},
-            {"id": "obj.circle_set.na", "type": "circles", "figure": "obj.figure.na"},
+            {
+                "id": "obj.circle_set.ga",
+                "type": "circles",
+                "centers": [[1, 3], [2, 3], [3, 3]],
+                "radii": [1, 2, 3],
+            },
+            {
+                "id": "obj.circle_set.na",
+                "type": "circles",
+                "centers": [[3, 3], [3, 3], [3, 3]],
+                "radii": [1, 2, 3],
+            },
         ],
-        "relations": [],
+        "relations": [
+            {
+                "id": "rel.same_radii_rule",
+                "type": "same_rule",
+                "from_id": "obj.circle_set.ga",
+                "to_id": "obj.circle_set.na",
+                "description": "가와 나는 모두 반지름이 1칸, 2칸, 3칸으로 커진다.",
+            },
+            {
+                "id": "rel.different_centers_rule",
+                "type": "different_rule",
+                "from_id": "obj.circle_set.ga",
+                "to_id": "obj.circle_set.na",
+                "description": "가는 원의 중심이 모두 다르고, 나는 원의 중심이 모두 같다.",
+            },
+        ],
         "problem_solving": {
             "understand": {
                 "given_refs": ["obj.figure.ga", "obj.figure.na"],
                 "target_ref": "answer.target",
-                "condition_refs": ["rel.compare_figures"],
+                "condition_refs": ["rel.same_radii_rule", "rel.different_centers_rule"],
             },
-            "plan": {
-                "method": "figure_comparison",
-                "description": "두 그림에서 원의 중심과 반지름이 같은지 또는 다른지 비교한다.",
-            },
-            "execute": {
-                "expected_operations": [
-                    "compare_circle_centers",
-                    "compare_circle_radii",
-                    "match_with_choice",
-                ]
-            },
-            "review": {
-                "check_methods": ["image_text_consistency_check", "choice_fit_check"]
-            },
+            "plan": {"method": "figure_comparison", "description": "두 그림에서 원의 중심과 반지름 규칙을 비교한다."},
+            "execute": {"expected_operations": ["compare_circle_centers", "compare_circle_radii", "match_with_choice"]},
+            "review": {"check_methods": ["image_text_consistency_check"]},
         },
     },
-    "answer": {
-        "blanks": [],
-        "choices": [],
-        "answer_key": [],
-        "target": {
-            "type": "multiple_choice_explanation",
-            "description": "두 그림의 원 그리기 규칙에서 같은 점과 다른 점을 설명하는 보기",
-        },
-        "value": 0,
-        "unit": "",
-    },
+    "answer": ANSWER,
 }
 
 SOLVABLE = {
     "schema": "modu.solvable.v1.1",
     "problem_id": "S3_초등_3_008653",
     "problem_type": "diagram_choice",
-    "inputs": {
-        "total_ticks": 0,
-        "target_label": "보기에서 알맞은 설명",
-        "target_ticks": 0,
-        "target_count": 1,
-        "unit": "",
-    },
+    "inputs": {"target_label": "가와 나의 원 그리기 규칙", "target_count": 1, "unit": ""},
     "given": [
-        {"ref": "obj.figure.ga", "value": {"label": "가"}},
-        {"ref": "obj.figure.na", "value": {"label": "나"}},
+        {"ref": "obj.circle_set.ga", "value": {"centers": [[1, 3], [2, 3], [3, 3]], "radii": [1, 2, 3]}},
+        {"ref": "obj.circle_set.na", "value": {"centers": [[3, 3], [3, 3], [3, 3]], "radii": [1, 2, 3]}},
     ],
-    "plan": "두 그림의 원들이 어떤 규칙으로 그려졌는지 중심과 반지름을 비교한다.",
+    "target": {"ref": "answer.target", "type": "rule_description"},
+    "method": "figure_comparison",
+    "plan": [
+        "가의 원들의 중심과 반지름을 확인한다.",
+        "나의 원들의 중심과 반지름을 확인한다.",
+        "두 그림의 같은 점과 다른 점을 비교한다.",
+    ],
     "steps": [
-        {
-            "id": "step.1",
-            "expr": "가와 나의 원들을 비교한다",
-            "value": "비교 대상: 중심, 반지름",
-        },
-        {"id": "step.2", "expr": "보기 문장과 그림의 대응을 확인한다", "value": "TODO"},
+        {"id": "step.1", "expr": "가: 중심 (1,3),(2,3),(3,3), 반지름 1,2,3", "value": "centers_different_radii_increase"},
+        {"id": "step.2", "expr": "나: 중심 (3,3)으로 모두 같고, 반지름 1,2,3", "value": "same_center_radii_increase"},
+        {"id": "step.3", "expr": "같은 점과 다른 점 정리", "value": "same_radii_different_centers"},
     ],
     "checks": [
         {
             "id": "check.1",
-            "expr": "그림 비교 항목이 중심과 반지름인지 확인",
-            "expected": "중심과 반지름",
-            "actual": "중심과 반지름",
+            "expr": "두 그림 모두 반지름이 1,2,3으로 커지는가",
+            "expected": True,
+            "actual": True,
             "pass": True,
-        },
-        {
-            "id": "check.2",
-            "expr": "정답 보기가 이미지에서 잘려 있어 확정 가능한지 확인",
-            "expected": False,
-            "actual": False,
-            "pass": True,
-        },
+        }
     ],
-    "answer": {
-        "blanks": [],
-        "choices": [],
-        "answer_key": [],
-        "target": {
-            "type": "multiple_choice_explanation",
-            "description": "두 그림의 원 그리기 규칙에서 같은 점과 다른 점을 설명하는 보기",
-        },
-        "value": 0,
-        "unit": "",
-    },
+    "answer": ANSWER,
 }

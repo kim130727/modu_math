@@ -10,7 +10,7 @@
       "id": "slot.speech.bubble.path",
       "type": "path",
       "attributes": {
-        "d": "M 302.5 129.0 C 302.5 71.4, 392.75 49.0, 540.0 49.0 C 687.25 49.0, 777.5 71.4, 777.5 129.0 C 777.5 186.6, 687.25 209.0, 540.0 209.0 C 392.75 209.0, 302.5 186.6, 302.5 129.0 Z",
+        "d": "M 302.5 129 C 302.5 71.4, 392.75 49, 540 49 C 687.25 49, 777.5 71.4, 777.5 129 C 777.5 186.6, 687.25 209, 540 209 C 392.75 209, 302.5 186.6, 302.5 129 Z",
         "stroke": "#222222",
         "stroke-width": 1.6,
         "fill": "#ffffff"
@@ -18,33 +18,6 @@
       "source_ref": "slot.speech.bubble",
       "refs": {
         "layout_slot_id": "slot.speech.bubble"
-      }
-    },
-    {
-      "id": "slot.speech.tail.polygon",
-      "type": "polygon",
-      "attributes": {
-        "points": [
-          [
-            280.0,
-            203.0
-          ],
-          [
-            300.0,
-            203.0
-          ],
-          [
-            290.0,
-            138.0
-          ]
-        ],
-        "stroke": "#222222",
-        "stroke-width": 1.4,
-        "fill": "#ffffff"
-      },
-      "source_ref": "slot.speech.tail",
-      "refs": {
-        "layout_slot_id": "slot.speech.tail"
       }
     },
     {
@@ -282,20 +255,6 @@
       }
     },
     {
-      "id": "slot.fold.stage4.edge.path",
-      "type": "path",
-      "attributes": {
-        "d": "M 633.4 339.72 C 664.2 363.8, 704.52 359.88, 732.52 341.96",
-        "stroke": "#00AFA8",
-        "stroke-width": 1.2,
-        "fill": "none"
-      },
-      "source_ref": "slot.fold.stage4.edge",
-      "refs": {
-        "layout_slot_id": "slot.fold.stage4.edge"
-      }
-    },
-    {
       "id": "slot.fold.stage4.guide.circle",
       "type": "circle",
       "attributes": {
@@ -390,9 +349,9 @@
       "id": "slot.fold.stage4.crease.line",
       "type": "line",
       "attributes": {
-        "x1": 659.72,
-        "y1": 261.32,
-        "x2": 732.52,
+        "x1": 657.48,
+        "y1": 259.08,
+        "x2": 730.28,
         "y2": 341.96,
         "stroke": "#00AFA8",
         "stroke-width": 1.5
@@ -503,7 +462,7 @@
       "id": "slot.fold.stage4.paper.path",
       "type": "path",
       "attributes": {
-        "d": "M 659.72 261.32 C 631.72 289.32, 640.68 347.56, 691.08 357.08 C 706.76 361, 721.32 353.16, 732.52 341.96 L 659.72 261.32 Z",
+        "d": "M 657.48 259.08 C 626.12 292.68, 635.08 348.68, 687.72 358.76 C 704.52 363.24, 719.08 354.28, 730.28 341.96 L 657.48 259.08 Z",
         "stroke": "#00AFA8",
         "stroke-width": 1.5,
         "fill": "#DFF2F0"
@@ -563,7 +522,7 @@
       "id": "slot.note.center.arrow.path",
       "type": "path",
       "attributes": {
-        "d": "M 828 374 C 812 350, 826 329, 870 304",
+        "d": "M 826 372 C 810 350, 824 333, 858 318",
         "stroke": "#00843D",
         "stroke-width": 2.0,
         "fill": "none"
@@ -645,8 +604,8 @@
       "id": "slot.note.center.text",
       "type": "text",
       "attributes": {
-        "x": 774.0,
-        "y": 386.0,
+        "x": 772.0,
+        "y": 384.0,
         "max_width": 816.0,
         "fill": "#00843D",
         "font-family": "Noto Sans KR, sans-serif",
@@ -680,11 +639,11 @@
       "type": "text",
       "attributes": {
         "x": 481.0,
-        "y": 468.0,
+        "y": 466.0,
         "max_width": 816.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 25,
+        "font-size": 24,
         "text-anchor": "middle"
       },
       "source_ref": "slot.answer.text",

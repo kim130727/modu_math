@@ -1,0 +1,15 @@
+{
+  "status": "validation_failed",
+  "timestamp_utc": "2026-06-11T06:22:05.600801+00:00",
+  "problem_id": "S3_초등_3_008896",
+  "draft": "examples\\problems\\TS_01.초등학교_3학년_01.객관식\\S3_초등_3_008896.refined_draft.md",
+  "image": "examples\\problems\\TS_01.초등학교_3학년_01.객관식\\S3_초등_3_008896.png",
+  "out": "examples\\problems\\TS_01.초등학교_3학년_01.객관식\\S3_초등_3_008896.dsl.py",
+  "provider": "openai",
+  "mode": "api",
+  "model": "gpt-5.4-mini",
+  "max_attempts": 1,
+  "validation_errors": [
+    "Build validation failed: ValidationError: '그림그래프를 읽고 학생별 책 수를 비교한 뒤, 가장 많이 읽은 사람과 둘째로 많이 읽은 사람을 고른다.' is not of type 'array'\n\nFailed validating 'type' in schema['properties']['plan']:\n    {'type': 'array', 'description': '풀이 계획', 'items': {'type': 'string'}}\n\nOn instance['plan']:\n    '그림그래프를 읽고 학생별 책 수를 비교한 뒤, 가장 많이 읽은 사람과 둘째로 많이 읽은 사람을 고른다.'"
+  ]
+}

@@ -127,7 +127,7 @@ SEMANTIC_OVERRIDE = {
             "type": "choice",
             "description": "지름과 반지름의 관계를 나타내는 알맞은 것을 선택",
         },
-        "value": 0,
+        "value": "지름, 반지름",
         "unit": "",
     },
 }
@@ -178,7 +178,7 @@ SOLVABLE = {
             "type": "choice",
             "description": "지름과 반지름의 관계를 나타내는 알맞은 것을 선택",
         },
-        "value": 0,
+        "value": "지름, 반지름",
         "unit": "",
     },
 }

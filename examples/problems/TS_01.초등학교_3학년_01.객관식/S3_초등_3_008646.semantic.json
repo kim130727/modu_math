@@ -20,7 +20,6 @@
       "slot.person.left.eye.right",
       "slot.person.left.smile",
       "slot.speech.bubble",
-      "slot.speech.tail",
       "slot.fold.stage1.paper",
       "slot.fold.arrow1.body",
       "slot.fold.arrow1.head",
@@ -34,7 +33,6 @@
       "slot.fold.arrow3.head",
       "slot.fold.stage4.paper",
       "slot.fold.stage4.crease",
-      "slot.fold.stage4.edge",
       "slot.fold.stage4.guide",
       "slot.fold.arrow4.body",
       "slot.fold.arrow4.head",
@@ -71,11 +69,15 @@
       {
         "id": "rel.divides_equally",
         "type": "equal_partition",
+        "from_id": "obj.fold_line",
+        "to_id": "obj.circle_paper",
         "description": "선분이 원을 둘로 똑같이 나눈다."
       },
       {
         "id": "rel.passes_center",
         "type": "incidence",
+        "from_id": "obj.fold_line",
+        "to_id": "obj.center",
         "description": "선분이 원의 중심을 지난다."
       }
     ],
@@ -112,13 +114,21 @@
   "answer": {
     "blanks": [],
     "choices": [
-      "지름",
-      "반지름"
+      {
+        "id": "choice.diameter",
+        "value": "지름"
+      },
+      {
+        "id": "choice.radius",
+        "value": "반지름"
+      }
     ],
     "answer_key": [
-      "지름"
+      {
+        "id": "choice.diameter",
+        "value": "지름"
+      }
     ],
-    "confidence": 1.0,
     "target": {
       "type": "concept_name",
       "description": "원을 둘로 똑같이 나누는 선분의 이름"

@@ -3,50 +3,67 @@
   "problem_type": "rule_selection",
   "metadata": {
     "title": "그림의 규칙을 바르게 말한 사람 선택하기",
-    "tags": [],
-    "question": "그림의 규칙을 바르게 말한 사람을 고르는 문제",
+    "tags": [
+      "geometry",
+      "circle",
+      "grid",
+      "rule_selection"
+    ],
+    "question": "규칙에 따라 원을 그린 것입니다. 그린 규칙을 바르게 말한 사람을 선택해 보세요.",
     "required_layout_ids": [
       "slot.grid.frame",
       "slot.grid.v1",
-      "slot.grid.v2",
-      "slot.grid.v3",
-      "slot.grid.v4",
-      "slot.grid.v5",
-      "slot.grid.v6",
-      "slot.grid.v7",
-      "slot.grid.v8",
-      "slot.grid.v9",
-      "slot.grid.v10",
-      "slot.grid.v11",
-      "slot.grid.v12",
       "slot.grid.h1",
+      "slot.grid.v2",
       "slot.grid.h2",
+      "slot.grid.v3",
       "slot.grid.h3",
+      "slot.grid.v4",
       "slot.grid.h4",
+      "slot.grid.v5",
       "slot.grid.h5",
+      "slot.grid.v6",
       "slot.grid.h6",
+      "slot.grid.v7",
       "slot.grid.h7",
+      "slot.grid.v8",
       "slot.grid.h8",
+      "slot.grid.v9",
       "slot.grid.h9",
+      "slot.grid.v10",
       "slot.grid.h10",
+      "slot.grid.v11",
       "slot.grid.h11",
-      "slot.grid.h12",
       "slot.circle.outer",
       "slot.circle.middle",
       "slot.circle.inner",
       "slot.center",
-      "slot.sunga.face",
-      "slot.sunga.body",
+      "slot.sunga.character.body",
+      "slot.sunga.character.ear.left",
+      "slot.sunga.character.ear.right",
+      "slot.sunga.character.head",
+      "slot.sunga.character.hair.cap",
+      "slot.sunga.character.eye.left",
+      "slot.sunga.character.eye.right",
+      "slot.sunga.character.smile",
       "slot.sunga.namebox",
       "slot.sunga.bubble",
-      "slot.jaewon.face",
-      "slot.jaewon.body",
+      "slot.sunga.tail",
+      "slot.jaewon.character.body",
+      "slot.jaewon.character.ear.left",
+      "slot.jaewon.character.ear.right",
+      "slot.jaewon.character.head",
+      "slot.jaewon.character.hair.cap",
+      "slot.jaewon.character.eye.left",
+      "slot.jaewon.character.eye.right",
+      "slot.jaewon.character.smile",
       "slot.jaewon.namebox",
-      "slot.jaewon.bubble"
+      "slot.jaewon.bubble",
+      "slot.jaewon.tail"
     ],
     "extraction_confidence": 1.0,
     "language": "ko",
-    "instruction": "그린 규칙을 바르게 말한 사람을 선택해 보세요."
+    "instruction": "그린 규칙을 바르게 말한 사람을 선택한다."
   },
   "domain": {
     "objects": [
@@ -61,7 +78,7 @@
       },
       {
         "id": "obj.grid",
-        "type": "grid"
+        "type": "dotted_grid"
       },
       {
         "id": "obj.student.sunga",
@@ -74,7 +91,22 @@
         "name": "재원"
       }
     ],
-    "relations": [],
+    "relations": [
+      {
+        "id": "rel.same_center",
+        "type": "same_center",
+        "from_id": "obj.circles",
+        "to_id": "obj.center",
+        "description": "세 원의 중심이 모두 같다."
+      },
+      {
+        "id": "rel.radius_increase",
+        "type": "arithmetic_pattern",
+        "from_id": "obj.circles",
+        "to_id": "obj.grid",
+        "description": "반지름이 1칸, 3칸, 5칸으로 2칸씩 늘어난다."
+      }
+    ],
     "confidence": 1.0,
     "problem_solving": {
       "understand": {
@@ -92,7 +124,7 @@
       },
       "plan": {
         "method": "rule_matching",
-        "description": "그림의 원이 어떤 규칙으로 그려졌는지 보고, 말풍선 설명과 맞는 사람을 고른다."
+        "description": "그림의 중심과 반지름 변화 규칙을 보고 두 사람의 말과 비교한다."
       },
       "execute": {
         "expected_operations": [
@@ -103,7 +135,6 @@
       },
       "review": {
         "check_methods": [
-          "compare_with_visible_answer_tag",
           "confirm_rule_consistency"
         ]
       }

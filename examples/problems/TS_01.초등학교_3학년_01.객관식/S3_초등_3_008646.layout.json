@@ -15,7 +15,6 @@
       "flow": "absolute",
       "slot_ids": [
         "slot.speech.bubble",
-        "slot.speech.tail",
         "slot.person.left.body",
         "slot.person.left.ear.left",
         "slot.person.left.ear.right",
@@ -28,7 +27,6 @@
         "slot.fold.stage2.edge",
         "slot.fold.arrow2.head",
         "slot.fold.arrow3.head",
-        "slot.fold.stage4.edge",
         "slot.fold.stage4.guide",
         "slot.fold.arrow4.head",
         "slot.fold.arrow1.body",
@@ -200,35 +198,11 @@
       "kind": "path",
       "prompt": "",
       "content": {
-        "d": "M 302.5 129.0 C 302.5 71.4, 392.75 49.0, 540.0 49.0 C 687.25 49.0, 777.5 71.4, 777.5 129.0 C 777.5 186.6, 687.25 209.0, 540.0 209.0 C 392.75 209.0, 302.5 186.6, 302.5 129.0 Z",
+        "d": "M 302.5 129 C 302.5 71.4, 392.75 49, 540 49 C 687.25 49, 777.5 71.4, 777.5 129 C 777.5 186.6, 687.25 209, 540 209 C 392.75 209, 302.5 186.6, 302.5 129 Z",
         "x": 0.0,
         "y": 0.0,
         "stroke": "#222222",
         "stroke_width": 1.6,
-        "fill": "#ffffff"
-      }
-    },
-    {
-      "id": "slot.speech.tail",
-      "kind": "polygon",
-      "prompt": "",
-      "content": {
-        "points": [
-          [
-            280.0,
-            203.0
-          ],
-          [
-            300.0,
-            203.0
-          ],
-          [
-            290.0,
-            138.0
-          ]
-        ],
-        "stroke": "#222222",
-        "stroke_width": 1.4,
         "fill": "#ffffff"
       }
     },
@@ -427,7 +401,7 @@
       "kind": "path",
       "prompt": "",
       "content": {
-        "d": "M 659.72 261.32 C 631.72 289.32, 640.68 347.56, 691.08 357.08 C 706.76 361, 721.32 353.16, 732.52 341.96 L 659.72 261.32 Z",
+        "d": "M 657.48 259.08 C 626.12 292.68, 635.08 348.68, 687.72 358.76 C 704.52 363.24, 719.08 354.28, 730.28 341.96 L 657.48 259.08 Z",
         "x": 0.0,
         "y": 0.0,
         "stroke": "#00AFA8",
@@ -440,25 +414,12 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 659.72,
-        "y1": 261.32,
-        "x2": 732.52,
+        "x1": 657.48,
+        "y1": 259.08,
+        "x2": 730.28,
         "y2": 341.96,
         "stroke": "#00AFA8",
         "stroke_width": 1.5
-      }
-    },
-    {
-      "id": "slot.fold.stage4.edge",
-      "kind": "path",
-      "prompt": "",
-      "content": {
-        "d": "M 633.4 339.72 C 664.2 363.8, 704.52 359.88, 732.52 341.96",
-        "x": 0.0,
-        "y": 0.0,
-        "stroke": "#00AFA8",
-        "stroke_width": 1.2,
-        "fill": "none"
       }
     },
     {
@@ -594,7 +555,7 @@
       "kind": "path",
       "prompt": "",
       "content": {
-        "d": "M 828 374 C 812 350, 826 329, 870 304",
+        "d": "M 826 372 C 810 350, 824 333, 858 318",
         "x": 0.0,
         "y": 0.0,
         "stroke": "#00843D",
@@ -609,8 +570,8 @@
       "content": {
         "text": "접었을 때 생기는\n선분들이 만나는 점",
         "style_role": "annotation",
-        "x": 774.0,
-        "y": 386.0,
+        "x": 772.0,
+        "y": 384.0,
         "font_size": 16,
         "fill": "#00843D"
       }
@@ -636,8 +597,8 @@
         "text": "원을 둘로 똑같이 나누는 선분은 원의 중심을 지나므로\n원의 ( 지름 , 반지름 )입니다.",
         "style_role": "answer",
         "x": 481.0,
-        "y": 468.0,
-        "font_size": 25,
+        "y": 466.0,
+        "font_size": 24,
         "anchor": "middle"
       }
     }
@@ -648,7 +609,6 @@
   "reading_order": [
     "region.stem",
     "slot.speech.bubble",
-    "slot.speech.tail",
     "slot.person.left.body",
     "slot.person.left.ear.left",
     "slot.person.left.ear.right",
@@ -661,7 +621,6 @@
     "slot.fold.stage2.edge",
     "slot.fold.arrow2.head",
     "slot.fold.arrow3.head",
-    "slot.fold.stage4.edge",
     "slot.fold.stage4.guide",
     "slot.fold.arrow4.head",
     "slot.fold.arrow1.body",

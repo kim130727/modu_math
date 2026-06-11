@@ -1,0 +1,83 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008939",
+  "problem_type": "table_minimum_selection",
+  "inputs": {
+    "total_ticks": 1,
+    "target_label": "가장 적게 가지고 있는 사람",
+    "target_ticks": 1,
+    "target_count": 4,
+    "unit": "개"
+  },
+  "given": [
+    {
+      "ref": "obj.count.junghee",
+      "value": 15
+    },
+    {
+      "ref": "obj.count.seonggyu",
+      "value": 8
+    },
+    {
+      "ref": "obj.count.taemin",
+      "value": 21
+    },
+    {
+      "ref": "obj.count.hajun",
+      "value": 10
+    },
+    {
+      "ref": "obj.count.total",
+      "value": 54
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "person_with_minimum_count"
+  },
+  "method": "compare_values",
+  "plan": [
+    "표에 있는 네 사람의 구슬 수를 읽는다.",
+    "네 수를 비교하여 가장 작은 수를 찾는다.",
+    "가장 작은 수를 가진 사람을 정답으로 고른다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "15, 8, 21, 10 중 가장 작은 수 찾기",
+      "value": 8
+    },
+    {
+      "id": "step.2",
+      "expr": "8에 해당하는 사람 확인",
+      "value": "성규"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "8 <= 15 and 8 <= 21 and 8 <= 10",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "id": "check.2",
+      "expr": "가장 작은 수 8의 소유자 = 성규",
+      "expected": "성규",
+      "actual": "성규",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "person_with_minimum_count",
+      "description": "구슬을 가장 적게 가지고 있는 사람"
+    },
+    "value": 2,
+    "unit": ""
+  }
+}

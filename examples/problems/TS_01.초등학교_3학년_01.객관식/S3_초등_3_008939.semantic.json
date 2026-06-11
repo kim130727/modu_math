@@ -1,0 +1,114 @@
+{
+  "problem_id": "S3_초등_3_008939",
+  "problem_type": "table_minimum_selection",
+  "metadata": {
+    "title": "가장 적게 가지고 있는 사람 찾기",
+    "tags": [],
+    "instruction": "구슬을 가장 적게 가지고 있는 사람은 누구인가요?",
+    "question": "표에 제시된 구슬 수를 비교하여 가장 적게 가지고 있는 사람을 찾는 문제",
+    "required_layout_ids": [
+      "slot.table.cell.r1c1",
+      "slot.table.cell.r1c2",
+      "slot.table.cell.r1c3",
+      "slot.table.cell.r1c4",
+      "slot.table.cell.r1c5",
+      "slot.table.cell.r1c6",
+      "slot.table.cell.r2c1",
+      "slot.table.cell.r2c2",
+      "slot.table.cell.r2c3",
+      "slot.table.cell.r2c4",
+      "slot.table.cell.r2c5",
+      "slot.table.cell.r2c6"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.person.junghee",
+        "type": "person",
+        "name": "정희"
+      },
+      {
+        "id": "obj.person.seonggyu",
+        "type": "person",
+        "name": "성규"
+      },
+      {
+        "id": "obj.person.taemin",
+        "type": "person",
+        "name": "태민"
+      },
+      {
+        "id": "obj.person.hajun",
+        "type": "person",
+        "name": "하준"
+      },
+      {
+        "id": "obj.count.junghee",
+        "type": "quantity",
+        "unit": "개"
+      },
+      {
+        "id": "obj.count.seonggyu",
+        "type": "quantity",
+        "unit": "개"
+      },
+      {
+        "id": "obj.count.taemin",
+        "type": "quantity",
+        "unit": "개"
+      },
+      {
+        "id": "obj.count.hajun",
+        "type": "quantity",
+        "unit": "개"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.count.junghee",
+          "obj.count.seonggyu",
+          "obj.count.taemin",
+          "obj.count.hajun"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.compare.minimum"
+        ]
+      },
+      "plan": {
+        "method": "compare_values",
+        "description": "표에 있는 네 사람의 구슬 수를 서로 비교하여 가장 작은 값을 찾는다."
+      },
+      "execute": {
+        "expected_operations": [
+          "read_table_values",
+          "compare_numbers",
+          "identify_minimum"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "minimum_consistency_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "person_with_minimum_count",
+      "description": "구슬을 가장 적게 가지고 있는 사람"
+    },
+    "value": 2,
+    "unit": ""
+  }
+}
