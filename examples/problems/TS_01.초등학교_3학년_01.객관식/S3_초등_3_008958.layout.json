@@ -1,0 +1,577 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008958",
+  "title": "마을별 졸업생 수",
+  "canvas": {
+    "width": 960,
+    "height": 560,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.title",
+        "slot.legend.big.icon",
+        "slot.legend.small.icon",
+        "slot.q1",
+        "slot.q2",
+        "slot.table.header.left",
+        "slot.table.header.right",
+        "slot.table.row1.label",
+        "slot.table.row2.label",
+        "slot.table.row3.label",
+        "slot.table.row4.label",
+        "slot.legend.big.text",
+        "slot.legend.small.text",
+        "slot.choice",
+        "slot.title.text"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.table.frame",
+        "slot.table.titlebox",
+        "slot.table.grid.v1",
+        "slot.table.grid.h1",
+        "slot.table.grid.h2",
+        "slot.table.grid.h3",
+        "slot.table.grid.h4",
+        "slot.table.grid.h5",
+        "slot.icon.h1.1",
+        "slot.icon.h1.2",
+        "slot.icon.h1.3",
+        "slot.icon.h2.1",
+        "slot.icon.h2.2",
+        "slot.icon.h3.1",
+        "slot.icon.h3.2",
+        "slot.icon.h3.3",
+        "slot.icon.h3.4",
+        "slot.icon.h3.5",
+        "slot.icon.h3.6",
+        "slot.icon.h4.1",
+        "slot.icon.h4.2",
+        "slot.icon.h4.3",
+        "slot.icon.h4.4",
+        "slot.icon.h4.5"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "□ 28. 어느 지역의 마을별 졸업생 수를 조사하여 그림그래프로 나타내었습니다.",
+        "style_role": "question",
+        "x": 18.0,
+        "y": 30.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "졸업생 수가 가장 적은 마을을 선택하세요.",
+        "style_role": "question",
+        "x": 18.0,
+        "y": 66.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.title",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 382.0,
+        "y": 82.0,
+        "width": 250.0,
+        "height": 48.0,
+        "stroke": "#FCE0C7",
+        "fill": "#FCE0C7"
+      }
+    },
+    {
+      "id": "slot.title.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "마을별 졸업생 수",
+        "style_role": "title",
+        "x": 406.0,
+        "y": 115.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.frame",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 320.0,
+        "y": 138.0,
+        "width": 360.0,
+        "height": 258.0,
+        "stroke": "#FFAE7A",
+        "fill": "#FFF7F0"
+      }
+    },
+    {
+      "id": "slot.table.titlebox",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 320.0,
+        "y": 138.0,
+        "width": 360.0,
+        "height": 38.0,
+        "stroke": "#FFAE7A",
+        "fill": "#FCE0C7"
+      }
+    },
+    {
+      "id": "slot.table.grid.v1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 410.0,
+        "y": 138.0,
+        "width": 0.0,
+        "height": 258.0,
+        "stroke": "#FFAE7A",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.table.grid.h1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 320.0,
+        "y": 176.0,
+        "width": 360.0,
+        "height": 0.0,
+        "stroke": "#FFAE7A",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.table.grid.h2",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 320.0,
+        "y": 218.0,
+        "width": 360.0,
+        "height": 0.0,
+        "stroke": "#FFAE7A",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.table.grid.h3",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 320.0,
+        "y": 260.0,
+        "width": 360.0,
+        "height": 0.0,
+        "stroke": "#FFAE7A",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.table.grid.h4",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 320.0,
+        "y": 302.0,
+        "width": 360.0,
+        "height": 0.0,
+        "stroke": "#FFAE7A",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.table.grid.h5",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 320.0,
+        "y": 344.0,
+        "width": 360.0,
+        "height": 0.0,
+        "stroke": "#FFAE7A",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.table.header.left",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "마을",
+        "style_role": "label",
+        "x": 340.0,
+        "y": 168.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.header.right",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "졸업생 수",
+        "style_role": "label",
+        "x": 456.0,
+        "y": 168.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.row1.label",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "행복",
+        "style_role": "label",
+        "x": 344.0,
+        "y": 210.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.row2.label",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "사랑",
+        "style_role": "label",
+        "x": 344.0,
+        "y": 252.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.row3.label",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "은빛",
+        "style_role": "label",
+        "x": 344.0,
+        "y": 294.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.row4.label",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "소망",
+        "style_role": "label",
+        "x": 344.0,
+        "y": 336.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.icon.h1.1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 432.0,
+        "cy": 204.0,
+        "r": 10.0,
+        "fill": "#FFD84D"
+      }
+    },
+    {
+      "id": "slot.icon.h1.2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 459.0,
+        "cy": 204.0,
+        "r": 10.0,
+        "fill": "#FFD84D"
+      }
+    },
+    {
+      "id": "slot.icon.h1.3",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 486.0,
+        "cy": 204.0,
+        "r": 10.0,
+        "fill": "#FFD84D"
+      }
+    },
+    {
+      "id": "slot.icon.h2.1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 432.0,
+        "cy": 246.0,
+        "r": 10.0,
+        "fill": "#FFD84D"
+      }
+    },
+    {
+      "id": "slot.icon.h2.2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 459.0,
+        "cy": 246.0,
+        "r": 10.0,
+        "fill": "#FFD84D"
+      }
+    },
+    {
+      "id": "slot.icon.h3.1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 432.0,
+        "cy": 288.0,
+        "r": 10.0,
+        "fill": "#FFD84D"
+      }
+    },
+    {
+      "id": "slot.icon.h3.2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 459.0,
+        "cy": 288.0,
+        "r": 10.0,
+        "fill": "#FFD84D"
+      }
+    },
+    {
+      "id": "slot.icon.h3.3",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 486.0,
+        "cy": 288.0,
+        "r": 10.0,
+        "fill": "#FFD84D"
+      }
+    },
+    {
+      "id": "slot.icon.h3.4",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 513.0,
+        "cy": 288.0,
+        "r": 10.0,
+        "fill": "#FFD84D"
+      }
+    },
+    {
+      "id": "slot.icon.h3.5",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 540.0,
+        "cy": 288.0,
+        "r": 10.0,
+        "fill": "#FFD84D"
+      }
+    },
+    {
+      "id": "slot.icon.h3.6",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 567.0,
+        "cy": 288.0,
+        "r": 10.0,
+        "fill": "#FFD84D"
+      }
+    },
+    {
+      "id": "slot.icon.h4.1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 432.0,
+        "cy": 330.0,
+        "r": 10.0,
+        "fill": "#FFD84D"
+      }
+    },
+    {
+      "id": "slot.icon.h4.2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 459.0,
+        "cy": 330.0,
+        "r": 10.0,
+        "fill": "#FFD84D"
+      }
+    },
+    {
+      "id": "slot.icon.h4.3",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 486.0,
+        "cy": 330.0,
+        "r": 10.0,
+        "fill": "#FFD84D"
+      }
+    },
+    {
+      "id": "slot.icon.h4.4",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 513.0,
+        "cy": 330.0,
+        "r": 10.0,
+        "fill": "#FFD84D"
+      }
+    },
+    {
+      "id": "slot.icon.h4.5",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 540.0,
+        "cy": 330.0,
+        "r": 10.0,
+        "fill": "#FFD84D"
+      }
+    },
+    {
+      "id": "slot.legend.big.icon",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 468.0,
+        "y": 376.0,
+        "width": 18.0,
+        "height": 18.0,
+        "stroke": "#E0B200",
+        "fill": "#FFD84D"
+      }
+    },
+    {
+      "id": "slot.legend.big.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "100명",
+        "style_role": "label",
+        "x": 492.0,
+        "y": 392.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.legend.small.icon",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 578.0,
+        "y": 380.0,
+        "width": 10.0,
+        "height": 10.0,
+        "stroke": "#E0B200",
+        "fill": "#FFD84D"
+      }
+    },
+    {
+      "id": "slot.legend.small.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "10명",
+        "style_role": "label",
+        "x": 604.0,
+        "y": 392.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "( 행복 , 사랑 , 은빛 , 소망 )마을",
+        "style_role": "question",
+        "x": 525.0,
+        "y": 430.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.title",
+    "slot.legend.big.icon",
+    "slot.legend.small.icon",
+    "slot.q1",
+    "slot.q2",
+    "slot.table.header.left",
+    "slot.table.header.right",
+    "slot.table.row1.label",
+    "slot.table.row2.label",
+    "slot.table.row3.label",
+    "slot.table.row4.label",
+    "slot.legend.big.text",
+    "slot.legend.small.text",
+    "slot.choice",
+    "slot.title.text",
+    "region.diagram",
+    "slot.table.frame",
+    "slot.table.titlebox",
+    "slot.table.grid.v1",
+    "slot.table.grid.h1",
+    "slot.table.grid.h2",
+    "slot.table.grid.h3",
+    "slot.table.grid.h4",
+    "slot.table.grid.h5",
+    "slot.icon.h1.1",
+    "slot.icon.h1.2",
+    "slot.icon.h1.3",
+    "slot.icon.h2.1",
+    "slot.icon.h2.2",
+    "slot.icon.h3.1",
+    "slot.icon.h3.2",
+    "slot.icon.h3.3",
+    "slot.icon.h3.4",
+    "slot.icon.h3.5",
+    "slot.icon.h3.6",
+    "slot.icon.h4.1",
+    "slot.icon.h4.2",
+    "slot.icon.h4.3",
+    "slot.icon.h4.4",
+    "slot.icon.h4.5"
+  ]
+}

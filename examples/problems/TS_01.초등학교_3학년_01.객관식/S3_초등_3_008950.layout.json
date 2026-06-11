@@ -1,0 +1,282 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008950",
+  "title": "그림그래프에서 많은 마을 순서 고르기",
+  "canvas": {
+    "width": 920,
+    "height": 820,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.table.outer",
+        "slot.q.num",
+        "slot.q.text1",
+        "slot.q.text2",
+        "slot.q.title",
+        "slot.table.head1",
+        "slot.table.head2",
+        "slot.table.r1.name",
+        "slot.table.r2.name",
+        "slot.table.r3.name",
+        "slot.table.r4.name",
+        "slot.legend.big",
+        "slot.legend.small",
+        "slot.choice.1",
+        "slot.choice.2",
+        "slot.choice.3",
+        "slot.choice.4",
+        "slot.choice.5"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q.num",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "20.",
+        "style_role": "question",
+        "x": 18.0,
+        "y": 44.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q.text1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "내년에 초등학교에 입학하는 어린이 수를 마을별로 조사하여 그림그래프로 나타내었습니다. 초등학교에",
+        "style_role": "question",
+        "x": 58.0,
+        "y": 44.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q.text2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "입학하는 어린이 수가 많은 마을부터 차례대로 나타낸 것을 고르세요.",
+        "style_role": "question",
+        "x": 18.0,
+        "y": 82.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q.title",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "내년에 초등학교에 입학하는 어린이 수",
+        "style_role": "title",
+        "x": 260.0,
+        "y": 128.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.outer",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 264.0,
+        "y": 148.0,
+        "width": 398.0,
+        "height": 244.0,
+        "stroke": "#F2A3D1",
+        "stroke_width": 1.2,
+        "fill": "#FFF7FB"
+      }
+    },
+    {
+      "id": "slot.table.head1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "마을",
+        "style_role": "label",
+        "x": 290.0,
+        "y": 177.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.head2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "어린이 수",
+        "style_role": "label",
+        "x": 424.0,
+        "y": 177.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.r1.name",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "무지개",
+        "style_role": "label",
+        "x": 280.0,
+        "y": 220.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.r2.name",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "희망",
+        "style_role": "label",
+        "x": 280.0,
+        "y": 269.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.r3.name",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "보람",
+        "style_role": "label",
+        "x": 280.0,
+        "y": 318.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.r4.name",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "행복",
+        "style_role": "label",
+        "x": 280.0,
+        "y": 367.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.legend.big",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "10명",
+        "style_role": "label",
+        "x": 608.0,
+        "y": 418.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.legend.small",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "1명",
+        "style_role": "label",
+        "x": 674.0,
+        "y": 418.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice.1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "① 행복, 무지개, 보람, 희망",
+        "style_role": "choice",
+        "x": 18.0,
+        "y": 496.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice.2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "② 행복, 무지개, 희망, 보람",
+        "style_role": "choice",
+        "x": 490.0,
+        "y": 496.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice.3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "③ 무지개, 행복, 보람, 희망",
+        "style_role": "choice",
+        "x": 18.0,
+        "y": 544.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice.4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "④ 보람, 무지개, 행복, 희망",
+        "style_role": "choice",
+        "x": 490.0,
+        "y": 544.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice.5",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "⑤ 희망, 무지개, 보람, 행복",
+        "style_role": "choice",
+        "x": 18.0,
+        "y": 592.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.table.outer",
+    "slot.q.num",
+    "slot.q.text1",
+    "slot.q.text2",
+    "slot.q.title",
+    "slot.table.head1",
+    "slot.table.head2",
+    "slot.table.r1.name",
+    "slot.table.r2.name",
+    "slot.table.r3.name",
+    "slot.table.r4.name",
+    "slot.legend.big",
+    "slot.legend.small",
+    "slot.choice.1",
+    "slot.choice.2",
+    "slot.choice.3",
+    "slot.choice.4",
+    "slot.choice.5"
+  ]
+}

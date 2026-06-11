@@ -1,0 +1,107 @@
+{
+  "problem_id": "S3_초등_3_008956",
+  "problem_type": "자료와 표 비교",
+  "metadata": {
+    "title": "친구들이 좋아하는 과일",
+    "tags": [],
+    "instruction": "자료와 표 중에서 더 편리한 것을 고르기",
+    "question": "은호네 모둠 학생들이 좋아하는 과일을 조사하여 나타낸 자료와 표 중에서 어느 것이 더 편리할까요?",
+    "required_layout_ids": [
+      "slot.top_title",
+      "slot.frame",
+      "slot.grid.v1",
+      "slot.grid.v2",
+      "slot.grid.v3",
+      "slot.grid.v4",
+      "slot.grid.h1",
+      "slot.grid.h2",
+      "slot.f1",
+      "slot.f2",
+      "slot.f3",
+      "slot.f4",
+      "slot.f5",
+      "slot.f6",
+      "slot.f7",
+      "slot.f8",
+      "slot.f9",
+      "slot.f10",
+      "slot.f11",
+      "slot.f12",
+      "slot.f13",
+      "slot.f14",
+      "slot.f15",
+      "slot.bottom_title",
+      "slot.table.h1",
+      "slot.table.h2",
+      "slot.table.vline1",
+      "slot.table.vline2",
+      "slot.table.vline3",
+      "slot.table.vline4",
+      "slot.table.vline5"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.diagram",
+        "type": "picture_data",
+        "subject": "친구들이 좋아하는 과일"
+      },
+      {
+        "id": "obj.table",
+        "type": "summary_table",
+        "subject": "친구들이 좋아하는 과일"
+      },
+      {
+        "id": "obj.total_students",
+        "type": "count",
+        "value": 15,
+        "unit": "명"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.diagram",
+          "obj.table"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.compare_convenience"
+        ]
+      },
+      "plan": {
+        "method": "compare_representations",
+        "description": "그림 자료와 표 중에서 학생 수를 빠르게 확인하기 더 편리한 표현을 고른다."
+      },
+      "execute": {
+        "expected_operations": [
+          "read_table_total",
+          "compare_with_picture_data"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "table_total_is_explicit",
+          "answer_matches_visible_explanation"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "choice",
+      "description": "자료와 표 중 더 편리한 것"
+    },
+    "value": 15,
+    "unit": ""
+  }
+}

@@ -1,0 +1,392 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008951",
+  "title": "학교별 학생 수",
+  "canvas": {
+    "width": 940.0,
+    "height": 438.0,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.title_box",
+        "slot.table_outer",
+        "slot.table.v1",
+        "slot.table.v2",
+        "slot.table.v3",
+        "slot.table.v4",
+        "slot.table.v5",
+        "slot.table.h1",
+        "slot.table.h2",
+        "slot.q_no",
+        "slot.q1",
+        "slot.q2",
+        "slot.t1",
+        "slot.t2",
+        "slot.t3",
+        "slot.t4",
+        "slot.t5",
+        "slot.t6",
+        "slot.t7",
+        "slot.t8",
+        "slot.t9",
+        "slot.t10",
+        "slot.t11",
+        "slot.t12",
+        "slot.t13",
+        "slot.note"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q_no",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "□ 21.",
+        "style_role": "question",
+        "x": 8.0,
+        "y": 33.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "학생 수를 학교별로 조사하여 표로 나타내었습니다.",
+        "style_role": "question",
+        "x": 60.0,
+        "y": 36.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "학생 수가 나 학교의 2배인 학교는 어디일까요?",
+        "style_role": "question",
+        "x": 60.0,
+        "y": 74.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.title_box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 372.0,
+        "y": 120.0,
+        "width": 238.0,
+        "height": 50.0,
+        "fill": "#F9DCC7"
+      }
+    },
+    {
+      "id": "slot.t1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "학교별 학생 수",
+        "style_role": "title",
+        "x": 411.0,
+        "y": 154.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table_outer",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 139.0,
+        "y": 173.0,
+        "width": 700.0,
+        "height": 82.0,
+        "fill": "#F9DCC7"
+      }
+    },
+    {
+      "id": "slot.table.v1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 298.0,
+        "y": 173.0,
+        "width": 1.0,
+        "height": 82.0,
+        "fill": "#F1B48F"
+      }
+    },
+    {
+      "id": "slot.table.v2",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 398.0,
+        "y": 173.0,
+        "width": 1.0,
+        "height": 82.0,
+        "fill": "#F1B48F"
+      }
+    },
+    {
+      "id": "slot.table.v3",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 501.0,
+        "y": 173.0,
+        "width": 1.0,
+        "height": 82.0,
+        "fill": "#F1B48F"
+      }
+    },
+    {
+      "id": "slot.table.v4",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 602.0,
+        "y": 173.0,
+        "width": 1.0,
+        "height": 82.0,
+        "fill": "#F1B48F"
+      }
+    },
+    {
+      "id": "slot.table.v5",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 702.0,
+        "y": 173.0,
+        "width": 1.0,
+        "height": 82.0,
+        "fill": "#F1B48F"
+      }
+    },
+    {
+      "id": "slot.table.h1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 139.0,
+        "y": 214.0,
+        "width": 700.0,
+        "height": 1.0,
+        "fill": "#F1B48F"
+      }
+    },
+    {
+      "id": "slot.table.h2",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 139.0,
+        "y": 173.0,
+        "width": 700.0,
+        "height": 1.0,
+        "fill": "#F1B48F"
+      }
+    },
+    {
+      "id": "slot.t2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "학교",
+        "style_role": "label",
+        "x": 221.0,
+        "y": 205.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.t3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "가",
+        "style_role": "label",
+        "x": 340.0,
+        "y": 205.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.t4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "나",
+        "style_role": "label",
+        "x": 440.0,
+        "y": 205.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.t5",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "다",
+        "style_role": "label",
+        "x": 544.0,
+        "y": 205.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.t6",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "라",
+        "style_role": "label",
+        "x": 646.0,
+        "y": 205.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.t7",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "합계",
+        "style_role": "label",
+        "x": 744.0,
+        "y": 205.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.t8",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "학생 수(명)",
+        "style_role": "label",
+        "x": 152.0,
+        "y": 246.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.t9",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "250",
+        "style_role": "label",
+        "x": 325.0,
+        "y": 246.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.t10",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "160",
+        "style_role": "label",
+        "x": 425.0,
+        "y": 246.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.t11",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "320",
+        "style_role": "label",
+        "x": 528.0,
+        "y": 246.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.t12",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "340",
+        "style_role": "label",
+        "x": 630.0,
+        "y": 246.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.t13",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "",
+        "style_role": "label",
+        "x": 744.0,
+        "y": 246.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.note",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "( 가 , 나 , 다 , 라 ) 학교",
+        "style_role": "note",
+        "x": 628.0,
+        "y": 281.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.title_box",
+    "slot.table_outer",
+    "slot.table.v1",
+    "slot.table.v2",
+    "slot.table.v3",
+    "slot.table.v4",
+    "slot.table.v5",
+    "slot.table.h1",
+    "slot.table.h2",
+    "slot.q_no",
+    "slot.q1",
+    "slot.q2",
+    "slot.t1",
+    "slot.t2",
+    "slot.t3",
+    "slot.t4",
+    "slot.t5",
+    "slot.t6",
+    "slot.t7",
+    "slot.t8",
+    "slot.t9",
+    "slot.t10",
+    "slot.t11",
+    "slot.t12",
+    "slot.t13",
+    "slot.note"
+  ]
+}
