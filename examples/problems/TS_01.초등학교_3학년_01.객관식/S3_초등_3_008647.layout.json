@@ -14,30 +14,61 @@
       "role": "stem",
       "flow": "absolute",
       "slot_ids": [
-        "slot.q.circle",
-        "slot.q.top.circle",
-        "slot.q.top.center",
-        "slot.expl.circle",
-        "slot.expl.top.circle",
-        "slot.expl.top.center",
-        "slot.q.top.radius1",
-        "slot.q.top.radius2",
-        "slot.q.top.radius3",
-        "slot.q.top.radius4",
-        "slot.q.top.diameter",
-        "slot.expl.top.radius1",
-        "slot.expl.top.radius2",
-        "slot.expl.top.radius3",
-        "slot.expl.top.radius4",
-        "slot.expl.top.diameter",
         "slot.q.no",
-        "slot.q.text",
-        "slot.q.top.label.d",
-        "slot.q.top.label.ㄴ",
-        "slot.q.top.label.ㄹ",
-        "slot.q.top.label.ㄱ",
-        "slot.q.top.label.ㅁ",
-        "slot.q.top.center_mark"
+        "slot.q.text"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.diagram.top.circle",
+        "slot.diagram.top.label.a.circle",
+        "slot.diagram.top.label.b.circle",
+        "slot.diagram.top.label.c.circle",
+        "slot.diagram.top.label.d.circle",
+        "slot.diagram.top.label.e.circle",
+        "slot.diagram.top.segment.a",
+        "slot.diagram.top.segment.b",
+        "slot.diagram.top.segment.c",
+        "slot.diagram.top.segment.d",
+        "slot.diagram.top.segment.e",
+        "slot.diagram.top.center.dot",
+        "slot.diagram.top.center.label",
+        "slot.diagram.top.label.a.text",
+        "slot.diagram.top.label.b.text",
+        "slot.diagram.top.label.c.text",
+        "slot.diagram.top.label.d.text",
+        "slot.diagram.top.label.e.text"
+      ]
+    },
+    {
+      "id": "region.answer",
+      "role": "answer",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.answer"
+      ]
+    },
+    {
+      "id": "region.explanation",
+      "role": "note",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.diagram.solution.circle",
+        "slot.diagram.solution.label.c.circle",
+        "slot.diagram.solution.segment.a",
+        "slot.diagram.solution.segment.b",
+        "slot.diagram.solution.segment.c",
+        "slot.diagram.solution.segment.d",
+        "slot.diagram.solution.segment.e",
+        "slot.explanation.label",
+        "slot.diagram.solution.center.dot",
+        "slot.diagram.solution.center.label",
+        "slot.diagram.solution.label.c.text",
+        "slot.explanation.text1",
+        "slot.explanation.text2"
       ]
     }
   ],
@@ -49,9 +80,9 @@
       "content": {
         "text": "□ 19.",
         "style_role": "question",
-        "x": 12.0,
-        "y": 34.0,
-        "font_size": 28
+        "x": 14.0,
+        "y": 31.0,
+        "font_size": 24
       }
     },
     {
@@ -61,257 +92,427 @@
       "content": {
         "text": "원 안의 선분 중 길이가 가장 긴 선분을 찾아 기호를 선택하세요.",
         "style_role": "question",
-        "x": 86.0,
-        "y": 34.0,
-        "font_size": 28
+        "x": 75.0,
+        "y": 31.0,
+        "font_size": 24
       }
     },
     {
-      "id": "slot.q.circle",
+      "id": "slot.diagram.top.circle",
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 505.0,
-        "cy": 190.0,
-        "r": 95.0,
+        "cx": 478.0,
+        "cy": 185.0,
+        "r": 96.0,
+        "stroke": "#222222",
+        "stroke_width": 1.5,
         "fill": "none"
       }
     },
     {
-      "id": "slot.q.top.circle",
+      "id": "slot.diagram.top.segment.a",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 478.0,
+        "y1": 281.0,
+        "x2": 385.84000000000003,
+        "y2": 188.84,
+        "stroke": "#222222",
+        "stroke_width": 1.5
+      }
+    },
+    {
+      "id": "slot.diagram.top.segment.b",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 478.0,
+        "y1": 281.0,
+        "x2": 420.4,
+        "y2": 110.12,
+        "stroke": "#222222",
+        "stroke_width": 1.5
+      }
+    },
+    {
+      "id": "slot.diagram.top.segment.c",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 478.0,
+        "y1": 281.0,
+        "x2": 478.0,
+        "y2": 89.0,
+        "stroke": "#222222",
+        "stroke_width": 1.5
+      }
+    },
+    {
+      "id": "slot.diagram.top.segment.d",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 478.0,
+        "y1": 281.0,
+        "x2": 535.6,
+        "y2": 110.12,
+        "stroke": "#222222",
+        "stroke_width": 1.5
+      }
+    },
+    {
+      "id": "slot.diagram.top.segment.e",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 478.0,
+        "y1": 281.0,
+        "x2": 570.16,
+        "y2": 188.84,
+        "stroke": "#222222",
+        "stroke_width": 1.5
+      }
+    },
+    {
+      "id": "slot.diagram.top.center.dot",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "●",
+        "style_role": "label",
+        "x": 478.0,
+        "y": 189.0,
+        "font_size": 12,
+        "anchor": "middle",
+        "fill": "#E11A86"
+      }
+    },
+    {
+      "id": "slot.diagram.top.center.label",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "O",
+        "style_role": "label",
+        "x": 487.0,
+        "y": 191.0,
+        "font_size": 18
+      }
+    },
+    {
+      "id": "slot.diagram.top.label.a.circle",
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 505.0,
-        "cy": 190.0,
-        "r": 2.5,
-        "fill": "#222222"
+        "cx": 366.0,
+        "cy": 192.0,
+        "r": 10.5,
+        "stroke": "#888888",
+        "stroke_width": 1.2,
+        "fill": "none"
       }
     },
     {
-      "id": "slot.q.top.center",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 505.0,
-        "cy": 191.0,
-        "r": 3.0,
-        "fill": "#ff3aa7"
-      }
-    },
-    {
-      "id": "slot.q.top.radius1",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 505.0,
-        "y1": 190.0,
-        "x2": 458.0,
-        "y2": 107.0
-      }
-    },
-    {
-      "id": "slot.q.top.radius2",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 505.0,
-        "y1": 190.0,
-        "x2": 410.0,
-        "y2": 228.0
-      }
-    },
-    {
-      "id": "slot.q.top.radius3",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 505.0,
-        "y1": 190.0,
-        "x2": 560.0,
-        "y2": 108.0
-      }
-    },
-    {
-      "id": "slot.q.top.radius4",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 505.0,
-        "y1": 190.0,
-        "x2": 596.0,
-        "y2": 230.0
-      }
-    },
-    {
-      "id": "slot.q.top.diameter",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 505.0,
-        "y1": 95.0,
-        "x2": 505.0,
-        "y2": 285.0
-      }
-    },
-    {
-      "id": "slot.q.top.label.d",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "ㄷ",
-        "style_role": "label",
-        "x": 497.0,
-        "y": 80.0,
-        "font_size": 28
-      }
-    },
-    {
-      "id": "slot.q.top.label.ㄴ",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "ㄴ",
-        "style_role": "label",
-        "x": 448.0,
-        "y": 118.0,
-        "font_size": 28
-      }
-    },
-    {
-      "id": "slot.q.top.label.ㄹ",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "ㄹ",
-        "style_role": "label",
-        "x": 566.0,
-        "y": 118.0,
-        "font_size": 28
-      }
-    },
-    {
-      "id": "slot.q.top.label.ㄱ",
+      "id": "slot.diagram.top.label.a.text",
       "kind": "text",
       "prompt": "",
       "content": {
         "text": "ㄱ",
         "style_role": "label",
-        "x": 390.0,
-        "y": 231.0,
-        "font_size": 28
+        "x": 366.0,
+        "y": 198.0,
+        "font_size": 17,
+        "anchor": "middle",
+        "fill": "#555555"
       }
     },
     {
-      "id": "slot.q.top.label.ㅁ",
+      "id": "slot.diagram.top.label.b.circle",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 388.72,
+        "cy": 117.80000000000001,
+        "r": 10.5,
+        "stroke": "#888888",
+        "stroke_width": 1.2,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.diagram.top.label.b.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄴ",
+        "style_role": "label",
+        "x": 388.72,
+        "y": 123.80000000000001,
+        "font_size": 17,
+        "anchor": "middle",
+        "fill": "#555555"
+      }
+    },
+    {
+      "id": "slot.diagram.top.label.c.circle",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 478.0,
+        "cy": 71.0,
+        "r": 10.5,
+        "stroke": "#888888",
+        "stroke_width": 1.2,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.diagram.top.label.c.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄷ",
+        "style_role": "label",
+        "x": 478.0,
+        "y": 77.0,
+        "font_size": 17,
+        "anchor": "middle",
+        "fill": "#555555"
+      }
+    },
+    {
+      "id": "slot.diagram.top.label.d.circle",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 567.28,
+        "cy": 117.80000000000001,
+        "r": 10.5,
+        "stroke": "#888888",
+        "stroke_width": 1.2,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.diagram.top.label.d.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄹ",
+        "style_role": "label",
+        "x": 567.28,
+        "y": 123.80000000000001,
+        "font_size": 17,
+        "anchor": "middle",
+        "fill": "#555555"
+      }
+    },
+    {
+      "id": "slot.diagram.top.label.e.circle",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 590.0,
+        "cy": 192.0,
+        "r": 10.5,
+        "stroke": "#888888",
+        "stroke_width": 1.2,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.diagram.top.label.e.text",
       "kind": "text",
       "prompt": "",
       "content": {
         "text": "ㅁ",
         "style_role": "label",
-        "x": 604.0,
-        "y": 232.0,
-        "font_size": 28
+        "x": 590.0,
+        "y": 198.0,
+        "font_size": 17,
+        "anchor": "middle",
+        "fill": "#555555"
       }
     },
     {
-      "id": "slot.q.top.center_mark",
+      "id": "slot.answer",
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "ㅇ",
-        "style_role": "label",
-        "x": 519.0,
-        "y": 194.0,
-        "font_size": 28
+        "text": "(정답)㉢",
+        "style_role": "answer",
+        "x": 14.0,
+        "y": 322.0,
+        "font_size": 18
       }
     },
     {
-      "id": "slot.expl.circle",
+      "id": "slot.explanation.label",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "(해설)",
+        "style_role": "explanation",
+        "x": 14.0,
+        "y": 468.0,
+        "font_size": 18
+      }
+    },
+    {
+      "id": "slot.diagram.solution.circle",
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 191.0,
-        "cy": 487.0,
-        "r": 95.0,
+        "cx": 195.0,
+        "cy": 484.0,
+        "r": 96.0,
+        "stroke": "#222222",
+        "stroke_width": 1.5,
         "fill": "none"
       }
     },
     {
-      "id": "slot.expl.top.circle",
+      "id": "slot.diagram.solution.segment.a",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 195.0,
+        "y1": 580.0,
+        "x2": 102.84,
+        "y2": 487.84,
+        "stroke": "#222222",
+        "stroke_width": 1.5
+      }
+    },
+    {
+      "id": "slot.diagram.solution.segment.b",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 195.0,
+        "y1": 580.0,
+        "x2": 137.4,
+        "y2": 409.12,
+        "stroke": "#222222",
+        "stroke_width": 1.5
+      }
+    },
+    {
+      "id": "slot.diagram.solution.segment.c",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 195.0,
+        "y1": 580.0,
+        "x2": 195.0,
+        "y2": 388.0,
+        "stroke": "#222222",
+        "stroke_width": 1.5
+      }
+    },
+    {
+      "id": "slot.diagram.solution.segment.d",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 195.0,
+        "y1": 580.0,
+        "x2": 252.6,
+        "y2": 409.12,
+        "stroke": "#222222",
+        "stroke_width": 1.5
+      }
+    },
+    {
+      "id": "slot.diagram.solution.segment.e",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 195.0,
+        "y1": 580.0,
+        "x2": 287.15999999999997,
+        "y2": 487.84,
+        "stroke": "#222222",
+        "stroke_width": 1.5
+      }
+    },
+    {
+      "id": "slot.diagram.solution.center.dot",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "●",
+        "style_role": "label",
+        "x": 195.0,
+        "y": 488.0,
+        "font_size": 12,
+        "anchor": "middle",
+        "fill": "#E11A86"
+      }
+    },
+    {
+      "id": "slot.diagram.solution.center.label",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "O",
+        "style_role": "label",
+        "x": 204.0,
+        "y": 490.0,
+        "font_size": 18
+      }
+    },
+    {
+      "id": "slot.diagram.solution.label.c.circle",
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 191.0,
-        "cy": 487.0,
-        "r": 2.5,
-        "fill": "#222222"
+        "cx": 195.0,
+        "cy": 370.0,
+        "r": 10.5,
+        "stroke": "#888888",
+        "stroke_width": 1.2,
+        "fill": "none"
       }
     },
     {
-      "id": "slot.expl.top.center",
-      "kind": "circle",
+      "id": "slot.diagram.solution.label.c.text",
+      "kind": "text",
       "prompt": "",
       "content": {
-        "cx": 191.0,
-        "cy": 487.0,
-        "r": 3.0,
-        "fill": "#ff3aa7"
+        "text": "ㄷ",
+        "style_role": "label",
+        "x": 195.0,
+        "y": 376.0,
+        "font_size": 17,
+        "anchor": "middle",
+        "fill": "#555555"
       }
     },
     {
-      "id": "slot.expl.top.radius1",
-      "kind": "line",
+      "id": "slot.explanation.text1",
+      "kind": "text",
       "prompt": "",
       "content": {
-        "x1": 191.0,
-        "y1": 487.0,
-        "x2": 140.0,
-        "y2": 404.0
+        "text": "원 안에 그을 수 있는 선분 중 길이가 가장 긴 선분은 원의 중심을 지나는 원의",
+        "style_role": "explanation",
+        "x": 36.0,
+        "y": 612.0,
+        "font_size": 24
       }
     },
     {
-      "id": "slot.expl.top.radius2",
-      "kind": "line",
+      "id": "slot.explanation.text2",
+      "kind": "text",
       "prompt": "",
       "content": {
-        "x1": 191.0,
-        "y1": 487.0,
-        "x2": 97.0,
-        "y2": 525.0
-      }
-    },
-    {
-      "id": "slot.expl.top.radius3",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 191.0,
-        "y1": 487.0,
-        "x2": 245.0,
-        "y2": 406.0
-      }
-    },
-    {
-      "id": "slot.expl.top.radius4",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 191.0,
-        "y1": 487.0,
-        "x2": 286.0,
-        "y2": 528.0
-      }
-    },
-    {
-      "id": "slot.expl.top.diameter",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 191.0,
-        "y1": 392.0,
-        "x2": 191.0,
-        "y2": 582.0
+        "text": "지름이므로 ㉢입니다.",
+        "style_role": "explanation",
+        "x": 36.0,
+        "y": 647.0,
+        "font_size": 24
       }
     }
   ],
@@ -320,29 +521,42 @@
   "diagrams": [],
   "reading_order": [
     "region.stem",
-    "slot.q.circle",
-    "slot.q.top.circle",
-    "slot.q.top.center",
-    "slot.expl.circle",
-    "slot.expl.top.circle",
-    "slot.expl.top.center",
-    "slot.q.top.radius1",
-    "slot.q.top.radius2",
-    "slot.q.top.radius3",
-    "slot.q.top.radius4",
-    "slot.q.top.diameter",
-    "slot.expl.top.radius1",
-    "slot.expl.top.radius2",
-    "slot.expl.top.radius3",
-    "slot.expl.top.radius4",
-    "slot.expl.top.diameter",
     "slot.q.no",
     "slot.q.text",
-    "slot.q.top.label.d",
-    "slot.q.top.label.ㄴ",
-    "slot.q.top.label.ㄹ",
-    "slot.q.top.label.ㄱ",
-    "slot.q.top.label.ㅁ",
-    "slot.q.top.center_mark"
+    "region.diagram",
+    "slot.diagram.top.circle",
+    "slot.diagram.top.label.a.circle",
+    "slot.diagram.top.label.b.circle",
+    "slot.diagram.top.label.c.circle",
+    "slot.diagram.top.label.d.circle",
+    "slot.diagram.top.label.e.circle",
+    "slot.diagram.top.segment.a",
+    "slot.diagram.top.segment.b",
+    "slot.diagram.top.segment.c",
+    "slot.diagram.top.segment.d",
+    "slot.diagram.top.segment.e",
+    "slot.diagram.top.center.dot",
+    "slot.diagram.top.center.label",
+    "slot.diagram.top.label.a.text",
+    "slot.diagram.top.label.b.text",
+    "slot.diagram.top.label.c.text",
+    "slot.diagram.top.label.d.text",
+    "slot.diagram.top.label.e.text",
+    "region.answer",
+    "slot.answer",
+    "region.explanation",
+    "slot.diagram.solution.circle",
+    "slot.diagram.solution.label.c.circle",
+    "slot.diagram.solution.segment.a",
+    "slot.diagram.solution.segment.b",
+    "slot.diagram.solution.segment.c",
+    "slot.diagram.solution.segment.d",
+    "slot.diagram.solution.segment.e",
+    "slot.explanation.label",
+    "slot.diagram.solution.center.dot",
+    "slot.diagram.solution.center.label",
+    "slot.diagram.solution.label.c.text",
+    "slot.explanation.text1",
+    "slot.explanation.text2"
   ]
 }

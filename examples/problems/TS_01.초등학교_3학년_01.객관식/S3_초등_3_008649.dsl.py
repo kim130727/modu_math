@@ -12,114 +12,75 @@ from modu_math.dsl import (
 def build_problem_template() -> ProblemTemplate:
     return ProblemTemplate(
         id="S3_초등_3_008649",
-        title="원의 지름",
-        canvas=Canvas(width=660, height=360, coordinate_mode="logical"),
+        title="그림을 보고 알맞은 말을 선택하세요",
+        canvas=Canvas(width=900, height=450, coordinate_mode="logical"),
         regions=(
             Region(
-                id="region.header",
+                id="region.stem",
                 role="stem",
                 flow="absolute",
-                slot_ids=("slot.instruction",),
+                slot_ids=("slot.q1", "slot.q2", "slot.q3", ),
             ),
             Region(
                 id="region.diagram",
                 role="diagram",
                 flow="absolute",
-                slot_ids=(
-                    "slot.circle_outline",
-                    "slot.center_point",
-                    "slot.line_top_right",
-                    "slot.line_left_right",
-                    "slot.line_center_down",
-                    "slot.lb.ㄱ",
-                    "slot.lb.ㄴ",
-                    "slot.lb.ㄷ",
-                    "slot.lb.ㄹ",
-                ),
+                slot_ids=("slot.circle",
+                    "slot.center",
+                    "slot.lb.g",
+                    "slot.lb.n",
+                    "slot.lb.d",
+                    "slot.lb.r",
+                    "slot.line.gr",
+                    "slot.line.nr",
+                    "slot.line.cd",'slot.lb.d.copy2'),
             ),
             Region(
-                id="region.body",
-                role="stem",
-                flow="absolute",
-                slot_ids=("slot.sentence1", "slot.sentence2", "slot.choice"),
+                id="region.explain", role="explanation", flow="absolute", slot_ids=()
             ),
         ),
-        slots=(
-            TextSlot(
-                id="slot.instruction",
+        slots=(TextSlot(
+                id="slot.q1",
                 prompt="",
                 text = '그림을 보고 알맞은 말을 선택하세요.', style_role="question",
-                x = 10, y = 30, font_size = 30),
-            CircleSlot(
-                id="slot.circle_outline",
-                prompt="",
-                cx = 265, cy = 140, r = 65, fill="none",
-            ),
-            CircleSlot(
-                id="slot.center_point",
-                prompt="",
-                cx = 250, cy = 150, r = 5, fill="#d81b60",
-            ),
-            LineSlot(
-                id="slot.line_top_right",
-                prompt="",
-                x1 = 245, y1 = 75, x2 = 330, y2 = 125),
-            LineSlot(
-                id="slot.line_left_right",
-                prompt="",
-                x1 = 180, y1 = 175, x2 = 330, y2 = 125),
-            LineSlot(
-                id="slot.line_center_down",
-                prompt="",
-                x1 = 250, y1 = 150, x2 = 280, y2 = 215),
+                x = 40, y = 35, font_size = 30),
             TextSlot(
-                id="slot.lb.ㄱ",
+                id="slot.q2",
+                prompt="",
+                text = '원의 (지름, 반지름)은 원을 둘로 똑같이 나눕니다.', style_role="question",
+                x = 45, y = 395, font_size = 30),
+            CircleSlot(
+                id="slot.circle", prompt="", cx = 425, cy = 220, r = 115, fill="none"
+            ),
+            CircleSlot(
+                id="slot.center", prompt="", cx = 425, cy = 220, r = 5, fill="#d81b60"
+            ),
+            TextSlot(
+                id="slot.lb.g",
                 prompt="",
                 text = 'ㄱ', style_role="label",
-                x = 235, y = 65, font_size = 30),
+                x = 380, y = 105, font_size = 30),
             TextSlot(
-                id="slot.lb.ㄴ",
+                id="slot.lb.n",
                 prompt="",
                 text = 'ㄴ', style_role="label",
-                x = 160, y = 185, font_size = 30),
+                x = 290, y = 280, font_size = 30),
             TextSlot(
-                id="slot.lb.ㄷ",
+                id="slot.lb.d",
                 prompt="",
                 text = 'ㄷ', style_role="label",
-                x = 285, y = 230, font_size = 30),
+                x = 490, y = 340, font_size = 30),
             TextSlot(
-                id="slot.lb.ㄹ",
+                id="slot.lb.r",
                 prompt="",
                 text = 'ㄹ', style_role="label",
-                x = 340, y = 135, font_size = 30),
-            TextSlot(
-                id="slot.sentence1",
-                prompt="",
-                text="원의 ( 지름, 반지름 )은 원을 둘로 똑같이 나눕니다.",
-                style_role="question",
-                x=12.0,
-                y=268.0,
-                font_size=28,
-            ),
-            TextSlot(
-                id="slot.sentence2",
-                prompt="",
-                text="원의 지름은 원을 둘로 똑같이 나눕니다.",
-                style_role="question",
-                x=12.0,
-                y=308.0,
-                font_size=28,
-            ),
-            TextSlot(
-                id="slot.choice",
-                prompt="",
-                text="지름",
-                style_role="question",
-                x=12.0,
-                y=348.0,
-                font_size=28,
-            ),
-        ),
+                x = 540, y = 185, font_size = 30),
+            LineSlot(
+                id="slot.line.gr", prompt="", x1 = 410, y1 = 105, x2 = 535, y2 = 180),
+            LineSlot(
+                id="slot.line.nr", prompt="", x1 = 320, y1 = 265, x2 = 535, y2 = 180),
+            LineSlot(
+                id="slot.line.cd", prompt="", x1 = 425, y1 = 220, x2 = 490, y2 = 315),TextSlot(id = 'slot.lb.d.copy2', prompt = '', text = 'ㅇ', x = 410, y = 215, font_size = 30, fill = '#111111')),
         diagrams=(),
         groups=(),
         constraints=(),

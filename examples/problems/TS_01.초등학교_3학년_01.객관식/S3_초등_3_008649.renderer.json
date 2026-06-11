@@ -1,226 +1,209 @@
 {
   "problem_id": "S3_초등_3_008649",
   "view_box": {
-    "width": 660.0,
-    "height": 360.0,
+    "width": 900.0,
+    "height": 450.0,
     "background": "#FFFFFF"
   },
   "elements": [
     {
-      "id": "slot.instruction.text",
+      "id": "slot.q1.text",
       "type": "text",
       "attributes": {
-        "x": 10.0,
-        "y": 30.0,
-        "max_width": 532.0,
+        "x": 40.0,
+        "y": 35.0,
+        "max_width": 772.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 30
       },
-      "source_ref": "slot.instruction",
+      "source_ref": "slot.q1",
       "refs": {
-        "layout_slot_id": "slot.instruction"
+        "layout_slot_id": "slot.q1"
       },
       "text": "그림을 보고 알맞은 말을 선택하세요."
     },
     {
-      "id": "slot.circle_outline.circle",
+      "id": "slot.q2.text",
+      "type": "text",
+      "attributes": {
+        "x": 45.0,
+        "y": 395.0,
+        "max_width": 772.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30
+      },
+      "source_ref": "slot.q2",
+      "refs": {
+        "layout_slot_id": "slot.q2"
+      },
+      "text": "원의 (지름, 반지름)은 원을 둘로 똑같이 나눕니다."
+    },
+    {
+      "id": "slot.circle.circle",
       "type": "circle",
       "attributes": {
-        "cx": 265.0,
-        "cy": 140.0,
-        "r": 65.0,
+        "cx": 425.0,
+        "cy": 220.0,
+        "r": 115.0,
         "stroke": "#111111",
         "stroke-width": 2.0,
         "fill": "none"
       },
-      "source_ref": "slot.circle_outline",
+      "source_ref": "slot.circle",
       "refs": {
-        "layout_slot_id": "slot.circle_outline"
+        "layout_slot_id": "slot.circle"
       }
     },
     {
-      "id": "slot.center_point.circle",
+      "id": "slot.center.circle",
       "type": "circle",
       "attributes": {
-        "cx": 250.0,
-        "cy": 150.0,
+        "cx": 425.0,
+        "cy": 220.0,
         "r": 5.0,
         "stroke": "#111111",
         "stroke-width": 2.0,
         "fill": "#d81b60"
       },
-      "source_ref": "slot.center_point",
+      "source_ref": "slot.center",
       "refs": {
-        "layout_slot_id": "slot.center_point"
+        "layout_slot_id": "slot.center"
       }
     },
     {
-      "id": "slot.line_top_right.line",
+      "id": "slot.line.gr.line",
       "type": "line",
       "attributes": {
-        "x1": 245.0,
-        "y1": 75.0,
-        "x2": 330.0,
-        "y2": 125.0,
+        "x1": 410.0,
+        "y1": 105.0,
+        "x2": 535.0,
+        "y2": 180.0,
         "stroke": "#111111",
         "stroke-width": 2.0
       },
-      "source_ref": "slot.line_top_right",
+      "source_ref": "slot.line.gr",
       "refs": {
-        "layout_slot_id": "slot.line_top_right"
+        "layout_slot_id": "slot.line.gr"
       }
     },
     {
-      "id": "slot.line_left_right.line",
+      "id": "slot.line.nr.line",
       "type": "line",
       "attributes": {
-        "x1": 180.0,
-        "y1": 175.0,
-        "x2": 330.0,
-        "y2": 125.0,
+        "x1": 320.0,
+        "y1": 265.0,
+        "x2": 535.0,
+        "y2": 180.0,
         "stroke": "#111111",
         "stroke-width": 2.0
       },
-      "source_ref": "slot.line_left_right",
+      "source_ref": "slot.line.nr",
       "refs": {
-        "layout_slot_id": "slot.line_left_right"
+        "layout_slot_id": "slot.line.nr"
       }
     },
     {
-      "id": "slot.line_center_down.line",
+      "id": "slot.line.cd.line",
       "type": "line",
       "attributes": {
-        "x1": 250.0,
-        "y1": 150.0,
-        "x2": 280.0,
-        "y2": 215.0,
+        "x1": 425.0,
+        "y1": 220.0,
+        "x2": 490.0,
+        "y2": 315.0,
         "stroke": "#111111",
         "stroke-width": 2.0
       },
-      "source_ref": "slot.line_center_down",
+      "source_ref": "slot.line.cd",
       "refs": {
-        "layout_slot_id": "slot.line_center_down"
+        "layout_slot_id": "slot.line.cd"
       }
     },
     {
-      "id": "slot.lb.ㄱ.text",
+      "id": "slot.lb.g.text",
       "type": "text",
       "attributes": {
-        "x": 235.0,
-        "y": 65.0,
-        "max_width": 532.0,
+        "x": 380.0,
+        "y": 105.0,
+        "max_width": 772.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 30
       },
-      "source_ref": "slot.lb.ㄱ",
+      "source_ref": "slot.lb.g",
       "refs": {
-        "layout_slot_id": "slot.lb.ㄱ"
+        "layout_slot_id": "slot.lb.g"
       },
       "text": "ㄱ"
     },
     {
-      "id": "slot.lb.ㄴ.text",
+      "id": "slot.lb.n.text",
       "type": "text",
       "attributes": {
-        "x": 160.0,
-        "y": 185.0,
-        "max_width": 532.0,
+        "x": 290.0,
+        "y": 280.0,
+        "max_width": 772.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 30
       },
-      "source_ref": "slot.lb.ㄴ",
+      "source_ref": "slot.lb.n",
       "refs": {
-        "layout_slot_id": "slot.lb.ㄴ"
+        "layout_slot_id": "slot.lb.n"
       },
       "text": "ㄴ"
     },
     {
-      "id": "slot.lb.ㄷ.text",
+      "id": "slot.lb.d.text",
       "type": "text",
       "attributes": {
-        "x": 285.0,
-        "y": 230.0,
-        "max_width": 532.0,
+        "x": 490.0,
+        "y": 340.0,
+        "max_width": 772.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 30
       },
-      "source_ref": "slot.lb.ㄷ",
+      "source_ref": "slot.lb.d",
       "refs": {
-        "layout_slot_id": "slot.lb.ㄷ"
+        "layout_slot_id": "slot.lb.d"
       },
       "text": "ㄷ"
     },
     {
-      "id": "slot.lb.ㄹ.text",
+      "id": "slot.lb.r.text",
       "type": "text",
       "attributes": {
-        "x": 340.0,
-        "y": 135.0,
-        "max_width": 532.0,
+        "x": 540.0,
+        "y": 185.0,
+        "max_width": 772.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 30
       },
-      "source_ref": "slot.lb.ㄹ",
+      "source_ref": "slot.lb.r",
       "refs": {
-        "layout_slot_id": "slot.lb.ㄹ"
+        "layout_slot_id": "slot.lb.r"
       },
       "text": "ㄹ"
     },
     {
-      "id": "slot.sentence1.text",
+      "id": "slot.lb.d.copy2.text",
       "type": "text",
       "attributes": {
-        "x": 12.0,
-        "y": 268.0,
-        "max_width": 532.0,
+        "x": 410.0,
+        "y": 215.0,
+        "max_width": 772.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 30
       },
-      "source_ref": "slot.sentence1",
+      "source_ref": "slot.lb.d.copy2",
       "refs": {
-        "layout_slot_id": "slot.sentence1"
+        "layout_slot_id": "slot.lb.d.copy2"
       },
-      "text": "원의 ( 지름, 반지름 )은 원을 둘로 똑같이 나눕니다."
-    },
-    {
-      "id": "slot.sentence2.text",
-      "type": "text",
-      "attributes": {
-        "x": 12.0,
-        "y": 308.0,
-        "max_width": 532.0,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
-      },
-      "source_ref": "slot.sentence2",
-      "refs": {
-        "layout_slot_id": "slot.sentence2"
-      },
-      "text": "원의 지름은 원을 둘로 똑같이 나눕니다."
-    },
-    {
-      "id": "slot.choice.text",
-      "type": "text",
-      "attributes": {
-        "x": 12.0,
-        "y": 348.0,
-        "max_width": 532.0,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
-      },
-      "source_ref": "slot.choice",
-      "refs": {
-        "layout_slot_id": "slot.choice"
-      },
-      "text": "지름"
+      "text": "ㅇ"
     }
   ],
   "contract_version": "modu_math.renderer.v2"

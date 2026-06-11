@@ -3,29 +3,36 @@
   "problem_type": "geometry_comparison",
   "metadata": {
     "title": "원 안의 선분 중 길이가 가장 긴 선분 찾기",
-    "tags": [],
-    "instruction": "가장 긴 선분의 기호를 고른다.",
+    "tags": [
+      "geometry",
+      "circle",
+      "diameter",
+      "segment_comparison"
+    ],
     "question": "원 안의 선분 중 길이가 가장 긴 선분을 찾아 기호를 선택하세요.",
     "required_layout_ids": [
-      "slot.q.circle",
-      "slot.q.top.circle",
-      "slot.q.top.center",
-      "slot.q.top.radius1",
-      "slot.q.top.radius2",
-      "slot.q.top.radius3",
-      "slot.q.top.radius4",
-      "slot.q.top.diameter",
-      "slot.expl.circle",
-      "slot.expl.top.circle",
-      "slot.expl.top.center",
-      "slot.expl.top.radius1",
-      "slot.expl.top.radius2",
-      "slot.expl.top.radius3",
-      "slot.expl.top.radius4",
-      "slot.expl.top.diameter"
+      "slot.diagram.top.circle",
+      "slot.diagram.top.segment.a",
+      "slot.diagram.top.segment.b",
+      "slot.diagram.top.segment.c",
+      "slot.diagram.top.segment.d",
+      "slot.diagram.top.segment.e",
+      "slot.diagram.top.label.a.circle",
+      "slot.diagram.top.label.b.circle",
+      "slot.diagram.top.label.c.circle",
+      "slot.diagram.top.label.d.circle",
+      "slot.diagram.top.label.e.circle",
+      "slot.diagram.solution.circle",
+      "slot.diagram.solution.segment.a",
+      "slot.diagram.solution.segment.b",
+      "slot.diagram.solution.segment.c",
+      "slot.diagram.solution.segment.d",
+      "slot.diagram.solution.segment.e",
+      "slot.diagram.solution.label.c.circle"
     ],
     "extraction_confidence": 1.0,
     "language": "ko",
+    "instruction": "길이가 가장 긴 선분의 기호를 고른다.",
     "points": 5
   },
   "domain": {
@@ -35,35 +42,48 @@
         "type": "circle"
       },
       {
-        "id": "obj.segment.d",
+        "id": "obj.segment.c",
         "type": "segment",
-        "symbol": "ㄷ",
-        "role": "diameter_candidate"
+        "symbol": "㉢",
+        "role": "diameter"
       },
       {
-        "id": "obj.segment.others",
-        "type": "segment_set",
-        "description": "원 안의 다른 선분들"
+        "id": "obj.center",
+        "type": "point",
+        "label": "O"
       }
     ],
-    "relations": [],
+    "relations": [
+      {
+        "id": "rel.segment_c_passes_center",
+        "type": "incidence",
+        "from_id": "obj.segment.c",
+        "to_id": "obj.center",
+        "description": "㉢ 선분은 원의 중심 O를 지난다."
+      },
+      {
+        "id": "rel.diameter_longest",
+        "type": "circle_property",
+        "from_id": "obj.segment.c",
+        "to_id": "obj.circle",
+        "description": "원 안에서 가장 긴 선분은 지름이다."
+      }
+    ],
     "confidence": 1.0,
     "problem_solving": {
       "understand": {
         "given_refs": [
           "obj.circle",
-          "obj.segment.d",
-          "obj.segment.others"
+          "obj.center"
         ],
         "target_ref": "answer.target",
         "condition_refs": [
-          "rel.longest",
-          "rel.center_pass"
+          "rel.diameter_longest"
         ]
       },
       "plan": {
         "method": "compare_segments_by_circle_property",
-        "description": "원 안의 선분들 가운데 원의 중심을 지나는 선분을 찾는다."
+        "description": "원 안의 선분 중 중심을 지나는 지름을 찾는다."
       },
       "execute": {
         "expected_operations": [
@@ -82,11 +102,9 @@
     "blanks": [],
     "choices": [],
     "answer_key": [],
-    "target": {
-      "type": "symbol_choice",
-      "description": "길이가 가장 긴 선분의 기호"
-    },
-    "value": "ㄷ",
+    "confidence": 1.0,
+    "type": "symbol_choice",
+    "value": "㉢",
     "unit": ""
   }
 }

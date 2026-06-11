@@ -20,7 +20,7 @@ def build_problem_template() -> ProblemTemplate:
                 id="region.header",
                 role="stem",
                 flow="absolute",
-                slot_ids=("slot.q1", "slot.q2"),
+                slot_ids=("slot.q1", ),
             ),
             Region(
                 id="region.diagram",
@@ -29,7 +29,6 @@ def build_problem_template() -> ProblemTemplate:
                 slot_ids=(
                     "slot.circle",
                     "slot.center",
-                    "slot.radius.right",
                     "slot.diameter",
                     "slot.arc.right",
                     "slot.len4",
@@ -49,64 +48,38 @@ def build_problem_template() -> ProblemTemplate:
             TextSlot(
                 id="slot.q1",
                 prompt="",
-                text = '그림을 보고 지름과 반지름 사이의 관계를 알아보려고 합니다. 알맞은', style_role="question",
-                x = 15, y = 30, font_size = 30),
-            TextSlot(
-                id="slot.q2",
-                prompt="",
-                text="것을 선택하세요.",
-                style_role="question",
-                x=12.0,
-                y=64.0,
-                font_size=28,
+                text = '\n    \n    그림을 보고 지름과 반지름 사이의 관계를 알아보려고 합니다.\n    알맞은 것을 선택하세요.\n  ', style_role="question",
+                x = 20, y = 15, font_size = 30),
+            CircleSlot(
+                id="slot.circle", prompt="", cx = 430, cy = 260, r = 120, fill="none"
             ),
             CircleSlot(
-                id="slot.circle", prompt="", cx=496.0, cy=204.0, r=119.0, fill="none"
-            ),
-            CircleSlot(
-                id="slot.center", prompt="", cx=512.0, cy=205.0, r=3.8, fill="#d81b60"
+                id="slot.center", prompt="", cx = 433, cy = 260, r = 5, fill="#d81b60"
             ),
             LineSlot(
-                id="slot.radius.right",
-                prompt="",
-                x1=512.0,
-                y1=205.0,
-                x2=607.0,
-                y2=205.0,
-            ),
+                id="slot.diameter", prompt="", x1 = 370, y1 = 360, x2 = 495, y2 = 160),
             LineSlot(
-                id="slot.diameter", prompt="", x1 = 375, y1 = 420, x2 = 625, y2 = 55),
-            LineSlot(
-                id="slot.arc.right", prompt="", x1=512.0, y1=205.0, x2=607.0, y2=205.0
-            ),
+                id="slot.arc.right", prompt="", x1 = 430, y1 = 260, x2 = 550, y2 = 260),
             TextSlot(
                 id="slot.len4",
                 prompt="",
                 text = '4 cm', style_role="label",
-                x = 255, y = 195, font_size = 30),
+                x = 345, y = 255, font_size = 30),
             TextSlot(
                 id="slot.len2",
                 prompt="",
                 text = '2 cm', style_role="label",
-                x = 530, y = 235, font_size = 30),
+                x = 455, y = 295, font_size = 30),
             RectSlot(
                 id="slot.choice.box",
                 prompt="",
-                x=64.0,
-                y=327.0,
-                width=840.0,
-                height=79.0,
-                fill="none",
+                x = 20, y = 410, width = 840, height = 80, fill="none",
             ),
             TextSlot(
                 id="slot.choice.text",
                 prompt="",
-                text="한 원에서 ( 지름 , 반지름 )은 ( 지름 , 반지름 )의 2배입니다.",
-                style_role="question",
-                x=101.0,
-                y=376.0,
-                font_size=28,
-            ),
+                text = '한 원에서 ( 지름 , 반지름 )은 ( 지름 , 반지름 )의 2배입니다.', style_role="question",
+                x = 100, y = 455, font_size = 30),
         ),
         diagrams=(),
         groups=(),

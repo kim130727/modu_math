@@ -13,7 +13,7 @@ def build_problem_template() -> ProblemTemplate:
     return ProblemTemplate(
         id="S3_초등_3_008648",
         title="그림을 보고 알맞은 말을 선택하세요",
-        canvas=Canvas(width=940, height=370, coordinate_mode="logical"),
+        canvas=Canvas(width=900, height=450, coordinate_mode="logical"),
         regions=(
             Region(
                 id="region.stem",
@@ -48,44 +48,44 @@ def build_problem_template() -> ProblemTemplate:
                 id="slot.q2",
                 prompt="",
                 text = '길이가 가장 긴 선분은 선분 ( ㄱㄹ, ㄴㄹ, ㅇㄹ )이고,', style_role="question",
-                x = 40, y = 310, font_size = 30),
+                x = 40, y = 345, font_size = 30),
             TextSlot(
                 id="slot.q3",
                 prompt="",
                 text = ' 이 선분을 원의 (지름, 반지름 )이라고 합니다.', style_role="question",
-                x = 45, y = 355, font_size = 30),
+                x = 40, y = 390, font_size = 30),
             CircleSlot(
-                id="slot.circle", prompt="", cx = 430, cy = 165, r = 115, fill="none"
+                id="slot.circle", prompt="", cx = 430, cy = 190, r = 115, fill="none"
             ),
             CircleSlot(
-                id="slot.center", prompt="", cx = 430, cy = 165, r = 5, fill="#d81b60"
+                id="slot.center", prompt="", cx = 430, cy = 190, r = 5, fill="#d81b60"
             ),
             TextSlot(
                 id="slot.lb.g",
                 prompt="",
                 text = 'ㄱ', style_role="label",
-                x = 390, y = 75, font_size = 30),
+                x = 375, y = 75, font_size = 30),
             TextSlot(
                 id="slot.lb.n",
                 prompt="",
                 text = 'ㄴ', style_role="label",
-                x = 295, y = 225, font_size = 30),
+                x = 295, y = 250, font_size = 30),
             TextSlot(
                 id="slot.lb.d",
                 prompt="",
                 text = 'ㄷ', style_role="label",
-                x = 495, y = 285, font_size = 30),
+                x = 495, y = 310, font_size = 30),
             TextSlot(
                 id="slot.lb.r",
                 prompt="",
                 text = 'ㄹ', style_role="label",
-                x = 545, y = 130, font_size = 30),
+                x = 545, y = 155, font_size = 30),
             LineSlot(
-                id="slot.line.gr", prompt="", x1 = 415, y1 = 50, x2 = 540, y2 = 125),
+                id="slot.line.gr", prompt="", x1 = 415, y1 = 75, x2 = 540, y2 = 150),
             LineSlot(
-                id="slot.line.nr", prompt="", x1 = 325, y1 = 210, x2 = 540, y2 = 125),
+                id="slot.line.nr", prompt="", x1 = 325, y1 = 235, x2 = 540, y2 = 150),
             LineSlot(
-                id="slot.line.cd", prompt="", x1 = 430, y1 = 165, x2 = 495, y2 = 260),TextSlot(id = 'slot.lb.d.copy2', prompt = '', text = 'ㅇ', x = 415, y = 160, font_size = 30, fill = '#111111')),
+                id="slot.line.cd", prompt="", x1 = 430, y1 = 190, x2 = 495, y2 = 285),TextSlot(id = 'slot.lb.d.copy2', prompt = '', text = 'ㅇ', x = 415, y = 185, font_size = 30, fill = '#111111')),
         diagrams=(),
         groups=(),
         constraints=(),
@@ -138,7 +138,7 @@ SEMANTIC_OVERRIDE = {
             "type": "선분과_원의_개념_선택",
             "description": "길이가 가장 긴 선분과 원의 지름을 고르는 선택",
         },
-        "value": 0,
+        "value": "가장 긴 선분 ㄴㄹ, 원의 지름",
         "unit": "",
     },
 }
@@ -208,7 +208,7 @@ SOLVABLE = {
             "type": "선분과_원의_개념_선택",
             "description": "길이가 가장 긴 선분과 원의 지름을 고르는 선택",
         },
-        "value": 0,
+        "value": "가장 긴 선분 ㄴㄹ, 원의 지름",
         "unit": "",
     },
 }

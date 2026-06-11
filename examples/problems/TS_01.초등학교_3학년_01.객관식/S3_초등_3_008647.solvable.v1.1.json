@@ -3,10 +3,7 @@
   "problem_id": "S3_초등_3_008647",
   "problem_type": "geometry_comparison",
   "inputs": {
-    "total_ticks": 0,
-    "target_label": "ㄷ",
-    "target_ticks": 1,
-    "target_count": 1,
+    "target_label": "㉢",
     "unit": ""
   },
   "given": [
@@ -17,16 +14,10 @@
       }
     },
     {
-      "ref": "obj.segment.d",
+      "ref": "obj.segment.c",
       "value": {
-        "symbol": "ㄷ",
+        "symbol": "㉢",
         "property": "passes_through_center"
-      }
-    },
-    {
-      "ref": "obj.segment.others",
-      "value": {
-        "description": "other segments in the circle"
       }
     }
   ],
@@ -36,25 +27,25 @@
   },
   "method": "compare_segments_by_circle_property",
   "plan": [
-    "원의 중심을 지나는 선분을 찾는다.",
-    "그 선분에 대응하는 기호를 확인한다."
+    "원 안의 선분 중 원의 중심 O를 지나는 선분을 찾는다.",
+    "그 선분은 지름이므로 가장 긴 선분이다."
   ],
   "steps": [
     {
       "id": "step.1",
-      "expr": "원의 중심을 지나는 선분 확인",
-      "value": "ㄷ"
+      "expr": "원의 중심 O를 지나는 선분 확인",
+      "value": "㉢"
     },
     {
       "id": "step.2",
       "expr": "가장 긴 선분의 기호 선택",
-      "value": "ㄷ"
+      "value": "㉢"
     }
   ],
   "checks": [
     {
       "id": "check.1",
-      "expr": "중심을 지나는 선분이 가장 긴가?",
+      "expr": "㉢은 원의 중심을 지나는 지름인가?",
       "expected": true,
       "actual": true,
       "pass": true
@@ -64,11 +55,8 @@
     "blanks": [],
     "choices": [],
     "answer_key": [],
-    "target": {
-      "type": "symbol_choice",
-      "description": "길이가 가장 긴 선분의 기호"
-    },
-    "value": "ㄷ",
+    "type": "symbol_choice",
+    "value": "㉢",
     "unit": ""
   }
 }

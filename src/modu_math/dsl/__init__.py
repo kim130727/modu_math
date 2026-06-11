@@ -15,6 +15,7 @@ from .characters import (
 )
 from .exporter import export_layout_to_dsl_source, problem_template_from_layout
 from .fraction import fraction_slots
+from .measurement_tools import compass_on_ruler_slots, compass_slots, ruler_slots
 from .paper_folding import (
     circle_fold_sequence_slots,
     circle_paper_slot,
@@ -84,6 +85,9 @@ __all__ = [
     "problem_template_from_layout",
     "export_problem_template",
     "fraction_slots",
+    "compass_on_ruler_slots",
+    "compass_slots",
+    "ruler_slots",
     "circle_fold_sequence_slots",
     "circle_paper_slot",
     "folded_circle_sector_slots",

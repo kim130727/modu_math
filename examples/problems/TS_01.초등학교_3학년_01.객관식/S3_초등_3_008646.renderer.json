@@ -339,34 +339,6 @@
       }
     },
     {
-      "id": "slot.note.equal.arrow.path",
-      "type": "path",
-      "attributes": {
-        "d": "M 500 247 C 492 230, 506 218, 522 228",
-        "stroke": "#00843D",
-        "stroke-width": 2.0,
-        "fill": "none"
-      },
-      "source_ref": "slot.note.equal.arrow",
-      "refs": {
-        "layout_slot_id": "slot.note.equal.arrow"
-      }
-    },
-    {
-      "id": "slot.note.center.arrow.path",
-      "type": "path",
-      "attributes": {
-        "d": "M 828 374 C 812 350, 826 329, 856 307",
-        "stroke": "#00843D",
-        "stroke-width": 2.0,
-        "fill": "none"
-      },
-      "source_ref": "slot.note.center.arrow",
-      "refs": {
-        "layout_slot_id": "slot.note.center.arrow"
-      }
-    },
-    {
       "id": "slot.fold.arrow1.body.line",
       "type": "line",
       "attributes": {
@@ -447,32 +419,15 @@
       }
     },
     {
-      "id": "slot.qnum.text",
-      "type": "text",
-      "attributes": {
-        "x": 35.0,
-        "y": 31.0,
-        "max_width": 816.0,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 22
-      },
-      "source_ref": "slot.qnum",
-      "refs": {
-        "layout_slot_id": "slot.qnum"
-      },
-      "text": "18."
-    },
-    {
       "id": "slot.stem.text",
       "type": "text",
       "attributes": {
-        "x": 72.0,
-        "y": 31.0,
+        "x": 55.0,
+        "y": 35.0,
         "max_width": 816.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 22
+        "font-size": 20
       },
       "source_ref": "slot.stem",
       "refs": {
@@ -497,57 +452,6 @@
         "layout_slot_id": "slot.speech.text"
       },
       "text": "원 모양의 종이를 둘로 똑같이 나누어지도록\n접었다가 펼친 다음 다른 방향으로 둘로 똑같이\n나누어지도록 접었다가 펼쳤어."
-    },
-    {
-      "id": "slot.checkbox.text",
-      "type": "text",
-      "attributes": {
-        "x": 12.0,
-        "y": 30.0,
-        "max_width": 816.0,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 18
-      },
-      "source_ref": "slot.checkbox",
-      "refs": {
-        "layout_slot_id": "slot.checkbox"
-      },
-      "text": "□"
-    },
-    {
-      "id": "slot.correct.text",
-      "type": "text",
-      "attributes": {
-        "x": 14.0,
-        "y": 577.0,
-        "max_width": 816.0,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 18
-      },
-      "source_ref": "slot.correct",
-      "refs": {
-        "layout_slot_id": "slot.correct"
-      },
-      "text": "(정답)지름"
-    },
-    {
-      "id": "slot.explain.text",
-      "type": "text",
-      "attributes": {
-        "x": 14.0,
-        "y": 623.0,
-        "max_width": 816.0,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 18
-      },
-      "source_ref": "slot.explain",
-      "refs": {
-        "layout_slot_id": "slot.explain"
-      },
-      "text": "(해설)원을 둘로 똑같이 나누는 선분은 원의 중심을 지나므로 원의 지름입니다."
     },
     {
       "id": "slot.fold.stage1.paper.circle",
@@ -639,6 +543,34 @@
       "source_ref": "slot.fold.stage5.center",
       "refs": {
         "layout_slot_id": "slot.fold.stage5.center"
+      }
+    },
+    {
+      "id": "slot.note.equal.arrow.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 500 247 C 492 230, 506 218, 522 228",
+        "stroke": "#00843D",
+        "stroke-width": 2.0,
+        "fill": "none"
+      },
+      "source_ref": "slot.note.equal.arrow",
+      "refs": {
+        "layout_slot_id": "slot.note.equal.arrow"
+      }
+    },
+    {
+      "id": "slot.note.center.arrow.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 828 374 C 812 350, 826 329, 870 304",
+        "stroke": "#00843D",
+        "stroke-width": 2.0,
+        "fill": "none"
+      },
+      "source_ref": "slot.note.center.arrow",
+      "refs": {
+        "layout_slot_id": "slot.note.center.arrow"
       }
     },
     {

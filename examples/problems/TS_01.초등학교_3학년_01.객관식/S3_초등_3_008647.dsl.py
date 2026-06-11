@@ -1,4 +1,5 @@
 from __future__ import annotations
+
 from modu_math.dsl import (
     Canvas,
     CircleSlot,
@@ -9,7 +10,109 @@ from modu_math.dsl import (
 )
 
 
+def _segment_fan_slots(prefix: str, *, cx: float, cy: float, r: float, label_top_only: bool = False):
+    bottom = (cx, cy + r)
+    points = {
+        "a": (cx - r * 0.96, cy + r * 0.04),
+        "b": (cx - r * 0.60, cy - r * 0.78),
+        "c": (cx, cy - r),
+        "d": (cx + r * 0.60, cy - r * 0.78),
+        "e": (cx + r * 0.96, cy + r * 0.04),
+    }
+    labels = {
+        "a": ("ㄱ", cx - r - 16, cy + 7),
+        "b": ("ㄴ", cx - r * 0.93, cy - r * 0.70),
+        "c": ("ㄷ", cx, cy - r - 18),
+        "d": ("ㄹ", cx + r * 0.93, cy - r * 0.70),
+        "e": ("ㅁ", cx + r + 16, cy + 7),
+    }
+
+    slots = [
+        CircleSlot(
+            id=f"{prefix}.circle",
+            prompt="",
+            cx=cx,
+            cy=cy,
+            r=r,
+            fill="none",
+            stroke="#222222",
+            stroke_width=1.5,
+        )
+    ]
+    for key, (x2, y2) in points.items():
+        slots.append(
+            LineSlot(
+                id=f"{prefix}.segment.{key}",
+                prompt="",
+                x1=bottom[0],
+                y1=bottom[1],
+                x2=x2,
+                y2=y2,
+                stroke="#222222",
+                stroke_width=1.5,
+            )
+        )
+
+    slots.extend(
+        [
+            TextSlot(
+                id=f"{prefix}.center.dot",
+                prompt="",
+                text="●",
+                style_role="label",
+                x=cx,
+                y=cy + 4,
+                font_size=12,
+                anchor="middle",
+                fill="#E11A86",
+            ),
+            TextSlot(
+                id=f"{prefix}.center.label",
+                prompt="",
+                text="O",
+                style_role="label",
+                x=cx + 9,
+                y=cy + 6,
+                font_size=18,
+            ),
+        ]
+    )
+
+    label_keys = ("c",) if label_top_only else ("a", "b", "c", "d", "e")
+    for key in label_keys:
+        text, lx, ly = labels[key]
+        slots.extend(
+            [
+                CircleSlot(
+                    id=f"{prefix}.label.{key}.circle",
+                    prompt="",
+                    cx=lx,
+                    cy=ly,
+                    r=10.5,
+                    fill="none",
+                    stroke="#888888",
+                    stroke_width=1.2,
+                ),
+                TextSlot(
+                    id=f"{prefix}.label.{key}.text",
+                    prompt="",
+                    text=text,
+                    style_role="label",
+                    x=lx,
+                    y=ly + 6,
+                    font_size=17,
+                    anchor="middle",
+                    fill="#555555",
+                ),
+            ]
+        )
+    return tuple(slots)
+
+
 def build_problem_template() -> ProblemTemplate:
+    top_diagram = _segment_fan_slots("slot.diagram.top", cx=478.0, cy=185.0, r=96.0)
+    solution_diagram = _segment_fan_slots("slot.diagram.solution", cx=195.0, cy=484.0, r=96.0, label_top_only=True)
+
     return ProblemTemplate(
         id="S3_초등_3_008647",
         title="원 안의 선분 중 길이가 가장 긴 선분 찾기",
@@ -19,31 +122,29 @@ def build_problem_template() -> ProblemTemplate:
                 id="region.stem",
                 role="stem",
                 flow="absolute",
+                slot_ids=("slot.q.no", "slot.q.text"),
+            ),
+            Region(
+                id="region.diagram",
+                role="diagram",
+                flow="absolute",
+                slot_ids=tuple(slot.id for slot in top_diagram),
+            ),
+            Region(
+                id="region.answer",
+                role="answer",
+                flow="absolute",
+                slot_ids=("slot.answer",),
+            ),
+            Region(
+                id="region.explanation",
+                role="note",
+                flow="absolute",
                 slot_ids=(
-                    "slot.q.no",
-                    "slot.q.text",
-                    "slot.q.circle",
-                    "slot.q.top.circle",
-                    "slot.q.top.center",
-                    "slot.q.top.radius1",
-                    "slot.q.top.radius2",
-                    "slot.q.top.radius3",
-                    "slot.q.top.radius4",
-                    "slot.q.top.diameter",
-                    "slot.q.top.label.d",
-                    "slot.q.top.label.ㄴ",
-                    "slot.q.top.label.ㄹ",
-                    "slot.q.top.label.ㄱ",
-                    "slot.q.top.label.ㅁ",
-                    "slot.q.top.center_mark",
-                    "slot.expl.circle",
-                    "slot.expl.top.circle",
-                    "slot.expl.top.center",
-                    "slot.expl.top.radius1",
-                    "slot.expl.top.radius2",
-                    "slot.expl.top.radius3",
-                    "slot.expl.top.radius4",
-                    "slot.expl.top.diameter",
+                    "slot.explanation.label",
+                    *(slot.id for slot in solution_diagram),
+                    "slot.explanation.text1",
+                    "slot.explanation.text2",
                 ),
             ),
         ),
@@ -53,201 +154,62 @@ def build_problem_template() -> ProblemTemplate:
                 prompt="",
                 text="□ 19.",
                 style_role="question",
-                x=12.0,
-                y=34.0,
-                font_size=28,
+                x=14.0,
+                y=31.0,
+                font_size=24,
             ),
             TextSlot(
                 id="slot.q.text",
                 prompt="",
                 text="원 안의 선분 중 길이가 가장 긴 선분을 찾아 기호를 선택하세요.",
                 style_role="question",
-                x=86.0,
-                y=34.0,
-                font_size=28,
+                x=75.0,
+                y=31.0,
+                font_size=24,
             ),
-            CircleSlot(
-                id="slot.q.circle", prompt="", cx=505.0, cy=190.0, r=95.0, fill="none"
-            ),
-            CircleSlot(
-                id="slot.q.top.circle",
+            *top_diagram,
+            TextSlot(
+                id="slot.answer",
                 prompt="",
-                cx=505.0,
-                cy=190.0,
-                r=2.5,
-                fill="#222222",
-            ),
-            CircleSlot(
-                id="slot.q.top.center",
-                prompt="",
-                cx=505.0,
-                cy=191.0,
-                r=3.0,
-                fill="#ff3aa7",
-            ),
-            LineSlot(
-                id="slot.q.top.radius1",
-                prompt="",
-                x1=505.0,
-                y1=190.0,
-                x2=458.0,
-                y2=107.0,
-            ),
-            LineSlot(
-                id="slot.q.top.radius2",
-                prompt="",
-                x1=505.0,
-                y1=190.0,
-                x2=410.0,
-                y2=228.0,
-            ),
-            LineSlot(
-                id="slot.q.top.radius3",
-                prompt="",
-                x1=505.0,
-                y1=190.0,
-                x2=560.0,
-                y2=108.0,
-            ),
-            LineSlot(
-                id="slot.q.top.radius4",
-                prompt="",
-                x1=505.0,
-                y1=190.0,
-                x2=596.0,
-                y2=230.0,
-            ),
-            LineSlot(
-                id="slot.q.top.diameter",
-                prompt="",
-                x1=505.0,
-                y1=95.0,
-                x2=505.0,
-                y2=285.0,
+                text="(정답)㉢",
+                style_role="answer",
+                x=14.0,
+                y=322.0,
+                font_size=18,
             ),
             TextSlot(
-                id="slot.q.top.label.d",
+                id="slot.explanation.label",
                 prompt="",
-                text="ㄷ",
-                style_role="label",
-                x=497.0,
-                y=80.0,
-                font_size=28,
+                text="(해설)",
+                style_role="explanation",
+                x=14.0,
+                y=468.0,
+                font_size=18,
+            ),
+            *solution_diagram,
+            TextSlot(
+                id="slot.explanation.text1",
+                prompt="",
+                text="원 안에 그을 수 있는 선분 중 길이가 가장 긴 선분은 원의 중심을 지나는 원의",
+                style_role="explanation",
+                x=36.0,
+                y=612.0,
+                font_size=24,
             ),
             TextSlot(
-                id="slot.q.top.label.ㄴ",
+                id="slot.explanation.text2",
                 prompt="",
-                text="ㄴ",
-                style_role="label",
-                x=448.0,
-                y=118.0,
-                font_size=28,
-            ),
-            TextSlot(
-                id="slot.q.top.label.ㄹ",
-                prompt="",
-                text="ㄹ",
-                style_role="label",
-                x=566.0,
-                y=118.0,
-                font_size=28,
-            ),
-            TextSlot(
-                id="slot.q.top.label.ㄱ",
-                prompt="",
-                text="ㄱ",
-                style_role="label",
-                x=390.0,
-                y=231.0,
-                font_size=28,
-            ),
-            TextSlot(
-                id="slot.q.top.label.ㅁ",
-                prompt="",
-                text="ㅁ",
-                style_role="label",
-                x=604.0,
-                y=232.0,
-                font_size=28,
-            ),
-            TextSlot(
-                id="slot.q.top.center_mark",
-                prompt="",
-                text="ㅇ",
-                style_role="label",
-                x=519.0,
-                y=194.0,
-                font_size=28,
-            ),
-            CircleSlot(
-                id="slot.expl.circle",
-                prompt="",
-                cx=191.0,
-                cy=487.0,
-                r=95.0,
-                fill="none",
-            ),
-            CircleSlot(
-                id="slot.expl.top.circle",
-                prompt="",
-                cx=191.0,
-                cy=487.0,
-                r=2.5,
-                fill="#222222",
-            ),
-            CircleSlot(
-                id="slot.expl.top.center",
-                prompt="",
-                cx=191.0,
-                cy=487.0,
-                r=3.0,
-                fill="#ff3aa7",
-            ),
-            LineSlot(
-                id="slot.expl.top.radius1",
-                prompt="",
-                x1=191.0,
-                y1=487.0,
-                x2=140.0,
-                y2=404.0,
-            ),
-            LineSlot(
-                id="slot.expl.top.radius2",
-                prompt="",
-                x1=191.0,
-                y1=487.0,
-                x2=97.0,
-                y2=525.0,
-            ),
-            LineSlot(
-                id="slot.expl.top.radius3",
-                prompt="",
-                x1=191.0,
-                y1=487.0,
-                x2=245.0,
-                y2=406.0,
-            ),
-            LineSlot(
-                id="slot.expl.top.radius4",
-                prompt="",
-                x1=191.0,
-                y1=487.0,
-                x2=286.0,
-                y2=528.0,
-            ),
-            LineSlot(
-                id="slot.expl.top.diameter",
-                prompt="",
-                x1=191.0,
-                y1=392.0,
-                x2=191.0,
-                y2=582.0,
+                text="지름이므로 ㉢입니다.",
+                style_role="explanation",
+                x=36.0,
+                y=647.0,
+                font_size=24,
             ),
         ),
         diagrams=(),
         groups=(),
         constraints=(),
-        tags=(),
+        tags=("geometry", "circle", "diameter", "segment_comparison"),
     )
 
 
@@ -259,53 +221,48 @@ SEMANTIC_OVERRIDE = {
     "metadata": {
         "language": "ko",
         "question": "원 안의 선분 중 길이가 가장 긴 선분을 찾아 기호를 선택하세요.",
-        "instruction": "가장 긴 선분의 기호를 고른다.",
+        "instruction": "길이가 가장 긴 선분의 기호를 고른다.",
         "points": 5,
     },
     "domain": {
         "objects": [
             {"id": "obj.circle", "type": "circle"},
+            {"id": "obj.segment.c", "type": "segment", "symbol": "㉢", "role": "diameter"},
+            {"id": "obj.center", "type": "point", "label": "O"},
+        ],
+        "relations": [
             {
-                "id": "obj.segment.d",
-                "type": "segment",
-                "symbol": "ㄷ",
-                "role": "diameter_candidate",
+                "id": "rel.segment_c_passes_center",
+                "type": "incidence",
+                "from_id": "obj.segment.c",
+                "to_id": "obj.center",
+                "description": "㉢ 선분은 원의 중심 O를 지난다.",
             },
             {
-                "id": "obj.segment.others",
-                "type": "segment_set",
-                "description": "원 안의 다른 선분들",
+                "id": "rel.diameter_longest",
+                "type": "circle_property",
+                "from_id": "obj.segment.c",
+                "to_id": "obj.circle",
+                "description": "원 안에서 가장 긴 선분은 지름이다.",
             },
         ],
-        "relations": [],
         "problem_solving": {
             "understand": {
-                "given_refs": ["obj.circle", "obj.segment.d", "obj.segment.others"],
+                "given_refs": ["obj.circle", "obj.center"],
                 "target_ref": "answer.target",
-                "condition_refs": ["rel.longest", "rel.center_pass"],
+                "condition_refs": ["rel.diameter_longest"],
             },
             "plan": {
                 "method": "compare_segments_by_circle_property",
-                "description": "원 안의 선분들 가운데 원의 중심을 지나는 선분을 찾는다.",
+                "description": "원 안의 선분 중 중심을 지나는 지름을 찾는다.",
             },
-            "execute": {
-                "expected_operations": [
-                    "identify_center_passing_segment",
-                    "match_symbol_to_segment",
-                ]
-            },
+            "execute": {"expected_operations": ["identify_center_passing_segment", "match_symbol_to_segment"]},
             "review": {"check_methods": ["property_check_longest_segment_is_diameter"]},
         },
     },
     "answer": {
-        "blanks": [],
-        "choices": [],
-        "answer_key": [],
-        "target": {
-            "type": "symbol_choice",
-            "description": "길이가 가장 긴 선분의 기호",
-        },
-        "value": "ㄷ",
+        "type": "symbol_choice",
+        "value": "㉢",
         "unit": "",
     },
 }
@@ -315,37 +272,27 @@ SOLVABLE = {
     "problem_id": "S3_초등_3_008647",
     "problem_type": "geometry_comparison",
     "inputs": {
-        "total_ticks": 0,
-        "target_label": "ㄷ",
-        "target_ticks": 1,
-        "target_count": 1,
+        "target_label": "㉢",
         "unit": "",
     },
     "given": [
         {"ref": "obj.circle", "value": {"type": "circle"}},
-        {
-            "ref": "obj.segment.d",
-            "value": {"symbol": "ㄷ", "property": "passes_through_center"},
-        },
-        {
-            "ref": "obj.segment.others",
-            "value": {"description": "other segments in the circle"},
-        },
+        {"ref": "obj.segment.c", "value": {"symbol": "㉢", "property": "passes_through_center"}},
     ],
     "target": {"ref": "answer.target", "type": "symbol_choice"},
     "method": "compare_segments_by_circle_property",
     "plan": [
-        "원의 중심을 지나는 선분을 찾는다.",
-        "그 선분에 대응하는 기호를 확인한다.",
+        "원 안의 선분 중 원의 중심 O를 지나는 선분을 찾는다.",
+        "그 선분은 지름이므로 가장 긴 선분이다.",
     ],
     "steps": [
-        {"id": "step.1", "expr": "원의 중심을 지나는 선분 확인", "value": "ㄷ"},
-        {"id": "step.2", "expr": "가장 긴 선분의 기호 선택", "value": "ㄷ"},
+        {"id": "step.1", "expr": "원의 중심 O를 지나는 선분 확인", "value": "㉢"},
+        {"id": "step.2", "expr": "가장 긴 선분의 기호 선택", "value": "㉢"},
     ],
     "checks": [
         {
             "id": "check.1",
-            "expr": "중심을 지나는 선분이 가장 긴가?",
+            "expr": "㉢은 원의 중심을 지나는 지름인가?",
             "expected": True,
             "actual": True,
             "pass": True,
@@ -355,11 +302,8 @@ SOLVABLE = {
         "blanks": [],
         "choices": [],
         "answer_key": [],
-        "target": {
-            "type": "symbol_choice",
-            "description": "길이가 가장 긴 선분의 기호",
-        },
-        "value": "ㄷ",
+        "type": "symbol_choice",
+        "value": "㉢",
         "unit": "",
     },
 }

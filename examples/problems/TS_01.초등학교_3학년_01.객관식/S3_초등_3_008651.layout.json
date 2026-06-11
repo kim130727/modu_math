@@ -1,0 +1,3156 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008651",
+  "title": "컴퍼스를 3 cm가 되도록 벌린 것 찾기",
+  "canvas": {
+    "width": 940,
+    "height": 460,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q.prefix",
+        "slot.q.text"
+      ]
+    },
+    {
+      "id": "region.choices",
+      "role": "choices",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice1.ruler.body",
+        "slot.choice1.compass.hinge",
+        "slot.choice1.compass.head",
+        "slot.choice1.compass.knob",
+        "slot.choice1.compass.clamp",
+        "slot.choice1.compass.pencil.body",
+        "slot.choice1.compass.pencil.tip",
+        "slot.choice2.ruler.body",
+        "slot.choice2.compass.hinge",
+        "slot.choice2.compass.head",
+        "slot.choice2.compass.knob",
+        "slot.choice2.compass.clamp",
+        "slot.choice2.compass.pencil.body",
+        "slot.choice2.compass.pencil.tip",
+        "slot.choice3.ruler.body",
+        "slot.choice3.compass.hinge",
+        "slot.choice3.compass.head",
+        "slot.choice3.compass.knob",
+        "slot.choice3.compass.clamp",
+        "slot.choice3.compass.pencil.body",
+        "slot.choice3.compass.pencil.tip",
+        "slot.choice1.ruler.top",
+        "slot.choice1.ruler.tick.00",
+        "slot.choice1.ruler.tick.01",
+        "slot.choice1.ruler.tick.02",
+        "slot.choice1.ruler.tick.03",
+        "slot.choice1.ruler.tick.04",
+        "slot.choice1.ruler.tick.05",
+        "slot.choice1.ruler.tick.06",
+        "slot.choice1.ruler.tick.07",
+        "slot.choice1.ruler.tick.08",
+        "slot.choice1.ruler.tick.09",
+        "slot.choice1.ruler.tick.10",
+        "slot.choice1.ruler.tick.11",
+        "slot.choice1.ruler.tick.12",
+        "slot.choice1.ruler.tick.13",
+        "slot.choice1.ruler.tick.14",
+        "slot.choice1.ruler.tick.15",
+        "slot.choice1.ruler.tick.16",
+        "slot.choice1.ruler.tick.17",
+        "slot.choice1.ruler.tick.18",
+        "slot.choice1.ruler.tick.19",
+        "slot.choice1.ruler.tick.20",
+        "slot.choice1.ruler.tick.21",
+        "slot.choice1.ruler.tick.22",
+        "slot.choice1.ruler.tick.23",
+        "slot.choice1.ruler.tick.24",
+        "slot.choice1.ruler.tick.25",
+        "slot.choice1.ruler.tick.26",
+        "slot.choice1.ruler.tick.27",
+        "slot.choice1.ruler.tick.28",
+        "slot.choice1.ruler.tick.29",
+        "slot.choice1.ruler.tick.30",
+        "slot.choice1.compass.leg.left.outer",
+        "slot.choice1.compass.leg.left.inner",
+        "slot.choice1.compass.leg.right.outer",
+        "slot.choice1.compass.leg.right.inner",
+        "slot.choice1.compass.bar.left",
+        "slot.choice1.compass.needle.tip",
+        "slot.choice2.ruler.top",
+        "slot.choice2.ruler.tick.00",
+        "slot.choice2.ruler.tick.01",
+        "slot.choice2.ruler.tick.02",
+        "slot.choice2.ruler.tick.03",
+        "slot.choice2.ruler.tick.04",
+        "slot.choice2.ruler.tick.05",
+        "slot.choice2.ruler.tick.06",
+        "slot.choice2.ruler.tick.07",
+        "slot.choice2.ruler.tick.08",
+        "slot.choice2.ruler.tick.09",
+        "slot.choice2.ruler.tick.10",
+        "slot.choice2.ruler.tick.11",
+        "slot.choice2.ruler.tick.12",
+        "slot.choice2.ruler.tick.13",
+        "slot.choice2.ruler.tick.14",
+        "slot.choice2.ruler.tick.15",
+        "slot.choice2.ruler.tick.16",
+        "slot.choice2.ruler.tick.17",
+        "slot.choice2.ruler.tick.18",
+        "slot.choice2.ruler.tick.19",
+        "slot.choice2.ruler.tick.20",
+        "slot.choice2.ruler.tick.21",
+        "slot.choice2.ruler.tick.22",
+        "slot.choice2.ruler.tick.23",
+        "slot.choice2.ruler.tick.24",
+        "slot.choice2.ruler.tick.25",
+        "slot.choice2.ruler.tick.26",
+        "slot.choice2.ruler.tick.27",
+        "slot.choice2.ruler.tick.28",
+        "slot.choice2.ruler.tick.29",
+        "slot.choice2.ruler.tick.30",
+        "slot.choice2.compass.leg.left.outer",
+        "slot.choice2.compass.leg.left.inner",
+        "slot.choice2.compass.leg.right.outer",
+        "slot.choice2.compass.leg.right.inner",
+        "slot.choice2.compass.bar.left",
+        "slot.choice2.compass.needle.tip",
+        "slot.choice3.ruler.top",
+        "slot.choice3.ruler.tick.00",
+        "slot.choice3.ruler.tick.01",
+        "slot.choice3.ruler.tick.02",
+        "slot.choice3.ruler.tick.03",
+        "slot.choice3.ruler.tick.04",
+        "slot.choice3.ruler.tick.05",
+        "slot.choice3.ruler.tick.06",
+        "slot.choice3.ruler.tick.07",
+        "slot.choice3.ruler.tick.08",
+        "slot.choice3.ruler.tick.09",
+        "slot.choice3.ruler.tick.10",
+        "slot.choice3.ruler.tick.11",
+        "slot.choice3.ruler.tick.12",
+        "slot.choice3.ruler.tick.13",
+        "slot.choice3.ruler.tick.14",
+        "slot.choice3.ruler.tick.15",
+        "slot.choice3.ruler.tick.16",
+        "slot.choice3.ruler.tick.17",
+        "slot.choice3.ruler.tick.18",
+        "slot.choice3.ruler.tick.19",
+        "slot.choice3.ruler.tick.20",
+        "slot.choice3.ruler.tick.21",
+        "slot.choice3.ruler.tick.22",
+        "slot.choice3.ruler.tick.23",
+        "slot.choice3.ruler.tick.24",
+        "slot.choice3.ruler.tick.25",
+        "slot.choice3.ruler.tick.26",
+        "slot.choice3.ruler.tick.27",
+        "slot.choice3.ruler.tick.28",
+        "slot.choice3.ruler.tick.29",
+        "slot.choice3.ruler.tick.30",
+        "slot.choice3.compass.leg.left.outer",
+        "slot.choice3.compass.leg.left.inner",
+        "slot.choice3.compass.leg.right.outer",
+        "slot.choice3.compass.leg.right.inner",
+        "slot.choice3.compass.bar.left",
+        "slot.choice3.compass.needle.tip",
+        "slot.choice1.ruler.label.0",
+        "slot.choice1.ruler.label.1",
+        "slot.choice1.ruler.label.2",
+        "slot.choice1.ruler.label.3",
+        "slot.choice2.ruler.label.0",
+        "slot.choice2.ruler.label.1",
+        "slot.choice2.ruler.label.2",
+        "slot.choice2.ruler.label.3",
+        "slot.choice3.ruler.label.0",
+        "slot.choice3.ruler.label.1",
+        "slot.choice3.ruler.label.2",
+        "slot.choice3.ruler.label.3"
+      ]
+    },
+    {
+      "id": "region.answer",
+      "role": "answer",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.answer.diagram.ruler.body",
+        "slot.answer.diagram.compass.hinge",
+        "slot.answer.diagram.compass.head",
+        "slot.answer.diagram.compass.knob",
+        "slot.answer.diagram.compass.clamp",
+        "slot.answer.diagram.compass.pencil.body",
+        "slot.answer.diagram.compass.pencil.tip",
+        "slot.answer.diagram.ruler.top",
+        "slot.answer.diagram.ruler.tick.00",
+        "slot.answer.diagram.ruler.tick.01",
+        "slot.answer.diagram.ruler.tick.02",
+        "slot.answer.diagram.ruler.tick.03",
+        "slot.answer.diagram.ruler.tick.04",
+        "slot.answer.diagram.ruler.tick.05",
+        "slot.answer.diagram.ruler.tick.06",
+        "slot.answer.diagram.ruler.tick.07",
+        "slot.answer.diagram.ruler.tick.08",
+        "slot.answer.diagram.ruler.tick.09",
+        "slot.answer.diagram.ruler.tick.10",
+        "slot.answer.diagram.ruler.tick.11",
+        "slot.answer.diagram.ruler.tick.12",
+        "slot.answer.diagram.ruler.tick.13",
+        "slot.answer.diagram.ruler.tick.14",
+        "slot.answer.diagram.ruler.tick.15",
+        "slot.answer.diagram.ruler.tick.16",
+        "slot.answer.diagram.ruler.tick.17",
+        "slot.answer.diagram.ruler.tick.18",
+        "slot.answer.diagram.ruler.tick.19",
+        "slot.answer.diagram.ruler.tick.20",
+        "slot.answer.diagram.ruler.tick.21",
+        "slot.answer.diagram.ruler.tick.22",
+        "slot.answer.diagram.ruler.tick.23",
+        "slot.answer.diagram.ruler.tick.24",
+        "slot.answer.diagram.ruler.tick.25",
+        "slot.answer.diagram.ruler.tick.26",
+        "slot.answer.diagram.ruler.tick.27",
+        "slot.answer.diagram.ruler.tick.28",
+        "slot.answer.diagram.ruler.tick.29",
+        "slot.answer.diagram.ruler.tick.30",
+        "slot.answer.diagram.compass.leg.left.outer",
+        "slot.answer.diagram.compass.leg.left.inner",
+        "slot.answer.diagram.compass.leg.right.outer",
+        "slot.answer.diagram.compass.leg.right.inner",
+        "slot.answer.diagram.compass.bar.left",
+        "slot.answer.diagram.compass.needle.tip",
+        "slot.answer.label",
+        "slot.answer.diagram.ruler.label.0",
+        "slot.answer.diagram.ruler.label.1",
+        "slot.answer.diagram.ruler.label.2",
+        "slot.answer.diagram.ruler.label.3",
+        "slot.explanation.label",
+        "slot.explanation.text1",
+        "slot.explanation.text2"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q.prefix",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "□ 24.",
+        "style_role": "question",
+        "x": 14.0,
+        "y": 31.0,
+        "font_size": 24
+      }
+    },
+    {
+      "id": "slot.q.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "컴퍼스를 3 cm가 되도록 벌린 것을 찾아 선택해 보세요.",
+        "style_role": "question",
+        "x": 72.0,
+        "y": 31.0,
+        "font_size": 24
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.body",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 198.0,
+        "y": 181.0,
+        "width": 93.0,
+        "height": 32.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 1.2,
+        "fill": "#DDF6FF"
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.top",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 198.0,
+        "y1": 189.0,
+        "x2": 291.0,
+        "y2": 189.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 1.1
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.tick.00",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 198.0,
+        "y1": 189.0,
+        "x2": 198.0,
+        "y2": 201.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.tick.01",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 201.1,
+        "y1": 189.0,
+        "x2": 201.1,
+        "y2": 195.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.tick.02",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 204.2,
+        "y1": 189.0,
+        "x2": 204.2,
+        "y2": 195.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.tick.03",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 207.3,
+        "y1": 189.0,
+        "x2": 207.3,
+        "y2": 195.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.tick.04",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 210.4,
+        "y1": 189.0,
+        "x2": 210.4,
+        "y2": 195.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.tick.05",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 213.5,
+        "y1": 189.0,
+        "x2": 213.5,
+        "y2": 198.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.85
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.tick.06",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 216.6,
+        "y1": 189.0,
+        "x2": 216.6,
+        "y2": 195.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.tick.07",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 219.7,
+        "y1": 189.0,
+        "x2": 219.7,
+        "y2": 195.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.tick.08",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 222.8,
+        "y1": 189.0,
+        "x2": 222.8,
+        "y2": 195.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.tick.09",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 225.9,
+        "y1": 189.0,
+        "x2": 225.9,
+        "y2": 195.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.tick.10",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 229.0,
+        "y1": 189.0,
+        "x2": 229.0,
+        "y2": 201.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.tick.11",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 232.1,
+        "y1": 189.0,
+        "x2": 232.1,
+        "y2": 195.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.tick.12",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 235.2,
+        "y1": 189.0,
+        "x2": 235.2,
+        "y2": 195.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.tick.13",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 238.3,
+        "y1": 189.0,
+        "x2": 238.3,
+        "y2": 195.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.tick.14",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 241.4,
+        "y1": 189.0,
+        "x2": 241.4,
+        "y2": 195.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.tick.15",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 244.5,
+        "y1": 189.0,
+        "x2": 244.5,
+        "y2": 198.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.85
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.tick.16",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 247.6,
+        "y1": 189.0,
+        "x2": 247.6,
+        "y2": 195.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.tick.17",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 250.7,
+        "y1": 189.0,
+        "x2": 250.7,
+        "y2": 195.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.tick.18",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 253.8,
+        "y1": 189.0,
+        "x2": 253.8,
+        "y2": 195.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.tick.19",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 256.9,
+        "y1": 189.0,
+        "x2": 256.9,
+        "y2": 195.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.tick.20",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 260.0,
+        "y1": 189.0,
+        "x2": 260.0,
+        "y2": 201.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.tick.21",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 263.1,
+        "y1": 189.0,
+        "x2": 263.1,
+        "y2": 195.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.tick.22",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 266.2,
+        "y1": 189.0,
+        "x2": 266.2,
+        "y2": 195.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.tick.23",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 269.3,
+        "y1": 189.0,
+        "x2": 269.3,
+        "y2": 195.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.tick.24",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 272.4,
+        "y1": 189.0,
+        "x2": 272.4,
+        "y2": 195.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.tick.25",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 275.5,
+        "y1": 189.0,
+        "x2": 275.5,
+        "y2": 198.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.85
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.tick.26",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 278.6,
+        "y1": 189.0,
+        "x2": 278.6,
+        "y2": 195.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.tick.27",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 281.7,
+        "y1": 189.0,
+        "x2": 281.7,
+        "y2": 195.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.tick.28",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 284.8,
+        "y1": 189.0,
+        "x2": 284.8,
+        "y2": 195.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.tick.29",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 287.9,
+        "y1": 189.0,
+        "x2": 287.9,
+        "y2": 195.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.tick.30",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 291.0,
+        "y1": 189.0,
+        "x2": 291.0,
+        "y2": 201.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.label.0",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "0",
+        "style_role": "label",
+        "x": 198.0,
+        "y": 205.0,
+        "font_size": 15,
+        "anchor": "middle",
+        "fill": "#333333"
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.label.1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "1",
+        "style_role": "label",
+        "x": 229.0,
+        "y": 205.0,
+        "font_size": 15,
+        "anchor": "middle",
+        "fill": "#333333"
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.label.2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "2",
+        "style_role": "label",
+        "x": 260.0,
+        "y": 205.0,
+        "font_size": 15,
+        "anchor": "middle",
+        "fill": "#333333"
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.label.3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "3",
+        "style_role": "label",
+        "x": 291.0,
+        "y": 205.0,
+        "font_size": 15,
+        "anchor": "middle",
+        "fill": "#333333"
+      }
+    },
+    {
+      "id": "slot.choice1.compass.leg.left.outer",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 228.2,
+        "y1": 93.6,
+        "x2": 198.0,
+        "y2": 173.4,
+        "stroke": "#42474B",
+        "stroke_width": 1.2
+      }
+    },
+    {
+      "id": "slot.choice1.compass.leg.left.inner",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 232.95,
+        "y1": 93.6,
+        "x2": 202.75,
+        "y2": 173.4,
+        "stroke": "#C7DCE3",
+        "stroke_width": 3.0
+      }
+    },
+    {
+      "id": "slot.choice1.compass.leg.right.outer",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 235.8,
+        "y1": 93.6,
+        "x2": 269.3,
+        "y2": 168.65,
+        "stroke": "#42474B",
+        "stroke_width": 1.2
+      }
+    },
+    {
+      "id": "slot.choice1.compass.leg.right.inner",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 231.05,
+        "y1": 93.6,
+        "x2": 263.6,
+        "y2": 156.3,
+        "stroke": "#C7DCE3",
+        "stroke_width": 3.0
+      }
+    },
+    {
+      "id": "slot.choice1.compass.hinge",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 232.0,
+        "cy": 86.0,
+        "r": 5.699999999999999,
+        "stroke": "#42474B",
+        "stroke_width": 1.0,
+        "fill": "#AEB4B7"
+      }
+    },
+    {
+      "id": "slot.choice1.compass.head",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 227.25,
+        "y": 69.85,
+        "width": 9.5,
+        "height": 17.099999999999998,
+        "stroke": "#42474B",
+        "stroke_width": 1.0,
+        "rx": 1.9,
+        "ry": 1.9,
+        "fill": "#8B9195"
+      }
+    },
+    {
+      "id": "slot.choice1.compass.knob",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 230.1,
+        "y": 57.5,
+        "width": 3.8,
+        "height": 11.399999999999999,
+        "stroke": "#42474B",
+        "stroke_width": 0.8,
+        "fill": "#7F8589"
+      }
+    },
+    {
+      "id": "slot.choice1.compass.bar.left",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 210.24,
+        "y1": 141.936,
+        "x2": 256.991,
+        "y2": 144.558,
+        "stroke": "#6D7378",
+        "stroke_width": 1.2
+      }
+    },
+    {
+      "id": "slot.choice1.compass.clamp",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 262.65000000000003,
+        "y": 143.0,
+        "width": 13.299999999999999,
+        "height": 7.6,
+        "stroke": "#42474B",
+        "stroke_width": 0.8,
+        "fill": "#6D7378"
+      }
+    },
+    {
+      "id": "slot.choice1.compass.pencil.body",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 266.45,
+        "y": 99.30000000000001,
+        "width": 5.699999999999999,
+        "height": 71.25,
+        "stroke": "#879036",
+        "stroke_width": 0.9,
+        "fill": "#A9B84B"
+      }
+    },
+    {
+      "id": "slot.choice1.compass.pencil.tip",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            264.55,
+            169.6
+          ],
+          [
+            274.05,
+            169.6
+          ],
+          [
+            269.3,
+            181.95000000000002
+          ]
+        ],
+        "stroke": "#9E7130",
+        "stroke_width": 0.8,
+        "fill": "#E8B55D"
+      }
+    },
+    {
+      "id": "slot.choice1.compass.needle.tip",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 198.0,
+        "y1": 165.8,
+        "x2": 198.0,
+        "y2": 181.0,
+        "stroke": "#42474B",
+        "stroke_width": 1.2
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.body",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 438.0,
+        "y": 181.0,
+        "width": 93.0,
+        "height": 32.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 1.2,
+        "fill": "#DDF6FF"
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.top",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 438.0,
+        "y1": 189.0,
+        "x2": 531.0,
+        "y2": 189.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 1.1
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.tick.00",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 438.0,
+        "y1": 189.0,
+        "x2": 438.0,
+        "y2": 201.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.tick.01",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 441.1,
+        "y1": 189.0,
+        "x2": 441.1,
+        "y2": 195.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.tick.02",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 444.2,
+        "y1": 189.0,
+        "x2": 444.2,
+        "y2": 195.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.tick.03",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 447.3,
+        "y1": 189.0,
+        "x2": 447.3,
+        "y2": 195.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.tick.04",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 450.4,
+        "y1": 189.0,
+        "x2": 450.4,
+        "y2": 195.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.tick.05",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 453.5,
+        "y1": 189.0,
+        "x2": 453.5,
+        "y2": 198.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.85
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.tick.06",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 456.6,
+        "y1": 189.0,
+        "x2": 456.6,
+        "y2": 195.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.tick.07",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 459.7,
+        "y1": 189.0,
+        "x2": 459.7,
+        "y2": 195.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.tick.08",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 462.8,
+        "y1": 189.0,
+        "x2": 462.8,
+        "y2": 195.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.tick.09",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 465.9,
+        "y1": 189.0,
+        "x2": 465.9,
+        "y2": 195.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.tick.10",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 469.0,
+        "y1": 189.0,
+        "x2": 469.0,
+        "y2": 201.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.tick.11",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 472.1,
+        "y1": 189.0,
+        "x2": 472.1,
+        "y2": 195.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.tick.12",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 475.2,
+        "y1": 189.0,
+        "x2": 475.2,
+        "y2": 195.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.tick.13",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 478.3,
+        "y1": 189.0,
+        "x2": 478.3,
+        "y2": 195.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.tick.14",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 481.4,
+        "y1": 189.0,
+        "x2": 481.4,
+        "y2": 195.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.tick.15",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 484.5,
+        "y1": 189.0,
+        "x2": 484.5,
+        "y2": 198.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.85
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.tick.16",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 487.6,
+        "y1": 189.0,
+        "x2": 487.6,
+        "y2": 195.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.tick.17",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 490.7,
+        "y1": 189.0,
+        "x2": 490.7,
+        "y2": 195.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.tick.18",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 493.8,
+        "y1": 189.0,
+        "x2": 493.8,
+        "y2": 195.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.tick.19",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 496.9,
+        "y1": 189.0,
+        "x2": 496.9,
+        "y2": 195.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.tick.20",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 500.0,
+        "y1": 189.0,
+        "x2": 500.0,
+        "y2": 201.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.tick.21",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 503.1,
+        "y1": 189.0,
+        "x2": 503.1,
+        "y2": 195.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.tick.22",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 506.2,
+        "y1": 189.0,
+        "x2": 506.2,
+        "y2": 195.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.tick.23",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 509.3,
+        "y1": 189.0,
+        "x2": 509.3,
+        "y2": 195.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.tick.24",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 512.4,
+        "y1": 189.0,
+        "x2": 512.4,
+        "y2": 195.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.tick.25",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 515.5,
+        "y1": 189.0,
+        "x2": 515.5,
+        "y2": 198.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.85
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.tick.26",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 518.6,
+        "y1": 189.0,
+        "x2": 518.6,
+        "y2": 195.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.tick.27",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 521.7,
+        "y1": 189.0,
+        "x2": 521.7,
+        "y2": 195.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.tick.28",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 524.8,
+        "y1": 189.0,
+        "x2": 524.8,
+        "y2": 195.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.tick.29",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 527.9,
+        "y1": 189.0,
+        "x2": 527.9,
+        "y2": 195.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.tick.30",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 531.0,
+        "y1": 189.0,
+        "x2": 531.0,
+        "y2": 201.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.label.0",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "0",
+        "style_role": "label",
+        "x": 438.0,
+        "y": 205.0,
+        "font_size": 15,
+        "anchor": "middle",
+        "fill": "#333333"
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.label.1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "1",
+        "style_role": "label",
+        "x": 469.0,
+        "y": 205.0,
+        "font_size": 15,
+        "anchor": "middle",
+        "fill": "#333333"
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.label.2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "2",
+        "style_role": "label",
+        "x": 500.0,
+        "y": 205.0,
+        "font_size": 15,
+        "anchor": "middle",
+        "fill": "#333333"
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.label.3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "3",
+        "style_role": "label",
+        "x": 531.0,
+        "y": 205.0,
+        "font_size": 15,
+        "anchor": "middle",
+        "fill": "#333333"
+      }
+    },
+    {
+      "id": "slot.choice2.compass.leg.left.outer",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 456.9,
+        "y1": 93.6,
+        "x2": 428.7,
+        "y2": 173.4,
+        "stroke": "#42474B",
+        "stroke_width": 1.2
+      }
+    },
+    {
+      "id": "slot.choice2.compass.leg.left.inner",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 461.65,
+        "y1": 93.6,
+        "x2": 433.45,
+        "y2": 173.4,
+        "stroke": "#C7DCE3",
+        "stroke_width": 3.0
+      }
+    },
+    {
+      "id": "slot.choice2.compass.leg.right.outer",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 464.5,
+        "y1": 93.6,
+        "x2": 531.0,
+        "y2": 168.65,
+        "stroke": "#42474B",
+        "stroke_width": 1.2
+      }
+    },
+    {
+      "id": "slot.choice2.compass.leg.right.inner",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 459.75,
+        "y1": 93.6,
+        "x2": 525.3,
+        "y2": 156.3,
+        "stroke": "#C7DCE3",
+        "stroke_width": 3.0
+      }
+    },
+    {
+      "id": "slot.choice2.compass.hinge",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 460.7,
+        "cy": 86.0,
+        "r": 5.699999999999999,
+        "stroke": "#42474B",
+        "stroke_width": 1.0,
+        "fill": "#AEB4B7"
+      }
+    },
+    {
+      "id": "slot.choice2.compass.head",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 455.95,
+        "y": 69.85,
+        "width": 9.5,
+        "height": 17.099999999999998,
+        "stroke": "#42474B",
+        "stroke_width": 1.0,
+        "rx": 1.9,
+        "ry": 1.9,
+        "fill": "#8B9195"
+      }
+    },
+    {
+      "id": "slot.choice2.compass.knob",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 458.8,
+        "y": 57.5,
+        "width": 3.8,
+        "height": 11.399999999999999,
+        "stroke": "#42474B",
+        "stroke_width": 0.8,
+        "fill": "#7F8589"
+      }
+    },
+    {
+      "id": "slot.choice2.compass.bar.left",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 440.21999999999997,
+        "y1": 141.936,
+        "x2": 507.801,
+        "y2": 144.558,
+        "stroke": "#6D7378",
+        "stroke_width": 1.2
+      }
+    },
+    {
+      "id": "slot.choice2.compass.clamp",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 524.35,
+        "y": 143.0,
+        "width": 13.299999999999999,
+        "height": 7.6,
+        "stroke": "#42474B",
+        "stroke_width": 0.8,
+        "fill": "#6D7378"
+      }
+    },
+    {
+      "id": "slot.choice2.compass.pencil.body",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 528.15,
+        "y": 99.30000000000001,
+        "width": 5.699999999999999,
+        "height": 71.25,
+        "stroke": "#879036",
+        "stroke_width": 0.9,
+        "fill": "#A9B84B"
+      }
+    },
+    {
+      "id": "slot.choice2.compass.pencil.tip",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            526.25,
+            169.6
+          ],
+          [
+            535.75,
+            169.6
+          ],
+          [
+            531.0,
+            181.95000000000002
+          ]
+        ],
+        "stroke": "#9E7130",
+        "stroke_width": 0.8,
+        "fill": "#E8B55D"
+      }
+    },
+    {
+      "id": "slot.choice2.compass.needle.tip",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 428.7,
+        "y1": 165.8,
+        "x2": 428.7,
+        "y2": 181.0,
+        "stroke": "#42474B",
+        "stroke_width": 1.2
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.body",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 678.0,
+        "y": 181.0,
+        "width": 93.0,
+        "height": 32.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 1.2,
+        "fill": "#DDF6FF"
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.top",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 678.0,
+        "y1": 189.0,
+        "x2": 771.0,
+        "y2": 189.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 1.1
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.tick.00",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 678.0,
+        "y1": 189.0,
+        "x2": 678.0,
+        "y2": 201.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.tick.01",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 681.1,
+        "y1": 189.0,
+        "x2": 681.1,
+        "y2": 195.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.tick.02",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 684.2,
+        "y1": 189.0,
+        "x2": 684.2,
+        "y2": 195.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.tick.03",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 687.3,
+        "y1": 189.0,
+        "x2": 687.3,
+        "y2": 195.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.tick.04",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 690.4,
+        "y1": 189.0,
+        "x2": 690.4,
+        "y2": 195.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.tick.05",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 693.5,
+        "y1": 189.0,
+        "x2": 693.5,
+        "y2": 198.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.85
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.tick.06",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 696.6,
+        "y1": 189.0,
+        "x2": 696.6,
+        "y2": 195.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.tick.07",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 699.7,
+        "y1": 189.0,
+        "x2": 699.7,
+        "y2": 195.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.tick.08",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 702.8,
+        "y1": 189.0,
+        "x2": 702.8,
+        "y2": 195.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.tick.09",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 705.9,
+        "y1": 189.0,
+        "x2": 705.9,
+        "y2": 195.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.tick.10",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 709.0,
+        "y1": 189.0,
+        "x2": 709.0,
+        "y2": 201.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.tick.11",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 712.1,
+        "y1": 189.0,
+        "x2": 712.1,
+        "y2": 195.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.tick.12",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 715.2,
+        "y1": 189.0,
+        "x2": 715.2,
+        "y2": 195.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.tick.13",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 718.3,
+        "y1": 189.0,
+        "x2": 718.3,
+        "y2": 195.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.tick.14",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 721.4,
+        "y1": 189.0,
+        "x2": 721.4,
+        "y2": 195.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.tick.15",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 724.5,
+        "y1": 189.0,
+        "x2": 724.5,
+        "y2": 198.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.85
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.tick.16",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 727.6,
+        "y1": 189.0,
+        "x2": 727.6,
+        "y2": 195.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.tick.17",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 730.7,
+        "y1": 189.0,
+        "x2": 730.7,
+        "y2": 195.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.tick.18",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 733.8,
+        "y1": 189.0,
+        "x2": 733.8,
+        "y2": 195.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.tick.19",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 736.9,
+        "y1": 189.0,
+        "x2": 736.9,
+        "y2": 195.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.tick.20",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 740.0,
+        "y1": 189.0,
+        "x2": 740.0,
+        "y2": 201.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.tick.21",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 743.1,
+        "y1": 189.0,
+        "x2": 743.1,
+        "y2": 195.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.tick.22",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 746.2,
+        "y1": 189.0,
+        "x2": 746.2,
+        "y2": 195.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.tick.23",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 749.3,
+        "y1": 189.0,
+        "x2": 749.3,
+        "y2": 195.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.tick.24",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 752.4,
+        "y1": 189.0,
+        "x2": 752.4,
+        "y2": 195.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.tick.25",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 755.5,
+        "y1": 189.0,
+        "x2": 755.5,
+        "y2": 198.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.85
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.tick.26",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 758.6,
+        "y1": 189.0,
+        "x2": 758.6,
+        "y2": 195.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.tick.27",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 761.7,
+        "y1": 189.0,
+        "x2": 761.7,
+        "y2": 195.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.tick.28",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 764.8,
+        "y1": 189.0,
+        "x2": 764.8,
+        "y2": 195.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.tick.29",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 767.9,
+        "y1": 189.0,
+        "x2": 767.9,
+        "y2": 195.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.tick.30",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 771.0,
+        "y1": 189.0,
+        "x2": 771.0,
+        "y2": 201.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.label.0",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "0",
+        "style_role": "label",
+        "x": 678.0,
+        "y": 205.0,
+        "font_size": 15,
+        "anchor": "middle",
+        "fill": "#333333"
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.label.1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "1",
+        "style_role": "label",
+        "x": 709.0,
+        "y": 205.0,
+        "font_size": 15,
+        "anchor": "middle",
+        "fill": "#333333"
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.label.2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "2",
+        "style_role": "label",
+        "x": 740.0,
+        "y": 205.0,
+        "font_size": 15,
+        "anchor": "middle",
+        "fill": "#333333"
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.label.3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "3",
+        "style_role": "label",
+        "x": 771.0,
+        "y": 205.0,
+        "font_size": 15,
+        "anchor": "middle",
+        "fill": "#333333"
+      }
+    },
+    {
+      "id": "slot.choice3.compass.leg.left.outer",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 717.2,
+        "y1": 93.6,
+        "x2": 678.0,
+        "y2": 173.4,
+        "stroke": "#42474B",
+        "stroke_width": 1.2
+      }
+    },
+    {
+      "id": "slot.choice3.compass.leg.left.inner",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 721.95,
+        "y1": 93.6,
+        "x2": 682.75,
+        "y2": 173.4,
+        "stroke": "#C7DCE3",
+        "stroke_width": 3.0
+      }
+    },
+    {
+      "id": "slot.choice3.compass.leg.right.outer",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 724.8,
+        "y1": 93.6,
+        "x2": 771.0,
+        "y2": 168.65,
+        "stroke": "#42474B",
+        "stroke_width": 1.2
+      }
+    },
+    {
+      "id": "slot.choice3.compass.leg.right.inner",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 720.05,
+        "y1": 93.6,
+        "x2": 765.3,
+        "y2": 156.3,
+        "stroke": "#C7DCE3",
+        "stroke_width": 3.0
+      }
+    },
+    {
+      "id": "slot.choice3.compass.hinge",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 721.0,
+        "cy": 86.0,
+        "r": 5.699999999999999,
+        "stroke": "#42474B",
+        "stroke_width": 1.0,
+        "fill": "#AEB4B7"
+      }
+    },
+    {
+      "id": "slot.choice3.compass.head",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 716.25,
+        "y": 69.85,
+        "width": 9.5,
+        "height": 17.099999999999998,
+        "stroke": "#42474B",
+        "stroke_width": 1.0,
+        "rx": 1.9,
+        "ry": 1.9,
+        "fill": "#8B9195"
+      }
+    },
+    {
+      "id": "slot.choice3.compass.knob",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 719.1,
+        "y": 57.5,
+        "width": 3.8,
+        "height": 11.399999999999999,
+        "stroke": "#42474B",
+        "stroke_width": 0.8,
+        "fill": "#7F8589"
+      }
+    },
+    {
+      "id": "slot.choice3.compass.bar.left",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 693.48,
+        "y1": 141.936,
+        "x2": 754.5,
+        "y2": 144.558,
+        "stroke": "#6D7378",
+        "stroke_width": 1.2
+      }
+    },
+    {
+      "id": "slot.choice3.compass.clamp",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 764.35,
+        "y": 143.0,
+        "width": 13.299999999999999,
+        "height": 7.6,
+        "stroke": "#42474B",
+        "stroke_width": 0.8,
+        "fill": "#6D7378"
+      }
+    },
+    {
+      "id": "slot.choice3.compass.pencil.body",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 768.15,
+        "y": 99.30000000000001,
+        "width": 5.699999999999999,
+        "height": 71.25,
+        "stroke": "#879036",
+        "stroke_width": 0.9,
+        "fill": "#A9B84B"
+      }
+    },
+    {
+      "id": "slot.choice3.compass.pencil.tip",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            766.25,
+            169.6
+          ],
+          [
+            775.75,
+            169.6
+          ],
+          [
+            771.0,
+            181.95000000000002
+          ]
+        ],
+        "stroke": "#9E7130",
+        "stroke_width": 0.8,
+        "fill": "#E8B55D"
+      }
+    },
+    {
+      "id": "slot.choice3.compass.needle.tip",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 678.0,
+        "y1": 165.8,
+        "x2": 678.0,
+        "y2": 181.0,
+        "stroke": "#42474B",
+        "stroke_width": 1.2
+      }
+    },
+    {
+      "id": "slot.answer.label",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "(정답)",
+        "style_role": "answer",
+        "x": 14.0,
+        "y": 314.0,
+        "font_size": 17
+      }
+    },
+    {
+      "id": "slot.answer.diagram.ruler.body",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 61.0,
+        "y": 355.0,
+        "width": 93.0,
+        "height": 32.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 1.2,
+        "fill": "#DDF6FF"
+      }
+    },
+    {
+      "id": "slot.answer.diagram.ruler.top",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 61.0,
+        "y1": 363.0,
+        "x2": 154.0,
+        "y2": 363.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 1.1
+      }
+    },
+    {
+      "id": "slot.answer.diagram.ruler.tick.00",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 61.0,
+        "y1": 363.0,
+        "x2": 61.0,
+        "y2": 375.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.answer.diagram.ruler.tick.01",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 64.1,
+        "y1": 363.0,
+        "x2": 64.1,
+        "y2": 369.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.answer.diagram.ruler.tick.02",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 67.2,
+        "y1": 363.0,
+        "x2": 67.2,
+        "y2": 369.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.answer.diagram.ruler.tick.03",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 70.3,
+        "y1": 363.0,
+        "x2": 70.3,
+        "y2": 369.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.answer.diagram.ruler.tick.04",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 73.4,
+        "y1": 363.0,
+        "x2": 73.4,
+        "y2": 369.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.answer.diagram.ruler.tick.05",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 76.5,
+        "y1": 363.0,
+        "x2": 76.5,
+        "y2": 372.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.85
+      }
+    },
+    {
+      "id": "slot.answer.diagram.ruler.tick.06",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 79.6,
+        "y1": 363.0,
+        "x2": 79.6,
+        "y2": 369.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.answer.diagram.ruler.tick.07",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 82.7,
+        "y1": 363.0,
+        "x2": 82.7,
+        "y2": 369.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.answer.diagram.ruler.tick.08",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 85.8,
+        "y1": 363.0,
+        "x2": 85.8,
+        "y2": 369.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.answer.diagram.ruler.tick.09",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 88.9,
+        "y1": 363.0,
+        "x2": 88.9,
+        "y2": 369.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.answer.diagram.ruler.tick.10",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 92.0,
+        "y1": 363.0,
+        "x2": 92.0,
+        "y2": 375.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.answer.diagram.ruler.tick.11",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 95.1,
+        "y1": 363.0,
+        "x2": 95.1,
+        "y2": 369.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.answer.diagram.ruler.tick.12",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 98.2,
+        "y1": 363.0,
+        "x2": 98.2,
+        "y2": 369.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.answer.diagram.ruler.tick.13",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 101.3,
+        "y1": 363.0,
+        "x2": 101.3,
+        "y2": 369.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.answer.diagram.ruler.tick.14",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 104.4,
+        "y1": 363.0,
+        "x2": 104.4,
+        "y2": 369.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.answer.diagram.ruler.tick.15",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 107.5,
+        "y1": 363.0,
+        "x2": 107.5,
+        "y2": 372.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.85
+      }
+    },
+    {
+      "id": "slot.answer.diagram.ruler.tick.16",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 110.6,
+        "y1": 363.0,
+        "x2": 110.6,
+        "y2": 369.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.answer.diagram.ruler.tick.17",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 113.7,
+        "y1": 363.0,
+        "x2": 113.7,
+        "y2": 369.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.answer.diagram.ruler.tick.18",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 116.8,
+        "y1": 363.0,
+        "x2": 116.8,
+        "y2": 369.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.answer.diagram.ruler.tick.19",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 119.9,
+        "y1": 363.0,
+        "x2": 119.9,
+        "y2": 369.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.answer.diagram.ruler.tick.20",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 123.0,
+        "y1": 363.0,
+        "x2": 123.0,
+        "y2": 375.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.answer.diagram.ruler.tick.21",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 126.1,
+        "y1": 363.0,
+        "x2": 126.1,
+        "y2": 369.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.answer.diagram.ruler.tick.22",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 129.2,
+        "y1": 363.0,
+        "x2": 129.2,
+        "y2": 369.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.answer.diagram.ruler.tick.23",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 132.3,
+        "y1": 363.0,
+        "x2": 132.3,
+        "y2": 369.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.answer.diagram.ruler.tick.24",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 135.4,
+        "y1": 363.0,
+        "x2": 135.4,
+        "y2": 369.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.answer.diagram.ruler.tick.25",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 138.5,
+        "y1": 363.0,
+        "x2": 138.5,
+        "y2": 372.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.85
+      }
+    },
+    {
+      "id": "slot.answer.diagram.ruler.tick.26",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 141.6,
+        "y1": 363.0,
+        "x2": 141.6,
+        "y2": 369.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.answer.diagram.ruler.tick.27",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 144.7,
+        "y1": 363.0,
+        "x2": 144.7,
+        "y2": 369.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.answer.diagram.ruler.tick.28",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 147.8,
+        "y1": 363.0,
+        "x2": 147.8,
+        "y2": 369.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.answer.diagram.ruler.tick.29",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 150.9,
+        "y1": 363.0,
+        "x2": 150.9,
+        "y2": 369.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 0.7
+      }
+    },
+    {
+      "id": "slot.answer.diagram.ruler.tick.30",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 154.0,
+        "y1": 363.0,
+        "x2": 154.0,
+        "y2": 375.0,
+        "stroke": "#19B5F2",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.answer.diagram.ruler.label.0",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "0",
+        "style_role": "label",
+        "x": 61.0,
+        "y": 379.0,
+        "font_size": 15,
+        "anchor": "middle",
+        "fill": "#333333"
+      }
+    },
+    {
+      "id": "slot.answer.diagram.ruler.label.1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "1",
+        "style_role": "label",
+        "x": 92.0,
+        "y": 379.0,
+        "font_size": 15,
+        "anchor": "middle",
+        "fill": "#333333"
+      }
+    },
+    {
+      "id": "slot.answer.diagram.ruler.label.2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "2",
+        "style_role": "label",
+        "x": 123.0,
+        "y": 379.0,
+        "font_size": 15,
+        "anchor": "middle",
+        "fill": "#333333"
+      }
+    },
+    {
+      "id": "slot.answer.diagram.ruler.label.3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "3",
+        "style_role": "label",
+        "x": 154.0,
+        "y": 379.0,
+        "font_size": 15,
+        "anchor": "middle",
+        "fill": "#333333"
+      }
+    },
+    {
+      "id": "slot.answer.diagram.compass.leg.left.outer",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 105.2,
+        "y1": 267.6,
+        "x2": 61.0,
+        "y2": 347.4,
+        "stroke": "#42474B",
+        "stroke_width": 1.2
+      }
+    },
+    {
+      "id": "slot.answer.diagram.compass.leg.left.inner",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 109.95,
+        "y1": 267.6,
+        "x2": 65.75,
+        "y2": 347.4,
+        "stroke": "#C7DCE3",
+        "stroke_width": 3.0
+      }
+    },
+    {
+      "id": "slot.answer.diagram.compass.leg.right.outer",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 112.8,
+        "y1": 267.6,
+        "x2": 154.0,
+        "y2": 342.65,
+        "stroke": "#42474B",
+        "stroke_width": 1.2
+      }
+    },
+    {
+      "id": "slot.answer.diagram.compass.leg.right.inner",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 108.05,
+        "y1": 267.6,
+        "x2": 148.3,
+        "y2": 330.29999999999995,
+        "stroke": "#C7DCE3",
+        "stroke_width": 3.0
+      }
+    },
+    {
+      "id": "slot.answer.diagram.compass.hinge",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 109.0,
+        "cy": 260.0,
+        "r": 5.699999999999999,
+        "stroke": "#42474B",
+        "stroke_width": 1.0,
+        "fill": "#AEB4B7"
+      }
+    },
+    {
+      "id": "slot.answer.diagram.compass.head",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 104.25,
+        "y": 243.85,
+        "width": 9.5,
+        "height": 17.099999999999998,
+        "stroke": "#42474B",
+        "stroke_width": 1.0,
+        "rx": 1.9,
+        "ry": 1.9,
+        "fill": "#8B9195"
+      }
+    },
+    {
+      "id": "slot.answer.diagram.compass.knob",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 107.1,
+        "y": 231.5,
+        "width": 3.8,
+        "height": 11.399999999999999,
+        "stroke": "#42474B",
+        "stroke_width": 0.8,
+        "fill": "#7F8589"
+      }
+    },
+    {
+      "id": "slot.answer.diagram.compass.bar.left",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 78.28,
+        "y1": 315.936,
+        "x2": 139.15,
+        "y2": 318.558,
+        "stroke": "#6D7378",
+        "stroke_width": 1.2
+      }
+    },
+    {
+      "id": "slot.answer.diagram.compass.clamp",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 147.35,
+        "y": 316.99999999999994,
+        "width": 13.299999999999999,
+        "height": 7.6,
+        "stroke": "#42474B",
+        "stroke_width": 0.8,
+        "fill": "#6D7378"
+      }
+    },
+    {
+      "id": "slot.answer.diagram.compass.pencil.body",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 151.15,
+        "y": 273.29999999999995,
+        "width": 5.699999999999999,
+        "height": 71.25,
+        "stroke": "#879036",
+        "stroke_width": 0.9,
+        "fill": "#A9B84B"
+      }
+    },
+    {
+      "id": "slot.answer.diagram.compass.pencil.tip",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            149.25,
+            343.59999999999997
+          ],
+          [
+            158.75,
+            343.59999999999997
+          ],
+          [
+            154.0,
+            355.95
+          ]
+        ],
+        "stroke": "#9E7130",
+        "stroke_width": 0.8,
+        "fill": "#E8B55D"
+      }
+    },
+    {
+      "id": "slot.answer.diagram.compass.needle.tip",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 61.0,
+        "y1": 339.79999999999995,
+        "x2": 61.0,
+        "y2": 355.0,
+        "stroke": "#42474B",
+        "stroke_width": 1.2
+      }
+    },
+    {
+      "id": "slot.explanation.label",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "(해설)",
+        "style_role": "explanation",
+        "x": 14.0,
+        "y": 421.0,
+        "font_size": 17
+      }
+    },
+    {
+      "id": "slot.explanation.text1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "컴퍼스의 침을 자의 눈금 0에 맞추고 연필심을 자의 눈금 3에 오도록 컴퍼스를 벌",
+        "style_role": "explanation",
+        "x": 61.0,
+        "y": 421.0,
+        "font_size": 23
+      }
+    },
+    {
+      "id": "slot.explanation.text2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "린 것을 찾습니다.",
+        "style_role": "explanation",
+        "x": 36.0,
+        "y": 452.0,
+        "font_size": 23
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q.prefix",
+    "slot.q.text",
+    "region.choices",
+    "slot.choice1.ruler.body",
+    "slot.choice1.compass.hinge",
+    "slot.choice1.compass.head",
+    "slot.choice1.compass.knob",
+    "slot.choice1.compass.clamp",
+    "slot.choice1.compass.pencil.body",
+    "slot.choice1.compass.pencil.tip",
+    "slot.choice2.ruler.body",
+    "slot.choice2.compass.hinge",
+    "slot.choice2.compass.head",
+    "slot.choice2.compass.knob",
+    "slot.choice2.compass.clamp",
+    "slot.choice2.compass.pencil.body",
+    "slot.choice2.compass.pencil.tip",
+    "slot.choice3.ruler.body",
+    "slot.choice3.compass.hinge",
+    "slot.choice3.compass.head",
+    "slot.choice3.compass.knob",
+    "slot.choice3.compass.clamp",
+    "slot.choice3.compass.pencil.body",
+    "slot.choice3.compass.pencil.tip",
+    "slot.choice1.ruler.top",
+    "slot.choice1.ruler.tick.00",
+    "slot.choice1.ruler.tick.01",
+    "slot.choice1.ruler.tick.02",
+    "slot.choice1.ruler.tick.03",
+    "slot.choice1.ruler.tick.04",
+    "slot.choice1.ruler.tick.05",
+    "slot.choice1.ruler.tick.06",
+    "slot.choice1.ruler.tick.07",
+    "slot.choice1.ruler.tick.08",
+    "slot.choice1.ruler.tick.09",
+    "slot.choice1.ruler.tick.10",
+    "slot.choice1.ruler.tick.11",
+    "slot.choice1.ruler.tick.12",
+    "slot.choice1.ruler.tick.13",
+    "slot.choice1.ruler.tick.14",
+    "slot.choice1.ruler.tick.15",
+    "slot.choice1.ruler.tick.16",
+    "slot.choice1.ruler.tick.17",
+    "slot.choice1.ruler.tick.18",
+    "slot.choice1.ruler.tick.19",
+    "slot.choice1.ruler.tick.20",
+    "slot.choice1.ruler.tick.21",
+    "slot.choice1.ruler.tick.22",
+    "slot.choice1.ruler.tick.23",
+    "slot.choice1.ruler.tick.24",
+    "slot.choice1.ruler.tick.25",
+    "slot.choice1.ruler.tick.26",
+    "slot.choice1.ruler.tick.27",
+    "slot.choice1.ruler.tick.28",
+    "slot.choice1.ruler.tick.29",
+    "slot.choice1.ruler.tick.30",
+    "slot.choice1.compass.leg.left.outer",
+    "slot.choice1.compass.leg.left.inner",
+    "slot.choice1.compass.leg.right.outer",
+    "slot.choice1.compass.leg.right.inner",
+    "slot.choice1.compass.bar.left",
+    "slot.choice1.compass.needle.tip",
+    "slot.choice2.ruler.top",
+    "slot.choice2.ruler.tick.00",
+    "slot.choice2.ruler.tick.01",
+    "slot.choice2.ruler.tick.02",
+    "slot.choice2.ruler.tick.03",
+    "slot.choice2.ruler.tick.04",
+    "slot.choice2.ruler.tick.05",
+    "slot.choice2.ruler.tick.06",
+    "slot.choice2.ruler.tick.07",
+    "slot.choice2.ruler.tick.08",
+    "slot.choice2.ruler.tick.09",
+    "slot.choice2.ruler.tick.10",
+    "slot.choice2.ruler.tick.11",
+    "slot.choice2.ruler.tick.12",
+    "slot.choice2.ruler.tick.13",
+    "slot.choice2.ruler.tick.14",
+    "slot.choice2.ruler.tick.15",
+    "slot.choice2.ruler.tick.16",
+    "slot.choice2.ruler.tick.17",
+    "slot.choice2.ruler.tick.18",
+    "slot.choice2.ruler.tick.19",
+    "slot.choice2.ruler.tick.20",
+    "slot.choice2.ruler.tick.21",
+    "slot.choice2.ruler.tick.22",
+    "slot.choice2.ruler.tick.23",
+    "slot.choice2.ruler.tick.24",
+    "slot.choice2.ruler.tick.25",
+    "slot.choice2.ruler.tick.26",
+    "slot.choice2.ruler.tick.27",
+    "slot.choice2.ruler.tick.28",
+    "slot.choice2.ruler.tick.29",
+    "slot.choice2.ruler.tick.30",
+    "slot.choice2.compass.leg.left.outer",
+    "slot.choice2.compass.leg.left.inner",
+    "slot.choice2.compass.leg.right.outer",
+    "slot.choice2.compass.leg.right.inner",
+    "slot.choice2.compass.bar.left",
+    "slot.choice2.compass.needle.tip",
+    "slot.choice3.ruler.top",
+    "slot.choice3.ruler.tick.00",
+    "slot.choice3.ruler.tick.01",
+    "slot.choice3.ruler.tick.02",
+    "slot.choice3.ruler.tick.03",
+    "slot.choice3.ruler.tick.04",
+    "slot.choice3.ruler.tick.05",
+    "slot.choice3.ruler.tick.06",
+    "slot.choice3.ruler.tick.07",
+    "slot.choice3.ruler.tick.08",
+    "slot.choice3.ruler.tick.09",
+    "slot.choice3.ruler.tick.10",
+    "slot.choice3.ruler.tick.11",
+    "slot.choice3.ruler.tick.12",
+    "slot.choice3.ruler.tick.13",
+    "slot.choice3.ruler.tick.14",
+    "slot.choice3.ruler.tick.15",
+    "slot.choice3.ruler.tick.16",
+    "slot.choice3.ruler.tick.17",
+    "slot.choice3.ruler.tick.18",
+    "slot.choice3.ruler.tick.19",
+    "slot.choice3.ruler.tick.20",
+    "slot.choice3.ruler.tick.21",
+    "slot.choice3.ruler.tick.22",
+    "slot.choice3.ruler.tick.23",
+    "slot.choice3.ruler.tick.24",
+    "slot.choice3.ruler.tick.25",
+    "slot.choice3.ruler.tick.26",
+    "slot.choice3.ruler.tick.27",
+    "slot.choice3.ruler.tick.28",
+    "slot.choice3.ruler.tick.29",
+    "slot.choice3.ruler.tick.30",
+    "slot.choice3.compass.leg.left.outer",
+    "slot.choice3.compass.leg.left.inner",
+    "slot.choice3.compass.leg.right.outer",
+    "slot.choice3.compass.leg.right.inner",
+    "slot.choice3.compass.bar.left",
+    "slot.choice3.compass.needle.tip",
+    "slot.choice1.ruler.label.0",
+    "slot.choice1.ruler.label.1",
+    "slot.choice1.ruler.label.2",
+    "slot.choice1.ruler.label.3",
+    "slot.choice2.ruler.label.0",
+    "slot.choice2.ruler.label.1",
+    "slot.choice2.ruler.label.2",
+    "slot.choice2.ruler.label.3",
+    "slot.choice3.ruler.label.0",
+    "slot.choice3.ruler.label.1",
+    "slot.choice3.ruler.label.2",
+    "slot.choice3.ruler.label.3",
+    "region.answer",
+    "slot.answer.diagram.ruler.body",
+    "slot.answer.diagram.compass.hinge",
+    "slot.answer.diagram.compass.head",
+    "slot.answer.diagram.compass.knob",
+    "slot.answer.diagram.compass.clamp",
+    "slot.answer.diagram.compass.pencil.body",
+    "slot.answer.diagram.compass.pencil.tip",
+    "slot.answer.diagram.ruler.top",
+    "slot.answer.diagram.ruler.tick.00",
+    "slot.answer.diagram.ruler.tick.01",
+    "slot.answer.diagram.ruler.tick.02",
+    "slot.answer.diagram.ruler.tick.03",
+    "slot.answer.diagram.ruler.tick.04",
+    "slot.answer.diagram.ruler.tick.05",
+    "slot.answer.diagram.ruler.tick.06",
+    "slot.answer.diagram.ruler.tick.07",
+    "slot.answer.diagram.ruler.tick.08",
+    "slot.answer.diagram.ruler.tick.09",
+    "slot.answer.diagram.ruler.tick.10",
+    "slot.answer.diagram.ruler.tick.11",
+    "slot.answer.diagram.ruler.tick.12",
+    "slot.answer.diagram.ruler.tick.13",
+    "slot.answer.diagram.ruler.tick.14",
+    "slot.answer.diagram.ruler.tick.15",
+    "slot.answer.diagram.ruler.tick.16",
+    "slot.answer.diagram.ruler.tick.17",
+    "slot.answer.diagram.ruler.tick.18",
+    "slot.answer.diagram.ruler.tick.19",
+    "slot.answer.diagram.ruler.tick.20",
+    "slot.answer.diagram.ruler.tick.21",
+    "slot.answer.diagram.ruler.tick.22",
+    "slot.answer.diagram.ruler.tick.23",
+    "slot.answer.diagram.ruler.tick.24",
+    "slot.answer.diagram.ruler.tick.25",
+    "slot.answer.diagram.ruler.tick.26",
+    "slot.answer.diagram.ruler.tick.27",
+    "slot.answer.diagram.ruler.tick.28",
+    "slot.answer.diagram.ruler.tick.29",
+    "slot.answer.diagram.ruler.tick.30",
+    "slot.answer.diagram.compass.leg.left.outer",
+    "slot.answer.diagram.compass.leg.left.inner",
+    "slot.answer.diagram.compass.leg.right.outer",
+    "slot.answer.diagram.compass.leg.right.inner",
+    "slot.answer.diagram.compass.bar.left",
+    "slot.answer.diagram.compass.needle.tip",
+    "slot.answer.label",
+    "slot.answer.diagram.ruler.label.0",
+    "slot.answer.diagram.ruler.label.1",
+    "slot.answer.diagram.ruler.label.2",
+    "slot.answer.diagram.ruler.label.3",
+    "slot.explanation.label",
+    "slot.explanation.text1",
+    "slot.explanation.text2"
+  ]
+}

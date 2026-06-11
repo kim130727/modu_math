@@ -14,8 +14,7 @@
       "role": "stem",
       "flow": "absolute",
       "slot_ids": [
-        "slot.q1",
-        "slot.q2"
+        "slot.q1"
       ]
     },
     {
@@ -25,7 +24,6 @@
       "slot_ids": [
         "slot.circle",
         "slot.center",
-        "slot.radius.right",
         "slot.diameter",
         "slot.arc.right",
         "slot.len4",
@@ -54,23 +52,11 @@
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "그림을 보고 지름과 반지름 사이의 관계를 알아보려고 합니다. 알맞은",
+        "text": "\n    \n    그림을 보고 지름과 반지름 사이의 관계를 알아보려고 합니다.\n    알맞은 것을 선택하세요.\n  ",
         "style_role": "question",
-        "x": 15.0,
-        "y": 30.0,
+        "x": 20.0,
+        "y": 15.0,
         "font_size": 30
-      }
-    },
-    {
-      "id": "slot.q2",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "것을 선택하세요.",
-        "style_role": "question",
-        "x": 12.0,
-        "y": 64.0,
-        "font_size": 28
       }
     },
     {
@@ -78,9 +64,9 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 496.0,
-        "cy": 204.0,
-        "r": 119.0,
+        "cx": 430.0,
+        "cy": 260.0,
+        "r": 120.0,
         "fill": "none"
       }
     },
@@ -89,21 +75,10 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 512.0,
-        "cy": 205.0,
-        "r": 3.8,
+        "cx": 433.0,
+        "cy": 260.0,
+        "r": 5.0,
         "fill": "#d81b60"
-      }
-    },
-    {
-      "id": "slot.radius.right",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 512.0,
-        "y1": 205.0,
-        "x2": 607.0,
-        "y2": 205.0
       }
     },
     {
@@ -111,10 +86,10 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 375.0,
-        "y1": 420.0,
-        "x2": 625.0,
-        "y2": 55.0
+        "x1": 370.0,
+        "y1": 360.0,
+        "x2": 495.0,
+        "y2": 160.0
       }
     },
     {
@@ -122,10 +97,10 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 512.0,
-        "y1": 205.0,
-        "x2": 607.0,
-        "y2": 205.0
+        "x1": 430.0,
+        "y1": 260.0,
+        "x2": 550.0,
+        "y2": 260.0
       }
     },
     {
@@ -135,8 +110,8 @@
       "content": {
         "text": "4 cm",
         "style_role": "label",
-        "x": 255.0,
-        "y": 195.0,
+        "x": 345.0,
+        "y": 255.0,
         "font_size": 30
       }
     },
@@ -147,8 +122,8 @@
       "content": {
         "text": "2 cm",
         "style_role": "label",
-        "x": 530.0,
-        "y": 235.0,
+        "x": 455.0,
+        "y": 295.0,
         "font_size": 30
       }
     },
@@ -157,10 +132,10 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 64.0,
-        "y": 327.0,
+        "x": 20.0,
+        "y": 410.0,
         "width": 840.0,
-        "height": 79.0,
+        "height": 80.0,
         "fill": "none"
       }
     },
@@ -171,9 +146,9 @@
       "content": {
         "text": "한 원에서 ( 지름 , 반지름 )은 ( 지름 , 반지름 )의 2배입니다.",
         "style_role": "question",
-        "x": 101.0,
-        "y": 376.0,
-        "font_size": 28
+        "x": 100.0,
+        "y": 455.0,
+        "font_size": 30
       }
     }
   ],
@@ -183,11 +158,9 @@
   "reading_order": [
     "region.header",
     "slot.q1",
-    "slot.q2",
     "region.diagram",
     "slot.circle",
     "slot.center",
-    "slot.radius.right",
     "slot.diameter",
     "slot.arc.right",
     "slot.len4",
