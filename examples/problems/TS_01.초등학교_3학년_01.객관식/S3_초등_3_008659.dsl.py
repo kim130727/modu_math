@@ -71,7 +71,7 @@ def _candidate_slots(
 
 
 def build_problem_template() -> ProblemTemplate:
-    grid_x, grid_y = 370.0, 56.0
+    grid_x, grid_y = 170.0, 56.0
     step = 27.0
     center = (4, 4)
     center_x, center_y = _point(grid_x, grid_y, step, center)
@@ -87,7 +87,7 @@ def build_problem_template() -> ProblemTemplate:
     return ProblemTemplate(
         id="S3_초등_3_008659",
         title="원의 중심 찾기",
-        canvas=Canvas(width=640.0, height=420.0, coordinate_mode="logical"),
+        canvas=Canvas(width=550.0, height=400.0, coordinate_mode="logical"),
         regions=(
             Region(id="region.stem", role="stem", flow="absolute", slot_ids=("slot.question",)),
             Region(

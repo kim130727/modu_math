@@ -61,12 +61,6 @@ def build_problem_template() -> ProblemTemplate:
                 flow="absolute",
                 slot_ids=(*(slot.id for slot in choice1), *(slot.id for slot in choice2), *(slot.id for slot in choice3)),
             ),
-            Region(
-                id="region.answer",
-                role="answer",
-                flow="absolute",
-                slot_ids=(*(slot.id for slot in answer_diagram),  ),
-            ),
         ),
         slots=(
             TextSlot(
