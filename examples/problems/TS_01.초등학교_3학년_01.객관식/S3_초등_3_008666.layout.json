@@ -3,8 +3,8 @@
   "problem_id": "S3_초등_3_008666",
   "title": "원의 반지름과 중심 이동",
   "canvas": {
-    "width": 940,
-    "height": 495,
+    "width": 900,
+    "height": 400,
     "coordinate_mode": "logical",
     "background": "#FFFFFF"
   },
@@ -14,9 +14,10 @@
       "role": "stem",
       "flow": "absolute",
       "slot_ids": [
-        "slot.qnum",
         "slot.qtext1",
-        "slot.qtext2"
+        "slot.qtext1.copy5",
+        "slot.qtext1.copy5.copy6",
+        "slot.qtext1.copy5.copy7"
       ]
     },
     {
@@ -32,18 +33,15 @@
         "slot.opt2.c2",
         "slot.opt3.c1",
         "slot.opt3.c2",
-        "slot.opt3.c3"
+        "slot.opt3.c3",
+        "slot.opt3.c2.copy4"
       ]
     },
     {
       "id": "region.answer",
       "role": "annotation",
       "flow": "absolute",
-      "slot_ids": [
-        "slot.answer_diagram.c1",
-        "slot.answer_diagram.c2",
-        "slot.answer_diagram.c3"
-      ]
+      "slot_ids": []
     },
     {
       "id": "region.explanation",
@@ -55,59 +53,20 @@
       "id": "region.bottom_diagrams",
       "role": "diagram",
       "flow": "absolute",
-      "slot_ids": [
-        "slot.bot1.c1",
-        "slot.bot1.c2",
-        "slot.bot1.c3",
-        "slot.bot1.p1",
-        "slot.bot1.p2",
-        "slot.bot1.p3",
-        "slot.bot2.c1",
-        "slot.bot2.c2",
-        "slot.bot2.p1",
-        "slot.bot2.p2",
-        "slot.bot3.c1",
-        "slot.bot3.c2",
-        "slot.bot3.c3",
-        "slot.bot3.p1"
-      ]
+      "slot_ids": []
     }
   ],
   "slots": [
-    {
-      "id": "slot.qnum",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "42.",
-        "style_role": "question",
-        "x": 17.0,
-        "y": 28.0,
-        "font_size": 28
-      }
-    },
     {
       "id": "slot.qtext1",
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "원의 반지름은 모두 같고 원의 중심을 옮겨 가며 그린 그림을 찾아 선택",
+        "text": "\n    \n    원의 반지름은 모두 같고 원의 중심을 옮겨 가며 그린 그림을\n    찾아 선택하세요.    \n  ",
         "style_role": "question",
-        "x": 58.0,
-        "y": 31.0,
-        "font_size": 28
-      }
-    },
-    {
-      "id": "slot.qtext2",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "하세요.",
-        "style_role": "question",
-        "x": 44.0,
-        "y": 66.0,
-        "font_size": 28
+        "x": 65.0,
+        "y": 20.0,
+        "font_size": 30
       }
     },
     {
@@ -115,10 +74,10 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 201.0,
-        "y": 86.0,
-        "width": 569.0,
-        "height": 131.0,
+        "x": 75.0,
+        "y": 150.0,
+        "width": 640.0,
+        "height": 130.0,
         "stroke": "#9ACD32",
         "stroke_width": 2.0,
         "fill": "none"
@@ -129,9 +88,9 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 286.0,
-        "cy": 146.0,
-        "r": 22.0,
+        "cx": 200.0,
+        "cy": 215.0,
+        "r": 20.0,
         "stroke": "#222222",
         "stroke_width": 1.5,
         "fill": "none"
@@ -142,9 +101,9 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 302.0,
-        "cy": 124.0,
-        "r": 22.0,
+        "cx": 215.0,
+        "cy": 195.0,
+        "r": 20.0,
         "stroke": "#222222",
         "stroke_width": 1.5,
         "fill": "none"
@@ -155,9 +114,9 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 318.0,
-        "cy": 146.0,
-        "r": 22.0,
+        "cx": 180.0,
+        "cy": 235.0,
+        "r": 20.0,
         "stroke": "#222222",
         "stroke_width": 1.5,
         "fill": "none"
@@ -168,8 +127,8 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 486.0,
-        "cy": 138.0,
+        "cx": 395.0,
+        "cy": 215.0,
         "r": 40.0,
         "stroke": "#222222",
         "stroke_width": 1.5,
@@ -181,9 +140,9 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 459.0,
-        "cy": 147.0,
-        "r": 13.0,
+        "cx": 370.0,
+        "cy": 215.0,
+        "r": 15.0,
         "stroke": "#222222",
         "stroke_width": 1.5,
         "fill": "none"
@@ -194,9 +153,9 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 649.0,
-        "cy": 138.0,
-        "r": 37.0,
+        "cx": 595.0,
+        "cy": 210.0,
+        "r": 35.0,
         "stroke": "#222222",
         "stroke_width": 1.5,
         "fill": "none"
@@ -207,9 +166,9 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 649.0,
-        "cy": 138.0,
-        "r": 23.0,
+        "cx": 595.0,
+        "cy": 210.0,
+        "r": 25.0,
         "stroke": "#222222",
         "stroke_width": 1.5,
         "fill": "none"
@@ -220,227 +179,63 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 649.0,
-        "cy": 138.0,
-        "r": 11.0,
+        "cx": 595.0,
+        "cy": 210.0,
+        "r": 10.0,
         "stroke": "#222222",
         "stroke_width": 1.5,
         "fill": "none"
       }
     },
     {
-      "id": "slot.answer_diagram.c1",
+      "id": "slot.opt3.c2.copy4",
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 98.0,
-        "cy": 246.0,
-        "r": 18.0,
+        "cx": 380.0,
+        "cy": 215.0,
+        "r": 25.0,
         "stroke": "#222222",
-        "stroke_width": 1.5,
-        "fill": "none"
+        "stroke_width": 1.5
       }
     },
     {
-      "id": "slot.answer_diagram.c2",
-      "kind": "circle",
+      "id": "slot.qtext1.copy5",
+      "kind": "text",
       "prompt": "",
       "content": {
-        "cx": 114.0,
-        "cy": 226.0,
-        "r": 18.0,
-        "stroke": "#222222",
-        "stroke_width": 1.5,
-        "fill": "none"
+        "text": "㉠",
+        "style_role": "body",
+        "x": 135.0,
+        "y": 195.0,
+        "font_size": 30,
+        "fill": "#111111"
       }
     },
     {
-      "id": "slot.answer_diagram.c3",
-      "kind": "circle",
+      "id": "slot.qtext1.copy5.copy6",
+      "kind": "text",
       "prompt": "",
       "content": {
-        "cx": 130.0,
-        "cy": 246.0,
-        "r": 18.0,
-        "stroke": "#222222",
-        "stroke_width": 1.5,
-        "fill": "none"
+        "text": "㉡",
+        "style_role": "body",
+        "x": 310.0,
+        "y": 200.0,
+        "font_size": 30,
+        "fill": "#111111"
       }
     },
     {
-      "id": "slot.bot1.c1",
-      "kind": "circle",
+      "id": "slot.qtext1.copy5.copy7",
+      "kind": "text",
       "prompt": "",
       "content": {
-        "cx": 92.0,
-        "cy": 427.0,
-        "r": 22.0,
-        "stroke": "#222222",
-        "stroke_width": 1.5,
-        "fill": "none"
-      }
-    },
-    {
-      "id": "slot.bot1.c2",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 111.0,
-        "cy": 406.0,
-        "r": 22.0,
-        "stroke": "#222222",
-        "stroke_width": 1.5,
-        "fill": "none"
-      }
-    },
-    {
-      "id": "slot.bot1.c3",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 130.0,
-        "cy": 427.0,
-        "r": 22.0,
-        "stroke": "#222222",
-        "stroke_width": 1.5,
-        "fill": "none"
-      }
-    },
-    {
-      "id": "slot.bot1.p1",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 81.0,
-        "cy": 436.0,
-        "r": 3.5,
-        "stroke": "none",
-        "fill": "#1da1f2"
-      }
-    },
-    {
-      "id": "slot.bot1.p2",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 97.0,
-        "cy": 420.0,
-        "r": 3.5,
-        "stroke": "none",
-        "fill": "#1da1f2"
-      }
-    },
-    {
-      "id": "slot.bot1.p3",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 112.0,
-        "cy": 410.0,
-        "r": 3.5,
-        "stroke": "none",
-        "fill": "#1da1f2"
-      }
-    },
-    {
-      "id": "slot.bot2.c1",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 216.0,
-        "cy": 427.0,
-        "r": 41.0,
-        "stroke": "#222222",
-        "stroke_width": 1.5,
-        "fill": "none"
-      }
-    },
-    {
-      "id": "slot.bot2.c2",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 192.0,
-        "cy": 427.0,
-        "r": 13.0,
-        "stroke": "#222222",
-        "stroke_width": 1.5,
-        "fill": "none"
-      }
-    },
-    {
-      "id": "slot.bot2.p1",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 171.0,
-        "cy": 427.0,
-        "r": 3.5,
-        "stroke": "none",
-        "fill": "#1da1f2"
-      }
-    },
-    {
-      "id": "slot.bot2.p2",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 192.0,
-        "cy": 427.0,
-        "r": 3.5,
-        "stroke": "none",
-        "fill": "#1da1f2"
-      }
-    },
-    {
-      "id": "slot.bot3.c1",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 348.0,
-        "cy": 427.0,
-        "r": 37.0,
-        "stroke": "#222222",
-        "stroke_width": 1.5,
-        "fill": "none"
-      }
-    },
-    {
-      "id": "slot.bot3.c2",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 348.0,
-        "cy": 427.0,
-        "r": 23.0,
-        "stroke": "#222222",
-        "stroke_width": 1.5,
-        "fill": "none"
-      }
-    },
-    {
-      "id": "slot.bot3.c3",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 348.0,
-        "cy": 427.0,
-        "r": 11.0,
-        "stroke": "#222222",
-        "stroke_width": 1.5,
-        "fill": "none"
-      }
-    },
-    {
-      "id": "slot.bot3.p1",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 348.0,
-        "cy": 427.0,
-        "r": 3.5,
-        "stroke": "none",
-        "fill": "#1da1f2"
+        "text": "㉢",
+        "style_role": "body",
+        "x": 510.0,
+        "y": 200.0,
+        "font_size": 30,
+        "fill": "#111111"
       }
     }
   ],
@@ -449,9 +244,10 @@
   "diagrams": [],
   "reading_order": [
     "region.stem",
-    "slot.qnum",
     "slot.qtext1",
-    "slot.qtext2",
+    "slot.qtext1.copy5",
+    "slot.qtext1.copy5.copy6",
+    "slot.qtext1.copy5.copy7",
     "region.options",
     "slot.box",
     "slot.opt1.c1",
@@ -462,25 +258,9 @@
     "slot.opt3.c1",
     "slot.opt3.c2",
     "slot.opt3.c3",
+    "slot.opt3.c2.copy4",
     "region.answer",
-    "slot.answer_diagram.c1",
-    "slot.answer_diagram.c2",
-    "slot.answer_diagram.c3",
     "region.explanation",
-    "region.bottom_diagrams",
-    "slot.bot1.c1",
-    "slot.bot1.c2",
-    "slot.bot1.c3",
-    "slot.bot1.p1",
-    "slot.bot1.p2",
-    "slot.bot1.p3",
-    "slot.bot2.c1",
-    "slot.bot2.c2",
-    "slot.bot2.p1",
-    "slot.bot2.p2",
-    "slot.bot3.c1",
-    "slot.bot3.c2",
-    "slot.bot3.c3",
-    "slot.bot3.p1"
+    "region.bottom_diagrams"
   ]
 }

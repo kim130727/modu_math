@@ -20,7 +20,7 @@ def build_problem_template() -> ProblemTemplate:
                 id="region.stem",
                 role="stem",
                 flow="absolute",
-                slot_ids=("slot.box", "slot.qnum", "slot.question"),
+                slot_ids=("slot.question"),
             ),
             Region(
                 id="region.diagram",
@@ -32,7 +32,6 @@ def build_problem_template() -> ProblemTemplate:
                     "slot.center_dot",
                     "slot.line.1",
                     "slot.line.2",
-                    "slot.line.3",
                     "slot.line.4",
                     "slot.line.5",
                     "slot.line.6",
@@ -46,108 +45,61 @@ def build_problem_template() -> ProblemTemplate:
             Region(id="region.answer", role="answer", flow="absolute", slot_ids=()),
         ),
         slots=(
-            RectSlot(id="slot.box", prompt="", x=10.0, y=15.0, width=16.0, height=16.0),
-            TextSlot(
-                id="slot.qnum",
-                prompt="",
-                text="40.",
-                style_role="question",
-                x=35.0,
-                y=31.0,
-                font_size=28,
-            ),
             TextSlot(
                 id="slot.question",
                 prompt="",
-                text="원의 지름이 아닌 것을 모두 찾아 선택해 보세요.",
-                style_role="question",
-                x=80.0,
-                y=31.0,
-                font_size=28,
-            ),
+                text = '원의 지름이 아닌 것을 모두 찾아 선택해 보세요.', style_role="question",
+                x = 80, y = 50, font_size = 30),
             CircleSlot(
-                id="slot.circle", prompt="", cx=520.0, cy=150.0, r=85.0, fill="none"
+                id="slot.circle", prompt="", cx = 365, cy = 225, r = 140, fill="none"
             ),
             CircleSlot(
                 id="slot.center_dot",
                 prompt="",
-                cx=482.0,
-                cy=150.0,
-                r=3.5,
-                fill="#ff3b8d",
+                cx = 365, cy = 225, r = 5, fill="#ff3b8d",
             ),
             TextSlot(
                 id="slot.center_mark",
                 prompt="",
-                text="ㅇ",
-                style_role="label",
-                x=466.0,
-                y=168.0,
-                font_size=22,
-            ),
+                text = 'ㅇ', style_role="label",
+                x = 334, y = 240, font_size = 20),
             LineSlot(
-                id="slot.line.1", prompt="", x1=520.0, y1=65.0, x2=586.0, y2=240.0
-            ),
+                id="slot.line.1", prompt="", x1 = 325, y1 = 90, x2 = 495, y2 = 280),
             LineSlot(
-                id="slot.line.2", prompt="", x1=600.0, y1=88.0, x2=431.0, y2=229.0
-            ),
+                id="slot.line.2", prompt="", x1 = 465, y1 = 130, x2 = 265, y2 = 320, stroke = '#111111', stroke_width = 2),
             LineSlot(
-                id="slot.line.3", prompt="", x1=443.0, y1=82.0, x2=585.0, y2=193.0
-            ),
+                id="slot.line.4", prompt="", x1 = 415, y1 = 355, x2 = 495, y2 = 175),
             LineSlot(
-                id="slot.line.4", prompt="", x1=486.0, y1=235.0, x2=598.0, y2=83.0
-            ),
+                id="slot.line.5", prompt="", x1 = 250, y1 = 145, x2 = 480, y2 = 305),
             LineSlot(
-                id="slot.line.5", prompt="", x1=457.0, y1=105.0, x2=607.0, y2=160.0
-            ),
-            LineSlot(
-                id="slot.line.6", prompt="", x1=434.0, y1=150.0, x2=607.0, y2=150.0
-            ),
+                id="slot.line.6", prompt="", x1 = 225, y1 = 225, x2 = 505, y2 = 225),
             TextSlot(
                 id="slot.lb.ga",
                 prompt="",
-                text="ㄱ",
-                style_role="label",
-                x=397.0,
-                y=88.0,
-                font_size=22,
-            ),
+                text = 'ㄱ', style_role="label",
+                x = 225, y = 140, font_size = 20),
             TextSlot(
                 id="slot.lb.na",
                 prompt="",
                 text="ㄴ",
                 style_role="label",
-                x=391.0,
-                y=156.0,
-                font_size=22,
-            ),
+                x = 199, y = 229, font_size = 20),
             TextSlot(
                 id="slot.lb.da",
                 prompt="",
-                text="ㄷ",
-                style_role="label",
-                x=401.0,
-                y=237.0,
-                font_size=22,
-            ),
+                text = 'ㄷ', style_role="label",
+                x = 240, y = 341, font_size = 20),
             TextSlot(
                 id="slot.lb.ra",
                 prompt="",
-                text="ㄹ",
-                style_role="label",
-                x=502.0,
-                y=263.0,
-                font_size=22,
-            ),
+                text = 'ㄹ', style_role="label",
+                x = 405, y = 385, font_size = 20),
             TextSlot(
                 id="slot.lb.ma",
                 prompt="",
                 text="ㅁ",
                 style_role="label",
-                x=617.0,
-                y=195.0,
-                font_size=22,
-            ),
+                x = 505, y = 295, font_size = 20),
         ),
         diagrams=(),
         groups=(),
@@ -204,7 +156,7 @@ SEMANTIC_OVERRIDE = {
             "type": "non_diameter_selection",
             "description": "원의 지름이 아닌 것 모두",
         },
-        "value": 2,
+        "value": "ㄹ,ㅁ",
         "unit": "",
     },
 }
@@ -263,7 +215,7 @@ SOLVABLE = {
             "type": "non_diameter_selection",
             "description": "원의 지름이 아닌 것 모두",
         },
-        "value": 2,
+        "value": "ㄹ,ㅁ",
         "unit": "",
     },
 }

@@ -1,35 +1,18 @@
 {
   "problem_id": "S3_초등_3_008672",
   "view_box": {
-    "width": 960.0,
+    "width": 700.0,
     "height": 450.0,
     "background": "#FFFFFF"
   },
   "elements": [
-    {
-      "id": "slot.header.mark.text",
-      "type": "text",
-      "attributes": {
-        "x": 6.0,
-        "y": 34.0,
-        "max_width": 832.0,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 22
-      },
-      "source_ref": "slot.header.mark",
-      "refs": {
-        "layout_slot_id": "slot.header.mark"
-      },
-      "text": "□"
-    },
     {
       "id": "slot.header.text.text",
       "type": "text",
       "attributes": {
         "x": 34.0,
         "y": 32.0,
-        "max_width": 832.0,
+        "max_width": 572.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 28
@@ -38,15 +21,15 @@
       "refs": {
         "layout_slot_id": "slot.header.text"
       },
-      "text": "52. 알맞은 말을 선택해 보시오."
+      "text": "알맞은 말을 선택해 보시오."
     },
     {
       "id": "slot.circle.outer.circle",
       "type": "circle",
       "attributes": {
-        "cx": 476.0,
-        "cy": 123.0,
-        "r": 74.0,
+        "cx": 376.0,
+        "cy": 180.0,
+        "r": 125.0,
         "stroke": "#111111",
         "stroke-width": 2.0,
         "fill": "none"
@@ -60,9 +43,9 @@
       "id": "slot.pt.center.circle",
       "type": "circle",
       "attributes": {
-        "cx": 476.0,
-        "cy": 123.0,
-        "r": 2.8,
+        "cx": 375.0,
+        "cy": 180.0,
+        "r": 5.0,
         "stroke": "#111111",
         "stroke-width": 2.0,
         "fill": "#d4006a"
@@ -76,10 +59,10 @@
       "id": "slot.line.g1.line",
       "type": "line",
       "attributes": {
-        "x1": 476.0,
-        "y1": 123.0,
-        "x2": 417.0,
-        "y2": 103.0,
+        "x1": 375.0,
+        "y1": 180.0,
+        "x2": 265.0,
+        "y2": 125.0,
         "stroke": "#111111",
         "stroke-width": 2.0
       },
@@ -92,10 +75,10 @@
       "id": "slot.line.g2.line",
       "type": "line",
       "attributes": {
-        "x1": 476.0,
-        "y1": 123.0,
-        "x2": 495.0,
-        "y2": 199.0,
+        "x1": 375.0,
+        "y1": 180.0,
+        "x2": 445.0,
+        "y2": 285.0,
         "stroke": "#111111",
         "stroke-width": 2.0
       },
@@ -108,10 +91,10 @@
       "id": "slot.line.g3.line",
       "type": "line",
       "attributes": {
-        "x1": 476.0,
-        "y1": 123.0,
-        "x2": 521.0,
-        "y2": 74.0,
+        "x1": 375.0,
+        "y1": 180.0,
+        "x2": 465.0,
+        "y2": 95.0,
         "stroke": "#111111",
         "stroke-width": 2.0
       },
@@ -121,29 +104,12 @@
       }
     },
     {
-      "id": "slot.lb.o.text",
-      "type": "text",
-      "attributes": {
-        "x": 456.0,
-        "y": 132.0,
-        "max_width": 832.0,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 20
-      },
-      "source_ref": "slot.lb.o",
-      "refs": {
-        "layout_slot_id": "slot.lb.o"
-      },
-      "text": "O"
-    },
-    {
       "id": "slot.lb.ga.text",
       "type": "text",
       "attributes": {
-        "x": 405.0,
-        "y": 94.0,
-        "max_width": 832.0,
+        "x": 235.0,
+        "y": 120.0,
+        "max_width": 572.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 20
@@ -158,9 +124,9 @@
       "id": "slot.lb.na.text",
       "type": "text",
       "attributes": {
-        "x": 486.0,
-        "y": 212.0,
-        "max_width": 832.0,
+        "x": 450.0,
+        "y": 300.0,
+        "max_width": 572.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 20
@@ -175,9 +141,9 @@
       "id": "slot.lb.da.text",
       "type": "text",
       "attributes": {
-        "x": 520.0,
-        "y": 62.0,
-        "max_width": 832.0,
+        "x": 475.0,
+        "y": 95.0,
+        "max_width": 572.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 20
@@ -189,21 +155,55 @@
       "text": "ㄷ"
     },
     {
+      "id": "slot.lb.ga.copy1.text",
+      "type": "text",
+      "attributes": {
+        "x": 350.0,
+        "y": 205.0,
+        "max_width": 572.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 20
+      },
+      "source_ref": "slot.lb.ga.copy1",
+      "refs": {
+        "layout_slot_id": "slot.lb.ga.copy1"
+      },
+      "text": "ㅇ"
+    },
+    {
       "id": "slot.q1.text",
       "type": "text",
       "attributes": {
-        "x": 40.0,
-        "y": 242.0,
-        "max_width": 832.0,
+        "x": 55.0,
+        "y": 395.0,
+        "max_width": 572.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 30
       },
       "source_ref": "slot.q1",
       "refs": {
         "layout_slot_id": "slot.q1"
       },
-      "text": "선분 ㄱO, 선분 ㄴO, 선분 ㄷO은 모두 원의 ( 지름, 반지름, 중심)입니다."
+      "text": "모두 원의 (지름, 반지름, 중심)입니다.    "
+    },
+    {
+      "id": "slot.q1.copy2.text",
+      "type": "text",
+      "attributes": {
+        "x": 55.0,
+        "y": 355.0,
+        "max_width": 572.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30
+      },
+      "source_ref": "slot.q1.copy2",
+      "refs": {
+        "layout_slot_id": "slot.q1.copy2"
+      },
+      "text": "        선분 ㄱㅇ, 선분 ㄴㅇ, 선분 ㄷㅇ은"
     }
   ],
   "contract_version": "modu_math.renderer.v2"

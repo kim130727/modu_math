@@ -1,54 +1,61 @@
 {
   "schema": "modu.solvable.v1.1",
   "problem_id": "S3_초등_3_008671",
-  "problem_type": "multiple_choice",
+  "problem_type": "choice_selection",
   "inputs": {
-    "total_ticks": 4,
-    "target_label": "ㄹ",
-    "target_ticks": 4,
+    "total_ticks": 5,
+    "target_label": "ㅁ",
+    "target_ticks": 5,
     "target_count": 1,
     "unit": ""
   },
   "given": [
     {
-      "ref": "obj.pin",
-      "value": "고정점"
+      "ref": "obj.hole_positions",
+      "value": {
+        "count": 5,
+        "labels": [
+          "ㄱ",
+          "ㄴ",
+          "ㄷ",
+          "ㄹ",
+          "ㅁ"
+        ]
+      }
     },
     {
-      "ref": "obj.holes",
-      "value": [
-        "ㄱ",
-        "ㄴ",
-        "ㄷ",
-        "ㄹ"
-      ]
+      "ref": "obj.tool",
+      "value": {
+        "type": "center_tool"
+      }
     }
   ],
   "target": {
     "ref": "answer.target",
     "type": "choice_label"
   },
-  "method": "distance_compare",
+  "method": "compare_hole_distances",
   "plan": [
-    "누름 못에서 더 멀리 있는 구멍을 찾는다.",
-    "가장 멀리 있는 구멍에 해당하는 기호를 고른다."
+    "구멍들의 위치를 비교한다.",
+    "누름 못과 연필심 사이가 가장 멀어지는 구멍을 찾는다.",
+    "그 구멍에 대응하는 기호를 답으로 둔다."
   ],
   "steps": [
     {
       "id": "step.1",
       "expr": "구멍 위치를 왼쪽에서 오른쪽으로 비교한다.",
-      "value": "ㄱ < ㄴ < ㄷ < ㄹ"
+      "value": "ㄱ, ㄴ, ㄷ, ㄹ, ㅁ"
     },
     {
       "id": "step.2",
-      "expr": "가장 먼 구멍에 해당하는 선택지를 찾는다.",
-      "value": "ㄹ"
+      "expr": "가장 멀리 있는 구멍을 고른다.",
+      "value": "ㅁ"
     }
   ],
   "checks": [
     {
       "id": "check.1",
-      "expr": "해설의 의미와 선택된 기호가 일치하는가",
+      "expr": "가장 먼 위치가 마지막 구멍인지 확인한다.",
       "expected": "ㄹ",
       "actual": "ㄹ",
       "pass": true
@@ -60,7 +67,7 @@
     "answer_key": [],
     "target": {
       "type": "choice_label",
-      "description": "원을 가장 크게 그리기 위해 선택할 기호"
+      "description": "원을 가장 크게 그릴 수 있는 구멍의 기호"
     },
     "value": "ㄹ",
     "unit": ""

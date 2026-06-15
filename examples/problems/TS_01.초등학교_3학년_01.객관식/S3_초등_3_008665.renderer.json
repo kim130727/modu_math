@@ -7,49 +7,15 @@
   },
   "elements": [
     {
-      "id": "slot.box.rect",
-      "type": "rect",
-      "attributes": {
-        "x": 10.0,
-        "y": 15.0,
-        "width": 16.0,
-        "height": 16.0,
-        "fill": "#ffffff",
-        "stroke": "#111111",
-        "stroke-width": 1.5
-      },
-      "source_ref": "slot.box",
-      "refs": {
-        "layout_slot_id": "slot.box"
-      }
-    },
-    {
-      "id": "slot.qnum.text",
-      "type": "text",
-      "attributes": {
-        "x": 35.0,
-        "y": 31.0,
-        "max_width": 832.0,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
-      },
-      "source_ref": "slot.qnum",
-      "refs": {
-        "layout_slot_id": "slot.qnum"
-      },
-      "text": "40."
-    },
-    {
       "id": "slot.question.text",
       "type": "text",
       "attributes": {
         "x": 80.0,
-        "y": 31.0,
+        "y": 50.0,
         "max_width": 832.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 30
       },
       "source_ref": "slot.question",
       "refs": {
@@ -61,9 +27,9 @@
       "id": "slot.circle.circle",
       "type": "circle",
       "attributes": {
-        "cx": 520.0,
-        "cy": 150.0,
-        "r": 85.0,
+        "cx": 365.0,
+        "cy": 225.0,
+        "r": 140.0,
         "stroke": "#111111",
         "stroke-width": 2.0,
         "fill": "none"
@@ -77,9 +43,9 @@
       "id": "slot.center_dot.circle",
       "type": "circle",
       "attributes": {
-        "cx": 482.0,
-        "cy": 150.0,
-        "r": 3.5,
+        "cx": 365.0,
+        "cy": 225.0,
+        "r": 5.0,
         "stroke": "#111111",
         "stroke-width": 2.0,
         "fill": "#ff3b8d"
@@ -93,10 +59,10 @@
       "id": "slot.line.1.line",
       "type": "line",
       "attributes": {
-        "x1": 520.0,
-        "y1": 65.0,
-        "x2": 586.0,
-        "y2": 240.0,
+        "x1": 325.0,
+        "y1": 90.0,
+        "x2": 495.0,
+        "y2": 280.0,
         "stroke": "#111111",
         "stroke-width": 2.0
       },
@@ -109,10 +75,10 @@
       "id": "slot.line.2.line",
       "type": "line",
       "attributes": {
-        "x1": 600.0,
-        "y1": 88.0,
-        "x2": 431.0,
-        "y2": 229.0,
+        "x1": 465.0,
+        "y1": 130.0,
+        "x2": 265.0,
+        "y2": 320.0,
         "stroke": "#111111",
         "stroke-width": 2.0
       },
@@ -122,29 +88,13 @@
       }
     },
     {
-      "id": "slot.line.3.line",
-      "type": "line",
-      "attributes": {
-        "x1": 443.0,
-        "y1": 82.0,
-        "x2": 585.0,
-        "y2": 193.0,
-        "stroke": "#111111",
-        "stroke-width": 2.0
-      },
-      "source_ref": "slot.line.3",
-      "refs": {
-        "layout_slot_id": "slot.line.3"
-      }
-    },
-    {
       "id": "slot.line.4.line",
       "type": "line",
       "attributes": {
-        "x1": 486.0,
-        "y1": 235.0,
-        "x2": 598.0,
-        "y2": 83.0,
+        "x1": 415.0,
+        "y1": 355.0,
+        "x2": 495.0,
+        "y2": 175.0,
         "stroke": "#111111",
         "stroke-width": 2.0
       },
@@ -157,10 +107,10 @@
       "id": "slot.line.5.line",
       "type": "line",
       "attributes": {
-        "x1": 457.0,
-        "y1": 105.0,
-        "x2": 607.0,
-        "y2": 160.0,
+        "x1": 250.0,
+        "y1": 145.0,
+        "x2": 480.0,
+        "y2": 305.0,
         "stroke": "#111111",
         "stroke-width": 2.0
       },
@@ -173,10 +123,10 @@
       "id": "slot.line.6.line",
       "type": "line",
       "attributes": {
-        "x1": 434.0,
-        "y1": 150.0,
-        "x2": 607.0,
-        "y2": 150.0,
+        "x1": 225.0,
+        "y1": 225.0,
+        "x2": 505.0,
+        "y2": 225.0,
         "stroke": "#111111",
         "stroke-width": 2.0
       },
@@ -189,12 +139,12 @@
       "id": "slot.center_mark.text",
       "type": "text",
       "attributes": {
-        "x": 466.0,
-        "y": 168.0,
+        "x": 334.0,
+        "y": 240.0,
         "max_width": 832.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 22
+        "font-size": 20
       },
       "source_ref": "slot.center_mark",
       "refs": {
@@ -206,12 +156,12 @@
       "id": "slot.lb.ga.text",
       "type": "text",
       "attributes": {
-        "x": 397.0,
-        "y": 88.0,
+        "x": 225.0,
+        "y": 140.0,
         "max_width": 832.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 22
+        "font-size": 20
       },
       "source_ref": "slot.lb.ga",
       "refs": {
@@ -223,12 +173,12 @@
       "id": "slot.lb.na.text",
       "type": "text",
       "attributes": {
-        "x": 391.0,
-        "y": 156.0,
+        "x": 199.0,
+        "y": 229.0,
         "max_width": 832.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 22
+        "font-size": 20
       },
       "source_ref": "slot.lb.na",
       "refs": {
@@ -240,12 +190,12 @@
       "id": "slot.lb.da.text",
       "type": "text",
       "attributes": {
-        "x": 401.0,
-        "y": 237.0,
+        "x": 240.0,
+        "y": 341.0,
         "max_width": 832.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 22
+        "font-size": 20
       },
       "source_ref": "slot.lb.da",
       "refs": {
@@ -257,12 +207,12 @@
       "id": "slot.lb.ra.text",
       "type": "text",
       "attributes": {
-        "x": 502.0,
-        "y": 263.0,
+        "x": 405.0,
+        "y": 385.0,
         "max_width": 832.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 22
+        "font-size": 20
       },
       "source_ref": "slot.lb.ra",
       "refs": {
@@ -274,12 +224,12 @@
       "id": "slot.lb.ma.text",
       "type": "text",
       "attributes": {
-        "x": 617.0,
-        "y": 195.0,
+        "x": 505.0,
+        "y": 295.0,
         "max_width": 832.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 22
+        "font-size": 20
       },
       "source_ref": "slot.lb.ma",
       "refs": {

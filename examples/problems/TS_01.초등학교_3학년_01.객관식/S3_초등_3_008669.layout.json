@@ -23,25 +23,12 @@
         "slot.choice.b.inner",
         "slot.choice.c.outer",
         "slot.choice.c.inner",
-        "slot.ans.outer1",
-        "slot.ans.outer2",
-        "slot.ans.inner",
-        "slot.ex1.outer",
-        "slot.ex1.left",
-        "slot.ex1.right",
-        "slot.ex1.dot1",
-        "slot.ex1.dot2",
-        "slot.ex2.outer",
-        "slot.ex2.middle",
-        "slot.ex2.inner",
-        "slot.ex2.dot",
-        "slot.ex3.outer",
-        "slot.ex3.inner",
-        "slot.ex3.inner2",
-        "slot.ex3.dot1",
-        "slot.ex3.dot2",
+        "slot.choice.b.inner.copy1",
         "slot.q1",
-        "slot.q2"
+        "slot.q1.copy2",
+        "slot.q1.copy2.copy3",
+        "slot.q1.copy2.copy3.copy4",
+        "slot.q1.copy2.copy3.copy5"
       ]
     }
   ],
@@ -51,23 +38,11 @@
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "□ 48.  원의 중심을 옮기지 않고 반지름만 다르게 하여 그린 것을 찾아 선택하",
+        "text": "    원의 중심을 옮기지 않고 반지름만 다르게 하여 그린 것을 찾아",
         "style_role": "question",
-        "x": 16.0,
-        "y": 22.0,
-        "font_size": 28
-      }
-    },
-    {
-      "id": "slot.q2",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "세요.",
-        "style_role": "question",
-        "x": 16.0,
-        "y": 58.0,
-        "font_size": 28
+        "x": 20.0,
+        "y": 75.0,
+        "font_size": 30
       }
     },
     {
@@ -75,9 +50,9 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 200.0,
-        "y": 88.0,
-        "width": 582.0,
+        "x": 75.0,
+        "y": 195.0,
+        "width": 690.0,
         "height": 130.0,
         "stroke": "#A89BEA",
         "fill": "none"
@@ -88,9 +63,9 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 295.0,
-        "cy": 149.0,
-        "r": 44.0,
+        "cx": 240.0,
+        "cy": 263.0,
+        "r": 50.0,
         "stroke": "#333333",
         "fill": "none"
       }
@@ -100,9 +75,9 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 280.0,
-        "cy": 149.0,
-        "r": 22.0,
+        "cx": 215.0,
+        "cy": 264.0,
+        "r": 25.0,
         "stroke": "#333333",
         "fill": "none"
       }
@@ -112,9 +87,9 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 310.0,
-        "cy": 149.0,
-        "r": 22.0,
+        "cx": 264.0,
+        "cy": 264.0,
+        "r": 25.0,
         "stroke": "#333333",
         "fill": "none"
       }
@@ -124,9 +99,9 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 484.0,
-        "cy": 149.0,
-        "r": 44.0,
+        "cx": 435.0,
+        "cy": 265.0,
+        "r": 45.0,
         "stroke": "#333333",
         "fill": "none"
       }
@@ -136,9 +111,9 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 484.0,
-        "cy": 149.0,
-        "r": 31.0,
+        "cx": 435.0,
+        "cy": 265.0,
+        "r": 30.0,
         "stroke": "#333333",
         "fill": "none"
       }
@@ -148,9 +123,9 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 484.0,
-        "cy": 149.0,
-        "r": 16.0,
+        "cx": 435.0,
+        "cy": 265.0,
+        "r": 15.0,
         "stroke": "#333333",
         "fill": "none"
       }
@@ -160,9 +135,9 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 683.0,
-        "cy": 149.0,
-        "r": 44.0,
+        "cx": 620.0,
+        "cy": 260.0,
+        "r": 45.0,
         "stroke": "#333333",
         "fill": "none"
       }
@@ -172,215 +147,75 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 683.0,
-        "cy": 173.0,
-        "r": 24.0,
+        "cx": 620.0,
+        "cy": 275.0,
+        "r": 30.0,
         "stroke": "#333333",
         "fill": "none"
       }
     },
     {
-      "id": "slot.ans.outer1",
+      "id": "slot.choice.b.inner.copy1",
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 92.0,
-        "cy": 267.0,
-        "r": 35.0,
+        "cx": 620.0,
+        "cy": 290.0,
+        "r": 15.0,
         "stroke": "#333333",
-        "fill": "none"
+        "stroke_width": 2.0
       }
     },
     {
-      "id": "slot.ans.outer2",
-      "kind": "circle",
+      "id": "slot.q1.copy2",
+      "kind": "text",
       "prompt": "",
       "content": {
-        "cx": 92.0,
-        "cy": 267.0,
-        "r": 22.0,
-        "stroke": "#333333",
-        "fill": "none"
+        "text": "   선택하세요.    ",
+        "style_role": "body",
+        "x": 20.0,
+        "y": 125.0,
+        "font_size": 30,
+        "fill": "#111111"
       }
     },
     {
-      "id": "slot.ans.inner",
-      "kind": "circle",
+      "id": "slot.q1.copy2.copy3",
+      "kind": "text",
       "prompt": "",
       "content": {
-        "cx": 92.0,
-        "cy": 267.0,
-        "r": 11.0,
-        "stroke": "#333333",
-        "fill": "none"
+        "text": "㉠",
+        "style_role": "body",
+        "x": 140.0,
+        "y": 235.0,
+        "font_size": 30,
+        "fill": "#111111"
       }
     },
     {
-      "id": "slot.ex1.outer",
-      "kind": "circle",
+      "id": "slot.q1.copy2.copy3.copy4",
+      "kind": "text",
       "prompt": "",
       "content": {
-        "cx": 93.0,
-        "cy": 434.0,
-        "r": 42.0,
-        "stroke": "#333333",
-        "fill": "none"
+        "text": "㉡",
+        "style_role": "body",
+        "x": 340.0,
+        "y": 235.0,
+        "font_size": 30,
+        "fill": "#111111"
       }
     },
     {
-      "id": "slot.ex1.left",
-      "kind": "circle",
+      "id": "slot.q1.copy2.copy3.copy5",
+      "kind": "text",
       "prompt": "",
       "content": {
-        "cx": 74.0,
-        "cy": 434.0,
-        "r": 22.0,
-        "stroke": "#333333",
-        "fill": "none"
-      }
-    },
-    {
-      "id": "slot.ex1.right",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 112.0,
-        "cy": 434.0,
-        "r": 22.0,
-        "stroke": "#333333",
-        "fill": "none"
-      }
-    },
-    {
-      "id": "slot.ex1.dot1",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 73.0,
-        "cy": 436.0,
-        "r": 3.8,
-        "stroke": "none",
-        "fill": "#1DA1F2"
-      }
-    },
-    {
-      "id": "slot.ex1.dot2",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 113.0,
-        "cy": 436.0,
-        "r": 3.8,
-        "stroke": "none",
-        "fill": "#1DA1F2"
-      }
-    },
-    {
-      "id": "slot.ex2.outer",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 239.0,
-        "cy": 434.0,
-        "r": 42.0,
-        "stroke": "#333333",
-        "fill": "none"
-      }
-    },
-    {
-      "id": "slot.ex2.middle",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 239.0,
-        "cy": 434.0,
-        "r": 31.0,
-        "stroke": "#333333",
-        "fill": "none"
-      }
-    },
-    {
-      "id": "slot.ex2.inner",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 239.0,
-        "cy": 434.0,
-        "r": 16.0,
-        "stroke": "#333333",
-        "fill": "none"
-      }
-    },
-    {
-      "id": "slot.ex2.dot",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 239.0,
-        "cy": 434.0,
-        "r": 3.8,
-        "stroke": "none",
-        "fill": "#1DA1F2"
-      }
-    },
-    {
-      "id": "slot.ex3.outer",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 372.0,
-        "cy": 434.0,
-        "r": 42.0,
-        "stroke": "#333333",
-        "fill": "none"
-      }
-    },
-    {
-      "id": "slot.ex3.inner",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 372.0,
-        "cy": 460.0,
-        "r": 20.0,
-        "stroke": "#333333",
-        "fill": "none"
-      }
-    },
-    {
-      "id": "slot.ex3.inner2",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 372.0,
-        "cy": 446.0,
-        "r": 13.0,
-        "stroke": "#333333",
-        "fill": "none"
-      }
-    },
-    {
-      "id": "slot.ex3.dot1",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 372.0,
-        "cy": 436.0,
-        "r": 3.8,
-        "stroke": "none",
-        "fill": "#1DA1F2"
-      }
-    },
-    {
-      "id": "slot.ex3.dot2",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 372.0,
-        "cy": 459.0,
-        "r": 3.8,
-        "stroke": "none",
-        "fill": "#1DA1F2"
+        "text": "㉢",
+        "style_role": "body",
+        "x": 525.0,
+        "y": 235.0,
+        "font_size": 30,
+        "fill": "#111111"
       }
     }
   ],
@@ -398,24 +233,11 @@
     "slot.choice.b.inner",
     "slot.choice.c.outer",
     "slot.choice.c.inner",
-    "slot.ans.outer1",
-    "slot.ans.outer2",
-    "slot.ans.inner",
-    "slot.ex1.outer",
-    "slot.ex1.left",
-    "slot.ex1.right",
-    "slot.ex1.dot1",
-    "slot.ex1.dot2",
-    "slot.ex2.outer",
-    "slot.ex2.middle",
-    "slot.ex2.inner",
-    "slot.ex2.dot",
-    "slot.ex3.outer",
-    "slot.ex3.inner",
-    "slot.ex3.inner2",
-    "slot.ex3.dot1",
-    "slot.ex3.dot2",
+    "slot.choice.b.inner.copy1",
     "slot.q1",
-    "slot.q2"
+    "slot.q1.copy2",
+    "slot.q1.copy2.copy3",
+    "slot.q1.copy2.copy3.copy4",
+    "slot.q1.copy2.copy3.copy5"
   ]
 }

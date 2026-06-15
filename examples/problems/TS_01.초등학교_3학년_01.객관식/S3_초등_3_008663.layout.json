@@ -15,7 +15,10 @@
       "flow": "absolute",
       "slot_ids": [
         "slot.q.text1",
-        "slot.q.text2"
+        "slot.q.text2",
+        "slot.q.text2.copy1",
+        "slot.q.text2.copy2",
+        "slot.q.text2.copy3"
       ]
     },
     {
@@ -2174,6 +2177,45 @@
         "stroke": "#42474B",
         "stroke_width": 1.2
       }
+    },
+    {
+      "id": "slot.q.text2.copy1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "㉠",
+        "style_role": "body",
+        "x": 155.0,
+        "y": 110.0,
+        "font_size": 25,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.q.text2.copy2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "㉡",
+        "style_role": "body",
+        "x": 390.0,
+        "y": 110.0,
+        "font_size": 25,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.q.text2.copy3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "㉢",
+        "style_role": "body",
+        "x": 620.0,
+        "y": 110.0,
+        "font_size": 25,
+        "fill": "#111111"
+      }
     }
   ],
   "groups": [],
@@ -2183,6 +2225,9 @@
     "region.stem",
     "slot.q.text1",
     "slot.q.text2",
+    "slot.q.text2.copy1",
+    "slot.q.text2.copy2",
+    "slot.q.text2.copy3",
     "region.choices",
     "slot.choice1.ruler.body",
     "slot.choice1.compass.hinge",

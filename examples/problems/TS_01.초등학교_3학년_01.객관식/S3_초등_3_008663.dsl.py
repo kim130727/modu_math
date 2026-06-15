@@ -8,7 +8,7 @@ ANSWER = {
     "choices": [],
     "answer_key": [],
     "target": {"type": "correct_choice", "description": "반지름 3 cm만큼 컴퍼스를 벌린 그림"},
-    "value": 3,
+    "value": "㉢",
     "unit": "",
 }
 
@@ -54,7 +54,7 @@ def build_problem_template() -> ProblemTemplate:
         title="반지름이 3 cm인 원을 그릴 수 있도록 컴퍼스를 벌린 것",
         canvas=Canvas(width=920, height=380, coordinate_mode="logical"),
         regions=(
-            Region(id="region.stem", role="stem", flow="absolute", slot_ids=("slot.q.text1", "slot.q.text2")),
+            Region(id="region.stem", role="stem", flow="absolute", slot_ids=("slot.q.text1", "slot.q.text2", 'slot.q.text2.copy1', 'slot.q.text2.copy2', 'slot.q.text2.copy3')),
             Region(
                 id="region.choices",
                 role="choices",
@@ -62,8 +62,7 @@ def build_problem_template() -> ProblemTemplate:
                 slot_ids=(*(slot.id for slot in choice1), *(slot.id for slot in choice2), *(slot.id for slot in choice3)),
             ),
         ),
-        slots=(
-            TextSlot(
+        slots=(TextSlot(
                 id="slot.q.text1",
                 prompt="",
                 text = '다음 중 반지름이 3 cm인 원을 그릴 수 있도록 컴퍼스를 바르게 벌린 것', style_role="question",
@@ -71,8 +70,7 @@ def build_problem_template() -> ProblemTemplate:
             TextSlot(id="slot.q.text2", prompt="", text="을 선택하세요.", style_role="question", x=36.0, y=66.0, font_size=25),
             *choice1,
             *choice2,
-            *choice3,
-        ),
+            *choice3,TextSlot(id = 'slot.q.text2.copy1', prompt = '', text = '㉠', x = 155, y = 110, font_size = 25, fill = '#111111'), TextSlot(id = 'slot.q.text2.copy2', prompt = '', text = '㉡', x = 390, y = 110, font_size = 25, fill = '#111111'), TextSlot(id = 'slot.q.text2.copy3', prompt = '', text = '㉢', x = 620, y = 110, font_size = 25, fill = '#111111')),
         diagrams=(),
         groups=(),
         constraints=(),

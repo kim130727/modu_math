@@ -14,8 +14,6 @@
       "role": "stem",
       "flow": "absolute",
       "slot_ids": [
-        "slot.answer.c3",
-        "slot.qnum",
         "slot.stem"
       ]
     },
@@ -40,58 +38,26 @@
       "id": "region.answer_explain",
       "role": "supporting",
       "flow": "absolute",
-      "slot_ids": [
-        "slot.answer.c1",
-        "slot.answer.c2"
-      ]
+      "slot_ids": []
     },
     {
       "id": "region.bottom_examples",
       "role": "supporting",
       "flow": "absolute",
-      "slot_ids": [
-        "slot.bottom.left.c1",
-        "slot.bottom.left.c2",
-        "slot.bottom.left.c3",
-        "slot.bottom.left.p1",
-        "slot.bottom.left.p2",
-        "slot.bottom.left.p3",
-        "slot.bottom.mid.big",
-        "slot.bottom.mid.small1",
-        "slot.bottom.mid.small2",
-        "slot.bottom.mid.p1",
-        "slot.bottom.mid.p2",
-        "slot.bottom.mid.p3",
-        "slot.bottom.right.o1",
-        "slot.bottom.right.o2",
-        "slot.bottom.right.o3",
-        "slot.bottom.right.p1"
-      ]
+      "slot_ids": []
     }
   ],
   "slots": [
-    {
-      "id": "slot.qnum",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "□ 54.",
-        "style_role": "question",
-        "x": 13.0,
-        "y": 32.0,
-        "font_size": 28
-      }
-    },
     {
       "id": "slot.stem",
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "원의 중심을 옮기지 않고 반지름만 다르게 하여 그린 것을 선택하세요.",
+        "text": "\n    \n    원의 중심을 옮기지 않고 반지름만 다르게 하여 그린 것을\n    선택하세요.\n  ",
         "style_role": "question",
-        "x": 86.0,
-        "y": 33.0,
-        "font_size": 28
+        "x": 55.0,
+        "y": 45.0,
+        "font_size": 30
       }
     },
     {
@@ -99,10 +65,10 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 213.0,
-        "y": 50.0,
-        "width": 570.0,
-        "height": 106.0,
+        "x": 75.0,
+        "y": 80.0,
+        "width": 780.0,
+        "height": 165.0,
         "stroke": "#8BC34A",
         "stroke_width": 2.0,
         "fill": "none"
@@ -113,9 +79,9 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 279.0,
-        "cy": 120.0,
-        "r": 18.0,
+        "cx": 270.0,
+        "cy": 140.0,
+        "r": 20.0,
         "stroke": "#333333",
         "stroke_width": 1.5,
         "fill": "none"
@@ -126,9 +92,9 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 307.0,
-        "cy": 93.0,
-        "r": 18.0,
+        "cx": 295.0,
+        "cy": 115.0,
+        "r": 20.0,
         "stroke": "#333333",
         "stroke_width": 1.5,
         "fill": "none"
@@ -139,9 +105,9 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 334.0,
-        "cy": 66.0,
-        "r": 18.0,
+        "cx": 325.0,
+        "cy": 85.0,
+        "r": 20.0,
         "stroke": "#333333",
         "stroke_width": 1.5,
         "fill": "none"
@@ -152,9 +118,9 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 509.0,
-        "cy": 104.0,
-        "r": 43.0,
+        "cx": 500.0,
+        "cy": 125.0,
+        "r": 45.0,
         "stroke": "#333333",
         "stroke_width": 1.5,
         "fill": "none"
@@ -165,9 +131,9 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 509.0,
-        "cy": 68.0,
-        "r": 13.0,
+        "cx": 500.0,
+        "cy": 90.0,
+        "r": 15.0,
         "stroke": "#333333",
         "stroke_width": 1.5,
         "fill": "none"
@@ -178,8 +144,8 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 509.0,
-        "cy": 54.0,
+        "cx": 500.0,
+        "cy": 75.0,
         "r": 10.0,
         "stroke": "#333333",
         "stroke_width": 1.5,
@@ -191,9 +157,9 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 678.0,
-        "cy": 104.0,
-        "r": 34.0,
+        "cx": 670.0,
+        "cy": 125.0,
+        "r": 35.0,
         "stroke": "#333333",
         "stroke_width": 1.5,
         "fill": "none"
@@ -204,9 +170,9 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 678.0,
-        "cy": 104.0,
-        "r": 24.0,
+        "cx": 670.0,
+        "cy": 125.0,
+        "r": 25.0,
         "stroke": "#333333",
         "stroke_width": 1.5,
         "fill": "none"
@@ -217,252 +183,12 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 678.0,
-        "cy": 104.0,
-        "r": 14.0,
-        "stroke": "#333333",
-        "stroke_width": 1.5,
-        "fill": "none"
-      }
-    },
-    {
-      "id": "slot.answer.c1",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 83.0,
-        "cy": 244.0,
-        "r": 36.0,
-        "stroke": "#333333",
-        "stroke_width": 1.5,
-        "fill": "none"
-      }
-    },
-    {
-      "id": "slot.answer.c2",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 83.0,
-        "cy": 244.0,
-        "r": 24.0,
-        "stroke": "#333333",
-        "stroke_width": 1.5,
-        "fill": "none"
-      }
-    },
-    {
-      "id": "slot.answer.c3",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 83.0,
-        "cy": 244.0,
-        "r": 12.0,
-        "stroke": "#333333",
-        "stroke_width": 1.5,
-        "fill": "none"
-      }
-    },
-    {
-      "id": "slot.bottom.left.c1",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 66.0,
-        "cy": 435.0,
-        "r": 20.0,
-        "stroke": "#333333",
-        "stroke_width": 1.5,
-        "fill": "none"
-      }
-    },
-    {
-      "id": "slot.bottom.left.c2",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 91.0,
-        "cy": 405.0,
-        "r": 20.0,
-        "stroke": "#333333",
-        "stroke_width": 1.5,
-        "fill": "none"
-      }
-    },
-    {
-      "id": "slot.bottom.left.c3",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 116.0,
-        "cy": 375.0,
-        "r": 20.0,
-        "stroke": "#333333",
-        "stroke_width": 1.5,
-        "fill": "none"
-      }
-    },
-    {
-      "id": "slot.bottom.left.p1",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 66.0,
-        "cy": 435.0,
-        "r": 3.5,
-        "stroke": "none",
-        "fill": "#1DA1F2"
-      }
-    },
-    {
-      "id": "slot.bottom.left.p2",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 91.0,
-        "cy": 405.0,
-        "r": 3.5,
-        "stroke": "none",
-        "fill": "#1DA1F2"
-      }
-    },
-    {
-      "id": "slot.bottom.left.p3",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 116.0,
-        "cy": 375.0,
-        "r": 3.5,
-        "stroke": "none",
-        "fill": "#1DA1F2"
-      }
-    },
-    {
-      "id": "slot.bottom.mid.big",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 246.0,
-        "cy": 410.0,
-        "r": 44.0,
-        "stroke": "#333333",
-        "stroke_width": 1.5,
-        "fill": "none"
-      }
-    },
-    {
-      "id": "slot.bottom.mid.small1",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 246.0,
-        "cy": 374.0,
-        "r": 13.0,
-        "stroke": "#333333",
-        "stroke_width": 1.5,
-        "fill": "none"
-      }
-    },
-    {
-      "id": "slot.bottom.mid.small2",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 246.0,
-        "cy": 362.0,
-        "r": 8.0,
-        "stroke": "#333333",
-        "stroke_width": 1.5,
-        "fill": "none"
-      }
-    },
-    {
-      "id": "slot.bottom.mid.p1",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 246.0,
-        "cy": 410.0,
-        "r": 3.5,
-        "stroke": "none",
-        "fill": "#1DA1F2"
-      }
-    },
-    {
-      "id": "slot.bottom.mid.p2",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 246.0,
-        "cy": 374.0,
-        "r": 3.5,
-        "stroke": "none",
-        "fill": "#1DA1F2"
-      }
-    },
-    {
-      "id": "slot.bottom.mid.p3",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 246.0,
-        "cy": 362.0,
-        "r": 3.5,
-        "stroke": "none",
-        "fill": "#1DA1F2"
-      }
-    },
-    {
-      "id": "slot.bottom.right.o1",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 369.0,
-        "cy": 410.0,
-        "r": 42.0,
-        "stroke": "#333333",
-        "stroke_width": 1.5,
-        "fill": "none"
-      }
-    },
-    {
-      "id": "slot.bottom.right.o2",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 369.0,
-        "cy": 410.0,
-        "r": 29.0,
-        "stroke": "#333333",
-        "stroke_width": 1.5,
-        "fill": "none"
-      }
-    },
-    {
-      "id": "slot.bottom.right.o3",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 369.0,
-        "cy": 410.0,
+        "cx": 670.0,
+        "cy": 125.0,
         "r": 15.0,
         "stroke": "#333333",
         "stroke_width": 1.5,
         "fill": "none"
-      }
-    },
-    {
-      "id": "slot.bottom.right.p1",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 369.0,
-        "cy": 410.0,
-        "r": 3.5,
-        "stroke": "none",
-        "fill": "#1DA1F2"
       }
     }
   ],
@@ -471,8 +197,6 @@
   "diagrams": [],
   "reading_order": [
     "region.header",
-    "slot.answer.c3",
-    "slot.qnum",
     "slot.stem",
     "region.example_box",
     "slot.box",
@@ -486,24 +210,6 @@
     "slot.top.right.o2",
     "slot.top.right.o3",
     "region.answer_explain",
-    "slot.answer.c1",
-    "slot.answer.c2",
-    "region.bottom_examples",
-    "slot.bottom.left.c1",
-    "slot.bottom.left.c2",
-    "slot.bottom.left.c3",
-    "slot.bottom.left.p1",
-    "slot.bottom.left.p2",
-    "slot.bottom.left.p3",
-    "slot.bottom.mid.big",
-    "slot.bottom.mid.small1",
-    "slot.bottom.mid.small2",
-    "slot.bottom.mid.p1",
-    "slot.bottom.mid.p2",
-    "slot.bottom.mid.p3",
-    "slot.bottom.right.o1",
-    "slot.bottom.right.o2",
-    "slot.bottom.right.o3",
-    "slot.bottom.right.p1"
+    "region.bottom_examples"
   ]
 }

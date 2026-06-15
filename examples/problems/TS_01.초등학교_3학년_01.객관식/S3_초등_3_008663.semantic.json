@@ -9,6 +9,7 @@
       "ruler",
       "length"
     ],
+    "instruction": "컴퍼스를 3 cm만큼 벌린 보기를 선택한다.",
     "question": "반지름이 3 cm인 원을 그릴 수 있도록 컴퍼스를 바르게 벌린 것을 고르는 문제",
     "required_layout_ids": [
       "slot.choice1.ruler.body",
@@ -148,8 +149,7 @@
       "slot.choice3.compass.needle.tip"
     ],
     "extraction_confidence": 1.0,
-    "language": "ko",
-    "instruction": "컴퍼스를 3 cm만큼 벌린 보기를 선택한다."
+    "language": "ko"
   },
   "domain": {
     "objects": [
@@ -229,7 +229,7 @@
       "type": "correct_choice",
       "description": "반지름 3 cm만큼 컴퍼스를 벌린 그림"
     },
-    "value": 3,
+    "value": "㉢",
     "unit": ""
   }
 }

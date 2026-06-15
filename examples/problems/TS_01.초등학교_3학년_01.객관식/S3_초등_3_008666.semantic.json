@@ -4,6 +4,7 @@
   "metadata": {
     "title": "원의 반지름과 중심 이동",
     "tags": [],
+    "instruction": "그림의 반지름과 중심 관계를 비교하여 보기와 해설을 읽는다.",
     "question": "원의 반지름은 모두 같고 원의 중심을 옮겨 가며 그린 그림을 찾아 선택하세요.",
     "required_layout_ids": [
       "slot.box",
@@ -15,27 +16,10 @@
       "slot.opt3.c1",
       "slot.opt3.c2",
       "slot.opt3.c3",
-      "slot.answer_diagram.c1",
-      "slot.answer_diagram.c2",
-      "slot.answer_diagram.c3",
-      "slot.bot1.c1",
-      "slot.bot1.c2",
-      "slot.bot1.c3",
-      "slot.bot1.p1",
-      "slot.bot1.p2",
-      "slot.bot1.p3",
-      "slot.bot2.c1",
-      "slot.bot2.c2",
-      "slot.bot2.p1",
-      "slot.bot2.p2",
-      "slot.bot3.c1",
-      "slot.bot3.c2",
-      "slot.bot3.c3",
-      "slot.bot3.p1"
+      "slot.opt3.c2.copy4"
     ],
     "extraction_confidence": 1.0,
-    "language": "ko",
-    "instruction": "그림의 반지름과 중심 관계를 비교하여 보기와 해설을 읽는다."
+    "language": "ko"
   },
   "domain": {
     "objects": [
@@ -93,11 +77,12 @@
     "blanks": [],
     "choices": [],
     "answer_key": [],
+    "confidence": 1.0,
     "target": {
       "type": "선택",
       "description": "원의 반지름이 모두 같고 원의 중심을 옮겨 가며 그린 그림"
     },
-    "value": 0,
+    "value": "㉠",
     "unit": ""
   }
 }

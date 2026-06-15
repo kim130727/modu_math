@@ -56,7 +56,7 @@ def build_problem_template() -> ProblemTemplate:
             TextSlot(
                 id="slot.q1",
                 prompt="",
-                text = '눈물 못과 띠 종이를 사용하여 원을 그리려고 합니다.', style_role="question",
+                text = '누름 못과 띠 종이를 사용하여 원을 그리려고 합니다.', style_role="question",
                 x = 15, y = 41, font_size = 30, fill = '#111111'),
             TextSlot(
                 id="slot.q2",
@@ -177,7 +177,7 @@ SEMANTIC_OVERRIDE = {
     "problem_type": "choice_selection",
     "metadata": {
         "language": "ko",
-        "question": "눈물 못과 띠 종이를 사용하여 원을 그리려고 합니다. 원을 가장 크게 그리려고 할 때 연필을 꽂아야 하는 구멍의 기호를 선택하는 문제이다.",
+        "question": "누름 못과 띠 종이를 사용하여 원을 그리려고 합니다. 원을 가장 크게 그리려고 할 때 연필을 꽂아야 하는 구멍의 기호를 선택하는 문제이다.",
         "instruction": "구멍의 기호를 선택하시오.",
         "points": 5,
     },
@@ -243,7 +243,7 @@ SOLVABLE = {
     "method": "compare_hole_distances",
     "plan": [
         "구멍들의 위치를 비교한다.",
-        "눈물 못과 연필심 사이가 가장 멀어지는 구멍을 찾는다.",
+        "누름 못과 연필심 사이가 가장 멀어지는 구멍을 찾는다.",
         "그 구멍에 대응하는 기호를 답으로 둔다.",
     ],
     "steps": [

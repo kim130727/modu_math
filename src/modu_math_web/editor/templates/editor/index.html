@@ -3249,9 +3249,10 @@
           }
         }
         if (!patches.length) return;
+        setStatus(`드래그 저장 중: ${patches.length}개`, true);
         queueDragCommit(async () => {
           try {
-            await commitPatches(patches, `드래그 저장 완료: ${patches.length}개`);
+            await commitPatches(patches, `드래그 저장 완료: ${patches.length}개`, false);
             if (!historyBusy) {
               for (const pch of patches) {
                 const found = local.beforeMap.get(pch.target);

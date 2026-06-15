@@ -14,7 +14,6 @@
       "role": "stem",
       "flow": "absolute",
       "slot_ids": [
-        "slot.qnum",
         "slot.instruction"
       ]
     },
@@ -32,7 +31,9 @@
         "slot.lb.d",
         "slot.lb.r",
         "slot.lb.m",
-        "slot.lb.b"
+        "slot.lb.b",
+        "slot.lb.d.copy13",
+        "slot.lb.d.copy13.copy14"
       ]
     },
     {
@@ -47,10 +48,7 @@
       "id": "region.choice",
       "role": "answer",
       "flow": "absolute",
-      "slot_ids": [
-        "slot.choice.o",
-        "slot.choice.x"
-      ]
+      "slot_ids": []
     },
     {
       "id": "region.footer",
@@ -61,27 +59,15 @@
   ],
   "slots": [
     {
-      "id": "slot.qnum",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "45.",
-        "style_role": "question",
-        "x": 20.0,
-        "y": 28.0,
-        "font_size": 28
-      }
-    },
-    {
       "id": "slot.instruction",
       "kind": "text",
       "prompt": "",
       "content": {
         "text": "바르게 설명하였으면 ○, 그렇지 않으면 ×를 선택하세요.",
         "style_role": "question",
-        "x": 70.0,
-        "y": 28.0,
-        "font_size": 28
+        "x": 45.0,
+        "y": 35.0,
+        "font_size": 30
       }
     },
     {
@@ -89,9 +75,9 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 456.0,
-        "cy": 92.0,
-        "r": 44.0,
+        "cx": 335.0,
+        "cy": 196.0,
+        "r": 110.0,
         "fill": "none"
       }
     },
@@ -100,10 +86,10 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 500.0,
-        "y1": 48.0,
-        "x2": 500.0,
-        "y2": 182.0
+        "x1": 390.0,
+        "y1": 100.0,
+        "x2": 390.0,
+        "y2": 290.0
       }
     },
     {
@@ -111,10 +97,10 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 412.0,
-        "y1": 70.0,
-        "x2": 517.0,
-        "y2": 132.0
+        "x1": 228.0,
+        "y1": 174.0,
+        "x2": 443.0,
+        "y2": 219.0
       }
     },
     {
@@ -122,10 +108,10 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 413.0,
-        "y1": 70.0,
-        "x2": 521.0,
-        "y2": 70.0
+        "x1": 258.0,
+        "y1": 115.0,
+        "x2": 418.0,
+        "y2": 120.0
       }
     },
     {
@@ -133,9 +119,9 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 451.0,
-        "cy": 96.0,
-        "r": 3.0,
+        "cx": 335.0,
+        "cy": 195.0,
+        "r": 5.0,
         "fill": "#ff2aa1"
       }
     },
@@ -146,9 +132,9 @@
       "content": {
         "text": "ㅇ",
         "style_role": "label",
-        "x": 446.0,
-        "y": 114.0,
-        "font_size": 28
+        "x": 305.0,
+        "y": 220.0,
+        "font_size": 30
       }
     },
     {
@@ -158,9 +144,10 @@
       "content": {
         "text": "ㄷ",
         "style_role": "label",
-        "x": 402.0,
-        "y": 84.0,
-        "font_size": 28
+        "x": 185.0,
+        "y": 180.0,
+        "font_size": 30,
+        "fill": "#111111"
       }
     },
     {
@@ -170,9 +157,9 @@
       "content": {
         "text": "ㄹ",
         "style_role": "label",
-        "x": 522.0,
-        "y": 68.0,
-        "font_size": 28
+        "x": 450.0,
+        "y": 235.0,
+        "font_size": 30
       }
     },
     {
@@ -182,9 +169,9 @@
       "content": {
         "text": "ㅁ",
         "style_role": "label",
-        "x": 434.0,
-        "y": 242.0,
-        "font_size": 28
+        "x": 375.0,
+        "y": 85.0,
+        "font_size": 30
       }
     },
     {
@@ -194,9 +181,9 @@
       "content": {
         "text": "ㅂ",
         "style_role": "label",
-        "x": 498.0,
-        "y": 188.0,
-        "font_size": 28
+        "x": 380.0,
+        "y": 320.0,
+        "font_size": 30
       }
     },
     {
@@ -204,35 +191,37 @@
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "길이가 가장 긴 선분은 선분 ㅁㅂ이고, 원의 지름은 선분 ㄷㄹ입니다.",
+        "text": "\n    \n    길이가 가장 긴 선분은 선분 ㅁㅂ이고, 원의 지름은 선분\n    ㄷㄹ입니다.\n  ",
         "style_role": "question",
-        "x": 80.0,
-        "y": 245.0,
-        "font_size": 28
+        "x": 60.0,
+        "y": 340.0,
+        "font_size": 30
       }
     },
     {
-      "id": "slot.choice.o",
+      "id": "slot.lb.d.copy13",
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "○",
-        "style_role": "choice",
-        "x": 32.0,
-        "y": 300.0,
-        "font_size": 28
+        "text": "ㄱ",
+        "style_role": "body",
+        "x": 220.0,
+        "y": 125.0,
+        "font_size": 30,
+        "fill": "#111111"
       }
     },
     {
-      "id": "slot.choice.x",
+      "id": "slot.lb.d.copy13.copy14",
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "×",
-        "style_role": "choice",
-        "x": 32.0,
-        "y": 336.0,
-        "font_size": 28
+        "text": "ㄴ",
+        "style_role": "body",
+        "x": 425.0,
+        "y": 130.0,
+        "font_size": 30,
+        "fill": "#111111"
       }
     }
   ],
@@ -241,7 +230,6 @@
   "diagrams": [],
   "reading_order": [
     "region.header",
-    "slot.qnum",
     "slot.instruction",
     "region.diagram",
     "slot.circle.outer",
@@ -254,11 +242,11 @@
     "slot.lb.r",
     "slot.lb.m",
     "slot.lb.b",
+    "slot.lb.d.copy13",
+    "slot.lb.d.copy13.copy14",
     "region.statement",
     "slot.statement",
     "region.choice",
-    "slot.choice.o",
-    "slot.choice.x",
     "region.footer"
   ]
 }
