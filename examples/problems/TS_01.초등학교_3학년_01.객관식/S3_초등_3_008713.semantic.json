@@ -1,0 +1,92 @@
+{
+  "problem_id": "S3_초등_3_008713",
+  "problem_type": "sequence_ordering",
+  "metadata": {
+    "title": "반지름이 1 cm인 원을 그리는 순서",
+    "tags": [],
+    "question": "반지름이 1 cm인 원을 그리는 순서를 바르게 나타낸 것을 고르세요.",
+    "required_layout_ids": [
+      "slot.box",
+      "slot.lab.g1",
+      "slot.lab.g2",
+      "slot.lab.g3",
+      "slot.circle.main",
+      "slot.dot.center",
+      "slot.dot.inner",
+      "slot.point.mid",
+      "slot.ring.mid",
+      "slot.compass.left",
+      "slot.compass.right",
+      "slot.ruler",
+      "slot.ruler.zero",
+      "slot.ruler.one"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "그림의 순서를 바르게 고르기",
+    "points": 0
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.step.g1",
+        "type": "procedure_step",
+        "name": "ㄱ"
+      },
+      {
+        "id": "obj.step.g2",
+        "type": "procedure_step",
+        "name": "ㄴ"
+      },
+      {
+        "id": "obj.step.g3",
+        "type": "procedure_step",
+        "name": "ㄷ"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.step.g1",
+          "obj.step.g2",
+          "obj.step.g3"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.order"
+        ]
+      },
+      "plan": {
+        "method": "sequence_matching",
+        "description": "그림과 해설을 보고 올바른 순서를 찾는다."
+      },
+      "execute": {
+        "expected_operations": [
+          "identify_steps",
+          "match_order",
+          "select_choice"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "compare_with_explanation",
+          "verify_choice_label"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "choice_number",
+      "description": "원 그리기 순서의 정답 선택지"
+    },
+    "value": 2,
+    "unit": ""
+  }
+}

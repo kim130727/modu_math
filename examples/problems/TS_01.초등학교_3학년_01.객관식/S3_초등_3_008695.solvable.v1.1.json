@@ -1,0 +1,73 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008695",
+  "problem_type": "도형_원의중심",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "알맞은 말",
+    "target_ticks": 0,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.circle",
+      "value": {
+        "type": "circle"
+      }
+    },
+    {
+      "ref": "obj.center_mark",
+      "value": {
+        "label": "○"
+      }
+    },
+    {
+      "ref": "obj.fold_lines",
+      "value": {
+        "count": 3
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "choice_sentence"
+  },
+  "method": "center_property_check",
+  "plan": [
+    "그림에서 접은 선들이 만나는 점과 원의 중심 성질을 연결한다.",
+    "문장 선택지 중 중심의 성질과 맞는 말을 고른다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "점 ○에서 원 위의 한 점까지의 길이의 성질을 확인한다.",
+      "value": "같은 길이"
+    },
+    {
+      "id": "step.2",
+      "expr": "중심의 성질에 맞는 선택을 고른다.",
+      "value": "같습니다"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "점 ○이 원의 중심이면 원 위의 모든 점까지의 길이는 같다.",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "choice_sentence",
+      "description": "점 ○에서 원 위의 한 점까지의 길이에 대한 알맞은 말"
+    },
+    "value": 1,
+    "unit": ""
+  }
+}

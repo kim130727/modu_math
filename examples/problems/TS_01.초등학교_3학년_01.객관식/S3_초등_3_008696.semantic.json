@@ -1,0 +1,83 @@
+{
+  "problem_id": "S3_초등_3_008696",
+  "problem_type": "geometry_circle_fold",
+  "metadata": {
+    "title": "원을 둘로 똑같이 나누는 선분",
+    "tags": [],
+    "question": "원을 둘로 똑같이 나누는 선분의 이름을 고르는 문제",
+    "required_layout_ids": [
+      "slot.circle.1",
+      "slot.circle.2",
+      "slot.circle.3",
+      "slot.fold.1",
+      "slot.fold.2",
+      "slot.dot.1",
+      "slot.dot.2",
+      "slot.dot.3",
+      "slot.arrow.1",
+      "slot.arrow.2"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "알맞은 말을 선택하세요."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.circle",
+        "type": "circle"
+      },
+      {
+        "id": "obj.fold_line",
+        "type": "segment"
+      },
+      {
+        "id": "obj.center",
+        "type": "point"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.circle",
+          "obj.fold_line",
+          "obj.center"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.divide_circle_equally",
+          "rel.intersects_at_center"
+        ]
+      },
+      "plan": {
+        "method": "concept_choice",
+        "description": "그림에서 원을 둘로 똑같이 나누는 선분의 개념과 맞는 말을 고른다."
+      },
+      "execute": {
+        "expected_operations": [
+          "identify_shape_property",
+          "match_geometry_term"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "term_consistency_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "geometry_term",
+      "description": "원을 둘로 똑같이 나누는 선분의 이름"
+    },
+    "value": "지름",
+    "unit": ""
+  }
+}

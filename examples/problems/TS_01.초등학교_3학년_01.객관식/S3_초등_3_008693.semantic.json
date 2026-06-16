@@ -1,0 +1,98 @@
+{
+  "problem_id": "S3_초등_3_008693",
+  "problem_type": "geometry_center_choice",
+  "metadata": {
+    "title": "원의 중심을 고르기",
+    "tags": [
+      "도형",
+      "원의 중심",
+      "객관식"
+    ],
+    "question": "그림에서 원의 중심이 되는 곳을 고르는 문제",
+    "required_layout_ids": [
+      "slot.band",
+      "slot.dot.1",
+      "slot.dot.2",
+      "slot.dot.3",
+      "slot.dot.4",
+      "slot.dot.5",
+      "slot.num.1",
+      "slot.num.2",
+      "slot.num.3",
+      "slot.num.4",
+      "slot.num.5",
+      "slot.pin.body",
+      "slot.pin.head",
+      "slot.pencil.body",
+      "slot.pencil.tip"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "원의 중심이 되는 곳을 선택하세요."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.band",
+        "type": "strip"
+      },
+      {
+        "id": "obj.points",
+        "type": "ordered_points",
+        "count": 5
+      },
+      {
+        "id": "obj.pin",
+        "type": "pushpin"
+      },
+      {
+        "id": "obj.pencil",
+        "type": "pencil"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.points",
+          "obj.pin",
+          "obj.pencil"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.pin_center"
+        ]
+      },
+      "plan": {
+        "method": "identify_marked_center",
+        "description": "누름 못이 꽂힌 위치가 중심인지 그림과 해설을 함께 보고 판단한다."
+      },
+      "execute": {
+        "expected_operations": [
+          "locate_pin_position",
+          "match_center_to_point",
+          "select_option"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "compare_with_explanation",
+          "verify_selected_option"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "multiple_choice_option",
+      "description": "원의 중심이 되는 곳"
+    },
+    "value": 2,
+    "unit": ""
+  }
+}

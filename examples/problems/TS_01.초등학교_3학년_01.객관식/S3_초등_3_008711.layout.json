@@ -1,0 +1,379 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008711",
+  "title": "연필심을 넣어야 하는 구멍 찾기",
+  "canvas": {
+    "width": 960,
+    "height": 428,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q.mark",
+        "slot.q1",
+        "slot.q2",
+        "slot.q3"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.box",
+        "slot.hole1",
+        "slot.hole2",
+        "slot.hole3",
+        "slot.hole4",
+        "slot.hole5",
+        "slot.hole6",
+        "slot.emph",
+        "slot.arrow1",
+        "slot.arrow2",
+        "slot.arrow3",
+        "slot.arrow4",
+        "slot.arrow5",
+        "slot.lb1",
+        "slot.lb2",
+        "slot.lb3",
+        "slot.lb4",
+        "slot.lb5",
+        "slot.choice"
+      ]
+    },
+    {
+      "id": "region.answer",
+      "role": "answer",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q.mark",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "□",
+        "style_role": "question",
+        "x": 14.0,
+        "y": 34.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "9. 띠 종이를 누름 못으로 고정한 다음 연필심을 구멍에 끼려고",
+        "style_role": "question",
+        "x": 42.0,
+        "y": 34.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "합니다. 원을 가장 작게 그릴 때 연필심을 넣어야 하는 구멍의 기호를 선택",
+        "style_role": "question",
+        "x": 18.0,
+        "y": 72.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "하세요.",
+        "style_role": "question",
+        "x": 18.0,
+        "y": 110.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 344.0,
+        "y": 127.0,
+        "width": 300.0,
+        "height": 54.0,
+        "stroke": "#222222",
+        "stroke_width": 1.2,
+        "fill": "#D9D9D9"
+      }
+    },
+    {
+      "id": "slot.hole1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 368.0,
+        "cy": 153.0,
+        "r": 4.2,
+        "stroke": "#222222",
+        "stroke_width": 1.2,
+        "fill": "#FFFFFF"
+      }
+    },
+    {
+      "id": "slot.hole2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 406.0,
+        "cy": 153.0,
+        "r": 4.2,
+        "stroke": "#222222",
+        "stroke_width": 1.2,
+        "fill": "#FFFFFF"
+      }
+    },
+    {
+      "id": "slot.hole3",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 452.0,
+        "cy": 153.0,
+        "r": 4.2,
+        "stroke": "#222222",
+        "stroke_width": 1.2,
+        "fill": "#FFFFFF"
+      }
+    },
+    {
+      "id": "slot.hole4",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 500.0,
+        "cy": 153.0,
+        "r": 4.2,
+        "stroke": "#222222",
+        "stroke_width": 1.2,
+        "fill": "#FFFFFF"
+      }
+    },
+    {
+      "id": "slot.hole5",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 548.0,
+        "cy": 153.0,
+        "r": 4.2,
+        "stroke": "#222222",
+        "stroke_width": 1.2,
+        "fill": "#FFFFFF"
+      }
+    },
+    {
+      "id": "slot.hole6",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 594.0,
+        "cy": 153.0,
+        "r": 4.2,
+        "stroke": "#222222",
+        "stroke_width": 1.2,
+        "fill": "#FFFFFF"
+      }
+    },
+    {
+      "id": "slot.emph",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 406.0,
+        "cy": 141.0,
+        "r": 9.0,
+        "stroke": "#9E9E9E",
+        "stroke_width": 1.0,
+        "fill": "#9E9E9E"
+      }
+    },
+    {
+      "id": "slot.arrow1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 368.0,
+        "y1": 166.0,
+        "x2": 368.0,
+        "y2": 188.0,
+        "stroke": "#222222",
+        "stroke_width": 1.2
+      }
+    },
+    {
+      "id": "slot.arrow2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 406.0,
+        "y1": 166.0,
+        "x2": 406.0,
+        "y2": 188.0,
+        "stroke": "#222222",
+        "stroke_width": 1.2
+      }
+    },
+    {
+      "id": "slot.arrow3",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 452.0,
+        "y1": 166.0,
+        "x2": 452.0,
+        "y2": 188.0,
+        "stroke": "#222222",
+        "stroke_width": 1.2
+      }
+    },
+    {
+      "id": "slot.arrow4",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 500.0,
+        "y1": 166.0,
+        "x2": 500.0,
+        "y2": 188.0,
+        "stroke": "#222222",
+        "stroke_width": 1.2
+      }
+    },
+    {
+      "id": "slot.arrow5",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 548.0,
+        "y1": 166.0,
+        "x2": 548.0,
+        "y2": 188.0,
+        "stroke": "#222222",
+        "stroke_width": 1.2
+      }
+    },
+    {
+      "id": "slot.lb1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄱ",
+        "style_role": "label",
+        "x": 356.0,
+        "y": 212.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.lb2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄴ",
+        "style_role": "label",
+        "x": 395.0,
+        "y": 212.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.lb3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄷ",
+        "style_role": "label",
+        "x": 441.0,
+        "y": 212.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.lb4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄹ",
+        "style_role": "label",
+        "x": 489.0,
+        "y": 212.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.lb5",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㅁ",
+        "style_role": "label",
+        "x": 537.0,
+        "y": 212.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "( ㄱ , ㄴ , ㄷ , ㄹ , ㅁ )",
+        "style_role": "label",
+        "x": 647.0,
+        "y": 246.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q.mark",
+    "slot.q1",
+    "slot.q2",
+    "slot.q3",
+    "region.diagram",
+    "slot.box",
+    "slot.hole1",
+    "slot.hole2",
+    "slot.hole3",
+    "slot.hole4",
+    "slot.hole5",
+    "slot.hole6",
+    "slot.emph",
+    "slot.arrow1",
+    "slot.arrow2",
+    "slot.arrow3",
+    "slot.arrow4",
+    "slot.arrow5",
+    "slot.lb1",
+    "slot.lb2",
+    "slot.lb3",
+    "slot.lb4",
+    "slot.lb5",
+    "slot.choice",
+    "region.answer"
+  ]
+}

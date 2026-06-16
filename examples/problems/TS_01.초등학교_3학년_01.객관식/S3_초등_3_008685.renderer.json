@@ -1,0 +1,193 @@
+{
+  "problem_id": "S3_초등_3_008685",
+  "view_box": {
+    "width": 944.0,
+    "height": 424.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.circle.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 490.0,
+        "cy": 145.0,
+        "r": 58.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "none"
+      },
+      "source_ref": "slot.circle",
+      "refs": {
+        "layout_slot_id": "slot.circle"
+      }
+    },
+    {
+      "id": "slot.center_mark.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 490.0,
+        "cy": 131.0,
+        "r": 4.5,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "none"
+      },
+      "source_ref": "slot.center_mark",
+      "refs": {
+        "layout_slot_id": "slot.center_mark"
+      }
+    },
+    {
+      "id": "slot.center_dot.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 490.0,
+        "cy": 146.0,
+        "r": 3.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#ff2ea6"
+      },
+      "source_ref": "slot.center_dot",
+      "refs": {
+        "layout_slot_id": "slot.center_dot"
+      }
+    },
+    {
+      "id": "slot.answer.circle.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 76.0,
+        "cy": 331.0,
+        "r": 10.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "none"
+      },
+      "source_ref": "slot.answer.circle",
+      "refs": {
+        "layout_slot_id": "slot.answer.circle"
+      }
+    },
+    {
+      "id": "slot.radius.line",
+      "type": "line",
+      "attributes": {
+        "x1": 490.0,
+        "y1": 145.0,
+        "x2": 548.0,
+        "y2": 145.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.radius",
+      "refs": {
+        "layout_slot_id": "slot.radius"
+      }
+    },
+    {
+      "id": "slot.q1.text",
+      "type": "text",
+      "attributes": {
+        "x": 16.0,
+        "y": 26.0,
+        "max_width": 816.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q1",
+      "refs": {
+        "layout_slot_id": "slot.q1"
+      },
+      "text": "□ 74. 다음을 읽고 바르게 설명하였으면 ○표, 그렇지 않으면 ×표를 선택하세"
+    },
+    {
+      "id": "slot.q2.text",
+      "type": "text",
+      "attributes": {
+        "x": 16.0,
+        "y": 58.0,
+        "max_width": 816.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q2",
+      "refs": {
+        "layout_slot_id": "slot.q2"
+      },
+      "text": "요."
+    },
+    {
+      "id": "slot.q3.text",
+      "type": "text",
+      "attributes": {
+        "x": 203.0,
+        "y": 235.0,
+        "max_width": 816.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q3",
+      "refs": {
+        "layout_slot_id": "slot.q3"
+      },
+      "text": "원의 반지름을 나타내는 선분은 선분 ○ ㄱ입니다."
+    },
+    {
+      "id": "slot.label.giyeok.text",
+      "type": "text",
+      "attributes": {
+        "x": 553.0,
+        "y": 150.0,
+        "max_width": 816.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.label.giyeok",
+      "refs": {
+        "layout_slot_id": "slot.label.giyeok"
+      },
+      "text": "ㄱ"
+    },
+    {
+      "id": "slot.choice.o.text",
+      "type": "text",
+      "attributes": {
+        "x": 38.0,
+        "y": 259.0,
+        "max_width": 816.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice.o",
+      "refs": {
+        "layout_slot_id": "slot.choice.o"
+      },
+      "text": "○"
+    },
+    {
+      "id": "slot.choice.x.text",
+      "type": "text",
+      "attributes": {
+        "x": 38.0,
+        "y": 289.0,
+        "max_width": 816.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice.x",
+      "refs": {
+        "layout_slot_id": "slot.choice.x"
+      },
+      "text": "×"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

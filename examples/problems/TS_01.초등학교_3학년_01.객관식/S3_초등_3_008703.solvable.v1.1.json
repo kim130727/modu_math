@@ -1,0 +1,74 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008703",
+  "problem_type": "선택형_컴퍼스_눈금_비교",
+  "inputs": {
+    "total_ticks": 4,
+    "target_label": "2 cm",
+    "target_ticks": 2,
+    "target_count": 1,
+    "unit": "cm"
+  },
+  "given": [
+    {
+      "ref": "obj.ruler",
+      "value": {
+        "unit": "cm"
+      }
+    },
+    {
+      "ref": "obj.mark_0",
+      "value": {
+        "label": "0"
+      }
+    },
+    {
+      "ref": "obj.mark_2",
+      "value": {
+        "label": "2"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "picture_selection"
+  },
+  "method": "눈금_비교",
+  "plan": [
+    "자의 0과 2의 위치를 확인한다.",
+    "컴퍼스의 침이 0에, 연필심이 2에 맞는 그림을 찾는다.",
+    "보이는 후보들 중 해당하는 그림을 선택한다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "침과 연필심의 위치가 0과 2 눈금에 맞는지 비교",
+      "value": 0
+    },
+    {
+      "id": "step.2",
+      "expr": "조건을 만족하는 그림 선택",
+      "value": 0
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "침이 0에 맞고 연필심이 2에 맞는지 확인",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "picture_selection",
+      "description": "컴퍼스의 침을 0에 맞추고 연필심을 2에 오도록 벌린 그림"
+    },
+    "value": 0,
+    "unit": ""
+  }
+}

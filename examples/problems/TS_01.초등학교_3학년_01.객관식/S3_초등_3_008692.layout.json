@@ -1,0 +1,465 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008692",
+  "title": "원의 중심을 찾아 기호를 선택해 보세요",
+  "canvas": {
+    "width": 680,
+    "height": 480,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.header",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q.box",
+        "slot.q.num",
+        "slot.q.text"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.circle",
+        "slot.pt.a",
+        "slot.pt.b",
+        "slot.pt.c",
+        "slot.pt.d",
+        "slot.grid.v1",
+        "slot.grid.v2",
+        "slot.grid.v3",
+        "slot.grid.v4",
+        "slot.grid.v5",
+        "slot.grid.v6",
+        "slot.grid.v7",
+        "slot.grid.v8",
+        "slot.grid.v9",
+        "slot.grid.v10",
+        "slot.grid.h1",
+        "slot.grid.h2",
+        "slot.grid.h3",
+        "slot.grid.h4",
+        "slot.grid.h5",
+        "slot.grid.h6",
+        "slot.grid.h7",
+        "slot.grid.h8",
+        "slot.grid.h9",
+        "slot.grid.h10",
+        "slot.lb.a",
+        "slot.lb.b",
+        "slot.lb.c",
+        "slot.lb.d"
+      ]
+    },
+    {
+      "id": "region.answer",
+      "role": "answer",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q.box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 12.0,
+        "y": 12.0,
+        "width": 12.0,
+        "height": 12.0
+      }
+    },
+    {
+      "id": "slot.q.num",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "81.",
+        "style_role": "question",
+        "x": 34.0,
+        "y": 28.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "원의 중심을 찾아 기호를 선택해 보세요.",
+        "style_role": "question",
+        "x": 90.0,
+        "y": 28.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.grid.v1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 360.0,
+        "y1": 45.0,
+        "x2": 360.0,
+        "y2": 305.0
+      }
+    },
+    {
+      "id": "slot.grid.v2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 385.0,
+        "y1": 45.0,
+        "x2": 385.0,
+        "y2": 305.0
+      }
+    },
+    {
+      "id": "slot.grid.v3",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 410.0,
+        "y1": 45.0,
+        "x2": 410.0,
+        "y2": 305.0
+      }
+    },
+    {
+      "id": "slot.grid.v4",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 435.0,
+        "y1": 45.0,
+        "x2": 435.0,
+        "y2": 305.0
+      }
+    },
+    {
+      "id": "slot.grid.v5",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 460.0,
+        "y1": 45.0,
+        "x2": 460.0,
+        "y2": 305.0
+      }
+    },
+    {
+      "id": "slot.grid.v6",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 485.0,
+        "y1": 45.0,
+        "x2": 485.0,
+        "y2": 305.0
+      }
+    },
+    {
+      "id": "slot.grid.v7",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 510.0,
+        "y1": 45.0,
+        "x2": 510.0,
+        "y2": 305.0
+      }
+    },
+    {
+      "id": "slot.grid.v8",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 535.0,
+        "y1": 45.0,
+        "x2": 535.0,
+        "y2": 305.0
+      }
+    },
+    {
+      "id": "slot.grid.v9",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 560.0,
+        "y1": 45.0,
+        "x2": 560.0,
+        "y2": 305.0
+      }
+    },
+    {
+      "id": "slot.grid.v10",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 585.0,
+        "y1": 45.0,
+        "x2": 585.0,
+        "y2": 305.0
+      }
+    },
+    {
+      "id": "slot.grid.h1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 360.0,
+        "y1": 45.0,
+        "x2": 585.0,
+        "y2": 45.0
+      }
+    },
+    {
+      "id": "slot.grid.h2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 360.0,
+        "y1": 70.0,
+        "x2": 585.0,
+        "y2": 70.0
+      }
+    },
+    {
+      "id": "slot.grid.h3",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 360.0,
+        "y1": 95.0,
+        "x2": 585.0,
+        "y2": 95.0
+      }
+    },
+    {
+      "id": "slot.grid.h4",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 360.0,
+        "y1": 120.0,
+        "x2": 585.0,
+        "y2": 120.0
+      }
+    },
+    {
+      "id": "slot.grid.h5",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 360.0,
+        "y1": 145.0,
+        "x2": 585.0,
+        "y2": 145.0
+      }
+    },
+    {
+      "id": "slot.grid.h6",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 360.0,
+        "y1": 170.0,
+        "x2": 585.0,
+        "y2": 170.0
+      }
+    },
+    {
+      "id": "slot.grid.h7",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 360.0,
+        "y1": 195.0,
+        "x2": 585.0,
+        "y2": 195.0
+      }
+    },
+    {
+      "id": "slot.grid.h8",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 360.0,
+        "y1": 220.0,
+        "x2": 585.0,
+        "y2": 220.0
+      }
+    },
+    {
+      "id": "slot.grid.h9",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 360.0,
+        "y1": 245.0,
+        "x2": 585.0,
+        "y2": 245.0
+      }
+    },
+    {
+      "id": "slot.grid.h10",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 360.0,
+        "y1": 270.0,
+        "x2": 585.0,
+        "y2": 270.0
+      }
+    },
+    {
+      "id": "slot.circle",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 485.0,
+        "cy": 170.0,
+        "r": 102.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.pt.a",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 476.0,
+        "cy": 118.0,
+        "r": 4.0,
+        "fill": "#e94f9a"
+      }
+    },
+    {
+      "id": "slot.pt.b",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 476.0,
+        "cy": 170.0,
+        "r": 4.0,
+        "fill": "#e94f9a"
+      }
+    },
+    {
+      "id": "slot.pt.c",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 434.0,
+        "cy": 197.0,
+        "r": 4.0,
+        "fill": "#e94f9a"
+      }
+    },
+    {
+      "id": "slot.pt.d",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 556.0,
+        "cy": 170.0,
+        "r": 4.0,
+        "fill": "#e94f9a"
+      }
+    },
+    {
+      "id": "slot.lb.a",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄱ",
+        "style_role": "label",
+        "x": 452.0,
+        "y": 110.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.lb.b",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄴ",
+        "style_role": "label",
+        "x": 452.0,
+        "y": 162.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.lb.c",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄷ",
+        "style_role": "label",
+        "x": 410.0,
+        "y": 196.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.lb.d",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄹ",
+        "style_role": "label",
+        "x": 530.0,
+        "y": 162.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.header",
+    "slot.q.box",
+    "slot.q.num",
+    "slot.q.text",
+    "region.diagram",
+    "slot.circle",
+    "slot.pt.a",
+    "slot.pt.b",
+    "slot.pt.c",
+    "slot.pt.d",
+    "slot.grid.v1",
+    "slot.grid.v2",
+    "slot.grid.v3",
+    "slot.grid.v4",
+    "slot.grid.v5",
+    "slot.grid.v6",
+    "slot.grid.v7",
+    "slot.grid.v8",
+    "slot.grid.v9",
+    "slot.grid.v10",
+    "slot.grid.h1",
+    "slot.grid.h2",
+    "slot.grid.h3",
+    "slot.grid.h4",
+    "slot.grid.h5",
+    "slot.grid.h6",
+    "slot.grid.h7",
+    "slot.grid.h8",
+    "slot.grid.h9",
+    "slot.grid.h10",
+    "slot.lb.a",
+    "slot.lb.b",
+    "slot.lb.c",
+    "slot.lb.d",
+    "region.answer"
+  ]
+}

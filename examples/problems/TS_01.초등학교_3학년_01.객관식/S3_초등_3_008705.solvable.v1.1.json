@@ -1,0 +1,80 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008705",
+  "problem_type": "참거짓판단",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "선택",
+    "target_ticks": 0,
+    "target_count": 2,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.diagram.circles",
+      "value": {
+        "count": 4
+      }
+    },
+    {
+      "ref": "obj.rule.statement",
+      "value": {
+        "text": "원의 중심이 오른쪽으로 모눈 4칸씩 옮겨 가고 원의 반지름이 모눈 3칸씩 늘어나게 그렸어."
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "true_false_choice"
+  },
+  "method": "visual_consistency_check",
+  "plan": [
+    "그림의 원 배열과 말풍선의 규칙 설명을 비교한다.",
+    "중심 이동 규칙과 반지름 변화 규칙이 그림과 일치하는지 확인한다.",
+    "일치 여부에 따라 ○ 또는 ×를 고른다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "그림의 원 4개와 말풍선의 규칙 설명을 비교한다.",
+      "value": "비교"
+    },
+    {
+      "id": "step.2",
+      "expr": "중심 이동 규칙과 반지름 변화 규칙의 일치 여부를 확인한다.",
+      "value": "확인"
+    },
+    {
+      "id": "step.3",
+      "expr": "선택 결과를 판단한다.",
+      "value": "×"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "그림 설명과 말풍선 설명이 일치하는가",
+      "expected": false,
+      "actual": false,
+      "pass": true
+    },
+    {
+      "id": "check.2",
+      "expr": "인쇄된 정답 표기 확인",
+      "expected": "×",
+      "actual": "×",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "true_false_choice",
+      "description": "그린 규칙이 바르게 설명되었는지에 대한 선택"
+    },
+    "value": 0,
+    "unit": ""
+  }
+}

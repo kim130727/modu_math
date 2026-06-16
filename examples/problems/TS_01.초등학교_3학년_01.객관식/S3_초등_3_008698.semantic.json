@@ -1,0 +1,76 @@
+{
+  "problem_id": "S3_초등_3_008698",
+  "problem_type": "multiple_choice_geometry",
+  "metadata": {
+    "title": "원을 둘로 똑같이 나누는 선분",
+    "tags": [],
+    "question": "원을 둘로 똑같이 나누는 선분은 어느 것인가요?",
+    "required_layout_ids": [
+      "slot.box",
+      "slot.circle.outer",
+      "slot.line.top",
+      "slot.line.leftdiag",
+      "slot.line.right",
+      "slot.line.across",
+      "slot.pt.center"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "보기에서 알맞은 선분을 고르시오.",
+    "points": 5
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.circle",
+        "type": "circle"
+      },
+      {
+        "id": "obj.diameter_candidate",
+        "type": "segment",
+        "label": "ㄱㄷ"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.circle",
+          "obj.diameter_candidate"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.diameter"
+        ]
+      },
+      "plan": {
+        "method": "concept_identification",
+        "description": "원을 둘로 똑같이 나누는 선분이 지름인지 확인한다."
+      },
+      "execute": {
+        "expected_operations": [
+          "compare_candidates",
+          "identify_diameter"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "definition_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "choice_selection",
+      "description": "원을 둘로 똑같이 나누는 선분"
+    },
+    "value": 3,
+    "unit": ""
+  }
+}

@@ -1,0 +1,577 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008704",
+  "title": "원의 중심과 반지름의 규칙",
+  "canvas": {
+    "width": 960.0,
+    "height": 624.0,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.title"
+      ]
+    },
+    {
+      "id": "region.diagram.left",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.circle.1",
+        "slot.circle.2",
+        "slot.circle.3",
+        "slot.center",
+        "slot.grid.v1",
+        "slot.grid.v2",
+        "slot.grid.v3",
+        "slot.grid.v4",
+        "slot.grid.v5",
+        "slot.grid.v6",
+        "slot.grid.v7",
+        "slot.grid.v8",
+        "slot.grid.v9",
+        "slot.grid.v10",
+        "slot.grid.h1",
+        "slot.grid.h2",
+        "slot.grid.h3",
+        "slot.grid.h4",
+        "slot.grid.h5",
+        "slot.grid.h6",
+        "slot.grid.h7",
+        "slot.grid.h8",
+        "slot.grid.h9",
+        "slot.grid.h10"
+      ]
+    },
+    {
+      "id": "region.diagram.right",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.bubble",
+        "slot.su",
+        "slot.nameplate",
+        "slot.tail",
+        "slot.nameplate.text"
+      ]
+    },
+    {
+      "id": "region.choice",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice.bg",
+        "slot.choice.text1",
+        "slot.choice.text2"
+      ]
+    },
+    {
+      "id": "region.footer",
+      "role": "answer",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.title",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "□ 98. 승아는 규칙에 따라 원을 그렸습니다. 승아가 원을 그린 규칙을 찾아 알맞은 것을 선택해보세요.",
+        "style_role": "question",
+        "x": 16.0,
+        "y": 34.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.grid.v1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 128.0,
+        "y1": 95.0,
+        "x2": 128.0,
+        "y2": 331.0,
+        "stroke": "#9AA0A6",
+        "stroke_width": 1.2,
+        "stroke_dasharray": "5 3"
+      }
+    },
+    {
+      "id": "slot.grid.v2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 151.0,
+        "y1": 95.0,
+        "x2": 151.0,
+        "y2": 331.0,
+        "stroke": "#9AA0A6",
+        "stroke_width": 1.2,
+        "stroke_dasharray": "5 3"
+      }
+    },
+    {
+      "id": "slot.grid.v3",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 174.0,
+        "y1": 95.0,
+        "x2": 174.0,
+        "y2": 331.0,
+        "stroke": "#9AA0A6",
+        "stroke_width": 1.2,
+        "stroke_dasharray": "5 3"
+      }
+    },
+    {
+      "id": "slot.grid.v4",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 197.0,
+        "y1": 95.0,
+        "x2": 197.0,
+        "y2": 331.0,
+        "stroke": "#9AA0A6",
+        "stroke_width": 1.2,
+        "stroke_dasharray": "5 3"
+      }
+    },
+    {
+      "id": "slot.grid.v5",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 220.0,
+        "y1": 95.0,
+        "x2": 220.0,
+        "y2": 331.0,
+        "stroke": "#9AA0A6",
+        "stroke_width": 1.2,
+        "stroke_dasharray": "5 3"
+      }
+    },
+    {
+      "id": "slot.grid.v6",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 243.0,
+        "y1": 95.0,
+        "x2": 243.0,
+        "y2": 331.0,
+        "stroke": "#9AA0A6",
+        "stroke_width": 1.2,
+        "stroke_dasharray": "5 3"
+      }
+    },
+    {
+      "id": "slot.grid.v7",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 266.0,
+        "y1": 95.0,
+        "x2": 266.0,
+        "y2": 331.0,
+        "stroke": "#9AA0A6",
+        "stroke_width": 1.2,
+        "stroke_dasharray": "5 3"
+      }
+    },
+    {
+      "id": "slot.grid.v8",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 289.0,
+        "y1": 95.0,
+        "x2": 289.0,
+        "y2": 331.0,
+        "stroke": "#9AA0A6",
+        "stroke_width": 1.2,
+        "stroke_dasharray": "5 3"
+      }
+    },
+    {
+      "id": "slot.grid.v9",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 312.0,
+        "y1": 95.0,
+        "x2": 312.0,
+        "y2": 331.0,
+        "stroke": "#9AA0A6",
+        "stroke_width": 1.2,
+        "stroke_dasharray": "5 3"
+      }
+    },
+    {
+      "id": "slot.grid.v10",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 335.0,
+        "y1": 95.0,
+        "x2": 335.0,
+        "y2": 331.0,
+        "stroke": "#9AA0A6",
+        "stroke_width": 1.2,
+        "stroke_dasharray": "5 3"
+      }
+    },
+    {
+      "id": "slot.grid.h1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 128.0,
+        "y1": 95.0,
+        "x2": 358.0,
+        "y2": 95.0,
+        "stroke": "#9AA0A6",
+        "stroke_width": 1.2,
+        "stroke_dasharray": "5 3"
+      }
+    },
+    {
+      "id": "slot.grid.h2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 128.0,
+        "y1": 118.0,
+        "x2": 358.0,
+        "y2": 118.0,
+        "stroke": "#9AA0A6",
+        "stroke_width": 1.2,
+        "stroke_dasharray": "5 3"
+      }
+    },
+    {
+      "id": "slot.grid.h3",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 128.0,
+        "y1": 141.0,
+        "x2": 358.0,
+        "y2": 141.0,
+        "stroke": "#9AA0A6",
+        "stroke_width": 1.2,
+        "stroke_dasharray": "5 3"
+      }
+    },
+    {
+      "id": "slot.grid.h4",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 128.0,
+        "y1": 164.0,
+        "x2": 358.0,
+        "y2": 164.0,
+        "stroke": "#9AA0A6",
+        "stroke_width": 1.2,
+        "stroke_dasharray": "5 3"
+      }
+    },
+    {
+      "id": "slot.grid.h5",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 128.0,
+        "y1": 187.0,
+        "x2": 358.0,
+        "y2": 187.0,
+        "stroke": "#9AA0A6",
+        "stroke_width": 1.2,
+        "stroke_dasharray": "5 3"
+      }
+    },
+    {
+      "id": "slot.grid.h6",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 128.0,
+        "y1": 210.0,
+        "x2": 358.0,
+        "y2": 210.0,
+        "stroke": "#9AA0A6",
+        "stroke_width": 1.2,
+        "stroke_dasharray": "5 3"
+      }
+    },
+    {
+      "id": "slot.grid.h7",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 128.0,
+        "y1": 233.0,
+        "x2": 358.0,
+        "y2": 233.0,
+        "stroke": "#9AA0A6",
+        "stroke_width": 1.2,
+        "stroke_dasharray": "5 3"
+      }
+    },
+    {
+      "id": "slot.grid.h8",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 128.0,
+        "y1": 256.0,
+        "x2": 358.0,
+        "y2": 256.0,
+        "stroke": "#9AA0A6",
+        "stroke_width": 1.2,
+        "stroke_dasharray": "5 3"
+      }
+    },
+    {
+      "id": "slot.grid.h9",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 128.0,
+        "y1": 279.0,
+        "x2": 358.0,
+        "y2": 279.0,
+        "stroke": "#9AA0A6",
+        "stroke_width": 1.2,
+        "stroke_dasharray": "5 3"
+      }
+    },
+    {
+      "id": "slot.grid.h10",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 128.0,
+        "y1": 302.0,
+        "x2": 358.0,
+        "y2": 302.0,
+        "stroke": "#9AA0A6",
+        "stroke_width": 1.2,
+        "stroke_dasharray": "5 3"
+      }
+    },
+    {
+      "id": "slot.circle.1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 243.0,
+        "cy": 211.0,
+        "r": 25.0,
+        "stroke": "#555555",
+        "stroke_width": 2.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.circle.2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 243.0,
+        "cy": 211.0,
+        "r": 48.0,
+        "stroke": "#555555",
+        "stroke_width": 2.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.circle.3",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 243.0,
+        "cy": 211.0,
+        "r": 71.0,
+        "stroke": "#555555",
+        "stroke_width": 2.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.center",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 243.0,
+        "cy": 211.0,
+        "r": 4.0,
+        "stroke": "none",
+        "fill": "#ff4da6"
+      }
+    },
+    {
+      "id": "slot.bubble",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 573.0,
+        "y": 50.0,
+        "width": 300.0,
+        "height": 136.0,
+        "stroke": "#555555",
+        "stroke_width": 2.0,
+        "rx": 70.0,
+        "ry": 55.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.tail",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 699.0,
+        "y1": 181.0,
+        "x2": 683.0,
+        "y2": 207.0,
+        "stroke": "#555555",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.su",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 659.0,
+        "y": 227.0,
+        "width": 54.0,
+        "height": 74.0,
+        "stroke": "none",
+        "rx": 4.0,
+        "ry": 4.0,
+        "fill": "#f05a9b"
+      }
+    },
+    {
+      "id": "slot.nameplate.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "승아",
+        "style_role": "label",
+        "x": 719.0,
+        "y": 307.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.nameplate",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 709.0,
+        "y": 278.0,
+        "width": 58.0,
+        "height": 32.0,
+        "stroke": "#d59fd0",
+        "stroke_width": 2.0,
+        "rx": 8.0,
+        "ry": 8.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.choice.bg",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 99.0,
+        "y": 370.0,
+        "width": 750.0,
+        "height": 118.0,
+        "stroke": "none",
+        "fill": "#e6f1cf"
+      }
+    },
+    {
+      "id": "slot.choice.text1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "원의 중심이 ( 같습니다, 다릅니다 ).",
+        "style_role": "question",
+        "x": 251.0,
+        "y": 414.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice.text2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "원의 반지름이 모두 ( 1, 2, 3 )칸씩 늘어났습니다.",
+        "style_role": "question",
+        "x": 188.0,
+        "y": 451.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.title",
+    "region.diagram.left",
+    "slot.circle.1",
+    "slot.circle.2",
+    "slot.circle.3",
+    "slot.center",
+    "slot.grid.v1",
+    "slot.grid.v2",
+    "slot.grid.v3",
+    "slot.grid.v4",
+    "slot.grid.v5",
+    "slot.grid.v6",
+    "slot.grid.v7",
+    "slot.grid.v8",
+    "slot.grid.v9",
+    "slot.grid.v10",
+    "slot.grid.h1",
+    "slot.grid.h2",
+    "slot.grid.h3",
+    "slot.grid.h4",
+    "slot.grid.h5",
+    "slot.grid.h6",
+    "slot.grid.h7",
+    "slot.grid.h8",
+    "slot.grid.h9",
+    "slot.grid.h10",
+    "region.diagram.right",
+    "slot.bubble",
+    "slot.su",
+    "slot.nameplate",
+    "slot.tail",
+    "slot.nameplate.text",
+    "region.choice",
+    "slot.choice.bg",
+    "slot.choice.text1",
+    "slot.choice.text2",
+    "region.footer"
+  ]
+}

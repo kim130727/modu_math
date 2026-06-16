@@ -1,0 +1,114 @@
+{
+  "problem_id": "S3_초등_3_008705",
+  "problem_type": "참거짓판단",
+  "metadata": {
+    "title": "규칙에 따라 원을 그린 그림",
+    "tags": [],
+    "question": "규칙에 따라 원을 그린 그림에서 규칙 설명이 맞는지 판단하는 문제",
+    "required_layout_ids": [
+      "slot.grid.box",
+      "slot.grid.v1",
+      "slot.grid.v2",
+      "slot.grid.v3",
+      "slot.grid.v4",
+      "slot.grid.v5",
+      "slot.grid.v6",
+      "slot.grid.v7",
+      "slot.grid.v8",
+      "slot.grid.v9",
+      "slot.grid.v10",
+      "slot.grid.v11",
+      "slot.grid.v12",
+      "slot.grid.v13",
+      "slot.grid.v14",
+      "slot.grid.v15",
+      "slot.grid.v16",
+      "slot.grid.v17",
+      "slot.grid.v18",
+      "slot.grid.v19",
+      "slot.grid.v20",
+      "slot.grid.v21",
+      "slot.grid.h1",
+      "slot.grid.h2",
+      "slot.grid.h3",
+      "slot.grid.h4",
+      "slot.grid.h5",
+      "slot.grid.h6",
+      "slot.grid.h7",
+      "slot.grid.h8",
+      "slot.grid.h9",
+      "slot.circle1",
+      "slot.circle2",
+      "slot.circle3",
+      "slot.circle4",
+      "slot.center1",
+      "slot.center2",
+      "slot.center3",
+      "slot.center4",
+      "slot.bubble"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "그린 규칙을 바르게 설명했으면 ○표, 그렇지 않으면 ×표를 선택하기"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.diagram.circles",
+        "type": "circle_sequence",
+        "count": 4
+      },
+      {
+        "id": "obj.rule.statement",
+        "type": "rule_description"
+      },
+      {
+        "id": "obj.answer.mark",
+        "type": "choice_mark",
+        "value": "×"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.diagram.circles",
+          "obj.rule.statement"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.compare_rule_to_picture"
+        ]
+      },
+      "plan": {
+        "method": "visual_consistency_check",
+        "description": "그림의 반복 규칙과 말풍선의 설명이 서로 같은지 확인한다."
+      },
+      "execute": {
+        "expected_operations": [
+          "compare_center_shift_rule",
+          "compare_radius_rule",
+          "decide_true_false"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "statement_picture_match_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "true_false_choice",
+      "description": "그린 규칙이 바르게 설명되었는지에 대한 선택"
+    },
+    "value": 0,
+    "unit": ""
+  }
+}

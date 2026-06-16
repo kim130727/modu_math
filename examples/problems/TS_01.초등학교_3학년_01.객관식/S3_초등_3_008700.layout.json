@@ -1,0 +1,360 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008700",
+  "title": "원의 지름 찾기",
+  "canvas": {
+    "width": 960,
+    "height": 608,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q1",
+        "slot.diagram.label1_text",
+        "slot.diagram.label2_text",
+        "slot.diagram.label3_text",
+        "slot.diagram.label4_text",
+        "slot.diagram.label5_text"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.diagram.circle",
+        "slot.diagram.center",
+        "slot.diagram.center2",
+        "slot.diagram.label1",
+        "slot.diagram.label2",
+        "slot.diagram.label3",
+        "slot.diagram.label4",
+        "slot.diagram.label5",
+        "slot.diagram.line1",
+        "slot.diagram.line2",
+        "slot.diagram.line3",
+        "slot.diagram.line4",
+        "slot.diagram.line5"
+      ]
+    },
+    {
+      "id": "region.explanation",
+      "role": "explanation",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.box",
+        "slot.box_line1",
+        "slot.box_arrow",
+        "slot.box_line2"
+      ]
+    },
+    {
+      "id": "region.answer",
+      "role": "answer",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "□ 93. 그림을 보고 □ 안에 공통으로 들어갈 선분을 찾아 기호를 선택하세요.",
+        "style_role": "question",
+        "x": 10.0,
+        "y": 28.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.diagram.circle",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 508.0,
+        "cy": 181.0,
+        "r": 102.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.diagram.line1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 458.0,
+        "y1": 80.0,
+        "x2": 458.0,
+        "y2": 282.0
+      }
+    },
+    {
+      "id": "slot.diagram.line2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 493.0,
+        "y1": 74.0,
+        "x2": 493.0,
+        "y2": 287.0
+      }
+    },
+    {
+      "id": "slot.diagram.line3",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 528.0,
+        "y1": 69.0,
+        "x2": 528.0,
+        "y2": 292.0
+      }
+    },
+    {
+      "id": "slot.diagram.line4",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 563.0,
+        "y1": 74.0,
+        "x2": 563.0,
+        "y2": 287.0
+      }
+    },
+    {
+      "id": "slot.diagram.line5",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 598.0,
+        "y1": 80.0,
+        "x2": 598.0,
+        "y2": 282.0
+      }
+    },
+    {
+      "id": "slot.diagram.center",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 508.0,
+        "cy": 181.0,
+        "r": 4.0,
+        "fill": "#e84aa6"
+      }
+    },
+    {
+      "id": "slot.diagram.center2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 521.0,
+        "cy": 181.0,
+        "r": 4.0,
+        "fill": "#666666"
+      }
+    },
+    {
+      "id": "slot.diagram.label1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 434.0,
+        "cy": 67.0,
+        "r": 9.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.diagram.label2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 474.0,
+        "cy": 58.0,
+        "r": 9.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.diagram.label3",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 512.0,
+        "cy": 53.0,
+        "r": 9.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.diagram.label4",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 551.0,
+        "cy": 58.0,
+        "r": 9.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.diagram.label5",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 590.0,
+        "cy": 67.0,
+        "r": 9.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.diagram.label1_text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄱ",
+        "style_role": "label",
+        "x": 430.0,
+        "y": 75.0,
+        "font_size": 18
+      }
+    },
+    {
+      "id": "slot.diagram.label2_text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄴ",
+        "style_role": "label",
+        "x": 470.0,
+        "y": 66.0,
+        "font_size": 18
+      }
+    },
+    {
+      "id": "slot.diagram.label3_text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄷ",
+        "style_role": "label",
+        "x": 508.0,
+        "y": 61.0,
+        "font_size": 18
+      }
+    },
+    {
+      "id": "slot.diagram.label4_text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄹ",
+        "style_role": "label",
+        "x": 547.0,
+        "y": 66.0,
+        "font_size": 18
+      }
+    },
+    {
+      "id": "slot.diagram.label5_text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㅁ",
+        "style_role": "label",
+        "x": 586.0,
+        "y": 75.0,
+        "font_size": 18
+      }
+    },
+    {
+      "id": "slot.box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 166.0,
+        "y": 295.0,
+        "width": 650.0,
+        "height": 126.0,
+        "fill": "#dcd7f2"
+      }
+    },
+    {
+      "id": "slot.box_line1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "길이가 가장 긴 선분은 □입니다.",
+        "style_role": "body",
+        "x": 301.0,
+        "y": 356.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.box_arrow",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "→",
+        "style_role": "body",
+        "x": 320.0,
+        "y": 392.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.box_line2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "원의 지름은 □입니다.",
+        "style_role": "body",
+        "x": 360.0,
+        "y": 392.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q1",
+    "slot.diagram.label1_text",
+    "slot.diagram.label2_text",
+    "slot.diagram.label3_text",
+    "slot.diagram.label4_text",
+    "slot.diagram.label5_text",
+    "region.diagram",
+    "slot.diagram.circle",
+    "slot.diagram.center",
+    "slot.diagram.center2",
+    "slot.diagram.label1",
+    "slot.diagram.label2",
+    "slot.diagram.label3",
+    "slot.diagram.label4",
+    "slot.diagram.label5",
+    "slot.diagram.line1",
+    "slot.diagram.line2",
+    "slot.diagram.line3",
+    "slot.diagram.line4",
+    "slot.diagram.line5",
+    "region.explanation",
+    "slot.box",
+    "slot.box_line1",
+    "slot.box_arrow",
+    "slot.box_line2",
+    "region.answer"
+  ]
+}

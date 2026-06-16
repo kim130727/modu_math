@@ -1,0 +1,285 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008699",
+  "title": "원의 지름을 나타내는 선분",
+  "canvas": {
+    "width": 848,
+    "height": 400,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q1"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.circle",
+        "slot.line.top",
+        "slot.line.mid",
+        "slot.line.bottom",
+        "slot.pt.pink",
+        "slot.label.ga",
+        "slot.label.na",
+        "slot.label.da",
+        "slot.label.ra",
+        "slot.label.ma",
+        "slot.label.ba",
+        "slot.label.o"
+      ]
+    },
+    {
+      "id": "region.choices",
+      "role": "choices",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice.1",
+        "slot.choice.2",
+        "slot.choice.3",
+        "slot.choice.4"
+      ]
+    },
+    {
+      "id": "region.answer",
+      "role": "answer",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "□ 88. 원의 지름을 나타내는 선분은 어느 것인가요?",
+        "style_role": "question",
+        "x": 10.0,
+        "y": 32.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.circle",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 518.0,
+        "cy": 126.0,
+        "r": 80.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.line.top",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 466.0,
+        "y1": 62.0,
+        "x2": 570.0,
+        "y2": 62.0
+      }
+    },
+    {
+      "id": "slot.line.mid",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 438.0,
+        "y1": 126.0,
+        "x2": 598.0,
+        "y2": 126.0
+      }
+    },
+    {
+      "id": "slot.line.bottom",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 466.0,
+        "y1": 186.0,
+        "x2": 570.0,
+        "y2": 186.0
+      }
+    },
+    {
+      "id": "slot.label.ga",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄱ",
+        "style_role": "label",
+        "x": 444.0,
+        "y": 58.0,
+        "font_size": 24
+      }
+    },
+    {
+      "id": "slot.label.na",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄴ",
+        "style_role": "label",
+        "x": 578.0,
+        "y": 58.0,
+        "font_size": 24
+      }
+    },
+    {
+      "id": "slot.label.da",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄷ",
+        "style_role": "label",
+        "x": 418.0,
+        "y": 122.0,
+        "font_size": 24
+      }
+    },
+    {
+      "id": "slot.label.ra",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄹ",
+        "style_role": "label",
+        "x": 604.0,
+        "y": 122.0,
+        "font_size": 24
+      }
+    },
+    {
+      "id": "slot.label.ma",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㅁ",
+        "style_role": "label",
+        "x": 418.0,
+        "y": 190.0,
+        "font_size": 24
+      }
+    },
+    {
+      "id": "slot.label.ba",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㅂ",
+        "style_role": "label",
+        "x": 604.0,
+        "y": 190.0,
+        "font_size": 24
+      }
+    },
+    {
+      "id": "slot.label.o",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㅇ",
+        "style_role": "label",
+        "x": 520.0,
+        "y": 112.0,
+        "font_size": 24
+      }
+    },
+    {
+      "id": "slot.pt.pink",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "•",
+        "style_role": "label",
+        "x": 519.0,
+        "y": 130.0,
+        "font_size": 22
+      }
+    },
+    {
+      "id": "slot.choice.1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "① 선분 ㄱㄴ",
+        "style_role": "choice",
+        "x": 22.0,
+        "y": 240.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice.2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "② 선분 ㄷㄹ",
+        "style_role": "choice",
+        "x": 480.0,
+        "y": 240.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice.3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "③ 선분 ㅁㅂ",
+        "style_role": "choice",
+        "x": 22.0,
+        "y": 292.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice.4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "④ 선분 ㄷㅇ",
+        "style_role": "choice",
+        "x": 480.0,
+        "y": 292.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q1",
+    "region.diagram",
+    "slot.circle",
+    "slot.line.top",
+    "slot.line.mid",
+    "slot.line.bottom",
+    "slot.pt.pink",
+    "slot.label.ga",
+    "slot.label.na",
+    "slot.label.da",
+    "slot.label.ra",
+    "slot.label.ma",
+    "slot.label.ba",
+    "slot.label.o",
+    "region.choices",
+    "slot.choice.1",
+    "slot.choice.2",
+    "slot.choice.3",
+    "slot.choice.4",
+    "region.answer"
+  ]
+}

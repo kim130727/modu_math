@@ -1,0 +1,159 @@
+{
+  "problem_id": "S3_초등_3_008687",
+  "view_box": {
+    "width": 880.0,
+    "height": 516.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.q1.text",
+      "type": "text",
+      "attributes": {
+        "x": 16.0,
+        "y": 30.0,
+        "max_width": 752.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q1",
+      "refs": {
+        "layout_slot_id": "slot.q1"
+      },
+      "text": "76. 알맞은 말을 선택하세요."
+    },
+    {
+      "id": "slot.circle.outer.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 489.0,
+        "cy": 163.0,
+        "r": 118.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "none"
+      },
+      "source_ref": "slot.circle.outer",
+      "refs": {
+        "layout_slot_id": "slot.circle.outer"
+      }
+    },
+    {
+      "id": "slot.pt.center.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 489.0,
+        "cy": 163.0,
+        "r": 3.5,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#ff2aa8"
+      },
+      "source_ref": "slot.pt.center",
+      "refs": {
+        "layout_slot_id": "slot.pt.center"
+      }
+    },
+    {
+      "id": "slot.pt.above.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 491.0,
+        "cy": 149.0,
+        "r": 4.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "none"
+      },
+      "source_ref": "slot.pt.above",
+      "refs": {
+        "layout_slot_id": "slot.pt.above"
+      }
+    },
+    {
+      "id": "slot.box.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 104.0,
+        "y": 286.0,
+        "width": 750.0,
+        "height": 121.0,
+        "fill": "none",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.box",
+      "refs": {
+        "layout_slot_id": "slot.box"
+      }
+    },
+    {
+      "id": "slot.radius.horizontal.line",
+      "type": "line",
+      "attributes": {
+        "x1": 489.0,
+        "y1": 163.0,
+        "x2": 371.0,
+        "y2": 163.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.radius.horizontal",
+      "refs": {
+        "layout_slot_id": "slot.radius.horizontal"
+      }
+    },
+    {
+      "id": "slot.radius.diagonal.line",
+      "type": "line",
+      "attributes": {
+        "x1": 489.0,
+        "y1": 163.0,
+        "x2": 432.0,
+        "y2": 65.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.radius.diagonal",
+      "refs": {
+        "layout_slot_id": "slot.radius.diagonal"
+      }
+    },
+    {
+      "id": "slot.box.line1.text",
+      "type": "text",
+      "attributes": {
+        "x": 147.0,
+        "y": 329.0,
+        "max_width": 752.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.box.line1",
+      "refs": {
+        "layout_slot_id": "slot.box.line1"
+      },
+      "text": "한 원에는 반지름을 ( 2개만 , 무수히 많이 ) 그을 수 있고"
+    },
+    {
+      "id": "slot.box.line2.text",
+      "type": "text",
+      "attributes": {
+        "x": 242.0,
+        "y": 371.0,
+        "max_width": 752.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.box.line2",
+      "refs": {
+        "layout_slot_id": "slot.box.line2"
+      },
+      "text": "그 길이는 모두 ( 같습니다, 다릅니다 )."
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

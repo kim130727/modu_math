@@ -1,0 +1,62 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008711",
+  "problem_type": "선택",
+  "inputs": {
+    "total_ticks": 5,
+    "target_label": "연필심을 넣어야 하는 구멍의 기호",
+    "target_ticks": 1,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.pin",
+      "value": {
+        "type": "fixed_point"
+      }
+    },
+    {
+      "ref": "obj.holes",
+      "value": {
+        "count": 5
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "selected_hole_symbol"
+  },
+  "method": "nearest_selection",
+  "plan": [
+    "누름 못과 각 구멍의 가까움을 비교한다.",
+    "가장 가까운 구멍의 기호를 고른다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "누름 못에서 가장 가까운 구멍을 확인한다.",
+      "value": "ㄱ"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "선택된 기호가 가장 가까운 구멍의 기호와 같은지 확인한다.",
+      "expected": "ㄱ",
+      "actual": "ㄱ",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "selected_hole_symbol",
+      "description": "연필심을 넣어야 하는 구멍의 기호"
+    },
+    "value": "ㄱ",
+    "unit": ""
+  }
+}

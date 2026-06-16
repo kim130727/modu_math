@@ -1,0 +1,100 @@
+{
+  "problem_id": "S3_초등_3_008699",
+  "problem_type": "geometry_circle_diameter_mcq",
+  "metadata": {
+    "title": "원의 지름을 나타내는 선분",
+    "tags": [],
+    "question": "원의 지름을 나타내는 선분은 어느 것인가요?",
+    "required_layout_ids": [
+      "slot.circle",
+      "slot.line.top",
+      "slot.line.mid",
+      "slot.line.bottom"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "알맞은 보기를 고르시오."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.circle",
+        "type": "circle"
+      },
+      {
+        "id": "obj.segment_top",
+        "type": "segment",
+        "label_pair": [
+          "ㄱ",
+          "ㄴ"
+        ]
+      },
+      {
+        "id": "obj.segment_mid",
+        "type": "segment",
+        "label_pair": [
+          "ㄷ",
+          "ㄹ"
+        ]
+      },
+      {
+        "id": "obj.segment_bottom",
+        "type": "segment",
+        "label_pair": [
+          "ㅁ",
+          "ㅂ"
+        ]
+      },
+      {
+        "id": "obj.marker_o",
+        "type": "marker",
+        "label": "ㅇ"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.circle",
+          "obj.segment_top",
+          "obj.segment_mid",
+          "obj.segment_bottom"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.segment_inside_circle",
+          "rel.segment_inside_circle_2",
+          "rel.segment_inside_circle_3"
+        ]
+      },
+      "plan": {
+        "method": "compare_segments_in_circle",
+        "description": "원 안의 선분들 중 지름의 뜻에 맞는 선분을 찾는다."
+      },
+      "execute": {
+        "expected_operations": [
+          "compare_lengths_visually",
+          "match_diameter_definition"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "definition_match_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "multiple_choice",
+      "description": "원의 지름을 나타내는 선분"
+    },
+    "value": 2,
+    "unit": ""
+  }
+}

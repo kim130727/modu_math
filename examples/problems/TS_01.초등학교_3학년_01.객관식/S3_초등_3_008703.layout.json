@@ -1,0 +1,395 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008703",
+  "title": "컴퍼스를 2 cm가 되도록 벌린 것을 찾기",
+  "canvas": {
+    "width": 960,
+    "height": 640,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice1.compass.left",
+        "slot.choice1.compass.right",
+        "slot.choice2.compass.left",
+        "slot.choice2.compass.right",
+        "slot.choice3.compass.left",
+        "slot.choice3.compass.right",
+        "slot.answer.compass.left",
+        "slot.answer.compass.right",
+        "slot.q.no",
+        "slot.q.text",
+        "slot.choice1.ruler.0",
+        "slot.choice1.ruler.1",
+        "slot.choice1.ruler.2",
+        "slot.choice1.ruler.3",
+        "slot.choice2.ruler.0",
+        "slot.choice2.ruler.1",
+        "slot.choice2.ruler.2",
+        "slot.choice2.ruler.3",
+        "slot.choice3.ruler.0",
+        "slot.choice3.ruler.1",
+        "slot.choice3.ruler.2",
+        "slot.choice3.ruler.3"
+      ]
+    },
+    {
+      "id": "region.choices",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice1.ruler",
+        "slot.choice2.ruler",
+        "slot.choice3.ruler",
+        "slot.answer.ruler"
+      ]
+    },
+    {
+      "id": "region.explanation",
+      "role": "explanation",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q.no",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "97.",
+        "style_role": "question",
+        "x": 24.0,
+        "y": 34.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "컴퍼스를 2 cm가 되도록 벌린 것을 찾아 선택하세요.",
+        "style_role": "question",
+        "x": 76.0,
+        "y": 34.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice1.ruler",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 70.0,
+        "y": 190.0,
+        "width": 240.0,
+        "height": 82.0
+      }
+    },
+    {
+      "id": "slot.choice2.ruler",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 404.0,
+        "y": 190.0,
+        "width": 240.0,
+        "height": 82.0
+      }
+    },
+    {
+      "id": "slot.choice3.ruler",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 738.0,
+        "y": 190.0,
+        "width": 160.0,
+        "height": 82.0
+      }
+    },
+    {
+      "id": "slot.answer.ruler",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 54.0,
+        "y": 450.0,
+        "width": 240.0,
+        "height": 82.0
+      }
+    },
+    {
+      "id": "slot.choice1.compass.left",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 118.0,
+        "y1": 92.0,
+        "x2": 84.0,
+        "y2": 190.0
+      }
+    },
+    {
+      "id": "slot.choice1.compass.right",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 118.0,
+        "y1": 92.0,
+        "x2": 186.0,
+        "y2": 176.0
+      }
+    },
+    {
+      "id": "slot.choice2.compass.left",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 452.0,
+        "y1": 92.0,
+        "x2": 420.0,
+        "y2": 190.0
+      }
+    },
+    {
+      "id": "slot.choice2.compass.right",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 452.0,
+        "y1": 92.0,
+        "x2": 520.0,
+        "y2": 176.0
+      }
+    },
+    {
+      "id": "slot.choice3.compass.left",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 786.0,
+        "y1": 92.0,
+        "x2": 754.0,
+        "y2": 190.0
+      }
+    },
+    {
+      "id": "slot.choice3.compass.right",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 786.0,
+        "y1": 92.0,
+        "x2": 854.0,
+        "y2": 176.0
+      }
+    },
+    {
+      "id": "slot.answer.compass.left",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 118.0,
+        "y1": 352.0,
+        "x2": 84.0,
+        "y2": 450.0
+      }
+    },
+    {
+      "id": "slot.answer.compass.right",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 118.0,
+        "y1": 352.0,
+        "x2": 186.0,
+        "y2": 436.0
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.0",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "0",
+        "style_role": "label",
+        "x": 79.0,
+        "y": 255.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "1",
+        "style_role": "label",
+        "x": 141.0,
+        "y": 255.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "2",
+        "style_role": "label",
+        "x": 203.0,
+        "y": 255.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "3",
+        "style_role": "label",
+        "x": 265.0,
+        "y": 255.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.0",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "0",
+        "style_role": "label",
+        "x": 413.0,
+        "y": 255.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "1",
+        "style_role": "label",
+        "x": 475.0,
+        "y": 255.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "2",
+        "style_role": "label",
+        "x": 537.0,
+        "y": 255.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "3",
+        "style_role": "label",
+        "x": 599.0,
+        "y": 255.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.0",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "0",
+        "style_role": "label",
+        "x": 747.0,
+        "y": 255.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "1",
+        "style_role": "label",
+        "x": 809.0,
+        "y": 255.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "2",
+        "style_role": "label",
+        "x": 871.0,
+        "y": 255.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "3",
+        "style_role": "label",
+        "x": 933.0,
+        "y": 255.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.choice1.compass.left",
+    "slot.choice1.compass.right",
+    "slot.choice2.compass.left",
+    "slot.choice2.compass.right",
+    "slot.choice3.compass.left",
+    "slot.choice3.compass.right",
+    "slot.answer.compass.left",
+    "slot.answer.compass.right",
+    "slot.q.no",
+    "slot.q.text",
+    "slot.choice1.ruler.0",
+    "slot.choice1.ruler.1",
+    "slot.choice1.ruler.2",
+    "slot.choice1.ruler.3",
+    "slot.choice2.ruler.0",
+    "slot.choice2.ruler.1",
+    "slot.choice2.ruler.2",
+    "slot.choice2.ruler.3",
+    "slot.choice3.ruler.0",
+    "slot.choice3.ruler.1",
+    "slot.choice3.ruler.2",
+    "slot.choice3.ruler.3",
+    "region.choices",
+    "slot.choice1.ruler",
+    "slot.choice2.ruler",
+    "slot.choice3.ruler",
+    "slot.answer.ruler",
+    "region.explanation"
+  ]
+}

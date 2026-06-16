@@ -1,0 +1,225 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008701",
+  "title": "원의 지름을 모두 찾아 기호를 선택해 보세요.",
+  "canvas": {
+    "width": 720,
+    "height": 380,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q.no",
+        "slot.q.text"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.circle.outline",
+        "slot.circle.center",
+        "slot.line.red",
+        "slot.line.orange",
+        "slot.line.green",
+        "slot.line.blue",
+        "slot.line.purple",
+        "slot.lb.giyeok",
+        "slot.lb.nieun",
+        "slot.lb.digeut",
+        "slot.lb.rieul",
+        "slot.lb.mieum"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q.no",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "94.",
+        "style_role": "question",
+        "x": 44.0,
+        "y": 32.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "원의 지름을 모두 찾아 기호를 선택해 보세요.",
+        "style_role": "question",
+        "x": 85.0,
+        "y": 32.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.circle.outline",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 506.0,
+        "cy": 144.0,
+        "r": 82.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.circle.center",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 506.0,
+        "cy": 144.0,
+        "r": 4.0,
+        "fill": "#d32f2f"
+      }
+    },
+    {
+      "id": "slot.line.red",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 506.0,
+        "y1": 144.0,
+        "x2": 444.0,
+        "y2": 104.0
+      }
+    },
+    {
+      "id": "slot.line.orange",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 506.0,
+        "y1": 144.0,
+        "x2": 506.0,
+        "y2": 62.0
+      }
+    },
+    {
+      "id": "slot.line.green",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 506.0,
+        "y1": 144.0,
+        "x2": 564.0,
+        "y2": 54.0
+      }
+    },
+    {
+      "id": "slot.line.blue",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 506.0,
+        "y1": 144.0,
+        "x2": 586.0,
+        "y2": 116.0
+      }
+    },
+    {
+      "id": "slot.line.purple",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 506.0,
+        "y1": 144.0,
+        "x2": 588.0,
+        "y2": 144.0
+      }
+    },
+    {
+      "id": "slot.lb.giyeok",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄱ",
+        "style_role": "label",
+        "x": 425.0,
+        "y": 113.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.lb.nieun",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄴ",
+        "style_role": "label",
+        "x": 493.0,
+        "y": 44.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.lb.digeut",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄷ",
+        "style_role": "label",
+        "x": 571.0,
+        "y": 45.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.lb.rieul",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄹ",
+        "style_role": "label",
+        "x": 598.0,
+        "y": 116.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.lb.mieum",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㅁ",
+        "style_role": "label",
+        "x": 598.0,
+        "y": 152.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q.no",
+    "slot.q.text",
+    "region.diagram",
+    "slot.circle.outline",
+    "slot.circle.center",
+    "slot.line.red",
+    "slot.line.orange",
+    "slot.line.green",
+    "slot.line.blue",
+    "slot.line.purple",
+    "slot.lb.giyeok",
+    "slot.lb.nieun",
+    "slot.lb.digeut",
+    "slot.lb.rieul",
+    "slot.lb.mieum"
+  ]
+}

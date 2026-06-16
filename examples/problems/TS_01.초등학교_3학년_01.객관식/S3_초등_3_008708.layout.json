@@ -1,0 +1,239 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008708",
+  "title": "원의 지름",
+  "canvas": {
+    "width": 960,
+    "height": 620,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.answer.blank",
+        "slot.qnum",
+        "slot.q1",
+        "slot.q2",
+        "slot.choice.o",
+        "slot.choice.x"
+      ]
+    },
+    {
+      "id": "region.diagram.top",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.top.circle",
+        "slot.top.dot1",
+        "slot.top.dot2",
+        "slot.top.diameter"
+      ]
+    },
+    {
+      "id": "region.diagram.bottom",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.bottom.circle",
+        "slot.bottom.dot1",
+        "slot.bottom.dot2",
+        "slot.bottom.diameter"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.qnum",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "□ 3.",
+        "style_role": "question",
+        "x": 22.0,
+        "y": 36.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "원의 지름을 그림과 같이 그렸습니다. 바르게 그렸으면 ○, 틀리게 그렸",
+        "style_role": "question",
+        "x": 70.0,
+        "y": 36.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "으면 ×표를 선택하세요.",
+        "style_role": "question",
+        "x": 22.0,
+        "y": 64.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice.o",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "○",
+        "style_role": "choice",
+        "x": 28.0,
+        "y": 282.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice.x",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "×",
+        "style_role": "choice",
+        "x": 29.0,
+        "y": 312.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.answer.blank",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 66.0,
+        "y": 330.0,
+        "width": 22.0,
+        "height": 22.0,
+        "stroke": "#222222",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.top.circle",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 482.0,
+        "cy": 171.0,
+        "r": 89.0,
+        "stroke": "#222222",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.top.diameter",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 392.0,
+        "y1": 171.0,
+        "x2": 572.0,
+        "y2": 171.0,
+        "stroke": "#222222"
+      }
+    },
+    {
+      "id": "slot.top.dot1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 482.0,
+        "cy": 159.0,
+        "r": 4.5,
+        "stroke": "#666666",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.top.dot2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 482.0,
+        "cy": 172.0,
+        "r": 3.2,
+        "fill": "#ff3aa7"
+      }
+    },
+    {
+      "id": "slot.bottom.circle",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 156.0,
+        "cy": 463.0,
+        "r": 89.0,
+        "stroke": "#222222",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.bottom.diameter",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 66.0,
+        "y1": 463.0,
+        "x2": 246.0,
+        "y2": 463.0,
+        "stroke": "#222222"
+      }
+    },
+    {
+      "id": "slot.bottom.dot1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 156.0,
+        "cy": 451.0,
+        "r": 4.5,
+        "stroke": "#666666",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.bottom.dot2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 156.0,
+        "cy": 464.0,
+        "r": 3.2,
+        "fill": "#ff3aa7"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.answer.blank",
+    "slot.qnum",
+    "slot.q1",
+    "slot.q2",
+    "slot.choice.o",
+    "slot.choice.x",
+    "region.diagram.top",
+    "slot.top.circle",
+    "slot.top.dot1",
+    "slot.top.dot2",
+    "slot.top.diameter",
+    "region.diagram.bottom",
+    "slot.bottom.circle",
+    "slot.bottom.dot1",
+    "slot.bottom.dot2",
+    "slot.bottom.diameter"
+  ]
+}

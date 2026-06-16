@@ -1,0 +1,231 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008690",
+  "title": "원의 반지름과 지름",
+  "canvas": {
+    "width": 960,
+    "height": 392,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q1",
+        "slot.q2",
+        "slot.q5"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.diagram.circle",
+        "slot.diagram.center",
+        "slot.diagram.radius1",
+        "slot.diagram.diameter",
+        "slot.diagram.radius2",
+        "slot.diagram.arc1",
+        "slot.diagram.arc2",
+        "slot.diagram.arc3",
+        "slot.diagram.label.ga",
+        "slot.diagram.label.na",
+        "slot.diagram.label.da"
+      ]
+    },
+    {
+      "id": "region.answer",
+      "role": "answer",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "79.  원의 반지름과 지름을 나타내는 선분을 각각 찾아 기호를 선택해 보세요.",
+        "style_role": "question",
+        "x": 14.0,
+        "y": 34.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "원의 반지름 ( ㄱ, ㄴ, ㄷ ), 원의 지름 ( ㄱ, ㄴ, ㄷ )",
+        "style_role": "question",
+        "x": 172.0,
+        "y": 244.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q5",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "요.",
+        "style_role": "question",
+        "x": 14.0,
+        "y": 70.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.diagram.circle",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 413.0,
+        "y": 86.0,
+        "width": 128.0,
+        "height": 128.0
+      }
+    },
+    {
+      "id": "slot.diagram.center",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 476.0,
+        "cy": 153.0,
+        "r": 3.5,
+        "fill": "#ff3ea5"
+      }
+    },
+    {
+      "id": "slot.diagram.radius1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 417.0,
+        "y1": 170.0,
+        "x2": 476.0,
+        "y2": 153.0
+      }
+    },
+    {
+      "id": "slot.diagram.diameter",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 412.0,
+        "y1": 128.0,
+        "x2": 533.0,
+        "y2": 197.0
+      }
+    },
+    {
+      "id": "slot.diagram.radius2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 476.0,
+        "y1": 153.0,
+        "x2": 533.0,
+        "y2": 197.0
+      }
+    },
+    {
+      "id": "slot.diagram.arc1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 426.0,
+        "y1": 118.0,
+        "x2": 487.0,
+        "y2": 159.0
+      }
+    },
+    {
+      "id": "slot.diagram.arc2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 482.0,
+        "y1": 154.0,
+        "x2": 533.0,
+        "y2": 197.0
+      }
+    },
+    {
+      "id": "slot.diagram.arc3",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 419.0,
+        "y1": 190.0,
+        "x2": 526.0,
+        "y2": 199.0
+      }
+    },
+    {
+      "id": "slot.diagram.label.ga",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄱ",
+        "style_role": "label",
+        "x": 497.0,
+        "y": 132.0,
+        "font_size": 22
+      }
+    },
+    {
+      "id": "slot.diagram.label.na",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄴ",
+        "style_role": "label",
+        "x": 439.0,
+        "y": 157.0,
+        "font_size": 22
+      }
+    },
+    {
+      "id": "slot.diagram.label.da",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄷ",
+        "style_role": "label",
+        "x": 466.0,
+        "y": 195.0,
+        "font_size": 22
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q1",
+    "slot.q2",
+    "slot.q5",
+    "region.diagram",
+    "slot.diagram.circle",
+    "slot.diagram.center",
+    "slot.diagram.radius1",
+    "slot.diagram.diameter",
+    "slot.diagram.radius2",
+    "slot.diagram.arc1",
+    "slot.diagram.arc2",
+    "slot.diagram.arc3",
+    "slot.diagram.label.ga",
+    "slot.diagram.label.na",
+    "slot.diagram.label.da",
+    "region.answer"
+  ]
+}

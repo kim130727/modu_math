@@ -1,0 +1,358 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008713",
+  "title": "반지름이 1 cm인 원을 그리는 순서",
+  "canvas": {
+    "width": 960.0,
+    "height": 420.0,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.num",
+        "slot.stem",
+        "slot.g1",
+        "slot.g2",
+        "slot.g3"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.box",
+        "slot.lab.g1",
+        "slot.lab.g2",
+        "slot.lab.g3",
+        "slot.circle.main",
+        "slot.dot.center",
+        "slot.dot.inner",
+        "slot.point.mid",
+        "slot.ring.mid",
+        "slot.compass.left",
+        "slot.compass.right",
+        "slot.ruler",
+        "slot.ruler.zero",
+        "slot.ruler.one",
+        "slot.option.1",
+        "slot.option.2",
+        "slot.option.3",
+        "slot.option.4",
+        "slot.option.5"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.num",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "12.",
+        "style_role": "question",
+        "x": 16.0,
+        "y": 30.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.stem",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "반지름이 1 cm인 원을 그리는 순서를 바르게 나타낸 것을 고르세요.",
+        "style_role": "question",
+        "x": 84.0,
+        "y": 30.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 266.0,
+        "y": 46.0,
+        "width": 413.0,
+        "height": 148.0
+      }
+    },
+    {
+      "id": "slot.lab.g1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 320.0,
+        "cy": 68.0,
+        "r": 10.0,
+        "fill": "#FFFFFF"
+      }
+    },
+    {
+      "id": "slot.g1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄱ",
+        "style_role": "label",
+        "x": 314.0,
+        "y": 74.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.lab.g2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 410.0,
+        "cy": 68.0,
+        "r": 10.0,
+        "fill": "#FFFFFF"
+      }
+    },
+    {
+      "id": "slot.g2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄴ",
+        "style_role": "label",
+        "x": 404.0,
+        "y": 74.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.lab.g3",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 496.0,
+        "cy": 68.0,
+        "r": 10.0,
+        "fill": "#FFFFFF"
+      }
+    },
+    {
+      "id": "slot.g3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄷ",
+        "style_role": "label",
+        "x": 490.0,
+        "y": 74.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.circle.main",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 355.0,
+        "cy": 137.0,
+        "r": 48.0,
+        "fill": "#FFFFFF"
+      }
+    },
+    {
+      "id": "slot.dot.center",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 355.0,
+        "cy": 137.0,
+        "r": 2.4,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.dot.inner",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 355.0,
+        "cy": 149.0,
+        "r": 4.5,
+        "fill": "#FFFFFF"
+      }
+    },
+    {
+      "id": "slot.point.mid",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 442.0,
+        "cy": 136.0,
+        "r": 2.4,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.ring.mid",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 442.0,
+        "cy": 149.0,
+        "r": 4.5,
+        "fill": "#FFFFFF"
+      }
+    },
+    {
+      "id": "slot.compass.left",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 534.0,
+        "y1": 61.0,
+        "x2": 534.0,
+        "y2": 158.0
+      }
+    },
+    {
+      "id": "slot.compass.right",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 532.0,
+        "y1": 85.0,
+        "x2": 583.0,
+        "y2": 129.0
+      }
+    },
+    {
+      "id": "slot.ruler",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 540.0,
+        "y1": 138.0,
+        "x2": 606.0,
+        "y2": 138.0
+      }
+    },
+    {
+      "id": "slot.ruler.zero",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 549.0,
+        "y1": 138.0,
+        "x2": 549.0,
+        "y2": 146.0
+      }
+    },
+    {
+      "id": "slot.ruler.one",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 594.0,
+        "y1": 138.0,
+        "x2": 594.0,
+        "y2": 146.0
+      }
+    },
+    {
+      "id": "slot.option.1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "① ㄱ, ㄴ, ㄷ",
+        "style_role": "answer_choice",
+        "x": 18.0,
+        "y": 230.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.option.2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "② ㄴ, ㄷ, ㄱ",
+        "style_role": "answer_choice",
+        "x": 274.0,
+        "y": 230.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.option.3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "③ ㄷ, ㄱ, ㄴ",
+        "style_role": "answer_choice",
+        "x": 602.0,
+        "y": 230.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.option.4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "④ ㄱ, ㄷ, ㄴ",
+        "style_role": "answer_choice",
+        "x": 18.0,
+        "y": 272.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.option.5",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "⑤ ㄴ, ㄱ, ㄷ",
+        "style_role": "answer_choice",
+        "x": 274.0,
+        "y": 272.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.num",
+    "slot.stem",
+    "slot.g1",
+    "slot.g2",
+    "slot.g3",
+    "region.diagram",
+    "slot.box",
+    "slot.lab.g1",
+    "slot.lab.g2",
+    "slot.lab.g3",
+    "slot.circle.main",
+    "slot.dot.center",
+    "slot.dot.inner",
+    "slot.point.mid",
+    "slot.ring.mid",
+    "slot.compass.left",
+    "slot.compass.right",
+    "slot.ruler",
+    "slot.ruler.zero",
+    "slot.ruler.one",
+    "slot.option.1",
+    "slot.option.2",
+    "slot.option.3",
+    "slot.option.4",
+    "slot.option.5"
+  ]
+}

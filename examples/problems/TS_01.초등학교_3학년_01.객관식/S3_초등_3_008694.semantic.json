@@ -1,0 +1,104 @@
+{
+  "problem_id": "S3_초등_3_008694",
+  "problem_type": "circle_diameter_matching",
+  "metadata": {
+    "title": "원의 지름",
+    "tags": [],
+    "instruction": "㉠, ㉡, ㉢에 들어갈 알맞은 것을 고르세요.",
+    "question": "원의 지름과 길이를 보고 알맞은 내용을 고르는 문제",
+    "required_layout_ids": [
+      "slot.circle",
+      "slot.line.ㄴㅁ",
+      "slot.line.ㄷㅂ",
+      "slot.line.ㄹㅅ",
+      "slot.line.ㅁㄷ",
+      "slot.line.ㄱㅇ",
+      "slot.line.ㅇㅅ",
+      "slot.pt.ㅇ",
+      "slot.table.border",
+      "slot.table.v1",
+      "slot.table.v2",
+      "slot.table.v3",
+      "slot.table.h1",
+      "slot.blank.box"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.circle",
+        "type": "circle"
+      },
+      {
+        "id": "obj.center",
+        "type": "point",
+        "label": "ㅇ",
+        "role": "center"
+      },
+      {
+        "id": "obj.segment.nb",
+        "type": "segment",
+        "label": "선분 ㄴㅁ"
+      },
+      {
+        "id": "obj.segment.db",
+        "type": "segment",
+        "label": "선분 ㄷㅂ"
+      },
+      {
+        "id": "obj.segment.ls",
+        "type": "segment",
+        "label": "선분 ㄹㅅ"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.circle",
+          "obj.center",
+          "obj.segment.nb",
+          "obj.segment.db",
+          "obj.segment.ls"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.diameter.same_length",
+          "rel.diameter.passes_center"
+        ]
+      },
+      "plan": {
+        "method": "identify_diameter_and_compare_length",
+        "description": "원 위의 두 점을 이으면서 중심을 지나는 선분을 지름으로 보고, 같은 원에서는 지름의 길이가 같다는 점을 이용한다."
+      },
+      "execute": {
+        "expected_operations": [
+          "find_diameter_segments",
+          "compare_lengths",
+          "match_blank_answers"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "center_crossing_check",
+          "equal_diameter_length_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "multiple_choice_blank_completion",
+      "description": "㉠, ㉡, ㉢에 들어갈 알맞은 것"
+    },
+    "value": 4,
+    "unit": ""
+  }
+}

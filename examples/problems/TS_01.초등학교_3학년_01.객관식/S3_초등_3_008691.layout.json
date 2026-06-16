@@ -1,0 +1,449 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008691",
+  "title": "원의 반지름과 지름",
+  "canvas": {
+    "width": 950,
+    "height": 410,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.qbox",
+        "slot.qnum",
+        "slot.qtext1",
+        "slot.qtext2",
+        "slot.lb.ga_text",
+        "slot.lb.na_text",
+        "slot.lb.da_text"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.circle",
+        "slot.pt.center",
+        "slot.pt.pink",
+        "slot.lb.ga",
+        "slot.lb.na",
+        "slot.lb.da",
+        "slot.line.a",
+        "slot.line.b",
+        "slot.line.c",
+        "slot.line.d",
+        "slot.line.e",
+        "slot.line.f",
+        "slot.line.g",
+        "slot.line.h",
+        "slot.line.i",
+        "slot.line.j",
+        "slot.line.k",
+        "slot.line.l",
+        "slot.lb.guide1",
+        "slot.lb.guide2",
+        "slot.lb.guide3",
+        "slot.lb.o"
+      ]
+    },
+    {
+      "id": "region.choice",
+      "role": "choice",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice"
+      ]
+    },
+    {
+      "id": "region.footer",
+      "role": "footer",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.qbox",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 18.0,
+        "y": 20.0,
+        "width": 12.0,
+        "height": 12.0
+      }
+    },
+    {
+      "id": "slot.qnum",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "80.",
+        "style_role": "question",
+        "x": 34.0,
+        "y": 35.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.qtext1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "원의 반지름과 지름을 나타내는 선분을 각각 찾아 보세",
+        "style_role": "question",
+        "x": 78.0,
+        "y": 35.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.qtext2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "요.",
+        "style_role": "question",
+        "x": 41.0,
+        "y": 68.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.circle",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 521.0,
+        "cy": 168.0,
+        "r": 74.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.line.a",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 521.0,
+        "y1": 94.0,
+        "x2": 445.0,
+        "y2": 168.0
+      }
+    },
+    {
+      "id": "slot.line.b",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 521.0,
+        "y1": 94.0,
+        "x2": 521.0,
+        "y2": 242.0
+      }
+    },
+    {
+      "id": "slot.line.c",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 521.0,
+        "y1": 168.0,
+        "x2": 596.0,
+        "y2": 168.0
+      }
+    },
+    {
+      "id": "slot.line.d",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 448.0,
+        "y1": 166.0,
+        "x2": 521.0,
+        "y2": 94.0
+      }
+    },
+    {
+      "id": "slot.line.e",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 521.0,
+        "y1": 168.0,
+        "x2": 521.0,
+        "y2": 94.0
+      }
+    },
+    {
+      "id": "slot.line.f",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 521.0,
+        "y1": 168.0,
+        "x2": 521.0,
+        "y2": 242.0
+      }
+    },
+    {
+      "id": "slot.line.g",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 521.0,
+        "y1": 168.0,
+        "x2": 596.0,
+        "y2": 168.0
+      }
+    },
+    {
+      "id": "slot.line.h",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 445.0,
+        "y1": 168.0,
+        "x2": 521.0,
+        "y2": 94.0
+      }
+    },
+    {
+      "id": "slot.line.i",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 448.0,
+        "y1": 168.0,
+        "x2": 521.0,
+        "y2": 242.0
+      }
+    },
+    {
+      "id": "slot.line.j",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 521.0,
+        "y1": 94.0,
+        "x2": 521.0,
+        "y2": 242.0
+      }
+    },
+    {
+      "id": "slot.line.k",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 445.0,
+        "y1": 168.0,
+        "x2": 521.0,
+        "y2": 94.0
+      }
+    },
+    {
+      "id": "slot.line.l",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 521.0,
+        "y1": 168.0,
+        "x2": 521.0,
+        "y2": 242.0
+      }
+    },
+    {
+      "id": "slot.pt.center",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 521.0,
+        "cy": 168.0,
+        "r": 3.8,
+        "fill": "#ff4da6"
+      }
+    },
+    {
+      "id": "slot.pt.pink",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 521.0,
+        "cy": 168.0,
+        "r": 1.8,
+        "fill": "#ff4da6"
+      }
+    },
+    {
+      "id": "slot.lb.o",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "O",
+        "style_role": "label",
+        "x": 528.0,
+        "y": 185.0,
+        "font_size": 24
+      }
+    },
+    {
+      "id": "slot.lb.ga",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 484.0,
+        "cy": 119.0,
+        "r": 11.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.lb.ga_text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄱ",
+        "style_role": "label",
+        "x": 479.0,
+        "y": 124.0,
+        "font_size": 22
+      }
+    },
+    {
+      "id": "slot.lb.na",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 494.0,
+        "cy": 174.0,
+        "r": 11.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.lb.na_text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄴ",
+        "style_role": "label",
+        "x": 489.0,
+        "y": 179.0,
+        "font_size": 22
+      }
+    },
+    {
+      "id": "slot.lb.da",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 561.0,
+        "cy": 147.0,
+        "r": 11.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.lb.da_text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄷ",
+        "style_role": "label",
+        "x": 556.0,
+        "y": 152.0,
+        "font_size": 22
+      }
+    },
+    {
+      "id": "slot.lb.guide1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 487.0,
+        "y1": 112.0,
+        "x2": 504.0,
+        "y2": 95.0
+      }
+    },
+    {
+      "id": "slot.lb.guide2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 490.0,
+        "y1": 180.0,
+        "x2": 482.0,
+        "y2": 198.0
+      }
+    },
+    {
+      "id": "slot.lb.guide3",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 565.0,
+        "y1": 140.0,
+        "x2": 582.0,
+        "y2": 139.0
+      }
+    },
+    {
+      "id": "slot.choice",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "원의 반지름 (ㄱ, ㄴ, ㄷ), 원의 지름 (ㄱ, ㄴ, ㄷ)",
+        "style_role": "question",
+        "x": 180.0,
+        "y": 294.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.qbox",
+    "slot.qnum",
+    "slot.qtext1",
+    "slot.qtext2",
+    "slot.lb.ga_text",
+    "slot.lb.na_text",
+    "slot.lb.da_text",
+    "region.diagram",
+    "slot.circle",
+    "slot.pt.center",
+    "slot.pt.pink",
+    "slot.lb.ga",
+    "slot.lb.na",
+    "slot.lb.da",
+    "slot.line.a",
+    "slot.line.b",
+    "slot.line.c",
+    "slot.line.d",
+    "slot.line.e",
+    "slot.line.f",
+    "slot.line.g",
+    "slot.line.h",
+    "slot.line.i",
+    "slot.line.j",
+    "slot.line.k",
+    "slot.line.l",
+    "slot.lb.guide1",
+    "slot.lb.guide2",
+    "slot.lb.guide3",
+    "slot.lb.o",
+    "region.choice",
+    "slot.choice",
+    "region.footer"
+  ]
+}

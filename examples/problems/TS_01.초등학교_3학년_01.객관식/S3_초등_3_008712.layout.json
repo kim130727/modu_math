@@ -1,0 +1,279 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008712",
+  "title": "원의 지름을 나타내는 선분",
+  "canvas": {
+    "width": 960,
+    "height": 360,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q1"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.circle.outer",
+        "slot.pt.center",
+        "slot.pt.giyeok",
+        "slot.pt.nieun",
+        "slot.pt.digeut",
+        "slot.pt.rieul",
+        "slot.pt.ieung",
+        "slot.line.kr",
+        "slot.line.nl",
+        "slot.line.od",
+        "slot.lb.giyeok",
+        "slot.lb.nieun",
+        "slot.lb.digeut",
+        "slot.lb.rieul",
+        "slot.lb.ieung"
+      ]
+    },
+    {
+      "id": "region.choice",
+      "role": "choice",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice"
+      ]
+    },
+    {
+      "id": "region.answer",
+      "role": "answer",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "10. 원에서 원의 지름을 나타내는 선분을 선택하세요.",
+        "style_role": "question",
+        "x": 20.0,
+        "y": 30.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.circle.outer",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 490.0,
+        "cy": 150.0,
+        "r": 84.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.line.kr",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 468.0,
+        "y1": 68.0,
+        "x2": 570.0,
+        "y2": 127.0
+      }
+    },
+    {
+      "id": "slot.line.nl",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 405.0,
+        "y1": 178.0,
+        "x2": 570.0,
+        "y2": 127.0
+      }
+    },
+    {
+      "id": "slot.line.od",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 490.0,
+        "y1": 150.0,
+        "x2": 530.0,
+        "y2": 228.0
+      }
+    },
+    {
+      "id": "slot.pt.center",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 490.0,
+        "cy": 150.0,
+        "r": 4.0,
+        "fill": "#d81b60"
+      }
+    },
+    {
+      "id": "slot.pt.giyeok",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 472.0,
+        "cy": 68.0,
+        "r": 3.8,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.pt.nieun",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 405.0,
+        "cy": 178.0,
+        "r": 3.8,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.pt.digeut",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 530.0,
+        "cy": 228.0,
+        "r": 3.8,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.pt.rieul",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 571.0,
+        "cy": 127.0,
+        "r": 3.8,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.pt.ieung",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 490.0,
+        "cy": 118.0,
+        "r": 3.8,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.lb.giyeok",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄱ",
+        "style_role": "label",
+        "x": 458.0,
+        "y": 58.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.lb.nieun",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄴ",
+        "style_role": "label",
+        "x": 384.0,
+        "y": 192.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.lb.digeut",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄷ",
+        "style_role": "label",
+        "x": 524.0,
+        "y": 256.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.lb.rieul",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄹ",
+        "style_role": "label",
+        "x": 580.0,
+        "y": 132.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.lb.ieung",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㅇ",
+        "style_role": "label",
+        "x": 484.0,
+        "y": 109.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "( 선분 ㄱㄹ , 선분 ㄴㄹ , 선분 ㅇㄷ )",
+        "style_role": "choice",
+        "x": 470.0,
+        "y": 266.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q1",
+    "region.diagram",
+    "slot.circle.outer",
+    "slot.pt.center",
+    "slot.pt.giyeok",
+    "slot.pt.nieun",
+    "slot.pt.digeut",
+    "slot.pt.rieul",
+    "slot.pt.ieung",
+    "slot.line.kr",
+    "slot.line.nl",
+    "slot.line.od",
+    "slot.lb.giyeok",
+    "slot.lb.nieun",
+    "slot.lb.digeut",
+    "slot.lb.rieul",
+    "slot.lb.ieung",
+    "region.choice",
+    "slot.choice",
+    "region.answer"
+  ]
+}

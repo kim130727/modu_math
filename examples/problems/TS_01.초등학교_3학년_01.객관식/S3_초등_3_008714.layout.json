@@ -1,0 +1,221 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008714",
+  "title": "원의 중심",
+  "canvas": {
+    "width": 944,
+    "height": 376,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q1",
+        "slot.q2",
+        "slot.q3"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.circle",
+        "slot.tool",
+        "slot.pencil.body",
+        "slot.pencil.tip",
+        "slot.pencil.eraser",
+        "slot.tool.dot1",
+        "slot.tool.dot2",
+        "slot.tool.dot3",
+        "slot.tool.dot4",
+        "slot.tool.dot5"
+      ]
+    },
+    {
+      "id": "region.footer",
+      "role": "footer",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "□ 14. 그림과 같이 띠 종이를 이용하여 원을 그릴 때, 누름 못이 꽂혔던 점을",
+        "style_role": "question",
+        "x": 14.0,
+        "y": 28.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "무엇이라고 할까요?",
+        "style_role": "question",
+        "x": 14.0,
+        "y": 64.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.circle",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 470.0,
+        "cy": 145.0,
+        "r": 72.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.tool",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 436.0,
+        "y": 116.0,
+        "width": 92.0,
+        "height": 22.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.tool.dot1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "•",
+        "style_role": "diagram",
+        "x": 448.0,
+        "y": 135.0,
+        "font_size": 20
+      }
+    },
+    {
+      "id": "slot.tool.dot2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "•",
+        "style_role": "diagram",
+        "x": 468.0,
+        "y": 135.0,
+        "font_size": 20
+      }
+    },
+    {
+      "id": "slot.tool.dot3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "•",
+        "style_role": "diagram",
+        "x": 488.0,
+        "y": 135.0,
+        "font_size": 20
+      }
+    },
+    {
+      "id": "slot.tool.dot4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "•",
+        "style_role": "diagram",
+        "x": 508.0,
+        "y": 135.0,
+        "font_size": 20
+      }
+    },
+    {
+      "id": "slot.tool.dot5",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "•",
+        "style_role": "diagram",
+        "x": 528.0,
+        "y": 135.0,
+        "font_size": 20
+      }
+    },
+    {
+      "id": "slot.pencil.body",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 520.0,
+        "y1": 94.0,
+        "x2": 545.0,
+        "y2": 51.0
+      }
+    },
+    {
+      "id": "slot.pencil.tip",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 545.0,
+        "y1": 51.0,
+        "x2": 550.0,
+        "y2": 57.0
+      }
+    },
+    {
+      "id": "slot.pencil.eraser",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 517.0,
+        "y1": 98.0,
+        "x2": 522.0,
+        "y2": 103.0
+      }
+    },
+    {
+      "id": "slot.q3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "원의 ( 중심 , 반지름 , 지름 )",
+        "style_role": "question",
+        "x": 587.0,
+        "y": 264.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q1",
+    "slot.q2",
+    "slot.q3",
+    "region.diagram",
+    "slot.circle",
+    "slot.tool",
+    "slot.pencil.body",
+    "slot.pencil.tip",
+    "slot.pencil.eraser",
+    "slot.tool.dot1",
+    "slot.tool.dot2",
+    "slot.tool.dot3",
+    "slot.tool.dot4",
+    "slot.tool.dot5",
+    "region.footer"
+  ]
+}

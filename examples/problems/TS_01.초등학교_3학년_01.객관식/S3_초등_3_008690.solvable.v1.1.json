@@ -1,0 +1,73 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008690",
+  "problem_type": "도형_원",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "원의 반지름과 지름에 해당하는 기호",
+    "target_ticks": 0,
+    "target_count": 2,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.segment.ga",
+      "value": {
+        "symbol": "ㄱ"
+      }
+    },
+    {
+      "ref": "obj.segment.na",
+      "value": {
+        "symbol": "ㄴ"
+      }
+    },
+    {
+      "ref": "obj.segment.da",
+      "value": {
+        "symbol": "ㄷ"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "symbol_selection"
+  },
+  "method": "도형 분류",
+  "plan": [
+    "원 안의 선분들을 보고 반지름과 지름의 정의에 맞는 기호를 찾는다.",
+    "정답이 화면에 인쇄되어 있어도 의미 정보는 분류 관계로만 유지한다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "원의 반지름에 해당하는 기호를 찾는다.",
+      "value": "ㄴ"
+    },
+    {
+      "id": "step.2",
+      "expr": "원의 지름에 해당하는 기호를 찾는다.",
+      "value": "ㄱ"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "반지름과 지름의 분류가 서로 다르게 선택되었는지 확인",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "symbol_selection",
+      "description": "원의 반지름과 지름에 해당하는 기호"
+    },
+    "value": 0,
+    "unit": ""
+  }
+}

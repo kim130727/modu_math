@@ -1,0 +1,359 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008693",
+  "title": "원의 중심을 고르기",
+  "canvas": {
+    "width": 960.0,
+    "height": 320.0,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q.no",
+        "slot.q1",
+        "slot.q2",
+        "slot.num.1.text",
+        "slot.num.2.text",
+        "slot.num.3.text",
+        "slot.num.4.text",
+        "slot.num.5.text"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.band",
+        "slot.dot.1",
+        "slot.dot.2",
+        "slot.dot.3",
+        "slot.dot.4",
+        "slot.dot.5",
+        "slot.num.1",
+        "slot.num.2",
+        "slot.num.3",
+        "slot.num.4",
+        "slot.num.5",
+        "slot.pin.head",
+        "slot.pin.body",
+        "slot.pencil.body",
+        "slot.pencil.tip"
+      ]
+    },
+    {
+      "id": "region.answer",
+      "role": "answer",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q.no",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "□ 82.",
+        "style_role": "question",
+        "x": 14.0,
+        "y": 28.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "그림과 같이 띠 종이를 누름 못으로 고정한 후 연필을 구멍에 넣어 원을",
+        "style_role": "question",
+        "x": 54.0,
+        "y": 28.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "그리려고 합니다. 원의 중심이 되는 곳을 선택하세요.",
+        "style_role": "question",
+        "x": 54.0,
+        "y": 60.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.band",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 330.0,
+        "y": 112.0,
+        "width": 360.0,
+        "height": 66.0,
+        "stroke": "#D7CFA8",
+        "stroke_width": 1.0,
+        "fill": "#F6F0D3"
+      }
+    },
+    {
+      "id": "slot.dot.1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 360.0,
+        "cy": 150.0,
+        "r": 3.4,
+        "fill": "#D8C89A"
+      }
+    },
+    {
+      "id": "slot.dot.2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 430.0,
+        "cy": 150.0,
+        "r": 3.4,
+        "fill": "#D8C89A"
+      }
+    },
+    {
+      "id": "slot.dot.3",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 500.0,
+        "cy": 150.0,
+        "r": 3.4,
+        "fill": "#D8C89A"
+      }
+    },
+    {
+      "id": "slot.dot.4",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 570.0,
+        "cy": 150.0,
+        "r": 3.4,
+        "fill": "#D8C89A"
+      }
+    },
+    {
+      "id": "slot.dot.5",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 640.0,
+        "cy": 150.0,
+        "r": 3.4,
+        "fill": "#D8C89A"
+      }
+    },
+    {
+      "id": "slot.num.1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 360.0,
+        "cy": 170.0,
+        "r": 10.0,
+        "fill": "#FFFFFF"
+      }
+    },
+    {
+      "id": "slot.num.2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 430.0,
+        "cy": 170.0,
+        "r": 10.0,
+        "fill": "#FFFFFF"
+      }
+    },
+    {
+      "id": "slot.num.3",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 500.0,
+        "cy": 170.0,
+        "r": 10.0,
+        "fill": "#FFFFFF"
+      }
+    },
+    {
+      "id": "slot.num.4",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 570.0,
+        "cy": 170.0,
+        "r": 10.0,
+        "fill": "#FFFFFF"
+      }
+    },
+    {
+      "id": "slot.num.5",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 640.0,
+        "cy": 170.0,
+        "r": 10.0,
+        "fill": "#FFFFFF"
+      }
+    },
+    {
+      "id": "slot.num.1.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "1",
+        "style_role": "label",
+        "x": 355.0,
+        "y": 176.0,
+        "font_size": 20
+      }
+    },
+    {
+      "id": "slot.num.2.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "2",
+        "style_role": "label",
+        "x": 425.0,
+        "y": 176.0,
+        "font_size": 20
+      }
+    },
+    {
+      "id": "slot.num.3.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "3",
+        "style_role": "label",
+        "x": 495.0,
+        "y": 176.0,
+        "font_size": 20
+      }
+    },
+    {
+      "id": "slot.num.4.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "4",
+        "style_role": "label",
+        "x": 565.0,
+        "y": 176.0,
+        "font_size": 20
+      }
+    },
+    {
+      "id": "slot.num.5.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "5",
+        "style_role": "label",
+        "x": 635.0,
+        "y": 176.0,
+        "font_size": 20
+      }
+    },
+    {
+      "id": "slot.pin.body",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 430.0,
+        "y1": 82.0,
+        "x2": 430.0,
+        "y2": 128.0,
+        "stroke": "#8E8E8E",
+        "stroke_width": 6.0
+      }
+    },
+    {
+      "id": "slot.pin.head",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 430.0,
+        "cy": 82.0,
+        "r": 8.0,
+        "fill": "#C8C8C8"
+      }
+    },
+    {
+      "id": "slot.pencil.body",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 640.0,
+        "y1": 62.0,
+        "x2": 640.0,
+        "y2": 126.0,
+        "stroke": "#F38B82",
+        "stroke_width": 8.0
+      }
+    },
+    {
+      "id": "slot.pencil.tip",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 640.0,
+        "y1": 126.0,
+        "x2": 640.0,
+        "y2": 134.0,
+        "stroke": "#7A4A34",
+        "stroke_width": 2.0
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q.no",
+    "slot.q1",
+    "slot.q2",
+    "slot.num.1.text",
+    "slot.num.2.text",
+    "slot.num.3.text",
+    "slot.num.4.text",
+    "slot.num.5.text",
+    "region.diagram",
+    "slot.band",
+    "slot.dot.1",
+    "slot.dot.2",
+    "slot.dot.3",
+    "slot.dot.4",
+    "slot.dot.5",
+    "slot.num.1",
+    "slot.num.2",
+    "slot.num.3",
+    "slot.num.4",
+    "slot.num.5",
+    "slot.pin.head",
+    "slot.pin.body",
+    "slot.pencil.body",
+    "slot.pencil.tip",
+    "region.answer"
+  ]
+}
