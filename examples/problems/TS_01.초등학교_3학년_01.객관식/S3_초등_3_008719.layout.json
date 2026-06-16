@@ -1,0 +1,335 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008719",
+  "title": "원의 중심이 되는 곳",
+  "canvas": {
+    "width": 940,
+    "height": 370,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.header",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.no",
+        "slot.q1",
+        "slot.q2"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.band",
+        "slot.pt1",
+        "slot.pt2",
+        "slot.pt3",
+        "slot.pt4",
+        "slot.pt5",
+        "slot.pin_head",
+        "slot.pin_tip",
+        "slot.pencil_body",
+        "slot.pencil_tip",
+        "slot.pencil_eraser",
+        "slot.pin_body",
+        "slot.lb1",
+        "slot.lb2",
+        "slot.lb3",
+        "slot.lb4",
+        "slot.lb5"
+      ]
+    },
+    {
+      "id": "region.footer",
+      "role": "answer",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.no",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "□ 22.",
+        "style_role": "question",
+        "x": 8.0,
+        "y": 36.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "그림과 같이 띠 종이를 나 못으로 고정한 후 연필을 구멍에 넣어 원을",
+        "style_role": "question",
+        "x": 56.0,
+        "y": 36.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "그리려고 합니다. 원의 중심이 되는 곳을 선택하세요.",
+        "style_role": "question",
+        "x": 56.0,
+        "y": 74.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.band",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 268.0,
+        "y": 124.0,
+        "width": 436.0,
+        "height": 104.0,
+        "stroke": "#c9bf93",
+        "stroke_width": 1.2,
+        "fill": "#f3efcf"
+      }
+    },
+    {
+      "id": "slot.pt1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 320.0,
+        "cy": 164.0,
+        "r": 4.0,
+        "fill": "#d6c79a"
+      }
+    },
+    {
+      "id": "slot.pt2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 408.0,
+        "cy": 164.0,
+        "r": 4.0,
+        "fill": "#d6c79a"
+      }
+    },
+    {
+      "id": "slot.pt3",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 500.0,
+        "cy": 164.0,
+        "r": 4.0,
+        "fill": "#d6c79a"
+      }
+    },
+    {
+      "id": "slot.pt4",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 592.0,
+        "cy": 164.0,
+        "r": 4.0,
+        "fill": "#d6c79a"
+      }
+    },
+    {
+      "id": "slot.pt5",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 676.0,
+        "cy": 164.0,
+        "r": 4.0,
+        "fill": "#d6c79a"
+      }
+    },
+    {
+      "id": "slot.lb1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "①",
+        "style_role": "diagram",
+        "x": 312.0,
+        "y": 192.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.lb2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "②",
+        "style_role": "diagram",
+        "x": 400.0,
+        "y": 192.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.lb3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "③",
+        "style_role": "diagram",
+        "x": 492.0,
+        "y": 192.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.lb4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "④",
+        "style_role": "diagram",
+        "x": 584.0,
+        "y": 192.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.lb5",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "⑤",
+        "style_role": "diagram",
+        "x": 668.0,
+        "y": 192.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.pin_body",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 500.0,
+        "y1": 114.0,
+        "x2": 500.0,
+        "y2": 154.0,
+        "stroke": "#8e8e8e",
+        "stroke_width": 5.0
+      }
+    },
+    {
+      "id": "slot.pin_head",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 500.0,
+        "cy": 108.0,
+        "r": 8.0,
+        "fill": "#d8d8d8"
+      }
+    },
+    {
+      "id": "slot.pin_tip",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 500.0,
+        "cy": 160.0,
+        "r": 4.0,
+        "fill": "#a7a7a7"
+      }
+    },
+    {
+      "id": "slot.pencil_body",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 664.0,
+        "y": 78.0,
+        "width": 12.0,
+        "height": 80.0,
+        "stroke": "#ee7777",
+        "stroke_width": 1.0,
+        "fill": "#ffb5b5"
+      }
+    },
+    {
+      "id": "slot.pencil_tip",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            664.0,
+            158.0
+          ],
+          [
+            676.0,
+            158.0
+          ],
+          [
+            670.0,
+            172.0
+          ]
+        ],
+        "stroke": "#c49b62",
+        "stroke_width": 1.0,
+        "fill": "#e6c08b"
+      }
+    },
+    {
+      "id": "slot.pencil_eraser",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 664.0,
+        "y": 68.0,
+        "width": 12.0,
+        "height": 10.0,
+        "stroke": "#b98160",
+        "stroke_width": 1.0,
+        "fill": "#d9a27f"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.header",
+    "slot.no",
+    "slot.q1",
+    "slot.q2",
+    "region.diagram",
+    "slot.band",
+    "slot.pt1",
+    "slot.pt2",
+    "slot.pt3",
+    "slot.pt4",
+    "slot.pt5",
+    "slot.pin_head",
+    "slot.pin_tip",
+    "slot.pencil_body",
+    "slot.pencil_tip",
+    "slot.pencil_eraser",
+    "slot.pin_body",
+    "slot.lb1",
+    "slot.lb2",
+    "slot.lb3",
+    "slot.lb4",
+    "slot.lb5",
+    "region.footer"
+  ]
+}

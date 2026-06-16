@@ -1,0 +1,86 @@
+{
+  "problem_id": "S3_초등_3_008718",
+  "problem_type": "도형_판별",
+  "metadata": {
+    "title": "원의 중심을 옮겨 가며 그린 모양이 아닌 것",
+    "tags": [],
+    "question": "원의 중심을 옮겨 가며 그린 모양이 아닌 것을 찾아 기호를 고르세요.",
+    "required_layout_ids": [
+      "slot.q_no_box",
+      "slot.box",
+      "slot.choice.ul.mark",
+      "slot.choice.ul.diagram.p1",
+      "slot.choice.ul.diagram.p2",
+      "slot.choice.ul.diagram.p3",
+      "slot.choice.ur.mark",
+      "slot.choice.ur.diagram.p1",
+      "slot.choice.ur.diagram.p2",
+      "slot.choice.ur.diagram.p3",
+      "slot.choice.ll.mark",
+      "slot.choice.ll.diagram.p1",
+      "slot.choice.ll.diagram.p2",
+      "slot.choice.ll.diagram.p3",
+      "slot.choice.lr.mark",
+      "slot.choice.lr.diagram.p1",
+      "slot.choice.lr.diagram.p2",
+      "slot.choice.lr.diagram.p3",
+      "slot.answer_mark"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "보기 중에서 원의 중심이 같지 않은 모양을 찾는다."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.options",
+        "type": "choices",
+        "count": 4
+      },
+      {
+        "id": "obj.answer_mark",
+        "type": "marked_choice"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.options"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.compare_center"
+        ]
+      },
+      "plan": {
+        "method": "도형_비교",
+        "description": "각 보기의 원이 같은 중심을 공유하는지, 중심을 옮겨 그린 모양인지 비교한다."
+      },
+      "execute": {
+        "expected_operations": [
+          "compare_circle_centers",
+          "identify_nonmatching_pattern"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "visual_pattern_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "choice_symbol",
+      "description": "원의 중심을 옮겨 가며 그린 모양이 아닌 보기의 기호"
+    },
+    "value": 0,
+    "unit": ""
+  }
+}

@@ -1,0 +1,109 @@
+{
+  "problem_id": "S3_초등_3_008717",
+  "problem_type": "pattern_identification",
+  "metadata": {
+    "title": "원의 규칙을 바르게 말한 사람",
+    "tags": [],
+    "question": "규칙에 따라 그린 원의 규칙을 바르게 말한 사람을 선택하는 문제",
+    "required_layout_ids": [
+      "slot.grid.v1",
+      "slot.grid.v2",
+      "slot.grid.v3",
+      "slot.grid.v4",
+      "slot.grid.v5",
+      "slot.grid.v6",
+      "slot.grid.v7",
+      "slot.grid.v8",
+      "slot.grid.v9",
+      "slot.grid.v10",
+      "slot.grid.v11",
+      "slot.grid.v12",
+      "slot.grid.h1",
+      "slot.grid.h2",
+      "slot.grid.h3",
+      "slot.grid.h4",
+      "slot.grid.h5",
+      "slot.grid.h6",
+      "slot.grid.h7",
+      "slot.grid.h8",
+      "slot.grid.h9",
+      "slot.grid.h10",
+      "slot.grid.h11",
+      "slot.grid.h12",
+      "slot.circle1",
+      "slot.circle2",
+      "slot.circle3",
+      "slot.pt.center",
+      "slot.box"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "그린 규칙을 바르게 말한 사람을 선택하세요."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.circle_set",
+        "type": "circle_pattern",
+        "description": "같은 중심을 기준으로 반복되는 원들"
+      },
+      {
+        "id": "obj.jungeun_statement",
+        "type": "statement",
+        "speaker": "정은",
+        "description": "원의 중심이 모두 다르고 반지름이 모두 1칸씩 늘어난다고 말함"
+      },
+      {
+        "id": "obj.minsu_statement",
+        "type": "statement",
+        "speaker": "민수",
+        "description": "원의 중심이 모두 같고 반지름이 모두 2칸씩 늘어난다고 말함"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.circle_set",
+          "obj.jungeun_statement",
+          "obj.minsu_statement"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.center_same",
+          "rel.radius_growth"
+        ]
+      },
+      "plan": {
+        "method": "pattern_matching",
+        "description": "그림의 원이 같은 중심인지와 반지름이 일정한 칸수씩 늘어나는지 비교한다."
+      },
+      "execute": {
+        "expected_operations": [
+          "compare_centers",
+          "compare_radius_growth",
+          "match_statement_to_pattern"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "statement_consistency_check",
+          "pattern_rule_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "person_choice",
+      "description": "그린 규칙을 바르게 말한 사람"
+    },
+    "value": 2,
+    "unit": ""
+  }
+}

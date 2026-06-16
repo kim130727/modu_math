@@ -1,0 +1,389 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008718",
+  "title": "원의 중심을 옮겨 가며 그린 모양이 아닌 것",
+  "canvas": {
+    "width": 940,
+    "height": 425,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.header",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q_no_box",
+        "slot.choice.ul.diagram.p1",
+        "slot.choice.ul.diagram.p2",
+        "slot.choice.ul.diagram.p3",
+        "slot.choice.ur.diagram.p1",
+        "slot.choice.ur.diagram.p2",
+        "slot.choice.ur.diagram.p3",
+        "slot.choice.ll.diagram.p1",
+        "slot.choice.ll.diagram.p2",
+        "slot.choice.ll.diagram.p3",
+        "slot.choice.lr.diagram.p1",
+        "slot.choice.lr.diagram.p2",
+        "slot.choice.lr.diagram.p3",
+        "slot.q_no",
+        "slot.q_text",
+        "slot.choice.ul.mark_text",
+        "slot.choice.ur.mark_text",
+        "slot.choice.ll.mark_text",
+        "slot.choice.lr.mark_text"
+      ]
+    },
+    {
+      "id": "region.choice_box",
+      "role": "body",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.box",
+        "slot.choice.ul.mark",
+        "slot.choice.ur.mark",
+        "slot.choice.ll.mark",
+        "slot.choice.lr.mark",
+        "slot.choice.list"
+      ]
+    },
+    {
+      "id": "region.answer",
+      "role": "footer",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.answer_mark"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q_no_box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 11.0,
+        "y": 13.0,
+        "width": 15.0,
+        "height": 15.0
+      }
+    },
+    {
+      "id": "slot.q_no",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "21.",
+        "style_role": "question",
+        "x": 39.0,
+        "y": 28.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q_text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "원의 중심을 옮겨 가며 그린 모양이 아닌 것을 찾아 기호를 고르세요.",
+        "style_role": "question",
+        "x": 76.0,
+        "y": 27.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 243.0,
+        "y": 43.0,
+        "width": 476.0,
+        "height": 245.0
+      }
+    },
+    {
+      "id": "slot.choice.ul.mark",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 284.0,
+        "cy": 89.0,
+        "r": 11.5,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.choice.ul.mark_text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄱ",
+        "style_role": "label",
+        "x": 278.0,
+        "y": 97.0,
+        "font_size": 24
+      }
+    },
+    {
+      "id": "slot.choice.ul.diagram.p1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 339.0,
+        "cy": 98.0,
+        "r": 24.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.choice.ul.diagram.p2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 370.0,
+        "cy": 98.0,
+        "r": 24.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.choice.ul.diagram.p3",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 355.0,
+        "cy": 122.0,
+        "r": 24.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.choice.ur.mark",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 512.0,
+        "cy": 89.0,
+        "r": 11.5,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.choice.ur.mark_text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄴ",
+        "style_role": "label",
+        "x": 506.0,
+        "y": 97.0,
+        "font_size": 24
+      }
+    },
+    {
+      "id": "slot.choice.ur.diagram.p1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 562.0,
+        "cy": 98.0,
+        "r": 27.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.choice.ur.diagram.p2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 586.0,
+        "cy": 98.0,
+        "r": 27.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.choice.ur.diagram.p3",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 610.0,
+        "cy": 98.0,
+        "r": 27.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.choice.ll.mark",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 284.0,
+        "cy": 180.0,
+        "r": 11.5,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.choice.ll.mark_text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄷ",
+        "style_role": "label",
+        "x": 278.0,
+        "y": 188.0,
+        "font_size": 24
+      }
+    },
+    {
+      "id": "slot.choice.ll.diagram.p1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 354.0,
+        "cy": 196.0,
+        "r": 48.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.choice.ll.diagram.p2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 354.0,
+        "cy": 196.0,
+        "r": 34.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.choice.ll.diagram.p3",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 354.0,
+        "cy": 196.0,
+        "r": 20.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.choice.lr.mark",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 512.0,
+        "cy": 180.0,
+        "r": 11.5,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.choice.lr.mark_text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄹ",
+        "style_role": "label",
+        "x": 506.0,
+        "y": 188.0,
+        "font_size": 24
+      }
+    },
+    {
+      "id": "slot.choice.lr.diagram.p1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 563.0,
+        "cy": 196.0,
+        "r": 43.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.choice.lr.diagram.p2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 563.0,
+        "cy": 196.0,
+        "r": 23.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.choice.lr.diagram.p3",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 563.0,
+        "cy": 214.0,
+        "r": 17.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.choice.list",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "( ㄱ , ㄴ , ㄷ , ㄹ )",
+        "style_role": "body",
+        "x": 686.0,
+        "y": 323.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.answer_mark",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 89.0,
+        "cy": 384.0,
+        "r": 11.5,
+        "fill": "#ffffff"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.header",
+    "slot.q_no_box",
+    "slot.choice.ul.diagram.p1",
+    "slot.choice.ul.diagram.p2",
+    "slot.choice.ul.diagram.p3",
+    "slot.choice.ur.diagram.p1",
+    "slot.choice.ur.diagram.p2",
+    "slot.choice.ur.diagram.p3",
+    "slot.choice.ll.diagram.p1",
+    "slot.choice.ll.diagram.p2",
+    "slot.choice.ll.diagram.p3",
+    "slot.choice.lr.diagram.p1",
+    "slot.choice.lr.diagram.p2",
+    "slot.choice.lr.diagram.p3",
+    "slot.q_no",
+    "slot.q_text",
+    "slot.choice.ul.mark_text",
+    "slot.choice.ur.mark_text",
+    "slot.choice.ll.mark_text",
+    "slot.choice.lr.mark_text",
+    "region.choice_box",
+    "slot.box",
+    "slot.choice.ul.mark",
+    "slot.choice.ur.mark",
+    "slot.choice.ll.mark",
+    "slot.choice.lr.mark",
+    "slot.choice.list",
+    "region.answer",
+    "slot.answer_mark"
+  ]
+}

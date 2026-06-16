@@ -1,0 +1,247 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008721",
+  "title": "도형 판별 문제",
+  "canvas": {
+    "width": 960,
+    "height": 560,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.diagram.circle",
+        "slot.diagram.center",
+        "slot.diagram.line1",
+        "slot.diagram.line2",
+        "slot.diagram.line3",
+        "slot.q1",
+        "slot.diagram.label.ga",
+        "slot.diagram.label.na",
+        "slot.diagram.label.da",
+        "slot.diagram.label.ra",
+        "slot.diagram.label.ma",
+        "slot.diagram.label.sa",
+        "slot.diagram.label.ya",
+        "slot.q2",
+        "slot.choice.o",
+        "slot.choice.x"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "24. 바르게 설명하였으면 ○, 그렇지 않으면 ×를 선택하세요.",
+        "style_role": "question",
+        "x": 18.0,
+        "y": 34.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.diagram.circle",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 471.0,
+        "cy": 161.0,
+        "r": 98.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.diagram.center",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 443.0,
+        "cy": 159.0,
+        "r": 4.0,
+        "fill": "#ff2a8a"
+      }
+    },
+    {
+      "id": "slot.diagram.line1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 421.0,
+        "y1": 74.0,
+        "x2": 421.0,
+        "y2": 258.0
+      }
+    },
+    {
+      "id": "slot.diagram.line2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 447.0,
+        "y1": 74.0,
+        "x2": 447.0,
+        "y2": 259.0
+      }
+    },
+    {
+      "id": "slot.diagram.line3",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 349.0,
+        "y1": 106.0,
+        "x2": 510.0,
+        "y2": 274.0
+      }
+    },
+    {
+      "id": "slot.diagram.label.ga",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄱ",
+        "style_role": "label",
+        "x": 403.0,
+        "y": 56.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.diagram.label.na",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㅅ",
+        "style_role": "label",
+        "x": 434.0,
+        "y": 56.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.diagram.label.da",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄴ",
+        "style_role": "label",
+        "x": 384.0,
+        "y": 98.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.diagram.label.ra",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㅂ",
+        "style_role": "label",
+        "x": 566.0,
+        "y": 150.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.diagram.label.ma",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄷ",
+        "style_role": "label",
+        "x": 389.0,
+        "y": 274.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.diagram.label.sa",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄹ",
+        "style_role": "label",
+        "x": 433.0,
+        "y": 275.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.diagram.label.ya",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㅁ",
+        "style_role": "label",
+        "x": 458.0,
+        "y": 275.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "길이가 가장 긴 선분은 선분 ㅁㅅ이고, 원의 지름은 선분 ㄱㄷ입니다.",
+        "style_role": "question",
+        "x": 48.0,
+        "y": 332.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice.o",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "○",
+        "style_role": "label",
+        "x": 24.0,
+        "y": 374.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice.x",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "×",
+        "style_role": "label",
+        "x": 24.0,
+        "y": 408.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.diagram.circle",
+    "slot.diagram.center",
+    "slot.diagram.line1",
+    "slot.diagram.line2",
+    "slot.diagram.line3",
+    "slot.q1",
+    "slot.diagram.label.ga",
+    "slot.diagram.label.na",
+    "slot.diagram.label.da",
+    "slot.diagram.label.ra",
+    "slot.diagram.label.ma",
+    "slot.diagram.label.sa",
+    "slot.diagram.label.ya",
+    "slot.q2",
+    "slot.choice.o",
+    "slot.choice.x"
+  ]
+}
