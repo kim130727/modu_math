@@ -1,0 +1,78 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_009001",
+  "problem_type": "도형_분류",
+  "inputs": {
+    "total_ticks": 4,
+    "target_label": "정사각형",
+    "target_ticks": 1,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.ga",
+      "value": {
+        "label": "가",
+        "type": "quadrilateral"
+      }
+    },
+    {
+      "ref": "obj.na",
+      "value": {
+        "label": "나",
+        "type": "square"
+      }
+    },
+    {
+      "ref": "obj.da",
+      "value": {
+        "label": "다",
+        "type": "quadrilateral"
+      }
+    },
+    {
+      "ref": "obj.ra",
+      "value": {
+        "label": "라",
+        "type": "quadrilateral"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "symbol_selection"
+  },
+  "method": "shape_classification",
+  "plan": [
+    "각 도형의 성질을 보고 정사각형인지 확인한다.",
+    "정사각형에 해당하는 기호를 고른다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "정사각형의 성질과 도형 비교",
+      "value": "나"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "선택한 기호가 정사각형과 일치하는가",
+      "expected": "나",
+      "actual": "나",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "symbol_selection",
+      "description": "정사각형에 해당하는 기호"
+    },
+    "value": "나",
+    "unit": ""
+  }
+}

@@ -1,99 +1,85 @@
 {
   "schema": "modu.layout.v1",
   "problem_id": "S3_초등_3_008684",
-  "title": "누름 못과 띠 종이",
+  "title": "누름 못과 띠 종이로 원 그리기",
   "canvas": {
-    "width": 940,
-    "height": 594,
+    "width": 939.0,
+    "height": 593.0,
     "coordinate_mode": "logical",
     "background": "#FFFFFF"
   },
   "regions": [
     {
-      "id": "region.header",
+      "id": "region.stem",
       "role": "stem",
       "flow": "absolute",
       "slot_ids": [
-        "slot.qnum",
-        "slot.qtext1",
-        "slot.right.text1",
-        "slot.right.text2",
-        "slot.right.text3",
-        "slot.right.text4"
+        "slot.stem"
       ]
     },
     {
-      "id": "region.left_figure",
-      "role": "diagram",
+      "id": "region.diagram.left",
+      "role": "instruction_diagram_left",
       "flow": "absolute",
       "slot_ids": [
         "slot.left.frame",
         "slot.left.circle",
-        "slot.left.ribbon",
-        "slot.left.pin",
-        "slot.left.hand",
+        "slot.left.strip",
         "slot.left.pencil",
-        "slot.left.arrow1",
-        "slot.left.arrow2",
-        "slot.left.text1",
-        "slot.left.text2"
+        "slot.left.hand.upper",
+        "slot.left.hand.lower",
+        "slot.left.arrow.1",
+        "slot.left.arrow.2",
+        "slot.left.dot.1",
+        "slot.left.dot.2",
+        "slot.left.dot.3",
+        "slot.left.dot.4",
+        "slot.left.text"
       ]
     },
     {
-      "id": "region.right_figure",
-      "role": "diagram",
+      "id": "region.diagram.right",
+      "role": "instruction_diagram_right",
       "flow": "absolute",
       "slot_ids": [
         "slot.right.frame",
         "slot.right.circle",
         "slot.right.center",
-        "slot.right.p1",
-        "slot.right.p2",
-        "slot.right.p3",
-        "slot.right.p4",
-        "slot.right.cross_v",
-        "slot.right.cross_h"
+        "slot.right.dot.top",
+        "slot.right.dot.bottom",
+        "slot.right.dot.left",
+        "slot.right.dot.right",
+        "slot.right.dash.v",
+        "slot.right.dash.h",
+        "slot.right.text"
       ]
     },
     {
       "id": "region.choice",
-      "role": "stem",
+      "role": "choice_statement",
       "flow": "absolute",
       "slot_ids": [
         "slot.choice.frame",
-        "slot.choice.text1",
-        "slot.choice.text2"
+        "slot.choice.text"
       ]
     },
     {
       "id": "region.answer",
-      "role": "answer",
+      "role": "answer_explanation",
       "flow": "absolute",
       "slot_ids": []
     }
   ],
   "slots": [
     {
-      "id": "slot.qnum",
+      "id": "slot.stem",
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "□ 72.  누름 못과 띠 종이를 이용하여 원을 그렸습니다. 그림을 보고 알맞은 말을",
+        "text": "72. 누름 못과 띠 종이를 이용하여 원을 그렸습니다. 그림을 보고 알맞은 말을 선택하세요.",
         "style_role": "question",
-        "x": 20.0,
-        "y": 30.0,
-        "font_size": 28
-      }
-    },
-    {
-      "id": "slot.qtext1",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "선택하세요.",
-        "style_role": "question",
-        "x": 20.0,
-        "y": 66.0,
+        "x": 12.0,
+        "y": 12.0,
         "font_size": 28
       }
     },
@@ -102,11 +88,10 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 240.0,
+        "x": 235.0,
         "y": 122.0,
-        "width": 214.0,
-        "height": 214.0,
-        "fill": "none"
+        "width": 225.0,
+        "height": 215.0
       }
     },
     {
@@ -114,44 +99,20 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 344.0,
-        "cy": 226.0,
-        "r": 103.0,
+        "cx": 331.0,
+        "cy": 230.0,
+        "r": 104.0,
         "fill": "none"
       }
     },
     {
-      "id": "slot.left.ribbon",
-      "kind": "rect",
-      "prompt": "",
-      "content": {
-        "x": 308.0,
-        "y": 142.0,
-        "width": 122.0,
-        "height": 34.0,
-        "fill": "none"
-      }
-    },
-    {
-      "id": "slot.left.pin",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 310.0,
-        "cy": 223.0,
-        "r": 4.0,
-        "fill": "#6AA84F"
-      }
-    },
-    {
-      "id": "slot.left.hand",
+      "id": "slot.left.strip",
       "kind": "path",
       "prompt": "",
       "content": {
-        "d": "M 313.0 290.0 L 333.0 267.0 L 347.0 268.0 L 361.0 286.0 L 360.0 322.0 L 336.0 332.0 L 316.0 312.0 Z",
+        "d": "M 262.0 205.0 L 381.0 110.0",
         "x": 0.0,
-        "y": 0.0,
-        "fill": "none"
+        "y": 0.0
       }
     },
     {
@@ -159,103 +120,104 @@
       "kind": "path",
       "prompt": "",
       "content": {
-        "d": "M 356.0 148.0 L 410.0 185.0",
+        "d": "M 415.0 90.0 L 381.0 147.0",
         "x": 0.0,
-        "y": 0.0,
-        "fill": "none"
+        "y": 0.0
       }
     },
     {
-      "id": "slot.left.arrow1",
+      "id": "slot.left.hand.upper",
       "kind": "path",
       "prompt": "",
       "content": {
-        "d": "M 303.0 210.0 C 250.0 195.0, 236.0 186.0, 214.0 188.0",
+        "d": "M 389.0 117.0 C 402.0 105.0, 420.0 104.0, 438.0 111.0 C 421.0 120.0, 405.0 128.0, 387.0 133.0 C 378.0 128.0, 378.0 120.0, 389.0 117.0 Z",
         "x": 0.0,
-        "y": 0.0,
-        "fill": "none"
+        "y": 0.0
       }
     },
     {
-      "id": "slot.left.arrow2",
+      "id": "slot.left.hand.lower",
       "kind": "path",
       "prompt": "",
       "content": {
-        "d": "M 410.0 206.0 C 434.0 208.0, 451.0 221.0, 452.0 237.0",
+        "d": "M 338.0 315.0 C 323.0 297.0, 318.0 273.0, 320.0 251.0 C 332.0 251.0, 340.0 258.0, 349.0 267.0 C 350.0 286.0, 347.0 301.0, 338.0 315.0 Z",
         "x": 0.0,
-        "y": 0.0,
-        "fill": "none"
+        "y": 0.0
       }
     },
     {
-      "id": "slot.left.text1",
-      "kind": "text",
+      "id": "slot.left.arrow.1",
+      "kind": "path",
       "prompt": "",
       "content": {
-        "text": "① 한쪽 구멍에",
-        "style_role": "diagram",
-        "x": 108.0,
-        "y": 205.0,
-        "font_size": 28
+        "d": "M 274.0 208.0 C 236.0 191.0, 217.0 196.0, 207.0 224.0",
+        "x": 0.0,
+        "y": 0.0
       }
     },
     {
-      "id": "slot.left.text2",
-      "kind": "text",
+      "id": "slot.left.arrow.2",
+      "kind": "path",
       "prompt": "",
       "content": {
-        "text": "누름 못을 꽂아",
-        "style_role": "diagram",
-        "x": 108.0,
-        "y": 235.0,
-        "font_size": 28
+        "d": "M 424.0 168.0 C 444.0 178.0, 458.0 196.0, 460.0 220.0",
+        "x": 0.0,
+        "y": 0.0
       }
     },
     {
-      "id": "slot.right.text1",
-      "kind": "text",
+      "id": "slot.left.dot.1",
+      "kind": "circle",
       "prompt": "",
       "content": {
-        "text": "② 다른 구멍에",
-        "style_role": "diagram",
-        "x": 480.0,
-        "y": 204.0,
-        "font_size": 28
+        "cx": 304.0,
+        "cy": 233.0,
+        "r": 4.0,
+        "fill": "#6BB7FF"
       }
     },
     {
-      "id": "slot.right.text2",
-      "kind": "text",
+      "id": "slot.left.dot.2",
+      "kind": "circle",
       "prompt": "",
       "content": {
-        "text": "연필을 꽂고",
-        "style_role": "diagram",
-        "x": 480.0,
-        "y": 234.0,
-        "font_size": 28
+        "cx": 342.0,
+        "cy": 203.0,
+        "r": 4.0,
+        "fill": "#6BB7FF"
       }
     },
     {
-      "id": "slot.right.text3",
-      "kind": "text",
+      "id": "slot.left.dot.3",
+      "kind": "circle",
       "prompt": "",
       "content": {
-        "text": "한 바퀴 돌려",
-        "style_role": "diagram",
-        "x": 480.0,
-        "y": 264.0,
-        "font_size": 28
+        "cx": 368.0,
+        "cy": 176.0,
+        "r": 4.0,
+        "fill": "#6BB7FF"
       }
     },
     {
-      "id": "slot.right.text4",
+      "id": "slot.left.dot.4",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 397.0,
+        "cy": 150.0,
+        "r": 4.0,
+        "fill": "#6BB7FF"
+      }
+    },
+    {
+      "id": "slot.left.text",
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "원을 그려요.",
-        "style_role": "diagram",
-        "x": 480.0,
-        "y": 294.0,
+        "text": "① 한쪽 구멍에\n   누름 못을 꽂아\n   띠 종이를 고정\n   해요.\n\n② 다른 구멍에\n   연필을 꽂고\n   한 바퀴 돌려\n   원을 그려요.",
+        "style_role": "annotation",
+        "x": 101.0,
+        "y": 209.0,
         "font_size": 28
       }
     },
@@ -264,11 +226,10 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 670.0,
-        "y": 122.0,
-        "width": 190.0,
-        "height": 214.0,
-        "fill": "none"
+        "x": 626.0,
+        "y": 121.0,
+        "width": 227.0,
+        "height": 214.0
       }
     },
     {
@@ -276,10 +237,34 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 765.0,
-        "cy": 226.0,
-        "r": 103.0,
+        "cx": 739.0,
+        "cy": 229.0,
+        "r": 108.0,
         "fill": "none"
+      }
+    },
+    {
+      "id": "slot.right.dash.v",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 739.0,
+        "y1": 121.0,
+        "x2": 739.0,
+        "y2": 335.0,
+        "stroke_dasharray": "5 3"
+      }
+    },
+    {
+      "id": "slot.right.dash.h",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 626.0,
+        "y1": 229.0,
+        "x2": 853.0,
+        "y2": 229.0,
+        "stroke_dasharray": "5 3"
       }
     },
     {
@@ -287,76 +272,66 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 765.0,
-        "cy": 226.0,
+        "cx": 739.0,
+        "cy": 229.0,
         "r": 5.0,
-        "fill": "none"
+        "fill": "#B0B0B0"
       }
     },
     {
-      "id": "slot.right.cross_v",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 765.0,
-        "y1": 122.0,
-        "x2": 765.0,
-        "y2": 336.0
-      }
-    },
-    {
-      "id": "slot.right.cross_h",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 670.0,
-        "y1": 226.0,
-        "x2": 860.0,
-        "y2": 226.0
-      }
-    },
-    {
-      "id": "slot.right.p1",
+      "id": "slot.right.dot.top",
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 765.0,
-        "cy": 122.0,
-        "r": 3.5,
+        "cx": 739.0,
+        "cy": 121.0,
+        "r": 4.0,
         "fill": "#222222"
       }
     },
     {
-      "id": "slot.right.p2",
+      "id": "slot.right.dot.bottom",
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 860.0,
-        "cy": 226.0,
-        "r": 3.5,
+        "cx": 739.0,
+        "cy": 335.0,
+        "r": 4.0,
         "fill": "#222222"
       }
     },
     {
-      "id": "slot.right.p3",
+      "id": "slot.right.dot.left",
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 765.0,
-        "cy": 336.0,
-        "r": 3.5,
+        "cx": 626.0,
+        "cy": 229.0,
+        "r": 4.0,
         "fill": "#222222"
       }
     },
     {
-      "id": "slot.right.p4",
+      "id": "slot.right.dot.right",
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 670.0,
-        "cy": 226.0,
-        "r": 3.5,
+        "cx": 853.0,
+        "cy": 229.0,
+        "r": 4.0,
         "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.right.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "② 다른 구멍에\n   연필을 꽂고\n   한 바퀴 돌려\n   원을 그려요.",
+        "style_role": "annotation",
+        "x": 491.0,
+        "y": 209.0,
+        "font_size": 28
       }
     },
     {
@@ -364,34 +339,21 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 98.0,
+        "x": 104.0,
         "y": 368.0,
-        "width": 734.0,
-        "height": 118.0,
-        "fill": "none"
+        "width": 746.0,
+        "height": 119.0
       }
     },
     {
-      "id": "slot.choice.text1",
+      "id": "slot.choice.text",
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "누름 못이 꽂힌 점에서 원 위에 찍은 4개의 점까지의 길이는",
+        "text": "누름 못이 꽂힌 점에서 원 위에 찍은 4개의 점까지의 길이는\n모두 ( 같습니다, 다릅니다 ).",
         "style_role": "question",
-        "x": 124.0,
-        "y": 414.0,
-        "font_size": 28
-      }
-    },
-    {
-      "id": "slot.choice.text2",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "모두 ( 같습니다, 다릅니다 ).",
-        "style_role": "question",
-        "x": 275.0,
-        "y": 448.0,
+        "x": 123.0,
+        "y": 406.0,
         "font_size": 28
       }
     }
@@ -400,38 +362,36 @@
   "constraints": [],
   "diagrams": [],
   "reading_order": [
-    "region.header",
-    "slot.qnum",
-    "slot.qtext1",
-    "slot.right.text1",
-    "slot.right.text2",
-    "slot.right.text3",
-    "slot.right.text4",
-    "region.left_figure",
+    "region.stem",
+    "slot.stem",
+    "region.diagram.left",
     "slot.left.frame",
     "slot.left.circle",
-    "slot.left.ribbon",
-    "slot.left.pin",
-    "slot.left.hand",
+    "slot.left.strip",
     "slot.left.pencil",
-    "slot.left.arrow1",
-    "slot.left.arrow2",
-    "slot.left.text1",
-    "slot.left.text2",
-    "region.right_figure",
+    "slot.left.hand.upper",
+    "slot.left.hand.lower",
+    "slot.left.arrow.1",
+    "slot.left.arrow.2",
+    "slot.left.dot.1",
+    "slot.left.dot.2",
+    "slot.left.dot.3",
+    "slot.left.dot.4",
+    "slot.left.text",
+    "region.diagram.right",
     "slot.right.frame",
     "slot.right.circle",
     "slot.right.center",
-    "slot.right.p1",
-    "slot.right.p2",
-    "slot.right.p3",
-    "slot.right.p4",
-    "slot.right.cross_v",
-    "slot.right.cross_h",
+    "slot.right.dot.top",
+    "slot.right.dot.bottom",
+    "slot.right.dot.left",
+    "slot.right.dot.right",
+    "slot.right.dash.v",
+    "slot.right.dash.h",
+    "slot.right.text",
     "region.choice",
     "slot.choice.frame",
-    "slot.choice.text1",
-    "slot.choice.text2",
+    "slot.choice.text",
     "region.answer"
   ]
 }

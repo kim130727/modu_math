@@ -6,14 +6,15 @@ This directory is an isolated core copy of `modu_math` focused on the canonical 
 
 Recommended assisted authoring workflow:
 
-`PNG -> vision_draft.md -> refined_draft.md -> Python DSL -> generated artifacts`
+`PNG -> vision_draft.md + vision_structured.json -> refined_draft.md -> Python DSL -> generated artifacts`
 
-- `vision_draft.md` and `refined_draft.md` are optional assistant artifacts, not canonical contracts.
+- `vision_draft.md`, `vision_structured.json`, and `refined_draft.md` are optional assistant artifacts, not canonical contracts.
 - `vision_draft.md` is raw visual observation from a vision LLM.
+- `vision_structured.json` is a sidecar JSON draft with measured image size, approximate normalized boxes, visible text, elements, groups, and DSL hints.
 - `refined_draft.md` is a DSL-ready interpretation refined from that raw draft.
 - `problem.dsl.py` remains the human-editable canonical authoring source.
 - semantic/layout/renderer/solvable JSON and SVG remain generated artifacts.
-- Draft JSON is intentionally not introduced yet; the project currently focuses on `refined_draft.md` because it is easier for humans to review and correct.
+- Draft JSON is transitional and should not be confused with generated semantic/layout/renderer/solvable JSON.
 
 ## Core Contracts
 
@@ -46,6 +47,7 @@ uv run pytest
 
 - `input.png`
 - `vision_draft.md` (optional assistant artifact)
+- `vision_structured.json` (optional assistant artifact)
 - `refined_draft.md` (optional assistant artifact)
 - `problem.dsl.py`
 - `problem.semantic.json`
@@ -63,6 +65,13 @@ uv run python tools/generate_vision_draft.py \
   --out examples/problems/0001/vision_draft.md \
   --force
 
+uv run python tools/generate_vision_structured.py \
+  --image examples/problems/0001/input.png \
+  --problem-id 0001 \
+  --out examples/problems/0001/vision_structured.json \
+  --vision-draft examples/problems/0001/vision_draft.md \
+  --force
+
 uv run python tools/refine_vision_draft.py \
   --vision-draft examples/problems/0001/vision_draft.md \
   --image examples/problems/0001/input.png \
@@ -75,6 +84,7 @@ uv run python tools/generate_dsl_from_refined_draft.py \
   --image examples/problems/0001/input.png \
   --problem-id 0001 \
   --out examples/problems/0001/problem.dsl.py \
+  --vision-structured examples/problems/0001/vision_structured.json \
   --force
 
 uv run python tools/validate_generated_dsl.py \

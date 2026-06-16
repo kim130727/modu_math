@@ -8,14 +8,15 @@ Canonical pipeline:
 
 Recommended assisted authoring workflow:
 
-`PNG -> vision_draft.md -> refined_draft.md -> problem.dsl.py -> semantic JSON -> layout JSON -> renderer JSON -> SVG`
+`PNG -> vision_draft.md + vision_structured.json -> refined_draft.md -> problem.dsl.py -> semantic JSON -> layout JSON -> renderer JSON -> SVG`
 
-- `vision_draft.md` and `refined_draft.md` are optional assistant artifacts, not canonical contracts.
+- `vision_draft.md`, `vision_structured.json`, and `refined_draft.md` are optional assistant artifacts, not canonical contracts.
 - `vision_draft.md`: raw visual observation from a vision LLM.
+- `vision_structured.json`: sidecar JSON draft with measured image size, approximate normalized boxes, visible text, elements, groups, math structure, and DSL hints.
 - `refined_draft.md`: DSL-ready interpretation refined from the raw draft.
 - `problem.dsl.py` remains the human-editable canonical authoring source.
 - semantic/layout/renderer/solvable JSON and SVG remain generated artifacts.
-- Draft JSON is intentionally not introduced yet; the project focuses on `refined_draft.md` first because it is easier for humans to review and correct.
+- Draft JSON is transitional and should not be confused with generated semantic/layout/renderer/solvable JSON.
 
 ## Role Separation
 
@@ -61,6 +62,7 @@ uv run python tools/generate_dsl_from_refined_draft.py \
   --image examples/problems/0001/input.png \
   --problem-id 0001 \
   --out examples/problems/0001/problem.dsl.py \
+  --vision-structured examples/problems/0001/vision_structured.json \
   --force
 ```
 

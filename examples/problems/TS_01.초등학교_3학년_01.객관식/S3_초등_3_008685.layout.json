@@ -3,7 +3,7 @@
   "problem_id": "S3_초등_3_008685",
   "title": "원의 반지름 판단",
   "canvas": {
-    "width": 944.0,
+    "width": 940.0,
     "height": 424.0,
     "coordinate_mode": "logical",
     "background": "#FFFFFF"
@@ -14,17 +14,45 @@
       "role": "stem",
       "flow": "absolute",
       "slot_ids": [
+        "slot.q1",
+        "slot.q2"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
         "slot.circle",
         "slot.center_mark",
-        "slot.center_dot",
-        "slot.answer.circle",
         "slot.radius",
-        "slot.q1",
-        "slot.q2",
-        "slot.q3",
-        "slot.label.giyeok",
+        "slot.label.center",
+        "slot.label.end"
+      ]
+    },
+    {
+      "id": "region.statement",
+      "role": "statement",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.statement"
+      ]
+    },
+    {
+      "id": "region.choices",
+      "role": "choices",
+      "flow": "absolute",
+      "slot_ids": [
         "slot.choice.o",
         "slot.choice.x"
+      ]
+    },
+    {
+      "id": "region.answer_explanation",
+      "role": "answer_explanation",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.answer.blank"
       ]
     }
   ],
@@ -36,8 +64,8 @@
       "content": {
         "text": "□ 74. 다음을 읽고 바르게 설명하였으면 ○표, 그렇지 않으면 ×표를 선택하세",
         "style_role": "question",
-        "x": 16.0,
-        "y": 26.0,
+        "x": 12.2,
+        "y": 19.0,
         "font_size": 28
       }
     },
@@ -48,8 +76,8 @@
       "content": {
         "text": "요.",
         "style_role": "question",
-        "x": 16.0,
-        "y": 58.0,
+        "x": 12.2,
+        "y": 88.0,
         "font_size": 28
       }
     },
@@ -58,9 +86,20 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 490.0,
+        "cx": 505.0,
         "cy": 145.0,
-        "r": 58.0,
+        "r": 55.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.center_mark",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 506.0,
+        "cy": 131.0,
+        "r": 4.0,
         "fill": "none"
       }
     },
@@ -69,55 +108,45 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 490.0,
+        "x1": 506.0,
         "y1": 145.0,
-        "x2": 548.0,
+        "x2": 566.0,
         "y2": 145.0
       }
     },
     {
-      "id": "slot.center_mark",
-      "kind": "circle",
+      "id": "slot.label.center",
+      "kind": "text",
       "prompt": "",
       "content": {
-        "cx": 490.0,
-        "cy": 131.0,
-        "r": 4.5,
-        "fill": "none"
+        "text": "○",
+        "style_role": "label",
+        "x": 501.0,
+        "y": 135.0,
+        "font_size": 28
       }
     },
     {
-      "id": "slot.center_dot",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 490.0,
-        "cy": 146.0,
-        "r": 3.0,
-        "fill": "#ff2ea6"
-      }
-    },
-    {
-      "id": "slot.label.giyeok",
+      "id": "slot.label.end",
       "kind": "text",
       "prompt": "",
       "content": {
         "text": "ㄱ",
         "style_role": "label",
-        "x": 553.0,
-        "y": 150.0,
+        "x": 570.0,
+        "y": 152.0,
         "font_size": 28
       }
     },
     {
-      "id": "slot.q3",
+      "id": "slot.statement",
       "kind": "text",
       "prompt": "",
       "content": {
         "text": "원의 반지름을 나타내는 선분은 선분 ○ ㄱ입니다.",
         "style_role": "question",
-        "x": 203.0,
-        "y": 235.0,
+        "x": 200.0,
+        "y": 220.0,
         "font_size": 28
       }
     },
@@ -127,9 +156,9 @@
       "prompt": "",
       "content": {
         "text": "○",
-        "style_role": "choice",
-        "x": 38.0,
-        "y": 259.0,
+        "style_role": "label",
+        "x": 39.0,
+        "y": 257.0,
         "font_size": 28
       }
     },
@@ -139,20 +168,20 @@
       "prompt": "",
       "content": {
         "text": "×",
-        "style_role": "choice",
-        "x": 38.0,
-        "y": 289.0,
+        "style_role": "label",
+        "x": 39.0,
+        "y": 294.0,
         "font_size": 28
       }
     },
     {
-      "id": "slot.answer.circle",
+      "id": "slot.answer.blank",
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 76.0,
-        "cy": 331.0,
-        "r": 10.0,
+        "cx": 71.0,
+        "cy": 338.0,
+        "r": 9.0,
         "fill": "none"
       }
     }
@@ -162,16 +191,20 @@
   "diagrams": [],
   "reading_order": [
     "region.stem",
-    "slot.circle",
-    "slot.center_mark",
-    "slot.center_dot",
-    "slot.answer.circle",
-    "slot.radius",
     "slot.q1",
     "slot.q2",
-    "slot.q3",
-    "slot.label.giyeok",
+    "region.diagram",
+    "slot.circle",
+    "slot.center_mark",
+    "slot.radius",
+    "slot.label.center",
+    "slot.label.end",
+    "region.statement",
+    "slot.statement",
+    "region.choices",
     "slot.choice.o",
-    "slot.choice.x"
+    "slot.choice.x",
+    "region.answer_explanation",
+    "slot.answer.blank"
   ]
 }

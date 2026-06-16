@@ -1,0 +1,118 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://modu-math.local/schema/vision/vision_structured.v1.json",
+  "title": "ModuMath structured vision draft v1",
+  "type": "object",
+  "required": ["schema", "problem_id", "source_image", "visible_text", "elements", "groups", "math_structure", "dsl_hints", "uncertain"],
+  "additionalProperties": false,
+  "properties": {
+    "schema": {
+      "const": "modu.vision_structured.v1"
+    },
+    "problem_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_image": {
+      "type": "object",
+      "required": ["path", "width_px", "height_px", "coordinate_system"],
+      "additionalProperties": false,
+      "properties": {
+        "path": {"type": "string"},
+        "width_px": {"type": "number", "minimum": 1},
+        "height_px": {"type": "number", "minimum": 1},
+        "coordinate_system": {"const": "normalized_0_1"}
+      }
+    },
+    "visible_text": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/text_item"}
+    },
+    "elements": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/element"}
+    },
+    "groups": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/group"}
+    },
+    "math_structure": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "equations": {"type": "array"},
+        "blanks": {"type": "array"},
+        "choices": {"type": "array"},
+        "tables": {"type": "array"},
+        "diagrams": {"type": "array"}
+      }
+    },
+    "dsl_hints": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "uncertain": {
+      "type": "array",
+      "items": {"type": "string"}
+    }
+  },
+  "$defs": {
+    "bbox": {
+      "type": "object",
+      "required": ["x", "y", "w", "h"],
+      "additionalProperties": false,
+      "properties": {
+        "x": {"type": "number", "minimum": 0, "maximum": 1},
+        "y": {"type": "number", "minimum": 0, "maximum": 1},
+        "w": {"type": "number", "minimum": 0, "maximum": 1},
+        "h": {"type": "number", "minimum": 0, "maximum": 1}
+      }
+    },
+    "confidence": {
+      "enum": ["high", "medium", "low"]
+    },
+    "text_item": {
+      "type": "object",
+      "required": ["id", "text", "bbox", "confidence"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "text": {"type": "string"},
+        "bbox": {"$ref": "#/$defs/bbox"},
+        "confidence": {"$ref": "#/$defs/confidence"},
+        "notes": {"type": "string"}
+      }
+    },
+    "element": {
+      "type": "object",
+      "required": ["id", "type", "bbox", "details", "confidence"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "type": {
+          "enum": ["text", "box", "blank", "table", "fraction", "diagram", "arrow", "choice", "line", "shape", "number_line", "other"]
+        },
+        "text": {"type": "string"},
+        "bbox": {"$ref": "#/$defs/bbox"},
+        "details": {"type": "string"},
+        "style": {"type": "string"},
+        "confidence": {"$ref": "#/$defs/confidence"}
+      }
+    },
+    "group": {
+      "type": "object",
+      "required": ["id", "role", "element_ids", "bbox", "details"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "role": {"type": "string", "minLength": 1},
+        "element_ids": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "bbox": {"$ref": "#/$defs/bbox"},
+        "details": {"type": "string"}
+      }
+    }
+  }
+}

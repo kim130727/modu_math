@@ -1,20 +1,19 @@
 {
   "problem_id": "S3_초등_3_008685",
-  "problem_type": "도형_참거짓판단",
+  "problem_type": "true_false_geometry",
   "metadata": {
     "title": "원의 반지름 판단",
     "tags": [],
-    "instruction": "그림을 보고 문장이 맞으면 ○, 틀리면 ×를 고른다.",
-    "question": "원의 반지름에 대한 설명이 그림과 맞는지 판단하는 문제",
+    "question": "그림을 보고 설명이 맞는지 ○, ×로 판단하는 문제",
     "required_layout_ids": [
       "slot.circle",
-      "slot.radius",
       "slot.center_mark",
-      "slot.center_dot",
-      "slot.answer.circle"
+      "slot.radius",
+      "slot.answer.blank"
     ],
     "extraction_confidence": 1.0,
-    "language": "ko"
+    "language": "ko",
+    "instruction": "원의 반지름과 관련된 설명이 그림과 일치하는지 판단한다."
   },
   "domain": {
     "objects": [
@@ -24,8 +23,11 @@
       },
       {
         "id": "obj.radius_segment",
-        "type": "segment",
-        "meaning": "원의 중심에서 둘레 방향으로 뻗은 선분"
+        "type": "segment"
+      },
+      {
+        "id": "obj.center_marker",
+        "type": "point_marker"
       }
     ],
     "relations": [],
@@ -42,19 +44,18 @@
         ]
       },
       "plan": {
-        "method": "picture_statement_match",
-        "description": "그림의 선분이 원의 반지름인지 확인하여 문장의 참/거짓을 판단한다."
+        "method": "visual_truth_judgment",
+        "description": "그림의 선분이 원의 반지름인지 확인하고 문장의 참/거짓을 판단한다."
       },
       "execute": {
         "expected_operations": [
           "identify_center_to_boundary_segment",
-          "match_segment_with_statement",
-          "choose_true_false"
+          "compare_statement_with_diagram"
         ]
       },
       "review": {
         "check_methods": [
-          "diagram_text_consistency_check"
+          "diagram_statement_match"
         ]
       }
     }
@@ -63,10 +64,9 @@
     "blanks": [],
     "choices": [],
     "answer_key": [],
-    "confidence": 1.0,
     "target": {
-      "type": "true_false_choice",
-      "description": "그림과 문장이 맞는지 판단하기"
+      "type": "truth_value",
+      "description": "주어진 설명이 맞는지 ○ 또는 ×로 판단"
     },
     "value": 1,
     "unit": ""

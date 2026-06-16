@@ -1,65 +1,62 @@
 {
   "schema": "modu.solvable.v1.1",
   "problem_id": "S3_초등_3_008684",
-  "problem_type": "choice_geometry_circle",
+  "problem_type": "circle_radius_relation",
   "inputs": {
     "total_ticks": 4,
-    "target_label": "괄호 안 선택",
-    "target_ticks": 2,
+    "target_label": "같습니다, 다릅니다",
+    "target_ticks": 4,
     "target_count": 4,
     "unit": ""
   },
   "given": [
     {
-      "ref": "obj.pin_point",
-      "value": "누름 못이 꽂힌 점"
+      "ref": "obj.center",
+      "value": {
+        "role": "center",
+        "description": "누름 못이 꽂힌 점"
+      }
     },
     {
-      "ref": "obj.circle_points",
-      "value": "원 위에 찍은 4개의 점"
-    },
-    {
-      "ref": "obj.circle",
-      "value": "원"
+      "ref": "obj.points_on_circle",
+      "value": {
+        "count": 4,
+        "description": "원 위에 찍은 4개의 점"
+      }
     }
   ],
   "target": {
     "ref": "answer.target",
     "type": "choice_word"
   },
+  "method": "circle_property",
   "plan": [
-    "원의 성질을 보고, 중심에서 원 위의 점까지의 길이가 서로 같은지 판단한다.",
-    "문장의 괄호 안에서 알맞은 말을 고른다."
+    "원의 중심에서 원 위의 점까지의 거리가 모두 같은지 확인한다.",
+    "보기 중 알맞은 말을 고른다."
   ],
-  "method": "circle_property_check",
   "steps": [
     {
       "id": "step.1",
-      "expr": "원 위의 점들은 중심에서 같은 거리에 있다",
-      "value": true
+      "expr": "원 위의 각 점은 중심에서 같은 반지름만큼 떨어져 있다.",
+      "value": "같다"
     },
     {
       "id": "step.2",
-      "expr": "누름 못이 꽂힌 점에서 4개의 점까지의 길이를 비교한다",
-      "value": "모두 같음"
-    },
-    {
-      "id": "step.3",
-      "expr": "괄호 안 선택",
+      "expr": "4개의 점에 대한 거리 관계를 비교한다.",
       "value": "같습니다"
     }
   ],
   "checks": [
     {
       "id": "check.1",
-      "expr": "원의 성질과 일치하는가",
-      "expected": true,
-      "actual": true,
+      "expr": "중심에서 각 점까지의 거리가 동일한가",
+      "expected": "같다",
+      "actual": "같다",
       "pass": true
     },
     {
       "id": "check.2",
-      "expr": "선택한 말이 문장에 맞는가",
+      "expr": "선택어가 보기와 일치하는가",
       "expected": "같습니다",
       "actual": "같습니다",
       "pass": true
@@ -71,9 +68,9 @@
     "answer_key": [],
     "target": {
       "type": "choice_word",
-      "description": "괄호 안에 들어갈 알맞은 말"
+      "description": "누름 못이 꽂힌 점에서 원 위에 찍은 4개의 점까지의 길이 관계"
     },
-    "value": 1,
+    "value": "같습니다",
     "unit": ""
   }
 }

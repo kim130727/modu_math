@@ -27,12 +27,25 @@ Get-Content logs/pipeline.out.log -Wait
 - `generated layout json`: `<prob_id>.layout.json`.
 - `generated renderer json`: `<prob_id>.renderer.json`.
 - `generated solvable json`: `<prob_id>.solvable.v1.1.json`.
+- `structured vision draft json`: `<prob_id>.vision_structured.json`.
 
 When running manual pipeline from `txt/problem_list.txt` (base path list without extension):
 
 - Use `<base>.png` as primary visual input.
 - If `<base>.json` exists, treat it only as optional `source problem json` reference.
 - Never treat `source problem json` as semantic/layout/renderer output.
+
+## Structured Vision Draft Sidecar
+
+The manual pipeline now writes an optional assistant sidecar:
+
+- Prompt bundle: `<prob_id>.vision_structured_prompt.md`
+- Prompt-mode response file to fill: `<prob_id>.vision_structured_llm_output.txt`
+- Validated JSON output: `<prob_id>.vision_structured.json`
+
+This sidecar records image size, approximate normalized bounding boxes, visible text, elements, groups, math structure, DSL hints, and uncertainty notes. It does not replace `problem.dsl.py` or generated contract JSON.
+
+During DSL generation, the manual pipeline passes `<prob_id>.vision_structured.json` to `generate_dsl_from_refined_draft.py` as layout constraints via `--vision-structured`.
 
 ## Phase Provider Override (new)
 

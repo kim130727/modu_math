@@ -84,7 +84,7 @@ def test_dry_run_does_not_call_openai(tmp_path: Path, monkeypatch: pytest.Monkey
     def _should_not_be_called(**_: object) -> str:
         raise AssertionError("OpenAI call should not happen in dry-run")
 
-    monkeypatch.setattr("tools.generate_dsl_from_png.call_openai_for_dsl", _should_not_be_called)
+    monkeypatch.setattr("tools.generate_dsl_from_png.call_llm_for_dsl", _should_not_be_called)
 
     exit_code = main(
         [
@@ -94,6 +94,8 @@ def test_dry_run_does_not_call_openai(tmp_path: Path, monkeypatch: pytest.Monkey
             "0001",
             "--out",
             str(out_path),
+            "--provider",
+            "openai",
             "--system-prompt",
             str(system_prompt),
             "--user-template",
@@ -150,6 +152,9 @@ def test_generate_retries_until_valid(tmp_path: Path, monkeypatch: pytest.Monkey
             "        'target_count': 0,\n"
             "        'unit': '',\n"
             "    },\n"
+            "    'given': [{'ref': 'input.x', 'value': 1}],\n"
+            "    'target': {'ref': 'answer.value', 'type': 'number'},\n"
+            "    'method': 'test method',\n"
             "    'plan': ['p'],\n"
             "    'steps': [{'id': 'step.1', 'expr': 'x', 'value': 1}],\n"
             "    'checks': [],\n"
@@ -157,7 +162,7 @@ def test_generate_retries_until_valid(tmp_path: Path, monkeypatch: pytest.Monkey
             "}\n"
         )
 
-    monkeypatch.setattr("tools.generate_dsl_from_png.call_openai_for_dsl", _fake_call_openai_for_dsl)
+    monkeypatch.setattr("tools.generate_dsl_from_png.call_llm_for_dsl", _fake_call_openai_for_dsl)
 
     exit_code = main(
         [
@@ -167,6 +172,8 @@ def test_generate_retries_until_valid(tmp_path: Path, monkeypatch: pytest.Monkey
             "0001",
             "--out",
             str(out_path),
+            "--provider",
+            "openai",
             "--system-prompt",
             str(system_prompt),
             "--user-template",
@@ -191,7 +198,7 @@ def test_generate_fails_after_attempt_budget(tmp_path: Path, monkeypatch: pytest
     user_template.write_text("Problem ID: {problem_id}", encoding="utf-8")
     monkeypatch.setenv("OPENAI_API_KEY", "test-key")
 
-    monkeypatch.setattr("tools.generate_dsl_from_png.call_openai_for_dsl", lambda **_: "print('bad')")
+    monkeypatch.setattr("tools.generate_dsl_from_png.call_llm_for_dsl", lambda **_: "print('bad')")
 
     with pytest.raises(ValueError):
         main(
@@ -202,6 +209,8 @@ def test_generate_fails_after_attempt_budget(tmp_path: Path, monkeypatch: pytest
                 "0001",
                 "--out",
                 str(out_path),
+                "--provider",
+                "openai",
                 "--system-prompt",
                 str(system_prompt),
                 "--user-template",

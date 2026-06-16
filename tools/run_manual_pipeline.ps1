@@ -128,6 +128,9 @@ foreach ($row in $validRows) {
   $visionDraft = Join-Path $dir "$probId.vision_draft.md"
   $visionPrompt = Join-Path $dir "$probId.vision_prompt.md"
   $visionLlm = Join-Path $dir "$probId.vision_llm_output.txt"
+  $visionStructured = Join-Path $dir "$probId.vision_structured.json"
+  $visionStructuredPrompt = Join-Path $dir "$probId.vision_structured_prompt.md"
+  $visionStructuredLlm = Join-Path $dir "$probId.vision_structured_llm_output.txt"
 
   $refinedDraft = Join-Path $dir "$probId.refined_draft.md"
   $refinePrompt = Join-Path $dir "$probId.refine_prompt.md"
@@ -198,7 +201,59 @@ foreach ($row in $validRows) {
     }
   }
 
-  Invoke-Step "3) Generate refine prompt bundle" {
+  Invoke-Step "3) Generate structured vision JSON prompt bundle" {
+    $args = @(
+      "tools/generate_vision_structured.py",
+      "--image", $img,
+      "--problem-id", $probId,
+      "--out", $visionStructured,
+      "--vision-draft", $visionDraft,
+      "--mode", "prompt",
+      "--provider", $resolvedPhase1Provider,
+      "--detail", $VisionDetail,
+      "--prompt-out", $visionStructuredPrompt,
+      "--force"
+    ) + $commonModelArgs
+    Invoke-Python -Args $args
+  }
+
+  if ($Mode -eq "api") {
+    Invoke-Step "4) Generate structured vision JSON via API" {
+      $args = @(
+        "tools/generate_vision_structured.py",
+        "--image", $img,
+        "--problem-id", $probId,
+        "--out", $visionStructured,
+        "--vision-draft", $visionDraft,
+        "--mode", "api",
+        "--provider", $resolvedPhase1Provider,
+        "--detail", $VisionDetail,
+        "--force"
+      ) + $commonModelArgs
+      Invoke-Python -Args $args
+    }
+  } else {
+    if (!(Test-Path -LiteralPath $visionStructuredLlm)) {
+      throw "Missing file for prompt mode: $visionStructuredLlm"
+    }
+    Invoke-Step "4) Generate structured vision JSON from llm output file" {
+      $args = @(
+        "tools/generate_vision_structured.py",
+        "--image", $img,
+        "--problem-id", $probId,
+        "--out", $visionStructured,
+        "--vision-draft", $visionDraft,
+        "--mode", "prompt",
+        "--provider", $resolvedPhase1Provider,
+        "--detail", $VisionDetail,
+        "--llm-output-file", $visionStructuredLlm,
+        "--force"
+      ) + $commonModelArgs
+      Invoke-Python -Args $args
+    }
+  }
+
+  Invoke-Step "5) Generate refine prompt bundle" {
     $args = @(
       "tools/refine_vision_draft.py",
       "--vision-draft", $visionDraft,
@@ -215,7 +270,7 @@ foreach ($row in $validRows) {
   }
 
   if ($Mode -eq "api") {
-    Invoke-Step "4) Generate refined draft via API" {
+    Invoke-Step "6) Generate refined draft via API" {
       $args = @(
         "tools/refine_vision_draft.py",
         "--vision-draft", $visionDraft,
@@ -233,7 +288,7 @@ foreach ($row in $validRows) {
     if (!(Test-Path -LiteralPath $refineLlm)) {
       throw "Missing file for prompt mode: $refineLlm"
     }
-    Invoke-Step "4) Generate refined draft from llm output file" {
+    Invoke-Step "6) Generate refined draft from llm output file" {
       $args = @(
         "tools/refine_vision_draft.py",
         "--vision-draft", $visionDraft,
@@ -250,7 +305,7 @@ foreach ($row in $validRows) {
     }
   }
 
-  Invoke-Step "5) Generate DSL prompt bundle" {
+  Invoke-Step "7) Generate DSL prompt bundle" {
     $args = @(
       "tools/generate_dsl_from_refined_draft.py",
       "--draft", $refinedDraft,
@@ -265,6 +320,7 @@ foreach ($row in $validRows) {
       "--image-detail", $DslImageDetail,
       "--write-on-fail",
       "--failure-report", $dslFailureReport,
+      "--vision-structured", $visionStructured,
       "--prompt-out", $dslPrompt,
       "--force"
     ) + $sourceJsonArgs + $commonModelArgs
@@ -273,7 +329,7 @@ foreach ($row in $validRows) {
   }
 
   if ($Mode -eq "api") {
-    Invoke-Step "6) Generate DSL via API" {
+    Invoke-Step "8) Generate DSL via API" {
       $args = @(
         "tools/generate_dsl_from_refined_draft.py",
         "--draft", $refinedDraft,
@@ -288,6 +344,7 @@ foreach ($row in $validRows) {
         "--image-detail", $DslImageDetail,
         "--write-on-fail",
         "--failure-report", $dslFailureReport,
+        "--vision-structured", $visionStructured,
         "--force"
       ) + $sourceJsonArgs + $commonModelArgs
       if ($CompactDslPrompt) { $args += "--compact-prompt" }
@@ -297,7 +354,7 @@ foreach ($row in $validRows) {
     if (!(Test-Path -LiteralPath $dslLlm)) {
       throw "Missing file for prompt mode: $dslLlm"
     }
-    Invoke-Step "6) Generate DSL from llm output file" {
+    Invoke-Step "8) Generate DSL from llm output file" {
       $args = @(
         "tools/generate_dsl_from_refined_draft.py",
         "--draft", $refinedDraft,
@@ -313,6 +370,7 @@ foreach ($row in $validRows) {
         "--image-detail", $DslImageDetail,
         "--write-on-fail",
         "--failure-report", $dslFailureReport,
+        "--vision-structured", $visionStructured,
         "--force"
       ) + $sourceJsonArgs + $commonModelArgs
       if ($CompactDslPrompt) { $args += "--compact-prompt" }
@@ -320,7 +378,7 @@ foreach ($row in $validRows) {
     }
   }
 
-  Invoke-Step "6.5) Normalize generated DSL (import/object-shape guard)" {
+  Invoke-Step "8.5) Normalize generated DSL (import/object-shape guard)" {
     $args = @(
       "tools/normalize_generated_dsl.py",
       "--dsl", $dslPy,
@@ -329,7 +387,7 @@ foreach ($row in $validRows) {
     Invoke-Python -Args $args
   }
 
-  Invoke-Step "7) Sync semantic/solvable answer" {
+  Invoke-Step "9) Sync semantic/solvable answer" {
     $args = @(
       "tools/sync_semantic_solvable_answer.py",
       "--dsl", $dslPy
@@ -337,7 +395,7 @@ foreach ($row in $validRows) {
     Invoke-Python -Args $args
   }
 
-  Invoke-Step "8) Format generated DSL layout" {
+  Invoke-Step "10) Format generated DSL layout" {
     $args = @(
       "tools/format_dsl_layout.py",
       "--dsl", $dslPy
@@ -345,7 +403,7 @@ foreach ($row in $validRows) {
     Invoke-Python -Args $args
   }
 
-  Invoke-Step "9) Validate generated DSL" {
+  Invoke-Step "11) Validate generated DSL" {
     $args = @(
       "tools/validate_generated_dsl.py",
       "--dsl", $dslPy,
@@ -357,7 +415,7 @@ foreach ($row in $validRows) {
     Invoke-Python -Args $args
   }
 
-  Invoke-Step "9.5) Validate visual alignment (vision draft vs layout)" {
+  Invoke-Step "11.5) Validate visual alignment (vision draft vs layout)" {
     $layoutJson = Join-Path $dir "$probId.layout.json"
     $args = @(
       "tools/validate_visual_alignment.py",
@@ -370,7 +428,7 @@ foreach ($row in $validRows) {
   }
 
   if ($RunMb) {
-    Invoke-Step "10) Run mb" {
+    Invoke-Step "12) Run mb" {
       & mb $probId
       if ($LASTEXITCODE -ne 0) {
         throw "mb failed for $probId"

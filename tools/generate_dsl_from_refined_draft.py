@@ -66,6 +66,11 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         default=None,
         help="Optional original source problem JSON path (answer/explanation reference only).",
     )
+    parser.add_argument(
+        "--vision-structured",
+        default=None,
+        help="Optional structured vision JSON sidecar used as layout constraints for DSL generation.",
+    )
     parser.add_argument("--out", required=True, help="Path to output problem.dsl.py")
     parser.add_argument("--provider", choices=("openai", "google"), default=None, help="LLM provider")
     parser.add_argument("--mode", choices=("api", "prompt"), default=None, help="Execution mode")
@@ -211,7 +216,47 @@ def _compact_refined_draft_text(text: str, max_chars: int) -> str:
     return normalized[: max(0, max_chars)].rstrip() + "\n...(truncated for cost)"
 
 
-def build_user_prompt(*, problem_id: str, refined_draft_text: str, source_answer_refs: list[str], compact_prompt: bool) -> str:
+def _read_vision_structured_json(path: Path | None, *, compact_prompt: bool) -> str | None:
+    if path is None:
+        return None
+    if not path.exists():
+        raise FileNotFoundError(f"Structured vision JSON path does not exist: {path}")
+    data = json.loads(path.read_text(encoding="utf-8-sig"))
+    if compact_prompt:
+        keep_keys = ("schema", "problem_id", "source_image", "elements", "groups", "math_structure", "dsl_hints", "uncertain")
+        data = {key: data[key] for key in keep_keys if key in data}
+    return json.dumps(data, ensure_ascii=False, indent=2)
+
+
+def _render_vision_structured_block(vision_structured_text: str | None) -> str:
+    if not vision_structured_text:
+        return ""
+    return f"""
+
+Structured vision JSON layout constraints:
+<vision_structured_json>
+{vision_structured_text}
+</vision_structured_json>
+
+Use the structured vision JSON as layout evidence:
+- Treat `source_image.width_px` and `source_image.height_px` as the measured source canvas size.
+- Use `elements[].bbox` and `groups[].bbox` as approximate normalized layout constraints.
+- Convert normalized bbox to DSL coordinates by multiplying x/w by canvas width and y/h by canvas height.
+- Prefer `groups` for high-level regions and `elements` for individual slots.
+- Use `visible_text` and element `text` only for visible worksheet text; never copy answer/explanation reference text into visible slots unless it is visibly printed.
+- Keep layout coordinates, colors, and style details out of `SEMANTIC_OVERRIDE`.
+- If structured JSON conflicts with visible image evidence, trust the image; if it conflicts only with the refined draft wording, prefer structured JSON for layout placement.
+"""
+
+
+def build_user_prompt(
+    *,
+    problem_id: str,
+    refined_draft_text: str,
+    source_answer_refs: list[str],
+    compact_prompt: bool,
+    vision_structured_text: str | None = None,
+) -> str:
     source_block = ""
     if source_answer_refs:
         refs_text = "\n".join(f"- {item}" for item in source_answer_refs)
@@ -221,10 +266,11 @@ def build_user_prompt(*, problem_id: str, refined_draft_text: str, source_answer
             f"{refs_text}\n"
             "</source_problem_json_answer_explanation>\n"
         )
+    vision_structured_block = _render_vision_structured_block(vision_structured_text)
     if compact_prompt:
         return f"""Problem ID: {problem_id}
 
-Generate modu_math Python DSL from the refined draft and image verification.
+Generate modu_math Python DSL from the refined draft, structured vision layout constraints, and image verification.
 
 Rules:
 - Output Python code only.
@@ -234,6 +280,9 @@ Rules:
 - Keep semantic meaning-focused, not renderer/layout mirrors.
 - Do not infer blank answers unless visibly printed.
 - Keep uncertain parts as TODO.
+- If structured vision JSON is provided, use it as the primary layout constraint source.
+- Convert normalized bbox values to canvas-relative DSL x/y/width/height coordinates.
+- Do not mirror layout coordinates into semantic.
 - Hard rule: never use dict/list literals for ProblemTemplate structural fields.
 - Must use Canvas(...), regions=(Region(...), ...), slots=(TextSlot(...)/RectSlot(...), ...).
 - Hard rule: import from modu_math.dsl only. Do not use `from modu_math import ProblemTemplate`.
@@ -242,6 +291,7 @@ Refined draft:
 <refined_draft>
 {refined_draft_text}
 </refined_draft>
+{vision_structured_block}
 {source_block}
 """
     return f"""Problem ID: {problem_id}
@@ -250,8 +300,10 @@ Generate Python DSL code for modu_math.
 
 Primary source rule:
 - `refined_draft.md` is the primary interpretation source.
+- If `vision_structured.json` is provided, it is the primary layout constraint source.
 - The image is used only to verify visible details.
 - If draft and image conflict, prefer visible evidence from the image.
+- If draft and structured JSON conflict on layout placement, prefer structured JSON unless image evidence says otherwise.
 
 Safety and authoring rules:
 - Output Python code only.
@@ -269,6 +321,11 @@ Safety and authoring rules:
 - Preserve original visible text faithfully. Do not rewrite, paraphrase, translate, or normalize visible source text.
 - If source JSON answer/explanation context is provided, use it only for `SEMANTIC_OVERRIDE` and `SOLVABLE`.
 - Never copy source JSON answer/explanation text into layout slots, renderer-oriented text, or visible worksheet text.
+- Use structured JSON normalized bboxes to plan canvas, regions, and slot positions.
+- Prefer source image dimensions from structured JSON for `Canvas(width=..., height=...)` when available.
+- Convert each bbox with `x_px=x*width_px`, `y_px=y*height_px`, `width_px=w*width_px`, `height_px=h*height_px`.
+- Use `groups[].role` to create meaningful regions and `elements[].id`/`type` to create readable slot ids.
+- Keep structured JSON coordinates and style hints in layout slots only, never in `SEMANTIC_OVERRIDE`.
 - Hard rule: never use dict/list literals for ProblemTemplate structural fields.
 - Must use Canvas(...), regions=(Region(...), ...), slots=(TextSlot(...)/RectSlot(...), ...).
 - Hard rule: import from modu_math.dsl only. Do not use `from modu_math import ProblemTemplate`.
@@ -277,6 +334,7 @@ Refined draft content:
 <refined_draft>
 {refined_draft_text}
 </refined_draft>
+{vision_structured_block}
 {source_block}
 """
 
@@ -393,6 +451,7 @@ def generate_dsl_from_refined_draft(
     image_path: Path,
     problem_id: str,
     source_problem_json_path: Path | None = None,
+    vision_structured_path: Path | None = None,
     out_path: Path,
     provider: str | None = None,
     mode: str | None = None,
@@ -418,6 +477,8 @@ def generate_dsl_from_refined_draft(
         raise FileNotFoundError(f"Image path does not exist: {image_path}")
     if not system_prompt_path.exists():
         raise FileNotFoundError(f"System prompt path does not exist: {system_prompt_path}")
+    if vision_structured_path is not None and not vision_structured_path.exists():
+        raise FileNotFoundError(f"Structured vision JSON path does not exist: {vision_structured_path}")
 
     resolved_provider = resolve_provider(provider)
     resolved_mode = resolve_mode(mode)
@@ -432,11 +493,16 @@ def generate_dsl_from_refined_draft(
         system_prompt = f"{system_prompt}\n\n# Generation Rules\n\n{read_text_utf8(rules_md_path)}"
 
     source_answer_refs = _extract_answer_explanation_refs(source_problem_json_path)
+    vision_structured_text = _read_vision_structured_json(
+        vision_structured_path,
+        compact_prompt=compact_prompt,
+    )
     rendered_user_prompt = build_user_prompt(
         problem_id=problem_id,
         refined_draft_text=refined_draft_text,
         source_answer_refs=source_answer_refs,
         compact_prompt=compact_prompt,
+        vision_structured_text=vision_structured_text,
     )
     reference_svg = _resolve_reference_svg(image_path=image_path, draft_path=draft_path)
 
@@ -450,7 +516,10 @@ def generate_dsl_from_refined_draft(
             "system_prompt": str(system_prompt_path),
             "rules_md": str(rules_md_path),
             "has_reference_svg": str(reference_svg is not None),
+            "has_vision_structured": str(vision_structured_path is not None),
         }
+        if vision_structured_path is not None:
+            result["vision_structured"] = str(vision_structured_path)
         if reference_svg is not None:
             result["reference_svg"] = str(reference_svg)
         return result
@@ -488,9 +557,12 @@ def generate_dsl_from_refined_draft(
                 "system_prompt": str(system_prompt_path),
                 "rules_md": str(rules_md_path),
                 "has_reference_svg": str(reference_svg is not None),
+                "has_vision_structured": str(vision_structured_path is not None),
                 "prompt_only": "true",
                 "message": "Prompt bundle written. Add --llm-output-file later to generate DSL.",
             }
+            if vision_structured_path is not None:
+                result["vision_structured"] = str(vision_structured_path)
             if reference_svg is not None:
                 result["reference_svg"] = str(reference_svg)
             return result
@@ -578,6 +650,7 @@ def generate_dsl_from_refined_draft(
                 "draft": str(draft_path),
                 "image": str(image_path),
                 "out": str(out_path),
+                "vision_structured": str(vision_structured_path) if vision_structured_path is not None else None,
                 "provider": resolved_provider,
                 "mode": resolved_mode,
                 "model": resolved_model,
@@ -601,6 +674,7 @@ def generate_dsl_from_refined_draft(
                 "system_prompt": str(system_prompt_path),
                 "rules_md": str(rules_md_path),
                 "has_reference_svg": str(reference_svg is not None),
+                "has_vision_structured": str(vision_structured_path is not None),
                 "status": "invalid_written",
                 "validation_errors": "; ".join(validation_errors),
             }
@@ -625,7 +699,10 @@ def generate_dsl_from_refined_draft(
         "rules_md": str(rules_md_path),
         "has_reference_svg": str(reference_svg is not None),
         "has_source_problem_json": str(source_problem_json_path is not None and source_problem_json_path.exists()),
+        "has_vision_structured": str(vision_structured_path is not None and vision_structured_path.exists()),
     }
+    if vision_structured_path is not None:
+        result["vision_structured"] = str(vision_structured_path)
     if reference_svg is not None:
         result["reference_svg"] = str(reference_svg)
     return result
@@ -639,6 +716,7 @@ def main(argv: list[str] | None = None) -> int:
         image_path=Path(args.image),
         problem_id=args.problem_id,
         source_problem_json_path=Path(args.source_problem_json) if args.source_problem_json else None,
+        vision_structured_path=Path(args.vision_structured) if args.vision_structured else None,
         out_path=Path(args.out),
         provider=args.provider,
         mode=args.mode,
@@ -669,6 +747,8 @@ def main(argv: list[str] | None = None) -> int:
             "system_prompt",
             "rules_md",
             "has_reference_svg",
+            "has_vision_structured",
+            "vision_structured",
         ):
             if key in result:
                 print(f"{key}={result[key]}")

@@ -1,50 +1,51 @@
 {
   "problem_id": "S3_초등_3_008684",
-  "problem_type": "choice_geometry_circle",
+  "problem_type": "circle_radius_relation",
   "metadata": {
-    "title": "누름 못과 띠 종이",
+    "title": "누름 못과 띠 종이로 원 그리기",
     "tags": [],
-    "question": "누름 못과 띠 종이를 이용하여 원을 그렸습니다. 그림을 보고 알맞은 말을 선택하세요.",
+    "question": "누름 못과 띠 종이로 그린 원에서 원 위의 점들과 중심 사이의 거리 관계를 묻는 문제",
     "required_layout_ids": [
       "slot.left.frame",
       "slot.left.circle",
-      "slot.left.ribbon",
-      "slot.left.pin",
-      "slot.left.hand",
+      "slot.left.strip",
       "slot.left.pencil",
-      "slot.left.arrow1",
-      "slot.left.arrow2",
+      "slot.left.hand.upper",
+      "slot.left.hand.lower",
+      "slot.left.arrow.1",
+      "slot.left.arrow.2",
+      "slot.left.dot.1",
+      "slot.left.dot.2",
+      "slot.left.dot.3",
+      "slot.left.dot.4",
       "slot.right.frame",
       "slot.right.circle",
+      "slot.right.dash.v",
+      "slot.right.dash.h",
       "slot.right.center",
-      "slot.right.cross_v",
-      "slot.right.cross_h",
-      "slot.right.p1",
-      "slot.right.p2",
-      "slot.right.p3",
-      "slot.right.p4",
+      "slot.right.dot.top",
+      "slot.right.dot.bottom",
+      "slot.right.dot.left",
+      "slot.right.dot.right",
       "slot.choice.frame"
     ],
     "extraction_confidence": 1.0,
     "language": "ko",
-    "instruction": "같습니다, 다릅니다 중 알맞은 말을 고르는 문제"
+    "instruction": "알맞은 말을 선택한다."
   },
   "domain": {
     "objects": [
       {
-        "id": "obj.pin_point",
+        "id": "obj.center",
         "type": "point",
-        "label": "누름 못이 꽂힌 점"
+        "role": "center",
+        "description": "누름 못이 꽂힌 점"
       },
       {
-        "id": "obj.circle_points",
+        "id": "obj.points_on_circle",
         "type": "set_of_points",
-        "label": "원 위에 찍은 4개의 점",
-        "count": 4
-      },
-      {
-        "id": "obj.circle",
-        "type": "circle"
+        "role": "points_on_circle",
+        "description": "원 위에 찍은 4개의 점"
       }
     ],
     "relations": [],
@@ -52,30 +53,26 @@
     "problem_solving": {
       "understand": {
         "given_refs": [
-          "obj.pin_point",
-          "obj.circle_points",
-          "obj.circle"
+          "obj.center",
+          "obj.points_on_circle"
         ],
         "target_ref": "answer.target",
         "condition_refs": [
-          "rel.equal_radii_like_distances"
+          "rel.equal_distance"
         ]
       },
       "plan": {
-        "method": "circle_distance_property",
-        "description": "원 위의 점들은 중심에서 같은 거리에 있다는 성질을 이용해 문장을 판단한다."
+        "method": "circle_property",
+        "description": "원의 중심에서 원 위의 점까지의 거리는 모두 같다는 성질을 확인한다."
       },
       "execute": {
         "expected_operations": [
-          "identify_center_like_point",
-          "compare_distances_to_points",
-          "select_matching_word"
+          "compare_distances_from_center"
         ]
       },
       "review": {
         "check_methods": [
-          "circle_property_check",
-          "choice_consistency_check"
+          "circle_radius_consistency"
         ]
       }
     }
@@ -86,9 +83,9 @@
     "answer_key": [],
     "target": {
       "type": "choice_word",
-      "description": "괄호 안에 들어갈 알맞은 말"
+      "description": "누름 못이 꽂힌 점에서 원 위에 찍은 4개의 점까지의 길이 관계"
     },
-    "value": 1,
+    "value": "같습니다",
     "unit": ""
   }
 }

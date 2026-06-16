@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import importlib.util
 import subprocess
 import sys
 from pathlib import Path
@@ -38,6 +39,11 @@ def main() -> int:
         path.write_text(out, encoding="utf-8", newline="\n")
 
     # Apply full Python formatter for readability while preserving code semantics.
+    # Black is a developer convenience, not a pipeline contract requirement.
+    if importlib.util.find_spec("black") is None:
+        print(f"Formatted DSL layout: {path} (black not installed; skipped full formatter)")
+        return 0
+
     proc = subprocess.run(
         [sys.executable, "-m", "black", "--quiet", str(path)],
         capture_output=True,
