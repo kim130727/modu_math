@@ -7,32 +7,15 @@
   },
   "elements": [
     {
-      "id": "slot.header.mark.text",
-      "type": "text",
-      "attributes": {
-        "x": 10.0,
-        "y": 32.0,
-        "max_width": 798.0,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
-      },
-      "source_ref": "slot.header.mark",
-      "refs": {
-        "layout_slot_id": "slot.header.mark"
-      },
-      "text": "☐ 55."
-    },
-    {
       "id": "slot.header.text.text",
       "type": "text",
       "attributes": {
-        "x": 70.0,
-        "y": 32.0,
+        "x": 50.0,
+        "y": 55.0,
         "max_width": 798.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 30
       },
       "source_ref": "slot.header.text",
       "refs": {
@@ -44,8 +27,8 @@
       "id": "slot.top.square.rect",
       "type": "rect",
       "attributes": {
-        "x": 410.0,
-        "y": 48.0,
+        "x": 445.0,
+        "y": 30.0,
         "width": 160.0,
         "height": 160.0,
         "fill": "#ffffff",
@@ -55,20 +38,6 @@
       "source_ref": "slot.top.square",
       "refs": {
         "layout_slot_id": "slot.top.square"
-      }
-    },
-    {
-      "id": "slot.top.arc.path",
-      "type": "path",
-      "attributes": {
-        "d": "M 490.0 48.0 A 80.0 80.0 0 1 0 570.0 128.0",
-        "stroke": "#111111",
-        "stroke-width": 2.0,
-        "fill": "none"
-      },
-      "source_ref": "slot.top.arc",
-      "refs": {
-        "layout_slot_id": "slot.top.arc"
       }
     },
     {
@@ -91,8 +60,8 @@
       "id": "slot.mid.left.square.rect",
       "type": "rect",
       "attributes": {
-        "x": 140.0,
-        "y": 226.0,
+        "x": 90.0,
+        "y": 325.0,
         "width": 160.0,
         "height": 160.0,
         "fill": "#ffffff",
@@ -105,24 +74,10 @@
       }
     },
     {
-      "id": "slot.mid.left.arc.path",
-      "type": "path",
-      "attributes": {
-        "d": "M 140.0 306.0 A 80.0 80.0 0 1 1 220.0 226.0",
-        "stroke": "#111111",
-        "stroke-width": 2.0,
-        "fill": "none"
-      },
-      "source_ref": "slot.mid.left.arc",
-      "refs": {
-        "layout_slot_id": "slot.mid.left.arc"
-      }
-    },
-    {
       "id": "slot.mid.left.red.path",
       "type": "path",
       "attributes": {
-        "d": "M 220.0 226.0 A 80.0 80.0 0 0 0 300.0 306.0",
+        "d": "M 170.42327880859375 326.28009033203125 A 80 80 0 0 0 250.42327880859375 406.28009033203125",
         "stroke": "#111111",
         "stroke-width": 2.0,
         "fill": "none"
@@ -152,8 +107,8 @@
       "id": "slot.mid.mid.square.rect",
       "type": "rect",
       "attributes": {
-        "x": 410.0,
-        "y": 226.0,
+        "x": 320.0,
+        "y": 325.0,
         "width": 160.0,
         "height": 160.0,
         "fill": "#ffffff",
@@ -169,10 +124,11 @@
       "id": "slot.mid.mid.arc.path",
       "type": "path",
       "attributes": {
-        "d": "M 410.0 306.0 A 80.0 80.0 0 1 1 490.0 226.0",
+        "d": "M 283.2749328613281 412.4490661621094 A 80 80 0 1 1 363.2749328613281 332.4490661621094",
         "stroke": "#111111",
         "stroke-width": 2.0,
-        "fill": "none"
+        "fill": "none",
+        "transform": "rotate(255 410 226)"
       },
       "source_ref": "slot.mid.mid.arc",
       "refs": {
@@ -199,8 +155,8 @@
       "id": "slot.mid.right.square.rect",
       "type": "rect",
       "attributes": {
-        "x": 700.0,
-        "y": 226.0,
+        "x": 565.0,
+        "y": 325.0,
         "width": 160.0,
         "height": 160.0,
         "fill": "#ffffff",
@@ -216,10 +172,11 @@
       "id": "slot.mid.right.arc.path",
       "type": "path",
       "attributes": {
-        "d": "M 700.0 306.0 A 80.0 80.0 0 1 1 780.0 226.0",
+        "d": "M 631.5684204101562 365.5607604980469 A 80 80 0 1 1 711.5684204101562 285.5607604980469",
         "stroke": "#111111",
         "stroke-width": 2.0,
-        "fill": "none"
+        "fill": "none",
+        "transform": "rotate(260 700 226)"
       },
       "source_ref": "slot.mid.right.arc",
       "refs": {
@@ -230,7 +187,7 @@
       "id": "slot.mid.right.red.path",
       "type": "path",
       "attributes": {
-        "d": "M 780.0 226.0 A 80.0 80.0 0 0 1 860.0 306.0",
+        "d": "M 644.4042358398438 326.1128234863281 A 80 80 0 0 1 724.4042358398438 406.1128234863281",
         "stroke": "#111111",
         "stroke-width": 2.0,
         "fill": "none"
@@ -257,66 +214,34 @@
       }
     },
     {
+      "id": "slot.mid.mid.arc.copy4.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 470 366 A 140 140 60 61 61 550 286",
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "none",
+        "transform": "rotate(255 410 226)"
+      },
+      "source_ref": "slot.mid.mid.arc.copy4",
+      "refs": {
+        "layout_slot_id": "slot.mid.mid.arc.copy4"
+      }
+    },
+    {
       "id": "slot.mid.mid.red.line",
       "type": "line",
       "attributes": {
-        "x1": 490.0,
-        "y1": 226.0,
-        "x2": 570.0,
-        "y2": 306.0,
+        "x1": 400.0,
+        "y1": 325.0,
+        "x2": 480.0,
+        "y2": 405.0,
         "stroke": "#111111",
         "stroke-width": 2.0
       },
       "source_ref": "slot.mid.mid.red",
       "refs": {
         "layout_slot_id": "slot.mid.mid.red"
-      }
-    },
-    {
-      "id": "slot.answer.square.rect",
-      "type": "rect",
-      "attributes": {
-        "x": 60.0,
-        "y": 412.0,
-        "width": 160.0,
-        "height": 160.0,
-        "fill": "#ffffff",
-        "stroke": "#111111",
-        "stroke-width": 1.5
-      },
-      "source_ref": "slot.answer.square",
-      "refs": {
-        "layout_slot_id": "slot.answer.square"
-      }
-    },
-    {
-      "id": "slot.answer.arc.path",
-      "type": "path",
-      "attributes": {
-        "d": "M 60.0 492.0 A 80.0 80.0 0 1 1 140.0 412.0",
-        "stroke": "#111111",
-        "stroke-width": 2.0,
-        "fill": "none"
-      },
-      "source_ref": "slot.answer.arc",
-      "refs": {
-        "layout_slot_id": "slot.answer.arc"
-      }
-    },
-    {
-      "id": "slot.answer.center.circle",
-      "type": "circle",
-      "attributes": {
-        "cx": 140.0,
-        "cy": 492.0,
-        "r": 4.0,
-        "stroke": "#111111",
-        "stroke-width": 2.0,
-        "fill": "#e91e63"
-      },
-      "source_ref": "slot.answer.center",
-      "refs": {
-        "layout_slot_id": "slot.answer.center"
       }
     }
   ],

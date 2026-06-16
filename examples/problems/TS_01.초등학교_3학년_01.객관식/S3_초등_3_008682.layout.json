@@ -1,7 +1,7 @@
 {
   "schema": "modu.layout.v1",
   "problem_id": "S3_초등_3_008682",
-  "title": "알맞은 말을 선택하기",
+  "title": "알맞은 말 선택하기",
   "canvas": {
     "width": 960,
     "height": 580,
@@ -21,89 +21,77 @@
     },
     {
       "id": "region.diagram",
-      "role": "body",
+      "role": "diagram",
       "flow": "absolute",
       "slot_ids": [
-        "slot.grid.left.box",
+        "slot.grid.left.frame",
+        "slot.grid.left.v1",
+        "slot.grid.left.h1",
+        "slot.grid.left.v2",
+        "slot.grid.left.h2",
+        "slot.grid.left.v3",
+        "slot.grid.left.h3",
+        "slot.grid.left.v4",
+        "slot.grid.left.h4",
+        "slot.grid.left.v5",
+        "slot.grid.left.h5",
+        "slot.grid.left.v6",
+        "slot.grid.left.h6",
+        "slot.grid.left.v7",
+        "slot.grid.left.h7",
         "slot.left.outer_circle",
         "slot.left.inner_circle_1",
         "slot.left.inner_circle_2",
-        "slot.grid.right.box",
         "slot.arrow",
-        "slot.grid.left.v1",
-        "slot.grid.left.v2",
-        "slot.grid.left.v3",
-        "slot.grid.left.v4",
-        "slot.grid.left.v5",
-        "slot.grid.left.v6",
-        "slot.grid.left.v7",
-        "slot.grid.left.v8",
-        "slot.grid.left.v9",
-        "slot.grid.left.v10",
-        "slot.grid.left.h1",
-        "slot.grid.left.h2",
-        "slot.grid.left.h3",
-        "slot.grid.left.h4",
-        "slot.grid.left.h5",
-        "slot.grid.left.h6",
-        "slot.grid.left.h7",
-        "slot.grid.left.h8",
-        "slot.grid.left.h9",
-        "slot.grid.left.h10",
+        "slot.grid.right.frame",
         "slot.grid.right.v1",
-        "slot.grid.right.v2",
-        "slot.grid.right.v3",
-        "slot.grid.right.v4",
-        "slot.grid.right.v5",
-        "slot.grid.right.v6",
-        "slot.grid.right.v7",
-        "slot.grid.right.v8",
-        "slot.grid.right.v9",
-        "slot.grid.right.v10",
         "slot.grid.right.h1",
+        "slot.grid.right.v2",
         "slot.grid.right.h2",
+        "slot.grid.right.v3",
         "slot.grid.right.h3",
+        "slot.grid.right.v4",
         "slot.grid.right.h4",
+        "slot.grid.right.v5",
         "slot.grid.right.h5",
+        "slot.grid.right.v6",
         "slot.grid.right.h6",
-        "slot.grid.right.h7",
-        "slot.grid.right.h8",
-        "slot.grid.right.h9",
-        "slot.grid.right.h10"
+        "slot.grid.right.v7",
+        "slot.grid.right.h7"
       ]
     },
     {
       "id": "region.dialogue",
-      "role": "supporting",
+      "role": "diagram",
       "flow": "absolute",
       "slot_ids": [
-        "slot.boy.head",
-        "slot.boy.body",
-        "slot.boy.hair",
-        "slot.boy.eye1",
-        "slot.boy.eye2",
-        "slot.boy.mouth",
-        "slot.boy.speech_tail",
-        "slot.bubble.left",
-        "slot.girl.head",
-        "slot.girl.body",
-        "slot.girl.hair",
-        "slot.girl.eye1",
-        "slot.girl.eye2",
-        "slot.girl.mouth",
-        "slot.girl.hand_left",
-        "slot.girl.hand_right",
-        "slot.girl.speech_tail",
-        "slot.bubble.right",
-        "slot.bubble.left_text",
-        "slot.bubble.right_text"
+        "slot.boy.bubble",
+        "slot.boy.tail",
+        "slot.boy.person.body",
+        "slot.boy.person.head",
+        "slot.boy.person.hair.cap",
+        "slot.boy.person.eye.left",
+        "slot.boy.person.eye.right",
+        "slot.boy.person.smile",
+        "slot.name.boy.box",
+        "slot.girl.bubble",
+        "slot.girl.tail",
+        "slot.girl.person.body",
+        "slot.girl.person.head",
+        "slot.girl.person.hair.cap",
+        "slot.girl.person.eye.left",
+        "slot.girl.person.eye.right",
+        "slot.girl.person.smile",
+        "slot.girl.person.tail.left",
+        "slot.girl.person.tail.right",
+        "slot.girl.person.bow.left",
+        "slot.girl.person.bow.right",
+        "slot.name.girl.box",
+        "slot.boy.text",
+        "slot.name.boy.text",
+        "slot.girl.text",
+        "slot.name.girl.text"
       ]
-    },
-    {
-      "id": "region.footer",
-      "role": "answer",
-      "flow": "absolute",
-      "slot_ids": []
     }
   ],
   "slots": [
@@ -124,7 +112,7 @@
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "주어진 모양과 똑같이 그리는 방법을 설명한 것입니다. 알맞은 말을",
+        "text": "주어진 모양과 똑같은 그림을 그리는 방법을 설명한 것입니다. 알맞은 말을",
         "style_role": "question",
         "x": 74.0,
         "y": 34.0,
@@ -144,294 +132,213 @@
       }
     },
     {
-      "id": "slot.grid.left.box",
-      "kind": "rect",
+      "id": "slot.grid.left.frame",
+      "kind": "path",
       "prompt": "",
       "content": {
-        "x": 239.0,
-        "y": 86.0,
-        "width": 192.0,
-        "height": 192.0
+        "d": "M 239.0 86.0 L 431.0 86.0 L 431.0 278.0 L 239.0 278.0 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#37C7FF",
+        "stroke_width": 1.4,
+        "stroke_dasharray": "4 3",
+        "fill": "#ffffff"
       }
     },
     {
       "id": "slot.grid.left.v1",
-      "kind": "line",
+      "kind": "path",
       "prompt": "",
       "content": {
-        "x1": 258.2,
-        "y1": 86.0,
-        "x2": 258.2,
-        "y2": 278.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.grid.left.v2",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 277.4,
-        "y1": 86.0,
-        "x2": 277.4,
-        "y2": 278.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.grid.left.v3",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 296.6,
-        "y1": 86.0,
-        "x2": 296.6,
-        "y2": 278.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.grid.left.v4",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 315.8,
-        "y1": 86.0,
-        "x2": 315.8,
-        "y2": 278.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.grid.left.v5",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 335.0,
-        "y1": 86.0,
-        "x2": 335.0,
-        "y2": 278.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.grid.left.v6",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 354.2,
-        "y1": 86.0,
-        "x2": 354.2,
-        "y2": 278.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.grid.left.v7",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 373.4,
-        "y1": 86.0,
-        "x2": 373.4,
-        "y2": 278.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.grid.left.v8",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 392.6,
-        "y1": 86.0,
-        "x2": 392.6,
-        "y2": 278.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.grid.left.v9",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 411.8,
-        "y1": 86.0,
-        "x2": 411.8,
-        "y2": 278.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.grid.left.v10",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 431.0,
-        "y1": 86.0,
-        "x2": 431.0,
-        "y2": 278.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
+        "d": "M 263.0 86.0 L 263.0 278.0",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#37C7FF",
+        "stroke_width": 1.0,
+        "stroke_dasharray": "4 3",
+        "fill": "none"
       }
     },
     {
       "id": "slot.grid.left.h1",
-      "kind": "line",
+      "kind": "path",
       "prompt": "",
       "content": {
-        "x1": 239.0,
-        "y1": 105.2,
-        "x2": 431.0,
-        "y2": 105.2,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
+        "d": "M 239.0 110.0 L 431.0 110.0",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#37C7FF",
+        "stroke_width": 1.0,
+        "stroke_dasharray": "4 3",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.grid.left.v2",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 287.0 86.0 L 287.0 278.0",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#37C7FF",
+        "stroke_width": 1.0,
+        "stroke_dasharray": "4 3",
+        "fill": "none"
       }
     },
     {
       "id": "slot.grid.left.h2",
-      "kind": "line",
+      "kind": "path",
       "prompt": "",
       "content": {
-        "x1": 239.0,
-        "y1": 124.4,
-        "x2": 431.0,
-        "y2": 124.4,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
+        "d": "M 239.0 134.0 L 431.0 134.0",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#37C7FF",
+        "stroke_width": 1.0,
+        "stroke_dasharray": "4 3",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.grid.left.v3",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 311.0 86.0 L 311.0 278.0",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#37C7FF",
+        "stroke_width": 1.0,
+        "stroke_dasharray": "4 3",
+        "fill": "none"
       }
     },
     {
       "id": "slot.grid.left.h3",
-      "kind": "line",
+      "kind": "path",
       "prompt": "",
       "content": {
-        "x1": 239.0,
-        "y1": 143.6,
-        "x2": 431.0,
-        "y2": 143.6,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
+        "d": "M 239.0 158.0 L 431.0 158.0",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#37C7FF",
+        "stroke_width": 1.0,
+        "stroke_dasharray": "4 3",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.grid.left.v4",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 335.0 86.0 L 335.0 278.0",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#37C7FF",
+        "stroke_width": 1.0,
+        "stroke_dasharray": "4 3",
+        "fill": "none"
       }
     },
     {
       "id": "slot.grid.left.h4",
-      "kind": "line",
+      "kind": "path",
       "prompt": "",
       "content": {
-        "x1": 239.0,
-        "y1": 162.8,
-        "x2": 431.0,
-        "y2": 162.8,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
+        "d": "M 239.0 182.0 L 431.0 182.0",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#37C7FF",
+        "stroke_width": 1.0,
+        "stroke_dasharray": "4 3",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.grid.left.v5",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 359.0 86.0 L 359.0 278.0",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#37C7FF",
+        "stroke_width": 1.0,
+        "stroke_dasharray": "4 3",
+        "fill": "none"
       }
     },
     {
       "id": "slot.grid.left.h5",
-      "kind": "line",
+      "kind": "path",
       "prompt": "",
       "content": {
-        "x1": 239.0,
-        "y1": 182.0,
-        "x2": 431.0,
-        "y2": 182.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
+        "d": "M 239.0 206.0 L 431.0 206.0",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#37C7FF",
+        "stroke_width": 1.0,
+        "stroke_dasharray": "4 3",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.grid.left.v6",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 383.0 86.0 L 383.0 278.0",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#37C7FF",
+        "stroke_width": 1.0,
+        "stroke_dasharray": "4 3",
+        "fill": "none"
       }
     },
     {
       "id": "slot.grid.left.h6",
-      "kind": "line",
+      "kind": "path",
       "prompt": "",
       "content": {
-        "x1": 239.0,
-        "y1": 201.2,
-        "x2": 431.0,
-        "y2": 201.2,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
+        "d": "M 239.0 230.0 L 431.0 230.0",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#37C7FF",
+        "stroke_width": 1.0,
+        "stroke_dasharray": "4 3",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.grid.left.v7",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 407.0 86.0 L 407.0 278.0",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#37C7FF",
+        "stroke_width": 1.0,
+        "stroke_dasharray": "4 3",
+        "fill": "none"
       }
     },
     {
       "id": "slot.grid.left.h7",
-      "kind": "line",
+      "kind": "path",
       "prompt": "",
       "content": {
-        "x1": 239.0,
-        "y1": 220.4,
-        "x2": 431.0,
-        "y2": 220.4,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.grid.left.h8",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 239.0,
-        "y1": 239.6,
-        "x2": 431.0,
-        "y2": 239.6,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.grid.left.h9",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 239.0,
-        "y1": 258.8,
-        "x2": 431.0,
-        "y2": 258.8,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.grid.left.h10",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 239.0,
-        "y1": 278.0,
-        "x2": 431.0,
-        "y2": 278.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
+        "d": "M 239.0 254.0 L 431.0 254.0",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#37C7FF",
+        "stroke_width": 1.0,
+        "stroke_dasharray": "4 3",
+        "fill": "none"
       }
     },
     {
@@ -441,7 +348,9 @@
       "content": {
         "cx": 335.0,
         "cy": 182.0,
-        "r": 94.0,
+        "r": 96.0,
+        "stroke": "#444444",
+        "stroke_width": 1.6,
         "fill": "none"
       }
     },
@@ -450,9 +359,11 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 286.0,
+        "cx": 287.0,
         "cy": 182.0,
         "r": 48.0,
+        "stroke": "#444444",
+        "stroke_width": 1.6,
         "fill": "none"
       }
     },
@@ -461,301 +372,12 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 384.0,
+        "cx": 383.0,
         "cy": 182.0,
         "r": 48.0,
+        "stroke": "#444444",
+        "stroke_width": 1.6,
         "fill": "none"
-      }
-    },
-    {
-      "id": "slot.grid.right.box",
-      "kind": "rect",
-      "prompt": "",
-      "content": {
-        "x": 562.0,
-        "y": 86.0,
-        "width": 192.0,
-        "height": 192.0
-      }
-    },
-    {
-      "id": "slot.grid.right.v1",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 581.2,
-        "y1": 86.0,
-        "x2": 581.2,
-        "y2": 278.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.grid.right.v2",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 600.4,
-        "y1": 86.0,
-        "x2": 600.4,
-        "y2": 278.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.grid.right.v3",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 619.6,
-        "y1": 86.0,
-        "x2": 619.6,
-        "y2": 278.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.grid.right.v4",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 638.8,
-        "y1": 86.0,
-        "x2": 638.8,
-        "y2": 278.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.grid.right.v5",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 658.0,
-        "y1": 86.0,
-        "x2": 658.0,
-        "y2": 278.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.grid.right.v6",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 677.2,
-        "y1": 86.0,
-        "x2": 677.2,
-        "y2": 278.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.grid.right.v7",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 696.4,
-        "y1": 86.0,
-        "x2": 696.4,
-        "y2": 278.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.grid.right.v8",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 715.6,
-        "y1": 86.0,
-        "x2": 715.6,
-        "y2": 278.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.grid.right.v9",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 734.8,
-        "y1": 86.0,
-        "x2": 734.8,
-        "y2": 278.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.grid.right.v10",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 754.0,
-        "y1": 86.0,
-        "x2": 754.0,
-        "y2": 278.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.grid.right.h1",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 562.0,
-        "y1": 105.2,
-        "x2": 754.0,
-        "y2": 105.2,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.grid.right.h2",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 562.0,
-        "y1": 124.4,
-        "x2": 754.0,
-        "y2": 124.4,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.grid.right.h3",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 562.0,
-        "y1": 143.6,
-        "x2": 754.0,
-        "y2": 143.6,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.grid.right.h4",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 562.0,
-        "y1": 162.8,
-        "x2": 754.0,
-        "y2": 162.8,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.grid.right.h5",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 562.0,
-        "y1": 182.0,
-        "x2": 754.0,
-        "y2": 182.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.grid.right.h6",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 562.0,
-        "y1": 201.2,
-        "x2": 754.0,
-        "y2": 201.2,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.grid.right.h7",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 562.0,
-        "y1": 220.4,
-        "x2": 754.0,
-        "y2": 220.4,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.grid.right.h8",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 562.0,
-        "y1": 239.6,
-        "x2": 754.0,
-        "y2": 239.6,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.grid.right.h9",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 562.0,
-        "y1": 258.8,
-        "x2": 754.0,
-        "y2": 258.8,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.grid.right.h10",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 562.0,
-        "y1": 278.0,
-        "x2": 754.0,
-        "y2": 278.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
       }
     },
     {
@@ -763,223 +385,628 @@
       "kind": "path",
       "prompt": "",
       "content": {
-        "d": "M 454.0 182.0 L 496.0 182.0 M 482.0 170.0 L 496.0 182.0 L 482.0 194.0",
+        "d": "M 454 182 L 496 182 M 482 170 L 496 182 L 482 194",
         "x": 0.0,
-        "y": 0.0
-      }
-    },
-    {
-      "id": "slot.boy.head",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 154.0,
-        "cy": 382.0,
-        "r": 23.0,
+        "y": 0.0,
+        "stroke": "#444444",
+        "stroke_width": 2.0,
         "fill": "none"
       }
     },
     {
-      "id": "slot.boy.body",
-      "kind": "rect",
+      "id": "slot.grid.right.frame",
+      "kind": "path",
       "prompt": "",
       "content": {
-        "x": 132.0,
-        "y": 399.0,
-        "width": 44.0,
-        "height": 56.0
+        "d": "M 562.0 86.0 L 754.0 86.0 L 754.0 278.0 L 562.0 278.0 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#37C7FF",
+        "stroke_width": 1.4,
+        "stroke_dasharray": "4 3",
+        "fill": "#ffffff"
       }
     },
     {
-      "id": "slot.boy.hair",
-      "kind": "circle",
+      "id": "slot.grid.right.v1",
+      "kind": "path",
       "prompt": "",
       "content": {
-        "cx": 154.0,
-        "cy": 366.0,
-        "r": 18.0,
+        "d": "M 586.0 86.0 L 586.0 278.0",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#37C7FF",
+        "stroke_width": 1.0,
+        "stroke_dasharray": "4 3",
         "fill": "none"
       }
     },
     {
-      "id": "slot.boy.eye1",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 147.0,
-        "cy": 381.0,
-        "r": 1.8,
-        "fill": "#222222"
-      }
-    },
-    {
-      "id": "slot.boy.eye2",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 161.0,
-        "cy": 381.0,
-        "r": 1.8,
-        "fill": "#222222"
-      }
-    },
-    {
-      "id": "slot.boy.mouth",
+      "id": "slot.grid.right.h1",
       "kind": "path",
       "prompt": "",
       "content": {
-        "d": "M 149.0 390.0 Q 154.0 394.0 159.0 390.0",
+        "d": "M 562.0 110.0 L 754.0 110.0",
         "x": 0.0,
-        "y": 0.0
+        "y": 0.0,
+        "stroke": "#37C7FF",
+        "stroke_width": 1.0,
+        "stroke_dasharray": "4 3",
+        "fill": "none"
       }
     },
     {
-      "id": "slot.boy.speech_tail",
+      "id": "slot.grid.right.v2",
       "kind": "path",
       "prompt": "",
       "content": {
-        "d": "M 197.0 420.0 L 207.0 425.0 L 196.0 430.0",
+        "d": "M 610.0 86.0 L 610.0 278.0",
         "x": 0.0,
-        "y": 0.0
+        "y": 0.0,
+        "stroke": "#37C7FF",
+        "stroke_width": 1.0,
+        "stroke_dasharray": "4 3",
+        "fill": "none"
       }
     },
     {
-      "id": "slot.bubble.left",
+      "id": "slot.grid.right.h2",
       "kind": "path",
       "prompt": "",
       "content": {
-        "d": "M 205.0 346.0 C 205.0 320.0 225.0 306.0 255.0 306.0 C 293.0 306.0 319.0 323.0 319.0 348.0 C 319.0 373.0 292.0 390.0 255.0 390.0 C 236.0 390.0 224.0 386.0 213.0 379.0 L 202.0 384.0 L 207.0 372.0 C 205.5 364.0 205.0 355.0 205.0 346.0 Z",
+        "d": "M 562.0 134.0 L 754.0 134.0",
         "x": 0.0,
-        "y": 0.0
+        "y": 0.0,
+        "stroke": "#37C7FF",
+        "stroke_width": 1.0,
+        "stroke_dasharray": "4 3",
+        "fill": "none"
       }
     },
     {
-      "id": "slot.bubble.left_text",
+      "id": "slot.grid.right.v3",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 634.0 86.0 L 634.0 278.0",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#37C7FF",
+        "stroke_width": 1.0,
+        "stroke_dasharray": "4 3",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.grid.right.h3",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 562.0 158.0 L 754.0 158.0",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#37C7FF",
+        "stroke_width": 1.0,
+        "stroke_dasharray": "4 3",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.grid.right.v4",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 658.0 86.0 L 658.0 278.0",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#37C7FF",
+        "stroke_width": 1.0,
+        "stroke_dasharray": "4 3",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.grid.right.h4",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 562.0 182.0 L 754.0 182.0",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#37C7FF",
+        "stroke_width": 1.0,
+        "stroke_dasharray": "4 3",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.grid.right.v5",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 682.0 86.0 L 682.0 278.0",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#37C7FF",
+        "stroke_width": 1.0,
+        "stroke_dasharray": "4 3",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.grid.right.h5",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 562.0 206.0 L 754.0 206.0",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#37C7FF",
+        "stroke_width": 1.0,
+        "stroke_dasharray": "4 3",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.grid.right.v6",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 706.0 86.0 L 706.0 278.0",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#37C7FF",
+        "stroke_width": 1.0,
+        "stroke_dasharray": "4 3",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.grid.right.h6",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 562.0 230.0 L 754.0 230.0",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#37C7FF",
+        "stroke_width": 1.0,
+        "stroke_dasharray": "4 3",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.grid.right.v7",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 730.0 86.0 L 730.0 278.0",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#37C7FF",
+        "stroke_width": 1.0,
+        "stroke_dasharray": "4 3",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.grid.right.h7",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 562.0 254.0 L 754.0 254.0",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#37C7FF",
+        "stroke_width": 1.0,
+        "stroke_dasharray": "4 3",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.boy.bubble",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 69.0 354.0 C 69.0 322.32, 101.3 310.0, 154.0 310.0 C 206.7 310.0, 239.0 322.32, 239.0 354.0 C 239.0 385.68, 206.7 398.0, 154.0 398.0 C 101.3 398.0, 69.0 385.68, 69.0 354.0 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#222222",
+        "stroke_width": 1.6,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.boy.tail",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            144.0,
+            392.0
+          ],
+          [
+            164.0,
+            392.0
+          ],
+          [
+            154.0,
+            350.0
+          ]
+        ],
+        "stroke": "#222222",
+        "stroke_width": 1.4,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.boy.text",
       "kind": "text",
       "prompt": "",
       "content": {
         "text": "큰 원을\n먼저 그려.",
-        "style_role": "dialogue",
-        "x": 235.0,
-        "y": 336.0,
-        "font_size": 28
+        "style_role": "speech",
+        "x": 154.0,
+        "y": 344.0,
+        "font_size": 23,
+        "anchor": "middle"
       }
     },
     {
-      "id": "slot.girl.head",
+      "id": "slot.boy.person.body",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            126.0,
+            468.0
+          ],
+          [
+            182.0,
+            468.0
+          ],
+          [
+            172.0,
+            432.0
+          ],
+          [
+            136.0,
+            432.0
+          ]
+        ],
+        "stroke": "none",
+        "fill": "#58C7BC"
+      }
+    },
+    {
+      "id": "slot.boy.person.head",
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 780.0,
-        "cy": 382.0,
-        "r": 23.0,
+        "cx": 154.0,
+        "cy": 395.0,
+        "r": 28.0,
+        "stroke": "none",
+        "fill": "#ffd9ad"
+      }
+    },
+    {
+      "id": "slot.boy.person.hair.cap",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 126.0 394.0 C 128.0 365.0, 179.0 360.0, 183.0 394.0 C 164.0 378.0, 142.0 385.0, 126.0 394.0 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "none",
+        "fill": "#3B2417"
+      }
+    },
+    {
+      "id": "slot.boy.person.eye.left",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 144.0,
+        "cy": 399.0,
+        "r": 2.3,
+        "stroke": "none",
+        "fill": "#2b2118"
+      }
+    },
+    {
+      "id": "slot.boy.person.eye.right",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 164.0,
+        "cy": 399.0,
+        "r": 2.3,
+        "stroke": "none",
+        "fill": "#2b2118"
+      }
+    },
+    {
+      "id": "slot.boy.person.smile",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 147.0 411.0 Q 154.0 417.0 161.0 411.0",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#b86e39",
+        "stroke_width": 1.3,
         "fill": "none"
       }
     },
     {
-      "id": "slot.girl.body",
+      "id": "slot.name.boy.box",
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 756.0,
-        "y": 399.0,
-        "width": 48.0,
-        "height": 60.0
+        "x": 118.0,
+        "y": 468.0,
+        "width": 72.0,
+        "height": 36.0,
+        "stroke": "#6fcf83",
+        "stroke_width": 2.0,
+        "rx": 9.0,
+        "ry": 9.0,
+        "fill": "#e9f7dd"
       }
     },
     {
-      "id": "slot.girl.hair",
-      "kind": "circle",
+      "id": "slot.name.boy.text",
+      "kind": "text",
       "prompt": "",
       "content": {
-        "cx": 780.0,
-        "cy": 368.0,
-        "r": 20.0,
-        "fill": "none"
+        "text": "민수",
+        "style_role": "label",
+        "x": 154.0,
+        "y": 494.0,
+        "font_size": 25,
+        "anchor": "middle"
       }
     },
     {
-      "id": "slot.girl.eye1",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 773.0,
-        "cy": 382.0,
-        "r": 1.8,
-        "fill": "#222222"
-      }
-    },
-    {
-      "id": "slot.girl.eye2",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 787.0,
-        "cy": 382.0,
-        "r": 1.8,
-        "fill": "#222222"
-      }
-    },
-    {
-      "id": "slot.girl.mouth",
+      "id": "slot.girl.bubble",
       "kind": "path",
       "prompt": "",
       "content": {
-        "d": "M 775.0 391.0 Q 780.0 395.0 785.0 391.0",
+        "d": "M 647.5 354.0 C 647.5 311.52, 701.65 295.0, 790.0 295.0 C 878.35 295.0, 932.5 311.52, 932.5 354.0 C 932.5 396.48, 878.35 413.0, 790.0 413.0 C 701.65 413.0, 647.5 396.48, 647.5 354.0 Z",
         "x": 0.0,
-        "y": 0.0
+        "y": 0.0,
+        "stroke": "#222222",
+        "stroke_width": 1.6,
+        "fill": "#ffffff"
       }
     },
     {
-      "id": "slot.girl.hand_left",
-      "kind": "path",
+      "id": "slot.girl.tail",
+      "kind": "polygon",
       "prompt": "",
       "content": {
-        "d": "M 756.0 407.0 L 744.0 399.0 L 750.0 414.0",
-        "x": 0.0,
-        "y": 0.0
+        "points": [
+          [
+            780.0,
+            407.0
+          ],
+          [
+            800.0,
+            407.0
+          ],
+          [
+            790.0,
+            350.0
+          ]
+        ],
+        "stroke": "#222222",
+        "stroke_width": 1.4,
+        "fill": "#ffffff"
       }
     },
     {
-      "id": "slot.girl.hand_right",
-      "kind": "path",
-      "prompt": "",
-      "content": {
-        "d": "M 808.0 407.0 L 820.0 399.0 L 814.0 414.0",
-        "x": 0.0,
-        "y": 0.0
-      }
-    },
-    {
-      "id": "slot.girl.speech_tail",
-      "kind": "path",
-      "prompt": "",
-      "content": {
-        "d": "M 730.0 426.0 L 720.0 431.0 L 731.0 436.0",
-        "x": 0.0,
-        "y": 0.0
-      }
-    },
-    {
-      "id": "slot.bubble.right",
-      "kind": "path",
-      "prompt": "",
-      "content": {
-        "d": "M 517.0 336.0 C 517.0 308.0 559.0 288.0 617.0 288.0 C 678.0 288.0 721.0 312.0 721.0 343.0 C 721.0 374.0 678.0 396.0 618.0 396.0 C 588.0 396.0 565.0 392.0 545.0 382.0 L 532.0 388.0 L 536.0 373.0 C 521.0 360.0 517.0 348.0 517.0 336.0 Z",
-        "x": 0.0,
-        "y": 0.0
-      }
-    },
-    {
-      "id": "slot.bubble.right_text",
+      "id": "slot.girl.text",
       "kind": "text",
       "prompt": "",
       "content": {
         "text": "큰 원의 반지름을\n( 지름, 반지름 )으로 하는\n작은 원을 2개 그려.",
-        "style_role": "dialogue",
-        "x": 547.0,
-        "y": 323.0,
-        "font_size": 28
+        "style_role": "speech",
+        "x": 790.0,
+        "y": 328.0,
+        "font_size": 21,
+        "anchor": "middle"
+      }
+    },
+    {
+      "id": "slot.girl.person.body",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            762.0,
+            468.0
+          ],
+          [
+            818.0,
+            468.0
+          ],
+          [
+            808.0,
+            432.0
+          ],
+          [
+            772.0,
+            432.0
+          ]
+        ],
+        "stroke": "none",
+        "fill": "#F16078"
+      }
+    },
+    {
+      "id": "slot.girl.person.head",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 790.0,
+        "cy": 395.0,
+        "r": 28.0,
+        "stroke": "none",
+        "fill": "#ffd9ad"
+      }
+    },
+    {
+      "id": "slot.girl.person.hair.cap",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 762.0 394.0 C 764.0 365.0, 815.0 360.0, 819.0 394.0 C 800.0 378.0, 778.0 385.0, 762.0 394.0 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "none",
+        "fill": "#4B260B"
+      }
+    },
+    {
+      "id": "slot.girl.person.eye.left",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 780.0,
+        "cy": 399.0,
+        "r": 2.3,
+        "stroke": "none",
+        "fill": "#2b2118"
+      }
+    },
+    {
+      "id": "slot.girl.person.eye.right",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 800.0,
+        "cy": 399.0,
+        "r": 2.3,
+        "stroke": "none",
+        "fill": "#2b2118"
+      }
+    },
+    {
+      "id": "slot.girl.person.smile",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 783.0 411.0 Q 790.0 417.0 797.0 411.0",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#b86e39",
+        "stroke_width": 1.3,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.girl.person.tail.left",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 763.0 392.0 C 738.0 396.0, 752.0 437.0, 740.0 443.0",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#4B260B",
+        "stroke_width": 7.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.girl.person.tail.right",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 817.0 392.0 C 842.0 396.0, 828.0 437.0, 840.0 443.0",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#4B260B",
+        "stroke_width": 7.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.girl.person.bow.left",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            783.0,
+            438.0
+          ],
+          [
+            764.0,
+            430.0
+          ],
+          [
+            776.0,
+            451.0
+          ]
+        ],
+        "stroke": "none",
+        "fill": "#E85BA6"
+      }
+    },
+    {
+      "id": "slot.girl.person.bow.right",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            797.0,
+            438.0
+          ],
+          [
+            816.0,
+            430.0
+          ],
+          [
+            804.0,
+            451.0
+          ]
+        ],
+        "stroke": "none",
+        "fill": "#E85BA6"
+      }
+    },
+    {
+      "id": "slot.name.girl.box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 754.0,
+        "y": 468.0,
+        "width": 72.0,
+        "height": 36.0,
+        "stroke": "#6fcf83",
+        "stroke_width": 2.0,
+        "rx": 9.0,
+        "ry": 9.0,
+        "fill": "#e9f7dd"
+      }
+    },
+    {
+      "id": "slot.name.girl.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "지혜",
+        "style_role": "label",
+        "x": 790.0,
+        "y": 494.0,
+        "font_size": 25,
+        "anchor": "middle"
       }
     }
   ],
@@ -992,73 +1019,66 @@
     "slot.q1",
     "slot.q2",
     "region.diagram",
-    "slot.grid.left.box",
+    "slot.grid.left.frame",
+    "slot.grid.left.v1",
+    "slot.grid.left.h1",
+    "slot.grid.left.v2",
+    "slot.grid.left.h2",
+    "slot.grid.left.v3",
+    "slot.grid.left.h3",
+    "slot.grid.left.v4",
+    "slot.grid.left.h4",
+    "slot.grid.left.v5",
+    "slot.grid.left.h5",
+    "slot.grid.left.v6",
+    "slot.grid.left.h6",
+    "slot.grid.left.v7",
+    "slot.grid.left.h7",
     "slot.left.outer_circle",
     "slot.left.inner_circle_1",
     "slot.left.inner_circle_2",
-    "slot.grid.right.box",
     "slot.arrow",
-    "slot.grid.left.v1",
-    "slot.grid.left.v2",
-    "slot.grid.left.v3",
-    "slot.grid.left.v4",
-    "slot.grid.left.v5",
-    "slot.grid.left.v6",
-    "slot.grid.left.v7",
-    "slot.grid.left.v8",
-    "slot.grid.left.v9",
-    "slot.grid.left.v10",
-    "slot.grid.left.h1",
-    "slot.grid.left.h2",
-    "slot.grid.left.h3",
-    "slot.grid.left.h4",
-    "slot.grid.left.h5",
-    "slot.grid.left.h6",
-    "slot.grid.left.h7",
-    "slot.grid.left.h8",
-    "slot.grid.left.h9",
-    "slot.grid.left.h10",
+    "slot.grid.right.frame",
     "slot.grid.right.v1",
-    "slot.grid.right.v2",
-    "slot.grid.right.v3",
-    "slot.grid.right.v4",
-    "slot.grid.right.v5",
-    "slot.grid.right.v6",
-    "slot.grid.right.v7",
-    "slot.grid.right.v8",
-    "slot.grid.right.v9",
-    "slot.grid.right.v10",
     "slot.grid.right.h1",
+    "slot.grid.right.v2",
     "slot.grid.right.h2",
+    "slot.grid.right.v3",
     "slot.grid.right.h3",
+    "slot.grid.right.v4",
     "slot.grid.right.h4",
+    "slot.grid.right.v5",
     "slot.grid.right.h5",
+    "slot.grid.right.v6",
     "slot.grid.right.h6",
+    "slot.grid.right.v7",
     "slot.grid.right.h7",
-    "slot.grid.right.h8",
-    "slot.grid.right.h9",
-    "slot.grid.right.h10",
     "region.dialogue",
-    "slot.boy.head",
-    "slot.boy.body",
-    "slot.boy.hair",
-    "slot.boy.eye1",
-    "slot.boy.eye2",
-    "slot.boy.mouth",
-    "slot.boy.speech_tail",
-    "slot.bubble.left",
-    "slot.girl.head",
-    "slot.girl.body",
-    "slot.girl.hair",
-    "slot.girl.eye1",
-    "slot.girl.eye2",
-    "slot.girl.mouth",
-    "slot.girl.hand_left",
-    "slot.girl.hand_right",
-    "slot.girl.speech_tail",
-    "slot.bubble.right",
-    "slot.bubble.left_text",
-    "slot.bubble.right_text",
-    "region.footer"
+    "slot.boy.bubble",
+    "slot.boy.tail",
+    "slot.boy.person.body",
+    "slot.boy.person.head",
+    "slot.boy.person.hair.cap",
+    "slot.boy.person.eye.left",
+    "slot.boy.person.eye.right",
+    "slot.boy.person.smile",
+    "slot.name.boy.box",
+    "slot.girl.bubble",
+    "slot.girl.tail",
+    "slot.girl.person.body",
+    "slot.girl.person.head",
+    "slot.girl.person.hair.cap",
+    "slot.girl.person.eye.left",
+    "slot.girl.person.eye.right",
+    "slot.girl.person.smile",
+    "slot.girl.person.tail.left",
+    "slot.girl.person.tail.right",
+    "slot.girl.person.bow.left",
+    "slot.girl.person.bow.right",
+    "slot.name.girl.box",
+    "slot.boy.text",
+    "slot.name.boy.text",
+    "slot.girl.text",
+    "slot.name.girl.text"
   ]
 }

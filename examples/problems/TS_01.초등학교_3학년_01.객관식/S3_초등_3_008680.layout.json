@@ -3,7 +3,7 @@
   "problem_id": "S3_초등_3_008680",
   "title": "원을 똑같이 둘로 나누는 선분 찾기",
   "canvas": {
-    "width": 940,
+    "width": 900,
     "height": 343,
     "coordinate_mode": "logical",
     "background": "#FFFFFF"
@@ -44,10 +44,7 @@
       "id": "region.answer",
       "role": "answer",
       "flow": "absolute",
-      "slot_ids": [
-        "slot.answer",
-        "slot.explain"
-      ]
+      "slot_ids": []
     }
   ],
   "slots": [
@@ -56,7 +53,7 @@
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "□ 62. 원을 똑같이 둘로 나누는 선분을 찾아 기호를 선택하세요.",
+        "text": "원을 똑같이 둘로 나누는 선분을 찾아 기호를 선택하세요.",
         "style_role": "question",
         "x": 10.0,
         "y": 28.0,
@@ -68,9 +65,9 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 479.0,
-        "cy": 116.0,
-        "r": 68.0,
+        "cx": 380.0,
+        "cy": 146.0,
+        "r": 85.0,
         "stroke": "#222222",
         "stroke_width": 1.8,
         "fill": "none"
@@ -81,10 +78,10 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 411.0,
-        "y1": 116.0,
-        "x2": 547.0,
-        "y2": 116.0,
+        "x1": 295.0,
+        "y1": 145.0,
+        "x2": 465.0,
+        "y2": 145.0,
         "stroke": "#333333",
         "stroke_width": 1.8
       }
@@ -94,10 +91,10 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 479.0,
-        "y1": 116.0,
-        "x2": 479.0,
-        "y2": 184.0,
+        "x1": 380.0,
+        "y1": 145.0,
+        "x2": 380.0,
+        "y2": 230.0,
         "stroke": "#333333",
         "stroke_width": 1.8
       }
@@ -107,9 +104,9 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 479.0,
-        "cy": 116.0,
-        "r": 3.2,
+        "cx": 380.0,
+        "cy": 145.0,
+        "r": 5.0,
         "fill": "#d61f9d"
       }
     },
@@ -120,9 +117,9 @@
       "content": {
         "text": "ㅇ",
         "style_role": "diagram",
-        "x": 473.0,
-        "y": 108.0,
-        "font_size": 24
+        "x": 385.0,
+        "y": 130.0,
+        "font_size": 25
       }
     },
     {
@@ -132,9 +129,9 @@
       "content": {
         "text": "ㄱ",
         "style_role": "diagram",
-        "x": 392.0,
-        "y": 124.0,
-        "font_size": 24
+        "x": 260.0,
+        "y": 160.0,
+        "font_size": 25
       }
     },
     {
@@ -144,9 +141,9 @@
       "content": {
         "text": "ㄷ",
         "style_role": "diagram",
-        "x": 551.0,
-        "y": 124.0,
-        "font_size": 24
+        "x": 480.0,
+        "y": 160.0,
+        "font_size": 25
       }
     },
     {
@@ -156,9 +153,9 @@
       "content": {
         "text": "ㄴ",
         "style_role": "diagram",
-        "x": 472.0,
-        "y": 198.0,
-        "font_size": 24
+        "x": 385.0,
+        "y": 255.0,
+        "font_size": 25
       }
     },
     {
@@ -168,33 +165,10 @@
       "content": {
         "text": "① 선분 ㅇㄱ      ② 선분 ㅇㄷ      ③ 선분 ㅇㄴ      ④ 선분 ㄱㄷ",
         "style_role": "question",
-        "x": 86.0,
-        "y": 228.0,
-        "font_size": 40
-      }
-    },
-    {
-      "id": "slot.answer",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "(정답) ④",
-        "style_role": "question",
-        "x": 10.0,
-        "y": 278.0,
-        "font_size": 28
-      }
-    },
-    {
-      "id": "slot.explain",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "(해설) 선분 ㄱㄷ이 원을 똑같이 둘로 나누는 선분입니다.",
-        "style_role": "question",
-        "x": 10.0,
-        "y": 324.0,
-        "font_size": 28
+        "x": 35.0,
+        "y": 295.0,
+        "font_size": 28,
+        "fill": "#111111"
       }
     }
   ],
@@ -215,8 +189,6 @@
     "slot.label.bottom",
     "region.choice",
     "slot.choice",
-    "region.answer",
-    "slot.answer",
-    "slot.explain"
+    "region.answer"
   ]
 }

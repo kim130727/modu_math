@@ -7,23 +7,6 @@
   },
   "elements": [
     {
-      "id": "slot.qnum.text",
-      "type": "text",
-      "attributes": {
-        "x": 8.0,
-        "y": 24.0,
-        "max_width": 672.0,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
-      },
-      "source_ref": "slot.qnum",
-      "refs": {
-        "layout_slot_id": "slot.qnum"
-      },
-      "text": "□ 60."
-    },
-    {
       "id": "slot.qtext.text",
       "type": "text",
       "attributes": {
@@ -44,9 +27,9 @@
       "id": "slot.circle.circle",
       "type": "circle",
       "attributes": {
-        "cx": 510.0,
-        "cy": 106.0,
-        "r": 71.0,
+        "cx": 405.0,
+        "cy": 165.0,
+        "r": 120.0,
         "stroke": "#111111",
         "stroke-width": 2.0,
         "fill": "none"
@@ -60,9 +43,9 @@
       "id": "slot.pt.center.circle",
       "type": "circle",
       "attributes": {
-        "cx": 482.0,
-        "cy": 106.0,
-        "r": 3.5,
+        "cx": 405.0,
+        "cy": 165.0,
+        "r": 5.0,
         "stroke": "#111111",
         "stroke-width": 2.0,
         "fill": "#ff4aa5"
@@ -76,10 +59,10 @@
       "id": "slot.seg1.line",
       "type": "line",
       "attributes": {
-        "x1": 446.0,
-        "y1": 175.0,
-        "x2": 551.0,
-        "y2": 70.0,
+        "x1": 292.0,
+        "y1": 205.0,
+        "x2": 517.0,
+        "y2": 125.0,
         "stroke": "#111111",
         "stroke-width": 2.0
       },
@@ -92,10 +75,10 @@
       "id": "slot.seg2.line",
       "type": "line",
       "attributes": {
-        "x1": 510.0,
-        "y1": 106.0,
-        "x2": 510.0,
-        "y2": 177.0,
+        "x1": 515.0,
+        "y1": 125.0,
+        "x2": 515.0,
+        "y2": 210.0,
         "stroke": "#111111",
         "stroke-width": 2.0
       },
@@ -108,10 +91,10 @@
       "id": "slot.seg3.line",
       "type": "line",
       "attributes": {
-        "x1": 548.0,
-        "y1": 73.0,
-        "x2": 548.0,
-        "y2": 173.0,
+        "x1": 405.0,
+        "y1": 165.0,
+        "x2": 405.0,
+        "y2": 285.0,
         "stroke": "#111111",
         "stroke-width": 2.0
       },
@@ -124,12 +107,12 @@
       "id": "slot.lb.g1.text",
       "type": "text",
       "attributes": {
-        "x": 430.0,
-        "y": 184.0,
+        "x": 255.0,
+        "y": 225.0,
         "max_width": 672.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 30
       },
       "source_ref": "slot.lb.g1",
       "refs": {
@@ -141,12 +124,12 @@
       "id": "slot.lb.g2.text",
       "type": "text",
       "attributes": {
-        "x": 560.0,
-        "y": 63.0,
+        "x": 415.0,
+        "y": 260.0,
         "max_width": 672.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 30
       },
       "source_ref": "slot.lb.g2",
       "refs": {
@@ -158,12 +141,12 @@
       "id": "slot.lb.g3.text",
       "type": "text",
       "attributes": {
-        "x": 555.0,
-        "y": 187.0,
+        "x": 480.0,
+        "y": 215.0,
         "max_width": 672.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 30
       },
       "source_ref": "slot.lb.g3",
       "refs": {
@@ -175,12 +158,12 @@
       "id": "slot.lb.g4.text",
       "type": "text",
       "attributes": {
-        "x": 507.0,
-        "y": 193.0,
+        "x": 525.0,
+        "y": 120.0,
         "max_width": 672.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 30
       },
       "source_ref": "slot.lb.g4",
       "refs": {
@@ -192,27 +175,27 @@
       "id": "slot.lb.o.text",
       "type": "text",
       "attributes": {
-        "x": 491.0,
-        "y": 120.0,
+        "x": 380.0,
+        "y": 150.0,
         "max_width": 672.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 30
       },
       "source_ref": "slot.lb.o",
       "refs": {
         "layout_slot_id": "slot.lb.o"
       },
-      "text": "O"
+      "text": "ㅇ"
     },
     {
       "id": "slot.choice_box.rect",
       "type": "rect",
       "attributes": {
-        "x": 194.0,
-        "y": 204.0,
-        "width": 579.0,
-        "height": 63.0,
+        "x": 95.0,
+        "y": 305.0,
+        "width": 580.0,
+        "height": 65.0,
         "fill": "none",
         "stroke": "#111111",
         "stroke-width": 1.5
@@ -226,52 +209,52 @@
       "id": "slot.choice1.text",
       "type": "text",
       "attributes": {
-        "x": 236.0,
-        "y": 242.0,
+        "x": 135.0,
+        "y": 345.0,
         "max_width": 672.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 30
       },
       "source_ref": "slot.choice1",
       "refs": {
         "layout_slot_id": "slot.choice1"
       },
-      "text": "선분 ㄱㄹ"
+      "text": "1. 선분 ㄱㄹ"
     },
     {
       "id": "slot.choice2.text",
       "type": "text",
       "attributes": {
-        "x": 411.0,
-        "y": 242.0,
+        "x": 310.0,
+        "y": 345.0,
         "max_width": 672.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 30
       },
       "source_ref": "slot.choice2",
       "refs": {
         "layout_slot_id": "slot.choice2"
       },
-      "text": "선분 Oㄴ"
+      "text": "2. 선분 ㅇㄴ"
     },
     {
       "id": "slot.choice3.text",
       "type": "text",
       "attributes": {
-        "x": 589.0,
-        "y": 242.0,
+        "x": 490.0,
+        "y": 345.0,
         "max_width": 672.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 30
       },
       "source_ref": "slot.choice3",
       "refs": {
         "layout_slot_id": "slot.choice3"
       },
-      "text": "선분 ㄷㄹ"
+      "text": "3. 선분 ㄷㄹ"
     }
   ],
   "contract_version": "modu_math.renderer.v2"

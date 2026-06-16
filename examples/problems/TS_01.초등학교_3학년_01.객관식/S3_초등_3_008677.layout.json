@@ -14,7 +14,6 @@
       "role": "stem",
       "flow": "absolute",
       "slot_ids": [
-        "slot.qnum",
         "slot.qtext"
       ]
     },
@@ -55,18 +54,6 @@
   ],
   "slots": [
     {
-      "id": "slot.qnum",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "□ 60.",
-        "style_role": "question",
-        "x": 8.0,
-        "y": 24.0,
-        "font_size": 28
-      }
-    },
-    {
       "id": "slot.qtext",
       "kind": "text",
       "prompt": "",
@@ -83,9 +70,9 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 510.0,
-        "cy": 106.0,
-        "r": 71.0,
+        "cx": 405.0,
+        "cy": 165.0,
+        "r": 120.0,
         "fill": "none"
       }
     },
@@ -94,10 +81,10 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 446.0,
-        "y1": 175.0,
-        "x2": 551.0,
-        "y2": 70.0
+        "x1": 292.0,
+        "y1": 205.0,
+        "x2": 517.0,
+        "y2": 125.0
       }
     },
     {
@@ -105,10 +92,10 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 510.0,
-        "y1": 106.0,
-        "x2": 510.0,
-        "y2": 177.0
+        "x1": 515.0,
+        "y1": 125.0,
+        "x2": 515.0,
+        "y2": 210.0
       }
     },
     {
@@ -116,10 +103,10 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 548.0,
-        "y1": 73.0,
-        "x2": 548.0,
-        "y2": 173.0
+        "x1": 405.0,
+        "y1": 165.0,
+        "x2": 405.0,
+        "y2": 285.0
       }
     },
     {
@@ -127,9 +114,9 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 482.0,
-        "cy": 106.0,
-        "r": 3.5,
+        "cx": 405.0,
+        "cy": 165.0,
+        "r": 5.0,
         "fill": "#ff4aa5"
       }
     },
@@ -140,9 +127,9 @@
       "content": {
         "text": "ㄱ",
         "style_role": "label",
-        "x": 430.0,
-        "y": 184.0,
-        "font_size": 28
+        "x": 255.0,
+        "y": 225.0,
+        "font_size": 30
       }
     },
     {
@@ -152,9 +139,9 @@
       "content": {
         "text": "ㄴ",
         "style_role": "label",
-        "x": 560.0,
-        "y": 63.0,
-        "font_size": 28
+        "x": 415.0,
+        "y": 260.0,
+        "font_size": 30
       }
     },
     {
@@ -164,9 +151,9 @@
       "content": {
         "text": "ㄷ",
         "style_role": "label",
-        "x": 555.0,
-        "y": 187.0,
-        "font_size": 28
+        "x": 480.0,
+        "y": 215.0,
+        "font_size": 30
       }
     },
     {
@@ -176,9 +163,9 @@
       "content": {
         "text": "ㄹ",
         "style_role": "label",
-        "x": 507.0,
-        "y": 193.0,
-        "font_size": 28
+        "x": 525.0,
+        "y": 120.0,
+        "font_size": 30
       }
     },
     {
@@ -186,11 +173,11 @@
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "O",
+        "text": "ㅇ",
         "style_role": "label",
-        "x": 491.0,
-        "y": 120.0,
-        "font_size": 28
+        "x": 380.0,
+        "y": 150.0,
+        "font_size": 30
       }
     },
     {
@@ -198,10 +185,10 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 194.0,
-        "y": 204.0,
-        "width": 579.0,
-        "height": 63.0,
+        "x": 95.0,
+        "y": 305.0,
+        "width": 580.0,
+        "height": 65.0,
         "fill": "none"
       }
     },
@@ -210,11 +197,11 @@
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "선분 ㄱㄹ",
+        "text": "1. 선분 ㄱㄹ",
         "style_role": "choice",
-        "x": 236.0,
-        "y": 242.0,
-        "font_size": 28
+        "x": 135.0,
+        "y": 345.0,
+        "font_size": 30
       }
     },
     {
@@ -222,11 +209,11 @@
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "선분 Oㄴ",
+        "text": "2. 선분 ㅇㄴ",
         "style_role": "choice",
-        "x": 411.0,
-        "y": 242.0,
-        "font_size": 28
+        "x": 310.0,
+        "y": 345.0,
+        "font_size": 30
       }
     },
     {
@@ -234,11 +221,11 @@
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "선분 ㄷㄹ",
+        "text": "3. 선분 ㄷㄹ",
         "style_role": "choice",
-        "x": 589.0,
-        "y": 242.0,
-        "font_size": 28
+        "x": 490.0,
+        "y": 345.0,
+        "font_size": 30
       }
     }
   ],
@@ -247,7 +234,6 @@
   "diagrams": [],
   "reading_order": [
     "region.stem",
-    "slot.qnum",
     "slot.qtext",
     "region.diagram",
     "slot.circle",

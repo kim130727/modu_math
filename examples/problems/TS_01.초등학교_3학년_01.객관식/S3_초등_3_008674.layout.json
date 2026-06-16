@@ -14,7 +14,6 @@
       "role": "stem",
       "flow": "absolute",
       "slot_ids": [
-        "slot.header.mark",
         "slot.header.text"
       ]
     },
@@ -24,7 +23,6 @@
       "flow": "absolute",
       "slot_ids": [
         "slot.top.square",
-        "slot.top.arc",
         "slot.top.center"
       ]
     },
@@ -34,7 +32,6 @@
       "flow": "absolute",
       "slot_ids": [
         "slot.mid.left.square",
-        "slot.mid.left.arc",
         "slot.mid.left.red",
         "slot.mid.left.center",
         "slot.mid.mid.square",
@@ -44,6 +41,7 @@
         "slot.mid.right.arc",
         "slot.mid.right.red",
         "slot.mid.right.center",
+        "slot.mid.mid.arc.copy4",
         "slot.mid.mid.red"
       ]
     },
@@ -51,11 +49,7 @@
       "id": "region.answer",
       "role": "diagram",
       "flow": "absolute",
-      "slot_ids": [
-        "slot.answer.square",
-        "slot.answer.arc",
-        "slot.answer.center"
-      ]
+      "slot_ids": []
     },
     {
       "id": "region.explanation",
@@ -66,27 +60,15 @@
   ],
   "slots": [
     {
-      "id": "slot.header.mark",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "☐ 55.",
-        "style_role": "question",
-        "x": 10.0,
-        "y": 32.0,
-        "font_size": 28
-      }
-    },
-    {
       "id": "slot.header.text",
       "kind": "text",
       "prompt": "",
       "content": {
         "text": "원을 바르게 완성한 것을 선택하세요.",
         "style_role": "question",
-        "x": 70.0,
-        "y": 32.0,
-        "font_size": 28
+        "x": 50.0,
+        "y": 55.0,
+        "font_size": 30
       }
     },
     {
@@ -94,20 +76,13 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 410.0,
-        "y": 48.0,
+        "x": 445.0,
+        "y": 30.0,
         "width": 160.0,
-        "height": 160.0
-      }
-    },
-    {
-      "id": "slot.top.arc",
-      "kind": "path",
-      "prompt": "",
-      "content": {
-        "d": "M 490.0 48.0 A 80.0 80.0 0 1 0 570.0 128.0",
-        "x": 0.0,
-        "y": 0.0
+        "height": 160.0,
+        "stroke": "#111111",
+        "stroke_width": 1.5,
+        "fill": "#ffffff"
       }
     },
     {
@@ -118,6 +93,8 @@
         "cx": 490.0,
         "cy": 128.0,
         "r": 4.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0,
         "fill": "#e91e63"
       }
     },
@@ -126,20 +103,13 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 140.0,
-        "y": 226.0,
+        "x": 90.0,
+        "y": 325.0,
         "width": 160.0,
-        "height": 160.0
-      }
-    },
-    {
-      "id": "slot.mid.left.arc",
-      "kind": "path",
-      "prompt": "",
-      "content": {
-        "d": "M 140.0 306.0 A 80.0 80.0 0 1 1 220.0 226.0",
-        "x": 0.0,
-        "y": 0.0
+        "height": 160.0,
+        "stroke": "#111111",
+        "stroke_width": 1.5,
+        "fill": "#ffffff"
       }
     },
     {
@@ -147,9 +117,11 @@
       "kind": "path",
       "prompt": "",
       "content": {
-        "d": "M 220.0 226.0 A 80.0 80.0 0 0 0 300.0 306.0",
+        "d": "M 170.42327880859375 326.28009033203125 A 80 80 0 0 0 250.42327880859375 406.28009033203125",
         "x": 0.0,
-        "y": 0.0
+        "y": 0.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0
       }
     },
     {
@@ -160,6 +132,8 @@
         "cx": 220.0,
         "cy": 306.0,
         "r": 4.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0,
         "fill": "#e91e63"
       }
     },
@@ -168,10 +142,13 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 410.0,
-        "y": 226.0,
+        "x": 320.0,
+        "y": 325.0,
         "width": 160.0,
-        "height": 160.0
+        "height": 160.0,
+        "stroke": "#111111",
+        "stroke_width": 1.5,
+        "fill": "#ffffff"
       }
     },
     {
@@ -179,9 +156,12 @@
       "kind": "path",
       "prompt": "",
       "content": {
-        "d": "M 410.0 306.0 A 80.0 80.0 0 1 1 490.0 226.0",
+        "d": "M 283.2749328613281 412.4490661621094 A 80 80 0 1 1 363.2749328613281 332.4490661621094",
         "x": 0.0,
-        "y": 0.0
+        "y": 0.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0,
+        "transform": "rotate(255 410 226)"
       }
     },
     {
@@ -189,10 +169,12 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 490.0,
-        "y1": 226.0,
-        "x2": 570.0,
-        "y2": 306.0
+        "x1": 400.0,
+        "y1": 325.0,
+        "x2": 480.0,
+        "y2": 405.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0
       }
     },
     {
@@ -203,6 +185,8 @@
         "cx": 490.0,
         "cy": 306.0,
         "r": 4.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0,
         "fill": "#e91e63"
       }
     },
@@ -211,10 +195,13 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 700.0,
-        "y": 226.0,
+        "x": 565.0,
+        "y": 325.0,
         "width": 160.0,
-        "height": 160.0
+        "height": 160.0,
+        "stroke": "#111111",
+        "stroke_width": 1.5,
+        "fill": "#ffffff"
       }
     },
     {
@@ -222,9 +209,12 @@
       "kind": "path",
       "prompt": "",
       "content": {
-        "d": "M 700.0 306.0 A 80.0 80.0 0 1 1 780.0 226.0",
+        "d": "M 631.5684204101562 365.5607604980469 A 80 80 0 1 1 711.5684204101562 285.5607604980469",
         "x": 0.0,
-        "y": 0.0
+        "y": 0.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0,
+        "transform": "rotate(260 700 226)"
       }
     },
     {
@@ -232,9 +222,11 @@
       "kind": "path",
       "prompt": "",
       "content": {
-        "d": "M 780.0 226.0 A 80.0 80.0 0 0 1 860.0 306.0",
+        "d": "M 644.4042358398438 326.1128234863281 A 80 80 0 0 1 724.4042358398438 406.1128234863281",
         "x": 0.0,
-        "y": 0.0
+        "y": 0.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0
       }
     },
     {
@@ -245,39 +237,22 @@
         "cx": 780.0,
         "cy": 306.0,
         "r": 4.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0,
         "fill": "#e91e63"
       }
     },
     {
-      "id": "slot.answer.square",
-      "kind": "rect",
-      "prompt": "",
-      "content": {
-        "x": 60.0,
-        "y": 412.0,
-        "width": 160.0,
-        "height": 160.0
-      }
-    },
-    {
-      "id": "slot.answer.arc",
+      "id": "slot.mid.mid.arc.copy4",
       "kind": "path",
       "prompt": "",
       "content": {
-        "d": "M 60.0 492.0 A 80.0 80.0 0 1 1 140.0 412.0",
+        "d": "M 470 366 A 140 140 60 61 61 550 286",
         "x": 0.0,
-        "y": 0.0
-      }
-    },
-    {
-      "id": "slot.answer.center",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 140.0,
-        "cy": 492.0,
-        "r": 4.0,
-        "fill": "#e91e63"
+        "y": 0.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0,
+        "transform": "rotate(255 410 226)"
       }
     }
   ],
@@ -286,15 +261,12 @@
   "diagrams": [],
   "reading_order": [
     "region.header",
-    "slot.header.mark",
     "slot.header.text",
     "region.options.top",
     "slot.top.square",
-    "slot.top.arc",
     "slot.top.center",
     "region.options.middle",
     "slot.mid.left.square",
-    "slot.mid.left.arc",
     "slot.mid.left.red",
     "slot.mid.left.center",
     "slot.mid.mid.square",
@@ -304,11 +276,9 @@
     "slot.mid.right.arc",
     "slot.mid.right.red",
     "slot.mid.right.center",
+    "slot.mid.mid.arc.copy4",
     "slot.mid.mid.red",
     "region.answer",
-    "slot.answer.square",
-    "slot.answer.arc",
-    "slot.answer.center",
     "region.explanation"
   ]
 }

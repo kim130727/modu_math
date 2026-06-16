@@ -14,7 +14,10 @@
       "role": "stem",
       "flow": "absolute",
       "slot_ids": [
-        "slot.stem"
+        "slot.stem",
+        "slot.stem.copy1",
+        "slot.stem.copy1.copy2",
+        "slot.stem.copy1.copy3"
       ]
     },
     {
@@ -65,8 +68,8 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 75.0,
-        "y": 80.0,
+        "x": 60.0,
+        "y": 145.0,
         "width": 780.0,
         "height": 165.0,
         "stroke": "#8BC34A",
@@ -79,8 +82,8 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 270.0,
-        "cy": 140.0,
+        "cx": 165.0,
+        "cy": 260.0,
         "r": 20.0,
         "stroke": "#333333",
         "stroke_width": 1.5,
@@ -92,8 +95,8 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 295.0,
-        "cy": 115.0,
+        "cx": 194.0,
+        "cy": 231.0,
         "r": 20.0,
         "stroke": "#333333",
         "stroke_width": 1.5,
@@ -105,8 +108,8 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 325.0,
-        "cy": 85.0,
+        "cx": 225.0,
+        "cy": 205.0,
         "r": 20.0,
         "stroke": "#333333",
         "stroke_width": 1.5,
@@ -118,8 +121,8 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 500.0,
-        "cy": 125.0,
+        "cx": 430.0,
+        "cy": 230.0,
         "r": 45.0,
         "stroke": "#333333",
         "stroke_width": 1.5,
@@ -131,9 +134,9 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 500.0,
-        "cy": 90.0,
-        "r": 15.0,
+        "cx": 430.0,
+        "cy": 210.0,
+        "r": 25.0,
         "stroke": "#333333",
         "stroke_width": 1.5,
         "fill": "none"
@@ -144,9 +147,9 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 500.0,
-        "cy": 75.0,
-        "r": 10.0,
+        "cx": 430.0,
+        "cy": 200.0,
+        "r": 15.0,
         "stroke": "#333333",
         "stroke_width": 1.5,
         "fill": "none"
@@ -157,9 +160,9 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 670.0,
-        "cy": 125.0,
-        "r": 35.0,
+        "cx": 680.0,
+        "cy": 235.0,
+        "r": 45.0,
         "stroke": "#333333",
         "stroke_width": 1.5,
         "fill": "none"
@@ -170,9 +173,9 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 670.0,
-        "cy": 125.0,
-        "r": 25.0,
+        "cx": 680.0,
+        "cy": 235.0,
+        "r": 35.0,
         "stroke": "#333333",
         "stroke_width": 1.5,
         "fill": "none"
@@ -183,12 +186,51 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 670.0,
-        "cy": 125.0,
-        "r": 15.0,
+        "cx": 680.0,
+        "cy": 235.0,
+        "r": 20.0,
         "stroke": "#333333",
         "stroke_width": 1.5,
         "fill": "none"
+      }
+    },
+    {
+      "id": "slot.stem.copy1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "1.",
+        "style_role": "body",
+        "x": 110.0,
+        "y": 210.0,
+        "font_size": 30,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.stem.copy1.copy2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "2.",
+        "style_role": "body",
+        "x": 330.0,
+        "y": 210.0,
+        "font_size": 30,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.stem.copy1.copy3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "3.",
+        "style_role": "body",
+        "x": 585.0,
+        "y": 210.0,
+        "font_size": 30,
+        "fill": "#111111"
       }
     }
   ],
@@ -198,6 +240,9 @@
   "reading_order": [
     "region.header",
     "slot.stem",
+    "slot.stem.copy1",
+    "slot.stem.copy1.copy2",
+    "slot.stem.copy1.copy3",
     "region.example_box",
     "slot.box",
     "slot.top.left.c1",

@@ -121,22 +121,22 @@ def build_problem_template() -> ProblemTemplate:
             TextSlot(
                 id="slot.choice.ga",
                 prompt="",
-                text = '⑴  가  선분  ㅇㄱ', style_role="choice",
+                text = '⑴  선분  ㅇㄱ', style_role="choice",
                 x = 60, y = 320, font_size = 30, max_width = 825),
             TextSlot(
                 id="slot.choice.na",
                 prompt="",
-                text = '⑵  나  선분  ㅇㄴ', style_role="choice",
+                text = '⑵  선분  ㅇㄴ', style_role="choice",
                 x = 285, y = 320, font_size = 30),
             TextSlot(
                 id="slot.choice.da",
                 prompt="",
-                text = '⑶  다  선분  ㄱㄷ', style_role="choice",
+                text = '⑶  선분  ㄱㄷ', style_role="choice",
                 x = 510, y = 320, font_size = 30),
             TextSlot(
                 id="slot.choice.ra",
                 prompt="",
-                text = '⑷  라  선분  ㄴㄹ', style_role="choice",
+                text = '⑷  선분  ㄴㄹ', style_role="choice",
                 x = 720, y = 320, font_size = 30),CircleSlot(id = 'slot.pt.c.copy5', prompt = '', cx = 414, cy = 236, r = 2.8, fill = '#222222', stroke = '#111111', stroke_width = 2), CircleSlot(id = 'slot.pt.c.copy6', prompt = '', cx = 500, cy = 262, r = 2.8, fill = '#222222', stroke = '#111111', stroke_width = 2)),
         diagrams=(),
         groups=(),
@@ -190,7 +190,7 @@ SEMANTIC_OVERRIDE = {
             "type": "multiple_choice_labels",
             "description": "원의 반지름을 나타내는 선분의 보기 기호",
         },
-        "value": "⑴  가  선분  ㅇㄱ, ⑵  나  선분  ㅇㄴ",
+        "value": "⑴  선분  ㅇㄱ, ⑵  선분  ㅇㄴ",
         "unit": "",
     },
 }
@@ -242,7 +242,7 @@ SOLVABLE = {
             "type": "multiple_choice_labels",
             "description": "원의 반지름을 나타내는 선분의 보기 기호",
         },
-        "value": "⑴  가  선분  ㅇㄱ, ⑵  나  선분  ㅇㄴ",
+        "value": "⑴  선분  ㅇㄱ, ⑵  선분  ㅇㄴ",
         "unit": "",
     },
 }

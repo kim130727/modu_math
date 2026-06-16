@@ -7,10 +7,8 @@
     "question": "원을 바르게 완성한 것을 선택하세요.",
     "required_layout_ids": [
       "slot.top.square",
-      "slot.top.arc",
       "slot.top.center",
       "slot.mid.left.square",
-      "slot.mid.left.arc",
       "slot.mid.left.red",
       "slot.mid.left.center",
       "slot.mid.mid.square",
@@ -21,9 +19,7 @@
       "slot.mid.right.arc",
       "slot.mid.right.red",
       "slot.mid.right.center",
-      "slot.answer.square",
-      "slot.answer.arc",
-      "slot.answer.center"
+      "slot.mid.mid.arc.copy4"
     ],
     "extraction_confidence": 1.0,
     "language": "ko",
@@ -71,6 +67,7 @@
     "blanks": [],
     "choices": [],
     "answer_key": [],
+    "confidence": 1.0,
     "target": {
       "type": "selected_picture",
       "description": "원을 바르게 완성한 그림"
