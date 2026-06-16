@@ -45,6 +45,25 @@ class TextSlot(SlotBase):
 
 
 @dataclass(frozen=True)
+class TextBoxSlot(SlotBase):
+    text: str = ""
+    style_role: str = "body"
+    x: float = 0.0
+    y: float = 0.0
+    width: float = 0.0
+    height: float = 0.0
+    font_size: int | None = None
+    font_family: str | None = None
+    align: Literal["left", "center", "right"] = "left"
+    valign: Literal["top", "middle", "bottom"] = "top"
+    line_height: float | None = None
+    fill: str | None = None
+    transform: str | None = None
+    semantic_role: str | None = None
+    kind: str = "text_box"
+
+
+@dataclass(frozen=True)
 class ChoiceSlot(SlotBase):
     choices: tuple[str, ...] = ()
     answer_key: tuple[str, ...] = ()

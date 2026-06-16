@@ -110,6 +110,39 @@ SLOTS = (
     assert "font_size = 28" in updated
 
 
+def test_layout_patch_updates_textboxslot_box_fields(tmp_path: Path) -> None:
+    client = _setup_django(tmp_path)
+    dsl_text = """
+from modu_math.dsl import TextBoxSlot
+
+SLOTS = (
+    TextBoxSlot(id="slot.tb", text="A", x=10.0, y=20.0, width=80.0, height=30.0, font_size=12),
+)
+""".lstrip()
+    problem_dir = _write_problem(tmp_path, "0001", dsl_text)
+
+    payload = {
+        "patches": [
+            {
+                "target": "slot.tb",
+                "op": "update",
+                "value": {"x": 12.0, "y": 24.0, "width": 120.0, "height": 48.0},
+            }
+        ]
+    }
+    response = client.post(
+        "/api/editor/problems/0001/layout-patch/",
+        data=json.dumps(payload),
+        content_type="application/json",
+    )
+    assert response.status_code == 200
+    updated = (problem_dir / "problem.dsl.py").read_text(encoding="utf-8")
+    assert "x = 12.0" in updated
+    assert "y = 24.0" in updated
+    assert "width = 120.0" in updated
+    assert "height = 48.0" in updated
+
+
 def test_layout_patch_updates_rectslot_size_fields(tmp_path: Path) -> None:
     client = _setup_django(tmp_path)
     dsl_text = """

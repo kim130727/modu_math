@@ -188,7 +188,8 @@ COMPACT_DSL_RULES = """Compact DSL generation rules:
 - Do not infer hidden answers into visible blanks.
 - If uncertain, keep minimal valid structure and add TODO comments.
 - Hard rule: never use dict/list literals for ProblemTemplate structural fields.
-- Must use Canvas(...), regions=(Region(...), ...), slots=(TextSlot(...)/RectSlot(...), ...).
+- Must use Canvas(...), regions=(Region(...), ...), slots=(TextSlot(...)/TextBoxSlot(...)/RectSlot(...), ...).
+- Use TextBoxSlot only when a fixed PowerPoint-like text box is needed; keep ordinary labels as TextSlot.
 - Hard rule: import from modu_math.dsl only. Do not use `from modu_math import ProblemTemplate`.
 """
 
@@ -284,7 +285,8 @@ Rules:
 - Convert normalized bbox values to canvas-relative DSL x/y/width/height coordinates.
 - Do not mirror layout coordinates into semantic.
 - Hard rule: never use dict/list literals for ProblemTemplate structural fields.
-- Must use Canvas(...), regions=(Region(...), ...), slots=(TextSlot(...)/RectSlot(...), ...).
+- Must use Canvas(...), regions=(Region(...), ...), slots=(TextSlot(...)/TextBoxSlot(...)/RectSlot(...), ...).
+- Use TextBoxSlot only when a fixed PowerPoint-like text box is needed; keep ordinary labels as TextSlot.
 - Hard rule: import from modu_math.dsl only. Do not use `from modu_math import ProblemTemplate`.
 
 Refined draft:
@@ -327,7 +329,8 @@ Safety and authoring rules:
 - Use `groups[].role` to create meaningful regions and `elements[].id`/`type` to create readable slot ids.
 - Keep structured JSON coordinates and style hints in layout slots only, never in `SEMANTIC_OVERRIDE`.
 - Hard rule: never use dict/list literals for ProblemTemplate structural fields.
-- Must use Canvas(...), regions=(Region(...), ...), slots=(TextSlot(...)/RectSlot(...), ...).
+- Must use Canvas(...), regions=(Region(...), ...), slots=(TextSlot(...)/TextBoxSlot(...)/RectSlot(...), ...).
+- Use TextBoxSlot only when a fixed PowerPoint-like text box is needed; keep ordinary labels as TextSlot.
 - Hard rule: import from modu_math.dsl only. Do not use `from modu_math import ProblemTemplate`.
 
 Refined draft content:
@@ -389,6 +392,7 @@ def _extra_feedback_from_errors(errors: list[str]) -> str:
     lines.append("- Import every slot class you use from modu_math.dsl. Do not use undefined symbols.")
     lines.append("- If you use PathSlot, explicitly import PathSlot.")
     lines.append("- Prefer simple primitives (LineSlot/RectSlot/CircleSlot/TextSlot) unless complex paths are required.")
+    lines.append("- Use TextBoxSlot only for fixed-size text boxes; otherwise use TextSlot.")
     lines.append("- Do not emit incomplete semantic relations.")
     lines.append("- For every relation in domain.relations, both from_id and to_id must be non-empty strings.")
     lines.append("- If relation endpoints are uncertain, omit that relation instead of emitting empty IDs.")

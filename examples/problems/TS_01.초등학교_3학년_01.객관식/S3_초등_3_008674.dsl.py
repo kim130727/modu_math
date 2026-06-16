@@ -43,7 +43,7 @@ def build_problem_template() -> ProblemTemplate:
                     "slot.mid.right.square",
                     "slot.mid.right.arc",
                     "slot.mid.right.red",
-                    "slot.mid.right.center",'slot.mid.mid.arc.copy4'),
+                    "slot.mid.right.center",'slot.mid.mid.arc.copy4', 'slot.mid.right.arc.copy1', 'slot.mid.right.arc.copy2'),
             ),
             Region(
                 id="region.answer",
@@ -64,11 +64,11 @@ def build_problem_template() -> ProblemTemplate:
             RectSlot(
                 id="slot.top.square",
                 prompt="",
-                x = 445, y = 30, width = 160, height = 160, fill = '#ffffff', stroke = '#111111', stroke_width = 1.5),
+                x = 330, y = 120, width = 160, height = 160, fill = '#ffffff', stroke = '#111111', stroke_width = 1.5),
             CircleSlot(
                 id="slot.top.center",
                 prompt="",
-                cx = 490, cy = 128, r = 4, fill = '#e91e63', stroke = '#111111', stroke_width = 2),
+                cx = 410, cy = 200, r = 5, fill = '#e91e63', stroke = '#111111', stroke_width = 2),
             RectSlot(
                 id="slot.mid.left.square",
                 prompt="",
@@ -76,11 +76,11 @@ def build_problem_template() -> ProblemTemplate:
             PathSlot(
                 id="slot.mid.left.red",
                 prompt="",
-                d = 'M 170.42327880859375 326.28009033203125 A 80 80 0 0 0 250.42327880859375 406.28009033203125', stroke = '#111111', stroke_width = 2),
+                d = 'M 158.87208557128906 318.676513671875 A 80 80 0 0 0 238.87208557128906 398.676513671875', stroke = '#111111', stroke_width = 2, transform = 'rotate(-15 198.87 358.67)'),
             CircleSlot(
                 id="slot.mid.left.center",
                 prompt="",
-                cx = 220, cy = 306, r = 4, fill = '#e91e63', stroke = '#111111', stroke_width = 2),
+                cx = 170, cy = 410, r = 5, fill = '#e91e63', stroke = '#111111', stroke_width = 2),
             RectSlot(
                 id="slot.mid.mid.square",
                 prompt="",
@@ -88,13 +88,13 @@ def build_problem_template() -> ProblemTemplate:
             PathSlot(
                 id="slot.mid.mid.arc",
                 prompt="",
-                d = 'M 283.2749328613281 412.4490661621094 A 80 80 0 1 1 363.2749328613281 332.4490661621094', stroke = '#111111', stroke_width = 2, transform = 'rotate(255 410 226)'),
+                d = 'M 572.6286888122559 291.1735076904297 A 80 80 0 1 1 652.6286888122559 211.1735076904297', stroke = '#111111', stroke_width = 2, transform = 'rotate(255 446.14 462.67)'),
             LineSlot(
-                id="slot.mid.mid.red", prompt="", x1 = 400, y1 = 325, x2 = 480, y2 = 405, stroke = '#111111', stroke_width = 2),
+                id="slot.mid.mid.red", prompt="", x1 = 385, y1 = 325, x2 = 480, y2 = 395, stroke = '#111111', stroke_width = 2),
             CircleSlot(
                 id="slot.mid.mid.center",
                 prompt="",
-                cx = 490, cy = 306, r = 4, fill = '#e91e63', stroke = '#111111', stroke_width = 2),
+                cx = 400, cy = 410, r = 5, fill = '#e91e63', stroke = '#111111', stroke_width = 2),
             RectSlot(
                 id="slot.mid.right.square",
                 prompt="",
@@ -102,15 +102,15 @@ def build_problem_template() -> ProblemTemplate:
             PathSlot(
                 id="slot.mid.right.arc",
                 prompt="",
-                d = 'M 631.5684204101562 365.5607604980469 A 80 80 0 1 1 711.5684204101562 285.5607604980469', stroke = '#111111', stroke_width = 2, transform = 'rotate(260 700 226)'),
+                d = 'M 552.7106018066406 169.6031494140625 A 80 80 0 1 1 632.7106018066406 89.6031494140625', stroke = '#111111', stroke_width = 2, transform = 'rotate(260 527.16 204.4)'),
             PathSlot(
                 id="slot.mid.right.red",
                 prompt="",
-                d = 'M 644.4042358398438 326.1128234863281 A 80 80 0 0 1 724.4042358398438 406.1128234863281', stroke = '#111111', stroke_width = 2),
+                d = 'M 633.7328491210938 193.20587158203125 A 85 65 0 0 1 718.7328491210938 268.20587158203125', stroke = '#111111', stroke_width = 2),
             CircleSlot(
                 id="slot.mid.right.center",
                 prompt="",
-                cx = 780, cy = 306, r = 4, fill = '#e91e63', stroke = '#111111', stroke_width = 2),PathSlot(id = 'slot.mid.mid.arc.copy4', prompt = '', d = 'M 470 366 A 140 140 60 61 61 550 286', stroke = '#111111', stroke_width = 2, transform = 'rotate(255 410 226)')),
+                cx = 645, cy = 405, r = 5, fill = '#e91e63', stroke = '#111111', stroke_width = 2),PathSlot(id = 'slot.mid.mid.arc.copy4', prompt = '', d = 'M 470 366 A 140 140 60 61 61 550 286', stroke = '#111111', stroke_width = 2, transform = 'rotate(255 410 226)'), PathSlot(id = 'slot.mid.right.arc.copy1', prompt = '', d = 'M 593.1247253417969 530.2952117919922 A 80 80 0 1 1 673.1247253417969 450.2952117919922', stroke = '#111111', stroke_width = 2, transform = 'rotate(260 477.77 509.56)'), PathSlot(id = 'slot.mid.right.arc.copy2', prompt = '', d = 'M 581.9780883789062 209.81005859375 A 80 80 0 1 1 661.9780883789062 129.81005859375', stroke = '#111111', stroke_width = 2, transform = 'rotate(260 727.9 241.23)')),
         diagrams=(),
         groups=(),
         constraints=(),

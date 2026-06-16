@@ -87,6 +87,14 @@ def _validate_slot(slot: dict[str, Any], path: str) -> None:
         text = content.get("text")
         if not isinstance(text, str):
             raise LayoutValidationError(f"{path}.content.text must be a string for text slots")
+    if kind == "text_box":
+        text = content.get("text")
+        if not isinstance(text, str):
+            raise LayoutValidationError(f"{path}.content.text must be a string for text_box slots")
+        for key in ("x", "y", "width", "height"):
+            value = content.get(key)
+            if not isinstance(value, int | float):
+                raise LayoutValidationError(f"{path}.content.{key} must be a number for text_box slots")
     if kind == "rect":
         for key in ("x", "y", "width", "height"):
             value = content.get(key)

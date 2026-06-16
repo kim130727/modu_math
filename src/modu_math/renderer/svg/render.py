@@ -76,6 +76,49 @@ def _element_to_svg_lines(element: RenderElement, depth: int = 1) -> list[str]:
     attrs = {"id": element.id, **element.attributes}
 
     if isinstance(element, RenderText):
+        if element.type == "text_box":
+            raw_width = attrs.pop("width", attrs.get("data-box-width", None))
+            raw_height = attrs.pop("height", attrs.get("data-box-height", None))
+            box_width = float(raw_width) if isinstance(raw_width, (int, float)) else 0.0
+            box_height = float(raw_height) if isinstance(raw_height, (int, float)) else 0.0
+            x = float(attrs.get("x", 0))
+            y = float(attrs.get("y", 0))
+            font_size_raw = attrs.get("font-size", attrs.get("font_size", 26))
+            font_size = float(font_size_raw) if isinstance(font_size_raw, (int, float)) else 26.0
+            line_height_raw = attrs.get("data-line-height", 1.2)
+            line_height = float(line_height_raw) if isinstance(line_height_raw, (int, float)) else 1.2
+            line_step = font_size * line_height
+            text_lines = _wrap_text(element.text, box_width if box_width > 0 else None, font_size)
+            total_height = max(len(text_lines), 1) * line_step
+            valign = str(attrs.pop("data-vertical-align", "top"))
+            align = str(attrs.pop("data-text-align", "left"))
+            if align == "center":
+                attrs["text-anchor"] = "middle"
+                line_x = x + box_width / 2
+            elif align == "right":
+                attrs["text-anchor"] = "end"
+                line_x = x + box_width
+            else:
+                attrs["text-anchor"] = "start"
+                line_x = x
+            if valign == "middle" and box_height > total_height:
+                baseline_y = y + (box_height - total_height) / 2 + font_size
+            elif valign == "bottom" and box_height > total_height:
+                baseline_y = y + box_height - total_height + font_size
+            else:
+                baseline_y = y + font_size
+            attrs["x"] = line_x
+            attrs["y"] = baseline_y
+            attrs_str = _attrs_to_str(attrs)
+            if len(text_lines) <= 1:
+                return [f'{indent}<text {attrs_str}>{escape(element.text)}</text>']
+            res = [f"{indent}<text {attrs_str}>"]
+            for i, line in enumerate(text_lines):
+                line_y = baseline_y + i * line_step
+                res.append(f'{indent}  <tspan x="{_float_str(line_x)}" y="{_float_str(line_y)}">{escape(line)}</tspan>')
+            res.append(f"{indent}</text>")
+            return res
+
         raw_max_width = attrs.pop("max_width", attrs.pop("max-width", None))
         max_width = float(raw_max_width) if isinstance(raw_max_width, (int, float)) else None
         font_size_raw = attrs.get("font-size", attrs.get("font_size", 26))

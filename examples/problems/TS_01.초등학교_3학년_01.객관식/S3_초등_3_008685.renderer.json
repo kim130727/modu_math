@@ -10,43 +10,26 @@
       "id": "slot.q1.text",
       "type": "text",
       "attributes": {
-        "x": 12.2,
-        "y": 19.0,
+        "x": 25.0,
+        "y": 67.0,
         "max_width": 812.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 30
       },
       "source_ref": "slot.q1",
       "refs": {
         "layout_slot_id": "slot.q1"
       },
-      "text": "□ 74. 다음을 읽고 바르게 설명하였으면 ○표, 그렇지 않으면 ×표를 선택하세"
-    },
-    {
-      "id": "slot.q2.text",
-      "type": "text",
-      "attributes": {
-        "x": 12.2,
-        "y": 88.0,
-        "max_width": 812.0,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
-      },
-      "source_ref": "slot.q2",
-      "refs": {
-        "layout_slot_id": "slot.q2"
-      },
-      "text": "요."
+      "text": "\n    \n    다음을 읽고 바르게 설명하였으면 ○표, 그렇지 않으면 ×표를\n    선택하세요.\n  "
     },
     {
       "id": "slot.circle.circle",
       "type": "circle",
       "attributes": {
-        "cx": 505.0,
-        "cy": 145.0,
-        "r": 55.0,
+        "cx": 420.0,
+        "cy": 220.0,
+        "r": 90.0,
         "stroke": "#111111",
         "stroke-width": 2.0,
         "fill": "none"
@@ -57,29 +40,13 @@
       }
     },
     {
-      "id": "slot.center_mark.circle",
-      "type": "circle",
-      "attributes": {
-        "cx": 506.0,
-        "cy": 131.0,
-        "r": 4.0,
-        "stroke": "#111111",
-        "stroke-width": 2.0,
-        "fill": "none"
-      },
-      "source_ref": "slot.center_mark",
-      "refs": {
-        "layout_slot_id": "slot.center_mark"
-      }
-    },
-    {
       "id": "slot.radius.line",
       "type": "line",
       "attributes": {
-        "x1": 506.0,
-        "y1": 145.0,
-        "x2": 566.0,
-        "y2": 145.0,
+        "x1": 420.0,
+        "y1": 220.0,
+        "x2": 510.0,
+        "y2": 220.0,
         "stroke": "#111111",
         "stroke-width": 2.0
       },
@@ -89,32 +56,15 @@
       }
     },
     {
-      "id": "slot.label.center.text",
-      "type": "text",
-      "attributes": {
-        "x": 501.0,
-        "y": 135.0,
-        "max_width": 812.0,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
-      },
-      "source_ref": "slot.label.center",
-      "refs": {
-        "layout_slot_id": "slot.label.center"
-      },
-      "text": "○"
-    },
-    {
       "id": "slot.label.end.text",
       "type": "text",
       "attributes": {
-        "x": 570.0,
-        "y": 152.0,
+        "x": 520.0,
+        "y": 215.0,
         "max_width": 812.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 30
       },
       "source_ref": "slot.label.end",
       "refs": {
@@ -123,71 +73,38 @@
       "text": "ㄱ"
     },
     {
-      "id": "slot.statement.text",
+      "id": "slot.label.end.copy5.text",
       "type": "text",
       "attributes": {
-        "x": 200.0,
-        "y": 220.0,
+        "x": 390.0,
+        "y": 215.0,
         "max_width": 812.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 30
+      },
+      "source_ref": "slot.label.end.copy5",
+      "refs": {
+        "layout_slot_id": "slot.label.end.copy5"
+      },
+      "text": "ㅇ"
+    },
+    {
+      "id": "slot.statement.text",
+      "type": "text",
+      "attributes": {
+        "x": 30.0,
+        "y": 360.0,
+        "max_width": 812.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30
       },
       "source_ref": "slot.statement",
       "refs": {
         "layout_slot_id": "slot.statement"
       },
-      "text": "원의 반지름을 나타내는 선분은 선분 ○ ㄱ입니다."
-    },
-    {
-      "id": "slot.choice.o.text",
-      "type": "text",
-      "attributes": {
-        "x": 39.0,
-        "y": 257.0,
-        "max_width": 812.0,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
-      },
-      "source_ref": "slot.choice.o",
-      "refs": {
-        "layout_slot_id": "slot.choice.o"
-      },
-      "text": "○"
-    },
-    {
-      "id": "slot.choice.x.text",
-      "type": "text",
-      "attributes": {
-        "x": 39.0,
-        "y": 294.0,
-        "max_width": 812.0,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
-      },
-      "source_ref": "slot.choice.x",
-      "refs": {
-        "layout_slot_id": "slot.choice.x"
-      },
-      "text": "×"
-    },
-    {
-      "id": "slot.answer.blank.circle",
-      "type": "circle",
-      "attributes": {
-        "cx": 71.0,
-        "cy": 338.0,
-        "r": 9.0,
-        "stroke": "#111111",
-        "stroke-width": 2.0,
-        "fill": "none"
-      },
-      "source_ref": "slot.answer.blank",
-      "refs": {
-        "layout_slot_id": "slot.answer.blank"
-      }
+      "text": "원의 반지름을 나타내는 선분은 선분 ㅇㄱ입니다."
     }
   ],
   "contract_version": "modu_math.renderer.v2"

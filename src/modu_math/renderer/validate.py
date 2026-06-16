@@ -10,6 +10,7 @@ class RendererValidationError(Exception):
 
 _DRAW_OP_TYPES = {
     "text",
+    "text_box",
     "rect",
     "line",
     "circle",
@@ -75,7 +76,7 @@ def _validate_element(element: dict[str, Any], path: str) -> None:
                 raise RendererValidationError(f"{path}.refs.{ref_key} must be a non-empty string")
 
     element_type = element["type"]
-    if element_type in {"text", "formula"}:
+    if element_type in {"text", "text_box", "formula"}:
         if "text" not in element or not isinstance(element["text"], str):
             raise RendererValidationError(f"{path}.text must exist and be a string for {element_type} elements")
     if element_type == "group":

@@ -24,12 +24,7 @@
       "slot_ids": [
         "slot.left.frame",
         "slot.left.circle",
-        "slot.left.strip",
-        "slot.left.pencil",
-        "slot.left.hand.upper",
-        "slot.left.hand.lower",
         "slot.left.arrow.1",
-        "slot.left.arrow.2",
         "slot.left.dot.1",
         "slot.left.dot.2",
         "slot.left.dot.3",
@@ -76,11 +71,11 @@
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "72. 누름 못과 띠 종이를 이용하여 원을 그렸습니다. 그림을 보고 알맞은 말을 선택하세요.",
+        "text": "누름 못과 띠 종이를 이용하여 원을 그렸습니다. 그림을 보고 알맞은 말을 선택하세요.    ",
         "style_role": "question",
-        "x": 12.0,
-        "y": 12.0,
-        "font_size": 28
+        "x": 10.0,
+        "y": 45.0,
+        "font_size": 30
       }
     },
     {
@@ -88,8 +83,8 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 235.0,
-        "y": 122.0,
+        "x": 115.0,
+        "y": 130.0,
         "width": 225.0,
         "height": 215.0
       }
@@ -99,50 +94,10 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 331.0,
-        "cy": 230.0,
-        "r": 104.0,
+        "cx": 230.0,
+        "cy": 235.0,
+        "r": 105.0,
         "fill": "none"
-      }
-    },
-    {
-      "id": "slot.left.strip",
-      "kind": "path",
-      "prompt": "",
-      "content": {
-        "d": "M 262.0 205.0 L 381.0 110.0",
-        "x": 0.0,
-        "y": 0.0
-      }
-    },
-    {
-      "id": "slot.left.pencil",
-      "kind": "path",
-      "prompt": "",
-      "content": {
-        "d": "M 415.0 90.0 L 381.0 147.0",
-        "x": 0.0,
-        "y": 0.0
-      }
-    },
-    {
-      "id": "slot.left.hand.upper",
-      "kind": "path",
-      "prompt": "",
-      "content": {
-        "d": "M 389.0 117.0 C 402.0 105.0, 420.0 104.0, 438.0 111.0 C 421.0 120.0, 405.0 128.0, 387.0 133.0 C 378.0 128.0, 378.0 120.0, 389.0 117.0 Z",
-        "x": 0.0,
-        "y": 0.0
-      }
-    },
-    {
-      "id": "slot.left.hand.lower",
-      "kind": "path",
-      "prompt": "",
-      "content": {
-        "d": "M 338.0 315.0 C 323.0 297.0, 318.0 273.0, 320.0 251.0 C 332.0 251.0, 340.0 258.0, 349.0 267.0 C 350.0 286.0, 347.0 301.0, 338.0 315.0 Z",
-        "x": 0.0,
-        "y": 0.0
       }
     },
     {
@@ -150,19 +105,12 @@
       "kind": "path",
       "prompt": "",
       "content": {
-        "d": "M 274.0 208.0 C 236.0 191.0, 217.0 196.0, 207.0 224.0",
+        "d": "M 250 280 C 145 215 90 235 65 330",
         "x": 0.0,
-        "y": 0.0
-      }
-    },
-    {
-      "id": "slot.left.arrow.2",
-      "kind": "path",
-      "prompt": "",
-      "content": {
-        "d": "M 424.0 168.0 C 444.0 178.0, 458.0 196.0, 460.0 220.0",
-        "x": 0.0,
-        "y": 0.0
+        "y": 0.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0,
+        "transform": "rotate(-35 165 295.43)"
       }
     },
     {
@@ -214,11 +162,11 @@
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "① 한쪽 구멍에\n   누름 못을 꽂아\n   띠 종이를 고정\n   해요.\n\n② 다른 구멍에\n   연필을 꽂고\n   한 바퀴 돌려\n   원을 그려요.",
+        "text": "① 한쪽 구멍에 누름 못을 꽂아 띠 종이를 고정해요.",
         "style_role": "annotation",
-        "x": 101.0,
-        "y": 209.0,
-        "font_size": 28
+        "x": 45.0,
+        "y": 425.0,
+        "font_size": 30
       }
     },
     {
@@ -327,11 +275,11 @@
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "② 다른 구멍에\n   연필을 꽂고\n   한 바퀴 돌려\n   원을 그려요.",
+        "text": "② 다른 구멍에 연필을 꽂고 한 바퀴 돌려    원을 그려요.  ",
         "style_role": "annotation",
-        "x": 491.0,
-        "y": 209.0,
-        "font_size": 28
+        "x": 365.0,
+        "y": 90.0,
+        "font_size": 30
       }
     },
     {
@@ -339,10 +287,10 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 104.0,
-        "y": 368.0,
-        "width": 746.0,
-        "height": 119.0
+        "x": 25.0,
+        "y": 500.0,
+        "width": 830.0,
+        "height": 85.0
       }
     },
     {
@@ -350,11 +298,11 @@
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "누름 못이 꽂힌 점에서 원 위에 찍은 4개의 점까지의 길이는\n모두 ( 같습니다, 다릅니다 ).",
+        "text": "\n    \n    누름 못이 꽂힌 점에서 원 위에 찍은 4개의 점까지의 길이는\n    모두 ( 같습니다, 다릅니다 ).\n  ",
         "style_role": "question",
-        "x": 123.0,
-        "y": 406.0,
-        "font_size": 28
+        "x": 45.0,
+        "y": 505.0,
+        "font_size": 30
       }
     }
   ],
@@ -367,12 +315,7 @@
     "region.diagram.left",
     "slot.left.frame",
     "slot.left.circle",
-    "slot.left.strip",
-    "slot.left.pencil",
-    "slot.left.hand.upper",
-    "slot.left.hand.lower",
     "slot.left.arrow.1",
-    "slot.left.arrow.2",
     "slot.left.dot.1",
     "slot.left.dot.2",
     "slot.left.dot.3",

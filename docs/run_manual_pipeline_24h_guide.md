@@ -45,7 +45,7 @@ The manual pipeline now writes an optional assistant sidecar:
 
 This sidecar records image size, approximate normalized bounding boxes, visible text, elements, groups, math structure, DSL hints, and uncertainty notes. It does not replace `problem.dsl.py` or generated contract JSON.
 
-During DSL generation, the manual pipeline passes `<prob_id>.vision_structured.json` to `generate_dsl_from_refined_draft.py` as layout constraints via `--vision-structured`.
+By default, the manual pipeline skips this sidecar. Pass `-UseVisionStructured` to generate `<prob_id>.vision_structured.json` and pass it to `generate_dsl_from_refined_draft.py` as layout constraints via `--vision-structured`.
 
 ## Phase Provider Override (new)
 

@@ -154,9 +154,6 @@ def build_problem_template() -> ProblemTemplate:
                 font_size=24,
                 max_width=560,
             ),
-            CircleSlot(
-                id="slot.pt.center", prompt="", cx = 600, cy = 195, r = 5, fill="#ff2aa1"
-            ),
             *grid_slots("slot.top1", TOP1_X, TOP1_Y),
             *circle_pair_slots("slot.top1", TOP1_X, TOP1_Y, TOP1_CIRCLES),
             *grid_slots("slot.top2", TOP2_X, TOP2_Y),

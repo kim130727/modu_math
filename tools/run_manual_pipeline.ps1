@@ -15,7 +15,8 @@ param(
   [string]$VisionDetail = "low",
   [ValidateSet("low", "high", "auto")]
   [string]$DslImageDetail = "low",
-  [switch]$CompactDslPrompt
+  [switch]$CompactDslPrompt,
+  [switch]$UseVisionStructured
 )
 
 Set-StrictMode -Version Latest
@@ -95,7 +96,7 @@ if ($validRows.Count -eq 0) {
   throw "No executable rows in list file: $ListFile"
 }
 
-Write-Host "Provider=$Provider, Mode=$Mode, Items=$($validRows.Count)"
+Write-Host "Provider=$Provider, Mode=$Mode, Items=$($validRows.Count), UseVisionStructured=$UseVisionStructured"
 
 $resolvedPhase1Provider = if ($Phase1Provider) { $Phase1Provider } else { $Provider }
 $resolvedPhase2Provider = if ($Phase2Provider) { $Phase2Provider } else { $Provider }
@@ -201,42 +202,8 @@ foreach ($row in $validRows) {
     }
   }
 
-  Invoke-Step "3) Generate structured vision JSON prompt bundle" {
-    $args = @(
-      "tools/generate_vision_structured.py",
-      "--image", $img,
-      "--problem-id", $probId,
-      "--out", $visionStructured,
-      "--vision-draft", $visionDraft,
-      "--mode", "prompt",
-      "--provider", $resolvedPhase1Provider,
-      "--detail", $VisionDetail,
-      "--prompt-out", $visionStructuredPrompt,
-      "--force"
-    ) + $commonModelArgs
-    Invoke-Python -Args $args
-  }
-
-  if ($Mode -eq "api") {
-    Invoke-Step "4) Generate structured vision JSON via API" {
-      $args = @(
-        "tools/generate_vision_structured.py",
-        "--image", $img,
-        "--problem-id", $probId,
-        "--out", $visionStructured,
-        "--vision-draft", $visionDraft,
-        "--mode", "api",
-        "--provider", $resolvedPhase1Provider,
-        "--detail", $VisionDetail,
-        "--force"
-      ) + $commonModelArgs
-      Invoke-Python -Args $args
-    }
-  } else {
-    if (!(Test-Path -LiteralPath $visionStructuredLlm)) {
-      throw "Missing file for prompt mode: $visionStructuredLlm"
-    }
-    Invoke-Step "4) Generate structured vision JSON from llm output file" {
+  if ($UseVisionStructured) {
+    Invoke-Step "3) Generate structured vision JSON prompt bundle" {
       $args = @(
         "tools/generate_vision_structured.py",
         "--image", $img,
@@ -246,11 +213,49 @@ foreach ($row in $validRows) {
         "--mode", "prompt",
         "--provider", $resolvedPhase1Provider,
         "--detail", $VisionDetail,
-        "--llm-output-file", $visionStructuredLlm,
+        "--prompt-out", $visionStructuredPrompt,
         "--force"
       ) + $commonModelArgs
       Invoke-Python -Args $args
     }
+
+    if ($Mode -eq "api") {
+      Invoke-Step "4) Generate structured vision JSON via API" {
+        $args = @(
+          "tools/generate_vision_structured.py",
+          "--image", $img,
+          "--problem-id", $probId,
+          "--out", $visionStructured,
+          "--vision-draft", $visionDraft,
+          "--mode", "api",
+          "--provider", $resolvedPhase1Provider,
+          "--detail", $VisionDetail,
+          "--force"
+        ) + $commonModelArgs
+        Invoke-Python -Args $args
+      }
+    } else {
+      if (!(Test-Path -LiteralPath $visionStructuredLlm)) {
+        throw "Missing file for prompt mode: $visionStructuredLlm"
+      }
+      Invoke-Step "4) Generate structured vision JSON from llm output file" {
+        $args = @(
+          "tools/generate_vision_structured.py",
+          "--image", $img,
+          "--problem-id", $probId,
+          "--out", $visionStructured,
+          "--vision-draft", $visionDraft,
+          "--mode", "prompt",
+          "--provider", $resolvedPhase1Provider,
+          "--detail", $VisionDetail,
+          "--llm-output-file", $visionStructuredLlm,
+          "--force"
+        ) + $commonModelArgs
+        Invoke-Python -Args $args
+      }
+    }
+  } else {
+    Write-Host "Skipping structured vision JSON (pass -UseVisionStructured to enable)." -ForegroundColor DarkGray
   }
 
   Invoke-Step "5) Generate refine prompt bundle" {
@@ -320,10 +325,10 @@ foreach ($row in $validRows) {
       "--image-detail", $DslImageDetail,
       "--write-on-fail",
       "--failure-report", $dslFailureReport,
-      "--vision-structured", $visionStructured,
       "--prompt-out", $dslPrompt,
       "--force"
     ) + $sourceJsonArgs + $commonModelArgs
+    if ($UseVisionStructured) { $args += @("--vision-structured", $visionStructured) }
     if ($CompactDslPrompt) { $args += "--compact-prompt" }
     Invoke-Python -Args $args
   }
@@ -344,9 +349,9 @@ foreach ($row in $validRows) {
         "--image-detail", $DslImageDetail,
         "--write-on-fail",
         "--failure-report", $dslFailureReport,
-        "--vision-structured", $visionStructured,
         "--force"
       ) + $sourceJsonArgs + $commonModelArgs
+      if ($UseVisionStructured) { $args += @("--vision-structured", $visionStructured) }
       if ($CompactDslPrompt) { $args += "--compact-prompt" }
       Invoke-Python -Args $args
     }
@@ -370,9 +375,9 @@ foreach ($row in $validRows) {
         "--image-detail", $DslImageDetail,
         "--write-on-fail",
         "--failure-report", $dslFailureReport,
-        "--vision-structured", $visionStructured,
         "--force"
       ) + $sourceJsonArgs + $commonModelArgs
+      if ($UseVisionStructured) { $args += @("--vision-structured", $visionStructured) }
       if ($CompactDslPrompt) { $args += "--compact-prompt" }
       Invoke-Python -Args $args
     }

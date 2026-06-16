@@ -15,7 +15,7 @@
       "flow": "absolute",
       "slot_ids": [
         "slot.q1",
-        "slot.q2"
+        "slot.q1.copy6"
       ]
     },
     {
@@ -26,7 +26,6 @@
         "slot.circle.outer",
         "slot.pt.center",
         "slot.line.a",
-        "slot.line.b",
         "slot.line.c",
         "slot.lb.o",
         "slot.lb.ga",
@@ -55,23 +54,11 @@
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "□ 78. 원의 반지름과 지름을 나타내는 선분을 각각 찾아 기호를 선택해 보세요",
+        "text": "        원의 반지름과 지름을 나타내는 선분을 각각 찾아      ",
         "style_role": "question",
-        "x": 20.0,
-        "y": 36.0,
-        "font_size": 28
-      }
-    },
-    {
-      "id": "slot.q2",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "요.",
-        "style_role": "question",
-        "x": 20.0,
-        "y": 72.0,
-        "font_size": 28
+        "x": 65.0,
+        "y": 60.0,
+        "font_size": 30
       }
     },
     {
@@ -79,9 +66,9 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 475.0,
-        "cy": 126.0,
-        "r": 72.0,
+        "cx": 390.0,
+        "cy": 235.0,
+        "r": 105.0,
         "fill": "none"
       }
     },
@@ -90,21 +77,10 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 450.0,
-        "y1": 58.0,
-        "x2": 435.0,
-        "y2": 230.0
-      }
-    },
-    {
-      "id": "slot.line.b",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 472.0,
-        "y1": 72.0,
-        "x2": 432.0,
-        "y2": 230.0
+        "x1": 315.0,
+        "y1": 160.0,
+        "x2": 310.0,
+        "y2": 305.0
       }
     },
     {
@@ -112,10 +88,10 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 510.0,
-        "y1": 56.0,
-        "x2": 442.0,
-        "y2": 230.0
+        "x1": 470.0,
+        "y1": 165.0,
+        "x2": 310.0,
+        "y2": 305.0
       }
     },
     {
@@ -123,9 +99,9 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 472.0,
-        "cy": 127.0,
-        "r": 3.0,
+        "cx": 390.0,
+        "cy": 235.0,
+        "r": 5.0,
         "fill": "#d81b60"
       }
     },
@@ -134,11 +110,11 @@
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "O",
+        "text": "ㅇ",
         "style_role": "label",
-        "x": 478.0,
-        "y": 145.0,
-        "font_size": 22
+        "x": 410.0,
+        "y": 250.0,
+        "font_size": 20
       }
     },
     {
@@ -148,9 +124,9 @@
       "content": {
         "text": "ㄱ",
         "style_role": "label",
-        "x": 412.0,
-        "y": 132.0,
-        "font_size": 24
+        "x": 285.0,
+        "y": 240.0,
+        "font_size": 25
       }
     },
     {
@@ -160,9 +136,9 @@
       "content": {
         "text": "ㄴ",
         "style_role": "label",
-        "x": 458.0,
-        "y": 122.0,
-        "font_size": 24
+        "x": 360.0,
+        "y": 210.0,
+        "font_size": 25
       }
     },
     {
@@ -172,9 +148,9 @@
       "content": {
         "text": "ㄷ",
         "style_role": "label",
-        "x": 500.0,
-        "y": 102.0,
-        "font_size": 24
+        "x": 410.0,
+        "y": 190.0,
+        "font_size": 25
       }
     },
     {
@@ -184,9 +160,22 @@
       "content": {
         "text": "원의 반지름 ( ㄱ , ㄴ , ㄷ ), 원의 지름 ( ㄱ , ㄴ , ㄷ )",
         "style_role": "question",
-        "x": 180.0,
-        "y": 266.0,
-        "font_size": 28
+        "x": 60.0,
+        "y": 380.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.q1.copy6",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "기호를 선택해       보세요      ",
+        "style_role": "body",
+        "x": 70.0,
+        "y": 105.0,
+        "font_size": 30,
+        "fill": "#111111"
       }
     }
   ],
@@ -196,12 +185,11 @@
   "reading_order": [
     "region.stem",
     "slot.q1",
-    "slot.q2",
+    "slot.q1.copy6",
     "region.diagram",
     "slot.circle.outer",
     "slot.pt.center",
     "slot.line.a",
-    "slot.line.b",
     "slot.line.c",
     "slot.lb.o",
     "slot.lb.ga",

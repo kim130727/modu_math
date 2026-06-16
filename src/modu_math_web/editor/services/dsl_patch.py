@@ -9,6 +9,7 @@ from .problems import resolve_problem_paths
 
 SUPPORTED_SLOTS = {
     "TextSlot": {"text", "x", "y", "font_size", "max_width", "font_family", "anchor", "fill", "style_role", "transform"},
+    "TextBoxSlot": {"text", "x", "y", "width", "height", "font_size", "font_family", "align", "valign", "line_height", "fill", "style_role", "transform"},
     "CircleSlot": {"cx", "cy", "r", "stroke", "stroke_width", "fill", "transform"},
     "LineSlot": {"x1", "y1", "x2", "y2", "stroke", "stroke_width", "stroke_dasharray", "transform"},
     "RectSlot": {"x", "y", "width", "height", "stroke", "stroke_width", "rx", "ry", "fill", "transform"},
@@ -17,6 +18,7 @@ SUPPORTED_SLOTS = {
 }
 SLOT_KIND_TO_CTOR = {
     "text": "TextSlot",
+    "text_box": "TextBoxSlot",
     "circle": "CircleSlot",
     "line": "LineSlot",
     "rect": "RectSlot",
@@ -277,7 +279,7 @@ def _shift_or_append_numeric_arg(args: list[cst.Arg], name: str, delta: float, d
 
 def _shift_slot_call_args(args: list[cst.Arg], slot_type: str, dx: float, dy: float) -> bool:
     changed = False
-    if slot_type in {"TextSlot", "RectSlot"}:
+    if slot_type in {"TextSlot", "TextBoxSlot", "RectSlot"}:
         changed = _shift_or_append_numeric_arg(args, "x", dx) or changed
         changed = _shift_or_append_numeric_arg(args, "y", dy) or changed
     elif slot_type == "CircleSlot":

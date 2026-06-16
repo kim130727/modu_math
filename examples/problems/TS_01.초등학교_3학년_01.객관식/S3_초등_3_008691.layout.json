@@ -14,10 +14,8 @@
       "role": "stem",
       "flow": "absolute",
       "slot_ids": [
-        "slot.qbox",
-        "slot.qnum",
         "slot.qtext1",
-        "slot.qtext2",
+        "slot.lb.da_text.copy1",
         "slot.lb.ga_text",
         "slot.lb.na_text",
         "slot.lb.da_text"
@@ -30,26 +28,9 @@
       "slot_ids": [
         "slot.circle",
         "slot.pt.center",
-        "slot.pt.pink",
-        "slot.lb.ga",
-        "slot.lb.na",
-        "slot.lb.da",
-        "slot.line.a",
-        "slot.line.b",
         "slot.line.c",
-        "slot.line.d",
-        "slot.line.e",
-        "slot.line.f",
-        "slot.line.g",
-        "slot.line.h",
-        "slot.line.i",
         "slot.line.j",
-        "slot.line.k",
-        "slot.line.l",
-        "slot.lb.guide1",
-        "slot.lb.guide2",
-        "slot.lb.guide3",
-        "slot.lb.o"
+        "slot.line.k"
       ]
     },
     {
@@ -69,50 +50,16 @@
   ],
   "slots": [
     {
-      "id": "slot.qbox",
-      "kind": "rect",
-      "prompt": "",
-      "content": {
-        "x": 18.0,
-        "y": 20.0,
-        "width": 12.0,
-        "height": 12.0
-      }
-    },
-    {
-      "id": "slot.qnum",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "80.",
-        "style_role": "question",
-        "x": 34.0,
-        "y": 35.0,
-        "font_size": 28
-      }
-    },
-    {
       "id": "slot.qtext1",
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "원의 반지름과 지름을 나타내는 선분을 각각 찾아 보세",
+        "text": "원의 반지름과 지름을 나타내는 선분을 각각 찾아 보세요.",
         "style_role": "question",
-        "x": 78.0,
+        "x": 40.0,
         "y": 35.0,
-        "font_size": 28
-      }
-    },
-    {
-      "id": "slot.qtext2",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "요.",
-        "style_role": "question",
-        "x": 41.0,
-        "y": 68.0,
-        "font_size": 28
+        "font_size": 28,
+        "fill": "#111111"
       }
     },
     {
@@ -120,32 +67,10 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 521.0,
-        "cy": 168.0,
-        "r": 74.0,
+        "cx": 390.0,
+        "cy": 175.0,
+        "r": 125.0,
         "fill": "none"
-      }
-    },
-    {
-      "id": "slot.line.a",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 521.0,
-        "y1": 94.0,
-        "x2": 445.0,
-        "y2": 168.0
-      }
-    },
-    {
-      "id": "slot.line.b",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 521.0,
-        "y1": 94.0,
-        "x2": 521.0,
-        "y2": 242.0
       }
     },
     {
@@ -153,76 +78,10 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 521.0,
-        "y1": 168.0,
-        "x2": 596.0,
-        "y2": 168.0
-      }
-    },
-    {
-      "id": "slot.line.d",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 448.0,
-        "y1": 166.0,
-        "x2": 521.0,
-        "y2": 94.0
-      }
-    },
-    {
-      "id": "slot.line.e",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 521.0,
-        "y1": 168.0,
-        "x2": 521.0,
-        "y2": 94.0
-      }
-    },
-    {
-      "id": "slot.line.f",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 521.0,
-        "y1": 168.0,
-        "x2": 521.0,
-        "y2": 242.0
-      }
-    },
-    {
-      "id": "slot.line.g",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 521.0,
-        "y1": 168.0,
-        "x2": 596.0,
-        "y2": 168.0
-      }
-    },
-    {
-      "id": "slot.line.h",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 445.0,
-        "y1": 168.0,
-        "x2": 521.0,
-        "y2": 94.0
-      }
-    },
-    {
-      "id": "slot.line.i",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 448.0,
-        "y1": 168.0,
-        "x2": 521.0,
-        "y2": 242.0
+        "x1": 390.0,
+        "y1": 175.0,
+        "x2": 515.0,
+        "y2": 175.0
       }
     },
     {
@@ -230,10 +89,10 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 521.0,
-        "y1": 94.0,
-        "x2": 521.0,
-        "y2": 242.0
+        "x1": 390.0,
+        "y1": 50.0,
+        "x2": 390.0,
+        "y2": 300.0
       }
     },
     {
@@ -241,21 +100,10 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 445.0,
-        "y1": 168.0,
-        "x2": 521.0,
-        "y2": 94.0
-      }
-    },
-    {
-      "id": "slot.line.l",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 521.0,
-        "y1": 168.0,
-        "x2": 521.0,
-        "y2": 242.0
+        "x1": 270.0,
+        "y1": 135.0,
+        "x2": 390.0,
+        "y2": 50.0
       }
     },
     {
@@ -263,44 +111,10 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 521.0,
-        "cy": 168.0,
-        "r": 3.8,
+        "cx": 390.0,
+        "cy": 174.0,
+        "r": 5.0,
         "fill": "#ff4da6"
-      }
-    },
-    {
-      "id": "slot.pt.pink",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 521.0,
-        "cy": 168.0,
-        "r": 1.8,
-        "fill": "#ff4da6"
-      }
-    },
-    {
-      "id": "slot.lb.o",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "O",
-        "style_role": "label",
-        "x": 528.0,
-        "y": 185.0,
-        "font_size": 24
-      }
-    },
-    {
-      "id": "slot.lb.ga",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 484.0,
-        "cy": 119.0,
-        "r": 11.0,
-        "fill": "none"
       }
     },
     {
@@ -310,20 +124,9 @@
       "content": {
         "text": "ㄱ",
         "style_role": "label",
-        "x": 479.0,
-        "y": 124.0,
-        "font_size": 22
-      }
-    },
-    {
-      "id": "slot.lb.na",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 494.0,
-        "cy": 174.0,
-        "r": 11.0,
-        "fill": "none"
+        "x": 315.0,
+        "y": 115.0,
+        "font_size": 20
       }
     },
     {
@@ -333,20 +136,9 @@
       "content": {
         "text": "ㄴ",
         "style_role": "label",
-        "x": 489.0,
-        "y": 179.0,
-        "font_size": 22
-      }
-    },
-    {
-      "id": "slot.lb.da",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 561.0,
-        "cy": 147.0,
-        "r": 11.0,
-        "fill": "none"
+        "x": 340.0,
+        "y": 190.0,
+        "font_size": 20
       }
     },
     {
@@ -356,42 +148,9 @@
       "content": {
         "text": "ㄷ",
         "style_role": "label",
-        "x": 556.0,
-        "y": 152.0,
-        "font_size": 22
-      }
-    },
-    {
-      "id": "slot.lb.guide1",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 487.0,
-        "y1": 112.0,
-        "x2": 504.0,
-        "y2": 95.0
-      }
-    },
-    {
-      "id": "slot.lb.guide2",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 490.0,
-        "y1": 180.0,
-        "x2": 482.0,
-        "y2": 198.0
-      }
-    },
-    {
-      "id": "slot.lb.guide3",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 565.0,
-        "y1": 140.0,
-        "x2": 582.0,
-        "y2": 139.0
+        "x": 460.0,
+        "y": 165.0,
+        "font_size": 20
       }
     },
     {
@@ -401,9 +160,22 @@
       "content": {
         "text": "원의 반지름 (ㄱ, ㄴ, ㄷ), 원의 지름 (ㄱ, ㄴ, ㄷ)",
         "style_role": "question",
-        "x": 180.0,
-        "y": 294.0,
-        "font_size": 28
+        "x": 70.0,
+        "y": 350.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.lb.da_text.copy1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㅇ",
+        "style_role": "body",
+        "x": 400.0,
+        "y": 165.0,
+        "font_size": 20,
+        "fill": "#111111"
       }
     }
   ],
@@ -412,36 +184,17 @@
   "diagrams": [],
   "reading_order": [
     "region.stem",
-    "slot.qbox",
-    "slot.qnum",
     "slot.qtext1",
-    "slot.qtext2",
+    "slot.lb.da_text.copy1",
     "slot.lb.ga_text",
     "slot.lb.na_text",
     "slot.lb.da_text",
     "region.diagram",
     "slot.circle",
     "slot.pt.center",
-    "slot.pt.pink",
-    "slot.lb.ga",
-    "slot.lb.na",
-    "slot.lb.da",
-    "slot.line.a",
-    "slot.line.b",
     "slot.line.c",
-    "slot.line.d",
-    "slot.line.e",
-    "slot.line.f",
-    "slot.line.g",
-    "slot.line.h",
-    "slot.line.i",
     "slot.line.j",
     "slot.line.k",
-    "slot.line.l",
-    "slot.lb.guide1",
-    "slot.lb.guide2",
-    "slot.lb.guide3",
-    "slot.lb.o",
     "region.choice",
     "slot.choice",
     "region.footer"

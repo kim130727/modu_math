@@ -48,9 +48,7 @@
       "slot_ids": [
         "slot.item1.q",
         "slot.item1.arrow",
-        "slot.item1.conclusion",
-        "slot.repeat.q",
-        "slot.repeat.conclusion"
+        "slot.item1.q.copy3"
       ]
     }
   ],
@@ -60,11 +58,11 @@
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "85. 원을 둘로 똑같이 나누는 선분을 알아보려고 합니다. 알맞은 말을 선택하세요.",
+        "text": "원을 둘로 똑같이 나누는 선분을 알아보려고 합니다. 알맞은말을 선택하세요.",
         "style_role": "question",
-        "x": 18.0,
-        "y": 32.0,
-        "font_size": 28
+        "x": 20.0,
+        "y": 30.0,
+        "font_size": 30
       }
     },
     {
@@ -233,7 +231,8 @@
         "style_role": "body",
         "x": 90.0,
         "y": 274.0,
-        "font_size": 28
+        "font_size": 28,
+        "fill": "#111111"
       }
     },
     {
@@ -337,7 +336,7 @@
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "점 ○이라고 표시합",
+        "text": "점 ㅇ이라고 표시합",
         "style_role": "body",
         "x": 621.0,
         "y": 312.0,
@@ -361,11 +360,12 @@
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "(1) 점 ○에서 원 위의 한 점까지의 길이는 모두 ( 같습니다, 다릅니다 ).",
+        "text": "(1) 점 ○에서 원 위의 한 점까지의 길이는 모두 (\n같습니다, 다릅니다 ).",
         "style_role": "question",
-        "x": 22.0,
-        "y": 414.0,
-        "font_size": 28
+        "x": 50.0,
+        "y": 420.0,
+        "font_size": 25,
+        "fill": "#111111"
       }
     },
     {
@@ -375,45 +375,22 @@
       "content": {
         "text": "→",
         "style_role": "body",
-        "x": 58.0,
-        "y": 454.0,
-        "font_size": 34
+        "x": 60.0,
+        "y": 475.0,
+        "font_size": 35
       }
     },
     {
-      "id": "slot.item1.conclusion",
+      "id": "slot.item1.q.copy3",
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "점 ○은 원의 중심입니다.",
+        "text": "점 ㅇ는 원의 중심입니다.",
         "style_role": "body",
-        "x": 100.0,
-        "y": 462.0,
-        "font_size": 28
-      }
-    },
-    {
-      "id": "slot.repeat.q",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "(1) 점 ○에서 원 위의 한 점까지의 길이는 모두 같습니다.",
-        "style_role": "body",
-        "x": 0.0,
-        "y": 508.0,
-        "font_size": 28
-      }
-    },
-    {
-      "id": "slot.repeat.conclusion",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "→ 점 ○은 원의 중심입니다.",
-        "style_role": "body",
-        "x": 24.0,
-        "y": 548.0,
-        "font_size": 28
+        "x": 155.0,
+        "y": 495.0,
+        "font_size": 28,
+        "fill": "#111111"
       }
     }
   ],
@@ -450,8 +427,6 @@
     "region.item1",
     "slot.item1.q",
     "slot.item1.arrow",
-    "slot.item1.conclusion",
-    "slot.repeat.q",
-    "slot.repeat.conclusion"
+    "slot.item1.q.copy3"
   ]
 }

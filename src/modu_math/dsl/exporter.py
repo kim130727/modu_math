@@ -5,7 +5,7 @@ from collections.abc import Mapping, Sequence
 from pprint import pformat
 from typing import Any
 
-from .models.base import BlankSlot, Canvas, ChoiceSlot, CircleSlot, Constraint, Group, LabelSlot, LineSlot, PathSlot, PolygonSlot, RectSlot, Region, TextSlot
+from .models.base import BlankSlot, Canvas, ChoiceSlot, CircleSlot, Constraint, Group, LabelSlot, LineSlot, PathSlot, PolygonSlot, RectSlot, Region, TextBoxSlot, TextSlot
 from .models.objects import Arrow, Circle, Cube, FractionAreaModel, Grid, ShapeObject, Triangle
 from .models.templates import DiagramTemplate, ProblemTemplate
 
@@ -82,7 +82,7 @@ def _render_problem_template_source(
     lines: list[str] = [
         "from __future__ import annotations",
         "",
-        "from modu_math.dsl import Arrow, BlankSlot, Canvas, ChoiceSlot, Circle, CircleSlot, Constraint, Cube, DiagramTemplate, FractionAreaModel, Grid, Group, LabelSlot, LineSlot, PathSlot, PolygonSlot, ProblemTemplate, RectSlot, Region, ShapeObject, TextSlot, Triangle",
+        "from modu_math.dsl import Arrow, BlankSlot, Canvas, ChoiceSlot, Circle, CircleSlot, Constraint, Cube, DiagramTemplate, FractionAreaModel, Grid, Group, LabelSlot, LineSlot, PathSlot, PolygonSlot, ProblemTemplate, RectSlot, Region, ShapeObject, TextBoxSlot, TextSlot, Triangle",
         "",
         f"def {function_name}() -> ProblemTemplate:",
     ]
@@ -215,7 +215,7 @@ def _region_kwargs(region: Region) -> list[tuple[str, Any]]:
     ]
 
 
-def _slot_kwargs(slot: TextSlot | ChoiceSlot | BlankSlot | LabelSlot | RectSlot | LineSlot | CircleSlot | PolygonSlot | PathSlot) -> list[tuple[str, Any]]:
+def _slot_kwargs(slot: TextSlot | TextBoxSlot | ChoiceSlot | BlankSlot | LabelSlot | RectSlot | LineSlot | CircleSlot | PolygonSlot | PathSlot) -> list[tuple[str, Any]]:
     if isinstance(slot, TextSlot):
         out: list[tuple[str, Any]] = [
             ("id", slot.id),
@@ -236,6 +236,33 @@ def _slot_kwargs(slot: TextSlot | ChoiceSlot | BlankSlot | LabelSlot | RectSlot 
             out.append(("font_family", slot.font_family))
         if isinstance(slot.anchor, str) and slot.anchor:
             out.append(("anchor", slot.anchor))
+        if isinstance(slot.fill, str) and slot.fill:
+            out.append(("fill", slot.fill))
+        if isinstance(slot.semantic_role, str) and slot.semantic_role:
+            out.append(("semantic_role", slot.semantic_role))
+        return out
+    if isinstance(slot, TextBoxSlot):
+        out = [
+            ("id", slot.id),
+            ("prompt", slot.prompt),
+            ("text", slot.text),
+            ("style_role", slot.style_role),
+            ("x", slot.x),
+            ("y", slot.y),
+            ("width", slot.width),
+            ("height", slot.height),
+            ("__ctor__", "TextBoxSlot"),
+        ]
+        if slot.font_size is not None:
+            out.append(("font_size", slot.font_size))
+        if isinstance(slot.font_family, str) and slot.font_family:
+            out.append(("font_family", slot.font_family))
+        if slot.align != "left":
+            out.append(("align", slot.align))
+        if slot.valign != "top":
+            out.append(("valign", slot.valign))
+        if slot.line_height is not None:
+            out.append(("line_height", slot.line_height))
         if isinstance(slot.fill, str) and slot.fill:
             out.append(("fill", slot.fill))
         if isinstance(slot.semantic_role, str) and slot.semantic_role:
@@ -506,7 +533,7 @@ def _region_expr(region: Region) -> ast.expr:
     )
 
 
-def _slot_expr(slot: TextSlot | ChoiceSlot | BlankSlot | LabelSlot | RectSlot | LineSlot | CircleSlot | PolygonSlot | PathSlot) -> ast.expr:
+def _slot_expr(slot: TextSlot | TextBoxSlot | ChoiceSlot | BlankSlot | LabelSlot | RectSlot | LineSlot | CircleSlot | PolygonSlot | PathSlot) -> ast.expr:
     if isinstance(slot, TextSlot):
         keywords = [
             ast.keyword(arg="id", value=ast.Constant(value=slot.id)),
@@ -532,6 +559,36 @@ def _slot_expr(slot: TextSlot | ChoiceSlot | BlankSlot | LabelSlot | RectSlot | 
             keywords.append(ast.keyword(arg="semantic_role", value=ast.Constant(value=slot.semantic_role)))
         return ast.Call(
             func=ast.Name(id="TextSlot", ctx=ast.Load()),
+            args=[],
+            keywords=keywords,
+        )
+    if isinstance(slot, TextBoxSlot):
+        keywords = [
+            ast.keyword(arg="id", value=ast.Constant(value=slot.id)),
+            ast.keyword(arg="prompt", value=ast.Constant(value=slot.prompt)),
+            ast.keyword(arg="text", value=ast.Constant(value=slot.text)),
+            ast.keyword(arg="style_role", value=ast.Constant(value=slot.style_role)),
+            ast.keyword(arg="x", value=ast.Constant(value=slot.x)),
+            ast.keyword(arg="y", value=ast.Constant(value=slot.y)),
+            ast.keyword(arg="width", value=ast.Constant(value=slot.width)),
+            ast.keyword(arg="height", value=ast.Constant(value=slot.height)),
+        ]
+        if slot.font_size is not None:
+            keywords.append(ast.keyword(arg="font_size", value=ast.Constant(value=slot.font_size)))
+        if isinstance(slot.font_family, str) and slot.font_family:
+            keywords.append(ast.keyword(arg="font_family", value=ast.Constant(value=slot.font_family)))
+        if slot.align != "left":
+            keywords.append(ast.keyword(arg="align", value=ast.Constant(value=slot.align)))
+        if slot.valign != "top":
+            keywords.append(ast.keyword(arg="valign", value=ast.Constant(value=slot.valign)))
+        if slot.line_height is not None:
+            keywords.append(ast.keyword(arg="line_height", value=ast.Constant(value=slot.line_height)))
+        if isinstance(slot.fill, str) and slot.fill:
+            keywords.append(ast.keyword(arg="fill", value=ast.Constant(value=slot.fill)))
+        if isinstance(slot.semantic_role, str) and slot.semantic_role:
+            keywords.append(ast.keyword(arg="semantic_role", value=ast.Constant(value=slot.semantic_role)))
+        return ast.Call(
+            func=ast.Name(id="TextBoxSlot", ctx=ast.Load()),
             args=[],
             keywords=keywords,
         )
@@ -828,7 +885,7 @@ def _slot_from_layout(
     *,
     choice_answer_keys: Mapping[str, tuple[str, ...]] | None = None,
     blank_answer_keys: Mapping[str, str] | None = None,
-) -> TextSlot | ChoiceSlot | BlankSlot | LabelSlot | RectSlot | LineSlot | CircleSlot | PolygonSlot | PathSlot:
+) -> TextSlot | TextBoxSlot | ChoiceSlot | BlankSlot | LabelSlot | RectSlot | LineSlot | CircleSlot | PolygonSlot | PathSlot:
     data = _require_mapping(raw, f"slots[{index}]")
     slot_id = _require_non_empty_str(data.get("id"), f"slots[{index}].id")
     kind = _require_non_empty_str(data.get("kind"), f"slots[{index}].kind")
@@ -848,6 +905,24 @@ def _slot_from_layout(
             max_width=_number_or_none(content.get("max_width")),
             font_family=_string(content.get("font_family"), None),
             anchor=_string(content.get("anchor"), None),
+            fill=_string(content.get("fill"), None),
+            semantic_role=_string(content.get("semantic_role"), None),
+        )
+    if kind == "text_box":
+        return TextBoxSlot(
+            id=slot_id,
+            prompt=prompt,
+            text=_string(content.get("text"), ""),
+            style_role=_string(content.get("style_role"), "body"),
+            x=float(_require_number(content.get("x"), f"slots[{index}].content.x")),
+            y=float(_require_number(content.get("y"), f"slots[{index}].content.y")),
+            width=float(_require_number(content.get("width"), f"slots[{index}].content.width")),
+            height=float(_require_number(content.get("height"), f"slots[{index}].content.height")),
+            font_size=_int_or_none(content.get("font_size")),
+            font_family=_string(content.get("font_family"), None),
+            align=_text_align(content.get("align")),
+            valign=_vertical_align(content.get("valign")),
+            line_height=_number_or_none(content.get("line_height")),
             fill=_string(content.get("fill"), None),
             semantic_role=_string(content.get("semantic_role"), None),
         )
@@ -1262,6 +1337,22 @@ def _label_anchor(value: Any) -> str:
     if anchor not in allowed:
         raise ValueError(f"Unsupported label anchor: {anchor!r}")
     return anchor
+
+
+def _text_align(value: Any) -> str:
+    align = _string(value, "left")
+    allowed = {"left", "center", "right"}
+    if align not in allowed:
+        raise ValueError(f"Unsupported text_box align: {align!r}")
+    return align
+
+
+def _vertical_align(value: Any) -> str:
+    valign = _string(value, "top")
+    allowed = {"top", "middle", "bottom"}
+    if valign not in allowed:
+        raise ValueError(f"Unsupported text_box valign: {valign!r}")
+    return valign
 
 
 def _cube_edge_label_mode(value: Any) -> str:

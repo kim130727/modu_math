@@ -17,12 +17,9 @@
         "slot.circle",
         "slot.circle.center",
         "slot.circle.mark1",
-        "slot.circle.mark2",
-        "slot.circle.mark3",
         "slot.choice_box",
         "slot.circle.line1",
         "slot.circle.line2",
-        "slot.q1",
         "slot.q2",
         "slot.choice.line1",
         "slot.choice.line2"
@@ -31,27 +28,15 @@
   ],
   "slots": [
     {
-      "id": "slot.q1",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "□ 77.",
-        "style_role": "question",
-        "x": 11.0,
-        "y": 29.0,
-        "font_size": 28
-      }
-    },
-    {
       "id": "slot.q2",
       "kind": "text",
       "prompt": "",
       "content": {
         "text": "알맞은 말을 선택하세요.",
         "style_role": "question",
-        "x": 73.0,
-        "y": 29.0,
-        "font_size": 28
+        "x": 75.0,
+        "y": 60.0,
+        "font_size": 30
       }
     },
     {
@@ -59,9 +44,9 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 561.0,
-        "cy": 214.0,
-        "r": 147.0,
+        "cx": 485.0,
+        "cy": 240.0,
+        "r": 145.0,
         "fill": "none"
       }
     },
@@ -70,9 +55,9 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 556.0,
-        "cy": 214.0,
-        "r": 4.0,
+        "cx": 485.0,
+        "cy": 240.0,
+        "r": 5.0,
         "fill": "#ff2a8a"
       }
     },
@@ -81,10 +66,10 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 408.0,
-        "y1": 214.0,
-        "x2": 702.0,
-        "y2": 214.0
+        "x1": 340.0,
+        "y1": 240.0,
+        "x2": 630.0,
+        "y2": 240.0
       }
     },
     {
@@ -92,10 +77,10 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 474.0,
-        "y1": 73.0,
-        "x2": 619.0,
-        "y2": 311.0
+        "x1": 405.0,
+        "y1": 120.0,
+        "x2": 565.0,
+        "y2": 360.0
       }
     },
     {
@@ -103,32 +88,10 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 558.0,
-        "cy": 202.0,
-        "r": 4.0,
+        "cx": 505.0,
+        "cy": 220.0,
+        "r": 5.0,
         "fill": "none"
-      }
-    },
-    {
-      "id": "slot.circle.mark2",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 398.0,
-        "cy": 309.0,
-        "r": 1.5,
-        "fill": "#222222"
-      }
-    },
-    {
-      "id": "slot.circle.mark3",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 696.0,
-        "cy": 311.0,
-        "r": 1.5,
-        "fill": "#222222"
       }
     },
     {
@@ -136,10 +99,10 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 96.0,
-        "y": 352.0,
-        "width": 763.0,
-        "height": 118.0,
+        "x": 70.0,
+        "y": 405.0,
+        "width": 765.0,
+        "height": 120.0,
         "fill": "none"
       }
     },
@@ -150,9 +113,9 @@
       "content": {
         "text": "한 원에는 지름을 ( 2개만, 무수히 많이 ) 그을 수 있고",
         "style_role": "question",
-        "x": 161.0,
-        "y": 403.0,
-        "font_size": 28
+        "x": 135.0,
+        "y": 460.0,
+        "font_size": 30
       }
     },
     {
@@ -162,9 +125,9 @@
       "content": {
         "text": "그 길이는 모두 ( 같습니다, 다릅니다 ).",
         "style_role": "question",
-        "x": 209.0,
-        "y": 441.0,
-        "font_size": 28
+        "x": 185.0,
+        "y": 495.0,
+        "font_size": 30
       }
     }
   ],
@@ -176,12 +139,9 @@
     "slot.circle",
     "slot.circle.center",
     "slot.circle.mark1",
-    "slot.circle.mark2",
-    "slot.circle.mark3",
     "slot.choice_box",
     "slot.circle.line1",
     "slot.circle.line2",
-    "slot.q1",
     "slot.q2",
     "slot.choice.line1",
     "slot.choice.line2"

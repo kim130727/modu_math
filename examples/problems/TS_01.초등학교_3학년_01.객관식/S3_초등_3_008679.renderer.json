@@ -7,63 +7,46 @@
   },
   "elements": [
     {
-      "id": "slot.q1.text",
-      "type": "text",
-      "attributes": {
-        "x": 10.0,
-        "y": 24.0,
-        "max_width": 812.0,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
-      },
-      "source_ref": "slot.q1",
-      "refs": {
-        "layout_slot_id": "slot.q1"
-      },
-      "text": "61."
-    },
-    {
       "id": "slot.q2.text",
       "type": "text",
       "attributes": {
-        "x": 44.0,
-        "y": 24.0,
+        "x": 25.0,
+        "y": 60.0,
         "max_width": 812.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 30
       },
       "source_ref": "slot.q2",
       "refs": {
         "layout_slot_id": "slot.q2"
       },
-      "text": "원 모양 종이를 똑같이 둘로 나누어지도록 반을 접었다가 펴더니 선이"
+      "text": "    원 모양 종이를 똑같이 둘로 나누어지도록 반을 접었다가 펴더니  "
     },
     {
       "id": "slot.q3.text",
       "type": "text",
       "attributes": {
         "x": 25.0,
-        "y": 62.0,
+        "y": 105.0,
         "max_width": 812.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 30
       },
       "source_ref": "slot.q3",
       "refs": {
         "layout_slot_id": "slot.q3"
       },
-      "text": "생겼습니다. 알맞은 말을 선택하세요."
+      "text": "선이 생겼습니다. 알맞은 말을 선택하세요."
     },
     {
       "id": "slot.fig.left.rect",
       "type": "rect",
       "attributes": {
-        "x": 293.0,
-        "y": 93.0,
-        "width": 124.0,
+        "x": 200.0,
+        "y": 145.0,
+        "width": 125.0,
         "height": 30.0,
         "fill": "#F9DCE3",
         "stroke": "#FF9CB4",
@@ -78,9 +61,9 @@
       "id": "slot.fig.right.circle",
       "type": "circle",
       "attributes": {
-        "cx": 622.0,
-        "cy": 144.0,
-        "r": 58.0,
+        "cx": 605.0,
+        "cy": 165.0,
+        "r": 60.0,
         "stroke": "#FF9CB4",
         "stroke-width": 2.0,
         "fill": "#F9DCE3"
@@ -94,10 +77,10 @@
       "id": "slot.fig.right.dash.line",
       "type": "line",
       "attributes": {
-        "x1": 566.0,
-        "y1": 144.0,
-        "x2": 678.0,
-        "y2": 144.0,
+        "x1": 550.0,
+        "y1": 165.0,
+        "x2": 660.0,
+        "y2": 165.0,
         "stroke": "#FF9CB4",
         "stroke-width": 2.0,
         "stroke-dasharray": "5 4"
@@ -111,12 +94,12 @@
       "id": "slot.fig.arrow.text",
       "type": "text",
       "attributes": {
-        "x": 460.0,
-        "y": 130.0,
-        "max_width": 812.0,
+        "x": 415.0,
+        "y": 185.0,
+        "max_width": 810.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 54
+        "font-size": 55
       },
       "source_ref": "slot.fig.arrow",
       "refs": {
@@ -128,35 +111,18 @@
       "id": "slot.choice.line.text",
       "type": "text",
       "attributes": {
-        "x": 11.0,
-        "y": 261.0,
-        "max_width": 812.0,
+        "x": 45.0,
+        "y": 295.0,
+        "max_width": 810.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 30
       },
       "source_ref": "slot.choice.line",
       "refs": {
         "layout_slot_id": "slot.choice.line"
       },
       "text": "(2) 원의 지름은 원을 똑같이 ( 둘, 넷 )(○)로 나눕니다."
-    },
-    {
-      "id": "slot.choice.mark.text",
-      "type": "text",
-      "attributes": {
-        "x": 608.0,
-        "y": 261.0,
-        "max_width": 812.0,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
-      },
-      "source_ref": "slot.choice.mark",
-      "refs": {
-        "layout_slot_id": "slot.choice.mark"
-      },
-      "text": "(○)"
     }
   ],
   "contract_version": "modu_math.renderer.v2"

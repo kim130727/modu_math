@@ -9,7 +9,7 @@ from pathlib import Path
 
 DSL_IMPORT_LINE = (
     "from modu_math.dsl import Canvas, CircleSlot, LineSlot, PathSlot, PolygonSlot, "
-    "ProblemTemplate, RectSlot, Region, TextSlot"
+    "ProblemTemplate, RectSlot, Region, TextBoxSlot, TextSlot"
 )
 
 
@@ -131,6 +131,9 @@ def main() -> int:
                         if "style_role" not in kw_map:
                             node.keywords.append(ast.keyword(arg="style_role", value=_to_node("diagram")))
                         allowed = {"id", "prompt", "text", "style_role", "x", "y", "font_size", "font_family", "anchor", "fill", "semantic_role"}
+                        node.keywords = [kw for kw in node.keywords if kw.arg in allowed]
+                    elif func == "TextBoxSlot":
+                        allowed = {"id", "prompt", "text", "style_role", "x", "y", "width", "height", "font_size", "font_family", "align", "valign", "line_height", "fill", "semantic_role"}
                         node.keywords = [kw for kw in node.keywords if kw.arg in allowed]
                     elif func == "RectSlot":
                         if "prompt" not in kw_map:

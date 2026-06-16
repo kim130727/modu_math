@@ -8,7 +8,7 @@ from ..semantic.models.domain import DomainObject, DomainRelation, SemanticDomai
 from ..semantic.models.metadata import SemanticMetadata
 from ..semantic.models.problem import SemanticProblem
 from ..semantic.normalize import normalize_semantic
-from .models.base import BlankSlot, ChoiceSlot, CircleSlot, LabelSlot, LineSlot, PathSlot, PolygonSlot, RectSlot, Region, TextSlot
+from .models.base import BlankSlot, ChoiceSlot, CircleSlot, LabelSlot, LineSlot, PathSlot, PolygonSlot, RectSlot, Region, TextBoxSlot, TextSlot
 from .models.objects import ShapeObject
 from .models.templates import AuthoringSlot, DiagramTemplate, ProblemTemplate
 
@@ -34,19 +34,22 @@ def compile_problem_template_to_semantic(
     for slot in problem.slots:
         region = slot_to_region.get(slot.id)
 
-        if isinstance(slot, TextSlot):
+        if isinstance(slot, (TextSlot, TextBoxSlot)):
             semantic_role = _infer_text_role(slot, region, question_consumed)
             question_consumed = question_consumed or semantic_role == "question"
             if semantic_role == "question" and question_text is None:
                 question_text = slot.text
             elif semantic_role == "instruction" and instruction_text is None:
                 instruction_text = slot.text
+            properties: dict[str, Any] = {"text": slot.text}
+            if isinstance(slot, TextBoxSlot):
+                properties.update({"width": slot.width, "height": slot.height})
             domain_objects.append(
                 DomainObject(
                     id=slot.id,
                     type=semantic_role,
                     refs=_refs_for_slot(slot.id, region),
-                    properties={"text": slot.text},
+                    properties=properties,
                 )
             )
             continue

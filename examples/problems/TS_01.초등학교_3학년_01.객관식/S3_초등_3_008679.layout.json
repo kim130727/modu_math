@@ -14,7 +14,6 @@
       "role": "stem",
       "flow": "absolute",
       "slot_ids": [
-        "slot.q1",
         "slot.q2",
         "slot.q3"
       ]
@@ -35,8 +34,7 @@
       "role": "choice",
       "flow": "absolute",
       "slot_ids": [
-        "slot.choice.line",
-        "slot.choice.mark"
+        "slot.choice.line"
       ]
     },
     {
@@ -54,27 +52,15 @@
   ],
   "slots": [
     {
-      "id": "slot.q1",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "61.",
-        "style_role": "question",
-        "x": 10.0,
-        "y": 24.0,
-        "font_size": 28
-      }
-    },
-    {
       "id": "slot.q2",
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "원 모양 종이를 똑같이 둘로 나누어지도록 반을 접었다가 펴더니 선이",
+        "text": "    원 모양 종이를 똑같이 둘로 나누어지도록 반을 접었다가 펴더니  ",
         "style_role": "question",
-        "x": 44.0,
-        "y": 24.0,
-        "font_size": 28
+        "x": 25.0,
+        "y": 60.0,
+        "font_size": 30
       }
     },
     {
@@ -82,11 +68,11 @@
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "생겼습니다. 알맞은 말을 선택하세요.",
+        "text": "선이 생겼습니다. 알맞은 말을 선택하세요.",
         "style_role": "question",
         "x": 25.0,
-        "y": 62.0,
-        "font_size": 28
+        "y": 105.0,
+        "font_size": 30
       }
     },
     {
@@ -94,9 +80,9 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 293.0,
-        "y": 93.0,
-        "width": 124.0,
+        "x": 200.0,
+        "y": 145.0,
+        "width": 125.0,
         "height": 30.0,
         "stroke": "#FF9CB4",
         "stroke_width": 2.0,
@@ -108,9 +94,9 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 622.0,
-        "cy": 144.0,
-        "r": 58.0,
+        "cx": 605.0,
+        "cy": 165.0,
+        "r": 60.0,
         "stroke": "#FF9CB4",
         "stroke_width": 2.0,
         "fill": "#F9DCE3"
@@ -121,10 +107,10 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 566.0,
-        "y1": 144.0,
-        "x2": 678.0,
-        "y2": 144.0,
+        "x1": 550.0,
+        "y1": 165.0,
+        "x2": 660.0,
+        "y2": 165.0,
         "stroke": "#FF9CB4",
         "stroke_width": 2.0,
         "stroke_dasharray": "5 4"
@@ -137,9 +123,10 @@
       "content": {
         "text": "→",
         "style_role": "diagram",
-        "x": 460.0,
-        "y": 130.0,
-        "font_size": 54
+        "x": 415.0,
+        "y": 185.0,
+        "font_size": 55,
+        "max_width": 810.0
       }
     },
     {
@@ -149,21 +136,10 @@
       "content": {
         "text": "(2) 원의 지름은 원을 똑같이 ( 둘, 넷 )(○)로 나눕니다.",
         "style_role": "question",
-        "x": 11.0,
-        "y": 261.0,
-        "font_size": 28
-      }
-    },
-    {
-      "id": "slot.choice.mark",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "(○)",
-        "style_role": "question",
-        "x": 608.0,
-        "y": 261.0,
-        "font_size": 28
+        "x": 45.0,
+        "y": 295.0,
+        "font_size": 30,
+        "max_width": 810.0
       }
     }
   ],
@@ -172,7 +148,6 @@
   "diagrams": [],
   "reading_order": [
     "region.stem",
-    "slot.q1",
     "slot.q2",
     "slot.q3",
     "region.diagram",
@@ -182,7 +157,6 @@
     "slot.fig.arrow",
     "region.choice",
     "slot.choice.line",
-    "slot.choice.mark",
     "region.explanation",
     "region.footer"
   ]

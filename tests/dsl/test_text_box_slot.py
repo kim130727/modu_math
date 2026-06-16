@@ -1,0 +1,40 @@
+from modu_math.dsl import Canvas, ProblemTemplate, Region, TextBoxSlot, compile_problem_template_to_layout
+from modu_math.layout.validate import validate_layout_json
+from modu_math.renderer.compiler import compile_renderer_json
+from modu_math.renderer.svg.render import render_svg
+from modu_math.renderer.validate import validate_renderer_json
+
+
+def test_text_box_slot_renders_fixed_box_metadata() -> None:
+    problem = ProblemTemplate(
+        id="text_box_demo",
+        title="Text box demo",
+        canvas=Canvas(width=300, height=120),
+        regions=(Region(id="region.stem", role="stem", flow="absolute", slot_ids=("slot.tb",)),),
+        slots=(
+            TextBoxSlot(
+                id="slot.tb",
+                text="가나다 라마바사",
+                x=10,
+                y=20,
+                width=120,
+                height=50,
+                font_size=20,
+                align="center",
+            ),
+        ),
+    )
+
+    layout = compile_problem_template_to_layout(problem)
+    validate_layout_json(layout)
+    assert layout["slots"][0]["kind"] == "text_box"
+    assert layout["slots"][0]["content"]["width"] == 120.0
+
+    renderer = compile_renderer_json(layout)
+    validate_renderer_json(renderer)
+    assert renderer["elements"][0]["type"] == "text_box"
+
+    svg = render_svg(renderer)
+    assert 'data-slot-kind="text_box"' in svg
+    assert 'data-box-width="120"' in svg
+    assert 'text-anchor="middle"' in svg

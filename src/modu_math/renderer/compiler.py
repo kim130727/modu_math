@@ -273,7 +273,7 @@ def _compile_slots(layout: dict[str, Any], *, width: float) -> tuple[list[DrawEl
             content = {}
         refs = RenderRefs(layout_slot_id=slot_id)
         transform = str(content["transform"]) if isinstance(content.get("transform"), str) and content.get("transform") else None
-        if kind == "text":
+        if kind in {"text", "text_box"}:
             text = str(content.get("text", ""))
             tx = float(content["x"]) if isinstance(content.get("x"), int | float) else x
             ty = float(content["y"]) if isinstance(content.get("y"), int | float) else y
@@ -290,6 +290,27 @@ def _compile_slots(layout: dict[str, Any], *, width: float) -> tuple[list[DrawEl
                 "font-family": font_family,
                 "font-size": font_size,
             }
+            element_type = "text"
+            if kind == "text_box":
+                box_width = float(content["width"]) if isinstance(content.get("width"), int | float) else max_text_width
+                box_height = float(content["height"]) if isinstance(content.get("height"), int | float) else font_size * 1.2
+                attributes.update(
+                    {
+                        "width": box_width,
+                        "height": box_height,
+                        "max_width": box_width,
+                        "data-slot-kind": "text_box",
+                        "data-box-x": tx,
+                        "data-box-y": ty,
+                        "data-box-width": box_width,
+                        "data-box-height": box_height,
+                        "data-text-align": str(content.get("align") or "left"),
+                        "data-vertical-align": str(content.get("valign") or "top"),
+                    }
+                )
+                if isinstance(content.get("line_height"), int | float):
+                    attributes["data-line-height"] = float(content["line_height"])
+                element_type = "text_box"
             if text_anchor:
                 attributes["text-anchor"] = text_anchor
             if semantic_role:
@@ -299,7 +320,7 @@ def _compile_slots(layout: dict[str, Any], *, width: float) -> tuple[list[DrawEl
             elements.append(
                 DrawElement(
                     id=f"{slot_id}.text",
-                    type="text",
+                    type=element_type,
                     attributes=attributes,
                     source_ref=slot_id,
                     refs=refs,

@@ -159,18 +159,18 @@
       "id": "slot.q.title.text",
       "type": "text",
       "attributes": {
-        "x": 18.0,
-        "y": 32.0,
+        "x": 20.0,
+        "y": 30.0,
         "max_width": 822.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 30
       },
       "source_ref": "slot.q.title",
       "refs": {
         "layout_slot_id": "slot.q.title"
       },
-      "text": "85. 원을 둘로 똑같이 나누는 선분을 알아보려고 합니다. 알맞은 말을 선택하세요."
+      "text": "원을 둘로 똑같이 나누는 선분을 알아보려고 합니다. 알맞은말을 선택하세요."
     },
     {
       "id": "slot.fig3.label.text",
@@ -408,7 +408,7 @@
       "refs": {
         "layout_slot_id": "slot.desc3.3"
       },
-      "text": "점 ○이라고 표시합"
+      "text": "점 ㅇ이라고 표시합"
     },
     {
       "id": "slot.desc3.4.text",
@@ -431,29 +431,29 @@
       "id": "slot.item1.q.text",
       "type": "text",
       "attributes": {
-        "x": 22.0,
-        "y": 414.0,
+        "x": 50.0,
+        "y": 420.0,
         "max_width": 822.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 25
       },
       "source_ref": "slot.item1.q",
       "refs": {
         "layout_slot_id": "slot.item1.q"
       },
-      "text": "(1) 점 ○에서 원 위의 한 점까지의 길이는 모두 ( 같습니다, 다릅니다 )."
+      "text": "(1) 점 ○에서 원 위의 한 점까지의 길이는 모두 (\n같습니다, 다릅니다 )."
     },
     {
       "id": "slot.item1.arrow.text",
       "type": "text",
       "attributes": {
-        "x": 58.0,
-        "y": 454.0,
+        "x": 60.0,
+        "y": 475.0,
         "max_width": 822.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 34
+        "font-size": 35
       },
       "source_ref": "slot.item1.arrow",
       "refs": {
@@ -462,55 +462,21 @@
       "text": "→"
     },
     {
-      "id": "slot.item1.conclusion.text",
+      "id": "slot.item1.q.copy3.text",
       "type": "text",
       "attributes": {
-        "x": 100.0,
-        "y": 462.0,
+        "x": 155.0,
+        "y": 495.0,
         "max_width": 822.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 28
       },
-      "source_ref": "slot.item1.conclusion",
+      "source_ref": "slot.item1.q.copy3",
       "refs": {
-        "layout_slot_id": "slot.item1.conclusion"
+        "layout_slot_id": "slot.item1.q.copy3"
       },
-      "text": "점 ○은 원의 중심입니다."
-    },
-    {
-      "id": "slot.repeat.q.text",
-      "type": "text",
-      "attributes": {
-        "x": 0.0,
-        "y": 508.0,
-        "max_width": 822.0,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
-      },
-      "source_ref": "slot.repeat.q",
-      "refs": {
-        "layout_slot_id": "slot.repeat.q"
-      },
-      "text": "(1) 점 ○에서 원 위의 한 점까지의 길이는 모두 같습니다."
-    },
-    {
-      "id": "slot.repeat.conclusion.text",
-      "type": "text",
-      "attributes": {
-        "x": 24.0,
-        "y": 548.0,
-        "max_width": 822.0,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
-      },
-      "source_ref": "slot.repeat.conclusion",
-      "refs": {
-        "layout_slot_id": "slot.repeat.conclusion"
-      },
-      "text": "→ 점 ○은 원의 중심입니다."
+      "text": "점 ㅇ는 원의 중심입니다."
     }
   ],
   "contract_version": "modu_math.renderer.v2"

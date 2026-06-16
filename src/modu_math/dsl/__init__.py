@@ -45,6 +45,7 @@ from .models import (
     RectSlot,
     Region,
     ShapeObject,
+    TextBoxSlot,
     TextSlot,
     Triangle,
 )
@@ -73,6 +74,7 @@ __all__ = [
     "Region",
     "ShapeObject",
     "SpeakerSpec",
+    "TextBoxSlot",
     "TextSlot",
     "Triangle",
     "character_body_slot_ids",

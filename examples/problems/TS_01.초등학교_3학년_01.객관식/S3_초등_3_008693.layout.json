@@ -14,7 +14,6 @@
       "role": "stem",
       "flow": "absolute",
       "slot_ids": [
-        "slot.q.no",
         "slot.q1",
         "slot.q2",
         "slot.num.1.text",
@@ -54,18 +53,6 @@
     }
   ],
   "slots": [
-    {
-      "id": "slot.q.no",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "□ 82.",
-        "style_role": "question",
-        "x": 14.0,
-        "y": 28.0,
-        "font_size": 28
-      }
-    },
     {
       "id": "slot.q1",
       "kind": "text",
@@ -330,7 +317,6 @@
   "diagrams": [],
   "reading_order": [
     "region.stem",
-    "slot.q.no",
     "slot.q1",
     "slot.q2",
     "slot.num.1.text",

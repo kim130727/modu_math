@@ -39,7 +39,7 @@ class RenderElement:
             element_cls = RenderLine
         elif element_type == "polygon":
             element_cls = RenderPolygon
-        elif element_type == "text":
+        elif element_type in {"text", "text_box"}:
             element_cls = RenderText
         elif element_type == "group":
             element_cls = RenderGroup

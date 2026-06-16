@@ -3,7 +3,7 @@ from __future__ import annotations
 from dataclasses import asdict
 from typing import Any
 
-from .models.base import BlankSlot, ChoiceSlot, CircleSlot, Constraint, Group, LabelSlot, LineSlot, PathSlot, PolygonSlot, RectSlot, Region, TextSlot
+from .models.base import BlankSlot, ChoiceSlot, CircleSlot, Constraint, Group, LabelSlot, LineSlot, PathSlot, PolygonSlot, RectSlot, Region, TextBoxSlot, TextSlot
 from .models.objects import ShapeObject
 from .models.templates import AuthoringSlot, DiagramTemplate, ProblemTemplate
 
@@ -117,6 +117,7 @@ def _get_z_priority(kind: str) -> int:
         "path": 10,
         "line": 20,
         "text": 30,
+        "text_box": 30,
         "blank": 40,
         "choice": 40,
         "label": 50,
@@ -142,6 +143,36 @@ def _normalize_slot(slot: AuthoringSlot) -> dict[str, Any]:
             content["font_family"] = slot.font_family
         if isinstance(slot.anchor, str) and slot.anchor:
             content["anchor"] = slot.anchor
+        if isinstance(slot.fill, str) and slot.fill:
+            content["fill"] = slot.fill
+        if isinstance(slot.transform, str) and slot.transform:
+            content["transform"] = slot.transform
+        if isinstance(slot.semantic_role, str) and slot.semantic_role:
+            content["semantic_role"] = slot.semantic_role
+        return {
+            "id": slot.id,
+            "kind": slot.kind,
+            "prompt": slot.prompt or "",
+            "content": content,
+        }
+
+    if isinstance(slot, TextBoxSlot):
+        content = {
+            "text": slot.text,
+            "style_role": slot.style_role,
+            "x": float(slot.x),
+            "y": float(slot.y),
+            "width": float(slot.width),
+            "height": float(slot.height),
+            "align": slot.align,
+            "valign": slot.valign,
+        }
+        if slot.font_size is not None:
+            content["font_size"] = int(slot.font_size)
+        if isinstance(slot.font_family, str) and slot.font_family:
+            content["font_family"] = slot.font_family
+        if slot.line_height is not None:
+            content["line_height"] = float(slot.line_height)
         if isinstance(slot.fill, str) and slot.fill:
             content["fill"] = slot.fill
         if isinstance(slot.transform, str) and slot.transform:
