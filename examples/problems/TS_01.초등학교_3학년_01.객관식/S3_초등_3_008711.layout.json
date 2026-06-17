@@ -14,10 +14,8 @@
       "role": "stem",
       "flow": "absolute",
       "slot_ids": [
-        "slot.q.mark",
         "slot.q1",
-        "slot.q2",
-        "slot.q3"
+        "slot.q2"
       ]
     },
     {
@@ -55,23 +53,11 @@
   ],
   "slots": [
     {
-      "id": "slot.q.mark",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "□",
-        "style_role": "question",
-        "x": 14.0,
-        "y": 34.0,
-        "font_size": 28
-      }
-    },
-    {
       "id": "slot.q1",
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "9. 띠 종이를 누름 못으로 고정한 다음 연필심을 구멍에 끼려고",
+        "text": "띠 종이를 누름 못으로 고정한 다음 연필심을 구멍에 끼려고 합니다.",
         "style_role": "question",
         "x": 42.0,
         "y": 34.0,
@@ -83,23 +69,11 @@
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "합니다. 원을 가장 작게 그릴 때 연필심을 넣어야 하는 구멍의 기호를 선택",
+        "text": "원을 가장 작게 그릴 때 연필심을 넣어야 하는 구멍의 기호를\n선택하세요.  ",
         "style_role": "question",
-        "x": 18.0,
-        "y": 72.0,
-        "font_size": 28
-      }
-    },
-    {
-      "id": "slot.q3",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "하세요.",
-        "style_role": "question",
-        "x": 18.0,
-        "y": 110.0,
-        "font_size": 28
+        "x": 35.0,
+        "y": 80.0,
+        "font_size": 30
       }
     },
     {
@@ -281,7 +255,8 @@
         "style_role": "label",
         "x": 356.0,
         "y": 212.0,
-        "font_size": 28
+        "font_size": 28,
+        "fill": "#111111"
       }
     },
     {
@@ -293,7 +268,8 @@
         "style_role": "label",
         "x": 395.0,
         "y": 212.0,
-        "font_size": 28
+        "font_size": 28,
+        "fill": "#111111"
       }
     },
     {
@@ -305,7 +281,8 @@
         "style_role": "label",
         "x": 441.0,
         "y": 212.0,
-        "font_size": 28
+        "font_size": 28,
+        "fill": "#111111"
       }
     },
     {
@@ -317,7 +294,8 @@
         "style_role": "label",
         "x": 489.0,
         "y": 212.0,
-        "font_size": 28
+        "font_size": 28,
+        "fill": "#111111"
       }
     },
     {
@@ -329,7 +307,8 @@
         "style_role": "label",
         "x": 537.0,
         "y": 212.0,
-        "font_size": 28
+        "font_size": 28,
+        "fill": "#111111"
       }
     },
     {
@@ -339,9 +318,10 @@
       "content": {
         "text": "( ㄱ , ㄴ , ㄷ , ㄹ , ㅁ )",
         "style_role": "label",
-        "x": 647.0,
-        "y": 246.0,
-        "font_size": 28
+        "x": 95.0,
+        "y": 315.0,
+        "font_size": 30,
+        "fill": "#111111"
       }
     }
   ],
@@ -350,10 +330,8 @@
   "diagrams": [],
   "reading_order": [
     "region.stem",
-    "slot.q.mark",
     "slot.q1",
     "slot.q2",
-    "slot.q3",
     "region.diagram",
     "slot.box",
     "slot.hole1",

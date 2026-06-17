@@ -14,7 +14,6 @@
       "role": "stem",
       "flow": "absolute",
       "slot_ids": [
-        "slot.q.no",
         "slot.q.text"
       ]
     },
@@ -34,23 +33,12 @@
         "slot.lb.nieun",
         "slot.lb.digeut",
         "slot.lb.rieul",
-        "slot.lb.mieum"
+        "slot.lb.mieum",
+        "slot.lb.rieul.copy1"
       ]
     }
   ],
   "slots": [
-    {
-      "id": "slot.q.no",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "94.",
-        "style_role": "question",
-        "x": 44.0,
-        "y": 32.0,
-        "font_size": 28
-      }
-    },
     {
       "id": "slot.q.text",
       "kind": "text",
@@ -68,9 +56,9 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 506.0,
-        "cy": 144.0,
-        "r": 82.0,
+        "cx": 370.0,
+        "cy": 221.0,
+        "r": 135.0,
         "fill": "none"
       }
     },
@@ -79,9 +67,9 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 506.0,
-        "cy": 144.0,
-        "r": 4.0,
+        "cx": 370.0,
+        "cy": 221.0,
+        "r": 5.0,
         "fill": "#d32f2f"
       }
     },
@@ -90,10 +78,10 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 506.0,
-        "y1": 144.0,
-        "x2": 444.0,
-        "y2": 104.0
+        "x1": 370.0,
+        "y1": 221.0,
+        "x2": 260.0,
+        "y2": 141.0
       }
     },
     {
@@ -101,10 +89,10 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 506.0,
-        "y1": 144.0,
-        "x2": 506.0,
-        "y2": 62.0
+        "x1": 372.0,
+        "y1": 356.0,
+        "x2": 367.0,
+        "y2": 86.0
       }
     },
     {
@@ -112,10 +100,10 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 506.0,
-        "y1": 144.0,
-        "x2": 564.0,
-        "y2": 54.0
+        "x1": 303.0,
+        "y1": 339.0,
+        "x2": 438.0,
+        "y2": 104.0
       }
     },
     {
@@ -123,10 +111,10 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 506.0,
-        "y1": 144.0,
-        "x2": 586.0,
-        "y2": 116.0
+        "x1": 370.0,
+        "y1": 221.0,
+        "x2": 495.0,
+        "y2": 171.0
       }
     },
     {
@@ -134,10 +122,10 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 506.0,
-        "y1": 144.0,
-        "x2": 588.0,
-        "y2": 144.0
+        "x1": 235.0,
+        "y1": 223.0,
+        "x2": 505.0,
+        "y2": 218.0
       }
     },
     {
@@ -147,9 +135,9 @@
       "content": {
         "text": "ㄱ",
         "style_role": "label",
-        "x": 425.0,
-        "y": 113.0,
-        "font_size": 28
+        "x": 235.0,
+        "y": 141.0,
+        "font_size": 30
       }
     },
     {
@@ -159,9 +147,9 @@
       "content": {
         "text": "ㄴ",
         "style_role": "label",
-        "x": 493.0,
-        "y": 44.0,
-        "font_size": 28
+        "x": 345.0,
+        "y": 75.0,
+        "font_size": 30
       }
     },
     {
@@ -183,9 +171,9 @@
       "content": {
         "text": "ㄹ",
         "style_role": "label",
-        "x": 598.0,
-        "y": 116.0,
-        "font_size": 28
+        "x": 500.0,
+        "y": 180.0,
+        "font_size": 30
       }
     },
     {
@@ -195,9 +183,22 @@
       "content": {
         "text": "ㅁ",
         "style_role": "label",
-        "x": 598.0,
-        "y": 152.0,
-        "font_size": 28
+        "x": 515.0,
+        "y": 230.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.lb.rieul.copy1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄷ",
+        "style_role": "body",
+        "x": 430.0,
+        "y": 90.0,
+        "font_size": 30,
+        "fill": "#111111"
       }
     }
   ],
@@ -206,7 +207,6 @@
   "diagrams": [],
   "reading_order": [
     "region.stem",
-    "slot.q.no",
     "slot.q.text",
     "region.diagram",
     "slot.circle.outline",
@@ -220,6 +220,7 @@
     "slot.lb.nieun",
     "slot.lb.digeut",
     "slot.lb.rieul",
-    "slot.lb.mieum"
+    "slot.lb.mieum",
+    "slot.lb.rieul.copy1"
   ]
 }

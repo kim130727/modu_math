@@ -14,8 +14,6 @@
       "role": "stem",
       "flow": "absolute",
       "slot_ids": [
-        "slot.chk",
-        "slot.qnum",
         "slot.qtext1",
         "slot.qtext2"
       ]
@@ -83,39 +81,15 @@
   ],
   "slots": [
     {
-      "id": "slot.chk",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "□",
-        "style_role": "question",
-        "x": 12.0,
-        "y": 18.0,
-        "font_size": 28
-      }
-    },
-    {
-      "id": "slot.qnum",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "100.",
-        "style_role": "question",
-        "x": 40.0,
-        "y": 18.0,
-        "font_size": 28
-      }
-    },
-    {
       "id": "slot.qtext1",
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "규칙에 따라 원을 그린 그림입니다. 그린 규칙을 바르게 설명했으면 ○표,",
+        "text": "규칙에 따라 원을 그린 그림입니다. 그린 규칙을 바르게\n설명했으면\n○표,",
         "style_role": "question",
-        "x": 95.0,
-        "y": 18.0,
-        "font_size": 28
+        "x": 405.0,
+        "y": 300.0,
+        "font_size": 30
       }
     },
     {
@@ -565,8 +539,8 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 190.0,
-        "y": 315.0,
+        "x": 20.0,
+        "y": 385.0,
         "width": 470.0,
         "height": 105.0,
         "fill": "#d9effb"
@@ -578,8 +552,6 @@
   "diagrams": [],
   "reading_order": [
     "region.header",
-    "slot.chk",
-    "slot.qnum",
     "slot.qtext1",
     "slot.qtext2",
     "region.diagram",

@@ -7,114 +7,46 @@
   },
   "elements": [
     {
-      "id": "slot.answer.blank.rect",
-      "type": "rect",
-      "attributes": {
-        "x": 66.0,
-        "y": 330.0,
-        "width": 22.0,
-        "height": 22.0,
-        "fill": "none",
-        "stroke": "#222222",
-        "stroke-width": 1.5
-      },
-      "source_ref": "slot.answer.blank",
-      "refs": {
-        "layout_slot_id": "slot.answer.blank"
-      }
-    },
-    {
-      "id": "slot.qnum.text",
-      "type": "text",
-      "attributes": {
-        "x": 22.0,
-        "y": 36.0,
-        "max_width": 832.0,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
-      },
-      "source_ref": "slot.qnum",
-      "refs": {
-        "layout_slot_id": "slot.qnum"
-      },
-      "text": "□ 3."
-    },
-    {
       "id": "slot.q1.text",
       "type": "text",
       "attributes": {
-        "x": 70.0,
-        "y": 36.0,
+        "x": 30.0,
+        "y": 65.0,
         "max_width": 832.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 30
       },
       "source_ref": "slot.q1",
       "refs": {
         "layout_slot_id": "slot.q1"
       },
-      "text": "원의 지름을 그림과 같이 그렸습니다. 바르게 그렸으면 ○, 틀리게 그렸"
+      "text": "    원의 지름을 그림과 같이 그렸습니다. 바르게 그렸으면 ○,"
     },
     {
       "id": "slot.q2.text",
       "type": "text",
       "attributes": {
-        "x": 22.0,
-        "y": 64.0,
+        "x": 30.0,
+        "y": 120.0,
         "max_width": 832.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 30
       },
       "source_ref": "slot.q2",
       "refs": {
         "layout_slot_id": "slot.q2"
       },
-      "text": "으면 ×표를 선택하세요."
-    },
-    {
-      "id": "slot.choice.o.text",
-      "type": "text",
-      "attributes": {
-        "x": 28.0,
-        "y": 282.0,
-        "max_width": 832.0,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
-      },
-      "source_ref": "slot.choice.o",
-      "refs": {
-        "layout_slot_id": "slot.choice.o"
-      },
-      "text": "○"
-    },
-    {
-      "id": "slot.choice.x.text",
-      "type": "text",
-      "attributes": {
-        "x": 29.0,
-        "y": 312.0,
-        "max_width": 832.0,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
-      },
-      "source_ref": "slot.choice.x",
-      "refs": {
-        "layout_slot_id": "slot.choice.x"
-      },
-      "text": "×"
+      "text": "틀리게 그렸으면 ×표를 선택하세요."
     },
     {
       "id": "slot.top.circle.circle",
       "type": "circle",
       "attributes": {
-        "cx": 482.0,
-        "cy": 171.0,
-        "r": 89.0,
+        "cx": 415.0,
+        "cy": 305.0,
+        "r": 150.0,
         "stroke": "#222222",
         "stroke-width": 2.0,
         "fill": "none"
@@ -128,9 +60,9 @@
       "id": "slot.top.dot1.circle",
       "type": "circle",
       "attributes": {
-        "cx": 482.0,
-        "cy": 159.0,
-        "r": 4.5,
+        "cx": 420.0,
+        "cy": 285.0,
+        "r": 5.0,
         "stroke": "#666666",
         "stroke-width": 2.0,
         "fill": "none"
@@ -144,9 +76,9 @@
       "id": "slot.top.dot2.circle",
       "type": "circle",
       "attributes": {
-        "cx": 482.0,
-        "cy": 172.0,
-        "r": 3.2,
+        "cx": 417.0,
+        "cy": 305.0,
+        "r": 5.0,
         "stroke": "#111111",
         "stroke-width": 2.0,
         "fill": "#ff3aa7"
@@ -160,80 +92,16 @@
       "id": "slot.top.diameter.line",
       "type": "line",
       "attributes": {
-        "x1": 392.0,
-        "y1": 171.0,
-        "x2": 572.0,
-        "y2": 171.0,
+        "x1": 265.0,
+        "y1": 305.0,
+        "x2": 570.0,
+        "y2": 305.0,
         "stroke": "#222222",
         "stroke-width": 2.0
       },
       "source_ref": "slot.top.diameter",
       "refs": {
         "layout_slot_id": "slot.top.diameter"
-      }
-    },
-    {
-      "id": "slot.bottom.circle.circle",
-      "type": "circle",
-      "attributes": {
-        "cx": 156.0,
-        "cy": 463.0,
-        "r": 89.0,
-        "stroke": "#222222",
-        "stroke-width": 2.0,
-        "fill": "none"
-      },
-      "source_ref": "slot.bottom.circle",
-      "refs": {
-        "layout_slot_id": "slot.bottom.circle"
-      }
-    },
-    {
-      "id": "slot.bottom.dot1.circle",
-      "type": "circle",
-      "attributes": {
-        "cx": 156.0,
-        "cy": 451.0,
-        "r": 4.5,
-        "stroke": "#666666",
-        "stroke-width": 2.0,
-        "fill": "none"
-      },
-      "source_ref": "slot.bottom.dot1",
-      "refs": {
-        "layout_slot_id": "slot.bottom.dot1"
-      }
-    },
-    {
-      "id": "slot.bottom.dot2.circle",
-      "type": "circle",
-      "attributes": {
-        "cx": 156.0,
-        "cy": 464.0,
-        "r": 3.2,
-        "stroke": "#111111",
-        "stroke-width": 2.0,
-        "fill": "#ff3aa7"
-      },
-      "source_ref": "slot.bottom.dot2",
-      "refs": {
-        "layout_slot_id": "slot.bottom.dot2"
-      }
-    },
-    {
-      "id": "slot.bottom.diameter.line",
-      "type": "line",
-      "attributes": {
-        "x1": 66.0,
-        "y1": 463.0,
-        "x2": 246.0,
-        "y2": 463.0,
-        "stroke": "#222222",
-        "stroke-width": 2.0
-      },
-      "source_ref": "slot.bottom.diameter",
-      "refs": {
-        "layout_slot_id": "slot.bottom.diameter"
       }
     }
   ],

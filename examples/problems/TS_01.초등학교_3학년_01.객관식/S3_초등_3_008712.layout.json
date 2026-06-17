@@ -24,11 +24,6 @@
       "slot_ids": [
         "slot.circle.outer",
         "slot.pt.center",
-        "slot.pt.giyeok",
-        "slot.pt.nieun",
-        "slot.pt.digeut",
-        "slot.pt.rieul",
-        "slot.pt.ieung",
         "slot.line.kr",
         "slot.line.nl",
         "slot.line.od",
@@ -60,7 +55,7 @@
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "10. 원에서 원의 지름을 나타내는 선분을 선택하세요.",
+        "text": "원에서 원의 지름을 나타내는 선분을 선택하세요.",
         "style_role": "question",
         "x": 20.0,
         "y": 30.0,
@@ -72,9 +67,9 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 490.0,
-        "cy": 150.0,
-        "r": 84.0,
+        "cx": 310.0,
+        "cy": 174.0,
+        "r": 100.0,
         "fill": "none"
       }
     },
@@ -83,10 +78,10 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 468.0,
-        "y1": 68.0,
-        "x2": 570.0,
-        "y2": 127.0
+        "x1": 305.0,
+        "y1": 75.0,
+        "x2": 405.0,
+        "y2": 140.0
       }
     },
     {
@@ -94,10 +89,10 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 405.0,
-        "y1": 178.0,
-        "x2": 570.0,
-        "y2": 127.0
+        "x1": 215.0,
+        "y1": 210.0,
+        "x2": 405.0,
+        "y2": 140.0
       }
     },
     {
@@ -105,10 +100,10 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 490.0,
-        "y1": 150.0,
-        "x2": 530.0,
-        "y2": 228.0
+        "x1": 310.0,
+        "y1": 175.0,
+        "x2": 360.0,
+        "y2": 260.0
       }
     },
     {
@@ -116,65 +111,12 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 490.0,
-        "cy": 150.0,
-        "r": 4.0,
+        "cx": 310.0,
+        "cy": 175.0,
+        "r": 3.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0,
         "fill": "#d81b60"
-      }
-    },
-    {
-      "id": "slot.pt.giyeok",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 472.0,
-        "cy": 68.0,
-        "r": 3.8,
-        "fill": "#222222"
-      }
-    },
-    {
-      "id": "slot.pt.nieun",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 405.0,
-        "cy": 178.0,
-        "r": 3.8,
-        "fill": "#222222"
-      }
-    },
-    {
-      "id": "slot.pt.digeut",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 530.0,
-        "cy": 228.0,
-        "r": 3.8,
-        "fill": "#222222"
-      }
-    },
-    {
-      "id": "slot.pt.rieul",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 571.0,
-        "cy": 127.0,
-        "r": 3.8,
-        "fill": "#222222"
-      }
-    },
-    {
-      "id": "slot.pt.ieung",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 490.0,
-        "cy": 118.0,
-        "r": 3.8,
-        "fill": "#222222"
       }
     },
     {
@@ -184,9 +126,9 @@
       "content": {
         "text": "ㄱ",
         "style_role": "label",
-        "x": 458.0,
-        "y": 58.0,
-        "font_size": 28
+        "x": 270.0,
+        "y": 70.0,
+        "font_size": 30
       }
     },
     {
@@ -196,9 +138,9 @@
       "content": {
         "text": "ㄴ",
         "style_role": "label",
-        "x": 384.0,
-        "y": 192.0,
-        "font_size": 28
+        "x": 185.0,
+        "y": 225.0,
+        "font_size": 30
       }
     },
     {
@@ -208,9 +150,9 @@
       "content": {
         "text": "ㄷ",
         "style_role": "label",
-        "x": 524.0,
-        "y": 256.0,
-        "font_size": 28
+        "x": 375.0,
+        "y": 280.0,
+        "font_size": 30
       }
     },
     {
@@ -220,9 +162,9 @@
       "content": {
         "text": "ㄹ",
         "style_role": "label",
-        "x": 580.0,
-        "y": 132.0,
-        "font_size": 28
+        "x": 420.0,
+        "y": 145.0,
+        "font_size": 30
       }
     },
     {
@@ -232,9 +174,9 @@
       "content": {
         "text": "ㅇ",
         "style_role": "label",
-        "x": 484.0,
-        "y": 109.0,
-        "font_size": 28
+        "x": 285.0,
+        "y": 165.0,
+        "font_size": 30
       }
     },
     {
@@ -244,9 +186,9 @@
       "content": {
         "text": "( 선분 ㄱㄹ , 선분 ㄴㄹ , 선분 ㅇㄷ )",
         "style_role": "choice",
-        "x": 470.0,
-        "y": 266.0,
-        "font_size": 28
+        "x": 30.0,
+        "y": 330.0,
+        "font_size": 30
       }
     }
   ],
@@ -259,11 +201,6 @@
     "region.diagram",
     "slot.circle.outer",
     "slot.pt.center",
-    "slot.pt.giyeok",
-    "slot.pt.nieun",
-    "slot.pt.digeut",
-    "slot.pt.rieul",
-    "slot.pt.ieung",
     "slot.line.kr",
     "slot.line.nl",
     "slot.line.od",
