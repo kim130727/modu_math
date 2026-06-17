@@ -17,14 +17,12 @@
         "slot.diagram.circle",
         "slot.diagram.center_mark",
         "slot.diagram.pink_dot",
-        "slot.answer.blank",
         "slot.diagram.diameter",
         "slot.qnum",
         "slot.diagram.left_label",
         "slot.diagram.right_label",
         "slot.statement",
-        "slot.choice.o",
-        "slot.choice.x"
+        "slot.qnum.copy7"
       ]
     }
   ],
@@ -34,11 +32,11 @@
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "□ 75. 다음을 읽고 바르게 설명하였으면 ○표, 그렇지 않으면 ×표를 선택하세\n요.",
+        "text": "    다음을 읽고 바르게 설명하였으면 ○표,    ",
         "style_role": "question",
         "x": 10.0,
-        "y": 26.0,
-        "font_size": 28
+        "y": 50.0,
+        "font_size": 30
       }
     },
     {
@@ -46,8 +44,8 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 487.0,
-        "cy": 175.0,
+        "cx": 359.0,
+        "cy": 245.0,
         "r": 90.0,
         "fill": "none"
       }
@@ -57,10 +55,10 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 392.0,
-        "y1": 175.0,
-        "x2": 582.0,
-        "y2": 175.0
+        "x1": 270.0,
+        "y1": 245.0,
+        "x2": 450.0,
+        "y2": 245.0
       }
     },
     {
@@ -70,9 +68,9 @@
       "content": {
         "text": "ㄱ",
         "style_role": "label",
-        "x": 375.0,
-        "y": 181.0,
-        "font_size": 28
+        "x": 225.0,
+        "y": 255.0,
+        "font_size": 30
       }
     },
     {
@@ -82,9 +80,9 @@
       "content": {
         "text": "ㄴ",
         "style_role": "label",
-        "x": 587.0,
-        "y": 181.0,
-        "font_size": 28
+        "x": 475.0,
+        "y": 250.0,
+        "font_size": 30
       }
     },
     {
@@ -92,9 +90,9 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 487.0,
-        "cy": 165.0,
-        "r": 4.5,
+        "cx": 365.0,
+        "cy": 230.0,
+        "r": 5.0,
         "fill": "none"
       }
     },
@@ -103,9 +101,9 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 487.0,
-        "cy": 175.0,
-        "r": 2.0,
+        "cx": 360.0,
+        "cy": 245.0,
+        "r": 0.0,
         "fill": "none"
       }
     },
@@ -116,44 +114,22 @@
       "content": {
         "text": "원의 지름을 나타내는 선분은 선분 ㄱㄴ입니다.",
         "style_role": "question",
-        "x": 203.0,
-        "y": 295.0,
-        "font_size": 28
+        "x": 50.0,
+        "y": 395.0,
+        "font_size": 30
       }
     },
     {
-      "id": "slot.choice.o",
+      "id": "slot.qnum.copy7",
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "○",
-        "style_role": "label",
-        "x": 29.0,
-        "y": 325.0,
-        "font_size": 28
-      }
-    },
-    {
-      "id": "slot.choice.x",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "×",
-        "style_role": "label",
-        "x": 29.0,
-        "y": 355.0,
-        "font_size": 28
-      }
-    },
-    {
-      "id": "slot.answer.blank",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 66.0,
-        "cy": 392.0,
-        "r": 10.0,
-        "fill": "none"
+        "text": "그렇지 않으면 ×표를 선택하세요.    ",
+        "style_role": "body",
+        "x": 10.0,
+        "y": 95.0,
+        "font_size": 30,
+        "fill": "#111111"
       }
     }
   ],
@@ -165,13 +141,11 @@
     "slot.diagram.circle",
     "slot.diagram.center_mark",
     "slot.diagram.pink_dot",
-    "slot.answer.blank",
     "slot.diagram.diameter",
     "slot.qnum",
     "slot.diagram.left_label",
     "slot.diagram.right_label",
     "slot.statement",
-    "slot.choice.o",
-    "slot.choice.x"
+    "slot.qnum.copy7"
   ]
 }

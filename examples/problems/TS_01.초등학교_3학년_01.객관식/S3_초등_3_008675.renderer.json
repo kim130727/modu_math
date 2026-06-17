@@ -1,8 +1,8 @@
 {
-  "problem_id": "S3_초등_3_008674",
+  "problem_id": "S3_초등_3_008675",
   "view_box": {
-    "width": 926.0,
-    "height": 410.0,
+    "width": 900.0,
+    "height": 250.0,
     "background": "#FFFFFF"
   },
   "elements": [
@@ -10,9 +10,9 @@
       "id": "slot.header.text.text",
       "type": "text",
       "attributes": {
-        "x": 74.0,
-        "y": 30.0,
-        "max_width": 798.0,
+        "x": 72.0,
+        "y": 29.0,
+        "max_width": 772.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 26
@@ -24,109 +24,62 @@
       "text": "원을 바르게 완성한 것을 선택하세요."
     },
     {
-      "id": "slot.header.text.copy1.text",
+      "id": "slot.header.text.copy4.text",
       "type": "text",
       "attributes": {
-        "x": 95.0,
-        "y": 245.0,
-        "max_width": 798.0,
+        "x": 90.0,
+        "y": 95.0,
+        "max_width": 772.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 25
       },
-      "source_ref": "slot.header.text.copy1",
+      "source_ref": "slot.header.text.copy4",
       "refs": {
-        "layout_slot_id": "slot.header.text.copy1"
+        "layout_slot_id": "slot.header.text.copy4"
       },
       "text": "가."
     },
     {
-      "id": "slot.header.text.copy1.copy2.text",
+      "id": "slot.header.text.copy4.copy5.text",
       "type": "text",
       "attributes": {
-        "x": 365.0,
-        "y": 245.0,
-        "max_width": 798.0,
+        "x": 360.0,
+        "y": 95.0,
+        "max_width": 772.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 25
       },
-      "source_ref": "slot.header.text.copy1.copy2",
+      "source_ref": "slot.header.text.copy4.copy5",
       "refs": {
-        "layout_slot_id": "slot.header.text.copy1.copy2"
+        "layout_slot_id": "slot.header.text.copy4.copy5"
       },
       "text": "나."
     },
     {
-      "id": "slot.header.text.copy1.copy3.text",
+      "id": "slot.header.text.copy4.copy5.copy6.text",
       "type": "text",
       "attributes": {
-        "x": 630.0,
-        "y": 245.0,
-        "max_width": 798.0,
+        "x": 625.0,
+        "y": 95.0,
+        "max_width": 772.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 25
       },
-      "source_ref": "slot.header.text.copy1.copy3",
+      "source_ref": "slot.header.text.copy4.copy5.copy6",
       "refs": {
-        "layout_slot_id": "slot.header.text.copy1.copy3"
+        "layout_slot_id": "slot.header.text.copy4.copy5.copy6"
       },
       "text": "다."
-    },
-    {
-      "id": "slot.ref.square.rect",
-      "type": "rect",
-      "attributes": {
-        "x": 407.0,
-        "y": 48.0,
-        "width": 152.0,
-        "height": 152.0,
-        "fill": "#ffffff",
-        "stroke": "#d5c400",
-        "stroke-width": 2.0
-      },
-      "source_ref": "slot.ref.square",
-      "refs": {
-        "layout_slot_id": "slot.ref.square"
-      }
-    },
-    {
-      "id": "slot.ref.arc.path",
-      "type": "path",
-      "attributes": {
-        "d": "M 483.0 48.0 A 76.0 76.0 0 1 0 559.0 124.0",
-        "stroke": "#111111",
-        "stroke-width": 2.1,
-        "fill": "none"
-      },
-      "source_ref": "slot.ref.arc",
-      "refs": {
-        "layout_slot_id": "slot.ref.arc"
-      }
-    },
-    {
-      "id": "slot.ref.center.circle",
-      "type": "circle",
-      "attributes": {
-        "cx": 483.0,
-        "cy": 124.0,
-        "r": 3.5,
-        "stroke": "none",
-        "stroke-width": 0.0,
-        "fill": "#e4007f"
-      },
-      "source_ref": "slot.ref.center",
-      "refs": {
-        "layout_slot_id": "slot.ref.center"
-      }
     },
     {
       "id": "slot.choice.left.square.rect",
       "type": "rect",
       "attributes": {
-        "x": 138.0,
-        "y": 226.0,
+        "x": 137.0,
+        "y": 74.0,
         "width": 152.0,
         "height": 152.0,
         "fill": "#ffffff",
@@ -142,7 +95,7 @@
       "id": "slot.choice.left.base.path",
       "type": "path",
       "attributes": {
-        "d": "M 214.0 226.0 A 76.0 76.0 0 1 0 290.0 302.0",
+        "d": "M 289.0 150.0 A 76.0 76.0 0 1 0 213.0 226.0",
         "stroke": "#111111",
         "stroke-width": 2.1,
         "fill": "none"
@@ -153,25 +106,11 @@
       }
     },
     {
-      "id": "slot.choice.left.red.path",
-      "type": "path",
-      "attributes": {
-        "d": "M 214.0 226.0 A 76.0 76.0 0 0 0 290.0 302.0",
-        "stroke": "#ff0000",
-        "stroke-width": 2.1,
-        "fill": "none"
-      },
-      "source_ref": "slot.choice.left.red",
-      "refs": {
-        "layout_slot_id": "slot.choice.left.red"
-      }
-    },
-    {
       "id": "slot.choice.left.center.circle",
       "type": "circle",
       "attributes": {
-        "cx": 214.0,
-        "cy": 302.0,
+        "cx": 213.0,
+        "cy": 150.0,
         "r": 3.5,
         "stroke": "none",
         "stroke-width": 0.0,
@@ -186,8 +125,8 @@
       "id": "slot.choice.middle.square.rect",
       "type": "rect",
       "attributes": {
-        "x": 407.0,
-        "y": 226.0,
+        "x": 444.0,
+        "y": 74.0,
         "width": 152.0,
         "height": 152.0,
         "fill": "#ffffff",
@@ -203,7 +142,7 @@
       "id": "slot.choice.middle.base.path",
       "type": "path",
       "attributes": {
-        "d": "M 483.0 226.0 A 76.0 76.0 0 1 0 559.0 302.0",
+        "d": "M 596.0 150.0 A 76.0 76.0 0 1 0 520.0 226.0",
         "stroke": "#111111",
         "stroke-width": 2.1,
         "fill": "none"
@@ -214,11 +153,25 @@
       }
     },
     {
+      "id": "slot.choice.middle.red.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 520.0 226.0 A 76.0 76.0 0 0 0 596.0 150.0",
+        "stroke": "#ff0000",
+        "stroke-width": 2.1,
+        "fill": "none"
+      },
+      "source_ref": "slot.choice.middle.red",
+      "refs": {
+        "layout_slot_id": "slot.choice.middle.red"
+      }
+    },
+    {
       "id": "slot.choice.middle.center.circle",
       "type": "circle",
       "attributes": {
-        "cx": 483.0,
-        "cy": 302.0,
+        "cx": 520.0,
+        "cy": 150.0,
         "r": 3.5,
         "stroke": "none",
         "stroke-width": 0.0,
@@ -233,8 +186,8 @@
       "id": "slot.choice.right.square.rect",
       "type": "rect",
       "attributes": {
-        "x": 676.0,
-        "y": 226.0,
+        "x": 672.0,
+        "y": 74.0,
         "width": 152.0,
         "height": 152.0,
         "fill": "#ffffff",
@@ -250,7 +203,7 @@
       "id": "slot.choice.right.base.path",
       "type": "path",
       "attributes": {
-        "d": "M 752.0 226.0 A 76.0 76.0 0 1 0 828.0 302.0",
+        "d": "M 824.0 150.0 A 76.0 76.0 0 1 0 748.0 226.0",
         "stroke": "#111111",
         "stroke-width": 2.1,
         "fill": "none"
@@ -264,7 +217,7 @@
       "id": "slot.choice.right.red.path",
       "type": "path",
       "attributes": {
-        "d": "M 752.0 226.0 A 76.0 76.0 0 0 1 828.0 302.0",
+        "d": "M 748.0 226.0 A 76.0 76.0 0 0 1 824.0 150.0",
         "stroke": "#ff0000",
         "stroke-width": 2.1,
         "fill": "none"
@@ -278,8 +231,8 @@
       "id": "slot.choice.right.center.circle",
       "type": "circle",
       "attributes": {
-        "cx": 752.0,
-        "cy": 302.0,
+        "cx": 748.0,
+        "cy": 150.0,
         "r": 3.5,
         "stroke": "none",
         "stroke-width": 0.0,
@@ -288,22 +241,6 @@
       "source_ref": "slot.choice.right.center",
       "refs": {
         "layout_slot_id": "slot.choice.right.center"
-      }
-    },
-    {
-      "id": "slot.choice.middle.red.line",
-      "type": "line",
-      "attributes": {
-        "x1": 483.0,
-        "y1": 226.0,
-        "x2": 559.0,
-        "y2": 302.0,
-        "stroke": "#ff0000",
-        "stroke-width": 2.1
-      },
-      "source_ref": "slot.choice.middle.red",
-      "refs": {
-        "layout_slot_id": "slot.choice.middle.red"
       }
     }
   ],

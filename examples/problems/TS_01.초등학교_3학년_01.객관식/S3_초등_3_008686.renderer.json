@@ -10,8 +10,8 @@
       "id": "slot.diagram.circle.circle",
       "type": "circle",
       "attributes": {
-        "cx": 487.0,
-        "cy": 175.0,
+        "cx": 359.0,
+        "cy": 245.0,
         "r": 90.0,
         "stroke": "#111111",
         "stroke-width": 2.0,
@@ -26,9 +26,9 @@
       "id": "slot.diagram.center_mark.circle",
       "type": "circle",
       "attributes": {
-        "cx": 487.0,
-        "cy": 165.0,
-        "r": 4.5,
+        "cx": 365.0,
+        "cy": 230.0,
+        "r": 5.0,
         "stroke": "#111111",
         "stroke-width": 2.0,
         "fill": "none"
@@ -42,9 +42,9 @@
       "id": "slot.diagram.pink_dot.circle",
       "type": "circle",
       "attributes": {
-        "cx": 487.0,
-        "cy": 175.0,
-        "r": 2.0,
+        "cx": 360.0,
+        "cy": 245.0,
+        "r": 0.0,
         "stroke": "#111111",
         "stroke-width": 2.0,
         "fill": "none"
@@ -55,29 +55,13 @@
       }
     },
     {
-      "id": "slot.answer.blank.circle",
-      "type": "circle",
-      "attributes": {
-        "cx": 66.0,
-        "cy": 392.0,
-        "r": 10.0,
-        "stroke": "#111111",
-        "stroke-width": 2.0,
-        "fill": "none"
-      },
-      "source_ref": "slot.answer.blank",
-      "refs": {
-        "layout_slot_id": "slot.answer.blank"
-      }
-    },
-    {
       "id": "slot.diagram.diameter.line",
       "type": "line",
       "attributes": {
-        "x1": 392.0,
-        "y1": 175.0,
-        "x2": 582.0,
-        "y2": 175.0,
+        "x1": 270.0,
+        "y1": 245.0,
+        "x2": 450.0,
+        "y2": 245.0,
         "stroke": "#111111",
         "stroke-width": 2.0
       },
@@ -91,28 +75,28 @@
       "type": "text",
       "attributes": {
         "x": 10.0,
-        "y": 26.0,
+        "y": 50.0,
         "max_width": 812.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 30
       },
       "source_ref": "slot.qnum",
       "refs": {
         "layout_slot_id": "slot.qnum"
       },
-      "text": "□ 75. 다음을 읽고 바르게 설명하였으면 ○표, 그렇지 않으면 ×표를 선택하세\n요."
+      "text": "    다음을 읽고 바르게 설명하였으면 ○표,    "
     },
     {
       "id": "slot.diagram.left_label.text",
       "type": "text",
       "attributes": {
-        "x": 375.0,
-        "y": 181.0,
+        "x": 225.0,
+        "y": 255.0,
         "max_width": 812.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 30
       },
       "source_ref": "slot.diagram.left_label",
       "refs": {
@@ -124,12 +108,12 @@
       "id": "slot.diagram.right_label.text",
       "type": "text",
       "attributes": {
-        "x": 587.0,
-        "y": 181.0,
+        "x": 475.0,
+        "y": 250.0,
         "max_width": 812.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 30
       },
       "source_ref": "slot.diagram.right_label",
       "refs": {
@@ -141,12 +125,12 @@
       "id": "slot.statement.text",
       "type": "text",
       "attributes": {
-        "x": 203.0,
-        "y": 295.0,
+        "x": 50.0,
+        "y": 395.0,
         "max_width": 812.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 30
       },
       "source_ref": "slot.statement",
       "refs": {
@@ -155,38 +139,21 @@
       "text": "원의 지름을 나타내는 선분은 선분 ㄱㄴ입니다."
     },
     {
-      "id": "slot.choice.o.text",
+      "id": "slot.qnum.copy7.text",
       "type": "text",
       "attributes": {
-        "x": 29.0,
-        "y": 325.0,
+        "x": 10.0,
+        "y": 95.0,
         "max_width": 812.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 30
       },
-      "source_ref": "slot.choice.o",
+      "source_ref": "slot.qnum.copy7",
       "refs": {
-        "layout_slot_id": "slot.choice.o"
+        "layout_slot_id": "slot.qnum.copy7"
       },
-      "text": "○"
-    },
-    {
-      "id": "slot.choice.x.text",
-      "type": "text",
-      "attributes": {
-        "x": 29.0,
-        "y": 355.0,
-        "max_width": 812.0,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
-      },
-      "source_ref": "slot.choice.x",
-      "refs": {
-        "layout_slot_id": "slot.choice.x"
-      },
-      "text": "×"
+      "text": "그렇지 않으면 ×표를 선택하세요.    "
     }
   ],
   "contract_version": "modu_math.renderer.v2"

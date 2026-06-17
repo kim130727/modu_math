@@ -2,124 +2,198 @@
   "problem_id": "S3_초등_3_008678",
   "view_box": {
     "width": 940.0,
-    "height": 360.0,
+    "height": 325.0,
     "background": "#FFFFFF"
   },
   "elements": [
     {
-      "id": "slot.q1.text",
+      "id": "slot.header.mark.text",
       "type": "text",
       "attributes": {
-        "x": 18.0,
-        "y": 32.0,
+        "x": 12.0,
+        "y": 30.0,
         "max_width": 812.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 22
       },
-      "source_ref": "slot.q1",
+      "source_ref": "slot.header.mark",
       "refs": {
-        "layout_slot_id": "slot.q1"
+        "layout_slot_id": "slot.header.mark"
       },
-      "text": "원 모양 종이를 똑같이 둘로 나누어지도록 반을 접었다가 펴더니 선이  "
+      "text": "□"
     },
     {
-      "id": "slot.q2.text",
+      "id": "slot.header.number.text",
       "type": "text",
       "attributes": {
-        "x": 20.0,
-        "y": 80.0,
+        "x": 34.0,
+        "y": 30.0,
         "max_width": 812.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 30
+        "font-size": 20
       },
-      "source_ref": "slot.q2",
+      "source_ref": "slot.header.number",
       "refs": {
-        "layout_slot_id": "slot.q2"
+        "layout_slot_id": "slot.header.number"
+      },
+      "text": "61."
+    },
+    {
+      "id": "slot.stem.1.text",
+      "type": "text",
+      "attributes": {
+        "x": 77.0,
+        "y": 30.0,
+        "max_width": 812.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 25
+      },
+      "source_ref": "slot.stem.1",
+      "refs": {
+        "layout_slot_id": "slot.stem.1"
+      },
+      "text": "원 모양 종이를 똑같이 둘로 나누어지도록 반을 접었다가 폈더니 선이"
+    },
+    {
+      "id": "slot.stem.2.text",
+      "type": "text",
+      "attributes": {
+        "x": 34.0,
+        "y": 70.0,
+        "max_width": 812.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 25
+      },
+      "source_ref": "slot.stem.2",
+      "refs": {
+        "layout_slot_id": "slot.stem.2"
       },
       "text": "생겼습니다. 알맞은 말을 선택하세요."
     },
     {
-      "id": "slot.paper.left.rect",
-      "type": "rect",
+      "id": "slot.folded.paper.path",
+      "type": "path",
       "attributes": {
-        "x": 160.0,
-        "y": 140.0,
-        "width": 120.0,
-        "height": 60.0,
-        "fill": "#FDE8EF",
+        "d": "M 286 153 C 288.36 189.58, 316.68 207.28, 345 207.28 C 373.32 207.28, 401.64 189.58, 404 153 L 286 153 Z",
         "stroke": "#FF9AB2",
-        "stroke-width": 2.0
+        "stroke-width": 1.7,
+        "fill": "#FDE8EF",
+        "transform": "rotate(180 345 153)"
       },
-      "source_ref": "slot.paper.left",
+      "source_ref": "slot.folded.paper",
       "refs": {
-        "layout_slot_id": "slot.paper.left"
+        "layout_slot_id": "slot.folded.paper"
       }
     },
     {
-      "id": "slot.paper.right.circle",
+      "id": "slot.folded.edge.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 296.62 158.9 C 327.3 219.08, 371.55 214.36, 395.15 157.72",
+        "stroke": "#FF9AB2",
+        "stroke-width": 1.2,
+        "fill": "none",
+        "transform": "rotate(180 345 153)"
+      },
+      "source_ref": "slot.folded.edge",
+      "refs": {
+        "layout_slot_id": "slot.folded.edge"
+      }
+    },
+    {
+      "id": "slot.arrow.head.polygon",
+      "type": "polygon",
+      "attributes": {
+        "points": [
+          [
+            496.0,
+            153.0
+          ],
+          [
+            481.0,
+            139.0
+          ],
+          [
+            481.0,
+            167.0
+          ]
+        ],
+        "stroke": "#9AA0A6",
+        "stroke-width": 0.0,
+        "fill": "#9AA0A6"
+      },
+      "source_ref": "slot.arrow.head",
+      "refs": {
+        "layout_slot_id": "slot.arrow.head"
+      }
+    },
+    {
+      "id": "slot.opened.paper.circle",
       "type": "circle",
       "attributes": {
-        "cx": 575.0,
-        "cy": 180.0,
-        "r": 60.0,
+        "cx": 612.0,
+        "cy": 153.0,
+        "r": 59.0,
         "stroke": "#FF9AB2",
-        "stroke-width": 2.0,
+        "stroke-width": 1.7,
         "fill": "#FDE8EF"
       },
-      "source_ref": "slot.paper.right",
+      "source_ref": "slot.opened.paper",
       "refs": {
-        "layout_slot_id": "slot.paper.right"
+        "layout_slot_id": "slot.opened.paper"
       }
     },
     {
-      "id": "slot.arrow.line",
+      "id": "slot.arrow.body.line",
       "type": "line",
       "attributes": {
-        "x1": 375.0,
-        "y1": 170.0,
-        "x2": 415.0,
-        "y2": 170.0,
+        "x1": 462.0,
+        "y1": 153.0,
+        "x2": 484.0,
+        "y2": 153.0,
         "stroke": "#9AA0A6",
-        "stroke-width": 3.0
+        "stroke-width": 8.0
       },
-      "source_ref": "slot.arrow",
+      "source_ref": "slot.arrow.body",
       "refs": {
-        "layout_slot_id": "slot.arrow"
+        "layout_slot_id": "slot.arrow.body"
       }
     },
     {
-      "id": "slot.foldline.line",
+      "id": "slot.opened.fold_line.line",
       "type": "line",
       "attributes": {
-        "x1": 520.0,
-        "y1": 180.0,
-        "x2": 630.0,
-        "y2": 180.0,
+        "x1": 553.0,
+        "y1": 153.0,
+        "x2": 671.0,
+        "y2": 153.0,
         "stroke": "#FF9AB2",
-        "stroke-width": 1.6,
-        "stroke-dasharray": "5 3"
+        "stroke-width": 1.2,
+        "stroke-dasharray": "5 4"
       },
-      "source_ref": "slot.foldline",
+      "source_ref": "slot.opened.fold_line",
       "refs": {
-        "layout_slot_id": "slot.foldline"
+        "layout_slot_id": "slot.opened.fold_line"
       }
     },
     {
-      "id": "slot.c1.text",
+      "id": "slot.choice.1.text",
       "type": "text",
       "attributes": {
-        "x": 25.0,
-        "y": 285.0,
+        "x": 30.0,
+        "y": 263.0,
         "max_width": 812.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 30
+        "font-size": 26
       },
-      "source_ref": "slot.c1",
+      "source_ref": "slot.choice.1",
       "refs": {
-        "layout_slot_id": "slot.c1"
+        "layout_slot_id": "slot.choice.1"
       },
       "text": "(1) 반을 접어 생긴 선분은 원의 ( 지름 , 반지름 )입니다."
     }

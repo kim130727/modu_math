@@ -1,98 +1,136 @@
 from __future__ import annotations
+
+from dataclasses import replace
+
 from modu_math.dsl import (
     Canvas,
+    LineSlot,
+    PolygonSlot,
     ProblemTemplate,
     Region,
     TextSlot,
-    RectSlot,
-    LineSlot,
-    CircleSlot,
+    folded_half_circle_slots,
+    opened_circle_with_fold_slots,
 )
 
 
+PAPER_FILL = "#FDE8EF"
+PAPER_STROKE = "#FF9AB2"
+ARROW = "#9AA0A6"
+
+
+def _folded_half_slots() -> tuple:
+    slots = folded_half_circle_slots(
+        "slot.folded",
+        cx=345.0,
+        cy=153.0,
+        r=59.0,
+        fill=PAPER_FILL,
+        stroke=PAPER_STROKE,
+        stroke_width=1.7,
+    )
+    return tuple(replace(slot, transform="rotate(180 345 153)") for slot in slots)
+
+
+def _opened_circle_slots() -> tuple:
+    return opened_circle_with_fold_slots(
+        "slot.opened",
+        cx=612.0,
+        cy=153.0,
+        r=59.0,
+        angle=0.0,
+        fill=PAPER_FILL,
+        stroke=PAPER_STROKE,
+        stroke_width=1.7,
+        dash="5 4",
+    )
+
+
 def build_problem_template() -> ProblemTemplate:
+    folded_slots = _folded_half_slots()
+    opened_slots = _opened_circle_slots()
+
     return ProblemTemplate(
         id="S3_초등_3_008678",
-        title="반을 접어 생긴 선",
-        canvas=Canvas(width=940, height=360, coordinate_mode="logical"),
+        title="반을 접어 생긴 선분",
+        canvas=Canvas(width=940, height=325, coordinate_mode="logical"),
         regions=(
             Region(
                 id="region.stem",
                 role="stem",
                 flow="absolute",
-                slot_ids=("slot.q1", "slot.q2"),
+                slot_ids=("slot.header.mark", "slot.header.number", "slot.stem.1", "slot.stem.2"),
             ),
             Region(
                 id="region.diagram",
                 role="diagram",
                 flow="absolute",
                 slot_ids=(
-                    "slot.paper.left",
-                    "slot.arrow",
-                    "slot.paper.right",
-                    "slot.foldline",
+                    "slot.folded.paper",
+                    "slot.folded.edge",
+                    "slot.arrow.body",
+                    "slot.arrow.head",
+                    "slot.opened.paper",
+                    "slot.opened.fold_line",
                 ),
             ),
-            Region(
-                id="region.choice",
-                role="choice",
-                flow="absolute",
-                slot_ids=("slot.c1",  ),
-            ),
+            Region(id="region.choice", role="choices", flow="absolute", slot_ids=("slot.choice.1",)),
         ),
         slots=(
+            TextSlot(id="slot.header.mark", prompt="", text="□", style_role="question", x=12.0, y=30.0, font_size=22),
+            TextSlot(id="slot.header.number", prompt="", text="61.", style_role="question", x=34.0, y=30.0, font_size=20),
             TextSlot(
-                id="slot.q1",
+                id="slot.stem.1",
                 prompt="",
-                text = '원 모양 종이를 똑같이 둘로 나누어지도록 반을 접었다가 펴더니 선이  ', style_role="question",
-                x=18.0,
-                y=32.0,
-                font_size=28,
+                text="원 모양 종이를 똑같이 둘로 나누어지도록 반을 접었다가 폈더니 선이",
+                style_role="question",
+                x=77.0,
+                y=30.0,
+                font_size=25,
             ),
             TextSlot(
-                id="slot.q2",
+                id="slot.stem.2",
                 prompt="",
-                text = '생겼습니다. 알맞은 말을 선택하세요.', style_role="question",
-                x = 20, y = 80, font_size = 30),
-            RectSlot(
-                id="slot.paper.left",
-                prompt="",
-                x = 160, y = 140, width = 120, height = 60, fill="#FDE8EF",
-                stroke="#FF9AB2",
-                stroke_width=2.0,
+                text="생겼습니다. 알맞은 말을 선택하세요.",
+                style_role="question",
+                x=34.0,
+                y=70.0,
+                font_size=25,
             ),
+            *folded_slots,
             LineSlot(
-                id="slot.arrow",
+                id="slot.arrow.body",
                 prompt="",
-                x1 = 375, y1 = 170, x2 = 415, y2 = 170, stroke="#9AA0A6",
-                stroke_width=3.0,
+                x1=462.0,
+                y1=153.0,
+                x2=484.0,
+                y2=153.0,
+                stroke=ARROW,
+                stroke_width=8.0,
             ),
-            CircleSlot(
-                id="slot.paper.right",
+            PolygonSlot(
+                id="slot.arrow.head",
                 prompt="",
-                cx = 575, cy = 180, r = 60, fill="#FDE8EF",
-                stroke="#FF9AB2",
-                stroke_width=2.0,
+                points=((496.0, 153.0), (481.0, 139.0), (481.0, 167.0)),
+                fill=ARROW,
+                stroke=ARROW,
+                stroke_width=0.0,
             ),
-            LineSlot(
-                id="slot.foldline",
-                prompt="",
-                x1 = 520, y1 = 180, x2 = 630, y2 = 180, stroke="#FF9AB2",
-                stroke_width=1.6,
-                stroke_dasharray="5 3",
-            ),
+            *opened_slots,
             TextSlot(
-                id="slot.c1",
+                id="slot.choice.1",
                 prompt="",
-                text = '(1) 반을 접어 생긴 선분은 원의 ( 지름 , 반지름 )입니다.', style_role="question",
-                x = 25, y = 285, font_size = 30),
-            
-            
+                text="(1) 반을 접어 생긴 선분은 원의 ( 지름 , 반지름 )입니다.",
+                style_role="choice",
+                x=30.0,
+                y=263.0,
+                font_size=26,
+            ),
         ),
         diagrams=(),
         groups=(),
         constraints=(),
-        tags=(),
+        tags=("geometry", "circle", "paper_folding"),
     )
 
 
@@ -100,46 +138,45 @@ PROBLEM_TEMPLATE = build_problem_template()
 
 SEMANTIC_OVERRIDE = {
     "problem_id": "S3_초등_3_008678",
-    "problem_type": "도형의 성질_선택형",
+    "problem_type": "circle_paper_folding_choice",
     "metadata": {
         "language": "ko",
-        "question": "원 모양 종이를 똑같이 둘로 나누어지도록 반을 접었다가 펴니 선이 생겼습니다. 알맞은 말을 선택하세요.",
-        "instruction": "알맞은 말을 선택하세요.",
+        "question": "원 모양 종이를 똑같이 둘로 나누어지도록 반을 접었다가 폈더니 선이 생겼습니다. 알맞은 말을 선택하세요.",
+        "instruction": "보이는 선택 문장만 렌더링하고 정답/해설성 하단 문장은 생략한다.",
     },
     "domain": {
         "objects": [
-            {"id": "obj.paper", "type": "paper_shape", "shape": "circle"},
-            {"id": "obj.folded_shape", "type": "paper_shape", "shape": "semicircle"},
-            {"id": "obj.fold_line", "type": "line"},
+            {"id": "obj.circle_paper", "type": "circle_paper", "description": "원 모양 종이"},
+            {"id": "obj.fold_line", "type": "line_segment", "description": "반을 접었다가 펴서 생긴 선분"},
             {"id": "obj.choice_diameter", "type": "term", "text": "지름"},
             {"id": "obj.choice_radius", "type": "term", "text": "반지름"},
         ],
-        "relations": [],
+        "relations": [
+            {
+                "id": "rel.equal_halves",
+                "type": "equal_partition",
+                "from_id": "obj.fold_line",
+                "to_id": "obj.circle_paper",
+                "description": "접힌 선이 원을 둘로 똑같이 나눈다.",
+            }
+        ],
         "problem_solving": {
             "understand": {
-                "given_refs": ["obj.paper", "obj.folded_shape"],
+                "given_refs": ["obj.circle_paper", "obj.fold_line"],
                 "target_ref": "answer.target",
-                "condition_refs": ["rel.fold_creates_line", "rel.line_divides_circle"],
+                "condition_refs": ["rel.equal_halves"],
             },
-            "plan": {
-                "method": "도형의 성질 확인",
-                "description": "접어서 생긴 선이 원을 똑같이 둘로 나누는 선인지 살펴본다.",
-            },
-            "execute": {
-                "expected_operations": [
-                    "folding_relation_check",
-                    "circle_line_property_check",
-                ]
-            },
-            "review": {"check_methods": ["choice_match_check"]},
+            "plan": {"method": "concept_matching", "description": "원을 둘로 똑같이 나누는 선분의 이름을 보기에서 고른다."},
+            "execute": {"expected_operations": ["observe_fold_line", "match_circle_term"]},
+            "review": {"check_methods": ["visible_choice_only_check"]},
         },
     },
     "answer": {
         "blanks": [],
-        "choices": [],
+        "choices": [{"id": "choice.diameter", "value": "지름"}, {"id": "choice.radius", "value": "반지름"}],
         "answer_key": [],
-        "target": {"type": "choice_word", "description": "빈칸에 들어갈 알맞은 말"},
-        "value": 0,
+        "target": {"type": "choice_word", "description": "괄호 안에 들어갈 알맞은 말"},
+        "value": "",
         "unit": "",
     },
 }
@@ -147,53 +184,29 @@ SEMANTIC_OVERRIDE = {
 SOLVABLE = {
     "schema": "modu.solvable.v1.1",
     "problem_id": "S3_초등_3_008678",
-    "problem_type": "도형의 성질_선택형",
+    "problem_type": "circle_paper_folding_choice",
     "inputs": {
         "total_ticks": 0,
-        "target_label": "빈칸에 들어갈 알맞은 말",
+        "target_label": "괄호 안에 들어갈 알맞은 말",
         "target_ticks": 0,
         "target_count": 1,
         "unit": "",
     },
     "given": [
-        {"ref": "obj.paper", "value": {"shape": "circle"}},
-        {"ref": "obj.folded_shape", "value": {"shape": "semicircle"}},
-        {"ref": "obj.choice_diameter", "value": {"text": "지름"}},
-        {"ref": "obj.choice_radius", "value": {"text": "반지름"}},
+        {"ref": "obj.circle_paper", "value": {"shape": "circle"}},
+        {"ref": "obj.fold_line", "value": {"type": "line_segment", "created_by": "fold_and_open"}},
     ],
     "target": {"ref": "answer.target", "type": "choice_word"},
-    "method": "도형의 성질 확인",
-    "plan": [
-        "원 모양 종이를 반으로 접었을 때 생기는 선의 성질을 확인한다.",
-        "보기의 단어 중 원의 중심을 지나는 선과 맞는 말을 찾는다.",
-    ],
-    "steps": [
-        {
-            "id": "step.1",
-            "expr": "원 모양 종이를 반으로 접음",
-            "value": "접힌 선이 생김",
-        },
-        {
-            "id": "step.2",
-            "expr": "접힌 선의 성질 확인",
-            "value": "원을 똑같이 둘로 나누는 선",
-        },
-    ],
-    "checks": [
-        {
-            "id": "check.1",
-            "expr": "접힌 선이 원의 중심을 지나는지 확인",
-            "expected": True,
-            "actual": True,
-            "pass": True,
-        }
-    ],
+    "method": "concept_matching",
+    "plan": ["반으로 접었다가 폈을 때 생긴 선분을 관찰한다.", "보기의 두 용어 중 알맞은 말을 고른다."],
+    "steps": [{"id": "step.1", "expr": "접힌 선분이 원을 둘로 똑같이 나누는지 확인한다.", "value": ""}],
+    "checks": [{"id": "check.1", "expr": "정답과 해설 문장이 렌더링되지 않는다.", "expected": True, "actual": True, "pass": True}],
     "answer": {
         "blanks": [],
-        "choices": [],
+        "choices": [{"id": "choice.diameter", "value": "지름"}, {"id": "choice.radius", "value": "반지름"}],
         "answer_key": [],
-        "target": {"type": "choice_word", "description": "빈칸에 들어갈 알맞은 말"},
-        "value": 0,
+        "target": {"type": "choice_word", "description": "괄호 안에 들어갈 알맞은 말"},
+        "value": "",
         "unit": "",
     },
 }

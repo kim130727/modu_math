@@ -1,8 +1,181 @@
 from __future__ import annotations
-from modu_math.dsl import Canvas, ProblemTemplate, Region, TextSlot, RectSlot, CircleSlot, LineSlot, PathSlot
+
+from modu_math.dsl import Canvas, CircleSlot, PathSlot, ProblemTemplate, RectSlot, Region, TextSlot
+
+
+YELLOW = "#d5c400"
+BLACK = "#111111"
+RED = "#ff0000"
+MAGENTA = "#e4007f"
+
+
+def _square(id_: str, *, x: float, y: float) -> RectSlot:
+    return RectSlot(
+        id=id_,
+        prompt="",
+        x=x,
+        y=y,
+        width=152.0,
+        height=152.0,
+        fill="#ffffff",
+        stroke=YELLOW,
+        stroke_width=2.0,
+    )
+
+
+def _center_dot(id_: str, *, cx: float, cy: float) -> CircleSlot:
+    return CircleSlot(id=id_, prompt="", cx=cx, cy=cy, r=3.5, fill=MAGENTA, stroke="none", stroke_width=0.0)
+
+
+def _base_arc(id_: str, *, cx: float, cy: float, r: float = 76.0) -> PathSlot:
+    return PathSlot(
+        id=id_,
+        prompt="",
+        d=f"M {cx + r} {cy} A {r} {r} 0 1 0 {cx} {cy + r}",
+        stroke=BLACK,
+        stroke_width=2.1,
+    )
+
+
+def _correct_completion_arc(id_: str, *, cx: float, cy: float, r: float = 76.0) -> PathSlot:
+    return PathSlot(
+        id=id_,
+        prompt="",
+        d=f"M {cx} {cy + r} A {r} {r} 0 0 0 {cx + r} {cy}",
+        stroke=RED,
+        stroke_width=2.1,
+    )
+
+
+def _corner_completion_arc(id_: str, *, cx: float, cy: float, r: float = 76.0) -> PathSlot:
+    corner_cx = cx + r
+    corner_cy = cy + r
+    return PathSlot(
+        id=id_,
+        prompt="",
+        d=f"M {corner_cx - r} {corner_cy} A {r} {r} 0 0 1 {corner_cx} {corner_cy - r}",
+        stroke=RED,
+        stroke_width=2.1,
+    )
+
 
 def build_problem_template() -> ProblemTemplate:
-    return ProblemTemplate(id='S3_초등_3_008675', title='원을 바르게 완성한 것 선택하기', canvas=Canvas(width=900, height=460, coordinate_mode='logical'), regions=(Region(id='region.stem', role='stem', flow='absolute', slot_ids=('slot.q1',)), Region(id='region.choices', role='diagram', flow='absolute', slot_ids=('slot.choice.1.frame', 'slot.choice.1.circle', 'slot.choice.1.red_arc', 'slot.choice.1.center', 'slot.choice.2.frame', 'slot.choice.2.circle', 'slot.choice.2.red_arc', 'slot.choice.2.center', 'slot.choice.3.frame', 'slot.choice.3.circle', 'slot.choice.3.red_arc', 'slot.choice.3.center')), Region(id='region.answer', role='diagram', flow='absolute', slot_ids=('slot.answer.frame', 'slot.answer.circle', 'slot.answer.red_arc', 'slot.answer.center')), Region(id='region.explanation', role='note', flow='absolute', slot_ids=())), slots=(TextSlot(id='slot.q1', prompt='', text='57.  원을 바르게 완성한 것을 선택하세요.', style_role='question', x=12.0, y=28.0, font_size=28), RectSlot(id='slot.choice.1.frame', prompt='', x=118.0, y=74.0, width=155.0, height=150.0, fill='none', stroke='#D8B800', stroke_width=2.0), CircleSlot(id='slot.choice.1.circle', prompt='', cx=195.0, cy=148.0, r=74.0, fill='none', stroke='#222222', stroke_width=2.0), PathSlot(id='slot.choice.1.red_arc', prompt='', d='M 195.0 222.0 A 74.0 74.0 0 0 1 119.0 148.0', fill='none', stroke='#E02020', stroke_width=2.0), CircleSlot(id='slot.choice.1.center', prompt='', cx=195.0, cy=148.0, r=3.5, fill='#E51B8F', stroke='none'), RectSlot(id='slot.choice.2.frame', prompt='', x=447.0, y=74.0, width=155.0, height=150.0, fill='none', stroke='#D8B800', stroke_width=2.0), CircleSlot(id='slot.choice.2.circle', prompt='', cx=524.5, cy=148.0, r=74.0, fill='none', stroke='#222222', stroke_width=2.0), PathSlot(id='slot.choice.2.red_arc', prompt='', d='M 524.5 222.0 A 74.0 74.0 0 0 1 595.0 148.0', fill='none', stroke='#E02020', stroke_width=2.0), CircleSlot(id='slot.choice.2.center', prompt='', cx=524.5, cy=148.0, r=3.5, fill='#E51B8F', stroke='none'), RectSlot(id='slot.choice.3.frame', prompt='', x=686.0, y=74.0, width=155.0, height=150.0, fill='none', stroke='#D8B800', stroke_width=2.0), CircleSlot(id='slot.choice.3.circle', prompt='', cx=763.5, cy=148.0, r=74.0, fill='none', stroke='#222222', stroke_width=2.0), PathSlot(id='slot.choice.3.red_arc', prompt='', d='M 763.5 222.0 A 74.0 74.0 0 0 1 840.0 148.0', fill='none', stroke='#E02020', stroke_width=2.0), PathSlot(id='slot.choice.3.red_arc', prompt='', d='M 840.0 148.0 A 74.0 74.0 0 0 0 763.5 222.0', fill='none', stroke='#E02020', stroke_width=2.0), CircleSlot(id='slot.choice.3.center', prompt='', cx=763.5, cy=148.0, r=3.5, fill='#E51B8F', stroke='none'), RectSlot(id='slot.answer.frame', prompt='', x=58.0, y=271.0, width=155.0, height=150.0, fill='none', stroke='#D8B800', stroke_width=2.0), CircleSlot(id='slot.answer.circle', prompt='', cx=135.5, cy=345.0, r=74.0, fill='none', stroke='#222222', stroke_width=2.0), PathSlot(id='slot.answer.red_arc', prompt='', d='M 135.5 419.0 A 74.0 74.0 0 0 1 213.0 345.0', fill='none', stroke='#E02020', stroke_width=2.0), CircleSlot(id='slot.answer.center', prompt='', cx=135.5, cy=345.0, r=3.5, fill='#E51B8F', stroke='none')), diagrams=(), groups=(), constraints=(), tags=())
+    return ProblemTemplate(
+        id="S3_초등_3_008675",
+        title="원을 바르게 완성한 것을 선택하세요.",
+        canvas=Canvas(width=900.0, height=250.0, coordinate_mode="logical"),
+        regions=(
+            Region(
+                id="region.header",
+                role="stem",
+                flow="absolute",
+                slot_ids=("slot.header.text",'slot.header.text.copy4', 'slot.header.text.copy4.copy5', 'slot.header.text.copy4.copy5.copy6'),
+            ),
+            Region(
+                id="region.choices",
+                role="choices",
+                flow="absolute",
+                slot_ids=(
+                    "slot.choice.left.square",
+                    "slot.choice.left.base",
+                    "slot.choice.left.center",
+                    "slot.choice.middle.square",
+                    "slot.choice.middle.base",
+                    "slot.choice.middle.red",
+                    "slot.choice.middle.center",
+                    "slot.choice.right.square",
+                    "slot.choice.right.base",
+                    "slot.choice.right.red",
+                    "slot.choice.right.center",
+                ),
+            ),
+        ),
+        slots=(TextSlot(
+                id="slot.header.text",
+                prompt="",
+                text = '원을 바르게 완성한 것을 선택하세요.', style_role="question",
+                x = 72, y = 29, font_size = 26, fill = '#111111'),
+            _square("slot.choice.left.square", x=137.0, y=74.0),
+            _base_arc("slot.choice.left.base", cx=213.0, cy=150.0),
+            _center_dot("slot.choice.left.center", cx=213.0, cy=150.0),
+            _square("slot.choice.middle.square", x=444.0, y=74.0),
+            _base_arc("slot.choice.middle.base", cx=520.0, cy=150.0),
+            _correct_completion_arc("slot.choice.middle.red", cx=520.0, cy=150.0),
+            _center_dot("slot.choice.middle.center", cx=520.0, cy=150.0),
+            _square("slot.choice.right.square", x=672.0, y=74.0),
+            _base_arc("slot.choice.right.base", cx=748.0, cy=150.0),
+            _corner_completion_arc("slot.choice.right.red", cx=748.0, cy=150.0),
+            _center_dot("slot.choice.right.center", cx=748.0, cy=150.0),TextSlot(id = 'slot.header.text.copy4', prompt = '', text = '가.', x = 90, y = 95, font_size = 25, fill = '#111111'), TextSlot(id = 'slot.header.text.copy4.copy5', prompt = '', text = '나.', x = 360, y = 95, font_size = 25, fill = '#111111'), TextSlot(id = 'slot.header.text.copy4.copy5.copy6', prompt = '', text = '다.', x = 625, y = 95, font_size = 25, fill = '#111111')),
+        diagrams=(),
+        groups=(),
+        constraints=(),
+        tags=(),
+    )
+
+
 PROBLEM_TEMPLATE = build_problem_template()
-SEMANTIC_OVERRIDE = {'problem_id': 'S3_초등_3_008675', 'problem_type': 'visual_selection_circle_completion', 'metadata': {'language': 'ko', 'question': '원을 바르게 완성한 것을 선택하세요.', 'instruction': '그림을 보고 원의 완성 상태를 고르는 문제이다.'}, 'domain': {'objects': [{'id': 'obj.options', 'type': 'choices', 'count': 3}, {'id': 'obj.answer_example', 'type': 'circle_drawing_example'}, {'id': 'obj.center_mark', 'type': 'point', 'description': '중심점처럼 보이는 표시'}], 'relations': [], 'problem_solving': {'understand': {'given_refs': ['obj.options', 'obj.answer_example'], 'target_ref': 'answer.target', 'condition_refs': ['rel.circle_completion']}, 'plan': {'method': 'visual_compare', 'description': '보기 그림과 해설의 원 그리기 원리를 비교해 바르게 완성된 형태를 찾는다.'}, 'execute': {'expected_operations': ['compare_arc_completion', 'check_start_end_meeting']}, 'review': {'check_methods': ['shape_consistency_check', 'instruction_match_check']}}}, 'answer': {'target': {'type': 'selected_choice', 'description': '원을 바르게 완성한 보기'}, 'value': 0, 'unit': ''}}
-SOLVABLE = {'schema': 'modu.solvable.v1.1', 'problem_id': 'S3_초등_3_008675', 'problem_type': 'visual_selection_circle_completion', 'inputs': {'total_ticks': 3, 'target_label': '원을 바르게 완성한 것', 'target_ticks': 1, 'target_count': 1, 'unit': ''}, 'given': [{'ref': 'obj.options', 'value': {'count': 3}}, {'ref': 'obj.center_mark', 'value': {'description': '중심점처럼 보이는 표시'}}], 'target': {'ref': 'answer.target', 'type': 'selected_choice'}, 'method': 'visual_compare', 'plan': ['그림에서 원이 바르게 완성된 모양인지 확인한다.', '해설의 원 그리기 원리를 바탕으로 보기의 형태를 비교한다.'], 'steps': [{'id': 'step.1', 'expr': '보기 3개의 원호 연결 상태를 비교한다', 'value': 3}, {'id': 'step.2', 'expr': '완성 원의 조건과 가장 맞는 보기를 찾는다', 'value': 0}], 'checks': [{'id': 'check.1', 'expr': '보기 수가 3개인지 확인', 'expected': 3, 'actual': 3, 'pass': True}, {'id': 'check.2', 'expr': '정답 선택이 그림 해설과 일치하는지 확인', 'expected': True, 'actual': True, 'pass': True}], 'answer': {'value': 0, 'unit': '', 'derived_from': 'step.2'}}
+
+SEMANTIC_OVERRIDE = {
+    "problem_id": "S3_초등_3_008675",
+    "problem_type": "circle_completion_choice",
+    "metadata": {
+        "language": "ko",
+        "question": "원을 바르게 완성한 것을 선택하세요.",
+        "instruction": "정답과 해설 영역은 렌더링하지 않는다.",
+    },
+    "domain": {
+        "objects": [
+            {
+                "id": "obj.circle_completion_choices",
+                "type": "circle_completion_choices",
+                "description": "제시된 원의 빈 부분을 보기의 빨간 선으로 완성하는 시각 선택 문제",
+            }
+        ],
+        "relations": [],
+        "problem_solving": {
+            "understand": {
+                "given_refs": ["obj.circle_completion_choices"],
+                "target_ref": "answer.target",
+                "condition_refs": [],
+            },
+            "plan": {"method": "visual_comparison", "description": "각 보기의 빨간 선이 원호와 자연스럽게 이어지는지 비교한다."},
+            "execute": {"expected_operations": ["compare_shapes"]},
+            "review": {"check_methods": ["curve_continuity"]},
+        },
+    },
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {"type": "selected_picture", "description": "원을 바르게 완성한 그림"},
+        "value": "나",
+        "unit": "",
+    },
+}
+
+SOLVABLE = {
+    "schema": "modu.solvable.v1.1",
+    "problem_id": "S3_초등_3_008675",
+    "problem_type": "circle_completion_choice",
+    "inputs": {
+        "total_ticks": 0,
+        "target_label": "원을 바르게 완성한 그림",
+        "target_ticks": 0,
+        "target_count": 1,
+        "unit": "",
+    },
+    "given": [{"ref": "obj.circle_completion_choices", "value": "원호 보기"}],
+    "target": {"ref": "answer.target", "type": "selected_picture"},
+    "method": "visual_comparison",
+    "plan": ["보기의 선이 원호와 이어지는지 비교한다."],
+    "steps": [{"id": "step.1", "expr": "각 보기의 빨간 선과 검은 원호의 연결 상태를 비교한다.", "value": ""}],
+    "checks": [{"id": "check.1", "expr": "정답과 해설 문장이 렌더링되지 않는다.", "expected": True, "actual": True, "pass": True}],
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {"type": "selected_picture", "description": "원을 바르게 완성한 그림"},
+        "value": "나",
+        "unit": "",
+    },
+}

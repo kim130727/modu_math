@@ -1,10 +1,10 @@
 {
   "schema": "modu.layout.v1",
   "problem_id": "S3_초등_3_008678",
-  "title": "반을 접어 생긴 선",
+  "title": "반을 접어 생긴 선분",
   "canvas": {
     "width": 940,
-    "height": 360,
+    "height": 325,
     "coordinate_mode": "logical",
     "background": "#FFFFFF"
   },
@@ -14,8 +14,10 @@
       "role": "stem",
       "flow": "absolute",
       "slot_ids": [
-        "slot.q1",
-        "slot.q2"
+        "slot.header.mark",
+        "slot.header.number",
+        "slot.stem.1",
+        "slot.stem.2"
       ]
     },
     {
@@ -23,110 +25,174 @@
       "role": "diagram",
       "flow": "absolute",
       "slot_ids": [
-        "slot.paper.left",
-        "slot.paper.right",
-        "slot.arrow",
-        "slot.foldline"
+        "slot.folded.paper",
+        "slot.folded.edge",
+        "slot.arrow.head",
+        "slot.opened.paper",
+        "slot.arrow.body",
+        "slot.opened.fold_line"
       ]
     },
     {
       "id": "region.choice",
-      "role": "choice",
+      "role": "choices",
       "flow": "absolute",
       "slot_ids": [
-        "slot.c1"
+        "slot.choice.1"
       ]
     }
   ],
   "slots": [
     {
-      "id": "slot.q1",
+      "id": "slot.header.mark",
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "원 모양 종이를 똑같이 둘로 나누어지도록 반을 접었다가 펴더니 선이  ",
+        "text": "□",
         "style_role": "question",
-        "x": 18.0,
-        "y": 32.0,
-        "font_size": 28
+        "x": 12.0,
+        "y": 30.0,
+        "font_size": 22
       }
     },
     {
-      "id": "slot.q2",
+      "id": "slot.header.number",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "61.",
+        "style_role": "question",
+        "x": 34.0,
+        "y": 30.0,
+        "font_size": 20
+      }
+    },
+    {
+      "id": "slot.stem.1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "원 모양 종이를 똑같이 둘로 나누어지도록 반을 접었다가 폈더니 선이",
+        "style_role": "question",
+        "x": 77.0,
+        "y": 30.0,
+        "font_size": 25
+      }
+    },
+    {
+      "id": "slot.stem.2",
       "kind": "text",
       "prompt": "",
       "content": {
         "text": "생겼습니다. 알맞은 말을 선택하세요.",
         "style_role": "question",
-        "x": 20.0,
-        "y": 80.0,
-        "font_size": 30
+        "x": 34.0,
+        "y": 70.0,
+        "font_size": 25
       }
     },
     {
-      "id": "slot.paper.left",
-      "kind": "rect",
+      "id": "slot.folded.paper",
+      "kind": "path",
       "prompt": "",
       "content": {
-        "x": 160.0,
-        "y": 140.0,
-        "width": 120.0,
-        "height": 60.0,
+        "d": "M 286 153 C 288.36 189.58, 316.68 207.28, 345 207.28 C 373.32 207.28, 401.64 189.58, 404 153 L 286 153 Z",
+        "x": 0.0,
+        "y": 0.0,
         "stroke": "#FF9AB2",
-        "stroke_width": 2.0,
-        "fill": "#FDE8EF"
+        "stroke_width": 1.7,
+        "fill": "#FDE8EF",
+        "transform": "rotate(180 345 153)"
       }
     },
     {
-      "id": "slot.arrow",
+      "id": "slot.folded.edge",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 296.62 158.9 C 327.3 219.08, 371.55 214.36, 395.15 157.72",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#FF9AB2",
+        "stroke_width": 1.2,
+        "fill": "none",
+        "transform": "rotate(180 345 153)"
+      }
+    },
+    {
+      "id": "slot.arrow.body",
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 375.0,
-        "y1": 170.0,
-        "x2": 415.0,
-        "y2": 170.0,
+        "x1": 462.0,
+        "y1": 153.0,
+        "x2": 484.0,
+        "y2": 153.0,
         "stroke": "#9AA0A6",
-        "stroke_width": 3.0
+        "stroke_width": 8.0
       }
     },
     {
-      "id": "slot.paper.right",
+      "id": "slot.arrow.head",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            496.0,
+            153.0
+          ],
+          [
+            481.0,
+            139.0
+          ],
+          [
+            481.0,
+            167.0
+          ]
+        ],
+        "stroke": "#9AA0A6",
+        "stroke_width": 0.0,
+        "fill": "#9AA0A6"
+      }
+    },
+    {
+      "id": "slot.opened.paper",
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 575.0,
-        "cy": 180.0,
-        "r": 60.0,
+        "cx": 612.0,
+        "cy": 153.0,
+        "r": 59.0,
         "stroke": "#FF9AB2",
-        "stroke_width": 2.0,
+        "stroke_width": 1.7,
         "fill": "#FDE8EF"
       }
     },
     {
-      "id": "slot.foldline",
+      "id": "slot.opened.fold_line",
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 520.0,
-        "y1": 180.0,
-        "x2": 630.0,
-        "y2": 180.0,
+        "x1": 553.0,
+        "y1": 153.0,
+        "x2": 671.0,
+        "y2": 153.0,
         "stroke": "#FF9AB2",
-        "stroke_width": 1.6,
-        "stroke_dasharray": "5 3"
+        "stroke_width": 1.2,
+        "stroke_dasharray": "5 4"
       }
     },
     {
-      "id": "slot.c1",
+      "id": "slot.choice.1",
       "kind": "text",
       "prompt": "",
       "content": {
         "text": "(1) 반을 접어 생긴 선분은 원의 ( 지름 , 반지름 )입니다.",
-        "style_role": "question",
-        "x": 25.0,
-        "y": 285.0,
-        "font_size": 30
+        "style_role": "choice",
+        "x": 30.0,
+        "y": 263.0,
+        "font_size": 26
       }
     }
   ],
@@ -135,14 +201,18 @@
   "diagrams": [],
   "reading_order": [
     "region.stem",
-    "slot.q1",
-    "slot.q2",
+    "slot.header.mark",
+    "slot.header.number",
+    "slot.stem.1",
+    "slot.stem.2",
     "region.diagram",
-    "slot.paper.left",
-    "slot.paper.right",
-    "slot.arrow",
-    "slot.foldline",
+    "slot.folded.paper",
+    "slot.folded.edge",
+    "slot.arrow.head",
+    "slot.opened.paper",
+    "slot.arrow.body",
+    "slot.opened.fold_line",
     "region.choice",
-    "slot.c1"
+    "slot.choice.1"
   ]
 }

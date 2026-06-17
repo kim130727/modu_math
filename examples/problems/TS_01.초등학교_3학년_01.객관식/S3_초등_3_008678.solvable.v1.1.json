@@ -1,37 +1,26 @@
 {
   "schema": "modu.solvable.v1.1",
   "problem_id": "S3_초등_3_008678",
-  "problem_type": "도형의 성질_선택형",
+  "problem_type": "circle_paper_folding_choice",
   "inputs": {
     "total_ticks": 0,
-    "target_label": "빈칸에 들어갈 알맞은 말",
+    "target_label": "괄호 안에 들어갈 알맞은 말",
     "target_ticks": 0,
     "target_count": 1,
     "unit": ""
   },
   "given": [
     {
-      "ref": "obj.paper",
+      "ref": "obj.circle_paper",
       "value": {
         "shape": "circle"
       }
     },
     {
-      "ref": "obj.folded_shape",
+      "ref": "obj.fold_line",
       "value": {
-        "shape": "semicircle"
-      }
-    },
-    {
-      "ref": "obj.choice_diameter",
-      "value": {
-        "text": "지름"
-      }
-    },
-    {
-      "ref": "obj.choice_radius",
-      "value": {
-        "text": "반지름"
+        "type": "line_segment",
+        "created_by": "fold_and_open"
       }
     }
   ],
@@ -39,27 +28,22 @@
     "ref": "answer.target",
     "type": "choice_word"
   },
-  "method": "도형의 성질 확인",
+  "method": "concept_matching",
   "plan": [
-    "원 모양 종이를 반으로 접었을 때 생기는 선의 성질을 확인한다.",
-    "보기의 단어 중 원의 중심을 지나는 선과 맞는 말을 찾는다."
+    "반으로 접었다가 폈을 때 생긴 선분을 관찰한다.",
+    "보기의 두 용어 중 알맞은 말을 고른다."
   ],
   "steps": [
     {
       "id": "step.1",
-      "expr": "원 모양 종이를 반으로 접음",
-      "value": "접힌 선이 생김"
-    },
-    {
-      "id": "step.2",
-      "expr": "접힌 선의 성질 확인",
-      "value": "원을 똑같이 둘로 나누는 선"
+      "expr": "접힌 선분이 원을 둘로 똑같이 나누는지 확인한다.",
+      "value": ""
     }
   ],
   "checks": [
     {
       "id": "check.1",
-      "expr": "접힌 선이 원의 중심을 지나는지 확인",
+      "expr": "정답과 해설 문장이 렌더링되지 않는다.",
       "expected": true,
       "actual": true,
       "pass": true
@@ -67,13 +51,22 @@
   ],
   "answer": {
     "blanks": [],
-    "choices": [],
+    "choices": [
+      {
+        "id": "choice.diameter",
+        "value": "지름"
+      },
+      {
+        "id": "choice.radius",
+        "value": "반지름"
+      }
+    ],
     "answer_key": [],
     "target": {
       "type": "choice_word",
-      "description": "빈칸에 들어갈 알맞은 말"
+      "description": "괄호 안에 들어갈 알맞은 말"
     },
-    "value": 0,
+    "value": "",
     "unit": ""
   }
 }

@@ -14,6 +14,7 @@
       "role": "stem",
       "flow": "absolute",
       "slot_ids": [
+        "slot.pt.center",
         "slot.q1"
       ]
     },
@@ -74,6 +75,17 @@
       }
     },
     {
+      "id": "slot.pt.center",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 420.0,
+        "cy": 220.0,
+        "r": 5.0,
+        "fill": "#ff2aa8"
+      }
+    },
+    {
       "id": "slot.radius",
       "kind": "line",
       "prompt": "",
@@ -127,6 +139,7 @@
   "diagrams": [],
   "reading_order": [
     "region.stem",
+    "slot.pt.center",
     "slot.q1",
     "region.diagram",
     "slot.circle",
