@@ -17,7 +17,7 @@ def build_problem_template() -> ProblemTemplate:
             TextSlot(id="slot.choice.1", prompt="", text="㉠ 77 ÷ 6", style_role="choice", x=120.0, y=110.0, font_size=28),
             TextSlot(id="slot.choice.2", prompt="", text="㉡ 264 ÷ 5", style_role="choice", x=340.0, y=110.0, font_size=28),
             TextSlot(id="slot.choice.3", prompt="", text="㉢ 307 ÷ 3", style_role="choice", x=580.0, y=110.0, font_size=28),
-            TextSlot(id="slot.conclusion", prompt="", text="따라서 나머지가 가장 작은 것은 ㉢입니다.", style_role="body", x=24.0, y=322.0, font_size=28),
+            TextSlot(id="slot.conclusion", prompt="", text = '따라서 나머지가 가장 작은 것은 ㉢입니다.', style_role="body", x = 70, y = 255, font_size = 30, max_width = 730),
         ),
         diagrams=(), groups=(), constraints=(), tags=("초등", "수학", "나눗셈", "나머지", "비교"),
     )

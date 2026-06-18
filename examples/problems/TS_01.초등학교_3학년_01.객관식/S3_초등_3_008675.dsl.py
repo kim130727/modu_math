@@ -105,7 +105,7 @@ def build_problem_template() -> ProblemTemplate:
             _square("slot.choice.right.square", x=672.0, y=74.0),
             _base_arc("slot.choice.right.base", cx=748.0, cy=150.0),
             _corner_completion_arc("slot.choice.right.red", cx=748.0, cy=150.0),
-            _center_dot("slot.choice.right.center", cx=748.0, cy=150.0),TextSlot(id = 'slot.header.text.copy4', prompt = '', text = '가.', x = 90, y = 95, font_size = 25, fill = '#111111'), TextSlot(id = 'slot.header.text.copy4.copy5', prompt = '', text = '나.', x = 360, y = 95, font_size = 25, fill = '#111111'), TextSlot(id = 'slot.header.text.copy4.copy5.copy6', prompt = '', text = '다.', x = 625, y = 95, font_size = 25, fill = '#111111')),
+            _center_dot("slot.choice.right.center", cx=748.0, cy=150.0),TextSlot(id = 'slot.header.text.copy4', prompt = '', text = '가.', x = 90, y = 95, font_size = 25, fill = '#111111'), TextSlot(id = 'slot.header.text.copy4.copy5', prompt = '', text = '나.', x = 345, y = 95, font_size = 25, fill = '#111111'), TextSlot(id = 'slot.header.text.copy4.copy5.copy6', prompt = '', text = '다.', x = 625, y = 95, font_size = 25, fill = '#111111')),
         diagrams=(),
         groups=(),
         constraints=(),

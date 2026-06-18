@@ -44,7 +44,7 @@
       "id": "slot.header.text.copy4.copy5.text",
       "type": "text",
       "attributes": {
-        "x": 360.0,
+        "x": 345.0,
         "y": 95.0,
         "max_width": 772.0,
         "fill": "#111111",
@@ -106,26 +106,10 @@
       }
     },
     {
-      "id": "slot.choice.left.center.circle",
-      "type": "circle",
-      "attributes": {
-        "cx": 213.0,
-        "cy": 150.0,
-        "r": 3.5,
-        "stroke": "none",
-        "stroke-width": 0.0,
-        "fill": "#e4007f"
-      },
-      "source_ref": "slot.choice.left.center",
-      "refs": {
-        "layout_slot_id": "slot.choice.left.center"
-      }
-    },
-    {
       "id": "slot.choice.middle.square.rect",
       "type": "rect",
       "attributes": {
-        "x": 444.0,
+        "x": 410.0,
         "y": 74.0,
         "width": 152.0,
         "height": 152.0,
@@ -142,7 +126,7 @@
       "id": "slot.choice.middle.base.path",
       "type": "path",
       "attributes": {
-        "d": "M 596.0 150.0 A 76.0 76.0 0 1 0 520.0 226.0",
+        "d": "M 562 150 A 76 76 0 1 0 486 226",
         "stroke": "#111111",
         "stroke-width": 2.1,
         "fill": "none"
@@ -156,7 +140,7 @@
       "id": "slot.choice.middle.red.path",
       "type": "path",
       "attributes": {
-        "d": "M 520.0 226.0 A 76.0 76.0 0 0 0 596.0 150.0",
+        "d": "M 486 226 A 76 76 0 0 0 562 150",
         "stroke": "#ff0000",
         "stroke-width": 2.1,
         "fill": "none"
@@ -164,22 +148,6 @@
       "source_ref": "slot.choice.middle.red",
       "refs": {
         "layout_slot_id": "slot.choice.middle.red"
-      }
-    },
-    {
-      "id": "slot.choice.middle.center.circle",
-      "type": "circle",
-      "attributes": {
-        "cx": 520.0,
-        "cy": 150.0,
-        "r": 3.5,
-        "stroke": "none",
-        "stroke-width": 0.0,
-        "fill": "#e4007f"
-      },
-      "source_ref": "slot.choice.middle.center",
-      "refs": {
-        "layout_slot_id": "slot.choice.middle.center"
       }
     },
     {
@@ -225,6 +193,38 @@
       "source_ref": "slot.choice.right.red",
       "refs": {
         "layout_slot_id": "slot.choice.right.red"
+      }
+    },
+    {
+      "id": "slot.choice.left.center.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 213.0,
+        "cy": 150.0,
+        "r": 3.5,
+        "stroke": "none",
+        "stroke-width": 0.0,
+        "fill": "#e4007f"
+      },
+      "source_ref": "slot.choice.left.center",
+      "refs": {
+        "layout_slot_id": "slot.choice.left.center"
+      }
+    },
+    {
+      "id": "slot.choice.middle.center.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 486.0,
+        "cy": 150.0,
+        "r": 3.5,
+        "stroke": "none",
+        "stroke-width": 0.0,
+        "fill": "#e4007f"
+      },
+      "source_ref": "slot.choice.middle.center",
+      "refs": {
+        "layout_slot_id": "slot.choice.middle.center"
       }
     },
     {

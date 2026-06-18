@@ -40,19 +40,33 @@
       }
     },
     {
-      "id": "slot.center.circle",
-      "type": "circle",
+      "id": "slot.guide.diameter.curve.path",
+      "type": "path",
       "attributes": {
-        "cx": 433.0,
-        "cy": 260.0,
-        "r": 5.0,
-        "stroke": "#111111",
-        "stroke-width": 2.0,
-        "fill": "#d81b60"
+        "d": "M 370 360 C 335 300 360 210 495 160",
+        "stroke": "#37bdf8",
+        "stroke-width": 1.6,
+        "fill": "none",
+        "stroke-dasharray": "5 4"
       },
-      "source_ref": "slot.center",
+      "source_ref": "slot.guide.diameter.curve",
       "refs": {
-        "layout_slot_id": "slot.center"
+        "layout_slot_id": "slot.guide.diameter.curve"
+      }
+    },
+    {
+      "id": "slot.guide.radius.curve.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 438 267 C 470 288, 517 287, 548 262",
+        "stroke": "#37bdf8",
+        "stroke-width": 1.6,
+        "fill": "none",
+        "stroke-dasharray": "5 4"
+      },
+      "source_ref": "slot.guide.radius.curve",
+      "refs": {
+        "layout_slot_id": "slot.guide.radius.curve"
       }
     },
     {
@@ -88,15 +102,31 @@
       }
     },
     {
+      "id": "slot.center.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 433.0,
+        "cy": 260.0,
+        "r": 5.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#d81b60"
+      },
+      "source_ref": "slot.center",
+      "refs": {
+        "layout_slot_id": "slot.center"
+      }
+    },
+    {
       "id": "slot.len4.text",
       "type": "text",
       "attributes": {
         "x": 345.0,
-        "y": 255.0,
+        "y": 210.0,
         "max_width": 832.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 30
+        "font-size": 25
       },
       "source_ref": "slot.len4",
       "refs": {
@@ -108,12 +138,12 @@
       "id": "slot.len2.text",
       "type": "text",
       "attributes": {
-        "x": 455.0,
-        "y": 295.0,
+        "x": 460.0,
+        "y": 310.0,
         "max_width": 832.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 30
+        "font-size": 25
       },
       "source_ref": "slot.len2",
       "refs": {
@@ -125,9 +155,9 @@
       "id": "slot.choice.box.rect",
       "type": "rect",
       "attributes": {
-        "x": 20.0,
+        "x": 30.0,
         "y": 410.0,
-        "width": 840.0,
+        "width": 795.0,
         "height": 80.0,
         "fill": "none",
         "stroke": "#111111",
@@ -142,7 +172,7 @@
       "id": "slot.choice.text.text",
       "type": "text",
       "attributes": {
-        "x": 100.0,
+        "x": 65.0,
         "y": 455.0,
         "max_width": 832.0,
         "fill": "#111111",

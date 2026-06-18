@@ -27,8 +27,8 @@
       "id": "slot.q2.text",
       "type": "text",
       "attributes": {
-        "x": 180.0,
-        "y": 365.0,
+        "x": 40.0,
+        "y": 375.0,
         "max_width": 832.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
@@ -45,7 +45,7 @@
       "type": "text",
       "attributes": {
         "x": 20.0,
-        "y": 100.0,
+        "y": 90.0,
         "max_width": 832.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
@@ -58,28 +58,11 @@
       "text": "기호를 선택해 보세요."
     },
     {
-      "id": "slot.diagram.circle.rect",
-      "type": "rect",
-      "attributes": {
-        "x": 420.0,
-        "y": 160.0,
-        "width": 130.0,
-        "height": 130.0,
-        "fill": "#ffffff",
-        "stroke": "#111111",
-        "stroke-width": 1.5
-      },
-      "source_ref": "slot.diagram.circle",
-      "refs": {
-        "layout_slot_id": "slot.diagram.circle"
-      }
-    },
-    {
       "id": "slot.diagram.center.circle",
       "type": "circle",
       "attributes": {
-        "cx": 480.0,
-        "cy": 230.0,
+        "cx": 393.0,
+        "cy": 207.0,
         "r": 5.0,
         "stroke": "#111111",
         "stroke-width": 2.0,
@@ -91,13 +74,29 @@
       }
     },
     {
+      "id": "slot.circle.outer.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 393.0,
+        "cy": 208.0,
+        "r": 105.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "none"
+      },
+      "source_ref": "slot.circle.outer",
+      "refs": {
+        "layout_slot_id": "slot.circle.outer"
+      }
+    },
+    {
       "id": "slot.diagram.radius1.line",
       "type": "line",
       "attributes": {
-        "x1": 420.0,
-        "y1": 245.0,
-        "x2": 480.0,
-        "y2": 230.0,
+        "x1": 300.0,
+        "y1": 255.0,
+        "x2": 395.0,
+        "y2": 205.0,
         "stroke": "#111111",
         "stroke-width": 2.0
       },
@@ -110,10 +109,10 @@
       "id": "slot.diagram.diameter.line",
       "type": "line",
       "attributes": {
-        "x1": 415.0,
-        "y1": 205.0,
-        "x2": 540.0,
-        "y2": 275.0,
+        "x1": 300.0,
+        "y1": 160.0,
+        "x2": 485.0,
+        "y2": 255.0,
         "stroke": "#111111",
         "stroke-width": 2.0
       },
@@ -123,61 +122,13 @@
       }
     },
     {
-      "id": "slot.diagram.radius2.line",
-      "type": "line",
-      "attributes": {
-        "x1": 480.0,
-        "y1": 230.0,
-        "x2": 540.0,
-        "y2": 275.0,
-        "stroke": "#111111",
-        "stroke-width": 2.0
-      },
-      "source_ref": "slot.diagram.radius2",
-      "refs": {
-        "layout_slot_id": "slot.diagram.radius2"
-      }
-    },
-    {
-      "id": "slot.diagram.arc1.line",
-      "type": "line",
-      "attributes": {
-        "x1": 430.0,
-        "y1": 195.0,
-        "x2": 490.0,
-        "y2": 235.0,
-        "stroke": "#111111",
-        "stroke-width": 2.0
-      },
-      "source_ref": "slot.diagram.arc1",
-      "refs": {
-        "layout_slot_id": "slot.diagram.arc1"
-      }
-    },
-    {
-      "id": "slot.diagram.arc2.line",
-      "type": "line",
-      "attributes": {
-        "x1": 485.0,
-        "y1": 230.0,
-        "x2": 540.0,
-        "y2": 275.0,
-        "stroke": "#111111",
-        "stroke-width": 2.0
-      },
-      "source_ref": "slot.diagram.arc2",
-      "refs": {
-        "layout_slot_id": "slot.diagram.arc2"
-      }
-    },
-    {
       "id": "slot.diagram.arc3.line",
       "type": "line",
       "attributes": {
-        "x1": 425.0,
-        "y1": 265.0,
-        "x2": 530.0,
-        "y2": 275.0,
+        "x1": 300.0,
+        "y1": 255.0,
+        "x2": 485.0,
+        "y2": 255.0,
         "stroke": "#111111",
         "stroke-width": 2.0
       },
@@ -190,8 +141,8 @@
       "id": "slot.diagram.label.ga.text",
       "type": "text",
       "attributes": {
-        "x": 500.0,
-        "y": 210.0,
+        "x": 410.0,
+        "y": 195.0,
         "max_width": 832.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
@@ -207,8 +158,8 @@
       "id": "slot.diagram.label.na.text",
       "type": "text",
       "attributes": {
-        "x": 445.0,
-        "y": 235.0,
+        "x": 330.0,
+        "y": 220.0,
         "max_width": 832.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
@@ -224,8 +175,8 @@
       "id": "slot.diagram.label.da.text",
       "type": "text",
       "attributes": {
-        "x": 470.0,
-        "y": 270.0,
+        "x": 385.0,
+        "y": 280.0,
         "max_width": 832.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
@@ -236,6 +187,23 @@
         "layout_slot_id": "slot.diagram.label.da"
       },
       "text": "ㄷ"
+    },
+    {
+      "id": "slot.diagram.label.da.copy1.text",
+      "type": "text",
+      "attributes": {
+        "x": 385.0,
+        "y": 230.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 20
+      },
+      "source_ref": "slot.diagram.label.da.copy1",
+      "refs": {
+        "layout_slot_id": "slot.diagram.label.da.copy1"
+      },
+      "text": "ㅇ"
     }
   ],
   "contract_version": "modu_math.renderer.v2"

@@ -67,7 +67,8 @@
       "role": "choices",
       "flow": "absolute",
       "slot_ids": [
-        "slot.choice1"
+        "slot.choice1",
+        "slot.choice1.copy1"
       ]
     }
   ],
@@ -79,9 +80,9 @@
       "content": {
         "text": "가와 나는 규칙에 따라 원을 그린 것입니다. 알맞은 것을 선택해 두 모양",
         "style_role": "question",
-        "x": 8.0,
+        "x": 10.0,
         "y": 30.0,
-        "font_size": 24
+        "font_size": 25
       }
     },
     {
@@ -511,11 +512,24 @@
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "다른 점: (가,나)는 원의 중심을 옮겨가며 그렸고, (가,나)는 원의 중심이 모두 같게 그렸습니다.",
+        "text": "    다른 점: (가,나)는 원의 중심을 옮겨가며 그렸고, (가,나)는 원의 중심이 모두",
         "style_role": "answer_option",
-        "x": 8.0,
-        "y": 315.0,
-        "font_size": 23
+        "x": 15.0,
+        "y": 300.0,
+        "font_size": 25
+      }
+    },
+    {
+      "id": "slot.choice1.copy1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "같게 그렸습니다.  ",
+        "style_role": "body",
+        "x": 15.0,
+        "y": 335.0,
+        "font_size": 25,
+        "fill": "#111111"
       }
     }
   ],
@@ -559,6 +573,7 @@
     "slot.na.circle3.r3",
     "slot.label.na",
     "region.choice",
-    "slot.choice1"
+    "slot.choice1",
+    "slot.choice1.copy1"
   ]
 }

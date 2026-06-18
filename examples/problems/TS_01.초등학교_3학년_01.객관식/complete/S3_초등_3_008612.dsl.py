@@ -31,7 +31,7 @@ def build_problem_template() -> ProblemTemplate:
                 id="slot.q.text",
                 prompt="",
                 text = '다음 나눗셈이 나누어떨어지면 O표,', style_role="question",
-                x = 100, y = 55, font_size = 30),
+                x = 75, y = 55, font_size = 30, max_width = 810),
             RectSlot(
                 id="slot.expr.box",
                 prompt="",
@@ -40,7 +40,7 @@ def build_problem_template() -> ProblemTemplate:
                 id="slot.expr.text",
                 prompt="",
                 text = '28 ÷ 3', style_role="choice",
-                x = 280, y = 190, font_size = 30),TextSlot(id = 'slot.q.text.copy2', prompt = '', text = '나누어떨어지지 않으면 X표를 선택하세요.', x = 70, y = 110, font_size = 30, fill = '#111111')),
+                x = 280, y = 190, font_size = 30),TextSlot(id = 'slot.q.text.copy2', prompt = '', text = '나누어떨어지지 않으면 X표를 선택하세요.', x = 75, y = 100, font_size = 30, fill = '#111111', max_width = 810)),
         diagrams=(),
         groups=(),
         constraints=(),

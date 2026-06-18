@@ -46,31 +46,27 @@ def build_problem_template() -> ProblemTemplate:
             RectSlot(
                 id="slot.choice.box",
                 prompt="",
-                x=96.0,
-                y=48.0,
-                width=760.0,
-                height=78.0,
-            ),
+                x = 65, y = 75, width = 675, height = 80),
             TextSlot(
                 id="slot.choice.1.symbol",
                 prompt="",
                 text = '㉠', style_role="choice",
-                x = 175, y = 98, font_size = 30),
+                x = 127, y = 125, font_size = 30, max_width = 750),
             TextSlot(
                 id="slot.choice.1.expr",
                 prompt="",
                 text = '54 ÷ 3 = 17', style_role="choice",
-                x = 215, y = 98, font_size = 30),
+                x = 167, y = 125, font_size = 30, max_width = 750),
             TextSlot(
                 id="slot.choice.2.symbol",
                 prompt="",
                 text = '㉡', style_role="choice",
-                x = 505, y = 98, font_size = 30),
+                x = 470, y = 125, font_size = 30, max_width = 750),
             TextSlot(
                 id="slot.choice.2.expr",
                 prompt="",
                 text = '96 ÷ 8 = 12', style_role="choice",
-                x = 550, y = 98, font_size = 30),
+                x = 515, y = 125, font_size = 30, max_width = 750),
             
         ),
         diagrams=(),

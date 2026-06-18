@@ -66,7 +66,7 @@ def _assert_unique_ids(problem: ProblemTemplate) -> None:
 
 
 def _normalize_regions(regions: tuple[Region, ...], slots: list[dict[str, Any]]) -> list[dict[str, Any]]:
-    slot_id_to_kind = {slot["id"]: slot["kind"] for slot in slots}
+    slot_by_id = {slot["id"]: slot for slot in slots}
     slot_ids = [slot["id"] for slot in slots]
     known_slots = set(slot_ids)
     assigned: set[str] = set()
@@ -103,13 +103,20 @@ def _normalize_regions(regions: tuple[Region, ...], slots: list[dict[str, Any]])
 
     # Automatic Layering: Stable sort by z-priority to prevent background covering foreground.
     for region in normalized:
-        region["slot_ids"].sort(key=lambda sid: _get_z_priority(slot_id_to_kind.get(sid, "")))
+        region["slot_ids"].sort(key=lambda sid: _get_z_priority(slot_by_id.get(sid, {})))
 
     return normalized
 
 
-def _get_z_priority(kind: str) -> int:
+def _get_z_priority(slot: dict[str, Any]) -> int:
     """Return the rendering priority for a slot kind (lower is back, higher is front)."""
+    kind = str(slot.get("kind", ""))
+    slot_id = str(slot.get("id", ""))
+    content = slot.get("content", {})
+    if kind == "circle" and isinstance(content, dict):
+        radius = content.get("r")
+        if "center" in slot_id or "point" in slot_id or (isinstance(radius, int | float) and radius <= 8):
+            return 25
     priorities = {
         "rect": 10,
         "circle": 10,

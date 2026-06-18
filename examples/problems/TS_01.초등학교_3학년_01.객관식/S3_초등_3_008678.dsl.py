@@ -22,10 +22,7 @@ ARROW = "#9AA0A6"
 def _folded_half_slots() -> tuple:
     slots = folded_half_circle_slots(
         "slot.folded",
-        cx=345.0,
-        cy=153.0,
-        r=59.0,
-        fill=PAPER_FILL,
+        cx = 775.0, cy = 165.0, r = 60.0, fill=PAPER_FILL,
         stroke=PAPER_STROKE,
         stroke_width=1.7,
     )
@@ -59,7 +56,7 @@ def build_problem_template() -> ProblemTemplate:
                 id="region.stem",
                 role="stem",
                 flow="absolute",
-                slot_ids=("slot.header.mark", "slot.header.number", "slot.stem.1", "slot.stem.2"),
+                slot_ids=("slot.stem.1", "slot.stem.2"),
             ),
             Region(
                 id="region.diagram",
@@ -77,17 +74,11 @@ def build_problem_template() -> ProblemTemplate:
             Region(id="region.choice", role="choices", flow="absolute", slot_ids=("slot.choice.1",)),
         ),
         slots=(
-            TextSlot(id="slot.header.mark", prompt="", text="□", style_role="question", x=12.0, y=30.0, font_size=22),
-            TextSlot(id="slot.header.number", prompt="", text="61.", style_role="question", x=34.0, y=30.0, font_size=20),
             TextSlot(
                 id="slot.stem.1",
                 prompt="",
-                text="원 모양 종이를 똑같이 둘로 나누어지도록 반을 접었다가 폈더니 선이",
-                style_role="question",
-                x=77.0,
-                y=30.0,
-                font_size=25,
-            ),
+                text = '원 모양 종이를 똑같이 둘로 나누어지도록 반을 접었다가 폈더니 선이', style_role="question",
+                x = 35, y = 35, font_size = 25),
             TextSlot(
                 id="slot.stem.2",
                 prompt="",

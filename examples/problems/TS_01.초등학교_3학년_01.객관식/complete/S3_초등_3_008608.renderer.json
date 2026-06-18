@@ -10,9 +10,9 @@
       "id": "slot.q1.text",
       "type": "text",
       "attributes": {
-        "x": 80.0,
-        "y": 50.0,
-        "max_width": 692.0,
+        "x": 125.0,
+        "y": 55.0,
+        "max_width": 690.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 30
@@ -75,57 +75,6 @@
       "text": "70 ÷ 7"
     },
     {
-      "id": "slot.box.left.rect",
-      "type": "rect",
-      "attributes": {
-        "x": 157.0,
-        "y": 104.0,
-        "width": 118.0,
-        "height": 59.0,
-        "fill": "#ffffff",
-        "stroke": "#111111",
-        "stroke-width": 1.5
-      },
-      "source_ref": "slot.box.left",
-      "refs": {
-        "layout_slot_id": "slot.box.left"
-      }
-    },
-    {
-      "id": "slot.box.mid.rect",
-      "type": "rect",
-      "attributes": {
-        "x": 377.0,
-        "y": 104.0,
-        "width": 118.0,
-        "height": 59.0,
-        "fill": "#ffffff",
-        "stroke": "#111111",
-        "stroke-width": 1.5
-      },
-      "source_ref": "slot.box.mid",
-      "refs": {
-        "layout_slot_id": "slot.box.mid"
-      }
-    },
-    {
-      "id": "slot.box.right.rect",
-      "type": "rect",
-      "attributes": {
-        "x": 598.0,
-        "y": 104.0,
-        "width": 118.0,
-        "height": 59.0,
-        "fill": "#ffffff",
-        "stroke": "#111111",
-        "stroke-width": 1.5
-      },
-      "source_ref": "slot.box.right",
-      "refs": {
-        "layout_slot_id": "slot.box.right"
-      }
-    },
-    {
       "id": "slot.figure.left.body.polygon",
       "type": "polygon",
       "attributes": {
@@ -184,38 +133,6 @@
       "source_ref": "slot.figure.left.hair.cap",
       "refs": {
         "layout_slot_id": "slot.figure.left.hair.cap"
-      }
-    },
-    {
-      "id": "slot.figure.left.eye.left.circle",
-      "type": "circle",
-      "attributes": {
-        "cx": 206.0,
-        "cy": 192.0,
-        "r": 2.3,
-        "stroke": "none",
-        "stroke-width": 2.0,
-        "fill": "#2b2118"
-      },
-      "source_ref": "slot.figure.left.eye.left",
-      "refs": {
-        "layout_slot_id": "slot.figure.left.eye.left"
-      }
-    },
-    {
-      "id": "slot.figure.left.eye.right.circle",
-      "type": "circle",
-      "attributes": {
-        "cx": 226.0,
-        "cy": 192.0,
-        "r": 2.3,
-        "stroke": "none",
-        "stroke-width": 2.0,
-        "fill": "#2b2118"
-      },
-      "source_ref": "slot.figure.left.eye.right",
-      "refs": {
-        "layout_slot_id": "slot.figure.left.eye.right"
       }
     },
     {
@@ -294,38 +211,6 @@
       }
     },
     {
-      "id": "slot.figure.mid.eye.left.circle",
-      "type": "circle",
-      "attributes": {
-        "cx": 427.0,
-        "cy": 192.0,
-        "r": 2.3,
-        "stroke": "none",
-        "stroke-width": 2.0,
-        "fill": "#2b2118"
-      },
-      "source_ref": "slot.figure.mid.eye.left",
-      "refs": {
-        "layout_slot_id": "slot.figure.mid.eye.left"
-      }
-    },
-    {
-      "id": "slot.figure.mid.eye.right.circle",
-      "type": "circle",
-      "attributes": {
-        "cx": 447.0,
-        "cy": 192.0,
-        "r": 2.3,
-        "stroke": "none",
-        "stroke-width": 2.0,
-        "fill": "#2b2118"
-      },
-      "source_ref": "slot.figure.mid.eye.right",
-      "refs": {
-        "layout_slot_id": "slot.figure.mid.eye.right"
-      }
-    },
-    {
       "id": "slot.figure.mid.smile.path",
       "type": "path",
       "attributes": {
@@ -401,6 +286,84 @@
       }
     },
     {
+      "id": "slot.figure.right.smile.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 650.0 204.0 Q 657.0 210.0 664.0 204.0",
+        "stroke": "#b86e39",
+        "stroke-width": 1.3,
+        "fill": "none"
+      },
+      "source_ref": "slot.figure.right.smile",
+      "refs": {
+        "layout_slot_id": "slot.figure.right.smile"
+      }
+    },
+    {
+      "id": "slot.figure.left.eye.left.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 206.0,
+        "cy": 192.0,
+        "r": 2.3,
+        "stroke": "none",
+        "stroke-width": 2.0,
+        "fill": "#2b2118"
+      },
+      "source_ref": "slot.figure.left.eye.left",
+      "refs": {
+        "layout_slot_id": "slot.figure.left.eye.left"
+      }
+    },
+    {
+      "id": "slot.figure.left.eye.right.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 226.0,
+        "cy": 192.0,
+        "r": 2.3,
+        "stroke": "none",
+        "stroke-width": 2.0,
+        "fill": "#2b2118"
+      },
+      "source_ref": "slot.figure.left.eye.right",
+      "refs": {
+        "layout_slot_id": "slot.figure.left.eye.right"
+      }
+    },
+    {
+      "id": "slot.figure.mid.eye.left.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 427.0,
+        "cy": 192.0,
+        "r": 2.3,
+        "stroke": "none",
+        "stroke-width": 2.0,
+        "fill": "#2b2118"
+      },
+      "source_ref": "slot.figure.mid.eye.left",
+      "refs": {
+        "layout_slot_id": "slot.figure.mid.eye.left"
+      }
+    },
+    {
+      "id": "slot.figure.mid.eye.right.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 447.0,
+        "cy": 192.0,
+        "r": 2.3,
+        "stroke": "none",
+        "stroke-width": 2.0,
+        "fill": "#2b2118"
+      },
+      "source_ref": "slot.figure.mid.eye.right",
+      "refs": {
+        "layout_slot_id": "slot.figure.mid.eye.right"
+      }
+    },
+    {
       "id": "slot.figure.right.eye.left.circle",
       "type": "circle",
       "attributes": {
@@ -430,20 +393,6 @@
       "source_ref": "slot.figure.right.eye.right",
       "refs": {
         "layout_slot_id": "slot.figure.right.eye.right"
-      }
-    },
-    {
-      "id": "slot.figure.right.smile.path",
-      "type": "path",
-      "attributes": {
-        "d": "M 650.0 204.0 Q 657.0 210.0 664.0 204.0",
-        "stroke": "#b86e39",
-        "stroke-width": 1.3,
-        "fill": "none"
-      },
-      "source_ref": "slot.figure.right.smile",
-      "refs": {
-        "layout_slot_id": "slot.figure.right.smile"
       }
     },
     {

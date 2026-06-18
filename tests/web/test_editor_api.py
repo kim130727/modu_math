@@ -8,6 +8,8 @@ import django
 from django.conf import settings
 from django.test import Client
 
+from modu_math.layout.editor_overrides import apply_editor_overrides
+
 
 def _setup_django(tmp_path: Path) -> Client:
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "modu_math_web.settings")
@@ -174,6 +176,239 @@ SLOTS = (
     assert "y = 15.0" in updated
     assert "width = 120.0" in updated
     assert "height = 80.0" in updated
+
+
+def test_layout_patch_falls_back_to_editor_overrides_for_generated_slot(tmp_path: Path) -> None:
+    client = _setup_django(tmp_path)
+    dsl_text = """
+from modu_math.dsl import ProblemTemplate
+""".lstrip()
+    problem_dir = _write_problem(tmp_path, "0001", dsl_text)
+
+    payload = {
+        "patches": [
+            {
+                "target": "slot.generated.body",
+                "op": "update",
+                "value": {"x": 15.0, "y": 25.0, "width": 40.0, "height": 50.0},
+            }
+        ]
+    }
+    response = client.post(
+        "/api/editor/problems/0001/layout-patch/",
+        data=json.dumps(payload),
+        content_type="application/json",
+    )
+    assert response.status_code == 200
+    overrides = json.loads((problem_dir / "problem.editor_overrides.json").read_text(encoding="utf-8"))
+    assert overrides["slots"]["slot.generated.body"] == {"x": 15.0, "y": 25.0, "width": 40.0, "height": 50.0}
+
+
+def test_apply_editor_overrides_updates_layout_slot_content() -> None:
+    layout = {
+        "canvas": {"width": 100, "height": 100},
+        "slots": [
+            {"id": "slot.generated.body", "kind": "rect", "content": {"x": 1.0, "y": 2.0, "width": 3.0}},
+            {"id": "slot.other", "kind": "text", "content": {"x": 9.0}},
+        ],
+    }
+    overrides = {"slots": {"slot.generated.body": {"x": 15.0, "height": 50.0}}}
+
+    apply_editor_overrides(layout, overrides)
+
+    assert layout["slots"][0]["content"] == {"x": 15.0, "y": 2.0, "width": 3.0, "height": 50.0}
+    assert layout["slots"][1]["content"] == {"x": 9.0}
+
+
+def test_layout_patch_delete_falls_back_to_editor_overrides(tmp_path: Path) -> None:
+    client = _setup_django(tmp_path)
+    dsl_text = """
+from modu_math.dsl import ProblemTemplate
+""".lstrip()
+    problem_dir = _write_problem(tmp_path, "0001", dsl_text)
+
+    payload = {"patches": [{"target": "slot.generated.body", "op": "delete"}]}
+    response = client.post(
+        "/api/editor/problems/0001/layout-patch/",
+        data=json.dumps(payload),
+        content_type="application/json",
+    )
+    assert response.status_code == 200
+    overrides = json.loads((problem_dir / "problem.editor_overrides.json").read_text(encoding="utf-8"))
+    assert overrides["deleted_slots"] == ["slot.generated.body"]
+
+
+def test_apply_editor_overrides_removes_deleted_slots() -> None:
+    layout = {
+        "regions": [{"id": "region.diagram", "slot_ids": ["slot.keep", "slot.delete"]}],
+        "slots": [
+            {"id": "slot.keep", "kind": "rect", "content": {}},
+            {"id": "slot.delete", "kind": "circle", "content": {}},
+        ],
+        "reading_order": ["region.diagram", "slot.keep", "slot.delete"],
+    }
+    overrides = {"deleted_slots": ["slot.delete"]}
+
+    apply_editor_overrides(layout, overrides)
+
+    assert [slot["id"] for slot in layout["slots"]] == ["slot.keep"]
+    assert layout["regions"][0]["slot_ids"] == ["slot.keep"]
+    assert layout["reading_order"] == ["region.diagram", "slot.keep"]
+
+
+def test_layout_patch_layer_order_falls_back_to_editor_overrides(tmp_path: Path) -> None:
+    client = _setup_django(tmp_path)
+    dsl_text = "from modu_math.dsl import ProblemTemplate\n"
+    problem_dir = _write_problem(tmp_path, "0001", dsl_text)
+
+    payload = {
+        "patches": [
+            {
+                "target": "__layer__",
+                "op": "layer",
+                "value": {"region_id": "region.diagram", "slot_ids": ["slot.back", "slot.front"]},
+            }
+        ]
+    }
+    response = client.post(
+        "/api/editor/problems/0001/layout-patch/",
+        data=json.dumps(payload),
+        content_type="application/json",
+    )
+
+    assert response.status_code == 200
+    overrides = json.loads((problem_dir / "problem.editor_overrides.json").read_text(encoding="utf-8"))
+    assert overrides["region_slot_orders"]["region.diagram"] == ["slot.back", "slot.front"]
+
+
+def test_apply_editor_overrides_reorders_region_slots() -> None:
+    layout = {
+        "regions": [{"id": "region.diagram", "slot_ids": ["slot.a", "slot.b", "slot.c"]}],
+        "slots": [{"id": "slot.a"}, {"id": "slot.b"}, {"id": "slot.c"}],
+        "reading_order": ["region.diagram", "slot.a", "slot.b", "slot.c"],
+    }
+    overrides = {"region_slot_orders": {"region.diagram": ["slot.c", "slot.a", "slot.b"]}}
+
+    apply_editor_overrides(layout, overrides)
+
+    assert layout["regions"][0]["slot_ids"] == ["slot.c", "slot.a", "slot.b"]
+
+
+def test_layout_patch_updates_opened_circle_helper_size(tmp_path: Path) -> None:
+    client = _setup_django(tmp_path)
+    dsl_text = """
+from modu_math.dsl import opened_circle_with_fold_slots
+
+SLOTS = (
+    *opened_circle_with_fold_slots("slot.opened", cx=612.0, cy=153.0, r=59.0),
+)
+""".lstrip()
+    problem_dir = _write_problem(tmp_path, "0001", dsl_text)
+
+    payload = {
+        "patches": [
+            {
+                "target": "slot.opened.paper",
+                "op": "update",
+                "value": {"cx": 620.0, "cy": 160.0, "r": 72.0},
+            }
+        ]
+    }
+    response = client.post(
+        "/api/editor/problems/0001/layout-patch/",
+        data=json.dumps(payload),
+        content_type="application/json",
+    )
+    assert response.status_code == 200
+    updated = (problem_dir / "problem.dsl.py").read_text(encoding="utf-8")
+    assert "cx = 620.0" in updated
+    assert "cy = 160.0" in updated
+    assert "r = 72.0" in updated
+
+
+def test_layout_patch_updates_folded_half_helper_size_from_path(tmp_path: Path) -> None:
+    client = _setup_django(tmp_path)
+    dsl_text = """
+from modu_math.dsl import folded_half_circle_slots
+
+SLOTS = (
+    *folded_half_circle_slots("slot.folded", cx=345.0, cy=153.0, r=59.0),
+)
+""".lstrip()
+    problem_dir = _write_problem(tmp_path, "0001", dsl_text)
+
+    payload = {
+        "patches": [
+            {
+                "target": "slot.folded.paper",
+                "op": "update",
+                "value": {"d": "M 280 150 C 290 220, 400 220, 420 150 L 280 150 Z"},
+            }
+        ]
+    }
+    response = client.post(
+        "/api/editor/problems/0001/layout-patch/",
+        data=json.dumps(payload),
+        content_type="application/json",
+    )
+    assert response.status_code == 200
+    updated = (problem_dir / "problem.dsl.py").read_text(encoding="utf-8")
+    assert "cx = 350.0" in updated
+    assert "cy = 150.0" in updated
+    assert "r = 70.0" in updated
+
+
+def test_layout_patch_overrides_folded_edge_generated_by_wrapper(tmp_path: Path) -> None:
+    client = _setup_django(tmp_path)
+    dsl_text = """
+from dataclasses import replace
+
+from modu_math.dsl import folded_half_circle_slots
+
+
+def _folded_half_slots() -> tuple:
+    slots = folded_half_circle_slots("slot.folded", cx=345.0, cy=153.0, r=59.0)
+    return tuple(replace(slot, transform="rotate(180 345 153)") for slot in slots)
+
+
+SLOTS = (*_folded_half_slots(),)
+""".lstrip()
+    problem_dir = _write_problem(tmp_path, "0001", dsl_text)
+
+    payload = {
+        "patches": [
+            {
+                "target": "slot.folded.edge",
+                "op": "update",
+                "value": {
+                    "d": "M 290 160 C 320 230, 390 225, 410 160",
+                    "transform": "rotate(180 345 153)",
+                },
+            }
+        ]
+    }
+    response = client.post(
+        "/api/editor/problems/0001/layout-patch/",
+        data=json.dumps(payload),
+        content_type="application/json",
+    )
+    assert response.status_code == 200
+    updated = (problem_dir / "problem.dsl.py").read_text(encoding="utf-8")
+    assert "slot.id == 'slot.folded.edge'" in updated
+    assert "d='M 290 160 C 320 230, 390 225, 410 160'" in updated
+    assert "transform='rotate(180 345 153)'" in updated
+
+    payload["patches"][0]["value"]["d"] = "M 300 170 C 330 240, 395 230, 420 170"
+    response = client.post(
+        "/api/editor/problems/0001/layout-patch/",
+        data=json.dumps(payload),
+        content_type="application/json",
+    )
+    assert response.status_code == 200
+    updated = (problem_dir / "problem.dsl.py").read_text(encoding="utf-8")
+    assert updated.count("slot.id == 'slot.folded.edge'") == 1
+    assert "M 300 170 C 330 240, 395 230, 420 170" in updated
+    assert "M 290 160 C 320 230, 390 225, 410 160" not in updated
 
 
 def test_layout_patch_updates_transform_field(tmp_path: Path) -> None:
@@ -380,6 +615,66 @@ SLOTS = (
     updated = (problem_dir / "problem.dsl.py").read_text(encoding="utf-8")
     assert '_grid_slots("slot.grid", x = (100.0) + (11.0), y = (50.0) + (-7.0), step=30.0)' in updated
     assert '_candidate_slots("slot.pt.rieul", origin_x = (140.0) + (-5.0), origin_y = (80.0) + (13.0), step=30.0)' in updated
+
+
+def test_layout_patch_moves_compass_on_ruler_helper(tmp_path: Path) -> None:
+    client = _setup_django(tmp_path)
+    dsl_text = """
+from modu_math.dsl import compass_on_ruler_slots
+
+SLOTS = (
+    *compass_on_ruler_slots(
+        "slot.choice1",
+        x=198.0,
+        y=181.0,
+        unit_width=30.0,
+        needle_mark=0,
+        pencil_mark=3,
+    ),
+)
+""".lstrip()
+    problem_dir = _write_problem(tmp_path, "0001", dsl_text)
+
+    payload = {
+        "patches": [
+            {"target": "slot.choice1", "op": "update", "value": {"move_dx": 10.0, "move_dy": -5.0}},
+        ]
+    }
+    response = client.post(
+        "/api/editor/problems/0001/layout-patch/",
+        data=json.dumps(payload),
+        content_type="application/json",
+    )
+
+    assert response.status_code == 200
+    updated = (problem_dir / "problem.dsl.py").read_text(encoding="utf-8")
+    assert 'x = (198.0) + (10.0), y = (181.0) + (-5.0)' in updated
+
+
+def test_layout_patch_rejects_compass_on_ruler_child_override(tmp_path: Path) -> None:
+    client = _setup_django(tmp_path)
+    dsl_text = """
+from modu_math.dsl import compass_on_ruler_slots
+
+SLOTS = (
+    *compass_on_ruler_slots("slot.choice1", x=198.0, y=181.0, unit_width=30.0),
+)
+""".lstrip()
+    problem_dir = _write_problem(tmp_path, "0001", dsl_text)
+
+    payload = {
+        "patches": [
+            {"target": "slot.choice1.ruler.body", "op": "update", "value": {"x": 115.0, "y": 235.0}},
+        ]
+    }
+    response = client.post(
+        "/api/editor/problems/0001/layout-patch/",
+        data=json.dumps(payload),
+        content_type="application/json",
+    )
+
+    assert response.status_code == 400
+    assert not (problem_dir / "problem.editor_overrides.json").exists()
 
 
 def test_layout_patch_moves_speaker_character_group(tmp_path: Path) -> None:

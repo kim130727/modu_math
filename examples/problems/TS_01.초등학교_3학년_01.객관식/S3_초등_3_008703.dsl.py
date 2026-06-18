@@ -1,10 +1,153 @@
 from __future__ import annotations
-from modu_math.dsl import Canvas, ProblemTemplate, Region, TextSlot, RectSlot, LineSlot, PolygonSlot, CircleSlot
+
+from modu_math.dsl import Canvas, ProblemTemplate, Region, TextSlot, compass_on_ruler_slots
+
+
+ANSWER = {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {"type": "correct_choice", "description": "컴퍼스를 2 cm가 되도록 벌린 그림"},
+    "value": "slot.choice2",
+    "unit": "",
+}
+
 
 def build_problem_template() -> ProblemTemplate:
-    return ProblemTemplate(id='S3_초등_3_008703', title='컴퍼스를 2 cm가 되도록 벌린 것을 찾기', canvas=Canvas(width=960, height=640, coordinate_mode='logical'), regions=(Region(id='region.stem', role='stem', flow='absolute', slot_ids=('slot.q.no', 'slot.q.text')), Region(id='region.choices', role='diagram', flow='absolute', slot_ids=('slot.choice1.ruler', 'slot.choice2.ruler', 'slot.choice3.ruler', 'slot.answer.ruler')), Region(id='region.explanation', role='explanation', flow='absolute', slot_ids=())), slots=(TextSlot(id='slot.q.no', prompt='', text='97.', style_role='question', x=24.0, y=34.0, font_size=28), TextSlot(id='slot.q.text', prompt='', text='컴퍼스를 2 cm가 되도록 벌린 것을 찾아 선택하세요.', style_role='question', x=76.0, y=34.0, font_size=28), RectSlot(id='slot.choice1.ruler', prompt='', x=70.0, y=190.0, width=240.0, height=82.0), RectSlot(id='slot.choice2.ruler', prompt='', x=404.0, y=190.0, width=240.0, height=82.0), RectSlot(id='slot.choice3.ruler', prompt='', x=738.0, y=190.0, width=160.0, height=82.0), RectSlot(id='slot.answer.ruler', prompt='', x=54.0, y=450.0, width=240.0, height=82.0), LineSlot(id='slot.choice1.compass.left', prompt='', x1=118.0, y1=92.0, x2=84.0, y2=190.0), LineSlot(id='slot.choice1.compass.right', prompt='', x1=118.0, y1=92.0, x2=186.0, y2=176.0), LineSlot(id='slot.choice2.compass.left', prompt='', x1=452.0, y1=92.0, x2=420.0, y2=190.0), LineSlot(id='slot.choice2.compass.right', prompt='', x1=452.0, y1=92.0, x2=520.0, y2=176.0), LineSlot(id='slot.choice3.compass.left', prompt='', x1=786.0, y1=92.0, x2=754.0, y2=190.0), LineSlot(id='slot.choice3.compass.right', prompt='', x1=786.0, y1=92.0, x2=854.0, y2=176.0), LineSlot(id='slot.answer.compass.left', prompt='', x1=118.0, y1=352.0, x2=84.0, y2=450.0), LineSlot(id='slot.answer.compass.right', prompt='', x1=118.0, y1=352.0, x2=186.0, y2=436.0), TextSlot(id='slot.choice1.ruler.0', prompt='', text='0', style_role='label', x=79.0, y=255.0, font_size=28), TextSlot(id='slot.choice1.ruler.1', prompt='', text='1', style_role='label', x=141.0, y=255.0, font_size=28), TextSlot(id='slot.choice1.ruler.2', prompt='', text='2', style_role='label', x=203.0, y=255.0, font_size=28), TextSlot(id='slot.choice1.ruler.3', prompt='', text='3', style_role='label', x=265.0, y=255.0, font_size=28), TextSlot(id='slot.choice2.ruler.0', prompt='', text='0', style_role='label', x=413.0, y=255.0, font_size=28), TextSlot(id='slot.choice2.ruler.1', prompt='', text='1', style_role='label', x=475.0, y=255.0, font_size=28), TextSlot(id='slot.choice2.ruler.2', prompt='', text='2', style_role='label', x=537.0, y=255.0, font_size=28), TextSlot(id='slot.choice2.ruler.3', prompt='', text='3', style_role='label', x=599.0, y=255.0, font_size=28), TextSlot(id='slot.choice3.ruler.0', prompt='', text='0', style_role='label', x=747.0, y=255.0, font_size=28), TextSlot(id='slot.choice3.ruler.1', prompt='', text='1', style_role='label', x=809.0, y=255.0, font_size=28), TextSlot(id='slot.choice3.ruler.2', prompt='', text='2', style_role='label', x=871.0, y=255.0, font_size=28), TextSlot(id='slot.choice3.ruler.3', prompt='', text='3', style_role='label', x=933.0, y=255.0, font_size=28)), diagrams=(), groups=(), constraints=(), tags=())
+    unit_width = 62.0
+    choice1 = compass_on_ruler_slots(
+        "slot.choice1",
+        x=74.0,
+        y=211.0,
+        unit_width=unit_width,
+        needle_mark=-0.12,
+        pencil_mark=2.0,
+        hinge_offset_x=73.0,
+        hinge_y_offset=-130.0,
+        scale=1.08,
+    )
+    choice2 = compass_on_ruler_slots(
+        "slot.choice2",
+        x=369.0,
+        y=211.0,
+        unit_width=unit_width,
+        needle_mark=0.0,
+        pencil_mark=2.15,
+        hinge_offset_x=76.0,
+        hinge_y_offset=-130.0,
+        scale=1.08,
+    )
+    choice3 = compass_on_ruler_slots(
+        "slot.choice3",
+        x=666.0,
+        y=211.0,
+        unit_width=unit_width,
+        needle_mark=0.0,
+        pencil_mark=3.0,
+        hinge_offset_x=104.0,
+        hinge_y_offset=-130.0,
+        scale=1.08,
+    )
+
+    return ProblemTemplate(
+        id="S3_초등_3_008703",
+        title="컴퍼스를 2 cm가 되도록 벌린 것 찾기",
+        canvas=Canvas(width=920, height=300, coordinate_mode="logical"),
+        regions=(
+            Region(id="region.stem", role="stem", flow="absolute", slot_ids=("slot.q.text",)),
+            Region(
+                id="region.choices",
+                role="choices",
+                flow="absolute",
+                slot_ids=(*(slot.id for slot in choice1), *(slot.id for slot in choice2), *(slot.id for slot in choice3)),
+            ),
+        ),
+        slots=(
+            TextSlot(
+                id="slot.q.text",
+                prompt="",
+                text="□ 97. 컴퍼스를 2 cm가 되도록 벌린 것을 찾아 선택하세요.",
+                style_role="question",
+                x=10.0,
+                y=31.0,
+                font_size=24,
+            ),
+            *choice1,
+            *choice2,
+            *choice3,
+        ),
+        diagrams=(),
+        groups=(),
+        constraints=(),
+        tags=("geometry", "compass", "ruler", "length"),
+    )
+
+
 PROBLEM_TEMPLATE = build_problem_template()
 
-SEMANTIC_OVERRIDE = {'problem_id': 'S3_초등_3_008703', 'problem_type': '선택형_컴퍼스_눈금_비교', 'metadata': {'language': 'ko', 'question': '컴퍼스를 2 cm가 되도록 벌린 것을 찾아 선택하는 문제', 'instruction': '컴퍼스를 2 cm가 되도록 벌린 것을 찾아 선택하세요.'}, 'domain': {'objects': [{'id': 'obj.compass', 'type': 'compass'}, {'id': 'obj.ruler', 'type': 'ruler', 'unit': 'cm'}, {'id': 'obj.mark_0', 'type': 'ruler_mark', 'label': '0'}, {'id': 'obj.mark_2', 'type': 'ruler_mark', 'label': '2'}], 'relations': [], 'problem_solving': {'understand': {'given_refs': ['obj.compass', 'obj.ruler', 'obj.mark_0', 'obj.mark_2'], 'target_ref': 'answer.target', 'condition_refs': ['rel.needle_at_zero', 'rel.pencil_at_two']}, 'plan': {'method': '눈금_비교', 'description': '침과 연필심이 자의 0과 2에 맞는지 그림에서 비교한다.'}, 'execute': {'expected_operations': ['compare_positions', 'match_zero_and_two_marks', 'select_matching_picture']}, 'review': {'check_methods': ['mark_alignment_check', 'unit_length_check']}}}, 'answer': {'blanks': [], 'choices': [], 'answer_key': [], 'target': {'type': 'picture_selection', 'description': '컴퍼스의 침을 0에 맞추고 연필심을 2에 오도록 벌린 그림'}, 'value': 0, 'unit': ''}}
+SEMANTIC_OVERRIDE = {
+    "problem_id": "S3_초등_3_008703",
+    "problem_type": "multiple_choice_geometry",
+    "metadata": {
+        "language": "ko",
+        "question": "컴퍼스를 2 cm가 되도록 벌린 것을 찾아 선택하세요.",
+        "instruction": "컴퍼스의 침과 연필심 사이가 자의 0 cm와 2 cm에 맞는 그림을 고른다.",
+    },
+    "domain": {
+        "objects": [
+            {"id": "obj.compass", "type": "compass"},
+            {"id": "obj.ruler", "type": "ruler", "unit": "cm"},
+            {"id": "obj.target_length", "type": "length", "value": 2, "unit": "cm"},
+            {"id": "obj.choice.1", "type": "compass_on_ruler", "spread": 2.12, "unit": "cm"},
+            {"id": "obj.choice.2", "type": "compass_on_ruler", "spread": 2.0, "unit": "cm"},
+            {"id": "obj.choice.3", "type": "compass_on_ruler", "spread": 3.0, "unit": "cm"},
+        ],
+        "relations": [
+            {
+                "id": "rel.choice2.matches_target",
+                "type": "matches_length",
+                "from_id": "obj.choice.2",
+                "to_id": "obj.target_length",
+                "description": "두 번째 그림은 컴퍼스의 침이 0 cm, 연필심이 2 cm에 정확히 맞는다.",
+            }
+        ],
+        "problem_solving": {
+            "understand": {
+                "given_refs": ["obj.compass", "obj.ruler", "obj.target_length"],
+                "target_ref": "answer.target",
+                "condition_refs": ["rel.choice2.matches_target"],
+            },
+            "plan": {
+                "method": "visual_match",
+                "description": "각 그림에서 컴퍼스의 침과 연필심이 놓인 눈금을 비교한다.",
+            },
+            "execute": {"expected_operations": ["compare_ruler_marks", "select_matching_picture"]},
+            "review": {"check_methods": ["침이 0 cm에 맞는지 확인", "연필심이 2 cm에 맞는지 확인"]},
+        },
+    },
+    "answer": ANSWER,
+}
 
-SOLVABLE = {'schema': 'modu.solvable.v1.1', 'problem_id': 'S3_초등_3_008703', 'problem_type': '선택형_컴퍼스_눈금_비교', 'inputs': {'total_ticks': 4, 'target_label': '2 cm', 'target_ticks': 2, 'target_count': 1, 'unit': 'cm'}, 'given': [{'ref': 'obj.ruler', 'value': {'unit': 'cm'}}, {'ref': 'obj.mark_0', 'value': {'label': '0'}}, {'ref': 'obj.mark_2', 'value': {'label': '2'}}], 'target': {'ref': 'answer.target', 'type': 'picture_selection'}, 'method': '눈금_비교', 'plan': ['자의 0과 2의 위치를 확인한다.', '컴퍼스의 침이 0에, 연필심이 2에 맞는 그림을 찾는다.', '보이는 후보들 중 해당하는 그림을 선택한다.'], 'steps': [{'id': 'step.1', 'expr': '침과 연필심의 위치가 0과 2 눈금에 맞는지 비교', 'value': 0}, {'id': 'step.2', 'expr': '조건을 만족하는 그림 선택', 'value': 0}], 'checks': [{'id': 'check.1', 'expr': '침이 0에 맞고 연필심이 2에 맞는지 확인', 'expected': True, 'actual': True, 'pass': True}], 'answer': {'blanks': [], 'choices': [], 'answer_key': [], 'target': {'type': 'picture_selection', 'description': '컴퍼스의 침을 0에 맞추고 연필심을 2에 오도록 벌린 그림'}, 'value': 0, 'unit': ''}}
+SOLVABLE = {
+    "schema": "modu.solvable.v1.1",
+    "problem_id": "S3_초등_3_008703",
+    "problem_type": "multiple_choice_geometry",
+    "inputs": {"target_label": "2 cm", "target_length": 2, "unit": "cm", "choices": [2.12, 2.0, 3.0]},
+    "given": [
+        {"ref": "obj.ruler", "value": {"unit": "cm"}},
+        {"ref": "obj.target_length", "value": {"value": 2, "unit": "cm"}},
+    ],
+    "target": {"ref": "answer.target", "type": "correct_choice"},
+    "method": "visual_match",
+    "plan": [
+        "컴퍼스의 침이 자의 0 cm에 있는지 확인한다.",
+        "연필심이 자의 2 cm에 있는 그림을 찾는다.",
+        "조건에 맞는 두 번째 그림을 선택한다.",
+    ],
+    "steps": [
+        {"id": "step.1", "expr": "choice2 spread = 2 cm", "value": 2},
+        {"id": "step.2", "expr": "target length = 2 cm", "value": 2},
+    ],
+    "checks": [{"id": "check.1", "expr": "choice2 spread equals target length", "expected": True, "actual": True, "pass": True}],
+    "answer": ANSWER,
+}

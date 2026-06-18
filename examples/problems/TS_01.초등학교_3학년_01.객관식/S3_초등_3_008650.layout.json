@@ -23,9 +23,11 @@
       "flow": "absolute",
       "slot_ids": [
         "slot.circle",
-        "slot.center",
+        "slot.guide.diameter.curve",
+        "slot.guide.radius.curve",
         "slot.diameter",
         "slot.arc.right",
+        "slot.center",
         "slot.len4",
         "slot.len2"
       ]
@@ -104,6 +106,34 @@
       }
     },
     {
+      "id": "slot.guide.diameter.curve",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 370 360 C 335 300 360 210 495 160",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#37bdf8",
+        "stroke_width": 1.6,
+        "stroke_dasharray": "5 4",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.guide.radius.curve",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 438 267 C 470 288, 517 287, 548 262",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#37bdf8",
+        "stroke_width": 1.6,
+        "stroke_dasharray": "5 4",
+        "fill": "none"
+      }
+    },
+    {
       "id": "slot.len4",
       "kind": "text",
       "prompt": "",
@@ -111,8 +141,9 @@
         "text": "4 cm",
         "style_role": "label",
         "x": 345.0,
-        "y": 255.0,
-        "font_size": 30
+        "y": 210.0,
+        "font_size": 25,
+        "fill": "#111111"
       }
     },
     {
@@ -122,9 +153,10 @@
       "content": {
         "text": "2 cm",
         "style_role": "label",
-        "x": 455.0,
-        "y": 295.0,
-        "font_size": 30
+        "x": 460.0,
+        "y": 310.0,
+        "font_size": 25,
+        "fill": "#111111"
       }
     },
     {
@@ -132,9 +164,9 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 20.0,
+        "x": 30.0,
         "y": 410.0,
-        "width": 840.0,
+        "width": 795.0,
         "height": 80.0,
         "fill": "none"
       }
@@ -146,7 +178,7 @@
       "content": {
         "text": "한 원에서 ( 지름 , 반지름 )은 ( 지름 , 반지름 )의 2배입니다.",
         "style_role": "question",
-        "x": 100.0,
+        "x": 65.0,
         "y": 455.0,
         "font_size": 30
       }
@@ -160,9 +192,11 @@
     "slot.q1",
     "region.diagram",
     "slot.circle",
-    "slot.center",
+    "slot.guide.diameter.curve",
+    "slot.guide.radius.curve",
     "slot.diameter",
     "slot.arc.right",
+    "slot.center",
     "slot.len4",
     "slot.len2",
     "region.choice",

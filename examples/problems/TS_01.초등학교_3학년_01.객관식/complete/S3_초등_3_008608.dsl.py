@@ -14,9 +14,6 @@ def build_problem_template() -> ProblemTemplate:
                 role="choices",
                 flow="absolute",
                 slot_ids=(
-                    "slot.box.left",
-                    "slot.box.mid",
-                    "slot.box.right",
                     "slot.name.left",
                     "slot.name.mid",
                     "slot.name.right",
@@ -43,12 +40,9 @@ def build_problem_template() -> ProblemTemplate:
             Region(id="region.answer", role="explanation", flow="absolute", slot_ids=()),
         ),
         slots=(
-            TextSlot(id="slot.q1", prompt="", text = '몫이 다른 사람을 선택해 보세요.', style_role="question", x = 80, y = 50, font_size = 30),
-            RectSlot(id="slot.box.left", prompt="", x=157.0, y=104.0, width=118.0, height=59.0),
+            TextSlot(id="slot.q1", prompt="", text = '몫이 다른 사람을 선택해 보세요.', style_role="question", x = 125, y = 55, font_size = 30, max_width = 690),
             TextSlot(id="slot.box.left.text", prompt="", text = '30 ÷ 3', style_role="choice", x = 170, y = 140, font_size = 30),
-            RectSlot(id="slot.box.mid", prompt="", x=377.0, y=104.0, width=118.0, height=59.0),
             TextSlot(id="slot.box.mid.text", prompt="", text = '40 ÷ 2', style_role="choice", x = 385, y = 145, font_size = 30),
-            RectSlot(id="slot.box.right", prompt="", x=598.0, y=104.0, width=118.0, height=59.0),
             TextSlot(id="slot.box.right.text", prompt="", text = '70 ÷ 7', style_role="choice", x = 610, y = 145, font_size = 30),
             *person_slots("slot.figure.left", cx=216.0, head_cy=188.0, hair="#4b1f16", shirt="#D7A0D7"),
             *person_slots("slot.figure.mid", cx=437.0, head_cy=188.0, hair="#1d1714", shirt="#8ED7E6"),

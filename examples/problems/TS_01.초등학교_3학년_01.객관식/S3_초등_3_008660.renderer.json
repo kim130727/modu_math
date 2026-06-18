@@ -10,18 +10,18 @@
       "id": "slot.q_text_1.text",
       "type": "text",
       "attributes": {
-        "x": 52.0,
-        "y": 35.0,
+        "x": 55.0,
+        "y": 20.0,
         "max_width": 824.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 30
       },
       "source_ref": "slot.q_text_1",
       "refs": {
         "layout_slot_id": "slot.q_text_1"
       },
-      "text": "\n    그림에서 원의 반지름을 나타내는 선분을 찾아 기호를 모두 선택해\n    보세요.\n  "
+      "text": "\n그림에서 원의 반지름을 나타내는 선분을 찾아 기호를 모두 선택해\n보세요."
     },
     {
       "id": "slot.circle.circle",
@@ -37,6 +37,70 @@
       "source_ref": "slot.circle",
       "refs": {
         "layout_slot_id": "slot.circle"
+      }
+    },
+    {
+      "id": "slot.seg.1.line",
+      "type": "line",
+      "attributes": {
+        "x1": 420.0,
+        "y1": 110.0,
+        "x2": 480.0,
+        "y2": 175.0,
+        "stroke": "#222222",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.seg.1",
+      "refs": {
+        "layout_slot_id": "slot.seg.1"
+      }
+    },
+    {
+      "id": "slot.seg.2.line",
+      "type": "line",
+      "attributes": {
+        "x1": 420.0,
+        "y1": 110.0,
+        "x2": 500.0,
+        "y2": 260.0,
+        "stroke": "#222222",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.seg.2",
+      "refs": {
+        "layout_slot_id": "slot.seg.2"
+      }
+    },
+    {
+      "id": "slot.seg.3.line",
+      "type": "line",
+      "attributes": {
+        "x1": 415.0,
+        "y1": 235.0,
+        "x2": 560.0,
+        "y2": 215.0,
+        "stroke": "#222222",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.seg.3",
+      "refs": {
+        "layout_slot_id": "slot.seg.3"
+      }
+    },
+    {
+      "id": "slot.seg.4.line",
+      "type": "line",
+      "attributes": {
+        "x1": 415.0,
+        "y1": 235.0,
+        "x2": 480.0,
+        "y2": 175.0,
+        "stroke": "#222222",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.seg.4",
+      "refs": {
+        "layout_slot_id": "slot.seg.4"
       }
     },
     {
@@ -117,70 +181,6 @@
       "source_ref": "slot.pt.c.copy6",
       "refs": {
         "layout_slot_id": "slot.pt.c.copy6"
-      }
-    },
-    {
-      "id": "slot.seg.1.line",
-      "type": "line",
-      "attributes": {
-        "x1": 420.0,
-        "y1": 110.0,
-        "x2": 480.0,
-        "y2": 175.0,
-        "stroke": "#222222",
-        "stroke-width": 1.5
-      },
-      "source_ref": "slot.seg.1",
-      "refs": {
-        "layout_slot_id": "slot.seg.1"
-      }
-    },
-    {
-      "id": "slot.seg.2.line",
-      "type": "line",
-      "attributes": {
-        "x1": 420.0,
-        "y1": 110.0,
-        "x2": 500.0,
-        "y2": 260.0,
-        "stroke": "#222222",
-        "stroke-width": 1.5
-      },
-      "source_ref": "slot.seg.2",
-      "refs": {
-        "layout_slot_id": "slot.seg.2"
-      }
-    },
-    {
-      "id": "slot.seg.3.line",
-      "type": "line",
-      "attributes": {
-        "x1": 415.0,
-        "y1": 235.0,
-        "x2": 560.0,
-        "y2": 215.0,
-        "stroke": "#222222",
-        "stroke-width": 1.5
-      },
-      "source_ref": "slot.seg.3",
-      "refs": {
-        "layout_slot_id": "slot.seg.3"
-      }
-    },
-    {
-      "id": "slot.seg.4.line",
-      "type": "line",
-      "attributes": {
-        "x1": 415.0,
-        "y1": 235.0,
-        "x2": 480.0,
-        "y2": 175.0,
-        "stroke": "#222222",
-        "stroke-width": 1.5
-      },
-      "source_ref": "slot.seg.4",
-      "refs": {
-        "layout_slot_id": "slot.seg.4"
       }
     },
     {

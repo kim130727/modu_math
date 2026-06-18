@@ -1,4 +1,4 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 from modu_math.dsl import Canvas, ProblemTemplate, RectSlot, Region, SpeakerSpec, TextSlot, speaker_group_slot_ids, speaker_group_slots
 
 

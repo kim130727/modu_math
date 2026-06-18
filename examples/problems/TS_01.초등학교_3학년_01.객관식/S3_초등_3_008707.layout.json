@@ -23,10 +23,11 @@
       "flow": "absolute",
       "slot_ids": [
         "slot.circle",
-        "slot.pt.da",
         "slot.seg.left",
         "slot.seg.mid",
         "slot.seg.diag",
+        "slot.center1",
+        "slot.pt.da",
         "slot.lbl.ga",
         "slot.lbl.na",
         "slot.lbl.da",
@@ -62,6 +63,17 @@
         "x": 140.0,
         "y": 35.0,
         "font_size": 30
+      }
+    },
+    {
+      "id": "slot.center1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 453.0,
+        "cy": 175.0,
+        "r": 5.0,
+        "fill": "#ff4aa2"
       }
     },
     {
@@ -176,8 +188,8 @@
       "content": {
         "text": "ㅇ",
         "style_role": "label",
-        "x": 450.0,
-        "y": 170.0,
+        "x": 440.0,
+        "y": 165.0,
         "font_size": 30
       }
     },
@@ -189,7 +201,7 @@
         "text": "① 선분 ㄱㄴ",
         "style_role": "choice",
         "x": 135.0,
-        "y": 355.0,
+        "y": 357.0,
         "font_size": 30
       }
     },
@@ -201,7 +213,7 @@
         "text": "② 선분 ㄷㄹ",
         "style_role": "choice",
         "x": 320.0,
-        "y": 350.0,
+        "y": 357.0,
         "font_size": 30
       }
     },
@@ -213,7 +225,7 @@
         "text": "③ 선분 ㅇㄹ",
         "style_role": "choice",
         "x": 505.0,
-        "y": 345.0,
+        "y": 357.0,
         "font_size": 30
       }
     }
@@ -226,10 +238,11 @@
     "slot.q1",
     "region.diagram",
     "slot.circle",
-    "slot.pt.da",
     "slot.seg.left",
     "slot.seg.mid",
     "slot.seg.diag",
+    "slot.center1",
+    "slot.pt.da",
     "slot.lbl.ga",
     "slot.lbl.na",
     "slot.lbl.da",

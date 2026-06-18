@@ -24,17 +24,15 @@
       "role": "diagram",
       "flow": "absolute",
       "slot_ids": [
-        "slot.diagram.circle",
         "slot.diagram.center",
+        "slot.circle.outer",
         "slot.diagram.radius1",
         "slot.diagram.diameter",
-        "slot.diagram.radius2",
-        "slot.diagram.arc1",
-        "slot.diagram.arc2",
         "slot.diagram.arc3",
         "slot.diagram.label.ga",
         "slot.diagram.label.na",
-        "slot.diagram.label.da"
+        "slot.diagram.label.da",
+        "slot.diagram.label.da.copy1"
       ]
     },
     {
@@ -64,8 +62,8 @@
       "content": {
         "text": "원의 반지름 ( ㄱ, ㄴ, ㄷ ), 원의 지름 ( ㄱ, ㄴ, ㄷ )",
         "style_role": "question",
-        "x": 180.0,
-        "y": 365.0,
+        "x": 40.0,
+        "y": 375.0,
         "font_size": 30
       }
     },
@@ -77,19 +75,19 @@
         "text": "기호를 선택해 보세요.",
         "style_role": "question",
         "x": 20.0,
-        "y": 100.0,
+        "y": 90.0,
         "font_size": 30
       }
     },
     {
-      "id": "slot.diagram.circle",
-      "kind": "rect",
+      "id": "slot.circle.outer",
+      "kind": "circle",
       "prompt": "",
       "content": {
-        "x": 420.0,
-        "y": 160.0,
-        "width": 130.0,
-        "height": 130.0
+        "cx": 393.0,
+        "cy": 208.0,
+        "r": 105.0,
+        "fill": "none"
       }
     },
     {
@@ -97,8 +95,8 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 480.0,
-        "cy": 230.0,
+        "cx": 393.0,
+        "cy": 207.0,
         "r": 5.0,
         "fill": "#ff3ea5"
       }
@@ -108,10 +106,10 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 420.0,
-        "y1": 245.0,
-        "x2": 480.0,
-        "y2": 230.0
+        "x1": 300.0,
+        "y1": 255.0,
+        "x2": 395.0,
+        "y2": 205.0
       }
     },
     {
@@ -119,43 +117,10 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 415.0,
-        "y1": 205.0,
-        "x2": 540.0,
-        "y2": 275.0
-      }
-    },
-    {
-      "id": "slot.diagram.radius2",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 480.0,
-        "y1": 230.0,
-        "x2": 540.0,
-        "y2": 275.0
-      }
-    },
-    {
-      "id": "slot.diagram.arc1",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 430.0,
-        "y1": 195.0,
-        "x2": 490.0,
-        "y2": 235.0
-      }
-    },
-    {
-      "id": "slot.diagram.arc2",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 485.0,
-        "y1": 230.0,
-        "x2": 540.0,
-        "y2": 275.0
+        "x1": 300.0,
+        "y1": 160.0,
+        "x2": 485.0,
+        "y2": 255.0
       }
     },
     {
@@ -163,10 +128,10 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 425.0,
-        "y1": 265.0,
-        "x2": 530.0,
-        "y2": 275.0
+        "x1": 300.0,
+        "y1": 255.0,
+        "x2": 485.0,
+        "y2": 255.0
       }
     },
     {
@@ -176,8 +141,8 @@
       "content": {
         "text": "ㄱ",
         "style_role": "label",
-        "x": 500.0,
-        "y": 210.0,
+        "x": 410.0,
+        "y": 195.0,
         "font_size": 20
       }
     },
@@ -188,8 +153,8 @@
       "content": {
         "text": "ㄴ",
         "style_role": "label",
-        "x": 445.0,
-        "y": 235.0,
+        "x": 330.0,
+        "y": 220.0,
         "font_size": 20
       }
     },
@@ -200,9 +165,22 @@
       "content": {
         "text": "ㄷ",
         "style_role": "label",
-        "x": 470.0,
-        "y": 270.0,
+        "x": 385.0,
+        "y": 280.0,
         "font_size": 20
+      }
+    },
+    {
+      "id": "slot.diagram.label.da.copy1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㅇ",
+        "style_role": "body",
+        "x": 385.0,
+        "y": 230.0,
+        "font_size": 20,
+        "fill": "#111111"
       }
     }
   ],
@@ -215,17 +193,15 @@
     "slot.q2",
     "slot.q5",
     "region.diagram",
-    "slot.diagram.circle",
     "slot.diagram.center",
+    "slot.circle.outer",
     "slot.diagram.radius1",
     "slot.diagram.diameter",
-    "slot.diagram.radius2",
-    "slot.diagram.arc1",
-    "slot.diagram.arc2",
     "slot.diagram.arc3",
     "slot.diagram.label.ga",
     "slot.diagram.label.na",
     "slot.diagram.label.da",
+    "slot.diagram.label.da.copy1",
     "region.answer"
   ]
 }

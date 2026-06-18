@@ -7,23 +7,6 @@
   },
   "elements": [
     {
-      "id": "slot.q.box.rect",
-      "type": "rect",
-      "attributes": {
-        "x": 12.0,
-        "y": 12.0,
-        "width": 12.0,
-        "height": 12.0,
-        "fill": "#ffffff",
-        "stroke": "#111111",
-        "stroke-width": 1.5
-      },
-      "source_ref": "slot.q.box",
-      "refs": {
-        "layout_slot_id": "slot.q.box"
-      }
-    },
-    {
       "id": "slot.q.num.text",
       "type": "text",
       "attributes": {
@@ -44,8 +27,8 @@
       "id": "slot.q.text.text",
       "type": "text",
       "attributes": {
-        "x": 80.0,
-        "y": 30.0,
+        "x": 35.0,
+        "y": 75.0,
         "max_width": 552.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
@@ -61,9 +44,9 @@
       "id": "slot.circle.circle",
       "type": "circle",
       "attributes": {
-        "cx": 450.0,
-        "cy": 235.0,
-        "r": 100.0,
+        "cx": 330.0,
+        "cy": 265.0,
+        "r": 135.0,
         "stroke": "#111111",
         "stroke-width": 2.0,
         "fill": "none"
@@ -77,8 +60,8 @@
       "id": "slot.pt.a.circle",
       "type": "circle",
       "attributes": {
-        "cx": 440.0,
-        "cy": 180.0,
+        "cx": 330.0,
+        "cy": 205.0,
         "r": 5.0,
         "stroke": "#111111",
         "stroke-width": 2.0,
@@ -93,8 +76,8 @@
       "id": "slot.pt.b.circle",
       "type": "circle",
       "attributes": {
-        "cx": 440.0,
-        "cy": 235.0,
+        "cx": 330.0,
+        "cy": 265.0,
         "r": 5.0,
         "stroke": "#111111",
         "stroke-width": 2.0,
@@ -109,8 +92,8 @@
       "id": "slot.pt.c.circle",
       "type": "circle",
       "attributes": {
-        "cx": 400.0,
-        "cy": 260.0,
+        "cx": 270.0,
+        "cy": 295.0,
         "r": 5.0,
         "stroke": "#111111",
         "stroke-width": 2.0,
@@ -125,8 +108,8 @@
       "id": "slot.pt.d.circle",
       "type": "circle",
       "attributes": {
-        "cx": 520.0,
-        "cy": 235.0,
+        "cx": 430.0,
+        "cy": 265.0,
         "r": 5.0,
         "stroke": "#111111",
         "stroke-width": 2.0,
@@ -138,331 +121,11 @@
       }
     },
     {
-      "id": "slot.grid.v1.line",
-      "type": "line",
-      "attributes": {
-        "x1": 360.0,
-        "y1": 45.0,
-        "x2": 360.0,
-        "y2": 305.0,
-        "stroke": "#111111",
-        "stroke-width": 2.0
-      },
-      "source_ref": "slot.grid.v1",
-      "refs": {
-        "layout_slot_id": "slot.grid.v1"
-      }
-    },
-    {
-      "id": "slot.grid.v2.line",
-      "type": "line",
-      "attributes": {
-        "x1": 385.0,
-        "y1": 45.0,
-        "x2": 385.0,
-        "y2": 305.0,
-        "stroke": "#111111",
-        "stroke-width": 2.0
-      },
-      "source_ref": "slot.grid.v2",
-      "refs": {
-        "layout_slot_id": "slot.grid.v2"
-      }
-    },
-    {
-      "id": "slot.grid.v3.line",
-      "type": "line",
-      "attributes": {
-        "x1": 410.0,
-        "y1": 45.0,
-        "x2": 410.0,
-        "y2": 305.0,
-        "stroke": "#111111",
-        "stroke-width": 2.0
-      },
-      "source_ref": "slot.grid.v3",
-      "refs": {
-        "layout_slot_id": "slot.grid.v3"
-      }
-    },
-    {
-      "id": "slot.grid.v4.line",
-      "type": "line",
-      "attributes": {
-        "x1": 435.0,
-        "y1": 45.0,
-        "x2": 435.0,
-        "y2": 305.0,
-        "stroke": "#111111",
-        "stroke-width": 2.0
-      },
-      "source_ref": "slot.grid.v4",
-      "refs": {
-        "layout_slot_id": "slot.grid.v4"
-      }
-    },
-    {
-      "id": "slot.grid.v5.line",
-      "type": "line",
-      "attributes": {
-        "x1": 460.0,
-        "y1": 45.0,
-        "x2": 460.0,
-        "y2": 305.0,
-        "stroke": "#111111",
-        "stroke-width": 2.0
-      },
-      "source_ref": "slot.grid.v5",
-      "refs": {
-        "layout_slot_id": "slot.grid.v5"
-      }
-    },
-    {
-      "id": "slot.grid.v6.line",
-      "type": "line",
-      "attributes": {
-        "x1": 485.0,
-        "y1": 45.0,
-        "x2": 485.0,
-        "y2": 305.0,
-        "stroke": "#111111",
-        "stroke-width": 2.0
-      },
-      "source_ref": "slot.grid.v6",
-      "refs": {
-        "layout_slot_id": "slot.grid.v6"
-      }
-    },
-    {
-      "id": "slot.grid.v7.line",
-      "type": "line",
-      "attributes": {
-        "x1": 510.0,
-        "y1": 45.0,
-        "x2": 510.0,
-        "y2": 305.0,
-        "stroke": "#111111",
-        "stroke-width": 2.0
-      },
-      "source_ref": "slot.grid.v7",
-      "refs": {
-        "layout_slot_id": "slot.grid.v7"
-      }
-    },
-    {
-      "id": "slot.grid.v8.line",
-      "type": "line",
-      "attributes": {
-        "x1": 535.0,
-        "y1": 45.0,
-        "x2": 535.0,
-        "y2": 305.0,
-        "stroke": "#111111",
-        "stroke-width": 2.0
-      },
-      "source_ref": "slot.grid.v8",
-      "refs": {
-        "layout_slot_id": "slot.grid.v8"
-      }
-    },
-    {
-      "id": "slot.grid.v9.line",
-      "type": "line",
-      "attributes": {
-        "x1": 560.0,
-        "y1": 45.0,
-        "x2": 560.0,
-        "y2": 305.0,
-        "stroke": "#111111",
-        "stroke-width": 2.0
-      },
-      "source_ref": "slot.grid.v9",
-      "refs": {
-        "layout_slot_id": "slot.grid.v9"
-      }
-    },
-    {
-      "id": "slot.grid.v10.line",
-      "type": "line",
-      "attributes": {
-        "x1": 585.0,
-        "y1": 45.0,
-        "x2": 585.0,
-        "y2": 305.0,
-        "stroke": "#111111",
-        "stroke-width": 2.0
-      },
-      "source_ref": "slot.grid.v10",
-      "refs": {
-        "layout_slot_id": "slot.grid.v10"
-      }
-    },
-    {
-      "id": "slot.grid.h1.line",
-      "type": "line",
-      "attributes": {
-        "x1": 360.0,
-        "y1": 45.0,
-        "x2": 585.0,
-        "y2": 45.0,
-        "stroke": "#111111",
-        "stroke-width": 2.0
-      },
-      "source_ref": "slot.grid.h1",
-      "refs": {
-        "layout_slot_id": "slot.grid.h1"
-      }
-    },
-    {
-      "id": "slot.grid.h2.line",
-      "type": "line",
-      "attributes": {
-        "x1": 360.0,
-        "y1": 70.0,
-        "x2": 585.0,
-        "y2": 70.0,
-        "stroke": "#111111",
-        "stroke-width": 2.0
-      },
-      "source_ref": "slot.grid.h2",
-      "refs": {
-        "layout_slot_id": "slot.grid.h2"
-      }
-    },
-    {
-      "id": "slot.grid.h3.line",
-      "type": "line",
-      "attributes": {
-        "x1": 360.0,
-        "y1": 95.0,
-        "x2": 585.0,
-        "y2": 95.0,
-        "stroke": "#111111",
-        "stroke-width": 2.0
-      },
-      "source_ref": "slot.grid.h3",
-      "refs": {
-        "layout_slot_id": "slot.grid.h3"
-      }
-    },
-    {
-      "id": "slot.grid.h4.line",
-      "type": "line",
-      "attributes": {
-        "x1": 360.0,
-        "y1": 120.0,
-        "x2": 585.0,
-        "y2": 120.0,
-        "stroke": "#111111",
-        "stroke-width": 2.0
-      },
-      "source_ref": "slot.grid.h4",
-      "refs": {
-        "layout_slot_id": "slot.grid.h4"
-      }
-    },
-    {
-      "id": "slot.grid.h5.line",
-      "type": "line",
-      "attributes": {
-        "x1": 360.0,
-        "y1": 145.0,
-        "x2": 585.0,
-        "y2": 145.0,
-        "stroke": "#111111",
-        "stroke-width": 2.0
-      },
-      "source_ref": "slot.grid.h5",
-      "refs": {
-        "layout_slot_id": "slot.grid.h5"
-      }
-    },
-    {
-      "id": "slot.grid.h6.line",
-      "type": "line",
-      "attributes": {
-        "x1": 360.0,
-        "y1": 170.0,
-        "x2": 585.0,
-        "y2": 170.0,
-        "stroke": "#111111",
-        "stroke-width": 2.0
-      },
-      "source_ref": "slot.grid.h6",
-      "refs": {
-        "layout_slot_id": "slot.grid.h6"
-      }
-    },
-    {
-      "id": "slot.grid.h7.line",
-      "type": "line",
-      "attributes": {
-        "x1": 360.0,
-        "y1": 195.0,
-        "x2": 585.0,
-        "y2": 195.0,
-        "stroke": "#111111",
-        "stroke-width": 2.0
-      },
-      "source_ref": "slot.grid.h7",
-      "refs": {
-        "layout_slot_id": "slot.grid.h7"
-      }
-    },
-    {
-      "id": "slot.grid.h8.line",
-      "type": "line",
-      "attributes": {
-        "x1": 360.0,
-        "y1": 220.0,
-        "x2": 585.0,
-        "y2": 220.0,
-        "stroke": "#111111",
-        "stroke-width": 2.0
-      },
-      "source_ref": "slot.grid.h8",
-      "refs": {
-        "layout_slot_id": "slot.grid.h8"
-      }
-    },
-    {
-      "id": "slot.grid.h9.line",
-      "type": "line",
-      "attributes": {
-        "x1": 360.0,
-        "y1": 245.0,
-        "x2": 585.0,
-        "y2": 245.0,
-        "stroke": "#111111",
-        "stroke-width": 2.0
-      },
-      "source_ref": "slot.grid.h9",
-      "refs": {
-        "layout_slot_id": "slot.grid.h9"
-      }
-    },
-    {
-      "id": "slot.grid.h10.line",
-      "type": "line",
-      "attributes": {
-        "x1": 360.0,
-        "y1": 270.0,
-        "x2": 585.0,
-        "y2": 270.0,
-        "stroke": "#111111",
-        "stroke-width": 2.0
-      },
-      "source_ref": "slot.grid.h10",
-      "refs": {
-        "layout_slot_id": "slot.grid.h10"
-      }
-    },
-    {
       "id": "slot.lb.a.text",
       "type": "text",
       "attributes": {
-        "x": 415.0,
-        "y": 175.0,
+        "x": 300.0,
+        "y": 195.0,
         "max_width": 552.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
@@ -478,8 +141,8 @@
       "id": "slot.lb.b.text",
       "type": "text",
       "attributes": {
-        "x": 415.0,
-        "y": 225.0,
+        "x": 295.0,
+        "y": 260.0,
         "max_width": 552.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
@@ -495,8 +158,8 @@
       "id": "slot.lb.c.text",
       "type": "text",
       "attributes": {
-        "x": 375.0,
-        "y": 260.0,
+        "x": 235.0,
+        "y": 310.0,
         "max_width": 552.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
@@ -512,8 +175,8 @@
       "id": "slot.lb.d.text",
       "type": "text",
       "attributes": {
-        "x": 495.0,
-        "y": 225.0,
+        "x": 420.0,
+        "y": 255.0,
         "max_width": 552.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",

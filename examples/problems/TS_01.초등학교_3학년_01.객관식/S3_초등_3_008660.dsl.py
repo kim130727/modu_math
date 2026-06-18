@@ -56,8 +56,8 @@ def build_problem_template() -> ProblemTemplate:
         slots=(TextSlot(
                 id="slot.q_text_1",
                 prompt="",
-                text = '\n    그림에서 원의 반지름을 나타내는 선분을 찾아 기호를 모두 선택해\n    보세요.\n  ', style_role="question",
-                x = 52, y = 35, font_size = 28, fill = '#111111'),
+                text = '\n그림에서 원의 반지름을 나타내는 선분을 찾아 기호를 모두 선택해\n보세요.', style_role="question",
+                x = 55, y = 20, font_size = 30, fill = '#111111'),
             CircleSlot(
                 id="slot.circle", prompt="", cx = 480, cy = 175, r = 90, fill="none", 
             stroke = '#111111', stroke_width = 2),

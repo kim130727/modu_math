@@ -1,4 +1,4 @@
-from modu_math.dsl import Canvas, ProblemTemplate, Region, TextBoxSlot, compile_problem_template_to_layout
+from modu_math.dsl import Canvas, ProblemTemplate, Region, TextBoxSlot, TextSlot, compile_problem_template_to_layout
 from modu_math.layout.validate import validate_layout_json
 from modu_math.renderer.compiler import compile_renderer_json
 from modu_math.renderer.svg.render import render_svg
@@ -38,3 +38,27 @@ def test_text_box_slot_renders_fixed_box_metadata() -> None:
     assert 'data-slot-kind="text_box"' in svg
     assert 'data-box-width="120"' in svg
     assert 'text-anchor="middle"' in svg
+
+
+def test_text_slot_max_width_does_not_auto_wrap() -> None:
+    problem = ProblemTemplate(
+        id="text_no_wrap_demo",
+        title="Text no wrap demo",
+        canvas=Canvas(width=300, height=120),
+        regions=(Region(id="region.stem", role="stem", flow="absolute", slot_ids=("slot.text",)),),
+        slots=(
+            TextSlot(
+                id="slot.text",
+                text="long text should stay on one rendered line",
+                x=10,
+                y=20,
+                font_size=20,
+                max_width=30,
+            ),
+        ),
+    )
+
+    svg = render_svg(compile_renderer_json(compile_problem_template_to_layout(problem)))
+
+    assert "<tspan" not in svg
+    assert "long text should stay on one rendered line" in svg

@@ -98,6 +98,7 @@ from modu_math.dsl import (
     compile_problem_template_to_layout,
     compile_problem_template_to_semantic,
 )
+from modu_math.layout.editor_overrides import apply_editor_overrides
 from modu_math.renderer.compiler import compile_renderer_json
 from modu_math.renderer.svg.render import render_svg
 from modu_math.pipeline.validate_contracts import validate_semantic_solvable_answer_match
@@ -123,6 +124,12 @@ else:
 # Compilation
 semantic = compile_problem_template_to_semantic(problem, problem_type="diagram_problem")
 layout = compile_problem_template_to_layout(problem)
+
+editor_overrides_path = base.with_suffix(".editor_overrides.json")
+if editor_overrides_path.exists():
+    editor_overrides = json.loads(editor_overrides_path.read_text(encoding="utf-8-sig"))
+    layout = apply_editor_overrides(layout, editor_overrides)
+
 renderer = compile_renderer_json(layout)
 svg = render_svg(renderer)
 

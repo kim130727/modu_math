@@ -102,17 +102,13 @@ def build_problem_template() -> ProblemTemplate:
                 flow="absolute",
                 slot_ids=("slot.label.na", *(slot.id for slot in na_grid), *(slot.id for slot in na_circles)),
             ),
-            Region(id="region.choice", role="choices", flow="absolute", slot_ids=("slot.choice1", )),
+            Region(id="region.choice", role="choices", flow="absolute", slot_ids=("slot.choice1",'slot.choice1.copy1')),
         ),
-        slots=(
-            TextSlot(
+        slots=(TextSlot(
                 id="slot.q1",
                 prompt="",
                 text = '가와 나는 규칙에 따라 원을 그린 것입니다. 알맞은 것을 선택해 두 모양', style_role="question",
-                x=8.0,
-                y=30.0,
-                font_size=24,
-            ),
+                x = 10, y = 30, font_size = 25),
             TextSlot(
                 id="slot.q2",
                 prompt="",
@@ -131,13 +127,8 @@ def build_problem_template() -> ProblemTemplate:
             TextSlot(
                 id="slot.choice1",
                 prompt="",
-                text = '다른 점: (가,나)는 원의 중심을 옮겨가며 그렸고, (가,나)는 원의 중심이 모두 같게 그렸습니다.', style_role="answer_option",
-                x=8.0,
-                y=315.0,
-                font_size=23,
-            ),
-            
-        ),
+                text = '    다른 점: (가,나)는 원의 중심을 옮겨가며 그렸고, (가,나)는 원의 중심이 모두', style_role="answer_option",
+                x = 15, y = 300, font_size = 25),TextSlot(id = 'slot.choice1.copy1', prompt = '', text = '같게 그렸습니다.  ', x = 15, y = 335, font_size = 25, fill = '#111111')),
         diagrams=(),
         groups=(),
         constraints=(),

@@ -20,8 +20,6 @@
         "slot.left.person.body",
         "slot.left.person.head",
         "slot.left.person.hair.cap",
-        "slot.left.person.eye.left",
-        "slot.left.person.eye.right",
         "slot.left.person.smile",
         "slot.name.left.box",
         "slot.right.bubble",
@@ -29,10 +27,12 @@
         "slot.right.person.body",
         "slot.right.person.head",
         "slot.right.person.hair.cap",
-        "slot.right.person.eye.left",
-        "slot.right.person.eye.right",
         "slot.right.person.smile",
         "slot.name.right.box",
+        "slot.left.person.eye.left",
+        "slot.left.person.eye.right",
+        "slot.right.person.eye.left",
+        "slot.right.person.eye.right",
         "slot.q1",
         "slot.expr_text",
         "slot.left.text",
@@ -102,16 +102,16 @@
       "content": {
         "points": [
           [
-            247.0,
-            180.0
+            247,
+            180
           ],
           [
-            267.0,
-            180.0
+            267,
+            180
           ],
           [
-            257.0,
-            225.0
+            257,
+            225
           ]
         ],
         "stroke": "#222222",
@@ -126,10 +126,12 @@
       "content": {
         "text": "몫은 13이야.",
         "style_role": "speech",
-        "x": 257.0,
-        "y": 136.0,
+        "x": 257,
+        "y": 136,
         "font_size": 24,
-        "anchor": "middle"
+        "anchor": "middle",
+        "max_width": 657,
+        "fill": "#111111"
       }
     },
     {
@@ -139,24 +141,25 @@
       "content": {
         "points": [
           [
-            229.0,
-            365.0
+            229,
+            365
           ],
           [
-            285.0,
-            365.0
+            285,
+            365
           ],
           [
-            275.0,
-            329.0
+            275,
+            329
           ],
           [
-            239.0,
-            329.0
+            239,
+            329
           ]
         ],
         "stroke": "none",
-        "fill": "#D7A0D7"
+        "fill": "#D7A0D7",
+        "stroke_width": 2
       }
     },
     {
@@ -164,11 +167,12 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 257.0,
-        "cy": 292.0,
-        "r": 28.0,
+        "cx": 257,
+        "cy": 292,
+        "r": 28,
         "stroke": "none",
-        "fill": "#ffd9ad"
+        "fill": "#ffd9ad",
+        "stroke_width": 2
       }
     },
     {
@@ -180,7 +184,8 @@
         "x": 0.0,
         "y": 0.0,
         "stroke": "none",
-        "fill": "#4b1f16"
+        "fill": "#4b1f16",
+        "stroke_width": 2
       }
     },
     {
@@ -188,11 +193,12 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 247.0,
-        "cy": 296.0,
+        "cx": 247,
+        "cy": 296,
         "r": 2.3,
         "stroke": "none",
-        "fill": "#2b2118"
+        "fill": "#2b2118",
+        "stroke_width": 2
       }
     },
     {
@@ -200,11 +206,12 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 267.0,
-        "cy": 296.0,
+        "cx": 267,
+        "cy": 296,
         "r": 2.3,
         "stroke": "none",
-        "fill": "#2b2118"
+        "fill": "#2b2118",
+        "stroke_width": 2
       }
     },
     {
@@ -225,14 +232,14 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 219.0,
-        "y": 363.0,
-        "width": 76.0,
-        "height": 36.0,
+        "x": 219,
+        "y": 363,
+        "width": 76,
+        "height": 36,
         "stroke": "#6fcf83",
-        "stroke_width": 2.0,
-        "rx": 9.0,
-        "ry": 9.0,
+        "stroke_width": 2,
+        "rx": 9,
+        "ry": 9,
         "fill": "#e9f7dd"
       }
     },
@@ -243,10 +250,12 @@
       "content": {
         "text": "현태",
         "style_role": "label",
-        "x": 257.0,
-        "y": 389.0,
+        "x": 257,
+        "y": 389,
         "font_size": 25,
-        "anchor": "middle"
+        "anchor": "middle",
+        "max_width": 657,
+        "fill": "#111111"
       }
     },
     {
@@ -440,8 +449,6 @@
     "slot.left.person.body",
     "slot.left.person.head",
     "slot.left.person.hair.cap",
-    "slot.left.person.eye.left",
-    "slot.left.person.eye.right",
     "slot.left.person.smile",
     "slot.name.left.box",
     "slot.right.bubble",
@@ -449,10 +456,12 @@
     "slot.right.person.body",
     "slot.right.person.head",
     "slot.right.person.hair.cap",
-    "slot.right.person.eye.left",
-    "slot.right.person.eye.right",
     "slot.right.person.smile",
     "slot.name.right.box",
+    "slot.left.person.eye.left",
+    "slot.left.person.eye.right",
+    "slot.right.person.eye.left",
+    "slot.right.person.eye.right",
     "slot.q1",
     "slot.expr_text",
     "slot.left.text",

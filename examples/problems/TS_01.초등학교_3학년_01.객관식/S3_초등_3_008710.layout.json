@@ -25,9 +25,6 @@
         "slot.circle.top",
         "slot.circle.mid",
         "slot.circle.bot",
-        "slot.pt.top",
-        "slot.pt.mid",
-        "slot.pt.bot",
         "slot.grid.v1",
         "slot.grid.v2",
         "slot.grid.v3",
@@ -58,7 +55,10 @@
         "slot.grid.h14",
         "slot.grid.h15",
         "slot.grid.h16",
-        "slot.grid.h17"
+        "slot.grid.h17",
+        "slot.pt.top",
+        "slot.pt.mid",
+        "slot.pt.bot"
       ]
     },
     {
@@ -602,10 +602,10 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 65.0,
-        "y": 455.0,
-        "width": 832.0,
-        "height": 118.0,
+        "x": 15.0,
+        "y": 495.0,
+        "width": 830.0,
+        "height": 120.0,
         "stroke": "#FFA64D",
         "stroke_width": 1.5,
         "fill": "none"
@@ -618,9 +618,9 @@
       "content": {
         "text": "원의 중심이 ( 아래쪽 , 오른쪽 )으로 모든 3칸씩 옮겨 가고",
         "style_role": "body",
-        "x": 123.0,
-        "y": 503.0,
-        "font_size": 28
+        "x": 75.0,
+        "y": 545.0,
+        "font_size": 30
       }
     },
     {
@@ -630,9 +630,9 @@
       "content": {
         "text": "원의 반지름이 모든 ( 2, 3, 6 )칸으로 같게 그린 규칙입니다.",
         "style_role": "body",
-        "x": 125.0,
-        "y": 545.0,
-        "font_size": 28
+        "x": 75.0,
+        "y": 585.0,
+        "font_size": 30
       }
     }
   ],
@@ -646,9 +646,6 @@
     "slot.circle.top",
     "slot.circle.mid",
     "slot.circle.bot",
-    "slot.pt.top",
-    "slot.pt.mid",
-    "slot.pt.bot",
     "slot.grid.v1",
     "slot.grid.v2",
     "slot.grid.v3",
@@ -680,6 +677,9 @@
     "slot.grid.h15",
     "slot.grid.h16",
     "slot.grid.h17",
+    "slot.pt.top",
+    "slot.pt.mid",
+    "slot.pt.bot",
     "region.rule",
     "slot.rule_box",
     "slot.rule_1",

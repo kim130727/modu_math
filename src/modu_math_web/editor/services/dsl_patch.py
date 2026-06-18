@@ -1,5 +1,8 @@
 from __future__ import annotations
 
+import math
+import re
+import json
 from dataclasses import dataclass
 from typing import Any
 
@@ -32,10 +35,13 @@ CHARACTER_MOVE_FIELDS = {"move_dx", "move_dy"}
 FIGURE_MOVE_FIELDS = {"move_dx", "move_dy"}
 BASE_TEN_HELPERS = {"_base_ten_model", "_partition_box"}
 PAPER_FOLD_SEQUENCE_HELPERS = {"circle_fold_sequence_slots"}
+PAPER_FOLD_SINGLE_HELPERS = {"folded_half_circle_slots", "opened_circle_with_fold_slots"}
 GRID_HELPERS = {"_grid_slots"}
 CANDIDATE_POINT_HELPERS = {"_candidate_slots"}
+MEASUREMENT_TOOL_HELPERS = {"compass_on_ruler_slots"}
 CANVAS_TARGETS = {"__canvas__", "canvas"}
 CANVAS_FIELDS = {"width", "height"}
+EDITOR_OVERRIDE_FIELDS = set().union(*SUPPORTED_SLOTS.values()) - {"move_dx", "move_dy"}
 
 
 @dataclass
@@ -51,6 +57,11 @@ class DslPatchError(ValueError):
 
 def _normalize_slot_id(value: str) -> str:
     return "".join(ch for ch in value.lower() if ch.isalnum())
+
+
+def _measurement_tool_base_from_slot_id(slot_id: str) -> str | None:
+    match = re.match(r"^(slot\..+)\.(?:ruler|compass)(?:\.|$)", slot_id)
+    return match.group(1) if match else None
 
 
 class SlotIdCollector(cst.CSTVisitor):
@@ -306,6 +317,213 @@ def _first_string_arg(call: cst.Call, keyword_name: str) -> str | None:
     return value if isinstance(value, str) else None
 
 
+def _path_number_bounds(d: str) -> tuple[float, float, float, float] | None:
+    numbers = [float(m.group(0)) for m in re.finditer(r"[-+]?(?:\d+(?:\.\d*)?|\.\d+)", d)]
+    if len(numbers) < 4:
+        return None
+    xs = numbers[0::2]
+    ys = numbers[1::2]
+    return min(xs), min(ys), max(xs), max(ys)
+
+
+def _editor_overrides_path(paths: Any):
+    return paths.base_dir / f"{paths.artifact_base}.editor_overrides.json"
+
+
+def _save_editor_slot_override(paths: Any, target: str, fields: dict[str, Any]) -> None:
+    invalid = sorted(set(fields) - EDITOR_OVERRIDE_FIELDS)
+    if invalid:
+        raise DslPatchError(f"unsupported override field(s): {', '.join(invalid)}")
+    path = _editor_overrides_path(paths)
+    data: dict[str, Any] = {}
+    if path.exists():
+        loaded = json.loads(path.read_text(encoding="utf-8-sig"))
+        if isinstance(loaded, dict):
+            data = loaded
+    slots = data.setdefault("slots", {})
+    if not isinstance(slots, dict):
+        slots = {}
+        data["slots"] = slots
+    current = slots.setdefault(target, {})
+    if not isinstance(current, dict):
+        current = {}
+        slots[target] = current
+    current.update(fields)
+    data["version"] = 1
+    path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+
+def _save_editor_slot_delete(paths: Any, target: str) -> None:
+    path = _editor_overrides_path(paths)
+    data: dict[str, Any] = {}
+    if path.exists():
+        loaded = json.loads(path.read_text(encoding="utf-8-sig"))
+        if isinstance(loaded, dict):
+            data = loaded
+    deleted = data.setdefault("deleted_slots", [])
+    if not isinstance(deleted, list):
+        deleted = []
+        data["deleted_slots"] = deleted
+    if target not in deleted:
+        deleted.append(target)
+    slots = data.get("slots")
+    if isinstance(slots, dict):
+        slots.pop(target, None)
+    data["version"] = 1
+    path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+
+def _save_editor_region_slot_order(paths: Any, region_id: str, slot_ids: list[Any]) -> None:
+    clean_slot_ids = [slot_id for slot_id in slot_ids if isinstance(slot_id, str) and slot_id]
+    if not region_id or not clean_slot_ids:
+        raise DslPatchError("layer patch requires value.region_id and non-empty value.slot_ids")
+    path = _editor_overrides_path(paths)
+    data: dict[str, Any] = {}
+    if path.exists():
+        loaded = json.loads(path.read_text(encoding="utf-8-sig"))
+        if isinstance(loaded, dict):
+            data = loaded
+    orders = data.setdefault("region_slot_orders", {})
+    if not isinstance(orders, dict):
+        orders = {}
+        data["region_slot_orders"] = orders
+    orders[region_id] = clean_slot_ids
+    data["version"] = 1
+    path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+
+def _circle_helper_prefix(target: str, helper_name: str) -> str | None:
+    suffixes = {
+        "folded_half_circle_slots": (".paper", ".edge"),
+        "opened_circle_with_fold_slots": (".paper", ".fold_line"),
+    }[helper_name]
+    for suffix in suffixes:
+        if target.endswith(suffix):
+            return target[: -len(suffix)]
+    return target
+
+
+def _function_contains_single_paper_helper(function_node: cst.FunctionDef, target: str) -> bool:
+    class Finder(cst.CSTVisitor):
+        def __init__(self) -> None:
+            self.found = False
+
+        def visit_Call(self, node: cst.Call) -> None:
+            call_name = _call_name(node)
+            if call_name not in PAPER_FOLD_SINGLE_HELPERS:
+                return
+            prefix = _first_string_arg(node, "prefix")
+            if prefix is not None and _circle_helper_prefix(target, call_name) == prefix:
+                self.found = True
+
+    finder = Finder()
+    function_node.visit(finder)
+    return finder.found
+
+
+def _generated_slot_override_statement(target: str, fields: dict[str, Any]) -> cst.BaseStatement:
+    replacements = ", ".join(f"{name}={repr(value)}" for name, value in fields.items())
+    code = f"slots = tuple(replace(slot, {replacements}) if slot.id == {target!r} else slot for slot in slots)"
+    return cst.parse_statement(code)
+
+
+class GeneratedHelperSlotOverrideUpdater(cst.CSTTransformer):
+    def __init__(self, target: str, fields: dict[str, Any]):
+        self.target = target
+        self.fields = fields
+        self.updated = False
+
+    def _is_target_slot_test(self, test: cst.BaseExpression) -> bool:
+        code = cst.Module([]).code_for_node(test)
+        return code in {f"slot.id == {self.target!r}", f"{self.target!r} == slot.id"}
+
+    def leave_IfExp(self, original_node: cst.IfExp, updated_node: cst.IfExp) -> cst.BaseExpression:
+        if not self._is_target_slot_test(original_node.test):
+            return updated_node
+        if not isinstance(updated_node.body, cst.Call) or _call_name(updated_node.body) != "replace":
+            return updated_node
+        args = list(updated_node.body.args)
+        for name, value in self.fields.items():
+            _replace_or_append_arg(args, name, value)
+        self.updated = True
+        return updated_node.with_changes(body=updated_node.body.with_changes(args=tuple(args)))
+
+    def leave_FunctionDef(self, original_node: cst.FunctionDef, updated_node: cst.FunctionDef) -> cst.FunctionDef:
+        if self.updated or not _function_contains_single_paper_helper(original_node, self.target):
+            return updated_node
+        if "d" not in self.fields:
+            return updated_node
+
+        invalid = sorted(set(self.fields) - {"d", "transform", "stroke", "stroke_width", "fill"})
+        if invalid:
+            return updated_node
+
+        body = list(updated_node.body.body)
+        insert_at = next((idx for idx, stmt in enumerate(body) if isinstance(stmt, cst.SimpleStatementLine) and any(isinstance(item, cst.Return) for item in stmt.body)), None)
+        if insert_at is None:
+            return updated_node
+        body.insert(insert_at, _generated_slot_override_statement(self.target, self.fields))
+        self.updated = True
+        return updated_node.with_changes(body=updated_node.body.with_changes(body=tuple(body)))
+
+
+class SinglePaperFoldHelperUpdater(cst.CSTTransformer):
+    def __init__(self, target: str, fields: dict[str, Any]):
+        self.target = target
+        self.fields = fields
+        self.updated = False
+
+    def leave_Call(self, original_node: cst.Call, updated_node: cst.Call) -> cst.BaseExpression:
+        call_name = _call_name(original_node)
+        if call_name not in PAPER_FOLD_SINGLE_HELPERS:
+            return updated_node
+
+        prefix = _first_string_arg(original_node, "prefix")
+        if prefix is None or _circle_helper_prefix(self.target, call_name) != prefix:
+            return updated_node
+
+        invalid = sorted(set(self.fields) - {"cx", "cy", "r", "d", "x1", "y1", "x2", "y2", "transform"})
+        if invalid:
+            raise DslPatchError(f"unsupported field(s) for paper fold helper: {', '.join(invalid)}")
+
+        updates: dict[str, float] = {}
+        if {"cx", "cy", "r"} & set(self.fields):
+            for name in ("cx", "cy", "r"):
+                if name in self.fields:
+                    updates[name] = float(self.fields[name])
+
+        if "d" in self.fields and isinstance(self.fields["d"], str):
+            bounds = _path_number_bounds(self.fields["d"])
+            if bounds is not None:
+                min_x, min_y, max_x, max_y = bounds
+                updates["cx"] = (min_x + max_x) / 2.0
+                updates["r"] = max(2.0, (max_x - min_x) / 2.0)
+                if call_name == "folded_half_circle_slots":
+                    updates["cy"] = min_y
+                else:
+                    updates["cy"] = (min_y + max_y) / 2.0
+
+        if {"x1", "y1", "x2", "y2"}.issubset(self.fields):
+            x1 = float(self.fields["x1"])
+            y1 = float(self.fields["y1"])
+            x2 = float(self.fields["x2"])
+            y2 = float(self.fields["y2"])
+            updates["cx"] = (x1 + x2) / 2.0
+            updates["cy"] = (y1 + y2) / 2.0
+            updates["r"] = max(2.0, math.hypot(x2 - x1, y2 - y1) / 2.0)
+            if call_name == "opened_circle_with_fold_slots":
+                updates["angle"] = math.degrees(math.atan2(y2 - y1, x2 - x1))
+
+        if not updates:
+            return updated_node
+
+        args = list(updated_node.args)
+        for name, value in updates.items():
+            _replace_or_append_arg(args, name, value)
+        self.updated = True
+        return updated_node.with_changes(args=tuple(args))
+
+
 def _person_anchor_from_patch(part: str, fields: dict[str, Any]) -> tuple[float | None, float | None]:
     cx: float | None = None
     head_cy: float | None = None
@@ -523,6 +741,37 @@ class PaperFoldSequenceMoveUpdater(cst.CSTTransformer):
         invalid = sorted(set(self.fields) - FIGURE_MOVE_FIELDS)
         if invalid:
             raise DslPatchError(f"unsupported field(s) for paper fold group: {', '.join(invalid)}")
+
+        dx = float(self.fields.get("move_dx", 0.0))
+        dy = float(self.fields.get("move_dy", 0.0))
+        args = list(updated_node.args)
+        changed = False
+        changed = _shift_or_append_numeric_arg(args, "x", dx) or changed
+        changed = _shift_or_append_numeric_arg(args, "y", dy) or changed
+
+        if changed:
+            self.updated = True
+            return updated_node.with_changes(args=tuple(args))
+        return updated_node
+
+
+class MeasurementToolMoveUpdater(cst.CSTTransformer):
+    def __init__(self, target: str, fields: dict[str, Any]):
+        self.target = target
+        self.fields = fields
+        self.updated = False
+
+    def leave_Call(self, original_node: cst.Call, updated_node: cst.Call) -> cst.BaseExpression:
+        if _call_name(original_node) not in MEASUREMENT_TOOL_HELPERS:
+            return updated_node
+
+        prefix = _first_string_arg(original_node, "prefix")
+        if prefix != self.target:
+            return updated_node
+
+        invalid = sorted(set(self.fields) - FIGURE_MOVE_FIELDS)
+        if invalid:
+            raise DslPatchError(f"unsupported field(s) for measurement tool group: {', '.join(invalid)}")
 
         dx = float(self.fields.get("move_dx", 0.0))
         dy = float(self.fields.get("move_dy", 0.0))
@@ -811,7 +1060,9 @@ def apply_layout_patches(problem_id: str, patches: list[dict[str, Any]]) -> tupl
             deleter = SlotDeleteTransformer(target=target)
             transformed = transformed.visit(deleter)
             if not deleter.deleted_slot:
-                raise DslPatchError(f"target slot not found: {target}")
+                _save_editor_slot_delete(paths, target)
+                applied.append(AppliedPatch(target=target, op=op, fields=[]))
+                continue
             applied.append(AppliedPatch(target=target, op=op, fields=[]))
             continue
 
@@ -829,10 +1080,20 @@ def apply_layout_patches(problem_id: str, patches: list[dict[str, Any]]) -> tupl
             applied.append(AppliedPatch(target=target, op=op, fields=list(value.keys())))
             continue
 
-        if op != "update":
-            raise DslPatchError("only 'add', 'update', and 'delete' ops are supported")
         if not isinstance(value, dict):
             raise DslPatchError("patch value must be an object")
+
+        if op == "layer":
+            region_id = value.get("region_id")
+            slot_ids = value.get("slot_ids")
+            if not isinstance(region_id, str) or not isinstance(slot_ids, list):
+                raise DslPatchError("layer patch requires value.region_id and value.slot_ids")
+            _save_editor_region_slot_order(paths, region_id, slot_ids)
+            applied.append(AppliedPatch(target=target, op=op, fields=["region_id", "slot_ids"]))
+            continue
+
+        if op != "update":
+            raise DslPatchError("only 'add', 'update', 'delete', and 'layer' ops are supported")
 
         if target in CANVAS_TARGETS:
             updater = CanvasUpdater(fields=value)
@@ -862,6 +1123,27 @@ def apply_layout_patches(problem_id: str, patches: list[dict[str, Any]]) -> tupl
         if paper_fold_updater.updated:
             applied.append(AppliedPatch(target=target, op=op, fields=list(value.keys())))
             continue
+
+        measurement_tool_updater = MeasurementToolMoveUpdater(target=target, fields=value)
+        transformed = transformed.visit(measurement_tool_updater)
+        if measurement_tool_updater.updated:
+            applied.append(AppliedPatch(target=target, op=op, fields=list(value.keys())))
+            continue
+
+        generated_slot_override_updater = GeneratedHelperSlotOverrideUpdater(target=target, fields=value)
+        transformed = transformed.visit(generated_slot_override_updater)
+        if generated_slot_override_updater.updated:
+            applied.append(AppliedPatch(target=target, op=op, fields=list(value.keys())))
+            continue
+
+        single_paper_fold_updater = SinglePaperFoldHelperUpdater(target=target, fields=value)
+        transformed = transformed.visit(single_paper_fold_updater)
+        if single_paper_fold_updater.updated:
+            applied.append(AppliedPatch(target=target, op=op, fields=list(value.keys())))
+            continue
+
+        if _measurement_tool_base_from_slot_id(target):
+            raise DslPatchError("measurement tool parts must be moved as a group")
 
         grid_updater = GridSlotsMoveUpdater(target=target, fields=value)
         transformed = transformed.visit(grid_updater)
@@ -899,6 +1181,11 @@ def apply_layout_patches(problem_id: str, patches: list[dict[str, Any]]) -> tupl
         transformed = transformed.visit(frac_updater)
         if frac_updater.updated:
             applied.append(AppliedPatch(target=frac_prefix, op=op, fields=list(value.keys())))
+            continue
+
+        if set(value).issubset(EDITOR_OVERRIDE_FIELDS):
+            _save_editor_slot_override(paths, target, value)
+            applied.append(AppliedPatch(target=target, op=op, fields=list(value.keys())))
             continue
 
         raise DslPatchError(f"target slot not found: {target}")

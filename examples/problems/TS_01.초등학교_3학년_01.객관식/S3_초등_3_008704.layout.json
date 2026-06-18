@@ -25,7 +25,6 @@
         "slot.circle.1",
         "slot.circle.2",
         "slot.circle.3",
-        "slot.center",
         "slot.grid.v1",
         "slot.grid.v2",
         "slot.grid.v3",
@@ -45,7 +44,8 @@
         "slot.grid.h7",
         "slot.grid.h8",
         "slot.grid.h9",
-        "slot.grid.h10"
+        "slot.grid.h10",
+        "slot.center"
       ]
     },
     {
@@ -54,9 +54,6 @@
       "flow": "absolute",
       "slot_ids": [
         "slot.bubble",
-        "slot.su",
-        "slot.nameplate",
-        "slot.tail",
         "slot.nameplate.text"
       ]
     },
@@ -83,7 +80,7 @@
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "□ 98. 승아는 규칙에 따라 원을 그렸습니다. 승아가 원을 그린 규칙을 찾아 알맞은 것을 선택해보세요.",
+        "text": "승아는 규칙에 따라 원을 그렸습니다. 승아가 원을 그린 규칙을 찾아 알맞은 것을 선택해보세요.  ",
         "style_role": "question",
         "x": 16.0,
         "y": 34.0,
@@ -438,59 +435,15 @@
       }
     },
     {
-      "id": "slot.tail",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 699.0,
-        "y1": 181.0,
-        "x2": 683.0,
-        "y2": 207.0,
-        "stroke": "#555555",
-        "stroke_width": 2.0
-      }
-    },
-    {
-      "id": "slot.su",
-      "kind": "rect",
-      "prompt": "",
-      "content": {
-        "x": 659.0,
-        "y": 227.0,
-        "width": 54.0,
-        "height": 74.0,
-        "stroke": "none",
-        "rx": 4.0,
-        "ry": 4.0,
-        "fill": "#f05a9b"
-      }
-    },
-    {
       "id": "slot.nameplate.text",
       "kind": "text",
       "prompt": "",
       "content": {
         "text": "승아",
         "style_role": "label",
-        "x": 719.0,
-        "y": 307.0,
-        "font_size": 28
-      }
-    },
-    {
-      "id": "slot.nameplate",
-      "kind": "rect",
-      "prompt": "",
-      "content": {
-        "x": 709.0,
-        "y": 278.0,
-        "width": 58.0,
-        "height": 32.0,
-        "stroke": "#d59fd0",
-        "stroke_width": 2.0,
-        "rx": 8.0,
-        "ry": 8.0,
-        "fill": "#ffffff"
+        "x": 830.0,
+        "y": 315.0,
+        "font_size": 30
       }
     },
     {
@@ -541,7 +494,6 @@
     "slot.circle.1",
     "slot.circle.2",
     "slot.circle.3",
-    "slot.center",
     "slot.grid.v1",
     "slot.grid.v2",
     "slot.grid.v3",
@@ -562,11 +514,9 @@
     "slot.grid.h8",
     "slot.grid.h9",
     "slot.grid.h10",
+    "slot.center",
     "region.diagram.right",
     "slot.bubble",
-    "slot.su",
-    "slot.nameplate",
-    "slot.tail",
     "slot.nameplate.text",
     "region.choice",
     "slot.choice.bg",

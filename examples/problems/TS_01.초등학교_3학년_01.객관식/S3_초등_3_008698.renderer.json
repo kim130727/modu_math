@@ -7,49 +7,15 @@
   },
   "elements": [
     {
-      "id": "slot.box.rect",
-      "type": "rect",
-      "attributes": {
-        "x": 16.0,
-        "y": 18.0,
-        "width": 12.0,
-        "height": 12.0,
-        "fill": "#ffffff",
-        "stroke": "#111111",
-        "stroke-width": 1.5
-      },
-      "source_ref": "slot.box",
-      "refs": {
-        "layout_slot_id": "slot.box"
-      }
-    },
-    {
-      "id": "slot.qnum.text",
-      "type": "text",
-      "attributes": {
-        "x": 42.0,
-        "y": 24.0,
-        "max_width": 664.0,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
-      },
-      "source_ref": "slot.qnum",
-      "refs": {
-        "layout_slot_id": "slot.qnum"
-      },
-      "text": "87."
-    },
-    {
       "id": "slot.question.text",
       "type": "text",
       "attributes": {
-        "x": 78.0,
-        "y": 24.0,
+        "x": 30.0,
+        "y": 35.0,
         "max_width": 664.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 30
       },
       "source_ref": "slot.question",
       "refs": {
@@ -61,9 +27,9 @@
       "id": "slot.circle.outer.circle",
       "type": "circle",
       "attributes": {
-        "cx": 498.0,
-        "cy": 110.0,
-        "r": 70.0,
+        "cx": 370.0,
+        "cy": 170.0,
+        "r": 105.0,
         "stroke": "#111111",
         "stroke-width": 2.0,
         "fill": "none"
@@ -74,29 +40,13 @@
       }
     },
     {
-      "id": "slot.pt.center.circle",
-      "type": "circle",
-      "attributes": {
-        "cx": 498.0,
-        "cy": 110.0,
-        "r": 3.5,
-        "stroke": "#111111",
-        "stroke-width": 2.0,
-        "fill": "#ff4fa3"
-      },
-      "source_ref": "slot.pt.center",
-      "refs": {
-        "layout_slot_id": "slot.pt.center"
-      }
-    },
-    {
       "id": "slot.line.across.line",
       "type": "line",
       "attributes": {
-        "x1": 498.0,
-        "y1": 110.0,
-        "x2": 498.0,
-        "y2": 110.0,
+        "x1": 325.0,
+        "y1": 160.0,
+        "x2": 325.0,
+        "y2": 160.0,
         "stroke": "#111111",
         "stroke-width": 2.0
       },
@@ -109,10 +59,10 @@
       "id": "slot.line.top.line",
       "type": "line",
       "attributes": {
-        "x1": 437.0,
-        "y1": 83.0,
-        "x2": 538.0,
-        "y2": 39.0,
+        "x1": 270.0,
+        "y1": 140.0,
+        "x2": 435.0,
+        "y2": 90.0,
         "stroke": "#111111",
         "stroke-width": 2.0
       },
@@ -125,10 +75,10 @@
       "id": "slot.line.right.line",
       "type": "line",
       "attributes": {
-        "x1": 498.0,
-        "y1": 110.0,
-        "x2": 568.0,
-        "y2": 110.0,
+        "x1": 370.0,
+        "y1": 170.0,
+        "x2": 475.0,
+        "y2": 170.0,
         "stroke": "#111111",
         "stroke-width": 2.0
       },
@@ -141,10 +91,10 @@
       "id": "slot.line.leftdiag.line",
       "type": "line",
       "attributes": {
-        "x1": 441.0,
-        "y1": 181.0,
-        "x2": 532.0,
-        "y2": 38.0,
+        "x1": 305.0,
+        "y1": 250.0,
+        "x2": 435.0,
+        "y2": 90.0,
         "stroke": "#111111",
         "stroke-width": 2.0
       },
@@ -154,15 +104,31 @@
       }
     },
     {
+      "id": "slot.pt.center.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 370.0,
+        "cy": 170.0,
+        "r": 5.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#ff4fa3"
+      },
+      "source_ref": "slot.pt.center",
+      "refs": {
+        "layout_slot_id": "slot.pt.center"
+      }
+    },
+    {
       "id": "slot.lb.ga.text",
       "type": "text",
       "attributes": {
-        "x": 538.0,
-        "y": 32.0,
+        "x": 430.0,
+        "y": 90.0,
         "max_width": 664.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 30
       },
       "source_ref": "slot.lb.ga",
       "refs": {
@@ -174,12 +140,12 @@
       "id": "slot.lb.na.text",
       "type": "text",
       "attributes": {
-        "x": 424.0,
-        "y": 112.0,
+        "x": 225.0,
+        "y": 160.0,
         "max_width": 664.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 30
       },
       "source_ref": "slot.lb.na",
       "refs": {
@@ -191,12 +157,12 @@
       "id": "slot.lb.da.text",
       "type": "text",
       "attributes": {
-        "x": 437.0,
-        "y": 196.0,
+        "x": 265.0,
+        "y": 270.0,
         "max_width": 664.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 30
       },
       "source_ref": "slot.lb.da",
       "refs": {
@@ -208,12 +174,12 @@
       "id": "slot.lb.ra.text",
       "type": "text",
       "attributes": {
-        "x": 572.0,
-        "y": 116.0,
+        "x": 485.0,
+        "y": 185.0,
         "max_width": 664.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 30
       },
       "source_ref": "slot.lb.ra",
       "refs": {
@@ -225,12 +191,12 @@
       "id": "slot.lb.o.text",
       "type": "text",
       "attributes": {
-        "x": 483.0,
-        "y": 101.0,
+        "x": 335.0,
+        "y": 175.0,
         "max_width": 664.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 30
       },
       "source_ref": "slot.lb.o",
       "refs": {
@@ -242,12 +208,12 @@
       "id": "slot.opt1.text",
       "type": "text",
       "attributes": {
-        "x": 30.0,
-        "y": 216.0,
+        "x": 35.0,
+        "y": 335.0,
         "max_width": 664.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 30
       },
       "source_ref": "slot.opt1",
       "refs": {
@@ -259,12 +225,12 @@
       "id": "slot.opt2.text",
       "type": "text",
       "attributes": {
-        "x": 486.0,
-        "y": 216.0,
+        "x": 230.0,
+        "y": 330.0,
         "max_width": 664.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 30
       },
       "source_ref": "slot.opt2",
       "refs": {
@@ -276,12 +242,12 @@
       "id": "slot.opt3.text",
       "type": "text",
       "attributes": {
-        "x": 30.0,
-        "y": 268.0,
+        "x": 35.0,
+        "y": 385.0,
         "max_width": 664.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 30
       },
       "source_ref": "slot.opt3",
       "refs": {
@@ -293,12 +259,12 @@
       "id": "slot.opt4.text",
       "type": "text",
       "attributes": {
-        "x": 486.0,
-        "y": 268.0,
+        "x": 230.0,
+        "y": 385.0,
         "max_width": 664.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 30
       },
       "source_ref": "slot.opt4",
       "refs": {

@@ -22,19 +22,11 @@
       "role": "diagram",
       "flow": "absolute",
       "slot_ids": [
-        "slot.circle",
-        "slot.pt.o",
-        "slot.pt.g",
-        "slot.pt.s",
-        "slot.pt.n",
-        "slot.pt.r",
-        "slot.pt.d",
-        "slot.pt.m",
-        "slot.pt.b",
         "slot.seg_gs",
         "slot.seg_nr",
         "slot.seg_do",
         "slot.seg_bm",
+        "slot.pt.o",
         "slot.lb.g",
         "slot.lb.s",
         "slot.lb.n",
@@ -70,17 +62,6 @@
         "x": 18.0,
         "y": 30.0,
         "font_size": 28
-      }
-    },
-    {
-      "id": "slot.circle",
-      "kind": "rect",
-      "prompt": "",
-      "content": {
-        "x": 476.0,
-        "y": 52.0,
-        "width": 150.0,
-        "height": 150.0
       }
     },
     {
@@ -139,83 +120,6 @@
       }
     },
     {
-      "id": "slot.pt.g",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 487.0,
-        "cy": 76.0,
-        "r": 3.5,
-        "fill": "#222222"
-      }
-    },
-    {
-      "id": "slot.pt.s",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 551.0,
-        "cy": 54.0,
-        "r": 3.5,
-        "fill": "#222222"
-      }
-    },
-    {
-      "id": "slot.pt.n",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 481.0,
-        "cy": 110.0,
-        "r": 3.5,
-        "fill": "#222222"
-      }
-    },
-    {
-      "id": "slot.pt.r",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 515.0,
-        "cy": 181.0,
-        "r": 3.5,
-        "fill": "#222222"
-      }
-    },
-    {
-      "id": "slot.pt.d",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 530.0,
-        "cy": 164.0,
-        "r": 3.5,
-        "fill": "#222222"
-      }
-    },
-    {
-      "id": "slot.pt.m",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 565.0,
-        "cy": 180.0,
-        "r": 3.5,
-        "fill": "#222222"
-      }
-    },
-    {
-      "id": "slot.pt.b",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 566.0,
-        "cy": 54.0,
-        "r": 3.5,
-        "fill": "#222222"
-      }
-    },
-    {
       "id": "slot.lb.g",
       "kind": "text",
       "prompt": "",
@@ -258,8 +162,8 @@
       "content": {
         "text": "ㄹ",
         "style_role": "label",
-        "x": 335.0,
-        "y": 275.0,
+        "x": 250.0,
+        "y": 245.0,
         "font_size": 30
       }
     },
@@ -270,8 +174,8 @@
       "content": {
         "text": "ㄷ",
         "style_role": "label",
-        "x": 350.0,
-        "y": 260.0,
+        "x": 330.0,
+        "y": 215.0,
         "font_size": 30
       }
     },
@@ -282,8 +186,8 @@
       "content": {
         "text": "ㅁ",
         "style_role": "label",
-        "x": 400.0,
-        "y": 275.0,
+        "x": 305.0,
+        "y": 240.0,
         "font_size": 30
       }
     },
@@ -294,8 +198,8 @@
       "content": {
         "text": "ㅂ",
         "style_role": "label",
-        "x": 395.0,
-        "y": 120.0,
+        "x": 350.0,
+        "y": 105.0,
         "font_size": 30
       }
     },
@@ -306,8 +210,8 @@
       "content": {
         "text": "( 선분 ㄱㅅ , 선분 ㄴㄹ , 선분 ㄷㅇ , 선분 ㅂㅁ )",
         "style_role": "body",
-        "x": 180.0,
-        "y": 310.0,
+        "x": 25.0,
+        "y": 320.0,
         "font_size": 30
       }
     }
@@ -319,19 +223,11 @@
     "region.stem",
     "slot.q1",
     "region.figure",
-    "slot.circle",
-    "slot.pt.o",
-    "slot.pt.g",
-    "slot.pt.s",
-    "slot.pt.n",
-    "slot.pt.r",
-    "slot.pt.d",
-    "slot.pt.m",
-    "slot.pt.b",
     "slot.seg_gs",
     "slot.seg_nr",
     "slot.seg_do",
     "slot.seg_bm",
+    "slot.pt.o",
     "slot.lb.g",
     "slot.lb.s",
     "slot.lb.n",

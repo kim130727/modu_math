@@ -7,6 +7,7 @@ from modu_math.dsl import (
     Canvas,
     ChoiceSlot,
     Circle,
+    CircleSlot,
     Constraint,
     Cube,
     DiagramTemplate,
@@ -119,6 +120,30 @@ def test_compile_to_layout_preserves_stable_ids() -> None:
     assert layout["diagrams"][0]["objects"][0]["id"] == "obj.one"
 
 
+def test_compile_to_layout_draws_small_center_circles_above_large_circles() -> None:
+    problem = ProblemTemplate(
+        id="p_center_z_order",
+        title="Center z order",
+        canvas=Canvas(width=300, height=200),
+        regions=(
+            Region(
+                id="region.diagram",
+                role="diagram",
+                flow="absolute",
+                slot_ids=("slot.center", "slot.big.circle"),
+            ),
+        ),
+        slots=(
+            CircleSlot(id="slot.center", cx=100, cy=100, r=5, fill="#f0f"),
+            CircleSlot(id="slot.big.circle", cx=100, cy=100, r=50, fill="#fee"),
+        ),
+    )
+
+    layout = compile_problem_template_to_layout(problem)
+
+    assert layout["regions"][0]["slot_ids"] == ["slot.big.circle", "slot.center"]
+
+
 def test_compile_to_layout_is_round_trip_safe_and_deterministic() -> None:
     problem = ProblemTemplate(
         id="p_deterministic_001",
@@ -148,4 +173,3 @@ def test_compile_to_layout_is_round_trip_safe_and_deterministic() -> None:
     )
     assert layout_a["regions"][0]["id"] == "region.stem"
     assert layout_a["regions"][0]["slot_ids"] == ["slot.1", "slot.2"]
-
