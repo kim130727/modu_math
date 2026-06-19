@@ -1,0 +1,91 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008764",
+  "problem_type": "weight_comparison_choice",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "공책이 필통보다 더 ( 무겁습니다, 가볍습니다 )",
+    "target_ticks": 0,
+    "target_count": 2,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.book",
+      "value": {
+        "name": "공책"
+      }
+    },
+    {
+      "ref": "obj.pencilcase",
+      "value": {
+        "name": "필통"
+      }
+    },
+    {
+      "ref": "rel.left_side_higher",
+      "value": {
+        "direction": "up"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "comparison_word"
+  },
+  "method": "balance_comparison",
+  "plan": [
+    "저울에서 더 위로 올라간 쪽이 더 가볍다는 점을 확인한다.",
+    "공책이 있는 왼쪽 접시가 위에 있는지 본다.",
+    "알맞은 비교 말을 선택한다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "왼쪽 접시가 오른쪽 접시보다 위에 있다",
+      "value": true
+    },
+    {
+      "id": "step.2",
+      "expr": "위로 올라간 쪽은 더 가볍다",
+      "value": true
+    },
+    {
+      "id": "step.3",
+      "expr": "공책 < 필통",
+      "value": true
+    },
+    {
+      "id": "step.4",
+      "expr": "선택어 = 가볍습니다",
+      "value": "가볍습니다"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "저울의 위쪽 접시가 공책 쪽인지 확인",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "id": "check.2",
+      "expr": "선택한 말이 그림의 비교 관계와 일치하는지 확인",
+      "expected": "가볍습니다",
+      "actual": "가볍습니다",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "comparison_word",
+      "description": "공책이 필통보다 더 (무겁습니다/가볍습니다) 중 알맞은 말"
+    },
+    "value": "가볍습니다",
+    "unit": ""
+  }
+}

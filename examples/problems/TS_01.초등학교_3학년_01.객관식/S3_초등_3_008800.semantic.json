@@ -1,0 +1,84 @@
+{
+  "problem_id": "S3_초등_3_008800",
+  "problem_type": "weight_comparison",
+  "metadata": {
+    "title": "저울로 무게 비교하기",
+    "tags": [],
+    "question": "저울을 이용하여 연필과 필통의 무게를 비교하는 문제",
+    "required_layout_ids": [
+      "slot.scale.base",
+      "slot.scale.pillar",
+      "slot.scale.beam",
+      "slot.scale.left.pan",
+      "slot.scale.right.pan",
+      "slot.scale.left.string",
+      "slot.scale.right.string",
+      "slot.pt.pencil",
+      "slot.pt.case"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "알맞은 말을 선택한다."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.pencil",
+        "type": "object",
+        "name": "연필"
+      },
+      {
+        "id": "obj.case",
+        "type": "object",
+        "name": "필통"
+      },
+      {
+        "id": "obj.scale",
+        "type": "scale",
+        "name": "저울"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.pencil",
+          "obj.case",
+          "obj.scale"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.compare_weight"
+        ]
+      },
+      "plan": {
+        "method": "compare_by_scale",
+        "description": "저울에서 더 내려간 쪽의 물건이 더 무거운지 확인한다."
+      },
+      "execute": {
+        "expected_operations": [
+          "identify_heavier_side",
+          "match_object_to_heavier_side"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "compare_with_given_explanation"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "heavier_object_name",
+      "description": "더 무거운 물건의 이름"
+    },
+    "value": "필통",
+    "unit": ""
+  }
+}

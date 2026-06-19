@@ -1,0 +1,288 @@
+{
+  "problem_id": "S3_초등_3_008803",
+  "view_box": {
+    "width": 960.0,
+    "height": 456.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.q1.text",
+      "type": "text",
+      "attributes": {
+        "x": 22.0,
+        "y": 34.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q1",
+      "refs": {
+        "layout_slot_id": "slot.q1"
+      },
+      "text": "□ 32. 저울로 오렌지, 딸기, 바나나의 무게를 비교했습니다. 가장 무거운 과일을"
+    },
+    {
+      "id": "slot.q2.text",
+      "type": "text",
+      "attributes": {
+        "x": 22.0,
+        "y": 68.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q2",
+      "refs": {
+        "layout_slot_id": "slot.q2"
+      },
+      "text": "선택해 보세요."
+    },
+    {
+      "id": "slot.choice.text",
+      "type": "text",
+      "attributes": {
+        "x": 642.0,
+        "y": 296.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice",
+      "refs": {
+        "layout_slot_id": "slot.choice"
+      },
+      "text": "( 오렌지 , 딸기 , 바나나 )"
+    },
+    {
+      "id": "slot.scale1.base.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 198.0,
+        "y": 170.0,
+        "width": 132.0,
+        "height": 32.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.scale1.base",
+      "refs": {
+        "layout_slot_id": "slot.scale1.base"
+      }
+    },
+    {
+      "id": "slot.scale1.left_fruit.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 226.0,
+        "cy": 145.0,
+        "r": 22.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#f4a62a"
+      },
+      "source_ref": "slot.scale1.left_fruit",
+      "refs": {
+        "layout_slot_id": "slot.scale1.left_fruit"
+      }
+    },
+    {
+      "id": "slot.scale1.right_fruit.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 294.0,
+        "cy": 145.0,
+        "r": 16.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#ef7b5b"
+      },
+      "source_ref": "slot.scale1.right_fruit",
+      "refs": {
+        "layout_slot_id": "slot.scale1.right_fruit"
+      }
+    },
+    {
+      "id": "slot.scale1.beam.line",
+      "type": "line",
+      "attributes": {
+        "x1": 212.0,
+        "y1": 168.0,
+        "x2": 316.0,
+        "y2": 146.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.scale1.beam",
+      "refs": {
+        "layout_slot_id": "slot.scale1.beam"
+      }
+    },
+    {
+      "id": "slot.scale1.pivot.line",
+      "type": "line",
+      "attributes": {
+        "x1": 264.0,
+        "y1": 150.0,
+        "x2": 264.0,
+        "y2": 208.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.scale1.pivot",
+      "refs": {
+        "layout_slot_id": "slot.scale1.pivot"
+      }
+    },
+    {
+      "id": "slot.scale1.left_pan.line",
+      "type": "line",
+      "attributes": {
+        "x1": 214.0,
+        "y1": 166.0,
+        "x2": 210.0,
+        "y2": 192.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.scale1.left_pan",
+      "refs": {
+        "layout_slot_id": "slot.scale1.left_pan"
+      }
+    },
+    {
+      "id": "slot.scale1.right_pan.line",
+      "type": "line",
+      "attributes": {
+        "x1": 308.0,
+        "y1": 148.0,
+        "x2": 312.0,
+        "y2": 174.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.scale1.right_pan",
+      "refs": {
+        "layout_slot_id": "slot.scale1.right_pan"
+      }
+    },
+    {
+      "id": "slot.scale2.base.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 556.0,
+        "y": 170.0,
+        "width": 132.0,
+        "height": 32.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.scale2.base",
+      "refs": {
+        "layout_slot_id": "slot.scale2.base"
+      }
+    },
+    {
+      "id": "slot.scale2.left_fruit.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 582.0,
+        "cy": 145.0,
+        "r": 16.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#f4c04a"
+      },
+      "source_ref": "slot.scale2.left_fruit",
+      "refs": {
+        "layout_slot_id": "slot.scale2.left_fruit"
+      }
+    },
+    {
+      "id": "slot.scale2.right_fruit.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 650.0,
+        "cy": 145.0,
+        "r": 22.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#f4a62a"
+      },
+      "source_ref": "slot.scale2.right_fruit",
+      "refs": {
+        "layout_slot_id": "slot.scale2.right_fruit"
+      }
+    },
+    {
+      "id": "slot.scale2.beam.line",
+      "type": "line",
+      "attributes": {
+        "x1": 570.0,
+        "y1": 148.0,
+        "x2": 674.0,
+        "y2": 170.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.scale2.beam",
+      "refs": {
+        "layout_slot_id": "slot.scale2.beam"
+      }
+    },
+    {
+      "id": "slot.scale2.pivot.line",
+      "type": "line",
+      "attributes": {
+        "x1": 622.0,
+        "y1": 152.0,
+        "x2": 622.0,
+        "y2": 208.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.scale2.pivot",
+      "refs": {
+        "layout_slot_id": "slot.scale2.pivot"
+      }
+    },
+    {
+      "id": "slot.scale2.left_pan.line",
+      "type": "line",
+      "attributes": {
+        "x1": 576.0,
+        "y1": 150.0,
+        "x2": 572.0,
+        "y2": 176.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.scale2.left_pan",
+      "refs": {
+        "layout_slot_id": "slot.scale2.left_pan"
+      }
+    },
+    {
+      "id": "slot.scale2.right_pan.line",
+      "type": "line",
+      "attributes": {
+        "x1": 668.0,
+        "y1": 168.0,
+        "x2": 672.0,
+        "y2": 192.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.scale2.right_pan",
+      "refs": {
+        "layout_slot_id": "slot.scale2.right_pan"
+      }
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

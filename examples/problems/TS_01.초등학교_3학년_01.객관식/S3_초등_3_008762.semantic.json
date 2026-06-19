@@ -1,0 +1,83 @@
+{
+  "problem_id": "S3_초등_3_008762",
+  "problem_type": "comparison_weight",
+  "metadata": {
+    "title": "더 가벼운 것 선택하기",
+    "tags": [],
+    "question": "저울을 사용하여 물건의 무게를 비교하려고 합니다. 더 가벼운 것을 선택하세요.",
+    "required_layout_ids": [
+      "slot.label.left",
+      "slot.label.right",
+      "slot.scale.base",
+      "slot.scale.pillar",
+      "slot.scale.beam",
+      "slot.scale.leftpan",
+      "slot.scale.rightpan",
+      "slot.obj.pencil",
+      "slot.obj.glue"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "더 가벼운 것을 선택하세요."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.pencil",
+        "type": "object",
+        "name": "연필"
+      },
+      {
+        "id": "obj.glue",
+        "type": "object",
+        "name": "풀"
+      },
+      {
+        "id": "obj.scale",
+        "type": "scale"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.pencil",
+          "obj.glue",
+          "obj.scale"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.left_lighter"
+        ]
+      },
+      "plan": {
+        "method": "visual_comparison",
+        "description": "저울의 기울어진 방향을 보고 더 가벼운 물건을 찾는다."
+      },
+      "execute": {
+        "expected_operations": [
+          "compare_pan_heights",
+          "identify_lighter_object"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "image_relation_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "lighter_object",
+      "description": "더 가벼운 것"
+    },
+    "value": "연필",
+    "unit": ""
+  }
+}

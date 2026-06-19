@@ -1,0 +1,595 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008789",
+  "title": "들이가 더 많은 것 고르기",
+  "canvas": {
+    "width": 960,
+    "height": 436,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q1",
+        "slot.q2",
+        "slot.q3",
+        "slot.q4",
+        "slot.q5"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.tharmos.body",
+        "slot.tharmos.lid",
+        "slot.tharmos.handle",
+        "slot.cup1.body",
+        "slot.cup1.top_ellipse",
+        "slot.cup1.water",
+        "slot.cup1.surface",
+        "slot.cup1.bottom_curve",
+        "slot.cup1.reflection",
+        "slot.milk.carton_body",
+        "slot.milk.carton_top",
+        "slot.milk.carton_side",
+        "slot.milk.carton_green",
+        "slot.cup2.body",
+        "slot.cup2.top_ellipse",
+        "slot.cup2.water",
+        "slot.cup2.surface",
+        "slot.cup2.bottom_curve",
+        "slot.cup2.reflection",
+        "slot.tharmos.strap",
+        "slot.tharmos.shadow",
+        "slot.milk.carton_shadow",
+        "slot.tharmos.axle_left",
+        "slot.tharmos.axle_right",
+        "slot.arrow1",
+        "slot.milk.carton_logo",
+        "slot.arrow2",
+        "slot.lb.tharmos",
+        "slot.lb.milk",
+        "slot.choice"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "□",
+        "style_role": "question",
+        "x": 8.0,
+        "y": 24.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "14.",
+        "style_role": "question",
+        "x": 33.0,
+        "y": 24.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "보온병과 우유갑에 물을 가득 채운 후 물을 같은 그릇에 옮겨 담았습니다.",
+        "style_role": "question",
+        "x": 64.0,
+        "y": 24.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "그림과 같이 물이 채워졌을 때 보온병과 우유갑 중 들이가 더",
+        "style_role": "question",
+        "x": 64.0,
+        "y": 60.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q5",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "많은 것을 선택하세요.",
+        "style_role": "question",
+        "x": 64.0,
+        "y": 96.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.tharmos.body",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 205.0,
+        "y": 104.0,
+        "width": 36.0,
+        "height": 108.0,
+        "stroke": "#F08CA0",
+        "stroke_width": 2.0,
+        "fill": "#F9D4DA"
+      }
+    },
+    {
+      "id": "slot.tharmos.lid",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 210.0,
+        "y": 88.0,
+        "width": 26.0,
+        "height": 24.0,
+        "stroke": "#F08CA0",
+        "stroke_width": 2.0,
+        "fill": "#F6B3C1"
+      }
+    },
+    {
+      "id": "slot.tharmos.handle",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 198 114 C 176 138, 176 188, 194 210",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#F4A62A",
+        "stroke_width": 2.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.tharmos.axle_left",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 199.0,
+        "cy": 115.0,
+        "r": 4.0,
+        "fill": "#6EC6E8"
+      }
+    },
+    {
+      "id": "slot.tharmos.axle_right",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 237.0,
+        "cy": 116.0,
+        "r": 4.0,
+        "fill": "#6EC6E8"
+      }
+    },
+    {
+      "id": "slot.tharmos.strap",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 193.0,
+        "y1": 210.0,
+        "x2": 226.0,
+        "y2": 106.0,
+        "stroke": "#F4A62A",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.tharmos.shadow",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 208.0,
+        "y1": 214.0,
+        "x2": 240.0,
+        "y2": 214.0,
+        "stroke": "#F0A0B2",
+        "stroke_width": 1.4
+      }
+    },
+    {
+      "id": "slot.arrow1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "→",
+        "style_role": "diagram",
+        "x": 326.0,
+        "y": 176.0,
+        "font_size": 44
+      }
+    },
+    {
+      "id": "slot.cup1.body",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 385.0,
+        "y": 114.0,
+        "width": 56.0,
+        "height": 100.0,
+        "stroke": "#90A3E6",
+        "stroke_width": 2.0,
+        "fill": "#FFFFFF"
+      }
+    },
+    {
+      "id": "slot.cup1.top_ellipse",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 413.0,
+        "cy": 114.0,
+        "r": 28.0,
+        "stroke": "#90A3E6",
+        "stroke_width": 2.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.cup1.water",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 385.0,
+        "y": 164.0,
+        "width": 56.0,
+        "height": 50.0,
+        "stroke": "none",
+        "fill": "#A6D9F5"
+      }
+    },
+    {
+      "id": "slot.cup1.surface",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 389 164 C 399 157, 428 157, 437 164",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#6FBCEB",
+        "stroke_width": 1.6,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.cup1.bottom_curve",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 397 206 C 403 211, 423 211, 429 206",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#7FA7D8",
+        "stroke_width": 1.2,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.cup1.reflection",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 394 132 C 394 146, 394 180, 394 200",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#CBE9FB",
+        "stroke_width": 1.2,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.milk.carton_body",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            555.0,
+            146.0
+          ],
+          [
+            593.0,
+            146.0
+          ],
+          [
+            593.0,
+            206.0
+          ],
+          [
+            555.0,
+            206.0
+          ]
+        ],
+        "stroke": "#909090",
+        "stroke_width": 2.0,
+        "fill": "#FFFFFF"
+      }
+    },
+    {
+      "id": "slot.milk.carton_top",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            555.0,
+            146.0
+          ],
+          [
+            569.0,
+            130.0
+          ],
+          [
+            607.0,
+            130.0
+          ],
+          [
+            593.0,
+            146.0
+          ]
+        ],
+        "stroke": "#909090",
+        "stroke_width": 2.0,
+        "fill": "#EEF4FF"
+      }
+    },
+    {
+      "id": "slot.milk.carton_side",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            593.0,
+            146.0
+          ],
+          [
+            607.0,
+            130.0
+          ],
+          [
+            607.0,
+            190.0
+          ],
+          [
+            593.0,
+            206.0
+          ]
+        ],
+        "stroke": "#909090",
+        "stroke_width": 2.0,
+        "fill": "#F5F5F5"
+      }
+    },
+    {
+      "id": "slot.milk.carton_green",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 555.0,
+        "y": 186.0,
+        "width": 38.0,
+        "height": 20.0,
+        "stroke": "none",
+        "fill": "#4BAE5A"
+      }
+    },
+    {
+      "id": "slot.milk.carton_logo",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "우유",
+        "style_role": "diagram",
+        "x": 559.0,
+        "y": 171.0,
+        "font_size": 18
+      }
+    },
+    {
+      "id": "slot.milk.carton_shadow",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 560.0,
+        "y1": 206.0,
+        "x2": 589.0,
+        "y2": 206.0,
+        "stroke": "#9FD4A4",
+        "stroke_width": 1.2
+      }
+    },
+    {
+      "id": "slot.arrow2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "→",
+        "style_role": "diagram",
+        "x": 694.0,
+        "y": 176.0,
+        "font_size": 44
+      }
+    },
+    {
+      "id": "slot.cup2.body",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 754.0,
+        "y": 114.0,
+        "width": 56.0,
+        "height": 100.0,
+        "stroke": "#90A3E6",
+        "stroke_width": 2.0,
+        "fill": "#FFFFFF"
+      }
+    },
+    {
+      "id": "slot.cup2.top_ellipse",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 782.0,
+        "cy": 114.0,
+        "r": 28.0,
+        "stroke": "#90A3E6",
+        "stroke_width": 2.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.cup2.water",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 754.0,
+        "y": 164.0,
+        "width": 56.0,
+        "height": 50.0,
+        "stroke": "none",
+        "fill": "#A6D9F5"
+      }
+    },
+    {
+      "id": "slot.cup2.surface",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 758 164 C 768 157, 797 157, 806 164",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#6FBCEB",
+        "stroke_width": 1.6,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.cup2.bottom_curve",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 766 206 C 772 211, 792 211, 798 206",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#7FA7D8",
+        "stroke_width": 1.2,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.cup2.reflection",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 763 132 C 763 146, 763 180, 763 200",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#CBE9FB",
+        "stroke_width": 1.2,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.lb.tharmos",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "보온병",
+        "style_role": "label",
+        "x": 197.0,
+        "y": 272.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.lb.milk",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "우유갑",
+        "style_role": "label",
+        "x": 544.0,
+        "y": 272.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "( 보온병 , 우유갑 )",
+        "style_role": "choice",
+        "x": 723.0,
+        "y": 317.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q1",
+    "slot.q2",
+    "slot.q3",
+    "slot.q4",
+    "slot.q5",
+    "region.diagram",
+    "slot.tharmos.body",
+    "slot.tharmos.lid",
+    "slot.tharmos.handle",
+    "slot.cup1.body",
+    "slot.cup1.top_ellipse",
+    "slot.cup1.water",
+    "slot.cup1.surface",
+    "slot.cup1.bottom_curve",
+    "slot.cup1.reflection",
+    "slot.milk.carton_body",
+    "slot.milk.carton_top",
+    "slot.milk.carton_side",
+    "slot.milk.carton_green",
+    "slot.cup2.body",
+    "slot.cup2.top_ellipse",
+    "slot.cup2.water",
+    "slot.cup2.surface",
+    "slot.cup2.bottom_curve",
+    "slot.cup2.reflection",
+    "slot.tharmos.strap",
+    "slot.tharmos.shadow",
+    "slot.milk.carton_shadow",
+    "slot.tharmos.axle_left",
+    "slot.tharmos.axle_right",
+    "slot.arrow1",
+    "slot.milk.carton_logo",
+    "slot.arrow2",
+    "slot.lb.tharmos",
+    "slot.lb.milk",
+    "slot.choice"
+  ]
+}

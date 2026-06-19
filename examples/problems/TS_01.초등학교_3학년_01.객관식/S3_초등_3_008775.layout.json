@@ -1,0 +1,355 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008775",
+  "title": "누가 물을 더 많이 마셨나요",
+  "canvas": {
+    "width": 940.0,
+    "height": 469.0,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q1",
+        "slot.q2",
+        "slot.tbl.c1t",
+        "slot.tbl.c2t",
+        "slot.tbl.r1t",
+        "slot.tbl.h1t",
+        "slot.tbl.h2t",
+        "slot.tbl.v1t",
+        "slot.tbl.h2b",
+        "slot.tbl.v2t",
+        "slot.tbl.v3t",
+        "slot.tbl.note"
+      ]
+    },
+    {
+      "id": "region.table",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.tbl.bg",
+        "slot.tbl.c1",
+        "slot.tbl.c2",
+        "slot.tbl.r1",
+        "slot.tbl.r2",
+        "slot.tbl.h1",
+        "slot.tbl.h2",
+        "slot.tbl.v1",
+        "slot.tbl.v2"
+      ]
+    },
+    {
+      "id": "region.foot",
+      "role": "answer",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "87. 수경이와 현준이가 물을 마셨습니다. 마시기 전과 마신 후의 물의 양은",
+        "style_role": "question",
+        "x": 18.0,
+        "y": 18.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "다음과 같습니다. 누가 물을 더 많이 마셨나요?",
+        "style_role": "question",
+        "x": 18.0,
+        "y": 58.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.tbl.bg",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 227.0,
+        "y": 86.0,
+        "width": 531.0,
+        "height": 126.0,
+        "stroke": "#D7B38A",
+        "stroke_width": 1.0,
+        "fill": "#F2E8D9"
+      }
+    },
+    {
+      "id": "slot.tbl.c1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 227.0,
+        "y": 86.0,
+        "width": 151.0,
+        "height": 41.0,
+        "stroke": "#D7B38A",
+        "stroke_width": 1.0,
+        "fill": "#F2E8D9"
+      }
+    },
+    {
+      "id": "slot.tbl.c2",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 378.0,
+        "y": 86.0,
+        "width": 180.0,
+        "height": 41.0,
+        "stroke": "#D7B38A",
+        "stroke_width": 1.0,
+        "fill": "#F2E8D9"
+      }
+    },
+    {
+      "id": "slot.tbl.r1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 558.0,
+        "y": 86.0,
+        "width": 200.0,
+        "height": 41.0,
+        "stroke": "#D7B38A",
+        "stroke_width": 1.0,
+        "fill": "#F2E8D9"
+      }
+    },
+    {
+      "id": "slot.tbl.r2",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 227.0,
+        "y": 127.0,
+        "width": 151.0,
+        "height": 41.0,
+        "stroke": "#D7B38A",
+        "stroke_width": 1.0,
+        "fill": "#F2E8D9"
+      }
+    },
+    {
+      "id": "slot.tbl.h1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 227.0,
+        "y": 168.0,
+        "width": 151.0,
+        "height": 44.0,
+        "stroke": "#D7B38A",
+        "stroke_width": 1.0,
+        "fill": "#F2E8D9"
+      }
+    },
+    {
+      "id": "slot.tbl.h2",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 378.0,
+        "y": 168.0,
+        "width": 180.0,
+        "height": 44.0,
+        "stroke": "#D7B38A",
+        "stroke_width": 1.0,
+        "fill": "#FFFFFF"
+      }
+    },
+    {
+      "id": "slot.tbl.v1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 558.0,
+        "y": 168.0,
+        "width": 200.0,
+        "height": 44.0,
+        "stroke": "#D7B38A",
+        "stroke_width": 1.0,
+        "fill": "#FFFFFF"
+      }
+    },
+    {
+      "id": "slot.tbl.v2",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 227.0,
+        "y": 86.0,
+        "width": 531.0,
+        "height": 126.0,
+        "stroke": "#D7B38A",
+        "stroke_width": 1.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.tbl.c1t",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "",
+        "style_role": "table",
+        "x": 320.0,
+        "y": 116.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.tbl.c2t",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "수경",
+        "style_role": "table",
+        "x": 455.0,
+        "y": 116.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.tbl.r1t",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "현준",
+        "style_role": "table",
+        "x": 639.0,
+        "y": 116.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.tbl.h1t",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "마시기 전",
+        "style_role": "table",
+        "x": 259.0,
+        "y": 156.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.tbl.h2t",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "2 L 500 mL",
+        "style_role": "table",
+        "x": 411.0,
+        "y": 156.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.tbl.v1t",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "2 L",
+        "style_role": "table",
+        "x": 631.0,
+        "y": 156.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.tbl.h2b",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "마신 후",
+        "style_role": "table",
+        "x": 259.0,
+        "y": 198.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.tbl.v2t",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "2 L 100 mL",
+        "style_role": "table",
+        "x": 410.0,
+        "y": 198.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.tbl.v3t",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "1 L 400 mL",
+        "style_role": "table",
+        "x": 626.0,
+        "y": 198.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.tbl.note",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "( 수경 , 현준 )",
+        "style_role": "note",
+        "x": 744.0,
+        "y": 244.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q1",
+    "slot.q2",
+    "slot.tbl.c1t",
+    "slot.tbl.c2t",
+    "slot.tbl.r1t",
+    "slot.tbl.h1t",
+    "slot.tbl.h2t",
+    "slot.tbl.v1t",
+    "slot.tbl.h2b",
+    "slot.tbl.v2t",
+    "slot.tbl.v3t",
+    "slot.tbl.note",
+    "region.table",
+    "slot.tbl.bg",
+    "slot.tbl.c1",
+    "slot.tbl.c2",
+    "slot.tbl.r1",
+    "slot.tbl.r2",
+    "slot.tbl.h1",
+    "slot.tbl.h2",
+    "slot.tbl.v1",
+    "slot.tbl.v2",
+    "region.foot"
+  ]
+}

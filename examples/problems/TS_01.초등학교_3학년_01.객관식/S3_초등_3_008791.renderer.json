@@ -1,0 +1,412 @@
+{
+  "problem_id": "S3_초등_3_008791",
+  "view_box": {
+    "width": 960.0,
+    "height": 520.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.q_num.text",
+      "type": "text",
+      "attributes": {
+        "x": 12.0,
+        "y": 34.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q_num",
+      "refs": {
+        "layout_slot_id": "slot.q_num"
+      },
+      "text": "16."
+    },
+    {
+      "id": "slot.q_text.text",
+      "type": "text",
+      "attributes": {
+        "x": 58.0,
+        "y": 34.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q_text",
+      "refs": {
+        "layout_slot_id": "slot.q_text"
+      },
+      "text": "왼쪽 그릇에 물을 가득 채우려면 ㉠ 컵과 ㉡ 컵에 물을 가득 채워 각각 다음과 같이 부어야 합니다. 들이가 더 많은 컵의 기호를 선택하세요."
+    },
+    {
+      "id": "slot.count.a.text.text",
+      "type": "text",
+      "attributes": {
+        "x": 498.0,
+        "y": 193.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.count.a.text",
+      "refs": {
+        "layout_slot_id": "slot.count.a.text"
+      },
+      "text": "6번"
+    },
+    {
+      "id": "slot.count.b.text.text",
+      "type": "text",
+      "attributes": {
+        "x": 753.0,
+        "y": 195.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.count.b.text",
+      "refs": {
+        "layout_slot_id": "slot.count.b.text"
+      },
+      "text": "9번"
+    },
+    {
+      "id": "slot.bowl.body.polygon",
+      "type": "polygon",
+      "attributes": {
+        "points": [
+          [
+            160.0,
+            100.0
+          ],
+          [
+            240.0,
+            100.0
+          ],
+          [
+            260.0,
+            150.0
+          ],
+          [
+            140.0,
+            150.0
+          ]
+        ],
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "none"
+      },
+      "source_ref": "slot.bowl.body",
+      "refs": {
+        "layout_slot_id": "slot.bowl.body"
+      }
+    },
+    {
+      "id": "slot.bowl.rim.polygon",
+      "type": "polygon",
+      "attributes": {
+        "points": [
+          [
+            148.0,
+            100.0
+          ],
+          [
+            252.0,
+            100.0
+          ],
+          [
+            240.0,
+            104.0
+          ],
+          [
+            160.0,
+            104.0
+          ]
+        ],
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "none"
+      },
+      "source_ref": "slot.bowl.rim",
+      "refs": {
+        "layout_slot_id": "slot.bowl.rim"
+      }
+    },
+    {
+      "id": "slot.cup.a.top.polygon",
+      "type": "polygon",
+      "attributes": {
+        "points": [
+          [
+            480.0,
+            90.0
+          ],
+          [
+            528.0,
+            90.0
+          ],
+          [
+            522.0,
+            98.0
+          ],
+          [
+            486.0,
+            98.0
+          ]
+        ],
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "none"
+      },
+      "source_ref": "slot.cup.a.top",
+      "refs": {
+        "layout_slot_id": "slot.cup.a.top"
+      }
+    },
+    {
+      "id": "slot.cup.a.body.polygon",
+      "type": "polygon",
+      "attributes": {
+        "points": [
+          [
+            486.0,
+            98.0
+          ],
+          [
+            522.0,
+            98.0
+          ],
+          [
+            516.0,
+            140.0
+          ],
+          [
+            492.0,
+            140.0
+          ]
+        ],
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "none"
+      },
+      "source_ref": "slot.cup.a.body",
+      "refs": {
+        "layout_slot_id": "slot.cup.a.body"
+      }
+    },
+    {
+      "id": "slot.count.a.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 463.0,
+        "y": 158.0,
+        "width": 92.0,
+        "height": 52.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.count.a",
+      "refs": {
+        "layout_slot_id": "slot.count.a"
+      }
+    },
+    {
+      "id": "slot.cup.b.top.polygon",
+      "type": "polygon",
+      "attributes": {
+        "points": [
+          [
+            730.0,
+            110.0
+          ],
+          [
+            768.0,
+            110.0
+          ],
+          [
+            764.0,
+            116.0
+          ],
+          [
+            734.0,
+            116.0
+          ]
+        ],
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "none"
+      },
+      "source_ref": "slot.cup.b.top",
+      "refs": {
+        "layout_slot_id": "slot.cup.b.top"
+      }
+    },
+    {
+      "id": "slot.cup.b.body.polygon",
+      "type": "polygon",
+      "attributes": {
+        "points": [
+          [
+            734.0,
+            116.0
+          ],
+          [
+            764.0,
+            116.0
+          ],
+          [
+            760.0,
+            150.0
+          ],
+          [
+            738.0,
+            150.0
+          ]
+        ],
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "none"
+      },
+      "source_ref": "slot.cup.b.body",
+      "refs": {
+        "layout_slot_id": "slot.cup.b.body"
+      }
+    },
+    {
+      "id": "slot.count.b.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 718.0,
+        "y": 160.0,
+        "width": 92.0,
+        "height": 52.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.count.b",
+      "refs": {
+        "layout_slot_id": "slot.count.b"
+      }
+    },
+    {
+      "id": "slot.cup.a.label.text",
+      "type": "text",
+      "attributes": {
+        "x": 500.0,
+        "y": 121.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.cup.a.label",
+      "refs": {
+        "layout_slot_id": "slot.cup.a.label"
+      },
+      "text": "가"
+    },
+    {
+      "id": "slot.cup.b.label.text",
+      "type": "text",
+      "attributes": {
+        "x": 749.0,
+        "y": 136.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.cup.b.label",
+      "refs": {
+        "layout_slot_id": "slot.cup.b.label"
+      },
+      "text": "나"
+    },
+    {
+      "id": "slot.answer.cup.top.polygon",
+      "type": "polygon",
+      "attributes": {
+        "points": [
+          [
+            70.0,
+            260.0
+          ],
+          [
+            118.0,
+            260.0
+          ],
+          [
+            112.0,
+            268.0
+          ],
+          [
+            76.0,
+            268.0
+          ]
+        ],
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "none"
+      },
+      "source_ref": "slot.answer.cup.top",
+      "refs": {
+        "layout_slot_id": "slot.answer.cup.top"
+      }
+    },
+    {
+      "id": "slot.answer.cup.body.polygon",
+      "type": "polygon",
+      "attributes": {
+        "points": [
+          [
+            76.0,
+            268.0
+          ],
+          [
+            112.0,
+            268.0
+          ],
+          [
+            106.0,
+            310.0
+          ],
+          [
+            82.0,
+            310.0
+          ]
+        ],
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "none"
+      },
+      "source_ref": "slot.answer.cup.body",
+      "refs": {
+        "layout_slot_id": "slot.answer.cup.body"
+      }
+    },
+    {
+      "id": "slot.answer.count.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 58.0,
+        "y": 320.0,
+        "width": 92.0,
+        "height": 52.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.answer.count",
+      "refs": {
+        "layout_slot_id": "slot.answer.count"
+      }
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

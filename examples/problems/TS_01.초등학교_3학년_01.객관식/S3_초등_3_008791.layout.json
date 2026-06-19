@@ -1,0 +1,390 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008791",
+  "title": "들이가 더 많은 컵 고르기",
+  "canvas": {
+    "width": 960,
+    "height": 520,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.header",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q_num",
+        "slot.q_text",
+        "slot.count.a.text",
+        "slot.count.b.text"
+      ]
+    },
+    {
+      "id": "region.diagram.main",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.bowl.body",
+        "slot.bowl.rim",
+        "slot.cup.a.top",
+        "slot.cup.a.body",
+        "slot.count.a",
+        "slot.cup.b.top",
+        "slot.cup.b.body",
+        "slot.count.b",
+        "slot.cup.a.label",
+        "slot.cup.b.label"
+      ]
+    },
+    {
+      "id": "region.answer",
+      "role": "answer",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.answer.cup.top",
+        "slot.answer.cup.body",
+        "slot.answer.count"
+      ]
+    },
+    {
+      "id": "region.explain",
+      "role": "explain",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q_num",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "16.",
+        "style_role": "question",
+        "x": 12.0,
+        "y": 34.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q_text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "왼쪽 그릇에 물을 가득 채우려면 ㉠ 컵과 ㉡ 컵에 물을 가득 채워 각각 다음과 같이 부어야 합니다. 들이가 더 많은 컵의 기호를 선택하세요.",
+        "style_role": "question",
+        "x": 58.0,
+        "y": 34.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.bowl.body",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            160.0,
+            100.0
+          ],
+          [
+            240.0,
+            100.0
+          ],
+          [
+            260.0,
+            150.0
+          ],
+          [
+            140.0,
+            150.0
+          ]
+        ]
+      }
+    },
+    {
+      "id": "slot.bowl.rim",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            148.0,
+            100.0
+          ],
+          [
+            252.0,
+            100.0
+          ],
+          [
+            240.0,
+            104.0
+          ],
+          [
+            160.0,
+            104.0
+          ]
+        ]
+      }
+    },
+    {
+      "id": "slot.cup.a.top",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            480.0,
+            90.0
+          ],
+          [
+            528.0,
+            90.0
+          ],
+          [
+            522.0,
+            98.0
+          ],
+          [
+            486.0,
+            98.0
+          ]
+        ]
+      }
+    },
+    {
+      "id": "slot.cup.a.body",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            486.0,
+            98.0
+          ],
+          [
+            522.0,
+            98.0
+          ],
+          [
+            516.0,
+            140.0
+          ],
+          [
+            492.0,
+            140.0
+          ]
+        ]
+      }
+    },
+    {
+      "id": "slot.cup.a.label",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "가",
+        "style_role": "label",
+        "x": 500.0,
+        "y": 121.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.count.a",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 463.0,
+        "y": 158.0,
+        "width": 92.0,
+        "height": 52.0
+      }
+    },
+    {
+      "id": "slot.count.a.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "6번",
+        "style_role": "label",
+        "x": 498.0,
+        "y": 193.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.cup.b.top",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            730.0,
+            110.0
+          ],
+          [
+            768.0,
+            110.0
+          ],
+          [
+            764.0,
+            116.0
+          ],
+          [
+            734.0,
+            116.0
+          ]
+        ]
+      }
+    },
+    {
+      "id": "slot.cup.b.body",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            734.0,
+            116.0
+          ],
+          [
+            764.0,
+            116.0
+          ],
+          [
+            760.0,
+            150.0
+          ],
+          [
+            738.0,
+            150.0
+          ]
+        ]
+      }
+    },
+    {
+      "id": "slot.cup.b.label",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "나",
+        "style_role": "label",
+        "x": 749.0,
+        "y": 136.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.count.b",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 718.0,
+        "y": 160.0,
+        "width": 92.0,
+        "height": 52.0
+      }
+    },
+    {
+      "id": "slot.count.b.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "9번",
+        "style_role": "label",
+        "x": 753.0,
+        "y": 195.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.answer.cup.top",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            70.0,
+            260.0
+          ],
+          [
+            118.0,
+            260.0
+          ],
+          [
+            112.0,
+            268.0
+          ],
+          [
+            76.0,
+            268.0
+          ]
+        ]
+      }
+    },
+    {
+      "id": "slot.answer.cup.body",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            76.0,
+            268.0
+          ],
+          [
+            112.0,
+            268.0
+          ],
+          [
+            106.0,
+            310.0
+          ],
+          [
+            82.0,
+            310.0
+          ]
+        ]
+      }
+    },
+    {
+      "id": "slot.answer.count",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 58.0,
+        "y": 320.0,
+        "width": 92.0,
+        "height": 52.0
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.header",
+    "slot.q_num",
+    "slot.q_text",
+    "slot.count.a.text",
+    "slot.count.b.text",
+    "region.diagram.main",
+    "slot.bowl.body",
+    "slot.bowl.rim",
+    "slot.cup.a.top",
+    "slot.cup.a.body",
+    "slot.count.a",
+    "slot.cup.b.top",
+    "slot.cup.b.body",
+    "slot.count.b",
+    "slot.cup.a.label",
+    "slot.cup.b.label",
+    "region.answer",
+    "slot.answer.cup.top",
+    "slot.answer.cup.body",
+    "slot.answer.count",
+    "region.explain"
+  ]
+}

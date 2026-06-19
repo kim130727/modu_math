@@ -1,0 +1,74 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008806",
+  "problem_type": "weight_comparison_selection",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "100 g보다 더 가벼운 것",
+    "target_ticks": 0,
+    "target_count": 1,
+    "unit": "g"
+  },
+  "given": [
+    {
+      "ref": "obj.reference_weight",
+      "value": {
+        "value": 100,
+        "unit": "g"
+      }
+    },
+    {
+      "ref": "obj.choice.strawberry",
+      "value": {
+        "name": "딸기"
+      }
+    },
+    {
+      "ref": "obj.choice.pineapple",
+      "value": {
+        "name": "파인애플"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "selected_object"
+  },
+  "method": "comparison_selection",
+  "plan": [
+    "기준 무게 100 g과 각 선택지를 비교한다.",
+    "100 g보다 더 가벼운 대상을 선택한다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "100 g을 기준으로 딸기와 파인애플을 비교한다.",
+      "value": "comparison_setup"
+    },
+    {
+      "id": "step.2",
+      "expr": "100 g보다 더 가벼운 대상을 고른다.",
+      "value": "selection"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "선택이 100 g보다 더 가벼운 대상인지 확인한다.",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "selected_object",
+      "description": "100 g보다 더 가벼운 것"
+    },
+    "value": 0,
+    "unit": ""
+  }
+}

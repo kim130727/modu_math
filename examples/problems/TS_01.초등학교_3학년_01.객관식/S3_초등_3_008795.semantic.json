@@ -1,0 +1,79 @@
+{
+  "problem_id": "S3_초등_3_008795",
+  "problem_type": "단위선택",
+  "metadata": {
+    "title": "알맞은 단위를 선택하세요",
+    "tags": [],
+    "instruction": "알맞은 단위를 선택하세요.",
+    "question": "그림을 보고 알맞은 들이 단위를 선택하는 문제",
+    "required_layout_ids": [
+      "slot.bathtub",
+      "slot.choice_box"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.bathtub",
+        "type": "container",
+        "name": "욕조",
+        "quantity_kind": "volume"
+      },
+      {
+        "id": "obj.unit_ml",
+        "type": "unit",
+        "name": "mL"
+      },
+      {
+        "id": "obj.unit_l",
+        "type": "unit",
+        "name": "L"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.bathtub",
+          "obj.unit_ml",
+          "obj.unit_l"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.choose_unit"
+        ]
+      },
+      "plan": {
+        "method": "생활용기-단위판단",
+        "description": "그림의 크기와 용도에 맞는 들이 단위를 고른다."
+      },
+      "execute": {
+        "expected_operations": [
+          "그림의 용도 판단",
+          "단위 후보 비교",
+          "알맞은 단위 선택"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "생활용기의 들이 단위 확인"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "unit_choice",
+      "description": "욕조의 알맞은 들이 단위"
+    },
+    "value": "L",
+    "unit": ""
+  }
+}

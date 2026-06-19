@@ -1,0 +1,274 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008784",
+  "title": "들이 비교",
+  "canvas": {
+    "width": 940,
+    "height": 367,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q1",
+        "slot.q2",
+        "slot.q3"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.bottle.body",
+        "slot.bottle.neck",
+        "slot.bottle.cap",
+        "slot.leftarrow",
+        "slot.rightarrow",
+        "slot.cup1.body",
+        "slot.cup1.water",
+        "slot.cup2.body",
+        "slot.cup2.water",
+        "slot.glass.body",
+        "slot.glass.base",
+        "slot.glass.stem",
+        "slot.bottle.label",
+        "slot.glass.caption",
+        "slot.choice"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "□ 6.",
+        "style_role": "question",
+        "x": 10.0,
+        "y": 28.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "물병과 유리컵에 물을 가득 채웠다가 모양과 크기가 같은 그릇에 각각 옮",
+        "style_role": "question",
+        "x": 72.0,
+        "y": 28.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "겨 담았습니다. 물병과 유리컵 중에서 들이가 더 많은 것을 선택해 보세요.",
+        "style_role": "question",
+        "x": 72.0,
+        "y": 59.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.bottle.body",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 343.0,
+        "y": 107.0,
+        "width": 32.0,
+        "height": 105.0
+      }
+    },
+    {
+      "id": "slot.bottle.neck",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 353.0,
+        "y": 93.0,
+        "width": 12.0,
+        "height": 18.0
+      }
+    },
+    {
+      "id": "slot.bottle.cap",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 352.0,
+        "y": 84.0,
+        "width": 14.0,
+        "height": 10.0
+      }
+    },
+    {
+      "id": "slot.bottle.label",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "물병",
+        "style_role": "label",
+        "x": 332.0,
+        "y": 236.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.leftarrow",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 394.0 99.0 C 409.0 86.0, 428.0 85.0, 441.0 98.0",
+        "x": 0.0,
+        "y": 0.0
+      }
+    },
+    {
+      "id": "slot.rightarrow",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 672.0 99.0 C 658.0 86.0, 639.0 85.0, 626.0 98.0",
+        "x": 0.0,
+        "y": 0.0
+      }
+    },
+    {
+      "id": "slot.cup1.body",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 432.0,
+        "y": 110.0,
+        "width": 36.0,
+        "height": 97.0
+      }
+    },
+    {
+      "id": "slot.cup1.water",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 435.0,
+        "y": 115.0,
+        "width": 30.0,
+        "height": 92.0
+      }
+    },
+    {
+      "id": "slot.cup2.body",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 488.0,
+        "y": 110.0,
+        "width": 36.0,
+        "height": 97.0
+      }
+    },
+    {
+      "id": "slot.cup2.water",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 491.0,
+        "y": 149.0,
+        "width": 30.0,
+        "height": 58.0
+      }
+    },
+    {
+      "id": "slot.glass.body",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 669.0,
+        "y": 112.0,
+        "width": 38.0,
+        "height": 80.0
+      }
+    },
+    {
+      "id": "slot.glass.stem",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 688.0,
+        "y1": 192.0,
+        "x2": 688.0,
+        "y2": 215.0
+      }
+    },
+    {
+      "id": "slot.glass.base",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 676.0,
+        "y": 214.0,
+        "width": 24.0,
+        "height": 6.0
+      }
+    },
+    {
+      "id": "slot.glass.caption",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "유리컵",
+        "style_role": "label",
+        "x": 664.0,
+        "y": 236.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "( 물병 , 유리컵 )",
+        "style_role": "choice",
+        "x": 728.0,
+        "y": 270.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q1",
+    "slot.q2",
+    "slot.q3",
+    "region.diagram",
+    "slot.bottle.body",
+    "slot.bottle.neck",
+    "slot.bottle.cap",
+    "slot.leftarrow",
+    "slot.rightarrow",
+    "slot.cup1.body",
+    "slot.cup1.water",
+    "slot.cup2.body",
+    "slot.cup2.water",
+    "slot.glass.body",
+    "slot.glass.base",
+    "slot.glass.stem",
+    "slot.bottle.label",
+    "slot.glass.caption",
+    "slot.choice"
+  ]
+}

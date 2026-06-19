@@ -1,0 +1,257 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008805",
+  "title": "3kg를 바르게 쓴 것을 선택하세요",
+  "canvas": {
+    "width": 896,
+    "height": 273,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.guideline.top.1",
+        "slot.guideline.top.2",
+        "slot.guideline.top.3",
+        "slot.guideline.top.4",
+        "slot.guideline.top.5",
+        "slot.guideline.top.6",
+        "slot.guideline.answer.1",
+        "slot.guideline.answer.2",
+        "slot.guideline.answer.3",
+        "slot.q.box",
+        "slot.q.num",
+        "slot.q.text"
+      ]
+    },
+    {
+      "id": "region.options",
+      "role": "body",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.opt.1",
+        "slot.opt.2"
+      ]
+    },
+    {
+      "id": "region.explain",
+      "role": "explanation",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q.box",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "□",
+        "style_role": "question",
+        "x": 8.0,
+        "y": 24.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q.num",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "34.",
+        "style_role": "question",
+        "x": 39.0,
+        "y": 24.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "3 kg을 바르게 쓴 것을 선택하세요.",
+        "style_role": "question",
+        "x": 86.0,
+        "y": 24.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.guideline.top.1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 281.0,
+        "y1": 55.0,
+        "x2": 439.0,
+        "y2": 55.0,
+        "stroke": "#8EC9FF",
+        "stroke_width": 1.0,
+        "stroke_dasharray": "4 4"
+      }
+    },
+    {
+      "id": "slot.guideline.top.2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 282.0,
+        "y1": 71.0,
+        "x2": 439.0,
+        "y2": 71.0,
+        "stroke": "#8EC9FF",
+        "stroke_width": 1.0,
+        "stroke_dasharray": "4 4"
+      }
+    },
+    {
+      "id": "slot.guideline.top.3",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 281.0,
+        "y1": 88.0,
+        "x2": 439.0,
+        "y2": 88.0,
+        "stroke": "#8EC9FF",
+        "stroke_width": 1.0,
+        "stroke_dasharray": "4 4"
+      }
+    },
+    {
+      "id": "slot.opt.1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "3kg",
+        "style_role": "body",
+        "x": 343.0,
+        "y": 78.0,
+        "font_size": 56
+      }
+    },
+    {
+      "id": "slot.guideline.top.4",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 544.0,
+        "y1": 55.0,
+        "x2": 702.0,
+        "y2": 55.0,
+        "stroke": "#8EC9FF",
+        "stroke_width": 1.0,
+        "stroke_dasharray": "4 4"
+      }
+    },
+    {
+      "id": "slot.guideline.top.5",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 544.0,
+        "y1": 71.0,
+        "x2": 702.0,
+        "y2": 71.0,
+        "stroke": "#8EC9FF",
+        "stroke_width": 1.0,
+        "stroke_dasharray": "4 4"
+      }
+    },
+    {
+      "id": "slot.guideline.top.6",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 544.0,
+        "y1": 88.0,
+        "x2": 702.0,
+        "y2": 88.0,
+        "stroke": "#8EC9FF",
+        "stroke_width": 1.0,
+        "stroke_dasharray": "4 4"
+      }
+    },
+    {
+      "id": "slot.opt.2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "3kg",
+        "style_role": "body",
+        "x": 606.0,
+        "y": 78.0,
+        "font_size": 56
+      }
+    },
+    {
+      "id": "slot.guideline.answer.1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 72.0,
+        "y1": 131.0,
+        "x2": 230.0,
+        "y2": 131.0,
+        "stroke": "#8EC9FF",
+        "stroke_width": 1.0,
+        "stroke_dasharray": "4 4"
+      }
+    },
+    {
+      "id": "slot.guideline.answer.2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 72.0,
+        "y1": 147.0,
+        "x2": 230.0,
+        "y2": 147.0,
+        "stroke": "#8EC9FF",
+        "stroke_width": 1.0,
+        "stroke_dasharray": "4 4"
+      }
+    },
+    {
+      "id": "slot.guideline.answer.3",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 72.0,
+        "y1": 164.0,
+        "x2": 230.0,
+        "y2": 164.0,
+        "stroke": "#8EC9FF",
+        "stroke_width": 1.0,
+        "stroke_dasharray": "4 4"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.guideline.top.1",
+    "slot.guideline.top.2",
+    "slot.guideline.top.3",
+    "slot.guideline.top.4",
+    "slot.guideline.top.5",
+    "slot.guideline.top.6",
+    "slot.guideline.answer.1",
+    "slot.guideline.answer.2",
+    "slot.guideline.answer.3",
+    "slot.q.box",
+    "slot.q.num",
+    "slot.q.text",
+    "region.options",
+    "slot.opt.1",
+    "slot.opt.2",
+    "region.explain"
+  ]
+}

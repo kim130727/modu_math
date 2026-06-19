@@ -1,0 +1,167 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008777",
+  "title": "알맞은 단위를 선택하세요",
+  "canvas": {
+    "width": 760,
+    "height": 330,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.img.placeholder",
+        "slot.q0",
+        "slot.q1",
+        "slot.q2",
+        "slot.q3",
+        "slot.q6",
+        "slot.q7",
+        "slot.q8",
+        "slot.q9",
+        "slot.q10"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q0",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "□",
+        "style_role": "question",
+        "x": 14.0,
+        "y": 34.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "90.",
+        "style_role": "question",
+        "x": 38.0,
+        "y": 34.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "알맞은 단위를 선택하세요.",
+        "style_role": "question",
+        "x": 90.0,
+        "y": 34.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.img.placeholder",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 150.0,
+        "y": 82.0,
+        "width": 150.0,
+        "height": 120.0
+      }
+    },
+    {
+      "id": "slot.q3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "주전자의 들이는 약 1 ( mL , L )입니다.",
+        "style_role": "question",
+        "x": 305.0,
+        "y": 126.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q6",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "mL",
+        "style_role": "question",
+        "x": 470.0,
+        "y": 126.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q7",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": ",",
+        "style_role": "question",
+        "x": 524.0,
+        "y": 126.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q8",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "L",
+        "style_role": "question",
+        "x": 550.0,
+        "y": 126.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q9",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": ")",
+        "style_role": "question",
+        "x": 578.0,
+        "y": 126.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q10",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "주전자 그림",
+        "style_role": "question",
+        "x": 0.0,
+        "y": 0.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.img.placeholder",
+    "slot.q0",
+    "slot.q1",
+    "slot.q2",
+    "slot.q3",
+    "slot.q6",
+    "slot.q7",
+    "slot.q8",
+    "slot.q9",
+    "slot.q10"
+  ]
+}

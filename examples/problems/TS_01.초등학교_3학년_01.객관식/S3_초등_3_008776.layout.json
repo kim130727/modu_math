@@ -1,0 +1,97 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008776",
+  "title": "알맞은 단위를 선택하세요",
+  "canvas": {
+    "width": 760,
+    "height": 204,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.header",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.no",
+        "slot.title"
+      ]
+    },
+    {
+      "id": "region.body",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.figure",
+        "slot.stem"
+      ]
+    },
+    {
+      "id": "region.footer",
+      "role": "answer",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.no",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "□ 89.",
+        "style_role": "question",
+        "x": 8.0,
+        "y": 24.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.title",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "알맞은 단위를 선택하세요.",
+        "style_role": "question",
+        "x": 74.0,
+        "y": 24.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.figure",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 146.0 48.0 C 157.0 41.0 179.0 41.0 190.0 48.0 C 187.0 67.0 149.0 67.0 146.0 48.0 Z",
+        "x": 0.0,
+        "y": 0.0
+      }
+    },
+    {
+      "id": "slot.stem",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "대접의 높이는 약 250 ( mL , L )입니다.",
+        "style_role": "question",
+        "x": 225.0,
+        "y": 74.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.header",
+    "slot.no",
+    "slot.title",
+    "region.body",
+    "slot.figure",
+    "slot.stem",
+    "region.footer"
+  ]
+}

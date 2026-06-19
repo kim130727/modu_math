@@ -1,0 +1,113 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008770",
+  "title": "무게를 알맞게 어림한 것을 찾아 선택하세요",
+  "canvas": {
+    "width": 926,
+    "height": 428,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q1",
+        "slot.q2"
+      ]
+    },
+    {
+      "id": "region.box",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.box.frame",
+        "slot.cat",
+        "slot.choice"
+      ]
+    },
+    {
+      "id": "region.ans",
+      "role": "answer",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "□ 72.",
+        "style_role": "question",
+        "x": 10.0,
+        "y": 26.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "무게를 알맞게 어림한 것을 찾아 선택하세요.",
+        "style_role": "question",
+        "x": 82.0,
+        "y": 26.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.box.frame",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 280.0,
+        "y": 57.0,
+        "width": 374.0,
+        "height": 209.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.cat",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "",
+        "style_role": "diagram",
+        "x": 462.0,
+        "y": 120.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "약 ( 3 g , 3 kg , 3 t )",
+        "style_role": "question",
+        "x": 391.0,
+        "y": 212.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q1",
+    "slot.q2",
+    "region.box",
+    "slot.box.frame",
+    "slot.cat",
+    "slot.choice",
+    "region.ans"
+  ]
+}

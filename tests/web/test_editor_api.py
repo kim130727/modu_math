@@ -178,6 +178,121 @@ SLOTS = (
     assert "height = 80.0" in updated
 
 
+def test_layout_patch_adds_image_slot_and_import(tmp_path: Path) -> None:
+    client = _setup_django(tmp_path)
+    dsl_text = """
+from modu_math.dsl import Canvas, ProblemTemplate, Region, TextSlot
+
+PROBLEM_TEMPLATE = ProblemTemplate(
+    id="p_image_add",
+    title="image add",
+    canvas=Canvas(width=300, height=200),
+    regions=(Region(id="region.diagram", role="diagram", flow="absolute", slot_ids=()),),
+    slots=(TextSlot(id="slot.title", text="A"),),
+)
+""".lstrip()
+    problem_dir = _write_problem(tmp_path, "0001", dsl_text)
+
+    payload = {
+        "patches": [
+            {
+                "target": "slot.image_1",
+                "op": "add",
+                "value": {
+                    "kind": "image",
+                    "region_id": "region.diagram",
+                    "content": {
+                        "href": "data:image/png;base64,AAAA",
+                        "x": 10.0,
+                        "y": 20.0,
+                        "width": 80.0,
+                        "height": 60.0,
+                        "preserve_aspect_ratio": "xMidYMid meet",
+                    },
+                },
+            }
+        ]
+    }
+    response = client.post(
+        "/api/editor/problems/0001/layout-patch/",
+        data=json.dumps(payload),
+        content_type="application/json",
+    )
+
+    assert response.status_code == 200
+    updated = (problem_dir / "problem.dsl.py").read_text(encoding="utf-8")
+    assert "ImageSlot" in updated
+    assert "ImageSlot(" in updated
+    assert "slot.image_1" in updated
+    assert "data:image/png;base64,AAAA" in updated
+    namespace: dict[str, object] = {}
+    exec(updated, namespace)
+
+
+def test_layout_patch_adds_table_slots_and_imports(tmp_path: Path) -> None:
+    client = _setup_django(tmp_path)
+    dsl_text = """
+from modu_math.dsl import Canvas, ProblemTemplate, Region
+
+PROBLEM_TEMPLATE = ProblemTemplate(
+    id="p_table_add",
+    title="table add",
+    canvas=Canvas(width=300, height=200),
+    regions=(Region(id="region.diagram", role="diagram", flow="absolute", slot_ids=()),),
+    slots=(),
+)
+""".lstrip()
+    problem_dir = _write_problem(tmp_path, "0001", dsl_text)
+
+    payload = {
+        "patches": [
+            {
+                "target": "slot.table.outer",
+                "op": "add",
+                "value": {
+                    "kind": "rect",
+                    "region_id": "region.diagram",
+                    "content": {"x": 10.0, "y": 20.0, "width": 120.0, "height": 80.0},
+                },
+            },
+            {
+                "target": "slot.table.v1",
+                "op": "add",
+                "value": {
+                    "kind": "line",
+                    "region_id": "region.diagram",
+                    "content": {"x1": 70.0, "y1": 20.0, "x2": 70.0, "y2": 100.0},
+                },
+            },
+            {
+                "target": "slot.table.r1c1",
+                "op": "add",
+                "value": {
+                    "kind": "text",
+                    "region_id": "region.diagram",
+                    "content": {"text": "", "x": 20.0, "y": 45.0, "style_role": "table"},
+                },
+            },
+        ]
+    }
+    response = client.post(
+        "/api/editor/problems/0001/layout-patch/",
+        data=json.dumps(payload),
+        content_type="application/json",
+    )
+
+    assert response.status_code == 200
+    updated = (problem_dir / "problem.dsl.py").read_text(encoding="utf-8")
+    assert "RectSlot" in updated
+    assert "LineSlot" in updated
+    assert "TextSlot" in updated
+    assert "slot.table.outer" in updated
+    assert "slot.table.v1" in updated
+    assert "slot.table.r1c1" in updated
+    namespace: dict[str, object] = {}
+    exec(updated, namespace)
+
+
 def test_layout_patch_falls_back_to_editor_overrides_for_generated_slot(tmp_path: Path) -> None:
     client = _setup_django(tmp_path)
     dsl_text = """

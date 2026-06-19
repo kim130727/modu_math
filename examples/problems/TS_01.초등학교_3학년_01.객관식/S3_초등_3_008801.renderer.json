@@ -1,0 +1,172 @@
+{
+  "problem_id": "S3_초등_3_008801",
+  "view_box": {
+    "width": 944.0,
+    "height": 374.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.q.no.text",
+      "type": "text",
+      "attributes": {
+        "x": 8.0,
+        "y": 26.0,
+        "max_width": 816.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q.no",
+      "refs": {
+        "layout_slot_id": "slot.q.no"
+      },
+      "text": "□ 30."
+    },
+    {
+      "id": "slot.q.text1.text",
+      "type": "text",
+      "attributes": {
+        "x": 74.0,
+        "y": 26.0,
+        "max_width": 816.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q.text1",
+      "refs": {
+        "layout_slot_id": "slot.q.text1"
+      },
+      "text": "바둑돌과 같이 무게를 비교하는 데 사용할 수 있는 단위로 알맞은 것을"
+    },
+    {
+      "id": "slot.q.text2.text",
+      "type": "text",
+      "attributes": {
+        "x": 12.0,
+        "y": 62.0,
+        "max_width": 816.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q.text2",
+      "refs": {
+        "layout_slot_id": "slot.q.text2"
+      },
+      "text": "모두 선택해 보세요."
+    },
+    {
+      "id": "slot.opt.clip.polygon",
+      "type": "polygon",
+      "attributes": {
+        "points": [
+          [
+            226.0,
+            123.0
+          ],
+          [
+            263.0,
+            98.0
+          ],
+          [
+            273.0,
+            104.0
+          ],
+          [
+            236.0,
+            129.0
+          ]
+        ],
+        "stroke": "#7aa6c2",
+        "stroke-width": 2.0,
+        "fill": "#ffffff"
+      },
+      "source_ref": "slot.opt.clip",
+      "refs": {
+        "layout_slot_id": "slot.opt.clip"
+      }
+    },
+    {
+      "id": "slot.opt.watermelon.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 486.0,
+        "cy": 145.0,
+        "r": 42.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#7ab84f"
+      },
+      "source_ref": "slot.opt.watermelon",
+      "refs": {
+        "layout_slot_id": "slot.opt.watermelon"
+      }
+    },
+    {
+      "id": "slot.opt.coin.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 716.0,
+        "cy": 143.0,
+        "r": 28.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#d9d9d9"
+      },
+      "source_ref": "slot.opt.coin",
+      "refs": {
+        "layout_slot_id": "slot.opt.coin"
+      }
+    },
+    {
+      "id": "slot.answer.clip.polygon",
+      "type": "polygon",
+      "attributes": {
+        "points": [
+          [
+            58.0,
+            284.0
+          ],
+          [
+            95.0,
+            259.0
+          ],
+          [
+            105.0,
+            265.0
+          ],
+          [
+            68.0,
+            290.0
+          ]
+        ],
+        "stroke": "#7aa6c2",
+        "stroke-width": 2.0,
+        "fill": "#ffffff"
+      },
+      "source_ref": "slot.answer.clip",
+      "refs": {
+        "layout_slot_id": "slot.answer.clip"
+      }
+    },
+    {
+      "id": "slot.answer.coin.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 161.0,
+        "cy": 283.0,
+        "r": 28.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#d9d9d9"
+      },
+      "source_ref": "slot.answer.coin",
+      "refs": {
+        "layout_slot_id": "slot.answer.coin"
+      }
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

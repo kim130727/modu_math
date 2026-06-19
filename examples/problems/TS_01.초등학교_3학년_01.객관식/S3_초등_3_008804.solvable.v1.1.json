@@ -1,0 +1,87 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008804",
+  "problem_type": "비교_가벼운것_선택",
+  "inputs": {
+    "total_ticks": 3,
+    "target_label": "가장 가벼운 것",
+    "target_ticks": 1,
+    "target_count": 3,
+    "unit": "500원짜리 동전의 수"
+  },
+  "given": [
+    {
+      "ref": "obj.wallet",
+      "value": {
+        "name": "지갑",
+        "coin_count": 9
+      }
+    },
+    {
+      "ref": "obj.hat",
+      "value": {
+        "name": "모자",
+        "coin_count": 2
+      }
+    },
+    {
+      "ref": "obj.bag",
+      "value": {
+        "name": "가방",
+        "coin_count": 13
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "가장 가벼운 물건"
+  },
+  "method": "compare_coin_counts",
+  "plan": [
+    "각 물건에 해당하는 500원짜리 동전의 수를 비교한다.",
+    "가장 적은 수를 가진 물건을 고른다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "지갑=9, 모자=2, 가방=13",
+      "value": {
+        "wallet": 9,
+        "hat": 2,
+        "bag": 13
+      }
+    },
+    {
+      "id": "step.2",
+      "expr": "2<9<13",
+      "value": "모자"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "가장 작은 수가 2인지 확인",
+      "expected": 2,
+      "actual": 2,
+      "pass": true
+    },
+    {
+      "id": "check.2",
+      "expr": "2에 해당하는 물건이 모자인지 확인",
+      "expected": "모자",
+      "actual": "모자",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "가장 가벼운 물건",
+      "description": "지갑, 모자, 가방 중 가장 가벼운 것"
+    },
+    "value": "모자",
+    "unit": ""
+  }
+}

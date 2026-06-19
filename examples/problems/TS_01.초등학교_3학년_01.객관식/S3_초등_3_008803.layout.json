@@ -1,0 +1,268 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008803",
+  "title": "가장 무거운 과일 선택",
+  "canvas": {
+    "width": 960,
+    "height": 456,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q1",
+        "slot.q2",
+        "slot.choice"
+      ]
+    },
+    {
+      "id": "region.diagram.left_scale",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.scale1.base",
+        "slot.scale1.left_fruit",
+        "slot.scale1.right_fruit",
+        "slot.scale1.beam",
+        "slot.scale1.pivot",
+        "slot.scale1.left_pan",
+        "slot.scale1.right_pan"
+      ]
+    },
+    {
+      "id": "region.diagram.right_scale",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.scale2.base",
+        "slot.scale2.left_fruit",
+        "slot.scale2.right_fruit",
+        "slot.scale2.beam",
+        "slot.scale2.pivot",
+        "slot.scale2.left_pan",
+        "slot.scale2.right_pan"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "□ 32. 저울로 오렌지, 딸기, 바나나의 무게를 비교했습니다. 가장 무거운 과일을",
+        "style_role": "question",
+        "x": 22.0,
+        "y": 34.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "선택해 보세요.",
+        "style_role": "question",
+        "x": 22.0,
+        "y": 68.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.scale1.base",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 198.0,
+        "y": 170.0,
+        "width": 132.0,
+        "height": 32.0
+      }
+    },
+    {
+      "id": "slot.scale1.beam",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 212.0,
+        "y1": 168.0,
+        "x2": 316.0,
+        "y2": 146.0
+      }
+    },
+    {
+      "id": "slot.scale1.pivot",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 264.0,
+        "y1": 150.0,
+        "x2": 264.0,
+        "y2": 208.0
+      }
+    },
+    {
+      "id": "slot.scale1.left_pan",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 214.0,
+        "y1": 166.0,
+        "x2": 210.0,
+        "y2": 192.0
+      }
+    },
+    {
+      "id": "slot.scale1.right_pan",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 308.0,
+        "y1": 148.0,
+        "x2": 312.0,
+        "y2": 174.0
+      }
+    },
+    {
+      "id": "slot.scale1.left_fruit",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 226.0,
+        "cy": 145.0,
+        "r": 22.0,
+        "fill": "#f4a62a"
+      }
+    },
+    {
+      "id": "slot.scale1.right_fruit",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 294.0,
+        "cy": 145.0,
+        "r": 16.0,
+        "fill": "#ef7b5b"
+      }
+    },
+    {
+      "id": "slot.scale2.base",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 556.0,
+        "y": 170.0,
+        "width": 132.0,
+        "height": 32.0
+      }
+    },
+    {
+      "id": "slot.scale2.beam",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 570.0,
+        "y1": 148.0,
+        "x2": 674.0,
+        "y2": 170.0
+      }
+    },
+    {
+      "id": "slot.scale2.pivot",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 622.0,
+        "y1": 152.0,
+        "x2": 622.0,
+        "y2": 208.0
+      }
+    },
+    {
+      "id": "slot.scale2.left_pan",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 576.0,
+        "y1": 150.0,
+        "x2": 572.0,
+        "y2": 176.0
+      }
+    },
+    {
+      "id": "slot.scale2.right_pan",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 668.0,
+        "y1": 168.0,
+        "x2": 672.0,
+        "y2": 192.0
+      }
+    },
+    {
+      "id": "slot.scale2.left_fruit",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 582.0,
+        "cy": 145.0,
+        "r": 16.0,
+        "fill": "#f4c04a"
+      }
+    },
+    {
+      "id": "slot.scale2.right_fruit",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 650.0,
+        "cy": 145.0,
+        "r": 22.0,
+        "fill": "#f4a62a"
+      }
+    },
+    {
+      "id": "slot.choice",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "( 오렌지 , 딸기 , 바나나 )",
+        "style_role": "choice",
+        "x": 642.0,
+        "y": 296.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q1",
+    "slot.q2",
+    "slot.choice",
+    "region.diagram.left_scale",
+    "slot.scale1.base",
+    "slot.scale1.left_fruit",
+    "slot.scale1.right_fruit",
+    "slot.scale1.beam",
+    "slot.scale1.pivot",
+    "slot.scale1.left_pan",
+    "slot.scale1.right_pan",
+    "region.diagram.right_scale",
+    "slot.scale2.base",
+    "slot.scale2.left_fruit",
+    "slot.scale2.right_fruit",
+    "slot.scale2.beam",
+    "slot.scale2.pivot",
+    "slot.scale2.left_pan",
+    "slot.scale2.right_pan"
+  ]
+}

@@ -1,0 +1,285 @@
+{
+  "problem_id": "S3_초등_3_008764",
+  "view_box": {
+    "width": 960.0,
+    "height": 520.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.qnum.text",
+      "type": "text",
+      "attributes": {
+        "x": 14.0,
+        "y": 40.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.qnum",
+      "refs": {
+        "layout_slot_id": "slot.qnum"
+      },
+      "text": "□ 66."
+    },
+    {
+      "id": "slot.qtext1.text",
+      "type": "text",
+      "attributes": {
+        "x": 72.0,
+        "y": 40.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.qtext1",
+      "refs": {
+        "layout_slot_id": "slot.qtext1"
+      },
+      "text": "저울을 사용하여 공책과 필통의 무게를 비교하려고 합니다. 알맞은 말을"
+    },
+    {
+      "id": "slot.qtext2.text",
+      "type": "text",
+      "attributes": {
+        "x": 72.0,
+        "y": 76.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.qtext2",
+      "refs": {
+        "layout_slot_id": "slot.qtext2"
+      },
+      "text": "선택하세요."
+    },
+    {
+      "id": "slot.scale.base.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 380.0,
+        "y": 250.0,
+        "width": 215.0,
+        "height": 52.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5,
+        "rx": 8.0,
+        "ry": 8.0
+      },
+      "source_ref": "slot.scale.base",
+      "refs": {
+        "layout_slot_id": "slot.scale.base"
+      }
+    },
+    {
+      "id": "slot.scale.pillar.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 476.0,
+        "y": 165.0,
+        "width": 22.0,
+        "height": 95.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5,
+        "rx": 6.0,
+        "ry": 6.0
+      },
+      "source_ref": "slot.scale.pillar",
+      "refs": {
+        "layout_slot_id": "slot.scale.pillar"
+      }
+    },
+    {
+      "id": "slot.scale.left.book.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 400.0,
+        "y": 120.0,
+        "width": 86.0,
+        "height": 56.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5,
+        "rx": 4.0,
+        "ry": 4.0
+      },
+      "source_ref": "slot.scale.left.book",
+      "refs": {
+        "layout_slot_id": "slot.scale.left.book"
+      }
+    },
+    {
+      "id": "slot.scale.right.pencilcase.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 520.0,
+        "y": 126.0,
+        "width": 76.0,
+        "height": 54.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5,
+        "rx": 4.0,
+        "ry": 4.0
+      },
+      "source_ref": "slot.scale.right.pencilcase",
+      "refs": {
+        "layout_slot_id": "slot.scale.right.pencilcase"
+      }
+    },
+    {
+      "id": "slot.scale.beam.line",
+      "type": "line",
+      "attributes": {
+        "x1": 382.0,
+        "y1": 150.0,
+        "x2": 582.0,
+        "y2": 182.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.scale.beam",
+      "refs": {
+        "layout_slot_id": "slot.scale.beam"
+      }
+    },
+    {
+      "id": "slot.scale.left.pan.line",
+      "type": "line",
+      "attributes": {
+        "x1": 408.0,
+        "y1": 158.0,
+        "x2": 438.0,
+        "y2": 222.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.scale.left.pan",
+      "refs": {
+        "layout_slot_id": "slot.scale.left.pan"
+      }
+    },
+    {
+      "id": "slot.scale.right.pan.line",
+      "type": "line",
+      "attributes": {
+        "x1": 556.0,
+        "y1": 178.0,
+        "x2": 526.0,
+        "y2": 232.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.scale.right.pan",
+      "refs": {
+        "layout_slot_id": "slot.scale.right.pan"
+      }
+    },
+    {
+      "id": "slot.scale.left.stand.line",
+      "type": "line",
+      "attributes": {
+        "x1": 424.0,
+        "y1": 220.0,
+        "x2": 424.0,
+        "y2": 268.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.scale.left.stand",
+      "refs": {
+        "layout_slot_id": "slot.scale.left.stand"
+      }
+    },
+    {
+      "id": "slot.scale.right.stand.line",
+      "type": "line",
+      "attributes": {
+        "x1": 538.0,
+        "y1": 230.0,
+        "x2": 538.0,
+        "y2": 268.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.scale.right.stand",
+      "refs": {
+        "layout_slot_id": "slot.scale.right.stand"
+      }
+    },
+    {
+      "id": "slot.scale.center.knob.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 487.0,
+        "cy": 208.0,
+        "r": 5.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#222222"
+      },
+      "source_ref": "slot.scale.center.knob",
+      "refs": {
+        "layout_slot_id": "slot.scale.center.knob"
+      }
+    },
+    {
+      "id": "slot.label.book.text",
+      "type": "text",
+      "attributes": {
+        "x": 418.0,
+        "y": 104.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.label.book",
+      "refs": {
+        "layout_slot_id": "slot.label.book"
+      },
+      "text": "공책"
+    },
+    {
+      "id": "slot.label.pencilcase.text",
+      "type": "text",
+      "attributes": {
+        "x": 536.0,
+        "y": 108.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.label.pencilcase",
+      "refs": {
+        "layout_slot_id": "slot.label.pencilcase"
+      },
+      "text": "필통"
+    },
+    {
+      "id": "slot.choice.text",
+      "type": "text",
+      "attributes": {
+        "x": 200.0,
+        "y": 392.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice",
+      "refs": {
+        "layout_slot_id": "slot.choice"
+      },
+      "text": "공책이 필통보다 더 ( 무겁습니다, 가볍습니다 )."
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

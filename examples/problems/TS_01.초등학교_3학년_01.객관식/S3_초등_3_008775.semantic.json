@@ -1,0 +1,108 @@
+{
+  "problem_id": "S3_초등_3_008775",
+  "problem_type": "comparison",
+  "metadata": {
+    "title": "누가 물을 더 많이 마셨나요",
+    "tags": [],
+    "question": "수경이와 현준이가 물을 마셨습니다. 마시기 전과 마신 후의 물의 양은 다음과 같습니다. 누가 물을 더 많이 마셨나요?",
+    "required_layout_ids": [
+      "slot.tbl.bg",
+      "slot.tbl.c1",
+      "slot.tbl.c2",
+      "slot.tbl.r1",
+      "slot.tbl.r2",
+      "slot.tbl.h1",
+      "slot.tbl.h2",
+      "slot.tbl.v1",
+      "slot.tbl.v2"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "누가 물을 더 많이 마셨는지 구하시오."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.sugyeong",
+        "type": "person",
+        "name": "수경"
+      },
+      {
+        "id": "obj.hyeonjun",
+        "type": "person",
+        "name": "현준"
+      },
+      {
+        "id": "obj.sugyeong_before",
+        "type": "amount",
+        "person": "obj.sugyeong",
+        "state": "before",
+        "value": "2 L 500 mL"
+      },
+      {
+        "id": "obj.sugyeong_after",
+        "type": "amount",
+        "person": "obj.sugyeong",
+        "state": "after",
+        "value": "2 L 100 mL"
+      },
+      {
+        "id": "obj.hyeonjun_before",
+        "type": "amount",
+        "person": "obj.hyeonjun",
+        "state": "before",
+        "value": "2 L"
+      },
+      {
+        "id": "obj.hyeonjun_after",
+        "type": "amount",
+        "person": "obj.hyeonjun",
+        "state": "after",
+        "value": "1 L 400 mL"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.sugyeong_before",
+          "obj.sugyeong_after",
+          "obj.hyeonjun_before",
+          "obj.hyeonjun_after"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.compare_drunk_amount"
+        ]
+      },
+      "plan": {
+        "method": "compare_drunk_amount_by_difference",
+        "description": "각 사람의 마신 물의 양을 비교하여 더 많이 마신 사람을 찾는다."
+      },
+      "execute": {
+        "expected_operations": [
+          "difference_between_before_and_after",
+          "compare_two_amounts"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "compare_result_consistency"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "person",
+      "description": "물을 더 많이 마신 사람"
+    },
+    "value": "현준",
+    "unit": ""
+  }
+}

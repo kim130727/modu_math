@@ -1,0 +1,190 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008801",
+  "title": "무게를 비교하는 단위 고르기",
+  "canvas": {
+    "width": 944,
+    "height": 374,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.header",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q.no",
+        "slot.q.text1",
+        "slot.q.text2"
+      ]
+    },
+    {
+      "id": "region.options",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.opt.clip",
+        "slot.opt.watermelon",
+        "slot.opt.coin"
+      ]
+    },
+    {
+      "id": "region.answer",
+      "role": "answer",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.answer.clip",
+        "slot.answer.coin"
+      ]
+    },
+    {
+      "id": "region.explanation",
+      "role": "explanation",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q.no",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "□ 30.",
+        "style_role": "question",
+        "x": 8.0,
+        "y": 26.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q.text1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "바둑돌과 같이 무게를 비교하는 데 사용할 수 있는 단위로 알맞은 것을",
+        "style_role": "question",
+        "x": 74.0,
+        "y": 26.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q.text2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "모두 선택해 보세요.",
+        "style_role": "question",
+        "x": 12.0,
+        "y": 62.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.opt.clip",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            226.0,
+            123.0
+          ],
+          [
+            263.0,
+            98.0
+          ],
+          [
+            273.0,
+            104.0
+          ],
+          [
+            236.0,
+            129.0
+          ]
+        ],
+        "stroke": "#7aa6c2",
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.opt.watermelon",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 486.0,
+        "cy": 145.0,
+        "r": 42.0,
+        "fill": "#7ab84f"
+      }
+    },
+    {
+      "id": "slot.opt.coin",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 716.0,
+        "cy": 143.0,
+        "r": 28.0,
+        "fill": "#d9d9d9"
+      }
+    },
+    {
+      "id": "slot.answer.clip",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            58.0,
+            284.0
+          ],
+          [
+            95.0,
+            259.0
+          ],
+          [
+            105.0,
+            265.0
+          ],
+          [
+            68.0,
+            290.0
+          ]
+        ],
+        "stroke": "#7aa6c2",
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.answer.coin",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 161.0,
+        "cy": 283.0,
+        "r": 28.0,
+        "fill": "#d9d9d9"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.header",
+    "slot.q.no",
+    "slot.q.text1",
+    "slot.q.text2",
+    "region.options",
+    "slot.opt.clip",
+    "slot.opt.watermelon",
+    "slot.opt.coin",
+    "region.answer",
+    "slot.answer.clip",
+    "slot.answer.coin",
+    "region.explanation"
+  ]
+}

@@ -1,0 +1,161 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008806",
+  "title": "무게가 100 g보다 더 가벼운 것을 선택하세요",
+  "canvas": {
+    "width": 760,
+    "height": 460,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q.symbol",
+        "slot.q.text"
+      ]
+    },
+    {
+      "id": "region.example",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.box",
+        "slot.box.label",
+        "slot.box.object",
+        "slot.box.weight",
+        "slot.choice.strawberry",
+        "slot.choice.pineapple"
+      ]
+    },
+    {
+      "id": "region.answer",
+      "role": "answer",
+      "flow": "absolute",
+      "slot_ids": []
+    },
+    {
+      "id": "region.explanation",
+      "role": "explanation",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q.symbol",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "□",
+        "style_role": "question",
+        "x": 8.0,
+        "y": 30.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "35. 무게가 100 g보다 더 가벼운 것을 선택하세요.",
+        "style_role": "question",
+        "x": 40.0,
+        "y": 30.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 178.0,
+        "y": 50.0,
+        "width": 226.0,
+        "height": 206.0
+      }
+    },
+    {
+      "id": "slot.box.label",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "<보기>",
+        "style_role": "label",
+        "x": 200.0,
+        "y": 95.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.box.object",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "연두색 튜브 그림",
+        "style_role": "label",
+        "x": 245.0,
+        "y": 150.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.box.weight",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "100 g",
+        "style_role": "label",
+        "x": 250.0,
+        "y": 225.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice.strawberry",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "딸기 그림",
+        "style_role": "label",
+        "x": 478.0,
+        "y": 148.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice.pineapple",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "파인애플 그림",
+        "style_role": "label",
+        "x": 638.0,
+        "y": 146.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q.symbol",
+    "slot.q.text",
+    "region.example",
+    "slot.box",
+    "slot.box.label",
+    "slot.box.object",
+    "slot.box.weight",
+    "slot.choice.strawberry",
+    "slot.choice.pineapple",
+    "region.answer",
+    "region.explanation"
+  ]
+}

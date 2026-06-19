@@ -1,0 +1,620 @@
+{
+  "problem_id": "S3_초등_3_008789",
+  "view_box": {
+    "width": 960.0,
+    "height": 436.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.q1.text",
+      "type": "text",
+      "attributes": {
+        "x": 8.0,
+        "y": 24.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q1",
+      "refs": {
+        "layout_slot_id": "slot.q1"
+      },
+      "text": "□"
+    },
+    {
+      "id": "slot.q2.text",
+      "type": "text",
+      "attributes": {
+        "x": 33.0,
+        "y": 24.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q2",
+      "refs": {
+        "layout_slot_id": "slot.q2"
+      },
+      "text": "14."
+    },
+    {
+      "id": "slot.q3.text",
+      "type": "text",
+      "attributes": {
+        "x": 64.0,
+        "y": 24.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q3",
+      "refs": {
+        "layout_slot_id": "slot.q3"
+      },
+      "text": "보온병과 우유갑에 물을 가득 채운 후 물을 같은 그릇에 옮겨 담았습니다."
+    },
+    {
+      "id": "slot.q4.text",
+      "type": "text",
+      "attributes": {
+        "x": 64.0,
+        "y": 60.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q4",
+      "refs": {
+        "layout_slot_id": "slot.q4"
+      },
+      "text": "그림과 같이 물이 채워졌을 때 보온병과 우유갑 중 들이가 더"
+    },
+    {
+      "id": "slot.q5.text",
+      "type": "text",
+      "attributes": {
+        "x": 64.0,
+        "y": 96.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q5",
+      "refs": {
+        "layout_slot_id": "slot.q5"
+      },
+      "text": "많은 것을 선택하세요."
+    },
+    {
+      "id": "slot.tharmos.body.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 205.0,
+        "y": 104.0,
+        "width": 36.0,
+        "height": 108.0,
+        "fill": "#F9D4DA",
+        "stroke": "#F08CA0",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.tharmos.body",
+      "refs": {
+        "layout_slot_id": "slot.tharmos.body"
+      }
+    },
+    {
+      "id": "slot.tharmos.lid.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 210.0,
+        "y": 88.0,
+        "width": 26.0,
+        "height": 24.0,
+        "fill": "#F6B3C1",
+        "stroke": "#F08CA0",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.tharmos.lid",
+      "refs": {
+        "layout_slot_id": "slot.tharmos.lid"
+      }
+    },
+    {
+      "id": "slot.tharmos.handle.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 198 114 C 176 138, 176 188, 194 210",
+        "stroke": "#F4A62A",
+        "stroke-width": 2.0,
+        "fill": "none"
+      },
+      "source_ref": "slot.tharmos.handle",
+      "refs": {
+        "layout_slot_id": "slot.tharmos.handle"
+      }
+    },
+    {
+      "id": "slot.cup1.body.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 385.0,
+        "y": 114.0,
+        "width": 56.0,
+        "height": 100.0,
+        "fill": "#FFFFFF",
+        "stroke": "#90A3E6",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.cup1.body",
+      "refs": {
+        "layout_slot_id": "slot.cup1.body"
+      }
+    },
+    {
+      "id": "slot.cup1.top_ellipse.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 413.0,
+        "cy": 114.0,
+        "r": 28.0,
+        "stroke": "#90A3E6",
+        "stroke-width": 2.0,
+        "fill": "none"
+      },
+      "source_ref": "slot.cup1.top_ellipse",
+      "refs": {
+        "layout_slot_id": "slot.cup1.top_ellipse"
+      }
+    },
+    {
+      "id": "slot.cup1.water.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 385.0,
+        "y": 164.0,
+        "width": 56.0,
+        "height": 50.0,
+        "fill": "#A6D9F5",
+        "stroke": "none",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.cup1.water",
+      "refs": {
+        "layout_slot_id": "slot.cup1.water"
+      }
+    },
+    {
+      "id": "slot.cup1.surface.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 389 164 C 399 157, 428 157, 437 164",
+        "stroke": "#6FBCEB",
+        "stroke-width": 1.6,
+        "fill": "none"
+      },
+      "source_ref": "slot.cup1.surface",
+      "refs": {
+        "layout_slot_id": "slot.cup1.surface"
+      }
+    },
+    {
+      "id": "slot.cup1.bottom_curve.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 397 206 C 403 211, 423 211, 429 206",
+        "stroke": "#7FA7D8",
+        "stroke-width": 1.2,
+        "fill": "none"
+      },
+      "source_ref": "slot.cup1.bottom_curve",
+      "refs": {
+        "layout_slot_id": "slot.cup1.bottom_curve"
+      }
+    },
+    {
+      "id": "slot.cup1.reflection.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 394 132 C 394 146, 394 180, 394 200",
+        "stroke": "#CBE9FB",
+        "stroke-width": 1.2,
+        "fill": "none"
+      },
+      "source_ref": "slot.cup1.reflection",
+      "refs": {
+        "layout_slot_id": "slot.cup1.reflection"
+      }
+    },
+    {
+      "id": "slot.milk.carton_body.polygon",
+      "type": "polygon",
+      "attributes": {
+        "points": [
+          [
+            555.0,
+            146.0
+          ],
+          [
+            593.0,
+            146.0
+          ],
+          [
+            593.0,
+            206.0
+          ],
+          [
+            555.0,
+            206.0
+          ]
+        ],
+        "stroke": "#909090",
+        "stroke-width": 2.0,
+        "fill": "#FFFFFF"
+      },
+      "source_ref": "slot.milk.carton_body",
+      "refs": {
+        "layout_slot_id": "slot.milk.carton_body"
+      }
+    },
+    {
+      "id": "slot.milk.carton_top.polygon",
+      "type": "polygon",
+      "attributes": {
+        "points": [
+          [
+            555.0,
+            146.0
+          ],
+          [
+            569.0,
+            130.0
+          ],
+          [
+            607.0,
+            130.0
+          ],
+          [
+            593.0,
+            146.0
+          ]
+        ],
+        "stroke": "#909090",
+        "stroke-width": 2.0,
+        "fill": "#EEF4FF"
+      },
+      "source_ref": "slot.milk.carton_top",
+      "refs": {
+        "layout_slot_id": "slot.milk.carton_top"
+      }
+    },
+    {
+      "id": "slot.milk.carton_side.polygon",
+      "type": "polygon",
+      "attributes": {
+        "points": [
+          [
+            593.0,
+            146.0
+          ],
+          [
+            607.0,
+            130.0
+          ],
+          [
+            607.0,
+            190.0
+          ],
+          [
+            593.0,
+            206.0
+          ]
+        ],
+        "stroke": "#909090",
+        "stroke-width": 2.0,
+        "fill": "#F5F5F5"
+      },
+      "source_ref": "slot.milk.carton_side",
+      "refs": {
+        "layout_slot_id": "slot.milk.carton_side"
+      }
+    },
+    {
+      "id": "slot.milk.carton_green.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 555.0,
+        "y": 186.0,
+        "width": 38.0,
+        "height": 20.0,
+        "fill": "#4BAE5A",
+        "stroke": "none",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.milk.carton_green",
+      "refs": {
+        "layout_slot_id": "slot.milk.carton_green"
+      }
+    },
+    {
+      "id": "slot.cup2.body.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 754.0,
+        "y": 114.0,
+        "width": 56.0,
+        "height": 100.0,
+        "fill": "#FFFFFF",
+        "stroke": "#90A3E6",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.cup2.body",
+      "refs": {
+        "layout_slot_id": "slot.cup2.body"
+      }
+    },
+    {
+      "id": "slot.cup2.top_ellipse.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 782.0,
+        "cy": 114.0,
+        "r": 28.0,
+        "stroke": "#90A3E6",
+        "stroke-width": 2.0,
+        "fill": "none"
+      },
+      "source_ref": "slot.cup2.top_ellipse",
+      "refs": {
+        "layout_slot_id": "slot.cup2.top_ellipse"
+      }
+    },
+    {
+      "id": "slot.cup2.water.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 754.0,
+        "y": 164.0,
+        "width": 56.0,
+        "height": 50.0,
+        "fill": "#A6D9F5",
+        "stroke": "none",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.cup2.water",
+      "refs": {
+        "layout_slot_id": "slot.cup2.water"
+      }
+    },
+    {
+      "id": "slot.cup2.surface.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 758 164 C 768 157, 797 157, 806 164",
+        "stroke": "#6FBCEB",
+        "stroke-width": 1.6,
+        "fill": "none"
+      },
+      "source_ref": "slot.cup2.surface",
+      "refs": {
+        "layout_slot_id": "slot.cup2.surface"
+      }
+    },
+    {
+      "id": "slot.cup2.bottom_curve.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 766 206 C 772 211, 792 211, 798 206",
+        "stroke": "#7FA7D8",
+        "stroke-width": 1.2,
+        "fill": "none"
+      },
+      "source_ref": "slot.cup2.bottom_curve",
+      "refs": {
+        "layout_slot_id": "slot.cup2.bottom_curve"
+      }
+    },
+    {
+      "id": "slot.cup2.reflection.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 763 132 C 763 146, 763 180, 763 200",
+        "stroke": "#CBE9FB",
+        "stroke-width": 1.2,
+        "fill": "none"
+      },
+      "source_ref": "slot.cup2.reflection",
+      "refs": {
+        "layout_slot_id": "slot.cup2.reflection"
+      }
+    },
+    {
+      "id": "slot.tharmos.strap.line",
+      "type": "line",
+      "attributes": {
+        "x1": 193.0,
+        "y1": 210.0,
+        "x2": 226.0,
+        "y2": 106.0,
+        "stroke": "#F4A62A",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.tharmos.strap",
+      "refs": {
+        "layout_slot_id": "slot.tharmos.strap"
+      }
+    },
+    {
+      "id": "slot.tharmos.shadow.line",
+      "type": "line",
+      "attributes": {
+        "x1": 208.0,
+        "y1": 214.0,
+        "x2": 240.0,
+        "y2": 214.0,
+        "stroke": "#F0A0B2",
+        "stroke-width": 1.4
+      },
+      "source_ref": "slot.tharmos.shadow",
+      "refs": {
+        "layout_slot_id": "slot.tharmos.shadow"
+      }
+    },
+    {
+      "id": "slot.milk.carton_shadow.line",
+      "type": "line",
+      "attributes": {
+        "x1": 560.0,
+        "y1": 206.0,
+        "x2": 589.0,
+        "y2": 206.0,
+        "stroke": "#9FD4A4",
+        "stroke-width": 1.2
+      },
+      "source_ref": "slot.milk.carton_shadow",
+      "refs": {
+        "layout_slot_id": "slot.milk.carton_shadow"
+      }
+    },
+    {
+      "id": "slot.tharmos.axle_left.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 199.0,
+        "cy": 115.0,
+        "r": 4.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#6EC6E8"
+      },
+      "source_ref": "slot.tharmos.axle_left",
+      "refs": {
+        "layout_slot_id": "slot.tharmos.axle_left"
+      }
+    },
+    {
+      "id": "slot.tharmos.axle_right.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 237.0,
+        "cy": 116.0,
+        "r": 4.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#6EC6E8"
+      },
+      "source_ref": "slot.tharmos.axle_right",
+      "refs": {
+        "layout_slot_id": "slot.tharmos.axle_right"
+      }
+    },
+    {
+      "id": "slot.arrow1.text",
+      "type": "text",
+      "attributes": {
+        "x": 326.0,
+        "y": 176.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 44
+      },
+      "source_ref": "slot.arrow1",
+      "refs": {
+        "layout_slot_id": "slot.arrow1"
+      },
+      "text": "→"
+    },
+    {
+      "id": "slot.milk.carton_logo.text",
+      "type": "text",
+      "attributes": {
+        "x": 559.0,
+        "y": 171.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 18
+      },
+      "source_ref": "slot.milk.carton_logo",
+      "refs": {
+        "layout_slot_id": "slot.milk.carton_logo"
+      },
+      "text": "우유"
+    },
+    {
+      "id": "slot.arrow2.text",
+      "type": "text",
+      "attributes": {
+        "x": 694.0,
+        "y": 176.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 44
+      },
+      "source_ref": "slot.arrow2",
+      "refs": {
+        "layout_slot_id": "slot.arrow2"
+      },
+      "text": "→"
+    },
+    {
+      "id": "slot.lb.tharmos.text",
+      "type": "text",
+      "attributes": {
+        "x": 197.0,
+        "y": 272.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.lb.tharmos",
+      "refs": {
+        "layout_slot_id": "slot.lb.tharmos"
+      },
+      "text": "보온병"
+    },
+    {
+      "id": "slot.lb.milk.text",
+      "type": "text",
+      "attributes": {
+        "x": 544.0,
+        "y": 272.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.lb.milk",
+      "refs": {
+        "layout_slot_id": "slot.lb.milk"
+      },
+      "text": "우유갑"
+    },
+    {
+      "id": "slot.choice.text",
+      "type": "text",
+      "attributes": {
+        "x": 723.0,
+        "y": 317.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice",
+      "refs": {
+        "layout_slot_id": "slot.choice"
+      },
+      "text": "( 보온병 , 우유갑 )"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

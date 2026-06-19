@@ -1,0 +1,303 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008765",
+  "title": "저울을 보고 가장 가벼운 물건 찾기",
+  "canvas": {
+    "width": 960,
+    "height": 548,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q1",
+        "slot.q2",
+        "slot.q3"
+      ]
+    },
+    {
+      "id": "region.diagram.left",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.left.scale.base",
+        "slot.left.scale.arm",
+        "slot.left.scale.pan.l",
+        "slot.left.scale.pan.r",
+        "slot.left.label.fork",
+        "slot.left.label.ladle"
+      ]
+    },
+    {
+      "id": "region.diagram.right",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.right.scale.base",
+        "slot.right.scale.arm",
+        "slot.right.scale.pan.l",
+        "slot.right.scale.pan.r",
+        "slot.right.label.ladle",
+        "slot.right.label.spoon"
+      ]
+    },
+    {
+      "id": "region.body",
+      "role": "body",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.s1",
+        "slot.s2",
+        "slot.s3"
+      ]
+    },
+    {
+      "id": "region.footer",
+      "role": "footer",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "□ 67. 저울을 사용하여 포크, 국자, 숟가락의 무게를 비교하고 있습니다. 포크,",
+        "style_role": "question",
+        "x": 16.0,
+        "y": 32.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "국자, 숟가락 중에서 가장 가벼운 물건은 무엇인지 알아보려고 할 때 알맞",
+        "style_role": "question",
+        "x": 16.0,
+        "y": 68.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "은 말을 선택하세요.",
+        "style_role": "question",
+        "x": 16.0,
+        "y": 104.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.left.scale.base",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 236.0,
+        "y": 214.0,
+        "width": 210.0,
+        "height": 92.0
+      }
+    },
+    {
+      "id": "slot.left.scale.arm",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 264.0,
+        "y": 176.0,
+        "width": 154.0,
+        "height": 18.0
+      }
+    },
+    {
+      "id": "slot.left.scale.pan.l",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 236.0,
+        "y": 152.0,
+        "width": 62.0,
+        "height": 34.0
+      }
+    },
+    {
+      "id": "slot.left.scale.pan.r",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 384.0,
+        "y": 152.0,
+        "width": 62.0,
+        "height": 34.0
+      }
+    },
+    {
+      "id": "slot.left.label.fork",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "포크",
+        "style_role": "label",
+        "x": 254.0,
+        "y": 140.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.left.label.ladle",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "국자",
+        "style_role": "label",
+        "x": 410.0,
+        "y": 140.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.right.scale.base",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 542.0,
+        "y": 214.0,
+        "width": 210.0,
+        "height": 92.0
+      }
+    },
+    {
+      "id": "slot.right.scale.arm",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 570.0,
+        "y": 176.0,
+        "width": 154.0,
+        "height": 18.0
+      }
+    },
+    {
+      "id": "slot.right.scale.pan.l",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 542.0,
+        "y": 152.0,
+        "width": 62.0,
+        "height": 34.0
+      }
+    },
+    {
+      "id": "slot.right.scale.pan.r",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 690.0,
+        "y": 152.0,
+        "width": 62.0,
+        "height": 34.0
+      }
+    },
+    {
+      "id": "slot.right.label.ladle",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "국자",
+        "style_role": "label",
+        "x": 560.0,
+        "y": 140.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.right.label.spoon",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "숟가락",
+        "style_role": "label",
+        "x": 708.0,
+        "y": 140.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.s1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "포크와 국자 중 ( 포크 , 국자 )가 더 가볍고,",
+        "style_role": "body",
+        "x": 178.0,
+        "y": 332.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.s2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "국자와 숟가락 중 ( 국자 , 숟가락 )이/가 더 가벼우므로",
+        "style_role": "body",
+        "x": 122.0,
+        "y": 378.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.s3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "포크와 ( 국자 , 숟가락 )의 무게를 비교해야 합니다.",
+        "style_role": "body",
+        "x": 178.0,
+        "y": 424.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q1",
+    "slot.q2",
+    "slot.q3",
+    "region.diagram.left",
+    "slot.left.scale.base",
+    "slot.left.scale.arm",
+    "slot.left.scale.pan.l",
+    "slot.left.scale.pan.r",
+    "slot.left.label.fork",
+    "slot.left.label.ladle",
+    "region.diagram.right",
+    "slot.right.scale.base",
+    "slot.right.scale.arm",
+    "slot.right.scale.pan.l",
+    "slot.right.scale.pan.r",
+    "slot.right.label.ladle",
+    "slot.right.label.spoon",
+    "region.body",
+    "slot.s1",
+    "slot.s2",
+    "slot.s3",
+    "region.footer"
+  ]
+}

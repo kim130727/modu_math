@@ -1,0 +1,164 @@
+{
+  "problem_id": "S3_초등_3_008781",
+  "view_box": {
+    "width": 944.0,
+    "height": 435.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.q1.text",
+      "type": "text",
+      "attributes": {
+        "x": 12.0,
+        "y": 18.0,
+        "max_width": 816.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q1",
+      "refs": {
+        "layout_slot_id": "slot.q1"
+      },
+      "text": "1. 고구마, 옥수수, 감자 한 개의 무게를 비교하려고 합니다. 무거운 것부터 순서대로 쓴 것을 고르세요."
+    },
+    {
+      "id": "slot.scale.left.frame.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 260.0,
+        "y": 70.0,
+        "width": 210.0,
+        "height": 120.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.scale.left.frame",
+      "refs": {
+        "layout_slot_id": "slot.scale.left.frame"
+      }
+    },
+    {
+      "id": "slot.scale.right.frame.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 500.0,
+        "y": 70.0,
+        "width": 210.0,
+        "height": 120.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.scale.right.frame",
+      "refs": {
+        "layout_slot_id": "slot.scale.right.frame"
+      }
+    },
+    {
+      "id": "slot.scale.left.label.text",
+      "type": "text",
+      "attributes": {
+        "x": 292.0,
+        "y": 160.0,
+        "max_width": 816.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 24
+      },
+      "source_ref": "slot.scale.left.label",
+      "refs": {
+        "layout_slot_id": "slot.scale.left.label"
+      },
+      "text": "고구마와 옥수수 비교"
+    },
+    {
+      "id": "slot.scale.right.label.text",
+      "type": "text",
+      "attributes": {
+        "x": 532.0,
+        "y": 160.0,
+        "max_width": 816.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 24
+      },
+      "source_ref": "slot.scale.right.label",
+      "refs": {
+        "layout_slot_id": "slot.scale.right.label"
+      },
+      "text": "고구마와 감자 비교"
+    },
+    {
+      "id": "slot.opt.1.text",
+      "type": "text",
+      "attributes": {
+        "x": 22.0,
+        "y": 232.0,
+        "max_width": 816.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.opt.1",
+      "refs": {
+        "layout_slot_id": "slot.opt.1"
+      },
+      "text": "① 고구마, 감자, 옥수수"
+    },
+    {
+      "id": "slot.opt.2.text",
+      "type": "text",
+      "attributes": {
+        "x": 482.0,
+        "y": 232.0,
+        "max_width": 816.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.opt.2",
+      "refs": {
+        "layout_slot_id": "slot.opt.2"
+      },
+      "text": "② 감자, 고구마, 옥수수"
+    },
+    {
+      "id": "slot.opt.3.text",
+      "type": "text",
+      "attributes": {
+        "x": 22.0,
+        "y": 284.0,
+        "max_width": 816.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.opt.3",
+      "refs": {
+        "layout_slot_id": "slot.opt.3"
+      },
+      "text": "③ 옥수수, 감자, 고구마"
+    },
+    {
+      "id": "slot.opt.4.text",
+      "type": "text",
+      "attributes": {
+        "x": 482.0,
+        "y": 284.0,
+        "max_width": 816.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.opt.4",
+      "refs": {
+        "layout_slot_id": "slot.opt.4"
+      },
+      "text": "④ 옥수수, 고구마, 감자"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

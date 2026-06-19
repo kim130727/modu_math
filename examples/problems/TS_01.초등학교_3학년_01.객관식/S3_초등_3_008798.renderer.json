@@ -1,0 +1,96 @@
+{
+  "problem_id": "S3_초등_3_008798",
+  "view_box": {
+    "width": 820.0,
+    "height": 340.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.qnum.text",
+      "type": "text",
+      "attributes": {
+        "x": 20.0,
+        "y": 38.0,
+        "max_width": 692.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.qnum",
+      "refs": {
+        "layout_slot_id": "slot.qnum"
+      },
+      "text": "□ 27."
+    },
+    {
+      "id": "slot.instruction.text",
+      "type": "text",
+      "attributes": {
+        "x": 78.0,
+        "y": 38.0,
+        "max_width": 692.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.instruction",
+      "refs": {
+        "layout_slot_id": "slot.instruction"
+      },
+      "text": "알맞은 단위를 선택하세요."
+    },
+    {
+      "id": "slot.body.text",
+      "type": "text",
+      "attributes": {
+        "x": 320.0,
+        "y": 138.0,
+        "max_width": 692.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.body",
+      "refs": {
+        "layout_slot_id": "slot.body"
+      },
+      "text": "항아리의 둘이는 약 24 ( mL , L )입니다."
+    },
+    {
+      "id": "slot.jar_box.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 92.0,
+        "y": 70.0,
+        "width": 150.0,
+        "height": 120.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.jar_box",
+      "refs": {
+        "layout_slot_id": "slot.jar_box"
+      }
+    },
+    {
+      "id": "slot.jar_art.text",
+      "type": "text",
+      "attributes": {
+        "x": 120.0,
+        "y": 136.0,
+        "max_width": 692.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.jar_art",
+      "refs": {
+        "layout_slot_id": "slot.jar_art"
+      },
+      "text": "항아리 그림"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

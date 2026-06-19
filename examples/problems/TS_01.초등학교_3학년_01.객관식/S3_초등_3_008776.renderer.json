@@ -1,0 +1,76 @@
+{
+  "problem_id": "S3_초등_3_008776",
+  "view_box": {
+    "width": 760.0,
+    "height": 204.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.no.text",
+      "type": "text",
+      "attributes": {
+        "x": 8.0,
+        "y": 24.0,
+        "max_width": 632.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.no",
+      "refs": {
+        "layout_slot_id": "slot.no"
+      },
+      "text": "□ 89."
+    },
+    {
+      "id": "slot.title.text",
+      "type": "text",
+      "attributes": {
+        "x": 74.0,
+        "y": 24.0,
+        "max_width": 632.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.title",
+      "refs": {
+        "layout_slot_id": "slot.title"
+      },
+      "text": "알맞은 단위를 선택하세요."
+    },
+    {
+      "id": "slot.figure.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 146.0 48.0 C 157.0 41.0 179.0 41.0 190.0 48.0 C 187.0 67.0 149.0 67.0 146.0 48.0 Z",
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "none"
+      },
+      "source_ref": "slot.figure",
+      "refs": {
+        "layout_slot_id": "slot.figure"
+      }
+    },
+    {
+      "id": "slot.stem.text",
+      "type": "text",
+      "attributes": {
+        "x": 225.0,
+        "y": 74.0,
+        "max_width": 632.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.stem",
+      "refs": {
+        "layout_slot_id": "slot.stem"
+      },
+      "text": "대접의 높이는 약 250 ( mL , L )입니다."
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

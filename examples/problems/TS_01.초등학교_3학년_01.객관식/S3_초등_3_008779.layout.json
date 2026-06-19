@@ -1,0 +1,276 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008779",
+  "title": "들이가 가장 많은 컵 고르기",
+  "canvas": {
+    "width": 944,
+    "height": 308,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.table.outer",
+        "slot.table.h1",
+        "slot.table.h2",
+        "slot.table.v1",
+        "slot.table.v2",
+        "slot.table.v3",
+        "slot.q1",
+        "slot.q2",
+        "slot.table.r1c1",
+        "slot.table.r1c2",
+        "slot.table.r1c3",
+        "slot.table.r1c4",
+        "slot.table.r2c1",
+        "slot.table.r2c2",
+        "slot.table.r2c3",
+        "slot.table.r2c4",
+        "slot.choice"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "□ 97. 수조에 물을 가득 채우려면 ㉠, ㄴ, ㉣ 컵에 물을 가득 채워 각각 다음과",
+        "style_role": "question",
+        "x": 10.0,
+        "y": 24.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "같이 부어야 합니다. 들이가 가장 많은 컵은 어느 것인지 선택해 보세요.",
+        "style_role": "question",
+        "x": 10.0,
+        "y": 58.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.outer",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 240.0,
+        "y": 84.0,
+        "width": 530.0,
+        "height": 84.0,
+        "stroke": "#9A9A9A",
+        "stroke_width": 1.0,
+        "fill": "#FFFFFF"
+      }
+    },
+    {
+      "id": "slot.table.h1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 240.0,
+        "y": 84.0,
+        "width": 530.0,
+        "height": 42.0,
+        "stroke": "none",
+        "fill": "#FDE8C5"
+      }
+    },
+    {
+      "id": "slot.table.h2",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 240.0,
+        "y": 126.0,
+        "width": 530.0,
+        "height": 42.0,
+        "stroke": "none",
+        "fill": "#FFFFFF"
+      }
+    },
+    {
+      "id": "slot.table.v1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 240.0,
+        "y": 84.0,
+        "width": 200.0,
+        "height": 84.0,
+        "stroke": "#9A9A9A",
+        "stroke_width": 1.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.table.v2",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 440.0,
+        "y": 84.0,
+        "width": 110.0,
+        "height": 84.0,
+        "stroke": "#9A9A9A",
+        "stroke_width": 1.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.table.v3",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 550.0,
+        "y": 84.0,
+        "width": 110.0,
+        "height": 84.0,
+        "stroke": "#9A9A9A",
+        "stroke_width": 1.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.table.r1c1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "컵",
+        "style_role": "label",
+        "x": 305.0,
+        "y": 112.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.r1c2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "가",
+        "style_role": "label",
+        "x": 480.0,
+        "y": 112.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.r1c3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "나",
+        "style_role": "label",
+        "x": 590.0,
+        "y": 112.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.r1c4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "다",
+        "style_role": "label",
+        "x": 700.0,
+        "y": 112.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.r2c1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "부은 횟수(번)",
+        "style_role": "label",
+        "x": 270.0,
+        "y": 154.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.r2c2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "16",
+        "style_role": "label",
+        "x": 480.0,
+        "y": 154.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.r2c3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "15",
+        "style_role": "label",
+        "x": 590.0,
+        "y": 154.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.r2c4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "11",
+        "style_role": "label",
+        "x": 700.0,
+        "y": 154.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "( ㉠ 컵, ㉡ 컵, ㉢ 컵 )",
+        "style_role": "choice",
+        "x": 660.0,
+        "y": 206.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.table.outer",
+    "slot.table.h1",
+    "slot.table.h2",
+    "slot.table.v1",
+    "slot.table.v2",
+    "slot.table.v3",
+    "slot.q1",
+    "slot.q2",
+    "slot.table.r1c1",
+    "slot.table.r1c2",
+    "slot.table.r1c3",
+    "slot.table.r1c4",
+    "slot.table.r2c1",
+    "slot.table.r2c2",
+    "slot.table.r2c3",
+    "slot.table.r2c4",
+    "slot.choice"
+  ]
+}

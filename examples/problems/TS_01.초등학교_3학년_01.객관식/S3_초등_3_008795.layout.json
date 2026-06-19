@@ -1,0 +1,117 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008795",
+  "title": "알맞은 단위를 선택하세요",
+  "canvas": {
+    "width": 702,
+    "height": 352,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.bathtub",
+        "slot.choice_box",
+        "slot.q1",
+        "slot.q2",
+        "slot.choice.ml",
+        "slot.choice.l"
+      ]
+    },
+    {
+      "id": "region.answer_note",
+      "role": "note",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "20.",
+        "style_role": "question",
+        "x": 18.0,
+        "y": 30.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "알맞은 단위를 선택하세요.",
+        "style_role": "question",
+        "x": 56.0,
+        "y": 30.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.bathtub",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 332.0,
+        "y": 52.0,
+        "width": 275.0,
+        "height": 66.0
+      }
+    },
+    {
+      "id": "slot.choice_box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 306.0,
+        "y": 151.0,
+        "width": 375.0,
+        "height": 74.0
+      }
+    },
+    {
+      "id": "slot.choice.ml",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "mL",
+        "style_role": "label",
+        "x": 360.0,
+        "y": 199.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice.l",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "L",
+        "style_role": "label",
+        "x": 555.0,
+        "y": 199.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.bathtub",
+    "slot.choice_box",
+    "slot.q1",
+    "slot.q2",
+    "slot.choice.ml",
+    "slot.choice.l",
+    "region.answer_note"
+  ]
+}

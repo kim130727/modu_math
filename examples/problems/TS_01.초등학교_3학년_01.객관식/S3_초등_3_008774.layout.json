@@ -1,0 +1,224 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008774",
+  "title": "물병의 물을 모아 3 L가 되게 하기",
+  "canvas": {
+    "width": 960,
+    "height": 486,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q1",
+        "slot.q2"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.box",
+        "slot.label.ga",
+        "slot.label.na",
+        "slot.label.da",
+        "slot.bottle.ga",
+        "slot.bottle.na",
+        "slot.bottle.da",
+        "slot.cap.ga",
+        "slot.cap.na",
+        "slot.cap.da",
+        "slot.choice"
+      ]
+    },
+    {
+      "id": "region.answer",
+      "role": "answer",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "86. 다음과 같이 물병에 물이 가득 채워져 있습니다. 두 물병의 물을 모아 3 L가 되게 하려면 어느 물병을 골라야 하는지 모두 선택하세요.",
+        "style_role": "question",
+        "x": 18.0,
+        "y": 26.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "",
+        "style_role": "question",
+        "x": 18.0,
+        "y": 58.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 110.0,
+        "y": 84.0,
+        "width": 740.0,
+        "height": 212.0
+      }
+    },
+    {
+      "id": "slot.label.ga",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "가",
+        "style_role": "label",
+        "x": 145.0,
+        "y": 124.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.label.na",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "나",
+        "style_role": "label",
+        "x": 418.0,
+        "y": 124.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.label.da",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "다",
+        "style_role": "label",
+        "x": 700.0,
+        "y": 124.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.bottle.ga",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "물병 그림",
+        "style_role": "note",
+        "x": 170.0,
+        "y": 165.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.bottle.na",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "물병 그림",
+        "style_role": "note",
+        "x": 444.0,
+        "y": 165.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.bottle.da",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "물병 그림",
+        "style_role": "note",
+        "x": 726.0,
+        "y": 165.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.cap.ga",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "TODO 물병 세부 모양은 이미지 기준으로 보정 필요",
+        "style_role": "note",
+        "x": 150.0,
+        "y": 190.0,
+        "font_size": 16
+      }
+    },
+    {
+      "id": "slot.cap.na",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "TODO 물병 세부 모양은 이미지 기준으로 보정 필요",
+        "style_role": "note",
+        "x": 424.0,
+        "y": 190.0,
+        "font_size": 16
+      }
+    },
+    {
+      "id": "slot.cap.da",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "TODO 물병 세부 모양은 이미지 기준으로 보정 필요",
+        "style_role": "note",
+        "x": 706.0,
+        "y": 190.0,
+        "font_size": 16
+      }
+    },
+    {
+      "id": "slot.choice",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "( 가 물병, 나 물병, 다 물병 )",
+        "style_role": "choice",
+        "x": 578.0,
+        "y": 332.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q1",
+    "slot.q2",
+    "region.diagram",
+    "slot.box",
+    "slot.label.ga",
+    "slot.label.na",
+    "slot.label.da",
+    "slot.bottle.ga",
+    "slot.bottle.na",
+    "slot.bottle.da",
+    "slot.cap.ga",
+    "slot.cap.na",
+    "slot.cap.da",
+    "slot.choice",
+    "region.answer"
+  ]
+}

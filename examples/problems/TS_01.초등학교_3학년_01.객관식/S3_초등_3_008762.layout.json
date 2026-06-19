@@ -1,0 +1,225 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008762",
+  "title": "더 가벼운 것 선택하기",
+  "canvas": {
+    "width": 940,
+    "height": 395,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.header",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.qnum",
+        "slot.qtext",
+        "slot.label.left.text",
+        "slot.label.right.text"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.label.left",
+        "slot.label.right",
+        "slot.scale.base",
+        "slot.scale.beam",
+        "slot.scale.pillar",
+        "slot.scale.leftpan",
+        "slot.scale.rightpan",
+        "slot.obj.pencil",
+        "slot.obj.glue"
+      ]
+    },
+    {
+      "id": "region.footer",
+      "role": "answer",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.qnum",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "64.",
+        "style_role": "question",
+        "x": 18.0,
+        "y": 28.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.qtext",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "저울을 사용하여 물건의 무게를 비교하려고 합니다. 더 가벼운 것을 선택하세요.",
+        "style_role": "question",
+        "x": 66.0,
+        "y": 28.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.label.left",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 386.0,
+        "y": 94.0,
+        "width": 44.0,
+        "height": 28.0,
+        "fill": "#F7E8C6"
+      }
+    },
+    {
+      "id": "slot.label.right",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 502.0,
+        "y": 94.0,
+        "width": 44.0,
+        "height": 28.0,
+        "fill": "#F7E8C6"
+      }
+    },
+    {
+      "id": "slot.label.left.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "연필",
+        "style_role": "label",
+        "x": 392.0,
+        "y": 114.0,
+        "font_size": 20
+      }
+    },
+    {
+      "id": "slot.label.right.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "풀",
+        "style_role": "label",
+        "x": 514.0,
+        "y": 114.0,
+        "font_size": 20
+      }
+    },
+    {
+      "id": "slot.scale.base",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 389.0,
+        "y": 168.0,
+        "width": 214.0,
+        "height": 46.0,
+        "fill": "#8CA7CB"
+      }
+    },
+    {
+      "id": "slot.scale.pillar",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 484.0,
+        "y": 110.0,
+        "width": 12.0,
+        "height": 96.0,
+        "fill": "#A4B7D1"
+      }
+    },
+    {
+      "id": "slot.scale.beam",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 421.0,
+        "y": 142.0,
+        "width": 140.0,
+        "height": 12.0,
+        "fill": "#4D7DAE"
+      }
+    },
+    {
+      "id": "slot.scale.leftpan",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 392.0,
+        "y": 128.0,
+        "width": 70.0,
+        "height": 26.0,
+        "fill": "#D5D9DE"
+      }
+    },
+    {
+      "id": "slot.scale.rightpan",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 522.0,
+        "y": 146.0,
+        "width": 70.0,
+        "height": 26.0,
+        "fill": "#D5D9DE"
+      }
+    },
+    {
+      "id": "slot.obj.pencil",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 382.0,
+        "y": 130.0,
+        "width": 106.0,
+        "height": 14.0,
+        "fill": "#58C3C0"
+      }
+    },
+    {
+      "id": "slot.obj.glue",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 515.0,
+        "y": 140.0,
+        "width": 102.0,
+        "height": 18.0,
+        "fill": "#F5C232"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.header",
+    "slot.qnum",
+    "slot.qtext",
+    "slot.label.left.text",
+    "slot.label.right.text",
+    "region.diagram",
+    "slot.label.left",
+    "slot.label.right",
+    "slot.scale.base",
+    "slot.scale.beam",
+    "slot.scale.pillar",
+    "slot.scale.leftpan",
+    "slot.scale.rightpan",
+    "slot.obj.pencil",
+    "slot.obj.glue",
+    "region.footer"
+  ]
+}

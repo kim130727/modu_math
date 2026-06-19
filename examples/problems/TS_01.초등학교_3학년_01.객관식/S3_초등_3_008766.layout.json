@@ -1,0 +1,180 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008766",
+  "title": "가지와 당근의 무게를 비교하는 바른 방법",
+  "canvas": {
+    "width": 940,
+    "height": 560,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.qnum",
+        "slot.q1",
+        "slot.q2",
+        "slot.q3"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.bg.ellipse",
+        "slot.obj.eggplant",
+        "slot.obj.carrot"
+      ]
+    },
+    {
+      "id": "region.options",
+      "role": "options",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.opt1",
+        "slot.opt2"
+      ]
+    },
+    {
+      "id": "region.answer_explanation",
+      "role": "answer_explanation",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.qnum",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "□ 68.",
+        "style_role": "question",
+        "x": 16.0,
+        "y": 30.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "가지와 당근을 양손에 들어 보니 무게가 비슷하여 어느 것이 더 무거운",
+        "style_role": "question",
+        "x": 62.0,
+        "y": 30.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "지 알 수 없습니다. 가지와 당근의 무게를 비교할 수 있는 방법을 바르게 말",
+        "style_role": "question",
+        "x": 40.0,
+        "y": 64.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "한 것을 선택해 보세요.",
+        "style_role": "question",
+        "x": 40.0,
+        "y": 98.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.bg.ellipse",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 412.0,
+        "y": 122.0,
+        "width": 150.0,
+        "height": 184.0,
+        "stroke": "none",
+        "rx": 75.0,
+        "ry": 92.0,
+        "fill": "#F8EFB7"
+      }
+    },
+    {
+      "id": "slot.obj.eggplant",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "",
+        "style_role": "annotation",
+        "x": 0.0,
+        "y": 0.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.obj.carrot",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "",
+        "style_role": "annotation",
+        "x": 0.0,
+        "y": 0.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.opt1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "① 가지와 당근의 길이를 각각 재어 비교해. 길이가 더 긴 쪽이 더 무거워.",
+        "style_role": "question",
+        "x": 22.0,
+        "y": 326.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.opt2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "② 저울의 양쪽 접시에 가지와 당근을 각각 올려 무게를 비교해. 아래로 내려간 쪽이 더 무거워.",
+        "style_role": "question",
+        "x": 22.0,
+        "y": 366.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.qnum",
+    "slot.q1",
+    "slot.q2",
+    "slot.q3",
+    "region.diagram",
+    "slot.bg.ellipse",
+    "slot.obj.eggplant",
+    "slot.obj.carrot",
+    "region.options",
+    "slot.opt1",
+    "slot.opt2",
+    "region.answer_explanation"
+  ]
+}

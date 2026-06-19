@@ -1,0 +1,252 @@
+{
+  "problem_id": "S3_초등_3_008787",
+  "view_box": {
+    "width": 940.0,
+    "height": 470.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.qno.text",
+      "type": "text",
+      "attributes": {
+        "x": 8.0,
+        "y": 24.0,
+        "max_width": 812.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.qno",
+      "refs": {
+        "layout_slot_id": "slot.qno"
+      },
+      "text": "□ 12."
+    },
+    {
+      "id": "slot.qtext1.text",
+      "type": "text",
+      "attributes": {
+        "x": 52.0,
+        "y": 24.0,
+        "max_width": 812.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.qtext1",
+      "refs": {
+        "layout_slot_id": "slot.qtext1"
+      },
+      "text": "유우병에 물을 가득 채운 후 페트병에 옮겨 담았습니다. 그림과 같이 물"
+    },
+    {
+      "id": "slot.qtext2.text",
+      "type": "text",
+      "attributes": {
+        "x": 12.0,
+        "y": 62.0,
+        "max_width": 812.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.qtext2",
+      "refs": {
+        "layout_slot_id": "slot.qtext2"
+      },
+      "text": "이 채워졌을 때 알맞은 말을 선택하세요."
+    },
+    {
+      "id": "slot.label.yuubyeong.text",
+      "type": "text",
+      "attributes": {
+        "x": 312.0,
+        "y": 146.0,
+        "max_width": 812.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.label.yuubyeong",
+      "refs": {
+        "layout_slot_id": "slot.label.yuubyeong"
+      },
+      "text": "유우병"
+    },
+    {
+      "id": "slot.label.petbottle.text",
+      "type": "text",
+      "attributes": {
+        "x": 460.0,
+        "y": 270.0,
+        "max_width": 812.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.label.petbottle",
+      "refs": {
+        "layout_slot_id": "slot.label.petbottle"
+      },
+      "text": "페트병"
+    },
+    {
+      "id": "slot.choice.text",
+      "type": "text",
+      "attributes": {
+        "x": 240.0,
+        "y": 324.0,
+        "max_width": 812.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice",
+      "refs": {
+        "layout_slot_id": "slot.choice"
+      },
+      "text": "( 유우병 , 페트병 )의 들이가 더 많습니다."
+    },
+    {
+      "id": "slot.diagram.yuubyeong.body.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 414.0 84.0 C 404.0 84.0 394.0 92.0 392.0 102.0 L 385.0 132.0 C 383.0 142.0 388.0 151.0 397.0 155.0 L 424.0 166.0 C 435.0 170.0 447.0 165.0 451.0 154.0 L 457.0 138.0 C 460.0 128.0 457.0 117.0 448.0 111.0 L 425.0 86.0 C 422.0 84.0 418.0 84.0 414.0 84.0 Z",
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "none"
+      },
+      "source_ref": "slot.diagram.yuubyeong.body",
+      "refs": {
+        "layout_slot_id": "slot.diagram.yuubyeong.body"
+      }
+    },
+    {
+      "id": "slot.diagram.yuubyeong.water.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 389.0 114.0 L 444.0 139.0 L 435.0 151.0 L 381.0 126.0 Z",
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "none"
+      },
+      "source_ref": "slot.diagram.yuubyeong.water",
+      "refs": {
+        "layout_slot_id": "slot.diagram.yuubyeong.water"
+      }
+    },
+    {
+      "id": "slot.diagram.yuubyeong.cap.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 443.0 84.0 C 444.0 78.0 449.0 73.0 455.0 72.0 C 462.0 71.0 468.0 76.0 469.0 82.0 C 470.0 89.0 465.0 95.0 458.0 96.0 C 451.0 97.0 444.0 92.0 443.0 84.0 Z",
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "none"
+      },
+      "source_ref": "slot.diagram.yuubyeong.cap",
+      "refs": {
+        "layout_slot_id": "slot.diagram.yuubyeong.cap"
+      }
+    },
+    {
+      "id": "slot.diagram.yuubyeong.spout.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 466.0 84.0 C 472.0 86.0 477.0 91.0 480.0 98.0 C 483.0 104.0 483.0 112.0 480.0 118.0 L 469.0 109.0 C 472.0 104.0 472.0 98.0 470.0 93.0 C 469.0 90.0 467.0 87.0 466.0 84.0 Z",
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "none"
+      },
+      "source_ref": "slot.diagram.yuubyeong.spout",
+      "refs": {
+        "layout_slot_id": "slot.diagram.yuubyeong.spout"
+      }
+    },
+    {
+      "id": "slot.diagram.petbottle.body.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 438.0,
+        "y": 112.0,
+        "width": 48.0,
+        "height": 116.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.diagram.petbottle.body",
+      "refs": {
+        "layout_slot_id": "slot.diagram.petbottle.body"
+      }
+    },
+    {
+      "id": "slot.diagram.petbottle.water.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 440.0,
+        "y": 175.0,
+        "width": 44.0,
+        "height": 53.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.diagram.petbottle.water",
+      "refs": {
+        "layout_slot_id": "slot.diagram.petbottle.water"
+      }
+    },
+    {
+      "id": "slot.diagram.petbottle.neck.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 451.0,
+        "y": 92.0,
+        "width": 22.0,
+        "height": 26.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.diagram.petbottle.neck",
+      "refs": {
+        "layout_slot_id": "slot.diagram.petbottle.neck"
+      }
+    },
+    {
+      "id": "slot.diagram.petbottle.rings1.line",
+      "type": "line",
+      "attributes": {
+        "x1": 438.0,
+        "y1": 126.0,
+        "x2": 486.0,
+        "y2": 126.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.diagram.petbottle.rings1",
+      "refs": {
+        "layout_slot_id": "slot.diagram.petbottle.rings1"
+      }
+    },
+    {
+      "id": "slot.diagram.petbottle.rings2.line",
+      "type": "line",
+      "attributes": {
+        "x1": 438.0,
+        "y1": 141.0,
+        "x2": 486.0,
+        "y2": 141.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.diagram.petbottle.rings2",
+      "refs": {
+        "layout_slot_id": "slot.diagram.petbottle.rings2"
+      }
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

@@ -1,0 +1,280 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008800",
+  "title": "저울로 무게 비교하기",
+  "canvas": {
+    "width": 940,
+    "height": 390,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q1",
+        "slot.q2",
+        "slot.q3"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.scale.base",
+        "slot.scale.pillar",
+        "slot.scale.left.pan",
+        "slot.scale.right.pan",
+        "slot.scale.beam",
+        "slot.scale.left.string",
+        "slot.scale.right.string",
+        "slot.pt.pencil",
+        "slot.pt.case",
+        "slot.lb.pencil",
+        "slot.lb.case"
+      ]
+    },
+    {
+      "id": "region.choice",
+      "role": "body",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice"
+      ]
+    },
+    {
+      "id": "region.answer",
+      "role": "answer",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "□ 29. 저울을 이용하여 연필과 필통의 무게를 비교했습니다. 알맞은 말을 선택",
+        "style_role": "question",
+        "x": 12.0,
+        "y": 28.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "하세요.",
+        "style_role": "question",
+        "x": 12.0,
+        "y": 66.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "",
+        "style_role": "question",
+        "x": 0.0,
+        "y": 0.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.scale.base",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 402.0,
+        "y": 218.0,
+        "width": 188.0,
+        "height": 40.0
+      }
+    },
+    {
+      "id": "slot.scale.pillar",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 494.0,
+        "y": 164.0,
+        "width": 18.0,
+        "height": 76.0
+      }
+    },
+    {
+      "id": "slot.scale.beam",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 456.0,
+        "y1": 170.0,
+        "x2": 560.0,
+        "y2": 194.0
+      }
+    },
+    {
+      "id": "slot.scale.left.pan",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            395.0,
+            149.0
+          ],
+          [
+            437.0,
+            149.0
+          ],
+          [
+            429.0,
+            170.0
+          ],
+          [
+            403.0,
+            170.0
+          ]
+        ]
+      }
+    },
+    {
+      "id": "slot.scale.right.pan",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            550.0,
+            170.0
+          ],
+          [
+            592.0,
+            170.0
+          ],
+          [
+            584.0,
+            149.0
+          ],
+          [
+            558.0,
+            149.0
+          ]
+        ]
+      }
+    },
+    {
+      "id": "slot.scale.left.string",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 416.0,
+        "y1": 170.0,
+        "x2": 416.0,
+        "y2": 149.0
+      }
+    },
+    {
+      "id": "slot.scale.right.string",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 574.0,
+        "y1": 170.0,
+        "x2": 574.0,
+        "y2": 149.0
+      }
+    },
+    {
+      "id": "slot.pt.pencil",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 421.0,
+        "cy": 146.0,
+        "r": 3.8,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.pt.case",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 573.0,
+        "cy": 146.0,
+        "r": 3.8,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.lb.pencil",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "연필",
+        "style_role": "label",
+        "x": 394.0,
+        "y": 140.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.lb.case",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "필통",
+        "style_role": "label",
+        "x": 552.0,
+        "y": 138.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "( 연필 , 필통 )이 더 무겁습니다.",
+        "style_role": "body",
+        "x": 295.0,
+        "y": 274.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q1",
+    "slot.q2",
+    "slot.q3",
+    "region.diagram",
+    "slot.scale.base",
+    "slot.scale.pillar",
+    "slot.scale.left.pan",
+    "slot.scale.right.pan",
+    "slot.scale.beam",
+    "slot.scale.left.string",
+    "slot.scale.right.string",
+    "slot.pt.pencil",
+    "slot.pt.case",
+    "slot.lb.pencil",
+    "slot.lb.case",
+    "region.choice",
+    "slot.choice",
+    "region.answer"
+  ]
+}

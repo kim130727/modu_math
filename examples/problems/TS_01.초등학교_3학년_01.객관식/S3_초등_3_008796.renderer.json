@@ -1,0 +1,147 @@
+{
+  "problem_id": "S3_초등_3_008796",
+  "view_box": {
+    "width": 790.0,
+    "height": 382.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.qmark.text",
+      "type": "text",
+      "attributes": {
+        "x": 4.0,
+        "y": 24.0,
+        "max_width": 662.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.qmark",
+      "refs": {
+        "layout_slot_id": "slot.qmark"
+      },
+      "text": "□"
+    },
+    {
+      "id": "slot.qnum.text",
+      "type": "text",
+      "attributes": {
+        "x": 26.0,
+        "y": 24.0,
+        "max_width": 662.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.qnum",
+      "refs": {
+        "layout_slot_id": "slot.qnum"
+      },
+      "text": "23."
+    },
+    {
+      "id": "slot.stem.text",
+      "type": "text",
+      "attributes": {
+        "x": 78.0,
+        "y": 24.0,
+        "max_width": 662.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.stem",
+      "refs": {
+        "layout_slot_id": "slot.stem"
+      },
+      "text": "들이가 1 L보다 더 적은 그릇을 선택하세요."
+    },
+    {
+      "id": "slot.choice.left.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 210.0,
+        "y": 55.0,
+        "width": 92.0,
+        "height": 94.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.choice.left",
+      "refs": {
+        "layout_slot_id": "slot.choice.left"
+      }
+    },
+    {
+      "id": "slot.choice.middle.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 455.0,
+        "y": 45.0,
+        "width": 132.0,
+        "height": 120.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.choice.middle",
+      "refs": {
+        "layout_slot_id": "slot.choice.middle"
+      }
+    },
+    {
+      "id": "slot.choice.right.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 684.0,
+        "y": 86.0,
+        "width": 62.0,
+        "height": 62.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.choice.right",
+      "refs": {
+        "layout_slot_id": "slot.choice.right"
+      }
+    },
+    {
+      "id": "slot.choice.cross.text",
+      "type": "text",
+      "attributes": {
+        "x": 505.0,
+        "y": 128.0,
+        "max_width": 662.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 110
+      },
+      "source_ref": "slot.choice.cross",
+      "refs": {
+        "layout_slot_id": "slot.choice.cross"
+      },
+      "text": "X"
+    },
+    {
+      "id": "slot.answer.cup.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 61.0,
+        "y": 195.0,
+        "width": 62.0,
+        "height": 62.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.answer.cup",
+      "refs": {
+        "layout_slot_id": "slot.answer.cup"
+      }
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

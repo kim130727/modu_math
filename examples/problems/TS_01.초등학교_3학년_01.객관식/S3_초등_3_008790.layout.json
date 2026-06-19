@@ -1,0 +1,203 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008790",
+  "title": "주전자와 물병 비교",
+  "canvas": {
+    "width": 940,
+    "height": 520,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q1",
+        "slot.q2",
+        "slot.choice"
+      ]
+    },
+    {
+      "id": "region.diagram.left",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.left.cups",
+        "slot.left.kettle",
+        "slot.left.arrow",
+        "slot.left.label"
+      ]
+    },
+    {
+      "id": "region.diagram.right",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.right.cups",
+        "slot.right.bottle",
+        "slot.right.arrow",
+        "slot.right.label"
+      ]
+    },
+    {
+      "id": "region.answer",
+      "role": "answer",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "15. 주전자와 물병에 물을 가득 채운 후 모양과 크기가 같은 컵에 옮겨 담았습니다.",
+        "style_role": "question",
+        "x": 20.0,
+        "y": 30.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "주전자와 물병 중 들이가 더 많은 것을 선택하세요.",
+        "style_role": "question",
+        "x": 20.0,
+        "y": 66.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.left.kettle",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "(그림) 주전자",
+        "style_role": "question",
+        "x": 95.0,
+        "y": 120.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.left.arrow",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "→",
+        "style_role": "question",
+        "x": 250.0,
+        "y": 120.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.left.cups",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 320.0,
+        "y": 110.0,
+        "width": 230.0,
+        "height": 110.0
+      }
+    },
+    {
+      "id": "slot.left.label",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "주전자",
+        "style_role": "label",
+        "x": 110.0,
+        "y": 198.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.right.bottle",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "(그림) 물병",
+        "style_role": "question",
+        "x": 600.0,
+        "y": 120.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.right.arrow",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "→",
+        "style_role": "question",
+        "x": 745.0,
+        "y": 120.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.right.cups",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 805.0,
+        "y": 110.0,
+        "width": 140.0,
+        "height": 110.0
+      }
+    },
+    {
+      "id": "slot.right.label",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "물병",
+        "style_role": "label",
+        "x": 640.0,
+        "y": 198.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "( 주전자 , 물병 )",
+        "style_role": "question",
+        "x": 730.0,
+        "y": 270.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q1",
+    "slot.q2",
+    "slot.choice",
+    "region.diagram.left",
+    "slot.left.cups",
+    "slot.left.kettle",
+    "slot.left.arrow",
+    "slot.left.label",
+    "region.diagram.right",
+    "slot.right.cups",
+    "slot.right.bottle",
+    "slot.right.arrow",
+    "slot.right.label",
+    "region.answer"
+  ]
+}

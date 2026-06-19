@@ -1,0 +1,92 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008786",
+  "title": "들이가 더 많은 것을 선택하기",
+  "canvas": {
+    "width": 720,
+    "height": 310,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.bowl.top_center",
+        "slot.bowl.top_right",
+        "slot.bowl.bottom_left",
+        "slot.q1",
+        "slot.q2"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "□ 11.",
+        "style_role": "question",
+        "x": 8.0,
+        "y": 25.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "들이가 더 많은 것을 선택해 보세요.",
+        "style_role": "question",
+        "x": 55.0,
+        "y": 25.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.bowl.top_center",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 300.0 90.0 C 315.0 70.0, 375.0 70.0, 390.0 90.0 C 390.0 115.0, 300.0 115.0, 300.0 90.0 Z",
+        "x": 0.0,
+        "y": 0.0
+      }
+    },
+    {
+      "id": "slot.bowl.top_right",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 535.0 88.0 C 550.0 62.0, 635.0 62.0, 650.0 88.0 C 650.0 125.0, 535.0 125.0, 535.0 88.0 Z",
+        "x": 0.0,
+        "y": 0.0
+      }
+    },
+    {
+      "id": "slot.bowl.bottom_left",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 50.0 200.0 C 65.0 165.0, 170.0 165.0, 185.0 200.0 C 185.0 245.0, 50.0 245.0, 50.0 200.0 Z",
+        "x": 0.0,
+        "y": 0.0
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.bowl.top_center",
+    "slot.bowl.top_right",
+    "slot.bowl.bottom_left",
+    "slot.q1",
+    "slot.q2"
+  ]
+}

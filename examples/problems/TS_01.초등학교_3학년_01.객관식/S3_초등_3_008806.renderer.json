@@ -1,0 +1,147 @@
+{
+  "problem_id": "S3_초등_3_008806",
+  "view_box": {
+    "width": 760.0,
+    "height": 460.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.q.symbol.text",
+      "type": "text",
+      "attributes": {
+        "x": 8.0,
+        "y": 30.0,
+        "max_width": 632.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q.symbol",
+      "refs": {
+        "layout_slot_id": "slot.q.symbol"
+      },
+      "text": "□"
+    },
+    {
+      "id": "slot.q.text.text",
+      "type": "text",
+      "attributes": {
+        "x": 40.0,
+        "y": 30.0,
+        "max_width": 632.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q.text",
+      "refs": {
+        "layout_slot_id": "slot.q.text"
+      },
+      "text": "35. 무게가 100 g보다 더 가벼운 것을 선택하세요."
+    },
+    {
+      "id": "slot.box.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 178.0,
+        "y": 50.0,
+        "width": 226.0,
+        "height": 206.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.box",
+      "refs": {
+        "layout_slot_id": "slot.box"
+      }
+    },
+    {
+      "id": "slot.box.label.text",
+      "type": "text",
+      "attributes": {
+        "x": 200.0,
+        "y": 95.0,
+        "max_width": 632.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.box.label",
+      "refs": {
+        "layout_slot_id": "slot.box.label"
+      },
+      "text": "<보기>"
+    },
+    {
+      "id": "slot.box.object.text",
+      "type": "text",
+      "attributes": {
+        "x": 245.0,
+        "y": 150.0,
+        "max_width": 632.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.box.object",
+      "refs": {
+        "layout_slot_id": "slot.box.object"
+      },
+      "text": "연두색 튜브 그림"
+    },
+    {
+      "id": "slot.box.weight.text",
+      "type": "text",
+      "attributes": {
+        "x": 250.0,
+        "y": 225.0,
+        "max_width": 632.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.box.weight",
+      "refs": {
+        "layout_slot_id": "slot.box.weight"
+      },
+      "text": "100 g"
+    },
+    {
+      "id": "slot.choice.strawberry.text",
+      "type": "text",
+      "attributes": {
+        "x": 478.0,
+        "y": 148.0,
+        "max_width": 632.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice.strawberry",
+      "refs": {
+        "layout_slot_id": "slot.choice.strawberry"
+      },
+      "text": "딸기 그림"
+    },
+    {
+      "id": "slot.choice.pineapple.text",
+      "type": "text",
+      "attributes": {
+        "x": 638.0,
+        "y": 146.0,
+        "max_width": 632.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice.pineapple",
+      "refs": {
+        "layout_slot_id": "slot.choice.pineapple"
+      },
+      "text": "파인애플 그림"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

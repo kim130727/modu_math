@@ -478,6 +478,74 @@
     .shape-choice .shape-fill {
       fill: #ffffff;
     }
+    .table-dialog {
+      position: fixed;
+      inset: 0;
+      z-index: 70;
+      display: grid;
+      place-items: center;
+      background: rgba(15, 23, 42, 0.18);
+    }
+    .table-dialog[hidden] { display: none; }
+    .table-dialog-panel {
+      width: 220px;
+      background: #f9fafb;
+      border: 1px solid #9ca3af;
+      border-radius: 8px;
+      box-shadow: 0 16px 40px rgba(15, 23, 42, 0.18);
+      padding: 10px;
+    }
+    .table-dialog-title {
+      display: grid;
+      grid-template-columns: 1fr auto auto;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+      font-size: 15px;
+    }
+    .table-dialog-title button {
+      width: 24px;
+      height: 24px;
+      border: 0;
+      background: transparent;
+      font-size: 18px;
+      line-height: 1;
+      cursor: pointer;
+    }
+    .table-dialog-fields {
+      display: grid;
+      gap: 6px;
+      margin-bottom: 10px;
+    }
+    .table-dialog-fields label {
+      display: grid;
+      grid-template-columns: 1fr 74px;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+    }
+    .table-dialog-fields input {
+      width: 74px;
+      height: 27px;
+      padding: 2px 6px;
+      background: white;
+    }
+    .table-dialog-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .table-dialog-actions button {
+      height: 30px;
+      border: 1px solid #cbd5e1;
+      border-radius: 4px;
+      background: white;
+      cursor: pointer;
+    }
+    .table-dialog-actions button.primary {
+      border-color: #0284c7;
+      color: #0f172a;
+    }
     .ppt-workspace {
       min-height: 0;
       display: grid;
@@ -679,6 +747,7 @@
     <symbol id="icon-pick-shape" viewBox="0 0 24 24"><path d="M5 5h8v8H5z"/><path d="M16 6a3 3 0 1 0 0.1 0"/><path d="M15 16h4v4h-4z"/></symbol>
     <symbol id="icon-textbox" viewBox="0 0 24 24"><path d="M4 6h16v12H4z"/><path d="M8 9h8"/><path d="M12 9v7"/><path d="M9 16h6"/></symbol>
     <symbol id="icon-image" viewBox="0 0 24 24"><path d="M4 5h16v14H4z"/><circle cx="8" cy="9" r="1.5"/><path d="M4 16l5-5 4 4 2-2 5 5"/></symbol>
+    <symbol id="icon-table" viewBox="0 0 24 24"><path d="M4 5h16v14H4z"/><path d="M4 10h16"/><path d="M4 15h16"/><path d="M10 5v14"/><path d="M16 5v14"/></symbol>
     <symbol id="icon-shapes" viewBox="0 0 24 24"><path d="M5 5h7v7H5z"/><path d="M16.5 5.5 21 12h-9z"/><path d="M8 16a3 3 0 1 0 0.1 0"/><path d="M15 16h5v4h-5z"/></symbol>
   </svg>
   <div class="wrap powerpoint">
@@ -701,6 +770,7 @@
           <div class="ribbon-group" data-label="삽입">
             <button id="insertTextBoxBtn" class="icon-btn" title="텍스트 상자 삽입" aria-label="텍스트 상자 삽입"><svg><use href="#icon-textbox"></use></svg></button>
             <button id="insertImageBtn" class="icon-btn" title="그림 삽입" aria-label="그림 삽입"><svg><use href="#icon-image"></use></svg></button>
+            <button id="insertTableBtn" class="icon-btn" title="표 삽입" aria-label="표 삽입"><svg><use href="#icon-table"></use></svg></button>
             <input id="insertImageInput" type="file" accept="image/*" hidden>
             <div class="ribbon-dropdown">
               <button id="shapeGalleryBtn" class="icon-btn" title="도형 삽입" aria-label="도형 삽입"><svg><use href="#icon-shapes"></use></svg></button>
@@ -751,6 +821,23 @@
         <main class="ppt-stage">
           <div class="slide-frame">
             <div class="svg-box" id="svgPreview"><div class="marquee" id="marqueeBox"></div></div>
+            <div id="tableInsertDialog" class="table-dialog" role="dialog" aria-modal="true" aria-labelledby="tableInsertTitle" hidden>
+              <div class="table-dialog-panel">
+                <div class="table-dialog-title">
+                  <span id="tableInsertTitle">표 삽입</span>
+                  <span>?</span>
+                  <button id="tableCancelXBtn" type="button" aria-label="닫기">&times;</button>
+                </div>
+                <div class="table-dialog-fields">
+                  <label>열 개수(C):<input id="tableColsInput" type="number" min="1" max="20" value="5"></label>
+                  <label>행 개수(R):<input id="tableRowsInput" type="number" min="1" max="20" value="2"></label>
+                </div>
+                <div class="table-dialog-actions">
+                  <button id="tableConfirmBtn" type="button" class="primary">확인</button>
+                  <button id="tableCancelBtn" type="button">취소</button>
+                </div>
+              </div>
+            </div>
             <div id="shapeFormatMenu" class="shape-format-menu" role="menu" aria-label="도형 서식">
               <div class="shape-format-title">도형 서식</div>
               <div class="shape-format-swatches" id="shapeFillSwatches"></div>
@@ -1380,6 +1467,26 @@
       return `slot.inserted.${clean}.${Date.now()}`;
     }
 
+    function tableSlotBase(slotId) {
+      const m = String(slotId || "").match(/^(slot\.table(?:_\d+)?)(?:\.|$)/);
+      return m ? m[1] : null;
+    }
+
+    function uniqueTableBase() {
+      const ids = extractDslSlotIds();
+      const used = new Set();
+      for (const id of ids) {
+        const base = tableSlotBase(id);
+        if (base) used.add(base);
+      }
+      if (!used.has("slot.table")) return "slot.table";
+      for (let i = 1; i < 10000; i += 1) {
+        const candidate = `slot.table_${i}`;
+        if (!used.has(candidate)) return candidate;
+      }
+      return `slot.table_${Date.now()}`;
+    }
+
     function scalePoints(points, x, y, width, height, sourceWidth = 64, sourceHeight = 52) {
       return points.map(([px, py]) => [
         snapValue(x + (px / sourceWidth) * width),
@@ -1401,6 +1508,78 @@
     function addRegionToPatch(value) {
       const regionId = firstUsableRegionId();
       return regionId ? { ...value, region_id: regionId } : value;
+    }
+
+    function tablePatches(rows, cols) {
+      const cleanRows = Math.max(1, Math.min(20, Number(rows) || 1));
+      const cleanCols = Math.max(1, Math.min(20, Number(cols) || 1));
+      const cellWidth = 95;
+      const cellHeight = 42;
+      const width = cleanCols * cellWidth;
+      const height = cleanRows * cellHeight;
+      const { x, y } = defaultInsertOrigin(width, height);
+      const base = uniqueTableBase();
+      const regionId = firstUsableRegionId();
+      const withRegion = (value) => regionId ? { ...value, region_id: regionId } : value;
+      const patches = [];
+      patches.push({
+        target: `${base}.outer`,
+        op: "add",
+        value: withRegion({
+          kind: "rect",
+          content: { x, y, width, height, fill: "#ffffff", stroke: "#111827", stroke_width: 1 },
+        }),
+      });
+      for (let c = 1; c < cleanCols; c += 1) {
+        const px = snapValue(x + c * cellWidth);
+        patches.push({
+          target: `${base}.v${c}`,
+          op: "add",
+          value: withRegion({
+            kind: "line",
+            content: { x1: px, y1: y, x2: px, y2: y + height, stroke: "#111827", stroke_width: 1 },
+          }),
+        });
+      }
+      for (let r = 1; r < cleanRows; r += 1) {
+        const py = snapValue(y + r * cellHeight);
+        patches.push({
+          target: `${base}.h${r}`,
+          op: "add",
+          value: withRegion({
+            kind: "line",
+            content: { x1: x, y1: py, x2: x + width, y2: py, stroke: "#111827", stroke_width: 1 },
+          }),
+        });
+      }
+      for (let r = 1; r <= cleanRows; r += 1) {
+        for (let c = 1; c <= cleanCols; c += 1) {
+          patches.push({
+            target: `${base}.r${r}c${c}`,
+            op: "add",
+            value: withRegion({
+              kind: "text",
+              content: {
+                text: "",
+                x: snapValue(x + (c - 1) * cellWidth + 10),
+                y: snapValue(y + (r - 1) * cellHeight + 27),
+                font_size: 18,
+                max_width: Math.max(8, cellWidth - 20),
+                style_role: "table",
+                fill: "#111827",
+              },
+            }),
+          });
+        }
+      }
+      return { base, patches };
+    }
+
+    async function insertTable(rows, cols) {
+      if (!currentProblemId) throw new Error("문제를 먼저 여세요.");
+      const { base, patches } = tablePatches(rows, cols);
+      await commitPatches(patches, `표 삽입 완료: ${cols}열 x ${rows}행`);
+      restoreSelection([`${base}.outer`]);
     }
 
     function shapePayload(def) {
@@ -1728,7 +1907,7 @@
         for (const slot of Array.isArray(layout.slots) ? layout.slots : []) {
           const id = typeof slot?.id === "string" ? slot.id : "";
           const role = slot?.content?.style_role;
-          if (id.startsWith("slot.table.") || role === "table") ids.add(id);
+          if (tableSlotBase(id) || role === "table") ids.add(id);
         }
       } catch (_) {
         // Layout pane can be stale while a problem is loading.
@@ -1739,7 +1918,9 @@
     function tableBaseFromSlotId(slotId) {
       if (!slotId) return null;
       const ids = tableLayoutSlotIds();
-      if (ids.has(slotId) || slotId.startsWith("slot.table.")) return "slot.table";
+      const directBase = tableSlotBase(slotId);
+      if (directBase) return directBase;
+      if (ids.has(slotId)) return tableSlotBase(slotId);
       return null;
     }
 
@@ -1773,7 +1954,7 @@
       for (const node of draggableSlotElements(svg)) {
         const sid = slotIdFromElement(node);
         if (!sid) continue;
-        if ((sid.startsWith(`${base}.`) || layoutIds.has(sid)) && !out.includes(sid)) out.push(sid);
+        if ((sid.startsWith(`${base}.`) || (layoutIds.has(sid) && tableSlotBase(sid) === base)) && !out.includes(sid)) out.push(sid);
       }
       return out.length ? { base, slotIds: out, groupKind: "table" } : null;
     }
@@ -2599,11 +2780,41 @@
       return item;
     }
 
+    function tableOuterBox(item, svg) {
+      if (!item || !item.isTableGroup) return null;
+      const base = item.slotId || "slot.table";
+      const elements = item.elements || [];
+      const outer = elements.find((el) => slotIdFromElement(el) === `${base}.outer` && el.tagName.toLowerCase() === "rect");
+      if (outer) {
+        const value = readSlotPatchValue(outer);
+        if (value && value.x !== undefined && value.y !== undefined && value.width !== undefined && value.height !== undefined) {
+          return { x: Number(value.x), y: Number(value.y), width: Number(value.width), height: Number(value.height) };
+        }
+      }
+      const boxes = [];
+      for (const el of elements) {
+        const tag = el.tagName.toLowerCase();
+        if (!(tag === "rect" || tag === "line" || tag === "path" || tag === "polygon")) continue;
+        const box = visualSvgBox(el, svg);
+        if (box) boxes.push(box);
+      }
+      if (!boxes.length) return null;
+      const minX = Math.min(...boxes.map((b) => b.x));
+      const minY = Math.min(...boxes.map((b) => b.y));
+      const maxX = Math.max(...boxes.map((b) => b.x + b.width));
+      const maxY = Math.max(...boxes.map((b) => b.y + b.height));
+      return { x: minX, y: minY, width: maxX - minX, height: maxY - minY };
+    }
+
     function itemBBox(item) {
       if (item && item.isCanvas) {
         return getSvgCanvasBounds();
       }
       const svg = document.getElementById("svgPreview").querySelector("svg");
+      if (item && item.isTableGroup) {
+        const tableBox = tableOuterBox(item, svg);
+        if (tableBox) return tableBox;
+      }
       if (item && !item.isFigureGroup && !item.isPaperFoldGroup && !item.isMeasurementGroup && !item.isTableGroup && !item.isFraction && item.el) {
         const rotation = parseRotateTransform(item.el.getAttribute("transform") || "");
         const rawBox = geometrySvgBox(item.el);
@@ -2632,11 +2843,11 @@
 
     function tableDividerInfo(el) {
       const slotId = slotIdFromElement(el);
-      const m = slotId && slotId.match(/^slot\.table\.([vh])\d+$/);
+      const m = slotId && slotId.match(/^(slot\.table(?:_\d+)?)\.([vh])\d+$/);
       if (!m) return null;
       const value = readSlotPatchValue(el);
       if (!value) return null;
-      const axis = m[1];
+      const axis = m[2];
       const tag = el.tagName.toLowerCase();
       if (tag === "line" && value.x1 !== undefined) {
         return { slotId, axis, x1: value.x1, y1: value.y1, x2: value.x2, y2: value.y2 };
@@ -3129,7 +3340,8 @@
 
     function tableTextMaxWidthValues(item) {
       if (!item || !item.isTableGroup) return [];
-      const outer = (item.elements || []).find((el) => slotIdFromElement(el) === "slot.table.outer");
+      const base = item.slotId || "slot.table";
+      const outer = (item.elements || []).find((el) => slotIdFromElement(el) === `${base}.outer`);
       if (!outer) return [];
       const outerValue = readSlotPatchValue(outer);
       if (!outerValue || outerValue.x === undefined || outerValue.width === undefined) return [];
@@ -3144,9 +3356,10 @@
       const values = [];
       for (const el of item.elements || []) {
         const slotId = slotIdFromElement(el);
-        const m = slotId && slotId.match(/^slot\.table\.r\d+c(\d+)$/);
+        const m = slotId && slotId.match(/^(slot\.table(?:_\d+)?)\.r\d+c(\d+)$/);
         if (!m || el.tagName.toLowerCase() !== "text") continue;
-        const col = Number(m[1]) - 1;
+        if (m[1] !== base) continue;
+        const col = Number(m[2]) - 1;
         if (col < 0 || col + 1 >= edges.length) continue;
         const current = readSlotPatchValue(el);
         if (!current || current.x === undefined) continue;
@@ -3160,7 +3373,8 @@
     }
 
     function tableColumnEdges(item) {
-      const outer = (item.elements || []).find((el) => slotIdFromElement(el) === "slot.table.outer");
+      const base = item?.slotId || "slot.table";
+      const outer = (item.elements || []).find((el) => slotIdFromElement(el) === `${base}.outer`);
       if (!outer) return null;
       const outerValue = readSlotPatchValue(outer);
       if (!outerValue || outerValue.x === undefined || outerValue.width === undefined) return null;
@@ -3182,9 +3396,10 @@
       const values = [];
       for (const el of item.elements || []) {
         const slotId = slotIdFromElement(el);
-        const m = slotId && slotId.match(/^slot\.table\.r\d+c(\d+)$/);
+        const m = slotId && slotId.match(/^(slot\.table(?:_\d+)?)\.r\d+c(\d+)$/);
         if (!m || el.tagName.toLowerCase() !== "text") continue;
-        const col = Number(m[1]) - 1;
+        if (m[1] !== item.slotId) continue;
+        const col = Number(m[2]) - 1;
         if (col < 0 || col + 1 >= edges.length) continue;
         const left = edges[col];
         const right = edges[col + 1];
@@ -4726,6 +4941,27 @@
       try { await insertTextBox(); }
       catch (e) { setStatus(String(e), false); }
     };
+    function openTableDialog() {
+      const dialog = document.getElementById("tableInsertDialog");
+      if (!dialog) return;
+      document.getElementById("tableColsInput").value = "5";
+      document.getElementById("tableRowsInput").value = "2";
+      dialog.hidden = false;
+      setTimeout(() => document.getElementById("tableColsInput")?.focus(), 0);
+    }
+    function closeTableDialog() {
+      const dialog = document.getElementById("tableInsertDialog");
+      if (dialog) dialog.hidden = true;
+    }
+    async function confirmTableDialog() {
+      const cols = Math.max(1, Math.min(20, Number(document.getElementById("tableColsInput")?.value || 5)));
+      const rows = Math.max(1, Math.min(20, Number(document.getElementById("tableRowsInput")?.value || 2)));
+      document.getElementById("tableColsInput").value = String(cols);
+      document.getElementById("tableRowsInput").value = String(rows);
+      await insertTable(rows, cols);
+      closeTableDialog();
+    }
+    document.getElementById("insertTableBtn").onclick = openTableDialog;
     document.getElementById("insertImageBtn").onclick = () => {
       document.getElementById("insertImageInput")?.click();
     };
@@ -4744,6 +4980,25 @@
       ev.stopPropagation();
       toggleShapeGallery();
     };
+    document.getElementById("tableConfirmBtn").onclick = async () => {
+      try { await confirmTableDialog(); }
+      catch (e) { setStatus(String(e), false); }
+    };
+    document.getElementById("tableCancelBtn").onclick = closeTableDialog;
+    document.getElementById("tableCancelXBtn").onclick = closeTableDialog;
+    document.getElementById("tableInsertDialog").addEventListener("click", (ev) => {
+      if (ev.target === ev.currentTarget) closeTableDialog();
+    });
+    for (const id of ["tableColsInput", "tableRowsInput"]) {
+      document.getElementById(id).addEventListener("keydown", async (ev) => {
+        if (ev.key === "Enter") {
+          ev.preventDefault();
+          try { await confirmTableDialog(); }
+          catch (e) { setStatus(String(e), false); }
+        }
+        if (ev.key === "Escape") closeTableDialog();
+      });
+    }
     document.getElementById("shapeGallery").addEventListener("click", (ev) => ev.stopPropagation());
     document.getElementById("shapeFormatMenu").addEventListener("click", (ev) => ev.stopPropagation());
     document.addEventListener("click", () => {

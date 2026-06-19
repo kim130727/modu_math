@@ -1,0 +1,232 @@
+{
+  "problem_id": "S3_초등_3_008762",
+  "view_box": {
+    "width": 940.0,
+    "height": 395.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.qnum.text",
+      "type": "text",
+      "attributes": {
+        "x": 18.0,
+        "y": 28.0,
+        "max_width": 812.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.qnum",
+      "refs": {
+        "layout_slot_id": "slot.qnum"
+      },
+      "text": "64."
+    },
+    {
+      "id": "slot.qtext.text",
+      "type": "text",
+      "attributes": {
+        "x": 66.0,
+        "y": 28.0,
+        "max_width": 812.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.qtext",
+      "refs": {
+        "layout_slot_id": "slot.qtext"
+      },
+      "text": "저울을 사용하여 물건의 무게를 비교하려고 합니다. 더 가벼운 것을 선택하세요."
+    },
+    {
+      "id": "slot.label.left.text.text",
+      "type": "text",
+      "attributes": {
+        "x": 392.0,
+        "y": 114.0,
+        "max_width": 812.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 20
+      },
+      "source_ref": "slot.label.left.text",
+      "refs": {
+        "layout_slot_id": "slot.label.left.text"
+      },
+      "text": "연필"
+    },
+    {
+      "id": "slot.label.right.text.text",
+      "type": "text",
+      "attributes": {
+        "x": 514.0,
+        "y": 114.0,
+        "max_width": 812.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 20
+      },
+      "source_ref": "slot.label.right.text",
+      "refs": {
+        "layout_slot_id": "slot.label.right.text"
+      },
+      "text": "풀"
+    },
+    {
+      "id": "slot.label.left.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 386.0,
+        "y": 94.0,
+        "width": 44.0,
+        "height": 28.0,
+        "fill": "#F7E8C6",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.label.left",
+      "refs": {
+        "layout_slot_id": "slot.label.left"
+      }
+    },
+    {
+      "id": "slot.label.right.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 502.0,
+        "y": 94.0,
+        "width": 44.0,
+        "height": 28.0,
+        "fill": "#F7E8C6",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.label.right",
+      "refs": {
+        "layout_slot_id": "slot.label.right"
+      }
+    },
+    {
+      "id": "slot.scale.base.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 389.0,
+        "y": 168.0,
+        "width": 214.0,
+        "height": 46.0,
+        "fill": "#8CA7CB",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.scale.base",
+      "refs": {
+        "layout_slot_id": "slot.scale.base"
+      }
+    },
+    {
+      "id": "slot.scale.beam.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 421.0,
+        "y": 142.0,
+        "width": 140.0,
+        "height": 12.0,
+        "fill": "#4D7DAE",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.scale.beam",
+      "refs": {
+        "layout_slot_id": "slot.scale.beam"
+      }
+    },
+    {
+      "id": "slot.scale.pillar.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 484.0,
+        "y": 110.0,
+        "width": 12.0,
+        "height": 96.0,
+        "fill": "#A4B7D1",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.scale.pillar",
+      "refs": {
+        "layout_slot_id": "slot.scale.pillar"
+      }
+    },
+    {
+      "id": "slot.scale.leftpan.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 392.0,
+        "y": 128.0,
+        "width": 70.0,
+        "height": 26.0,
+        "fill": "#D5D9DE",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.scale.leftpan",
+      "refs": {
+        "layout_slot_id": "slot.scale.leftpan"
+      }
+    },
+    {
+      "id": "slot.scale.rightpan.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 522.0,
+        "y": 146.0,
+        "width": 70.0,
+        "height": 26.0,
+        "fill": "#D5D9DE",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.scale.rightpan",
+      "refs": {
+        "layout_slot_id": "slot.scale.rightpan"
+      }
+    },
+    {
+      "id": "slot.obj.pencil.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 382.0,
+        "y": 130.0,
+        "width": 106.0,
+        "height": 14.0,
+        "fill": "#58C3C0",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.obj.pencil",
+      "refs": {
+        "layout_slot_id": "slot.obj.pencil"
+      }
+    },
+    {
+      "id": "slot.obj.glue.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 515.0,
+        "y": 140.0,
+        "width": 102.0,
+        "height": 18.0,
+        "fill": "#F5C232",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.obj.glue",
+      "refs": {
+        "layout_slot_id": "slot.obj.glue"
+      }
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

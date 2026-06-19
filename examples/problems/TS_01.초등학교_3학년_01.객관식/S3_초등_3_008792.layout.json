@@ -1,0 +1,208 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008792",
+  "title": "리터 표기 선택",
+  "canvas": {
+    "width": 760,
+    "height": 230,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.guide1a",
+        "slot.guide1b",
+        "slot.guide2a",
+        "slot.guide2b",
+        "slot.guide3a",
+        "slot.guide3b",
+        "slot.q.symbol",
+        "slot.q.number",
+        "slot.q.text1",
+        "slot.opt1",
+        "slot.opt2",
+        "slot.opt3"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q.symbol",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "□",
+        "style_role": "question",
+        "x": 7.0,
+        "y": 31.0,
+        "font_size": 22
+      }
+    },
+    {
+      "id": "slot.q.number",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "17.",
+        "style_role": "question",
+        "x": 41.0,
+        "y": 32.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q.text1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "2 L를 바르게 쓴 것을 선택해 보세요.",
+        "style_role": "question",
+        "x": 82.0,
+        "y": 32.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.opt1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "2L",
+        "style_role": "body",
+        "x": 250.0,
+        "y": 98.0,
+        "font_size": 62
+      }
+    },
+    {
+      "id": "slot.opt2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "2L",
+        "style_role": "body",
+        "x": 570.0,
+        "y": 98.0,
+        "font_size": 62
+      }
+    },
+    {
+      "id": "slot.opt3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "2L",
+        "style_role": "body",
+        "x": 80.0,
+        "y": 155.0,
+        "font_size": 62
+      }
+    },
+    {
+      "id": "slot.guide1a",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 195.0,
+        "y1": 55.0,
+        "x2": 401.0,
+        "y2": 55.0,
+        "stroke": "#8ECDF4",
+        "stroke_width": 1.2,
+        "stroke_dasharray": "5 3"
+      }
+    },
+    {
+      "id": "slot.guide1b",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 195.0,
+        "y1": 68.0,
+        "x2": 401.0,
+        "y2": 68.0,
+        "stroke": "#8ECDF4",
+        "stroke_width": 1.2,
+        "stroke_dasharray": "5 3"
+      }
+    },
+    {
+      "id": "slot.guide2a",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 511.0,
+        "y1": 55.0,
+        "x2": 717.0,
+        "y2": 55.0,
+        "stroke": "#8ECDF4",
+        "stroke_width": 1.2,
+        "stroke_dasharray": "5 3"
+      }
+    },
+    {
+      "id": "slot.guide2b",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 511.0,
+        "y1": 68.0,
+        "x2": 717.0,
+        "y2": 68.0,
+        "stroke": "#8ECDF4",
+        "stroke_width": 1.2,
+        "stroke_dasharray": "5 3"
+      }
+    },
+    {
+      "id": "slot.guide3a",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 44.0,
+        "y1": 116.0,
+        "x2": 244.0,
+        "y2": 116.0,
+        "stroke": "#8ECDF4",
+        "stroke_width": 1.2,
+        "stroke_dasharray": "5 3"
+      }
+    },
+    {
+      "id": "slot.guide3b",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 44.0,
+        "y1": 129.0,
+        "x2": 244.0,
+        "y2": 129.0,
+        "stroke": "#8ECDF4",
+        "stroke_width": 1.2,
+        "stroke_dasharray": "5 3"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.guide1a",
+    "slot.guide1b",
+    "slot.guide2a",
+    "slot.guide2b",
+    "slot.guide3a",
+    "slot.guide3b",
+    "slot.q.symbol",
+    "slot.q.number",
+    "slot.q.text1",
+    "slot.opt1",
+    "slot.opt2",
+    "slot.opt3"
+  ]
+}

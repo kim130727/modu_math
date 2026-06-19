@@ -1,0 +1,228 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008794",
+  "title": "알맞은 단위를 선택하세요",
+  "canvas": {
+    "width": 720,
+    "height": 300,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q_title"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.syringe_barrel",
+        "slot.syringe_plunger",
+        "slot.syringe_tip",
+        "slot.choice_box",
+        "slot.syringe_tick1",
+        "slot.syringe_tick2",
+        "slot.syringe_tick3",
+        "slot.syringe_tick4",
+        "slot.syringe_tick5",
+        "slot.syringe_tick6",
+        "slot.choice_divider",
+        "slot.choice_ml",
+        "slot.choice_l"
+      ]
+    },
+    {
+      "id": "region.answer",
+      "role": "answer",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q_title",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "□ 19. 알맞은 단위를 선택하세요.",
+        "style_role": "question",
+        "x": 12.0,
+        "y": 28.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.syringe_barrel",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 438.0,
+        "y": 48.0,
+        "width": 90.0,
+        "height": 18.0
+      }
+    },
+    {
+      "id": "slot.syringe_plunger",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 420.0,
+        "y": 54.0,
+        "width": 26.0,
+        "height": 8.0
+      }
+    },
+    {
+      "id": "slot.syringe_tip",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 520.0,
+        "y": 51.0,
+        "width": 22.0,
+        "height": 6.0
+      }
+    },
+    {
+      "id": "slot.syringe_tick1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 455.0,
+        "y1": 56.0,
+        "x2": 455.0,
+        "y2": 64.0
+      }
+    },
+    {
+      "id": "slot.syringe_tick2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 465.0,
+        "y1": 56.0,
+        "x2": 465.0,
+        "y2": 64.0
+      }
+    },
+    {
+      "id": "slot.syringe_tick3",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 475.0,
+        "y1": 56.0,
+        "x2": 475.0,
+        "y2": 64.0
+      }
+    },
+    {
+      "id": "slot.syringe_tick4",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 485.0,
+        "y1": 56.0,
+        "x2": 485.0,
+        "y2": 64.0
+      }
+    },
+    {
+      "id": "slot.syringe_tick5",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 495.0,
+        "y1": 56.0,
+        "x2": 495.0,
+        "y2": 64.0
+      }
+    },
+    {
+      "id": "slot.syringe_tick6",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 505.0,
+        "y1": 56.0,
+        "x2": 505.0,
+        "y2": 64.0
+      }
+    },
+    {
+      "id": "slot.choice_box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 275.0,
+        "y": 103.0,
+        "width": 360.0,
+        "height": 66.0
+      }
+    },
+    {
+      "id": "slot.choice_divider",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 455.0,
+        "y1": 103.0,
+        "x2": 455.0,
+        "y2": 169.0
+      }
+    },
+    {
+      "id": "slot.choice_ml",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "mL",
+        "style_role": "label",
+        "x": 345.0,
+        "y": 145.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice_l",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "L",
+        "style_role": "label",
+        "x": 560.0,
+        "y": 145.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q_title",
+    "region.diagram",
+    "slot.syringe_barrel",
+    "slot.syringe_plunger",
+    "slot.syringe_tip",
+    "slot.choice_box",
+    "slot.syringe_tick1",
+    "slot.syringe_tick2",
+    "slot.syringe_tick3",
+    "slot.syringe_tick4",
+    "slot.syringe_tick5",
+    "slot.syringe_tick6",
+    "slot.choice_divider",
+    "slot.choice_ml",
+    "slot.choice_l",
+    "region.answer"
+  ]
+}

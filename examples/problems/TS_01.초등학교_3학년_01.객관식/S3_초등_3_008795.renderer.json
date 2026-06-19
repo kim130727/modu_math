@@ -1,0 +1,113 @@
+{
+  "problem_id": "S3_초등_3_008795",
+  "view_box": {
+    "width": 702.0,
+    "height": 352.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.bathtub.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 332.0,
+        "y": 52.0,
+        "width": 275.0,
+        "height": 66.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.bathtub",
+      "refs": {
+        "layout_slot_id": "slot.bathtub"
+      }
+    },
+    {
+      "id": "slot.choice_box.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 306.0,
+        "y": 151.0,
+        "width": 375.0,
+        "height": 74.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.choice_box",
+      "refs": {
+        "layout_slot_id": "slot.choice_box"
+      }
+    },
+    {
+      "id": "slot.q1.text",
+      "type": "text",
+      "attributes": {
+        "x": 18.0,
+        "y": 30.0,
+        "max_width": 574.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q1",
+      "refs": {
+        "layout_slot_id": "slot.q1"
+      },
+      "text": "20."
+    },
+    {
+      "id": "slot.q2.text",
+      "type": "text",
+      "attributes": {
+        "x": 56.0,
+        "y": 30.0,
+        "max_width": 574.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q2",
+      "refs": {
+        "layout_slot_id": "slot.q2"
+      },
+      "text": "알맞은 단위를 선택하세요."
+    },
+    {
+      "id": "slot.choice.ml.text",
+      "type": "text",
+      "attributes": {
+        "x": 360.0,
+        "y": 199.0,
+        "max_width": 574.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice.ml",
+      "refs": {
+        "layout_slot_id": "slot.choice.ml"
+      },
+      "text": "mL"
+    },
+    {
+      "id": "slot.choice.l.text",
+      "type": "text",
+      "attributes": {
+        "x": 555.0,
+        "y": 199.0,
+        "max_width": 574.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice.l",
+      "refs": {
+        "layout_slot_id": "slot.choice.l"
+      },
+      "text": "L"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

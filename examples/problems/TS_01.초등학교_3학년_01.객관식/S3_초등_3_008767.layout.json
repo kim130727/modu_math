@@ -1,0 +1,390 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008767",
+  "title": "무게의 단위 선택",
+  "canvas": {
+    "width": 940,
+    "height": 400,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q_num",
+        "slot.q_text_1",
+        "slot.q_text_2"
+      ]
+    },
+    {
+      "id": "region.diagram.left",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.left.bubble",
+        "slot.left.box",
+        "slot.left.tail",
+        "slot.left.bubble_text",
+        "slot.left.label_cherry",
+        "slot.left.label_unit",
+        "slot.left.cherry_icon"
+      ]
+    },
+    {
+      "id": "region.diagram.right",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.right.box",
+        "slot.right.bubble",
+        "slot.right.tail",
+        "slot.right.label_meat",
+        "slot.right.label_unit",
+        "slot.right.bubble_text"
+      ]
+    },
+    {
+      "id": "region.diagram.notice",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.notice.bubble",
+        "slot.notice.text_1",
+        "slot.notice.text_2",
+        "slot.notice.text_3",
+        "slot.notice.text_4",
+        "slot.notice.hand",
+        "slot.notice.face"
+      ]
+    },
+    {
+      "id": "region.answer",
+      "role": "answer",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.answer.line"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q_num",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "69.",
+        "style_role": "question",
+        "x": 18.0,
+        "y": 33.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q_text_1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "체리 상자와 소고기 팩에는 각각 어떤 단위가 표시되어 있는지 선택해보",
+        "style_role": "question",
+        "x": 60.0,
+        "y": 33.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q_text_2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "세요.",
+        "style_role": "question",
+        "x": 20.0,
+        "y": 68.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.left.bubble",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 70.0,
+        "cy": 140.0,
+        "r": 34.0,
+        "fill": "#FFFFFF"
+      }
+    },
+    {
+      "id": "slot.left.bubble_text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "1 kg",
+        "style_role": "label",
+        "x": 49.0,
+        "y": 147.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.left.tail",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 96.0,
+        "y1": 163.0,
+        "x2": 128.0,
+        "y2": 176.0
+      }
+    },
+    {
+      "id": "slot.left.box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 132.0,
+        "y": 102.0,
+        "width": 136.0,
+        "height": 76.0,
+        "fill": "#F6D46B"
+      }
+    },
+    {
+      "id": "slot.left.label_cherry",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "체리",
+        "style_role": "label",
+        "x": 148.0,
+        "y": 142.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.left.label_unit",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "1 kg",
+        "style_role": "label",
+        "x": 146.0,
+        "y": 164.0,
+        "font_size": 20
+      }
+    },
+    {
+      "id": "slot.left.cherry_icon",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "🍒",
+        "style_role": "label",
+        "x": 214.0,
+        "y": 159.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.right.box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 330.0,
+        "y": 104.0,
+        "width": 134.0,
+        "height": 74.0,
+        "fill": "#E7ECE7"
+      }
+    },
+    {
+      "id": "slot.right.label_meat",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "600 g",
+        "style_role": "label",
+        "x": 417.0,
+        "y": 160.0,
+        "font_size": 20
+      }
+    },
+    {
+      "id": "slot.right.label_unit",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "",
+        "style_role": "label",
+        "x": 0.0,
+        "y": 0.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.right.bubble",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 504.0,
+        "cy": 140.0,
+        "r": 34.0,
+        "fill": "#FFFFFF"
+      }
+    },
+    {
+      "id": "slot.right.bubble_text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "600 g",
+        "style_role": "label",
+        "x": 482.0,
+        "y": 147.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.right.tail",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 479.0,
+        "y1": 163.0,
+        "x2": 459.0,
+        "y2": 176.0
+      }
+    },
+    {
+      "id": "slot.notice.bubble",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 708.0,
+        "cy": 135.0,
+        "r": 70.0,
+        "fill": "#FFFFFF"
+      }
+    },
+    {
+      "id": "slot.notice.text_1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "무게의 단위에는",
+        "style_role": "label",
+        "x": 645.0,
+        "y": 111.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.notice.text_2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "킬로그램과",
+        "style_role": "label",
+        "x": 659.0,
+        "y": 146.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.notice.text_3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "그램 등이 있어.",
+        "style_role": "label",
+        "x": 649.0,
+        "y": 181.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.notice.text_4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "",
+        "style_role": "label",
+        "x": 0.0,
+        "y": 0.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.notice.hand",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "👋",
+        "style_role": "label",
+        "x": 800.0,
+        "y": 152.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.notice.face",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "🙂",
+        "style_role": "label",
+        "x": 840.0,
+        "y": 152.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.answer.line",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 210.0,
+        "y1": 286.0,
+        "x2": 730.0,
+        "y2": 286.0
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q_num",
+    "slot.q_text_1",
+    "slot.q_text_2",
+    "region.diagram.left",
+    "slot.left.bubble",
+    "slot.left.box",
+    "slot.left.tail",
+    "slot.left.bubble_text",
+    "slot.left.label_cherry",
+    "slot.left.label_unit",
+    "slot.left.cherry_icon",
+    "region.diagram.right",
+    "slot.right.box",
+    "slot.right.bubble",
+    "slot.right.tail",
+    "slot.right.label_meat",
+    "slot.right.label_unit",
+    "slot.right.bubble_text",
+    "region.diagram.notice",
+    "slot.notice.bubble",
+    "slot.notice.text_1",
+    "slot.notice.text_2",
+    "slot.notice.text_3",
+    "slot.notice.text_4",
+    "slot.notice.hand",
+    "slot.notice.face",
+    "region.answer",
+    "slot.answer.line"
+  ]
+}

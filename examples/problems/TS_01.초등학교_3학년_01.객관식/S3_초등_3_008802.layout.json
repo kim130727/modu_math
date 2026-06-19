@@ -1,0 +1,175 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008802",
+  "title": "고구마와 감자의 무게를 비교하는 방법",
+  "canvas": {
+    "width": 952.0,
+    "height": 602.0,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.left.face",
+        "slot.right.face",
+        "slot.q1",
+        "slot.q2",
+        "slot.q3"
+      ]
+    },
+    {
+      "id": "region.dialogue_left",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.left.speech",
+        "slot.left.name"
+      ]
+    },
+    {
+      "id": "region.dialogue_right",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.right.speech",
+        "slot.right.name"
+      ]
+    },
+    {
+      "id": "region.footer",
+      "role": "note",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "□ 31. 고구마와 감자를 양손에 들어 보니 어느 것이 더 무거",
+        "style_role": "question",
+        "x": 12.0,
+        "y": 24.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "운지 알 수 없었습니다. 고구마와 감자의 무게를 비교할 수 있는 방법을 바",
+        "style_role": "question",
+        "x": 12.0,
+        "y": 58.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "르게 말한 사람을 선택해 보세요.",
+        "style_role": "question",
+        "x": 12.0,
+        "y": 92.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.left.speech",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "눈으로 크기를\n비교해 보면 크기가\n조금이라도 더 큰 것이\n더 무거워.",
+        "style_role": "speech",
+        "x": 116.0,
+        "y": 164.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.left.name",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "상규",
+        "style_role": "label",
+        "x": 304.0,
+        "y": 448.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.right.speech",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "저울의 양쪽 접시에\n고구마와 감자를 각각 올려\n접시가 아래로 내려온 것이\n더 무거워.",
+        "style_role": "speech",
+        "x": 606.0,
+        "y": 164.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.right.name",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "민하",
+        "style_role": "label",
+        "x": 568.0,
+        "y": 448.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.left.face",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 330.0,
+        "cy": 328.0,
+        "r": 2.0,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.right.face",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 596.0,
+        "cy": 328.0,
+        "r": 2.0,
+        "fill": "#222222"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.left.face",
+    "slot.right.face",
+    "slot.q1",
+    "slot.q2",
+    "slot.q3",
+    "region.dialogue_left",
+    "slot.left.speech",
+    "slot.left.name",
+    "region.dialogue_right",
+    "slot.right.speech",
+    "slot.right.name",
+    "region.footer"
+  ]
+}

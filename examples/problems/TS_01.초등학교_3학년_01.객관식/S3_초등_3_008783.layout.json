@@ -1,0 +1,154 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008783",
+  "title": "멜론의 무게를 가장 가깝게 어림한 것",
+  "canvas": {
+    "width": 944,
+    "height": 555,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q1",
+        "slot.q2"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice.box",
+        "slot.scale.melon",
+        "slot.scale.label",
+        "slot.choice.g1",
+        "slot.choice.g2",
+        "slot.choice.g3"
+      ]
+    },
+    {
+      "id": "region.answer",
+      "role": "answer",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "5. 멜론의 무게를 재었더니 다음과 같습니다. 멜론의 무게를 가장 가깝게 어림한 것을 찾아 기호를 선택하세요.",
+        "style_role": "question",
+        "x": 16.0,
+        "y": 28.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "",
+        "style_role": "question",
+        "x": 16.0,
+        "y": 63.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice.box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 465.0,
+        "y": 101.0,
+        "width": 322.0,
+        "height": 212.0
+      }
+    },
+    {
+      "id": "slot.choice.g1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄱ 약 3 kg 300 g",
+        "style_role": "choice",
+        "x": 498.0,
+        "y": 150.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice.g2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄴ 약 2 kg 700 g",
+        "style_role": "choice",
+        "x": 498.0,
+        "y": 203.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice.g3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄷ 약 3100 g",
+        "style_role": "choice",
+        "x": 498.0,
+        "y": 257.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.scale.melon",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "멜론과 저울 그림",
+        "style_role": "diagram",
+        "x": 210.0,
+        "y": 125.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.scale.label",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "3kg",
+        "style_role": "diagram",
+        "x": 205.0,
+        "y": 341.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q1",
+    "slot.q2",
+    "region.diagram",
+    "slot.choice.box",
+    "slot.scale.melon",
+    "slot.scale.label",
+    "slot.choice.g1",
+    "slot.choice.g2",
+    "slot.choice.g3",
+    "region.answer"
+  ]
+}

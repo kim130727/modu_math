@@ -1,0 +1,277 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008772",
+  "title": "들이가 더 작은 물병 고르기",
+  "canvas": {
+    "width": 940,
+    "height": 470,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q1",
+        "slot.q2",
+        "slot.bottle.ga.label_text",
+        "slot.bottle.na.label_text"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.bottle.ga.body",
+        "slot.bottle.ga.neck",
+        "slot.bottle.ga.label",
+        "slot.bottle.na.body",
+        "slot.bottle.na.neck",
+        "slot.bottle.na.mouth",
+        "slot.bottle.na.water",
+        "slot.bottle.na.label",
+        "slot.bottle.ga.mouth"
+      ]
+    },
+    {
+      "id": "region.choice",
+      "role": "answer_choice",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice"
+      ]
+    },
+    {
+      "id": "region.footer",
+      "role": "explanation",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "□ 82.  ㉠ 물병에 물을 가득 채운 후 ㉡ 물병에 옮겨 담았습니다. 그림과 같이",
+        "style_role": "question",
+        "x": 14.0,
+        "y": 27.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "물을 채웠을 때에 들이가 더 작은 물병을 선택해 보세요.",
+        "style_role": "question",
+        "x": 14.0,
+        "y": 63.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.bottle.ga.body",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 430.0,
+        "y": 92.0,
+        "width": 82.0,
+        "height": 38.0,
+        "stroke": "#45B7F5",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.bottle.ga.neck",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            493.0,
+            104.0
+          ],
+          [
+            520.0,
+            111.0
+          ],
+          [
+            512.0,
+            133.0
+          ],
+          [
+            486.0,
+            126.0
+          ]
+        ],
+        "stroke": "#45B7F5",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.bottle.ga.mouth",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 520.0,
+        "y1": 111.0,
+        "x2": 525.0,
+        "y2": 120.0,
+        "stroke": "#45B7F5"
+      }
+    },
+    {
+      "id": "slot.bottle.ga.label",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 468.0,
+        "cy": 110.0,
+        "r": 12.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.bottle.ga.label_text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "가",
+        "style_role": "label",
+        "x": 460.0,
+        "y": 118.0,
+        "font_size": 22
+      }
+    },
+    {
+      "id": "slot.bottle.na.body",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 500.0,
+        "y": 156.0,
+        "width": 76.0,
+        "height": 136.0,
+        "stroke": "#45B7F5",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.bottle.na.water",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 505.0,
+        "y": 202.0,
+        "width": 66.0,
+        "height": 85.0,
+        "stroke": "none",
+        "fill": "#8ED2F7"
+      }
+    },
+    {
+      "id": "slot.bottle.na.neck",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            524.0,
+            141.0
+          ],
+          [
+            551.0,
+            141.0
+          ],
+          [
+            551.0,
+            158.0
+          ],
+          [
+            524.0,
+            158.0
+          ]
+        ],
+        "stroke": "#45B7F5",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.bottle.na.mouth",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 537.5,
+        "cy": 141.0,
+        "r": 10.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.bottle.na.label",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 535.0,
+        "cy": 230.0,
+        "r": 12.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.bottle.na.label_text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "나",
+        "style_role": "label",
+        "x": 527.0,
+        "y": 238.0,
+        "font_size": 22
+      }
+    },
+    {
+      "id": "slot.choice",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "( ㉠ 물병 , ㉡ 물병 )",
+        "style_role": "answer_choice",
+        "x": 687.0,
+        "y": 345.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q1",
+    "slot.q2",
+    "slot.bottle.ga.label_text",
+    "slot.bottle.na.label_text",
+    "region.diagram",
+    "slot.bottle.ga.body",
+    "slot.bottle.ga.neck",
+    "slot.bottle.ga.label",
+    "slot.bottle.na.body",
+    "slot.bottle.na.neck",
+    "slot.bottle.na.mouth",
+    "slot.bottle.na.water",
+    "slot.bottle.na.label",
+    "slot.bottle.ga.mouth",
+    "region.choice",
+    "slot.choice",
+    "region.footer"
+  ]
+}

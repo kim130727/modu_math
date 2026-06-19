@@ -1,0 +1,61 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008776",
+  "problem_type": "unit_choice",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "알맞은 단위",
+    "target_ticks": 0,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.measure",
+      "value": 250
+    },
+    {
+      "ref": "obj.unit_ml",
+      "value": "mL"
+    },
+    {
+      "ref": "obj.unit_l",
+      "value": "L"
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "selected_unit"
+  },
+  "method": "unit_selection",
+  "plan": [
+    "수치 250에 알맞은 단위를 고른다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "250에 알맞은 단위 후보를 비교한다.",
+      "value": "mL"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "선택한 단위가 문제의 정답 표기와 일치하는지 확인한다.",
+      "expected": "mL",
+      "actual": "mL",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "selected_unit",
+      "description": "250에 알맞은 단위"
+    },
+    "value": "mL",
+    "unit": ""
+  }
+}

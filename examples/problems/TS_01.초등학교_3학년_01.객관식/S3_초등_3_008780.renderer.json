@@ -1,0 +1,147 @@
+{
+  "problem_id": "S3_초등_3_008780",
+  "view_box": {
+    "width": 706.0,
+    "height": 330.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.q.symbol.text",
+      "type": "text",
+      "attributes": {
+        "x": 10.0,
+        "y": 28.0,
+        "max_width": 578.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 26
+      },
+      "source_ref": "slot.q.symbol",
+      "refs": {
+        "layout_slot_id": "slot.q.symbol"
+      },
+      "text": "□"
+    },
+    {
+      "id": "slot.q.number.text",
+      "type": "text",
+      "attributes": {
+        "x": 46.0,
+        "y": 29.0,
+        "max_width": 578.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q.number",
+      "refs": {
+        "layout_slot_id": "slot.q.number"
+      },
+      "text": "100."
+    },
+    {
+      "id": "slot.q.text.text",
+      "type": "text",
+      "attributes": {
+        "x": 100.0,
+        "y": 29.0,
+        "max_width": 578.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q.text",
+      "refs": {
+        "layout_slot_id": "slot.q.text"
+      },
+      "text": "계산하여 들이가 더 많은 것의 기호를 선택하세요."
+    },
+    {
+      "id": "slot.choice.box.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 255.0,
+        "y": 42.0,
+        "width": 398.0,
+        "height": 100.0,
+        "fill": "none",
+        "stroke": "#F6A24A",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.choice.box",
+      "refs": {
+        "layout_slot_id": "slot.choice.box"
+      }
+    },
+    {
+      "id": "slot.choice.a.text",
+      "type": "text",
+      "attributes": {
+        "x": 280.0,
+        "y": 86.0,
+        "max_width": 578.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice.a",
+      "refs": {
+        "layout_slot_id": "slot.choice.a"
+      },
+      "text": "①"
+    },
+    {
+      "id": "slot.choice.b.text",
+      "type": "text",
+      "attributes": {
+        "x": 280.0,
+        "y": 124.0,
+        "max_width": 578.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice.b",
+      "refs": {
+        "layout_slot_id": "slot.choice.b"
+      },
+      "text": "②"
+    },
+    {
+      "id": "slot.choice.a.text.text",
+      "type": "text",
+      "attributes": {
+        "x": 310.0,
+        "y": 88.0,
+        "max_width": 578.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice.a.text",
+      "refs": {
+        "layout_slot_id": "slot.choice.a.text"
+      },
+      "text": "4200 mL + 1400 mL"
+    },
+    {
+      "id": "slot.choice.b.text.text",
+      "type": "text",
+      "attributes": {
+        "x": 310.0,
+        "y": 126.0,
+        "max_width": 578.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice.b.text",
+      "refs": {
+        "layout_slot_id": "slot.choice.b.text"
+      },
+      "text": "2 L 800 mL + 3 L 300 mL"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

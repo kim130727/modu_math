@@ -1,0 +1,69 @@
+{
+  "problem_id": "S3_초등_3_008793",
+  "problem_type": "comparison_selection",
+  "metadata": {
+    "title": "들이가 100 mL보다 더 많은 것을 선택하세요",
+    "tags": [],
+    "question": "들이가 100 mL보다 더 많은 것을 선택하세요.",
+    "required_layout_ids": [
+      "slot.box"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "100 mL보다 더 많은 대상을 고르는 문제이다."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.reference_capacity",
+        "type": "capacity",
+        "value": 100,
+        "unit": "mL"
+      },
+      {
+        "id": "obj.choice_container",
+        "type": "container",
+        "capacity_relation": "greater_than_reference"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.reference_capacity"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.compare_capacity"
+        ]
+      },
+      "plan": {
+        "method": "capacity_comparison",
+        "description": "기준인 100 mL보다 더 큰 대상을 고른다."
+      },
+      "execute": {
+        "expected_operations": [
+          "compare_capacity"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "greater_than_100mL_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "selected_object",
+      "description": "100 mL보다 더 많은 것"
+    },
+    "value": 0,
+    "unit": ""
+  }
+}

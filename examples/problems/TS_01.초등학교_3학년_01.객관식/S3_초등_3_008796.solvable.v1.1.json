@@ -1,0 +1,63 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008796",
+  "problem_type": "comparison_selection",
+  "inputs": {
+    "total_ticks": 1,
+    "target_label": "1 L보다 더 적은 그릇",
+    "target_ticks": 1,
+    "target_count": 1,
+    "unit": "L"
+  },
+  "given": [
+    {
+      "ref": "obj.unit_1l",
+      "value": {
+        "value": 1,
+        "unit": "L"
+      }
+    },
+    {
+      "ref": "obj.cup",
+      "value": {
+        "type": "cup"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "selected_container"
+  },
+  "method": "visual_selection",
+  "plan": [
+    "1 L보다 더 적은 들이를 가진 그릇을 찾는다.",
+    "해설에 제시된 컵이 조건에 맞는지 확인한다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "컵의 들이 < 1 L",
+      "value": true
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "선택 대상이 1 L보다 더 적은 들이의 그릇인지 확인",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "selected_container",
+      "description": "1 L보다 더 적은 들이의 그릇"
+    },
+    "value": 1,
+    "unit": ""
+  }
+}

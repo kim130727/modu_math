@@ -1,0 +1,80 @@
+{
+  "problem_id": "S3_초등_3_008772",
+  "problem_type": "comparison_choice",
+  "metadata": {
+    "title": "들이가 더 작은 물병 고르기",
+    "tags": [],
+    "question": "그림과 같이 물을 채웠을 때에 들이가 더 작은 물병을 고르는 문제",
+    "required_layout_ids": [
+      "slot.bottle.ga.body",
+      "slot.bottle.ga.neck",
+      "slot.bottle.ga.mouth",
+      "slot.bottle.ga.label",
+      "slot.bottle.na.body",
+      "slot.bottle.na.water",
+      "slot.bottle.na.neck",
+      "slot.bottle.na.mouth",
+      "slot.bottle.na.label"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "들이가 더 작은 물병을 선택한다."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.bottle.ga",
+        "type": "bottle",
+        "label": "가"
+      },
+      {
+        "id": "obj.bottle.na",
+        "type": "bottle",
+        "label": "나"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.bottle.ga",
+          "obj.bottle.na",
+          "rel.pour"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.compare_capacity"
+        ]
+      },
+      "plan": {
+        "method": "compare_by_transfer",
+        "description": "한 물병의 물이 다른 물병에 다 들어가는 관계를 보고 더 작은 들이의 물병을 고른다."
+      },
+      "execute": {
+        "expected_operations": [
+          "identify_transfer_relation",
+          "compare_container_capacity"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "label_match_check",
+          "relation_consistency_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "choice",
+      "description": "들이가 더 작은 물병"
+    },
+    "value": "가 물병",
+    "unit": ""
+  }
+}

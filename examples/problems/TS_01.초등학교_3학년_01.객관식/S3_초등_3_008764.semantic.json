@@ -1,0 +1,87 @@
+{
+  "problem_id": "S3_초등_3_008764",
+  "problem_type": "weight_comparison_choice",
+  "metadata": {
+    "title": "공책과 필통의 무게 비교",
+    "tags": [],
+    "question": "저울을 사용하여 공책과 필통의 무게를 비교하려고 합니다. 알맞은 말을 선택하세요.",
+    "required_layout_ids": [
+      "slot.scale.base",
+      "slot.scale.pillar",
+      "slot.scale.beam",
+      "slot.scale.left.pan",
+      "slot.scale.right.pan",
+      "slot.scale.left.stand",
+      "slot.scale.right.stand",
+      "slot.scale.center.knob",
+      "slot.scale.left.book",
+      "slot.scale.right.pencilcase"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "공책이 필통보다 더 ( 무겁습니다, 가볍습니다 )."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.book",
+        "type": "object",
+        "name": "공책"
+      },
+      {
+        "id": "obj.pencilcase",
+        "type": "object",
+        "name": "필통"
+      },
+      {
+        "id": "obj.balance_scale",
+        "type": "balance_scale"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.book",
+          "obj.pencilcase",
+          "obj.balance_scale",
+          "rel.left_side_higher"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.compare_weight"
+        ]
+      },
+      "plan": {
+        "method": "balance_comparison",
+        "description": "저울의 높이 차이를 보고 더 가벼운 쪽과 더 무거운 쪽을 비교한다."
+      },
+      "execute": {
+        "expected_operations": [
+          "observe_balance_tilt",
+          "compare_weights",
+          "choose_comparison_word"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "tilted_side_is_lighter",
+          "sentence_choice_matches_scale"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "comparison_word",
+      "description": "공책이 필통보다 더 (무겁습니다/가볍습니다) 중 알맞은 말"
+    },
+    "value": "가볍습니다",
+    "unit": ""
+  }
+}

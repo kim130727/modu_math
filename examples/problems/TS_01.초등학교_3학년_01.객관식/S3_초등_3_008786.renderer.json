@@ -1,0 +1,87 @@
+{
+  "problem_id": "S3_초등_3_008786",
+  "view_box": {
+    "width": 720.0,
+    "height": 310.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.bowl.top_center.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 300.0 90.0 C 315.0 70.0, 375.0 70.0, 390.0 90.0 C 390.0 115.0, 300.0 115.0, 300.0 90.0 Z",
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "none"
+      },
+      "source_ref": "slot.bowl.top_center",
+      "refs": {
+        "layout_slot_id": "slot.bowl.top_center"
+      }
+    },
+    {
+      "id": "slot.bowl.top_right.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 535.0 88.0 C 550.0 62.0, 635.0 62.0, 650.0 88.0 C 650.0 125.0, 535.0 125.0, 535.0 88.0 Z",
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "none"
+      },
+      "source_ref": "slot.bowl.top_right",
+      "refs": {
+        "layout_slot_id": "slot.bowl.top_right"
+      }
+    },
+    {
+      "id": "slot.bowl.bottom_left.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 50.0 200.0 C 65.0 165.0, 170.0 165.0, 185.0 200.0 C 185.0 245.0, 50.0 245.0, 50.0 200.0 Z",
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "none"
+      },
+      "source_ref": "slot.bowl.bottom_left",
+      "refs": {
+        "layout_slot_id": "slot.bowl.bottom_left"
+      }
+    },
+    {
+      "id": "slot.q1.text",
+      "type": "text",
+      "attributes": {
+        "x": 8.0,
+        "y": 25.0,
+        "max_width": 592.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q1",
+      "refs": {
+        "layout_slot_id": "slot.q1"
+      },
+      "text": "□ 11."
+    },
+    {
+      "id": "slot.q2.text",
+      "type": "text",
+      "attributes": {
+        "x": 55.0,
+        "y": 25.0,
+        "max_width": 592.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q2",
+      "refs": {
+        "layout_slot_id": "slot.q2"
+      },
+      "text": "들이가 더 많은 것을 선택해 보세요."
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

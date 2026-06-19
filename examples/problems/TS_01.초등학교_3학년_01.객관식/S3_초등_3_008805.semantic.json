@@ -1,0 +1,78 @@
+{
+  "problem_id": "S3_초등_3_008805",
+  "problem_type": "notation_choice",
+  "metadata": {
+    "title": "3kg를 바르게 쓴 것을 선택하세요",
+    "tags": [],
+    "question": "3 kg을 바르게 쓴 것을 선택하는 문제",
+    "required_layout_ids": [
+      "slot.guideline.top.1",
+      "slot.guideline.top.2",
+      "slot.guideline.top.3",
+      "slot.guideline.top.4",
+      "slot.guideline.top.5",
+      "slot.guideline.top.6",
+      "slot.guideline.answer.1",
+      "slot.guideline.answer.2",
+      "slot.guideline.answer.3"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "바른 표기를 고른다."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.unit.kg",
+        "type": "unit_symbol",
+        "symbol": "kg"
+      },
+      {
+        "id": "obj.quantity.3kg",
+        "type": "quantity_expression",
+        "text": "3kg"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.quantity.3kg",
+          "obj.unit.kg"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.unit_spelling"
+        ]
+      },
+      "plan": {
+        "method": "notation_check",
+        "description": "단위 표기 규칙을 보고 바른 표기를 고른다."
+      },
+      "execute": {
+        "expected_operations": [
+          "identify_unit_rule",
+          "compare_notation"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "notation_consistency_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "correct_notation",
+      "description": "3 kg의 바른 표기"
+    },
+    "value": 0,
+    "unit": ""
+  }
+}
