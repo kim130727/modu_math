@@ -8,7 +8,7 @@ from ..semantic.models.domain import DomainObject, DomainRelation, SemanticDomai
 from ..semantic.models.metadata import SemanticMetadata
 from ..semantic.models.problem import SemanticProblem
 from ..semantic.normalize import normalize_semantic
-from .models.base import BlankSlot, ChoiceSlot, CircleSlot, LabelSlot, LineSlot, PathSlot, PolygonSlot, RectSlot, Region, TextBoxSlot, TextSlot
+from .models.base import BlankSlot, ChoiceSlot, CircleSlot, ImageSlot, LabelSlot, LineSlot, PathSlot, PolygonSlot, RectSlot, Region, TextBoxSlot, TextSlot
 from .models.objects import ShapeObject
 from .models.templates import AuthoringSlot, DiagramTemplate, ProblemTemplate
 
@@ -213,6 +213,27 @@ def compile_problem_template_to_semantic(
                         "stroke": slot.stroke,
                         "stroke_width": slot.stroke_width,
                         "fill": slot.fill,
+                        "semantic_role": slot.semantic_role,
+                    },
+                )
+            )
+            continue
+
+        if isinstance(slot, ImageSlot):
+            required_layout_ids.append(slot.id)
+            domain_objects.append(
+                DomainObject(
+                    id=slot.id,
+                    type="image_slot",
+                    refs=_refs_for_slot(slot.id, region),
+                    layout_required=True,
+                    properties={
+                        "href": slot.href,
+                        "x": slot.x,
+                        "y": slot.y,
+                        "width": slot.width,
+                        "height": slot.height,
+                        "preserve_aspect_ratio": slot.preserve_aspect_ratio,
                         "semantic_role": slot.semantic_role,
                     },
                 )

@@ -17,6 +17,7 @@ SUPPORTED_SLOTS = {
     "LineSlot": {"x1", "y1", "x2", "y2", "stroke", "stroke_width", "stroke_dasharray", "transform"},
     "RectSlot": {"x", "y", "width", "height", "stroke", "stroke_width", "stroke_dasharray", "rx", "ry", "fill", "transform"},
     "PolygonSlot": {"points", "stroke", "stroke_width", "stroke_dasharray", "fill", "transform"},
+    "ImageSlot": {"href", "x", "y", "width", "height", "preserve_aspect_ratio", "transform"},
     "PathSlot": {"d", "stroke", "stroke_width", "stroke_dasharray", "fill", "transform"},
 }
 SLOT_KIND_TO_CTOR = {
@@ -26,6 +27,7 @@ SLOT_KIND_TO_CTOR = {
     "line": "LineSlot",
     "rect": "RectSlot",
     "polygon": "PolygonSlot",
+    "image": "ImageSlot",
     "path": "PathSlot",
 }
 FRACTION_SLOT_PARTS = {"num", "bar", "den"}
@@ -124,6 +126,65 @@ def _call_name(node: cst.Call) -> str | None:
     if isinstance(node.func, cst.Name):
         return node.func.value
     return None
+
+
+def _qualified_name(node: cst.BaseExpression | None) -> str:
+    if isinstance(node, cst.Name):
+        return node.value
+    if isinstance(node, cst.Attribute):
+        prefix = _qualified_name(node.value)
+        return f"{prefix}.{node.attr.value}" if prefix else node.attr.value
+    return ""
+
+
+class DslImportEnsurer(cst.CSTTransformer):
+    def __init__(self, name: str):
+        self.name = name
+        self.saw_dsl_import = False
+        self.changed = False
+
+    def leave_ImportFrom(self, original_node: cst.ImportFrom, updated_node: cst.ImportFrom) -> cst.ImportFrom:
+        if _qualified_name(original_node.module) != "modu_math.dsl":
+            return updated_node
+        self.saw_dsl_import = True
+        if isinstance(updated_node.names, cst.ImportStar):
+            return updated_node
+
+        names = list(updated_node.names)
+        for alias in names:
+            if isinstance(alias.name, cst.Name) and alias.name.value == self.name:
+                return updated_node
+
+        names.append(cst.ImportAlias(name=cst.Name(self.name)))
+        self.changed = True
+        return updated_node.with_changes(names=tuple(names))
+
+    def leave_Module(self, original_node: cst.Module, updated_node: cst.Module) -> cst.Module:
+        if self.saw_dsl_import:
+            return updated_node
+
+        import_stmt = cst.parse_statement(f"from modu_math.dsl import {self.name}\n")
+        body = list(updated_node.body)
+        insert_at = 0
+        while insert_at < len(body):
+            stmt = body[insert_at]
+            if (
+                isinstance(stmt, cst.SimpleStatementLine)
+                and stmt.body
+                and isinstance(stmt.body[0], cst.ImportFrom)
+                and _qualified_name(stmt.body[0].module) == "__future__"
+            ):
+                insert_at += 1
+                continue
+            break
+        body.insert(insert_at, import_stmt)
+        self.changed = True
+        return updated_node.with_changes(body=tuple(body))
+
+
+def _ensure_dsl_import(module: cst.Module, name: str) -> cst.Module:
+    ensurer = DslImportEnsurer(name)
+    return module.visit(ensurer)
 
 
 def _keyword_arg(call: cst.Call, name: str) -> cst.Arg | None:
@@ -1069,6 +1130,10 @@ def apply_layout_patches(problem_id: str, patches: list[dict[str, Any]]) -> tupl
         if op == "add":
             if not isinstance(value, dict):
                 raise DslPatchError("patch value must be an object")
+            kind = value.get("kind")
+            ctor = SLOT_KIND_TO_CTOR.get(kind) if isinstance(kind, str) else None
+            if ctor is None:
+                raise DslPatchError(f"unsupported slot kind for add: {kind}")
             collector = SlotIdCollector()
             transformed.visit(collector)
             if target in collector.slot_ids:
@@ -1077,6 +1142,7 @@ def apply_layout_patches(problem_id: str, patches: list[dict[str, Any]]) -> tupl
             transformed = transformed.visit(adder)
             if not adder.added_slot:
                 raise DslPatchError("ProblemTemplate not found")
+            transformed = _ensure_dsl_import(transformed, ctor)
             applied.append(AppliedPatch(target=target, op=op, fields=list(value.keys())))
             continue
 

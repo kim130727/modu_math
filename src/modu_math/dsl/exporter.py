@@ -5,7 +5,7 @@ from collections.abc import Mapping, Sequence
 from pprint import pformat
 from typing import Any
 
-from .models.base import BlankSlot, Canvas, ChoiceSlot, CircleSlot, Constraint, Group, LabelSlot, LineSlot, PathSlot, PolygonSlot, RectSlot, Region, TextBoxSlot, TextSlot
+from .models.base import BlankSlot, Canvas, ChoiceSlot, CircleSlot, Constraint, Group, ImageSlot, LabelSlot, LineSlot, PathSlot, PolygonSlot, RectSlot, Region, TextBoxSlot, TextSlot
 from .models.objects import Arrow, Circle, Cube, FractionAreaModel, Grid, ShapeObject, Triangle
 from .models.templates import DiagramTemplate, ProblemTemplate
 
@@ -82,7 +82,7 @@ def _render_problem_template_source(
     lines: list[str] = [
         "from __future__ import annotations",
         "",
-        "from modu_math.dsl import Arrow, BlankSlot, Canvas, ChoiceSlot, Circle, CircleSlot, Constraint, Cube, DiagramTemplate, FractionAreaModel, Grid, Group, LabelSlot, LineSlot, PathSlot, PolygonSlot, ProblemTemplate, RectSlot, Region, ShapeObject, TextBoxSlot, TextSlot, Triangle",
+        "from modu_math.dsl import Arrow, BlankSlot, Canvas, ChoiceSlot, Circle, CircleSlot, Constraint, Cube, DiagramTemplate, FractionAreaModel, Grid, Group, ImageSlot, LabelSlot, LineSlot, PathSlot, PolygonSlot, ProblemTemplate, RectSlot, Region, ShapeObject, TextBoxSlot, TextSlot, Triangle",
         "",
         f"def {function_name}() -> ProblemTemplate:",
     ]
@@ -215,7 +215,7 @@ def _region_kwargs(region: Region) -> list[tuple[str, Any]]:
     ]
 
 
-def _slot_kwargs(slot: TextSlot | TextBoxSlot | ChoiceSlot | BlankSlot | LabelSlot | RectSlot | LineSlot | CircleSlot | PolygonSlot | PathSlot) -> list[tuple[str, Any]]:
+def _slot_kwargs(slot: TextSlot | TextBoxSlot | ChoiceSlot | BlankSlot | LabelSlot | RectSlot | LineSlot | CircleSlot | PolygonSlot | ImageSlot | PathSlot) -> list[tuple[str, Any]]:
     if isinstance(slot, TextSlot):
         out: list[tuple[str, Any]] = [
             ("id", slot.id),
@@ -363,6 +363,24 @@ def _slot_kwargs(slot: TextSlot | TextBoxSlot | ChoiceSlot | BlankSlot | LabelSl
             out.append(("stroke_dasharray", slot.stroke_dasharray))
         if isinstance(slot.fill, str):
             out.append(("fill", slot.fill))
+        if isinstance(slot.semantic_role, str) and slot.semantic_role:
+            out.append(("semantic_role", slot.semantic_role))
+        return out
+    if isinstance(slot, ImageSlot):
+        out = [
+            ("id", slot.id),
+            ("prompt", slot.prompt),
+            ("href", slot.href),
+            ("x", slot.x),
+            ("y", slot.y),
+            ("width", slot.width),
+            ("height", slot.height),
+            ("__ctor__", "ImageSlot"),
+        ]
+        if isinstance(slot.preserve_aspect_ratio, str) and slot.preserve_aspect_ratio:
+            out.append(("preserve_aspect_ratio", slot.preserve_aspect_ratio))
+        if isinstance(slot.transform, str) and slot.transform:
+            out.append(("transform", slot.transform))
         if isinstance(slot.semantic_role, str) and slot.semantic_role:
             out.append(("semantic_role", slot.semantic_role))
         return out
@@ -539,7 +557,7 @@ def _region_expr(region: Region) -> ast.expr:
     )
 
 
-def _slot_expr(slot: TextSlot | TextBoxSlot | ChoiceSlot | BlankSlot | LabelSlot | RectSlot | LineSlot | CircleSlot | PolygonSlot | PathSlot) -> ast.expr:
+def _slot_expr(slot: TextSlot | TextBoxSlot | ChoiceSlot | BlankSlot | LabelSlot | RectSlot | LineSlot | CircleSlot | PolygonSlot | ImageSlot | PathSlot) -> ast.expr:
     if isinstance(slot, TextSlot):
         keywords = [
             ast.keyword(arg="id", value=ast.Constant(value=slot.id)),
@@ -709,6 +727,23 @@ def _slot_expr(slot: TextSlot | TextBoxSlot | ChoiceSlot | BlankSlot | LabelSlot
         if isinstance(slot.semantic_role, str) and slot.semantic_role:
             keywords.append(ast.keyword(arg="semantic_role", value=ast.Constant(value=slot.semantic_role)))
         return ast.Call(func=ast.Name(id="PolygonSlot", ctx=ast.Load()), args=[], keywords=keywords)
+    if isinstance(slot, ImageSlot):
+        keywords = [
+            ast.keyword(arg="id", value=ast.Constant(value=slot.id)),
+            ast.keyword(arg="prompt", value=ast.Constant(value=slot.prompt)),
+            ast.keyword(arg="href", value=ast.Constant(value=slot.href)),
+            ast.keyword(arg="x", value=ast.Constant(value=slot.x)),
+            ast.keyword(arg="y", value=ast.Constant(value=slot.y)),
+            ast.keyword(arg="width", value=ast.Constant(value=slot.width)),
+            ast.keyword(arg="height", value=ast.Constant(value=slot.height)),
+        ]
+        if isinstance(slot.preserve_aspect_ratio, str) and slot.preserve_aspect_ratio:
+            keywords.append(ast.keyword(arg="preserve_aspect_ratio", value=ast.Constant(value=slot.preserve_aspect_ratio)))
+        if isinstance(slot.transform, str) and slot.transform:
+            keywords.append(ast.keyword(arg="transform", value=ast.Constant(value=slot.transform)))
+        if isinstance(slot.semantic_role, str) and slot.semantic_role:
+            keywords.append(ast.keyword(arg="semantic_role", value=ast.Constant(value=slot.semantic_role)))
+        return ast.Call(func=ast.Name(id="ImageSlot", ctx=ast.Load()), args=[], keywords=keywords)
     if isinstance(slot, PathSlot):
         keywords = [
             ast.keyword(arg="id", value=ast.Constant(value=slot.id)),
@@ -897,7 +932,7 @@ def _slot_from_layout(
     *,
     choice_answer_keys: Mapping[str, tuple[str, ...]] | None = None,
     blank_answer_keys: Mapping[str, str] | None = None,
-) -> TextSlot | TextBoxSlot | ChoiceSlot | BlankSlot | LabelSlot | RectSlot | LineSlot | CircleSlot | PolygonSlot | PathSlot:
+) -> TextSlot | TextBoxSlot | ChoiceSlot | BlankSlot | LabelSlot | RectSlot | LineSlot | CircleSlot | PolygonSlot | ImageSlot | PathSlot:
     data = _require_mapping(raw, f"slots[{index}]")
     slot_id = _require_non_empty_str(data.get("id"), f"slots[{index}].id")
     kind = _require_non_empty_str(data.get("kind"), f"slots[{index}].kind")
@@ -1020,6 +1055,19 @@ def _slot_from_layout(
             stroke_width=_number_or_none(content.get("stroke_width")),
             stroke_dasharray=_string(content.get("stroke_dasharray"), None),
             fill=_string(content.get("fill"), None),
+            semantic_role=_string(content.get("semantic_role"), None),
+        )
+    if kind == "image":
+        return ImageSlot(
+            id=slot_id,
+            prompt=prompt,
+            href=_string(content.get("href"), "") or "",
+            x=float(_require_number(content.get("x"), f"slots[{index}].content.x")),
+            y=float(_require_number(content.get("y"), f"slots[{index}].content.y")),
+            width=float(_require_number(content.get("width"), f"slots[{index}].content.width")),
+            height=float(_require_number(content.get("height"), f"slots[{index}].content.height")),
+            preserve_aspect_ratio=_string(content.get("preserve_aspect_ratio"), "xMidYMid meet"),
+            transform=_string(content.get("transform"), None),
             semantic_role=_string(content.get("semantic_role"), None),
         )
     if kind == "path":

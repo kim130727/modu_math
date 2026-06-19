@@ -21,7 +21,7 @@ def build_problem_template() -> ProblemTemplate:
                 id="region.header",
                 role="stem",
                 flow="absolute",
-                slot_ids=("slot.q1", ),
+                slot_ids=("slot.q1",),
             ),
             Region(
                 id="region.diagram",
@@ -47,8 +47,7 @@ def build_problem_template() -> ProblemTemplate:
             ),
             Region(id="region.footer", role="answer", flow="absolute", slot_ids=()),
         ),
-        slots=(
-            TextSlot(
+        slots=(TextSlot(
                 id="slot.q1",
                 prompt="",
                 text = '\n    \n    그림을 보고 지름과 반지름 사이의 관계를 알아보려고 합니다.\n    알맞은 것을 선택하세요.\n  ', style_role="question",
@@ -74,11 +73,7 @@ def build_problem_template() -> ProblemTemplate:
             PathSlot(
                 id="slot.guide.radius.curve",
                 prompt="",
-                d="M 438 267 C 470 288, 517 287, 548 262",
-                stroke="#37bdf8",
-                stroke_width=1.6,
-                stroke_dasharray="5 4",
-                fill="none",
+                d = 'M 440 265 C 470 285 520 285 550 260', stroke = '#37bdf8', stroke_width = 1.6, stroke_dasharray = '5 4', fill="none",
             ),
             TextSlot(
                 id="slot.len4",
@@ -99,8 +94,7 @@ def build_problem_template() -> ProblemTemplate:
                 id="slot.choice.text",
                 prompt="",
                 text = '한 원에서 ( 지름 , 반지름 )은 ( 지름 , 반지름 )의 2배입니다.', style_role="question",
-                x = 65, y = 455, font_size = 30),
-        ),
+                x = 65, y = 455, font_size = 30),),
         diagrams=(),
         groups=(),
         constraints=(),

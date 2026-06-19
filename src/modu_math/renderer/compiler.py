@@ -573,6 +573,38 @@ def _compile_slots(layout: dict[str, Any], *, width: float) -> tuple[list[DrawEl
             )
             continue
 
+        if kind == "image":
+            x_pos = float(content.get("x", x))
+            y_pos = float(content.get("y", y - 24.0))
+            iw = float(content.get("width", 120.0))
+            ih = float(content.get("height", 90.0))
+            href = str(content.get("href", ""))
+            preserve = str(content.get("preserve_aspect_ratio", "xMidYMid meet"))
+            semantic_role = str(content["semantic_role"]) if isinstance(content.get("semantic_role"), str) else None
+            attributes: dict[str, Any] = {
+                "x": x_pos,
+                "y": y_pos,
+                "width": iw,
+                "height": ih,
+                "href": href,
+                "preserveAspectRatio": preserve,
+            }
+            if semantic_role:
+                attributes["data-semantic-role"] = semantic_role
+            if transform:
+                attributes["transform"] = transform
+            elements.append(
+                DrawElement(
+                    id=f"{slot_id}.image",
+                    type="image",
+                    attributes=attributes,
+                    source_ref=slot_id,
+                    refs=refs,
+                )
+            )
+            y = max(y, y_pos + ih + 16.0)
+            continue
+
         if kind == "path":
             d = str(content.get("d", ""))
             x_pos = float(content["x"]) if isinstance(content.get("x"), int | float) else 0.0

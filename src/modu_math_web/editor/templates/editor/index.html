@@ -126,7 +126,8 @@
     }
     .svg-box svg [id] { cursor: move; }
     .svg-box svg text[id] { pointer-events: bounding-box; }
-    .svg-box svg rect[id] { pointer-events: all; }
+    .svg-box svg rect[id],
+    .svg-box svg image[id] { pointer-events: all; }
     .svg-box svg circle[id],
     .svg-box svg line[id],
     .svg-box svg path[id],
@@ -677,6 +678,7 @@
     <symbol id="icon-pick-text" viewBox="0 0 24 24"><path d="M5 6h14"/><path d="M12 6v14"/><path d="M8 20h8"/></symbol>
     <symbol id="icon-pick-shape" viewBox="0 0 24 24"><path d="M5 5h8v8H5z"/><path d="M16 6a3 3 0 1 0 0.1 0"/><path d="M15 16h4v4h-4z"/></symbol>
     <symbol id="icon-textbox" viewBox="0 0 24 24"><path d="M4 6h16v12H4z"/><path d="M8 9h8"/><path d="M12 9v7"/><path d="M9 16h6"/></symbol>
+    <symbol id="icon-image" viewBox="0 0 24 24"><path d="M4 5h16v14H4z"/><circle cx="8" cy="9" r="1.5"/><path d="M4 16l5-5 4 4 2-2 5 5"/></symbol>
     <symbol id="icon-shapes" viewBox="0 0 24 24"><path d="M5 5h7v7H5z"/><path d="M16.5 5.5 21 12h-9z"/><path d="M8 16a3 3 0 1 0 0.1 0"/><path d="M15 16h5v4h-5z"/></symbol>
   </svg>
   <div class="wrap powerpoint">
@@ -698,6 +700,8 @@
           </div>
           <div class="ribbon-group" data-label="삽입">
             <button id="insertTextBoxBtn" class="icon-btn" title="텍스트 상자 삽입" aria-label="텍스트 상자 삽입"><svg><use href="#icon-textbox"></use></svg></button>
+            <button id="insertImageBtn" class="icon-btn" title="그림 삽입" aria-label="그림 삽입"><svg><use href="#icon-image"></use></svg></button>
+            <input id="insertImageInput" type="file" accept="image/*" hidden>
             <div class="ribbon-dropdown">
               <button id="shapeGalleryBtn" class="icon-btn" title="도형 삽입" aria-label="도형 삽입"><svg><use href="#icon-shapes"></use></svg></button>
               <div id="shapeGallery" class="shape-gallery" role="menu" aria-label="도형"></div>
@@ -1473,6 +1477,47 @@
       });
     }
 
+    function readFileAsDataUrl(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(String(reader.result || ""));
+        reader.onerror = () => reject(reader.error || new Error("그림 파일을 읽을 수 없습니다."));
+        reader.readAsDataURL(file);
+      });
+    }
+
+    function imageSizeFromDataUrl(href) {
+      return new Promise((resolve) => {
+        const img = new Image();
+        img.onload = () => resolve({ width: img.naturalWidth || 240, height: img.naturalHeight || 160 });
+        img.onerror = () => resolve({ width: 240, height: 160 });
+        img.src = href;
+      });
+    }
+
+    async function imagePayloadFromFile(file) {
+      if (!file || !file.type || !file.type.startsWith("image/")) throw new Error("이미지 파일을 선택하세요.");
+      const href = await readFileAsDataUrl(file);
+      const intrinsic = await imageSizeFromDataUrl(href);
+      const maxWidth = 320;
+      const maxHeight = 240;
+      const scale = Math.min(1, maxWidth / Math.max(intrinsic.width, 1), maxHeight / Math.max(intrinsic.height, 1));
+      const width = Math.max(24, Math.round(intrinsic.width * scale));
+      const height = Math.max(24, Math.round(intrinsic.height * scale));
+      const { x, y } = defaultInsertOrigin(width, height);
+      return addRegionToPatch({
+        kind: "image",
+        content: {
+          href,
+          x,
+          y,
+          width,
+          height,
+          preserve_aspect_ratio: "xMidYMid meet",
+        },
+      });
+    }
+
     async function insertSlot(slotId, value, label) {
       if (!currentProblemId) throw new Error("문제를 먼저 여세요.");
       await commitPatches([{ target: slotId, op: "add", value }], `${label} 삽입 완료`);
@@ -1485,6 +1530,10 @@
 
     async function insertShape(def) {
       await insertSlot(uniqueInsertedSlotId(def.id), shapePayload(def), def.label || "도형");
+    }
+
+    async function insertImageFromFile(file) {
+      await insertSlot(uniqueInsertedSlotId("image"), await imagePayloadFromFile(file), "그림");
     }
 
     function renderShapeGallery() {
@@ -1548,6 +1597,7 @@
       if (!svgElementId) return "";
       const base = String(svgElementId)
         .replace(/\.(text|line|rect|path|polygon|circle)$/i, "")
+        .replace(/\.(image)$/i, "")
         .replace(/__(hit|proxy)$/i, "");
       if (!base || base === "selectionOverlay") return "";
       if (!base.startsWith("slot.")) return "";
@@ -1556,7 +1606,7 @@
 
     function parseFractionPartId(svgElementId) {
       if (!svgElementId) return null;
-      const base = svgElementId.replace(/\.(text|line|rect|path|polygon|circle)$/i, "");
+      const base = svgElementId.replace(/\.(text|line|rect|path|polygon|circle|image)$/i, "");
       const m = base.match(/^(slot\..+)\.(num|bar|den)$/);
       if (!m) return null;
       return { prefix: m[1], part: m[2] };
@@ -1566,7 +1616,7 @@
       if (!el) return false;
       if (el.classList && (el.classList.contains("selection-handle") || el.classList.contains("selection-bounds") || el.classList.contains("selection-line") || el.classList.contains("slot-hit-proxy"))) return false;
       const tag = el.tagName.toLowerCase();
-      return tag === "text" || tag === "rect" || tag === "circle" || tag === "line" || tag === "path" || tag === "polygon";
+      return tag === "text" || tag === "rect" || tag === "image" || tag === "circle" || tag === "line" || tag === "path" || tag === "polygon";
     }
 
     function draggableSlotElements(svg, prefix = null) {
@@ -1594,7 +1644,7 @@
         return true;
       }
       if (pickMode === "text") return tag === "text";
-      if (pickMode === "shape") return tag === "rect" || tag === "circle" || tag === "polygon";
+      if (pickMode === "shape") return tag === "rect" || tag === "image" || tag === "circle" || tag === "polygon";
       return true;
     }
 
@@ -1938,7 +1988,7 @@
 
     function elementHitBox(node, svg = null) {
       const tag = node.tagName.toLowerCase();
-      if (tag === "rect") {
+      if (tag === "rect" || tag === "image") {
         const x = Number(node.getAttribute("x") || 0);
         const y = Number(node.getAttribute("y") || 0);
         const width = Number(node.getAttribute("width") || 0);
@@ -2012,6 +2062,7 @@
       if (tag === "circle" || tag === "line" || tag === "path") return 0;
       if (tag === "polygon") return 1;
       if (tag === "text") return 2;
+      if (tag === "image") return 2;
       if (tag === "rect") return 3;
       return 4;
     }
@@ -2097,6 +2148,16 @@
           rx: Number(el.getAttribute("rx") || 0) || undefined,
           ry: Number(el.getAttribute("ry") || 0) || undefined,
           ...styleAttrs(["fill", "stroke", "stroke_width", "stroke_dasharray"]),
+        });
+      }
+      if (tag === "image") {
+        return withTransform({
+          href: el.getAttribute("href") || el.getAttribute("xlink:href") || "",
+          x: Number(el.getAttribute("x") || 0),
+          y: Number(el.getAttribute("y") || 0),
+          width: Number(el.getAttribute("width") || 0),
+          height: Number(el.getAttribute("height") || 0),
+          preserve_aspect_ratio: el.getAttribute("preserveAspectRatio") || undefined,
         });
       }
       if (tag === "circle") {
@@ -2439,7 +2500,7 @@
         if (transform) out.transform = transform;
         return out;
       }
-      if (tag === "text" || tag === "rect") {
+      if (tag === "text" || tag === "rect" || tag === "image") {
         const nx = snap(Number(el.getAttribute("x") || 0) + dx);
         const ny = snap(Number(el.getAttribute("y") || 0) + dy);
         el.setAttribute("x", String(nx));
@@ -2534,7 +2595,7 @@
       if (item.isCharacterGroup || item.isPaperFoldGroup || item.isMeasurementGroup || item.isGeneratedGroup) return null;
       if (item.isFigureGroup || item.isTableGroup) return item;
       const tag = item.el.tagName.toLowerCase();
-      if (!["text", "rect", "circle", "line", "path", "polygon"].includes(tag)) return null;
+      if (!["text", "rect", "image", "circle", "line", "path", "polygon"].includes(tag)) return null;
       return item;
     }
 
@@ -2812,7 +2873,7 @@
           if (transform) out.transform = transform;
           return out;
         }
-        if (tag === "text" || tag === "rect") {
+        if (tag === "text" || tag === "rect" || tag === "image") {
           const x = snap(startValue.x + dx);
           const y = snap(startValue.y + dy);
           el.setAttribute("x", String(x));
@@ -2821,7 +2882,7 @@
           const transform = shiftedStartRotateTransform(startValue, dx, dy, snapEnabled);
           if (transform) el.setAttribute("transform", transform);
           if (transform) out.transform = transform;
-          if (tag === "rect") {
+          if (tag === "rect" || tag === "image") {
             out.width = startValue.width;
             out.height = startValue.height;
           }
@@ -2874,7 +2935,7 @@
         }
         return null;
       }
-      if (tag === "rect") {
+      if (tag === "rect" || tag === "image") {
         const x = snap(nextBox.x);
         const y = snap(nextBox.y);
         const width = Math.max(4, snap(nextBox.width));
@@ -2971,10 +3032,10 @@
       const sx = nextBox.width / Math.max(startBox.width, 1);
       const sy = nextBox.height / Math.max(startBox.height, 1);
       const scale = Math.max(sx, sy);
-      if (tag === "text" || tag === "rect") {
+      if (tag === "text" || tag === "rect" || tag === "image") {
         const p = mapPointBetweenBoxes(startValue.x, startValue.y, startBox, nextBox);
         const out = { x: snap(p.x), y: snap(p.y) };
-        if (tag === "rect") {
+        if (tag === "rect" || tag === "image") {
           out.width = Math.max(4, snap((startValue.width || 0) * sx));
           out.height = Math.max(4, snap((startValue.height || 0) * sy));
         }
@@ -3410,12 +3471,19 @@
           if (value.anchor) el.setAttribute("text-anchor", String(value.anchor));
           else el.removeAttribute("text-anchor");
         }
-      } else if (tag === "rect" && value.x !== undefined && value.y !== undefined) {
+      } else if ((tag === "rect" || tag === "image") && value.x !== undefined && value.y !== undefined) {
         el.setAttribute("x", String(value.x));
         el.setAttribute("y", String(value.y));
         if (value.width !== undefined && value.height !== undefined) {
           el.setAttribute("width", String(value.width));
           el.setAttribute("height", String(value.height));
+        }
+        if (tag === "image") {
+          if (value.href !== undefined) el.setAttribute("href", String(value.href));
+          if (value.preserve_aspect_ratio !== undefined) {
+            if (value.preserve_aspect_ratio) el.setAttribute("preserveAspectRatio", String(value.preserve_aspect_ratio));
+            else el.removeAttribute("preserveAspectRatio");
+          }
         }
       } else if (tag === "circle" && value.cx !== undefined && value.cy !== undefined) {
         el.setAttribute("cx", String(value.cx));
@@ -3459,6 +3527,8 @@
         if (value.font_size !== undefined) out.font_size = snapValue(value.font_size);
         if (value.max_width !== undefined) out.max_width = snapValue(value.max_width);
         if (value.anchor !== undefined) out.anchor = value.anchor;
+        if (value.href !== undefined) out.href = value.href;
+        if (value.preserve_aspect_ratio !== undefined) out.preserve_aspect_ratio = value.preserve_aspect_ratio;
         return keepTransform(out);
       }
       if (value.text !== undefined) return keepTransform({ text: value.text });
@@ -3500,6 +3570,7 @@
       if (tag === "text") return { x: Number(el.getAttribute("x") || 0), y: Number(el.getAttribute("y") || 0) };
       if (tag === "line") return { x: Number(el.getAttribute("x1") || 0), y: Number(el.getAttribute("y1") || 0) };
       if (tag === "rect") return { x: Number(el.getAttribute("x") || 0), y: Number(el.getAttribute("y") || 0) };
+      if (tag === "image") return { x: Number(el.getAttribute("x") || 0), y: Number(el.getAttribute("y") || 0) };
       if (tag === "circle") return { x: Number(el.getAttribute("cx") || 0), y: Number(el.getAttribute("cy") || 0) };
       return null;
     }
@@ -4655,14 +4726,54 @@
       try { await insertTextBox(); }
       catch (e) { setStatus(String(e), false); }
     };
+    document.getElementById("insertImageBtn").onclick = () => {
+      document.getElementById("insertImageInput")?.click();
+    };
+    document.getElementById("insertImageInput").addEventListener("change", async (ev) => {
+      const input = ev.currentTarget;
+      const file = input.files && input.files[0];
+      try {
+        if (file) await insertImageFromFile(file);
+      } catch (e) {
+        setStatus(String(e), false);
+      } finally {
+        input.value = "";
+      }
+    });
     document.getElementById("shapeGalleryBtn").onclick = (ev) => {
       ev.stopPropagation();
       toggleShapeGallery();
     };
     document.getElementById("shapeGallery").addEventListener("click", (ev) => ev.stopPropagation());
+    document.getElementById("shapeFormatMenu").addEventListener("click", (ev) => ev.stopPropagation());
     document.addEventListener("click", () => {
       document.getElementById("shapeGallery")?.classList.remove("open");
+      hideShapeFormatMenu();
     });
+    document.getElementById("shapeApplyFillBtn").onclick = async () => {
+      try {
+        await applyShapeFill(document.getElementById("shapeFillColorInput").value || "#ffffff");
+        hideShapeFormatMenu();
+      } catch (e) { setStatus(String(e), false); }
+    };
+    document.getElementById("shapeNoBorderBtn").onclick = async () => {
+      try {
+        await applyShapeFormatPatch({ stroke: "none", stroke_width: 0, stroke_dasharray: "" }, "테두리 제거");
+        hideShapeFormatMenu();
+      } catch (e) { setStatus(String(e), false); }
+    };
+    document.getElementById("shapeSolidBtn").onclick = async () => {
+      try {
+        await applyShapeFormatPatch({ stroke: DEFAULT_SHAPE_STYLE.stroke, stroke_width: DEFAULT_SHAPE_STYLE.stroke_width, stroke_dasharray: "" }, "실선");
+        hideShapeFormatMenu();
+      } catch (e) { setStatus(String(e), false); }
+    };
+    document.getElementById("shapeDashedBtn").onclick = async () => {
+      try {
+        await applyShapeFormatPatch({ stroke: DEFAULT_SHAPE_STYLE.stroke, stroke_width: DEFAULT_SHAPE_STYLE.stroke_width, stroke_dasharray: "5 4" }, "점선");
+        hideShapeFormatMenu();
+      } catch (e) { setStatus(String(e), false); }
+    };
     document.getElementById("patchBtn").onclick = async () => {
       try { await patchOnly(); }
       catch (e) { setStatus(String(e), false); }
@@ -4781,6 +4892,11 @@
         pasteCopiedSlots().catch((e) => setStatus(String(e), false));
         return;
       }
+      if (ev.key === "Escape") {
+        hideShapeFormatMenu();
+        document.getElementById("shapeGallery")?.classList.remove("open");
+        return;
+      }
       if (!selectedSlots.size) return;
 
       if (ev.key === "Delete" || ev.key === "Backspace") {
@@ -4848,6 +4964,7 @@
     });
 
     renderShapeGallery();
+    renderShapeFormatSwatches();
     loadProblems().catch((e) => {
       const tree = document.getElementById("problemTree");
       if (tree) tree.innerHTML = `<em>${String(e)}</em>`;

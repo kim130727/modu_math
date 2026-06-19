@@ -148,6 +148,19 @@ class PolygonSlot(SlotBase):
 
 
 @dataclass(frozen=True)
+class ImageSlot(SlotBase):
+    href: str = ""
+    x: float = 0.0
+    y: float = 0.0
+    width: float = 0.0
+    height: float = 0.0
+    preserve_aspect_ratio: str | None = "xMidYMid meet"
+    transform: str | None = None
+    semantic_role: str | None = None
+    kind: str = "image"
+
+
+@dataclass(frozen=True)
 class PathSlot(SlotBase):
     d: str = ""
     x: float = 0.0

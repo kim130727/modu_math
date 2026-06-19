@@ -142,7 +142,7 @@ def _element_to_svg_lines(element: RenderElement, depth: int = 1) -> list[str]:
         return lines
 
     tag = "path" if element.type == "fill_path" else element.type
-    if tag in {"rect", "circle", "line", "polygon", "path"}:
+    if tag in {"rect", "circle", "line", "polygon", "path", "image"}:
         return [f"{indent}<{tag} {attrs_str} />"]
     return [f"{indent}<!-- Unsupported element type: {escape(tag)} -->"]
 

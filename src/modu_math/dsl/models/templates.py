@@ -2,10 +2,10 @@
 
 from dataclasses import dataclass
 
-from .base import BlankSlot, Canvas, ChoiceSlot, CircleSlot, Constraint, Group, LabelSlot, LineSlot, PathSlot, PolygonSlot, RectSlot, Region, TextBoxSlot, TextSlot
+from .base import BlankSlot, Canvas, ChoiceSlot, CircleSlot, Constraint, Group, ImageSlot, LabelSlot, LineSlot, PathSlot, PolygonSlot, RectSlot, Region, TextBoxSlot, TextSlot
 from .objects import ShapeObject
 
-AuthoringSlot = TextSlot | TextBoxSlot | ChoiceSlot | BlankSlot | LabelSlot | RectSlot | LineSlot | CircleSlot | PolygonSlot | PathSlot
+AuthoringSlot = TextSlot | TextBoxSlot | ChoiceSlot | BlankSlot | LabelSlot | RectSlot | LineSlot | CircleSlot | PolygonSlot | ImageSlot | PathSlot
 
 
 @dataclass(frozen=True)

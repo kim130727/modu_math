@@ -1,4 +1,4 @@
-from .base import BlankSlot, Canvas, ChoiceSlot, CircleSlot, Constraint, Group, LabelSlot, LineSlot, PathSlot, PolygonSlot, RectSlot, Region, TextBoxSlot, TextSlot
+from .base import BlankSlot, Canvas, ChoiceSlot, CircleSlot, Constraint, Group, ImageSlot, LabelSlot, LineSlot, PathSlot, PolygonSlot, RectSlot, Region, TextBoxSlot, TextSlot
 from .objects import Arrow, Circle, Cube, FractionAreaModel, Grid, ShapeObject, Triangle
 from .templates import DiagramTemplate, ProblemTemplate
 
@@ -15,6 +15,7 @@ __all__ = [
     "FractionAreaModel",
     "Grid",
     "Group",
+    "ImageSlot",
     "LabelSlot",
     "LineSlot",
     "PathSlot",

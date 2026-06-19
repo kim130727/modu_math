@@ -3,7 +3,7 @@ from __future__ import annotations
 from dataclasses import asdict
 from typing import Any
 
-from .models.base import BlankSlot, ChoiceSlot, CircleSlot, Constraint, Group, LabelSlot, LineSlot, PathSlot, PolygonSlot, RectSlot, Region, TextBoxSlot, TextSlot
+from .models.base import BlankSlot, ChoiceSlot, CircleSlot, Constraint, Group, ImageSlot, LabelSlot, LineSlot, PathSlot, PolygonSlot, RectSlot, Region, TextBoxSlot, TextSlot
 from .models.objects import ShapeObject
 from .models.templates import AuthoringSlot, DiagramTemplate, ProblemTemplate
 
@@ -317,6 +317,27 @@ def _normalize_slot(slot: AuthoringSlot) -> dict[str, Any]:
             content["stroke_dasharray"] = slot.stroke_dasharray
         if isinstance(slot.fill, str):
             content["fill"] = slot.fill
+        if isinstance(slot.transform, str) and slot.transform:
+            content["transform"] = slot.transform
+        if isinstance(slot.semantic_role, str) and slot.semantic_role:
+            content["semantic_role"] = slot.semantic_role
+        return {
+            "id": slot.id,
+            "kind": slot.kind,
+            "prompt": slot.prompt or "",
+            "content": content,
+        }
+
+    if isinstance(slot, ImageSlot):
+        content: dict[str, Any] = {
+            "href": slot.href,
+            "x": float(slot.x),
+            "y": float(slot.y),
+            "width": float(slot.width),
+            "height": float(slot.height),
+        }
+        if isinstance(slot.preserve_aspect_ratio, str) and slot.preserve_aspect_ratio:
+            content["preserve_aspect_ratio"] = slot.preserve_aspect_ratio
         if isinstance(slot.transform, str) and slot.transform:
             content["transform"] = slot.transform
         if isinstance(slot.semantic_role, str) and slot.semantic_role:

@@ -1,4 +1,4 @@
-from modu_math.dsl import Canvas, ProblemTemplate, Region, TextBoxSlot, TextSlot, compile_problem_template_to_layout
+from modu_math.dsl import Canvas, ImageSlot, ProblemTemplate, Region, TextBoxSlot, TextSlot, compile_problem_template_to_layout
 from modu_math.layout.validate import validate_layout_json
 from modu_math.renderer.compiler import compile_renderer_json
 from modu_math.renderer.svg.render import render_svg
@@ -62,3 +62,37 @@ def test_text_slot_max_width_does_not_auto_wrap() -> None:
 
     assert "<tspan" not in svg
     assert "long text should stay on one rendered line" in svg
+
+
+def test_image_slot_renders_svg_image() -> None:
+    problem = ProblemTemplate(
+        id="image_slot_demo",
+        title="Image slot demo",
+        canvas=Canvas(width=300, height=180),
+        regions=(Region(id="region.diagram", role="diagram", flow="absolute", slot_ids=("slot.image",)),),
+        slots=(
+            ImageSlot(
+                id="slot.image",
+                href="data:image/png;base64,AAAA",
+                x=20,
+                y=30,
+                width=120,
+                height=80,
+                transform="rotate(15 80 70)",
+            ),
+        ),
+    )
+
+    layout = compile_problem_template_to_layout(problem)
+    validate_layout_json(layout)
+    assert layout["slots"][0]["kind"] == "image"
+
+    renderer = compile_renderer_json(layout)
+    validate_renderer_json(renderer)
+    assert renderer["elements"][0]["type"] == "image"
+
+    svg = render_svg(renderer)
+    assert "<image " in svg
+    assert 'href="data:image/png;base64,AAAA"' in svg
+    assert 'preserveAspectRatio="xMidYMid meet"' in svg
+    assert 'transform="rotate(15 80 70)"' in svg
