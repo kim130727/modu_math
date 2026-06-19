@@ -94,6 +94,7 @@ class RectSlot(SlotBase):
     height: float = 0.0
     stroke: str | None = None
     stroke_width: float | None = None
+    stroke_dasharray: str | None = None
     rx: float | None = None
     ry: float | None = None
     fill: str | None = None
@@ -125,6 +126,7 @@ class CircleSlot(SlotBase):
     r: float = 0.0
     stroke: str | None = None
     stroke_width: float | None = None
+    stroke_dasharray: str | None = None
     fill: str | None = None
     transform: str | None = None
     semantic_role: str | None = None
@@ -138,6 +140,7 @@ class PolygonSlot(SlotBase):
     y: float = 0.0
     stroke: str | None = None
     stroke_width: float | None = None
+    stroke_dasharray: str | None = None
     fill: str | None = None
     transform: str | None = None
     semantic_role: str | None = None

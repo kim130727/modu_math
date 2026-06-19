@@ -1,0 +1,721 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008723",
+  "title": "컴퍼스의 침을 꽂지 않은 곳 찾기",
+  "canvas": {
+    "width": 940,
+    "height": 520,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q1",
+        "slot.q2"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.circle.outer",
+        "slot.circle.top",
+        "slot.circle.left",
+        "slot.circle.right",
+        "slot.circle.bottom",
+        "slot.grid.v1",
+        "slot.grid.v2",
+        "slot.grid.v3",
+        "slot.grid.v4",
+        "slot.grid.v5",
+        "slot.grid.v6",
+        "slot.grid.v7",
+        "slot.grid.v8",
+        "slot.grid.v9",
+        "slot.grid.v10",
+        "slot.grid.v11",
+        "slot.grid.v12",
+        "slot.grid.h1",
+        "slot.grid.h2",
+        "slot.grid.h3",
+        "slot.grid.h4",
+        "slot.grid.h5",
+        "slot.grid.h6",
+        "slot.grid.h7",
+        "slot.grid.h8",
+        "slot.grid.h9",
+        "slot.grid.h10",
+        "slot.grid.h11",
+        "slot.grid.h12",
+        "slot.circle.center",
+        "slot.pt.a",
+        "slot.pt.b",
+        "slot.pt.c",
+        "slot.pt.d",
+        "slot.pt.e",
+        "slot.pt.f",
+        "slot.lb.a",
+        "slot.lb.b",
+        "slot.lb.c",
+        "slot.lb.d",
+        "slot.lb.e",
+        "slot.lb.f"
+      ]
+    },
+    {
+      "id": "region.answer",
+      "role": "answer",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.a2"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "□ 27. 세인이가 그림과 같은 모양을 그렸습니다. 이 모양을 그릴 때 컴퍼스의",
+        "style_role": "question",
+        "x": 10.0,
+        "y": 34.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "    침을 꽂지 않은 곳을 찾아 기호를 선택하세요.",
+        "style_role": "question",
+        "x": 10.0,
+        "y": 68.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.grid.v1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 340.0,
+        "y1": 100.0,
+        "x2": 340.0,
+        "y2": 386.0,
+        "stroke": "#9AA0A6",
+        "stroke_width": 1.2,
+        "stroke_dasharray": "5 3"
+      }
+    },
+    {
+      "id": "slot.grid.v2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 370.0,
+        "y1": 100.0,
+        "x2": 370.0,
+        "y2": 386.0,
+        "stroke": "#9AA0A6",
+        "stroke_width": 1.2,
+        "stroke_dasharray": "5 3"
+      }
+    },
+    {
+      "id": "slot.grid.v3",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 400.0,
+        "y1": 100.0,
+        "x2": 400.0,
+        "y2": 386.0,
+        "stroke": "#9AA0A6",
+        "stroke_width": 1.2,
+        "stroke_dasharray": "5 3"
+      }
+    },
+    {
+      "id": "slot.grid.v4",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 430.0,
+        "y1": 100.0,
+        "x2": 430.0,
+        "y2": 386.0,
+        "stroke": "#9AA0A6",
+        "stroke_width": 1.2,
+        "stroke_dasharray": "5 3"
+      }
+    },
+    {
+      "id": "slot.grid.v5",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 460.0,
+        "y1": 100.0,
+        "x2": 460.0,
+        "y2": 386.0,
+        "stroke": "#9AA0A6",
+        "stroke_width": 1.2,
+        "stroke_dasharray": "5 3"
+      }
+    },
+    {
+      "id": "slot.grid.v6",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 490.0,
+        "y1": 100.0,
+        "x2": 490.0,
+        "y2": 386.0,
+        "stroke": "#9AA0A6",
+        "stroke_width": 1.2,
+        "stroke_dasharray": "5 3"
+      }
+    },
+    {
+      "id": "slot.grid.v7",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 520.0,
+        "y1": 100.0,
+        "x2": 520.0,
+        "y2": 386.0,
+        "stroke": "#9AA0A6",
+        "stroke_width": 1.2,
+        "stroke_dasharray": "5 3"
+      }
+    },
+    {
+      "id": "slot.grid.v8",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 550.0,
+        "y1": 100.0,
+        "x2": 550.0,
+        "y2": 386.0,
+        "stroke": "#9AA0A6",
+        "stroke_width": 1.2,
+        "stroke_dasharray": "5 3"
+      }
+    },
+    {
+      "id": "slot.grid.v9",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 580.0,
+        "y1": 100.0,
+        "x2": 580.0,
+        "y2": 386.0,
+        "stroke": "#9AA0A6",
+        "stroke_width": 1.2,
+        "stroke_dasharray": "5 3"
+      }
+    },
+    {
+      "id": "slot.grid.v10",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 610.0,
+        "y1": 100.0,
+        "x2": 610.0,
+        "y2": 386.0,
+        "stroke": "#9AA0A6",
+        "stroke_width": 1.2,
+        "stroke_dasharray": "5 3"
+      }
+    },
+    {
+      "id": "slot.grid.v11",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 640.0,
+        "y1": 100.0,
+        "x2": 640.0,
+        "y2": 386.0,
+        "stroke": "#9AA0A6",
+        "stroke_width": 1.2,
+        "stroke_dasharray": "5 3"
+      }
+    },
+    {
+      "id": "slot.grid.v12",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 670.0,
+        "y1": 100.0,
+        "x2": 670.0,
+        "y2": 386.0,
+        "stroke": "#9AA0A6",
+        "stroke_width": 1.2,
+        "stroke_dasharray": "5 3"
+      }
+    },
+    {
+      "id": "slot.grid.h1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 340.0,
+        "y1": 100.0,
+        "x2": 670.0,
+        "y2": 100.0,
+        "stroke": "#9AA0A6",
+        "stroke_width": 1.2,
+        "stroke_dasharray": "5 3"
+      }
+    },
+    {
+      "id": "slot.grid.h2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 340.0,
+        "y1": 130.0,
+        "x2": 670.0,
+        "y2": 130.0,
+        "stroke": "#9AA0A6",
+        "stroke_width": 1.2,
+        "stroke_dasharray": "5 3"
+      }
+    },
+    {
+      "id": "slot.grid.h3",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 340.0,
+        "y1": 160.0,
+        "x2": 670.0,
+        "y2": 160.0,
+        "stroke": "#9AA0A6",
+        "stroke_width": 1.2,
+        "stroke_dasharray": "5 3"
+      }
+    },
+    {
+      "id": "slot.grid.h4",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 340.0,
+        "y1": 190.0,
+        "x2": 670.0,
+        "y2": 190.0,
+        "stroke": "#9AA0A6",
+        "stroke_width": 1.2,
+        "stroke_dasharray": "5 3"
+      }
+    },
+    {
+      "id": "slot.grid.h5",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 340.0,
+        "y1": 220.0,
+        "x2": 670.0,
+        "y2": 220.0,
+        "stroke": "#9AA0A6",
+        "stroke_width": 1.2,
+        "stroke_dasharray": "5 3"
+      }
+    },
+    {
+      "id": "slot.grid.h6",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 340.0,
+        "y1": 250.0,
+        "x2": 670.0,
+        "y2": 250.0,
+        "stroke": "#9AA0A6",
+        "stroke_width": 1.2,
+        "stroke_dasharray": "5 3"
+      }
+    },
+    {
+      "id": "slot.grid.h7",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 340.0,
+        "y1": 280.0,
+        "x2": 670.0,
+        "y2": 280.0,
+        "stroke": "#9AA0A6",
+        "stroke_width": 1.2,
+        "stroke_dasharray": "5 3"
+      }
+    },
+    {
+      "id": "slot.grid.h8",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 340.0,
+        "y1": 310.0,
+        "x2": 670.0,
+        "y2": 310.0,
+        "stroke": "#9AA0A6",
+        "stroke_width": 1.2,
+        "stroke_dasharray": "5 3"
+      }
+    },
+    {
+      "id": "slot.grid.h9",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 340.0,
+        "y1": 340.0,
+        "x2": 670.0,
+        "y2": 340.0,
+        "stroke": "#9AA0A6",
+        "stroke_width": 1.2,
+        "stroke_dasharray": "5 3"
+      }
+    },
+    {
+      "id": "slot.grid.h10",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 340.0,
+        "y1": 370.0,
+        "x2": 670.0,
+        "y2": 370.0,
+        "stroke": "#9AA0A6",
+        "stroke_width": 1.2,
+        "stroke_dasharray": "5 3"
+      }
+    },
+    {
+      "id": "slot.grid.h11",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 340.0,
+        "y1": 400.0,
+        "x2": 670.0,
+        "y2": 400.0,
+        "stroke": "#9AA0A6",
+        "stroke_width": 1.2,
+        "stroke_dasharray": "5 3"
+      }
+    },
+    {
+      "id": "slot.grid.h12",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 340.0,
+        "y1": 430.0,
+        "x2": 670.0,
+        "y2": 430.0,
+        "stroke": "#9AA0A6",
+        "stroke_width": 1.2,
+        "stroke_dasharray": "5 3"
+      }
+    },
+    {
+      "id": "slot.circle.outer",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 505.0,
+        "cy": 244.0,
+        "r": 140.0,
+        "stroke": "#555555",
+        "stroke_width": 2.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.circle.top",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 505.0,
+        "cy": 164.0,
+        "r": 110.0,
+        "stroke": "#555555",
+        "stroke_width": 2.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.circle.left",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 405.0,
+        "cy": 244.0,
+        "r": 78.0,
+        "stroke": "#555555",
+        "stroke_width": 2.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.circle.right",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 610.0,
+        "cy": 244.0,
+        "r": 78.0,
+        "stroke": "#555555",
+        "stroke_width": 2.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.circle.bottom",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 505.0,
+        "cy": 332.0,
+        "r": 78.0,
+        "stroke": "#555555",
+        "stroke_width": 2.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.circle.center",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 505.0,
+        "cy": 244.0,
+        "r": 4.0,
+        "fill": "#d81b60"
+      }
+    },
+    {
+      "id": "slot.pt.a",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 405.0,
+        "cy": 164.0,
+        "r": 4.0,
+        "fill": "#d81b60"
+      }
+    },
+    {
+      "id": "slot.pt.b",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 505.0,
+        "cy": 164.0,
+        "r": 4.0,
+        "fill": "#d81b60"
+      }
+    },
+    {
+      "id": "slot.pt.c",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 405.0,
+        "cy": 244.0,
+        "r": 4.0,
+        "fill": "#d81b60"
+      }
+    },
+    {
+      "id": "slot.pt.d",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 505.0,
+        "cy": 244.0,
+        "r": 4.0,
+        "fill": "#d81b60"
+      }
+    },
+    {
+      "id": "slot.pt.e",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 610.0,
+        "cy": 244.0,
+        "r": 4.0,
+        "fill": "#d81b60"
+      }
+    },
+    {
+      "id": "slot.pt.f",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 505.0,
+        "cy": 332.0,
+        "r": 4.0,
+        "fill": "#d81b60"
+      }
+    },
+    {
+      "id": "slot.lb.a",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄱ",
+        "style_role": "label",
+        "x": 393.0,
+        "y": 160.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.lb.b",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄴ",
+        "style_role": "label",
+        "x": 493.0,
+        "y": 160.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.lb.c",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄷ",
+        "style_role": "label",
+        "x": 393.0,
+        "y": 240.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.lb.d",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄹ",
+        "style_role": "label",
+        "x": 493.0,
+        "y": 240.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.lb.e",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㅁ",
+        "style_role": "label",
+        "x": 598.0,
+        "y": 240.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.lb.f",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㅂ",
+        "style_role": "label",
+        "x": 493.0,
+        "y": 328.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.a2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 88.0,
+        "cy": 420.0,
+        "r": 12.0,
+        "stroke": "#222222",
+        "stroke_width": 1.5,
+        "fill": "none"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q1",
+    "slot.q2",
+    "region.diagram",
+    "slot.circle.outer",
+    "slot.circle.top",
+    "slot.circle.left",
+    "slot.circle.right",
+    "slot.circle.bottom",
+    "slot.grid.v1",
+    "slot.grid.v2",
+    "slot.grid.v3",
+    "slot.grid.v4",
+    "slot.grid.v5",
+    "slot.grid.v6",
+    "slot.grid.v7",
+    "slot.grid.v8",
+    "slot.grid.v9",
+    "slot.grid.v10",
+    "slot.grid.v11",
+    "slot.grid.v12",
+    "slot.grid.h1",
+    "slot.grid.h2",
+    "slot.grid.h3",
+    "slot.grid.h4",
+    "slot.grid.h5",
+    "slot.grid.h6",
+    "slot.grid.h7",
+    "slot.grid.h8",
+    "slot.grid.h9",
+    "slot.grid.h10",
+    "slot.grid.h11",
+    "slot.grid.h12",
+    "slot.circle.center",
+    "slot.pt.a",
+    "slot.pt.b",
+    "slot.pt.c",
+    "slot.pt.d",
+    "slot.pt.e",
+    "slot.pt.f",
+    "slot.lb.a",
+    "slot.lb.b",
+    "slot.lb.c",
+    "slot.lb.d",
+    "slot.lb.e",
+    "slot.lb.f",
+    "region.answer",
+    "slot.a2"
+  ]
+}

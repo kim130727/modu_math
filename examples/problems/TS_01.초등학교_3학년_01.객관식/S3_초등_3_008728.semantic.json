@@ -1,0 +1,98 @@
+{
+  "problem_id": "S3_초등_3_008728",
+  "problem_type": "fraction_description_choice",
+  "metadata": {
+    "title": "그림을 보고 바르게 말한 사람을 선택하기",
+    "tags": [],
+    "question": "그림을 보고 바르게 말한 사람을 선택해 보세요.",
+    "required_layout_ids": [
+      "slot.header.num",
+      "slot.cars.outer",
+      "slot.cars.group1",
+      "slot.cars.group2",
+      "slot.cars.group3",
+      "slot.cars.group4",
+      "slot.cars.group5",
+      "slot.cars.group6",
+      "slot.cars.group7",
+      "slot.speech.left",
+      "slot.name.left",
+      "slot.speech.right",
+      "slot.name.right"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "그림의 색칠한 부분과 색칠하지 않은 부분을 분수로 바르게 말한 사람을 고른다."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.picture",
+        "type": "picture_group"
+      },
+      {
+        "id": "obj.colored_part",
+        "type": "part",
+        "property": "색칠한 부분"
+      },
+      {
+        "id": "obj.uncolored_part",
+        "type": "part",
+        "property": "색칠하지 않은 부분"
+      },
+      {
+        "id": "obj.fraction_colored",
+        "type": "fraction",
+        "value": "3/7"
+      },
+      {
+        "id": "obj.fraction_uncolored",
+        "type": "fraction",
+        "value": "4/7"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.picture",
+          "obj.colored_part",
+          "obj.uncolored_part"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.describe_colored",
+          "rel.describe_uncolored"
+        ]
+      },
+      "plan": {
+        "method": "fraction_description_matching",
+        "description": "그림의 색칠 상태를 설명한 말이 분수와 맞는지 확인한다."
+      },
+      "execute": {
+        "expected_operations": [
+          "match_description_to_fraction",
+          "compare_statement_with_picture"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "picture_statement_consistency"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "person_selection",
+      "description": "그림을 바르게 말한 사람"
+    },
+    "value": 1,
+    "unit": ""
+  }
+}

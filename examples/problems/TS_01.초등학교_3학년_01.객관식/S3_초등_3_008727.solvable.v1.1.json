@@ -1,0 +1,106 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008727",
+  "problem_type": "도형_비교",
+  "inputs": {
+    "total_ticks": 5,
+    "target_label": "③",
+    "target_ticks": 5,
+    "target_count": 5,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.choice.1",
+      "value": {
+        "label": "①"
+      }
+    },
+    {
+      "ref": "obj.choice.2",
+      "value": {
+        "label": "②"
+      }
+    },
+    {
+      "ref": "obj.choice.3",
+      "value": {
+        "label": "③"
+      }
+    },
+    {
+      "ref": "obj.choice.4",
+      "value": {
+        "label": "④"
+      }
+    },
+    {
+      "ref": "obj.choice.5",
+      "value": {
+        "label": "⑤"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "choice"
+  },
+  "method": "비교하기",
+  "plan": [
+    "각 보기의 원의 중심 개수를 확인한다.",
+    "가장 큰 개수를 가진 보기를 찾는다.",
+    "그 보기를 정답으로 선택한다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "①의 중심 개수 확인",
+      "value": 3
+    },
+    {
+      "id": "step.2",
+      "expr": "②의 중심 개수 확인",
+      "value": 4
+    },
+    {
+      "id": "step.3",
+      "expr": "③의 중심 개수 확인",
+      "value": 5
+    },
+    {
+      "id": "step.4",
+      "expr": "④의 중심 개수 확인",
+      "value": 3
+    },
+    {
+      "id": "step.5",
+      "expr": "⑤의 중심 개수 확인",
+      "value": 3
+    },
+    {
+      "id": "step.6",
+      "expr": "가장 큰 값 선택",
+      "value": "③"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "최댓값이 ③인지 확인",
+      "expected": "③",
+      "actual": "③",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "choice",
+      "description": "원의 중심의 개수가 가장 많은 모양"
+    },
+    "value": 3,
+    "unit": ""
+  }
+}

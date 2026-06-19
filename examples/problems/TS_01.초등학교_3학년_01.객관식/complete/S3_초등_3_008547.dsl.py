@@ -1,4 +1,4 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
 from modu_math.dsl import Canvas, LineSlot, ProblemTemplate, RectSlot, Region, TextSlot
 
@@ -29,8 +29,8 @@ def build_problem_template() -> ProblemTemplate:
             TextSlot(id="slot.mul.d0", prompt="", text="6", style_role="diagram", x=374.0, y=146.0, font_size=44),
             LineSlot(id="slot.bar.1", prompt="", x1=270.0, y1=162.0, x2=392.0, y2=162.0),
             TextSlot(id="slot.part0.d0", prompt="", text="2 4", style_role="diagram", x=340.0, y=200.0, font_size=44),
-            RectSlot(id="slot.highlight", prompt="", x=300.0, y=204.0, width=100.0, height=50.0, fill="#d9ddb7"),
-            TextSlot(id="slot.part1.d0", prompt="", text="1 2 0", style_role="diagram", x=305.0, y=242.0, font_size=44),
+            RectSlot(id="slot.highlight", prompt="", x = 300, y = 205, width = 110, height = 50, fill="#d9ddb7"),
+            TextSlot(id="slot.part1.d0", prompt="", text = '1 2 0', style_role="diagram", x = 305, y = 242, font_size = 44, max_width = 772, fill = '#111111'),
             TextSlot(id="slot.part2.d0", prompt="", text="1 8 0 0", style_role="diagram", x=270.0, y=290.0, font_size=44),
             LineSlot(id="slot.bar.2", prompt="", x1=270.0, y1=300.0, x2=392.0, y2=300.0),
             TextSlot(id="slot.final.d0", prompt="", text="1 9 4 4", style_role="diagram", x=270.0, y=340.0, font_size=44),

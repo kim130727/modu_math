@@ -1,0 +1,321 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008749",
+  "title": "들이 비교",
+  "canvas": {
+    "width": 960,
+    "height": 420,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.qno",
+        "slot.question.1",
+        "slot.question.2"
+      ]
+    },
+    {
+      "id": "region.diagram.left",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.left.pot",
+        "slot.left.cup",
+        "slot.left.water.pot",
+        "slot.left.water.cup",
+        "slot.left.stream",
+        "slot.left.label.pot",
+        "slot.left.label.cup"
+      ]
+    },
+    {
+      "id": "region.diagram.mid",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.arrow"
+      ]
+    },
+    {
+      "id": "region.diagram.right",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.right.pot",
+        "slot.right.container",
+        "slot.right.water.pot",
+        "slot.right.label.pot",
+        "slot.right.label.container"
+      ]
+    },
+    {
+      "id": "region.choice",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice"
+      ]
+    },
+    {
+      "id": "region.answer",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.qno",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "□ 46.",
+        "style_role": "question",
+        "x": 14.0,
+        "y": 30.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.question.1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "주전자에 물을 가득 채운 후 그릇에 옮겨 담았습니다. 그림과 같이 물을",
+        "style_role": "question",
+        "x": 88.0,
+        "y": 30.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.question.2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "채웠을 때에 주전자와 그릇 중 들이가 더 많은 것은 어느 것인가요?",
+        "style_role": "question",
+        "x": 88.0,
+        "y": 67.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.left.pot",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            285.0,
+            95.0
+          ],
+          [
+            340.0,
+            125.0
+          ],
+          [
+            325.0,
+            175.0
+          ],
+          [
+            270.0,
+            145.0
+          ]
+        ]
+      }
+    },
+    {
+      "id": "slot.left.cup",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 355.0,
+        "y": 110.0,
+        "width": 44.0,
+        "height": 70.0
+      }
+    },
+    {
+      "id": "slot.left.water.pot",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 290 110 C 300 100, 325 100, 338 115 L 331 150 C 314 160, 296 154, 281 144 Z",
+        "x": 0.0,
+        "y": 0.0
+      }
+    },
+    {
+      "id": "slot.left.water.cup",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 359 140 L 396 140 L 396 176 L 359 176 Z",
+        "x": 0.0,
+        "y": 0.0
+      }
+    },
+    {
+      "id": "slot.left.stream",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 336 117 C 350 120, 360 130, 368 143 C 374 153, 381 160, 387 166",
+        "x": 0.0,
+        "y": 0.0
+      }
+    },
+    {
+      "id": "slot.left.label.pot",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "주전자",
+        "style_role": "label",
+        "x": 272.0,
+        "y": 220.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.left.label.cup",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "그릇",
+        "style_role": "label",
+        "x": 349.0,
+        "y": 248.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.arrow",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "→",
+        "style_role": "label",
+        "x": 470.0,
+        "y": 165.0,
+        "font_size": 42
+      }
+    },
+    {
+      "id": "slot.right.pot",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            560.0,
+            140.0
+          ],
+          [
+            620.0,
+            140.0
+          ],
+          [
+            615.0,
+            190.0
+          ],
+          [
+            555.0,
+            190.0
+          ]
+        ]
+      }
+    },
+    {
+      "id": "slot.right.container",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 650.0,
+        "y": 145.0,
+        "width": 40.0,
+        "height": 95.0
+      }
+    },
+    {
+      "id": "slot.right.water.pot",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 560 173 C 565 160, 615 160, 618 175 L 616 191 L 558 191 Z",
+        "x": 0.0,
+        "y": 0.0
+      }
+    },
+    {
+      "id": "slot.right.label.pot",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "주전자",
+        "style_role": "label",
+        "x": 545.0,
+        "y": 245.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.right.label.container",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "그릇",
+        "style_role": "label",
+        "x": 648.0,
+        "y": 245.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "( 주전자 , 그릇 )",
+        "style_role": "label",
+        "x": 738.0,
+        "y": 304.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.qno",
+    "slot.question.1",
+    "slot.question.2",
+    "region.diagram.left",
+    "slot.left.pot",
+    "slot.left.cup",
+    "slot.left.water.pot",
+    "slot.left.water.cup",
+    "slot.left.stream",
+    "slot.left.label.pot",
+    "slot.left.label.cup",
+    "region.diagram.mid",
+    "slot.arrow",
+    "region.diagram.right",
+    "slot.right.pot",
+    "slot.right.container",
+    "slot.right.water.pot",
+    "slot.right.label.pot",
+    "slot.right.label.container",
+    "region.choice",
+    "slot.choice",
+    "region.answer"
+  ]
+}

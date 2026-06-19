@@ -198,6 +198,68 @@
       display: none;
       z-index: 2;
     }
+    .shape-format-menu {
+      position: fixed;
+      z-index: 12;
+      display: none;
+      min-width: 226px;
+      border: 1px solid #b7bdc7;
+      border-radius: 4px;
+      background: #ffffff;
+      box-shadow: 0 14px 28px rgba(15, 23, 42, 0.18);
+      padding: 8px;
+      color: #1f2937;
+      font-size: 12px;
+    }
+    .shape-format-menu.open {
+      display: block;
+    }
+    .shape-format-title {
+      padding: 2px 4px 7px;
+      color: #475569;
+      font-weight: 700;
+    }
+    .shape-format-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px;
+    }
+    .shape-format-swatches {
+      display: grid;
+      grid-template-columns: repeat(8, 20px);
+      gap: 5px;
+      padding: 4px;
+    }
+    .shape-swatch {
+      width: 20px;
+      height: 20px;
+      border: 1px solid #cbd5e1;
+      border-radius: 3px;
+      padding: 0;
+    }
+    .shape-swatch.transparent {
+      background:
+        linear-gradient(45deg, transparent 46%, #ef4444 47%, #ef4444 53%, transparent 54%),
+        #ffffff;
+    }
+    .shape-format-btn {
+      flex: 1 1 0;
+      height: 30px;
+      border-radius: 4px;
+      padding: 4px 8px;
+      text-align: center;
+      font-size: 12px;
+    }
+    .shape-format-color {
+      width: 34px;
+      height: 28px;
+      min-width: 34px;
+      padding: 2px;
+      border-radius: 4px;
+      border: 1px solid #cbd5e1;
+      background: #fff;
+    }
     .log {
       white-space: pre-wrap;
       font-family: Consolas, monospace;
@@ -351,6 +413,69 @@
     .ribbon-group .icon-btn:hover {
       border-color: #f2c6b7;
       background: #fff4ef;
+    }
+    .ribbon-dropdown {
+      position: relative;
+    }
+    .shape-gallery {
+      position: absolute;
+      top: 44px;
+      left: 0;
+      z-index: 8;
+      display: none;
+      width: 356px;
+      max-height: min(620px, calc(100vh - 150px));
+      overflow: auto;
+      border: 1px solid #b7bdc7;
+      border-radius: 2px;
+      background: #ffffff;
+      box-shadow: 0 16px 32px rgba(15, 23, 42, 0.18);
+      padding-bottom: 6px;
+    }
+    .shape-gallery.open {
+      display: block;
+    }
+    .shape-category-title {
+      height: 26px;
+      display: flex;
+      align-items: center;
+      padding: 0 8px;
+      background: #e9e9e9;
+      color: #475569;
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .shape-grid {
+      display: grid;
+      grid-template-columns: repeat(10, 1fr);
+      gap: 4px;
+      padding: 7px 6px;
+    }
+    .shape-choice {
+      width: 28px;
+      height: 24px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid transparent;
+      border-radius: 2px;
+      padding: 0;
+      background: #fff;
+    }
+    .shape-choice:hover {
+      border-color: #f2c6b7;
+      background: #fff4ef;
+    }
+    .shape-choice svg {
+      width: 22px;
+      height: 18px;
+      stroke: #334155;
+      stroke-width: 1.25;
+      fill: none;
+      pointer-events: none;
+    }
+    .shape-choice .shape-fill {
+      fill: #ffffff;
     }
     .ppt-workspace {
       min-height: 0;
@@ -551,6 +676,8 @@
     <symbol id="icon-pick-line" viewBox="0 0 24 24"><path d="M5 18 19 6"/><path d="M6 6h12v12"/></symbol>
     <symbol id="icon-pick-text" viewBox="0 0 24 24"><path d="M5 6h14"/><path d="M12 6v14"/><path d="M8 20h8"/></symbol>
     <symbol id="icon-pick-shape" viewBox="0 0 24 24"><path d="M5 5h8v8H5z"/><path d="M16 6a3 3 0 1 0 0.1 0"/><path d="M15 16h4v4h-4z"/></symbol>
+    <symbol id="icon-textbox" viewBox="0 0 24 24"><path d="M4 6h16v12H4z"/><path d="M8 9h8"/><path d="M12 9v7"/><path d="M9 16h6"/></symbol>
+    <symbol id="icon-shapes" viewBox="0 0 24 24"><path d="M5 5h7v7H5z"/><path d="M16.5 5.5 21 12h-9z"/><path d="M8 16a3 3 0 1 0 0.1 0"/><path d="M15 16h5v4h-5z"/></symbol>
   </svg>
   <div class="wrap powerpoint">
     <section class="ppt-shell">
@@ -568,6 +695,13 @@
             <button id="saveBtn" class="icon-btn primary" title="Save DSL" aria-label="Save DSL"><svg><use href="#icon-save"></use></svg></button>
             <button id="buildBtn" class="icon-btn" title="Build" aria-label="Build"><svg><use href="#icon-build"></use></svg></button>
             <button id="refreshListBtn" class="icon-btn" title="Refresh List" aria-label="Refresh List"><svg><use href="#icon-reload"></use></svg></button>
+          </div>
+          <div class="ribbon-group" data-label="삽입">
+            <button id="insertTextBoxBtn" class="icon-btn" title="텍스트 상자 삽입" aria-label="텍스트 상자 삽입"><svg><use href="#icon-textbox"></use></svg></button>
+            <div class="ribbon-dropdown">
+              <button id="shapeGalleryBtn" class="icon-btn" title="도형 삽입" aria-label="도형 삽입"><svg><use href="#icon-shapes"></use></svg></button>
+              <div id="shapeGallery" class="shape-gallery" role="menu" aria-label="도형"></div>
+            </div>
           </div>
           <div class="ribbon-group" data-label="선택">
             <button id="snapToggleBtn" class="icon-btn active" title="Snap: ON (5px)" aria-label="Snap: ON (5px)"><svg><use href="#icon-snap"></use></svg></button>
@@ -613,6 +747,19 @@
         <main class="ppt-stage">
           <div class="slide-frame">
             <div class="svg-box" id="svgPreview"><div class="marquee" id="marqueeBox"></div></div>
+            <div id="shapeFormatMenu" class="shape-format-menu" role="menu" aria-label="도형 서식">
+              <div class="shape-format-title">도형 서식</div>
+              <div class="shape-format-swatches" id="shapeFillSwatches"></div>
+              <div class="shape-format-row">
+                <input id="shapeFillColorInput" class="shape-format-color" type="color" value="#ffffff" title="채우기 색">
+                <button id="shapeApplyFillBtn" class="shape-format-btn" type="button">채우기</button>
+              </div>
+              <div class="shape-format-row">
+                <button id="shapeNoBorderBtn" class="shape-format-btn" type="button">테두리 제거</button>
+                <button id="shapeSolidBtn" class="shape-format-btn" type="button">실선</button>
+                <button id="shapeDashedBtn" class="shape-format-btn" type="button">점선</button>
+              </div>
+            </div>
           </div>
           <div class="ppt-notes">
             <div class="log" id="buildLog"></div>
@@ -728,6 +875,103 @@
     let snapEnabled = true;
     let collapsedProblemFolders = new Set();
     const SNAP_STEP = 5;
+    const DEFAULT_SHAPE_STYLE = { fill: "#ffffff", stroke: "#111827", stroke_width: 1.5 };
+    const SHAPE_FILL_SWATCHES = ["#ffffff", "#f8fafc", "#fef3c7", "#fed7aa", "#fecaca", "#bfdbfe", "#bbf7d0", "#ddd6fe", "#111827", "#6b7280", "#dc2626", "#2563eb", "#16a34a", "#7c3aed", "#f59e0b", "none"];
+    const SHAPE_CATEGORIES = [
+      {
+        title: "선",
+        shapes: [
+          { id: "line", label: "선", kind: "line", icon: '<line x1="3" y1="16" x2="19" y2="4"/>' },
+          { id: "hline", label: "가로선", kind: "line", line: "horizontal", icon: '<line x1="3" y1="10" x2="19" y2="10"/>' },
+          { id: "vline", label: "세로선", kind: "line", line: "vertical", icon: '<line x1="11" y1="3" x2="11" y2="17"/>' },
+          { id: "elbow", label: "꺾은 선", kind: "path", d: "M 0 0 L 52 0 L 52 48", icon: '<path d="M5 4H15V15"/>' },
+          { id: "curve", label: "곡선", kind: "path", d: "M 0 40 C 16 0, 34 80, 60 20", icon: '<path d="M3 15 C7 2,13 19,20 6"/>' },
+          { id: "freeform", label: "자유형", kind: "path", d: "M 0 36 C 16 10, 28 52, 42 22 S 56 16, 66 4", icon: '<path d="M3 15 C8 4,11 17,15 8 S19 5,21 3"/>' },
+        ],
+      },
+      {
+        title: "사각형",
+        shapes: [
+          { id: "rect", label: "사각형", kind: "rect", icon: '<rect class="shape-fill" x="4" y="5" width="15" height="11"/>' },
+          { id: "roundRect", label: "모서리가 둥근 사각형", kind: "rect", rx: 6, ry: 6, icon: '<rect class="shape-fill" x="4" y="5" width="15" height="11" rx="3"/>' },
+          { id: "snip1", label: "한쪽 모서리 잘린 사각형", kind: "polygon", points: [[10, 0], [64, 0], [64, 46], [0, 46], [0, 10]], icon: '<polygon class="shape-fill" points="7,4 19,4 19,16 4,16 4,7"/>' },
+          { id: "snip2", label: "대각 모서리 잘린 사각형", kind: "polygon", points: [[10, 0], [64, 0], [64, 36], [54, 46], [0, 46], [0, 10]], icon: '<polygon class="shape-fill" points="7,4 19,4 19,13 16,16 4,16 4,7"/>' },
+          { id: "tab", label: "탭 사각형", kind: "path", d: "M 0 12 Q 0 0 12 0 L 52 0 Q 64 0 64 12 L 64 46 L 0 46 Z", icon: '<path class="shape-fill" d="M4 8 Q4 4 8 4 H16 Q20 4 20 8 V16 H4 Z"/>' },
+        ],
+      },
+      {
+        title: "기본 도형",
+        shapes: [
+          { id: "oval", label: "타원", kind: "path", d: "M 32 0 C 49.7 0 64 10.3 64 23 C 64 35.7 49.7 46 32 46 C 14.3 46 0 35.7 0 23 C 0 10.3 14.3 0 32 0 Z", icon: '<ellipse class="shape-fill" cx="11" cy="10" rx="8" ry="6"/>' },
+          { id: "triangle", label: "삼각형", kind: "polygon", points: [[32, 0], [64, 52], [0, 52]], icon: '<polygon class="shape-fill" points="11,4 19,16 3,16"/>' },
+          { id: "rightTriangle", label: "직각 삼각형", kind: "polygon", points: [[0, 0], [64, 52], [0, 52]], icon: '<polygon class="shape-fill" points="5,4 19,16 5,16"/>' },
+          { id: "parallelogram", label: "평행사변형", kind: "polygon", points: [[16, 0], [64, 0], [48, 46], [0, 46]], icon: '<polygon class="shape-fill" points="8,5 20,5 16,16 4,16"/>' },
+          { id: "trapezoid", label: "사다리꼴", kind: "polygon", points: [[16, 0], [48, 0], [64, 46], [0, 46]], icon: '<polygon class="shape-fill" points="8,5 16,5 20,16 4,16"/>' },
+          { id: "diamond", label: "마름모", kind: "polygon", points: [[32, 0], [64, 26], [32, 52], [0, 26]], icon: '<polygon class="shape-fill" points="11,3 20,10 11,17 2,10"/>' },
+          { id: "pentagon", label: "오각형", kind: "polygon", points: [[32, 0], [64, 20], [52, 52], [12, 52], [0, 20]], icon: '<polygon class="shape-fill" points="11,3 19,8 16,17 6,17 3,8"/>' },
+          { id: "hexagon", label: "육각형", kind: "polygon", points: [[18, 0], [46, 0], [64, 26], [46, 52], [18, 52], [0, 26]], icon: '<polygon class="shape-fill" points="7,4 15,4 20,10 15,16 7,16 2,10"/>' },
+          { id: "octagon", label: "팔각형", kind: "polygon", points: [[18, 0], [46, 0], [64, 18], [64, 34], [46, 52], [18, 52], [0, 34], [0, 18]], icon: '<polygon class="shape-fill" points="7,4 15,4 19,8 19,12 15,16 7,16 3,12 3,8"/>' },
+          { id: "cross", label: "십자", kind: "polygon", points: [[24, 0], [40, 0], [40, 18], [64, 18], [64, 34], [40, 34], [40, 52], [24, 52], [24, 34], [0, 34], [0, 18], [24, 18]], icon: '<polygon class="shape-fill" points="9,3 13,3 13,8 19,8 19,12 13,12 13,17 9,17 9,12 3,12 3,8 9,8"/>' },
+          { id: "plus", label: "더하기", kind: "polygon", points: [[27, 0], [37, 0], [37, 21], [64, 21], [64, 31], [37, 31], [37, 52], [27, 52], [27, 31], [0, 31], [0, 21], [27, 21]], icon: '<polygon class="shape-fill" points="9,3 13,3 13,8 19,8 19,12 13,12 13,17 9,17 9,12 3,12 3,8 9,8"/>' },
+          { id: "x", label: "곱하기", kind: "polygon", points: [[8, 0], [32, 20], [56, 0], [64, 8], [40, 26], [64, 44], [56, 52], [32, 32], [8, 52], [0, 44], [24, 26], [0, 8]], icon: '<path d="M5 4 L18 16 M18 4 L5 16"/>' },
+          { id: "bracketPair", label: "괄호", kind: "path", d: "M 20 0 C 4 12, 4 40, 20 52 M 44 0 C 60 12, 60 40, 44 52", fill: "none", icon: '<path d="M8 4 C4 7,4 13,8 16 M14 4 C18 7,18 13,14 16"/>' },
+          { id: "arc", label: "호", kind: "path", d: "M 4 46 A 28 28 0 0 1 60 46", fill: "none", icon: '<path d="M4 16 A7 7 0 0 1 18 16"/>' },
+        ],
+      },
+      {
+        title: "블록 화살표",
+        shapes: [
+          { id: "rightArrow", label: "오른쪽 화살표", kind: "polygon", points: [[0, 16], [42, 16], [42, 0], [64, 26], [42, 52], [42, 36], [0, 36]], icon: '<polygon class="shape-fill" points="3,8 14,8 14,4 21,10 14,16 14,12 3,12"/>' },
+          { id: "leftArrow", label: "왼쪽 화살표", kind: "polygon", points: [[64, 16], [22, 16], [22, 0], [0, 26], [22, 52], [22, 36], [64, 36]], icon: '<polygon class="shape-fill" points="21,8 10,8 10,4 3,10 10,16 10,12 21,12"/>' },
+          { id: "upArrow", label: "위쪽 화살표", kind: "polygon", points: [[24, 52], [24, 18], [8, 18], [32, 0], [56, 18], [40, 18], [40, 52]], icon: '<polygon class="shape-fill" points="9,17 9,8 5,8 12,3 19,8 15,8 15,17"/>' },
+          { id: "downArrow", label: "아래쪽 화살표", kind: "polygon", points: [[24, 0], [40, 0], [40, 34], [56, 34], [32, 52], [8, 34], [24, 34]], icon: '<polygon class="shape-fill" points="9,3 15,3 15,12 19,12 12,17 5,12 9,12"/>' },
+          { id: "leftRightArrow", label: "좌우 화살표", kind: "polygon", points: [[0, 26], [18, 6], [18, 18], [46, 18], [46, 6], [64, 26], [46, 46], [46, 34], [18, 34], [18, 46]], icon: '<polygon class="shape-fill" points="3,10 8,5 8,8 16,8 16,5 21,10 16,15 16,12 8,12 8,15"/>' },
+          { id: "quadArrow", label: "상하좌우 화살표", kind: "polygon", points: [[32, 0], [46, 14], [38, 14], [38, 20], [50, 20], [50, 12], [64, 26], [50, 40], [50, 32], [38, 32], [38, 38], [46, 38], [32, 52], [18, 38], [26, 38], [26, 32], [14, 32], [14, 40], [0, 26], [14, 12], [14, 20], [26, 20], [26, 14], [18, 14]], icon: '<polygon class="shape-fill" points="12,3 16,7 14,7 14,9 17,9 17,7 21,11 17,15 17,13 14,13 14,15 16,15 12,19 8,15 10,15 10,13 7,13 7,15 3,11 7,7 7,9 10,9 10,7 8,7"/>' },
+          { id: "chevron", label: "갈매기형 수장", kind: "polygon", points: [[0, 0], [42, 0], [64, 26], [42, 52], [0, 52], [22, 26]], icon: '<polygon class="shape-fill" points="3,5 15,5 21,10 15,16 3,16 9,10"/>' },
+          { id: "notchedArrow", label: "오목 오른쪽 화살표", kind: "polygon", points: [[0, 8], [42, 8], [42, 0], [64, 26], [42, 52], [42, 44], [0, 44], [14, 26]], icon: '<polygon class="shape-fill" points="3,6 14,6 14,4 21,10 14,16 14,14 3,14 7,10"/>' },
+        ],
+      },
+      {
+        title: "수식 도형",
+        shapes: [
+          { id: "mathPlus", label: "더하기", kind: "polygon", points: [[27, 0], [37, 0], [37, 21], [64, 21], [64, 31], [37, 31], [37, 52], [27, 52], [27, 31], [0, 31], [0, 21], [27, 21]], icon: '<path d="M11 4V16 M5 10H17"/>' },
+          { id: "mathMinus", label: "빼기", kind: "rect", h: 12, icon: '<path d="M5 10H17"/>' },
+          { id: "mathMultiply", label: "곱하기", kind: "path", d: "M 8 0 L 32 20 L 56 0 L 64 8 L 40 26 L 64 44 L 56 52 L 32 32 L 8 52 L 0 44 L 24 26 L 0 8 Z", icon: '<path d="M6 5 L17 16 M17 5 L6 16"/>' },
+          { id: "mathDivide", label: "나누기", kind: "path", d: "M 0 22 L 64 22 L 64 30 L 0 30 Z M 32 3 A 6 6 0 1 1 31.9 3 M 32 43 A 6 6 0 1 1 31.9 43", icon: '<path d="M5 10H17"/><circle cx="11" cy="5" r="1.5"/><circle cx="11" cy="15" r="1.5"/>' },
+          { id: "mathEqual", label: "같음", kind: "path", d: "M 0 14 L 64 14 L 64 22 L 0 22 Z M 0 30 L 64 30 L 64 38 L 0 38 Z", icon: '<path d="M5 8H17 M5 13H17"/>' },
+        ],
+      },
+      {
+        title: "순서도",
+        shapes: [
+          { id: "flowProcess", label: "프로세스", kind: "rect", icon: '<rect class="shape-fill" x="4" y="5" width="15" height="11"/>' },
+          { id: "flowTerminator", label: "터미네이터", kind: "path", d: "M 14 0 L 50 0 C 68 0 68 46 50 46 L 14 46 C -4 46 -4 0 14 0 Z", icon: '<path class="shape-fill" d="M8 5H16 C21 5 21 16 16 16H8 C3 16 3 5 8 5Z"/>' },
+          { id: "flowDecision", label: "판단", kind: "polygon", points: [[32, 0], [64, 23], [32, 46], [0, 23]], icon: '<polygon class="shape-fill" points="11,4 20,10 11,16 2,10"/>' },
+          { id: "flowData", label: "데이터", kind: "polygon", points: [[14, 0], [64, 0], [50, 46], [0, 46]], icon: '<polygon class="shape-fill" points="7,5 20,5 16,16 3,16"/>' },
+          { id: "flowDocument", label: "문서", kind: "path", d: "M 0 0 L 64 0 L 64 38 C 48 52 18 30 0 46 Z", icon: '<path class="shape-fill" d="M4 5H20V14 C15 18 9 12 4 16Z"/>' },
+          { id: "flowStoredData", label: "저장 데이터", kind: "path", d: "M 14 0 L 64 0 C 50 12 50 34 64 46 L 14 46 C -4 46 -4 0 14 0 Z", icon: '<path class="shape-fill" d="M8 5H20 C16 8 16 13 20 16H8 C3 16 3 5 8 5Z"/>' },
+          { id: "flowDelay", label: "지연", kind: "path", d: "M 0 0 L 40 0 C 72 0 72 46 40 46 L 0 46 Z", icon: '<path class="shape-fill" d="M4 5H14 C22 5 22 16 14 16H4Z"/>' },
+        ],
+      },
+      {
+        title: "별 및 현수막",
+        shapes: [
+          { id: "star5", label: "별 5개", kind: "polygon", points: [[32, 0], [39, 19], [60, 19], [43, 31], [50, 52], [32, 39], [14, 52], [21, 31], [4, 19], [25, 19]], icon: '<polygon class="shape-fill" points="11,3 13,8 19,8 14,11 16,17 11,13 6,17 8,11 3,8 9,8"/>' },
+          { id: "star8", label: "별 8개", kind: "polygon", points: [[32, 0], [39, 17], [56, 8], [47, 25], [64, 32], [47, 39], [56, 56], [39, 47], [32, 64], [25, 47], [8, 56], [17, 39], [0, 32], [17, 25], [8, 8], [25, 17]], icon: '<polygon class="shape-fill" points="11,2 13,7 18,4 15,9 20,11 15,13 18,18 13,15 11,20 9,15 4,18 7,13 2,11 7,9 4,4 9,7"/>' },
+          { id: "burst", label: "폭발형", kind: "polygon", points: [[32, 0], [39, 14], [54, 8], [50, 24], [64, 32], [50, 40], [54, 56], [39, 50], [32, 64], [25, 50], [10, 56], [14, 40], [0, 32], [14, 24], [10, 8], [25, 14]], icon: '<polygon class="shape-fill" points="11,2 13,7 18,4 16,9 21,11 16,13 18,18 13,15 11,20 9,15 4,18 6,13 1,11 6,9 4,4 9,7"/>' },
+          { id: "ribbon", label: "리본", kind: "path", d: "M 0 8 L 20 8 L 20 0 L 44 0 L 44 8 L 64 8 L 52 26 L 64 44 L 44 44 L 44 52 L 20 52 L 20 44 L 0 44 L 12 26 Z", icon: '<path class="shape-fill" d="M3 6H8V4H16V6H21L18 10L21 14H16V16H8V14H3L6 10Z"/>' },
+        ],
+      },
+      {
+        title: "설명선",
+        shapes: [
+          { id: "calloutRect", label: "사각 설명선", kind: "path", d: "M 0 0 L 64 0 L 64 38 L 42 38 L 30 52 L 32 38 L 0 38 Z", icon: '<path class="shape-fill" d="M4 5H20V14H14L10 18L11 14H4Z"/>' },
+          { id: "calloutRound", label: "둥근 설명선", kind: "path", d: "M 8 0 L 56 0 Q 64 0 64 8 L 64 36 Q 64 44 56 44 L 42 44 L 30 52 L 32 44 L 8 44 Q 0 44 0 36 L 0 8 Q 0 0 8 0 Z", icon: '<path class="shape-fill" d="M7 5H17Q20 5 20 8V13Q20 16 17 16H14L10 19L11 16H7Q4 16 4 13V8Q4 5 7 5Z"/>' },
+          { id: "calloutOval", label: "타원 설명선", kind: "path", d: "M 32 0 C 50 0 64 10 64 24 C 64 38 50 48 32 48 C 27 48 22 47 18 46 L 4 54 L 10 42 C 4 38 0 32 0 24 C 0 10 14 0 32 0 Z", icon: '<path class="shape-fill" d="M12 4C18 4 21 7 21 11C21 15 17 18 11 18C9 18 8 17 7 17L3 20L5 16C3 15 2 13 2 11C2 7 6 4 12 4Z"/>' },
+          { id: "calloutLine", label: "선 설명선", kind: "path", d: "M 0 0 L 50 0 L 50 30 L 22 30 L 6 52", fill: "none", icon: '<path d="M4 5H18V13H10L5 18"/>' },
+        ],
+      },
+    ];
 
     function setStatus(text, ok = true) {
       const el = document.getElementById("status");
@@ -1089,6 +1333,193 @@
 
     function isDirectDslSlotId(slotId) {
       return extractDslSlotIds().has(slotId);
+    }
+
+    function currentCanvasBox() {
+      const svg = document.getElementById("svgPreview").querySelector("svg");
+      if (!svg) return { width: 960, height: 640 };
+      const vb = svg.viewBox && svg.viewBox.baseVal ? svg.viewBox.baseVal : null;
+      const width = vb && vb.width ? vb.width : Number(svg.getAttribute("width") || 960);
+      const height = vb && vb.height ? vb.height : Number(svg.getAttribute("height") || 640);
+      return { width, height };
+    }
+
+    function defaultInsertOrigin(width, height) {
+      const canvas = currentCanvasBox();
+      return {
+        x: snapValue(Math.max(10, (canvas.width - width) / 2)),
+        y: snapValue(Math.max(10, (canvas.height - height) / 2)),
+      };
+    }
+
+    function firstUsableRegionId() {
+      const layoutText = document.getElementById("layoutView")?.value || "";
+      if (!layoutText.trim()) return null;
+      try {
+        const layout = JSON.parse(layoutText);
+        const regions = Array.isArray(layout.regions) ? layout.regions : [];
+        const diagram = regions.find((region) => region && (region.role === "diagram" || region.flow === "absolute"));
+        const first = diagram || regions[0];
+        return first && typeof first.id === "string" ? first.id : null;
+      } catch (_) {
+        return null;
+      }
+    }
+
+    function uniqueInsertedSlotId(base) {
+      const ids = extractDslSlotIds();
+      const clean = String(base || "shape").replace(/[^a-zA-Z0-9_]+/g, "_").replace(/^_+|_+$/g, "") || "shape";
+      for (let i = 1; i < 10000; i += 1) {
+        const candidate = `slot.inserted.${clean}.${i}`;
+        if (!ids.has(candidate)) return candidate;
+      }
+      return `slot.inserted.${clean}.${Date.now()}`;
+    }
+
+    function scalePoints(points, x, y, width, height, sourceWidth = 64, sourceHeight = 52) {
+      return points.map(([px, py]) => [
+        snapValue(x + (px / sourceWidth) * width),
+        snapValue(y + (py / sourceHeight) * height),
+      ]);
+    }
+
+    function scaleShapePath(d, x, y, width, height, sourceWidth = 64, sourceHeight = 52) {
+      return transformPathD(
+        d,
+        (px, py) => [
+          snapValue(x + (px / sourceWidth) * width),
+          snapValue(y + (py / sourceHeight) * height),
+        ],
+        (rx, ry) => [snapValue((rx / sourceWidth) * width), snapValue((ry / sourceHeight) * height)]
+      );
+    }
+
+    function addRegionToPatch(value) {
+      const regionId = firstUsableRegionId();
+      return regionId ? { ...value, region_id: regionId } : value;
+    }
+
+    function shapePayload(def) {
+      const width = Number(def.w || 120);
+      const height = Number(def.h || (def.kind === "line" ? 70 : 86));
+      const { x, y } = defaultInsertOrigin(width, height);
+      const stroke = def.stroke || DEFAULT_SHAPE_STYLE.stroke;
+      const fill = def.fill !== undefined ? def.fill : DEFAULT_SHAPE_STYLE.fill;
+      const stroke_width = def.stroke_width || DEFAULT_SHAPE_STYLE.stroke_width;
+
+      if (def.kind === "line") {
+        const horizontal = def.line === "horizontal";
+        const vertical = def.line === "vertical";
+        const content = horizontal
+          ? { x1: x, y1: y + height / 2, x2: x + width, y2: y + height / 2, stroke, stroke_width }
+          : vertical
+            ? { x1: x + width / 2, y1: y, x2: x + width / 2, y2: y + height, stroke, stroke_width }
+            : { x1: x, y1: y + height, x2: x + width, y2: y, stroke, stroke_width };
+        return addRegionToPatch({ kind: "line", content });
+      }
+      if (def.kind === "rect") {
+        return addRegionToPatch({
+          kind: "rect",
+          content: {
+            x,
+            y,
+            width,
+            height,
+            rx: def.rx,
+            ry: def.ry,
+            fill,
+            stroke,
+            stroke_width,
+          },
+        });
+      }
+      if (def.kind === "polygon") {
+        return addRegionToPatch({
+          kind: "polygon",
+          content: {
+            points: scalePoints(def.points, x, y, width, height, def.sourceWidth || 64, def.sourceHeight || 52),
+            fill,
+            stroke,
+            stroke_width,
+          },
+        });
+      }
+      return addRegionToPatch({
+        kind: "path",
+        content: {
+          d: scaleShapePath(def.d, x, y, width, height, def.sourceWidth || 64, def.sourceHeight || 52),
+          fill,
+          stroke,
+          stroke_width,
+        },
+      });
+    }
+
+    function textBoxPayload() {
+      const width = 220;
+      const height = 70;
+      const { x, y } = defaultInsertOrigin(width, height);
+      return addRegionToPatch({
+        kind: "text_box",
+        content: {
+          text: "텍스트",
+          x,
+          y,
+          width,
+          height,
+          font_size: 24,
+          fill: "#111827",
+        },
+      });
+    }
+
+    async function insertSlot(slotId, value, label) {
+      if (!currentProblemId) throw new Error("문제를 먼저 여세요.");
+      await commitPatches([{ target: slotId, op: "add", value }], `${label} 삽입 완료`);
+      restoreSelection([slotId]);
+    }
+
+    async function insertTextBox() {
+      await insertSlot(uniqueInsertedSlotId("text_box"), textBoxPayload(), "텍스트 상자");
+    }
+
+    async function insertShape(def) {
+      await insertSlot(uniqueInsertedSlotId(def.id), shapePayload(def), def.label || "도형");
+    }
+
+    function renderShapeGallery() {
+      const gallery = document.getElementById("shapeGallery");
+      if (!gallery) return;
+      gallery.innerHTML = "";
+      for (const category of SHAPE_CATEGORIES) {
+        const title = document.createElement("div");
+        title.className = "shape-category-title";
+        title.textContent = category.title;
+        gallery.appendChild(title);
+        const grid = document.createElement("div");
+        grid.className = "shape-grid";
+        for (const shape of category.shapes) {
+          const btn = document.createElement("button");
+          btn.type = "button";
+          btn.className = "shape-choice";
+          btn.title = shape.label;
+          btn.setAttribute("aria-label", shape.label);
+          btn.innerHTML = `<svg viewBox="0 0 22 20" aria-hidden="true" focusable="false">${shape.icon}</svg>`;
+          btn.addEventListener("click", async () => {
+            gallery.classList.remove("open");
+            try { await insertShape(shape); }
+            catch (e) { setStatus(String(e), false); }
+          });
+          grid.appendChild(btn);
+        }
+        gallery.appendChild(grid);
+      }
+    }
+
+    function toggleShapeGallery() {
+      const gallery = document.getElementById("shapeGallery");
+      if (!gallery) return;
+      gallery.classList.toggle("open");
     }
 
     function toDslSlotId(svgElementId) {
@@ -1665,7 +2096,7 @@
           height: Number(el.getAttribute("height") || 0),
           rx: Number(el.getAttribute("rx") || 0) || undefined,
           ry: Number(el.getAttribute("ry") || 0) || undefined,
-          ...styleAttrs(["fill", "stroke", "stroke_width"]),
+          ...styleAttrs(["fill", "stroke", "stroke_width", "stroke_dasharray"]),
         });
       }
       if (tag === "circle") {
@@ -1673,7 +2104,7 @@
           cx: Number(el.getAttribute("cx") || 0),
           cy: Number(el.getAttribute("cy") || 0),
           r: Number(el.getAttribute("r") || 0),
-          ...styleAttrs(["fill", "stroke", "stroke_width"]),
+          ...styleAttrs(["fill", "stroke", "stroke_width", "stroke_dasharray"]),
         });
       }
       if (tag === "line") {
@@ -1690,9 +2121,101 @@
       }
       if (tag === "polygon") {
         const pts = parsePolygonPoints(el.getAttribute("points") || "");
-        return withTransform({ points: pts, ...styleAttrs(["fill", "stroke", "stroke_width"]) });
+        return withTransform({ points: pts, ...styleAttrs(["fill", "stroke", "stroke_width", "stroke_dasharray"]) });
       }
       return null;
+    }
+
+    function hideShapeFormatMenu() {
+      document.getElementById("shapeFormatMenu")?.classList.remove("open");
+    }
+
+    function selectedShapeFormatItem() {
+      if (selectedSlots.size !== 1) return null;
+      const item = Array.from(selectedSlots.values())[0];
+      if (!item || item.isCanvas || item.isFraction || item.isFigureGroup || item.isPaperFoldGroup || item.isMeasurementGroup || item.isTableGroup || item.isGeneratedGroup || item.isCharacterGroup) return null;
+      if (!item.el) return null;
+      const tag = item.el.tagName.toLowerCase();
+      if (!["rect", "circle", "line", "path", "polygon"].includes(tag)) return null;
+      return item;
+    }
+
+    function validHexColor(value) {
+      return /^#[0-9a-fA-F]{6}$/.test(String(value || ""));
+    }
+
+    function openShapeFormatMenu(ev, el) {
+      const rawId = el.getAttribute("id");
+      const slotIds = slotIdsFromElement(el);
+      const slotId = slotIds[0] || fallbackSlotIdFromSvgId(rawId);
+      if (!slotId) return false;
+      setSelectedElement(el, slotId, false);
+      const item = selectedShapeFormatItem();
+      if (!item) return false;
+      item.slotIds = slotIds.length ? slotIds : [slotId];
+      updateSelectionHandles();
+      updateTextEditControls();
+
+      const value = readSlotPatchValue(item.el) || {};
+      const colorInput = document.getElementById("shapeFillColorInput");
+      if (colorInput && validHexColor(value.fill)) colorInput.value = value.fill;
+
+      const menu = document.getElementById("shapeFormatMenu");
+      if (!menu) return false;
+      menu.classList.add("open");
+      const margin = 8;
+      const width = menu.offsetWidth || 226;
+      const height = menu.offsetHeight || 150;
+      const left = Math.min(Math.max(margin, ev.clientX), window.innerWidth - width - margin);
+      const top = Math.min(Math.max(margin, ev.clientY), window.innerHeight - height - margin);
+      menu.style.left = `${left}px`;
+      menu.style.top = `${top}px`;
+      ev.preventDefault();
+      ev.stopPropagation();
+      return true;
+    }
+
+    async function applyShapeFormatPatch(stylePatch, label) {
+      const item = selectedShapeFormatItem();
+      if (!item) throw new Error("도형을 먼저 선택하세요.");
+      const value = { ...(readSlotPatchValue(item.el) || {}), ...stylePatch };
+      const before = [{ slotId: item.slotId, value: readSlotPatchValue(item.el) || {} }];
+      applyPatchValueToElement(item.el, value);
+      updateSelectionHandles();
+      const targets = item.slotIds || [item.slotId];
+      await commitPatches(targets.map((target) => ({ target, op: "update", value })), `${label} 적용 완료`);
+      const after = [{ slotId: item.slotId, value: JSON.parse(JSON.stringify(value)) }];
+      if (!historyBusy) pushHistory(before, after, label);
+    }
+
+    async function applyShapeFill(fill) {
+      const item = selectedShapeFormatItem();
+      if (!item) throw new Error("도형을 먼저 선택하세요.");
+      if (item.el.tagName.toLowerCase() === "line") throw new Error("선에는 채우기를 적용할 수 없습니다.");
+      await applyShapeFormatPatch({ fill }, "채우기");
+    }
+
+    function renderShapeFormatSwatches() {
+      const wrap = document.getElementById("shapeFillSwatches");
+      if (!wrap) return;
+      wrap.innerHTML = "";
+      for (const color of SHAPE_FILL_SWATCHES) {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "shape-swatch";
+        if (color === "none") {
+          btn.classList.add("transparent");
+          btn.title = "채우기 없음";
+        } else {
+          btn.style.background = color;
+          btn.title = color;
+        }
+        btn.addEventListener("click", async () => {
+          try { await applyShapeFill(color); hideShapeFormatMenu(); }
+          catch (e) { setStatus(String(e), false); }
+        });
+        wrap.appendChild(btn);
+      }
     }
 
     function parseRotateTransform(transform) {
@@ -2855,6 +3378,15 @@
         if (value.transform) el.setAttribute("transform", String(value.transform));
         else el.removeAttribute("transform");
       }
+      const applyStyleAttrs = () => {
+        for (const [field, attr] of [["fill", "fill"], ["stroke", "stroke"], ["stroke_width", "stroke-width"], ["stroke_dasharray", "stroke-dasharray"]]) {
+          if (value[field] === undefined) continue;
+          const next = value[field];
+          if (next === null || next === "") el.removeAttribute(attr);
+          else el.setAttribute(attr, String(next));
+        }
+      };
+      applyStyleAttrs();
       if (tag === "text") {
         if (value.text !== undefined) el.textContent = String(value.text);
         if (el.getAttribute("data-slot-kind") === "text_box") {
@@ -3549,6 +4081,14 @@
         if (matched && beginSlotPointerDown(matched, ev)) ev.stopPropagation();
       }, true);
 
+      svg.addEventListener("contextmenu", (ev) => {
+        const target = ev.target;
+        const proxyTarget = target instanceof SVGElement ? target.__slotProxyTarget : null;
+        const matched = proxyTarget || matchingSlotElementAtPoint(svg, ev.clientX, ev.clientY);
+        if (matched && openShapeFormatMenu(ev, matched)) return;
+        hideShapeFormatMenu();
+      });
+
       for (const el of slotElements) {
         if (el.tagName.toLowerCase() === "text") {
           el.addEventListener("dblclick", (ev) => {
@@ -4111,6 +4651,18 @@
       try { await buildProblem(); }
       catch (e) { setStatus(String(e), false); }
     };
+    document.getElementById("insertTextBoxBtn").onclick = async () => {
+      try { await insertTextBox(); }
+      catch (e) { setStatus(String(e), false); }
+    };
+    document.getElementById("shapeGalleryBtn").onclick = (ev) => {
+      ev.stopPropagation();
+      toggleShapeGallery();
+    };
+    document.getElementById("shapeGallery").addEventListener("click", (ev) => ev.stopPropagation());
+    document.addEventListener("click", () => {
+      document.getElementById("shapeGallery")?.classList.remove("open");
+    });
     document.getElementById("patchBtn").onclick = async () => {
       try { await patchOnly(); }
       catch (e) { setStatus(String(e), false); }
@@ -4295,6 +4847,7 @@
       queueKeyboardCommit(patches, `키보드 이동 저장 완료: ${patches.length}개`, beforeStates);
     });
 
+    renderShapeGallery();
     loadProblems().catch((e) => {
       const tree = document.getElementById("problemTree");
       if (tree) tree.innerHTML = `<em>${String(e)}</em>`;

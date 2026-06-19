@@ -1,0 +1,376 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008728",
+  "title": "그림을 보고 바르게 말한 사람을 선택하기",
+  "canvas": {
+    "width": 840.0,
+    "height": 648.0,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.header",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.header.num",
+        "slot.header.text",
+        "slot.name.left.text",
+        "slot.name.right.text"
+      ]
+    },
+    {
+      "id": "region.cars",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.cars.outer",
+        "slot.cars.group1",
+        "slot.cars.group2",
+        "slot.cars.group3",
+        "slot.cars.group4",
+        "slot.cars.group5",
+        "slot.cars.group6",
+        "slot.cars.group7"
+      ]
+    },
+    {
+      "id": "region.speech.left",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.speech.left",
+        "slot.name.left",
+        "slot.speech.left.text1",
+        "slot.speech.left.text2",
+        "slot.speech.left.text3"
+      ]
+    },
+    {
+      "id": "region.speech.right",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.speech.right",
+        "slot.name.right",
+        "slot.speech.right.text1",
+        "slot.speech.right.text2",
+        "slot.speech.right.text3"
+      ]
+    },
+    {
+      "id": "region.footer",
+      "role": "answer",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.header.num",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 6.0,
+        "y": 18.0,
+        "width": 12.0,
+        "height": 12.0,
+        "rx": 0.0,
+        "ry": 0.0
+      }
+    },
+    {
+      "id": "slot.header.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "34. 그림을 보고 바르게 말한 사람을 선택해 보세요.",
+        "style_role": "question",
+        "x": 26.0,
+        "y": 28.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.cars.outer",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 155.0,
+        "y": 50.0,
+        "width": 628.0,
+        "height": 124.0,
+        "rx": 14.0,
+        "ry": 14.0
+      }
+    },
+    {
+      "id": "slot.cars.group1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 164.0,
+        "y": 63.0,
+        "width": 165.0,
+        "height": 42.0,
+        "rx": 6.0,
+        "ry": 6.0
+      }
+    },
+    {
+      "id": "slot.cars.group2",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 331.0,
+        "y": 63.0,
+        "width": 165.0,
+        "height": 42.0,
+        "rx": 6.0,
+        "ry": 6.0
+      }
+    },
+    {
+      "id": "slot.cars.group3",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 498.0,
+        "y": 63.0,
+        "width": 165.0,
+        "height": 42.0,
+        "rx": 6.0,
+        "ry": 6.0
+      }
+    },
+    {
+      "id": "slot.cars.group4",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 665.0,
+        "y": 63.0,
+        "width": 100.0,
+        "height": 42.0,
+        "rx": 6.0,
+        "ry": 6.0
+      }
+    },
+    {
+      "id": "slot.cars.group5",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 250.0,
+        "y": 113.0,
+        "width": 163.0,
+        "height": 42.0,
+        "rx": 6.0,
+        "ry": 6.0
+      }
+    },
+    {
+      "id": "slot.cars.group6",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 416.0,
+        "y": 113.0,
+        "width": 163.0,
+        "height": 42.0,
+        "rx": 6.0,
+        "ry": 6.0
+      }
+    },
+    {
+      "id": "slot.cars.group7",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 582.0,
+        "y": 113.0,
+        "width": 163.0,
+        "height": 42.0,
+        "rx": 6.0,
+        "ry": 6.0
+      }
+    },
+    {
+      "id": "slot.speech.left",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 160.0,
+        "y": 204.0,
+        "width": 250.0,
+        "height": 154.0,
+        "rx": 72.0,
+        "ry": 72.0
+      }
+    },
+    {
+      "id": "slot.speech.left.text1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "색칠한 부분은",
+        "style_role": "body",
+        "x": 214.0,
+        "y": 242.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.speech.left.text2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "7묶음 중에서 3묶음이므로",
+        "style_role": "body",
+        "x": 173.0,
+        "y": 279.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.speech.left.text3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "전체의 3/7이야.",
+        "style_role": "body",
+        "x": 221.0,
+        "y": 316.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.name.left",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 236.0,
+        "cy": 424.0,
+        "r": 24.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.name.left.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "진경",
+        "style_role": "name",
+        "x": 214.0,
+        "y": 432.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.speech.right",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 530.0,
+        "y": 204.0,
+        "width": 250.0,
+        "height": 154.0,
+        "rx": 72.0,
+        "ry": 72.0
+      }
+    },
+    {
+      "id": "slot.speech.right.text1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "색칠하지 않은 부분은",
+        "style_role": "body",
+        "x": 556.0,
+        "y": 242.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.speech.right.text2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "7묶음 중에서 4묶음이므로",
+        "style_role": "body",
+        "x": 549.0,
+        "y": 279.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.speech.right.text3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "전체의 4/7이야.",
+        "style_role": "body",
+        "x": 597.0,
+        "y": 316.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.name.right",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 606.0,
+        "cy": 424.0,
+        "r": 24.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.name.right.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "현진",
+        "style_role": "name",
+        "x": 584.0,
+        "y": 432.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.header",
+    "slot.header.num",
+    "slot.header.text",
+    "slot.name.left.text",
+    "slot.name.right.text",
+    "region.cars",
+    "slot.cars.outer",
+    "slot.cars.group1",
+    "slot.cars.group2",
+    "slot.cars.group3",
+    "slot.cars.group4",
+    "slot.cars.group5",
+    "slot.cars.group6",
+    "slot.cars.group7",
+    "region.speech.left",
+    "slot.speech.left",
+    "slot.name.left",
+    "slot.speech.left.text1",
+    "slot.speech.left.text2",
+    "slot.speech.left.text3",
+    "region.speech.right",
+    "slot.speech.right",
+    "slot.name.right",
+    "slot.speech.right.text1",
+    "slot.speech.right.text2",
+    "slot.speech.right.text3",
+    "region.footer"
+  ]
+}

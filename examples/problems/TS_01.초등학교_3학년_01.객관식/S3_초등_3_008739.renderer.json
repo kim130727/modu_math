@@ -1,0 +1,314 @@
+{
+  "problem_id": "S3_초등_3_008739",
+  "view_box": {
+    "width": 960.0,
+    "height": 560.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.qmark.text",
+      "type": "text",
+      "attributes": {
+        "x": 10.0,
+        "y": 36.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.qmark",
+      "refs": {
+        "layout_slot_id": "slot.qmark"
+      },
+      "text": "□"
+    },
+    {
+      "id": "slot.qnum.text",
+      "type": "text",
+      "attributes": {
+        "x": 36.0,
+        "y": 36.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.qnum",
+      "refs": {
+        "layout_slot_id": "slot.qnum"
+      },
+      "text": "18."
+    },
+    {
+      "id": "slot.question.text",
+      "type": "text",
+      "attributes": {
+        "x": 76.0,
+        "y": 36.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.question",
+      "refs": {
+        "layout_slot_id": "slot.question"
+      },
+      "text": "집에서 각 장소까지의 거리를 나타낸 것입니다. 집에서 가장 가까운 곳은 어디인지 선택하세요."
+    },
+    {
+      "id": "slot.house.box.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 408.0,
+        "y": 136.0,
+        "width": 58.0,
+        "height": 34.0,
+        "fill": "#FFF6D5",
+        "stroke": "#C9B36A",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.house.box",
+      "refs": {
+        "layout_slot_id": "slot.house.box"
+      }
+    },
+    {
+      "id": "slot.bookstore.box.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 258.0,
+        "y": 262.0,
+        "width": 50.0,
+        "height": 34.0,
+        "fill": "#EFEAFB",
+        "stroke": "#B7AED9",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.bookstore.box",
+      "refs": {
+        "layout_slot_id": "slot.bookstore.box"
+      }
+    },
+    {
+      "id": "slot.bank.box.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 610.0,
+        "y": 246.0,
+        "width": 50.0,
+        "height": 34.0,
+        "fill": "#FFF3A6",
+        "stroke": "#D8C85A",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.bank.box",
+      "refs": {
+        "layout_slot_id": "slot.bank.box"
+      }
+    },
+    {
+      "id": "slot.school.box.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 620.0,
+        "y": 140.0,
+        "width": 50.0,
+        "height": 34.0,
+        "fill": "#F2F2F2",
+        "stroke": "#B8B8B8",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.school.box",
+      "refs": {
+        "layout_slot_id": "slot.school.box"
+      }
+    },
+    {
+      "id": "slot.line.bookstore.line",
+      "type": "line",
+      "attributes": {
+        "x1": 437.0,
+        "y1": 170.0,
+        "x2": 283.0,
+        "y2": 279.0,
+        "stroke": "#222222",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.line.bookstore",
+      "refs": {
+        "layout_slot_id": "slot.line.bookstore"
+      }
+    },
+    {
+      "id": "slot.line.bank.line",
+      "type": "line",
+      "attributes": {
+        "x1": 437.0,
+        "y1": 170.0,
+        "x2": 635.0,
+        "y2": 263.0,
+        "stroke": "#222222",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.line.bank",
+      "refs": {
+        "layout_slot_id": "slot.line.bank"
+      }
+    },
+    {
+      "id": "slot.line.school.line",
+      "type": "line",
+      "attributes": {
+        "x1": 437.0,
+        "y1": 170.0,
+        "x2": 645.0,
+        "y2": 157.0,
+        "stroke": "#222222",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.line.school",
+      "refs": {
+        "layout_slot_id": "slot.line.school"
+      }
+    },
+    {
+      "id": "slot.house.label.text",
+      "type": "text",
+      "attributes": {
+        "x": 396.0,
+        "y": 132.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 22
+      },
+      "source_ref": "slot.house.label",
+      "refs": {
+        "layout_slot_id": "slot.house.label"
+      },
+      "text": "집"
+    },
+    {
+      "id": "slot.bookstore.label.text",
+      "type": "text",
+      "attributes": {
+        "x": 262.0,
+        "y": 316.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 22
+      },
+      "source_ref": "slot.bookstore.label",
+      "refs": {
+        "layout_slot_id": "slot.bookstore.label"
+      },
+      "text": "서점"
+    },
+    {
+      "id": "slot.bank.label.text",
+      "type": "text",
+      "attributes": {
+        "x": 626.0,
+        "y": 306.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 22
+      },
+      "source_ref": "slot.bank.label",
+      "refs": {
+        "layout_slot_id": "slot.bank.label"
+      },
+      "text": "은행"
+    },
+    {
+      "id": "slot.school.label.text",
+      "type": "text",
+      "attributes": {
+        "x": 636.0,
+        "y": 188.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 22
+      },
+      "source_ref": "slot.school.label",
+      "refs": {
+        "layout_slot_id": "slot.school.label"
+      },
+      "text": "학교"
+    },
+    {
+      "id": "slot.dist.bookstore.text",
+      "type": "text",
+      "attributes": {
+        "x": 330.0,
+        "y": 216.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.dist.bookstore",
+      "refs": {
+        "layout_slot_id": "slot.dist.bookstore"
+      },
+      "text": "7 1/10 km"
+    },
+    {
+      "id": "slot.dist.bank.text",
+      "type": "text",
+      "attributes": {
+        "x": 506.0,
+        "y": 242.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.dist.bank",
+      "refs": {
+        "layout_slot_id": "slot.dist.bank"
+      },
+      "text": "69/10 km"
+    },
+    {
+      "id": "slot.dist.school.text",
+      "type": "text",
+      "attributes": {
+        "x": 508.0,
+        "y": 118.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.dist.school",
+      "refs": {
+        "layout_slot_id": "slot.dist.school"
+      },
+      "text": "7 3/10 km"
+    },
+    {
+      "id": "slot.option.text",
+      "type": "text",
+      "attributes": {
+        "x": 692.0,
+        "y": 330.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.option",
+      "refs": {
+        "layout_slot_id": "slot.option"
+      },
+      "text": "( 서점 , 은행 , 학교 )"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

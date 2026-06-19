@@ -1,0 +1,77 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008733",
+  "problem_type": "분수 분류",
+  "inputs": {
+    "total_ticks": 3,
+    "target_label": "선택 결과",
+    "target_ticks": 3,
+    "target_count": 3,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.frac.1",
+      "value": "3/10"
+    },
+    {
+      "ref": "obj.frac.2",
+      "value": "2/2"
+    },
+    {
+      "ref": "obj.frac.3",
+      "value": "15/7"
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "selection_pattern"
+  },
+  "method": "분수 분류 확인",
+  "plan": [
+    "각 분수를 보고 가분수와 진분수를 구분한다.",
+    "화면에 제시된 해설과 대응을 확인한다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "3/10의 분류 확인",
+      "value": "진분수"
+    },
+    {
+      "id": "step.2",
+      "expr": "2/2의 분류 확인",
+      "value": "가분수"
+    },
+    {
+      "id": "step.3",
+      "expr": "15/7의 분류 확인",
+      "value": "가분수"
+    },
+    {
+      "id": "step.4",
+      "expr": "선택 결과",
+      "value": "○, ×, ○"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "화면의 (정답) 표기와 선택 결과 일치 여부",
+      "expected": "○, ×, ○",
+      "actual": "○, ×, ○",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "selection_pattern",
+      "description": "○, ×, ○"
+    },
+    "value": 3,
+    "unit": ""
+  }
+}

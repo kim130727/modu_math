@@ -1,0 +1,258 @@
+{
+  "problem_id": "S3_초등_3_008730",
+  "view_box": {
+    "width": 960.0,
+    "height": 420.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.curve.left.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 264.0 104.0 C 286.0 142.0, 343.0 160.0, 404.0 138.0 C 428.0 129.0, 456.0 116.0, 489.0 104.0",
+        "stroke": "#4DB6FF",
+        "stroke-width": 1.4,
+        "fill": "none",
+        "stroke-dasharray": "4 4"
+      },
+      "source_ref": "slot.curve.left",
+      "refs": {
+        "layout_slot_id": "slot.curve.left"
+      }
+    },
+    {
+      "id": "slot.curve.right.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 489.0 104.0 C 511.0 142.0, 564.0 160.0, 622.0 138.0 C 650.0 127.0, 676.0 114.0, 702.0 104.0",
+        "stroke": "#4DB6FF",
+        "stroke-width": 1.4,
+        "fill": "none",
+        "stroke-dasharray": "4 4"
+      },
+      "source_ref": "slot.curve.right",
+      "refs": {
+        "layout_slot_id": "slot.curve.right"
+      }
+    },
+    {
+      "id": "slot.line.main.line",
+      "type": "line",
+      "attributes": {
+        "x1": 264.0,
+        "y1": 102.0,
+        "x2": 702.0,
+        "y2": 102.0,
+        "stroke": "#C58B45",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.line.main",
+      "refs": {
+        "layout_slot_id": "slot.line.main"
+      }
+    },
+    {
+      "id": "slot.pt.school.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 264.0,
+        "cy": 102.0,
+        "r": 4.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#222222"
+      },
+      "source_ref": "slot.pt.school",
+      "refs": {
+        "layout_slot_id": "slot.pt.school"
+      }
+    },
+    {
+      "id": "slot.pt.house.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 489.0,
+        "cy": 102.0,
+        "r": 4.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#222222"
+      },
+      "source_ref": "slot.pt.house",
+      "refs": {
+        "layout_slot_id": "slot.pt.house"
+      }
+    },
+    {
+      "id": "slot.pt.playground.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 702.0,
+        "cy": 102.0,
+        "r": 4.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#222222"
+      },
+      "source_ref": "slot.pt.playground",
+      "refs": {
+        "layout_slot_id": "slot.pt.playground"
+      }
+    },
+    {
+      "id": "slot.qmark.text",
+      "type": "text",
+      "attributes": {
+        "x": 12.0,
+        "y": 20.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.qmark",
+      "refs": {
+        "layout_slot_id": "slot.qmark"
+      },
+      "text": "□ 49."
+    },
+    {
+      "id": "slot.qtext.text",
+      "type": "text",
+      "attributes": {
+        "x": 92.0,
+        "y": 20.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.qtext",
+      "refs": {
+        "layout_slot_id": "slot.qtext"
+      },
+      "text": "학교와 놀이터 중 상구네 집에서 더 가까운 곳을 선택해 보세요."
+    },
+    {
+      "id": "slot.lb.school.text",
+      "type": "text",
+      "attributes": {
+        "x": 228.0,
+        "y": 60.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.lb.school",
+      "refs": {
+        "layout_slot_id": "slot.lb.school"
+      },
+      "text": "학교"
+    },
+    {
+      "id": "slot.lb.house.text",
+      "type": "text",
+      "attributes": {
+        "x": 456.0,
+        "y": 60.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.lb.house",
+      "refs": {
+        "layout_slot_id": "slot.lb.house"
+      },
+      "text": "상구네 집"
+    },
+    {
+      "id": "slot.lb.playground.text",
+      "type": "text",
+      "attributes": {
+        "x": 714.0,
+        "y": 60.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.lb.playground",
+      "refs": {
+        "layout_slot_id": "slot.lb.playground"
+      },
+      "text": "놀이터"
+    },
+    {
+      "id": "slot.dist.left.text",
+      "type": "text",
+      "attributes": {
+        "x": 333.0,
+        "y": 168.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.dist.left",
+      "refs": {
+        "layout_slot_id": "slot.dist.left"
+      },
+      "text": "13/11 km"
+    },
+    {
+      "id": "slot.dist.right.text",
+      "type": "text",
+      "attributes": {
+        "x": 539.0,
+        "y": 168.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.dist.right",
+      "refs": {
+        "layout_slot_id": "slot.dist.right"
+      },
+      "text": "1 3/11 km"
+    },
+    {
+      "id": "slot.choice.text",
+      "type": "text",
+      "attributes": {
+        "x": 748.0,
+        "y": 214.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice",
+      "refs": {
+        "layout_slot_id": "slot.choice"
+      },
+      "text": "( 학교 , 놀이터 )"
+    },
+    {
+      "id": "slot.arrow.text",
+      "type": "text",
+      "attributes": {
+        "x": 16.0,
+        "y": 382.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 40
+      },
+      "source_ref": "slot.arrow",
+      "refs": {
+        "layout_slot_id": "slot.arrow"
+      },
+      "text": "➜"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

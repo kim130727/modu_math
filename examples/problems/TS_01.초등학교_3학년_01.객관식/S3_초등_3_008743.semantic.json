@@ -1,0 +1,97 @@
+{
+  "problem_id": "S3_초등_3_008743",
+  "problem_type": "multiple_choice_fraction",
+  "metadata": {
+    "title": "색칠한 부분을 분수로 나타내기",
+    "tags": [],
+    "question": "그림을 보고 색칠한 부분을 분수로 바르게 나타낸 것을 고르세요.",
+    "required_layout_ids": [
+      "slot.diagram.frame",
+      "slot.dia.1",
+      "slot.dia.2",
+      "slot.dia.3",
+      "slot.dia.4",
+      "slot.dia.5",
+      "slot.dia.6",
+      "slot.dia.7",
+      "slot.dia.8",
+      "slot.dia.9",
+      "slot.dia.10",
+      "slot.dia.11",
+      "slot.dia.12",
+      "slot.dia.13",
+      "slot.dia.14",
+      "slot.dia.15",
+      "slot.dia.16",
+      "slot.dia.17",
+      "slot.dia.18",
+      "slot.dia.19",
+      "slot.dia.20",
+      "slot.dia.21",
+      "slot.dia.22",
+      "slot.dia.23",
+      "slot.dia.24"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "보기 중에서 알맞은 분수를 고르기",
+    "points": 5
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.figure_group",
+        "type": "pattern_group",
+        "description": "같은 모양이 반복된 도형 묶음"
+      },
+      {
+        "id": "obj.answer_choices",
+        "type": "choices",
+        "description": "분수 보기 5개"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.figure_group",
+          "obj.answer_choices"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.shaded_part_of_whole"
+        ]
+      },
+      "plan": {
+        "method": "part_whole_matching",
+        "description": "그림에서 색칠된 부분이 전체에서 차지하는 비율을 보기와 맞춘다."
+      },
+      "execute": {
+        "expected_operations": [
+          "identify_whole",
+          "identify_shaded_part",
+          "match_fraction_choice"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "choice_match_check",
+          "part_whole_consistency_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "correct_choice",
+      "description": "그림에 알맞은 분수 보기"
+    },
+    "value": 4,
+    "unit": ""
+  }
+}

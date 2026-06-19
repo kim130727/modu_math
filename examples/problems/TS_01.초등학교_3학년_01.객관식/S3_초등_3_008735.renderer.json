@@ -1,0 +1,334 @@
+{
+  "problem_id": "S3_초등_3_008735",
+  "view_box": {
+    "width": 960.0,
+    "height": 440.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.table.outer.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 234.0,
+        "y": 82.0,
+        "width": 529.0,
+        "height": 206.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.table.outer",
+      "refs": {
+        "layout_slot_id": "slot.table.outer"
+      }
+    },
+    {
+      "id": "slot.table.v1.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 366.0,
+        "y": 82.0,
+        "width": 1.0,
+        "height": 206.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.table.v1",
+      "refs": {
+        "layout_slot_id": "slot.table.v1"
+      }
+    },
+    {
+      "id": "slot.table.v2.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 498.0,
+        "y": 82.0,
+        "width": 1.0,
+        "height": 206.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.table.v2",
+      "refs": {
+        "layout_slot_id": "slot.table.v2"
+      }
+    },
+    {
+      "id": "slot.table.v3.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 630.0,
+        "y": 82.0,
+        "width": 1.0,
+        "height": 206.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.table.v3",
+      "refs": {
+        "layout_slot_id": "slot.table.v3"
+      }
+    },
+    {
+      "id": "slot.table.h1.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 234.0,
+        "y": 214.0,
+        "width": 529.0,
+        "height": 1.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.table.h1",
+      "refs": {
+        "layout_slot_id": "slot.table.h1"
+      }
+    },
+    {
+      "id": "slot.q1.text",
+      "type": "text",
+      "attributes": {
+        "x": 14.0,
+        "y": 24.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q1",
+      "refs": {
+        "layout_slot_id": "slot.q1"
+      },
+      "text": "90. 블루베리 주스 2잔을 만드는 데 필요한 재료입니다. 필요한 양이 가분수인 재료를 모두 선택해 보세요."
+    },
+    {
+      "id": "slot.cell1.top.text",
+      "type": "text",
+      "attributes": {
+        "x": 274.0,
+        "y": 133.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.cell1.top",
+      "refs": {
+        "layout_slot_id": "slot.cell1.top"
+      },
+      "text": "블루베리"
+    },
+    {
+      "id": "slot.cell1.name.text",
+      "type": "text",
+      "attributes": {
+        "x": 260.0,
+        "y": 200.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.cell1.name",
+      "refs": {
+        "layout_slot_id": "slot.cell1.name"
+      },
+      "text": "블루베리"
+    },
+    {
+      "id": "slot.cell1.frac.text",
+      "type": "text",
+      "attributes": {
+        "x": 267.0,
+        "y": 266.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.cell1.frac",
+      "refs": {
+        "layout_slot_id": "slot.cell1.frac"
+      },
+      "text": "7/4 컵"
+    },
+    {
+      "id": "slot.cell2.top.text",
+      "type": "text",
+      "attributes": {
+        "x": 414.0,
+        "y": 133.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.cell2.top",
+      "refs": {
+        "layout_slot_id": "slot.cell2.top"
+      },
+      "text": "물"
+    },
+    {
+      "id": "slot.cell2.name.text",
+      "type": "text",
+      "attributes": {
+        "x": 394.0,
+        "y": 200.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.cell2.name",
+      "refs": {
+        "layout_slot_id": "slot.cell2.name"
+      },
+      "text": "물"
+    },
+    {
+      "id": "slot.cell2.frac.text",
+      "type": "text",
+      "attributes": {
+        "x": 399.0,
+        "y": 266.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.cell2.frac",
+      "refs": {
+        "layout_slot_id": "slot.cell2.frac"
+      },
+      "text": "6/6 컵"
+    },
+    {
+      "id": "slot.cell3.top.text",
+      "type": "text",
+      "attributes": {
+        "x": 546.0,
+        "y": 133.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.cell3.top",
+      "refs": {
+        "layout_slot_id": "slot.cell3.top"
+      },
+      "text": "우유"
+    },
+    {
+      "id": "slot.cell3.name.text",
+      "type": "text",
+      "attributes": {
+        "x": 526.0,
+        "y": 200.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.cell3.name",
+      "refs": {
+        "layout_slot_id": "slot.cell3.name"
+      },
+      "text": "우유"
+    },
+    {
+      "id": "slot.cell3.frac.text",
+      "type": "text",
+      "attributes": {
+        "x": 531.0,
+        "y": 266.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.cell3.frac",
+      "refs": {
+        "layout_slot_id": "slot.cell3.frac"
+      },
+      "text": "3/8 컵"
+    },
+    {
+      "id": "slot.cell4.top.text",
+      "type": "text",
+      "attributes": {
+        "x": 686.0,
+        "y": 133.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.cell4.top",
+      "refs": {
+        "layout_slot_id": "slot.cell4.top"
+      },
+      "text": "꿀"
+    },
+    {
+      "id": "slot.cell4.name.text",
+      "type": "text",
+      "attributes": {
+        "x": 666.0,
+        "y": 200.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.cell4.name",
+      "refs": {
+        "layout_slot_id": "slot.cell4.name"
+      },
+      "text": "꿀"
+    },
+    {
+      "id": "slot.cell4.frac.text",
+      "type": "text",
+      "attributes": {
+        "x": 663.0,
+        "y": 266.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.cell4.frac",
+      "refs": {
+        "layout_slot_id": "slot.cell4.frac"
+      },
+      "text": "5/14 컵"
+    },
+    {
+      "id": "slot.choice.text",
+      "type": "text",
+      "attributes": {
+        "x": 650.0,
+        "y": 318.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice",
+      "refs": {
+        "layout_slot_id": "slot.choice"
+      },
+      "text": "( 블루베리 , 물 , 우유 , 꿀 )"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

@@ -13,10 +13,10 @@ from .problems import resolve_problem_paths
 SUPPORTED_SLOTS = {
     "TextSlot": {"text", "x", "y", "font_size", "max_width", "font_family", "anchor", "fill", "style_role", "transform"},
     "TextBoxSlot": {"text", "x", "y", "width", "height", "font_size", "font_family", "align", "valign", "line_height", "fill", "style_role", "transform"},
-    "CircleSlot": {"cx", "cy", "r", "stroke", "stroke_width", "fill", "transform"},
+    "CircleSlot": {"cx", "cy", "r", "stroke", "stroke_width", "stroke_dasharray", "fill", "transform"},
     "LineSlot": {"x1", "y1", "x2", "y2", "stroke", "stroke_width", "stroke_dasharray", "transform"},
-    "RectSlot": {"x", "y", "width", "height", "stroke", "stroke_width", "rx", "ry", "fill", "transform"},
-    "PolygonSlot": {"points", "stroke", "stroke_width", "fill", "transform"},
+    "RectSlot": {"x", "y", "width", "height", "stroke", "stroke_width", "stroke_dasharray", "rx", "ry", "fill", "transform"},
+    "PolygonSlot": {"points", "stroke", "stroke_width", "stroke_dasharray", "fill", "transform"},
     "PathSlot": {"d", "stroke", "stroke_width", "stroke_dasharray", "fill", "transform"},
 }
 SLOT_KIND_TO_CTOR = {

@@ -1,0 +1,428 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008747",
+  "title": "물의 양 비교 판단",
+  "canvas": {
+    "width": 960,
+    "height": 455,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.diagram.ga_bottle",
+        "slot.diagram.na_bottle",
+        "slot.diagram.ga_bottle.top1",
+        "slot.diagram.ga_bottle.top2",
+        "slot.diagram.ga_bottle.top3",
+        "slot.diagram.ga_bottle.label",
+        "slot.diagram.na_bottle.top1",
+        "slot.diagram.na_bottle.label",
+        "slot.diagram.ga_arrow",
+        "slot.diagram.na_arrow",
+        "slot.qnum",
+        "slot.qtext1",
+        "slot.qtext2",
+        "slot.qtext3",
+        "slot.diagram.ga_cups.1",
+        "slot.diagram.ga_cups.2",
+        "slot.diagram.ga_cups.3",
+        "slot.diagram.ga_cups.4",
+        "slot.diagram.ga_cups.5",
+        "slot.diagram.ga_cups.6",
+        "slot.diagram.ga_cups.7",
+        "slot.diagram.na_cups.1",
+        "slot.diagram.na_cups.2",
+        "slot.diagram.na_cups.3",
+        "slot.diagram.na_cups.4",
+        "slot.choice.o",
+        "slot.choice.x",
+        "slot.diagram.ga_bottle.label_text",
+        "slot.diagram.na_bottle.label_text"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.qnum",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "44.",
+        "style_role": "question",
+        "x": 55.0,
+        "y": 42.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.qtext1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "두 병에 물을 가득 채운 후 모양과 크기가 같은 컵에 각각 물을 옮겼습니다.",
+        "style_role": "question",
+        "x": 94.0,
+        "y": 42.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.qtext2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "바",
+        "style_role": "question",
+        "x": 585.0,
+        "y": 42.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.qtext3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "르게 설명했으면 ○표, 그렇지 않으면 ×표를 선택하세요.",
+        "style_role": "question",
+        "x": 20.0,
+        "y": 78.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.diagram.ga_bottle",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 206.0,
+        "y": 87.0,
+        "width": 74.0,
+        "height": 124.0,
+        "rx": 14.0,
+        "ry": 14.0
+      }
+    },
+    {
+      "id": "slot.diagram.ga_bottle.top1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 243.0,
+        "cy": 84.0,
+        "r": 17.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.diagram.ga_bottle.top2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 243.0,
+        "cy": 82.0,
+        "r": 14.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.diagram.ga_bottle.top3",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 243.0,
+        "cy": 80.0,
+        "r": 11.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.diagram.ga_bottle.label",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 243.0,
+        "cy": 145.0,
+        "r": 12.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.diagram.ga_bottle.label_text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "가",
+        "style_role": "label",
+        "x": 237.0,
+        "y": 153.0,
+        "font_size": 24
+      }
+    },
+    {
+      "id": "slot.diagram.ga_arrow",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 301.0,
+        "y1": 143.0,
+        "x2": 350.0,
+        "y2": 143.0
+      }
+    },
+    {
+      "id": "slot.diagram.ga_cups.1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "컵",
+        "style_role": "diagram",
+        "x": 369.0,
+        "y": 130.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.diagram.ga_cups.2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "컵",
+        "style_role": "diagram",
+        "x": 409.0,
+        "y": 130.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.diagram.ga_cups.3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "컵",
+        "style_role": "diagram",
+        "x": 449.0,
+        "y": 130.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.diagram.ga_cups.4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "컵",
+        "style_role": "diagram",
+        "x": 489.0,
+        "y": 130.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.diagram.ga_cups.5",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "컵",
+        "style_role": "diagram",
+        "x": 369.0,
+        "y": 170.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.diagram.ga_cups.6",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "컵",
+        "style_role": "diagram",
+        "x": 409.0,
+        "y": 170.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.diagram.ga_cups.7",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "컵",
+        "style_role": "diagram",
+        "x": 449.0,
+        "y": 170.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.diagram.na_bottle",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 639.0,
+        "y": 92.0,
+        "width": 70.0,
+        "height": 116.0,
+        "rx": 14.0,
+        "ry": 14.0
+      }
+    },
+    {
+      "id": "slot.diagram.na_bottle.top1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 674.0,
+        "cy": 87.0,
+        "r": 12.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.diagram.na_bottle.label",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 673.0,
+        "cy": 147.0,
+        "r": 12.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.diagram.na_bottle.label_text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "나",
+        "style_role": "label",
+        "x": 667.0,
+        "y": 155.0,
+        "font_size": 24
+      }
+    },
+    {
+      "id": "slot.diagram.na_arrow",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 724.0,
+        "y1": 143.0,
+        "x2": 771.0,
+        "y2": 143.0
+      }
+    },
+    {
+      "id": "slot.diagram.na_cups.1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "컵",
+        "style_role": "diagram",
+        "x": 788.0,
+        "y": 130.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.diagram.na_cups.2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "컵",
+        "style_role": "diagram",
+        "x": 828.0,
+        "y": 130.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.diagram.na_cups.3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "컵",
+        "style_role": "diagram",
+        "x": 788.0,
+        "y": 170.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.diagram.na_cups.4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "컵",
+        "style_role": "diagram",
+        "x": 828.0,
+        "y": 170.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice.o",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "○",
+        "style_role": "choice",
+        "x": 37.0,
+        "y": 268.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice.x",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "×",
+        "style_role": "choice",
+        "x": 37.0,
+        "y": 296.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.diagram.ga_bottle",
+    "slot.diagram.na_bottle",
+    "slot.diagram.ga_bottle.top1",
+    "slot.diagram.ga_bottle.top2",
+    "slot.diagram.ga_bottle.top3",
+    "slot.diagram.ga_bottle.label",
+    "slot.diagram.na_bottle.top1",
+    "slot.diagram.na_bottle.label",
+    "slot.diagram.ga_arrow",
+    "slot.diagram.na_arrow",
+    "slot.qnum",
+    "slot.qtext1",
+    "slot.qtext2",
+    "slot.qtext3",
+    "slot.diagram.ga_cups.1",
+    "slot.diagram.ga_cups.2",
+    "slot.diagram.ga_cups.3",
+    "slot.diagram.ga_cups.4",
+    "slot.diagram.ga_cups.5",
+    "slot.diagram.ga_cups.6",
+    "slot.diagram.ga_cups.7",
+    "slot.diagram.na_cups.1",
+    "slot.diagram.na_cups.2",
+    "slot.diagram.na_cups.3",
+    "slot.diagram.na_cups.4",
+    "slot.choice.o",
+    "slot.choice.x",
+    "slot.diagram.ga_bottle.label_text",
+    "slot.diagram.na_bottle.label_text"
+  ]
+}

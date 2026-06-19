@@ -1,0 +1,69 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008746",
+  "problem_type": "true_false_comparison",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "truth_value_selection",
+    "target_ticks": 0,
+    "target_count": 2,
+    "unit": "개"
+  },
+  "given": [
+    {
+      "ref": "obj.bottle_a",
+      "value": {
+        "label": "가",
+        "cups": 5
+      }
+    },
+    {
+      "ref": "obj.bottle_b",
+      "value": {
+        "label": "나",
+        "cups": 6
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "truth_value_selection"
+  },
+  "plan": [
+    "두 물병이 나타내는 컵 개수를 읽는다.",
+    "두 수의 차이를 구해 설명 문장과 맞는지 확인한다."
+  ],
+  "method": "compare_counts",
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "6 - 5",
+      "value": 1
+    },
+    {
+      "id": "step.2",
+      "expr": "나 물병 - 가 물병 = 1",
+      "value": 1
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "6 - 5 = 1",
+      "expected": 1,
+      "actual": 1,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "truth_value_selection",
+      "description": "설명의 옳고 그름에 대한 선택"
+    },
+    "value": 1,
+    "unit": ""
+  }
+}

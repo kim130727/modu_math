@@ -1,0 +1,74 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008745",
+  "problem_type": "비교",
+  "inputs": {
+    "total_ticks": 2,
+    "target_label": "가 물병, 나 물병",
+    "target_ticks": 2,
+    "target_count": 2,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.bottle.ga",
+      "value": {
+        "label": "가 물병"
+      }
+    },
+    {
+      "ref": "obj.bottle.na",
+      "value": {
+        "label": "나 물병"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "choice_selection"
+  },
+  "method": "same_container_rule_check",
+  "plan": [
+    "같은 모양과 크기의 그릇에 옮겨 담은 물의 높이를 비교한다.",
+    "물의 높이가 더 높은 쪽의 들이가 더 많다고 판단한다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "그림에서 오른쪽 그릇의 물 높이가 더 높다",
+      "value": "나 물병"
+    },
+    {
+      "id": "step.2",
+      "expr": "같은 그릇에서는 물 높이가 더 높은 쪽의 들이가 더 많다",
+      "value": "나 물병"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "같은 모양과 크기의 그릇 비교인지 확인",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "id": "check.2",
+      "expr": "정답 선택이 그림의 높이 비교와 일치하는지 확인",
+      "expected": "나 물병",
+      "actual": "나 물병",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "choice_selection",
+      "description": "옮겨 담은 물의 높이가 더 높은 것과 들이가 더 많은 것"
+    },
+    "value": "나 물병",
+    "unit": ""
+  }
+}

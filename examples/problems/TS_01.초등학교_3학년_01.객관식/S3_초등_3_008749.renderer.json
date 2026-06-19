@@ -1,0 +1,316 @@
+{
+  "problem_id": "S3_초등_3_008749",
+  "view_box": {
+    "width": 960.0,
+    "height": 420.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.qno.text",
+      "type": "text",
+      "attributes": {
+        "x": 14.0,
+        "y": 30.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.qno",
+      "refs": {
+        "layout_slot_id": "slot.qno"
+      },
+      "text": "□ 46."
+    },
+    {
+      "id": "slot.question.1.text",
+      "type": "text",
+      "attributes": {
+        "x": 88.0,
+        "y": 30.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.question.1",
+      "refs": {
+        "layout_slot_id": "slot.question.1"
+      },
+      "text": "주전자에 물을 가득 채운 후 그릇에 옮겨 담았습니다. 그림과 같이 물을"
+    },
+    {
+      "id": "slot.question.2.text",
+      "type": "text",
+      "attributes": {
+        "x": 88.0,
+        "y": 67.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.question.2",
+      "refs": {
+        "layout_slot_id": "slot.question.2"
+      },
+      "text": "채웠을 때에 주전자와 그릇 중 들이가 더 많은 것은 어느 것인가요?"
+    },
+    {
+      "id": "slot.left.pot.polygon",
+      "type": "polygon",
+      "attributes": {
+        "points": [
+          [
+            285.0,
+            95.0
+          ],
+          [
+            340.0,
+            125.0
+          ],
+          [
+            325.0,
+            175.0
+          ],
+          [
+            270.0,
+            145.0
+          ]
+        ],
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "none"
+      },
+      "source_ref": "slot.left.pot",
+      "refs": {
+        "layout_slot_id": "slot.left.pot"
+      }
+    },
+    {
+      "id": "slot.left.cup.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 355.0,
+        "y": 110.0,
+        "width": 44.0,
+        "height": 70.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.left.cup",
+      "refs": {
+        "layout_slot_id": "slot.left.cup"
+      }
+    },
+    {
+      "id": "slot.left.water.pot.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 290 110 C 300 100, 325 100, 338 115 L 331 150 C 314 160, 296 154, 281 144 Z",
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "none"
+      },
+      "source_ref": "slot.left.water.pot",
+      "refs": {
+        "layout_slot_id": "slot.left.water.pot"
+      }
+    },
+    {
+      "id": "slot.left.water.cup.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 359 140 L 396 140 L 396 176 L 359 176 Z",
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "none"
+      },
+      "source_ref": "slot.left.water.cup",
+      "refs": {
+        "layout_slot_id": "slot.left.water.cup"
+      }
+    },
+    {
+      "id": "slot.left.stream.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 336 117 C 350 120, 360 130, 368 143 C 374 153, 381 160, 387 166",
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "none"
+      },
+      "source_ref": "slot.left.stream",
+      "refs": {
+        "layout_slot_id": "slot.left.stream"
+      }
+    },
+    {
+      "id": "slot.left.label.pot.text",
+      "type": "text",
+      "attributes": {
+        "x": 272.0,
+        "y": 220.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.left.label.pot",
+      "refs": {
+        "layout_slot_id": "slot.left.label.pot"
+      },
+      "text": "주전자"
+    },
+    {
+      "id": "slot.left.label.cup.text",
+      "type": "text",
+      "attributes": {
+        "x": 349.0,
+        "y": 248.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.left.label.cup",
+      "refs": {
+        "layout_slot_id": "slot.left.label.cup"
+      },
+      "text": "그릇"
+    },
+    {
+      "id": "slot.arrow.text",
+      "type": "text",
+      "attributes": {
+        "x": 470.0,
+        "y": 165.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 42
+      },
+      "source_ref": "slot.arrow",
+      "refs": {
+        "layout_slot_id": "slot.arrow"
+      },
+      "text": "→"
+    },
+    {
+      "id": "slot.right.pot.polygon",
+      "type": "polygon",
+      "attributes": {
+        "points": [
+          [
+            560.0,
+            140.0
+          ],
+          [
+            620.0,
+            140.0
+          ],
+          [
+            615.0,
+            190.0
+          ],
+          [
+            555.0,
+            190.0
+          ]
+        ],
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "none"
+      },
+      "source_ref": "slot.right.pot",
+      "refs": {
+        "layout_slot_id": "slot.right.pot"
+      }
+    },
+    {
+      "id": "slot.right.container.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 650.0,
+        "y": 145.0,
+        "width": 40.0,
+        "height": 95.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.right.container",
+      "refs": {
+        "layout_slot_id": "slot.right.container"
+      }
+    },
+    {
+      "id": "slot.right.water.pot.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 560 173 C 565 160, 615 160, 618 175 L 616 191 L 558 191 Z",
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "none"
+      },
+      "source_ref": "slot.right.water.pot",
+      "refs": {
+        "layout_slot_id": "slot.right.water.pot"
+      }
+    },
+    {
+      "id": "slot.right.label.pot.text",
+      "type": "text",
+      "attributes": {
+        "x": 545.0,
+        "y": 245.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.right.label.pot",
+      "refs": {
+        "layout_slot_id": "slot.right.label.pot"
+      },
+      "text": "주전자"
+    },
+    {
+      "id": "slot.right.label.container.text",
+      "type": "text",
+      "attributes": {
+        "x": 648.0,
+        "y": 245.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.right.label.container",
+      "refs": {
+        "layout_slot_id": "slot.right.label.container"
+      },
+      "text": "그릇"
+    },
+    {
+      "id": "slot.choice.text",
+      "type": "text",
+      "attributes": {
+        "x": 738.0,
+        "y": 304.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice",
+      "refs": {
+        "layout_slot_id": "slot.choice"
+      },
+      "text": "( 주전자 , 그릇 )"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

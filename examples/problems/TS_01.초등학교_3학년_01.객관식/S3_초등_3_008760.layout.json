@@ -1,0 +1,252 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008760",
+  "title": "가 그릇과 나 그릇의 들이",
+  "canvas": {
+    "width": 960,
+    "height": 540,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.table.head.l",
+        "slot.table.head.r",
+        "slot.table.body.l",
+        "slot.table.body.r",
+        "slot.bubble",
+        "slot.q1",
+        "slot.q2",
+        "slot.q3",
+        "slot.q4",
+        "slot.bubble.text",
+        "slot.choice.o",
+        "slot.choice.x",
+        "slot.table.head.l.text",
+        "slot.table.head.r.text",
+        "slot.table.body.l.text",
+        "slot.table.body.r.text"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "61.",
+        "style_role": "question",
+        "x": 40.0,
+        "y": 38.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "가 그릇과 나 그릇의 들이를 나타낸 것입니다. 가 그릇과 나 그릇을 사용",
+        "style_role": "question",
+        "x": 78.0,
+        "y": 38.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "하여 수조에 물 2L를 담는 방법을 바르게 이야기했으면 ○표, 그렇지 않으",
+        "style_role": "question",
+        "x": 52.0,
+        "y": 72.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "면 ×표를 선택하세요.",
+        "style_role": "question",
+        "x": 42.0,
+        "y": 106.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.head.l",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 258.0,
+        "y": 162.0,
+        "width": 224.0,
+        "height": 40.0,
+        "fill": "#cfeeff"
+      }
+    },
+    {
+      "id": "slot.table.head.r",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 482.0,
+        "y": 162.0,
+        "width": 224.0,
+        "height": 40.0,
+        "fill": "#cfeeff"
+      }
+    },
+    {
+      "id": "slot.table.body.l",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 258.0,
+        "y": 202.0,
+        "width": 224.0,
+        "height": 48.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.table.body.r",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 482.0,
+        "y": 202.0,
+        "width": 224.0,
+        "height": 48.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.table.head.l.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "가 그릇",
+        "style_role": "table",
+        "x": 332.0,
+        "y": 189.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.head.r.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "나 그릇",
+        "style_role": "table",
+        "x": 556.0,
+        "y": 189.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.body.l.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "1 L 500 mL",
+        "style_role": "table",
+        "x": 311.0,
+        "y": 237.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.body.r.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "3 L 500 mL",
+        "style_role": "table",
+        "x": 535.0,
+        "y": 237.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.bubble",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 316.0,
+        "y": 268.0,
+        "width": 500.0,
+        "height": 100.0,
+        "fill": "#e4edc6"
+      }
+    },
+    {
+      "id": "slot.bubble.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "나 그릇에 물을 가득 담은 후 그 물을 가 그릇이\n가득 찰 때까지 붓고 남는 물을 수조에 부어.",
+        "style_role": "speech",
+        "x": 359.0,
+        "y": 296.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice.o",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "○",
+        "style_role": "choice",
+        "x": 34.0,
+        "y": 390.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice.x",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "×",
+        "style_role": "choice",
+        "x": 34.0,
+        "y": 422.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.table.head.l",
+    "slot.table.head.r",
+    "slot.table.body.l",
+    "slot.table.body.r",
+    "slot.bubble",
+    "slot.q1",
+    "slot.q2",
+    "slot.q3",
+    "slot.q4",
+    "slot.bubble.text",
+    "slot.choice.o",
+    "slot.choice.x",
+    "slot.table.head.l.text",
+    "slot.table.head.r.text",
+    "slot.table.body.l.text",
+    "slot.table.body.r.text"
+  ]
+}

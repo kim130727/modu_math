@@ -1,0 +1,261 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008761",
+  "title": "저울로 무거운 것 비교하기",
+  "canvas": {
+    "width": 960,
+    "height": 490,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.header",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.no",
+        "slot.title1",
+        "slot.title2"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.scale.base",
+        "slot.scale.pillar",
+        "slot.scale.beam",
+        "slot.scale.left.pan",
+        "slot.scale.right.pan",
+        "slot.apple.box",
+        "slot.pear.box",
+        "slot.apple.text",
+        "slot.pear.text",
+        "slot.apple.draw",
+        "slot.pear.draw"
+      ]
+    },
+    {
+      "id": "region.body",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.s1",
+        "slot.s2"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.no",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "63.",
+        "style_role": "question",
+        "x": 18.0,
+        "y": 34.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.title1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "저울을 사용하여 사과와 배의 무게를 비교하려고 합니다. 알맞은 말을",
+        "style_role": "question",
+        "x": 72.0,
+        "y": 34.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.title2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "선택하세요.",
+        "style_role": "question",
+        "x": 18.0,
+        "y": 71.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.scale.base",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 389.0,
+        "y": 197.0,
+        "width": 184.0,
+        "height": 22.0
+      }
+    },
+    {
+      "id": "slot.scale.pillar",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 470.0,
+        "y": 123.0,
+        "width": 18.0,
+        "height": 90.0
+      }
+    },
+    {
+      "id": "slot.scale.beam",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 410.0,
+        "y": 162.0,
+        "width": 140.0,
+        "height": 16.0
+      }
+    },
+    {
+      "id": "slot.scale.left.pan",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 370.0,
+        "y": 135.0,
+        "width": 82.0,
+        "height": 26.0
+      }
+    },
+    {
+      "id": "slot.scale.right.pan",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 512.0,
+        "y": 147.0,
+        "width": 82.0,
+        "height": 26.0
+      }
+    },
+    {
+      "id": "slot.apple.box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 382.0,
+        "y": 85.0,
+        "width": 48.0,
+        "height": 26.0
+      }
+    },
+    {
+      "id": "slot.apple.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "사과",
+        "style_role": "label",
+        "x": 388.0,
+        "y": 106.0,
+        "font_size": 24
+      }
+    },
+    {
+      "id": "slot.pear.box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 539.0,
+        "y": 85.0,
+        "width": 48.0,
+        "height": 26.0
+      }
+    },
+    {
+      "id": "slot.pear.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "배",
+        "style_role": "label",
+        "x": 551.0,
+        "y": 106.0,
+        "font_size": 24
+      }
+    },
+    {
+      "id": "slot.apple.draw",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "🍎",
+        "style_role": "label",
+        "x": 388.0,
+        "y": 132.0,
+        "font_size": 38
+      }
+    },
+    {
+      "id": "slot.pear.draw",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "🍐",
+        "style_role": "label",
+        "x": 548.0,
+        "y": 136.0,
+        "font_size": 38
+      }
+    },
+    {
+      "id": "slot.s1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "(1) ( 사과 , 배 )를 올려놓은 접시가 아래로 내려갔습니다.",
+        "style_role": "question",
+        "x": 18.0,
+        "y": 314.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.s2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "(2) ( 사과 , 배 )가 더 무겁습니다.",
+        "style_role": "question",
+        "x": 18.0,
+        "y": 352.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.header",
+    "slot.no",
+    "slot.title1",
+    "slot.title2",
+    "region.diagram",
+    "slot.scale.base",
+    "slot.scale.pillar",
+    "slot.scale.beam",
+    "slot.scale.left.pan",
+    "slot.scale.right.pan",
+    "slot.apple.box",
+    "slot.pear.box",
+    "slot.apple.text",
+    "slot.pear.text",
+    "slot.apple.draw",
+    "slot.pear.draw",
+    "region.body",
+    "slot.s1",
+    "slot.s2"
+  ]
+}

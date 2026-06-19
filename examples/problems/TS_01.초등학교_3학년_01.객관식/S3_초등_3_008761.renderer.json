@@ -1,0 +1,283 @@
+{
+  "problem_id": "S3_초등_3_008761",
+  "view_box": {
+    "width": 960.0,
+    "height": 490.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.no.text",
+      "type": "text",
+      "attributes": {
+        "x": 18.0,
+        "y": 34.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.no",
+      "refs": {
+        "layout_slot_id": "slot.no"
+      },
+      "text": "63."
+    },
+    {
+      "id": "slot.title1.text",
+      "type": "text",
+      "attributes": {
+        "x": 72.0,
+        "y": 34.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.title1",
+      "refs": {
+        "layout_slot_id": "slot.title1"
+      },
+      "text": "저울을 사용하여 사과와 배의 무게를 비교하려고 합니다. 알맞은 말을"
+    },
+    {
+      "id": "slot.title2.text",
+      "type": "text",
+      "attributes": {
+        "x": 18.0,
+        "y": 71.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.title2",
+      "refs": {
+        "layout_slot_id": "slot.title2"
+      },
+      "text": "선택하세요."
+    },
+    {
+      "id": "slot.scale.base.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 389.0,
+        "y": 197.0,
+        "width": 184.0,
+        "height": 22.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.scale.base",
+      "refs": {
+        "layout_slot_id": "slot.scale.base"
+      }
+    },
+    {
+      "id": "slot.scale.pillar.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 470.0,
+        "y": 123.0,
+        "width": 18.0,
+        "height": 90.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.scale.pillar",
+      "refs": {
+        "layout_slot_id": "slot.scale.pillar"
+      }
+    },
+    {
+      "id": "slot.scale.beam.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 410.0,
+        "y": 162.0,
+        "width": 140.0,
+        "height": 16.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.scale.beam",
+      "refs": {
+        "layout_slot_id": "slot.scale.beam"
+      }
+    },
+    {
+      "id": "slot.scale.left.pan.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 370.0,
+        "y": 135.0,
+        "width": 82.0,
+        "height": 26.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.scale.left.pan",
+      "refs": {
+        "layout_slot_id": "slot.scale.left.pan"
+      }
+    },
+    {
+      "id": "slot.scale.right.pan.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 512.0,
+        "y": 147.0,
+        "width": 82.0,
+        "height": 26.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.scale.right.pan",
+      "refs": {
+        "layout_slot_id": "slot.scale.right.pan"
+      }
+    },
+    {
+      "id": "slot.apple.box.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 382.0,
+        "y": 85.0,
+        "width": 48.0,
+        "height": 26.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.apple.box",
+      "refs": {
+        "layout_slot_id": "slot.apple.box"
+      }
+    },
+    {
+      "id": "slot.pear.box.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 539.0,
+        "y": 85.0,
+        "width": 48.0,
+        "height": 26.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.pear.box",
+      "refs": {
+        "layout_slot_id": "slot.pear.box"
+      }
+    },
+    {
+      "id": "slot.apple.text.text",
+      "type": "text",
+      "attributes": {
+        "x": 388.0,
+        "y": 106.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 24
+      },
+      "source_ref": "slot.apple.text",
+      "refs": {
+        "layout_slot_id": "slot.apple.text"
+      },
+      "text": "사과"
+    },
+    {
+      "id": "slot.pear.text.text",
+      "type": "text",
+      "attributes": {
+        "x": 551.0,
+        "y": 106.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 24
+      },
+      "source_ref": "slot.pear.text",
+      "refs": {
+        "layout_slot_id": "slot.pear.text"
+      },
+      "text": "배"
+    },
+    {
+      "id": "slot.apple.draw.text",
+      "type": "text",
+      "attributes": {
+        "x": 388.0,
+        "y": 132.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 38
+      },
+      "source_ref": "slot.apple.draw",
+      "refs": {
+        "layout_slot_id": "slot.apple.draw"
+      },
+      "text": "🍎"
+    },
+    {
+      "id": "slot.pear.draw.text",
+      "type": "text",
+      "attributes": {
+        "x": 548.0,
+        "y": 136.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 38
+      },
+      "source_ref": "slot.pear.draw",
+      "refs": {
+        "layout_slot_id": "slot.pear.draw"
+      },
+      "text": "🍐"
+    },
+    {
+      "id": "slot.s1.text",
+      "type": "text",
+      "attributes": {
+        "x": 18.0,
+        "y": 314.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.s1",
+      "refs": {
+        "layout_slot_id": "slot.s1"
+      },
+      "text": "(1) ( 사과 , 배 )를 올려놓은 접시가 아래로 내려갔습니다."
+    },
+    {
+      "id": "slot.s2.text",
+      "type": "text",
+      "attributes": {
+        "x": 18.0,
+        "y": 352.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.s2",
+      "refs": {
+        "layout_slot_id": "slot.s2"
+      },
+      "text": "(2) ( 사과 , 배 )가 더 무겁습니다."
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

@@ -1,0 +1,278 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008725",
+  "title": "원의 중심의 개수가 가장 많은 모양",
+  "canvas": {
+    "width": 820,
+    "height": 620,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice.1.shape",
+        "slot.choice.2.shape",
+        "slot.choice.3.shape",
+        "slot.choice.4.shape",
+        "slot.choice.5.shape",
+        "slot.q_num",
+        "slot.q_text",
+        "slot.choice.1.label",
+        "slot.choice.2.label",
+        "slot.choice.3.label",
+        "slot.choice.4.label",
+        "slot.choice.5.label"
+      ]
+    },
+    {
+      "id": "region.explanation",
+      "role": "explanation",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.expl.1.shape",
+        "slot.expl.2.shape",
+        "slot.expl.3.shape",
+        "slot.expl.4.shape",
+        "slot.expl.5.shape",
+        "slot.conclusion"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q_num",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "30.",
+        "style_role": "question",
+        "x": 18.0,
+        "y": 28.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q_text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "원의 중심의 개수가 가장 많은 모양을 고르세요.",
+        "style_role": "question",
+        "x": 72.0,
+        "y": 28.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice.1.label",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "①",
+        "style_role": "label",
+        "x": 34.0,
+        "y": 64.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice.1.shape",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 68.0,
+        "y": 50.0,
+        "width": 104.0,
+        "height": 104.0
+      }
+    },
+    {
+      "id": "slot.choice.2.label",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "②",
+        "style_role": "label",
+        "x": 356.0,
+        "y": 64.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice.2.shape",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 438.0,
+        "cy": 101.0,
+        "r": 48.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.choice.3.label",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "③",
+        "style_role": "label",
+        "x": 646.0,
+        "y": 64.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice.3.shape",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 714.0,
+        "cy": 112.0,
+        "r": 36.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.choice.4.label",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "④",
+        "style_role": "label",
+        "x": 34.0,
+        "y": 184.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice.4.shape",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 108.0,
+        "cy": 218.0,
+        "r": 48.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.choice.5.label",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "⑤",
+        "style_role": "label",
+        "x": 356.0,
+        "y": 184.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice.5.shape",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 438.0,
+        "cy": 228.0,
+        "r": 52.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.expl.1.shape",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 96.0,
+        "y": 338.0,
+        "width": 90.0,
+        "height": 90.0
+      }
+    },
+    {
+      "id": "slot.expl.2.shape",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 360.0,
+        "cy": 380.0,
+        "r": 36.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.expl.3.shape",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 620.0,
+        "cy": 380.0,
+        "r": 34.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.expl.4.shape",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 108.0,
+        "cy": 510.0,
+        "r": 42.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.expl.5.shape",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 360.0,
+        "cy": 508.0,
+        "r": 44.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.conclusion",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "따라서 원의 중심의 개수가 가장 많은 모양은 ①입니다.",
+        "style_role": "conclusion",
+        "x": 18.0,
+        "y": 586.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.choice.1.shape",
+    "slot.choice.2.shape",
+    "slot.choice.3.shape",
+    "slot.choice.4.shape",
+    "slot.choice.5.shape",
+    "slot.q_num",
+    "slot.q_text",
+    "slot.choice.1.label",
+    "slot.choice.2.label",
+    "slot.choice.3.label",
+    "slot.choice.4.label",
+    "slot.choice.5.label",
+    "region.explanation",
+    "slot.expl.1.shape",
+    "slot.expl.2.shape",
+    "slot.expl.3.shape",
+    "slot.expl.4.shape",
+    "slot.expl.5.shape",
+    "slot.conclusion"
+  ]
+}

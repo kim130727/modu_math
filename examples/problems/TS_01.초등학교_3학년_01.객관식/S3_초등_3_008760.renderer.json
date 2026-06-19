@@ -1,0 +1,283 @@
+{
+  "problem_id": "S3_초등_3_008760",
+  "view_box": {
+    "width": 960.0,
+    "height": 540.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.table.head.l.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 258.0,
+        "y": 162.0,
+        "width": 224.0,
+        "height": 40.0,
+        "fill": "#cfeeff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.table.head.l",
+      "refs": {
+        "layout_slot_id": "slot.table.head.l"
+      }
+    },
+    {
+      "id": "slot.table.head.r.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 482.0,
+        "y": 162.0,
+        "width": 224.0,
+        "height": 40.0,
+        "fill": "#cfeeff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.table.head.r",
+      "refs": {
+        "layout_slot_id": "slot.table.head.r"
+      }
+    },
+    {
+      "id": "slot.table.body.l.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 258.0,
+        "y": 202.0,
+        "width": 224.0,
+        "height": 48.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.table.body.l",
+      "refs": {
+        "layout_slot_id": "slot.table.body.l"
+      }
+    },
+    {
+      "id": "slot.table.body.r.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 482.0,
+        "y": 202.0,
+        "width": 224.0,
+        "height": 48.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.table.body.r",
+      "refs": {
+        "layout_slot_id": "slot.table.body.r"
+      }
+    },
+    {
+      "id": "slot.bubble.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 316.0,
+        "y": 268.0,
+        "width": 500.0,
+        "height": 100.0,
+        "fill": "#e4edc6",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.bubble",
+      "refs": {
+        "layout_slot_id": "slot.bubble"
+      }
+    },
+    {
+      "id": "slot.q1.text",
+      "type": "text",
+      "attributes": {
+        "x": 40.0,
+        "y": 38.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q1",
+      "refs": {
+        "layout_slot_id": "slot.q1"
+      },
+      "text": "61."
+    },
+    {
+      "id": "slot.q2.text",
+      "type": "text",
+      "attributes": {
+        "x": 78.0,
+        "y": 38.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q2",
+      "refs": {
+        "layout_slot_id": "slot.q2"
+      },
+      "text": "가 그릇과 나 그릇의 들이를 나타낸 것입니다. 가 그릇과 나 그릇을 사용"
+    },
+    {
+      "id": "slot.q3.text",
+      "type": "text",
+      "attributes": {
+        "x": 52.0,
+        "y": 72.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q3",
+      "refs": {
+        "layout_slot_id": "slot.q3"
+      },
+      "text": "하여 수조에 물 2L를 담는 방법을 바르게 이야기했으면 ○표, 그렇지 않으"
+    },
+    {
+      "id": "slot.q4.text",
+      "type": "text",
+      "attributes": {
+        "x": 42.0,
+        "y": 106.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q4",
+      "refs": {
+        "layout_slot_id": "slot.q4"
+      },
+      "text": "면 ×표를 선택하세요."
+    },
+    {
+      "id": "slot.bubble.text.text",
+      "type": "text",
+      "attributes": {
+        "x": 359.0,
+        "y": 296.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.bubble.text",
+      "refs": {
+        "layout_slot_id": "slot.bubble.text"
+      },
+      "text": "나 그릇에 물을 가득 담은 후 그 물을 가 그릇이\n가득 찰 때까지 붓고 남는 물을 수조에 부어."
+    },
+    {
+      "id": "slot.choice.o.text",
+      "type": "text",
+      "attributes": {
+        "x": 34.0,
+        "y": 390.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice.o",
+      "refs": {
+        "layout_slot_id": "slot.choice.o"
+      },
+      "text": "○"
+    },
+    {
+      "id": "slot.choice.x.text",
+      "type": "text",
+      "attributes": {
+        "x": 34.0,
+        "y": 422.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice.x",
+      "refs": {
+        "layout_slot_id": "slot.choice.x"
+      },
+      "text": "×"
+    },
+    {
+      "id": "slot.table.head.l.text.text",
+      "type": "text",
+      "attributes": {
+        "x": 332.0,
+        "y": 189.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.head.l.text",
+      "refs": {
+        "layout_slot_id": "slot.table.head.l.text"
+      },
+      "text": "가 그릇"
+    },
+    {
+      "id": "slot.table.head.r.text.text",
+      "type": "text",
+      "attributes": {
+        "x": 556.0,
+        "y": 189.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.head.r.text",
+      "refs": {
+        "layout_slot_id": "slot.table.head.r.text"
+      },
+      "text": "나 그릇"
+    },
+    {
+      "id": "slot.table.body.l.text.text",
+      "type": "text",
+      "attributes": {
+        "x": 311.0,
+        "y": 237.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.body.l.text",
+      "refs": {
+        "layout_slot_id": "slot.table.body.l.text"
+      },
+      "text": "1 L 500 mL"
+    },
+    {
+      "id": "slot.table.body.r.text.text",
+      "type": "text",
+      "attributes": {
+        "x": 535.0,
+        "y": 237.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.body.r.text",
+      "refs": {
+        "layout_slot_id": "slot.table.body.r.text"
+      },
+      "text": "3 L 500 mL"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

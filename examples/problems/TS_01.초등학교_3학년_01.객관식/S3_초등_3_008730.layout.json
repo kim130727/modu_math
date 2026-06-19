@@ -1,0 +1,248 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008730",
+  "title": "학교와 놀이터 중 더 가까운 곳",
+  "canvas": {
+    "width": 960,
+    "height": 420,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.curve.left",
+        "slot.curve.right",
+        "slot.line.main",
+        "slot.pt.school",
+        "slot.pt.house",
+        "slot.pt.playground",
+        "slot.qmark",
+        "slot.qtext",
+        "slot.lb.school",
+        "slot.lb.house",
+        "slot.lb.playground",
+        "slot.dist.left",
+        "slot.dist.right",
+        "slot.choice"
+      ]
+    },
+    {
+      "id": "region.answer",
+      "role": "answer",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.arrow"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.qmark",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "□ 49.",
+        "style_role": "question",
+        "x": 12.0,
+        "y": 20.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.qtext",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "학교와 놀이터 중 상구네 집에서 더 가까운 곳을 선택해 보세요.",
+        "style_role": "question",
+        "x": 92.0,
+        "y": 20.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.lb.school",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "학교",
+        "style_role": "label",
+        "x": 228.0,
+        "y": 60.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.lb.house",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "상구네 집",
+        "style_role": "label",
+        "x": 456.0,
+        "y": 60.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.lb.playground",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "놀이터",
+        "style_role": "label",
+        "x": 714.0,
+        "y": 60.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.pt.school",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 264.0,
+        "cy": 102.0,
+        "r": 4.0,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.pt.house",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 489.0,
+        "cy": 102.0,
+        "r": 4.0,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.pt.playground",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 702.0,
+        "cy": 102.0,
+        "r": 4.0,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.line.main",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 264.0,
+        "y1": 102.0,
+        "x2": 702.0,
+        "y2": 102.0,
+        "stroke": "#C58B45",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.curve.left",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 264.0 104.0 C 286.0 142.0, 343.0 160.0, 404.0 138.0 C 428.0 129.0, 456.0 116.0, 489.0 104.0",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#4DB6FF",
+        "stroke_width": 1.4,
+        "stroke_dasharray": "4 4",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.curve.right",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 489.0 104.0 C 511.0 142.0, 564.0 160.0, 622.0 138.0 C 650.0 127.0, 676.0 114.0, 702.0 104.0",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#4DB6FF",
+        "stroke_width": 1.4,
+        "stroke_dasharray": "4 4",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.dist.left",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "13/11 km",
+        "style_role": "label",
+        "x": 333.0,
+        "y": 168.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.dist.right",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "1 3/11 km",
+        "style_role": "label",
+        "x": 539.0,
+        "y": 168.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "( 학교 , 놀이터 )",
+        "style_role": "label",
+        "x": 748.0,
+        "y": 214.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.arrow",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "➜",
+        "style_role": "annotation",
+        "x": 16.0,
+        "y": 382.0,
+        "font_size": 40
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.curve.left",
+    "slot.curve.right",
+    "slot.line.main",
+    "slot.pt.school",
+    "slot.pt.house",
+    "slot.pt.playground",
+    "slot.qmark",
+    "slot.qtext",
+    "slot.lb.school",
+    "slot.lb.house",
+    "slot.lb.playground",
+    "slot.dist.left",
+    "slot.dist.right",
+    "slot.choice",
+    "region.answer",
+    "slot.arrow"
+  ]
+}

@@ -1,0 +1,411 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008736",
+  "title": "두 대분수 비교",
+  "canvas": {
+    "width": 960.0,
+    "height": 650.0,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q1",
+        "slot.q2",
+        "slot.q3",
+        "slot.q4",
+        "slot.q5"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.bar1a",
+        "slot.bar1b",
+        "slot.bar1c",
+        "slot.bar2a",
+        "slot.bar2b",
+        "slot.bar2c",
+        "slot.grid1a1",
+        "slot.grid1a2",
+        "slot.grid1b1",
+        "slot.grid1b2",
+        "slot.grid1c1",
+        "slot.grid1c2",
+        "slot.grid2a1",
+        "slot.grid2a2",
+        "slot.grid2b1",
+        "slot.grid2b2",
+        "slot.grid2c1",
+        "slot.grid2c2",
+        "slot.frac1",
+        "slot.frac2"
+      ]
+    },
+    {
+      "id": "region.answer",
+      "role": "answer",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "□ 93. 2 1/3 과 1 2/3 중에서 어느 분수가 더 큰지 알아보려고 합니다.",
+        "style_role": "question",
+        "x": 16.0,
+        "y": 28.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "그림을 보고",
+        "style_role": "question",
+        "x": 16.0,
+        "y": 74.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "알맞은 것을 선택하세요.",
+        "style_role": "question",
+        "x": 16.0,
+        "y": 116.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.frac1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "2 1/3",
+        "style_role": "label",
+        "x": 90.0,
+        "y": 212.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.frac2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "1 2/3",
+        "style_role": "label",
+        "x": 90.0,
+        "y": 306.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.bar1a",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 160.0,
+        "y": 182.0,
+        "width": 172.0,
+        "height": 40.0,
+        "stroke": "#666666",
+        "fill": "#f3d7ea"
+      }
+    },
+    {
+      "id": "slot.bar1b",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 348.0,
+        "y": 182.0,
+        "width": 172.0,
+        "height": 40.0,
+        "stroke": "#666666",
+        "fill": "#f3d7ea"
+      }
+    },
+    {
+      "id": "slot.bar1c",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 536.0,
+        "y": 182.0,
+        "width": 172.0,
+        "height": 40.0,
+        "stroke": "#666666",
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.bar2a",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 160.0,
+        "y": 276.0,
+        "width": 172.0,
+        "height": 40.0,
+        "stroke": "#666666",
+        "fill": "#f3d7ea"
+      }
+    },
+    {
+      "id": "slot.bar2b",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 348.0,
+        "y": 276.0,
+        "width": 172.0,
+        "height": 40.0,
+        "stroke": "#666666",
+        "fill": "#f3d7ea"
+      }
+    },
+    {
+      "id": "slot.bar2c",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 536.0,
+        "y": 276.0,
+        "width": 172.0,
+        "height": 40.0,
+        "stroke": "#666666",
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.grid1a1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 217.3,
+        "y1": 182.0,
+        "x2": 217.3,
+        "y2": 222.0,
+        "stroke": "#666666",
+        "stroke_dasharray": "5 3"
+      }
+    },
+    {
+      "id": "slot.grid1a2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 274.7,
+        "y1": 182.0,
+        "x2": 274.7,
+        "y2": 222.0,
+        "stroke": "#666666",
+        "stroke_dasharray": "5 3"
+      }
+    },
+    {
+      "id": "slot.grid1b1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 405.3,
+        "y1": 182.0,
+        "x2": 405.3,
+        "y2": 222.0,
+        "stroke": "#666666",
+        "stroke_dasharray": "5 3"
+      }
+    },
+    {
+      "id": "slot.grid1b2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 462.7,
+        "y1": 182.0,
+        "x2": 462.7,
+        "y2": 222.0,
+        "stroke": "#666666",
+        "stroke_dasharray": "5 3"
+      }
+    },
+    {
+      "id": "slot.grid1c1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 593.3,
+        "y1": 182.0,
+        "x2": 593.3,
+        "y2": 222.0,
+        "stroke": "#666666",
+        "stroke_dasharray": "5 3"
+      }
+    },
+    {
+      "id": "slot.grid1c2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 650.7,
+        "y1": 182.0,
+        "x2": 650.7,
+        "y2": 222.0,
+        "stroke": "#666666",
+        "stroke_dasharray": "5 3"
+      }
+    },
+    {
+      "id": "slot.grid2a1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 217.3,
+        "y1": 276.0,
+        "x2": 217.3,
+        "y2": 316.0,
+        "stroke": "#666666",
+        "stroke_dasharray": "5 3"
+      }
+    },
+    {
+      "id": "slot.grid2a2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 274.7,
+        "y1": 276.0,
+        "x2": 274.7,
+        "y2": 316.0,
+        "stroke": "#666666",
+        "stroke_dasharray": "5 3"
+      }
+    },
+    {
+      "id": "slot.grid2b1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 405.3,
+        "y1": 276.0,
+        "x2": 405.3,
+        "y2": 316.0,
+        "stroke": "#666666",
+        "stroke_dasharray": "5 3"
+      }
+    },
+    {
+      "id": "slot.grid2b2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 462.7,
+        "y1": 276.0,
+        "x2": 462.7,
+        "y2": 316.0,
+        "stroke": "#666666",
+        "stroke_dasharray": "5 3"
+      }
+    },
+    {
+      "id": "slot.grid2c1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 593.3,
+        "y1": 276.0,
+        "x2": 593.3,
+        "y2": 316.0,
+        "stroke": "#666666",
+        "stroke_dasharray": "5 3"
+      }
+    },
+    {
+      "id": "slot.grid2c2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 650.7,
+        "y1": 276.0,
+        "x2": 650.7,
+        "y2": 316.0,
+        "stroke": "#666666",
+        "stroke_dasharray": "5 3"
+      }
+    },
+    {
+      "id": "slot.q4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "색칠한 부분의 길이가 ( 2 1/3 , 1 2/3 )이/가 더 길므로",
+        "style_role": "question",
+        "x": 162.0,
+        "y": 386.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q5",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "2 1/3 ( > , < ) 1 2/3 입니다.",
+        "style_role": "question",
+        "x": 312.0,
+        "y": 448.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q1",
+    "slot.q2",
+    "slot.q3",
+    "slot.q4",
+    "slot.q5",
+    "region.diagram",
+    "slot.bar1a",
+    "slot.bar1b",
+    "slot.bar1c",
+    "slot.bar2a",
+    "slot.bar2b",
+    "slot.bar2c",
+    "slot.grid1a1",
+    "slot.grid1a2",
+    "slot.grid1b1",
+    "slot.grid1b2",
+    "slot.grid1c1",
+    "slot.grid1c2",
+    "slot.grid2a1",
+    "slot.grid2a2",
+    "slot.grid2b1",
+    "slot.grid2b2",
+    "slot.grid2c1",
+    "slot.grid2c2",
+    "slot.frac1",
+    "slot.frac2",
+    "region.answer"
+  ]
+}

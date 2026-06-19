@@ -1,0 +1,531 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008746",
+  "title": "물병과 컵 비교",
+  "canvas": {
+    "width": 944.0,
+    "height": 436.0,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q3",
+        "slot.q4",
+        "slot.q5",
+        "slot.q11",
+        "slot.q12",
+        "slot.q13",
+        "slot.q14",
+        "slot.q15",
+        "slot.q16",
+        "slot.q17",
+        "slot.q18",
+        "slot.q24",
+        "slot.q25",
+        "slot.q26",
+        "slot.q27",
+        "slot.q28",
+        "slot.q29",
+        "slot.q30",
+        "slot.q31",
+        "slot.q32",
+        "slot.q37",
+        "slot.q6",
+        "slot.q8",
+        "slot.q9",
+        "slot.q10",
+        "slot.q19",
+        "slot.q21",
+        "slot.q22",
+        "slot.q23",
+        "slot.q1",
+        "slot.q2",
+        "slot.q7",
+        "slot.q20",
+        "slot.q33",
+        "slot.q34",
+        "slot.q35",
+        "slot.q39",
+        "slot.q40"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "□ 43.",
+        "style_role": "question",
+        "x": 14.0,
+        "y": 25.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "두 물병에 물을 가득 채운 후 모양과 크기가 같은 컵에 각각 옮겨 담았습니다. 바르게 설명했으면 ○표, 그렇지 않으면 ×표를 선택하세요.",
+        "style_role": "question",
+        "x": 63.0,
+        "y": 28.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q3",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 119.0,
+        "y": 90.0,
+        "width": 27.0,
+        "height": 112.0
+      }
+    },
+    {
+      "id": "slot.q4",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 119.0,
+        "y": 90.0,
+        "width": 27.0,
+        "height": 112.0
+      }
+    },
+    {
+      "id": "slot.q5",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 132.5,
+        "cy": 90.0,
+        "r": 13.0,
+        "fill": "#FFFFFF"
+      }
+    },
+    {
+      "id": "slot.q6",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 119.0,
+        "y1": 90.0,
+        "x2": 146.0,
+        "y2": 90.0
+      }
+    },
+    {
+      "id": "slot.q7",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "가",
+        "style_role": "label",
+        "x": 124.0,
+        "y": 162.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q8",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 159.0,
+        "y1": 143.0,
+        "x2": 191.0,
+        "y2": 143.0
+      }
+    },
+    {
+      "id": "slot.q9",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 191.0,
+        "y1": 143.0,
+        "x2": 203.0,
+        "y2": 143.0
+      }
+    },
+    {
+      "id": "slot.q10",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 159.0,
+        "y1": 143.0,
+        "x2": 203.0,
+        "y2": 143.0
+      }
+    },
+    {
+      "id": "slot.q11",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 214.0,
+        "y": 108.0,
+        "width": 22.0,
+        "height": 30.0
+      }
+    },
+    {
+      "id": "slot.q12",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 242.0,
+        "y": 108.0,
+        "width": 22.0,
+        "height": 30.0
+      }
+    },
+    {
+      "id": "slot.q13",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 270.0,
+        "y": 108.0,
+        "width": 22.0,
+        "height": 30.0
+      }
+    },
+    {
+      "id": "slot.q14",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 298.0,
+        "y": 108.0,
+        "width": 22.0,
+        "height": 30.0
+      }
+    },
+    {
+      "id": "slot.q15",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 326.0,
+        "y": 108.0,
+        "width": 22.0,
+        "height": 30.0
+      }
+    },
+    {
+      "id": "slot.q16",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 514.0,
+        "y": 88.0,
+        "width": 27.0,
+        "height": 112.0
+      }
+    },
+    {
+      "id": "slot.q17",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 514.0,
+        "y": 88.0,
+        "width": 27.0,
+        "height": 112.0
+      }
+    },
+    {
+      "id": "slot.q18",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 527.5,
+        "cy": 88.0,
+        "r": 13.0,
+        "fill": "#FFFFFF"
+      }
+    },
+    {
+      "id": "slot.q19",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 514.0,
+        "y1": 88.0,
+        "x2": 541.0,
+        "y2": 88.0
+      }
+    },
+    {
+      "id": "slot.q20",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "나",
+        "style_role": "label",
+        "x": 519.0,
+        "y": 160.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q21",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 555.0,
+        "y1": 141.0,
+        "x2": 587.0,
+        "y2": 141.0
+      }
+    },
+    {
+      "id": "slot.q22",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 587.0,
+        "y1": 141.0,
+        "x2": 599.0,
+        "y2": 141.0
+      }
+    },
+    {
+      "id": "slot.q23",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 555.0,
+        "y1": 141.0,
+        "x2": 599.0,
+        "y2": 141.0
+      }
+    },
+    {
+      "id": "slot.q24",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 507.0,
+        "y": 85.0,
+        "width": 44.0,
+        "height": 6.0
+      }
+    },
+    {
+      "id": "slot.q25",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 519.0,
+        "y": 84.0,
+        "width": 19.0,
+        "height": 10.0
+      }
+    },
+    {
+      "id": "slot.q26",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 543.0,
+        "y": 86.0,
+        "width": 10.0,
+        "height": 39.0
+      }
+    },
+    {
+      "id": "slot.q27",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 619.0,
+        "y": 108.0,
+        "width": 22.0,
+        "height": 30.0
+      }
+    },
+    {
+      "id": "slot.q28",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 647.0,
+        "y": 108.0,
+        "width": 22.0,
+        "height": 30.0
+      }
+    },
+    {
+      "id": "slot.q29",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 675.0,
+        "y": 108.0,
+        "width": 22.0,
+        "height": 30.0
+      }
+    },
+    {
+      "id": "slot.q30",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 703.0,
+        "y": 108.0,
+        "width": 22.0,
+        "height": 30.0
+      }
+    },
+    {
+      "id": "slot.q31",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 731.0,
+        "y": 108.0,
+        "width": 22.0,
+        "height": 30.0
+      }
+    },
+    {
+      "id": "slot.q32",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 759.0,
+        "y": 108.0,
+        "width": 22.0,
+        "height": 30.0
+      }
+    },
+    {
+      "id": "slot.q33",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "나 물병이 컵 1개만큼 물이 더 들어갑니다.",
+        "style_role": "question",
+        "x": 237.0,
+        "y": 235.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q34",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "○",
+        "style_role": "choice",
+        "x": 33.0,
+        "y": 265.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q35",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "×",
+        "style_role": "choice",
+        "x": 33.0,
+        "y": 294.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q37",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 73.0,
+        "cy": 332.0,
+        "r": 10.0,
+        "fill": "#FFFFFF"
+      }
+    },
+    {
+      "id": "slot.q39",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "→",
+        "style_role": "question",
+        "x": 18.0,
+        "y": 410.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q40",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "나 물병이 가 물병보다 컵 6 - 5 = 1(개)만큼 물이 더 들어갑니다.",
+        "style_role": "question",
+        "x": 69.0,
+        "y": 411.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q3",
+    "slot.q4",
+    "slot.q5",
+    "slot.q11",
+    "slot.q12",
+    "slot.q13",
+    "slot.q14",
+    "slot.q15",
+    "slot.q16",
+    "slot.q17",
+    "slot.q18",
+    "slot.q24",
+    "slot.q25",
+    "slot.q26",
+    "slot.q27",
+    "slot.q28",
+    "slot.q29",
+    "slot.q30",
+    "slot.q31",
+    "slot.q32",
+    "slot.q37",
+    "slot.q6",
+    "slot.q8",
+    "slot.q9",
+    "slot.q10",
+    "slot.q19",
+    "slot.q21",
+    "slot.q22",
+    "slot.q23",
+    "slot.q1",
+    "slot.q2",
+    "slot.q7",
+    "slot.q20",
+    "slot.q33",
+    "slot.q34",
+    "slot.q35",
+    "slot.q39",
+    "slot.q40"
+  ]
+}

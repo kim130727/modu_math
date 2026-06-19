@@ -9,7 +9,7 @@ def build_problem_template() -> ProblemTemplate:
         canvas=Canvas(width=700, height=350, coordinate_mode="logical"),
         regions=(
             Region(
-                id="region.stem", role="stem", flow="absolute", slot_ids=("slot.q1",)
+                id="region.stem", role="stem", flow="absolute", slot_ids=("slot.q1",'slot.inserted.text_box.1', 'slot.inserted.calloutRect.1')
             ),
             Region(
                 id="region.view_box",
@@ -32,8 +32,7 @@ def build_problem_template() -> ProblemTemplate:
                 ),
             ),
         ),
-        slots=(
-            RectSlot(
+        slots=(RectSlot(
                 id="slot.view_box",
                 prompt="",
                 x = 145, y = 50, width=379.0,
@@ -85,9 +84,7 @@ def build_problem_template() -> ProblemTemplate:
                 text="526 × 3",
                 style_role="equation",
                 x = 365, y = 230, font_size=28,
-            ),
-            
-        ),
+            ),TextBoxSlot(id = 'slot.inserted.text_box.1', prompt = '', text = '텍스트', x = 240, y = 140, width = 220, height = 70, font_size = 24, fill = '#111827'), PathSlot(id = 'slot.inserted.calloutRect.1', prompt = '', d = 'M 290 130 L 410 130 L 410 195 L 370 195 L 345 215 L 350 195 L 290 195 Z', fill = '#ffffff', stroke = '#111827', stroke_width = 1.5)),
         diagrams=(),
         groups=(),
         constraints=(),

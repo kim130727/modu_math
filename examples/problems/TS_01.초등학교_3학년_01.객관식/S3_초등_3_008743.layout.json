@@ -1,0 +1,1062 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008743",
+  "title": "색칠한 부분을 분수로 나타내기",
+  "canvas": {
+    "width": 873,
+    "height": 492,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.diagram.frame",
+        "slot.dia.1",
+        "slot.dia.2",
+        "slot.dia.3",
+        "slot.dia.4",
+        "slot.dia.5",
+        "slot.dia.6",
+        "slot.dia.7",
+        "slot.dia.8",
+        "slot.dia.9",
+        "slot.dia.10",
+        "slot.dia.11",
+        "slot.dia.12",
+        "slot.dia.13",
+        "slot.dia.14",
+        "slot.dia.15",
+        "slot.dia.16",
+        "slot.dia.17",
+        "slot.dia.18",
+        "slot.dia.19",
+        "slot.dia.20",
+        "slot.dia.21",
+        "slot.dia.22",
+        "slot.dia.23",
+        "slot.dia.24",
+        "slot.q.num",
+        "slot.q.text"
+      ]
+    },
+    {
+      "id": "region.choices",
+      "role": "choices",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice.1.num",
+        "slot.choice.1.frac",
+        "slot.choice.1.sep",
+        "slot.choice.1.den",
+        "slot.choice.2.num",
+        "slot.choice.2.frac",
+        "slot.choice.2.sep",
+        "slot.choice.2.den",
+        "slot.choice.3.num",
+        "slot.choice.3.frac",
+        "slot.choice.3.sep",
+        "slot.choice.3.den",
+        "slot.choice.4.num",
+        "slot.choice.4.frac",
+        "slot.choice.4.sep",
+        "slot.choice.4.den",
+        "slot.choice.5.num",
+        "slot.choice.5.frac",
+        "slot.choice.5.sep",
+        "slot.choice.5.den"
+      ]
+    },
+    {
+      "id": "region.meta",
+      "role": "meta",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q.num",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "36.",
+        "style_role": "question",
+        "x": 8.0,
+        "y": 28.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "그림을 보고 색칠한 부분을 분수로 바르게 나타낸 것을 고르세요.",
+        "style_role": "question",
+        "x": 48.0,
+        "y": 28.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.diagram.frame",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 286.0,
+        "y": 46.0,
+        "width": 402.0,
+        "height": 170.0,
+        "stroke": "#B8D0E8",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.dia.1",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            339.0,
+            77.0
+          ],
+          [
+            360.0,
+            98.0
+          ],
+          [
+            339.0,
+            119.0
+          ],
+          [
+            318.0,
+            98.0
+          ]
+        ],
+        "stroke": "#333333",
+        "fill": "#D46A12"
+      }
+    },
+    {
+      "id": "slot.dia.2",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            372.0,
+            77.0
+          ],
+          [
+            393.0,
+            98.0
+          ],
+          [
+            372.0,
+            119.0
+          ],
+          [
+            351.0,
+            98.0
+          ]
+        ],
+        "stroke": "#333333",
+        "fill": "#D46A12"
+      }
+    },
+    {
+      "id": "slot.dia.3",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            405.0,
+            77.0
+          ],
+          [
+            426.0,
+            98.0
+          ],
+          [
+            405.0,
+            119.0
+          ],
+          [
+            384.0,
+            98.0
+          ]
+        ],
+        "stroke": "#333333",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.dia.4",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            438.0,
+            77.0
+          ],
+          [
+            459.0,
+            98.0
+          ],
+          [
+            438.0,
+            119.0
+          ],
+          [
+            417.0,
+            98.0
+          ]
+        ],
+        "stroke": "#333333",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.dia.5",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            471.0,
+            77.0
+          ],
+          [
+            492.0,
+            98.0
+          ],
+          [
+            471.0,
+            119.0
+          ],
+          [
+            450.0,
+            98.0
+          ]
+        ],
+        "stroke": "#333333",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.dia.6",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            504.0,
+            77.0
+          ],
+          [
+            525.0,
+            98.0
+          ],
+          [
+            504.0,
+            119.0
+          ],
+          [
+            483.0,
+            98.0
+          ]
+        ],
+        "stroke": "#333333",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.dia.7",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            537.0,
+            77.0
+          ],
+          [
+            558.0,
+            98.0
+          ],
+          [
+            537.0,
+            119.0
+          ],
+          [
+            516.0,
+            98.0
+          ]
+        ],
+        "stroke": "#333333",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.dia.8",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            570.0,
+            77.0
+          ],
+          [
+            591.0,
+            98.0
+          ],
+          [
+            570.0,
+            119.0
+          ],
+          [
+            549.0,
+            98.0
+          ]
+        ],
+        "stroke": "#333333",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.dia.9",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            339.0,
+            111.0
+          ],
+          [
+            360.0,
+            132.0
+          ],
+          [
+            339.0,
+            153.0
+          ],
+          [
+            318.0,
+            132.0
+          ]
+        ],
+        "stroke": "#333333",
+        "fill": "#D46A12"
+      }
+    },
+    {
+      "id": "slot.dia.10",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            372.0,
+            111.0
+          ],
+          [
+            393.0,
+            132.0
+          ],
+          [
+            372.0,
+            153.0
+          ],
+          [
+            351.0,
+            132.0
+          ]
+        ],
+        "stroke": "#333333",
+        "fill": "#D46A12"
+      }
+    },
+    {
+      "id": "slot.dia.11",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            405.0,
+            111.0
+          ],
+          [
+            426.0,
+            132.0
+          ],
+          [
+            405.0,
+            153.0
+          ],
+          [
+            384.0,
+            132.0
+          ]
+        ],
+        "stroke": "#333333",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.dia.12",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            438.0,
+            111.0
+          ],
+          [
+            459.0,
+            132.0
+          ],
+          [
+            438.0,
+            153.0
+          ],
+          [
+            417.0,
+            132.0
+          ]
+        ],
+        "stroke": "#333333",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.dia.13",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            471.0,
+            111.0
+          ],
+          [
+            492.0,
+            132.0
+          ],
+          [
+            471.0,
+            153.0
+          ],
+          [
+            450.0,
+            132.0
+          ]
+        ],
+        "stroke": "#333333",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.dia.14",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            504.0,
+            111.0
+          ],
+          [
+            525.0,
+            132.0
+          ],
+          [
+            504.0,
+            153.0
+          ],
+          [
+            483.0,
+            132.0
+          ]
+        ],
+        "stroke": "#333333",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.dia.15",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            537.0,
+            111.0
+          ],
+          [
+            558.0,
+            132.0
+          ],
+          [
+            537.0,
+            153.0
+          ],
+          [
+            516.0,
+            132.0
+          ]
+        ],
+        "stroke": "#333333",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.dia.16",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            570.0,
+            111.0
+          ],
+          [
+            591.0,
+            132.0
+          ],
+          [
+            570.0,
+            153.0
+          ],
+          [
+            549.0,
+            132.0
+          ]
+        ],
+        "stroke": "#333333",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.dia.17",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            339.0,
+            145.0
+          ],
+          [
+            360.0,
+            166.0
+          ],
+          [
+            339.0,
+            187.0
+          ],
+          [
+            318.0,
+            166.0
+          ]
+        ],
+        "stroke": "#333333",
+        "fill": "#D46A12"
+      }
+    },
+    {
+      "id": "slot.dia.18",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            372.0,
+            145.0
+          ],
+          [
+            393.0,
+            166.0
+          ],
+          [
+            372.0,
+            187.0
+          ],
+          [
+            351.0,
+            166.0
+          ]
+        ],
+        "stroke": "#333333",
+        "fill": "#D46A12"
+      }
+    },
+    {
+      "id": "slot.dia.19",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            405.0,
+            145.0
+          ],
+          [
+            426.0,
+            166.0
+          ],
+          [
+            405.0,
+            187.0
+          ],
+          [
+            384.0,
+            166.0
+          ]
+        ],
+        "stroke": "#333333",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.dia.20",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            438.0,
+            145.0
+          ],
+          [
+            459.0,
+            166.0
+          ],
+          [
+            438.0,
+            187.0
+          ],
+          [
+            417.0,
+            166.0
+          ]
+        ],
+        "stroke": "#333333",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.dia.21",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            471.0,
+            145.0
+          ],
+          [
+            492.0,
+            166.0
+          ],
+          [
+            471.0,
+            187.0
+          ],
+          [
+            450.0,
+            166.0
+          ]
+        ],
+        "stroke": "#333333",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.dia.22",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            504.0,
+            145.0
+          ],
+          [
+            525.0,
+            166.0
+          ],
+          [
+            504.0,
+            187.0
+          ],
+          [
+            483.0,
+            166.0
+          ]
+        ],
+        "stroke": "#333333",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.dia.23",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            537.0,
+            145.0
+          ],
+          [
+            558.0,
+            166.0
+          ],
+          [
+            537.0,
+            187.0
+          ],
+          [
+            516.0,
+            166.0
+          ]
+        ],
+        "stroke": "#333333",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.dia.24",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            570.0,
+            145.0
+          ],
+          [
+            591.0,
+            166.0
+          ],
+          [
+            570.0,
+            187.0
+          ],
+          [
+            549.0,
+            166.0
+          ]
+        ],
+        "stroke": "#333333",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.choice.1.num",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "①",
+        "style_role": "choice",
+        "x": 30.0,
+        "y": 274.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice.1.frac",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "1",
+        "style_role": "choice",
+        "x": 54.0,
+        "y": 254.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice.1.sep",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "―",
+        "style_role": "choice",
+        "x": 56.0,
+        "y": 277.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice.1.den",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "24",
+        "style_role": "choice",
+        "x": 49.0,
+        "y": 307.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice.2.num",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "②",
+        "style_role": "choice",
+        "x": 282.0,
+        "y": 274.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice.2.frac",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "1",
+        "style_role": "choice",
+        "x": 306.0,
+        "y": 254.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice.2.sep",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "―",
+        "style_role": "choice",
+        "x": 308.0,
+        "y": 277.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice.2.den",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "12",
+        "style_role": "choice",
+        "x": 301.0,
+        "y": 307.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice.3.num",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "③",
+        "style_role": "choice",
+        "x": 522.0,
+        "y": 274.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice.3.frac",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "1",
+        "style_role": "choice",
+        "x": 546.0,
+        "y": 254.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice.3.sep",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "―",
+        "style_role": "choice",
+        "x": 548.0,
+        "y": 277.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice.3.den",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "6",
+        "style_role": "choice",
+        "x": 543.0,
+        "y": 307.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice.4.num",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "④",
+        "style_role": "choice",
+        "x": 30.0,
+        "y": 374.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice.4.frac",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "1",
+        "style_role": "choice",
+        "x": 54.0,
+        "y": 354.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice.4.sep",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "―",
+        "style_role": "choice",
+        "x": 56.0,
+        "y": 377.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice.4.den",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "4",
+        "style_role": "choice",
+        "x": 53.0,
+        "y": 407.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice.5.num",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "⑤",
+        "style_role": "choice",
+        "x": 282.0,
+        "y": 374.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice.5.frac",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "1",
+        "style_role": "choice",
+        "x": 306.0,
+        "y": 354.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice.5.sep",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "―",
+        "style_role": "choice",
+        "x": 308.0,
+        "y": 377.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice.5.den",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "3",
+        "style_role": "choice",
+        "x": 303.0,
+        "y": 407.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.diagram.frame",
+    "slot.dia.1",
+    "slot.dia.2",
+    "slot.dia.3",
+    "slot.dia.4",
+    "slot.dia.5",
+    "slot.dia.6",
+    "slot.dia.7",
+    "slot.dia.8",
+    "slot.dia.9",
+    "slot.dia.10",
+    "slot.dia.11",
+    "slot.dia.12",
+    "slot.dia.13",
+    "slot.dia.14",
+    "slot.dia.15",
+    "slot.dia.16",
+    "slot.dia.17",
+    "slot.dia.18",
+    "slot.dia.19",
+    "slot.dia.20",
+    "slot.dia.21",
+    "slot.dia.22",
+    "slot.dia.23",
+    "slot.dia.24",
+    "slot.q.num",
+    "slot.q.text",
+    "region.choices",
+    "slot.choice.1.num",
+    "slot.choice.1.frac",
+    "slot.choice.1.sep",
+    "slot.choice.1.den",
+    "slot.choice.2.num",
+    "slot.choice.2.frac",
+    "slot.choice.2.sep",
+    "slot.choice.2.den",
+    "slot.choice.3.num",
+    "slot.choice.3.frac",
+    "slot.choice.3.sep",
+    "slot.choice.3.den",
+    "slot.choice.4.num",
+    "slot.choice.4.frac",
+    "slot.choice.4.sep",
+    "slot.choice.4.den",
+    "slot.choice.5.num",
+    "slot.choice.5.frac",
+    "slot.choice.5.sep",
+    "slot.choice.5.den",
+    "region.meta"
+  ]
+}

@@ -1,0 +1,243 @@
+{
+  "problem_id": "S3_초등_3_008748",
+  "view_box": {
+    "width": 960.0,
+    "height": 460.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.bottle.top.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 430.0,
+        "y": 85.0,
+        "width": 150.0,
+        "height": 95.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.bottle.top",
+      "refs": {
+        "layout_slot_id": "slot.bottle.top"
+      }
+    },
+    {
+      "id": "slot.bottle.bottom.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 490.0,
+        "y": 120.0,
+        "width": 82.0,
+        "height": 150.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.bottle.bottom",
+      "refs": {
+        "layout_slot_id": "slot.bottle.bottom"
+      }
+    },
+    {
+      "id": "slot.bottle.top.label.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 482.0,
+        "cy": 114.0,
+        "r": 13.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#FFFFFF"
+      },
+      "source_ref": "slot.bottle.top.label",
+      "refs": {
+        "layout_slot_id": "slot.bottle.top.label"
+      }
+    },
+    {
+      "id": "slot.bottle.bottom.label.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 531.0,
+        "cy": 195.0,
+        "r": 13.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#FFFFFF"
+      },
+      "source_ref": "slot.bottle.bottom.label",
+      "refs": {
+        "layout_slot_id": "slot.bottle.bottom.label"
+      }
+    },
+    {
+      "id": "slot.bottle.top.neck1.line",
+      "type": "line",
+      "attributes": {
+        "x1": 503.0,
+        "y1": 103.0,
+        "x2": 515.0,
+        "y2": 116.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.bottle.top.neck1",
+      "refs": {
+        "layout_slot_id": "slot.bottle.top.neck1"
+      }
+    },
+    {
+      "id": "slot.bottle.top.neck2.line",
+      "type": "line",
+      "attributes": {
+        "x1": 515.0,
+        "y1": 116.0,
+        "x2": 517.0,
+        "y2": 133.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.bottle.top.neck2",
+      "refs": {
+        "layout_slot_id": "slot.bottle.top.neck2"
+      }
+    },
+    {
+      "id": "slot.bottle.bottom.neck1.line",
+      "type": "line",
+      "attributes": {
+        "x1": 519.0,
+        "y1": 122.0,
+        "x2": 519.0,
+        "y2": 137.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.bottle.bottom.neck1",
+      "refs": {
+        "layout_slot_id": "slot.bottle.bottom.neck1"
+      }
+    },
+    {
+      "id": "slot.bottle.bottom.neck2.line",
+      "type": "line",
+      "attributes": {
+        "x1": 519.0,
+        "y1": 137.0,
+        "x2": 505.0,
+        "y2": 146.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.bottle.bottom.neck2",
+      "refs": {
+        "layout_slot_id": "slot.bottle.bottom.neck2"
+      }
+    },
+    {
+      "id": "slot.qnum.text",
+      "type": "text",
+      "attributes": {
+        "x": 18.0,
+        "y": 34.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.qnum",
+      "refs": {
+        "layout_slot_id": "slot.qnum"
+      },
+      "text": "45."
+    },
+    {
+      "id": "slot.q1.text",
+      "type": "text",
+      "attributes": {
+        "x": 90.0,
+        "y": 34.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q1",
+      "refs": {
+        "layout_slot_id": "slot.q1"
+      },
+      "text": "ㄱ 물병에 물을 가득 채운 후 ㄴ 물병에 옮겨 담았습니다. 그림과 같이"
+    },
+    {
+      "id": "slot.q2.text",
+      "type": "text",
+      "attributes": {
+        "x": 18.0,
+        "y": 68.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q2",
+      "refs": {
+        "layout_slot_id": "slot.q2"
+      },
+      "text": "물을 채웠을 때 들이가 더 많은 물병을 선택해 보세요."
+    },
+    {
+      "id": "slot.choice.text",
+      "type": "text",
+      "attributes": {
+        "x": 690.0,
+        "y": 292.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice",
+      "refs": {
+        "layout_slot_id": "slot.choice"
+      },
+      "text": "( ㄱ 물병, ㄴ 물병 )"
+    },
+    {
+      "id": "slot.bottle.top.text.text",
+      "type": "text",
+      "attributes": {
+        "x": 475.0,
+        "y": 122.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 22
+      },
+      "source_ref": "slot.bottle.top.text",
+      "refs": {
+        "layout_slot_id": "slot.bottle.top.text"
+      },
+      "text": "ㄱ"
+    },
+    {
+      "id": "slot.bottle.bottom.text.text",
+      "type": "text",
+      "attributes": {
+        "x": 524.0,
+        "y": 203.0,
+        "max_width": 832.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 22
+      },
+      "source_ref": "slot.bottle.bottom.text",
+      "refs": {
+        "layout_slot_id": "slot.bottle.bottom.text"
+      },
+      "text": "ㄴ"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

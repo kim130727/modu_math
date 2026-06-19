@@ -1,0 +1,105 @@
+{
+  "problem_id": "S3_초등_3_008725",
+  "problem_type": "도형_비교",
+  "metadata": {
+    "title": "원의 중심의 개수가 가장 많은 모양",
+    "tags": [
+      "도형",
+      "비교",
+      "원의중심",
+      "초등3"
+    ],
+    "instruction": "보기의 중심 개수를 비교하여 정답을 고른다.",
+    "question": "원의 중심의 개수가 가장 많은 모양을 고르세요.",
+    "required_layout_ids": [
+      "slot.choice.1.shape",
+      "slot.choice.2.shape",
+      "slot.choice.3.shape",
+      "slot.choice.4.shape",
+      "slot.choice.5.shape",
+      "slot.expl.1.shape",
+      "slot.expl.2.shape",
+      "slot.expl.3.shape",
+      "slot.expl.4.shape",
+      "slot.expl.5.shape"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.choice_1",
+        "type": "figure",
+        "label": "①"
+      },
+      {
+        "id": "obj.choice_2",
+        "type": "figure",
+        "label": "②"
+      },
+      {
+        "id": "obj.choice_3",
+        "type": "figure",
+        "label": "③"
+      },
+      {
+        "id": "obj.choice_4",
+        "type": "figure",
+        "label": "④"
+      },
+      {
+        "id": "obj.choice_5",
+        "type": "figure",
+        "label": "⑤"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.choice_1",
+          "obj.choice_2",
+          "obj.choice_3",
+          "obj.choice_4",
+          "obj.choice_5"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.compare_1_2",
+          "rel.compare_1_3",
+          "rel.compare_1_4",
+          "rel.compare_1_5"
+        ]
+      },
+      "plan": {
+        "method": "visual_comparison",
+        "description": "각 보기의 중심 개수를 비교하여 가장 큰 값을 찾는다."
+      },
+      "execute": {
+        "expected_operations": [
+          "compare_counts",
+          "select_maximum"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "selected_choice_matches_highest_count"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "choice",
+      "description": "원의 중심의 개수가 가장 많은 모양"
+    },
+    "value": 1,
+    "unit": ""
+  }
+}

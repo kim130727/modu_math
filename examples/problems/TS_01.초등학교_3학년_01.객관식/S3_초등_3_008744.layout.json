@@ -1,0 +1,225 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008744",
+  "title": "들이 비교",
+  "canvas": {
+    "width": 940,
+    "height": 460,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q1",
+        "slot.q2"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.diagram.bottle1",
+        "slot.diagram.bottle2",
+        "slot.diagram.water",
+        "slot.diagram.label1",
+        "slot.diagram.label2",
+        "slot.diagram.arrow"
+      ]
+    },
+    {
+      "id": "region.choice",
+      "role": "choice",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q5"
+      ]
+    },
+    {
+      "id": "region.explain",
+      "role": "explanation",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q6",
+        "slot.q7"
+      ]
+    },
+    {
+      "id": "region.footer",
+      "role": "footer",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q8"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "□ 40. 그림과 같이 ㉠ 물병에 물을 가득 채운 후 ㉡ 물병에 옮겨 담아 ㉠ 물병과 ㉡ 물병의 들이를 비교하려고 합니다. 알맞은 말을 선택하세요.",
+        "style_role": "question",
+        "x": 6.0,
+        "y": 26.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "들이가 더 많은 것은 ( ㉠ 물병, ㉡ 물병 )입니다.",
+        "style_role": "question",
+        "x": 4.0,
+        "y": 306.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.diagram.bottle1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 392.0,
+        "y": 64.0,
+        "width": 126.0,
+        "height": 56.0
+      }
+    },
+    {
+      "id": "slot.diagram.bottle2",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 484.0,
+        "y": 112.0,
+        "width": 96.0,
+        "height": 156.0
+      }
+    },
+    {
+      "id": "slot.diagram.water",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 494.0,
+        "y": 164.0,
+        "width": 76.0,
+        "height": 86.0
+      }
+    },
+    {
+      "id": "slot.diagram.label1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "가",
+        "style_role": "label",
+        "x": 436.0,
+        "y": 96.0,
+        "font_size": 24
+      }
+    },
+    {
+      "id": "slot.diagram.label2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "나",
+        "style_role": "label",
+        "x": 522.0,
+        "y": 222.0,
+        "font_size": 24
+      }
+    },
+    {
+      "id": "slot.diagram.arrow",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "",
+        "style_role": "label",
+        "x": 555.0,
+        "y": 102.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q5",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "㉡ 물병",
+        "style_role": "footer",
+        "x": 1.0,
+        "y": 452.0,
+        "font_size": 24
+      }
+    },
+    {
+      "id": "slot.q6",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "",
+        "style_role": "label",
+        "x": 560.0,
+        "y": 90.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q7",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "",
+        "style_role": "label",
+        "x": 0.0,
+        "y": 0.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q8",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "",
+        "style_role": "label",
+        "x": 0.0,
+        "y": 0.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q1",
+    "slot.q2",
+    "region.diagram",
+    "slot.diagram.bottle1",
+    "slot.diagram.bottle2",
+    "slot.diagram.water",
+    "slot.diagram.label1",
+    "slot.diagram.label2",
+    "slot.diagram.arrow",
+    "region.choice",
+    "slot.q5",
+    "region.explain",
+    "slot.q6",
+    "slot.q7",
+    "region.footer",
+    "slot.q8"
+  ]
+}

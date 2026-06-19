@@ -1,0 +1,605 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008722",
+  "title": "원을 그린 규칙을 바르게 설명한 친구의 이름을 선택하세요",
+  "canvas": {
+    "width": 960,
+    "height": 540,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.desc_box",
+        "slot.diagram.frame",
+        "slot.circle.l1",
+        "slot.circle.l2",
+        "slot.circle.c1",
+        "slot.circle.r2",
+        "slot.circle.r1",
+        "slot.grid.v1",
+        "slot.grid.v2",
+        "slot.grid.v3",
+        "slot.grid.v4",
+        "slot.grid.v5",
+        "slot.grid.v6",
+        "slot.grid.v7",
+        "slot.grid.v8",
+        "slot.grid.v9",
+        "slot.grid.v10",
+        "slot.grid.v11",
+        "slot.grid.v12",
+        "slot.grid.v13",
+        "slot.grid.v14",
+        "slot.grid.v15",
+        "slot.grid.v16",
+        "slot.grid.h1",
+        "slot.grid.h2",
+        "slot.grid.h3",
+        "slot.grid.h4",
+        "slot.grid.h5",
+        "slot.grid.h6",
+        "slot.grid.h7",
+        "slot.grid.h8",
+        "slot.grid.h9",
+        "slot.grid.h10",
+        "slot.grid.h11",
+        "slot.pt.l",
+        "slot.pt.a",
+        "slot.pt.c",
+        "slot.pt.d",
+        "slot.pt.r",
+        "slot.q1",
+        "slot.q2",
+        "slot.choice",
+        "slot.desc1",
+        "slot.desc2"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "25.",
+        "style_role": "question",
+        "x": 8.0,
+        "y": 26.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "원을 그린 규칙을 바르게 설명한 친구의 이름을 선택하세요.",
+        "style_role": "question",
+        "x": 52.0,
+        "y": 26.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.diagram.frame",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 340.0,
+        "y": 54.0,
+        "width": 340.0,
+        "height": 226.0
+      }
+    },
+    {
+      "id": "slot.grid.v1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 340.0,
+        "y1": 54.0,
+        "x2": 340.0,
+        "y2": 280.0
+      }
+    },
+    {
+      "id": "slot.grid.v2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 361.3,
+        "y1": 54.0,
+        "x2": 361.3,
+        "y2": 280.0
+      }
+    },
+    {
+      "id": "slot.grid.v3",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 382.6,
+        "y1": 54.0,
+        "x2": 382.6,
+        "y2": 280.0
+      }
+    },
+    {
+      "id": "slot.grid.v4",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 403.9,
+        "y1": 54.0,
+        "x2": 403.9,
+        "y2": 280.0
+      }
+    },
+    {
+      "id": "slot.grid.v5",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 425.2,
+        "y1": 54.0,
+        "x2": 425.2,
+        "y2": 280.0
+      }
+    },
+    {
+      "id": "slot.grid.v6",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 446.5,
+        "y1": 54.0,
+        "x2": 446.5,
+        "y2": 280.0
+      }
+    },
+    {
+      "id": "slot.grid.v7",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 467.8,
+        "y1": 54.0,
+        "x2": 467.8,
+        "y2": 280.0
+      }
+    },
+    {
+      "id": "slot.grid.v8",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 489.1,
+        "y1": 54.0,
+        "x2": 489.1,
+        "y2": 280.0
+      }
+    },
+    {
+      "id": "slot.grid.v9",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 510.4,
+        "y1": 54.0,
+        "x2": 510.4,
+        "y2": 280.0
+      }
+    },
+    {
+      "id": "slot.grid.v10",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 531.7,
+        "y1": 54.0,
+        "x2": 531.7,
+        "y2": 280.0
+      }
+    },
+    {
+      "id": "slot.grid.v11",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 553.0,
+        "y1": 54.0,
+        "x2": 553.0,
+        "y2": 280.0
+      }
+    },
+    {
+      "id": "slot.grid.v12",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 574.3,
+        "y1": 54.0,
+        "x2": 574.3,
+        "y2": 280.0
+      }
+    },
+    {
+      "id": "slot.grid.v13",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 595.6,
+        "y1": 54.0,
+        "x2": 595.6,
+        "y2": 280.0
+      }
+    },
+    {
+      "id": "slot.grid.v14",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 616.9,
+        "y1": 54.0,
+        "x2": 616.9,
+        "y2": 280.0
+      }
+    },
+    {
+      "id": "slot.grid.v15",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 638.2,
+        "y1": 54.0,
+        "x2": 638.2,
+        "y2": 280.0
+      }
+    },
+    {
+      "id": "slot.grid.v16",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 659.5,
+        "y1": 54.0,
+        "x2": 659.5,
+        "y2": 280.0
+      }
+    },
+    {
+      "id": "slot.grid.h1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 340.0,
+        "y1": 54.0,
+        "x2": 680.0,
+        "y2": 54.0
+      }
+    },
+    {
+      "id": "slot.grid.h2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 340.0,
+        "y1": 75.1,
+        "x2": 680.0,
+        "y2": 75.1
+      }
+    },
+    {
+      "id": "slot.grid.h3",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 340.0,
+        "y1": 96.2,
+        "x2": 680.0,
+        "y2": 96.2
+      }
+    },
+    {
+      "id": "slot.grid.h4",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 340.0,
+        "y1": 117.3,
+        "x2": 680.0,
+        "y2": 117.3
+      }
+    },
+    {
+      "id": "slot.grid.h5",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 340.0,
+        "y1": 138.4,
+        "x2": 680.0,
+        "y2": 138.4
+      }
+    },
+    {
+      "id": "slot.grid.h6",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 340.0,
+        "y1": 159.5,
+        "x2": 680.0,
+        "y2": 159.5
+      }
+    },
+    {
+      "id": "slot.grid.h7",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 340.0,
+        "y1": 180.6,
+        "x2": 680.0,
+        "y2": 180.6
+      }
+    },
+    {
+      "id": "slot.grid.h8",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 340.0,
+        "y1": 201.7,
+        "x2": 680.0,
+        "y2": 201.7
+      }
+    },
+    {
+      "id": "slot.grid.h9",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 340.0,
+        "y1": 222.8,
+        "x2": 680.0,
+        "y2": 222.8
+      }
+    },
+    {
+      "id": "slot.grid.h10",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 340.0,
+        "y1": 243.9,
+        "x2": 680.0,
+        "y2": 243.9
+      }
+    },
+    {
+      "id": "slot.grid.h11",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 340.0,
+        "y1": 265.0,
+        "x2": 680.0,
+        "y2": 265.0
+      }
+    },
+    {
+      "id": "slot.circle.l1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 387.0,
+        "cy": 160.0,
+        "r": 34.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.circle.l2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 441.0,
+        "cy": 160.0,
+        "r": 68.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.circle.c1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 493.0,
+        "cy": 160.0,
+        "r": 34.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.circle.r2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 547.0,
+        "cy": 160.0,
+        "r": 68.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.circle.r1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 600.0,
+        "cy": 160.0,
+        "r": 34.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.pt.l",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 387.0,
+        "cy": 160.0,
+        "r": 4.0,
+        "fill": "#d81b88"
+      }
+    },
+    {
+      "id": "slot.pt.a",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 441.0,
+        "cy": 160.0,
+        "r": 4.0,
+        "fill": "#d81b88"
+      }
+    },
+    {
+      "id": "slot.pt.c",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 493.0,
+        "cy": 160.0,
+        "r": 4.0,
+        "fill": "#d81b88"
+      }
+    },
+    {
+      "id": "slot.pt.d",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 547.0,
+        "cy": 160.0,
+        "r": 4.0,
+        "fill": "#d81b88"
+      }
+    },
+    {
+      "id": "slot.pt.r",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 600.0,
+        "cy": 160.0,
+        "r": 4.0,
+        "fill": "#d81b88"
+      }
+    },
+    {
+      "id": "slot.desc_box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 30.0,
+        "y": 286.0,
+        "width": 900.0,
+        "height": 104.0
+      }
+    },
+    {
+      "id": "slot.desc1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "· 윤지: 원의 중심이 오른쪽으로 모눈 3칸씩 옮겨 갔어.",
+        "style_role": "body",
+        "x": 44.0,
+        "y": 322.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.desc2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "· 수진: 원의 반지름이 모눈 1칸, 2칸인 원을 반복하여 겹치도록 그렸어.",
+        "style_role": "body",
+        "x": 44.0,
+        "y": 358.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "( 윤지 , 수진 )",
+        "style_role": "body",
+        "x": 480.0,
+        "y": 420.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.desc_box",
+    "slot.diagram.frame",
+    "slot.circle.l1",
+    "slot.circle.l2",
+    "slot.circle.c1",
+    "slot.circle.r2",
+    "slot.circle.r1",
+    "slot.grid.v1",
+    "slot.grid.v2",
+    "slot.grid.v3",
+    "slot.grid.v4",
+    "slot.grid.v5",
+    "slot.grid.v6",
+    "slot.grid.v7",
+    "slot.grid.v8",
+    "slot.grid.v9",
+    "slot.grid.v10",
+    "slot.grid.v11",
+    "slot.grid.v12",
+    "slot.grid.v13",
+    "slot.grid.v14",
+    "slot.grid.v15",
+    "slot.grid.v16",
+    "slot.grid.h1",
+    "slot.grid.h2",
+    "slot.grid.h3",
+    "slot.grid.h4",
+    "slot.grid.h5",
+    "slot.grid.h6",
+    "slot.grid.h7",
+    "slot.grid.h8",
+    "slot.grid.h9",
+    "slot.grid.h10",
+    "slot.grid.h11",
+    "slot.pt.l",
+    "slot.pt.a",
+    "slot.pt.c",
+    "slot.pt.d",
+    "slot.pt.r",
+    "slot.q1",
+    "slot.q2",
+    "slot.choice",
+    "slot.desc1",
+    "slot.desc2"
+  ]
+}

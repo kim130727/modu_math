@@ -237,6 +237,8 @@ def _normalize_slot(slot: AuthoringSlot) -> dict[str, Any]:
             content["stroke"] = slot.stroke
         if slot.stroke_width is not None:
             content["stroke_width"] = float(slot.stroke_width)
+        if isinstance(slot.stroke_dasharray, str) and slot.stroke_dasharray:
+            content["stroke_dasharray"] = slot.stroke_dasharray
         if slot.rx is not None:
             content["rx"] = float(slot.rx)
         if slot.ry is not None:
@@ -288,6 +290,8 @@ def _normalize_slot(slot: AuthoringSlot) -> dict[str, Any]:
             content["stroke"] = slot.stroke
         if slot.stroke_width is not None:
             content["stroke_width"] = float(slot.stroke_width)
+        if isinstance(slot.stroke_dasharray, str) and slot.stroke_dasharray:
+            content["stroke_dasharray"] = slot.stroke_dasharray
         if isinstance(slot.fill, str):
             content["fill"] = slot.fill
         if isinstance(slot.transform, str) and slot.transform:
@@ -309,6 +313,8 @@ def _normalize_slot(slot: AuthoringSlot) -> dict[str, Any]:
             content["stroke"] = slot.stroke
         if slot.stroke_width is not None:
             content["stroke_width"] = float(slot.stroke_width)
+        if isinstance(slot.stroke_dasharray, str) and slot.stroke_dasharray:
+            content["stroke_dasharray"] = slot.stroke_dasharray
         if isinstance(slot.fill, str):
             content["fill"] = slot.fill
         if isinstance(slot.transform, str) and slot.transform:

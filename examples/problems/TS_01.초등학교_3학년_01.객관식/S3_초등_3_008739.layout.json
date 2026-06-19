@@ -1,0 +1,309 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008739",
+  "title": "집에서 가장 가까운 곳",
+  "canvas": {
+    "width": 960,
+    "height": 560,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.header",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.qmark",
+        "slot.qnum",
+        "slot.question"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.house.box",
+        "slot.bookstore.box",
+        "slot.bank.box",
+        "slot.school.box",
+        "slot.line.bookstore",
+        "slot.line.bank",
+        "slot.line.school",
+        "slot.house.label",
+        "slot.bookstore.label",
+        "slot.bank.label",
+        "slot.school.label",
+        "slot.dist.bookstore",
+        "slot.dist.bank",
+        "slot.dist.school",
+        "slot.option"
+      ]
+    },
+    {
+      "id": "region.answer",
+      "role": "answer",
+      "flow": "absolute",
+      "slot_ids": []
+    },
+    {
+      "id": "region.explanation",
+      "role": "explanation",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.qmark",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "□",
+        "style_role": "question",
+        "x": 10.0,
+        "y": 36.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.qnum",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "18.",
+        "style_role": "question",
+        "x": 36.0,
+        "y": 36.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.question",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "집에서 각 장소까지의 거리를 나타낸 것입니다. 집에서 가장 가까운 곳은 어디인지 선택하세요.",
+        "style_role": "question",
+        "x": 76.0,
+        "y": 36.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.house.box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 408.0,
+        "y": 136.0,
+        "width": 58.0,
+        "height": 34.0,
+        "stroke": "#C9B36A",
+        "fill": "#FFF6D5"
+      }
+    },
+    {
+      "id": "slot.bookstore.box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 258.0,
+        "y": 262.0,
+        "width": 50.0,
+        "height": 34.0,
+        "stroke": "#B7AED9",
+        "fill": "#EFEAFB"
+      }
+    },
+    {
+      "id": "slot.bank.box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 610.0,
+        "y": 246.0,
+        "width": 50.0,
+        "height": 34.0,
+        "stroke": "#D8C85A",
+        "fill": "#FFF3A6"
+      }
+    },
+    {
+      "id": "slot.school.box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 620.0,
+        "y": 140.0,
+        "width": 50.0,
+        "height": 34.0,
+        "stroke": "#B8B8B8",
+        "fill": "#F2F2F2"
+      }
+    },
+    {
+      "id": "slot.line.bookstore",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 437.0,
+        "y1": 170.0,
+        "x2": 283.0,
+        "y2": 279.0,
+        "stroke": "#222222",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.line.bank",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 437.0,
+        "y1": 170.0,
+        "x2": 635.0,
+        "y2": 263.0,
+        "stroke": "#222222",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.line.school",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 437.0,
+        "y1": 170.0,
+        "x2": 645.0,
+        "y2": 157.0,
+        "stroke": "#222222",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.house.label",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "집",
+        "style_role": "diagram_label",
+        "x": 396.0,
+        "y": 132.0,
+        "font_size": 22
+      }
+    },
+    {
+      "id": "slot.bookstore.label",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "서점",
+        "style_role": "diagram_label",
+        "x": 262.0,
+        "y": 316.0,
+        "font_size": 22
+      }
+    },
+    {
+      "id": "slot.bank.label",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "은행",
+        "style_role": "diagram_label",
+        "x": 626.0,
+        "y": 306.0,
+        "font_size": 22
+      }
+    },
+    {
+      "id": "slot.school.label",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "학교",
+        "style_role": "diagram_label",
+        "x": 636.0,
+        "y": 188.0,
+        "font_size": 22
+      }
+    },
+    {
+      "id": "slot.dist.bookstore",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "7 1/10 km",
+        "style_role": "diagram_label",
+        "x": 330.0,
+        "y": 216.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.dist.bank",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "69/10 km",
+        "style_role": "diagram_label",
+        "x": 506.0,
+        "y": 242.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.dist.school",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "7 3/10 km",
+        "style_role": "diagram_label",
+        "x": 508.0,
+        "y": 118.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.option",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "( 서점 , 은행 , 학교 )",
+        "style_role": "choice",
+        "x": 692.0,
+        "y": 330.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.header",
+    "slot.qmark",
+    "slot.qnum",
+    "slot.question",
+    "region.diagram",
+    "slot.house.box",
+    "slot.bookstore.box",
+    "slot.bank.box",
+    "slot.school.box",
+    "slot.line.bookstore",
+    "slot.line.bank",
+    "slot.line.school",
+    "slot.house.label",
+    "slot.bookstore.label",
+    "slot.bank.label",
+    "slot.school.label",
+    "slot.dist.bookstore",
+    "slot.dist.bank",
+    "slot.dist.school",
+    "slot.option",
+    "region.answer",
+    "region.explanation"
+  ]
+}

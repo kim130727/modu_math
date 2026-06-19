@@ -298,6 +298,8 @@ def _slot_kwargs(slot: TextSlot | TextBoxSlot | ChoiceSlot | BlankSlot | LabelSl
             out.append(("stroke", slot.stroke))
         if slot.stroke_width is not None:
             out.append(("stroke_width", slot.stroke_width))
+        if isinstance(slot.stroke_dasharray, str) and slot.stroke_dasharray:
+            out.append(("stroke_dasharray", slot.stroke_dasharray))
         if slot.rx is not None:
             out.append(("rx", slot.rx))
         if slot.ry is not None:
@@ -339,6 +341,8 @@ def _slot_kwargs(slot: TextSlot | TextBoxSlot | ChoiceSlot | BlankSlot | LabelSl
             out.append(("stroke", slot.stroke))
         if slot.stroke_width is not None:
             out.append(("stroke_width", slot.stroke_width))
+        if isinstance(slot.stroke_dasharray, str) and slot.stroke_dasharray:
+            out.append(("stroke_dasharray", slot.stroke_dasharray))
         if isinstance(slot.fill, str):
             out.append(("fill", slot.fill))
         if isinstance(slot.semantic_role, str) and slot.semantic_role:
@@ -355,6 +359,8 @@ def _slot_kwargs(slot: TextSlot | TextBoxSlot | ChoiceSlot | BlankSlot | LabelSl
             out.append(("stroke", slot.stroke))
         if slot.stroke_width is not None:
             out.append(("stroke_width", slot.stroke_width))
+        if isinstance(slot.stroke_dasharray, str) and slot.stroke_dasharray:
+            out.append(("stroke_dasharray", slot.stroke_dasharray))
         if isinstance(slot.fill, str):
             out.append(("fill", slot.fill))
         if isinstance(slot.semantic_role, str) and slot.semantic_role:
@@ -632,6 +638,8 @@ def _slot_expr(slot: TextSlot | TextBoxSlot | ChoiceSlot | BlankSlot | LabelSlot
             keywords.append(ast.keyword(arg="stroke", value=ast.Constant(value=slot.stroke)))
         if slot.stroke_width is not None:
             keywords.append(ast.keyword(arg="stroke_width", value=ast.Constant(value=slot.stroke_width)))
+        if isinstance(slot.stroke_dasharray, str) and slot.stroke_dasharray:
+            keywords.append(ast.keyword(arg="stroke_dasharray", value=ast.Constant(value=slot.stroke_dasharray)))
         if slot.rx is not None:
             keywords.append(ast.keyword(arg="rx", value=ast.Constant(value=slot.rx)))
         if slot.ry is not None:
@@ -671,6 +679,8 @@ def _slot_expr(slot: TextSlot | TextBoxSlot | ChoiceSlot | BlankSlot | LabelSlot
             keywords.append(ast.keyword(arg="stroke", value=ast.Constant(value=slot.stroke)))
         if slot.stroke_width is not None:
             keywords.append(ast.keyword(arg="stroke_width", value=ast.Constant(value=slot.stroke_width)))
+        if isinstance(slot.stroke_dasharray, str) and slot.stroke_dasharray:
+            keywords.append(ast.keyword(arg="stroke_dasharray", value=ast.Constant(value=slot.stroke_dasharray)))
         if isinstance(slot.fill, str):
             keywords.append(ast.keyword(arg="fill", value=ast.Constant(value=slot.fill)))
         if isinstance(slot.semantic_role, str) and slot.semantic_role:
@@ -692,6 +702,8 @@ def _slot_expr(slot: TextSlot | TextBoxSlot | ChoiceSlot | BlankSlot | LabelSlot
             keywords.append(ast.keyword(arg="stroke", value=ast.Constant(value=slot.stroke)))
         if slot.stroke_width is not None:
             keywords.append(ast.keyword(arg="stroke_width", value=ast.Constant(value=slot.stroke_width)))
+        if isinstance(slot.stroke_dasharray, str) and slot.stroke_dasharray:
+            keywords.append(ast.keyword(arg="stroke_dasharray", value=ast.Constant(value=slot.stroke_dasharray)))
         if isinstance(slot.fill, str):
             keywords.append(ast.keyword(arg="fill", value=ast.Constant(value=slot.fill)))
         if isinstance(slot.semantic_role, str) and slot.semantic_role:
@@ -961,6 +973,7 @@ def _slot_from_layout(
             height=float(_require_number(content.get("height"), f"slots[{index}].content.height")),
             stroke=_string(content.get("stroke"), None),
             stroke_width=_number_or_none(content.get("stroke_width")),
+            stroke_dasharray=_string(content.get("stroke_dasharray"), None),
             rx=_number_or_none(content.get("rx")),
             ry=_number_or_none(content.get("ry")),
             fill=_string(content.get("fill"), None),
@@ -988,6 +1001,7 @@ def _slot_from_layout(
             r=float(_require_number(content.get("r"), f"slots[{index}].content.r")),
             stroke=_string(content.get("stroke"), None),
             stroke_width=_number_or_none(content.get("stroke_width")),
+            stroke_dasharray=_string(content.get("stroke_dasharray"), None),
             fill=_string(content.get("fill"), None),
             semantic_role=_string(content.get("semantic_role"), None),
         )
@@ -1004,6 +1018,7 @@ def _slot_from_layout(
             points=tuple(points),
             stroke=_string(content.get("stroke"), None),
             stroke_width=_number_or_none(content.get("stroke_width")),
+            stroke_dasharray=_string(content.get("stroke_dasharray"), None),
             fill=_string(content.get("fill"), None),
             semantic_role=_string(content.get("semantic_role"), None),
         )

@@ -1,0 +1,639 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008737",
+  "title": "털실 길이 비교",
+  "canvas": {
+    "width": 960,
+    "height": 540,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.top",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.chk",
+        "slot.no",
+        "slot.q1",
+        "slot.q2",
+        "slot.q3",
+        "slot.q4"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.len1.axis",
+        "slot.len1.grid0",
+        "slot.len1.grid1",
+        "slot.len1.grid2",
+        "slot.len1.grid3",
+        "slot.len1.grid4",
+        "slot.len1.grid5",
+        "slot.len1.grid6",
+        "slot.len1.grid7",
+        "slot.len1.grid8",
+        "slot.len1.grid9",
+        "slot.len1.grid10",
+        "slot.len1.blue",
+        "slot.len2.axis",
+        "slot.len2.grid0",
+        "slot.len2.grid1",
+        "slot.len2.grid2",
+        "slot.len2.grid3",
+        "slot.len2.grid4",
+        "slot.len2.grid5",
+        "slot.len2.grid6",
+        "slot.len2.grid7",
+        "slot.len2.grid8",
+        "slot.len2.grid9",
+        "slot.len2.grid10",
+        "slot.len2.blue",
+        "slot.len1.label",
+        "slot.len1.zero",
+        "slot.len1.one",
+        "slot.len1.two",
+        "slot.len1.seven_over_seven",
+        "slot.len2.label",
+        "slot.len2.zero",
+        "slot.len2.one",
+        "slot.len2.two",
+        "slot.len2.seven_over_seven",
+        "slot.compare",
+        "slot.bottom",
+        "slot.bottom_partial"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.chk",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 8.0,
+        "y": 10.0,
+        "width": 12.0,
+        "height": 12.0
+      }
+    },
+    {
+      "id": "slot.no",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "94.",
+        "style_role": "question",
+        "x": 30.0,
+        "y": 24.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "재영이는 노란색 털실을 9/7 m 가지고 있고 보라색 털실을 1 3/7 m 가지고",
+        "style_role": "question",
+        "x": 62.0,
+        "y": 24.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "있습니다. 더 긴 털실은 무슨 색인지 알아보려고 합니다. 물음에 답하세요.",
+        "style_role": "question",
+        "x": 30.0,
+        "y": 62.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "(1) 수직선을 보고, 더 큰 수를 선택해 보세요.",
+        "style_role": "question",
+        "x": 30.0,
+        "y": 102.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "(1) 수직선에 나타난 부분을 비교하면 9/7 < 1 3/7 입니다.",
+        "style_role": "question",
+        "x": 0.0,
+        "y": 466.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.len1.label",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "9/7 m",
+        "style_role": "label",
+        "x": 196.0,
+        "y": 226.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.len1.axis",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 284.0,
+        "y1": 211.0,
+        "x2": 748.0,
+        "y2": 211.0
+      }
+    },
+    {
+      "id": "slot.len1.grid0",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 284.0,
+        "y1": 202.0,
+        "x2": 284.0,
+        "y2": 220.0
+      }
+    },
+    {
+      "id": "slot.len1.grid1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 330.4,
+        "y1": 204.0,
+        "x2": 330.4,
+        "y2": 218.0
+      }
+    },
+    {
+      "id": "slot.len1.grid2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 376.8,
+        "y1": 204.0,
+        "x2": 376.8,
+        "y2": 218.0
+      }
+    },
+    {
+      "id": "slot.len1.grid3",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 423.2,
+        "y1": 204.0,
+        "x2": 423.2,
+        "y2": 218.0
+      }
+    },
+    {
+      "id": "slot.len1.grid4",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 469.6,
+        "y1": 204.0,
+        "x2": 469.6,
+        "y2": 218.0
+      }
+    },
+    {
+      "id": "slot.len1.grid5",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 516.0,
+        "y1": 202.0,
+        "x2": 516.0,
+        "y2": 220.0
+      }
+    },
+    {
+      "id": "slot.len1.grid6",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 562.4,
+        "y1": 204.0,
+        "x2": 562.4,
+        "y2": 218.0
+      }
+    },
+    {
+      "id": "slot.len1.grid7",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 608.8,
+        "y1": 204.0,
+        "x2": 608.8,
+        "y2": 218.0
+      }
+    },
+    {
+      "id": "slot.len1.grid8",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 655.2,
+        "y1": 204.0,
+        "x2": 655.2,
+        "y2": 218.0
+      }
+    },
+    {
+      "id": "slot.len1.grid9",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 701.6,
+        "y1": 204.0,
+        "x2": 701.6,
+        "y2": 218.0
+      }
+    },
+    {
+      "id": "slot.len1.grid10",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 748.0,
+        "y1": 202.0,
+        "x2": 748.0,
+        "y2": 220.0
+      }
+    },
+    {
+      "id": "slot.len1.blue",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 284.0,
+        "y1": 211.0,
+        "x2": 586.0,
+        "y2": 211.0
+      }
+    },
+    {
+      "id": "slot.len1.zero",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "0",
+        "style_role": "label",
+        "x": 278.0,
+        "y": 245.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.len1.one",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "1",
+        "style_role": "label",
+        "x": 510.0,
+        "y": 245.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.len1.two",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "2(m)",
+        "style_role": "label",
+        "x": 734.0,
+        "y": 245.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.len1.seven_over_seven",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "7/7",
+        "style_role": "label",
+        "x": 500.0,
+        "y": 190.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.len2.label",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "1 3/7 m",
+        "style_role": "label",
+        "x": 176.0,
+        "y": 326.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.len2.axis",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 284.0,
+        "y1": 311.0,
+        "x2": 748.0,
+        "y2": 311.0
+      }
+    },
+    {
+      "id": "slot.len2.grid0",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 284.0,
+        "y1": 302.0,
+        "x2": 284.0,
+        "y2": 320.0
+      }
+    },
+    {
+      "id": "slot.len2.grid1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 330.4,
+        "y1": 304.0,
+        "x2": 330.4,
+        "y2": 318.0
+      }
+    },
+    {
+      "id": "slot.len2.grid2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 376.8,
+        "y1": 304.0,
+        "x2": 376.8,
+        "y2": 318.0
+      }
+    },
+    {
+      "id": "slot.len2.grid3",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 423.2,
+        "y1": 304.0,
+        "x2": 423.2,
+        "y2": 318.0
+      }
+    },
+    {
+      "id": "slot.len2.grid4",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 469.6,
+        "y1": 304.0,
+        "x2": 469.6,
+        "y2": 318.0
+      }
+    },
+    {
+      "id": "slot.len2.grid5",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 516.0,
+        "y1": 302.0,
+        "x2": 516.0,
+        "y2": 320.0
+      }
+    },
+    {
+      "id": "slot.len2.grid6",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 562.4,
+        "y1": 304.0,
+        "x2": 562.4,
+        "y2": 318.0
+      }
+    },
+    {
+      "id": "slot.len2.grid7",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 608.8,
+        "y1": 304.0,
+        "x2": 608.8,
+        "y2": 318.0
+      }
+    },
+    {
+      "id": "slot.len2.grid8",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 655.2,
+        "y1": 304.0,
+        "x2": 655.2,
+        "y2": 318.0
+      }
+    },
+    {
+      "id": "slot.len2.grid9",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 701.6,
+        "y1": 304.0,
+        "x2": 701.6,
+        "y2": 318.0
+      }
+    },
+    {
+      "id": "slot.len2.grid10",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 748.0,
+        "y1": 302.0,
+        "x2": 748.0,
+        "y2": 320.0
+      }
+    },
+    {
+      "id": "slot.len2.blue",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 284.0,
+        "y1": 311.0,
+        "x2": 611.0,
+        "y2": 311.0
+      }
+    },
+    {
+      "id": "slot.len2.zero",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "0",
+        "style_role": "label",
+        "x": 278.0,
+        "y": 345.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.len2.one",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "1",
+        "style_role": "label",
+        "x": 510.0,
+        "y": 345.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.len2.two",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "2(m)",
+        "style_role": "label",
+        "x": 734.0,
+        "y": 345.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.len2.seven_over_seven",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "7/7",
+        "style_role": "label",
+        "x": 500.0,
+        "y": 290.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.compare",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "( 9/7 , 1 3/7 )",
+        "style_role": "label",
+        "x": 416.0,
+        "y": 392.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.bottom",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "(1) 수직선에 나타난 부분을 비교하면 9/7<1 3/7입니다.",
+        "style_role": "question",
+        "x": 0.0,
+        "y": 476.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.bottom_partial",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "(1) 1 3/7",
+        "style_role": "question",
+        "x": 0.0,
+        "y": 520.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.top",
+    "slot.chk",
+    "slot.no",
+    "slot.q1",
+    "slot.q2",
+    "slot.q3",
+    "slot.q4",
+    "region.diagram",
+    "slot.len1.axis",
+    "slot.len1.grid0",
+    "slot.len1.grid1",
+    "slot.len1.grid2",
+    "slot.len1.grid3",
+    "slot.len1.grid4",
+    "slot.len1.grid5",
+    "slot.len1.grid6",
+    "slot.len1.grid7",
+    "slot.len1.grid8",
+    "slot.len1.grid9",
+    "slot.len1.grid10",
+    "slot.len1.blue",
+    "slot.len2.axis",
+    "slot.len2.grid0",
+    "slot.len2.grid1",
+    "slot.len2.grid2",
+    "slot.len2.grid3",
+    "slot.len2.grid4",
+    "slot.len2.grid5",
+    "slot.len2.grid6",
+    "slot.len2.grid7",
+    "slot.len2.grid8",
+    "slot.len2.grid9",
+    "slot.len2.grid10",
+    "slot.len2.blue",
+    "slot.len1.label",
+    "slot.len1.zero",
+    "slot.len1.one",
+    "slot.len1.two",
+    "slot.len1.seven_over_seven",
+    "slot.len2.label",
+    "slot.len2.zero",
+    "slot.len2.one",
+    "slot.len2.two",
+    "slot.len2.seven_over_seven",
+    "slot.compare",
+    "slot.bottom",
+    "slot.bottom_partial"
+  ]
+}

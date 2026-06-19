@@ -1,0 +1,289 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008735",
+  "title": "가분수인 재료 고르기",
+  "canvas": {
+    "width": 960,
+    "height": 440,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.table.outer",
+        "slot.table.v1",
+        "slot.table.v2",
+        "slot.table.v3",
+        "slot.table.h1",
+        "slot.q1",
+        "slot.cell1.top",
+        "slot.cell1.name",
+        "slot.cell1.frac",
+        "slot.cell2.top",
+        "slot.cell2.name",
+        "slot.cell2.frac",
+        "slot.cell3.top",
+        "slot.cell3.name",
+        "slot.cell3.frac",
+        "slot.cell4.top",
+        "slot.cell4.name",
+        "slot.cell4.frac",
+        "slot.choice"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "90. 블루베리 주스 2잔을 만드는 데 필요한 재료입니다. 필요한 양이 가분수인 재료를 모두 선택해 보세요.",
+        "style_role": "question",
+        "x": 14.0,
+        "y": 24.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.outer",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 234.0,
+        "y": 82.0,
+        "width": 529.0,
+        "height": 206.0
+      }
+    },
+    {
+      "id": "slot.table.v1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 366.0,
+        "y": 82.0,
+        "width": 1.0,
+        "height": 206.0
+      }
+    },
+    {
+      "id": "slot.table.v2",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 498.0,
+        "y": 82.0,
+        "width": 1.0,
+        "height": 206.0
+      }
+    },
+    {
+      "id": "slot.table.v3",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 630.0,
+        "y": 82.0,
+        "width": 1.0,
+        "height": 206.0
+      }
+    },
+    {
+      "id": "slot.table.h1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 234.0,
+        "y": 214.0,
+        "width": 529.0,
+        "height": 1.0
+      }
+    },
+    {
+      "id": "slot.cell1.top",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "블루베리",
+        "style_role": "body",
+        "x": 274.0,
+        "y": 133.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.cell1.name",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "블루베리",
+        "style_role": "body",
+        "x": 260.0,
+        "y": 200.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.cell1.frac",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "7/4 컵",
+        "style_role": "body",
+        "x": 267.0,
+        "y": 266.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.cell2.top",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "물",
+        "style_role": "body",
+        "x": 414.0,
+        "y": 133.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.cell2.name",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "물",
+        "style_role": "body",
+        "x": 394.0,
+        "y": 200.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.cell2.frac",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "6/6 컵",
+        "style_role": "body",
+        "x": 399.0,
+        "y": 266.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.cell3.top",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "우유",
+        "style_role": "body",
+        "x": 546.0,
+        "y": 133.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.cell3.name",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "우유",
+        "style_role": "body",
+        "x": 526.0,
+        "y": 200.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.cell3.frac",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "3/8 컵",
+        "style_role": "body",
+        "x": 531.0,
+        "y": 266.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.cell4.top",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "꿀",
+        "style_role": "body",
+        "x": 686.0,
+        "y": 133.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.cell4.name",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "꿀",
+        "style_role": "body",
+        "x": 666.0,
+        "y": 200.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.cell4.frac",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "5/14 컵",
+        "style_role": "body",
+        "x": 663.0,
+        "y": 266.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "( 블루베리 , 물 , 우유 , 꿀 )",
+        "style_role": "body",
+        "x": 650.0,
+        "y": 318.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.table.outer",
+    "slot.table.v1",
+    "slot.table.v2",
+    "slot.table.v3",
+    "slot.table.h1",
+    "slot.q1",
+    "slot.cell1.top",
+    "slot.cell1.name",
+    "slot.cell1.frac",
+    "slot.cell2.top",
+    "slot.cell2.name",
+    "slot.cell2.frac",
+    "slot.cell3.top",
+    "slot.cell3.name",
+    "slot.cell3.frac",
+    "slot.cell4.top",
+    "slot.cell4.name",
+    "slot.cell4.frac",
+    "slot.choice"
+  ]
+}

@@ -1,0 +1,131 @@
+{
+  "problem_id": "S3_초등_3_008723",
+  "problem_type": "도형_원_중심_판별",
+  "metadata": {
+    "title": "컴퍼스의 침을 꽂지 않은 곳 찾기",
+    "tags": [],
+    "question": "세인이가 그림과 같은 모양을 그렸습니다. 이 모양을 그릴 때 컴퍼스의 침을 꽂지 않은 곳을 찾아 기호를 선택하세요.",
+    "required_layout_ids": [
+      "slot.grid.v1",
+      "slot.grid.v2",
+      "slot.grid.v3",
+      "slot.grid.v4",
+      "slot.grid.v5",
+      "slot.grid.v6",
+      "slot.grid.v7",
+      "slot.grid.v8",
+      "slot.grid.v9",
+      "slot.grid.v10",
+      "slot.grid.v11",
+      "slot.grid.v12",
+      "slot.grid.h1",
+      "slot.grid.h2",
+      "slot.grid.h3",
+      "slot.grid.h4",
+      "slot.grid.h5",
+      "slot.grid.h6",
+      "slot.grid.h7",
+      "slot.grid.h8",
+      "slot.grid.h9",
+      "slot.grid.h10",
+      "slot.grid.h11",
+      "slot.grid.h12",
+      "slot.circle.outer",
+      "slot.circle.top",
+      "slot.circle.left",
+      "slot.circle.right",
+      "slot.circle.bottom",
+      "slot.circle.center",
+      "slot.pt.a",
+      "slot.pt.b",
+      "slot.pt.c",
+      "slot.pt.d",
+      "slot.pt.e",
+      "slot.pt.f",
+      "slot.a2"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "컴퍼스의 침을 꽂지 않은 곳을 찾는 도형 판별 문제"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.diagram",
+        "type": "circle_composition"
+      },
+      {
+        "id": "obj.choice.giyeok",
+        "type": "label",
+        "name": "ㄱ"
+      },
+      {
+        "id": "obj.choice.nieun",
+        "type": "label",
+        "name": "ㄴ"
+      },
+      {
+        "id": "obj.choice.digeut",
+        "type": "label",
+        "name": "ㄷ"
+      },
+      {
+        "id": "obj.choice.rieul",
+        "type": "label",
+        "name": "ㄹ"
+      },
+      {
+        "id": "obj.choice.mieum",
+        "type": "label",
+        "name": "ㅁ"
+      },
+      {
+        "id": "obj.choice.bieup",
+        "type": "label",
+        "name": "ㅂ"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.diagram"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.center_candidate"
+        ]
+      },
+      "plan": {
+        "method": "center_identification",
+        "description": "그려진 원들의 중심으로 사용된 기호와 사용되지 않은 기호를 비교한다."
+      },
+      "execute": {
+        "expected_operations": [
+          "compare_circle_centers",
+          "match_center_points_to_labels",
+          "identify_unused_label"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "visual_center_consistency",
+          "label_exclusion_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "unused_compass_point",
+      "description": "컴퍼스의 침을 꽂지 않은 곳의 기호"
+    },
+    "value": 0,
+    "unit": ""
+  }
+}

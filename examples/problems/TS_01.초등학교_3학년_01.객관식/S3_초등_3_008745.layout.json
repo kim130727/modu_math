@@ -1,0 +1,227 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008745",
+  "title": "들이 비교",
+  "canvas": {
+    "width": 960,
+    "height": 480,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q1",
+        "slot.q2",
+        "slot.q3"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.diagram.left.bottle",
+        "slot.diagram.left.bucket",
+        "slot.diagram.right.bottle",
+        "slot.diagram.right.bucket",
+        "slot.diagram.left.water",
+        "slot.diagram.right.water",
+        "slot.diagram.label.ga",
+        "slot.diagram.label.na"
+      ]
+    },
+    {
+      "id": "region.choice",
+      "role": "choice",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice.1",
+        "slot.choice.2"
+      ]
+    },
+    {
+      "id": "region.answer",
+      "role": "answer",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "□ 42.  가 물병과 나 물병에 물을 가득 채운 후 모양과 크기가 같은 그릇에 옮겨",
+        "style_role": "question",
+        "x": 16.0,
+        "y": 34.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "담았습니다. 그림과 같이 물을 채웠을 때에 가 물병과 나 물병의 들이를 비교하",
+        "style_role": "question",
+        "x": 16.0,
+        "y": 68.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "려고 합니다. 알맞은 말을 선택하세요.",
+        "style_role": "question",
+        "x": 16.0,
+        "y": 102.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.diagram.left.bottle",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 298.0,
+        "y": 108.0,
+        "width": 88.0,
+        "height": 34.0
+      }
+    },
+    {
+      "id": "slot.diagram.left.bucket",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 364.0,
+        "y": 176.0,
+        "width": 92.0,
+        "height": 70.0
+      }
+    },
+    {
+      "id": "slot.diagram.right.bottle",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 558.0,
+        "y": 102.0,
+        "width": 92.0,
+        "height": 36.0
+      }
+    },
+    {
+      "id": "slot.diagram.right.bucket",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 530.0,
+        "y": 172.0,
+        "width": 96.0,
+        "height": 76.0
+      }
+    },
+    {
+      "id": "slot.diagram.label.ga",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "가",
+        "style_role": "label",
+        "x": 334.0,
+        "y": 128.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.diagram.label.na",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "나",
+        "style_role": "label",
+        "x": 598.0,
+        "y": 122.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.diagram.left.water",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 372.0,
+        "y": 218.0,
+        "width": 76.0,
+        "height": 18.0
+      }
+    },
+    {
+      "id": "slot.diagram.right.water",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 538.0,
+        "y": 208.0,
+        "width": 80.0,
+        "height": 28.0
+      }
+    },
+    {
+      "id": "slot.choice.1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "(1) 옮겨 담은 물의 높이가 더 높은 것은 ( 가 물병, 나 물병)입니다.",
+        "style_role": "question",
+        "x": 36.0,
+        "y": 314.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice.2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "(2) 들이가 더 많은 것은 ( 가 물병, 나 물병)입니다.",
+        "style_role": "question",
+        "x": 36.0,
+        "y": 350.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q1",
+    "slot.q2",
+    "slot.q3",
+    "region.diagram",
+    "slot.diagram.left.bottle",
+    "slot.diagram.left.bucket",
+    "slot.diagram.right.bottle",
+    "slot.diagram.right.bucket",
+    "slot.diagram.left.water",
+    "slot.diagram.right.water",
+    "slot.diagram.label.ga",
+    "slot.diagram.label.na",
+    "region.choice",
+    "slot.choice.1",
+    "slot.choice.2",
+    "region.answer"
+  ]
+}

@@ -1,0 +1,89 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008742",
+  "problem_type": "분수_크기_비교",
+  "inputs": {
+    "total_ticks": 4,
+    "target_label": "㉠",
+    "target_ticks": 1,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.left_pair_a",
+      "value": "1 3/15"
+    },
+    {
+      "ref": "obj.left_pair_b",
+      "value": "1 1/15"
+    },
+    {
+      "ref": "obj.right_pair_a",
+      "value": "23/15"
+    },
+    {
+      "ref": "obj.right_pair_b",
+      "value": "26/15"
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "fraction_to_fill_blank"
+  },
+  "method": "fraction_comparison_then_selection",
+  "plan": [
+    "왼쪽 두 분수를 비교해 큰 분수를 고른다.",
+    "오른쪽 두 분수를 비교해 작은 분수를 고른다.",
+    "두 결과를 다시 비교하여 ㉠에 들어갈 분수를 정한다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "1 3/15 > 1 1/15",
+      "value": true
+    },
+    {
+      "id": "step.2",
+      "expr": "23/15 < 26/15",
+      "value": true
+    },
+    {
+      "id": "step.3",
+      "expr": "중간 결과 비교",
+      "value": "1 3/15 < 23/15"
+    },
+    {
+      "id": "step.4",
+      "expr": "㉠에 들어갈 분수 선택",
+      "value": "23/15"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "선택 규칙에 따라 큰 분수와 작은 분수를 고르는가",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "id": "check.2",
+      "expr": "최종 선택이 중간 비교 결과와 일치하는가",
+      "expected": "23/15",
+      "actual": "23/15",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "fraction_to_fill_blank",
+      "description": "㉠에 들어갈 분수"
+    },
+    "value": "23/15",
+    "unit": ""
+  }
+}

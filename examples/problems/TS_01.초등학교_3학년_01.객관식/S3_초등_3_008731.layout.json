@@ -1,0 +1,600 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008731",
+  "title": "두 분수의 크기 비교",
+  "canvas": {
+    "width": 928,
+    "height": 1049,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.diagram.top.box1",
+        "slot.diagram.top.box2",
+        "slot.diagram.top.box3",
+        "slot.diagram.top.box4",
+        "slot.diagram.top.box5",
+        "slot.diagram.bottom.box1",
+        "slot.diagram.bottom.box2",
+        "slot.diagram.bottom.box3",
+        "slot.diagram.bottom.box4",
+        "slot.diagram.bottom.box5",
+        "slot.diagram.bottom.box6",
+        "slot.diagram.bottom.box7",
+        "slot.diagram.top.box6",
+        "slot.diagram.top.box7",
+        "slot.diagram.top.line1",
+        "slot.diagram.top.line2",
+        "slot.diagram.top.line3",
+        "slot.diagram.top.line4",
+        "slot.diagram.top.line5",
+        "slot.diagram.top.line6",
+        "slot.diagram.top.line7",
+        "slot.diagram.top.line8",
+        "slot.diagram.bottom.line1",
+        "slot.diagram.bottom.line2",
+        "slot.diagram.bottom.line3",
+        "slot.diagram.bottom.line4",
+        "slot.diagram.bottom.line5",
+        "slot.diagram.bottom.line6",
+        "slot.diagram.bottom.line7",
+        "slot.diagram.bottom.line8",
+        "slot.q1",
+        "slot.diagram.top.box1.text",
+        "slot.diagram.top.box4.text",
+        "slot.diagram.top.box5.text",
+        "slot.diagram.top.box6.text",
+        "slot.diagram.top.box7.text",
+        "slot.diagram.bottom.box1.text",
+        "slot.diagram.bottom.box2.text",
+        "slot.diagram.bottom.box3.text",
+        "slot.diagram.bottom.box4.text",
+        "slot.diagram.bottom.box5.text",
+        "slot.diagram.bottom.box6.text",
+        "slot.diagram.bottom.box7.text"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "50. 두 분수의 크기를 비교하여 더 큰 분수를 빈칸에 써넣으려고 합니다. ㉠에 들어갈 분수로 알맞은 것을 선택해 보세요.",
+        "style_role": "question",
+        "x": 16.0,
+        "y": 40.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.diagram.top.box1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 453.0,
+        "y": 96.0,
+        "width": 79.0,
+        "height": 100.0
+      }
+    },
+    {
+      "id": "slot.diagram.top.box1.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "㉠",
+        "style_role": "diagram",
+        "x": 480.0,
+        "y": 150.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.diagram.top.box2",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 340.0,
+        "y": 260.0,
+        "width": 78.0,
+        "height": 100.0
+      }
+    },
+    {
+      "id": "slot.diagram.top.box3",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 561.0,
+        "y": 260.0,
+        "width": 80.0,
+        "height": 100.0
+      }
+    },
+    {
+      "id": "slot.diagram.top.box4",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 282.0,
+        "y": 388.0,
+        "width": 79.0,
+        "height": 97.0
+      }
+    },
+    {
+      "id": "slot.diagram.top.box4.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "15/7",
+        "style_role": "diagram",
+        "x": 302.0,
+        "y": 440.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.diagram.top.box5",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 378.0,
+        "y": 388.0,
+        "width": 79.0,
+        "height": 97.0
+      }
+    },
+    {
+      "id": "slot.diagram.top.box5.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "22/7",
+        "style_role": "diagram",
+        "x": 398.0,
+        "y": 440.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.diagram.top.box6",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 509.0,
+        "y": 388.0,
+        "width": 79.0,
+        "height": 97.0
+      }
+    },
+    {
+      "id": "slot.diagram.top.box6.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "2 3/7",
+        "style_role": "diagram",
+        "x": 520.0,
+        "y": 440.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.diagram.top.box7",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 604.0,
+        "y": 388.0,
+        "width": 79.0,
+        "height": 97.0
+      }
+    },
+    {
+      "id": "slot.diagram.top.box7.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "2 6/7",
+        "style_role": "diagram",
+        "x": 615.0,
+        "y": 440.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.diagram.top.line1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 492.5,
+        "y1": 196.0,
+        "x2": 492.5,
+        "y2": 236.0
+      }
+    },
+    {
+      "id": "slot.diagram.top.line2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 359.0,
+        "y1": 236.0,
+        "x2": 626.0,
+        "y2": 236.0
+      }
+    },
+    {
+      "id": "slot.diagram.top.line3",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 359.0,
+        "y1": 236.0,
+        "x2": 359.0,
+        "y2": 260.0
+      }
+    },
+    {
+      "id": "slot.diagram.top.line4",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 626.0,
+        "y1": 236.0,
+        "x2": 626.0,
+        "y2": 260.0
+      }
+    },
+    {
+      "id": "slot.diagram.top.line5",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 319.0,
+        "y1": 360.0,
+        "x2": 319.0,
+        "y2": 388.0
+      }
+    },
+    {
+      "id": "slot.diagram.top.line6",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 414.0,
+        "y1": 360.0,
+        "x2": 414.0,
+        "y2": 388.0
+      }
+    },
+    {
+      "id": "slot.diagram.top.line7",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 600.0,
+        "y1": 360.0,
+        "x2": 600.0,
+        "y2": 388.0
+      }
+    },
+    {
+      "id": "slot.diagram.top.line8",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 665.0,
+        "y1": 360.0,
+        "x2": 665.0,
+        "y2": 388.0
+      }
+    },
+    {
+      "id": "slot.diagram.bottom.box1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 181.0,
+        "y": 650.0,
+        "width": 67.0,
+        "height": 73.0
+      }
+    },
+    {
+      "id": "slot.diagram.bottom.box1.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "㉠",
+        "style_role": "diagram",
+        "x": 204.0,
+        "y": 692.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.diagram.bottom.box2",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 80.0,
+        "y": 746.0,
+        "width": 69.0,
+        "height": 71.0
+      }
+    },
+    {
+      "id": "slot.diagram.bottom.box2.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "22/7",
+        "style_role": "diagram",
+        "x": 92.0,
+        "y": 786.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.diagram.bottom.box3",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 254.0,
+        "y": 746.0,
+        "width": 69.0,
+        "height": 71.0
+      }
+    },
+    {
+      "id": "slot.diagram.bottom.box3.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "2 6/7",
+        "style_role": "diagram",
+        "x": 263.0,
+        "y": 786.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.diagram.bottom.box4",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 28.0,
+        "y": 844.0,
+        "width": 69.0,
+        "height": 70.0
+      }
+    },
+    {
+      "id": "slot.diagram.bottom.box4.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "15/7",
+        "style_role": "diagram",
+        "x": 40.0,
+        "y": 883.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.diagram.bottom.box5",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 123.0,
+        "y": 844.0,
+        "width": 69.0,
+        "height": 70.0
+      }
+    },
+    {
+      "id": "slot.diagram.bottom.box5.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "22/7",
+        "style_role": "diagram",
+        "x": 135.0,
+        "y": 883.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.diagram.bottom.box6",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 255.0,
+        "y": 844.0,
+        "width": 69.0,
+        "height": 70.0
+      }
+    },
+    {
+      "id": "slot.diagram.bottom.box6.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "2 3/7",
+        "style_role": "diagram",
+        "x": 263.0,
+        "y": 883.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.diagram.bottom.box7",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 349.0,
+        "y": 844.0,
+        "width": 69.0,
+        "height": 70.0
+      }
+    },
+    {
+      "id": "slot.diagram.bottom.box7.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "2 6/7",
+        "style_role": "diagram",
+        "x": 357.0,
+        "y": 883.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.diagram.bottom.line1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 214.5,
+        "y1": 723.0,
+        "x2": 214.5,
+        "y2": 746.0
+      }
+    },
+    {
+      "id": "slot.diagram.bottom.line2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 114.0,
+        "y1": 736.0,
+        "x2": 294.0,
+        "y2": 736.0
+      }
+    },
+    {
+      "id": "slot.diagram.bottom.line3",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 114.0,
+        "y1": 736.0,
+        "x2": 114.0,
+        "y2": 746.0
+      }
+    },
+    {
+      "id": "slot.diagram.bottom.line4",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 294.0,
+        "y1": 736.0,
+        "x2": 294.0,
+        "y2": 746.0
+      }
+    },
+    {
+      "id": "slot.diagram.bottom.line5",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 62.5,
+        "y1": 816.0,
+        "x2": 62.5,
+        "y2": 844.0
+      }
+    },
+    {
+      "id": "slot.diagram.bottom.line6",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 158.5,
+        "y1": 816.0,
+        "x2": 158.5,
+        "y2": 844.0
+      }
+    },
+    {
+      "id": "slot.diagram.bottom.line7",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 289.5,
+        "y1": 816.0,
+        "x2": 289.5,
+        "y2": 844.0
+      }
+    },
+    {
+      "id": "slot.diagram.bottom.line8",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 383.5,
+        "y1": 816.0,
+        "x2": 383.5,
+        "y2": 844.0
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.diagram.top.box1",
+    "slot.diagram.top.box2",
+    "slot.diagram.top.box3",
+    "slot.diagram.top.box4",
+    "slot.diagram.top.box5",
+    "slot.diagram.bottom.box1",
+    "slot.diagram.bottom.box2",
+    "slot.diagram.bottom.box3",
+    "slot.diagram.bottom.box4",
+    "slot.diagram.bottom.box5",
+    "slot.diagram.bottom.box6",
+    "slot.diagram.bottom.box7",
+    "slot.diagram.top.box6",
+    "slot.diagram.top.box7",
+    "slot.diagram.top.line1",
+    "slot.diagram.top.line2",
+    "slot.diagram.top.line3",
+    "slot.diagram.top.line4",
+    "slot.diagram.top.line5",
+    "slot.diagram.top.line6",
+    "slot.diagram.top.line7",
+    "slot.diagram.top.line8",
+    "slot.diagram.bottom.line1",
+    "slot.diagram.bottom.line2",
+    "slot.diagram.bottom.line3",
+    "slot.diagram.bottom.line4",
+    "slot.diagram.bottom.line5",
+    "slot.diagram.bottom.line6",
+    "slot.diagram.bottom.line7",
+    "slot.diagram.bottom.line8",
+    "slot.q1",
+    "slot.diagram.top.box1.text",
+    "slot.diagram.top.box4.text",
+    "slot.diagram.top.box5.text",
+    "slot.diagram.top.box6.text",
+    "slot.diagram.top.box7.text",
+    "slot.diagram.bottom.box1.text",
+    "slot.diagram.bottom.box2.text",
+    "slot.diagram.bottom.box3.text",
+    "slot.diagram.bottom.box4.text",
+    "slot.diagram.bottom.box5.text",
+    "slot.diagram.bottom.box6.text",
+    "slot.diagram.bottom.box7.text"
+  ]
+}

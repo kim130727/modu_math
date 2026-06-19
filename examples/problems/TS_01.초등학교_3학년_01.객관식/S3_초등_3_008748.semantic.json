@@ -1,0 +1,78 @@
+{
+  "problem_id": "S3_초등_3_008748",
+  "problem_type": "comparison_capacity_selection",
+  "metadata": {
+    "title": "물병의 들이 비교",
+    "tags": [],
+    "instruction": "더 많은 들이의 물병을 선택하시오.",
+    "question": "그림을 보고 더 많은 물이 들어가는 물병을 고르는 문제",
+    "required_layout_ids": [
+      "slot.bottle.top",
+      "slot.bottle.bottom",
+      "slot.bottle.top.label",
+      "slot.bottle.bottom.label",
+      "slot.bottle.top.neck1",
+      "slot.bottle.top.neck2",
+      "slot.bottle.bottom.neck1",
+      "slot.bottle.bottom.neck2"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.bottle_a",
+        "type": "bottle",
+        "label": "ㄱ"
+      },
+      {
+        "id": "obj.bottle_b",
+        "type": "bottle",
+        "label": "ㄴ"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.bottle_a",
+          "obj.bottle_b",
+          "rel.pour_a_to_b"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.compare_capacity"
+        ]
+      },
+      "plan": {
+        "method": "visual_comparison",
+        "description": "물의 이동 후 상태를 보고 더 많은 들이의 병을 고른다."
+      },
+      "execute": {
+        "expected_operations": [
+          "compare_filled_state",
+          "identify_not_full_container"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "answer_matches_explanation"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "choice",
+      "description": "더 많은 들이의 물병"
+    },
+    "value": 0,
+    "unit": ""
+  }
+}

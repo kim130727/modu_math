@@ -1,0 +1,67 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008748",
+  "problem_type": "comparison_capacity_selection",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "ㄴ 물병",
+    "target_ticks": 0,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.bottle_a",
+      "value": {
+        "label": "ㄱ"
+      }
+    },
+    {
+      "ref": "obj.bottle_b",
+      "value": {
+        "label": "ㄴ"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "choice"
+  },
+  "method": "visual_comparison",
+  "plan": [
+    "그림에서 ㄱ 물병의 물이 ㄴ 물병에 옮겨 담긴 상태를 확인한다.",
+    "ㄴ 물병이 가득 차지 않았는지 살펴 더 큰 들이의 병을 고른다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "ㄱ 물병의 물을 ㄴ 물병에 옮겨 담은 상태를 확인",
+      "value": "ㄴ 물병이 가득 차지 않음"
+    },
+    {
+      "id": "step.2",
+      "expr": "더 많은 들이의 물병 선택",
+      "value": "ㄴ 물병"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "해설과 선택이 일치하는가",
+      "expected": "ㄴ 물병",
+      "actual": "ㄴ 물병",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "choice",
+      "description": "더 많은 들이의 물병"
+    },
+    "value": 0,
+    "unit": ""
+  }
+}
