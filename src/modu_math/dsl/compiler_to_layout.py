@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import asdict
+import re
 from typing import Any
 
 from .models.base import BlankSlot, ChoiceSlot, CircleSlot, Constraint, Group, ImageSlot, LabelSlot, LineSlot, PathSlot, PolygonSlot, RectSlot, Region, TextBoxSlot, TextSlot
@@ -13,6 +14,7 @@ def compile_problem_template_to_layout(problem: ProblemTemplate) -> dict[str, An
     _assert_unique_ids(problem)
 
     slots = [_normalize_slot(slot) for slot in problem.slots]
+    _normalize_graphpaper_bounds(slots)
     normalized_regions = _normalize_regions(problem.regions, slots)
     diagrams = [_normalize_diagram(diagram) for diagram in problem.diagrams]
     groups = [_normalize_group(group) for group in problem.groups]
@@ -36,6 +38,51 @@ def compile_problem_template_to_layout(problem: ProblemTemplate) -> dict[str, An
         "reading_order": _build_reading_order(normalized_regions, diagrams),
     }
     return layout
+
+
+def _normalize_graphpaper_bounds(slots: list[dict[str, Any]]) -> None:
+    groups: dict[str, dict[str, list[dict[str, Any]]]] = {}
+    for slot in slots:
+        if slot.get("kind") != "line":
+            continue
+        slot_id = slot.get("id")
+        if not isinstance(slot_id, str):
+            continue
+        match = re.match(r"^(slot\.graphpaper(?:_\d+)?)\.(v|h)\d+$", slot_id)
+        if not match:
+            continue
+        content = slot.get("content")
+        if not isinstance(content, dict):
+            continue
+        groups.setdefault(match.group(1), {"v": [], "h": []})[match.group(2)].append(content)
+
+    for group in groups.values():
+        verticals = group["v"]
+        horizontals = group["h"]
+        if len(verticals) < 2 or len(horizontals) < 2:
+            continue
+        vertical_xs = [
+            float(content["x1"])
+            for content in verticals
+            if isinstance(content.get("x1"), int | float) and content.get("x1") == content.get("x2")
+        ]
+        horizontal_ys = [
+            float(content["y1"])
+            for content in horizontals
+            if isinstance(content.get("y1"), int | float) and content.get("y1") == content.get("y2")
+        ]
+        if len(vertical_xs) < 2 or len(horizontal_ys) < 2:
+            continue
+        left = min(vertical_xs)
+        right = max(vertical_xs)
+        top = min(horizontal_ys)
+        bottom = max(horizontal_ys)
+        for content in verticals:
+            content["y1"] = top
+            content["y2"] = bottom
+        for content in horizontals:
+            content["x1"] = left
+            content["x2"] = right
 
 
 def _assert_unique_ids(problem: ProblemTemplate) -> None:

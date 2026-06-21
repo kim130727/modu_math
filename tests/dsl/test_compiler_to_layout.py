@@ -15,6 +15,7 @@ from modu_math.dsl import (
     Grid,
     Group,
     LabelSlot,
+    LineSlot,
     ProblemTemplate,
     Region,
     TextSlot,
@@ -142,6 +143,29 @@ def test_compile_to_layout_draws_small_center_circles_above_large_circles() -> N
     layout = compile_problem_template_to_layout(problem)
 
     assert layout["regions"][0]["slot_ids"] == ["slot.big.circle", "slot.center"]
+
+
+def test_compile_to_layout_aligns_graphpaper_outer_bounds() -> None:
+    problem = ProblemTemplate(
+        id="p_graphpaper_bounds",
+        title="Graph paper bounds",
+        canvas=Canvas(width=400, height=300),
+        regions=(Region(id="region.stem", role="stem", flow="absolute"),),
+        slots=(
+            LineSlot(id="slot.graphpaper.v0", x1=10, y1=20, x2=10, y2=80),
+            LineSlot(id="slot.graphpaper.v1", x1=40, y1=20, x2=40, y2=80),
+            LineSlot(id="slot.graphpaper.h0", x1=10, y1=20, x2=45, y2=20),
+            LineSlot(id="slot.graphpaper.h1", x1=10, y1=80, x2=45, y2=80),
+        ),
+    )
+
+    layout = compile_problem_template_to_layout(problem)
+    slots = {slot["id"]: slot["content"] for slot in layout["slots"]}
+
+    assert slots["slot.graphpaper.h0"]["x2"] == 40
+    assert slots["slot.graphpaper.h1"]["x2"] == 40
+    assert slots["slot.graphpaper.v0"]["y2"] == 80
+    assert slots["slot.graphpaper.v1"]["y2"] == 80
 
 
 def test_compile_to_layout_is_round_trip_safe_and_deterministic() -> None:

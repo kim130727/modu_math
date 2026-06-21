@@ -66,8 +66,7 @@ def build_problem_template() -> ProblemTemplate:
             TextSlot(
                 id="slot.q.text",
                 prompt="",
-                text="□ 97. 컴퍼스를 2 cm가 되도록 벌린 것을 찾아 선택하세요.",
-                style_role="question",
+                text = '컴퍼스를 2 cm가 되도록 벌린 것을 찾아 선택하세요.', style_role="question",
                 x=10.0,
                 y=31.0,
                 font_size=24,

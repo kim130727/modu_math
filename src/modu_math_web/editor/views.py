@@ -57,6 +57,8 @@ def save_dsl(request: HttpRequest, problem_id: str) -> JsonResponse:
         dsl = data.get("dsl")
         if not isinstance(dsl, str):
             return _error("'dsl' must be a string", status=400)
+        if not dsl.strip():
+            return _error("'dsl' must not be empty", status=400)
         save_problem_dsl(problem_id, dsl)
     except ValueError as exc:
         return _error(str(exc), status=400)

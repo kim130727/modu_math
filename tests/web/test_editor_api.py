@@ -319,6 +319,44 @@ from modu_math.dsl import ProblemTemplate
     assert overrides["slots"]["slot.generated.body"] == {"x": 15.0, "y": 25.0, "width": 40.0, "height": 50.0}
 
 
+def test_layout_patch_rejects_empty_dsl_before_saving_overrides(tmp_path: Path) -> None:
+    client = _setup_django(tmp_path)
+    problem_dir = _write_problem(tmp_path, "0001", "")
+
+    payload = {
+        "patches": [
+            {
+                "target": "slot.q.num",
+                "op": "delete",
+            }
+        ]
+    }
+    response = client.post(
+        "/api/editor/problems/0001/layout-patch/",
+        data=json.dumps(payload),
+        content_type="application/json",
+    )
+
+    assert response.status_code == 400
+    assert "DSL file is empty" in response.json()["error"]
+    assert not (problem_dir / "problem.editor_overrides.json").exists()
+
+
+def test_save_dsl_rejects_empty_dsl(tmp_path: Path) -> None:
+    client = _setup_django(tmp_path)
+    problem_dir = _write_problem(tmp_path, "0001", "from modu_math.dsl import TextSlot\n")
+
+    response = client.post(
+        "/api/editor/problems/0001/dsl/",
+        data=json.dumps({"dsl": "   \n"}),
+        content_type="application/json",
+    )
+
+    assert response.status_code == 400
+    assert "must not be empty" in response.json()["error"]
+    assert (problem_dir / "problem.dsl.py").read_text(encoding="utf-8") == "from modu_math.dsl import TextSlot\n"
+
+
 def test_apply_editor_overrides_updates_layout_slot_content() -> None:
     layout = {
         "canvas": {"width": 100, "height": 100},
@@ -369,6 +407,43 @@ def test_apply_editor_overrides_removes_deleted_slots() -> None:
     assert [slot["id"] for slot in layout["slots"]] == ["slot.keep"]
     assert layout["regions"][0]["slot_ids"] == ["slot.keep"]
     assert layout["reading_order"] == ["region.diagram", "slot.keep"]
+
+
+def test_apply_editor_overrides_removes_deleted_prefix_when_exact_slot_missing() -> None:
+    layout = {
+        "regions": [{"id": "region.stem", "slot_ids": ["slot.q.num", "slot.q.text", "slot.other"]}],
+        "slots": [
+            {"id": "slot.q.num", "kind": "text", "content": {"text": "81."}},
+            {"id": "slot.q.text", "kind": "text", "content": {"text": "Question"}},
+            {"id": "slot.other", "kind": "text", "content": {}},
+        ],
+        "reading_order": ["region.stem", "slot.q.num", "slot.q.text", "slot.other"],
+    }
+    overrides = {"deleted_slots": ["slot.q"]}
+
+    apply_editor_overrides(layout, overrides)
+
+    assert [slot["id"] for slot in layout["slots"]] == ["slot.other"]
+    assert layout["regions"][0]["slot_ids"] == ["slot.other"]
+    assert layout["reading_order"] == ["region.stem", "slot.other"]
+
+
+def test_apply_editor_overrides_keeps_children_when_exact_deleted_slot_exists() -> None:
+    layout = {
+        "regions": [{"id": "region.stem", "slot_ids": ["slot.q", "slot.q.num"]}],
+        "slots": [
+            {"id": "slot.q", "kind": "text", "content": {}},
+            {"id": "slot.q.num", "kind": "text", "content": {}},
+        ],
+        "reading_order": ["region.stem", "slot.q", "slot.q.num"],
+    }
+    overrides = {"deleted_slots": ["slot.q"]}
+
+    apply_editor_overrides(layout, overrides)
+
+    assert [slot["id"] for slot in layout["slots"]] == ["slot.q.num"]
+    assert layout["regions"][0]["slot_ids"] == ["slot.q.num"]
+    assert layout["reading_order"] == ["region.stem", "slot.q.num"]
 
 
 def test_layout_patch_layer_order_falls_back_to_editor_overrides(tmp_path: Path) -> None:

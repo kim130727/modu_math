@@ -47,7 +47,8 @@
       "slot_ids": [
         "slot.item1.q",
         "slot.item1.arrow",
-        "slot.item1.q.copy3"
+        "slot.item1.q.copy3",
+        "slot.item1.q.copy3.copy1"
       ]
     }
   ],
@@ -141,10 +142,10 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 770.0,
-        "y1": 115.0,
-        "x2": 770.0,
-        "y2": 215.0,
+        "x1": 745.0,
+        "y1": 85.0,
+        "x2": 745.0,
+        "y2": 190.0,
         "stroke": "#ff9db3",
         "stroke_dasharray": "5 4"
       }
@@ -154,10 +155,10 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 660.0,
-        "y1": 80.0,
-        "x2": 765.0,
-        "y2": 80.0,
+        "x1": 690.0,
+        "y1": 135.0,
+        "x2": 800.0,
+        "y2": 135.0,
         "stroke": "#ff9db3",
         "stroke_dasharray": "5 4"
       }
@@ -167,8 +168,8 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 665.0,
-        "cy": 120.0,
+        "cx": 746.0,
+        "cy": 135.0,
         "r": 5.0,
         "fill": "#ff5b8d"
       }
@@ -364,7 +365,8 @@
         "style_role": "body",
         "x": 75.0,
         "y": 515.0,
-        "font_size": 35
+        "font_size": 25,
+        "fill": "#111111"
       }
     },
     {
@@ -376,7 +378,20 @@
         "style_role": "body",
         "x": 135.0,
         "y": 510.0,
-        "font_size": 30,
+        "font_size": 25,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.item1.q.copy3.copy1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㅇ",
+        "style_role": "body",
+        "x": 750.0,
+        "y": 135.0,
+        "font_size": 20,
         "fill": "#111111"
       }
     }
@@ -413,6 +428,7 @@
     "region.item1",
     "slot.item1.q",
     "slot.item1.arrow",
-    "slot.item1.q.copy3"
+    "slot.item1.q.copy3",
+    "slot.item1.q.copy3.copy1"
   ]
 }

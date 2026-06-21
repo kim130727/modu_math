@@ -748,6 +748,7 @@
     <symbol id="icon-textbox" viewBox="0 0 24 24"><path d="M4 6h16v12H4z"/><path d="M8 9h8"/><path d="M12 9v7"/><path d="M9 16h6"/></symbol>
     <symbol id="icon-image" viewBox="0 0 24 24"><path d="M4 5h16v14H4z"/><circle cx="8" cy="9" r="1.5"/><path d="M4 16l5-5 4 4 2-2 5 5"/></symbol>
     <symbol id="icon-table" viewBox="0 0 24 24"><path d="M4 5h16v14H4z"/><path d="M4 10h16"/><path d="M4 15h16"/><path d="M10 5v14"/><path d="M16 5v14"/></symbol>
+    <symbol id="icon-graph-paper" viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="M8 4v16"/><path d="M12 4v16"/><path d="M16 4v16"/><path d="M4 8h16"/><path d="M4 12h16"/><path d="M4 16h16"/></symbol>
     <symbol id="icon-shapes" viewBox="0 0 24 24"><path d="M5 5h7v7H5z"/><path d="M16.5 5.5 21 12h-9z"/><path d="M8 16a3 3 0 1 0 0.1 0"/><path d="M15 16h5v4h-5z"/></symbol>
   </svg>
   <div class="wrap powerpoint">
@@ -771,6 +772,7 @@
             <button id="insertTextBoxBtn" class="icon-btn" title="텍스트 상자 삽입" aria-label="텍스트 상자 삽입"><svg><use href="#icon-textbox"></use></svg></button>
             <button id="insertImageBtn" class="icon-btn" title="그림 삽입" aria-label="그림 삽입"><svg><use href="#icon-image"></use></svg></button>
             <button id="insertTableBtn" class="icon-btn" title="표 삽입" aria-label="표 삽입"><svg><use href="#icon-table"></use></svg></button>
+            <button id="insertGraphPaperBtn" class="icon-btn" title="모눈종이 삽입" aria-label="모눈종이 삽입"><svg><use href="#icon-graph-paper"></use></svg></button>
             <input id="insertImageInput" type="file" accept="image/*" hidden>
             <div class="ribbon-dropdown">
               <button id="shapeGalleryBtn" class="icon-btn" title="도형 삽입" aria-label="도형 삽입"><svg><use href="#icon-shapes"></use></svg></button>
@@ -835,6 +837,23 @@
                 <div class="table-dialog-actions">
                   <button id="tableConfirmBtn" type="button" class="primary">확인</button>
                   <button id="tableCancelBtn" type="button">취소</button>
+                </div>
+              </div>
+            </div>
+            <div id="graphPaperInsertDialog" class="table-dialog" role="dialog" aria-modal="true" aria-labelledby="graphPaperInsertTitle" hidden>
+              <div class="table-dialog-panel">
+                <div class="table-dialog-title">
+                  <span id="graphPaperInsertTitle">모눈종이 삽입</span>
+                  <span>?</span>
+                  <button id="graphPaperCancelXBtn" type="button" aria-label="닫기">&times;</button>
+                </div>
+                <div class="table-dialog-fields">
+                  <label>좌우 칸:<input id="graphPaperColsInput" type="number" min="1" max="40" value="10"></label>
+                  <label>상하 칸:<input id="graphPaperRowsInput" type="number" min="1" max="40" value="8"></label>
+                </div>
+                <div class="table-dialog-actions">
+                  <button id="graphPaperConfirmBtn" type="button" class="primary">확인</button>
+                  <button id="graphPaperCancelBtn" type="button">취소</button>
                 </div>
               </div>
             </div>
@@ -954,6 +973,8 @@
     let redoStack = [];
     let historyBusy = false;
     let dragFrameRequested = false;
+    let resizeFrameRequested = false;
+    let pendingResizePoint = null;
     let lastDragStatusAt = 0;
     let dragCommitTimer = null;
     let dragCommitTask = null;
@@ -1329,6 +1350,9 @@
     async function commitPatches(patches, reason = "저장 완료", withBuild = true) {
       if (!currentProblemId) return;
       if (!patches || !patches.length) return;
+      if (!(document.getElementById("dslEditor").value || "").trim()) {
+        throw new Error("DSL 파일이 비어 있어 편집할 수 없습니다. 유효한 DSL을 먼저 복구하거나 저장하세요.");
+      }
       const preserveSelection = Array.from(selectedSlots.keys());
       const payload = { patches };
       const endpoint = withBuild ? "/layout-patch-and-build/" : "/layout-patch/";
@@ -1472,6 +1496,11 @@
       return m ? m[1] : null;
     }
 
+    function graphPaperSlotBase(slotId) {
+      const m = String(slotId || "").match(/^(slot\.graphpaper(?:_\d+)?)(?:\.|$)/);
+      return m ? m[1] : null;
+    }
+
     function uniqueTableBase() {
       const ids = extractDslSlotIds();
       const used = new Set();
@@ -1485,6 +1514,21 @@
         if (!used.has(candidate)) return candidate;
       }
       return `slot.table_${Date.now()}`;
+    }
+
+    function uniqueGraphPaperBase() {
+      const ids = extractDslSlotIds();
+      const used = new Set();
+      for (const id of ids) {
+        const base = graphPaperSlotBase(id);
+        if (base) used.add(base);
+      }
+      if (!used.has("slot.graphpaper")) return "slot.graphpaper";
+      for (let i = 1; i < 10000; i += 1) {
+        const candidate = `slot.graphpaper_${i}`;
+        if (!used.has(candidate)) return candidate;
+      }
+      return `slot.graphpaper_${Date.now()}`;
     }
 
     function scalePoints(points, x, y, width, height, sourceWidth = 64, sourceHeight = 52) {
@@ -1575,12 +1619,60 @@
       return { base, patches };
     }
 
+    function graphPaperPatches(rows, cols) {
+      const cleanRows = Math.max(1, Math.min(40, Number(rows) || 1));
+      const cleanCols = Math.max(1, Math.min(40, Number(cols) || 1));
+      const cellSize = 25;
+      const width = cleanCols * cellSize;
+      const height = cleanRows * cellSize;
+      const { x, y } = defaultInsertOrigin(width, height);
+      const originX = snapValue(x);
+      const originY = snapValue(y);
+      const base = uniqueGraphPaperBase();
+      const regionId = firstUsableRegionId();
+      const withRegion = (value) => regionId ? { ...value, region_id: regionId } : value;
+      const patches = [];
+      const stroke = "#2563eb";
+      const stroke_width = 1;
+      for (let c = 0; c <= cleanCols; c += 1) {
+        const px = originX + c * cellSize;
+        patches.push({
+          target: `${base}.v${c}`,
+          op: "add",
+          value: withRegion({
+            kind: "line",
+            content: { x1: px, y1: originY, x2: px, y2: originY + height, stroke, stroke_width },
+          }),
+        });
+      }
+      for (let r = 0; r <= cleanRows; r += 1) {
+        const py = originY + r * cellSize;
+        patches.push({
+          target: `${base}.h${r}`,
+          op: "add",
+          value: withRegion({
+            kind: "line",
+            content: { x1: originX, y1: py, x2: originX + width, y2: py, stroke, stroke_width },
+          }),
+        });
+      }
+      return { base, patches };
+    }
+
     async function insertTable(rows, cols) {
       if (!currentProblemId) throw new Error("문제를 먼저 여세요.");
       const { base, patches } = tablePatches(rows, cols);
       await commitPatches(patches, `표 삽입 완료: ${cols}열 x ${rows}행`);
       restoreSelection([`${base}.outer`]);
     }
+
+    async function insertGraphPaper(rows, cols) {
+      if (!currentProblemId) throw new Error("문제를 먼저 여세요.");
+      const { base, patches } = graphPaperPatches(rows, cols);
+      await commitPatches(patches, `모눈종이 삽입 완료: ${cols}칸 x ${rows}칸`);
+      restoreSelection([`${base}.v0`]);
+    }
+
 
     function shapePayload(def) {
       const width = Number(def.w || 120);
@@ -1788,6 +1880,8 @@
       const base = svgElementId.replace(/\.(text|line|rect|path|polygon|circle|image)$/i, "");
       const m = base.match(/^(slot\..+)\.(num|bar|den)$/);
       if (!m) return null;
+      const dslIds = extractDslSlotIds();
+      if (!dslIds.has(`${m[1]}.num`) || !dslIds.has(`${m[1]}.bar`) || !dslIds.has(`${m[1]}.den`)) return null;
       return { prefix: m[1], part: m[2] };
     }
 
@@ -1924,6 +2018,10 @@
       return null;
     }
 
+    function graphPaperBaseFromSlotId(slotId) {
+      return graphPaperSlotBase(slotId);
+    }
+
     function paperFoldBaseFromSlotId(slotId) {
       if (!slotId) return null;
       const m = slotId.match(/^(slot\.[^.]+)\.(?:stage\d+|arrow\d+)(?:\.|$)/);
@@ -1959,8 +2057,21 @@
       return out.length ? { base, slotIds: out, groupKind: "table" } : null;
     }
 
+    function collectGraphPaperGroupSlotIds(slotId) {
+      const base = graphPaperBaseFromSlotId(slotId);
+      if (!base) return null;
+      const svg = document.getElementById("svgPreview").querySelector("svg");
+      if (!svg) return null;
+      const out = [];
+      for (const node of draggableSlotElements(svg, `${base}.`)) {
+        const sid = slotIdFromElement(node);
+        if (sid && sid.startsWith(`${base}.`) && !out.includes(sid)) out.push(sid);
+      }
+      return out.length > 1 ? { base, slotIds: out, groupKind: "graphPaper" } : null;
+    }
+
     function selectableGroupBaseFromSlotId(slotId) {
-      return figureBaseFromSlotId(slotId) || characterGroupBaseFromSlotId(slotId) || tableBaseFromSlotId(slotId) || paperFoldBaseFromSlotId(slotId) || measurementToolBaseFromSlotId(slotId) || generatedHelperBaseFromSlotId(slotId);
+      return figureBaseFromSlotId(slotId) || characterGroupBaseFromSlotId(slotId) || tableBaseFromSlotId(slotId) || graphPaperBaseFromSlotId(slotId) || paperFoldBaseFromSlotId(slotId) || measurementToolBaseFromSlotId(slotId) || generatedHelperBaseFromSlotId(slotId);
     }
 
     function collectFigureGroupSlotIds(slotId) {
@@ -2040,7 +2151,7 @@
     }
 
     function collectSelectableGroupSlotIds(slotId) {
-      return collectFigureGroupSlotIds(slotId) || collectCharacterGroupSlotIds(slotId) || collectTableGroupSlotIds(slotId) || collectPaperFoldGroupSlotIds(slotId) || collectMeasurementToolGroupSlotIds(slotId) || collectGeneratedHelperGroupSlotIds(slotId);
+      return collectFigureGroupSlotIds(slotId) || collectCharacterGroupSlotIds(slotId) || collectTableGroupSlotIds(slotId) || collectGraphPaperGroupSlotIds(slotId) || collectPaperFoldGroupSlotIds(slotId) || collectMeasurementToolGroupSlotIds(slotId) || collectGeneratedHelperGroupSlotIds(slotId);
     }
 
     function elementsForSlotIds(slotIds) {
@@ -2375,7 +2486,7 @@
     function selectedShapeFormatItem() {
       if (selectedSlots.size !== 1) return null;
       const item = Array.from(selectedSlots.values())[0];
-      if (!item || item.isCanvas || item.isFraction || item.isFigureGroup || item.isPaperFoldGroup || item.isMeasurementGroup || item.isTableGroup || item.isGeneratedGroup || item.isCharacterGroup) return null;
+      if (!item || item.isCanvas || item.isFraction || item.isFigureGroup || item.isPaperFoldGroup || item.isMeasurementGroup || item.isTableGroup || item.isGraphPaperGroup || item.isGeneratedGroup || item.isCharacterGroup) return null;
       if (!item.el) return null;
       const tag = item.el.tagName.toLowerCase();
       if (!["rect", "circle", "line", "path", "polygon"].includes(tag)) return null;
@@ -2774,7 +2885,7 @@
       if (!item || item.isFraction || !item.el) return null;
       if (item.isCanvas) return item;
       if (item.isCharacterGroup || item.isPaperFoldGroup || item.isMeasurementGroup || item.isGeneratedGroup) return null;
-      if (item.isFigureGroup || item.isTableGroup) return item;
+      if (item.isFigureGroup || item.isTableGroup || item.isGraphPaperGroup) return item;
       const tag = item.el.tagName.toLowerCase();
       if (!["text", "rect", "image", "circle", "line", "path", "polygon"].includes(tag)) return null;
       return item;
@@ -2815,12 +2926,12 @@
         const tableBox = tableOuterBox(item, svg);
         if (tableBox) return tableBox;
       }
-      if (item && !item.isFigureGroup && !item.isPaperFoldGroup && !item.isMeasurementGroup && !item.isTableGroup && !item.isFraction && item.el) {
+      if (item && !item.isFigureGroup && !item.isPaperFoldGroup && !item.isMeasurementGroup && !item.isTableGroup && !item.isGraphPaperGroup && !item.isFraction && item.el) {
         const rotation = parseRotateTransform(item.el.getAttribute("transform") || "");
         const rawBox = geometrySvgBox(item.el);
         if (rawBox && rotation.angle && rotation.cx !== null && rotation.cy !== null) return rawBox;
       }
-      const elements = item && (item.isFigureGroup || item.isPaperFoldGroup || item.isMeasurementGroup || item.isTableGroup || item.isFraction || item.isGeneratedGroup) ? (item.elements || []) : [item.el];
+      const elements = item && (item.isFigureGroup || item.isPaperFoldGroup || item.isMeasurementGroup || item.isTableGroup || item.isGraphPaperGroup || item.isFraction || item.isGeneratedGroup) ? (item.elements || []) : [item.el];
       const boxes = [];
       for (const el of elements) {
         const box = visualSvgBox(el, svg);
@@ -2835,7 +2946,7 @@
     }
 
     function selectionTransformForItem(item) {
-      if (!item || item.isCanvas || item.isFigureGroup || item.isPaperFoldGroup || item.isMeasurementGroup || item.isTableGroup || item.isGeneratedGroup || item.isFraction || !item.el) return { transform: "", rotation: null };
+      if (!item || item.isCanvas || item.isFigureGroup || item.isPaperFoldGroup || item.isMeasurementGroup || item.isTableGroup || item.isGraphPaperGroup || item.isGeneratedGroup || item.isFraction || !item.el) return { transform: "", rotation: null };
       const rotation = parseRotateTransform(item.el.getAttribute("transform") || "");
       if (!rotation.angle || rotation.cx === null || rotation.cy === null) return { transform: "", rotation: null };
       return { transform: rotateTransform(rotation.angle, rotation.cx, rotation.cy), rotation };
@@ -2906,7 +3017,7 @@
       const h = Math.max(box.height, minSize);
       const bounds = layer.querySelector(".selection-bounds");
       const line = layer.querySelector(".selection-line");
-      const isLine = !item.isCanvas && !item.isFigureGroup && !item.isPaperFoldGroup && item.el && item.el.tagName.toLowerCase() === "line";
+      const isLine = !item.isCanvas && !item.isFigureGroup && !item.isPaperFoldGroup && !item.isGraphPaperGroup && item.el && item.el.tagName.toLowerCase() === "line";
       bounds.classList.toggle("canvas-selected", !!item.isCanvas);
       bounds.setAttribute("x", String(x));
       bounds.setAttribute("y", String(y));
@@ -3303,6 +3414,58 @@
       return values;
     }
 
+    function resizeGraphPaperGroup(state, nextBox) {
+      const snap = (v) => (snapEnabled ? snapValue(v) : v);
+      const verticals = [];
+      const horizontals = [];
+      for (const entry of state.startValue || []) {
+        const slotId = String(entry.slotId || "");
+        const vMatch = slotId.match(/\.v(\d+)$/);
+        const hMatch = slotId.match(/\.h(\d+)$/);
+        if (vMatch) verticals.push({ ...entry, index: Number(vMatch[1]) });
+        if (hMatch) horizontals.push({ ...entry, index: Number(hMatch[1]) });
+      }
+      verticals.sort((a, b) => a.index - b.index);
+      horizontals.sort((a, b) => a.index - b.index);
+      if (verticals.length < 2 || horizontals.length < 2) return resizeFigureGroup(state, nextBox);
+
+      const colCount = Math.max(1, verticals.length - 1);
+      const rowCount = Math.max(1, horizontals.length - 1);
+      const left = snap(nextBox.x);
+      const top = snap(nextBox.y);
+      const cellWidth = Math.max(snapEnabled ? SNAP_STEP : 1, snap(nextBox.width / colCount));
+      const cellHeight = Math.max(snapEnabled ? SNAP_STEP : 1, snap(nextBox.height / rowCount));
+      const right = left + cellWidth * colCount;
+      const bottom = top + cellHeight * rowCount;
+      const values = [];
+
+      for (const entry of verticals) {
+        const x = left + cellWidth * entry.index;
+        const value = {
+          ...entry.value,
+          x1: x,
+          y1: top,
+          x2: x,
+          y2: bottom,
+        };
+        applyPatchValueToElement(entry.el, value);
+        values.push({ slotId: entry.slotId, el: entry.el, value });
+      }
+      for (const entry of horizontals) {
+        const y = top + cellHeight * entry.index;
+        const value = {
+          ...entry.value,
+          x1: left,
+          y1: y,
+          x2: right,
+          y2: y,
+        };
+        applyPatchValueToElement(entry.el, value);
+        values.push({ slotId: entry.slotId, el: entry.el, value });
+      }
+      return values;
+    }
+
     function tableDividerValuesFromDrag(state, dx, dy) {
       const m = String(state.handle || "").match(/^table-([vh]):(.+)$/);
       if (!m) return null;
@@ -3464,6 +3627,7 @@
             isPaperFoldGroup: selectableGroup.groupKind === "paperFold",
             isMeasurementGroup: selectableGroup.groupKind === "measurement",
             isTableGroup: selectableGroup.groupKind === "table",
+            isGraphPaperGroup: selectableGroup.groupKind === "graphPaper",
             isCharacterGroup: selectableGroup.groupKind === "character",
             isGeneratedGroup: selectableGroup.groupKind === "generated",
           });
@@ -3532,7 +3696,7 @@
 
     function updateInspectorControls() {
       const selected = selectedSlots.size === 1 ? Array.from(selectedSlots.values())[0] : null;
-      const canInspect = selected && !selected.isCanvas && !selected.isFigureGroup && !selected.isPaperFoldGroup && !selected.isMeasurementGroup && !selected.isTableGroup && !selected.isGeneratedGroup && !selected.isCharacterGroup && !selected.isFraction && selected.el;
+      const canInspect = selected && !selected.isCanvas && !selected.isFigureGroup && !selected.isPaperFoldGroup && !selected.isMeasurementGroup && !selected.isTableGroup && !selected.isGraphPaperGroup && !selected.isGeneratedGroup && !selected.isCharacterGroup && !selected.isFraction && selected.el;
       const value = canInspect ? readSlotPatchValue(selected.el) : null;
       setInspectorField("slotId", selected ? selected.slotId : "");
       setInspectorField("propX", value?.x ?? value?.cx ?? value?.x1 ?? "");
@@ -3565,7 +3729,7 @@
     async function commitInspectorFields() {
       if (selectedSlots.size !== 1) throw new Error("요소 하나를 선택하세요.");
       const item = Array.from(selectedSlots.values())[0];
-      if (!item || item.isCanvas || item.isFigureGroup || item.isPaperFoldGroup || item.isMeasurementGroup || item.isTableGroup || item.isGeneratedGroup || item.isCharacterGroup || item.isFraction || !item.el) {
+      if (!item || item.isCanvas || item.isFigureGroup || item.isPaperFoldGroup || item.isMeasurementGroup || item.isTableGroup || item.isGraphPaperGroup || item.isGeneratedGroup || item.isCharacterGroup || item.isFraction || !item.el) {
         throw new Error("선택한 요소를 속성 패널에서 수정할 수 없습니다.");
       }
       const current = readSlotPatchValue(item.el) || {};
@@ -3634,7 +3798,7 @@
     function readSelectedStates() {
       const states = [];
       for (const item of selectedSlots.values()) {
-        if (item.isFigureGroup || item.isPaperFoldGroup || item.isMeasurementGroup || item.isTableGroup || item.isGeneratedGroup) {
+        if (item.isFigureGroup || item.isPaperFoldGroup || item.isMeasurementGroup || item.isTableGroup || item.isGraphPaperGroup || item.isGeneratedGroup) {
           for (const node of item.elements || []) {
             const slotId = slotIdFromElement(node);
             const value = readSlotPatchValue(node);
@@ -4032,7 +4196,7 @@
       const svgClientRect = svg.getBoundingClientRect();
       const canvasScaleX = item.isCanvas && svgClientRect.width > 0 ? box.width / svgClientRect.width : 1;
       const canvasScaleY = item.isCanvas && svgClientRect.height > 0 ? box.height / svgClientRect.height : 1;
-      const startValue = (item.isFigureGroup || item.isPaperFoldGroup || item.isMeasurementGroup || item.isTableGroup || item.isGeneratedGroup)
+      const startValue = (item.isFigureGroup || item.isPaperFoldGroup || item.isMeasurementGroup || item.isTableGroup || item.isGraphPaperGroup || item.isGeneratedGroup)
         ? (item.elements || [])
             .map((el) => ({ el, slotId: slotIdFromElement(el), value: readSlotPatchValue(el) }))
             .filter((entry) => entry.slotId && entry.value)
@@ -4043,6 +4207,8 @@
       const handle = ev.currentTarget.getAttribute("data-handle") || "c";
       const startGlobalPoint = getSvgPoint(svg, ev.clientX, ev.clientY);
       const selectionRotation = selectionTransformForItem(item).rotation;
+      resizeFrameRequested = false;
+      pendingResizePoint = null;
       resizeState = {
         svg,
         item,
@@ -4055,7 +4221,7 @@
         canvasScaleX,
         canvasScaleY,
         startBox: cloneBBox(box),
-        startValue: (item.isFigureGroup || item.isPaperFoldGroup || item.isMeasurementGroup || item.isTableGroup || item.isGeneratedGroup)
+        startValue: (item.isFigureGroup || item.isPaperFoldGroup || item.isMeasurementGroup || item.isTableGroup || item.isGraphPaperGroup || item.isGeneratedGroup)
           ? startValue.map((entry) => ({ ...entry, value: JSON.parse(JSON.stringify(entry.value)) }))
           : JSON.parse(JSON.stringify(startValue)),
         lastValue: null,
@@ -4077,7 +4243,7 @@
       const rawPoint = resizeState.item.isCanvas ? null : getSvgPoint(resizeState.svg, ev.clientX, ev.clientY);
       const p = rawPoint ? pointInRotatedFrame(rawPoint, resizeState.selectionRotation) : null;
       const singleTag = resizeState.item.el ? resizeState.item.el.tagName.toLowerCase() : "";
-      if (singleTag === "line" && !resizeState.item.isCanvas && !resizeState.item.isFigureGroup && !resizeState.item.isPaperFoldGroup && !resizeState.item.isMeasurementGroup) {
+      if (singleTag === "line" && !resizeState.item.isCanvas && !resizeState.item.isFigureGroup && !resizeState.item.isPaperFoldGroup && !resizeState.item.isMeasurementGroup && !resizeState.item.isGraphPaperGroup) {
         let value = null;
         if (resizeState.handle === "p1" || resizeState.handle === "p2") {
           value = linePatchFromEndpoint(resizeState.item.el, resizeState.handle, resizeState.startValue, p);
@@ -4093,7 +4259,7 @@
         }
       }
       if (resizeState.handle === "r" && !resizeState.item.isCanvas) {
-        const value = (resizeState.item.isFigureGroup || resizeState.item.isPaperFoldGroup || resizeState.item.isMeasurementGroup || resizeState.item.isTableGroup)
+        const value = (resizeState.item.isFigureGroup || resizeState.item.isPaperFoldGroup || resizeState.item.isMeasurementGroup || resizeState.item.isTableGroup || resizeState.item.isGraphPaperGroup)
           ? rotationValuesForGroup(resizeState.startValue, resizeState.startBox, resizeState.startGlobalPoint, rawPoint)
           : rotationValueFromPointer(resizeState.startValue, resizeState.startBox, resizeState.startGlobalPoint, rawPoint);
         if (Array.isArray(value)) {
@@ -4125,8 +4291,10 @@
       const nextBox = resizeState.item.isCanvas
         ? adjustedCanvasBox(resizeState.startBox, resizeState.handle, dx, dy)
         : adjustedBBox(resizeState.startBox, resizeState.handle, dx, dy);
-      const value = (resizeState.item.isFigureGroup || resizeState.item.isPaperFoldGroup || resizeState.item.isMeasurementGroup || resizeState.item.isTableGroup)
-        ? resizeFigureGroup(resizeState, nextBox)
+      const value = resizeState.item.isGraphPaperGroup
+        ? resizeGraphPaperGroup(resizeState, nextBox)
+        : (resizeState.item.isFigureGroup || resizeState.item.isPaperFoldGroup || resizeState.item.isMeasurementGroup || resizeState.item.isTableGroup)
+          ? resizeFigureGroup(resizeState, nextBox)
         : resizeState.item.isCanvas
           ? resizePatchForCanvas(resizeState.svg, resizeState.handle, resizeState.startValue, resizeState.startBox, nextBox)
         : resizePatchForElement(
@@ -4154,10 +4322,34 @@
       setStatus(`크기 조절 중: ${resizeState.item.slotId}${snapEnabled ? " (snap 5px)" : ""}`, true);
     }
 
+    function scheduleResizeUpdate(ev) {
+      pendingResizePoint = { clientX: ev.clientX, clientY: ev.clientY };
+      if (resizeFrameRequested) return;
+      resizeFrameRequested = true;
+      requestAnimationFrame(() => {
+        resizeFrameRequested = false;
+        if (!resizeState || !pendingResizePoint) return;
+        const point = pendingResizePoint;
+        pendingResizePoint = null;
+        updateResize(point);
+      });
+    }
+
+    function flushResizeUpdate() {
+      if (!resizeState || !pendingResizePoint) return;
+      const point = pendingResizePoint;
+      pendingResizePoint = null;
+      resizeFrameRequested = false;
+      updateResize(point);
+    }
+
     async function endResize(ev) {
       if (!resizeState) return;
+      flushResizeUpdate();
       const local = resizeState;
       resizeState = null;
+      pendingResizePoint = null;
+      resizeFrameRequested = false;
       if (local.handleEl && local.pointerId !== undefined && local.handleEl.hasPointerCapture(local.pointerId)) {
         local.handleEl.releasePointerCapture(local.pointerId);
       }
@@ -4165,7 +4357,7 @@
         updateSelectionHandles();
         return;
       }
-      if (local.item.isFigureGroup || local.item.isPaperFoldGroup || local.item.isMeasurementGroup || local.item.isTableGroup) {
+      if (local.item.isFigureGroup || local.item.isPaperFoldGroup || local.item.isMeasurementGroup || local.item.isTableGroup || local.item.isGraphPaperGroup) {
         const before = [];
         const after = [];
         const patches = [];
@@ -4240,13 +4432,13 @@
         const keepGroupSelection = !appendSelection && selectedSlots.has(selectionKey);
         if (!keepGroupSelection) setSelectedElement(el, slotId, appendSelection);
         const selected = selectedSlots.get(selectionKey);
-        if (selected && !selected.isFigureGroup && !selected.isPaperFoldGroup && !selected.isMeasurementGroup && !selected.isTableGroup) selected.slotIds = resolvedSlotIds;
+        if (selected && !selected.isFigureGroup && !selected.isPaperFoldGroup && !selected.isMeasurementGroup && !selected.isTableGroup && !selected.isGraphPaperGroup) selected.slotIds = resolvedSlotIds;
         const start = getSvgPoint(svg, ev.clientX, ev.clientY);
         const beforeMap = new Map();
         for (const item of selectedSlots.values()) {
           if (item.isFraction) {
             beforeMap.set(item.slotId, { move_dx: 0, move_dy: 0 });
-          } else if (item.isCharacterGroup || item.isGeneratedGroup || item.isFigureGroup || item.isPaperFoldGroup || item.isMeasurementGroup || item.isTableGroup) {
+          } else if (item.isCharacterGroup || item.isGeneratedGroup || item.isFigureGroup || item.isPaperFoldGroup || item.isMeasurementGroup || item.isTableGroup || item.isGraphPaperGroup) {
             for (const node of item.elements || []) {
               const sid = slotIdFromElement(node);
               const value = readSlotPatchValue(node);
@@ -4409,7 +4601,7 @@
 
       svg.addEventListener("pointermove", (ev) => {
         if (resizeState) {
-          updateResize(ev);
+          scheduleResizeUpdate(ev);
           return;
         }
         if (marqueeState) {
@@ -4439,7 +4631,7 @@
           for (const item of selectedSlots.values()) {
             if (item.isFraction) {
               for (const node of item.elements || []) lastValue = applyElementDelta(node, pdx, pdy, false);
-          } else if (item.isFigureGroup || item.isPaperFoldGroup || item.isMeasurementGroup || item.isTableGroup || item.isGeneratedGroup) {
+          } else if (item.isFigureGroup || item.isPaperFoldGroup || item.isMeasurementGroup || item.isTableGroup || item.isGraphPaperGroup || item.isGeneratedGroup) {
               for (const node of item.elements || []) lastValue = applyElementDelta(node, pdx, pdy, false);
             } else {
               lastValue = applyElementDelta(item.el, pdx, pdy, false);
@@ -4524,7 +4716,7 @@
             after.push({ slotId: item.slotId, value: snappedMove });
             continue;
           }
-          if (item.isTableGroup) {
+          if (item.isTableGroup || item.isGraphPaperGroup) {
             for (const node of item.elements || []) {
               const slotId = slotIdFromElement(node);
               const value = snapPatchValue(readSlotPatchValue(node));
@@ -4568,11 +4760,11 @@
       const items = [];
       for (const item of selectedSlots.values()) {
         if (item.isCanvas) continue;
-        const value = (item.isFraction || item.isFigureGroup || item.isPaperFoldGroup || item.isMeasurementGroup || item.isTableGroup || item.isGeneratedGroup) ? { move_dx: 0, move_dy: 0 } : readSlotPatchValue(item.el);
+        const value = (item.isFraction || item.isFigureGroup || item.isPaperFoldGroup || item.isMeasurementGroup || item.isTableGroup || item.isGraphPaperGroup || item.isGeneratedGroup) ? { move_dx: 0, move_dy: 0 } : readSlotPatchValue(item.el);
         if (!value) continue;
         let bbox = null;
         try {
-          if (item.isFraction || item.isFigureGroup || item.isPaperFoldGroup || item.isMeasurementGroup || item.isTableGroup || item.isGeneratedGroup) {
+          if (item.isFraction || item.isFigureGroup || item.isPaperFoldGroup || item.isMeasurementGroup || item.isTableGroup || item.isGraphPaperGroup || item.isGeneratedGroup) {
             bbox = itemBBox(item);
           } else {
             bbox = item.el.getBBox();
@@ -4591,6 +4783,7 @@
           isPaperFoldGroup: !!item.isPaperFoldGroup,
           isMeasurementGroup: !!item.isMeasurementGroup,
           isTableGroup: !!item.isTableGroup,
+          isGraphPaperGroup: !!item.isGraphPaperGroup,
           isGeneratedGroup: !!item.isGeneratedGroup,
           elements: item.elements || [item.el],
         });
@@ -4678,7 +4871,7 @@
             for (const node of item.elements) applyElementDelta(node, fixDx, fixDy, false);
           }
           patches.push({ target: item.slotId, op: "update", value: snappedMove });
-        } else if (item.isTableGroup) {
+        } else if (item.isTableGroup || item.isGraphPaperGroup) {
           for (const node of item.elements) applyElementDelta(node, dx, dy, true);
           for (const node of item.elements) {
             const slotId = slotIdFromElement(node);
@@ -4961,7 +5154,28 @@
       await insertTable(rows, cols);
       closeTableDialog();
     }
+    function openGraphPaperDialog() {
+      const dialog = document.getElementById("graphPaperInsertDialog");
+      if (!dialog) return;
+      document.getElementById("graphPaperColsInput").value = "10";
+      document.getElementById("graphPaperRowsInput").value = "8";
+      dialog.hidden = false;
+      setTimeout(() => document.getElementById("graphPaperColsInput")?.focus(), 0);
+    }
+    function closeGraphPaperDialog() {
+      const dialog = document.getElementById("graphPaperInsertDialog");
+      if (dialog) dialog.hidden = true;
+    }
+    async function confirmGraphPaperDialog() {
+      const cols = Math.max(1, Math.min(40, Number(document.getElementById("graphPaperColsInput")?.value || 10)));
+      const rows = Math.max(1, Math.min(40, Number(document.getElementById("graphPaperRowsInput")?.value || 8)));
+      document.getElementById("graphPaperColsInput").value = String(cols);
+      document.getElementById("graphPaperRowsInput").value = String(rows);
+      await insertGraphPaper(rows, cols);
+      closeGraphPaperDialog();
+    }
     document.getElementById("insertTableBtn").onclick = openTableDialog;
+    document.getElementById("insertGraphPaperBtn").onclick = openGraphPaperDialog;
     document.getElementById("insertImageBtn").onclick = () => {
       document.getElementById("insertImageInput")?.click();
     };
@@ -4989,6 +5203,15 @@
     document.getElementById("tableInsertDialog").addEventListener("click", (ev) => {
       if (ev.target === ev.currentTarget) closeTableDialog();
     });
+    document.getElementById("graphPaperConfirmBtn").onclick = async () => {
+      try { await confirmGraphPaperDialog(); }
+      catch (e) { setStatus(String(e), false); }
+    };
+    document.getElementById("graphPaperCancelBtn").onclick = closeGraphPaperDialog;
+    document.getElementById("graphPaperCancelXBtn").onclick = closeGraphPaperDialog;
+    document.getElementById("graphPaperInsertDialog").addEventListener("click", (ev) => {
+      if (ev.target === ev.currentTarget) closeGraphPaperDialog();
+    });
     for (const id of ["tableColsInput", "tableRowsInput"]) {
       document.getElementById(id).addEventListener("keydown", async (ev) => {
         if (ev.key === "Enter") {
@@ -4997,6 +5220,16 @@
           catch (e) { setStatus(String(e), false); }
         }
         if (ev.key === "Escape") closeTableDialog();
+      });
+    }
+    for (const id of ["graphPaperColsInput", "graphPaperRowsInput"]) {
+      document.getElementById(id).addEventListener("keydown", async (ev) => {
+        if (ev.key === "Enter") {
+          ev.preventDefault();
+          try { await confirmGraphPaperDialog(); }
+          catch (e) { setStatus(String(e), false); }
+        }
+        if (ev.key === "Escape") closeGraphPaperDialog();
       });
     }
     document.getElementById("shapeGallery").addEventListener("click", (ev) => ev.stopPropagation());
@@ -5188,7 +5421,7 @@
           patches.push({ target: item.slotId, op: "update", value: { move_dx: dx, move_dy: dy } });
           continue;
         }
-        if (item.isGeneratedGroup) {
+        if (item.isGeneratedGroup || item.isGraphPaperGroup) {
           for (const node of item.elements || []) applyElementDelta(node, dx, dy, false);
           for (const node of item.elements || []) {
             const slotId = slotIdFromElement(node);

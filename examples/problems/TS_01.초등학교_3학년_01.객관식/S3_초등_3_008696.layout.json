@@ -3,218 +3,368 @@
   "problem_id": "S3_초등_3_008696",
   "title": "원을 둘로 똑같이 나누는 선분",
   "canvas": {
-    "width": 960,
-    "height": 540,
+    "width": 950.0,
+    "height": 560.0,
     "coordinate_mode": "logical",
     "background": "#FFFFFF"
   },
   "regions": [
     {
-      "id": "region.header",
+      "id": "region.stem",
       "role": "stem",
       "flow": "absolute",
       "slot_ids": [
-        "slot.q_num",
-        "slot.q_title"
+        "slot.fig1.circle",
+        "slot.fig2.circle",
+        "slot.fig3.circle",
+        "slot.fig1.v",
+        "slot.fig2.v",
+        "slot.fig2.h",
+        "slot.fig3.v",
+        "slot.fig3.h",
+        "slot.fig3.center",
+        "slot.q.title",
+        "slot.arrow1",
+        "slot.arrow2",
+        "slot.desc1.1",
+        "slot.desc1.2",
+        "slot.desc1.3",
+        "slot.desc1.4",
+        "slot.desc2.1",
+        "slot.desc2.2",
+        "slot.desc2.3",
+        "slot.desc2.4",
+        "slot.desc3.1",
+        "slot.desc3.2",
+        "slot.desc3.3",
+        "slot.desc3.4"
       ]
     },
     {
-      "id": "region.diagram",
-      "role": "diagram",
-      "flow": "absolute",
-      "slot_ids": [
-        "slot.circle.1",
-        "slot.circle.2",
-        "slot.circle.3",
-        "slot.dot.1",
-        "slot.dot.2",
-        "slot.dot.3",
-        "slot.fold.1",
-        "slot.fold.2",
-        "slot.arrow.1",
-        "slot.arrow.2"
-      ]
-    },
-    {
-      "id": "region.choice",
+      "id": "region.item1",
       "role": "stem",
       "flow": "absolute",
       "slot_ids": [
-        "slot.choice.1",
-        "slot.choice.2",
-        "slot.choice.3"
+        "slot.item1.q",
+        "slot.item1.q.copy3.copy1"
       ]
     }
   ],
   "slots": [
     {
-      "id": "slot.q_num",
+      "id": "slot.q.title",
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "85.",
+        "text": "원을 둘로 똑같이 나누는 선분을 알아보려고 합니다. 알맞은말을 선택하세요.",
         "style_role": "question",
-        "x": 16.0,
-        "y": 24.0,
-        "font_size": 28
+        "x": 20.0,
+        "y": 30.0,
+        "font_size": 30
       }
     },
     {
-      "id": "slot.q_title",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "원을 둘로 똑같이 나누는 선분을 알아보려고 합니다. 알맞은 말을 선택하세요.",
-        "style_role": "question",
-        "x": 58.0,
-        "y": 24.0,
-        "font_size": 28
-      }
-    },
-    {
-      "id": "slot.circle.1",
+      "id": "slot.fig1.circle",
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 196.0,
-        "cy": 144.0,
+        "cx": 180.0,
+        "cy": 136.0,
         "r": 56.0,
-        "fill": "#FCE8EF"
+        "fill": "#ffeef2"
       }
     },
     {
-      "id": "slot.circle.2",
+      "id": "slot.fig1.v",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 180.0,
+        "y1": 84.0,
+        "x2": 180.0,
+        "y2": 188.0,
+        "stroke": "#ff9db3",
+        "stroke_dasharray": "5 4"
+      }
+    },
+    {
+      "id": "slot.fig2.circle",
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 480.0,
-        "cy": 144.0,
+        "cx": 443.0,
+        "cy": 136.0,
         "r": 56.0,
-        "fill": "#FCE8EF"
+        "fill": "#ffeef2"
       }
     },
     {
-      "id": "slot.circle.3",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 763.0,
-        "cy": 144.0,
-        "r": 56.0,
-        "fill": "#FCE8EF"
-      }
-    },
-    {
-      "id": "slot.fold.1",
+      "id": "slot.fig2.v",
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 196.0,
-        "y1": 88.0,
-        "x2": 196.0,
-        "y2": 200.0
+        "x1": 443.0,
+        "y1": 84.0,
+        "x2": 443.0,
+        "y2": 188.0,
+        "stroke": "#ff9db3",
+        "stroke_dasharray": "5 4"
       }
     },
     {
-      "id": "slot.fold.2",
+      "id": "slot.fig2.h",
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 424.0,
-        "y1": 144.0,
-        "x2": 536.0,
-        "y2": 144.0
+        "x1": 391.0,
+        "y1": 136.0,
+        "x2": 495.0,
+        "y2": 136.0,
+        "stroke": "#ff9db3",
+        "stroke_dasharray": "5 4"
       }
     },
     {
-      "id": "slot.dot.1",
+      "id": "slot.fig3.circle",
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 763.0,
-        "cy": 144.0,
-        "r": 4.0,
-        "fill": "#FF4DA0"
+        "cx": 745.0,
+        "cy": 135.0,
+        "r": 55.0,
+        "fill": "#ffeef2"
       }
     },
     {
-      "id": "slot.dot.2",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 762.0,
-        "cy": 144.0,
-        "r": 2.5,
-        "fill": "#FF4DA0"
-      }
-    },
-    {
-      "id": "slot.dot.3",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 772.0,
-        "cy": 129.0,
-        "r": 4.0,
-        "fill": "#FFFFFF"
-      }
-    },
-    {
-      "id": "slot.arrow.1",
+      "id": "slot.fig3.v",
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 297.0,
-        "y1": 144.0,
-        "x2": 336.0,
-        "y2": 144.0
+        "x1": 745.0,
+        "y1": 85.0,
+        "x2": 745.0,
+        "y2": 190.0,
+        "stroke": "#ff9db3",
+        "stroke_dasharray": "5 4"
       }
     },
     {
-      "id": "slot.arrow.2",
+      "id": "slot.fig3.h",
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 581.0,
-        "y1": 144.0,
-        "x2": 620.0,
-        "y2": 144.0
+        "x1": 690.0,
+        "y1": 135.0,
+        "x2": 800.0,
+        "y2": 135.0,
+        "stroke": "#ff9db3",
+        "stroke_dasharray": "5 4"
       }
     },
     {
-      "id": "slot.choice.1",
+      "id": "slot.fig3.center",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 746.0,
+        "cy": 135.0,
+        "r": 5.0,
+        "fill": "#ff5b8d"
+      }
+    },
+    {
+      "id": "slot.arrow1",
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "(2) 원을 둘로 똑같이 나누는 선분은 ( 반지름 , 지름 )입니다.",
-        "style_role": "question",
-        "x": 10.0,
-        "y": 398.0,
+        "text": "→",
+        "style_role": "body",
+        "x": 318.0,
+        "y": 144.0,
+        "font_size": 34
+      }
+    },
+    {
+      "id": "slot.arrow2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "→",
+        "style_role": "body",
+        "x": 586.0,
+        "y": 144.0,
+        "font_size": 34
+      }
+    },
+    {
+      "id": "slot.desc1.1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "원 모양의 종이를",
+        "style_role": "body",
+        "x": 90.0,
+        "y": 236.0,
         "font_size": 28
       }
     },
     {
-      "id": "slot.choice.2",
+      "id": "slot.desc1.2",
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "(2) 원을 둘로 똑같이 나누는 선분은 지름입니다.",
-        "style_role": "question",
-        "x": 10.0,
-        "y": 442.0,
+        "text": "둘로 똑같이 나누어",
+        "style_role": "body",
+        "x": 90.0,
+        "y": 274.0,
+        "font_size": 28,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.desc1.3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "지도록 접었다가 펼",
+        "style_role": "body",
+        "x": 90.0,
+        "y": 312.0,
         "font_size": 28
       }
     },
     {
-      "id": "slot.choice.3",
+      "id": "slot.desc1.4",
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "(2) 지름",
-        "style_role": "question",
-        "x": 10.0,
-        "y": 487.0,
+        "text": "칩니다.",
+        "style_role": "body",
+        "x": 108.0,
+        "y": 350.0,
         "font_size": 28
+      }
+    },
+    {
+      "id": "slot.desc2.1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "다른 방향으로도 둘",
+        "style_role": "body",
+        "x": 350.0,
+        "y": 235.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.desc2.2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "로 똑같이 나누어지",
+        "style_role": "body",
+        "x": 358.0,
+        "y": 274.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.desc2.3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "도록 접었다가 펼칩",
+        "style_role": "body",
+        "x": 358.0,
+        "y": 312.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.desc2.4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "니다.",
+        "style_role": "body",
+        "x": 429.0,
+        "y": 350.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.desc3.1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "접었을 때 생기는 선",
+        "style_role": "body",
+        "x": 621.0,
+        "y": 236.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.desc3.2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "분들이 만나는 점을",
+        "style_role": "body",
+        "x": 621.0,
+        "y": 274.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.desc3.3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "점 ㅇ이라고 표시합",
+        "style_role": "body",
+        "x": 621.0,
+        "y": 312.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.desc3.4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "니다.",
+        "style_role": "body",
+        "x": 692.0,
+        "y": 350.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.item1.q",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "(2) 원을 둘로 똑같이 나누는 선분은 (반지름, 지름)입니다.",
+        "style_role": "question",
+        "x": 90.0,
+        "y": 455.0,
+        "font_size": 28,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.item1.q.copy3.copy1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㅇ",
+        "style_role": "body",
+        "x": 750.0,
+        "y": 135.0,
+        "font_size": 20,
+        "fill": "#111111"
       }
     }
   ],
@@ -222,23 +372,33 @@
   "constraints": [],
   "diagrams": [],
   "reading_order": [
-    "region.header",
-    "slot.q_num",
-    "slot.q_title",
-    "region.diagram",
-    "slot.circle.1",
-    "slot.circle.2",
-    "slot.circle.3",
-    "slot.dot.1",
-    "slot.dot.2",
-    "slot.dot.3",
-    "slot.fold.1",
-    "slot.fold.2",
-    "slot.arrow.1",
-    "slot.arrow.2",
-    "region.choice",
-    "slot.choice.1",
-    "slot.choice.2",
-    "slot.choice.3"
+    "region.stem",
+    "slot.fig1.circle",
+    "slot.fig2.circle",
+    "slot.fig3.circle",
+    "slot.fig1.v",
+    "slot.fig2.v",
+    "slot.fig2.h",
+    "slot.fig3.v",
+    "slot.fig3.h",
+    "slot.fig3.center",
+    "slot.q.title",
+    "slot.arrow1",
+    "slot.arrow2",
+    "slot.desc1.1",
+    "slot.desc1.2",
+    "slot.desc1.3",
+    "slot.desc1.4",
+    "slot.desc2.1",
+    "slot.desc2.2",
+    "slot.desc2.3",
+    "slot.desc2.4",
+    "slot.desc3.1",
+    "slot.desc3.2",
+    "slot.desc3.3",
+    "slot.desc3.4",
+    "region.item1",
+    "slot.item1.q",
+    "slot.item1.q.copy3.copy1"
   ]
 }

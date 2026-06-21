@@ -14,9 +14,9 @@
       "role": "stem",
       "flow": "absolute",
       "slot_ids": [
-        "slot.q1",
         "slot.q2",
-        "slot.q3"
+        "slot.q3",
+        "slot.q3.copy1"
       ]
     },
     {
@@ -44,37 +44,19 @@
       "id": "region.answer_and_explanation",
       "role": "body",
       "flow": "absolute",
-      "slot_ids": [
-        "slot.ex2",
-        "slot.ex3"
-      ]
+      "slot_ids": []
     },
     {
       "id": "region.diagram2",
       "role": "diagram",
       "flow": "absolute",
-      "slot_ids": [
-        "slot.d2.top_box",
-        "slot.d2.left_mid_box",
-        "slot.d2.right_mid_box",
-        "slot.d2.card.1",
-        "slot.d2.card.2",
-        "slot.d2.card.3",
-        "slot.d2.card.4",
-        "slot.d2.connect.top_left",
-        "slot.d2.connect.top_right",
-        "slot.d2.connect.left_down_left",
-        "slot.d2.connect.left_down_right",
-        "slot.d2.connect.right_down_left",
-        "slot.d2.connect.right_down_right"
-      ]
+      "slot_ids": []
     },
     {
       "id": "region.footer",
       "role": "body",
       "flow": "absolute",
       "slot_ids": [
-        "slot.f1",
         "slot.f2",
         "slot.f3"
       ]
@@ -82,27 +64,15 @@
   ],
   "slots": [
     {
-      "id": "slot.q1",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "28.",
-        "style_role": "question",
-        "x": 16.0,
-        "y": 48.0,
-        "font_size": 28
-      }
-    },
-    {
       "id": "slot.q2",
       "kind": "text",
       "prompt": "",
       "content": {
         "text": "두 분수의 크기를 비교하여 빨간색 선을 만나면 큰 분수를, 파란색 선을 만나면",
         "style_role": "question",
-        "x": 56.0,
-        "y": 48.0,
-        "font_size": 28
+        "x": 20.0,
+        "y": 45.0,
+        "font_size": 30
       }
     },
     {
@@ -110,7 +80,7 @@
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "작은 분수를 빈칸에 써넣으려고 합니다. ㉠에 들어갈 분수로 알맞은 것을 가장 아래칸의 분수들 중에 선택해 보세요.",
+        "text": "작은 분수를 빈칸에 써넣으려고 합니다. ㉠에 들어갈 분수로 알맞은 것을",
         "style_role": "question",
         "x": 16.0,
         "y": 86.0,
@@ -122,10 +92,10 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 452.0,
-        "y": 136.0,
-        "width": 72.0,
-        "height": 72.0,
+        "x": 405.0,
+        "y": 360.0,
+        "width": 70.0,
+        "height": 70.0,
         "fill": "#FFFFFF"
       }
     },
@@ -134,10 +104,10 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 344.0,
-        "y": 242.0,
-        "width": 72.0,
-        "height": 72.0,
+        "x": 300.0,
+        "y": 465.0,
+        "width": 70.0,
+        "height": 70.0,
         "fill": "#FFFFFF"
       }
     },
@@ -146,10 +116,10 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 560.0,
-        "y": 242.0,
-        "width": 72.0,
-        "height": 72.0,
+        "x": 515.0,
+        "y": 465.0,
+        "width": 70.0,
+        "height": 70.0,
         "fill": "#FFFFFF"
       }
     },
@@ -158,9 +128,9 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 300.0,
-        "y": 348.0,
-        "width": 72.0,
+        "x": 255.0,
+        "y": 575.0,
+        "width": 70.0,
         "height": 80.0,
         "fill": "#DDF1EA"
       }
@@ -170,9 +140,9 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 392.0,
-        "y": 348.0,
-        "width": 72.0,
+        "x": 345.0,
+        "y": 575.0,
+        "width": 70.0,
         "height": 80.0,
         "fill": "#DDF1EA"
       }
@@ -182,9 +152,9 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 500.0,
-        "y": 348.0,
-        "width": 72.0,
+        "x": 455.0,
+        "y": 575.0,
+        "width": 70.0,
         "height": 80.0,
         "fill": "#DDF1EA"
       }
@@ -194,9 +164,9 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 592.0,
-        "y": 348.0,
-        "width": 72.0,
+        "x": 545.0,
+        "y": 575.0,
+        "width": 70.0,
         "height": 80.0,
         "fill": "#DDF1EA"
       }
@@ -206,10 +176,10 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 488.0,
-        "y1": 208.0,
-        "x2": 380.0,
-        "y2": 208.0
+        "x1": 445.0,
+        "y1": 435.0,
+        "x2": 335.0,
+        "y2": 435.0
       }
     },
     {
@@ -217,10 +187,10 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 488.0,
-        "y1": 208.0,
-        "x2": 596.0,
-        "y2": 208.0
+        "x1": 445.0,
+        "y1": 435.0,
+        "x2": 550.0,
+        "y2": 435.0
       }
     },
     {
@@ -228,10 +198,10 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 380.0,
-        "y1": 314.0,
-        "x2": 336.0,
-        "y2": 314.0
+        "x1": 335.0,
+        "y1": 540.0,
+        "x2": 290.0,
+        "y2": 540.0
       }
     },
     {
@@ -239,10 +209,10 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 380.0,
-        "y1": 314.0,
-        "x2": 428.0,
-        "y2": 314.0
+        "x1": 335.0,
+        "y1": 540.0,
+        "x2": 385.0,
+        "y2": 540.0
       }
     },
     {
@@ -250,10 +220,10 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 596.0,
-        "y1": 314.0,
-        "x2": 536.0,
-        "y2": 314.0
+        "x1": 550.0,
+        "y1": 540.0,
+        "x2": 490.0,
+        "y2": 540.0
       }
     },
     {
@@ -261,10 +231,10 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 596.0,
-        "y1": 314.0,
-        "x2": 628.0,
-        "y2": 314.0
+        "x1": 550.0,
+        "y1": 540.0,
+        "x2": 585.0,
+        "y2": 540.0
       }
     },
     {
@@ -274,195 +244,9 @@
       "content": {
         "text": "㉠",
         "style_role": "label",
-        "x": 470.0,
-        "y": 184.0,
-        "font_size": 28
-      }
-    },
-    {
-      "id": "slot.ex2",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "23/15 < 26/15 이므로 파란색 선을 만나서 작은 분수인 23/15이 빈칸으로 올라갑니다.",
-        "style_role": "body",
-        "x": 16.0,
-        "y": 620.0,
-        "font_size": 28
-      }
-    },
-    {
-      "id": "slot.ex3",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "1 3/15과 23/15의 크기를 비교하면 23/15 = 1 8/15이므로 1 3/15 < 23/15입니다.",
-        "style_role": "body",
-        "x": 16.0,
-        "y": 940.0,
-        "font_size": 28
-      }
-    },
-    {
-      "id": "slot.d2.top_box",
-      "kind": "rect",
-      "prompt": "",
-      "content": {
-        "x": 164.0,
-        "y": 684.0,
-        "width": 72.0,
-        "height": 72.0,
-        "fill": "#FFFFFF"
-      }
-    },
-    {
-      "id": "slot.d2.left_mid_box",
-      "kind": "rect",
-      "prompt": "",
-      "content": {
-        "x": 108.0,
-        "y": 790.0,
-        "width": 72.0,
-        "height": 72.0,
-        "fill": "#FFFFFF"
-      }
-    },
-    {
-      "id": "slot.d2.right_mid_box",
-      "kind": "rect",
-      "prompt": "",
-      "content": {
-        "x": 248.0,
-        "y": 790.0,
-        "width": 72.0,
-        "height": 72.0,
-        "fill": "#FFFFFF"
-      }
-    },
-    {
-      "id": "slot.d2.card.1",
-      "kind": "rect",
-      "prompt": "",
-      "content": {
-        "x": 48.0,
-        "y": 848.0,
-        "width": 72.0,
-        "height": 80.0,
-        "fill": "#DDF1EA"
-      }
-    },
-    {
-      "id": "slot.d2.card.2",
-      "kind": "rect",
-      "prompt": "",
-      "content": {
-        "x": 140.0,
-        "y": 848.0,
-        "width": 72.0,
-        "height": 80.0,
-        "fill": "#DDF1EA"
-      }
-    },
-    {
-      "id": "slot.d2.card.3",
-      "kind": "rect",
-      "prompt": "",
-      "content": {
-        "x": 220.0,
-        "y": 848.0,
-        "width": 72.0,
-        "height": 80.0,
-        "fill": "#DDF1EA"
-      }
-    },
-    {
-      "id": "slot.d2.card.4",
-      "kind": "rect",
-      "prompt": "",
-      "content": {
-        "x": 312.0,
-        "y": 848.0,
-        "width": 72.0,
-        "height": 80.0,
-        "fill": "#DDF1EA"
-      }
-    },
-    {
-      "id": "slot.d2.connect.top_left",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 200.0,
-        "y1": 756.0,
-        "x2": 144.0,
-        "y2": 756.0
-      }
-    },
-    {
-      "id": "slot.d2.connect.top_right",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 200.0,
-        "y1": 756.0,
-        "x2": 284.0,
-        "y2": 756.0
-      }
-    },
-    {
-      "id": "slot.d2.connect.left_down_left",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 144.0,
-        "y1": 862.0,
-        "x2": 84.0,
-        "y2": 862.0
-      }
-    },
-    {
-      "id": "slot.d2.connect.left_down_right",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 144.0,
-        "y1": 862.0,
-        "x2": 176.0,
-        "y2": 862.0
-      }
-    },
-    {
-      "id": "slot.d2.connect.right_down_left",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 284.0,
-        "y1": 862.0,
-        "x2": 244.0,
-        "y2": 862.0
-      }
-    },
-    {
-      "id": "slot.d2.connect.right_down_right",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 284.0,
-        "y1": 862.0,
-        "x2": 324.0,
-        "y2": 862.0
-      }
-    },
-    {
-      "id": "slot.f1",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "따라서 빨간색 선을 만나서 큰 분수가 빈칸으로 올라가므로 ㉠에 알맞은 수는 23/15입니다.",
-        "style_role": "body",
-        "x": 16.0,
-        "y": 1002.0,
-        "font_size": 28
+        "x": 425.0,
+        "y": 410.0,
+        "font_size": 30
       }
     },
     {
@@ -488,6 +272,19 @@
         "y": 1068.0,
         "font_size": 28
       }
+    },
+    {
+      "id": "slot.q3.copy1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "가장 아래칸의 분수들 중에 선택해 보세요.",
+        "style_role": "body",
+        "x": 20.0,
+        "y": 140.0,
+        "font_size": 30,
+        "fill": "#111111"
+      }
     }
   ],
   "groups": [],
@@ -495,9 +292,9 @@
   "diagrams": [],
   "reading_order": [
     "region.stem",
-    "slot.q1",
     "slot.q2",
     "slot.q3",
+    "slot.q3.copy1",
     "region.diagram1",
     "slot.d1.top_box",
     "slot.d1.left_mid_box",
@@ -514,24 +311,8 @@
     "slot.d1.connect.right_down_right",
     "slot.d1.tag",
     "region.answer_and_explanation",
-    "slot.ex2",
-    "slot.ex3",
     "region.diagram2",
-    "slot.d2.top_box",
-    "slot.d2.left_mid_box",
-    "slot.d2.right_mid_box",
-    "slot.d2.card.1",
-    "slot.d2.card.2",
-    "slot.d2.card.3",
-    "slot.d2.card.4",
-    "slot.d2.connect.top_left",
-    "slot.d2.connect.top_right",
-    "slot.d2.connect.left_down_left",
-    "slot.d2.connect.left_down_right",
-    "slot.d2.connect.right_down_left",
-    "slot.d2.connect.right_down_right",
     "region.footer",
-    "slot.f1",
     "slot.f2",
     "slot.f3"
   ]

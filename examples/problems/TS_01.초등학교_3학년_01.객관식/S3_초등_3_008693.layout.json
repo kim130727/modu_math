@@ -16,11 +16,11 @@
       "slot_ids": [
         "slot.q1",
         "slot.q2",
-        "slot.num.1.text",
-        "slot.num.2.text",
-        "slot.num.3.text",
-        "slot.num.4.text",
-        "slot.num.5.text"
+        "slot.q2.copy1.copy2",
+        "slot.q2.copy1.copy3",
+        "slot.q2.copy1.copy4",
+        "slot.q2.copy1.copy5",
+        "slot.q2.copy1.copy4.copy7"
       ]
     },
     {
@@ -29,20 +29,15 @@
       "flow": "absolute",
       "slot_ids": [
         "slot.band",
+        "slot.pin.head",
+        "slot.pin.body",
+        "slot.pencil.body",
+        "slot.pencil.tip",
         "slot.dot.1",
         "slot.dot.2",
         "slot.dot.3",
         "slot.dot.4",
-        "slot.dot.5",
-        "slot.num.1",
-        "slot.num.2",
-        "slot.num.3",
-        "slot.num.4",
-        "slot.num.5",
-        "slot.pin.head",
-        "slot.pin.body",
-        "slot.pencil.body",
-        "slot.pencil.tip"
+        "slot.dot.5"
       ]
     },
     {
@@ -147,129 +142,14 @@
       }
     },
     {
-      "id": "slot.num.1",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 265.0,
-        "cy": 240.0,
-        "r": 10.0,
-        "fill": "#FFFFFF"
-      }
-    },
-    {
-      "id": "slot.num.2",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 335.0,
-        "cy": 240.0,
-        "r": 10.0,
-        "fill": "#FFFFFF"
-      }
-    },
-    {
-      "id": "slot.num.3",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 405.0,
-        "cy": 240.0,
-        "r": 10.0,
-        "fill": "#FFFFFF"
-      }
-    },
-    {
-      "id": "slot.num.4",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 475.0,
-        "cy": 240.0,
-        "r": 10.0,
-        "fill": "#FFFFFF"
-      }
-    },
-    {
-      "id": "slot.num.5",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 545.0,
-        "cy": 240.0,
-        "r": 10.0,
-        "fill": "#FFFFFF"
-      }
-    },
-    {
-      "id": "slot.num.1.text",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "1",
-        "style_role": "label",
-        "x": 260.0,
-        "y": 250.0,
-        "font_size": 20
-      }
-    },
-    {
-      "id": "slot.num.2.text",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "2",
-        "style_role": "label",
-        "x": 330.0,
-        "y": 250.0,
-        "font_size": 20
-      }
-    },
-    {
-      "id": "slot.num.3.text",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "3",
-        "style_role": "label",
-        "x": 400.0,
-        "y": 250.0,
-        "font_size": 20
-      }
-    },
-    {
-      "id": "slot.num.4.text",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "4",
-        "style_role": "label",
-        "x": 470.0,
-        "y": 250.0,
-        "font_size": 20
-      }
-    },
-    {
-      "id": "slot.num.5.text",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "5",
-        "style_role": "label",
-        "x": 540.0,
-        "y": 250.0,
-        "font_size": 20
-      }
-    },
-    {
       "id": "slot.pin.body",
       "kind": "line",
       "prompt": "",
       "content": {
         "x1": 335.0,
-        "y1": 155.0,
+        "y1": 180.0,
         "x2": 335.0,
-        "y2": 200.0,
+        "y2": 205.0,
         "stroke": "#8E8E8E",
         "stroke_width": 6.0
       }
@@ -280,7 +160,7 @@
       "prompt": "",
       "content": {
         "cx": 335.0,
-        "cy": 155.0,
+        "cy": 173.0,
         "r": 10.0,
         "fill": "#C8C8C8"
       }
@@ -310,6 +190,71 @@
         "stroke": "#7A4A34",
         "stroke_width": 2.0
       }
+    },
+    {
+      "id": "slot.q2.copy1.copy2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "1",
+        "style_role": "body",
+        "x": 255.0,
+        "y": 285.0,
+        "font_size": 30,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.q2.copy1.copy3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "2",
+        "style_role": "body",
+        "x": 330.0,
+        "y": 285.0,
+        "font_size": 30,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.q2.copy1.copy4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "3",
+        "style_role": "body",
+        "x": 400.0,
+        "y": 285.0,
+        "font_size": 30,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.q2.copy1.copy5",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "4",
+        "style_role": "body",
+        "x": 470.0,
+        "y": 285.0,
+        "font_size": 30,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.q2.copy1.copy4.copy7",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "5",
+        "style_role": "body",
+        "x": 535.0,
+        "y": 285.0,
+        "font_size": 30,
+        "fill": "#111111"
+      }
     }
   ],
   "groups": [],
@@ -319,27 +264,22 @@
     "region.stem",
     "slot.q1",
     "slot.q2",
-    "slot.num.1.text",
-    "slot.num.2.text",
-    "slot.num.3.text",
-    "slot.num.4.text",
-    "slot.num.5.text",
+    "slot.q2.copy1.copy2",
+    "slot.q2.copy1.copy3",
+    "slot.q2.copy1.copy4",
+    "slot.q2.copy1.copy5",
+    "slot.q2.copy1.copy4.copy7",
     "region.diagram",
     "slot.band",
+    "slot.pin.head",
+    "slot.pin.body",
+    "slot.pencil.body",
+    "slot.pencil.tip",
     "slot.dot.1",
     "slot.dot.2",
     "slot.dot.3",
     "slot.dot.4",
     "slot.dot.5",
-    "slot.num.1",
-    "slot.num.2",
-    "slot.num.3",
-    "slot.num.4",
-    "slot.num.5",
-    "slot.pin.head",
-    "slot.pin.body",
-    "slot.pencil.body",
-    "slot.pencil.tip",
     "region.answer"
   ]
 }

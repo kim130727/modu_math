@@ -109,10 +109,10 @@
       "id": "slot.fig3.v.line",
       "type": "line",
       "attributes": {
-        "x1": 770.0,
-        "y1": 115.0,
-        "x2": 770.0,
-        "y2": 215.0,
+        "x1": 745.0,
+        "y1": 85.0,
+        "x2": 745.0,
+        "y2": 190.0,
         "stroke": "#ff9db3",
         "stroke-width": 2.0,
         "stroke-dasharray": "5 4"
@@ -126,10 +126,10 @@
       "id": "slot.fig3.h.line",
       "type": "line",
       "attributes": {
-        "x1": 660.0,
-        "y1": 80.0,
-        "x2": 765.0,
-        "y2": 80.0,
+        "x1": 690.0,
+        "y1": 135.0,
+        "x2": 800.0,
+        "y2": 135.0,
         "stroke": "#ff9db3",
         "stroke-width": 2.0,
         "stroke-dasharray": "5 4"
@@ -143,8 +143,8 @@
       "id": "slot.fig3.center.circle",
       "type": "circle",
       "attributes": {
-        "cx": 665.0,
-        "cy": 120.0,
+        "cx": 746.0,
+        "cy": 135.0,
         "r": 5.0,
         "stroke": "#111111",
         "stroke-width": 2.0,
@@ -436,7 +436,7 @@
         "max_width": 822.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 35
+        "font-size": 25
       },
       "source_ref": "slot.item1.arrow",
       "refs": {
@@ -453,13 +453,30 @@
         "max_width": 822.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 30
+        "font-size": 25
       },
       "source_ref": "slot.item1.q.copy3",
       "refs": {
         "layout_slot_id": "slot.item1.q.copy3"
       },
       "text": "점 ㅇ는 원의 중심입니다."
+    },
+    {
+      "id": "slot.item1.q.copy3.copy1.text",
+      "type": "text",
+      "attributes": {
+        "x": 750.0,
+        "y": 135.0,
+        "max_width": 822.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 20
+      },
+      "source_ref": "slot.item1.q.copy3.copy1",
+      "refs": {
+        "layout_slot_id": "slot.item1.q.copy3.copy1"
+      },
+      "text": "ㅇ"
     }
   ],
   "contract_version": "modu_math.renderer.v2"

@@ -1104,6 +1104,8 @@ class SlotDeleteTransformer(cst.CSTTransformer):
 def apply_layout_patches(problem_id: str, patches: list[dict[str, Any]]) -> tuple[str, list[AppliedPatch]]:
     paths = resolve_problem_paths(problem_id)
     source = paths.dsl_path.read_text(encoding="utf-8")
+    if not source.strip():
+        raise DslPatchError("DSL file is empty; restore or save a valid DSL before editing layout")
     module = cst.parse_module(source)
 
     applied: list[AppliedPatch] = []

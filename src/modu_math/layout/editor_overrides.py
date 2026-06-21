@@ -3,6 +3,15 @@ from __future__ import annotations
 from typing import Any
 
 
+def _deleted_slot_matches(slot_id: str, deleted: set[str], exact_deleted: set[str]) -> bool:
+    if slot_id in deleted:
+        return True
+    for deleted_id in deleted - exact_deleted:
+        if slot_id.startswith(f"{deleted_id}."):
+            return True
+    return False
+
+
 def apply_editor_overrides(layout: dict[str, Any], overrides: dict[str, Any] | None) -> dict[str, Any]:
     if not isinstance(overrides, dict):
         return layout
@@ -10,14 +19,24 @@ def apply_editor_overrides(layout: dict[str, Any], overrides: dict[str, Any] | N
     deleted_slots = overrides.get("deleted_slots")
     deleted = {slot_id for slot_id in deleted_slots if isinstance(slot_id, str)} if isinstance(deleted_slots, list) else set()
     if deleted:
+        slot_ids = {
+            slot.get("id")
+            for slot in layout.get("slots", [])
+            if isinstance(slot, dict) and isinstance(slot.get("id"), str)
+        }
+        exact_deleted = deleted & slot_ids
+
+        def is_deleted(slot_id: Any) -> bool:
+            return isinstance(slot_id, str) and _deleted_slot_matches(slot_id, deleted, exact_deleted)
+
         slots = layout.get("slots")
         if isinstance(slots, list):
-            layout["slots"] = [slot for slot in slots if not (isinstance(slot, dict) and slot.get("id") in deleted)]
+            layout["slots"] = [slot for slot in slots if not (isinstance(slot, dict) and is_deleted(slot.get("id")))]
         for region in layout.get("regions", []):
             if isinstance(region, dict) and isinstance(region.get("slot_ids"), list):
-                region["slot_ids"] = [slot_id for slot_id in region["slot_ids"] if slot_id not in deleted]
+                region["slot_ids"] = [slot_id for slot_id in region["slot_ids"] if not is_deleted(slot_id)]
         if isinstance(layout.get("reading_order"), list):
-            layout["reading_order"] = [item for item in layout["reading_order"] if item not in deleted]
+            layout["reading_order"] = [item for item in layout["reading_order"] if not is_deleted(item)]
 
     region_slot_orders = overrides.get("region_slot_orders")
     if isinstance(region_slot_orders, dict):
