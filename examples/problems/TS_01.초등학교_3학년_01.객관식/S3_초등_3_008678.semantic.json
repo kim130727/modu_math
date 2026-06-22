@@ -11,6 +11,9 @@
     "question": "원 모양 종이를 똑같이 둘로 나누어지도록 반을 접었다가 폈더니 선이 생겼습니다. 알맞은 말을 선택하세요.",
     "required_layout_ids": [
       "slot.folded.paper",
+      "slot.folded.back_circle",
+      "slot.folded.front_circle",
+      "slot.folded.lower_mask",
       "slot.folded.edge",
       "slot.arrow.body",
       "slot.arrow.head",
@@ -95,7 +98,6 @@
       }
     ],
     "answer_key": [],
-    "confidence": 1.0,
     "target": {
       "type": "choice_word",
       "description": "괄호 안에 들어갈 알맞은 말"

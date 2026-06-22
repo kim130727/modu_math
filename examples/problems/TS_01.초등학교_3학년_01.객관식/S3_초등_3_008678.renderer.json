@@ -44,11 +44,10 @@
       "id": "slot.folded.paper.path",
       "type": "path",
       "attributes": {
-        "d": "M 715 165 C 717.4 202.2, 746.2 220.2, 775 220.2 C 803.8 220.2, 832.6 202.2, 835 165 L 715 165 Z",
-        "stroke": "#FF9AB2",
-        "stroke-width": 1.7,
-        "fill": "#FDE8EF",
-        "transform": "rotate(180 345 153)"
+        "d": "M 286.0 153.0 C 288.36 116.42, 316.68 94.0 345.0 94.0 C 373.32 94.0, 401.64 116.42, 404.0 153.0 L 286.0 153.0 Z",
+        "stroke": "none",
+        "stroke-width": 2.0,
+        "fill": "#FDE8EF"
       },
       "source_ref": "slot.folded.paper",
       "refs": {
@@ -56,18 +55,52 @@
       }
     },
     {
-      "id": "slot.folded.edge.path",
-      "type": "path",
+      "id": "slot.folded.back_circle.circle",
+      "type": "circle",
       "attributes": {
-        "d": "M 725.8 171 C 757 232.2, 802 227.4, 826 169.8",
+        "cx": 337.0,
+        "cy": 153.0,
+        "r": 59.0,
         "stroke": "#FF9AB2",
-        "stroke-width": 1.2,
-        "fill": "none",
-        "transform": "rotate(180 345 153)"
+        "stroke-width": 1.7,
+        "fill": "none"
       },
-      "source_ref": "slot.folded.edge",
+      "source_ref": "slot.folded.back_circle",
       "refs": {
-        "layout_slot_id": "slot.folded.edge"
+        "layout_slot_id": "slot.folded.back_circle"
+      }
+    },
+    {
+      "id": "slot.folded.front_circle.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 345.0,
+        "cy": 153.0,
+        "r": 59.0,
+        "stroke": "#FF9AB2",
+        "stroke-width": 1.7,
+        "fill": "none"
+      },
+      "source_ref": "slot.folded.front_circle",
+      "refs": {
+        "layout_slot_id": "slot.folded.front_circle"
+      }
+    },
+    {
+      "id": "slot.folded.lower_mask.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 274.0,
+        "y": 153.0,
+        "width": 142.0,
+        "height": 71.0,
+        "fill": "#FFFFFF",
+        "stroke": "none",
+        "stroke-width": 0.0
+      },
+      "source_ref": "slot.folded.lower_mask",
+      "refs": {
+        "layout_slot_id": "slot.folded.lower_mask"
       }
     },
     {
@@ -111,6 +144,22 @@
       "source_ref": "slot.opened.paper",
       "refs": {
         "layout_slot_id": "slot.opened.paper"
+      }
+    },
+    {
+      "id": "slot.folded.edge.line",
+      "type": "line",
+      "attributes": {
+        "x1": 286.0,
+        "y1": 153.0,
+        "x2": 404.0,
+        "y2": 153.0,
+        "stroke": "#FF9AB2",
+        "stroke-width": 1.7
+      },
+      "source_ref": "slot.folded.edge",
+      "refs": {
+        "layout_slot_id": "slot.folded.edge"
       }
     },
     {

@@ -1,15 +1,15 @@
 from __future__ import annotations
 
-from dataclasses import replace
-
 from modu_math.dsl import (
     Canvas,
+    CircleSlot,
     LineSlot,
+    PathSlot,
     PolygonSlot,
     ProblemTemplate,
+    RectSlot,
     Region,
     TextSlot,
-    folded_half_circle_slots,
     opened_circle_with_fold_slots,
 )
 
@@ -20,13 +20,62 @@ ARROW = "#9AA0A6"
 
 
 def _folded_half_slots() -> tuple:
-    slots = folded_half_circle_slots(
-        "slot.folded",
-        cx = 775.0, cy = 165.0, r = 60.0, fill=PAPER_FILL,
-        stroke=PAPER_STROKE,
-        stroke_width=1.7,
+    cx, cy, r = 345.0, 153.0, 59.0
+    return (
+        PathSlot(
+            id="slot.folded.paper",
+            prompt="",
+            d=(
+                f"M {cx - r} {cy} "
+                f"C {cx - r * 0.96} {cy - r * 0.62}, {cx - r * 0.48} {cy - r} {cx} {cy - r} "
+                f"C {cx + r * 0.48} {cy - r}, {cx + r * 0.96} {cy - r * 0.62}, {cx + r} {cy} "
+                f"L {cx - r} {cy} Z"
+            ),
+            fill=PAPER_FILL,
+            stroke="none",
+        ),
+        CircleSlot(
+            id="slot.folded.back_circle",
+            prompt="",
+            cx=cx - 8.0,
+            cy=cy,
+            r=r,
+            fill="none",
+            stroke=PAPER_STROKE,
+            stroke_width=1.7,
+        ),
+        CircleSlot(
+            id="slot.folded.front_circle",
+            prompt="",
+            cx=cx,
+            cy=cy,
+            r=r,
+            fill="none",
+            stroke=PAPER_STROKE,
+            stroke_width=1.7,
+        ),
+        RectSlot(
+            id="slot.folded.lower_mask",
+            prompt="",
+            x=cx - r - 12.0,
+            y=cy,
+            width=r * 2.0 + 24.0,
+            height=r + 12.0,
+            fill="#FFFFFF",
+            stroke="none",
+            stroke_width=0.0,
+        ),
+        LineSlot(
+            id="slot.folded.edge",
+            prompt="",
+            x1=cx - r,
+            y1=cy,
+            x2=cx + r,
+            y2=cy,
+            stroke=PAPER_STROKE,
+            stroke_width=1.7,
+        ),
     )
-    return tuple(replace(slot, transform="rotate(180 345 153)") for slot in slots)
 
 
 def _opened_circle_slots() -> tuple:
@@ -64,6 +113,9 @@ def build_problem_template() -> ProblemTemplate:
                 flow="absolute",
                 slot_ids=(
                     "slot.folded.paper",
+                    "slot.folded.back_circle",
+                    "slot.folded.front_circle",
+                    "slot.folded.lower_mask",
                     "slot.folded.edge",
                     "slot.arrow.body",
                     "slot.arrow.head",

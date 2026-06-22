@@ -24,9 +24,12 @@
       "flow": "absolute",
       "slot_ids": [
         "slot.folded.paper",
-        "slot.folded.edge",
+        "slot.folded.back_circle",
+        "slot.folded.front_circle",
+        "slot.folded.lower_mask",
         "slot.arrow.head",
         "slot.opened.paper",
+        "slot.folded.edge",
         "slot.arrow.body",
         "slot.opened.fold_line"
       ]
@@ -70,27 +73,64 @@
       "kind": "path",
       "prompt": "",
       "content": {
-        "d": "M 715 165 C 717.4 202.2, 746.2 220.2, 775 220.2 C 803.8 220.2, 832.6 202.2, 835 165 L 715 165 Z",
+        "d": "M 286.0 153.0 C 288.36 116.42, 316.68 94.0 345.0 94.0 C 373.32 94.0, 401.64 116.42, 404.0 153.0 L 286.0 153.0 Z",
         "x": 0.0,
         "y": 0.0,
+        "stroke": "none",
+        "fill": "#FDE8EF"
+      }
+    },
+    {
+      "id": "slot.folded.back_circle",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 337.0,
+        "cy": 153.0,
+        "r": 59.0,
         "stroke": "#FF9AB2",
         "stroke_width": 1.7,
-        "fill": "#FDE8EF",
-        "transform": "rotate(180 345 153)"
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.folded.front_circle",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 345.0,
+        "cy": 153.0,
+        "r": 59.0,
+        "stroke": "#FF9AB2",
+        "stroke_width": 1.7,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.folded.lower_mask",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 274.0,
+        "y": 153.0,
+        "width": 142.0,
+        "height": 71.0,
+        "stroke": "none",
+        "stroke_width": 0.0,
+        "fill": "#FFFFFF"
       }
     },
     {
       "id": "slot.folded.edge",
-      "kind": "path",
+      "kind": "line",
       "prompt": "",
       "content": {
-        "d": "M 725.8 171 C 757 232.2, 802 227.4, 826 169.8",
-        "x": 0.0,
-        "y": 0.0,
+        "x1": 286.0,
+        "y1": 153.0,
+        "x2": 404.0,
+        "y2": 153.0,
         "stroke": "#FF9AB2",
-        "stroke_width": 1.2,
-        "fill": "none",
-        "transform": "rotate(180 345 153)"
+        "stroke_width": 1.7
       }
     },
     {
@@ -179,9 +219,12 @@
     "slot.stem.2",
     "region.diagram",
     "slot.folded.paper",
-    "slot.folded.edge",
+    "slot.folded.back_circle",
+    "slot.folded.front_circle",
+    "slot.folded.lower_mask",
     "slot.arrow.head",
     "slot.opened.paper",
+    "slot.folded.edge",
     "slot.arrow.body",
     "slot.opened.fold_line",
     "region.choice",
