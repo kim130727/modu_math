@@ -115,7 +115,7 @@ def build_problem_template() -> ProblemTemplate:
                 id="slot.bubble1",
                 prompt="",
                 text = '        줄로 연결한 막대를 돌려', style_role="question",
-                x = 280, y = 375, font_size = 30),
+                x = 230, y = 375, font_size = 30, fill = '#111111'),
             RectSlot(id="slot.box3", prompt="", x = 85, y = 672, width = 760, height = 115, fill="#ffffff"),
             TextSlot(
                 id="slot.choice1",
@@ -126,7 +126,7 @@ def build_problem_template() -> ProblemTemplate:
                 id="slot.choice2",
                 prompt="",
                 text = '으면 원을 좀 더 정확하게 그릴 수 있습니다.', style_role="question",
-                x = 115, y = 762, font_size = 30),TextSlot(id = 'slot.bubble1.copy3', prompt = '', text = '그린 원과 비슷한 원이 그려지는구나.  ', x = 130, y = 420, font_size = 30, fill = '#111111'),
+                x = 115, y = 762, font_size = 30),TextSlot(id = 'slot.bubble1.copy3', prompt = '', text = '그린 원과 비슷한 원이 그려지는구나.  ', x = 130, y = 430, font_size = 30, fill = '#111111'),
             *character_slots,
         ),
         diagrams=(),

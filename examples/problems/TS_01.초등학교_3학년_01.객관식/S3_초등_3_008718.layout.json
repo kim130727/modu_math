@@ -34,7 +34,11 @@
       "role": "body",
       "flow": "absolute",
       "slot_ids": [
-        "slot.choice.list"
+        "slot.choice.list",
+        "slot.choice.list.copy18",
+        "slot.choice.list.copy18.copy19",
+        "slot.choice.list.copy18.copy20",
+        "slot.choice.list.copy18.copy21"
       ]
     },
     {
@@ -141,9 +145,10 @@
       "content": {
         "text": "( ㄱ , ㄴ , ㄷ , ㄹ )",
         "style_role": "body",
-        "x": 305.0,
-        "y": 380.0,
-        "font_size": 30
+        "x": 290.0,
+        "y": 385.0,
+        "font_size": 30,
+        "fill": "#111111"
       }
     },
     {
@@ -205,6 +210,58 @@
         "stroke": "#111111",
         "stroke_width": 2.0
       }
+    },
+    {
+      "id": "slot.choice.list.copy18",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄱ",
+        "style_role": "body",
+        "x": 180.0,
+        "y": 96.3333740234375,
+        "font_size": 30,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.choice.list.copy18.copy19",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄴ",
+        "style_role": "body",
+        "x": 430.0,
+        "y": 96.3333740234375,
+        "font_size": 30,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.choice.list.copy18.copy20",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄷ",
+        "style_role": "body",
+        "x": 185.0,
+        "y": 241.3333740234375,
+        "font_size": 30,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.choice.list.copy18.copy21",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄹ",
+        "style_role": "body",
+        "x": 435.0,
+        "y": 241.3333740234375,
+        "font_size": 30,
+        "fill": "#111111"
+      }
     }
   ],
   "groups": [],
@@ -227,6 +284,10 @@
     "slot.q_text",
     "region.choice_box",
     "slot.choice.list",
+    "slot.choice.list.copy18",
+    "slot.choice.list.copy18.copy19",
+    "slot.choice.list.copy18.copy20",
+    "slot.choice.list.copy18.copy21",
     "region.answer"
   ]
 }

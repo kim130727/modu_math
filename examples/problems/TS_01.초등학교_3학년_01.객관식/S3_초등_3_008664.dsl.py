@@ -7,7 +7,7 @@ from modu_math.dsl import (
     RectSlot,
     CircleSlot,
     LineSlot,
-)
+PathSlot)
 
 
 def build_problem_template() -> ProblemTemplate:
@@ -20,15 +20,13 @@ def build_problem_template() -> ProblemTemplate:
                 id="region.stem",
                 role="stem",
                 flow="absolute",
-                slot_ids=("slot.q1", "slot.q2"),
+                slot_ids=("slot.q1", 'slot.q2.copy1', 'slot.q2.copy1.copy2'),
             ),
             Region(
                 id="region.diagram",
                 role="diagram",
                 flow="absolute",
-                slot_ids=(
-                    "slot.bar",
-                    "slot.tool",
+                slot_ids=("slot.bar",
                     "slot.hole.1",
                     "slot.hole.2",
                     "slot.hole.3",
@@ -39,39 +37,22 @@ def build_problem_template() -> ProblemTemplate:
                     "slot.link.3",
                     "slot.link.4",
                     "slot.link.5",
-                    "slot.choice.1",
-                    "slot.choice.2",
-                    "slot.choice.3",
-                    "slot.choice.4",
-                    "slot.choice.5",
                     "slot.choice.lb.1",
                     "slot.choice.lb.2",
                     "slot.choice.lb.3",
                     "slot.choice.lb.4",
-                    "slot.choice.lb.5",
-                ),
+                    "slot.choice.lb.5",'slot.hole.5.copy13'),
             ),
         ),
-        slots=(
-            TextSlot(
+        slots=(TextSlot(
                 id="slot.q1",
                 prompt="",
                 text = '누름 못과 띠 종이를 사용하여 원을 그리려고 합니다.', style_role="question",
                 x = 15, y = 41, font_size = 30, fill = '#111111'),
-            TextSlot(
-                id="slot.q2",
-                prompt="",
-                text = '\n    \n    원을 가장 크게 그리려고 할 때 연필을 꽂아야 하는 구멍의 기호를\n    선택해 보세요.\n  ', style_role="question",
-                x = 15, y = 74, font_size = 30, fill = '#111111'),
             RectSlot(
                 id="slot.bar",
                 prompt="",
-                x = 175, y = 210, width = 435, height = 40, fill="#bfeaed",
-                stroke="#8fcfd0",
-                stroke_width=1.0,
-            ),
-            CircleSlot(
-                id="slot.tool", prompt="", cx = 230, cy = 230, r = 10, fill = '#7f8c99', stroke = '#111111', stroke_width = 2),
+                x = 175, y = 210, width = 435, height = 40, fill = '#bfeaed', stroke = '#8fcfd0', stroke_width = 1),
             CircleSlot(
                 id="slot.hole.1",
                 prompt="",
@@ -161,8 +142,7 @@ def build_problem_template() -> ProblemTemplate:
                 id="slot.choice.lb.5",
                 prompt="",
                 text = '㉤', style_role="label",
-                x = 513, y = 290, font_size = 25, fill = '#111111'),
-        ),
+                x = 513, y = 290, font_size = 25, fill = '#111111'),TextSlot(id = 'slot.q2.copy1', prompt = '', text = '        원을 가장 크게 그리려고 할 때 연필을 꽂아야 하는', x = 14, y = 85, font_size = 30, max_width = 830, fill = '#111111'), TextSlot(id = 'slot.q2.copy1.copy2', prompt = '', text = '구멍의 기호를 선택해 보세요.  ', x = 13, y = 130, font_size = 30, max_width = 830, fill = '#111111'),CircleSlot(id = 'slot.hole.5.copy13', prompt = '', cx = 220, cy = 229.49998474121094, r = 10, fill = '#6b7280', stroke = '#8a8a8a', stroke_width = 1)),
         diagrams=(),
         groups=(),
         constraints=(),

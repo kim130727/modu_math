@@ -14,10 +14,7 @@
       "role": "stem",
       "flow": "absolute",
       "slot_ids": [
-        "slot.header.num",
-        "slot.header.text",
-        "slot.name.left.text",
-        "slot.name.right.text"
+        "slot.header.text"
       ]
     },
     {
@@ -41,7 +38,14 @@
       "flow": "absolute",
       "slot_ids": [
         "slot.speech.left",
-        "slot.name.left",
+        "slot.person.left.body",
+        "slot.person.left.head",
+        "slot.person.left.hair.cap",
+        "slot.person.left.smile",
+        "slot.person.left.bow.left",
+        "slot.person.left.bow.right",
+        "slot.person.left.eye.left",
+        "slot.person.left.eye.right",
         "slot.speech.left.text1",
         "slot.speech.left.text2",
         "slot.speech.left.text3"
@@ -53,7 +57,16 @@
       "flow": "absolute",
       "slot_ids": [
         "slot.speech.right",
-        "slot.name.right",
+        "slot.person.right.body",
+        "slot.person.right.head",
+        "slot.person.right.hair.cap",
+        "slot.person.right.smile",
+        "slot.person.right.tail.left",
+        "slot.person.right.tail.right",
+        "slot.person.right.bow.left",
+        "slot.person.right.bow.right",
+        "slot.person.right.eye.left",
+        "slot.person.right.eye.right",
         "slot.speech.right.text1",
         "slot.speech.right.text2",
         "slot.speech.right.text3"
@@ -63,29 +76,129 @@
       "id": "region.footer",
       "role": "answer",
       "flow": "absolute",
-      "slot_ids": []
+      "slot_ids": [
+        "slot.inserted.car.1.body",
+        "slot.inserted.car.1.roof",
+        "slot.inserted.car.1.window.left",
+        "slot.inserted.car.1.window.right",
+        "slot.inserted.car.1.body.copy1",
+        "slot.inserted.car.1.roof.copy1",
+        "slot.inserted.car.1.window.left.copy1",
+        "slot.inserted.car.1.window.right.copy1",
+        "slot.inserted.car.1.body.copy2",
+        "slot.inserted.car.1.roof.copy2",
+        "slot.inserted.car.1.window.left.copy2",
+        "slot.inserted.car.1.window.right.copy2",
+        "slot.inserted.car.1.body.copy4",
+        "slot.inserted.car.1.roof.copy4",
+        "slot.inserted.car.1.window.left.copy4",
+        "slot.inserted.car.1.window.right.copy4",
+        "slot.inserted.car.1.body.copy1.copy4",
+        "slot.inserted.car.1.roof.copy1.copy4",
+        "slot.inserted.car.1.window.left.copy1.copy4",
+        "slot.inserted.car.1.window.right.copy1.copy4",
+        "slot.inserted.car.1.body.copy2.copy4",
+        "slot.inserted.car.1.roof.copy2.copy4",
+        "slot.inserted.car.1.window.left.copy2.copy4",
+        "slot.inserted.car.1.window.right.copy2.copy4",
+        "slot.inserted.car.1.body.copy2.copy4.copy5",
+        "slot.inserted.car.1.roof.copy2.copy4.copy5",
+        "slot.inserted.car.1.window.left.copy2.copy4.copy5",
+        "slot.inserted.car.1.window.right.copy2.copy4.copy5",
+        "slot.inserted.car.1.body.copy2.copy4.copy5.copy7",
+        "slot.inserted.car.1.roof.copy2.copy4.copy5.copy7",
+        "slot.inserted.car.1.window.left.copy2.copy4.copy5.copy7",
+        "slot.inserted.car.1.window.right.copy2.copy4.copy5.copy7",
+        "slot.inserted.car.1.body.copy2.copy4.copy5.copy8",
+        "slot.inserted.car.1.roof.copy2.copy4.copy5.copy8",
+        "slot.inserted.car.1.window.left.copy2.copy4.copy5.copy8",
+        "slot.inserted.car.1.window.right.copy2.copy4.copy5.copy8",
+        "slot.inserted.car.1.body.copy2.copy4.copy5.copy7.copy8",
+        "slot.inserted.car.1.roof.copy2.copy4.copy5.copy7.copy8",
+        "slot.inserted.car.1.window.left.copy2.copy4.copy5.copy7.copy8",
+        "slot.inserted.car.1.window.right.copy2.copy4.copy5.copy7.copy8",
+        "slot.inserted.car.1.body.copy2.copy4.copy5.copy9",
+        "slot.inserted.car.1.roof.copy2.copy4.copy5.copy9",
+        "slot.inserted.car.1.window.left.copy2.copy4.copy5.copy9",
+        "slot.inserted.car.1.window.right.copy2.copy4.copy5.copy9",
+        "slot.inserted.car.1.body.copy2.copy4.copy5.copy7.copy9",
+        "slot.inserted.car.1.roof.copy2.copy4.copy5.copy7.copy9",
+        "slot.inserted.car.1.window.left.copy2.copy4.copy5.copy7.copy9",
+        "slot.inserted.car.1.window.right.copy2.copy4.copy5.copy7.copy9",
+        "slot.inserted.car.1.body.copy2.copy4.copy5.copy8.copy9",
+        "slot.inserted.car.1.roof.copy2.copy4.copy5.copy8.copy9",
+        "slot.inserted.car.1.window.left.copy2.copy4.copy5.copy8.copy9",
+        "slot.inserted.car.1.window.right.copy2.copy4.copy5.copy8.copy9",
+        "slot.inserted.car.1.body.copy2.copy4.copy5.copy7.copy8.copy9",
+        "slot.inserted.car.1.roof.copy2.copy4.copy5.copy7.copy8.copy9",
+        "slot.inserted.car.1.window.left.copy2.copy4.copy5.copy7.copy8.copy9",
+        "slot.inserted.car.1.window.right.copy2.copy4.copy5.copy7.copy8.copy9",
+        "slot.inserted.car.1.wheel.left",
+        "slot.inserted.car.1.wheel.right",
+        "slot.inserted.car.1.hub.left",
+        "slot.inserted.car.1.hub.right",
+        "slot.inserted.car.1.wheel.left.copy1",
+        "slot.inserted.car.1.wheel.right.copy1",
+        "slot.inserted.car.1.hub.left.copy1",
+        "slot.inserted.car.1.hub.right.copy1",
+        "slot.inserted.car.1.wheel.left.copy2",
+        "slot.inserted.car.1.wheel.right.copy2",
+        "slot.inserted.car.1.hub.left.copy2",
+        "slot.inserted.car.1.hub.right.copy2",
+        "slot.inserted.car.1.wheel.left.copy4",
+        "slot.inserted.car.1.wheel.right.copy4",
+        "slot.inserted.car.1.hub.left.copy4",
+        "slot.inserted.car.1.hub.right.copy4",
+        "slot.inserted.car.1.wheel.left.copy1.copy4",
+        "slot.inserted.car.1.wheel.right.copy1.copy4",
+        "slot.inserted.car.1.hub.left.copy1.copy4",
+        "slot.inserted.car.1.hub.right.copy1.copy4",
+        "slot.inserted.car.1.wheel.left.copy2.copy4",
+        "slot.inserted.car.1.wheel.right.copy2.copy4",
+        "slot.inserted.car.1.hub.left.copy2.copy4",
+        "slot.inserted.car.1.hub.right.copy2.copy4",
+        "slot.inserted.car.1.wheel.left.copy2.copy4.copy5",
+        "slot.inserted.car.1.wheel.right.copy2.copy4.copy5",
+        "slot.inserted.car.1.hub.left.copy2.copy4.copy5",
+        "slot.inserted.car.1.hub.right.copy2.copy4.copy5",
+        "slot.inserted.car.1.wheel.left.copy2.copy4.copy5.copy7",
+        "slot.inserted.car.1.wheel.right.copy2.copy4.copy5.copy7",
+        "slot.inserted.car.1.hub.left.copy2.copy4.copy5.copy7",
+        "slot.inserted.car.1.hub.right.copy2.copy4.copy5.copy7",
+        "slot.inserted.car.1.wheel.left.copy2.copy4.copy5.copy8",
+        "slot.inserted.car.1.wheel.right.copy2.copy4.copy5.copy8",
+        "slot.inserted.car.1.hub.left.copy2.copy4.copy5.copy8",
+        "slot.inserted.car.1.hub.right.copy2.copy4.copy5.copy8",
+        "slot.inserted.car.1.wheel.left.copy2.copy4.copy5.copy7.copy8",
+        "slot.inserted.car.1.wheel.right.copy2.copy4.copy5.copy7.copy8",
+        "slot.inserted.car.1.hub.left.copy2.copy4.copy5.copy7.copy8",
+        "slot.inserted.car.1.hub.right.copy2.copy4.copy5.copy7.copy8",
+        "slot.inserted.car.1.wheel.left.copy2.copy4.copy5.copy9",
+        "slot.inserted.car.1.wheel.right.copy2.copy4.copy5.copy9",
+        "slot.inserted.car.1.hub.left.copy2.copy4.copy5.copy9",
+        "slot.inserted.car.1.hub.right.copy2.copy4.copy5.copy9",
+        "slot.inserted.car.1.wheel.left.copy2.copy4.copy5.copy7.copy9",
+        "slot.inserted.car.1.wheel.right.copy2.copy4.copy5.copy7.copy9",
+        "slot.inserted.car.1.hub.left.copy2.copy4.copy5.copy7.copy9",
+        "slot.inserted.car.1.hub.right.copy2.copy4.copy5.copy7.copy9",
+        "slot.inserted.car.1.wheel.left.copy2.copy4.copy5.copy8.copy9",
+        "slot.inserted.car.1.wheel.right.copy2.copy4.copy5.copy8.copy9",
+        "slot.inserted.car.1.hub.left.copy2.copy4.copy5.copy8.copy9",
+        "slot.inserted.car.1.hub.right.copy2.copy4.copy5.copy8.copy9",
+        "slot.inserted.car.1.wheel.left.copy2.copy4.copy5.copy7.copy8.copy9",
+        "slot.inserted.car.1.wheel.right.copy2.copy4.copy5.copy7.copy8.copy9",
+        "slot.inserted.car.1.hub.left.copy2.copy4.copy5.copy7.copy8.copy9",
+        "slot.inserted.car.1.hub.right.copy2.copy4.copy5.copy7.copy8.copy9"
+      ]
     }
   ],
   "slots": [
-    {
-      "id": "slot.header.num",
-      "kind": "rect",
-      "prompt": "",
-      "content": {
-        "x": 6.0,
-        "y": 18.0,
-        "width": 12.0,
-        "height": 12.0,
-        "rx": 0.0,
-        "ry": 0.0
-      }
-    },
     {
       "id": "slot.header.text",
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "34. 그림을 보고 바르게 말한 사람을 선택해 보세요.",
+        "text": "그림을 보고 바르게 말한 사람을 선택해 보세요.",
         "style_role": "question",
         "x": 26.0,
         "y": 28.0,
@@ -97,12 +210,15 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 155.0,
-        "y": 50.0,
-        "width": 628.0,
-        "height": 124.0,
+        "x": 45.0,
+        "y": 410.0,
+        "width": 745.0,
+        "height": 205.0,
+        "stroke": "#111111",
+        "stroke_width": 1.5,
         "rx": 14.0,
-        "ry": 14.0
+        "ry": 14.0,
+        "fill": "#ffffff"
       }
     },
     {
@@ -110,12 +226,15 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 164.0,
-        "y": 63.0,
-        "width": 165.0,
-        "height": 42.0,
+        "x": 625.0,
+        "y": 65.0,
+        "width": 170.0,
+        "height": 45.0,
+        "stroke": "#dc2626",
+        "stroke_width": 1.5,
         "rx": 6.0,
-        "ry": 6.0
+        "ry": 6.0,
+        "fill": "#ffffff"
       }
     },
     {
@@ -123,12 +242,15 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 331.0,
-        "y": 63.0,
+        "x": 111.0,
+        "y": 203.0,
         "width": 165.0,
         "height": 42.0,
+        "stroke": "#dc2626",
+        "stroke_width": 1.5,
         "rx": 6.0,
-        "ry": 6.0
+        "ry": 6.0,
+        "fill": "#ffffff"
       }
     },
     {
@@ -136,12 +258,15 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 498.0,
-        "y": 63.0,
+        "x": 558.0,
+        "y": 193.0,
         "width": 165.0,
         "height": 42.0,
+        "stroke": "#dc2626",
+        "stroke_width": 1.5,
         "rx": 6.0,
-        "ry": 6.0
+        "ry": 6.0,
+        "fill": "#ffffff"
       }
     },
     {
@@ -149,12 +274,15 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 665.0,
-        "y": 63.0,
-        "width": 100.0,
-        "height": 42.0,
+        "x": 60.0,
+        "y": 65.0,
+        "width": 175.0,
+        "height": 45.0,
+        "stroke": "#dc2626",
+        "stroke_width": 1.5,
         "rx": 6.0,
-        "ry": 6.0
+        "ry": 6.0,
+        "fill": "#ffffff"
       }
     },
     {
@@ -162,12 +290,15 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 250.0,
-        "y": 113.0,
+        "x": 67.33689880371094,
+        "y": 271.1443786621094,
         "width": 163.0,
         "height": 42.0,
+        "stroke": "#dc2626",
+        "stroke_width": 1.5,
         "rx": 6.0,
-        "ry": 6.0
+        "ry": 6.0,
+        "fill": "#ffffff"
       }
     },
     {
@@ -175,12 +306,15 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 416.0,
-        "y": 113.0,
+        "x": 56.0,
+        "y": 133.0,
         "width": 163.0,
         "height": 42.0,
+        "stroke": "#dc2626",
+        "stroke_width": 1.5,
         "rx": 6.0,
-        "ry": 6.0
+        "ry": 6.0,
+        "fill": "#ffffff"
       }
     },
     {
@@ -188,12 +322,15 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 582.0,
-        "y": 113.0,
+        "x": 343.71514892578125,
+        "y": 205.5775146484375,
         "width": 163.0,
         "height": 42.0,
+        "stroke": "#dc2626",
+        "stroke_width": 1.5,
         "rx": 6.0,
-        "ry": 6.0
+        "ry": 6.0,
+        "fill": "#ffffff"
       }
     },
     {
@@ -201,12 +338,15 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 160.0,
-        "y": 204.0,
-        "width": 250.0,
-        "height": 154.0,
+        "x": 90.0,
+        "y": 460.0,
+        "width": 330.0,
+        "height": 155.0,
+        "stroke": "#111111",
+        "stroke_width": 1.5,
         "rx": 72.0,
-        "ry": 72.0
+        "ry": 72.0,
+        "fill": "#ffffff"
       }
     },
     {
@@ -216,9 +356,10 @@
       "content": {
         "text": "색칠한 부분은",
         "style_role": "body",
-        "x": 214.0,
-        "y": 242.0,
-        "font_size": 28
+        "x": 204.0,
+        "y": 377.0,
+        "font_size": 28,
+        "fill": "#111111"
       }
     },
     {
@@ -228,9 +369,10 @@
       "content": {
         "text": "7묶음 중에서 3묶음이므로",
         "style_role": "body",
-        "x": 173.0,
-        "y": 279.0,
-        "font_size": 28
+        "x": 43.0,
+        "y": 424.0,
+        "font_size": 28,
+        "fill": "#111111"
       }
     },
     {
@@ -240,32 +382,10 @@
       "content": {
         "text": "전체의 3/7이야.",
         "style_role": "body",
-        "x": 221.0,
-        "y": 316.0,
-        "font_size": 28
-      }
-    },
-    {
-      "id": "slot.name.left",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 236.0,
-        "cy": 424.0,
-        "r": 24.0,
-        "fill": "#ffffff"
-      }
-    },
-    {
-      "id": "slot.name.left.text",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "진경",
-        "style_role": "name",
-        "x": 214.0,
-        "y": 432.0,
-        "font_size": 28
+        "x": 96.0,
+        "y": 471.0,
+        "font_size": 28,
+        "fill": "#111111"
       }
     },
     {
@@ -273,12 +393,15 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 530.0,
-        "y": 204.0,
-        "width": 250.0,
-        "height": 154.0,
+        "x": 390.0,
+        "y": 355.0,
+        "width": 350.0,
+        "height": 155.0,
+        "stroke": "#111111",
+        "stroke_width": 1.5,
         "rx": 72.0,
-        "ry": 72.0
+        "ry": 72.0,
+        "fill": "#ffffff"
       }
     },
     {
@@ -288,9 +411,10 @@
       "content": {
         "text": "색칠하지 않은 부분은",
         "style_role": "body",
-        "x": 556.0,
-        "y": 242.0,
-        "font_size": 28
+        "x": 496.0,
+        "y": 392.0,
+        "font_size": 28,
+        "fill": "#111111"
       }
     },
     {
@@ -300,9 +424,10 @@
       "content": {
         "text": "7묶음 중에서 4묶음이므로",
         "style_role": "body",
-        "x": 549.0,
-        "y": 279.0,
-        "font_size": 28
+        "x": 479.0,
+        "y": 429.0,
+        "font_size": 28,
+        "fill": "#111111"
       }
     },
     {
@@ -312,32 +437,2192 @@
       "content": {
         "text": "전체의 4/7이야.",
         "style_role": "body",
-        "x": 597.0,
-        "y": 316.0,
-        "font_size": 28
+        "x": 547.0,
+        "y": 471.0,
+        "font_size": 28,
+        "fill": "#111111"
       }
     },
     {
-      "id": "slot.name.right",
+      "id": "slot.person.left.body",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            228,
+            600
+          ],
+          [
+            284,
+            600
+          ],
+          [
+            274,
+            564
+          ],
+          [
+            238,
+            564
+          ]
+        ],
+        "stroke": "none",
+        "fill": "#F06AA0",
+        "stroke_width": 2
+      }
+    },
+    {
+      "id": "slot.person.left.head",
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 606.0,
-        "cy": 424.0,
-        "r": 24.0,
+        "cx": 256.0,
+        "cy": 527.0,
+        "r": 28.0,
+        "stroke": "none",
+        "fill": "#ffd9ad"
+      }
+    },
+    {
+      "id": "slot.person.left.hair.cap",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 228 526 C 230 497 281 492 285 526 C 266 510 244 517 228 526 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "none",
+        "fill": "#8A3F32",
+        "stroke_width": 2
+      }
+    },
+    {
+      "id": "slot.person.left.eye.left",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 246,
+        "cy": 531,
+        "r": 2.3,
+        "stroke": "none",
+        "fill": "#2b2118",
+        "stroke_width": 2
+      }
+    },
+    {
+      "id": "slot.person.left.eye.right",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 266,
+        "cy": 531,
+        "r": 2.3,
+        "stroke": "none",
+        "fill": "#2b2118",
+        "stroke_width": 2
+      }
+    },
+    {
+      "id": "slot.person.left.smile",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 249 543 Q 256 549 263 543",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#b86e39",
+        "stroke_width": 1.3,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.person.left.bow.left",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            249,
+            570
+          ],
+          [
+            230,
+            562
+          ],
+          [
+            242,
+            583
+          ]
+        ],
+        "stroke": "none",
+        "fill": "#D487D8",
+        "stroke_width": 2
+      }
+    },
+    {
+      "id": "slot.person.left.bow.right",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            263,
+            570
+          ],
+          [
+            282,
+            562
+          ],
+          [
+            270,
+            583
+          ]
+        ],
+        "stroke": "none",
+        "fill": "#D487D8",
+        "stroke_width": 2
+      }
+    },
+    {
+      "id": "slot.person.right.body",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            588,
+            600
+          ],
+          [
+            644,
+            600
+          ],
+          [
+            634,
+            564
+          ],
+          [
+            598,
+            564
+          ]
+        ],
+        "stroke": "none",
+        "fill": "#F7B51E",
+        "stroke_width": 2
+      }
+    },
+    {
+      "id": "slot.person.right.head",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 616.0,
+        "cy": 527.0,
+        "r": 28.0,
+        "stroke": "none",
+        "fill": "#ffd9ad"
+      }
+    },
+    {
+      "id": "slot.person.right.hair.cap",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 588 526 C 590 497 641 492 645 526 C 626 510 604 517 588 526 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "none",
+        "fill": "#C77A22",
+        "stroke_width": 2
+      }
+    },
+    {
+      "id": "slot.person.right.eye.left",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 606,
+        "cy": 531,
+        "r": 2.3,
+        "stroke": "none",
+        "fill": "#2b2118",
+        "stroke_width": 2
+      }
+    },
+    {
+      "id": "slot.person.right.eye.right",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 626,
+        "cy": 531,
+        "r": 2.3,
+        "stroke": "none",
+        "fill": "#2b2118",
+        "stroke_width": 2
+      }
+    },
+    {
+      "id": "slot.person.right.smile",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 609 543 Q 616 549 623 543",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#b86e39",
+        "stroke_width": 1.3,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.person.right.tail.left",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 589 524 C 564 528 578 569 566 575",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#C77A22",
+        "stroke_width": 7,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.person.right.tail.right",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 643 524 C 668 528 654 569 666 575",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#C77A22",
+        "stroke_width": 7,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.person.right.bow.left",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            609,
+            570
+          ],
+          [
+            590,
+            562
+          ],
+          [
+            602,
+            583
+          ]
+        ],
+        "stroke": "none",
+        "fill": "#E7A2C2",
+        "stroke_width": 2
+      }
+    },
+    {
+      "id": "slot.person.right.bow.right",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            623,
+            570
+          ],
+          [
+            642,
+            562
+          ],
+          [
+            630,
+            583
+          ]
+        ],
+        "stroke": "none",
+        "fill": "#E7A2C2",
+        "stroke_width": 2
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.body",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 70 90 Q 70 80 80 80 L 90 70 L 115 70 L 125 80 L 135 80 Q 140 85 145 95 L 140 100 L 70 100 Q 70 95 70 90 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#3E9B6D",
+        "stroke_width": 2.0,
+        "fill": "#69BD58"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.roof",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 85 80 L 95 70 L 110 70 L 120 80 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#2D9A7A",
+        "stroke_width": 1.5,
+        "fill": "#A7E3D3"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.window.left",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            90.0,
+            80.0
+          ],
+          [
+            95.0,
+            75.0
+          ],
+          [
+            100.0,
+            75.0
+          ],
+          [
+            100.0,
+            80.0
+          ]
+        ],
+        "stroke": "#2D9A7A",
+        "stroke_width": 1.0,
+        "fill": "#E8FFF8"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.window.right",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            105.0,
+            75.0
+          ],
+          [
+            110.0,
+            75.0
+          ],
+          [
+            115.0,
+            80.0
+          ],
+          [
+            105.0,
+            80.0
+          ]
+        ],
+        "stroke": "#2D9A7A",
+        "stroke_width": 1.0,
+        "fill": "#E8FFF8"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.wheel.left",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 85.0,
+        "cy": 100.0,
+        "r": 5.0,
+        "stroke": "#1F2937",
+        "stroke_width": 1.5,
+        "fill": "#4B5563"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.wheel.right",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 125.0,
+        "cy": 100.0,
+        "r": 5.0,
+        "stroke": "#1F2937",
+        "stroke_width": 1.5,
+        "fill": "#4B5563"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.hub.left",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 85.0,
+        "cy": 100.0,
+        "r": 5.0,
+        "stroke": "none",
+        "stroke_width": 2.0,
+        "fill": "#D1D5DB"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.hub.right",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 125.0,
+        "cy": 100.0,
+        "r": 5.0,
+        "stroke": "none",
+        "stroke_width": 2.0,
+        "fill": "#D1D5DB"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.body.copy1",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 155 90 Q 155 80 165 80 L 175 70 L 200 70 L 210 80 L 220 80 Q 225 85 230 95 L 225 100 L 155 100 Q 155 95 155 90 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#3E9B6D",
+        "stroke_width": 2.0,
+        "fill": "#69BD58"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.roof.copy1",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 170 80 L 180 70 L 195 70 L 205 80 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#2D9A7A",
+        "stroke_width": 1.5,
+        "fill": "#A7E3D3"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.window.left.copy1",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            175.0,
+            80.0
+          ],
+          [
+            180.0,
+            75.0
+          ],
+          [
+            185.0,
+            75.0
+          ],
+          [
+            185.0,
+            80.0
+          ]
+        ],
+        "stroke": "#2D9A7A",
+        "stroke_width": 1.0,
+        "fill": "#E8FFF8"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.window.right.copy1",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            190.0,
+            75.0
+          ],
+          [
+            195.0,
+            75.0
+          ],
+          [
+            200.0,
+            80.0
+          ],
+          [
+            190.0,
+            80.0
+          ]
+        ],
+        "stroke": "#2D9A7A",
+        "stroke_width": 1.0,
+        "fill": "#E8FFF8"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.wheel.left.copy1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 170.0,
+        "cy": 100.0,
+        "r": 5.0,
+        "stroke": "#1F2937",
+        "stroke_width": 1.5,
+        "fill": "#4B5563"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.wheel.right.copy1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 210.0,
+        "cy": 100.0,
+        "r": 5.0,
+        "stroke": "#1F2937",
+        "stroke_width": 1.5,
+        "fill": "#4B5563"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.hub.left.copy1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 170.0,
+        "cy": 100.0,
+        "r": 5.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0,
+        "fill": "#D1D5DB"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.hub.right.copy1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 210.0,
+        "cy": 100.0,
+        "r": 5.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0,
+        "fill": "#D1D5DB"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.body.copy2",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 245 90 Q 245 80 255 80 L 265 70 L 290 70 L 300 80 L 310 80 Q 315 85 320 95 L 315 100 L 245 100 Q 245 95 245 90 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#3E9B6D",
+        "stroke_width": 2.0,
+        "fill": "#69BD58"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.roof.copy2",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 260 80 L 270 70 L 285 70 L 295 80 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#2D9A7A",
+        "stroke_width": 1.5,
+        "fill": "#A7E3D3"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.window.left.copy2",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            265.0,
+            80.0
+          ],
+          [
+            270.0,
+            75.0
+          ],
+          [
+            275.0,
+            75.0
+          ],
+          [
+            275.0,
+            80.0
+          ]
+        ],
+        "stroke": "#2D9A7A",
+        "stroke_width": 1.0,
+        "fill": "#E8FFF8"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.window.right.copy2",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            280.0,
+            75.0
+          ],
+          [
+            285.0,
+            75.0
+          ],
+          [
+            290.0,
+            80.0
+          ],
+          [
+            280.0,
+            80.0
+          ]
+        ],
+        "stroke": "#2D9A7A",
+        "stroke_width": 1.0,
+        "fill": "#E8FFF8"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.wheel.left.copy2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 260.0,
+        "cy": 100.0,
+        "r": 5.0,
+        "stroke": "#1F2937",
+        "stroke_width": 1.5,
+        "fill": "#4B5563"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.wheel.right.copy2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 300.0,
+        "cy": 100.0,
+        "r": 5.0,
+        "stroke": "#1F2937",
+        "stroke_width": 1.5,
+        "fill": "#4B5563"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.hub.left.copy2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 260.0,
+        "cy": 100.0,
+        "r": 5.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0,
+        "fill": "#D1D5DB"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.hub.right.copy2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 300.0,
+        "cy": 100.0,
+        "r": 5.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0,
+        "fill": "#D1D5DB"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.body.copy4",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 350 89 Q 350 79 360 79 L 370 69 L 395 69 L 405 79 L 415 79 Q 420 84 425 94 L 420 99 L 350 99 Q 350 94 350 89 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#3E9B6D",
+        "stroke_width": 2.0,
+        "fill": "#69BD58"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.roof.copy4",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 365 79 L 375 69 L 390 69 L 400 79 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#2D9A7A",
+        "stroke_width": 1.5,
+        "fill": "#A7E3D3"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.window.left.copy4",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            370.0,
+            79.0
+          ],
+          [
+            375.0,
+            74.0
+          ],
+          [
+            380.0,
+            74.0
+          ],
+          [
+            380.0,
+            79.0
+          ]
+        ],
+        "stroke": "#2D9A7A",
+        "stroke_width": 1.0,
+        "fill": "#E8FFF8"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.window.right.copy4",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            385.0,
+            74.0
+          ],
+          [
+            390.0,
+            74.0
+          ],
+          [
+            395.0,
+            79.0
+          ],
+          [
+            385.0,
+            79.0
+          ]
+        ],
+        "stroke": "#2D9A7A",
+        "stroke_width": 1.0,
+        "fill": "#E8FFF8"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.body.copy1.copy4",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 435 89 Q 435 79 445 79 L 455 69 L 480 69 L 490 79 L 500 79 Q 505 84 510 94 L 505 99 L 435 99 Q 435 94 435 89 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#3E9B6D",
+        "stroke_width": 2.0,
+        "fill": "#69BD58"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.roof.copy1.copy4",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 450 79 L 460 69 L 475 69 L 485 79 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#2D9A7A",
+        "stroke_width": 1.5,
+        "fill": "#A7E3D3"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.window.left.copy1.copy4",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            455.0,
+            79.0
+          ],
+          [
+            460.0,
+            74.0
+          ],
+          [
+            465.0,
+            74.0
+          ],
+          [
+            465.0,
+            79.0
+          ]
+        ],
+        "stroke": "#2D9A7A",
+        "stroke_width": 1.0,
+        "fill": "#E8FFF8"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.window.right.copy1.copy4",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            470.0,
+            74.0
+          ],
+          [
+            475.0,
+            74.0
+          ],
+          [
+            480.0,
+            79.0
+          ],
+          [
+            470.0,
+            79.0
+          ]
+        ],
+        "stroke": "#2D9A7A",
+        "stroke_width": 1.0,
+        "fill": "#E8FFF8"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.body.copy2.copy4",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 525 89 Q 525 79 535 79 L 545 69 L 570 69 L 580 79 L 590 79 Q 595 84 600 94 L 595 99 L 525 99 Q 525 94 525 89 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#3E9B6D",
+        "stroke_width": 2.0,
+        "fill": "#69BD58"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.roof.copy2.copy4",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 540 79 L 550 69 L 565 69 L 575 79 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#2D9A7A",
+        "stroke_width": 1.5,
+        "fill": "#A7E3D3"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.window.left.copy2.copy4",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            545.0,
+            79.0
+          ],
+          [
+            550.0,
+            74.0
+          ],
+          [
+            555.0,
+            74.0
+          ],
+          [
+            555.0,
+            79.0
+          ]
+        ],
+        "stroke": "#2D9A7A",
+        "stroke_width": 1.0,
+        "fill": "#E8FFF8"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.window.right.copy2.copy4",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            560.0,
+            74.0
+          ],
+          [
+            565.0,
+            74.0
+          ],
+          [
+            570.0,
+            79.0
+          ],
+          [
+            560.0,
+            79.0
+          ]
+        ],
+        "stroke": "#2D9A7A",
+        "stroke_width": 1.0,
+        "fill": "#E8FFF8"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.wheel.left.copy4",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 365.0,
+        "cy": 99.0,
+        "r": 5.0,
+        "stroke": "#1F2937",
+        "stroke_width": 1.5,
+        "fill": "#4B5563"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.wheel.right.copy4",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 405.0,
+        "cy": 99.0,
+        "r": 5.0,
+        "stroke": "#1F2937",
+        "stroke_width": 1.5,
+        "fill": "#4B5563"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.hub.left.copy4",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 365.0,
+        "cy": 99.0,
+        "r": 5.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0,
+        "fill": "#D1D5DB"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.hub.right.copy4",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 405.0,
+        "cy": 99.0,
+        "r": 5.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0,
+        "fill": "#D1D5DB"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.wheel.left.copy1.copy4",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 450.0,
+        "cy": 99.0,
+        "r": 5.0,
+        "stroke": "#1F2937",
+        "stroke_width": 1.5,
+        "fill": "#4B5563"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.wheel.right.copy1.copy4",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 490.0,
+        "cy": 99.0,
+        "r": 5.0,
+        "stroke": "#1F2937",
+        "stroke_width": 1.5,
+        "fill": "#4B5563"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.hub.left.copy1.copy4",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 450.0,
+        "cy": 99.0,
+        "r": 5.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0,
+        "fill": "#D1D5DB"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.hub.right.copy1.copy4",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 490.0,
+        "cy": 99.0,
+        "r": 5.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0,
+        "fill": "#D1D5DB"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.wheel.left.copy2.copy4",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 540.0,
+        "cy": 99.0,
+        "r": 5.0,
+        "stroke": "#1F2937",
+        "stroke_width": 1.5,
+        "fill": "#4B5563"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.wheel.right.copy2.copy4",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 580.0,
+        "cy": 99.0,
+        "r": 5.0,
+        "stroke": "#1F2937",
+        "stroke_width": 1.5,
+        "fill": "#4B5563"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.hub.left.copy2.copy4",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 540.0,
+        "cy": 99.0,
+        "r": 5.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0,
+        "fill": "#D1D5DB"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.hub.right.copy2.copy4",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 580.0,
+        "cy": 99.0,
+        "r": 5.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0,
+        "fill": "#D1D5DB"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.body.copy2.copy4.copy5",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 148 170 Q 148 160 158 160 L 168 150 L 193 150 L 203 160 L 213 160 Q 218 165 223 175 L 218 180 L 148 180 Q 148 175 148 170 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#3E9B6D",
+        "stroke_width": 2.0,
         "fill": "#ffffff"
       }
     },
     {
-      "id": "slot.name.right.text",
-      "kind": "text",
+      "id": "slot.inserted.car.1.roof.copy2.copy4.copy5",
+      "kind": "path",
       "prompt": "",
       "content": {
-        "text": "현진",
-        "style_role": "name",
-        "x": 584.0,
-        "y": 432.0,
-        "font_size": 28
+        "d": "M 163 160 L 173 150 L 188 150 L 198 160 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#2D9A7A",
+        "stroke_width": 1.5,
+        "fill": "#A7E3D3"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.window.left.copy2.copy4.copy5",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            168.0,
+            160.0
+          ],
+          [
+            173.0,
+            155.0
+          ],
+          [
+            178.0,
+            155.0
+          ],
+          [
+            178.0,
+            160.0
+          ]
+        ],
+        "stroke": "#2D9A7A",
+        "stroke_width": 1.0,
+        "fill": "#E8FFF8"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.window.right.copy2.copy4.copy5",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            183.0,
+            155.0
+          ],
+          [
+            188.0,
+            155.0
+          ],
+          [
+            193.0,
+            160.0
+          ],
+          [
+            183.0,
+            160.0
+          ]
+        ],
+        "stroke": "#2D9A7A",
+        "stroke_width": 1.0,
+        "fill": "#E8FFF8"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.wheel.left.copy2.copy4.copy5",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 163.0,
+        "cy": 180.0,
+        "r": 5.0,
+        "stroke": "#1F2937",
+        "stroke_width": 1.5,
+        "fill": "#4B5563"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.wheel.right.copy2.copy4.copy5",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 203.0,
+        "cy": 180.0,
+        "r": 5.0,
+        "stroke": "#1F2937",
+        "stroke_width": 1.5,
+        "fill": "#4B5563"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.hub.left.copy2.copy4.copy5",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 163.0,
+        "cy": 180.0,
+        "r": 5.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0,
+        "fill": "#D1D5DB"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.hub.right.copy2.copy4.copy5",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 203.0,
+        "cy": 180.0,
+        "r": 5.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0,
+        "fill": "#D1D5DB"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.body.copy2.copy4.copy5.copy7",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 238 170 Q 238 160 248 160 L 258 150 L 283 150 L 293 160 L 303 160 Q 308 165 313 175 L 308 180 L 238 180 Q 238 175 238 170 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#3E9B6D",
+        "stroke_width": 2.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.roof.copy2.copy4.copy5.copy7",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 253 160 L 263 150 L 278 150 L 288 160 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#2D9A7A",
+        "stroke_width": 1.5,
+        "fill": "#A7E3D3"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.window.left.copy2.copy4.copy5.copy7",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            258.0,
+            160.0
+          ],
+          [
+            263.0,
+            155.0
+          ],
+          [
+            268.0,
+            155.0
+          ],
+          [
+            268.0,
+            160.0
+          ]
+        ],
+        "stroke": "#2D9A7A",
+        "stroke_width": 1.0,
+        "fill": "#E8FFF8"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.window.right.copy2.copy4.copy5.copy7",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            273.0,
+            155.0
+          ],
+          [
+            278.0,
+            155.0
+          ],
+          [
+            283.0,
+            160.0
+          ],
+          [
+            273.0,
+            160.0
+          ]
+        ],
+        "stroke": "#2D9A7A",
+        "stroke_width": 1.0,
+        "fill": "#E8FFF8"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.wheel.left.copy2.copy4.copy5.copy7",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 253.0,
+        "cy": 180.0,
+        "r": 5.0,
+        "stroke": "#1F2937",
+        "stroke_width": 1.5,
+        "fill": "#4B5563"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.wheel.right.copy2.copy4.copy5.copy7",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 293.0,
+        "cy": 180.0,
+        "r": 5.0,
+        "stroke": "#1F2937",
+        "stroke_width": 1.5,
+        "fill": "#4B5563"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.hub.left.copy2.copy4.copy5.copy7",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 253.0,
+        "cy": 180.0,
+        "r": 5.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0,
+        "fill": "#D1D5DB"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.hub.right.copy2.copy4.copy5.copy7",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 293.0,
+        "cy": 180.0,
+        "r": 5.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0,
+        "fill": "#D1D5DB"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.body.copy2.copy4.copy5.copy8",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 350 170 Q 350 160 360 160 L 370 150 L 395 150 L 405 160 L 415 160 Q 420 165 425 175 L 420 180 L 350 180 Q 350 175 350 170 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#3E9B6D",
+        "stroke_width": 2.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.roof.copy2.copy4.copy5.copy8",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 365 160 L 375 150 L 390 150 L 400 160 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#2D9A7A",
+        "stroke_width": 1.5,
+        "fill": "#A7E3D3"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.window.left.copy2.copy4.copy5.copy8",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            370.0,
+            160.0
+          ],
+          [
+            375.0,
+            155.0
+          ],
+          [
+            380.0,
+            155.0
+          ],
+          [
+            380.0,
+            160.0
+          ]
+        ],
+        "stroke": "#2D9A7A",
+        "stroke_width": 1.0,
+        "fill": "#E8FFF8"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.window.right.copy2.copy4.copy5.copy8",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            385.0,
+            155.0
+          ],
+          [
+            390.0,
+            155.0
+          ],
+          [
+            395.0,
+            160.0
+          ],
+          [
+            385.0,
+            160.0
+          ]
+        ],
+        "stroke": "#2D9A7A",
+        "stroke_width": 1.0,
+        "fill": "#E8FFF8"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.body.copy2.copy4.copy5.copy7.copy8",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 440 170 Q 440 160 450 160 L 460 150 L 485 150 L 495 160 L 505 160 Q 510 165 515 175 L 510 180 L 440 180 Q 440 175 440 170 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#3E9B6D",
+        "stroke_width": 2.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.roof.copy2.copy4.copy5.copy7.copy8",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 455 160 L 465 150 L 480 150 L 490 160 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#2D9A7A",
+        "stroke_width": 1.5,
+        "fill": "#A7E3D3"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.window.left.copy2.copy4.copy5.copy7.copy8",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            460.0,
+            160.0
+          ],
+          [
+            465.0,
+            155.0
+          ],
+          [
+            470.0,
+            155.0
+          ],
+          [
+            470.0,
+            160.0
+          ]
+        ],
+        "stroke": "#2D9A7A",
+        "stroke_width": 1.0,
+        "fill": "#E8FFF8"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.window.right.copy2.copy4.copy5.copy7.copy8",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            475.0,
+            155.0
+          ],
+          [
+            480.0,
+            155.0
+          ],
+          [
+            485.0,
+            160.0
+          ],
+          [
+            475.0,
+            160.0
+          ]
+        ],
+        "stroke": "#2D9A7A",
+        "stroke_width": 1.0,
+        "fill": "#E8FFF8"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.wheel.left.copy2.copy4.copy5.copy8",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 365.0,
+        "cy": 180.0,
+        "r": 5.0,
+        "stroke": "#1F2937",
+        "stroke_width": 1.5,
+        "fill": "#4B5563"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.wheel.right.copy2.copy4.copy5.copy8",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 405.0,
+        "cy": 180.0,
+        "r": 5.0,
+        "stroke": "#1F2937",
+        "stroke_width": 1.5,
+        "fill": "#4B5563"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.hub.left.copy2.copy4.copy5.copy8",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 365.0,
+        "cy": 180.0,
+        "r": 5.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0,
+        "fill": "#D1D5DB"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.hub.right.copy2.copy4.copy5.copy8",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 405.0,
+        "cy": 180.0,
+        "r": 5.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0,
+        "fill": "#D1D5DB"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.wheel.left.copy2.copy4.copy5.copy7.copy8",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 455.0,
+        "cy": 180.0,
+        "r": 5.0,
+        "stroke": "#1F2937",
+        "stroke_width": 1.5,
+        "fill": "#4B5563"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.wheel.right.copy2.copy4.copy5.copy7.copy8",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 495.0,
+        "cy": 180.0,
+        "r": 5.0,
+        "stroke": "#1F2937",
+        "stroke_width": 1.5,
+        "fill": "#4B5563"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.hub.left.copy2.copy4.copy5.copy7.copy8",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 455.0,
+        "cy": 180.0,
+        "r": 5.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0,
+        "fill": "#D1D5DB"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.hub.right.copy2.copy4.copy5.copy7.copy8",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 495.0,
+        "cy": 180.0,
+        "r": 5.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0,
+        "fill": "#D1D5DB"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.body.copy2.copy4.copy5.copy9",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 300 305 Q 300 295 310 295 L 320 285 L 345 285 L 355 295 L 365 295 Q 370 300 375 310 L 370 315 L 300 315 Q 300 310 300 305 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#3E9B6D",
+        "stroke_width": 2.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.roof.copy2.copy4.copy5.copy9",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 315 295 L 325 285 L 340 285 L 350 295 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#2D9A7A",
+        "stroke_width": 1.5,
+        "fill": "#A7E3D3"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.window.left.copy2.copy4.copy5.copy9",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            320.0,
+            295.0
+          ],
+          [
+            325.0,
+            290.0
+          ],
+          [
+            330.0,
+            290.0
+          ],
+          [
+            330.0,
+            295.0
+          ]
+        ],
+        "stroke": "#2D9A7A",
+        "stroke_width": 1.0,
+        "fill": "#E8FFF8"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.window.right.copy2.copy4.copy5.copy9",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            335.0,
+            290.0
+          ],
+          [
+            340.0,
+            290.0
+          ],
+          [
+            345.0,
+            295.0
+          ],
+          [
+            335.0,
+            295.0
+          ]
+        ],
+        "stroke": "#2D9A7A",
+        "stroke_width": 1.0,
+        "fill": "#E8FFF8"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.body.copy2.copy4.copy5.copy7.copy9",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 390 305 Q 390 295 400 295 L 410 285 L 435 285 L 445 295 L 455 295 Q 460 300 465 310 L 460 315 L 390 315 Q 390 310 390 305 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#3E9B6D",
+        "stroke_width": 2.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.roof.copy2.copy4.copy5.copy7.copy9",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 405 295 L 415 285 L 430 285 L 440 295 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#2D9A7A",
+        "stroke_width": 1.5,
+        "fill": "#A7E3D3"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.window.left.copy2.copy4.copy5.copy7.copy9",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            410.0,
+            295.0
+          ],
+          [
+            415.0,
+            290.0
+          ],
+          [
+            420.0,
+            290.0
+          ],
+          [
+            420.0,
+            295.0
+          ]
+        ],
+        "stroke": "#2D9A7A",
+        "stroke_width": 1.0,
+        "fill": "#E8FFF8"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.window.right.copy2.copy4.copy5.copy7.copy9",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            425.0,
+            290.0
+          ],
+          [
+            430.0,
+            290.0
+          ],
+          [
+            435.0,
+            295.0
+          ],
+          [
+            425.0,
+            295.0
+          ]
+        ],
+        "stroke": "#2D9A7A",
+        "stroke_width": 1.0,
+        "fill": "#E8FFF8"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.body.copy2.copy4.copy5.copy8.copy9",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 485 305 Q 485 295 495 295 L 505 285 L 530 285 L 540 295 L 550 295 Q 555 300 560 310 L 555 315 L 485 315 Q 485 310 485 305 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#3E9B6D",
+        "stroke_width": 2.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.roof.copy2.copy4.copy5.copy8.copy9",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 500 295 L 510 285 L 525 285 L 535 295 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#2D9A7A",
+        "stroke_width": 1.5,
+        "fill": "#A7E3D3"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.window.left.copy2.copy4.copy5.copy8.copy9",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            505.0,
+            295.0
+          ],
+          [
+            510.0,
+            290.0
+          ],
+          [
+            515.0,
+            290.0
+          ],
+          [
+            515.0,
+            295.0
+          ]
+        ],
+        "stroke": "#2D9A7A",
+        "stroke_width": 1.0,
+        "fill": "#E8FFF8"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.window.right.copy2.copy4.copy5.copy8.copy9",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            520.0,
+            290.0
+          ],
+          [
+            525.0,
+            290.0
+          ],
+          [
+            530.0,
+            295.0
+          ],
+          [
+            520.0,
+            295.0
+          ]
+        ],
+        "stroke": "#2D9A7A",
+        "stroke_width": 1.0,
+        "fill": "#E8FFF8"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.body.copy2.copy4.copy5.copy7.copy8.copy9",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 575 305 Q 575 295 585 295 L 595 285 L 620 285 L 630 295 L 640 295 Q 645 300 650 310 L 645 315 L 575 315 Q 575 310 575 305 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#3E9B6D",
+        "stroke_width": 2.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.roof.copy2.copy4.copy5.copy7.copy8.copy9",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 590 295 L 600 285 L 615 285 L 625 295 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#2D9A7A",
+        "stroke_width": 1.5,
+        "fill": "#A7E3D3"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.window.left.copy2.copy4.copy5.copy7.copy8.copy9",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            595.0,
+            295.0
+          ],
+          [
+            600.0,
+            290.0
+          ],
+          [
+            605.0,
+            290.0
+          ],
+          [
+            605.0,
+            295.0
+          ]
+        ],
+        "stroke": "#2D9A7A",
+        "stroke_width": 1.0,
+        "fill": "#E8FFF8"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.window.right.copy2.copy4.copy5.copy7.copy8.copy9",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            610.0,
+            290.0
+          ],
+          [
+            615.0,
+            290.0
+          ],
+          [
+            620.0,
+            295.0
+          ],
+          [
+            610.0,
+            295.0
+          ]
+        ],
+        "stroke": "#2D9A7A",
+        "stroke_width": 1.0,
+        "fill": "#E8FFF8"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.wheel.left.copy2.copy4.copy5.copy9",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 315.0,
+        "cy": 315.0,
+        "r": 5.0,
+        "stroke": "#1F2937",
+        "stroke_width": 1.5,
+        "fill": "#4B5563"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.wheel.right.copy2.copy4.copy5.copy9",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 355.0,
+        "cy": 315.0,
+        "r": 5.0,
+        "stroke": "#1F2937",
+        "stroke_width": 1.5,
+        "fill": "#4B5563"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.hub.left.copy2.copy4.copy5.copy9",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 315.0,
+        "cy": 315.0,
+        "r": 5.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0,
+        "fill": "#D1D5DB"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.hub.right.copy2.copy4.copy5.copy9",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 355.0,
+        "cy": 315.0,
+        "r": 5.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0,
+        "fill": "#D1D5DB"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.wheel.left.copy2.copy4.copy5.copy7.copy9",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 405.0,
+        "cy": 315.0,
+        "r": 5.0,
+        "stroke": "#1F2937",
+        "stroke_width": 1.5,
+        "fill": "#4B5563"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.wheel.right.copy2.copy4.copy5.copy7.copy9",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 445.0,
+        "cy": 315.0,
+        "r": 5.0,
+        "stroke": "#1F2937",
+        "stroke_width": 1.5,
+        "fill": "#4B5563"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.hub.left.copy2.copy4.copy5.copy7.copy9",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 405.0,
+        "cy": 315.0,
+        "r": 5.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0,
+        "fill": "#D1D5DB"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.hub.right.copy2.copy4.copy5.copy7.copy9",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 445.0,
+        "cy": 315.0,
+        "r": 5.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0,
+        "fill": "#D1D5DB"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.wheel.left.copy2.copy4.copy5.copy8.copy9",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 500.0,
+        "cy": 315.0,
+        "r": 5.0,
+        "stroke": "#1F2937",
+        "stroke_width": 1.5,
+        "fill": "#4B5563"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.wheel.right.copy2.copy4.copy5.copy8.copy9",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 540.0,
+        "cy": 315.0,
+        "r": 5.0,
+        "stroke": "#1F2937",
+        "stroke_width": 1.5,
+        "fill": "#4B5563"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.hub.left.copy2.copy4.copy5.copy8.copy9",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 500.0,
+        "cy": 315.0,
+        "r": 5.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0,
+        "fill": "#D1D5DB"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.hub.right.copy2.copy4.copy5.copy8.copy9",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 540.0,
+        "cy": 315.0,
+        "r": 5.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0,
+        "fill": "#D1D5DB"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.wheel.left.copy2.copy4.copy5.copy7.copy8.copy9",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 590.0,
+        "cy": 315.0,
+        "r": 5.0,
+        "stroke": "#1F2937",
+        "stroke_width": 1.5,
+        "fill": "#4B5563"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.wheel.right.copy2.copy4.copy5.copy7.copy8.copy9",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 630.0,
+        "cy": 315.0,
+        "r": 5.0,
+        "stroke": "#1F2937",
+        "stroke_width": 1.5,
+        "fill": "#4B5563"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.hub.left.copy2.copy4.copy5.copy7.copy8.copy9",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 590.0,
+        "cy": 315.0,
+        "r": 5.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0,
+        "fill": "#D1D5DB"
+      }
+    },
+    {
+      "id": "slot.inserted.car.1.hub.right.copy2.copy4.copy5.copy7.copy8.copy9",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 630.0,
+        "cy": 315.0,
+        "r": 5.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0,
+        "fill": "#D1D5DB"
       }
     }
   ],
@@ -346,10 +2631,7 @@
   "diagrams": [],
   "reading_order": [
     "region.header",
-    "slot.header.num",
     "slot.header.text",
-    "slot.name.left.text",
-    "slot.name.right.text",
     "region.cars",
     "slot.cars.outer",
     "slot.cars.group1",
@@ -361,16 +2643,144 @@
     "slot.cars.group7",
     "region.speech.left",
     "slot.speech.left",
-    "slot.name.left",
+    "slot.person.left.body",
+    "slot.person.left.head",
+    "slot.person.left.hair.cap",
+    "slot.person.left.smile",
+    "slot.person.left.bow.left",
+    "slot.person.left.bow.right",
+    "slot.person.left.eye.left",
+    "slot.person.left.eye.right",
     "slot.speech.left.text1",
     "slot.speech.left.text2",
     "slot.speech.left.text3",
     "region.speech.right",
     "slot.speech.right",
-    "slot.name.right",
+    "slot.person.right.body",
+    "slot.person.right.head",
+    "slot.person.right.hair.cap",
+    "slot.person.right.smile",
+    "slot.person.right.tail.left",
+    "slot.person.right.tail.right",
+    "slot.person.right.bow.left",
+    "slot.person.right.bow.right",
+    "slot.person.right.eye.left",
+    "slot.person.right.eye.right",
     "slot.speech.right.text1",
     "slot.speech.right.text2",
     "slot.speech.right.text3",
-    "region.footer"
+    "region.footer",
+    "slot.inserted.car.1.body",
+    "slot.inserted.car.1.roof",
+    "slot.inserted.car.1.window.left",
+    "slot.inserted.car.1.window.right",
+    "slot.inserted.car.1.body.copy1",
+    "slot.inserted.car.1.roof.copy1",
+    "slot.inserted.car.1.window.left.copy1",
+    "slot.inserted.car.1.window.right.copy1",
+    "slot.inserted.car.1.body.copy2",
+    "slot.inserted.car.1.roof.copy2",
+    "slot.inserted.car.1.window.left.copy2",
+    "slot.inserted.car.1.window.right.copy2",
+    "slot.inserted.car.1.body.copy4",
+    "slot.inserted.car.1.roof.copy4",
+    "slot.inserted.car.1.window.left.copy4",
+    "slot.inserted.car.1.window.right.copy4",
+    "slot.inserted.car.1.body.copy1.copy4",
+    "slot.inserted.car.1.roof.copy1.copy4",
+    "slot.inserted.car.1.window.left.copy1.copy4",
+    "slot.inserted.car.1.window.right.copy1.copy4",
+    "slot.inserted.car.1.body.copy2.copy4",
+    "slot.inserted.car.1.roof.copy2.copy4",
+    "slot.inserted.car.1.window.left.copy2.copy4",
+    "slot.inserted.car.1.window.right.copy2.copy4",
+    "slot.inserted.car.1.body.copy2.copy4.copy5",
+    "slot.inserted.car.1.roof.copy2.copy4.copy5",
+    "slot.inserted.car.1.window.left.copy2.copy4.copy5",
+    "slot.inserted.car.1.window.right.copy2.copy4.copy5",
+    "slot.inserted.car.1.body.copy2.copy4.copy5.copy7",
+    "slot.inserted.car.1.roof.copy2.copy4.copy5.copy7",
+    "slot.inserted.car.1.window.left.copy2.copy4.copy5.copy7",
+    "slot.inserted.car.1.window.right.copy2.copy4.copy5.copy7",
+    "slot.inserted.car.1.body.copy2.copy4.copy5.copy8",
+    "slot.inserted.car.1.roof.copy2.copy4.copy5.copy8",
+    "slot.inserted.car.1.window.left.copy2.copy4.copy5.copy8",
+    "slot.inserted.car.1.window.right.copy2.copy4.copy5.copy8",
+    "slot.inserted.car.1.body.copy2.copy4.copy5.copy7.copy8",
+    "slot.inserted.car.1.roof.copy2.copy4.copy5.copy7.copy8",
+    "slot.inserted.car.1.window.left.copy2.copy4.copy5.copy7.copy8",
+    "slot.inserted.car.1.window.right.copy2.copy4.copy5.copy7.copy8",
+    "slot.inserted.car.1.body.copy2.copy4.copy5.copy9",
+    "slot.inserted.car.1.roof.copy2.copy4.copy5.copy9",
+    "slot.inserted.car.1.window.left.copy2.copy4.copy5.copy9",
+    "slot.inserted.car.1.window.right.copy2.copy4.copy5.copy9",
+    "slot.inserted.car.1.body.copy2.copy4.copy5.copy7.copy9",
+    "slot.inserted.car.1.roof.copy2.copy4.copy5.copy7.copy9",
+    "slot.inserted.car.1.window.left.copy2.copy4.copy5.copy7.copy9",
+    "slot.inserted.car.1.window.right.copy2.copy4.copy5.copy7.copy9",
+    "slot.inserted.car.1.body.copy2.copy4.copy5.copy8.copy9",
+    "slot.inserted.car.1.roof.copy2.copy4.copy5.copy8.copy9",
+    "slot.inserted.car.1.window.left.copy2.copy4.copy5.copy8.copy9",
+    "slot.inserted.car.1.window.right.copy2.copy4.copy5.copy8.copy9",
+    "slot.inserted.car.1.body.copy2.copy4.copy5.copy7.copy8.copy9",
+    "slot.inserted.car.1.roof.copy2.copy4.copy5.copy7.copy8.copy9",
+    "slot.inserted.car.1.window.left.copy2.copy4.copy5.copy7.copy8.copy9",
+    "slot.inserted.car.1.window.right.copy2.copy4.copy5.copy7.copy8.copy9",
+    "slot.inserted.car.1.wheel.left",
+    "slot.inserted.car.1.wheel.right",
+    "slot.inserted.car.1.hub.left",
+    "slot.inserted.car.1.hub.right",
+    "slot.inserted.car.1.wheel.left.copy1",
+    "slot.inserted.car.1.wheel.right.copy1",
+    "slot.inserted.car.1.hub.left.copy1",
+    "slot.inserted.car.1.hub.right.copy1",
+    "slot.inserted.car.1.wheel.left.copy2",
+    "slot.inserted.car.1.wheel.right.copy2",
+    "slot.inserted.car.1.hub.left.copy2",
+    "slot.inserted.car.1.hub.right.copy2",
+    "slot.inserted.car.1.wheel.left.copy4",
+    "slot.inserted.car.1.wheel.right.copy4",
+    "slot.inserted.car.1.hub.left.copy4",
+    "slot.inserted.car.1.hub.right.copy4",
+    "slot.inserted.car.1.wheel.left.copy1.copy4",
+    "slot.inserted.car.1.wheel.right.copy1.copy4",
+    "slot.inserted.car.1.hub.left.copy1.copy4",
+    "slot.inserted.car.1.hub.right.copy1.copy4",
+    "slot.inserted.car.1.wheel.left.copy2.copy4",
+    "slot.inserted.car.1.wheel.right.copy2.copy4",
+    "slot.inserted.car.1.hub.left.copy2.copy4",
+    "slot.inserted.car.1.hub.right.copy2.copy4",
+    "slot.inserted.car.1.wheel.left.copy2.copy4.copy5",
+    "slot.inserted.car.1.wheel.right.copy2.copy4.copy5",
+    "slot.inserted.car.1.hub.left.copy2.copy4.copy5",
+    "slot.inserted.car.1.hub.right.copy2.copy4.copy5",
+    "slot.inserted.car.1.wheel.left.copy2.copy4.copy5.copy7",
+    "slot.inserted.car.1.wheel.right.copy2.copy4.copy5.copy7",
+    "slot.inserted.car.1.hub.left.copy2.copy4.copy5.copy7",
+    "slot.inserted.car.1.hub.right.copy2.copy4.copy5.copy7",
+    "slot.inserted.car.1.wheel.left.copy2.copy4.copy5.copy8",
+    "slot.inserted.car.1.wheel.right.copy2.copy4.copy5.copy8",
+    "slot.inserted.car.1.hub.left.copy2.copy4.copy5.copy8",
+    "slot.inserted.car.1.hub.right.copy2.copy4.copy5.copy8",
+    "slot.inserted.car.1.wheel.left.copy2.copy4.copy5.copy7.copy8",
+    "slot.inserted.car.1.wheel.right.copy2.copy4.copy5.copy7.copy8",
+    "slot.inserted.car.1.hub.left.copy2.copy4.copy5.copy7.copy8",
+    "slot.inserted.car.1.hub.right.copy2.copy4.copy5.copy7.copy8",
+    "slot.inserted.car.1.wheel.left.copy2.copy4.copy5.copy9",
+    "slot.inserted.car.1.wheel.right.copy2.copy4.copy5.copy9",
+    "slot.inserted.car.1.hub.left.copy2.copy4.copy5.copy9",
+    "slot.inserted.car.1.hub.right.copy2.copy4.copy5.copy9",
+    "slot.inserted.car.1.wheel.left.copy2.copy4.copy5.copy7.copy9",
+    "slot.inserted.car.1.wheel.right.copy2.copy4.copy5.copy7.copy9",
+    "slot.inserted.car.1.hub.left.copy2.copy4.copy5.copy7.copy9",
+    "slot.inserted.car.1.hub.right.copy2.copy4.copy5.copy7.copy9",
+    "slot.inserted.car.1.wheel.left.copy2.copy4.copy5.copy8.copy9",
+    "slot.inserted.car.1.wheel.right.copy2.copy4.copy5.copy8.copy9",
+    "slot.inserted.car.1.hub.left.copy2.copy4.copy5.copy8.copy9",
+    "slot.inserted.car.1.hub.right.copy2.copy4.copy5.copy8.copy9",
+    "slot.inserted.car.1.wheel.left.copy2.copy4.copy5.copy7.copy8.copy9",
+    "slot.inserted.car.1.wheel.right.copy2.copy4.copy5.copy7.copy8.copy9",
+    "slot.inserted.car.1.hub.left.copy2.copy4.copy5.copy7.copy8.copy9",
+    "slot.inserted.car.1.hub.right.copy2.copy4.copy5.copy7.copy8.copy9"
   ]
 }

@@ -30,7 +30,7 @@ SLOT_KIND_TO_CTOR = {
     "image": "ImageSlot",
     "path": "PathSlot",
 }
-FRACTION_SLOT_PARTS = {"num", "bar", "den"}
+FRACTION_SLOT_PARTS = {"whole", "num", "bar", "den"}
 FRACTION_MOVE_FIELDS = {"move_dx", "move_dy"}
 PERSON_SLOT_PARTS = {"body", "head", "eye1", "eye2", "mouth"}
 CHARACTER_MOVE_FIELDS = {"move_dx", "move_dy"}
@@ -325,6 +325,42 @@ class FractionSlotsUpdater(cst.CSTTransformer):
 
         self.updated = True
         return updated_node.with_changes(args=tuple(args))
+
+
+class FractionPartsMoveUpdater(cst.CSTTransformer):
+    def __init__(self, target_prefix: str, fields: dict[str, Any]):
+        self.target_prefix = target_prefix
+        self.fields = fields
+        self.updated = False
+
+    def leave_Call(self, original_node: cst.Call, updated_node: cst.Call) -> cst.BaseExpression:
+        slot_type = _call_name(original_node)
+        if slot_type not in SUPPORTED_SLOTS:
+            return updated_node
+
+        id_arg = _keyword_arg(original_node, "id")
+        if id_arg is None or not isinstance(id_arg.value, cst.SimpleString):
+            return updated_node
+        try:
+            slot_id = cst.parse_expression(id_arg.value.value).evaluated_value
+        except Exception:
+            return updated_node
+        if not isinstance(slot_id, str):
+            return updated_node
+        if not any(slot_id == f"{self.target_prefix}.{part}" for part in FRACTION_SLOT_PARTS):
+            return updated_node
+
+        invalid = sorted(set(self.fields) - FRACTION_MOVE_FIELDS)
+        if invalid:
+            raise DslPatchError(f"unsupported field(s) for fraction parts: {', '.join(invalid)}")
+
+        dx = float(self.fields.get("move_dx", 0.0))
+        dy = float(self.fields.get("move_dy", 0.0))
+        args = list(updated_node.args)
+        if _shift_slot_call_args(args, slot_type, dx, dy):
+            self.updated = True
+            return updated_node.with_changes(args=tuple(args))
+        return updated_node
 
 
 def _replace_or_append_arg(args: list[cst.Arg], name: str, value: Any) -> None:
@@ -1248,6 +1284,12 @@ def apply_layout_patches(problem_id: str, patches: list[dict[str, Any]]) -> tupl
         frac_updater = FractionSlotsUpdater(target_prefix=frac_prefix, fields=value)
         transformed = transformed.visit(frac_updater)
         if frac_updater.updated:
+            applied.append(AppliedPatch(target=frac_prefix, op=op, fields=list(value.keys())))
+            continue
+
+        frac_parts_updater = FractionPartsMoveUpdater(target_prefix=frac_prefix, fields=value)
+        transformed = transformed.visit(frac_parts_updater)
+        if frac_parts_updater.updated:
             applied.append(AppliedPatch(target=frac_prefix, op=op, fields=list(value.keys())))
             continue
 

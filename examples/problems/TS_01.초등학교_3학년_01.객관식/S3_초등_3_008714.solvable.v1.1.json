@@ -1,0 +1,71 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008714",
+  "problem_type": "용어_선택",
+  "inputs": {
+    "total_ticks": 1,
+    "target_label": "누름 못이 꽂혔던 점의 이름",
+    "target_ticks": 1,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.circle",
+      "value": {
+        "type": "circle"
+      }
+    },
+    {
+      "ref": "obj.point",
+      "value": {
+        "role": "pinpoint"
+      }
+    },
+    {
+      "ref": "obj.terms",
+      "value": {
+        "items": [
+          "중심",
+          "반지름",
+          "지름"
+        ]
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "term"
+  },
+  "plan": [
+    "그림 속 누름 못이 꽂힌 점의 용어를 해설과 대응시켜 찾는다."
+  ],
+  "method": "용어_대응",
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "그림의 누름 못이 꽂힌 점과 해설의 의미를 대응한다.",
+      "value": "중심"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "해설 문장과 답이 일치하는지 확인한다.",
+      "expected": "중심",
+      "actual": "중심",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "term",
+      "description": "누름 못이 꽂혔던 점의 이름"
+    },
+    "value": "중심",
+    "unit": ""
+  }
+}

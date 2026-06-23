@@ -12,7 +12,6 @@
       "attributes": {
         "x": 10.0,
         "y": 45.0,
-        "max_width": 811.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 30
@@ -60,11 +59,11 @@
       "id": "slot.left.arrow.1.path",
       "type": "path",
       "attributes": {
-        "d": "M 250 280 C 145 215 90 235 65 330",
+        "d": "M 170 285 C 90 220 45 240 25 335",
         "stroke": "#111111",
         "stroke-width": 2.0,
         "fill": "none",
-        "transform": "rotate(-35 165 295.43)"
+        "transform": "rotate(-35 125 300.43)"
       },
       "source_ref": "slot.left.arrow.1",
       "refs": {
@@ -75,8 +74,8 @@
       "id": "slot.left.dot.1.circle",
       "type": "circle",
       "attributes": {
-        "cx": 304.0,
-        "cy": 233.0,
+        "cx": 264.0,
+        "cy": 213.0,
         "r": 4.0,
         "stroke": "#111111",
         "stroke-width": 2.0,
@@ -91,8 +90,8 @@
       "id": "slot.left.dot.2.circle",
       "type": "circle",
       "attributes": {
-        "cx": 342.0,
-        "cy": 203.0,
+        "cx": 297.0,
+        "cy": 188.0,
         "r": 4.0,
         "stroke": "#111111",
         "stroke-width": 2.0,
@@ -107,8 +106,8 @@
       "id": "slot.left.dot.3.circle",
       "type": "circle",
       "attributes": {
-        "cx": 368.0,
-        "cy": 176.0,
+        "cx": 328.0,
+        "cy": 171.0,
         "r": 4.0,
         "stroke": "#111111",
         "stroke-width": 2.0,
@@ -123,7 +122,7 @@
       "id": "slot.left.dot.4.circle",
       "type": "circle",
       "attributes": {
-        "cx": 397.0,
+        "cx": 357.0,
         "cy": 150.0,
         "r": 4.0,
         "stroke": "#111111",
@@ -140,8 +139,7 @@
       "type": "text",
       "attributes": {
         "x": 45.0,
-        "y": 445.0,
-        "max_width": 811.0,
+        "y": 420.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 30
@@ -300,12 +298,27 @@
       }
     },
     {
+      "id": "slot.right.center.copy4.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 229.0,
+        "cy": 234.0,
+        "r": 8.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#B0B0B0"
+      },
+      "source_ref": "slot.right.center.copy4",
+      "refs": {
+        "layout_slot_id": "slot.right.center.copy4"
+      }
+    },
+    {
       "id": "slot.right.text.text",
       "type": "text",
       "attributes": {
-        "x": 365.0,
-        "y": 90.0,
-        "max_width": 811.0,
+        "x": 375.0,
+        "y": 375.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 30
@@ -339,7 +352,6 @@
       "attributes": {
         "x": 45.0,
         "y": 505.0,
-        "max_width": 811.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 30
@@ -349,6 +361,86 @@
         "layout_slot_id": "slot.choice.text"
       },
       "text": "\n    \n    누름 못이 꽂힌 점에서 원 위에 찍은 4개의 점까지의 길이는\n    모두 ( 같습니다, 다릅니다 ).\n  "
+    },
+    {
+      "id": "slot.inserted.rect.2.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 200.0,
+        "y": 200.0,
+        "width": 215.0,
+        "height": 30.0,
+        "fill": "#bfdbfe",
+        "stroke": "#111827",
+        "stroke-width": 1.5,
+        "transform": "rotate(-35 260 215)"
+      },
+      "source_ref": "slot.inserted.rect.2",
+      "refs": {
+        "layout_slot_id": "slot.inserted.rect.2"
+      }
+    },
+    {
+      "id": "slot.inserted.rect.1.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 445.0,
+        "y": 65.0,
+        "width": 15.0,
+        "height": 90.0,
+        "fill": "#ffffff",
+        "stroke": "#111827",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.inserted.rect.1",
+      "refs": {
+        "layout_slot_id": "slot.inserted.rect.1"
+      }
+    },
+    {
+      "id": "slot.inserted.rect.3.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 410.0,
+        "y": 255.0,
+        "width": 20.0,
+        "height": 15.0,
+        "fill": "#ffffff",
+        "stroke": "#111827",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.inserted.rect.3",
+      "refs": {
+        "layout_slot_id": "slot.inserted.rect.3"
+      }
+    },
+    {
+      "id": "slot.inserted.triangle.1.polygon",
+      "type": "polygon",
+      "attributes": {
+        "points": [
+          [
+            180.0,
+            335.0
+          ],
+          [
+            190.0,
+            350.0
+          ],
+          [
+            170.0,
+            350.0
+          ]
+        ],
+        "stroke": "#111827",
+        "stroke-width": 1.5,
+        "fill": "#ffffff",
+        "transform": "rotate(180 130 310)"
+      },
+      "source_ref": "slot.inserted.triangle.1",
+      "refs": {
+        "layout_slot_id": "slot.inserted.triangle.1"
+      }
     }
   ],
   "contract_version": "modu_math.renderer.v2"

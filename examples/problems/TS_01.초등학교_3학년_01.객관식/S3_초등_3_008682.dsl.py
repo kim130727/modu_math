@@ -214,6 +214,8 @@ SEMANTIC_OVERRIDE = {
             {
                 "id": "rel.small_diameter_equals_large_radius",
                 "type": "equals",
+                "from_id": "obj.small_circle.left",
+                "to_id": "obj.large_circle",
                 "left": "small circle diameter",
                 "right": "large circle radius",
             }

@@ -32,7 +32,7 @@ def build_problem_template() -> ProblemTemplate:
         y=211.0,
         unit_width=unit_width,
         needle_mark=0.0,
-        pencil_mark=2.15,
+        pencil_mark=2.0,
         hinge_offset_x=76.0,
         hinge_y_offset=-130.0,
         scale=1.08,

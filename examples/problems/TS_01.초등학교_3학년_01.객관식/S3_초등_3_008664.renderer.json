@@ -12,7 +12,6 @@
       "attributes": {
         "x": 15.0,
         "y": 41.0,
-        "max_width": 823.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 30
@@ -24,21 +23,38 @@
       "text": "누름 못과 띠 종이를 사용하여 원을 그리려고 합니다."
     },
     {
-      "id": "slot.q2.text",
+      "id": "slot.q2.copy1.text",
       "type": "text",
       "attributes": {
-        "x": 15.0,
-        "y": 74.0,
-        "max_width": 823.0,
+        "x": 14.0,
+        "y": 85.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 30
+        "font-size": 30,
+        "max_width": 830.0
       },
-      "source_ref": "slot.q2",
+      "source_ref": "slot.q2.copy1",
       "refs": {
-        "layout_slot_id": "slot.q2"
+        "layout_slot_id": "slot.q2.copy1"
       },
-      "text": "\n    \n    원을 가장 크게 그리려고 할 때 연필을 꽂아야 하는 구멍의 기호를\n    선택해 보세요.\n  "
+      "text": "        원을 가장 크게 그리려고 할 때 연필을 꽂아야 하는"
+    },
+    {
+      "id": "slot.q2.copy1.copy2.text",
+      "type": "text",
+      "attributes": {
+        "x": 13.0,
+        "y": 130.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30,
+        "max_width": 830.0
+      },
+      "source_ref": "slot.q2.copy1.copy2",
+      "refs": {
+        "layout_slot_id": "slot.q2.copy1.copy2"
+      },
+      "text": "구멍의 기호를 선택해 보세요.  "
     },
     {
       "id": "slot.bar.rect",
@@ -58,99 +74,19 @@
       }
     },
     {
-      "id": "slot.tool.circle",
+      "id": "slot.hole.5.copy13.circle",
       "type": "circle",
       "attributes": {
-        "cx": 230.0,
-        "cy": 230.0,
+        "cx": 220.0,
+        "cy": 229.49998474121094,
         "r": 10.0,
-        "stroke": "#111111",
-        "stroke-width": 2.0,
-        "fill": "#7f8c99"
-      },
-      "source_ref": "slot.tool",
-      "refs": {
-        "layout_slot_id": "slot.tool"
-      }
-    },
-    {
-      "id": "slot.hole.1.circle",
-      "type": "circle",
-      "attributes": {
-        "cx": 275.0,
-        "cy": 230.0,
-        "r": 5.0,
         "stroke": "#8a8a8a",
         "stroke-width": 1.0,
-        "fill": "#ffffff"
+        "fill": "#6b7280"
       },
-      "source_ref": "slot.hole.1",
+      "source_ref": "slot.hole.5.copy13",
       "refs": {
-        "layout_slot_id": "slot.hole.1"
-      }
-    },
-    {
-      "id": "slot.hole.2.circle",
-      "type": "circle",
-      "attributes": {
-        "cx": 340.0,
-        "cy": 230.0,
-        "r": 5.0,
-        "stroke": "#8a8a8a",
-        "stroke-width": 1.0,
-        "fill": "#ffffff"
-      },
-      "source_ref": "slot.hole.2",
-      "refs": {
-        "layout_slot_id": "slot.hole.2"
-      }
-    },
-    {
-      "id": "slot.hole.3.circle",
-      "type": "circle",
-      "attributes": {
-        "cx": 400.0,
-        "cy": 230.0,
-        "r": 5.0,
-        "stroke": "#8a8a8a",
-        "stroke-width": 1.0,
-        "fill": "#ffffff"
-      },
-      "source_ref": "slot.hole.3",
-      "refs": {
-        "layout_slot_id": "slot.hole.3"
-      }
-    },
-    {
-      "id": "slot.hole.4.circle",
-      "type": "circle",
-      "attributes": {
-        "cx": 460.0,
-        "cy": 230.0,
-        "r": 5.0,
-        "stroke": "#8a8a8a",
-        "stroke-width": 1.0,
-        "fill": "#ffffff"
-      },
-      "source_ref": "slot.hole.4",
-      "refs": {
-        "layout_slot_id": "slot.hole.4"
-      }
-    },
-    {
-      "id": "slot.hole.5.circle",
-      "type": "circle",
-      "attributes": {
-        "cx": 525.0,
-        "cy": 230.0,
-        "r": 5.0,
-        "stroke": "#8a8a8a",
-        "stroke-width": 1.0,
-        "fill": "#ffffff"
-      },
-      "source_ref": "slot.hole.5",
-      "refs": {
-        "layout_slot_id": "slot.hole.5"
+        "layout_slot_id": "slot.hole.5.copy13"
       }
     },
     {
@@ -234,12 +170,91 @@
       }
     },
     {
+      "id": "slot.hole.1.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 275.0,
+        "cy": 230.0,
+        "r": 5.0,
+        "stroke": "#8a8a8a",
+        "stroke-width": 1.0,
+        "fill": "#ffffff"
+      },
+      "source_ref": "slot.hole.1",
+      "refs": {
+        "layout_slot_id": "slot.hole.1"
+      }
+    },
+    {
+      "id": "slot.hole.2.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 340.0,
+        "cy": 230.0,
+        "r": 5.0,
+        "stroke": "#8a8a8a",
+        "stroke-width": 1.0,
+        "fill": "#ffffff"
+      },
+      "source_ref": "slot.hole.2",
+      "refs": {
+        "layout_slot_id": "slot.hole.2"
+      }
+    },
+    {
+      "id": "slot.hole.3.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 400.0,
+        "cy": 230.0,
+        "r": 5.0,
+        "stroke": "#8a8a8a",
+        "stroke-width": 1.0,
+        "fill": "#ffffff"
+      },
+      "source_ref": "slot.hole.3",
+      "refs": {
+        "layout_slot_id": "slot.hole.3"
+      }
+    },
+    {
+      "id": "slot.hole.4.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 460.0,
+        "cy": 230.0,
+        "r": 5.0,
+        "stroke": "#8a8a8a",
+        "stroke-width": 1.0,
+        "fill": "#ffffff"
+      },
+      "source_ref": "slot.hole.4",
+      "refs": {
+        "layout_slot_id": "slot.hole.4"
+      }
+    },
+    {
+      "id": "slot.hole.5.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 525.0,
+        "cy": 230.0,
+        "r": 5.0,
+        "stroke": "#8a8a8a",
+        "stroke-width": 1.0,
+        "fill": "#ffffff"
+      },
+      "source_ref": "slot.hole.5",
+      "refs": {
+        "layout_slot_id": "slot.hole.5"
+      }
+    },
+    {
       "id": "slot.choice.lb.1.text",
       "type": "text",
       "attributes": {
         "x": 262.0,
         "y": 290.0,
-        "max_width": 823.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 25
@@ -256,7 +271,6 @@
       "attributes": {
         "x": 327.0,
         "y": 290.0,
-        "max_width": 823.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 25
@@ -273,7 +287,6 @@
       "attributes": {
         "x": 387.0,
         "y": 290.0,
-        "max_width": 823.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 25
@@ -290,7 +303,6 @@
       "attributes": {
         "x": 447.0,
         "y": 290.0,
-        "max_width": 823.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 25
@@ -307,7 +319,6 @@
       "attributes": {
         "x": 513.0,
         "y": 290.0,
-        "max_width": 823.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 25

@@ -58,9 +58,9 @@
       "id": "slot.circle.circle",
       "type": "circle",
       "attributes": {
-        "cx": 436.0,
-        "cy": 181.0,
-        "r": 72.0,
+        "cx": 365.0,
+        "cy": 180.0,
+        "r": 100.0,
         "stroke": "#111111",
         "stroke-width": 2.0,
         "fill": "none"
@@ -74,10 +74,10 @@
       "id": "slot.tool.rect",
       "type": "rect",
       "attributes": {
-        "x": 402.0,
-        "y": 152.0,
-        "width": 92.0,
-        "height": 22.0,
+        "x": 345.0,
+        "y": 168.0,
+        "width": 150.0,
+        "height": 25.0,
         "fill": "none",
         "stroke": "#111111",
         "stroke-width": 1.5
@@ -91,8 +91,8 @@
       "id": "slot.tool.dot1.text",
       "type": "text",
       "attributes": {
-        "x": 414.0,
-        "y": 171.0,
+        "x": 385.0,
+        "y": 187.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 20
@@ -107,8 +107,8 @@
       "id": "slot.tool.dot2.text",
       "type": "text",
       "attributes": {
-        "x": 434.0,
-        "y": 171.0,
+        "x": 405.0,
+        "y": 187.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 20
@@ -123,8 +123,8 @@
       "id": "slot.tool.dot3.text",
       "type": "text",
       "attributes": {
-        "x": 454.0,
-        "y": 171.0,
+        "x": 425.0,
+        "y": 187.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 20
@@ -139,11 +139,12 @@
       "id": "slot.tool.dot4.text",
       "type": "text",
       "attributes": {
-        "x": 474.0,
-        "y": 171.0,
+        "x": 445.0,
+        "y": 187.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 20
+        "font-size": 20,
+        "max_width": 135.0
       },
       "source_ref": "slot.tool.dot4",
       "refs": {
@@ -152,20 +153,84 @@
       "text": "•"
     },
     {
-      "id": "slot.tool.dot5.text",
-      "type": "text",
+      "id": "slot.inserted.pencil.1.eraser.rect",
+      "type": "rect",
       "attributes": {
-        "x": 494.0,
-        "y": 171.0,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 20
+        "x": 455.0,
+        "y": 65.0,
+        "width": 10.0,
+        "height": 15.0,
+        "fill": "#d9a27f",
+        "stroke": "#b98160",
+        "stroke-width": 1.0,
+        "transform": "rotate(5 460 70)"
       },
-      "source_ref": "slot.tool.dot5",
+      "source_ref": "slot.inserted.pencil.1.eraser",
       "refs": {
-        "layout_slot_id": "slot.tool.dot5"
+        "layout_slot_id": "slot.inserted.pencil.1.eraser"
+      }
+    },
+    {
+      "id": "slot.inserted.pencil.1.body.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 450.0,
+        "y": 80.0,
+        "width": 10.0,
+        "height": 85.0,
+        "fill": "#ffb5b5",
+        "stroke": "#ee7777",
+        "stroke-width": 1.0,
+        "transform": "rotate(5 455 122.5)"
       },
-      "text": "•"
+      "source_ref": "slot.inserted.pencil.1.body",
+      "refs": {
+        "layout_slot_id": "slot.inserted.pencil.1.body"
+      }
+    },
+    {
+      "id": "slot.inserted.pencil.1.tip.polygon",
+      "type": "polygon",
+      "attributes": {
+        "points": [
+          [
+            442.0,
+            160.0
+          ],
+          [
+            457.0,
+            160.0
+          ],
+          [
+            452.0,
+            174.0
+          ]
+        ],
+        "stroke": "#c49b62",
+        "stroke-width": 1.0,
+        "fill": "#e6c08b",
+        "transform": "rotate(130 449.5 167)"
+      },
+      "source_ref": "slot.inserted.pencil.1.tip",
+      "refs": {
+        "layout_slot_id": "slot.inserted.pencil.1.tip"
+      }
+    },
+    {
+      "id": "slot.inserted.circle.1.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 366.0,
+        "cy": 181.0,
+        "r": 5.0,
+        "stroke": "#111827",
+        "stroke-width": 1.5,
+        "fill": "#6b7280"
+      },
+      "source_ref": "slot.inserted.circle.1",
+      "refs": {
+        "layout_slot_id": "slot.inserted.circle.1"
+      }
     }
   ],
   "contract_version": "modu_math.renderer.v2"

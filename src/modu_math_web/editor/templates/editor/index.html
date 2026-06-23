@@ -220,7 +220,7 @@
       position: fixed;
       z-index: 12;
       display: none;
-      min-width: 226px;
+      width: 316px;
       border: 1px solid #b7bdc7;
       border-radius: 4px;
       background: #ffffff;
@@ -245,7 +245,7 @@
     }
     .shape-format-swatches {
       display: grid;
-      grid-template-columns: repeat(8, 20px);
+      grid-template-columns: repeat(12, 20px);
       gap: 5px;
       padding: 4px;
     }
@@ -263,11 +263,14 @@
     }
     .shape-format-btn {
       flex: 1 1 0;
-      height: 30px;
+      height: 34px;
       border-radius: 4px;
       padding: 4px 8px;
       text-align: center;
       font-size: 12px;
+      line-height: 1;
+      white-space: nowrap;
+      word-break: keep-all;
     }
     .shape-format-color {
       width: 34px;
@@ -277,6 +280,17 @@
       border-radius: 4px;
       border: 1px solid #cbd5e1;
       background: #fff;
+    }
+    .shape-format-range {
+      flex: 1 1 90px;
+      min-width: 80px;
+    }
+    .shape-format-number {
+      width: 64px;
+      border: 1px solid #cbd5e1;
+      border-radius: 4px;
+      padding: 6px 7px;
+      font: inherit;
     }
     .log {
       white-space: pre-wrap;
@@ -766,6 +780,8 @@
     <symbol id="icon-image" viewBox="0 0 24 24"><path d="M4 5h16v14H4z"/><circle cx="8" cy="9" r="1.5"/><path d="M4 16l5-5 4 4 2-2 5 5"/></symbol>
     <symbol id="icon-table" viewBox="0 0 24 24"><path d="M4 5h16v14H4z"/><path d="M4 10h16"/><path d="M4 15h16"/><path d="M10 5v14"/><path d="M16 5v14"/></symbol>
     <symbol id="icon-graph-paper" viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="M8 4v16"/><path d="M12 4v16"/><path d="M16 4v16"/><path d="M4 8h16"/><path d="M4 12h16"/><path d="M4 16h16"/></symbol>
+    <symbol id="icon-fraction" viewBox="0 0 24 24"><path d="M7 6h10"/><path d="M5 12h14"/><path d="M8 18h8"/><path d="M12 4v4"/><path d="M12 16v4"/></symbol>
+    <symbol id="icon-mixed-fraction" viewBox="0 0 24 24"><path d="M4 7h3"/><path d="M4 12h3"/><path d="M4 17h3"/><path d="M12 6h8"/><path d="M10 12h12"/><path d="M13 18h6"/></symbol>
     <symbol id="icon-shapes" viewBox="0 0 24 24"><path d="M5 5h7v7H5z"/><path d="M16.5 5.5 21 12h-9z"/><path d="M8 16a3 3 0 1 0 0.1 0"/><path d="M15 16h5v4h-5z"/></symbol>
   </svg>
   <div class="wrap powerpoint">
@@ -790,6 +806,8 @@
             <button id="insertImageBtn" class="icon-btn" title="그림 삽입" aria-label="그림 삽입"><svg><use href="#icon-image"></use></svg></button>
             <button id="insertTableBtn" class="icon-btn" title="표 삽입" aria-label="표 삽입"><svg><use href="#icon-table"></use></svg></button>
             <button id="insertGraphPaperBtn" class="icon-btn" title="모눈종이 삽입" aria-label="모눈종이 삽입"><svg><use href="#icon-graph-paper"></use></svg></button>
+            <button id="insertFractionBtn" class="icon-btn" title="분수 삽입" aria-label="분수 삽입"><svg><use href="#icon-fraction"></use></svg></button>
+            <button id="insertMixedFractionBtn" class="icon-btn" title="대분수 삽입" aria-label="대분수 삽입"><svg><use href="#icon-mixed-fraction"></use></svg></button>
             <input id="insertImageInput" type="file" accept="image/*" hidden>
             <div class="ribbon-dropdown">
               <button id="shapeGalleryBtn" class="icon-btn" title="도형 삽입" aria-label="도형 삽입"><svg><use href="#icon-shapes"></use></svg></button>
@@ -874,12 +892,35 @@
                 </div>
               </div>
             </div>
+            <div id="fractionInsertDialog" class="table-dialog" role="dialog" aria-modal="true" aria-labelledby="fractionInsertTitle" hidden>
+              <div class="table-dialog-panel">
+                <div class="table-dialog-title">
+                  <span id="fractionInsertTitle">분수 삽입</span>
+                  <span>?</span>
+                  <button id="fractionCancelXBtn" type="button" aria-label="닫기">&times;</button>
+                </div>
+                <div class="table-dialog-fields">
+                  <label id="fractionWholeLabel" hidden>자연수:<input id="fractionWholeInput" type="text" value="1" inputmode="numeric"></label>
+                  <label>분자:<input id="fractionNumeratorInput" type="text" value="1" inputmode="numeric"></label>
+                  <label>분모:<input id="fractionDenominatorInput" type="text" value="2" inputmode="numeric"></label>
+                </div>
+                <div class="table-dialog-actions">
+                  <button id="fractionConfirmBtn" type="button" class="primary">확인</button>
+                  <button id="fractionCancelBtn" type="button">취소</button>
+                </div>
+              </div>
+            </div>
             <div id="shapeFormatMenu" class="shape-format-menu" role="menu" aria-label="도형 서식">
               <div class="shape-format-title">도형 서식</div>
               <div class="shape-format-swatches" id="shapeFillSwatches"></div>
               <div class="shape-format-row">
                 <input id="shapeFillColorInput" class="shape-format-color" type="color" value="#ffffff" title="채우기 색">
                 <button id="shapeApplyFillBtn" class="shape-format-btn" type="button">채우기</button>
+              </div>
+              <div class="shape-format-swatches" id="shapeStrokeSwatches"></div>
+              <div class="shape-format-row">
+                <input id="shapeStrokeColorInput" class="shape-format-color" type="color" value="#111827" title="선 색">
+                <button id="shapeApplyStrokeBtn" class="shape-format-btn" type="button">선 색</button>
               </div>
               <div class="shape-format-row">
                 <button id="shapeNoBorderBtn" class="shape-format-btn" type="button">테두리 제거</button>
@@ -890,6 +931,11 @@
                 <button id="shapeDashedBtn" class="shape-format-btn" type="button">긴 점선</button>
                 <button id="shapeDotDashBtn" class="shape-format-btn" type="button">점-대시</button>
                 <button id="shapeDottedBtn" class="shape-format-btn" type="button">촘촘 점선</button>
+              </div>
+              <div id="arcAngleControls" class="shape-format-row" style="display:none">
+                <input id="arcAngleRange" class="shape-format-range" type="range" min="10" max="350" step="5" value="180" title="호 각도">
+                <input id="arcAngleInput" class="shape-format-number" type="number" min="10" max="350" step="5" value="180" title="호 각도">
+                <button id="arcAngleApplyBtn" class="shape-format-btn" type="button">각도</button>
               </div>
             </div>
           </div>
@@ -1013,6 +1059,7 @@
     const SNAP_STEP = 5;
     const DEFAULT_SHAPE_STYLE = { fill: "#ffffff", stroke: "#111827", stroke_width: 1.5 };
     const SHAPE_FILL_SWATCHES = ["#ffffff", "#f8fafc", "#fef3c7", "#fed7aa", "#fecaca", "#bfdbfe", "#bbf7d0", "#ddd6fe", "#111827", "#6b7280", "#dc2626", "#2563eb", "#16a34a", "#7c3aed", "#f59e0b", "none"];
+    const SHAPE_STROKE_SWATCHES = ["#111827", "#6b7280", "#94a3b8", "#dc2626", "#ea580c", "#f59e0b", "#16a34a", "#0f766e", "#2563eb", "#7c3aed", "#be185d", "#000000"];
     const SHAPE_CATEGORIES = [
       {
         title: "선",
@@ -1052,13 +1099,28 @@
           { id: "plus", label: "더하기", kind: "polygon", points: [[27, 0], [37, 0], [37, 21], [64, 21], [64, 31], [37, 31], [37, 52], [27, 52], [27, 31], [0, 31], [0, 21], [27, 21]], icon: '<polygon class="shape-fill" points="9,3 13,3 13,8 19,8 19,12 13,12 13,17 9,17 9,12 3,12 3,8 9,8"/>' },
           { id: "x", label: "곱하기", kind: "polygon", points: [[8, 0], [32, 20], [56, 0], [64, 8], [40, 26], [64, 44], [56, 52], [32, 32], [8, 52], [0, 44], [24, 26], [0, 8]], icon: '<path d="M5 4 L18 16 M18 4 L5 16"/>' },
           { id: "bracketPair", label: "괄호", kind: "path", d: "M 20 0 C 4 12, 4 40, 20 52 M 44 0 C 60 12, 60 40, 44 52", fill: "none", icon: '<path d="M8 4 C4 7,4 13,8 16 M14 4 C18 7,18 13,14 16"/>' },
-          { id: "arc", label: "호", kind: "path", d: "M 4 46 A 28 28 0 0 1 60 46", fill: "none", icon: '<path d="M4 16 A7 7 0 0 1 18 16"/>' },
+          { id: "arc", label: "호", kind: "path", d: "M 32 46 M 4 46 A 28 28 0 0 1 60 46", fill: "none", icon: '<path d="M4 16 A7 7 0 0 1 18 16"/>' },
         ],
       },
       {
         title: "교구",
         shapes: [
-          { id: "pushPin", label: "누름 못", kind: "path", d: "M 32 4 C 44 4 54 11 54 20 C 54 29 44 36 32 36 C 20 36 10 29 10 20 C 10 11 20 4 32 4 Z M 25 34 L 39 34 L 39 44 L 25 44 Z M 32 44 L 38 58 L 26 58 Z", sourceWidth: 64, sourceHeight: 64, fill: "#A8B0B6", stroke: "#7E8790", stroke_width: 1.2, icon: '<path class="shape-fill" d="M11 4C15 4 19 6.5 19 10S15 16 11 16S3 13.5 3 10S7 4 11 4Z M8.5 15H13.5V18H8.5Z M11 18L14 22H8Z"/>' },
+          { id: "pushPin", label: "누름 못", kind: "path", d: "M 32 5 C 46 5 56 12 56 22 C 56 32 46 39 32 39 C 18 39 8 32 8 22 C 8 12 18 5 32 5 Z M 24 37 L 40 37 L 38 46 L 26 46 Z M 32 46 L 40 61 L 24 61 Z", w: 72, h: 72, sourceWidth: 64, sourceHeight: 64, lockAspect: true, fill: "#A8B0B6", stroke: "#6F7882", stroke_width: 1.4, icon: '<path class="shape-fill" d="M11 4C16 4 20 6.8 20 10.5S16 17 11 17S2 14.2 2 10.5S6 4 11 4Z M8 16H14L13.5 19H8.5Z M11 19L14 22H8Z"/>' },
+          { id: "pencil", label: "연필", kind: "composite", w: 28, h: 120, sourceWidth: 28, sourceHeight: 120, lockAspect: true, icon: '<rect class="shape-fill" x="9" y="3" width="5" height="12" fill="#d9a27f"/><rect class="shape-fill" x="9" y="15" width="5" height="41" fill="#ffb5b5"/><polygon class="shape-fill" points="8,56 15,56 11.5,67" fill="#e6c08b"/>', parts: [
+            { id: "eraser", kind: "rect", x: 8, y: 0, width: 12, height: 13, fill: "#d9a27f", stroke: "#b98160", stroke_width: 1 },
+            { id: "body", kind: "rect", x: 8, y: 13, width: 12, height: 86, fill: "#ffb5b5", stroke: "#ee7777", stroke_width: 1 },
+            { id: "tip", kind: "polygon", points: [[7, 99], [21, 99], [14, 116]], fill: "#e6c08b", stroke: "#c49b62", stroke_width: 1 },
+          ] },
+          { id: "car", label: "자동차", kind: "composite", w: 82, h: 46, sourceWidth: 82, sourceHeight: 46, lockAspect: true, icon: '<path class="shape-fill" d="M4 13H13L19 5H44L51 13H64Q69 13 72 18V28H4Z" fill="#70be5a"/><circle cx="20" cy="31" r="4" fill="#4b5563"/><circle cx="55" cy="31" r="4" fill="#4b5563"/><path d="M22 7H42L48 14H16Z" fill="#dff6f0"/>', parts: [
+            { id: "body", kind: "path", d: "M 5 23 Q 7 16 17 16 L 23 7 L 50 7 L 58 16 L 68 17 Q 77 18 78 28 L 76 34 L 7 34 Q 3 30 5 23 Z", fill: "#69BD58", stroke: "#3E9B6D", stroke_width: 2 },
+            { id: "roof", kind: "path", d: "M 22 16 L 28 7 L 47 7 L 54 16 Z", fill: "#A7E3D3", stroke: "#2D9A7A", stroke_width: 1.5 },
+            { id: "window.left", kind: "polygon", points: [[25, 15], [30, 9], [37, 9], [37, 15]], fill: "#E8FFF8", stroke: "#2D9A7A", stroke_width: 1 },
+            { id: "window.right", kind: "polygon", points: [[40, 9], [47, 9], [52, 15], [40, 15]], fill: "#E8FFF8", stroke: "#2D9A7A", stroke_width: 1 },
+            { id: "wheel.left", kind: "circle", cx: 22, cy: 34, r: 7, fill: "#4B5563", stroke: "#1F2937", stroke_width: 1.5 },
+            { id: "wheel.right", kind: "circle", cx: 60, cy: 34, r: 7, fill: "#4B5563", stroke: "#1F2937", stroke_width: 1.5 },
+            { id: "hub.left", kind: "circle", cx: 22, cy: 34, r: 3, fill: "#D1D5DB", stroke: "none" },
+            { id: "hub.right", kind: "circle", cx: 60, cy: 34, r: 3, fill: "#D1D5DB", stroke: "none" },
+          ] },
         ],
       },
       {
@@ -1504,9 +1566,11 @@
       try {
         const layout = JSON.parse(layoutText);
         const regions = Array.isArray(layout.regions) ? layout.regions : [];
-        const diagram = regions.find((region) => region && (region.role === "diagram" || region.flow === "absolute"));
-        const first = diagram || regions[0];
-        return first && typeof first.id === "string" ? first.id : null;
+        const usable = regions.filter((region) => region && typeof region.id === "string");
+        const absolute = usable.filter((region) => region.flow === "absolute");
+        const candidates = absolute.length ? absolute : usable;
+        const top = candidates.length ? candidates[candidates.length - 1] : null;
+        return top && typeof top.id === "string" ? top.id : null;
       } catch (_) {
         return null;
       }
@@ -1520,6 +1584,23 @@
         if (!ids.has(candidate)) return candidate;
       }
       return `slot.inserted.${clean}.${Date.now()}`;
+    }
+
+    function uniqueFigureBase(base) {
+      const ids = extractDslSlotIds();
+      const clean = String(base || "figure").replace(/[^a-zA-Z0-9_]+/g, "_").replace(/^_+|_+$/g, "") || "figure";
+      for (let i = 1; i < 10000; i += 1) {
+        const candidate = `slot.figure.${clean}_${i}`;
+        let exists = false;
+        for (const id of ids) {
+          if (id === candidate || id.startsWith(`${candidate}.`)) {
+            exists = true;
+            break;
+          }
+        }
+        if (!exists) return candidate;
+      }
+      return `slot.figure.${clean}_${Date.now()}`;
     }
 
     function tableSlotBase(slotId) {
@@ -1583,6 +1664,59 @@
     function addRegionToPatch(value) {
       const regionId = firstUsableRegionId();
       return regionId ? { ...value, region_id: regionId } : value;
+    }
+
+    function scaledCompositePart(part, x, y, width, height, sourceWidth = 64, sourceHeight = 52) {
+      const sx = width / sourceWidth;
+      const sy = height / sourceHeight;
+      const content = {};
+      for (const [key, value] of Object.entries(part || {})) {
+        if (["id", "kind"].includes(key)) continue;
+        content[key] = value;
+      }
+      if (part.kind === "rect") {
+        content.x = snapValue(x + Number(part.x || 0) * sx);
+        content.y = snapValue(y + Number(part.y || 0) * sy);
+        content.width = snapValue(Number(part.width || 0) * sx);
+        content.height = snapValue(Number(part.height || 0) * sy);
+        if (part.rx !== undefined) content.rx = snapValue(Number(part.rx || 0) * sx);
+        if (part.ry !== undefined) content.ry = snapValue(Number(part.ry || 0) * sy);
+      } else if (part.kind === "circle") {
+        content.cx = snapValue(x + Number(part.cx || 0) * sx);
+        content.cy = snapValue(y + Number(part.cy || 0) * sy);
+        content.r = snapValue(Number(part.r || 0) * Math.min(sx, sy));
+      } else if (part.kind === "line") {
+        content.x1 = snapValue(x + Number(part.x1 || 0) * sx);
+        content.y1 = snapValue(y + Number(part.y1 || 0) * sy);
+        content.x2 = snapValue(x + Number(part.x2 || 0) * sx);
+        content.y2 = snapValue(y + Number(part.y2 || 0) * sy);
+      } else if (part.kind === "polygon") {
+        content.points = scalePoints(part.points || [], x, y, width, height, sourceWidth, sourceHeight);
+      } else if (part.kind === "path") {
+        content.d = scaleShapePath(part.d || "", x, y, width, height, sourceWidth, sourceHeight);
+      }
+      return { kind: part.kind, content };
+    }
+
+    function compositeShapePatches(def) {
+      const fallbackWidth = Number(def.w || def.sourceWidth || 64);
+      const fallbackHeight = Number(def.h || def.sourceHeight || fallbackWidth);
+      const width = fallbackWidth;
+      const height = fallbackHeight;
+      const { x, y } = defaultInsertOrigin(width, height);
+      const base = uniqueFigureBase(def.id);
+      const regionId = firstUsableRegionId();
+      const patches = [];
+      for (const part of def.parts || []) {
+        if (!part || !part.id || !part.kind) continue;
+        const value = scaledCompositePart(part, x, y, width, height, def.sourceWidth || width, def.sourceHeight || height);
+        patches.push({
+          target: `${base}.${part.id}`,
+          op: "add",
+          value: regionId ? { ...value, region_id: regionId } : value,
+        });
+      }
+      return { base, patches };
     }
 
     function tablePatches(rows, cols) {
@@ -1704,10 +1838,81 @@
       restoreSelection([`${base}.v0`]);
     }
 
+    function cleanMathText(value, fallback) {
+      const text = String(value ?? "").trim();
+      return text || fallback;
+    }
+
+    function fractionPatches({ mixed = false, whole = "1", numerator = "1", denominator = "2" } = {}) {
+      const numText = cleanMathText(numerator, "1");
+      const denText = cleanMathText(denominator, "2");
+      const wholeText = cleanMathText(whole, "1");
+      const fontSize = 30;
+      const barWidth = Math.max(34, 18 * Math.max(numText.length, denText.length));
+      const width = mixed ? 42 + barWidth : barWidth;
+      const height = 68;
+      const { x, y } = defaultInsertOrigin(width, height);
+      const base = uniqueInsertedSlotId(mixed ? "mixedFraction" : "fraction");
+      const regionId = firstUsableRegionId();
+      const withRegion = (value) => regionId ? { ...value, region_id: regionId } : value;
+      const centerX = x + (mixed ? 42 : 0) + barWidth / 2;
+      const patches = [];
+
+      if (mixed) {
+        patches.push({
+          target: `${base}.whole`,
+          op: "add",
+          value: withRegion({
+            kind: "text",
+            content: { text: wholeText, x: x + 20, y: y + 43, font_size: fontSize, anchor: "middle", fill: "#111827", style_role: "body" },
+          }),
+        });
+      }
+      patches.push({
+        target: `${base}.num`,
+        op: "add",
+        value: withRegion({
+          kind: "text",
+          content: { text: numText, x: centerX, y: y + 22, font_size: fontSize, anchor: "middle", fill: "#111827", style_role: "body" },
+        }),
+      });
+      patches.push({
+        target: `${base}.bar`,
+        op: "add",
+        value: withRegion({
+          kind: "line",
+          content: { x1: centerX - barWidth / 2, y1: y + 35, x2: centerX + barWidth / 2, y2: y + 35, stroke: "#111827", stroke_width: 2.2 },
+        }),
+      });
+      patches.push({
+        target: `${base}.den`,
+        op: "add",
+        value: withRegion({
+          kind: "text",
+          content: { text: denText, x: centerX, y: y + 58, font_size: fontSize, anchor: "middle", fill: "#111827", style_role: "body" },
+        }),
+      });
+      return { base, patches };
+    }
+
+    async function insertFractionFromDialog(mixed = false) {
+      if (!currentProblemId) throw new Error("문제를 먼저 여세요.");
+      const { base, patches } = fractionPatches({
+        mixed,
+        whole: document.getElementById("fractionWholeInput")?.value,
+        numerator: document.getElementById("fractionNumeratorInput")?.value,
+        denominator: document.getElementById("fractionDenominatorInput")?.value,
+      });
+      await commitPatches(patches, `${mixed ? "대분수" : "분수"} 삽입 완료`);
+      restoreSelection([`${base}.num`]);
+    }
+
 
     function shapePayload(def) {
-      const width = Number(def.w || 120);
-      const height = Number(def.h || (def.kind === "line" ? 70 : 86));
+      const fallbackWidth = def.lockAspect ? Number(def.sourceWidth || 64) : 120;
+      const fallbackHeight = def.lockAspect ? Number(def.sourceHeight || fallbackWidth) : (def.kind === "line" ? 70 : 86);
+      const width = Number(def.w || fallbackWidth);
+      const height = Number(def.h || fallbackHeight);
       const { x, y } = defaultInsertOrigin(width, height);
       const stroke = def.stroke || DEFAULT_SHAPE_STYLE.stroke;
       const fill = def.fill !== undefined ? def.fill : DEFAULT_SHAPE_STYLE.fill;
@@ -1860,6 +2065,13 @@
     }
 
     async function insertShape(def) {
+      if (def.kind === "composite") {
+        if (!currentProblemId) throw new Error("문제를 먼저 여세요.");
+        const { base, patches } = compositeShapePatches(def);
+        await commitPatches(patches, `${def.label || "교구"} 삽입 완료`);
+        restoreSelection(patches.length ? [patches[0].target] : []);
+        return;
+      }
       await insertSlot(uniqueInsertedSlotId(def.id), shapePayload(def), def.label || "도형");
     }
 
@@ -2073,7 +2285,7 @@
     function parseFractionPartId(svgElementId) {
       if (!svgElementId) return null;
       const base = svgElementId.replace(/\.(text|line|rect|path|polygon|circle|image)$/i, "");
-      const m = base.match(/^(slot\..+)\.(num|bar|den)$/);
+      const m = base.match(/^(slot\..+)\.(whole|num|bar|den)$/);
       if (!m) return null;
       const dslIds = extractDslSlotIds();
       if (!dslIds.has(`${m[1]}.num`) || !dslIds.has(`${m[1]}.bar`) || !dslIds.has(`${m[1]}.den`)) return null;
@@ -2776,6 +2988,7 @@
 
     function hideShapeFormatMenu() {
       document.getElementById("shapeFormatMenu")?.classList.remove("open");
+      document.getElementById("arcAngleControls")?.style.setProperty("display", "none");
     }
 
     function selectedShapeFormatItem() {
@@ -2807,6 +3020,9 @@
       const value = readSlotPatchValue(item.el) || {};
       const colorInput = document.getElementById("shapeFillColorInput");
       if (colorInput && validHexColor(value.fill)) colorInput.value = value.fill;
+      const strokeInput = document.getElementById("shapeStrokeColorInput");
+      if (strokeInput) strokeInput.value = validHexColor(value.stroke) ? value.stroke : DEFAULT_SHAPE_STYLE.stroke;
+      setArcAngleControlsVisible(item);
 
       const menu = document.getElementById("shapeFormatMenu");
       if (!menu) return false;
@@ -2843,27 +3059,177 @@
       await applyShapeFormatPatch({ fill }, "채우기");
     }
 
-    function renderShapeFormatSwatches() {
-      const wrap = document.getElementById("shapeFillSwatches");
+    async function applyShapeStroke(stroke) {
+      const current = selectedShapeFormatItem() ? (readSlotPatchValue(selectedShapeFormatItem().el) || {}) : {};
+      await applyShapeFormatPatch({
+        stroke,
+        stroke_width: current.stroke_width && current.stroke_width > 0 ? current.stroke_width : DEFAULT_SHAPE_STYLE.stroke_width,
+      }, "선 색");
+    }
+
+    function renderColorSwatches(containerId, colors, onPick, transparentLabel = "") {
+      const wrap = document.getElementById(containerId);
       if (!wrap) return;
       wrap.innerHTML = "";
-      for (const color of SHAPE_FILL_SWATCHES) {
+      for (const color of colors) {
         const btn = document.createElement("button");
         btn.type = "button";
         btn.className = "shape-swatch";
         if (color === "none") {
           btn.classList.add("transparent");
-          btn.title = "채우기 없음";
+          btn.title = transparentLabel || "없음";
         } else {
           btn.style.background = color;
           btn.title = color;
         }
         btn.addEventListener("click", async () => {
-          try { await applyShapeFill(color); hideShapeFormatMenu(); }
+          try { await onPick(color); hideShapeFormatMenu(); }
           catch (e) { setStatus(String(e), false); }
         });
         wrap.appendChild(btn);
       }
+    }
+
+    function renderShapeFormatSwatches() {
+      renderColorSwatches("shapeFillSwatches", SHAPE_FILL_SWATCHES, applyShapeFill, "채우기 없음");
+      renderColorSwatches("shapeStrokeSwatches", SHAPE_STROKE_SWATCHES, applyShapeStroke);
+    }
+
+    function clampArcAngle(value) {
+      const angle = Number(value);
+      if (!Number.isFinite(angle)) return 180;
+      return Math.max(10, Math.min(350, Math.round(angle / 5) * 5));
+    }
+
+    function arcAngleFromPath(d) {
+      const geom = sectorArcGeometryFromPath(d);
+      return clampArcAngle(geom ? geom.angle : 180);
+    }
+
+    function isArcShapeItem(item) {
+      if (!item || !item.el || item.el.tagName.toLowerCase() !== "path") return false;
+      const slotId = String(item.slotId || slotIdFromElement(item.el) || "");
+      if (/^slot\.inserted\.arc(?:\.|$)/.test(slotId)) return true;
+      return /\bA\b/i.test(item.el.getAttribute("d") || "") && /arc/i.test(slotId);
+    }
+
+    function syncArcAngleInputs(angle) {
+      const clean = clampArcAngle(angle);
+      const range = document.getElementById("arcAngleRange");
+      const input = document.getElementById("arcAngleInput");
+      if (range) range.value = String(clean);
+      if (input) input.value = String(clean);
+    }
+
+    function setArcAngleControlsVisible(item) {
+      const controls = document.getElementById("arcAngleControls");
+      if (!controls) return;
+      if (!isArcShapeItem(item)) {
+        controls.style.display = "none";
+        return;
+      }
+      controls.style.display = "flex";
+      syncArcAngleInputs(arcAngleFromPath(item.el.getAttribute("d") || ""));
+    }
+
+    function sectorArcGeometryFromPath(d) {
+      const text = String(d || "");
+      const openSector = text.match(/M\s*(-?\d+(?:\.\d+)?)\s+(-?\d+(?:\.\d+)?)\s+M\s*(-?\d+(?:\.\d+)?)\s+(-?\d+(?:\.\d+)?)\s+A\s*(-?\d+(?:\.\d+)?)\s+(-?\d+(?:\.\d+)?)\s+0\s+([01])\s+([01])\s+(-?\d+(?:\.\d+)?)\s+(-?\d+(?:\.\d+)?)/i);
+      if (openSector) {
+        const cx = Number(openSector[1]);
+        const cy = Number(openSector[2]);
+        const sx = Number(openSector[3]);
+        const sy = Number(openSector[4]);
+        const r = Math.max(Number(openSector[5]), Number(openSector[6]));
+        const largeArc = openSector[7] === "1";
+        const ex = Number(openSector[9]);
+        const ey = Number(openSector[10]);
+        if ([cx, cy, sx, sy, r, ex, ey].every(Number.isFinite) && r > 0) {
+          const chord = Math.hypot(ex - sx, ey - sy);
+          const minor = (2 * Math.asin(Math.min(1, chord / (2 * r))) * 180) / Math.PI;
+          return { cx, cy, r, angle: largeArc ? 360 - minor : minor };
+        }
+      }
+
+      const sector = text.match(/M\s*(-?\d+(?:\.\d+)?)\s+(-?\d+(?:\.\d+)?)\s+L\s*(-?\d+(?:\.\d+)?)\s+(-?\d+(?:\.\d+)?)\s+A\s*(-?\d+(?:\.\d+)?)\s+(-?\d+(?:\.\d+)?)\s+0\s+([01])\s+([01])\s+(-?\d+(?:\.\d+)?)\s+(-?\d+(?:\.\d+)?)/i);
+      if (sector) {
+        const cx = Number(sector[1]);
+        const cy = Number(sector[2]);
+        const sx = Number(sector[3]);
+        const sy = Number(sector[4]);
+        const r = Math.max(Number(sector[5]), Number(sector[6]));
+        const largeArc = sector[7] === "1";
+        const ex = Number(sector[9]);
+        const ey = Number(sector[10]);
+        if ([cx, cy, sx, sy, r, ex, ey].every(Number.isFinite) && r > 0) {
+          const chord = Math.hypot(ex - sx, ey - sy);
+          const minor = (2 * Math.asin(Math.min(1, chord / (2 * r))) * 180) / Math.PI;
+          return { cx, cy, r, angle: largeArc ? 360 - minor : minor };
+        }
+      }
+
+      const legacy = text.match(/M\s*(-?\d+(?:\.\d+)?)\s+(-?\d+(?:\.\d+)?)\s+A\s*(-?\d+(?:\.\d+)?)\s+(-?\d+(?:\.\d+)?)\s+0\s+([01])\s+[01]\s+(-?\d+(?:\.\d+)?)\s+(-?\d+(?:\.\d+)?)/i);
+      if (!legacy) return null;
+      const sx = Number(legacy[1]);
+      const sy = Number(legacy[2]);
+      const r = Math.max(Number(legacy[3]), Number(legacy[4]));
+      const largeArc = legacy[5] === "1";
+      const ex = Number(legacy[6]);
+      const ey = Number(legacy[7]);
+      if (![sx, sy, r, ex, ey].every(Number.isFinite) || r <= 0) return null;
+      const chord = Math.hypot(ex - sx, ey - sy);
+      const minor = (2 * Math.asin(Math.min(1, chord / (2 * r))) * 180) / Math.PI;
+      const midX = (sx + ex) / 2;
+      const midY = (sy + ey) / 2;
+      const halfChord = chord / 2;
+      const centerOffset = Math.sqrt(Math.max(0, r * r - halfChord * halfChord));
+      return {
+        cx: midX,
+        cy: midY + centerOffset,
+        r,
+        angle: largeArc ? 360 - minor : minor,
+      };
+    }
+
+    function sectorArcPath(cx, cy, radius, angle) {
+      const cleanAngle = clampArcAngle(angle);
+      const half = cleanAngle / 2;
+      const startDeg = 270 - half;
+      const endDeg = 270 + half;
+      const pointAt = (deg) => {
+        const rad = (deg * Math.PI) / 180;
+        return {
+          x: snapValue(cx + radius * Math.cos(rad)),
+          y: snapValue(cy + radius * Math.sin(rad)),
+        };
+      };
+      const start = pointAt(startDeg);
+      const end = pointAt(endDeg);
+      const largeArc = cleanAngle > 180 ? 1 : 0;
+      const r = snapValue(radius);
+      return `M ${snapValue(cx)} ${snapValue(cy)} M ${start.x} ${start.y} A ${r} ${r} 0 ${largeArc} 1 ${end.x} ${end.y}`;
+    }
+
+    function arcPathForElement(el, angle) {
+      const geom = sectorArcGeometryFromPath(el.getAttribute("d") || "");
+      if (geom) return sectorArcPath(geom.cx, geom.cy, geom.r, angle);
+      const svg = el.ownerSVGElement;
+      const box = visualSvgBox(el, svg) || geometrySvgBox(el) || { x: 0, y: 0, width: 64, height: 32 };
+      const radius = Math.max(8, Math.min(box.width, box.height || box.width) / 2);
+      return sectorArcPath(box.x + box.width / 2, box.y + box.height / 2, radius, angle);
+    }
+
+    async function applyArcAngle(angle) {
+      const item = selectedShapeFormatItem();
+      if (!isArcShapeItem(item)) throw new Error("호를 먼저 선택하세요.");
+      const value = { ...(readSlotPatchValue(item.el) || {}), d: arcPathForElement(item.el, angle), fill: "none" };
+      const before = [{ slotId: item.slotId, value: readSlotPatchValue(item.el) || {} }];
+      applyPatchValueToElement(item.el, value);
+      updateSelectionHandles();
+      await commitPatches([{ target: item.slotId, op: "update", value }], "호 각도 적용 완료");
+      const after = [{ slotId: item.slotId, value: JSON.parse(JSON.stringify(value)) }];
+      if (!historyBusy) pushHistory(before, after, "호 각도");
+      syncArcAngleInputs(angle);
     }
 
     function parseRotateTransform(transform) {
@@ -3490,6 +3856,37 @@
         else bottom = top + minSize;
       }
       return { x: left, y: top, width: right - left, height: bottom - top };
+    }
+
+    function isAspectLockedInsertedShape(item) {
+      const slotId = item ? String(item.slotId || slotIdFromElement(item.el) || "") : "";
+      return /^slot\.inserted\.(pushPin|triangle)(?:\.|$)/.test(slotId);
+    }
+
+    function aspectLockedBBox(startBox, handle, proposedBox) {
+      if (!startBox || !proposedBox || handle === "c") return proposedBox;
+      const ratio = Math.max(startBox.width, 1) / Math.max(startBox.height, 1);
+      const centerX = startBox.x + startBox.width / 2;
+      const centerY = startBox.y + startBox.height / 2;
+      let width = Math.max(4, proposedBox.width);
+      let height = Math.max(4, proposedBox.height);
+      if (handle === "n" || handle === "s") {
+        width = height * ratio;
+      } else if (handle === "e" || handle === "w") {
+        height = width / ratio;
+      } else {
+        const scale = Math.max(width / Math.max(startBox.width, 1), height / Math.max(startBox.height, 1));
+        width = Math.max(4, startBox.width * scale);
+        height = Math.max(4, startBox.height * scale);
+      }
+
+      let x = centerX - width / 2;
+      let y = centerY - height / 2;
+      if (handle.includes("w")) x = startBox.x + startBox.width - width;
+      if (handle.includes("e")) x = startBox.x;
+      if (handle.includes("n")) y = startBox.y + startBox.height - height;
+      if (handle.includes("s")) y = startBox.y;
+      return { x, y, width, height };
     }
 
     function adjustedCanvasBox(startBox, handle, dx, dy) {
@@ -4358,9 +4755,11 @@
       const svg = document.getElementById("svgPreview").querySelector("svg");
       if (!svg) return [];
       const parts = [];
+      const whole = svg.querySelector(`[id^="${prefix}.whole."]`);
       const num = svg.querySelector(`[id^="${prefix}.num."]`);
       const den = svg.querySelector(`[id^="${prefix}.den."]`);
       const bar = svg.querySelector(`[id^="${prefix}.bar."]`);
+      if (whole instanceof SVGElement) parts.push(whole);
       if (num instanceof SVGElement) parts.push(num);
       if (den instanceof SVGElement) parts.push(den);
       if (bar instanceof SVGElement) parts.push(bar);
@@ -4762,9 +5161,12 @@
         setStatus(`표 ${resizeState.handle.includes("table-v:") ? "열" : "행"} 조절 중: ${resizeState.item.slotId}${snapEnabled ? " (snap 5px)" : ""}`, true);
         return;
       }
-      const nextBox = resizeState.item.isCanvas
+      let nextBox = resizeState.item.isCanvas
         ? adjustedCanvasBox(resizeState.startBox, resizeState.handle, dx, dy)
         : adjustedBBox(resizeState.startBox, resizeState.handle, dx, dy);
+      if (!resizeState.item.isCanvas && isAspectLockedInsertedShape(resizeState.item)) {
+        nextBox = aspectLockedBBox(resizeState.startBox, resizeState.handle, nextBox);
+      }
       const value = resizeState.item.isGraphPaperGroup
         ? resizeGraphPaperGroup(resizeState, nextBox)
         : (resizeState.item.isCharacterGroup || resizeState.item.isFigureGroup || resizeState.item.isPaperFoldGroup || resizeState.item.isMeasurementGroup || resizeState.item.isTableGroup)
@@ -5001,9 +5403,34 @@
         return true;
       }
 
+      function addFillHitProxy(el) {
+        const tag = el.tagName.toLowerCase();
+        if (!(tag === "path" || tag === "polygon")) return false;
+        const fill = String(el.getAttribute("fill") || "").toLowerCase();
+        if (!fill || fill === "none") return false;
+        const proxy = document.createElementNS("http://www.w3.org/2000/svg", tag);
+        const copyAttrs = tag === "path" ? ["d", "transform"] : ["points", "transform"];
+        for (const name of copyAttrs) {
+          const value = el.getAttribute(name);
+          if (value !== null) proxy.setAttribute(name, value);
+        }
+        proxy.setAttribute("fill", "#000");
+        proxy.setAttribute("fill-opacity", "0.001");
+        proxy.setAttribute("stroke", "none");
+        proxy.style.pointerEvents = "fill";
+        proxy.classList.add("slot-hit-proxy");
+        addHitProxyEventHandlers(proxy, el);
+        if (!Array.isArray(el.__slotHitProxies)) el.__slotHitProxies = [];
+        el.__slotHitProxies.push(proxy);
+        svg.appendChild(proxy);
+        return true;
+      }
+
       function addHitProxies() {
         for (const el of slotElements) {
-          if (addStrokeHitProxy(el)) continue;
+          const hasStrokeProxy = addStrokeHitProxy(el);
+          const hasFillProxy = addFillHitProxy(el);
+          if (hasStrokeProxy || hasFillProxy) continue;
           if (el.tagName.toLowerCase() !== "text") continue;
           if (el.getAttribute("data-slot-kind") !== "text_box") continue;
           const bb = elementHitBox(el);
@@ -5668,8 +6095,31 @@
       await insertGraphPaper(rows, cols);
       closeGraphPaperDialog();
     }
+    let pendingFractionMixed = false;
+    function openFractionDialog(mixed = false) {
+      const dialog = document.getElementById("fractionInsertDialog");
+      if (!dialog) return;
+      pendingFractionMixed = mixed;
+      document.getElementById("fractionInsertTitle").textContent = mixed ? "대분수 삽입" : "분수 삽입";
+      document.getElementById("fractionWholeLabel").hidden = !mixed;
+      document.getElementById("fractionWholeInput").value = "1";
+      document.getElementById("fractionNumeratorInput").value = "1";
+      document.getElementById("fractionDenominatorInput").value = "2";
+      dialog.hidden = false;
+      setTimeout(() => (mixed ? document.getElementById("fractionWholeInput") : document.getElementById("fractionNumeratorInput"))?.focus(), 0);
+    }
+    function closeFractionDialog() {
+      const dialog = document.getElementById("fractionInsertDialog");
+      if (dialog) dialog.hidden = true;
+    }
+    async function confirmFractionDialog() {
+      await insertFractionFromDialog(pendingFractionMixed);
+      closeFractionDialog();
+    }
     document.getElementById("insertTableBtn").onclick = openTableDialog;
     document.getElementById("insertGraphPaperBtn").onclick = openGraphPaperDialog;
+    document.getElementById("insertFractionBtn").onclick = () => openFractionDialog(false);
+    document.getElementById("insertMixedFractionBtn").onclick = () => openFractionDialog(true);
     document.getElementById("insertImageBtn").onclick = () => {
       document.getElementById("insertImageInput")?.click();
     };
@@ -5706,6 +6156,15 @@
     document.getElementById("graphPaperInsertDialog").addEventListener("click", (ev) => {
       if (ev.target === ev.currentTarget) closeGraphPaperDialog();
     });
+    document.getElementById("fractionConfirmBtn").onclick = async () => {
+      try { await confirmFractionDialog(); }
+      catch (e) { setStatus(String(e), false); }
+    };
+    document.getElementById("fractionCancelBtn").onclick = closeFractionDialog;
+    document.getElementById("fractionCancelXBtn").onclick = closeFractionDialog;
+    document.getElementById("fractionInsertDialog").addEventListener("click", (ev) => {
+      if (ev.target === ev.currentTarget) closeFractionDialog();
+    });
     for (const id of ["tableColsInput", "tableRowsInput"]) {
       document.getElementById(id).addEventListener("keydown", async (ev) => {
         if (ev.key === "Enter") {
@@ -5726,6 +6185,16 @@
         if (ev.key === "Escape") closeGraphPaperDialog();
       });
     }
+    for (const id of ["fractionWholeInput", "fractionNumeratorInput", "fractionDenominatorInput"]) {
+      document.getElementById(id).addEventListener("keydown", async (ev) => {
+        if (ev.key === "Enter") {
+          ev.preventDefault();
+          try { await confirmFractionDialog(); }
+          catch (e) { setStatus(String(e), false); }
+        }
+        if (ev.key === "Escape") closeFractionDialog();
+      });
+    }
     document.getElementById("shapeGallery").addEventListener("click", (ev) => ev.stopPropagation());
     document.getElementById("shapeFormatMenu").addEventListener("click", (ev) => ev.stopPropagation());
     document.addEventListener("click", () => {
@@ -5738,24 +6207,39 @@
         hideShapeFormatMenu();
       } catch (e) { setStatus(String(e), false); }
     };
+    document.getElementById("shapeApplyStrokeBtn").onclick = async () => {
+      try {
+        await applyShapeStroke(document.getElementById("shapeStrokeColorInput").value || DEFAULT_SHAPE_STYLE.stroke);
+        hideShapeFormatMenu();
+      } catch (e) { setStatus(String(e), false); }
+    };
     document.getElementById("shapeNoBorderBtn").onclick = async () => {
       try {
         await applyShapeFormatPatch({ stroke: "none", stroke_width: 0, stroke_dasharray: "" }, "테두리 제거");
         hideShapeFormatMenu();
       } catch (e) { setStatus(String(e), false); }
     };
+    function currentShapeStrokeStyle() {
+      const item = selectedShapeFormatItem();
+      const value = item ? (readSlotPatchValue(item.el) || {}) : {};
+      return {
+        stroke: value.stroke && value.stroke !== "none" ? value.stroke : DEFAULT_SHAPE_STYLE.stroke,
+        stroke_width: value.stroke_width && value.stroke_width > 0 ? value.stroke_width : DEFAULT_SHAPE_STYLE.stroke_width,
+      };
+    }
     document.getElementById("shapeSolidBtn").onclick = async () => {
       try {
-        await applyShapeFormatPatch({ stroke: DEFAULT_SHAPE_STYLE.stroke, stroke_width: DEFAULT_SHAPE_STYLE.stroke_width, stroke_dasharray: "" }, "실선");
+        await applyShapeFormatPatch({ ...currentShapeStrokeStyle(), stroke_dasharray: "" }, "실선");
         hideShapeFormatMenu();
       } catch (e) { setStatus(String(e), false); }
     };
     function bindStrokeDashButton(id, label, dasharray) {
       document.getElementById(id).onclick = async () => {
         try {
+          const strokeStyle = currentShapeStrokeStyle();
           await applyShapeFormatPatch({
-            stroke: DEFAULT_SHAPE_STYLE.stroke,
-            stroke_width: DEFAULT_SHAPE_STYLE.stroke_width,
+            stroke: strokeStyle.stroke,
+            stroke_width: strokeStyle.stroke_width,
             stroke_dasharray: dasharray,
           }, label);
           hideShapeFormatMenu();
@@ -5766,6 +6250,18 @@
     bindStrokeDashButton("shapeDashedBtn", "긴 점선", "10 6");
     bindStrokeDashButton("shapeDotDashBtn", "점-대시", "10 4 2 4");
     bindStrokeDashButton("shapeDottedBtn", "촘촘 점선", "2 5");
+    function syncArcAngleControlsFromEvent(ev) {
+      const value = clampArcAngle(ev.currentTarget.value);
+      syncArcAngleInputs(value);
+    }
+    document.getElementById("arcAngleRange").addEventListener("input", syncArcAngleControlsFromEvent);
+    document.getElementById("arcAngleInput").addEventListener("input", syncArcAngleControlsFromEvent);
+    document.getElementById("arcAngleApplyBtn").onclick = async () => {
+      try {
+        await applyArcAngle(document.getElementById("arcAngleInput").value || 180);
+        hideShapeFormatMenu();
+      } catch (e) { setStatus(String(e), false); }
+    };
     document.getElementById("patchBtn").onclick = async () => {
       try { await patchOnly(); }
       catch (e) { setStatus(String(e), false); }
