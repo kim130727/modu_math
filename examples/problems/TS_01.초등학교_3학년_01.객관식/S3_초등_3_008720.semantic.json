@@ -8,6 +8,7 @@
       "원",
       "선택"
     ],
+    "instruction": "가장 작은 원을 그리려면 연필을 꽂아야 하는 구멍의 기호를 선택한다.",
     "question": "누름 못과 띠 종이를 사용하여 원을 그릴 때, 가장 작은 원을 그리기 위한 구멍의 기호를 고르는 문제",
     "required_layout_ids": [
       "slot.bar",
@@ -22,16 +23,10 @@
       "slot.arrow2",
       "slot.arrow3",
       "slot.arrow4",
-      "slot.arrow5",
-      "slot.lb1",
-      "slot.lb2",
-      "slot.lb3",
-      "slot.lb4",
-      "slot.lb5"
+      "slot.arrow5"
     ],
     "extraction_confidence": 1.0,
-    "language": "ko",
-    "instruction": "가장 작은 원을 그리려면 연필을 꽂아야 하는 구멍의 기호를 선택한다."
+    "language": "ko"
   },
   "domain": {
     "objects": [
@@ -92,7 +87,7 @@
       "type": "choice_symbol",
       "description": "가장 작은 원을 그리기 위한 구멍의 기호"
     },
-    "value": 0,
+    "value": "ㄱ",
     "unit": ""
   }
 }

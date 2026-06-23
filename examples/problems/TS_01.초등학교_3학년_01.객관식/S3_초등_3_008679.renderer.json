@@ -2,127 +2,215 @@
   "problem_id": "S3_초등_3_008679",
   "view_box": {
     "width": 940.0,
-    "height": 406.0,
+    "height": 325.0,
     "background": "#FFFFFF"
   },
   "elements": [
     {
-      "id": "slot.q2.text",
+      "id": "slot.stem.1.text",
       "type": "text",
       "attributes": {
-        "x": 25.0,
-        "y": 60.0,
+        "x": 35.0,
+        "y": 35.0,
         "max_width": 812.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 30
+        "font-size": 25
       },
-      "source_ref": "slot.q2",
+      "source_ref": "slot.stem.1",
       "refs": {
-        "layout_slot_id": "slot.q2"
+        "layout_slot_id": "slot.stem.1"
       },
-      "text": "    원 모양 종이를 똑같이 둘로 나누어지도록 반을 접었다가 펴더니  "
+      "text": "원 모양 종이를 똑같이 둘로 나누어지도록 반을 접었다가 폈더니 선이"
     },
     {
-      "id": "slot.q3.text",
+      "id": "slot.stem.2.text",
       "type": "text",
       "attributes": {
-        "x": 25.0,
-        "y": 105.0,
+        "x": 34.0,
+        "y": 70.0,
         "max_width": 812.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 30
+        "font-size": 25
       },
-      "source_ref": "slot.q3",
+      "source_ref": "slot.stem.2",
       "refs": {
-        "layout_slot_id": "slot.q3"
+        "layout_slot_id": "slot.stem.2"
       },
-      "text": "선이 생겼습니다. 알맞은 말을 선택하세요."
+      "text": "생겼습니다. 알맞은 말을 선택하세요."
     },
     {
-      "id": "slot.fig.left.rect",
-      "type": "rect",
+      "id": "slot.folded.paper.path",
+      "type": "path",
       "attributes": {
-        "x": 200.0,
-        "y": 145.0,
-        "width": 125.0,
-        "height": 30.0,
-        "fill": "#F9DCE3",
-        "stroke": "#FF9CB4",
-        "stroke-width": 2.0
+        "d": "M 193.6666259765625 156.55560302734375 C 196.0266259765625 119.97560302734377 224.3466259765625 97.55560302734375 252.6666259765625 97.55560302734375 C 280.9866259765625 97.55560302734375 309.3066259765625 119.97560302734377 311.6666259765625 156.55560302734375 L 193.6666259765625 156.55560302734375 Z",
+        "stroke": "none",
+        "stroke-width": 2.0,
+        "fill": "#FDE8EF"
       },
-      "source_ref": "slot.fig.left",
+      "source_ref": "slot.folded.paper",
       "refs": {
-        "layout_slot_id": "slot.fig.left"
+        "layout_slot_id": "slot.folded.paper"
       }
     },
     {
-      "id": "slot.fig.right.circle",
+      "id": "slot.folded.back_circle.circle",
       "type": "circle",
       "attributes": {
-        "cx": 605.0,
-        "cy": 165.0,
+        "cx": 252.0,
+        "cy": 155.0,
         "r": 60.0,
-        "stroke": "#FF9CB4",
-        "stroke-width": 2.0,
-        "fill": "#F9DCE3"
+        "stroke": "#FF9AB2",
+        "stroke-width": 1.7,
+        "fill": "none"
       },
-      "source_ref": "slot.fig.right",
+      "source_ref": "slot.folded.back_circle",
       "refs": {
-        "layout_slot_id": "slot.fig.right"
+        "layout_slot_id": "slot.folded.back_circle"
       }
     },
     {
-      "id": "slot.fig.right.dash.line",
+      "id": "slot.folded.front_circle.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 252.0,
+        "cy": 160.0,
+        "r": 60.0,
+        "stroke": "#FF9AB2",
+        "stroke-width": 1.7,
+        "fill": "none"
+      },
+      "source_ref": "slot.folded.front_circle",
+      "refs": {
+        "layout_slot_id": "slot.folded.front_circle"
+      }
+    },
+    {
+      "id": "slot.folded.lower_mask.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 171.0,
+        "y": 153.0,
+        "width": 142.0,
+        "height": 71.0,
+        "fill": "#FFFFFF",
+        "stroke": "none",
+        "stroke-width": 0.0
+      },
+      "source_ref": "slot.folded.lower_mask",
+      "refs": {
+        "layout_slot_id": "slot.folded.lower_mask"
+      }
+    },
+    {
+      "id": "slot.arrow.head.polygon",
+      "type": "polygon",
+      "attributes": {
+        "points": [
+          [
+            408.0,
+            157.4444580078125
+          ],
+          [
+            393.0,
+            143.4444580078125
+          ],
+          [
+            393.0,
+            171.4444580078125
+          ]
+        ],
+        "stroke": "#9AA0A6",
+        "stroke-width": 0.0,
+        "fill": "#9AA0A6"
+      },
+      "source_ref": "slot.arrow.head",
+      "refs": {
+        "layout_slot_id": "slot.arrow.head"
+      }
+    },
+    {
+      "id": "slot.opened.paper.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 509.0,
+        "cy": 153.0,
+        "r": 59.0,
+        "stroke": "#FF9AB2",
+        "stroke-width": 1.7,
+        "fill": "#FDE8EF"
+      },
+      "source_ref": "slot.opened.paper",
+      "refs": {
+        "layout_slot_id": "slot.opened.paper"
+      }
+    },
+    {
+      "id": "slot.folded.edge.line",
       "type": "line",
       "attributes": {
-        "x1": 550.0,
-        "y1": 165.0,
-        "x2": 660.0,
-        "y2": 165.0,
-        "stroke": "#FF9CB4",
-        "stroke-width": 2.0,
-        "stroke-dasharray": "5 4"
+        "x1": 193.0,
+        "y1": 153.0,
+        "x2": 311.0,
+        "y2": 153.0,
+        "stroke": "#FF9AB2",
+        "stroke-width": 1.7
       },
-      "source_ref": "slot.fig.right.dash",
+      "source_ref": "slot.folded.edge",
       "refs": {
-        "layout_slot_id": "slot.fig.right.dash"
+        "layout_slot_id": "slot.folded.edge"
       }
     },
     {
-      "id": "slot.fig.arrow.text",
-      "type": "text",
+      "id": "slot.arrow.body.line",
+      "type": "line",
       "attributes": {
-        "x": 415.0,
-        "y": 185.0,
-        "max_width": 810.0,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 55
+        "x1": 375.0,
+        "y1": 155.0,
+        "x2": 395.0,
+        "y2": 155.0,
+        "stroke": "#9AA0A6",
+        "stroke-width": 8.0
       },
-      "source_ref": "slot.fig.arrow",
+      "source_ref": "slot.arrow.body",
       "refs": {
-        "layout_slot_id": "slot.fig.arrow"
-      },
-      "text": "→"
+        "layout_slot_id": "slot.arrow.body"
+      }
     },
     {
-      "id": "slot.choice.line.text",
+      "id": "slot.opened.fold_line.line",
+      "type": "line",
+      "attributes": {
+        "x1": 450.0,
+        "y1": 153.0,
+        "x2": 568.0,
+        "y2": 153.0,
+        "stroke": "#FF9AB2",
+        "stroke-width": 1.2,
+        "stroke-dasharray": "5 4"
+      },
+      "source_ref": "slot.opened.fold_line",
+      "refs": {
+        "layout_slot_id": "slot.opened.fold_line"
+      }
+    },
+    {
+      "id": "slot.choice.1.text",
       "type": "text",
       "attributes": {
-        "x": 45.0,
-        "y": 295.0,
-        "max_width": 810.0,
+        "x": 36.0,
+        "y": 263.0,
+        "max_width": 812.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 30
+        "font-size": 26
       },
-      "source_ref": "slot.choice.line",
+      "source_ref": "slot.choice.1",
       "refs": {
-        "layout_slot_id": "slot.choice.line"
+        "layout_slot_id": "slot.choice.1"
       },
-      "text": "(2) 원의 지름은 원을 똑같이 ( 둘, 넷 )(○)로 나눕니다."
+      "text": "(2) 원의 지름은 원을 똑같이 (둘, 넷)(으)로 나눕니다."
     }
   ],
   "contract_version": "modu_math.renderer.v2"

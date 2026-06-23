@@ -10,9 +10,9 @@
       "id": "slot.diagram.circle.circle",
       "type": "circle",
       "attributes": {
-        "cx": 471.0,
-        "cy": 161.0,
-        "r": 98.0,
+        "cx": 450.0,
+        "cy": 231.0,
+        "r": 135.0,
         "stroke": "#111111",
         "stroke-width": 2.0,
         "fill": "none"
@@ -23,29 +23,13 @@
       }
     },
     {
-      "id": "slot.diagram.center.circle",
-      "type": "circle",
-      "attributes": {
-        "cx": 443.0,
-        "cy": 159.0,
-        "r": 4.0,
-        "stroke": "#111111",
-        "stroke-width": 2.0,
-        "fill": "#ff2a8a"
-      },
-      "source_ref": "slot.diagram.center",
-      "refs": {
-        "layout_slot_id": "slot.diagram.center"
-      }
-    },
-    {
       "id": "slot.diagram.line1.line",
       "type": "line",
       "attributes": {
-        "x1": 421.0,
-        "y1": 74.0,
-        "x2": 421.0,
-        "y2": 258.0,
+        "x1": 480.0,
+        "y1": 100.0,
+        "x2": 490.0,
+        "y2": 360.0,
         "stroke": "#111111",
         "stroke-width": 2.0
       },
@@ -58,10 +42,10 @@
       "id": "slot.diagram.line2.line",
       "type": "line",
       "attributes": {
-        "x1": 447.0,
-        "y1": 74.0,
-        "x2": 447.0,
-        "y2": 259.0,
+        "x1": 445.0,
+        "y1": 95.0,
+        "x2": 455.0,
+        "y2": 365.0,
         "stroke": "#111111",
         "stroke-width": 2.0
       },
@@ -74,10 +58,10 @@
       "id": "slot.diagram.line3.line",
       "type": "line",
       "attributes": {
-        "x1": 349.0,
-        "y1": 106.0,
-        "x2": 510.0,
-        "y2": 274.0,
+        "x1": 350.0,
+        "y1": 141.0,
+        "x2": 450.0,
+        "y2": 231.0,
         "stroke": "#111111",
         "stroke-width": 2.0
       },
@@ -87,12 +71,43 @@
       }
     },
     {
+      "id": "slot.diagram.line1.copy7.line",
+      "type": "line",
+      "attributes": {
+        "x1": 575.0,
+        "y1": 180.0,
+        "x2": 410.0,
+        "y2": 360.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.diagram.line1.copy7",
+      "refs": {
+        "layout_slot_id": "slot.diagram.line1.copy7"
+      }
+    },
+    {
+      "id": "slot.diagram.center.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 450.0,
+        "cy": 231.0,
+        "r": 5.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#ff2a8a"
+      },
+      "source_ref": "slot.diagram.center",
+      "refs": {
+        "layout_slot_id": "slot.diagram.center"
+      }
+    },
+    {
       "id": "slot.q1.text",
       "type": "text",
       "attributes": {
         "x": 18.0,
         "y": 34.0,
-        "max_width": 832.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 28
@@ -101,18 +116,17 @@
       "refs": {
         "layout_slot_id": "slot.q1"
       },
-      "text": "24. 바르게 설명하였으면 ○, 그렇지 않으면 ×를 선택하세요."
+      "text": "바르게 설명하였으면 ○, 그렇지 않으면 ×를 선택하세요."
     },
     {
       "id": "slot.diagram.label.ga.text",
       "type": "text",
       "attributes": {
-        "x": 403.0,
-        "y": 56.0,
-        "max_width": 832.0,
+        "x": 430.0,
+        "y": 90.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 30
       },
       "source_ref": "slot.diagram.label.ga",
       "refs": {
@@ -124,12 +138,11 @@
       "id": "slot.diagram.label.na.text",
       "type": "text",
       "attributes": {
-        "x": 434.0,
-        "y": 56.0,
-        "max_width": 832.0,
+        "x": 470.0,
+        "y": 90.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 30
       },
       "source_ref": "slot.diagram.label.na",
       "refs": {
@@ -141,12 +154,11 @@
       "id": "slot.diagram.label.da.text",
       "type": "text",
       "attributes": {
-        "x": 384.0,
-        "y": 98.0,
-        "max_width": 832.0,
+        "x": 315.0,
+        "y": 140.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 30
       },
       "source_ref": "slot.diagram.label.da",
       "refs": {
@@ -158,12 +170,11 @@
       "id": "slot.diagram.label.ra.text",
       "type": "text",
       "attributes": {
-        "x": 566.0,
-        "y": 150.0,
-        "max_width": 832.0,
+        "x": 585.0,
+        "y": 175.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 30
       },
       "source_ref": "slot.diagram.label.ra",
       "refs": {
@@ -175,12 +186,11 @@
       "id": "slot.diagram.label.ma.text",
       "type": "text",
       "attributes": {
-        "x": 389.0,
-        "y": 274.0,
-        "max_width": 832.0,
+        "x": 385.0,
+        "y": 385.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 30
       },
       "source_ref": "slot.diagram.label.ma",
       "refs": {
@@ -192,12 +202,11 @@
       "id": "slot.diagram.label.sa.text",
       "type": "text",
       "attributes": {
-        "x": 433.0,
-        "y": 275.0,
-        "max_width": 832.0,
+        "x": 435.0,
+        "y": 395.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 30
       },
       "source_ref": "slot.diagram.label.sa",
       "refs": {
@@ -209,12 +218,11 @@
       "id": "slot.diagram.label.ya.text",
       "type": "text",
       "attributes": {
-        "x": 458.0,
-        "y": 275.0,
-        "max_width": 832.0,
+        "x": 490.0,
+        "y": 380.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 30
       },
       "source_ref": "slot.diagram.label.ya",
       "refs": {
@@ -226,12 +234,11 @@
       "id": "slot.q2.text",
       "type": "text",
       "attributes": {
-        "x": 48.0,
-        "y": 332.0,
-        "max_width": 832.0,
+        "x": 25.0,
+        "y": 435.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 30
       },
       "source_ref": "slot.q2",
       "refs": {
@@ -240,38 +247,20 @@
       "text": "길이가 가장 긴 선분은 선분 ㅁㅅ이고, 원의 지름은 선분 ㄱㄷ입니다."
     },
     {
-      "id": "slot.choice.o.text",
+      "id": "slot.diagram.label.ya.copy3.text",
       "type": "text",
       "attributes": {
-        "x": 24.0,
-        "y": 374.0,
-        "max_width": 832.0,
+        "x": 420.0,
+        "y": 255.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 30
       },
-      "source_ref": "slot.choice.o",
+      "source_ref": "slot.diagram.label.ya.copy3",
       "refs": {
-        "layout_slot_id": "slot.choice.o"
+        "layout_slot_id": "slot.diagram.label.ya.copy3"
       },
-      "text": "○"
-    },
-    {
-      "id": "slot.choice.x.text",
-      "type": "text",
-      "attributes": {
-        "x": 24.0,
-        "y": 408.0,
-        "max_width": 832.0,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
-      },
-      "source_ref": "slot.choice.x",
-      "refs": {
-        "layout_slot_id": "slot.choice.x"
-      },
-      "text": "×"
+      "text": "ㅇ"
     }
   ],
   "contract_version": "modu_math.renderer.v2"

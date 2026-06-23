@@ -112,6 +112,8 @@ def _element_to_svg_lines(element: RenderElement, depth: int = 1) -> list[str]:
             attrs_str = _attrs_to_str(attrs)
             if len(text_lines) <= 1:
                 return [f'{indent}<text {attrs_str}>{escape(element.text)}</text>']
+            attrs["data-raw-text"] = element.text
+            attrs_str = _attrs_to_str(attrs)
             res = [f"{indent}<text {attrs_str}>"]
             for i, line in enumerate(text_lines):
                 line_y = baseline_y + i * line_step
@@ -119,13 +121,17 @@ def _element_to_svg_lines(element: RenderElement, depth: int = 1) -> list[str]:
             res.append(f"{indent}</text>")
             return res
 
-        attrs.pop("max_width", attrs.pop("max-width", None))
-        text_lines = element.text.split("\n")
+        max_width_raw = attrs.get("max_width", attrs.get("max-width", None))
+        max_width = float(max_width_raw) if isinstance(max_width_raw, (int, float)) else None
+        font_size_raw = attrs.get("font-size", attrs.get("font_size", 26))
+        font_size = float(font_size_raw) if isinstance(font_size_raw, (int, float)) else 26.0
+        text_lines = _wrap_text(element.text, max_width, font_size)
         attrs_str = _attrs_to_str(attrs)
         if len(text_lines) <= 1:
             return [f"{indent}<text {attrs_str}>{escape(element.text)}</text>"]
-        
-        # Handle multiline text using <tspan>
+
+        attrs["data-raw-text"] = element.text
+        attrs_str = _attrs_to_str(attrs)
         x = attrs.get("x", 0)
         res = [f"{indent}<text {attrs_str}>"]
         for i, line in enumerate(text_lines):

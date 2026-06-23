@@ -14,6 +14,7 @@
       "role": "stem",
       "flow": "absolute",
       "slot_ids": [
+        "slot.inserted.line.1",
         "slot.q1"
       ]
     },
@@ -28,6 +29,8 @@
         "slot.line.dm",
         "slot.line.ro",
         "slot.line.mo",
+        "slot.line.dm.copy25",
+        "slot.line.dm.copy26",
         "slot.pt.center",
         "slot.lb.g",
         "slot.lb.n",
@@ -62,7 +65,7 @@
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "□ 31. 원에서 원의 지름을 나타내는 선분은 어느 것일까요?",
+        "text": "원에서 원의 지름을 나타내는 선분은 어느 것일까요?",
         "style_role": "question",
         "x": 12.0,
         "y": 30.0,
@@ -74,9 +77,9 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 500.0,
-        "cy": 155.0,
-        "r": 82.0,
+        "cx": 345.0,
+        "cy": 181.0,
+        "r": 110.0,
         "fill": "none"
       }
     },
@@ -85,10 +88,10 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 426.0,
-        "y1": 117.0,
-        "x2": 576.0,
-        "y2": 190.0
+        "x1": 235.0,
+        "y1": 195.0,
+        "x2": 415.0,
+        "y2": 265.0
       }
     },
     {
@@ -96,10 +99,10 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 419.0,
-        "y1": 179.0,
-        "x2": 565.0,
-        "y2": 234.0
+        "x1": 250.0,
+        "y1": 130.0,
+        "x2": 440.0,
+        "y2": 230.0
       }
     },
     {
@@ -107,10 +110,10 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 524.0,
-        "y1": 236.0,
-        "x2": 552.0,
-        "y2": 79.0
+        "x1": 345.0,
+        "y1": 180.0,
+        "x2": 405.0,
+        "y2": 90.0
       }
     },
     {
@@ -140,9 +143,11 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 500.0,
-        "cy": 155.0,
-        "r": 3.5,
+        "cx": 345.0,
+        "cy": 180.0,
+        "r": 4.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0,
         "fill": "#d81b60"
       }
     },
@@ -153,9 +158,9 @@
       "content": {
         "text": "ㄱ",
         "style_role": "label",
-        "x": 414.0,
-        "y": 108.0,
-        "font_size": 28
+        "x": 215.0,
+        "y": 130.0,
+        "font_size": 30
       }
     },
     {
@@ -165,9 +170,9 @@
       "content": {
         "text": "ㄴ",
         "style_role": "label",
-        "x": 410.0,
-        "y": 185.0,
-        "font_size": 28
+        "x": 205.0,
+        "y": 205.0,
+        "font_size": 30
       }
     },
     {
@@ -177,9 +182,9 @@
       "content": {
         "text": "ㄷ",
         "style_role": "label",
-        "x": 564.0,
-        "y": 240.0,
-        "font_size": 28
+        "x": 420.0,
+        "y": 285.0,
+        "font_size": 30
       }
     },
     {
@@ -189,9 +194,9 @@
       "content": {
         "text": "ㄹ",
         "style_role": "label",
-        "x": 604.0,
-        "y": 196.0,
-        "font_size": 28
+        "x": 455.0,
+        "y": 255.0,
+        "font_size": 30
       }
     },
     {
@@ -201,9 +206,9 @@
       "content": {
         "text": "ㅁ",
         "style_role": "label",
-        "x": 542.0,
-        "y": 60.0,
-        "font_size": 28
+        "x": 410.0,
+        "y": 85.0,
+        "font_size": 30
       }
     },
     {
@@ -213,9 +218,9 @@
       "content": {
         "text": "ㅇ",
         "style_role": "label",
-        "x": 486.0,
-        "y": 180.0,
-        "font_size": 28
+        "x": 315.0,
+        "y": 200.0,
+        "font_size": 30
       }
     },
     {
@@ -226,7 +231,7 @@
         "text": "① 선분 ㄱㄹ",
         "style_role": "choice",
         "x": 20.0,
-        "y": 250.0,
+        "y": 352.0,
         "font_size": 28
       }
     },
@@ -237,8 +242,8 @@
       "content": {
         "text": "② 선분 ㄴㄷ",
         "style_role": "choice",
-        "x": 332.0,
-        "y": 250.0,
+        "x": 213.0,
+        "y": 352.0,
         "font_size": 28
       }
     },
@@ -249,9 +254,9 @@
       "content": {
         "text": "③ 선분 ㄷㅁ",
         "style_role": "choice",
-        "x": 650.0,
-        "y": 250.0,
-        "font_size": 28
+        "x": 407.0,
+        "y": 353.0,
+        "font_size": 30
       }
     },
     {
@@ -262,7 +267,7 @@
         "text": "④ 선분 ㄹㅇ",
         "style_role": "choice",
         "x": 20.0,
-        "y": 298.0,
+        "y": 396.0,
         "font_size": 28
       }
     },
@@ -273,9 +278,48 @@
       "content": {
         "text": "⑤ 선분 ㅁㅇ",
         "style_role": "choice",
-        "x": 332.0,
-        "y": 298.0,
+        "x": 213.0,
+        "y": 396.0,
         "font_size": 28
+      }
+    },
+    {
+      "id": "slot.line.dm.copy25",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 899.0,
+        "y1": 611.0,
+        "x2": 927.0,
+        "y2": 454.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.line.dm.copy26",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 515.0,
+        "y1": 605.0,
+        "x2": 545.0,
+        "y2": 450.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.inserted.line.1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 415.0,
+        "y1": 265.0,
+        "x2": 405.0,
+        "y2": 90.0,
+        "stroke": "#111827",
+        "stroke_width": 1.5
       }
     }
   ],
@@ -284,6 +328,7 @@
   "diagrams": [],
   "reading_order": [
     "region.stem",
+    "slot.inserted.line.1",
     "slot.q1",
     "region.diagram",
     "slot.circle.outer",
@@ -292,6 +337,8 @@
     "slot.line.dm",
     "slot.line.ro",
     "slot.line.mo",
+    "slot.line.dm.copy25",
+    "slot.line.dm.copy26",
     "slot.pt.center",
     "slot.lb.g",
     "slot.lb.n",

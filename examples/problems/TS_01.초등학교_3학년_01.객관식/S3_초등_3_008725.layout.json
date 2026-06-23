@@ -19,7 +19,18 @@
         "slot.choice.3.shape",
         "slot.choice.4.shape",
         "slot.choice.5.shape",
-        "slot.q_num",
+        "slot.choice.3.shape.copy13",
+        "slot.choice.3.shape.copy14",
+        "slot.choice.2.shape.copy15",
+        "slot.choice.2.shape.copy16",
+        "slot.choice.2.shape.copy17",
+        "slot.choice.2.shape.copy18",
+        "slot.choice.2.shape.copy19",
+        "slot.choice.2.shape.copy20",
+        "slot.choice.2.shape.copy21",
+        "slot.choice.4.shape.copy22",
+        "slot.choice.5.shape.copy23",
+        "slot.choice.2.shape.copy16.copy24",
         "slot.q_text",
         "slot.choice.1.label",
         "slot.choice.2.label",
@@ -32,29 +43,10 @@
       "id": "region.explanation",
       "role": "explanation",
       "flow": "absolute",
-      "slot_ids": [
-        "slot.expl.1.shape",
-        "slot.expl.2.shape",
-        "slot.expl.3.shape",
-        "slot.expl.4.shape",
-        "slot.expl.5.shape",
-        "slot.conclusion"
-      ]
+      "slot_ids": []
     }
   ],
   "slots": [
-    {
-      "id": "slot.q_num",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "30.",
-        "style_role": "question",
-        "x": 18.0,
-        "y": 28.0,
-        "font_size": 28
-      }
-    },
     {
       "id": "slot.q_text",
       "kind": "text",
@@ -62,9 +54,9 @@
       "content": {
         "text": "원의 중심의 개수가 가장 많은 모양을 고르세요.",
         "style_role": "question",
-        "x": 72.0,
-        "y": 28.0,
-        "font_size": 28
+        "x": 45.0,
+        "y": 70.0,
+        "font_size": 30
       }
     },
     {
@@ -74,9 +66,9 @@
       "content": {
         "text": "①",
         "style_role": "label",
-        "x": 34.0,
-        "y": 64.0,
-        "font_size": 28
+        "x": 45.0,
+        "y": 165.0,
+        "font_size": 30
       }
     },
     {
@@ -84,10 +76,10 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 68.0,
-        "y": 50.0,
-        "width": 104.0,
-        "height": 104.0
+        "x": 105.0,
+        "y": 150.0,
+        "width": 185.0,
+        "height": 180.0
       }
     },
     {
@@ -97,9 +89,9 @@
       "content": {
         "text": "②",
         "style_role": "label",
-        "x": 356.0,
-        "y": 64.0,
-        "font_size": 28
+        "x": 319.0,
+        "y": 165.0,
+        "font_size": 30
       }
     },
     {
@@ -107,9 +99,11 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 438.0,
-        "cy": 101.0,
-        "r": 48.0,
+        "cx": 464.0,
+        "cy": 235.0,
+        "r": 90.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0,
         "fill": "none"
       }
     },
@@ -120,9 +114,9 @@
       "content": {
         "text": "③",
         "style_role": "label",
-        "x": 646.0,
-        "y": 64.0,
-        "font_size": 28
+        "x": 572.0,
+        "y": 165.0,
+        "font_size": 30
       }
     },
     {
@@ -130,9 +124,9 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 714.0,
-        "cy": 112.0,
-        "r": 36.0,
+        "cx": 728.0,
+        "cy": 198.0,
+        "r": 45.0,
         "fill": "none"
       }
     },
@@ -143,9 +137,9 @@
       "content": {
         "text": "④",
         "style_role": "label",
-        "x": 34.0,
-        "y": 184.0,
-        "font_size": 28
+        "x": 50.0,
+        "y": 410.0,
+        "font_size": 30
       }
     },
     {
@@ -153,9 +147,9 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 108.0,
-        "cy": 218.0,
-        "r": 48.0,
+        "cx": 170.0,
+        "cy": 445.0,
+        "r": 60.0,
         "fill": "none"
       }
     },
@@ -166,9 +160,9 @@
       "content": {
         "text": "⑤",
         "style_role": "label",
-        "x": 356.0,
-        "y": 184.0,
-        "font_size": 28
+        "x": 318.0,
+        "y": 410.0,
+        "font_size": 30
       }
     },
     {
@@ -176,77 +170,154 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 438.0,
-        "cy": 228.0,
-        "r": 52.0,
+        "cx": 465.0,
+        "cy": 410.0,
+        "r": 50.0,
         "fill": "none"
       }
     },
     {
-      "id": "slot.expl.1.shape",
-      "kind": "rect",
-      "prompt": "",
-      "content": {
-        "x": 96.0,
-        "y": 338.0,
-        "width": 90.0,
-        "height": 90.0
-      }
-    },
-    {
-      "id": "slot.expl.2.shape",
+      "id": "slot.choice.3.shape.copy13",
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 360.0,
-        "cy": 380.0,
-        "r": 36.0,
-        "fill": "none"
+        "cx": 930.0,
+        "cy": 390.0,
+        "r": 45.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0
       }
     },
     {
-      "id": "slot.expl.3.shape",
+      "id": "slot.choice.3.shape.copy14",
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 620.0,
-        "cy": 380.0,
-        "r": 34.0,
-        "fill": "none"
+        "cx": 945.0,
+        "cy": 405.0,
+        "r": 45.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0
       }
     },
     {
-      "id": "slot.expl.4.shape",
+      "id": "slot.choice.2.shape.copy15",
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 108.0,
-        "cy": 510.0,
-        "r": 42.0,
-        "fill": "none"
+        "cx": 200.0,
+        "cy": 445.0,
+        "r": 90.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0
       }
     },
     {
-      "id": "slot.expl.5.shape",
+      "id": "slot.choice.2.shape.copy16",
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 360.0,
-        "cy": 508.0,
-        "r": 44.0,
-        "fill": "none"
+        "cx": 465.0,
+        "cy": 235.0,
+        "r": 45.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0
       }
     },
     {
-      "id": "slot.conclusion",
-      "kind": "text",
+      "id": "slot.choice.2.shape.copy17",
+      "kind": "circle",
       "prompt": "",
       "content": {
-        "text": "따라서 원의 중심의 개수가 가장 많은 모양은 ①입니다.",
-        "style_role": "conclusion",
-        "x": 18.0,
-        "y": 586.0,
-        "font_size": 28
+        "cx": 755.0,
+        "cy": 235.0,
+        "r": 45.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.choice.2.shape.copy18",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 465.0,
+        "cy": 235.0,
+        "r": 65.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.choice.2.shape.copy19",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 465.0,
+        "cy": 450.0,
+        "r": 90.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.choice.2.shape.copy20",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 230.0,
+        "cy": 445.0,
+        "r": 60.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.choice.2.shape.copy21",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 700.0,
+        "cy": 235.0,
+        "r": 45.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.choice.4.shape.copy22",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 500.0,
+        "cy": 775.0,
+        "r": 60.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.choice.5.shape.copy23",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 930.0,
+        "cy": 670.0,
+        "r": 50.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.choice.2.shape.copy16.copy24",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 465.0,
+        "cy": 408.0,
+        "r": 30.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0
       }
     }
   ],
@@ -260,19 +331,24 @@
     "slot.choice.3.shape",
     "slot.choice.4.shape",
     "slot.choice.5.shape",
-    "slot.q_num",
+    "slot.choice.3.shape.copy13",
+    "slot.choice.3.shape.copy14",
+    "slot.choice.2.shape.copy15",
+    "slot.choice.2.shape.copy16",
+    "slot.choice.2.shape.copy17",
+    "slot.choice.2.shape.copy18",
+    "slot.choice.2.shape.copy19",
+    "slot.choice.2.shape.copy20",
+    "slot.choice.2.shape.copy21",
+    "slot.choice.4.shape.copy22",
+    "slot.choice.5.shape.copy23",
+    "slot.choice.2.shape.copy16.copy24",
     "slot.q_text",
     "slot.choice.1.label",
     "slot.choice.2.label",
     "slot.choice.3.label",
     "slot.choice.4.label",
     "slot.choice.5.label",
-    "region.explanation",
-    "slot.expl.1.shape",
-    "slot.expl.2.shape",
-    "slot.expl.3.shape",
-    "slot.expl.4.shape",
-    "slot.expl.5.shape",
-    "slot.conclusion"
+    "region.explanation"
   ]
 }

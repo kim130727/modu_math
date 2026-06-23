@@ -1,10 +1,157 @@
 from __future__ import annotations
-from modu_math.dsl import Canvas, CircleSlot, LineSlot, ProblemTemplate, RectSlot, Region, TextSlot
+from modu_math.dsl import (
+    Canvas,
+    ProblemTemplate,
+    Region,
+    TextSlot,
+    RectSlot,
+    LineSlot,
+    CircleSlot,
+    PathSlot,
+)
+
 
 def build_problem_template() -> ProblemTemplate:
-    return ProblemTemplate(id='S3_초등_3_008724', title='점 ㄱ, 점 ㄴ은 원의 중심', canvas=Canvas(width=960, height=560, coordinate_mode='logical'), regions=(Region(id='region.stem', role='stem', flow='absolute', slot_ids=('slot.q1', 'slot.q2', 'slot.diagram.big_circle', 'slot.diagram.small_circle', 'slot.diagram.line_main', 'slot.diagram.line_left', 'slot.diagram.line_right', 'slot.diagram.dot_g', 'slot.diagram.dot_n', 'slot.diagram.dot_d', 'slot.diagram.label_g', 'slot.diagram.label_n', 'slot.diagram.label_d', 'slot.diagram.len_12', 'slot.diagram.len_9')), Region(id='region.choices', role='choices', flow='absolute', slot_ids=('slot.choice.1', 'slot.choice.2', 'slot.choice.3', 'slot.choice.4', 'slot.choice.5')), Region(id='region.solution', role='solution', flow='absolute', slot_ids=())), slots=(TextSlot(id='slot.q1', prompt='', text='29. 점 ㄱ, 점 ㄴ은 원의 중심입니다. 선분 ㄱㄷ의 길이는 몇 cm인지 구하', style_role='question', x=18.0, y=28.0, font_size=28), TextSlot(id='slot.q2', prompt='', text='시오.', style_role='question', x=18.0, y=64.0, font_size=28), CircleSlot(id='slot.diagram.big_circle', prompt='', cx=404.0, cy=188.0, r=96.0, fill='#FFFFFF'), CircleSlot(id='slot.diagram.small_circle', prompt='', cx=576.0, cy=188.0, r=72.0, fill='#FFFFFF'), LineSlot(id='slot.diagram.line_main', prompt='', x1=340.0, y1=188.0, x2=648.0, y2=188.0), LineSlot(id='slot.diagram.line_left', prompt='', x1=316.0, y1=256.0, x2=404.0, y2=188.0), LineSlot(id='slot.diagram.line_right', prompt='', x1=576.0, y1=188.0, x2=648.0, y2=188.0, stroke_dasharray='5 3'), RectSlot(id='slot.diagram.dot_g', prompt='', x=399.0, y=183.0, width=10.0, height=10.0, fill='#D52B1E'), RectSlot(id='slot.diagram.dot_n', prompt='', x=571.0, y=183.0, width=10.0, height=10.0, fill='#D52B1E'), RectSlot(id='slot.diagram.dot_d', prompt='', x=643.0, y=183.0, width=10.0, height=10.0, fill='#FFFFFF'), TextSlot(id='slot.diagram.label_g', prompt='', text='ㄱ', style_role='label', x=386.0, y=176.0, font_size=28), TextSlot(id='slot.diagram.label_n', prompt='', text='ㄴ', style_role='label', x=571.0, y=214.0, font_size=28), TextSlot(id='slot.diagram.label_d', prompt='', text='ㄷ', style_role='label', x=654.0, y=194.0, font_size=28), TextSlot(id='slot.diagram.len_12', prompt='', text='12 cm', style_role='label', x=344.0, y=210.0, font_size=28), TextSlot(id='slot.diagram.len_9', prompt='', text='9 cm', style_role='label', x=594.0, y=176.0, font_size=28), TextSlot(id='slot.choice.1', prompt='', text='① 21 cm', style_role='choice', x=32.0, y=370.0, font_size=28), TextSlot(id='slot.choice.2', prompt='', text='② 24 cm', style_role='choice', x=344.0, y=370.0, font_size=28), TextSlot(id='slot.choice.3', prompt='', text='③ 30 cm', style_role='choice', x=652.0, y=370.0, font_size=28), TextSlot(id='slot.choice.4', prompt='', text='④ 33 cm', style_role='choice', x=32.0, y=420.0, font_size=28), TextSlot(id='slot.choice.5', prompt='', text='⑤ 40 cm', style_role='choice', x=344.0, y=420.0, font_size=28)), diagrams=(), groups=(), constraints=(), tags=())
+    return ProblemTemplate(
+        id="S3_초등_3_008724",
+        title="geometry_circle_length",
+        canvas=Canvas(width=960, height=560, coordinate_mode="logical"),
+        regions=(
+            Region(
+                id="region.stem",
+                role="stem",
+                flow="absolute",
+                slot_ids=("slot.q1",
+                    "slot.diagram.circle",
+                    "slot.diagram.center",
+                    "slot.diagram.line3",
+                    "slot.diagram.label.ga",
+                    "slot.diagram.label.da",
+                    "slot.diagram.label.ma",
+                    "slot.q2",'slot.diagram.line1.copy7', 'slot.diagram.circle.copy8', 'slot.diagram.center.copy9', 'slot.diagram.label.ma.copy10', 'slot.diagram.label.ma.copy10.copy11', 'slot.inserted.arc.1', 'slot.inserted.arc.1.copy12'),
+            ),
+        ),
+        slots=(TextSlot(
+                id="slot.q1",
+                prompt="",
+                text = '점ㄱ, 점ㄴ은 원의 중심입니다. 선분 ㄱㄷ의 길이는 몇 cm인지 구하세요.', style_role="question",
+                x = 18, y = 56, font_size=28,
+            ),
+            CircleSlot(
+                id="slot.diagram.circle", prompt="", cx = 529, cy = 260, r = 105, fill="none", 
+            stroke = '#111111', stroke_width = 2),
+            CircleSlot(
+                id="slot.diagram.center", prompt="", cx = 530, cy = 260, r = 5, fill="#ff2a8a"
+            ),
+            LineSlot(id="slot.diagram.line3", prompt="", x1 = 285, y1 = 260, x2 = 200, y2 = 370),
+            TextSlot(
+                id="slot.diagram.label.ga",
+                prompt="",
+                text = 'ㄱ', style_role="label",
+                x = 270, y = 245, font_size = 30),
+            TextSlot(
+                id="slot.diagram.label.da",
+                prompt="",
+                text = 'ㄴ', style_role="label",
+                x = 515, y = 245, font_size = 30),
+            TextSlot(
+                id="slot.diagram.label.ma",
+                prompt="",
+                text = 'ㄷ', style_role="label",
+                x = 655, y = 250, font_size = 30),
+            TextSlot(
+                id="slot.q2",
+                prompt="",
+                text = '길이가 가장 긴 선분은 선분 ㅁㅅ이고, 원의 지름은 선분 ㄱㄷ입니다.', style_role="question",
+                x = 25, y = 435, font_size = 30),LineSlot(id = 'slot.diagram.line1.copy7', prompt = '', x1 = 634, y1 = 260, x2 = 284, y2 = 260, stroke = '#111111', stroke_width = 2), CircleSlot(id = 'slot.diagram.circle.copy8', prompt = '', cx = 284, cy = 260, r = 140, stroke = '#111111', stroke_width = 2), CircleSlot(id = 'slot.diagram.center.copy9', prompt = '', cx = 285, cy = 260, r = 5, fill = '#ff2a8a', stroke = '#111111', stroke_width = 2), TextSlot(id = 'slot.diagram.label.ma.copy10', prompt = '', text = '9cm', x = 565, y = 230, font_size = 25, fill = '#111111'), TextSlot(id = 'slot.diagram.label.ma.copy10.copy11', prompt = '', text = '12cm', x = 166, y = 294, font_size = 25, fill = '#111111', transform = 'rotate(-50 197.83 283.21)'), PathSlot(id = 'slot.inserted.arc.1', prompt = '', d = 'M 165.68606567382812 319.90081787109375 A 70 45 0 0 1 300.6860656738281 319.90081787109375', fill = 'none', stroke = '#111827', stroke_width = 1.5, stroke_dasharray = '4 3', transform = 'rotate(-50 233.19 303.35)'), PathSlot(id = 'slot.inserted.arc.1.copy12', prompt = '', d = 'M 530 260 A 55 30 0 0 1 635 260', stroke = '#111827', stroke_width = 1.5, stroke_dasharray = '4 3', transform = 'rotate(0 598.67 243.89)')),
+        diagrams=(),
+        groups=(),
+        constraints=(),
+        tags=(),
+    )
+
+
+
 PROBLEM_TEMPLATE = build_problem_template()
 
-SEMANTIC_OVERRIDE = {'problem_id': 'S3_초등_3_008724', 'problem_type': 'geometry_circle_length', 'metadata': {'language': 'ko', 'question': '점 ㄱ, 점 ㄴ은 원의 중심입니다. 선분 ㄱㄷ의 길이는 몇 cm인지 구하시오.', 'instruction': '보기에서 알맞은 답을 고르시오.'}, 'domain': {'objects': [{'id': 'obj.big_circle', 'type': 'circle', 'role': '큰 원'}, {'id': 'obj.small_circle', 'type': 'circle', 'role': '작은 원'}, {'id': 'obj.point_g', 'type': 'point', 'label': 'ㄱ', 'role': 'center'}, {'id': 'obj.point_n', 'type': 'point', 'label': 'ㄴ', 'role': 'center'}, {'id': 'obj.point_d', 'type': 'point', 'label': 'ㄷ', 'role': 'endpoint'}, {'id': 'obj.len_big_radius', 'type': 'length', 'value': 12, 'unit': 'cm'}, {'id': 'obj.len_small_diameter', 'type': 'length', 'value': 18, 'unit': 'cm'}], 'relations': [], 'problem_solving': {'understand': {'given_refs': ['obj.len_big_radius', 'obj.len_small_diameter'], 'target_ref': 'answer.target', 'condition_refs': ['rel.length_relation']}, 'plan': {'method': 'part_sum', 'description': '선분 ㄱㄷ를 이루는 두 길이의 합 관계를 이용한다.'}, 'execute': {'expected_operations': ['identify_lengths', 'add_parts', 'read_choice']}, 'review': {'check_methods': ['unit_check', 'choice_match_check']}}}, 'answer': {'blanks': [], 'choices': [], 'answer_key': [], 'target': {'type': 'length_of_segment', 'description': '선분 ㄱㄷ의 길이'}, 'value': 30, 'unit': 'cm'}}
+SEMANTIC_OVERRIDE = {
+    "problem_id": "S3_초등_3_008724",
+    "problem_type": "geometry_circle_length",
+    "metadata": {
+        "language": "ko",
+        "question": "점 ㄱ, 점 ㄴ은 원의 중심입니다. 선분 ㄱㄷ의 길이는 몇 cm인지 구하시오.",
+        "instruction": "보기에서 알맞은 답을 고르시오.",
+    },
+    "domain": {
+        "objects": [
+            {"id": "obj.big_circle", "type": "circle", "role": "큰 원"},
+            {"id": "obj.small_circle", "type": "circle", "role": "작은 원"},
+            {"id": "obj.point_g", "type": "point", "label": "ㄱ", "role": "center"},
+            {"id": "obj.point_n", "type": "point", "label": "ㄴ", "role": "center"},
+            {"id": "obj.point_d", "type": "point", "label": "ㄷ", "role": "endpoint"},
+            {"id": "obj.len_big_radius", "type": "length", "value": 12, "unit": "cm"},
+            {
+                "id": "obj.len_small_diameter",
+                "type": "length",
+                "value": 18,
+                "unit": "cm",
+            },
+        ],
+        "relations": [],
+        "problem_solving": {
+            "understand": {
+                "given_refs": ["obj.len_big_radius", "obj.len_small_diameter"],
+                "target_ref": "answer.target",
+                "condition_refs": ["rel.length_relation"],
+            },
+            "plan": {
+                "method": "part_sum",
+                "description": "선분 ㄱㄷ를 이루는 두 길이의 합 관계를 이용한다.",
+            },
+            "execute": {
+                "expected_operations": ["identify_lengths", "add_parts", "read_choice"]
+            },
+            "review": {"check_methods": ["unit_check", "choice_match_check"]},
+        },
+    },
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {"type": "length_of_segment", "description": "선분 ㄱㄷ의 길이"},
+        "value": 30,
+        "unit": "cm",
+    },
+}
 
-SOLVABLE = {'schema': 'modu.solvable.v1.1', 'problem_id': 'S3_초등_3_008724', 'problem_type': 'geometry_circle_length', 'inputs': {'total_ticks': 0, 'target_label': '선분 ㄱㄷ의 길이', 'target_ticks': 0, 'target_count': 1, 'unit': 'cm'}, 'given': [{'ref': 'obj.len_big_radius', 'value': 12, 'unit': 'cm'}, {'ref': 'obj.len_small_diameter', 'value': 18, 'unit': 'cm'}], 'target': {'ref': 'answer.target', 'type': 'length_of_segment'}, 'method': 'part_sum', 'plan': ['큰 원의 반지름과 작은 원의 지름을 더해 선분 ㄱㄷ의 길이를 구한다.'], 'steps': [{'id': 'step.1', 'expr': '12 + 18', 'value': 30}], 'checks': [{'id': 'check.1', 'expr': '30 cm', 'expected': 30, 'actual': 30, 'pass': True}], 'answer': {'blanks': [], 'choices': [], 'answer_key': [], 'target': {'type': 'length_of_segment', 'description': '선분 ㄱㄷ의 길이'}, 'value': 30, 'unit': 'cm'}}
+SOLVABLE = {
+    "schema": "modu.solvable.v1.1",
+    "problem_id": "S3_초등_3_008724",
+    "problem_type": "geometry_circle_length",
+    "inputs": {
+        "total_ticks": 0,
+        "target_label": "선분 ㄱㄷ의 길이",
+        "target_ticks": 0,
+        "target_count": 1,
+        "unit": "cm",
+    },
+    "given": [
+        {"ref": "obj.len_big_radius", "value": {"amount": 12, "unit": "cm"}},
+        {"ref": "obj.len_small_diameter", "value": {"amount": 18, "unit": "cm"}},
+    ],
+    "target": {"ref": "answer.target", "type": "length_of_segment"},
+    "method": "part_sum",
+    "plan": ["큰 원의 반지름과 작은 원의 지름을 더해 선분 ㄱㄷ의 길이를 구한다."],
+    "steps": [{"id": "step.1", "expr": "12 + 18", "value": 30}],
+    "checks": [
+        {"id": "check.1", "expr": "30 cm", "expected": 30, "actual": 30, "pass": True}
+    ],
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {"type": "length_of_segment", "description": "선분 ㄱㄷ의 길이"},
+        "value": 30,
+        "unit": "cm",
+    },
+}

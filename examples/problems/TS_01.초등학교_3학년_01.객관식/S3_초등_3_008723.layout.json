@@ -14,6 +14,28 @@
       "role": "stem",
       "flow": "absolute",
       "slot_ids": [
+        "slot.inserted.arc.1",
+        "slot.inserted.arc.1.copy4",
+        "slot.inserted.arc.1.copy5",
+        "slot.inserted.arc.1.copy6",
+        "slot.graphpaper.v0",
+        "slot.graphpaper.v1",
+        "slot.graphpaper.v2",
+        "slot.graphpaper.v3",
+        "slot.graphpaper.v4",
+        "slot.graphpaper.v5",
+        "slot.graphpaper.v6",
+        "slot.graphpaper.v7",
+        "slot.graphpaper.v8",
+        "slot.graphpaper.h0",
+        "slot.graphpaper.h1",
+        "slot.graphpaper.h2",
+        "slot.graphpaper.h3",
+        "slot.graphpaper.h4",
+        "slot.graphpaper.h5",
+        "slot.graphpaper.h6",
+        "slot.graphpaper.h7",
+        "slot.graphpaper.h8",
         "slot.q1",
         "slot.q2"
       ]
@@ -24,35 +46,6 @@
       "flow": "absolute",
       "slot_ids": [
         "slot.circle.outer",
-        "slot.circle.top",
-        "slot.circle.left",
-        "slot.circle.right",
-        "slot.circle.bottom",
-        "slot.grid.v1",
-        "slot.grid.v2",
-        "slot.grid.v3",
-        "slot.grid.v4",
-        "slot.grid.v5",
-        "slot.grid.v6",
-        "slot.grid.v7",
-        "slot.grid.v8",
-        "slot.grid.v9",
-        "slot.grid.v10",
-        "slot.grid.v11",
-        "slot.grid.v12",
-        "slot.grid.h1",
-        "slot.grid.h2",
-        "slot.grid.h3",
-        "slot.grid.h4",
-        "slot.grid.h5",
-        "slot.grid.h6",
-        "slot.grid.h7",
-        "slot.grid.h8",
-        "slot.grid.h9",
-        "slot.grid.h10",
-        "slot.grid.h11",
-        "slot.grid.h12",
-        "slot.circle.center",
         "slot.pt.a",
         "slot.pt.b",
         "slot.pt.c",
@@ -71,9 +64,7 @@
       "id": "region.answer",
       "role": "answer",
       "flow": "absolute",
-      "slot_ids": [
-        "slot.a2"
-      ]
+      "slot_ids": []
     }
   ],
   "slots": [
@@ -82,7 +73,7 @@
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "□ 27. 세인이가 그림과 같은 모양을 그렸습니다. 이 모양을 그릴 때 컴퍼스의",
+        "text": "세인이가 그림과 같은 모양을 그렸습니다. 이 모양을 그릴 때 컴퍼스의",
         "style_role": "question",
         "x": 10.0,
         "y": 34.0,
@@ -102,415 +93,16 @@
       }
     },
     {
-      "id": "slot.grid.v1",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 340.0,
-        "y1": 100.0,
-        "x2": 340.0,
-        "y2": 386.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.grid.v2",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 370.0,
-        "y1": 100.0,
-        "x2": 370.0,
-        "y2": 386.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.grid.v3",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 400.0,
-        "y1": 100.0,
-        "x2": 400.0,
-        "y2": 386.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.grid.v4",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 430.0,
-        "y1": 100.0,
-        "x2": 430.0,
-        "y2": 386.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.grid.v5",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 460.0,
-        "y1": 100.0,
-        "x2": 460.0,
-        "y2": 386.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.grid.v6",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 490.0,
-        "y1": 100.0,
-        "x2": 490.0,
-        "y2": 386.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.grid.v7",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 520.0,
-        "y1": 100.0,
-        "x2": 520.0,
-        "y2": 386.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.grid.v8",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 550.0,
-        "y1": 100.0,
-        "x2": 550.0,
-        "y2": 386.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.grid.v9",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 580.0,
-        "y1": 100.0,
-        "x2": 580.0,
-        "y2": 386.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.grid.v10",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 610.0,
-        "y1": 100.0,
-        "x2": 610.0,
-        "y2": 386.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.grid.v11",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 640.0,
-        "y1": 100.0,
-        "x2": 640.0,
-        "y2": 386.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.grid.v12",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 670.0,
-        "y1": 100.0,
-        "x2": 670.0,
-        "y2": 386.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.grid.h1",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 340.0,
-        "y1": 100.0,
-        "x2": 670.0,
-        "y2": 100.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.grid.h2",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 340.0,
-        "y1": 130.0,
-        "x2": 670.0,
-        "y2": 130.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.grid.h3",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 340.0,
-        "y1": 160.0,
-        "x2": 670.0,
-        "y2": 160.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.grid.h4",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 340.0,
-        "y1": 190.0,
-        "x2": 670.0,
-        "y2": 190.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.grid.h5",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 340.0,
-        "y1": 220.0,
-        "x2": 670.0,
-        "y2": 220.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.grid.h6",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 340.0,
-        "y1": 250.0,
-        "x2": 670.0,
-        "y2": 250.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.grid.h7",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 340.0,
-        "y1": 280.0,
-        "x2": 670.0,
-        "y2": 280.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.grid.h8",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 340.0,
-        "y1": 310.0,
-        "x2": 670.0,
-        "y2": 310.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.grid.h9",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 340.0,
-        "y1": 340.0,
-        "x2": 670.0,
-        "y2": 340.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.grid.h10",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 340.0,
-        "y1": 370.0,
-        "x2": 670.0,
-        "y2": 370.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.grid.h11",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 340.0,
-        "y1": 400.0,
-        "x2": 670.0,
-        "y2": 400.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.grid.h12",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 340.0,
-        "y1": 430.0,
-        "x2": 670.0,
-        "y2": 430.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
       "id": "slot.circle.outer",
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 505.0,
-        "cy": 244.0,
-        "r": 140.0,
+        "cx": 435.0,
+        "cy": 280.0,
+        "r": 180.0,
         "stroke": "#555555",
         "stroke_width": 2.0,
         "fill": "none"
-      }
-    },
-    {
-      "id": "slot.circle.top",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 505.0,
-        "cy": 164.0,
-        "r": 110.0,
-        "stroke": "#555555",
-        "stroke_width": 2.0,
-        "fill": "none"
-      }
-    },
-    {
-      "id": "slot.circle.left",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 405.0,
-        "cy": 244.0,
-        "r": 78.0,
-        "stroke": "#555555",
-        "stroke_width": 2.0,
-        "fill": "none"
-      }
-    },
-    {
-      "id": "slot.circle.right",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 610.0,
-        "cy": 244.0,
-        "r": 78.0,
-        "stroke": "#555555",
-        "stroke_width": 2.0,
-        "fill": "none"
-      }
-    },
-    {
-      "id": "slot.circle.bottom",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 505.0,
-        "cy": 332.0,
-        "r": 78.0,
-        "stroke": "#555555",
-        "stroke_width": 2.0,
-        "fill": "none"
-      }
-    },
-    {
-      "id": "slot.circle.center",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 505.0,
-        "cy": 244.0,
-        "r": 4.0,
-        "fill": "#d81b60"
       }
     },
     {
@@ -518,9 +110,11 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 405.0,
-        "cy": 164.0,
+        "cx": 345.0,
+        "cy": 189.0,
         "r": 4.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0,
         "fill": "#d81b60"
       }
     },
@@ -529,8 +123,8 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 505.0,
-        "cy": 164.0,
+        "cx": 437.0,
+        "cy": 190.0,
         "r": 4.0,
         "fill": "#d81b60"
       }
@@ -540,9 +134,11 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 405.0,
-        "cy": 244.0,
+        "cx": 346.0,
+        "cy": 279.0,
         "r": 4.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0,
         "fill": "#d81b60"
       }
     },
@@ -551,8 +147,8 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 505.0,
-        "cy": 244.0,
+        "cx": 526.0,
+        "cy": 280.0,
         "r": 4.0,
         "fill": "#d81b60"
       }
@@ -562,9 +158,11 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 610.0,
-        "cy": 244.0,
+        "cx": 435.0,
+        "cy": 280.0,
         "r": 4.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0,
         "fill": "#d81b60"
       }
     },
@@ -573,8 +171,8 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 505.0,
-        "cy": 332.0,
+        "cx": 436.0,
+        "cy": 370.0,
         "r": 4.0,
         "fill": "#d81b60"
       }
@@ -586,9 +184,9 @@
       "content": {
         "text": "ㄱ",
         "style_role": "label",
-        "x": 393.0,
-        "y": 160.0,
-        "font_size": 28
+        "x": 350.0,
+        "y": 175.0,
+        "font_size": 30
       }
     },
     {
@@ -598,9 +196,9 @@
       "content": {
         "text": "ㄴ",
         "style_role": "label",
-        "x": 493.0,
-        "y": 160.0,
-        "font_size": 28
+        "x": 445.0,
+        "y": 175.0,
+        "font_size": 30
       }
     },
     {
@@ -610,9 +208,9 @@
       "content": {
         "text": "ㄷ",
         "style_role": "label",
-        "x": 393.0,
-        "y": 240.0,
-        "font_size": 28
+        "x": 355.0,
+        "y": 269.0,
+        "font_size": 30
       }
     },
     {
@@ -622,9 +220,9 @@
       "content": {
         "text": "ㄹ",
         "style_role": "label",
-        "x": 493.0,
-        "y": 240.0,
-        "font_size": 28
+        "x": 445.0,
+        "y": 269.0,
+        "font_size": 30
       }
     },
     {
@@ -634,9 +232,9 @@
       "content": {
         "text": "ㅁ",
         "style_role": "label",
-        "x": 598.0,
-        "y": 240.0,
-        "font_size": 28
+        "x": 530.0,
+        "y": 269.0,
+        "font_size": 30
       }
     },
     {
@@ -646,22 +244,295 @@
       "content": {
         "text": "ㅂ",
         "style_role": "label",
-        "x": 493.0,
-        "y": 328.0,
-        "font_size": 28
+        "x": 400.0,
+        "y": 360.0,
+        "font_size": 30
       }
     },
     {
-      "id": "slot.a2",
-      "kind": "circle",
+      "id": "slot.graphpaper.v0",
+      "kind": "line",
       "prompt": "",
       "content": {
-        "cx": 88.0,
-        "cy": 420.0,
-        "r": 12.0,
-        "stroke": "#222222",
+        "x1": 255.0,
+        "y1": 100.0,
+        "x2": 255.0,
+        "y2": 460.0,
+        "stroke": "#2563eb",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.graphpaper.v1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 300.0,
+        "y1": 100.0,
+        "x2": 300.0,
+        "y2": 460.0,
+        "stroke": "#2563eb",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.graphpaper.v2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 345.0,
+        "y1": 100.0,
+        "x2": 345.0,
+        "y2": 460.0,
+        "stroke": "#2563eb",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.graphpaper.v3",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 390.0,
+        "y1": 100.0,
+        "x2": 390.0,
+        "y2": 460.0,
+        "stroke": "#2563eb",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.graphpaper.v4",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 435.0,
+        "y1": 100.0,
+        "x2": 435.0,
+        "y2": 460.0,
+        "stroke": "#2563eb",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.graphpaper.v5",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 480.0,
+        "y1": 100.0,
+        "x2": 480.0,
+        "y2": 460.0,
+        "stroke": "#2563eb",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.graphpaper.v6",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 525.0,
+        "y1": 100.0,
+        "x2": 525.0,
+        "y2": 460.0,
+        "stroke": "#2563eb",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.graphpaper.v7",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 570.0,
+        "y1": 100.0,
+        "x2": 570.0,
+        "y2": 460.0,
+        "stroke": "#2563eb",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.graphpaper.v8",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 615.0,
+        "y1": 100.0,
+        "x2": 615.0,
+        "y2": 460.0,
+        "stroke": "#2563eb",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.graphpaper.h0",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 255.0,
+        "y1": 100.0,
+        "x2": 615.0,
+        "y2": 100.0,
+        "stroke": "#2563eb",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.graphpaper.h1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 255.0,
+        "y1": 145.0,
+        "x2": 615.0,
+        "y2": 145.0,
+        "stroke": "#2563eb",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.graphpaper.h2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 255.0,
+        "y1": 190.0,
+        "x2": 615.0,
+        "y2": 190.0,
+        "stroke": "#2563eb",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.graphpaper.h3",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 255.0,
+        "y1": 235.0,
+        "x2": 615.0,
+        "y2": 235.0,
+        "stroke": "#2563eb",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.graphpaper.h4",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 255.0,
+        "y1": 280.0,
+        "x2": 615.0,
+        "y2": 280.0,
+        "stroke": "#2563eb",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.graphpaper.h5",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 255.0,
+        "y1": 325.0,
+        "x2": 615.0,
+        "y2": 325.0,
+        "stroke": "#2563eb",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.graphpaper.h6",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 255.0,
+        "y1": 370.0,
+        "x2": 615.0,
+        "y2": 370.0,
+        "stroke": "#2563eb",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.graphpaper.h7",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 255.0,
+        "y1": 415.0,
+        "x2": 615.0,
+        "y2": 415.0,
+        "stroke": "#2563eb",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.graphpaper.h8",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 255.0,
+        "y1": 460.0,
+        "x2": 615.0,
+        "y2": 460.0,
+        "stroke": "#2563eb",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.inserted.arc.1",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 395.54449462890625 237.96018981933594 A 95 125 0 0 1 575.5444946289062 237.96018981933594",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#111827",
         "stroke_width": 1.5,
-        "fill": "none"
+        "fill": "none",
+        "transform": "rotate(90 485.12 190.03)"
+      }
+    },
+    {
+      "id": "slot.inserted.arc.1.copy4",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 255 280 A 95 130 0 0 1 435 280",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#111827",
+        "stroke_width": 1.5
+      }
+    },
+    {
+      "id": "slot.inserted.arc.1.copy5",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 435 375 A 95 130 0 0 1 615 375",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#111827",
+        "stroke_width": 1.5,
+        "transform": "rotate(180 524.12 327.2)"
+      }
+    },
+    {
+      "id": "slot.inserted.arc.1.copy6",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 301.27430725097656 410.06634521484375 A 95 130 0 0 1 481.27430725097656 410.06634521484375",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#111827",
+        "stroke_width": 1.5,
+        "transform": "rotate(270 391.9 369.16)"
       }
     }
   ],
@@ -670,39 +541,32 @@
   "diagrams": [],
   "reading_order": [
     "region.stem",
+    "slot.inserted.arc.1",
+    "slot.inserted.arc.1.copy4",
+    "slot.inserted.arc.1.copy5",
+    "slot.inserted.arc.1.copy6",
+    "slot.graphpaper.v0",
+    "slot.graphpaper.v1",
+    "slot.graphpaper.v2",
+    "slot.graphpaper.v3",
+    "slot.graphpaper.v4",
+    "slot.graphpaper.v5",
+    "slot.graphpaper.v6",
+    "slot.graphpaper.v7",
+    "slot.graphpaper.v8",
+    "slot.graphpaper.h0",
+    "slot.graphpaper.h1",
+    "slot.graphpaper.h2",
+    "slot.graphpaper.h3",
+    "slot.graphpaper.h4",
+    "slot.graphpaper.h5",
+    "slot.graphpaper.h6",
+    "slot.graphpaper.h7",
+    "slot.graphpaper.h8",
     "slot.q1",
     "slot.q2",
     "region.diagram",
     "slot.circle.outer",
-    "slot.circle.top",
-    "slot.circle.left",
-    "slot.circle.right",
-    "slot.circle.bottom",
-    "slot.grid.v1",
-    "slot.grid.v2",
-    "slot.grid.v3",
-    "slot.grid.v4",
-    "slot.grid.v5",
-    "slot.grid.v6",
-    "slot.grid.v7",
-    "slot.grid.v8",
-    "slot.grid.v9",
-    "slot.grid.v10",
-    "slot.grid.v11",
-    "slot.grid.v12",
-    "slot.grid.h1",
-    "slot.grid.h2",
-    "slot.grid.h3",
-    "slot.grid.h4",
-    "slot.grid.h5",
-    "slot.grid.h6",
-    "slot.grid.h7",
-    "slot.grid.h8",
-    "slot.grid.h9",
-    "slot.grid.h10",
-    "slot.grid.h11",
-    "slot.grid.h12",
-    "slot.circle.center",
     "slot.pt.a",
     "slot.pt.b",
     "slot.pt.c",
@@ -715,7 +579,6 @@
     "slot.lb.d",
     "slot.lb.e",
     "slot.lb.f",
-    "region.answer",
-    "slot.a2"
+    "region.answer"
   ]
 }

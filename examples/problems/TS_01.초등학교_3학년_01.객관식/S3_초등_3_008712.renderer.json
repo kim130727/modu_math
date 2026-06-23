@@ -1,7 +1,7 @@
 {
   "problem_id": "S3_초등_3_008712",
   "view_box": {
-    "width": 960.0,
+    "width": 760.0,
     "height": 360.0,
     "background": "#FFFFFF"
   },
@@ -10,12 +10,11 @@
       "id": "slot.q1.text",
       "type": "text",
       "attributes": {
-        "x": 20.0,
-        "y": 30.0,
-        "max_width": 832.0,
+        "x": 15.0,
+        "y": 35.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
+        "font-size": 30
       },
       "source_ref": "slot.q1",
       "refs": {
@@ -37,22 +36,6 @@
       "source_ref": "slot.circle.outer",
       "refs": {
         "layout_slot_id": "slot.circle.outer"
-      }
-    },
-    {
-      "id": "slot.pt.center.circle",
-      "type": "circle",
-      "attributes": {
-        "cx": 310.0,
-        "cy": 175.0,
-        "r": 3.0,
-        "stroke": "#111111",
-        "stroke-width": 2.0,
-        "fill": "#d81b60"
-      },
-      "source_ref": "slot.pt.center",
-      "refs": {
-        "layout_slot_id": "slot.pt.center"
       }
     },
     {
@@ -104,12 +87,27 @@
       }
     },
     {
+      "id": "slot.pt.center.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 310.0,
+        "cy": 175.0,
+        "r": 3.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#d81b60"
+      },
+      "source_ref": "slot.pt.center",
+      "refs": {
+        "layout_slot_id": "slot.pt.center"
+      }
+    },
+    {
       "id": "slot.lb.giyeok.text",
       "type": "text",
       "attributes": {
         "x": 270.0,
         "y": 70.0,
-        "max_width": 832.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 30
@@ -126,7 +124,6 @@
       "attributes": {
         "x": 185.0,
         "y": 225.0,
-        "max_width": 832.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 30
@@ -143,7 +140,6 @@
       "attributes": {
         "x": 375.0,
         "y": 280.0,
-        "max_width": 832.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 30
@@ -160,7 +156,6 @@
       "attributes": {
         "x": 420.0,
         "y": 145.0,
-        "max_width": 832.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 30
@@ -177,7 +172,6 @@
       "attributes": {
         "x": 285.0,
         "y": 165.0,
-        "max_width": 832.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 30
@@ -194,7 +188,6 @@
       "attributes": {
         "x": 30.0,
         "y": 330.0,
-        "max_width": 832.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 30

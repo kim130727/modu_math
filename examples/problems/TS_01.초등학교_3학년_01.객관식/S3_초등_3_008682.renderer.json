@@ -556,7 +556,7 @@
       "id": "slot.boy.bubble.path",
       "type": "path",
       "attributes": {
-        "d": "M 224.0 354.0 C 224.0 322.32, 256.3 310.0, 309.0 310.0 C 361.7 310.0, 394.0 322.32, 394.0 354.0 C 394.0 385.68, 361.7 398.0, 309.0 398.0 C 256.3 398.0, 224.0 385.68, 224.0 354.0 Z",
+        "d": "M 195 350 C 195 320 240 310 310 310 C 380 310 425 320 425 350 C 425 385 380 395 310 395 C 240 395 195 385 195 350 Z",
         "stroke": "#222222",
         "stroke-width": 1.6,
         "fill": "#ffffff"
@@ -564,33 +564,6 @@
       "source_ref": "slot.boy.bubble",
       "refs": {
         "layout_slot_id": "slot.boy.bubble"
-      }
-    },
-    {
-      "id": "slot.boy.tail.polygon",
-      "type": "polygon",
-      "attributes": {
-        "points": [
-          [
-            299.0,
-            392.0
-          ],
-          [
-            319.0,
-            392.0
-          ],
-          [
-            309.0,
-            350.0
-          ]
-        ],
-        "stroke": "#222222",
-        "stroke-width": 1.4,
-        "fill": "#ffffff"
-      },
-      "source_ref": "slot.boy.tail",
-      "refs": {
-        "layout_slot_id": "slot.boy.tail"
       }
     },
     {
@@ -655,38 +628,6 @@
       }
     },
     {
-      "id": "slot.boy.person.eye.left.circle",
-      "type": "circle",
-      "attributes": {
-        "cx": 299.0,
-        "cy": 399.0,
-        "r": 2.3,
-        "stroke": "none",
-        "stroke-width": 2.0,
-        "fill": "#2b2118"
-      },
-      "source_ref": "slot.boy.person.eye.left",
-      "refs": {
-        "layout_slot_id": "slot.boy.person.eye.left"
-      }
-    },
-    {
-      "id": "slot.boy.person.eye.right.circle",
-      "type": "circle",
-      "attributes": {
-        "cx": 319.0,
-        "cy": 399.0,
-        "r": 2.3,
-        "stroke": "none",
-        "stroke-width": 2.0,
-        "fill": "#2b2118"
-      },
-      "source_ref": "slot.boy.person.eye.right",
-      "refs": {
-        "layout_slot_id": "slot.boy.person.eye.right"
-      }
-    },
-    {
       "id": "slot.boy.person.smile.path",
       "type": "path",
       "attributes": {
@@ -723,7 +664,7 @@
       "id": "slot.girl.bubble.path",
       "type": "path",
       "attributes": {
-        "d": "M 462.5 359.0 C 462.5 316.52, 516.65 300.0, 605.0 300.0 C 693.35 300.0, 747.5 316.52, 747.5 359.0 C 747.5 401.48, 693.35 418.0, 605.0 418.0 C 516.65 418.0, 462.5 401.48, 462.5 359.0 Z",
+        "d": "M 461.93731689453125 345.228759765625 C 461.93731689453125 302.748759765625 516.0873168945312 286.228759765625 604.4373168945312 286.228759765625 C 692.7873168945313 286.228759765625 746.9373168945312 302.748759765625 746.9373168945312 345.228759765625 C 746.9373168945312 387.708759765625 692.7873168945313 404.228759765625 604.4373168945312 404.228759765625 C 516.0873168945312 404.228759765625 461.93731689453125 387.708759765625 461.93731689453125 345.228759765625 Z",
         "stroke": "#222222",
         "stroke-width": 1.6,
         "fill": "#ffffff"
@@ -731,33 +672,6 @@
       "source_ref": "slot.girl.bubble",
       "refs": {
         "layout_slot_id": "slot.girl.bubble"
-      }
-    },
-    {
-      "id": "slot.girl.tail.polygon",
-      "type": "polygon",
-      "attributes": {
-        "points": [
-          [
-            595.0,
-            412.0
-          ],
-          [
-            615.0,
-            412.0
-          ],
-          [
-            605.0,
-            355.0
-          ]
-        ],
-        "stroke": "#222222",
-        "stroke-width": 1.4,
-        "fill": "#ffffff"
-      },
-      "source_ref": "slot.girl.tail",
-      "refs": {
-        "layout_slot_id": "slot.girl.tail"
       }
     },
     {
@@ -819,38 +733,6 @@
       "source_ref": "slot.girl.person.hair.cap",
       "refs": {
         "layout_slot_id": "slot.girl.person.hair.cap"
-      }
-    },
-    {
-      "id": "slot.girl.person.eye.left.circle",
-      "type": "circle",
-      "attributes": {
-        "cx": 595.0,
-        "cy": 404.0,
-        "r": 2.3,
-        "stroke": "none",
-        "stroke-width": 2.0,
-        "fill": "#2b2118"
-      },
-      "source_ref": "slot.girl.person.eye.left",
-      "refs": {
-        "layout_slot_id": "slot.girl.person.eye.left"
-      }
-    },
-    {
-      "id": "slot.girl.person.eye.right.circle",
-      "type": "circle",
-      "attributes": {
-        "cx": 615.0,
-        "cy": 404.0,
-        "r": 2.3,
-        "stroke": "none",
-        "stroke-width": 2.0,
-        "fill": "#2b2118"
-      },
-      "source_ref": "slot.girl.person.eye.right",
-      "refs": {
-        "layout_slot_id": "slot.girl.person.eye.right"
       }
     },
     {
@@ -969,15 +851,79 @@
       }
     },
     {
+      "id": "slot.boy.person.eye.left.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 299.0,
+        "cy": 399.0,
+        "r": 2.3,
+        "stroke": "none",
+        "stroke-width": 2.0,
+        "fill": "#2b2118"
+      },
+      "source_ref": "slot.boy.person.eye.left",
+      "refs": {
+        "layout_slot_id": "slot.boy.person.eye.left"
+      }
+    },
+    {
+      "id": "slot.boy.person.eye.right.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 319.0,
+        "cy": 399.0,
+        "r": 2.3,
+        "stroke": "none",
+        "stroke-width": 2.0,
+        "fill": "#2b2118"
+      },
+      "source_ref": "slot.boy.person.eye.right",
+      "refs": {
+        "layout_slot_id": "slot.boy.person.eye.right"
+      }
+    },
+    {
+      "id": "slot.girl.person.eye.left.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 595.0,
+        "cy": 404.0,
+        "r": 2.3,
+        "stroke": "none",
+        "stroke-width": 2.0,
+        "fill": "#2b2118"
+      },
+      "source_ref": "slot.girl.person.eye.left",
+      "refs": {
+        "layout_slot_id": "slot.girl.person.eye.left"
+      }
+    },
+    {
+      "id": "slot.girl.person.eye.right.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 615.0,
+        "cy": 404.0,
+        "r": 2.3,
+        "stroke": "none",
+        "stroke-width": 2.0,
+        "fill": "#2b2118"
+      },
+      "source_ref": "slot.girl.person.eye.right",
+      "refs": {
+        "layout_slot_id": "slot.girl.person.eye.right"
+      }
+    },
+    {
       "id": "slot.boy.text.text",
       "type": "text",
       "attributes": {
-        "x": 309.0,
-        "y": 344.0,
+        "x": 310.0,
+        "y": 335.0,
         "max_width": 832.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 23,
+        "font-size": 25,
         "text-anchor": "middle"
       },
       "source_ref": "slot.boy.text",
@@ -1008,12 +954,12 @@
       "id": "slot.girl.text.text",
       "type": "text",
       "attributes": {
-        "x": 605.0,
-        "y": 333.0,
+        "x": 610.0,
+        "y": 335.0,
         "max_width": 832.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 21,
+        "font-size": 25,
         "text-anchor": "middle"
       },
       "source_ref": "slot.girl.text",

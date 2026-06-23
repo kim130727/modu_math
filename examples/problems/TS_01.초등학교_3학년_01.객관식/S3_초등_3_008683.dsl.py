@@ -8,10 +8,35 @@ from modu_math.dsl import (
     RectSlot,
     Region,
     TextSlot,
+    SpeakerSpec,
+    speaker_group_slot_ids,
+    speaker_group_slots,
 )
 
 
 def build_problem_template() -> ProblemTemplate:
+    speakers = (
+        SpeakerSpec(
+            key="girl",
+            cx = ((790.0) + (-230.0)) + (45.0), head_cy = ((395.0) + (-5.0)) + (10.0), bubble_cy = ((354.0) + (-5.0)) + (10.0), text="큰 원의 반지름을\n( 지름, 반지름 )으로 하는\n작은 원을 2개 그려.",
+            name="지혜",
+            hair="#4B260B",
+            shirt="#F16078",
+            bow="#E85BA6",
+            pigtails=True,
+            bubble_width=285.0,
+            bubble_height=118.0,
+            tail_y = ((350.0) + (-5.0)) + (10.0), name_y = ((468.0) + (-5.0)) + (10.0), speech_font_size=21,
+            speech_text_dy=-26,
+        ),
+    )
+    character_slot_ids = tuple(
+        slot_id for slot_id in speaker_group_slot_ids(speakers) if ".person." in slot_id
+    )
+    character_slots = tuple(
+        slot for slot in speaker_group_slots(speakers) if ".person." in slot.id
+    )
+
     return ProblemTemplate(
         id="S3_초등_3_008683",
         title="원을 그리는 방법",
@@ -42,7 +67,10 @@ def build_problem_template() -> ProblemTemplate:
                     "slot.bubble1",
                     "slot.box3",
                     "slot.choice1",
-                    "slot.choice2",'slot.bubble1.copy3', ),
+                    "slot.choice2",
+                    'slot.bubble1.copy3',
+                    *character_slot_ids,
+                ),
             ),
         ),
         slots=(TextSlot(
@@ -88,17 +116,19 @@ def build_problem_template() -> ProblemTemplate:
                 prompt="",
                 text = '        줄로 연결한 막대를 돌려', style_role="question",
                 x = 280, y = 375, font_size = 30),
-            RectSlot(id="slot.box3", prompt="", x = 85, y = 625, width = 760, height = 115, fill="#ffffff"),
+            RectSlot(id="slot.box3", prompt="", x = 85, y = 672, width = 760, height = 115, fill="#ffffff"),
             TextSlot(
                 id="slot.choice1",
                 prompt="",
                 text = '자를 이용하여 점을 더 ( 많이 , 적게 ) 찍은 다음, 점들을 이', style_role="question",
-                x = 120, y = 670, font_size = 30),
+                x = 120, y = 717, font_size = 30),
             TextSlot(
                 id="slot.choice2",
                 prompt="",
                 text = '으면 원을 좀 더 정확하게 그릴 수 있습니다.', style_role="question",
-                x = 115, y = 715, font_size = 30),TextSlot(id = 'slot.bubble1.copy3', prompt = '', text = '그린 원과 비슷한 원이 그려지는구나.  ', x = 130, y = 420, font_size = 30, fill = '#111111'), ),
+                x = 115, y = 762, font_size = 30),TextSlot(id = 'slot.bubble1.copy3', prompt = '', text = '그린 원과 비슷한 원이 그려지는구나.  ', x = 130, y = 420, font_size = 30, fill = '#111111'),
+            *character_slots,
+        ),
         diagrams=(),
         groups=(),
         constraints=(),

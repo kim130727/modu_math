@@ -26,7 +26,6 @@
       "slot_ids": [
         "slot.circle",
         "slot.tool",
-        "slot.pencil.eraser",
         "slot.tool.dot1",
         "slot.tool.dot2",
         "slot.tool.dot3",
@@ -50,7 +49,7 @@
         "text": "그림과 같이 띠 종이를 이용하여 원을 그릴 때, 누름 못이 꽂혔던 점을  ",
         "style_role": "question",
         "x": 20.0,
-        "y": 85.0,
+        "y": 42.0,
         "font_size": 30
       }
     },
@@ -62,7 +61,7 @@
         "text": "무엇이라고 할까요?",
         "style_role": "question",
         "x": 15.0,
-        "y": 20.0,
+        "y": 90.0,
         "font_size": 30
       }
     },
@@ -150,24 +149,13 @@
       }
     },
     {
-      "id": "slot.pencil.eraser",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 483.0,
-        "y1": 134.0,
-        "x2": 488.0,
-        "y2": 139.0
-      }
-    },
-    {
       "id": "slot.q3",
       "kind": "text",
       "prompt": "",
       "content": {
         "text": "원의 ( 중심 , 반지름 , 지름 )",
         "style_role": "question",
-        "x": 25.0,
+        "x": 35.0,
         "y": 325.0,
         "font_size": 30
       }
@@ -184,7 +172,6 @@
     "region.diagram",
     "slot.circle",
     "slot.tool",
-    "slot.pencil.eraser",
     "slot.tool.dot1",
     "slot.tool.dot2",
     "slot.tool.dot3",

@@ -1,10 +1,211 @@
 from __future__ import annotations
-from modu_math.dsl import Canvas, ProblemTemplate, Region, TextSlot, RectSlot, CircleSlot
+from modu_math.dsl import (
+    Canvas,
+    ProblemTemplate,
+    Region,
+    TextSlot,
+    RectSlot,
+    CircleSlot,
+PathSlot)
+
 
 def build_problem_template() -> ProblemTemplate:
-    return ProblemTemplate(id='S3_초등_3_008725', title='원의 중심의 개수가 가장 많은 모양', canvas=Canvas(width=820, height=620, coordinate_mode='logical'), regions=(Region(id='region.stem', role='stem', flow='absolute', slot_ids=('slot.q_num', 'slot.q_text', 'slot.choice.1.label', 'slot.choice.1.shape', 'slot.choice.2.label', 'slot.choice.2.shape', 'slot.choice.3.label', 'slot.choice.3.shape', 'slot.choice.4.label', 'slot.choice.4.shape', 'slot.choice.5.label', 'slot.choice.5.shape')), Region(id='region.explanation', role='explanation', flow='absolute', slot_ids=('slot.expl.1.shape', 'slot.expl.2.shape', 'slot.expl.3.shape', 'slot.expl.4.shape', 'slot.expl.5.shape', 'slot.conclusion'))), slots=(TextSlot(id='slot.q_num', prompt='', text='30.', style_role='question', x=18.0, y=28.0, font_size=28), TextSlot(id='slot.q_text', prompt='', text='원의 중심의 개수가 가장 많은 모양을 고르세요.', style_role='question', x=72.0, y=28.0, font_size=28), TextSlot(id='slot.choice.1.label', prompt='', text='①', style_role='label', x=34.0, y=64.0, font_size=28), RectSlot(id='slot.choice.1.shape', prompt='', x=68.0, y=50.0, width=104.0, height=104.0), TextSlot(id='slot.choice.2.label', prompt='', text='②', style_role='label', x=356.0, y=64.0, font_size=28), CircleSlot(id='slot.choice.2.shape', prompt='', cx=438.0, cy=101.0, r=48.0, fill='none'), TextSlot(id='slot.choice.3.label', prompt='', text='③', style_role='label', x=646.0, y=64.0, font_size=28), CircleSlot(id='slot.choice.3.shape', prompt='', cx=714.0, cy=112.0, r=36.0, fill='none'), TextSlot(id='slot.choice.4.label', prompt='', text='④', style_role='label', x=34.0, y=184.0, font_size=28), CircleSlot(id='slot.choice.4.shape', prompt='', cx=108.0, cy=218.0, r=48.0, fill='none'), TextSlot(id='slot.choice.5.label', prompt='', text='⑤', style_role='label', x=356.0, y=184.0, font_size=28), CircleSlot(id='slot.choice.5.shape', prompt='', cx=438.0, cy=228.0, r=52.0, fill='none'), RectSlot(id='slot.expl.1.shape', prompt='', x=96.0, y=338.0, width=90.0, height=90.0), CircleSlot(id='slot.expl.2.shape', prompt='', cx=360.0, cy=380.0, r=36.0, fill='none'), CircleSlot(id='slot.expl.3.shape', prompt='', cx=620.0, cy=380.0, r=34.0, fill='none'), CircleSlot(id='slot.expl.4.shape', prompt='', cx=108.0, cy=510.0, r=42.0, fill='none'), CircleSlot(id='slot.expl.5.shape', prompt='', cx=360.0, cy=508.0, r=44.0, fill='none'), TextSlot(id='slot.conclusion', prompt='', text='따라서 원의 중심의 개수가 가장 많은 모양은 ①입니다.', style_role='conclusion', x=18.0, y=586.0, font_size=28)), diagrams=(), groups=(), constraints=(), tags=('도형', '비교', '원의중심', '초등3'))
+    return ProblemTemplate(
+        id="S3_초등_3_008725",
+        title="원의 중심의 개수가 가장 많은 모양",
+        canvas=Canvas(width=820, height=620, coordinate_mode="logical"),
+        regions=(
+            Region(
+                id="region.stem",
+                role="stem",
+                flow="absolute",
+                slot_ids=("slot.q_text",
+                    "slot.choice.1.label",
+                    "slot.choice.1.shape",
+                    "slot.choice.2.label",
+                    "slot.choice.2.shape",
+                    "slot.choice.3.label",
+                    "slot.choice.3.shape",
+                    "slot.choice.4.label",
+                    "slot.choice.4.shape",
+                    "slot.choice.5.label",
+                    "slot.choice.5.shape",'slot.choice.3.shape.copy13', 'slot.choice.3.shape.copy14', 'slot.choice.2.shape.copy15', 'slot.choice.2.shape.copy16', 'slot.choice.2.shape.copy17', 'slot.choice.2.shape.copy18', 'slot.choice.2.shape.copy19', 'slot.choice.2.shape.copy20', 'slot.choice.2.shape.copy21', 'slot.choice.4.shape.copy22', 'slot.choice.5.shape.copy23', 'slot.choice.2.shape.copy16.copy24',),
+            ),
+            Region(
+                id="region.explanation",
+                role="explanation",
+                flow="absolute",
+                slot_ids=(),
+            ),
+        ),
+        slots=(TextSlot(
+                id="slot.q_text",
+                prompt="",
+                text="원의 중심의 개수가 가장 많은 모양을 고르세요.",
+                style_role="question",
+                x=45,
+                y=70,
+                font_size=30,
+            ),
+            TextSlot(
+                id="slot.choice.1.label",
+                prompt="",
+                text="①",
+                style_role="label",
+                x=45,
+                y=165,
+                font_size=30,
+            ),
+            RectSlot(
+                id="slot.choice.1.shape", prompt="", x = 105, y = 150, width = 185, height = 180),
+            TextSlot(
+                id="slot.choice.2.label",
+                prompt="",
+                text="②",
+                style_role="label",
+                x = 319, y = 165, font_size=30,
+            ),
+            CircleSlot(
+                id="slot.choice.2.shape", prompt="", cx = 464, cy = 235, r = 90, fill="none", 
+            stroke = '#111111', stroke_width = 2),
+            TextSlot(
+                id="slot.choice.3.label",
+                prompt="",
+                text="③",
+                style_role="label",
+                x = 572, y = 165, font_size=30,
+            ),
+            CircleSlot(
+                id="slot.choice.3.shape", prompt="", cx = 728, cy = 198, r = 45, fill="none"
+            ),
+            TextSlot(
+                id="slot.choice.4.label",
+                prompt="",
+                text = '④', style_role="label",
+                x = 50, y = 410, font_size = 30),
+            CircleSlot(
+                id="slot.choice.4.shape", prompt="", cx = 170, cy = 445, r = 60, fill="none"
+            ),
+            TextSlot(
+                id="slot.choice.5.label",
+                prompt="",
+                text = '⑤', style_role="label",
+                x = 318, y = 410, font_size = 30),
+            CircleSlot(
+                id="slot.choice.5.shape", prompt="", cx = 465, cy = 410, r = 50, fill="none"
+            ),CircleSlot(id = 'slot.choice.3.shape.copy13', prompt = '', cx = 930, cy = 390, r = 45, stroke = '#111111', stroke_width = 2), CircleSlot(id = 'slot.choice.3.shape.copy14', prompt = '', cx = 945, cy = 405, r = 45, stroke = '#111111', stroke_width = 2), CircleSlot(id = 'slot.choice.2.shape.copy15', prompt = '', cx = 200, cy = 445, r = 90, stroke = '#111111', stroke_width = 2), CircleSlot(id = 'slot.choice.2.shape.copy16', prompt = '', cx = 465, cy = 235, r = 45, stroke = '#111111', stroke_width = 2), CircleSlot(id = 'slot.choice.2.shape.copy17', prompt = '', cx = 755, cy = 235, r = 45, stroke = '#111111', stroke_width = 2), CircleSlot(id = 'slot.choice.2.shape.copy18', prompt = '', cx = 465, cy = 235, r = 65, stroke = '#111111', stroke_width = 2), CircleSlot(id = 'slot.choice.2.shape.copy19', prompt = '', cx = 465, cy = 450, r = 90, stroke = '#111111', stroke_width = 2), CircleSlot(id = 'slot.choice.2.shape.copy20', prompt = '', cx = 230, cy = 445, r = 60, stroke = '#111111', stroke_width = 2), CircleSlot(id = 'slot.choice.2.shape.copy21', prompt = '', cx = 700, cy = 235, r = 45, stroke = '#111111', stroke_width = 2), CircleSlot(id = 'slot.choice.4.shape.copy22', prompt = '', cx = 500, cy = 775, r = 60, stroke = '#111111', stroke_width = 2), CircleSlot(id = 'slot.choice.5.shape.copy23', prompt = '', cx = 930, cy = 670, r = 50, stroke = '#111111', stroke_width = 2), CircleSlot(id = 'slot.choice.2.shape.copy16.copy24', prompt = '', cx = 465, cy = 408, r = 30, stroke = '#111111', stroke_width = 2),),
+        diagrams=(),
+        groups=(),
+        constraints=(),
+        tags=("도형", "비교", "원의중심", "초등3"),
+    )
+
+
 PROBLEM_TEMPLATE = build_problem_template()
 
-SEMANTIC_OVERRIDE = {'problem_id': 'S3_초등_3_008725', 'problem_type': '도형_비교', 'metadata': {'language': 'ko', 'question': '원의 중심의 개수가 가장 많은 모양을 고르세요.', 'instruction': '보기의 중심 개수를 비교하여 정답을 고른다.'}, 'domain': {'objects': [{'id': 'obj.choice_1', 'type': 'figure', 'label': '①'}, {'id': 'obj.choice_2', 'type': 'figure', 'label': '②'}, {'id': 'obj.choice_3', 'type': 'figure', 'label': '③'}, {'id': 'obj.choice_4', 'type': 'figure', 'label': '④'}, {'id': 'obj.choice_5', 'type': 'figure', 'label': '⑤'}], 'relations': [], 'problem_solving': {'understand': {'given_refs': ['obj.choice_1', 'obj.choice_2', 'obj.choice_3', 'obj.choice_4', 'obj.choice_5'], 'target_ref': 'answer.target', 'condition_refs': ['rel.compare_1_2', 'rel.compare_1_3', 'rel.compare_1_4', 'rel.compare_1_5']}, 'plan': {'method': 'visual_comparison', 'description': '각 보기의 중심 개수를 비교하여 가장 큰 값을 찾는다.'}, 'execute': {'expected_operations': ['compare_counts', 'select_maximum']}, 'review': {'check_methods': ['selected_choice_matches_highest_count']}}}, 'answer': {'blanks': [], 'choices': [], 'answer_key': [], 'target': {'type': 'choice', 'description': '원의 중심의 개수가 가장 많은 모양'}, 'value': 1, 'unit': ''}}
+SEMANTIC_OVERRIDE = {
+    "problem_id": "S3_초등_3_008725",
+    "problem_type": "도형_비교",
+    "metadata": {
+        "language": "ko",
+        "question": "원의 중심의 개수가 가장 많은 모양을 고르세요.",
+        "instruction": "보기의 중심 개수를 비교하여 정답을 고른다.",
+    },
+    "domain": {
+        "objects": [
+            {"id": "obj.choice_1", "type": "figure", "label": "①"},
+            {"id": "obj.choice_2", "type": "figure", "label": "②"},
+            {"id": "obj.choice_3", "type": "figure", "label": "③"},
+            {"id": "obj.choice_4", "type": "figure", "label": "④"},
+            {"id": "obj.choice_5", "type": "figure", "label": "⑤"},
+        ],
+        "relations": [],
+        "problem_solving": {
+            "understand": {
+                "given_refs": [
+                    "obj.choice_1",
+                    "obj.choice_2",
+                    "obj.choice_3",
+                    "obj.choice_4",
+                    "obj.choice_5",
+                ],
+                "target_ref": "answer.target",
+                "condition_refs": [
+                    "rel.compare_1_2",
+                    "rel.compare_1_3",
+                    "rel.compare_1_4",
+                    "rel.compare_1_5",
+                ],
+            },
+            "plan": {
+                "method": "visual_comparison",
+                "description": "각 보기의 중심 개수를 비교하여 가장 큰 값을 찾는다.",
+            },
+            "execute": {"expected_operations": ["compare_counts", "select_maximum"]},
+            "review": {"check_methods": ["selected_choice_matches_highest_count"]},
+        },
+    },
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {"type": "choice", "description": "원의 중심의 개수가 가장 많은 모양"},
+        "value": 1,
+        "unit": "",
+    },
+}
 
-SOLVABLE = {'schema': 'modu.solvable.v1.1', 'problem_id': 'S3_초등_3_008725', 'problem_type': '도형_비교', 'inputs': {'total_ticks': 5, 'target_label': '원의 중심의 개수가 가장 많은 모양', 'target_ticks': 1, 'target_count': 1, 'unit': ''}, 'given': [{'ref': 'obj.choice_1', 'value': {'label': '①', 'count': 4}}, {'ref': 'obj.choice_2', 'value': {'label': '②', 'count': 1}}, {'ref': 'obj.choice_3', 'value': {'label': '③', 'count': 3}}, {'ref': 'obj.choice_4', 'value': {'label': '④', 'count': 3}}, {'ref': 'obj.choice_5', 'value': {'label': '⑤', 'count': 2}}], 'target': {'ref': 'answer.target', 'type': 'choice'}, 'method': 'visual_comparison', 'plan': ['각 보기의 중심 개수를 비교한다.', '가장 큰 개수를 가진 보기를 고른다.'], 'steps': [{'id': 'step.1', 'expr': '①의 중심 개수', 'value': 4}, {'id': 'step.2', 'expr': '②의 중심 개수', 'value': 1}, {'id': 'step.3', 'expr': '③의 중심 개수', 'value': 3}, {'id': 'step.4', 'expr': '④의 중심 개수', 'value': 3}, {'id': 'step.5', 'expr': '⑤의 중심 개수', 'value': 2}, {'id': 'step.6', 'expr': '최댓값 선택', 'value': 1}], 'checks': [{'id': 'check.1', 'expr': '4이 1, 3, 3, 2보다 큰가', 'expected': True, 'actual': True, 'pass': True}, {'id': 'check.2', 'expr': '정답이 ①인가', 'expected': True, 'actual': True, 'pass': True}], 'answer': {'blanks': [], 'choices': [], 'answer_key': [], 'target': {'type': 'choice', 'description': '원의 중심의 개수가 가장 많은 모양'}, 'value': 1, 'unit': ''}}
+SOLVABLE = {
+    "schema": "modu.solvable.v1.1",
+    "problem_id": "S3_초등_3_008725",
+    "problem_type": "도형_비교",
+    "inputs": {
+        "total_ticks": 5,
+        "target_label": "원의 중심의 개수가 가장 많은 모양",
+        "target_ticks": 1,
+        "target_count": 1,
+        "unit": "",
+    },
+    "given": [
+        {"ref": "obj.choice_1", "value": {"label": "①", "count": 4}},
+        {"ref": "obj.choice_2", "value": {"label": "②", "count": 1}},
+        {"ref": "obj.choice_3", "value": {"label": "③", "count": 3}},
+        {"ref": "obj.choice_4", "value": {"label": "④", "count": 3}},
+        {"ref": "obj.choice_5", "value": {"label": "⑤", "count": 2}},
+    ],
+    "target": {"ref": "answer.target", "type": "choice"},
+    "method": "visual_comparison",
+    "plan": ["각 보기의 중심 개수를 비교한다.", "가장 큰 개수를 가진 보기를 고른다."],
+    "steps": [
+        {"id": "step.1", "expr": "①의 중심 개수", "value": 4},
+        {"id": "step.2", "expr": "②의 중심 개수", "value": 1},
+        {"id": "step.3", "expr": "③의 중심 개수", "value": 3},
+        {"id": "step.4", "expr": "④의 중심 개수", "value": 3},
+        {"id": "step.5", "expr": "⑤의 중심 개수", "value": 2},
+        {"id": "step.6", "expr": "최댓값 선택", "value": 1},
+    ],
+    "checks": [
+        {
+            "id": "check.1",
+            "expr": "4이 1, 3, 3, 2보다 큰가",
+            "expected": True,
+            "actual": True,
+            "pass": True,
+        },
+        {
+            "id": "check.2",
+            "expr": "정답이 ①인가",
+            "expected": True,
+            "actual": True,
+            "pass": True,
+        },
+    ],
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {"type": "choice", "description": "원의 중심의 개수가 가장 많은 모양"},
+        "value": 1,
+        "unit": "",
+    },
+}

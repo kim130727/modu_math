@@ -10,9 +10,9 @@
       "id": "slot.pin_base.rect",
       "type": "rect",
       "attributes": {
-        "x": 324.0,
-        "y": 133.0,
-        "width": 8.0,
+        "x": 275.0,
+        "y": 175.0,
+        "width": 10.0,
         "height": 5.0,
         "fill": "#A8B0B6",
         "stroke": "#7E8790",
@@ -29,7 +29,6 @@
       "attributes": {
         "x": 16.0,
         "y": 34.0,
-        "max_width": 824.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 28
@@ -46,7 +45,6 @@
       "attributes": {
         "x": 16.0,
         "y": 72.0,
-        "max_width": 824.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 28
@@ -58,12 +56,27 @@
       "text": "리려고 할 때 연필을 꽂아야 하는 구멍의 기호를 선택해 보세요."
     },
     {
+      "id": "slot.lb2_text.copy5.text",
+      "type": "text",
+      "attributes": {
+        "x": 320.0,
+        "y": 270.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30
+      },
+      "source_ref": "slot.lb2_text.copy5",
+      "refs": {
+        "layout_slot_id": "slot.lb2_text.copy5"
+      },
+      "text": "ㄱ"
+    },
+    {
       "id": "slot.lb2_text.text",
       "type": "text",
       "attributes": {
-        "x": 130.0,
-        "y": 265.0,
-        "max_width": 824.0,
+        "x": 380.0,
+        "y": 270.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 30
@@ -78,9 +91,8 @@
       "id": "slot.lb3_text.text",
       "type": "text",
       "attributes": {
-        "x": 425.0,
+        "x": 440.0,
         "y": 270.0,
-        "max_width": 824.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 30
@@ -95,9 +107,8 @@
       "id": "slot.lb4_text.text",
       "type": "text",
       "attributes": {
-        "x": 560.0,
-        "y": 305.0,
-        "max_width": 824.0,
+        "x": 495.0,
+        "y": 270.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 30
@@ -112,9 +123,8 @@
       "id": "slot.lb5_text.text",
       "type": "text",
       "attributes": {
-        "x": 625.0,
-        "y": 265.0,
-        "max_width": 824.0,
+        "x": 555.0,
+        "y": 270.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 30
@@ -129,10 +139,10 @@
       "id": "slot.bar.rect",
       "type": "rect",
       "attributes": {
-        "x": 270.0,
-        "y": 118.0,
-        "width": 426.0,
-        "height": 42.0,
+        "x": 212.0,
+        "y": 164.0,
+        "width": 425.0,
+        "height": 40.0,
         "fill": "#CFEFEF",
         "stroke": "#7AD7D7",
         "stroke-width": 1.2
@@ -146,8 +156,8 @@
       "id": "slot.pin.circle",
       "type": "circle",
       "attributes": {
-        "cx": 325.0,
-        "cy": 140.0,
+        "cx": 267.0,
+        "cy": 185.0,
         "r": 10.0,
         "stroke": "#111111",
         "stroke-width": 2.0,
@@ -159,93 +169,13 @@
       }
     },
     {
-      "id": "slot.lb1.circle",
-      "type": "circle",
-      "attributes": {
-        "cx": 340.0,
-        "cy": 220.0,
-        "r": 10.0,
-        "stroke": "#888888",
-        "stroke-width": 1.0,
-        "fill": "#FFFFFF"
-      },
-      "source_ref": "slot.lb1",
-      "refs": {
-        "layout_slot_id": "slot.lb1"
-      }
-    },
-    {
-      "id": "slot.lb2.circle",
-      "type": "circle",
-      "attributes": {
-        "cx": 430.0,
-        "cy": 194.0,
-        "r": 12.0,
-        "stroke": "#888888",
-        "stroke-width": 1.0,
-        "fill": "#FFFFFF"
-      },
-      "source_ref": "slot.lb2",
-      "refs": {
-        "layout_slot_id": "slot.lb2"
-      }
-    },
-    {
-      "id": "slot.lb3.circle",
-      "type": "circle",
-      "attributes": {
-        "cx": 490.0,
-        "cy": 194.0,
-        "r": 12.0,
-        "stroke": "#888888",
-        "stroke-width": 1.0,
-        "fill": "#FFFFFF"
-      },
-      "source_ref": "slot.lb3",
-      "refs": {
-        "layout_slot_id": "slot.lb3"
-      }
-    },
-    {
-      "id": "slot.lb4.circle",
-      "type": "circle",
-      "attributes": {
-        "cx": 550.0,
-        "cy": 194.0,
-        "r": 12.0,
-        "stroke": "#888888",
-        "stroke-width": 1.0,
-        "fill": "#FFFFFF"
-      },
-      "source_ref": "slot.lb4",
-      "refs": {
-        "layout_slot_id": "slot.lb4"
-      }
-    },
-    {
-      "id": "slot.lb5.circle",
-      "type": "circle",
-      "attributes": {
-        "cx": 610.0,
-        "cy": 194.0,
-        "r": 12.0,
-        "stroke": "#888888",
-        "stroke-width": 1.0,
-        "fill": "#FFFFFF"
-      },
-      "source_ref": "slot.lb5",
-      "refs": {
-        "layout_slot_id": "slot.lb5"
-      }
-    },
-    {
       "id": "slot.arrow1.line",
       "type": "line",
       "attributes": {
-        "x1": 372.0,
-        "y1": 132.0,
-        "x2": 372.0,
-        "y2": 180.0,
+        "x1": 335.0,
+        "y1": 190.0,
+        "x2": 335.0,
+        "y2": 235.0,
         "stroke": "#FF4FA0",
         "stroke-width": 1.4
       },
@@ -258,10 +188,10 @@
       "id": "slot.arrow2.line",
       "type": "line",
       "attributes": {
-        "x1": 430.0,
-        "y1": 132.0,
-        "x2": 430.0,
-        "y2": 180.0,
+        "x1": 390.0,
+        "y1": 190.0,
+        "x2": 390.0,
+        "y2": 235.0,
         "stroke": "#FF4FA0",
         "stroke-width": 1.4
       },
@@ -274,10 +204,10 @@
       "id": "slot.arrow3.line",
       "type": "line",
       "attributes": {
-        "x1": 490.0,
-        "y1": 132.0,
-        "x2": 490.0,
-        "y2": 180.0,
+        "x1": 450.0,
+        "y1": 190.0,
+        "x2": 450.0,
+        "y2": 235.0,
         "stroke": "#FF4FA0",
         "stroke-width": 1.4
       },
@@ -290,10 +220,10 @@
       "id": "slot.arrow4.line",
       "type": "line",
       "attributes": {
-        "x1": 550.0,
-        "y1": 132.0,
-        "x2": 550.0,
-        "y2": 180.0,
+        "x1": 510.0,
+        "y1": 190.0,
+        "x2": 510.0,
+        "y2": 235.0,
         "stroke": "#FF4FA0",
         "stroke-width": 1.4
       },
@@ -306,10 +236,10 @@
       "id": "slot.arrow5.line",
       "type": "line",
       "attributes": {
-        "x1": 610.0,
-        "y1": 132.0,
-        "x2": 610.0,
-        "y2": 180.0,
+        "x1": 570.0,
+        "y1": 190.0,
+        "x2": 570.0,
+        "y2": 235.0,
         "stroke": "#FF4FA0",
         "stroke-width": 1.4
       },
@@ -322,9 +252,9 @@
       "id": "slot.hole1.circle",
       "type": "circle",
       "attributes": {
-        "cx": 372.0,
-        "cy": 126.0,
-        "r": 4.0,
+        "cx": 335.0,
+        "cy": 185.0,
+        "r": 5.0,
         "stroke": "#6E6E6E",
         "stroke-width": 1.0,
         "fill": "#FFFFFF"
@@ -338,9 +268,9 @@
       "id": "slot.hole2.circle",
       "type": "circle",
       "attributes": {
-        "cx": 430.0,
-        "cy": 126.0,
-        "r": 4.0,
+        "cx": 390.0,
+        "cy": 185.0,
+        "r": 5.0,
         "stroke": "#6E6E6E",
         "stroke-width": 1.0,
         "fill": "#FFFFFF"
@@ -354,9 +284,9 @@
       "id": "slot.hole3.circle",
       "type": "circle",
       "attributes": {
-        "cx": 490.0,
-        "cy": 126.0,
-        "r": 4.0,
+        "cx": 450.0,
+        "cy": 185.0,
+        "r": 5.0,
         "stroke": "#6E6E6E",
         "stroke-width": 1.0,
         "fill": "#FFFFFF"
@@ -370,9 +300,9 @@
       "id": "slot.hole4.circle",
       "type": "circle",
       "attributes": {
-        "cx": 550.0,
-        "cy": 126.0,
-        "r": 4.0,
+        "cx": 510.0,
+        "cy": 185.0,
+        "r": 5.0,
         "stroke": "#6E6E6E",
         "stroke-width": 1.0,
         "fill": "#FFFFFF"
@@ -386,9 +316,9 @@
       "id": "slot.hole5.circle",
       "type": "circle",
       "attributes": {
-        "cx": 610.0,
-        "cy": 126.0,
-        "r": 4.0,
+        "cx": 570.0,
+        "cy": 185.0,
+        "r": 5.0,
         "stroke": "#6E6E6E",
         "stroke-width": 1.0,
         "fill": "#FFFFFF"

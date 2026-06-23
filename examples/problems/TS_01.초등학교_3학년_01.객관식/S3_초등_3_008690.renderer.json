@@ -12,7 +12,6 @@
       "attributes": {
         "x": 20.0,
         "y": 50.0,
-        "max_width": 832.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 30
@@ -29,7 +28,6 @@
       "attributes": {
         "x": 40.0,
         "y": 375.0,
-        "max_width": 832.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 30
@@ -46,7 +44,6 @@
       "attributes": {
         "x": 20.0,
         "y": 90.0,
-        "max_width": 832.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 30
@@ -56,22 +53,6 @@
         "layout_slot_id": "slot.q5"
       },
       "text": "기호를 선택해 보세요."
-    },
-    {
-      "id": "slot.diagram.center.circle",
-      "type": "circle",
-      "attributes": {
-        "cx": 393.0,
-        "cy": 207.0,
-        "r": 5.0,
-        "stroke": "#111111",
-        "stroke-width": 2.0,
-        "fill": "#ff3ea5"
-      },
-      "source_ref": "slot.diagram.center",
-      "refs": {
-        "layout_slot_id": "slot.diagram.center"
-      }
     },
     {
       "id": "slot.circle.outer.circle",
@@ -138,12 +119,27 @@
       }
     },
     {
+      "id": "slot.diagram.center.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 393.0,
+        "cy": 207.0,
+        "r": 5.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#ff3ea5"
+      },
+      "source_ref": "slot.diagram.center",
+      "refs": {
+        "layout_slot_id": "slot.diagram.center"
+      }
+    },
+    {
       "id": "slot.diagram.label.ga.text",
       "type": "text",
       "attributes": {
         "x": 410.0,
         "y": 195.0,
-        "max_width": 832.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 20
@@ -160,7 +156,6 @@
       "attributes": {
         "x": 330.0,
         "y": 220.0,
-        "max_width": 832.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 20
@@ -177,7 +172,6 @@
       "attributes": {
         "x": 385.0,
         "y": 280.0,
-        "max_width": 832.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 20
@@ -194,7 +188,6 @@
       "attributes": {
         "x": 385.0,
         "y": 230.0,
-        "max_width": 832.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 20

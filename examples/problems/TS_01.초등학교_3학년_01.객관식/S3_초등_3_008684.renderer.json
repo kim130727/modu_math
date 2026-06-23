@@ -140,7 +140,7 @@
       "type": "text",
       "attributes": {
         "x": 45.0,
-        "y": 425.0,
+        "y": 445.0,
         "max_width": 811.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
@@ -183,6 +183,40 @@
       "source_ref": "slot.right.circle",
       "refs": {
         "layout_slot_id": "slot.right.circle"
+      }
+    },
+    {
+      "id": "slot.right.dash.v.line",
+      "type": "line",
+      "attributes": {
+        "x1": 739.0,
+        "y1": 121.0,
+        "x2": 739.0,
+        "y2": 335.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "stroke-dasharray": "5 3"
+      },
+      "source_ref": "slot.right.dash.v",
+      "refs": {
+        "layout_slot_id": "slot.right.dash.v"
+      }
+    },
+    {
+      "id": "slot.right.dash.h.line",
+      "type": "line",
+      "attributes": {
+        "x1": 626.0,
+        "y1": 229.0,
+        "x2": 853.0,
+        "y2": 229.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "stroke-dasharray": "5 3"
+      },
+      "source_ref": "slot.right.dash.h",
+      "refs": {
+        "layout_slot_id": "slot.right.dash.h"
       }
     },
     {
@@ -263,40 +297,6 @@
       "source_ref": "slot.right.dot.right",
       "refs": {
         "layout_slot_id": "slot.right.dot.right"
-      }
-    },
-    {
-      "id": "slot.right.dash.v.line",
-      "type": "line",
-      "attributes": {
-        "x1": 739.0,
-        "y1": 121.0,
-        "x2": 739.0,
-        "y2": 335.0,
-        "stroke": "#111111",
-        "stroke-width": 2.0,
-        "stroke-dasharray": "5 3"
-      },
-      "source_ref": "slot.right.dash.v",
-      "refs": {
-        "layout_slot_id": "slot.right.dash.v"
-      }
-    },
-    {
-      "id": "slot.right.dash.h.line",
-      "type": "line",
-      "attributes": {
-        "x1": 626.0,
-        "y1": 229.0,
-        "x2": 853.0,
-        "y2": 229.0,
-        "stroke": "#111111",
-        "stroke-width": 2.0,
-        "stroke-dasharray": "5 3"
-      },
-      "source_ref": "slot.right.dash.h",
-      "refs": {
-        "layout_slot_id": "slot.right.dash.h"
       }
     },
     {

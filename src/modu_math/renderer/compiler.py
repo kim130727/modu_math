@@ -285,12 +285,13 @@ def _compile_slots(layout: dict[str, Any], *, width: float) -> tuple[list[DrawEl
             attributes: dict[str, Any] = {
                 "x": tx,
                 "y": ty,
-                "max_width": float(content["max_width"]) if isinstance(content.get("max_width"), int | float) else max_text_width,
                 "fill": fill,
                 "font-family": font_family,
                 "font-size": font_size,
             }
             element_type = "text"
+            if isinstance(content.get("max_width"), int | float):
+                attributes["max_width"] = float(content["max_width"])
             if kind == "text_box":
                 box_width = float(content["width"]) if isinstance(content.get("width"), int | float) else max_text_width
                 box_height = float(content["height"]) if isinstance(content.get("height"), int | float) else font_size * 1.2

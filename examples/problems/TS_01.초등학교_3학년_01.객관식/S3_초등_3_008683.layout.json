@@ -17,13 +17,23 @@
         "slot.box1",
         "slot.diagram1.frame",
         "slot.diagram1.circle",
-        "slot.diagram1.center",
         "slot.box3",
+        "slot.girl.person.body",
+        "slot.girl.person.head",
+        "slot.girl.person.hair.cap",
+        "slot.girl.person.smile",
+        "slot.girl.person.tail.left",
+        "slot.girl.person.tail.right",
+        "slot.girl.person.bow.left",
+        "slot.girl.person.bow.right",
         "slot.diagram1.ray1",
         "slot.diagram1.ray2",
         "slot.diagram1.ray3",
         "slot.diagram1.ray4",
         "slot.diagram1.ray5",
+        "slot.diagram1.center",
+        "slot.girl.person.eye.left",
+        "slot.girl.person.eye.right",
         "slot.q1",
         "slot.q2",
         "slot.box2",
@@ -277,7 +287,7 @@
       "prompt": "",
       "content": {
         "x": 85.0,
-        "y": 625.0,
+        "y": 672.0,
         "width": 760.0,
         "height": 115.0,
         "fill": "#ffffff"
@@ -291,7 +301,7 @@
         "text": "자를 이용하여 점을 더 ( 많이 , 적게 ) 찍은 다음, 점들을 이",
         "style_role": "question",
         "x": 120.0,
-        "y": 670.0,
+        "y": 717.0,
         "font_size": 30
       }
     },
@@ -303,7 +313,7 @@
         "text": "으면 원을 좀 더 정확하게 그릴 수 있습니다.",
         "style_role": "question",
         "x": 115.0,
-        "y": 715.0,
+        "y": 762.0,
         "font_size": 30
       }
     },
@@ -319,6 +329,166 @@
         "font_size": 30,
         "fill": "#111111"
       }
+    },
+    {
+      "id": "slot.girl.person.body",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            577.0,
+            473.0
+          ],
+          [
+            633.0,
+            473.0
+          ],
+          [
+            623.0,
+            437.0
+          ],
+          [
+            587.0,
+            437.0
+          ]
+        ],
+        "stroke": "none",
+        "fill": "#F16078"
+      }
+    },
+    {
+      "id": "slot.girl.person.head",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 605.0,
+        "cy": 400.0,
+        "r": 28.0,
+        "stroke": "none",
+        "fill": "#ffd9ad"
+      }
+    },
+    {
+      "id": "slot.girl.person.hair.cap",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 577.0 399.0 C 579.0 370.0, 630.0 365.0, 634.0 399.0 C 615.0 383.0, 593.0 390.0, 577.0 399.0 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "none",
+        "fill": "#4B260B"
+      }
+    },
+    {
+      "id": "slot.girl.person.eye.left",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 595.0,
+        "cy": 404.0,
+        "r": 2.3,
+        "stroke": "none",
+        "fill": "#2b2118"
+      }
+    },
+    {
+      "id": "slot.girl.person.eye.right",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 615.0,
+        "cy": 404.0,
+        "r": 2.3,
+        "stroke": "none",
+        "fill": "#2b2118"
+      }
+    },
+    {
+      "id": "slot.girl.person.smile",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 598.0 416.0 Q 605.0 422.0 612.0 416.0",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#b86e39",
+        "stroke_width": 1.3,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.girl.person.tail.left",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 578.0 397.0 C 553.0 401.0, 567.0 442.0, 555.0 448.0",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#4B260B",
+        "stroke_width": 7.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.girl.person.tail.right",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 632.0 397.0 C 657.0 401.0, 643.0 442.0, 655.0 448.0",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#4B260B",
+        "stroke_width": 7.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.girl.person.bow.left",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            598.0,
+            443.0
+          ],
+          [
+            579.0,
+            435.0
+          ],
+          [
+            591.0,
+            456.0
+          ]
+        ],
+        "stroke": "none",
+        "fill": "#E85BA6"
+      }
+    },
+    {
+      "id": "slot.girl.person.bow.right",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            612.0,
+            443.0
+          ],
+          [
+            631.0,
+            435.0
+          ],
+          [
+            619.0,
+            456.0
+          ]
+        ],
+        "stroke": "none",
+        "fill": "#E85BA6"
+      }
     }
   ],
   "groups": [],
@@ -329,13 +499,23 @@
     "slot.box1",
     "slot.diagram1.frame",
     "slot.diagram1.circle",
-    "slot.diagram1.center",
     "slot.box3",
+    "slot.girl.person.body",
+    "slot.girl.person.head",
+    "slot.girl.person.hair.cap",
+    "slot.girl.person.smile",
+    "slot.girl.person.tail.left",
+    "slot.girl.person.tail.right",
+    "slot.girl.person.bow.left",
+    "slot.girl.person.bow.right",
     "slot.diagram1.ray1",
     "slot.diagram1.ray2",
     "slot.diagram1.ray3",
     "slot.diagram1.ray4",
     "slot.diagram1.ray5",
+    "slot.diagram1.center",
+    "slot.girl.person.eye.left",
+    "slot.girl.person.eye.right",
     "slot.q1",
     "slot.q2",
     "slot.box2",

@@ -65,27 +65,25 @@
       "flow": "absolute",
       "slot_ids": [
         "slot.boy.bubble",
-        "slot.boy.tail",
         "slot.boy.person.body",
         "slot.boy.person.head",
         "slot.boy.person.hair.cap",
-        "slot.boy.person.eye.left",
-        "slot.boy.person.eye.right",
         "slot.boy.person.smile",
         "slot.name.boy.box",
         "slot.girl.bubble",
-        "slot.girl.tail",
         "slot.girl.person.body",
         "slot.girl.person.head",
         "slot.girl.person.hair.cap",
-        "slot.girl.person.eye.left",
-        "slot.girl.person.eye.right",
         "slot.girl.person.smile",
         "slot.girl.person.tail.left",
         "slot.girl.person.tail.right",
         "slot.girl.person.bow.left",
         "slot.girl.person.bow.right",
         "slot.name.girl.box",
+        "slot.boy.person.eye.left",
+        "slot.boy.person.eye.right",
+        "slot.girl.person.eye.left",
+        "slot.girl.person.eye.right",
         "slot.boy.text",
         "slot.name.boy.text",
         "slot.girl.text",
@@ -595,35 +593,11 @@
       "kind": "path",
       "prompt": "",
       "content": {
-        "d": "M 224.0 354.0 C 224.0 322.32, 256.3 310.0, 309.0 310.0 C 361.7 310.0, 394.0 322.32, 394.0 354.0 C 394.0 385.68, 361.7 398.0, 309.0 398.0 C 256.3 398.0, 224.0 385.68, 224.0 354.0 Z",
+        "d": "M 195 350 C 195 320 240 310 310 310 C 380 310 425 320 425 350 C 425 385 380 395 310 395 C 240 395 195 385 195 350 Z",
         "x": 0.0,
         "y": 0.0,
         "stroke": "#222222",
         "stroke_width": 1.6,
-        "fill": "#ffffff"
-      }
-    },
-    {
-      "id": "slot.boy.tail",
-      "kind": "polygon",
-      "prompt": "",
-      "content": {
-        "points": [
-          [
-            299.0,
-            392.0
-          ],
-          [
-            319.0,
-            392.0
-          ],
-          [
-            309.0,
-            350.0
-          ]
-        ],
-        "stroke": "#222222",
-        "stroke_width": 1.4,
         "fill": "#ffffff"
       }
     },
@@ -634,9 +608,9 @@
       "content": {
         "text": "큰 원을\n먼저 그려.",
         "style_role": "speech",
-        "x": 309.0,
-        "y": 344.0,
-        "font_size": 23,
+        "x": 310,
+        "y": 335,
+        "font_size": 25,
         "anchor": "middle"
       }
     },
@@ -762,35 +736,11 @@
       "kind": "path",
       "prompt": "",
       "content": {
-        "d": "M 462.5 359.0 C 462.5 316.52, 516.65 300.0, 605.0 300.0 C 693.35 300.0, 747.5 316.52, 747.5 359.0 C 747.5 401.48, 693.35 418.0, 605.0 418.0 C 516.65 418.0, 462.5 401.48, 462.5 359.0 Z",
+        "d": "M 461.93731689453125 345.228759765625 C 461.93731689453125 302.748759765625 516.0873168945312 286.228759765625 604.4373168945312 286.228759765625 C 692.7873168945313 286.228759765625 746.9373168945312 302.748759765625 746.9373168945312 345.228759765625 C 746.9373168945312 387.708759765625 692.7873168945313 404.228759765625 604.4373168945312 404.228759765625 C 516.0873168945312 404.228759765625 461.93731689453125 387.708759765625 461.93731689453125 345.228759765625 Z",
         "x": 0.0,
         "y": 0.0,
         "stroke": "#222222",
         "stroke_width": 1.6,
-        "fill": "#ffffff"
-      }
-    },
-    {
-      "id": "slot.girl.tail",
-      "kind": "polygon",
-      "prompt": "",
-      "content": {
-        "points": [
-          [
-            595.0,
-            412.0
-          ],
-          [
-            615.0,
-            412.0
-          ],
-          [
-            605.0,
-            355.0
-          ]
-        ],
-        "stroke": "#222222",
-        "stroke_width": 1.4,
         "fill": "#ffffff"
       }
     },
@@ -801,10 +751,11 @@
       "content": {
         "text": "큰 원의 반지름을\n( 지름, 반지름 )으로 하는\n작은 원을 2개 그려.",
         "style_role": "speech",
-        "x": 605.0,
-        "y": 333.0,
-        "font_size": 21,
-        "anchor": "middle"
+        "x": 610,
+        "y": 335,
+        "font_size": 25,
+        "anchor": "middle",
+        "fill": "#111111"
       }
     },
     {
@@ -1041,27 +992,25 @@
     "slot.grid.right.h7",
     "region.dialogue",
     "slot.boy.bubble",
-    "slot.boy.tail",
     "slot.boy.person.body",
     "slot.boy.person.head",
     "slot.boy.person.hair.cap",
-    "slot.boy.person.eye.left",
-    "slot.boy.person.eye.right",
     "slot.boy.person.smile",
     "slot.name.boy.box",
     "slot.girl.bubble",
-    "slot.girl.tail",
     "slot.girl.person.body",
     "slot.girl.person.head",
     "slot.girl.person.hair.cap",
-    "slot.girl.person.eye.left",
-    "slot.girl.person.eye.right",
     "slot.girl.person.smile",
     "slot.girl.person.tail.left",
     "slot.girl.person.tail.right",
     "slot.girl.person.bow.left",
     "slot.girl.person.bow.right",
     "slot.name.girl.box",
+    "slot.boy.person.eye.left",
+    "slot.boy.person.eye.right",
+    "slot.girl.person.eye.left",
+    "slot.girl.person.eye.right",
     "slot.boy.text",
     "slot.name.boy.text",
     "slot.girl.text",

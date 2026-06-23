@@ -57,27 +57,11 @@
       }
     },
     {
-      "id": "slot.diagram1.center.circle",
-      "type": "circle",
-      "attributes": {
-        "cx": 725.0,
-        "cy": 465.0,
-        "r": 5.0,
-        "stroke": "#111111",
-        "stroke-width": 2.0,
-        "fill": "#ff4db8"
-      },
-      "source_ref": "slot.diagram1.center",
-      "refs": {
-        "layout_slot_id": "slot.diagram1.center"
-      }
-    },
-    {
       "id": "slot.box3.rect",
       "type": "rect",
       "attributes": {
         "x": 85.0,
-        "y": 625.0,
+        "y": 672.0,
         "width": 760.0,
         "height": 115.0,
         "fill": "#ffffff",
@@ -87,6 +71,163 @@
       "source_ref": "slot.box3",
       "refs": {
         "layout_slot_id": "slot.box3"
+      }
+    },
+    {
+      "id": "slot.girl.person.body.polygon",
+      "type": "polygon",
+      "attributes": {
+        "points": [
+          [
+            577.0,
+            473.0
+          ],
+          [
+            633.0,
+            473.0
+          ],
+          [
+            623.0,
+            437.0
+          ],
+          [
+            587.0,
+            437.0
+          ]
+        ],
+        "stroke": "none",
+        "stroke-width": 2.0,
+        "fill": "#F16078"
+      },
+      "source_ref": "slot.girl.person.body",
+      "refs": {
+        "layout_slot_id": "slot.girl.person.body"
+      }
+    },
+    {
+      "id": "slot.girl.person.head.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 605.0,
+        "cy": 400.0,
+        "r": 28.0,
+        "stroke": "none",
+        "stroke-width": 2.0,
+        "fill": "#ffd9ad"
+      },
+      "source_ref": "slot.girl.person.head",
+      "refs": {
+        "layout_slot_id": "slot.girl.person.head"
+      }
+    },
+    {
+      "id": "slot.girl.person.hair.cap.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 577.0 399.0 C 579.0 370.0, 630.0 365.0, 634.0 399.0 C 615.0 383.0, 593.0 390.0, 577.0 399.0 Z",
+        "stroke": "none",
+        "stroke-width": 2.0,
+        "fill": "#4B260B"
+      },
+      "source_ref": "slot.girl.person.hair.cap",
+      "refs": {
+        "layout_slot_id": "slot.girl.person.hair.cap"
+      }
+    },
+    {
+      "id": "slot.girl.person.smile.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 598.0 416.0 Q 605.0 422.0 612.0 416.0",
+        "stroke": "#b86e39",
+        "stroke-width": 1.3,
+        "fill": "none"
+      },
+      "source_ref": "slot.girl.person.smile",
+      "refs": {
+        "layout_slot_id": "slot.girl.person.smile"
+      }
+    },
+    {
+      "id": "slot.girl.person.tail.left.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 578.0 397.0 C 553.0 401.0, 567.0 442.0, 555.0 448.0",
+        "stroke": "#4B260B",
+        "stroke-width": 7.0,
+        "fill": "none"
+      },
+      "source_ref": "slot.girl.person.tail.left",
+      "refs": {
+        "layout_slot_id": "slot.girl.person.tail.left"
+      }
+    },
+    {
+      "id": "slot.girl.person.tail.right.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 632.0 397.0 C 657.0 401.0, 643.0 442.0, 655.0 448.0",
+        "stroke": "#4B260B",
+        "stroke-width": 7.0,
+        "fill": "none"
+      },
+      "source_ref": "slot.girl.person.tail.right",
+      "refs": {
+        "layout_slot_id": "slot.girl.person.tail.right"
+      }
+    },
+    {
+      "id": "slot.girl.person.bow.left.polygon",
+      "type": "polygon",
+      "attributes": {
+        "points": [
+          [
+            598.0,
+            443.0
+          ],
+          [
+            579.0,
+            435.0
+          ],
+          [
+            591.0,
+            456.0
+          ]
+        ],
+        "stroke": "none",
+        "stroke-width": 2.0,
+        "fill": "#E85BA6"
+      },
+      "source_ref": "slot.girl.person.bow.left",
+      "refs": {
+        "layout_slot_id": "slot.girl.person.bow.left"
+      }
+    },
+    {
+      "id": "slot.girl.person.bow.right.polygon",
+      "type": "polygon",
+      "attributes": {
+        "points": [
+          [
+            612.0,
+            443.0
+          ],
+          [
+            631.0,
+            435.0
+          ],
+          [
+            619.0,
+            456.0
+          ]
+        ],
+        "stroke": "none",
+        "stroke-width": 2.0,
+        "fill": "#E85BA6"
+      },
+      "source_ref": "slot.girl.person.bow.right",
+      "refs": {
+        "layout_slot_id": "slot.girl.person.bow.right"
       }
     },
     {
@@ -172,6 +313,54 @@
       "source_ref": "slot.diagram1.ray5",
       "refs": {
         "layout_slot_id": "slot.diagram1.ray5"
+      }
+    },
+    {
+      "id": "slot.diagram1.center.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 725.0,
+        "cy": 465.0,
+        "r": 5.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#ff4db8"
+      },
+      "source_ref": "slot.diagram1.center",
+      "refs": {
+        "layout_slot_id": "slot.diagram1.center"
+      }
+    },
+    {
+      "id": "slot.girl.person.eye.left.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 595.0,
+        "cy": 404.0,
+        "r": 2.3,
+        "stroke": "none",
+        "stroke-width": 2.0,
+        "fill": "#2b2118"
+      },
+      "source_ref": "slot.girl.person.eye.left",
+      "refs": {
+        "layout_slot_id": "slot.girl.person.eye.left"
+      }
+    },
+    {
+      "id": "slot.girl.person.eye.right.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 615.0,
+        "cy": 404.0,
+        "r": 2.3,
+        "stroke": "none",
+        "stroke-width": 2.0,
+        "fill": "#2b2118"
+      },
+      "source_ref": "slot.girl.person.eye.right",
+      "refs": {
+        "layout_slot_id": "slot.girl.person.eye.right"
       }
     },
     {
@@ -349,7 +538,7 @@
       "type": "text",
       "attributes": {
         "x": 120.0,
-        "y": 670.0,
+        "y": 717.0,
         "max_width": 812.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
@@ -366,7 +555,7 @@
       "type": "text",
       "attributes": {
         "x": 115.0,
-        "y": 715.0,
+        "y": 762.0,
         "max_width": 812.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
