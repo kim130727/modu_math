@@ -1,10 +1,243 @@
 from __future__ import annotations
 from modu_math.dsl import Canvas, ProblemTemplate, Region, RectSlot, TextSlot, LineSlot
 
+
 def build_problem_template() -> ProblemTemplate:
-    return ProblemTemplate(id='S3_초등_3_008849', title='무게가 더 무거운 쪽을 선택하세요', canvas=Canvas(width=820, height=540, coordinate_mode='logical'), regions=(Region(id='region.stem', role='stem', flow='absolute', slot_ids=('slot.q1', 'slot.box.left', 'slot.box.right')), Region(id='region.answer_explanation', role='supporting', flow='absolute', slot_ids=('slot.hint.8', 'slot.hint.1000', 'slot.calc.top', 'slot.calc.minus', 'slot.calc.bottom', 'slot.calc.rule', 'slot.calc.arrow', 'slot.calc.compare'))), slots=(TextSlot(id='slot.q1', prompt='', text='93. 무게가 더 무거운 쪽을 선택하세요.', style_role='question', x=20.0, y=18.0, font_size=28), RectSlot(id='slot.box.left', prompt='', x=160.0, y=90.0, width=270.0, height=82.0, fill='#BFE3F7'), RectSlot(id='slot.box.right', prompt='', x=530.0, y=90.0, width=270.0, height=82.0, fill='#BFE3F7'), TextSlot(id='slot.box.left.text', prompt='', text='9 kg - 2 kg 600 g', style_role='body', x=195.0, y=139.0, font_size=28), TextSlot(id='slot.box.right.text', prompt='', text='7 kg 600 g', style_role='body', x=603.0, y=139.0, font_size=28), TextSlot(id='slot.hint.8', prompt='', text='8', style_role='body', x=47.0, y=330.0, font_size=24), TextSlot(id='slot.hint.1000', prompt='', text='1000', style_role='body', x=141.0, y=330.0, font_size=24), TextSlot(id='slot.calc.top', prompt='', text='9 kg', style_role='body', x=47.0, y=375.0, font_size=26), TextSlot(id='slot.calc.minus', prompt='', text='− 2 kg 600 g', style_role='body', x=31.0, y=418.0, font_size=26), LineSlot(id='slot.calc.rule', prompt='', x1=30.0, y1=437.0, x2=228.0, y2=437.0, stroke='#222222', stroke_width=1.2), TextSlot(id='slot.calc.bottom', prompt='', text='6 kg 400 g', style_role='body', x=47.0, y=478.0, font_size=26), TextSlot(id='slot.calc.arrow', prompt='', text='→', style_role='body', x=280.0, y=478.0, font_size=30), TextSlot(id='slot.calc.compare', prompt='', text='6 kg 400 g < 7 kg 600 g', style_role='body', x=318.0, y=478.0, font_size=26)), diagrams=(), groups=(), constraints=(), tags=())
+    return ProblemTemplate(
+        id="S3_초등_3_008849",
+        title="무게가 더 무거운 쪽을 선택하세요",
+        canvas=Canvas(width=820, height=540, coordinate_mode="logical"),
+        regions=(
+            Region(
+                id="region.stem",
+                role="stem",
+                flow="absolute",
+                slot_ids=("slot.q1", "slot.box.left", "slot.box.right"),
+            ),
+            Region(
+                id="region.answer_explanation",
+                role="supporting",
+                flow="absolute",
+                slot_ids=(
+                    "slot.hint.8",
+                    "slot.hint.1000",
+                    "slot.calc.top",
+                    "slot.calc.minus",
+                    "slot.calc.bottom",
+                    "slot.calc.rule",
+                    "slot.calc.arrow",
+                    "slot.calc.compare",
+                ),
+            ),
+        ),
+        slots=(
+            TextSlot(
+                id="slot.q1",
+                prompt="",
+                text="93. 무게가 더 무거운 쪽을 선택하세요.",
+                style_role="question",
+                x=20.0,
+                y=18.0,
+                font_size=28,
+            ),
+            RectSlot(
+                id="slot.box.left",
+                prompt="",
+                x=160.0,
+                y=90.0,
+                width=270.0,
+                height=82.0,
+                fill="#BFE3F7",
+            ),
+            RectSlot(
+                id="slot.box.right",
+                prompt="",
+                x=530.0,
+                y=90.0,
+                width=270.0,
+                height=82.0,
+                fill="#BFE3F7",
+            ),
+            TextSlot(
+                id="slot.box.left.text",
+                prompt="",
+                text="9 kg - 2 kg 600 g",
+                style_role="body",
+                x=195.0,
+                y=139.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.box.right.text",
+                prompt="",
+                text="7 kg 600 g",
+                style_role="body",
+                x=603.0,
+                y=139.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.hint.8",
+                prompt="",
+                text="8",
+                style_role="body",
+                x=47.0,
+                y=330.0,
+                font_size=24,
+            ),
+            TextSlot(
+                id="slot.hint.1000",
+                prompt="",
+                text="1000",
+                style_role="body",
+                x=141.0,
+                y=330.0,
+                font_size=24,
+            ),
+            TextSlot(
+                id="slot.calc.top",
+                prompt="",
+                text="9 kg",
+                style_role="body",
+                x=47.0,
+                y=375.0,
+                font_size=26,
+            ),
+            TextSlot(
+                id="slot.calc.minus",
+                prompt="",
+                text="− 2 kg 600 g",
+                style_role="body",
+                x=31.0,
+                y=418.0,
+                font_size=26,
+            ),
+            LineSlot(
+                id="slot.calc.rule",
+                prompt="",
+                x1=30.0,
+                y1=437.0,
+                x2=228.0,
+                y2=437.0,
+                stroke="#222222",
+                stroke_width=1.2,
+            ),
+            TextSlot(
+                id="slot.calc.bottom",
+                prompt="",
+                text="6 kg 400 g",
+                style_role="body",
+                x=47.0,
+                y=478.0,
+                font_size=26,
+            ),
+            TextSlot(
+                id="slot.calc.arrow",
+                prompt="",
+                text="→",
+                style_role="body",
+                x=280.0,
+                y=478.0,
+                font_size=30,
+            ),
+            TextSlot(
+                id="slot.calc.compare",
+                prompt="",
+                text="6 kg 400 g < 7 kg 600 g",
+                style_role="body",
+                x=318.0,
+                y=478.0,
+                font_size=26,
+            ),
+        ),
+        diagrams=(),
+        groups=(),
+        constraints=(),
+        tags=(),
+    )
+
+
 PROBLEM_TEMPLATE = build_problem_template()
 
-SEMANTIC_OVERRIDE = {'problem_id': 'S3_초등_3_008849', 'problem_type': '무게 비교', 'metadata': {'language': 'ko', 'question': '무게가 더 무거운 쪽을 선택하는 문제', 'instruction': '무게가 더 무거운 쪽을 선택하세요.'}, 'domain': {'objects': [{'id': 'obj.left_expression', 'type': 'weight_expression', 'text': '9 kg - 2 kg 600 g'}, {'id': 'obj.right_weight', 'type': 'weight', 'text': '7 kg 600 g'}], 'relations': [], 'problem_solving': {'understand': {'given_refs': ['obj.left_expression', 'obj.right_weight'], 'target_ref': 'answer.target', 'condition_refs': ['rel.compare_weights']}, 'plan': {'method': 'weight_compare', 'description': '왼쪽 식의 무게를 계산한 뒤 오른쪽 무게와 비교한다.'}, 'execute': {'expected_operations': ['weight_subtraction', 'compare_values']}, 'review': {'check_methods': ['comparison_sign_check']}}}, 'answer': {'blanks': [], 'choices': [], 'answer_key': [], 'target': {'type': 'selected_weight', 'description': '더 무거운 쪽'}, 'value': '7 kg 600 g', 'unit': 'kg g'}}
+SEMANTIC_OVERRIDE = {
+    "problem_id": "S3_초등_3_008849",
+    "problem_type": "무게 비교",
+    "metadata": {
+        "language": "ko",
+        "question": "무게가 더 무거운 쪽을 선택하는 문제",
+        "instruction": "무게가 더 무거운 쪽을 선택하세요.",
+    },
+    "domain": {
+        "objects": [
+            {"id": "obj.left_expression", "type": "weight_expression", "text": "9 kg - 2 kg 600 g"},
+            {"id": "obj.right_weight", "type": "weight", "text": "7 kg 600 g"},
+        ],
+        "relations": [],
+        "problem_solving": {
+            "understand": {
+                "given_refs": ["obj.left_expression", "obj.right_weight"],
+                "target_ref": "answer.target",
+                "condition_refs": ["rel.compare_weights"],
+            },
+            "plan": {
+                "method": "weight_compare",
+                "description": "왼쪽 식의 무게를 계산한 뒤 오른쪽 무게와 비교한다.",
+            },
+            "execute": {"expected_operations": ["weight_subtraction", "compare_values"]},
+            "review": {"check_methods": ["comparison_sign_check"]},
+        },
+    },
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {"type": "selected_weight", "description": "더 무거운 쪽"},
+        "value": "7 kg 600 g",
+        "unit": "kg g",
+    },
+}
 
-SOLVABLE = {'schema': 'modu.solvable.v1.1', 'problem_id': 'S3_초등_3_008849', 'problem_type': '무게 비교', 'inputs': {'total_ticks': 0, 'target_label': '더 무거운 쪽', 'target_ticks': 0, 'target_count': 2, 'unit': 'kg g'}, 'given': [{'ref': 'obj.left_expression', 'value': '9 kg - 2 kg 600 g'}, {'ref': 'obj.right_weight', 'value': '7 kg 600 g'}], 'target': {'ref': 'answer.target', 'type': 'selected_weight'}, 'method': 'weight_compare', 'plan': ['왼쪽 식의 무게를 먼저 계산한다.', '오른쪽 무게와 크기를 비교한다.', '더 무거운 쪽을 확인한다.'], 'steps': [{'id': 'step.1', 'expr': '9 kg - 2 kg 600 g', 'value': '6 kg 400 g'}, {'id': 'step.2', 'expr': '6 kg 400 g < 7 kg 600 g', 'value': True}], 'checks': [{'id': 'check.1', 'expr': '비교식이 참인지 확인', 'expected': True, 'actual': True, 'pass': True}], 'answer': {'blanks': [], 'choices': [], 'answer_key': [], 'target': {'type': 'selected_weight', 'description': '더 무거운 쪽'}, 'value': '7 kg 600 g', 'unit': 'kg g'}}
+SOLVABLE = {
+    "schema": "modu.solvable.v1.1",
+    "problem_id": "S3_초등_3_008849",
+    "problem_type": "무게 비교",
+    "inputs": {
+        "total_ticks": 0,
+        "target_label": "더 무거운 쪽",
+        "target_ticks": 0,
+        "target_count": 2,
+        "unit": "kg g",
+    },
+    "given": [
+        {"ref": "obj.left_expression", "value": "9 kg - 2 kg 600 g"},
+        {"ref": "obj.right_weight", "value": "7 kg 600 g"},
+    ],
+    "target": {"ref": "answer.target", "type": "selected_weight"},
+    "method": "weight_compare",
+    "plan": [
+        "왼쪽 식의 무게를 먼저 계산한다.",
+        "오른쪽 무게와 크기를 비교한다.",
+        "더 무거운 쪽을 확인한다.",
+    ],
+    "steps": [
+        {"id": "step.1", "expr": "9 kg - 2 kg 600 g", "value": "6 kg 400 g"},
+        {"id": "step.2", "expr": "6 kg 400 g < 7 kg 600 g", "value": True},
+    ],
+    "checks": [
+        {
+            "id": "check.1",
+            "expr": "비교식이 참인지 확인",
+            "expected": True,
+            "actual": True,
+            "pass": True,
+        }
+    ],
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {"type": "selected_weight", "description": "더 무거운 쪽"},
+        "value": "7 kg 600 g",
+        "unit": "kg g",
+    },
+}

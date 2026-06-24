@@ -1,10 +1,255 @@
 from __future__ import annotations
 from modu_math.dsl import Canvas, ProblemTemplate, Region, TextSlot, LineSlot
 
+
 def build_problem_template() -> ProblemTemplate:
-    return ProblemTemplate(id='S3_초등_3_008792', title='리터 표기 선택', canvas=Canvas(width=760, height=230, coordinate_mode='logical'), regions=(Region(id='region.stem', role='stem', flow='absolute', slot_ids=('slot.q.symbol', 'slot.q.number', 'slot.q.text1', 'slot.opt1', 'slot.opt2', 'slot.opt3', 'slot.guide1a', 'slot.guide1b', 'slot.guide2a', 'slot.guide2b', 'slot.guide3a', 'slot.guide3b')),), slots=(TextSlot(id='slot.q.symbol', prompt='', text='□', style_role='question', x=7.0, y=31.0, font_size=22), TextSlot(id='slot.q.number', prompt='', text='17.', style_role='question', x=41.0, y=32.0, font_size=28), TextSlot(id='slot.q.text1', prompt='', text='2 L를 바르게 쓴 것을 선택해 보세요.', style_role='question', x=82.0, y=32.0, font_size=28), TextSlot(id='slot.opt1', prompt='', text='2L', style_role='body', x=250.0, y=98.0, font_size=62), TextSlot(id='slot.opt2', prompt='', text='2L', style_role='body', x=570.0, y=98.0, font_size=62), TextSlot(id='slot.opt3', prompt='', text='2L', style_role='body', x=80.0, y=155.0, font_size=62), LineSlot(id='slot.guide1a', prompt='', x1=195.0, y1=55.0, x2=401.0, y2=55.0, stroke='#8ECDF4', stroke_dasharray='5 3', stroke_width=1.2), LineSlot(id='slot.guide1b', prompt='', x1=195.0, y1=68.0, x2=401.0, y2=68.0, stroke='#8ECDF4', stroke_dasharray='5 3', stroke_width=1.2), LineSlot(id='slot.guide2a', prompt='', x1=511.0, y1=55.0, x2=717.0, y2=55.0, stroke='#8ECDF4', stroke_dasharray='5 3', stroke_width=1.2), LineSlot(id='slot.guide2b', prompt='', x1=511.0, y1=68.0, x2=717.0, y2=68.0, stroke='#8ECDF4', stroke_dasharray='5 3', stroke_width=1.2), LineSlot(id='slot.guide3a', prompt='', x1=44.0, y1=116.0, x2=244.0, y2=116.0, stroke='#8ECDF4', stroke_dasharray='5 3', stroke_width=1.2), LineSlot(id='slot.guide3b', prompt='', x1=44.0, y1=129.0, x2=244.0, y2=129.0, stroke='#8ECDF4', stroke_dasharray='5 3', stroke_width=1.2)), diagrams=(), groups=(), constraints=(), tags=())
+    return ProblemTemplate(
+        id="S3_초등_3_008792",
+        title="리터 표기 선택",
+        canvas=Canvas(width=760, height=230, coordinate_mode="logical"),
+        regions=(
+            Region(
+                id="region.stem",
+                role="stem",
+                flow="absolute",
+                slot_ids=(
+                    "slot.q.symbol",
+                    "slot.q.number",
+                    "slot.q.text1",
+                    "slot.opt1",
+                    "slot.opt2",
+                    "slot.opt3",
+                    "slot.guide1a",
+                    "slot.guide1b",
+                    "slot.guide2a",
+                    "slot.guide2b",
+                    "slot.guide3a",
+                    "slot.guide3b",
+                ),
+            ),
+        ),
+        slots=(
+            TextSlot(
+                id="slot.q.symbol",
+                prompt="",
+                text="□",
+                style_role="question",
+                x=7.0,
+                y=31.0,
+                font_size=22,
+            ),
+            TextSlot(
+                id="slot.q.number",
+                prompt="",
+                text="17.",
+                style_role="question",
+                x=41.0,
+                y=32.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.q.text1",
+                prompt="",
+                text="2 L를 바르게 쓴 것을 선택해 보세요.",
+                style_role="question",
+                x=82.0,
+                y=32.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.opt1",
+                prompt="",
+                text="2L",
+                style_role="body",
+                x=250.0,
+                y=98.0,
+                font_size=62,
+            ),
+            TextSlot(
+                id="slot.opt2",
+                prompt="",
+                text="2L",
+                style_role="body",
+                x=570.0,
+                y=98.0,
+                font_size=62,
+            ),
+            TextSlot(
+                id="slot.opt3",
+                prompt="",
+                text="2L",
+                style_role="body",
+                x=80.0,
+                y=155.0,
+                font_size=62,
+            ),
+            LineSlot(
+                id="slot.guide1a",
+                prompt="",
+                x1=195.0,
+                y1=55.0,
+                x2=401.0,
+                y2=55.0,
+                stroke="#8ECDF4",
+                stroke_dasharray="5 3",
+                stroke_width=1.2,
+            ),
+            LineSlot(
+                id="slot.guide1b",
+                prompt="",
+                x1=195.0,
+                y1=68.0,
+                x2=401.0,
+                y2=68.0,
+                stroke="#8ECDF4",
+                stroke_dasharray="5 3",
+                stroke_width=1.2,
+            ),
+            LineSlot(
+                id="slot.guide2a",
+                prompt="",
+                x1=511.0,
+                y1=55.0,
+                x2=717.0,
+                y2=55.0,
+                stroke="#8ECDF4",
+                stroke_dasharray="5 3",
+                stroke_width=1.2,
+            ),
+            LineSlot(
+                id="slot.guide2b",
+                prompt="",
+                x1=511.0,
+                y1=68.0,
+                x2=717.0,
+                y2=68.0,
+                stroke="#8ECDF4",
+                stroke_dasharray="5 3",
+                stroke_width=1.2,
+            ),
+            LineSlot(
+                id="slot.guide3a",
+                prompt="",
+                x1=44.0,
+                y1=116.0,
+                x2=244.0,
+                y2=116.0,
+                stroke="#8ECDF4",
+                stroke_dasharray="5 3",
+                stroke_width=1.2,
+            ),
+            LineSlot(
+                id="slot.guide3b",
+                prompt="",
+                x1=44.0,
+                y1=129.0,
+                x2=244.0,
+                y2=129.0,
+                stroke="#8ECDF4",
+                stroke_dasharray="5 3",
+                stroke_width=1.2,
+            ),
+        ),
+        diagrams=(),
+        groups=(),
+        constraints=(),
+        tags=(),
+    )
+
+
 PROBLEM_TEMPLATE = build_problem_template()
 
-SEMANTIC_OVERRIDE = {'problem_id': 'S3_초등_3_008792', 'problem_type': 'unit_notation_choice', 'metadata': {'language': 'ko', 'question': '2 L를 바르게 쓴 것을 선택해 보세요.', 'instruction': '올바른 단위 표기를 고르는 문제이다.'}, 'domain': {'objects': [{'id': 'obj.unit_liter', 'type': 'unit', 'name': '리터'}, {'id': 'obj.quantity', 'type': 'quantity', 'value': 2, 'unit': 'L'}], 'relations': [], 'problem_solving': {'understand': {'given_refs': ['obj.quantity', 'obj.unit_liter'], 'target_ref': 'answer.target', 'condition_refs': ['rel.correct_unit_notation']}, 'plan': {'method': 'notation_selection', 'description': '리터의 바른 표기 규칙을 확인해 보이는 보기 중 알맞은 표기를 고른다.'}, 'execute': {'expected_operations': ['identify_unit_symbol', 'compare_notation_with_rule', 'select_correct_example']}, 'review': {'check_methods': ['rule_match_check']}}}, 'answer': {'blanks': [], 'choices': [], 'answer_key': [], 'target': {'type': 'correct_notation', 'description': '2L의 바른 표기'}, 'value': 0, 'unit': ''}}
+SEMANTIC_OVERRIDE = {
+    "problem_id": "S3_초등_3_008792",
+    "problem_type": "unit_notation_choice",
+    "metadata": {
+        "language": "ko",
+        "question": "2 L를 바르게 쓴 것을 선택해 보세요.",
+        "instruction": "올바른 단위 표기를 고르는 문제이다.",
+    },
+    "domain": {
+        "objects": [
+            {"id": "obj.unit_liter", "type": "unit", "name": "리터"},
+            {"id": "obj.quantity", "type": "quantity", "value": 2, "unit": "L"},
+        ],
+        "relations": [],
+        "problem_solving": {
+            "understand": {
+                "given_refs": ["obj.quantity", "obj.unit_liter"],
+                "target_ref": "answer.target",
+                "condition_refs": ["rel.correct_unit_notation"],
+            },
+            "plan": {
+                "method": "notation_selection",
+                "description": "리터의 바른 표기 규칙을 확인해 보이는 보기 중 알맞은 표기를 고른다.",
+            },
+            "execute": {
+                "expected_operations": [
+                    "identify_unit_symbol",
+                    "compare_notation_with_rule",
+                    "select_correct_example",
+                ]
+            },
+            "review": {"check_methods": ["rule_match_check"]},
+        },
+    },
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {"type": "correct_notation", "description": "2L의 바른 표기"},
+        "value": 0,
+        "unit": "",
+    },
+}
 
-SOLVABLE = {'schema': 'modu.solvable.v1.1', 'problem_id': 'S3_초등_3_008792', 'problem_type': 'unit_notation_choice', 'inputs': {'total_ticks': 0, 'target_label': '2L의 바른 표기', 'target_ticks': 0, 'target_count': 1, 'unit': ''}, 'given': [{'ref': 'obj.quantity', 'value': {'value': 2, 'unit': 'L'}}, {'ref': 'rel.correct_unit_notation', 'value': '리터는 숫자와 같은 크기의 알파벳 대문자 L로 쓴다.'}], 'target': {'ref': 'answer.target', 'type': 'correct_notation'}, 'method': 'notation_selection', 'plan': ['리터의 표기 규칙을 확인한다.', '보기 중 숫자 2와 대문자 L이 바르게 붙은 표기를 찾는다.'], 'steps': [{'id': 'step.1', 'expr': '리터의 표기 규칙 확인', 'value': '숫자와 같은 크기의 알파벳 대문자 L'}, {'id': 'step.2', 'expr': '보기의 표기 확인', 'value': '2L'}], 'checks': [{'id': 'check.1', 'expr': '표기 규칙과 일치하는가', 'expected': True, 'actual': True, 'pass': True}], 'answer': {'blanks': [], 'choices': [], 'answer_key': [], 'target': {'type': 'correct_notation', 'description': '2L의 바른 표기'}, 'value': 0, 'unit': ''}}
+SOLVABLE = {
+    "schema": "modu.solvable.v1.1",
+    "problem_id": "S3_초등_3_008792",
+    "problem_type": "unit_notation_choice",
+    "inputs": {
+        "total_ticks": 0,
+        "target_label": "2L의 바른 표기",
+        "target_ticks": 0,
+        "target_count": 1,
+        "unit": "",
+    },
+    "given": [
+        {"ref": "obj.quantity", "value": {"value": 2, "unit": "L"}},
+        {
+            "ref": "rel.correct_unit_notation",
+            "value": "리터는 숫자와 같은 크기의 알파벳 대문자 L로 쓴다.",
+        },
+    ],
+    "target": {"ref": "answer.target", "type": "correct_notation"},
+    "method": "notation_selection",
+    "plan": [
+        "리터의 표기 규칙을 확인한다.",
+        "보기 중 숫자 2와 대문자 L이 바르게 붙은 표기를 찾는다.",
+    ],
+    "steps": [
+        {
+            "id": "step.1",
+            "expr": "리터의 표기 규칙 확인",
+            "value": "숫자와 같은 크기의 알파벳 대문자 L",
+        },
+        {"id": "step.2", "expr": "보기의 표기 확인", "value": "2L"},
+    ],
+    "checks": [
+        {
+            "id": "check.1",
+            "expr": "표기 규칙과 일치하는가",
+            "expected": True,
+            "actual": True,
+            "pass": True,
+        }
+    ],
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {"type": "correct_notation", "description": "2L의 바른 표기"},
+        "value": 0,
+        "unit": "",
+    },
+}

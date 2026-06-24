@@ -1,10 +1,164 @@
 from __future__ import annotations
 from modu_math.dsl import Canvas, ProblemTemplate, Region, RectSlot, TextSlot
 
+
 def build_problem_template() -> ProblemTemplate:
-    return ProblemTemplate(id='S3_초등_3_008994', title='알맞은 말을 선택하세요', canvas=Canvas(width=840.0, height=360.0, coordinate_mode='logical'), regions=(Region(id='region.header', role='stem', flow='absolute', slot_ids=('slot.header',)), Region(id='region.figure', role='diagram', flow='absolute', slot_ids=('slot.figure.square', 'slot.figure.corner1', 'slot.figure.corner2', 'slot.figure.corner3', 'slot.figure.corner4')), Region(id='region.body', role='stem', flow='absolute', slot_ids=('slot.body.box', 'slot.body.line1', 'slot.body.line2')), Region(id='region.footer', role='answer', flow='absolute', slot_ids=())), slots=(TextSlot(id='slot.header', prompt='', text='□ 32. 알맞은 말을 선택하세요.', style_role='question', x=8.0, y=22.0, font_size=28), RectSlot(id='slot.figure.square', prompt='', x=383.0, y=46.0, width=103.0, height=103.0), RectSlot(id='slot.figure.corner1', prompt='', x=385.0, y=48.0, width=12.0, height=12.0), RectSlot(id='slot.figure.corner2', prompt='', x=472.0, y=48.0, width=12.0, height=12.0), RectSlot(id='slot.figure.corner3', prompt='', x=385.0, y=137.0, width=12.0, height=12.0), RectSlot(id='slot.figure.corner4', prompt='', x=472.0, y=137.0, width=12.0, height=12.0), RectSlot(id='slot.body.box', prompt='', x=35.0, y=151.0, width=770.0, height=113.0), TextSlot(id='slot.body.line1', prompt='', text='( 한, 두, 네 ) 각이 모두 직각이고 ( 한, 두, 네 ) 변의 길이가', style_role='question', x=52.0, y=196.0, font_size=28), TextSlot(id='slot.body.line2', prompt='', text='모두 같은 사각형을 정사각형이라고 합니다.', style_role='question', x=52.0, y=232.0, font_size=28)), diagrams=(), groups=(), constraints=(), tags=())
+    return ProblemTemplate(
+        id="S3_초등_3_008994",
+        title="알맞은 말을 선택하세요",
+        canvas=Canvas(width=840.0, height=360.0, coordinate_mode="logical"),
+        regions=(
+            Region(id="region.header", role="stem", flow="absolute", slot_ids=("slot.header",)),
+            Region(
+                id="region.figure",
+                role="diagram",
+                flow="absolute",
+                slot_ids=(
+                    "slot.figure.square",
+                    "slot.figure.corner1",
+                    "slot.figure.corner2",
+                    "slot.figure.corner3",
+                    "slot.figure.corner4",
+                ),
+            ),
+            Region(
+                id="region.body",
+                role="stem",
+                flow="absolute",
+                slot_ids=("slot.body.box", "slot.body.line1", "slot.body.line2"),
+            ),
+            Region(id="region.footer", role="answer", flow="absolute", slot_ids=()),
+        ),
+        slots=(
+            TextSlot(
+                id="slot.header",
+                prompt="",
+                text="□ 32. 알맞은 말을 선택하세요.",
+                style_role="question",
+                x=8.0,
+                y=22.0,
+                font_size=28,
+            ),
+            RectSlot(
+                id="slot.figure.square", prompt="", x=383.0, y=46.0, width=103.0, height=103.0
+            ),
+            RectSlot(id="slot.figure.corner1", prompt="", x=385.0, y=48.0, width=12.0, height=12.0),
+            RectSlot(id="slot.figure.corner2", prompt="", x=472.0, y=48.0, width=12.0, height=12.0),
+            RectSlot(
+                id="slot.figure.corner3", prompt="", x=385.0, y=137.0, width=12.0, height=12.0
+            ),
+            RectSlot(
+                id="slot.figure.corner4", prompt="", x=472.0, y=137.0, width=12.0, height=12.0
+            ),
+            RectSlot(id="slot.body.box", prompt="", x=35.0, y=151.0, width=770.0, height=113.0),
+            TextSlot(
+                id="slot.body.line1",
+                prompt="",
+                text="( 한, 두, 네 ) 각이 모두 직각이고 ( 한, 두, 네 ) 변의 길이가",
+                style_role="question",
+                x=52.0,
+                y=196.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.body.line2",
+                prompt="",
+                text="모두 같은 사각형을 정사각형이라고 합니다.",
+                style_role="question",
+                x=52.0,
+                y=232.0,
+                font_size=28,
+            ),
+        ),
+        diagrams=(),
+        groups=(),
+        constraints=(),
+        tags=(),
+    )
+
+
 PROBLEM_TEMPLATE = build_problem_template()
 
-SEMANTIC_OVERRIDE = {'problem_id': 'S3_초등_3_008994', 'problem_type': 'definition_selection', 'metadata': {'language': 'ko', 'question': '알맞은 말을 선택하세요.', 'instruction': '정사각형의 정의에서 알맞은 말을 고르는 문제'}, 'domain': {'objects': [{'id': 'obj.square', 'type': 'shape', 'name': '정사각형'}, {'id': 'obj.choice_1', 'type': 'choice_group', 'candidates': ['한', '두', '네']}, {'id': 'obj.choice_2', 'type': 'choice_group', 'candidates': ['한', '두', '네']}], 'relations': [], 'problem_solving': {'understand': {'given_refs': ['obj.choice_1', 'obj.choice_2', 'rel.definition'], 'target_ref': 'answer.target', 'condition_refs': ['rel.definition']}, 'plan': {'method': 'definition_matching', 'description': '정사각형의 정의에 맞는 말을 고른다.'}, 'execute': {'expected_operations': ['문장의 조건 확인', '정의에 맞는 선택지 판단']}, 'review': {'check_methods': ['정의 문장과 선택지 일치 여부 확인']}}}, 'answer': {'blanks': [], 'choices': [], 'answer_key': [], 'target': {'type': 'selected_words', 'description': '정사각형의 정의에 들어갈 알맞은 말'}, 'value': 0, 'unit': ''}}
+SEMANTIC_OVERRIDE = {
+    "problem_id": "S3_초등_3_008994",
+    "problem_type": "definition_selection",
+    "metadata": {
+        "language": "ko",
+        "question": "알맞은 말을 선택하세요.",
+        "instruction": "정사각형의 정의에서 알맞은 말을 고르는 문제",
+    },
+    "domain": {
+        "objects": [
+            {"id": "obj.square", "type": "shape", "name": "정사각형"},
+            {"id": "obj.choice_1", "type": "choice_group", "candidates": ["한", "두", "네"]},
+            {"id": "obj.choice_2", "type": "choice_group", "candidates": ["한", "두", "네"]},
+        ],
+        "relations": [],
+        "problem_solving": {
+            "understand": {
+                "given_refs": ["obj.choice_1", "obj.choice_2", "rel.definition"],
+                "target_ref": "answer.target",
+                "condition_refs": ["rel.definition"],
+            },
+            "plan": {
+                "method": "definition_matching",
+                "description": "정사각형의 정의에 맞는 말을 고른다.",
+            },
+            "execute": {"expected_operations": ["문장의 조건 확인", "정의에 맞는 선택지 판단"]},
+            "review": {"check_methods": ["정의 문장과 선택지 일치 여부 확인"]},
+        },
+    },
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {"type": "selected_words", "description": "정사각형의 정의에 들어갈 알맞은 말"},
+        "value": 0,
+        "unit": "",
+    },
+}
 
-SOLVABLE = {'schema': 'modu.solvable.v1.1', 'problem_id': 'S3_초등_3_008994', 'problem_type': 'definition_selection', 'inputs': {'total_ticks': 0, 'target_label': '정사각형의 정의', 'target_ticks': 0, 'target_count': 2, 'unit': ''}, 'given': [{'ref': 'rel.definition', 'value': '네 각이 모두 직각이고 네 변의 길이가 모두 같은 사각형'}, {'ref': 'obj.choice_1', 'value': ['한', '두', '네']}, {'ref': 'obj.choice_2', 'value': ['한', '두', '네']}], 'target': {'ref': 'answer.target', 'type': 'selected_words'}, 'method': 'definition_matching', 'plan': ['정사각형의 정의를 읽고 빈칸에 들어갈 말을 고른다.'], 'steps': [{'id': 'step.1', 'expr': '정사각형의 조건은 네 각이 모두 직각, 네 변의 길이가 모두 같음', 'value': '네, 네'}], 'checks': [{'id': 'check.1', 'expr': '정의와 선택한 말이 일치하는가', 'expected': '네, 네', 'actual': '네, 네', 'pass': True}], 'answer': {'blanks': [], 'choices': [], 'answer_key': [], 'target': {'type': 'selected_words', 'description': '정사각형의 정의에 들어갈 알맞은 말'}, 'value': 0, 'unit': ''}}
+SOLVABLE = {
+    "schema": "modu.solvable.v1.1",
+    "problem_id": "S3_초등_3_008994",
+    "problem_type": "definition_selection",
+    "inputs": {
+        "total_ticks": 0,
+        "target_label": "정사각형의 정의",
+        "target_ticks": 0,
+        "target_count": 2,
+        "unit": "",
+    },
+    "given": [
+        {"ref": "rel.definition", "value": "네 각이 모두 직각이고 네 변의 길이가 모두 같은 사각형"},
+        {"ref": "obj.choice_1", "value": ["한", "두", "네"]},
+        {"ref": "obj.choice_2", "value": ["한", "두", "네"]},
+    ],
+    "target": {"ref": "answer.target", "type": "selected_words"},
+    "method": "definition_matching",
+    "plan": ["정사각형의 정의를 읽고 빈칸에 들어갈 말을 고른다."],
+    "steps": [
+        {
+            "id": "step.1",
+            "expr": "정사각형의 조건은 네 각이 모두 직각, 네 변의 길이가 모두 같음",
+            "value": "네, 네",
+        }
+    ],
+    "checks": [
+        {
+            "id": "check.1",
+            "expr": "정의와 선택한 말이 일치하는가",
+            "expected": "네, 네",
+            "actual": "네, 네",
+            "pass": True,
+        }
+    ],
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {"type": "selected_words", "description": "정사각형의 정의에 들어갈 알맞은 말"},
+        "value": 0,
+        "unit": "",
+    },
+}

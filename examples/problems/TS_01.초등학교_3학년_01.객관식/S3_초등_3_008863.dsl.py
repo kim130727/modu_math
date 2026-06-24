@@ -1,10 +1,221 @@
 from __future__ import annotations
 from modu_math.dsl import Canvas, ProblemTemplate, Region, TextSlot
 
+
 def build_problem_template() -> ProblemTemplate:
-    return ProblemTemplate(id='S3_초등_3_008863', title='L와 mL 사이의 관계', canvas=Canvas(width=776, height=338, coordinate_mode='logical'), regions=(Region(id='region.stem', role='stem', flow='absolute', slot_ids=('slot.qnum', 'slot.question')), Region(id='region.options.left', role='choice', flow='absolute', slot_ids=('slot.opt1', 'slot.opt3', 'slot.opt5')), Region(id='region.options.right', role='choice', flow='absolute', slot_ids=('slot.opt2', 'slot.opt4')), Region(id='region.answer', role='explanation', flow='absolute', slot_ids=())), slots=(TextSlot(id='slot.qnum', prompt='', text='9.', style_role='question', x=12.0, y=26.0, font_size=28), TextSlot(id='slot.question', prompt='', text='L와 mL 사이의 관계를 잘못 나타낸 것은 어느 것일까요?', style_role='question', x=56.0, y=26.0, font_size=28), TextSlot(id='slot.opt1', prompt='', text='① 1900mL = 1L 900mL', style_role='choice', x=18.0, y=75.0, font_size=28), TextSlot(id='slot.opt2', prompt='', text='② 4005mL = 4L 5mL', style_role='choice', x=465.0, y=75.0, font_size=28), TextSlot(id='slot.opt3', prompt='', text='③ 1L 900mL = 1900mL', style_role='choice', x=18.0, y=125.0, font_size=28), TextSlot(id='slot.opt4', prompt='', text='④ 6L 20mL = 6020mL', style_role='choice', x=465.0, y=125.0, font_size=28), TextSlot(id='slot.opt5', prompt='', text='⑤ 5L 100mL = 5010mL', style_role='choice', x=18.0, y=174.0, font_size=28)), diagrams=(), groups=(), constraints=(), tags=())
+    return ProblemTemplate(
+        id="S3_초등_3_008863",
+        title="L와 mL 사이의 관계",
+        canvas=Canvas(width=776, height=338, coordinate_mode="logical"),
+        regions=(
+            Region(
+                id="region.stem",
+                role="stem",
+                flow="absolute",
+                slot_ids=("slot.qnum", "slot.question"),
+            ),
+            Region(
+                id="region.options.left",
+                role="choice",
+                flow="absolute",
+                slot_ids=("slot.opt1", "slot.opt3", "slot.opt5"),
+            ),
+            Region(
+                id="region.options.right",
+                role="choice",
+                flow="absolute",
+                slot_ids=("slot.opt2", "slot.opt4"),
+            ),
+            Region(id="region.answer", role="explanation", flow="absolute", slot_ids=()),
+        ),
+        slots=(
+            TextSlot(
+                id="slot.qnum",
+                prompt="",
+                text="9.",
+                style_role="question",
+                x=12.0,
+                y=26.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.question",
+                prompt="",
+                text="L와 mL 사이의 관계를 잘못 나타낸 것은 어느 것일까요?",
+                style_role="question",
+                x=56.0,
+                y=26.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.opt1",
+                prompt="",
+                text="① 1900mL = 1L 900mL",
+                style_role="choice",
+                x=18.0,
+                y=75.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.opt2",
+                prompt="",
+                text="② 4005mL = 4L 5mL",
+                style_role="choice",
+                x=465.0,
+                y=75.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.opt3",
+                prompt="",
+                text="③ 1L 900mL = 1900mL",
+                style_role="choice",
+                x=18.0,
+                y=125.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.opt4",
+                prompt="",
+                text="④ 6L 20mL = 6020mL",
+                style_role="choice",
+                x=465.0,
+                y=125.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.opt5",
+                prompt="",
+                text="⑤ 5L 100mL = 5010mL",
+                style_role="choice",
+                x=18.0,
+                y=174.0,
+                font_size=28,
+            ),
+        ),
+        diagrams=(),
+        groups=(),
+        constraints=(),
+        tags=(),
+    )
+
+
 PROBLEM_TEMPLATE = build_problem_template()
 
-SEMANTIC_OVERRIDE = {'problem_id': 'S3_초등_3_008863', 'problem_type': 'multiple_choice', 'metadata': {'language': 'ko', 'question': 'L와 mL 사이의 관계를 잘못 나타낸 것은 어느 것일까요?', 'instruction': '정답을 고르시오.'}, 'domain': {'objects': [{'id': 'obj.unit_L', 'type': 'unit', 'name': 'L'}, {'id': 'obj.unit_mL', 'type': 'unit', 'name': 'mL'}, {'id': 'obj.choice_1', 'type': 'equation_choice', 'label': '①'}, {'id': 'obj.choice_2', 'type': 'equation_choice', 'label': '②'}, {'id': 'obj.choice_3', 'type': 'equation_choice', 'label': '③'}, {'id': 'obj.choice_4', 'type': 'equation_choice', 'label': '④'}, {'id': 'obj.choice_5', 'type': 'equation_choice', 'label': '⑤'}], 'relations': [], 'problem_solving': {'understand': {'given_refs': ['obj.choice_1', 'obj.choice_2', 'obj.choice_3', 'obj.choice_4', 'obj.choice_5'], 'target_ref': 'answer.target', 'condition_refs': ['rel.unit_conversion', 'rel.choice_5_misrepresents']}, 'plan': {'method': 'equation_verification', 'description': '각 보기의 등식이 L와 mL의 관계를 바르게 나타내는지 확인한다.'}, 'execute': {'expected_operations': ['read_each_choice', 'compare_equations', 'identify_incorrect_choice']}, 'review': {'check_methods': ['compare_with_unit_conversion_rule']}}}, 'answer': {'blanks': [], 'choices': [], 'answer_key': [], 'target': {'type': 'incorrect_choice', 'description': 'L와 mL 사이의 관계를 잘못 나타낸 보기'}, 'value': 5, 'unit': ''}}
+SEMANTIC_OVERRIDE = {
+    "problem_id": "S3_초등_3_008863",
+    "problem_type": "multiple_choice",
+    "metadata": {
+        "language": "ko",
+        "question": "L와 mL 사이의 관계를 잘못 나타낸 것은 어느 것일까요?",
+        "instruction": "정답을 고르시오.",
+    },
+    "domain": {
+        "objects": [
+            {"id": "obj.unit_L", "type": "unit", "name": "L"},
+            {"id": "obj.unit_mL", "type": "unit", "name": "mL"},
+            {"id": "obj.choice_1", "type": "equation_choice", "label": "①"},
+            {"id": "obj.choice_2", "type": "equation_choice", "label": "②"},
+            {"id": "obj.choice_3", "type": "equation_choice", "label": "③"},
+            {"id": "obj.choice_4", "type": "equation_choice", "label": "④"},
+            {"id": "obj.choice_5", "type": "equation_choice", "label": "⑤"},
+        ],
+        "relations": [],
+        "problem_solving": {
+            "understand": {
+                "given_refs": [
+                    "obj.choice_1",
+                    "obj.choice_2",
+                    "obj.choice_3",
+                    "obj.choice_4",
+                    "obj.choice_5",
+                ],
+                "target_ref": "answer.target",
+                "condition_refs": ["rel.unit_conversion", "rel.choice_5_misrepresents"],
+            },
+            "plan": {
+                "method": "equation_verification",
+                "description": "각 보기의 등식이 L와 mL의 관계를 바르게 나타내는지 확인한다.",
+            },
+            "execute": {
+                "expected_operations": [
+                    "read_each_choice",
+                    "compare_equations",
+                    "identify_incorrect_choice",
+                ]
+            },
+            "review": {"check_methods": ["compare_with_unit_conversion_rule"]},
+        },
+    },
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {
+            "type": "incorrect_choice",
+            "description": "L와 mL 사이의 관계를 잘못 나타낸 보기",
+        },
+        "value": 5,
+        "unit": "",
+    },
+}
 
-SOLVABLE = {'schema': 'modu.solvable.v1.1', 'problem_id': 'S3_초등_3_008863', 'problem_type': 'multiple_choice', 'inputs': {'total_ticks': 5, 'target_label': 'incorrect_choice', 'target_ticks': 1, 'target_count': 1, 'unit': ''}, 'given': [{'ref': 'obj.choice_1', 'value': '1900mL = 1L 900mL'}, {'ref': 'obj.choice_2', 'value': '4005mL = 4L 5mL'}, {'ref': 'obj.choice_3', 'value': '1L 900mL = 1900mL'}, {'ref': 'obj.choice_4', 'value': '6L 20mL = 6020mL'}, {'ref': 'obj.choice_5', 'value': '5L 100mL = 5010mL'}], 'target': {'ref': 'answer.target', 'type': 'incorrect_choice'}, 'method': 'equation_verification', 'plan': ['각 보기의 왼쪽과 오른쪽이 같은 양을 나타내는지 확인한다.', 'L를 mL로 바꾸어 등식이 맞는지 점검한다.', '틀린 보기를 찾는다.'], 'steps': [{'id': 'step.1', 'expr': '5L 100mL = 5L + 100mL', 'value': '같은 양을 더하기로 나타냄'}, {'id': 'step.2', 'expr': '5L + 100mL = 5000mL + 100mL', 'value': '5L = 5000mL'}, {'id': 'step.3', 'expr': '5000mL + 100mL = 5100mL', 'value': 5100}, {'id': 'step.4', 'expr': '⑤는 5010mL라고 되어 있어 5100mL와 다름', 'value': 'incorrect'}], 'checks': [{'id': 'check.1', 'expr': '5L 100mL를 mL로 바꾸면 5100mL인가?', 'expected': 5100, 'actual': 5100, 'pass': True}, {'id': 'check.2', 'expr': '⑤의 오른쪽 값이 5100mL와 같은가?', 'expected': False, 'actual': False, 'pass': True}], 'answer': {'blanks': [], 'choices': [], 'answer_key': [], 'target': {'type': 'incorrect_choice', 'description': 'L와 mL 사이의 관계를 잘못 나타낸 보기'}, 'value': 5, 'unit': ''}}
+SOLVABLE = {
+    "schema": "modu.solvable.v1.1",
+    "problem_id": "S3_초등_3_008863",
+    "problem_type": "multiple_choice",
+    "inputs": {
+        "total_ticks": 5,
+        "target_label": "incorrect_choice",
+        "target_ticks": 1,
+        "target_count": 1,
+        "unit": "",
+    },
+    "given": [
+        {"ref": "obj.choice_1", "value": "1900mL = 1L 900mL"},
+        {"ref": "obj.choice_2", "value": "4005mL = 4L 5mL"},
+        {"ref": "obj.choice_3", "value": "1L 900mL = 1900mL"},
+        {"ref": "obj.choice_4", "value": "6L 20mL = 6020mL"},
+        {"ref": "obj.choice_5", "value": "5L 100mL = 5010mL"},
+    ],
+    "target": {"ref": "answer.target", "type": "incorrect_choice"},
+    "method": "equation_verification",
+    "plan": [
+        "각 보기의 왼쪽과 오른쪽이 같은 양을 나타내는지 확인한다.",
+        "L를 mL로 바꾸어 등식이 맞는지 점검한다.",
+        "틀린 보기를 찾는다.",
+    ],
+    "steps": [
+        {"id": "step.1", "expr": "5L 100mL = 5L + 100mL", "value": "같은 양을 더하기로 나타냄"},
+        {"id": "step.2", "expr": "5L + 100mL = 5000mL + 100mL", "value": "5L = 5000mL"},
+        {"id": "step.3", "expr": "5000mL + 100mL = 5100mL", "value": 5100},
+        {"id": "step.4", "expr": "⑤는 5010mL라고 되어 있어 5100mL와 다름", "value": "incorrect"},
+    ],
+    "checks": [
+        {
+            "id": "check.1",
+            "expr": "5L 100mL를 mL로 바꾸면 5100mL인가?",
+            "expected": 5100,
+            "actual": 5100,
+            "pass": True,
+        },
+        {
+            "id": "check.2",
+            "expr": "⑤의 오른쪽 값이 5100mL와 같은가?",
+            "expected": False,
+            "actual": False,
+            "pass": True,
+        },
+    ],
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {
+            "type": "incorrect_choice",
+            "description": "L와 mL 사이의 관계를 잘못 나타낸 보기",
+        },
+        "value": 5,
+        "unit": "",
+    },
+}

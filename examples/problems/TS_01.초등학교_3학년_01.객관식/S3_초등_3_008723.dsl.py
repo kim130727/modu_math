@@ -108,9 +108,7 @@ def build_problem_template() -> ProblemTemplate:
                 stroke="#111111",
                 stroke_width=2,
             ),
-            CircleSlot(
-                id="slot.pt.b", prompt="", cx=437, cy=190, r=4.0, fill="#d81b60"
-            ),
+            CircleSlot(id="slot.pt.b", prompt="", cx=437, cy=190, r=4.0, fill="#d81b60"),
             CircleSlot(
                 id="slot.pt.c",
                 prompt="",
@@ -121,9 +119,7 @@ def build_problem_template() -> ProblemTemplate:
                 stroke="#111111",
                 stroke_width=2,
             ),
-            CircleSlot(
-                id="slot.pt.d", prompt="", cx=526, cy=280, r=4.0, fill="#d81b60"
-            ),
+            CircleSlot(id="slot.pt.d", prompt="", cx=526, cy=280, r=4.0, fill="#d81b60"),
             CircleSlot(
                 id="slot.pt.e",
                 prompt="",
@@ -134,9 +130,7 @@ def build_problem_template() -> ProblemTemplate:
                 stroke="#111111",
                 stroke_width=2,
             ),
-            CircleSlot(
-                id="slot.pt.f", prompt="", cx=436, cy=370, r=4.0, fill="#d81b60"
-            ),
+            CircleSlot(id="slot.pt.f", prompt="", cx=436, cy=370, r=4.0, fill="#d81b60"),
             TextSlot(
                 id="slot.lb.a",
                 prompt="",
@@ -449,9 +443,7 @@ SEMANTIC_OVERRIDE = {
                     "identify_unused_label",
                 ]
             },
-            "review": {
-                "check_methods": ["visual_center_consistency", "label_exclusion_check"]
-            },
+            "review": {"check_methods": ["visual_center_consistency", "label_exclusion_check"]},
         },
     },
     "answer": {

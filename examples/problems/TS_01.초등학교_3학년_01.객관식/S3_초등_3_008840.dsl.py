@@ -1,10 +1,244 @@
 from __future__ import annotations
 from modu_math.dsl import Canvas, ProblemTemplate, Region, RectSlot, TextSlot
 
+
 def build_problem_template() -> ProblemTemplate:
-    return ProblemTemplate(id='S3_초등_3_008840', title='가장 무거운 물건 고르기', canvas=Canvas(width=960, height=360, coordinate_mode='logical'), regions=(Region(id='region.stem', role='stem', flow='absolute', slot_ids=('slot.q_num', 'slot.q1', 'slot.q2', 'slot.table.outer', 'slot.table.h1', 'slot.table.h2', 'slot.table.v1', 'slot.table.v2', 'slot.table.v3', 'slot.table.c0r0', 'slot.table.c1r0', 'slot.table.c2r0', 'slot.table.c3r0', 'slot.table.c0r1', 'slot.table.c1r1', 'slot.table.c2r1', 'slot.table.c3r1', 'slot.choice')),), slots=(TextSlot(id='slot.q_num', prompt='', text='82.', style_role='question', x=14.0, y=34.0, font_size=28), TextSlot(id='slot.q1', prompt='', text='운정이가 저울과 공기돌을 사용하여 안경, 지갑, 손거울의 무게를 재었습니다.', style_role='question', x=78.0, y=34.0, font_size=28), TextSlot(id='slot.q2', prompt='', text='안경, 지갑, 손거울 중에서 가장 무거운 것을 선택해 보세요.', style_role='question', x=78.0, y=66.0, font_size=28), RectSlot(id='slot.table.outer', prompt='', x=152.0, y=84.0, width=640.0, height=88.0), RectSlot(id='slot.table.h1', prompt='', x=152.0, y=122.0, width=640.0, height=1.0), RectSlot(id='slot.table.h2', prompt='', x=152.0, y=84.0, width=640.0, height=1.0), RectSlot(id='slot.table.v1', prompt='', x=328.0, y=84.0, width=1.0, height=88.0), RectSlot(id='slot.table.v2', prompt='', x=484.0, y=84.0, width=1.0, height=88.0), RectSlot(id='slot.table.v3', prompt='', x=640.0, y=84.0, width=1.0, height=88.0), TextSlot(id='slot.table.c0r0', prompt='', text='', style_role='table', x=240.0, y=108.0, font_size=28), TextSlot(id='slot.table.c1r0', prompt='', text='안경', style_role='table', x=406.0, y=108.0, font_size=28), TextSlot(id='slot.table.c2r0', prompt='', text='지갑', style_role='table', x=562.0, y=108.0, font_size=28), TextSlot(id='slot.table.c3r0', prompt='', text='손거울', style_role='table', x=720.0, y=108.0, font_size=28), TextSlot(id='slot.table.c0r1', prompt='', text='공기돌의 수', style_role='table', x=168.0, y=154.0, font_size=28), TextSlot(id='slot.table.c1r1', prompt='', text='5개', style_role='table', x=404.0, y=154.0, font_size=28), TextSlot(id='slot.table.c2r1', prompt='', text='9개', style_role='table', x=560.0, y=154.0, font_size=28), TextSlot(id='slot.table.c3r1', prompt='', text='13개', style_role='table', x=716.0, y=154.0, font_size=28), TextSlot(id='slot.choice', prompt='', text='( 안경 , 지갑 , 손거울 )', style_role='question', x=692.0, y=242.0, font_size=28)), diagrams=(), groups=(), constraints=(), tags=())
+    return ProblemTemplate(
+        id="S3_초등_3_008840",
+        title="가장 무거운 물건 고르기",
+        canvas=Canvas(width=960, height=360, coordinate_mode="logical"),
+        regions=(
+            Region(
+                id="region.stem",
+                role="stem",
+                flow="absolute",
+                slot_ids=(
+                    "slot.q_num",
+                    "slot.q1",
+                    "slot.q2",
+                    "slot.table.outer",
+                    "slot.table.h1",
+                    "slot.table.h2",
+                    "slot.table.v1",
+                    "slot.table.v2",
+                    "slot.table.v3",
+                    "slot.table.c0r0",
+                    "slot.table.c1r0",
+                    "slot.table.c2r0",
+                    "slot.table.c3r0",
+                    "slot.table.c0r1",
+                    "slot.table.c1r1",
+                    "slot.table.c2r1",
+                    "slot.table.c3r1",
+                    "slot.choice",
+                ),
+            ),
+        ),
+        slots=(
+            TextSlot(
+                id="slot.q_num",
+                prompt="",
+                text="82.",
+                style_role="question",
+                x=14.0,
+                y=34.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.q1",
+                prompt="",
+                text="운정이가 저울과 공기돌을 사용하여 안경, 지갑, 손거울의 무게를 재었습니다.",
+                style_role="question",
+                x=78.0,
+                y=34.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.q2",
+                prompt="",
+                text="안경, 지갑, 손거울 중에서 가장 무거운 것을 선택해 보세요.",
+                style_role="question",
+                x=78.0,
+                y=66.0,
+                font_size=28,
+            ),
+            RectSlot(id="slot.table.outer", prompt="", x=152.0, y=84.0, width=640.0, height=88.0),
+            RectSlot(id="slot.table.h1", prompt="", x=152.0, y=122.0, width=640.0, height=1.0),
+            RectSlot(id="slot.table.h2", prompt="", x=152.0, y=84.0, width=640.0, height=1.0),
+            RectSlot(id="slot.table.v1", prompt="", x=328.0, y=84.0, width=1.0, height=88.0),
+            RectSlot(id="slot.table.v2", prompt="", x=484.0, y=84.0, width=1.0, height=88.0),
+            RectSlot(id="slot.table.v3", prompt="", x=640.0, y=84.0, width=1.0, height=88.0),
+            TextSlot(
+                id="slot.table.c0r0",
+                prompt="",
+                text="",
+                style_role="table",
+                x=240.0,
+                y=108.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.table.c1r0",
+                prompt="",
+                text="안경",
+                style_role="table",
+                x=406.0,
+                y=108.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.table.c2r0",
+                prompt="",
+                text="지갑",
+                style_role="table",
+                x=562.0,
+                y=108.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.table.c3r0",
+                prompt="",
+                text="손거울",
+                style_role="table",
+                x=720.0,
+                y=108.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.table.c0r1",
+                prompt="",
+                text="공기돌의 수",
+                style_role="table",
+                x=168.0,
+                y=154.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.table.c1r1",
+                prompt="",
+                text="5개",
+                style_role="table",
+                x=404.0,
+                y=154.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.table.c2r1",
+                prompt="",
+                text="9개",
+                style_role="table",
+                x=560.0,
+                y=154.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.table.c3r1",
+                prompt="",
+                text="13개",
+                style_role="table",
+                x=716.0,
+                y=154.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.choice",
+                prompt="",
+                text="( 안경 , 지갑 , 손거울 )",
+                style_role="question",
+                x=692.0,
+                y=242.0,
+                font_size=28,
+            ),
+        ),
+        diagrams=(),
+        groups=(),
+        constraints=(),
+        tags=(),
+    )
+
+
 PROBLEM_TEMPLATE = build_problem_template()
 
-SEMANTIC_OVERRIDE = {'problem_id': 'S3_초등_3_008840', 'problem_type': 'comparison_selection', 'metadata': {'language': 'ko', 'question': '안경, 지갑, 손거울 중에서 가장 무거운 것을 선택하는 문제', 'instruction': '표를 보고 가장 무거운 것을 선택해 보세요.'}, 'domain': {'objects': [{'id': 'obj.glasses', 'type': 'item', 'name': '안경'}, {'id': 'obj.wallet', 'type': 'item', 'name': '지갑'}, {'id': 'obj.mirror', 'type': 'item', 'name': '손거울'}, {'id': 'obj.count.glasses', 'type': 'count', 'value': 5, 'unit': '개'}, {'id': 'obj.count.wallet', 'type': 'count', 'value': 9, 'unit': '개'}, {'id': 'obj.count.mirror', 'type': 'count', 'value': 13, 'unit': '개'}], 'relations': [], 'problem_solving': {'understand': {'given_refs': ['obj.count.glasses', 'obj.count.wallet', 'obj.count.mirror'], 'target_ref': 'answer.target', 'condition_refs': ['rel.compare']}, 'plan': {'method': 'compare_counts', 'description': '공기돌의 수를 비교하여 가장 큰 수에 해당하는 물건을 찾는다.'}, 'execute': {'expected_operations': ['compare_three_counts', 'identify_maximum']}, 'review': {'check_methods': ['maximum_count_matches_selected_item']}}}, 'answer': {'blanks': [], 'choices': [], 'answer_key': [], 'target': {'type': 'selected_item', 'description': '가장 무거운 것'}, 'value': '손거울', 'unit': ''}}
+SEMANTIC_OVERRIDE = {
+    "problem_id": "S3_초등_3_008840",
+    "problem_type": "comparison_selection",
+    "metadata": {
+        "language": "ko",
+        "question": "안경, 지갑, 손거울 중에서 가장 무거운 것을 선택하는 문제",
+        "instruction": "표를 보고 가장 무거운 것을 선택해 보세요.",
+    },
+    "domain": {
+        "objects": [
+            {"id": "obj.glasses", "type": "item", "name": "안경"},
+            {"id": "obj.wallet", "type": "item", "name": "지갑"},
+            {"id": "obj.mirror", "type": "item", "name": "손거울"},
+            {"id": "obj.count.glasses", "type": "count", "value": 5, "unit": "개"},
+            {"id": "obj.count.wallet", "type": "count", "value": 9, "unit": "개"},
+            {"id": "obj.count.mirror", "type": "count", "value": 13, "unit": "개"},
+        ],
+        "relations": [],
+        "problem_solving": {
+            "understand": {
+                "given_refs": ["obj.count.glasses", "obj.count.wallet", "obj.count.mirror"],
+                "target_ref": "answer.target",
+                "condition_refs": ["rel.compare"],
+            },
+            "plan": {
+                "method": "compare_counts",
+                "description": "공기돌의 수를 비교하여 가장 큰 수에 해당하는 물건을 찾는다.",
+            },
+            "execute": {"expected_operations": ["compare_three_counts", "identify_maximum"]},
+            "review": {"check_methods": ["maximum_count_matches_selected_item"]},
+        },
+    },
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {"type": "selected_item", "description": "가장 무거운 것"},
+        "value": "손거울",
+        "unit": "",
+    },
+}
 
-SOLVABLE = {'schema': 'modu.solvable.v1.1', 'problem_id': 'S3_초등_3_008840', 'problem_type': 'comparison_selection', 'inputs': {'total_ticks': 3, 'target_label': '가장 무거운 것', 'target_ticks': 1, 'target_count': 13, 'unit': '개'}, 'given': [{'ref': 'obj.count.glasses', 'value': 5}, {'ref': 'obj.count.wallet', 'value': 9}, {'ref': 'obj.count.mirror', 'value': 13}], 'target': {'ref': 'answer.target', 'type': 'selected_item'}, 'method': 'compare_counts', 'plan': ['세 물건의 공기돌 수를 비교합니다.', '가장 큰 수에 해당하는 물건을 찾습니다.'], 'steps': [{'id': 'step.1', 'expr': '13 > 9 > 5', 'value': True}, {'id': 'step.2', 'expr': '가장 큰 수 13개에 해당하는 물건', 'value': '손거울'}], 'checks': [{'id': 'check.1', 'expr': '선택한 물건의 공기돌 수가 가장 큰가?', 'expected': 13, 'actual': 13, 'pass': True}], 'answer': {'blanks': [], 'choices': [], 'answer_key': [], 'target': {'type': 'selected_item', 'description': '가장 무거운 것'}, 'value': '손거울', 'unit': ''}}
+SOLVABLE = {
+    "schema": "modu.solvable.v1.1",
+    "problem_id": "S3_초등_3_008840",
+    "problem_type": "comparison_selection",
+    "inputs": {
+        "total_ticks": 3,
+        "target_label": "가장 무거운 것",
+        "target_ticks": 1,
+        "target_count": 13,
+        "unit": "개",
+    },
+    "given": [
+        {"ref": "obj.count.glasses", "value": 5},
+        {"ref": "obj.count.wallet", "value": 9},
+        {"ref": "obj.count.mirror", "value": 13},
+    ],
+    "target": {"ref": "answer.target", "type": "selected_item"},
+    "method": "compare_counts",
+    "plan": ["세 물건의 공기돌 수를 비교합니다.", "가장 큰 수에 해당하는 물건을 찾습니다."],
+    "steps": [
+        {"id": "step.1", "expr": "13 > 9 > 5", "value": True},
+        {"id": "step.2", "expr": "가장 큰 수 13개에 해당하는 물건", "value": "손거울"},
+    ],
+    "checks": [
+        {
+            "id": "check.1",
+            "expr": "선택한 물건의 공기돌 수가 가장 큰가?",
+            "expected": 13,
+            "actual": 13,
+            "pass": True,
+        }
+    ],
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {"type": "selected_item", "description": "가장 무거운 것"},
+        "value": "손거울",
+        "unit": "",
+    },
+}

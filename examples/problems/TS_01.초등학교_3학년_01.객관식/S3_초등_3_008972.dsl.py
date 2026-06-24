@@ -1,10 +1,111 @@
 from __future__ import annotations
 from modu_math.dsl import Canvas, ProblemTemplate, Region, RectSlot, TextSlot
 
+
 def build_problem_template() -> ProblemTemplate:
-    return ProblemTemplate(id='S3_초등_3_008972', title='계산 결과가 더 큰 것을 선택하세요', canvas=Canvas(width=560, height=200, coordinate_mode='logical'), regions=(Region(id='region.stem', role='stem', flow='absolute', slot_ids=('slot.q1', 'slot.box')),), slots=(TextSlot(id='slot.q1', prompt='', text='6. 계산 결과가 더 큰 것을 선택하세요.', style_role='question', x=14.0, y=20.0, font_size=28), RectSlot(id='slot.box', prompt='', x=195.0, y=28.0, width=295.0, height=46.0)), diagrams=(), groups=(), constraints=(), tags=())
+    return ProblemTemplate(
+        id="S3_초등_3_008972",
+        title="계산 결과가 더 큰 것을 선택하세요",
+        canvas=Canvas(width=560, height=200, coordinate_mode="logical"),
+        regions=(
+            Region(
+                id="region.stem", role="stem", flow="absolute", slot_ids=("slot.q1", "slot.box")
+            ),
+        ),
+        slots=(
+            TextSlot(
+                id="slot.q1",
+                prompt="",
+                text="6. 계산 결과가 더 큰 것을 선택하세요.",
+                style_role="question",
+                x=14.0,
+                y=20.0,
+                font_size=28,
+            ),
+            RectSlot(id="slot.box", prompt="", x=195.0, y=28.0, width=295.0, height=46.0),
+        ),
+        diagrams=(),
+        groups=(),
+        constraints=(),
+        tags=(),
+    )
+
+
 PROBLEM_TEMPLATE = build_problem_template()
 
-SEMANTIC_OVERRIDE = {'problem_id': 'S3_초등_3_008972', 'problem_type': 'compare_subtraction_results', 'metadata': {'language': 'ko', 'question': '계산 결과가 더 큰 것을 선택하는 문제', 'instruction': '계산 결과가 더 큰 것을 선택하세요.'}, 'domain': {'objects': [{'id': 'obj.expr1', 'type': 'subtraction_expression', 'expression': '436 - 194'}, {'id': 'obj.expr2', 'type': 'subtraction_expression', 'expression': '619 - 325'}], 'relations': [], 'problem_solving': {'understand': {'given_refs': ['obj.expr1', 'obj.expr2'], 'target_ref': 'answer.target', 'condition_refs': ['rel.compare_results']}, 'plan': {'method': 'calculate_and_compare', 'description': '두 뺄셈식의 계산 결과를 구한 뒤 더 큰 값을 가진 식을 고른다.'}, 'execute': {'expected_operations': ['subtract', 'compare']}, 'review': {'check_methods': ['result_comparison_check']}}}, 'answer': {'blanks': [], 'choices': [], 'answer_key': [], 'target': {'type': 'selected_expression', 'description': '계산 결과가 더 큰 식'}, 'value': '619 - 325', 'unit': ''}}
+SEMANTIC_OVERRIDE = {
+    "problem_id": "S3_초등_3_008972",
+    "problem_type": "compare_subtraction_results",
+    "metadata": {
+        "language": "ko",
+        "question": "계산 결과가 더 큰 것을 선택하는 문제",
+        "instruction": "계산 결과가 더 큰 것을 선택하세요.",
+    },
+    "domain": {
+        "objects": [
+            {"id": "obj.expr1", "type": "subtraction_expression", "expression": "436 - 194"},
+            {"id": "obj.expr2", "type": "subtraction_expression", "expression": "619 - 325"},
+        ],
+        "relations": [],
+        "problem_solving": {
+            "understand": {
+                "given_refs": ["obj.expr1", "obj.expr2"],
+                "target_ref": "answer.target",
+                "condition_refs": ["rel.compare_results"],
+            },
+            "plan": {
+                "method": "calculate_and_compare",
+                "description": "두 뺄셈식의 계산 결과를 구한 뒤 더 큰 값을 가진 식을 고른다.",
+            },
+            "execute": {"expected_operations": ["subtract", "compare"]},
+            "review": {"check_methods": ["result_comparison_check"]},
+        },
+    },
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {"type": "selected_expression", "description": "계산 결과가 더 큰 식"},
+        "value": "619 - 325",
+        "unit": "",
+    },
+}
 
-SOLVABLE = {'schema': 'modu.solvable.v1.1', 'problem_id': 'S3_초등_3_008972', 'problem_type': 'compare_subtraction_results', 'inputs': {'total_ticks': 0, 'target_label': '계산 결과가 더 큰 식', 'target_ticks': 0, 'target_count': 1, 'unit': ''}, 'given': [{'ref': 'obj.expr1', 'value': {'expression': '436 - 194'}}, {'ref': 'obj.expr2', 'value': {'expression': '619 - 325'}}], 'target': {'ref': 'answer.target', 'type': 'selected_expression'}, 'method': 'calculate_and_compare', 'plan': ['두 뺄셈식을 각각 계산한다.', '계산 결과를 비교하여 더 큰 식을 선택한다.'], 'steps': [{'id': 'step.1', 'expr': '436 - 194', 'value': 242}, {'id': 'step.2', 'expr': '619 - 325', 'value': 294}, {'id': 'step.3', 'expr': '242 < 294', 'value': True}, {'id': 'step.4', 'expr': '더 큰 식은 619 - 325', 'value': '619 - 325'}], 'checks': [{'id': 'check.1', 'expr': '436 - 194 == 242', 'expected': 242, 'actual': 242, 'pass': True}, {'id': 'check.2', 'expr': '619 - 325 == 294', 'expected': 294, 'actual': 294, 'pass': True}, {'id': 'check.3', 'expr': '242 < 294', 'expected': True, 'actual': True, 'pass': True}], 'answer': {'blanks': [], 'choices': [], 'answer_key': [], 'target': {'type': 'selected_expression', 'description': '계산 결과가 더 큰 식'}, 'value': '619 - 325', 'unit': ''}}
+SOLVABLE = {
+    "schema": "modu.solvable.v1.1",
+    "problem_id": "S3_초등_3_008972",
+    "problem_type": "compare_subtraction_results",
+    "inputs": {
+        "total_ticks": 0,
+        "target_label": "계산 결과가 더 큰 식",
+        "target_ticks": 0,
+        "target_count": 1,
+        "unit": "",
+    },
+    "given": [
+        {"ref": "obj.expr1", "value": {"expression": "436 - 194"}},
+        {"ref": "obj.expr2", "value": {"expression": "619 - 325"}},
+    ],
+    "target": {"ref": "answer.target", "type": "selected_expression"},
+    "method": "calculate_and_compare",
+    "plan": ["두 뺄셈식을 각각 계산한다.", "계산 결과를 비교하여 더 큰 식을 선택한다."],
+    "steps": [
+        {"id": "step.1", "expr": "436 - 194", "value": 242},
+        {"id": "step.2", "expr": "619 - 325", "value": 294},
+        {"id": "step.3", "expr": "242 < 294", "value": True},
+        {"id": "step.4", "expr": "더 큰 식은 619 - 325", "value": "619 - 325"},
+    ],
+    "checks": [
+        {"id": "check.1", "expr": "436 - 194 == 242", "expected": 242, "actual": 242, "pass": True},
+        {"id": "check.2", "expr": "619 - 325 == 294", "expected": 294, "actual": 294, "pass": True},
+        {"id": "check.3", "expr": "242 < 294", "expected": True, "actual": True, "pass": True},
+    ],
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {"type": "selected_expression", "description": "계산 결과가 더 큰 식"},
+        "value": "619 - 325",
+        "unit": "",
+    },
+}

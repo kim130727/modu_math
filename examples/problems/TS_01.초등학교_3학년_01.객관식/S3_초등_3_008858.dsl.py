@@ -1,10 +1,196 @@
 from __future__ import annotations
 from modu_math.dsl import Canvas, CircleSlot, ProblemTemplate, RectSlot, Region, TextSlot
 
+
 def build_problem_template() -> ProblemTemplate:
-    return ProblemTemplate(id='S3_초등_3_008858', title='배추와 감자의 무게 비교', canvas=Canvas(width=756.0, height=389.0, coordinate_mode='logical'), regions=(Region(id='region.top', role='stem', flow='absolute', slot_ids=('slot.top.no', 'slot.top.instruction')), Region(id='region.middle', role='diagram', flow='absolute', slot_ids=('slot.label.baechu', 'slot.label.gamja', 'slot.pic.baechu', 'slot.pic.gamja')), Region(id='region.bottom', role='answer', flow='absolute', slot_ids=('slot.bottom.sentence',))), slots=(TextSlot(id='slot.top.no', prompt='', text='□ 5.', style_role='question', x=8.0, y=23.0, font_size=28), TextSlot(id='slot.top.instruction', prompt='', text='배추와 감자의 무게를 비교하여 □ 안에 알맞은 말을 선택하세요.', style_role='question', x=48.0, y=23.0, font_size=28), TextSlot(id='slot.label.baechu', prompt='', text='배추', style_role='label', x=261.0, y=70.0, font_size=28), TextSlot(id='slot.label.gamja', prompt='', text='감자', style_role='label', x=561.0, y=74.0, font_size=28), RectSlot(id='slot.pic.baechu', prompt='', x=334.0, y=48.0, width=72.0, height=72.0, fill='none', stroke='none'), RectSlot(id='slot.pic.gamja', prompt='', x=486.0, y=58.0, width=48.0, height=36.0, fill='none', stroke='none'), TextSlot(id='slot.bottom.sentence', prompt='', text='( 배추 , 감자 )는 ( 배추 , 감자 )보다 더 무겁습니다.', style_role='question', x=157.0, y=212.0, font_size=28)), diagrams=(), groups=(), constraints=(), tags=())
+    return ProblemTemplate(
+        id="S3_초등_3_008858",
+        title="배추와 감자의 무게 비교",
+        canvas=Canvas(width=756.0, height=389.0, coordinate_mode="logical"),
+        regions=(
+            Region(
+                id="region.top",
+                role="stem",
+                flow="absolute",
+                slot_ids=("slot.top.no", "slot.top.instruction"),
+            ),
+            Region(
+                id="region.middle",
+                role="diagram",
+                flow="absolute",
+                slot_ids=(
+                    "slot.label.baechu",
+                    "slot.label.gamja",
+                    "slot.pic.baechu",
+                    "slot.pic.gamja",
+                ),
+            ),
+            Region(
+                id="region.bottom",
+                role="answer",
+                flow="absolute",
+                slot_ids=("slot.bottom.sentence",),
+            ),
+        ),
+        slots=(
+            TextSlot(
+                id="slot.top.no",
+                prompt="",
+                text="□ 5.",
+                style_role="question",
+                x=8.0,
+                y=23.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.top.instruction",
+                prompt="",
+                text="배추와 감자의 무게를 비교하여 □ 안에 알맞은 말을 선택하세요.",
+                style_role="question",
+                x=48.0,
+                y=23.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.label.baechu",
+                prompt="",
+                text="배추",
+                style_role="label",
+                x=261.0,
+                y=70.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.label.gamja",
+                prompt="",
+                text="감자",
+                style_role="label",
+                x=561.0,
+                y=74.0,
+                font_size=28,
+            ),
+            RectSlot(
+                id="slot.pic.baechu",
+                prompt="",
+                x=334.0,
+                y=48.0,
+                width=72.0,
+                height=72.0,
+                fill="none",
+                stroke="none",
+            ),
+            RectSlot(
+                id="slot.pic.gamja",
+                prompt="",
+                x=486.0,
+                y=58.0,
+                width=48.0,
+                height=36.0,
+                fill="none",
+                stroke="none",
+            ),
+            TextSlot(
+                id="slot.bottom.sentence",
+                prompt="",
+                text="( 배추 , 감자 )는 ( 배추 , 감자 )보다 더 무겁습니다.",
+                style_role="question",
+                x=157.0,
+                y=212.0,
+                font_size=28,
+            ),
+        ),
+        diagrams=(),
+        groups=(),
+        constraints=(),
+        tags=(),
+    )
+
+
 PROBLEM_TEMPLATE = build_problem_template()
 
-SEMANTIC_OVERRIDE = {'problem_id': 'S3_초등_3_008858', 'problem_type': 'comparison_sentence', 'metadata': {'language': 'ko', 'question': '배추와 감자의 무게를 비교하여 □ 안에 알맞은 말을 선택하는 문제', 'instruction': '그림을 보고 비교 문장을 완성한다.'}, 'domain': {'objects': [{'id': 'obj.baechu', 'type': 'vegetable', 'name': '배추'}, {'id': 'obj.gamja', 'type': 'vegetable', 'name': '감자'}], 'relations': [], 'problem_solving': {'understand': {'given_refs': ['obj.baechu', 'obj.gamja', 'rel.compare_weight'], 'target_ref': 'answer.target', 'condition_refs': ['rel.compare_weight']}, 'plan': {'method': 'picture_comparison', 'description': '그림에서 더 무거운 대상을 찾아 비교 문장의 앞자리에 맞는다.'}, 'execute': {'expected_operations': ['compare_two_objects_by_picture', 'select_matching_words']}, 'review': {'check_methods': ['sentence_pattern_check', 'choice_match_check']}}}, 'answer': {'blanks': [], 'choices': [], 'answer_key': [], 'target': {'type': 'comparison_sentence_blank', 'description': '비교 문장의 □ 안에 들어갈 알맞은 말'}, 'value': 0, 'unit': ''}}
+SEMANTIC_OVERRIDE = {
+    "problem_id": "S3_초등_3_008858",
+    "problem_type": "comparison_sentence",
+    "metadata": {
+        "language": "ko",
+        "question": "배추와 감자의 무게를 비교하여 □ 안에 알맞은 말을 선택하는 문제",
+        "instruction": "그림을 보고 비교 문장을 완성한다.",
+    },
+    "domain": {
+        "objects": [
+            {"id": "obj.baechu", "type": "vegetable", "name": "배추"},
+            {"id": "obj.gamja", "type": "vegetable", "name": "감자"},
+        ],
+        "relations": [],
+        "problem_solving": {
+            "understand": {
+                "given_refs": ["obj.baechu", "obj.gamja", "rel.compare_weight"],
+                "target_ref": "answer.target",
+                "condition_refs": ["rel.compare_weight"],
+            },
+            "plan": {
+                "method": "picture_comparison",
+                "description": "그림에서 더 무거운 대상을 찾아 비교 문장의 앞자리에 맞는다.",
+            },
+            "execute": {
+                "expected_operations": ["compare_two_objects_by_picture", "select_matching_words"]
+            },
+            "review": {"check_methods": ["sentence_pattern_check", "choice_match_check"]},
+        },
+    },
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {
+            "type": "comparison_sentence_blank",
+            "description": "비교 문장의 □ 안에 들어갈 알맞은 말",
+        },
+        "value": 0,
+        "unit": "",
+    },
+}
 
-SOLVABLE = {'schema': 'modu.solvable.v1.1', 'problem_id': 'S3_초등_3_008858', 'problem_type': 'comparison_sentence', 'inputs': {'total_ticks': 0, 'target_label': '□ 안에 들어갈 알맞은 말', 'target_ticks': 2, 'target_count': 2, 'unit': ''}, 'given': [{'ref': 'obj.baechu', 'value': {'name': '배추'}}, {'ref': 'obj.gamja', 'value': {'name': '감자'}}], 'target': {'ref': 'answer.target', 'type': 'comparison_sentence_blank'}, 'method': 'picture_comparison', 'plan': ['그림에 나온 두 대상을 비교한다.', '문장 구조에 맞는 말을 고른다.'], 'steps': [{'id': 'step.1', 'expr': '배추와 감자의 무게를 그림으로 비교한다.', 'value': '비교'}, {'id': 'step.2', 'expr': '문장 빈칸에 들어갈 말을 선택한다.', 'value': '선택'}], 'checks': [{'id': 'check.1', 'expr': "문장 구조가 '( ... )는 ( ... )보다 더 무겁습니다.'와 일치하는가", 'expected': True, 'actual': True, 'pass': True}], 'answer': {'blanks': [], 'choices': [], 'answer_key': [], 'target': {'type': 'comparison_sentence_blank', 'description': '비교 문장의 □ 안에 들어갈 알맞은 말'}, 'value': 0, 'unit': ''}}
+SOLVABLE = {
+    "schema": "modu.solvable.v1.1",
+    "problem_id": "S3_초등_3_008858",
+    "problem_type": "comparison_sentence",
+    "inputs": {
+        "total_ticks": 0,
+        "target_label": "□ 안에 들어갈 알맞은 말",
+        "target_ticks": 2,
+        "target_count": 2,
+        "unit": "",
+    },
+    "given": [
+        {"ref": "obj.baechu", "value": {"name": "배추"}},
+        {"ref": "obj.gamja", "value": {"name": "감자"}},
+    ],
+    "target": {"ref": "answer.target", "type": "comparison_sentence_blank"},
+    "method": "picture_comparison",
+    "plan": ["그림에 나온 두 대상을 비교한다.", "문장 구조에 맞는 말을 고른다."],
+    "steps": [
+        {"id": "step.1", "expr": "배추와 감자의 무게를 그림으로 비교한다.", "value": "비교"},
+        {"id": "step.2", "expr": "문장 빈칸에 들어갈 말을 선택한다.", "value": "선택"},
+    ],
+    "checks": [
+        {
+            "id": "check.1",
+            "expr": "문장 구조가 '( ... )는 ( ... )보다 더 무겁습니다.'와 일치하는가",
+            "expected": True,
+            "actual": True,
+            "pass": True,
+        }
+    ],
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {
+            "type": "comparison_sentence_blank",
+            "description": "비교 문장의 □ 안에 들어갈 알맞은 말",
+        },
+        "value": 0,
+        "unit": "",
+    },
+}

@@ -2,7 +2,6 @@ from __future__ import annotations
 
 from modu_math.dsl import Canvas, CircleSlot, LineSlot, ProblemTemplate, Region, TextSlot
 
-
 ANSWER = {
     "blanks": [],
     "choices": [],
@@ -13,7 +12,9 @@ ANSWER = {
 }
 
 
-def _grid_slots(prefix: str, *, x: float, y: float, cols: int = 8, rows: int = 8, step: float = 27.0) -> tuple[LineSlot, ...]:
+def _grid_slots(
+    prefix: str, *, x: float, y: float, cols: int = 8, rows: int = 8, step: float = 27.0
+) -> tuple[LineSlot, ...]:
     slots: list[LineSlot] = []
     for i in range(cols + 1):
         gx = x + i * step
@@ -48,7 +49,9 @@ def _grid_slots(prefix: str, *, x: float, y: float, cols: int = 8, rows: int = 8
     return tuple(slots)
 
 
-def _point(origin_x: float, origin_y: float, step: float, coordinate: tuple[int, int]) -> tuple[float, float]:
+def _point(
+    origin_x: float, origin_y: float, step: float, coordinate: tuple[int, int]
+) -> tuple[float, float]:
     return origin_x + coordinate[0] * step, origin_y + coordinate[1] * step
 
 
@@ -65,8 +68,25 @@ def _candidate_slots(
 ) -> tuple[CircleSlot, TextSlot]:
     cx, cy = _point(origin_x, origin_y, step, coordinate)
     return (
-        CircleSlot(id=f"{prefix}.point", prompt="", cx=cx, cy=cy, r=4.0, fill="#E91E63", stroke="#E91E63", stroke_width=1.0),
-        TextSlot(id=f"{prefix}.label", prompt="", text=label, style_role="label", x=cx + label_dx, y=cy + label_dy, font_size=24),
+        CircleSlot(
+            id=f"{prefix}.point",
+            prompt="",
+            cx=cx,
+            cy=cy,
+            r=4.0,
+            fill="#E91E63",
+            stroke="#E91E63",
+            stroke_width=1.0,
+        ),
+        TextSlot(
+            id=f"{prefix}.label",
+            prompt="",
+            text=label,
+            style_role="label",
+            x=cx + label_dx,
+            y=cy + label_dy,
+            font_size=24,
+        ),
     )
 
 
@@ -78,10 +98,46 @@ def build_problem_template() -> ProblemTemplate:
 
     grid = _grid_slots("slot.grid", x=grid_x, y=grid_y, step=step)
     candidates = (
-        *_candidate_slots("slot.pt.giyeok", label="ㄱ", origin_x=grid_x, origin_y=grid_y, step=step, coordinate=(1, 4), label_dx=-18.0, label_dy=18.0),
-        *_candidate_slots("slot.pt.nieun", label="ㄴ", origin_x=grid_x, origin_y=grid_y, step=step, coordinate=(2, 3), label_dx=8.0, label_dy=18.0),
-        *_candidate_slots("slot.pt.digeut", label="ㄷ", origin_x=grid_x, origin_y=grid_y, step=step, coordinate=(4, 2), label_dx=8.0, label_dy=16.0),
-        *_candidate_slots("slot.pt.rieul", label="ㄹ", origin_x=grid_x, origin_y=grid_y, step=step, coordinate=center, label_dx=8.0, label_dy=18.0),
+        *_candidate_slots(
+            "slot.pt.giyeok",
+            label="ㄱ",
+            origin_x=grid_x,
+            origin_y=grid_y,
+            step=step,
+            coordinate=(1, 4),
+            label_dx=-18.0,
+            label_dy=18.0,
+        ),
+        *_candidate_slots(
+            "slot.pt.nieun",
+            label="ㄴ",
+            origin_x=grid_x,
+            origin_y=grid_y,
+            step=step,
+            coordinate=(2, 3),
+            label_dx=8.0,
+            label_dy=18.0,
+        ),
+        *_candidate_slots(
+            "slot.pt.digeut",
+            label="ㄷ",
+            origin_x=grid_x,
+            origin_y=grid_y,
+            step=step,
+            coordinate=(4, 2),
+            label_dx=8.0,
+            label_dy=16.0,
+        ),
+        *_candidate_slots(
+            "slot.pt.rieul",
+            label="ㄹ",
+            origin_x=grid_x,
+            origin_y=grid_y,
+            step=step,
+            coordinate=center,
+            label_dx=8.0,
+            label_dy=18.0,
+        ),
     )
 
     return ProblemTemplate(
@@ -94,7 +150,11 @@ def build_problem_template() -> ProblemTemplate:
                 id="region.diagram",
                 role="diagram",
                 flow="absolute",
-                slot_ids=(*(slot.id for slot in grid), "slot.circle", *(slot.id for slot in candidates)),
+                slot_ids=(
+                    *(slot.id for slot in grid),
+                    "slot.circle",
+                    *(slot.id for slot in candidates),
+                ),
             ),
             Region(id="region.answer", role="answer", flow="absolute", slot_ids=()),
         ),
@@ -120,7 +180,6 @@ def build_problem_template() -> ProblemTemplate:
                 stroke_width=1.5,
             ),
             *candidates,
-            
         ),
         diagrams=(),
         groups=(),
@@ -158,11 +217,20 @@ SEMANTIC_OVERRIDE = {
         ],
         "problem_solving": {
             "understand": {
-                "given_refs": ["obj.circle", "obj.point.giyeok", "obj.point.nieun", "obj.point.digeut", "obj.point.rieul"],
+                "given_refs": [
+                    "obj.circle",
+                    "obj.point.giyeok",
+                    "obj.point.nieun",
+                    "obj.point.digeut",
+                    "obj.point.rieul",
+                ],
                 "target_ref": "answer.target",
                 "condition_refs": ["rel.center_choice"],
             },
-            "plan": {"method": "center_identification", "description": "후보점 중 원의 중심에 놓인 점을 찾는다."},
+            "plan": {
+                "method": "center_identification",
+                "description": "후보점 중 원의 중심에 놓인 점을 찾는다.",
+            },
             "execute": {"expected_operations": ["compare_candidate_points", "select_center_point"]},
             "review": {"check_methods": ["confirm_point_at_circle_center"]},
         },
@@ -190,6 +258,14 @@ SOLVABLE = {
         "점 ㄹ을 선택한다.",
     ],
     "steps": [{"id": "step.1", "expr": "원의 중심에 있는 점은 ㄹ", "value": "ㄹ"}],
-    "checks": [{"id": "check.1", "expr": "선택한 점이 원의 중심인가", "expected": "ㄹ", "actual": "ㄹ", "pass": True}],
+    "checks": [
+        {
+            "id": "check.1",
+            "expr": "선택한 점이 원의 중심인가",
+            "expected": "ㄹ",
+            "actual": "ㄹ",
+            "pass": True,
+        }
+    ],
     "answer": ANSWER,
 }

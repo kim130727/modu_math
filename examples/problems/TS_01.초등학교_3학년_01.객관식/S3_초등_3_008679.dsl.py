@@ -13,7 +13,6 @@ from modu_math.dsl import (
     opened_circle_with_fold_slots,
 )
 
-
 PAPER_FILL = "#FDE8EF"
 PAPER_STROKE = "#FF9AB2"
 ARROW = "#9AA0A6"
@@ -25,26 +24,37 @@ def _folded_half_slots() -> tuple:
         PathSlot(
             id="slot.folded.paper",
             prompt="",
-            d = 'M 193.6666259765625 156.55560302734375 C 196.0266259765625 119.97560302734377 224.3466259765625 97.55560302734375 252.6666259765625 97.55560302734375 C 280.9866259765625 97.55560302734375 309.3066259765625 119.97560302734377 311.6666259765625 156.55560302734375 L 193.6666259765625 156.55560302734375 Z', fill = '#FDE8EF', stroke="none",
-        stroke_width = 2),
+            d="M 193.6666259765625 156.55560302734375 C 196.0266259765625 119.97560302734377 224.3466259765625 97.55560302734375 252.6666259765625 97.55560302734375 C 280.9866259765625 97.55560302734375 309.3066259765625 119.97560302734377 311.6666259765625 156.55560302734375 L 193.6666259765625 156.55560302734375 Z",
+            fill="#FDE8EF",
+            stroke="none",
+            stroke_width=2,
+        ),
         CircleSlot(
             id="slot.folded.back_circle",
             prompt="",
-            cx = 252, cy = 155, r = 60, fill="none",
+            cx=252,
+            cy=155,
+            r=60,
+            fill="none",
             stroke=PAPER_STROKE,
             stroke_width=1.7,
         ),
         CircleSlot(
             id="slot.folded.front_circle",
             prompt="",
-            cx = 252, cy = 160, r = 60, fill="none",
+            cx=252,
+            cy=160,
+            r=60,
+            fill="none",
             stroke=PAPER_STROKE,
             stroke_width=1.7,
         ),
         RectSlot(
             id="slot.folded.lower_mask",
             prompt="",
-            x = 171, y = 153, width=r * 2.0 + 24.0,
+            x=171,
+            y=153,
+            width=r * 2.0 + 24.0,
             height=r + 12.0,
             fill="#FFFFFF",
             stroke="none",
@@ -53,7 +63,11 @@ def _folded_half_slots() -> tuple:
         LineSlot(
             id="slot.folded.edge",
             prompt="",
-            x1 = 193, y1 = 153, x2 = 311, y2 = 153, stroke=PAPER_STROKE,
+            x1=193,
+            y1=153,
+            x2=311,
+            y2=153,
+            stroke=PAPER_STROKE,
             stroke_width=1.7,
         ),
     )
@@ -62,7 +76,11 @@ def _folded_half_slots() -> tuple:
 def _opened_circle_slots() -> tuple:
     return opened_circle_with_fold_slots(
         "slot.opened",
-        cx = 509.0, cy = 153.0, r = 59.0, angle = 0.0, fill=PAPER_FILL,
+        cx=509.0,
+        cy=153.0,
+        r=59.0,
+        angle=0.0,
+        fill=PAPER_FILL,
         stroke=PAPER_STROKE,
         stroke_width=1.7,
         dash="5 4",
@@ -100,14 +118,20 @@ def build_problem_template() -> ProblemTemplate:
                     "slot.opened.fold_line",
                 ),
             ),
-            Region(id="region.choice", role="choices", flow="absolute", slot_ids=("slot.choice.1",)),
+            Region(
+                id="region.choice", role="choices", flow="absolute", slot_ids=("slot.choice.1",)
+            ),
         ),
         slots=(
             TextSlot(
                 id="slot.stem.1",
                 prompt="",
-                text = '원 모양 종이를 똑같이 둘로 나누어지도록 반을 접었다가 폈더니 선이', style_role="question",
-                x = 35, y = 35, font_size = 25),
+                text="원 모양 종이를 똑같이 둘로 나누어지도록 반을 접었다가 폈더니 선이",
+                style_role="question",
+                x=35,
+                y=35,
+                font_size=25,
+            ),
             TextSlot(
                 id="slot.stem.2",
                 prompt="",
@@ -121,20 +145,34 @@ def build_problem_template() -> ProblemTemplate:
             LineSlot(
                 id="slot.arrow.body",
                 prompt="",
-                x1 = 375, y1 = 155, x2 = 395, y2 = 155, stroke=ARROW,
+                x1=375,
+                y1=155,
+                x2=395,
+                y2=155,
+                stroke=ARROW,
                 stroke_width=8.0,
             ),
             PolygonSlot(
                 id="slot.arrow.head",
                 prompt="",
-                points = [[408, 157.4444580078125], [393, 143.4444580078125], [393, 171.4444580078125]], fill = '#9AA0A6', stroke = '#9AA0A6', stroke_width = 0),
+                points=[
+                    [408, 157.4444580078125],
+                    [393, 143.4444580078125],
+                    [393, 171.4444580078125],
+                ],
+                fill="#9AA0A6",
+                stroke="#9AA0A6",
+                stroke_width=0,
+            ),
             *opened_slots,
             TextSlot(
                 id="slot.choice.1",
                 prompt="",
                 text="(2) 원의 지름은 원을 똑같이 (둘, 넷)(으)로 나눕니다.",
                 style_role="choice",
-                x = 36, y = 263, font_size=26,
+                x=36,
+                y=263,
+                font_size=26,
             ),
         ),
         diagrams=(),
@@ -142,7 +180,6 @@ def build_problem_template() -> ProblemTemplate:
         constraints=(),
         tags=("geometry", "circle", "paper_folding"),
     )
-
 
 
 PROBLEM_TEMPLATE = build_problem_template()

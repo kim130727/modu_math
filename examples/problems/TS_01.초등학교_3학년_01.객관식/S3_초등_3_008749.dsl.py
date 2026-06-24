@@ -1,10 +1,265 @@
 from __future__ import annotations
-from modu_math.dsl import Canvas, CircleSlot, PathSlot, PolygonSlot, ProblemTemplate, RectSlot, Region, TextSlot
+from modu_math.dsl import (
+    Canvas,
+    CircleSlot,
+    PathSlot,
+    PolygonSlot,
+    ProblemTemplate,
+    RectSlot,
+    Region,
+    TextSlot,
+)
+
 
 def build_problem_template() -> ProblemTemplate:
-    return ProblemTemplate(id='S3_초등_3_008749', title='들이 비교', canvas=Canvas(width=960, height=420, coordinate_mode='logical'), regions=(Region(id='region.stem', role='stem', flow='absolute', slot_ids=('slot.qno', 'slot.question.1', 'slot.question.2')), Region(id='region.diagram.left', role='diagram', flow='absolute', slot_ids=('slot.left.pot', 'slot.left.cup', 'slot.left.water.pot', 'slot.left.water.cup', 'slot.left.stream', 'slot.left.label.pot', 'slot.left.label.cup')), Region(id='region.diagram.mid', role='diagram', flow='absolute', slot_ids=('slot.arrow',)), Region(id='region.diagram.right', role='diagram', flow='absolute', slot_ids=('slot.right.pot', 'slot.right.container', 'slot.right.water.pot', 'slot.right.label.pot', 'slot.right.label.container')), Region(id='region.choice', role='stem', flow='absolute', slot_ids=('slot.choice',)), Region(id='region.answer', role='stem', flow='absolute', slot_ids=())), slots=(TextSlot(id='slot.qno', prompt='', text='□ 46.', style_role='question', x=14.0, y=30.0, font_size=28), TextSlot(id='slot.question.1', prompt='', text='주전자에 물을 가득 채운 후 그릇에 옮겨 담았습니다. 그림과 같이 물을', style_role='question', x=88.0, y=30.0, font_size=28), TextSlot(id='slot.question.2', prompt='', text='채웠을 때에 주전자와 그릇 중 들이가 더 많은 것은 어느 것인가요?', style_role='question', x=88.0, y=67.0, font_size=28), PolygonSlot(id='slot.left.pot', prompt='', points=((285.0, 95.0), (340.0, 125.0), (325.0, 175.0), (270.0, 145.0))), RectSlot(id='slot.left.cup', prompt='', x=355.0, y=110.0, width=44.0, height=70.0), PathSlot(id='slot.left.water.pot', prompt='', d='M 290 110 C 300 100, 325 100, 338 115 L 331 150 C 314 160, 296 154, 281 144 Z'), PathSlot(id='slot.left.water.cup', prompt='', d='M 359 140 L 396 140 L 396 176 L 359 176 Z'), PathSlot(id='slot.left.stream', prompt='', d='M 336 117 C 350 120, 360 130, 368 143 C 374 153, 381 160, 387 166'), TextSlot(id='slot.left.label.pot', prompt='', text='주전자', style_role='label', x=272.0, y=220.0, font_size=28), TextSlot(id='slot.left.label.cup', prompt='', text='그릇', style_role='label', x=349.0, y=248.0, font_size=28), TextSlot(id='slot.arrow', prompt='', text='→', style_role='label', x=470.0, y=165.0, font_size=42), PolygonSlot(id='slot.right.pot', prompt='', points=((560.0, 140.0), (620.0, 140.0), (615.0, 190.0), (555.0, 190.0))), RectSlot(id='slot.right.container', prompt='', x=650.0, y=145.0, width=40.0, height=95.0), PathSlot(id='slot.right.water.pot', prompt='', d='M 560 173 C 565 160, 615 160, 618 175 L 616 191 L 558 191 Z'), TextSlot(id='slot.right.label.pot', prompt='', text='주전자', style_role='label', x=545.0, y=245.0, font_size=28), TextSlot(id='slot.right.label.container', prompt='', text='그릇', style_role='label', x=648.0, y=245.0, font_size=28), TextSlot(id='slot.choice', prompt='', text='( 주전자 , 그릇 )', style_role='label', x=738.0, y=304.0, font_size=28)), diagrams=(), groups=(), constraints=(), tags=())
+    return ProblemTemplate(
+        id="S3_초등_3_008749",
+        title="들이 비교",
+        canvas=Canvas(width=960, height=420, coordinate_mode="logical"),
+        regions=(
+            Region(
+                id="region.stem",
+                role="stem",
+                flow="absolute",
+                slot_ids=("slot.qno", "slot.question.1", "slot.question.2"),
+            ),
+            Region(
+                id="region.diagram.left",
+                role="diagram",
+                flow="absolute",
+                slot_ids=(
+                    "slot.left.pot",
+                    "slot.left.cup",
+                    "slot.left.water.pot",
+                    "slot.left.water.cup",
+                    "slot.left.stream",
+                    "slot.left.label.pot",
+                    "slot.left.label.cup",
+                ),
+            ),
+            Region(
+                id="region.diagram.mid", role="diagram", flow="absolute", slot_ids=("slot.arrow",)
+            ),
+            Region(
+                id="region.diagram.right",
+                role="diagram",
+                flow="absolute",
+                slot_ids=(
+                    "slot.right.pot",
+                    "slot.right.container",
+                    "slot.right.water.pot",
+                    "slot.right.label.pot",
+                    "slot.right.label.container",
+                ),
+            ),
+            Region(id="region.choice", role="stem", flow="absolute", slot_ids=("slot.choice",)),
+            Region(id="region.answer", role="stem", flow="absolute", slot_ids=()),
+        ),
+        slots=(
+            TextSlot(
+                id="slot.qno",
+                prompt="",
+                text="□ 46.",
+                style_role="question",
+                x=14.0,
+                y=30.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.question.1",
+                prompt="",
+                text="주전자에 물을 가득 채운 후 그릇에 옮겨 담았습니다. 그림과 같이 물을",
+                style_role="question",
+                x=88.0,
+                y=30.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.question.2",
+                prompt="",
+                text="채웠을 때에 주전자와 그릇 중 들이가 더 많은 것은 어느 것인가요?",
+                style_role="question",
+                x=88.0,
+                y=67.0,
+                font_size=28,
+            ),
+            PolygonSlot(
+                id="slot.left.pot",
+                prompt="",
+                points=((285.0, 95.0), (340.0, 125.0), (325.0, 175.0), (270.0, 145.0)),
+            ),
+            RectSlot(id="slot.left.cup", prompt="", x=355.0, y=110.0, width=44.0, height=70.0),
+            PathSlot(
+                id="slot.left.water.pot",
+                prompt="",
+                d="M 290 110 C 300 100, 325 100, 338 115 L 331 150 C 314 160, 296 154, 281 144 Z",
+            ),
+            PathSlot(
+                id="slot.left.water.cup", prompt="", d="M 359 140 L 396 140 L 396 176 L 359 176 Z"
+            ),
+            PathSlot(
+                id="slot.left.stream",
+                prompt="",
+                d="M 336 117 C 350 120, 360 130, 368 143 C 374 153, 381 160, 387 166",
+            ),
+            TextSlot(
+                id="slot.left.label.pot",
+                prompt="",
+                text="주전자",
+                style_role="label",
+                x=272.0,
+                y=220.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.left.label.cup",
+                prompt="",
+                text="그릇",
+                style_role="label",
+                x=349.0,
+                y=248.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.arrow",
+                prompt="",
+                text="→",
+                style_role="label",
+                x=470.0,
+                y=165.0,
+                font_size=42,
+            ),
+            PolygonSlot(
+                id="slot.right.pot",
+                prompt="",
+                points=((560.0, 140.0), (620.0, 140.0), (615.0, 190.0), (555.0, 190.0)),
+            ),
+            RectSlot(
+                id="slot.right.container", prompt="", x=650.0, y=145.0, width=40.0, height=95.0
+            ),
+            PathSlot(
+                id="slot.right.water.pot",
+                prompt="",
+                d="M 560 173 C 565 160, 615 160, 618 175 L 616 191 L 558 191 Z",
+            ),
+            TextSlot(
+                id="slot.right.label.pot",
+                prompt="",
+                text="주전자",
+                style_role="label",
+                x=545.0,
+                y=245.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.right.label.container",
+                prompt="",
+                text="그릇",
+                style_role="label",
+                x=648.0,
+                y=245.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.choice",
+                prompt="",
+                text="( 주전자 , 그릇 )",
+                style_role="label",
+                x=738.0,
+                y=304.0,
+                font_size=28,
+            ),
+        ),
+        diagrams=(),
+        groups=(),
+        constraints=(),
+        tags=(),
+    )
+
+
 PROBLEM_TEMPLATE = build_problem_template()
 
-SEMANTIC_OVERRIDE = {'problem_id': 'S3_초등_3_008749', 'problem_type': 'capacity_comparison', 'metadata': {'language': 'ko', 'question': '주전자와 그릇 중 들이가 더 많은 것을 고르는 문제', 'instruction': '그림을 보고 더 많은 들이를 가진 용기를 고르기'}, 'domain': {'objects': [{'id': 'obj.pot', 'type': 'container', 'name': '주전자'}, {'id': 'obj.bowl', 'type': 'container', 'name': '그릇'}], 'relations': [], 'problem_solving': {'understand': {'given_refs': ['obj.pot', 'obj.bowl', 'rel.pour'], 'target_ref': 'answer.target', 'condition_refs': ['rel.compare_capacity']}, 'plan': {'method': 'visual_comparison', 'description': '그림에서 물이 그릇에 모두 들어가지 않는 상황을 보고 더 큰 들이를 판단한다.'}, 'execute': {'expected_operations': ['compare_container_capacity', 'use_visual_pouring_result']}, 'review': {'check_methods': ['consistency_with_explanation']}}}, 'answer': {'blanks': [], 'choices': [], 'answer_key': [], 'target': {'type': 'container_name', 'description': '들이가 더 많은 용기'}, 'value': '주전자', 'unit': ''}}
+SEMANTIC_OVERRIDE = {
+    "problem_id": "S3_초등_3_008749",
+    "problem_type": "capacity_comparison",
+    "metadata": {
+        "language": "ko",
+        "question": "주전자와 그릇 중 들이가 더 많은 것을 고르는 문제",
+        "instruction": "그림을 보고 더 많은 들이를 가진 용기를 고르기",
+    },
+    "domain": {
+        "objects": [
+            {"id": "obj.pot", "type": "container", "name": "주전자"},
+            {"id": "obj.bowl", "type": "container", "name": "그릇"},
+        ],
+        "relations": [],
+        "problem_solving": {
+            "understand": {
+                "given_refs": ["obj.pot", "obj.bowl", "rel.pour"],
+                "target_ref": "answer.target",
+                "condition_refs": ["rel.compare_capacity"],
+            },
+            "plan": {
+                "method": "visual_comparison",
+                "description": "그림에서 물이 그릇에 모두 들어가지 않는 상황을 보고 더 큰 들이를 판단한다.",
+            },
+            "execute": {
+                "expected_operations": ["compare_container_capacity", "use_visual_pouring_result"]
+            },
+            "review": {"check_methods": ["consistency_with_explanation"]},
+        },
+    },
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {"type": "container_name", "description": "들이가 더 많은 용기"},
+        "value": "주전자",
+        "unit": "",
+    },
+}
 
-SOLVABLE = {'schema': 'modu.solvable.v1.1', 'problem_id': 'S3_초등_3_008749', 'problem_type': 'capacity_comparison', 'inputs': {'total_ticks': 0, 'target_label': '들이가 더 많은 용기', 'target_ticks': 0, 'target_count': 1, 'unit': ''}, 'given': [{'ref': 'obj.pot', 'value': {'name': '주전자'}}, {'ref': 'obj.bowl', 'value': {'name': '그릇'}}, {'ref': 'rel.pour', 'value': {'type': 'pouring_situation'}}], 'target': {'ref': 'answer.target', 'type': 'container_name'}, 'plan': ['그림에서 물이 그릇에 모두 들어가지 않는지 확인한다.', '더 많이 담을 수 있는 용기를 고른다.'], 'method': 'visual_comparison', 'steps': [{'id': 'step.1', 'expr': '그릇에 물이 모두 들어가지 않음', 'value': '확인'}, {'id': 'step.2', 'expr': '들이가 더 많은 용기 선택', 'value': '주전자'}], 'checks': [{'id': 'check.1', 'expr': '해설과 일치하는지 확인', 'expected': '주전자', 'actual': '주전자', 'pass': True}], 'answer': {'blanks': [], 'choices': [], 'answer_key': [], 'target': {'type': 'container_name', 'description': '들이가 더 많은 용기'}, 'value': '주전자', 'unit': ''}}
+SOLVABLE = {
+    "schema": "modu.solvable.v1.1",
+    "problem_id": "S3_초등_3_008749",
+    "problem_type": "capacity_comparison",
+    "inputs": {
+        "total_ticks": 0,
+        "target_label": "들이가 더 많은 용기",
+        "target_ticks": 0,
+        "target_count": 1,
+        "unit": "",
+    },
+    "given": [
+        {"ref": "obj.pot", "value": {"name": "주전자"}},
+        {"ref": "obj.bowl", "value": {"name": "그릇"}},
+        {"ref": "rel.pour", "value": {"type": "pouring_situation"}},
+    ],
+    "target": {"ref": "answer.target", "type": "container_name"},
+    "plan": [
+        "그림에서 물이 그릇에 모두 들어가지 않는지 확인한다.",
+        "더 많이 담을 수 있는 용기를 고른다.",
+    ],
+    "method": "visual_comparison",
+    "steps": [
+        {"id": "step.1", "expr": "그릇에 물이 모두 들어가지 않음", "value": "확인"},
+        {"id": "step.2", "expr": "들이가 더 많은 용기 선택", "value": "주전자"},
+    ],
+    "checks": [
+        {
+            "id": "check.1",
+            "expr": "해설과 일치하는지 확인",
+            "expected": "주전자",
+            "actual": "주전자",
+            "pass": True,
+        }
+    ],
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {"type": "container_name", "description": "들이가 더 많은 용기"},
+        "value": "주전자",
+        "unit": "",
+    },
+}

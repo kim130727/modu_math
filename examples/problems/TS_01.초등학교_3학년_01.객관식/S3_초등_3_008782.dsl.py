@@ -1,10 +1,247 @@
 from __future__ import annotations
 from modu_math.dsl import Canvas, ProblemTemplate, Region, RectSlot, TextSlot
 
+
 def build_problem_template() -> ProblemTemplate:
-    return ProblemTemplate(id='S3_초등_3_008782', title='무게의 단위를 잘못 나타낸 것을 찾아 기호를 선택하세요.', canvas=Canvas(width=752.0, height=382.0, coordinate_mode='logical'), regions=(Region(id='region.stem', role='stem', flow='absolute', slot_ids=('slot.q.num', 'slot.q.text')), Region(id='region.choices', role='diagram', flow='absolute', slot_ids=('slot.choice.box', 'slot.choice.1.mark', 'slot.choice.1.text', 'slot.choice.2.mark', 'slot.choice.2.text', 'slot.choice.3.mark', 'slot.choice.3.text')), Region(id='region.answer', role='answer', flow='absolute', slot_ids=()), Region(id='region.explanation', role='explanation', flow='absolute', slot_ids=())), slots=(TextSlot(id='slot.q.num', prompt='', text='□ 2.', style_role='question', x=8.0, y=24.0, font_size=28), TextSlot(id='slot.q.text', prompt='', text='무게의 단위를 잘못 나타낸 것을 찾아 기호를 선택하세요.', style_role='question', x=53.0, y=24.0, font_size=28), RectSlot(id='slot.choice.box', prompt='', x=292.0, y=51.0, width=365.0, height=182.0), TextSlot(id='slot.choice.1.mark', prompt='', text='㉠', style_role='body', x=315.0, y=95.0, font_size=28), TextSlot(id='slot.choice.1.text', prompt='', text='3 kg 40 g = 3040 g', style_role='body', x=343.0, y=95.0, font_size=28), TextSlot(id='slot.choice.2.mark', prompt='', text='㉡', style_role='body', x=315.0, y=140.0, font_size=28), TextSlot(id='slot.choice.2.text', prompt='', text='4000 kg = 4 t', style_role='body', x=343.0, y=140.0, font_size=28), TextSlot(id='slot.choice.3.mark', prompt='', text='㉢', style_role='body', x=315.0, y=184.0, font_size=28), TextSlot(id='slot.choice.3.text', prompt='', text='2 kg 700 g = 2070 g', style_role='body', x=343.0, y=184.0, font_size=28)), diagrams=(), groups=(), constraints=(), tags=())
+    return ProblemTemplate(
+        id="S3_초등_3_008782",
+        title="무게의 단위를 잘못 나타낸 것을 찾아 기호를 선택하세요.",
+        canvas=Canvas(width=752.0, height=382.0, coordinate_mode="logical"),
+        regions=(
+            Region(
+                id="region.stem",
+                role="stem",
+                flow="absolute",
+                slot_ids=("slot.q.num", "slot.q.text"),
+            ),
+            Region(
+                id="region.choices",
+                role="diagram",
+                flow="absolute",
+                slot_ids=(
+                    "slot.choice.box",
+                    "slot.choice.1.mark",
+                    "slot.choice.1.text",
+                    "slot.choice.2.mark",
+                    "slot.choice.2.text",
+                    "slot.choice.3.mark",
+                    "slot.choice.3.text",
+                ),
+            ),
+            Region(id="region.answer", role="answer", flow="absolute", slot_ids=()),
+            Region(id="region.explanation", role="explanation", flow="absolute", slot_ids=()),
+        ),
+        slots=(
+            TextSlot(
+                id="slot.q.num",
+                prompt="",
+                text="□ 2.",
+                style_role="question",
+                x=8.0,
+                y=24.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.q.text",
+                prompt="",
+                text="무게의 단위를 잘못 나타낸 것을 찾아 기호를 선택하세요.",
+                style_role="question",
+                x=53.0,
+                y=24.0,
+                font_size=28,
+            ),
+            RectSlot(id="slot.choice.box", prompt="", x=292.0, y=51.0, width=365.0, height=182.0),
+            TextSlot(
+                id="slot.choice.1.mark",
+                prompt="",
+                text="㉠",
+                style_role="body",
+                x=315.0,
+                y=95.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.choice.1.text",
+                prompt="",
+                text="3 kg 40 g = 3040 g",
+                style_role="body",
+                x=343.0,
+                y=95.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.choice.2.mark",
+                prompt="",
+                text="㉡",
+                style_role="body",
+                x=315.0,
+                y=140.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.choice.2.text",
+                prompt="",
+                text="4000 kg = 4 t",
+                style_role="body",
+                x=343.0,
+                y=140.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.choice.3.mark",
+                prompt="",
+                text="㉢",
+                style_role="body",
+                x=315.0,
+                y=184.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.choice.3.text",
+                prompt="",
+                text="2 kg 700 g = 2070 g",
+                style_role="body",
+                x=343.0,
+                y=184.0,
+                font_size=28,
+            ),
+        ),
+        diagrams=(),
+        groups=(),
+        constraints=(),
+        tags=(),
+    )
+
+
 PROBLEM_TEMPLATE = build_problem_template()
 
-SEMANTIC_OVERRIDE = {'problem_id': 'S3_초등_3_008782', 'problem_type': 'unit_conversion_mcq', 'metadata': {'language': 'ko', 'question': '무게의 단위를 잘못 나타낸 것을 찾아 기호를 선택하세요.', 'instruction': '보기 중 옳지 않은 단위를 고르기'}, 'domain': {'objects': [{'id': 'obj.choice.1', 'type': 'weight_statement', 'symbol': '㉠', 'expression': '3 kg 40 g = 3040 g'}, {'id': 'obj.choice.2', 'type': 'weight_statement', 'symbol': '㉡', 'expression': '4000 kg = 4 t'}, {'id': 'obj.choice.3', 'type': 'weight_statement', 'symbol': '㉢', 'expression': '2 kg 700 g = 2070 g'}, {'id': 'obj.explanation.weight', 'type': 'weight_expression', 'expression': '2 kg 700 g'}], 'relations': [], 'problem_solving': {'understand': {'given_refs': ['obj.choice.1', 'obj.choice.2', 'obj.choice.3'], 'target_ref': 'answer.target', 'condition_refs': ['rel.unit_conversion', 'rel.statement_evaluation']}, 'plan': {'method': 'unit_conversion_check', 'description': '각 보기의 무게 식이 같은 무게를 올바르게 나타내는지 확인한다.'}, 'execute': {'expected_operations': ['compare_weight_units', 'convert_kg_to_g', 'verify_equality']}, 'review': {'check_methods': ['unit_consistency_check']}}}, 'answer': {'blanks': [], 'choices': [], 'answer_key': [], 'target': {'type': 'incorrect_weight_statement', 'description': '무게의 단위를 잘못 나타낸 보기의 기호'}, 'value': 3, 'unit': ''}}
+SEMANTIC_OVERRIDE = {
+    "problem_id": "S3_초등_3_008782",
+    "problem_type": "unit_conversion_mcq",
+    "metadata": {
+        "language": "ko",
+        "question": "무게의 단위를 잘못 나타낸 것을 찾아 기호를 선택하세요.",
+        "instruction": "보기 중 옳지 않은 단위를 고르기",
+    },
+    "domain": {
+        "objects": [
+            {
+                "id": "obj.choice.1",
+                "type": "weight_statement",
+                "symbol": "㉠",
+                "expression": "3 kg 40 g = 3040 g",
+            },
+            {
+                "id": "obj.choice.2",
+                "type": "weight_statement",
+                "symbol": "㉡",
+                "expression": "4000 kg = 4 t",
+            },
+            {
+                "id": "obj.choice.3",
+                "type": "weight_statement",
+                "symbol": "㉢",
+                "expression": "2 kg 700 g = 2070 g",
+            },
+            {
+                "id": "obj.explanation.weight",
+                "type": "weight_expression",
+                "expression": "2 kg 700 g",
+            },
+        ],
+        "relations": [],
+        "problem_solving": {
+            "understand": {
+                "given_refs": ["obj.choice.1", "obj.choice.2", "obj.choice.3"],
+                "target_ref": "answer.target",
+                "condition_refs": ["rel.unit_conversion", "rel.statement_evaluation"],
+            },
+            "plan": {
+                "method": "unit_conversion_check",
+                "description": "각 보기의 무게 식이 같은 무게를 올바르게 나타내는지 확인한다.",
+            },
+            "execute": {
+                "expected_operations": [
+                    "compare_weight_units",
+                    "convert_kg_to_g",
+                    "verify_equality",
+                ]
+            },
+            "review": {"check_methods": ["unit_consistency_check"]},
+        },
+    },
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {
+            "type": "incorrect_weight_statement",
+            "description": "무게의 단위를 잘못 나타낸 보기의 기호",
+        },
+        "value": 3,
+        "unit": "",
+    },
+}
 
-SOLVABLE = {'schema': 'modu.solvable.v1.1', 'problem_id': 'S3_초등_3_008782', 'problem_type': 'unit_conversion_mcq', 'inputs': {'total_ticks': 3, 'target_label': 'incorrect_weight_statement', 'target_ticks': 1, 'target_count': 1, 'unit': ''}, 'given': [{'ref': 'obj.choice.1', 'value': {'symbol': '㉠', 'expression': '3 kg 40 g = 3040 g'}}, {'ref': 'obj.choice.2', 'value': {'symbol': '㉡', 'expression': '4000 kg = 4 t'}}, {'ref': 'obj.choice.3', 'value': {'symbol': '㉢', 'expression': '2 kg 700 g = 2070 g'}}], 'target': {'ref': 'answer.target', 'type': 'incorrect_weight_statement'}, 'method': 'unit_conversion_check', 'plan': ['각 보기의 좌변을 g 또는 t로 바꾸어 우변과 같은지 확인한다.', '같지 않은 보기를 정답으로 고른다.'], 'steps': [{'id': 'step.1', 'expr': '3 kg 40 g = 3000 g + 40 g', 'value': 3040}, {'id': 'step.2', 'expr': '4000 kg = 4 t', 'value': 4}, {'id': 'step.3', 'expr': '2 kg 700 g = 2000 g + 700 g', 'value': 2700}], 'checks': [{'id': 'check.1', 'expr': '3 kg 40 g와 3040 g은 같은 무게인지 확인', 'expected': True, 'actual': True, 'pass': True}, {'id': 'check.2', 'expr': '4000 kg와 4 t는 같은 무게인지 확인', 'expected': True, 'actual': True, 'pass': True}, {'id': 'check.3', 'expr': '2 kg 700 g와 2070 g은 같은 무게인지 확인', 'expected': True, 'actual': False, 'pass': False}], 'answer': {'blanks': [], 'choices': [], 'answer_key': [], 'target': {'type': 'incorrect_weight_statement', 'description': '무게의 단위를 잘못 나타낸 보기의 기호'}, 'value': 3, 'unit': ''}}
+SOLVABLE = {
+    "schema": "modu.solvable.v1.1",
+    "problem_id": "S3_초등_3_008782",
+    "problem_type": "unit_conversion_mcq",
+    "inputs": {
+        "total_ticks": 3,
+        "target_label": "incorrect_weight_statement",
+        "target_ticks": 1,
+        "target_count": 1,
+        "unit": "",
+    },
+    "given": [
+        {"ref": "obj.choice.1", "value": {"symbol": "㉠", "expression": "3 kg 40 g = 3040 g"}},
+        {"ref": "obj.choice.2", "value": {"symbol": "㉡", "expression": "4000 kg = 4 t"}},
+        {"ref": "obj.choice.3", "value": {"symbol": "㉢", "expression": "2 kg 700 g = 2070 g"}},
+    ],
+    "target": {"ref": "answer.target", "type": "incorrect_weight_statement"},
+    "method": "unit_conversion_check",
+    "plan": [
+        "각 보기의 좌변을 g 또는 t로 바꾸어 우변과 같은지 확인한다.",
+        "같지 않은 보기를 정답으로 고른다.",
+    ],
+    "steps": [
+        {"id": "step.1", "expr": "3 kg 40 g = 3000 g + 40 g", "value": 3040},
+        {"id": "step.2", "expr": "4000 kg = 4 t", "value": 4},
+        {"id": "step.3", "expr": "2 kg 700 g = 2000 g + 700 g", "value": 2700},
+    ],
+    "checks": [
+        {
+            "id": "check.1",
+            "expr": "3 kg 40 g와 3040 g은 같은 무게인지 확인",
+            "expected": True,
+            "actual": True,
+            "pass": True,
+        },
+        {
+            "id": "check.2",
+            "expr": "4000 kg와 4 t는 같은 무게인지 확인",
+            "expected": True,
+            "actual": True,
+            "pass": True,
+        },
+        {
+            "id": "check.3",
+            "expr": "2 kg 700 g와 2070 g은 같은 무게인지 확인",
+            "expected": True,
+            "actual": False,
+            "pass": False,
+        },
+    ],
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {
+            "type": "incorrect_weight_statement",
+            "description": "무게의 단위를 잘못 나타낸 보기의 기호",
+        },
+        "value": 3,
+        "unit": "",
+    },
+}

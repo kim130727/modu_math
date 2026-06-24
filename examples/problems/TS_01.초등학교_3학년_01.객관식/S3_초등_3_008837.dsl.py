@@ -1,10 +1,202 @@
 from __future__ import annotations
 from modu_math.dsl import Canvas, ProblemTemplate, Region, TextSlot, CircleSlot, RectSlot, PathSlot
 
+
 def build_problem_template() -> ProblemTemplate:
-    return ProblemTemplate(id='S3_초등_3_008837', title='저울에서 더 무거운 쪽 판단', canvas=Canvas(width=960, height=476, coordinate_mode='logical'), regions=(Region(id='region.stem', role='stem', flow='absolute', slot_ids=('slot.q1', 'slot.q2', 'slot.q3', 'slot.q4')), Region(id='region.diagram', role='diagram', flow='absolute', slot_ids=('slot.ball', 'slot.cube', 'slot.speech', 'slot.child', 'slot.choice.o', 'slot.choice.x')), Region(id='region.answer', role='answer', flow='absolute', slot_ids=())), slots=(TextSlot(id='slot.q1', prompt='', text='79.', style_role='question', x=32.0, y=42.0, font_size=28), TextSlot(id='slot.q2', prompt='', text='야구공과 큐브를 양손에 들어 보니 무게가 비슷하여 어느 것이 더 무거', style_role='question', x=64.0, y=42.0, font_size=28), TextSlot(id='slot.q3', prompt='', text='운지 알 수 없습니다. 두 물건의 무게를 비교할 수 있는 방법을 바르게 말했', style_role='question', x=64.0, y=78.0, font_size=28), TextSlot(id='slot.q4', prompt='', text='으면 ○표, 그렇지 않으면 ×표를 선택하세요.', style_role='question', x=64.0, y=114.0, font_size=28), CircleSlot(id='slot.ball', prompt='', cx=222.0, cy=190.0, r=28.0, fill='#F5F5F5'), RectSlot(id='slot.cube', prompt='', x=300.0, y=164.0, width=56.0, height=56.0), TextSlot(id='slot.speech', prompt='', text='저울의 양쪽 접시에 각각\n올려놓았을 때 위로 올라간\n쪽의 물건이 더 무거워.', style_role='note', x=388.0, y=148.0, font_size=28), CircleSlot(id='slot.child', prompt='', cx=780.0, cy=198.0, r=18.0, fill='#F5F5F5'), TextSlot(id='slot.choice.o', prompt='', text='○', style_role='answer_choice', x=34.0, y=300.0, font_size=28), TextSlot(id='slot.choice.x', prompt='', text='×', style_role='answer_choice', x=34.0, y=332.0, font_size=28)), diagrams=(), groups=(), constraints=(), tags=())
+    return ProblemTemplate(
+        id="S3_초등_3_008837",
+        title="저울에서 더 무거운 쪽 판단",
+        canvas=Canvas(width=960, height=476, coordinate_mode="logical"),
+        regions=(
+            Region(
+                id="region.stem",
+                role="stem",
+                flow="absolute",
+                slot_ids=("slot.q1", "slot.q2", "slot.q3", "slot.q4"),
+            ),
+            Region(
+                id="region.diagram",
+                role="diagram",
+                flow="absolute",
+                slot_ids=(
+                    "slot.ball",
+                    "slot.cube",
+                    "slot.speech",
+                    "slot.child",
+                    "slot.choice.o",
+                    "slot.choice.x",
+                ),
+            ),
+            Region(id="region.answer", role="answer", flow="absolute", slot_ids=()),
+        ),
+        slots=(
+            TextSlot(
+                id="slot.q1",
+                prompt="",
+                text="79.",
+                style_role="question",
+                x=32.0,
+                y=42.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.q2",
+                prompt="",
+                text="야구공과 큐브를 양손에 들어 보니 무게가 비슷하여 어느 것이 더 무거",
+                style_role="question",
+                x=64.0,
+                y=42.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.q3",
+                prompt="",
+                text="운지 알 수 없습니다. 두 물건의 무게를 비교할 수 있는 방법을 바르게 말했",
+                style_role="question",
+                x=64.0,
+                y=78.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.q4",
+                prompt="",
+                text="으면 ○표, 그렇지 않으면 ×표를 선택하세요.",
+                style_role="question",
+                x=64.0,
+                y=114.0,
+                font_size=28,
+            ),
+            CircleSlot(id="slot.ball", prompt="", cx=222.0, cy=190.0, r=28.0, fill="#F5F5F5"),
+            RectSlot(id="slot.cube", prompt="", x=300.0, y=164.0, width=56.0, height=56.0),
+            TextSlot(
+                id="slot.speech",
+                prompt="",
+                text="저울의 양쪽 접시에 각각\n올려놓았을 때 위로 올라간\n쪽의 물건이 더 무거워.",
+                style_role="note",
+                x=388.0,
+                y=148.0,
+                font_size=28,
+            ),
+            CircleSlot(id="slot.child", prompt="", cx=780.0, cy=198.0, r=18.0, fill="#F5F5F5"),
+            TextSlot(
+                id="slot.choice.o",
+                prompt="",
+                text="○",
+                style_role="answer_choice",
+                x=34.0,
+                y=300.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.choice.x",
+                prompt="",
+                text="×",
+                style_role="answer_choice",
+                x=34.0,
+                y=332.0,
+                font_size=28,
+            ),
+        ),
+        diagrams=(),
+        groups=(),
+        constraints=(),
+        tags=(),
+    )
+
+
 PROBLEM_TEMPLATE = build_problem_template()
 
-SEMANTIC_OVERRIDE = {'problem_id': 'S3_초등_3_008837', 'problem_type': '판단', 'metadata': {'language': 'ko', 'question': '저울에서 더 무거운 쪽을 판단하는 설명이 바른지 ○, ×로 고르는 문제', 'instruction': '바른 설명이면 ○표, 그렇지 않으면 ×표를 선택한다.'}, 'domain': {'objects': [{'id': 'obj.ball', 'type': 'object', 'name': '야구공'}, {'id': 'obj.cube', 'type': 'object', 'name': '큐브'}, {'id': 'obj.scale_rule', 'type': 'weight_comparison_rule', 'name': '저울에서 아래로 내려온 쪽이 더 무겁다'}], 'relations': [], 'problem_solving': {'understand': {'given_refs': ['obj.ball', 'obj.cube', 'obj.scale_rule'], 'target_ref': 'answer.target', 'condition_refs': ['rel.compare_weight']}, 'plan': {'method': 'true_false_selection', 'description': '제시된 비교 설명이 저울의 무게 판단 원리와 맞는지 확인한다.'}, 'execute': {'expected_operations': ['read_statement', 'judge_consistency', 'select_symbol']}, 'review': {'check_methods': ['statement_match_check']}}}, 'answer': {'blanks': [], 'choices': [], 'answer_key': [], 'target': {'type': 'symbol_choice', 'description': '바른 설명인지 판단하여 고르는 기호'}, 'value': 0, 'unit': ''}}
+SEMANTIC_OVERRIDE = {
+    "problem_id": "S3_초등_3_008837",
+    "problem_type": "판단",
+    "metadata": {
+        "language": "ko",
+        "question": "저울에서 더 무거운 쪽을 판단하는 설명이 바른지 ○, ×로 고르는 문제",
+        "instruction": "바른 설명이면 ○표, 그렇지 않으면 ×표를 선택한다.",
+    },
+    "domain": {
+        "objects": [
+            {"id": "obj.ball", "type": "object", "name": "야구공"},
+            {"id": "obj.cube", "type": "object", "name": "큐브"},
+            {
+                "id": "obj.scale_rule",
+                "type": "weight_comparison_rule",
+                "name": "저울에서 아래로 내려온 쪽이 더 무겁다",
+            },
+        ],
+        "relations": [],
+        "problem_solving": {
+            "understand": {
+                "given_refs": ["obj.ball", "obj.cube", "obj.scale_rule"],
+                "target_ref": "answer.target",
+                "condition_refs": ["rel.compare_weight"],
+            },
+            "plan": {
+                "method": "true_false_selection",
+                "description": "제시된 비교 설명이 저울의 무게 판단 원리와 맞는지 확인한다.",
+            },
+            "execute": {
+                "expected_operations": ["read_statement", "judge_consistency", "select_symbol"]
+            },
+            "review": {"check_methods": ["statement_match_check"]},
+        },
+    },
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {"type": "symbol_choice", "description": "바른 설명인지 판단하여 고르는 기호"},
+        "value": 0,
+        "unit": "",
+    },
+}
 
-SOLVABLE = {'schema': 'modu.solvable.v1.1', 'problem_id': 'S3_초등_3_008837', 'problem_type': '판단', 'inputs': {'total_ticks': 2, 'target_label': '정답 기호', 'target_ticks': 1, 'target_count': 1, 'unit': ''}, 'given': [{'ref': 'obj.ball', 'value': '야구공'}, {'ref': 'obj.cube', 'value': '큐브'}, {'ref': 'obj.scale_rule', 'value': '저울에서 아래로 내려온 쪽이 더 무겁다'}], 'target': {'ref': 'answer.target', 'type': 'symbol_choice'}, 'method': 'true_false_selection', 'plan': ['제시된 문장이 저울의 무게 비교 원리와 맞는지 확인한다.', '맞으면 ○, 아니면 ×를 고른다.'], 'steps': [{'id': 'step.1', 'expr': '저울에서 아래로 내려온 쪽이 더 무겁다는 원리 확인', 'value': '확인'}, {'id': 'step.2', 'expr': '제시 문장과 원리의 일치 여부 판단', 'value': '불일치'}, {'id': 'step.3', 'expr': '선택 기호 결정', 'value': '×'}], 'checks': [{'id': 'check.1', 'expr': '선택 기호가 불일치 판단과 같은가', 'expected': '×', 'actual': '×', 'pass': True}], 'answer': {'blanks': [], 'choices': [], 'answer_key': [], 'target': {'type': 'symbol_choice', 'description': '바른 설명인지 판단하여 고르는 기호'}, 'value': 0, 'unit': ''}}
+SOLVABLE = {
+    "schema": "modu.solvable.v1.1",
+    "problem_id": "S3_초등_3_008837",
+    "problem_type": "판단",
+    "inputs": {
+        "total_ticks": 2,
+        "target_label": "정답 기호",
+        "target_ticks": 1,
+        "target_count": 1,
+        "unit": "",
+    },
+    "given": [
+        {"ref": "obj.ball", "value": "야구공"},
+        {"ref": "obj.cube", "value": "큐브"},
+        {"ref": "obj.scale_rule", "value": "저울에서 아래로 내려온 쪽이 더 무겁다"},
+    ],
+    "target": {"ref": "answer.target", "type": "symbol_choice"},
+    "method": "true_false_selection",
+    "plan": [
+        "제시된 문장이 저울의 무게 비교 원리와 맞는지 확인한다.",
+        "맞으면 ○, 아니면 ×를 고른다.",
+    ],
+    "steps": [
+        {
+            "id": "step.1",
+            "expr": "저울에서 아래로 내려온 쪽이 더 무겁다는 원리 확인",
+            "value": "확인",
+        },
+        {"id": "step.2", "expr": "제시 문장과 원리의 일치 여부 판단", "value": "불일치"},
+        {"id": "step.3", "expr": "선택 기호 결정", "value": "×"},
+    ],
+    "checks": [
+        {
+            "id": "check.1",
+            "expr": "선택 기호가 불일치 판단과 같은가",
+            "expected": "×",
+            "actual": "×",
+            "pass": True,
+        }
+    ],
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {"type": "symbol_choice", "description": "바른 설명인지 판단하여 고르는 기호"},
+        "value": 0,
+        "unit": "",
+    },
+}

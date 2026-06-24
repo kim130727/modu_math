@@ -1,10 +1,246 @@
 from __future__ import annotations
-from modu_math.dsl import Canvas, ProblemTemplate, Region, TextSlot, RectSlot, CircleSlot, LineSlot, PolygonSlot
+from modu_math.dsl import (
+    Canvas,
+    ProblemTemplate,
+    Region,
+    TextSlot,
+    RectSlot,
+    CircleSlot,
+    LineSlot,
+    PolygonSlot,
+)
+
 
 def build_problem_template() -> ProblemTemplate:
-    return ProblemTemplate(id='S3_초등_3_008772', title='들이가 더 작은 물병 고르기', canvas=Canvas(width=940, height=470, coordinate_mode='logical'), regions=(Region(id='region.stem', role='stem', flow='absolute', slot_ids=('slot.q1', 'slot.q2')), Region(id='region.diagram', role='diagram', flow='absolute', slot_ids=('slot.bottle.ga.body', 'slot.bottle.ga.neck', 'slot.bottle.ga.mouth', 'slot.bottle.ga.label', 'slot.bottle.na.body', 'slot.bottle.na.neck', 'slot.bottle.na.mouth', 'slot.bottle.na.water', 'slot.bottle.na.label')), Region(id='region.choice', role='answer_choice', flow='absolute', slot_ids=('slot.choice',)), Region(id='region.footer', role='explanation', flow='absolute', slot_ids=())), slots=(TextSlot(id='slot.q1', prompt='', text='□ 82.  ㉠ 물병에 물을 가득 채운 후 ㉡ 물병에 옮겨 담았습니다. 그림과 같이', style_role='question', x=14.0, y=27.0, font_size=28), TextSlot(id='slot.q2', prompt='', text='물을 채웠을 때에 들이가 더 작은 물병을 선택해 보세요.', style_role='question', x=14.0, y=63.0, font_size=28), RectSlot(id='slot.bottle.ga.body', prompt='', x=430.0, y=92.0, width=82.0, height=38.0, stroke='#45B7F5', fill='none'), PolygonSlot(id='slot.bottle.ga.neck', prompt='', points=((493.0, 104.0), (520.0, 111.0), (512.0, 133.0), (486.0, 126.0)), stroke='#45B7F5', fill='none'), LineSlot(id='slot.bottle.ga.mouth', prompt='', x1=520.0, y1=111.0, x2=525.0, y2=120.0, stroke='#45B7F5'), CircleSlot(id='slot.bottle.ga.label', prompt='', cx=468.0, cy=110.0, r=12.0, fill='none'), TextSlot(id='slot.bottle.ga.label_text', prompt='', text='가', style_role='label', x=460.0, y=118.0, font_size=22), RectSlot(id='slot.bottle.na.body', prompt='', x=500.0, y=156.0, width=76.0, height=136.0, stroke='#45B7F5', fill='none'), RectSlot(id='slot.bottle.na.water', prompt='', x=505.0, y=202.0, width=66.0, height=85.0, stroke='none', fill='#8ED2F7'), PolygonSlot(id='slot.bottle.na.neck', prompt='', points=((524.0, 141.0), (551.0, 141.0), (551.0, 158.0), (524.0, 158.0)), stroke='#45B7F5', fill='none'), CircleSlot(id='slot.bottle.na.mouth', prompt='', cx=537.5, cy=141.0, r=10.0, fill='none'), CircleSlot(id='slot.bottle.na.label', prompt='', cx=535.0, cy=230.0, r=12.0, fill='none'), TextSlot(id='slot.bottle.na.label_text', prompt='', text='나', style_role='label', x=527.0, y=238.0, font_size=22), TextSlot(id='slot.choice', prompt='', text='( ㉠ 물병 , ㉡ 물병 )', style_role='answer_choice', x=687.0, y=345.0, font_size=28)), diagrams=(), groups=(), constraints=(), tags=())
+    return ProblemTemplate(
+        id="S3_초등_3_008772",
+        title="들이가 더 작은 물병 고르기",
+        canvas=Canvas(width=940, height=470, coordinate_mode="logical"),
+        regions=(
+            Region(id="region.stem", role="stem", flow="absolute", slot_ids=("slot.q1", "slot.q2")),
+            Region(
+                id="region.diagram",
+                role="diagram",
+                flow="absolute",
+                slot_ids=(
+                    "slot.bottle.ga.body",
+                    "slot.bottle.ga.neck",
+                    "slot.bottle.ga.mouth",
+                    "slot.bottle.ga.label",
+                    "slot.bottle.na.body",
+                    "slot.bottle.na.neck",
+                    "slot.bottle.na.mouth",
+                    "slot.bottle.na.water",
+                    "slot.bottle.na.label",
+                ),
+            ),
+            Region(
+                id="region.choice", role="answer_choice", flow="absolute", slot_ids=("slot.choice",)
+            ),
+            Region(id="region.footer", role="explanation", flow="absolute", slot_ids=()),
+        ),
+        slots=(
+            TextSlot(
+                id="slot.q1",
+                prompt="",
+                text="□ 82.  ㉠ 물병에 물을 가득 채운 후 ㉡ 물병에 옮겨 담았습니다. 그림과 같이",
+                style_role="question",
+                x=14.0,
+                y=27.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.q2",
+                prompt="",
+                text="물을 채웠을 때에 들이가 더 작은 물병을 선택해 보세요.",
+                style_role="question",
+                x=14.0,
+                y=63.0,
+                font_size=28,
+            ),
+            RectSlot(
+                id="slot.bottle.ga.body",
+                prompt="",
+                x=430.0,
+                y=92.0,
+                width=82.0,
+                height=38.0,
+                stroke="#45B7F5",
+                fill="none",
+            ),
+            PolygonSlot(
+                id="slot.bottle.ga.neck",
+                prompt="",
+                points=((493.0, 104.0), (520.0, 111.0), (512.0, 133.0), (486.0, 126.0)),
+                stroke="#45B7F5",
+                fill="none",
+            ),
+            LineSlot(
+                id="slot.bottle.ga.mouth",
+                prompt="",
+                x1=520.0,
+                y1=111.0,
+                x2=525.0,
+                y2=120.0,
+                stroke="#45B7F5",
+            ),
+            CircleSlot(
+                id="slot.bottle.ga.label", prompt="", cx=468.0, cy=110.0, r=12.0, fill="none"
+            ),
+            TextSlot(
+                id="slot.bottle.ga.label_text",
+                prompt="",
+                text="가",
+                style_role="label",
+                x=460.0,
+                y=118.0,
+                font_size=22,
+            ),
+            RectSlot(
+                id="slot.bottle.na.body",
+                prompt="",
+                x=500.0,
+                y=156.0,
+                width=76.0,
+                height=136.0,
+                stroke="#45B7F5",
+                fill="none",
+            ),
+            RectSlot(
+                id="slot.bottle.na.water",
+                prompt="",
+                x=505.0,
+                y=202.0,
+                width=66.0,
+                height=85.0,
+                stroke="none",
+                fill="#8ED2F7",
+            ),
+            PolygonSlot(
+                id="slot.bottle.na.neck",
+                prompt="",
+                points=((524.0, 141.0), (551.0, 141.0), (551.0, 158.0), (524.0, 158.0)),
+                stroke="#45B7F5",
+                fill="none",
+            ),
+            CircleSlot(
+                id="slot.bottle.na.mouth", prompt="", cx=537.5, cy=141.0, r=10.0, fill="none"
+            ),
+            CircleSlot(
+                id="slot.bottle.na.label", prompt="", cx=535.0, cy=230.0, r=12.0, fill="none"
+            ),
+            TextSlot(
+                id="slot.bottle.na.label_text",
+                prompt="",
+                text="나",
+                style_role="label",
+                x=527.0,
+                y=238.0,
+                font_size=22,
+            ),
+            TextSlot(
+                id="slot.choice",
+                prompt="",
+                text="( ㉠ 물병 , ㉡ 물병 )",
+                style_role="answer_choice",
+                x=687.0,
+                y=345.0,
+                font_size=28,
+            ),
+        ),
+        diagrams=(),
+        groups=(),
+        constraints=(),
+        tags=(),
+    )
+
+
 PROBLEM_TEMPLATE = build_problem_template()
 
-SEMANTIC_OVERRIDE = {'problem_id': 'S3_초등_3_008772', 'problem_type': 'comparison_choice', 'metadata': {'language': 'ko', 'question': '그림과 같이 물을 채웠을 때에 들이가 더 작은 물병을 고르는 문제', 'instruction': '들이가 더 작은 물병을 선택한다.'}, 'domain': {'objects': [{'id': 'obj.bottle.ga', 'type': 'bottle', 'label': '가'}, {'id': 'obj.bottle.na', 'type': 'bottle', 'label': '나'}], 'relations': [], 'problem_solving': {'understand': {'given_refs': ['obj.bottle.ga', 'obj.bottle.na', 'rel.pour'], 'target_ref': 'answer.target', 'condition_refs': ['rel.compare_capacity']}, 'plan': {'method': 'compare_by_transfer', 'description': '한 물병의 물이 다른 물병에 다 들어가는 관계를 보고 더 작은 들이의 물병을 고른다.'}, 'execute': {'expected_operations': ['identify_transfer_relation', 'compare_container_capacity']}, 'review': {'check_methods': ['label_match_check', 'relation_consistency_check']}}}, 'answer': {'blanks': [], 'choices': [], 'answer_key': [], 'target': {'type': 'choice', 'description': '들이가 더 작은 물병'}, 'value': '가 물병', 'unit': ''}}
+SEMANTIC_OVERRIDE = {
+    "problem_id": "S3_초등_3_008772",
+    "problem_type": "comparison_choice",
+    "metadata": {
+        "language": "ko",
+        "question": "그림과 같이 물을 채웠을 때에 들이가 더 작은 물병을 고르는 문제",
+        "instruction": "들이가 더 작은 물병을 선택한다.",
+    },
+    "domain": {
+        "objects": [
+            {"id": "obj.bottle.ga", "type": "bottle", "label": "가"},
+            {"id": "obj.bottle.na", "type": "bottle", "label": "나"},
+        ],
+        "relations": [],
+        "problem_solving": {
+            "understand": {
+                "given_refs": ["obj.bottle.ga", "obj.bottle.na", "rel.pour"],
+                "target_ref": "answer.target",
+                "condition_refs": ["rel.compare_capacity"],
+            },
+            "plan": {
+                "method": "compare_by_transfer",
+                "description": "한 물병의 물이 다른 물병에 다 들어가는 관계를 보고 더 작은 들이의 물병을 고른다.",
+            },
+            "execute": {
+                "expected_operations": ["identify_transfer_relation", "compare_container_capacity"]
+            },
+            "review": {"check_methods": ["label_match_check", "relation_consistency_check"]},
+        },
+    },
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {"type": "choice", "description": "들이가 더 작은 물병"},
+        "value": "가 물병",
+        "unit": "",
+    },
+}
 
-SOLVABLE = {'schema': 'modu.solvable.v1.1', 'problem_id': 'S3_초등_3_008772', 'problem_type': 'comparison_choice', 'inputs': {'total_ticks': 0, 'target_label': '들이가 더 작은 물병', 'target_ticks': 0, 'target_count': 1, 'unit': ''}, 'given': [{'ref': 'obj.bottle.ga', 'value': {'label': '가'}}, {'ref': 'obj.bottle.na', 'value': {'label': '나'}}], 'target': {'ref': 'answer.target', 'type': 'choice'}, 'method': 'compare_by_transfer', 'plan': ['그림에서 물이 옮겨 담기는 관계를 확인한다.', '더 적은 물로도 가득 차는 물병을 고른다.'], 'steps': [{'id': 'step.1', 'expr': '가 물병의 물이 나 물병에 모두 들어가는 관계를 확인', 'value': '가 -> 나'}, {'id': 'step.2', 'expr': '들이가 더 작은 물병 선택', 'value': '가 물병'}], 'checks': [{'id': 'check.1', 'expr': '선택한 물병이 그림의 관계와 일치하는가', 'expected': '가 물병', 'actual': '가 물병', 'pass': True}], 'answer': {'blanks': [], 'choices': [], 'answer_key': [], 'target': {'type': 'choice', 'description': '들이가 더 작은 물병'}, 'value': '가 물병', 'unit': ''}}
+SOLVABLE = {
+    "schema": "modu.solvable.v1.1",
+    "problem_id": "S3_초등_3_008772",
+    "problem_type": "comparison_choice",
+    "inputs": {
+        "total_ticks": 0,
+        "target_label": "들이가 더 작은 물병",
+        "target_ticks": 0,
+        "target_count": 1,
+        "unit": "",
+    },
+    "given": [
+        {"ref": "obj.bottle.ga", "value": {"label": "가"}},
+        {"ref": "obj.bottle.na", "value": {"label": "나"}},
+    ],
+    "target": {"ref": "answer.target", "type": "choice"},
+    "method": "compare_by_transfer",
+    "plan": [
+        "그림에서 물이 옮겨 담기는 관계를 확인한다.",
+        "더 적은 물로도 가득 차는 물병을 고른다.",
+    ],
+    "steps": [
+        {
+            "id": "step.1",
+            "expr": "가 물병의 물이 나 물병에 모두 들어가는 관계를 확인",
+            "value": "가 -> 나",
+        },
+        {"id": "step.2", "expr": "들이가 더 작은 물병 선택", "value": "가 물병"},
+    ],
+    "checks": [
+        {
+            "id": "check.1",
+            "expr": "선택한 물병이 그림의 관계와 일치하는가",
+            "expected": "가 물병",
+            "actual": "가 물병",
+            "pass": True,
+        }
+    ],
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {"type": "choice", "description": "들이가 더 작은 물병"},
+        "value": "가 물병",
+        "unit": "",
+    },
+}

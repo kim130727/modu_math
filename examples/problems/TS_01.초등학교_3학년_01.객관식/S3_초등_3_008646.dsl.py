@@ -59,15 +59,26 @@ def build_problem_template() -> ProblemTemplate:
                     "slot.note.center",
                 ),
             ),
-            Region(id="region.answer", role="answer", flow="absolute", slot_ids=("slot.answer.box", "slot.answer.text")),
+            Region(
+                id="region.answer",
+                role="answer",
+                flow="absolute",
+                slot_ids=("slot.answer.box", "slot.answer.text"),
+            ),
         ),
         slots=(
             TextSlot(
                 id="slot.stem",
                 prompt="",
-                text = '원 모양의 종이를 접어 원의 성질을 알아보고 알맞은 말을 선택하세요.', style_role="question",
-                x = 55, y = 35, font_size = 20),
-            *character_body_slots("slot.person.left", cx=230.0, head_cy=128.0, hair="#3B2417", shirt="#58C7BC"),
+                text="원 모양의 종이를 접어 원의 성질을 알아보고 알맞은 말을 선택하세요.",
+                style_role="question",
+                x=55,
+                y=35,
+                font_size=20,
+            ),
+            *character_body_slots(
+                "slot.person.left", cx=230.0, head_cy=128.0, hair="#3B2417", shirt="#58C7BC"
+            ),
             PathSlot(
                 id="slot.speech.bubble",
                 prompt="",
@@ -129,7 +140,16 @@ def build_problem_template() -> ProblemTemplate:
                 font_size=16,
                 fill="#00843D",
             ),
-            RectSlot(id="slot.answer.box", prompt="", x=103.0, y=423.0, width=756.0, height=118.0, fill="#F9E0DA", stroke="none"),
+            RectSlot(
+                id="slot.answer.box",
+                prompt="",
+                x=103.0,
+                y=423.0,
+                width=756.0,
+                height=118.0,
+                fill="#F9E0DA",
+                stroke="none",
+            ),
             TextSlot(
                 id="slot.answer.text",
                 prompt="",
@@ -140,8 +160,6 @@ def build_problem_template() -> ProblemTemplate:
                 font_size=24,
                 anchor="middle",
             ),
-            
-            
         ),
         diagrams=(),
         groups=(),
@@ -164,7 +182,11 @@ SEMANTIC_OVERRIDE = {
     "domain": {
         "objects": [
             {"id": "obj.circle_paper", "type": "circle", "description": "원 모양의 종이"},
-            {"id": "obj.fold_line", "type": "line_segment", "description": "원을 둘로 똑같이 나누는 접힌 선"},
+            {
+                "id": "obj.fold_line",
+                "type": "line_segment",
+                "description": "원을 둘로 똑같이 나누는 접힌 선",
+            },
             {"id": "obj.center", "type": "point", "description": "원의 중심"},
         ],
         "relations": [
@@ -193,7 +215,9 @@ SEMANTIC_OVERRIDE = {
                 "method": "concept_matching",
                 "description": "원을 둘로 똑같이 나누며 중심을 지나는 선분은 지름임을 확인한다.",
             },
-            "execute": {"expected_operations": ["identify_center_passing_segment", "match_to_diameter"]},
+            "execute": {
+                "expected_operations": ["identify_center_passing_segment", "match_to_diameter"]
+            },
             "review": {"check_methods": ["definition_consistency_check"]},
         },
     },
@@ -217,7 +241,10 @@ SOLVABLE = {
     "inputs": {"target_label": "지름", "target_count": 1, "unit": ""},
     "given": [
         {"ref": "obj.circle_paper", "value": {"type": "circle", "description": "원 모양의 종이"}},
-        {"ref": "obj.fold_line", "value": {"type": "line_segment", "description": "원을 둘로 똑같이 나누는 접힌 선"}},
+        {
+            "ref": "obj.fold_line",
+            "value": {"type": "line_segment", "description": "원을 둘로 똑같이 나누는 접힌 선"},
+        },
     ],
     "target": {"ref": "answer.target", "type": "concept_name"},
     "method": "concept_matching",
@@ -226,11 +253,21 @@ SOLVABLE = {
         "그 선이 원의 중심을 지나므로 지름임을 판단한다.",
     ],
     "steps": [
-        {"id": "step.1", "expr": "원을 둘로 똑같이 나누는 선분은 원의 중심을 지난다.", "value": "center_passing_segment"},
+        {
+            "id": "step.1",
+            "expr": "원을 둘로 똑같이 나누는 선분은 원의 중심을 지난다.",
+            "value": "center_passing_segment",
+        },
         {"id": "step.2", "expr": "center_passing_segment == diameter", "value": "지름"},
     ],
     "checks": [
-        {"id": "check.1", "expr": "원의 중심을 지나는 선분은 지름이다.", "expected": True, "actual": True, "pass": True}
+        {
+            "id": "check.1",
+            "expr": "원의 중심을 지나는 선분은 지름이다.",
+            "expected": True,
+            "actual": True,
+            "pass": True,
+        }
     ],
     "answer": {
         "blanks": [],

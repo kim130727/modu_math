@@ -1,10 +1,234 @@
 from __future__ import annotations
 from modu_math.dsl import Canvas, ProblemTemplate, Region, RectSlot, TextSlot
 
+
 def build_problem_template() -> ProblemTemplate:
-    return ProblemTemplate(id='S3_초등_3_009038', title='도형을 보고 알맞은 말을 선택하세요', canvas=Canvas(width=940, height=440, coordinate_mode='logical'), regions=(Region(id='region.stem', role='stem', flow='absolute', slot_ids=('slot.q1', 'slot.shape', 'slot.box1', 'slot.box2', 'slot.box3')), Region(id='region.footnote', role='note', flow='absolute', slot_ids=())), slots=(TextSlot(id='slot.q1', prompt='', text='76. 도형을 보고 알맞은 말을 선택하세요.', style_role='question', x=18.0, y=28.0, font_size=28), RectSlot(id='slot.shape', prompt='', x=382.0, y=42.0, width=176.0, height=103.0), RectSlot(id='slot.box1', prompt='', x=34.0, y=152.0, width=286.0, height=170.0), RectSlot(id='slot.box2', prompt='', x=335.0, y=152.0, width=286.0, height=170.0), RectSlot(id='slot.box3', prompt='', x=636.0, y=152.0, width=286.0, height=170.0), TextSlot(id='slot.box1.t1', prompt='', text='도형은', style_role='body', x=113.0, y=182.0, font_size=28), TextSlot(id='slot.box1.t2', prompt='', text='직사각형이', style_role='body', x=92.0, y=222.0, font_size=28), TextSlot(id='slot.box1.t3', prompt='', text='( 맞아요 , 아니에요 ).', style_role='body', x=67.0, y=264.0, font_size=28), TextSlot(id='slot.box2.t1', prompt='', text='도형은', style_role='body', x=414.0, y=182.0, font_size=28), TextSlot(id='slot.box2.t2', prompt='', text='정사각형이', style_role='body', x=392.0, y=222.0, font_size=28), TextSlot(id='slot.box2.t3', prompt='', text='( 맞아요 , 아니에요 ).', style_role='body', x=368.0, y=264.0, font_size=28), TextSlot(id='slot.box3.t1', prompt='', text='직사각형은', style_role='body', x=705.0, y=182.0, font_size=28), TextSlot(id='slot.box3.t2', prompt='', text='정사각형이라고 할 수', style_role='body', x=677.0, y=222.0, font_size=28), TextSlot(id='slot.box3.t3', prompt='', text='( 있어요 , 없어요 ).', style_role='body', x=691.0, y=264.0, font_size=28)), diagrams=(), groups=(), constraints=(), tags=())
+    return ProblemTemplate(
+        id="S3_초등_3_009038",
+        title="도형을 보고 알맞은 말을 선택하세요",
+        canvas=Canvas(width=940, height=440, coordinate_mode="logical"),
+        regions=(
+            Region(
+                id="region.stem",
+                role="stem",
+                flow="absolute",
+                slot_ids=("slot.q1", "slot.shape", "slot.box1", "slot.box2", "slot.box3"),
+            ),
+            Region(id="region.footnote", role="note", flow="absolute", slot_ids=()),
+        ),
+        slots=(
+            TextSlot(
+                id="slot.q1",
+                prompt="",
+                text="76. 도형을 보고 알맞은 말을 선택하세요.",
+                style_role="question",
+                x=18.0,
+                y=28.0,
+                font_size=28,
+            ),
+            RectSlot(id="slot.shape", prompt="", x=382.0, y=42.0, width=176.0, height=103.0),
+            RectSlot(id="slot.box1", prompt="", x=34.0, y=152.0, width=286.0, height=170.0),
+            RectSlot(id="slot.box2", prompt="", x=335.0, y=152.0, width=286.0, height=170.0),
+            RectSlot(id="slot.box3", prompt="", x=636.0, y=152.0, width=286.0, height=170.0),
+            TextSlot(
+                id="slot.box1.t1",
+                prompt="",
+                text="도형은",
+                style_role="body",
+                x=113.0,
+                y=182.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.box1.t2",
+                prompt="",
+                text="직사각형이",
+                style_role="body",
+                x=92.0,
+                y=222.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.box1.t3",
+                prompt="",
+                text="( 맞아요 , 아니에요 ).",
+                style_role="body",
+                x=67.0,
+                y=264.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.box2.t1",
+                prompt="",
+                text="도형은",
+                style_role="body",
+                x=414.0,
+                y=182.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.box2.t2",
+                prompt="",
+                text="정사각형이",
+                style_role="body",
+                x=392.0,
+                y=222.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.box2.t3",
+                prompt="",
+                text="( 맞아요 , 아니에요 ).",
+                style_role="body",
+                x=368.0,
+                y=264.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.box3.t1",
+                prompt="",
+                text="직사각형은",
+                style_role="body",
+                x=705.0,
+                y=182.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.box3.t2",
+                prompt="",
+                text="정사각형이라고 할 수",
+                style_role="body",
+                x=677.0,
+                y=222.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.box3.t3",
+                prompt="",
+                text="( 있어요 , 없어요 ).",
+                style_role="body",
+                x=691.0,
+                y=264.0,
+                font_size=28,
+            ),
+        ),
+        diagrams=(),
+        groups=(),
+        constraints=(),
+        tags=(),
+    )
+
+
 PROBLEM_TEMPLATE = build_problem_template()
 
-SEMANTIC_OVERRIDE = {'problem_id': 'S3_초등_3_009038', 'problem_type': '도형 분류', 'metadata': {'language': 'ko', 'question': '도형을 보고 알맞은 말을 선택하세요.', 'instruction': '도형의 성질을 보고 알맞은 말을 선택하는 문제'}, 'domain': {'objects': [{'id': 'obj.shape', 'type': 'quadrilateral', 'subtype': 'rectangle_like_shape'}, {'id': 'obj.rectangle', 'type': 'shape_class', 'name': '직사각형'}, {'id': 'obj.square', 'type': 'shape_class', 'name': '정사각형'}], 'relations': [], 'problem_solving': {'understand': {'given_refs': ['obj.shape'], 'target_ref': 'answer.target', 'condition_refs': ['rel.classify_rectangle', 'rel.classify_square', 'rel.rectangle_not_square']}, 'plan': {'method': 'shape_classification', 'description': '도형의 각과 변의 성질을 보고 직사각형과 정사각형 여부를 판단한다.'}, 'execute': {'expected_operations': ['성질_확인', '분류_판단', '포함관계_판단']}, 'review': {'check_methods': ['직각_확인', '변의_길이_비교', '분류_일치_확인']}}}, 'answer': {'blanks': [], 'choices': [], 'answer_key': [], 'target': {'type': 'classification_choice', 'description': '직사각형 여부, 정사각형 여부, 포함 관계 판단'}, 'value': 0, 'unit': ''}}
+SEMANTIC_OVERRIDE = {
+    "problem_id": "S3_초등_3_009038",
+    "problem_type": "도형 분류",
+    "metadata": {
+        "language": "ko",
+        "question": "도형을 보고 알맞은 말을 선택하세요.",
+        "instruction": "도형의 성질을 보고 알맞은 말을 선택하는 문제",
+    },
+    "domain": {
+        "objects": [
+            {"id": "obj.shape", "type": "quadrilateral", "subtype": "rectangle_like_shape"},
+            {"id": "obj.rectangle", "type": "shape_class", "name": "직사각형"},
+            {"id": "obj.square", "type": "shape_class", "name": "정사각형"},
+        ],
+        "relations": [],
+        "problem_solving": {
+            "understand": {
+                "given_refs": ["obj.shape"],
+                "target_ref": "answer.target",
+                "condition_refs": [
+                    "rel.classify_rectangle",
+                    "rel.classify_square",
+                    "rel.rectangle_not_square",
+                ],
+            },
+            "plan": {
+                "method": "shape_classification",
+                "description": "도형의 각과 변의 성질을 보고 직사각형과 정사각형 여부를 판단한다.",
+            },
+            "execute": {"expected_operations": ["성질_확인", "분류_판단", "포함관계_판단"]},
+            "review": {"check_methods": ["직각_확인", "변의_길이_비교", "분류_일치_확인"]},
+        },
+    },
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {
+            "type": "classification_choice",
+            "description": "직사각형 여부, 정사각형 여부, 포함 관계 판단",
+        },
+        "value": 0,
+        "unit": "",
+    },
+}
 
-SOLVABLE = {'schema': 'modu.solvable.v1.1', 'problem_id': 'S3_초등_3_009038', 'problem_type': '도형 분류', 'inputs': {'total_ticks': 3, 'target_label': '도형 분류', 'target_ticks': 3, 'target_count': 3, 'unit': ''}, 'given': [{'ref': 'obj.shape', 'value': {'type': 'quadrilateral', 'subtype': 'rectangle_like_shape'}}, {'ref': 'obj.rectangle', 'value': {'name': '직사각형'}}, {'ref': 'obj.square', 'value': {'name': '정사각형'}}], 'target': {'ref': 'answer.target', 'type': 'classification_choice'}, 'method': 'shape_classification', 'plan': ['도형의 성질을 확인하여 직사각형인지 판단한다.', '도형의 성질을 확인하여 정사각형인지 판단한다.', '직사각형과 정사각형의 포함 관계를 판단한다.'], 'steps': [{'id': 'step.1', 'expr': '도형의 네 각이 모두 직각인지 확인', 'value': True}, {'id': 'step.2', 'expr': '도형의 네 변의 길이가 모두 같은지 확인', 'value': False}, {'id': 'step.3', 'expr': '직사각형 여부 판단', 'value': True}, {'id': 'step.4', 'expr': '정사각형 여부 판단', 'value': False}, {'id': 'step.5', 'expr': '직사각형은 정사각형이라고 할 수 있는지 판단', 'value': False}], 'checks': [{'id': 'check.1', 'expr': '직사각형은 네 각이 모두 직각이다', 'expected': True, 'actual': True, 'pass': True}, {'id': 'check.2', 'expr': '정사각형은 네 변의 길이가 모두 같다', 'expected': True, 'actual': False, 'pass': True}, {'id': 'check.3', 'expr': '직사각형이지만 정사각형은 아니다', 'expected': False, 'actual': False, 'pass': True}], 'answer': {'blanks': [], 'choices': [], 'answer_key': [], 'target': {'type': 'classification_choice', 'description': '직사각형 여부, 정사각형 여부, 포함 관계 판단'}, 'value': 0, 'unit': ''}}
+SOLVABLE = {
+    "schema": "modu.solvable.v1.1",
+    "problem_id": "S3_초등_3_009038",
+    "problem_type": "도형 분류",
+    "inputs": {
+        "total_ticks": 3,
+        "target_label": "도형 분류",
+        "target_ticks": 3,
+        "target_count": 3,
+        "unit": "",
+    },
+    "given": [
+        {"ref": "obj.shape", "value": {"type": "quadrilateral", "subtype": "rectangle_like_shape"}},
+        {"ref": "obj.rectangle", "value": {"name": "직사각형"}},
+        {"ref": "obj.square", "value": {"name": "정사각형"}},
+    ],
+    "target": {"ref": "answer.target", "type": "classification_choice"},
+    "method": "shape_classification",
+    "plan": [
+        "도형의 성질을 확인하여 직사각형인지 판단한다.",
+        "도형의 성질을 확인하여 정사각형인지 판단한다.",
+        "직사각형과 정사각형의 포함 관계를 판단한다.",
+    ],
+    "steps": [
+        {"id": "step.1", "expr": "도형의 네 각이 모두 직각인지 확인", "value": True},
+        {"id": "step.2", "expr": "도형의 네 변의 길이가 모두 같은지 확인", "value": False},
+        {"id": "step.3", "expr": "직사각형 여부 판단", "value": True},
+        {"id": "step.4", "expr": "정사각형 여부 판단", "value": False},
+        {"id": "step.5", "expr": "직사각형은 정사각형이라고 할 수 있는지 판단", "value": False},
+    ],
+    "checks": [
+        {
+            "id": "check.1",
+            "expr": "직사각형은 네 각이 모두 직각이다",
+            "expected": True,
+            "actual": True,
+            "pass": True,
+        },
+        {
+            "id": "check.2",
+            "expr": "정사각형은 네 변의 길이가 모두 같다",
+            "expected": True,
+            "actual": False,
+            "pass": True,
+        },
+        {
+            "id": "check.3",
+            "expr": "직사각형이지만 정사각형은 아니다",
+            "expected": False,
+            "actual": False,
+            "pass": True,
+        },
+    ],
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {
+            "type": "classification_choice",
+            "description": "직사각형 여부, 정사각형 여부, 포함 관계 판단",
+        },
+        "value": 0,
+        "unit": "",
+    },
+}

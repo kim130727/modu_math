@@ -2,7 +2,7 @@
   "problem_id": "S3_초등_3_008732",
   "view_box": {
     "width": 920.0,
-    "height": 860.0,
+    "height": 650.0,
     "background": "#FFFFFF"
   },
   "elements": [
@@ -10,8 +10,8 @@
       "id": "slot.q9.rect",
       "type": "rect",
       "attributes": {
-        "x": 245.0,
-        "y": 305.0,
+        "x": 229.0,
+        "y": 200.0,
         "width": 90.0,
         "height": 105.0,
         "fill": "#ffffff",
@@ -27,8 +27,8 @@
       "id": "slot.q10.rect",
       "type": "rect",
       "attributes": {
-        "x": 395.0,
-        "y": 310.0,
+        "x": 384.0,
+        "y": 200.0,
         "width": 80.0,
         "height": 100.0,
         "fill": "#ffffff",
@@ -44,8 +44,8 @@
       "id": "slot.q11.rect",
       "type": "rect",
       "attributes": {
-        "x": 545.0,
-        "y": 320.0,
+        "x": 534.0,
+        "y": 200.0,
         "width": 80.0,
         "height": 95.0,
         "fill": "#ffffff",
@@ -61,9 +61,9 @@
       "id": "slot.q24.rect",
       "type": "rect",
       "attributes": {
-        "x": 225.0,
-        "y": 530.0,
-        "width": 90.0,
+        "x": 213.0,
+        "y": 425.0,
+        "width": 110.0,
         "height": 45.0,
         "fill": "#ffffff",
         "stroke": "#111111",
@@ -78,9 +78,9 @@
       "id": "slot.q25.rect",
       "type": "rect",
       "attributes": {
-        "x": 375.0,
-        "y": 530.0,
-        "width": 90.0,
+        "x": 370.0,
+        "y": 425.0,
+        "width": 100.0,
         "height": 45.0,
         "fill": "#ffffff",
         "stroke": "#111111",
@@ -95,9 +95,9 @@
       "id": "slot.q26.rect",
       "type": "rect",
       "attributes": {
-        "x": 525.0,
-        "y": 530.0,
-        "width": 90.0,
+        "x": 517.0,
+        "y": 425.0,
+        "width": 100.0,
         "height": 45.0,
         "fill": "#ffffff",
         "stroke": "#111111",
@@ -112,10 +112,10 @@
       "id": "slot.q18.line",
       "type": "line",
       "attributes": {
-        "x1": 280.0,
-        "y1": 410.0,
-        "x2": 280.0,
-        "y2": 505.0,
+        "x1": 275.0,
+        "y1": 305.0,
+        "x2": 275.0,
+        "y2": 425.0,
         "stroke": "#111111",
         "stroke-width": 2.0
       },
@@ -128,10 +128,10 @@
       "id": "slot.q19.line",
       "type": "line",
       "attributes": {
-        "x1": 430.0,
-        "y1": 410.0,
-        "x2": 430.0,
-        "y2": 505.0,
+        "x1": 425.0,
+        "y1": 305.0,
+        "x2": 425.0,
+        "y2": 425.0,
         "stroke": "#111111",
         "stroke-width": 2.0
       },
@@ -144,10 +144,10 @@
       "id": "slot.q20.line",
       "type": "line",
       "attributes": {
-        "x1": 580.0,
-        "y1": 410.0,
-        "x2": 580.0,
-        "y2": 505.0,
+        "x1": 575.0,
+        "y1": 300.0,
+        "x2": 575.0,
+        "y2": 425.0,
         "stroke": "#111111",
         "stroke-width": 2.0
       },
@@ -160,10 +160,10 @@
       "id": "slot.q21.line",
       "type": "line",
       "attributes": {
-        "x1": 280.0,
-        "y1": 450.0,
-        "x2": 430.0,
-        "y2": 450.0,
+        "x1": 275.0,
+        "y1": 345.0,
+        "x2": 425.0,
+        "y2": 345.0,
         "stroke": "#111111",
         "stroke-width": 2.0
       },
@@ -176,10 +176,10 @@
       "id": "slot.q22.line",
       "type": "line",
       "attributes": {
-        "x1": 430.0,
-        "y1": 480.0,
-        "x2": 580.0,
-        "y2": 480.0,
+        "x1": 425.0,
+        "y1": 375.0,
+        "x2": 575.0,
+        "y2": 375.0,
         "stroke": "#111111",
         "stroke-width": 2.0
       },
@@ -192,16 +192,64 @@
       "id": "slot.q23.line",
       "type": "line",
       "attributes": {
-        "x1": 280.0,
-        "y1": 505.0,
-        "x2": 430.0,
-        "y2": 505.0,
+        "x1": 275.0,
+        "y1": 400.0,
+        "x2": 425.0,
+        "y2": 400.0,
         "stroke": "#111111",
         "stroke-width": 2.0
       },
       "source_ref": "slot.q23",
       "refs": {
         "layout_slot_id": "slot.q23"
+      }
+    },
+    {
+      "id": "slot.math.fraction.bar.line",
+      "type": "line",
+      "attributes": {
+        "x1": 261.0,
+        "y1": 259.0,
+        "x2": 301.0,
+        "y2": 259.0,
+        "stroke": "#222222",
+        "stroke-width": 2.2
+      },
+      "source_ref": "slot.math.fraction.bar",
+      "refs": {
+        "layout_slot_id": "slot.math.fraction.bar"
+      }
+    },
+    {
+      "id": "slot.math.fraction_1.bar.line",
+      "type": "line",
+      "attributes": {
+        "x1": 407.0,
+        "y1": 259.0,
+        "x2": 447.0,
+        "y2": 259.0,
+        "stroke": "#222222",
+        "stroke-width": 2.2
+      },
+      "source_ref": "slot.math.fraction_1.bar",
+      "refs": {
+        "layout_slot_id": "slot.math.fraction_1.bar"
+      }
+    },
+    {
+      "id": "slot.math.fraction_2.bar.line",
+      "type": "line",
+      "attributes": {
+        "x1": 553.0,
+        "y1": 260.0,
+        "x2": 593.0,
+        "y2": 260.0,
+        "stroke": "#222222",
+        "stroke-width": 2.2
+      },
+      "source_ref": "slot.math.fraction_2.bar",
+      "refs": {
+        "layout_slot_id": "slot.math.fraction_2.bar"
       }
     },
     {
@@ -221,107 +269,11 @@
       "text": "사다리를 타고 내려가 도착한 곳이 참이면 ○표, 거짓이면 ×표하세요."
     },
     {
-      "id": "slot.q12.text",
-      "type": "text",
-      "attributes": {
-        "x": 270.0,
-        "y": 355.0,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 30
-      },
-      "source_ref": "slot.q12",
-      "refs": {
-        "layout_slot_id": "slot.q12"
-      },
-      "text": "2"
-    },
-    {
-      "id": "slot.q13.text",
-      "type": "text",
-      "attributes": {
-        "x": 270.0,
-        "y": 390.0,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 30
-      },
-      "source_ref": "slot.q13",
-      "refs": {
-        "layout_slot_id": "slot.q13"
-      },
-      "text": "8"
-    },
-    {
-      "id": "slot.q14.text",
-      "type": "text",
-      "attributes": {
-        "x": 420.0,
-        "y": 355.0,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 30
-      },
-      "source_ref": "slot.q14",
-      "refs": {
-        "layout_slot_id": "slot.q14"
-      },
-      "text": "9"
-    },
-    {
-      "id": "slot.q15.text",
-      "type": "text",
-      "attributes": {
-        "x": 410.0,
-        "y": 390.0,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 30
-      },
-      "source_ref": "slot.q15",
-      "refs": {
-        "layout_slot_id": "slot.q15"
-      },
-      "text": "10"
-    },
-    {
-      "id": "slot.q16.text",
-      "type": "text",
-      "attributes": {
-        "x": 570.0,
-        "y": 355.0,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 30
-      },
-      "source_ref": "slot.q16",
-      "refs": {
-        "layout_slot_id": "slot.q16"
-      },
-      "text": "4"
-    },
-    {
-      "id": "slot.q17.text",
-      "type": "text",
-      "attributes": {
-        "x": 570.0,
-        "y": 390.0,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 30
-      },
-      "source_ref": "slot.q17",
-      "refs": {
-        "layout_slot_id": "slot.q17"
-      },
-      "text": "4"
-    },
-    {
       "id": "slot.q27.text",
       "type": "text",
       "attributes": {
-        "x": 235.0,
-        "y": 560.0,
+        "x": 230.0,
+        "y": 455.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 30
@@ -336,8 +288,8 @@
       "id": "slot.q28.text",
       "type": "text",
       "attributes": {
-        "x": 385.0,
-        "y": 560.0,
+        "x": 380.0,
+        "y": 455.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 30
@@ -349,11 +301,113 @@
       "text": "가분수"
     },
     {
+      "id": "slot.math.fraction.num.text",
+      "type": "text",
+      "attributes": {
+        "x": 281.0,
+        "y": 244.0,
+        "fill": "#222222",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.math.fraction.num",
+      "refs": {
+        "layout_slot_id": "slot.math.fraction.num"
+      },
+      "text": "2"
+    },
+    {
+      "id": "slot.math.fraction.den.text",
+      "type": "text",
+      "attributes": {
+        "x": 281.0,
+        "y": 284.0,
+        "fill": "#222222",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.math.fraction.den",
+      "refs": {
+        "layout_slot_id": "slot.math.fraction.den"
+      },
+      "text": "8"
+    },
+    {
+      "id": "slot.math.fraction_1.num.text",
+      "type": "text",
+      "attributes": {
+        "x": 427.0,
+        "y": 244.0,
+        "fill": "#222222",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.math.fraction_1.num",
+      "refs": {
+        "layout_slot_id": "slot.math.fraction_1.num"
+      },
+      "text": "9"
+    },
+    {
+      "id": "slot.math.fraction_1.den.text",
+      "type": "text",
+      "attributes": {
+        "x": 427.0,
+        "y": 284.0,
+        "fill": "#222222",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.math.fraction_1.den",
+      "refs": {
+        "layout_slot_id": "slot.math.fraction_1.den"
+      },
+      "text": "10"
+    },
+    {
+      "id": "slot.math.fraction_2.num.text",
+      "type": "text",
+      "attributes": {
+        "x": 573.0,
+        "y": 245.0,
+        "fill": "#222222",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.math.fraction_2.num",
+      "refs": {
+        "layout_slot_id": "slot.math.fraction_2.num"
+      },
+      "text": "4"
+    },
+    {
+      "id": "slot.math.fraction_2.den.text",
+      "type": "text",
+      "attributes": {
+        "x": 573.0,
+        "y": 285.0,
+        "fill": "#222222",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.math.fraction_2.den",
+      "refs": {
+        "layout_slot_id": "slot.math.fraction_2.den"
+      },
+      "text": "4"
+    },
+    {
       "id": "slot.q29.text",
       "type": "text",
       "attributes": {
-        "x": 535.0,
-        "y": 560.0,
+        "x": 530.0,
+        "y": 455.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 30
@@ -368,8 +422,8 @@
       "id": "slot.q30.text",
       "type": "text",
       "attributes": {
-        "x": 215.0,
-        "y": 625.0,
+        "x": 222.0,
+        "y": 512.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 30
@@ -384,8 +438,8 @@
       "id": "slot.q31.text",
       "type": "text",
       "attributes": {
-        "x": 365.0,
-        "y": 625.0,
+        "x": 372.0,
+        "y": 512.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 30
@@ -400,8 +454,8 @@
       "id": "slot.q32.text",
       "type": "text",
       "attributes": {
-        "x": 515.0,
-        "y": 625.0,
+        "x": 522.0,
+        "y": 512.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 30

@@ -266,9 +266,7 @@ SEMANTIC_OVERRIDE = {
                     "select_corresponding_container",
                 ]
             },
-            "review": {
-                "check_methods": ["ordering_check", "consistency_with_explanation"]
-            },
+            "review": {"check_methods": ["ordering_check", "consistency_with_explanation"]},
         },
     },
     "answer": {

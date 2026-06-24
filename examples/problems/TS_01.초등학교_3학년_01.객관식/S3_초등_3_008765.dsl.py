@@ -1,10 +1,267 @@
 from __future__ import annotations
 from modu_math.dsl import Canvas, ProblemTemplate, Region, TextSlot, RectSlot
 
+
 def build_problem_template() -> ProblemTemplate:
-    return ProblemTemplate(id='S3_초등_3_008765', title='저울을 보고 가장 가벼운 물건 찾기', canvas=Canvas(width=960, height=548, coordinate_mode='logical'), regions=(Region(id='region.stem', role='stem', flow='absolute', slot_ids=('slot.q1', 'slot.q2', 'slot.q3')), Region(id='region.diagram.left', role='diagram', flow='absolute', slot_ids=('slot.left.label.fork', 'slot.left.label.ladle', 'slot.left.scale.base', 'slot.left.scale.arm', 'slot.left.scale.pan.l', 'slot.left.scale.pan.r')), Region(id='region.diagram.right', role='diagram', flow='absolute', slot_ids=('slot.right.label.ladle', 'slot.right.label.spoon', 'slot.right.scale.base', 'slot.right.scale.arm', 'slot.right.scale.pan.l', 'slot.right.scale.pan.r')), Region(id='region.body', role='body', flow='absolute', slot_ids=('slot.s1', 'slot.s2', 'slot.s3')), Region(id='region.footer', role='footer', flow='absolute', slot_ids=())), slots=(TextSlot(id='slot.q1', prompt='', text='□ 67. 저울을 사용하여 포크, 국자, 숟가락의 무게를 비교하고 있습니다. 포크,', style_role='question', x=16.0, y=32.0, font_size=28), TextSlot(id='slot.q2', prompt='', text='국자, 숟가락 중에서 가장 가벼운 물건은 무엇인지 알아보려고 할 때 알맞', style_role='question', x=16.0, y=68.0, font_size=28), TextSlot(id='slot.q3', prompt='', text='은 말을 선택하세요.', style_role='question', x=16.0, y=104.0, font_size=28), RectSlot(id='slot.left.scale.base', prompt='', x=236.0, y=214.0, width=210.0, height=92.0), RectSlot(id='slot.left.scale.arm', prompt='', x=264.0, y=176.0, width=154.0, height=18.0), RectSlot(id='slot.left.scale.pan.l', prompt='', x=236.0, y=152.0, width=62.0, height=34.0), RectSlot(id='slot.left.scale.pan.r', prompt='', x=384.0, y=152.0, width=62.0, height=34.0), TextSlot(id='slot.left.label.fork', prompt='', text='포크', style_role='label', x=254.0, y=140.0, font_size=28), TextSlot(id='slot.left.label.ladle', prompt='', text='국자', style_role='label', x=410.0, y=140.0, font_size=28), RectSlot(id='slot.right.scale.base', prompt='', x=542.0, y=214.0, width=210.0, height=92.0), RectSlot(id='slot.right.scale.arm', prompt='', x=570.0, y=176.0, width=154.0, height=18.0), RectSlot(id='slot.right.scale.pan.l', prompt='', x=542.0, y=152.0, width=62.0, height=34.0), RectSlot(id='slot.right.scale.pan.r', prompt='', x=690.0, y=152.0, width=62.0, height=34.0), TextSlot(id='slot.right.label.ladle', prompt='', text='국자', style_role='label', x=560.0, y=140.0, font_size=28), TextSlot(id='slot.right.label.spoon', prompt='', text='숟가락', style_role='label', x=708.0, y=140.0, font_size=28), TextSlot(id='slot.s1', prompt='', text='포크와 국자 중 ( 포크 , 국자 )가 더 가볍고,', style_role='body', x=178.0, y=332.0, font_size=28), TextSlot(id='slot.s2', prompt='', text='국자와 숟가락 중 ( 국자 , 숟가락 )이/가 더 가벼우므로', style_role='body', x=122.0, y=378.0, font_size=28), TextSlot(id='slot.s3', prompt='', text='포크와 ( 국자 , 숟가락 )의 무게를 비교해야 합니다.', style_role='body', x=178.0, y=424.0, font_size=28)), diagrams=(), groups=(), constraints=(), tags=())
+    return ProblemTemplate(
+        id="S3_초등_3_008765",
+        title="저울을 보고 가장 가벼운 물건 찾기",
+        canvas=Canvas(width=960, height=548, coordinate_mode="logical"),
+        regions=(
+            Region(
+                id="region.stem",
+                role="stem",
+                flow="absolute",
+                slot_ids=("slot.q1", "slot.q2", "slot.q3"),
+            ),
+            Region(
+                id="region.diagram.left",
+                role="diagram",
+                flow="absolute",
+                slot_ids=(
+                    "slot.left.label.fork",
+                    "slot.left.label.ladle",
+                    "slot.left.scale.base",
+                    "slot.left.scale.arm",
+                    "slot.left.scale.pan.l",
+                    "slot.left.scale.pan.r",
+                ),
+            ),
+            Region(
+                id="region.diagram.right",
+                role="diagram",
+                flow="absolute",
+                slot_ids=(
+                    "slot.right.label.ladle",
+                    "slot.right.label.spoon",
+                    "slot.right.scale.base",
+                    "slot.right.scale.arm",
+                    "slot.right.scale.pan.l",
+                    "slot.right.scale.pan.r",
+                ),
+            ),
+            Region(
+                id="region.body",
+                role="body",
+                flow="absolute",
+                slot_ids=("slot.s1", "slot.s2", "slot.s3"),
+            ),
+            Region(id="region.footer", role="footer", flow="absolute", slot_ids=()),
+        ),
+        slots=(
+            TextSlot(
+                id="slot.q1",
+                prompt="",
+                text="□ 67. 저울을 사용하여 포크, 국자, 숟가락의 무게를 비교하고 있습니다. 포크,",
+                style_role="question",
+                x=16.0,
+                y=32.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.q2",
+                prompt="",
+                text="국자, 숟가락 중에서 가장 가벼운 물건은 무엇인지 알아보려고 할 때 알맞",
+                style_role="question",
+                x=16.0,
+                y=68.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.q3",
+                prompt="",
+                text="은 말을 선택하세요.",
+                style_role="question",
+                x=16.0,
+                y=104.0,
+                font_size=28,
+            ),
+            RectSlot(
+                id="slot.left.scale.base", prompt="", x=236.0, y=214.0, width=210.0, height=92.0
+            ),
+            RectSlot(
+                id="slot.left.scale.arm", prompt="", x=264.0, y=176.0, width=154.0, height=18.0
+            ),
+            RectSlot(
+                id="slot.left.scale.pan.l", prompt="", x=236.0, y=152.0, width=62.0, height=34.0
+            ),
+            RectSlot(
+                id="slot.left.scale.pan.r", prompt="", x=384.0, y=152.0, width=62.0, height=34.0
+            ),
+            TextSlot(
+                id="slot.left.label.fork",
+                prompt="",
+                text="포크",
+                style_role="label",
+                x=254.0,
+                y=140.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.left.label.ladle",
+                prompt="",
+                text="국자",
+                style_role="label",
+                x=410.0,
+                y=140.0,
+                font_size=28,
+            ),
+            RectSlot(
+                id="slot.right.scale.base", prompt="", x=542.0, y=214.0, width=210.0, height=92.0
+            ),
+            RectSlot(
+                id="slot.right.scale.arm", prompt="", x=570.0, y=176.0, width=154.0, height=18.0
+            ),
+            RectSlot(
+                id="slot.right.scale.pan.l", prompt="", x=542.0, y=152.0, width=62.0, height=34.0
+            ),
+            RectSlot(
+                id="slot.right.scale.pan.r", prompt="", x=690.0, y=152.0, width=62.0, height=34.0
+            ),
+            TextSlot(
+                id="slot.right.label.ladle",
+                prompt="",
+                text="국자",
+                style_role="label",
+                x=560.0,
+                y=140.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.right.label.spoon",
+                prompt="",
+                text="숟가락",
+                style_role="label",
+                x=708.0,
+                y=140.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.s1",
+                prompt="",
+                text="포크와 국자 중 ( 포크 , 국자 )가 더 가볍고,",
+                style_role="body",
+                x=178.0,
+                y=332.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.s2",
+                prompt="",
+                text="국자와 숟가락 중 ( 국자 , 숟가락 )이/가 더 가벼우므로",
+                style_role="body",
+                x=122.0,
+                y=378.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.s3",
+                prompt="",
+                text="포크와 ( 국자 , 숟가락 )의 무게를 비교해야 합니다.",
+                style_role="body",
+                x=178.0,
+                y=424.0,
+                font_size=28,
+            ),
+        ),
+        diagrams=(),
+        groups=(),
+        constraints=(),
+        tags=(),
+    )
+
+
 PROBLEM_TEMPLATE = build_problem_template()
 
-SEMANTIC_OVERRIDE = {'problem_id': 'S3_초등_3_008765', 'problem_type': 'comparison_order', 'metadata': {'language': 'ko', 'question': '저울 비교 결과를 바탕으로 가장 가벼운 물건을 고르는 문제', 'instruction': '알맞은 말을 선택하세요.'}, 'domain': {'objects': [{'id': 'obj.fork', 'type': 'object', 'name': '포크'}, {'id': 'obj.ladle', 'type': 'object', 'name': '국자'}, {'id': 'obj.spoon', 'type': 'object', 'name': '숟가락'}], 'relations': [], 'problem_solving': {'understand': {'given_refs': ['rel.compare_1', 'rel.compare_2'], 'target_ref': 'answer.target', 'condition_refs': ['rel.find_lightest']}, 'plan': {'method': 'compare_and_connect', 'description': '두 비교 결과를 연결해 가장 가벼운 물건을 고른다.'}, 'execute': {'expected_operations': ['비교 결과 확인', '가벼운 물건 연결', '최종 대상 선택']}, 'review': {'check_methods': ['비교 관계 일치 확인', '선택 대상 일관성 확인']}}}, 'answer': {'blanks': [], 'choices': [], 'answer_key': [], 'target': {'type': 'selected_object', 'description': '가장 가벼운 물건'}, 'value': '숟가락', 'unit': ''}}
+SEMANTIC_OVERRIDE = {
+    "problem_id": "S3_초등_3_008765",
+    "problem_type": "comparison_order",
+    "metadata": {
+        "language": "ko",
+        "question": "저울 비교 결과를 바탕으로 가장 가벼운 물건을 고르는 문제",
+        "instruction": "알맞은 말을 선택하세요.",
+    },
+    "domain": {
+        "objects": [
+            {"id": "obj.fork", "type": "object", "name": "포크"},
+            {"id": "obj.ladle", "type": "object", "name": "국자"},
+            {"id": "obj.spoon", "type": "object", "name": "숟가락"},
+        ],
+        "relations": [],
+        "problem_solving": {
+            "understand": {
+                "given_refs": ["rel.compare_1", "rel.compare_2"],
+                "target_ref": "answer.target",
+                "condition_refs": ["rel.find_lightest"],
+            },
+            "plan": {
+                "method": "compare_and_connect",
+                "description": "두 비교 결과를 연결해 가장 가벼운 물건을 고른다.",
+            },
+            "execute": {
+                "expected_operations": ["비교 결과 확인", "가벼운 물건 연결", "최종 대상 선택"]
+            },
+            "review": {"check_methods": ["비교 관계 일치 확인", "선택 대상 일관성 확인"]},
+        },
+    },
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {"type": "selected_object", "description": "가장 가벼운 물건"},
+        "value": "숟가락",
+        "unit": "",
+    },
+}
 
-SOLVABLE = {'schema': 'modu.solvable.v1.1', 'problem_id': 'S3_초등_3_008765', 'problem_type': 'comparison_order', 'inputs': {'total_ticks': 0, 'target_label': '가장 가벼운 물건', 'target_ticks': 0, 'target_count': 1, 'unit': ''}, 'given': [{'ref': 'obj.fork', 'value': '포크'}, {'ref': 'obj.ladle', 'value': '국자'}, {'ref': 'obj.spoon', 'value': '숟가락'}, {'ref': 'rel.compare_1', 'value': {'left': '포크', 'right': '국자'}}, {'ref': 'rel.compare_2', 'value': {'left': '국자', 'right': '숟가락'}}], 'target': {'ref': 'answer.target', 'type': 'selected_object'}, 'method': 'compare_and_connect', 'plan': ['두 저울의 비교 결과를 읽는다.', '더 가벼운 물건을 연결해 가장 가벼운 물건을 찾는다.'], 'steps': [{'id': 'step.1', 'expr': '포크와 국자 비교 결과 확인', 'value': '포크가 더 가벼움'}, {'id': 'step.2', 'expr': '국자와 숟가락 비교 결과 확인', 'value': '숟가락이 더 가벼움'}, {'id': 'step.3', 'expr': '가장 가벼운 물건 선택', 'value': '숟가락'}], 'checks': [{'id': 'check.1', 'expr': '비교 관계가 두 번 주어졌는지 확인', 'expected': 2, 'actual': 2, 'pass': True}, {'id': 'check.2', 'expr': '최종 선택이 비교 결과와 일치하는지 확인', 'expected': '숟가락', 'actual': '숟가락', 'pass': True}], 'answer': {'blanks': [], 'choices': [], 'answer_key': [], 'target': {'type': 'selected_object', 'description': '가장 가벼운 물건'}, 'value': '숟가락', 'unit': ''}}
+SOLVABLE = {
+    "schema": "modu.solvable.v1.1",
+    "problem_id": "S3_초등_3_008765",
+    "problem_type": "comparison_order",
+    "inputs": {
+        "total_ticks": 0,
+        "target_label": "가장 가벼운 물건",
+        "target_ticks": 0,
+        "target_count": 1,
+        "unit": "",
+    },
+    "given": [
+        {"ref": "obj.fork", "value": "포크"},
+        {"ref": "obj.ladle", "value": "국자"},
+        {"ref": "obj.spoon", "value": "숟가락"},
+        {"ref": "rel.compare_1", "value": {"left": "포크", "right": "국자"}},
+        {"ref": "rel.compare_2", "value": {"left": "국자", "right": "숟가락"}},
+    ],
+    "target": {"ref": "answer.target", "type": "selected_object"},
+    "method": "compare_and_connect",
+    "plan": ["두 저울의 비교 결과를 읽는다.", "더 가벼운 물건을 연결해 가장 가벼운 물건을 찾는다."],
+    "steps": [
+        {"id": "step.1", "expr": "포크와 국자 비교 결과 확인", "value": "포크가 더 가벼움"},
+        {"id": "step.2", "expr": "국자와 숟가락 비교 결과 확인", "value": "숟가락이 더 가벼움"},
+        {"id": "step.3", "expr": "가장 가벼운 물건 선택", "value": "숟가락"},
+    ],
+    "checks": [
+        {
+            "id": "check.1",
+            "expr": "비교 관계가 두 번 주어졌는지 확인",
+            "expected": 2,
+            "actual": 2,
+            "pass": True,
+        },
+        {
+            "id": "check.2",
+            "expr": "최종 선택이 비교 결과와 일치하는지 확인",
+            "expected": "숟가락",
+            "actual": "숟가락",
+            "pass": True,
+        },
+    ],
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {"type": "selected_object", "description": "가장 가벼운 물건"},
+        "value": "숟가락",
+        "unit": "",
+    },
+}

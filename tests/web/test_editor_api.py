@@ -107,9 +107,9 @@ SLOTS = (
     )
     assert response.status_code == 200
     updated = (problem_dir / "problem.dsl.py").read_text(encoding="utf-8")
-    assert "x = 120.0" in updated
-    assert "y = 80.0" in updated
-    assert "font_size = 28" in updated
+    assert "x=120.0" in updated
+    assert "y=80.0" in updated
+    assert "font_size=28" in updated
 
 
 def test_layout_patch_updates_textboxslot_box_fields(tmp_path: Path) -> None:
@@ -139,10 +139,10 @@ SLOTS = (
     )
     assert response.status_code == 200
     updated = (problem_dir / "problem.dsl.py").read_text(encoding="utf-8")
-    assert "x = 12.0" in updated
-    assert "y = 24.0" in updated
-    assert "width = 120.0" in updated
-    assert "height = 48.0" in updated
+    assert "x=12.0" in updated
+    assert "y=24.0" in updated
+    assert "width=120.0" in updated
+    assert "height=48.0" in updated
 
 
 def test_layout_patch_updates_rectslot_size_fields(tmp_path: Path) -> None:
@@ -172,10 +172,10 @@ SLOTS = (
     )
     assert response.status_code == 200
     updated = (problem_dir / "problem.dsl.py").read_text(encoding="utf-8")
-    assert "x = 5.0" in updated
-    assert "y = 15.0" in updated
-    assert "width = 120.0" in updated
-    assert "height = 80.0" in updated
+    assert "x=5.0" in updated
+    assert "y=15.0" in updated
+    assert "width=120.0" in updated
+    assert "height=80.0" in updated
 
 
 def test_layout_patch_adds_image_slot_and_import(tmp_path: Path) -> None:
@@ -357,6 +357,44 @@ def test_save_dsl_rejects_empty_dsl(tmp_path: Path) -> None:
     assert (problem_dir / "problem.dsl.py").read_text(encoding="utf-8") == "from modu_math.dsl import TextSlot\n"
 
 
+def test_save_dsl_formats_python_source(tmp_path: Path) -> None:
+    client = _setup_django(tmp_path)
+    problem_dir = _write_problem(tmp_path, "0001", "VALUE=1\n")
+    dsl = (
+        "VALUE=Foo(alpha=1,beta=2,gamma=3,delta=4,epsilon=5,"
+        "zeta=6,eta=7,theta=8,iota=9,kappa=10)\n"
+    )
+
+    response = client.post(
+        "/api/editor/problems/0001/dsl/",
+        data=json.dumps({"dsl": dsl}),
+        content_type="application/json",
+    )
+
+    assert response.status_code == 200
+    saved = (problem_dir / "problem.dsl.py").read_text(encoding="utf-8")
+    assert "VALUE = Foo(" in saved
+    assert "alpha=1, beta=2" in saved
+    assert response.json()["dsl"] == saved
+
+
+def test_format_dsl_endpoint_formats_existing_source(tmp_path: Path) -> None:
+    client = _setup_django(tmp_path)
+    problem_dir = _write_problem(
+        tmp_path,
+        "0001",
+        "VALUE=Foo(alpha=1,beta=2,gamma=3,delta=4,epsilon=5,zeta=6,eta=7,theta=8,iota=9,kappa=10)\n",
+    )
+
+    response = client.post("/api/editor/problems/0001/dsl/format/")
+
+    assert response.status_code == 200
+    saved = (problem_dir / "problem.dsl.py").read_text(encoding="utf-8")
+    assert "VALUE = Foo(" in saved
+    assert "iota=9, kappa=10" in saved
+    assert response.json()["dsl"] == saved
+
+
 def test_apply_editor_overrides_updates_layout_slot_content() -> None:
     layout = {
         "canvas": {"width": 100, "height": 100},
@@ -511,9 +549,9 @@ SLOTS = (
     )
     assert response.status_code == 200
     updated = (problem_dir / "problem.dsl.py").read_text(encoding="utf-8")
-    assert "cx = 620.0" in updated
-    assert "cy = 160.0" in updated
-    assert "r = 72.0" in updated
+    assert "cx=620.0" in updated
+    assert "cy=160.0" in updated
+    assert "r=72.0" in updated
 
 
 def test_layout_patch_updates_folded_half_helper_size_from_path(tmp_path: Path) -> None:
@@ -543,9 +581,9 @@ SLOTS = (
     )
     assert response.status_code == 200
     updated = (problem_dir / "problem.dsl.py").read_text(encoding="utf-8")
-    assert "cx = 350.0" in updated
-    assert "cy = 150.0" in updated
-    assert "r = 70.0" in updated
+    assert "cx=350.0" in updated
+    assert "cy=150.0" in updated
+    assert "r=70.0" in updated
 
 
 def test_layout_patch_overrides_folded_edge_generated_by_wrapper(tmp_path: Path) -> None:
@@ -584,9 +622,9 @@ SLOTS = (*_folded_half_slots(),)
     )
     assert response.status_code == 200
     updated = (problem_dir / "problem.dsl.py").read_text(encoding="utf-8")
-    assert "slot.id == 'slot.folded.edge'" in updated
-    assert "d='M 290 160 C 320 230, 390 225, 410 160'" in updated
-    assert "transform='rotate(180 345 153)'" in updated
+    assert 'slot.id == "slot.folded.edge"' in updated
+    assert 'd="M 290 160 C 320 230, 390 225, 410 160"' in updated
+    assert 'transform="rotate(180 345 153)"' in updated
 
     payload["patches"][0]["value"]["d"] = "M 300 170 C 330 240, 395 230, 420 170"
     response = client.post(
@@ -596,7 +634,7 @@ SLOTS = (*_folded_half_slots(),)
     )
     assert response.status_code == 200
     updated = (problem_dir / "problem.dsl.py").read_text(encoding="utf-8")
-    assert updated.count("slot.id == 'slot.folded.edge'") == 1
+    assert updated.count('slot.id == "slot.folded.edge"') == 1
     assert "M 300 170 C 330 240, 395 230, 420 170" in updated
     assert "M 290 160 C 320 230, 390 225, 410 160" not in updated
 
@@ -629,7 +667,7 @@ SLOTS = (
 
     assert response.status_code == 200
     updated = (problem_dir / "problem.dsl.py").read_text(encoding="utf-8")
-    assert "transform = 'rotate(25 45 20)'" in updated
+    assert 'transform="rotate(25 45 20)"' in updated
 
 
 def test_layout_patch_updates_person_slots_helper_anchor(tmp_path: Path) -> None:
@@ -666,7 +704,7 @@ SLOTS = (
 
     assert response.status_code == 200
     updated = (problem_dir / "problem.dsl.py").read_text(encoding="utf-8")
-    assert 'person_slots("slot.figure.left", cx = 220.0, head_cy = 85.0)' in updated
+    assert 'person_slots("slot.figure.left", cx=220.0, head_cy=85.0)' in updated
 
 
 def test_layout_patch_moves_card_character_group(tmp_path: Path) -> None:
@@ -694,9 +732,14 @@ SLOTS = (
 
     assert response.status_code == 200
     updated = (problem_dir / "problem.dsl.py").read_text(encoding="utf-8")
-    assert 'character_body_slots("slot.person_left", cx = (100.0) + (7.0), head_cy = (70.0) + (11.0)' in updated
-    assert 'character_hand_slots("slot.person_left", card_x = (80.0) + (7.0), card_y = (120.0) + (11.0)' in updated
-    assert 'RectSlot(id="slot.card_left", x = (80.0) + (7.0), y = (120.0) + (11.0)' in updated
+    assert "character_body_slots(" in updated
+    assert '"slot.person_left"' in updated
+    assert "cx=(100.0) + (7.0)" in updated
+    assert "head_cy=(70.0) + (11.0)" in updated
+    assert "character_hand_slots(" in updated
+    assert "card_x=(80.0) + (7.0)" in updated
+    assert "card_y=(120.0) + (11.0)" in updated
+    assert 'RectSlot(id="slot.card_left", x=(80.0) + (7.0), y=(120.0) + (11.0)' in updated
 
 
 def test_layout_patch_moves_base_ten_figure_helper(tmp_path: Path) -> None:
@@ -735,8 +778,8 @@ SLOTS = (
 
     assert response.status_code == 200
     updated = (problem_dir / "problem.dsl.py").read_text(encoding="utf-8")
-    assert '_base_ten_model("slot.figure.top", x = (100.0) + (15.0), y = (50.0) + (25.0)' in updated
-    assert '_partition_box("slot.figure.group1", x = (200.0) + (-5.0), y = (150.0) + (10.0))' in updated
+    assert '_base_ten_model("slot.figure.top", x=(100.0) + (15.0), y=(50.0) + (25.0)' in updated
+    assert '_partition_box("slot.figure.group1", x=(200.0) + (-5.0), y=(150.0) + (10.0))' in updated
 
 
 def test_layout_patch_moves_circle_fold_sequence_helper(tmp_path: Path) -> None:
@@ -763,7 +806,10 @@ SLOTS = (
 
     assert response.status_code == 200
     updated = (problem_dir / "problem.dsl.py").read_text(encoding="utf-8")
-    assert 'circle_fold_sequence_slots("slot.fold", x = (40.0) + (12.0), y = (245.0) + (-8.0)' in updated
+    assert 'circle_fold_sequence_slots(' in updated
+    assert '"slot.fold"' in updated
+    assert "x=(40.0) + (12.0)" in updated
+    assert "y=(245.0) + (-8.0)" in updated
 
 
 def test_layout_patch_moves_grid_and_candidate_helpers(tmp_path: Path) -> None:
@@ -803,8 +849,11 @@ SLOTS = (
 
     assert response.status_code == 200
     updated = (problem_dir / "problem.dsl.py").read_text(encoding="utf-8")
-    assert '_grid_slots("slot.grid", x = (100.0) + (11.0), y = (50.0) + (-7.0), step=30.0)' in updated
-    assert '_candidate_slots("slot.pt.rieul", origin_x = (140.0) + (-5.0), origin_y = (80.0) + (13.0), step=30.0)' in updated
+    assert '_grid_slots("slot.grid", x=(100.0) + (11.0), y=(50.0) + (-7.0), step=30.0)' in updated
+    assert '_candidate_slots(' in updated
+    assert '"slot.pt.rieul"' in updated
+    assert "origin_x=(140.0) + (-5.0)" in updated
+    assert "origin_y=(80.0) + (13.0)" in updated
 
 
 def test_layout_patch_moves_compass_on_ruler_helper(tmp_path: Path) -> None:
@@ -838,7 +887,8 @@ SLOTS = (
 
     assert response.status_code == 200
     updated = (problem_dir / "problem.dsl.py").read_text(encoding="utf-8")
-    assert 'x = (198.0) + (10.0), y = (181.0) + (-5.0)' in updated
+    assert "x=(198.0) + (10.0)" in updated
+    assert "y=(181.0) + (-5.0)" in updated
 
 
 def test_layout_patch_rejects_compass_on_ruler_child_override(tmp_path: Path) -> None:
@@ -887,9 +937,13 @@ SPEAKERS = (
 
     assert response.status_code == 200
     updated = (problem_dir / "problem.dsl.py").read_text(encoding="utf-8")
-    assert 'SpeakerSpec(key="left", cx = (245.0) + (7.0), bubble_cy = (211.0) + (11.0), head_cy = (322.0) + (11.0)' in updated
-    assert "tail_y = (267.0) + (11.0)" in updated
-    assert "name_y = 394.0" in updated
+    assert "SpeakerSpec(" in updated
+    assert 'key="left"' in updated
+    assert "cx=(245.0) + (7.0)" in updated
+    assert "bubble_cy=(211.0) + (11.0)" in updated
+    assert "head_cy=(322.0) + (11.0)" in updated
+    assert "tail_y=(267.0) + (11.0)" in updated
+    assert "name_y=394.0" in updated
 
 
 def test_layout_patch_adds_copied_slot_to_slots_and_region(tmp_path: Path) -> None:
@@ -930,7 +984,7 @@ PROBLEM_TEMPLATE = ProblemTemplate(
     updated = (problem_dir / "problem.dsl.py").read_text(encoding="utf-8")
     assert "slot.a.copy1" in updated
     assert "TextSlot" in updated
-    assert "fill = '#111111'" in updated
+    assert 'fill="#111111"' in updated
 
 
 def test_layout_patch_updates_canvas_size(tmp_path: Path) -> None:
@@ -965,4 +1019,4 @@ PROBLEM_TEMPLATE = ProblemTemplate(
 
     assert response.status_code == 200
     updated = (problem_dir / "problem.dsl.py").read_text(encoding="utf-8")
-    assert "Canvas(width = 180, height = 160)" in updated
+    assert "Canvas(width=180, height=160)" in updated

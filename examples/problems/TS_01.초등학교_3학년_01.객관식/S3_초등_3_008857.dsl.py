@@ -1,10 +1,238 @@
 from __future__ import annotations
 from modu_math.dsl import Canvas, ProblemTemplate, Region, RectSlot, TextSlot
 
+
 def build_problem_template() -> ProblemTemplate:
-    return ProblemTemplate(id='S3_초등_3_008857', title='5 kg에 가장 가까운 물건 고르기', canvas=Canvas(width=852, height=457, coordinate_mode='logical'), regions=(Region(id='region.stem', role='stem', flow='absolute', slot_ids=('slot.q1', 'slot.table', 'slot.choice')),), slots=(TextSlot(id='slot.q1', prompt='', text='4. 물건의 무게를 나타낸 표입니다. 어느 물건과 어느 물건을 고르면 5 kg에\n가장 가까운지 구하세요.', style_role='question', x=6.0, y=25.0, font_size=28), RectSlot(id='slot.table', prompt='', x=49.0, y=84.0, width=770.0, height=79.0, fill='#ffffff'), TextSlot(id='slot.table.header.1', prompt='', text='물건', style_role='label', x=111.0, y=115.0, font_size=28), TextSlot(id='slot.table.header.2', prompt='', text='책가방', style_role='label', x=241.0, y=115.0, font_size=28), TextSlot(id='slot.table.header.3', prompt='', text='시계', style_role='label', x=371.0, y=115.0, font_size=28), TextSlot(id='slot.table.header.4', prompt='', text='선풍기', style_role='label', x=500.0, y=115.0, font_size=28), TextSlot(id='slot.table.header.5', prompt='', text='냄비', style_role='label', x=672.0, y=115.0, font_size=28), TextSlot(id='slot.table.rowlabel', prompt='', text='무게', style_role='label', x=111.0, y=154.0, font_size=28), TextSlot(id='slot.table.value.1', prompt='', text='2920 g', style_role='body', x=214.0, y=154.0, font_size=28), TextSlot(id='slot.table.value.2', prompt='', text='1280 g', style_role='body', x=351.0, y=154.0, font_size=28), TextSlot(id='slot.table.value.3', prompt='', text='3850 g', style_role='body', x=485.0, y=154.0, font_size=28), TextSlot(id='slot.table.value.4', prompt='', text='3 kg 110 g', style_role='body', x=634.0, y=154.0, font_size=28), TextSlot(id='slot.choice', prompt='', text='( 책가방 , 시계 , 선풍기 , 냄비 )', style_role='body', x=495.0, y=196.0, font_size=28)), diagrams=(), groups=(), constraints=(), tags=())
+    return ProblemTemplate(
+        id="S3_초등_3_008857",
+        title="5 kg에 가장 가까운 물건 고르기",
+        canvas=Canvas(width=852, height=457, coordinate_mode="logical"),
+        regions=(
+            Region(
+                id="region.stem",
+                role="stem",
+                flow="absolute",
+                slot_ids=("slot.q1", "slot.table", "slot.choice"),
+            ),
+        ),
+        slots=(
+            TextSlot(
+                id="slot.q1",
+                prompt="",
+                text="4. 물건의 무게를 나타낸 표입니다. 어느 물건과 어느 물건을 고르면 5 kg에\n가장 가까운지 구하세요.",
+                style_role="question",
+                x=6.0,
+                y=25.0,
+                font_size=28,
+            ),
+            RectSlot(
+                id="slot.table", prompt="", x=49.0, y=84.0, width=770.0, height=79.0, fill="#ffffff"
+            ),
+            TextSlot(
+                id="slot.table.header.1",
+                prompt="",
+                text="물건",
+                style_role="label",
+                x=111.0,
+                y=115.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.table.header.2",
+                prompt="",
+                text="책가방",
+                style_role="label",
+                x=241.0,
+                y=115.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.table.header.3",
+                prompt="",
+                text="시계",
+                style_role="label",
+                x=371.0,
+                y=115.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.table.header.4",
+                prompt="",
+                text="선풍기",
+                style_role="label",
+                x=500.0,
+                y=115.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.table.header.5",
+                prompt="",
+                text="냄비",
+                style_role="label",
+                x=672.0,
+                y=115.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.table.rowlabel",
+                prompt="",
+                text="무게",
+                style_role="label",
+                x=111.0,
+                y=154.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.table.value.1",
+                prompt="",
+                text="2920 g",
+                style_role="body",
+                x=214.0,
+                y=154.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.table.value.2",
+                prompt="",
+                text="1280 g",
+                style_role="body",
+                x=351.0,
+                y=154.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.table.value.3",
+                prompt="",
+                text="3850 g",
+                style_role="body",
+                x=485.0,
+                y=154.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.table.value.4",
+                prompt="",
+                text="3 kg 110 g",
+                style_role="body",
+                x=634.0,
+                y=154.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.choice",
+                prompt="",
+                text="( 책가방 , 시계 , 선풍기 , 냄비 )",
+                style_role="body",
+                x=495.0,
+                y=196.0,
+                font_size=28,
+            ),
+        ),
+        diagrams=(),
+        groups=(),
+        constraints=(),
+        tags=(),
+    )
+
+
 PROBLEM_TEMPLATE = build_problem_template()
 
-SEMANTIC_OVERRIDE = {'problem_id': 'S3_초등_3_008857', 'problem_type': 'measurement_comparison', 'metadata': {'language': 'ko', 'question': '5 kg에 가장 가까운 두 물건을 고르는 문제', 'instruction': '어느 물건과 어느 물건을 고르면 5 kg에 가장 가까운지 구하세요.'}, 'domain': {'objects': [{'id': 'obj.item.bookbag', 'type': 'object', 'name': '책가방', 'mass_text': '2920 g'}, {'id': 'obj.item.watch', 'type': 'object', 'name': '시계', 'mass_text': '1280 g'}, {'id': 'obj.item.fan', 'type': 'object', 'name': '선풍기', 'mass_text': '3850 g'}, {'id': 'obj.item.pot', 'type': 'object', 'name': '냄비', 'mass_text': '3 kg 110 g'}, {'id': 'obj.target_mass', 'type': 'mass', 'value_text': '5 kg'}], 'relations': [], 'problem_solving': {'understand': {'given_refs': ['obj.item.bookbag', 'obj.item.watch', 'obj.item.fan', 'obj.item.pot', 'obj.target_mass'], 'target_ref': 'answer.target', 'condition_refs': ['rel.compare_to_target']}, 'plan': {'method': 'unit_normalization_and_comparison', 'description': '무게의 단위를 g로 통일한 뒤 5000 g에 가까운 물건을 비교한다.'}, 'execute': {'expected_operations': ['unit_conversion', 'approximate_comparison', 'select_pair']}, 'review': {'check_methods': ['unit_consistency_check', 'distance_to_target_check']}}}, 'answer': {'blanks': [], 'choices': [], 'answer_key': [], 'target': {'type': 'pair_of_objects', 'description': '5 kg에 가장 가까운 두 물건'}, 'value': 0, 'unit': ''}}
+SEMANTIC_OVERRIDE = {
+    "problem_id": "S3_초등_3_008857",
+    "problem_type": "measurement_comparison",
+    "metadata": {
+        "language": "ko",
+        "question": "5 kg에 가장 가까운 두 물건을 고르는 문제",
+        "instruction": "어느 물건과 어느 물건을 고르면 5 kg에 가장 가까운지 구하세요.",
+    },
+    "domain": {
+        "objects": [
+            {"id": "obj.item.bookbag", "type": "object", "name": "책가방", "mass_text": "2920 g"},
+            {"id": "obj.item.watch", "type": "object", "name": "시계", "mass_text": "1280 g"},
+            {"id": "obj.item.fan", "type": "object", "name": "선풍기", "mass_text": "3850 g"},
+            {"id": "obj.item.pot", "type": "object", "name": "냄비", "mass_text": "3 kg 110 g"},
+            {"id": "obj.target_mass", "type": "mass", "value_text": "5 kg"},
+        ],
+        "relations": [],
+        "problem_solving": {
+            "understand": {
+                "given_refs": [
+                    "obj.item.bookbag",
+                    "obj.item.watch",
+                    "obj.item.fan",
+                    "obj.item.pot",
+                    "obj.target_mass",
+                ],
+                "target_ref": "answer.target",
+                "condition_refs": ["rel.compare_to_target"],
+            },
+            "plan": {
+                "method": "unit_normalization_and_comparison",
+                "description": "무게의 단위를 g로 통일한 뒤 5000 g에 가까운 물건을 비교한다.",
+            },
+            "execute": {
+                "expected_operations": ["unit_conversion", "approximate_comparison", "select_pair"]
+            },
+            "review": {"check_methods": ["unit_consistency_check", "distance_to_target_check"]},
+        },
+    },
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {"type": "pair_of_objects", "description": "5 kg에 가장 가까운 두 물건"},
+        "value": 0,
+        "unit": "",
+    },
+}
 
-SOLVABLE = {'schema': 'modu.solvable.v1.1', 'problem_id': 'S3_초등_3_008857', 'problem_type': 'measurement_comparison', 'inputs': {'total_ticks': 1, 'target_label': '5 kg', 'target_ticks': 5000, 'target_count': 2, 'unit': 'g'}, 'given': [{'ref': 'obj.item.bookbag', 'value': '2920 g'}, {'ref': 'obj.item.watch', 'value': '1280 g'}, {'ref': 'obj.item.fan', 'value': '3850 g'}, {'ref': 'obj.item.pot', 'value': '3 kg 110 g'}], 'target': {'ref': 'answer.target', 'type': 'pair_of_objects'}, 'plan': '각 물건의 무게를 g로 보고 5000 g에 가장 가까운 두 물건을 비교한다.', 'steps': [{'id': 'step.1', 'expr': '1 kg = 1000 g', 'value': 1000}, {'id': 'step.2', 'expr': '5 kg = 5000 g', 'value': 5000}, {'id': 'step.3', 'expr': '3 kg 110 g = 3110 g', 'value': 3110}, {'id': 'step.4', 'expr': '5000 g에 가까운 물건 비교', 'value': '시계, 선풍기'}], 'checks': [{'id': 'check.1', 'expr': '단위가 g로 통일되었는가', 'expected': True, 'actual': True, 'pass': True}, {'id': 'check.2', 'expr': '선택된 두 물건이 5000 g에 가장 가까운가', 'expected': '시계, 선풍기', 'actual': '시계, 선풍기', 'pass': True}], 'answer': {'blanks': [], 'choices': [], 'answer_key': [], 'target': {'type': 'pair_of_objects', 'description': '5 kg에 가장 가까운 두 물건'}, 'value': 0, 'unit': ''}}
+SOLVABLE = {
+    "schema": "modu.solvable.v1.1",
+    "problem_id": "S3_초등_3_008857",
+    "problem_type": "measurement_comparison",
+    "inputs": {
+        "total_ticks": 1,
+        "target_label": "5 kg",
+        "target_ticks": 5000,
+        "target_count": 2,
+        "unit": "g",
+    },
+    "given": [
+        {"ref": "obj.item.bookbag", "value": "2920 g"},
+        {"ref": "obj.item.watch", "value": "1280 g"},
+        {"ref": "obj.item.fan", "value": "3850 g"},
+        {"ref": "obj.item.pot", "value": "3 kg 110 g"},
+    ],
+    "target": {"ref": "answer.target", "type": "pair_of_objects"},
+    "plan": "각 물건의 무게를 g로 보고 5000 g에 가장 가까운 두 물건을 비교한다.",
+    "steps": [
+        {"id": "step.1", "expr": "1 kg = 1000 g", "value": 1000},
+        {"id": "step.2", "expr": "5 kg = 5000 g", "value": 5000},
+        {"id": "step.3", "expr": "3 kg 110 g = 3110 g", "value": 3110},
+        {"id": "step.4", "expr": "5000 g에 가까운 물건 비교", "value": "시계, 선풍기"},
+    ],
+    "checks": [
+        {
+            "id": "check.1",
+            "expr": "단위가 g로 통일되었는가",
+            "expected": True,
+            "actual": True,
+            "pass": True,
+        },
+        {
+            "id": "check.2",
+            "expr": "선택된 두 물건이 5000 g에 가장 가까운가",
+            "expected": "시계, 선풍기",
+            "actual": "시계, 선풍기",
+            "pass": True,
+        },
+    ],
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {"type": "pair_of_objects", "description": "5 kg에 가장 가까운 두 물건"},
+        "value": 0,
+        "unit": "",
+    },
+}

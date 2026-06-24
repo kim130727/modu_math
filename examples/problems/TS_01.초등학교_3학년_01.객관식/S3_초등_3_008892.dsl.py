@@ -1,10 +1,197 @@
 from __future__ import annotations
 from modu_math.dsl import Canvas, ProblemTemplate, Region, TextSlot, RectSlot, CircleSlot, LineSlot
 
+
 def build_problem_template() -> ProblemTemplate:
-    return ProblemTemplate(id='S3_초등_3_008892', title='그림그래프에서 비교하기', canvas=Canvas(width=960.0, height=720.0, coordinate_mode='logical'), regions=(Region(id='region.stem', role='stem', flow='absolute', slot_ids=('slot.q_no', 'slot.q_desc1', 'slot.q_desc2', 'slot.q_title', 'slot.grid.outer', 'slot.grid.v1', 'slot.grid.v2', 'slot.grid.v3', 'slot.grid.rowdiv', 'slot.legend.big', 'slot.legend.small', 'slot.choice')),), slots=(TextSlot(id='slot.q_no', prompt='', text='56.', style_role='question', x=18.0, y=42.0, font_size=28), TextSlot(id='slot.q_desc1', prompt='', text='어느 음식점에서 일주일 동안 팔린 음식의 수를 그림그래프로 나타내었', style_role='question', x=62.0, y=42.0, font_size=28), TextSlot(id='slot.q_desc2', prompt='', text='습니다. 음식점 주인은 다음 주에 음식의 재료를 어떻게 준비하면 좋을지', style_role='question', x=18.0, y=78.0, font_size=28), TextSlot(id='slot.q_title', prompt='', text='일주일 동안 팔린 음식의 수', style_role='question', x=310.0, y=128.0, font_size=28), RectSlot(id='slot.grid.outer', prompt='', x=235.0, y=154.0, width=492.0, height=289.0), LineSlot(id='slot.grid.v1', prompt='', x1=359.0, y1=154.0, x2=359.0, y2=443.0), LineSlot(id='slot.grid.v2', prompt='', x1=482.0, y1=154.0, x2=482.0, y2=443.0), LineSlot(id='slot.grid.v3', prompt='', x1=605.0, y1=154.0, x2=605.0, y2=443.0), LineSlot(id='slot.grid.rowdiv', prompt='', x1=235.0, y1=343.0, x2=727.0, y2=343.0), CircleSlot(id='slot.legend.big', prompt='', cx=476.0, cy=495.0, r=18.0, fill='#9edfe6'), CircleSlot(id='slot.legend.small', prompt='', cx=620.0, cy=495.0, r=12.0, fill='#9edfe6'), TextSlot(id='slot.choice', prompt='', text='된장찌개의 재료보다 김치찌개의 재료를 더 ( 많이 , 적게 ) 준비합니다.', style_role='question', x=58.0, y=553.0, font_size=28)), diagrams=(), groups=(), constraints=(), tags=())
+    return ProblemTemplate(
+        id="S3_초등_3_008892",
+        title="그림그래프에서 비교하기",
+        canvas=Canvas(width=960.0, height=720.0, coordinate_mode="logical"),
+        regions=(
+            Region(
+                id="region.stem",
+                role="stem",
+                flow="absolute",
+                slot_ids=(
+                    "slot.q_no",
+                    "slot.q_desc1",
+                    "slot.q_desc2",
+                    "slot.q_title",
+                    "slot.grid.outer",
+                    "slot.grid.v1",
+                    "slot.grid.v2",
+                    "slot.grid.v3",
+                    "slot.grid.rowdiv",
+                    "slot.legend.big",
+                    "slot.legend.small",
+                    "slot.choice",
+                ),
+            ),
+        ),
+        slots=(
+            TextSlot(
+                id="slot.q_no",
+                prompt="",
+                text="56.",
+                style_role="question",
+                x=18.0,
+                y=42.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.q_desc1",
+                prompt="",
+                text="어느 음식점에서 일주일 동안 팔린 음식의 수를 그림그래프로 나타내었",
+                style_role="question",
+                x=62.0,
+                y=42.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.q_desc2",
+                prompt="",
+                text="습니다. 음식점 주인은 다음 주에 음식의 재료를 어떻게 준비하면 좋을지",
+                style_role="question",
+                x=18.0,
+                y=78.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.q_title",
+                prompt="",
+                text="일주일 동안 팔린 음식의 수",
+                style_role="question",
+                x=310.0,
+                y=128.0,
+                font_size=28,
+            ),
+            RectSlot(id="slot.grid.outer", prompt="", x=235.0, y=154.0, width=492.0, height=289.0),
+            LineSlot(id="slot.grid.v1", prompt="", x1=359.0, y1=154.0, x2=359.0, y2=443.0),
+            LineSlot(id="slot.grid.v2", prompt="", x1=482.0, y1=154.0, x2=482.0, y2=443.0),
+            LineSlot(id="slot.grid.v3", prompt="", x1=605.0, y1=154.0, x2=605.0, y2=443.0),
+            LineSlot(id="slot.grid.rowdiv", prompt="", x1=235.0, y1=343.0, x2=727.0, y2=343.0),
+            CircleSlot(id="slot.legend.big", prompt="", cx=476.0, cy=495.0, r=18.0, fill="#9edfe6"),
+            CircleSlot(
+                id="slot.legend.small", prompt="", cx=620.0, cy=495.0, r=12.0, fill="#9edfe6"
+            ),
+            TextSlot(
+                id="slot.choice",
+                prompt="",
+                text="된장찌개의 재료보다 김치찌개의 재료를 더 ( 많이 , 적게 ) 준비합니다.",
+                style_role="question",
+                x=58.0,
+                y=553.0,
+                font_size=28,
+            ),
+        ),
+        diagrams=(),
+        groups=(),
+        constraints=(),
+        tags=(),
+    )
+
+
 PROBLEM_TEMPLATE = build_problem_template()
 
-SEMANTIC_OVERRIDE = {'problem_id': 'S3_초등_3_008892', 'problem_type': '그림그래프_비교', 'metadata': {'language': 'ko', 'question': '그림그래프를 보고 두 음식의 판매량을 비교하여 알맞은 말을 고르는 문제', 'instruction': '더 많이, 적게 중 알맞은 말을 고르기'}, 'domain': {'objects': [{'id': 'obj.graph', 'type': 'picture_graph'}, {'id': 'obj.food.kimchi', 'type': 'food', 'name': '김치찌개'}, {'id': 'obj.food.beanpaste', 'type': 'food', 'name': '된장찌개'}, {'id': 'obj.legend.big_bowl', 'type': 'pictograph_symbol', 'meaning': '100그릇'}, {'id': 'obj.legend.small_bowl', 'type': 'pictograph_symbol', 'meaning': '10그릇'}], 'relations': [], 'problem_solving': {'understand': {'given_refs': ['obj.graph', 'obj.legend.big_bowl', 'obj.legend.small_bowl', 'obj.food.kimchi', 'obj.food.beanpaste'], 'target_ref': 'answer.target', 'condition_refs': ['rel.compare_sales']}, 'plan': {'method': 'pictograph_comparison', 'description': '그림의 개수를 비교해 어느 음식이 더 많이 팔렸는지 판단한다.'}, 'execute': {'expected_operations': ['compare_picture_counts', 'choose_more_or_less']}, 'review': {'check_methods': ['compare_relative_amount', 'match_choice_with_graph']}}}, 'answer': {'blanks': [], 'choices': [], 'answer_key': [], 'target': {'type': 'choice', 'description': '된장찌개의 재료보다 김치찌개의 재료를 더 ( 많이 , 적게 ) 준비합니다.'}, 'value': '많이', 'unit': ''}}
+SEMANTIC_OVERRIDE = {
+    "problem_id": "S3_초등_3_008892",
+    "problem_type": "그림그래프_비교",
+    "metadata": {
+        "language": "ko",
+        "question": "그림그래프를 보고 두 음식의 판매량을 비교하여 알맞은 말을 고르는 문제",
+        "instruction": "더 많이, 적게 중 알맞은 말을 고르기",
+    },
+    "domain": {
+        "objects": [
+            {"id": "obj.graph", "type": "picture_graph"},
+            {"id": "obj.food.kimchi", "type": "food", "name": "김치찌개"},
+            {"id": "obj.food.beanpaste", "type": "food", "name": "된장찌개"},
+            {"id": "obj.legend.big_bowl", "type": "pictograph_symbol", "meaning": "100그릇"},
+            {"id": "obj.legend.small_bowl", "type": "pictograph_symbol", "meaning": "10그릇"},
+        ],
+        "relations": [],
+        "problem_solving": {
+            "understand": {
+                "given_refs": [
+                    "obj.graph",
+                    "obj.legend.big_bowl",
+                    "obj.legend.small_bowl",
+                    "obj.food.kimchi",
+                    "obj.food.beanpaste",
+                ],
+                "target_ref": "answer.target",
+                "condition_refs": ["rel.compare_sales"],
+            },
+            "plan": {
+                "method": "pictograph_comparison",
+                "description": "그림의 개수를 비교해 어느 음식이 더 많이 팔렸는지 판단한다.",
+            },
+            "execute": {"expected_operations": ["compare_picture_counts", "choose_more_or_less"]},
+            "review": {"check_methods": ["compare_relative_amount", "match_choice_with_graph"]},
+        },
+    },
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {
+            "type": "choice",
+            "description": "된장찌개의 재료보다 김치찌개의 재료를 더 ( 많이 , 적게 ) 준비합니다.",
+        },
+        "value": "많이",
+        "unit": "",
+    },
+}
 
-SOLVABLE = {'schema': 'modu.solvable.v1.1', 'problem_id': 'S3_초등_3_008892', 'problem_type': '그림그래프_비교', 'inputs': {'total_ticks': 0, 'target_label': '김치찌개와 된장찌개의 판매량 비교', 'target_ticks': 0, 'target_count': 0, 'unit': ''}, 'given': [{'ref': 'obj.legend.big_bowl', 'value': '100그릇'}, {'ref': 'obj.legend.small_bowl', 'value': '10그릇'}, {'ref': 'obj.food.kimchi', 'value': '김치찌개'}, {'ref': 'obj.food.beanpaste', 'value': '된장찌개'}], 'target': {'ref': 'answer.target', 'type': 'choice'}, 'method': 'pictograph_comparison', 'plan': ['그림그래프에서 김치찌개와 된장찌개의 그릇 수를 비교한다.', '더 많이 팔린 음식에 맞는 선택지를 고른다.'], 'steps': [{'id': 'step.1', 'expr': '그림그래프의 김치찌개와 된장찌개를 비교한다.', 'value': '김치찌개가 더 많음'}, {'id': 'step.2', 'expr': '더 많이에 해당하는 선택지를 고른다.', 'value': '많이'}], 'checks': [{'id': 'check.1', 'expr': '김치찌개가 된장찌개보다 더 많이 팔렸는가', 'expected': True, 'actual': True, 'pass': True}], 'answer': {'blanks': [], 'choices': [], 'answer_key': [], 'target': {'type': 'choice', 'description': '된장찌개의 재료보다 김치찌개의 재료를 더 ( 많이 , 적게 ) 준비합니다.'}, 'value': '많이', 'unit': ''}}
+SOLVABLE = {
+    "schema": "modu.solvable.v1.1",
+    "problem_id": "S3_초등_3_008892",
+    "problem_type": "그림그래프_비교",
+    "inputs": {
+        "total_ticks": 0,
+        "target_label": "김치찌개와 된장찌개의 판매량 비교",
+        "target_ticks": 0,
+        "target_count": 0,
+        "unit": "",
+    },
+    "given": [
+        {"ref": "obj.legend.big_bowl", "value": "100그릇"},
+        {"ref": "obj.legend.small_bowl", "value": "10그릇"},
+        {"ref": "obj.food.kimchi", "value": "김치찌개"},
+        {"ref": "obj.food.beanpaste", "value": "된장찌개"},
+    ],
+    "target": {"ref": "answer.target", "type": "choice"},
+    "method": "pictograph_comparison",
+    "plan": [
+        "그림그래프에서 김치찌개와 된장찌개의 그릇 수를 비교한다.",
+        "더 많이 팔린 음식에 맞는 선택지를 고른다.",
+    ],
+    "steps": [
+        {
+            "id": "step.1",
+            "expr": "그림그래프의 김치찌개와 된장찌개를 비교한다.",
+            "value": "김치찌개가 더 많음",
+        },
+        {"id": "step.2", "expr": "더 많이에 해당하는 선택지를 고른다.", "value": "많이"},
+    ],
+    "checks": [
+        {
+            "id": "check.1",
+            "expr": "김치찌개가 된장찌개보다 더 많이 팔렸는가",
+            "expected": True,
+            "actual": True,
+            "pass": True,
+        }
+    ],
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {
+            "type": "choice",
+            "description": "된장찌개의 재료보다 김치찌개의 재료를 더 ( 많이 , 적게 ) 준비합니다.",
+        },
+        "value": "많이",
+        "unit": "",
+    },
+}

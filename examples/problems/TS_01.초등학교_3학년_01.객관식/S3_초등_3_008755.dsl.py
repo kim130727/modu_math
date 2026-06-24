@@ -281,12 +281,8 @@ SEMANTIC_OVERRIDE = {
                 "method": "단위 대응",
                 "description": "그림에 표시된 용량 표기를 보고 각각의 단위를 대응시킨다.",
             },
-            "execute": {
-                "expected_operations": ["표시 읽기", "단위 이름 확인", "대상-단위 대응"]
-            },
-            "review": {
-                "check_methods": ["표시된 단위와 선택한 단위가 일치하는지 확인"]
-            },
+            "execute": {"expected_operations": ["표시 읽기", "단위 이름 확인", "대상-단위 대응"]},
+            "review": {"check_methods": ["표시된 단위와 선택한 단위가 일치하는지 확인"]},
         },
     },
     "answer": {

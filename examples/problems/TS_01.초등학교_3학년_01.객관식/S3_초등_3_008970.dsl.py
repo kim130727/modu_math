@@ -1,10 +1,163 @@
 from __future__ import annotations
 from modu_math.dsl import Canvas, ProblemTemplate, RectSlot, Region, TextSlot
 
+
 def build_problem_template() -> ProblemTemplate:
-    return ProblemTemplate(id='S3_초등_3_008970', title='계산 결과가 더 큰 것을 선택하세요.', canvas=Canvas(width=560, height=220, coordinate_mode='logical'), regions=(Region(id='region.stem', role='stem', flow='absolute', slot_ids=('slot.q1', 'slot.box', 'slot.eq1', 'slot.eq2', 'slot.ex2', 'slot.ex3')),), slots=(TextSlot(id='slot.q1', prompt='', text='4. 계산 결과가 더 큰 것을 선택하세요.', style_role='question', x=8.0, y=22.0, font_size=28), RectSlot(id='slot.box', prompt='', x=220.0, y=28.0, width=298.0, height=40.0, fill='none', stroke='#f2a7cf', stroke_width=1.5), TextSlot(id='slot.eq1', prompt='', text='724-359', style_role='body', x=252.0, y=53.0, font_size=28), TextSlot(id='slot.eq2', prompt='', text='483-105', style_role='body', x=392.0, y=53.0, font_size=28), TextSlot(id='slot.ex2', prompt='', text='365<378이므로 계산 결과가 더 큰 것은 483-105입니다.', style_role='body', x=8.0, y=160.0, font_size=28), TextSlot(id='slot.ex3', prompt='', text='', style_role='body', x=0.0, y=0.0, font_size=28)), diagrams=(), groups=(), constraints=(), tags=())
+    return ProblemTemplate(
+        id="S3_초등_3_008970",
+        title="계산 결과가 더 큰 것을 선택하세요.",
+        canvas=Canvas(width=560, height=220, coordinate_mode="logical"),
+        regions=(
+            Region(
+                id="region.stem",
+                role="stem",
+                flow="absolute",
+                slot_ids=("slot.q1", "slot.box", "slot.eq1", "slot.eq2", "slot.ex2", "slot.ex3"),
+            ),
+        ),
+        slots=(
+            TextSlot(
+                id="slot.q1",
+                prompt="",
+                text="4. 계산 결과가 더 큰 것을 선택하세요.",
+                style_role="question",
+                x=8.0,
+                y=22.0,
+                font_size=28,
+            ),
+            RectSlot(
+                id="slot.box",
+                prompt="",
+                x=220.0,
+                y=28.0,
+                width=298.0,
+                height=40.0,
+                fill="none",
+                stroke="#f2a7cf",
+                stroke_width=1.5,
+            ),
+            TextSlot(
+                id="slot.eq1",
+                prompt="",
+                text="724-359",
+                style_role="body",
+                x=252.0,
+                y=53.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.eq2",
+                prompt="",
+                text="483-105",
+                style_role="body",
+                x=392.0,
+                y=53.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.ex2",
+                prompt="",
+                text="365<378이므로 계산 결과가 더 큰 것은 483-105입니다.",
+                style_role="body",
+                x=8.0,
+                y=160.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.ex3", prompt="", text="", style_role="body", x=0.0, y=0.0, font_size=28
+            ),
+        ),
+        diagrams=(),
+        groups=(),
+        constraints=(),
+        tags=(),
+    )
+
+
 PROBLEM_TEMPLATE = build_problem_template()
 
-SEMANTIC_OVERRIDE = {'problem_id': 'S3_초등_3_008970', 'problem_type': 'comparison_of_subtraction_results', 'metadata': {'language': 'ko', 'question': '계산 결과가 더 큰 것을 선택하는 문제', 'instruction': '계산 결과가 더 큰 것을 선택하세요.'}, 'domain': {'objects': [{'id': 'obj.expr1', 'type': 'subtraction_expression', 'expression': '724-359'}, {'id': 'obj.expr2', 'type': 'subtraction_expression', 'expression': '483-105'}], 'relations': [], 'problem_solving': {'understand': {'given_refs': ['obj.expr1', 'obj.expr2'], 'target_ref': 'answer.target', 'condition_refs': ['rel.compare_results']}, 'plan': {'method': 'compare_results', 'description': '두 뺄셈식의 계산 결과를 비교한다.'}, 'execute': {'expected_operations': ['evaluate_expression_1', 'evaluate_expression_2', 'compare_results']}, 'review': {'check_methods': ['compare_the_two_values']}}}, 'answer': {'blanks': [], 'choices': [], 'answer_key': [], 'target': {'type': 'expression_with_larger_result', 'description': '계산 결과가 더 큰 식'}, 'value': 0, 'unit': ''}}
+SEMANTIC_OVERRIDE = {
+    "problem_id": "S3_초등_3_008970",
+    "problem_type": "comparison_of_subtraction_results",
+    "metadata": {
+        "language": "ko",
+        "question": "계산 결과가 더 큰 것을 선택하는 문제",
+        "instruction": "계산 결과가 더 큰 것을 선택하세요.",
+    },
+    "domain": {
+        "objects": [
+            {"id": "obj.expr1", "type": "subtraction_expression", "expression": "724-359"},
+            {"id": "obj.expr2", "type": "subtraction_expression", "expression": "483-105"},
+        ],
+        "relations": [],
+        "problem_solving": {
+            "understand": {
+                "given_refs": ["obj.expr1", "obj.expr2"],
+                "target_ref": "answer.target",
+                "condition_refs": ["rel.compare_results"],
+            },
+            "plan": {
+                "method": "compare_results",
+                "description": "두 뺄셈식의 계산 결과를 비교한다.",
+            },
+            "execute": {
+                "expected_operations": [
+                    "evaluate_expression_1",
+                    "evaluate_expression_2",
+                    "compare_results",
+                ]
+            },
+            "review": {"check_methods": ["compare_the_two_values"]},
+        },
+    },
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {"type": "expression_with_larger_result", "description": "계산 결과가 더 큰 식"},
+        "value": 0,
+        "unit": "",
+    },
+}
 
-SOLVABLE = {'schema': 'modu.solvable.v1.1', 'problem_id': 'S3_초등_3_008970', 'problem_type': 'comparison_of_subtraction_results', 'inputs': {'total_ticks': 0, 'target_label': '계산 결과가 더 큰 식', 'target_ticks': 0, 'target_count': 1, 'unit': ''}, 'given': [{'ref': 'obj.expr1', 'value': {'expression': '724-359'}}, {'ref': 'obj.expr2', 'value': {'expression': '483-105'}}], 'target': {'ref': 'answer.target', 'type': 'expression_with_larger_result'}, 'method': 'compare_results', 'plan': ['두 식의 계산 결과를 비교한다.'], 'steps': [{'id': 'step.1', 'expr': '724-359', 'value': None}, {'id': 'step.2', 'expr': '483-105', 'value': None}, {'id': 'step.3', 'expr': '비교', 'value': None}], 'checks': [{'id': 'check.1', 'expr': '두 식의 결과를 비교할 수 있는지 확인', 'expected': True, 'actual': True, 'pass': True}], 'answer': {'blanks': [], 'choices': [], 'answer_key': [], 'target': {'type': 'expression_with_larger_result', 'description': '계산 결과가 더 큰 식'}, 'value': 0, 'unit': ''}}
+SOLVABLE = {
+    "schema": "modu.solvable.v1.1",
+    "problem_id": "S3_초등_3_008970",
+    "problem_type": "comparison_of_subtraction_results",
+    "inputs": {
+        "total_ticks": 0,
+        "target_label": "계산 결과가 더 큰 식",
+        "target_ticks": 0,
+        "target_count": 1,
+        "unit": "",
+    },
+    "given": [
+        {"ref": "obj.expr1", "value": {"expression": "724-359"}},
+        {"ref": "obj.expr2", "value": {"expression": "483-105"}},
+    ],
+    "target": {"ref": "answer.target", "type": "expression_with_larger_result"},
+    "method": "compare_results",
+    "plan": ["두 식의 계산 결과를 비교한다."],
+    "steps": [
+        {"id": "step.1", "expr": "724-359", "value": None},
+        {"id": "step.2", "expr": "483-105", "value": None},
+        {"id": "step.3", "expr": "비교", "value": None},
+    ],
+    "checks": [
+        {
+            "id": "check.1",
+            "expr": "두 식의 결과를 비교할 수 있는지 확인",
+            "expected": True,
+            "actual": True,
+            "pass": True,
+        }
+    ],
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {"type": "expression_with_larger_result", "description": "계산 결과가 더 큰 식"},
+        "value": 0,
+        "unit": "",
+    },
+}

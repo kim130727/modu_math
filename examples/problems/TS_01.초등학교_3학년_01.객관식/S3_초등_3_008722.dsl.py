@@ -550,7 +550,10 @@ SOLVABLE = {
         {"ref": "obj.diagram", "value": {"kind": "circle_pattern"}},
         {
             "ref": "obj.yunji_statement",
-            "value": {"speaker": "윤지", "statement": "원의 중심이 오른쪽으로 모눈 3칸씩 옮겨 갔어."},
+            "value": {
+                "speaker": "윤지",
+                "statement": "원의 중심이 오른쪽으로 모눈 3칸씩 옮겨 갔어.",
+            },
         },
         {
             "ref": "obj.sujin_statement",

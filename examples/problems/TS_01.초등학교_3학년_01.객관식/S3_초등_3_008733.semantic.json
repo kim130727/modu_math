@@ -2,17 +2,29 @@
   "problem_id": "S3_초등_3_008733",
   "problem_type": "분수 분류",
   "metadata": {
-    "title": "사다리를 타고 분수 분류하기",
+    "title": "사다리를 타고 내려가 도착한 곳이 참이면 ○표, 거짓이면 ×표 하세요.",
     "tags": [],
     "instruction": "분수를 가분수와 진분수로 분류한다.",
     "question": "사다리를 타고 내려가 도착한 곳이 참이면 ○표, 거짓이면 ×표를 선택하는 문제",
     "required_layout_ids": [
       "slot.q9",
-      "slot.q12",
-      "slot.q15",
-      "slot.q16",
-      "slot.q16.copy29",
-      "slot.q16.copy30"
+      "slot.q10",
+      "slot.q11",
+      "slot.q18",
+      "slot.q19",
+      "slot.q20",
+      "slot.q21",
+      "slot.q22",
+      "slot.q23",
+      "slot.q24",
+      "slot.q25",
+      "slot.q26",
+      "slot.math.fraction.bar",
+      "slot.math.fraction_1.bar",
+      "slot.math.fraction_2.bar",
+      "slot.math.fraction_3.bar",
+      "slot.math.fraction_4.bar",
+      "slot.math.fraction_5.bar"
     ],
     "extraction_confidence": 1.0,
     "language": "ko",
@@ -93,7 +105,7 @@
       "type": "selection_pattern",
       "description": "○, ×, ○"
     },
-    "value": 3,
+    "value": "○, ×, ○",
     "unit": ""
   }
 }

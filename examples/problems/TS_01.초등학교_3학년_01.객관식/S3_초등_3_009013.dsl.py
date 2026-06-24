@@ -1,10 +1,229 @@
 from __future__ import annotations
 from modu_math.dsl import Canvas, ProblemTemplate, Region, TextSlot, LineSlot, CircleSlot
 
+
 def build_problem_template() -> ProblemTemplate:
-    return ProblemTemplate(id='S3_초등_3_009013', title='직선 알아보기', canvas=Canvas(width=856, height=354, coordinate_mode='logical'), regions=(Region(id='region.stem', role='stem', flow='absolute', slot_ids=('slot.q1', 'slot.q2')), Region(id='region.choices', role='choices', flow='absolute', slot_ids=('slot.choice1.line', 'slot.choice1.p1', 'slot.choice1.p2', 'slot.choice1.lb1', 'slot.choice1.lb2', 'slot.choice2.line', 'slot.choice2.p1', 'slot.choice2.p2', 'slot.choice2.lb1', 'slot.choice2.lb2', 'slot.choice3.line', 'slot.choice3.p1', 'slot.choice3.p2', 'slot.choice3.lb1', 'slot.choice3.lb2')), Region(id='region.answer', role='answer', flow='absolute', slot_ids=('slot.ans.line', 'slot.ans.p1', 'slot.ans.p2')), Region(id='region.explanation', role='explanation', flow='absolute', slot_ids=())), slots=(TextSlot(id='slot.q1', prompt='', text='□ 51. 직선을 알아보려고 합니다. 점 ㄱ과 점 ㄴ을 지나 양쪽으로 길게 늘인 직', style_role='question', x=16.0, y=28.0, font_size=28), TextSlot(id='slot.q2', prompt='', text='선으로 알맞은 것을 선택하세요.', style_role='question', x=32.0, y=58.0, font_size=28), LineSlot(id='slot.choice1.line', prompt='', x1=314.0, y1=109.0, x2=597.0, y2=109.0), CircleSlot(id='slot.choice1.p1', prompt='', cx=337.0, cy=108.0, r=4.0, fill='#222222'), CircleSlot(id='slot.choice1.p2', prompt='', cx=565.0, cy=108.0, r=4.0, fill='#222222'), TextSlot(id='slot.choice1.lb1', prompt='', text='ㄱ', style_role='label', x=324.0, y=97.0, font_size=22), TextSlot(id='slot.choice1.lb2', prompt='', text='ㄴ', style_role='label', x=559.0, y=97.0, font_size=22), LineSlot(id='slot.choice2.line', prompt='', x1=316.0, y1=164.0, x2=590.0, y2=164.0), CircleSlot(id='slot.choice2.p1', prompt='', cx=338.0, cy=164.0, r=4.0, fill='#222222'), CircleSlot(id='slot.choice2.p2', prompt='', cx=559.0, cy=164.0, r=4.0, fill='#222222'), TextSlot(id='slot.choice2.lb1', prompt='', text='ㄱ', style_role='label', x=323.0, y=152.0, font_size=22), TextSlot(id='slot.choice2.lb2', prompt='', text='ㄴ', style_role='label', x=556.0, y=151.0, font_size=22), LineSlot(id='slot.choice3.line', prompt='', x1=314.0, y1=228.0, x2=587.0, y2=228.0), CircleSlot(id='slot.choice3.p1', prompt='', cx=330.0, cy=229.0, r=4.0, fill='#222222'), CircleSlot(id='slot.choice3.p2', prompt='', cx=549.0, cy=229.0, r=4.0, fill='#222222'), TextSlot(id='slot.choice3.lb1', prompt='', text='ㄱ', style_role='label', x=323.0, y=217.0, font_size=22), TextSlot(id='slot.choice3.lb2', prompt='', text='ㄴ', style_role='label', x=551.0, y=217.0, font_size=22), LineSlot(id='slot.ans.line', prompt='', x1=71.0, y1=289.0, x2=227.0, y2=289.0), CircleSlot(id='slot.ans.p1', prompt='', cx=94.0, cy=289.0, r=3.5, fill='#222222'), CircleSlot(id='slot.ans.p2', prompt='', cx=217.0, cy=289.0, r=3.5, fill='#222222')), diagrams=(), groups=(), constraints=(), tags=())
+    return ProblemTemplate(
+        id="S3_초등_3_009013",
+        title="직선 알아보기",
+        canvas=Canvas(width=856, height=354, coordinate_mode="logical"),
+        regions=(
+            Region(id="region.stem", role="stem", flow="absolute", slot_ids=("slot.q1", "slot.q2")),
+            Region(
+                id="region.choices",
+                role="choices",
+                flow="absolute",
+                slot_ids=(
+                    "slot.choice1.line",
+                    "slot.choice1.p1",
+                    "slot.choice1.p2",
+                    "slot.choice1.lb1",
+                    "slot.choice1.lb2",
+                    "slot.choice2.line",
+                    "slot.choice2.p1",
+                    "slot.choice2.p2",
+                    "slot.choice2.lb1",
+                    "slot.choice2.lb2",
+                    "slot.choice3.line",
+                    "slot.choice3.p1",
+                    "slot.choice3.p2",
+                    "slot.choice3.lb1",
+                    "slot.choice3.lb2",
+                ),
+            ),
+            Region(
+                id="region.answer",
+                role="answer",
+                flow="absolute",
+                slot_ids=("slot.ans.line", "slot.ans.p1", "slot.ans.p2"),
+            ),
+            Region(id="region.explanation", role="explanation", flow="absolute", slot_ids=()),
+        ),
+        slots=(
+            TextSlot(
+                id="slot.q1",
+                prompt="",
+                text="□ 51. 직선을 알아보려고 합니다. 점 ㄱ과 점 ㄴ을 지나 양쪽으로 길게 늘인 직",
+                style_role="question",
+                x=16.0,
+                y=28.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.q2",
+                prompt="",
+                text="선으로 알맞은 것을 선택하세요.",
+                style_role="question",
+                x=32.0,
+                y=58.0,
+                font_size=28,
+            ),
+            LineSlot(id="slot.choice1.line", prompt="", x1=314.0, y1=109.0, x2=597.0, y2=109.0),
+            CircleSlot(id="slot.choice1.p1", prompt="", cx=337.0, cy=108.0, r=4.0, fill="#222222"),
+            CircleSlot(id="slot.choice1.p2", prompt="", cx=565.0, cy=108.0, r=4.0, fill="#222222"),
+            TextSlot(
+                id="slot.choice1.lb1",
+                prompt="",
+                text="ㄱ",
+                style_role="label",
+                x=324.0,
+                y=97.0,
+                font_size=22,
+            ),
+            TextSlot(
+                id="slot.choice1.lb2",
+                prompt="",
+                text="ㄴ",
+                style_role="label",
+                x=559.0,
+                y=97.0,
+                font_size=22,
+            ),
+            LineSlot(id="slot.choice2.line", prompt="", x1=316.0, y1=164.0, x2=590.0, y2=164.0),
+            CircleSlot(id="slot.choice2.p1", prompt="", cx=338.0, cy=164.0, r=4.0, fill="#222222"),
+            CircleSlot(id="slot.choice2.p2", prompt="", cx=559.0, cy=164.0, r=4.0, fill="#222222"),
+            TextSlot(
+                id="slot.choice2.lb1",
+                prompt="",
+                text="ㄱ",
+                style_role="label",
+                x=323.0,
+                y=152.0,
+                font_size=22,
+            ),
+            TextSlot(
+                id="slot.choice2.lb2",
+                prompt="",
+                text="ㄴ",
+                style_role="label",
+                x=556.0,
+                y=151.0,
+                font_size=22,
+            ),
+            LineSlot(id="slot.choice3.line", prompt="", x1=314.0, y1=228.0, x2=587.0, y2=228.0),
+            CircleSlot(id="slot.choice3.p1", prompt="", cx=330.0, cy=229.0, r=4.0, fill="#222222"),
+            CircleSlot(id="slot.choice3.p2", prompt="", cx=549.0, cy=229.0, r=4.0, fill="#222222"),
+            TextSlot(
+                id="slot.choice3.lb1",
+                prompt="",
+                text="ㄱ",
+                style_role="label",
+                x=323.0,
+                y=217.0,
+                font_size=22,
+            ),
+            TextSlot(
+                id="slot.choice3.lb2",
+                prompt="",
+                text="ㄴ",
+                style_role="label",
+                x=551.0,
+                y=217.0,
+                font_size=22,
+            ),
+            LineSlot(id="slot.ans.line", prompt="", x1=71.0, y1=289.0, x2=227.0, y2=289.0),
+            CircleSlot(id="slot.ans.p1", prompt="", cx=94.0, cy=289.0, r=3.5, fill="#222222"),
+            CircleSlot(id="slot.ans.p2", prompt="", cx=217.0, cy=289.0, r=3.5, fill="#222222"),
+        ),
+        diagrams=(),
+        groups=(),
+        constraints=(),
+        tags=(),
+    )
+
+
 PROBLEM_TEMPLATE = build_problem_template()
 
-SEMANTIC_OVERRIDE = {'problem_id': 'S3_초등_3_009013', 'problem_type': 'geometry_line_selection', 'metadata': {'language': 'ko', 'question': '직선을 알아보려고 합니다. 점 ㄱ과 점 ㄴ을 지나 양쪽으로 길게 늘인 직선으로 알맞은 것을 선택하세요.', 'instruction': '보기 중 직선을 고른다.'}, 'domain': {'objects': [{'id': 'obj.point_g', 'type': 'point', 'label': 'ㄱ'}, {'id': 'obj.point_n', 'type': 'point', 'label': 'ㄴ'}, {'id': 'obj.line_examples', 'type': 'line_examples', 'count': 3}], 'relations': [], 'problem_solving': {'understand': {'given_refs': ['obj.point_g', 'obj.point_n', 'obj.line_examples'], 'target_ref': 'answer.target', 'condition_refs': ['rel.passes_through_points', 'rel.select_defining_line']}, 'plan': {'method': 'definition_matching', 'description': '직선의 정의에 맞는 그림을 찾는다.'}, 'execute': {'expected_operations': ['compare_examples', 'match_definition']}, 'review': {'check_methods': ['definition_consistency_check']}}}, 'answer': {'blanks': [], 'choices': [], 'answer_key': [], 'target': {'type': 'selected_example', 'description': '점 ㄱ과 점 ㄴ을 지나 양쪽으로 길게 늘인 직선'}, 'value': 0, 'unit': ''}}
+SEMANTIC_OVERRIDE = {
+    "problem_id": "S3_초등_3_009013",
+    "problem_type": "geometry_line_selection",
+    "metadata": {
+        "language": "ko",
+        "question": "직선을 알아보려고 합니다. 점 ㄱ과 점 ㄴ을 지나 양쪽으로 길게 늘인 직선으로 알맞은 것을 선택하세요.",
+        "instruction": "보기 중 직선을 고른다.",
+    },
+    "domain": {
+        "objects": [
+            {"id": "obj.point_g", "type": "point", "label": "ㄱ"},
+            {"id": "obj.point_n", "type": "point", "label": "ㄴ"},
+            {"id": "obj.line_examples", "type": "line_examples", "count": 3},
+        ],
+        "relations": [],
+        "problem_solving": {
+            "understand": {
+                "given_refs": ["obj.point_g", "obj.point_n", "obj.line_examples"],
+                "target_ref": "answer.target",
+                "condition_refs": ["rel.passes_through_points", "rel.select_defining_line"],
+            },
+            "plan": {
+                "method": "definition_matching",
+                "description": "직선의 정의에 맞는 그림을 찾는다.",
+            },
+            "execute": {"expected_operations": ["compare_examples", "match_definition"]},
+            "review": {"check_methods": ["definition_consistency_check"]},
+        },
+    },
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {
+            "type": "selected_example",
+            "description": "점 ㄱ과 점 ㄴ을 지나 양쪽으로 길게 늘인 직선",
+        },
+        "value": 0,
+        "unit": "",
+    },
+}
 
-SOLVABLE = {'schema': 'modu.solvable.v1.1', 'problem_id': 'S3_초등_3_009013', 'problem_type': 'geometry_line_selection', 'inputs': {'total_ticks': 0, 'target_label': '직선', 'target_ticks': 0, 'target_count': 3, 'unit': ''}, 'given': [{'ref': 'obj.point_g', 'value': {'label': 'ㄱ'}}, {'ref': 'obj.point_n', 'value': {'label': 'ㄴ'}}, {'ref': 'obj.line_examples', 'value': {'count': 3}}], 'target': {'ref': 'answer.target', 'type': 'selected_example'}, 'method': 'definition_matching', 'plan': ['직선의 정의를 확인한다.', '보기 3개 중 양쪽으로 끝없이 늘인 곧은 선에 해당하는 그림을 찾는다.'], 'steps': [{'id': 'step.1', 'expr': '직선의 정의 확인', 'value': '선분을 양쪽으로 끝없이 늘인 곧은 선'}, {'id': 'step.2', 'expr': '보기 3개와 정의 비교', 'value': 'TODO'}], 'checks': [{'id': 'check.1', 'expr': '정의와 보기의 일치 여부', 'expected': '직선', 'actual': 'TODO', 'pass': False}], 'answer': {'blanks': [], 'choices': [], 'answer_key': [], 'target': {'type': 'selected_example', 'description': '점 ㄱ과 점 ㄴ을 지나 양쪽으로 길게 늘인 직선'}, 'value': 0, 'unit': ''}}
+SOLVABLE = {
+    "schema": "modu.solvable.v1.1",
+    "problem_id": "S3_초등_3_009013",
+    "problem_type": "geometry_line_selection",
+    "inputs": {
+        "total_ticks": 0,
+        "target_label": "직선",
+        "target_ticks": 0,
+        "target_count": 3,
+        "unit": "",
+    },
+    "given": [
+        {"ref": "obj.point_g", "value": {"label": "ㄱ"}},
+        {"ref": "obj.point_n", "value": {"label": "ㄴ"}},
+        {"ref": "obj.line_examples", "value": {"count": 3}},
+    ],
+    "target": {"ref": "answer.target", "type": "selected_example"},
+    "method": "definition_matching",
+    "plan": [
+        "직선의 정의를 확인한다.",
+        "보기 3개 중 양쪽으로 끝없이 늘인 곧은 선에 해당하는 그림을 찾는다.",
+    ],
+    "steps": [
+        {
+            "id": "step.1",
+            "expr": "직선의 정의 확인",
+            "value": "선분을 양쪽으로 끝없이 늘인 곧은 선",
+        },
+        {"id": "step.2", "expr": "보기 3개와 정의 비교", "value": "TODO"},
+    ],
+    "checks": [
+        {
+            "id": "check.1",
+            "expr": "정의와 보기의 일치 여부",
+            "expected": "직선",
+            "actual": "TODO",
+            "pass": False,
+        }
+    ],
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {
+            "type": "selected_example",
+            "description": "점 ㄱ과 점 ㄴ을 지나 양쪽으로 길게 늘인 직선",
+        },
+        "value": 0,
+        "unit": "",
+    },
+}

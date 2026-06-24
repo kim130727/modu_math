@@ -1,10 +1,269 @@
 from __future__ import annotations
 from modu_math.dsl import Canvas, ProblemTemplate, Region, RectSlot, TextSlot
 
+
 def build_problem_template() -> ProblemTemplate:
-    return ProblemTemplate(id='S3_초등_3_008804', title='가장 가벼운 것 선택하기', canvas=Canvas(width=944.0, height=359.0, coordinate_mode='logical'), regions=(Region(id='region.stem', role='stem', flow='absolute', slot_ids=('slot.q_num', 'slot.q_text1', 'slot.q_text2', 'slot.table.border', 'slot.table.cell.r1c1', 'slot.table.cell.r1c2', 'slot.table.cell.r1c3', 'slot.table.cell.r1c4', 'slot.table.cell.r2c1', 'slot.table.cell.r2c2', 'slot.table.cell.r2c3', 'slot.table.cell.r2c4', 'slot.choice')),), slots=(TextSlot(id='slot.q_num', prompt='', text='33.', style_role='question', x=12.0, y=31.0, font_size=28), TextSlot(id='slot.q_text1', prompt='', text='저울과 500원짜리 동전을 이용하여 지갑, 모자, 가방의 무게를 재었더니', style_role='question', x=86.0, y=31.0, font_size=28), TextSlot(id='slot.q_text2', prompt='', text='다음과 같았습니다. 가장 가벼운 것을 선택하세요.', style_role='question', x=18.0, y=65.0, font_size=28), RectSlot(id='slot.table.border', prompt='', x=171.0, y=84.0, width=604.0, height=85.0), RectSlot(id='slot.table.cell.r1c1', prompt='', x=171.0, y=84.0, width=357.0, height=42.5), RectSlot(id='slot.table.cell.r1c2', prompt='', x=528.0, y=84.0, width=85.0, height=42.5), RectSlot(id='slot.table.cell.r1c3', prompt='', x=613.0, y=84.0, width=85.0, height=42.5), RectSlot(id='slot.table.cell.r1c4', prompt='', x=698.0, y=84.0, width=77.0, height=42.5), RectSlot(id='slot.table.cell.r2c1', prompt='', x=171.0, y=126.5, width=357.0, height=42.5), RectSlot(id='slot.table.cell.r2c2', prompt='', x=528.0, y=126.5, width=85.0, height=42.5), RectSlot(id='slot.table.cell.r2c3', prompt='', x=613.0, y=126.5, width=85.0, height=42.5), RectSlot(id='slot.table.cell.r2c4', prompt='', x=698.0, y=126.5, width=77.0, height=42.5), TextSlot(id='slot.table.text.r1c1', prompt='', text='물건', style_role='question', x=348.0, y=111.0, font_size=28), TextSlot(id='slot.table.text.r1c2', prompt='', text='지갑', style_role='question', x=548.0, y=111.0, font_size=28), TextSlot(id='slot.table.text.r1c3', prompt='', text='모자', style_role='question', x=635.0, y=111.0, font_size=28), TextSlot(id='slot.table.text.r1c4', prompt='', text='가방', style_role='question', x=719.0, y=111.0, font_size=28), TextSlot(id='slot.table.text.r2c1', prompt='', text='500원짜리 동전의 수(개)', style_role='question', x=193.0, y=154.0, font_size=28), TextSlot(id='slot.table.text.r2c2', prompt='', text='9', style_role='question', x=553.0, y=154.0, font_size=28), TextSlot(id='slot.table.text.r2c3', prompt='', text='2', style_role='question', x=639.0, y=154.0, font_size=28), TextSlot(id='slot.table.text.r2c4', prompt='', text='13', style_role='question', x=722.0, y=154.0, font_size=28), TextSlot(id='slot.choice', prompt='', text='( 지갑 , 모자 , 가방 )', style_role='question', x=683.0, y=204.0, font_size=28)), diagrams=(), groups=(), constraints=(), tags=())
+    return ProblemTemplate(
+        id="S3_초등_3_008804",
+        title="가장 가벼운 것 선택하기",
+        canvas=Canvas(width=944.0, height=359.0, coordinate_mode="logical"),
+        regions=(
+            Region(
+                id="region.stem",
+                role="stem",
+                flow="absolute",
+                slot_ids=(
+                    "slot.q_num",
+                    "slot.q_text1",
+                    "slot.q_text2",
+                    "slot.table.border",
+                    "slot.table.cell.r1c1",
+                    "slot.table.cell.r1c2",
+                    "slot.table.cell.r1c3",
+                    "slot.table.cell.r1c4",
+                    "slot.table.cell.r2c1",
+                    "slot.table.cell.r2c2",
+                    "slot.table.cell.r2c3",
+                    "slot.table.cell.r2c4",
+                    "slot.choice",
+                ),
+            ),
+        ),
+        slots=(
+            TextSlot(
+                id="slot.q_num",
+                prompt="",
+                text="33.",
+                style_role="question",
+                x=12.0,
+                y=31.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.q_text1",
+                prompt="",
+                text="저울과 500원짜리 동전을 이용하여 지갑, 모자, 가방의 무게를 재었더니",
+                style_role="question",
+                x=86.0,
+                y=31.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.q_text2",
+                prompt="",
+                text="다음과 같았습니다. 가장 가벼운 것을 선택하세요.",
+                style_role="question",
+                x=18.0,
+                y=65.0,
+                font_size=28,
+            ),
+            RectSlot(id="slot.table.border", prompt="", x=171.0, y=84.0, width=604.0, height=85.0),
+            RectSlot(
+                id="slot.table.cell.r1c1", prompt="", x=171.0, y=84.0, width=357.0, height=42.5
+            ),
+            RectSlot(
+                id="slot.table.cell.r1c2", prompt="", x=528.0, y=84.0, width=85.0, height=42.5
+            ),
+            RectSlot(
+                id="slot.table.cell.r1c3", prompt="", x=613.0, y=84.0, width=85.0, height=42.5
+            ),
+            RectSlot(
+                id="slot.table.cell.r1c4", prompt="", x=698.0, y=84.0, width=77.0, height=42.5
+            ),
+            RectSlot(
+                id="slot.table.cell.r2c1", prompt="", x=171.0, y=126.5, width=357.0, height=42.5
+            ),
+            RectSlot(
+                id="slot.table.cell.r2c2", prompt="", x=528.0, y=126.5, width=85.0, height=42.5
+            ),
+            RectSlot(
+                id="slot.table.cell.r2c3", prompt="", x=613.0, y=126.5, width=85.0, height=42.5
+            ),
+            RectSlot(
+                id="slot.table.cell.r2c4", prompt="", x=698.0, y=126.5, width=77.0, height=42.5
+            ),
+            TextSlot(
+                id="slot.table.text.r1c1",
+                prompt="",
+                text="물건",
+                style_role="question",
+                x=348.0,
+                y=111.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.table.text.r1c2",
+                prompt="",
+                text="지갑",
+                style_role="question",
+                x=548.0,
+                y=111.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.table.text.r1c3",
+                prompt="",
+                text="모자",
+                style_role="question",
+                x=635.0,
+                y=111.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.table.text.r1c4",
+                prompt="",
+                text="가방",
+                style_role="question",
+                x=719.0,
+                y=111.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.table.text.r2c1",
+                prompt="",
+                text="500원짜리 동전의 수(개)",
+                style_role="question",
+                x=193.0,
+                y=154.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.table.text.r2c2",
+                prompt="",
+                text="9",
+                style_role="question",
+                x=553.0,
+                y=154.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.table.text.r2c3",
+                prompt="",
+                text="2",
+                style_role="question",
+                x=639.0,
+                y=154.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.table.text.r2c4",
+                prompt="",
+                text="13",
+                style_role="question",
+                x=722.0,
+                y=154.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.choice",
+                prompt="",
+                text="( 지갑 , 모자 , 가방 )",
+                style_role="question",
+                x=683.0,
+                y=204.0,
+                font_size=28,
+            ),
+        ),
+        diagrams=(),
+        groups=(),
+        constraints=(),
+        tags=(),
+    )
+
+
 PROBLEM_TEMPLATE = build_problem_template()
 
-SEMANTIC_OVERRIDE = {'problem_id': 'S3_초등_3_008804', 'problem_type': '비교_가벼운것_선택', 'metadata': {'language': 'ko', 'question': '저울과 500원짜리 동전을 이용하여 지갑, 모자, 가방의 무게를 재었더니 다음과 같았습니다. 가장 가벼운 것을 선택하세요.', 'instruction': '가장 가벼운 것을 선택하세요.'}, 'domain': {'objects': [{'id': 'obj.wallet', 'type': '물건', 'name': '지갑', 'coin_count': 9}, {'id': 'obj.hat', 'type': '물건', 'name': '모자', 'coin_count': 2}, {'id': 'obj.bag', 'type': '물건', 'name': '가방', 'coin_count': 13}], 'relations': [], 'problem_solving': {'understand': {'given_refs': ['obj.wallet', 'obj.hat', 'obj.bag'], 'target_ref': 'answer.target', 'condition_refs': ['rel.lightest']}, 'plan': {'method': 'compare_coin_counts', 'description': '500원짜리 동전의 수가 가장 적은 물건을 찾는다.'}, 'execute': {'expected_operations': ['비교하기', '가장 작은 수 찾기']}, 'review': {'check_methods': ['수의 크기 비교 확인']}}}, 'answer': {'blanks': [], 'choices': [], 'answer_key': [], 'target': {'type': '가장 가벼운 물건', 'description': '지갑, 모자, 가방 중 가장 가벼운 것'}, 'value': '모자', 'unit': ''}}
+SEMANTIC_OVERRIDE = {
+    "problem_id": "S3_초등_3_008804",
+    "problem_type": "비교_가벼운것_선택",
+    "metadata": {
+        "language": "ko",
+        "question": "저울과 500원짜리 동전을 이용하여 지갑, 모자, 가방의 무게를 재었더니 다음과 같았습니다. 가장 가벼운 것을 선택하세요.",
+        "instruction": "가장 가벼운 것을 선택하세요.",
+    },
+    "domain": {
+        "objects": [
+            {"id": "obj.wallet", "type": "물건", "name": "지갑", "coin_count": 9},
+            {"id": "obj.hat", "type": "물건", "name": "모자", "coin_count": 2},
+            {"id": "obj.bag", "type": "물건", "name": "가방", "coin_count": 13},
+        ],
+        "relations": [],
+        "problem_solving": {
+            "understand": {
+                "given_refs": ["obj.wallet", "obj.hat", "obj.bag"],
+                "target_ref": "answer.target",
+                "condition_refs": ["rel.lightest"],
+            },
+            "plan": {
+                "method": "compare_coin_counts",
+                "description": "500원짜리 동전의 수가 가장 적은 물건을 찾는다.",
+            },
+            "execute": {"expected_operations": ["비교하기", "가장 작은 수 찾기"]},
+            "review": {"check_methods": ["수의 크기 비교 확인"]},
+        },
+    },
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {"type": "가장 가벼운 물건", "description": "지갑, 모자, 가방 중 가장 가벼운 것"},
+        "value": "모자",
+        "unit": "",
+    },
+}
 
-SOLVABLE = {'schema': 'modu.solvable.v1.1', 'problem_id': 'S3_초등_3_008804', 'problem_type': '비교_가벼운것_선택', 'inputs': {'total_ticks': 3, 'target_label': '가장 가벼운 것', 'target_ticks': 1, 'target_count': 3, 'unit': '500원짜리 동전의 수'}, 'given': [{'ref': 'obj.wallet', 'value': {'name': '지갑', 'coin_count': 9}}, {'ref': 'obj.hat', 'value': {'name': '모자', 'coin_count': 2}}, {'ref': 'obj.bag', 'value': {'name': '가방', 'coin_count': 13}}], 'target': {'ref': 'answer.target', 'type': '가장 가벼운 물건'}, 'method': 'compare_coin_counts', 'plan': ['각 물건에 해당하는 500원짜리 동전의 수를 비교한다.', '가장 적은 수를 가진 물건을 고른다.'], 'steps': [{'id': 'step.1', 'expr': '지갑=9, 모자=2, 가방=13', 'value': {'wallet': 9, 'hat': 2, 'bag': 13}}, {'id': 'step.2', 'expr': '2<9<13', 'value': '모자'}], 'checks': [{'id': 'check.1', 'expr': '가장 작은 수가 2인지 확인', 'expected': 2, 'actual': 2, 'pass': True}, {'id': 'check.2', 'expr': '2에 해당하는 물건이 모자인지 확인', 'expected': '모자', 'actual': '모자', 'pass': True}], 'answer': {'blanks': [], 'choices': [], 'answer_key': [], 'target': {'type': '가장 가벼운 물건', 'description': '지갑, 모자, 가방 중 가장 가벼운 것'}, 'value': '모자', 'unit': ''}}
+SOLVABLE = {
+    "schema": "modu.solvable.v1.1",
+    "problem_id": "S3_초등_3_008804",
+    "problem_type": "비교_가벼운것_선택",
+    "inputs": {
+        "total_ticks": 3,
+        "target_label": "가장 가벼운 것",
+        "target_ticks": 1,
+        "target_count": 3,
+        "unit": "500원짜리 동전의 수",
+    },
+    "given": [
+        {"ref": "obj.wallet", "value": {"name": "지갑", "coin_count": 9}},
+        {"ref": "obj.hat", "value": {"name": "모자", "coin_count": 2}},
+        {"ref": "obj.bag", "value": {"name": "가방", "coin_count": 13}},
+    ],
+    "target": {"ref": "answer.target", "type": "가장 가벼운 물건"},
+    "method": "compare_coin_counts",
+    "plan": [
+        "각 물건에 해당하는 500원짜리 동전의 수를 비교한다.",
+        "가장 적은 수를 가진 물건을 고른다.",
+    ],
+    "steps": [
+        {
+            "id": "step.1",
+            "expr": "지갑=9, 모자=2, 가방=13",
+            "value": {"wallet": 9, "hat": 2, "bag": 13},
+        },
+        {"id": "step.2", "expr": "2<9<13", "value": "모자"},
+    ],
+    "checks": [
+        {
+            "id": "check.1",
+            "expr": "가장 작은 수가 2인지 확인",
+            "expected": 2,
+            "actual": 2,
+            "pass": True,
+        },
+        {
+            "id": "check.2",
+            "expr": "2에 해당하는 물건이 모자인지 확인",
+            "expected": "모자",
+            "actual": "모자",
+            "pass": True,
+        },
+    ],
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {"type": "가장 가벼운 물건", "description": "지갑, 모자, 가방 중 가장 가벼운 것"},
+        "value": "모자",
+        "unit": "",
+    },
+}

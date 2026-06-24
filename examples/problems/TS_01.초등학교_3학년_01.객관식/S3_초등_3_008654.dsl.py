@@ -6,13 +6,18 @@ ANSWER = {
     "blanks": [],
     "choices": [],
     "answer_key": [],
-    "target": {"type": "rule_description", "description": "두 모양을 그린 규칙의 같은 점과 다른 점"},
+    "target": {
+        "type": "rule_description",
+        "description": "두 모양을 그린 규칙의 같은 점과 다른 점",
+    },
     "value": "가는 원의 중심을 옮겨가며 그렸고, 나는 원의 중심을 모두 같게 그렸습니다.",
     "unit": "",
 }
 
 
-def _grid_slots(prefix: str, *, x: float, y: float, cells: int = 6, step: float = 30.0) -> tuple[PathSlot, ...]:
+def _grid_slots(
+    prefix: str, *, x: float, y: float, cells: int = 6, step: float = 30.0
+) -> tuple[PathSlot, ...]:
     size = cells * step
     slots: list[PathSlot] = [
         PathSlot(
@@ -53,7 +58,9 @@ def _grid_slots(prefix: str, *, x: float, y: float, cells: int = 6, step: float 
     return tuple(slots)
 
 
-def _circle_at(prefix: str, *, grid_x: float, grid_y: float, step: float, center: tuple[int, int], radius: int) -> CircleSlot:
+def _circle_at(
+    prefix: str, *, grid_x: float, grid_y: float, step: float, center: tuple[int, int], radius: int
+) -> CircleSlot:
     return CircleSlot(
         id=f"{prefix}.r{radius}",
         prompt="",
@@ -94,21 +101,39 @@ def build_problem_template() -> ProblemTemplate:
                 id="region.diagram.ga",
                 role="diagram",
                 flow="absolute",
-                slot_ids=("slot.label.ga", *(slot.id for slot in ga_grid), *(slot.id for slot in ga_circles)),
+                slot_ids=(
+                    "slot.label.ga",
+                    *(slot.id for slot in ga_grid),
+                    *(slot.id for slot in ga_circles),
+                ),
             ),
             Region(
                 id="region.diagram.na",
                 role="diagram",
                 flow="absolute",
-                slot_ids=("slot.label.na", *(slot.id for slot in na_grid), *(slot.id for slot in na_circles)),
+                slot_ids=(
+                    "slot.label.na",
+                    *(slot.id for slot in na_grid),
+                    *(slot.id for slot in na_circles),
+                ),
             ),
-            Region(id="region.choice", role="choices", flow="absolute", slot_ids=("slot.choice1",'slot.choice1.copy1')),
+            Region(
+                id="region.choice",
+                role="choices",
+                flow="absolute",
+                slot_ids=("slot.choice1", "slot.choice1.copy1"),
+            ),
         ),
-        slots=(TextSlot(
+        slots=(
+            TextSlot(
                 id="slot.q1",
                 prompt="",
-                text = '가와 나는 규칙에 따라 원을 그린 것입니다. 알맞은 것을 선택해 두 모양', style_role="question",
-                x = 10, y = 30, font_size = 25),
+                text="가와 나는 규칙에 따라 원을 그린 것입니다. 알맞은 것을 선택해 두 모양",
+                style_role="question",
+                x=10,
+                y=30,
+                font_size=25,
+            ),
             TextSlot(
                 id="slot.q2",
                 prompt="",
@@ -118,17 +143,47 @@ def build_problem_template() -> ProblemTemplate:
                 y=66.0,
                 font_size=24,
             ),
-            TextSlot(id="slot.label.ga", prompt="", text="가", style_role="label", x=220.0, y=103.0, font_size=24),
+            TextSlot(
+                id="slot.label.ga",
+                prompt="",
+                text="가",
+                style_role="label",
+                x=220.0,
+                y=103.0,
+                font_size=24,
+            ),
             *ga_grid,
             *ga_circles,
-            TextSlot(id="slot.label.na", prompt="", text="나", style_role="label", x=505.0, y=103.0, font_size=24),
+            TextSlot(
+                id="slot.label.na",
+                prompt="",
+                text="나",
+                style_role="label",
+                x=505.0,
+                y=103.0,
+                font_size=24,
+            ),
             *na_grid,
             *na_circles,
             TextSlot(
                 id="slot.choice1",
                 prompt="",
-                text = '    다른 점: (가,나)는 원의 중심을 옮겨가며 그렸고, (가,나)는 원의 중심이 모두', style_role="answer_option",
-                x = 15, y = 300, font_size = 25),TextSlot(id = 'slot.choice1.copy1', prompt = '', text = '같게 그렸습니다.  ', x = 15, y = 335, font_size = 25, fill = '#111111')),
+                text="    다른 점: (가,나)는 원의 중심을 옮겨가며 그렸고, (가,나)는 원의 중심이 모두",
+                style_role="answer_option",
+                x=15,
+                y=300,
+                font_size=25,
+            ),
+            TextSlot(
+                id="slot.choice1.copy1",
+                prompt="",
+                text="같게 그렸습니다.  ",
+                x=15,
+                y=335,
+                font_size=25,
+                fill="#111111",
+            ),
+        ),
         diagrams=(),
         groups=(),
         constraints=(),
@@ -171,9 +226,7 @@ SEMANTIC_OVERRIDE = {
                     "compare_center_positions",
                 ]
             },
-            "review": {
-                "check_methods": ["compare_background", "compare_circle_centers"]
-            },
+            "review": {"check_methods": ["compare_background", "compare_circle_centers"]},
         },
     },
     "answer": {

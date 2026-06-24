@@ -277,7 +277,10 @@ SEMANTIC_OVERRIDE = {
         "blanks": [],
         "choices": [],
         "answer_key": [],
-        "target": {"type": "choice_symbol", "description": "가장 작은 원을 그리기 위한 구멍의 기호"},
+        "target": {
+            "type": "choice_symbol",
+            "description": "가장 작은 원을 그리기 위한 구멍의 기호",
+        },
         "value": "ㄱ",
         "unit": "",
     },
@@ -300,7 +303,10 @@ SOLVABLE = {
     ],
     "target": {"ref": "answer.target", "type": "choice_symbol"},
     "method": "compare_distance",
-    "plan": ["누름 못과 각 구멍의 상대적 거리를 비교한다.", "누름 못에 가장 가까운 구멍을 선택한다."],
+    "plan": [
+        "누름 못과 각 구멍의 상대적 거리를 비교한다.",
+        "누름 못에 가장 가까운 구멍을 선택한다.",
+    ],
     "steps": [
         {
             "id": "step.1",
@@ -321,7 +327,10 @@ SOLVABLE = {
         "blanks": [],
         "choices": [],
         "answer_key": [],
-        "target": {"type": "choice_symbol", "description": "가장 작은 원을 그리기 위한 구멍의 기호"},
+        "target": {
+            "type": "choice_symbol",
+            "description": "가장 작은 원을 그리기 위한 구멍의 기호",
+        },
         "value": "ㄱ",
         "unit": "",
     },

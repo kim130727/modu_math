@@ -499,9 +499,7 @@ SOLVABLE = {
         {"ref": "obj.bottle_milk", "value": {"name": "우유병"}},
         {
             "ref": "obj.speech",
-            "value": {
-                "content": "물병에 물을 가득 채운 후 우유병에 옮겨 담아 보면 돼."
-            },
+            "value": {"content": "물병에 물을 가득 채운 후 우유병에 옮겨 담아 보면 돼."},
         },
     ],
     "target": {"ref": "answer.target", "type": "symbol_judgment"},

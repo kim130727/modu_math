@@ -1,10 +1,243 @@
 from __future__ import annotations
 from modu_math.dsl import Canvas, ProblemTemplate, Region, RectSlot, TextSlot, LineSlot
 
+
 def build_problem_template() -> ProblemTemplate:
-    return ProblemTemplate(id='S3_초등_3_008740', title='두 분수의 크기 비교', canvas=Canvas(width=960, height=940, coordinate_mode='logical'), regions=(Region(id='region.stem', role='stem', flow='absolute', slot_ids=('slot.q2', 'slot.q3')), Region(id='region.diagram.top', role='diagram', flow='absolute', slot_ids=('slot.top.box', 'slot.top.text', 'slot.top.line', 'slot.mid.left.box', 'slot.mid.right.box', 'slot.mid.connector', 'slot.leaf.1', 'slot.leaf.2', 'slot.leaf.3', 'slot.leaf.4')), Region(id='region.note', role='annotation', flow='absolute', slot_ids=()), Region(id='region.diagram.bottom', role='diagram', flow='absolute', slot_ids=()), Region(id='region.solution.text', role='explanation', flow='absolute', slot_ids=())), slots=(TextSlot(id='slot.q2', prompt='', text = '두 분수의 크기를 비교하여 더 큰 분수를 빈칸에 써 넣으려고 합니다. ', style_role='question', x = 30, y = 140, font_size = 30), TextSlot(id='slot.q3', prompt='', text = '①에 들어갈 분수로 알맞은 것을 가장 아래 칸의 분수들 중에 선택해 보세요.', style_role='question', x = 30, y = 185, font_size = 30), RectSlot(id='slot.top.box', prompt='', x = 390, y = 290, width = 75, height = 75, fill='#FFFFFF', stroke='#D8C2E6'), TextSlot(id='slot.top.text', prompt='', text = '①', style_role='label', x = 415, y = 335, font_size = 30), LineSlot(id='slot.top.line', prompt='', x1 = 430, y1 = 365, x2 = 430, y2 = 385, stroke='#666666', stroke_width=1.6), RectSlot(id='slot.mid.left.box', prompt='', x = 300, y = 395, width = 75, height = 75, fill='#FFFFFF', stroke='#D8C2E6'), RectSlot(id='slot.mid.right.box', prompt='', x = 490, y = 395, width = 75, height = 75, fill='#FFFFFF', stroke='#D8C2E6'), LineSlot(id='slot.mid.connector', prompt='', x1 = 340, y1 = 395, x2 = 530, y2 = 395, stroke='#666666', stroke_width=1.6), RectSlot(id='slot.leaf.1', prompt='', x = 255, y = 500, width = 75, height = 75, fill='#EBDFF3', stroke='#D8C2E6'), RectSlot(id='slot.leaf.2', prompt='', x = 355, y = 500, width = 75, height = 75, fill='#EBDFF3', stroke='#D8C2E6'), RectSlot(id='slot.leaf.3', prompt='', x = 460, y = 500, width = 75, height = 75, fill='#EBDFF3', stroke='#D8C2E6'), RectSlot(id='slot.leaf.4', prompt='', x = 560, y = 500, width = 75, height = 75, fill='#EBDFF3', stroke='#D8C2E6'), ), diagrams=(), groups=(), constraints=(), tags=())
+    return ProblemTemplate(
+        id="S3_초등_3_008740",
+        title="두 분수의 크기 비교",
+        canvas=Canvas(width=960, height=940, coordinate_mode="logical"),
+        regions=(
+            Region(id="region.stem", role="stem", flow="absolute", slot_ids=("slot.q2", "slot.q3")),
+            Region(
+                id="region.diagram.top",
+                role="diagram",
+                flow="absolute",
+                slot_ids=(
+                    "slot.top.box",
+                    "slot.top.text",
+                    "slot.top.line",
+                    "slot.mid.left.box",
+                    "slot.mid.right.box",
+                    "slot.mid.connector",
+                    "slot.leaf.1",
+                    "slot.leaf.2",
+                    "slot.leaf.3",
+                    "slot.leaf.4",
+                ),
+            ),
+            Region(id="region.note", role="annotation", flow="absolute", slot_ids=()),
+            Region(id="region.diagram.bottom", role="diagram", flow="absolute", slot_ids=()),
+            Region(id="region.solution.text", role="explanation", flow="absolute", slot_ids=()),
+        ),
+        slots=(
+            TextSlot(
+                id="slot.q2",
+                prompt="",
+                text="두 분수의 크기를 비교하여 더 큰 분수를 빈칸에 써 넣으려고 합니다. ",
+                style_role="question",
+                x=30,
+                y=140,
+                font_size=30,
+            ),
+            TextSlot(
+                id="slot.q3",
+                prompt="",
+                text="①에 들어갈 분수로 알맞은 것을 가장 아래 칸의 분수들 중에 선택해 보세요.",
+                style_role="question",
+                x=30,
+                y=185,
+                font_size=30,
+            ),
+            RectSlot(
+                id="slot.top.box",
+                prompt="",
+                x=390,
+                y=290,
+                width=75,
+                height=75,
+                fill="#FFFFFF",
+                stroke="#D8C2E6",
+            ),
+            TextSlot(
+                id="slot.top.text",
+                prompt="",
+                text="①",
+                style_role="label",
+                x=415,
+                y=335,
+                font_size=30,
+            ),
+            LineSlot(
+                id="slot.top.line",
+                prompt="",
+                x1=430,
+                y1=365,
+                x2=430,
+                y2=385,
+                stroke="#666666",
+                stroke_width=1.6,
+            ),
+            RectSlot(
+                id="slot.mid.left.box",
+                prompt="",
+                x=300,
+                y=395,
+                width=75,
+                height=75,
+                fill="#FFFFFF",
+                stroke="#D8C2E6",
+            ),
+            RectSlot(
+                id="slot.mid.right.box",
+                prompt="",
+                x=490,
+                y=395,
+                width=75,
+                height=75,
+                fill="#FFFFFF",
+                stroke="#D8C2E6",
+            ),
+            LineSlot(
+                id="slot.mid.connector",
+                prompt="",
+                x1=340,
+                y1=395,
+                x2=530,
+                y2=395,
+                stroke="#666666",
+                stroke_width=1.6,
+            ),
+            RectSlot(
+                id="slot.leaf.1",
+                prompt="",
+                x=255,
+                y=500,
+                width=75,
+                height=75,
+                fill="#EBDFF3",
+                stroke="#D8C2E6",
+            ),
+            RectSlot(
+                id="slot.leaf.2",
+                prompt="",
+                x=355,
+                y=500,
+                width=75,
+                height=75,
+                fill="#EBDFF3",
+                stroke="#D8C2E6",
+            ),
+            RectSlot(
+                id="slot.leaf.3",
+                prompt="",
+                x=460,
+                y=500,
+                width=75,
+                height=75,
+                fill="#EBDFF3",
+                stroke="#D8C2E6",
+            ),
+            RectSlot(
+                id="slot.leaf.4",
+                prompt="",
+                x=560,
+                y=500,
+                width=75,
+                height=75,
+                fill="#EBDFF3",
+                stroke="#D8C2E6",
+            ),
+        ),
+        diagrams=(),
+        groups=(),
+        constraints=(),
+        tags=(),
+    )
+
+
 PROBLEM_TEMPLATE = build_problem_template()
 
-SEMANTIC_OVERRIDE = {'problem_id': 'S3_초등_3_008740', 'problem_type': 'fraction_comparison', 'metadata': {'language': 'ko', 'question': '두 분수의 크기를 비교하여 더 큰 분수를 빈칸에 써 넣는 문제', 'instruction': '①에 들어갈 분수를 가장 아래 칸의 분수들 중에서 선택한다.'}, 'domain': {'objects': [{'id': 'obj.choice_1', 'type': 'fraction', 'value': '23/6'}, {'id': 'obj.choice_2', 'type': 'fraction', 'value': '21/6'}, {'id': 'obj.choice_3', 'type': 'mixed_number', 'value': '3 2/6'}, {'id': 'obj.choice_4', 'type': 'mixed_number', 'value': '3 4/6'}, {'id': 'obj.blank', 'type': 'blank', 'label': '①'}], 'relations': [], 'problem_solving': {'understand': {'given_refs': ['obj.choice_1', 'obj.choice_2', 'obj.choice_3', 'obj.choice_4'], 'target_ref': 'answer.target', 'condition_refs': ['rel.compare_1', 'rel.compare_2']}, 'plan': {'method': 'compare_fractions', 'description': '후보 분수들의 크기를 비교하여 가장 큰 분수를 선택한다.'}, 'execute': {'expected_operations': ['compare_fraction_pairs', 'identify_largest_candidate']}, 'review': {'check_methods': ['comparison_consistency_check']}}}, 'answer': {'blanks': [], 'choices': [], 'answer_key': [], 'target': {'type': 'blank_fill', 'description': '①에 들어갈 분수'}, 'value': '23/6', 'unit': ''}}
+SEMANTIC_OVERRIDE = {
+    "problem_id": "S3_초등_3_008740",
+    "problem_type": "fraction_comparison",
+    "metadata": {
+        "language": "ko",
+        "question": "두 분수의 크기를 비교하여 더 큰 분수를 빈칸에 써 넣는 문제",
+        "instruction": "①에 들어갈 분수를 가장 아래 칸의 분수들 중에서 선택한다.",
+    },
+    "domain": {
+        "objects": [
+            {"id": "obj.choice_1", "type": "fraction", "value": "23/6"},
+            {"id": "obj.choice_2", "type": "fraction", "value": "21/6"},
+            {"id": "obj.choice_3", "type": "mixed_number", "value": "3 2/6"},
+            {"id": "obj.choice_4", "type": "mixed_number", "value": "3 4/6"},
+            {"id": "obj.blank", "type": "blank", "label": "①"},
+        ],
+        "relations": [],
+        "problem_solving": {
+            "understand": {
+                "given_refs": ["obj.choice_1", "obj.choice_2", "obj.choice_3", "obj.choice_4"],
+                "target_ref": "answer.target",
+                "condition_refs": ["rel.compare_1", "rel.compare_2"],
+            },
+            "plan": {
+                "method": "compare_fractions",
+                "description": "후보 분수들의 크기를 비교하여 가장 큰 분수를 선택한다.",
+            },
+            "execute": {
+                "expected_operations": ["compare_fraction_pairs", "identify_largest_candidate"]
+            },
+            "review": {"check_methods": ["comparison_consistency_check"]},
+        },
+    },
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {"type": "blank_fill", "description": "①에 들어갈 분수"},
+        "value": "23/6",
+        "unit": "",
+    },
+}
 
-SOLVABLE = {'schema': 'modu.solvable.v1.1', 'problem_id': 'S3_초등_3_008740', 'problem_type': 'fraction_comparison', 'inputs': {'total_ticks': 4, 'target_label': '①', 'target_ticks': 1, 'target_count': 1, 'unit': ''}, 'given': [{'ref': 'obj.choice_1', 'value': '23/6'}, {'ref': 'obj.choice_2', 'value': '21/6'}, {'ref': 'obj.choice_3', 'value': '3 2/6'}, {'ref': 'obj.choice_4', 'value': '3 4/6'}], 'target': {'ref': 'answer.target', 'type': 'blank_fill'}, 'method': 'compare_fractions', 'plan': ['주어진 후보 분수들의 크기를 비교한다.', '가장 큰 분수를 선택한다.'], 'steps': [{'id': 'step.1', 'expr': '23/6 > 21/6', 'value': True}, {'id': 'step.2', 'expr': '3 2/6 < 3 4/6', 'value': True}, {'id': 'step.3', 'expr': '23/6 = 3 5/6', 'value': '3 5/6'}, {'id': 'step.4', 'expr': '23/6 > 3 4/6', 'value': True}, {'id': 'step.5', 'expr': '가장 큰 분수 선택', 'value': '23/6'}], 'checks': [{'id': 'check.1', 'expr': '23/6 > 21/6', 'expected': True, 'actual': True, 'pass': True}, {'id': 'check.2', 'expr': '3 2/6 < 3 4/6', 'expected': True, 'actual': True, 'pass': True}], 'answer': {'blanks': [], 'choices': [], 'answer_key': [], 'target': {'type': 'blank_fill', 'description': '①에 들어갈 분수'}, 'value': '23/6', 'unit': ''}}
+SOLVABLE = {
+    "schema": "modu.solvable.v1.1",
+    "problem_id": "S3_초등_3_008740",
+    "problem_type": "fraction_comparison",
+    "inputs": {
+        "total_ticks": 4,
+        "target_label": "①",
+        "target_ticks": 1,
+        "target_count": 1,
+        "unit": "",
+    },
+    "given": [
+        {"ref": "obj.choice_1", "value": "23/6"},
+        {"ref": "obj.choice_2", "value": "21/6"},
+        {"ref": "obj.choice_3", "value": "3 2/6"},
+        {"ref": "obj.choice_4", "value": "3 4/6"},
+    ],
+    "target": {"ref": "answer.target", "type": "blank_fill"},
+    "method": "compare_fractions",
+    "plan": ["주어진 후보 분수들의 크기를 비교한다.", "가장 큰 분수를 선택한다."],
+    "steps": [
+        {"id": "step.1", "expr": "23/6 > 21/6", "value": True},
+        {"id": "step.2", "expr": "3 2/6 < 3 4/6", "value": True},
+        {"id": "step.3", "expr": "23/6 = 3 5/6", "value": "3 5/6"},
+        {"id": "step.4", "expr": "23/6 > 3 4/6", "value": True},
+        {"id": "step.5", "expr": "가장 큰 분수 선택", "value": "23/6"},
+    ],
+    "checks": [
+        {"id": "check.1", "expr": "23/6 > 21/6", "expected": True, "actual": True, "pass": True},
+        {"id": "check.2", "expr": "3 2/6 < 3 4/6", "expected": True, "actual": True, "pass": True},
+    ],
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {"type": "blank_fill", "description": "①에 들어갈 분수"},
+        "value": "23/6",
+        "unit": "",
+    },
+}

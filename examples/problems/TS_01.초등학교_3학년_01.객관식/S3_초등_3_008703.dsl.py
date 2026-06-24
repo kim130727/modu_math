@@ -2,7 +2,6 @@ from __future__ import annotations
 
 from modu_math.dsl import Canvas, ProblemTemplate, Region, TextSlot, compass_on_ruler_slots
 
-
 ANSWER = {
     "blanks": [],
     "choices": [],
@@ -59,14 +58,19 @@ def build_problem_template() -> ProblemTemplate:
                 id="region.choices",
                 role="choices",
                 flow="absolute",
-                slot_ids=(*(slot.id for slot in choice1), *(slot.id for slot in choice2), *(slot.id for slot in choice3)),
+                slot_ids=(
+                    *(slot.id for slot in choice1),
+                    *(slot.id for slot in choice2),
+                    *(slot.id for slot in choice3),
+                ),
             ),
         ),
         slots=(
             TextSlot(
                 id="slot.q.text",
                 prompt="",
-                text = '컴퍼스를 2 cm가 되도록 벌린 것을 찾아 선택하세요.', style_role="question",
+                text="컴퍼스를 2 cm가 되도록 벌린 것을 찾아 선택하세요.",
+                style_role="question",
                 x=10.0,
                 y=31.0,
                 font_size=24,
@@ -131,7 +135,12 @@ SOLVABLE = {
     "schema": "modu.solvable.v1.1",
     "problem_id": "S3_초등_3_008703",
     "problem_type": "multiple_choice_geometry",
-    "inputs": {"target_label": "2 cm", "target_length": 2, "unit": "cm", "choices": [2.12, 2.0, 3.0]},
+    "inputs": {
+        "target_label": "2 cm",
+        "target_length": 2,
+        "unit": "cm",
+        "choices": [2.12, 2.0, 3.0],
+    },
     "given": [
         {"ref": "obj.ruler", "value": {"unit": "cm"}},
         {"ref": "obj.target_length", "value": {"value": 2, "unit": "cm"}},
@@ -147,6 +156,14 @@ SOLVABLE = {
         {"id": "step.1", "expr": "choice2 spread = 2 cm", "value": 2},
         {"id": "step.2", "expr": "target length = 2 cm", "value": 2},
     ],
-    "checks": [{"id": "check.1", "expr": "choice2 spread equals target length", "expected": True, "actual": True, "pass": True}],
+    "checks": [
+        {
+            "id": "check.1",
+            "expr": "choice2 spread equals target length",
+            "expected": True,
+            "actual": True,
+            "pass": True,
+        }
+    ],
     "answer": ANSWER,
 }

@@ -7,7 +7,18 @@
     "instruction": "빈 칸에 진분수인 재료를 모두 선택해 보세요.",
     "question": "블루베리 즙 2잔을 만드는 데 필요한 재료 중 진분수인 재료를 고르는 문제",
     "required_layout_ids": [
-      "slot.table.border"
+      "slot.table.border",
+      "slot.math.fraction.bar",
+      "slot.math.fraction_1.bar",
+      "slot.math.fraction_2.bar",
+      "slot.math.fraction_3.bar",
+      "slot.math.fraction_4.bar",
+      "slot.math.fraction_5.bar",
+      "slot.math.fraction_6.bar",
+      "slot.inserted.image.1",
+      "slot.inserted.image.2",
+      "slot.inserted.image.3",
+      "slot.inserted.image.4"
     ],
     "extraction_confidence": 1.0,
     "language": "ko"
@@ -102,7 +113,7 @@
       "type": "selected_ingredients",
       "description": "진분수인 재료"
     },
-    "value": 2,
+    "value": "우유, 꿀",
     "unit": ""
   }
 }

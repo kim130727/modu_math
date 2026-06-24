@@ -83,7 +83,14 @@ def _speech_bubble_slots(
         f"C {cx - rx * 0.58} {cy + ry}, {cx - rx} {cy + ry * 0.78}, {cx - rx} {cy} Z"
     )
     slots: list[PathSlot | PolygonSlot | TextSlot] = [
-        PathSlot(id=f"{prefix}.bubble", prompt="", d=d, fill="#ffffff", stroke="#222222", stroke_width=1.6),
+        PathSlot(
+            id=f"{prefix}.bubble",
+            prompt="",
+            d=d,
+            fill="#ffffff",
+            stroke="#222222",
+            stroke_width=1.6,
+        ),
         PolygonSlot(
             id=f"{prefix}.tail",
             prompt="",
@@ -141,8 +148,12 @@ def _name_tag_slots(prefix: str, *, x: float, y: float, name: str) -> tuple[Rect
 
 def build_problem_template() -> ProblemTemplate:
     grid_slots = _grid_paper_slots("slot.grid", x=118.0, y=150.0, size=282.0, divisions=12)
-    sunga_character = character_body_slots("slot.sunga.character", cx=532.0, head_cy=164.0, hair="#3A2116", shirt="#F16078")
-    jaewon_character = character_body_slots("slot.jaewon.character", cx=532.0, head_cy=338.0, hair="#4B260B", shirt="#1E8AD6")
+    sunga_character = character_body_slots(
+        "slot.sunga.character", cx=532.0, head_cy=164.0, hair="#3A2116", shirt="#F16078"
+    )
+    jaewon_character = character_body_slots(
+        "slot.jaewon.character", cx=532.0, head_cy=338.0, hair="#4B260B", shirt="#1E8AD6"
+    )
     sunga_name = _name_tag_slots("slot.sunga", x=493.0, y=236.0, name="승아")
     jaewon_name = _name_tag_slots("slot.jaewon", x=493.0, y=416.0, name="재원")
     sunga_bubble = _speech_bubble_slots(
@@ -171,7 +182,12 @@ def build_problem_template() -> ProblemTemplate:
         title="그림의 규칙을 바르게 말한 사람 선택하기",
         canvas=Canvas(width=960, height=620, coordinate_mode="logical"),
         regions=(
-            Region(id="region.header", role="stem", flow="absolute", slot_ids=("slot.qnum", "slot.qtext1", "slot.qtext2")),
+            Region(
+                id="region.header",
+                role="stem",
+                flow="absolute",
+                slot_ids=("slot.qnum", "slot.qtext1", "slot.qtext2"),
+            ),
             Region(
                 id="region.diagram",
                 role="diagram",
@@ -208,14 +224,61 @@ def build_problem_template() -> ProblemTemplate:
             TextSlot(
                 id="slot.qtext1",
                 prompt="",
-                text = '규칙에 따라 원을 그린 것입니다. 그린 규칙을 바르게 말한 사람을 선택', style_role="question",
-                x = 35, y = 35, font_size = 25),
-            TextSlot(id="slot.qtext2", prompt="", text="해 보세요.", style_role="question", x=36.0, y=70.0, font_size=24),
+                text="규칙에 따라 원을 그린 것입니다. 그린 규칙을 바르게 말한 사람을 선택",
+                style_role="question",
+                x=35,
+                y=35,
+                font_size=25,
+            ),
+            TextSlot(
+                id="slot.qtext2",
+                prompt="",
+                text="해 보세요.",
+                style_role="question",
+                x=36.0,
+                y=70.0,
+                font_size=24,
+            ),
             *grid_slots,
-            CircleSlot(id="slot.circle.outer", prompt="", cx=259.0, cy=291.0, r=118.0, fill="none", stroke="#444444", stroke_width=1.4),
-            CircleSlot(id="slot.circle.middle", prompt="", cx=259.0, cy=291.0, r=71.0, fill="none", stroke="#444444", stroke_width=1.4),
-            CircleSlot(id="slot.circle.inner", prompt="", cx=259.0, cy=291.0, r=23.5, fill="none", stroke="#444444", stroke_width=1.4),
-            CircleSlot(id="slot.center", prompt="", cx=259.0, cy=291.0, r=4.0, fill="#E11A86", stroke="none"),
+            CircleSlot(
+                id="slot.circle.outer",
+                prompt="",
+                cx=259.0,
+                cy=291.0,
+                r=118.0,
+                fill="none",
+                stroke="#444444",
+                stroke_width=1.4,
+            ),
+            CircleSlot(
+                id="slot.circle.middle",
+                prompt="",
+                cx=259.0,
+                cy=291.0,
+                r=71.0,
+                fill="none",
+                stroke="#444444",
+                stroke_width=1.4,
+            ),
+            CircleSlot(
+                id="slot.circle.inner",
+                prompt="",
+                cx=259.0,
+                cy=291.0,
+                r=23.5,
+                fill="none",
+                stroke="#444444",
+                stroke_width=1.4,
+            ),
+            CircleSlot(
+                id="slot.center",
+                prompt="",
+                cx=259.0,
+                cy=291.0,
+                r=4.0,
+                fill="#E11A86",
+                stroke="none",
+            ),
             *sunga_character,
             *sunga_name,
             *sunga_bubble,
@@ -266,7 +329,12 @@ SEMANTIC_OVERRIDE = {
         ],
         "problem_solving": {
             "understand": {
-                "given_refs": ["obj.circles", "obj.center", "obj.student.sunga", "obj.student.jaewon"],
+                "given_refs": [
+                    "obj.circles",
+                    "obj.center",
+                    "obj.student.sunga",
+                    "obj.student.jaewon",
+                ],
                 "target_ref": "answer.target",
                 "condition_refs": ["rel.same_center", "rel.radius_increase"],
             },
@@ -274,7 +342,13 @@ SEMANTIC_OVERRIDE = {
                 "method": "rule_matching",
                 "description": "그림의 중심과 반지름 변화 규칙을 보고 두 사람의 말과 비교한다.",
             },
-            "execute": {"expected_operations": ["identify_same_center", "recognize_increasing_radius_pattern", "match_student_statement"]},
+            "execute": {
+                "expected_operations": [
+                    "identify_same_center",
+                    "recognize_increasing_radius_pattern",
+                    "match_student_statement",
+                ]
+            },
             "review": {"check_methods": ["confirm_rule_consistency"]},
         },
     },
@@ -302,7 +376,10 @@ SOLVABLE = {
     "given": [
         {"ref": "obj.circles", "value": {"count": 3}},
         {"ref": "obj.center", "value": {"type": "center_point", "same_for_all": True}},
-        {"ref": "rel.radius_increase", "value": {"radii_in_grid_cells": [1, 3, 5], "difference": 2}},
+        {
+            "ref": "rel.radius_increase",
+            "value": {"radii_in_grid_cells": [1, 3, 5], "difference": 2},
+        },
     ],
     "target": {"ref": "answer.target", "type": "correct_student"},
     "method": "rule_matching",
@@ -317,7 +394,13 @@ SOLVABLE = {
         {"id": "step.3", "expr": "설명과 규칙 비교", "value": "재원"},
     ],
     "checks": [
-        {"id": "check.1", "expr": "재원의 설명이 중심과 반지름 규칙을 모두 만족하는가", "expected": True, "actual": True, "pass": True}
+        {
+            "id": "check.1",
+            "expr": "재원의 설명이 중심과 반지름 규칙을 모두 만족하는가",
+            "expected": True,
+            "actual": True,
+            "pass": True,
+        }
     ],
     "answer": {
         "blanks": [],

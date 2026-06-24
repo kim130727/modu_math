@@ -1,10 +1,212 @@
 from __future__ import annotations
 from modu_math.dsl import Canvas, ProblemTemplate, RectSlot, Region, TextSlot
 
+
 def build_problem_template() -> ProblemTemplate:
-    return ProblemTemplate(id='S3_초등_3_008790', title='주전자와 물병 비교', canvas=Canvas(width=940, height=520, coordinate_mode='logical'), regions=(Region(id='region.stem', role='stem', flow='absolute', slot_ids=('slot.q1', 'slot.q2', 'slot.choice')), Region(id='region.diagram.left', role='diagram', flow='absolute', slot_ids=('slot.left.kettle', 'slot.left.arrow', 'slot.left.cups', 'slot.left.label')), Region(id='region.diagram.right', role='diagram', flow='absolute', slot_ids=('slot.right.bottle', 'slot.right.arrow', 'slot.right.cups', 'slot.right.label')), Region(id='region.answer', role='answer', flow='absolute', slot_ids=())), slots=(TextSlot(id='slot.q1', prompt='', text='15. 주전자와 물병에 물을 가득 채운 후 모양과 크기가 같은 컵에 옮겨 담았습니다.', style_role='question', x=20.0, y=30.0, font_size=28), TextSlot(id='slot.q2', prompt='', text='주전자와 물병 중 들이가 더 많은 것을 선택하세요.', style_role='question', x=20.0, y=66.0, font_size=28), TextSlot(id='slot.left.kettle', prompt='', text='(그림) 주전자', style_role='question', x=95.0, y=120.0, font_size=28), TextSlot(id='slot.left.arrow', prompt='', text='→', style_role='question', x=250.0, y=120.0, font_size=28), RectSlot(id='slot.left.cups', prompt='', x=320.0, y=110.0, width=230.0, height=110.0), TextSlot(id='slot.left.label', prompt='', text='주전자', style_role='label', x=110.0, y=198.0, font_size=28), TextSlot(id='slot.right.bottle', prompt='', text='(그림) 물병', style_role='question', x=600.0, y=120.0, font_size=28), TextSlot(id='slot.right.arrow', prompt='', text='→', style_role='question', x=745.0, y=120.0, font_size=28), RectSlot(id='slot.right.cups', prompt='', x=805.0, y=110.0, width=140.0, height=110.0), TextSlot(id='slot.right.label', prompt='', text='물병', style_role='label', x=640.0, y=198.0, font_size=28), TextSlot(id='slot.choice', prompt='', text='( 주전자 , 물병 )', style_role='question', x=730.0, y=270.0, font_size=28)), diagrams=(), groups=(), constraints=(), tags=())
+    return ProblemTemplate(
+        id="S3_초등_3_008790",
+        title="주전자와 물병 비교",
+        canvas=Canvas(width=940, height=520, coordinate_mode="logical"),
+        regions=(
+            Region(
+                id="region.stem",
+                role="stem",
+                flow="absolute",
+                slot_ids=("slot.q1", "slot.q2", "slot.choice"),
+            ),
+            Region(
+                id="region.diagram.left",
+                role="diagram",
+                flow="absolute",
+                slot_ids=(
+                    "slot.left.kettle",
+                    "slot.left.arrow",
+                    "slot.left.cups",
+                    "slot.left.label",
+                ),
+            ),
+            Region(
+                id="region.diagram.right",
+                role="diagram",
+                flow="absolute",
+                slot_ids=(
+                    "slot.right.bottle",
+                    "slot.right.arrow",
+                    "slot.right.cups",
+                    "slot.right.label",
+                ),
+            ),
+            Region(id="region.answer", role="answer", flow="absolute", slot_ids=()),
+        ),
+        slots=(
+            TextSlot(
+                id="slot.q1",
+                prompt="",
+                text="15. 주전자와 물병에 물을 가득 채운 후 모양과 크기가 같은 컵에 옮겨 담았습니다.",
+                style_role="question",
+                x=20.0,
+                y=30.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.q2",
+                prompt="",
+                text="주전자와 물병 중 들이가 더 많은 것을 선택하세요.",
+                style_role="question",
+                x=20.0,
+                y=66.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.left.kettle",
+                prompt="",
+                text="(그림) 주전자",
+                style_role="question",
+                x=95.0,
+                y=120.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.left.arrow",
+                prompt="",
+                text="→",
+                style_role="question",
+                x=250.0,
+                y=120.0,
+                font_size=28,
+            ),
+            RectSlot(id="slot.left.cups", prompt="", x=320.0, y=110.0, width=230.0, height=110.0),
+            TextSlot(
+                id="slot.left.label",
+                prompt="",
+                text="주전자",
+                style_role="label",
+                x=110.0,
+                y=198.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.right.bottle",
+                prompt="",
+                text="(그림) 물병",
+                style_role="question",
+                x=600.0,
+                y=120.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.right.arrow",
+                prompt="",
+                text="→",
+                style_role="question",
+                x=745.0,
+                y=120.0,
+                font_size=28,
+            ),
+            RectSlot(id="slot.right.cups", prompt="", x=805.0, y=110.0, width=140.0, height=110.0),
+            TextSlot(
+                id="slot.right.label",
+                prompt="",
+                text="물병",
+                style_role="label",
+                x=640.0,
+                y=198.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.choice",
+                prompt="",
+                text="( 주전자 , 물병 )",
+                style_role="question",
+                x=730.0,
+                y=270.0,
+                font_size=28,
+            ),
+        ),
+        diagrams=(),
+        groups=(),
+        constraints=(),
+        tags=(),
+    )
+
+
 PROBLEM_TEMPLATE = build_problem_template()
 
-SEMANTIC_OVERRIDE = {'problem_id': 'S3_초등_3_008790', 'problem_type': '비교', 'metadata': {'language': 'ko', 'question': '주전자와 물병 중 들이가 더 많은 것을 선택하는 문제', 'instruction': '주전자와 물병 중 들이가 더 많은 것을 선택하세요.'}, 'domain': {'objects': [{'id': 'obj.kettle', 'type': 'container', 'name': '주전자'}, {'id': 'obj.bottle', 'type': 'container', 'name': '물병'}, {'id': 'obj.cup', 'type': 'unit_container', 'name': '컵'}], 'relations': [], 'problem_solving': {'understand': {'given_refs': ['rel.kettle_capacity', 'rel.bottle_capacity'], 'target_ref': 'answer.target', 'condition_refs': ['rel.compare_capacity']}, 'plan': {'method': 'capacity_compare', 'description': '컵의 개수를 비교하여 더 많은 쪽을 고른다.'}, 'execute': {'expected_operations': ['compare_7_and_4', 'select_larger_container']}, 'review': {'check_methods': ['greater_quantity_check']}}}, 'answer': {'blanks': [], 'choices': [], 'answer_key': [], 'target': {'type': 'container_name', 'description': '들이가 더 많은 용기'}, 'value': '주전자', 'unit': ''}}
+SEMANTIC_OVERRIDE = {
+    "problem_id": "S3_초등_3_008790",
+    "problem_type": "비교",
+    "metadata": {
+        "language": "ko",
+        "question": "주전자와 물병 중 들이가 더 많은 것을 선택하는 문제",
+        "instruction": "주전자와 물병 중 들이가 더 많은 것을 선택하세요.",
+    },
+    "domain": {
+        "objects": [
+            {"id": "obj.kettle", "type": "container", "name": "주전자"},
+            {"id": "obj.bottle", "type": "container", "name": "물병"},
+            {"id": "obj.cup", "type": "unit_container", "name": "컵"},
+        ],
+        "relations": [],
+        "problem_solving": {
+            "understand": {
+                "given_refs": ["rel.kettle_capacity", "rel.bottle_capacity"],
+                "target_ref": "answer.target",
+                "condition_refs": ["rel.compare_capacity"],
+            },
+            "plan": {
+                "method": "capacity_compare",
+                "description": "컵의 개수를 비교하여 더 많은 쪽을 고른다.",
+            },
+            "execute": {"expected_operations": ["compare_7_and_4", "select_larger_container"]},
+            "review": {"check_methods": ["greater_quantity_check"]},
+        },
+    },
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {"type": "container_name", "description": "들이가 더 많은 용기"},
+        "value": "주전자",
+        "unit": "",
+    },
+}
 
-SOLVABLE = {'schema': 'modu.solvable.v1.1', 'problem_id': 'S3_초등_3_008790', 'problem_type': '비교', 'inputs': {'total_ticks': 0, 'target_label': '들이가 더 많은 용기', 'target_ticks': 0, 'target_count': 0, 'unit': ''}, 'given': [{'ref': 'rel.kettle_capacity', 'value': 7}, {'ref': 'rel.bottle_capacity', 'value': 4}], 'target': {'ref': 'answer.target', 'type': 'container_name'}, 'plan': '컵의 개수를 비교하여 더 큰 값을 가진 용기를 고른다.', 'steps': [{'id': 'step.1', 'expr': '7 > 4', 'value': True}, {'id': 'step.2', 'expr': '더 큰 용기 = 주전자', 'value': '주전자'}], 'checks': [{'id': 'check.1', 'expr': '주전자 7컵, 물병 4컵', 'expected': '주전자', 'actual': '주전자', 'pass': True}], 'answer': {'blanks': [], 'choices': [], 'answer_key': [], 'target': {'type': 'container_name', 'description': '들이가 더 많은 용기'}, 'value': '주전자', 'unit': ''}}
+SOLVABLE = {
+    "schema": "modu.solvable.v1.1",
+    "problem_id": "S3_초등_3_008790",
+    "problem_type": "비교",
+    "inputs": {
+        "total_ticks": 0,
+        "target_label": "들이가 더 많은 용기",
+        "target_ticks": 0,
+        "target_count": 0,
+        "unit": "",
+    },
+    "given": [
+        {"ref": "rel.kettle_capacity", "value": 7},
+        {"ref": "rel.bottle_capacity", "value": 4},
+    ],
+    "target": {"ref": "answer.target", "type": "container_name"},
+    "plan": "컵의 개수를 비교하여 더 큰 값을 가진 용기를 고른다.",
+    "steps": [
+        {"id": "step.1", "expr": "7 > 4", "value": True},
+        {"id": "step.2", "expr": "더 큰 용기 = 주전자", "value": "주전자"},
+    ],
+    "checks": [
+        {
+            "id": "check.1",
+            "expr": "주전자 7컵, 물병 4컵",
+            "expected": "주전자",
+            "actual": "주전자",
+            "pass": True,
+        }
+    ],
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {"type": "container_name", "description": "들이가 더 많은 용기"},
+        "value": "주전자",
+        "unit": "",
+    },
+}

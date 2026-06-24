@@ -3,8 +3,8 @@
   "problem_id": "S3_초등_3_008729",
   "title": "그림을 보고 알맞은 말을 선택하세요.",
   "canvas": {
-    "width": 840.0,
-    "height": 370.0,
+    "width": 840,
+    "height": 300,
     "coordinate_mode": "logical",
     "background": "#FFFFFF"
   },
@@ -14,8 +14,6 @@
       "role": "stem",
       "flow": "absolute",
       "slot_ids": [
-        "slot.box",
-        "slot.qnum",
         "slot.title"
       ]
     },
@@ -56,34 +54,6 @@
   ],
   "slots": [
     {
-      "id": "slot.box",
-      "kind": "rect",
-      "prompt": "",
-      "content": {
-        "x": 14.0,
-        "y": 12.0,
-        "width": 16.0,
-        "height": 16.0,
-        "stroke": "#000000",
-        "stroke_width": 1.2,
-        "rx": 0.0,
-        "ry": 0.0,
-        "fill": "none"
-      }
-    },
-    {
-      "id": "slot.qnum",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "37.",
-        "style_role": "question",
-        "x": 38.0,
-        "y": 28.0,
-        "font_size": 28
-      }
-    },
-    {
       "id": "slot.title",
       "kind": "text",
       "prompt": "",
@@ -100,9 +70,9 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 120.0,
-        "y": 42.0,
-        "width": 716.0,
+        "x": 85.0,
+        "y": 65.0,
+        "width": 615.0,
         "height": 80.0,
         "stroke": "#ffa4c0",
         "stroke_width": 2.0,
@@ -116,9 +86,11 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 160.0,
-        "cy": 82.0,
+        "cx": 125.0,
+        "cy": 107.0,
         "r": 18.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0,
         "fill": "#43c16f"
       }
     },
@@ -127,9 +99,11 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 208.0,
-        "cy": 82.0,
+        "cx": 173.0,
+        "cy": 107.0,
         "r": 18.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0,
         "fill": "#43c16f"
       }
     },
@@ -138,9 +112,11 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 256.0,
-        "cy": 82.0,
+        "cx": 221.0,
+        "cy": 107.0,
         "r": 18.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0,
         "fill": "#43c16f"
       }
     },
@@ -149,9 +125,11 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 304.0,
-        "cy": 82.0,
+        "cx": 269.0,
+        "cy": 107.0,
         "r": 18.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0,
         "fill": "#43c16f"
       }
     },
@@ -160,9 +138,11 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 352.0,
-        "cy": 82.0,
+        "cx": 317.0,
+        "cy": 107.0,
         "r": 18.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0,
         "fill": "#f7a8b4"
       }
     },
@@ -171,9 +151,11 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 400.0,
-        "cy": 82.0,
+        "cx": 365.0,
+        "cy": 107.0,
         "r": 18.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0,
         "fill": "#f7a8b4"
       }
     },
@@ -182,9 +164,11 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 448.0,
-        "cy": 82.0,
+        "cx": 413.0,
+        "cy": 107.0,
         "r": 18.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0,
         "fill": "#f7a8b4"
       }
     },
@@ -193,9 +177,11 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 496.0,
-        "cy": 82.0,
+        "cx": 461.0,
+        "cy": 107.0,
         "r": 18.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0,
         "fill": "#f7a8b4"
       }
     },
@@ -204,9 +190,11 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 544.0,
-        "cy": 82.0,
+        "cx": 509.0,
+        "cy": 107.0,
         "r": 18.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0,
         "fill": "#f7a8b4"
       }
     },
@@ -215,9 +203,11 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 592.0,
-        "cy": 82.0,
+        "cx": 557.0,
+        "cy": 107.0,
         "r": 18.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0,
         "fill": "#f7a8b4"
       }
     },
@@ -226,9 +216,11 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 640.0,
-        "cy": 82.0,
+        "cx": 605.0,
+        "cy": 107.0,
         "r": 18.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0,
         "fill": "#f7a8b4"
       }
     },
@@ -237,9 +229,11 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 688.0,
-        "cy": 82.0,
+        "cx": 653.0,
+        "cy": 107.0,
         "r": 18.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0,
         "fill": "#f7a8b4"
       }
     },
@@ -250,9 +244,10 @@
       "content": {
         "text": "12의 1/3은 ( 초록색 , 분홍색 ) 구슬입니다.",
         "style_role": "question",
-        "x": 220.0,
-        "y": 205.0,
-        "font_size": 28
+        "x": 110.0,
+        "y": 215.0,
+        "font_size": 28,
+        "fill": "#111111"
       }
     }
   ],
@@ -261,8 +256,6 @@
   "diagrams": [],
   "reading_order": [
     "region.header",
-    "slot.box",
-    "slot.qnum",
     "slot.title",
     "region.diagram",
     "slot.card",

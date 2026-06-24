@@ -1,10 +1,177 @@
 from __future__ import annotations
 from modu_math.dsl import Canvas, ProblemTemplate, Region, RectSlot, TextSlot
 
+
 def build_problem_template() -> ProblemTemplate:
-    return ProblemTemplate(id='S3_초등_3_008810', title='알맞은 단위 선택', canvas=Canvas(width=826.0, height=338.0, coordinate_mode='logical'), regions=(Region(id='region.header', role='stem', flow='absolute', slot_ids=('slot.qmark', 'slot.num', 'slot.instruction')), Region(id='region.diagram', role='diagram', flow='absolute', slot_ids=('slot.fridge.body', 'slot.fridge.leftdoor', 'slot.fridge.rightdoor', 'slot.fridge.handle', 'slot.fridge.panel')), Region(id='region.body', role='stem', flow='absolute', slot_ids=('slot.stem1', 'slot.choice1'))), slots=(TextSlot(id='slot.qmark', prompt='', text='□', style_role='question', x=10.0, y=24.0, font_size=28), TextSlot(id='slot.num', prompt='', text='43.', style_role='question', x=33.0, y=24.0, font_size=28), TextSlot(id='slot.instruction', prompt='', text='알맞은 단위를 선택하세요.', style_role='question', x=88.0, y=24.0, font_size=28), RectSlot(id='slot.fridge.body', prompt='', x=72.0, y=50.0, width=108.0, height=181.0), RectSlot(id='slot.fridge.leftdoor', prompt='', x=72.0, y=50.0, width=51.0, height=181.0), RectSlot(id='slot.fridge.rightdoor', prompt='', x=123.0, y=50.0, width=57.0, height=181.0), RectSlot(id='slot.fridge.handle', prompt='', x=99.0, y=91.0, width=10.0, height=50.0), RectSlot(id='slot.fridge.panel', prompt='', x=133.0, y=110.0, width=39.0, height=43.0), TextSlot(id='slot.stem1', prompt='', text='냉장고의 무게는 약 80 ( g , kg , t )입니다.', style_role='question', x=315.0, y=144.0, font_size=28), TextSlot(id='slot.choice1', prompt='', text='', style_role='question', x=0.0, y=0.0, font_size=28)), diagrams=(), groups=(), constraints=(), tags=())
+    return ProblemTemplate(
+        id="S3_초등_3_008810",
+        title="알맞은 단위 선택",
+        canvas=Canvas(width=826.0, height=338.0, coordinate_mode="logical"),
+        regions=(
+            Region(
+                id="region.header",
+                role="stem",
+                flow="absolute",
+                slot_ids=("slot.qmark", "slot.num", "slot.instruction"),
+            ),
+            Region(
+                id="region.diagram",
+                role="diagram",
+                flow="absolute",
+                slot_ids=(
+                    "slot.fridge.body",
+                    "slot.fridge.leftdoor",
+                    "slot.fridge.rightdoor",
+                    "slot.fridge.handle",
+                    "slot.fridge.panel",
+                ),
+            ),
+            Region(
+                id="region.body",
+                role="stem",
+                flow="absolute",
+                slot_ids=("slot.stem1", "slot.choice1"),
+            ),
+        ),
+        slots=(
+            TextSlot(
+                id="slot.qmark",
+                prompt="",
+                text="□",
+                style_role="question",
+                x=10.0,
+                y=24.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.num",
+                prompt="",
+                text="43.",
+                style_role="question",
+                x=33.0,
+                y=24.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.instruction",
+                prompt="",
+                text="알맞은 단위를 선택하세요.",
+                style_role="question",
+                x=88.0,
+                y=24.0,
+                font_size=28,
+            ),
+            RectSlot(id="slot.fridge.body", prompt="", x=72.0, y=50.0, width=108.0, height=181.0),
+            RectSlot(
+                id="slot.fridge.leftdoor", prompt="", x=72.0, y=50.0, width=51.0, height=181.0
+            ),
+            RectSlot(
+                id="slot.fridge.rightdoor", prompt="", x=123.0, y=50.0, width=57.0, height=181.0
+            ),
+            RectSlot(id="slot.fridge.handle", prompt="", x=99.0, y=91.0, width=10.0, height=50.0),
+            RectSlot(id="slot.fridge.panel", prompt="", x=133.0, y=110.0, width=39.0, height=43.0),
+            TextSlot(
+                id="slot.stem1",
+                prompt="",
+                text="냉장고의 무게는 약 80 ( g , kg , t )입니다.",
+                style_role="question",
+                x=315.0,
+                y=144.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.choice1",
+                prompt="",
+                text="",
+                style_role="question",
+                x=0.0,
+                y=0.0,
+                font_size=28,
+            ),
+        ),
+        diagrams=(),
+        groups=(),
+        constraints=(),
+        tags=(),
+    )
+
+
 PROBLEM_TEMPLATE = build_problem_template()
 
-SEMANTIC_OVERRIDE = {'problem_id': 'S3_초등_3_008810', 'problem_type': 'unit_selection', 'metadata': {'language': 'ko', 'question': '냉장고의 무게에 알맞은 단위를 고르는 문제', 'instruction': '알맞은 단위를 선택하세요.'}, 'domain': {'objects': [{'id': 'obj.fridge', 'type': 'object', 'name': '냉장고'}, {'id': 'obj.mass_value', 'type': 'quantity', 'attribute': '무게', 'value': 80}, {'id': 'obj.options', 'type': 'choices', 'values': ['g', 'kg', 't']}], 'relations': [], 'problem_solving': {'understand': {'given_refs': ['obj.fridge', 'obj.mass_value', 'obj.options'], 'target_ref': 'answer.target', 'condition_refs': ['rel.mass_matches_unit']}, 'plan': {'method': 'unit_selection', 'description': '무게 80에 어울리는 단위를 보기에서 고른다.'}, 'execute': {'expected_operations': ['compare_units', 'select_appropriate_unit']}, 'review': {'check_methods': ['reasonableness_check']}}}, 'answer': {'blanks': [], 'choices': [], 'answer_key': [], 'target': {'type': 'selected_unit', 'description': '냉장고의 무게 80에 알맞은 단위'}, 'value': 'kg', 'unit': ''}}
+SEMANTIC_OVERRIDE = {
+    "problem_id": "S3_초등_3_008810",
+    "problem_type": "unit_selection",
+    "metadata": {
+        "language": "ko",
+        "question": "냉장고의 무게에 알맞은 단위를 고르는 문제",
+        "instruction": "알맞은 단위를 선택하세요.",
+    },
+    "domain": {
+        "objects": [
+            {"id": "obj.fridge", "type": "object", "name": "냉장고"},
+            {"id": "obj.mass_value", "type": "quantity", "attribute": "무게", "value": 80},
+            {"id": "obj.options", "type": "choices", "values": ["g", "kg", "t"]},
+        ],
+        "relations": [],
+        "problem_solving": {
+            "understand": {
+                "given_refs": ["obj.fridge", "obj.mass_value", "obj.options"],
+                "target_ref": "answer.target",
+                "condition_refs": ["rel.mass_matches_unit"],
+            },
+            "plan": {
+                "method": "unit_selection",
+                "description": "무게 80에 어울리는 단위를 보기에서 고른다.",
+            },
+            "execute": {"expected_operations": ["compare_units", "select_appropriate_unit"]},
+            "review": {"check_methods": ["reasonableness_check"]},
+        },
+    },
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {"type": "selected_unit", "description": "냉장고의 무게 80에 알맞은 단위"},
+        "value": "kg",
+        "unit": "",
+    },
+}
 
-SOLVABLE = {'schema': 'modu.solvable.v1.1', 'problem_id': 'S3_초등_3_008810', 'problem_type': 'unit_selection', 'inputs': {'total_ticks': 1, 'target_label': '알맞은 단위', 'target_ticks': 1, 'target_count': 1, 'unit': ''}, 'given': [{'ref': 'obj.fridge', 'value': {'name': '냉장고'}}, {'ref': 'obj.mass_value', 'value': {'value': 80}}, {'ref': 'obj.options', 'value': {'values': ['g', 'kg', 't']}}], 'target': {'ref': 'answer.target', 'type': 'selected_unit'}, 'method': 'unit_selection', 'plan': ['무게 80이 어떤 단위에 어울리는지 보기에서 판단한다.'], 'steps': [{'id': 'step.1', 'expr': '80에 알맞은 단위 후보를 비교한다.', 'value': 'kg'}], 'checks': [{'id': 'check.1', 'expr': '냉장고의 무게는 약 80kg으로 자연스럽다.', 'expected': 'kg', 'actual': 'kg', 'pass': True}], 'answer': {'blanks': [], 'choices': [], 'answer_key': [], 'target': {'type': 'selected_unit', 'description': '냉장고의 무게 80에 알맞은 단위'}, 'value': 'kg', 'unit': ''}}
+SOLVABLE = {
+    "schema": "modu.solvable.v1.1",
+    "problem_id": "S3_초등_3_008810",
+    "problem_type": "unit_selection",
+    "inputs": {
+        "total_ticks": 1,
+        "target_label": "알맞은 단위",
+        "target_ticks": 1,
+        "target_count": 1,
+        "unit": "",
+    },
+    "given": [
+        {"ref": "obj.fridge", "value": {"name": "냉장고"}},
+        {"ref": "obj.mass_value", "value": {"value": 80}},
+        {"ref": "obj.options", "value": {"values": ["g", "kg", "t"]}},
+    ],
+    "target": {"ref": "answer.target", "type": "selected_unit"},
+    "method": "unit_selection",
+    "plan": ["무게 80이 어떤 단위에 어울리는지 보기에서 판단한다."],
+    "steps": [{"id": "step.1", "expr": "80에 알맞은 단위 후보를 비교한다.", "value": "kg"}],
+    "checks": [
+        {
+            "id": "check.1",
+            "expr": "냉장고의 무게는 약 80kg으로 자연스럽다.",
+            "expected": "kg",
+            "actual": "kg",
+            "pass": True,
+        }
+    ],
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {"type": "selected_unit", "description": "냉장고의 무게 80에 알맞은 단위"},
+        "value": "kg",
+        "unit": "",
+    },
+}

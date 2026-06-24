@@ -1,10 +1,220 @@
 from __future__ import annotations
 from modu_math.dsl import Canvas, ProblemTemplate, Region, TextSlot, RectSlot, LineSlot, CircleSlot
 
+
 def build_problem_template() -> ProblemTemplate:
-    return ProblemTemplate(id='S3_초등_3_009053', title='선분 고르기', canvas=Canvas(width=760.0, height=320.0, coordinate_mode='logical'), regions=(Region(id='region.header', role='stem', flow='absolute', slot_ids=('slot.qnum', 'slot.qtext')), Region(id='region.options', role='diagram', flow='absolute', slot_ids=('slot.box', 'slot.opt1.line', 'slot.opt1.pt1', 'slot.opt1.pt2', 'slot.opt1.lb1', 'slot.opt1.lb2', 'slot.opt2.line', 'slot.opt2.pt1', 'slot.opt2.pt2', 'slot.opt2.lb1', 'slot.opt2.lb2', 'slot.opt3.line', 'slot.opt3.pt1', 'slot.opt3.pt2', 'slot.opt3.lb1', 'slot.opt3.lb2')), Region(id='region.answer', role='diagram', flow='absolute', slot_ids=('slot.answer.line', 'slot.answer.pt1', 'slot.answer.pt2')), Region(id='region.explain', role='stem', flow='absolute', slot_ids=())), slots=(TextSlot(id='slot.qnum', prompt='', text='□ 91.', style_role='question', x=10.0, y=22.0, font_size=28), TextSlot(id='slot.qtext', prompt='', text='선분 ㄴㄷ을 선택해 보세요.', style_role='question', x=78.0, y=22.0, font_size=28), RectSlot(id='slot.box', prompt='', x=150.0, y=42.0, width=570.0, height=90.0), LineSlot(id='slot.opt1.line', prompt='', x1=180.0, y1=118.0, x2=330.0, y2=92.0), CircleSlot(id='slot.opt1.pt1', prompt='', cx=195.0, cy=115.0, r=3.0, fill='#222222'), CircleSlot(id='slot.opt1.pt2', prompt='', cx=318.0, cy=94.0, r=3.0, fill='#222222'), TextSlot(id='slot.opt1.lb1', prompt='', text='ㄴ', style_role='label', x=187.0, y=104.0, font_size=28), TextSlot(id='slot.opt1.lb2', prompt='', text='ㄷ', style_role='label', x=312.0, y=83.0, font_size=28), LineSlot(id='slot.opt2.line', prompt='', x1=350.0, y1=128.0, x2=480.0, y2=55.0), CircleSlot(id='slot.opt2.pt1', prompt='', cx=358.0, cy=123.0, r=3.0, fill='#222222'), CircleSlot(id='slot.opt2.pt2', prompt='', cx=474.0, cy=60.0, r=3.0, fill='#222222'), TextSlot(id='slot.opt2.lb1', prompt='', text='ㄴ', style_role='label', x=343.0, y=114.0, font_size=28), TextSlot(id='slot.opt2.lb2', prompt='', text='ㄷ', style_role='label', x=469.0, y=46.0, font_size=28), LineSlot(id='slot.opt3.line', prompt='', x1=525.0, y1=88.0, x2=680.0, y2=100.0), CircleSlot(id='slot.opt3.pt1', prompt='', cx=533.0, cy=89.0, r=3.0, fill='#222222'), CircleSlot(id='slot.opt3.pt2', prompt='', cx=673.0, cy=99.0, r=3.0, fill='#222222'), TextSlot(id='slot.opt3.lb1', prompt='', text='ㄴ', style_role='label', x=522.0, y=76.0, font_size=28), TextSlot(id='slot.opt3.lb2', prompt='', text='ㄷ', style_role='label', x=667.0, y=80.0, font_size=28), LineSlot(id='slot.answer.line', prompt='', x1=58.0, y1=210.0, x2=172.0, y2=218.0), CircleSlot(id='slot.answer.pt1', prompt='', cx=59.0, cy=210.0, r=3.0, fill='#222222'), CircleSlot(id='slot.answer.pt2', prompt='', cx=170.0, cy=218.0, r=3.0, fill='#222222')), diagrams=(), groups=(), constraints=(), tags=())
+    return ProblemTemplate(
+        id="S3_초등_3_009053",
+        title="선분 고르기",
+        canvas=Canvas(width=760.0, height=320.0, coordinate_mode="logical"),
+        regions=(
+            Region(
+                id="region.header",
+                role="stem",
+                flow="absolute",
+                slot_ids=("slot.qnum", "slot.qtext"),
+            ),
+            Region(
+                id="region.options",
+                role="diagram",
+                flow="absolute",
+                slot_ids=(
+                    "slot.box",
+                    "slot.opt1.line",
+                    "slot.opt1.pt1",
+                    "slot.opt1.pt2",
+                    "slot.opt1.lb1",
+                    "slot.opt1.lb2",
+                    "slot.opt2.line",
+                    "slot.opt2.pt1",
+                    "slot.opt2.pt2",
+                    "slot.opt2.lb1",
+                    "slot.opt2.lb2",
+                    "slot.opt3.line",
+                    "slot.opt3.pt1",
+                    "slot.opt3.pt2",
+                    "slot.opt3.lb1",
+                    "slot.opt3.lb2",
+                ),
+            ),
+            Region(
+                id="region.answer",
+                role="diagram",
+                flow="absolute",
+                slot_ids=("slot.answer.line", "slot.answer.pt1", "slot.answer.pt2"),
+            ),
+            Region(id="region.explain", role="stem", flow="absolute", slot_ids=()),
+        ),
+        slots=(
+            TextSlot(
+                id="slot.qnum",
+                prompt="",
+                text="□ 91.",
+                style_role="question",
+                x=10.0,
+                y=22.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.qtext",
+                prompt="",
+                text="선분 ㄴㄷ을 선택해 보세요.",
+                style_role="question",
+                x=78.0,
+                y=22.0,
+                font_size=28,
+            ),
+            RectSlot(id="slot.box", prompt="", x=150.0, y=42.0, width=570.0, height=90.0),
+            LineSlot(id="slot.opt1.line", prompt="", x1=180.0, y1=118.0, x2=330.0, y2=92.0),
+            CircleSlot(id="slot.opt1.pt1", prompt="", cx=195.0, cy=115.0, r=3.0, fill="#222222"),
+            CircleSlot(id="slot.opt1.pt2", prompt="", cx=318.0, cy=94.0, r=3.0, fill="#222222"),
+            TextSlot(
+                id="slot.opt1.lb1",
+                prompt="",
+                text="ㄴ",
+                style_role="label",
+                x=187.0,
+                y=104.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.opt1.lb2",
+                prompt="",
+                text="ㄷ",
+                style_role="label",
+                x=312.0,
+                y=83.0,
+                font_size=28,
+            ),
+            LineSlot(id="slot.opt2.line", prompt="", x1=350.0, y1=128.0, x2=480.0, y2=55.0),
+            CircleSlot(id="slot.opt2.pt1", prompt="", cx=358.0, cy=123.0, r=3.0, fill="#222222"),
+            CircleSlot(id="slot.opt2.pt2", prompt="", cx=474.0, cy=60.0, r=3.0, fill="#222222"),
+            TextSlot(
+                id="slot.opt2.lb1",
+                prompt="",
+                text="ㄴ",
+                style_role="label",
+                x=343.0,
+                y=114.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.opt2.lb2",
+                prompt="",
+                text="ㄷ",
+                style_role="label",
+                x=469.0,
+                y=46.0,
+                font_size=28,
+            ),
+            LineSlot(id="slot.opt3.line", prompt="", x1=525.0, y1=88.0, x2=680.0, y2=100.0),
+            CircleSlot(id="slot.opt3.pt1", prompt="", cx=533.0, cy=89.0, r=3.0, fill="#222222"),
+            CircleSlot(id="slot.opt3.pt2", prompt="", cx=673.0, cy=99.0, r=3.0, fill="#222222"),
+            TextSlot(
+                id="slot.opt3.lb1",
+                prompt="",
+                text="ㄴ",
+                style_role="label",
+                x=522.0,
+                y=76.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.opt3.lb2",
+                prompt="",
+                text="ㄷ",
+                style_role="label",
+                x=667.0,
+                y=80.0,
+                font_size=28,
+            ),
+            LineSlot(id="slot.answer.line", prompt="", x1=58.0, y1=210.0, x2=172.0, y2=218.0),
+            CircleSlot(id="slot.answer.pt1", prompt="", cx=59.0, cy=210.0, r=3.0, fill="#222222"),
+            CircleSlot(id="slot.answer.pt2", prompt="", cx=170.0, cy=218.0, r=3.0, fill="#222222"),
+        ),
+        diagrams=(),
+        groups=(),
+        constraints=(),
+        tags=(),
+    )
+
+
 PROBLEM_TEMPLATE = build_problem_template()
 
-SEMANTIC_OVERRIDE = {'problem_id': 'S3_초등_3_009053', 'problem_type': 'segment_selection', 'metadata': {'language': 'ko', 'question': '선분 ㄴㄷ을 선택해 보세요.', 'instruction': '보기 중에서 선분 ㄴㄷ에 해당하는 도형을 고른다.', 'points': 5}, 'domain': {'objects': [{'id': 'obj.segment_nd', 'type': 'segment', 'name': 'ㄴㄷ'}, {'id': 'obj.point_n', 'type': 'point', 'name': 'ㄴ'}, {'id': 'obj.point_d', 'type': 'point', 'name': 'ㄷ'}], 'relations': [], 'problem_solving': {'understand': {'given_refs': ['obj.segment_nd', 'obj.point_n', 'obj.point_d'], 'target_ref': 'answer.target', 'condition_refs': ['rel.segment_connects_points']}, 'plan': {'method': 'identify_matching_segment', 'description': '점 ㄴ과 점 ㄷ을 곧게 이은 선분을 찾는다.'}, 'execute': {'expected_operations': ['compare_segment_labels', 'match_endpoints']}, 'review': {'check_methods': ['endpoint_label_check']}}}, 'answer': {'blanks': [], 'choices': [], 'answer_key': [], 'target': {'type': 'selected_segment', 'description': '선분 ㄴㄷ'}, 'value': 0, 'unit': ''}}
+SEMANTIC_OVERRIDE = {
+    "problem_id": "S3_초등_3_009053",
+    "problem_type": "segment_selection",
+    "metadata": {
+        "language": "ko",
+        "question": "선분 ㄴㄷ을 선택해 보세요.",
+        "instruction": "보기 중에서 선분 ㄴㄷ에 해당하는 도형을 고른다.",
+        "points": 5,
+    },
+    "domain": {
+        "objects": [
+            {"id": "obj.segment_nd", "type": "segment", "name": "ㄴㄷ"},
+            {"id": "obj.point_n", "type": "point", "name": "ㄴ"},
+            {"id": "obj.point_d", "type": "point", "name": "ㄷ"},
+        ],
+        "relations": [],
+        "problem_solving": {
+            "understand": {
+                "given_refs": ["obj.segment_nd", "obj.point_n", "obj.point_d"],
+                "target_ref": "answer.target",
+                "condition_refs": ["rel.segment_connects_points"],
+            },
+            "plan": {
+                "method": "identify_matching_segment",
+                "description": "점 ㄴ과 점 ㄷ을 곧게 이은 선분을 찾는다.",
+            },
+            "execute": {"expected_operations": ["compare_segment_labels", "match_endpoints"]},
+            "review": {"check_methods": ["endpoint_label_check"]},
+        },
+    },
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {"type": "selected_segment", "description": "선분 ㄴㄷ"},
+        "value": 0,
+        "unit": "",
+    },
+}
 
-SOLVABLE = {'schema': 'modu.solvable.v1.1', 'problem_id': 'S3_초등_3_009053', 'problem_type': 'segment_selection', 'inputs': {'total_ticks': 0, 'target_label': 'ㄴㄷ', 'target_ticks': 0, 'target_count': 1, 'unit': ''}, 'given': [{'ref': 'obj.point_n', 'value': {'name': 'ㄴ'}}, {'ref': 'obj.point_d', 'value': {'name': 'ㄷ'}}], 'target': {'ref': 'answer.target', 'type': 'selected_segment'}, 'method': 'identify_matching_segment', 'plan': ['점 ㄴ과 점 ㄷ이 양 끝점인 선분을 찾는다.'], 'steps': [{'id': 'step.1', 'expr': '점 ㄴ과 점 ㄷ을 곧게 이은 선분을 찾음', 'value': 'ㄴㄷ'}], 'checks': [{'id': 'check.1', 'expr': '선분의 양 끝점이 ㄴ과 ㄷ인지 확인', 'expected': 'ㄴ, ㄷ', 'actual': 'ㄴ, ㄷ', 'pass': True}], 'answer': {'blanks': [], 'choices': [], 'answer_key': [], 'target': {'type': 'selected_segment', 'description': '선분 ㄴㄷ'}, 'value': 0, 'unit': ''}}
+SOLVABLE = {
+    "schema": "modu.solvable.v1.1",
+    "problem_id": "S3_초등_3_009053",
+    "problem_type": "segment_selection",
+    "inputs": {
+        "total_ticks": 0,
+        "target_label": "ㄴㄷ",
+        "target_ticks": 0,
+        "target_count": 1,
+        "unit": "",
+    },
+    "given": [
+        {"ref": "obj.point_n", "value": {"name": "ㄴ"}},
+        {"ref": "obj.point_d", "value": {"name": "ㄷ"}},
+    ],
+    "target": {"ref": "answer.target", "type": "selected_segment"},
+    "method": "identify_matching_segment",
+    "plan": ["점 ㄴ과 점 ㄷ이 양 끝점인 선분을 찾는다."],
+    "steps": [{"id": "step.1", "expr": "점 ㄴ과 점 ㄷ을 곧게 이은 선분을 찾음", "value": "ㄴㄷ"}],
+    "checks": [
+        {
+            "id": "check.1",
+            "expr": "선분의 양 끝점이 ㄴ과 ㄷ인지 확인",
+            "expected": "ㄴ, ㄷ",
+            "actual": "ㄴ, ㄷ",
+            "pass": True,
+        }
+    ],
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {"type": "selected_segment", "description": "선분 ㄴㄷ"},
+        "value": 0,
+        "unit": "",
+    },
+}

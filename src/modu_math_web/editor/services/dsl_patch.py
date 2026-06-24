@@ -3,11 +3,13 @@ from __future__ import annotations
 import math
 import re
 import json
+import ast
 from dataclasses import dataclass
 from typing import Any
 
 import libcst as cst
 
+from .dsl_format import format_dsl_source
 from .problems import resolve_problem_paths
 
 SUPPORTED_SLOTS = {
@@ -36,6 +38,7 @@ PERSON_SLOT_PARTS = {"body", "head", "eye1", "eye2", "mouth"}
 CHARACTER_MOVE_FIELDS = {"move_dx", "move_dy"}
 FIGURE_MOVE_FIELDS = {"move_dx", "move_dy"}
 BASE_TEN_HELPERS = {"_base_ten_model", "_partition_box"}
+PLACE_HELPERS = {"school_slots", "house_slots", "playground_slots"}
 PAPER_FOLD_SEQUENCE_HELPERS = {"circle_fold_sequence_slots"}
 PAPER_FOLD_SINGLE_HELPERS = {"folded_half_circle_slots", "opened_circle_with_fold_slots"}
 GRID_HELPERS = {"_grid_slots"}
@@ -396,7 +399,63 @@ def _shift_slot_call_args(args: list[cst.Arg], slot_type: str, dx: float, dy: fl
     elif slot_type == "LineSlot":
         for name, delta in (("x1", dx), ("x2", dx), ("y1", dy), ("y2", dy)):
             changed = _shift_or_append_numeric_arg(args, name, delta) or changed
+    elif slot_type == "PolygonSlot":
+        changed = _shift_points_arg(args, dx, dy) or changed
+    elif slot_type == "PathSlot":
+        changed = _shift_path_d_arg(args, dx, dy) or changed
     return changed
+
+
+def _shift_points_arg(args: list[cst.Arg], dx: float, dy: float) -> bool:
+    for idx, arg in enumerate(args):
+        if not arg.keyword or arg.keyword.value != "points":
+            continue
+        try:
+            points = ast.literal_eval(cst.Module([]).code_for_node(arg.value))
+        except Exception:
+            return False
+        if not isinstance(points, (list, tuple)):
+            return False
+        shifted: list[list[float]] = []
+        for point in points:
+            if not isinstance(point, (list, tuple)) or len(point) != 2:
+                return False
+            x, y = point
+            if not isinstance(x, (int, float)) or not isinstance(y, (int, float)):
+                return False
+            shifted.append([float(x) + dx, float(y) + dy])
+        args[idx] = cst.Arg(keyword=cst.Name("points"), value=_arg_value_to_cst(shifted))
+        return True
+    return False
+
+
+def _shift_path_d_arg(args: list[cst.Arg], dx: float, dy: float) -> bool:
+    for idx, arg in enumerate(args):
+        if not arg.keyword or arg.keyword.value != "d" or not isinstance(arg.value, cst.SimpleString):
+            continue
+        try:
+            d = cst.parse_expression(arg.value.value).evaluated_value
+        except Exception:
+            return False
+        if not isinstance(d, str):
+            return False
+        number_index = 0
+
+        def repl(match: re.Match[str]) -> str:
+            nonlocal number_index
+            raw = match.group(0)
+            value = float(raw)
+            delta = dx if number_index % 2 == 0 else dy
+            number_index += 1
+            shifted = value + delta
+            if shifted.is_integer():
+                return str(int(shifted))
+            return f"{shifted:.6f}".rstrip("0").rstrip(".")
+
+        shifted_d = re.sub(r"[-+]?(?:\d+(?:\.\d*)?|\.\d+)", repl, d)
+        args[idx] = cst.Arg(keyword=cst.Name("d"), value=_arg_value_to_cst(shifted_d))
+        return True
+    return False
 
 
 def _first_string_arg(call: cst.Call, keyword_name: str) -> str | None:
@@ -531,8 +590,18 @@ class GeneratedHelperSlotOverrideUpdater(cst.CSTTransformer):
         self.updated = False
 
     def _is_target_slot_test(self, test: cst.BaseExpression) -> bool:
-        code = cst.Module([]).code_for_node(test)
-        return code in {f"slot.id == {self.target!r}", f"{self.target!r} == slot.id"}
+        if not isinstance(test, cst.Comparison) or len(test.comparisons) != 1:
+            return False
+        comparison = test.comparisons[0]
+        if not isinstance(comparison.operator, cst.Equal):
+            return False
+        left = _qualified_name(test.left)
+        right = _qualified_name(comparison.comparator)
+        right_value = _string_literal_value(comparison.comparator)
+        left_value = _string_literal_value(test.left)
+        return (left == "slot.id" and right_value == self.target) or (
+            left_value == self.target and right == "slot.id"
+        )
 
     def leave_IfExp(self, original_node: cst.IfExp, updated_node: cst.IfExp) -> cst.BaseExpression:
         if not self._is_target_slot_test(original_node.test):
@@ -790,33 +859,61 @@ class FigureGroupMoveUpdater(cst.CSTTransformer):
 
     def leave_Call(self, original_node: cst.Call, updated_node: cst.Call) -> cst.BaseExpression:
         call_name = _call_name(original_node)
-        if call_name not in BASE_TEN_HELPERS:
-            return updated_node
-
-        prefix = _first_string_arg(original_node, "slot_id")
-        if prefix != self.target:
-            return updated_node
-
-        invalid = sorted(set(self.fields) - FIGURE_MOVE_FIELDS)
-        if invalid:
-            raise DslPatchError(f"unsupported field(s) for figure group: {', '.join(invalid)}")
-
         dx = float(self.fields.get("move_dx", 0.0))
         dy = float(self.fields.get("move_dy", 0.0))
         args = list(updated_node.args)
-        changed = False
 
-        if len(args) >= 3 and args[1].keyword is None and args[2].keyword is None:
-            args[1] = cst.Arg(value=_shift_numeric_expr(args[1].value, dx))
-            args[2] = cst.Arg(value=_shift_numeric_expr(args[2].value, dy))
-            changed = True
-        else:
+        if call_name in BASE_TEN_HELPERS:
+            prefix = _first_string_arg(original_node, "slot_id")
+            if prefix != self.target:
+                return updated_node
+            invalid = sorted(set(self.fields) - FIGURE_MOVE_FIELDS)
+            if invalid:
+                raise DslPatchError(f"unsupported field(s) for figure group: {', '.join(invalid)}")
+            changed = False
+            if len(args) >= 3 and args[1].keyword is None and args[2].keyword is None:
+                args[1] = cst.Arg(value=_shift_numeric_expr(args[1].value, dx))
+                args[2] = cst.Arg(value=_shift_numeric_expr(args[2].value, dy))
+                changed = True
+            else:
+                changed = _shift_or_append_numeric_arg(args, "x", dx) or changed
+                changed = _shift_or_append_numeric_arg(args, "y", dy) or changed
+
+            if changed:
+                self.updated = True
+                return updated_node.with_changes(args=tuple(args))
+            return updated_node
+
+        if call_name in PLACE_HELPERS:
+            prefix = _first_string_arg(original_node, "prefix")
+            if prefix != self.target:
+                return updated_node
+            invalid = sorted(set(self.fields) - FIGURE_MOVE_FIELDS)
+            if invalid:
+                raise DslPatchError(f"unsupported field(s) for figure group: {', '.join(invalid)}")
+            changed = False
             changed = _shift_or_append_numeric_arg(args, "x", dx) or changed
             changed = _shift_or_append_numeric_arg(args, "y", dy) or changed
+            if changed:
+                self.updated = True
+                return updated_node.with_changes(args=tuple(args))
+            return updated_node
 
-        if changed:
-            self.updated = True
-            return updated_node.with_changes(args=tuple(args))
+        if call_name in SUPPORTED_SLOTS:
+            id_arg = _keyword_arg(original_node, "id")
+            if id_arg is None or not isinstance(id_arg.value, cst.SimpleString):
+                return updated_node
+            try:
+                slot_id = cst.parse_expression(id_arg.value.value).evaluated_value
+            except Exception:
+                return updated_node
+            if isinstance(slot_id, str) and slot_id.startswith(f"{self.target}."):
+                invalid = sorted(set(self.fields) - FIGURE_MOVE_FIELDS)
+                if invalid:
+                    raise DslPatchError(f"unsupported field(s) for figure group: {', '.join(invalid)}")
+                if _shift_slot_call_args(args, call_name, dx, dy):
+                    self.updated = True
+                    return updated_node.with_changes(args=tuple(args))
         return updated_node
 
 
@@ -1300,6 +1397,6 @@ def apply_layout_patches(problem_id: str, patches: list[dict[str, Any]]) -> tupl
 
         raise DslPatchError(f"target slot not found: {target}")
 
-    updated_code = transformed.code
+    updated_code = format_dsl_source(transformed.code)
     paths.dsl_path.write_text(updated_code, encoding="utf-8")
     return updated_code, applied

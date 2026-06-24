@@ -1,10 +1,255 @@
 from __future__ import annotations
 from modu_math.dsl import Canvas, ProblemTemplate, Region, TextSlot, CircleSlot, RectSlot, LineSlot
 
+
 def build_problem_template() -> ProblemTemplate:
-    return ProblemTemplate(id='S3_초등_3_008788', title='물병과 물통 비교', canvas=Canvas(width=945, height=442, coordinate_mode='logical'), regions=(Region(id='region.stem', role='stem', flow='absolute', slot_ids=('slot.q1', 'slot.q2', 'slot.q3')), Region(id='region.diagram', role='diagram', flow='absolute', slot_ids=('slot.bottle.body', 'slot.bottle.water', 'slot.bottle.cap', 'slot.bottle.handle', 'slot.bucket.body', 'slot.bucket.lip', 'slot.arrow', 'slot.lb.bottle', 'slot.lb.bucket')), Region(id='region.answer', role='answer', flow='absolute', slot_ids=())), slots=(TextSlot(id='slot.q1', prompt='', text='□ 13. 물병에 물을 가득 채운 후 물통에 옮겨 담았다.', style_role='question', x=18.0, y=24.0, font_size=28), TextSlot(id='slot.q2', prompt='', text='고도 물병에 물이 남았습니다. 물병과 물통 중 들이가 더 많은 것을 선택하', style_role='question', x=18.0, y=64.0, font_size=28), TextSlot(id='slot.q3', prompt='', text='세요.', style_role='question', x=18.0, y=104.0, font_size=28), RectSlot(id='slot.bottle.body', prompt='', x=339.0, y=115.0, width=62.0, height=135.0, fill='#FFFFFF', stroke='#5DB7F2', stroke_width=2.0, rx=18.0, ry=18.0), RectSlot(id='slot.bottle.water', prompt='', x=340.0, y=203.0, width=60.0, height=47.0, fill='#D9F1FF', stroke='#7DC8F5', stroke_width=1.2, rx=14.0, ry=14.0), RectSlot(id='slot.bottle.cap', prompt='', x=351.0, y=105.0, width=30.0, height=10.0, fill='#333333', stroke='#333333', stroke_width=1.0, rx=2.0, ry=2.0), LineSlot(id='slot.bottle.handle', prompt='', x1=381.0, y1=110.0, x2=381.0, y2=86.0, stroke='#333333', stroke_width=8.0), RectSlot(id='slot.bucket.body', prompt='', x=582.0, y=121.0, width=44.0, height=130.0, fill='#D8F0FF', stroke='#4AA7D6', stroke_width=2.0, rx=16.0, ry=16.0), CircleSlot(id='slot.bucket.lip', prompt='', cx=604.0, cy=127.0, r=22.0, fill='#1E9ED7', stroke='#4AA7D6', stroke_width=2.0), LineSlot(id='slot.arrow', prompt='', x1=463.0, y1=182.0, x2=505.0, y2=182.0, stroke='#A0A0A0', stroke_width=6.0), TextSlot(id='slot.lb.bottle', prompt='', text='물병', style_role='label', x=360.0, y=279.0, font_size=28), TextSlot(id='slot.lb.bucket', prompt='', text='물통', style_role='label', x=595.0, y=279.0, font_size=28)), diagrams=(), groups=(), constraints=(), tags=())
+    return ProblemTemplate(
+        id="S3_초등_3_008788",
+        title="물병과 물통 비교",
+        canvas=Canvas(width=945, height=442, coordinate_mode="logical"),
+        regions=(
+            Region(
+                id="region.stem",
+                role="stem",
+                flow="absolute",
+                slot_ids=("slot.q1", "slot.q2", "slot.q3"),
+            ),
+            Region(
+                id="region.diagram",
+                role="diagram",
+                flow="absolute",
+                slot_ids=(
+                    "slot.bottle.body",
+                    "slot.bottle.water",
+                    "slot.bottle.cap",
+                    "slot.bottle.handle",
+                    "slot.bucket.body",
+                    "slot.bucket.lip",
+                    "slot.arrow",
+                    "slot.lb.bottle",
+                    "slot.lb.bucket",
+                ),
+            ),
+            Region(id="region.answer", role="answer", flow="absolute", slot_ids=()),
+        ),
+        slots=(
+            TextSlot(
+                id="slot.q1",
+                prompt="",
+                text="□ 13. 물병에 물을 가득 채운 후 물통에 옮겨 담았다.",
+                style_role="question",
+                x=18.0,
+                y=24.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.q2",
+                prompt="",
+                text="고도 물병에 물이 남았습니다. 물병과 물통 중 들이가 더 많은 것을 선택하",
+                style_role="question",
+                x=18.0,
+                y=64.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.q3",
+                prompt="",
+                text="세요.",
+                style_role="question",
+                x=18.0,
+                y=104.0,
+                font_size=28,
+            ),
+            RectSlot(
+                id="slot.bottle.body",
+                prompt="",
+                x=339.0,
+                y=115.0,
+                width=62.0,
+                height=135.0,
+                fill="#FFFFFF",
+                stroke="#5DB7F2",
+                stroke_width=2.0,
+                rx=18.0,
+                ry=18.0,
+            ),
+            RectSlot(
+                id="slot.bottle.water",
+                prompt="",
+                x=340.0,
+                y=203.0,
+                width=60.0,
+                height=47.0,
+                fill="#D9F1FF",
+                stroke="#7DC8F5",
+                stroke_width=1.2,
+                rx=14.0,
+                ry=14.0,
+            ),
+            RectSlot(
+                id="slot.bottle.cap",
+                prompt="",
+                x=351.0,
+                y=105.0,
+                width=30.0,
+                height=10.0,
+                fill="#333333",
+                stroke="#333333",
+                stroke_width=1.0,
+                rx=2.0,
+                ry=2.0,
+            ),
+            LineSlot(
+                id="slot.bottle.handle",
+                prompt="",
+                x1=381.0,
+                y1=110.0,
+                x2=381.0,
+                y2=86.0,
+                stroke="#333333",
+                stroke_width=8.0,
+            ),
+            RectSlot(
+                id="slot.bucket.body",
+                prompt="",
+                x=582.0,
+                y=121.0,
+                width=44.0,
+                height=130.0,
+                fill="#D8F0FF",
+                stroke="#4AA7D6",
+                stroke_width=2.0,
+                rx=16.0,
+                ry=16.0,
+            ),
+            CircleSlot(
+                id="slot.bucket.lip",
+                prompt="",
+                cx=604.0,
+                cy=127.0,
+                r=22.0,
+                fill="#1E9ED7",
+                stroke="#4AA7D6",
+                stroke_width=2.0,
+            ),
+            LineSlot(
+                id="slot.arrow",
+                prompt="",
+                x1=463.0,
+                y1=182.0,
+                x2=505.0,
+                y2=182.0,
+                stroke="#A0A0A0",
+                stroke_width=6.0,
+            ),
+            TextSlot(
+                id="slot.lb.bottle",
+                prompt="",
+                text="물병",
+                style_role="label",
+                x=360.0,
+                y=279.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.lb.bucket",
+                prompt="",
+                text="물통",
+                style_role="label",
+                x=595.0,
+                y=279.0,
+                font_size=28,
+            ),
+        ),
+        diagrams=(),
+        groups=(),
+        constraints=(),
+        tags=(),
+    )
+
+
 PROBLEM_TEMPLATE = build_problem_template()
 
-SEMANTIC_OVERRIDE = {'problem_id': 'S3_초등_3_008788', 'problem_type': 'compare_capacity', 'metadata': {'language': 'ko', 'question': '물병과 물통 중 들이가 더 많은 것을 고르는 문제', 'instruction': '물병과 물통 중 들이가 더 많은 것을 선택하시오.'}, 'domain': {'objects': [{'id': 'obj.bottle', 'type': 'container', 'name': '물병'}, {'id': 'obj.bucket', 'type': 'container', 'name': '물통'}], 'relations': [], 'problem_solving': {'understand': {'given_refs': ['obj.bottle', 'obj.bucket', 'rel.leftover_water'], 'target_ref': 'answer.target', 'condition_refs': ['rel.transfer_water', 'rel.capacity_compare']}, 'plan': {'method': '상황 비교', 'description': '물병에서 물을 옮겼을 때 물이 남는지 보고 더 큰 들이를 판단한다.'}, 'execute': {'expected_operations': ['남은 물이 있는지 확인', '들이가 더 큰 쪽 선택']}, 'review': {'check_methods': ['남은 물이 있으면 처음 용기의 들이가 더 큼을 확인']}}}, 'answer': {'blanks': [], 'choices': [], 'answer_key': [], 'target': {'type': 'container_name', 'description': '들이가 더 많은 용기'}, 'value': '물병', 'unit': ''}}
+SEMANTIC_OVERRIDE = {
+    "problem_id": "S3_초등_3_008788",
+    "problem_type": "compare_capacity",
+    "metadata": {
+        "language": "ko",
+        "question": "물병과 물통 중 들이가 더 많은 것을 고르는 문제",
+        "instruction": "물병과 물통 중 들이가 더 많은 것을 선택하시오.",
+    },
+    "domain": {
+        "objects": [
+            {"id": "obj.bottle", "type": "container", "name": "물병"},
+            {"id": "obj.bucket", "type": "container", "name": "물통"},
+        ],
+        "relations": [],
+        "problem_solving": {
+            "understand": {
+                "given_refs": ["obj.bottle", "obj.bucket", "rel.leftover_water"],
+                "target_ref": "answer.target",
+                "condition_refs": ["rel.transfer_water", "rel.capacity_compare"],
+            },
+            "plan": {
+                "method": "상황 비교",
+                "description": "물병에서 물을 옮겼을 때 물이 남는지 보고 더 큰 들이를 판단한다.",
+            },
+            "execute": {"expected_operations": ["남은 물이 있는지 확인", "들이가 더 큰 쪽 선택"]},
+            "review": {"check_methods": ["남은 물이 있으면 처음 용기의 들이가 더 큼을 확인"]},
+        },
+    },
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {"type": "container_name", "description": "들이가 더 많은 용기"},
+        "value": "물병",
+        "unit": "",
+    },
+}
 
-SOLVABLE = {'schema': 'modu.solvable.v1.1', 'problem_id': 'S3_초등_3_008788', 'problem_type': 'compare_capacity', 'inputs': {'total_ticks': 0, 'target_label': '들이가 더 많은 용기', 'target_ticks': 0, 'target_count': 1, 'unit': ''}, 'given': [{'ref': 'obj.bottle', 'value': '물병'}, {'ref': 'obj.bucket', 'value': '물통'}, {'ref': 'rel.leftover_water', 'value': True}], 'target': {'ref': 'answer.target', 'type': 'container_name'}, 'method': '상황 비교', 'plan': ['물병의 물을 물통에 옮겨 담은 뒤 남는 물이 있는지 확인한다.', '남는 물이 있으면 물병의 들이가 더 많다고 판단한다.'], 'steps': [{'id': 'step.1', 'expr': '물병의 물을 물통에 옮겨 담는다', 'value': '옮겨 담음'}, {'id': 'step.2', 'expr': '물병에 물이 남아 있는지 확인한다', 'value': True}, {'id': 'step.3', 'expr': '들이가 더 큰 용기를 선택한다', 'value': '물병'}], 'checks': [{'id': 'check.1', 'expr': '물병에 물이 남아 있으면 물병의 들이가 더 큰가', 'expected': True, 'actual': True, 'pass': True}], 'answer': {'blanks': [], 'choices': [], 'answer_key': [], 'target': {'type': 'container_name', 'description': '들이가 더 많은 용기'}, 'value': '물병', 'unit': ''}}
+SOLVABLE = {
+    "schema": "modu.solvable.v1.1",
+    "problem_id": "S3_초등_3_008788",
+    "problem_type": "compare_capacity",
+    "inputs": {
+        "total_ticks": 0,
+        "target_label": "들이가 더 많은 용기",
+        "target_ticks": 0,
+        "target_count": 1,
+        "unit": "",
+    },
+    "given": [
+        {"ref": "obj.bottle", "value": "물병"},
+        {"ref": "obj.bucket", "value": "물통"},
+        {"ref": "rel.leftover_water", "value": True},
+    ],
+    "target": {"ref": "answer.target", "type": "container_name"},
+    "method": "상황 비교",
+    "plan": [
+        "물병의 물을 물통에 옮겨 담은 뒤 남는 물이 있는지 확인한다.",
+        "남는 물이 있으면 물병의 들이가 더 많다고 판단한다.",
+    ],
+    "steps": [
+        {"id": "step.1", "expr": "물병의 물을 물통에 옮겨 담는다", "value": "옮겨 담음"},
+        {"id": "step.2", "expr": "물병에 물이 남아 있는지 확인한다", "value": True},
+        {"id": "step.3", "expr": "들이가 더 큰 용기를 선택한다", "value": "물병"},
+    ],
+    "checks": [
+        {
+            "id": "check.1",
+            "expr": "물병에 물이 남아 있으면 물병의 들이가 더 큰가",
+            "expected": True,
+            "actual": True,
+            "pass": True,
+        }
+    ],
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {"type": "container_name", "description": "들이가 더 많은 용기"},
+        "value": "물병",
+        "unit": "",
+    },
+}

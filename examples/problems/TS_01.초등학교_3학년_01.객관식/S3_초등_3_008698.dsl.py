@@ -1,10 +1,219 @@
 from __future__ import annotations
 from modu_math.dsl import Canvas, ProblemTemplate, Region, TextSlot, LineSlot, CircleSlot, RectSlot
 
+
 def build_problem_template() -> ProblemTemplate:
-    return ProblemTemplate(id='S3_초등_3_008698', title='원을 둘로 똑같이 나누는 선분', canvas=Canvas(width=792, height=432, coordinate_mode='logical'), regions=(Region(id='region.header', role='stem', flow='absolute', slot_ids=('slot.question',)), Region(id='region.diagram', role='diagram', flow='absolute', slot_ids=('slot.circle.outer', 'slot.line.across', 'slot.line.top', 'slot.line.right', 'slot.line.leftdiag', 'slot.pt.center', 'slot.lb.ga', 'slot.lb.na', 'slot.lb.da', 'slot.lb.ra', 'slot.lb.o')), Region(id='region.options', role='choices', flow='absolute', slot_ids=('slot.opt1', 'slot.opt2', 'slot.opt3', 'slot.opt4')), Region(id='region.footer', role='explanation', flow='absolute', slot_ids=())), slots=(TextSlot(id='slot.question', prompt='', text = '원을 둘로 똑같이 나누는 선분은 어느 것인가요?', style_role='question', x = 30, y = 35, font_size = 30), CircleSlot(id='slot.circle.outer', prompt='', cx = 370, cy = 170, r = 105, fill='none'), LineSlot(id='slot.line.top', prompt='', x1 = 270, y1 = 140, x2 = 435, y2 = 90), LineSlot(id='slot.line.leftdiag', prompt='', x1 = 305, y1 = 250, x2 = 435, y2 = 90), LineSlot(id='slot.line.right', prompt='', x1 = 370, y1 = 170, x2 = 475, y2 = 170), LineSlot(id='slot.line.across', prompt='', x1 = 325, y1 = 160, x2 = 325, y2 = 160), CircleSlot(id='slot.pt.center', prompt='', cx = 370, cy = 170, r = 5, fill='#ff4fa3'), TextSlot(id='slot.lb.ga', prompt='', text = 'ㄱ', style_role='label', x = 430, y = 90, font_size = 30), TextSlot(id='slot.lb.na', prompt='', text = 'ㄴ', style_role='label', x = 225, y = 160, font_size = 30), TextSlot(id='slot.lb.da', prompt='', text = 'ㄷ', style_role='label', x = 265, y = 270, font_size = 30), TextSlot(id='slot.lb.ra', prompt='', text = 'ㄹ', style_role='label', x = 485, y = 185, font_size = 30), TextSlot(id='slot.lb.o', prompt='', text = 'ㅇ', style_role='label', x = 335, y = 175, font_size = 30), TextSlot(id='slot.opt1', prompt='', text = '① 선분 ㄱㄴ', style_role='choice', x = 35, y = 335, font_size = 30), TextSlot(id='slot.opt2', prompt='', text = '② 선분 ㄱㅇ', style_role='choice', x = 230, y = 330, font_size = 30), TextSlot(id='slot.opt3', prompt='', text = '③ 선분 ㄱㄷ', style_role='choice', x = 35, y = 385, font_size = 30), TextSlot(id='slot.opt4', prompt='', text = '④ 선분 ㅇㄹ', style_role='choice', x = 230, y = 385, font_size = 30)), diagrams=(), groups=(), constraints=(), tags=())
+    return ProblemTemplate(
+        id="S3_초등_3_008698",
+        title="원을 둘로 똑같이 나누는 선분",
+        canvas=Canvas(width=792, height=432, coordinate_mode="logical"),
+        regions=(
+            Region(id="region.header", role="stem", flow="absolute", slot_ids=("slot.question",)),
+            Region(
+                id="region.diagram",
+                role="diagram",
+                flow="absolute",
+                slot_ids=(
+                    "slot.circle.outer",
+                    "slot.line.across",
+                    "slot.line.top",
+                    "slot.line.right",
+                    "slot.line.leftdiag",
+                    "slot.pt.center",
+                    "slot.lb.ga",
+                    "slot.lb.na",
+                    "slot.lb.da",
+                    "slot.lb.ra",
+                    "slot.lb.o",
+                ),
+            ),
+            Region(
+                id="region.options",
+                role="choices",
+                flow="absolute",
+                slot_ids=("slot.opt1", "slot.opt2", "slot.opt3", "slot.opt4"),
+            ),
+            Region(id="region.footer", role="explanation", flow="absolute", slot_ids=()),
+        ),
+        slots=(
+            TextSlot(
+                id="slot.question",
+                prompt="",
+                text="원을 둘로 똑같이 나누는 선분은 어느 것인가요?",
+                style_role="question",
+                x=30,
+                y=35,
+                font_size=30,
+            ),
+            CircleSlot(id="slot.circle.outer", prompt="", cx=370, cy=170, r=105, fill="none"),
+            LineSlot(id="slot.line.top", prompt="", x1=270, y1=140, x2=435, y2=90),
+            LineSlot(id="slot.line.leftdiag", prompt="", x1=305, y1=250, x2=435, y2=90),
+            LineSlot(id="slot.line.right", prompt="", x1=370, y1=170, x2=475, y2=170),
+            LineSlot(id="slot.line.across", prompt="", x1=325, y1=160, x2=325, y2=160),
+            CircleSlot(id="slot.pt.center", prompt="", cx=370, cy=170, r=5, fill="#ff4fa3"),
+            TextSlot(
+                id="slot.lb.ga", prompt="", text="ㄱ", style_role="label", x=430, y=90, font_size=30
+            ),
+            TextSlot(
+                id="slot.lb.na",
+                prompt="",
+                text="ㄴ",
+                style_role="label",
+                x=225,
+                y=160,
+                font_size=30,
+            ),
+            TextSlot(
+                id="slot.lb.da",
+                prompt="",
+                text="ㄷ",
+                style_role="label",
+                x=265,
+                y=270,
+                font_size=30,
+            ),
+            TextSlot(
+                id="slot.lb.ra",
+                prompt="",
+                text="ㄹ",
+                style_role="label",
+                x=485,
+                y=185,
+                font_size=30,
+            ),
+            TextSlot(
+                id="slot.lb.o", prompt="", text="ㅇ", style_role="label", x=335, y=175, font_size=30
+            ),
+            TextSlot(
+                id="slot.opt1",
+                prompt="",
+                text="① 선분 ㄱㄴ",
+                style_role="choice",
+                x=35,
+                y=335,
+                font_size=30,
+            ),
+            TextSlot(
+                id="slot.opt2",
+                prompt="",
+                text="② 선분 ㄱㅇ",
+                style_role="choice",
+                x=230,
+                y=330,
+                font_size=30,
+            ),
+            TextSlot(
+                id="slot.opt3",
+                prompt="",
+                text="③ 선분 ㄱㄷ",
+                style_role="choice",
+                x=35,
+                y=385,
+                font_size=30,
+            ),
+            TextSlot(
+                id="slot.opt4",
+                prompt="",
+                text="④ 선분 ㅇㄹ",
+                style_role="choice",
+                x=230,
+                y=385,
+                font_size=30,
+            ),
+        ),
+        diagrams=(),
+        groups=(),
+        constraints=(),
+        tags=(),
+    )
+
+
 PROBLEM_TEMPLATE = build_problem_template()
 
-SEMANTIC_OVERRIDE = {'problem_id': 'S3_초등_3_008698', 'problem_type': 'multiple_choice_geometry', 'metadata': {'language': 'ko', 'question': '원을 둘로 똑같이 나누는 선분은 어느 것인가요?', 'instruction': '보기에서 알맞은 선분을 고르시오.', 'points': 5}, 'domain': {'objects': [{'id': 'obj.circle', 'type': 'circle'}, {'id': 'obj.diameter_candidate', 'type': 'segment', 'label': 'ㄱㄷ'}], 'relations': [], 'problem_solving': {'understand': {'given_refs': ['obj.circle', 'obj.diameter_candidate'], 'target_ref': 'answer.target', 'condition_refs': ['rel.diameter']}, 'plan': {'method': 'concept_identification', 'description': '원을 둘로 똑같이 나누는 선분이 지름인지 확인한다.'}, 'execute': {'expected_operations': ['compare_candidates', 'identify_diameter']}, 'review': {'check_methods': ['definition_check']}}}, 'answer': {'blanks': [], 'choices': [], 'answer_key': [], 'target': {'type': 'choice_selection', 'description': '원을 둘로 똑같이 나누는 선분'}, 'value': 3, 'unit': ''}}
+SEMANTIC_OVERRIDE = {
+    "problem_id": "S3_초등_3_008698",
+    "problem_type": "multiple_choice_geometry",
+    "metadata": {
+        "language": "ko",
+        "question": "원을 둘로 똑같이 나누는 선분은 어느 것인가요?",
+        "instruction": "보기에서 알맞은 선분을 고르시오.",
+        "points": 5,
+    },
+    "domain": {
+        "objects": [
+            {"id": "obj.circle", "type": "circle"},
+            {"id": "obj.diameter_candidate", "type": "segment", "label": "ㄱㄷ"},
+        ],
+        "relations": [],
+        "problem_solving": {
+            "understand": {
+                "given_refs": ["obj.circle", "obj.diameter_candidate"],
+                "target_ref": "answer.target",
+                "condition_refs": ["rel.diameter"],
+            },
+            "plan": {
+                "method": "concept_identification",
+                "description": "원을 둘로 똑같이 나누는 선분이 지름인지 확인한다.",
+            },
+            "execute": {"expected_operations": ["compare_candidates", "identify_diameter"]},
+            "review": {"check_methods": ["definition_check"]},
+        },
+    },
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {"type": "choice_selection", "description": "원을 둘로 똑같이 나누는 선분"},
+        "value": 3,
+        "unit": "",
+    },
+}
 
-SOLVABLE = {'schema': 'modu.solvable.v1.1', 'problem_id': 'S3_초등_3_008698', 'problem_type': 'multiple_choice_geometry', 'inputs': {'total_ticks': 1, 'target_label': '선을 둘로 똑같이 나누는 선분', 'target_ticks': 1, 'target_count': 1, 'unit': ''}, 'given': [{'ref': 'obj.circle', 'value': {'type': 'circle'}}, {'ref': 'obj.diameter_candidate', 'value': {'label': 'ㄱㄷ'}}], 'target': {'ref': 'answer.target', 'type': 'choice_selection'}, 'method': 'concept_identification', 'plan': ['원을 둘로 똑같이 나누는 선분이 지름인지 확인한다.', '보기 중 지름에 해당하는 선분을 고른다.'], 'steps': [{'id': 'step.1', 'expr': '지름의 정의를 적용한다', 'value': '원의 중심을 지나 양 끝이 원 위에 있는 선분'}, {'id': 'step.2', 'expr': '보기 비교', 'value': 'ㄱㄷ'}, {'id': 'step.3', 'expr': '정답 선택', 'value': 3}], 'checks': [{'id': 'check.1', 'expr': 'ㄱㄷ이 지름인지 확인', 'expected': True, 'actual': True, 'pass': True}], 'answer': {'blanks': [], 'choices': [], 'answer_key': [], 'target': {'type': 'choice_selection', 'description': '원을 둘로 똑같이 나누는 선분'}, 'value': 3, 'unit': ''}}
+SOLVABLE = {
+    "schema": "modu.solvable.v1.1",
+    "problem_id": "S3_초등_3_008698",
+    "problem_type": "multiple_choice_geometry",
+    "inputs": {
+        "total_ticks": 1,
+        "target_label": "선을 둘로 똑같이 나누는 선분",
+        "target_ticks": 1,
+        "target_count": 1,
+        "unit": "",
+    },
+    "given": [
+        {"ref": "obj.circle", "value": {"type": "circle"}},
+        {"ref": "obj.diameter_candidate", "value": {"label": "ㄱㄷ"}},
+    ],
+    "target": {"ref": "answer.target", "type": "choice_selection"},
+    "method": "concept_identification",
+    "plan": [
+        "원을 둘로 똑같이 나누는 선분이 지름인지 확인한다.",
+        "보기 중 지름에 해당하는 선분을 고른다.",
+    ],
+    "steps": [
+        {
+            "id": "step.1",
+            "expr": "지름의 정의를 적용한다",
+            "value": "원의 중심을 지나 양 끝이 원 위에 있는 선분",
+        },
+        {"id": "step.2", "expr": "보기 비교", "value": "ㄱㄷ"},
+        {"id": "step.3", "expr": "정답 선택", "value": 3},
+    ],
+    "checks": [
+        {
+            "id": "check.1",
+            "expr": "ㄱㄷ이 지름인지 확인",
+            "expected": True,
+            "actual": True,
+            "pass": True,
+        }
+    ],
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {"type": "choice_selection", "description": "원을 둘로 똑같이 나누는 선분"},
+        "value": 3,
+        "unit": "",
+    },
+}

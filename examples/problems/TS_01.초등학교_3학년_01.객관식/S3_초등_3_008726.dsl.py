@@ -67,18 +67,12 @@ def build_problem_template() -> ProblemTemplate:
                 y=30.0,
                 font_size=28,
             ),
-            CircleSlot(
-                id="slot.circle.outer", prompt="", cx=345, cy=181, r=110, fill="none"
-            ),
+            CircleSlot(id="slot.circle.outer", prompt="", cx=345, cy=181, r=110, fill="none"),
             LineSlot(id="slot.line.gj", prompt="", x1=235, y1=195, x2=415, y2=265),
             LineSlot(id="slot.line.nd", prompt="", x1=250, y1=130, x2=440, y2=230),
             LineSlot(id="slot.line.dm", prompt="", x1=345, y1=180, x2=405, y2=90),
-            LineSlot(
-                id="slot.line.ro", prompt="", x1=500.0, y1=155.0, x2=500.0, y2=155.0
-            ),
-            LineSlot(
-                id="slot.line.mo", prompt="", x1=500.0, y1=155.0, x2=500.0, y2=155.0
-            ),
+            LineSlot(id="slot.line.ro", prompt="", x1=500.0, y1=155.0, x2=500.0, y2=155.0),
+            LineSlot(id="slot.line.mo", prompt="", x1=500.0, y1=155.0, x2=500.0, y2=155.0),
             CircleSlot(
                 id="slot.pt.center",
                 prompt="",
@@ -260,9 +254,7 @@ SEMANTIC_OVERRIDE = {
                     "select_correct_choice",
                 ]
             },
-            "review": {
-                "check_methods": ["definition_check", "choice_consistency_check"]
-            },
+            "review": {"check_methods": ["definition_check", "choice_consistency_check"]},
         },
     },
     "answer": {
@@ -293,7 +285,10 @@ SOLVABLE = {
     ],
     "target": {"ref": "answer.target", "type": "multiple_choice"},
     "method": "definition_matching",
-    "plan": ["원의 중심을 지나고 원 위의 두 점을 잇는 선분을 찾는다.", "그 선분에 대응하는 보기를 고른다."],
+    "plan": [
+        "원의 중심을 지나고 원 위의 두 점을 잇는 선분을 찾는다.",
+        "그 선분에 대응하는 보기를 고른다.",
+    ],
     "steps": [
         {"id": "step.1", "expr": "원의 중심을 지나는 선분 확인", "value": "ㄱㄹ"},
         {"id": "step.2", "expr": "정답 보기 선택", "value": 1},

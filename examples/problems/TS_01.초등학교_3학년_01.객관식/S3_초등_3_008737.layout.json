@@ -14,8 +14,6 @@
       "role": "stem",
       "flow": "absolute",
       "slot_ids": [
-        "slot.chk",
-        "slot.no",
         "slot.q1",
         "slot.q2",
         "slot.q3",
@@ -64,35 +62,11 @@
         "slot.len2.two",
         "slot.len2.seven_over_seven",
         "slot.compare",
-        "slot.bottom",
         "slot.bottom_partial"
       ]
     }
   ],
   "slots": [
-    {
-      "id": "slot.chk",
-      "kind": "rect",
-      "prompt": "",
-      "content": {
-        "x": 8.0,
-        "y": 10.0,
-        "width": 12.0,
-        "height": 12.0
-      }
-    },
-    {
-      "id": "slot.no",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "94.",
-        "style_role": "question",
-        "x": 30.0,
-        "y": 24.0,
-        "font_size": 28
-      }
-    },
     {
       "id": "slot.q1",
       "kind": "text",
@@ -100,9 +74,10 @@
       "content": {
         "text": "재영이는 노란색 털실을 9/7 m 가지고 있고 보라색 털실을 1 3/7 m 가지고",
         "style_role": "question",
-        "x": 62.0,
-        "y": 24.0,
-        "font_size": 28
+        "x": 32.0,
+        "y": 49.0,
+        "font_size": 28,
+        "fill": "#111111"
       }
     },
     {
@@ -113,8 +88,9 @@
         "text": "있습니다. 더 긴 털실은 무슨 색인지 알아보려고 합니다. 물음에 답하세요.",
         "style_role": "question",
         "x": 30.0,
-        "y": 62.0,
-        "font_size": 28
+        "y": 87.0,
+        "font_size": 28,
+        "fill": "#111111"
       }
     },
     {
@@ -125,8 +101,9 @@
         "text": "(1) 수직선을 보고, 더 큰 수를 선택해 보세요.",
         "style_role": "question",
         "x": 30.0,
-        "y": 102.0,
-        "font_size": 28
+        "y": 137.0,
+        "font_size": 28,
+        "fill": "#111111"
       }
     },
     {
@@ -148,9 +125,10 @@
       "content": {
         "text": "9/7 m",
         "style_role": "label",
-        "x": 196.0,
-        "y": 226.0,
-        "font_size": 28
+        "x": 177.91995239257812,
+        "y": 220.84005737304688,
+        "font_size": 30,
+        "fill": "#111111"
       }
     },
     {
@@ -351,9 +329,10 @@
       "content": {
         "text": "1 3/7 m",
         "style_role": "label",
-        "x": 176.0,
+        "x": 166.0,
         "y": 326.0,
-        "font_size": 28
+        "font_size": 28,
+        "fill": "#111111"
       }
     },
     {
@@ -560,18 +539,6 @@
       }
     },
     {
-      "id": "slot.bottom",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "(1) 수직선에 나타난 부분을 비교하면 9/7<1 3/7입니다.",
-        "style_role": "question",
-        "x": 0.0,
-        "y": 476.0,
-        "font_size": 28
-      }
-    },
-    {
       "id": "slot.bottom_partial",
       "kind": "text",
       "prompt": "",
@@ -589,8 +556,6 @@
   "diagrams": [],
   "reading_order": [
     "region.top",
-    "slot.chk",
-    "slot.no",
     "slot.q1",
     "slot.q2",
     "slot.q3",
@@ -633,7 +598,6 @@
     "slot.len2.two",
     "slot.len2.seven_over_seven",
     "slot.compare",
-    "slot.bottom",
     "slot.bottom_partial"
   ]
 }

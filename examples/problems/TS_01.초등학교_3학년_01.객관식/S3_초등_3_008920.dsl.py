@@ -1,10 +1,288 @@
 from __future__ import annotations
 from modu_math.dsl import Canvas, ProblemTemplate, Region, TextSlot, RectSlot, CircleSlot
 
+
 def build_problem_template() -> ProblemTemplate:
-    return ProblemTemplate(id='S3_초등_3_008920', title='마을별 돼지 수', canvas=Canvas(width=960, height=620, coordinate_mode='logical'), regions=(Region(id='region.stem', role='stem', flow='absolute', slot_ids=('slot.qnum', 'slot.qtext1', 'slot.qtext2', 'slot.title', 'slot.table.head1', 'slot.table.head2', 'slot.table.row1', 'slot.table.row2', 'slot.table.row3', 'slot.table.row4', 'slot.legend.big_label', 'slot.legend.small_label', 'slot.choice1', 'slot.choice2', 'slot.choice3')),), slots=(TextSlot(id='slot.qnum', prompt='', text='86.', style_role='question', x=18.0, y=30.0, font_size=28), TextSlot(id='slot.qtext1', prompt='', text='마을별 기르고 있는 돼지 수를 그림그래프로 나타내었습니다. 초록 마을', style_role='question', x=58.0, y=32.0, font_size=28), TextSlot(id='slot.qtext2', prompt='', text='보다 돼지를 더 많이 기르는 마을을 고르세요.', style_role='question', x=18.0, y=68.0, font_size=28), TextSlot(id='slot.title', prompt='', text='마을별 돼지 수', style_role='title', x=420.0, y=104.0, font_size=28), RectSlot(id='slot.table.outer', prompt='', x=240.0, y=120.0, width=500.0, height=300.0), RectSlot(id='slot.table.header', prompt='', x=240.0, y=120.0, width=500.0, height=40.0), RectSlot(id='slot.table.leftcol', prompt='', x=240.0, y=160.0, width=110.0, height=260.0), TextSlot(id='slot.table.head1', prompt='', text='마을', style_role='label', x=282.0, y=147.0, font_size=28), TextSlot(id='slot.table.head2', prompt='', text='돼지 수', style_role='label', x=462.0, y=147.0, font_size=28), TextSlot(id='slot.table.row1', prompt='', text='초록', style_role='label', x=285.0, y=205.0, font_size=28), TextSlot(id='slot.table.row2', prompt='', text='하늘', style_role='label', x=285.0, y=265.0, font_size=28), TextSlot(id='slot.table.row3', prompt='', text='금빛', style_role='label', x=285.0, y=325.0, font_size=28), TextSlot(id='slot.table.row4', prompt='', text='바람', style_role='label', x=285.0, y=385.0, font_size=28), TextSlot(id='slot.legend.big_label', prompt='', text='10마리', style_role='label', x=632.0, y=454.0, font_size=28), TextSlot(id='slot.legend.small_label', prompt='', text='1마리', style_role='label', x=740.0, y=454.0, font_size=28), TextSlot(id='slot.choice1', prompt='', text='① 하늘 마을', style_role='choice', x=32.0, y=502.0, font_size=28), TextSlot(id='slot.choice2', prompt='', text='② 금빛 마을', style_role='choice', x=330.0, y=502.0, font_size=28), TextSlot(id='slot.choice3', prompt='', text='③ 바람 마을', style_role='choice', x=616.0, y=502.0, font_size=28), CircleSlot(id='slot.legend.big_dot', prompt='', cx=560.0, cy=446.0, r=2.5, fill='#222222'), CircleSlot(id='slot.legend.small_dot', prompt='', cx=716.0, cy=446.0, r=2.5, fill='#222222')), diagrams=(), groups=(), constraints=(), tags=('그림그래프', '비교', '초등3'))
+    return ProblemTemplate(
+        id="S3_초등_3_008920",
+        title="마을별 돼지 수",
+        canvas=Canvas(width=960, height=620, coordinate_mode="logical"),
+        regions=(
+            Region(
+                id="region.stem",
+                role="stem",
+                flow="absolute",
+                slot_ids=(
+                    "slot.qnum",
+                    "slot.qtext1",
+                    "slot.qtext2",
+                    "slot.title",
+                    "slot.table.head1",
+                    "slot.table.head2",
+                    "slot.table.row1",
+                    "slot.table.row2",
+                    "slot.table.row3",
+                    "slot.table.row4",
+                    "slot.legend.big_label",
+                    "slot.legend.small_label",
+                    "slot.choice1",
+                    "slot.choice2",
+                    "slot.choice3",
+                ),
+            ),
+        ),
+        slots=(
+            TextSlot(
+                id="slot.qnum",
+                prompt="",
+                text="86.",
+                style_role="question",
+                x=18.0,
+                y=30.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.qtext1",
+                prompt="",
+                text="마을별 기르고 있는 돼지 수를 그림그래프로 나타내었습니다. 초록 마을",
+                style_role="question",
+                x=58.0,
+                y=32.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.qtext2",
+                prompt="",
+                text="보다 돼지를 더 많이 기르는 마을을 고르세요.",
+                style_role="question",
+                x=18.0,
+                y=68.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.title",
+                prompt="",
+                text="마을별 돼지 수",
+                style_role="title",
+                x=420.0,
+                y=104.0,
+                font_size=28,
+            ),
+            RectSlot(id="slot.table.outer", prompt="", x=240.0, y=120.0, width=500.0, height=300.0),
+            RectSlot(id="slot.table.header", prompt="", x=240.0, y=120.0, width=500.0, height=40.0),
+            RectSlot(
+                id="slot.table.leftcol", prompt="", x=240.0, y=160.0, width=110.0, height=260.0
+            ),
+            TextSlot(
+                id="slot.table.head1",
+                prompt="",
+                text="마을",
+                style_role="label",
+                x=282.0,
+                y=147.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.table.head2",
+                prompt="",
+                text="돼지 수",
+                style_role="label",
+                x=462.0,
+                y=147.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.table.row1",
+                prompt="",
+                text="초록",
+                style_role="label",
+                x=285.0,
+                y=205.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.table.row2",
+                prompt="",
+                text="하늘",
+                style_role="label",
+                x=285.0,
+                y=265.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.table.row3",
+                prompt="",
+                text="금빛",
+                style_role="label",
+                x=285.0,
+                y=325.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.table.row4",
+                prompt="",
+                text="바람",
+                style_role="label",
+                x=285.0,
+                y=385.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.legend.big_label",
+                prompt="",
+                text="10마리",
+                style_role="label",
+                x=632.0,
+                y=454.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.legend.small_label",
+                prompt="",
+                text="1마리",
+                style_role="label",
+                x=740.0,
+                y=454.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.choice1",
+                prompt="",
+                text="① 하늘 마을",
+                style_role="choice",
+                x=32.0,
+                y=502.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.choice2",
+                prompt="",
+                text="② 금빛 마을",
+                style_role="choice",
+                x=330.0,
+                y=502.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.choice3",
+                prompt="",
+                text="③ 바람 마을",
+                style_role="choice",
+                x=616.0,
+                y=502.0,
+                font_size=28,
+            ),
+            CircleSlot(
+                id="slot.legend.big_dot", prompt="", cx=560.0, cy=446.0, r=2.5, fill="#222222"
+            ),
+            CircleSlot(
+                id="slot.legend.small_dot", prompt="", cx=716.0, cy=446.0, r=2.5, fill="#222222"
+            ),
+        ),
+        diagrams=(),
+        groups=(),
+        constraints=(),
+        tags=("그림그래프", "비교", "초등3"),
+    )
+
+
 PROBLEM_TEMPLATE = build_problem_template()
 
-SEMANTIC_OVERRIDE = {'problem_id': 'S3_초등_3_008920', 'problem_type': '그림그래프_비교', 'metadata': {'language': 'ko', 'question': '마을별 기르고 있는 돼지 수를 그림그래프로 나타내었습니다. 초록 마을보다 돼지를 더 많이 기르는 마을을 고르세요.', 'instruction': '초록 마을보다 돼지를 더 많이 기르는 마을을 고르세요.'}, 'domain': {'objects': [{'id': 'obj.legend.big_pig', 'type': 'icon', 'meaning': '10마리'}, {'id': 'obj.legend.small_pig', 'type': 'icon', 'meaning': '1마리'}, {'id': 'obj.village.green', 'type': 'village', 'name': '초록'}, {'id': 'obj.village.sky', 'type': 'village', 'name': '하늘'}, {'id': 'obj.village.gold', 'type': 'village', 'name': '금빛'}, {'id': 'obj.village.wind', 'type': 'village', 'name': '바람'}], 'relations': [], 'problem_solving': {'understand': {'given_refs': ['obj.legend.big_pig', 'obj.legend.small_pig', 'obj.village.green'], 'target_ref': 'answer.target', 'condition_refs': ['rel.compare.green_to_others']}, 'plan': {'method': '그림그래프_비교', 'description': '범례를 보고 각 마을의 돼지 수를 비교한 뒤, 초록 마을보다 많은 마을을 찾는다.'}, 'execute': {'expected_operations': ['범례_해석', '마을별_비교', '조건에_맞는_선택지_고르기']}, 'review': {'check_methods': ['초록_마을보다_큰지_확인', '선택지_번호_일치_확인']}}}, 'answer': {'blanks': [], 'choices': [], 'answer_key': [], 'target': {'type': 'multiple_choice', 'description': '초록 마을보다 돼지를 더 많이 기르는 마을'}, 'value': 1, 'unit': ''}}
+SEMANTIC_OVERRIDE = {
+    "problem_id": "S3_초등_3_008920",
+    "problem_type": "그림그래프_비교",
+    "metadata": {
+        "language": "ko",
+        "question": "마을별 기르고 있는 돼지 수를 그림그래프로 나타내었습니다. 초록 마을보다 돼지를 더 많이 기르는 마을을 고르세요.",
+        "instruction": "초록 마을보다 돼지를 더 많이 기르는 마을을 고르세요.",
+    },
+    "domain": {
+        "objects": [
+            {"id": "obj.legend.big_pig", "type": "icon", "meaning": "10마리"},
+            {"id": "obj.legend.small_pig", "type": "icon", "meaning": "1마리"},
+            {"id": "obj.village.green", "type": "village", "name": "초록"},
+            {"id": "obj.village.sky", "type": "village", "name": "하늘"},
+            {"id": "obj.village.gold", "type": "village", "name": "금빛"},
+            {"id": "obj.village.wind", "type": "village", "name": "바람"},
+        ],
+        "relations": [],
+        "problem_solving": {
+            "understand": {
+                "given_refs": ["obj.legend.big_pig", "obj.legend.small_pig", "obj.village.green"],
+                "target_ref": "answer.target",
+                "condition_refs": ["rel.compare.green_to_others"],
+            },
+            "plan": {
+                "method": "그림그래프_비교",
+                "description": "범례를 보고 각 마을의 돼지 수를 비교한 뒤, 초록 마을보다 많은 마을을 찾는다.",
+            },
+            "execute": {
+                "expected_operations": ["범례_해석", "마을별_비교", "조건에_맞는_선택지_고르기"]
+            },
+            "review": {"check_methods": ["초록_마을보다_큰지_확인", "선택지_번호_일치_확인"]},
+        },
+    },
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {
+            "type": "multiple_choice",
+            "description": "초록 마을보다 돼지를 더 많이 기르는 마을",
+        },
+        "value": 1,
+        "unit": "",
+    },
+}
 
-SOLVABLE = {'schema': 'modu.solvable.v1.1', 'problem_id': 'S3_초등_3_008920', 'problem_type': '그림그래프_비교', 'inputs': {'total_ticks': 0, 'target_label': '초록 마을보다 돼지를 더 많이 기르는 마을', 'target_ticks': 0, 'target_count': 1, 'unit': ''}, 'given': [{'ref': 'obj.legend.big_pig', 'value': '10마리'}, {'ref': 'obj.legend.small_pig', 'value': '1마리'}, {'ref': 'obj.village.green', 'value': None}, {'ref': 'obj.village.sky', 'value': None}, {'ref': 'obj.village.gold', 'value': None}, {'ref': 'obj.village.wind', 'value': None}], 'target': {'ref': 'answer.target', 'type': 'multiple_choice'}, 'method': '그림그래프_비교', 'plan': ['범례를 읽어 큰 그림과 작은 그림이 뜻하는 수를 확인한다.', '초록 마을과 다른 마을의 그림 개수를 비교한다.', '초록 마을보다 더 많은 마을의 선택지를 고른다.'], 'steps': [{'id': 'step.1', 'expr': '범례 해석: 큰 돼지 = 10마리, 작은 돼지 = 1마리', 'value': 0}, {'id': 'step.2', 'expr': '초록 마을보다 더 많이 기르는 마을을 선택', 'value': 1}], 'checks': [{'id': 'check.1', 'expr': '선택지 번호가 ①인지 확인', 'expected': 1, 'actual': 1, 'pass': True}], 'answer': {'blanks': [], 'choices': [], 'answer_key': [], 'target': {'type': 'multiple_choice', 'description': '초록 마을보다 돼지를 더 많이 기르는 마을'}, 'value': 1, 'unit': ''}}
+SOLVABLE = {
+    "schema": "modu.solvable.v1.1",
+    "problem_id": "S3_초등_3_008920",
+    "problem_type": "그림그래프_비교",
+    "inputs": {
+        "total_ticks": 0,
+        "target_label": "초록 마을보다 돼지를 더 많이 기르는 마을",
+        "target_ticks": 0,
+        "target_count": 1,
+        "unit": "",
+    },
+    "given": [
+        {"ref": "obj.legend.big_pig", "value": "10마리"},
+        {"ref": "obj.legend.small_pig", "value": "1마리"},
+        {"ref": "obj.village.green", "value": None},
+        {"ref": "obj.village.sky", "value": None},
+        {"ref": "obj.village.gold", "value": None},
+        {"ref": "obj.village.wind", "value": None},
+    ],
+    "target": {"ref": "answer.target", "type": "multiple_choice"},
+    "method": "그림그래프_비교",
+    "plan": [
+        "범례를 읽어 큰 그림과 작은 그림이 뜻하는 수를 확인한다.",
+        "초록 마을과 다른 마을의 그림 개수를 비교한다.",
+        "초록 마을보다 더 많은 마을의 선택지를 고른다.",
+    ],
+    "steps": [
+        {"id": "step.1", "expr": "범례 해석: 큰 돼지 = 10마리, 작은 돼지 = 1마리", "value": 0},
+        {"id": "step.2", "expr": "초록 마을보다 더 많이 기르는 마을을 선택", "value": 1},
+    ],
+    "checks": [
+        {
+            "id": "check.1",
+            "expr": "선택지 번호가 ①인지 확인",
+            "expected": 1,
+            "actual": 1,
+            "pass": True,
+        }
+    ],
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {
+            "type": "multiple_choice",
+            "description": "초록 마을보다 돼지를 더 많이 기르는 마을",
+        },
+        "value": 1,
+        "unit": "",
+    },
+}

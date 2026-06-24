@@ -1,10 +1,179 @@
 from __future__ import annotations
 from modu_math.dsl import Canvas, ProblemTemplate, Region, TextSlot, LineSlot
 
+
 def build_problem_template() -> ProblemTemplate:
-    return ProblemTemplate(id='S3_초등_3_008974', title='곧은 선을 찾아 기호를 선택하세요', canvas=Canvas(width=400, height=280, coordinate_mode='logical'), regions=(Region(id='region.stem', role='stem', flow='absolute', slot_ids=('slot.q1',)), Region(id='region.options', role='diagram', flow='absolute', slot_ids=('slot.line.1', 'slot.line.2', 'slot.line.3', 'slot.line.4', 'slot.lb.a', 'slot.lb.b', 'slot.lb.c', 'slot.lb.d', 'slot.choice')), Region(id='region.answer', role='annotation', flow='absolute', slot_ids=())), slots=(TextSlot(id='slot.q1', prompt='', text='8. 곧은 선을 찾아 기호를 선택하세요.', style_role='question', x=12.0, y=20.0, font_size=28), LineSlot(id='slot.line.1', prompt='', x1=195.0, y1=54.0, x2=344.0, y2=58.0), LineSlot(id='slot.line.2', prompt='', x1=195.0, y1=71.0, x2=344.0, y2=104.0), LineSlot(id='slot.line.3', prompt='', x1=195.0, y1=88.0, x2=344.0, y2=121.0), LineSlot(id='slot.line.4', prompt='', x1=195.0, y1=138.0, x2=344.0, y2=138.0), TextSlot(id='slot.lb.a', prompt='', text='가', style_role='label', x=256.0, y=43.0, font_size=28), TextSlot(id='slot.lb.b', prompt='', text='나', style_role='label', x=248.0, y=75.0, font_size=28), TextSlot(id='slot.lb.c', prompt='', text='다', style_role='label', x=251.0, y=102.0, font_size=28), TextSlot(id='slot.lb.d', prompt='', text='라', style_role='label', x=252.0, y=146.0, font_size=28), TextSlot(id='slot.choice', prompt='', text='(가, 나, 다, 라)', style_role='annotation', x=226.0, y=178.0, font_size=28)), diagrams=(), groups=(), constraints=(), tags=())
+    return ProblemTemplate(
+        id="S3_초등_3_008974",
+        title="곧은 선을 찾아 기호를 선택하세요",
+        canvas=Canvas(width=400, height=280, coordinate_mode="logical"),
+        regions=(
+            Region(id="region.stem", role="stem", flow="absolute", slot_ids=("slot.q1",)),
+            Region(
+                id="region.options",
+                role="diagram",
+                flow="absolute",
+                slot_ids=(
+                    "slot.line.1",
+                    "slot.line.2",
+                    "slot.line.3",
+                    "slot.line.4",
+                    "slot.lb.a",
+                    "slot.lb.b",
+                    "slot.lb.c",
+                    "slot.lb.d",
+                    "slot.choice",
+                ),
+            ),
+            Region(id="region.answer", role="annotation", flow="absolute", slot_ids=()),
+        ),
+        slots=(
+            TextSlot(
+                id="slot.q1",
+                prompt="",
+                text="8. 곧은 선을 찾아 기호를 선택하세요.",
+                style_role="question",
+                x=12.0,
+                y=20.0,
+                font_size=28,
+            ),
+            LineSlot(id="slot.line.1", prompt="", x1=195.0, y1=54.0, x2=344.0, y2=58.0),
+            LineSlot(id="slot.line.2", prompt="", x1=195.0, y1=71.0, x2=344.0, y2=104.0),
+            LineSlot(id="slot.line.3", prompt="", x1=195.0, y1=88.0, x2=344.0, y2=121.0),
+            LineSlot(id="slot.line.4", prompt="", x1=195.0, y1=138.0, x2=344.0, y2=138.0),
+            TextSlot(
+                id="slot.lb.a",
+                prompt="",
+                text="가",
+                style_role="label",
+                x=256.0,
+                y=43.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.lb.b",
+                prompt="",
+                text="나",
+                style_role="label",
+                x=248.0,
+                y=75.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.lb.c",
+                prompt="",
+                text="다",
+                style_role="label",
+                x=251.0,
+                y=102.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.lb.d",
+                prompt="",
+                text="라",
+                style_role="label",
+                x=252.0,
+                y=146.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.choice",
+                prompt="",
+                text="(가, 나, 다, 라)",
+                style_role="annotation",
+                x=226.0,
+                y=178.0,
+                font_size=28,
+            ),
+        ),
+        diagrams=(),
+        groups=(),
+        constraints=(),
+        tags=(),
+    )
+
+
 PROBLEM_TEMPLATE = build_problem_template()
 
-SEMANTIC_OVERRIDE = {'problem_id': 'S3_초등_3_008974', 'problem_type': '도형_분류', 'metadata': {'language': 'ko', 'question': '곧은 선을 찾아 기호를 선택하세요.', 'instruction': '곧은 선을 찾는 선택형 문제'}, 'domain': {'objects': [{'id': 'obj.line.ga', 'type': 'line', 'label': '가'}, {'id': 'obj.line.na', 'type': 'line', 'label': '나'}, {'id': 'obj.line.da', 'type': 'line', 'label': '다'}, {'id': 'obj.line.ra', 'type': 'line', 'label': '라'}], 'relations': [], 'problem_solving': {'understand': {'given_refs': ['obj.line.ga', 'obj.line.na', 'obj.line.da', 'obj.line.ra'], 'target_ref': 'answer.target', 'condition_refs': ['rel.classify.straight']}, 'plan': {'method': '시각적_분류', 'description': '각 선의 모양을 보고 곧은 선인지 판단한다.'}, 'execute': {'expected_operations': ['observe_shape', 'compare_curvature', 'select_label']}, 'review': {'check_methods': ['visual_consistency_check']}}}, 'answer': {'blanks': [], 'choices': [], 'answer_key': [], 'target': {'type': 'label_selection', 'description': '곧은 선에 해당하는 기호'}, 'value': '다', 'unit': ''}}
+SEMANTIC_OVERRIDE = {
+    "problem_id": "S3_초등_3_008974",
+    "problem_type": "도형_분류",
+    "metadata": {
+        "language": "ko",
+        "question": "곧은 선을 찾아 기호를 선택하세요.",
+        "instruction": "곧은 선을 찾는 선택형 문제",
+    },
+    "domain": {
+        "objects": [
+            {"id": "obj.line.ga", "type": "line", "label": "가"},
+            {"id": "obj.line.na", "type": "line", "label": "나"},
+            {"id": "obj.line.da", "type": "line", "label": "다"},
+            {"id": "obj.line.ra", "type": "line", "label": "라"},
+        ],
+        "relations": [],
+        "problem_solving": {
+            "understand": {
+                "given_refs": ["obj.line.ga", "obj.line.na", "obj.line.da", "obj.line.ra"],
+                "target_ref": "answer.target",
+                "condition_refs": ["rel.classify.straight"],
+            },
+            "plan": {
+                "method": "시각적_분류",
+                "description": "각 선의 모양을 보고 곧은 선인지 판단한다.",
+            },
+            "execute": {
+                "expected_operations": ["observe_shape", "compare_curvature", "select_label"]
+            },
+            "review": {"check_methods": ["visual_consistency_check"]},
+        },
+    },
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {"type": "label_selection", "description": "곧은 선에 해당하는 기호"},
+        "value": "다",
+        "unit": "",
+    },
+}
 
-SOLVABLE = {'schema': 'modu.solvable.v1.1', 'problem_id': 'S3_초등_3_008974', 'problem_type': '도형_분류', 'inputs': {'total_ticks': 4, 'target_label': '곧은 선', 'target_ticks': 1, 'target_count': 4, 'unit': ''}, 'given': [{'ref': 'obj.line.ga', 'value': {'label': '가'}}, {'ref': 'obj.line.na', 'value': {'label': '나'}}, {'ref': 'obj.line.da', 'value': {'label': '다'}}, {'ref': 'obj.line.ra', 'value': {'label': '라'}}], 'target': {'ref': 'answer.target', 'type': 'label_selection'}, 'method': '시각적_분류', 'plan': ['각 선의 굽음 여부를 보고 곧은 선을 찾는다.', '곧은 선에 붙은 기호를 선택한다.'], 'steps': [{'id': 'step.1', 'expr': '가, 나, 다, 라 중 곧은 선을 관찰한다', 'value': '다'}], 'checks': [{'id': 'check.1', 'expr': '해설 문구와 일치하는가', 'expected': '다', 'actual': '다', 'pass': True}], 'answer': {'blanks': [], 'choices': [], 'answer_key': [], 'target': {'type': 'label_selection', 'description': '곧은 선에 해당하는 기호'}, 'value': '다', 'unit': ''}}
+SOLVABLE = {
+    "schema": "modu.solvable.v1.1",
+    "problem_id": "S3_초등_3_008974",
+    "problem_type": "도형_분류",
+    "inputs": {
+        "total_ticks": 4,
+        "target_label": "곧은 선",
+        "target_ticks": 1,
+        "target_count": 4,
+        "unit": "",
+    },
+    "given": [
+        {"ref": "obj.line.ga", "value": {"label": "가"}},
+        {"ref": "obj.line.na", "value": {"label": "나"}},
+        {"ref": "obj.line.da", "value": {"label": "다"}},
+        {"ref": "obj.line.ra", "value": {"label": "라"}},
+    ],
+    "target": {"ref": "answer.target", "type": "label_selection"},
+    "method": "시각적_분류",
+    "plan": ["각 선의 굽음 여부를 보고 곧은 선을 찾는다.", "곧은 선에 붙은 기호를 선택한다."],
+    "steps": [{"id": "step.1", "expr": "가, 나, 다, 라 중 곧은 선을 관찰한다", "value": "다"}],
+    "checks": [
+        {
+            "id": "check.1",
+            "expr": "해설 문구와 일치하는가",
+            "expected": "다",
+            "actual": "다",
+            "pass": True,
+        }
+    ],
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {"type": "label_selection", "description": "곧은 선에 해당하는 기호"},
+        "value": "다",
+        "unit": "",
+    },
+}

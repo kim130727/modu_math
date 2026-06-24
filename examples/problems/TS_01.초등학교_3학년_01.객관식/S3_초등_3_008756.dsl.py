@@ -44,18 +44,10 @@ def build_problem_template() -> ProblemTemplate:
                 y=28.0,
                 font_size=28,
             ),
-            RectSlot(
-                id="slot.bottle", prompt="", x=333.0, y=54.0, width=36.0, height=78.0
-            ),
-            LineSlot(
-                id="slot.bottle.line1", prompt="", x1=333.0, y1=66.0, x2=369.0, y2=66.0
-            ),
-            LineSlot(
-                id="slot.bottle.line2", prompt="", x1=333.0, y1=78.0, x2=369.0, y2=78.0
-            ),
-            LineSlot(
-                id="slot.bottle.line3", prompt="", x1=333.0, y1=90.0, x2=369.0, y2=90.0
-            ),
+            RectSlot(id="slot.bottle", prompt="", x=333.0, y=54.0, width=36.0, height=78.0),
+            LineSlot(id="slot.bottle.line1", prompt="", x1=333.0, y1=66.0, x2=369.0, y2=66.0),
+            LineSlot(id="slot.bottle.line2", prompt="", x1=333.0, y1=78.0, x2=369.0, y2=78.0),
+            LineSlot(id="slot.bottle.line3", prompt="", x1=333.0, y1=90.0, x2=369.0, y2=90.0),
             LineSlot(
                 id="slot.bottle.line4",
                 prompt="",
@@ -82,9 +74,7 @@ def build_problem_template() -> ProblemTemplate:
                 y=224.0,
                 font_size=28,
             ),
-            RectSlot(
-                id="slot.cup", prompt="", x=670.0, y=121.0, width=48.0, height=32.0
-            ),
+            RectSlot(id="slot.cup", prompt="", x=670.0, y=121.0, width=48.0, height=32.0),
             PathSlot(
                 id="slot.cup.detail",
                 prompt="",

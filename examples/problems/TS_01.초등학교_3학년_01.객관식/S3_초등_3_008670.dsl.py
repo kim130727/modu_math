@@ -2,7 +2,6 @@ from __future__ import annotations
 
 from modu_math.dsl import Canvas, CircleSlot, LineSlot, ProblemTemplate, RectSlot, Region, TextSlot
 
-
 PROBLEM_ID = "S3_초등_3_008670"
 GRID_BLUE = "#1EA7FF"
 BLACK = "#222222"
@@ -58,7 +57,9 @@ def grid_slots(prefix: str, x: float, y: float) -> tuple:
     return tuple(slots)
 
 
-def circle_pair_slots(prefix: str, x: float, y: float, items: tuple[tuple[int, int, str], ...]) -> tuple:
+def circle_pair_slots(
+    prefix: str, x: float, y: float, items: tuple[tuple[int, int, str], ...]
+) -> tuple:
     slots = []
     for idx, (grid_x, grid_y, color) in enumerate(items, start=1):
         cx = x + grid_x * CELL

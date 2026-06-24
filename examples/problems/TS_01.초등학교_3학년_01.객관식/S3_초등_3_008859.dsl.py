@@ -1,10 +1,213 @@
 from __future__ import annotations
-from modu_math.dsl import Canvas, ProblemTemplate, Region, TextSlot, RectSlot, LineSlot, CircleSlot, PathSlot
+from modu_math.dsl import (
+    Canvas,
+    ProblemTemplate,
+    Region,
+    TextSlot,
+    RectSlot,
+    LineSlot,
+    CircleSlot,
+    PathSlot,
+)
+
 
 def build_problem_template() -> ProblemTemplate:
-    return ProblemTemplate(id='S3_초등_3_008859', title='들이 비교', canvas=Canvas(width=840, height=360, coordinate_mode='logical'), regions=(Region(id='region.stem', role='stem', flow='absolute', slot_ids=('slot.qnum', 'slot.q1', 'slot.q2', 'slot.figure.left.pot', 'slot.figure.left.pour', 'slot.figure.left.container', 'slot.figure.left.water1', 'slot.figure.left.water2', 'slot.figure.arrow', 'slot.figure.right.pot', 'slot.figure.right.container', 'slot.choice')), Region(id='region.answer', role='support', flow='absolute', slot_ids=())), slots=(TextSlot(id='slot.qnum', prompt='', text='6.', style_role='question', x=8.0, y=22.0, font_size=28), TextSlot(id='slot.q1', prompt='', text='주전자에 물을 가득 채운 후 그릇에 부었더니 그림과 같았습니다.', style_role='question', x=40.0, y=22.0, font_size=28), TextSlot(id='slot.q2', prompt='', text='주전자와 그릇 중에서 어느 것이 들이가 더 많을까요?', style_role='question', x=40.0, y=58.0, font_size=28), PathSlot(id='slot.figure.left.pot', prompt='', d='M 242.0 122.0 C 232.0 114.0 228.0 100.0 232.0 92.0 L 244.0 96.0 C 240.0 100.0 241.0 110.0 249.0 115.0 L 253.0 107.0 L 264.0 112.0 L 259.0 122.0 C 253.0 134.0 241.0 133.0 242.0 122.0 Z'), PathSlot(id='slot.figure.left.pour', prompt='', d='M 256.0 103.0 C 274.0 111.0 284.0 124.0 291.0 135.0'), RectSlot(id='slot.figure.left.container', prompt='', x=274.0, y=124.0, width=30.0, height=40.0), RectSlot(id='slot.figure.left.water1', prompt='', x=275.5, y=145.0, width=27.0, height=18.0), PathSlot(id='slot.figure.left.water2', prompt='', d='M 248.0 108.0 C 256.0 114.0 267.0 117.0 276.0 120.0 C 287.0 123.0 292.0 129.0 295.0 136.0'), TextSlot(id='slot.figure.arrow', prompt='', text='→', style_role='diagram', x=358.0, y=146.0, font_size=34), PathSlot(id='slot.figure.right.pot', prompt='', d='M 445.0 144.0 L 454.0 144.0 L 454.0 127.0 C 454.0 120.0 459.0 116.0 466.0 116.0 L 496.0 116.0 C 503.0 116.0 508.0 120.0 508.0 127.0 L 508.0 143.0 L 517.0 143.0 L 517.0 149.0 L 506.0 149.0 C 506.0 163.0 497.0 173.0 482.0 173.0 C 467.0 173.0 457.0 163.0 457.0 149.0 L 445.0 149.0 Z'), RectSlot(id='slot.figure.right.container', prompt='', x=533.0, y=118.0, width=30.0, height=62.0), RectSlot(id='slot.choice', prompt='', x=654.0, y=195.0, width=156.0, height=36.0)), diagrams=(), groups=(), constraints=(), tags=())
+    return ProblemTemplate(
+        id="S3_초등_3_008859",
+        title="들이 비교",
+        canvas=Canvas(width=840, height=360, coordinate_mode="logical"),
+        regions=(
+            Region(
+                id="region.stem",
+                role="stem",
+                flow="absolute",
+                slot_ids=(
+                    "slot.qnum",
+                    "slot.q1",
+                    "slot.q2",
+                    "slot.figure.left.pot",
+                    "slot.figure.left.pour",
+                    "slot.figure.left.container",
+                    "slot.figure.left.water1",
+                    "slot.figure.left.water2",
+                    "slot.figure.arrow",
+                    "slot.figure.right.pot",
+                    "slot.figure.right.container",
+                    "slot.choice",
+                ),
+            ),
+            Region(id="region.answer", role="support", flow="absolute", slot_ids=()),
+        ),
+        slots=(
+            TextSlot(
+                id="slot.qnum",
+                prompt="",
+                text="6.",
+                style_role="question",
+                x=8.0,
+                y=22.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.q1",
+                prompt="",
+                text="주전자에 물을 가득 채운 후 그릇에 부었더니 그림과 같았습니다.",
+                style_role="question",
+                x=40.0,
+                y=22.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.q2",
+                prompt="",
+                text="주전자와 그릇 중에서 어느 것이 들이가 더 많을까요?",
+                style_role="question",
+                x=40.0,
+                y=58.0,
+                font_size=28,
+            ),
+            PathSlot(
+                id="slot.figure.left.pot",
+                prompt="",
+                d="M 242.0 122.0 C 232.0 114.0 228.0 100.0 232.0 92.0 L 244.0 96.0 C 240.0 100.0 241.0 110.0 249.0 115.0 L 253.0 107.0 L 264.0 112.0 L 259.0 122.0 C 253.0 134.0 241.0 133.0 242.0 122.0 Z",
+            ),
+            PathSlot(
+                id="slot.figure.left.pour",
+                prompt="",
+                d="M 256.0 103.0 C 274.0 111.0 284.0 124.0 291.0 135.0",
+            ),
+            RectSlot(
+                id="slot.figure.left.container",
+                prompt="",
+                x=274.0,
+                y=124.0,
+                width=30.0,
+                height=40.0,
+            ),
+            RectSlot(
+                id="slot.figure.left.water1", prompt="", x=275.5, y=145.0, width=27.0, height=18.0
+            ),
+            PathSlot(
+                id="slot.figure.left.water2",
+                prompt="",
+                d="M 248.0 108.0 C 256.0 114.0 267.0 117.0 276.0 120.0 C 287.0 123.0 292.0 129.0 295.0 136.0",
+            ),
+            TextSlot(
+                id="slot.figure.arrow",
+                prompt="",
+                text="→",
+                style_role="diagram",
+                x=358.0,
+                y=146.0,
+                font_size=34,
+            ),
+            PathSlot(
+                id="slot.figure.right.pot",
+                prompt="",
+                d="M 445.0 144.0 L 454.0 144.0 L 454.0 127.0 C 454.0 120.0 459.0 116.0 466.0 116.0 L 496.0 116.0 C 503.0 116.0 508.0 120.0 508.0 127.0 L 508.0 143.0 L 517.0 143.0 L 517.0 149.0 L 506.0 149.0 C 506.0 163.0 497.0 173.0 482.0 173.0 C 467.0 173.0 457.0 163.0 457.0 149.0 L 445.0 149.0 Z",
+            ),
+            RectSlot(
+                id="slot.figure.right.container",
+                prompt="",
+                x=533.0,
+                y=118.0,
+                width=30.0,
+                height=62.0,
+            ),
+            RectSlot(id="slot.choice", prompt="", x=654.0, y=195.0, width=156.0, height=36.0),
+        ),
+        diagrams=(),
+        groups=(),
+        constraints=(),
+        tags=(),
+    )
+
+
 PROBLEM_TEMPLATE = build_problem_template()
 
-SEMANTIC_OVERRIDE = {'problem_id': 'S3_초등_3_008859', 'problem_type': '들이 비교', 'metadata': {'language': 'ko', 'question': '주전자와 그릇 중에서 어느 것이 들이가 더 많은지 묻는 문제', 'instruction': '그림을 보고 들이가 더 많은 것을 고른다.'}, 'domain': {'objects': [{'id': 'obj.주전자', 'type': 'container', 'label': '주전자'}, {'id': 'obj.그릇', 'type': 'container', 'label': '그릇'}], 'relations': [], 'problem_solving': {'understand': {'given_refs': ['obj.주전자', 'obj.그릇', 'rel.compare_capacity'], 'target_ref': 'answer.target', 'condition_refs': []}, 'plan': {'method': 'compare_capacity_from_picture', 'description': '그림에서 물이 남는 상황을 바탕으로 들이가 더 큰 용기를 판단한다.'}, 'execute': {'expected_operations': ['비교 대상 확인', '그림의 상태 해석', '더 큰 들이 판단']}, 'review': {'check_methods': ['해설 문장과 비교 결과 일치 확인']}}}, 'answer': {'blanks': [], 'choices': [], 'answer_key': [], 'target': {'type': 'capacity_comparison_result', 'description': '주전자와 그릇 중 들이가 더 많은 것'}, 'value': '주전자', 'unit': ''}}
+SEMANTIC_OVERRIDE = {
+    "problem_id": "S3_초등_3_008859",
+    "problem_type": "들이 비교",
+    "metadata": {
+        "language": "ko",
+        "question": "주전자와 그릇 중에서 어느 것이 들이가 더 많은지 묻는 문제",
+        "instruction": "그림을 보고 들이가 더 많은 것을 고른다.",
+    },
+    "domain": {
+        "objects": [
+            {"id": "obj.주전자", "type": "container", "label": "주전자"},
+            {"id": "obj.그릇", "type": "container", "label": "그릇"},
+        ],
+        "relations": [],
+        "problem_solving": {
+            "understand": {
+                "given_refs": ["obj.주전자", "obj.그릇", "rel.compare_capacity"],
+                "target_ref": "answer.target",
+                "condition_refs": [],
+            },
+            "plan": {
+                "method": "compare_capacity_from_picture",
+                "description": "그림에서 물이 남는 상황을 바탕으로 들이가 더 큰 용기를 판단한다.",
+            },
+            "execute": {
+                "expected_operations": ["비교 대상 확인", "그림의 상태 해석", "더 큰 들이 판단"]
+            },
+            "review": {"check_methods": ["해설 문장과 비교 결과 일치 확인"]},
+        },
+    },
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {
+            "type": "capacity_comparison_result",
+            "description": "주전자와 그릇 중 들이가 더 많은 것",
+        },
+        "value": "주전자",
+        "unit": "",
+    },
+}
 
-SOLVABLE = {'schema': 'modu.solvable.v1.1', 'problem_id': 'S3_초등_3_008859', 'problem_type': '들이 비교', 'inputs': {'total_ticks': 0, 'target_label': '주전자와 그릇 중 들이가 더 많은 것', 'target_ticks': 0, 'target_count': 1, 'unit': ''}, 'given': [{'ref': 'obj.주전자', 'value': {'label': '주전자'}}, {'ref': 'obj.그릇', 'value': {'label': '그릇'}}], 'target': {'ref': 'answer.target', 'type': 'capacity_comparison_result'}, 'method': 'compare_capacity_from_picture', 'plan': ['그림에서 비교하는 두 용기를 찾는다.', '해설 문장에서 들이가 더 많은 쪽을 확인한다.'], 'steps': [{'id': 'step.1', 'expr': '그림의 비교 대상은 주전자와 그릇이다.', 'value': '주전자, 그릇'}, {'id': 'step.2', 'expr': '해설에 따라 들이가 더 많은 쪽을 판단한다.', 'value': '주전자'}], 'checks': [{'id': 'check.1', 'expr': '정답 라벨과 판단 결과가 일치하는가', 'expected': '주전자', 'actual': '주전자', 'pass': True}], 'answer': {'blanks': [], 'choices': [], 'answer_key': [], 'target': {'type': 'capacity_comparison_result', 'description': '주전자와 그릇 중 들이가 더 많은 것'}, 'value': '주전자', 'unit': ''}}
+SOLVABLE = {
+    "schema": "modu.solvable.v1.1",
+    "problem_id": "S3_초등_3_008859",
+    "problem_type": "들이 비교",
+    "inputs": {
+        "total_ticks": 0,
+        "target_label": "주전자와 그릇 중 들이가 더 많은 것",
+        "target_ticks": 0,
+        "target_count": 1,
+        "unit": "",
+    },
+    "given": [
+        {"ref": "obj.주전자", "value": {"label": "주전자"}},
+        {"ref": "obj.그릇", "value": {"label": "그릇"}},
+    ],
+    "target": {"ref": "answer.target", "type": "capacity_comparison_result"},
+    "method": "compare_capacity_from_picture",
+    "plan": ["그림에서 비교하는 두 용기를 찾는다.", "해설 문장에서 들이가 더 많은 쪽을 확인한다."],
+    "steps": [
+        {"id": "step.1", "expr": "그림의 비교 대상은 주전자와 그릇이다.", "value": "주전자, 그릇"},
+        {"id": "step.2", "expr": "해설에 따라 들이가 더 많은 쪽을 판단한다.", "value": "주전자"},
+    ],
+    "checks": [
+        {
+            "id": "check.1",
+            "expr": "정답 라벨과 판단 결과가 일치하는가",
+            "expected": "주전자",
+            "actual": "주전자",
+            "pass": True,
+        }
+    ],
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {
+            "type": "capacity_comparison_result",
+            "description": "주전자와 그릇 중 들이가 더 많은 것",
+        },
+        "value": "주전자",
+        "unit": "",
+    },
+}

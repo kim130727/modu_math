@@ -2,7 +2,6 @@ from __future__ import annotations
 
 from modu_math.dsl import Canvas, CircleSlot, LineSlot, ProblemTemplate, Region, TextSlot
 
-
 ANSWER = {
     "blanks": [],
     "choices": [],
@@ -13,7 +12,9 @@ ANSWER = {
 }
 
 
-def _grid_slots(prefix: str, *, x: float, y: float, cols: int = 10, rows: int = 10, step: float = 34.0) -> tuple[LineSlot, ...]:
+def _grid_slots(
+    prefix: str, *, x: float, y: float, cols: int = 10, rows: int = 10, step: float = 34.0
+) -> tuple[LineSlot, ...]:
     slots: list[LineSlot] = []
     for i in range(cols + 1):
         gx = x + i * step
@@ -48,7 +49,9 @@ def _grid_slots(prefix: str, *, x: float, y: float, cols: int = 10, rows: int = 
     return tuple(slots)
 
 
-def _grid_point(origin_x: float, origin_y: float, step: float, point: tuple[int, int]) -> tuple[float, float]:
+def _grid_point(
+    origin_x: float, origin_y: float, step: float, point: tuple[int, int]
+) -> tuple[float, float]:
     return origin_x + point[0] * step, origin_y + point[1] * step
 
 
@@ -63,8 +66,25 @@ def _candidate_slots(
 ) -> tuple[CircleSlot, TextSlot]:
     cx, cy = _grid_point(origin_x, origin_y, step, point)
     return (
-        CircleSlot(id=f"{prefix}.point", prompt="", cx=cx, cy=cy, r=4.4, fill="#EC1685", stroke="#EC1685", stroke_width=1.0),
-        TextSlot(id=f"{prefix}.label", prompt="", text=label, style_role="label", x=cx - 18.0, y=cy - 20.0, font_size=24),
+        CircleSlot(
+            id=f"{prefix}.point",
+            prompt="",
+            cx=cx,
+            cy=cy,
+            r=4.4,
+            fill="#EC1685",
+            stroke="#EC1685",
+            stroke_width=1.0,
+        ),
+        TextSlot(
+            id=f"{prefix}.label",
+            prompt="",
+            text=label,
+            style_role="label",
+            x=cx - 18.0,
+            y=cy - 20.0,
+            font_size=24,
+        ),
     )
 
 
@@ -116,12 +136,24 @@ def build_problem_template() -> ProblemTemplate:
         ),
     )
     candidates = (
-        *_candidate_slots("slot.pt.giyeok", label="ㄱ", origin_x=grid_x, origin_y=grid_y, step=step, point=(2, 5)),
-        *_candidate_slots("slot.pt.nieun", label="ㄴ", origin_x=grid_x, origin_y=grid_y, step=step, point=(3, 5)),
-        *_candidate_slots("slot.pt.digeut", label="ㄷ", origin_x=grid_x, origin_y=grid_y, step=step, point=(4, 5)),
-        *_candidate_slots("slot.pt.rieul", label="ㄹ", origin_x=grid_x, origin_y=grid_y, step=step, point=(5, 5)),
-        *_candidate_slots("slot.pt.mieum", label="ㅁ", origin_x=grid_x, origin_y=grid_y, step=step, point=(6, 5)),
-        *_candidate_slots("slot.pt.bieup", label="ㅂ", origin_x=grid_x, origin_y=grid_y, step=step, point=(7, 5)),
+        *_candidate_slots(
+            "slot.pt.giyeok", label="ㄱ", origin_x=grid_x, origin_y=grid_y, step=step, point=(2, 5)
+        ),
+        *_candidate_slots(
+            "slot.pt.nieun", label="ㄴ", origin_x=grid_x, origin_y=grid_y, step=step, point=(3, 5)
+        ),
+        *_candidate_slots(
+            "slot.pt.digeut", label="ㄷ", origin_x=grid_x, origin_y=grid_y, step=step, point=(4, 5)
+        ),
+        *_candidate_slots(
+            "slot.pt.rieul", label="ㄹ", origin_x=grid_x, origin_y=grid_y, step=step, point=(5, 5)
+        ),
+        *_candidate_slots(
+            "slot.pt.mieum", label="ㅁ", origin_x=grid_x, origin_y=grid_y, step=step, point=(6, 5)
+        ),
+        *_candidate_slots(
+            "slot.pt.bieup", label="ㅂ", origin_x=grid_x, origin_y=grid_y, step=step, point=(7, 5)
+        ),
     )
 
     return ProblemTemplate(
@@ -129,12 +161,16 @@ def build_problem_template() -> ProblemTemplate:
         title="컴퍼스의 침을 꽂아야 할 곳",
         canvas=Canvas(width=920, height=560, coordinate_mode="logical"),
         regions=(
-            Region(id="region.stem", role="stem", flow="absolute", slot_ids=("slot.q1", )),
+            Region(id="region.stem", role="stem", flow="absolute", slot_ids=("slot.q1",)),
             Region(
                 id="region.diagram",
                 role="diagram",
                 flow="absolute",
-                slot_ids=(*(slot.id for slot in grid), *(slot.id for slot in circles), *(slot.id for slot in candidates)),
+                slot_ids=(
+                    *(slot.id for slot in grid),
+                    *(slot.id for slot in circles),
+                    *(slot.id for slot in candidates),
+                ),
             ),
             Region(id="region.answer", role="answer", flow="absolute", slot_ids=()),
         ),
@@ -142,12 +178,15 @@ def build_problem_template() -> ProblemTemplate:
             TextSlot(
                 id="slot.q1",
                 prompt="",
-                text = '\n    \n    주어진 모양을 그리기 위하여 컴퍼스의 침을 꽂아야 할 곳을 모두\n    선택해보세요  \n  ', style_role="question",
-                x = 95, y = 15, font_size = 25),
+                text="\n    \n    주어진 모양을 그리기 위하여 컴퍼스의 침을 꽂아야 할 곳을 모두\n    선택해보세요  \n  ",
+                style_role="question",
+                x=95,
+                y=15,
+                font_size=25,
+            ),
             *grid,
             *circles,
             *candidates,
-            
         ),
         diagrams=(),
         groups=(),
@@ -220,10 +259,20 @@ SEMANTIC_OVERRIDE = {
                     "obj.point.bieup",
                 ],
                 "target_ref": "answer.target",
-                "condition_refs": ["rel.circle1.center", "rel.circle2.center", "rel.circle3.center", "rel.circle4.center"],
+                "condition_refs": [
+                    "rel.circle1.center",
+                    "rel.circle2.center",
+                    "rel.circle3.center",
+                    "rel.circle4.center",
+                ],
             },
-            "plan": {"method": "center_matching", "description": "각 원의 중심에 해당하는 후보점을 찾는다."},
-            "execute": {"expected_operations": ["identify_circle_centers", "select_all_center_points"]},
+            "plan": {
+                "method": "center_matching",
+                "description": "각 원의 중심에 해당하는 후보점을 찾는다.",
+            },
+            "execute": {
+                "expected_operations": ["identify_circle_centers", "select_all_center_points"]
+            },
             "review": {"check_methods": ["count_selected_points", "verify_point_labels"]},
         },
     },
@@ -240,12 +289,30 @@ SOLVABLE = {
         "unit": "",
     },
     "given": [
-        {"ref": "obj.point.giyeok", "value": {"label": "ㄱ", "coordinate": [2, 5], "circle_radius": 1}},
-        {"ref": "obj.point.nieun", "value": {"label": "ㄴ", "coordinate": [3, 5], "circle_radius": 2}},
-        {"ref": "obj.point.digeut", "value": {"label": "ㄷ", "coordinate": [4, 5], "circle_radius": 3}},
-        {"ref": "obj.point.rieul", "value": {"label": "ㄹ", "coordinate": [5, 5], "circle_radius": 4}},
-        {"ref": "obj.point.mieum", "value": {"label": "ㅁ", "coordinate": [6, 5], "circle_radius": None}},
-        {"ref": "obj.point.bieup", "value": {"label": "ㅂ", "coordinate": [7, 5], "circle_radius": None}},
+        {
+            "ref": "obj.point.giyeok",
+            "value": {"label": "ㄱ", "coordinate": [2, 5], "circle_radius": 1},
+        },
+        {
+            "ref": "obj.point.nieun",
+            "value": {"label": "ㄴ", "coordinate": [3, 5], "circle_radius": 2},
+        },
+        {
+            "ref": "obj.point.digeut",
+            "value": {"label": "ㄷ", "coordinate": [4, 5], "circle_radius": 3},
+        },
+        {
+            "ref": "obj.point.rieul",
+            "value": {"label": "ㄹ", "coordinate": [5, 5], "circle_radius": 4},
+        },
+        {
+            "ref": "obj.point.mieum",
+            "value": {"label": "ㅁ", "coordinate": [6, 5], "circle_radius": None},
+        },
+        {
+            "ref": "obj.point.bieup",
+            "value": {"label": "ㅂ", "coordinate": [7, 5], "circle_radius": None},
+        },
     ],
     "target": {"ref": "answer.target", "type": "selected_points"},
     "method": "center_matching",
@@ -262,7 +329,13 @@ SOLVABLE = {
     ],
     "checks": [
         {"id": "check.1", "expr": "선택한 점의 수", "expected": 4, "actual": 4, "pass": True},
-        {"id": "check.2", "expr": "선택한 점", "expected": ["ㄱ", "ㄴ", "ㄷ", "ㄹ"], "actual": ["ㄱ", "ㄴ", "ㄷ", "ㄹ"], "pass": True},
+        {
+            "id": "check.2",
+            "expr": "선택한 점",
+            "expected": ["ㄱ", "ㄴ", "ㄷ", "ㄹ"],
+            "actual": ["ㄱ", "ㄴ", "ㄷ", "ㄹ"],
+            "pass": True,
+        },
     ],
     "answer": ANSWER,
 }

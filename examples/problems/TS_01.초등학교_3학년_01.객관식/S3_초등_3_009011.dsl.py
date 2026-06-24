@@ -1,10 +1,187 @@
 from __future__ import annotations
-from modu_math.dsl import Canvas, ProblemTemplate, Region, TextSlot, RectSlot, CircleSlot, PathSlot, LineSlot
+from modu_math.dsl import (
+    Canvas,
+    ProblemTemplate,
+    Region,
+    TextSlot,
+    RectSlot,
+    CircleSlot,
+    PathSlot,
+    LineSlot,
+)
+
 
 def build_problem_template() -> ProblemTemplate:
-    return ProblemTemplate(id='S3_초등_3_009011', title='알맞은 말을 선택하세요', canvas=Canvas(width=790.0, height=236.0, coordinate_mode='logical'), regions=(Region(id='region.stem', role='stem', flow='absolute', slot_ids=('slot.title', 'slot.diagram.left.pt1', 'slot.diagram.left.pt2', 'slot.diagram.left.curve', 'slot.diagram.left.mark1', 'slot.diagram.left.mark2')), Region(id='region.choice', role='body', flow='absolute', slot_ids=('slot.choice.box', 'slot.choice.line1', 'slot.choice.line2')), Region(id='region.explanation', role='explanation', flow='absolute', slot_ids=())), slots=(TextSlot(id='slot.title', prompt='', text='50. 알맞은 말을 선택하세요.', style_role='question', x=14.0, y=18.0, font_size=28), CircleSlot(id='slot.diagram.left.pt1', prompt='', cx=74.0, cy=100.0, r=3.2, fill='#222222'), CircleSlot(id='slot.diagram.left.pt2', prompt='', cx=287.0, cy=100.0, r=3.2, fill='#222222'), PathSlot(id='slot.diagram.left.curve', prompt='', d='M 79.0 99.0 C 135.0 66.0, 226.0 66.0, 282.0 99.0'), LineSlot(id='slot.diagram.left.mark1', prompt='', x1=58.0, y1=81.0, x2=58.0, y2=88.0), LineSlot(id='slot.diagram.left.mark2', prompt='', x1=281.0, y1=81.0, x2=281.0, y2=88.0), LineSlot(id='slot.diagram.left.mark1b', prompt='', x1=58.0, y1=81.0, x2=49.0, y2=81.0), LineSlot(id='slot.diagram.left.mark2b', prompt='', x1=281.0, y1=81.0, x2=290.0, y2=81.0), RectSlot(id='slot.choice.box', prompt='', x=324.0, y=38.0, width=460.0, height=81.0), TextSlot(id='slot.choice.line1', prompt='', text='굽은 선이므로', style_role='body', x=338.0, y=74.0, font_size=28), TextSlot(id='slot.choice.line2', prompt='', text='( 반직선입니다. 반직선이 아닙니다 ).', style_role='body', x=338.0, y=105.0, font_size=28)), diagrams=(), groups=(), constraints=(), tags=('도형', '반직선', '선택형'))
+    return ProblemTemplate(
+        id="S3_초등_3_009011",
+        title="알맞은 말을 선택하세요",
+        canvas=Canvas(width=790.0, height=236.0, coordinate_mode="logical"),
+        regions=(
+            Region(
+                id="region.stem",
+                role="stem",
+                flow="absolute",
+                slot_ids=(
+                    "slot.title",
+                    "slot.diagram.left.pt1",
+                    "slot.diagram.left.pt2",
+                    "slot.diagram.left.curve",
+                    "slot.diagram.left.mark1",
+                    "slot.diagram.left.mark2",
+                ),
+            ),
+            Region(
+                id="region.choice",
+                role="body",
+                flow="absolute",
+                slot_ids=("slot.choice.box", "slot.choice.line1", "slot.choice.line2"),
+            ),
+            Region(id="region.explanation", role="explanation", flow="absolute", slot_ids=()),
+        ),
+        slots=(
+            TextSlot(
+                id="slot.title",
+                prompt="",
+                text="50. 알맞은 말을 선택하세요.",
+                style_role="question",
+                x=14.0,
+                y=18.0,
+                font_size=28,
+            ),
+            CircleSlot(
+                id="slot.diagram.left.pt1", prompt="", cx=74.0, cy=100.0, r=3.2, fill="#222222"
+            ),
+            CircleSlot(
+                id="slot.diagram.left.pt2", prompt="", cx=287.0, cy=100.0, r=3.2, fill="#222222"
+            ),
+            PathSlot(
+                id="slot.diagram.left.curve",
+                prompt="",
+                d="M 79.0 99.0 C 135.0 66.0, 226.0 66.0, 282.0 99.0",
+            ),
+            LineSlot(id="slot.diagram.left.mark1", prompt="", x1=58.0, y1=81.0, x2=58.0, y2=88.0),
+            LineSlot(id="slot.diagram.left.mark2", prompt="", x1=281.0, y1=81.0, x2=281.0, y2=88.0),
+            LineSlot(id="slot.diagram.left.mark1b", prompt="", x1=58.0, y1=81.0, x2=49.0, y2=81.0),
+            LineSlot(
+                id="slot.diagram.left.mark2b", prompt="", x1=281.0, y1=81.0, x2=290.0, y2=81.0
+            ),
+            RectSlot(id="slot.choice.box", prompt="", x=324.0, y=38.0, width=460.0, height=81.0),
+            TextSlot(
+                id="slot.choice.line1",
+                prompt="",
+                text="굽은 선이므로",
+                style_role="body",
+                x=338.0,
+                y=74.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.choice.line2",
+                prompt="",
+                text="( 반직선입니다. 반직선이 아닙니다 ).",
+                style_role="body",
+                x=338.0,
+                y=105.0,
+                font_size=28,
+            ),
+        ),
+        diagrams=(),
+        groups=(),
+        constraints=(),
+        tags=("도형", "반직선", "선택형"),
+    )
+
+
 PROBLEM_TEMPLATE = build_problem_template()
 
-SEMANTIC_OVERRIDE = {'problem_id': 'S3_초등_3_009011', 'problem_type': 'concept_selection', 'metadata': {'language': 'ko', 'question': '알맞은 말을 선택하세요.', 'instruction': '굽은 선의 성질을 보고 알맞은 문장을 고르는 문제'}, 'domain': {'objects': [{'id': 'obj.curved_line', 'type': 'line_shape', 'property': 'curved'}, {'id': 'obj.choice_true', 'type': 'statement', 'text': '반직선입니다.'}, {'id': 'obj.choice_false', 'type': 'statement', 'text': '반직선이 아닙니다.'}, {'id': 'obj.definition', 'type': 'definition', 'text': '반직선은 한 점에서 시작해 한 쪽으로 끝없이 늘인 굵은 선입니다.'}], 'relations': [], 'problem_solving': {'understand': {'given_refs': ['obj.curved_line', 'obj.choice_true', 'obj.choice_false'], 'target_ref': 'answer.target', 'condition_refs': ['rel.classify']}, 'plan': {'method': 'concept_judgment', 'description': '그림의 선 모양이 반직선의 정의에 맞는지 판단한다.'}, 'execute': {'expected_operations': ['observe_shape', 'compare_with_definition', 'select_statement']}, 'review': {'check_methods': ['definition_match_check']}}}, 'answer': {'blanks': [], 'choices': [], 'answer_key': [], 'target': {'type': 'selected_statement', 'description': '굽은 선에 대해 알맞은 문장 선택'}, 'value': 0, 'unit': ''}}
+SEMANTIC_OVERRIDE = {
+    "problem_id": "S3_초등_3_009011",
+    "problem_type": "concept_selection",
+    "metadata": {
+        "language": "ko",
+        "question": "알맞은 말을 선택하세요.",
+        "instruction": "굽은 선의 성질을 보고 알맞은 문장을 고르는 문제",
+    },
+    "domain": {
+        "objects": [
+            {"id": "obj.curved_line", "type": "line_shape", "property": "curved"},
+            {"id": "obj.choice_true", "type": "statement", "text": "반직선입니다."},
+            {"id": "obj.choice_false", "type": "statement", "text": "반직선이 아닙니다."},
+            {
+                "id": "obj.definition",
+                "type": "definition",
+                "text": "반직선은 한 점에서 시작해 한 쪽으로 끝없이 늘인 굵은 선입니다.",
+            },
+        ],
+        "relations": [],
+        "problem_solving": {
+            "understand": {
+                "given_refs": ["obj.curved_line", "obj.choice_true", "obj.choice_false"],
+                "target_ref": "answer.target",
+                "condition_refs": ["rel.classify"],
+            },
+            "plan": {
+                "method": "concept_judgment",
+                "description": "그림의 선 모양이 반직선의 정의에 맞는지 판단한다.",
+            },
+            "execute": {
+                "expected_operations": [
+                    "observe_shape",
+                    "compare_with_definition",
+                    "select_statement",
+                ]
+            },
+            "review": {"check_methods": ["definition_match_check"]},
+        },
+    },
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {"type": "selected_statement", "description": "굽은 선에 대해 알맞은 문장 선택"},
+        "value": 0,
+        "unit": "",
+    },
+}
 
-SOLVABLE = {'schema': 'modu.solvable.v1.1', 'problem_id': 'S3_초등_3_009011', 'problem_type': 'concept_selection', 'inputs': {'total_ticks': 1, 'target_label': 'selected_statement', 'target_ticks': 1, 'target_count': 1, 'unit': ''}, 'given': [{'ref': 'obj.curved_line', 'value': {'property': 'curved'}}, {'ref': 'obj.definition', 'value': {'text': '반직선은 한 점에서 시작해 한 쪽으로 끝없이 늘인 굵은 선입니다.'}}], 'target': {'ref': 'answer.target', 'type': 'selected_statement'}, 'method': 'concept_judgment', 'plan': ['그림의 선이 반직선의 정의와 일치하는지 살펴본다.', '일치하지 않으면 알맞은 선택 문장을 고른다.'], 'steps': [{'id': 'step.1', 'expr': '그림의 선 모양 확인', 'value': 'curved'}, {'id': 'step.2', 'expr': '반직선의 정의와 비교', 'value': 'not_match'}, {'id': 'step.3', 'expr': '선택 문장 판단', 'value': '반직선이 아닙니다.'}], 'checks': [{'id': 'check.1', 'expr': 'curved == ray', 'expected': False, 'actual': False, 'pass': True}], 'answer': {'blanks': [], 'choices': [], 'answer_key': [], 'target': {'type': 'selected_statement', 'description': '굽은 선에 대해 알맞은 문장 선택'}, 'value': 0, 'unit': ''}}
+SOLVABLE = {
+    "schema": "modu.solvable.v1.1",
+    "problem_id": "S3_초등_3_009011",
+    "problem_type": "concept_selection",
+    "inputs": {
+        "total_ticks": 1,
+        "target_label": "selected_statement",
+        "target_ticks": 1,
+        "target_count": 1,
+        "unit": "",
+    },
+    "given": [
+        {"ref": "obj.curved_line", "value": {"property": "curved"}},
+        {
+            "ref": "obj.definition",
+            "value": {"text": "반직선은 한 점에서 시작해 한 쪽으로 끝없이 늘인 굵은 선입니다."},
+        },
+    ],
+    "target": {"ref": "answer.target", "type": "selected_statement"},
+    "method": "concept_judgment",
+    "plan": [
+        "그림의 선이 반직선의 정의와 일치하는지 살펴본다.",
+        "일치하지 않으면 알맞은 선택 문장을 고른다.",
+    ],
+    "steps": [
+        {"id": "step.1", "expr": "그림의 선 모양 확인", "value": "curved"},
+        {"id": "step.2", "expr": "반직선의 정의와 비교", "value": "not_match"},
+        {"id": "step.3", "expr": "선택 문장 판단", "value": "반직선이 아닙니다."},
+    ],
+    "checks": [
+        {"id": "check.1", "expr": "curved == ray", "expected": False, "actual": False, "pass": True}
+    ],
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {"type": "selected_statement", "description": "굽은 선에 대해 알맞은 문장 선택"},
+        "value": 0,
+        "unit": "",
+    },
+}

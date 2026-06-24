@@ -1,10 +1,187 @@
 from __future__ import annotations
-from modu_math.dsl import Canvas, ProblemTemplate, Region, TextSlot, CircleSlot, RectSlot, PolygonSlot, LineSlot
+from modu_math.dsl import (
+    Canvas,
+    ProblemTemplate,
+    Region,
+    TextSlot,
+    CircleSlot,
+    RectSlot,
+    PolygonSlot,
+    LineSlot,
+)
+
 
 def build_problem_template() -> ProblemTemplate:
-    return ProblemTemplate(id='S3_초등_3_008801', title='무게를 비교하는 단위 고르기', canvas=Canvas(width=944, height=374, coordinate_mode='logical'), regions=(Region(id='region.header', role='stem', flow='absolute', slot_ids=('slot.q.no', 'slot.q.text1', 'slot.q.text2')), Region(id='region.options', role='diagram', flow='absolute', slot_ids=('slot.opt.clip', 'slot.opt.watermelon', 'slot.opt.coin')), Region(id='region.answer', role='answer', flow='absolute', slot_ids=('slot.answer.clip', 'slot.answer.coin')), Region(id='region.explanation', role='explanation', flow='absolute', slot_ids=())), slots=(TextSlot(id='slot.q.no', prompt='', text='□ 30.', style_role='question', x=8.0, y=26.0, font_size=28), TextSlot(id='slot.q.text1', prompt='', text='바둑돌과 같이 무게를 비교하는 데 사용할 수 있는 단위로 알맞은 것을', style_role='question', x=74.0, y=26.0, font_size=28), TextSlot(id='slot.q.text2', prompt='', text='모두 선택해 보세요.', style_role='question', x=12.0, y=62.0, font_size=28), PolygonSlot(id='slot.opt.clip', prompt='', points=((226.0, 123.0), (263.0, 98.0), (273.0, 104.0), (236.0, 129.0)), fill='#ffffff', stroke='#7aa6c2'), CircleSlot(id='slot.opt.watermelon', prompt='', cx=486.0, cy=145.0, r=42.0, fill='#7ab84f'), CircleSlot(id='slot.opt.coin', prompt='', cx=716.0, cy=143.0, r=28.0, fill='#d9d9d9'), PolygonSlot(id='slot.answer.clip', prompt='', points=((58.0, 284.0), (95.0, 259.0), (105.0, 265.0), (68.0, 290.0)), fill='#ffffff', stroke='#7aa6c2'), CircleSlot(id='slot.answer.coin', prompt='', cx=161.0, cy=283.0, r=28.0, fill='#d9d9d9')), diagrams=(), groups=(), constraints=(), tags=())
+    return ProblemTemplate(
+        id="S3_초등_3_008801",
+        title="무게를 비교하는 단위 고르기",
+        canvas=Canvas(width=944, height=374, coordinate_mode="logical"),
+        regions=(
+            Region(
+                id="region.header",
+                role="stem",
+                flow="absolute",
+                slot_ids=("slot.q.no", "slot.q.text1", "slot.q.text2"),
+            ),
+            Region(
+                id="region.options",
+                role="diagram",
+                flow="absolute",
+                slot_ids=("slot.opt.clip", "slot.opt.watermelon", "slot.opt.coin"),
+            ),
+            Region(
+                id="region.answer",
+                role="answer",
+                flow="absolute",
+                slot_ids=("slot.answer.clip", "slot.answer.coin"),
+            ),
+            Region(id="region.explanation", role="explanation", flow="absolute", slot_ids=()),
+        ),
+        slots=(
+            TextSlot(
+                id="slot.q.no",
+                prompt="",
+                text="□ 30.",
+                style_role="question",
+                x=8.0,
+                y=26.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.q.text1",
+                prompt="",
+                text="바둑돌과 같이 무게를 비교하는 데 사용할 수 있는 단위로 알맞은 것을",
+                style_role="question",
+                x=74.0,
+                y=26.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.q.text2",
+                prompt="",
+                text="모두 선택해 보세요.",
+                style_role="question",
+                x=12.0,
+                y=62.0,
+                font_size=28,
+            ),
+            PolygonSlot(
+                id="slot.opt.clip",
+                prompt="",
+                points=((226.0, 123.0), (263.0, 98.0), (273.0, 104.0), (236.0, 129.0)),
+                fill="#ffffff",
+                stroke="#7aa6c2",
+            ),
+            CircleSlot(
+                id="slot.opt.watermelon", prompt="", cx=486.0, cy=145.0, r=42.0, fill="#7ab84f"
+            ),
+            CircleSlot(id="slot.opt.coin", prompt="", cx=716.0, cy=143.0, r=28.0, fill="#d9d9d9"),
+            PolygonSlot(
+                id="slot.answer.clip",
+                prompt="",
+                points=((58.0, 284.0), (95.0, 259.0), (105.0, 265.0), (68.0, 290.0)),
+                fill="#ffffff",
+                stroke="#7aa6c2",
+            ),
+            CircleSlot(
+                id="slot.answer.coin", prompt="", cx=161.0, cy=283.0, r=28.0, fill="#d9d9d9"
+            ),
+        ),
+        diagrams=(),
+        groups=(),
+        constraints=(),
+        tags=(),
+    )
+
+
 PROBLEM_TEMPLATE = build_problem_template()
 
-SEMANTIC_OVERRIDE = {'problem_id': 'S3_초등_3_008801', 'problem_type': 'multiple_choice', 'metadata': {'language': 'ko', 'question': '바둑돌과 같이 무게를 비교하는 데 사용할 수 있는 단위로 알맞은 것을 모두 선택해 보세요.', 'instruction': '무게 비교에 사용할 수 있는 알맞은 단위를 고르는 문제'}, 'domain': {'objects': [{'id': 'obj.clip', 'type': 'everyday_object', 'name': '클립'}, {'id': 'obj.watermelon', 'type': 'everyday_object', 'name': '수박'}, {'id': 'obj.coin100', 'type': 'everyday_object', 'name': '100원 동전'}], 'relations': [], 'problem_solving': {'understand': {'given_refs': ['obj.clip', 'obj.watermelon', 'obj.coin100'], 'target_ref': 'answer.target', 'condition_refs': ['rel.compare_weight_unit']}, 'plan': {'method': 'choose_appropriate_weight_unit', 'description': '무게를 비교할 때 기준으로 쓰기 알맞은지 판단한다.'}, 'execute': {'expected_operations': ['compare_object_suitability']}, 'review': {'check_methods': ['suitability_for_weight_comparison']}}}, 'answer': {'blanks': [], 'choices': [], 'answer_key': [], 'target': {'type': 'selected_units', 'description': '무게를 비교하는 데 사용할 수 있는 단위'}, 'value': 2, 'unit': ''}}
+SEMANTIC_OVERRIDE = {
+    "problem_id": "S3_초등_3_008801",
+    "problem_type": "multiple_choice",
+    "metadata": {
+        "language": "ko",
+        "question": "바둑돌과 같이 무게를 비교하는 데 사용할 수 있는 단위로 알맞은 것을 모두 선택해 보세요.",
+        "instruction": "무게 비교에 사용할 수 있는 알맞은 단위를 고르는 문제",
+    },
+    "domain": {
+        "objects": [
+            {"id": "obj.clip", "type": "everyday_object", "name": "클립"},
+            {"id": "obj.watermelon", "type": "everyday_object", "name": "수박"},
+            {"id": "obj.coin100", "type": "everyday_object", "name": "100원 동전"},
+        ],
+        "relations": [],
+        "problem_solving": {
+            "understand": {
+                "given_refs": ["obj.clip", "obj.watermelon", "obj.coin100"],
+                "target_ref": "answer.target",
+                "condition_refs": ["rel.compare_weight_unit"],
+            },
+            "plan": {
+                "method": "choose_appropriate_weight_unit",
+                "description": "무게를 비교할 때 기준으로 쓰기 알맞은지 판단한다.",
+            },
+            "execute": {"expected_operations": ["compare_object_suitability"]},
+            "review": {"check_methods": ["suitability_for_weight_comparison"]},
+        },
+    },
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {
+            "type": "selected_units",
+            "description": "무게를 비교하는 데 사용할 수 있는 단위",
+        },
+        "value": 2,
+        "unit": "",
+    },
+}
 
-SOLVABLE = {'schema': 'modu.solvable.v1.1', 'problem_id': 'S3_초등_3_008801', 'problem_type': 'multiple_choice', 'inputs': {'total_ticks': 3, 'target_label': '무게를 비교하는 데 사용할 수 있는 단위', 'target_ticks': 2, 'target_count': 2, 'unit': ''}, 'given': [{'ref': 'obj.clip', 'value': {'name': '클립'}}, {'ref': 'obj.watermelon', 'value': {'name': '수박'}}, {'ref': 'obj.coin100', 'value': {'name': '100원 동전'}}], 'target': {'ref': 'answer.target', 'type': 'selected_units'}, 'plan': '무게를 비교하는 데 알맞은 물체인지 판단한다.', 'steps': [{'id': 'step.1', 'expr': '선택지 3개를 확인한다', 'value': 3}, {'id': 'step.2', 'expr': '무게 비교에 적절한 작은 단위인지 판단한다', 'value': '클립, 100원 동전'}], 'checks': [{'id': 'check.1', 'expr': '정답 예시와 일치하는지 확인', 'expected': '클립, 100원 동전', 'actual': '클립, 100원 동전', 'pass': True}], 'answer': {'blanks': [], 'choices': [], 'answer_key': [], 'target': {'type': 'selected_units', 'description': '무게를 비교하는 데 사용할 수 있는 단위'}, 'value': 2, 'unit': ''}}
+SOLVABLE = {
+    "schema": "modu.solvable.v1.1",
+    "problem_id": "S3_초등_3_008801",
+    "problem_type": "multiple_choice",
+    "inputs": {
+        "total_ticks": 3,
+        "target_label": "무게를 비교하는 데 사용할 수 있는 단위",
+        "target_ticks": 2,
+        "target_count": 2,
+        "unit": "",
+    },
+    "given": [
+        {"ref": "obj.clip", "value": {"name": "클립"}},
+        {"ref": "obj.watermelon", "value": {"name": "수박"}},
+        {"ref": "obj.coin100", "value": {"name": "100원 동전"}},
+    ],
+    "target": {"ref": "answer.target", "type": "selected_units"},
+    "plan": "무게를 비교하는 데 알맞은 물체인지 판단한다.",
+    "steps": [
+        {"id": "step.1", "expr": "선택지 3개를 확인한다", "value": 3},
+        {
+            "id": "step.2",
+            "expr": "무게 비교에 적절한 작은 단위인지 판단한다",
+            "value": "클립, 100원 동전",
+        },
+    ],
+    "checks": [
+        {
+            "id": "check.1",
+            "expr": "정답 예시와 일치하는지 확인",
+            "expected": "클립, 100원 동전",
+            "actual": "클립, 100원 동전",
+            "pass": True,
+        }
+    ],
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {
+            "type": "selected_units",
+            "description": "무게를 비교하는 데 사용할 수 있는 단위",
+        },
+        "value": 2,
+        "unit": "",
+    },
+}

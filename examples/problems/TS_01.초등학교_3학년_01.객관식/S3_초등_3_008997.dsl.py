@@ -1,10 +1,281 @@
 from __future__ import annotations
 from modu_math.dsl import Canvas, ProblemTemplate, Region, RectSlot, TextSlot
 
+
 def build_problem_template() -> ProblemTemplate:
-    return ProblemTemplate(id='S3_초등_3_008997', title='그림을 보고 알맞은 말을 선택하세요.', canvas=Canvas(width=850.0, height=406.0, coordinate_mode='logical'), regions=(Region(id='region.header', role='stem', flow='absolute', slot_ids=('slot.no', 'slot.title')), Region(id='region.diagram', role='diagram', flow='absolute', slot_ids=('slot.rect.left', 'slot.rect.right', 'slot.label.left', 'slot.label.right', 'slot.corner.lt', 'slot.corner.lb', 'slot.corner.rt', 'slot.corner.rb', 'slot.corner2.lt', 'slot.corner2.lb', 'slot.corner2.rt', 'slot.corner2.rb')), Region(id='region.body', role='stem', flow='absolute', slot_ids=('slot.s1', 'slot.s2', 'slot.s3')), Region(id='region.footer', role='answer', flow='absolute', slot_ids=())), slots=(TextSlot(id='slot.no', prompt='', text='□ 35.', style_role='question', x=10.0, y=26.0, font_size=28), TextSlot(id='slot.title', prompt='', text='그림을 보고 알맞은 말을 선택하세요.', style_role='question', x=70.0, y=26.0, font_size=28), RectSlot(id='slot.rect.left', prompt='', x=296.0, y=41.0, width=133.0, height=80.0), RectSlot(id='slot.rect.right', prompt='', x=463.0, y=45.0, width=69.0, height=68.0), TextSlot(id='slot.label.left', prompt='', text='직사각형', style_role='label', x=336.0, y=127.0, font_size=18), TextSlot(id='slot.label.right', prompt='', text='정사각형', style_role='label', x=485.0, y=127.0, font_size=18), TextSlot(id='slot.corner.lt', prompt='', text='ㄴ', style_role='annotation', x=297.0, y=43.0, font_size=16), TextSlot(id='slot.corner.lb', prompt='', text='ㄴ', style_role='annotation', x=297.0, y=114.0, font_size=16), TextSlot(id='slot.corner.rt', prompt='', text='ㄴ', style_role='annotation', x=418.0, y=43.0, font_size=16), TextSlot(id='slot.corner.rb', prompt='', text='ㄴ', style_role='annotation', x=418.0, y=114.0, font_size=16), TextSlot(id='slot.corner2.lt', prompt='', text='ㄴ', style_role='annotation', x=466.0, y=47.0, font_size=16), TextSlot(id='slot.corner2.lb', prompt='', text='ㄴ', style_role='annotation', x=466.0, y=109.0, font_size=16), TextSlot(id='slot.corner2.rt', prompt='', text='ㄴ', style_role='annotation', x=524.0, y=47.0, font_size=16), TextSlot(id='slot.corner2.rb', prompt='', text='ㄴ', style_role='annotation', x=524.0, y=109.0, font_size=16), TextSlot(id='slot.s1', prompt='', text='직사각형은 ( 한, 두, 네 ) 각이 모두 직각입니다.', style_role='question', x=19.0, y=168.0, font_size=28), TextSlot(id='slot.s2', prompt='', text='정사각형은 ( 한, 두, 네 ) 각이 모두 직각입니다.', style_role='question', x=19.0, y=208.0, font_size=28), TextSlot(id='slot.s3', prompt='', text='→ 직사각형과 정사각형은 ( 한, 두, 네 ) 각이 모두 직각입니다.', style_role='question', x=17.0, y=248.0, font_size=28)), diagrams=(), groups=(), constraints=(), tags=())
+    return ProblemTemplate(
+        id="S3_초등_3_008997",
+        title="그림을 보고 알맞은 말을 선택하세요.",
+        canvas=Canvas(width=850.0, height=406.0, coordinate_mode="logical"),
+        regions=(
+            Region(
+                id="region.header", role="stem", flow="absolute", slot_ids=("slot.no", "slot.title")
+            ),
+            Region(
+                id="region.diagram",
+                role="diagram",
+                flow="absolute",
+                slot_ids=(
+                    "slot.rect.left",
+                    "slot.rect.right",
+                    "slot.label.left",
+                    "slot.label.right",
+                    "slot.corner.lt",
+                    "slot.corner.lb",
+                    "slot.corner.rt",
+                    "slot.corner.rb",
+                    "slot.corner2.lt",
+                    "slot.corner2.lb",
+                    "slot.corner2.rt",
+                    "slot.corner2.rb",
+                ),
+            ),
+            Region(
+                id="region.body",
+                role="stem",
+                flow="absolute",
+                slot_ids=("slot.s1", "slot.s2", "slot.s3"),
+            ),
+            Region(id="region.footer", role="answer", flow="absolute", slot_ids=()),
+        ),
+        slots=(
+            TextSlot(
+                id="slot.no",
+                prompt="",
+                text="□ 35.",
+                style_role="question",
+                x=10.0,
+                y=26.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.title",
+                prompt="",
+                text="그림을 보고 알맞은 말을 선택하세요.",
+                style_role="question",
+                x=70.0,
+                y=26.0,
+                font_size=28,
+            ),
+            RectSlot(id="slot.rect.left", prompt="", x=296.0, y=41.0, width=133.0, height=80.0),
+            RectSlot(id="slot.rect.right", prompt="", x=463.0, y=45.0, width=69.0, height=68.0),
+            TextSlot(
+                id="slot.label.left",
+                prompt="",
+                text="직사각형",
+                style_role="label",
+                x=336.0,
+                y=127.0,
+                font_size=18,
+            ),
+            TextSlot(
+                id="slot.label.right",
+                prompt="",
+                text="정사각형",
+                style_role="label",
+                x=485.0,
+                y=127.0,
+                font_size=18,
+            ),
+            TextSlot(
+                id="slot.corner.lt",
+                prompt="",
+                text="ㄴ",
+                style_role="annotation",
+                x=297.0,
+                y=43.0,
+                font_size=16,
+            ),
+            TextSlot(
+                id="slot.corner.lb",
+                prompt="",
+                text="ㄴ",
+                style_role="annotation",
+                x=297.0,
+                y=114.0,
+                font_size=16,
+            ),
+            TextSlot(
+                id="slot.corner.rt",
+                prompt="",
+                text="ㄴ",
+                style_role="annotation",
+                x=418.0,
+                y=43.0,
+                font_size=16,
+            ),
+            TextSlot(
+                id="slot.corner.rb",
+                prompt="",
+                text="ㄴ",
+                style_role="annotation",
+                x=418.0,
+                y=114.0,
+                font_size=16,
+            ),
+            TextSlot(
+                id="slot.corner2.lt",
+                prompt="",
+                text="ㄴ",
+                style_role="annotation",
+                x=466.0,
+                y=47.0,
+                font_size=16,
+            ),
+            TextSlot(
+                id="slot.corner2.lb",
+                prompt="",
+                text="ㄴ",
+                style_role="annotation",
+                x=466.0,
+                y=109.0,
+                font_size=16,
+            ),
+            TextSlot(
+                id="slot.corner2.rt",
+                prompt="",
+                text="ㄴ",
+                style_role="annotation",
+                x=524.0,
+                y=47.0,
+                font_size=16,
+            ),
+            TextSlot(
+                id="slot.corner2.rb",
+                prompt="",
+                text="ㄴ",
+                style_role="annotation",
+                x=524.0,
+                y=109.0,
+                font_size=16,
+            ),
+            TextSlot(
+                id="slot.s1",
+                prompt="",
+                text="직사각형은 ( 한, 두, 네 ) 각이 모두 직각입니다.",
+                style_role="question",
+                x=19.0,
+                y=168.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.s2",
+                prompt="",
+                text="정사각형은 ( 한, 두, 네 ) 각이 모두 직각입니다.",
+                style_role="question",
+                x=19.0,
+                y=208.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.s3",
+                prompt="",
+                text="→ 직사각형과 정사각형은 ( 한, 두, 네 ) 각이 모두 직각입니다.",
+                style_role="question",
+                x=17.0,
+                y=248.0,
+                font_size=28,
+            ),
+        ),
+        diagrams=(),
+        groups=(),
+        constraints=(),
+        tags=(),
+    )
+
+
 PROBLEM_TEMPLATE = build_problem_template()
 
-SEMANTIC_OVERRIDE = {'problem_id': 'S3_초등_3_008997', 'problem_type': '개념선택', 'metadata': {'language': 'ko', 'question': '그림을 보고 알맞은 말을 선택하세요.', 'instruction': '직사각형과 정사각형의 성질을 보고 빈칸을 선택한다.'}, 'domain': {'objects': [{'id': 'obj.rectangle', 'type': 'quadrilateral', 'name': '직사각형'}, {'id': 'obj.square', 'type': 'quadrilateral', 'name': '정사각형'}], 'relations': [], 'problem_solving': {'understand': {'given_refs': ['obj.rectangle', 'obj.square'], 'target_ref': 'answer.target', 'condition_refs': ['rel.rectangle_right_angles', 'rel.square_right_angles', 'rel.both_right_angles']}, 'plan': {'method': '개념 확인', 'description': '그림과 문장에서 두 도형이 공통으로 가지는 성질을 찾는다.'}, 'execute': {'expected_operations': ['도형의 성질 확인', '빈칸 선택지 비교']}, 'review': {'check_methods': ['해설 문장과 일치하는지 확인']}}}, 'answer': {'blanks': [], 'choices': [], 'answer_key': [], 'target': {'type': 'choice_sequence', 'description': '세 문장의 빈칸에 들어갈 말'}, 'value': 0, 'unit': ''}}
+SEMANTIC_OVERRIDE = {
+    "problem_id": "S3_초등_3_008997",
+    "problem_type": "개념선택",
+    "metadata": {
+        "language": "ko",
+        "question": "그림을 보고 알맞은 말을 선택하세요.",
+        "instruction": "직사각형과 정사각형의 성질을 보고 빈칸을 선택한다.",
+    },
+    "domain": {
+        "objects": [
+            {"id": "obj.rectangle", "type": "quadrilateral", "name": "직사각형"},
+            {"id": "obj.square", "type": "quadrilateral", "name": "정사각형"},
+        ],
+        "relations": [],
+        "problem_solving": {
+            "understand": {
+                "given_refs": ["obj.rectangle", "obj.square"],
+                "target_ref": "answer.target",
+                "condition_refs": [
+                    "rel.rectangle_right_angles",
+                    "rel.square_right_angles",
+                    "rel.both_right_angles",
+                ],
+            },
+            "plan": {
+                "method": "개념 확인",
+                "description": "그림과 문장에서 두 도형이 공통으로 가지는 성질을 찾는다.",
+            },
+            "execute": {"expected_operations": ["도형의 성질 확인", "빈칸 선택지 비교"]},
+            "review": {"check_methods": ["해설 문장과 일치하는지 확인"]},
+        },
+    },
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {"type": "choice_sequence", "description": "세 문장의 빈칸에 들어갈 말"},
+        "value": 0,
+        "unit": "",
+    },
+}
 
-SOLVABLE = {'schema': 'modu.solvable.v1.1', 'problem_id': 'S3_초등_3_008997', 'problem_type': '개념선택', 'inputs': {'total_ticks': 3, 'target_label': '빈칸 선택', 'target_ticks': 3, 'target_count': 3, 'unit': ''}, 'given': [{'ref': 'obj.rectangle', 'value': {'name': '직사각형'}}, {'ref': 'obj.square', 'value': {'name': '정사각형'}}], 'target': {'ref': 'answer.target', 'type': 'choice_sequence'}, 'method': '개념 확인', 'plan': ['그림의 두 도형이 모두 네 각이 직각인 사각형인지 확인한다.', '문장 세 줄의 빈칸 선택지를 같은 기준으로 본다.'], 'steps': [{'id': 'step.1', 'expr': '직사각형의 성질 확인', 'value': '네 각이 모두 직각'}, {'id': 'step.2', 'expr': '정사각형의 성질 확인', 'value': '네 각이 모두 직각'}, {'id': 'step.3', 'expr': '세 문장의 공통 빈칸 선택', 'value': ['네', '네', '네']}], 'checks': [{'id': 'check.1', 'expr': '해설의 성질 설명과 일치하는가', 'expected': '네 각이 모두 직각', 'actual': '네 각이 모두 직각', 'pass': True}, {'id': 'check.2', 'expr': '정답 표시와 일치하는가', 'expected': ['네', '네', '네'], 'actual': ['네', '네', '네'], 'pass': True}], 'answer': {'blanks': [], 'choices': [], 'answer_key': [], 'target': {'type': 'choice_sequence', 'description': '세 문장의 빈칸에 들어갈 말'}, 'value': 0, 'unit': ''}}
+SOLVABLE = {
+    "schema": "modu.solvable.v1.1",
+    "problem_id": "S3_초등_3_008997",
+    "problem_type": "개념선택",
+    "inputs": {
+        "total_ticks": 3,
+        "target_label": "빈칸 선택",
+        "target_ticks": 3,
+        "target_count": 3,
+        "unit": "",
+    },
+    "given": [
+        {"ref": "obj.rectangle", "value": {"name": "직사각형"}},
+        {"ref": "obj.square", "value": {"name": "정사각형"}},
+    ],
+    "target": {"ref": "answer.target", "type": "choice_sequence"},
+    "method": "개념 확인",
+    "plan": [
+        "그림의 두 도형이 모두 네 각이 직각인 사각형인지 확인한다.",
+        "문장 세 줄의 빈칸 선택지를 같은 기준으로 본다.",
+    ],
+    "steps": [
+        {"id": "step.1", "expr": "직사각형의 성질 확인", "value": "네 각이 모두 직각"},
+        {"id": "step.2", "expr": "정사각형의 성질 확인", "value": "네 각이 모두 직각"},
+        {"id": "step.3", "expr": "세 문장의 공통 빈칸 선택", "value": ["네", "네", "네"]},
+    ],
+    "checks": [
+        {
+            "id": "check.1",
+            "expr": "해설의 성질 설명과 일치하는가",
+            "expected": "네 각이 모두 직각",
+            "actual": "네 각이 모두 직각",
+            "pass": True,
+        },
+        {
+            "id": "check.2",
+            "expr": "정답 표시와 일치하는가",
+            "expected": ["네", "네", "네"],
+            "actual": ["네", "네", "네"],
+            "pass": True,
+        },
+    ],
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {"type": "choice_sequence", "description": "세 문장의 빈칸에 들어갈 말"},
+        "value": 0,
+        "unit": "",
+    },
+}

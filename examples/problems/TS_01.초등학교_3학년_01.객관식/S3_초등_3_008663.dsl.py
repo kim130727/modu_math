@@ -2,7 +2,6 @@ from __future__ import annotations
 
 from modu_math.dsl import Canvas, ProblemTemplate, Region, TextSlot, compass_on_ruler_slots
 
-
 ANSWER = {
     "blanks": [],
     "choices": [],
@@ -54,23 +53,79 @@ def build_problem_template() -> ProblemTemplate:
         title="반지름이 3 cm인 원을 그릴 수 있도록 컴퍼스를 벌린 것",
         canvas=Canvas(width=920, height=380, coordinate_mode="logical"),
         regions=(
-            Region(id="region.stem", role="stem", flow="absolute", slot_ids=("slot.q.text1", "slot.q.text2", 'slot.q.text2.copy1', 'slot.q.text2.copy2', 'slot.q.text2.copy3')),
+            Region(
+                id="region.stem",
+                role="stem",
+                flow="absolute",
+                slot_ids=(
+                    "slot.q.text1",
+                    "slot.q.text2",
+                    "slot.q.text2.copy1",
+                    "slot.q.text2.copy2",
+                    "slot.q.text2.copy3",
+                ),
+            ),
             Region(
                 id="region.choices",
                 role="choices",
                 flow="absolute",
-                slot_ids=(*(slot.id for slot in choice1), *(slot.id for slot in choice2), *(slot.id for slot in choice3)),
+                slot_ids=(
+                    *(slot.id for slot in choice1),
+                    *(slot.id for slot in choice2),
+                    *(slot.id for slot in choice3),
+                ),
             ),
         ),
-        slots=(TextSlot(
+        slots=(
+            TextSlot(
                 id="slot.q.text1",
                 prompt="",
-                text = '다음 중 반지름이 3 cm인 원을 그릴 수 있도록 컴퍼스를 바르게 벌린 것', style_role="question",
-                x = 35, y = 30, font_size = 25),
-            TextSlot(id="slot.q.text2", prompt="", text="을 선택하세요.", style_role="question", x=36.0, y=66.0, font_size=25),
+                text="다음 중 반지름이 3 cm인 원을 그릴 수 있도록 컴퍼스를 바르게 벌린 것",
+                style_role="question",
+                x=35,
+                y=30,
+                font_size=25,
+            ),
+            TextSlot(
+                id="slot.q.text2",
+                prompt="",
+                text="을 선택하세요.",
+                style_role="question",
+                x=36.0,
+                y=66.0,
+                font_size=25,
+            ),
             *choice1,
             *choice2,
-            *choice3,TextSlot(id = 'slot.q.text2.copy1', prompt = '', text = '㉠', x = 155, y = 110, font_size = 25, fill = '#111111'), TextSlot(id = 'slot.q.text2.copy2', prompt = '', text = '㉡', x = 390, y = 110, font_size = 25, fill = '#111111'), TextSlot(id = 'slot.q.text2.copy3', prompt = '', text = '㉢', x = 620, y = 110, font_size = 25, fill = '#111111')),
+            *choice3,
+            TextSlot(
+                id="slot.q.text2.copy1",
+                prompt="",
+                text="㉠",
+                x=155,
+                y=110,
+                font_size=25,
+                fill="#111111",
+            ),
+            TextSlot(
+                id="slot.q.text2.copy2",
+                prompt="",
+                text="㉡",
+                x=390,
+                y=110,
+                font_size=25,
+                fill="#111111",
+            ),
+            TextSlot(
+                id="slot.q.text2.copy3",
+                prompt="",
+                text="㉢",
+                x=620,
+                y=110,
+                font_size=25,
+                fill="#111111",
+            ),
+        ),
         diagrams=(),
         groups=(),
         constraints=(),
@@ -90,7 +145,13 @@ SEMANTIC_OVERRIDE = {
     },
     "domain": {
         "objects": [
-            {"id": "obj.radius", "type": "length", "value": 3, "unit": "cm", "role": "given_radius"},
+            {
+                "id": "obj.radius",
+                "type": "length",
+                "value": 3,
+                "unit": "cm",
+                "role": "given_radius",
+            },
             {"id": "obj.choice.1", "type": "compass_on_ruler", "spread": 1, "unit": "cm"},
             {"id": "obj.choice.2", "type": "compass_on_ruler", "spread": 2, "unit": "cm"},
             {"id": "obj.choice.3", "type": "compass_on_ruler", "spread": 3, "unit": "cm"},
@@ -110,8 +171,17 @@ SEMANTIC_OVERRIDE = {
                 "target_ref": "answer.target",
                 "condition_refs": ["rel.choice3.matches_radius"],
             },
-            "plan": {"method": "compare_spread_to_radius", "description": "각 그림의 컴퍼스 폭을 자의 눈금과 비교한다."},
-            "execute": {"expected_operations": ["read_ruler_marks", "compare_compass_spread", "choose_matching_picture"]},
+            "plan": {
+                "method": "compare_spread_to_radius",
+                "description": "각 그림의 컴퍼스 폭을 자의 눈금과 비교한다.",
+            },
+            "execute": {
+                "expected_operations": [
+                    "read_ruler_marks",
+                    "compare_compass_spread",
+                    "choose_matching_picture",
+                ]
+            },
             "review": {"check_methods": ["length_match_check"]},
         },
     },
@@ -145,6 +215,14 @@ SOLVABLE = {
         {"id": "step.2", "expr": "두 번째 컴퍼스 폭 = 2 cm", "value": 2},
         {"id": "step.3", "expr": "세 번째 컴퍼스 폭 = 3 cm", "value": 3},
     ],
-    "checks": [{"id": "check.1", "expr": "정답 보기의 컴퍼스 폭이 3 cm인가", "expected": 3, "actual": 3, "pass": True}],
+    "checks": [
+        {
+            "id": "check.1",
+            "expr": "정답 보기의 컴퍼스 폭이 3 cm인가",
+            "expected": 3,
+            "actual": 3,
+            "pass": True,
+        }
+    ],
     "answer": ANSWER,
 }

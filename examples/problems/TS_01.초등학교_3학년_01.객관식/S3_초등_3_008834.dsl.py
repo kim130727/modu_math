@@ -1,10 +1,251 @@
 from __future__ import annotations
-from modu_math.dsl import Canvas, ProblemTemplate, Region, TextSlot, RectSlot, LineSlot, CircleSlot, PolygonSlot
+from modu_math.dsl import (
+    Canvas,
+    ProblemTemplate,
+    Region,
+    TextSlot,
+    RectSlot,
+    LineSlot,
+    CircleSlot,
+    PolygonSlot,
+)
+
 
 def build_problem_template() -> ProblemTemplate:
-    return ProblemTemplate(id='S3_초등_3_008834', title='저울로 무게 비교하기', canvas=Canvas(width=960, height=431, coordinate_mode='logical'), regions=(Region(id='region.header', role='stem', flow='absolute', slot_ids=('slot.qnum', 'slot.instruction.1', 'slot.instruction.2')), Region(id='region.diagram', role='diagram', flow='absolute', slot_ids=('slot.scale.base', 'slot.scale.pole', 'slot.scale.beam', 'slot.scale.left.pan', 'slot.scale.right.pan', 'slot.scale.center', 'slot.potato', 'slot.sweetpotato', 'slot.label.potato', 'slot.label.sweetpotato')), Region(id='region.statement', role='stem', flow='absolute', slot_ids=('slot.statement',)), Region(id='region.footer', role='answer', flow='absolute', slot_ids=())), slots=(TextSlot(id='slot.qnum', prompt='', text='72.', style_role='question', x=42.0, y=28.0, font_size=28), TextSlot(id='slot.instruction.1', prompt='', text='저울을 사용하여 감자와 고구마의 무게를 비교했습니다. 바르게 비교하였으면 ○표,', style_role='question', x=72.0, y=34.0, font_size=28), TextSlot(id='slot.instruction.2', prompt='', text='그렇지 않으면 ×표를 선택하세요.', style_role='question', x=12.0, y=70.0, font_size=28), RectSlot(id='slot.scale.base', prompt='', x=384.0, y=210.0, width=204.0, height=56.0), RectSlot(id='slot.scale.pole', prompt='', x=484.0, y=106.0, width=12.0, height=106.0), LineSlot(id='slot.scale.beam', prompt='', x1=412.0, y1=164.0, x2=568.0, y2=164.0), PolygonSlot(id='slot.scale.left.pan', prompt='', points=((401.0, 166.0), (454.0, 166.0), (444.0, 192.0), (411.0, 192.0))), PolygonSlot(id='slot.scale.right.pan', prompt='', points=((526.0, 170.0), (579.0, 170.0), (571.0, 196.0), (536.0, 196.0))), CircleSlot(id='slot.scale.center', prompt='', cx=490.0, cy=164.0, r=5.0, fill='#222222'), PolygonSlot(id='slot.potato', prompt='', points=((414.0, 149.0), (438.0, 141.0), (455.0, 149.0), (457.0, 162.0), (447.0, 172.0), (424.0, 171.0), (412.0, 160.0))), PolygonSlot(id='slot.sweetpotato', prompt='', points=((537.0, 153.0), (566.0, 143.0), (586.0, 149.0), (593.0, 158.0), (586.0, 168.0), (566.0, 171.0), (545.0, 166.0))), TextSlot(id='slot.label.potato', prompt='', text='감자', style_role='label', x=415.0, y=92.0, font_size=28), TextSlot(id='slot.label.sweetpotato', prompt='', text='고구마', style_role='label', x=539.0, y=94.0, font_size=28), TextSlot(id='slot.statement', prompt='', text='고구마가 감자보다 더 무겁습니다. ( ○, × )', style_role='question', x=220.0, y=282.0, font_size=28)), diagrams=(), groups=(), constraints=(), tags=())
+    return ProblemTemplate(
+        id="S3_초등_3_008834",
+        title="저울로 무게 비교하기",
+        canvas=Canvas(width=960, height=431, coordinate_mode="logical"),
+        regions=(
+            Region(
+                id="region.header",
+                role="stem",
+                flow="absolute",
+                slot_ids=("slot.qnum", "slot.instruction.1", "slot.instruction.2"),
+            ),
+            Region(
+                id="region.diagram",
+                role="diagram",
+                flow="absolute",
+                slot_ids=(
+                    "slot.scale.base",
+                    "slot.scale.pole",
+                    "slot.scale.beam",
+                    "slot.scale.left.pan",
+                    "slot.scale.right.pan",
+                    "slot.scale.center",
+                    "slot.potato",
+                    "slot.sweetpotato",
+                    "slot.label.potato",
+                    "slot.label.sweetpotato",
+                ),
+            ),
+            Region(
+                id="region.statement", role="stem", flow="absolute", slot_ids=("slot.statement",)
+            ),
+            Region(id="region.footer", role="answer", flow="absolute", slot_ids=()),
+        ),
+        slots=(
+            TextSlot(
+                id="slot.qnum",
+                prompt="",
+                text="72.",
+                style_role="question",
+                x=42.0,
+                y=28.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.instruction.1",
+                prompt="",
+                text="저울을 사용하여 감자와 고구마의 무게를 비교했습니다. 바르게 비교하였으면 ○표,",
+                style_role="question",
+                x=72.0,
+                y=34.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.instruction.2",
+                prompt="",
+                text="그렇지 않으면 ×표를 선택하세요.",
+                style_role="question",
+                x=12.0,
+                y=70.0,
+                font_size=28,
+            ),
+            RectSlot(id="slot.scale.base", prompt="", x=384.0, y=210.0, width=204.0, height=56.0),
+            RectSlot(id="slot.scale.pole", prompt="", x=484.0, y=106.0, width=12.0, height=106.0),
+            LineSlot(id="slot.scale.beam", prompt="", x1=412.0, y1=164.0, x2=568.0, y2=164.0),
+            PolygonSlot(
+                id="slot.scale.left.pan",
+                prompt="",
+                points=((401.0, 166.0), (454.0, 166.0), (444.0, 192.0), (411.0, 192.0)),
+            ),
+            PolygonSlot(
+                id="slot.scale.right.pan",
+                prompt="",
+                points=((526.0, 170.0), (579.0, 170.0), (571.0, 196.0), (536.0, 196.0)),
+            ),
+            CircleSlot(
+                id="slot.scale.center", prompt="", cx=490.0, cy=164.0, r=5.0, fill="#222222"
+            ),
+            PolygonSlot(
+                id="slot.potato",
+                prompt="",
+                points=(
+                    (414.0, 149.0),
+                    (438.0, 141.0),
+                    (455.0, 149.0),
+                    (457.0, 162.0),
+                    (447.0, 172.0),
+                    (424.0, 171.0),
+                    (412.0, 160.0),
+                ),
+            ),
+            PolygonSlot(
+                id="slot.sweetpotato",
+                prompt="",
+                points=(
+                    (537.0, 153.0),
+                    (566.0, 143.0),
+                    (586.0, 149.0),
+                    (593.0, 158.0),
+                    (586.0, 168.0),
+                    (566.0, 171.0),
+                    (545.0, 166.0),
+                ),
+            ),
+            TextSlot(
+                id="slot.label.potato",
+                prompt="",
+                text="감자",
+                style_role="label",
+                x=415.0,
+                y=92.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.label.sweetpotato",
+                prompt="",
+                text="고구마",
+                style_role="label",
+                x=539.0,
+                y=94.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.statement",
+                prompt="",
+                text="고구마가 감자보다 더 무겁습니다. ( ○, × )",
+                style_role="question",
+                x=220.0,
+                y=282.0,
+                font_size=28,
+            ),
+        ),
+        diagrams=(),
+        groups=(),
+        constraints=(),
+        tags=(),
+    )
+
+
 PROBLEM_TEMPLATE = build_problem_template()
 
-SEMANTIC_OVERRIDE = {'problem_id': 'S3_초등_3_008834', 'problem_type': 'comparison_judgment', 'metadata': {'language': 'ko', 'question': '저울 그림을 보고 고구마와 감자의 무게 비교 문장이 바른지 판단하는 문제', 'instruction': '바르게 비교하였으면 ○표, 그렇지 않으면 ×표를 선택하기'}, 'domain': {'objects': [{'id': 'obj.potato', 'type': 'food', 'name': '감자'}, {'id': 'obj.sweetpotato', 'type': 'food', 'name': '고구마'}, {'id': 'obj.balance', 'type': 'balance_scale'}], 'relations': [], 'problem_solving': {'understand': {'given_refs': ['obj.potato', 'obj.sweetpotato', 'obj.balance'], 'target_ref': 'answer.target', 'condition_refs': ['rel.compare_weight']}, 'plan': {'method': 'observe_balance_tilt', 'description': '저울의 기울어진 방향을 보고 어느 물체가 더 무거운지 판단한다.'}, 'execute': {'expected_operations': ['observe_right_pan_lower', 'match_statement_to_observation']}, 'review': {'check_methods': ['statement_truth_check']}}}, 'answer': {'blanks': [], 'choices': [], 'answer_key': [], 'target': {'type': 'truth_value', 'description': '고구마가 감자보다 더 무겁습니다. 문장이 맞는지 판단'}, 'value': 1, 'unit': ''}}
+SEMANTIC_OVERRIDE = {
+    "problem_id": "S3_초등_3_008834",
+    "problem_type": "comparison_judgment",
+    "metadata": {
+        "language": "ko",
+        "question": "저울 그림을 보고 고구마와 감자의 무게 비교 문장이 바른지 판단하는 문제",
+        "instruction": "바르게 비교하였으면 ○표, 그렇지 않으면 ×표를 선택하기",
+    },
+    "domain": {
+        "objects": [
+            {"id": "obj.potato", "type": "food", "name": "감자"},
+            {"id": "obj.sweetpotato", "type": "food", "name": "고구마"},
+            {"id": "obj.balance", "type": "balance_scale"},
+        ],
+        "relations": [],
+        "problem_solving": {
+            "understand": {
+                "given_refs": ["obj.potato", "obj.sweetpotato", "obj.balance"],
+                "target_ref": "answer.target",
+                "condition_refs": ["rel.compare_weight"],
+            },
+            "plan": {
+                "method": "observe_balance_tilt",
+                "description": "저울의 기울어진 방향을 보고 어느 물체가 더 무거운지 판단한다.",
+            },
+            "execute": {
+                "expected_operations": ["observe_right_pan_lower", "match_statement_to_observation"]
+            },
+            "review": {"check_methods": ["statement_truth_check"]},
+        },
+    },
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {
+            "type": "truth_value",
+            "description": "고구마가 감자보다 더 무겁습니다. 문장이 맞는지 판단",
+        },
+        "value": 1,
+        "unit": "",
+    },
+}
 
-SOLVABLE = {'schema': 'modu.solvable.v1.1', 'problem_id': 'S3_초등_3_008834', 'problem_type': 'comparison_judgment', 'inputs': {'total_ticks': 0, 'target_label': '고구마가 감자보다 더 무겁습니다. ( ○, × )', 'target_ticks': 0, 'target_count': 0, 'unit': ''}, 'given': [{'ref': 'obj.potato', 'value': {'name': '감자'}}, {'ref': 'obj.sweetpotato', 'value': {'name': '고구마'}}, {'ref': 'obj.balance', 'value': {'observation': '오른쪽 접시가 더 아래로 내려감'}}], 'target': {'ref': 'answer.target', 'type': 'truth_value'}, 'method': 'observe_balance_tilt', 'plan': ['저울의 기울어진 방향을 관찰한다.', '더 아래로 내려간 쪽의 물체가 더 무거운지 판단한다.', '문장이 관찰과 일치하는지 확인한다.'], 'steps': [{'id': 'step.1', 'expr': '오른쪽 접시가 더 아래로 내려갔는지 관찰', 'value': 'yes'}, {'id': 'step.2', 'expr': '오른쪽의 고구마가 더 무거운지 판단', 'value': 'yes'}, {'id': 'step.3', 'expr': '고구마가 감자보다 더 무겁습니다. 문장의 참/거짓 판단', 'value': '참'}], 'checks': [{'id': 'check.1', 'expr': '저울의 아래쪽 접시와 문장의 무거운 대상이 일치하는지 확인', 'expected': '일치', 'actual': '일치', 'pass': True}], 'answer': {'blanks': [], 'choices': [], 'answer_key': [], 'target': {'type': 'truth_value', 'description': '고구마가 감자보다 더 무겁습니다. 문장이 맞는지 판단'}, 'value': 1, 'unit': ''}}
+SOLVABLE = {
+    "schema": "modu.solvable.v1.1",
+    "problem_id": "S3_초등_3_008834",
+    "problem_type": "comparison_judgment",
+    "inputs": {
+        "total_ticks": 0,
+        "target_label": "고구마가 감자보다 더 무겁습니다. ( ○, × )",
+        "target_ticks": 0,
+        "target_count": 0,
+        "unit": "",
+    },
+    "given": [
+        {"ref": "obj.potato", "value": {"name": "감자"}},
+        {"ref": "obj.sweetpotato", "value": {"name": "고구마"}},
+        {"ref": "obj.balance", "value": {"observation": "오른쪽 접시가 더 아래로 내려감"}},
+    ],
+    "target": {"ref": "answer.target", "type": "truth_value"},
+    "method": "observe_balance_tilt",
+    "plan": [
+        "저울의 기울어진 방향을 관찰한다.",
+        "더 아래로 내려간 쪽의 물체가 더 무거운지 판단한다.",
+        "문장이 관찰과 일치하는지 확인한다.",
+    ],
+    "steps": [
+        {"id": "step.1", "expr": "오른쪽 접시가 더 아래로 내려갔는지 관찰", "value": "yes"},
+        {"id": "step.2", "expr": "오른쪽의 고구마가 더 무거운지 판단", "value": "yes"},
+        {
+            "id": "step.3",
+            "expr": "고구마가 감자보다 더 무겁습니다. 문장의 참/거짓 판단",
+            "value": "참",
+        },
+    ],
+    "checks": [
+        {
+            "id": "check.1",
+            "expr": "저울의 아래쪽 접시와 문장의 무거운 대상이 일치하는지 확인",
+            "expected": "일치",
+            "actual": "일치",
+            "pass": True,
+        }
+    ],
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {
+            "type": "truth_value",
+            "description": "고구마가 감자보다 더 무겁습니다. 문장이 맞는지 판단",
+        },
+        "value": 1,
+        "unit": "",
+    },
+}

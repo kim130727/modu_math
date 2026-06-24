@@ -1,39 +1,55 @@
 {
   "schema": "modu.layout.v1",
   "problem_id": "S3_초등_3_008733",
-  "title": "사다리를 타고 분수 분류하기",
+  "title": "사다리를 타고 내려가 도착한 곳이 참이면 ○표, 거짓이면 ×표 하세요.",
   "canvas": {
-    "width": 935.0,
-    "height": 877.0,
+    "width": 920,
+    "height": 650,
     "coordinate_mode": "logical",
     "background": "#FFFFFF"
   },
   "regions": [
     {
-      "id": "region.stem",
+      "id": "region.top",
       "role": "stem",
       "flow": "absolute",
       "slot_ids": [
-        "slot.q16",
-        "slot.q16.copy29",
-        "slot.q16.copy30",
         "slot.q9",
-        "slot.q12",
-        "slot.q15",
-        "slot.q2",
-        "slot.q7",
-        "slot.q8",
         "slot.q10",
         "slot.q11",
-        "slot.q13",
-        "slot.q14",
+        "slot.q24",
+        "slot.q25",
+        "slot.q26",
+        "slot.q18",
         "slot.q19",
         "slot.q20",
         "slot.q21",
         "slot.q22",
         "slot.q23",
-        "slot.q24",
-        "slot.q2.copy28"
+        "slot.math.fraction_3.bar",
+        "slot.math.fraction_4.bar",
+        "slot.math.fraction_5.bar",
+        "slot.q2",
+        "slot.q27",
+        "slot.q28",
+        "slot.math.fraction_3.num",
+        "slot.math.fraction_3.den",
+        "slot.math.fraction_4.num",
+        "slot.math.fraction_4.den",
+        "slot.math.fraction_5.num",
+        "slot.math.fraction_5.den",
+        "slot.q29",
+        "slot.q30",
+        "slot.q31",
+        "slot.q32"
+      ]
+    },
+    {
+      "id": "region.bottom",
+      "role": "support",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.b39"
       ]
     }
   ],
@@ -43,243 +59,386 @@
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "사다리를 타고 내려가 도착한 곳이 참이면 ○표,",
+        "text": "사다리를 타고 내려가 도착한 곳이 참이면 ○표, 거짓이면 ×표하세요.",
         "style_role": "question",
-        "x": 65.0,
-        "y": 98.0,
-        "font_size": 30
-      }
-    },
-    {
-      "id": "slot.q7",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "3",
-        "style_role": "question",
-        "x": 300.0,
-        "y": 238.0,
-        "font_size": 30
-      }
-    },
-    {
-      "id": "slot.q8",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "10",
-        "style_role": "question",
-        "x": 300.0,
-        "y": 355.0,
+        "x": 35.0,
+        "y": 105.0,
         "font_size": 30
       }
     },
     {
       "id": "slot.q9",
-      "kind": "line",
+      "kind": "rect",
       "prompt": "",
       "content": {
-        "x1": 294.0,
-        "y1": 255.0,
-        "x2": 324.0,
-        "y2": 255.0
+        "x": 229.0,
+        "y": 200.0,
+        "width": 90.0,
+        "height": 105.0,
+        "stroke": "#111111",
+        "stroke_width": 1.5,
+        "fill": "#ffffff"
       }
     },
     {
       "id": "slot.q10",
-      "kind": "text",
+      "kind": "rect",
       "prompt": "",
       "content": {
-        "text": "2",
-        "style_role": "question",
-        "x": 455.0,
-        "y": 238.0,
-        "font_size": 30
+        "x": 384.0,
+        "y": 200.0,
+        "width": 80.0,
+        "height": 100.0,
+        "stroke": "#111111",
+        "stroke_width": 1.5,
+        "fill": "#ffffff"
       }
     },
     {
       "id": "slot.q11",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "2",
-        "style_role": "question",
-        "x": 455.0,
-        "y": 335.0,
-        "font_size": 30
-      }
-    },
-    {
-      "id": "slot.q12",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 451.0,
-        "y1": 257.0,
-        "x2": 476.0,
-        "y2": 257.0
-      }
-    },
-    {
-      "id": "slot.q13",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "15",
-        "style_role": "question",
-        "x": 615.0,
-        "y": 238.0,
-        "font_size": 30
-      }
-    },
-    {
-      "id": "slot.q14",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "7",
-        "style_role": "question",
-        "x": 620.0,
-        "y": 340.0,
-        "font_size": 30
-      }
-    },
-    {
-      "id": "slot.q15",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 618.0,
-        "y1": 255.0,
-        "x2": 643.0,
-        "y2": 255.0
-      }
-    },
-    {
-      "id": "slot.q16",
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 140.0,
-        "y": 310.0,
-        "width": 110.0,
-        "height": 65.0,
+        "x": 534.0,
+        "y": 200.0,
+        "width": 80.0,
+        "height": 95.0,
         "stroke": "#111111",
         "stroke_width": 1.5,
-        "fill": "#fecaca"
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.q18",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 275.0,
+        "y1": 305.0,
+        "x2": 275.0,
+        "y2": 425.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0
       }
     },
     {
       "id": "slot.q19",
-      "kind": "text",
+      "kind": "line",
       "prompt": "",
       "content": {
-        "text": "가분수",
-        "style_role": "question",
-        "x": 285.0,
-        "y": 400.0,
-        "font_size": 30
+        "x1": 425.0,
+        "y1": 305.0,
+        "x2": 425.0,
+        "y2": 425.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0
       }
     },
     {
       "id": "slot.q20",
-      "kind": "text",
+      "kind": "line",
       "prompt": "",
       "content": {
-        "text": "진분수",
-        "style_role": "question",
-        "x": 440.0,
-        "y": 400.0,
-        "font_size": 30
+        "x1": 575.0,
+        "y1": 300.0,
+        "x2": 575.0,
+        "y2": 425.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0
       }
     },
     {
       "id": "slot.q21",
-      "kind": "text",
+      "kind": "line",
       "prompt": "",
       "content": {
-        "text": "진분수",
-        "style_role": "question",
-        "x": 600.0,
-        "y": 400.0,
-        "font_size": 30
+        "x1": 275.0,
+        "y1": 345.0,
+        "x2": 425.0,
+        "y2": 345.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0
       }
     },
     {
       "id": "slot.q22",
-      "kind": "text",
+      "kind": "line",
       "prompt": "",
       "content": {
-        "text": "(○, ×)",
-        "style_role": "question",
-        "x": 250.0,
-        "y": 445.0,
-        "font_size": 30
+        "x1": 425.0,
+        "y1": 375.0,
+        "x2": 575.0,
+        "y2": 375.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0
       }
     },
     {
       "id": "slot.q23",
-      "kind": "text",
+      "kind": "line",
       "prompt": "",
       "content": {
-        "text": "(○, ×)",
-        "style_role": "question",
-        "x": 410.0,
-        "y": 445.0,
-        "font_size": 30
+        "x1": 275.0,
+        "y1": 400.0,
+        "x2": 425.0,
+        "y2": 400.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0
       }
     },
     {
       "id": "slot.q24",
-      "kind": "text",
+      "kind": "rect",
       "prompt": "",
       "content": {
-        "text": "(○, ×)",
-        "style_role": "question",
-        "x": 570.0,
-        "y": 445.0,
-        "font_size": 30
+        "x": 213.0,
+        "y": 425.0,
+        "width": 110.0,
+        "height": 45.0,
+        "stroke": "#111111",
+        "stroke_width": 1.5,
+        "fill": "#ffffff"
       }
     },
     {
-      "id": "slot.q2.copy28",
+      "id": "slot.q25",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 370.0,
+        "y": 425.0,
+        "width": 100.0,
+        "height": 45.0,
+        "stroke": "#111111",
+        "stroke_width": 1.5,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.q26",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 517.0,
+        "y": 425.0,
+        "width": 100.0,
+        "height": 45.0,
+        "stroke": "#111111",
+        "stroke_width": 1.5,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.q27",
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "거짓이면 ×표를 선택하세요.",
-        "style_role": "body",
-        "x": 65.0,
-        "y": 150.0,
+        "text": "가분수",
+        "style_role": "label",
+        "x": 230.0,
+        "y": 455.0,
         "font_size": 30,
         "fill": "#111111"
       }
     },
     {
-      "id": "slot.q16.copy29",
-      "kind": "rect",
+      "id": "slot.q28",
+      "kind": "text",
       "prompt": "",
       "content": {
-        "x": 60.0,
-        "y": 420.0,
-        "width": 110.0,
-        "height": 65.0,
-        "stroke": "#111111",
-        "stroke_width": 1.5,
-        "fill": "#fecaca"
+        "text": "가분수",
+        "style_role": "label",
+        "x": 380.0,
+        "y": 455.0,
+        "font_size": 30,
+        "fill": "#111111"
       }
     },
     {
-      "id": "slot.q16.copy30",
-      "kind": "rect",
+      "id": "slot.q29",
+      "kind": "text",
       "prompt": "",
       "content": {
-        "x": 240.0,
-        "y": 490.0,
-        "width": 110.0,
-        "height": 65.0,
-        "stroke": "#111111",
-        "stroke_width": 1.5,
-        "fill": "#fecaca"
+        "text": "진분수",
+        "style_role": "label",
+        "x": 530.0,
+        "y": 455.0,
+        "font_size": 30,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.q30",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "(○, ×)",
+        "style_role": "label",
+        "x": 222.0,
+        "y": 512.0,
+        "font_size": 30,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.q31",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "(○, ×)",
+        "style_role": "label",
+        "x": 372.0,
+        "y": 512.0,
+        "font_size": 30,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.q32",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "(○, ×)",
+        "style_role": "label",
+        "x": 522.0,
+        "y": 512.0,
+        "font_size": 30,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.b39",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "",
+        "style_role": "label",
+        "x": 0.0,
+        "y": 0.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.math.fraction_3.num",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "3",
+        "style_role": "body",
+        "x": 275.0,
+        "y": 240.0,
+        "font_size": 30,
+        "anchor": "middle",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.math.fraction_3.bar",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 255.0,
+        "y1": 255.0,
+        "x2": 295.0,
+        "y2": 255.0,
+        "stroke": "#222222",
+        "stroke_width": 2.2
+      }
+    },
+    {
+      "id": "slot.math.fraction_3.den",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "10",
+        "style_role": "body",
+        "x": 275.0,
+        "y": 280.0,
+        "font_size": 30,
+        "anchor": "middle",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.math.fraction_4.num",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "2",
+        "style_role": "body",
+        "x": 425.0,
+        "y": 240.0,
+        "font_size": 30,
+        "anchor": "middle",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.math.fraction_4.bar",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 405.0,
+        "y1": 255.0,
+        "x2": 445.0,
+        "y2": 255.0,
+        "stroke": "#222222",
+        "stroke_width": 2.2
+      }
+    },
+    {
+      "id": "slot.math.fraction_4.den",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "2",
+        "style_role": "body",
+        "x": 425.0,
+        "y": 280.0,
+        "font_size": 30,
+        "anchor": "middle",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.math.fraction_5.num",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "15",
+        "style_role": "body",
+        "x": 575.0,
+        "y": 240.0,
+        "font_size": 30,
+        "anchor": "middle",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.math.fraction_5.bar",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 555.0,
+        "y1": 255.0,
+        "x2": 595.0,
+        "y2": 255.0,
+        "stroke": "#222222",
+        "stroke_width": 2.2
+      }
+    },
+    {
+      "id": "slot.math.fraction_5.den",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "7",
+        "style_role": "body",
+        "x": 575.0,
+        "y": 280.0,
+        "font_size": 30,
+        "anchor": "middle",
+        "fill": "#222222"
       }
     }
   ],
@@ -287,26 +446,36 @@
   "constraints": [],
   "diagrams": [],
   "reading_order": [
-    "region.stem",
-    "slot.q16",
-    "slot.q16.copy29",
-    "slot.q16.copy30",
+    "region.top",
     "slot.q9",
-    "slot.q12",
-    "slot.q15",
-    "slot.q2",
-    "slot.q7",
-    "slot.q8",
     "slot.q10",
     "slot.q11",
-    "slot.q13",
-    "slot.q14",
+    "slot.q24",
+    "slot.q25",
+    "slot.q26",
+    "slot.q18",
     "slot.q19",
     "slot.q20",
     "slot.q21",
     "slot.q22",
     "slot.q23",
-    "slot.q24",
-    "slot.q2.copy28"
+    "slot.math.fraction_3.bar",
+    "slot.math.fraction_4.bar",
+    "slot.math.fraction_5.bar",
+    "slot.q2",
+    "slot.q27",
+    "slot.q28",
+    "slot.math.fraction_3.num",
+    "slot.math.fraction_3.den",
+    "slot.math.fraction_4.num",
+    "slot.math.fraction_4.den",
+    "slot.math.fraction_5.num",
+    "slot.math.fraction_5.den",
+    "slot.q29",
+    "slot.q30",
+    "slot.q31",
+    "slot.q32",
+    "region.bottom",
+    "slot.b39"
   ]
 }

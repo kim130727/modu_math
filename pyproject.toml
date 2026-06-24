@@ -15,6 +15,7 @@ dependencies = [
 
 [project.optional-dependencies]
 dev = [
+    "black>=24.0.0",
     "pytest>=8.0.0",
     "jsonschema>=4.0.0",
 ]
@@ -23,6 +24,7 @@ llm = [
     "python-dotenv>=1.0.0",
 ]
 web = [
+    "black>=24.0.0",
     "django>=4.0,<5.0",
     "jsonschema>=4.0.0",
     "libcst>=1.4.0",

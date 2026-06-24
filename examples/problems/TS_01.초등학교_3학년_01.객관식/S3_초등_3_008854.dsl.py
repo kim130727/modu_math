@@ -1,10 +1,290 @@
 from __future__ import annotations
-from modu_math.dsl import Canvas, ProblemTemplate, Region, TextSlot, RectSlot, LineSlot, CircleSlot, PathSlot
+from modu_math.dsl import (
+    Canvas,
+    ProblemTemplate,
+    Region,
+    TextSlot,
+    RectSlot,
+    LineSlot,
+    CircleSlot,
+    PathSlot,
+)
+
 
 def build_problem_template() -> ProblemTemplate:
-    return ProblemTemplate(id='S3_초등_3_008854', title='들이가 가장 적은 것', canvas=Canvas(width=960, height=720, coordinate_mode='logical'), regions=(Region(id='region.stem', role='stem', flow='absolute', slot_ids=('slot.no', 'slot.q1', 'slot.q2', 'slot.opt')), Region(id='region.diagram.left', role='diagram', flow='absolute', slot_ids=('slot.left.bottle.top', 'slot.left.bottle.bottom', 'slot.left.label.top', 'slot.left.label.bottom')), Region(id='region.diagram.right', role='diagram', flow='absolute', slot_ids=('slot.right.bottle.top', 'slot.right.bottle.bottom', 'slot.right.label.top', 'slot.right.label.bottom'))), slots=(TextSlot(id='slot.no', prompt='', text='100.', style_role='question', x=18.0, y=34.0, font_size=28), TextSlot(id='slot.q1', prompt='', text='윤재는 우유병에 물을 가득 채운 후 물병에 옮겨 담고, 다시 우유병에', style_role='question', x=78.0, y=36.0, font_size=28), TextSlot(id='slot.q2', prompt='', text='물을 가득 채운 후 주스병에 옮겨 담았습니다. 그러고 같이 물을 채웠을 때에 우유병과 물병, 주스병 중', style_role='question', x=18.0, y=76.0, font_size=28), TextSlot(id='slot.q3', prompt='', text='들이가 가장 적은 것은 어느 것인가요?', style_role='question', x=18.0, y=116.0, font_size=28), PathSlot(id='slot.left.bottle.top', prompt='', d='M 245 128 C 230 132, 222 150, 226 164 C 230 179, 241 184, 260 191 C 281 198, 301 210, 316 221 C 325 227, 335 228, 340 222 C 345 216, 340 209, 332 204 C 320 197, 310 186, 300 177 C 286 165, 280 152, 270 143 C 260 135, 252 126, 245 128 Z', stroke='#57B7F4', fill='none'), PathSlot(id='slot.left.bottle.bottom', prompt='', d='M 354 231 C 344 231, 337 238, 337 248 L 337 365 C 337 388, 350 401, 372 401 L 388 401 C 409 401, 422 388, 422 365 L 422 248 C 422 238, 415 231, 405 231 Z M 361 248 C 361 244, 365 240, 369 240 L 391 240 C 395 240, 399 244, 399 248 C 399 252, 395 255, 391 255 L 369 255 C 365 255, 361 252, 361 248 Z', stroke='#7DBEF0', fill='none'), RectSlot(id='slot.left.water', prompt='', x=346.0, y=286.0, width=68.0, height=114.0, fill='#B7DDF7', stroke='none'), TextSlot(id='slot.left.label.top', prompt='', text='우유병', style_role='label', x=212.0, y=224.0, font_size=28), TextSlot(id='slot.left.label.bottom', prompt='', text='물병', style_role='label', x=260.0, y=384.0, font_size=28), PathSlot(id='slot.right.bottle.top', prompt='', d='M 645 128 C 630 132, 622 150, 626 164 C 630 179, 641 184, 660 191 C 681 198, 701 210, 716 221 C 725 227, 735 228, 740 222 C 745 216, 740 209, 732 204 C 720 197, 710 186, 700 177 C 686 165, 680 152, 670 143 C 660 135, 652 126, 645 128 Z', stroke='#57B7F4', fill='none'), PathSlot(id='slot.right.bottle.bottom', prompt='', d='M 754 231 C 744 231, 737 238, 737 248 L 737 365 C 737 388, 750 401, 772 401 L 788 401 C 809 401, 822 388, 822 365 L 822 248 C 822 238, 815 231, 805 231 Z M 761 248 C 761 244, 765 240, 769 240 L 791 240 C 795 240, 799 244, 799 248 C 799 252, 795 255, 791 255 L 769 255 C 765 255, 761 252, 761 248 Z', stroke='#F0B15A', fill='none'), RectSlot(id='slot.right.water', prompt='', x=746.0, y=268.0, width=68.0, height=132.0, fill='#B7DDF7', stroke='none'), TextSlot(id='slot.right.label.top', prompt='', text='우유병', style_role='label', x=612.0, y=224.0, font_size=28), TextSlot(id='slot.right.label.bottom', prompt='', text='주스병', style_role='label', x=660.0, y=384.0, font_size=28), TextSlot(id='slot.opt', prompt='', text='( 우유병 , 물병 , 주스병 )', style_role='question', x=650.0, y=436.0, font_size=28)), diagrams=(), groups=(), constraints=(), tags=())
+    return ProblemTemplate(
+        id="S3_초등_3_008854",
+        title="들이가 가장 적은 것",
+        canvas=Canvas(width=960, height=720, coordinate_mode="logical"),
+        regions=(
+            Region(
+                id="region.stem",
+                role="stem",
+                flow="absolute",
+                slot_ids=("slot.no", "slot.q1", "slot.q2", "slot.opt"),
+            ),
+            Region(
+                id="region.diagram.left",
+                role="diagram",
+                flow="absolute",
+                slot_ids=(
+                    "slot.left.bottle.top",
+                    "slot.left.bottle.bottom",
+                    "slot.left.label.top",
+                    "slot.left.label.bottom",
+                ),
+            ),
+            Region(
+                id="region.diagram.right",
+                role="diagram",
+                flow="absolute",
+                slot_ids=(
+                    "slot.right.bottle.top",
+                    "slot.right.bottle.bottom",
+                    "slot.right.label.top",
+                    "slot.right.label.bottom",
+                ),
+            ),
+        ),
+        slots=(
+            TextSlot(
+                id="slot.no",
+                prompt="",
+                text="100.",
+                style_role="question",
+                x=18.0,
+                y=34.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.q1",
+                prompt="",
+                text="윤재는 우유병에 물을 가득 채운 후 물병에 옮겨 담고, 다시 우유병에",
+                style_role="question",
+                x=78.0,
+                y=36.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.q2",
+                prompt="",
+                text="물을 가득 채운 후 주스병에 옮겨 담았습니다. 그러고 같이 물을 채웠을 때에 우유병과 물병, 주스병 중",
+                style_role="question",
+                x=18.0,
+                y=76.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.q3",
+                prompt="",
+                text="들이가 가장 적은 것은 어느 것인가요?",
+                style_role="question",
+                x=18.0,
+                y=116.0,
+                font_size=28,
+            ),
+            PathSlot(
+                id="slot.left.bottle.top",
+                prompt="",
+                d="M 245 128 C 230 132, 222 150, 226 164 C 230 179, 241 184, 260 191 C 281 198, 301 210, 316 221 C 325 227, 335 228, 340 222 C 345 216, 340 209, 332 204 C 320 197, 310 186, 300 177 C 286 165, 280 152, 270 143 C 260 135, 252 126, 245 128 Z",
+                stroke="#57B7F4",
+                fill="none",
+            ),
+            PathSlot(
+                id="slot.left.bottle.bottom",
+                prompt="",
+                d="M 354 231 C 344 231, 337 238, 337 248 L 337 365 C 337 388, 350 401, 372 401 L 388 401 C 409 401, 422 388, 422 365 L 422 248 C 422 238, 415 231, 405 231 Z M 361 248 C 361 244, 365 240, 369 240 L 391 240 C 395 240, 399 244, 399 248 C 399 252, 395 255, 391 255 L 369 255 C 365 255, 361 252, 361 248 Z",
+                stroke="#7DBEF0",
+                fill="none",
+            ),
+            RectSlot(
+                id="slot.left.water",
+                prompt="",
+                x=346.0,
+                y=286.0,
+                width=68.0,
+                height=114.0,
+                fill="#B7DDF7",
+                stroke="none",
+            ),
+            TextSlot(
+                id="slot.left.label.top",
+                prompt="",
+                text="우유병",
+                style_role="label",
+                x=212.0,
+                y=224.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.left.label.bottom",
+                prompt="",
+                text="물병",
+                style_role="label",
+                x=260.0,
+                y=384.0,
+                font_size=28,
+            ),
+            PathSlot(
+                id="slot.right.bottle.top",
+                prompt="",
+                d="M 645 128 C 630 132, 622 150, 626 164 C 630 179, 641 184, 660 191 C 681 198, 701 210, 716 221 C 725 227, 735 228, 740 222 C 745 216, 740 209, 732 204 C 720 197, 710 186, 700 177 C 686 165, 680 152, 670 143 C 660 135, 652 126, 645 128 Z",
+                stroke="#57B7F4",
+                fill="none",
+            ),
+            PathSlot(
+                id="slot.right.bottle.bottom",
+                prompt="",
+                d="M 754 231 C 744 231, 737 238, 737 248 L 737 365 C 737 388, 750 401, 772 401 L 788 401 C 809 401, 822 388, 822 365 L 822 248 C 822 238, 815 231, 805 231 Z M 761 248 C 761 244, 765 240, 769 240 L 791 240 C 795 240, 799 244, 799 248 C 799 252, 795 255, 791 255 L 769 255 C 765 255, 761 252, 761 248 Z",
+                stroke="#F0B15A",
+                fill="none",
+            ),
+            RectSlot(
+                id="slot.right.water",
+                prompt="",
+                x=746.0,
+                y=268.0,
+                width=68.0,
+                height=132.0,
+                fill="#B7DDF7",
+                stroke="none",
+            ),
+            TextSlot(
+                id="slot.right.label.top",
+                prompt="",
+                text="우유병",
+                style_role="label",
+                x=612.0,
+                y=224.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.right.label.bottom",
+                prompt="",
+                text="주스병",
+                style_role="label",
+                x=660.0,
+                y=384.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.opt",
+                prompt="",
+                text="( 우유병 , 물병 , 주스병 )",
+                style_role="question",
+                x=650.0,
+                y=436.0,
+                font_size=28,
+            ),
+        ),
+        diagrams=(),
+        groups=(),
+        constraints=(),
+        tags=(),
+    )
+
+
 PROBLEM_TEMPLATE = build_problem_template()
 
-SEMANTIC_OVERRIDE = {'problem_id': 'S3_초등_3_008854', 'problem_type': 'comparison_capacity', 'metadata': {'language': 'ko', 'question': '우유병, 물병, 주스병 중 들이가 가장 적은 것을 찾는 문제', 'instruction': '보기에서 들이가 가장 적은 것을 고른다.'}, 'domain': {'objects': [{'id': 'obj.milk_bottle', 'type': 'container', 'name': '우유병'}, {'id': 'obj.water_bottle', 'type': 'container', 'name': '물병'}, {'id': 'obj.juice_bottle', 'type': 'container', 'name': '주스병'}], 'relations': [], 'problem_solving': {'understand': {'given_refs': ['obj.milk_bottle', 'obj.water_bottle', 'obj.juice_bottle', 'rel.milk_to_water', 'rel.milk_to_juice'], 'target_ref': 'answer.target', 'condition_refs': ['rel.capacity_compare', 'rel.capacity_compare2']}, 'plan': {'method': 'compare_capacity_by_transfer', 'description': '물이 한 병에서 다른 병으로 모두 옮겨 담길 수 있는 관계를 바탕으로 들이의 크기를 비교한다.'}, 'execute': {'expected_operations': ['compare_two_containers', 'identify_smallest_capacity']}, 'review': {'check_methods': ['verify_against_explanation_text']}}}, 'answer': {'blanks': [], 'choices': [], 'answer_key': [], 'target': {'type': 'smallest_capacity_container', 'description': '우유병, 물병, 주스병 중 들이가 가장 적은 것'}, 'value': '우유병', 'unit': ''}}
+SEMANTIC_OVERRIDE = {
+    "problem_id": "S3_초등_3_008854",
+    "problem_type": "comparison_capacity",
+    "metadata": {
+        "language": "ko",
+        "question": "우유병, 물병, 주스병 중 들이가 가장 적은 것을 찾는 문제",
+        "instruction": "보기에서 들이가 가장 적은 것을 고른다.",
+    },
+    "domain": {
+        "objects": [
+            {"id": "obj.milk_bottle", "type": "container", "name": "우유병"},
+            {"id": "obj.water_bottle", "type": "container", "name": "물병"},
+            {"id": "obj.juice_bottle", "type": "container", "name": "주스병"},
+        ],
+        "relations": [],
+        "problem_solving": {
+            "understand": {
+                "given_refs": [
+                    "obj.milk_bottle",
+                    "obj.water_bottle",
+                    "obj.juice_bottle",
+                    "rel.milk_to_water",
+                    "rel.milk_to_juice",
+                ],
+                "target_ref": "answer.target",
+                "condition_refs": ["rel.capacity_compare", "rel.capacity_compare2"],
+            },
+            "plan": {
+                "method": "compare_capacity_by_transfer",
+                "description": "물이 한 병에서 다른 병으로 모두 옮겨 담길 수 있는 관계를 바탕으로 들이의 크기를 비교한다.",
+            },
+            "execute": {
+                "expected_operations": ["compare_two_containers", "identify_smallest_capacity"]
+            },
+            "review": {"check_methods": ["verify_against_explanation_text"]},
+        },
+    },
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {
+            "type": "smallest_capacity_container",
+            "description": "우유병, 물병, 주스병 중 들이가 가장 적은 것",
+        },
+        "value": "우유병",
+        "unit": "",
+    },
+}
 
-SOLVABLE = {'schema': 'modu.solvable.v1.1', 'problem_id': 'S3_초등_3_008854', 'problem_type': 'comparison_capacity', 'inputs': {'total_ticks': 0, 'target_label': '우유병', 'target_ticks': 0, 'target_count': 3, 'unit': ''}, 'given': [{'ref': 'obj.milk_bottle', 'value': {'name': '우유병'}}, {'ref': 'obj.water_bottle', 'value': {'name': '물병'}}, {'ref': 'obj.juice_bottle', 'value': {'name': '주스병'}}, {'ref': 'rel.milk_to_water', 'value': {'type': 'can_transfer_fully'}}, {'ref': 'rel.milk_to_juice', 'value': {'type': 'can_transfer_fully'}}], 'target': {'ref': 'answer.target', 'type': 'smallest_capacity_container'}, 'method': 'compare_capacity_by_transfer', 'plan': ['우유병의 물이 물병에 모두 들어가는 관계를 확인한다.', '우유병의 물이 주스병에 모두 들어가는 관계를 확인한다.', '두 비교를 바탕으로 가장 작은 들이의 병을 고른다.'], 'steps': [{'id': 'step.1', 'expr': '우유병의 물이 물병에 다 들어감', 'value': '우유병 < 물병'}, {'id': 'step.2', 'expr': '우유병의 물이 주스병에 다 들어감', 'value': '우유병 < 주스병'}, {'id': 'step.3', 'expr': '두 비교를 종합', 'value': '우유병'}], 'checks': [{'id': 'check.1', 'expr': '우유병 < 물병', 'expected': True, 'actual': True, 'pass': True}, {'id': 'check.2', 'expr': '우유병 < 주스병', 'expected': True, 'actual': True, 'pass': True}], 'answer': {'blanks': [], 'choices': [], 'answer_key': [], 'target': {'type': 'smallest_capacity_container', 'description': '우유병, 물병, 주스병 중 들이가 가장 적은 것'}, 'value': '우유병', 'unit': ''}}
+SOLVABLE = {
+    "schema": "modu.solvable.v1.1",
+    "problem_id": "S3_초등_3_008854",
+    "problem_type": "comparison_capacity",
+    "inputs": {
+        "total_ticks": 0,
+        "target_label": "우유병",
+        "target_ticks": 0,
+        "target_count": 3,
+        "unit": "",
+    },
+    "given": [
+        {"ref": "obj.milk_bottle", "value": {"name": "우유병"}},
+        {"ref": "obj.water_bottle", "value": {"name": "물병"}},
+        {"ref": "obj.juice_bottle", "value": {"name": "주스병"}},
+        {"ref": "rel.milk_to_water", "value": {"type": "can_transfer_fully"}},
+        {"ref": "rel.milk_to_juice", "value": {"type": "can_transfer_fully"}},
+    ],
+    "target": {"ref": "answer.target", "type": "smallest_capacity_container"},
+    "method": "compare_capacity_by_transfer",
+    "plan": [
+        "우유병의 물이 물병에 모두 들어가는 관계를 확인한다.",
+        "우유병의 물이 주스병에 모두 들어가는 관계를 확인한다.",
+        "두 비교를 바탕으로 가장 작은 들이의 병을 고른다.",
+    ],
+    "steps": [
+        {"id": "step.1", "expr": "우유병의 물이 물병에 다 들어감", "value": "우유병 < 물병"},
+        {"id": "step.2", "expr": "우유병의 물이 주스병에 다 들어감", "value": "우유병 < 주스병"},
+        {"id": "step.3", "expr": "두 비교를 종합", "value": "우유병"},
+    ],
+    "checks": [
+        {"id": "check.1", "expr": "우유병 < 물병", "expected": True, "actual": True, "pass": True},
+        {
+            "id": "check.2",
+            "expr": "우유병 < 주스병",
+            "expected": True,
+            "actual": True,
+            "pass": True,
+        },
+    ],
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {
+            "type": "smallest_capacity_container",
+            "description": "우유병, 물병, 주스병 중 들이가 가장 적은 것",
+        },
+        "value": "우유병",
+        "unit": "",
+    },
+}

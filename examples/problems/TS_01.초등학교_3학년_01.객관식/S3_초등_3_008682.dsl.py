@@ -12,7 +12,6 @@ from modu_math.dsl import (
     speaker_group_slots,
 )
 
-
 GRID_COLOR = "#37C7FF"
 GRID_SIZE = 192.0
 GRID_CELLS = 8
@@ -98,18 +97,26 @@ def build_problem_template() -> ProblemTemplate:
     speakers = (
         SpeakerSpec(
             key="boy",
-            cx = (((154.0) + (200.0)) + (-75.0)) + (30.0), head_cy = (((395.0) + (5.0)) + (-10.0)) + (5.0), bubble_cy = (((354.0) + (5.0)) + (-10.0)) + (5.0), text="큰 원을\n먼저 그려.",
+            cx=(((154.0) + (200.0)) + (-75.0)) + (30.0),
+            head_cy=(((395.0) + (5.0)) + (-10.0)) + (5.0),
+            bubble_cy=(((354.0) + (5.0)) + (-10.0)) + (5.0),
+            text="큰 원을\n먼저 그려.",
             name="민수",
             hair="#3B2417",
             shirt="#58C7BC",
             bubble_width=170.0,
             bubble_height=88.0,
-            tail_y = (((350.0) + (5.0)) + (-10.0)) + (5.0), name_y = (((468.0) + (5.0)) + (-10.0)) + (5.0), speech_font_size=23,
+            tail_y=(((350.0) + (5.0)) + (-10.0)) + (5.0),
+            name_y=(((468.0) + (5.0)) + (-10.0)) + (5.0),
+            speech_font_size=23,
             speech_text_dy=-10,
         ),
         SpeakerSpec(
             key="girl",
-            cx = ((790.0) + (-230.0)) + (45.0), head_cy = ((395.0) + (-5.0)) + (10.0), bubble_cy = ((354.0) + (-5.0)) + (10.0), text="큰 원의 반지름을\n( 지름, 반지름 )으로 하는\n작은 원을 2개 그려.",
+            cx=((790.0) + (-230.0)) + (45.0),
+            head_cy=((395.0) + (-5.0)) + (10.0),
+            bubble_cy=((354.0) + (-5.0)) + (10.0),
+            text="큰 원의 반지름을\n( 지름, 반지름 )으로 하는\n작은 원을 2개 그려.",
             name="지혜",
             hair="#4B260B",
             shirt="#F16078",
@@ -117,7 +124,9 @@ def build_problem_template() -> ProblemTemplate:
             pigtails=True,
             bubble_width=285.0,
             bubble_height=118.0,
-            tail_y = ((350.0) + (-5.0)) + (10.0), name_y = ((468.0) + (-5.0)) + (10.0), speech_font_size=21,
+            tail_y=((350.0) + (-5.0)) + (10.0),
+            name_y=((468.0) + (-5.0)) + (10.0),
+            speech_font_size=21,
             speech_text_dy=-26,
         ),
     )
@@ -142,18 +151,32 @@ def build_problem_template() -> ProblemTemplate:
                     *(slot.id for slot in right_grid),
                 ),
             ),
-            Region(id="region.dialogue", role="diagram", flow="absolute", slot_ids=speaker_group_slot_ids(speakers)),
+            Region(
+                id="region.dialogue",
+                role="diagram",
+                flow="absolute",
+                slot_ids=speaker_group_slot_ids(speakers),
+            ),
         ),
         slots=(
             TextSlot(
                 id="slot.q1",
                 prompt="",
-                text = '    주어진 모양과 똑같은 그림을 그리는 방법을 설명한 것입니다. ', style_role="question",
+                text="    주어진 모양과 똑같은 그림을 그리는 방법을 설명한 것입니다. ",
+                style_role="question",
                 x=74.0,
                 y=34.0,
                 font_size=28,
             ),
-            TextSlot(id="slot.q2", prompt="", text = '알맞은 말을 선택하세요.', style_role="question", x=74.0, y=70.0, font_size=28),
+            TextSlot(
+                id="slot.q2",
+                prompt="",
+                text="알맞은 말을 선택하세요.",
+                style_role="question",
+                x=74.0,
+                y=70.0,
+                font_size=28,
+            ),
             *left_grid,
             _circle_on_grid(
                 "slot.left.outer_circle",
@@ -222,7 +245,11 @@ SEMANTIC_OVERRIDE = {
         ],
         "problem_solving": {
             "understand": {
-                "given_refs": ["obj.large_circle", "obj.small_circle.left", "obj.small_circle.right"],
+                "given_refs": [
+                    "obj.large_circle",
+                    "obj.small_circle.left",
+                    "obj.small_circle.right",
+                ],
                 "target_ref": "answer.target",
                 "condition_refs": ["rel.small_diameter_equals_large_radius"],
             },
@@ -249,11 +276,22 @@ SOLVABLE = {
     ],
     "target": {"ref": "answer.target", "type": "selected_term"},
     "method": "term_matching",
-    "plan": ["큰 원의 반지름과 작은 원의 지름을 모눈 칸 수로 확인한다.", "작은 원에서 큰 원의 반지름과 같은 값을 고른다."],
+    "plan": [
+        "큰 원의 반지름과 작은 원의 지름을 모눈 칸 수로 확인한다.",
+        "작은 원에서 큰 원의 반지름과 같은 값을 고른다.",
+    ],
     "steps": [
         {"id": "step.1", "expr": "큰 원의 반지름", "value": "4칸"},
         {"id": "step.2", "expr": "작은 원의 지름", "value": "4칸"},
     ],
-    "checks": [{"id": "check.1", "expr": "작은 원의 지름이 큰 원의 반지름과 같은가", "expected": True, "actual": True, "pass": True}],
+    "checks": [
+        {
+            "id": "check.1",
+            "expr": "작은 원의 지름이 큰 원의 반지름과 같은가",
+            "expected": True,
+            "actual": True,
+            "pass": True,
+        }
+    ],
     "answer": ANSWER,
 }

@@ -1,7 +1,15 @@
 from __future__ import annotations
 
-from modu_math.dsl import Canvas, CircleSlot, LineSlot, PathSlot, ProblemTemplate, RectSlot, Region, TextSlot
-
+from modu_math.dsl import (
+    Canvas,
+    CircleSlot,
+    LineSlot,
+    PathSlot,
+    ProblemTemplate,
+    RectSlot,
+    Region,
+    TextSlot,
+)
 
 YELLOW = "#d5c400"
 BLACK = "#111111"
@@ -24,7 +32,9 @@ def _square(id_: str, *, x: float, y: float) -> RectSlot:
 
 
 def _center_dot(id_: str, *, cx: float, cy: float) -> CircleSlot:
-    return CircleSlot(id=id_, prompt="", cx=cx, cy=cy, r=3.5, fill=MAGENTA, stroke="none", stroke_width=0.0)
+    return CircleSlot(
+        id=id_, prompt="", cx=cx, cy=cy, r=3.5, fill=MAGENTA, stroke="none", stroke_width=0.0
+    )
 
 
 def _base_circle_arc(id_: str, *, cx: float, cy: float, r: float = 76.0) -> PathSlot:
@@ -69,7 +79,12 @@ def build_problem_template() -> ProblemTemplate:
                 id="region.header",
                 role="stem",
                 flow="absolute",
-                slot_ids=("slot.header.text",'slot.header.text.copy1', 'slot.header.text.copy1.copy2', 'slot.header.text.copy1.copy3'),
+                slot_ids=(
+                    "slot.header.text",
+                    "slot.header.text.copy1",
+                    "slot.header.text.copy1.copy2",
+                    "slot.header.text.copy1.copy3",
+                ),
             ),
             Region(
                 id="region.reference",
@@ -97,7 +112,8 @@ def build_problem_template() -> ProblemTemplate:
                 ),
             ),
         ),
-        slots=(TextSlot(
+        slots=(
+            TextSlot(
                 id="slot.header.text",
                 prompt="",
                 text="원을 바르게 완성한 것을 선택하세요.",
@@ -129,7 +145,35 @@ def build_problem_template() -> ProblemTemplate:
             _square("slot.choice.right.square", x=676.0, y=226.0),
             _base_circle_arc("slot.choice.right.base", cx=752.0, cy=302.0),
             _correct_completion_arc("slot.choice.right.red", cx=752.0, cy=302.0),
-            _center_dot("slot.choice.right.center", cx=752.0, cy=302.0),TextSlot(id = 'slot.header.text.copy1', prompt = '', text = '가.', x = 95, y = 245, font_size = 25, fill = '#111111'), TextSlot(id = 'slot.header.text.copy1.copy2', prompt = '', text = '나.', x = 365, y = 245, font_size = 25, fill = '#111111'), TextSlot(id = 'slot.header.text.copy1.copy3', prompt = '', text = '다.', x = 630, y = 245, font_size = 25, fill = '#111111')),
+            _center_dot("slot.choice.right.center", cx=752.0, cy=302.0),
+            TextSlot(
+                id="slot.header.text.copy1",
+                prompt="",
+                text="가.",
+                x=95,
+                y=245,
+                font_size=25,
+                fill="#111111",
+            ),
+            TextSlot(
+                id="slot.header.text.copy1.copy2",
+                prompt="",
+                text="나.",
+                x=365,
+                y=245,
+                font_size=25,
+                fill="#111111",
+            ),
+            TextSlot(
+                id="slot.header.text.copy1.copy3",
+                prompt="",
+                text="다.",
+                x=630,
+                y=245,
+                font_size=25,
+                fill="#111111",
+            ),
+        ),
         diagrams=(),
         groups=(),
         constraints=(),
@@ -162,7 +206,10 @@ SEMANTIC_OVERRIDE = {
                 "target_ref": "answer.target",
                 "condition_refs": [],
             },
-            "plan": {"method": "visual_comparison", "description": "각 보기의 빨간 선이 원호와 자연스럽게 이어지는지 비교한다."},
+            "plan": {
+                "method": "visual_comparison",
+                "description": "각 보기의 빨간 선이 원호와 자연스럽게 이어지는지 비교한다.",
+            },
             "execute": {"expected_operations": ["compare_shapes"]},
             "review": {"check_methods": ["curve_continuity"]},
         },
@@ -192,8 +239,22 @@ SOLVABLE = {
     "target": {"ref": "answer.target", "type": "selected_picture"},
     "method": "visual_comparison",
     "plan": ["보기의 선이 원호와 이어지는지 비교한다."],
-    "steps": [{"id": "step.1", "expr": "각 보기의 빨간 선과 검은 원호의 연결 상태를 비교한다.", "value": ""}],
-    "checks": [{"id": "check.1", "expr": "정답과 해설 문장이 렌더링되지 않는다.", "expected": True, "actual": True, "pass": True}],
+    "steps": [
+        {
+            "id": "step.1",
+            "expr": "각 보기의 빨간 선과 검은 원호의 연결 상태를 비교한다.",
+            "value": "",
+        }
+    ],
+    "checks": [
+        {
+            "id": "check.1",
+            "expr": "정답과 해설 문장이 렌더링되지 않는다.",
+            "expected": True,
+            "actual": True,
+            "pass": True,
+        }
+    ],
     "answer": {
         "blanks": [],
         "choices": [],

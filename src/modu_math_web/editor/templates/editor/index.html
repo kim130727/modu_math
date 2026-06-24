@@ -134,6 +134,13 @@
     .svg-box svg polygon[id] { pointer-events: visiblePainted; }
     .svg-box svg .slot-selected { filter: drop-shadow(0 0 3px #0f766e); }
     .svg-box svg .pick-disabled { pointer-events: none; opacity: 0.35; }
+    .svg-box svg .canvas-guide {
+      fill: none;
+      stroke: #64748b;
+      stroke-width: 1.25;
+      stroke-dasharray: 7 5;
+      pointer-events: none;
+    }
     .svg-box svg .selection-bounds {
       fill: none;
       stroke: #0f766e;
@@ -220,7 +227,7 @@
       position: fixed;
       z-index: 12;
       display: none;
-      width: 316px;
+      min-width: 226px;
       border: 1px solid #b7bdc7;
       border-radius: 4px;
       background: #ffffff;
@@ -245,7 +252,7 @@
     }
     .shape-format-swatches {
       display: grid;
-      grid-template-columns: repeat(12, 20px);
+      grid-template-columns: repeat(8, 20px);
       gap: 5px;
       padding: 4px;
     }
@@ -263,14 +270,11 @@
     }
     .shape-format-btn {
       flex: 1 1 0;
-      height: 34px;
+      height: 30px;
       border-radius: 4px;
       padding: 4px 8px;
       text-align: center;
       font-size: 12px;
-      line-height: 1;
-      white-space: nowrap;
-      word-break: keep-all;
     }
     .shape-format-color {
       width: 34px;
@@ -280,17 +284,6 @@
       border-radius: 4px;
       border: 1px solid #cbd5e1;
       background: #fff;
-    }
-    .shape-format-range {
-      flex: 1 1 90px;
-      min-width: 80px;
-    }
-    .shape-format-number {
-      width: 64px;
-      border: 1px solid #cbd5e1;
-      border-radius: 4px;
-      padding: 6px 7px;
-      font: inherit;
     }
     .log {
       white-space: pre-wrap;
@@ -757,6 +750,7 @@
   <svg width="0" height="0" style="position:absolute;overflow:hidden" aria-hidden="true" focusable="false">
     <symbol id="icon-reload" viewBox="0 0 24 24"><path d="M20 11a8 8 0 1 0-2.3 5.7"/><path d="M20 4v7h-7"/></symbol>
     <symbol id="icon-save" viewBox="0 0 24 24"><path d="M5 4h12l2 2v14H5z"/><path d="M8 4v6h8V4"/><path d="M8 20v-6h8v6"/></symbol>
+    <symbol id="icon-format" viewBox="0 0 24 24"><path d="M5 6h14"/><path d="M5 10h10"/><path d="M5 14h14"/><path d="M5 18h8"/></symbol>
     <symbol id="icon-build" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></symbol>
     <symbol id="icon-snap" viewBox="0 0 24 24"><path d="M6 4v7a6 6 0 0 0 12 0V4"/><path d="M6 8h5"/><path d="M13 8h5"/><path d="M6 18l12-12"/></symbol>
     <symbol id="icon-align-left" viewBox="0 0 24 24"><path d="M5 4v16"/><path d="M9 7h10"/><path d="M9 12h7"/><path d="M9 17h11"/></symbol>
@@ -780,8 +774,8 @@
     <symbol id="icon-image" viewBox="0 0 24 24"><path d="M4 5h16v14H4z"/><circle cx="8" cy="9" r="1.5"/><path d="M4 16l5-5 4 4 2-2 5 5"/></symbol>
     <symbol id="icon-table" viewBox="0 0 24 24"><path d="M4 5h16v14H4z"/><path d="M4 10h16"/><path d="M4 15h16"/><path d="M10 5v14"/><path d="M16 5v14"/></symbol>
     <symbol id="icon-graph-paper" viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="M8 4v16"/><path d="M12 4v16"/><path d="M16 4v16"/><path d="M4 8h16"/><path d="M4 12h16"/><path d="M4 16h16"/></symbol>
-    <symbol id="icon-fraction" viewBox="0 0 24 24"><path d="M7 6h10"/><path d="M5 12h14"/><path d="M8 18h8"/><path d="M12 4v4"/><path d="M12 16v4"/></symbol>
-    <symbol id="icon-mixed-fraction" viewBox="0 0 24 24"><path d="M4 7h3"/><path d="M4 12h3"/><path d="M4 17h3"/><path d="M12 6h8"/><path d="M10 12h12"/><path d="M13 18h6"/></symbol>
+    <symbol id="icon-fraction" viewBox="0 0 24 24"><path d="M8 6h8"/><path d="M6 12h12"/><path d="M8 18h8"/></symbol>
+    <symbol id="icon-mixed-fraction" viewBox="0 0 24 24"><path d="M4 8h3"/><path d="M4 16h3"/><path d="M12 6h8"/><path d="M10 12h12"/><path d="M12 18h8"/></symbol>
     <symbol id="icon-shapes" viewBox="0 0 24 24"><path d="M5 5h7v7H5z"/><path d="M16.5 5.5 21 12h-9z"/><path d="M8 16a3 3 0 1 0 0.1 0"/><path d="M15 16h5v4h-5z"/></symbol>
   </svg>
   <div class="wrap powerpoint">
@@ -798,6 +792,7 @@
             <button id="openBtn" class="icon-btn" title="Open" aria-label="Open"><svg><use href="#icon-reload"></use></svg></button>
             <button id="reloadBtn" class="icon-btn" title="Reload" aria-label="Reload"><svg><use href="#icon-reload"></use></svg></button>
             <button id="saveBtn" class="icon-btn primary" title="Save DSL" aria-label="Save DSL"><svg><use href="#icon-save"></use></svg></button>
+            <button id="formatDslBtn" class="icon-btn" title="DSL 정리" aria-label="DSL 정리"><svg><use href="#icon-format"></use></svg></button>
             <button id="buildBtn" class="icon-btn" title="Build" aria-label="Build"><svg><use href="#icon-build"></use></svg></button>
             <button id="refreshListBtn" class="icon-btn" title="Refresh List" aria-label="Refresh List"><svg><use href="#icon-reload"></use></svg></button>
           </div>
@@ -892,21 +887,21 @@
                 </div>
               </div>
             </div>
-            <div id="fractionInsertDialog" class="table-dialog" role="dialog" aria-modal="true" aria-labelledby="fractionInsertTitle" hidden>
+            <div id="mathInsertDialog" class="table-dialog" role="dialog" aria-modal="true" aria-labelledby="mathInsertTitle" hidden>
               <div class="table-dialog-panel">
                 <div class="table-dialog-title">
-                  <span id="fractionInsertTitle">분수 삽입</span>
+                  <span id="mathInsertTitle">분수 삽입</span>
                   <span>?</span>
-                  <button id="fractionCancelXBtn" type="button" aria-label="닫기">&times;</button>
+                  <button id="mathCancelXBtn" type="button" aria-label="닫기">&times;</button>
                 </div>
                 <div class="table-dialog-fields">
-                  <label id="fractionWholeLabel" hidden>자연수:<input id="fractionWholeInput" type="text" value="1" inputmode="numeric"></label>
-                  <label>분자:<input id="fractionNumeratorInput" type="text" value="1" inputmode="numeric"></label>
-                  <label>분모:<input id="fractionDenominatorInput" type="text" value="2" inputmode="numeric"></label>
+                  <label id="mathWholeLabel" hidden>자연수:<input id="mathWholeInput" type="text" value="1" inputmode="text"></label>
+                  <label>분자:<input id="mathNumeratorInput" type="text" value="1" inputmode="text"></label>
+                  <label>분모:<input id="mathDenominatorInput" type="text" value="2" inputmode="text"></label>
                 </div>
                 <div class="table-dialog-actions">
-                  <button id="fractionConfirmBtn" type="button" class="primary">확인</button>
-                  <button id="fractionCancelBtn" type="button">취소</button>
+                  <button id="mathConfirmBtn" type="button" class="primary">확인</button>
+                  <button id="mathCancelBtn" type="button">취소</button>
                 </div>
               </div>
             </div>
@@ -917,11 +912,6 @@
                 <input id="shapeFillColorInput" class="shape-format-color" type="color" value="#ffffff" title="채우기 색">
                 <button id="shapeApplyFillBtn" class="shape-format-btn" type="button">채우기</button>
               </div>
-              <div class="shape-format-swatches" id="shapeStrokeSwatches"></div>
-              <div class="shape-format-row">
-                <input id="shapeStrokeColorInput" class="shape-format-color" type="color" value="#111827" title="선 색">
-                <button id="shapeApplyStrokeBtn" class="shape-format-btn" type="button">선 색</button>
-              </div>
               <div class="shape-format-row">
                 <button id="shapeNoBorderBtn" class="shape-format-btn" type="button">테두리 제거</button>
                 <button id="shapeSolidBtn" class="shape-format-btn" type="button">실선</button>
@@ -931,11 +921,6 @@
                 <button id="shapeDashedBtn" class="shape-format-btn" type="button">긴 점선</button>
                 <button id="shapeDotDashBtn" class="shape-format-btn" type="button">점-대시</button>
                 <button id="shapeDottedBtn" class="shape-format-btn" type="button">촘촘 점선</button>
-              </div>
-              <div id="arcAngleControls" class="shape-format-row" style="display:none">
-                <input id="arcAngleRange" class="shape-format-range" type="range" min="10" max="350" step="5" value="180" title="호 각도">
-                <input id="arcAngleInput" class="shape-format-number" type="number" min="10" max="350" step="5" value="180" title="호 각도">
-                <button id="arcAngleApplyBtn" class="shape-format-btn" type="button">각도</button>
               </div>
             </div>
           </div>
@@ -951,6 +936,18 @@
         <aside class="ppt-inspector">
           <div class="pane-title">속성</div>
           <div class="pane-body">
+            <div class="inspector-section">
+              <h3>캔버스</h3>
+              <div class="field-grid">
+                <label>X<input id="canvasX" type="number" step="1" readonly></label>
+                <label>Y<input id="canvasY" type="number" step="1" readonly></label>
+                <label>W<input id="canvasW" type="number" step="1"></label>
+                <label>H<input id="canvasH" type="number" step="1"></label>
+              </div>
+              <div class="row" style="margin-top:8px;">
+                <button id="selectCanvasBtn" type="button">Select Canvas</button>
+              </div>
+            </div>
             <div class="inspector-section">
               <h3>선택</h3>
               <div class="single-field">
@@ -1059,7 +1056,6 @@
     const SNAP_STEP = 5;
     const DEFAULT_SHAPE_STYLE = { fill: "#ffffff", stroke: "#111827", stroke_width: 1.5 };
     const SHAPE_FILL_SWATCHES = ["#ffffff", "#f8fafc", "#fef3c7", "#fed7aa", "#fecaca", "#bfdbfe", "#bbf7d0", "#ddd6fe", "#111827", "#6b7280", "#dc2626", "#2563eb", "#16a34a", "#7c3aed", "#f59e0b", "none"];
-    const SHAPE_STROKE_SWATCHES = ["#111827", "#6b7280", "#94a3b8", "#dc2626", "#ea580c", "#f59e0b", "#16a34a", "#0f766e", "#2563eb", "#7c3aed", "#be185d", "#000000"];
     const SHAPE_CATEGORIES = [
       {
         title: "선",
@@ -1099,27 +1095,74 @@
           { id: "plus", label: "더하기", kind: "polygon", points: [[27, 0], [37, 0], [37, 21], [64, 21], [64, 31], [37, 31], [37, 52], [27, 52], [27, 31], [0, 31], [0, 21], [27, 21]], icon: '<polygon class="shape-fill" points="9,3 13,3 13,8 19,8 19,12 13,12 13,17 9,17 9,12 3,12 3,8 9,8"/>' },
           { id: "x", label: "곱하기", kind: "polygon", points: [[8, 0], [32, 20], [56, 0], [64, 8], [40, 26], [64, 44], [56, 52], [32, 32], [8, 52], [0, 44], [24, 26], [0, 8]], icon: '<path d="M5 4 L18 16 M18 4 L5 16"/>' },
           { id: "bracketPair", label: "괄호", kind: "path", d: "M 20 0 C 4 12, 4 40, 20 52 M 44 0 C 60 12, 60 40, 44 52", fill: "none", icon: '<path d="M8 4 C4 7,4 13,8 16 M14 4 C18 7,18 13,14 16"/>' },
-          { id: "arc", label: "호", kind: "path", d: "M 32 46 M 4 46 A 28 28 0 0 1 60 46", fill: "none", icon: '<path d="M4 16 A7 7 0 0 1 18 16"/>' },
+          { id: "arc", label: "호", kind: "path", d: "M 4 46 A 28 28 0 0 1 60 46", fill: "none", icon: '<path d="M4 16 A7 7 0 0 1 18 16"/>' },
+          { id: "quarterArc", label: "1/4호", kind: "path", d: "M 4 46 A 42 42 0 0 1 46 4", fill: "none", icon: '<path d="M5 16 A11 11 0 0 1 16 5"/>' },
         ],
       },
       {
         title: "교구",
         shapes: [
-          { id: "pushPin", label: "누름 못", kind: "path", d: "M 32 5 C 46 5 56 12 56 22 C 56 32 46 39 32 39 C 18 39 8 32 8 22 C 8 12 18 5 32 5 Z M 24 37 L 40 37 L 38 46 L 26 46 Z M 32 46 L 40 61 L 24 61 Z", w: 72, h: 72, sourceWidth: 64, sourceHeight: 64, lockAspect: true, fill: "#A8B0B6", stroke: "#6F7882", stroke_width: 1.4, icon: '<path class="shape-fill" d="M11 4C16 4 20 6.8 20 10.5S16 17 11 17S2 14.2 2 10.5S6 4 11 4Z M8 16H14L13.5 19H8.5Z M11 19L14 22H8Z"/>' },
-          { id: "pencil", label: "연필", kind: "composite", w: 28, h: 120, sourceWidth: 28, sourceHeight: 120, lockAspect: true, icon: '<rect class="shape-fill" x="9" y="3" width="5" height="12" fill="#d9a27f"/><rect class="shape-fill" x="9" y="15" width="5" height="41" fill="#ffb5b5"/><polygon class="shape-fill" points="8,56 15,56 11.5,67" fill="#e6c08b"/>', parts: [
-            { id: "eraser", kind: "rect", x: 8, y: 0, width: 12, height: 13, fill: "#d9a27f", stroke: "#b98160", stroke_width: 1 },
-            { id: "body", kind: "rect", x: 8, y: 13, width: 12, height: 86, fill: "#ffb5b5", stroke: "#ee7777", stroke_width: 1 },
-            { id: "tip", kind: "polygon", points: [[7, 99], [21, 99], [14, 116]], fill: "#e6c08b", stroke: "#c49b62", stroke_width: 1 },
+          { id: "pushPin", label: "누름 못", kind: "path", d: "M 32 4 C 44 4 54 11 54 20 C 54 29 44 36 32 36 C 20 36 10 29 10 20 C 10 11 20 4 32 4 Z M 25 34 L 39 34 L 39 44 L 25 44 Z M 32 44 L 38 58 L 26 58 Z", sourceWidth: 64, sourceHeight: 64, fill: "#A8B0B6", stroke: "#7E8790", stroke_width: 1.2, icon: '<path class="shape-fill" d="M11 4C15 4 19 6.5 19 10S15 16 11 16S3 13.5 3 10S7 4 11 4Z M8.5 15H13.5V18H8.5Z M11 18L14 22H8Z"/>' },
+          { id: "boy", label: "남자", kind: "composite", sourceWidth: 80, sourceHeight: 110, w: 80, h: 110, icon: '<circle class="shape-fill" cx="12" cy="7" r="5" fill="#ffd9ad"/><path class="shape-fill" d="M7 7C8 1 17 1 17 7C14 4 10 5 7 7Z" fill="#8a4b2a"/><circle cx="10" cy="8" r="0.75" fill="#2b2118"/><circle cx="14" cy="8" r="0.75" fill="#2b2118"/><path d="M10.5 11 Q12 12 13.5 11" fill="none" stroke="#b86e39" stroke-width="0.8"/><polygon class="shape-fill" points="7,20 17,20 15,12 9,12" fill="#60a5fa"/>', parts: [
+            { id: "body", kind: "polygon", points: [[18, 104], [62, 104], [54, 67], [26, 67]], fill: "#60A5FA", stroke: "none" },
+            { id: "head", kind: "circle", cx: 40, cy: 38, r: 24, fill: "#ffd9ad", stroke: "none" },
+            { id: "hair.cap", kind: "path", d: "M 16 37 C 19 10 61 9 64 37 C 49 22 31 29 16 37 Z", fill: "#7C4A2D", stroke: "none" },
+            { id: "eye.left", kind: "circle", cx: 31, cy: 42, r: 3.1, fill: "#2b2118", stroke: "none" },
+            { id: "eye.right", kind: "circle", cx: 49, cy: 42, r: 3.1, fill: "#2b2118", stroke: "none" },
+            { id: "eye.left.light", kind: "circle", cx: 30.1, cy: 40.9, r: 0.9, fill: "#ffffff", stroke: "none" },
+            { id: "eye.right.light", kind: "circle", cx: 48.1, cy: 40.9, r: 0.9, fill: "#ffffff", stroke: "none" },
+            { id: "smile", kind: "path", d: "M 33 52 Q 40 58 47 52", fill: "none", stroke: "#b86e39", stroke_width: 1.4 },
           ] },
-          { id: "car", label: "자동차", kind: "composite", w: 82, h: 46, sourceWidth: 82, sourceHeight: 46, lockAspect: true, icon: '<path class="shape-fill" d="M4 13H13L19 5H44L51 13H64Q69 13 72 18V28H4Z" fill="#70be5a"/><circle cx="20" cy="31" r="4" fill="#4b5563"/><circle cx="55" cy="31" r="4" fill="#4b5563"/><path d="M22 7H42L48 14H16Z" fill="#dff6f0"/>', parts: [
-            { id: "body", kind: "path", d: "M 5 23 Q 7 16 17 16 L 23 7 L 50 7 L 58 16 L 68 17 Q 77 18 78 28 L 76 34 L 7 34 Q 3 30 5 23 Z", fill: "#69BD58", stroke: "#3E9B6D", stroke_width: 2 },
-            { id: "roof", kind: "path", d: "M 22 16 L 28 7 L 47 7 L 54 16 Z", fill: "#A7E3D3", stroke: "#2D9A7A", stroke_width: 1.5 },
-            { id: "window.left", kind: "polygon", points: [[25, 15], [30, 9], [37, 9], [37, 15]], fill: "#E8FFF8", stroke: "#2D9A7A", stroke_width: 1 },
-            { id: "window.right", kind: "polygon", points: [[40, 9], [47, 9], [52, 15], [40, 15]], fill: "#E8FFF8", stroke: "#2D9A7A", stroke_width: 1 },
-            { id: "wheel.left", kind: "circle", cx: 22, cy: 34, r: 7, fill: "#4B5563", stroke: "#1F2937", stroke_width: 1.5 },
-            { id: "wheel.right", kind: "circle", cx: 60, cy: 34, r: 7, fill: "#4B5563", stroke: "#1F2937", stroke_width: 1.5 },
-            { id: "hub.left", kind: "circle", cx: 22, cy: 34, r: 3, fill: "#D1D5DB", stroke: "none" },
-            { id: "hub.right", kind: "circle", cx: 60, cy: 34, r: 3, fill: "#D1D5DB", stroke: "none" },
+          { id: "girl", label: "여자", kind: "composite", sourceWidth: 90, sourceHeight: 112, w: 90, h: 112, icon: '<circle class="shape-fill" cx="12" cy="7" r="5" fill="#ffd9ad"/><path class="shape-fill" d="M7 7C8 1 17 1 17 7C13 5 10 5 7 7Z" fill="#8a3f32"/><circle cx="10" cy="8" r="0.75" fill="#2b2118"/><circle cx="14" cy="8" r="0.75" fill="#2b2118"/><path d="M10.5 11 Q12 12 13.5 11" fill="none" stroke="#b86e39" stroke-width="0.8"/><polygon class="shape-fill" points="7,20 17,20 15,12 9,12" fill="#f06aa0"/>', parts: [
+            { id: "tail.left", kind: "path", d: "M 20 37 C 4 40 11 72 4 78", fill: "none", stroke: "#8A3F32", stroke_width: 5 },
+            { id: "tail.right", kind: "path", d: "M 70 37 C 86 40 79 72 86 78", fill: "none", stroke: "#8A3F32", stroke_width: 5 },
+            { id: "body", kind: "polygon", points: [[22, 106], [68, 106], [58, 68], [32, 68]], fill: "#F06AA0", stroke: "none" },
+            { id: "head", kind: "circle", cx: 45, cy: 38, r: 24, fill: "#ffd9ad", stroke: "none" },
+            { id: "hair.cap", kind: "path", d: "M 21 37 C 24 10 66 9 69 37 C 53 24 37 28 21 37 Z", fill: "#8A3F32", stroke: "none" },
+            { id: "eye.left", kind: "circle", cx: 36, cy: 42, r: 3.1, fill: "#2b2118", stroke: "none" },
+            { id: "eye.right", kind: "circle", cx: 54, cy: 42, r: 3.1, fill: "#2b2118", stroke: "none" },
+            { id: "eye.left.light", kind: "circle", cx: 35.1, cy: 40.9, r: 0.9, fill: "#ffffff", stroke: "none" },
+            { id: "eye.right.light", kind: "circle", cx: 53.1, cy: 40.9, r: 0.9, fill: "#ffffff", stroke: "none" },
+            { id: "smile", kind: "path", d: "M 38 52 Q 45 58 52 52", fill: "none", stroke: "#b86e39", stroke_width: 1.4 },
+            { id: "bow.left", kind: "polygon", points: [[38, 76], [24, 69], [32, 87]], fill: "#D487D8", stroke: "none" },
+            { id: "bow.right", kind: "polygon", points: [[52, 76], [66, 69], [58, 87]], fill: "#D487D8", stroke: "none" },
+          ] },
+          { id: "school", label: "학교", kind: "composite", sourceWidth: 96, sourceHeight: 76, w: 96, h: 76, icon: '<rect class="shape-fill" x="5" y="9" width="14" height="10" fill="#ffd98a"/><polygon class="shape-fill" points="3,9 12,4 21,9" fill="#e96f4a"/><path d="M12 4V1L17 3"/><circle cx="12" cy="12" r="2" fill="#f8fbff"/>', parts: [
+            { id: "yard", kind: "rect", x: 4, y: 64, width: 86, height: 8, rx: 4, ry: 4, stroke: "none", fill: "#b7e2b6" },
+            { id: "body", kind: "rect", x: 18, y: 34, width: 60, height: 40, fill: "#ffd98a", stroke: "#7f6b4d", stroke_width: 1.4 },
+            { id: "roof", kind: "polygon", points: [[12, 36], [48, 18], [84, 36]], fill: "#e96f4a", stroke: "#9b5738", stroke_width: 1.4 },
+            { id: "tower", kind: "rect", x: 39, y: 24, width: 18, height: 50, fill: "#f3c35b", stroke: "#7f6b4d", stroke_width: 1.3 },
+            { id: "tower.roof", kind: "polygon", points: [[35, 24], [48, 14], [61, 24]], fill: "#e96f4a", stroke: "#9b5738", stroke_width: 1.2 },
+            { id: "flag.pole", kind: "line", x1: 48, y1: 14, x2: 48, y2: 0, stroke: "#4b5563", stroke_width: 1.2 },
+            { id: "flag", kind: "polygon", points: [[48, 0], [64, 5], [48, 10]], fill: "#ff8a8a", stroke: "#d14343", stroke_width: 1 },
+            { id: "clock", kind: "circle", cx: 48, cy: 39, r: 7, fill: "#f8fbff", stroke: "#5b7187", stroke_width: 1.2 },
+            { id: "door", kind: "rect", x: 42, y: 55, width: 12, height: 19, fill: "#8fd3ff", stroke: "#795548", stroke_width: 1.1 },
+            { id: "window.left.top", kind: "rect", x: 25, y: 42, width: 9, height: 8, fill: "#dff6ff", stroke: "#5082a9", stroke_width: 1 },
+            { id: "window.left.bottom", kind: "rect", x: 25, y: 56, width: 9, height: 8, fill: "#dff6ff", stroke: "#5082a9", stroke_width: 1 },
+            { id: "window.right.top", kind: "rect", x: 62, y: 42, width: 9, height: 8, fill: "#dff6ff", stroke: "#5082a9", stroke_width: 1 },
+            { id: "window.right.bottom", kind: "rect", x: 62, y: 56, width: 9, height: 8, fill: "#dff6ff", stroke: "#5082a9", stroke_width: 1 },
+          ] },
+          { id: "house", label: "집", kind: "composite", sourceWidth: 84, sourceHeight: 62, w: 84, h: 62, icon: '<rect class="shape-fill" x="6" y="10" width="13" height="9" fill="#ffe19a"/><polygon class="shape-fill" points="4,10 12,4 20,10" fill="#ef6b55"/><rect x="10" y="13" width="4" height="6" fill="#7cc3ff"/>', parts: [
+            { id: "yard", kind: "rect", x: 5, y: 53, width: 74, height: 8, rx: 4, ry: 4, stroke: "none", fill: "#b7e2b6" },
+            { id: "body", kind: "rect", x: 16, y: 28, width: 52, height: 34, fill: "#ffe19a", stroke: "#8a6240", stroke_width: 1.4 },
+            { id: "roof", kind: "polygon", points: [[9, 30], [42, 8], [75, 30]], fill: "#ef6b55", stroke: "#a64b43", stroke_width: 1.4 },
+            { id: "chimney", kind: "rect", x: 58, y: 13, width: 8, height: 16, fill: "#ef6b55", stroke: "#a64b43", stroke_width: 1 },
+            { id: "door", kind: "rect", x: 37, y: 40, width: 12, height: 22, fill: "#7cc3ff", stroke: "#795548", stroke_width: 1 },
+            { id: "window.left", kind: "rect", x: 23, y: 36, width: 10, height: 10, fill: "#dff6ff", stroke: "#4f91b7", stroke_width: 1 },
+            { id: "window.right", kind: "rect", x: 53, y: 36, width: 10, height: 10, fill: "#dff6ff", stroke: "#4f91b7", stroke_width: 1 },
+          ] },
+          { id: "playground", label: "놀이터", kind: "composite", sourceWidth: 96, sourceHeight: 82, w: 96, h: 82, icon: '<circle class="shape-fill" cx="13" cy="12" r="8" fill="#c9eeb6"/><path d="M9 18 C13 14 15 12 19 10" stroke="#f08bb4" stroke-width="2"/><path d="M8 15 L12 5 L18 15"/><line x1="10" y1="5" x2="16" y2="5"/>', parts: [
+            { id: "ground", kind: "circle", cx: 52, cy: 50, r: 35, fill: "#c9eeb6", stroke: "none" },
+            { id: "trunk", kind: "rect", x: 13, y: 29, width: 6, height: 28, fill: "#a96a3d", stroke: "none" },
+            { id: "tree.top", kind: "circle", cx: 16, cy: 22, r: 13, fill: "#7bcf6b", stroke: "none" },
+            { id: "swing.top", kind: "line", x1: 42, y1: 18, x2: 76, y2: 18, stroke: "#61a66d", stroke_width: 2 },
+            { id: "swing.left", kind: "line", x1: 42, y1: 18, x2: 33, y2: 60, stroke: "#61a66d", stroke_width: 2 },
+            { id: "swing.right", kind: "line", x1: 76, y1: 18, x2: 85, y2: 60, stroke: "#61a66d", stroke_width: 2 },
+            { id: "rope.left", kind: "line", x1: 54, y1: 18, x2: 54, y2: 42, stroke: "#9ca3af", stroke_width: 1.2 },
+            { id: "rope.right", kind: "line", x1: 64, y1: 18, x2: 64, y2: 42, stroke: "#9ca3af", stroke_width: 1.2 },
+            { id: "seat", kind: "rect", x: 50, y: 42, width: 18, height: 4, rx: 2, ry: 2, fill: "#f59e0b", stroke: "none" },
+            { id: "slide", kind: "path", d: "M 30 58 C 49 46, 61 38, 76 32", fill: "none", stroke: "#f08bb4", stroke_width: 4 },
+            { id: "ladder", kind: "line", x1: 28, y1: 58, x2: 38, y2: 30, stroke: "#60a5fa", stroke_width: 2 },
           ] },
         ],
       },
@@ -1214,6 +1257,8 @@
       selectedElement = null;
       resizeState = null;
       bindSlotInteractions();
+      updateCanvasGuide();
+      updateCanvasControls();
       applyPickMode();
       updateSelectionHandles();
       updateTextEditControls();
@@ -1440,8 +1485,8 @@
       return true;
     }
 
-    async function commitPatches(patches, reason = "저장 완료", withBuild = true) {
-      if (!currentProblemId) return;
+    async function commitPatches(patches, reason = "저장 완료", withBuild = true, problemId = currentProblemId) {
+      if (!problemId) return;
       if (!patches || !patches.length) return;
       if (!(document.getElementById("dslEditor").value || "").trim()) {
         throw new Error("DSL 파일이 비어 있어 편집할 수 없습니다. 유효한 DSL을 먼저 복구하거나 저장하세요.");
@@ -1449,7 +1494,7 @@
       const preserveSelection = Array.from(selectedSlots.keys());
       const payload = { patches };
       const endpoint = withBuild ? "/layout-patch-and-build/" : "/layout-patch/";
-      const savePromise = api(encodedProblemPath(currentProblemId, endpoint), {
+      const savePromise = api(encodedProblemPath(problemId, endpoint), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
@@ -1461,19 +1506,25 @@
       } finally {
         pendingPatchSaves = pendingPatchSaves.filter((item) => item !== savePromise);
       }
-      document.getElementById("dslEditor").value = data.dsl || "";
+      if (problemId === currentProblemId) {
+        document.getElementById("dslEditor").value = data.dsl || "";
+      }
       if (withBuild) {
-        renderArtifacts(data.artifacts || null);
-        renderLog(data.build?.stdout || "", data.build?.stderr || "");
-        restoreSelection(preserveSelection);
+        if (problemId === currentProblemId) {
+          renderArtifacts(data.artifacts || null);
+          renderLog(data.build?.stdout || "", data.build?.stderr || "");
+          restoreSelection(preserveSelection);
+        }
       }
       const last = patches[patches.length - 1];
       const slotId = last.target;
       const value = last.value;
-      document.getElementById("slotId").value = slotId;
-      document.getElementById("patchJson").value = value === undefined ? "" : JSON.stringify(value, null, 2);
-      updateInspectorControls();
-      setStatus(reason, true);
+      if (problemId === currentProblemId) {
+        document.getElementById("slotId").value = slotId;
+        document.getElementById("patchJson").value = value === undefined ? "" : JSON.stringify(value, null, 2);
+        updateInspectorControls();
+        setStatus(reason, true);
+      }
     }
 
     function restoreSelection(slotIds) {
@@ -1545,11 +1596,13 @@
 
     function currentCanvasBox() {
       const svg = document.getElementById("svgPreview").querySelector("svg");
-      if (!svg) return { width: 960, height: 640 };
+      if (!svg) return { x: 0, y: 0, width: 960, height: 640 };
       const vb = svg.viewBox && svg.viewBox.baseVal ? svg.viewBox.baseVal : null;
+      const x = vb ? Number(vb.x || 0) : 0;
+      const y = vb ? Number(vb.y || 0) : 0;
       const width = vb && vb.width ? vb.width : Number(svg.getAttribute("width") || 960);
       const height = vb && vb.height ? vb.height : Number(svg.getAttribute("height") || 640);
-      return { width, height };
+      return { x, y, width, height };
     }
 
     function defaultInsertOrigin(width, height) {
@@ -1566,11 +1619,9 @@
       try {
         const layout = JSON.parse(layoutText);
         const regions = Array.isArray(layout.regions) ? layout.regions : [];
-        const usable = regions.filter((region) => region && typeof region.id === "string");
-        const absolute = usable.filter((region) => region.flow === "absolute");
-        const candidates = absolute.length ? absolute : usable;
-        const top = candidates.length ? candidates[candidates.length - 1] : null;
-        return top && typeof top.id === "string" ? top.id : null;
+        const diagram = regions.find((region) => region && (region.role === "diagram" || region.flow === "absolute"));
+        const first = diagram || regions[0];
+        return first && typeof first.id === "string" ? first.id : null;
       } catch (_) {
         return null;
       }
@@ -1613,6 +1664,11 @@
       return m ? m[1] : null;
     }
 
+    function mathSlotBase(slotId) {
+      const m = String(slotId || "").match(/^(slot\.math\.[a-zA-Z0-9_]+)(?:\.(?:whole|num|bar|den))?$/);
+      return m ? m[1] : null;
+    }
+
     function uniqueTableBase() {
       const ids = extractDslSlotIds();
       const used = new Set();
@@ -1643,6 +1699,23 @@
       return `slot.graphpaper_${Date.now()}`;
     }
 
+    function uniqueMathBase(kind = "frac") {
+      const ids = extractDslSlotIds();
+      const used = new Set();
+      for (const id of ids) {
+        const base = mathSlotBase(id);
+        if (base) used.add(base);
+      }
+      const clean = String(kind || "expr").replace(/[^a-zA-Z0-9_]+/g, "_").replace(/^_+|_+$/g, "") || "expr";
+      const first = `slot.math.${clean}`;
+      if (!used.has(first)) return first;
+      for (let i = 1; i < 10000; i += 1) {
+        const candidate = `slot.math.${clean}_${i}`;
+        if (!used.has(candidate)) return candidate;
+      }
+      return `slot.math.${clean}_${Date.now()}`;
+    }
+
     function scalePoints(points, x, y, width, height, sourceWidth = 64, sourceHeight = 52) {
       return points.map(([px, py]) => [
         snapValue(x + (px / sourceWidth) * width),
@@ -1659,11 +1732,6 @@
         ],
         (rx, ry) => [snapValue((rx / sourceWidth) * width), snapValue((ry / sourceHeight) * height)]
       );
-    }
-
-    function addRegionToPatch(value) {
-      const regionId = firstUsableRegionId();
-      return regionId ? { ...value, region_id: regionId } : value;
     }
 
     function scaledCompositePart(part, x, y, width, height, sourceWidth = 64, sourceHeight = 52) {
@@ -1698,18 +1766,21 @@
       return { kind: part.kind, content };
     }
 
+    function addRegionToPatch(value) {
+      const regionId = firstUsableRegionId();
+      return regionId ? { ...value, region_id: regionId } : value;
+    }
+
     function compositeShapePatches(def) {
-      const fallbackWidth = Number(def.w || def.sourceWidth || 64);
+      const fallbackWidth = Number(def.w || def.sourceWidth || 80);
       const fallbackHeight = Number(def.h || def.sourceHeight || fallbackWidth);
-      const width = fallbackWidth;
-      const height = fallbackHeight;
-      const { x, y } = defaultInsertOrigin(width, height);
+      const { x, y } = defaultInsertOrigin(fallbackWidth, fallbackHeight);
       const base = uniqueFigureBase(def.id);
       const regionId = firstUsableRegionId();
       const patches = [];
       for (const part of def.parts || []) {
         if (!part || !part.id || !part.kind) continue;
-        const value = scaledCompositePart(part, x, y, width, height, def.sourceWidth || width, def.sourceHeight || height);
+        const value = scaledCompositePart(part, x, y, fallbackWidth, fallbackHeight, def.sourceWidth || fallbackWidth, def.sourceHeight || fallbackHeight);
         patches.push({
           target: `${base}.${part.id}`,
           op: "add",
@@ -1824,6 +1895,98 @@
       return { base, patches };
     }
 
+    function cleanMathText(value, fallback) {
+      const text = String(value ?? "").trim();
+      return text || fallback;
+    }
+
+    function fractionPatches({ mixed = false, whole = "1", numerator = "1", denominator = "2" } = {}) {
+      const wholeText = cleanMathText(whole, "1");
+      const numeratorText = cleanMathText(numerator, "1");
+      const denominatorText = cleanMathText(denominator, "2");
+      const base = uniqueMathBase(mixed ? "mixed_fraction" : "fraction");
+      const fontSize = 30;
+      const barWidth = 42;
+      const width = mixed ? 88 : 54;
+      const height = 72;
+      const { x, y } = defaultInsertOrigin(width, height);
+      const fractionX = mixed ? snapValue(x + 58) : snapValue(x + width / 2);
+      const numeratorY = snapValue(y + 22);
+      const barY = snapValue(y + 36);
+      const denominatorY = snapValue(y + 58);
+      const patches = [];
+      const regionId = firstUsableRegionId();
+      const withRegion = (value) => regionId ? { ...value, region_id: regionId } : value;
+
+      if (mixed) {
+        patches.push({
+          target: `${base}.whole`,
+          op: "add",
+          value: withRegion({
+            kind: "text",
+            content: {
+              text: wholeText,
+              x: snapValue(x + 18),
+              y: snapValue(y + 44),
+              font_size: fontSize,
+              anchor: "middle",
+              style_role: "body",
+              fill: "#222222",
+            },
+          }),
+        });
+      }
+
+      patches.push({
+        target: `${base}.num`,
+        op: "add",
+        value: withRegion({
+          kind: "text",
+          content: {
+            text: numeratorText,
+            x: fractionX,
+            y: numeratorY,
+            font_size: fontSize,
+            anchor: "middle",
+            style_role: "body",
+            fill: "#222222",
+          },
+        }),
+      });
+      patches.push({
+        target: `${base}.bar`,
+        op: "add",
+        value: withRegion({
+          kind: "line",
+          content: {
+            x1: snapValue(fractionX - barWidth / 2),
+            y1: barY,
+            x2: snapValue(fractionX + barWidth / 2),
+            y2: barY,
+            stroke: "#222222",
+            stroke_width: 2.2,
+          },
+        }),
+      });
+      patches.push({
+        target: `${base}.den`,
+        op: "add",
+        value: withRegion({
+          kind: "text",
+          content: {
+            text: denominatorText,
+            x: fractionX,
+            y: denominatorY,
+            font_size: fontSize,
+            anchor: "middle",
+            style_role: "body",
+            fill: "#222222",
+          },
+        }),
+      });
+      return { base, patches };
+    }
+
     async function insertTable(rows, cols) {
       if (!currentProblemId) throw new Error("문제를 먼저 여세요.");
       const { base, patches } = tablePatches(rows, cols);
@@ -1838,81 +2001,17 @@
       restoreSelection([`${base}.v0`]);
     }
 
-    function cleanMathText(value, fallback) {
-      const text = String(value ?? "").trim();
-      return text || fallback;
-    }
-
-    function fractionPatches({ mixed = false, whole = "1", numerator = "1", denominator = "2" } = {}) {
-      const numText = cleanMathText(numerator, "1");
-      const denText = cleanMathText(denominator, "2");
-      const wholeText = cleanMathText(whole, "1");
-      const fontSize = 30;
-      const barWidth = Math.max(34, 18 * Math.max(numText.length, denText.length));
-      const width = mixed ? 42 + barWidth : barWidth;
-      const height = 68;
-      const { x, y } = defaultInsertOrigin(width, height);
-      const base = uniqueInsertedSlotId(mixed ? "mixedFraction" : "fraction");
-      const regionId = firstUsableRegionId();
-      const withRegion = (value) => regionId ? { ...value, region_id: regionId } : value;
-      const centerX = x + (mixed ? 42 : 0) + barWidth / 2;
-      const patches = [];
-
-      if (mixed) {
-        patches.push({
-          target: `${base}.whole`,
-          op: "add",
-          value: withRegion({
-            kind: "text",
-            content: { text: wholeText, x: x + 20, y: y + 43, font_size: fontSize, anchor: "middle", fill: "#111827", style_role: "body" },
-          }),
-        });
-      }
-      patches.push({
-        target: `${base}.num`,
-        op: "add",
-        value: withRegion({
-          kind: "text",
-          content: { text: numText, x: centerX, y: y + 22, font_size: fontSize, anchor: "middle", fill: "#111827", style_role: "body" },
-        }),
-      });
-      patches.push({
-        target: `${base}.bar`,
-        op: "add",
-        value: withRegion({
-          kind: "line",
-          content: { x1: centerX - barWidth / 2, y1: y + 35, x2: centerX + barWidth / 2, y2: y + 35, stroke: "#111827", stroke_width: 2.2 },
-        }),
-      });
-      patches.push({
-        target: `${base}.den`,
-        op: "add",
-        value: withRegion({
-          kind: "text",
-          content: { text: denText, x: centerX, y: y + 58, font_size: fontSize, anchor: "middle", fill: "#111827", style_role: "body" },
-        }),
-      });
-      return { base, patches };
-    }
-
-    async function insertFractionFromDialog(mixed = false) {
+    async function insertFractionExpression(options) {
       if (!currentProblemId) throw new Error("문제를 먼저 여세요.");
-      const { base, patches } = fractionPatches({
-        mixed,
-        whole: document.getElementById("fractionWholeInput")?.value,
-        numerator: document.getElementById("fractionNumeratorInput")?.value,
-        denominator: document.getElementById("fractionDenominatorInput")?.value,
-      });
-      await commitPatches(patches, `${mixed ? "대분수" : "분수"} 삽입 완료`);
+      const { base, patches } = fractionPatches(options);
+      await commitPatches(patches, `${options?.mixed ? "대분수" : "분수"} 삽입 완료`);
       restoreSelection([`${base}.num`]);
     }
 
 
     function shapePayload(def) {
-      const fallbackWidth = def.lockAspect ? Number(def.sourceWidth || 64) : 120;
-      const fallbackHeight = def.lockAspect ? Number(def.sourceHeight || fallbackWidth) : (def.kind === "line" ? 70 : 86);
-      const width = Number(def.w || fallbackWidth);
-      const height = Number(def.h || fallbackHeight);
+      const width = Number(def.w || 120);
+      const height = Number(def.h || (def.kind === "line" ? 70 : 86));
       const { x, y } = defaultInsertOrigin(width, height);
       const stroke = def.stroke || DEFAULT_SHAPE_STYLE.stroke;
       const fill = def.fill !== undefined ? def.fill : DEFAULT_SHAPE_STYLE.fill;
@@ -2673,6 +2772,16 @@
       return null;
     }
 
+    function isEmptySvgClickTarget(svg, target) {
+      if (!(target instanceof SVGElement)) return false;
+      if (target === svg) return true;
+      if (target.classList.contains("canvas-guide")) return true;
+      if (target.classList.contains("selection-bounds")) return true;
+      if (target.classList.contains("selection-line")) return true;
+      const id = target.getAttribute("id") || "";
+      return id === "canvasGuide" || id === "selectionOverlay";
+    }
+
     function inflateHitBox(box, pad) {
       if (!box) return null;
       return {
@@ -2988,7 +3097,6 @@
 
     function hideShapeFormatMenu() {
       document.getElementById("shapeFormatMenu")?.classList.remove("open");
-      document.getElementById("arcAngleControls")?.style.setProperty("display", "none");
     }
 
     function selectedShapeFormatItem() {
@@ -3020,9 +3128,6 @@
       const value = readSlotPatchValue(item.el) || {};
       const colorInput = document.getElementById("shapeFillColorInput");
       if (colorInput && validHexColor(value.fill)) colorInput.value = value.fill;
-      const strokeInput = document.getElementById("shapeStrokeColorInput");
-      if (strokeInput) strokeInput.value = validHexColor(value.stroke) ? value.stroke : DEFAULT_SHAPE_STYLE.stroke;
-      setArcAngleControlsVisible(item);
 
       const menu = document.getElementById("shapeFormatMenu");
       if (!menu) return false;
@@ -3059,177 +3164,27 @@
       await applyShapeFormatPatch({ fill }, "채우기");
     }
 
-    async function applyShapeStroke(stroke) {
-      const current = selectedShapeFormatItem() ? (readSlotPatchValue(selectedShapeFormatItem().el) || {}) : {};
-      await applyShapeFormatPatch({
-        stroke,
-        stroke_width: current.stroke_width && current.stroke_width > 0 ? current.stroke_width : DEFAULT_SHAPE_STYLE.stroke_width,
-      }, "선 색");
-    }
-
-    function renderColorSwatches(containerId, colors, onPick, transparentLabel = "") {
-      const wrap = document.getElementById(containerId);
+    function renderShapeFormatSwatches() {
+      const wrap = document.getElementById("shapeFillSwatches");
       if (!wrap) return;
       wrap.innerHTML = "";
-      for (const color of colors) {
+      for (const color of SHAPE_FILL_SWATCHES) {
         const btn = document.createElement("button");
         btn.type = "button";
         btn.className = "shape-swatch";
         if (color === "none") {
           btn.classList.add("transparent");
-          btn.title = transparentLabel || "없음";
+          btn.title = "채우기 없음";
         } else {
           btn.style.background = color;
           btn.title = color;
         }
         btn.addEventListener("click", async () => {
-          try { await onPick(color); hideShapeFormatMenu(); }
+          try { await applyShapeFill(color); hideShapeFormatMenu(); }
           catch (e) { setStatus(String(e), false); }
         });
         wrap.appendChild(btn);
       }
-    }
-
-    function renderShapeFormatSwatches() {
-      renderColorSwatches("shapeFillSwatches", SHAPE_FILL_SWATCHES, applyShapeFill, "채우기 없음");
-      renderColorSwatches("shapeStrokeSwatches", SHAPE_STROKE_SWATCHES, applyShapeStroke);
-    }
-
-    function clampArcAngle(value) {
-      const angle = Number(value);
-      if (!Number.isFinite(angle)) return 180;
-      return Math.max(10, Math.min(350, Math.round(angle / 5) * 5));
-    }
-
-    function arcAngleFromPath(d) {
-      const geom = sectorArcGeometryFromPath(d);
-      return clampArcAngle(geom ? geom.angle : 180);
-    }
-
-    function isArcShapeItem(item) {
-      if (!item || !item.el || item.el.tagName.toLowerCase() !== "path") return false;
-      const slotId = String(item.slotId || slotIdFromElement(item.el) || "");
-      if (/^slot\.inserted\.arc(?:\.|$)/.test(slotId)) return true;
-      return /\bA\b/i.test(item.el.getAttribute("d") || "") && /arc/i.test(slotId);
-    }
-
-    function syncArcAngleInputs(angle) {
-      const clean = clampArcAngle(angle);
-      const range = document.getElementById("arcAngleRange");
-      const input = document.getElementById("arcAngleInput");
-      if (range) range.value = String(clean);
-      if (input) input.value = String(clean);
-    }
-
-    function setArcAngleControlsVisible(item) {
-      const controls = document.getElementById("arcAngleControls");
-      if (!controls) return;
-      if (!isArcShapeItem(item)) {
-        controls.style.display = "none";
-        return;
-      }
-      controls.style.display = "flex";
-      syncArcAngleInputs(arcAngleFromPath(item.el.getAttribute("d") || ""));
-    }
-
-    function sectorArcGeometryFromPath(d) {
-      const text = String(d || "");
-      const openSector = text.match(/M\s*(-?\d+(?:\.\d+)?)\s+(-?\d+(?:\.\d+)?)\s+M\s*(-?\d+(?:\.\d+)?)\s+(-?\d+(?:\.\d+)?)\s+A\s*(-?\d+(?:\.\d+)?)\s+(-?\d+(?:\.\d+)?)\s+0\s+([01])\s+([01])\s+(-?\d+(?:\.\d+)?)\s+(-?\d+(?:\.\d+)?)/i);
-      if (openSector) {
-        const cx = Number(openSector[1]);
-        const cy = Number(openSector[2]);
-        const sx = Number(openSector[3]);
-        const sy = Number(openSector[4]);
-        const r = Math.max(Number(openSector[5]), Number(openSector[6]));
-        const largeArc = openSector[7] === "1";
-        const ex = Number(openSector[9]);
-        const ey = Number(openSector[10]);
-        if ([cx, cy, sx, sy, r, ex, ey].every(Number.isFinite) && r > 0) {
-          const chord = Math.hypot(ex - sx, ey - sy);
-          const minor = (2 * Math.asin(Math.min(1, chord / (2 * r))) * 180) / Math.PI;
-          return { cx, cy, r, angle: largeArc ? 360 - minor : minor };
-        }
-      }
-
-      const sector = text.match(/M\s*(-?\d+(?:\.\d+)?)\s+(-?\d+(?:\.\d+)?)\s+L\s*(-?\d+(?:\.\d+)?)\s+(-?\d+(?:\.\d+)?)\s+A\s*(-?\d+(?:\.\d+)?)\s+(-?\d+(?:\.\d+)?)\s+0\s+([01])\s+([01])\s+(-?\d+(?:\.\d+)?)\s+(-?\d+(?:\.\d+)?)/i);
-      if (sector) {
-        const cx = Number(sector[1]);
-        const cy = Number(sector[2]);
-        const sx = Number(sector[3]);
-        const sy = Number(sector[4]);
-        const r = Math.max(Number(sector[5]), Number(sector[6]));
-        const largeArc = sector[7] === "1";
-        const ex = Number(sector[9]);
-        const ey = Number(sector[10]);
-        if ([cx, cy, sx, sy, r, ex, ey].every(Number.isFinite) && r > 0) {
-          const chord = Math.hypot(ex - sx, ey - sy);
-          const minor = (2 * Math.asin(Math.min(1, chord / (2 * r))) * 180) / Math.PI;
-          return { cx, cy, r, angle: largeArc ? 360 - minor : minor };
-        }
-      }
-
-      const legacy = text.match(/M\s*(-?\d+(?:\.\d+)?)\s+(-?\d+(?:\.\d+)?)\s+A\s*(-?\d+(?:\.\d+)?)\s+(-?\d+(?:\.\d+)?)\s+0\s+([01])\s+[01]\s+(-?\d+(?:\.\d+)?)\s+(-?\d+(?:\.\d+)?)/i);
-      if (!legacy) return null;
-      const sx = Number(legacy[1]);
-      const sy = Number(legacy[2]);
-      const r = Math.max(Number(legacy[3]), Number(legacy[4]));
-      const largeArc = legacy[5] === "1";
-      const ex = Number(legacy[6]);
-      const ey = Number(legacy[7]);
-      if (![sx, sy, r, ex, ey].every(Number.isFinite) || r <= 0) return null;
-      const chord = Math.hypot(ex - sx, ey - sy);
-      const minor = (2 * Math.asin(Math.min(1, chord / (2 * r))) * 180) / Math.PI;
-      const midX = (sx + ex) / 2;
-      const midY = (sy + ey) / 2;
-      const halfChord = chord / 2;
-      const centerOffset = Math.sqrt(Math.max(0, r * r - halfChord * halfChord));
-      return {
-        cx: midX,
-        cy: midY + centerOffset,
-        r,
-        angle: largeArc ? 360 - minor : minor,
-      };
-    }
-
-    function sectorArcPath(cx, cy, radius, angle) {
-      const cleanAngle = clampArcAngle(angle);
-      const half = cleanAngle / 2;
-      const startDeg = 270 - half;
-      const endDeg = 270 + half;
-      const pointAt = (deg) => {
-        const rad = (deg * Math.PI) / 180;
-        return {
-          x: snapValue(cx + radius * Math.cos(rad)),
-          y: snapValue(cy + radius * Math.sin(rad)),
-        };
-      };
-      const start = pointAt(startDeg);
-      const end = pointAt(endDeg);
-      const largeArc = cleanAngle > 180 ? 1 : 0;
-      const r = snapValue(radius);
-      return `M ${snapValue(cx)} ${snapValue(cy)} M ${start.x} ${start.y} A ${r} ${r} 0 ${largeArc} 1 ${end.x} ${end.y}`;
-    }
-
-    function arcPathForElement(el, angle) {
-      const geom = sectorArcGeometryFromPath(el.getAttribute("d") || "");
-      if (geom) return sectorArcPath(geom.cx, geom.cy, geom.r, angle);
-      const svg = el.ownerSVGElement;
-      const box = visualSvgBox(el, svg) || geometrySvgBox(el) || { x: 0, y: 0, width: 64, height: 32 };
-      const radius = Math.max(8, Math.min(box.width, box.height || box.width) / 2);
-      return sectorArcPath(box.x + box.width / 2, box.y + box.height / 2, radius, angle);
-    }
-
-    async function applyArcAngle(angle) {
-      const item = selectedShapeFormatItem();
-      if (!isArcShapeItem(item)) throw new Error("호를 먼저 선택하세요.");
-      const value = { ...(readSlotPatchValue(item.el) || {}), d: arcPathForElement(item.el, angle), fill: "none" };
-      const before = [{ slotId: item.slotId, value: readSlotPatchValue(item.el) || {} }];
-      applyPatchValueToElement(item.el, value);
-      updateSelectionHandles();
-      await commitPatches([{ target: item.slotId, op: "update", value }], "호 각도 적용 완료");
-      const after = [{ slotId: item.slotId, value: JSON.parse(JSON.stringify(value)) }];
-      if (!historyBusy) pushHistory(before, after, "호 각도");
-      syncArcAngleInputs(angle);
     }
 
     function parseRotateTransform(transform) {
@@ -3598,6 +3553,24 @@
       return layer;
     }
 
+    function updateCanvasGuide() {
+      const svg = document.getElementById("svgPreview").querySelector("svg");
+      if (!svg) return;
+      let guide = svg.querySelector("#canvasGuide");
+      if (!guide) {
+        guide = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+        guide.setAttribute("id", "canvasGuide");
+        guide.setAttribute("class", "canvas-guide");
+        svg.insertBefore(guide, svg.firstChild);
+      }
+      const box = getSvgCanvasBounds() || currentCanvasBox();
+      const inset = 0.75;
+      guide.setAttribute("x", String((box.x || 0) + inset));
+      guide.setAttribute("y", String((box.y || 0) + inset));
+      guide.setAttribute("width", String(Math.max(0, (box.width || 0) - inset * 2)));
+      guide.setAttribute("height", String(Math.max(0, (box.height || 0) - inset * 2)));
+    }
+
     function selectedResizableItem() {
       if (selectedSlots.size !== 1) return null;
       const item = Array.from(selectedSlots.values())[0];
@@ -3856,37 +3829,6 @@
         else bottom = top + minSize;
       }
       return { x: left, y: top, width: right - left, height: bottom - top };
-    }
-
-    function isAspectLockedInsertedShape(item) {
-      const slotId = item ? String(item.slotId || slotIdFromElement(item.el) || "") : "";
-      return /^slot\.inserted\.(pushPin|triangle)(?:\.|$)/.test(slotId);
-    }
-
-    function aspectLockedBBox(startBox, handle, proposedBox) {
-      if (!startBox || !proposedBox || handle === "c") return proposedBox;
-      const ratio = Math.max(startBox.width, 1) / Math.max(startBox.height, 1);
-      const centerX = startBox.x + startBox.width / 2;
-      const centerY = startBox.y + startBox.height / 2;
-      let width = Math.max(4, proposedBox.width);
-      let height = Math.max(4, proposedBox.height);
-      if (handle === "n" || handle === "s") {
-        width = height * ratio;
-      } else if (handle === "e" || handle === "w") {
-        height = width / ratio;
-      } else {
-        const scale = Math.max(width / Math.max(startBox.width, 1), height / Math.max(startBox.height, 1));
-        width = Math.max(4, startBox.width * scale);
-        height = Math.max(4, startBox.height * scale);
-      }
-
-      let x = centerX - width / 2;
-      let y = centerY - height / 2;
-      if (handle.includes("w")) x = startBox.x + startBox.width - width;
-      if (handle.includes("e")) x = startBox.x;
-      if (handle.includes("n")) y = startBox.y + startBox.height - height;
-      if (handle.includes("s")) y = startBox.y;
-      return { x, y, width, height };
     }
 
     function adjustedCanvasBox(startBox, handle, dx, dy) {
@@ -4479,10 +4421,19 @@
       el.value = value === undefined || value === null ? "" : String(value);
     }
 
+    function updateCanvasControls() {
+      const canvas = currentCanvasBox();
+      setInspectorField("canvasX", canvas.x ?? 0);
+      setInspectorField("canvasY", canvas.y ?? 0);
+      setInspectorField("canvasW", canvas.width ?? "");
+      setInspectorField("canvasH", canvas.height ?? "");
+    }
+
     function updateInspectorControls() {
       const selected = selectedSlots.size === 1 ? Array.from(selectedSlots.values())[0] : null;
       const canInspect = selected && !selected.isCanvas && !selected.isFigureGroup && !selected.isPaperFoldGroup && !selected.isMeasurementGroup && !selected.isTableGroup && !selected.isGraphPaperGroup && !selected.isGeneratedGroup && !selected.isCharacterGroup && !selected.isFraction && selected.el;
       const value = canInspect ? readSlotPatchValue(selected.el) : null;
+      updateCanvasControls();
       setInspectorField("slotId", selected ? selected.slotId : "");
       setInspectorField("propX", value?.x ?? value?.cx ?? value?.x1 ?? "");
       setInspectorField("propY", value?.y ?? value?.cy ?? value?.y1 ?? "");
@@ -4492,6 +4443,33 @@
       setInspectorField("propRotate", value?.transform ?? "");
       const patch = document.getElementById("patchJson");
       if (patch && value) patch.value = JSON.stringify(value, null, 2);
+    }
+
+    async function commitCanvasFields() {
+      if (!currentProblemId) throw new Error("먼저 문제를 선택하세요.");
+      const readCanvasNumber = (id) => {
+        const raw = document.getElementById(id)?.value;
+        if (raw === undefined || raw === null || raw === "") return undefined;
+        const n = Number(raw);
+        return Number.isFinite(n) ? n : undefined;
+      };
+      const width = readCanvasNumber("canvasW");
+      const height = readCanvasNumber("canvasH");
+      if (width === undefined || height === undefined || width <= 0 || height <= 0) {
+        throw new Error("캔버스 W/H는 1 이상이어야 합니다.");
+      }
+      const value = {
+        width: snapEnabled ? snapValue(width) : width,
+        height: snapEnabled ? snapValue(height) : height,
+      };
+      const before = [{ slotId: "__canvas__", value: currentCanvasBox() }];
+      applyCanvasPatchValue(value);
+      updateCanvasGuide();
+      updateCanvasControls();
+      updateSelectionHandles();
+      await commitPatches([{ target: "__canvas__", op: "update", value }], "캔버스 크기 저장 완료");
+      const after = [{ slotId: "__canvas__", value: JSON.parse(JSON.stringify(value)) }];
+      if (!historyBusy) pushHistory(before, after, "캔버스 크기");
     }
 
     function updateTextEditControls() {
@@ -4675,6 +4653,8 @@
       svg.setAttribute("width", String(width));
       svg.setAttribute("height", String(height));
       svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
+      updateCanvasGuide();
+      updateCanvasControls();
     }
 
     function snapPatchValue(value) {
@@ -5161,12 +5141,9 @@
         setStatus(`표 ${resizeState.handle.includes("table-v:") ? "열" : "행"} 조절 중: ${resizeState.item.slotId}${snapEnabled ? " (snap 5px)" : ""}`, true);
         return;
       }
-      let nextBox = resizeState.item.isCanvas
+      const nextBox = resizeState.item.isCanvas
         ? adjustedCanvasBox(resizeState.startBox, resizeState.handle, dx, dy)
         : adjustedBBox(resizeState.startBox, resizeState.handle, dx, dy);
-      if (!resizeState.item.isCanvas && isAspectLockedInsertedShape(resizeState.item)) {
-        nextBox = aspectLockedBBox(resizeState.startBox, resizeState.handle, nextBox);
-      }
       const value = resizeState.item.isGraphPaperGroup
         ? resizeGraphPaperGroup(resizeState, nextBox)
         : (resizeState.item.isCharacterGroup || resizeState.item.isFigureGroup || resizeState.item.isPaperFoldGroup || resizeState.item.isMeasurementGroup || resizeState.item.isTableGroup)
@@ -5330,6 +5307,7 @@
           }
         }
         dragState = {
+          problemId: currentProblemId,
           svg,
           slotId: selectionKey,
           start,
@@ -5403,34 +5381,9 @@
         return true;
       }
 
-      function addFillHitProxy(el) {
-        const tag = el.tagName.toLowerCase();
-        if (!(tag === "path" || tag === "polygon")) return false;
-        const fill = String(el.getAttribute("fill") || "").toLowerCase();
-        if (!fill || fill === "none") return false;
-        const proxy = document.createElementNS("http://www.w3.org/2000/svg", tag);
-        const copyAttrs = tag === "path" ? ["d", "transform"] : ["points", "transform"];
-        for (const name of copyAttrs) {
-          const value = el.getAttribute(name);
-          if (value !== null) proxy.setAttribute(name, value);
-        }
-        proxy.setAttribute("fill", "#000");
-        proxy.setAttribute("fill-opacity", "0.001");
-        proxy.setAttribute("stroke", "none");
-        proxy.style.pointerEvents = "fill";
-        proxy.classList.add("slot-hit-proxy");
-        addHitProxyEventHandlers(proxy, el);
-        if (!Array.isArray(el.__slotHitProxies)) el.__slotHitProxies = [];
-        el.__slotHitProxies.push(proxy);
-        svg.appendChild(proxy);
-        return true;
-      }
-
       function addHitProxies() {
         for (const el of slotElements) {
-          const hasStrokeProxy = addStrokeHitProxy(el);
-          const hasFillProxy = addFillHitProxy(el);
-          if (hasStrokeProxy || hasFillProxy) continue;
+          if (addStrokeHitProxy(el)) continue;
           if (el.tagName.toLowerCase() !== "text") continue;
           if (el.getAttribute("data-slot-kind") !== "text_box") continue;
           const bb = elementHitBox(el);
@@ -5455,6 +5408,7 @@
         if (pendingDrawShape && beginShapeDrawOnCanvas(svg, ev)) return;
         const target = ev.target;
         if (target instanceof SVGElement && target.classList.contains("selection-handle")) return;
+        if (isEmptySvgClickTarget(svg, target)) return;
         if (target instanceof SVGElement && target.__slotProxyTarget) {
           const matched = matchingSlotElementAtPoint(svg, ev.clientX, ev.clientY);
           if (beginSlotPointerDown(matched || target.__slotProxyTarget, ev)) ev.stopPropagation();
@@ -5504,6 +5458,14 @@
           if (ev.button === 0) beginMarquee(svg, ev);
         }
       });
+
+      if (container.dataset.blankClickBound !== "1") {
+        container.dataset.blankClickBound = "1";
+        container.addEventListener("pointerdown", (ev) => {
+          if (ev.button !== 0) return;
+          if (ev.target === container) clearSelection();
+        });
+      }
 
       svg.addEventListener("pointermove", (ev) => {
         if (drawState) {
@@ -5659,7 +5621,7 @@
         setStatus(`드래그 저장 중: ${patches.length}개`, true);
         queueDragCommit(async () => {
           try {
-            await commitPatches(patches, `드래그 저장 완료: ${patches.length}개`, false);
+            await commitPatches(patches, `드래그 저장 완료: ${patches.length}개`, false, local.problemId);
             if (!historyBusy) {
               for (const pch of patches) {
                 const found = local.beforeMap.get(pch.target);
@@ -5942,6 +5904,7 @@
     async function selectProblem(problemId) {
       const trimmed = (problemId || "").trim();
       if (!trimmed) throw new Error("problem_id를 입력하세요.");
+      await flushPendingPatchSaves();
       currentProblemId = trimmed;
       document.getElementById("selectedProblem").textContent = trimmed;
       const detail = await api(encodedProblemPath(trimmed, "/"));
@@ -5954,13 +5917,24 @@
 
     async function saveDsl() {
       if (!currentProblemId) throw new Error("먼저 문제를 선택하세요.");
+      await flushPendingPatchSaves();
       const dsl = document.getElementById("dslEditor").value;
       await api(encodedProblemPath(currentProblemId, "/dsl/"), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ dsl }),
+      }).then((data) => {
+        if (typeof data.dsl === "string") document.getElementById("dslEditor").value = data.dsl;
       });
       setStatus("DSL 저장 완료", true);
+    }
+
+    async function formatDsl() {
+      if (!currentProblemId) throw new Error("먼저 문제를 선택하세요.");
+      await saveDsl();
+      const data = await api(encodedProblemPath(currentProblemId, "/dsl/format/"), { method: "POST" });
+      document.getElementById("dslEditor").value = data.dsl || "";
+      setStatus("DSL 정리 완료", true);
     }
 
     async function buildProblem() {
@@ -6047,6 +6021,10 @@
       try { await saveDsl(); }
       catch (e) { setStatus(String(e), false); }
     };
+    document.getElementById("formatDslBtn").onclick = async () => {
+      try { await formatDsl(); }
+      catch (e) { setStatus(String(e), false); }
+    };
     document.getElementById("buildBtn").onclick = async () => {
       try { await buildProblem(); }
       catch (e) { setStatus(String(e), false); }
@@ -6095,31 +6073,36 @@
       await insertGraphPaper(rows, cols);
       closeGraphPaperDialog();
     }
-    let pendingFractionMixed = false;
-    function openFractionDialog(mixed = false) {
-      const dialog = document.getElementById("fractionInsertDialog");
+    let pendingMathMixed = false;
+    function openMathDialog(mixed = false) {
+      const dialog = document.getElementById("mathInsertDialog");
       if (!dialog) return;
-      pendingFractionMixed = mixed;
-      document.getElementById("fractionInsertTitle").textContent = mixed ? "대분수 삽입" : "분수 삽입";
-      document.getElementById("fractionWholeLabel").hidden = !mixed;
-      document.getElementById("fractionWholeInput").value = "1";
-      document.getElementById("fractionNumeratorInput").value = "1";
-      document.getElementById("fractionDenominatorInput").value = "2";
+      pendingMathMixed = mixed;
+      document.getElementById("mathInsertTitle").textContent = mixed ? "대분수 삽입" : "분수 삽입";
+      document.getElementById("mathWholeLabel").hidden = !mixed;
+      document.getElementById("mathWholeInput").value = "1";
+      document.getElementById("mathNumeratorInput").value = "1";
+      document.getElementById("mathDenominatorInput").value = "2";
       dialog.hidden = false;
-      setTimeout(() => (mixed ? document.getElementById("fractionWholeInput") : document.getElementById("fractionNumeratorInput"))?.focus(), 0);
+      setTimeout(() => (mixed ? document.getElementById("mathWholeInput") : document.getElementById("mathNumeratorInput"))?.focus(), 0);
     }
-    function closeFractionDialog() {
-      const dialog = document.getElementById("fractionInsertDialog");
+    function closeMathDialog() {
+      const dialog = document.getElementById("mathInsertDialog");
       if (dialog) dialog.hidden = true;
     }
-    async function confirmFractionDialog() {
-      await insertFractionFromDialog(pendingFractionMixed);
-      closeFractionDialog();
+    async function confirmMathDialog() {
+      await insertFractionExpression({
+        mixed: pendingMathMixed,
+        whole: document.getElementById("mathWholeInput")?.value,
+        numerator: document.getElementById("mathNumeratorInput")?.value,
+        denominator: document.getElementById("mathDenominatorInput")?.value,
+      });
+      closeMathDialog();
     }
     document.getElementById("insertTableBtn").onclick = openTableDialog;
     document.getElementById("insertGraphPaperBtn").onclick = openGraphPaperDialog;
-    document.getElementById("insertFractionBtn").onclick = () => openFractionDialog(false);
-    document.getElementById("insertMixedFractionBtn").onclick = () => openFractionDialog(true);
+    document.getElementById("insertFractionBtn").onclick = () => openMathDialog(false);
+    document.getElementById("insertMixedFractionBtn").onclick = () => openMathDialog(true);
     document.getElementById("insertImageBtn").onclick = () => {
       document.getElementById("insertImageInput")?.click();
     };
@@ -6156,14 +6139,14 @@
     document.getElementById("graphPaperInsertDialog").addEventListener("click", (ev) => {
       if (ev.target === ev.currentTarget) closeGraphPaperDialog();
     });
-    document.getElementById("fractionConfirmBtn").onclick = async () => {
-      try { await confirmFractionDialog(); }
+    document.getElementById("mathConfirmBtn").onclick = async () => {
+      try { await confirmMathDialog(); }
       catch (e) { setStatus(String(e), false); }
     };
-    document.getElementById("fractionCancelBtn").onclick = closeFractionDialog;
-    document.getElementById("fractionCancelXBtn").onclick = closeFractionDialog;
-    document.getElementById("fractionInsertDialog").addEventListener("click", (ev) => {
-      if (ev.target === ev.currentTarget) closeFractionDialog();
+    document.getElementById("mathCancelBtn").onclick = closeMathDialog;
+    document.getElementById("mathCancelXBtn").onclick = closeMathDialog;
+    document.getElementById("mathInsertDialog").addEventListener("click", (ev) => {
+      if (ev.target === ev.currentTarget) closeMathDialog();
     });
     for (const id of ["tableColsInput", "tableRowsInput"]) {
       document.getElementById(id).addEventListener("keydown", async (ev) => {
@@ -6185,14 +6168,14 @@
         if (ev.key === "Escape") closeGraphPaperDialog();
       });
     }
-    for (const id of ["fractionWholeInput", "fractionNumeratorInput", "fractionDenominatorInput"]) {
+    for (const id of ["mathWholeInput", "mathNumeratorInput", "mathDenominatorInput"]) {
       document.getElementById(id).addEventListener("keydown", async (ev) => {
         if (ev.key === "Enter") {
           ev.preventDefault();
-          try { await confirmFractionDialog(); }
+          try { await confirmMathDialog(); }
           catch (e) { setStatus(String(e), false); }
         }
-        if (ev.key === "Escape") closeFractionDialog();
+        if (ev.key === "Escape") closeMathDialog();
       });
     }
     document.getElementById("shapeGallery").addEventListener("click", (ev) => ev.stopPropagation());
@@ -6207,39 +6190,24 @@
         hideShapeFormatMenu();
       } catch (e) { setStatus(String(e), false); }
     };
-    document.getElementById("shapeApplyStrokeBtn").onclick = async () => {
-      try {
-        await applyShapeStroke(document.getElementById("shapeStrokeColorInput").value || DEFAULT_SHAPE_STYLE.stroke);
-        hideShapeFormatMenu();
-      } catch (e) { setStatus(String(e), false); }
-    };
     document.getElementById("shapeNoBorderBtn").onclick = async () => {
       try {
         await applyShapeFormatPatch({ stroke: "none", stroke_width: 0, stroke_dasharray: "" }, "테두리 제거");
         hideShapeFormatMenu();
       } catch (e) { setStatus(String(e), false); }
     };
-    function currentShapeStrokeStyle() {
-      const item = selectedShapeFormatItem();
-      const value = item ? (readSlotPatchValue(item.el) || {}) : {};
-      return {
-        stroke: value.stroke && value.stroke !== "none" ? value.stroke : DEFAULT_SHAPE_STYLE.stroke,
-        stroke_width: value.stroke_width && value.stroke_width > 0 ? value.stroke_width : DEFAULT_SHAPE_STYLE.stroke_width,
-      };
-    }
     document.getElementById("shapeSolidBtn").onclick = async () => {
       try {
-        await applyShapeFormatPatch({ ...currentShapeStrokeStyle(), stroke_dasharray: "" }, "실선");
+        await applyShapeFormatPatch({ stroke: DEFAULT_SHAPE_STYLE.stroke, stroke_width: DEFAULT_SHAPE_STYLE.stroke_width, stroke_dasharray: "" }, "실선");
         hideShapeFormatMenu();
       } catch (e) { setStatus(String(e), false); }
     };
     function bindStrokeDashButton(id, label, dasharray) {
       document.getElementById(id).onclick = async () => {
         try {
-          const strokeStyle = currentShapeStrokeStyle();
           await applyShapeFormatPatch({
-            stroke: strokeStyle.stroke,
-            stroke_width: strokeStyle.stroke_width,
+            stroke: DEFAULT_SHAPE_STYLE.stroke,
+            stroke_width: DEFAULT_SHAPE_STYLE.stroke_width,
             stroke_dasharray: dasharray,
           }, label);
           hideShapeFormatMenu();
@@ -6250,18 +6218,6 @@
     bindStrokeDashButton("shapeDashedBtn", "긴 점선", "10 6");
     bindStrokeDashButton("shapeDotDashBtn", "점-대시", "10 4 2 4");
     bindStrokeDashButton("shapeDottedBtn", "촘촘 점선", "2 5");
-    function syncArcAngleControlsFromEvent(ev) {
-      const value = clampArcAngle(ev.currentTarget.value);
-      syncArcAngleInputs(value);
-    }
-    document.getElementById("arcAngleRange").addEventListener("input", syncArcAngleControlsFromEvent);
-    document.getElementById("arcAngleInput").addEventListener("input", syncArcAngleControlsFromEvent);
-    document.getElementById("arcAngleApplyBtn").onclick = async () => {
-      try {
-        await applyArcAngle(document.getElementById("arcAngleInput").value || 180);
-        hideShapeFormatMenu();
-      } catch (e) { setStatus(String(e), false); }
-    };
     document.getElementById("patchBtn").onclick = async () => {
       try { await patchOnly(); }
       catch (e) { setStatus(String(e), false); }
@@ -6314,6 +6270,21 @@
         commit();
       });
     }
+    for (const id of ["canvasW", "canvasH"]) {
+      const input = document.getElementById(id);
+      if (!input) continue;
+      const commit = () => commitCanvasFields().catch((e) => setStatus(String(e), false));
+      input.addEventListener("change", commit);
+      input.addEventListener("keydown", (ev) => {
+        if (ev.key !== "Enter") return;
+        ev.preventDefault();
+        commit();
+      });
+    }
+    document.getElementById("selectCanvasBtn").onclick = () => {
+      try { selectCanvas(); }
+      catch (e) { setStatus(String(e), false); }
+    };
     document.getElementById("snapToggleBtn").onclick = () => {
       snapEnabled = !snapEnabled;
       updateSnapButton();

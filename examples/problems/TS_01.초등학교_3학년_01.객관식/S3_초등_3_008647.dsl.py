@@ -10,7 +10,9 @@ from modu_math.dsl import (
 )
 
 
-def _segment_fan_slots(prefix: str, *, cx: float, cy: float, r: float, label_top_only: bool = False):
+def _segment_fan_slots(
+    prefix: str, *, cx: float, cy: float, r: float, label_top_only: bool = False
+):
     bottom = (cx, cy + r)
     points = {
         "a": (cx - r * 0.96, cy + r * 0.04),
@@ -111,7 +113,9 @@ def _segment_fan_slots(prefix: str, *, cx: float, cy: float, r: float, label_top
 
 def build_problem_template() -> ProblemTemplate:
     top_diagram = _segment_fan_slots("slot.diagram.top", cx=478.0, cy=185.0, r=96.0)
-    solution_diagram = _segment_fan_slots("slot.diagram.solution", cx=195.0, cy=484.0, r=96.0, label_top_only=True)
+    solution_diagram = _segment_fan_slots(
+        "slot.diagram.solution", cx=195.0, cy=484.0, r=96.0, label_top_only=True
+    )
 
     return ProblemTemplate(
         id="S3_초등_3_008647",
@@ -159,7 +163,7 @@ def build_problem_template() -> ProblemTemplate:
                 font_size=24,
             ),
             *top_diagram,
-            ),
+        ),
         diagrams=(),
         groups=(),
         constraints=(),
@@ -210,7 +214,12 @@ SEMANTIC_OVERRIDE = {
                 "method": "compare_segments_by_circle_property",
                 "description": "원 안의 선분 중 중심을 지나는 지름을 찾는다.",
             },
-            "execute": {"expected_operations": ["identify_center_passing_segment", "match_symbol_to_segment"]},
+            "execute": {
+                "expected_operations": [
+                    "identify_center_passing_segment",
+                    "match_symbol_to_segment",
+                ]
+            },
             "review": {"check_methods": ["property_check_longest_segment_is_diameter"]},
         },
     },

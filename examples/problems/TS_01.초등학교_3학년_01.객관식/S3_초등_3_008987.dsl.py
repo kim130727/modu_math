@@ -1,10 +1,195 @@
 from __future__ import annotations
 from modu_math.dsl import Canvas, ProblemTemplate, Region, TextSlot, LineSlot, RectSlot
 
+
 def build_problem_template() -> ProblemTemplate:
-    return ProblemTemplate(id='S3_초등_3_008987', title='직각삼각형 판별', canvas=Canvas(width=700, height=360, coordinate_mode='logical'), regions=(Region(id='region.stem', role='stem', flow='absolute', slot_ids=('slot.q1', 'slot.pt.choice_o', 'slot.pt.choice_x', 'slot.tri.problem.v', 'slot.tri.problem.h', 'slot.tri.problem.d', 'slot.mark.x')), Region(id='region.answer', role='answer', flow='absolute', slot_ids=()), Region(id='region.explanation', role='explanation', flow='absolute', slot_ids=('slot.tri.explain.v', 'slot.tri.explain.h', 'slot.tri.explain.d', 'slot.right_angle.box', 'slot.rule'))), slots=(TextSlot(id='slot.q1', prompt='', text='□ 25. 직각삼각형이면 ○, 직각삼각형이 아니면 ×를 선택하세요.', style_role='question', x=12.0, y=24.0, font_size=28), TextSlot(id='slot.pt.choice_o', prompt='', text='○', style_role='emphasis', x=292.0, y=60.0, font_size=28), TextSlot(id='slot.pt.choice_x', prompt='', text='×', style_role='emphasis', x=535.0, y=64.0, font_size=28), LineSlot(id='slot.tri.problem.v', prompt='', x1=440.0, y1=44.0, x2=440.0, y2=130.0), LineSlot(id='slot.tri.problem.h', prompt='', x1=440.0, y1=44.0, x2=515.0, y2=44.0), LineSlot(id='slot.tri.problem.d', prompt='', x1=440.0, y1=130.0, x2=515.0, y2=44.0), TextSlot(id='slot.mark.x', prompt='', text='×', style_role='emphasis', x=470.0, y=154.0, font_size=24), LineSlot(id='slot.tri.explain.v', prompt='', x1=70.0, y1=214.0, x2=70.0, y2=318.0), LineSlot(id='slot.tri.explain.h', prompt='', x1=70.0, y1=214.0, x2=160.0, y2=214.0), LineSlot(id='slot.tri.explain.d', prompt='', x1=70.0, y1=318.0, x2=160.0, y2=214.0), RectSlot(id='slot.right_angle.box', prompt='', x=70.0, y=214.0, width=10.0, height=10.0), TextSlot(id='slot.rule', prompt='', text='한 각이 직각인 삼각형을 직각삼각형이라고 합니다.', style_role='note', x=12.0, y=350.0, font_size=28)), diagrams=(), groups=(), constraints=(), tags=())
+    return ProblemTemplate(
+        id="S3_초등_3_008987",
+        title="직각삼각형 판별",
+        canvas=Canvas(width=700, height=360, coordinate_mode="logical"),
+        regions=(
+            Region(
+                id="region.stem",
+                role="stem",
+                flow="absolute",
+                slot_ids=(
+                    "slot.q1",
+                    "slot.pt.choice_o",
+                    "slot.pt.choice_x",
+                    "slot.tri.problem.v",
+                    "slot.tri.problem.h",
+                    "slot.tri.problem.d",
+                    "slot.mark.x",
+                ),
+            ),
+            Region(id="region.answer", role="answer", flow="absolute", slot_ids=()),
+            Region(
+                id="region.explanation",
+                role="explanation",
+                flow="absolute",
+                slot_ids=(
+                    "slot.tri.explain.v",
+                    "slot.tri.explain.h",
+                    "slot.tri.explain.d",
+                    "slot.right_angle.box",
+                    "slot.rule",
+                ),
+            ),
+        ),
+        slots=(
+            TextSlot(
+                id="slot.q1",
+                prompt="",
+                text="□ 25. 직각삼각형이면 ○, 직각삼각형이 아니면 ×를 선택하세요.",
+                style_role="question",
+                x=12.0,
+                y=24.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.pt.choice_o",
+                prompt="",
+                text="○",
+                style_role="emphasis",
+                x=292.0,
+                y=60.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.pt.choice_x",
+                prompt="",
+                text="×",
+                style_role="emphasis",
+                x=535.0,
+                y=64.0,
+                font_size=28,
+            ),
+            LineSlot(id="slot.tri.problem.v", prompt="", x1=440.0, y1=44.0, x2=440.0, y2=130.0),
+            LineSlot(id="slot.tri.problem.h", prompt="", x1=440.0, y1=44.0, x2=515.0, y2=44.0),
+            LineSlot(id="slot.tri.problem.d", prompt="", x1=440.0, y1=130.0, x2=515.0, y2=44.0),
+            TextSlot(
+                id="slot.mark.x",
+                prompt="",
+                text="×",
+                style_role="emphasis",
+                x=470.0,
+                y=154.0,
+                font_size=24,
+            ),
+            LineSlot(id="slot.tri.explain.v", prompt="", x1=70.0, y1=214.0, x2=70.0, y2=318.0),
+            LineSlot(id="slot.tri.explain.h", prompt="", x1=70.0, y1=214.0, x2=160.0, y2=214.0),
+            LineSlot(id="slot.tri.explain.d", prompt="", x1=70.0, y1=318.0, x2=160.0, y2=214.0),
+            RectSlot(
+                id="slot.right_angle.box", prompt="", x=70.0, y=214.0, width=10.0, height=10.0
+            ),
+            TextSlot(
+                id="slot.rule",
+                prompt="",
+                text="한 각이 직각인 삼각형을 직각삼각형이라고 합니다.",
+                style_role="note",
+                x=12.0,
+                y=350.0,
+                font_size=28,
+            ),
+        ),
+        diagrams=(),
+        groups=(),
+        constraints=(),
+        tags=(),
+    )
+
+
 PROBLEM_TEMPLATE = build_problem_template()
 
-SEMANTIC_OVERRIDE = {'problem_id': 'S3_초등_3_008987', 'problem_type': '판별형 선택 문제', 'metadata': {'language': 'ko', 'question': '직각삼각형이면 ○, 직각삼각형이 아니면 ×를 선택하세요.', 'instruction': '제시된 삼각형이 직각삼각형인지 판별한다.'}, 'domain': {'objects': [{'id': 'obj.problem_triangle', 'type': 'triangle', 'property': 'right_triangle_candidate'}, {'id': 'obj.definition', 'type': 'definition', 'concept': '직각삼각형'}], 'relations': [], 'problem_solving': {'understand': {'given_refs': ['obj.problem_triangle', 'obj.definition'], 'target_ref': 'answer.target', 'condition_refs': ['rel.defines_right_triangle']}, 'plan': {'method': 'shape_judgment', 'description': '삼각형의 한 각이 직각인지 보고 ○/×를 고른다.'}, 'execute': {'expected_operations': ['identify_right_angle', 'match_definition', 'choose_symbol']}, 'review': {'check_methods': ['definition_match_check']}}}, 'answer': {'blanks': [], 'choices': [], 'answer_key': [], 'target': {'type': 'selection_symbol', 'description': '직각삼각형 여부를 나타내는 선택 기호'}, 'value': 0, 'unit': ''}}
+SEMANTIC_OVERRIDE = {
+    "problem_id": "S3_초등_3_008987",
+    "problem_type": "판별형 선택 문제",
+    "metadata": {
+        "language": "ko",
+        "question": "직각삼각형이면 ○, 직각삼각형이 아니면 ×를 선택하세요.",
+        "instruction": "제시된 삼각형이 직각삼각형인지 판별한다.",
+    },
+    "domain": {
+        "objects": [
+            {
+                "id": "obj.problem_triangle",
+                "type": "triangle",
+                "property": "right_triangle_candidate",
+            },
+            {"id": "obj.definition", "type": "definition", "concept": "직각삼각형"},
+        ],
+        "relations": [],
+        "problem_solving": {
+            "understand": {
+                "given_refs": ["obj.problem_triangle", "obj.definition"],
+                "target_ref": "answer.target",
+                "condition_refs": ["rel.defines_right_triangle"],
+            },
+            "plan": {
+                "method": "shape_judgment",
+                "description": "삼각형의 한 각이 직각인지 보고 ○/×를 고른다.",
+            },
+            "execute": {
+                "expected_operations": ["identify_right_angle", "match_definition", "choose_symbol"]
+            },
+            "review": {"check_methods": ["definition_match_check"]},
+        },
+    },
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {
+            "type": "selection_symbol",
+            "description": "직각삼각형 여부를 나타내는 선택 기호",
+        },
+        "value": 0,
+        "unit": "",
+    },
+}
 
-SOLVABLE = {'schema': 'modu.solvable.v1.1', 'problem_id': 'S3_초등_3_008987', 'problem_type': '판별형 선택 문제', 'inputs': {'total_ticks': 1, 'target_label': '직각삼각형인지 판별', 'target_ticks': 1, 'target_count': 1, 'unit': ''}, 'given': [{'ref': 'obj.problem_triangle', 'value': {'type': 'triangle', 'property': 'right_triangle_candidate'}}], 'target': {'ref': 'answer.target', 'type': 'selection_symbol'}, 'method': 'shape_judgment', 'plan': ['삼각형의 한 각이 직각인지 확인한다.', '정의와 맞으면 ○, 아니면 ×를 고른다.'], 'steps': [{'id': 'step.1', 'expr': '삼각형의 한 각이 직각인지 확인', 'value': 'TODO'}, {'id': 'step.2', 'expr': '직각 여부에 따라 ○ 또는 × 선택', 'value': 'TODO'}], 'checks': [{'id': 'check.1', 'expr': '정의: 한 각이 직각인 삼각형인가', 'expected': 'TODO', 'actual': 'TODO', 'pass': False}], 'answer': {'blanks': [], 'choices': [], 'answer_key': [], 'target': {'type': 'selection_symbol', 'description': '직각삼각형 여부를 나타내는 선택 기호'}, 'value': 0, 'unit': ''}}
+SOLVABLE = {
+    "schema": "modu.solvable.v1.1",
+    "problem_id": "S3_초등_3_008987",
+    "problem_type": "판별형 선택 문제",
+    "inputs": {
+        "total_ticks": 1,
+        "target_label": "직각삼각형인지 판별",
+        "target_ticks": 1,
+        "target_count": 1,
+        "unit": "",
+    },
+    "given": [
+        {
+            "ref": "obj.problem_triangle",
+            "value": {"type": "triangle", "property": "right_triangle_candidate"},
+        }
+    ],
+    "target": {"ref": "answer.target", "type": "selection_symbol"},
+    "method": "shape_judgment",
+    "plan": ["삼각형의 한 각이 직각인지 확인한다.", "정의와 맞으면 ○, 아니면 ×를 고른다."],
+    "steps": [
+        {"id": "step.1", "expr": "삼각형의 한 각이 직각인지 확인", "value": "TODO"},
+        {"id": "step.2", "expr": "직각 여부에 따라 ○ 또는 × 선택", "value": "TODO"},
+    ],
+    "checks": [
+        {
+            "id": "check.1",
+            "expr": "정의: 한 각이 직각인 삼각형인가",
+            "expected": "TODO",
+            "actual": "TODO",
+            "pass": False,
+        }
+    ],
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {
+            "type": "selection_symbol",
+            "description": "직각삼각형 여부를 나타내는 선택 기호",
+        },
+        "value": 0,
+        "unit": "",
+    },
+}

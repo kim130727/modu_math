@@ -1,10 +1,211 @@
 from __future__ import annotations
 from modu_math.dsl import Canvas, ProblemTemplate, Region, TextSlot, RectSlot, CircleSlot, LineSlot
 
+
 def build_problem_template() -> ProblemTemplate:
-    return ProblemTemplate(id='S3_초등_3_008803', title='가장 무거운 과일 선택', canvas=Canvas(width=960, height=456, coordinate_mode='logical'), regions=(Region(id='region.stem', role='stem', flow='absolute', slot_ids=('slot.q1', 'slot.q2', 'slot.choice')), Region(id='region.diagram.left_scale', role='diagram', flow='absolute', slot_ids=('slot.scale1.base', 'slot.scale1.beam', 'slot.scale1.pivot', 'slot.scale1.left_pan', 'slot.scale1.right_pan', 'slot.scale1.left_fruit', 'slot.scale1.right_fruit')), Region(id='region.diagram.right_scale', role='diagram', flow='absolute', slot_ids=('slot.scale2.base', 'slot.scale2.beam', 'slot.scale2.pivot', 'slot.scale2.left_pan', 'slot.scale2.right_pan', 'slot.scale2.left_fruit', 'slot.scale2.right_fruit'))), slots=(TextSlot(id='slot.q1', prompt='', text='□ 32. 저울로 오렌지, 딸기, 바나나의 무게를 비교했습니다. 가장 무거운 과일을', style_role='question', x=22.0, y=34.0, font_size=28), TextSlot(id='slot.q2', prompt='', text='선택해 보세요.', style_role='question', x=22.0, y=68.0, font_size=28), RectSlot(id='slot.scale1.base', prompt='', x=198.0, y=170.0, width=132.0, height=32.0), LineSlot(id='slot.scale1.beam', prompt='', x1=212.0, y1=168.0, x2=316.0, y2=146.0), LineSlot(id='slot.scale1.pivot', prompt='', x1=264.0, y1=150.0, x2=264.0, y2=208.0), LineSlot(id='slot.scale1.left_pan', prompt='', x1=214.0, y1=166.0, x2=210.0, y2=192.0), LineSlot(id='slot.scale1.right_pan', prompt='', x1=308.0, y1=148.0, x2=312.0, y2=174.0), CircleSlot(id='slot.scale1.left_fruit', prompt='', cx=226.0, cy=145.0, r=22.0, fill='#f4a62a'), CircleSlot(id='slot.scale1.right_fruit', prompt='', cx=294.0, cy=145.0, r=16.0, fill='#ef7b5b'), RectSlot(id='slot.scale2.base', prompt='', x=556.0, y=170.0, width=132.0, height=32.0), LineSlot(id='slot.scale2.beam', prompt='', x1=570.0, y1=148.0, x2=674.0, y2=170.0), LineSlot(id='slot.scale2.pivot', prompt='', x1=622.0, y1=152.0, x2=622.0, y2=208.0), LineSlot(id='slot.scale2.left_pan', prompt='', x1=576.0, y1=150.0, x2=572.0, y2=176.0), LineSlot(id='slot.scale2.right_pan', prompt='', x1=668.0, y1=168.0, x2=672.0, y2=192.0), CircleSlot(id='slot.scale2.left_fruit', prompt='', cx=582.0, cy=145.0, r=16.0, fill='#f4c04a'), CircleSlot(id='slot.scale2.right_fruit', prompt='', cx=650.0, cy=145.0, r=22.0, fill='#f4a62a'), TextSlot(id='slot.choice', prompt='', text='( 오렌지 , 딸기 , 바나나 )', style_role='choice', x=642.0, y=296.0, font_size=28)), diagrams=(), groups=(), constraints=(), tags=())
+    return ProblemTemplate(
+        id="S3_초등_3_008803",
+        title="가장 무거운 과일 선택",
+        canvas=Canvas(width=960, height=456, coordinate_mode="logical"),
+        regions=(
+            Region(
+                id="region.stem",
+                role="stem",
+                flow="absolute",
+                slot_ids=("slot.q1", "slot.q2", "slot.choice"),
+            ),
+            Region(
+                id="region.diagram.left_scale",
+                role="diagram",
+                flow="absolute",
+                slot_ids=(
+                    "slot.scale1.base",
+                    "slot.scale1.beam",
+                    "slot.scale1.pivot",
+                    "slot.scale1.left_pan",
+                    "slot.scale1.right_pan",
+                    "slot.scale1.left_fruit",
+                    "slot.scale1.right_fruit",
+                ),
+            ),
+            Region(
+                id="region.diagram.right_scale",
+                role="diagram",
+                flow="absolute",
+                slot_ids=(
+                    "slot.scale2.base",
+                    "slot.scale2.beam",
+                    "slot.scale2.pivot",
+                    "slot.scale2.left_pan",
+                    "slot.scale2.right_pan",
+                    "slot.scale2.left_fruit",
+                    "slot.scale2.right_fruit",
+                ),
+            ),
+        ),
+        slots=(
+            TextSlot(
+                id="slot.q1",
+                prompt="",
+                text="□ 32. 저울로 오렌지, 딸기, 바나나의 무게를 비교했습니다. 가장 무거운 과일을",
+                style_role="question",
+                x=22.0,
+                y=34.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.q2",
+                prompt="",
+                text="선택해 보세요.",
+                style_role="question",
+                x=22.0,
+                y=68.0,
+                font_size=28,
+            ),
+            RectSlot(id="slot.scale1.base", prompt="", x=198.0, y=170.0, width=132.0, height=32.0),
+            LineSlot(id="slot.scale1.beam", prompt="", x1=212.0, y1=168.0, x2=316.0, y2=146.0),
+            LineSlot(id="slot.scale1.pivot", prompt="", x1=264.0, y1=150.0, x2=264.0, y2=208.0),
+            LineSlot(id="slot.scale1.left_pan", prompt="", x1=214.0, y1=166.0, x2=210.0, y2=192.0),
+            LineSlot(id="slot.scale1.right_pan", prompt="", x1=308.0, y1=148.0, x2=312.0, y2=174.0),
+            CircleSlot(
+                id="slot.scale1.left_fruit", prompt="", cx=226.0, cy=145.0, r=22.0, fill="#f4a62a"
+            ),
+            CircleSlot(
+                id="slot.scale1.right_fruit", prompt="", cx=294.0, cy=145.0, r=16.0, fill="#ef7b5b"
+            ),
+            RectSlot(id="slot.scale2.base", prompt="", x=556.0, y=170.0, width=132.0, height=32.0),
+            LineSlot(id="slot.scale2.beam", prompt="", x1=570.0, y1=148.0, x2=674.0, y2=170.0),
+            LineSlot(id="slot.scale2.pivot", prompt="", x1=622.0, y1=152.0, x2=622.0, y2=208.0),
+            LineSlot(id="slot.scale2.left_pan", prompt="", x1=576.0, y1=150.0, x2=572.0, y2=176.0),
+            LineSlot(id="slot.scale2.right_pan", prompt="", x1=668.0, y1=168.0, x2=672.0, y2=192.0),
+            CircleSlot(
+                id="slot.scale2.left_fruit", prompt="", cx=582.0, cy=145.0, r=16.0, fill="#f4c04a"
+            ),
+            CircleSlot(
+                id="slot.scale2.right_fruit", prompt="", cx=650.0, cy=145.0, r=22.0, fill="#f4a62a"
+            ),
+            TextSlot(
+                id="slot.choice",
+                prompt="",
+                text="( 오렌지 , 딸기 , 바나나 )",
+                style_role="choice",
+                x=642.0,
+                y=296.0,
+                font_size=28,
+            ),
+        ),
+        diagrams=(),
+        groups=(),
+        constraints=(),
+        tags=(),
+    )
+
+
 PROBLEM_TEMPLATE = build_problem_template()
 
-SEMANTIC_OVERRIDE = {'problem_id': 'S3_초등_3_008803', 'problem_type': 'comparison_selection', 'metadata': {'language': 'ko', 'question': '저울로 오렌지, 딸기, 바나나의 무게를 비교하고 가장 무거운 과일을 선택하는 문제', 'instruction': '가장 무거운 과일을 선택해 보세요.'}, 'domain': {'objects': [{'id': 'obj.orange', 'type': 'fruit', 'name': '오렌지'}, {'id': 'obj.strawberry', 'type': 'fruit', 'name': '딸기'}, {'id': 'obj.banana', 'type': 'fruit', 'name': '바나나'}], 'relations': [], 'problem_solving': {'understand': {'given_refs': ['obj.orange', 'obj.strawberry', 'obj.banana', 'rel.orange_vs_strawberry', 'rel.banana_vs_orange'], 'target_ref': 'answer.target', 'condition_refs': []}, 'plan': {'method': 'comparison_reasoning', 'description': '두 저울의 비교 관계를 읽고 가장 무거운 과일을 고른다.'}, 'execute': {'expected_operations': ['compare_fruit_weights', 'combine_comparisons', 'select_heaviest_fruit']}, 'review': {'check_methods': ['relation_consistency_check', 'choice_match_check']}}}, 'answer': {'blanks': [], 'choices': [], 'answer_key': [], 'target': {'type': 'heaviest_fruit', 'description': '가장 무거운 과일'}, 'value': '오렌지', 'unit': ''}}
+SEMANTIC_OVERRIDE = {
+    "problem_id": "S3_초등_3_008803",
+    "problem_type": "comparison_selection",
+    "metadata": {
+        "language": "ko",
+        "question": "저울로 오렌지, 딸기, 바나나의 무게를 비교하고 가장 무거운 과일을 선택하는 문제",
+        "instruction": "가장 무거운 과일을 선택해 보세요.",
+    },
+    "domain": {
+        "objects": [
+            {"id": "obj.orange", "type": "fruit", "name": "오렌지"},
+            {"id": "obj.strawberry", "type": "fruit", "name": "딸기"},
+            {"id": "obj.banana", "type": "fruit", "name": "바나나"},
+        ],
+        "relations": [],
+        "problem_solving": {
+            "understand": {
+                "given_refs": [
+                    "obj.orange",
+                    "obj.strawberry",
+                    "obj.banana",
+                    "rel.orange_vs_strawberry",
+                    "rel.banana_vs_orange",
+                ],
+                "target_ref": "answer.target",
+                "condition_refs": [],
+            },
+            "plan": {
+                "method": "comparison_reasoning",
+                "description": "두 저울의 비교 관계를 읽고 가장 무거운 과일을 고른다.",
+            },
+            "execute": {
+                "expected_operations": [
+                    "compare_fruit_weights",
+                    "combine_comparisons",
+                    "select_heaviest_fruit",
+                ]
+            },
+            "review": {"check_methods": ["relation_consistency_check", "choice_match_check"]},
+        },
+    },
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {"type": "heaviest_fruit", "description": "가장 무거운 과일"},
+        "value": "오렌지",
+        "unit": "",
+    },
+}
 
-SOLVABLE = {'schema': 'modu.solvable.v1.1', 'problem_id': 'S3_초등_3_008803', 'problem_type': 'comparison_selection', 'inputs': {'total_ticks': 2, 'target_label': '가장 무거운 과일', 'target_ticks': 1, 'target_count': 1, 'unit': ''}, 'given': [{'ref': 'obj.orange', 'value': '오렌지'}, {'ref': 'obj.strawberry', 'value': '딸기'}, {'ref': 'obj.banana', 'value': '바나나'}, {'ref': 'rel.orange_vs_strawberry', 'value': '오렌지 > 딸기'}, {'ref': 'rel.banana_vs_orange', 'value': '바나나 < 오렌지'}], 'target': {'ref': 'answer.target', 'type': 'heaviest_fruit'}, 'method': 'comparison_reasoning', 'plan': ['저울의 비교 관계를 읽는다.', '두 관계를 종합해 가장 무거운 과일을 찾는다.'], 'steps': [{'id': 'step.1', 'expr': '오렌지와 딸기의 비교 관계를 읽는다.', 'value': '오렌지 > 딸기'}, {'id': 'step.2', 'expr': '바나나와 오렌지의 비교 관계를 읽는다.', 'value': '바나나 < 오렌지'}, {'id': 'step.3', 'expr': '두 관계를 종합해 가장 무거운 과일을 고른다.', 'value': '오렌지'}], 'checks': [{'id': 'check.1', 'expr': '오렌지가 딸기보다 무거운가', 'expected': True, 'actual': True, 'pass': True}, {'id': 'check.2', 'expr': '오렌지가 바나나보다 무거운가', 'expected': True, 'actual': True, 'pass': True}], 'answer': {'blanks': [], 'choices': [], 'answer_key': [], 'target': {'type': 'heaviest_fruit', 'description': '가장 무거운 과일'}, 'value': '오렌지', 'unit': ''}}
+SOLVABLE = {
+    "schema": "modu.solvable.v1.1",
+    "problem_id": "S3_초등_3_008803",
+    "problem_type": "comparison_selection",
+    "inputs": {
+        "total_ticks": 2,
+        "target_label": "가장 무거운 과일",
+        "target_ticks": 1,
+        "target_count": 1,
+        "unit": "",
+    },
+    "given": [
+        {"ref": "obj.orange", "value": "오렌지"},
+        {"ref": "obj.strawberry", "value": "딸기"},
+        {"ref": "obj.banana", "value": "바나나"},
+        {"ref": "rel.orange_vs_strawberry", "value": "오렌지 > 딸기"},
+        {"ref": "rel.banana_vs_orange", "value": "바나나 < 오렌지"},
+    ],
+    "target": {"ref": "answer.target", "type": "heaviest_fruit"},
+    "method": "comparison_reasoning",
+    "plan": ["저울의 비교 관계를 읽는다.", "두 관계를 종합해 가장 무거운 과일을 찾는다."],
+    "steps": [
+        {"id": "step.1", "expr": "오렌지와 딸기의 비교 관계를 읽는다.", "value": "오렌지 > 딸기"},
+        {
+            "id": "step.2",
+            "expr": "바나나와 오렌지의 비교 관계를 읽는다.",
+            "value": "바나나 < 오렌지",
+        },
+        {"id": "step.3", "expr": "두 관계를 종합해 가장 무거운 과일을 고른다.", "value": "오렌지"},
+    ],
+    "checks": [
+        {
+            "id": "check.1",
+            "expr": "오렌지가 딸기보다 무거운가",
+            "expected": True,
+            "actual": True,
+            "pass": True,
+        },
+        {
+            "id": "check.2",
+            "expr": "오렌지가 바나나보다 무거운가",
+            "expected": True,
+            "actual": True,
+            "pass": True,
+        },
+    ],
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {"type": "heaviest_fruit", "description": "가장 무거운 과일"},
+        "value": "오렌지",
+        "unit": "",
+    },
+}

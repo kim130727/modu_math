@@ -1,10 +1,481 @@
 from __future__ import annotations
 from modu_math.dsl import Canvas, CircleSlot, LineSlot, ProblemTemplate, RectSlot, Region, TextSlot
 
+
 def build_problem_template() -> ProblemTemplate:
-    return ProblemTemplate(id='S3_초등_3_008900', title='좋아하는 과일', canvas=Canvas(width=950, height=700, coordinate_mode='logical'), regions=(Region(id='region.title', role='stem', flow='absolute', slot_ids=('slot.title',)), Region(id='region.diagram', role='diagram', flow='absolute', slot_ids=('slot.diagram.frame', 'slot.diagram.divider.v', 'slot.diagram.divider.h', 'slot.diagram.title_box', 'slot.diagram.label.strawberry', 'slot.diagram.label.tangerine', 'slot.diagram.label.grape', 'slot.diagram.label.apple', 'slot.diagram.legend.blue_dot', 'slot.diagram.legend.red_dot', 'slot.diagram.legend.blue_text', 'slot.diagram.legend.red_text', 'slot.diagram.dot.s1', 'slot.diagram.dot.s2', 'slot.diagram.dot.s3', 'slot.diagram.dot.s4', 'slot.diagram.dot.s5', 'slot.diagram.dot.s6', 'slot.diagram.dot.s7', 'slot.diagram.dot.s8', 'slot.diagram.dot.s9', 'slot.diagram.dot.s10', 'slot.diagram.dot.s11', 'slot.diagram.dot.s12', 'slot.diagram.dot.s13', 'slot.diagram.dot.s14', 'slot.diagram.dot.s15', 'slot.diagram.dot.s16', 'slot.diagram.dot.s17', 'slot.diagram.dot.s18', 'slot.diagram.dot.s19', 'slot.diagram.dot.s20', 'slot.diagram.dot.s21', 'slot.diagram.dot.s22', 'slot.diagram.dot.s23', 'slot.diagram.dot.s24', 'slot.diagram.dot.s25', 'slot.diagram.dot.s26')), Region(id='region.table', role='diagram', flow='absolute', slot_ids=('slot.table.title', 'slot.table.grid.h1', 'slot.table.grid.h2', 'slot.table.grid.h3', 'slot.table.grid.v1', 'slot.table.grid.v2', 'slot.table.grid.v3', 'slot.table.grid.v4', 'slot.table.grid.v5', 'slot.table.grid.v6', 'slot.table.head.0', 'slot.table.head.1', 'slot.table.head.2', 'slot.table.head.3', 'slot.table.head.4', 'slot.table.head.5', 'slot.table.row.0', 'slot.table.row.1')), Region(id='region.question', role='stem', flow='absolute', slot_ids=('slot.q.num', 'slot.q.text', 'slot.choice'))), slots=(TextSlot(id='slot.title', prompt='', text='기태네 반 학생들이 좋아하는 과일을 조사하여 표로 나타내었습니다. 물음에 답하세요.', style_role='question', x=12.0, y=28.0, font_size=28), RectSlot(id='slot.diagram.frame', prompt='', x=260.0, y=92.0, width=410.0, height=240.0), LineSlot(id='slot.diagram.divider.v', prompt='', x1=465.0, y1=92.0, x2=465.0, y2=332.0), LineSlot(id='slot.diagram.divider.h', prompt='', x1=260.0, y1=212.0, x2=670.0, y2=212.0), RectSlot(id='slot.diagram.title_box', prompt='', x=395.0, y=76.0, width=140.0, height=34.0), TextSlot(id='slot.diagram.title_text', prompt='', text='좋아하는 과일', style_role='label', x=420.0, y=98.0, font_size=26), TextSlot(id='slot.diagram.label.strawberry', prompt='', text='딸기', style_role='label', x=275.0, y=123.0, font_size=24), TextSlot(id='slot.diagram.label.tangerine', prompt='', text='귤', style_role='label', x=495.0, y=123.0, font_size=24), TextSlot(id='slot.diagram.label.grape', prompt='', text='포도', style_role='label', x=275.0, y=243.0, font_size=24), TextSlot(id='slot.diagram.label.apple', prompt='', text='사과', style_role='label', x=495.0, y=243.0, font_size=24), CircleSlot(id='slot.diagram.legend.blue_dot', prompt='', cx=535.0, cy=346.0, r=9.0, fill='#6BB7F0'), TextSlot(id='slot.diagram.legend.blue_text', prompt='', text='남학생', style_role='label', x=548.0, y=352.0, font_size=22), CircleSlot(id='slot.diagram.legend.red_dot', prompt='', cx=612.0, cy=346.0, r=9.0, fill='#FF8B7F'), TextSlot(id='slot.diagram.legend.red_text', prompt='', text='여학생', style_role='label', x=625.0, y=352.0, font_size=22), CircleSlot(id='slot.diagram.dot.s1', prompt='', cx=322.0, cy=146.0, r=8.0, fill='#FF8B7F'), CircleSlot(id='slot.diagram.dot.s2', prompt='', cx=364.0, cy=146.0, r=8.0, fill='#FF8B7F'), CircleSlot(id='slot.diagram.dot.s3', prompt='', cx=314.0, cy=178.0, r=8.0, fill='#6BB7F0'), CircleSlot(id='slot.diagram.dot.s4', prompt='', cx=356.0, cy=178.0, r=8.0, fill='#FF8B7F'), CircleSlot(id='slot.diagram.dot.s5', prompt='', cx=385.0, cy=178.0, r=8.0, fill='#6BB7F0'), CircleSlot(id='slot.diagram.dot.s6', prompt='', cx=546.0, cy=154.0, r=8.0, fill='#FF8B7F'), CircleSlot(id='slot.diagram.dot.s7', prompt='', cx=598.0, cy=144.0, r=8.0, fill='#6BB7F0'), CircleSlot(id='slot.diagram.dot.s8', prompt='', cx=596.0, cy=174.0, r=8.0, fill='#FF8B7F'), CircleSlot(id='slot.diagram.dot.s9', prompt='', cx=636.0, cy=157.0, r=8.0, fill='#FF8B7F'), CircleSlot(id='slot.diagram.dot.s10', prompt='', cx=332.0, cy=263.0, r=8.0, fill='#6BB7F0'), CircleSlot(id='slot.diagram.dot.s11', prompt='', cx=379.0, cy=262.0, r=8.0, fill='#6BB7F0'), CircleSlot(id='slot.diagram.dot.s12', prompt='', cx=348.0, cy=292.0, r=8.0, fill='#FF8B7F'), CircleSlot(id='slot.diagram.dot.s13', prompt='', cx=314.0, cy=325.0, r=8.0, fill='#6BB7F0'), CircleSlot(id='slot.diagram.dot.s14', prompt='', cx=380.0, cy=316.0, r=8.0, fill='#6BB7F0'), CircleSlot(id='slot.diagram.dot.s15', prompt='', cx=523.0, cy=264.0, r=8.0, fill='#6BB7F0'), CircleSlot(id='slot.diagram.dot.s16', prompt='', cx=569.0, cy=260.0, r=8.0, fill='#6BB7F0'), CircleSlot(id='slot.diagram.dot.s17', prompt='', cx=630.0, cy=262.0, r=8.0, fill='#FF8B7F'), CircleSlot(id='slot.diagram.dot.s18', prompt='', cx=546.0, cy=291.0, r=8.0, fill='#FF8B7F'), CircleSlot(id='slot.diagram.dot.s19', prompt='', cx=596.0, cy=290.0, r=8.0, fill='#6BB7F0'), CircleSlot(id='slot.diagram.dot.s20', prompt='', cx=636.0, cy=290.0, r=8.0, fill='#6BB7F0'), CircleSlot(id='slot.diagram.dot.s21', prompt='', cx=504.0, cy=319.0, r=8.0, fill='#6BB7F0'), CircleSlot(id='slot.diagram.dot.s22', prompt='', cx=552.0, cy=321.0, r=8.0, fill='#FF8B7F'), CircleSlot(id='slot.diagram.dot.s23', prompt='', cx=592.0, cy=323.0, r=8.0, fill='#FF8B7F'), CircleSlot(id='slot.diagram.dot.s24', prompt='', cx=626.0, cy=321.0, r=8.0, fill='#6BB7F0'), CircleSlot(id='slot.diagram.dot.s25', prompt='', cx=653.0, cy=319.0, r=8.0, fill='#6BB7F0'), CircleSlot(id='slot.diagram.dot.s26', prompt='', cx=650.0, cy=285.0, r=8.0, fill='#FF8B7F'), TextSlot(id='slot.table.title', prompt='', text='좋아하는 과일별 학생 수', style_role='question', x=340.0, y=396.0, font_size=28), LineSlot(id='slot.table.grid.h1', prompt='', x1=128.0, y1=414.0, x2=798.0, y2=414.0), LineSlot(id='slot.table.grid.h2', prompt='', x1=128.0, y1=453.0, x2=798.0, y2=453.0), LineSlot(id='slot.table.grid.h3', prompt='', x1=128.0, y1=494.0, x2=798.0, y2=494.0), LineSlot(id='slot.table.grid.v1', prompt='', x1=128.0, y1=414.0, x2=128.0, y2=534.0), LineSlot(id='slot.table.grid.v2', prompt='', x1=306.0, y1=414.0, x2=306.0, y2=534.0), LineSlot(id='slot.table.grid.v3', prompt='', x1=396.0, y1=414.0, x2=396.0, y2=534.0), LineSlot(id='slot.table.grid.v4', prompt='', x1=486.0, y1=414.0, x2=486.0, y2=534.0), LineSlot(id='slot.table.grid.v5', prompt='', x1=576.0, y1=414.0, x2=576.0, y2=534.0), LineSlot(id='slot.table.grid.v6', prompt='', x1=666.0, y1=414.0, x2=666.0, y2=534.0), TextSlot(id='slot.table.head.0', prompt='', text='과일', style_role='label', x=202.0, y=440.0, font_size=24), TextSlot(id='slot.table.head.1', prompt='', text='딸기', style_role='label', x=338.0, y=440.0, font_size=24), TextSlot(id='slot.table.head.2', prompt='', text='귤', style_role='label', x=432.0, y=440.0, font_size=24), TextSlot(id='slot.table.head.3', prompt='', text='포도', style_role='label', x=520.0, y=440.0, font_size=24), TextSlot(id='slot.table.head.4', prompt='', text='사과', style_role='label', x=610.0, y=440.0, font_size=24), TextSlot(id='slot.table.head.5', prompt='', text='합계', style_role='label', x=704.0, y=440.0, font_size=24), TextSlot(id='slot.table.row.0', prompt='', text='남학생 수(명)', style_role='label', x=142.0, y=477.0, font_size=24), TextSlot(id='slot.table.row.1', prompt='', text='여학생 수(명)', style_role='label', x=142.0, y=519.0, font_size=24), TextSlot(id='slot.q.num', prompt='', text='66.', style_role='question', x=10.0, y=560.0, font_size=28), TextSlot(id='slot.q.text', prompt='', text='기태네 반에서 과일 간식을 한 가지만 준비하면 어떤 과일을 준비하면 좋을까요? 알맞은 것을 선택해보세요.', style_role='question', x=52.0, y=560.0, font_size=28), TextSlot(id='slot.choice', prompt='', text='( 딸기 , 귤 , 포도 , 사과 )', style_role='question', x=626.0, y=620.0, font_size=28)), diagrams=(), groups=(), constraints=(), tags=())
+    return ProblemTemplate(
+        id="S3_초등_3_008900",
+        title="좋아하는 과일",
+        canvas=Canvas(width=950, height=700, coordinate_mode="logical"),
+        regions=(
+            Region(id="region.title", role="stem", flow="absolute", slot_ids=("slot.title",)),
+            Region(
+                id="region.diagram",
+                role="diagram",
+                flow="absolute",
+                slot_ids=(
+                    "slot.diagram.frame",
+                    "slot.diagram.divider.v",
+                    "slot.diagram.divider.h",
+                    "slot.diagram.title_box",
+                    "slot.diagram.label.strawberry",
+                    "slot.diagram.label.tangerine",
+                    "slot.diagram.label.grape",
+                    "slot.diagram.label.apple",
+                    "slot.diagram.legend.blue_dot",
+                    "slot.diagram.legend.red_dot",
+                    "slot.diagram.legend.blue_text",
+                    "slot.diagram.legend.red_text",
+                    "slot.diagram.dot.s1",
+                    "slot.diagram.dot.s2",
+                    "slot.diagram.dot.s3",
+                    "slot.diagram.dot.s4",
+                    "slot.diagram.dot.s5",
+                    "slot.diagram.dot.s6",
+                    "slot.diagram.dot.s7",
+                    "slot.diagram.dot.s8",
+                    "slot.diagram.dot.s9",
+                    "slot.diagram.dot.s10",
+                    "slot.diagram.dot.s11",
+                    "slot.diagram.dot.s12",
+                    "slot.diagram.dot.s13",
+                    "slot.diagram.dot.s14",
+                    "slot.diagram.dot.s15",
+                    "slot.diagram.dot.s16",
+                    "slot.diagram.dot.s17",
+                    "slot.diagram.dot.s18",
+                    "slot.diagram.dot.s19",
+                    "slot.diagram.dot.s20",
+                    "slot.diagram.dot.s21",
+                    "slot.diagram.dot.s22",
+                    "slot.diagram.dot.s23",
+                    "slot.diagram.dot.s24",
+                    "slot.diagram.dot.s25",
+                    "slot.diagram.dot.s26",
+                ),
+            ),
+            Region(
+                id="region.table",
+                role="diagram",
+                flow="absolute",
+                slot_ids=(
+                    "slot.table.title",
+                    "slot.table.grid.h1",
+                    "slot.table.grid.h2",
+                    "slot.table.grid.h3",
+                    "slot.table.grid.v1",
+                    "slot.table.grid.v2",
+                    "slot.table.grid.v3",
+                    "slot.table.grid.v4",
+                    "slot.table.grid.v5",
+                    "slot.table.grid.v6",
+                    "slot.table.head.0",
+                    "slot.table.head.1",
+                    "slot.table.head.2",
+                    "slot.table.head.3",
+                    "slot.table.head.4",
+                    "slot.table.head.5",
+                    "slot.table.row.0",
+                    "slot.table.row.1",
+                ),
+            ),
+            Region(
+                id="region.question",
+                role="stem",
+                flow="absolute",
+                slot_ids=("slot.q.num", "slot.q.text", "slot.choice"),
+            ),
+        ),
+        slots=(
+            TextSlot(
+                id="slot.title",
+                prompt="",
+                text="기태네 반 학생들이 좋아하는 과일을 조사하여 표로 나타내었습니다. 물음에 답하세요.",
+                style_role="question",
+                x=12.0,
+                y=28.0,
+                font_size=28,
+            ),
+            RectSlot(
+                id="slot.diagram.frame", prompt="", x=260.0, y=92.0, width=410.0, height=240.0
+            ),
+            LineSlot(id="slot.diagram.divider.v", prompt="", x1=465.0, y1=92.0, x2=465.0, y2=332.0),
+            LineSlot(
+                id="slot.diagram.divider.h", prompt="", x1=260.0, y1=212.0, x2=670.0, y2=212.0
+            ),
+            RectSlot(
+                id="slot.diagram.title_box", prompt="", x=395.0, y=76.0, width=140.0, height=34.0
+            ),
+            TextSlot(
+                id="slot.diagram.title_text",
+                prompt="",
+                text="좋아하는 과일",
+                style_role="label",
+                x=420.0,
+                y=98.0,
+                font_size=26,
+            ),
+            TextSlot(
+                id="slot.diagram.label.strawberry",
+                prompt="",
+                text="딸기",
+                style_role="label",
+                x=275.0,
+                y=123.0,
+                font_size=24,
+            ),
+            TextSlot(
+                id="slot.diagram.label.tangerine",
+                prompt="",
+                text="귤",
+                style_role="label",
+                x=495.0,
+                y=123.0,
+                font_size=24,
+            ),
+            TextSlot(
+                id="slot.diagram.label.grape",
+                prompt="",
+                text="포도",
+                style_role="label",
+                x=275.0,
+                y=243.0,
+                font_size=24,
+            ),
+            TextSlot(
+                id="slot.diagram.label.apple",
+                prompt="",
+                text="사과",
+                style_role="label",
+                x=495.0,
+                y=243.0,
+                font_size=24,
+            ),
+            CircleSlot(
+                id="slot.diagram.legend.blue_dot",
+                prompt="",
+                cx=535.0,
+                cy=346.0,
+                r=9.0,
+                fill="#6BB7F0",
+            ),
+            TextSlot(
+                id="slot.diagram.legend.blue_text",
+                prompt="",
+                text="남학생",
+                style_role="label",
+                x=548.0,
+                y=352.0,
+                font_size=22,
+            ),
+            CircleSlot(
+                id="slot.diagram.legend.red_dot",
+                prompt="",
+                cx=612.0,
+                cy=346.0,
+                r=9.0,
+                fill="#FF8B7F",
+            ),
+            TextSlot(
+                id="slot.diagram.legend.red_text",
+                prompt="",
+                text="여학생",
+                style_role="label",
+                x=625.0,
+                y=352.0,
+                font_size=22,
+            ),
+            CircleSlot(
+                id="slot.diagram.dot.s1", prompt="", cx=322.0, cy=146.0, r=8.0, fill="#FF8B7F"
+            ),
+            CircleSlot(
+                id="slot.diagram.dot.s2", prompt="", cx=364.0, cy=146.0, r=8.0, fill="#FF8B7F"
+            ),
+            CircleSlot(
+                id="slot.diagram.dot.s3", prompt="", cx=314.0, cy=178.0, r=8.0, fill="#6BB7F0"
+            ),
+            CircleSlot(
+                id="slot.diagram.dot.s4", prompt="", cx=356.0, cy=178.0, r=8.0, fill="#FF8B7F"
+            ),
+            CircleSlot(
+                id="slot.diagram.dot.s5", prompt="", cx=385.0, cy=178.0, r=8.0, fill="#6BB7F0"
+            ),
+            CircleSlot(
+                id="slot.diagram.dot.s6", prompt="", cx=546.0, cy=154.0, r=8.0, fill="#FF8B7F"
+            ),
+            CircleSlot(
+                id="slot.diagram.dot.s7", prompt="", cx=598.0, cy=144.0, r=8.0, fill="#6BB7F0"
+            ),
+            CircleSlot(
+                id="slot.diagram.dot.s8", prompt="", cx=596.0, cy=174.0, r=8.0, fill="#FF8B7F"
+            ),
+            CircleSlot(
+                id="slot.diagram.dot.s9", prompt="", cx=636.0, cy=157.0, r=8.0, fill="#FF8B7F"
+            ),
+            CircleSlot(
+                id="slot.diagram.dot.s10", prompt="", cx=332.0, cy=263.0, r=8.0, fill="#6BB7F0"
+            ),
+            CircleSlot(
+                id="slot.diagram.dot.s11", prompt="", cx=379.0, cy=262.0, r=8.0, fill="#6BB7F0"
+            ),
+            CircleSlot(
+                id="slot.diagram.dot.s12", prompt="", cx=348.0, cy=292.0, r=8.0, fill="#FF8B7F"
+            ),
+            CircleSlot(
+                id="slot.diagram.dot.s13", prompt="", cx=314.0, cy=325.0, r=8.0, fill="#6BB7F0"
+            ),
+            CircleSlot(
+                id="slot.diagram.dot.s14", prompt="", cx=380.0, cy=316.0, r=8.0, fill="#6BB7F0"
+            ),
+            CircleSlot(
+                id="slot.diagram.dot.s15", prompt="", cx=523.0, cy=264.0, r=8.0, fill="#6BB7F0"
+            ),
+            CircleSlot(
+                id="slot.diagram.dot.s16", prompt="", cx=569.0, cy=260.0, r=8.0, fill="#6BB7F0"
+            ),
+            CircleSlot(
+                id="slot.diagram.dot.s17", prompt="", cx=630.0, cy=262.0, r=8.0, fill="#FF8B7F"
+            ),
+            CircleSlot(
+                id="slot.diagram.dot.s18", prompt="", cx=546.0, cy=291.0, r=8.0, fill="#FF8B7F"
+            ),
+            CircleSlot(
+                id="slot.diagram.dot.s19", prompt="", cx=596.0, cy=290.0, r=8.0, fill="#6BB7F0"
+            ),
+            CircleSlot(
+                id="slot.diagram.dot.s20", prompt="", cx=636.0, cy=290.0, r=8.0, fill="#6BB7F0"
+            ),
+            CircleSlot(
+                id="slot.diagram.dot.s21", prompt="", cx=504.0, cy=319.0, r=8.0, fill="#6BB7F0"
+            ),
+            CircleSlot(
+                id="slot.diagram.dot.s22", prompt="", cx=552.0, cy=321.0, r=8.0, fill="#FF8B7F"
+            ),
+            CircleSlot(
+                id="slot.diagram.dot.s23", prompt="", cx=592.0, cy=323.0, r=8.0, fill="#FF8B7F"
+            ),
+            CircleSlot(
+                id="slot.diagram.dot.s24", prompt="", cx=626.0, cy=321.0, r=8.0, fill="#6BB7F0"
+            ),
+            CircleSlot(
+                id="slot.diagram.dot.s25", prompt="", cx=653.0, cy=319.0, r=8.0, fill="#6BB7F0"
+            ),
+            CircleSlot(
+                id="slot.diagram.dot.s26", prompt="", cx=650.0, cy=285.0, r=8.0, fill="#FF8B7F"
+            ),
+            TextSlot(
+                id="slot.table.title",
+                prompt="",
+                text="좋아하는 과일별 학생 수",
+                style_role="question",
+                x=340.0,
+                y=396.0,
+                font_size=28,
+            ),
+            LineSlot(id="slot.table.grid.h1", prompt="", x1=128.0, y1=414.0, x2=798.0, y2=414.0),
+            LineSlot(id="slot.table.grid.h2", prompt="", x1=128.0, y1=453.0, x2=798.0, y2=453.0),
+            LineSlot(id="slot.table.grid.h3", prompt="", x1=128.0, y1=494.0, x2=798.0, y2=494.0),
+            LineSlot(id="slot.table.grid.v1", prompt="", x1=128.0, y1=414.0, x2=128.0, y2=534.0),
+            LineSlot(id="slot.table.grid.v2", prompt="", x1=306.0, y1=414.0, x2=306.0, y2=534.0),
+            LineSlot(id="slot.table.grid.v3", prompt="", x1=396.0, y1=414.0, x2=396.0, y2=534.0),
+            LineSlot(id="slot.table.grid.v4", prompt="", x1=486.0, y1=414.0, x2=486.0, y2=534.0),
+            LineSlot(id="slot.table.grid.v5", prompt="", x1=576.0, y1=414.0, x2=576.0, y2=534.0),
+            LineSlot(id="slot.table.grid.v6", prompt="", x1=666.0, y1=414.0, x2=666.0, y2=534.0),
+            TextSlot(
+                id="slot.table.head.0",
+                prompt="",
+                text="과일",
+                style_role="label",
+                x=202.0,
+                y=440.0,
+                font_size=24,
+            ),
+            TextSlot(
+                id="slot.table.head.1",
+                prompt="",
+                text="딸기",
+                style_role="label",
+                x=338.0,
+                y=440.0,
+                font_size=24,
+            ),
+            TextSlot(
+                id="slot.table.head.2",
+                prompt="",
+                text="귤",
+                style_role="label",
+                x=432.0,
+                y=440.0,
+                font_size=24,
+            ),
+            TextSlot(
+                id="slot.table.head.3",
+                prompt="",
+                text="포도",
+                style_role="label",
+                x=520.0,
+                y=440.0,
+                font_size=24,
+            ),
+            TextSlot(
+                id="slot.table.head.4",
+                prompt="",
+                text="사과",
+                style_role="label",
+                x=610.0,
+                y=440.0,
+                font_size=24,
+            ),
+            TextSlot(
+                id="slot.table.head.5",
+                prompt="",
+                text="합계",
+                style_role="label",
+                x=704.0,
+                y=440.0,
+                font_size=24,
+            ),
+            TextSlot(
+                id="slot.table.row.0",
+                prompt="",
+                text="남학생 수(명)",
+                style_role="label",
+                x=142.0,
+                y=477.0,
+                font_size=24,
+            ),
+            TextSlot(
+                id="slot.table.row.1",
+                prompt="",
+                text="여학생 수(명)",
+                style_role="label",
+                x=142.0,
+                y=519.0,
+                font_size=24,
+            ),
+            TextSlot(
+                id="slot.q.num",
+                prompt="",
+                text="66.",
+                style_role="question",
+                x=10.0,
+                y=560.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.q.text",
+                prompt="",
+                text="기태네 반에서 과일 간식을 한 가지만 준비하면 어떤 과일을 준비하면 좋을까요? 알맞은 것을 선택해보세요.",
+                style_role="question",
+                x=52.0,
+                y=560.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.choice",
+                prompt="",
+                text="( 딸기 , 귤 , 포도 , 사과 )",
+                style_role="question",
+                x=626.0,
+                y=620.0,
+                font_size=28,
+            ),
+        ),
+        diagrams=(),
+        groups=(),
+        constraints=(),
+        tags=(),
+    )
+
+
 PROBLEM_TEMPLATE = build_problem_template()
 
-SEMANTIC_OVERRIDE = {'problem_id': 'S3_초등_3_008900', 'problem_type': 'multiple_choice', 'metadata': {'language': 'ko', 'question': '기태네 반 학생들이 좋아하는 과일을 조사하여 표로 나타낸 자료를 보고, 과일 간식으로 어떤 과일을 준비하면 좋을지 고르는 문제', 'instruction': '알맞은 것을 선택해보세요.'}, 'domain': {'objects': [{'id': 'obj.chart.fruit_preferences', 'type': 'survey_chart', 'topic': '좋아하는 과일'}, {'id': 'obj.table.fruit_counts', 'type': 'table', 'topic': '좋아하는 과일별 학생 수'}, {'id': 'obj.option.apple', 'type': 'fruit', 'name': '사과'}], 'relations': [], 'problem_solving': {'understand': {'given_refs': ['obj.chart.fruit_preferences', 'obj.table.fruit_counts'], 'target_ref': 'answer.target', 'condition_refs': ['rel.supports_choice']}, 'plan': {'method': 'compare_preferences', 'description': '그림과 표에서 가장 많이 좋아하는 과일을 찾고, 그 과일을 선택한다.'}, 'execute': {'expected_operations': ['compare_counts', 'identify_maximum', 'select_option']}, 'review': {'check_methods': ['match_with_printed_answer', 'consistency_between_chart_and_table']}}}, 'answer': {'blanks': [], 'choices': [], 'answer_key': [], 'target': {'type': 'fruit_choice', 'description': '과일 간식으로 준비하면 좋을 과일'}, 'value': '사과', 'unit': ''}}
+SEMANTIC_OVERRIDE = {
+    "problem_id": "S3_초등_3_008900",
+    "problem_type": "multiple_choice",
+    "metadata": {
+        "language": "ko",
+        "question": "기태네 반 학생들이 좋아하는 과일을 조사하여 표로 나타낸 자료를 보고, 과일 간식으로 어떤 과일을 준비하면 좋을지 고르는 문제",
+        "instruction": "알맞은 것을 선택해보세요.",
+    },
+    "domain": {
+        "objects": [
+            {"id": "obj.chart.fruit_preferences", "type": "survey_chart", "topic": "좋아하는 과일"},
+            {"id": "obj.table.fruit_counts", "type": "table", "topic": "좋아하는 과일별 학생 수"},
+            {"id": "obj.option.apple", "type": "fruit", "name": "사과"},
+        ],
+        "relations": [],
+        "problem_solving": {
+            "understand": {
+                "given_refs": ["obj.chart.fruit_preferences", "obj.table.fruit_counts"],
+                "target_ref": "answer.target",
+                "condition_refs": ["rel.supports_choice"],
+            },
+            "plan": {
+                "method": "compare_preferences",
+                "description": "그림과 표에서 가장 많이 좋아하는 과일을 찾고, 그 과일을 선택한다.",
+            },
+            "execute": {
+                "expected_operations": ["compare_counts", "identify_maximum", "select_option"]
+            },
+            "review": {
+                "check_methods": [
+                    "match_with_printed_answer",
+                    "consistency_between_chart_and_table",
+                ]
+            },
+        },
+    },
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {"type": "fruit_choice", "description": "과일 간식으로 준비하면 좋을 과일"},
+        "value": "사과",
+        "unit": "",
+    },
+}
 
-SOLVABLE = {'schema': 'modu.solvable.v1.1', 'problem_id': 'S3_초등_3_008900', 'problem_type': 'multiple_choice', 'inputs': {'total_ticks': 0, 'target_label': '과일 간식으로 준비하면 좋을 과일', 'target_ticks': 1, 'target_count': 1, 'unit': ''}, 'given': [{'ref': 'obj.chart.fruit_preferences', 'value': 'survey_chart'}, {'ref': 'obj.table.fruit_counts', 'value': 'table'}], 'target': {'ref': 'answer.target', 'type': 'fruit_choice'}, 'method': 'compare_preferences', 'plan': ['그림 자료와 표 자료를 함께 살펴 가장 많이 좋아하는 과일을 찾는다.', '보기 중 해당 과일을 고른다.'], 'steps': [{'id': 'step.1', 'expr': '표와 그림의 대응 관계를 확인한다.', 'value': 'possible'}, {'id': 'step.2', 'expr': '가장 많이 좋아하는 과일을 선택한다.', 'value': '사과'}], 'checks': [{'id': 'check.1', 'expr': '인쇄된 정답과 선택 결과가 같은가', 'expected': '사과', 'actual': '사과', 'pass': True}], 'answer': {'blanks': [], 'choices': [], 'answer_key': [], 'target': {'type': 'fruit_choice', 'description': '과일 간식으로 준비하면 좋을 과일'}, 'value': '사과', 'unit': ''}}
+SOLVABLE = {
+    "schema": "modu.solvable.v1.1",
+    "problem_id": "S3_초등_3_008900",
+    "problem_type": "multiple_choice",
+    "inputs": {
+        "total_ticks": 0,
+        "target_label": "과일 간식으로 준비하면 좋을 과일",
+        "target_ticks": 1,
+        "target_count": 1,
+        "unit": "",
+    },
+    "given": [
+        {"ref": "obj.chart.fruit_preferences", "value": "survey_chart"},
+        {"ref": "obj.table.fruit_counts", "value": "table"},
+    ],
+    "target": {"ref": "answer.target", "type": "fruit_choice"},
+    "method": "compare_preferences",
+    "plan": [
+        "그림 자료와 표 자료를 함께 살펴 가장 많이 좋아하는 과일을 찾는다.",
+        "보기 중 해당 과일을 고른다.",
+    ],
+    "steps": [
+        {"id": "step.1", "expr": "표와 그림의 대응 관계를 확인한다.", "value": "possible"},
+        {"id": "step.2", "expr": "가장 많이 좋아하는 과일을 선택한다.", "value": "사과"},
+    ],
+    "checks": [
+        {
+            "id": "check.1",
+            "expr": "인쇄된 정답과 선택 결과가 같은가",
+            "expected": "사과",
+            "actual": "사과",
+            "pass": True,
+        }
+    ],
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {"type": "fruit_choice", "description": "과일 간식으로 준비하면 좋을 과일"},
+        "value": "사과",
+        "unit": "",
+    },
+}

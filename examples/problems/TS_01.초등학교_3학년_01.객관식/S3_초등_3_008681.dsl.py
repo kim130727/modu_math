@@ -112,7 +112,10 @@ def _make_ruler_slots(
                 ids.append(f"{prefix}.minor.{cm}.{sub}")
 
     mark_x = start_x + right_mark_cm * cm_step
-    return tuple(ids), tuple(slots + [CircleSlot(id=f"{prefix}.mark", prompt="", cx=mark_x, cy=y + 2.0, r=1.2, fill="#444444")])
+    return tuple(ids), tuple(
+        slots
+        + [CircleSlot(id=f"{prefix}.mark", prompt="", cx=mark_x, cy=y + 2.0, r=1.2, fill="#444444")]
+    )
 
 
 def _make_compass_slots(
@@ -181,8 +184,17 @@ def _make_compass_slots(
             stroke_width=1.2,
             fill="none",
         ),
-        CircleSlot(id=f"{prefix}.left_tip", prompt="", cx=left_tip_x, cy=left_tip_y, r=1.6, fill="#666666"),
-        CircleSlot(id=f"{prefix}.right_tip", prompt="", cx=right_tip_x, cy=right_tip_y, r=1.6, fill="#666666"),
+        CircleSlot(
+            id=f"{prefix}.left_tip", prompt="", cx=left_tip_x, cy=left_tip_y, r=1.6, fill="#666666"
+        ),
+        CircleSlot(
+            id=f"{prefix}.right_tip",
+            prompt="",
+            cx=right_tip_x,
+            cy=right_tip_y,
+            r=1.6,
+            fill="#666666",
+        ),
     )
     return ids, slots
 
@@ -251,7 +263,12 @@ def build_problem_template() -> ProblemTemplate:
                 id="region.stem",
                 role="stem",
                 flow="absolute",
-                slot_ids=("slot.q_text",'slot.q_text.copy1', 'slot.q_text.copy1.copy2', 'slot.q_text.copy1.copy3'),
+                slot_ids=(
+                    "slot.q_text",
+                    "slot.q_text.copy1",
+                    "slot.q_text.copy1.copy2",
+                    "slot.q_text.copy1.copy3",
+                ),
             ),
             Region(
                 id="region.choices",
@@ -266,15 +283,47 @@ def build_problem_template() -> ProblemTemplate:
                 slot_ids=(),
             ),
         ),
-        slots=(TextSlot(
+        slots=(
+            TextSlot(
                 id="slot.q_text",
                 prompt="",
-                text = '반지름이 3 cm인 원을 그리도록 컴퍼스를 벌린 것을 찾아 선택해 보세요.', style_role="question",
-                x = 10, y = 47, font_size = 30),
+                text="반지름이 3 cm인 원을 그리도록 컴퍼스를 벌린 것을 찾아 선택해 보세요.",
+                style_role="question",
+                x=10,
+                y=47,
+                font_size=30,
+            ),
             *choice1_slots,
             *choice2_slots,
             *choice3_slots,
-            TextSlot(id = 'slot.q_text.copy1', prompt = '', text = '1.', x = 125, y = 170, font_size = 30, fill = '#111111'), TextSlot(id = 'slot.q_text.copy1.copy2', prompt = '', text = '2.', x = 360, y = 165, font_size = 30, fill = '#111111'), TextSlot(id = 'slot.q_text.copy1.copy3', prompt = '', text = '3.', x = 625, y = 175, font_size = 30, fill = '#111111')),
+            TextSlot(
+                id="slot.q_text.copy1",
+                prompt="",
+                text="1.",
+                x=125,
+                y=170,
+                font_size=30,
+                fill="#111111",
+            ),
+            TextSlot(
+                id="slot.q_text.copy1.copy2",
+                prompt="",
+                text="2.",
+                x=360,
+                y=165,
+                font_size=30,
+                fill="#111111",
+            ),
+            TextSlot(
+                id="slot.q_text.copy1.copy3",
+                prompt="",
+                text="3.",
+                x=625,
+                y=175,
+                font_size=30,
+                fill="#111111",
+            ),
+        ),
         diagrams=(),
         groups=(),
         constraints=(),
@@ -317,9 +366,7 @@ SEMANTIC_OVERRIDE = {
                     "select_corresponding_figure",
                 ]
             },
-            "review": {
-                "check_methods": ["length_label_check", "option_consistency_check"]
-            },
+            "review": {"check_methods": ["length_label_check", "option_consistency_check"]},
         },
     },
     "answer": {

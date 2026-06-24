@@ -1,10 +1,226 @@
 from __future__ import annotations
 from modu_math.dsl import Canvas, ProblemTemplate, Region, RectSlot, TextSlot
 
+
 def build_problem_template() -> ProblemTemplate:
-    return ProblemTemplate(id='S3_초등_3_008971', title='계산 결과가 가장 작은 것을 찾아 기호를 고르기', canvas=Canvas(width=560.0, height=240.0, coordinate_mode='logical'), regions=(Region(id='region.stem', role='stem', flow='absolute', slot_ids=('slot.q1', 'slot.box', 'slot.eq1', 'slot.eq2', 'slot.eq3', 'slot.choice', 'slot.calc1', 'slot.calc2', 'slot.calc3', 'slot.compare', 'slot.conclusion')),), slots=(TextSlot(id='slot.q1', prompt='', text='5. 계산 결과가 가장 작은 것을 찾아 기호를 고르세요.', style_role='question', x=18.0, y=22.0, font_size=28), RectSlot(id='slot.box', prompt='', x=112.0, y=31.0, width=318.0, height=30.0), TextSlot(id='slot.eq1', prompt='', text='① 658 - 264', style_role='body', x=126.0, y=51.0, font_size=28), TextSlot(id='slot.eq2', prompt='', text='② 503 - 119', style_role='body', x=229.0, y=51.0, font_size=28), TextSlot(id='slot.eq3', prompt='', text='③ 947 - 472', style_role='body', x=332.0, y=51.0, font_size=28), TextSlot(id='slot.choice', prompt='', text='( ① , ② , ③ )', style_role='body', x=422.0, y=66.0, font_size=28), TextSlot(id='slot.calc1', prompt='', text='① 658 - 264 = 394', style_role='body', x=52.0, y=128.0, font_size=28), TextSlot(id='slot.calc2', prompt='', text='② 503 - 119 = 384', style_role='body', x=210.0, y=128.0, font_size=28), TextSlot(id='slot.calc3', prompt='', text='③ 947 - 472 = 475', style_role='body', x=370.0, y=128.0, font_size=28), TextSlot(id='slot.compare', prompt='', text='384<394<475', style_role='body', x=16.0, y=156.0, font_size=28), TextSlot(id='slot.conclusion', prompt='', text='이므로 계산 결과가 가장 작은 것은 ②입니다.', style_role='body', x=128.0, y=156.0, font_size=28)), diagrams=(), groups=(), constraints=(), tags=())
+    return ProblemTemplate(
+        id="S3_초등_3_008971",
+        title="계산 결과가 가장 작은 것을 찾아 기호를 고르기",
+        canvas=Canvas(width=560.0, height=240.0, coordinate_mode="logical"),
+        regions=(
+            Region(
+                id="region.stem",
+                role="stem",
+                flow="absolute",
+                slot_ids=(
+                    "slot.q1",
+                    "slot.box",
+                    "slot.eq1",
+                    "slot.eq2",
+                    "slot.eq3",
+                    "slot.choice",
+                    "slot.calc1",
+                    "slot.calc2",
+                    "slot.calc3",
+                    "slot.compare",
+                    "slot.conclusion",
+                ),
+            ),
+        ),
+        slots=(
+            TextSlot(
+                id="slot.q1",
+                prompt="",
+                text="5. 계산 결과가 가장 작은 것을 찾아 기호를 고르세요.",
+                style_role="question",
+                x=18.0,
+                y=22.0,
+                font_size=28,
+            ),
+            RectSlot(id="slot.box", prompt="", x=112.0, y=31.0, width=318.0, height=30.0),
+            TextSlot(
+                id="slot.eq1",
+                prompt="",
+                text="① 658 - 264",
+                style_role="body",
+                x=126.0,
+                y=51.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.eq2",
+                prompt="",
+                text="② 503 - 119",
+                style_role="body",
+                x=229.0,
+                y=51.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.eq3",
+                prompt="",
+                text="③ 947 - 472",
+                style_role="body",
+                x=332.0,
+                y=51.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.choice",
+                prompt="",
+                text="( ① , ② , ③ )",
+                style_role="body",
+                x=422.0,
+                y=66.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.calc1",
+                prompt="",
+                text="① 658 - 264 = 394",
+                style_role="body",
+                x=52.0,
+                y=128.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.calc2",
+                prompt="",
+                text="② 503 - 119 = 384",
+                style_role="body",
+                x=210.0,
+                y=128.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.calc3",
+                prompt="",
+                text="③ 947 - 472 = 475",
+                style_role="body",
+                x=370.0,
+                y=128.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.compare",
+                prompt="",
+                text="384<394<475",
+                style_role="body",
+                x=16.0,
+                y=156.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.conclusion",
+                prompt="",
+                text="이므로 계산 결과가 가장 작은 것은 ②입니다.",
+                style_role="body",
+                x=128.0,
+                y=156.0,
+                font_size=28,
+            ),
+        ),
+        diagrams=(),
+        groups=(),
+        constraints=(),
+        tags=(),
+    )
+
+
 PROBLEM_TEMPLATE = build_problem_template()
 
-SEMANTIC_OVERRIDE = {'problem_id': 'S3_초등_3_008971', 'problem_type': 'comparison_of_subtraction_results', 'metadata': {'language': 'ko', 'question': '계산 결과가 가장 작은 것을 찾아 기호를 고르세요.', 'instruction': '세 뺄셈식의 결과를 비교하여 가장 작은 것을 찾는다.'}, 'domain': {'objects': [{'id': 'obj.expr1', 'type': 'subtraction_expression', 'label': '①'}, {'id': 'obj.expr2', 'type': 'subtraction_expression', 'label': '②'}, {'id': 'obj.expr3', 'type': 'subtraction_expression', 'label': '③'}], 'relations': [], 'problem_solving': {'understand': {'given_refs': ['obj.expr1', 'obj.expr2', 'obj.expr3'], 'target_ref': 'answer.target', 'condition_refs': ['rel.compare_results']}, 'plan': {'method': 'compare_subtraction_results', 'description': '세 식의 계산 결과를 비교하여 가장 작은 값을 찾는다.'}, 'execute': {'expected_operations': ['calculate_each_expression', 'compare_results', 'select_minimum_symbol']}, 'review': {'check_methods': ['compare_all_results', 'confirm_smallest_value']}}}, 'answer': {'blanks': [], 'choices': [], 'answer_key': [], 'target': {'type': 'symbol_selection', 'description': '계산 결과가 가장 작은 기호'}, 'value': 2, 'unit': ''}}
+SEMANTIC_OVERRIDE = {
+    "problem_id": "S3_초등_3_008971",
+    "problem_type": "comparison_of_subtraction_results",
+    "metadata": {
+        "language": "ko",
+        "question": "계산 결과가 가장 작은 것을 찾아 기호를 고르세요.",
+        "instruction": "세 뺄셈식의 결과를 비교하여 가장 작은 것을 찾는다.",
+    },
+    "domain": {
+        "objects": [
+            {"id": "obj.expr1", "type": "subtraction_expression", "label": "①"},
+            {"id": "obj.expr2", "type": "subtraction_expression", "label": "②"},
+            {"id": "obj.expr3", "type": "subtraction_expression", "label": "③"},
+        ],
+        "relations": [],
+        "problem_solving": {
+            "understand": {
+                "given_refs": ["obj.expr1", "obj.expr2", "obj.expr3"],
+                "target_ref": "answer.target",
+                "condition_refs": ["rel.compare_results"],
+            },
+            "plan": {
+                "method": "compare_subtraction_results",
+                "description": "세 식의 계산 결과를 비교하여 가장 작은 값을 찾는다.",
+            },
+            "execute": {
+                "expected_operations": [
+                    "calculate_each_expression",
+                    "compare_results",
+                    "select_minimum_symbol",
+                ]
+            },
+            "review": {"check_methods": ["compare_all_results", "confirm_smallest_value"]},
+        },
+    },
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {"type": "symbol_selection", "description": "계산 결과가 가장 작은 기호"},
+        "value": 2,
+        "unit": "",
+    },
+}
 
-SOLVABLE = {'schema': 'modu.solvable.v1.1', 'problem_id': 'S3_초등_3_008971', 'problem_type': 'comparison_of_subtraction_results', 'inputs': {'total_ticks': 3, 'target_label': '가장 작은 기호', 'target_ticks': 1, 'target_count': 1, 'unit': ''}, 'given': [{'ref': 'obj.expr1', 'value': {'label': '①', 'minuend': 658, 'subtrahend': 264}}, {'ref': 'obj.expr2', 'value': {'label': '②', 'minuend': 503, 'subtrahend': 119}}, {'ref': 'obj.expr3', 'value': {'label': '③', 'minuend': 947, 'subtrahend': 472}}], 'target': {'ref': 'answer.target', 'type': 'symbol_selection'}, 'method': 'compare_subtraction_results', 'plan': ['각 뺄셈식을 계산한다.', '세 결과를 비교한다.', '가장 작은 결과에 해당하는 기호를 고른다.'], 'steps': [{'id': 'step.1', 'expr': '658 - 264', 'value': 394}, {'id': 'step.2', 'expr': '503 - 119', 'value': 384}, {'id': 'step.3', 'expr': '947 - 472', 'value': 475}, {'id': 'step.4', 'expr': '384 < 394 < 475', 'value': '384가 가장 작다'}], 'checks': [{'id': 'check.1', 'expr': '394 == 658 - 264', 'expected': 394, 'actual': 394, 'pass': True}, {'id': 'check.2', 'expr': '384 == 503 - 119', 'expected': 384, 'actual': 384, 'pass': True}, {'id': 'check.3', 'expr': '475 == 947 - 472', 'expected': 475, 'actual': 475, 'pass': True}, {'id': 'check.4', 'expr': '384 < 394 and 384 < 475', 'expected': True, 'actual': True, 'pass': True}], 'answer': {'blanks': [], 'choices': [], 'answer_key': [], 'target': {'type': 'symbol_selection', 'description': '계산 결과가 가장 작은 기호'}, 'value': 2, 'unit': ''}}
+SOLVABLE = {
+    "schema": "modu.solvable.v1.1",
+    "problem_id": "S3_초등_3_008971",
+    "problem_type": "comparison_of_subtraction_results",
+    "inputs": {
+        "total_ticks": 3,
+        "target_label": "가장 작은 기호",
+        "target_ticks": 1,
+        "target_count": 1,
+        "unit": "",
+    },
+    "given": [
+        {"ref": "obj.expr1", "value": {"label": "①", "minuend": 658, "subtrahend": 264}},
+        {"ref": "obj.expr2", "value": {"label": "②", "minuend": 503, "subtrahend": 119}},
+        {"ref": "obj.expr3", "value": {"label": "③", "minuend": 947, "subtrahend": 472}},
+    ],
+    "target": {"ref": "answer.target", "type": "symbol_selection"},
+    "method": "compare_subtraction_results",
+    "plan": [
+        "각 뺄셈식을 계산한다.",
+        "세 결과를 비교한다.",
+        "가장 작은 결과에 해당하는 기호를 고른다.",
+    ],
+    "steps": [
+        {"id": "step.1", "expr": "658 - 264", "value": 394},
+        {"id": "step.2", "expr": "503 - 119", "value": 384},
+        {"id": "step.3", "expr": "947 - 472", "value": 475},
+        {"id": "step.4", "expr": "384 < 394 < 475", "value": "384가 가장 작다"},
+    ],
+    "checks": [
+        {"id": "check.1", "expr": "394 == 658 - 264", "expected": 394, "actual": 394, "pass": True},
+        {"id": "check.2", "expr": "384 == 503 - 119", "expected": 384, "actual": 384, "pass": True},
+        {"id": "check.3", "expr": "475 == 947 - 472", "expected": 475, "actual": 475, "pass": True},
+        {
+            "id": "check.4",
+            "expr": "384 < 394 and 384 < 475",
+            "expected": True,
+            "actual": True,
+            "pass": True,
+        },
+    ],
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {"type": "symbol_selection", "description": "계산 결과가 가장 작은 기호"},
+        "value": 2,
+        "unit": "",
+    },
+}

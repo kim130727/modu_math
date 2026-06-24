@@ -1,10 +1,297 @@
 from __future__ import annotations
 from modu_math.dsl import Canvas, ProblemTemplate, Region, TextSlot, RectSlot, CircleSlot, LineSlot
 
+
 def build_problem_template() -> ProblemTemplate:
-    return ProblemTemplate(id='S3_초등_3_008933', title='밭별 수박 생산량', canvas=Canvas(width=960.0, height=640.0, coordinate_mode='logical'), regions=(Region(id='region.stem', role='stem', flow='absolute', slot_ids=('slot.q.no', 'slot.q.text1', 'slot.q.text2')), Region(id='region.diagram', role='diagram', flow='absolute', slot_ids=('slot.title', 'slot.table.outer', 'slot.table.vline', 'slot.table.hline1', 'slot.table.hline2', 'slot.table.hline3', 'slot.table.hline4', 'slot.table.head_left', 'slot.table.head_right', 'slot.table.row_a', 'slot.table.row_b', 'slot.table.row_c', 'slot.legend.big', 'slot.legend.small'))), slots=(TextSlot(id='slot.q.no', prompt='', text='□ 1.', style_role='question', x=12.0, y=30.0, font_size=28), TextSlot(id='slot.q.text1', prompt='', text='밭별 수박 생산량을 조사하여 그림그래프로 나타내었습니다. 수박 생산량이 가', style_role='question', x=66.0, y=30.0, font_size=28), TextSlot(id='slot.q.text2', prompt='', text='장 적은 밭을 선택해 보세요.', style_role='question', x=20.0, y=65.0, font_size=28), TextSlot(id='slot.title', prompt='', text='밭별 수박 생산량', style_role='title', x=360.0, y=110.0, font_size=28), RectSlot(id='slot.table.outer', prompt='', x=220.0, y=120.0, width=540.0, height=204.0, fill='#EEF4DD', stroke='#9ACD32', stroke_width=1.2), LineSlot(id='slot.table.vline', prompt='', x1=306.0, y1=120.0, x2=306.0, y2=324.0, stroke='#9ACD32', stroke_width=1.2), LineSlot(id='slot.table.hline1', prompt='', x1=220.0, y1=156.0, x2=760.0, y2=156.0, stroke='#9ACD32', stroke_width=1.2), LineSlot(id='slot.table.hline2', prompt='', x1=220.0, y1=220.0, x2=760.0, y2=220.0, stroke='#9ACD32', stroke_width=1.2), LineSlot(id='slot.table.hline3', prompt='', x1=220.0, y1=272.0, x2=760.0, y2=272.0, stroke='#9ACD32', stroke_width=1.2), LineSlot(id='slot.table.hline4', prompt='', x1=220.0, y1=324.0, x2=760.0, y2=324.0, stroke='#9ACD32', stroke_width=1.2), TextSlot(id='slot.table.head_left', prompt='', text='밭', style_role='table', x=262.0, y=144.0, font_size=28), TextSlot(id='slot.table.head_right', prompt='', text='수박 생산량', style_role='table', x=482.0, y=144.0, font_size=28), TextSlot(id='slot.table.row_a', prompt='', text='가', style_role='table', x=260.0, y=196.0, font_size=28), TextSlot(id='slot.table.row_b', prompt='', text='나', style_role='table', x=260.0, y=248.0, font_size=28), TextSlot(id='slot.table.row_c', prompt='', text='다', style_role='table', x=260.0, y=300.0, font_size=28), CircleSlot(id='slot.legend.big', prompt='', cx=565.0, cy=355.0, r=20.0, fill='#8BC34A'), CircleSlot(id='slot.legend.small', prompt='', cx=675.0, cy=355.0, r=13.0, fill='#8BC34A')), diagrams=(), groups=(), constraints=(), tags=())
+    return ProblemTemplate(
+        id="S3_초등_3_008933",
+        title="밭별 수박 생산량",
+        canvas=Canvas(width=960.0, height=640.0, coordinate_mode="logical"),
+        regions=(
+            Region(
+                id="region.stem",
+                role="stem",
+                flow="absolute",
+                slot_ids=("slot.q.no", "slot.q.text1", "slot.q.text2"),
+            ),
+            Region(
+                id="region.diagram",
+                role="diagram",
+                flow="absolute",
+                slot_ids=(
+                    "slot.title",
+                    "slot.table.outer",
+                    "slot.table.vline",
+                    "slot.table.hline1",
+                    "slot.table.hline2",
+                    "slot.table.hline3",
+                    "slot.table.hline4",
+                    "slot.table.head_left",
+                    "slot.table.head_right",
+                    "slot.table.row_a",
+                    "slot.table.row_b",
+                    "slot.table.row_c",
+                    "slot.legend.big",
+                    "slot.legend.small",
+                ),
+            ),
+        ),
+        slots=(
+            TextSlot(
+                id="slot.q.no",
+                prompt="",
+                text="□ 1.",
+                style_role="question",
+                x=12.0,
+                y=30.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.q.text1",
+                prompt="",
+                text="밭별 수박 생산량을 조사하여 그림그래프로 나타내었습니다. 수박 생산량이 가",
+                style_role="question",
+                x=66.0,
+                y=30.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.q.text2",
+                prompt="",
+                text="장 적은 밭을 선택해 보세요.",
+                style_role="question",
+                x=20.0,
+                y=65.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.title",
+                prompt="",
+                text="밭별 수박 생산량",
+                style_role="title",
+                x=360.0,
+                y=110.0,
+                font_size=28,
+            ),
+            RectSlot(
+                id="slot.table.outer",
+                prompt="",
+                x=220.0,
+                y=120.0,
+                width=540.0,
+                height=204.0,
+                fill="#EEF4DD",
+                stroke="#9ACD32",
+                stroke_width=1.2,
+            ),
+            LineSlot(
+                id="slot.table.vline",
+                prompt="",
+                x1=306.0,
+                y1=120.0,
+                x2=306.0,
+                y2=324.0,
+                stroke="#9ACD32",
+                stroke_width=1.2,
+            ),
+            LineSlot(
+                id="slot.table.hline1",
+                prompt="",
+                x1=220.0,
+                y1=156.0,
+                x2=760.0,
+                y2=156.0,
+                stroke="#9ACD32",
+                stroke_width=1.2,
+            ),
+            LineSlot(
+                id="slot.table.hline2",
+                prompt="",
+                x1=220.0,
+                y1=220.0,
+                x2=760.0,
+                y2=220.0,
+                stroke="#9ACD32",
+                stroke_width=1.2,
+            ),
+            LineSlot(
+                id="slot.table.hline3",
+                prompt="",
+                x1=220.0,
+                y1=272.0,
+                x2=760.0,
+                y2=272.0,
+                stroke="#9ACD32",
+                stroke_width=1.2,
+            ),
+            LineSlot(
+                id="slot.table.hline4",
+                prompt="",
+                x1=220.0,
+                y1=324.0,
+                x2=760.0,
+                y2=324.0,
+                stroke="#9ACD32",
+                stroke_width=1.2,
+            ),
+            TextSlot(
+                id="slot.table.head_left",
+                prompt="",
+                text="밭",
+                style_role="table",
+                x=262.0,
+                y=144.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.table.head_right",
+                prompt="",
+                text="수박 생산량",
+                style_role="table",
+                x=482.0,
+                y=144.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.table.row_a",
+                prompt="",
+                text="가",
+                style_role="table",
+                x=260.0,
+                y=196.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.table.row_b",
+                prompt="",
+                text="나",
+                style_role="table",
+                x=260.0,
+                y=248.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.table.row_c",
+                prompt="",
+                text="다",
+                style_role="table",
+                x=260.0,
+                y=300.0,
+                font_size=28,
+            ),
+            CircleSlot(id="slot.legend.big", prompt="", cx=565.0, cy=355.0, r=20.0, fill="#8BC34A"),
+            CircleSlot(
+                id="slot.legend.small", prompt="", cx=675.0, cy=355.0, r=13.0, fill="#8BC34A"
+            ),
+        ),
+        diagrams=(),
+        groups=(),
+        constraints=(),
+        tags=(),
+    )
+
+
 PROBLEM_TEMPLATE = build_problem_template()
 
-SEMANTIC_OVERRIDE = {'problem_id': 'S3_초등_3_008933', 'problem_type': '그림그래프_비교', 'metadata': {'language': 'ko', 'question': '밭별 수박 생산량을 조사하여 그림그래프로 나타내었습니다. 수박 생산량이 가장 적은 밭을 선택해 보세요.', 'instruction': '가장 적은 밭을 고르기'}, 'domain': {'objects': [{'id': 'obj.field.a', 'type': 'field', 'label': '가 밭'}, {'id': 'obj.field.b', 'type': 'field', 'label': '나 밭'}, {'id': 'obj.field.c', 'type': 'field', 'label': '다 밭'}, {'id': 'obj.legend.big', 'type': 'symbol_legend', 'value': 100, 'unit': '통'}, {'id': 'obj.legend.small', 'type': 'symbol_legend', 'value': 10, 'unit': '통'}], 'relations': [], 'problem_solving': {'understand': {'given_refs': ['obj.field.a', 'obj.field.b', 'obj.field.c', 'obj.legend.big', 'obj.legend.small'], 'target_ref': 'answer.target', 'condition_refs': ['rel.compare.production']}, 'plan': {'method': 'picture_graph_compare', 'description': '범례의 값과 그림 개수를 바탕으로 각 밭의 생산량을 비교한다.'}, 'execute': {'expected_operations': ['count_symbols', 'compare_totals', 'select_minimum']}, 'review': {'check_methods': ['compare_all_candidates', 'confirm_smallest_production']}}}, 'answer': {'blanks': [], 'choices': [], 'answer_key': [], 'target': {'type': 'least_production_field', 'description': '수박 생산량이 가장 적은 밭'}, 'value': '나 밭', 'unit': ''}}
+SEMANTIC_OVERRIDE = {
+    "problem_id": "S3_초등_3_008933",
+    "problem_type": "그림그래프_비교",
+    "metadata": {
+        "language": "ko",
+        "question": "밭별 수박 생산량을 조사하여 그림그래프로 나타내었습니다. 수박 생산량이 가장 적은 밭을 선택해 보세요.",
+        "instruction": "가장 적은 밭을 고르기",
+    },
+    "domain": {
+        "objects": [
+            {"id": "obj.field.a", "type": "field", "label": "가 밭"},
+            {"id": "obj.field.b", "type": "field", "label": "나 밭"},
+            {"id": "obj.field.c", "type": "field", "label": "다 밭"},
+            {"id": "obj.legend.big", "type": "symbol_legend", "value": 100, "unit": "통"},
+            {"id": "obj.legend.small", "type": "symbol_legend", "value": 10, "unit": "통"},
+        ],
+        "relations": [],
+        "problem_solving": {
+            "understand": {
+                "given_refs": [
+                    "obj.field.a",
+                    "obj.field.b",
+                    "obj.field.c",
+                    "obj.legend.big",
+                    "obj.legend.small",
+                ],
+                "target_ref": "answer.target",
+                "condition_refs": ["rel.compare.production"],
+            },
+            "plan": {
+                "method": "picture_graph_compare",
+                "description": "범례의 값과 그림 개수를 바탕으로 각 밭의 생산량을 비교한다.",
+            },
+            "execute": {
+                "expected_operations": ["count_symbols", "compare_totals", "select_minimum"]
+            },
+            "review": {"check_methods": ["compare_all_candidates", "confirm_smallest_production"]},
+        },
+    },
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {"type": "least_production_field", "description": "수박 생산량이 가장 적은 밭"},
+        "value": "나 밭",
+        "unit": "",
+    },
+}
 
-SOLVABLE = {'schema': 'modu.solvable.v1.1', 'problem_id': 'S3_초등_3_008933', 'problem_type': '그림그래프_비교', 'inputs': {'total_ticks': 0, 'target_label': '수박 생산량이 가장 적은 밭', 'target_ticks': 0, 'target_count': 3, 'unit': '통'}, 'given': [{'ref': 'obj.legend.big', 'value': {'value': 100, 'unit': '통'}}, {'ref': 'obj.legend.small', 'value': {'value': 10, 'unit': '통'}}], 'target': {'ref': 'answer.target', 'type': 'least_production_field'}, 'method': 'picture_graph_compare', 'plan': ['범례를 보고 큰 그림과 작은 그림의 값을 확인한다.', '각 밭의 그림 개수를 비교하여 생산량이 가장 적은 밭을 찾는다.', '가장 적은 밭을 선택한다.'], 'steps': [{'id': 'step.1', 'expr': '그림그래프의 범례 확인', 'value': {'big_symbol': 100, 'small_symbol': 10, 'unit': '통'}}, {'id': 'step.2', 'expr': '각 밭의 그림 개수 비교', 'value': {'field_labels': ['가 밭', '나 밭', '다 밭']}}, {'id': 'step.3', 'expr': '가장 적은 밭 선택', 'value': '나 밭'}], 'checks': [{'id': 'check.1', 'expr': '해설의 선택과 일치하는지 확인', 'expected': '나 밭', 'actual': '나 밭', 'pass': True}], 'answer': {'blanks': [], 'choices': [], 'answer_key': [], 'target': {'type': 'least_production_field', 'description': '수박 생산량이 가장 적은 밭'}, 'value': '나 밭', 'unit': ''}}
+SOLVABLE = {
+    "schema": "modu.solvable.v1.1",
+    "problem_id": "S3_초등_3_008933",
+    "problem_type": "그림그래프_비교",
+    "inputs": {
+        "total_ticks": 0,
+        "target_label": "수박 생산량이 가장 적은 밭",
+        "target_ticks": 0,
+        "target_count": 3,
+        "unit": "통",
+    },
+    "given": [
+        {"ref": "obj.legend.big", "value": {"value": 100, "unit": "통"}},
+        {"ref": "obj.legend.small", "value": {"value": 10, "unit": "통"}},
+    ],
+    "target": {"ref": "answer.target", "type": "least_production_field"},
+    "method": "picture_graph_compare",
+    "plan": [
+        "범례를 보고 큰 그림과 작은 그림의 값을 확인한다.",
+        "각 밭의 그림 개수를 비교하여 생산량이 가장 적은 밭을 찾는다.",
+        "가장 적은 밭을 선택한다.",
+    ],
+    "steps": [
+        {
+            "id": "step.1",
+            "expr": "그림그래프의 범례 확인",
+            "value": {"big_symbol": 100, "small_symbol": 10, "unit": "통"},
+        },
+        {
+            "id": "step.2",
+            "expr": "각 밭의 그림 개수 비교",
+            "value": {"field_labels": ["가 밭", "나 밭", "다 밭"]},
+        },
+        {"id": "step.3", "expr": "가장 적은 밭 선택", "value": "나 밭"},
+    ],
+    "checks": [
+        {
+            "id": "check.1",
+            "expr": "해설의 선택과 일치하는지 확인",
+            "expected": "나 밭",
+            "actual": "나 밭",
+            "pass": True,
+        }
+    ],
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {"type": "least_production_field", "description": "수박 생산량이 가장 적은 밭"},
+        "value": "나 밭",
+        "unit": "",
+    },
+}

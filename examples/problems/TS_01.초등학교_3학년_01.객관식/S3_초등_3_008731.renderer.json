@@ -1,8 +1,8 @@
 {
   "problem_id": "S3_초등_3_008731",
   "view_box": {
-    "width": 928.0,
-    "height": 1049.0,
+    "width": 850.0,
+    "height": 700.0,
     "background": "#FFFFFF"
   },
   "elements": [
@@ -10,8 +10,8 @@
       "id": "slot.diagram.top.box1.rect",
       "type": "rect",
       "attributes": {
-        "x": 425.0,
-        "y": 220.0,
+        "x": 380.0,
+        "y": 170.0,
         "width": 80.0,
         "height": 100.0,
         "fill": "#ffffff",
@@ -27,8 +27,8 @@
       "id": "slot.diagram.top.box2.rect",
       "type": "rect",
       "attributes": {
-        "x": 310.0,
-        "y": 385.0,
+        "x": 245.0,
+        "y": 335.0,
         "width": 80.0,
         "height": 100.0,
         "fill": "#ffffff",
@@ -44,8 +44,8 @@
       "id": "slot.diagram.top.box3.rect",
       "type": "rect",
       "attributes": {
-        "x": 535.0,
-        "y": 385.0,
+        "x": 515.0,
+        "y": 335.0,
         "width": 80.0,
         "height": 100.0,
         "fill": "#ffffff",
@@ -61,8 +61,8 @@
       "id": "slot.diagram.top.box4.rect",
       "type": "rect",
       "attributes": {
-        "x": 255.0,
-        "y": 510.0,
+        "x": 165.0,
+        "y": 515.0,
         "width": 80.0,
         "height": 95.0,
         "fill": "#ffffff",
@@ -78,8 +78,8 @@
       "id": "slot.diagram.top.box5.rect",
       "type": "rect",
       "attributes": {
-        "x": 350.0,
-        "y": 510.0,
+        "x": 315.0,
+        "y": 515.0,
         "width": 80.0,
         "height": 95.0,
         "fill": "#ffffff",
@@ -95,8 +95,8 @@
       "id": "slot.diagram.top.box6.rect",
       "type": "rect",
       "attributes": {
-        "x": 480.0,
-        "y": 510.0,
+        "x": 450.0,
+        "y": 515.0,
         "width": 80.0,
         "height": 95.0,
         "fill": "#ffffff",
@@ -112,8 +112,8 @@
       "id": "slot.diagram.top.box7.rect",
       "type": "rect",
       "attributes": {
-        "x": 575.0,
-        "y": 510.0,
+        "x": 585.0,
+        "y": 515.0,
         "width": 80.0,
         "height": 95.0,
         "fill": "#ffffff",
@@ -126,13 +126,141 @@
       }
     },
     {
+      "id": "slot.diagram.top.line2.copy1.line",
+      "type": "line",
+      "attributes": {
+        "x1": 205.0,
+        "y1": 480.0,
+        "x2": 355.0,
+        "y2": 480.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.diagram.top.line2.copy1",
+      "refs": {
+        "layout_slot_id": "slot.diagram.top.line2.copy1"
+      }
+    },
+    {
+      "id": "slot.diagram.top.line2.copy2.line",
+      "type": "line",
+      "attributes": {
+        "x1": 490.0,
+        "y1": 480.0,
+        "x2": 625.0,
+        "y2": 480.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.diagram.top.line2.copy2",
+      "refs": {
+        "layout_slot_id": "slot.diagram.top.line2.copy2"
+      }
+    },
+    {
+      "id": "slot.diagram.top.line1.copy3.line",
+      "type": "line",
+      "attributes": {
+        "x1": 285.0,
+        "y1": 435.0,
+        "x2": 285.0,
+        "y2": 480.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.diagram.top.line1.copy3",
+      "refs": {
+        "layout_slot_id": "slot.diagram.top.line1.copy3"
+      }
+    },
+    {
+      "id": "slot.diagram.top.line1.copy3.copy4.line",
+      "type": "line",
+      "attributes": {
+        "x1": 560.0,
+        "y1": 435.0,
+        "x2": 560.0,
+        "y2": 475.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.diagram.top.line1.copy3.copy4",
+      "refs": {
+        "layout_slot_id": "slot.diagram.top.line1.copy3.copy4"
+      }
+    },
+    {
+      "id": "slot.math.fraction.bar.line",
+      "type": "line",
+      "attributes": {
+        "x1": 190.0,
+        "y1": 575.0,
+        "x2": 230.0,
+        "y2": 575.0,
+        "stroke": "#222222",
+        "stroke-width": 2.2
+      },
+      "source_ref": "slot.math.fraction.bar",
+      "refs": {
+        "layout_slot_id": "slot.math.fraction.bar"
+      }
+    },
+    {
+      "id": "slot.math.fraction_1.bar.line",
+      "type": "line",
+      "attributes": {
+        "x1": 327.0,
+        "y1": 570.0,
+        "x2": 367.0,
+        "y2": 570.0,
+        "stroke": "#222222",
+        "stroke-width": 2.2
+      },
+      "source_ref": "slot.math.fraction_1.bar",
+      "refs": {
+        "layout_slot_id": "slot.math.fraction_1.bar"
+      }
+    },
+    {
+      "id": "slot.math.mixed_fraction.bar.line",
+      "type": "line",
+      "attributes": {
+        "x1": 485.0,
+        "y1": 570.0,
+        "x2": 525.0,
+        "y2": 570.0,
+        "stroke": "#222222",
+        "stroke-width": 2.2
+      },
+      "source_ref": "slot.math.mixed_fraction.bar",
+      "refs": {
+        "layout_slot_id": "slot.math.mixed_fraction.bar"
+      }
+    },
+    {
+      "id": "slot.math.mixed_fraction_1.bar.line",
+      "type": "line",
+      "attributes": {
+        "x1": 620.0,
+        "y1": 570.0,
+        "x2": 660.0,
+        "y2": 570.0,
+        "stroke": "#222222",
+        "stroke-width": 2.2
+      },
+      "source_ref": "slot.math.mixed_fraction_1.bar",
+      "refs": {
+        "layout_slot_id": "slot.math.mixed_fraction_1.bar"
+      }
+    },
+    {
       "id": "slot.diagram.top.line1.line",
       "type": "line",
       "attributes": {
-        "x1": 465.0,
-        "y1": 320.0,
-        "x2": 465.0,
-        "y2": 360.0,
+        "x1": 420.0,
+        "y1": 270.0,
+        "x2": 420.0,
+        "y2": 310.0,
         "stroke": "#111111",
         "stroke-width": 2.0
       },
@@ -145,10 +273,10 @@
       "id": "slot.diagram.top.line2.line",
       "type": "line",
       "attributes": {
-        "x1": 330.0,
-        "y1": 360.0,
-        "x2": 600.0,
-        "y2": 360.0,
+        "x1": 285.0,
+        "y1": 310.0,
+        "x2": 555.0,
+        "y2": 310.0,
         "stroke": "#111111",
         "stroke-width": 2.0
       },
@@ -161,10 +289,10 @@
       "id": "slot.diagram.top.line3.line",
       "type": "line",
       "attributes": {
-        "x1": 330.0,
-        "y1": 360.0,
-        "x2": 330.0,
-        "y2": 385.0,
+        "x1": 285.0,
+        "y1": 310.0,
+        "x2": 285.0,
+        "y2": 335.0,
         "stroke": "#111111",
         "stroke-width": 2.0
       },
@@ -177,10 +305,10 @@
       "id": "slot.diagram.top.line4.line",
       "type": "line",
       "attributes": {
-        "x1": 600.0,
-        "y1": 360.0,
-        "x2": 600.0,
-        "y2": 385.0,
+        "x1": 555.0,
+        "y1": 310.0,
+        "x2": 555.0,
+        "y2": 335.0,
         "stroke": "#111111",
         "stroke-width": 2.0
       },
@@ -193,10 +321,10 @@
       "id": "slot.diagram.top.line5.line",
       "type": "line",
       "attributes": {
-        "x1": 290.0,
-        "y1": 485.0,
-        "x2": 290.0,
-        "y2": 510.0,
+        "x1": 205.0,
+        "y1": 480.0,
+        "x2": 205.0,
+        "y2": 515.0,
         "stroke": "#111111",
         "stroke-width": 2.0
       },
@@ -209,10 +337,10 @@
       "id": "slot.diagram.top.line6.line",
       "type": "line",
       "attributes": {
-        "x1": 385.0,
-        "y1": 485.0,
-        "x2": 385.0,
-        "y2": 510.0,
+        "x1": 355.0,
+        "y1": 480.0,
+        "x2": 355.0,
+        "y2": 515.0,
         "stroke": "#111111",
         "stroke-width": 2.0
       },
@@ -225,10 +353,10 @@
       "id": "slot.diagram.top.line7.line",
       "type": "line",
       "attributes": {
-        "x1": 570.0,
-        "y1": 485.0,
-        "x2": 570.0,
-        "y2": 510.0,
+        "x1": 490.0,
+        "y1": 480.0,
+        "x2": 490.0,
+        "y2": 515.0,
         "stroke": "#111111",
         "stroke-width": 2.0
       },
@@ -241,10 +369,10 @@
       "id": "slot.diagram.top.line8.line",
       "type": "line",
       "attributes": {
-        "x1": 635.0,
-        "y1": 485.0,
-        "x2": 635.0,
-        "y2": 510.0,
+        "x1": 625.0,
+        "y1": 480.0,
+        "x2": 625.0,
+        "y2": 515.0,
         "stroke": "#111111",
         "stroke-width": 2.0
       },
@@ -257,8 +385,8 @@
       "id": "slot.q1.text",
       "type": "text",
       "attributes": {
-        "x": 16.0,
-        "y": 40.0,
+        "x": 11.0,
+        "y": 90.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 28
@@ -273,8 +401,8 @@
       "id": "slot.q1.copy27.text",
       "type": "text",
       "attributes": {
-        "x": 25.0,
-        "y": 95.0,
+        "x": 10.0,
+        "y": 132.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 30
@@ -286,11 +414,181 @@
       "text": "㉠에 들어갈 분수로 알맞은 것을 선택해 보세요."
     },
     {
+      "id": "slot.math.fraction.num.text",
+      "type": "text",
+      "attributes": {
+        "x": 210.0,
+        "y": 560.0,
+        "fill": "#222222",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.math.fraction.num",
+      "refs": {
+        "layout_slot_id": "slot.math.fraction.num"
+      },
+      "text": "15"
+    },
+    {
+      "id": "slot.math.fraction.den.text",
+      "type": "text",
+      "attributes": {
+        "x": 210.0,
+        "y": 600.0,
+        "fill": "#222222",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.math.fraction.den",
+      "refs": {
+        "layout_slot_id": "slot.math.fraction.den"
+      },
+      "text": "7"
+    },
+    {
+      "id": "slot.math.fraction_1.num.text",
+      "type": "text",
+      "attributes": {
+        "x": 347.0,
+        "y": 555.0,
+        "fill": "#222222",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.math.fraction_1.num",
+      "refs": {
+        "layout_slot_id": "slot.math.fraction_1.num"
+      },
+      "text": "22"
+    },
+    {
+      "id": "slot.math.fraction_1.den.text",
+      "type": "text",
+      "attributes": {
+        "x": 347.0,
+        "y": 595.0,
+        "fill": "#222222",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.math.fraction_1.den",
+      "refs": {
+        "layout_slot_id": "slot.math.fraction_1.den"
+      },
+      "text": "7"
+    },
+    {
+      "id": "slot.math.mixed_fraction.whole.text",
+      "type": "text",
+      "attributes": {
+        "x": 465.0,
+        "y": 580.0,
+        "fill": "#222222",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.math.mixed_fraction.whole",
+      "refs": {
+        "layout_slot_id": "slot.math.mixed_fraction.whole"
+      },
+      "text": "2"
+    },
+    {
+      "id": "slot.math.mixed_fraction.num.text",
+      "type": "text",
+      "attributes": {
+        "x": 505.0,
+        "y": 555.0,
+        "fill": "#222222",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.math.mixed_fraction.num",
+      "refs": {
+        "layout_slot_id": "slot.math.mixed_fraction.num"
+      },
+      "text": "3"
+    },
+    {
+      "id": "slot.math.mixed_fraction.den.text",
+      "type": "text",
+      "attributes": {
+        "x": 505.0,
+        "y": 595.0,
+        "fill": "#222222",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.math.mixed_fraction.den",
+      "refs": {
+        "layout_slot_id": "slot.math.mixed_fraction.den"
+      },
+      "text": "7"
+    },
+    {
+      "id": "slot.math.mixed_fraction_1.whole.text",
+      "type": "text",
+      "attributes": {
+        "x": 600.0,
+        "y": 580.0,
+        "fill": "#222222",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.math.mixed_fraction_1.whole",
+      "refs": {
+        "layout_slot_id": "slot.math.mixed_fraction_1.whole"
+      },
+      "text": "2"
+    },
+    {
+      "id": "slot.math.mixed_fraction_1.num.text",
+      "type": "text",
+      "attributes": {
+        "x": 640.0,
+        "y": 555.0,
+        "fill": "#222222",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.math.mixed_fraction_1.num",
+      "refs": {
+        "layout_slot_id": "slot.math.mixed_fraction_1.num"
+      },
+      "text": "6"
+    },
+    {
+      "id": "slot.math.mixed_fraction_1.den.text",
+      "type": "text",
+      "attributes": {
+        "x": 640.0,
+        "y": 595.0,
+        "fill": "#222222",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.math.mixed_fraction_1.den",
+      "refs": {
+        "layout_slot_id": "slot.math.mixed_fraction_1.den"
+      },
+      "text": "7"
+    },
+    {
       "id": "slot.diagram.top.box1.text.text",
       "type": "text",
       "attributes": {
-        "x": 450.0,
-        "y": 275.0,
+        "x": 405.0,
+        "y": 225.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 30
@@ -300,70 +598,6 @@
         "layout_slot_id": "slot.diagram.top.box1.text"
       },
       "text": "㉠"
-    },
-    {
-      "id": "slot.diagram.top.box4.text.text",
-      "type": "text",
-      "attributes": {
-        "x": 275.0,
-        "y": 565.0,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 30
-      },
-      "source_ref": "slot.diagram.top.box4.text",
-      "refs": {
-        "layout_slot_id": "slot.diagram.top.box4.text"
-      },
-      "text": "15/7"
-    },
-    {
-      "id": "slot.diagram.top.box5.text.text",
-      "type": "text",
-      "attributes": {
-        "x": 370.0,
-        "y": 565.0,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 30
-      },
-      "source_ref": "slot.diagram.top.box5.text",
-      "refs": {
-        "layout_slot_id": "slot.diagram.top.box5.text"
-      },
-      "text": "22/7"
-    },
-    {
-      "id": "slot.diagram.top.box6.text.text",
-      "type": "text",
-      "attributes": {
-        "x": 490.0,
-        "y": 565.0,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 30
-      },
-      "source_ref": "slot.diagram.top.box6.text",
-      "refs": {
-        "layout_slot_id": "slot.diagram.top.box6.text"
-      },
-      "text": "2 3/7"
-    },
-    {
-      "id": "slot.diagram.top.box7.text.text",
-      "type": "text",
-      "attributes": {
-        "x": 585.0,
-        "y": 565.0,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 30
-      },
-      "source_ref": "slot.diagram.top.box7.text",
-      "refs": {
-        "layout_slot_id": "slot.diagram.top.box7.text"
-      },
-      "text": "2 6/7"
     }
   ],
   "contract_version": "modu_math.renderer.v2"

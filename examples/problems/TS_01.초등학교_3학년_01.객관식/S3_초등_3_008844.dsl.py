@@ -1,10 +1,217 @@
 from __future__ import annotations
 from modu_math.dsl import Canvas, ProblemTemplate, Region, TextSlot, RectSlot, LineSlot, CircleSlot
 
+
 def build_problem_template() -> ProblemTemplate:
-    return ProblemTemplate(id='S3_초등_3_008844', title='저울로 가장 가벼운 것 찾기', canvas=Canvas(width=920, height=460, coordinate_mode='logical'), regions=(Region(id='region.stem', role='stem', flow='absolute', slot_ids=('slot.no', 'slot.q1', 'slot.q2', 'slot.scale.a.label', 'slot.scale.b.label', 'slot.opt.c')),), slots=(TextSlot(id='slot.no', prompt='', text='84.', style_role='question', x=24.0, y=40.0, font_size=28), TextSlot(id='slot.q1', prompt='', text='저울로 각도기, 컴퍼스, 지우개의 무게를 비교하고 있습니다.', style_role='question', x=64.0, y=42.0, font_size=28), TextSlot(id='slot.q2', prompt='', text='가장 가벼운 것은 무엇인지 알맞은 말을 선택해 보세요.', style_role='question', x=24.0, y=78.0, font_size=28), TextSlot(id='slot.scale.a.label', prompt='', text='가', style_role='label', x=190.0, y=132.0, font_size=28), TextSlot(id='slot.scale.b.label', prompt='', text='나', style_role='label', x=533.0, y=132.0, font_size=28), RectSlot(id='slot.opt.box', prompt='', x=0.0, y=0.0, width=0.0, height=0.0), TextSlot(id='slot.opt.c', prompt='', text='(2) 컴퍼스보다 각도기가 가볍고, 지우개보다 컴퍼스가 가벼우므로 가장 가벼운 것은', style_role='note', x=17.0, y=381.0, font_size=28), RectSlot(id='slot.scale.a.base', prompt='', x=230.0, y=172.0, width=170.0, height=80.0), RectSlot(id='slot.scale.b.base', prompt='', x=565.0, y=172.0, width=170.0, height=80.0), LineSlot(id='slot.scale.a.bar', prompt='', x1=250.0, y1=180.0, x2=380.0, y2=180.0), LineSlot(id='slot.scale.b.bar', prompt='', x1=585.0, y1=180.0, x2=715.0, y2=180.0), CircleSlot(id='slot.scale.a.left', prompt='', cx=253.0, cy=186.0, r=4.0, fill='#222222'), CircleSlot(id='slot.scale.a.right', prompt='', cx=377.0, cy=170.0, r=4.0, fill='#222222'), CircleSlot(id='slot.scale.b.left', prompt='', cx=588.0, cy=170.0, r=4.0, fill='#222222'), CircleSlot(id='slot.scale.b.right', prompt='', cx=712.0, cy=186.0, r=4.0, fill='#222222')), diagrams=(), groups=(), constraints=(), tags=())
+    return ProblemTemplate(
+        id="S3_초등_3_008844",
+        title="저울로 가장 가벼운 것 찾기",
+        canvas=Canvas(width=920, height=460, coordinate_mode="logical"),
+        regions=(
+            Region(
+                id="region.stem",
+                role="stem",
+                flow="absolute",
+                slot_ids=(
+                    "slot.no",
+                    "slot.q1",
+                    "slot.q2",
+                    "slot.scale.a.label",
+                    "slot.scale.b.label",
+                    "slot.opt.c",
+                ),
+            ),
+        ),
+        slots=(
+            TextSlot(
+                id="slot.no",
+                prompt="",
+                text="84.",
+                style_role="question",
+                x=24.0,
+                y=40.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.q1",
+                prompt="",
+                text="저울로 각도기, 컴퍼스, 지우개의 무게를 비교하고 있습니다.",
+                style_role="question",
+                x=64.0,
+                y=42.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.q2",
+                prompt="",
+                text="가장 가벼운 것은 무엇인지 알맞은 말을 선택해 보세요.",
+                style_role="question",
+                x=24.0,
+                y=78.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.scale.a.label",
+                prompt="",
+                text="가",
+                style_role="label",
+                x=190.0,
+                y=132.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.scale.b.label",
+                prompt="",
+                text="나",
+                style_role="label",
+                x=533.0,
+                y=132.0,
+                font_size=28,
+            ),
+            RectSlot(id="slot.opt.box", prompt="", x=0.0, y=0.0, width=0.0, height=0.0),
+            TextSlot(
+                id="slot.opt.c",
+                prompt="",
+                text="(2) 컴퍼스보다 각도기가 가볍고, 지우개보다 컴퍼스가 가벼우므로 가장 가벼운 것은",
+                style_role="note",
+                x=17.0,
+                y=381.0,
+                font_size=28,
+            ),
+            RectSlot(id="slot.scale.a.base", prompt="", x=230.0, y=172.0, width=170.0, height=80.0),
+            RectSlot(id="slot.scale.b.base", prompt="", x=565.0, y=172.0, width=170.0, height=80.0),
+            LineSlot(id="slot.scale.a.bar", prompt="", x1=250.0, y1=180.0, x2=380.0, y2=180.0),
+            LineSlot(id="slot.scale.b.bar", prompt="", x1=585.0, y1=180.0, x2=715.0, y2=180.0),
+            CircleSlot(
+                id="slot.scale.a.left", prompt="", cx=253.0, cy=186.0, r=4.0, fill="#222222"
+            ),
+            CircleSlot(
+                id="slot.scale.a.right", prompt="", cx=377.0, cy=170.0, r=4.0, fill="#222222"
+            ),
+            CircleSlot(
+                id="slot.scale.b.left", prompt="", cx=588.0, cy=170.0, r=4.0, fill="#222222"
+            ),
+            CircleSlot(
+                id="slot.scale.b.right", prompt="", cx=712.0, cy=186.0, r=4.0, fill="#222222"
+            ),
+        ),
+        diagrams=(),
+        groups=(),
+        constraints=(),
+        tags=(),
+    )
+
+
 PROBLEM_TEMPLATE = build_problem_template()
 
-SEMANTIC_OVERRIDE = {'problem_id': 'S3_초등_3_008844', 'problem_type': 'object_comparison', 'metadata': {'language': 'ko', 'question': '저울로 각도기, 컴퍼스, 지우개의 무게를 비교하고 가장 가벼운 것을 고르는 문제', 'instruction': '가장 가벼운 것은 무엇인지 알맞은 말을 선택해 보세요.'}, 'domain': {'objects': [{'id': 'obj.angle_measure', 'type': 'object', 'name': '각도기'}, {'id': 'obj.compass', 'type': 'object', 'name': '컴퍼스'}, {'id': 'obj.eraser', 'type': 'object', 'name': '지우개'}], 'relations': [], 'problem_solving': {'understand': {'given_refs': ['rel.a', 'rel.b'], 'target_ref': 'answer.target', 'condition_refs': ['rel.a', 'rel.b']}, 'plan': {'method': 'compare_two_relations', 'description': '두 비교 관계를 읽고 가장 가벼운 대상을 찾는다.'}, 'execute': {'expected_operations': ['read_first_comparison', 'read_second_comparison', 'compare_candidates']}, 'review': {'check_methods': ['relation_consistency_check']}}}, 'answer': {'blanks': [], 'choices': [], 'answer_key': [], 'target': {'type': 'lightest_object', 'description': '가장 가벼운 것', 'candidates': ['각도기', '컴퍼스', '지우개']}, 'value': None, 'unit': ''}}
+SEMANTIC_OVERRIDE = {
+    "problem_id": "S3_초등_3_008844",
+    "problem_type": "object_comparison",
+    "metadata": {
+        "language": "ko",
+        "question": "저울로 각도기, 컴퍼스, 지우개의 무게를 비교하고 가장 가벼운 것을 고르는 문제",
+        "instruction": "가장 가벼운 것은 무엇인지 알맞은 말을 선택해 보세요.",
+    },
+    "domain": {
+        "objects": [
+            {"id": "obj.angle_measure", "type": "object", "name": "각도기"},
+            {"id": "obj.compass", "type": "object", "name": "컴퍼스"},
+            {"id": "obj.eraser", "type": "object", "name": "지우개"},
+        ],
+        "relations": [],
+        "problem_solving": {
+            "understand": {
+                "given_refs": ["rel.a", "rel.b"],
+                "target_ref": "answer.target",
+                "condition_refs": ["rel.a", "rel.b"],
+            },
+            "plan": {
+                "method": "compare_two_relations",
+                "description": "두 비교 관계를 읽고 가장 가벼운 대상을 찾는다.",
+            },
+            "execute": {
+                "expected_operations": [
+                    "read_first_comparison",
+                    "read_second_comparison",
+                    "compare_candidates",
+                ]
+            },
+            "review": {"check_methods": ["relation_consistency_check"]},
+        },
+    },
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {
+            "type": "lightest_object",
+            "description": "가장 가벼운 것",
+            "candidates": ["각도기", "컴퍼스", "지우개"],
+        },
+        "value": None,
+        "unit": "",
+    },
+}
 
-SOLVABLE = {'schema': 'modu.solvable.v1.1', 'problem_id': 'S3_초등_3_008844', 'problem_type': 'object_comparison', 'inputs': {'total_ticks': 2, 'target_label': '가장 가벼운 것', 'target_ticks': 1, 'target_count': 3, 'unit': ''}, 'given': [{'ref': 'rel.a', 'value': {'left': '각도기', 'right': '컴퍼스', 'relation': 'lighter_than'}}, {'ref': 'rel.b', 'value': {'left': '지우개', 'right': '컴퍼스', 'relation': 'lighter_than'}}], 'target': {'ref': 'answer.target', 'type': 'lightest_object'}, 'method': 'compare_two_relations', 'plan': ['주어진 두 저울 비교를 읽는다.', '각도기와 컴퍼스, 지우개와 컴퍼스의 관계를 확인한다.', '가장 가벼운 대상을 찾는다.'], 'steps': [{'id': 'step.1', 'expr': '각도기 < 컴퍼스', 'value': '참'}, {'id': 'step.2', 'expr': '지우개 < 컴퍼스', 'value': '참'}, {'id': 'step.3', 'expr': '가장 가벼운 것 선택', 'value': None}], 'checks': [{'id': 'check.1', 'expr': '두 비교 관계가 모두 주어진다', 'expected': True, 'actual': True, 'pass': True}, {'id': 'check.2', 'expr': '정답은 보기에 포함된 항목 중 하나여야 한다', 'expected': True, 'actual': True, 'pass': True}], 'answer': {'blanks': [], 'choices': [], 'answer_key': [], 'target': {'type': 'lightest_object', 'description': '가장 가벼운 것', 'candidates': ['각도기', '컴퍼스', '지우개']}, 'value': None, 'unit': ''}}
+SOLVABLE = {
+    "schema": "modu.solvable.v1.1",
+    "problem_id": "S3_초등_3_008844",
+    "problem_type": "object_comparison",
+    "inputs": {
+        "total_ticks": 2,
+        "target_label": "가장 가벼운 것",
+        "target_ticks": 1,
+        "target_count": 3,
+        "unit": "",
+    },
+    "given": [
+        {
+            "ref": "rel.a",
+            "value": {"left": "각도기", "right": "컴퍼스", "relation": "lighter_than"},
+        },
+        {
+            "ref": "rel.b",
+            "value": {"left": "지우개", "right": "컴퍼스", "relation": "lighter_than"},
+        },
+    ],
+    "target": {"ref": "answer.target", "type": "lightest_object"},
+    "method": "compare_two_relations",
+    "plan": [
+        "주어진 두 저울 비교를 읽는다.",
+        "각도기와 컴퍼스, 지우개와 컴퍼스의 관계를 확인한다.",
+        "가장 가벼운 대상을 찾는다.",
+    ],
+    "steps": [
+        {"id": "step.1", "expr": "각도기 < 컴퍼스", "value": "참"},
+        {"id": "step.2", "expr": "지우개 < 컴퍼스", "value": "참"},
+        {"id": "step.3", "expr": "가장 가벼운 것 선택", "value": None},
+    ],
+    "checks": [
+        {
+            "id": "check.1",
+            "expr": "두 비교 관계가 모두 주어진다",
+            "expected": True,
+            "actual": True,
+            "pass": True,
+        },
+        {
+            "id": "check.2",
+            "expr": "정답은 보기에 포함된 항목 중 하나여야 한다",
+            "expected": True,
+            "actual": True,
+            "pass": True,
+        },
+    ],
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {
+            "type": "lightest_object",
+            "description": "가장 가벼운 것",
+            "candidates": ["각도기", "컴퍼스", "지우개"],
+        },
+        "value": None,
+        "unit": "",
+    },
+}

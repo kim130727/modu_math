@@ -1,10 +1,297 @@
 from __future__ import annotations
-from modu_math.dsl import Canvas, ProblemTemplate, Region, TextSlot, RectSlot, CircleSlot, LineSlot, PolygonSlot
+from modu_math.dsl import (
+    Canvas,
+    ProblemTemplate,
+    Region,
+    TextSlot,
+    RectSlot,
+    CircleSlot,
+    LineSlot,
+    PolygonSlot,
+)
+
 
 def build_problem_template() -> ProblemTemplate:
-    return ProblemTemplate(id='S3_초등_3_008811', title='들이 비교', canvas=Canvas(width=940, height=560, coordinate_mode='logical'), regions=(Region(id='region.header', role='stem', flow='absolute', slot_ids=('slot.qnum', 'slot.title')), Region(id='region.left', role='diagram', flow='absolute', slot_ids=('slot.nameplate', 'slot.bubble', 'slot.bubble.text1', 'slot.bubble.text2')), Region(id='region.right', role='diagram', flow='absolute', slot_ids=('slot.juice.label', 'slot.water.label', 'slot.note', 'slot.note.arrow')), Region(id='region.bottom', role='stem', flow='absolute', slot_ids=('slot.statement',))), slots=(TextSlot(id='slot.qnum', prompt='', text='□ 44.', style_role='question', x=18.0, y=34.0, font_size=28), TextSlot(id='slot.title', prompt='', text='상아가 주스병과 물병의 들이를 비교하려고 합니다. 알맞은 말을 선택하세요.', style_role='question', x=70.0, y=34.0, font_size=28), CircleSlot(id='slot.girl.head', prompt='', cx=62.0, cy=124.0, r=24.0, fill='#f4c7b8'), PolygonSlot(id='slot.girl.hair', prompt='', points=((40.0, 100.0), (52.0, 82.0), (74.0, 82.0), (86.0, 96.0), (84.0, 118.0), (70.0, 132.0), (44.0, 128.0)), fill='#3d2b2a'), RectSlot(id='slot.girl.body', prompt='', x=48.0, y=146.0, width=28.0, height=46.0, fill='#0e76bd', rx=5.0, ry=5.0), TextSlot(id='slot.nameplate', prompt='', text='상아', style_role='label', x=40.0, y=230.0, font_size=28), RectSlot(id='slot.bubble', prompt='', x=176.0, y=104.0, width=330.0, height=126.0, fill='#d7d2ee', rx=6.0, ry=6.0), PolygonSlot(id='slot.bubble.tail', prompt='', points=((176.0, 144.0), (150.0, 132.0), (176.0, 120.0)), fill='#d7d2ee'), TextSlot(id='slot.bubble.text1', prompt='', text='주스병에 물을 가득 채운 후', style_role='speech', x=235.0, y=145.0, font_size=28), TextSlot(id='slot.bubble.text2', prompt='', text='물병에 옮겨 담아 비교해야지.', style_role='speech', x=226.0, y=183.0, font_size=28), RectSlot(id='slot.juice.bottle', prompt='', x=670.0, y=80.0, width=82.0, height=48.0, fill='#f4d45a', rx=18.0, ry=18.0), CircleSlot(id='slot.juice.cap', prompt='', cx=748.0, cy=124.0, r=11.0, fill='#ffffff'), RectSlot(id='slot.juice.label_box', prompt='', x=640.0, y=64.0, width=20.0, height=20.0, fill='#ffffff'), TextSlot(id='slot.juice.label', prompt='', text='주스병', style_role='label', x=638.0, y=150.0, font_size=26), RectSlot(id='slot.water.bottle', prompt='', x=708.0, y=160.0, width=78.0, height=130.0, fill='#d7f0ff', rx=12.0, ry=12.0), LineSlot(id='slot.water.edge1', prompt='', x1=708.0, y1=160.0, x2=786.0, y2=160.0), LineSlot(id='slot.water.edge2', prompt='', x1=708.0, y1=290.0, x2=786.0, y2=290.0), TextSlot(id='slot.water.label', prompt='', text='물병', style_role='label', x=725.0, y=324.0, font_size=26), TextSlot(id='slot.note', prompt='', text='물이 가득 차지 않은 것의\n들이가 더 많아요.', style_role='note', x=742.0, y=362.0, font_size=24), LineSlot(id='slot.note.arrow', prompt='', x1=742.0, y1=310.0, x2=730.0, y2=292.0), TextSlot(id='slot.statement', prompt='', text='주스병의 물이 물병에 모두 들어가므로 ( 주스병 , 물병 )의 들이가 더 많습니다.', style_role='question', x=34.0, y=420.0, font_size=28)), diagrams=(), groups=(), constraints=(), tags=())
+    return ProblemTemplate(
+        id="S3_초등_3_008811",
+        title="들이 비교",
+        canvas=Canvas(width=940, height=560, coordinate_mode="logical"),
+        regions=(
+            Region(
+                id="region.header",
+                role="stem",
+                flow="absolute",
+                slot_ids=("slot.qnum", "slot.title"),
+            ),
+            Region(
+                id="region.left",
+                role="diagram",
+                flow="absolute",
+                slot_ids=(
+                    "slot.nameplate",
+                    "slot.bubble",
+                    "slot.bubble.text1",
+                    "slot.bubble.text2",
+                ),
+            ),
+            Region(
+                id="region.right",
+                role="diagram",
+                flow="absolute",
+                slot_ids=("slot.juice.label", "slot.water.label", "slot.note", "slot.note.arrow"),
+            ),
+            Region(id="region.bottom", role="stem", flow="absolute", slot_ids=("slot.statement",)),
+        ),
+        slots=(
+            TextSlot(
+                id="slot.qnum",
+                prompt="",
+                text="□ 44.",
+                style_role="question",
+                x=18.0,
+                y=34.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.title",
+                prompt="",
+                text="상아가 주스병과 물병의 들이를 비교하려고 합니다. 알맞은 말을 선택하세요.",
+                style_role="question",
+                x=70.0,
+                y=34.0,
+                font_size=28,
+            ),
+            CircleSlot(id="slot.girl.head", prompt="", cx=62.0, cy=124.0, r=24.0, fill="#f4c7b8"),
+            PolygonSlot(
+                id="slot.girl.hair",
+                prompt="",
+                points=(
+                    (40.0, 100.0),
+                    (52.0, 82.0),
+                    (74.0, 82.0),
+                    (86.0, 96.0),
+                    (84.0, 118.0),
+                    (70.0, 132.0),
+                    (44.0, 128.0),
+                ),
+                fill="#3d2b2a",
+            ),
+            RectSlot(
+                id="slot.girl.body",
+                prompt="",
+                x=48.0,
+                y=146.0,
+                width=28.0,
+                height=46.0,
+                fill="#0e76bd",
+                rx=5.0,
+                ry=5.0,
+            ),
+            TextSlot(
+                id="slot.nameplate",
+                prompt="",
+                text="상아",
+                style_role="label",
+                x=40.0,
+                y=230.0,
+                font_size=28,
+            ),
+            RectSlot(
+                id="slot.bubble",
+                prompt="",
+                x=176.0,
+                y=104.0,
+                width=330.0,
+                height=126.0,
+                fill="#d7d2ee",
+                rx=6.0,
+                ry=6.0,
+            ),
+            PolygonSlot(
+                id="slot.bubble.tail",
+                prompt="",
+                points=((176.0, 144.0), (150.0, 132.0), (176.0, 120.0)),
+                fill="#d7d2ee",
+            ),
+            TextSlot(
+                id="slot.bubble.text1",
+                prompt="",
+                text="주스병에 물을 가득 채운 후",
+                style_role="speech",
+                x=235.0,
+                y=145.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.bubble.text2",
+                prompt="",
+                text="물병에 옮겨 담아 비교해야지.",
+                style_role="speech",
+                x=226.0,
+                y=183.0,
+                font_size=28,
+            ),
+            RectSlot(
+                id="slot.juice.bottle",
+                prompt="",
+                x=670.0,
+                y=80.0,
+                width=82.0,
+                height=48.0,
+                fill="#f4d45a",
+                rx=18.0,
+                ry=18.0,
+            ),
+            CircleSlot(id="slot.juice.cap", prompt="", cx=748.0, cy=124.0, r=11.0, fill="#ffffff"),
+            RectSlot(
+                id="slot.juice.label_box",
+                prompt="",
+                x=640.0,
+                y=64.0,
+                width=20.0,
+                height=20.0,
+                fill="#ffffff",
+            ),
+            TextSlot(
+                id="slot.juice.label",
+                prompt="",
+                text="주스병",
+                style_role="label",
+                x=638.0,
+                y=150.0,
+                font_size=26,
+            ),
+            RectSlot(
+                id="slot.water.bottle",
+                prompt="",
+                x=708.0,
+                y=160.0,
+                width=78.0,
+                height=130.0,
+                fill="#d7f0ff",
+                rx=12.0,
+                ry=12.0,
+            ),
+            LineSlot(id="slot.water.edge1", prompt="", x1=708.0, y1=160.0, x2=786.0, y2=160.0),
+            LineSlot(id="slot.water.edge2", prompt="", x1=708.0, y1=290.0, x2=786.0, y2=290.0),
+            TextSlot(
+                id="slot.water.label",
+                prompt="",
+                text="물병",
+                style_role="label",
+                x=725.0,
+                y=324.0,
+                font_size=26,
+            ),
+            TextSlot(
+                id="slot.note",
+                prompt="",
+                text="물이 가득 차지 않은 것의\n들이가 더 많아요.",
+                style_role="note",
+                x=742.0,
+                y=362.0,
+                font_size=24,
+            ),
+            LineSlot(id="slot.note.arrow", prompt="", x1=742.0, y1=310.0, x2=730.0, y2=292.0),
+            TextSlot(
+                id="slot.statement",
+                prompt="",
+                text="주스병의 물이 물병에 모두 들어가므로 ( 주스병 , 물병 )의 들이가 더 많습니다.",
+                style_role="question",
+                x=34.0,
+                y=420.0,
+                font_size=28,
+            ),
+        ),
+        diagrams=(),
+        groups=(),
+        constraints=(),
+        tags=(),
+    )
+
+
 PROBLEM_TEMPLATE = build_problem_template()
 
-SEMANTIC_OVERRIDE = {'problem_id': 'S3_초등_3_008811', 'problem_type': '들이 비교', 'metadata': {'language': 'ko', 'question': '주스병과 물병의 들이를 비교하는 문제', 'instruction': '알맞은 말을 선택하세요.'}, 'domain': {'objects': [{'id': 'obj.juice_bottle', 'type': 'container', 'name': '주스병'}, {'id': 'obj.water_bottle', 'type': 'container', 'name': '물병'}], 'relations': [], 'problem_solving': {'understand': {'given_refs': ['obj.juice_bottle', 'obj.water_bottle', 'rel.compare_capacity'], 'target_ref': 'answer.target', 'condition_refs': []}, 'plan': {'method': '비교하기', 'description': '주스병의 물을 물병에 모두 옮겨 담을 수 있는지 보고 들이가 더 큰 쪽을 찾는다.'}, 'execute': {'expected_operations': ['그림과 설명을 바탕으로 비교 관계 확인하기', '더 많은 들이를 가진 용기 선택하기']}, 'review': {'check_methods': ['설명 문장과 정답 표기 일치 여부 확인']}}}, 'answer': {'blanks': [], 'choices': [], 'answer_key': [], 'target': {'type': 'choice', 'description': '들이가 더 많은 용기'}, 'value': '물병', 'unit': ''}}
+SEMANTIC_OVERRIDE = {
+    "problem_id": "S3_초등_3_008811",
+    "problem_type": "들이 비교",
+    "metadata": {
+        "language": "ko",
+        "question": "주스병과 물병의 들이를 비교하는 문제",
+        "instruction": "알맞은 말을 선택하세요.",
+    },
+    "domain": {
+        "objects": [
+            {"id": "obj.juice_bottle", "type": "container", "name": "주스병"},
+            {"id": "obj.water_bottle", "type": "container", "name": "물병"},
+        ],
+        "relations": [],
+        "problem_solving": {
+            "understand": {
+                "given_refs": ["obj.juice_bottle", "obj.water_bottle", "rel.compare_capacity"],
+                "target_ref": "answer.target",
+                "condition_refs": [],
+            },
+            "plan": {
+                "method": "비교하기",
+                "description": "주스병의 물을 물병에 모두 옮겨 담을 수 있는지 보고 들이가 더 큰 쪽을 찾는다.",
+            },
+            "execute": {
+                "expected_operations": [
+                    "그림과 설명을 바탕으로 비교 관계 확인하기",
+                    "더 많은 들이를 가진 용기 선택하기",
+                ]
+            },
+            "review": {"check_methods": ["설명 문장과 정답 표기 일치 여부 확인"]},
+        },
+    },
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {"type": "choice", "description": "들이가 더 많은 용기"},
+        "value": "물병",
+        "unit": "",
+    },
+}
 
-SOLVABLE = {'schema': 'modu.solvable.v1.1', 'problem_id': 'S3_초등_3_008811', 'problem_type': '들이 비교', 'inputs': {'total_ticks': 0, 'target_label': '들이가 더 많은 용기', 'target_ticks': 0, 'target_count': 1, 'unit': ''}, 'given': [{'ref': 'obj.juice_bottle', 'value': {'name': '주스병'}}, {'ref': 'obj.water_bottle', 'value': {'name': '물병'}}], 'target': {'ref': 'answer.target', 'type': 'choice'}, 'method': '비교하기', 'plan': ['그림과 설명을 보고 두 용기 중 들이가 더 많은 쪽을 고른다.'], 'steps': [{'id': 'step.1', 'expr': '주스병의 물이 물병에 모두 들어감', 'value': '비교 가능'}, {'id': 'step.2', 'expr': '들이가 더 많은 용기 선택', 'value': '물병'}], 'checks': [{'id': 'check.1', 'expr': '해설과 정답 표기가 일치하는가', 'expected': '물병', 'actual': '물병', 'pass': True}], 'answer': {'blanks': [], 'choices': [], 'answer_key': [], 'target': {'type': 'choice', 'description': '들이가 더 많은 용기'}, 'value': '물병', 'unit': ''}}
+SOLVABLE = {
+    "schema": "modu.solvable.v1.1",
+    "problem_id": "S3_초등_3_008811",
+    "problem_type": "들이 비교",
+    "inputs": {
+        "total_ticks": 0,
+        "target_label": "들이가 더 많은 용기",
+        "target_ticks": 0,
+        "target_count": 1,
+        "unit": "",
+    },
+    "given": [
+        {"ref": "obj.juice_bottle", "value": {"name": "주스병"}},
+        {"ref": "obj.water_bottle", "value": {"name": "물병"}},
+    ],
+    "target": {"ref": "answer.target", "type": "choice"},
+    "method": "비교하기",
+    "plan": ["그림과 설명을 보고 두 용기 중 들이가 더 많은 쪽을 고른다."],
+    "steps": [
+        {"id": "step.1", "expr": "주스병의 물이 물병에 모두 들어감", "value": "비교 가능"},
+        {"id": "step.2", "expr": "들이가 더 많은 용기 선택", "value": "물병"},
+    ],
+    "checks": [
+        {
+            "id": "check.1",
+            "expr": "해설과 정답 표기가 일치하는가",
+            "expected": "물병",
+            "actual": "물병",
+            "pass": True,
+        }
+    ],
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {"type": "choice", "description": "들이가 더 많은 용기"},
+        "value": "물병",
+        "unit": "",
+    },
+}

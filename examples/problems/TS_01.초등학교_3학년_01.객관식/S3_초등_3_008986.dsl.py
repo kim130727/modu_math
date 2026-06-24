@@ -1,10 +1,230 @@
 from __future__ import annotations
 from modu_math.dsl import Canvas, ProblemTemplate, Region, TextSlot, RectSlot, LineSlot
 
+
 def build_problem_template() -> ProblemTemplate:
-    return ProblemTemplate(id='S3_초등_3_008986', title='알맞은 말을 선택하세요', canvas=Canvas(width=840, height=440, coordinate_mode='logical'), regions=(Region(id='region.header', role='stem', flow='absolute', slot_ids=('slot.header.icon', 'slot.header.text')), Region(id='region.diagram', role='diagram', flow='absolute', slot_ids=('slot.tri.side_left', 'slot.tri.side_bottom', 'slot.tri.side_diag', 'slot.tri.right_angle')), Region(id='region.box', role='stem', flow='absolute', slot_ids=('slot.box.frame', 'slot.box.text1', 'slot.box.text2')), Region(id='region.footer', role='answer', flow='absolute', slot_ids=())), slots=(RectSlot(id='slot.header.icon', prompt='', x=10.0, y=12.0, width=12.0, height=12.0, fill='none', stroke='#111111'), TextSlot(id='slot.header.text', prompt='', text='24. 알맞은 말을 선택하세요.', style_role='question', x=30.0, y=29.0, font_size=28), LineSlot(id='slot.tri.side_left', prompt='', x1=372.0, y1=43.0, x2=372.0, y2=111.0, stroke='#666666', stroke_width=1.5), LineSlot(id='slot.tri.side_bottom', prompt='', x1=372.0, y1=111.0, x2=474.0, y2=111.0, stroke='#666666', stroke_width=1.5), LineSlot(id='slot.tri.side_diag', prompt='', x1=372.0, y1=43.0, x2=474.0, y2=111.0, stroke='#666666', stroke_width=1.5), RectSlot(id='slot.tri.right_angle', prompt='', x=372.0, y=101.0, width=9.0, height=9.0, fill='none', stroke='#FF8FB3', stroke_width=1.5), RectSlot(id='slot.box.frame', prompt='', x=38.0, y=136.0, width=778.0, height=144.0, fill='none', stroke='#B8A6D8', stroke_width=2.0), TextSlot(id='slot.box.text1', prompt='', text='( 한, 두, 세 ) 각이 직각인 삼각형을 직각삼각형이라고 합니', style_role='question', x=415.0, y=177.0, font_size=28), TextSlot(id='slot.box.text2', prompt='', text='다.', style_role='question', x=415.0, y=221.0, font_size=28)), diagrams=(), groups=(), constraints=(), tags=())
+    return ProblemTemplate(
+        id="S3_초등_3_008986",
+        title="알맞은 말을 선택하세요",
+        canvas=Canvas(width=840, height=440, coordinate_mode="logical"),
+        regions=(
+            Region(
+                id="region.header",
+                role="stem",
+                flow="absolute",
+                slot_ids=("slot.header.icon", "slot.header.text"),
+            ),
+            Region(
+                id="region.diagram",
+                role="diagram",
+                flow="absolute",
+                slot_ids=(
+                    "slot.tri.side_left",
+                    "slot.tri.side_bottom",
+                    "slot.tri.side_diag",
+                    "slot.tri.right_angle",
+                ),
+            ),
+            Region(
+                id="region.box",
+                role="stem",
+                flow="absolute",
+                slot_ids=("slot.box.frame", "slot.box.text1", "slot.box.text2"),
+            ),
+            Region(id="region.footer", role="answer", flow="absolute", slot_ids=()),
+        ),
+        slots=(
+            RectSlot(
+                id="slot.header.icon",
+                prompt="",
+                x=10.0,
+                y=12.0,
+                width=12.0,
+                height=12.0,
+                fill="none",
+                stroke="#111111",
+            ),
+            TextSlot(
+                id="slot.header.text",
+                prompt="",
+                text="24. 알맞은 말을 선택하세요.",
+                style_role="question",
+                x=30.0,
+                y=29.0,
+                font_size=28,
+            ),
+            LineSlot(
+                id="slot.tri.side_left",
+                prompt="",
+                x1=372.0,
+                y1=43.0,
+                x2=372.0,
+                y2=111.0,
+                stroke="#666666",
+                stroke_width=1.5,
+            ),
+            LineSlot(
+                id="slot.tri.side_bottom",
+                prompt="",
+                x1=372.0,
+                y1=111.0,
+                x2=474.0,
+                y2=111.0,
+                stroke="#666666",
+                stroke_width=1.5,
+            ),
+            LineSlot(
+                id="slot.tri.side_diag",
+                prompt="",
+                x1=372.0,
+                y1=43.0,
+                x2=474.0,
+                y2=111.0,
+                stroke="#666666",
+                stroke_width=1.5,
+            ),
+            RectSlot(
+                id="slot.tri.right_angle",
+                prompt="",
+                x=372.0,
+                y=101.0,
+                width=9.0,
+                height=9.0,
+                fill="none",
+                stroke="#FF8FB3",
+                stroke_width=1.5,
+            ),
+            RectSlot(
+                id="slot.box.frame",
+                prompt="",
+                x=38.0,
+                y=136.0,
+                width=778.0,
+                height=144.0,
+                fill="none",
+                stroke="#B8A6D8",
+                stroke_width=2.0,
+            ),
+            TextSlot(
+                id="slot.box.text1",
+                prompt="",
+                text="( 한, 두, 세 ) 각이 직각인 삼각형을 직각삼각형이라고 합니",
+                style_role="question",
+                x=415.0,
+                y=177.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.box.text2",
+                prompt="",
+                text="다.",
+                style_role="question",
+                x=415.0,
+                y=221.0,
+                font_size=28,
+            ),
+        ),
+        diagrams=(),
+        groups=(),
+        constraints=(),
+        tags=(),
+    )
+
+
 PROBLEM_TEMPLATE = build_problem_template()
 
-SEMANTIC_OVERRIDE = {'problem_id': 'S3_초등_3_008986', 'problem_type': '선택형_도형_정의', 'metadata': {'language': 'ko', 'question': '알맞은 말을 선택하세요.', 'instruction': '직각삼각형의 정의에 알맞은 말을 고른다.'}, 'domain': {'objects': [{'id': 'obj.triangle', 'type': 'triangle'}, {'id': 'obj.right_angle_mark', 'type': 'right_angle_marker'}, {'id': 'obj.choice_options', 'type': 'choices', 'options': ['한', '두', '세']}, {'id': 'obj.definition', 'type': 'definition_statement', 'text': '각이 직각인 삼각형을 직각삼각형이라고 합니다.'}], 'relations': [], 'problem_solving': {'understand': {'given_refs': ['obj.triangle', 'obj.choice_options', 'obj.definition'], 'target_ref': 'answer.target', 'condition_refs': ['rel.choice_fits_definition', 'rel.triangle_has_right_angle']}, 'plan': {'method': 'definition_matching', 'description': '그림의 직각 표시와 문장의 정의를 대응시켜 알맞은 말을 고른다.'}, 'execute': {'expected_operations': ['compare_definition_with_choices', 'match_right_angle_to_triangle']}, 'review': {'check_methods': ['definition_consistency_check']}}}, 'answer': {'blanks': [], 'choices': [], 'answer_key': [], 'target': {'type': 'blank_choice', 'description': '빈칸에 들어갈 알맞은 말'}, 'value': 1, 'unit': ''}}
+SEMANTIC_OVERRIDE = {
+    "problem_id": "S3_초등_3_008986",
+    "problem_type": "선택형_도형_정의",
+    "metadata": {
+        "language": "ko",
+        "question": "알맞은 말을 선택하세요.",
+        "instruction": "직각삼각형의 정의에 알맞은 말을 고른다.",
+    },
+    "domain": {
+        "objects": [
+            {"id": "obj.triangle", "type": "triangle"},
+            {"id": "obj.right_angle_mark", "type": "right_angle_marker"},
+            {"id": "obj.choice_options", "type": "choices", "options": ["한", "두", "세"]},
+            {
+                "id": "obj.definition",
+                "type": "definition_statement",
+                "text": "각이 직각인 삼각형을 직각삼각형이라고 합니다.",
+            },
+        ],
+        "relations": [],
+        "problem_solving": {
+            "understand": {
+                "given_refs": ["obj.triangle", "obj.choice_options", "obj.definition"],
+                "target_ref": "answer.target",
+                "condition_refs": ["rel.choice_fits_definition", "rel.triangle_has_right_angle"],
+            },
+            "plan": {
+                "method": "definition_matching",
+                "description": "그림의 직각 표시와 문장의 정의를 대응시켜 알맞은 말을 고른다.",
+            },
+            "execute": {
+                "expected_operations": [
+                    "compare_definition_with_choices",
+                    "match_right_angle_to_triangle",
+                ]
+            },
+            "review": {"check_methods": ["definition_consistency_check"]},
+        },
+    },
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {"type": "blank_choice", "description": "빈칸에 들어갈 알맞은 말"},
+        "value": 1,
+        "unit": "",
+    },
+}
 
-SOLVABLE = {'schema': 'modu.solvable.v1.1', 'problem_id': 'S3_초등_3_008986', 'problem_type': '선택형_도형_정의', 'inputs': {'total_ticks': 3, 'target_label': '빈칸의 알맞은 말', 'target_ticks': 1, 'target_count': 1, 'unit': ''}, 'given': [{'ref': 'obj.choice_options', 'value': {'options': ['한', '두', '세']}}, {'ref': 'obj.definition', 'value': {'text': '각이 직각인 삼각형을 직각삼각형이라고 합니다.'}}], 'target': {'ref': 'answer.target', 'type': 'blank_choice'}, 'method': 'definition_matching', 'plan': ['그림과 문장을 보고 직각삼각형의 정의를 확인한다.', '빈칸에 들어갈 말을 선택지와 비교한다.'], 'steps': [{'id': 'step.1', 'expr': '정의 확인', 'value': '직각이 있는 삼각형'}, {'id': 'step.2', 'expr': '선택지 비교', 'value': '한'}], 'checks': [{'id': 'check.1', 'expr': '문장과 정의가 일치하는가', 'expected': True, 'actual': True, 'pass': True}], 'answer': {'blanks': [], 'choices': [], 'answer_key': [], 'target': {'type': 'blank_choice', 'description': '빈칸에 들어갈 알맞은 말'}, 'value': 1, 'unit': ''}}
+SOLVABLE = {
+    "schema": "modu.solvable.v1.1",
+    "problem_id": "S3_초등_3_008986",
+    "problem_type": "선택형_도형_정의",
+    "inputs": {
+        "total_ticks": 3,
+        "target_label": "빈칸의 알맞은 말",
+        "target_ticks": 1,
+        "target_count": 1,
+        "unit": "",
+    },
+    "given": [
+        {"ref": "obj.choice_options", "value": {"options": ["한", "두", "세"]}},
+        {
+            "ref": "obj.definition",
+            "value": {"text": "각이 직각인 삼각형을 직각삼각형이라고 합니다."},
+        },
+    ],
+    "target": {"ref": "answer.target", "type": "blank_choice"},
+    "method": "definition_matching",
+    "plan": [
+        "그림과 문장을 보고 직각삼각형의 정의를 확인한다.",
+        "빈칸에 들어갈 말을 선택지와 비교한다.",
+    ],
+    "steps": [
+        {"id": "step.1", "expr": "정의 확인", "value": "직각이 있는 삼각형"},
+        {"id": "step.2", "expr": "선택지 비교", "value": "한"},
+    ],
+    "checks": [
+        {
+            "id": "check.1",
+            "expr": "문장과 정의가 일치하는가",
+            "expected": True,
+            "actual": True,
+            "pass": True,
+        }
+    ],
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {"type": "blank_choice", "description": "빈칸에 들어갈 알맞은 말"},
+        "value": 1,
+        "unit": "",
+    },
+}

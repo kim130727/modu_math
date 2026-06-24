@@ -2,18 +2,22 @@ from __future__ import annotations
 
 from modu_math.dsl import Canvas, CircleSlot, PathSlot, ProblemTemplate, Region, TextSlot
 
-
 ANSWER = {
     "blanks": [],
     "choices": [],
     "answer_key": [],
-    "target": {"type": "rule_description", "description": "두 모양을 그린 규칙의 같은 점과 다른 점"},
+    "target": {
+        "type": "rule_description",
+        "description": "두 모양을 그린 규칙의 같은 점과 다른 점",
+    },
     "value": "같은 점은 원의 반지름이 1칸, 2칸, 3칸으로 커지는 것이고, 다른 점은 가는 원의 중심이 모두 다르며 나는 원의 중심이 모두 같다는 점이다.",
     "unit": "",
 }
 
 
-def _grid_slots(prefix: str, *, x: float, y: float, cells: int = 6, step: float = 30.0) -> tuple[PathSlot, ...]:
+def _grid_slots(
+    prefix: str, *, x: float, y: float, cells: int = 6, step: float = 30.0
+) -> tuple[PathSlot, ...]:
     size = cells * step
     slots: list[PathSlot] = [
         PathSlot(
@@ -54,7 +58,9 @@ def _grid_slots(prefix: str, *, x: float, y: float, cells: int = 6, step: float 
     return tuple(slots)
 
 
-def _circle_at(prefix: str, *, grid_x: float, grid_y: float, step: float, center: tuple[int, int], radius: int) -> CircleSlot:
+def _circle_at(
+    prefix: str, *, grid_x: float, grid_y: float, step: float, center: tuple[int, int], radius: int
+) -> CircleSlot:
     return CircleSlot(
         id=f"{prefix}.r{radius}",
         prompt="",
@@ -95,21 +101,30 @@ def build_problem_template() -> ProblemTemplate:
                 id="region.diagram.ga",
                 role="diagram",
                 flow="absolute",
-                slot_ids=("slot.label.ga", *(slot.id for slot in ga_grid), *(slot.id for slot in ga_circles)),
+                slot_ids=(
+                    "slot.label.ga",
+                    *(slot.id for slot in ga_grid),
+                    *(slot.id for slot in ga_circles),
+                ),
             ),
             Region(
                 id="region.diagram.na",
                 role="diagram",
                 flow="absolute",
-                slot_ids=("slot.label.na", *(slot.id for slot in na_grid), *(slot.id for slot in na_circles)),
+                slot_ids=(
+                    "slot.label.na",
+                    *(slot.id for slot in na_grid),
+                    *(slot.id for slot in na_circles),
+                ),
             ),
-            Region(id="region.choice", role="choices", flow="absolute", slot_ids=("slot.choice1", )),
+            Region(id="region.choice", role="choices", flow="absolute", slot_ids=("slot.choice1",)),
         ),
         slots=(
             TextSlot(
                 id="slot.q1",
                 prompt="",
-                text = '가와 나는 규칙에 따라 원을 그린 것입니다. 알맞은 것을 선택해 두 모양', style_role="question",
+                text="가와 나는 규칙에 따라 원을 그린 것입니다. 알맞은 것을 선택해 두 모양",
+                style_role="question",
                 x=8.0,
                 y=30.0,
                 font_size=24,
@@ -123,18 +138,37 @@ def build_problem_template() -> ProblemTemplate:
                 y=66.0,
                 font_size=24,
             ),
-            TextSlot(id="slot.label.ga", prompt="", text = '가', style_role="label", x = 220, y = 130, font_size = 25),
+            TextSlot(
+                id="slot.label.ga",
+                prompt="",
+                text="가",
+                style_role="label",
+                x=220,
+                y=130,
+                font_size=25,
+            ),
             *ga_grid,
             *ga_circles,
-            TextSlot(id="slot.label.na", prompt="", text = '나', style_role="label", x = 505, y = 130, font_size = 25),
+            TextSlot(
+                id="slot.label.na",
+                prompt="",
+                text="나",
+                style_role="label",
+                x=505,
+                y=130,
+                font_size=25,
+            ),
             *na_grid,
             *na_circles,
             TextSlot(
                 id="slot.choice1",
                 prompt="",
-                text = '같은 점: 원의 ( 중심 , 반지름 )을 모두 다르게 하여 그렸습니다.', style_role="answer_option",
-                x = 10, y = 345, font_size = 25),
-            
+                text="같은 점: 원의 ( 중심 , 반지름 )을 모두 다르게 하여 그렸습니다.",
+                style_role="answer_option",
+                x=10,
+                y=345,
+                font_size=25,
+            ),
         ),
         diagrams=(),
         groups=(),
@@ -192,8 +226,17 @@ SEMANTIC_OVERRIDE = {
                 "target_ref": "answer.target",
                 "condition_refs": ["rel.same_radii_rule", "rel.different_centers_rule"],
             },
-            "plan": {"method": "figure_comparison", "description": "두 그림에서 원의 중심과 반지름 규칙을 비교한다."},
-            "execute": {"expected_operations": ["compare_circle_centers", "compare_circle_radii", "match_with_choice"]},
+            "plan": {
+                "method": "figure_comparison",
+                "description": "두 그림에서 원의 중심과 반지름 규칙을 비교한다.",
+            },
+            "execute": {
+                "expected_operations": [
+                    "compare_circle_centers",
+                    "compare_circle_radii",
+                    "match_with_choice",
+                ]
+            },
             "review": {"check_methods": ["image_text_consistency_check"]},
         },
     },
@@ -206,8 +249,14 @@ SOLVABLE = {
     "problem_type": "diagram_choice",
     "inputs": {"target_label": "가와 나의 원 그리기 규칙", "target_count": 1, "unit": ""},
     "given": [
-        {"ref": "obj.circle_set.ga", "value": {"centers": [[1, 3], [2, 3], [3, 3]], "radii": [1, 2, 3]}},
-        {"ref": "obj.circle_set.na", "value": {"centers": [[3, 3], [3, 3], [3, 3]], "radii": [1, 2, 3]}},
+        {
+            "ref": "obj.circle_set.ga",
+            "value": {"centers": [[1, 3], [2, 3], [3, 3]], "radii": [1, 2, 3]},
+        },
+        {
+            "ref": "obj.circle_set.na",
+            "value": {"centers": [[3, 3], [3, 3], [3, 3]], "radii": [1, 2, 3]},
+        },
     ],
     "target": {"ref": "answer.target", "type": "rule_description"},
     "method": "figure_comparison",
@@ -217,8 +266,16 @@ SOLVABLE = {
         "두 그림의 같은 점과 다른 점을 비교한다.",
     ],
     "steps": [
-        {"id": "step.1", "expr": "가: 중심 (1,3),(2,3),(3,3), 반지름 1,2,3", "value": "centers_different_radii_increase"},
-        {"id": "step.2", "expr": "나: 중심 (3,3)으로 모두 같고, 반지름 1,2,3", "value": "same_center_radii_increase"},
+        {
+            "id": "step.1",
+            "expr": "가: 중심 (1,3),(2,3),(3,3), 반지름 1,2,3",
+            "value": "centers_different_radii_increase",
+        },
+        {
+            "id": "step.2",
+            "expr": "나: 중심 (3,3)으로 모두 같고, 반지름 1,2,3",
+            "value": "same_center_radii_increase",
+        },
         {"id": "step.3", "expr": "같은 점과 다른 점 정리", "value": "same_radii_different_centers"},
     ],
     "checks": [

@@ -1,10 +1,229 @@
 from __future__ import annotations
 from modu_math.dsl import Canvas, CircleSlot, ProblemTemplate, RectSlot, Region, TextSlot
 
+
 def build_problem_template() -> ProblemTemplate:
-    return ProblemTemplate(id='S3_초등_3_008773', title='들이가 더 많은 물병 고르기', canvas=Canvas(width=960, height=540, coordinate_mode='logical'), regions=(Region(id='region.stem', role='stem', flow='absolute', slot_ids=('slot.q1', 'slot.q2')), Region(id='region.diagram', role='diagram', flow='absolute', slot_ids=('slot.fig.bottle_left', 'slot.fig.bottle_right', 'slot.fig.container_left', 'slot.fig.container_right', 'slot.fig.water_left', 'slot.fig.water_right', 'slot.fig.label_ga_bottle', 'slot.fig.label_na_bottle', 'slot.fig.label_ga_choice', 'slot.fig.label_na_choice')), Region(id='region.answer', role='answer', flow='absolute', slot_ids=())), slots=(TextSlot(id='slot.q1', prompt='', text='□ 83. ㉮ 물병과 ㉯ 물병에 물을 가득 채운 후 모양과 크기가 같은 그릇에 옮겨 담았습니다.', style_role='question', x=18.0, y=28.0, font_size=28), TextSlot(id='slot.q2', prompt='', text='그림과 같이 물을 채웠을 때에 들이가 더 많은 물병을 선택해 보세요.', style_role='question', x=18.0, y=64.0, font_size=28), TextSlot(id='slot.fig.label_ga_bottle', prompt='', text='가', style_role='label', x=330.0, y=150.0, font_size=28), TextSlot(id='slot.fig.label_na_bottle', prompt='', text='나', style_role='label', x=600.0, y=148.0, font_size=28), RectSlot(id='slot.fig.bottle_left', prompt='', x=300.0, y=118.0, width=92.0, height=34.0), RectSlot(id='slot.fig.bottle_right', prompt='', x=570.0, y=112.0, width=92.0, height=34.0), RectSlot(id='slot.fig.container_left', prompt='', x=340.0, y=208.0, width=108.0, height=78.0), RectSlot(id='slot.fig.container_right', prompt='', x=516.0, y=208.0, width=108.0, height=78.0), RectSlot(id='slot.fig.water_left', prompt='', x=344.0, y=242.0, width=100.0, height=38.0), RectSlot(id='slot.fig.water_right', prompt='', x=520.0, y=232.0, width=100.0, height=48.0), CircleSlot(id='slot.fig.label_ga_choice', prompt='', cx=718.0, cy=322.0, r=11.0, fill='#FFFFFF'), CircleSlot(id='slot.fig.label_na_choice', prompt='', cx=772.0, cy=322.0, r=11.0, fill='#FFFFFF'), TextSlot(id='slot.fig.label_ga_choice_text', prompt='', text='가', style_role='label', x=712.0, y=329.0, font_size=22), TextSlot(id='slot.fig.label_na_choice_text', prompt='', text='나', style_role='label', x=766.0, y=329.0, font_size=22)), diagrams=(), groups=(), constraints=(), tags=())
+    return ProblemTemplate(
+        id="S3_초등_3_008773",
+        title="들이가 더 많은 물병 고르기",
+        canvas=Canvas(width=960, height=540, coordinate_mode="logical"),
+        regions=(
+            Region(id="region.stem", role="stem", flow="absolute", slot_ids=("slot.q1", "slot.q2")),
+            Region(
+                id="region.diagram",
+                role="diagram",
+                flow="absolute",
+                slot_ids=(
+                    "slot.fig.bottle_left",
+                    "slot.fig.bottle_right",
+                    "slot.fig.container_left",
+                    "slot.fig.container_right",
+                    "slot.fig.water_left",
+                    "slot.fig.water_right",
+                    "slot.fig.label_ga_bottle",
+                    "slot.fig.label_na_bottle",
+                    "slot.fig.label_ga_choice",
+                    "slot.fig.label_na_choice",
+                ),
+            ),
+            Region(id="region.answer", role="answer", flow="absolute", slot_ids=()),
+        ),
+        slots=(
+            TextSlot(
+                id="slot.q1",
+                prompt="",
+                text="□ 83. ㉮ 물병과 ㉯ 물병에 물을 가득 채운 후 모양과 크기가 같은 그릇에 옮겨 담았습니다.",
+                style_role="question",
+                x=18.0,
+                y=28.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.q2",
+                prompt="",
+                text="그림과 같이 물을 채웠을 때에 들이가 더 많은 물병을 선택해 보세요.",
+                style_role="question",
+                x=18.0,
+                y=64.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.fig.label_ga_bottle",
+                prompt="",
+                text="가",
+                style_role="label",
+                x=330.0,
+                y=150.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.fig.label_na_bottle",
+                prompt="",
+                text="나",
+                style_role="label",
+                x=600.0,
+                y=148.0,
+                font_size=28,
+            ),
+            RectSlot(
+                id="slot.fig.bottle_left", prompt="", x=300.0, y=118.0, width=92.0, height=34.0
+            ),
+            RectSlot(
+                id="slot.fig.bottle_right", prompt="", x=570.0, y=112.0, width=92.0, height=34.0
+            ),
+            RectSlot(
+                id="slot.fig.container_left", prompt="", x=340.0, y=208.0, width=108.0, height=78.0
+            ),
+            RectSlot(
+                id="slot.fig.container_right", prompt="", x=516.0, y=208.0, width=108.0, height=78.0
+            ),
+            RectSlot(
+                id="slot.fig.water_left", prompt="", x=344.0, y=242.0, width=100.0, height=38.0
+            ),
+            RectSlot(
+                id="slot.fig.water_right", prompt="", x=520.0, y=232.0, width=100.0, height=48.0
+            ),
+            CircleSlot(
+                id="slot.fig.label_ga_choice", prompt="", cx=718.0, cy=322.0, r=11.0, fill="#FFFFFF"
+            ),
+            CircleSlot(
+                id="slot.fig.label_na_choice", prompt="", cx=772.0, cy=322.0, r=11.0, fill="#FFFFFF"
+            ),
+            TextSlot(
+                id="slot.fig.label_ga_choice_text",
+                prompt="",
+                text="가",
+                style_role="label",
+                x=712.0,
+                y=329.0,
+                font_size=22,
+            ),
+            TextSlot(
+                id="slot.fig.label_na_choice_text",
+                prompt="",
+                text="나",
+                style_role="label",
+                x=766.0,
+                y=329.0,
+                font_size=22,
+            ),
+        ),
+        diagrams=(),
+        groups=(),
+        constraints=(),
+        tags=(),
+    )
+
+
 PROBLEM_TEMPLATE = build_problem_template()
 
-SEMANTIC_OVERRIDE = {'problem_id': 'S3_초등_3_008773', 'problem_type': 'comparison_capacity', 'metadata': {'language': 'ko', 'question': '같은 모양과 크기의 그릇에 옮겨 담았을 때 들이가 더 많은 물병을 고르는 문제', 'instruction': '그림을 보고 들이가 더 많은 물병을 선택하시오.'}, 'domain': {'objects': [{'id': 'obj.bottle_ga', 'type': 'water_bottle', 'label': '가 물병'}, {'id': 'obj.bottle_na', 'type': 'water_bottle', 'label': '나 물병'}, {'id': 'obj.container_ga', 'type': 'container', 'label': '가 물병의 물을 옮겨 담은 그릇'}, {'id': 'obj.container_na', 'type': 'container', 'label': '나 물병의 물을 옮겨 담은 그릇'}], 'relations': [], 'problem_solving': {'understand': {'given_refs': ['obj.bottle_ga', 'obj.bottle_na', 'obj.container_ga', 'obj.container_na'], 'target_ref': 'answer.target', 'condition_refs': ['rel.compare_water_level']}, 'plan': {'method': 'visual_comparison', 'description': '같은 크기의 그릇에 담긴 물의 높이를 비교하여 더 많은 물이 들어 있던 물병을 고른다.'}, 'execute': {'expected_operations': ['compare_water_levels', 'choose_higher_level_bottle']}, 'review': {'check_methods': ['same_container_check', 'visual_consistency_check']}}}, 'answer': {'blanks': [], 'choices': [], 'answer_key': [], 'target': {'type': 'bottle_choice', 'description': '들이가 더 많은 물병'}, 'value': '나 물병', 'unit': ''}}
+SEMANTIC_OVERRIDE = {
+    "problem_id": "S3_초등_3_008773",
+    "problem_type": "comparison_capacity",
+    "metadata": {
+        "language": "ko",
+        "question": "같은 모양과 크기의 그릇에 옮겨 담았을 때 들이가 더 많은 물병을 고르는 문제",
+        "instruction": "그림을 보고 들이가 더 많은 물병을 선택하시오.",
+    },
+    "domain": {
+        "objects": [
+            {"id": "obj.bottle_ga", "type": "water_bottle", "label": "가 물병"},
+            {"id": "obj.bottle_na", "type": "water_bottle", "label": "나 물병"},
+            {
+                "id": "obj.container_ga",
+                "type": "container",
+                "label": "가 물병의 물을 옮겨 담은 그릇",
+            },
+            {
+                "id": "obj.container_na",
+                "type": "container",
+                "label": "나 물병의 물을 옮겨 담은 그릇",
+            },
+        ],
+        "relations": [],
+        "problem_solving": {
+            "understand": {
+                "given_refs": [
+                    "obj.bottle_ga",
+                    "obj.bottle_na",
+                    "obj.container_ga",
+                    "obj.container_na",
+                ],
+                "target_ref": "answer.target",
+                "condition_refs": ["rel.compare_water_level"],
+            },
+            "plan": {
+                "method": "visual_comparison",
+                "description": "같은 크기의 그릇에 담긴 물의 높이를 비교하여 더 많은 물이 들어 있던 물병을 고른다.",
+            },
+            "execute": {
+                "expected_operations": ["compare_water_levels", "choose_higher_level_bottle"]
+            },
+            "review": {"check_methods": ["same_container_check", "visual_consistency_check"]},
+        },
+    },
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {"type": "bottle_choice", "description": "들이가 더 많은 물병"},
+        "value": "나 물병",
+        "unit": "",
+    },
+}
 
-SOLVABLE = {'schema': 'modu.solvable.v1.1', 'problem_id': 'S3_초등_3_008773', 'problem_type': 'comparison_capacity', 'inputs': {'total_ticks': 0, 'target_label': '들이가 더 많은 물병', 'target_ticks': 0, 'target_count': 1, 'unit': ''}, 'given': [{'ref': 'obj.container_ga', 'value': {'condition': 'same_shape_same_size'}}, {'ref': 'obj.container_na', 'value': {'condition': 'same_shape_same_size'}}], 'target': {'ref': 'answer.target', 'type': 'bottle_choice'}, 'method': 'visual_comparison', 'plan': ['같은 모양과 크기의 그릇에 담긴 물의 높이를 비교한다.', '물의 높이가 더 높은 쪽에 더 많은 물이 들어 있었다고 판단한다.', '그에 대응하는 물병을 선택한다.'], 'steps': [{'id': 'step.1', 'expr': '가 물병의 물 높이와 나 물병의 물 높이를 비교한다', 'value': '나 물병의 그릇이 더 높다'}, {'id': 'step.2', 'expr': '더 높은 물높이에 대응하는 물병을 고른다', 'value': '나 물병'}], 'checks': [{'id': 'check.1', 'expr': '같은 크기의 그릇을 사용했는가', 'expected': True, 'actual': True, 'pass': True}, {'id': 'check.2', 'expr': '더 높은 물높이의 물병을 선택했는가', 'expected': '나 물병', 'actual': '나 물병', 'pass': True}], 'answer': {'blanks': [], 'choices': [], 'answer_key': [], 'target': {'type': 'bottle_choice', 'description': '들이가 더 많은 물병'}, 'value': '나 물병', 'unit': ''}}
+SOLVABLE = {
+    "schema": "modu.solvable.v1.1",
+    "problem_id": "S3_초등_3_008773",
+    "problem_type": "comparison_capacity",
+    "inputs": {
+        "total_ticks": 0,
+        "target_label": "들이가 더 많은 물병",
+        "target_ticks": 0,
+        "target_count": 1,
+        "unit": "",
+    },
+    "given": [
+        {"ref": "obj.container_ga", "value": {"condition": "same_shape_same_size"}},
+        {"ref": "obj.container_na", "value": {"condition": "same_shape_same_size"}},
+    ],
+    "target": {"ref": "answer.target", "type": "bottle_choice"},
+    "method": "visual_comparison",
+    "plan": [
+        "같은 모양과 크기의 그릇에 담긴 물의 높이를 비교한다.",
+        "물의 높이가 더 높은 쪽에 더 많은 물이 들어 있었다고 판단한다.",
+        "그에 대응하는 물병을 선택한다.",
+    ],
+    "steps": [
+        {
+            "id": "step.1",
+            "expr": "가 물병의 물 높이와 나 물병의 물 높이를 비교한다",
+            "value": "나 물병의 그릇이 더 높다",
+        },
+        {"id": "step.2", "expr": "더 높은 물높이에 대응하는 물병을 고른다", "value": "나 물병"},
+    ],
+    "checks": [
+        {
+            "id": "check.1",
+            "expr": "같은 크기의 그릇을 사용했는가",
+            "expected": True,
+            "actual": True,
+            "pass": True,
+        },
+        {
+            "id": "check.2",
+            "expr": "더 높은 물높이의 물병을 선택했는가",
+            "expected": "나 물병",
+            "actual": "나 물병",
+            "pass": True,
+        },
+    ],
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {"type": "bottle_choice", "description": "들이가 더 많은 물병"},
+        "value": "나 물병",
+        "unit": "",
+    },
+}

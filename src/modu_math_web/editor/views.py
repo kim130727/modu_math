@@ -9,7 +9,7 @@ from django.views.decorators.http import require_GET, require_POST
 
 from .services.build import build_with_artifacts
 from .services.dsl_patch import DslPatchError, apply_layout_patches
-from .services.problems import list_problem_directories, read_problem_detail, save_problem_dsl
+from .services.problems import format_problem_dsl, list_problem_directories, read_problem_detail, save_problem_dsl
 
 
 def _json_body(request: HttpRequest) -> dict[str, Any]:
@@ -59,14 +59,27 @@ def save_dsl(request: HttpRequest, problem_id: str) -> JsonResponse:
             return _error("'dsl' must be a string", status=400)
         if not dsl.strip():
             return _error("'dsl' must not be empty", status=400)
-        save_problem_dsl(problem_id, dsl)
+        _, saved_dsl = save_problem_dsl(problem_id, dsl)
     except ValueError as exc:
         return _error(str(exc), status=400)
     except FileNotFoundError as exc:
         return _error(str(exc), status=404)
     except Exception as exc:
         return _error(str(exc), status=500)
-    return JsonResponse({"ok": True, "problem_id": problem_id})
+    return JsonResponse({"ok": True, "problem_id": problem_id, "dsl": saved_dsl})
+
+
+@require_POST
+def format_dsl(request: HttpRequest, problem_id: str) -> JsonResponse:
+    try:
+        _, dsl = format_problem_dsl(problem_id)
+    except ValueError as exc:
+        return _error(str(exc), status=400)
+    except FileNotFoundError as exc:
+        return _error(str(exc), status=404)
+    except Exception as exc:
+        return _error(str(exc), status=500)
+    return JsonResponse({"ok": True, "problem_id": problem_id, "dsl": dsl})
 
 
 @require_POST

@@ -1,10 +1,278 @@
 from __future__ import annotations
-from modu_math.dsl import Canvas, CircleSlot, LineSlot, ProblemTemplate, RectSlot, Region, TextSlot, PolygonSlot
+from modu_math.dsl import (
+    Canvas,
+    CircleSlot,
+    LineSlot,
+    ProblemTemplate,
+    RectSlot,
+    Region,
+    TextSlot,
+    PolygonSlot,
+)
+
 
 def build_problem_template() -> ProblemTemplate:
-    return ProblemTemplate(id='S3_초등_3_008714', title='원의 중심', canvas=Canvas(width=944, height=376, coordinate_mode='logical'), regions=(Region(id='region.stem', role='stem', flow='absolute', slot_ids=('slot.q1', 'slot.q2', 'slot.q3')), Region(id='region.diagram', role='diagram', flow='absolute', slot_ids=('slot.circle', 'slot.tool', 'slot.tool.dot1', 'slot.tool.dot2', 'slot.tool.dot3', 'slot.tool.dot4', 'slot.pencil.eraser')), Region(id='region.footer', role='footer', flow='absolute', slot_ids=('slot.inserted.circle.1','slot.inserted.pencil.1.eraser', 'slot.inserted.pencil.1.body', 'slot.inserted.pencil.1.tip'))), slots=(TextSlot(id='slot.q1', prompt='', text = '그림과 같이 띠 종이를 이용하여 원을 그릴 때, 누름 못이 꽂혔던 점을  ', style_role='question', x = 20, y = 42, font_size = 30), TextSlot(id='slot.q2', prompt='', text = '무엇이라고 할까요?', style_role='question', x = 15, y = 90, font_size = 30), CircleSlot(id='slot.circle', prompt='', cx = 365, cy = 180, r = 100, fill='none', stroke = '#111111', stroke_width = 2), RectSlot(id='slot.tool', prompt='', x = 345, y = 168, width = 150, height = 25, fill='none', stroke = '#111111', stroke_width = 1.5), TextSlot(id='slot.tool.dot1', prompt='', text = '•', style_role='diagram', x = 385, y = 187, font_size = 20, fill = '#111111'), TextSlot(id='slot.tool.dot2', prompt='', text = '•', style_role='diagram', x = 405, y = 187, font_size = 20, fill = '#111111'), TextSlot(id='slot.tool.dot3', prompt='', text = '•', style_role='diagram', x = 425, y = 187, font_size = 20, fill = '#111111'), TextSlot(id='slot.tool.dot4', prompt='', text = '•', style_role='diagram', x = 445, y = 187, font_size = 20, fill = '#111111', max_width = 135), LineSlot(id='slot.pencil.eraser', prompt='', x1 = 483, y1 = 134, x2 = 488, y2 = 139), TextSlot(id='slot.q3', prompt='', text = '원의 ( 중심 , 반지름 , 지름 )', style_role='question', x = 35, y = 325, font_size = 30),CircleSlot(id = 'slot.inserted.circle.1', prompt = '', cx = 366, cy = 181, r = 5, fill = '#6b7280', stroke = '#111827', stroke_width = 1.5), RectSlot(id = 'slot.inserted.pencil.1.eraser', prompt = '', x = 455, y = 65, width = 10, height = 15, fill = '#d9a27f', stroke = '#b98160', stroke_width = 1, transform = 'rotate(5 460 70)'), RectSlot(id = 'slot.inserted.pencil.1.body', prompt = '', x = 450, y = 80, width = 10, height = 85, fill = '#ffb5b5', stroke = '#ee7777', stroke_width = 1, transform = 'rotate(5 455 122.5)'), PolygonSlot(id = 'slot.inserted.pencil.1.tip', prompt = '', points = [[442, 160], [457, 160], [452, 174]], fill = '#e6c08b', stroke = '#c49b62', stroke_width = 1, transform = 'rotate(130 449.5 167)')), diagrams=(), groups=(), constraints=(), tags=())
+    return ProblemTemplate(
+        id="S3_초등_3_008714",
+        title="원의 중심",
+        canvas=Canvas(width=944, height=376, coordinate_mode="logical"),
+        regions=(
+            Region(
+                id="region.stem",
+                role="stem",
+                flow="absolute",
+                slot_ids=("slot.q1", "slot.q2", "slot.q3"),
+            ),
+            Region(
+                id="region.diagram",
+                role="diagram",
+                flow="absolute",
+                slot_ids=(
+                    "slot.circle",
+                    "slot.tool",
+                    "slot.tool.dot1",
+                    "slot.tool.dot2",
+                    "slot.tool.dot3",
+                    "slot.tool.dot4",
+                    "slot.pencil.eraser",
+                ),
+            ),
+            Region(
+                id="region.footer",
+                role="footer",
+                flow="absolute",
+                slot_ids=(
+                    "slot.inserted.circle.1",
+                    "slot.inserted.pencil.1.eraser",
+                    "slot.inserted.pencil.1.body",
+                    "slot.inserted.pencil.1.tip",
+                ),
+            ),
+        ),
+        slots=(
+            TextSlot(
+                id="slot.q1",
+                prompt="",
+                text="그림과 같이 띠 종이를 이용하여 원을 그릴 때, 누름 못이 꽂혔던 점을  ",
+                style_role="question",
+                x=20,
+                y=42,
+                font_size=30,
+            ),
+            TextSlot(
+                id="slot.q2",
+                prompt="",
+                text="무엇이라고 할까요?",
+                style_role="question",
+                x=15,
+                y=90,
+                font_size=30,
+            ),
+            CircleSlot(
+                id="slot.circle",
+                prompt="",
+                cx=365,
+                cy=180,
+                r=100,
+                fill="none",
+                stroke="#111111",
+                stroke_width=2,
+            ),
+            RectSlot(
+                id="slot.tool",
+                prompt="",
+                x=345,
+                y=168,
+                width=150,
+                height=25,
+                fill="none",
+                stroke="#111111",
+                stroke_width=1.5,
+            ),
+            TextSlot(
+                id="slot.tool.dot1",
+                prompt="",
+                text="•",
+                style_role="diagram",
+                x=385,
+                y=187,
+                font_size=20,
+                fill="#111111",
+            ),
+            TextSlot(
+                id="slot.tool.dot2",
+                prompt="",
+                text="•",
+                style_role="diagram",
+                x=405,
+                y=187,
+                font_size=20,
+                fill="#111111",
+            ),
+            TextSlot(
+                id="slot.tool.dot3",
+                prompt="",
+                text="•",
+                style_role="diagram",
+                x=425,
+                y=187,
+                font_size=20,
+                fill="#111111",
+            ),
+            TextSlot(
+                id="slot.tool.dot4",
+                prompt="",
+                text="•",
+                style_role="diagram",
+                x=445,
+                y=187,
+                font_size=20,
+                fill="#111111",
+                max_width=135,
+            ),
+            LineSlot(id="slot.pencil.eraser", prompt="", x1=483, y1=134, x2=488, y2=139),
+            TextSlot(
+                id="slot.q3",
+                prompt="",
+                text="원의 ( 중심 , 반지름 , 지름 )",
+                style_role="question",
+                x=35,
+                y=325,
+                font_size=30,
+            ),
+            CircleSlot(
+                id="slot.inserted.circle.1",
+                prompt="",
+                cx=366,
+                cy=181,
+                r=5,
+                fill="#6b7280",
+                stroke="#111827",
+                stroke_width=1.5,
+            ),
+            RectSlot(
+                id="slot.inserted.pencil.1.eraser",
+                prompt="",
+                x=455,
+                y=65,
+                width=10,
+                height=15,
+                fill="#d9a27f",
+                stroke="#b98160",
+                stroke_width=1,
+                transform="rotate(5 460 70)",
+            ),
+            RectSlot(
+                id="slot.inserted.pencil.1.body",
+                prompt="",
+                x=450,
+                y=80,
+                width=10,
+                height=85,
+                fill="#ffb5b5",
+                stroke="#ee7777",
+                stroke_width=1,
+                transform="rotate(5 455 122.5)",
+            ),
+            PolygonSlot(
+                id="slot.inserted.pencil.1.tip",
+                prompt="",
+                points=[[442, 160], [457, 160], [452, 174]],
+                fill="#e6c08b",
+                stroke="#c49b62",
+                stroke_width=1,
+                transform="rotate(130 449.5 167)",
+            ),
+        ),
+        diagrams=(),
+        groups=(),
+        constraints=(),
+        tags=(),
+    )
+
+
 PROBLEM_TEMPLATE = build_problem_template()
 
-SEMANTIC_OVERRIDE = {'problem_id': 'S3_초등_3_008714', 'problem_type': '용어_선택', 'metadata': {'language': 'ko', 'question': '그림과 같이 띠 종이를 이용하여 원을 그릴 때, 누름 못이 꽂혔던 점을 무엇이라고 할까요?', 'instruction': '그림을 보고 알맞은 용어를 고르기'}, 'domain': {'objects': [{'id': 'obj.circle', 'type': 'circle'}, {'id': 'obj.point', 'type': 'point', 'role': 'pinpoint'}, {'id': 'obj.terms', 'type': 'term_set', 'items': ['중심', '반지름', '지름']}], 'relations': [], 'problem_solving': {'understand': {'given_refs': ['obj.circle', 'obj.point', 'obj.terms'], 'target_ref': 'answer.target', 'condition_refs': ['rel.point_of_circle']}, 'plan': {'method': '용어_대응', 'description': '그림 속 누름 못이 꽂힌 점과 원의 용어를 대응시킨다.'}, 'execute': {'expected_operations': ['용어_식별', '그림_해석']}, 'review': {'check_methods': ['해설_문장_일치', '용어_의미_확인']}}}, 'answer': {'blanks': [], 'choices': [], 'answer_key': [], 'target': {'type': 'term', 'description': '누름 못이 꽂혔던 점의 이름'}, 'value': '중심', 'unit': ''}}
+SEMANTIC_OVERRIDE = {
+    "problem_id": "S3_초등_3_008714",
+    "problem_type": "용어_선택",
+    "metadata": {
+        "language": "ko",
+        "question": "그림과 같이 띠 종이를 이용하여 원을 그릴 때, 누름 못이 꽂혔던 점을 무엇이라고 할까요?",
+        "instruction": "그림을 보고 알맞은 용어를 고르기",
+    },
+    "domain": {
+        "objects": [
+            {"id": "obj.circle", "type": "circle"},
+            {"id": "obj.point", "type": "point", "role": "pinpoint"},
+            {"id": "obj.terms", "type": "term_set", "items": ["중심", "반지름", "지름"]},
+        ],
+        "relations": [],
+        "problem_solving": {
+            "understand": {
+                "given_refs": ["obj.circle", "obj.point", "obj.terms"],
+                "target_ref": "answer.target",
+                "condition_refs": ["rel.point_of_circle"],
+            },
+            "plan": {
+                "method": "용어_대응",
+                "description": "그림 속 누름 못이 꽂힌 점과 원의 용어를 대응시킨다.",
+            },
+            "execute": {"expected_operations": ["용어_식별", "그림_해석"]},
+            "review": {"check_methods": ["해설_문장_일치", "용어_의미_확인"]},
+        },
+    },
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {"type": "term", "description": "누름 못이 꽂혔던 점의 이름"},
+        "value": "중심",
+        "unit": "",
+    },
+}
 
-SOLVABLE = {'schema': 'modu.solvable.v1.1', 'problem_id': 'S3_초등_3_008714', 'problem_type': '용어_선택', 'inputs': {'total_ticks': 1, 'target_label': '누름 못이 꽂혔던 점의 이름', 'target_ticks': 1, 'target_count': 1, 'unit': ''}, 'given': [{'ref': 'obj.circle', 'value': {'type': 'circle'}}, {'ref': 'obj.point', 'value': {'role': 'pinpoint'}}, {'ref': 'obj.terms', 'value': {'items': ['중심', '반지름', '지름']}}], 'target': {'ref': 'answer.target', 'type': 'term'}, 'plan': ['그림 속 누름 못이 꽂힌 점의 용어를 해설과 대응시켜 찾는다.'], 'method': '용어_대응', 'steps': [{'id': 'step.1', 'expr': '그림의 누름 못이 꽂힌 점과 해설의 의미를 대응한다.', 'value': '중심'}], 'checks': [{'id': 'check.1', 'expr': '해설 문장과 답이 일치하는지 확인한다.', 'expected': '중심', 'actual': '중심', 'pass': True}], 'answer': {'blanks': [], 'choices': [], 'answer_key': [], 'target': {'type': 'term', 'description': '누름 못이 꽂혔던 점의 이름'}, 'value': '중심', 'unit': ''}}
+SOLVABLE = {
+    "schema": "modu.solvable.v1.1",
+    "problem_id": "S3_초등_3_008714",
+    "problem_type": "용어_선택",
+    "inputs": {
+        "total_ticks": 1,
+        "target_label": "누름 못이 꽂혔던 점의 이름",
+        "target_ticks": 1,
+        "target_count": 1,
+        "unit": "",
+    },
+    "given": [
+        {"ref": "obj.circle", "value": {"type": "circle"}},
+        {"ref": "obj.point", "value": {"role": "pinpoint"}},
+        {"ref": "obj.terms", "value": {"items": ["중심", "반지름", "지름"]}},
+    ],
+    "target": {"ref": "answer.target", "type": "term"},
+    "plan": ["그림 속 누름 못이 꽂힌 점의 용어를 해설과 대응시켜 찾는다."],
+    "method": "용어_대응",
+    "steps": [
+        {
+            "id": "step.1",
+            "expr": "그림의 누름 못이 꽂힌 점과 해설의 의미를 대응한다.",
+            "value": "중심",
+        }
+    ],
+    "checks": [
+        {
+            "id": "check.1",
+            "expr": "해설 문장과 답이 일치하는지 확인한다.",
+            "expected": "중심",
+            "actual": "중심",
+            "pass": True,
+        }
+    ],
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {"type": "term", "description": "누름 못이 꽂혔던 점의 이름"},
+        "value": "중심",
+        "unit": "",
+    },
+}

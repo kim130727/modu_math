@@ -1,10 +1,176 @@
 from __future__ import annotations
 from modu_math.dsl import Canvas, ProblemTemplate, Region, RectSlot, TextSlot
 
+
 def build_problem_template() -> ProblemTemplate:
-    return ProblemTemplate(id='S3_초등_3_008814', title='들이가 더 많은 그릇', canvas=Canvas(width=948, height=396, coordinate_mode='logical'), regions=(Region(id='region.stem', role='stem', flow='absolute', slot_ids=('slot.q_num', 'slot.q_text_1', 'slot.q_text_2', 'slot.choice')), Region(id='region.diagram', role='diagram', flow='absolute', slot_ids=('slot.bowl_a', 'slot.bowl_b', 'slot.label_a', 'slot.label_b')), Region(id='region.answer', role='answer', flow='absolute', slot_ids=())), slots=(TextSlot(id='slot.q_num', prompt='', text='47.', style_role='question', x=9.0, y=22.0, font_size=28), TextSlot(id='slot.q_text_1', prompt='', text='가 그릇과 나 그릇에 물을 가득 채운 후 모양과 크기가 같은 그릇에 옮겨 담았더', style_role='question', x=48.0, y=22.0, font_size=28), TextSlot(id='slot.q_text_2', prompt='', text='니 그림과 같이 물이 채워졌습니다. 들어가 더 많은 그릇을 선택하세요.', style_role='question', x=18.0, y=58.0, font_size=28), TextSlot(id='slot.label_a', prompt='', text='가', style_role='label', x=283.0, y=77.0, font_size=28), TextSlot(id='slot.label_b', prompt='', text='나', style_role='label', x=439.0, y=77.0, font_size=28), RectSlot(id='slot.bowl_a', prompt='', x=322.0, y=85.0, width=90.0, height=108.0, fill='none'), RectSlot(id='slot.bowl_b', prompt='', x=478.0, y=85.0, width=90.0, height=108.0, fill='none'), TextSlot(id='slot.choice', prompt='', text='( 가 , 나 ) 그릇', style_role='choice', x=745.0, y=225.0, font_size=28)), diagrams=(), groups=(), constraints=(), tags=())
+    return ProblemTemplate(
+        id="S3_초등_3_008814",
+        title="들이가 더 많은 그릇",
+        canvas=Canvas(width=948, height=396, coordinate_mode="logical"),
+        regions=(
+            Region(
+                id="region.stem",
+                role="stem",
+                flow="absolute",
+                slot_ids=("slot.q_num", "slot.q_text_1", "slot.q_text_2", "slot.choice"),
+            ),
+            Region(
+                id="region.diagram",
+                role="diagram",
+                flow="absolute",
+                slot_ids=("slot.bowl_a", "slot.bowl_b", "slot.label_a", "slot.label_b"),
+            ),
+            Region(id="region.answer", role="answer", flow="absolute", slot_ids=()),
+        ),
+        slots=(
+            TextSlot(
+                id="slot.q_num",
+                prompt="",
+                text="47.",
+                style_role="question",
+                x=9.0,
+                y=22.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.q_text_1",
+                prompt="",
+                text="가 그릇과 나 그릇에 물을 가득 채운 후 모양과 크기가 같은 그릇에 옮겨 담았더",
+                style_role="question",
+                x=48.0,
+                y=22.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.q_text_2",
+                prompt="",
+                text="니 그림과 같이 물이 채워졌습니다. 들어가 더 많은 그릇을 선택하세요.",
+                style_role="question",
+                x=18.0,
+                y=58.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.label_a",
+                prompt="",
+                text="가",
+                style_role="label",
+                x=283.0,
+                y=77.0,
+                font_size=28,
+            ),
+            TextSlot(
+                id="slot.label_b",
+                prompt="",
+                text="나",
+                style_role="label",
+                x=439.0,
+                y=77.0,
+                font_size=28,
+            ),
+            RectSlot(
+                id="slot.bowl_a", prompt="", x=322.0, y=85.0, width=90.0, height=108.0, fill="none"
+            ),
+            RectSlot(
+                id="slot.bowl_b", prompt="", x=478.0, y=85.0, width=90.0, height=108.0, fill="none"
+            ),
+            TextSlot(
+                id="slot.choice",
+                prompt="",
+                text="( 가 , 나 ) 그릇",
+                style_role="choice",
+                x=745.0,
+                y=225.0,
+                font_size=28,
+            ),
+        ),
+        diagrams=(),
+        groups=(),
+        constraints=(),
+        tags=(),
+    )
+
+
 PROBLEM_TEMPLATE = build_problem_template()
 
-SEMANTIC_OVERRIDE = {'problem_id': 'S3_초등_3_008814', 'problem_type': 'compare_capacity', 'metadata': {'language': 'ko', 'question': '같은 모양과 크기의 그릇에 옮겨 담았을 때 더 들이가 많은 그릇을 고르는 문제', 'instruction': '들어가 더 많은 그릇을 선택하세요.'}, 'domain': {'objects': [{'id': 'obj.bowl_a', 'type': 'container', 'label': '가'}, {'id': 'obj.bowl_b', 'type': 'container', 'label': '나'}], 'relations': [], 'problem_solving': {'understand': {'given_refs': ['obj.bowl_a', 'obj.bowl_b'], 'target_ref': 'answer.target', 'condition_refs': ['rel.same_shape_size', 'rel.height_compare']}, 'plan': {'method': 'compare_water_level', 'description': '같은 모양과 크기의 그릇에서 물 높이가 더 높은 쪽을 고른다.'}, 'execute': {'expected_operations': ['compare_levels', 'select_higher_level_container']}, 'review': {'check_methods': ['visual_comparison']}}}, 'answer': {'blanks': [], 'choices': [], 'answer_key': [], 'target': {'type': 'select_container', 'description': '들이가 더 많은 그릇'}, 'value': '나', 'unit': ''}}
+SEMANTIC_OVERRIDE = {
+    "problem_id": "S3_초등_3_008814",
+    "problem_type": "compare_capacity",
+    "metadata": {
+        "language": "ko",
+        "question": "같은 모양과 크기의 그릇에 옮겨 담았을 때 더 들이가 많은 그릇을 고르는 문제",
+        "instruction": "들어가 더 많은 그릇을 선택하세요.",
+    },
+    "domain": {
+        "objects": [
+            {"id": "obj.bowl_a", "type": "container", "label": "가"},
+            {"id": "obj.bowl_b", "type": "container", "label": "나"},
+        ],
+        "relations": [],
+        "problem_solving": {
+            "understand": {
+                "given_refs": ["obj.bowl_a", "obj.bowl_b"],
+                "target_ref": "answer.target",
+                "condition_refs": ["rel.same_shape_size", "rel.height_compare"],
+            },
+            "plan": {
+                "method": "compare_water_level",
+                "description": "같은 모양과 크기의 그릇에서 물 높이가 더 높은 쪽을 고른다.",
+            },
+            "execute": {"expected_operations": ["compare_levels", "select_higher_level_container"]},
+            "review": {"check_methods": ["visual_comparison"]},
+        },
+    },
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {"type": "select_container", "description": "들이가 더 많은 그릇"},
+        "value": "나",
+        "unit": "",
+    },
+}
 
-SOLVABLE = {'schema': 'modu.solvable.v1.1', 'problem_id': 'S3_초등_3_008814', 'problem_type': 'compare_capacity', 'inputs': {'total_ticks': 0, 'target_label': '들이가 더 많은 그릇', 'target_ticks': 0, 'target_count': 1, 'unit': ''}, 'given': [{'ref': 'obj.bowl_a', 'value': {'label': '가'}}, {'ref': 'obj.bowl_b', 'value': {'label': '나'}}], 'target': {'ref': 'answer.target', 'type': 'select_container'}, 'method': 'compare_water_level', 'plan': ['같은 모양과 크기의 그릇이므로 물 높이를 비교한다.', '물 높이가 더 높은 그릇을 고른다.'], 'steps': [{'id': 'step.1', 'expr': '가와 나의 물 높이를 비교한다', 'value': '나'}, {'id': 'step.2', 'expr': '더 높은 물 높이의 그릇을 선택한다', 'value': '나'}], 'checks': [{'id': 'check.1', 'expr': '같은 모양과 크기의 그릇에서는 물 높이가 더 높은 쪽이 들이가 더 많다', 'expected': '나', 'actual': '나', 'pass': True}], 'answer': {'blanks': [], 'choices': [], 'answer_key': [], 'target': {'type': 'select_container', 'description': '들이가 더 많은 그릇'}, 'value': '나', 'unit': ''}}
+SOLVABLE = {
+    "schema": "modu.solvable.v1.1",
+    "problem_id": "S3_초등_3_008814",
+    "problem_type": "compare_capacity",
+    "inputs": {
+        "total_ticks": 0,
+        "target_label": "들이가 더 많은 그릇",
+        "target_ticks": 0,
+        "target_count": 1,
+        "unit": "",
+    },
+    "given": [
+        {"ref": "obj.bowl_a", "value": {"label": "가"}},
+        {"ref": "obj.bowl_b", "value": {"label": "나"}},
+    ],
+    "target": {"ref": "answer.target", "type": "select_container"},
+    "method": "compare_water_level",
+    "plan": [
+        "같은 모양과 크기의 그릇이므로 물 높이를 비교한다.",
+        "물 높이가 더 높은 그릇을 고른다.",
+    ],
+    "steps": [
+        {"id": "step.1", "expr": "가와 나의 물 높이를 비교한다", "value": "나"},
+        {"id": "step.2", "expr": "더 높은 물 높이의 그릇을 선택한다", "value": "나"},
+    ],
+    "checks": [
+        {
+            "id": "check.1",
+            "expr": "같은 모양과 크기의 그릇에서는 물 높이가 더 높은 쪽이 들이가 더 많다",
+            "expected": "나",
+            "actual": "나",
+            "pass": True,
+        }
+    ],
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {"type": "select_container", "description": "들이가 더 많은 그릇"},
+        "value": "나",
+        "unit": "",
+    },
+}

@@ -7,6 +7,8 @@ from typing import Any
 
 from django.conf import settings
 
+from .dsl_format import format_dsl_source
+
 ARTIFACT_FILES = {
     "semantic": ".semantic.json",
     "solvable": ".solvable.json",
@@ -192,10 +194,19 @@ def read_problem_detail(problem_id: str) -> dict[str, Any]:
     }
 
 
-def save_problem_dsl(problem_id: str, dsl: str) -> ProblemPaths:
+def save_problem_dsl(problem_id: str, dsl: str) -> tuple[ProblemPaths, str]:
     paths = resolve_problem_paths(problem_id)
-    paths.dsl_path.write_text(dsl, encoding="utf-8")
-    return paths
+    formatted = format_dsl_source(dsl)
+    paths.dsl_path.write_text(formatted, encoding="utf-8")
+    return paths, formatted
+
+
+def format_problem_dsl(problem_id: str) -> tuple[ProblemPaths, str]:
+    paths = resolve_problem_paths(problem_id)
+    dsl = paths.dsl_path.read_text(encoding="utf-8")
+    formatted = format_dsl_source(dsl)
+    paths.dsl_path.write_text(formatted, encoding="utf-8")
+    return paths, formatted
 
 
 def read_artifacts(problem_id: str) -> dict[str, Any]:

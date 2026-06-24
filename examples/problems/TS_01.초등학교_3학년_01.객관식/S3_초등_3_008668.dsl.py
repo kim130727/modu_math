@@ -26,7 +26,8 @@ def build_problem_template() -> ProblemTemplate:
                 id="region.diagram",
                 role="figure",
                 flow="absolute",
-                slot_ids=("slot.circle.outer",
+                slot_ids=(
+                    "slot.circle.outer",
                     "slot.line.vertical",
                     "slot.line.diagonal",
                     "slot.line.top",
@@ -35,7 +36,10 @@ def build_problem_template() -> ProblemTemplate:
                     "slot.lb.d",
                     "slot.lb.r",
                     "slot.lb.m",
-                    "slot.lb.b",'slot.lb.d.copy13', 'slot.lb.d.copy13.copy14'),
+                    "slot.lb.b",
+                    "slot.lb.d.copy13",
+                    "slot.lb.d.copy13.copy14",
+                ),
             ),
             Region(
                 id="region.statement",
@@ -49,63 +53,86 @@ def build_problem_template() -> ProblemTemplate:
                 flow="absolute",
                 slot_ids=(),
             ),
-            Region(
-                id="region.footer", role="explanation", flow="absolute", slot_ids=()
-            ),
+            Region(id="region.footer", role="explanation", flow="absolute", slot_ids=()),
         ),
-        slots=(TextSlot(
+        slots=(
+            TextSlot(
                 id="slot.instruction",
                 prompt="",
-                text = '바르게 설명하였으면 ○, 그렇지 않으면 ×를 선택하세요.', style_role="question",
-                x = 45, y = 35, font_size = 30),
+                text="바르게 설명하였으면 ○, 그렇지 않으면 ×를 선택하세요.",
+                style_role="question",
+                x=45,
+                y=35,
+                font_size=30,
+            ),
             CircleSlot(
                 id="slot.circle.outer",
                 prompt="",
-                cx = 335, cy = 196, r = 110, fill="none",
+                cx=335,
+                cy=196,
+                r=110,
+                fill="none",
             ),
-            LineSlot(
-                id="slot.line.vertical",
-                prompt="",
-                x1 = 390, y1 = 100, x2 = 390, y2 = 290),
-            LineSlot(
-                id="slot.line.diagonal",
-                prompt="",
-                x1 = 228, y1 = 174, x2 = 443, y2 = 219),
-            LineSlot(
-                id="slot.line.top", prompt="", x1 = 258, y1 = 115, x2 = 418, y2 = 120),
-            CircleSlot(
-                id="slot.pt.center", prompt="", cx = 335, cy = 195, r = 5, fill="#ff2aa1"
-            ),
+            LineSlot(id="slot.line.vertical", prompt="", x1=390, y1=100, x2=390, y2=290),
+            LineSlot(id="slot.line.diagonal", prompt="", x1=228, y1=174, x2=443, y2=219),
+            LineSlot(id="slot.line.top", prompt="", x1=258, y1=115, x2=418, y2=120),
+            CircleSlot(id="slot.pt.center", prompt="", cx=335, cy=195, r=5, fill="#ff2aa1"),
             TextSlot(
                 id="slot.lb.center",
                 prompt="",
-                text = 'ㅇ', style_role="label",
-                x = 305, y = 220, font_size = 30),
+                text="ㅇ",
+                style_role="label",
+                x=305,
+                y=220,
+                font_size=30,
+            ),
             TextSlot(
                 id="slot.lb.d",
                 prompt="",
-                text = 'ㄷ', style_role="label",
-                x = 185, y = 180, font_size = 30, fill = '#111111'),
+                text="ㄷ",
+                style_role="label",
+                x=185,
+                y=180,
+                font_size=30,
+                fill="#111111",
+            ),
             TextSlot(
-                id="slot.lb.r",
-                prompt="",
-                text = 'ㄹ', style_role="label",
-                x = 450, y = 235, font_size = 30),
+                id="slot.lb.r", prompt="", text="ㄹ", style_role="label", x=450, y=235, font_size=30
+            ),
             TextSlot(
-                id="slot.lb.m",
-                prompt="",
-                text = 'ㅁ', style_role="label",
-                x = 375, y = 85, font_size = 30),
+                id="slot.lb.m", prompt="", text="ㅁ", style_role="label", x=375, y=85, font_size=30
+            ),
             TextSlot(
-                id="slot.lb.b",
-                prompt="",
-                text = 'ㅂ', style_role="label",
-                x = 380, y = 320, font_size = 30),
+                id="slot.lb.b", prompt="", text="ㅂ", style_role="label", x=380, y=320, font_size=30
+            ),
             TextSlot(
                 id="slot.statement",
                 prompt="",
-                text = '\n    \n    길이가 가장 긴 선분은 선분 ㅁㅂ이고, 원의 지름은 선분\n    ㄷㄹ입니다.\n  ', style_role="question",
-                x = 60, y = 340, font_size = 30),TextSlot(id = 'slot.lb.d.copy13', prompt = '', text = 'ㄱ', x = 220, y = 125, font_size = 30, fill = '#111111'), TextSlot(id = 'slot.lb.d.copy13.copy14', prompt = '', text = 'ㄴ', x = 425, y = 130, font_size = 30, fill = '#111111')),
+                text="\n    \n    길이가 가장 긴 선분은 선분 ㅁㅂ이고, 원의 지름은 선분\n    ㄷㄹ입니다.\n  ",
+                style_role="question",
+                x=60,
+                y=340,
+                font_size=30,
+            ),
+            TextSlot(
+                id="slot.lb.d.copy13",
+                prompt="",
+                text="ㄱ",
+                x=220,
+                y=125,
+                font_size=30,
+                fill="#111111",
+            ),
+            TextSlot(
+                id="slot.lb.d.copy13.copy14",
+                prompt="",
+                text="ㄴ",
+                x=425,
+                y=130,
+                font_size=30,
+                fill="#111111",
+            ),
+        ),
         diagrams=(),
         groups=(),
         constraints=(),
@@ -157,9 +184,7 @@ SEMANTIC_OVERRIDE = {
                     "judge_statement_truth",
                 ]
             },
-            "review": {
-                "check_methods": ["center_passage_check", "geometry_property_check"]
-            },
+            "review": {"check_methods": ["center_passage_check", "geometry_property_check"]},
         },
     },
     "answer": {

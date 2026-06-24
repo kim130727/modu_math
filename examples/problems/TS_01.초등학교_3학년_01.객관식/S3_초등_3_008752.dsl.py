@@ -39,9 +39,7 @@ def build_problem_template() -> ProblemTemplate:
             Region(id="region.footer", role="footer", flow="absolute", slot_ids=()),
         ),
         slots=(
-            RectSlot(
-                id="slot.box0", prompt="", x=19.0, y=18.0, width=16.0, height=16.0
-            ),
+            RectSlot(id="slot.box0", prompt="", x=19.0, y=18.0, width=16.0, height=16.0),
             TextSlot(
                 id="slot.q1",
                 prompt="",
@@ -140,9 +138,7 @@ def build_problem_template() -> ProblemTemplate:
                 y=190.0,
                 font_size=28,
             ),
-            RectSlot(
-                id="slot.box1", prompt="", x=87.0, y=220.0, width=795.0, height=157.0
-            ),
+            RectSlot(id="slot.box1", prompt="", x=87.0, y=220.0, width=795.0, height=157.0),
             TextSlot(
                 id="slot.stmt1",
                 prompt="",
@@ -219,9 +215,7 @@ SEMANTIC_OVERRIDE = {
                     "check_ratio_relation",
                 ]
             },
-            "review": {
-                "check_methods": ["table_consistency_check", "statement_truth_check"]
-            },
+            "review": {"check_methods": ["table_consistency_check", "statement_truth_check"]},
         },
     },
     "answer": {

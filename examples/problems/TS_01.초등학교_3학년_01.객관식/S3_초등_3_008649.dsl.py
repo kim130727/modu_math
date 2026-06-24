@@ -19,13 +19,18 @@ def build_problem_template() -> ProblemTemplate:
                 id="region.stem",
                 role="stem",
                 flow="absolute",
-                slot_ids=("slot.q1", "slot.q2", "slot.q3", ),
+                slot_ids=(
+                    "slot.q1",
+                    "slot.q2",
+                    "slot.q3",
+                ),
             ),
             Region(
                 id="region.diagram",
                 role="diagram",
                 flow="absolute",
-                slot_ids=("slot.circle",
+                slot_ids=(
+                    "slot.circle",
                     "slot.center",
                     "slot.lb.g",
                     "slot.lb.n",
@@ -33,54 +38,58 @@ def build_problem_template() -> ProblemTemplate:
                     "slot.lb.r",
                     "slot.line.gr",
                     "slot.line.nr",
-                    "slot.line.cd",'slot.lb.d.copy2'),
+                    "slot.line.cd",
+                    "slot.lb.d.copy2",
+                ),
             ),
-            Region(
-                id="region.explain", role="explanation", flow="absolute", slot_ids=()
-            ),
+            Region(id="region.explain", role="explanation", flow="absolute", slot_ids=()),
         ),
-        slots=(TextSlot(
+        slots=(
+            TextSlot(
                 id="slot.q1",
                 prompt="",
-                text = '그림을 보고 알맞은 말을 선택하세요.', style_role="question",
-                x = 40, y = 35, font_size = 30),
+                text="그림을 보고 알맞은 말을 선택하세요.",
+                style_role="question",
+                x=40,
+                y=35,
+                font_size=30,
+            ),
             TextSlot(
                 id="slot.q2",
                 prompt="",
-                text = '원의 (지름, 반지름)은 원을 둘로 똑같이 나눕니다.', style_role="question",
-                x = 45, y = 395, font_size = 30),
-            CircleSlot(
-                id="slot.circle", prompt="", cx = 425, cy = 220, r = 115, fill="none"
+                text="원의 (지름, 반지름)은 원을 둘로 똑같이 나눕니다.",
+                style_role="question",
+                x=45,
+                y=395,
+                font_size=30,
             ),
-            CircleSlot(
-                id="slot.center", prompt="", cx = 425, cy = 220, r = 5, fill="#d81b60"
+            CircleSlot(id="slot.circle", prompt="", cx=425, cy=220, r=115, fill="none"),
+            CircleSlot(id="slot.center", prompt="", cx=425, cy=220, r=5, fill="#d81b60"),
+            TextSlot(
+                id="slot.lb.g", prompt="", text="ㄱ", style_role="label", x=380, y=105, font_size=30
             ),
             TextSlot(
-                id="slot.lb.g",
-                prompt="",
-                text = 'ㄱ', style_role="label",
-                x = 380, y = 105, font_size = 30),
+                id="slot.lb.n", prompt="", text="ㄴ", style_role="label", x=290, y=280, font_size=30
+            ),
             TextSlot(
-                id="slot.lb.n",
-                prompt="",
-                text = 'ㄴ', style_role="label",
-                x = 290, y = 280, font_size = 30),
+                id="slot.lb.d", prompt="", text="ㄷ", style_role="label", x=490, y=340, font_size=30
+            ),
             TextSlot(
-                id="slot.lb.d",
-                prompt="",
-                text = 'ㄷ', style_role="label",
-                x = 490, y = 340, font_size = 30),
+                id="slot.lb.r", prompt="", text="ㄹ", style_role="label", x=540, y=185, font_size=30
+            ),
+            LineSlot(id="slot.line.gr", prompt="", x1=410, y1=105, x2=535, y2=180),
+            LineSlot(id="slot.line.nr", prompt="", x1=320, y1=265, x2=535, y2=180),
+            LineSlot(id="slot.line.cd", prompt="", x1=425, y1=220, x2=490, y2=315),
             TextSlot(
-                id="slot.lb.r",
+                id="slot.lb.d.copy2",
                 prompt="",
-                text = 'ㄹ', style_role="label",
-                x = 540, y = 185, font_size = 30),
-            LineSlot(
-                id="slot.line.gr", prompt="", x1 = 410, y1 = 105, x2 = 535, y2 = 180),
-            LineSlot(
-                id="slot.line.nr", prompt="", x1 = 320, y1 = 265, x2 = 535, y2 = 180),
-            LineSlot(
-                id="slot.line.cd", prompt="", x1 = 425, y1 = 220, x2 = 490, y2 = 315),TextSlot(id = 'slot.lb.d.copy2', prompt = '', text = 'ㅇ', x = 410, y = 215, font_size = 30, fill = '#111111')),
+                text="ㅇ",
+                x=410,
+                y=215,
+                font_size=30,
+                fill="#111111",
+            ),
+        ),
         diagrams=(),
         groups=(),
         constraints=(),
@@ -159,9 +168,7 @@ SOLVABLE = {
     "target": {"ref": "answer.target", "type": "concept_name"},
     "method": "concept_choice",
     "plan": ["그림과 문장을 보고 원을 둘로 똑같이 나누는 말을 찾는다."],
-    "steps": [
-        {"id": "step.1", "expr": "문장 속 빈칸에 들어갈 개념 확인", "value": "지름"}
-    ],
+    "steps": [{"id": "step.1", "expr": "문장 속 빈칸에 들어갈 개념 확인", "value": "지름"}],
     "checks": [
         {
             "id": "check.1",

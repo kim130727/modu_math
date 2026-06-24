@@ -1,13 +1,23 @@
 from __future__ import annotations
 
-from modu_math.dsl import Canvas, CircleSlot, ProblemTemplate, RectSlot, Region, TextSlot, compass_slots
-
+from modu_math.dsl import (
+    Canvas,
+    CircleSlot,
+    ProblemTemplate,
+    RectSlot,
+    Region,
+    TextSlot,
+    compass_slots,
+)
 
 ANSWER = {
     "blanks": [],
     "choices": [],
     "answer_key": [],
-    "target": {"type": "selected_option", "description": "원을 그릴 때 컴퍼스를 바르게 사용한 보기"},
+    "target": {
+        "type": "selected_option",
+        "description": "원을 그릴 때 컴퍼스를 바르게 사용한 보기",
+    },
     "value": "나",
     "unit": "",
 }
@@ -29,7 +39,15 @@ def _option_slots(
     hinge_y: float,
 ) -> tuple:
     return (
-        TextSlot(id=f"{prefix}.label", prompt="", text=label, style_role="label", x=label_x, y=92.0, font_size=28),
+        TextSlot(
+            id=f"{prefix}.label",
+            prompt="",
+            text=label,
+            style_role="label",
+            x=label_x,
+            y=92.0,
+            font_size=28,
+        ),
         CircleSlot(
             id=f"{prefix}.circle",
             prompt="",
@@ -40,7 +58,9 @@ def _option_slots(
             stroke="#9A9A9A",
             stroke_width=1.4,
         ),
-        CircleSlot(id=f"{prefix}.center.dot", prompt="", cx=circle_cx, cy=circle_cy, r=3.0, fill="#E91E63"),
+        CircleSlot(
+            id=f"{prefix}.center.dot", prompt="", cx=circle_cx, cy=circle_cy, r=3.0, fill="#E91E63"
+        ),
         CircleSlot(
             id=f"{prefix}.center.mark",
             prompt="",
@@ -123,16 +143,25 @@ def build_problem_template() -> ProblemTemplate:
                 id="region.options",
                 role="diagram",
                 flow="absolute",
-                slot_ids=("slot.box", *(slot.id for slot in option_a), *(slot.id for slot in option_b), *(slot.id for slot in option_c)),
+                slot_ids=(
+                    "slot.box",
+                    *(slot.id for slot in option_a),
+                    *(slot.id for slot in option_b),
+                    *(slot.id for slot in option_c),
+                ),
             ),
-            Region(id="region.solution", role="answer", flow="absolute", slot_ids=( )),
+            Region(id="region.solution", role="answer", flow="absolute", slot_ids=()),
         ),
         slots=(
             TextSlot(
                 id="slot.title.text",
                 prompt="",
-                text = '원을 그릴 때 컴퍼스를 바르게 사용한 것을 찾아 선택해 보세요.', style_role="question",
-                x = 80, y = 40, font_size = 30),
+                text="원을 그릴 때 컴퍼스를 바르게 사용한 것을 찾아 선택해 보세요.",
+                style_role="question",
+                x=80,
+                y=40,
+                font_size=30,
+            ),
             RectSlot(
                 id="slot.box",
                 prompt="",
@@ -147,8 +176,6 @@ def build_problem_template() -> ProblemTemplate:
             *option_a,
             *option_b,
             *option_c,
-            
-            
         ),
         diagrams=(),
         groups=(),
@@ -171,9 +198,19 @@ SEMANTIC_OVERRIDE = {
         "objects": [
             {"id": "obj.circle", "type": "circle"},
             {"id": "obj.compass", "type": "compass"},
-            {"id": "obj.choice.a", "type": "option", "label": "가", "needle_position": "not_center"},
+            {
+                "id": "obj.choice.a",
+                "type": "option",
+                "label": "가",
+                "needle_position": "not_center",
+            },
             {"id": "obj.choice.b", "type": "option", "label": "나", "needle_position": "center"},
-            {"id": "obj.choice.c", "type": "option", "label": "다", "needle_position": "not_center"},
+            {
+                "id": "obj.choice.c",
+                "type": "option",
+                "label": "다",
+                "needle_position": "not_center",
+            },
         ],
         "relations": [
             {
@@ -197,8 +234,13 @@ SEMANTIC_OVERRIDE = {
                 "target_ref": "answer.target",
                 "condition_refs": ["rel.correct_usage"],
             },
-            "plan": {"method": "visual_choice", "description": "세 보기에서 컴퍼스 침이 원의 중심에 꽂힌 보기를 찾는다."},
-            "execute": {"expected_operations": ["compare_options", "check_needle_at_circle_center"]},
+            "plan": {
+                "method": "visual_choice",
+                "description": "세 보기에서 컴퍼스 침이 원의 중심에 꽂힌 보기를 찾는다.",
+            },
+            "execute": {
+                "expected_operations": ["compare_options", "check_needle_at_circle_center"]
+            },
             "review": {"check_methods": ["confirm_selected_option"]},
         },
     },
@@ -229,10 +271,20 @@ SOLVABLE = {
     "steps": [
         {"id": "step.1", "expr": "가: 침이 중심이 아닌 곳에 있음", "value": "incorrect"},
         {"id": "step.2", "expr": "나: 침이 원의 중심에 있음", "value": "correct"},
-        {"id": "step.3", "expr": "다: 연필 끝이 중심 쪽에 있고 침이 중심이 아님", "value": "incorrect"},
+        {
+            "id": "step.3",
+            "expr": "다: 연필 끝이 중심 쪽에 있고 침이 중심이 아님",
+            "value": "incorrect",
+        },
     ],
     "checks": [
-        {"id": "check.1", "expr": "선택한 보기의 침이 원의 중심에 있는가", "expected": "나", "actual": "나", "pass": True}
+        {
+            "id": "check.1",
+            "expr": "선택한 보기의 침이 원의 중심에 있는가",
+            "expected": "나",
+            "actual": "나",
+            "pass": True,
+        }
     ],
     "answer": ANSWER,
 }
