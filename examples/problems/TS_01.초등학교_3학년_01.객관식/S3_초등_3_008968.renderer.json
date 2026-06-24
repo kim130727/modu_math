@@ -1,0 +1,418 @@
+{
+  "problem_id": "S3_초등_3_008968",
+  "view_box": {
+    "width": 560.0,
+    "height": 350.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.table.outer.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 114.0,
+        "y": 110.0,
+        "width": 330.0,
+        "height": 48.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.table.outer",
+      "refs": {
+        "layout_slot_id": "slot.table.outer"
+      }
+    },
+    {
+      "id": "slot.table.v1.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 204.0,
+        "y": 110.0,
+        "width": 0.0,
+        "height": 48.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.table.v1",
+      "refs": {
+        "layout_slot_id": "slot.table.v1"
+      }
+    },
+    {
+      "id": "slot.table.v2.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 286.0,
+        "y": 110.0,
+        "width": 0.0,
+        "height": 48.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.table.v2",
+      "refs": {
+        "layout_slot_id": "slot.table.v2"
+      }
+    },
+    {
+      "id": "slot.table.v3.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 369.0,
+        "y": 110.0,
+        "width": 0.0,
+        "height": 48.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.table.v3",
+      "refs": {
+        "layout_slot_id": "slot.table.v3"
+      }
+    },
+    {
+      "id": "slot.table.v4.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 444.0,
+        "y": 110.0,
+        "width": 0.0,
+        "height": 48.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.table.v4",
+      "refs": {
+        "layout_slot_id": "slot.table.v4"
+      }
+    },
+    {
+      "id": "slot.table.h1.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 114.0,
+        "y": 134.0,
+        "width": 330.0,
+        "height": 0.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.table.h1",
+      "refs": {
+        "layout_slot_id": "slot.table.h1"
+      }
+    },
+    {
+      "id": "slot.table.h2.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 114.0,
+        "y": 158.0,
+        "width": 330.0,
+        "height": 0.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.table.h2",
+      "refs": {
+        "layout_slot_id": "slot.table.h2"
+      }
+    },
+    {
+      "id": "slot.q1.text",
+      "type": "text",
+      "attributes": {
+        "x": 12.0,
+        "y": 20.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q1",
+      "refs": {
+        "layout_slot_id": "slot.q1"
+      },
+      "text": "2.  현주는 집 주변 나무들의 높이를 조사했습니다. 두 나무의 높이 차가"
+    },
+    {
+      "id": "slot.q2.text",
+      "type": "text",
+      "attributes": {
+        "x": 12.0,
+        "y": 52.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q2",
+      "refs": {
+        "layout_slot_id": "slot.q2"
+      },
+      "text": "100 cm에 가장 가까운 나무는 어떤 나무와 어떤 나무인지 알맞은 것을 선택"
+    },
+    {
+      "id": "slot.q3.text",
+      "type": "text",
+      "attributes": {
+        "x": 12.0,
+        "y": 84.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q3",
+      "refs": {
+        "layout_slot_id": "slot.q3"
+      },
+      "text": "하세요."
+    },
+    {
+      "id": "slot.table.r1c1.text",
+      "type": "text",
+      "attributes": {
+        "x": 138.0,
+        "y": 128.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 20
+      },
+      "source_ref": "slot.table.r1c1",
+      "refs": {
+        "layout_slot_id": "slot.table.r1c1"
+      },
+      "text": "나무 종류"
+    },
+    {
+      "id": "slot.table.r1c2.text",
+      "type": "text",
+      "attributes": {
+        "x": 233.0,
+        "y": 128.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 20
+      },
+      "source_ref": "slot.table.r1c2",
+      "refs": {
+        "layout_slot_id": "slot.table.r1c2"
+      },
+      "text": "소나무"
+    },
+    {
+      "id": "slot.table.r1c3.text",
+      "type": "text",
+      "attributes": {
+        "x": 314.0,
+        "y": 128.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 20
+      },
+      "source_ref": "slot.table.r1c3",
+      "refs": {
+        "layout_slot_id": "slot.table.r1c3"
+      },
+      "text": "전나무"
+    },
+    {
+      "id": "slot.table.r1c4.text",
+      "type": "text",
+      "attributes": {
+        "x": 394.0,
+        "y": 128.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 20
+      },
+      "source_ref": "slot.table.r1c4",
+      "refs": {
+        "layout_slot_id": "slot.table.r1c4"
+      },
+      "text": "벚나무"
+    },
+    {
+      "id": "slot.table.r2c1.text",
+      "type": "text",
+      "attributes": {
+        "x": 138.0,
+        "y": 152.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 20
+      },
+      "source_ref": "slot.table.r2c1",
+      "refs": {
+        "layout_slot_id": "slot.table.r2c1"
+      },
+      "text": "높이(cm)"
+    },
+    {
+      "id": "slot.table.r2c2.text",
+      "type": "text",
+      "attributes": {
+        "x": 234.0,
+        "y": 152.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 20
+      },
+      "source_ref": "slot.table.r2c2",
+      "refs": {
+        "layout_slot_id": "slot.table.r2c2"
+      },
+      "text": "247"
+    },
+    {
+      "id": "slot.table.r2c3.text",
+      "type": "text",
+      "attributes": {
+        "x": 316.0,
+        "y": 152.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 20
+      },
+      "source_ref": "slot.table.r2c3",
+      "refs": {
+        "layout_slot_id": "slot.table.r2c3"
+      },
+      "text": "356"
+    },
+    {
+      "id": "slot.table.r2c4.text",
+      "type": "text",
+      "attributes": {
+        "x": 398.0,
+        "y": 152.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 20
+      },
+      "source_ref": "slot.table.r2c4",
+      "refs": {
+        "layout_slot_id": "slot.table.r2c4"
+      },
+      "text": "115"
+    },
+    {
+      "id": "slot.choice.text",
+      "type": "text",
+      "attributes": {
+        "x": 365.0,
+        "y": 188.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 20
+      },
+      "source_ref": "slot.choice",
+      "refs": {
+        "layout_slot_id": "slot.choice"
+      },
+      "text": "( 소나무, 전나무, 벚나무 )"
+    },
+    {
+      "id": "slot.a2.text",
+      "type": "text",
+      "attributes": {
+        "x": 12.0,
+        "y": 258.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 18
+      },
+      "source_ref": "slot.a2",
+      "refs": {
+        "layout_slot_id": "slot.a2"
+      },
+      "text": "(풀이)"
+    },
+    {
+      "id": "slot.a3.text",
+      "type": "text",
+      "attributes": {
+        "x": 28.0,
+        "y": 281.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 18
+      },
+      "source_ref": "slot.a3",
+      "refs": {
+        "layout_slot_id": "slot.a3"
+      },
+      "text": "(전나무) - (소나무) = 356 - 247 = 109(cm)"
+    },
+    {
+      "id": "slot.a4.text",
+      "type": "text",
+      "attributes": {
+        "x": 28.0,
+        "y": 304.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 18
+      },
+      "source_ref": "slot.a4",
+      "refs": {
+        "layout_slot_id": "slot.a4"
+      },
+      "text": "(소나무) - (벚나무) = 247 - 115 = 132(cm)"
+    },
+    {
+      "id": "slot.a5.text",
+      "type": "text",
+      "attributes": {
+        "x": 28.0,
+        "y": 327.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 18
+      },
+      "source_ref": "slot.a5",
+      "refs": {
+        "layout_slot_id": "slot.a5"
+      },
+      "text": "(전나무) - (벚나무) = 356 - 115 = 241(cm)"
+    },
+    {
+      "id": "slot.a6.text",
+      "type": "text",
+      "attributes": {
+        "x": 28.0,
+        "y": 350.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 18
+      },
+      "source_ref": "slot.a6",
+      "refs": {
+        "layout_slot_id": "slot.a6"
+      },
+      "text": "두 나무의 높이의 차가 100 cm에 가장 가까운 나무는 소나무와 전나무입니다."
+    },
+    {
+      "id": "slot.a7.text",
+      "type": "text",
+      "attributes": {
+        "x": 0.0,
+        "y": 0.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 18
+      },
+      "source_ref": "slot.a7",
+      "refs": {
+        "layout_slot_id": "slot.a7"
+      },
+      "text": ""
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

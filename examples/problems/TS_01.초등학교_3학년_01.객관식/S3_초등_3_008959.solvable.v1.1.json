@@ -1,0 +1,77 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008959",
+  "problem_type": "표와 그림그래프",
+  "inputs": {
+    "total_ticks": 115,
+    "target_label": "다",
+    "target_ticks": 0,
+    "target_count": 1,
+    "unit": "그루"
+  },
+  "given": [
+    {
+      "ref": "obj.apartment.ga",
+      "value": 46
+    },
+    {
+      "ref": "obj.apartment.na",
+      "value": 19
+    },
+    {
+      "ref": "obj.apartment.ra",
+      "value": 23
+    },
+    {
+      "ref": "obj.total",
+      "value": 115
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "unknown_choice"
+  },
+  "method": "부분합과 전체합 비교",
+  "plan": [
+    "알려진 아파트의 나무 수를 먼저 더한다.",
+    "전체 합계에서 부분합을 빼서 빠진 값을 확인한다.",
+    "보기와 비교한다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "46 + 19 + 23",
+      "value": 88
+    },
+    {
+      "id": "step.2",
+      "expr": "115 - 88",
+      "value": 27
+    },
+    {
+      "id": "step.3",
+      "expr": "다 아파트의 나무 수",
+      "value": 27
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "46 + 19 + 23 + 27",
+      "expected": 115,
+      "actual": 115,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "unknown_choice",
+      "description": "다 아파트의 나무 수를 바르게 나타낸 것"
+    },
+    "value": 27,
+    "unit": ""
+  }
+}

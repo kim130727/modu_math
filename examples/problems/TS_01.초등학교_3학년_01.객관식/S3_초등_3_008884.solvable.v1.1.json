@@ -1,0 +1,88 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008884",
+  "problem_type": "comparison_selection",
+  "inputs": {
+    "total_ticks": 5,
+    "target_label": "가장 적은 색종이의 색깔",
+    "target_ticks": 1,
+    "target_count": 4,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.red",
+      "value": {
+        "color": "빨간색",
+        "count": 24
+      }
+    },
+    {
+      "ref": "obj.yellow",
+      "value": {
+        "color": "노란색",
+        "count": 30
+      }
+    },
+    {
+      "ref": "obj.green",
+      "value": {
+        "color": "초록색",
+        "count": 16
+      }
+    },
+    {
+      "ref": "obj.purple",
+      "value": {
+        "color": "보라색",
+        "count": 14
+      }
+    },
+    {
+      "ref": "obj.total",
+      "value": 84
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "selected_color"
+  },
+  "method": "compare_values",
+  "plan": [
+    "표에 있는 각 색깔의 색종이 수를 확인한다.",
+    "가장 작은 수를 찾는다.",
+    "그 수에 해당하는 색깔을 선택한다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "24, 30, 16, 14 중 가장 작은 수 찾기",
+      "value": 14
+    },
+    {
+      "id": "step.2",
+      "expr": "14에 해당하는 색깔 고르기",
+      "value": "보라색"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "14 < 16 and 14 < 24 and 14 < 30",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "selected_color",
+      "description": "가장 적은 색종이의 색깔"
+    },
+    "value": "보라색",
+    "unit": ""
+  }
+}

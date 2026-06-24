@@ -1,0 +1,87 @@
+{
+  "problem_id": "S3_초등_3_009046",
+  "problem_type": "geometry_ray_identification",
+  "metadata": {
+    "title": "반직선 ㄱㄴ",
+    "tags": [],
+    "question": "반직선 ㄱㄴ으로 알맞은 것을 고르세요.",
+    "required_layout_ids": [
+      "slot.left.line",
+      "slot.left.pt1",
+      "slot.left.pt2",
+      "slot.right.line",
+      "slot.right.pt1",
+      "slot.right.pt2",
+      "slot.answer.line",
+      "slot.answer.pt1",
+      "slot.answer.pt2"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "반직선 ㄱㄴ의 의미를 시각적으로 확인한다."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.point.g",
+        "type": "point",
+        "label": "ㄱ"
+      },
+      {
+        "id": "obj.point.n",
+        "type": "point",
+        "label": "ㄴ"
+      },
+      {
+        "id": "obj.ray.gn",
+        "type": "ray",
+        "start": "obj.point.g",
+        "through": "obj.point.n"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.point.g",
+          "obj.point.n",
+          "obj.ray.gn"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.ray_definition"
+        ]
+      },
+      "plan": {
+        "method": "definition_matching",
+        "description": "반직선의 시작점과 지나는 점의 관계를 확인한다."
+      },
+      "execute": {
+        "expected_operations": [
+          "identify_start_point",
+          "identify_through_point",
+          "match_to_ray"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "direction_consistency_check",
+          "start_point_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "ray_identification",
+      "description": "반직선 ㄱㄴ에 알맞은 그림"
+    },
+    "value": 1,
+    "unit": ""
+  }
+}

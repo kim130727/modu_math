@@ -1,0 +1,87 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_009048",
+  "problem_type": "선택형",
+  "inputs": {
+    "total_ticks": 2,
+    "target_label": "알맞은 말",
+    "target_ticks": 2,
+    "target_count": 2,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.ray_gn",
+      "value": {
+        "name": "반직선 ㄱㄴ",
+        "start_point": "점 ㄱ"
+      }
+    },
+    {
+      "ref": "obj.ray_ng",
+      "value": {
+        "name": "반직선 ㄴㄱ",
+        "start_point": "점 ㄴ"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "choice_selection"
+  },
+  "method": "compare_start_points",
+  "plan": [
+    "두 반직선의 시작점을 확인한다.",
+    "시작점이 다르므로 같은 반직선인지 판단한다.",
+    "문장 속 괄호에 들어갈 알맞은 말을 고른다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "반직선 ㄱㄴ의 시작점 확인",
+      "value": "점 ㄱ"
+    },
+    {
+      "id": "step.2",
+      "expr": "반직선 ㄴㄱ의 시작점 확인",
+      "value": "점 ㄴ"
+    },
+    {
+      "id": "step.3",
+      "expr": "시작점 비교",
+      "value": "다름"
+    },
+    {
+      "id": "step.4",
+      "expr": "정답 선택",
+      "value": "곧은 선, 없어"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "두 반직선의 시작점이 다른가",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "id": "check.2",
+      "expr": "선택한 말이 해설과 일치하는가",
+      "expected": "곧은 선, 없어",
+      "actual": "곧은 선, 없어",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "choice_selection",
+      "description": "곧은 선, 없어"
+    },
+    "value": 0,
+    "unit": ""
+  }
+}

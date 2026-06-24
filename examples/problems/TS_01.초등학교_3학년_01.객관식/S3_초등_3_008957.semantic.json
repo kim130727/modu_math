@@ -1,0 +1,143 @@
+{
+  "problem_id": "S3_초등_3_008957",
+  "problem_type": "그림그래프_비교",
+  "metadata": {
+    "title": "가게별 일주일 동안 팔린 막대사탕 수",
+    "tags": [],
+    "question": "가게별 일주일 동안 팔린 막대사탕 수를 조사하여 그림그래프로 나타내었습니다. 나 가게보다 막대사탕을 더 많이 판 가게를 모두 선택하세요.",
+    "required_layout_ids": [
+      "slot.title_box",
+      "slot.table.outer",
+      "slot.table.v1",
+      "slot.table.v2",
+      "slot.table.v3",
+      "slot.table.v4",
+      "slot.table.h1",
+      "slot.table.h2",
+      "slot.table.h3",
+      "slot.table.h4",
+      "slot.table.h5",
+      "slot.g.a.1",
+      "slot.g.a.2",
+      "slot.g.a.3",
+      "slot.g.a.4",
+      "slot.g.d.1",
+      "slot.g.d.2",
+      "slot.g.d.3",
+      "slot.g.d.4",
+      "slot.g.d.5",
+      "slot.g.m.1",
+      "slot.g.m.2",
+      "slot.g.m.3",
+      "slot.g.m.4",
+      "slot.g.m.5",
+      "slot.g.m.6",
+      "slot.g.n.1",
+      "slot.g.n.2",
+      "slot.g.n.3",
+      "slot.g.n.4",
+      "slot.g.n.5",
+      "slot.g.n.6",
+      "slot.g.r.1",
+      "slot.g.r.2",
+      "slot.g.r.3",
+      "slot.g.b.1",
+      "slot.g.b.2",
+      "slot.legend.b1",
+      "slot.legend.b2",
+      "slot.legend.b3",
+      "slot.legend.b4",
+      "slot.legend.b5",
+      "slot.legend.b6"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "나 가게보다 막대사탕을 더 많이 판 가게를 모두 선택하세요."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.shop.가",
+        "type": "store",
+        "name": "가"
+      },
+      {
+        "id": "obj.shop.나",
+        "type": "store",
+        "name": "나"
+      },
+      {
+        "id": "obj.shop.다",
+        "type": "store",
+        "name": "다"
+      },
+      {
+        "id": "obj.shop.라",
+        "type": "store",
+        "name": "라"
+      },
+      {
+        "id": "obj.shop.마",
+        "type": "store",
+        "name": "마"
+      },
+      {
+        "id": "obj.shop.바",
+        "type": "store",
+        "name": "바"
+      },
+      {
+        "id": "obj.legend.big",
+        "type": "unit_symbol",
+        "name": "100개"
+      },
+      {
+        "id": "obj.legend.small",
+        "type": "unit_symbol",
+        "name": "10개"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.shop.나",
+          "obj.legend.big",
+          "obj.legend.small"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.compare.n"
+        ]
+      },
+      "plan": {
+        "method": "graph_compare",
+        "description": "그림그래프의 표를 보고 나 가게와 각 가게의 수를 비교한다."
+      },
+      "execute": {
+        "expected_operations": [
+          "count_symbols",
+          "compare_values"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "compare_each_store_with_n"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "stores_more_than_n",
+      "description": "나 가게보다 막대사탕을 더 많이 판 가게"
+    },
+    "value": 2,
+    "unit": ""
+  }
+}

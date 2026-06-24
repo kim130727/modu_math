@@ -1,0 +1,113 @@
+{
+  "problem_id": "S3_초등_3_009005",
+  "problem_type": "선택형_도형성질",
+  "metadata": {
+    "title": "직사각형과 정사각형을 보고 같은 점을 바르게 말한 사람을 선택하세요.",
+    "tags": [],
+    "instruction": "말한 내용이 맞는 사람을 고르기",
+    "question": "직사각형과 정사각형을 보고 같은 점을 바르게 말한 사람을 선택하세요.",
+    "required_layout_ids": [
+      "slot.balloon.left",
+      "slot.balloon.left.tail",
+      "slot.balloon.right",
+      "slot.balloon.right.tail",
+      "slot.person.left.head",
+      "slot.person.left.body",
+      "slot.person.left.hair",
+      "slot.person.left.face",
+      "slot.person.left.eye.l",
+      "slot.person.left.eye.r",
+      "slot.person.left.mouth",
+      "slot.person.right.head",
+      "slot.person.right.body",
+      "slot.person.right.hair",
+      "slot.person.right.face",
+      "slot.person.right.eye.l",
+      "slot.person.right.eye.r",
+      "slot.person.right.mouth",
+      "slot.name.left.bg",
+      "slot.name.right.bg",
+      "slot.shape.left.rect",
+      "slot.shape.right.rect",
+      "slot.shape.left.corner.1",
+      "slot.shape.left.corner.2",
+      "slot.shape.left.corner.3",
+      "slot.shape.left.corner.4",
+      "slot.shape.right.corner.1",
+      "slot.shape.right.corner.2",
+      "slot.shape.right.corner.3",
+      "slot.shape.right.corner.4"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "points": 0
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.rectangle",
+        "type": "quadrilateral",
+        "label": "직사각형"
+      },
+      {
+        "id": "obj.square",
+        "type": "quadrilateral",
+        "label": "정사각형"
+      },
+      {
+        "id": "obj.speaker.left",
+        "type": "person",
+        "label": "승규"
+      },
+      {
+        "id": "obj.speaker.right",
+        "type": "person",
+        "label": "나래"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.rectangle",
+          "obj.square",
+          "obj.speaker.left",
+          "obj.speaker.right"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.left.speech",
+          "rel.right.speech"
+        ]
+      },
+      "plan": {
+        "method": "성질_대응_확인",
+        "description": "각 말풍선의 설명이 도형의 성질과 맞는지 확인한다."
+      },
+      "execute": {
+        "expected_operations": [
+          "compare_property_statement",
+          "match_rectangle_and_square_properties"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "statement_property_consistency"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "correct_speaker",
+      "description": "직사각형과 정사각형의 성질을 바르게 말한 사람"
+    },
+    "value": 2,
+    "unit": ""
+  }
+}

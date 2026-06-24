@@ -1,0 +1,97 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008917",
+  "problem_type": "표에서최대값찾기",
+  "inputs": {
+    "total_ticks": 27,
+    "target_label": "가장 많은 학생들이 존경하는 위인",
+    "target_ticks": 10,
+    "target_count": 4,
+    "unit": "명"
+  },
+  "given": [
+    {
+      "ref": "obj.sejong",
+      "value": {
+        "name": "세종대왕",
+        "students": 10
+      }
+    },
+    {
+      "ref": "obj.kimgu",
+      "value": {
+        "name": "김구",
+        "students": 3
+      }
+    },
+    {
+      "ref": "obj.leesunsin",
+      "value": {
+        "name": "이순신",
+        "students": 8
+      }
+    },
+    {
+      "ref": "obj.yukgwansoon",
+      "value": {
+        "name": "유관순",
+        "students": 6
+      }
+    },
+    {
+      "ref": "obj.total",
+      "value": {
+        "name": "합계",
+        "students": 27
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "person"
+  },
+  "method": "최댓값비교",
+  "plan": [
+    "표에 있는 위인별 학생 수를 비교한다.",
+    "가장 큰 수를 가진 위인을 찾는다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "10, 3, 8, 6 중 가장 큰 수를 찾는다",
+      "value": 10
+    },
+    {
+      "id": "step.2",
+      "expr": "가장 큰 수 10에 대응하는 위인을 확인한다",
+      "value": "세종대왕"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "10 >= 3 and 10 >= 8 and 10 >= 6",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "id": "check.2",
+      "expr": "선택된 위인이 세종대왕인지 확인",
+      "expected": "세종대왕",
+      "actual": "세종대왕",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "person",
+      "description": "가장 많은 학생들이 존경하는 위인"
+    },
+    "value": "세종대왕",
+    "unit": ""
+  }
+}

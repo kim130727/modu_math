@@ -1,0 +1,68 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008829",
+  "problem_type": "unit_selection",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "드럼통의 들이에 알맞은 단위",
+    "target_ticks": 0,
+    "target_count": 1,
+    "unit": "L"
+  },
+  "given": [
+    {
+      "ref": "obj.barrel",
+      "value": {
+        "name": "드럼통",
+        "quantity": "capacity"
+      }
+    },
+    {
+      "ref": "obj.quantity",
+      "value": 100
+    },
+    {
+      "ref": "obj.units",
+      "value": [
+        "mL",
+        "L"
+      ]
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "selected_unit"
+  },
+  "method": "unit_selection",
+  "plan": [
+    "드럼통의 들이에 어울리는 단위를 고른다.",
+    "보기 중 더 큰 용량 단위를 선택한다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "100과 보기 단위(mL, L)를 비교한다.",
+      "value": "L"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "드럼통은 작은 용량 단위 mL보다 큰 단위가 어울리는가?",
+      "expected": "L",
+      "actual": "L",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "selected_unit",
+      "description": "드럼통의 들이에 알맞은 단위"
+    },
+    "value": "L",
+    "unit": "L"
+  }
+}

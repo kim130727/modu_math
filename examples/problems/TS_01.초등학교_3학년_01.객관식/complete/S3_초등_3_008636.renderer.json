@@ -12,7 +12,6 @@
       "attributes": {
         "x": 20.0,
         "y": 65.0,
-        "max_width": 972.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 30
@@ -29,7 +28,6 @@
       "attributes": {
         "x": 20.0,
         "y": 115.0,
-        "max_width": 972.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 30
@@ -73,6 +71,144 @@
       "source_ref": "slot.left.paper",
       "refs": {
         "layout_slot_id": "slot.left.paper"
+      }
+    },
+    {
+      "id": "slot.left.pencil.body.polygon",
+      "type": "polygon",
+      "attributes": {
+        "points": [
+          [
+            421.39869689941406,
+            218.47747116088868
+          ],
+          [
+            446.39869689941406,
+            175.17747116088867
+          ],
+          [
+            453.39869689941406,
+            179.17747116088867
+          ],
+          [
+            428.39869689941406,
+            222.47747116088868
+          ]
+        ],
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#f39c82"
+      },
+      "source_ref": "slot.left.pencil.body",
+      "refs": {
+        "layout_slot_id": "slot.left.pencil.body"
+      }
+    },
+    {
+      "id": "slot.left.pencil.tip.polygon",
+      "type": "polygon",
+      "attributes": {
+        "points": [
+          [
+            419.89869689941406,
+            229.17747116088867
+          ],
+          [
+            421.39869689941406,
+            218.47747116088868
+          ],
+          [
+            428.39869689941406,
+            222.47747116088868
+          ]
+        ],
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#fce4c8"
+      },
+      "source_ref": "slot.left.pencil.tip",
+      "refs": {
+        "layout_slot_id": "slot.left.pencil.tip"
+      }
+    },
+    {
+      "id": "slot.right.circle.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 650.0,
+        "cy": 230.0,
+        "r": 90.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "none"
+      },
+      "source_ref": "slot.right.circle",
+      "refs": {
+        "layout_slot_id": "slot.right.circle"
+      }
+    },
+    {
+      "id": "slot.left.pencil.line1.line",
+      "type": "line",
+      "attributes": {
+        "x1": 425.0,
+        "y1": 220.0,
+        "x2": 450.0,
+        "y2": 175.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.left.pencil.line1",
+      "refs": {
+        "layout_slot_id": "slot.left.pencil.line1"
+      }
+    },
+    {
+      "id": "slot.left.pencil.line2.line",
+      "type": "line",
+      "attributes": {
+        "x1": 425.0,
+        "y1": 220.0,
+        "x2": 450.0,
+        "y2": 180.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.left.pencil.line2",
+      "refs": {
+        "layout_slot_id": "slot.left.pencil.line2"
+      }
+    },
+    {
+      "id": "slot.right.radius1.line",
+      "type": "line",
+      "attributes": {
+        "x1": 650.0,
+        "y1": 230.0,
+        "x2": 710.0,
+        "y2": 165.0,
+        "stroke": "#3fa9f5",
+        "stroke-width": 2.5
+      },
+      "source_ref": "slot.right.radius1",
+      "refs": {
+        "layout_slot_id": "slot.right.radius1"
+      }
+    },
+    {
+      "id": "slot.right.radius2.line",
+      "type": "line",
+      "attributes": {
+        "x1": 650.0,
+        "y1": 230.0,
+        "x2": 560.0,
+        "y2": 255.0,
+        "stroke": "#3fa9f5",
+        "stroke-width": 2.5
+      },
+      "source_ref": "slot.right.radius2",
+      "refs": {
+        "layout_slot_id": "slot.right.radius2"
       }
     },
     {
@@ -156,80 +292,6 @@
       }
     },
     {
-      "id": "slot.left.pencil.body.polygon",
-      "type": "polygon",
-      "attributes": {
-        "points": [
-          [
-            421.39869689941406,
-            218.47747116088868
-          ],
-          [
-            446.39869689941406,
-            175.17747116088867
-          ],
-          [
-            453.39869689941406,
-            179.17747116088867
-          ],
-          [
-            428.39869689941406,
-            222.47747116088868
-          ]
-        ],
-        "stroke": "#111111",
-        "stroke-width": 2.0,
-        "fill": "#f39c82"
-      },
-      "source_ref": "slot.left.pencil.body",
-      "refs": {
-        "layout_slot_id": "slot.left.pencil.body"
-      }
-    },
-    {
-      "id": "slot.left.pencil.tip.polygon",
-      "type": "polygon",
-      "attributes": {
-        "points": [
-          [
-            419.89869689941406,
-            229.17747116088867
-          ],
-          [
-            421.39869689941406,
-            218.47747116088868
-          ],
-          [
-            428.39869689941406,
-            222.47747116088868
-          ]
-        ],
-        "stroke": "#111111",
-        "stroke-width": 2.0,
-        "fill": "#fce4c8"
-      },
-      "source_ref": "slot.left.pencil.tip",
-      "refs": {
-        "layout_slot_id": "slot.left.pencil.tip"
-      }
-    },
-    {
-      "id": "slot.right.circle.circle",
-      "type": "circle",
-      "attributes": {
-        "cx": 650.0,
-        "cy": 230.0,
-        "r": 90.0,
-        "stroke": "#111111",
-        "stroke-width": 2.0,
-        "fill": "none"
-      },
-      "source_ref": "slot.right.circle",
-      "refs": {
-        "layout_slot_id": "slot.right.circle"
-      }
-    },
-    {
       "id": "slot.right.center.circle",
       "type": "circle",
       "attributes": {
@@ -278,76 +340,11 @@
       }
     },
     {
-      "id": "slot.left.pencil.line1.line",
-      "type": "line",
-      "attributes": {
-        "x1": 425.0,
-        "y1": 220.0,
-        "x2": 450.0,
-        "y2": 175.0,
-        "stroke": "#111111",
-        "stroke-width": 2.0
-      },
-      "source_ref": "slot.left.pencil.line1",
-      "refs": {
-        "layout_slot_id": "slot.left.pencil.line1"
-      }
-    },
-    {
-      "id": "slot.left.pencil.line2.line",
-      "type": "line",
-      "attributes": {
-        "x1": 425.0,
-        "y1": 220.0,
-        "x2": 450.0,
-        "y2": 180.0,
-        "stroke": "#111111",
-        "stroke-width": 2.0
-      },
-      "source_ref": "slot.left.pencil.line2",
-      "refs": {
-        "layout_slot_id": "slot.left.pencil.line2"
-      }
-    },
-    {
-      "id": "slot.right.radius1.line",
-      "type": "line",
-      "attributes": {
-        "x1": 650.0,
-        "y1": 230.0,
-        "x2": 710.0,
-        "y2": 165.0,
-        "stroke": "#3fa9f5",
-        "stroke-width": 2.5
-      },
-      "source_ref": "slot.right.radius1",
-      "refs": {
-        "layout_slot_id": "slot.right.radius1"
-      }
-    },
-    {
-      "id": "slot.right.radius2.line",
-      "type": "line",
-      "attributes": {
-        "x1": 650.0,
-        "y1": 230.0,
-        "x2": 560.0,
-        "y2": 255.0,
-        "stroke": "#3fa9f5",
-        "stroke-width": 2.5
-      },
-      "source_ref": "slot.right.radius2",
-      "refs": {
-        "layout_slot_id": "slot.right.radius2"
-      }
-    },
-    {
       "id": "slot.arrow.text",
       "type": "text",
       "attributes": {
         "x": 500.0,
         "y": 245.0,
-        "max_width": 972.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 45
@@ -364,7 +361,6 @@
       "attributes": {
         "x": 500.0,
         "y": 375.0,
-        "max_width": 972.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 30,
@@ -382,7 +378,6 @@
       "attributes": {
         "x": 345.0,
         "y": 430.0,
-        "max_width": 972.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 30

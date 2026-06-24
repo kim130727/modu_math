@@ -1,0 +1,90 @@
+{
+  "problem_id": "S3_초등_3_008844",
+  "problem_type": "object_comparison",
+  "metadata": {
+    "title": "저울로 가장 가벼운 것 찾기",
+    "tags": [],
+    "instruction": "가장 가벼운 것은 무엇인지 알맞은 말을 선택해 보세요.",
+    "question": "저울로 각도기, 컴퍼스, 지우개의 무게를 비교하고 가장 가벼운 것을 고르는 문제",
+    "required_layout_ids": [
+      "slot.opt.box",
+      "slot.scale.a.base",
+      "slot.scale.b.base",
+      "slot.scale.a.bar",
+      "slot.scale.b.bar",
+      "slot.scale.a.left",
+      "slot.scale.a.right",
+      "slot.scale.b.left",
+      "slot.scale.b.right"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.angle_measure",
+        "type": "object",
+        "name": "각도기"
+      },
+      {
+        "id": "obj.compass",
+        "type": "object",
+        "name": "컴퍼스"
+      },
+      {
+        "id": "obj.eraser",
+        "type": "object",
+        "name": "지우개"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "rel.a",
+          "rel.b"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.a",
+          "rel.b"
+        ]
+      },
+      "plan": {
+        "method": "compare_two_relations",
+        "description": "두 비교 관계를 읽고 가장 가벼운 대상을 찾는다."
+      },
+      "execute": {
+        "expected_operations": [
+          "read_first_comparison",
+          "read_second_comparison",
+          "compare_candidates"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "relation_consistency_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "lightest_object",
+      "description": "가장 가벼운 것",
+      "candidates": [
+        "각도기",
+        "컴퍼스",
+        "지우개"
+      ]
+    },
+    "value": null,
+    "unit": ""
+  }
+}

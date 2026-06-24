@@ -1,0 +1,79 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_009037",
+  "problem_type": "shape_selection",
+  "inputs": {
+    "total_ticks": 5,
+    "target_label": "정사각형",
+    "target_ticks": 1,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.choice.ga",
+      "value": {
+        "label": "가"
+      }
+    },
+    {
+      "ref": "obj.choice.na",
+      "value": {
+        "label": "나"
+      }
+    },
+    {
+      "ref": "obj.choice.da",
+      "value": {
+        "label": "다"
+      }
+    },
+    {
+      "ref": "obj.choice.ra",
+      "value": {
+        "label": "라"
+      }
+    },
+    {
+      "ref": "obj.choice.ma",
+      "value": {
+        "label": "마"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "selected_shape"
+  },
+  "method": "shape_property_check",
+  "plan": [
+    "각 보기의 도형 성질을 살펴 정사각형 조건에 맞는 것을 고른다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "가, 나, 다, 라, 마 중 정사각형 조건에 맞는 도형을 찾는다.",
+      "value": "마"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "선택한 도형이 정사각형인가",
+      "expected": "정사각형",
+      "actual": "마",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "selected_shape",
+      "description": "정사각형"
+    },
+    "value": "마",
+    "unit": ""
+  }
+}

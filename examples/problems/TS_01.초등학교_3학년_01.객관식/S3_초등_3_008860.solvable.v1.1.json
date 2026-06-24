@@ -1,0 +1,77 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008860",
+  "problem_type": "비교_들이",
+  "inputs": {
+    "total_ticks": 12,
+    "target_label": "더 많은 들이를 가진 용기",
+    "target_ticks": 1,
+    "target_count": 2,
+    "unit": "컵"
+  },
+  "given": [
+    {
+      "ref": "obj.cup_basin",
+      "value": {
+        "count": 9
+      }
+    },
+    {
+      "ref": "obj.cup_bucket",
+      "value": {
+        "count": 3
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "more_capacity_container"
+  },
+  "method": "compare_counts",
+  "plan": [
+    "세숫대야와 바가지를 컵 개수로 나타낸 값을 비교한다.",
+    "더 많은 컵에 해당하는 용기를 답으로 고른다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "세숫대야의 컵 개수",
+      "value": 9
+    },
+    {
+      "id": "step.2",
+      "expr": "바가지의 컵 개수",
+      "value": 3
+    },
+    {
+      "id": "step.3",
+      "expr": "9 > 3",
+      "value": true
+    },
+    {
+      "id": "step.4",
+      "expr": "더 많은 들이를 가진 용기",
+      "value": "세숫대야"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "세숫대야의 컵 개수가 바가지의 컵 개수보다 큰가",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "more_capacity_container",
+      "description": "세숫대야와 바가지 중 들이가 더 많은 것"
+    },
+    "value": "세숫대야",
+    "unit": ""
+  }
+}

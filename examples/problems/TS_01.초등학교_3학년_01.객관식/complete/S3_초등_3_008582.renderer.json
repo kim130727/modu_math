@@ -12,7 +12,6 @@
       "attributes": {
         "x": 60.0,
         "y": 37.0,
-        "max_width": 638.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 28
@@ -117,38 +116,6 @@
       }
     },
     {
-      "id": "slot.person_left.eye.left.circle",
-      "type": "circle",
-      "attributes": {
-        "cx": 232.0,
-        "cy": 128.0,
-        "r": 3.8,
-        "stroke": "none",
-        "stroke-width": 2.0,
-        "fill": "#2b2118"
-      },
-      "source_ref": "slot.person_left.eye.left",
-      "refs": {
-        "layout_slot_id": "slot.person_left.eye.left"
-      }
-    },
-    {
-      "id": "slot.person_left.eye.right.circle",
-      "type": "circle",
-      "attributes": {
-        "cx": 252.0,
-        "cy": 128.0,
-        "r": 3.8,
-        "stroke": "none",
-        "stroke-width": 2.0,
-        "fill": "#2b2118"
-      },
-      "source_ref": "slot.person_left.eye.right",
-      "refs": {
-        "layout_slot_id": "slot.person_left.eye.right"
-      }
-    },
-    {
       "id": "slot.person_left.smile.path",
       "type": "path",
       "attributes": {
@@ -199,6 +166,38 @@
       }
     },
     {
+      "id": "slot.person_left.eye.left.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 232.0,
+        "cy": 128.0,
+        "r": 3.8,
+        "stroke": "none",
+        "stroke-width": 2.0,
+        "fill": "#2b2118"
+      },
+      "source_ref": "slot.person_left.eye.left",
+      "refs": {
+        "layout_slot_id": "slot.person_left.eye.left"
+      }
+    },
+    {
+      "id": "slot.person_left.eye.right.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 252.0,
+        "cy": 128.0,
+        "r": 3.8,
+        "stroke": "none",
+        "stroke-width": 2.0,
+        "fill": "#2b2118"
+      },
+      "source_ref": "slot.person_left.eye.right",
+      "refs": {
+        "layout_slot_id": "slot.person_left.eye.right"
+      }
+    },
+    {
       "id": "slot.person_left.hand.left.circle",
       "type": "circle",
       "attributes": {
@@ -236,7 +235,6 @@
       "attributes": {
         "x": 97.0,
         "y": 168.0,
-        "max_width": 638.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 25
@@ -253,7 +251,6 @@
       "attributes": {
         "x": 205.0,
         "y": 196.0,
-        "max_width": 638.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 25
@@ -358,38 +355,6 @@
       }
     },
     {
-      "id": "slot.person_right.eye.left.circle",
-      "type": "circle",
-      "attributes": {
-        "cx": 432.0,
-        "cy": 123.0,
-        "r": 3.8,
-        "stroke": "none",
-        "stroke-width": 2.0,
-        "fill": "#2b2118"
-      },
-      "source_ref": "slot.person_right.eye.left",
-      "refs": {
-        "layout_slot_id": "slot.person_right.eye.left"
-      }
-    },
-    {
-      "id": "slot.person_right.eye.right.circle",
-      "type": "circle",
-      "attributes": {
-        "cx": 452.0,
-        "cy": 123.0,
-        "r": 3.8,
-        "stroke": "none",
-        "stroke-width": 2.0,
-        "fill": "#2b2118"
-      },
-      "source_ref": "slot.person_right.eye.right",
-      "refs": {
-        "layout_slot_id": "slot.person_right.eye.right"
-      }
-    },
-    {
       "id": "slot.person_right.smile.path",
       "type": "path",
       "attributes": {
@@ -472,6 +437,54 @@
       }
     },
     {
+      "id": "slot.person_right.glasses.bridge.line",
+      "type": "line",
+      "attributes": {
+        "x1": 441.0,
+        "y1": 122.0,
+        "x2": 443.0,
+        "y2": 122.0,
+        "stroke": "#27b7be",
+        "stroke-width": 3.0
+      },
+      "source_ref": "slot.person_right.glasses.bridge",
+      "refs": {
+        "layout_slot_id": "slot.person_right.glasses.bridge"
+      }
+    },
+    {
+      "id": "slot.person_right.eye.left.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 432.0,
+        "cy": 123.0,
+        "r": 3.8,
+        "stroke": "none",
+        "stroke-width": 2.0,
+        "fill": "#2b2118"
+      },
+      "source_ref": "slot.person_right.eye.left",
+      "refs": {
+        "layout_slot_id": "slot.person_right.eye.left"
+      }
+    },
+    {
+      "id": "slot.person_right.eye.right.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 452.0,
+        "cy": 123.0,
+        "r": 3.8,
+        "stroke": "none",
+        "stroke-width": 2.0,
+        "fill": "#2b2118"
+      },
+      "source_ref": "slot.person_right.eye.right",
+      "refs": {
+        "layout_slot_id": "slot.person_right.eye.right"
+      }
+    },
+    {
       "id": "slot.person_right.hand.left.circle",
       "type": "circle",
       "attributes": {
@@ -504,28 +517,11 @@
       }
     },
     {
-      "id": "slot.person_right.glasses.bridge.line",
-      "type": "line",
-      "attributes": {
-        "x1": 441.0,
-        "y1": 122.0,
-        "x2": 443.0,
-        "y2": 122.0,
-        "stroke": "#27b7be",
-        "stroke-width": 3.0
-      },
-      "source_ref": "slot.person_right.glasses.bridge",
-      "refs": {
-        "layout_slot_id": "slot.person_right.glasses.bridge"
-      }
-    },
-    {
       "id": "slot.name_right.text",
       "type": "text",
       "attributes": {
         "x": 550.0,
         "y": 159.0,
-        "max_width": 638.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 25
@@ -542,7 +538,6 @@
       "attributes": {
         "x": 405.0,
         "y": 191.0,
-        "max_width": 638.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 25

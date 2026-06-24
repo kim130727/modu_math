@@ -1,0 +1,86 @@
+{
+  "problem_id": "S3_초등_3_008846",
+  "problem_type": "estimate_weight_choice",
+  "metadata": {
+    "title": "양배추의 무게를 어림하기",
+    "tags": [],
+    "question": "양배추의 무게를 어림하는 알맞은 것을 선택하는 문제",
+    "required_layout_ids": [],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "알맞은 것을 선택하세요."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.cabbage",
+        "type": "vegetable",
+        "name": "양배추"
+      },
+      {
+        "id": "obj.flour",
+        "type": "food",
+        "name": "밀가루",
+        "mass_unit": "kg",
+        "mass_value": 1
+      },
+      {
+        "id": "obj.orange",
+        "type": "fruit",
+        "name": "귤",
+        "mass_unit": "g",
+        "mass_value": 100
+      },
+      {
+        "id": "obj.orange_group",
+        "type": "group",
+        "name": "귤 9개",
+        "count": 9
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.flour",
+          "obj.orange",
+          "obj.orange_group",
+          "obj.cabbage"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.estimate_by_comparison"
+        ]
+      },
+      "plan": {
+        "method": "comparison_estimation",
+        "description": "기준 물체의 무게를 바탕으로 양배추의 무게를 어림하고, 보기에서 알맞은 값을 고른다."
+      },
+      "execute": {
+        "expected_operations": [
+          "compare_reference_mass",
+          "choose_reasonable_estimate"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "unit_consistency_check",
+          "reasonableness_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "estimated_mass_choice",
+      "description": "양배추의 무게를 어림한 알맞은 보기"
+    },
+    "value": 900,
+    "unit": ""
+  }
+}

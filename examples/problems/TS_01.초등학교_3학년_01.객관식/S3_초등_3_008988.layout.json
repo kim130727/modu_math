@@ -1,0 +1,207 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008988",
+  "title": "직각삼각형 판별",
+  "canvas": {
+    "width": 720,
+    "height": 270,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.qbox",
+        "slot.q1",
+        "slot.q2",
+        "slot.q3",
+        "slot.q4",
+        "slot.q5",
+        "slot.q6"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.tri.1",
+        "slot.tri.2",
+        "slot.tri.3",
+        "slot.tri.mark"
+      ]
+    },
+    {
+      "id": "region.footer",
+      "role": "footer",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.mark.circle"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.qbox",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 10.0,
+        "y": 16.0,
+        "width": 12.0,
+        "height": 12.0
+      }
+    },
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "26.",
+        "style_role": "question",
+        "x": 34.0,
+        "y": 25.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "직각삼각형이면",
+        "style_role": "question",
+        "x": 70.0,
+        "y": 25.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "○",
+        "style_role": "question",
+        "x": 227.0,
+        "y": 25.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": ", 직각삼각형이 아니면",
+        "style_role": "question",
+        "x": 252.0,
+        "y": 25.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q5",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "×",
+        "style_role": "question",
+        "x": 446.0,
+        "y": 25.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q6",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "를 선택하세요.",
+        "style_role": "question",
+        "x": 470.0,
+        "y": 25.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.tri.1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 438.0,
+        "y1": 43.0,
+        "x2": 386.0,
+        "y2": 113.0
+      }
+    },
+    {
+      "id": "slot.tri.2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 438.0,
+        "y1": 43.0,
+        "x2": 492.0,
+        "y2": 113.0
+      }
+    },
+    {
+      "id": "slot.tri.3",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 386.0,
+        "y1": 113.0,
+        "x2": 492.0,
+        "y2": 113.0
+      }
+    },
+    {
+      "id": "slot.tri.mark",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "×",
+        "style_role": "annotation",
+        "x": 426.0,
+        "y": 123.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.mark.circle",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 24.0,
+        "cy": 120.0,
+        "r": 7.0,
+        "fill": "#ffffff"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.qbox",
+    "slot.q1",
+    "slot.q2",
+    "slot.q3",
+    "slot.q4",
+    "slot.q5",
+    "slot.q6",
+    "region.diagram",
+    "slot.tri.1",
+    "slot.tri.2",
+    "slot.tri.3",
+    "slot.tri.mark",
+    "region.footer",
+    "slot.mark.circle"
+  ]
+}

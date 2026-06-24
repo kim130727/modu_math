@@ -1,0 +1,226 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008808",
+  "title": "식탁의 무게 단위 선택",
+  "canvas": {
+    "width": 940,
+    "height": 348,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.header",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.qnum",
+        "slot.question",
+        "slot.checkbox"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.table.top",
+        "slot.table.face",
+        "slot.table.shadow",
+        "slot.table.leg_left_front",
+        "slot.table.leg_right_front",
+        "slot.table.leg_right_back",
+        "slot.table.leg_center"
+      ]
+    },
+    {
+      "id": "region.choice",
+      "role": "choice",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice"
+      ]
+    },
+    {
+      "id": "region.answer",
+      "role": "answer",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.checkbox",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "□",
+        "style_role": "question",
+        "x": 10.0,
+        "y": 28.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.qnum",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "37.",
+        "style_role": "question",
+        "x": 52.0,
+        "y": 28.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.question",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "식탁의 무게를 나타내는 데 알맞은 단위를 선택하세요.",
+        "style_role": "question",
+        "x": 96.0,
+        "y": 28.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.shadow",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 382.0,
+        "y": 82.0,
+        "width": 186.0,
+        "height": 98.0
+      }
+    },
+    {
+      "id": "slot.table.top",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            388.0,
+            46.0
+          ],
+          [
+            521.0,
+            46.0
+          ],
+          [
+            579.0,
+            81.0
+          ],
+          [
+            445.0,
+            81.0
+          ]
+        ]
+      }
+    },
+    {
+      "id": "slot.table.face",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            388.0,
+            46.0
+          ],
+          [
+            445.0,
+            81.0
+          ],
+          [
+            445.0,
+            90.0
+          ],
+          [
+            388.0,
+            55.0
+          ]
+        ]
+      }
+    },
+    {
+      "id": "slot.table.leg_left_front",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 406.0,
+        "y1": 83.0,
+        "x2": 406.0,
+        "y2": 154.0
+      }
+    },
+    {
+      "id": "slot.table.leg_right_front",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 502.0,
+        "y1": 83.0,
+        "x2": 502.0,
+        "y2": 154.0
+      }
+    },
+    {
+      "id": "slot.table.leg_right_back",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 542.0,
+        "y1": 68.0,
+        "x2": 542.0,
+        "y2": 146.0
+      }
+    },
+    {
+      "id": "slot.table.leg_center",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 446.0,
+        "y1": 83.0,
+        "x2": 446.0,
+        "y2": 128.0
+      }
+    },
+    {
+      "id": "slot.choice",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "( g , kg )",
+        "style_role": "question",
+        "x": 792.0,
+        "y": 228.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.header",
+    "slot.qnum",
+    "slot.question",
+    "slot.checkbox",
+    "region.diagram",
+    "slot.table.top",
+    "slot.table.face",
+    "slot.table.shadow",
+    "slot.table.leg_left_front",
+    "slot.table.leg_right_front",
+    "slot.table.leg_right_back",
+    "slot.table.leg_center",
+    "region.choice",
+    "slot.choice",
+    "region.answer"
+  ]
+}

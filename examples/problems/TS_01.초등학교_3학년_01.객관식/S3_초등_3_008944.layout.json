@@ -1,0 +1,252 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008944",
+  "title": "그림그래프와 비교",
+  "canvas": {
+    "width": 944.0,
+    "height": 570.0,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.table.outer",
+        "slot.table.v1",
+        "slot.table.v2",
+        "slot.table.v3",
+        "slot.table.h1",
+        "slot.legend.big",
+        "slot.legend.small",
+        "slot.q1",
+        "slot.title",
+        "slot.lb.kimchi",
+        "slot.lb.doenjang",
+        "slot.lb.bibim",
+        "slot.lb.naeng",
+        "slot.legend.big.label",
+        "slot.legend.small.label",
+        "slot.choice"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "12. 어느 음식점에서 일주일 동안 팔린 음식의 수를 조사하여 그림그래프로 나타내었습니다. 된장찌개보다 더 많이 팔린 음식을 모두 선택해 보세요.",
+        "style_role": "question",
+        "x": 12.0,
+        "y": 18.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.title",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "일주일 동안 팔린 음식",
+        "style_role": "title",
+        "x": 372.0,
+        "y": 74.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.outer",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 257.0,
+        "y": 91.0,
+        "width": 455.0,
+        "height": 268.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.table.v1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 370.0,
+        "y": 91.0,
+        "width": 0.0,
+        "height": 268.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.table.v2",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 484.0,
+        "y": 91.0,
+        "width": 0.0,
+        "height": 268.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.table.v3",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 598.0,
+        "y": 91.0,
+        "width": 0.0,
+        "height": 268.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.table.h1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 257.0,
+        "y": 283.0,
+        "width": 455.0,
+        "height": 0.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.lb.kimchi",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "김치찌개",
+        "style_role": "label",
+        "x": 280.0,
+        "y": 338.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.lb.doenjang",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "된장찌개",
+        "style_role": "label",
+        "x": 395.0,
+        "y": 338.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.lb.bibim",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "비빔\n밥",
+        "style_role": "label",
+        "x": 518.0,
+        "y": 320.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.lb.naeng",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "냉면",
+        "style_role": "label",
+        "x": 630.0,
+        "y": 338.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.legend.big",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 396.0,
+        "y": 382.0,
+        "width": 40.0,
+        "height": 30.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.legend.small",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 587.0,
+        "y": 386.0,
+        "width": 30.0,
+        "height": 20.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.legend.big.label",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "100그릇",
+        "style_role": "label",
+        "x": 440.0,
+        "y": 406.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.legend.small.label",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "10그릇",
+        "style_role": "label",
+        "x": 628.0,
+        "y": 406.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "( 김치찌개 , 비빔밥 , 냉면 )",
+        "style_role": "body",
+        "x": 588.0,
+        "y": 452.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.table.outer",
+    "slot.table.v1",
+    "slot.table.v2",
+    "slot.table.v3",
+    "slot.table.h1",
+    "slot.legend.big",
+    "slot.legend.small",
+    "slot.q1",
+    "slot.title",
+    "slot.lb.kimchi",
+    "slot.lb.doenjang",
+    "slot.lb.bibim",
+    "slot.lb.naeng",
+    "slot.legend.big.label",
+    "slot.legend.small.label",
+    "slot.choice"
+  ]
+}

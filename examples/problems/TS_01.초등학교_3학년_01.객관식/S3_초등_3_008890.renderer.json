@@ -1,0 +1,455 @@
+{
+  "problem_id": "S3_초등_3_008890",
+  "view_box": {
+    "width": 944.0,
+    "height": 665.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.table.header_left.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 179.0,
+        "y": 164.0,
+        "width": 94.0,
+        "height": 38.0,
+        "fill": "#dfe8c7",
+        "stroke": "#9bb65e",
+        "stroke-width": 1.0
+      },
+      "source_ref": "slot.table.header_left",
+      "refs": {
+        "layout_slot_id": "slot.table.header_left"
+      }
+    },
+    {
+      "id": "slot.table.header_right.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 273.0,
+        "y": 164.0,
+        "width": 341.0,
+        "height": 38.0,
+        "fill": "#dfe8c7",
+        "stroke": "#9bb65e",
+        "stroke-width": 1.0
+      },
+      "source_ref": "slot.table.header_right",
+      "refs": {
+        "layout_slot_id": "slot.table.header_right"
+      }
+    },
+    {
+      "id": "slot.table.row.ga.left.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 179.0,
+        "y": 202.0,
+        "width": 94.0,
+        "height": 56.0,
+        "fill": "#f7f9ef",
+        "stroke": "#9bb65e",
+        "stroke-width": 1.0
+      },
+      "source_ref": "slot.table.row.ga.left",
+      "refs": {
+        "layout_slot_id": "slot.table.row.ga.left"
+      }
+    },
+    {
+      "id": "slot.table.row.ga.right.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 273.0,
+        "y": 202.0,
+        "width": 341.0,
+        "height": 56.0,
+        "fill": "#ffffff",
+        "stroke": "#9bb65e",
+        "stroke-width": 1.0
+      },
+      "source_ref": "slot.table.row.ga.right",
+      "refs": {
+        "layout_slot_id": "slot.table.row.ga.right"
+      }
+    },
+    {
+      "id": "slot.table.row.na.left.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 179.0,
+        "y": 258.0,
+        "width": 94.0,
+        "height": 56.0,
+        "fill": "#f7f9ef",
+        "stroke": "#9bb65e",
+        "stroke-width": 1.0
+      },
+      "source_ref": "slot.table.row.na.left",
+      "refs": {
+        "layout_slot_id": "slot.table.row.na.left"
+      }
+    },
+    {
+      "id": "slot.table.row.na.right.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 273.0,
+        "y": 258.0,
+        "width": 341.0,
+        "height": 56.0,
+        "fill": "#ffffff",
+        "stroke": "#9bb65e",
+        "stroke-width": 1.0
+      },
+      "source_ref": "slot.table.row.na.right",
+      "refs": {
+        "layout_slot_id": "slot.table.row.na.right"
+      }
+    },
+    {
+      "id": "slot.table.row.da.left.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 179.0,
+        "y": 314.0,
+        "width": 94.0,
+        "height": 56.0,
+        "fill": "#f7f9ef",
+        "stroke": "#9bb65e",
+        "stroke-width": 1.0
+      },
+      "source_ref": "slot.table.row.da.left",
+      "refs": {
+        "layout_slot_id": "slot.table.row.da.left"
+      }
+    },
+    {
+      "id": "slot.table.row.da.right.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 273.0,
+        "y": 314.0,
+        "width": 341.0,
+        "height": 56.0,
+        "fill": "#ffffff",
+        "stroke": "#9bb65e",
+        "stroke-width": 1.0
+      },
+      "source_ref": "slot.table.row.da.right",
+      "refs": {
+        "layout_slot_id": "slot.table.row.da.right"
+      }
+    },
+    {
+      "id": "slot.table.row.ra.left.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 179.0,
+        "y": 370.0,
+        "width": 94.0,
+        "height": 56.0,
+        "fill": "#f7f9ef",
+        "stroke": "#9bb65e",
+        "stroke-width": 1.0
+      },
+      "source_ref": "slot.table.row.ra.left",
+      "refs": {
+        "layout_slot_id": "slot.table.row.ra.left"
+      }
+    },
+    {
+      "id": "slot.table.row.ra.right.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 273.0,
+        "y": 370.0,
+        "width": 341.0,
+        "height": 56.0,
+        "fill": "#ffffff",
+        "stroke": "#9bb65e",
+        "stroke-width": 1.0
+      },
+      "source_ref": "slot.table.row.ra.right",
+      "refs": {
+        "layout_slot_id": "slot.table.row.ra.right"
+      }
+    },
+    {
+      "id": "slot.table.row.ma.left.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 179.0,
+        "y": 426.0,
+        "width": 94.0,
+        "height": 48.0,
+        "fill": "#f7f9ef",
+        "stroke": "#9bb65e",
+        "stroke-width": 1.0
+      },
+      "source_ref": "slot.table.row.ma.left",
+      "refs": {
+        "layout_slot_id": "slot.table.row.ma.left"
+      }
+    },
+    {
+      "id": "slot.table.row.ma.right.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 273.0,
+        "y": 426.0,
+        "width": 341.0,
+        "height": 48.0,
+        "fill": "#ffffff",
+        "stroke": "#9bb65e",
+        "stroke-width": 1.0
+      },
+      "source_ref": "slot.table.row.ma.right",
+      "refs": {
+        "layout_slot_id": "slot.table.row.ma.right"
+      }
+    },
+    {
+      "id": "slot.qnum.text",
+      "type": "text",
+      "attributes": {
+        "x": 20.0,
+        "y": 28.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.qnum",
+      "refs": {
+        "layout_slot_id": "slot.qnum"
+      },
+      "text": "54."
+    },
+    {
+      "id": "slot.q1.text",
+      "type": "text",
+      "attributes": {
+        "x": 56.0,
+        "y": 28.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q1",
+      "refs": {
+        "layout_slot_id": "slot.q1"
+      },
+      "text": "진아네 마을의 농장에서 하루 동안 생신힌 토마토의 양을 조사하여 그림그래프로\n나타내었습니다. 토마토 생산량이 다 붕장보다 적은 농장을 모두 선택해\n보세요."
+    },
+    {
+      "id": "slot.title.text",
+      "type": "text",
+      "attributes": {
+        "x": 261.0,
+        "y": 118.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.title",
+      "refs": {
+        "layout_slot_id": "slot.title"
+      },
+      "text": "농장별 토마토 생산량"
+    },
+    {
+      "id": "slot.farm.ga.text",
+      "type": "text",
+      "attributes": {
+        "x": 216.0,
+        "y": 238.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.farm.ga",
+      "refs": {
+        "layout_slot_id": "slot.farm.ga"
+      },
+      "text": "가"
+    },
+    {
+      "id": "slot.farm.na.text",
+      "type": "text",
+      "attributes": {
+        "x": 216.0,
+        "y": 294.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.farm.na",
+      "refs": {
+        "layout_slot_id": "slot.farm.na"
+      },
+      "text": "나"
+    },
+    {
+      "id": "slot.farm.da.text",
+      "type": "text",
+      "attributes": {
+        "x": 216.0,
+        "y": 350.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.farm.da",
+      "refs": {
+        "layout_slot_id": "slot.farm.da"
+      },
+      "text": "다"
+    },
+    {
+      "id": "slot.farm.ra.text",
+      "type": "text",
+      "attributes": {
+        "x": 216.0,
+        "y": 406.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.farm.ra",
+      "refs": {
+        "layout_slot_id": "slot.farm.ra"
+      },
+      "text": "라"
+    },
+    {
+      "id": "slot.farm.ma.text",
+      "type": "text",
+      "attributes": {
+        "x": 216.0,
+        "y": 457.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.farm.ma",
+      "refs": {
+        "layout_slot_id": "slot.farm.ma"
+      },
+      "text": "마"
+    },
+    {
+      "id": "slot.legend.big.text",
+      "type": "text",
+      "attributes": {
+        "x": 662.0,
+        "y": 417.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 38
+      },
+      "source_ref": "slot.legend.big",
+      "refs": {
+        "layout_slot_id": "slot.legend.big"
+      },
+      "text": "🍅"
+    },
+    {
+      "id": "slot.legend.big_label.text",
+      "type": "text",
+      "attributes": {
+        "x": 707.0,
+        "y": 415.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.legend.big_label",
+      "refs": {
+        "layout_slot_id": "slot.legend.big_label"
+      },
+      "text": "10상자"
+    },
+    {
+      "id": "slot.legend.small.text",
+      "type": "text",
+      "attributes": {
+        "x": 664.0,
+        "y": 470.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.legend.small",
+      "refs": {
+        "layout_slot_id": "slot.legend.small"
+      },
+      "text": "🍅"
+    },
+    {
+      "id": "slot.legend.small_label.text",
+      "type": "text",
+      "attributes": {
+        "x": 707.0,
+        "y": 470.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.legend.small_label",
+      "refs": {
+        "layout_slot_id": "slot.legend.small_label"
+      },
+      "text": "1상자"
+    },
+    {
+      "id": "slot.choice.text",
+      "type": "text",
+      "attributes": {
+        "x": 354.0,
+        "y": 514.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice",
+      "refs": {
+        "layout_slot_id": "slot.choice"
+      },
+      "text": "( 가 농장, 나 농장, 다 농장, 라 농장, 마 농장 )"
+    },
+    {
+      "id": "slot.table.header_left_text.text",
+      "type": "text",
+      "attributes": {
+        "x": 205.0,
+        "y": 189.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.header_left_text",
+      "refs": {
+        "layout_slot_id": "slot.table.header_left_text"
+      },
+      "text": "농장"
+    },
+    {
+      "id": "slot.table.header_right_text.text",
+      "type": "text",
+      "attributes": {
+        "x": 391.0,
+        "y": 189.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.header_right_text",
+      "refs": {
+        "layout_slot_id": "slot.table.header_right_text"
+      },
+      "text": "토마토 생산량"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

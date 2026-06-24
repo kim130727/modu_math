@@ -1,0 +1,317 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008868",
+  "title": "오이와 토마토의 무게 비교",
+  "canvas": {
+    "width": 960,
+    "height": 454,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q1",
+        "slot.q2"
+      ]
+    },
+    {
+      "id": "region.diagram.left",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.left.scale.base",
+        "slot.left.scale.pan.left",
+        "slot.left.scale.pan.right",
+        "slot.left.scale.cucumber",
+        "slot.left.scale.coins",
+        "slot.left.scale.arm",
+        "slot.left.scale.pillar",
+        "slot.left.label",
+        "slot.left.scale.count"
+      ]
+    },
+    {
+      "id": "region.diagram.right",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.right.scale.base",
+        "slot.right.scale.pan.left",
+        "slot.right.scale.pan.right",
+        "slot.right.scale.tomato",
+        "slot.right.scale.coins",
+        "slot.right.scale.arm",
+        "slot.right.scale.pillar",
+        "slot.right.label",
+        "slot.right.scale.count"
+      ]
+    },
+    {
+      "id": "region.bottom",
+      "role": "answer",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "19. 양팔 저울을 사용하여 오이와 토마토의 무게를 알아본 것입니다. 오이와",
+        "style_role": "question",
+        "x": 14.0,
+        "y": 30.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "토마토 중에서 어느 것이 더 무거울까요?",
+        "style_role": "question",
+        "x": 14.0,
+        "y": 66.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.left.label",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "45개",
+        "style_role": "caption",
+        "x": 386.0,
+        "y": 112.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.right.label",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "39개",
+        "style_role": "caption",
+        "x": 616.0,
+        "y": 112.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.left.scale.base",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 240.0,
+        "y": 232.0,
+        "width": 190.0,
+        "height": 62.0
+      }
+    },
+    {
+      "id": "slot.left.scale.arm",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 272.0,
+        "y1": 203.0,
+        "x2": 404.0,
+        "y2": 203.0
+      }
+    },
+    {
+      "id": "slot.left.scale.pillar",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 337.0,
+        "y1": 203.0,
+        "x2": 337.0,
+        "y2": 255.0
+      }
+    },
+    {
+      "id": "slot.left.scale.pan.left",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 286.0,
+        "cy": 178.0,
+        "r": 27.0,
+        "fill": "#D9DEE8"
+      }
+    },
+    {
+      "id": "slot.left.scale.pan.right",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 388.0,
+        "cy": 178.0,
+        "r": 27.0,
+        "fill": "#D9DEE8"
+      }
+    },
+    {
+      "id": "slot.left.scale.cucumber",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 270.0,
+        "y": 145.0,
+        "width": 48.0,
+        "height": 16.0
+      }
+    },
+    {
+      "id": "slot.left.scale.coins",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 369.0,
+        "y": 140.0,
+        "width": 38.0,
+        "height": 26.0
+      }
+    },
+    {
+      "id": "slot.left.scale.count",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "TODO: 동전 더미 세부 형태",
+        "style_role": "caption",
+        "x": 250.0,
+        "y": 140.0,
+        "font_size": 18
+      }
+    },
+    {
+      "id": "slot.right.scale.base",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 547.0,
+        "y": 232.0,
+        "width": 190.0,
+        "height": 62.0
+      }
+    },
+    {
+      "id": "slot.right.scale.arm",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 579.0,
+        "y1": 203.0,
+        "x2": 711.0,
+        "y2": 203.0
+      }
+    },
+    {
+      "id": "slot.right.scale.pillar",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 644.0,
+        "y1": 203.0,
+        "x2": 644.0,
+        "y2": 255.0
+      }
+    },
+    {
+      "id": "slot.right.scale.pan.left",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 593.0,
+        "cy": 178.0,
+        "r": 27.0,
+        "fill": "#D9DEE8"
+      }
+    },
+    {
+      "id": "slot.right.scale.pan.right",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 695.0,
+        "cy": 178.0,
+        "r": 27.0,
+        "fill": "#D9DEE8"
+      }
+    },
+    {
+      "id": "slot.right.scale.tomato",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 577.0,
+        "y": 145.0,
+        "width": 50.0,
+        "height": 28.0
+      }
+    },
+    {
+      "id": "slot.right.scale.coins",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 676.0,
+        "y": 140.0,
+        "width": 38.0,
+        "height": 26.0
+      }
+    },
+    {
+      "id": "slot.right.scale.count",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "TODO: 동전 더미 세부 형태",
+        "style_role": "caption",
+        "x": 548.0,
+        "y": 140.0,
+        "font_size": 18
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q1",
+    "slot.q2",
+    "region.diagram.left",
+    "slot.left.scale.base",
+    "slot.left.scale.pan.left",
+    "slot.left.scale.pan.right",
+    "slot.left.scale.cucumber",
+    "slot.left.scale.coins",
+    "slot.left.scale.arm",
+    "slot.left.scale.pillar",
+    "slot.left.label",
+    "slot.left.scale.count",
+    "region.diagram.right",
+    "slot.right.scale.base",
+    "slot.right.scale.pan.left",
+    "slot.right.scale.pan.right",
+    "slot.right.scale.tomato",
+    "slot.right.scale.coins",
+    "slot.right.scale.arm",
+    "slot.right.scale.pillar",
+    "slot.right.label",
+    "slot.right.scale.count",
+    "region.bottom"
+  ]
+}

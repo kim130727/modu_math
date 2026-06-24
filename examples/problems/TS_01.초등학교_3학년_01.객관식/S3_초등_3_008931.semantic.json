@@ -1,0 +1,122 @@
+{
+  "problem_id": "S3_초등_3_008931",
+  "problem_type": "표 비교",
+  "metadata": {
+    "title": "종류별 책의 수",
+    "tags": [],
+    "instruction": "상희, 정국, 연재 중 표를 보고 알 수 있는 내용을 잘못 말한 사람을 선택하세요.",
+    "question": "표를 보고 알 수 있는 내용을 잘못 말한 사람을 선택하는 문제",
+    "required_layout_ids": [
+      "slot.tbl.outer",
+      "slot.tbl.h1",
+      "slot.tbl.h2",
+      "slot.tbl.v1",
+      "slot.tbl.v2",
+      "slot.tbl.v3",
+      "slot.tbl.v4",
+      "slot.tbl.v5"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.table.books",
+        "type": "book_count_table"
+      },
+      {
+        "id": "obj.books.picture_books",
+        "type": "book_category",
+        "name": "동화책",
+        "count": 35
+      },
+      {
+        "id": "obj.books.biographies",
+        "type": "book_category",
+        "name": "위인전",
+        "count": 22
+      },
+      {
+        "id": "obj.books.science",
+        "type": "book_category",
+        "name": "과학책",
+        "count": 15
+      },
+      {
+        "id": "obj.books.poems",
+        "type": "book_category",
+        "name": "동시집",
+        "count": 10
+      },
+      {
+        "id": "obj.books.total",
+        "type": "book_total",
+        "count": 82
+      },
+      {
+        "id": "obj.students.shi",
+        "type": "student",
+        "name": "상희"
+      },
+      {
+        "id": "obj.students.jungkook",
+        "type": "student",
+        "name": "정국"
+      },
+      {
+        "id": "obj.students.yeonjae",
+        "type": "student",
+        "name": "연재"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.books.picture_books",
+          "obj.books.biographies",
+          "obj.books.science",
+          "obj.books.poems",
+          "obj.books.total"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.statement.picture_books_most",
+          "rel.statement.total_is_82",
+          "rel.statement.biographies_vs_science"
+        ]
+      },
+      "plan": {
+        "method": "compare_table_statements",
+        "description": "표의 수와 각 말풍선의 주장 내용을 서로 비교한다."
+      },
+      "execute": {
+        "expected_operations": [
+          "compare_counts",
+          "check_total",
+          "check_difference"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "table_consistency_check",
+          "statement_match_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "wrong_speaker",
+      "description": "표를 보고 알 수 있는 내용을 잘못 말한 사람"
+    },
+    "value": 0,
+    "unit": ""
+  }
+}

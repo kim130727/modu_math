@@ -1,0 +1,74 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_009000",
+  "problem_type": "도형_성질_선택",
+  "inputs": {
+    "total_ticks": 4,
+    "target_label": "나",
+    "target_ticks": 1,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.shape.a",
+      "value": {
+        "label": "가"
+      }
+    },
+    {
+      "ref": "obj.shape.b",
+      "value": {
+        "label": "나"
+      }
+    },
+    {
+      "ref": "obj.shape.c",
+      "value": {
+        "label": "다"
+      }
+    },
+    {
+      "ref": "obj.shape.d",
+      "value": {
+        "label": "라"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "label_selection"
+  },
+  "method": "shape_property_selection",
+  "plan": [
+    "보기의 도형들을 살펴서 네 변의 길이가 모두 같은 도형을 찾는다.",
+    "해당 도형에 붙은 기호를 답으로 고른다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "가, 나, 다, 라 중 조건에 맞는 도형 찾기",
+      "value": "나"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "네 변의 길이가 모두 같은 사각형인지 확인",
+      "expected": "나",
+      "actual": "나",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "label_selection",
+      "description": "네 변의 길이가 모두 같은 사각형의 기호"
+    },
+    "value": 1,
+    "unit": ""
+  }
+}

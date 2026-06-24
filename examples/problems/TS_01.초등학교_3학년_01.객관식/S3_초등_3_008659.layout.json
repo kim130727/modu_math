@@ -23,10 +23,6 @@
       "flow": "absolute",
       "slot_ids": [
         "slot.circle",
-        "slot.pt.giyeok.point",
-        "slot.pt.nieun.point",
-        "slot.pt.digeut.point",
-        "slot.pt.rieul.point",
         "slot.grid.v0",
         "slot.grid.v1",
         "slot.grid.v2",
@@ -45,6 +41,10 @@
         "slot.grid.h6",
         "slot.grid.h7",
         "slot.grid.h8",
+        "slot.pt.giyeok.point",
+        "slot.pt.nieun.point",
+        "slot.pt.digeut.point",
+        "slot.pt.rieul.point",
         "slot.pt.giyeok.label",
         "slot.pt.nieun.label",
         "slot.pt.digeut.label",
@@ -341,11 +341,11 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 197.0,
-        "cy": 164.0,
-        "r": 4.0,
+        "cx": 197,
+        "cy": 164,
+        "r": 4,
         "stroke": "#E91E63",
-        "stroke_width": 1.0,
+        "stroke_width": 1,
         "fill": "#E91E63"
       }
     },
@@ -356,9 +356,10 @@
       "content": {
         "text": "ㄱ",
         "style_role": "label",
-        "x": 179.0,
-        "y": 182.0,
-        "font_size": 24
+        "x": 179,
+        "y": 182,
+        "font_size": 24,
+        "fill": "#111111"
       }
     },
     {
@@ -445,10 +446,6 @@
     "slot.question",
     "region.diagram",
     "slot.circle",
-    "slot.pt.giyeok.point",
-    "slot.pt.nieun.point",
-    "slot.pt.digeut.point",
-    "slot.pt.rieul.point",
     "slot.grid.v0",
     "slot.grid.v1",
     "slot.grid.v2",
@@ -467,6 +464,10 @@
     "slot.grid.h6",
     "slot.grid.h7",
     "slot.grid.h8",
+    "slot.pt.giyeok.point",
+    "slot.pt.nieun.point",
+    "slot.pt.digeut.point",
+    "slot.pt.rieul.point",
     "slot.pt.giyeok.label",
     "slot.pt.nieun.label",
     "slot.pt.digeut.label",

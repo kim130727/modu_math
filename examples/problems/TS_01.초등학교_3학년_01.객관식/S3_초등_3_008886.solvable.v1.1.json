@@ -1,0 +1,106 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008886",
+  "problem_type": "선택형_표_비교",
+  "inputs": {
+    "total_ticks": 4,
+    "target_label": "가장 큰 합의 장소를 말한 사람",
+    "target_ticks": 1,
+    "target_count": 2,
+    "unit": "명"
+  },
+  "given": [
+    {
+      "ref": "obj.place.museum",
+      "value": {
+        "haeun": 6,
+        "soul": 10
+      }
+    },
+    {
+      "ref": "obj.place.art",
+      "value": {
+        "haeun": 7,
+        "soul": 2
+      }
+    },
+    {
+      "ref": "obj.place.garden",
+      "value": {
+        "haeun": 9,
+        "soul": 8
+      }
+    },
+    {
+      "ref": "obj.place.science",
+      "value": {
+        "haeun": 5,
+        "soul": 3
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "correct_speaker"
+  },
+  "method": "compare_totals",
+  "plan": [
+    "각 장소별로 두 반의 학생 수를 합해 본다.",
+    "합이 가장 큰 장소를 찾는다.",
+    "그 장소를 말한 사람을 고른다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "박물관: 6 + 10",
+      "value": 16
+    },
+    {
+      "id": "step.2",
+      "expr": "미술관: 7 + 2",
+      "value": 9
+    },
+    {
+      "id": "step.3",
+      "expr": "식물원: 9 + 8",
+      "value": 17
+    },
+    {
+      "id": "step.4",
+      "expr": "과학관: 5 + 3",
+      "value": 8
+    },
+    {
+      "id": "step.5",
+      "expr": "가장 큰 합을 말한 사람 선택",
+      "value": "하은"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "가장 큰 합이 17인지 확인",
+      "expected": 17,
+      "actual": 17,
+      "pass": true
+    },
+    {
+      "id": "check.2",
+      "expr": "선택한 사람이 하은인지 확인",
+      "expected": "하은",
+      "actual": "하은",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "correct_speaker",
+      "description": "두 반 학생 수의 합이 가장 큰 장소를 말한 사람"
+    },
+    "value": "하은",
+    "unit": ""
+  }
+}

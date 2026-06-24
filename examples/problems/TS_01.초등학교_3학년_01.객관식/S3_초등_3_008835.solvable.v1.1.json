@@ -1,0 +1,85 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008835",
+  "problem_type": "ordering_by_weight",
+  "inputs": {
+    "total_ticks": 3,
+    "target_label": "정답 보기",
+    "target_ticks": 1,
+    "target_count": 3,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.table",
+      "value": {
+        "name": "식탁"
+      }
+    },
+    {
+      "ref": "obj.pear",
+      "value": {
+        "name": "배"
+      }
+    },
+    {
+      "ref": "obj.pineapple",
+      "value": {
+        "name": "파인애플"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "choice_number"
+  },
+  "method": "compare_and_order",
+  "plan": [
+    "세 대상의 무게를 비교하여 무거운 것부터 순서를 찾는다.",
+    "보기 중 그 순서와 일치하는 번호를 고른다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "무게 순서 확인",
+      "value": [
+        "식탁",
+        "파인애플",
+        "배"
+      ]
+    },
+    {
+      "id": "step.2",
+      "expr": "일치하는 보기 번호 선택",
+      "value": 2
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "② = 식탁, 파인애플, 배",
+      "expected": [
+        "식탁",
+        "파인애플",
+        "배"
+      ],
+      "actual": [
+        "식탁",
+        "파인애플",
+        "배"
+      ],
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "choice_number",
+      "description": "무게가 무거운 것부터의 순서로 바르게 나타낸 보기 번호"
+    },
+    "value": 2,
+    "unit": ""
+  }
+}

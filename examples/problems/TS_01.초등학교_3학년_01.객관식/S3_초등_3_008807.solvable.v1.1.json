@@ -1,0 +1,76 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008807",
+  "problem_type": "unit_selection",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "필통의 무게를 나타내는 단위",
+    "target_ticks": 0,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.pen_case",
+      "value": {
+        "name": "필통"
+      }
+    },
+    {
+      "ref": "obj.unit_g",
+      "value": {
+        "name": "g"
+      }
+    },
+    {
+      "ref": "obj.unit_kg",
+      "value": {
+        "name": "kg"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "unit"
+  },
+  "method": "unit_choice",
+  "plan": [
+    "물건의 무게를 나타내기에 알맞은 단위를 고른다.",
+    "1 kg보다 가벼운 물건이면 g를 선택한다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "필통의 무게 단위 후보를 확인한다.",
+      "value": [
+        "g",
+        "kg"
+      ]
+    },
+    {
+      "id": "step.2",
+      "expr": "1 kg보다 가벼운 물건의 단위를 고른다.",
+      "value": "g"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "선택한 단위가 g인지 확인한다.",
+      "expected": "g",
+      "actual": "g",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "unit",
+      "description": "필통의 무게를 나타내는 단위"
+    },
+    "value": 0,
+    "unit": "g"
+  }
+}

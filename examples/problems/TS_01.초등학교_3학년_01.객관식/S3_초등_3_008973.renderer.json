@@ -1,0 +1,108 @@
+{
+  "problem_id": "S3_초등_3_008973",
+  "view_box": {
+    "width": 496.0,
+    "height": 203.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.box.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 110.0,
+        "y": 25.0,
+        "width": 375.0,
+        "height": 32.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.box",
+      "refs": {
+        "layout_slot_id": "slot.box"
+      }
+    },
+    {
+      "id": "slot.q1.text",
+      "type": "text",
+      "attributes": {
+        "x": 18.0,
+        "y": 20.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q1",
+      "refs": {
+        "layout_slot_id": "slot.q1"
+      },
+      "text": "7. 계산 결과가 가장 큰 것을 찾아 기호를 선택해 보세요."
+    },
+    {
+      "id": "slot.eq1.text",
+      "type": "text",
+      "attributes": {
+        "x": 145.0,
+        "y": 44.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.eq1",
+      "refs": {
+        "layout_slot_id": "slot.eq1"
+      },
+      "text": "① 201 + 339"
+    },
+    {
+      "id": "slot.eq2.text",
+      "type": "text",
+      "attributes": {
+        "x": 268.0,
+        "y": 44.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.eq2",
+      "refs": {
+        "layout_slot_id": "slot.eq2"
+      },
+      "text": "② 622 - 115"
+    },
+    {
+      "id": "slot.eq3.text",
+      "type": "text",
+      "attributes": {
+        "x": 390.0,
+        "y": 44.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.eq3",
+      "refs": {
+        "layout_slot_id": "slot.eq3"
+      },
+      "text": "③ 746 - 228"
+    },
+    {
+      "id": "slot.choice.text",
+      "type": "text",
+      "attributes": {
+        "x": 195.0,
+        "y": 74.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice",
+      "refs": {
+        "layout_slot_id": "slot.choice"
+      },
+      "text": "( ① , ② , ③ )"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

@@ -1,0 +1,97 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_009058",
+  "problem_type": "도형_분류",
+  "inputs": {
+    "total_ticks": 5,
+    "target_label": "직각삼각형",
+    "target_ticks": 2,
+    "target_count": 2,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.triangle.가",
+      "value": {
+        "label": "가"
+      }
+    },
+    {
+      "ref": "obj.triangle.나",
+      "value": {
+        "label": "나"
+      }
+    },
+    {
+      "ref": "obj.triangle.다",
+      "value": {
+        "label": "다"
+      }
+    },
+    {
+      "ref": "obj.triangle.라",
+      "value": {
+        "label": "라"
+      }
+    },
+    {
+      "ref": "obj.triangle.마",
+      "value": {
+        "label": "마"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "selected_labels"
+  },
+  "method": "도형_분류",
+  "plan": [
+    "직각 표시가 있는 삼각형을 찾는다.",
+    "찾은 도형의 라벨을 선택한다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "직각 표시가 있는 도형 확인",
+      "value": [
+        "나",
+        "라"
+      ]
+    },
+    {
+      "id": "step.2",
+      "expr": "선택할 라벨 정리",
+      "value": [
+        "나",
+        "라"
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "직각 표시와 라벨이 대응하는가",
+      "expected": [
+        "나",
+        "라"
+      ],
+      "actual": [
+        "나",
+        "라"
+      ],
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "selected_labels",
+      "description": "직각삼각형으로 선택할 라벨"
+    },
+    "value": 2,
+    "unit": ""
+  }
+}

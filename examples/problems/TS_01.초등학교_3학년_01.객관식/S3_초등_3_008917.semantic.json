@@ -1,0 +1,100 @@
+{
+  "problem_id": "S3_초등_3_008917",
+  "problem_type": "표에서최대값찾기",
+  "metadata": {
+    "title": "존경하는 위인별 학생 수",
+    "tags": [],
+    "question": "표에서 가장 많은 학생들이 존경하는 위인을 찾는 문제",
+    "required_layout_ids": [
+      "slot.table.border",
+      "slot.table.h1",
+      "slot.table.h2",
+      "slot.table.v1",
+      "slot.table.v2",
+      "slot.table.v3",
+      "slot.table.v4",
+      "slot.table.v5",
+      "slot.table.v6"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "가장 많은 학생들이 존경하는 위인을 고르시오."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.sejong",
+        "type": "person",
+        "name": "세종대왕",
+        "students": 10
+      },
+      {
+        "id": "obj.kimgu",
+        "type": "person",
+        "name": "김구",
+        "students": 3
+      },
+      {
+        "id": "obj.leesunsin",
+        "type": "person",
+        "name": "이순신",
+        "students": 8
+      },
+      {
+        "id": "obj.yukgwansoon",
+        "type": "person",
+        "name": "유관순",
+        "students": 6
+      },
+      {
+        "id": "obj.total",
+        "type": "aggregate",
+        "name": "합계",
+        "students": 27
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.sejong",
+          "obj.kimgu",
+          "obj.leesunsin",
+          "obj.yukgwansoon"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.max_student_count"
+        ]
+      },
+      "plan": {
+        "method": "최댓값비교",
+        "description": "표의 위인별 학생 수를 서로 비교하여 가장 큰 값을 찾는다."
+      },
+      "execute": {
+        "expected_operations": [
+          "compare_values",
+          "identify_maximum"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "largest_count_matches_selected_person"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "person",
+      "description": "가장 많은 학생들이 존경하는 위인"
+    },
+    "value": "세종대왕",
+    "unit": ""
+  }
+}

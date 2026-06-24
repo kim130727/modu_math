@@ -1,0 +1,491 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008948",
+  "title": "좋아하는 운동별 학생 수",
+  "canvas": {
+    "width": 952,
+    "height": 402,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q1",
+        "slot.q2"
+      ]
+    },
+    {
+      "id": "region.table",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.title_box",
+        "slot.table.outer",
+        "slot.table.cell.r1c1",
+        "slot.table.cell.r1c2",
+        "slot.table.cell.r1c3",
+        "slot.table.cell.r1c4",
+        "slot.table.cell.r1c5",
+        "slot.table.cell.r1c6",
+        "slot.table.cell.r2c1",
+        "slot.table.cell.r2c2",
+        "slot.table.cell.r2c3",
+        "slot.table.cell.r2c4",
+        "slot.table.cell.r2c5",
+        "slot.table.cell.r2c6",
+        "slot.table.title",
+        "slot.table.r1c1",
+        "slot.table.r1c2",
+        "slot.table.r1c3",
+        "slot.table.r1c4",
+        "slot.table.r1c5",
+        "slot.table.r1c6",
+        "slot.table.r2c1",
+        "slot.table.r2c2",
+        "slot.table.r2c3",
+        "slot.table.r2c4",
+        "slot.table.r2c5",
+        "slot.table.r2c6",
+        "slot.choice"
+      ]
+    },
+    {
+      "id": "region.footer",
+      "role": "answer",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "□ 18. 사진이나 반 학생들이 좋아하는 운동을 조사하여 표로 나타내었습니다.",
+        "style_role": "question",
+        "x": 12.0,
+        "y": 26.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "가장 적은 학생들이 좋아하는 운동은 무엇일까요?",
+        "style_role": "question",
+        "x": 38.0,
+        "y": 68.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.title_box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 272.0,
+        "y": 86.0,
+        "width": 380.0,
+        "height": 46.0,
+        "stroke": "#4A90E2",
+        "stroke_width": 1.5,
+        "fill": "#D9E7F7"
+      }
+    },
+    {
+      "id": "slot.table.title",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "좋아하는 운동별 학생 수",
+        "style_role": "title",
+        "x": 462.0,
+        "y": 114.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.outer",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 170.0,
+        "y": 132.0,
+        "width": 646.0,
+        "height": 120.0,
+        "stroke": "#4A90E2",
+        "stroke_width": 1.5,
+        "fill": "#FFFFFF"
+      }
+    },
+    {
+      "id": "slot.table.cell.r1c1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 170.0,
+        "y": 132.0,
+        "width": 150.0,
+        "height": 40.0,
+        "stroke": "#4A90E2",
+        "stroke_width": 1.0,
+        "fill": "#D9E7F7"
+      }
+    },
+    {
+      "id": "slot.table.cell.r1c2",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 320.0,
+        "y": 132.0,
+        "width": 96.0,
+        "height": 40.0,
+        "stroke": "#4A90E2",
+        "stroke_width": 1.0,
+        "fill": "#D9E7F7"
+      }
+    },
+    {
+      "id": "slot.table.cell.r1c3",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 416.0,
+        "y": 132.0,
+        "width": 96.0,
+        "height": 40.0,
+        "stroke": "#4A90E2",
+        "stroke_width": 1.0,
+        "fill": "#D9E7F7"
+      }
+    },
+    {
+      "id": "slot.table.cell.r1c4",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 512.0,
+        "y": 132.0,
+        "width": 96.0,
+        "height": 40.0,
+        "stroke": "#4A90E2",
+        "stroke_width": 1.0,
+        "fill": "#D9E7F7"
+      }
+    },
+    {
+      "id": "slot.table.cell.r1c5",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 608.0,
+        "y": 132.0,
+        "width": 96.0,
+        "height": 40.0,
+        "stroke": "#4A90E2",
+        "stroke_width": 1.0,
+        "fill": "#D9E7F7"
+      }
+    },
+    {
+      "id": "slot.table.cell.r1c6",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 704.0,
+        "y": 132.0,
+        "width": 112.0,
+        "height": 40.0,
+        "stroke": "#4A90E2",
+        "stroke_width": 1.0,
+        "fill": "#D9E7F7"
+      }
+    },
+    {
+      "id": "slot.table.cell.r2c1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 170.0,
+        "y": 172.0,
+        "width": 150.0,
+        "height": 54.0,
+        "stroke": "#4A90E2",
+        "stroke_width": 1.0,
+        "fill": "#FFFFFF"
+      }
+    },
+    {
+      "id": "slot.table.cell.r2c2",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 320.0,
+        "y": 172.0,
+        "width": 96.0,
+        "height": 54.0,
+        "stroke": "#4A90E2",
+        "stroke_width": 1.0,
+        "fill": "#FFFFFF"
+      }
+    },
+    {
+      "id": "slot.table.cell.r2c3",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 416.0,
+        "y": 172.0,
+        "width": 96.0,
+        "height": 54.0,
+        "stroke": "#4A90E2",
+        "stroke_width": 1.0,
+        "fill": "#FFFFFF"
+      }
+    },
+    {
+      "id": "slot.table.cell.r2c4",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 512.0,
+        "y": 172.0,
+        "width": 96.0,
+        "height": 54.0,
+        "stroke": "#4A90E2",
+        "stroke_width": 1.0,
+        "fill": "#FFFFFF"
+      }
+    },
+    {
+      "id": "slot.table.cell.r2c5",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 608.0,
+        "y": 172.0,
+        "width": 96.0,
+        "height": 54.0,
+        "stroke": "#4A90E2",
+        "stroke_width": 1.0,
+        "fill": "#FFFFFF"
+      }
+    },
+    {
+      "id": "slot.table.cell.r2c6",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 704.0,
+        "y": 172.0,
+        "width": 112.0,
+        "height": 54.0,
+        "stroke": "#4A90E2",
+        "stroke_width": 1.0,
+        "fill": "#FFFFFF"
+      }
+    },
+    {
+      "id": "slot.table.r1c1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "운동",
+        "style_role": "table",
+        "x": 225.0,
+        "y": 159.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.r1c2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "축구",
+        "style_role": "table",
+        "x": 368.0,
+        "y": 159.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.r1c3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "야구",
+        "style_role": "table",
+        "x": 464.0,
+        "y": 159.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.r1c4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "농구",
+        "style_role": "table",
+        "x": 560.0,
+        "y": 159.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.r1c5",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "배구",
+        "style_role": "table",
+        "x": 656.0,
+        "y": 159.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.r1c6",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "합계",
+        "style_role": "table",
+        "x": 760.0,
+        "y": 159.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.r2c1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "학생 수(명)",
+        "style_role": "table",
+        "x": 225.0,
+        "y": 203.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.r2c2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "5",
+        "style_role": "table",
+        "x": 368.0,
+        "y": 203.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.r2c3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "6",
+        "style_role": "table",
+        "x": 464.0,
+        "y": 203.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.r2c4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "1",
+        "style_role": "table",
+        "x": 560.0,
+        "y": 203.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.r2c5",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "4",
+        "style_role": "table",
+        "x": 656.0,
+        "y": 203.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.r2c6",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "16",
+        "style_role": "table",
+        "x": 760.0,
+        "y": 203.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "( 축구, 야구, 농구, 배구 )",
+        "style_role": "caption",
+        "x": 592.0,
+        "y": 262.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q1",
+    "slot.q2",
+    "region.table",
+    "slot.title_box",
+    "slot.table.outer",
+    "slot.table.cell.r1c1",
+    "slot.table.cell.r1c2",
+    "slot.table.cell.r1c3",
+    "slot.table.cell.r1c4",
+    "slot.table.cell.r1c5",
+    "slot.table.cell.r1c6",
+    "slot.table.cell.r2c1",
+    "slot.table.cell.r2c2",
+    "slot.table.cell.r2c3",
+    "slot.table.cell.r2c4",
+    "slot.table.cell.r2c5",
+    "slot.table.cell.r2c6",
+    "slot.table.title",
+    "slot.table.r1c1",
+    "slot.table.r1c2",
+    "slot.table.r1c3",
+    "slot.table.r1c4",
+    "slot.table.r1c5",
+    "slot.table.r1c6",
+    "slot.table.r2c1",
+    "slot.table.r2c2",
+    "slot.table.r2c3",
+    "slot.table.r2c4",
+    "slot.table.r2c5",
+    "slot.table.r2c6",
+    "slot.choice",
+    "region.footer"
+  ]
+}

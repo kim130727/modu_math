@@ -1,0 +1,98 @@
+{
+  "problem_id": "S3_초등_3_008863",
+  "problem_type": "multiple_choice",
+  "metadata": {
+    "title": "L와 mL 사이의 관계",
+    "tags": [],
+    "question": "L와 mL 사이의 관계를 잘못 나타낸 것은 어느 것일까요?",
+    "required_layout_ids": [],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "정답을 고르시오."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.unit_L",
+        "type": "unit",
+        "name": "L"
+      },
+      {
+        "id": "obj.unit_mL",
+        "type": "unit",
+        "name": "mL"
+      },
+      {
+        "id": "obj.choice_1",
+        "type": "equation_choice",
+        "label": "①"
+      },
+      {
+        "id": "obj.choice_2",
+        "type": "equation_choice",
+        "label": "②"
+      },
+      {
+        "id": "obj.choice_3",
+        "type": "equation_choice",
+        "label": "③"
+      },
+      {
+        "id": "obj.choice_4",
+        "type": "equation_choice",
+        "label": "④"
+      },
+      {
+        "id": "obj.choice_5",
+        "type": "equation_choice",
+        "label": "⑤"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.choice_1",
+          "obj.choice_2",
+          "obj.choice_3",
+          "obj.choice_4",
+          "obj.choice_5"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.unit_conversion",
+          "rel.choice_5_misrepresents"
+        ]
+      },
+      "plan": {
+        "method": "equation_verification",
+        "description": "각 보기의 등식이 L와 mL의 관계를 바르게 나타내는지 확인한다."
+      },
+      "execute": {
+        "expected_operations": [
+          "read_each_choice",
+          "compare_equations",
+          "identify_incorrect_choice"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "compare_with_unit_conversion_rule"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "incorrect_choice",
+      "description": "L와 mL 사이의 관계를 잘못 나타낸 보기"
+    },
+    "value": 5,
+    "unit": ""
+  }
+}

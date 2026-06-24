@@ -1,0 +1,94 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_009055",
+  "problem_type": "도형_직각_판별",
+  "inputs": {
+    "total_ticks": 6,
+    "target_label": "직각이 있는 삼각형",
+    "target_ticks": 2,
+    "target_count": 2,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.triangle.가",
+      "value": {
+        "label": "가"
+      }
+    },
+    {
+      "ref": "obj.triangle.나",
+      "value": {
+        "label": "나"
+      }
+    },
+    {
+      "ref": "obj.triangle.다",
+      "value": {
+        "label": "다"
+      }
+    },
+    {
+      "ref": "obj.triangle.라",
+      "value": {
+        "label": "라"
+      }
+    },
+    {
+      "ref": "obj.triangle.마",
+      "value": {
+        "label": "마"
+      }
+    },
+    {
+      "ref": "obj.triangle.바",
+      "value": {
+        "label": "바"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "selected_labels"
+  },
+  "method": "shape_classification",
+  "plan": [
+    "각 삼각형의 변이 이루는 각을 보고 직각이 있는지를 판단한다.",
+    "직각이 보이는 삼각형의 라벨을 선택한다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "도형 6개를 확인한다",
+      "value": 6
+    },
+    {
+      "id": "step.2",
+      "expr": "직각이 있는 삼각형을 판별한다",
+      "value": [
+        "나",
+        "바"
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "선택 개수 확인",
+      "expected": 2,
+      "actual": 2,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "selected_labels",
+      "description": "직각이 있는 삼각형의 라벨"
+    },
+    "value": 2,
+    "unit": ""
+  }
+}

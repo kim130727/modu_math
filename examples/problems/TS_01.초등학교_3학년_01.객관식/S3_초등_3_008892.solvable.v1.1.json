@@ -1,0 +1,71 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008892",
+  "problem_type": "그림그래프_비교",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "김치찌개와 된장찌개의 판매량 비교",
+    "target_ticks": 0,
+    "target_count": 0,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.legend.big_bowl",
+      "value": "100그릇"
+    },
+    {
+      "ref": "obj.legend.small_bowl",
+      "value": "10그릇"
+    },
+    {
+      "ref": "obj.food.kimchi",
+      "value": "김치찌개"
+    },
+    {
+      "ref": "obj.food.beanpaste",
+      "value": "된장찌개"
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "choice"
+  },
+  "method": "pictograph_comparison",
+  "plan": [
+    "그림그래프에서 김치찌개와 된장찌개의 그릇 수를 비교한다.",
+    "더 많이 팔린 음식에 맞는 선택지를 고른다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "그림그래프의 김치찌개와 된장찌개를 비교한다.",
+      "value": "김치찌개가 더 많음"
+    },
+    {
+      "id": "step.2",
+      "expr": "더 많이에 해당하는 선택지를 고른다.",
+      "value": "많이"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "김치찌개가 된장찌개보다 더 많이 팔렸는가",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "choice",
+      "description": "된장찌개의 재료보다 김치찌개의 재료를 더 ( 많이 , 적게 ) 준비합니다."
+    },
+    "value": "많이",
+    "unit": ""
+  }
+}

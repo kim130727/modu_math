@@ -1,0 +1,96 @@
+{
+  "problem_id": "S3_초등_3_009050",
+  "problem_type": "shape_classification",
+  "metadata": {
+    "title": "선분을 찾아 선택하세요",
+    "tags": [
+      "초등수학",
+      "선분",
+      "직선",
+      "굽은선"
+    ],
+    "question": "선분을 찾아 선택하세요.",
+    "required_layout_ids": [
+      "slot.shape.top_left.line",
+      "slot.shape.top_left.p1",
+      "slot.shape.top_left.p2",
+      "slot.shape.top_mid.curve",
+      "slot.shape.top_mid.p1",
+      "slot.shape.top_mid.p2",
+      "slot.shape.top_right.curve",
+      "slot.shape.top_right.p1",
+      "slot.shape.top_right.p2",
+      "slot.shape.answer.line",
+      "slot.shape.answer.p1",
+      "slot.shape.answer.p2"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "여러 선 그림 중에서 선분을 찾는 문제"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.line_1",
+        "type": "line_figure",
+        "kind": "straight"
+      },
+      {
+        "id": "obj.line_2",
+        "type": "line_figure",
+        "kind": "curved"
+      },
+      {
+        "id": "obj.line_3",
+        "type": "line_figure",
+        "kind": "curved"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.line_1",
+          "obj.line_2",
+          "obj.line_3"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.classify_1",
+          "rel.classify_2",
+          "rel.classify_3"
+        ]
+      },
+      "plan": {
+        "method": "shape_classification",
+        "description": "곧은 선인지 굽은 선인지 보고 선분을 찾는다."
+      },
+      "execute": {
+        "expected_operations": [
+          "compare_shape",
+          "identify_straight_line",
+          "exclude_curved_line"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "shape_type_check",
+          "curved_line_exclusion_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "selected_line_segment",
+      "description": "선분"
+    },
+    "value": 1,
+    "unit": ""
+  }
+}

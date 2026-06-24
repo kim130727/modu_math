@@ -1,0 +1,221 @@
+{
+  "problem_id": "S3_초등_3_008870",
+  "view_box": {
+    "width": 948.0,
+    "height": 460.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.q1.text",
+      "type": "text",
+      "attributes": {
+        "x": 12.0,
+        "y": 30.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q1",
+      "refs": {
+        "layout_slot_id": "slot.q1"
+      },
+      "text": "23. 물병에 물을 가득 채운 후 그릇에 모두 부었더니 다음 그림과 같았습니다. 물병과 그릇 중 들이가 더 적은 것을 선택하세요."
+    },
+    {
+      "id": "slot.q2.text",
+      "type": "text",
+      "attributes": {
+        "x": 12.0,
+        "y": 62.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q2",
+      "refs": {
+        "layout_slot_id": "slot.q2"
+      },
+      "text": ""
+    },
+    {
+      "id": "slot.pic.bottle_body.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 406.0,
+        "y": 92.0,
+        "width": 112.0,
+        "height": 34.0,
+        "fill": "none",
+        "stroke": "#8EC6E8",
+        "stroke-width": 2.0,
+        "rx": 10.0,
+        "ry": 10.0
+      },
+      "source_ref": "slot.pic.bottle_body",
+      "refs": {
+        "layout_slot_id": "slot.pic.bottle_body"
+      }
+    },
+    {
+      "id": "slot.pic.bottle_open.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 517.5,
+        "cy": 116.5,
+        "r": 14.0,
+        "stroke": "#A7B0B8",
+        "stroke-width": 2.0,
+        "fill": "none"
+      },
+      "source_ref": "slot.pic.bottle_open",
+      "refs": {
+        "layout_slot_id": "slot.pic.bottle_open"
+      }
+    },
+    {
+      "id": "slot.pic.bottle_water.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 418 94 C 421 101, 423 105, 430 110 L 506 110 C 506 110, 505 104, 503 96 Z",
+        "stroke": "none",
+        "stroke-width": 2.0,
+        "fill": "#EAF6FF"
+      },
+      "source_ref": "slot.pic.bottle_water",
+      "refs": {
+        "layout_slot_id": "slot.pic.bottle_water"
+      }
+    },
+    {
+      "id": "slot.pic.bowl_outer.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 476.0,
+        "y": 180.0,
+        "width": 148.0,
+        "height": 74.0,
+        "fill": "none",
+        "stroke": "#8EC6E8",
+        "stroke-width": 2.0,
+        "rx": 10.0,
+        "ry": 10.0
+      },
+      "source_ref": "slot.pic.bowl_outer",
+      "refs": {
+        "layout_slot_id": "slot.pic.bowl_outer"
+      }
+    },
+    {
+      "id": "slot.pic.bowl_inner.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 550.0,
+        "cy": 180.0,
+        "r": 74.0,
+        "stroke": "#8EC6E8",
+        "stroke-width": 2.0,
+        "fill": "none"
+      },
+      "source_ref": "slot.pic.bowl_inner",
+      "refs": {
+        "layout_slot_id": "slot.pic.bowl_inner"
+      }
+    },
+    {
+      "id": "slot.pic.bowl_water.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 490 218 C 515 210, 590 210, 610 218 L 610 252 L 490 252 Z",
+        "stroke": "none",
+        "stroke-width": 2.0,
+        "fill": "#4DA8E0"
+      },
+      "source_ref": "slot.pic.bowl_water",
+      "refs": {
+        "layout_slot_id": "slot.pic.bowl_water"
+      }
+    },
+    {
+      "id": "slot.pic.bottle_top.line",
+      "type": "line",
+      "attributes": {
+        "x1": 444.0,
+        "y1": 90.0,
+        "x2": 516.0,
+        "y2": 116.0,
+        "stroke": "#8EC6E8",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.pic.bottle_top",
+      "refs": {
+        "layout_slot_id": "slot.pic.bottle_top"
+      }
+    },
+    {
+      "id": "slot.pic.bottle_handle.line",
+      "type": "line",
+      "attributes": {
+        "x1": 475.0,
+        "y1": 92.0,
+        "x2": 499.0,
+        "y2": 102.0,
+        "stroke": "#F36B6B",
+        "stroke-width": 4.0
+      },
+      "source_ref": "slot.pic.bottle_handle",
+      "refs": {
+        "layout_slot_id": "slot.pic.bottle_handle"
+      }
+    },
+    {
+      "id": "slot.pic.bottle_label.text",
+      "type": "text",
+      "attributes": {
+        "x": 406.0,
+        "y": 144.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 20
+      },
+      "source_ref": "slot.pic.bottle_label",
+      "refs": {
+        "layout_slot_id": "slot.pic.bottle_label"
+      },
+      "text": "물병"
+    },
+    {
+      "id": "slot.pic.bowl_label.text",
+      "type": "text",
+      "attributes": {
+        "x": 526.0,
+        "y": 286.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 20
+      },
+      "source_ref": "slot.pic.bowl_label",
+      "refs": {
+        "layout_slot_id": "slot.pic.bowl_label"
+      },
+      "text": "그릇"
+    },
+    {
+      "id": "slot.pic.option.text",
+      "type": "text",
+      "attributes": {
+        "x": 406.0,
+        "y": 330.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.pic.option",
+      "refs": {
+        "layout_slot_id": "slot.pic.option"
+      },
+      "text": "( 물병 , 그릇 )"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

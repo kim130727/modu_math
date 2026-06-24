@@ -1,0 +1,300 @@
+{
+  "problem_id": "S3_초등_3_008912",
+  "view_box": {
+    "width": 940.0,
+    "height": 397.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.table.rect.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 123.0,
+        "y": 116.0,
+        "width": 704.0,
+        "height": 81.0,
+        "fill": "#E4EBD0",
+        "stroke": "#9CCB59",
+        "stroke-width": 1.4
+      },
+      "source_ref": "slot.table.rect",
+      "refs": {
+        "layout_slot_id": "slot.table.rect"
+      }
+    },
+    {
+      "id": "slot.q.no.text",
+      "type": "text",
+      "attributes": {
+        "x": 12.0,
+        "y": 24.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q.no",
+      "refs": {
+        "layout_slot_id": "slot.q.no"
+      },
+      "text": "78."
+    },
+    {
+      "id": "slot.q.line1.text",
+      "type": "text",
+      "attributes": {
+        "x": 56.0,
+        "y": 24.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q.line1",
+      "refs": {
+        "layout_slot_id": "slot.q.line1"
+      },
+      "text": "정국이는 반 학생들이 생일에 받고 싶은 선물을 조사하여 표로 나타내었습니다."
+    },
+    {
+      "id": "slot.q.line2.text",
+      "type": "text",
+      "attributes": {
+        "x": 56.0,
+        "y": 64.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q.line2",
+      "refs": {
+        "layout_slot_id": "slot.q.line2"
+      },
+      "text": "가장 적은 학생들이 받고 싶은 선물을 선택하세요."
+    },
+    {
+      "id": "slot.table.title.text",
+      "type": "text",
+      "attributes": {
+        "x": 281.0,
+        "y": 96.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.title",
+      "refs": {
+        "layout_slot_id": "slot.table.title"
+      },
+      "text": "생일에 받고 싶은 선물별 학생 수"
+    },
+    {
+      "id": "slot.table.hdr1.text",
+      "type": "text",
+      "attributes": {
+        "x": 174.0,
+        "y": 144.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.hdr1",
+      "refs": {
+        "layout_slot_id": "slot.table.hdr1"
+      },
+      "text": "선물"
+    },
+    {
+      "id": "slot.table.hdr2.text",
+      "type": "text",
+      "attributes": {
+        "x": 364.0,
+        "y": 144.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.hdr2",
+      "refs": {
+        "layout_slot_id": "slot.table.hdr2"
+      },
+      "text": "책"
+    },
+    {
+      "id": "slot.table.hdr3.text",
+      "type": "text",
+      "attributes": {
+        "x": 452.0,
+        "y": 144.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.hdr3",
+      "refs": {
+        "layout_slot_id": "slot.table.hdr3"
+      },
+      "text": "휴대전화"
+    },
+    {
+      "id": "slot.table.hdr4.text",
+      "type": "text",
+      "attributes": {
+        "x": 567.0,
+        "y": 144.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.hdr4",
+      "refs": {
+        "layout_slot_id": "slot.table.hdr4"
+      },
+      "text": "게임기"
+    },
+    {
+      "id": "slot.table.hdr5.text",
+      "type": "text",
+      "attributes": {
+        "x": 684.0,
+        "y": 144.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.hdr5",
+      "refs": {
+        "layout_slot_id": "slot.table.hdr5"
+      },
+      "text": "옷"
+    },
+    {
+      "id": "slot.table.hdr6.text",
+      "type": "text",
+      "attributes": {
+        "x": 779.0,
+        "y": 144.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.hdr6",
+      "refs": {
+        "layout_slot_id": "slot.table.hdr6"
+      },
+      "text": "합계"
+    },
+    {
+      "id": "slot.table.val1.text",
+      "type": "text",
+      "attributes": {
+        "x": 154.0,
+        "y": 181.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.val1",
+      "refs": {
+        "layout_slot_id": "slot.table.val1"
+      },
+      "text": "학생 수(명)"
+    },
+    {
+      "id": "slot.table.val2.text",
+      "type": "text",
+      "attributes": {
+        "x": 347.0,
+        "y": 180.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.val2",
+      "refs": {
+        "layout_slot_id": "slot.table.val2"
+      },
+      "text": "6"
+    },
+    {
+      "id": "slot.table.val3.text",
+      "type": "text",
+      "attributes": {
+        "x": 446.0,
+        "y": 180.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.val3",
+      "refs": {
+        "layout_slot_id": "slot.table.val3"
+      },
+      "text": "12"
+    },
+    {
+      "id": "slot.table.val4.text",
+      "type": "text",
+      "attributes": {
+        "x": 567.0,
+        "y": 180.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.val4",
+      "refs": {
+        "layout_slot_id": "slot.table.val4"
+      },
+      "text": "8"
+    },
+    {
+      "id": "slot.table.val5.text",
+      "type": "text",
+      "attributes": {
+        "x": 685.0,
+        "y": 180.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.val5",
+      "refs": {
+        "layout_slot_id": "slot.table.val5"
+      },
+      "text": "4"
+    },
+    {
+      "id": "slot.table.val6.text",
+      "type": "text",
+      "attributes": {
+        "x": 773.0,
+        "y": 180.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.val6",
+      "refs": {
+        "layout_slot_id": "slot.table.val6"
+      },
+      "text": "30"
+    },
+    {
+      "id": "slot.choice.text",
+      "type": "text",
+      "attributes": {
+        "x": 603.0,
+        "y": 234.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice",
+      "refs": {
+        "layout_slot_id": "slot.choice"
+      },
+      "text": "( 책 , 휴대전화 , 게임기 , 옷 )"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

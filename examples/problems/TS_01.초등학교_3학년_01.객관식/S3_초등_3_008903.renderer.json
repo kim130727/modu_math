@@ -1,0 +1,380 @@
+{
+  "problem_id": "S3_초등_3_008903",
+  "view_box": {
+    "width": 940.0,
+    "height": 440.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.table.frame.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 138.0,
+        "y": 153.0,
+        "width": 708.0,
+        "height": 115.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.table.frame",
+      "refs": {
+        "layout_slot_id": "slot.table.frame"
+      }
+    },
+    {
+      "id": "slot.qno.text",
+      "type": "text",
+      "attributes": {
+        "x": 14.0,
+        "y": 26.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.qno",
+      "refs": {
+        "layout_slot_id": "slot.qno"
+      },
+      "text": "69."
+    },
+    {
+      "id": "slot.qtext.text",
+      "type": "text",
+      "attributes": {
+        "x": 52.0,
+        "y": 26.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.qtext",
+      "refs": {
+        "layout_slot_id": "slot.qtext"
+      },
+      "text": "영은이는 학교 학생들이 주말에 가고 싶은 장소를 남학생과 여학생으로 나누어 표로 나타내었습니다. 가장 많은 남학생이 가고 싶은 장소를 선택해 보세요."
+    },
+    {
+      "id": "slot.table.title.text",
+      "type": "text",
+      "attributes": {
+        "x": 260.0,
+        "y": 122.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.title",
+      "refs": {
+        "layout_slot_id": "slot.table.title"
+      },
+      "text": "주말에 가고 싶은 장소별 남녀 학생 수"
+    },
+    {
+      "id": "slot.table.h1.text",
+      "type": "text",
+      "attributes": {
+        "x": 184.0,
+        "y": 176.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.h1",
+      "refs": {
+        "layout_slot_id": "slot.table.h1"
+      },
+      "text": "장소"
+    },
+    {
+      "id": "slot.table.h2.text",
+      "type": "text",
+      "attributes": {
+        "x": 288.0,
+        "y": 176.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.h2",
+      "refs": {
+        "layout_slot_id": "slot.table.h2"
+      },
+      "text": "동물원"
+    },
+    {
+      "id": "slot.table.h3.text",
+      "type": "text",
+      "attributes": {
+        "x": 396.0,
+        "y": 176.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.h3",
+      "refs": {
+        "layout_slot_id": "slot.table.h3"
+      },
+      "text": "고궁"
+    },
+    {
+      "id": "slot.table.h4.text",
+      "type": "text",
+      "attributes": {
+        "x": 500.0,
+        "y": 176.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.h4",
+      "refs": {
+        "layout_slot_id": "slot.table.h4"
+      },
+      "text": "영화관"
+    },
+    {
+      "id": "slot.table.h5.text",
+      "type": "text",
+      "attributes": {
+        "x": 604.0,
+        "y": 176.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.h5",
+      "refs": {
+        "layout_slot_id": "slot.table.h5"
+      },
+      "text": "놀이공원"
+    },
+    {
+      "id": "slot.table.r1.text",
+      "type": "text",
+      "attributes": {
+        "x": 726.0,
+        "y": 176.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.r1",
+      "refs": {
+        "layout_slot_id": "slot.table.r1"
+      },
+      "text": "합계"
+    },
+    {
+      "id": "slot.table.r2.text",
+      "type": "text",
+      "attributes": {
+        "x": 166.0,
+        "y": 212.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.r2",
+      "refs": {
+        "layout_slot_id": "slot.table.r2"
+      },
+      "text": "남학생 수(명)"
+    },
+    {
+      "id": "slot.table.r3.text",
+      "type": "text",
+      "attributes": {
+        "x": 166.0,
+        "y": 250.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.r3",
+      "refs": {
+        "layout_slot_id": "slot.table.r3"
+      },
+      "text": "여학생 수(명)"
+    },
+    {
+      "id": "slot.table.r4.text",
+      "type": "text",
+      "attributes": {
+        "x": 288.0,
+        "y": 212.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.r4",
+      "refs": {
+        "layout_slot_id": "slot.table.r4"
+      },
+      "text": "27"
+    },
+    {
+      "id": "slot.table.r5.text",
+      "type": "text",
+      "attributes": {
+        "x": 392.0,
+        "y": 212.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.r5",
+      "refs": {
+        "layout_slot_id": "slot.table.r5"
+      },
+      "text": "15"
+    },
+    {
+      "id": "slot.choices.text",
+      "type": "text",
+      "attributes": {
+        "x": 491.0,
+        "y": 301.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choices",
+      "refs": {
+        "layout_slot_id": "slot.choices"
+      },
+      "text": "( 동물원 , 고궁 , 영화관 , 놀이공원 )"
+    },
+    {
+      "id": "slot.table.r6.text",
+      "type": "text",
+      "attributes": {
+        "x": 496.0,
+        "y": 212.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.r6",
+      "refs": {
+        "layout_slot_id": "slot.table.r6"
+      },
+      "text": "42"
+    },
+    {
+      "id": "slot.table.r7.text",
+      "type": "text",
+      "attributes": {
+        "x": 602.0,
+        "y": 212.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.r7",
+      "refs": {
+        "layout_slot_id": "slot.table.r7"
+      },
+      "text": "33"
+    },
+    {
+      "id": "slot.table.r8.text",
+      "type": "text",
+      "attributes": {
+        "x": 716.0,
+        "y": 212.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.r8",
+      "refs": {
+        "layout_slot_id": "slot.table.r8"
+      },
+      "text": "117"
+    },
+    {
+      "id": "slot.table.r9.text",
+      "type": "text",
+      "attributes": {
+        "x": 288.0,
+        "y": 250.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.r9",
+      "refs": {
+        "layout_slot_id": "slot.table.r9"
+      },
+      "text": "17"
+    },
+    {
+      "id": "slot.table.r10.text",
+      "type": "text",
+      "attributes": {
+        "x": 392.0,
+        "y": 250.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.r10",
+      "refs": {
+        "layout_slot_id": "slot.table.r10"
+      },
+      "text": "26"
+    },
+    {
+      "id": "slot.table.r11.text",
+      "type": "text",
+      "attributes": {
+        "x": 496.0,
+        "y": 250.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.r11",
+      "refs": {
+        "layout_slot_id": "slot.table.r11"
+      },
+      "text": "21"
+    },
+    {
+      "id": "slot.table.r12.text",
+      "type": "text",
+      "attributes": {
+        "x": 602.0,
+        "y": 250.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.r12",
+      "refs": {
+        "layout_slot_id": "slot.table.r12"
+      },
+      "text": "39"
+    },
+    {
+      "id": "slot.table.r13.text",
+      "type": "text",
+      "attributes": {
+        "x": 716.0,
+        "y": 250.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.r13",
+      "refs": {
+        "layout_slot_id": "slot.table.r13"
+      },
+      "text": "103"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

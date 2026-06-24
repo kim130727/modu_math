@@ -1,0 +1,88 @@
+{
+  "problem_id": "S3_초등_3_009013",
+  "problem_type": "geometry_line_selection",
+  "metadata": {
+    "title": "직선 알아보기",
+    "tags": [],
+    "question": "직선을 알아보려고 합니다. 점 ㄱ과 점 ㄴ을 지나 양쪽으로 길게 늘인 직선으로 알맞은 것을 선택하세요.",
+    "required_layout_ids": [
+      "slot.choice1.line",
+      "slot.choice1.p1",
+      "slot.choice1.p2",
+      "slot.choice2.line",
+      "slot.choice2.p1",
+      "slot.choice2.p2",
+      "slot.choice3.line",
+      "slot.choice3.p1",
+      "slot.choice3.p2",
+      "slot.ans.line",
+      "slot.ans.p1",
+      "slot.ans.p2"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "보기 중 직선을 고른다."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.point_g",
+        "type": "point",
+        "label": "ㄱ"
+      },
+      {
+        "id": "obj.point_n",
+        "type": "point",
+        "label": "ㄴ"
+      },
+      {
+        "id": "obj.line_examples",
+        "type": "line_examples",
+        "count": 3
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.point_g",
+          "obj.point_n",
+          "obj.line_examples"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.passes_through_points",
+          "rel.select_defining_line"
+        ]
+      },
+      "plan": {
+        "method": "definition_matching",
+        "description": "직선의 정의에 맞는 그림을 찾는다."
+      },
+      "execute": {
+        "expected_operations": [
+          "compare_examples",
+          "match_definition"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "definition_consistency_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "selected_example",
+      "description": "점 ㄱ과 점 ㄴ을 지나 양쪽으로 길게 늘인 직선"
+    },
+    "value": 0,
+    "unit": ""
+  }
+}

@@ -1,0 +1,158 @@
+{
+  "problem_id": "S3_초등_3_008986",
+  "view_box": {
+    "width": 840.0,
+    "height": 440.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.header.icon.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 10.0,
+        "y": 12.0,
+        "width": 12.0,
+        "height": 12.0,
+        "fill": "none",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.header.icon",
+      "refs": {
+        "layout_slot_id": "slot.header.icon"
+      }
+    },
+    {
+      "id": "slot.header.text.text",
+      "type": "text",
+      "attributes": {
+        "x": 30.0,
+        "y": 29.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.header.text",
+      "refs": {
+        "layout_slot_id": "slot.header.text"
+      },
+      "text": "24. 알맞은 말을 선택하세요."
+    },
+    {
+      "id": "slot.tri.right_angle.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 372.0,
+        "y": 101.0,
+        "width": 9.0,
+        "height": 9.0,
+        "fill": "none",
+        "stroke": "#FF8FB3",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.tri.right_angle",
+      "refs": {
+        "layout_slot_id": "slot.tri.right_angle"
+      }
+    },
+    {
+      "id": "slot.tri.side_left.line",
+      "type": "line",
+      "attributes": {
+        "x1": 372.0,
+        "y1": 43.0,
+        "x2": 372.0,
+        "y2": 111.0,
+        "stroke": "#666666",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.tri.side_left",
+      "refs": {
+        "layout_slot_id": "slot.tri.side_left"
+      }
+    },
+    {
+      "id": "slot.tri.side_bottom.line",
+      "type": "line",
+      "attributes": {
+        "x1": 372.0,
+        "y1": 111.0,
+        "x2": 474.0,
+        "y2": 111.0,
+        "stroke": "#666666",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.tri.side_bottom",
+      "refs": {
+        "layout_slot_id": "slot.tri.side_bottom"
+      }
+    },
+    {
+      "id": "slot.tri.side_diag.line",
+      "type": "line",
+      "attributes": {
+        "x1": 372.0,
+        "y1": 43.0,
+        "x2": 474.0,
+        "y2": 111.0,
+        "stroke": "#666666",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.tri.side_diag",
+      "refs": {
+        "layout_slot_id": "slot.tri.side_diag"
+      }
+    },
+    {
+      "id": "slot.box.frame.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 38.0,
+        "y": 136.0,
+        "width": 778.0,
+        "height": 144.0,
+        "fill": "none",
+        "stroke": "#B8A6D8",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.box.frame",
+      "refs": {
+        "layout_slot_id": "slot.box.frame"
+      }
+    },
+    {
+      "id": "slot.box.text1.text",
+      "type": "text",
+      "attributes": {
+        "x": 415.0,
+        "y": 177.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.box.text1",
+      "refs": {
+        "layout_slot_id": "slot.box.text1"
+      },
+      "text": "( 한, 두, 세 ) 각이 직각인 삼각형을 직각삼각형이라고 합니"
+    },
+    {
+      "id": "slot.box.text2.text",
+      "type": "text",
+      "attributes": {
+        "x": 415.0,
+        "y": 221.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.box.text2",
+      "refs": {
+        "layout_slot_id": "slot.box.text2"
+      },
+      "text": "다."
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

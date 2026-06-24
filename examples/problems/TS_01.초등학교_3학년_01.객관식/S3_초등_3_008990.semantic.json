@@ -1,0 +1,79 @@
+{
+  "problem_id": "S3_초등_3_008990",
+  "problem_type": "도형_판별",
+  "metadata": {
+    "title": "직사각형 판별",
+    "tags": [],
+    "question": "직사각형인지 아닌지 판별하여 ○ 또는 ×를 선택하는 문제",
+    "required_layout_ids": [
+      "slot.shape.top",
+      "slot.mark.left",
+      "slot.mark.right",
+      "slot.shape.bottom",
+      "slot.rt.mark1",
+      "slot.rt.mark2"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "직사각형이면 ○, 직사각형이 아니면 ×를 선택하세요."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.shape.target",
+        "type": "quadrilateral"
+      },
+      {
+        "id": "obj.choice.circle",
+        "type": "choice_marker",
+        "symbol": "○"
+      },
+      {
+        "id": "obj.choice.cross",
+        "type": "choice_marker",
+        "symbol": "×"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.shape.target"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.definition"
+        ]
+      },
+      "plan": {
+        "method": "정의_판별",
+        "description": "도형의 네 각이 모두 직각인지 확인하여 직사각형 여부를 판단한다."
+      },
+      "execute": {
+        "expected_operations": [
+          "각의 직각 여부 확인",
+          "직사각형/비직사각형 판정",
+          "선택 기호 대응"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "정의와 판정 결과 일치 여부 확인"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "choice_symbol",
+      "description": "직사각형이 아니면 선택하는 기호"
+    },
+    "value": 0,
+    "unit": ""
+  }
+}

@@ -1,0 +1,179 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008827",
+  "title": "포도주스의 양을 어림해 보자",
+  "canvas": {
+    "width": 920,
+    "height": 380,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.girl.todo",
+        "slot.juice.todo",
+        "slot.ml.gap",
+        "slot.q1",
+        "slot.bubble.1",
+        "slot.bubble.2",
+        "slot.body.1a",
+        "slot.body.1b",
+        "slot.body.1c",
+        "slot.body.2",
+        "slot.body.3"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "60. 포도주스의 양을 어림해 보려고 합니다. 알맞은 것을 선택해 보세요.",
+        "style_role": "question",
+        "x": 24.0,
+        "y": 32.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.bubble.1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "1L와 200 mL 우유갑으로",
+        "style_role": "body",
+        "x": 305.0,
+        "y": 92.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.bubble.2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "포도주스의 양을 어림해 볼까?",
+        "style_role": "body",
+        "x": 305.0,
+        "y": 132.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.girl.todo",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 126.0,
+        "y": 54.0,
+        "width": 68.0,
+        "height": 82.0
+      }
+    },
+    {
+      "id": "slot.juice.todo",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 775.0,
+        "y": 46.0,
+        "width": 60.0,
+        "height": 100.0
+      }
+    },
+    {
+      "id": "slot.body.1a",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "(2) 포도주스의 양은",
+        "style_role": "body",
+        "x": 24.0,
+        "y": 200.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.ml.gap",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 244.0,
+        "y": 179.0,
+        "width": 46.0,
+        "height": 50.0
+      }
+    },
+    {
+      "id": "slot.body.1b",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "으로 4번쯤 들어가므로 약 ( 800 mL , 8000 mL )입니다.",
+        "style_role": "body",
+        "x": 292.0,
+        "y": 200.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.body.1c",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "니다.",
+        "style_role": "body",
+        "x": 24.0,
+        "y": 244.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.body.2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "(2) 포도주스의 양은 200 mL짜리 우유가 4번쯤 들어가므로 약 800 mL로 어림할 수",
+        "style_role": "body",
+        "x": 24.0,
+        "y": 286.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.body.3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "있습니다.",
+        "style_role": "body",
+        "x": 24.0,
+        "y": 328.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.girl.todo",
+    "slot.juice.todo",
+    "slot.ml.gap",
+    "slot.q1",
+    "slot.bubble.1",
+    "slot.bubble.2",
+    "slot.body.1a",
+    "slot.body.1b",
+    "slot.body.1c",
+    "slot.body.2",
+    "slot.body.3"
+  ]
+}

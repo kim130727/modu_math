@@ -1,0 +1,127 @@
+{
+  "problem_id": "S3_초등_3_008985",
+  "problem_type": "geometry_angle_identification",
+  "metadata": {
+    "title": "각 ㄱㄴㄷ을 바르게 그린 것을 선택하세요.",
+    "tags": [],
+    "question": "각 ㄱ ㄴ ㄷ을 바르게 그린 것을 선택하세요.",
+    "required_layout_ids": [
+      "slot.choice1.frame",
+      "slot.choice1.ring1",
+      "slot.choice1.ring2",
+      "slot.choice1.ring3",
+      "slot.choice1.ring4",
+      "slot.choice1.ring5",
+      "slot.choice1.ring6",
+      "slot.choice1.ring7",
+      "slot.choice1.ring8",
+      "slot.choice1.ring9",
+      "slot.choice1.ring10",
+      "slot.choice1.line1",
+      "slot.choice1.line2",
+      "slot.choice1.pt1",
+      "slot.choice1.pt2",
+      "slot.choice1.pt3",
+      "slot.choice2.frame",
+      "slot.choice2.ring1",
+      "slot.choice2.ring2",
+      "slot.choice2.ring3",
+      "slot.choice2.ring4",
+      "slot.choice2.ring5",
+      "slot.choice2.ring6",
+      "slot.choice2.ring7",
+      "slot.choice2.ring8",
+      "slot.choice2.ring9",
+      "slot.choice2.ring10",
+      "slot.choice2.line1",
+      "slot.choice2.line2",
+      "slot.choice2.pt1",
+      "slot.choice2.pt2",
+      "slot.choice2.pt3",
+      "slot.answer.frame",
+      "slot.answer.ring1",
+      "slot.answer.ring2",
+      "slot.answer.ring3",
+      "slot.answer.ring4",
+      "slot.answer.ring5",
+      "slot.answer.ring6",
+      "slot.answer.ring7",
+      "slot.answer.ring8",
+      "slot.answer.ring9",
+      "slot.answer.ring10",
+      "slot.answer.line1",
+      "slot.answer.line2",
+      "slot.answer.pt1",
+      "slot.answer.pt2",
+      "slot.answer.pt3"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "각의 이름과 꼭짓점의 위치가 맞는 그림을 고른다.",
+    "points": 0
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.angle_name",
+        "type": "angle_name",
+        "name": "ㄱㄴㄷ"
+      },
+      {
+        "id": "obj.vertex",
+        "type": "point",
+        "label": "ㄴ"
+      },
+      {
+        "id": "obj.ray_point_1",
+        "type": "point",
+        "label": "ㄱ"
+      },
+      {
+        "id": "obj.ray_point_2",
+        "type": "point",
+        "label": "ㄷ"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.angle_name"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.vertex_at_middle_label"
+        ]
+      },
+      "plan": {
+        "method": "vertex_match",
+        "description": "각의 이름에서 가운데 글자가 꼭짓점인지 확인한다."
+      },
+      "execute": {
+        "expected_operations": [
+          "identify_vertex",
+          "compare_diagrams"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "vertex_label_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "correct_diagram_selection",
+      "description": "각 ㄱ ㄴ ㄷ을 바르게 그린 그림"
+    },
+    "value": 1,
+    "unit": ""
+  }
+}

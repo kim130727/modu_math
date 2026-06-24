@@ -1,0 +1,109 @@
+{
+  "problem_id": "S3_초등_3_009065",
+  "view_box": {
+    "width": 766.0,
+    "height": 243.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.header.mark.text",
+      "type": "text",
+      "attributes": {
+        "x": 18.0,
+        "y": 18.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.header.mark",
+      "refs": {
+        "layout_slot_id": "slot.header.mark"
+      },
+      "text": "□"
+    },
+    {
+      "id": "slot.header.text.text",
+      "type": "text",
+      "attributes": {
+        "x": 40.0,
+        "y": 18.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.header.text",
+      "refs": {
+        "layout_slot_id": "slot.header.text"
+      },
+      "text": "6. 알맞은 말을 선택하세요."
+    },
+    {
+      "id": "slot.body.box.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 18.0,
+        "y": 40.0,
+        "width": 739.0,
+        "height": 78.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.body.box",
+      "refs": {
+        "layout_slot_id": "slot.body.box"
+      }
+    },
+    {
+      "id": "slot.body.diagram.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 624.0,
+        "y": 54.0,
+        "width": 103.0,
+        "height": 63.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.body.diagram",
+      "refs": {
+        "layout_slot_id": "slot.body.diagram"
+      }
+    },
+    {
+      "id": "slot.body.text1.text",
+      "type": "text",
+      "attributes": {
+        "x": 47.0,
+        "y": 79.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.body.text1",
+      "refs": {
+        "layout_slot_id": "slot.body.text1"
+      },
+      "text": "( 한, 두, 네 ) 각이 모두 직각이고 ( 한, 두, 네 ) 변의"
+    },
+    {
+      "id": "slot.body.text2.text",
+      "type": "text",
+      "attributes": {
+        "x": 47.0,
+        "y": 108.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.body.text2",
+      "refs": {
+        "layout_slot_id": "slot.body.text2"
+      },
+      "text": "길이가 모두 같은 사각형을 정사각형이라고 합니다."
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

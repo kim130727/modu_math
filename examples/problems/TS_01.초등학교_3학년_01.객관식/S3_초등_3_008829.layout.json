@@ -1,0 +1,241 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008829",
+  "title": "알맞은 단위를 골라 선택하세요",
+  "canvas": {
+    "width": 768,
+    "height": 384,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.top",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.qmark",
+        "slot.qnum",
+        "slot.instruction",
+        "slot.main_sentence_3"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.drum.body",
+        "slot.drum.rim.top",
+        "slot.drum.rim.mid1",
+        "slot.drum.rim.mid2",
+        "slot.drum.highlight",
+        "slot.drum.cap"
+      ]
+    },
+    {
+      "id": "region.middle",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.main_sentence_1",
+        "slot.main_sentence_2",
+        "slot.unit.mL",
+        "slot.unit.L"
+      ]
+    },
+    {
+      "id": "region.bottom",
+      "role": "support",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.qmark",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "□",
+        "style_role": "question",
+        "x": 12.0,
+        "y": 34.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.qnum",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "62.",
+        "style_role": "question",
+        "x": 42.0,
+        "y": 34.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.instruction",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "알맞은 단위를 골라 선택하세요.",
+        "style_role": "question",
+        "x": 92.0,
+        "y": 34.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.drum.body",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 442.0,
+        "y": 62.0,
+        "width": 84.0,
+        "height": 124.0
+      }
+    },
+    {
+      "id": "slot.drum.rim.top",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 484.0,
+        "cy": 68.0,
+        "r": 42.0,
+        "fill": "#D0D0D0"
+      }
+    },
+    {
+      "id": "slot.drum.rim.mid1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 442.0,
+        "y1": 112.0,
+        "x2": 526.0,
+        "y2": 112.0
+      }
+    },
+    {
+      "id": "slot.drum.rim.mid2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 442.0,
+        "y1": 147.0,
+        "x2": 526.0,
+        "y2": 147.0
+      }
+    },
+    {
+      "id": "slot.drum.cap",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 509.0,
+        "cy": 64.0,
+        "r": 6.0,
+        "fill": "#BFBFBF"
+      }
+    },
+    {
+      "id": "slot.drum.highlight",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 470.0,
+        "y1": 78.0,
+        "x2": 470.0,
+        "y2": 175.0
+      }
+    },
+    {
+      "id": "slot.main_sentence_1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "드럼통의 들이는 약 100(",
+        "style_role": "question",
+        "x": 240.0,
+        "y": 256.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.unit.mL",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "mL",
+        "style_role": "question",
+        "x": 450.0,
+        "y": 256.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.main_sentence_2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": ",",
+        "style_role": "question",
+        "x": 482.0,
+        "y": 256.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.unit.L",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "L",
+        "style_role": "question",
+        "x": 506.0,
+        "y": 256.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.main_sentence_3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": ")입니다.",
+        "style_role": "question",
+        "x": 540.0,
+        "y": 256.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.top",
+    "slot.qmark",
+    "slot.qnum",
+    "slot.instruction",
+    "slot.main_sentence_3",
+    "region.diagram",
+    "slot.drum.body",
+    "slot.drum.rim.top",
+    "slot.drum.rim.mid1",
+    "slot.drum.rim.mid2",
+    "slot.drum.highlight",
+    "slot.drum.cap",
+    "region.middle",
+    "slot.main_sentence_1",
+    "slot.main_sentence_2",
+    "slot.unit.mL",
+    "slot.unit.L",
+    "region.bottom"
+  ]
+}

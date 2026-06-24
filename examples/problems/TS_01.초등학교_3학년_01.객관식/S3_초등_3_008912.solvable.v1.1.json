@@ -1,0 +1,81 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008912",
+  "problem_type": "table_minimum_selection",
+  "inputs": {
+    "total_ticks": 30,
+    "target_label": "가장 적은 학생들이 받고 싶은 선물",
+    "target_ticks": 4,
+    "target_count": 4,
+    "unit": "명"
+  },
+  "given": [
+    {
+      "ref": "obj.count.book",
+      "value": 6
+    },
+    {
+      "ref": "obj.count.phone",
+      "value": 12
+    },
+    {
+      "ref": "obj.count.game",
+      "value": 8
+    },
+    {
+      "ref": "obj.count.clothes",
+      "value": 4
+    },
+    {
+      "ref": "obj.count.total",
+      "value": 30
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "selected_gift"
+  },
+  "method": "find_minimum",
+  "plan": [
+    "표의 학생 수를 비교하여 가장 작은 수를 찾는다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "6, 12, 8, 4, 30 중 가장 작은 수를 찾는다.",
+      "value": 4
+    },
+    {
+      "id": "step.2",
+      "expr": "가장 작은 수 4에 대응하는 선물은 옷이다.",
+      "value": "옷"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "4가 나머지 값 6, 12, 8, 30보다 작은가",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "id": "check.2",
+      "expr": "4에 대응하는 항목이 옷인가",
+      "expected": "옷",
+      "actual": "옷",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "selected_gift",
+      "description": "가장 적은 학생들이 받고 싶은 선물"
+    },
+    "value": "옷",
+    "unit": ""
+  }
+}

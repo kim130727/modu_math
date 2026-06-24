@@ -1,0 +1,71 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008907",
+  "problem_type": "table_comparison",
+  "inputs": {
+    "total_ticks": 4,
+    "target_label": "가장 많은 학생들이 태어난 계절",
+    "target_ticks": 1,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.spring_count",
+      "value": 6
+    },
+    {
+      "ref": "obj.summer_count",
+      "value": 10
+    },
+    {
+      "ref": "obj.autumn_count",
+      "value": 3
+    },
+    {
+      "ref": "obj.winter_count",
+      "value": 9
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "season"
+  },
+  "method": "compare_counts",
+  "plan": [
+    "네 계절의 학생 수를 비교한다.",
+    "가장 큰 수가 대응하는 계절을 찾는다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "max(6, 10, 3, 9)",
+      "value": 10
+    },
+    {
+      "id": "step.2",
+      "expr": "10에 대응하는 계절",
+      "value": "여름"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "10 > 6 and 10 > 3 and 10 > 9",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "season",
+      "description": "가장 많은 학생들이 태어난 계절"
+    },
+    "value": "여름",
+    "unit": ""
+  }
+}

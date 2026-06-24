@@ -14,7 +14,10 @@
       "role": "stem",
       "flow": "absolute",
       "slot_ids": [
-        "slot.title"
+        "slot.math.fraction.bar",
+        "slot.title",
+        "slot.math.fraction.num",
+        "slot.math.fraction.den"
       ]
     },
     {
@@ -42,7 +45,8 @@
       "role": "stem",
       "flow": "absolute",
       "slot_ids": [
-        "slot.stem"
+        "slot.stem",
+        "slot.stem.copy1"
       ]
     },
     {
@@ -242,9 +246,63 @@
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "12의 1/3은 ( 초록색 , 분홍색 ) 구슬입니다.",
+        "text": "12의",
         "style_role": "question",
         "x": 110.0,
+        "y": 215.0,
+        "font_size": 28,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.math.fraction.num",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "1",
+        "style_role": "body",
+        "x": 200.0,
+        "y": 190.0,
+        "font_size": 30,
+        "anchor": "middle",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.math.fraction.bar",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 180.0,
+        "y1": 205.0,
+        "x2": 220.0,
+        "y2": 205.0,
+        "stroke": "#222222",
+        "stroke_width": 2.2
+      }
+    },
+    {
+      "id": "slot.math.fraction.den",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "3",
+        "style_role": "body",
+        "x": 200.0,
+        "y": 230.0,
+        "font_size": 30,
+        "anchor": "middle",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.stem.copy1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "은 (초록색, 분홍색) 구슬입니다.",
+        "style_role": "body",
+        "x": 235.0,
         "y": 215.0,
         "font_size": 28,
         "fill": "#111111"
@@ -256,7 +314,10 @@
   "diagrams": [],
   "reading_order": [
     "region.header",
+    "slot.math.fraction.bar",
     "slot.title",
+    "slot.math.fraction.num",
+    "slot.math.fraction.den",
     "region.diagram",
     "slot.card",
     "slot.bead.1",
@@ -273,6 +334,7 @@
     "slot.bead.12",
     "region.question",
     "slot.stem",
+    "slot.stem.copy1",
     "region.footer"
   ]
 }

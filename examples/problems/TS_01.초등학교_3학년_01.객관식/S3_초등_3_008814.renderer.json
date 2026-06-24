@@ -1,0 +1,141 @@
+{
+  "problem_id": "S3_초등_3_008814",
+  "view_box": {
+    "width": 948.0,
+    "height": 396.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.q_num.text",
+      "type": "text",
+      "attributes": {
+        "x": 9.0,
+        "y": 22.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q_num",
+      "refs": {
+        "layout_slot_id": "slot.q_num"
+      },
+      "text": "47."
+    },
+    {
+      "id": "slot.q_text_1.text",
+      "type": "text",
+      "attributes": {
+        "x": 48.0,
+        "y": 22.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q_text_1",
+      "refs": {
+        "layout_slot_id": "slot.q_text_1"
+      },
+      "text": "가 그릇과 나 그릇에 물을 가득 채운 후 모양과 크기가 같은 그릇에 옮겨 담았더"
+    },
+    {
+      "id": "slot.q_text_2.text",
+      "type": "text",
+      "attributes": {
+        "x": 18.0,
+        "y": 58.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q_text_2",
+      "refs": {
+        "layout_slot_id": "slot.q_text_2"
+      },
+      "text": "니 그림과 같이 물이 채워졌습니다. 들어가 더 많은 그릇을 선택하세요."
+    },
+    {
+      "id": "slot.choice.text",
+      "type": "text",
+      "attributes": {
+        "x": 745.0,
+        "y": 225.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice",
+      "refs": {
+        "layout_slot_id": "slot.choice"
+      },
+      "text": "( 가 , 나 ) 그릇"
+    },
+    {
+      "id": "slot.bowl_a.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 322.0,
+        "y": 85.0,
+        "width": 90.0,
+        "height": 108.0,
+        "fill": "none",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.bowl_a",
+      "refs": {
+        "layout_slot_id": "slot.bowl_a"
+      }
+    },
+    {
+      "id": "slot.bowl_b.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 478.0,
+        "y": 85.0,
+        "width": 90.0,
+        "height": 108.0,
+        "fill": "none",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.bowl_b",
+      "refs": {
+        "layout_slot_id": "slot.bowl_b"
+      }
+    },
+    {
+      "id": "slot.label_a.text",
+      "type": "text",
+      "attributes": {
+        "x": 283.0,
+        "y": 77.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.label_a",
+      "refs": {
+        "layout_slot_id": "slot.label_a"
+      },
+      "text": "가"
+    },
+    {
+      "id": "slot.label_b.text",
+      "type": "text",
+      "attributes": {
+        "x": 439.0,
+        "y": 77.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.label_b",
+      "refs": {
+        "layout_slot_id": "slot.label_b"
+      },
+      "text": "나"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

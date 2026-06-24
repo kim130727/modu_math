@@ -1,0 +1,91 @@
+{
+  "problem_id": "S3_초등_3_009016",
+  "problem_type": "shape_selection",
+  "metadata": {
+    "title": "직선을 선택하세요",
+    "tags": [],
+    "question": "직선을 선택하세요.",
+    "required_layout_ids": [
+      "slot.shape.left.line1",
+      "slot.shape.left.line2",
+      "slot.shape.left.dot1",
+      "slot.shape.left.dot2",
+      "slot.shape.middle.line",
+      "slot.shape.middle.dot1",
+      "slot.shape.middle.dot2",
+      "slot.shape.right.curve1",
+      "slot.shape.right.curve2",
+      "slot.shape.right.curve3",
+      "slot.shape.right.curve4",
+      "slot.shape.right.dot1",
+      "slot.shape.right.dot2",
+      "slot.answer.shape.line",
+      "slot.answer.shape.dot1",
+      "slot.answer.shape.dot2"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "보기 중 직선에 해당하는 그림을 고르는 문제"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.line.left",
+        "type": "line_shape",
+        "kind": "bent_line"
+      },
+      {
+        "id": "obj.line.middle",
+        "type": "line_shape",
+        "kind": "straight_line"
+      },
+      {
+        "id": "obj.line.right",
+        "type": "line_shape",
+        "kind": "curve"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.line.left",
+          "obj.line.middle",
+          "obj.line.right"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.select_straight"
+        ]
+      },
+      "plan": {
+        "method": "shape_comparison",
+        "description": "보기의 선 모양을 비교하여 곧은 선인지 확인한다."
+      },
+      "execute": {
+        "expected_operations": [
+          "compare_line_shapes",
+          "identify_straight_line"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "definition_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "selection",
+      "description": "직선"
+    },
+    "value": 2,
+    "unit": ""
+  }
+}

@@ -1,0 +1,210 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008857",
+  "title": "5 kg에 가장 가까운 물건 고르기",
+  "canvas": {
+    "width": 852,
+    "height": 457,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.table",
+        "slot.q1",
+        "slot.choice",
+        "slot.table.header.1",
+        "slot.table.header.2",
+        "slot.table.header.3",
+        "slot.table.header.4",
+        "slot.table.header.5",
+        "slot.table.rowlabel",
+        "slot.table.value.1",
+        "slot.table.value.2",
+        "slot.table.value.3",
+        "slot.table.value.4"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "4. 물건의 무게를 나타낸 표입니다. 어느 물건과 어느 물건을 고르면 5 kg에\n가장 가까운지 구하세요.",
+        "style_role": "question",
+        "x": 6.0,
+        "y": 25.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 49.0,
+        "y": 84.0,
+        "width": 770.0,
+        "height": 79.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.table.header.1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "물건",
+        "style_role": "label",
+        "x": 111.0,
+        "y": 115.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.header.2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "책가방",
+        "style_role": "label",
+        "x": 241.0,
+        "y": 115.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.header.3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "시계",
+        "style_role": "label",
+        "x": 371.0,
+        "y": 115.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.header.4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "선풍기",
+        "style_role": "label",
+        "x": 500.0,
+        "y": 115.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.header.5",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "냄비",
+        "style_role": "label",
+        "x": 672.0,
+        "y": 115.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.rowlabel",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "무게",
+        "style_role": "label",
+        "x": 111.0,
+        "y": 154.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.value.1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "2920 g",
+        "style_role": "body",
+        "x": 214.0,
+        "y": 154.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.value.2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "1280 g",
+        "style_role": "body",
+        "x": 351.0,
+        "y": 154.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.value.3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "3850 g",
+        "style_role": "body",
+        "x": 485.0,
+        "y": 154.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.value.4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "3 kg 110 g",
+        "style_role": "body",
+        "x": 634.0,
+        "y": 154.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "( 책가방 , 시계 , 선풍기 , 냄비 )",
+        "style_role": "body",
+        "x": 495.0,
+        "y": 196.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.table",
+    "slot.q1",
+    "slot.choice",
+    "slot.table.header.1",
+    "slot.table.header.2",
+    "slot.table.header.3",
+    "slot.table.header.4",
+    "slot.table.header.5",
+    "slot.table.rowlabel",
+    "slot.table.value.1",
+    "slot.table.value.2",
+    "slot.table.value.3",
+    "slot.table.value.4"
+  ]
+}

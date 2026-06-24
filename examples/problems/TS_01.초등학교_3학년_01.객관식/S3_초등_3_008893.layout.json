@@ -1,0 +1,524 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008893",
+  "title": "실천하고 있는 활동별 학생 수",
+  "canvas": {
+    "width": 940.0,
+    "height": 748.0,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q1",
+        "slot.table.header.left.text",
+        "slot.table.header.right.text",
+        "slot.row1.label",
+        "slot.row2.label",
+        "slot.row3.label",
+        "slot.row4.label"
+      ]
+    },
+    {
+      "id": "region.chart",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.table.outer",
+        "slot.table.header.left",
+        "slot.table.header.right",
+        "slot.table.row1.left",
+        "slot.table.row1.right",
+        "slot.table.row2.left",
+        "slot.table.row2.right",
+        "slot.table.row3.left",
+        "slot.table.row3.right",
+        "slot.table.row4.left",
+        "slot.table.row4.right",
+        "slot.legend.big",
+        "slot.table.vline",
+        "slot.table.hline1",
+        "slot.table.hline2",
+        "slot.table.hline3",
+        "slot.table.hline4",
+        "slot.legend.small",
+        "slot.title",
+        "slot.legend.big.label",
+        "slot.legend.small.label"
+      ]
+    },
+    {
+      "id": "region.choices",
+      "role": "choices",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice1",
+        "slot.choice2",
+        "slot.choice3",
+        "slot.choice4"
+      ]
+    },
+    {
+      "id": "region.explanation",
+      "role": "explanation",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "57. 영희네 학교 학생들이 지구 온난화를 막기 위해 각자 실천하고 있는 활동을 조사하여 그림그래프로 나타내었습니다. 가장 많은 학생이 하고 있는 활동을 고르세요.",
+        "style_role": "question",
+        "x": 14.0,
+        "y": 28.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.title",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "실천하고 있는 활동별 학생 수",
+        "style_role": "title",
+        "x": 468.0,
+        "y": 132.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.outer",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 211.0,
+        "y": 169.0,
+        "width": 547.0,
+        "height": 260.0,
+        "stroke": "#A4BF63",
+        "stroke_width": 2.0,
+        "fill": "#E3E9C9"
+      }
+    },
+    {
+      "id": "slot.table.header.left",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 211.0,
+        "y": 169.0,
+        "width": 213.0,
+        "height": 41.0,
+        "stroke": "#A4BF63",
+        "stroke_width": 1.0,
+        "fill": "#E3E9C9"
+      }
+    },
+    {
+      "id": "slot.table.header.right",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 424.0,
+        "y": 169.0,
+        "width": 334.0,
+        "height": 41.0,
+        "stroke": "#A4BF63",
+        "stroke_width": 1.0,
+        "fill": "#E3E9C9"
+      }
+    },
+    {
+      "id": "slot.table.row1.left",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 211.0,
+        "y": 210.0,
+        "width": 213.0,
+        "height": 55.0,
+        "stroke": "#A4BF63",
+        "stroke_width": 1.0,
+        "fill": "#E3E9C9"
+      }
+    },
+    {
+      "id": "slot.table.row1.right",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 424.0,
+        "y": 210.0,
+        "width": 334.0,
+        "height": 55.0,
+        "stroke": "#A4BF63",
+        "stroke_width": 1.0,
+        "fill": "#FFFFFF"
+      }
+    },
+    {
+      "id": "slot.table.row2.left",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 211.0,
+        "y": 265.0,
+        "width": 213.0,
+        "height": 54.0,
+        "stroke": "#A4BF63",
+        "stroke_width": 1.0,
+        "fill": "#E3E9C9"
+      }
+    },
+    {
+      "id": "slot.table.row2.right",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 424.0,
+        "y": 265.0,
+        "width": 334.0,
+        "height": 54.0,
+        "stroke": "#A4BF63",
+        "stroke_width": 1.0,
+        "fill": "#FFFFFF"
+      }
+    },
+    {
+      "id": "slot.table.row3.left",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 211.0,
+        "y": 319.0,
+        "width": 213.0,
+        "height": 54.0,
+        "stroke": "#A4BF63",
+        "stroke_width": 1.0,
+        "fill": "#E3E9C9"
+      }
+    },
+    {
+      "id": "slot.table.row3.right",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 424.0,
+        "y": 319.0,
+        "width": 334.0,
+        "height": 54.0,
+        "stroke": "#A4BF63",
+        "stroke_width": 1.0,
+        "fill": "#FFFFFF"
+      }
+    },
+    {
+      "id": "slot.table.row4.left",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 211.0,
+        "y": 373.0,
+        "width": 213.0,
+        "height": 56.0,
+        "stroke": "#A4BF63",
+        "stroke_width": 1.0,
+        "fill": "#E3E9C9"
+      }
+    },
+    {
+      "id": "slot.table.row4.right",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 424.0,
+        "y": 373.0,
+        "width": 334.0,
+        "height": 56.0,
+        "stroke": "#A4BF63",
+        "stroke_width": 1.0,
+        "fill": "#FFFFFF"
+      }
+    },
+    {
+      "id": "slot.table.vline",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 424.0,
+        "y1": 169.0,
+        "x2": 424.0,
+        "y2": 429.0,
+        "stroke": "#A4BF63",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.table.hline1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 211.0,
+        "y1": 210.0,
+        "x2": 758.0,
+        "y2": 210.0,
+        "stroke": "#A4BF63",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.table.hline2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 211.0,
+        "y1": 265.0,
+        "x2": 758.0,
+        "y2": 265.0,
+        "stroke": "#A4BF63",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.table.hline3",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 211.0,
+        "y1": 319.0,
+        "x2": 758.0,
+        "y2": 319.0,
+        "stroke": "#A4BF63",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.table.hline4",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 211.0,
+        "y1": 373.0,
+        "x2": 758.0,
+        "y2": 373.0,
+        "stroke": "#A4BF63",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.table.header.left.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "활동",
+        "style_role": "label",
+        "x": 308.0,
+        "y": 196.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.header.right.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "학생 수",
+        "style_role": "label",
+        "x": 547.0,
+        "y": 196.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.row1.label",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "전기 절약하기",
+        "style_role": "label",
+        "x": 246.0,
+        "y": 242.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.row2.label",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "나무 심기",
+        "style_role": "label",
+        "x": 272.0,
+        "y": 297.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.row3.label",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "쓰레기 줄이기",
+        "style_role": "label",
+        "x": 246.0,
+        "y": 351.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.row4.label",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "물 아껴 쓰기",
+        "style_role": "label",
+        "x": 254.0,
+        "y": 406.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.legend.big",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 609.0,
+        "cy": 459.0,
+        "r": 15.0,
+        "fill": "#D9D9D9"
+      }
+    },
+    {
+      "id": "slot.legend.small",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 711.0,
+        "cy": 459.0,
+        "r": 8.0,
+        "fill": "#D9D9D9"
+      }
+    },
+    {
+      "id": "slot.legend.big.label",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "10명",
+        "style_role": "label",
+        "x": 636.0,
+        "y": 468.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.legend.small.label",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "1명",
+        "style_role": "label",
+        "x": 729.0,
+        "y": 468.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "① 전기 절약하기",
+        "style_role": "choice",
+        "x": 36.0,
+        "y": 515.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "② 나무 심기",
+        "style_role": "choice",
+        "x": 486.0,
+        "y": 515.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "③ 쓰레기 줄이기",
+        "style_role": "choice",
+        "x": 36.0,
+        "y": 553.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "④ 물 아껴 쓰기",
+        "style_role": "choice",
+        "x": 486.0,
+        "y": 553.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q1",
+    "slot.table.header.left.text",
+    "slot.table.header.right.text",
+    "slot.row1.label",
+    "slot.row2.label",
+    "slot.row3.label",
+    "slot.row4.label",
+    "region.chart",
+    "slot.table.outer",
+    "slot.table.header.left",
+    "slot.table.header.right",
+    "slot.table.row1.left",
+    "slot.table.row1.right",
+    "slot.table.row2.left",
+    "slot.table.row2.right",
+    "slot.table.row3.left",
+    "slot.table.row3.right",
+    "slot.table.row4.left",
+    "slot.table.row4.right",
+    "slot.legend.big",
+    "slot.table.vline",
+    "slot.table.hline1",
+    "slot.table.hline2",
+    "slot.table.hline3",
+    "slot.table.hline4",
+    "slot.legend.small",
+    "slot.title",
+    "slot.legend.big.label",
+    "slot.legend.small.label",
+    "region.choices",
+    "slot.choice1",
+    "slot.choice2",
+    "slot.choice3",
+    "slot.choice4",
+    "region.explanation"
+  ]
+}

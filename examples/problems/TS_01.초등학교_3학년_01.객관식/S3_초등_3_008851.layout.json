@@ -1,0 +1,232 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008851",
+  "title": "저울을 사용하여 무거운 것 고르기",
+  "canvas": {
+    "width": 952,
+    "height": 378,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.lbl.orange",
+        "slot.lbl.banana",
+        "slot.scale.pivot",
+        "slot.scale.orange",
+        "slot.scale.banana",
+        "slot.scale.arm.left",
+        "slot.scale.arm.right",
+        "slot.scale.pan.left",
+        "slot.scale.pan.right",
+        "slot.scale.string.left",
+        "slot.scale.string.right",
+        "slot.no",
+        "slot.q1",
+        "slot.q2",
+        "slot.scale.base"
+      ]
+    },
+    {
+      "id": "region.answer",
+      "role": "answer",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.no",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "95.",
+        "style_role": "question",
+        "x": 37.0,
+        "y": 36.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "저울을 사용하여 오렌지와 바나나의 무게를 비교했습니다.",
+        "style_role": "question",
+        "x": 82.0,
+        "y": 36.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "오렌지와 바나나 중 더 무거운 것을 선택해 보세요.",
+        "style_role": "question",
+        "x": 82.0,
+        "y": 70.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.lbl.orange",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 410.0,
+        "y": 100.0,
+        "width": 64.0,
+        "height": 26.0
+      }
+    },
+    {
+      "id": "slot.lbl.banana",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 520.0,
+        "y": 100.0,
+        "width": 64.0,
+        "height": 26.0
+      }
+    },
+    {
+      "id": "slot.scale.base",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "",
+        "style_role": "diagram",
+        "x": 0.0,
+        "y": 0.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.scale.pivot",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 465.0 124.0 L 470.0 124.0 L 470.0 168.0 L 465.0 168.0 Z",
+        "x": 0.0,
+        "y": 0.0
+      }
+    },
+    {
+      "id": "slot.scale.arm.left",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 469.0,
+        "y1": 126.0,
+        "x2": 430.0,
+        "y2": 142.0
+      }
+    },
+    {
+      "id": "slot.scale.arm.right",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 471.0,
+        "y1": 126.0,
+        "x2": 515.0,
+        "y2": 112.0
+      }
+    },
+    {
+      "id": "slot.scale.pan.left",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 417.0,
+        "y1": 140.0,
+        "x2": 442.0,
+        "y2": 140.0
+      }
+    },
+    {
+      "id": "slot.scale.pan.right",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 506.0,
+        "y1": 112.0,
+        "x2": 532.0,
+        "y2": 112.0
+      }
+    },
+    {
+      "id": "slot.scale.string.left",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 430.0,
+        "y1": 142.0,
+        "x2": 430.0,
+        "y2": 170.0
+      }
+    },
+    {
+      "id": "slot.scale.string.right",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 520.0,
+        "y1": 112.0,
+        "x2": 520.0,
+        "y2": 170.0
+      }
+    },
+    {
+      "id": "slot.scale.orange",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 420.0,
+        "cy": 132.0,
+        "r": 22.0,
+        "fill": "#F28C28"
+      }
+    },
+    {
+      "id": "slot.scale.banana",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 508.0 108.0 C 520.0 92.0, 544.0 92.0, 556.0 104.0 C 548.0 116.0, 530.0 123.0, 514.0 120.0 C 507.0 117.0, 504.0 111.0, 508.0 108.0 Z",
+        "x": 0.0,
+        "y": 0.0
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.lbl.orange",
+    "slot.lbl.banana",
+    "slot.scale.pivot",
+    "slot.scale.orange",
+    "slot.scale.banana",
+    "slot.scale.arm.left",
+    "slot.scale.arm.right",
+    "slot.scale.pan.left",
+    "slot.scale.pan.right",
+    "slot.scale.string.left",
+    "slot.scale.string.right",
+    "slot.no",
+    "slot.q1",
+    "slot.q2",
+    "slot.scale.base",
+    "region.answer"
+  ]
+}

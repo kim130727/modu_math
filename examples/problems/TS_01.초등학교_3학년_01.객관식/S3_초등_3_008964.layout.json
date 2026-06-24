@@ -1,0 +1,339 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008964",
+  "title": "모둠 학생들이 접은 종이꽃 수",
+  "canvas": {
+    "width": 960,
+    "height": 900,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q1",
+        "slot.q2",
+        "slot.table.title",
+        "slot.table.head1",
+        "slot.table.head2",
+        "slot.table.r1.name",
+        "slot.table.r2.name",
+        "slot.table.r3.name",
+        "slot.legend.big",
+        "slot.legend.big.label",
+        "slot.legend.small",
+        "slot.legend.small.label",
+        "slot.choice.1",
+        "slot.choice.2",
+        "slot.choice.3",
+        "slot.choice.4",
+        "slot.choice.5"
+      ]
+    },
+    {
+      "id": "region.table",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.table.outer",
+        "slot.table.vline",
+        "slot.table.hline1",
+        "slot.table.hline2",
+        "slot.table.hline3"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "34. 재경이네 모둠 학생들이 접은 종이꽃의 수를 조사하여 그림그래프로 나타냈습니다.",
+        "style_role": "question",
+        "x": 18.0,
+        "y": 28.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "재경이와 채미가 접은 종이꽃이 모두 67송이라면 채민이와 은서가 접은 종이꽃은 모두 몇 송이일까요?",
+        "style_role": "question",
+        "x": 18.0,
+        "y": 64.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.title",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "모둠 학생들이 접은 종이꽃 수",
+        "style_role": "caption",
+        "x": 280.0,
+        "y": 112.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.outer",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 205.0,
+        "y": 136.0,
+        "width": 530.0,
+        "height": 302.0
+      }
+    },
+    {
+      "id": "slot.table.vline",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 364.0,
+        "y": 136.0,
+        "width": 1.0,
+        "height": 302.0
+      }
+    },
+    {
+      "id": "slot.table.hline1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 205.0,
+        "y": 182.0,
+        "width": 530.0,
+        "height": 1.0
+      }
+    },
+    {
+      "id": "slot.table.hline2",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 205.0,
+        "y": 248.0,
+        "width": 530.0,
+        "height": 1.0
+      }
+    },
+    {
+      "id": "slot.table.hline3",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 205.0,
+        "y": 314.0,
+        "width": 530.0,
+        "height": 1.0
+      }
+    },
+    {
+      "id": "slot.table.head1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "이름",
+        "style_role": "label",
+        "x": 250.0,
+        "y": 165.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.head2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "종이꽃 수",
+        "style_role": "label",
+        "x": 542.0,
+        "y": 165.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.r1.name",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "재경",
+        "style_role": "label",
+        "x": 255.0,
+        "y": 225.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.r2.name",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "은서",
+        "style_role": "label",
+        "x": 255.0,
+        "y": 291.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.r3.name",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "채민",
+        "style_role": "label",
+        "x": 255.0,
+        "y": 357.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.legend.big",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "🌼",
+        "style_role": "label",
+        "x": 565.0,
+        "y": 468.0,
+        "font_size": 40
+      }
+    },
+    {
+      "id": "slot.legend.big.label",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": ":10송이",
+        "style_role": "label",
+        "x": 615.0,
+        "y": 485.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.legend.small",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "🌼",
+        "style_role": "label",
+        "x": 685.0,
+        "y": 476.0,
+        "font_size": 26
+      }
+    },
+    {
+      "id": "slot.legend.small.label",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": ":1송이",
+        "style_role": "label",
+        "x": 715.0,
+        "y": 485.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice.1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "① 49송이",
+        "style_role": "choice",
+        "x": 35.0,
+        "y": 535.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice.2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "② 52송이",
+        "style_role": "choice",
+        "x": 300.0,
+        "y": 535.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice.3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "③ 55송이",
+        "style_role": "choice",
+        "x": 610.0,
+        "y": 535.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice.4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "④ 57송이",
+        "style_role": "choice",
+        "x": 35.0,
+        "y": 585.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice.5",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "⑤ 59송이",
+        "style_role": "choice",
+        "x": 300.0,
+        "y": 585.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q1",
+    "slot.q2",
+    "slot.table.title",
+    "slot.table.head1",
+    "slot.table.head2",
+    "slot.table.r1.name",
+    "slot.table.r2.name",
+    "slot.table.r3.name",
+    "slot.legend.big",
+    "slot.legend.big.label",
+    "slot.legend.small",
+    "slot.legend.small.label",
+    "slot.choice.1",
+    "slot.choice.2",
+    "slot.choice.3",
+    "slot.choice.4",
+    "slot.choice.5",
+    "region.table",
+    "slot.table.outer",
+    "slot.table.vline",
+    "slot.table.hline1",
+    "slot.table.hline2",
+    "slot.table.hline3"
+  ]
+}

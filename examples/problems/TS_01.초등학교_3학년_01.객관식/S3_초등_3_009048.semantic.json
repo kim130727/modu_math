@@ -1,0 +1,90 @@
+{
+  "problem_id": "S3_초등_3_009048",
+  "problem_type": "선택형",
+  "metadata": {
+    "title": "알맞은 말을 선택하세요",
+    "tags": [],
+    "question": "알맞은 말을 선택하세요.",
+    "required_layout_ids": [
+      "slot.balloon.left",
+      "slot.balloon.right",
+      "slot.explain.brace.top",
+      "slot.explain.brace.bottom",
+      "slot.explain.arrow"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "반직선 ㄱㄴ과 반직선 ㄴㄱ의 성질을 보고 알맞은 말을 고른다."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.ray_gn",
+        "type": "ray",
+        "name": "반직선 ㄱㄴ"
+      },
+      {
+        "id": "obj.ray_ng",
+        "type": "ray",
+        "name": "반직선 ㄴㄱ"
+      },
+      {
+        "id": "obj.point_g",
+        "type": "point",
+        "name": "점 ㄱ"
+      },
+      {
+        "id": "obj.point_n",
+        "type": "point",
+        "name": "점 ㄴ"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.ray_gn",
+          "obj.ray_ng",
+          "obj.point_g",
+          "obj.point_n"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.ray_gn.start",
+          "rel.ray_ng.start",
+          "rel.rays.not_equal"
+        ]
+      },
+      "plan": {
+        "method": "compare_start_points",
+        "description": "두 반직선의 시작점을 비교하여 같은지 아닌지를 판단한다."
+      },
+      "execute": {
+        "expected_operations": [
+          "identify_start_point",
+          "compare_direction_and_start_point",
+          "choose_correct_words"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "check_start_point_difference",
+          "check_choice_consistency"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "choice_selection",
+      "description": "곧은 선, 없어"
+    },
+    "value": 0,
+    "unit": ""
+  }
+}

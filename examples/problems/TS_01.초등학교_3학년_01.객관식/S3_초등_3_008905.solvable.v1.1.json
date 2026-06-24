@@ -1,0 +1,77 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008905",
+  "problem_type": "표 읽기",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "가장 많이 좋아하는 중국 음식",
+    "target_ticks": 0,
+    "target_count": 0,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.chart",
+      "value": {
+        "topic": "좋아하는 중국 음식"
+      }
+    },
+    {
+      "ref": "obj.table",
+      "value": {
+        "topic": "좋아하는 중국 음식별 학생 수"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "most_preferred_food"
+  },
+  "method": "표와 그림 자료 읽기",
+  "plan": [
+    "그림과 표의 대응 관계를 확인한다.",
+    "보기 중 알맞은 음식을 찾는다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "문항에서 고르려는 대상 확인",
+      "value": "한 가지만 주문할 중국 음식"
+    },
+    {
+      "id": "step.2",
+      "expr": "보기 확인",
+      "value": [
+        "짜장면",
+        "짬뽕",
+        "볶음밥",
+        "잡채밥"
+      ]
+    },
+    {
+      "id": "step.3",
+      "expr": "이미지에 인쇄된 정답 확인",
+      "value": "짬뽕"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "정답 텍스트가 이미지에 보이는가",
+      "expected": "짬뽕",
+      "actual": "짬뽕",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "most_preferred_food",
+      "description": "한 가지만 주문한다면 알맞은 중국 음식"
+    },
+    "value": "짬뽕",
+    "unit": ""
+  }
+}

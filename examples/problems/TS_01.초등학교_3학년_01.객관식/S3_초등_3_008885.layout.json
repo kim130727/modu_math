@@ -1,0 +1,449 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008885",
+  "title": "학생들이 좋아하는 민속놀이",
+  "canvas": {
+    "width": 940.0,
+    "height": 466.0,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.table.border",
+        "slot.table.cell.1_1",
+        "slot.table.cell.1_2",
+        "slot.table.cell.1_3",
+        "slot.table.cell.1_4",
+        "slot.table.cell.1_5",
+        "slot.table.cell.1_6",
+        "slot.table.cell.2_1",
+        "slot.table.cell.2_2",
+        "slot.table.cell.2_3",
+        "slot.table.cell.2_4",
+        "slot.table.cell.2_5",
+        "slot.table.cell.2_6",
+        "slot.stem.1",
+        "slot.table.title",
+        "slot.table.header.1",
+        "slot.table.header.2",
+        "slot.table.header.3",
+        "slot.table.header.4",
+        "slot.table.header.5",
+        "slot.table.header.6",
+        "slot.table.value.2",
+        "slot.table.value.3",
+        "slot.table.value.4",
+        "slot.table.value.5",
+        "slot.table.value.6",
+        "slot.qno",
+        "slot.question.1",
+        "slot.question.2",
+        "slot.question.3",
+        "slot.choice"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.stem.1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "영채네 반 학생들이 좋아하는 민속놀이를 조사하여 표로 나타내었습니다. 물음에 답하세요.",
+        "style_role": "question",
+        "x": 10.0,
+        "y": 24.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.title",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "학생들이 좋아하는 민속놀이",
+        "style_role": "question",
+        "x": 468.0,
+        "y": 86.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.border",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 142.0,
+        "y": 111.0,
+        "width": 654.0,
+        "height": 80.0
+      }
+    },
+    {
+      "id": "slot.table.cell.1_1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 142.0,
+        "y": 111.0,
+        "width": 164.0,
+        "height": 40.0
+      }
+    },
+    {
+      "id": "slot.table.cell.1_2",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 306.0,
+        "y": 111.0,
+        "width": 98.0,
+        "height": 40.0
+      }
+    },
+    {
+      "id": "slot.table.cell.1_3",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 404.0,
+        "y": 111.0,
+        "width": 98.0,
+        "height": 40.0
+      }
+    },
+    {
+      "id": "slot.table.cell.1_4",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 502.0,
+        "y": 111.0,
+        "width": 98.0,
+        "height": 40.0
+      }
+    },
+    {
+      "id": "slot.table.cell.1_5",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 600.0,
+        "y": 111.0,
+        "width": 98.0,
+        "height": 40.0
+      }
+    },
+    {
+      "id": "slot.table.cell.1_6",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 698.0,
+        "y": 111.0,
+        "width": 98.0,
+        "height": 40.0
+      }
+    },
+    {
+      "id": "slot.table.cell.2_1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 142.0,
+        "y": 151.0,
+        "width": 164.0,
+        "height": 40.0
+      }
+    },
+    {
+      "id": "slot.table.cell.2_2",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 306.0,
+        "y": 151.0,
+        "width": 98.0,
+        "height": 40.0
+      }
+    },
+    {
+      "id": "slot.table.cell.2_3",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 404.0,
+        "y": 151.0,
+        "width": 98.0,
+        "height": 40.0
+      }
+    },
+    {
+      "id": "slot.table.cell.2_4",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 502.0,
+        "y": 151.0,
+        "width": 98.0,
+        "height": 40.0
+      }
+    },
+    {
+      "id": "slot.table.cell.2_5",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 600.0,
+        "y": 151.0,
+        "width": 98.0,
+        "height": 40.0
+      }
+    },
+    {
+      "id": "slot.table.cell.2_6",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 698.0,
+        "y": 151.0,
+        "width": 98.0,
+        "height": 40.0
+      }
+    },
+    {
+      "id": "slot.table.header.1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "민속놀이",
+        "style_role": "question",
+        "x": 170.0,
+        "y": 138.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.header.2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "씨름",
+        "style_role": "question",
+        "x": 338.0,
+        "y": 138.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.header.3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "연날리기",
+        "style_role": "question",
+        "x": 421.0,
+        "y": 138.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.header.4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "윷놀이",
+        "style_role": "question",
+        "x": 534.0,
+        "y": 138.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.header.5",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "널뛰기",
+        "style_role": "question",
+        "x": 632.0,
+        "y": 138.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.header.6",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "합계",
+        "style_role": "question",
+        "x": 734.0,
+        "y": 138.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.value.2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "",
+        "style_role": "question",
+        "x": 355.0,
+        "y": 176.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.value.3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "7",
+        "style_role": "question",
+        "x": 439.0,
+        "y": 176.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.value.4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "6",
+        "style_role": "question",
+        "x": 537.0,
+        "y": 176.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.value.5",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "8",
+        "style_role": "question",
+        "x": 635.0,
+        "y": 176.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.value.6",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "30",
+        "style_role": "question",
+        "x": 736.0,
+        "y": 176.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.qno",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "□ 49.",
+        "style_role": "question",
+        "x": 14.0,
+        "y": 254.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.question.1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "좋아하는 학생이 가장 많은 민속놀이부터 순서대로 써보았습니다. 바로",
+        "style_role": "question",
+        "x": 66.0,
+        "y": 254.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.question.2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "게 쓰였으면 ○표, 그렇지 않으면 ×표를 선택하세요.",
+        "style_role": "question",
+        "x": 14.0,
+        "y": 294.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.question.3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "씨름, 널뛰기, 연날리기, 윷놀이 ( ○ , × )",
+        "style_role": "question",
+        "x": 262.0,
+        "y": 334.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "",
+        "style_role": "question",
+        "x": 0.0,
+        "y": 0.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.table.border",
+    "slot.table.cell.1_1",
+    "slot.table.cell.1_2",
+    "slot.table.cell.1_3",
+    "slot.table.cell.1_4",
+    "slot.table.cell.1_5",
+    "slot.table.cell.1_6",
+    "slot.table.cell.2_1",
+    "slot.table.cell.2_2",
+    "slot.table.cell.2_3",
+    "slot.table.cell.2_4",
+    "slot.table.cell.2_5",
+    "slot.table.cell.2_6",
+    "slot.stem.1",
+    "slot.table.title",
+    "slot.table.header.1",
+    "slot.table.header.2",
+    "slot.table.header.3",
+    "slot.table.header.4",
+    "slot.table.header.5",
+    "slot.table.header.6",
+    "slot.table.value.2",
+    "slot.table.value.3",
+    "slot.table.value.4",
+    "slot.table.value.5",
+    "slot.table.value.6",
+    "slot.qno",
+    "slot.question.1",
+    "slot.question.2",
+    "slot.question.3",
+    "slot.choice"
+  ]
+}

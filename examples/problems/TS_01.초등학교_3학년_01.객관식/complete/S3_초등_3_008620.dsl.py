@@ -6,7 +6,7 @@ def build_problem_template() -> ProblemTemplate:
     return ProblemTemplate(
         id="S3_초등_3_008620",
         title="70보다 큰 것을 고르기",
-        canvas=Canvas(width=808, height=436, coordinate_mode="logical"),
+        canvas=Canvas(width=810, height=200, coordinate_mode="logical"),
         regions=(
             Region(
                 id="region.stem",
@@ -32,28 +32,48 @@ def build_problem_template() -> ProblemTemplate:
             TextSlot(
                 id="slot.qtext",
                 prompt="",
-                text = '몫이 70보다 큰 것을 선택해 보세요.', style_role="question",
-                x = 75, y = 40, font_size = 30),
+                text="몫이 70보다 큰 것을 선택해 보세요.",
+                style_role="question",
+                x=75,
+                y=40,
+                font_size=30,
+            ),
             RectSlot(
                 id="slot.choice_box",
                 prompt="",
-                x = 75, y = 70, width = 610, height = 75, fill="#CFEAF0",
+                x=75,
+                y=70,
+                width=610,
+                height=75,
+                fill="#CFEAF0",
             ),
             TextSlot(
                 id="slot.c1",
                 prompt="",
-                text = '268 ÷ 5', style_role="question",
-                x = 150, y = 120, font_size = 30),
+                text="268 ÷ 5",
+                style_role="question",
+                x=150,
+                y=115,
+                font_size=30,
+            ),
             TextSlot(
                 id="slot.c2",
                 prompt="",
-                text = '402 ÷ 4', style_role="question",
-                x = 335, y = 120, font_size = 30),
+                text="402 ÷ 4",
+                style_role="question",
+                x=335,
+                y=115,
+                font_size=30,
+            ),
             TextSlot(
                 id="slot.c3",
                 prompt="",
-                text = '397 ÷ 6', style_role="question",
-                x = 525, y = 115, font_size = 30),
+                text="397 ÷ 6",
+                style_role="question",
+                x=525,
+                y=115,
+                font_size=30,
+            ),
         ),
         diagrams=(),
         groups=(),
@@ -95,9 +115,7 @@ SEMANTIC_OVERRIDE = {
                     "compare_with_threshold",
                 ]
             },
-            "review": {
-                "check_methods": ["threshold_check", "choice_consistency_check"]
-            },
+            "review": {"check_methods": ["threshold_check", "choice_consistency_check"]},
         },
     },
     "answer": {

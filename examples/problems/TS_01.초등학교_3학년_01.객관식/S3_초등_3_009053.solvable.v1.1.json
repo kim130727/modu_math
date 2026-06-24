@@ -1,0 +1,61 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_009053",
+  "problem_type": "segment_selection",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "ㄴㄷ",
+    "target_ticks": 0,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.point_n",
+      "value": {
+        "name": "ㄴ"
+      }
+    },
+    {
+      "ref": "obj.point_d",
+      "value": {
+        "name": "ㄷ"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "selected_segment"
+  },
+  "method": "identify_matching_segment",
+  "plan": [
+    "점 ㄴ과 점 ㄷ이 양 끝점인 선분을 찾는다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "점 ㄴ과 점 ㄷ을 곧게 이은 선분을 찾음",
+      "value": "ㄴㄷ"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "선분의 양 끝점이 ㄴ과 ㄷ인지 확인",
+      "expected": "ㄴ, ㄷ",
+      "actual": "ㄴ, ㄷ",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "selected_segment",
+      "description": "선분 ㄴㄷ"
+    },
+    "value": 0,
+    "unit": ""
+  }
+}

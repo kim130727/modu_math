@@ -12,7 +12,6 @@
       "attributes": {
         "x": 74.0,
         "y": 30.0,
-        "max_width": 798.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 26
@@ -29,7 +28,6 @@
       "attributes": {
         "x": 95.0,
         "y": 245.0,
-        "max_width": 798.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 25
@@ -46,7 +44,6 @@
       "attributes": {
         "x": 365.0,
         "y": 245.0,
-        "max_width": 798.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 25
@@ -63,7 +60,6 @@
       "attributes": {
         "x": 630.0,
         "y": 245.0,
-        "max_width": 798.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 25
@@ -167,22 +163,6 @@
       }
     },
     {
-      "id": "slot.choice.left.center.circle",
-      "type": "circle",
-      "attributes": {
-        "cx": 214.0,
-        "cy": 302.0,
-        "r": 3.5,
-        "stroke": "none",
-        "stroke-width": 0.0,
-        "fill": "#e4007f"
-      },
-      "source_ref": "slot.choice.left.center",
-      "refs": {
-        "layout_slot_id": "slot.choice.left.center"
-      }
-    },
-    {
       "id": "slot.choice.middle.square.rect",
       "type": "rect",
       "attributes": {
@@ -211,22 +191,6 @@
       "source_ref": "slot.choice.middle.base",
       "refs": {
         "layout_slot_id": "slot.choice.middle.base"
-      }
-    },
-    {
-      "id": "slot.choice.middle.center.circle",
-      "type": "circle",
-      "attributes": {
-        "cx": 483.0,
-        "cy": 302.0,
-        "r": 3.5,
-        "stroke": "none",
-        "stroke-width": 0.0,
-        "fill": "#e4007f"
-      },
-      "source_ref": "slot.choice.middle.center",
-      "refs": {
-        "layout_slot_id": "slot.choice.middle.center"
       }
     },
     {
@@ -275,22 +239,6 @@
       }
     },
     {
-      "id": "slot.choice.right.center.circle",
-      "type": "circle",
-      "attributes": {
-        "cx": 752.0,
-        "cy": 302.0,
-        "r": 3.5,
-        "stroke": "none",
-        "stroke-width": 0.0,
-        "fill": "#e4007f"
-      },
-      "source_ref": "slot.choice.right.center",
-      "refs": {
-        "layout_slot_id": "slot.choice.right.center"
-      }
-    },
-    {
       "id": "slot.choice.middle.red.line",
       "type": "line",
       "attributes": {
@@ -304,6 +252,54 @@
       "source_ref": "slot.choice.middle.red",
       "refs": {
         "layout_slot_id": "slot.choice.middle.red"
+      }
+    },
+    {
+      "id": "slot.choice.left.center.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 214.0,
+        "cy": 302.0,
+        "r": 3.5,
+        "stroke": "none",
+        "stroke-width": 0.0,
+        "fill": "#e4007f"
+      },
+      "source_ref": "slot.choice.left.center",
+      "refs": {
+        "layout_slot_id": "slot.choice.left.center"
+      }
+    },
+    {
+      "id": "slot.choice.middle.center.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 483.0,
+        "cy": 302.0,
+        "r": 3.5,
+        "stroke": "none",
+        "stroke-width": 0.0,
+        "fill": "#e4007f"
+      },
+      "source_ref": "slot.choice.middle.center",
+      "refs": {
+        "layout_slot_id": "slot.choice.middle.center"
+      }
+    },
+    {
+      "id": "slot.choice.right.center.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 752.0,
+        "cy": 302.0,
+        "r": 3.5,
+        "stroke": "none",
+        "stroke-width": 0.0,
+        "fill": "#e4007f"
+      },
+      "source_ref": "slot.choice.right.center",
+      "refs": {
+        "layout_slot_id": "slot.choice.right.center"
       }
     }
   ],

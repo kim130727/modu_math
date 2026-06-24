@@ -1,0 +1,68 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008817",
+  "problem_type": "비교_들이",
+  "inputs": {
+    "total_ticks": 2,
+    "target_label": "들이가 더 많은 그릇",
+    "target_ticks": 1,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.bowl.ga",
+      "value": {
+        "name": "가 그릇"
+      }
+    },
+    {
+      "ref": "obj.bowl.na",
+      "value": {
+        "name": "나 그릇"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "container_name"
+  },
+  "method": "그림 비교",
+  "plan": [
+    "두 그릇의 모양과 크기가 같은지 확인한다.",
+    "물의 높이를 비교한다.",
+    "물의 높이가 더 높은 그릇을 고른다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "같은 모양과 크기의 그릇에서 물의 높이를 비교한다.",
+      "value": "나 쪽이 더 높게 보임"
+    },
+    {
+      "id": "step.2",
+      "expr": "들이가 더 많은 그릇 선택",
+      "value": "나 그릇"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "물의 높이가 더 높은 그릇을 선택했는가",
+      "expected": "나 그릇",
+      "actual": "나 그릇",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "container_name",
+      "description": "들이가 더 많은 그릇"
+    },
+    "value": 0,
+    "unit": ""
+  }
+}

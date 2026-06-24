@@ -1,0 +1,521 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008947",
+  "title": "학생들이 좋아하는 운동",
+  "canvas": {
+    "width": 950,
+    "height": 680,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q1"
+      ]
+    },
+    {
+      "id": "region.title",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.title_box",
+        "slot.title_text"
+      ]
+    },
+    {
+      "id": "region.table",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.table_outer",
+        "slot.table_c1r1",
+        "slot.table_c2r1",
+        "slot.table_c3r1",
+        "slot.table_c4r1",
+        "slot.table_c1r2",
+        "slot.table_c2r2",
+        "slot.table_c3r2",
+        "slot.table_c4r2",
+        "slot.table_c1r3",
+        "slot.table_c2r3",
+        "slot.table_c3r3",
+        "slot.table_c4r3",
+        "slot.table_c1r4",
+        "slot.table_c2r4",
+        "slot.table_c3r4",
+        "slot.table_c4r4",
+        "slot.table_c1r5",
+        "slot.table_c2r5",
+        "slot.table_c3r5",
+        "slot.table_c4r5",
+        "slot.table_c1r6",
+        "slot.table_c2r6",
+        "slot.table_c3r6",
+        "slot.table_c4r6"
+      ]
+    },
+    {
+      "id": "region.legend",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.legend_1",
+        "slot.legend_2",
+        "slot.legend_3",
+        "slot.legend_4",
+        "slot.legend_paren"
+      ]
+    },
+    {
+      "id": "region.footer",
+      "role": "note",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "□ 17. 서진이는 반 학생들이 좋아하는 운동을 조사하였습니다. 좋아하는 운동은 무엇일까요?",
+        "style_role": "question",
+        "x": 16.0,
+        "y": 34.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.title_box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 322.0,
+        "y": 90.0,
+        "width": 334.0,
+        "height": 50.0,
+        "fill": "#D7E5F3"
+      }
+    },
+    {
+      "id": "slot.title_text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "학생들이 좋아하는 운동",
+        "style_role": "title",
+        "x": 490.0,
+        "y": 122.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table_outer",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 350.0,
+        "y": 144.0,
+        "width": 280.0,
+        "height": 384.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.table_c1r1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "⚽",
+        "style_role": "diagram",
+        "x": 373.0,
+        "y": 182.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table_c2r1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "⚾",
+        "style_role": "diagram",
+        "x": 442.0,
+        "y": 182.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table_c3r1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "⚾",
+        "style_role": "diagram",
+        "x": 512.0,
+        "y": 182.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table_c4r1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "🏀",
+        "style_role": "diagram",
+        "x": 581.0,
+        "y": 182.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table_c1r2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "서진",
+        "style_role": "diagram",
+        "x": 373.0,
+        "y": 222.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table_c2r2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "희재",
+        "style_role": "diagram",
+        "x": 442.0,
+        "y": 222.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table_c3r2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "서연",
+        "style_role": "diagram",
+        "x": 512.0,
+        "y": 222.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table_c4r2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "인철",
+        "style_role": "diagram",
+        "x": 581.0,
+        "y": 222.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table_c1r3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "🏐",
+        "style_role": "diagram",
+        "x": 373.0,
+        "y": 262.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table_c2r3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "🏐",
+        "style_role": "diagram",
+        "x": 442.0,
+        "y": 262.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table_c3r3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "⚾",
+        "style_role": "diagram",
+        "x": 512.0,
+        "y": 262.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table_c4r3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "⚽",
+        "style_role": "diagram",
+        "x": 581.0,
+        "y": 262.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table_c1r4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "성민",
+        "style_role": "diagram",
+        "x": 373.0,
+        "y": 302.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table_c2r4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "은수",
+        "style_role": "diagram",
+        "x": 442.0,
+        "y": 302.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table_c3r4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "주영",
+        "style_role": "diagram",
+        "x": 512.0,
+        "y": 302.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table_c4r4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "정훈",
+        "style_role": "diagram",
+        "x": 581.0,
+        "y": 302.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table_c1r5",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "⚽",
+        "style_role": "diagram",
+        "x": 373.0,
+        "y": 342.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table_c2r5",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "🏐",
+        "style_role": "diagram",
+        "x": 442.0,
+        "y": 342.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table_c3r5",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "⚾",
+        "style_role": "diagram",
+        "x": 512.0,
+        "y": 342.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table_c4r5",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "🏐",
+        "style_role": "diagram",
+        "x": 581.0,
+        "y": 342.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table_c1r6",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "재영",
+        "style_role": "diagram",
+        "x": 373.0,
+        "y": 382.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table_c2r6",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "수호",
+        "style_role": "diagram",
+        "x": 442.0,
+        "y": 382.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table_c3r6",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "희재",
+        "style_role": "diagram",
+        "x": 512.0,
+        "y": 382.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table_c4r6",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "해주",
+        "style_role": "diagram",
+        "x": 581.0,
+        "y": 382.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.legend_1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "⚽ 축구",
+        "style_role": "caption",
+        "x": 368.0,
+        "y": 520.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.legend_2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "⚾ 야구",
+        "style_role": "caption",
+        "x": 446.0,
+        "y": 520.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.legend_3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "🏀 농구",
+        "style_role": "caption",
+        "x": 525.0,
+        "y": 520.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.legend_4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "🏐 배구",
+        "style_role": "caption",
+        "x": 603.0,
+        "y": 520.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.legend_paren",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "( 축구 , 야구 , 농구 , 배구 )",
+        "style_role": "caption",
+        "x": 670.0,
+        "y": 556.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q1",
+    "region.title",
+    "slot.title_box",
+    "slot.title_text",
+    "region.table",
+    "slot.table_outer",
+    "slot.table_c1r1",
+    "slot.table_c2r1",
+    "slot.table_c3r1",
+    "slot.table_c4r1",
+    "slot.table_c1r2",
+    "slot.table_c2r2",
+    "slot.table_c3r2",
+    "slot.table_c4r2",
+    "slot.table_c1r3",
+    "slot.table_c2r3",
+    "slot.table_c3r3",
+    "slot.table_c4r3",
+    "slot.table_c1r4",
+    "slot.table_c2r4",
+    "slot.table_c3r4",
+    "slot.table_c4r4",
+    "slot.table_c1r5",
+    "slot.table_c2r5",
+    "slot.table_c3r5",
+    "slot.table_c4r5",
+    "slot.table_c1r6",
+    "slot.table_c2r6",
+    "slot.table_c3r6",
+    "slot.table_c4r6",
+    "region.legend",
+    "slot.legend_1",
+    "slot.legend_2",
+    "slot.legend_3",
+    "slot.legend_4",
+    "slot.legend_paren",
+    "region.footer"
+  ]
+}

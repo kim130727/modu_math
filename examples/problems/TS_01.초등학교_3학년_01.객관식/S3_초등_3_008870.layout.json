@@ -1,0 +1,237 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008870",
+  "title": "물이 더 적게 들어가는 것",
+  "canvas": {
+    "width": 948.0,
+    "height": 460.0,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q1",
+        "slot.q2"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.pic.bottle_body",
+        "slot.pic.bottle_open",
+        "slot.pic.bottle_water",
+        "slot.pic.bowl_outer",
+        "slot.pic.bowl_inner",
+        "slot.pic.bowl_water",
+        "slot.pic.bottle_top",
+        "slot.pic.bottle_handle",
+        "slot.pic.bottle_label",
+        "slot.pic.bowl_label",
+        "slot.pic.option"
+      ]
+    },
+    {
+      "id": "region.bottom",
+      "role": "answer",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "23. 물병에 물을 가득 채운 후 그릇에 모두 부었더니 다음 그림과 같았습니다. 물병과 그릇 중 들이가 더 적은 것을 선택하세요.",
+        "style_role": "question",
+        "x": 12.0,
+        "y": 30.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "",
+        "style_role": "question",
+        "x": 12.0,
+        "y": 62.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.pic.bottle_body",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 406.0,
+        "y": 92.0,
+        "width": 112.0,
+        "height": 34.0,
+        "stroke": "#8EC6E8",
+        "stroke_width": 2.0,
+        "rx": 10.0,
+        "ry": 10.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.pic.bottle_top",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 444.0,
+        "y1": 90.0,
+        "x2": 516.0,
+        "y2": 116.0,
+        "stroke": "#8EC6E8",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.pic.bottle_open",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 517.5,
+        "cy": 116.5,
+        "r": 14.0,
+        "stroke": "#A7B0B8",
+        "stroke_width": 2.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.pic.bottle_handle",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 475.0,
+        "y1": 92.0,
+        "x2": 499.0,
+        "y2": 102.0,
+        "stroke": "#F36B6B",
+        "stroke_width": 4.0
+      }
+    },
+    {
+      "id": "slot.pic.bottle_water",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 418 94 C 421 101, 423 105, 430 110 L 506 110 C 506 110, 505 104, 503 96 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "none",
+        "fill": "#EAF6FF"
+      }
+    },
+    {
+      "id": "slot.pic.bottle_label",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "물병",
+        "style_role": "label",
+        "x": 406.0,
+        "y": 144.0,
+        "font_size": 20
+      }
+    },
+    {
+      "id": "slot.pic.bowl_outer",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 476.0,
+        "y": 180.0,
+        "width": 148.0,
+        "height": 74.0,
+        "stroke": "#8EC6E8",
+        "stroke_width": 2.0,
+        "rx": 10.0,
+        "ry": 10.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.pic.bowl_inner",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 550.0,
+        "cy": 180.0,
+        "r": 74.0,
+        "stroke": "#8EC6E8",
+        "stroke_width": 2.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.pic.bowl_water",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 490 218 C 515 210, 590 210, 610 218 L 610 252 L 490 252 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "none",
+        "fill": "#4DA8E0"
+      }
+    },
+    {
+      "id": "slot.pic.bowl_label",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "그릇",
+        "style_role": "label",
+        "x": 526.0,
+        "y": 286.0,
+        "font_size": 20
+      }
+    },
+    {
+      "id": "slot.pic.option",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "( 물병 , 그릇 )",
+        "style_role": "label",
+        "x": 406.0,
+        "y": 330.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q1",
+    "slot.q2",
+    "region.diagram",
+    "slot.pic.bottle_body",
+    "slot.pic.bottle_open",
+    "slot.pic.bottle_water",
+    "slot.pic.bowl_outer",
+    "slot.pic.bowl_inner",
+    "slot.pic.bowl_water",
+    "slot.pic.bottle_top",
+    "slot.pic.bottle_handle",
+    "slot.pic.bottle_label",
+    "slot.pic.bowl_label",
+    "slot.pic.option",
+    "region.bottom"
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008929",
+  "problem_type": "multiple_choice_data_collection_method",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "자료를 수집한 방법",
+    "target_ticks": 0,
+    "target_count": 2,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.methods.direct_hand_raising",
+      "value": "직접 손 들기"
+    },
+    {
+      "ref": "obj.methods.sticker",
+      "value": "붙임딱지 붙이기"
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "selected_method"
+  },
+  "method": "choice_selection",
+  "plan": [
+    "문장과 해설에서 자료를 수집하는 방법의 의미를 확인한다.",
+    "보기 두 방법 중 화면에 인쇄된 정답 표기를 확인한다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "보기: 직접 손 들기, 붙임딱지 붙이기",
+      "value": "두 방법"
+    },
+    {
+      "id": "step.2",
+      "expr": "인쇄된 정답 표기 확인",
+      "value": "붙임딱지 붙이기"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "하단 (정답) 표기와 일치하는가",
+      "expected": "붙임딱지 붙이기",
+      "actual": "붙임딱지 붙이기",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "selected_method",
+      "description": "자료를 수집한 방법"
+    },
+    "value": "붙임딱지 붙이기",
+    "unit": ""
+  }
+}

@@ -1,0 +1,102 @@
+{
+  "problem_id": "S3_초등_3_008904",
+  "problem_type": "표 비교와 순서 판단",
+  "metadata": {
+    "title": "주말에 가고 싶은 장소별 남녀 학생 수",
+    "tags": [],
+    "instruction": "○표 또는 ×표를 선택하시오.",
+    "question": "주말에 가고 싶은 장소를 남학생과 여학생으로 나누어 표로 나타내고, 가장 많은 학생이 가고 싶은 장소부터 순서대로 바르게 썼는지 판단하는 문제",
+    "required_layout_ids": [
+      "slot.table.frame",
+      "slot.table.header1",
+      "slot.table.header2",
+      "slot.table.header3",
+      "slot.table.header4",
+      "slot.table.header5",
+      "slot.table.r2bg",
+      "slot.table.r3bg"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.place.zoo",
+        "type": "place",
+        "name": "동물원"
+      },
+      {
+        "id": "obj.place.palace",
+        "type": "place",
+        "name": "고궁"
+      },
+      {
+        "id": "obj.place.movie",
+        "type": "place",
+        "name": "영화관"
+      },
+      {
+        "id": "obj.place.amusement_park",
+        "type": "place",
+        "name": "놀이공원"
+      },
+      {
+        "id": "obj.count.boys",
+        "type": "count_table_row",
+        "name": "남학생 수"
+      },
+      {
+        "id": "obj.count.girls",
+        "type": "count_table_row",
+        "name": "여학생 수"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.place.zoo",
+          "obj.place.palace",
+          "obj.place.movie",
+          "obj.place.amusement_park",
+          "obj.count.boys",
+          "obj.count.girls"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.rank_by_girls"
+        ]
+      },
+      "plan": {
+        "method": "compare_values_by_place",
+        "description": "장소별 여학생 수를 비교하여 큰 값부터 순서를 확인한다."
+      },
+      "execute": {
+        "expected_operations": [
+          "compare_girls_counts",
+          "check_order_statement"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "order_consistency_check",
+          "table_value_matching_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "mark_choice",
+      "description": "제시된 순서가 맞는지 ○ 또는 ×로 판단"
+    },
+    "value": 1,
+    "unit": ""
+  }
+}

@@ -1,0 +1,104 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_009038",
+  "problem_type": "도형 분류",
+  "inputs": {
+    "total_ticks": 3,
+    "target_label": "도형 분류",
+    "target_ticks": 3,
+    "target_count": 3,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.shape",
+      "value": {
+        "type": "quadrilateral",
+        "subtype": "rectangle_like_shape"
+      }
+    },
+    {
+      "ref": "obj.rectangle",
+      "value": {
+        "name": "직사각형"
+      }
+    },
+    {
+      "ref": "obj.square",
+      "value": {
+        "name": "정사각형"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "classification_choice"
+  },
+  "method": "shape_classification",
+  "plan": [
+    "도형의 성질을 확인하여 직사각형인지 판단한다.",
+    "도형의 성질을 확인하여 정사각형인지 판단한다.",
+    "직사각형과 정사각형의 포함 관계를 판단한다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "도형의 네 각이 모두 직각인지 확인",
+      "value": true
+    },
+    {
+      "id": "step.2",
+      "expr": "도형의 네 변의 길이가 모두 같은지 확인",
+      "value": false
+    },
+    {
+      "id": "step.3",
+      "expr": "직사각형 여부 판단",
+      "value": true
+    },
+    {
+      "id": "step.4",
+      "expr": "정사각형 여부 판단",
+      "value": false
+    },
+    {
+      "id": "step.5",
+      "expr": "직사각형은 정사각형이라고 할 수 있는지 판단",
+      "value": false
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "직사각형은 네 각이 모두 직각이다",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "id": "check.2",
+      "expr": "정사각형은 네 변의 길이가 모두 같다",
+      "expected": true,
+      "actual": false,
+      "pass": true
+    },
+    {
+      "id": "check.3",
+      "expr": "직사각형이지만 정사각형은 아니다",
+      "expected": false,
+      "actual": false,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "classification_choice",
+      "description": "직사각형 여부, 정사각형 여부, 포함 관계 판단"
+    },
+    "value": 0,
+    "unit": ""
+  }
+}

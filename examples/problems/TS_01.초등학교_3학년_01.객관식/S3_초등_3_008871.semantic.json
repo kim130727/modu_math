@@ -1,0 +1,127 @@
+{
+  "problem_id": "S3_초등_3_008871",
+  "problem_type": "들이 비교",
+  "metadata": {
+    "title": "들이 비교",
+    "tags": [],
+    "question": "가 그릇, 나 그릇, 다 그릇에 물을 가득 채운 후 모양과 크기가 같은 그릇에 옮겨 담았습니다. 그림과 같이 물을 채웠을 때에 가 그릇, 나 그릇, 다 그릇 중 들이가 가장 많은 것은 어느 것인지 선택하세요.",
+    "required_layout_ids": [
+      "slot.lb.ga",
+      "slot.lb.na",
+      "slot.lb.da",
+      "slot.b1.body",
+      "slot.b1.outline",
+      "slot.b1.rim",
+      "slot.b1.water",
+      "slot.b1.arrow1",
+      "slot.b1.arrow2",
+      "slot.b1.arrow3",
+      "slot.b1.dest",
+      "slot.b1.dest_outline",
+      "slot.b1.dest_rim",
+      "slot.b1.dest_water",
+      "slot.b1.dest_water_top",
+      "slot.b2.body",
+      "slot.b2.outline",
+      "slot.b2.rim",
+      "slot.b2.arrow1",
+      "slot.b2.arrow2",
+      "slot.b2.arrow3",
+      "slot.b2.dest",
+      "slot.b2.dest_outline",
+      "slot.b2.dest_rim",
+      "slot.b2.dest_water",
+      "slot.b2.dest_water_top",
+      "slot.b3.body",
+      "slot.b3.outline",
+      "slot.b3.rim",
+      "slot.b3.arrow1",
+      "slot.b3.arrow2",
+      "slot.b3.arrow3",
+      "slot.b3.dest",
+      "slot.b3.dest_outline",
+      "slot.b3.dest_rim",
+      "slot.b3.dest_water",
+      "slot.b3.dest_water_top"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "( 가 그릇, 나 그릇, 다 그릇 )"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.ga",
+        "type": "container",
+        "label": "가 그릇"
+      },
+      {
+        "id": "obj.na",
+        "type": "container",
+        "label": "나 그릇"
+      },
+      {
+        "id": "obj.da",
+        "type": "container",
+        "label": "다 그릇"
+      },
+      {
+        "id": "obj.water.ga",
+        "type": "water",
+        "label": "가의 물"
+      },
+      {
+        "id": "obj.water.na",
+        "type": "water",
+        "label": "나의 물"
+      },
+      {
+        "id": "obj.water.da",
+        "type": "water",
+        "label": "다의 물"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.ga",
+          "obj.na",
+          "obj.da"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.compare.height"
+        ]
+      },
+      "plan": {
+        "method": "visual_comparison",
+        "description": "그림에 보이는 물의 높이를 비교하여 들이가 가장 많은 그릇을 찾는다."
+      },
+      "execute": {
+        "expected_operations": [
+          "compare_levels",
+          "select_largest"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "consistency_with_printed_answer"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "largest_capacity_choice",
+      "description": "가 그릇, 나 그릇, 다 그릇 중 들이가 가장 많은 것"
+    },
+    "value": "다 그릇",
+    "unit": ""
+  }
+}

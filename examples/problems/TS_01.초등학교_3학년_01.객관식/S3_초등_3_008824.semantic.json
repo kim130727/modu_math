@@ -1,0 +1,87 @@
+{
+  "problem_id": "S3_초등_3_008824",
+  "problem_type": "unit_reading",
+  "metadata": {
+    "title": "들이의 단위를 알아보기",
+    "tags": [],
+    "question": "물건에 표시되어 있는 들이의 단위를 알아보려고 합니다. 알맞은 것을 선택하세요.",
+    "required_layout_ids": [
+      "slot.bottle.body",
+      "slot.bottle.cap",
+      "slot.bottle.neck",
+      "slot.bottle.highlight",
+      "slot.zoom.circle",
+      "slot.zoom.base",
+      "slot.connector1",
+      "slot.connector2"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "샴푸통에 표시되어 있는 단위를 고르는 문제"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.shampoo_bottle",
+        "type": "container",
+        "name": "샴푸통"
+      },
+      {
+        "id": "obj.printed_value",
+        "type": "quantity_label",
+        "value": "1 L"
+      },
+      {
+        "id": "obj.unit_L",
+        "type": "unit",
+        "symbol": "L"
+      },
+      {
+        "id": "obj.unit_mL",
+        "type": "unit",
+        "symbol": "mL"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.printed_value"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.label_shows_unit"
+        ]
+      },
+      "plan": {
+        "method": "read_label",
+        "description": "그림에 직접 보이는 1 L 표기를 보고 단위를 읽는다."
+      },
+      "execute": {
+        "expected_operations": [
+          "identify_printed_unit",
+          "match_unit_with_choice"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "compare_with_visible_label",
+          "confirm_unit_symbol"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "unit_symbol",
+      "description": "샴푸통에 표시되어 있는 단위"
+    },
+    "value": "L",
+    "unit": ""
+  }
+}

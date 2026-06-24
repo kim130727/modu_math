@@ -1,0 +1,66 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008847",
+  "problem_type": "unit_choice",
+  "inputs": {
+    "total_ticks": 1,
+    "target_label": "알맞은 단위",
+    "target_ticks": 1,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.coin_100won",
+      "value": {
+        "name": "100원짜리 동전"
+      }
+    },
+    {
+      "ref": "obj.weight_value",
+      "value": {
+        "value": 5,
+        "unit_candidates": [
+          "g",
+          "kg",
+          "t"
+        ]
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "appropriate_unit"
+  },
+  "method": "unit_selection",
+  "plan": [
+    "주어진 수 5에 대해 g, kg, t 중 가장 알맞은 무게 단위를 고른다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "100원짜리 동전의 무게에 맞는 단위 후보를 비교한다.",
+      "value": "g"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "동전의 무게는 작은 단위인 g로 나타내는 것이 자연스럽다.",
+      "expected": "g",
+      "actual": "g",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "appropriate_unit",
+      "description": "100원짜리 동전의 무게에 알맞은 단위"
+    },
+    "value": 0,
+    "unit": ""
+  }
+}

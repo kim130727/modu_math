@@ -1,0 +1,102 @@
+{
+  "problem_id": "S3_초등_3_008942",
+  "problem_type": "table_comparison_choice",
+  "metadata": {
+    "title": "학생들이 좋아하는 음료",
+    "tags": [],
+    "instruction": "가장 많은 학생이 좋아하는 음료를 고르시오.",
+    "question": "표를 보고 학생들이 가장 많이 좋아하는 음료를 고르는 문제",
+    "required_layout_ids": [
+      "slot.table.frame"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "points": 5
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.drink.milk",
+        "type": "drink",
+        "name": "우유"
+      },
+      {
+        "id": "obj.drink.soda",
+        "type": "drink",
+        "name": "탄산음료"
+      },
+      {
+        "id": "obj.drink.juice",
+        "type": "drink",
+        "name": "주스"
+      },
+      {
+        "id": "obj.drink.shikhye",
+        "type": "drink",
+        "name": "식혜"
+      },
+      {
+        "id": "obj.count.girl",
+        "type": "student_group",
+        "name": "여학생 수"
+      },
+      {
+        "id": "obj.count.boy",
+        "type": "student_group",
+        "name": "남학생 수"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.count.girl",
+          "obj.count.boy",
+          "rel.sum_by_drink",
+          "rel.compare_totals"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.sum_by_drink",
+          "rel.compare_totals"
+        ]
+      },
+      "plan": {
+        "method": "sum_and_compare",
+        "description": "각 음료별 여학생 수와 남학생 수를 더한 뒤, 가장 큰 값을 찾는다."
+      },
+      "execute": {
+        "expected_operations": [
+          "add_each_drink_counts",
+          "compare_totals",
+          "select_maximum"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "compare_result_order",
+          "match_selected_drink_with_maximum"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "multiple_choice",
+      "description": "가장 많은 학생이 좋아하는 음료",
+      "choices": [
+        "우유",
+        "탄산음료",
+        "주스",
+        "식혜"
+      ]
+    },
+    "value": 3,
+    "unit": ""
+  }
+}

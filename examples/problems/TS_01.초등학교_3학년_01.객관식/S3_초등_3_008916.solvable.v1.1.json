@@ -1,0 +1,93 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008916",
+  "problem_type": "selection",
+  "inputs": {
+    "total_ticks": 24,
+    "target_label": "반 학생 수를 알기 쉬운 것",
+    "target_ticks": 1,
+    "target_count": 4,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.drink_milk",
+      "value": 5
+    },
+    {
+      "ref": "obj.drink_juice",
+      "value": 9
+    },
+    {
+      "ref": "obj.drink_cola",
+      "value": 7
+    },
+    {
+      "ref": "obj.drink_cider",
+      "value": 3
+    },
+    {
+      "ref": "obj.total",
+      "value": 24
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "representation_choice"
+  },
+  "method": "compare_representations",
+  "plan": [
+    "자료와 표를 보고 학생 수를 파악하기 더 쉬운 표현을 고른다.",
+    "합계가 직접 보이는 표인지 확인한다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "표의 학생 수 값 확인",
+      "value": {
+        "우유": 5,
+        "주스": 9,
+        "콜라": 7,
+        "사이다": 3,
+        "합계": 24
+      }
+    },
+    {
+      "id": "step.2",
+      "expr": "학생 수의 합계가 표에 제시되어 있는지 확인",
+      "value": true
+    },
+    {
+      "id": "step.3",
+      "expr": "알기 쉬운 표현 선택",
+      "value": "표"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "표에 합계 24가 보이는가",
+      "expected": 24,
+      "actual": 24,
+      "pass": true
+    },
+    {
+      "id": "check.2",
+      "expr": "선택값이 표인지 확인",
+      "expected": "표",
+      "actual": "표",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "representation_choice",
+      "description": "반 학생 수를 알기 쉬운 것"
+    },
+    "value": "표",
+    "unit": ""
+  }
+}

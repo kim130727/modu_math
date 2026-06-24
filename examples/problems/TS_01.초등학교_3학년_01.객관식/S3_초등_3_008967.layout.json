@@ -1,0 +1,241 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008967",
+  "title": "바르게 계산한 것을 선택하세요",
+  "canvas": {
+    "width": 478.0,
+    "height": 432.0,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q1"
+      ]
+    },
+    {
+      "id": "region.options",
+      "role": "body",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.opt.left.box",
+        "slot.opt.right.box",
+        "slot.opt.left.line",
+        "slot.opt.right.line",
+        "slot.opt.left.a",
+        "slot.opt.left.b",
+        "slot.opt.left.c",
+        "slot.opt.right.a",
+        "slot.opt.right.b",
+        "slot.opt.right.c"
+      ]
+    },
+    {
+      "id": "region.answer",
+      "role": "body",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.answer.line"
+      ]
+    },
+    {
+      "id": "region.explanation",
+      "role": "body",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.explain.left.line",
+        "slot.explain.right.line"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "1. 바르게 계산한 것을 선택하세요.",
+        "style_role": "question",
+        "x": 12.0,
+        "y": 22.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.opt.left.box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 116.0,
+        "y": 29.0,
+        "width": 131.0,
+        "height": 75.0
+      }
+    },
+    {
+      "id": "slot.opt.left.a",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "1 8 8",
+        "style_role": "body",
+        "x": 150.0,
+        "y": 50.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.opt.left.b",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "+ 4 5 6",
+        "style_role": "body",
+        "x": 142.0,
+        "y": 78.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.opt.left.c",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "5 3 4",
+        "style_role": "body",
+        "x": 149.0,
+        "y": 105.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.opt.left.line",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 140.0,
+        "y1": 92.0,
+        "x2": 206.0,
+        "y2": 92.0
+      }
+    },
+    {
+      "id": "slot.opt.right.box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 333.0,
+        "y": 29.0,
+        "width": 131.0,
+        "height": 75.0
+      }
+    },
+    {
+      "id": "slot.opt.right.a",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "2 6 5",
+        "style_role": "body",
+        "x": 367.0,
+        "y": 50.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.opt.right.b",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "+ 3 4 7",
+        "style_role": "body",
+        "x": 359.0,
+        "y": 78.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.opt.right.c",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "6 1 2",
+        "style_role": "body",
+        "x": 366.0,
+        "y": 105.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.opt.right.line",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 357.0,
+        "y1": 92.0,
+        "x2": 423.0,
+        "y2": 92.0
+      }
+    },
+    {
+      "id": "slot.answer.line",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 32.0,
+        "y1": 249.0,
+        "x2": 98.0,
+        "y2": 249.0
+      }
+    },
+    {
+      "id": "slot.explain.left.line",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 27.0,
+        "y1": 399.0,
+        "x2": 93.0,
+        "y2": 399.0
+      }
+    },
+    {
+      "id": "slot.explain.right.line",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 109.0,
+        "y1": 399.0,
+        "x2": 175.0,
+        "y2": 399.0
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q1",
+    "region.options",
+    "slot.opt.left.box",
+    "slot.opt.right.box",
+    "slot.opt.left.line",
+    "slot.opt.right.line",
+    "slot.opt.left.a",
+    "slot.opt.left.b",
+    "slot.opt.left.c",
+    "slot.opt.right.a",
+    "slot.opt.right.b",
+    "slot.opt.right.c",
+    "region.answer",
+    "slot.answer.line",
+    "region.explanation",
+    "slot.explain.left.line",
+    "slot.explain.right.line"
+  ]
+}

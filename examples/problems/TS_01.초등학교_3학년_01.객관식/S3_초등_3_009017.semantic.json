@@ -1,0 +1,84 @@
+{
+  "problem_id": "S3_초등_3_009017",
+  "problem_type": "geometry_ray_selection",
+  "metadata": {
+    "title": "반직선 선택하기",
+    "tags": [],
+    "question": "반직선 ㄷ ㄹ을 선택하는 문제",
+    "required_layout_ids": [
+      "slot.choice_box",
+      "slot.choice1.line",
+      "slot.choice1.pt_l",
+      "slot.choice1.pt_r",
+      "slot.choice2.line",
+      "slot.choice2.pt_l",
+      "slot.choice2.pt_r"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "반직선 ㄷ ㄹ을 선택하세요."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.start_point",
+        "type": "point",
+        "label": "ㄷ"
+      },
+      {
+        "id": "obj.pass_point",
+        "type": "point",
+        "label": "ㄹ"
+      },
+      {
+        "id": "obj.target_ray",
+        "type": "ray",
+        "start": "obj.start_point",
+        "pass_through": "obj.pass_point"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.start_point",
+          "obj.pass_point"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.ray_direction"
+        ]
+      },
+      "plan": {
+        "method": "identify_ray_by_order_of_points",
+        "description": "시작점 ㄷ에서 출발하여 ㄹ을 지나는 도형을 고른다."
+      },
+      "execute": {
+        "expected_operations": [
+          "find_start_point",
+          "find_pass_through_point",
+          "select_matching_ray"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "start_point_matches",
+          "pass_point_matches"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "selected_choice",
+      "description": "반직선 ㄷ ㄹ"
+    },
+    "value": "ㄷ",
+    "unit": ""
+  }
+}

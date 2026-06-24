@@ -1,0 +1,97 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008847",
+  "title": "알맞은 단위를 골라 보세요",
+  "canvas": {
+    "width": 840,
+    "height": 330,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.coin",
+        "slot.no",
+        "slot.title",
+        "slot.statement_1",
+        "slot.statement_2"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.no",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "86.",
+        "style_role": "question",
+        "x": 18.0,
+        "y": 28.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.title",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "알맞은 단위를 골라 보세요.",
+        "style_role": "question",
+        "x": 56.0,
+        "y": 28.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.coin",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 442.0,
+        "y": 28.0,
+        "width": 102.0,
+        "height": 102.0
+      }
+    },
+    {
+      "id": "slot.statement_1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "100원짜리 동전의 무게는 약 5(",
+        "style_role": "question",
+        "x": 188.0,
+        "y": 206.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.statement_2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "g , kg , t",
+        "style_role": "question",
+        "x": 327.0,
+        "y": 206.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.coin",
+    "slot.no",
+    "slot.title",
+    "slot.statement_1",
+    "slot.statement_2"
+  ]
+}

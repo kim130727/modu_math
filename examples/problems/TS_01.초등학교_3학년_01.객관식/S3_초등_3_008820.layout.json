@@ -1,0 +1,272 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008820",
+  "title": "들이가 가장 적은 그릇 고르기",
+  "canvas": {
+    "width": 944.0,
+    "height": 408.0,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q.no",
+        "slot.q1",
+        "slot.q2",
+        "slot.q3"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.bowl.ga.left",
+        "slot.bowl.ga.right",
+        "slot.bowl.na.left",
+        "slot.bowl.na.right",
+        "slot.bowl.da.left",
+        "slot.bowl.da.right",
+        "slot.arrow.ga",
+        "slot.arrow.na",
+        "slot.arrow.da",
+        "slot.label.ga",
+        "slot.label.na",
+        "slot.label.da",
+        "slot.option.text"
+      ]
+    },
+    {
+      "id": "region.answer",
+      "role": "answer",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q.no",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "□ 54.",
+        "style_role": "question",
+        "x": 16.0,
+        "y": 30.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "가 그릇, 나 그릇, 다 그릇에 물을 가득 채운 후 모양과 같은 그릇",
+        "style_role": "question",
+        "x": 100.0,
+        "y": 30.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "에 옮겨 담았습니다. 그림과 같이 물을 채웠을 때 가 그릇, 나 그릇, 다 그",
+        "style_role": "question",
+        "x": 36.0,
+        "y": 66.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "릇 중 들이가 가장 적은 것은 어느 것인지 선택하세요.",
+        "style_role": "question",
+        "x": 36.0,
+        "y": 102.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.label.ga",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "가",
+        "style_role": "label",
+        "x": 104.0,
+        "y": 140.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.label.na",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "나",
+        "style_role": "label",
+        "x": 348.0,
+        "y": 140.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.label.da",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "다",
+        "style_role": "label",
+        "x": 596.0,
+        "y": 140.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.bowl.ga.left",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 124.0,
+        "y": 172.0,
+        "width": 62.0,
+        "height": 62.0
+      }
+    },
+    {
+      "id": "slot.bowl.ga.right",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 246.0,
+        "y": 164.0,
+        "width": 62.0,
+        "height": 70.0
+      }
+    },
+    {
+      "id": "slot.arrow.ga",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 196.0,
+        "y1": 206.0,
+        "x2": 236.0,
+        "y2": 206.0
+      }
+    },
+    {
+      "id": "slot.bowl.na.left",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 360.0,
+        "y": 180.0,
+        "width": 62.0,
+        "height": 54.0
+      }
+    },
+    {
+      "id": "slot.bowl.na.right",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 482.0,
+        "y": 164.0,
+        "width": 62.0,
+        "height": 70.0
+      }
+    },
+    {
+      "id": "slot.arrow.na",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 432.0,
+        "y1": 206.0,
+        "x2": 472.0,
+        "y2": 206.0
+      }
+    },
+    {
+      "id": "slot.bowl.da.left",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 606.0,
+        "y": 176.0,
+        "width": 58.0,
+        "height": 58.0
+      }
+    },
+    {
+      "id": "slot.bowl.da.right",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 728.0,
+        "y": 164.0,
+        "width": 62.0,
+        "height": 70.0
+      }
+    },
+    {
+      "id": "slot.arrow.da",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 678.0,
+        "y1": 206.0,
+        "x2": 718.0,
+        "y2": 206.0
+      }
+    },
+    {
+      "id": "slot.option.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "(가 그릇, 나 그릇, 다 그릇)",
+        "style_role": "body",
+        "x": 642.0,
+        "y": 250.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q.no",
+    "slot.q1",
+    "slot.q2",
+    "slot.q3",
+    "region.diagram",
+    "slot.bowl.ga.left",
+    "slot.bowl.ga.right",
+    "slot.bowl.na.left",
+    "slot.bowl.na.right",
+    "slot.bowl.da.left",
+    "slot.bowl.da.right",
+    "slot.arrow.ga",
+    "slot.arrow.na",
+    "slot.arrow.da",
+    "slot.label.ga",
+    "slot.label.na",
+    "slot.label.da",
+    "slot.option.text",
+    "region.answer"
+  ]
+}

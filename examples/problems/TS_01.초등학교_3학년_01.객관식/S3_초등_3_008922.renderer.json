@@ -1,0 +1,366 @@
+{
+  "problem_id": "S3_초등_3_008922",
+  "view_box": {
+    "width": 960.0,
+    "height": 647.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.q1.text",
+      "type": "text",
+      "attributes": {
+        "x": 12.0,
+        "y": 24.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q1",
+      "refs": {
+        "layout_slot_id": "slot.q1"
+      },
+      "text": "88. 어느 가게의 월별 휴대전화 판매량을 조사하여 그림그래프로 나타내었습니다."
+    },
+    {
+      "id": "slot.q2.text",
+      "type": "text",
+      "attributes": {
+        "x": 12.0,
+        "y": 60.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q2",
+      "refs": {
+        "layout_slot_id": "slot.q2"
+      },
+      "text": "휴대전화가 많이 팔린 달부터 순서대로 나열한 것을 고르세요."
+    },
+    {
+      "id": "slot.table.frame.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 213.0,
+        "y": 120.0,
+        "width": 392.0,
+        "height": 310.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.table.frame",
+      "refs": {
+        "layout_slot_id": "slot.table.frame"
+      }
+    },
+    {
+      "id": "slot.legend.big.icon.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 686.0,
+        "y": 307.0,
+        "width": 22.0,
+        "height": 41.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.legend.big.icon",
+      "refs": {
+        "layout_slot_id": "slot.legend.big.icon"
+      }
+    },
+    {
+      "id": "slot.legend.small.icon.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 693.0,
+        "y": 366.0,
+        "width": 15.0,
+        "height": 30.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.legend.small.icon",
+      "refs": {
+        "layout_slot_id": "slot.legend.small.icon"
+      }
+    },
+    {
+      "id": "slot.table.header.left.line",
+      "type": "line",
+      "attributes": {
+        "x1": 213.0,
+        "y1": 155.0,
+        "x2": 605.0,
+        "y2": 155.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.table.header.left",
+      "refs": {
+        "layout_slot_id": "slot.table.header.left"
+      }
+    },
+    {
+      "id": "slot.table.header.right.line",
+      "type": "line",
+      "attributes": {
+        "x1": 301.0,
+        "y1": 120.0,
+        "x2": 301.0,
+        "y2": 430.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.table.header.right",
+      "refs": {
+        "layout_slot_id": "slot.table.header.right"
+      }
+    },
+    {
+      "id": "slot.table.title.text",
+      "type": "text",
+      "attributes": {
+        "x": 325.0,
+        "y": 114.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.title",
+      "refs": {
+        "layout_slot_id": "slot.table.title"
+      },
+      "text": "월별 휴대전화 판매량"
+    },
+    {
+      "id": "slot.table.row.9.label.text",
+      "type": "text",
+      "attributes": {
+        "x": 242.0,
+        "y": 212.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.row.9.label",
+      "refs": {
+        "layout_slot_id": "slot.table.row.9.label"
+      },
+      "text": "9월"
+    },
+    {
+      "id": "slot.table.row.10.label.text",
+      "type": "text",
+      "attributes": {
+        "x": 238.0,
+        "y": 279.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.row.10.label",
+      "refs": {
+        "layout_slot_id": "slot.table.row.10.label"
+      },
+      "text": "10월"
+    },
+    {
+      "id": "slot.table.row.11.label.text",
+      "type": "text",
+      "attributes": {
+        "x": 238.0,
+        "y": 347.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.row.11.label",
+      "refs": {
+        "layout_slot_id": "slot.table.row.11.label"
+      },
+      "text": "11월"
+    },
+    {
+      "id": "slot.table.row.12.label.text",
+      "type": "text",
+      "attributes": {
+        "x": 238.0,
+        "y": 415.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.row.12.label",
+      "refs": {
+        "layout_slot_id": "slot.table.row.12.label"
+      },
+      "text": "12월"
+    },
+    {
+      "id": "slot.legend.big.text.text",
+      "type": "text",
+      "attributes": {
+        "x": 746.0,
+        "y": 333.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.legend.big.text",
+      "refs": {
+        "layout_slot_id": "slot.legend.big.text"
+      },
+      "text": "10대"
+    },
+    {
+      "id": "slot.legend.small.text.text",
+      "type": "text",
+      "attributes": {
+        "x": 746.0,
+        "y": 385.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.legend.small.text",
+      "refs": {
+        "layout_slot_id": "slot.legend.small.text"
+      },
+      "text": "1대"
+    },
+    {
+      "id": "slot.choice.no1.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 14.0,
+        "cy": 461.0,
+        "r": 9.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#ffffff"
+      },
+      "source_ref": "slot.choice.no1",
+      "refs": {
+        "layout_slot_id": "slot.choice.no1"
+      }
+    },
+    {
+      "id": "slot.choice.no2.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 450.0,
+        "cy": 461.0,
+        "r": 9.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#ffffff"
+      },
+      "source_ref": "slot.choice.no2",
+      "refs": {
+        "layout_slot_id": "slot.choice.no2"
+      }
+    },
+    {
+      "id": "slot.choice.no3.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 14.0,
+        "cy": 504.0,
+        "r": 9.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#ffffff"
+      },
+      "source_ref": "slot.choice.no3",
+      "refs": {
+        "layout_slot_id": "slot.choice.no3"
+      }
+    },
+    {
+      "id": "slot.choice.no4.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 450.0,
+        "cy": 504.0,
+        "r": 9.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#ffffff"
+      },
+      "source_ref": "slot.choice.no4",
+      "refs": {
+        "layout_slot_id": "slot.choice.no4"
+      }
+    },
+    {
+      "id": "slot.choice.1.text",
+      "type": "text",
+      "attributes": {
+        "x": 32.0,
+        "y": 470.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice.1",
+      "refs": {
+        "layout_slot_id": "slot.choice.1"
+      },
+      "text": "9월, 10월, 11월, 12월"
+    },
+    {
+      "id": "slot.choice.2.text",
+      "type": "text",
+      "attributes": {
+        "x": 468.0,
+        "y": 470.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice.2",
+      "refs": {
+        "layout_slot_id": "slot.choice.2"
+      },
+      "text": "10월, 12월, 11월, 9월"
+    },
+    {
+      "id": "slot.choice.3.text",
+      "type": "text",
+      "attributes": {
+        "x": 32.0,
+        "y": 513.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice.3",
+      "refs": {
+        "layout_slot_id": "slot.choice.3"
+      },
+      "text": "11월, 12월, 10월, 9월"
+    },
+    {
+      "id": "slot.choice.4.text",
+      "type": "text",
+      "attributes": {
+        "x": 468.0,
+        "y": 513.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice.4",
+      "refs": {
+        "layout_slot_id": "slot.choice.4"
+      },
+      "text": "11월, 10월, 12월, 9월"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

@@ -1,0 +1,234 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008984",
+  "title": "선분을 선택하세요.",
+  "canvas": {
+    "width": 788,
+    "height": 170,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q1"
+      ]
+    },
+    {
+      "id": "region.choices",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice1.line",
+        "slot.choice2.line",
+        "slot.choice3.line",
+        "slot.choice4.line",
+        "slot.choice1.p1",
+        "slot.choice1.p2",
+        "slot.choice2.p1",
+        "slot.choice2.p2",
+        "slot.choice3.p1",
+        "slot.choice3.p2",
+        "slot.choice4.p1",
+        "slot.choice4.p2"
+      ]
+    },
+    {
+      "id": "region.answer",
+      "role": "answer",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.answer.line"
+      ]
+    },
+    {
+      "id": "region.explanation",
+      "role": "explanation",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "□ 21. 선분을 선택하세요.",
+        "style_role": "question",
+        "x": 14.0,
+        "y": 20.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice1.line",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 116.0,
+        "y1": 49.0,
+        "x2": 210.0,
+        "y2": 49.0
+      }
+    },
+    {
+      "id": "slot.choice1.p1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 115.0,
+        "cy": 49.0,
+        "r": 3.0,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.choice1.p2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 210.0,
+        "cy": 49.0,
+        "r": 3.0,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.choice2.line",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 300.0,
+        "y1": 51.0,
+        "x2": 399.0,
+        "y2": 51.0
+      }
+    },
+    {
+      "id": "slot.choice2.p1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 300.0,
+        "cy": 51.0,
+        "r": 3.0,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.choice2.p2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 399.0,
+        "cy": 51.0,
+        "r": 3.0,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.choice3.line",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 492.0,
+        "y1": 42.0,
+        "x2": 597.0,
+        "y2": 61.0
+      }
+    },
+    {
+      "id": "slot.choice3.p1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 492.0,
+        "cy": 42.0,
+        "r": 3.0,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.choice3.p2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 597.0,
+        "cy": 61.0,
+        "r": 3.0,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.choice4.line",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 679.0,
+        "y1": 51.0,
+        "x2": 773.0,
+        "y2": 51.0
+      }
+    },
+    {
+      "id": "slot.choice4.p1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 679.0,
+        "cy": 51.0,
+        "r": 3.0,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.choice4.p2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 773.0,
+        "cy": 51.0,
+        "r": 3.0,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.answer.line",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 58.0,
+        "y1": 100.0,
+        "x2": 128.0,
+        "y2": 100.0
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q1",
+    "region.choices",
+    "slot.choice1.line",
+    "slot.choice2.line",
+    "slot.choice3.line",
+    "slot.choice4.line",
+    "slot.choice1.p1",
+    "slot.choice1.p2",
+    "slot.choice2.p1",
+    "slot.choice2.p2",
+    "slot.choice3.p1",
+    "slot.choice3.p2",
+    "slot.choice4.p1",
+    "slot.choice4.p2",
+    "region.answer",
+    "slot.answer.line",
+    "region.explanation"
+  ]
+}

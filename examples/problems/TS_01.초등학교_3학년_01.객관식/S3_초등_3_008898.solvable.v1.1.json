@@ -1,0 +1,109 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008898",
+  "problem_type": "ordering_by_quantity",
+  "inputs": {
+    "total_ticks": 4,
+    "target_label": "자동차가 많은 마을부터 순서대로 나열",
+    "target_ticks": 4,
+    "target_count": 4,
+    "unit": "대"
+  },
+  "given": [
+    {
+      "ref": "obj.count.ga",
+      "value": 18
+    },
+    {
+      "ref": "obj.count.na",
+      "value": 35
+    },
+    {
+      "ref": "obj.count.da",
+      "value": 42
+    },
+    {
+      "ref": "obj.count.ra",
+      "value": 26
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "descending_order_of_villages"
+  },
+  "method": "compare_and_order",
+  "plan": [
+    "마을별 자동차 수를 읽는다.",
+    "수의 크기를 비교한다.",
+    "큰 수부터 마을 이름을 순서대로 배열한다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "가=18, 나=35, 다=42, 라=26",
+      "value": {
+        "가": 18,
+        "나": 35,
+        "다": 42,
+        "라": 26
+      }
+    },
+    {
+      "id": "step.2",
+      "expr": "42 > 35 > 26 > 18",
+      "value": [
+        "다",
+        "나",
+        "라",
+        "가"
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "정렬된 순서가 자동차 수의 내림차순인지 확인",
+      "expected": [
+        "다",
+        "나",
+        "라",
+        "가"
+      ],
+      "actual": [
+        "다",
+        "나",
+        "라",
+        "가"
+      ],
+      "pass": true
+    },
+    {
+      "id": "check.2",
+      "expr": "표의 수치와 대응이 일치하는지 확인",
+      "expected": {
+        "가": 18,
+        "나": 35,
+        "다": 42,
+        "라": 26
+      },
+      "actual": {
+        "가": 18,
+        "나": 35,
+        "다": 42,
+        "라": 26
+      },
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "descending_order_of_villages",
+      "description": "자동차가 많은 마을부터 순서대로 나열한 것"
+    },
+    "value": 3,
+    "unit": ""
+  }
+}

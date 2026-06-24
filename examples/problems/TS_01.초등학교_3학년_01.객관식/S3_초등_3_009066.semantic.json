@@ -1,0 +1,100 @@
+{
+  "problem_id": "S3_초등_3_009066",
+  "problem_type": "도형 분류",
+  "metadata": {
+    "title": "도형을 보고 알맞은 기호를 모두 선택하세요.",
+    "tags": [],
+    "instruction": "네 각이 모두 직각인 사각형을 찾는다.",
+    "question": "도형을 보고 알맞은 기호를 모두 선택하세요.",
+    "required_layout_ids": [
+      "slot.grid.top",
+      "slot.shape.a",
+      "slot.shape.b",
+      "slot.shape.c",
+      "slot.shape.d",
+      "slot.shape.e",
+      "slot.grid.bottom",
+      "slot.e_shape.a",
+      "slot.e_shape.b",
+      "slot.e_shape.c",
+      "slot.e_shape.d",
+      "slot.e_shape.e"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.shape.a",
+        "type": "quadrilateral",
+        "label": "가"
+      },
+      {
+        "id": "obj.shape.b",
+        "type": "quadrilateral",
+        "label": "나"
+      },
+      {
+        "id": "obj.shape.c",
+        "type": "quadrilateral",
+        "label": "다"
+      },
+      {
+        "id": "obj.shape.d",
+        "type": "quadrilateral",
+        "label": "라"
+      },
+      {
+        "id": "obj.shape.e",
+        "type": "quadrilateral",
+        "label": "마"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.shape.a",
+          "obj.shape.b",
+          "obj.shape.c",
+          "obj.shape.d",
+          "obj.shape.e"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.select_right_angle_quadrilateral"
+        ]
+      },
+      "plan": {
+        "method": "shape_classification",
+        "description": "각 도형이 조건에 맞는 사각형인지 살핀다."
+      },
+      "execute": {
+        "expected_operations": [
+          "identify_quadrilateral",
+          "check_right_angles",
+          "select_matching_labels"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "condition_match_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "selected_labels",
+      "description": "네 각이 모두 직각인 사각형에 해당하는 기호"
+    },
+    "value": 2,
+    "unit": ""
+  }
+}

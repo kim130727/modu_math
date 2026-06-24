@@ -1,0 +1,380 @@
+{
+  "problem_id": "S3_초등_3_009041",
+  "view_box": {
+    "width": 788.0,
+    "height": 301.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.header.mark.text",
+      "type": "text",
+      "attributes": {
+        "x": 8.0,
+        "y": 31.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 20
+      },
+      "source_ref": "slot.header.mark",
+      "refs": {
+        "layout_slot_id": "slot.header.mark"
+      },
+      "text": "□"
+    },
+    {
+      "id": "slot.header.no.text",
+      "type": "text",
+      "attributes": {
+        "x": 25.0,
+        "y": 31.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 18
+      },
+      "source_ref": "slot.header.no",
+      "refs": {
+        "layout_slot_id": "slot.header.no"
+      },
+      "text": "79."
+    },
+    {
+      "id": "slot.header.question.text",
+      "type": "text",
+      "attributes": {
+        "x": 61.0,
+        "y": 31.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 20
+      },
+      "source_ref": "slot.header.question",
+      "refs": {
+        "layout_slot_id": "slot.header.question"
+      },
+      "text": "선분을 찾아 선택하세요."
+    },
+    {
+      "id": "slot.box.outer.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 184.0,
+        "y": 50.0,
+        "width": 579.0,
+        "height": 129.0,
+        "fill": "none",
+        "stroke": "#8E79D4",
+        "stroke-width": 1.4
+      },
+      "source_ref": "slot.box.outer",
+      "refs": {
+        "layout_slot_id": "slot.box.outer"
+      }
+    },
+    {
+      "id": "slot.opt1.circle.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 223.0,
+        "cy": 87.0,
+        "r": 10.0,
+        "stroke": "#444444",
+        "stroke-width": 1.2,
+        "fill": "none"
+      },
+      "source_ref": "slot.opt1.circle",
+      "refs": {
+        "layout_slot_id": "slot.opt1.circle"
+      }
+    },
+    {
+      "id": "slot.opt2.circle.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 394.0,
+        "cy": 87.0,
+        "r": 10.0,
+        "stroke": "#444444",
+        "stroke-width": 1.2,
+        "fill": "none"
+      },
+      "source_ref": "slot.opt2.circle",
+      "refs": {
+        "layout_slot_id": "slot.opt2.circle"
+      }
+    },
+    {
+      "id": "slot.opt3.circle.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 579.0,
+        "cy": 87.0,
+        "r": 10.0,
+        "stroke": "#444444",
+        "stroke-width": 1.2,
+        "fill": "none"
+      },
+      "source_ref": "slot.opt3.circle",
+      "refs": {
+        "layout_slot_id": "slot.opt3.circle"
+      }
+    },
+    {
+      "id": "slot.opt1.line.line",
+      "type": "line",
+      "attributes": {
+        "x1": 231.0,
+        "y1": 108.0,
+        "x2": 335.0,
+        "y2": 133.0,
+        "stroke": "#444444",
+        "stroke-width": 1.4
+      },
+      "source_ref": "slot.opt1.line",
+      "refs": {
+        "layout_slot_id": "slot.opt1.line"
+      }
+    },
+    {
+      "id": "slot.opt2.line.line",
+      "type": "line",
+      "attributes": {
+        "x1": 472.0,
+        "y1": 74.0,
+        "x2": 472.0,
+        "y2": 155.0,
+        "stroke": "#444444",
+        "stroke-width": 1.4
+      },
+      "source_ref": "slot.opt2.line",
+      "refs": {
+        "layout_slot_id": "slot.opt2.line"
+      }
+    },
+    {
+      "id": "slot.opt3.line.line",
+      "type": "line",
+      "attributes": {
+        "x1": 595.0,
+        "y1": 147.0,
+        "x2": 704.0,
+        "y2": 75.0,
+        "stroke": "#444444",
+        "stroke-width": 1.4
+      },
+      "source_ref": "slot.opt3.line",
+      "refs": {
+        "layout_slot_id": "slot.opt3.line"
+      }
+    },
+    {
+      "id": "slot.opt1.pt1.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 241.0,
+        "cy": 103.0,
+        "r": 2.8,
+        "stroke": "#222222",
+        "stroke-width": 1.0,
+        "fill": "#222222"
+      },
+      "source_ref": "slot.opt1.pt1",
+      "refs": {
+        "layout_slot_id": "slot.opt1.pt1"
+      }
+    },
+    {
+      "id": "slot.opt1.pt2.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 307.0,
+        "cy": 120.0,
+        "r": 2.8,
+        "stroke": "#222222",
+        "stroke-width": 1.0,
+        "fill": "#222222"
+      },
+      "source_ref": "slot.opt1.pt2",
+      "refs": {
+        "layout_slot_id": "slot.opt1.pt2"
+      }
+    },
+    {
+      "id": "slot.opt2.pt1.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 472.0,
+        "cy": 74.0,
+        "r": 2.8,
+        "stroke": "#222222",
+        "stroke-width": 1.0,
+        "fill": "#222222"
+      },
+      "source_ref": "slot.opt2.pt1",
+      "refs": {
+        "layout_slot_id": "slot.opt2.pt1"
+      }
+    },
+    {
+      "id": "slot.opt2.pt2.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 472.0,
+        "cy": 154.0,
+        "r": 2.8,
+        "stroke": "#222222",
+        "stroke-width": 1.0,
+        "fill": "#222222"
+      },
+      "source_ref": "slot.opt2.pt2",
+      "refs": {
+        "layout_slot_id": "slot.opt2.pt2"
+      }
+    },
+    {
+      "id": "slot.opt3.pt1.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 606.0,
+        "cy": 141.0,
+        "r": 2.8,
+        "stroke": "#222222",
+        "stroke-width": 1.0,
+        "fill": "#222222"
+      },
+      "source_ref": "slot.opt3.pt1",
+      "refs": {
+        "layout_slot_id": "slot.opt3.pt1"
+      }
+    },
+    {
+      "id": "slot.opt3.pt2.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 715.0,
+        "cy": 66.0,
+        "r": 2.8,
+        "stroke": "#222222",
+        "stroke-width": 1.0,
+        "fill": "#222222"
+      },
+      "source_ref": "slot.opt3.pt2",
+      "refs": {
+        "layout_slot_id": "slot.opt3.pt2"
+      }
+    },
+    {
+      "id": "slot.opt1.lb1.text",
+      "type": "text",
+      "attributes": {
+        "x": 228.0,
+        "y": 96.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 24
+      },
+      "source_ref": "slot.opt1.lb1",
+      "refs": {
+        "layout_slot_id": "slot.opt1.lb1"
+      },
+      "text": "ㄱ"
+    },
+    {
+      "id": "slot.opt1.lb2.text",
+      "type": "text",
+      "attributes": {
+        "x": 312.0,
+        "y": 112.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 24
+      },
+      "source_ref": "slot.opt1.lb2",
+      "refs": {
+        "layout_slot_id": "slot.opt1.lb2"
+      },
+      "text": "ㄴ"
+    },
+    {
+      "id": "slot.opt2.lb1.text",
+      "type": "text",
+      "attributes": {
+        "x": 482.0,
+        "y": 72.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 24
+      },
+      "source_ref": "slot.opt2.lb1",
+      "refs": {
+        "layout_slot_id": "slot.opt2.lb1"
+      },
+      "text": "ㄷ"
+    },
+    {
+      "id": "slot.opt2.lb2.text",
+      "type": "text",
+      "attributes": {
+        "x": 476.0,
+        "y": 161.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 24
+      },
+      "source_ref": "slot.opt2.lb2",
+      "refs": {
+        "layout_slot_id": "slot.opt2.lb2"
+      },
+      "text": "ㄹ"
+    },
+    {
+      "id": "slot.opt3.lb1.text",
+      "type": "text",
+      "attributes": {
+        "x": 595.0,
+        "y": 134.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 24
+      },
+      "source_ref": "slot.opt3.lb1",
+      "refs": {
+        "layout_slot_id": "slot.opt3.lb1"
+      },
+      "text": "ㅁ"
+    },
+    {
+      "id": "slot.opt3.lb2.text",
+      "type": "text",
+      "attributes": {
+        "x": 717.0,
+        "y": 58.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 24
+      },
+      "source_ref": "slot.opt3.lb2",
+      "refs": {
+        "layout_slot_id": "slot.opt3.lb2"
+      },
+      "text": "ㅂ"
+    },
+    {
+      "id": "slot.answer.circle.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 90.0,
+        "cy": 209.0,
+        "r": 10.0,
+        "stroke": "#444444",
+        "stroke-width": 1.2,
+        "fill": "none"
+      },
+      "source_ref": "slot.answer.circle",
+      "refs": {
+        "layout_slot_id": "slot.answer.circle"
+      }
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

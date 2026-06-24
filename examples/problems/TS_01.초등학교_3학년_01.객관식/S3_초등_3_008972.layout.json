@@ -1,0 +1,55 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008972",
+  "title": "계산 결과가 더 큰 것을 선택하세요",
+  "canvas": {
+    "width": 560,
+    "height": 200,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.box",
+        "slot.q1"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "6. 계산 결과가 더 큰 것을 선택하세요.",
+        "style_role": "question",
+        "x": 14.0,
+        "y": 20.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 195.0,
+        "y": 28.0,
+        "width": 295.0,
+        "height": 46.0
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.box",
+    "slot.q1"
+  ]
+}

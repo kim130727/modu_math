@@ -1,0 +1,248 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008975",
+  "title": "반직선을 선택하세요",
+  "canvas": {
+    "width": 760,
+    "height": 240,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.header",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q.no",
+        "slot.q.text"
+      ]
+    },
+    {
+      "id": "region.options.top",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.opt1.line",
+        "slot.opt2.line1",
+        "slot.opt2.line2",
+        "slot.opt3.line",
+        "slot.opt1.pt1",
+        "slot.opt1.pt2",
+        "slot.opt2.pt1",
+        "slot.opt2.pt2",
+        "slot.opt3.pt1",
+        "slot.opt3.pt2"
+      ]
+    },
+    {
+      "id": "region.answer",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.answer.line",
+        "slot.answer.pt1",
+        "slot.answer.pt2"
+      ]
+    },
+    {
+      "id": "region.explain",
+      "role": "explanation",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q.no",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "□ 10.",
+        "style_role": "question",
+        "x": 12.0,
+        "y": 26.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "반직선을 선택하세요.",
+        "style_role": "question",
+        "x": 92.0,
+        "y": 26.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.opt1.line",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 197.0,
+        "y1": 82.0,
+        "x2": 280.0,
+        "y2": 45.0
+      }
+    },
+    {
+      "id": "slot.opt1.pt1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 197.0,
+        "cy": 82.0,
+        "r": 2.4,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.opt1.pt2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 280.0,
+        "cy": 45.0,
+        "r": 2.4,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.opt2.line1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 386.0,
+        "y1": 53.0,
+        "x2": 403.0,
+        "y2": 94.0
+      }
+    },
+    {
+      "id": "slot.opt2.line2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 403.0,
+        "y1": 94.0,
+        "x2": 491.0,
+        "y2": 80.0
+      }
+    },
+    {
+      "id": "slot.opt2.pt1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 386.0,
+        "cy": 53.0,
+        "r": 2.4,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.opt2.pt2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 491.0,
+        "cy": 80.0,
+        "r": 2.4,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.opt3.line",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 614.0,
+        "y1": 53.0,
+        "x2": 730.0,
+        "y2": 95.0
+      }
+    },
+    {
+      "id": "slot.opt3.pt1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 614.0,
+        "cy": 53.0,
+        "r": 2.4,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.opt3.pt2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 730.0,
+        "cy": 95.0,
+        "r": 2.4,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.answer.line",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 82.0,
+        "y1": 129.0,
+        "x2": 180.0,
+        "y2": 167.0
+      }
+    },
+    {
+      "id": "slot.answer.pt1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 82.0,
+        "cy": 129.0,
+        "r": 2.4,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.answer.pt2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 180.0,
+        "cy": 167.0,
+        "r": 2.4,
+        "fill": "#222222"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.header",
+    "slot.q.no",
+    "slot.q.text",
+    "region.options.top",
+    "slot.opt1.line",
+    "slot.opt2.line1",
+    "slot.opt2.line2",
+    "slot.opt3.line",
+    "slot.opt1.pt1",
+    "slot.opt1.pt2",
+    "slot.opt2.pt1",
+    "slot.opt2.pt2",
+    "slot.opt3.pt1",
+    "slot.opt3.pt2",
+    "region.answer",
+    "slot.answer.line",
+    "slot.answer.pt1",
+    "slot.answer.pt2",
+    "region.explain"
+  ]
+}

@@ -1,0 +1,160 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_009040",
+  "title": "도형의 이름을 모두 선택하세요",
+  "canvas": {
+    "width": 880.0,
+    "height": 236.0,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.header",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.icon",
+        "slot.qnum",
+        "slot.prompt"
+      ]
+    },
+    {
+      "id": "region.figure",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.shape"
+      ]
+    },
+    {
+      "id": "region.options",
+      "role": "choices",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice_bg",
+        "slot.choice1",
+        "slot.choice2",
+        "slot.choice3"
+      ]
+    },
+    {
+      "id": "region.footer",
+      "role": "answer_explanation",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.icon",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 7.0,
+        "y": 17.0,
+        "width": 12.0,
+        "height": 12.0
+      }
+    },
+    {
+      "id": "slot.qnum",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "78.",
+        "style_role": "question",
+        "x": 30.0,
+        "y": 28.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.prompt",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "도형의 이름을 모두 선택하세요.",
+        "style_role": "question",
+        "x": 73.0,
+        "y": 29.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.shape",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 78.0,
+        "y": 47.0,
+        "width": 114.0,
+        "height": 114.0
+      }
+    },
+    {
+      "id": "slot.choice_bg",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 318.0,
+        "y": 62.0,
+        "width": 548.0,
+        "height": 82.0
+      }
+    },
+    {
+      "id": "slot.choice1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "직사각삼각형",
+        "style_role": "choice",
+        "x": 364.0,
+        "y": 109.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "직사각형",
+        "style_role": "choice",
+        "x": 510.0,
+        "y": 109.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "정사각형",
+        "style_role": "choice",
+        "x": 658.0,
+        "y": 109.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.header",
+    "slot.icon",
+    "slot.qnum",
+    "slot.prompt",
+    "region.figure",
+    "slot.shape",
+    "region.options",
+    "slot.choice_bg",
+    "slot.choice1",
+    "slot.choice2",
+    "slot.choice3",
+    "region.footer"
+  ]
+}

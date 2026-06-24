@@ -1,0 +1,82 @@
+{
+  "problem_id": "S3_초등_3_009038",
+  "problem_type": "도형 분류",
+  "metadata": {
+    "title": "도형을 보고 알맞은 말을 선택하세요",
+    "tags": [],
+    "question": "도형을 보고 알맞은 말을 선택하세요.",
+    "required_layout_ids": [
+      "slot.shape",
+      "slot.box1",
+      "slot.box2",
+      "slot.box3"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "도형의 성질을 보고 알맞은 말을 선택하는 문제"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.shape",
+        "type": "quadrilateral",
+        "subtype": "rectangle_like_shape"
+      },
+      {
+        "id": "obj.rectangle",
+        "type": "shape_class",
+        "name": "직사각형"
+      },
+      {
+        "id": "obj.square",
+        "type": "shape_class",
+        "name": "정사각형"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.shape"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.classify_rectangle",
+          "rel.classify_square",
+          "rel.rectangle_not_square"
+        ]
+      },
+      "plan": {
+        "method": "shape_classification",
+        "description": "도형의 각과 변의 성질을 보고 직사각형과 정사각형 여부를 판단한다."
+      },
+      "execute": {
+        "expected_operations": [
+          "성질_확인",
+          "분류_판단",
+          "포함관계_판단"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "직각_확인",
+          "변의_길이_비교",
+          "분류_일치_확인"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "classification_choice",
+      "description": "직사각형 여부, 정사각형 여부, 포함 관계 판단"
+    },
+    "value": 0,
+    "unit": ""
+  }
+}

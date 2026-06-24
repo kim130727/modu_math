@@ -1,0 +1,89 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008935",
+  "problem_type": "picture_graph_ordering",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "색깔 순서",
+    "target_ticks": 0,
+    "target_count": 3,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.color.black",
+      "value": {
+        "name": "검은색"
+      }
+    },
+    {
+      "ref": "obj.color.gray",
+      "value": {
+        "name": "회색"
+      }
+    },
+    {
+      "ref": "obj.color.blue",
+      "value": {
+        "name": "파란색"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "color_order"
+  },
+  "method": "compare_counts",
+  "plan": [
+    "각 색깔의 우산 수를 비교한다.",
+    "많이 팔린 색부터 적게 팔린 색까지 순서대로 나눈다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "해설에 제시된 수량 비교: 50, 23, 16",
+      "value": [
+        50,
+        23,
+        16
+      ]
+    },
+    {
+      "id": "step.2",
+      "expr": "50 > 23 > 16에 해당하는 색의 순서 읽기",
+      "value": [
+        "파란색",
+        "검은색",
+        "회색"
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "내림차순인지 확인",
+      "expected": [
+        "파란색",
+        "검은색",
+        "회색"
+      ],
+      "actual": [
+        "파란색",
+        "검은색",
+        "회색"
+      ],
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "color_order",
+      "description": "많이 팔린 우산의 색깔부터 순서"
+    },
+    "value": 0,
+    "unit": ""
+  }
+}

@@ -1,0 +1,284 @@
+{
+  "problem_id": "S3_초등_3_008895",
+  "view_box": {
+    "width": 940.0,
+    "height": 630.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.frame.outer.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 268.0,
+        "y": 117.0,
+        "width": 457.0,
+        "height": 237.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.frame.outer",
+      "refs": {
+        "layout_slot_id": "slot.frame.outer"
+      }
+    },
+    {
+      "id": "slot.frame.v1.line",
+      "type": "line",
+      "attributes": {
+        "x1": 382.0,
+        "y1": 117.0,
+        "x2": 382.0,
+        "y2": 354.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.frame.v1",
+      "refs": {
+        "layout_slot_id": "slot.frame.v1"
+      }
+    },
+    {
+      "id": "slot.frame.v2.line",
+      "type": "line",
+      "attributes": {
+        "x1": 496.0,
+        "y1": 117.0,
+        "x2": 496.0,
+        "y2": 354.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.frame.v2",
+      "refs": {
+        "layout_slot_id": "slot.frame.v2"
+      }
+    },
+    {
+      "id": "slot.frame.v3.line",
+      "type": "line",
+      "attributes": {
+        "x1": 610.0,
+        "y1": 117.0,
+        "x2": 610.0,
+        "y2": 354.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.frame.v3",
+      "refs": {
+        "layout_slot_id": "slot.frame.v3"
+      }
+    },
+    {
+      "id": "slot.frame.base.line",
+      "type": "line",
+      "attributes": {
+        "x1": 268.0,
+        "y1": 311.0,
+        "x2": 725.0,
+        "y2": 311.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.frame.base",
+      "refs": {
+        "layout_slot_id": "slot.frame.base"
+      }
+    },
+    {
+      "id": "slot.legend.left.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 452.0,
+        "cy": 384.0,
+        "r": 3.8,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#222222"
+      },
+      "source_ref": "slot.legend.left",
+      "refs": {
+        "layout_slot_id": "slot.legend.left"
+      }
+    },
+    {
+      "id": "slot.legend.right.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 620.0,
+        "cy": 384.0,
+        "r": 3.2,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#222222"
+      },
+      "source_ref": "slot.legend.right",
+      "refs": {
+        "layout_slot_id": "slot.legend.right"
+      }
+    },
+    {
+      "id": "slot.qnum.text",
+      "type": "text",
+      "attributes": {
+        "x": 52.0,
+        "y": 26.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.qnum",
+      "refs": {
+        "layout_slot_id": "slot.qnum"
+      },
+      "text": "60."
+    },
+    {
+      "id": "slot.qtext1.text",
+      "type": "text",
+      "attributes": {
+        "x": 95.0,
+        "y": 26.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.qtext1",
+      "refs": {
+        "layout_slot_id": "slot.qtext1"
+      },
+      "text": "어느 분식집에서 일주일 동안 팔린 음식의 수를 그림그래프로 나타내었습니다."
+    },
+    {
+      "id": "slot.qtext2.text",
+      "type": "text",
+      "attributes": {
+        "x": 24.0,
+        "y": 58.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.qtext2",
+      "refs": {
+        "layout_slot_id": "slot.qtext2"
+      },
+      "text": "바르게 설명한 것을 고르세요."
+    },
+    {
+      "id": "slot.title.text",
+      "type": "text",
+      "attributes": {
+        "x": 347.0,
+        "y": 93.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.title",
+      "refs": {
+        "layout_slot_id": "slot.title"
+      },
+      "text": "일주일 동안 팔린 음식의 수"
+    },
+    {
+      "id": "slot.lb.1.text",
+      "type": "text",
+      "attributes": {
+        "x": 320.0,
+        "y": 339.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.lb.1",
+      "refs": {
+        "layout_slot_id": "slot.lb.1"
+      },
+      "text": "라면"
+    },
+    {
+      "id": "slot.lb.2.text",
+      "type": "text",
+      "attributes": {
+        "x": 431.0,
+        "y": 339.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.lb.2",
+      "refs": {
+        "layout_slot_id": "slot.lb.2"
+      },
+      "text": "국수"
+    },
+    {
+      "id": "slot.lb.3.text",
+      "type": "text",
+      "attributes": {
+        "x": 546.0,
+        "y": 339.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.lb.3",
+      "refs": {
+        "layout_slot_id": "slot.lb.3"
+      },
+      "text": "떡국"
+    },
+    {
+      "id": "slot.lb.4.text",
+      "type": "text",
+      "attributes": {
+        "x": 660.0,
+        "y": 339.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.lb.4",
+      "refs": {
+        "layout_slot_id": "slot.lb.4"
+      },
+      "text": "우동"
+    },
+    {
+      "id": "slot.choice.1.text",
+      "type": "text",
+      "attributes": {
+        "x": 38.0,
+        "y": 431.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice.1",
+      "refs": {
+        "layout_slot_id": "slot.choice.1"
+      },
+      "text": "① 이 분식집은 다음 주에 우동의 재료보다 떡국의 재료를 더 많이 준비해야 합니다."
+    },
+    {
+      "id": "slot.choice.2.text",
+      "type": "text",
+      "attributes": {
+        "x": 38.0,
+        "y": 492.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice.2",
+      "refs": {
+        "layout_slot_id": "slot.choice.2"
+      },
+      "text": "② 라면은 국수보다 60그릇 더 많이 팔았습니다."
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

@@ -1,0 +1,123 @@
+{
+  "problem_id": "S3_초등_3_009059",
+  "view_box": {
+    "width": 792.0,
+    "height": 300.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.header.text",
+      "type": "text",
+      "attributes": {
+        "x": 26.0,
+        "y": 30.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.header",
+      "refs": {
+        "layout_slot_id": "slot.header"
+      },
+      "text": "98. 도형을 보고 알맞은 말을 선택하세요."
+    },
+    {
+      "id": "slot.line.line",
+      "type": "line",
+      "attributes": {
+        "x1": 60.0,
+        "y1": 65.0,
+        "x2": 330.0,
+        "y2": 124.0,
+        "stroke": "#222222",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.line",
+      "refs": {
+        "layout_slot_id": "slot.line"
+      }
+    },
+    {
+      "id": "slot.pt.s.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 60.0,
+        "cy": 64.0,
+        "r": 3.8,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#222222"
+      },
+      "source_ref": "slot.pt.s",
+      "refs": {
+        "layout_slot_id": "slot.pt.s"
+      }
+    },
+    {
+      "id": "slot.pt.o.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 272.0,
+        "cy": 111.0,
+        "r": 3.8,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#222222"
+      },
+      "source_ref": "slot.pt.o",
+      "refs": {
+        "layout_slot_id": "slot.pt.o"
+      }
+    },
+    {
+      "id": "slot.lb.s.text",
+      "type": "text",
+      "attributes": {
+        "x": 52.0,
+        "y": 52.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.lb.s",
+      "refs": {
+        "layout_slot_id": "slot.lb.s"
+      },
+      "text": "ㅅ"
+    },
+    {
+      "id": "slot.lb.o.text",
+      "type": "text",
+      "attributes": {
+        "x": 270.0,
+        "y": 98.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.lb.o",
+      "refs": {
+        "layout_slot_id": "slot.lb.o"
+      },
+      "text": "ㅇ"
+    },
+    {
+      "id": "slot.choice.text",
+      "type": "text",
+      "attributes": {
+        "x": 401.0,
+        "y": 86.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice",
+      "refs": {
+        "layout_slot_id": "slot.choice"
+      },
+      "text": "( 선분 ㅅㅇ , 반직선 ㅅㅇ , 직선 ㅅㅇ )"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

@@ -1,0 +1,73 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008870",
+  "problem_type": "비교_들이다",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "들이가 더 적은 것",
+    "target_ticks": 0,
+    "target_count": 2,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.bottle",
+      "value": {
+        "name": "물병"
+      }
+    },
+    {
+      "ref": "obj.bowl",
+      "value": {
+        "name": "그릇"
+      }
+    },
+    {
+      "ref": "rel.pour_all",
+      "value": {
+        "description": "물병의 물을 그릇에 모두 붓는다"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "container_name"
+  },
+  "method": "비교하기",
+  "plan": [
+    "그릇에 물병의 물이 모두 들어가는지 확인한다.",
+    "더 적은 들이를 가진 용기를 고른다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "그릇에 물병의 물이 모두 들어가고 가득 차지 않음",
+      "value": "그릇이 더 큼"
+    },
+    {
+      "id": "step.2",
+      "expr": "들이가 더 적은 것 선택",
+      "value": "물병"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "해설의 선택이 정답과 일치하는가",
+      "expected": "물병",
+      "actual": "물병",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "container_name",
+      "description": "들이가 더 적은 것"
+    },
+    "value": "물병",
+    "unit": ""
+  }
+}

@@ -1,0 +1,148 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_009059",
+  "title": "도형을 보고 알맞은 말을 선택하세요",
+  "canvas": {
+    "width": 792.0,
+    "height": 300.0,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.header",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.header"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.line",
+        "slot.pt.s",
+        "slot.pt.o",
+        "slot.lb.s",
+        "slot.lb.o"
+      ]
+    },
+    {
+      "id": "region.choices",
+      "role": "choices",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice"
+      ]
+    },
+    {
+      "id": "region.answer",
+      "role": "answer",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.header",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "98. 도형을 보고 알맞은 말을 선택하세요.",
+        "style_role": "question",
+        "x": 26.0,
+        "y": 30.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.line",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 60.0,
+        "y1": 65.0,
+        "x2": 330.0,
+        "y2": 124.0,
+        "stroke": "#222222",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.pt.s",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 60.0,
+        "cy": 64.0,
+        "r": 3.8,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.pt.o",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 272.0,
+        "cy": 111.0,
+        "r": 3.8,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.lb.s",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㅅ",
+        "style_role": "label",
+        "x": 52.0,
+        "y": 52.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.lb.o",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㅇ",
+        "style_role": "label",
+        "x": 270.0,
+        "y": 98.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "( 선분 ㅅㅇ , 반직선 ㅅㅇ , 직선 ㅅㅇ )",
+        "style_role": "choice",
+        "x": 401.0,
+        "y": 86.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.header",
+    "slot.header",
+    "region.diagram",
+    "slot.line",
+    "slot.pt.s",
+    "slot.pt.o",
+    "slot.lb.s",
+    "slot.lb.o",
+    "region.choices",
+    "slot.choice",
+    "region.answer"
+  ]
+}

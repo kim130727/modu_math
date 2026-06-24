@@ -1,0 +1,172 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008876",
+  "title": "무게가 두 번째로 가벼운 것의 이름",
+  "canvas": {
+    "width": 944,
+    "height": 426,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.qmark",
+        "slot.qnum",
+        "slot.question"
+      ]
+    },
+    {
+      "id": "region.objects",
+      "role": "body",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.obj.baseball",
+        "slot.obj.eraser",
+        "slot.obj.chair",
+        "slot.lb.baseball",
+        "slot.lb.eraser",
+        "slot.lb.chair"
+      ]
+    },
+    {
+      "id": "region.answer",
+      "role": "answer",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.qmark",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "□",
+        "style_role": "question",
+        "x": 6.0,
+        "y": 30.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.qnum",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "31.",
+        "style_role": "question",
+        "x": 31.0,
+        "y": 30.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.question",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "무게가 두 번째로 가벼운 것의 이름을 선택해 보세요.",
+        "style_role": "question",
+        "x": 80.0,
+        "y": 30.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.obj.baseball",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 270.0,
+        "y": 142.0,
+        "width": 34.0,
+        "height": 34.0,
+        "stroke": "none",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.lb.baseball",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "야구공",
+        "style_role": "label",
+        "x": 252.0,
+        "y": 272.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.obj.eraser",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 470.0,
+        "y": 146.0,
+        "width": 38.0,
+        "height": 26.0,
+        "stroke": "none",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.lb.eraser",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "지우개",
+        "style_role": "label",
+        "x": 451.0,
+        "y": 272.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.obj.chair",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 646.0,
+        "y": 62.0,
+        "width": 84.0,
+        "height": 98.0,
+        "stroke": "none",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.lb.chair",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "의자",
+        "style_role": "label",
+        "x": 668.0,
+        "y": 272.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.qmark",
+    "slot.qnum",
+    "slot.question",
+    "region.objects",
+    "slot.obj.baseball",
+    "slot.obj.eraser",
+    "slot.obj.chair",
+    "slot.lb.baseball",
+    "slot.lb.eraser",
+    "slot.lb.chair",
+    "region.answer"
+  ]
+}

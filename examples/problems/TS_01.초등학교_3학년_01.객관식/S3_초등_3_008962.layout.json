@@ -1,0 +1,449 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008962",
+  "title": "가장 많은 학생이 좋아하는 간식",
+  "canvas": {
+    "width": 960.0,
+    "height": 518.0,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.qmark",
+        "slot.qnum",
+        "slot.stem1",
+        "slot.stem2"
+      ]
+    },
+    {
+      "id": "region.table_title",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.table_title"
+      ]
+    },
+    {
+      "id": "region.table",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.table.frame",
+        "slot.table.c1",
+        "slot.table.c2",
+        "slot.table.c3",
+        "slot.table.c4",
+        "slot.table.r1",
+        "slot.table.h1",
+        "slot.table.h2",
+        "slot.table.h3",
+        "slot.table.h4",
+        "slot.table.h5",
+        "slot.table.h6",
+        "slot.table.h7",
+        "slot.table.h8",
+        "slot.table.h9",
+        "slot.table.h10",
+        "slot.table.h11",
+        "slot.table.h12",
+        "slot.table.h13",
+        "slot.table.h14",
+        "slot.table.h15"
+      ]
+    },
+    {
+      "id": "region.choice",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice"
+      ]
+    },
+    {
+      "id": "region.answer",
+      "role": "answer",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.qmark",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "□",
+        "style_role": "question",
+        "x": 14.0,
+        "y": 32.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.qnum",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "32.",
+        "style_role": "question",
+        "x": 42.0,
+        "y": 32.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.stem1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "정수네 학교 학생들이 좋아하는 간식을 조사하였습니다. 가장 많은 학생",
+        "style_role": "question",
+        "x": 72.0,
+        "y": 34.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.stem2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "들이 좋아하는 음식을 간식으로 준비하려고 할 때 어느 것을 준비하면 좋을",
+        "style_role": "question",
+        "x": 34.0,
+        "y": 70.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table_title",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "정수네 학교 학생들이 좋아하는 급식 메뉴",
+        "style_role": "diagram",
+        "x": 250.0,
+        "y": 147.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.frame",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 135.0,
+        "y": 171.0,
+        "width": 693.0,
+        "height": 121.0,
+        "stroke": "#9BBE3D",
+        "stroke_width": 1.2,
+        "fill": "#F3F6E4"
+      }
+    },
+    {
+      "id": "slot.table.c1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 135.0,
+        "y": 171.0,
+        "width": 200.0,
+        "height": 121.0,
+        "stroke": "#9BBE3D",
+        "stroke_width": 1.2,
+        "fill": "#F3F6E4"
+      }
+    },
+    {
+      "id": "slot.table.c2",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 335.0,
+        "y": 171.0,
+        "width": 124.0,
+        "height": 121.0,
+        "stroke": "#9BBE3D",
+        "stroke_width": 1.2,
+        "fill": "#F3F6E4"
+      }
+    },
+    {
+      "id": "slot.table.c3",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 459.0,
+        "y": 171.0,
+        "width": 124.0,
+        "height": 121.0,
+        "stroke": "#9BBE3D",
+        "stroke_width": 1.2,
+        "fill": "#F3F6E4"
+      }
+    },
+    {
+      "id": "slot.table.c4",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 583.0,
+        "y": 171.0,
+        "width": 124.0,
+        "height": 121.0,
+        "stroke": "#9BBE3D",
+        "stroke_width": 1.2,
+        "fill": "#F3F6E4"
+      }
+    },
+    {
+      "id": "slot.table.r1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 707.0,
+        "y": 171.0,
+        "width": 121.0,
+        "height": 121.0,
+        "stroke": "#9BBE3D",
+        "stroke_width": 1.2,
+        "fill": "#F3F6E4"
+      }
+    },
+    {
+      "id": "slot.table.h1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "급식 메뉴",
+        "style_role": "diagram",
+        "x": 180.0,
+        "y": 209.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.h2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "떡볶이",
+        "style_role": "diagram",
+        "x": 370.0,
+        "y": 209.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.h3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "치킨",
+        "style_role": "diagram",
+        "x": 500.0,
+        "y": 209.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.h4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "김밥",
+        "style_role": "diagram",
+        "x": 628.0,
+        "y": 209.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.h5",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "합계",
+        "style_role": "diagram",
+        "x": 748.0,
+        "y": 209.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.h6",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "여학생 수(명)",
+        "style_role": "diagram",
+        "x": 159.0,
+        "y": 248.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.h7",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "38",
+        "style_role": "diagram",
+        "x": 378.0,
+        "y": 248.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.h8",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "42",
+        "style_role": "diagram",
+        "x": 502.0,
+        "y": 248.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.h9",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "30",
+        "style_role": "diagram",
+        "x": 626.0,
+        "y": 248.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.h10",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "110",
+        "style_role": "diagram",
+        "x": 740.0,
+        "y": 248.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.h11",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "남학생 수(명)",
+        "style_role": "diagram",
+        "x": 159.0,
+        "y": 284.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.h12",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "27",
+        "style_role": "diagram",
+        "x": 378.0,
+        "y": 284.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.h13",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "59",
+        "style_role": "diagram",
+        "x": 502.0,
+        "y": 284.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.h14",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "40",
+        "style_role": "diagram",
+        "x": 626.0,
+        "y": 284.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.h15",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "126",
+        "style_role": "diagram",
+        "x": 740.0,
+        "y": 284.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "( 떡볶이 , 치킨 , 김밥 )",
+        "style_role": "diagram",
+        "x": 341.0,
+        "y": 330.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.qmark",
+    "slot.qnum",
+    "slot.stem1",
+    "slot.stem2",
+    "region.table_title",
+    "slot.table_title",
+    "region.table",
+    "slot.table.frame",
+    "slot.table.c1",
+    "slot.table.c2",
+    "slot.table.c3",
+    "slot.table.c4",
+    "slot.table.r1",
+    "slot.table.h1",
+    "slot.table.h2",
+    "slot.table.h3",
+    "slot.table.h4",
+    "slot.table.h5",
+    "slot.table.h6",
+    "slot.table.h7",
+    "slot.table.h8",
+    "slot.table.h9",
+    "slot.table.h10",
+    "slot.table.h11",
+    "slot.table.h12",
+    "slot.table.h13",
+    "slot.table.h14",
+    "slot.table.h15",
+    "region.choice",
+    "slot.choice",
+    "region.answer"
+  ]
+}

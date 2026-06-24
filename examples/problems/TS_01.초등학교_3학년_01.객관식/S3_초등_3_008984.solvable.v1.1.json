@@ -1,0 +1,84 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008984",
+  "problem_type": "객관식_선분_선택",
+  "inputs": {
+    "total_ticks": 4,
+    "target_label": "선분",
+    "target_ticks": 1,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.choice1",
+      "value": {
+        "type": "곡선"
+      }
+    },
+    {
+      "ref": "obj.choice2",
+      "value": {
+        "type": "직선_양끝점"
+      }
+    },
+    {
+      "ref": "obj.choice3",
+      "value": {
+        "type": "직선_양끝점"
+      }
+    },
+    {
+      "ref": "obj.choice4",
+      "value": {
+        "type": "직선_양끝점"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "selected_shape"
+  },
+  "method": "definition_match",
+  "plan": [
+    "그림들의 모양을 보고 선분의 정의와 맞는지 확인한다.",
+    "두 점을 곧게 이은 직선 모양을 찾는다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "choice1은 곡선이므로 선분이 아님",
+      "value": 0
+    },
+    {
+      "id": "step.2",
+      "expr": "choice2, choice3, choice4는 곧은 선으로 보임",
+      "value": 0
+    },
+    {
+      "id": "step.3",
+      "expr": "정답은 선분의 정의에 맞는 그림",
+      "value": 0
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "선분은 두 점을 곧게 이은 선이다",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "selected_shape",
+      "description": "선분"
+    },
+    "value": 0,
+    "unit": ""
+  }
+}

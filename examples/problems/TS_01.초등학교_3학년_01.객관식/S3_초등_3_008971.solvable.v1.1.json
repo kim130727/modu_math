@@ -1,0 +1,111 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008971",
+  "problem_type": "comparison_of_subtraction_results",
+  "inputs": {
+    "total_ticks": 3,
+    "target_label": "가장 작은 기호",
+    "target_ticks": 1,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.expr1",
+      "value": {
+        "label": "①",
+        "minuend": 658,
+        "subtrahend": 264
+      }
+    },
+    {
+      "ref": "obj.expr2",
+      "value": {
+        "label": "②",
+        "minuend": 503,
+        "subtrahend": 119
+      }
+    },
+    {
+      "ref": "obj.expr3",
+      "value": {
+        "label": "③",
+        "minuend": 947,
+        "subtrahend": 472
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "symbol_selection"
+  },
+  "method": "compare_subtraction_results",
+  "plan": [
+    "각 뺄셈식을 계산한다.",
+    "세 결과를 비교한다.",
+    "가장 작은 결과에 해당하는 기호를 고른다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "658 - 264",
+      "value": 394
+    },
+    {
+      "id": "step.2",
+      "expr": "503 - 119",
+      "value": 384
+    },
+    {
+      "id": "step.3",
+      "expr": "947 - 472",
+      "value": 475
+    },
+    {
+      "id": "step.4",
+      "expr": "384 < 394 < 475",
+      "value": "384가 가장 작다"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "394 == 658 - 264",
+      "expected": 394,
+      "actual": 394,
+      "pass": true
+    },
+    {
+      "id": "check.2",
+      "expr": "384 == 503 - 119",
+      "expected": 384,
+      "actual": 384,
+      "pass": true
+    },
+    {
+      "id": "check.3",
+      "expr": "475 == 947 - 472",
+      "expected": 475,
+      "actual": 475,
+      "pass": true
+    },
+    {
+      "id": "check.4",
+      "expr": "384 < 394 and 384 < 475",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "symbol_selection",
+      "description": "계산 결과가 가장 작은 기호"
+    },
+    "value": 2,
+    "unit": ""
+  }
+}

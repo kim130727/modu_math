@@ -1,0 +1,127 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_009021",
+  "title": "반직선을 읽는 방법",
+  "canvas": {
+    "width": 850.0,
+    "height": 520.0,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q1"
+      ]
+    },
+    {
+      "id": "region.choice_box",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.box.bg",
+        "slot.c1",
+        "slot.c2",
+        "slot.c3",
+        "slot.choice"
+      ]
+    },
+    {
+      "id": "region.answer_explanation",
+      "role": "supporting",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "59. 반직선을 읽는 방법에 대한 설명으로 옳은 것을 찾아 기호를 선택하세요.",
+        "style_role": "question",
+        "x": 24.0,
+        "y": 36.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.box.bg",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 92.0,
+        "y": 75.0,
+        "width": 708.0,
+        "height": 133.0,
+        "fill": "#DCD8F1"
+      }
+    },
+    {
+      "id": "slot.c1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "㉠ 반직선은 두 점 중 어느 점을 먼저 읽어도 상관없습니다.",
+        "style_role": "body",
+        "x": 115.0,
+        "y": 107.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.c2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "㉡ 반직선 ㄴㄱ은 반직선 ㄴㄱ이라고 읽을 수 있습니다.",
+        "style_role": "body",
+        "x": 115.0,
+        "y": 143.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.c3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "㉢ 반직선은 반드시 시작점을 먼저 읽습니다.",
+        "style_role": "body",
+        "x": 115.0,
+        "y": 179.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "( ㉠ , ㉡ , ㉢ )",
+        "style_role": "body",
+        "x": 639.0,
+        "y": 255.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q1",
+    "region.choice_box",
+    "slot.box.bg",
+    "slot.c1",
+    "slot.c2",
+    "slot.c3",
+    "slot.choice",
+    "region.answer_explanation"
+  ]
+}

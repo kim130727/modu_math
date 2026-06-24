@@ -1,0 +1,89 @@
+{
+  "problem_id": "S3_초등_3_009063",
+  "problem_type": "도형_판별",
+  "metadata": {
+    "title": "네 각이 모두 직각인 사각형",
+    "tags": [],
+    "instruction": "네 각이 모두 직각인 사각형을 선택하세요.",
+    "question": "네 각이 모두 직각인 사각형을 선택하는 문제",
+    "required_layout_ids": [
+      "slot.grid.top.1",
+      "slot.grid.bottom.1"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.choice.a",
+        "type": "quadrilateral",
+        "label": "가"
+      },
+      {
+        "id": "obj.choice.b",
+        "type": "quadrilateral",
+        "label": "나"
+      },
+      {
+        "id": "obj.choice.c",
+        "type": "quadrilateral",
+        "label": "다"
+      },
+      {
+        "id": "obj.choice.d",
+        "type": "quadrilateral",
+        "label": "라"
+      },
+      {
+        "id": "obj.choice.e",
+        "type": "quadrilateral",
+        "label": "마"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.choice.a",
+          "obj.choice.b",
+          "obj.choice.c",
+          "obj.choice.d",
+          "obj.choice.e"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.select_rectangles"
+        ]
+      },
+      "plan": {
+        "method": "shape_comparison",
+        "description": "각 도형의 네 각이 모두 직각인지 비교한다."
+      },
+      "execute": {
+        "expected_operations": [
+          "compare_angles",
+          "select_matching_shapes"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "verify_all_four_angles_are_right_angles"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "selected_shapes",
+      "description": "네 각이 모두 직각인 사각형"
+    },
+    "value": 2,
+    "unit": ""
+  }
+}

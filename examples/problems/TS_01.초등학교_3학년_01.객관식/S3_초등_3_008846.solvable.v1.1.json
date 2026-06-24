@@ -1,0 +1,87 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008846",
+  "problem_type": "estimate_weight_choice",
+  "inputs": {
+    "total_ticks": 1,
+    "target_label": "estimated_mass_choice",
+    "target_ticks": 1,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.flour",
+      "value": {
+        "mass_unit": "kg",
+        "mass_value": 1
+      }
+    },
+    {
+      "ref": "obj.orange",
+      "value": {
+        "mass_unit": "g",
+        "mass_value": 100
+      }
+    },
+    {
+      "ref": "obj.orange_group",
+      "value": {
+        "count": 9
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "estimated_mass_choice"
+  },
+  "method": "comparison_estimation",
+  "plan": [
+    "기준 물체인 100 g 귤 9개의 무게를 보고 양배추와 비교한다.",
+    "보기 중에서 양배추의 무게로 어울리는 값을 선택한다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "100 g × 9",
+      "value": 900
+    },
+    {
+      "id": "step.2",
+      "expr": "귤 9개의 무게를 g로 나타내면 900 g",
+      "value": 900
+    },
+    {
+      "id": "step.3",
+      "expr": "양배추의 무게를 어림한 알맞은 보기 선택",
+      "value": 900
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "단위가 g인지 확인",
+      "expected": "g",
+      "actual": "g",
+      "pass": true
+    },
+    {
+      "id": "check.2",
+      "expr": "보기 중 900 g이 있는지 확인",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "estimated_mass_choice",
+      "description": "양배추의 무게를 어림한 알맞은 보기"
+    },
+    "value": 900,
+    "unit": ""
+  }
+}

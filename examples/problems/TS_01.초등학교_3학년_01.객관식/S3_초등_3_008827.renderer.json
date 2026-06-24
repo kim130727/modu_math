@@ -1,0 +1,190 @@
+{
+  "problem_id": "S3_초등_3_008827",
+  "view_box": {
+    "width": 920.0,
+    "height": 380.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.girl.todo.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 126.0,
+        "y": 54.0,
+        "width": 68.0,
+        "height": 82.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.girl.todo",
+      "refs": {
+        "layout_slot_id": "slot.girl.todo"
+      }
+    },
+    {
+      "id": "slot.juice.todo.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 775.0,
+        "y": 46.0,
+        "width": 60.0,
+        "height": 100.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.juice.todo",
+      "refs": {
+        "layout_slot_id": "slot.juice.todo"
+      }
+    },
+    {
+      "id": "slot.ml.gap.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 244.0,
+        "y": 179.0,
+        "width": 46.0,
+        "height": 50.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.ml.gap",
+      "refs": {
+        "layout_slot_id": "slot.ml.gap"
+      }
+    },
+    {
+      "id": "slot.q1.text",
+      "type": "text",
+      "attributes": {
+        "x": 24.0,
+        "y": 32.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q1",
+      "refs": {
+        "layout_slot_id": "slot.q1"
+      },
+      "text": "60. 포도주스의 양을 어림해 보려고 합니다. 알맞은 것을 선택해 보세요."
+    },
+    {
+      "id": "slot.bubble.1.text",
+      "type": "text",
+      "attributes": {
+        "x": 305.0,
+        "y": 92.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.bubble.1",
+      "refs": {
+        "layout_slot_id": "slot.bubble.1"
+      },
+      "text": "1L와 200 mL 우유갑으로"
+    },
+    {
+      "id": "slot.bubble.2.text",
+      "type": "text",
+      "attributes": {
+        "x": 305.0,
+        "y": 132.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.bubble.2",
+      "refs": {
+        "layout_slot_id": "slot.bubble.2"
+      },
+      "text": "포도주스의 양을 어림해 볼까?"
+    },
+    {
+      "id": "slot.body.1a.text",
+      "type": "text",
+      "attributes": {
+        "x": 24.0,
+        "y": 200.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.body.1a",
+      "refs": {
+        "layout_slot_id": "slot.body.1a"
+      },
+      "text": "(2) 포도주스의 양은"
+    },
+    {
+      "id": "slot.body.1b.text",
+      "type": "text",
+      "attributes": {
+        "x": 292.0,
+        "y": 200.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.body.1b",
+      "refs": {
+        "layout_slot_id": "slot.body.1b"
+      },
+      "text": "으로 4번쯤 들어가므로 약 ( 800 mL , 8000 mL )입니다."
+    },
+    {
+      "id": "slot.body.1c.text",
+      "type": "text",
+      "attributes": {
+        "x": 24.0,
+        "y": 244.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.body.1c",
+      "refs": {
+        "layout_slot_id": "slot.body.1c"
+      },
+      "text": "니다."
+    },
+    {
+      "id": "slot.body.2.text",
+      "type": "text",
+      "attributes": {
+        "x": 24.0,
+        "y": 286.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.body.2",
+      "refs": {
+        "layout_slot_id": "slot.body.2"
+      },
+      "text": "(2) 포도주스의 양은 200 mL짜리 우유가 4번쯤 들어가므로 약 800 mL로 어림할 수"
+    },
+    {
+      "id": "slot.body.3.text",
+      "type": "text",
+      "attributes": {
+        "x": 24.0,
+        "y": 328.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.body.3",
+      "refs": {
+        "layout_slot_id": "slot.body.3"
+      },
+      "text": "있습니다."
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

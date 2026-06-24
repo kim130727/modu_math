@@ -1,0 +1,75 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008909",
+  "problem_type": "자료해석",
+  "inputs": {
+    "total_ticks": 1,
+    "target_label": "가장 많은 남학생들이 기르고 싶은 동물",
+    "target_ticks": 1,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.boys_counts",
+      "value": {
+        "강아지": 5,
+        "고양이": 1,
+        "햄스터": 4,
+        "앵무새": 3,
+        "합계": 13
+      }
+    },
+    {
+      "ref": "obj.animals",
+      "value": [
+        "강아지",
+        "고양이",
+        "햄스터",
+        "앵무새",
+        "합계"
+      ]
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "category"
+  },
+  "method": "row_max_comparison",
+  "plan": [
+    "남학생 수를 동물별로 비교합니다.",
+    "가장 큰 값을 가진 동물을 찾습니다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "남학생 수 비교: 5, 1, 4, 3",
+      "value": 5
+    },
+    {
+      "id": "step.2",
+      "expr": "가장 큰 남학생 수에 대응하는 동물 선택",
+      "value": "강아지"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "5가 1, 4, 3보다 큰가",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "category",
+      "description": "가장 많은 남학생들이 기르고 싶은 동물"
+    },
+    "value": "강아지",
+    "unit": ""
+  }
+}

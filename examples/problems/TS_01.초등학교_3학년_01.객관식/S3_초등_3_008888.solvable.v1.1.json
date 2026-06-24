@@ -1,0 +1,70 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008888",
+  "problem_type": "pictograph_max",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "도서관을 이용한 학생 수가 가장 많은 요일",
+    "target_ticks": 0,
+    "target_count": 5,
+    "unit": "요일"
+  },
+  "given": [
+    {
+      "ref": "obj.legend.big",
+      "value": {
+        "meaning": "10명"
+      }
+    },
+    {
+      "ref": "obj.legend.small",
+      "value": {
+        "meaning": "1명"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "day_name"
+  },
+  "method": "compare_pictograph_counts",
+  "plan": [
+    "범례를 확인하고 각 요일의 그림 수를 비교한다.",
+    "가장 큰 값을 나타내는 요일을 찾는다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "범례 확인: 큰 그림은 10명, 작은 그림은 1명",
+      "value": {
+        "big": 10,
+        "small": 1
+      }
+    },
+    {
+      "id": "step.2",
+      "expr": "각 요일의 그림 수를 비교하여 가장 큰 요일을 찾음",
+      "value": "수요일"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "해설의 결론과 일치하는가",
+      "expected": "수요일",
+      "actual": "수요일",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "day_name",
+      "description": "도서관을 이용한 학생 수가 가장 많은 요일"
+    },
+    "value": "수요일",
+    "unit": ""
+  }
+}

@@ -12,7 +12,6 @@
       "attributes": {
         "x": 30.0,
         "y": 65.0,
-        "max_width": 832.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 30
@@ -29,7 +28,6 @@
       "attributes": {
         "x": 30.0,
         "y": 120.0,
-        "max_width": 832.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 30
@@ -54,6 +52,22 @@
       "source_ref": "slot.top.circle",
       "refs": {
         "layout_slot_id": "slot.top.circle"
+      }
+    },
+    {
+      "id": "slot.top.diameter.line",
+      "type": "line",
+      "attributes": {
+        "x1": 265.0,
+        "y1": 305.0,
+        "x2": 570.0,
+        "y2": 305.0,
+        "stroke": "#222222",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.top.diameter",
+      "refs": {
+        "layout_slot_id": "slot.top.diameter"
       }
     },
     {
@@ -86,22 +100,6 @@
       "source_ref": "slot.top.dot2",
       "refs": {
         "layout_slot_id": "slot.top.dot2"
-      }
-    },
-    {
-      "id": "slot.top.diameter.line",
-      "type": "line",
-      "attributes": {
-        "x1": 265.0,
-        "y1": 305.0,
-        "x2": 570.0,
-        "y2": 305.0,
-        "stroke": "#222222",
-        "stroke-width": 2.0
-      },
-      "source_ref": "slot.top.diameter",
-      "refs": {
-        "layout_slot_id": "slot.top.diameter"
       }
     }
   ],

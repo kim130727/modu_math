@@ -7,6 +7,22 @@
   },
   "elements": [
     {
+      "id": "slot.math.fraction.bar.line",
+      "type": "line",
+      "attributes": {
+        "x1": 180.0,
+        "y1": 205.0,
+        "x2": 220.0,
+        "y2": 205.0,
+        "stroke": "#222222",
+        "stroke-width": 2.2
+      },
+      "source_ref": "slot.math.fraction.bar",
+      "refs": {
+        "layout_slot_id": "slot.math.fraction.bar"
+      }
+    },
+    {
       "id": "slot.title.text",
       "type": "text",
       "attributes": {
@@ -21,6 +37,40 @@
         "layout_slot_id": "slot.title"
       },
       "text": "그림을 보고 알맞은 말을 선택하세요."
+    },
+    {
+      "id": "slot.math.fraction.num.text",
+      "type": "text",
+      "attributes": {
+        "x": 200.0,
+        "y": 190.0,
+        "fill": "#222222",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.math.fraction.num",
+      "refs": {
+        "layout_slot_id": "slot.math.fraction.num"
+      },
+      "text": "1"
+    },
+    {
+      "id": "slot.math.fraction.den.text",
+      "type": "text",
+      "attributes": {
+        "x": 200.0,
+        "y": 230.0,
+        "fill": "#222222",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.math.fraction.den",
+      "refs": {
+        "layout_slot_id": "slot.math.fraction.den"
+      },
+      "text": "3"
     },
     {
       "id": "slot.card.rect",
@@ -247,7 +297,23 @@
       "refs": {
         "layout_slot_id": "slot.stem"
       },
-      "text": "12의 1/3은 ( 초록색 , 분홍색 ) 구슬입니다."
+      "text": "12의"
+    },
+    {
+      "id": "slot.stem.copy1.text",
+      "type": "text",
+      "attributes": {
+        "x": 235.0,
+        "y": 215.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.stem.copy1",
+      "refs": {
+        "layout_slot_id": "slot.stem.copy1"
+      },
+      "text": "은 (초록색, 분홍색) 구슬입니다."
     }
   ],
   "contract_version": "modu_math.renderer.v2"

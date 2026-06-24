@@ -1,0 +1,552 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008886",
+  "title": "현장 체험 학습으로 가고 싶어 하는 장소",
+  "canvas": {
+    "width": 952.0,
+    "height": 638.0,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.table.border",
+        "slot.table.hrow1",
+        "slot.table.hrow2",
+        "slot.table.hrow3",
+        "slot.table.c1",
+        "slot.table.c2",
+        "slot.table.c3",
+        "slot.table.c4",
+        "slot.table.c5",
+        "slot.table.c6",
+        "slot.q1",
+        "slot.q2",
+        "slot.q3",
+        "slot.table_title",
+        "slot.table.header1",
+        "slot.table.header2",
+        "slot.table.header3",
+        "slot.table.header4",
+        "slot.table.header5",
+        "slot.table.header6",
+        "slot.table.r1label",
+        "slot.table.r1c1",
+        "slot.table.r1c2",
+        "slot.table.r1c3",
+        "slot.table.r1c4",
+        "slot.table.r1c5",
+        "slot.table.r2label",
+        "slot.table.r2c1",
+        "slot.table.r2c2",
+        "slot.table.r2c3",
+        "slot.table.r2c4",
+        "slot.table.r2c5",
+        "slot.bubble.left",
+        "slot.bubble.right",
+        "slot.name.left",
+        "slot.name.right"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "□ 50.  하은이네 반과 소울이네 반은 함께 현장 체험 학습을 가려고 학생들이 가고 싶어",
+        "style_role": "question",
+        "x": 14.0,
+        "y": 28.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "하는 장소를 조사하여 표로 나타냈습니다. 하은이네 반과 소울이네 반이 어디",
+        "style_role": "question",
+        "x": 42.0,
+        "y": 64.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "로 현장 체험 학습을 가면 좋을지 바르게 말한 사람을 선택해 보세요.",
+        "style_role": "question",
+        "x": 42.0,
+        "y": 100.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table_title",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "현장 체험 학습으로 가고 싶어 하는 장소",
+        "style_role": "title",
+        "x": 268.0,
+        "y": 160.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.border",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 122.0,
+        "y": 194.0,
+        "width": 706.0,
+        "height": 84.0,
+        "stroke": "#9ACD32",
+        "stroke_width": 1.2,
+        "fill": "#FFFFFF"
+      }
+    },
+    {
+      "id": "slot.table.hrow1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 122.0,
+        "y": 194.0,
+        "width": 706.0,
+        "height": 28.0,
+        "stroke": "#9ACD32",
+        "stroke_width": 1.2,
+        "fill": "#DDE8BF"
+      }
+    },
+    {
+      "id": "slot.table.hrow2",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 122.0,
+        "y": 222.0,
+        "width": 706.0,
+        "height": 28.0,
+        "stroke": "#9ACD32",
+        "stroke_width": 1.2,
+        "fill": "#FFFFFF"
+      }
+    },
+    {
+      "id": "slot.table.hrow3",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 122.0,
+        "y": 250.0,
+        "width": 706.0,
+        "height": 28.0,
+        "stroke": "#9ACD32",
+        "stroke_width": 1.2,
+        "fill": "#FFFFFF"
+      }
+    },
+    {
+      "id": "slot.table.c1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 122.0,
+        "y": 194.0,
+        "width": 286.0,
+        "height": 84.0,
+        "stroke": "#9ACD32",
+        "stroke_width": 1.2,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.table.c2",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 408.0,
+        "y": 194.0,
+        "width": 84.0,
+        "height": 84.0,
+        "stroke": "#9ACD32",
+        "stroke_width": 1.2,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.table.c3",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 492.0,
+        "y": 194.0,
+        "width": 84.0,
+        "height": 84.0,
+        "stroke": "#9ACD32",
+        "stroke_width": 1.2,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.table.c4",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 576.0,
+        "y": 194.0,
+        "width": 84.0,
+        "height": 84.0,
+        "stroke": "#9ACD32",
+        "stroke_width": 1.2,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.table.c5",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 660.0,
+        "y": 194.0,
+        "width": 84.0,
+        "height": 84.0,
+        "stroke": "#9ACD32",
+        "stroke_width": 1.2,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.table.c6",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 744.0,
+        "y": 194.0,
+        "width": 84.0,
+        "height": 84.0,
+        "stroke": "#9ACD32",
+        "stroke_width": 1.2,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.table.header1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "장소",
+        "style_role": "table",
+        "x": 236.0,
+        "y": 214.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.header2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "박물관",
+        "style_role": "table",
+        "x": 422.0,
+        "y": 214.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.header3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "미술관",
+        "style_role": "table",
+        "x": 506.0,
+        "y": 214.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.header4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "식물원",
+        "style_role": "table",
+        "x": 590.0,
+        "y": 214.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.header5",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "과학관",
+        "style_role": "table",
+        "x": 674.0,
+        "y": 214.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.header6",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "합계",
+        "style_role": "table",
+        "x": 772.0,
+        "y": 214.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.r1label",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "하은이네 반 학생 수(명)",
+        "style_role": "table",
+        "x": 138.0,
+        "y": 242.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.r1c1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "6",
+        "style_role": "table",
+        "x": 437.0,
+        "y": 242.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.r1c2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "7",
+        "style_role": "table",
+        "x": 521.0,
+        "y": 242.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.r1c3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "9",
+        "style_role": "table",
+        "x": 605.0,
+        "y": 242.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.r1c4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "5",
+        "style_role": "table",
+        "x": 689.0,
+        "y": 242.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.r1c5",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "27",
+        "style_role": "table",
+        "x": 771.0,
+        "y": 242.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.r2label",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "소울이네 반 학생 수(명)",
+        "style_role": "table",
+        "x": 138.0,
+        "y": 270.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.r2c1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "10",
+        "style_role": "table",
+        "x": 437.0,
+        "y": 270.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.r2c2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "2",
+        "style_role": "table",
+        "x": 521.0,
+        "y": 270.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.r2c3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "8",
+        "style_role": "table",
+        "x": 605.0,
+        "y": 270.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.r2c4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "3",
+        "style_role": "table",
+        "x": 689.0,
+        "y": 270.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.r2c5",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "23",
+        "style_role": "table",
+        "x": 771.0,
+        "y": 270.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.bubble.left",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "가고 싶은 장소별\n두 반의 학생 수를 합한 수가\n가장 큰 식물원으로\n가면 좋을 것 같아.",
+        "style_role": "speech",
+        "x": 128.0,
+        "y": 326.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.bubble.right",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "우리 반 학생들이\n가장 많이 가고 싶어 하는\n박물관으로 가면\n좋을 것 같아.",
+        "style_role": "speech",
+        "x": 624.0,
+        "y": 326.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.name.left",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "하은",
+        "style_role": "label",
+        "x": 356.0,
+        "y": 494.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.name.right",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "소울",
+        "style_role": "label",
+        "x": 612.0,
+        "y": 494.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.table.border",
+    "slot.table.hrow1",
+    "slot.table.hrow2",
+    "slot.table.hrow3",
+    "slot.table.c1",
+    "slot.table.c2",
+    "slot.table.c3",
+    "slot.table.c4",
+    "slot.table.c5",
+    "slot.table.c6",
+    "slot.q1",
+    "slot.q2",
+    "slot.q3",
+    "slot.table_title",
+    "slot.table.header1",
+    "slot.table.header2",
+    "slot.table.header3",
+    "slot.table.header4",
+    "slot.table.header5",
+    "slot.table.header6",
+    "slot.table.r1label",
+    "slot.table.r1c1",
+    "slot.table.r1c2",
+    "slot.table.r1c3",
+    "slot.table.r1c4",
+    "slot.table.r1c5",
+    "slot.table.r2label",
+    "slot.table.r2c1",
+    "slot.table.r2c2",
+    "slot.table.r2c3",
+    "slot.table.r2c4",
+    "slot.table.r2c5",
+    "slot.bubble.left",
+    "slot.bubble.right",
+    "slot.name.left",
+    "slot.name.right"
+  ]
+}

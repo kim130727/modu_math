@@ -1,0 +1,94 @@
+{
+  "problem_id": "S3_초등_3_009041",
+  "problem_type": "도형_선분_판별",
+  "metadata": {
+    "title": "선분을 찾아 선택하세요",
+    "tags": [],
+    "question": "선분을 찾아 선택하세요.",
+    "required_layout_ids": [
+      "slot.box.outer",
+      "slot.opt1.circle",
+      "slot.opt1.line",
+      "slot.opt1.pt1",
+      "slot.opt1.pt2",
+      "slot.opt2.circle",
+      "slot.opt2.line",
+      "slot.opt2.pt1",
+      "slot.opt2.pt2",
+      "slot.opt3.circle",
+      "slot.opt3.line",
+      "slot.opt3.pt1",
+      "slot.opt3.pt2",
+      "slot.answer.circle"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "선분을 고르는 객관식 문제"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.choice_1",
+        "type": "figure",
+        "label": "ㄱ"
+      },
+      {
+        "id": "obj.choice_2",
+        "type": "figure",
+        "label": "ㄴ"
+      },
+      {
+        "id": "obj.choice_3",
+        "type": "figure",
+        "label": "ㄷ"
+      },
+      {
+        "id": "obj.defined_shape",
+        "type": "segment",
+        "description": "두 점을 곧게 이은 선"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.choice_1",
+          "obj.choice_2",
+          "obj.choice_3"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.select_correct_choice"
+        ]
+      },
+      "plan": {
+        "method": "definition_match",
+        "description": "그림의 형태를 선분의 정의와 비교한다."
+      },
+      "execute": {
+        "expected_operations": [
+          "identify_segment_like_figure",
+          "match_to_definition"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "definition_consistency_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "choice_label",
+      "description": "선분에 해당하는 보기"
+    },
+    "value": "ㄴ",
+    "unit": ""
+  }
+}

@@ -1,0 +1,707 @@
+{
+  "problem_id": "S3_초등_3_008929",
+  "view_box": {
+    "width": 960.0,
+    "height": 610.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.board.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 94.0,
+        "y": 89.0,
+        "width": 742.0,
+        "height": 172.0,
+        "fill": "#dff4f2",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.board",
+      "refs": {
+        "layout_slot_id": "slot.board"
+      }
+    },
+    {
+      "id": "slot.card.1.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 117.0,
+        "y": 131.0,
+        "width": 169.0,
+        "height": 114.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.card.1",
+      "refs": {
+        "layout_slot_id": "slot.card.1"
+      }
+    },
+    {
+      "id": "slot.card.2.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 296.0,
+        "y": 131.0,
+        "width": 169.0,
+        "height": 114.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.card.2",
+      "refs": {
+        "layout_slot_id": "slot.card.2"
+      }
+    },
+    {
+      "id": "slot.card.3.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 475.0,
+        "y": 131.0,
+        "width": 169.0,
+        "height": 114.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.card.3",
+      "refs": {
+        "layout_slot_id": "slot.card.3"
+      }
+    },
+    {
+      "id": "slot.card.4.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 654.0,
+        "y": 131.0,
+        "width": 169.0,
+        "height": 114.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.card.4",
+      "refs": {
+        "layout_slot_id": "slot.card.4"
+      }
+    },
+    {
+      "id": "slot.character.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 103.0,
+        "y": 327.0,
+        "width": 66.0,
+        "height": 100.0,
+        "fill": "#ffd6dd",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.character",
+      "refs": {
+        "layout_slot_id": "slot.character"
+      }
+    },
+    {
+      "id": "slot.speech.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 247.0 322.0 L 855.0 322.0 L 855.0 418.0 L 247.0 418.0 Z",
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "none"
+      },
+      "source_ref": "slot.speech",
+      "refs": {
+        "layout_slot_id": "slot.speech"
+      }
+    },
+    {
+      "id": "slot.card1.label.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 153.0,
+        "y": 121.0,
+        "width": 56.0,
+        "height": 32.0,
+        "fill": "#efe7f4",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.card1.label",
+      "refs": {
+        "layout_slot_id": "slot.card1.label"
+      }
+    },
+    {
+      "id": "slot.card2.label.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 332.0,
+        "y": 121.0,
+        "width": 56.0,
+        "height": 32.0,
+        "fill": "#efe7f4",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.card2.label",
+      "refs": {
+        "layout_slot_id": "slot.card2.label"
+      }
+    },
+    {
+      "id": "slot.card3.label.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 511.0,
+        "y": 121.0,
+        "width": 56.0,
+        "height": 32.0,
+        "fill": "#efe7f4",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.card3.label",
+      "refs": {
+        "layout_slot_id": "slot.card3.label"
+      }
+    },
+    {
+      "id": "slot.card4.label.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 690.0,
+        "y": 121.0,
+        "width": 56.0,
+        "height": 32.0,
+        "fill": "#efe7f4",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.card4.label",
+      "refs": {
+        "layout_slot_id": "slot.card4.label"
+      }
+    },
+    {
+      "id": "slot.card1.star1.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 141.0,
+        "cy": 171.0,
+        "r": 0.1,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#f5b21a"
+      },
+      "source_ref": "slot.card1.star1",
+      "refs": {
+        "layout_slot_id": "slot.card1.star1"
+      }
+    },
+    {
+      "id": "slot.card1.star2.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 176.0,
+        "cy": 180.0,
+        "r": 0.1,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#f5b21a"
+      },
+      "source_ref": "slot.card1.star2",
+      "refs": {
+        "layout_slot_id": "slot.card1.star2"
+      }
+    },
+    {
+      "id": "slot.card1.star3.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 214.0,
+        "cy": 167.0,
+        "r": 0.1,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#f5b21a"
+      },
+      "source_ref": "slot.card1.star3",
+      "refs": {
+        "layout_slot_id": "slot.card1.star3"
+      }
+    },
+    {
+      "id": "slot.card1.star4.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 159.0,
+        "cy": 205.0,
+        "r": 0.1,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#f5b21a"
+      },
+      "source_ref": "slot.card1.star4",
+      "refs": {
+        "layout_slot_id": "slot.card1.star4"
+      }
+    },
+    {
+      "id": "slot.card1.star5.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 198.0,
+        "cy": 201.0,
+        "r": 0.1,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#f5b21a"
+      },
+      "source_ref": "slot.card1.star5",
+      "refs": {
+        "layout_slot_id": "slot.card1.star5"
+      }
+    },
+    {
+      "id": "slot.card1.star6.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 233.0,
+        "cy": 198.0,
+        "r": 0.1,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#f5b21a"
+      },
+      "source_ref": "slot.card1.star6",
+      "refs": {
+        "layout_slot_id": "slot.card1.star6"
+      }
+    },
+    {
+      "id": "slot.card1.star7.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 138.0,
+        "cy": 228.0,
+        "r": 0.1,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#f5b21a"
+      },
+      "source_ref": "slot.card1.star7",
+      "refs": {
+        "layout_slot_id": "slot.card1.star7"
+      }
+    },
+    {
+      "id": "slot.card1.star8.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 183.0,
+        "cy": 229.0,
+        "r": 0.1,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#f5b21a"
+      },
+      "source_ref": "slot.card1.star8",
+      "refs": {
+        "layout_slot_id": "slot.card1.star8"
+      }
+    },
+    {
+      "id": "slot.card2.star1.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 321.0,
+        "cy": 171.0,
+        "r": 0.1,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#f5b21a"
+      },
+      "source_ref": "slot.card2.star1",
+      "refs": {
+        "layout_slot_id": "slot.card2.star1"
+      }
+    },
+    {
+      "id": "slot.card2.star2.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 359.0,
+        "cy": 177.0,
+        "r": 0.1,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#f5b21a"
+      },
+      "source_ref": "slot.card2.star2",
+      "refs": {
+        "layout_slot_id": "slot.card2.star2"
+      }
+    },
+    {
+      "id": "slot.card2.star3.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 396.0,
+        "cy": 169.0,
+        "r": 0.1,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#f5b21a"
+      },
+      "source_ref": "slot.card2.star3",
+      "refs": {
+        "layout_slot_id": "slot.card2.star3"
+      }
+    },
+    {
+      "id": "slot.card2.star4.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 341.0,
+        "cy": 202.0,
+        "r": 0.1,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#f5b21a"
+      },
+      "source_ref": "slot.card2.star4",
+      "refs": {
+        "layout_slot_id": "slot.card2.star4"
+      }
+    },
+    {
+      "id": "slot.card2.star5.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 379.0,
+        "cy": 198.0,
+        "r": 0.1,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#f5b21a"
+      },
+      "source_ref": "slot.card2.star5",
+      "refs": {
+        "layout_slot_id": "slot.card2.star5"
+      }
+    },
+    {
+      "id": "slot.card2.star6.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 415.0,
+        "cy": 196.0,
+        "r": 0.1,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#f5b21a"
+      },
+      "source_ref": "slot.card2.star6",
+      "refs": {
+        "layout_slot_id": "slot.card2.star6"
+      }
+    },
+    {
+      "id": "slot.card2.star7.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 319.0,
+        "cy": 227.0,
+        "r": 0.1,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#f5b21a"
+      },
+      "source_ref": "slot.card2.star7",
+      "refs": {
+        "layout_slot_id": "slot.card2.star7"
+      }
+    },
+    {
+      "id": "slot.card2.star8.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 371.0,
+        "cy": 229.0,
+        "r": 0.1,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#f5b21a"
+      },
+      "source_ref": "slot.card2.star8",
+      "refs": {
+        "layout_slot_id": "slot.card2.star8"
+      }
+    },
+    {
+      "id": "slot.card3.star1.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 500.0,
+        "cy": 172.0,
+        "r": 0.1,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#f5b21a"
+      },
+      "source_ref": "slot.card3.star1",
+      "refs": {
+        "layout_slot_id": "slot.card3.star1"
+      }
+    },
+    {
+      "id": "slot.card3.star2.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 550.0,
+        "cy": 180.0,
+        "r": 0.1,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#f5b21a"
+      },
+      "source_ref": "slot.card3.star2",
+      "refs": {
+        "layout_slot_id": "slot.card3.star2"
+      }
+    },
+    {
+      "id": "slot.card3.star3.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 590.0,
+        "cy": 171.0,
+        "r": 0.1,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#f5b21a"
+      },
+      "source_ref": "slot.card3.star3",
+      "refs": {
+        "layout_slot_id": "slot.card3.star3"
+      }
+    },
+    {
+      "id": "slot.card3.star4.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 517.0,
+        "cy": 214.0,
+        "r": 0.1,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#f5b21a"
+      },
+      "source_ref": "slot.card3.star4",
+      "refs": {
+        "layout_slot_id": "slot.card3.star4"
+      }
+    },
+    {
+      "id": "slot.card3.star5.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 566.0,
+        "cy": 210.0,
+        "r": 0.1,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#f5b21a"
+      },
+      "source_ref": "slot.card3.star5",
+      "refs": {
+        "layout_slot_id": "slot.card3.star5"
+      }
+    },
+    {
+      "id": "slot.card3.star6.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 614.0,
+        "cy": 205.0,
+        "r": 0.1,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#f5b21a"
+      },
+      "source_ref": "slot.card3.star6",
+      "refs": {
+        "layout_slot_id": "slot.card3.star6"
+      }
+    },
+    {
+      "id": "slot.card4.star1.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 680.0,
+        "cy": 176.0,
+        "r": 0.1,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#f5b21a"
+      },
+      "source_ref": "slot.card4.star1",
+      "refs": {
+        "layout_slot_id": "slot.card4.star1"
+      }
+    },
+    {
+      "id": "slot.card4.star2.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 735.0,
+        "cy": 171.0,
+        "r": 0.1,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#f5b21a"
+      },
+      "source_ref": "slot.card4.star2",
+      "refs": {
+        "layout_slot_id": "slot.card4.star2"
+      }
+    },
+    {
+      "id": "slot.card4.star3.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 779.0,
+        "cy": 178.0,
+        "r": 0.1,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#f5b21a"
+      },
+      "source_ref": "slot.card4.star3",
+      "refs": {
+        "layout_slot_id": "slot.card4.star3"
+      }
+    },
+    {
+      "id": "slot.title.text",
+      "type": "text",
+      "attributes": {
+        "x": 14.0,
+        "y": 24.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.title",
+      "refs": {
+        "layout_slot_id": "slot.title"
+      },
+      "text": "[95~97] 소진이는 반 학생들이 기르고 싶어 하는 동물을 조사하여 표로 나타내려고 합니다. 물음에 답하세요."
+    },
+    {
+      "id": "slot.board.title.text",
+      "type": "text",
+      "attributes": {
+        "x": 348.0,
+        "y": 105.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.board.title",
+      "refs": {
+        "layout_slot_id": "slot.board.title"
+      },
+      "text": "기르고 싶어 하는 동물"
+    },
+    {
+      "id": "slot.q95.text",
+      "type": "text",
+      "attributes": {
+        "x": 12.0,
+        "y": 300.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q95",
+      "refs": {
+        "layout_slot_id": "slot.q95"
+      },
+      "text": "95. 소진이가 자료를 수집한 방법을 선택하세요."
+    },
+    {
+      "id": "slot.card1.text.text",
+      "type": "text",
+      "attributes": {
+        "x": 160.0,
+        "y": 142.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 24
+      },
+      "source_ref": "slot.card1.text",
+      "refs": {
+        "layout_slot_id": "slot.card1.text"
+      },
+      "text": "강아지"
+    },
+    {
+      "id": "slot.card2.text.text",
+      "type": "text",
+      "attributes": {
+        "x": 339.0,
+        "y": 142.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 24
+      },
+      "source_ref": "slot.card2.text",
+      "refs": {
+        "layout_slot_id": "slot.card2.text"
+      },
+      "text": "고양이"
+    },
+    {
+      "id": "slot.card3.text.text",
+      "type": "text",
+      "attributes": {
+        "x": 518.0,
+        "y": 142.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 24
+      },
+      "source_ref": "slot.card3.text",
+      "refs": {
+        "layout_slot_id": "slot.card3.text"
+      },
+      "text": "햄스터"
+    },
+    {
+      "id": "slot.card4.text.text",
+      "type": "text",
+      "attributes": {
+        "x": 697.0,
+        "y": 142.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 24
+      },
+      "source_ref": "slot.card4.text",
+      "refs": {
+        "layout_slot_id": "slot.card4.text"
+      },
+      "text": "앵무새"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

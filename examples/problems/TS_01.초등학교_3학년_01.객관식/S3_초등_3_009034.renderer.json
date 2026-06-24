@@ -1,0 +1,363 @@
+{
+  "problem_id": "S3_초등_3_009034",
+  "view_box": {
+    "width": 960.0,
+    "height": 420.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.qnum.text",
+      "type": "text",
+      "attributes": {
+        "x": 20.0,
+        "y": 28.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.qnum",
+      "refs": {
+        "layout_slot_id": "slot.qnum"
+      },
+      "text": "72."
+    },
+    {
+      "id": "slot.qstem.text",
+      "type": "text",
+      "attributes": {
+        "x": 58.0,
+        "y": 28.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.qstem",
+      "refs": {
+        "layout_slot_id": "slot.qstem"
+      },
+      "text": "직사각형 모양의 종이로 그림과 같은 모양을 만들었습니다. 다음을 읽고 O, X를 고르세요."
+    },
+    {
+      "id": "slot.step1.rect.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 38.0,
+        "y": 84.0,
+        "width": 120.0,
+        "height": 84.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.step1.rect",
+      "refs": {
+        "layout_slot_id": "slot.step1.rect"
+      }
+    },
+    {
+      "id": "slot.step2.rect.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 274.0,
+        "y": 84.0,
+        "width": 120.0,
+        "height": 84.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.step2.rect",
+      "refs": {
+        "layout_slot_id": "slot.step2.rect"
+      }
+    },
+    {
+      "id": "slot.step3.rect.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 510.0,
+        "y": 84.0,
+        "width": 120.0,
+        "height": 84.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.step3.rect",
+      "refs": {
+        "layout_slot_id": "slot.step3.rect"
+      }
+    },
+    {
+      "id": "slot.step3.scissors.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 578.0 164.0 C 582.0 174.0, 582.0 182.0, 578.0 190.0",
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "none"
+      },
+      "source_ref": "slot.step3.scissors",
+      "refs": {
+        "layout_slot_id": "slot.step3.scissors"
+      }
+    },
+    {
+      "id": "slot.step4.rect.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 726.0,
+        "y": 84.0,
+        "width": 120.0,
+        "height": 84.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.step4.rect",
+      "refs": {
+        "layout_slot_id": "slot.step4.rect"
+      }
+    },
+    {
+      "id": "slot.step4.curve.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 790.0 110.0 C 812.0 112.0, 813.0 136.0, 790.0 142.0",
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "none"
+      },
+      "source_ref": "slot.step4.curve",
+      "refs": {
+        "layout_slot_id": "slot.step4.curve"
+      }
+    },
+    {
+      "id": "slot.step1.diag.line",
+      "type": "line",
+      "attributes": {
+        "x1": 44.0,
+        "y1": 90.0,
+        "x2": 128.0,
+        "y2": 166.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.step1.diag",
+      "refs": {
+        "layout_slot_id": "slot.step1.diag"
+      }
+    },
+    {
+      "id": "slot.step2.fold.line",
+      "type": "line",
+      "attributes": {
+        "x1": 274.0,
+        "y1": 84.0,
+        "x2": 350.0,
+        "y2": 168.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.step2.fold",
+      "refs": {
+        "layout_slot_id": "slot.step2.fold"
+      }
+    },
+    {
+      "id": "slot.step3.fold.line",
+      "type": "line",
+      "attributes": {
+        "x1": 510.0,
+        "y1": 84.0,
+        "x2": 586.0,
+        "y2": 168.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.step3.fold",
+      "refs": {
+        "layout_slot_id": "slot.step3.fold"
+      }
+    },
+    {
+      "id": "slot.step4.diag.line",
+      "type": "line",
+      "attributes": {
+        "x1": 738.0,
+        "y1": 90.0,
+        "x2": 820.0,
+        "y2": 166.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.step4.diag",
+      "refs": {
+        "layout_slot_id": "slot.step4.diag"
+      }
+    },
+    {
+      "id": "slot.step1.note.text",
+      "type": "text",
+      "attributes": {
+        "x": 114.0,
+        "y": 190.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 24
+      },
+      "source_ref": "slot.step1.note",
+      "refs": {
+        "layout_slot_id": "slot.step1.note"
+      },
+      "text": "접선을 따라 접어요."
+    },
+    {
+      "id": "slot.arrow1.text",
+      "type": "text",
+      "attributes": {
+        "x": 178.0,
+        "y": 132.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 34
+      },
+      "source_ref": "slot.arrow1",
+      "refs": {
+        "layout_slot_id": "slot.arrow1"
+      },
+      "text": "→"
+    },
+    {
+      "id": "slot.step2.note.text",
+      "type": "text",
+      "attributes": {
+        "x": 0.0,
+        "y": 0.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.step2.note",
+      "refs": {
+        "layout_slot_id": "slot.step2.note"
+      },
+      "text": ""
+    },
+    {
+      "id": "slot.arrow2.text",
+      "type": "text",
+      "attributes": {
+        "x": 414.0,
+        "y": 132.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 34
+      },
+      "source_ref": "slot.arrow2",
+      "refs": {
+        "layout_slot_id": "slot.arrow2"
+      },
+      "text": "→"
+    },
+    {
+      "id": "slot.step3.note.text",
+      "type": "text",
+      "attributes": {
+        "x": 0.0,
+        "y": 0.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.step3.note",
+      "refs": {
+        "layout_slot_id": "slot.step3.note"
+      },
+      "text": ""
+    },
+    {
+      "id": "slot.arrow3.text",
+      "type": "text",
+      "attributes": {
+        "x": 650.0,
+        "y": 132.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 34
+      },
+      "source_ref": "slot.arrow3",
+      "refs": {
+        "layout_slot_id": "slot.arrow3"
+      },
+      "text": "→"
+    },
+    {
+      "id": "slot.step4.note.text",
+      "type": "text",
+      "attributes": {
+        "x": 790.0,
+        "y": 190.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 24
+      },
+      "source_ref": "slot.step4.note",
+      "refs": {
+        "layout_slot_id": "slot.step4.note"
+      },
+      "text": "잘라낸 모양을 펼쳐요."
+    },
+    {
+      "id": "slot.claim.text",
+      "type": "text",
+      "attributes": {
+        "x": 230.0,
+        "y": 252.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30
+      },
+      "source_ref": "slot.claim",
+      "refs": {
+        "layout_slot_id": "slot.claim"
+      },
+      "text": "만든 모양의 네 변의 길이는 모두 같습니다."
+    },
+    {
+      "id": "slot.choice.o.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 22.0,
+        "cy": 338.0,
+        "r": 8.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#ffffff"
+      },
+      "source_ref": "slot.choice.o",
+      "refs": {
+        "layout_slot_id": "slot.choice.o"
+      }
+    },
+    {
+      "id": "slot.choice.x.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 476.0,
+        "cy": 338.0,
+        "r": 8.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#ffffff"
+      },
+      "source_ref": "slot.choice.x",
+      "refs": {
+        "layout_slot_id": "slot.choice.x"
+      }
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

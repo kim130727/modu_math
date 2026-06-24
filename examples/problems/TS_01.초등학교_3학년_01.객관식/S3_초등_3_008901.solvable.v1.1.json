@@ -1,0 +1,83 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008901",
+  "problem_type": "picture_graph_compare",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "더 많이 팔린 아이스크림",
+    "target_ticks": 0,
+    "target_count": 0,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.legend.big",
+      "value": 10
+    },
+    {
+      "ref": "obj.legend.small",
+      "value": 1
+    },
+    {
+      "ref": "obj.strawberry",
+      "value": {
+        "big": 2,
+        "small": 3
+      }
+    },
+    {
+      "ref": "obj.vanilla",
+      "value": {
+        "big": 1,
+        "small": 6
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "larger_quantity_category"
+  },
+  "method": "count_and_compare",
+  "plan": [
+    "범례를 읽어 큰 그림과 작은 그림의 값을 확인한다.",
+    "딸기 맛과 바닐라 맛의 총 개수를 각각 구한다.",
+    "두 값을 비교하여 더 큰 쪽을 찾는다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "딸기 맛 = 2×10 + 3×1",
+      "value": 23
+    },
+    {
+      "id": "step.2",
+      "expr": "바닐라 맛 = 1×10 + 6×1",
+      "value": 16
+    },
+    {
+      "id": "step.3",
+      "expr": "23과 16을 비교",
+      "value": "딸기 맛"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "23 > 16",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "larger_quantity_category",
+      "description": "더 많이 팔린 아이스크림"
+    },
+    "value": "딸기 맛",
+    "unit": ""
+  }
+}

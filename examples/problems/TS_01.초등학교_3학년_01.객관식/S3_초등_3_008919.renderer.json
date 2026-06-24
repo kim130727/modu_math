@@ -1,0 +1,370 @@
+{
+  "problem_id": "S3_초등_3_008919",
+  "view_box": {
+    "width": 960.0,
+    "height": 640.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.qnum.text",
+      "type": "text",
+      "attributes": {
+        "x": 26.0,
+        "y": 24.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.qnum",
+      "refs": {
+        "layout_slot_id": "slot.qnum"
+      },
+      "text": "85."
+    },
+    {
+      "id": "slot.q1.text",
+      "type": "text",
+      "attributes": {
+        "x": 58.0,
+        "y": 24.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q1",
+      "refs": {
+        "layout_slot_id": "slot.q1"
+      },
+      "text": "마을별 기르고 있는 돼지 수를 그림그래프로 나타내었습니다. 가장 적은"
+    },
+    {
+      "id": "slot.q2.text",
+      "type": "text",
+      "attributes": {
+        "x": 26.0,
+        "y": 58.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q2",
+      "refs": {
+        "layout_slot_id": "slot.q2"
+      },
+      "text": "돼지를 기르고 있는 마을을 고르세요."
+    },
+    {
+      "id": "slot.title.text",
+      "type": "text",
+      "attributes": {
+        "x": 365.0,
+        "y": 100.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.title",
+      "refs": {
+        "layout_slot_id": "slot.title"
+      },
+      "text": "마을별 돼지 수"
+    },
+    {
+      "id": "slot.table.outer.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 238.0,
+        "y": 120.0,
+        "width": 484.0,
+        "height": 298.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.table.outer",
+      "refs": {
+        "layout_slot_id": "slot.table.outer"
+      }
+    },
+    {
+      "id": "slot.table.head.left.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 238.0,
+        "y": 120.0,
+        "width": 106.0,
+        "height": 38.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.table.head.left",
+      "refs": {
+        "layout_slot_id": "slot.table.head.left"
+      }
+    },
+    {
+      "id": "slot.table.head.right.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 344.0,
+        "y": 120.0,
+        "width": 378.0,
+        "height": 38.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.table.head.right",
+      "refs": {
+        "layout_slot_id": "slot.table.head.right"
+      }
+    },
+    {
+      "id": "slot.table.row1.left.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 238.0,
+        "y": 158.0,
+        "width": 106.0,
+        "height": 65.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.table.row1.left",
+      "refs": {
+        "layout_slot_id": "slot.table.row1.left"
+      }
+    },
+    {
+      "id": "slot.table.row2.left.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 238.0,
+        "y": 223.0,
+        "width": 106.0,
+        "height": 65.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.table.row2.left",
+      "refs": {
+        "layout_slot_id": "slot.table.row2.left"
+      }
+    },
+    {
+      "id": "slot.table.row3.left.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 238.0,
+        "y": 288.0,
+        "width": 106.0,
+        "height": 65.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.table.row3.left",
+      "refs": {
+        "layout_slot_id": "slot.table.row3.left"
+      }
+    },
+    {
+      "id": "slot.table.row4.left.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 238.0,
+        "y": 353.0,
+        "width": 106.0,
+        "height": 65.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.table.row4.left",
+      "refs": {
+        "layout_slot_id": "slot.table.row4.left"
+      }
+    },
+    {
+      "id": "slot.table.vline.text",
+      "type": "text",
+      "attributes": {
+        "x": 0.0,
+        "y": 0.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.vline",
+      "refs": {
+        "layout_slot_id": "slot.table.vline"
+      },
+      "text": ""
+    },
+    {
+      "id": "slot.table.hline1.text",
+      "type": "text",
+      "attributes": {
+        "x": 0.0,
+        "y": 0.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.hline1",
+      "refs": {
+        "layout_slot_id": "slot.table.hline1"
+      },
+      "text": ""
+    },
+    {
+      "id": "slot.table.hline2.text",
+      "type": "text",
+      "attributes": {
+        "x": 0.0,
+        "y": 0.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.hline2",
+      "refs": {
+        "layout_slot_id": "slot.table.hline2"
+      },
+      "text": ""
+    },
+    {
+      "id": "slot.table.hline3.text",
+      "type": "text",
+      "attributes": {
+        "x": 0.0,
+        "y": 0.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.hline3",
+      "refs": {
+        "layout_slot_id": "slot.table.hline3"
+      },
+      "text": ""
+    },
+    {
+      "id": "slot.table.hline4.text",
+      "type": "text",
+      "attributes": {
+        "x": 0.0,
+        "y": 0.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.hline4",
+      "refs": {
+        "layout_slot_id": "slot.table.hline4"
+      },
+      "text": ""
+    },
+    {
+      "id": "slot.legend.big.text",
+      "type": "text",
+      "attributes": {
+        "x": 572.0,
+        "y": 454.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.legend.big",
+      "refs": {
+        "layout_slot_id": "slot.legend.big"
+      },
+      "text": "10마리"
+    },
+    {
+      "id": "slot.legend.small.text",
+      "type": "text",
+      "attributes": {
+        "x": 670.0,
+        "y": 454.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.legend.small",
+      "refs": {
+        "layout_slot_id": "slot.legend.small"
+      },
+      "text": "1마리"
+    },
+    {
+      "id": "slot.choice1.text",
+      "type": "text",
+      "attributes": {
+        "x": 34.0,
+        "y": 510.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice1",
+      "refs": {
+        "layout_slot_id": "slot.choice1"
+      },
+      "text": "① 초록 마을"
+    },
+    {
+      "id": "slot.choice2.text",
+      "type": "text",
+      "attributes": {
+        "x": 490.0,
+        "y": 510.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice2",
+      "refs": {
+        "layout_slot_id": "slot.choice2"
+      },
+      "text": "② 하늘 마을"
+    },
+    {
+      "id": "slot.choice3.text",
+      "type": "text",
+      "attributes": {
+        "x": 34.0,
+        "y": 556.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice3",
+      "refs": {
+        "layout_slot_id": "slot.choice3"
+      },
+      "text": "③ 금빛 마을"
+    },
+    {
+      "id": "slot.choice4.text",
+      "type": "text",
+      "attributes": {
+        "x": 490.0,
+        "y": 556.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice4",
+      "refs": {
+        "layout_slot_id": "slot.choice4"
+      },
+      "text": "④ 바람 마을"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

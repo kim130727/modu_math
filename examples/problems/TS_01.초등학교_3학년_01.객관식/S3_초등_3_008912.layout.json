@@ -1,0 +1,282 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008912",
+  "title": "생일에 받고 싶은 선물별 학생 수",
+  "canvas": {
+    "width": 940,
+    "height": 397,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.table.rect",
+        "slot.q.no",
+        "slot.q.line1",
+        "slot.q.line2",
+        "slot.table.title",
+        "slot.table.hdr1",
+        "slot.table.hdr2",
+        "slot.table.hdr3",
+        "slot.table.hdr4",
+        "slot.table.hdr5",
+        "slot.table.hdr6",
+        "slot.table.val1",
+        "slot.table.val2",
+        "slot.table.val3",
+        "slot.table.val4",
+        "slot.table.val5",
+        "slot.table.val6",
+        "slot.choice"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q.no",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "78.",
+        "style_role": "question",
+        "x": 12.0,
+        "y": 24.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q.line1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "정국이는 반 학생들이 생일에 받고 싶은 선물을 조사하여 표로 나타내었습니다.",
+        "style_role": "question",
+        "x": 56.0,
+        "y": 24.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q.line2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "가장 적은 학생들이 받고 싶은 선물을 선택하세요.",
+        "style_role": "question",
+        "x": 56.0,
+        "y": 64.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.title",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "생일에 받고 싶은 선물별 학생 수",
+        "style_role": "label",
+        "x": 281.0,
+        "y": 96.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.rect",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 123.0,
+        "y": 116.0,
+        "width": 704.0,
+        "height": 81.0,
+        "stroke": "#9CCB59",
+        "stroke_width": 1.4,
+        "fill": "#E4EBD0"
+      }
+    },
+    {
+      "id": "slot.table.hdr1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "선물",
+        "style_role": "label",
+        "x": 174.0,
+        "y": 144.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.hdr2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "책",
+        "style_role": "label",
+        "x": 364.0,
+        "y": 144.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.hdr3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "휴대전화",
+        "style_role": "label",
+        "x": 452.0,
+        "y": 144.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.hdr4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "게임기",
+        "style_role": "label",
+        "x": 567.0,
+        "y": 144.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.hdr5",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "옷",
+        "style_role": "label",
+        "x": 684.0,
+        "y": 144.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.hdr6",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "합계",
+        "style_role": "label",
+        "x": 779.0,
+        "y": 144.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.val1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "학생 수(명)",
+        "style_role": "label",
+        "x": 154.0,
+        "y": 181.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.val2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "6",
+        "style_role": "label",
+        "x": 347.0,
+        "y": 180.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.val3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "12",
+        "style_role": "label",
+        "x": 446.0,
+        "y": 180.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.val4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "8",
+        "style_role": "label",
+        "x": 567.0,
+        "y": 180.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.val5",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "4",
+        "style_role": "label",
+        "x": 685.0,
+        "y": 180.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.val6",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "30",
+        "style_role": "label",
+        "x": 773.0,
+        "y": 180.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "( 책 , 휴대전화 , 게임기 , 옷 )",
+        "style_role": "label",
+        "x": 603.0,
+        "y": 234.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.table.rect",
+    "slot.q.no",
+    "slot.q.line1",
+    "slot.q.line2",
+    "slot.table.title",
+    "slot.table.hdr1",
+    "slot.table.hdr2",
+    "slot.table.hdr3",
+    "slot.table.hdr4",
+    "slot.table.hdr5",
+    "slot.table.hdr6",
+    "slot.table.val1",
+    "slot.table.val2",
+    "slot.table.val3",
+    "slot.table.val4",
+    "slot.table.val5",
+    "slot.table.val6",
+    "slot.choice"
+  ]
+}

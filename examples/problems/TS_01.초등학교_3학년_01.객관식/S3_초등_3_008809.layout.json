@@ -1,0 +1,120 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008809",
+  "title": "무게가 1 kg보다 더 가벼운 것을 선택하세요",
+  "canvas": {
+    "width": 936.0,
+    "height": 396.0,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q1",
+        "slot.q2"
+      ]
+    },
+    {
+      "id": "region.options",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.opt1",
+        "slot.opt2",
+        "slot.opt3"
+      ]
+    },
+    {
+      "id": "region.answer",
+      "role": "support",
+      "flow": "absolute",
+      "slot_ids": []
+    },
+    {
+      "id": "region.explanation",
+      "role": "support",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "40.",
+        "style_role": "question",
+        "x": 32.0,
+        "y": 26.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "무게가 1 kg보다 더 가벼운 것을 선택하세요.",
+        "style_role": "question",
+        "x": 78.0,
+        "y": 26.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.opt1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "전자레인지 그림 TODO",
+        "style_role": "diagram",
+        "x": 176.0,
+        "y": 96.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.opt2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "호박 그림 TODO",
+        "style_role": "diagram",
+        "x": 470.0,
+        "y": 96.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.opt3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "칫솔 그림 TODO",
+        "style_role": "diagram",
+        "x": 717.0,
+        "y": 96.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q1",
+    "slot.q2",
+    "region.options",
+    "slot.opt1",
+    "slot.opt2",
+    "slot.opt3",
+    "region.answer",
+    "region.explanation"
+  ]
+}

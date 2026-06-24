@@ -1,0 +1,306 @@
+{
+  "problem_id": "S3_초등_3_008960",
+  "view_box": {
+    "width": 945.0,
+    "height": 695.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.q1.text",
+      "type": "text",
+      "attributes": {
+        "x": 20.0,
+        "y": 28.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q1",
+      "refs": {
+        "layout_slot_id": "slot.q1"
+      },
+      "text": "30. 정호네 학교 학생 1250명의 혈액형을 조사하여 그림그래프로 나타내었습니다."
+    },
+    {
+      "id": "slot.q2.text",
+      "type": "text",
+      "attributes": {
+        "x": 20.0,
+        "y": 64.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q2",
+      "refs": {
+        "layout_slot_id": "slot.q2"
+      },
+      "text": "혈액형이 AB형인 학생 수를 바르게 나타낸 것은 어느 것일까요?"
+    },
+    {
+      "id": "slot.q3.text",
+      "type": "text",
+      "attributes": {
+        "x": 0.0,
+        "y": 0.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q3",
+      "refs": {
+        "layout_slot_id": "slot.q3"
+      },
+      "text": ""
+    },
+    {
+      "id": "slot.table.outer.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 245.0,
+        "y": 158.0,
+        "width": 420.0,
+        "height": 246.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.table.outer",
+      "refs": {
+        "layout_slot_id": "slot.table.outer"
+      }
+    },
+    {
+      "id": "slot.table.header_left.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 245.0,
+        "y": 158.0,
+        "width": 110.0,
+        "height": 44.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.table.header_left",
+      "refs": {
+        "layout_slot_id": "slot.table.header_left"
+      }
+    },
+    {
+      "id": "slot.table.header_right.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 355.0,
+        "y": 158.0,
+        "width": 310.0,
+        "height": 44.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.table.header_right",
+      "refs": {
+        "layout_slot_id": "slot.table.header_right"
+      }
+    },
+    {
+      "id": "slot.table.row.a.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 245.0,
+        "y": 202.0,
+        "width": 110.0,
+        "height": 50.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.table.row.a",
+      "refs": {
+        "layout_slot_id": "slot.table.row.a"
+      }
+    },
+    {
+      "id": "slot.table.row.b.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 245.0,
+        "y": 252.0,
+        "width": 110.0,
+        "height": 50.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.table.row.b",
+      "refs": {
+        "layout_slot_id": "slot.table.row.b"
+      }
+    },
+    {
+      "id": "slot.table.row.ab.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 245.0,
+        "y": 302.0,
+        "width": 110.0,
+        "height": 50.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.table.row.ab",
+      "refs": {
+        "layout_slot_id": "slot.table.row.ab"
+      }
+    },
+    {
+      "id": "slot.table.row.o.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 245.0,
+        "y": 352.0,
+        "width": 110.0,
+        "height": 52.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.table.row.o",
+      "refs": {
+        "layout_slot_id": "slot.table.row.o"
+      }
+    },
+    {
+      "id": "slot.title.text",
+      "type": "text",
+      "attributes": {
+        "x": 450.0,
+        "y": 124.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.title",
+      "refs": {
+        "layout_slot_id": "slot.title"
+      },
+      "text": "학생들의 혈액형"
+    },
+    {
+      "id": "slot.legend.face.text",
+      "type": "text",
+      "attributes": {
+        "x": 510.0,
+        "y": 386.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.legend.face",
+      "refs": {
+        "layout_slot_id": "slot.legend.face"
+      },
+      "text": "😊 100명"
+    },
+    {
+      "id": "slot.legend.dot.text",
+      "type": "text",
+      "attributes": {
+        "x": 610.0,
+        "y": 386.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.legend.dot",
+      "refs": {
+        "layout_slot_id": "slot.legend.dot"
+      },
+      "text": "• 10명"
+    },
+    {
+      "id": "slot.choice.1.label.text",
+      "type": "text",
+      "attributes": {
+        "x": 36.0,
+        "y": 420.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice.1.label",
+      "refs": {
+        "layout_slot_id": "slot.choice.1.label"
+      },
+      "text": "①"
+    },
+    {
+      "id": "slot.choice.2.label.text",
+      "type": "text",
+      "attributes": {
+        "x": 500.0,
+        "y": 420.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice.2.label",
+      "refs": {
+        "layout_slot_id": "slot.choice.2.label"
+      },
+      "text": "②"
+    },
+    {
+      "id": "slot.choice.3.label.text",
+      "type": "text",
+      "attributes": {
+        "x": 36.0,
+        "y": 472.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice.3.label",
+      "refs": {
+        "layout_slot_id": "slot.choice.3.label"
+      },
+      "text": "③"
+    },
+    {
+      "id": "slot.choice.4.label.text",
+      "type": "text",
+      "attributes": {
+        "x": 500.0,
+        "y": 472.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice.4.label",
+      "refs": {
+        "layout_slot_id": "slot.choice.4.label"
+      },
+      "text": "④"
+    },
+    {
+      "id": "slot.choice.5.label.text",
+      "type": "text",
+      "attributes": {
+        "x": 36.0,
+        "y": 524.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice.5.label",
+      "refs": {
+        "layout_slot_id": "slot.choice.5.label"
+      },
+      "text": "⑤"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

@@ -1,0 +1,100 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008948",
+  "problem_type": "data_interpretation_minimum",
+  "inputs": {
+    "total_ticks": 1,
+    "target_label": "가장 적은 학생들이 좋아하는 운동",
+    "target_ticks": 1,
+    "target_count": 4,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.soccer",
+      "value": {
+        "name": "축구",
+        "count": 5
+      }
+    },
+    {
+      "ref": "obj.baseball",
+      "value": {
+        "name": "야구",
+        "count": 6
+      }
+    },
+    {
+      "ref": "obj.basketball",
+      "value": {
+        "name": "농구",
+        "count": 1
+      }
+    },
+    {
+      "ref": "obj.volleyball",
+      "value": {
+        "name": "배구",
+        "count": 4
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "sport_name"
+  },
+  "method": "minimum_comparison",
+  "plan": [
+    "표에 있는 학생 수를 서로 비교한다.",
+    "가장 작은 수에 해당하는 운동을 찾는다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "6 > 5 > 4 > 1",
+      "value": {
+        "ordered_counts": [
+          6,
+          5,
+          4,
+          1
+        ]
+      }
+    },
+    {
+      "id": "step.2",
+      "expr": "가장 작은 학생 수는 1",
+      "value": {
+        "minimum_count": 1,
+        "sport": "농구"
+      }
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "농구의 학생 수가 1인지 확인",
+      "expected": 1,
+      "actual": 1,
+      "pass": true
+    },
+    {
+      "id": "check.2",
+      "expr": "1이 네 운동 중 가장 작은 값인지 확인",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "sport_name",
+      "description": "가장 적은 학생들이 좋아하는 운동"
+    },
+    "value": "농구",
+    "unit": ""
+  }
+}

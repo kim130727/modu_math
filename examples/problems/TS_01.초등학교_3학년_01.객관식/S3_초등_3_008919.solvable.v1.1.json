@@ -1,0 +1,109 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008919",
+  "problem_type": "그림그래프_비교",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "가장 적은 돼지를 기르고 있는 마을",
+    "target_ticks": 0,
+    "target_count": 1,
+    "unit": "마을"
+  },
+  "given": [
+    {
+      "ref": "obj.legend.big",
+      "value": {
+        "icon": 1,
+        "amount": 10,
+        "unit": "마리"
+      }
+    },
+    {
+      "ref": "obj.legend.small",
+      "value": {
+        "icon": 1,
+        "amount": 1,
+        "unit": "마리"
+      }
+    },
+    {
+      "ref": "obj.village.green",
+      "value": {
+        "name": "초록"
+      }
+    },
+    {
+      "ref": "obj.village.sky",
+      "value": {
+        "name": "하늘"
+      }
+    },
+    {
+      "ref": "obj.village.gold",
+      "value": {
+        "name": "금빛"
+      }
+    },
+    {
+      "ref": "obj.village.wind",
+      "value": {
+        "name": "바람"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "village_name"
+  },
+  "method": "picture_graph_comparison",
+  "plan": [
+    "범례를 확인해 큰 돼지 그림과 작은 돼지 그림의 의미를 읽는다.",
+    "네 마을의 그림 수를 비교해 가장 적은 마을을 찾는다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "범례 확인",
+      "value": {
+        "big_icon": 10,
+        "small_icon": 1,
+        "unit": "마리"
+      }
+    },
+    {
+      "id": "step.2",
+      "expr": "각 마을의 돼지 수 비교",
+      "value": {
+        "green": null,
+        "sky": null,
+        "gold": null,
+        "wind": null
+      }
+    },
+    {
+      "id": "step.3",
+      "expr": "가장 적은 마을 선택",
+      "value": "바람"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "선택한 마을이 가장 적은 돼지 수를 가졌는가",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "village_name",
+      "description": "가장 적은 돼지를 기르고 있는 마을"
+    },
+    "value": 4,
+    "unit": ""
+  }
+}

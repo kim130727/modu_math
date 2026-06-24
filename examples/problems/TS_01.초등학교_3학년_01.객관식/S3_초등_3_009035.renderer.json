@@ -1,0 +1,462 @@
+{
+  "problem_id": "S3_초등_3_009035",
+  "view_box": {
+    "width": 940.0,
+    "height": 460.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.step2.fold_line.line",
+      "type": "line",
+      "attributes": {
+        "x1": 256.0,
+        "y1": 50.0,
+        "x2": 320.0,
+        "y2": 114.0,
+        "stroke": "#cc6f6f",
+        "stroke-width": 1.4,
+        "stroke-dasharray": "5 4"
+      },
+      "source_ref": "slot.step2.fold_line",
+      "refs": {
+        "layout_slot_id": "slot.step2.fold_line"
+      }
+    },
+    {
+      "id": "slot.id.text",
+      "type": "text",
+      "attributes": {
+        "x": 16.0,
+        "y": 34.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 24
+      },
+      "source_ref": "slot.id",
+      "refs": {
+        "layout_slot_id": "slot.id"
+      },
+      "text": "□ 73."
+    },
+    {
+      "id": "slot.q.text",
+      "type": "text",
+      "attributes": {
+        "x": 72.0,
+        "y": 34.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q",
+      "refs": {
+        "layout_slot_id": "slot.q"
+      },
+      "text": "직사각형 모양의 종이로 그림과 같이 만들었습니다. 다음을 읽고 ○, ×를 알맞게 선택해 보세요."
+    },
+    {
+      "id": "slot.step1.note_text.text",
+      "type": "text",
+      "attributes": {
+        "x": 152.0,
+        "y": 147.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 22
+      },
+      "source_ref": "slot.step1.note_text",
+      "refs": {
+        "layout_slot_id": "slot.step1.note_text"
+      },
+      "text": "점을 따라 접어요."
+    },
+    {
+      "id": "slot.step4.note_text.text",
+      "type": "text",
+      "attributes": {
+        "x": 804.0,
+        "y": 147.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 22
+      },
+      "source_ref": "slot.step4.note_text",
+      "refs": {
+        "layout_slot_id": "slot.step4.note_text"
+      },
+      "text": "잘라낸 모양을\n펼쳐요."
+    },
+    {
+      "id": "slot.choice.o_text.text",
+      "type": "text",
+      "attributes": {
+        "x": 29.0,
+        "y": 300.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 22
+      },
+      "source_ref": "slot.choice.o_text",
+      "refs": {
+        "layout_slot_id": "slot.choice.o_text"
+      },
+      "text": "○"
+    },
+    {
+      "id": "slot.choice.x_text.text",
+      "type": "text",
+      "attributes": {
+        "x": 470.0,
+        "y": 300.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 22
+      },
+      "source_ref": "slot.choice.x_text",
+      "refs": {
+        "layout_slot_id": "slot.choice.x_text"
+      },
+      "text": "×"
+    },
+    {
+      "id": "slot.step1.rect.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 48.0,
+        "y": 50.0,
+        "width": 120.0,
+        "height": 80.0,
+        "fill": "#f7d9d9",
+        "stroke": "#ff9aa2",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.step1.rect",
+      "refs": {
+        "layout_slot_id": "slot.step1.rect"
+      }
+    },
+    {
+      "id": "slot.step1.note.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 130 126 C 134 146, 148 150, 156 142",
+        "stroke": "#2e9f58",
+        "stroke-width": 1.4,
+        "fill": "none"
+      },
+      "source_ref": "slot.step1.note",
+      "refs": {
+        "layout_slot_id": "slot.step1.note"
+      }
+    },
+    {
+      "id": "slot.step2.rect.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 256.0,
+        "y": 50.0,
+        "width": 128.0,
+        "height": 80.0,
+        "fill": "#f7d9d9",
+        "stroke": "#ff9aa2",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.step2.rect",
+      "refs": {
+        "layout_slot_id": "slot.step2.rect"
+      }
+    },
+    {
+      "id": "slot.step2.fold.polygon",
+      "type": "polygon",
+      "attributes": {
+        "points": [
+          [
+            256.0,
+            50.0
+          ],
+          [
+            320.0,
+            114.0
+          ],
+          [
+            256.0,
+            130.0
+          ]
+        ],
+        "stroke": "#ff9aa2",
+        "stroke-width": 1.2,
+        "fill": "#efb3b3"
+      },
+      "source_ref": "slot.step2.fold",
+      "refs": {
+        "layout_slot_id": "slot.step2.fold"
+      }
+    },
+    {
+      "id": "slot.step3.rect.polygon",
+      "type": "polygon",
+      "attributes": {
+        "points": [
+          [
+            468.0,
+            50.0
+          ],
+          [
+            596.0,
+            50.0
+          ],
+          [
+            596.0,
+            130.0
+          ],
+          [
+            532.0,
+            130.0
+          ],
+          [
+            532.0,
+            114.0
+          ],
+          [
+            468.0,
+            50.0
+          ]
+        ],
+        "stroke": "#ff9aa2",
+        "stroke-width": 1.5,
+        "fill": "#f7d9d9"
+      },
+      "source_ref": "slot.step3.rect",
+      "refs": {
+        "layout_slot_id": "slot.step3.rect"
+      }
+    },
+    {
+      "id": "slot.step4.rect.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 716.0,
+        "y": 50.0,
+        "width": 120.0,
+        "height": 80.0,
+        "fill": "#f7d9d9",
+        "stroke": "#ff9aa2",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.step4.rect",
+      "refs": {
+        "layout_slot_id": "slot.step4.rect"
+      }
+    },
+    {
+      "id": "slot.step4.curve.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 770 70 C 782 56, 792 58, 786 76",
+        "stroke": "#d43b8c",
+        "stroke-width": 1.4,
+        "fill": "none"
+      },
+      "source_ref": "slot.step4.curve",
+      "refs": {
+        "layout_slot_id": "slot.step4.curve"
+      }
+    },
+    {
+      "id": "slot.step4.note.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 790 126 C 792 146, 808 150, 816 142",
+        "stroke": "#2e9f58",
+        "stroke-width": 1.4,
+        "fill": "none"
+      },
+      "source_ref": "slot.step4.note",
+      "refs": {
+        "layout_slot_id": "slot.step4.note"
+      }
+    },
+    {
+      "id": "slot.step1.diag.line",
+      "type": "line",
+      "attributes": {
+        "x1": 54.0,
+        "y1": 56.0,
+        "x2": 162.0,
+        "y2": 124.0,
+        "stroke": "#e78b8b",
+        "stroke-width": 1.4,
+        "stroke-dasharray": "6 4"
+      },
+      "source_ref": "slot.step1.diag",
+      "refs": {
+        "layout_slot_id": "slot.step1.diag"
+      }
+    },
+    {
+      "id": "slot.step4.diag.line",
+      "type": "line",
+      "attributes": {
+        "x1": 730.0,
+        "y1": 58.0,
+        "x2": 784.0,
+        "y2": 108.0,
+        "stroke": "#e78b8b",
+        "stroke-width": 1.4,
+        "stroke-dasharray": "6 4"
+      },
+      "source_ref": "slot.step4.diag",
+      "refs": {
+        "layout_slot_id": "slot.step4.diag"
+      }
+    },
+    {
+      "id": "slot.step1.arrow.text",
+      "type": "text",
+      "attributes": {
+        "x": 188.0,
+        "y": 102.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 34
+      },
+      "source_ref": "slot.step1.arrow",
+      "refs": {
+        "layout_slot_id": "slot.step1.arrow"
+      },
+      "text": "→"
+    },
+    {
+      "id": "slot.step2.arrow.text",
+      "type": "text",
+      "attributes": {
+        "x": 410.0,
+        "y": 102.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 34
+      },
+      "source_ref": "slot.step2.arrow",
+      "refs": {
+        "layout_slot_id": "slot.step2.arrow"
+      },
+      "text": "→"
+    },
+    {
+      "id": "slot.step3.scissor.text",
+      "type": "text",
+      "attributes": {
+        "x": 534.0,
+        "y": 160.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30
+      },
+      "source_ref": "slot.step3.scissor",
+      "refs": {
+        "layout_slot_id": "slot.step3.scissor"
+      },
+      "text": "✂"
+    },
+    {
+      "id": "slot.step3.arrow.text",
+      "type": "text",
+      "attributes": {
+        "x": 626.0,
+        "y": 102.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 34
+      },
+      "source_ref": "slot.step3.arrow",
+      "refs": {
+        "layout_slot_id": "slot.step3.arrow"
+      },
+      "text": "→"
+    },
+    {
+      "id": "slot.center.box.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 262.0,
+        "y": 220.0,
+        "width": 418.0,
+        "height": 62.0,
+        "fill": "#ffffff",
+        "stroke": "#9ad24f",
+        "stroke-width": 1.6
+      },
+      "source_ref": "slot.center.box",
+      "refs": {
+        "layout_slot_id": "slot.center.box"
+      }
+    },
+    {
+      "id": "slot.answer.circle.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 70.0,
+        "cy": 338.0,
+        "r": 10.0,
+        "stroke": "#222222",
+        "stroke-width": 1.2,
+        "fill": "none"
+      },
+      "source_ref": "slot.answer.circle",
+      "refs": {
+        "layout_slot_id": "slot.answer.circle"
+      }
+    },
+    {
+      "id": "slot.choice.o.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 40.0,
+        "cy": 294.0,
+        "r": 7.0,
+        "stroke": "#5aa2ff",
+        "stroke-width": 1.4,
+        "fill": "none"
+      },
+      "source_ref": "slot.choice.o",
+      "refs": {
+        "layout_slot_id": "slot.choice.o"
+      }
+    },
+    {
+      "id": "slot.choice.x.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 478.0,
+        "cy": 294.0,
+        "r": 7.0,
+        "stroke": "#5aa2ff",
+        "stroke-width": 1.4,
+        "fill": "none"
+      },
+      "source_ref": "slot.choice.x",
+      "refs": {
+        "layout_slot_id": "slot.choice.x"
+      }
+    },
+    {
+      "id": "slot.center.text.text",
+      "type": "text",
+      "attributes": {
+        "x": 305.0,
+        "y": 260.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30
+      },
+      "source_ref": "slot.center.text",
+      "refs": {
+        "layout_slot_id": "slot.center.text"
+      },
+      "text": "만든 모양은 정사각형입니다."
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

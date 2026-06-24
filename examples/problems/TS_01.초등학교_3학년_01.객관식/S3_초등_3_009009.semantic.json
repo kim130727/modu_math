@@ -1,0 +1,88 @@
+{
+  "problem_id": "S3_초등_3_009009",
+  "problem_type": "선의 종류",
+  "metadata": {
+    "title": "반직선 고르기",
+    "tags": [],
+    "question": "점 ㄱ에서 시작하여 점 ㄴ을 지나 오른쪽으로 길게 늘인 곧은 선을 선택하세요.",
+    "required_layout_ids": [
+      "slot.opt1.line",
+      "slot.opt1.pt.left",
+      "slot.opt1.pt.right",
+      "slot.opt2.line",
+      "slot.opt2.pt.left",
+      "slot.opt2.pt.right",
+      "slot.answer.line"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "보기에서 알맞은 선을 고른다."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.point_giyeok",
+        "type": "point",
+        "name": "ㄱ"
+      },
+      {
+        "id": "obj.point_nieun",
+        "type": "point",
+        "name": "ㄴ"
+      },
+      {
+        "id": "obj.line_candidate_1",
+        "type": "line_candidate"
+      },
+      {
+        "id": "obj.line_candidate_2",
+        "type": "line_candidate"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.point_giyeok",
+          "obj.point_nieun"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.starts_at",
+          "rel.passes_through",
+          "rel.direction_right"
+        ]
+      },
+      "plan": {
+        "method": "shape_matching",
+        "description": "시작점, 지나가는 점, 진행 방향을 보고 알맞은 선의 모양을 찾는다."
+      },
+      "execute": {
+        "expected_operations": [
+          "identify_start_point",
+          "identify_pass_through_point",
+          "compare_direction"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "condition_matching",
+          "direction_consistency"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "반직선",
+      "description": "점 ㄱ에서 시작하여 점 ㄴ을 지나 오른쪽으로 길게 늘인 곧은 선"
+    },
+    "value": 0,
+    "unit": ""
+  }
+}

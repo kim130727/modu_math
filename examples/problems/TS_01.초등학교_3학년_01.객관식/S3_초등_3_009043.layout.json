@@ -1,0 +1,891 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_009043",
+  "title": "직각삼각형을 찾아 선택하세요",
+  "canvas": {
+    "width": 704.0,
+    "height": 482.0,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.header",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.grid.main.v1",
+        "slot.grid.main.v2",
+        "slot.grid.main.v3",
+        "slot.grid.main.v4",
+        "slot.grid.main.v5",
+        "slot.grid.main.v6",
+        "slot.grid.main.v7",
+        "slot.grid.main.v8",
+        "slot.grid.main.v9",
+        "slot.grid.main.v10",
+        "slot.grid.main.h1",
+        "slot.grid.main.h2",
+        "slot.grid.main.h3",
+        "slot.grid.main.h4",
+        "slot.grid.main.h5",
+        "slot.grid.main.h6",
+        "slot.grid.small.v1",
+        "slot.grid.small.v2",
+        "slot.grid.small.v3",
+        "slot.grid.small.v4",
+        "slot.grid.small.v5",
+        "slot.grid.small.v6",
+        "slot.grid.small.v7",
+        "slot.grid.small.v8",
+        "slot.grid.small.v9",
+        "slot.grid.small.h1",
+        "slot.grid.small.h2",
+        "slot.grid.small.h3",
+        "slot.grid.small.h4",
+        "slot.chk",
+        "slot.no",
+        "slot.title"
+      ]
+    },
+    {
+      "id": "region.diagram.main",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.shape.a",
+        "slot.shape.b",
+        "slot.shape.c",
+        "slot.shape.d",
+        "slot.right_angle.b",
+        "slot.label.a",
+        "slot.label.b",
+        "slot.label.c",
+        "slot.label.d"
+      ]
+    },
+    {
+      "id": "region.choices",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choices"
+      ]
+    },
+    {
+      "id": "region.answer",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": []
+    },
+    {
+      "id": "region.diagram.small",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.small.a",
+        "slot.small.b",
+        "slot.small.c",
+        "slot.small.d",
+        "slot.small.ra",
+        "slot.small.la",
+        "slot.small.lb",
+        "slot.small.lc",
+        "slot.small.ld"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.chk",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "□",
+        "style_role": "question",
+        "x": 6.0,
+        "y": 28.0,
+        "font_size": 24
+      }
+    },
+    {
+      "id": "slot.no",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "81.",
+        "style_role": "question",
+        "x": 28.0,
+        "y": 28.0,
+        "font_size": 24
+      }
+    },
+    {
+      "id": "slot.title",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "직각삼각형을 찾아 선택하세요.",
+        "style_role": "question",
+        "x": 66.0,
+        "y": 28.0,
+        "font_size": 24
+      }
+    },
+    {
+      "id": "slot.grid.main.v1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 244.0,
+        "y1": 48.0,
+        "x2": 244.0,
+        "y2": 208.0,
+        "stroke": "#9AA0A6",
+        "stroke_width": 1.2,
+        "stroke_dasharray": "5 3"
+      }
+    },
+    {
+      "id": "slot.grid.main.v2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 272.0,
+        "y1": 48.0,
+        "x2": 272.0,
+        "y2": 208.0,
+        "stroke": "#9AA0A6",
+        "stroke_width": 1.2,
+        "stroke_dasharray": "5 3"
+      }
+    },
+    {
+      "id": "slot.grid.main.v3",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 300.0,
+        "y1": 48.0,
+        "x2": 300.0,
+        "y2": 208.0,
+        "stroke": "#9AA0A6",
+        "stroke_width": 1.2,
+        "stroke_dasharray": "5 3"
+      }
+    },
+    {
+      "id": "slot.grid.main.v4",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 328.0,
+        "y1": 48.0,
+        "x2": 328.0,
+        "y2": 208.0,
+        "stroke": "#9AA0A6",
+        "stroke_width": 1.2,
+        "stroke_dasharray": "5 3"
+      }
+    },
+    {
+      "id": "slot.grid.main.v5",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 356.0,
+        "y1": 48.0,
+        "x2": 356.0,
+        "y2": 208.0,
+        "stroke": "#9AA0A6",
+        "stroke_width": 1.2,
+        "stroke_dasharray": "5 3"
+      }
+    },
+    {
+      "id": "slot.grid.main.v6",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 384.0,
+        "y1": 48.0,
+        "x2": 384.0,
+        "y2": 208.0,
+        "stroke": "#9AA0A6",
+        "stroke_width": 1.2,
+        "stroke_dasharray": "5 3"
+      }
+    },
+    {
+      "id": "slot.grid.main.v7",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 412.0,
+        "y1": 48.0,
+        "x2": 412.0,
+        "y2": 208.0,
+        "stroke": "#9AA0A6",
+        "stroke_width": 1.2,
+        "stroke_dasharray": "5 3"
+      }
+    },
+    {
+      "id": "slot.grid.main.v8",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 440.0,
+        "y1": 48.0,
+        "x2": 440.0,
+        "y2": 208.0,
+        "stroke": "#9AA0A6",
+        "stroke_width": 1.2,
+        "stroke_dasharray": "5 3"
+      }
+    },
+    {
+      "id": "slot.grid.main.v9",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 468.0,
+        "y1": 48.0,
+        "x2": 468.0,
+        "y2": 208.0,
+        "stroke": "#9AA0A6",
+        "stroke_width": 1.2,
+        "stroke_dasharray": "5 3"
+      }
+    },
+    {
+      "id": "slot.grid.main.v10",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 496.0,
+        "y1": 48.0,
+        "x2": 496.0,
+        "y2": 208.0,
+        "stroke": "#9AA0A6",
+        "stroke_width": 1.2,
+        "stroke_dasharray": "5 3"
+      }
+    },
+    {
+      "id": "slot.grid.main.h1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 244.0,
+        "y1": 48.0,
+        "x2": 496.0,
+        "y2": 48.0,
+        "stroke": "#9AA0A6",
+        "stroke_width": 1.2,
+        "stroke_dasharray": "5 3"
+      }
+    },
+    {
+      "id": "slot.grid.main.h2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 244.0,
+        "y1": 76.0,
+        "x2": 496.0,
+        "y2": 76.0,
+        "stroke": "#9AA0A6",
+        "stroke_width": 1.2,
+        "stroke_dasharray": "5 3"
+      }
+    },
+    {
+      "id": "slot.grid.main.h3",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 244.0,
+        "y1": 104.0,
+        "x2": 496.0,
+        "y2": 104.0,
+        "stroke": "#9AA0A6",
+        "stroke_width": 1.2,
+        "stroke_dasharray": "5 3"
+      }
+    },
+    {
+      "id": "slot.grid.main.h4",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 244.0,
+        "y1": 132.0,
+        "x2": 496.0,
+        "y2": 132.0,
+        "stroke": "#9AA0A6",
+        "stroke_width": 1.2,
+        "stroke_dasharray": "5 3"
+      }
+    },
+    {
+      "id": "slot.grid.main.h5",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 244.0,
+        "y1": 160.0,
+        "x2": 496.0,
+        "y2": 160.0,
+        "stroke": "#9AA0A6",
+        "stroke_width": 1.2,
+        "stroke_dasharray": "5 3"
+      }
+    },
+    {
+      "id": "slot.grid.main.h6",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 244.0,
+        "y1": 188.0,
+        "x2": 496.0,
+        "y2": 188.0,
+        "stroke": "#9AA0A6",
+        "stroke_width": 1.2,
+        "stroke_dasharray": "5 3"
+      }
+    },
+    {
+      "id": "slot.shape.a",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 268.0,
+        "y": 60.0,
+        "width": 48.0,
+        "height": 104.0,
+        "stroke": "#222222",
+        "stroke_width": 2.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.shape.b",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            324.0,
+            68.0
+          ],
+          [
+            392.0,
+            172.0
+          ],
+          [
+            324.0,
+            172.0
+          ]
+        ],
+        "stroke": "#222222",
+        "stroke_width": 2.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.right_angle.b",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 323.0,
+        "y": 160.0,
+        "width": 10.0,
+        "height": 10.0,
+        "stroke": "#222222",
+        "stroke_width": 1.5,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.shape.c",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 404.0,
+        "y": 96.0,
+        "width": 64.0,
+        "height": 72.0,
+        "stroke": "#222222",
+        "stroke_width": 2.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.shape.d",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            480.0,
+            68.0
+          ],
+          [
+            512.0,
+            172.0
+          ],
+          [
+            448.0,
+            172.0
+          ]
+        ],
+        "stroke": "#222222",
+        "stroke_width": 2.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.label.a",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "가",
+        "style_role": "label",
+        "x": 284.0,
+        "y": 128.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.label.b",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "나",
+        "style_role": "label",
+        "x": 344.0,
+        "y": 134.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.label.c",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "다",
+        "style_role": "label",
+        "x": 424.0,
+        "y": 138.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.label.d",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "라",
+        "style_role": "label",
+        "x": 476.0,
+        "y": 136.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choices",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "( 가 , 나 , 다 , 라 )",
+        "style_role": "question",
+        "x": 324.0,
+        "y": 246.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.grid.small.v1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 34.0,
+        "y1": 364.0,
+        "x2": 34.0,
+        "y2": 472.0,
+        "stroke": "#9AA0A6",
+        "stroke_width": 1.2,
+        "stroke_dasharray": "5 3"
+      }
+    },
+    {
+      "id": "slot.grid.small.v2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 62.0,
+        "y1": 364.0,
+        "x2": 62.0,
+        "y2": 472.0,
+        "stroke": "#9AA0A6",
+        "stroke_width": 1.2,
+        "stroke_dasharray": "5 3"
+      }
+    },
+    {
+      "id": "slot.grid.small.v3",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 90.0,
+        "y1": 364.0,
+        "x2": 90.0,
+        "y2": 472.0,
+        "stroke": "#9AA0A6",
+        "stroke_width": 1.2,
+        "stroke_dasharray": "5 3"
+      }
+    },
+    {
+      "id": "slot.grid.small.v4",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 118.0,
+        "y1": 364.0,
+        "x2": 118.0,
+        "y2": 472.0,
+        "stroke": "#9AA0A6",
+        "stroke_width": 1.2,
+        "stroke_dasharray": "5 3"
+      }
+    },
+    {
+      "id": "slot.grid.small.v5",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 146.0,
+        "y1": 364.0,
+        "x2": 146.0,
+        "y2": 472.0,
+        "stroke": "#9AA0A6",
+        "stroke_width": 1.2,
+        "stroke_dasharray": "5 3"
+      }
+    },
+    {
+      "id": "slot.grid.small.v6",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 174.0,
+        "y1": 364.0,
+        "x2": 174.0,
+        "y2": 472.0,
+        "stroke": "#9AA0A6",
+        "stroke_width": 1.2,
+        "stroke_dasharray": "5 3"
+      }
+    },
+    {
+      "id": "slot.grid.small.v7",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 202.0,
+        "y1": 364.0,
+        "x2": 202.0,
+        "y2": 472.0,
+        "stroke": "#9AA0A6",
+        "stroke_width": 1.2,
+        "stroke_dasharray": "5 3"
+      }
+    },
+    {
+      "id": "slot.grid.small.v8",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 230.0,
+        "y1": 364.0,
+        "x2": 230.0,
+        "y2": 472.0,
+        "stroke": "#9AA0A6",
+        "stroke_width": 1.2,
+        "stroke_dasharray": "5 3"
+      }
+    },
+    {
+      "id": "slot.grid.small.v9",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 258.0,
+        "y1": 364.0,
+        "x2": 258.0,
+        "y2": 472.0,
+        "stroke": "#9AA0A6",
+        "stroke_width": 1.2,
+        "stroke_dasharray": "5 3"
+      }
+    },
+    {
+      "id": "slot.grid.small.h1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 20.0,
+        "y1": 364.0,
+        "x2": 272.0,
+        "y2": 364.0,
+        "stroke": "#9AA0A6",
+        "stroke_width": 1.2,
+        "stroke_dasharray": "5 3"
+      }
+    },
+    {
+      "id": "slot.grid.small.h2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 20.0,
+        "y1": 392.0,
+        "x2": 272.0,
+        "y2": 392.0,
+        "stroke": "#9AA0A6",
+        "stroke_width": 1.2,
+        "stroke_dasharray": "5 3"
+      }
+    },
+    {
+      "id": "slot.grid.small.h3",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 20.0,
+        "y1": 420.0,
+        "x2": 272.0,
+        "y2": 420.0,
+        "stroke": "#9AA0A6",
+        "stroke_width": 1.2,
+        "stroke_dasharray": "5 3"
+      }
+    },
+    {
+      "id": "slot.grid.small.h4",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 20.0,
+        "y1": 448.0,
+        "x2": 272.0,
+        "y2": 448.0,
+        "stroke": "#9AA0A6",
+        "stroke_width": 1.2,
+        "stroke_dasharray": "5 3"
+      }
+    },
+    {
+      "id": "slot.small.a",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 44.0,
+        "y": 376.0,
+        "width": 32.0,
+        "height": 64.0,
+        "stroke": "#222222",
+        "stroke_width": 2.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.small.b",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            100.0,
+            372.0
+          ],
+          [
+            148.0,
+            444.0
+          ],
+          [
+            100.0,
+            444.0
+          ]
+        ],
+        "stroke": "#222222",
+        "stroke_width": 2.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.small.ra",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 99.0,
+        "y": 436.0,
+        "width": 8.0,
+        "height": 8.0,
+        "stroke": "#222222",
+        "stroke_width": 1.5,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.small.c",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 160.0,
+        "y": 388.0,
+        "width": 48.0,
+        "height": 56.0,
+        "stroke": "#222222",
+        "stroke_width": 2.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.small.d",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            230.0,
+            372.0
+          ],
+          [
+            252.0,
+            444.0
+          ],
+          [
+            204.0,
+            444.0
+          ]
+        ],
+        "stroke": "#222222",
+        "stroke_width": 2.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.small.la",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "가",
+        "style_role": "label",
+        "x": 56.0,
+        "y": 416.0,
+        "font_size": 20
+      }
+    },
+    {
+      "id": "slot.small.lb",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "나",
+        "style_role": "label",
+        "x": 108.0,
+        "y": 420.0,
+        "font_size": 20
+      }
+    },
+    {
+      "id": "slot.small.lc",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "다",
+        "style_role": "label",
+        "x": 174.0,
+        "y": 424.0,
+        "font_size": 20
+      }
+    },
+    {
+      "id": "slot.small.ld",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "라",
+        "style_role": "label",
+        "x": 224.0,
+        "y": 422.0,
+        "font_size": 20
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.header",
+    "slot.grid.main.v1",
+    "slot.grid.main.v2",
+    "slot.grid.main.v3",
+    "slot.grid.main.v4",
+    "slot.grid.main.v5",
+    "slot.grid.main.v6",
+    "slot.grid.main.v7",
+    "slot.grid.main.v8",
+    "slot.grid.main.v9",
+    "slot.grid.main.v10",
+    "slot.grid.main.h1",
+    "slot.grid.main.h2",
+    "slot.grid.main.h3",
+    "slot.grid.main.h4",
+    "slot.grid.main.h5",
+    "slot.grid.main.h6",
+    "slot.grid.small.v1",
+    "slot.grid.small.v2",
+    "slot.grid.small.v3",
+    "slot.grid.small.v4",
+    "slot.grid.small.v5",
+    "slot.grid.small.v6",
+    "slot.grid.small.v7",
+    "slot.grid.small.v8",
+    "slot.grid.small.v9",
+    "slot.grid.small.h1",
+    "slot.grid.small.h2",
+    "slot.grid.small.h3",
+    "slot.grid.small.h4",
+    "slot.chk",
+    "slot.no",
+    "slot.title",
+    "region.diagram.main",
+    "slot.shape.a",
+    "slot.shape.b",
+    "slot.shape.c",
+    "slot.shape.d",
+    "slot.right_angle.b",
+    "slot.label.a",
+    "slot.label.b",
+    "slot.label.c",
+    "slot.label.d",
+    "region.choices",
+    "slot.choices",
+    "region.answer",
+    "region.diagram.small",
+    "slot.small.a",
+    "slot.small.b",
+    "slot.small.c",
+    "slot.small.d",
+    "slot.small.ra",
+    "slot.small.la",
+    "slot.small.lb",
+    "slot.small.lc",
+    "slot.small.ld"
+  ]
+}

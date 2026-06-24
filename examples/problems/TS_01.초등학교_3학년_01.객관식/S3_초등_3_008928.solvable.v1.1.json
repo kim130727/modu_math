@@ -1,0 +1,80 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008928",
+  "problem_type": "table_interpretation",
+  "inputs": {
+    "total_ticks": 4,
+    "target_label": "남학생이 가장 많이 하고 싶어 하는 종목",
+    "target_ticks": 1,
+    "target_count": 4,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.subjects",
+      "value": [
+        "연극",
+        "합주",
+        "무용",
+        "합창"
+      ]
+    },
+    {
+      "ref": "obj.boys_counts",
+      "value": [
+        4,
+        3,
+        2,
+        6
+      ]
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "multiple_choice_option"
+  },
+  "method": "compare_counts",
+  "plan": [
+    "남학생 수를 종목별로 비교한다.",
+    "가장 큰 수에 해당하는 종목을 고른다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "4, 3, 2, 6 중 최대값 찾기",
+      "value": 6
+    },
+    {
+      "id": "step.2",
+      "expr": "최대값 6에 해당하는 종목 선택",
+      "value": "합창"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "6이 4, 3, 2, 6 중 가장 큰 수인가?",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "id": "check.2",
+      "expr": "선택한 종목이 합창인가?",
+      "expected": "합창",
+      "actual": "합창",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "multiple_choice_option",
+      "description": "남학생이 가장 많이 하고 싶어 하는 종목"
+    },
+    "value": 4,
+    "unit": ""
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "problem_id": "S3_초등_3_009039",
+  "problem_type": "도형_분류_포함관계",
+  "metadata": {
+    "title": "도형을 보고 알맞은 말을 선택하세요.",
+    "tags": [],
+    "question": "도형을 보고 알맞은 말을 선택하세요.",
+    "required_layout_ids": [
+      "slot.shape",
+      "slot.choice.left",
+      "slot.choice.mid",
+      "slot.choice.right"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "도형의 성질과 포함 관계를 판단한다."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.shape",
+        "type": "quadrilateral",
+        "name": "도형"
+      },
+      {
+        "id": "obj.rectangle",
+        "type": "shape_class",
+        "name": "직사각형"
+      },
+      {
+        "id": "obj.square",
+        "type": "shape_class",
+        "name": "정사각형"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.shape",
+          "obj.rectangle",
+          "obj.square"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.square_is_rectangle"
+        ]
+      },
+      "plan": {
+        "method": "shape_classification",
+        "description": "도형의 분류 관계를 보고 문장의 맞음 여부를 판단한다."
+      },
+      "execute": {
+        "expected_operations": [
+          "identify_shape_properties",
+          "compare_class_membership",
+          "read_answer_choice"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "relation_consistency_check",
+          "statement_match_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "multiple_choice_judgment",
+      "description": "도형과 정사각형, 직사각형의 관계에 대한 판단"
+    },
+    "value": 3,
+    "unit": ""
+  }
+}

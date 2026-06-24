@@ -1,0 +1,293 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008938",
+  "title": "구슬을 가장 많이 가지고 있는 사람",
+  "canvas": {
+    "width": 940.0,
+    "height": 387.0,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.table.box",
+        "slot.q1",
+        "slot.q2",
+        "slot.table.title",
+        "slot.table.head.1",
+        "slot.table.head.2",
+        "slot.table.head.3",
+        "slot.table.head.4",
+        "slot.table.head.5",
+        "slot.table.row.1",
+        "slot.table.row.2",
+        "slot.table.row.3",
+        "slot.table.row.4",
+        "slot.table.row.5",
+        "slot.opt.1",
+        "slot.opt.2",
+        "slot.opt.3",
+        "slot.opt.4",
+        "slot.table.row.6"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "□ 6. 정희와 친구들이 가지고 있는 구슬 수를 조사하여 표로 나타냈습니다. 구슬을",
+        "style_role": "question",
+        "x": 20.0,
+        "y": 26.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "가장 많이 가지고 있는 사람은 누구인가요?",
+        "style_role": "question",
+        "x": 20.0,
+        "y": 61.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.title",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "가지고 있는 구슬 수",
+        "style_role": "title",
+        "x": 472.0,
+        "y": 100.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 235.0,
+        "y": 120.0,
+        "width": 520.0,
+        "height": 77.0
+      }
+    },
+    {
+      "id": "slot.table.head.1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "이름",
+        "style_role": "table",
+        "x": 287.0,
+        "y": 149.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.head.2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "정희",
+        "style_role": "table",
+        "x": 381.0,
+        "y": 149.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.head.3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "성규",
+        "style_role": "table",
+        "x": 469.0,
+        "y": 149.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.head.4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "태민",
+        "style_role": "table",
+        "x": 552.0,
+        "y": 149.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.head.5",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "하준",
+        "style_role": "table",
+        "x": 642.0,
+        "y": 149.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.row.1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "구슬 수(개)",
+        "style_role": "table",
+        "x": 270.0,
+        "y": 187.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.row.2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "15",
+        "style_role": "table",
+        "x": 386.0,
+        "y": 187.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.row.3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "8",
+        "style_role": "table",
+        "x": 482.0,
+        "y": 187.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.row.4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "21",
+        "style_role": "table",
+        "x": 562.0,
+        "y": 187.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.row.5",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "10",
+        "style_role": "table",
+        "x": 647.0,
+        "y": 187.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.row.6",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "54",
+        "style_role": "table",
+        "x": 727.0,
+        "y": 187.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.opt.1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "① 정희",
+        "style_role": "choice",
+        "x": 34.0,
+        "y": 236.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.opt.2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "② 성규",
+        "style_role": "choice",
+        "x": 220.0,
+        "y": 236.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.opt.3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "③ 태민",
+        "style_role": "choice",
+        "x": 401.0,
+        "y": 236.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.opt.4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "④ 하준",
+        "style_role": "choice",
+        "x": 573.0,
+        "y": 236.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.table.box",
+    "slot.q1",
+    "slot.q2",
+    "slot.table.title",
+    "slot.table.head.1",
+    "slot.table.head.2",
+    "slot.table.head.3",
+    "slot.table.head.4",
+    "slot.table.head.5",
+    "slot.table.row.1",
+    "slot.table.row.2",
+    "slot.table.row.3",
+    "slot.table.row.4",
+    "slot.table.row.5",
+    "slot.opt.1",
+    "slot.opt.2",
+    "slot.opt.3",
+    "slot.opt.4",
+    "slot.table.row.6"
+  ]
+}

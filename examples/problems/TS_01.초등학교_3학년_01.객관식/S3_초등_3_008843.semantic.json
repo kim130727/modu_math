@@ -1,0 +1,83 @@
+{
+  "problem_id": "S3_초등_3_008843",
+  "problem_type": "비교_저울",
+  "metadata": {
+    "title": "저울로 무게 비교하기",
+    "tags": [],
+    "instruction": "가와 나에서 더 가벼운 것을 고르기",
+    "question": "저울로 각도기, 컴퍼스, 지우개의 무게를 비교하고 있습니다. 가장 가벼운 것은 무엇인지 알맞은 말을 선택해 보세요.",
+    "required_layout_ids": [
+      "slot.obj.ga_angle",
+      "slot.obj.ga_compass",
+      "slot.obj.na_eraser",
+      "slot.obj.na_compass"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.ga",
+        "type": "comparison",
+        "items": [
+          "각도기",
+          "컴퍼스"
+        ]
+      },
+      {
+        "id": "obj.na",
+        "type": "comparison",
+        "items": [
+          "지우개",
+          "컴퍼스"
+        ]
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.ga",
+          "obj.na"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.ga",
+          "rel.na"
+        ]
+      },
+      "plan": {
+        "method": "비교관찰",
+        "description": "각 저울에서 더 내려간 쪽과 반대쪽의 무게를 비교한다."
+      },
+      "execute": {
+        "expected_operations": [
+          "가에서 더 가벼운 것 찾기",
+          "나에서 더 가벼운 것 찾기"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "저울의 기울기와 가벼운 쪽 대응 확인"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "가장_가벼운_것",
+      "description": "가와 나의 비교 결과를 바탕으로 고르는 것"
+    },
+    "value": [
+      "각도기",
+      "컴퍼스"
+    ],
+    "unit": ""
+  }
+}

@@ -1,0 +1,186 @@
+{
+  "problem_id": "S3_초등_3_008826",
+  "view_box": {
+    "width": 900.0,
+    "height": 360.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.milkbox.rect.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 281.0,
+        "y": 170.0,
+        "width": 44.0,
+        "height": 100.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.milkbox.rect",
+      "refs": {
+        "layout_slot_id": "slot.milkbox.rect"
+      }
+    },
+    {
+      "id": "slot.girl.head.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 165.0,
+        "cy": 106.0,
+        "r": 20.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#FFFFFF"
+      },
+      "source_ref": "slot.girl.head",
+      "refs": {
+        "layout_slot_id": "slot.girl.head"
+      }
+    },
+    {
+      "id": "slot.vase.path.path",
+      "type": "path",
+      "attributes": {
+        "d": "",
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "none"
+      },
+      "source_ref": "slot.vase.path",
+      "refs": {
+        "layout_slot_id": "slot.vase.path"
+      }
+    },
+    {
+      "id": "slot.speech.tail.line",
+      "type": "line",
+      "attributes": {
+        "x1": 250.0,
+        "y1": 112.0,
+        "x2": 230.0,
+        "y2": 122.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.speech.tail",
+      "refs": {
+        "layout_slot_id": "slot.speech.tail"
+      }
+    },
+    {
+      "id": "slot.title.text",
+      "type": "text",
+      "attributes": {
+        "x": 12.0,
+        "y": 28.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.title",
+      "refs": {
+        "layout_slot_id": "slot.title"
+      },
+      "text": "□ 60. 포도주스의 양을 어림해 보고 답합니다. 알맞은 것을 선택해 보세요."
+    },
+    {
+      "id": "slot.girl.text",
+      "type": "text",
+      "attributes": {
+        "x": 140.0,
+        "y": 110.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.girl",
+      "refs": {
+        "layout_slot_id": "slot.girl"
+      },
+      "text": ""
+    },
+    {
+      "id": "slot.speech.text",
+      "type": "text",
+      "attributes": {
+        "x": 270.0,
+        "y": 95.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.speech",
+      "refs": {
+        "layout_slot_id": "slot.speech"
+      },
+      "text": "1L와 200 mL 우유갑으로\n포도주스의 양을 어림해 볼까?"
+    },
+    {
+      "id": "slot.vase.text",
+      "type": "text",
+      "attributes": {
+        "x": 765.0,
+        "y": 92.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.vase",
+      "refs": {
+        "layout_slot_id": "slot.vase"
+      },
+      "text": ""
+    },
+    {
+      "id": "slot.body1.text",
+      "type": "text",
+      "attributes": {
+        "x": 22.0,
+        "y": 230.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.body1",
+      "refs": {
+        "layout_slot_id": "slot.body1"
+      },
+      "text": "(1) 포도주스의 양은"
+    },
+    {
+      "id": "slot.milkbox.text",
+      "type": "text",
+      "attributes": {
+        "x": 305.0,
+        "y": 206.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.milkbox",
+      "refs": {
+        "layout_slot_id": "slot.milkbox"
+      },
+      "text": "1L"
+    },
+    {
+      "id": "slot.choice.text",
+      "type": "text",
+      "attributes": {
+        "x": 355.0,
+        "y": 230.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice",
+      "refs": {
+        "layout_slot_id": "slot.choice"
+      },
+      "text": "과 비슷하므로 약 ( 1 L , 3 L )입니다."
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

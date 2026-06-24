@@ -1,0 +1,288 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008894",
+  "title": "보고 싶은 문화재",
+  "canvas": {
+    "width": 940.0,
+    "height": 800.0,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.header",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.header"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.panel.outer",
+        "slot.panel.inner",
+        "slot.box.1",
+        "slot.box.2",
+        "slot.box.3",
+        "slot.box.4",
+        "slot.legend.pink",
+        "slot.legend.blue",
+        "slot.title",
+        "slot.label.1",
+        "slot.label.2",
+        "slot.label.3",
+        "slot.label.4",
+        "slot.legend.text1",
+        "slot.legend.text2"
+      ]
+    },
+    {
+      "id": "region.problem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q58",
+        "slot.choice"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.header",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "경수네 학교 3학년 학생들이 보고 싶은 문화재를 조사하였습니다. 물음에 답하세요.",
+        "style_role": "question",
+        "x": 20.0,
+        "y": 30.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.title",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "보고 싶은 문화재",
+        "style_role": "title",
+        "x": 380.0,
+        "y": 58.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.panel.outer",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 253.0,
+        "y": 56.0,
+        "width": 450.0,
+        "height": 462.0
+      }
+    },
+    {
+      "id": "slot.panel.inner",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 263.0,
+        "y": 66.0,
+        "width": 430.0,
+        "height": 442.0
+      }
+    },
+    {
+      "id": "slot.box.1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 273.0,
+        "y": 90.0,
+        "width": 205.0,
+        "height": 200.0
+      }
+    },
+    {
+      "id": "slot.box.2",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 488.0,
+        "y": 90.0,
+        "width": 205.0,
+        "height": 200.0
+      }
+    },
+    {
+      "id": "slot.box.3",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 273.0,
+        "y": 300.0,
+        "width": 205.0,
+        "height": 200.0
+      }
+    },
+    {
+      "id": "slot.box.4",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 488.0,
+        "y": 300.0,
+        "width": 205.0,
+        "height": 200.0
+      }
+    },
+    {
+      "id": "slot.label.1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "첨성대",
+        "style_role": "label",
+        "x": 283.0,
+        "y": 106.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.label.2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "다보탑",
+        "style_role": "label",
+        "x": 498.0,
+        "y": 106.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.label.3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "숭례문",
+        "style_role": "label",
+        "x": 283.0,
+        "y": 316.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.label.4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "종묘",
+        "style_role": "label",
+        "x": 498.0,
+        "y": 316.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.legend.pink",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 470.0,
+        "cy": 540.0,
+        "r": 7.0,
+        "fill": "#f2a0bd"
+      }
+    },
+    {
+      "id": "slot.legend.blue",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 560.0,
+        "cy": 540.0,
+        "r": 7.0,
+        "fill": "#75c8e5"
+      }
+    },
+    {
+      "id": "slot.legend.text1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": ": 여학생",
+        "style_role": "label",
+        "x": 483.0,
+        "y": 548.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.legend.text2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": ": 남학생",
+        "style_role": "label",
+        "x": 573.0,
+        "y": 548.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q58",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "58. 보고 싶은 문화재별 여학생 수와 남학생 수를 알아보려고 할 때 조사한 자료와 표 중 더 편리한 것을 선택하세요.",
+        "style_role": "question",
+        "x": 20.0,
+        "y": 604.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "( 조사한 자료 , 표 )",
+        "style_role": "choice",
+        "x": 700.0,
+        "y": 675.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.header",
+    "slot.header",
+    "region.diagram",
+    "slot.panel.outer",
+    "slot.panel.inner",
+    "slot.box.1",
+    "slot.box.2",
+    "slot.box.3",
+    "slot.box.4",
+    "slot.legend.pink",
+    "slot.legend.blue",
+    "slot.title",
+    "slot.label.1",
+    "slot.label.2",
+    "slot.label.3",
+    "slot.label.4",
+    "slot.legend.text1",
+    "slot.legend.text2",
+    "region.problem",
+    "slot.q58",
+    "slot.choice"
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008811",
+  "problem_type": "들이 비교",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "들이가 더 많은 용기",
+    "target_ticks": 0,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.juice_bottle",
+      "value": {
+        "name": "주스병"
+      }
+    },
+    {
+      "ref": "obj.water_bottle",
+      "value": {
+        "name": "물병"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "choice"
+  },
+  "method": "비교하기",
+  "plan": [
+    "그림과 설명을 보고 두 용기 중 들이가 더 많은 쪽을 고른다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "주스병의 물이 물병에 모두 들어감",
+      "value": "비교 가능"
+    },
+    {
+      "id": "step.2",
+      "expr": "들이가 더 많은 용기 선택",
+      "value": "물병"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "해설과 정답 표기가 일치하는가",
+      "expected": "물병",
+      "actual": "물병",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "choice",
+      "description": "들이가 더 많은 용기"
+    },
+    "value": "물병",
+    "unit": ""
+  }
+}

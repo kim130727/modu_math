@@ -1,0 +1,84 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008872",
+  "problem_type": "들이_비교_진위판단",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "잘못 이야기한 친구",
+    "target_ticks": 0,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.vase",
+      "value": {
+        "가": 3,
+        "나": 4
+      }
+    },
+    {
+      "ref": "obj.jar",
+      "value": {
+        "가": 6,
+        "나": 8
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "wrong_speaker_name"
+  },
+  "method": "표 비교로 진술의 참·거짓 판단",
+  "plan": [
+    "표에 있는 두 대상의 들이 관계를 읽는다.",
+    "세 친구의 말이 표와 맞는지 확인한다.",
+    "틀린 말을 한 친구를 찾는다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "표의 들이 관계를 읽음",
+      "value": {
+        "꽃병": {
+          "가": 3,
+          "나": 4
+        },
+        "항아리": {
+          "가": 6,
+          "나": 8
+        }
+      }
+    },
+    {
+      "id": "step.2",
+      "expr": "친구들의 말과 표를 대응하여 참·거짓을 확인",
+      "value": "윤후의 말이 표와 다름"
+    },
+    {
+      "id": "step.3",
+      "expr": "잘못 이야기한 친구 이름 결정",
+      "value": "윤후"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "정답이 윤후인지 확인",
+      "expected": "윤후",
+      "actual": "윤후",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "wrong_speaker_name",
+      "description": "잘못 이야기한 친구의 이름"
+    },
+    "value": "윤후",
+    "unit": ""
+  }
+}

@@ -12,7 +12,6 @@
       "attributes": {
         "x": 95.0,
         "y": 15.0,
-        "max_width": 792.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 25
@@ -85,102 +84,6 @@
       "source_ref": "slot.circle.rieul",
       "refs": {
         "layout_slot_id": "slot.circle.rieul"
-      }
-    },
-    {
-      "id": "slot.pt.giyeok.point.circle",
-      "type": "circle",
-      "attributes": {
-        "cx": 372.0,
-        "cy": 264.0,
-        "r": 4.4,
-        "stroke": "#EC1685",
-        "stroke-width": 1.0,
-        "fill": "#EC1685"
-      },
-      "source_ref": "slot.pt.giyeok.point",
-      "refs": {
-        "layout_slot_id": "slot.pt.giyeok.point"
-      }
-    },
-    {
-      "id": "slot.pt.nieun.point.circle",
-      "type": "circle",
-      "attributes": {
-        "cx": 406.0,
-        "cy": 264.0,
-        "r": 4.4,
-        "stroke": "#EC1685",
-        "stroke-width": 1.0,
-        "fill": "#EC1685"
-      },
-      "source_ref": "slot.pt.nieun.point",
-      "refs": {
-        "layout_slot_id": "slot.pt.nieun.point"
-      }
-    },
-    {
-      "id": "slot.pt.digeut.point.circle",
-      "type": "circle",
-      "attributes": {
-        "cx": 440.0,
-        "cy": 264.0,
-        "r": 4.4,
-        "stroke": "#EC1685",
-        "stroke-width": 1.0,
-        "fill": "#EC1685"
-      },
-      "source_ref": "slot.pt.digeut.point",
-      "refs": {
-        "layout_slot_id": "slot.pt.digeut.point"
-      }
-    },
-    {
-      "id": "slot.pt.rieul.point.circle",
-      "type": "circle",
-      "attributes": {
-        "cx": 474.0,
-        "cy": 264.0,
-        "r": 4.4,
-        "stroke": "#EC1685",
-        "stroke-width": 1.0,
-        "fill": "#EC1685"
-      },
-      "source_ref": "slot.pt.rieul.point",
-      "refs": {
-        "layout_slot_id": "slot.pt.rieul.point"
-      }
-    },
-    {
-      "id": "slot.pt.mieum.point.circle",
-      "type": "circle",
-      "attributes": {
-        "cx": 508.0,
-        "cy": 264.0,
-        "r": 4.4,
-        "stroke": "#EC1685",
-        "stroke-width": 1.0,
-        "fill": "#EC1685"
-      },
-      "source_ref": "slot.pt.mieum.point",
-      "refs": {
-        "layout_slot_id": "slot.pt.mieum.point"
-      }
-    },
-    {
-      "id": "slot.pt.bieup.point.circle",
-      "type": "circle",
-      "attributes": {
-        "cx": 542.0,
-        "cy": 264.0,
-        "r": 4.4,
-        "stroke": "#EC1685",
-        "stroke-width": 1.0,
-        "fill": "#EC1685"
-      },
-      "source_ref": "slot.pt.bieup.point",
-      "refs": {
-        "layout_slot_id": "slot.pt.bieup.point"
       }
     },
     {
@@ -558,12 +461,107 @@
       }
     },
     {
+      "id": "slot.pt.giyeok.point.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 372.0,
+        "cy": 264.0,
+        "r": 4.4,
+        "stroke": "#EC1685",
+        "stroke-width": 1.0,
+        "fill": "#EC1685"
+      },
+      "source_ref": "slot.pt.giyeok.point",
+      "refs": {
+        "layout_slot_id": "slot.pt.giyeok.point"
+      }
+    },
+    {
+      "id": "slot.pt.nieun.point.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 406.0,
+        "cy": 264.0,
+        "r": 4.4,
+        "stroke": "#EC1685",
+        "stroke-width": 1.0,
+        "fill": "#EC1685"
+      },
+      "source_ref": "slot.pt.nieun.point",
+      "refs": {
+        "layout_slot_id": "slot.pt.nieun.point"
+      }
+    },
+    {
+      "id": "slot.pt.digeut.point.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 440.0,
+        "cy": 264.0,
+        "r": 4.4,
+        "stroke": "#EC1685",
+        "stroke-width": 1.0,
+        "fill": "#EC1685"
+      },
+      "source_ref": "slot.pt.digeut.point",
+      "refs": {
+        "layout_slot_id": "slot.pt.digeut.point"
+      }
+    },
+    {
+      "id": "slot.pt.rieul.point.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 474.0,
+        "cy": 264.0,
+        "r": 4.4,
+        "stroke": "#EC1685",
+        "stroke-width": 1.0,
+        "fill": "#EC1685"
+      },
+      "source_ref": "slot.pt.rieul.point",
+      "refs": {
+        "layout_slot_id": "slot.pt.rieul.point"
+      }
+    },
+    {
+      "id": "slot.pt.mieum.point.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 508.0,
+        "cy": 264.0,
+        "r": 4.4,
+        "stroke": "#EC1685",
+        "stroke-width": 1.0,
+        "fill": "#EC1685"
+      },
+      "source_ref": "slot.pt.mieum.point",
+      "refs": {
+        "layout_slot_id": "slot.pt.mieum.point"
+      }
+    },
+    {
+      "id": "slot.pt.bieup.point.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 542.0,
+        "cy": 264.0,
+        "r": 4.4,
+        "stroke": "#EC1685",
+        "stroke-width": 1.0,
+        "fill": "#EC1685"
+      },
+      "source_ref": "slot.pt.bieup.point",
+      "refs": {
+        "layout_slot_id": "slot.pt.bieup.point"
+      }
+    },
+    {
       "id": "slot.pt.giyeok.label.text",
       "type": "text",
       "attributes": {
         "x": 354.0,
         "y": 244.0,
-        "max_width": 792.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 24
@@ -580,7 +578,6 @@
       "attributes": {
         "x": 388.0,
         "y": 244.0,
-        "max_width": 792.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 24
@@ -597,7 +594,6 @@
       "attributes": {
         "x": 422.0,
         "y": 244.0,
-        "max_width": 792.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 24
@@ -614,7 +610,6 @@
       "attributes": {
         "x": 456.0,
         "y": 244.0,
-        "max_width": 792.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 24
@@ -631,7 +626,6 @@
       "attributes": {
         "x": 490.0,
         "y": 244.0,
-        "max_width": 792.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 24
@@ -648,7 +642,6 @@
       "attributes": {
         "x": 524.0,
         "y": 244.0,
-        "max_width": 792.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 24

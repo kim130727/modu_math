@@ -1,0 +1,88 @@
+{
+  "problem_id": "S3_초등_3_008821",
+  "problem_type": "comparison_reasoning",
+  "metadata": {
+    "title": "바르게 이야기한 친구 고르기",
+    "tags": [],
+    "instruction": "바르게 이야기한 친구를 선택해 보세요.",
+    "question": "양동이에 물을 가득 채우려면 ㉠ 컵과 ㉡ 컵으로 다음과 같이 각각 부어야 합니다. 바르게 이야기한 친구를 선택해 보세요.",
+    "required_layout_ids": [
+      "slot.table.outer",
+      "slot.table.v1",
+      "slot.table.h1",
+      "slot.table.h2",
+      "slot.table.h3"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.cup_a",
+        "type": "cup",
+        "label": "㉠ 컵"
+      },
+      {
+        "id": "obj.cup_b",
+        "type": "cup",
+        "label": "㉡ 컵"
+      },
+      {
+        "id": "obj.jaesuk",
+        "type": "person",
+        "name": "재석"
+      },
+      {
+        "id": "obj.hyomin",
+        "type": "person",
+        "name": "효민"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.cup_a",
+          "obj.cup_b",
+          "rel.cup_count",
+          "rel.inverse_relation"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.inverse_relation"
+        ]
+      },
+      "plan": {
+        "method": "역관계 판단",
+        "description": "물을 부은 컵의 수와 컵의 들이의 관계를 비교해 바른 설명을 고른다."
+      },
+      "execute": {
+        "expected_operations": [
+          "관계 해석",
+          "비교 판단",
+          "정답 선택"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "역관계 문장 확인",
+          "정답 인쇄 확인"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "speaker_selection",
+      "description": "바르게 이야기한 친구"
+    },
+    "value": "재석",
+    "unit": ""
+  }
+}

@@ -1,0 +1,101 @@
+{
+  "problem_id": "S3_초등_3_009049",
+  "problem_type": "개념_판별",
+  "metadata": {
+    "title": "직선을 알아보고",
+    "tags": [],
+    "question": "직선을 알아보고 점 ㄱ과 점 ㄴ을 지나 양쪽으로 길게 늘인 곧은 선을 선택하는 문제",
+    "required_layout_ids": [
+      "slot.box.demo",
+      "slot.demo.left.arrow",
+      "slot.demo.left.p1",
+      "slot.demo.left.p2",
+      "slot.demo.right.arrow",
+      "slot.demo.right.p1",
+      "slot.demo.right.p2",
+      "slot.teacher",
+      "slot.speech.bubble",
+      "slot.choice.left.line",
+      "slot.choice.left.p1",
+      "slot.choice.left.p2",
+      "slot.choice.right.line",
+      "slot.choice.right.p1",
+      "slot.choice.right.p2",
+      "slot.answer.line"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "보이는 구성만 기록한다."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.point_g",
+        "type": "point",
+        "label": "ㄱ"
+      },
+      {
+        "id": "obj.point_n",
+        "type": "point",
+        "label": "ㄴ"
+      },
+      {
+        "id": "obj.line_segment_example",
+        "type": "line_segment_example"
+      },
+      {
+        "id": "obj.line_example",
+        "type": "line_example"
+      },
+      {
+        "id": "obj.answer_blank",
+        "type": "answer_blank"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.point_g",
+          "obj.point_n",
+          "obj.line_segment_example",
+          "obj.line_example"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.define_line",
+          "rel.extend_both_directions"
+        ]
+      },
+      "plan": {
+        "method": "개념_확인",
+        "description": "직선의 정의와 예시 구성을 확인한다."
+      },
+      "execute": {
+        "expected_operations": [
+          "identify_defined_term",
+          "compare_examples"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "definition_match",
+          "visual_consistency_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "concept_selection",
+      "description": "점 ㄱ과 점 ㄴ을 지나 양쪽으로 길게 늘인 곧은 선"
+    },
+    "value": 0,
+    "unit": ""
+  }
+}

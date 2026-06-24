@@ -1,0 +1,541 @@
+{
+  "problem_id": "S3_초등_3_008947",
+  "view_box": {
+    "width": 950.0,
+    "height": 680.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.q1.text",
+      "type": "text",
+      "attributes": {
+        "x": 16.0,
+        "y": 34.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q1",
+      "refs": {
+        "layout_slot_id": "slot.q1"
+      },
+      "text": "□ 17. 서진이는 반 학생들이 좋아하는 운동을 조사하였습니다. 좋아하는 운동은 무엇일까요?"
+    },
+    {
+      "id": "slot.title_box.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 322.0,
+        "y": 90.0,
+        "width": 334.0,
+        "height": 50.0,
+        "fill": "#D7E5F3",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.title_box",
+      "refs": {
+        "layout_slot_id": "slot.title_box"
+      }
+    },
+    {
+      "id": "slot.title_text.text",
+      "type": "text",
+      "attributes": {
+        "x": 490.0,
+        "y": 122.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.title_text",
+      "refs": {
+        "layout_slot_id": "slot.title_text"
+      },
+      "text": "학생들이 좋아하는 운동"
+    },
+    {
+      "id": "slot.table_outer.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 350.0,
+        "y": 144.0,
+        "width": 280.0,
+        "height": 384.0,
+        "fill": "none",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.table_outer",
+      "refs": {
+        "layout_slot_id": "slot.table_outer"
+      }
+    },
+    {
+      "id": "slot.table_c1r1.text",
+      "type": "text",
+      "attributes": {
+        "x": 373.0,
+        "y": 182.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table_c1r1",
+      "refs": {
+        "layout_slot_id": "slot.table_c1r1"
+      },
+      "text": "⚽"
+    },
+    {
+      "id": "slot.table_c2r1.text",
+      "type": "text",
+      "attributes": {
+        "x": 442.0,
+        "y": 182.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table_c2r1",
+      "refs": {
+        "layout_slot_id": "slot.table_c2r1"
+      },
+      "text": "⚾"
+    },
+    {
+      "id": "slot.table_c3r1.text",
+      "type": "text",
+      "attributes": {
+        "x": 512.0,
+        "y": 182.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table_c3r1",
+      "refs": {
+        "layout_slot_id": "slot.table_c3r1"
+      },
+      "text": "⚾"
+    },
+    {
+      "id": "slot.table_c4r1.text",
+      "type": "text",
+      "attributes": {
+        "x": 581.0,
+        "y": 182.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table_c4r1",
+      "refs": {
+        "layout_slot_id": "slot.table_c4r1"
+      },
+      "text": "🏀"
+    },
+    {
+      "id": "slot.table_c1r2.text",
+      "type": "text",
+      "attributes": {
+        "x": 373.0,
+        "y": 222.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table_c1r2",
+      "refs": {
+        "layout_slot_id": "slot.table_c1r2"
+      },
+      "text": "서진"
+    },
+    {
+      "id": "slot.table_c2r2.text",
+      "type": "text",
+      "attributes": {
+        "x": 442.0,
+        "y": 222.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table_c2r2",
+      "refs": {
+        "layout_slot_id": "slot.table_c2r2"
+      },
+      "text": "희재"
+    },
+    {
+      "id": "slot.table_c3r2.text",
+      "type": "text",
+      "attributes": {
+        "x": 512.0,
+        "y": 222.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table_c3r2",
+      "refs": {
+        "layout_slot_id": "slot.table_c3r2"
+      },
+      "text": "서연"
+    },
+    {
+      "id": "slot.table_c4r2.text",
+      "type": "text",
+      "attributes": {
+        "x": 581.0,
+        "y": 222.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table_c4r2",
+      "refs": {
+        "layout_slot_id": "slot.table_c4r2"
+      },
+      "text": "인철"
+    },
+    {
+      "id": "slot.table_c1r3.text",
+      "type": "text",
+      "attributes": {
+        "x": 373.0,
+        "y": 262.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table_c1r3",
+      "refs": {
+        "layout_slot_id": "slot.table_c1r3"
+      },
+      "text": "🏐"
+    },
+    {
+      "id": "slot.table_c2r3.text",
+      "type": "text",
+      "attributes": {
+        "x": 442.0,
+        "y": 262.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table_c2r3",
+      "refs": {
+        "layout_slot_id": "slot.table_c2r3"
+      },
+      "text": "🏐"
+    },
+    {
+      "id": "slot.table_c3r3.text",
+      "type": "text",
+      "attributes": {
+        "x": 512.0,
+        "y": 262.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table_c3r3",
+      "refs": {
+        "layout_slot_id": "slot.table_c3r3"
+      },
+      "text": "⚾"
+    },
+    {
+      "id": "slot.table_c4r3.text",
+      "type": "text",
+      "attributes": {
+        "x": 581.0,
+        "y": 262.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table_c4r3",
+      "refs": {
+        "layout_slot_id": "slot.table_c4r3"
+      },
+      "text": "⚽"
+    },
+    {
+      "id": "slot.table_c1r4.text",
+      "type": "text",
+      "attributes": {
+        "x": 373.0,
+        "y": 302.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table_c1r4",
+      "refs": {
+        "layout_slot_id": "slot.table_c1r4"
+      },
+      "text": "성민"
+    },
+    {
+      "id": "slot.table_c2r4.text",
+      "type": "text",
+      "attributes": {
+        "x": 442.0,
+        "y": 302.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table_c2r4",
+      "refs": {
+        "layout_slot_id": "slot.table_c2r4"
+      },
+      "text": "은수"
+    },
+    {
+      "id": "slot.table_c3r4.text",
+      "type": "text",
+      "attributes": {
+        "x": 512.0,
+        "y": 302.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table_c3r4",
+      "refs": {
+        "layout_slot_id": "slot.table_c3r4"
+      },
+      "text": "주영"
+    },
+    {
+      "id": "slot.table_c4r4.text",
+      "type": "text",
+      "attributes": {
+        "x": 581.0,
+        "y": 302.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table_c4r4",
+      "refs": {
+        "layout_slot_id": "slot.table_c4r4"
+      },
+      "text": "정훈"
+    },
+    {
+      "id": "slot.table_c1r5.text",
+      "type": "text",
+      "attributes": {
+        "x": 373.0,
+        "y": 342.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table_c1r5",
+      "refs": {
+        "layout_slot_id": "slot.table_c1r5"
+      },
+      "text": "⚽"
+    },
+    {
+      "id": "slot.table_c2r5.text",
+      "type": "text",
+      "attributes": {
+        "x": 442.0,
+        "y": 342.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table_c2r5",
+      "refs": {
+        "layout_slot_id": "slot.table_c2r5"
+      },
+      "text": "🏐"
+    },
+    {
+      "id": "slot.table_c3r5.text",
+      "type": "text",
+      "attributes": {
+        "x": 512.0,
+        "y": 342.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table_c3r5",
+      "refs": {
+        "layout_slot_id": "slot.table_c3r5"
+      },
+      "text": "⚾"
+    },
+    {
+      "id": "slot.table_c4r5.text",
+      "type": "text",
+      "attributes": {
+        "x": 581.0,
+        "y": 342.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table_c4r5",
+      "refs": {
+        "layout_slot_id": "slot.table_c4r5"
+      },
+      "text": "🏐"
+    },
+    {
+      "id": "slot.table_c1r6.text",
+      "type": "text",
+      "attributes": {
+        "x": 373.0,
+        "y": 382.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table_c1r6",
+      "refs": {
+        "layout_slot_id": "slot.table_c1r6"
+      },
+      "text": "재영"
+    },
+    {
+      "id": "slot.table_c2r6.text",
+      "type": "text",
+      "attributes": {
+        "x": 442.0,
+        "y": 382.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table_c2r6",
+      "refs": {
+        "layout_slot_id": "slot.table_c2r6"
+      },
+      "text": "수호"
+    },
+    {
+      "id": "slot.table_c3r6.text",
+      "type": "text",
+      "attributes": {
+        "x": 512.0,
+        "y": 382.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table_c3r6",
+      "refs": {
+        "layout_slot_id": "slot.table_c3r6"
+      },
+      "text": "희재"
+    },
+    {
+      "id": "slot.table_c4r6.text",
+      "type": "text",
+      "attributes": {
+        "x": 581.0,
+        "y": 382.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table_c4r6",
+      "refs": {
+        "layout_slot_id": "slot.table_c4r6"
+      },
+      "text": "해주"
+    },
+    {
+      "id": "slot.legend_1.text",
+      "type": "text",
+      "attributes": {
+        "x": 368.0,
+        "y": 520.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.legend_1",
+      "refs": {
+        "layout_slot_id": "slot.legend_1"
+      },
+      "text": "⚽ 축구"
+    },
+    {
+      "id": "slot.legend_2.text",
+      "type": "text",
+      "attributes": {
+        "x": 446.0,
+        "y": 520.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.legend_2",
+      "refs": {
+        "layout_slot_id": "slot.legend_2"
+      },
+      "text": "⚾ 야구"
+    },
+    {
+      "id": "slot.legend_3.text",
+      "type": "text",
+      "attributes": {
+        "x": 525.0,
+        "y": 520.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.legend_3",
+      "refs": {
+        "layout_slot_id": "slot.legend_3"
+      },
+      "text": "🏀 농구"
+    },
+    {
+      "id": "slot.legend_4.text",
+      "type": "text",
+      "attributes": {
+        "x": 603.0,
+        "y": 520.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.legend_4",
+      "refs": {
+        "layout_slot_id": "slot.legend_4"
+      },
+      "text": "🏐 배구"
+    },
+    {
+      "id": "slot.legend_paren.text",
+      "type": "text",
+      "attributes": {
+        "x": 670.0,
+        "y": 556.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.legend_paren",
+      "refs": {
+        "layout_slot_id": "slot.legend_paren"
+      },
+      "text": "( 축구 , 야구 , 농구 , 배구 )"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

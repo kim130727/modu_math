@@ -1,0 +1,454 @@
+{
+  "problem_id": "S3_초등_3_009049",
+  "view_box": {
+    "width": 840.0,
+    "height": 470.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.num.text",
+      "type": "text",
+      "attributes": {
+        "x": 41.0,
+        "y": 26.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.num",
+      "refs": {
+        "layout_slot_id": "slot.num"
+      },
+      "text": "87."
+    },
+    {
+      "id": "slot.stem.1.text",
+      "type": "text",
+      "attributes": {
+        "x": 82.0,
+        "y": 24.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.stem.1",
+      "refs": {
+        "layout_slot_id": "slot.stem.1"
+      },
+      "text": "직선을 알아보고자 합니다. 점 ㄱ과 점 ㄴ을 지나 양쪽으로 길게 늘인 곧"
+    },
+    {
+      "id": "slot.stem.2.text",
+      "type": "text",
+      "attributes": {
+        "x": 82.0,
+        "y": 58.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.stem.2",
+      "refs": {
+        "layout_slot_id": "slot.stem.2"
+      },
+      "text": "은 선을 선택해 보세요."
+    },
+    {
+      "id": "slot.box.demo.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 91.0,
+        "y": 86.0,
+        "width": 411.0,
+        "height": 94.0,
+        "fill": "none",
+        "stroke": "#EA8AC8",
+        "stroke-width": 2.0,
+        "rx": 10.0,
+        "ry": 10.0
+      },
+      "source_ref": "slot.box.demo",
+      "refs": {
+        "layout_slot_id": "slot.box.demo"
+      }
+    },
+    {
+      "id": "slot.demo.left.arrow.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 109.0 138.0 L 121.0 126.0 L 121.0 132.0 L 184.0 132.0 L 184.0 144.0 L 121.0 144.0 L 121.0 150.0 Z",
+        "stroke": "#FF9ACD",
+        "stroke-width": 1.8,
+        "fill": "none"
+      },
+      "source_ref": "slot.demo.left.arrow",
+      "refs": {
+        "layout_slot_id": "slot.demo.left.arrow"
+      }
+    },
+    {
+      "id": "slot.demo.right.arrow.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 352.0 138.0 L 340.0 126.0 L 340.0 132.0 L 279.0 132.0 L 279.0 144.0 L 340.0 144.0 L 340.0 150.0 Z",
+        "stroke": "#FF9ACD",
+        "stroke-width": 1.8,
+        "fill": "none"
+      },
+      "source_ref": "slot.demo.right.arrow",
+      "refs": {
+        "layout_slot_id": "slot.demo.right.arrow"
+      }
+    },
+    {
+      "id": "slot.teacher.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 540.0 120.0 C 543.0 102.0, 561.0 93.0, 577.0 93.0 C 592.0 93.0, 608.0 101.0, 611.0 118.0 C 616.0 145.0, 599.0 168.0, 575.0 171.0 C 549.0 169.0, 533.0 145.0, 540.0 120.0 Z",
+        "stroke": "none",
+        "stroke-width": 2.0,
+        "fill": "#5A3C2E"
+      },
+      "source_ref": "slot.teacher",
+      "refs": {
+        "layout_slot_id": "slot.teacher"
+      }
+    },
+    {
+      "id": "slot.speech.bubble.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 615.0 95.0 C 652.0 82.0, 718.0 82.0, 748.0 95.0 C 770.0 106.0, 772.0 149.0, 748.0 163.0 C 716.0 182.0, 650.0 182.0, 618.0 164.0 C 609.0 159.0, 603.0 152.0, 602.0 143.0 C 600.0 136.0, 603.0 128.0, 609.0 122.0 C 602.0 112.0, 604.0 101.0, 615.0 95.0 Z",
+        "stroke": "#666666",
+        "stroke-width": 1.8,
+        "fill": "none"
+      },
+      "source_ref": "slot.speech.bubble",
+      "refs": {
+        "layout_slot_id": "slot.speech.bubble"
+      }
+    },
+    {
+      "id": "slot.demo.left.p1.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 102.0,
+        "cy": 139.0,
+        "r": 2.8,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#222222"
+      },
+      "source_ref": "slot.demo.left.p1",
+      "refs": {
+        "layout_slot_id": "slot.demo.left.p1"
+      }
+    },
+    {
+      "id": "slot.demo.left.p2.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 251.0,
+        "cy": 139.0,
+        "r": 2.8,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#222222"
+      },
+      "source_ref": "slot.demo.left.p2",
+      "refs": {
+        "layout_slot_id": "slot.demo.left.p2"
+      }
+    },
+    {
+      "id": "slot.demo.right.p1.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 364.0,
+        "cy": 139.0,
+        "r": 2.8,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#222222"
+      },
+      "source_ref": "slot.demo.right.p1",
+      "refs": {
+        "layout_slot_id": "slot.demo.right.p1"
+      }
+    },
+    {
+      "id": "slot.demo.right.p2.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 219.0,
+        "cy": 139.0,
+        "r": 2.8,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#222222"
+      },
+      "source_ref": "slot.demo.right.p2",
+      "refs": {
+        "layout_slot_id": "slot.demo.right.p2"
+      }
+    },
+    {
+      "id": "slot.demo.left.text.text",
+      "type": "text",
+      "attributes": {
+        "x": 119.0,
+        "y": 139.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 20
+      },
+      "source_ref": "slot.demo.left.text",
+      "refs": {
+        "layout_slot_id": "slot.demo.left.text"
+      },
+      "text": "점 ㄱ을 지나 끝없이 늘어난다."
+    },
+    {
+      "id": "slot.demo.right.text.text",
+      "type": "text",
+      "attributes": {
+        "x": 291.0,
+        "y": 139.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 20
+      },
+      "source_ref": "slot.demo.right.text",
+      "refs": {
+        "layout_slot_id": "slot.demo.right.text"
+      },
+      "text": "점 ㄴ을 지나 끝없이 늘어난다."
+    },
+    {
+      "id": "slot.speech.text.1.text",
+      "type": "text",
+      "attributes": {
+        "x": 635.0,
+        "y": 109.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 22
+      },
+      "source_ref": "slot.speech.text.1",
+      "refs": {
+        "layout_slot_id": "slot.speech.text.1"
+      },
+      "text": "선분을 양쪽으로"
+    },
+    {
+      "id": "slot.speech.text.2.text",
+      "type": "text",
+      "attributes": {
+        "x": 624.0,
+        "y": 135.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 22
+      },
+      "source_ref": "slot.speech.text.2",
+      "refs": {
+        "layout_slot_id": "slot.speech.text.2"
+      },
+      "text": "끝없이 늘인 곧은 선을"
+    },
+    {
+      "id": "slot.speech.text.3.text",
+      "type": "text",
+      "attributes": {
+        "x": 631.0,
+        "y": 161.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 22
+      },
+      "source_ref": "slot.speech.text.3",
+      "refs": {
+        "layout_slot_id": "slot.speech.text.3"
+      },
+      "text": "직선이라고 한다닷."
+    },
+    {
+      "id": "slot.choice.left.line.line",
+      "type": "line",
+      "attributes": {
+        "x1": 166.0,
+        "y1": 228.0,
+        "x2": 337.0,
+        "y2": 228.0,
+        "stroke": "#444444",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.choice.left.line",
+      "refs": {
+        "layout_slot_id": "slot.choice.left.line"
+      }
+    },
+    {
+      "id": "slot.choice.right.line.line",
+      "type": "line",
+      "attributes": {
+        "x1": 505.0,
+        "y1": 228.0,
+        "x2": 679.0,
+        "y2": 228.0,
+        "stroke": "#444444",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.choice.right.line",
+      "refs": {
+        "layout_slot_id": "slot.choice.right.line"
+      }
+    },
+    {
+      "id": "slot.answer.line.line",
+      "type": "line",
+      "attributes": {
+        "x1": 64.0,
+        "y1": 325.0,
+        "x2": 272.0,
+        "y2": 325.0,
+        "stroke": "#444444",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.answer.line",
+      "refs": {
+        "layout_slot_id": "slot.answer.line"
+      }
+    },
+    {
+      "id": "slot.choice.left.p1.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 162.0,
+        "cy": 228.0,
+        "r": 2.8,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#222222"
+      },
+      "source_ref": "slot.choice.left.p1",
+      "refs": {
+        "layout_slot_id": "slot.choice.left.p1"
+      }
+    },
+    {
+      "id": "slot.choice.left.p2.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 339.0,
+        "cy": 228.0,
+        "r": 2.8,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#222222"
+      },
+      "source_ref": "slot.choice.left.p2",
+      "refs": {
+        "layout_slot_id": "slot.choice.left.p2"
+      }
+    },
+    {
+      "id": "slot.choice.right.p1.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 500.0,
+        "cy": 228.0,
+        "r": 2.8,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#222222"
+      },
+      "source_ref": "slot.choice.right.p1",
+      "refs": {
+        "layout_slot_id": "slot.choice.right.p1"
+      }
+    },
+    {
+      "id": "slot.choice.right.p2.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 681.0,
+        "cy": 228.0,
+        "r": 2.8,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#222222"
+      },
+      "source_ref": "slot.choice.right.p2",
+      "refs": {
+        "layout_slot_id": "slot.choice.right.p2"
+      }
+    },
+    {
+      "id": "slot.choice.left.lb1.text",
+      "type": "text",
+      "attributes": {
+        "x": 158.0,
+        "y": 214.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 22
+      },
+      "source_ref": "slot.choice.left.lb1",
+      "refs": {
+        "layout_slot_id": "slot.choice.left.lb1"
+      },
+      "text": "ㄱ"
+    },
+    {
+      "id": "slot.choice.left.lb2.text",
+      "type": "text",
+      "attributes": {
+        "x": 333.0,
+        "y": 214.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 22
+      },
+      "source_ref": "slot.choice.left.lb2",
+      "refs": {
+        "layout_slot_id": "slot.choice.left.lb2"
+      },
+      "text": "ㄴ"
+    },
+    {
+      "id": "slot.choice.right.lb1.text",
+      "type": "text",
+      "attributes": {
+        "x": 495.0,
+        "y": 214.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 22
+      },
+      "source_ref": "slot.choice.right.lb1",
+      "refs": {
+        "layout_slot_id": "slot.choice.right.lb1"
+      },
+      "text": "ㄱ"
+    },
+    {
+      "id": "slot.choice.right.lb2.text",
+      "type": "text",
+      "attributes": {
+        "x": 675.0,
+        "y": 214.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 22
+      },
+      "source_ref": "slot.choice.right.lb2",
+      "refs": {
+        "layout_slot_id": "slot.choice.right.lb2"
+      },
+      "text": "ㄴ"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

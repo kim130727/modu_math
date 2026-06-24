@@ -1,0 +1,188 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_009011",
+  "title": "알맞은 말을 선택하세요",
+  "canvas": {
+    "width": 790.0,
+    "height": 236.0,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.diagram.left.curve",
+        "slot.diagram.left.mark1",
+        "slot.diagram.left.mark2",
+        "slot.diagram.left.mark1b",
+        "slot.diagram.left.mark2b",
+        "slot.diagram.left.pt1",
+        "slot.diagram.left.pt2",
+        "slot.title"
+      ]
+    },
+    {
+      "id": "region.choice",
+      "role": "body",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice.box",
+        "slot.choice.line1",
+        "slot.choice.line2"
+      ]
+    },
+    {
+      "id": "region.explanation",
+      "role": "explanation",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.title",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "50. 알맞은 말을 선택하세요.",
+        "style_role": "question",
+        "x": 14.0,
+        "y": 18.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.diagram.left.pt1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 74.0,
+        "cy": 100.0,
+        "r": 3.2,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.diagram.left.pt2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 287.0,
+        "cy": 100.0,
+        "r": 3.2,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.diagram.left.curve",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 79.0 99.0 C 135.0 66.0, 226.0 66.0, 282.0 99.0",
+        "x": 0.0,
+        "y": 0.0
+      }
+    },
+    {
+      "id": "slot.diagram.left.mark1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 58.0,
+        "y1": 81.0,
+        "x2": 58.0,
+        "y2": 88.0
+      }
+    },
+    {
+      "id": "slot.diagram.left.mark2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 281.0,
+        "y1": 81.0,
+        "x2": 281.0,
+        "y2": 88.0
+      }
+    },
+    {
+      "id": "slot.diagram.left.mark1b",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 58.0,
+        "y1": 81.0,
+        "x2": 49.0,
+        "y2": 81.0
+      }
+    },
+    {
+      "id": "slot.diagram.left.mark2b",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 281.0,
+        "y1": 81.0,
+        "x2": 290.0,
+        "y2": 81.0
+      }
+    },
+    {
+      "id": "slot.choice.box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 324.0,
+        "y": 38.0,
+        "width": 460.0,
+        "height": 81.0
+      }
+    },
+    {
+      "id": "slot.choice.line1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "굽은 선이므로",
+        "style_role": "body",
+        "x": 338.0,
+        "y": 74.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice.line2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "( 반직선입니다. 반직선이 아닙니다 ).",
+        "style_role": "body",
+        "x": 338.0,
+        "y": 105.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.diagram.left.curve",
+    "slot.diagram.left.mark1",
+    "slot.diagram.left.mark2",
+    "slot.diagram.left.mark1b",
+    "slot.diagram.left.mark2b",
+    "slot.diagram.left.pt1",
+    "slot.diagram.left.pt2",
+    "slot.title",
+    "region.choice",
+    "slot.choice.box",
+    "slot.choice.line1",
+    "slot.choice.line2",
+    "region.explanation"
+  ]
+}

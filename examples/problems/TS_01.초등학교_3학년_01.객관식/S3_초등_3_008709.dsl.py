@@ -50,7 +50,7 @@ def build_problem_template() -> ProblemTemplate:
             LineSlot(id="slot.circle.line2", prompt="", x1=480, y1=75, x2=375, y2=295),
             LineSlot(id="slot.circle.line3", prompt="", x1=525, y1=90, x2=415, y2=320),
             LineSlot(id="slot.circle.line4", prompt="", x1=590, y1=155, x2=510, y2=330),
-            CircleSlot(id="slot.circle.center_mark", prompt="", cx=456, cy=205, r=5, fill="none"),
+            CircleSlot(id="slot.circle.center_mark", prompt="", cx=453, cy=205, r=5, fill="none"),
             CircleSlot(id="slot.circle.pink_dot", prompt="", cx=470, cy=205, r=5, fill="#ff4fa0"),
             TextSlot(
                 id="slot.circle_label",

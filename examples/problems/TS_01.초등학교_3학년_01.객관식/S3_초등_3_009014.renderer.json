@@ -1,0 +1,199 @@
+{
+  "problem_id": "S3_초등_3_009014",
+  "view_box": {
+    "width": 760.0,
+    "height": 170.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.opt.left_curve.p1.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 148.0,
+        "cy": 66.0,
+        "r": 2.3,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#222222"
+      },
+      "source_ref": "slot.opt.left_curve.p1",
+      "refs": {
+        "layout_slot_id": "slot.opt.left_curve.p1"
+      }
+    },
+    {
+      "id": "slot.opt.left_curve.p2.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 262.0,
+        "cy": 44.0,
+        "r": 2.3,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#222222"
+      },
+      "source_ref": "slot.opt.left_curve.p2",
+      "refs": {
+        "layout_slot_id": "slot.opt.left_curve.p2"
+      }
+    },
+    {
+      "id": "slot.opt.middle_segment.p1.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 384.0,
+        "cy": 56.0,
+        "r": 2.3,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#222222"
+      },
+      "source_ref": "slot.opt.middle_segment.p1",
+      "refs": {
+        "layout_slot_id": "slot.opt.middle_segment.p1"
+      }
+    },
+    {
+      "id": "slot.opt.middle_segment.p2.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 498.0,
+        "cy": 56.0,
+        "r": 2.3,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#222222"
+      },
+      "source_ref": "slot.opt.middle_segment.p2",
+      "refs": {
+        "layout_slot_id": "slot.opt.middle_segment.p2"
+      }
+    },
+    {
+      "id": "slot.opt.right_polyline.p1.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 606.0,
+        "cy": 46.0,
+        "r": 2.3,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#222222"
+      },
+      "source_ref": "slot.opt.right_polyline.p1",
+      "refs": {
+        "layout_slot_id": "slot.opt.right_polyline.p1"
+      }
+    },
+    {
+      "id": "slot.opt.right_polyline.p2.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 700.0,
+        "cy": 66.0,
+        "r": 2.3,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#222222"
+      },
+      "source_ref": "slot.opt.right_polyline.p2",
+      "refs": {
+        "layout_slot_id": "slot.opt.right_polyline.p2"
+      }
+    },
+    {
+      "id": "slot.qnum.text",
+      "type": "text",
+      "attributes": {
+        "x": 12.0,
+        "y": 22.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.qnum",
+      "refs": {
+        "layout_slot_id": "slot.qnum"
+      },
+      "text": "□ 52."
+    },
+    {
+      "id": "slot.qtext.text",
+      "type": "text",
+      "attributes": {
+        "x": 88.0,
+        "y": 22.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.qtext",
+      "refs": {
+        "layout_slot_id": "slot.qtext"
+      },
+      "text": "선분을 선택하세요."
+    },
+    {
+      "id": "slot.opt.left_curve.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 150.0 64.0 C 164.0 28.0, 196.0 28.0, 212.0 64.0 C 224.0 86.0, 242.0 86.0, 258.0 44.0",
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "none"
+      },
+      "source_ref": "slot.opt.left_curve",
+      "refs": {
+        "layout_slot_id": "slot.opt.left_curve"
+      }
+    },
+    {
+      "id": "slot.opt.right_polyline.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 606.0 46.0 L 628.0 66.0 L 646.0 46.0 L 664.0 66.0 L 682.0 46.0 L 700.0 66.0",
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "none"
+      },
+      "source_ref": "slot.opt.right_polyline",
+      "refs": {
+        "layout_slot_id": "slot.opt.right_polyline"
+      }
+    },
+    {
+      "id": "slot.opt.middle_segment.line",
+      "type": "line",
+      "attributes": {
+        "x1": 384.0,
+        "y1": 56.0,
+        "x2": 498.0,
+        "y2": 56.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.opt.middle_segment",
+      "refs": {
+        "layout_slot_id": "slot.opt.middle_segment"
+      }
+    },
+    {
+      "id": "slot.answer_blank.line",
+      "type": "line",
+      "attributes": {
+        "x1": 61.0,
+        "y1": 103.0,
+        "x2": 178.0,
+        "y2": 103.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.answer_blank",
+      "refs": {
+        "layout_slot_id": "slot.answer_blank"
+      }
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

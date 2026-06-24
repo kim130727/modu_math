@@ -1,0 +1,388 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_009066",
+  "title": "도형을 보고 알맞은 기호를 모두 선택하세요.",
+  "canvas": {
+    "width": 760,
+    "height": 340,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.grid.top",
+        "slot.shape.a",
+        "slot.shape.b",
+        "slot.shape.c",
+        "slot.shape.d",
+        "slot.shape.e",
+        "slot.qnum",
+        "slot.qtitle",
+        "slot.lb.a",
+        "slot.lb.b",
+        "slot.lb.c",
+        "slot.lb.d",
+        "slot.lb.e",
+        "slot.condition"
+      ]
+    },
+    {
+      "id": "region.explain",
+      "role": "explanation",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.grid.bottom",
+        "slot.e_shape.a",
+        "slot.e_shape.b",
+        "slot.e_shape.c",
+        "slot.e_shape.d",
+        "slot.e_shape.e",
+        "slot.e_lb.a",
+        "slot.e_lb.b",
+        "slot.e_lb.c",
+        "slot.e_lb.d",
+        "slot.e_lb.e",
+        "slot.todo.note"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.qnum",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "7.",
+        "style_role": "question",
+        "x": 12.0,
+        "y": 26.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.qtitle",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "도형을 보고 알맞은 기호를 모두 선택하세요.",
+        "style_role": "question",
+        "x": 42.0,
+        "y": 26.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.grid.top",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 68.0,
+        "y": 38.0,
+        "width": 638.0,
+        "height": 88.0
+      }
+    },
+    {
+      "id": "slot.shape.a",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 92.0,
+        "y": 61.0,
+        "width": 98.0,
+        "height": 41.0
+      }
+    },
+    {
+      "id": "slot.shape.b",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 223.0,
+        "y": 61.0,
+        "width": 98.0,
+        "height": 41.0
+      }
+    },
+    {
+      "id": "slot.shape.c",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 321.0,
+        "y": 61.0,
+        "width": 98.0,
+        "height": 41.0
+      }
+    },
+    {
+      "id": "slot.shape.d",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 453.0,
+        "y": 61.0,
+        "width": 118.0,
+        "height": 41.0
+      }
+    },
+    {
+      "id": "slot.shape.e",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 634.0,
+        "y": 45.0,
+        "width": 38.0,
+        "height": 68.0
+      }
+    },
+    {
+      "id": "slot.lb.a",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "가",
+        "style_role": "label",
+        "x": 144.0,
+        "y": 88.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.lb.b",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "나",
+        "style_role": "label",
+        "x": 274.0,
+        "y": 88.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.lb.c",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "다",
+        "style_role": "label",
+        "x": 372.0,
+        "y": 88.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.lb.d",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "라",
+        "style_role": "label",
+        "x": 507.0,
+        "y": 88.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.lb.e",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "마",
+        "style_role": "label",
+        "x": 648.0,
+        "y": 79.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.condition",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "네 각이 모두 직각인 사각형은 ( 가, 나, 다, 라, 마 )입니다.",
+        "style_role": "question",
+        "x": 95.0,
+        "y": 168.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.grid.bottom",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 68.0,
+        "y": 240.0,
+        "width": 476.0,
+        "height": 112.0
+      }
+    },
+    {
+      "id": "slot.e_shape.a",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 92.0,
+        "y": 244.0,
+        "width": 98.0,
+        "height": 50.0
+      }
+    },
+    {
+      "id": "slot.e_shape.b",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 223.0,
+        "y": 244.0,
+        "width": 98.0,
+        "height": 50.0
+      }
+    },
+    {
+      "id": "slot.e_shape.c",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 321.0,
+        "y": 244.0,
+        "width": 98.0,
+        "height": 50.0
+      }
+    },
+    {
+      "id": "slot.e_shape.d",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 453.0,
+        "y": 244.0,
+        "width": 118.0,
+        "height": 50.0
+      }
+    },
+    {
+      "id": "slot.e_shape.e",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 634.0,
+        "y": 244.0,
+        "width": 38.0,
+        "height": 68.0
+      }
+    },
+    {
+      "id": "slot.e_lb.a",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "가",
+        "style_role": "label",
+        "x": 144.0,
+        "y": 280.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.e_lb.b",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "나",
+        "style_role": "label",
+        "x": 274.0,
+        "y": 280.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.e_lb.c",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "다",
+        "style_role": "label",
+        "x": 372.0,
+        "y": 280.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.e_lb.d",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "라",
+        "style_role": "label",
+        "x": 507.0,
+        "y": 280.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.e_lb.e",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "마",
+        "style_role": "label",
+        "x": 648.0,
+        "y": 271.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.todo.note",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "TODO: 해설 영역의 직각 표시 일부는 이미지 해상도상 확정하지 않음.",
+        "style_role": "note",
+        "x": 12.0,
+        "y": 324.0,
+        "font_size": 18
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.grid.top",
+    "slot.shape.a",
+    "slot.shape.b",
+    "slot.shape.c",
+    "slot.shape.d",
+    "slot.shape.e",
+    "slot.qnum",
+    "slot.qtitle",
+    "slot.lb.a",
+    "slot.lb.b",
+    "slot.lb.c",
+    "slot.lb.d",
+    "slot.lb.e",
+    "slot.condition",
+    "region.explain",
+    "slot.grid.bottom",
+    "slot.e_shape.a",
+    "slot.e_shape.b",
+    "slot.e_shape.c",
+    "slot.e_shape.d",
+    "slot.e_shape.e",
+    "slot.e_lb.a",
+    "slot.e_lb.b",
+    "slot.e_lb.c",
+    "slot.e_lb.d",
+    "slot.e_lb.e",
+    "slot.todo.note"
+  ]
+}

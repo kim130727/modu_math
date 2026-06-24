@@ -1,0 +1,89 @@
+{
+  "problem_id": "S3_초등_3_009053",
+  "problem_type": "segment_selection",
+  "metadata": {
+    "title": "선분 고르기",
+    "tags": [],
+    "question": "선분 ㄴㄷ을 선택해 보세요.",
+    "required_layout_ids": [
+      "slot.box",
+      "slot.opt1.line",
+      "slot.opt1.pt1",
+      "slot.opt1.pt2",
+      "slot.opt2.line",
+      "slot.opt2.pt1",
+      "slot.opt2.pt2",
+      "slot.opt3.line",
+      "slot.opt3.pt1",
+      "slot.opt3.pt2",
+      "slot.answer.line",
+      "slot.answer.pt1",
+      "slot.answer.pt2"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "보기 중에서 선분 ㄴㄷ에 해당하는 도형을 고른다.",
+    "points": 5
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.segment_nd",
+        "type": "segment",
+        "name": "ㄴㄷ"
+      },
+      {
+        "id": "obj.point_n",
+        "type": "point",
+        "name": "ㄴ"
+      },
+      {
+        "id": "obj.point_d",
+        "type": "point",
+        "name": "ㄷ"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.segment_nd",
+          "obj.point_n",
+          "obj.point_d"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.segment_connects_points"
+        ]
+      },
+      "plan": {
+        "method": "identify_matching_segment",
+        "description": "점 ㄴ과 점 ㄷ을 곧게 이은 선분을 찾는다."
+      },
+      "execute": {
+        "expected_operations": [
+          "compare_segment_labels",
+          "match_endpoints"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "endpoint_label_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "selected_segment",
+      "description": "선분 ㄴㄷ"
+    },
+    "value": 0,
+    "unit": ""
+  }
+}

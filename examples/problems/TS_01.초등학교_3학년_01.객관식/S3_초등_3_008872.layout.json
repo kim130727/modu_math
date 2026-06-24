@@ -1,0 +1,248 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008872",
+  "title": "잘못 이야기한 친구 고르기",
+  "canvas": {
+    "width": 940.0,
+    "height": 570.0,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.table.outer",
+        "slot.table.header",
+        "slot.table.row1",
+        "slot.table.row2",
+        "slot.box.outer",
+        "slot.q1",
+        "slot.table.h1",
+        "slot.table.h2",
+        "slot.table.c1",
+        "slot.table.c2",
+        "slot.table.c3",
+        "slot.table.c4",
+        "slot.s1",
+        "slot.s2",
+        "slot.s3"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "25. 꽃병과 항아리에 물을 가득 채우려면 ㉠ 컵과 ㉡ 컵으로 다음과 같이 각각 부어야 합니다. 잘못 이야기한 친구의 이름을 선택하세요.",
+        "style_role": "question",
+        "x": 18.0,
+        "y": 40.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.outer",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 272.0,
+        "y": 92.0,
+        "width": 372.0,
+        "height": 129.0,
+        "stroke": "#D3B48B",
+        "stroke_width": 1.5,
+        "fill": "#F5EBDD"
+      }
+    },
+    {
+      "id": "slot.table.header",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 272.0,
+        "y": 92.0,
+        "width": 372.0,
+        "height": 40.0,
+        "stroke": "#D3B48B",
+        "stroke_width": 1.2,
+        "fill": "#EFE1CF"
+      }
+    },
+    {
+      "id": "slot.table.row1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 272.0,
+        "y": 132.0,
+        "width": 372.0,
+        "height": 45.0,
+        "stroke": "#D3B48B",
+        "stroke_width": 1.0,
+        "fill": "#FFFDF9"
+      }
+    },
+    {
+      "id": "slot.table.row2",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 272.0,
+        "y": 177.0,
+        "width": 372.0,
+        "height": 44.0,
+        "stroke": "#D3B48B",
+        "stroke_width": 1.0,
+        "fill": "#FFFDF9"
+      }
+    },
+    {
+      "id": "slot.table.h1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "가 컵",
+        "style_role": "label",
+        "x": 375.0,
+        "y": 120.0,
+        "font_size": 26
+      }
+    },
+    {
+      "id": "slot.table.h2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "나 컵",
+        "style_role": "label",
+        "x": 505.0,
+        "y": 120.0,
+        "font_size": 26
+      }
+    },
+    {
+      "id": "slot.table.c1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "꽃병",
+        "style_role": "label",
+        "x": 314.0,
+        "y": 160.0,
+        "font_size": 26
+      }
+    },
+    {
+      "id": "slot.table.c2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "3개",
+        "style_role": "value",
+        "x": 382.0,
+        "y": 160.0,
+        "font_size": 26
+      }
+    },
+    {
+      "id": "slot.table.c3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "4개",
+        "style_role": "value",
+        "x": 508.0,
+        "y": 160.0,
+        "font_size": 26
+      }
+    },
+    {
+      "id": "slot.table.c4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "항아리",
+        "style_role": "label",
+        "x": 314.0,
+        "y": 202.0,
+        "font_size": 26
+      }
+    },
+    {
+      "id": "slot.box.outer",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 84.0,
+        "y": 246.0,
+        "width": 772.0,
+        "height": 149.0,
+        "stroke": "#A79BE0",
+        "stroke_width": 1.6,
+        "fill": "#FFFFFF"
+      }
+    },
+    {
+      "id": "slot.s1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "· 진수: 꽃병보다 항아리에 물을 더 많이 담을 수 있어.",
+        "style_role": "body",
+        "x": 119.0,
+        "y": 290.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.s2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "· 유빈: 항아리의 들이는 꽃병의 들이의 2배야.",
+        "style_role": "body",
+        "x": 119.0,
+        "y": 331.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.s3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "· 윤후: ㉠ 컵과 ㉡ 컵 중에 들이가 더 많은 컵은 ㉡ 컵이야.",
+        "style_role": "body",
+        "x": 119.0,
+        "y": 372.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.table.outer",
+    "slot.table.header",
+    "slot.table.row1",
+    "slot.table.row2",
+    "slot.box.outer",
+    "slot.q1",
+    "slot.table.h1",
+    "slot.table.h2",
+    "slot.table.c1",
+    "slot.table.c2",
+    "slot.table.c3",
+    "slot.table.c4",
+    "slot.s1",
+    "slot.s2",
+    "slot.s3"
+  ]
+}

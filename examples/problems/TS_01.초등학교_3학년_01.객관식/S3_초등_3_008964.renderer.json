@@ -1,0 +1,368 @@
+{
+  "problem_id": "S3_초등_3_008964",
+  "view_box": {
+    "width": 960.0,
+    "height": 900.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.q1.text",
+      "type": "text",
+      "attributes": {
+        "x": 18.0,
+        "y": 28.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q1",
+      "refs": {
+        "layout_slot_id": "slot.q1"
+      },
+      "text": "34. 재경이네 모둠 학생들이 접은 종이꽃의 수를 조사하여 그림그래프로 나타냈습니다."
+    },
+    {
+      "id": "slot.q2.text",
+      "type": "text",
+      "attributes": {
+        "x": 18.0,
+        "y": 64.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q2",
+      "refs": {
+        "layout_slot_id": "slot.q2"
+      },
+      "text": "재경이와 채미가 접은 종이꽃이 모두 67송이라면 채민이와 은서가 접은 종이꽃은 모두 몇 송이일까요?"
+    },
+    {
+      "id": "slot.table.title.text",
+      "type": "text",
+      "attributes": {
+        "x": 280.0,
+        "y": 112.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.title",
+      "refs": {
+        "layout_slot_id": "slot.table.title"
+      },
+      "text": "모둠 학생들이 접은 종이꽃 수"
+    },
+    {
+      "id": "slot.table.head1.text",
+      "type": "text",
+      "attributes": {
+        "x": 250.0,
+        "y": 165.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.head1",
+      "refs": {
+        "layout_slot_id": "slot.table.head1"
+      },
+      "text": "이름"
+    },
+    {
+      "id": "slot.table.head2.text",
+      "type": "text",
+      "attributes": {
+        "x": 542.0,
+        "y": 165.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.head2",
+      "refs": {
+        "layout_slot_id": "slot.table.head2"
+      },
+      "text": "종이꽃 수"
+    },
+    {
+      "id": "slot.table.r1.name.text",
+      "type": "text",
+      "attributes": {
+        "x": 255.0,
+        "y": 225.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.r1.name",
+      "refs": {
+        "layout_slot_id": "slot.table.r1.name"
+      },
+      "text": "재경"
+    },
+    {
+      "id": "slot.table.r2.name.text",
+      "type": "text",
+      "attributes": {
+        "x": 255.0,
+        "y": 291.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.r2.name",
+      "refs": {
+        "layout_slot_id": "slot.table.r2.name"
+      },
+      "text": "은서"
+    },
+    {
+      "id": "slot.table.r3.name.text",
+      "type": "text",
+      "attributes": {
+        "x": 255.0,
+        "y": 357.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.r3.name",
+      "refs": {
+        "layout_slot_id": "slot.table.r3.name"
+      },
+      "text": "채민"
+    },
+    {
+      "id": "slot.legend.big.text",
+      "type": "text",
+      "attributes": {
+        "x": 565.0,
+        "y": 468.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 40
+      },
+      "source_ref": "slot.legend.big",
+      "refs": {
+        "layout_slot_id": "slot.legend.big"
+      },
+      "text": "🌼"
+    },
+    {
+      "id": "slot.legend.big.label.text",
+      "type": "text",
+      "attributes": {
+        "x": 615.0,
+        "y": 485.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.legend.big.label",
+      "refs": {
+        "layout_slot_id": "slot.legend.big.label"
+      },
+      "text": ":10송이"
+    },
+    {
+      "id": "slot.legend.small.text",
+      "type": "text",
+      "attributes": {
+        "x": 685.0,
+        "y": 476.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 26
+      },
+      "source_ref": "slot.legend.small",
+      "refs": {
+        "layout_slot_id": "slot.legend.small"
+      },
+      "text": "🌼"
+    },
+    {
+      "id": "slot.legend.small.label.text",
+      "type": "text",
+      "attributes": {
+        "x": 715.0,
+        "y": 485.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.legend.small.label",
+      "refs": {
+        "layout_slot_id": "slot.legend.small.label"
+      },
+      "text": ":1송이"
+    },
+    {
+      "id": "slot.choice.1.text",
+      "type": "text",
+      "attributes": {
+        "x": 35.0,
+        "y": 535.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice.1",
+      "refs": {
+        "layout_slot_id": "slot.choice.1"
+      },
+      "text": "① 49송이"
+    },
+    {
+      "id": "slot.choice.2.text",
+      "type": "text",
+      "attributes": {
+        "x": 300.0,
+        "y": 535.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice.2",
+      "refs": {
+        "layout_slot_id": "slot.choice.2"
+      },
+      "text": "② 52송이"
+    },
+    {
+      "id": "slot.choice.3.text",
+      "type": "text",
+      "attributes": {
+        "x": 610.0,
+        "y": 535.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice.3",
+      "refs": {
+        "layout_slot_id": "slot.choice.3"
+      },
+      "text": "③ 55송이"
+    },
+    {
+      "id": "slot.choice.4.text",
+      "type": "text",
+      "attributes": {
+        "x": 35.0,
+        "y": 585.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice.4",
+      "refs": {
+        "layout_slot_id": "slot.choice.4"
+      },
+      "text": "④ 57송이"
+    },
+    {
+      "id": "slot.choice.5.text",
+      "type": "text",
+      "attributes": {
+        "x": 300.0,
+        "y": 585.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice.5",
+      "refs": {
+        "layout_slot_id": "slot.choice.5"
+      },
+      "text": "⑤ 59송이"
+    },
+    {
+      "id": "slot.table.outer.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 205.0,
+        "y": 136.0,
+        "width": 530.0,
+        "height": 302.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.table.outer",
+      "refs": {
+        "layout_slot_id": "slot.table.outer"
+      }
+    },
+    {
+      "id": "slot.table.vline.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 364.0,
+        "y": 136.0,
+        "width": 1.0,
+        "height": 302.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.table.vline",
+      "refs": {
+        "layout_slot_id": "slot.table.vline"
+      }
+    },
+    {
+      "id": "slot.table.hline1.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 205.0,
+        "y": 182.0,
+        "width": 530.0,
+        "height": 1.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.table.hline1",
+      "refs": {
+        "layout_slot_id": "slot.table.hline1"
+      }
+    },
+    {
+      "id": "slot.table.hline2.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 205.0,
+        "y": 248.0,
+        "width": 530.0,
+        "height": 1.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.table.hline2",
+      "refs": {
+        "layout_slot_id": "slot.table.hline2"
+      }
+    },
+    {
+      "id": "slot.table.hline3.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 205.0,
+        "y": 314.0,
+        "width": 530.0,
+        "height": 1.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.table.hline3",
+      "refs": {
+        "layout_slot_id": "slot.table.hline3"
+      }
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

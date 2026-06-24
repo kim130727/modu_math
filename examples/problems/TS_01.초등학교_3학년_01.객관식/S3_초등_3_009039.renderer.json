@@ -1,0 +1,143 @@
+{
+  "problem_id": "S3_초등_3_009039",
+  "view_box": {
+    "width": 960.0,
+    "height": 490.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.shape.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 406.0,
+        "y": 50.0,
+        "width": 146.0,
+        "height": 145.0,
+        "fill": "none",
+        "stroke": "#333333",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.shape",
+      "refs": {
+        "layout_slot_id": "slot.shape"
+      }
+    },
+    {
+      "id": "slot.choice.left.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 36.0,
+        "y": 200.0,
+        "width": 282.0,
+        "height": 174.0,
+        "fill": "none",
+        "stroke": "#A77BC8",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.choice.left",
+      "refs": {
+        "layout_slot_id": "slot.choice.left"
+      }
+    },
+    {
+      "id": "slot.choice.mid.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 333.0,
+        "y": 200.0,
+        "width": 282.0,
+        "height": 174.0,
+        "fill": "none",
+        "stroke": "#A77BC8",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.choice.mid",
+      "refs": {
+        "layout_slot_id": "slot.choice.mid"
+      }
+    },
+    {
+      "id": "slot.choice.right.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 630.0,
+        "y": 200.0,
+        "width": 282.0,
+        "height": 174.0,
+        "fill": "none",
+        "stroke": "#A77BC8",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.choice.right",
+      "refs": {
+        "layout_slot_id": "slot.choice.right"
+      }
+    },
+    {
+      "id": "slot.q.title.text",
+      "type": "text",
+      "attributes": {
+        "x": 12.0,
+        "y": 22.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q.title",
+      "refs": {
+        "layout_slot_id": "slot.q.title"
+      },
+      "text": "□ 77. 도형을 보고 알맞은 말을 선택하세요."
+    },
+    {
+      "id": "slot.choice.left.text.text",
+      "type": "text",
+      "attributes": {
+        "x": 177.0,
+        "y": 221.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice.left.text",
+      "refs": {
+        "layout_slot_id": "slot.choice.left.text"
+      },
+      "text": "도형은\n직사각형이\n( 맞아요 , 아니에요 )."
+    },
+    {
+      "id": "slot.choice.mid.text.text",
+      "type": "text",
+      "attributes": {
+        "x": 474.0,
+        "y": 221.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice.mid.text",
+      "refs": {
+        "layout_slot_id": "slot.choice.mid.text"
+      },
+      "text": "도형은\n정사각형이\n( 맞아요 , 아니에요 )."
+    },
+    {
+      "id": "slot.choice.right.text.text",
+      "type": "text",
+      "attributes": {
+        "x": 771.0,
+        "y": 221.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice.right.text",
+      "refs": {
+        "layout_slot_id": "slot.choice.right.text"
+      },
+      "text": "정사각형은\n직사각형이라고 할 수\n( 있어요 , 없어요 )."
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

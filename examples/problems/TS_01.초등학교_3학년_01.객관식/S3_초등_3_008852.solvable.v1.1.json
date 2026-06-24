@@ -1,0 +1,91 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008852",
+  "problem_type": "comparison_weight",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "더 무거운 것",
+    "target_ticks": 0,
+    "target_count": 0,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.paprika",
+      "value": {
+        "name": "파프리카"
+      }
+    },
+    {
+      "ref": "obj.broccoli",
+      "value": {
+        "name": "브로콜리"
+      }
+    },
+    {
+      "ref": "obj.stones_50",
+      "value": {
+        "count": 50
+      }
+    },
+    {
+      "ref": "obj.stones_62",
+      "value": {
+        "count": 62
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "heavier_object"
+  },
+  "method": "compare_reference_weights",
+  "plan": [
+    "파프리카와 브로콜리가 각각 몇 개의 바둑돌 무게와 같은지 확인한다.",
+    "바둑돌 개수를 비교하여 더 큰 쪽과 대응된 채소를 고른다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "파프리카 ↔ 바둑돌 50개",
+      "value": 50
+    },
+    {
+      "id": "step.2",
+      "expr": "브로콜리 ↔ 바둑돌 62개",
+      "value": 62
+    },
+    {
+      "id": "step.3",
+      "expr": "50 < 62",
+      "value": "브로콜리"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "50 < 62",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "id": "check.2",
+      "expr": "더 큰 바둑돌 개수에 대응하는 채소가 더 무겁다",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "heavier_object",
+      "description": "파프리카와 브로콜리 중 더 무거운 것"
+    },
+    "value": "브로콜리",
+    "unit": ""
+  }
+}

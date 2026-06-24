@@ -1,0 +1,86 @@
+{
+  "problem_id": "S3_초등_3_009059",
+  "problem_type": "도형_분류",
+  "metadata": {
+    "title": "도형을 보고 알맞은 말을 선택하세요",
+    "tags": [],
+    "question": "도형을 보고 알맞은 말을 선택하세요.",
+    "required_layout_ids": [
+      "slot.line",
+      "slot.pt.s",
+      "slot.pt.o"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "선분, 반직선, 직선의 이름을 보고 알맞은 것을 고른다.",
+    "points": 0
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.point.s",
+        "type": "point",
+        "label": "ㅅ"
+      },
+      {
+        "id": "obj.point.o",
+        "type": "point",
+        "label": "ㅇ"
+      },
+      {
+        "id": "obj.figure",
+        "type": "line_like_figure",
+        "name_candidates": [
+          "선분 ㅅㅇ",
+          "반직선 ㅅㅇ",
+          "직선 ㅅㅇ"
+        ]
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.point.s",
+          "obj.point.o",
+          "obj.figure"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.start_from_s",
+          "rel.passes_o"
+        ]
+      },
+      "plan": {
+        "method": "도형의 정의와 표시된 점의 관계를 보고 이름을 고른다.",
+        "description": "시작점과 지나는 점을 확인하고 보기 중 해당 도형 이름을 찾는다."
+      },
+      "execute": {
+        "expected_operations": [
+          "점 ㅅ이 시작점인지 확인",
+          "점 ㅇ이 지나는 점인지 확인",
+          "보기에서 알맞은 도형 이름 선택"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "정의와 그림이 일치하는지 확인",
+          "선택한 이름이 시작점 표시에 맞는지 확인"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "figure_name_choice",
+      "description": "그림에 알맞은 도형의 이름"
+    },
+    "value": "반직선 ㅅㅇ",
+    "unit": ""
+  }
+}

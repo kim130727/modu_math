@@ -1,0 +1,108 @@
+{
+  "problem_id": "S3_초등_3_009026",
+  "problem_type": "도형_분류",
+  "metadata": {
+    "title": "삼각형을 보고 알맞은 기호를 모두 선택하세요",
+    "tags": [],
+    "instruction": "직각인 삼각형을 찾는 분류 문제",
+    "question": "삼각형을 보고 알맞은 기호를 모두 선택하세요.",
+    "required_layout_ids": [
+      "slot.top.tri.ga.a",
+      "slot.top.tri.ga.b",
+      "slot.top.tri.ga.c",
+      "slot.top.tri.na.a",
+      "slot.top.tri.na.b",
+      "slot.top.tri.na.c",
+      "slot.top.tri.da.a",
+      "slot.top.tri.da.b",
+      "slot.top.tri.da.c",
+      "slot.top.tri.ra.a",
+      "slot.top.tri.ra.b",
+      "slot.top.tri.ra.c",
+      "slot.bottom.tri.ga.a",
+      "slot.bottom.tri.ga.b",
+      "slot.bottom.tri.ga.c",
+      "slot.bottom.tri.na.a",
+      "slot.bottom.tri.na.b",
+      "slot.bottom.tri.na.c",
+      "slot.bottom.tri.da.a",
+      "slot.bottom.tri.da.b",
+      "slot.bottom.tri.da.c",
+      "slot.bottom.tri.ra.a",
+      "slot.bottom.tri.ra.b",
+      "slot.bottom.tri.ra.c"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.triangle.ga",
+        "type": "triangle",
+        "label": "가"
+      },
+      {
+        "id": "obj.triangle.na",
+        "type": "triangle",
+        "label": "나"
+      },
+      {
+        "id": "obj.triangle.da",
+        "type": "triangle",
+        "label": "다"
+      },
+      {
+        "id": "obj.triangle.ra",
+        "type": "triangle",
+        "label": "라"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.triangle.ga",
+          "obj.triangle.na",
+          "obj.triangle.da",
+          "obj.triangle.ra"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.classify.right_angle"
+        ]
+      },
+      "plan": {
+        "method": "도형 분류",
+        "description": "각 삼각형의 모양을 보고 직각이 있는지를 확인한다."
+      },
+      "execute": {
+        "expected_operations": [
+          "triangle_property_check",
+          "select_matching_labels"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "selected_labels_match_condition"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "selected_labels",
+      "description": "한 각이 직각인 삼각형의 기호"
+    },
+    "value": [
+      "나",
+      "라"
+    ],
+    "unit": ""
+  }
+}

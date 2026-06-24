@@ -1,0 +1,207 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_009014",
+  "title": "선분을 선택하세요.",
+  "canvas": {
+    "width": 760,
+    "height": 170,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.header",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.opt.left_curve.p1",
+        "slot.opt.left_curve.p2",
+        "slot.opt.middle_segment.p1",
+        "slot.opt.middle_segment.p2",
+        "slot.opt.right_polyline.p1",
+        "slot.opt.right_polyline.p2",
+        "slot.qnum",
+        "slot.qtext"
+      ]
+    },
+    {
+      "id": "region.options",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.opt.left_curve",
+        "slot.opt.right_polyline",
+        "slot.opt.middle_segment"
+      ]
+    },
+    {
+      "id": "region.answer",
+      "role": "answer",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.answer_blank"
+      ]
+    },
+    {
+      "id": "region.explanation",
+      "role": "explanation",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.qnum",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "□ 52.",
+        "style_role": "question",
+        "x": 12.0,
+        "y": 22.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.qtext",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "선분을 선택하세요.",
+        "style_role": "question",
+        "x": 88.0,
+        "y": 22.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.opt.left_curve",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 150.0 64.0 C 164.0 28.0, 196.0 28.0, 212.0 64.0 C 224.0 86.0, 242.0 86.0, 258.0 44.0",
+        "x": 0.0,
+        "y": 0.0
+      }
+    },
+    {
+      "id": "slot.opt.left_curve.p1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 148.0,
+        "cy": 66.0,
+        "r": 2.3,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.opt.left_curve.p2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 262.0,
+        "cy": 44.0,
+        "r": 2.3,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.opt.middle_segment",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 384.0,
+        "y1": 56.0,
+        "x2": 498.0,
+        "y2": 56.0
+      }
+    },
+    {
+      "id": "slot.opt.middle_segment.p1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 384.0,
+        "cy": 56.0,
+        "r": 2.3,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.opt.middle_segment.p2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 498.0,
+        "cy": 56.0,
+        "r": 2.3,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.opt.right_polyline",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 606.0 46.0 L 628.0 66.0 L 646.0 46.0 L 664.0 66.0 L 682.0 46.0 L 700.0 66.0",
+        "x": 0.0,
+        "y": 0.0
+      }
+    },
+    {
+      "id": "slot.opt.right_polyline.p1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 606.0,
+        "cy": 46.0,
+        "r": 2.3,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.opt.right_polyline.p2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 700.0,
+        "cy": 66.0,
+        "r": 2.3,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.answer_blank",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 61.0,
+        "y1": 103.0,
+        "x2": 178.0,
+        "y2": 103.0
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.header",
+    "slot.opt.left_curve.p1",
+    "slot.opt.left_curve.p2",
+    "slot.opt.middle_segment.p1",
+    "slot.opt.middle_segment.p2",
+    "slot.opt.right_polyline.p1",
+    "slot.opt.right_polyline.p2",
+    "slot.qnum",
+    "slot.qtext",
+    "region.options",
+    "slot.opt.left_curve",
+    "slot.opt.right_polyline",
+    "slot.opt.middle_segment",
+    "region.answer",
+    "slot.answer_blank",
+    "region.explanation"
+  ]
+}

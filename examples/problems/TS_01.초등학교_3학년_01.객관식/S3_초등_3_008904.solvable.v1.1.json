@@ -1,0 +1,137 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008904",
+  "problem_type": "표 비교와 순서 판단",
+  "inputs": {
+    "total_ticks": 1,
+    "target_label": "○ 또는 ×",
+    "target_ticks": 1,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.place.zoo",
+      "value": {
+        "name": "동물원",
+        "boys": 27,
+        "girls": 17
+      }
+    },
+    {
+      "ref": "obj.place.palace",
+      "value": {
+        "name": "고궁",
+        "boys": 15,
+        "girls": 26
+      }
+    },
+    {
+      "ref": "obj.place.movie",
+      "value": {
+        "name": "영화관",
+        "boys": 42,
+        "girls": 21
+      }
+    },
+    {
+      "ref": "obj.place.amusement_park",
+      "value": {
+        "name": "놀이공원",
+        "boys": 33,
+        "girls": 39
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "mark_choice"
+  },
+  "method": "compare_values_by_place",
+  "plan": [
+    "장소별 여학생 수를 비교하여 큰 값부터 순서를 확인한다.",
+    "문장에 제시된 순서와 비교한다.",
+    "맞으면 ○, 틀리면 ×를 판단한다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "여학생 수 비교: 놀이공원 39, 고궁 26, 영화관 21, 동물원 17",
+      "value": {
+        "order": [
+          "놀이공원",
+          "고궁",
+          "영화관",
+          "동물원"
+        ]
+      }
+    },
+    {
+      "id": "step.2",
+      "expr": "제시된 순서와 비교",
+      "value": {
+        "statement_order": [
+          "놀이공원",
+          "고궁",
+          "영화관",
+          "동물원"
+        ],
+        "same_as_sorted_order": true
+      }
+    },
+    {
+      "id": "step.3",
+      "expr": "판단",
+      "value": {
+        "choice": "○"
+      }
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "정렬된 여학생 수 순서가 제시된 순서와 같은가",
+      "expected": [
+        "놀이공원",
+        "고궁",
+        "영화관",
+        "동물원"
+      ],
+      "actual": [
+        "놀이공원",
+        "고궁",
+        "영화관",
+        "동물원"
+      ],
+      "pass": true
+    },
+    {
+      "id": "check.2",
+      "expr": "표의 여학생 수 값이 장소별로 일치하는가",
+      "expected": {
+        "동물원": 17,
+        "고궁": 26,
+        "영화관": 21,
+        "놀이공원": 39
+      },
+      "actual": {
+        "동물원": 17,
+        "고궁": 26,
+        "영화관": 21,
+        "놀이공원": 39
+      },
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "mark_choice",
+      "description": "제시된 순서가 맞는지 ○ 또는 ×로 판단"
+    },
+    "value": 1,
+    "unit": ""
+  }
+}

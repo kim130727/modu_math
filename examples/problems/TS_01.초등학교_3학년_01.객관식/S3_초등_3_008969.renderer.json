@@ -1,0 +1,108 @@
+{
+  "problem_id": "S3_초등_3_008969",
+  "view_box": {
+    "width": 400.0,
+    "height": 140.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.box.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 170.0,
+        "y": 10.0,
+        "width": 220.0,
+        "height": 30.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.box",
+      "refs": {
+        "layout_slot_id": "slot.box"
+      }
+    },
+    {
+      "id": "slot.q1.text",
+      "type": "text",
+      "attributes": {
+        "x": 10.0,
+        "y": 18.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q1",
+      "refs": {
+        "layout_slot_id": "slot.q1"
+      },
+      "text": "3. 계산 결과가 700보다 작은 것을 선택하세요."
+    },
+    {
+      "id": "slot.choice1.text",
+      "type": "text",
+      "attributes": {
+        "x": 190.0,
+        "y": 32.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice1",
+      "refs": {
+        "layout_slot_id": "slot.choice1"
+      },
+      "text": "376 + 380"
+    },
+    {
+      "id": "slot.choice2.text",
+      "type": "text",
+      "attributes": {
+        "x": 300.0,
+        "y": 32.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice2",
+      "refs": {
+        "layout_slot_id": "slot.choice2"
+      },
+      "text": "351 + 290"
+    },
+    {
+      "id": "slot.ex2.text",
+      "type": "text",
+      "attributes": {
+        "x": 10.0,
+        "y": 124.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.ex2",
+      "refs": {
+        "layout_slot_id": "slot.ex2"
+      },
+      "text": "641<700이므로 700보다 작은 것은 351 + 290입니다."
+    },
+    {
+      "id": "slot.ex3.text",
+      "type": "text",
+      "attributes": {
+        "x": 10.0,
+        "y": 124.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.ex3",
+      "refs": {
+        "layout_slot_id": "slot.ex3"
+      },
+      "text": ""
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

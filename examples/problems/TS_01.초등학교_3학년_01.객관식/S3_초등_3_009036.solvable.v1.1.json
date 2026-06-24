@@ -1,0 +1,97 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_009036",
+  "problem_type": "selection_classification",
+  "inputs": {
+    "total_ticks": 5,
+    "target_label": "직사각형",
+    "target_ticks": 2,
+    "target_count": 2,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.choice.ga",
+      "value": {
+        "label": "가"
+      }
+    },
+    {
+      "ref": "obj.choice.na",
+      "value": {
+        "label": "나"
+      }
+    },
+    {
+      "ref": "obj.choice.da",
+      "value": {
+        "label": "다"
+      }
+    },
+    {
+      "ref": "obj.choice.ra",
+      "value": {
+        "label": "라"
+      }
+    },
+    {
+      "ref": "obj.choice.ma",
+      "value": {
+        "label": "마"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "selected_labels"
+  },
+  "method": "visual_classification",
+  "plan": [
+    "각 도형을 보고 네 각이 모두 직각인 도형을 찾는다.",
+    "조건에 맞는 도형만 선택한다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "직사각형 조건 확인",
+      "value": "네 각이 모두 직각인 도형을 찾음"
+    },
+    {
+      "id": "step.2",
+      "expr": "선택 결과",
+      "value": [
+        "다",
+        "마"
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "해설 문장과 선택 결과가 일치하는가",
+      "expected": [
+        "다",
+        "마"
+      ],
+      "actual": [
+        "다",
+        "마"
+      ],
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "selected_labels",
+      "description": "직사각형으로 선택할 도형"
+    },
+    "value": [
+      "다",
+      "마"
+    ],
+    "unit": ""
+  }
+}

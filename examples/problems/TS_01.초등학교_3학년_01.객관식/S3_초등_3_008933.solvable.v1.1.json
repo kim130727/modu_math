@@ -1,0 +1,85 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008933",
+  "problem_type": "그림그래프_비교",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "수박 생산량이 가장 적은 밭",
+    "target_ticks": 0,
+    "target_count": 3,
+    "unit": "통"
+  },
+  "given": [
+    {
+      "ref": "obj.legend.big",
+      "value": {
+        "value": 100,
+        "unit": "통"
+      }
+    },
+    {
+      "ref": "obj.legend.small",
+      "value": {
+        "value": 10,
+        "unit": "통"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "least_production_field"
+  },
+  "method": "picture_graph_compare",
+  "plan": [
+    "범례를 보고 큰 그림과 작은 그림의 값을 확인한다.",
+    "각 밭의 그림 개수를 비교하여 생산량이 가장 적은 밭을 찾는다.",
+    "가장 적은 밭을 선택한다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "그림그래프의 범례 확인",
+      "value": {
+        "big_symbol": 100,
+        "small_symbol": 10,
+        "unit": "통"
+      }
+    },
+    {
+      "id": "step.2",
+      "expr": "각 밭의 그림 개수 비교",
+      "value": {
+        "field_labels": [
+          "가 밭",
+          "나 밭",
+          "다 밭"
+        ]
+      }
+    },
+    {
+      "id": "step.3",
+      "expr": "가장 적은 밭 선택",
+      "value": "나 밭"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "해설의 선택과 일치하는지 확인",
+      "expected": "나 밭",
+      "actual": "나 밭",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "least_production_field",
+      "description": "수박 생산량이 가장 적은 밭"
+    },
+    "value": "나 밭",
+    "unit": ""
+  }
+}

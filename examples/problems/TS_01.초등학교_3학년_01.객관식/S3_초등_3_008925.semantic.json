@@ -1,0 +1,112 @@
+{
+  "problem_id": "S3_초등_3_008925",
+  "problem_type": "table_comparison_max",
+  "metadata": {
+    "title": "표를 보고 가장 많은 학생이 하고 싶어 하는 종목 찾기",
+    "tags": [],
+    "instruction": "가장 많은 학생이 하고 싶어 하는 종목을 고르시오.",
+    "question": "표를 보고 가장 많은 학생이 하고 싶어 하는 종목을 찾는 문제",
+    "required_layout_ids": [
+      "slot.table.bg"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.table",
+        "type": "table"
+      },
+      {
+        "id": "obj.item.연극",
+        "type": "category",
+        "label": "연극"
+      },
+      {
+        "id": "obj.item.합주",
+        "type": "category",
+        "label": "합주"
+      },
+      {
+        "id": "obj.item.무용",
+        "type": "category",
+        "label": "무용"
+      },
+      {
+        "id": "obj.item.합창",
+        "type": "category",
+        "label": "합창"
+      },
+      {
+        "id": "obj.count.연극",
+        "type": "quantity",
+        "value": 6,
+        "unit": "명"
+      },
+      {
+        "id": "obj.count.합주",
+        "type": "quantity",
+        "value": 10,
+        "unit": "명"
+      },
+      {
+        "id": "obj.count.무용",
+        "type": "quantity",
+        "value": 5,
+        "unit": "명"
+      },
+      {
+        "id": "obj.count.합창",
+        "type": "quantity",
+        "value": 7,
+        "unit": "명"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.count.연극",
+          "obj.count.합주",
+          "obj.count.무용",
+          "obj.count.합창"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.compare_counts"
+        ]
+      },
+      "plan": {
+        "method": "compare_values",
+        "description": "표에 나온 학생 수를 서로 비교하여 가장 큰 값을 찾는다."
+      },
+      "execute": {
+        "expected_operations": [
+          "read_table_values",
+          "compare_numbers",
+          "select_max_category"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "largest_value_check",
+          "category_match_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "category_name",
+      "description": "가장 많은 학생이 하고 싶어 하는 종목"
+    },
+    "value": "합주",
+    "unit": ""
+  }
+}

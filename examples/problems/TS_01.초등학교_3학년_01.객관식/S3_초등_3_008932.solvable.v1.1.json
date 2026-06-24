@@ -1,0 +1,80 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008932",
+  "problem_type": "그림그래프_비교",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "수박 생산량이 가장 많은 밭",
+    "target_ticks": 0,
+    "target_count": 0,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.field.ga",
+      "value": {
+        "label": "가"
+      }
+    },
+    {
+      "ref": "obj.field.na",
+      "value": {
+        "label": "나"
+      }
+    },
+    {
+      "ref": "obj.field.da",
+      "value": {
+        "label": "다"
+      }
+    },
+    {
+      "ref": "obj.legend.big",
+      "value": {
+        "label": "100통"
+      }
+    },
+    {
+      "ref": "obj.legend.small",
+      "value": {
+        "label": "10통"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "field_name"
+  },
+  "method": "picture_graph_compare",
+  "plan": [
+    "각 밭의 수박 그림을 비교하여 가장 많은 밭을 찾는다.",
+    "큰 그림과 작은 그림의 개수를 함께 본다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "그림그래프에서 각 밭의 수박 그림 수를 비교한다.",
+      "value": "다 밭"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "가, 나, 다 중 가장 많은 밭이 다인지 확인한다.",
+      "expected": "다 밭",
+      "actual": "다 밭",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "field_name",
+      "description": "수박 생산량이 가장 많은 밭"
+    },
+    "value": "다 밭",
+    "unit": ""
+  }
+}

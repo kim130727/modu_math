@@ -1,0 +1,121 @@
+{
+  "problem_id": "S3_초등_3_009043",
+  "problem_type": "도형_선택",
+  "metadata": {
+    "title": "직각삼각형을 찾아 선택하세요",
+    "tags": [],
+    "question": "직각삼각형을 찾아 선택하세요.",
+    "required_layout_ids": [
+      "slot.grid.main.v1",
+      "slot.grid.main.v2",
+      "slot.grid.main.v3",
+      "slot.grid.main.v4",
+      "slot.grid.main.v5",
+      "slot.grid.main.v6",
+      "slot.grid.main.v7",
+      "slot.grid.main.v8",
+      "slot.grid.main.v9",
+      "slot.grid.main.v10",
+      "slot.grid.main.h1",
+      "slot.grid.main.h2",
+      "slot.grid.main.h3",
+      "slot.grid.main.h4",
+      "slot.grid.main.h5",
+      "slot.grid.main.h6",
+      "slot.shape.a",
+      "slot.shape.b",
+      "slot.right_angle.b",
+      "slot.shape.c",
+      "slot.shape.d",
+      "slot.grid.small.v1",
+      "slot.grid.small.v2",
+      "slot.grid.small.v3",
+      "slot.grid.small.v4",
+      "slot.grid.small.v5",
+      "slot.grid.small.v6",
+      "slot.grid.small.v7",
+      "slot.grid.small.v8",
+      "slot.grid.small.v9",
+      "slot.grid.small.h1",
+      "slot.grid.small.h2",
+      "slot.grid.small.h3",
+      "slot.grid.small.h4",
+      "slot.small.a",
+      "slot.small.b",
+      "slot.small.ra",
+      "slot.small.c",
+      "slot.small.d"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "(정답)나"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.shape.a",
+        "type": "shape",
+        "name": "가"
+      },
+      {
+        "id": "obj.shape.b",
+        "type": "triangle",
+        "name": "나",
+        "is_right_triangle": true
+      },
+      {
+        "id": "obj.shape.c",
+        "type": "shape",
+        "name": "다"
+      },
+      {
+        "id": "obj.shape.d",
+        "type": "shape",
+        "name": "라"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.shape.a",
+          "obj.shape.b",
+          "obj.shape.c",
+          "obj.shape.d"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.choice_set"
+        ]
+      },
+      "plan": {
+        "method": "identify_right_triangle",
+        "description": "직각 표시가 있는 삼각형을 찾는다."
+      },
+      "execute": {
+        "expected_operations": [
+          "compare_shapes",
+          "select_marked_choice"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "verify_printed_answer"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "choice",
+      "description": "직각삼각형"
+    },
+    "value": "나",
+    "unit": ""
+  }
+}

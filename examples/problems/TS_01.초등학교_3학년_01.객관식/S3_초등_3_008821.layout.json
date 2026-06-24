@@ -1,0 +1,233 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008821",
+  "title": "바르게 이야기한 친구 고르기",
+  "canvas": {
+    "width": 952,
+    "height": 639,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.table.outer",
+        "slot.table.v1",
+        "slot.table.h1",
+        "slot.table.h2",
+        "slot.table.h3",
+        "slot.q_num",
+        "slot.q1",
+        "slot.q2",
+        "slot.table.c1",
+        "slot.table.c2",
+        "slot.table.c3",
+        "slot.bubble.l",
+        "slot.bubble.r",
+        "slot.name.l",
+        "slot.name.r"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q_num",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "55.",
+        "style_role": "question",
+        "x": 18.0,
+        "y": 34.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "양동이에 물을 가득 채우려면 ㉠ 컵과 ㉡ 컵으로 다음과 같이 각각 부어",
+        "style_role": "question",
+        "x": 54.0,
+        "y": 34.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "야 합니다. 바르게 이야기한 친구를 선택해 보세요.",
+        "style_role": "question",
+        "x": 22.0,
+        "y": 69.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.outer",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 271.0,
+        "y": 85.0,
+        "width": 438.0,
+        "height": 86.0
+      }
+    },
+    {
+      "id": "slot.table.v1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 418.0,
+        "y": 85.0,
+        "width": 1.0,
+        "height": 86.0
+      }
+    },
+    {
+      "id": "slot.table.h1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 271.0,
+        "y": 85.0,
+        "width": 438.0,
+        "height": 1.0
+      }
+    },
+    {
+      "id": "slot.table.h2",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 271.0,
+        "y": 126.0,
+        "width": 438.0,
+        "height": 1.0
+      }
+    },
+    {
+      "id": "slot.table.h3",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 271.0,
+        "y": 170.0,
+        "width": 438.0,
+        "height": 1.0
+      }
+    },
+    {
+      "id": "slot.table.c1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "㉠ 컵",
+        "style_role": "label",
+        "x": 522.0,
+        "y": 118.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.c2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "㉡ 컵",
+        "style_role": "label",
+        "x": 656.0,
+        "y": 118.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.c3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "컵의 수",
+        "style_role": "label",
+        "x": 319.0,
+        "y": 156.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.bubble.l",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "양동이의 들이는\n㉠ 컵의 들이의\n8배야.",
+        "style_role": "speech",
+        "x": 300.0,
+        "y": 188.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.bubble.r",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "㉠ 컵과 ㉡ 컵 중에\n들이가 더 많은 컵은\n㉠ 컵이야.",
+        "style_role": "speech",
+        "x": 551.0,
+        "y": 190.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.name.l",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "재석",
+        "style_role": "label",
+        "x": 324.0,
+        "y": 461.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.name.r",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "효민",
+        "style_role": "label",
+        "x": 594.0,
+        "y": 461.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.table.outer",
+    "slot.table.v1",
+    "slot.table.h1",
+    "slot.table.h2",
+    "slot.table.h3",
+    "slot.q_num",
+    "slot.q1",
+    "slot.q2",
+    "slot.table.c1",
+    "slot.table.c2",
+    "slot.table.c3",
+    "slot.bubble.l",
+    "slot.bubble.r",
+    "slot.name.l",
+    "slot.name.r"
+  ]
+}

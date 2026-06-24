@@ -1,0 +1,358 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008823",
+  "title": "어항에 물을 가득 채우기",
+  "canvas": {
+    "width": 960,
+    "height": 420,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q1",
+        "slot.q2",
+        "slot.q3"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.fishbowl",
+        "slot.table.outer",
+        "slot.table.cell.1",
+        "slot.table.cell.2",
+        "slot.table.cell.3",
+        "slot.table.cell.4",
+        "slot.table.cell.5",
+        "slot.table.cell.6",
+        "slot.table.cell.7",
+        "slot.table.cell.8",
+        "slot.table.cell.9",
+        "slot.table.cell.10"
+      ]
+    },
+    {
+      "id": "region.choices",
+      "role": "choices",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice.1.num",
+        "slot.choice.1.text",
+        "slot.choice.2.num",
+        "slot.choice.2.text",
+        "slot.choice.3.num",
+        "slot.choice.3.text",
+        "slot.choice.4.num",
+        "slot.choice.4.text"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "57. 어항에 물을 가득 채우기 위해 ㉠ 그릇, ㉡ 그릇, ㉢ 그릇으로 다음과 같이 각각 부어야 합니다.",
+        "style_role": "question",
+        "x": 24.0,
+        "y": 36.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "들이가 작은 그릇부터 순서대로 쓴 것을 고르세요.",
+        "style_role": "question",
+        "x": 24.0,
+        "y": 72.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "",
+        "style_role": "question",
+        "x": 24.0,
+        "y": 72.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.fishbowl",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 70.0,
+        "y": 92.0,
+        "width": 190.0,
+        "height": 130.0,
+        "rx": 34.0,
+        "ry": 34.0
+      }
+    },
+    {
+      "id": "slot.table.outer",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 300.0,
+        "y": 94.0,
+        "width": 570.0,
+        "height": 84.0
+      }
+    },
+    {
+      "id": "slot.table.cell.1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 300.0,
+        "y": 94.0,
+        "width": 150.0,
+        "height": 42.0
+      }
+    },
+    {
+      "id": "slot.table.cell.2",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 450.0,
+        "y": 94.0,
+        "width": 140.0,
+        "height": 42.0
+      }
+    },
+    {
+      "id": "slot.table.cell.3",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 590.0,
+        "y": 94.0,
+        "width": 140.0,
+        "height": 42.0
+      }
+    },
+    {
+      "id": "slot.table.cell.4",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 730.0,
+        "y": 94.0,
+        "width": 140.0,
+        "height": 42.0
+      }
+    },
+    {
+      "id": "slot.table.cell.5",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 300.0,
+        "y": 136.0,
+        "width": 150.0,
+        "height": 42.0
+      }
+    },
+    {
+      "id": "slot.table.cell.6",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 450.0,
+        "y": 136.0,
+        "width": 140.0,
+        "height": 42.0
+      }
+    },
+    {
+      "id": "slot.table.cell.7",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 590.0,
+        "y": 136.0,
+        "width": 140.0,
+        "height": 42.0
+      }
+    },
+    {
+      "id": "slot.table.cell.8",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 730.0,
+        "y": 136.0,
+        "width": 140.0,
+        "height": 42.0
+      }
+    },
+    {
+      "id": "slot.table.cell.9",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "그릇의 수",
+        "style_role": "label",
+        "x": 326.0,
+        "y": 164.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.cell.10",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "가 그릇",
+        "style_role": "label",
+        "x": 495.0,
+        "y": 124.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice.1.num",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "①",
+        "style_role": "label",
+        "x": 28.0,
+        "y": 255.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice.1.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "가 그릇, 나 그릇, 다 그릇",
+        "style_role": "answer_choice",
+        "x": 58.0,
+        "y": 255.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice.2.num",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "②",
+        "style_role": "label",
+        "x": 505.0,
+        "y": 255.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice.2.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "나 그릇, 가 그릇, 다 그릇",
+        "style_role": "answer_choice",
+        "x": 535.0,
+        "y": 255.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice.3.num",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "③",
+        "style_role": "label",
+        "x": 28.0,
+        "y": 305.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice.3.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "다 그릇, 나 그릇, 가 그릇",
+        "style_role": "answer_choice",
+        "x": 58.0,
+        "y": 305.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice.4.num",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "④",
+        "style_role": "label",
+        "x": 505.0,
+        "y": 305.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice.4.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "다 그릇, 가 그릇, 나 그릇",
+        "style_role": "answer_choice",
+        "x": 535.0,
+        "y": 305.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q1",
+    "slot.q2",
+    "slot.q3",
+    "region.diagram",
+    "slot.fishbowl",
+    "slot.table.outer",
+    "slot.table.cell.1",
+    "slot.table.cell.2",
+    "slot.table.cell.3",
+    "slot.table.cell.4",
+    "slot.table.cell.5",
+    "slot.table.cell.6",
+    "slot.table.cell.7",
+    "slot.table.cell.8",
+    "slot.table.cell.9",
+    "slot.table.cell.10",
+    "region.choices",
+    "slot.choice.1.num",
+    "slot.choice.1.text",
+    "slot.choice.2.num",
+    "slot.choice.2.text",
+    "slot.choice.3.num",
+    "slot.choice.3.text",
+    "slot.choice.4.num",
+    "slot.choice.4.text"
+  ]
+}

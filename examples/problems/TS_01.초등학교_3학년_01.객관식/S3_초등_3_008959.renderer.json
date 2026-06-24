@@ -1,0 +1,585 @@
+{
+  "problem_id": "S3_초등_3_008959",
+  "view_box": {
+    "width": 960.0,
+    "height": 726.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.q1.text",
+      "type": "text",
+      "attributes": {
+        "x": 26.0,
+        "y": 34.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q1",
+      "refs": {
+        "layout_slot_id": "slot.q1"
+      },
+      "text": "29. 아파트별 나무 수를 조사하여 표와 그림그래프로 나타내었습니다."
+    },
+    {
+      "id": "slot.q2.text",
+      "type": "text",
+      "attributes": {
+        "x": 26.0,
+        "y": 70.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q2",
+      "refs": {
+        "layout_slot_id": "slot.q2"
+      },
+      "text": "다 아파트의 나무 수를 바르게 나타낸 것은 어느 것일까요?"
+    },
+    {
+      "id": "slot.table1.outer.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 134.0,
+        "y": 106.0,
+        "width": 692.0,
+        "height": 121.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.table1.outer",
+      "refs": {
+        "layout_slot_id": "slot.table1.outer"
+      }
+    },
+    {
+      "id": "slot.table1.h1.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 134.0,
+        "y": 106.0,
+        "width": 692.0,
+        "height": 46.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.table1.h1",
+      "refs": {
+        "layout_slot_id": "slot.table1.h1"
+      }
+    },
+    {
+      "id": "slot.table1.h2.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 134.0,
+        "y": 152.0,
+        "width": 692.0,
+        "height": 75.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.table1.h2",
+      "refs": {
+        "layout_slot_id": "slot.table1.h2"
+      }
+    },
+    {
+      "id": "slot.table1.v1.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 323.0,
+        "y": 106.0,
+        "width": 1.0,
+        "height": 121.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.table1.v1",
+      "refs": {
+        "layout_slot_id": "slot.table1.v1"
+      }
+    },
+    {
+      "id": "slot.table1.v2.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 421.0,
+        "y": 106.0,
+        "width": 1.0,
+        "height": 121.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.table1.v2",
+      "refs": {
+        "layout_slot_id": "slot.table1.v2"
+      }
+    },
+    {
+      "id": "slot.table1.v3.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 519.0,
+        "y": 106.0,
+        "width": 1.0,
+        "height": 121.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.table1.v3",
+      "refs": {
+        "layout_slot_id": "slot.table1.v3"
+      }
+    },
+    {
+      "id": "slot.table1.v4.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 617.0,
+        "y": 106.0,
+        "width": 1.0,
+        "height": 121.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.table1.v4",
+      "refs": {
+        "layout_slot_id": "slot.table1.v4"
+      }
+    },
+    {
+      "id": "slot.table1.v5.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 744.0,
+        "y": 106.0,
+        "width": 1.0,
+        "height": 121.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.table1.v5",
+      "refs": {
+        "layout_slot_id": "slot.table1.v5"
+      }
+    },
+    {
+      "id": "slot.title.top.text",
+      "type": "text",
+      "attributes": {
+        "x": 365.0,
+        "y": 96.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.title.top",
+      "refs": {
+        "layout_slot_id": "slot.title.top"
+      },
+      "text": "아파트별 나무 수"
+    },
+    {
+      "id": "slot.table1.c1.text",
+      "type": "text",
+      "attributes": {
+        "x": 173.0,
+        "y": 142.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table1.c1",
+      "refs": {
+        "layout_slot_id": "slot.table1.c1"
+      },
+      "text": "아파트"
+    },
+    {
+      "id": "slot.table1.c2.text",
+      "type": "text",
+      "attributes": {
+        "x": 359.0,
+        "y": 142.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table1.c2",
+      "refs": {
+        "layout_slot_id": "slot.table1.c2"
+      },
+      "text": "가"
+    },
+    {
+      "id": "slot.table1.c3.text",
+      "type": "text",
+      "attributes": {
+        "x": 457.0,
+        "y": 142.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table1.c3",
+      "refs": {
+        "layout_slot_id": "slot.table1.c3"
+      },
+      "text": "나"
+    },
+    {
+      "id": "slot.table1.c4.text",
+      "type": "text",
+      "attributes": {
+        "x": 555.0,
+        "y": 142.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table1.c4",
+      "refs": {
+        "layout_slot_id": "slot.table1.c4"
+      },
+      "text": "다"
+    },
+    {
+      "id": "slot.table1.c5.text",
+      "type": "text",
+      "attributes": {
+        "x": 653.0,
+        "y": 142.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table1.c5",
+      "refs": {
+        "layout_slot_id": "slot.table1.c5"
+      },
+      "text": "라"
+    },
+    {
+      "id": "slot.table1.r1c1.text",
+      "type": "text",
+      "attributes": {
+        "x": 145.0,
+        "y": 182.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table1.r1c1",
+      "refs": {
+        "layout_slot_id": "slot.table1.r1c1"
+      },
+      "text": "나무 수(그루)"
+    },
+    {
+      "id": "slot.table2.outer.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 279.0,
+        "y": 255.0,
+        "width": 420.0,
+        "height": 211.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.table2.outer",
+      "refs": {
+        "layout_slot_id": "slot.table2.outer"
+      }
+    },
+    {
+      "id": "slot.table2.h1.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 279.0,
+        "y": 255.0,
+        "width": 420.0,
+        "height": 43.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.table2.h1",
+      "refs": {
+        "layout_slot_id": "slot.table2.h1"
+      }
+    },
+    {
+      "id": "slot.table2.h2.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 279.0,
+        "y": 298.0,
+        "width": 420.0,
+        "height": 42.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.table2.h2",
+      "refs": {
+        "layout_slot_id": "slot.table2.h2"
+      }
+    },
+    {
+      "id": "slot.table2.h3.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 279.0,
+        "y": 340.0,
+        "width": 420.0,
+        "height": 42.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.table2.h3",
+      "refs": {
+        "layout_slot_id": "slot.table2.h3"
+      }
+    },
+    {
+      "id": "slot.table2.v1.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 380.0,
+        "y": 255.0,
+        "width": 1.0,
+        "height": 211.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.table2.v1",
+      "refs": {
+        "layout_slot_id": "slot.table2.v1"
+      }
+    },
+    {
+      "id": "slot.table2.v2.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 699.0,
+        "y": 255.0,
+        "width": 1.0,
+        "height": 211.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.table2.v2",
+      "refs": {
+        "layout_slot_id": "slot.table2.v2"
+      }
+    },
+    {
+      "id": "slot.title.bottom.text",
+      "type": "text",
+      "attributes": {
+        "x": 366.0,
+        "y": 226.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.title.bottom",
+      "refs": {
+        "layout_slot_id": "slot.title.bottom"
+      },
+      "text": "아파트별 나무 수"
+    },
+    {
+      "id": "slot.table2.c1.text",
+      "type": "text",
+      "attributes": {
+        "x": 291.0,
+        "y": 285.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table2.c1",
+      "refs": {
+        "layout_slot_id": "slot.table2.c1"
+      },
+      "text": "아파트"
+    },
+    {
+      "id": "slot.table2.c2.text",
+      "type": "text",
+      "attributes": {
+        "x": 508.0,
+        "y": 285.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table2.c2",
+      "refs": {
+        "layout_slot_id": "slot.table2.c2"
+      },
+      "text": "나무 수"
+    },
+    {
+      "id": "slot.table2.row1.text",
+      "type": "text",
+      "attributes": {
+        "x": 309.0,
+        "y": 323.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table2.row1",
+      "refs": {
+        "layout_slot_id": "slot.table2.row1"
+      },
+      "text": "가"
+    },
+    {
+      "id": "slot.table2.row2.text",
+      "type": "text",
+      "attributes": {
+        "x": 309.0,
+        "y": 365.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table2.row2",
+      "refs": {
+        "layout_slot_id": "slot.table2.row2"
+      },
+      "text": "나"
+    },
+    {
+      "id": "slot.table2.row3.text",
+      "type": "text",
+      "attributes": {
+        "x": 309.0,
+        "y": 407.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table2.row3",
+      "refs": {
+        "layout_slot_id": "slot.table2.row3"
+      },
+      "text": "다"
+    },
+    {
+      "id": "slot.table2.row4.text",
+      "type": "text",
+      "attributes": {
+        "x": 309.0,
+        "y": 449.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table2.row4",
+      "refs": {
+        "layout_slot_id": "slot.table2.row4"
+      },
+      "text": "라"
+    },
+    {
+      "id": "slot.choice1.text",
+      "type": "text",
+      "attributes": {
+        "x": 34.0,
+        "y": 486.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice1",
+      "refs": {
+        "layout_slot_id": "slot.choice1"
+      },
+      "text": "①"
+    },
+    {
+      "id": "slot.choice2.text",
+      "type": "text",
+      "attributes": {
+        "x": 343.0,
+        "y": 489.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice2",
+      "refs": {
+        "layout_slot_id": "slot.choice2"
+      },
+      "text": "②"
+    },
+    {
+      "id": "slot.choice3.text",
+      "type": "text",
+      "attributes": {
+        "x": 631.0,
+        "y": 487.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice3",
+      "refs": {
+        "layout_slot_id": "slot.choice3"
+      },
+      "text": "③"
+    },
+    {
+      "id": "slot.choice4.text",
+      "type": "text",
+      "attributes": {
+        "x": 34.0,
+        "y": 553.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice4",
+      "refs": {
+        "layout_slot_id": "slot.choice4"
+      },
+      "text": "④"
+    },
+    {
+      "id": "slot.choice5.text",
+      "type": "text",
+      "attributes": {
+        "x": 343.0,
+        "y": 553.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice5",
+      "refs": {
+        "layout_slot_id": "slot.choice5"
+      },
+      "text": "⑤"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

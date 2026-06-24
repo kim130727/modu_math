@@ -12,7 +12,6 @@
       "attributes": {
         "x": 40.0,
         "y": 35.0,
-        "max_width": 772.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 30
@@ -29,7 +28,6 @@
       "attributes": {
         "x": 40.0,
         "y": 345.0,
-        "max_width": 772.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 30
@@ -46,7 +44,6 @@
       "attributes": {
         "x": 40.0,
         "y": 390.0,
-        "max_width": 772.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 30
@@ -71,22 +68,6 @@
       "source_ref": "slot.circle",
       "refs": {
         "layout_slot_id": "slot.circle"
-      }
-    },
-    {
-      "id": "slot.center.circle",
-      "type": "circle",
-      "attributes": {
-        "cx": 430.0,
-        "cy": 190.0,
-        "r": 5.0,
-        "stroke": "#111111",
-        "stroke-width": 2.0,
-        "fill": "#d81b60"
-      },
-      "source_ref": "slot.center",
-      "refs": {
-        "layout_slot_id": "slot.center"
       }
     },
     {
@@ -138,12 +119,27 @@
       }
     },
     {
+      "id": "slot.center.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 430.0,
+        "cy": 190.0,
+        "r": 5.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#d81b60"
+      },
+      "source_ref": "slot.center",
+      "refs": {
+        "layout_slot_id": "slot.center"
+      }
+    },
+    {
       "id": "slot.lb.g.text",
       "type": "text",
       "attributes": {
         "x": 375.0,
         "y": 75.0,
-        "max_width": 772.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 30
@@ -160,7 +156,6 @@
       "attributes": {
         "x": 295.0,
         "y": 250.0,
-        "max_width": 772.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 30
@@ -177,7 +172,6 @@
       "attributes": {
         "x": 495.0,
         "y": 310.0,
-        "max_width": 772.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 30
@@ -194,7 +188,6 @@
       "attributes": {
         "x": 545.0,
         "y": 155.0,
-        "max_width": 772.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 30
@@ -211,7 +204,6 @@
       "attributes": {
         "x": 415.0,
         "y": 185.0,
-        "max_width": 772.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 30

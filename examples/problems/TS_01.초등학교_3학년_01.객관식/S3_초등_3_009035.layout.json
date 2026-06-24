@@ -1,0 +1,471 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_009035",
+  "title": "직사각형 종이 접기와 자르기",
+  "canvas": {
+    "width": 940,
+    "height": 460,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.header",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.step2.fold_line",
+        "slot.id",
+        "slot.q",
+        "slot.step1.note_text",
+        "slot.step4.note_text",
+        "slot.choice.o_text",
+        "slot.choice.x_text"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.step1.rect",
+        "slot.step1.note",
+        "slot.step2.rect",
+        "slot.step2.fold",
+        "slot.step3.rect",
+        "slot.step4.rect",
+        "slot.step4.curve",
+        "slot.step4.note",
+        "slot.step1.diag",
+        "slot.step4.diag",
+        "slot.step1.arrow",
+        "slot.step2.arrow",
+        "slot.step3.scissor",
+        "slot.step3.arrow"
+      ]
+    },
+    {
+      "id": "region.answer",
+      "role": "answer",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.center.box",
+        "slot.answer.circle",
+        "slot.choice.o",
+        "slot.choice.x",
+        "slot.center.text"
+      ]
+    },
+    {
+      "id": "region.footer",
+      "role": "footer",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.id",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "□ 73.",
+        "style_role": "question",
+        "x": 16.0,
+        "y": 34.0,
+        "font_size": 24
+      }
+    },
+    {
+      "id": "slot.q",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "직사각형 모양의 종이로 그림과 같이 만들었습니다. 다음을 읽고 ○, ×를 알맞게 선택해 보세요.",
+        "style_role": "question",
+        "x": 72.0,
+        "y": 34.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.step1.rect",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 48.0,
+        "y": 50.0,
+        "width": 120.0,
+        "height": 80.0,
+        "stroke": "#ff9aa2",
+        "stroke_width": 1.5,
+        "fill": "#f7d9d9"
+      }
+    },
+    {
+      "id": "slot.step1.diag",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 54.0,
+        "y1": 56.0,
+        "x2": 162.0,
+        "y2": 124.0,
+        "stroke": "#e78b8b",
+        "stroke_width": 1.4,
+        "stroke_dasharray": "6 4"
+      }
+    },
+    {
+      "id": "slot.step1.note",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 130 126 C 134 146, 148 150, 156 142",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#2e9f58",
+        "stroke_width": 1.4,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.step1.note_text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "점을 따라 접어요.",
+        "style_role": "annotation",
+        "x": 152.0,
+        "y": 147.0,
+        "font_size": 22
+      }
+    },
+    {
+      "id": "slot.step1.arrow",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "→",
+        "style_role": "annotation",
+        "x": 188.0,
+        "y": 102.0,
+        "font_size": 34
+      }
+    },
+    {
+      "id": "slot.step2.rect",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 256.0,
+        "y": 50.0,
+        "width": 128.0,
+        "height": 80.0,
+        "stroke": "#ff9aa2",
+        "stroke_width": 1.5,
+        "fill": "#f7d9d9"
+      }
+    },
+    {
+      "id": "slot.step2.fold",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            256.0,
+            50.0
+          ],
+          [
+            320.0,
+            114.0
+          ],
+          [
+            256.0,
+            130.0
+          ]
+        ],
+        "stroke": "#ff9aa2",
+        "stroke_width": 1.2,
+        "fill": "#efb3b3"
+      }
+    },
+    {
+      "id": "slot.step2.fold_line",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 256.0,
+        "y1": 50.0,
+        "x2": 320.0,
+        "y2": 114.0,
+        "stroke": "#cc6f6f",
+        "stroke_width": 1.4,
+        "stroke_dasharray": "5 4"
+      }
+    },
+    {
+      "id": "slot.step2.arrow",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "→",
+        "style_role": "annotation",
+        "x": 410.0,
+        "y": 102.0,
+        "font_size": 34
+      }
+    },
+    {
+      "id": "slot.step3.rect",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            468.0,
+            50.0
+          ],
+          [
+            596.0,
+            50.0
+          ],
+          [
+            596.0,
+            130.0
+          ],
+          [
+            532.0,
+            130.0
+          ],
+          [
+            532.0,
+            114.0
+          ],
+          [
+            468.0,
+            50.0
+          ]
+        ],
+        "stroke": "#ff9aa2",
+        "stroke_width": 1.5,
+        "fill": "#f7d9d9"
+      }
+    },
+    {
+      "id": "slot.step3.scissor",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "✂",
+        "style_role": "annotation",
+        "x": 534.0,
+        "y": 160.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.step3.arrow",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "→",
+        "style_role": "annotation",
+        "x": 626.0,
+        "y": 102.0,
+        "font_size": 34
+      }
+    },
+    {
+      "id": "slot.step4.rect",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 716.0,
+        "y": 50.0,
+        "width": 120.0,
+        "height": 80.0,
+        "stroke": "#ff9aa2",
+        "stroke_width": 1.5,
+        "fill": "#f7d9d9"
+      }
+    },
+    {
+      "id": "slot.step4.diag",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 730.0,
+        "y1": 58.0,
+        "x2": 784.0,
+        "y2": 108.0,
+        "stroke": "#e78b8b",
+        "stroke_width": 1.4,
+        "stroke_dasharray": "6 4"
+      }
+    },
+    {
+      "id": "slot.step4.curve",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 770 70 C 782 56, 792 58, 786 76",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#d43b8c",
+        "stroke_width": 1.4,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.step4.note",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 790 126 C 792 146, 808 150, 816 142",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#2e9f58",
+        "stroke_width": 1.4,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.step4.note_text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "잘라낸 모양을\n펼쳐요.",
+        "style_role": "annotation",
+        "x": 804.0,
+        "y": 147.0,
+        "font_size": 22
+      }
+    },
+    {
+      "id": "slot.center.box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 262.0,
+        "y": 220.0,
+        "width": 418.0,
+        "height": 62.0,
+        "stroke": "#9ad24f",
+        "stroke_width": 1.6,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.center.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "만든 모양은 정사각형입니다.",
+        "style_role": "statement",
+        "x": 305.0,
+        "y": 260.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.choice.o",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 40.0,
+        "cy": 294.0,
+        "r": 7.0,
+        "stroke": "#5aa2ff",
+        "stroke_width": 1.4,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.choice.o_text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "○",
+        "style_role": "annotation",
+        "x": 29.0,
+        "y": 300.0,
+        "font_size": 22
+      }
+    },
+    {
+      "id": "slot.choice.x",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 478.0,
+        "cy": 294.0,
+        "r": 7.0,
+        "stroke": "#5aa2ff",
+        "stroke_width": 1.4,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.choice.x_text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "×",
+        "style_role": "annotation",
+        "x": 470.0,
+        "y": 300.0,
+        "font_size": 22
+      }
+    },
+    {
+      "id": "slot.answer.circle",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 70.0,
+        "cy": 338.0,
+        "r": 10.0,
+        "stroke": "#222222",
+        "stroke_width": 1.2,
+        "fill": "none"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.header",
+    "slot.step2.fold_line",
+    "slot.id",
+    "slot.q",
+    "slot.step1.note_text",
+    "slot.step4.note_text",
+    "slot.choice.o_text",
+    "slot.choice.x_text",
+    "region.diagram",
+    "slot.step1.rect",
+    "slot.step1.note",
+    "slot.step2.rect",
+    "slot.step2.fold",
+    "slot.step3.rect",
+    "slot.step4.rect",
+    "slot.step4.curve",
+    "slot.step4.note",
+    "slot.step1.diag",
+    "slot.step4.diag",
+    "slot.step1.arrow",
+    "slot.step2.arrow",
+    "slot.step3.scissor",
+    "slot.step3.arrow",
+    "region.answer",
+    "slot.center.box",
+    "slot.answer.circle",
+    "slot.choice.o",
+    "slot.choice.x",
+    "slot.center.text",
+    "region.footer"
+  ]
+}

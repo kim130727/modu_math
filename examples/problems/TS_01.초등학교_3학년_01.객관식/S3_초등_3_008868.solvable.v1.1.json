@@ -1,0 +1,77 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008868",
+  "problem_type": "비교",
+  "inputs": {
+    "total_ticks": 45,
+    "target_label": "더 무거운 것",
+    "target_ticks": 39,
+    "target_count": 1,
+    "unit": "개"
+  },
+  "given": [
+    {
+      "ref": "obj.cucumber",
+      "value": {
+        "name": "오이",
+        "coin_count": 45
+      }
+    },
+    {
+      "ref": "obj.tomato",
+      "value": {
+        "name": "토마토",
+        "coin_count": 39
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "heavier_object"
+  },
+  "method": "비교하기",
+  "plan": [
+    "오이와 토마토가 각각 몇 개의 동전 무게와 같은지 확인한다.",
+    "동전 개수가 더 많은 쪽이 더 무겁다고 비교한다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "45와 39를 비교한다.",
+      "value": {
+        "left": 45,
+        "right": 39
+      }
+    },
+    {
+      "id": "step.2",
+      "expr": "45 > 39",
+      "value": true
+    },
+    {
+      "id": "step.3",
+      "expr": "더 무거운 것은 오이이다.",
+      "value": "오이"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "동전 개수가 더 많은 쪽이 더 무거운가?",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "heavier_object",
+      "description": "오이와 토마토 중 더 무거운 것"
+    },
+    "value": "오이",
+    "unit": ""
+  }
+}

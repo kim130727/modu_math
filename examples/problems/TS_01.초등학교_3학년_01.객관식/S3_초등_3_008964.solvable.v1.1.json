@@ -1,0 +1,64 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008964",
+  "problem_type": "그림그래프_합",
+  "inputs": {
+    "total_ticks": 67,
+    "target_label": "채민이와 은서가 접은 종이꽃의 수",
+    "target_ticks": 1,
+    "target_count": 1,
+    "unit": "송이"
+  },
+  "given": [
+    {
+      "ref": "obj.sum_jaegyeong_chaemin",
+      "value": 67
+    },
+    {
+      "ref": "obj.eunseo",
+      "value": "25송이"
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "sum_of_counts"
+  },
+  "method": "그림그래프_관계식",
+  "plan": [
+    "범례를 해석한다.",
+    "해설에 보이는 관계식을 읽어 필요한 합을 구한다.",
+    "채민이와 은서의 합을 확인한다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "67 - 33",
+      "value": 34
+    },
+    {
+      "id": "step.2",
+      "expr": "34 + 25",
+      "value": 59
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "34 + 25 = 59",
+      "expected": 59,
+      "actual": 59,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "sum_of_counts",
+      "description": "채민이와 은서가 접은 종이꽃의 수"
+    },
+    "value": 59,
+    "unit": "송이"
+  }
+}

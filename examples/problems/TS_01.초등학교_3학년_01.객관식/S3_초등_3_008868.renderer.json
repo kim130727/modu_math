@@ -1,0 +1,337 @@
+{
+  "problem_id": "S3_초등_3_008868",
+  "view_box": {
+    "width": 960.0,
+    "height": 454.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.q1.text",
+      "type": "text",
+      "attributes": {
+        "x": 14.0,
+        "y": 30.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q1",
+      "refs": {
+        "layout_slot_id": "slot.q1"
+      },
+      "text": "19. 양팔 저울을 사용하여 오이와 토마토의 무게를 알아본 것입니다. 오이와"
+    },
+    {
+      "id": "slot.q2.text",
+      "type": "text",
+      "attributes": {
+        "x": 14.0,
+        "y": 66.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q2",
+      "refs": {
+        "layout_slot_id": "slot.q2"
+      },
+      "text": "토마토 중에서 어느 것이 더 무거울까요?"
+    },
+    {
+      "id": "slot.left.scale.base.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 240.0,
+        "y": 232.0,
+        "width": 190.0,
+        "height": 62.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.left.scale.base",
+      "refs": {
+        "layout_slot_id": "slot.left.scale.base"
+      }
+    },
+    {
+      "id": "slot.left.scale.pan.left.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 286.0,
+        "cy": 178.0,
+        "r": 27.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#D9DEE8"
+      },
+      "source_ref": "slot.left.scale.pan.left",
+      "refs": {
+        "layout_slot_id": "slot.left.scale.pan.left"
+      }
+    },
+    {
+      "id": "slot.left.scale.pan.right.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 388.0,
+        "cy": 178.0,
+        "r": 27.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#D9DEE8"
+      },
+      "source_ref": "slot.left.scale.pan.right",
+      "refs": {
+        "layout_slot_id": "slot.left.scale.pan.right"
+      }
+    },
+    {
+      "id": "slot.left.scale.cucumber.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 270.0,
+        "y": 145.0,
+        "width": 48.0,
+        "height": 16.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.left.scale.cucumber",
+      "refs": {
+        "layout_slot_id": "slot.left.scale.cucumber"
+      }
+    },
+    {
+      "id": "slot.left.scale.coins.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 369.0,
+        "y": 140.0,
+        "width": 38.0,
+        "height": 26.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.left.scale.coins",
+      "refs": {
+        "layout_slot_id": "slot.left.scale.coins"
+      }
+    },
+    {
+      "id": "slot.left.scale.arm.line",
+      "type": "line",
+      "attributes": {
+        "x1": 272.0,
+        "y1": 203.0,
+        "x2": 404.0,
+        "y2": 203.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.left.scale.arm",
+      "refs": {
+        "layout_slot_id": "slot.left.scale.arm"
+      }
+    },
+    {
+      "id": "slot.left.scale.pillar.line",
+      "type": "line",
+      "attributes": {
+        "x1": 337.0,
+        "y1": 203.0,
+        "x2": 337.0,
+        "y2": 255.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.left.scale.pillar",
+      "refs": {
+        "layout_slot_id": "slot.left.scale.pillar"
+      }
+    },
+    {
+      "id": "slot.left.label.text",
+      "type": "text",
+      "attributes": {
+        "x": 386.0,
+        "y": 112.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.left.label",
+      "refs": {
+        "layout_slot_id": "slot.left.label"
+      },
+      "text": "45개"
+    },
+    {
+      "id": "slot.left.scale.count.text",
+      "type": "text",
+      "attributes": {
+        "x": 250.0,
+        "y": 140.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 18
+      },
+      "source_ref": "slot.left.scale.count",
+      "refs": {
+        "layout_slot_id": "slot.left.scale.count"
+      },
+      "text": "TODO: 동전 더미 세부 형태"
+    },
+    {
+      "id": "slot.right.scale.base.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 547.0,
+        "y": 232.0,
+        "width": 190.0,
+        "height": 62.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.right.scale.base",
+      "refs": {
+        "layout_slot_id": "slot.right.scale.base"
+      }
+    },
+    {
+      "id": "slot.right.scale.pan.left.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 593.0,
+        "cy": 178.0,
+        "r": 27.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#D9DEE8"
+      },
+      "source_ref": "slot.right.scale.pan.left",
+      "refs": {
+        "layout_slot_id": "slot.right.scale.pan.left"
+      }
+    },
+    {
+      "id": "slot.right.scale.pan.right.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 695.0,
+        "cy": 178.0,
+        "r": 27.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#D9DEE8"
+      },
+      "source_ref": "slot.right.scale.pan.right",
+      "refs": {
+        "layout_slot_id": "slot.right.scale.pan.right"
+      }
+    },
+    {
+      "id": "slot.right.scale.tomato.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 577.0,
+        "y": 145.0,
+        "width": 50.0,
+        "height": 28.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.right.scale.tomato",
+      "refs": {
+        "layout_slot_id": "slot.right.scale.tomato"
+      }
+    },
+    {
+      "id": "slot.right.scale.coins.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 676.0,
+        "y": 140.0,
+        "width": 38.0,
+        "height": 26.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.right.scale.coins",
+      "refs": {
+        "layout_slot_id": "slot.right.scale.coins"
+      }
+    },
+    {
+      "id": "slot.right.scale.arm.line",
+      "type": "line",
+      "attributes": {
+        "x1": 579.0,
+        "y1": 203.0,
+        "x2": 711.0,
+        "y2": 203.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.right.scale.arm",
+      "refs": {
+        "layout_slot_id": "slot.right.scale.arm"
+      }
+    },
+    {
+      "id": "slot.right.scale.pillar.line",
+      "type": "line",
+      "attributes": {
+        "x1": 644.0,
+        "y1": 203.0,
+        "x2": 644.0,
+        "y2": 255.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.right.scale.pillar",
+      "refs": {
+        "layout_slot_id": "slot.right.scale.pillar"
+      }
+    },
+    {
+      "id": "slot.right.label.text",
+      "type": "text",
+      "attributes": {
+        "x": 616.0,
+        "y": 112.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.right.label",
+      "refs": {
+        "layout_slot_id": "slot.right.label"
+      },
+      "text": "39개"
+    },
+    {
+      "id": "slot.right.scale.count.text",
+      "type": "text",
+      "attributes": {
+        "x": 548.0,
+        "y": 140.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 18
+      },
+      "source_ref": "slot.right.scale.count",
+      "refs": {
+        "layout_slot_id": "slot.right.scale.count"
+      },
+      "text": "TODO: 동전 더미 세부 형태"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

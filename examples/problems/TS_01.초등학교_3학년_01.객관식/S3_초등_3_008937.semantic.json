@@ -1,0 +1,137 @@
+{
+  "problem_id": "S3_초등_3_008937",
+  "problem_type": "picture_graph_comparison",
+  "metadata": {
+    "title": "목장별 우유 생산량",
+    "tags": [],
+    "instruction": "우유 생산량이 가장 적은 목장을 찾으시오.",
+    "question": "그림그래프에서 우유 생산량이 가장 적은 목장을 고르는 문제",
+    "required_layout_ids": [
+      "slot.table.border",
+      "slot.table.vline",
+      "slot.table.h1",
+      "slot.table.h2",
+      "slot.table.h3",
+      "slot.table.h4",
+      "slot.row.ga.big1",
+      "slot.row.ga.big2",
+      "slot.row.ga.big3",
+      "slot.row.ga.big4",
+      "slot.row.ga.small1",
+      "slot.row.ga.small2",
+      "slot.row.na.big1",
+      "slot.row.na.big2",
+      "slot.row.na.big3",
+      "slot.row.na.big4",
+      "slot.row.na.big5",
+      "slot.row.na.big6",
+      "slot.row.da.big1",
+      "slot.row.da.big2",
+      "slot.row.da.big3",
+      "slot.row.da.small1",
+      "slot.row.da.small2",
+      "slot.row.da.small3",
+      "slot.row.da.small4",
+      "slot.row.ra.big1",
+      "slot.row.ra.big2",
+      "slot.row.ra.big3",
+      "slot.row.ra.big4",
+      "slot.row.ra.small1",
+      "slot.row.ra.small2",
+      "slot.row.ra.small3",
+      "slot.row.ra.small4",
+      "slot.row.ra.small5",
+      "slot.row.ra.small6",
+      "slot.legend.big",
+      "slot.legend.small"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.farm.ga",
+        "type": "farm",
+        "name": "가 목장"
+      },
+      {
+        "id": "obj.farm.na",
+        "type": "farm",
+        "name": "나 목장"
+      },
+      {
+        "id": "obj.farm.da",
+        "type": "farm",
+        "name": "다 목장"
+      },
+      {
+        "id": "obj.farm.ra",
+        "type": "farm",
+        "name": "라 목장"
+      },
+      {
+        "id": "obj.legend.big",
+        "type": "symbol",
+        "name": "큰 그림",
+        "unit_value": 10,
+        "unit": "L"
+      },
+      {
+        "id": "obj.legend.small",
+        "type": "symbol",
+        "name": "작은 그림",
+        "unit_value": 1,
+        "unit": "L"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.farm.ga",
+          "obj.farm.na",
+          "obj.farm.da",
+          "obj.farm.ra",
+          "obj.legend.big",
+          "obj.legend.small"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.graph_represents_quantity",
+          "rel.find_minimum"
+        ]
+      },
+      "plan": {
+        "method": "compare_picture_counts",
+        "description": "각 목장의 그림 기호 의미를 읽고 생산량이 가장 적은 목장을 비교한다."
+      },
+      "execute": {
+        "expected_operations": [
+          "read_legend",
+          "compare_rows",
+          "select_minimum"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "answer_matches_smallest_row",
+          "legend_consistency_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "farm_name",
+      "description": "우유 생산량이 가장 적은 목장"
+    },
+    "value": "다 목장",
+    "unit": ""
+  }
+}

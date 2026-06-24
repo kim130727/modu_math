@@ -1,0 +1,85 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_009066",
+  "problem_type": "도형 분류",
+  "inputs": {
+    "total_ticks": 5,
+    "target_label": "네 각이 모두 직각인 사각형",
+    "target_ticks": 2,
+    "target_count": 2,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.shape.a",
+      "value": {
+        "label": "가"
+      }
+    },
+    {
+      "ref": "obj.shape.b",
+      "value": {
+        "label": "나"
+      }
+    },
+    {
+      "ref": "obj.shape.c",
+      "value": {
+        "label": "다"
+      }
+    },
+    {
+      "ref": "obj.shape.d",
+      "value": {
+        "label": "라"
+      }
+    },
+    {
+      "ref": "obj.shape.e",
+      "value": {
+        "label": "마"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "selected_labels"
+  },
+  "method": "shape_classification",
+  "plan": [
+    "각 도형이 네 각이 모두 직각인 사각형인지 확인한다.",
+    "조건에 맞는 도형의 기호를 선택한다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "도형 5개를 조건과 비교한다",
+      "value": "가, 나, 다, 라, 마"
+    },
+    {
+      "id": "step.2",
+      "expr": "조건에 맞는 기호를 고른다",
+      "value": "가, 다"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "선택한 기호가 조건에 맞는 도형인지 확인",
+      "expected": "가, 다",
+      "actual": "가, 다",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "selected_labels",
+      "description": "네 각이 모두 직각인 사각형에 해당하는 기호"
+    },
+    "value": 2,
+    "unit": ""
+  }
+}

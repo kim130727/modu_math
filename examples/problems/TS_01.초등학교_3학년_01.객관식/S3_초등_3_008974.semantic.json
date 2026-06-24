@@ -1,0 +1,86 @@
+{
+  "problem_id": "S3_초등_3_008974",
+  "problem_type": "도형_분류",
+  "metadata": {
+    "title": "곧은 선을 찾아 기호를 선택하세요",
+    "tags": [],
+    "question": "곧은 선을 찾아 기호를 선택하세요.",
+    "required_layout_ids": [
+      "slot.line.1",
+      "slot.line.2",
+      "slot.line.3",
+      "slot.line.4"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "곧은 선을 찾는 선택형 문제"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.line.ga",
+        "type": "line",
+        "label": "가"
+      },
+      {
+        "id": "obj.line.na",
+        "type": "line",
+        "label": "나"
+      },
+      {
+        "id": "obj.line.da",
+        "type": "line",
+        "label": "다"
+      },
+      {
+        "id": "obj.line.ra",
+        "type": "line",
+        "label": "라"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.line.ga",
+          "obj.line.na",
+          "obj.line.da",
+          "obj.line.ra"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.classify.straight"
+        ]
+      },
+      "plan": {
+        "method": "시각적_분류",
+        "description": "각 선의 모양을 보고 곧은 선인지 판단한다."
+      },
+      "execute": {
+        "expected_operations": [
+          "observe_shape",
+          "compare_curvature",
+          "select_label"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "visual_consistency_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "label_selection",
+      "description": "곧은 선에 해당하는 기호"
+    },
+    "value": "다",
+    "unit": ""
+  }
+}

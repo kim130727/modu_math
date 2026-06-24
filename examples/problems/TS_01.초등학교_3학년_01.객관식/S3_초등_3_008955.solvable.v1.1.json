@@ -1,0 +1,64 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008955",
+  "problem_type": "표에서정보찾기",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "선미가 좋아하는 과일",
+    "target_ticks": 0,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.table",
+      "value": "친구들이 좋아하는 과일 표"
+    },
+    {
+      "ref": "obj.person.sunmi",
+      "value": "선미"
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "favorite_fruit"
+  },
+  "method": "table_lookup",
+  "plan": [
+    "표에서 선미가 있는 칸을 찾는다.",
+    "그 칸에 대응하는 과일을 확인한다.",
+    "범례와 비교해 과일 이름을 읽는다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "선미가 있는 칸 찾기",
+      "value": "3행 2열"
+    },
+    {
+      "id": "step.2",
+      "expr": "선미의 칸에 있는 과일 확인하기",
+      "value": "딸기"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "범례와 칸의 그림이 일치하는가",
+      "expected": "딸기",
+      "actual": "딸기",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "favorite_fruit",
+      "description": "선미가 좋아하는 과일"
+    },
+    "value": "딸기",
+    "unit": ""
+  }
+}

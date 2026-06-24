@@ -1,0 +1,98 @@
+{
+  "problem_id": "S3_초등_3_008838",
+  "problem_type": "비교",
+  "metadata": {
+    "title": "가장 가벼운 채소 찾기",
+    "tags": [],
+    "question": "양파, 가지, 오이 중에서 가장 가벼운 채소가 무엇인지 알아보는 방법을 설명하고 있습니다.",
+    "required_layout_ids": [
+      "slot.left.label.onion",
+      "slot.left.label.nasu",
+      "slot.left.arm",
+      "slot.left.center",
+      "slot.left.bowl.left",
+      "slot.left.bowl.right",
+      "slot.left.base",
+      "slot.left.obj.onion",
+      "slot.left.obj.nasu",
+      "slot.right.label.cucumber",
+      "slot.right.label.onion",
+      "slot.right.arm",
+      "slot.right.center",
+      "slot.right.bowl.left",
+      "slot.right.bowl.right",
+      "slot.right.base",
+      "slot.right.obj.cucumber",
+      "slot.right.obj.onion"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "알맞은 말을 선택하세요."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.onion",
+        "type": "채소",
+        "name": "양파"
+      },
+      {
+        "id": "obj.nasu",
+        "type": "채소",
+        "name": "가지"
+      },
+      {
+        "id": "obj.cucumber",
+        "type": "채소",
+        "name": "오이"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.onion",
+          "obj.nasu",
+          "obj.cucumber",
+          "rel.compare_1",
+          "rel.compare_2"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.compare_1",
+          "rel.compare_2"
+        ]
+      },
+      "plan": {
+        "method": "무게 비교",
+        "description": "저울의 기울기와 문장을 읽어 더 가벼운 채소를 찾고, 그 결과를 바탕으로 다음 비교 대상을 정한다."
+      },
+      "execute": {
+        "expected_operations": [
+          "비교 결과 읽기",
+          "더 가벼운 대상 선택하기",
+          "다음 비교 대상 확인하기"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "그림과 문장의 일치 확인",
+          "더 가벼운 대상이 맞는지 다시 보기"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "가장 가벼운 채소",
+      "description": "양파, 가지, 오이 중 가장 가벼운 채소를 찾기"
+    },
+    "value": 0,
+    "unit": ""
+  }
+}

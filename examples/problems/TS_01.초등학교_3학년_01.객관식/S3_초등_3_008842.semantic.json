@@ -1,0 +1,82 @@
+{
+  "problem_id": "S3_초등_3_008842",
+  "problem_type": "무게비교",
+  "metadata": {
+    "title": "무게 비교",
+    "tags": [],
+    "instruction": "가장 무거운 것을 고른다.",
+    "question": "저울로 대추, 바나나, 포도의 무게를 비교하고 있습니다. 가장 무거운 것은 무엇인지 알맞은 말을 선택해 보세요.",
+    "required_layout_ids": [
+      "slot.scale.left_1",
+      "slot.scale.right_1",
+      "slot.scale.left_2",
+      "slot.scale.right_2"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.daechu",
+        "type": "fruit",
+        "name": "대추"
+      },
+      {
+        "id": "obj.banana",
+        "type": "fruit",
+        "name": "바나나"
+      },
+      {
+        "id": "obj.podo",
+        "type": "fruit",
+        "name": "포도"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.daechu",
+          "obj.banana",
+          "obj.podo",
+          "rel.daechu_vs_banana",
+          "rel.banana_vs_podo"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.daechu_vs_banana",
+          "rel.banana_vs_podo"
+        ]
+      },
+      "plan": {
+        "method": "comparative_order",
+        "description": "저울과 문장으로 주어진 비교 관계를 따라 가장 무거운 대상을 찾는다."
+      },
+      "execute": {
+        "expected_operations": [
+          "compare_weights",
+          "follow_heavier_than_relations"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "relation_consistency_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "heaviest_fruit",
+      "description": "가장 무거운 것"
+    },
+    "value": 0,
+    "unit": ""
+  }
+}

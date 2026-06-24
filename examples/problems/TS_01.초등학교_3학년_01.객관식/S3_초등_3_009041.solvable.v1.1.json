@@ -1,0 +1,74 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_009041",
+  "problem_type": "도형_선분_판별",
+  "inputs": {
+    "total_ticks": 3,
+    "target_label": "ㄴ",
+    "target_ticks": 1,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.choice_1",
+      "value": {
+        "label": "ㄱ"
+      }
+    },
+    {
+      "ref": "obj.choice_2",
+      "value": {
+        "label": "ㄴ"
+      }
+    },
+    {
+      "ref": "obj.choice_3",
+      "value": {
+        "label": "ㄷ"
+      }
+    },
+    {
+      "ref": "obj.defined_shape",
+      "value": {
+        "description": "두 점을 곧게 이은 선"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "choice_label"
+  },
+  "method": "definition_match",
+  "plan": [
+    "그림의 보기들을 선분의 정의와 비교한다.",
+    "두 점을 곧게 이은 형태에 해당하는 보기를 고른다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "보기 3개를 선분의 정의와 비교",
+      "value": "ㄴ"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "선분은 두 점을 곧게 이은 선인가?",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "choice_label",
+      "description": "선분에 해당하는 보기"
+    },
+    "value": "ㄴ",
+    "unit": ""
+  }
+}

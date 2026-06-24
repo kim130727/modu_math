@@ -1,0 +1,89 @@
+{
+  "problem_id": "S3_초등_3_008851",
+  "problem_type": "comparison_weight",
+  "metadata": {
+    "title": "저울을 사용하여 무거운 것 고르기",
+    "tags": [],
+    "instruction": "더 무거운 것을 고르기",
+    "question": "저울을 사용하여 오렌지와 바나나의 무게를 비교했습니다. 오렌지와 바나나 중 더 무거운 것을 선택해 보세요.",
+    "required_layout_ids": [
+      "slot.lbl.orange",
+      "slot.lbl.banana",
+      "slot.scale.pivot",
+      "slot.scale.arm.left",
+      "slot.scale.arm.right",
+      "slot.scale.pan.left",
+      "slot.scale.pan.right",
+      "slot.scale.string.left",
+      "slot.scale.string.right",
+      "slot.scale.orange",
+      "slot.scale.banana"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.orange",
+        "type": "fruit",
+        "name": "오렌지"
+      },
+      {
+        "id": "obj.banana",
+        "type": "fruit",
+        "name": "바나나"
+      },
+      {
+        "id": "obj.scale",
+        "type": "balance_scale",
+        "name": "저울"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.orange",
+          "obj.banana",
+          "obj.scale"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.compare_weight",
+          "rel.left_side_down"
+        ]
+      },
+      "plan": {
+        "method": "visual_comparison",
+        "description": "저울의 기울어짐을 보고 더 무거운 대상을 고른다."
+      },
+      "execute": {
+        "expected_operations": [
+          "observe_balance_tilt",
+          "identify_heavier_side",
+          "select_heavier_object"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "tilt_direction_consistency",
+          "image_label_match"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "heavier_object",
+      "description": "오렌지와 바나나 중 더 무거운 것"
+    },
+    "value": "오렌지",
+    "unit": ""
+  }
+}

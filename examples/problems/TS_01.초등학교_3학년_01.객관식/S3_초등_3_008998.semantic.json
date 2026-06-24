@@ -1,0 +1,99 @@
+{
+  "problem_id": "S3_초등_3_008998",
+  "problem_type": "도형의 성질 선택",
+  "metadata": {
+    "title": "그림을 보고 알맞은 말을 선택하세요.",
+    "tags": [],
+    "instruction": "직사각형과 정사각형의 성질을 읽고 괄호 안 알맞은 말을 고른다.",
+    "question": "그림을 보고 알맞은 말을 선택하는 문제",
+    "required_layout_ids": [
+      "slot.shape.rect",
+      "slot.shape.square",
+      "slot.shape.rect.corner1.a",
+      "slot.shape.rect.corner1.b",
+      "slot.shape.rect.corner2.a",
+      "slot.shape.rect.corner2.b",
+      "slot.shape.rect.corner3.a",
+      "slot.shape.rect.corner3.b",
+      "slot.shape.rect.corner4.a",
+      "slot.shape.rect.corner4.b",
+      "slot.shape.square.corner1.a",
+      "slot.shape.square.corner1.b",
+      "slot.shape.square.corner2.a",
+      "slot.shape.square.corner2.b",
+      "slot.shape.square.corner3.a",
+      "slot.shape.square.corner3.b",
+      "slot.shape.square.corner4.a",
+      "slot.shape.square.corner4.b"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.rectangle",
+        "type": "quadrilateral",
+        "name": "직사각형"
+      },
+      {
+        "id": "obj.square",
+        "type": "quadrilateral",
+        "name": "정사각형"
+      },
+      {
+        "id": "obj.choice_2_4",
+        "type": "choice",
+        "candidates": [
+          "두",
+          "네"
+        ]
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.rectangle",
+          "obj.square",
+          "obj.choice_2_4"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.rectangle_opposite_sides_equal",
+          "rel.square_all_sides_equal"
+        ]
+      },
+      "plan": {
+        "method": "도형의 성질 비교",
+        "description": "각 도형의 변의 길이 성질을 읽고 괄호 안 말이 두인지 네인지 고른다."
+      },
+      "execute": {
+        "expected_operations": [
+          "직사각형의 성질 확인",
+          "정사각형의 성질 확인",
+          "알맞은 말 선택"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "도형 이름과 성질 대응 확인",
+          "문장 의미와 선택어 일치 확인"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "choice_selection",
+      "description": "직사각형과 정사각형 문장의 괄호 안 알맞은 말"
+    },
+    "value": 0,
+    "unit": ""
+  }
+}

@@ -1,0 +1,1111 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008887",
+  "title": "태어난 계절과 표",
+  "canvas": {
+    "width": 960.0,
+    "height": 680.0,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.problem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.diagram.outer",
+        "slot.diagram.spring",
+        "slot.diagram.summer",
+        "slot.diagram.autumn",
+        "slot.diagram.winter",
+        "slot.table.outer",
+        "slot.table.head1",
+        "slot.table.head2",
+        "slot.table.head3",
+        "slot.table.head4",
+        "slot.table.head5",
+        "slot.table.head6",
+        "slot.table.row1",
+        "slot.legend.female.dot",
+        "slot.legend.male.dot",
+        "slot.dot.spring.f1",
+        "slot.dot.spring.m1",
+        "slot.dot.spring.f2",
+        "slot.dot.spring.m2",
+        "slot.dot.spring.f3",
+        "slot.dot.spring.m3",
+        "slot.dot.spring.f4",
+        "slot.dot.spring.m4",
+        "slot.dot.spring.f5",
+        "slot.dot.spring.m5",
+        "slot.dot.summer.f1",
+        "slot.dot.summer.m1",
+        "slot.dot.summer.f2",
+        "slot.dot.summer.m2",
+        "slot.dot.summer.f3",
+        "slot.dot.summer.m3",
+        "slot.dot.summer.f4",
+        "slot.dot.summer.m4",
+        "slot.dot.autumn.f1",
+        "slot.dot.autumn.m1",
+        "slot.dot.autumn.f2",
+        "slot.dot.autumn.m2",
+        "slot.dot.autumn.f3",
+        "slot.dot.autumn.m3",
+        "slot.dot.autumn.f4",
+        "slot.dot.autumn.m4",
+        "slot.dot.autumn.f5",
+        "slot.dot.autumn.m5",
+        "slot.dot.autumn.f6",
+        "slot.dot.autumn.m6",
+        "slot.dot.winter.f1",
+        "slot.dot.winter.m1",
+        "slot.dot.winter.f2",
+        "slot.dot.winter.m2",
+        "slot.dot.winter.f3",
+        "slot.dot.winter.m3",
+        "slot.dot.winter.f4",
+        "slot.dot.winter.m4",
+        "slot.dot.winter.f5",
+        "slot.dot.winter.m5",
+        "slot.dot.winter.f6",
+        "slot.dot.winter.m6",
+        "slot.q1",
+        "slot.diagram.title",
+        "slot.legend.female.text",
+        "slot.legend.male.text",
+        "slot.table.title",
+        "slot.table.r1c1",
+        "slot.table.r1c2",
+        "slot.table.r1c3",
+        "slot.table.r1c4",
+        "slot.table.r1c5",
+        "slot.table.r1c6",
+        "slot.table.r2c1",
+        "slot.table.r2c2",
+        "slot.table.r2c3",
+        "slot.table.r2c4",
+        "slot.table.r2c5",
+        "slot.table.r2c6",
+        "slot.note1",
+        "slot.table.r3c1",
+        "slot.table.r3c2",
+        "slot.table.r3c3",
+        "slot.table.r3c4",
+        "slot.table.r3c5",
+        "slot.table.r3c6"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "51. 지은이는 학교 3학년 학생들이 태어난 계절을 조사하였습니다.\n계절별 태어난 여학생 수와 남학생 수를 알아보려고 할 때 조사한 자료와 표 중에서 어느 것이 더 편리할까요?",
+        "style_role": "question",
+        "x": 16.0,
+        "y": 28.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.diagram.title",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "태어난 계절",
+        "style_role": "title",
+        "x": 395.0,
+        "y": 142.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.diagram.outer",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 191.0,
+        "y": 148.0,
+        "width": 590.0,
+        "height": 172.0,
+        "fill": "#DDF4F2"
+      }
+    },
+    {
+      "id": "slot.diagram.spring",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 205.0,
+        "y": 180.0,
+        "width": 136.0,
+        "height": 120.0,
+        "fill": "#FFFFFF"
+      }
+    },
+    {
+      "id": "slot.diagram.summer",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 349.0,
+        "y": 180.0,
+        "width": 136.0,
+        "height": 120.0,
+        "fill": "#FFFFFF"
+      }
+    },
+    {
+      "id": "slot.diagram.autumn",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 493.0,
+        "y": 180.0,
+        "width": 136.0,
+        "height": 120.0,
+        "fill": "#FFFFFF"
+      }
+    },
+    {
+      "id": "slot.diagram.winter",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 637.0,
+        "y": 180.0,
+        "width": 136.0,
+        "height": 120.0,
+        "fill": "#FFFFFF"
+      }
+    },
+    {
+      "id": "slot.legend.female.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": ": 여학생",
+        "style_role": "label",
+        "x": 674.0,
+        "y": 342.0,
+        "font_size": 22
+      }
+    },
+    {
+      "id": "slot.legend.female.dot",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 661.0,
+        "cy": 336.0,
+        "r": 6.0,
+        "fill": "#F29AB2"
+      }
+    },
+    {
+      "id": "slot.legend.male.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": ": 남학생",
+        "style_role": "label",
+        "x": 744.0,
+        "y": 342.0,
+        "font_size": 22
+      }
+    },
+    {
+      "id": "slot.legend.male.dot",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 731.0,
+        "cy": 336.0,
+        "r": 6.0,
+        "fill": "#86D5EA"
+      }
+    },
+    {
+      "id": "slot.table.title",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "학생들이 태어난 계절",
+        "style_role": "title",
+        "x": 382.0,
+        "y": 394.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.outer",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 172.0,
+        "y": 414.0,
+        "width": 626.0,
+        "height": 126.0,
+        "fill": "#FFFFFF"
+      }
+    },
+    {
+      "id": "slot.table.head1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 172.0,
+        "y1": 446.0,
+        "x2": 798.0,
+        "y2": 446.0
+      }
+    },
+    {
+      "id": "slot.table.head2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 360.0,
+        "y1": 414.0,
+        "x2": 360.0,
+        "y2": 540.0
+      }
+    },
+    {
+      "id": "slot.table.head3",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 448.0,
+        "y1": 414.0,
+        "x2": 448.0,
+        "y2": 540.0
+      }
+    },
+    {
+      "id": "slot.table.head4",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 536.0,
+        "y1": 414.0,
+        "x2": 536.0,
+        "y2": 540.0
+      }
+    },
+    {
+      "id": "slot.table.head5",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 624.0,
+        "y1": 414.0,
+        "x2": 624.0,
+        "y2": 540.0
+      }
+    },
+    {
+      "id": "slot.table.head6",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 712.0,
+        "y1": 414.0,
+        "x2": 712.0,
+        "y2": 540.0
+      }
+    },
+    {
+      "id": "slot.table.row1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 172.0,
+        "y1": 478.0,
+        "x2": 798.0,
+        "y2": 478.0
+      }
+    },
+    {
+      "id": "slot.table.r1c1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "계절",
+        "style_role": "label",
+        "x": 229.0,
+        "y": 434.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.r1c2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "봄",
+        "style_role": "label",
+        "x": 404.0,
+        "y": 434.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.r1c3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "여름",
+        "style_role": "label",
+        "x": 490.0,
+        "y": 434.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.r1c4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "가을",
+        "style_role": "label",
+        "x": 578.0,
+        "y": 434.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.r1c5",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "겨울",
+        "style_role": "label",
+        "x": 665.0,
+        "y": 434.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.r1c6",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "합계",
+        "style_role": "label",
+        "x": 752.0,
+        "y": 434.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.r2c1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "여학생 수(명)",
+        "style_role": "label",
+        "x": 202.0,
+        "y": 468.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.r2c2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "11",
+        "style_role": "label",
+        "x": 404.0,
+        "y": 468.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.r2c3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "6",
+        "style_role": "label",
+        "x": 493.0,
+        "y": 468.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.r2c4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "20",
+        "style_role": "label",
+        "x": 580.0,
+        "y": 468.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.r2c5",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "17",
+        "style_role": "label",
+        "x": 667.0,
+        "y": 468.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.r2c6",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "54",
+        "style_role": "label",
+        "x": 755.0,
+        "y": 468.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.r3c1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "남학생 수(명)",
+        "style_role": "label",
+        "x": 202.0,
+        "y": 508.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.r3c2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "12",
+        "style_role": "label",
+        "x": 404.0,
+        "y": 508.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.r3c3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "10",
+        "style_role": "label",
+        "x": 493.0,
+        "y": 508.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.r3c4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "14",
+        "style_role": "label",
+        "x": 580.0,
+        "y": 508.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.r3c5",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "20",
+        "style_role": "label",
+        "x": 667.0,
+        "y": 508.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.r3c6",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "56",
+        "style_role": "label",
+        "x": 755.0,
+        "y": 508.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.note1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "( 조사한 자료 , 표 )",
+        "style_role": "note",
+        "x": 360.0,
+        "y": 574.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.dot.spring.f1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 221.0,
+        "cy": 228.0,
+        "r": 6.0,
+        "fill": "#F29AB2"
+      }
+    },
+    {
+      "id": "slot.dot.spring.m1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 238.0,
+        "cy": 214.0,
+        "r": 6.0,
+        "fill": "#86D5EA"
+      }
+    },
+    {
+      "id": "slot.dot.spring.f2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 255.0,
+        "cy": 246.0,
+        "r": 6.0,
+        "fill": "#F29AB2"
+      }
+    },
+    {
+      "id": "slot.dot.spring.m2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 270.0,
+        "cy": 226.0,
+        "r": 6.0,
+        "fill": "#86D5EA"
+      }
+    },
+    {
+      "id": "slot.dot.spring.f3",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 287.0,
+        "cy": 216.0,
+        "r": 6.0,
+        "fill": "#F29AB2"
+      }
+    },
+    {
+      "id": "slot.dot.spring.m3",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 302.0,
+        "cy": 248.0,
+        "r": 6.0,
+        "fill": "#86D5EA"
+      }
+    },
+    {
+      "id": "slot.dot.spring.f4",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 224.0,
+        "cy": 264.0,
+        "r": 6.0,
+        "fill": "#F29AB2"
+      }
+    },
+    {
+      "id": "slot.dot.spring.m4",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 245.0,
+        "cy": 280.0,
+        "r": 6.0,
+        "fill": "#86D5EA"
+      }
+    },
+    {
+      "id": "slot.dot.spring.f5",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 269.0,
+        "cy": 268.0,
+        "r": 6.0,
+        "fill": "#F29AB2"
+      }
+    },
+    {
+      "id": "slot.dot.spring.m5",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 295.0,
+        "cy": 264.0,
+        "r": 6.0,
+        "fill": "#86D5EA"
+      }
+    },
+    {
+      "id": "slot.dot.summer.f1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 366.0,
+        "cy": 230.0,
+        "r": 6.0,
+        "fill": "#F29AB2"
+      }
+    },
+    {
+      "id": "slot.dot.summer.m1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 384.0,
+        "cy": 214.0,
+        "r": 6.0,
+        "fill": "#86D5EA"
+      }
+    },
+    {
+      "id": "slot.dot.summer.f2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 401.0,
+        "cy": 246.0,
+        "r": 6.0,
+        "fill": "#F29AB2"
+      }
+    },
+    {
+      "id": "slot.dot.summer.m2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 420.0,
+        "cy": 230.0,
+        "r": 6.0,
+        "fill": "#86D5EA"
+      }
+    },
+    {
+      "id": "slot.dot.summer.f3",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 366.0,
+        "cy": 264.0,
+        "r": 6.0,
+        "fill": "#F29AB2"
+      }
+    },
+    {
+      "id": "slot.dot.summer.m3",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 384.0,
+        "cy": 280.0,
+        "r": 6.0,
+        "fill": "#86D5EA"
+      }
+    },
+    {
+      "id": "slot.dot.summer.f4",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 421.0,
+        "cy": 264.0,
+        "r": 6.0,
+        "fill": "#F29AB2"
+      }
+    },
+    {
+      "id": "slot.dot.summer.m4",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 402.0,
+        "cy": 296.0,
+        "r": 6.0,
+        "fill": "#86D5EA"
+      }
+    },
+    {
+      "id": "slot.dot.autumn.f1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 510.0,
+        "cy": 222.0,
+        "r": 6.0,
+        "fill": "#F29AB2"
+      }
+    },
+    {
+      "id": "slot.dot.autumn.m1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 524.0,
+        "cy": 210.0,
+        "r": 6.0,
+        "fill": "#86D5EA"
+      }
+    },
+    {
+      "id": "slot.dot.autumn.f2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 542.0,
+        "cy": 228.0,
+        "r": 6.0,
+        "fill": "#F29AB2"
+      }
+    },
+    {
+      "id": "slot.dot.autumn.m2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 555.0,
+        "cy": 216.0,
+        "r": 6.0,
+        "fill": "#86D5EA"
+      }
+    },
+    {
+      "id": "slot.dot.autumn.f3",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 573.0,
+        "cy": 222.0,
+        "r": 6.0,
+        "fill": "#F29AB2"
+      }
+    },
+    {
+      "id": "slot.dot.autumn.m3",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 590.0,
+        "cy": 208.0,
+        "r": 6.0,
+        "fill": "#86D5EA"
+      }
+    },
+    {
+      "id": "slot.dot.autumn.f4",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 508.0,
+        "cy": 248.0,
+        "r": 6.0,
+        "fill": "#F29AB2"
+      }
+    },
+    {
+      "id": "slot.dot.autumn.m4",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 526.0,
+        "cy": 244.0,
+        "r": 6.0,
+        "fill": "#86D5EA"
+      }
+    },
+    {
+      "id": "slot.dot.autumn.f5",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 545.0,
+        "cy": 252.0,
+        "r": 6.0,
+        "fill": "#F29AB2"
+      }
+    },
+    {
+      "id": "slot.dot.autumn.m5",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 560.0,
+        "cy": 238.0,
+        "r": 6.0,
+        "fill": "#86D5EA"
+      }
+    },
+    {
+      "id": "slot.dot.autumn.f6",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 578.0,
+        "cy": 248.0,
+        "r": 6.0,
+        "fill": "#F29AB2"
+      }
+    },
+    {
+      "id": "slot.dot.autumn.m6",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 592.0,
+        "cy": 250.0,
+        "r": 6.0,
+        "fill": "#86D5EA"
+      }
+    },
+    {
+      "id": "slot.dot.winter.f1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 652.0,
+        "cy": 220.0,
+        "r": 6.0,
+        "fill": "#F29AB2"
+      }
+    },
+    {
+      "id": "slot.dot.winter.m1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 669.0,
+        "cy": 212.0,
+        "r": 6.0,
+        "fill": "#86D5EA"
+      }
+    },
+    {
+      "id": "slot.dot.winter.f2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 687.0,
+        "cy": 226.0,
+        "r": 6.0,
+        "fill": "#F29AB2"
+      }
+    },
+    {
+      "id": "slot.dot.winter.m2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 703.0,
+        "cy": 214.0,
+        "r": 6.0,
+        "fill": "#86D5EA"
+      }
+    },
+    {
+      "id": "slot.dot.winter.f3",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 721.0,
+        "cy": 228.0,
+        "r": 6.0,
+        "fill": "#F29AB2"
+      }
+    },
+    {
+      "id": "slot.dot.winter.m3",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 736.0,
+        "cy": 220.0,
+        "r": 6.0,
+        "fill": "#86D5EA"
+      }
+    },
+    {
+      "id": "slot.dot.winter.f4",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 654.0,
+        "cy": 248.0,
+        "r": 6.0,
+        "fill": "#F29AB2"
+      }
+    },
+    {
+      "id": "slot.dot.winter.m4",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 672.0,
+        "cy": 242.0,
+        "r": 6.0,
+        "fill": "#86D5EA"
+      }
+    },
+    {
+      "id": "slot.dot.winter.f5",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 688.0,
+        "cy": 250.0,
+        "r": 6.0,
+        "fill": "#F29AB2"
+      }
+    },
+    {
+      "id": "slot.dot.winter.m5",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 706.0,
+        "cy": 236.0,
+        "r": 6.0,
+        "fill": "#86D5EA"
+      }
+    },
+    {
+      "id": "slot.dot.winter.f6",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 722.0,
+        "cy": 248.0,
+        "r": 6.0,
+        "fill": "#F29AB2"
+      }
+    },
+    {
+      "id": "slot.dot.winter.m6",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 738.0,
+        "cy": 252.0,
+        "r": 6.0,
+        "fill": "#86D5EA"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.problem",
+    "slot.diagram.outer",
+    "slot.diagram.spring",
+    "slot.diagram.summer",
+    "slot.diagram.autumn",
+    "slot.diagram.winter",
+    "slot.table.outer",
+    "slot.table.head1",
+    "slot.table.head2",
+    "slot.table.head3",
+    "slot.table.head4",
+    "slot.table.head5",
+    "slot.table.head6",
+    "slot.table.row1",
+    "slot.legend.female.dot",
+    "slot.legend.male.dot",
+    "slot.dot.spring.f1",
+    "slot.dot.spring.m1",
+    "slot.dot.spring.f2",
+    "slot.dot.spring.m2",
+    "slot.dot.spring.f3",
+    "slot.dot.spring.m3",
+    "slot.dot.spring.f4",
+    "slot.dot.spring.m4",
+    "slot.dot.spring.f5",
+    "slot.dot.spring.m5",
+    "slot.dot.summer.f1",
+    "slot.dot.summer.m1",
+    "slot.dot.summer.f2",
+    "slot.dot.summer.m2",
+    "slot.dot.summer.f3",
+    "slot.dot.summer.m3",
+    "slot.dot.summer.f4",
+    "slot.dot.summer.m4",
+    "slot.dot.autumn.f1",
+    "slot.dot.autumn.m1",
+    "slot.dot.autumn.f2",
+    "slot.dot.autumn.m2",
+    "slot.dot.autumn.f3",
+    "slot.dot.autumn.m3",
+    "slot.dot.autumn.f4",
+    "slot.dot.autumn.m4",
+    "slot.dot.autumn.f5",
+    "slot.dot.autumn.m5",
+    "slot.dot.autumn.f6",
+    "slot.dot.autumn.m6",
+    "slot.dot.winter.f1",
+    "slot.dot.winter.m1",
+    "slot.dot.winter.f2",
+    "slot.dot.winter.m2",
+    "slot.dot.winter.f3",
+    "slot.dot.winter.m3",
+    "slot.dot.winter.f4",
+    "slot.dot.winter.m4",
+    "slot.dot.winter.f5",
+    "slot.dot.winter.m5",
+    "slot.dot.winter.f6",
+    "slot.dot.winter.m6",
+    "slot.q1",
+    "slot.diagram.title",
+    "slot.legend.female.text",
+    "slot.legend.male.text",
+    "slot.table.title",
+    "slot.table.r1c1",
+    "slot.table.r1c2",
+    "slot.table.r1c3",
+    "slot.table.r1c4",
+    "slot.table.r1c5",
+    "slot.table.r1c6",
+    "slot.table.r2c1",
+    "slot.table.r2c2",
+    "slot.table.r2c3",
+    "slot.table.r2c4",
+    "slot.table.r2c5",
+    "slot.table.r2c6",
+    "slot.note1",
+    "slot.table.r3c1",
+    "slot.table.r3c2",
+    "slot.table.r3c3",
+    "slot.table.r3c4",
+    "slot.table.r3c5",
+    "slot.table.r3c6"
+  ]
+}

@@ -1,0 +1,107 @@
+{
+  "problem_id": "S3_초등_3_008966",
+  "problem_type": "comparison_table",
+  "metadata": {
+    "title": "두 번째로 많은 학생들이 받고 싶어 하는 생일 선물",
+    "tags": [],
+    "instruction": "두 번째로 많은 학생들이 받고 싶어 하는 생일 선물을 선택하세요.",
+    "question": "윤지네 반 학생들이 받고 싶어 하는 생일 선물을 조사하여 결과를 나타내었습니다. 두 번째로 많은 학생들이 받고 싶어 하는 생일 선물을 선택하세요.",
+    "required_layout_ids": [
+      "slot.title_box",
+      "slot.table.outer",
+      "slot.table.c1r1",
+      "slot.table.c2r1",
+      "slot.table.c3r1",
+      "slot.table.c4r1",
+      "slot.table.c5r1",
+      "slot.table.c6r1",
+      "slot.table.c1r2",
+      "slot.table.c2r2",
+      "slot.table.c3r2",
+      "slot.table.c4r2",
+      "slot.table.c5r2",
+      "slot.table.c6r2"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "points": 0
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.phone",
+        "type": "gift_category",
+        "name": "휴대전화",
+        "count": 11
+      },
+      {
+        "id": "obj.school_supplies",
+        "type": "gift_category",
+        "name": "학용품",
+        "count": 5
+      },
+      {
+        "id": "obj.toy",
+        "type": "gift_category",
+        "name": "장난감",
+        "count": 8
+      },
+      {
+        "id": "obj.book",
+        "type": "gift_category",
+        "name": "책",
+        "count": 4
+      },
+      {
+        "id": "obj.total",
+        "type": "total",
+        "name": "합계",
+        "count": 28
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.phone",
+          "obj.school_supplies",
+          "obj.toy",
+          "obj.book"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.compare_counts"
+        ]
+      },
+      "plan": {
+        "method": "compare_counts",
+        "description": "표의 학생 수를 비교하여 두 번째로 큰 값을 찾는다."
+      },
+      "execute": {
+        "expected_operations": [
+          "compare_values",
+          "identify_second_largest"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "order_check",
+          "table_value_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "gift_category",
+      "description": "두 번째로 많은 학생들이 받고 싶어 하는 생일 선물"
+    },
+    "value": "장난감",
+    "unit": ""
+  }
+}

@@ -1,0 +1,380 @@
+{
+  "problem_id": "S3_초등_3_008915",
+  "view_box": {
+    "width": 950.0,
+    "height": 430.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.q1.text",
+      "type": "text",
+      "attributes": {
+        "x": 16.0,
+        "y": 32.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q1",
+      "refs": {
+        "layout_slot_id": "slot.q1"
+      },
+      "text": "□ 81. 운동회에서 청군과 백군이 경기별로 얻은 점수를 표로 나타내었습니다."
+    },
+    {
+      "id": "slot.q2.text",
+      "type": "text",
+      "attributes": {
+        "x": 23.0,
+        "y": 68.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q2",
+      "refs": {
+        "layout_slot_id": "slot.q2"
+      },
+      "text": "백군이 가장 많은 점수를 얻은 종목을 선택하세요."
+    },
+    {
+      "id": "slot.table_title.text",
+      "type": "text",
+      "attributes": {
+        "x": 445.0,
+        "y": 104.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table_title",
+      "refs": {
+        "layout_slot_id": "slot.table_title"
+      },
+      "text": "운동회에서 경기별 얻은 점수"
+    },
+    {
+      "id": "slot.view.text",
+      "type": "text",
+      "attributes": {
+        "x": 438.0,
+        "y": 279.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.view",
+      "refs": {
+        "layout_slot_id": "slot.view"
+      },
+      "text": "( 달리기 , 줄다리기 , 공 굴리기 , 박 터뜨리기 )"
+    },
+    {
+      "id": "slot.table_bg.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 69.0,
+        "y": 121.0,
+        "width": 815.0,
+        "height": 122.0,
+        "fill": "#FDE0DE",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.table_bg",
+      "refs": {
+        "layout_slot_id": "slot.table_bg"
+      }
+    },
+    {
+      "id": "slot.table_header_1.text",
+      "type": "text",
+      "attributes": {
+        "x": 142.0,
+        "y": 149.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table_header_1",
+      "refs": {
+        "layout_slot_id": "slot.table_header_1"
+      },
+      "text": "경기"
+    },
+    {
+      "id": "slot.table_header_2.text",
+      "type": "text",
+      "attributes": {
+        "x": 282.0,
+        "y": 149.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table_header_2",
+      "refs": {
+        "layout_slot_id": "slot.table_header_2"
+      },
+      "text": "달리기"
+    },
+    {
+      "id": "slot.table_header_3.text",
+      "type": "text",
+      "attributes": {
+        "x": 420.0,
+        "y": 149.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table_header_3",
+      "refs": {
+        "layout_slot_id": "slot.table_header_3"
+      },
+      "text": "줄다리기"
+    },
+    {
+      "id": "slot.table_header_4.text",
+      "type": "text",
+      "attributes": {
+        "x": 565.0,
+        "y": 149.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table_header_4",
+      "refs": {
+        "layout_slot_id": "slot.table_header_4"
+      },
+      "text": "공 굴리기"
+    },
+    {
+      "id": "slot.table_header_5.text",
+      "type": "text",
+      "attributes": {
+        "x": 703.0,
+        "y": 149.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table_header_5",
+      "refs": {
+        "layout_slot_id": "slot.table_header_5"
+      },
+      "text": "박 터뜨리기"
+    },
+    {
+      "id": "slot.table_header_6.text",
+      "type": "text",
+      "attributes": {
+        "x": 835.0,
+        "y": 149.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table_header_6",
+      "refs": {
+        "layout_slot_id": "slot.table_header_6"
+      },
+      "text": "합계"
+    },
+    {
+      "id": "slot.table_row_1_label.text",
+      "type": "text",
+      "attributes": {
+        "x": 134.0,
+        "y": 189.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table_row_1_label",
+      "refs": {
+        "layout_slot_id": "slot.table_row_1_label"
+      },
+      "text": "청군 점수(점)"
+    },
+    {
+      "id": "slot.table_row_1_c1.text",
+      "type": "text",
+      "attributes": {
+        "x": 283.0,
+        "y": 189.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table_row_1_c1",
+      "refs": {
+        "layout_slot_id": "slot.table_row_1_c1"
+      },
+      "text": "300"
+    },
+    {
+      "id": "slot.table_row_1_c2.text",
+      "type": "text",
+      "attributes": {
+        "x": 419.0,
+        "y": 189.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table_row_1_c2",
+      "refs": {
+        "layout_slot_id": "slot.table_row_1_c2"
+      },
+      "text": "100"
+    },
+    {
+      "id": "slot.table_row_1_c3.text",
+      "type": "text",
+      "attributes": {
+        "x": 565.0,
+        "y": 189.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table_row_1_c3",
+      "refs": {
+        "layout_slot_id": "slot.table_row_1_c3"
+      },
+      "text": "50"
+    },
+    {
+      "id": "slot.table_row_1_c4.text",
+      "type": "text",
+      "attributes": {
+        "x": 703.0,
+        "y": 189.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table_row_1_c4",
+      "refs": {
+        "layout_slot_id": "slot.table_row_1_c4"
+      },
+      "text": "100"
+    },
+    {
+      "id": "slot.table_row_1_c5.text",
+      "type": "text",
+      "attributes": {
+        "x": 836.0,
+        "y": 189.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table_row_1_c5",
+      "refs": {
+        "layout_slot_id": "slot.table_row_1_c5"
+      },
+      "text": "550"
+    },
+    {
+      "id": "slot.table_row_2_label.text",
+      "type": "text",
+      "attributes": {
+        "x": 134.0,
+        "y": 228.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table_row_2_label",
+      "refs": {
+        "layout_slot_id": "slot.table_row_2_label"
+      },
+      "text": "백군 점수(점)"
+    },
+    {
+      "id": "slot.table_row_2_c1.text",
+      "type": "text",
+      "attributes": {
+        "x": 283.0,
+        "y": 228.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table_row_2_c1",
+      "refs": {
+        "layout_slot_id": "slot.table_row_2_c1"
+      },
+      "text": "100"
+    },
+    {
+      "id": "slot.table_row_2_c2.text",
+      "type": "text",
+      "attributes": {
+        "x": 419.0,
+        "y": 228.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table_row_2_c2",
+      "refs": {
+        "layout_slot_id": "slot.table_row_2_c2"
+      },
+      "text": "200"
+    },
+    {
+      "id": "slot.table_row_2_c3.text",
+      "type": "text",
+      "attributes": {
+        "x": 565.0,
+        "y": 228.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table_row_2_c3",
+      "refs": {
+        "layout_slot_id": "slot.table_row_2_c3"
+      },
+      "text": "100"
+    },
+    {
+      "id": "slot.table_row_2_c4.text",
+      "type": "text",
+      "attributes": {
+        "x": 703.0,
+        "y": 228.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table_row_2_c4",
+      "refs": {
+        "layout_slot_id": "slot.table_row_2_c4"
+      },
+      "text": "50"
+    },
+    {
+      "id": "slot.table_row_2_c5.text",
+      "type": "text",
+      "attributes": {
+        "x": 836.0,
+        "y": 228.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table_row_2_c5",
+      "refs": {
+        "layout_slot_id": "slot.table_row_2_c5"
+      },
+      "text": "450"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

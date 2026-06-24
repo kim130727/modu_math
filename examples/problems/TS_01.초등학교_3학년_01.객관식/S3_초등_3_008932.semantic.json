@@ -1,0 +1,118 @@
+{
+  "problem_id": "S3_초등_3_008932",
+  "problem_type": "그림그래프_비교",
+  "metadata": {
+    "title": "밭별 수박 생산량",
+    "tags": [
+      "그림그래프",
+      "비교",
+      "수박생산량"
+    ],
+    "question": "밭별 수박 생산량을 조사하여 그림그래프로 나타내었습니다. 수박 생산량이 가장 많은 밭을 선택해 보세요.",
+    "required_layout_ids": [
+      "slot.table.outer",
+      "slot.table.head.left",
+      "slot.table.head.right",
+      "slot.row.ga",
+      "slot.row.na",
+      "slot.row.da",
+      "slot.table.vline",
+      "slot.table.hline1",
+      "slot.table.hline2",
+      "slot.table.hline3",
+      "slot.table.hline4",
+      "slot.wm3",
+      "slot.wm4",
+      "slot.wm5",
+      "slot.wm6",
+      "slot.wm7",
+      "slot.wm8",
+      "slot.wm9",
+      "slot.wm10",
+      "slot.wm11",
+      "slot.wm12",
+      "slot.wm13",
+      "slot.wm14",
+      "slot.wm15",
+      "slot.wm16",
+      "slot.legend.big",
+      "slot.legend.small"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "가, 나, 다 중에서 고르기"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.field.ga",
+        "type": "field",
+        "label": "가"
+      },
+      {
+        "id": "obj.field.na",
+        "type": "field",
+        "label": "나"
+      },
+      {
+        "id": "obj.field.da",
+        "type": "field",
+        "label": "다"
+      },
+      {
+        "id": "obj.legend.big",
+        "type": "legend_unit",
+        "label": "100통"
+      },
+      {
+        "id": "obj.legend.small",
+        "type": "legend_unit",
+        "label": "10통"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.field.ga",
+          "obj.field.na",
+          "obj.field.da",
+          "obj.legend.big",
+          "obj.legend.small"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.compare.production",
+          "rel.compare.production.2"
+        ]
+      },
+      "plan": {
+        "method": "picture_graph_compare",
+        "description": "그림의 크기와 개수를 비교하여 수박 생산량이 가장 많은 밭을 찾는다."
+      },
+      "execute": {
+        "expected_operations": [
+          "count_and_compare_symbols"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "largest_symbol_group"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "field_name",
+      "description": "수박 생산량이 가장 많은 밭"
+    },
+    "value": "다 밭",
+    "unit": ""
+  }
+}

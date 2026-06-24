@@ -23,6 +23,22 @@
       }
     },
     {
+      "id": "slot.diagram.diameter.line",
+      "type": "line",
+      "attributes": {
+        "x1": 270.0,
+        "y1": 250.0,
+        "x2": 450.0,
+        "y2": 250.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.diagram.diameter",
+      "refs": {
+        "layout_slot_id": "slot.diagram.diameter"
+      }
+    },
+    {
       "id": "slot.diagram.center_mark.circle",
       "type": "circle",
       "attributes": {
@@ -71,28 +87,11 @@
       }
     },
     {
-      "id": "slot.diagram.diameter.line",
-      "type": "line",
-      "attributes": {
-        "x1": 270.0,
-        "y1": 250.0,
-        "x2": 450.0,
-        "y2": 250.0,
-        "stroke": "#111111",
-        "stroke-width": 2.0
-      },
-      "source_ref": "slot.diagram.diameter",
-      "refs": {
-        "layout_slot_id": "slot.diagram.diameter"
-      }
-    },
-    {
       "id": "slot.qnum.text",
       "type": "text",
       "attributes": {
         "x": 10.0,
         "y": 50.0,
-        "max_width": 812.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 30
@@ -109,7 +108,6 @@
       "attributes": {
         "x": 225.0,
         "y": 255.0,
-        "max_width": 812.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 30
@@ -126,7 +124,6 @@
       "attributes": {
         "x": 475.0,
         "y": 250.0,
-        "max_width": 812.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 30
@@ -143,7 +140,6 @@
       "attributes": {
         "x": 50.0,
         "y": 395.0,
-        "max_width": 812.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 30
@@ -160,7 +156,6 @@
       "attributes": {
         "x": 10.0,
         "y": 95.0,
-        "max_width": 812.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 30

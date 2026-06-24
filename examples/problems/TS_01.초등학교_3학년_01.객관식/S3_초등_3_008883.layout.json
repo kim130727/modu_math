@@ -1,0 +1,349 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008883",
+  "title": "표를 보고 알맞은 말을 선택하기",
+  "canvas": {
+    "width": 960.0,
+    "height": 500.0,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.table.border",
+        "slot.q1",
+        "slot.q2",
+        "slot.table_title",
+        "slot.table.header.1",
+        "slot.table.header.2",
+        "slot.table.header.3",
+        "slot.table.header.4",
+        "slot.table.header.5",
+        "slot.table.header.6",
+        "slot.table.row1.label",
+        "slot.table.row1.c1",
+        "slot.table.row1.c2",
+        "slot.table.row1.c3",
+        "slot.table.row1.c4",
+        "slot.table.row1.c5",
+        "slot.table.row2.label",
+        "slot.table.row2.c1",
+        "slot.table.row2.c2",
+        "slot.table.row2.c3",
+        "slot.table.row2.c4",
+        "slot.table.row2.c5",
+        "slot.choice"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "□ 47.",
+        "style_role": "question",
+        "x": 12.0,
+        "y": 24.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "연우네 학교 학생들이 방과 후 수업으로 배우고 싶어 하는 운동을 조사하여 나타낸 표입니다. 표를 보고 알맞은 말을 선택해 보세요.",
+        "style_role": "question",
+        "x": 58.0,
+        "y": 24.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table_title",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "여학생과 남학생이 배우고 싶어 하는 운동",
+        "style_role": "question",
+        "x": 480.0,
+        "y": 115.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.border",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 154.0,
+        "y": 151.0,
+        "width": 660.0,
+        "height": 127.0
+      }
+    },
+    {
+      "id": "slot.table.header.1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "운동",
+        "style_role": "question",
+        "x": 236.0,
+        "y": 174.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.header.2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "축구",
+        "style_role": "question",
+        "x": 324.0,
+        "y": 174.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.header.3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "골프",
+        "style_role": "question",
+        "x": 413.0,
+        "y": 174.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.header.4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "야구",
+        "style_role": "question",
+        "x": 507.0,
+        "y": 174.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.header.5",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "스쿼시",
+        "style_role": "question",
+        "x": 601.0,
+        "y": 174.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.header.6",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "합계",
+        "style_role": "question",
+        "x": 689.0,
+        "y": 174.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.row1.label",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "여학생 수(명)",
+        "style_role": "question",
+        "x": 181.0,
+        "y": 214.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.row1.c1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "18",
+        "style_role": "question",
+        "x": 332.0,
+        "y": 214.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.row1.c2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "10",
+        "style_role": "question",
+        "x": 417.0,
+        "y": 214.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.row1.c3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "27",
+        "style_role": "question",
+        "x": 512.0,
+        "y": 214.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.row1.c4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "35",
+        "style_role": "question",
+        "x": 602.0,
+        "y": 214.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.row1.c5",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "90",
+        "style_role": "question",
+        "x": 689.0,
+        "y": 214.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.row2.label",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "남학생 수(명)",
+        "style_role": "question",
+        "x": 181.0,
+        "y": 252.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.row2.c1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "32",
+        "style_role": "question",
+        "x": 332.0,
+        "y": 252.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.row2.c2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "20",
+        "style_role": "question",
+        "x": 417.0,
+        "y": 252.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.row2.c3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "28",
+        "style_role": "question",
+        "x": 512.0,
+        "y": 252.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.row2.c4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "15",
+        "style_role": "question",
+        "x": 602.0,
+        "y": 252.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.row2.c5",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "95",
+        "style_role": "question",
+        "x": 689.0,
+        "y": 252.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "여학생이 가장 많이 배우고 싶어 하는 운동은 ( 축구, 골프, 야구, 스쿼시 )입니다.",
+        "style_role": "question",
+        "x": 220.0,
+        "y": 330.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.table.border",
+    "slot.q1",
+    "slot.q2",
+    "slot.table_title",
+    "slot.table.header.1",
+    "slot.table.header.2",
+    "slot.table.header.3",
+    "slot.table.header.4",
+    "slot.table.header.5",
+    "slot.table.header.6",
+    "slot.table.row1.label",
+    "slot.table.row1.c1",
+    "slot.table.row1.c2",
+    "slot.table.row1.c3",
+    "slot.table.row1.c4",
+    "slot.table.row1.c5",
+    "slot.table.row2.label",
+    "slot.table.row2.c1",
+    "slot.table.row2.c2",
+    "slot.table.row2.c3",
+    "slot.table.row2.c4",
+    "slot.table.row2.c5",
+    "slot.choice"
+  ]
+}

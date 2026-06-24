@@ -1,0 +1,180 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_009019",
+  "title": "선분과 반직선의 다른 점",
+  "canvas": {
+    "width": 832,
+    "height": 368,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q_num",
+        "slot.speech_left_text",
+        "slot.name_left_text",
+        "slot.speech_right_text",
+        "slot.name_right_text"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.speech_left",
+        "slot.name_left",
+        "slot.speech_right",
+        "slot.name_right",
+        "slot.choice"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q_num",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "□ 57. 선분과 반직선의 다른 점을 바르게 말한 사람의 이름을 선택하세요.",
+        "style_role": "question",
+        "x": 12.0,
+        "y": 24.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.speech_left",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 94.0,
+        "y": 42.0,
+        "width": 178.0,
+        "height": 74.0,
+        "rx": 22.0,
+        "ry": 22.0
+      }
+    },
+    {
+      "id": "slot.speech_left_text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "선분은 곧은 선이고,\n반직선은 굽은 선이야.",
+        "style_role": "body",
+        "x": 114.0,
+        "y": 68.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.name_left",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 182.0,
+        "y": 135.0,
+        "width": 58.0,
+        "height": 28.0,
+        "rx": 6.0,
+        "ry": 6.0
+      }
+    },
+    {
+      "id": "slot.name_left_text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "미정",
+        "style_role": "label",
+        "x": 201.0,
+        "y": 156.0,
+        "font_size": 24
+      }
+    },
+    {
+      "id": "slot.speech_right",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 558.0,
+        "y": 42.0,
+        "width": 176.0,
+        "height": 74.0,
+        "rx": 22.0,
+        "ry": 22.0
+      }
+    },
+    {
+      "id": "slot.speech_right_text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "선분은 끝이 있고,\n반직선은 끝이 없어.",
+        "style_role": "body",
+        "x": 578.0,
+        "y": 68.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.name_right",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 588.0,
+        "y": 135.0,
+        "width": 58.0,
+        "height": 28.0,
+        "rx": 6.0,
+        "ry": 6.0
+      }
+    },
+    {
+      "id": "slot.name_right_text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "윤후",
+        "style_role": "label",
+        "x": 607.0,
+        "y": 156.0,
+        "font_size": 24
+      }
+    },
+    {
+      "id": "slot.choice",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "( 미정 , 윤후 )",
+        "style_role": "body",
+        "x": 294.0,
+        "y": 202.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q_num",
+    "slot.speech_left_text",
+    "slot.name_left_text",
+    "slot.speech_right_text",
+    "slot.name_right_text",
+    "region.diagram",
+    "slot.speech_left",
+    "slot.name_left",
+    "slot.speech_right",
+    "slot.name_right",
+    "slot.choice"
+  ]
+}

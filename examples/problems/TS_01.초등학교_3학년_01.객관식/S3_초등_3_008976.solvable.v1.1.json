@@ -1,0 +1,79 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008976",
+  "problem_type": "도형_판별",
+  "inputs": {
+    "total_ticks": 4,
+    "target_label": "직선",
+    "target_ticks": 1,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.line_1",
+      "value": {
+        "kind": "straight"
+      }
+    },
+    {
+      "ref": "obj.line_2",
+      "value": {
+        "kind": "curve"
+      }
+    },
+    {
+      "ref": "obj.line_3",
+      "value": {
+        "kind": "straight"
+      }
+    },
+    {
+      "ref": "obj.line_4",
+      "value": {
+        "kind": "straight"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "selected_shape"
+  },
+  "method": "shape_classification",
+  "plan": [
+    "제시된 선들의 모양을 비교한다.",
+    "휘어 있지 않고 곧은 선을 찾는다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "선들의 곡률을 비교한다",
+      "value": "직선 3개, 곡선 1개"
+    },
+    {
+      "id": "step.2",
+      "expr": "곡선이 아닌 선을 선택한다",
+      "value": "직선"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "선이 곧은 모양인가",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "selected_shape",
+      "description": "직선"
+    },
+    "value": 1,
+    "unit": ""
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "problem_id": "S3_초등_3_008885",
+  "problem_type": "judgment",
+  "metadata": {
+    "title": "학생들이 좋아하는 민속놀이",
+    "tags": [],
+    "question": "좋아하는 학생이 가장 많은 민속놀이부터 순서대로 써보았습니다. 바로게 쓰였으면 ○표, 그렇지 않으면 ×표를 선택하세요.",
+    "required_layout_ids": [
+      "slot.table.border",
+      "slot.table.cell.1_1",
+      "slot.table.cell.1_2",
+      "slot.table.cell.1_3",
+      "slot.table.cell.1_4",
+      "slot.table.cell.1_5",
+      "slot.table.cell.1_6",
+      "slot.table.cell.2_1",
+      "slot.table.cell.2_2",
+      "slot.table.cell.2_3",
+      "slot.table.cell.2_4",
+      "slot.table.cell.2_5",
+      "slot.table.cell.2_6"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "표를 보고 순서가 맞는지 판단한다."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.table",
+        "type": "table",
+        "topic": "학생들이 좋아하는 민속놀이"
+      },
+      {
+        "id": "obj.games",
+        "type": "category_set",
+        "items": [
+          "씨름",
+          "연날리기",
+          "윷놀이",
+          "널뛰기"
+        ]
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.table",
+          "rel.supporting_statement"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.order"
+        ]
+      },
+      "plan": {
+        "method": "compare_order",
+        "description": "학생 수가 많은 민속놀이부터 나열된 순서가 맞는지 판단한다."
+      },
+      "execute": {
+        "expected_operations": [
+          "inspect_table",
+          "compare_counts",
+          "check_order"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "order_consistency_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "order_judgment",
+      "description": "좋아하는 학생이 가장 많은 민속놀이부터 순서대로 썼는지 판단"
+    },
+    "value": 1,
+    "unit": ""
+  }
+}

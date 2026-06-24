@@ -1,0 +1,108 @@
+{
+  "problem_id": "S3_초등_3_009021",
+  "view_box": {
+    "width": 850.0,
+    "height": 520.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.q1.text",
+      "type": "text",
+      "attributes": {
+        "x": 24.0,
+        "y": 36.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q1",
+      "refs": {
+        "layout_slot_id": "slot.q1"
+      },
+      "text": "59. 반직선을 읽는 방법에 대한 설명으로 옳은 것을 찾아 기호를 선택하세요."
+    },
+    {
+      "id": "slot.box.bg.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 92.0,
+        "y": 75.0,
+        "width": 708.0,
+        "height": 133.0,
+        "fill": "#DCD8F1",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.box.bg",
+      "refs": {
+        "layout_slot_id": "slot.box.bg"
+      }
+    },
+    {
+      "id": "slot.c1.text",
+      "type": "text",
+      "attributes": {
+        "x": 115.0,
+        "y": 107.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.c1",
+      "refs": {
+        "layout_slot_id": "slot.c1"
+      },
+      "text": "㉠ 반직선은 두 점 중 어느 점을 먼저 읽어도 상관없습니다."
+    },
+    {
+      "id": "slot.c2.text",
+      "type": "text",
+      "attributes": {
+        "x": 115.0,
+        "y": 143.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.c2",
+      "refs": {
+        "layout_slot_id": "slot.c2"
+      },
+      "text": "㉡ 반직선 ㄴㄱ은 반직선 ㄴㄱ이라고 읽을 수 있습니다."
+    },
+    {
+      "id": "slot.c3.text",
+      "type": "text",
+      "attributes": {
+        "x": 115.0,
+        "y": 179.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.c3",
+      "refs": {
+        "layout_slot_id": "slot.c3"
+      },
+      "text": "㉢ 반직선은 반드시 시작점을 먼저 읽습니다."
+    },
+    {
+      "id": "slot.choice.text",
+      "type": "text",
+      "attributes": {
+        "x": 639.0,
+        "y": 255.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice",
+      "refs": {
+        "layout_slot_id": "slot.choice"
+      },
+      "text": "( ㉠ , ㉡ , ㉢ )"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

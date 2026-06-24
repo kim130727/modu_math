@@ -1,0 +1,76 @@
+{
+  "problem_id": "S3_초등_3_008944",
+  "problem_type": "picture_graph_comparison",
+  "metadata": {
+    "title": "그림그래프와 비교",
+    "tags": [
+      "그림그래프",
+      "비교",
+      "초등수학"
+    ],
+    "instruction": "그림그래프를 보고 된장찌개보다 더 많이 팔린 음식을 고르기",
+    "question": "된장찌개보다 더 많이 팔린 음식을 모두 선택하는 문제",
+    "required_layout_ids": [
+      "slot.table.outer",
+      "slot.table.v1",
+      "slot.table.v2",
+      "slot.table.v3",
+      "slot.table.h1",
+      "slot.legend.big",
+      "slot.legend.small"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.kimchi",
+        "type": "food",
+        "name": "김치찌개"
+      },
+      {
+        "id": "obj.doenjang",
+        "type": "food",
+        "name": "된장찌개"
+      },
+      {
+        "id": "obj.bibim",
+        "type": "food",
+        "name": "비빔밥"
+      },
+      {
+        "id": "obj.naeng",
+        "type": "food",
+        "name": "냉면"
+      },
+      {
+        "id": "obj.legend.big",
+        "type": "legend_unit",
+        "name": "100그릇"
+      },
+      {
+        "id": "obj.legend.small",
+        "type": "legend_unit",
+        "name": "10그릇"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "selected_food_names",
+      "description": "된장찌개보다 더 많이 팔린 음식"
+    },
+    "value": [
+      "김치찌개",
+      "냉면"
+    ],
+    "unit": ""
+  }
+}

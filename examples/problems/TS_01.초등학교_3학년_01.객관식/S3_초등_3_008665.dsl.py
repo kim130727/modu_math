@@ -14,7 +14,7 @@ def build_problem_template() -> ProblemTemplate:
     return ProblemTemplate(
         id="S3_초등_3_008665",
         title="원의 지름",
-        canvas=Canvas(width=960, height=420, coordinate_mode="logical"),
+        canvas=Canvas(width=850, height=420, coordinate_mode="logical"),
         regions=(
             Region(
                 id="region.stem",

@@ -1,0 +1,592 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_009032",
+  "title": "정사각형을 알아보고 합시다. 물음에 답하시오.",
+  "canvas": {
+    "width": 920,
+    "height": 420,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.header",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.no",
+        "slot.title"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "figure",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.shape.a",
+        "slot.shape.b",
+        "slot.shape.c",
+        "slot.shape.d",
+        "slot.shape.e",
+        "slot.grid.v1",
+        "slot.grid.v2",
+        "slot.grid.v3",
+        "slot.grid.v4",
+        "slot.grid.v5",
+        "slot.grid.v6",
+        "slot.grid.v7",
+        "slot.grid.v8",
+        "slot.grid.v9",
+        "slot.grid.v10",
+        "slot.grid.v11",
+        "slot.grid.v12",
+        "slot.grid.v13",
+        "slot.grid.v14",
+        "slot.grid.h1",
+        "slot.grid.h2",
+        "slot.grid.h3",
+        "slot.grid.h4",
+        "slot.grid.h5",
+        "slot.grid.h6",
+        "slot.lb.a",
+        "slot.lb.b",
+        "slot.lb.c",
+        "slot.lb.d",
+        "slot.lb.e"
+      ]
+    },
+    {
+      "id": "region.body",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q1",
+        "slot.choice",
+        "slot.define",
+        "slot.final"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.no",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 13.0,
+        "y": 14.0,
+        "width": 16.0,
+        "height": 16.0
+      }
+    },
+    {
+      "id": "slot.title",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "70. 정사각형을 알아보고 합시다. 물음에 답하시오.",
+        "style_role": "question",
+        "x": 38.0,
+        "y": 28.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.grid.v1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 228.0,
+        "y1": 44.0,
+        "x2": 228.0,
+        "y2": 152.0
+      }
+    },
+    {
+      "id": "slot.grid.v2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 252.0,
+        "y1": 44.0,
+        "x2": 252.0,
+        "y2": 152.0
+      }
+    },
+    {
+      "id": "slot.grid.v3",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 276.0,
+        "y1": 44.0,
+        "x2": 276.0,
+        "y2": 152.0
+      }
+    },
+    {
+      "id": "slot.grid.v4",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 300.0,
+        "y1": 44.0,
+        "x2": 300.0,
+        "y2": 152.0
+      }
+    },
+    {
+      "id": "slot.grid.v5",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 324.0,
+        "y1": 44.0,
+        "x2": 324.0,
+        "y2": 152.0
+      }
+    },
+    {
+      "id": "slot.grid.v6",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 348.0,
+        "y1": 44.0,
+        "x2": 348.0,
+        "y2": 152.0
+      }
+    },
+    {
+      "id": "slot.grid.v7",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 372.0,
+        "y1": 44.0,
+        "x2": 372.0,
+        "y2": 152.0
+      }
+    },
+    {
+      "id": "slot.grid.v8",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 396.0,
+        "y1": 44.0,
+        "x2": 396.0,
+        "y2": 152.0
+      }
+    },
+    {
+      "id": "slot.grid.v9",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 420.0,
+        "y1": 44.0,
+        "x2": 420.0,
+        "y2": 152.0
+      }
+    },
+    {
+      "id": "slot.grid.v10",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 444.0,
+        "y1": 44.0,
+        "x2": 444.0,
+        "y2": 152.0
+      }
+    },
+    {
+      "id": "slot.grid.v11",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 468.0,
+        "y1": 44.0,
+        "x2": 468.0,
+        "y2": 152.0
+      }
+    },
+    {
+      "id": "slot.grid.v12",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 492.0,
+        "y1": 44.0,
+        "x2": 492.0,
+        "y2": 152.0
+      }
+    },
+    {
+      "id": "slot.grid.v13",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 516.0,
+        "y1": 44.0,
+        "x2": 516.0,
+        "y2": 152.0
+      }
+    },
+    {
+      "id": "slot.grid.v14",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 540.0,
+        "y1": 44.0,
+        "x2": 540.0,
+        "y2": 152.0
+      }
+    },
+    {
+      "id": "slot.grid.h1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 228.0,
+        "y1": 44.0,
+        "x2": 540.0,
+        "y2": 44.0
+      }
+    },
+    {
+      "id": "slot.grid.h2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 228.0,
+        "y1": 68.0,
+        "x2": 540.0,
+        "y2": 68.0
+      }
+    },
+    {
+      "id": "slot.grid.h3",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 228.0,
+        "y1": 92.0,
+        "x2": 540.0,
+        "y2": 92.0
+      }
+    },
+    {
+      "id": "slot.grid.h4",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 228.0,
+        "y1": 116.0,
+        "x2": 540.0,
+        "y2": 116.0
+      }
+    },
+    {
+      "id": "slot.grid.h5",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 228.0,
+        "y1": 140.0,
+        "x2": 540.0,
+        "y2": 140.0
+      }
+    },
+    {
+      "id": "slot.grid.h6",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 228.0,
+        "y1": 152.0,
+        "x2": 540.0,
+        "y2": 152.0
+      }
+    },
+    {
+      "id": "slot.shape.a",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            247.0,
+            56.0
+          ],
+          [
+            315.0,
+            56.0
+          ],
+          [
+            315.0,
+            142.0
+          ],
+          [
+            247.0,
+            142.0
+          ]
+        ]
+      }
+    },
+    {
+      "id": "slot.shape.b",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            346.0,
+            85.0
+          ],
+          [
+            379.0,
+            64.0
+          ],
+          [
+            413.0,
+            85.0
+          ],
+          [
+            379.0,
+            106.0
+          ]
+        ]
+      }
+    },
+    {
+      "id": "slot.shape.c",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            433.0,
+            62.0
+          ],
+          [
+            508.0,
+            62.0
+          ],
+          [
+            527.0,
+            106.0
+          ],
+          [
+            414.0,
+            106.0
+          ]
+        ]
+      }
+    },
+    {
+      "id": "slot.shape.d",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            548.0,
+            62.0
+          ],
+          [
+            619.0,
+            62.0
+          ],
+          [
+            619.0,
+            106.0
+          ],
+          [
+            548.0,
+            106.0
+          ]
+        ]
+      }
+    },
+    {
+      "id": "slot.shape.e",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            647.0,
+            62.0
+          ],
+          [
+            694.0,
+            62.0
+          ],
+          [
+            718.0,
+            142.0
+          ],
+          [
+            670.0,
+            142.0
+          ]
+        ]
+      }
+    },
+    {
+      "id": "slot.lb.a",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "가",
+        "style_role": "label",
+        "x": 271.0,
+        "y": 108.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.lb.b",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "나",
+        "style_role": "label",
+        "x": 371.0,
+        "y": 92.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.lb.c",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "다",
+        "style_role": "label",
+        "x": 472.0,
+        "y": 89.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.lb.d",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "라",
+        "style_role": "label",
+        "x": 575.0,
+        "y": 89.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.lb.e",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "마",
+        "style_role": "label",
+        "x": 688.0,
+        "y": 117.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "(4) 정사각형을 찾아 기호를 선택하세요.",
+        "style_role": "question",
+        "x": 15.0,
+        "y": 208.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "( 가 , 나 , 다 , 라 , 마 )",
+        "style_role": "question",
+        "x": 661.0,
+        "y": 258.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.define",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "(4) 정사각형은 네 각이 모두 직각이고 네 변의 길이가 모두 같은 사각형입니다.",
+        "style_role": "question",
+        "x": 15.0,
+        "y": 316.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.final",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "(4) 라",
+        "style_role": "question",
+        "x": 15.0,
+        "y": 386.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.header",
+    "slot.no",
+    "slot.title",
+    "region.diagram",
+    "slot.shape.a",
+    "slot.shape.b",
+    "slot.shape.c",
+    "slot.shape.d",
+    "slot.shape.e",
+    "slot.grid.v1",
+    "slot.grid.v2",
+    "slot.grid.v3",
+    "slot.grid.v4",
+    "slot.grid.v5",
+    "slot.grid.v6",
+    "slot.grid.v7",
+    "slot.grid.v8",
+    "slot.grid.v9",
+    "slot.grid.v10",
+    "slot.grid.v11",
+    "slot.grid.v12",
+    "slot.grid.v13",
+    "slot.grid.v14",
+    "slot.grid.h1",
+    "slot.grid.h2",
+    "slot.grid.h3",
+    "slot.grid.h4",
+    "slot.grid.h5",
+    "slot.grid.h6",
+    "slot.lb.a",
+    "slot.lb.b",
+    "slot.lb.c",
+    "slot.lb.d",
+    "slot.lb.e",
+    "region.body",
+    "slot.q1",
+    "slot.choice",
+    "slot.define",
+    "slot.final"
+  ]
+}

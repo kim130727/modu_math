@@ -1,0 +1,219 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_009017",
+  "title": "반직선 선택하기",
+  "canvas": {
+    "width": 646,
+    "height": 406,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q_no",
+        "slot.q_text"
+      ]
+    },
+    {
+      "id": "region.choices",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice_box",
+        "slot.choice1.line",
+        "slot.choice2.line",
+        "slot.choice1.pt_l",
+        "slot.choice1.pt_r",
+        "slot.choice2.pt_l",
+        "slot.choice2.pt_r",
+        "slot.choice1.lb_l",
+        "slot.choice1.lb_r",
+        "slot.choice2.lb_l",
+        "slot.choice2.lb_r"
+      ]
+    },
+    {
+      "id": "region.answer",
+      "role": "answer",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q_no",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "55.",
+        "style_role": "question",
+        "x": 18.0,
+        "y": 28.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q_text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "반직선 ㄷ ㄹ을 선택하세요.",
+        "style_role": "question",
+        "x": 60.0,
+        "y": 28.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice_box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 259.0,
+        "y": 41.0,
+        "width": 352.0,
+        "height": 110.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.choice1.line",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 327.0,
+        "y1": 90.0,
+        "x2": 494.0,
+        "y2": 90.0
+      }
+    },
+    {
+      "id": "slot.choice1.pt_l",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 329.0,
+        "cy": 90.0,
+        "r": 2.5,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.choice1.pt_r",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 492.0,
+        "cy": 90.0,
+        "r": 2.5,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.choice1.lb_l",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄷ",
+        "style_role": "label",
+        "x": 325.0,
+        "y": 78.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice1.lb_r",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄹ",
+        "style_role": "label",
+        "x": 488.0,
+        "y": 78.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice2.line",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 327.0,
+        "y1": 130.0,
+        "x2": 494.0,
+        "y2": 130.0
+      }
+    },
+    {
+      "id": "slot.choice2.pt_l",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 329.0,
+        "cy": 130.0,
+        "r": 2.5,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.choice2.pt_r",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 492.0,
+        "cy": 130.0,
+        "r": 2.5,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.choice2.lb_l",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄷ",
+        "style_role": "label",
+        "x": 325.0,
+        "y": 118.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice2.lb_r",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄹ",
+        "style_role": "label",
+        "x": 488.0,
+        "y": 118.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q_no",
+    "slot.q_text",
+    "region.choices",
+    "slot.choice_box",
+    "slot.choice1.line",
+    "slot.choice2.line",
+    "slot.choice1.pt_l",
+    "slot.choice1.pt_r",
+    "slot.choice2.pt_l",
+    "slot.choice2.pt_r",
+    "slot.choice1.lb_l",
+    "slot.choice1.lb_r",
+    "slot.choice2.lb_l",
+    "slot.choice2.lb_r",
+    "region.answer"
+  ]
+}

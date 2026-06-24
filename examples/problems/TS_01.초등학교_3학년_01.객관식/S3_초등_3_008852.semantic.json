@@ -1,0 +1,95 @@
+{
+  "problem_id": "S3_초등_3_008852",
+  "problem_type": "comparison_weight",
+  "metadata": {
+    "title": "파프리카와 브로콜리의 무게 비교",
+    "tags": [],
+    "question": "저울과 바둑돌의 대응 관계를 비교하여 파프리카와 브로콜리 중 더 무거운 것을 고르는 문제",
+    "required_layout_ids": [
+      "slot.left.label1",
+      "slot.left.label2",
+      "slot.right.label1",
+      "slot.right.label2",
+      "slot.left.balancer",
+      "slot.left.pan.left",
+      "slot.left.pan.right",
+      "slot.right.balancer",
+      "slot.right.pan.left",
+      "slot.right.pan.right"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "파프리카와 브로콜리 중 어느 것이 더 무거운지 선택해 보세요."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.paprika",
+        "type": "vegetable",
+        "name": "파프리카"
+      },
+      {
+        "id": "obj.broccoli",
+        "type": "vegetable",
+        "name": "브로콜리"
+      },
+      {
+        "id": "obj.stones_50",
+        "type": "reference_weight",
+        "name": "바둑돌 50개",
+        "count": 50
+      },
+      {
+        "id": "obj.stones_62",
+        "type": "reference_weight",
+        "name": "바둑돌 62개",
+        "count": 62
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.paprika",
+          "obj.broccoli",
+          "obj.stones_50",
+          "obj.stones_62"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.paprika_equals_50",
+          "rel.broccoli_equals_62",
+          "rel.compare_50_62"
+        ]
+      },
+      "plan": {
+        "method": "compare_reference_weights",
+        "description": "각 채소가 대응하는 바둑돌 개수를 비교하여 더 큰 쪽을 찾는다."
+      },
+      "execute": {
+        "expected_operations": [
+          "identify_correspondence",
+          "compare_counts"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "count_comparison_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "heavier_object",
+      "description": "파프리카와 브로콜리 중 더 무거운 것"
+    },
+    "value": "브로콜리",
+    "unit": ""
+  }
+}

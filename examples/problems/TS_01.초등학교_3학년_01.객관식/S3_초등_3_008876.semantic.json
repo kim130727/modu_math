@@ -1,0 +1,82 @@
+{
+  "problem_id": "S3_초등_3_008876",
+  "problem_type": "comparison_order",
+  "metadata": {
+    "title": "무게가 두 번째로 가벼운 것의 이름",
+    "tags": [
+      "비교",
+      "무게",
+      "순서"
+    ],
+    "question": "무게가 두 번째로 가벼운 것의 이름을 선택해 보세요.",
+    "required_layout_ids": [
+      "slot.obj.baseball",
+      "slot.obj.eraser",
+      "slot.obj.chair"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "세 물건의 무게 순서를 비교해 두 번째로 가벼운 대상을 고른다."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.baseball",
+        "type": "object",
+        "name": "야구공"
+      },
+      {
+        "id": "obj.eraser",
+        "type": "object",
+        "name": "지우개"
+      },
+      {
+        "id": "obj.chair",
+        "type": "object",
+        "name": "의자"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.baseball",
+          "obj.eraser",
+          "obj.chair"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.weight_order"
+        ]
+      },
+      "plan": {
+        "method": "order_by_weight",
+        "description": "무게의 상대적 순서를 읽어 두 번째로 가벼운 대상을 찾는다."
+      },
+      "execute": {
+        "expected_operations": [
+          "compare_weights",
+          "identify_second_lightest"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "order_consistency_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "selected_name",
+      "description": "두 번째로 가벼운 것의 이름"
+    },
+    "value": "야구공",
+    "unit": ""
+  }
+}

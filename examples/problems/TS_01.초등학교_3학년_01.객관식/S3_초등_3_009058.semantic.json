@@ -1,0 +1,165 @@
+{
+  "problem_id": "S3_초등_3_009058",
+  "problem_type": "도형_분류",
+  "metadata": {
+    "title": "직각삼각형을 모두 선택하세요",
+    "tags": [],
+    "question": "직각삼각형을 모두 선택하세요.",
+    "required_layout_ids": [
+      "slot.grid.top.bg",
+      "slot.grid.top.v1",
+      "slot.grid.top.v2",
+      "slot.grid.top.v3",
+      "slot.grid.top.v4",
+      "slot.grid.top.v5",
+      "slot.grid.top.v6",
+      "slot.grid.top.v7",
+      "slot.grid.top.v8",
+      "slot.grid.top.v9",
+      "slot.grid.top.v10",
+      "slot.grid.top.v11",
+      "slot.grid.top.v12",
+      "slot.grid.top.v13",
+      "slot.grid.top.v14",
+      "slot.grid.top.v15",
+      "slot.grid.top.v16",
+      "slot.grid.top.v17",
+      "slot.grid.top.v18",
+      "slot.grid.top.v19",
+      "slot.grid.top.h1",
+      "slot.grid.top.h2",
+      "slot.grid.top.h3",
+      "slot.grid.top.h4",
+      "slot.grid.top.h5",
+      "slot.grid.top.h6",
+      "slot.grid.top.h7",
+      "slot.shape.가",
+      "slot.shape.나",
+      "slot.shape.다",
+      "slot.shape.라",
+      "slot.shape.마",
+      "slot.right.나",
+      "slot.right.라",
+      "slot.grid.bottom.bg",
+      "slot.grid.bottom.v1",
+      "slot.grid.bottom.v2",
+      "slot.grid.bottom.v3",
+      "slot.grid.bottom.v4",
+      "slot.grid.bottom.v5",
+      "slot.grid.bottom.v6",
+      "slot.grid.bottom.v7",
+      "slot.grid.bottom.v8",
+      "slot.grid.bottom.v9",
+      "slot.grid.bottom.v10",
+      "slot.grid.bottom.v11",
+      "slot.grid.bottom.v12",
+      "slot.grid.bottom.v13",
+      "slot.grid.bottom.v14",
+      "slot.grid.bottom.v15",
+      "slot.grid.bottom.v16",
+      "slot.grid.bottom.v17",
+      "slot.grid.bottom.v18",
+      "slot.grid.bottom.v19",
+      "slot.grid.bottom.h1",
+      "slot.grid.bottom.h2",
+      "slot.grid.bottom.h3",
+      "slot.grid.bottom.h4",
+      "slot.grid.bottom.h5",
+      "slot.grid.bottom.h6",
+      "slot.grid.bottom.h7",
+      "slot.shape2.가",
+      "slot.shape2.나",
+      "slot.shape2.다",
+      "slot.shape2.라",
+      "slot.shape2.마",
+      "slot.right2.나",
+      "slot.right2.라"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "보기 중 직각삼각형을 고르는 문제"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.triangle.가",
+        "type": "triangle",
+        "label": "가"
+      },
+      {
+        "id": "obj.triangle.나",
+        "type": "triangle",
+        "label": "나"
+      },
+      {
+        "id": "obj.triangle.다",
+        "type": "triangle",
+        "label": "다"
+      },
+      {
+        "id": "obj.triangle.라",
+        "type": "triangle",
+        "label": "라"
+      },
+      {
+        "id": "obj.triangle.마",
+        "type": "triangle",
+        "label": "마"
+      },
+      {
+        "id": "obj.right_mark.나",
+        "type": "right_angle_marker",
+        "target": "obj.triangle.나"
+      },
+      {
+        "id": "obj.right_mark.라",
+        "type": "right_angle_marker",
+        "target": "obj.triangle.라"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.triangle.가",
+          "obj.triangle.나",
+          "obj.triangle.다",
+          "obj.triangle.라",
+          "obj.triangle.마"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.classify"
+        ]
+      },
+      "plan": {
+        "method": "도형_분류",
+        "description": "직각 표시가 있는 삼각형을 찾는다."
+      },
+      "execute": {
+        "expected_operations": [
+          "identify_right_angle_marker",
+          "select_matching_labels"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "match_visible_marker_to_label"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "selected_labels",
+      "description": "직각삼각형으로 선택할 라벨"
+    },
+    "value": 2,
+    "unit": ""
+  }
+}

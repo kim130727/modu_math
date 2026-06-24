@@ -1,0 +1,142 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008942",
+  "problem_type": "table_comparison_choice",
+  "inputs": {
+    "total_ticks": 1,
+    "target_label": "가장 많은 학생이 좋아하는 음료",
+    "target_ticks": 1,
+    "target_count": 4,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.drink.milk",
+      "value": {
+        "name": "우유",
+        "girl": 3,
+        "boy": 5
+      }
+    },
+    {
+      "ref": "obj.drink.soda",
+      "value": {
+        "name": "탄산음료",
+        "girl": 7,
+        "boy": 2
+      }
+    },
+    {
+      "ref": "obj.drink.juice",
+      "value": {
+        "name": "주스",
+        "girl": 2,
+        "boy": 9
+      }
+    },
+    {
+      "ref": "obj.drink.shikhye",
+      "value": {
+        "name": "식혜",
+        "girl": 4,
+        "boy": 1
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "multiple_choice"
+  },
+  "method": "sum_and_compare",
+  "plan": [
+    "각 음료별 여학생 수와 남학생 수를 더한다.",
+    "가장 큰 합을 찾는다.",
+    "그 합에 해당하는 음료를 답으로 고른다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "3 + 5",
+      "value": 8
+    },
+    {
+      "id": "step.2",
+      "expr": "7 + 2",
+      "value": 9
+    },
+    {
+      "id": "step.3",
+      "expr": "2 + 9",
+      "value": 11
+    },
+    {
+      "id": "step.4",
+      "expr": "4 + 1",
+      "value": 5
+    },
+    {
+      "id": "step.5",
+      "expr": "11>9>8>5",
+      "value": 11
+    },
+    {
+      "id": "step.6",
+      "expr": "가장 큰 값에 해당하는 음료 선택",
+      "value": 3
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "3 + 5 = 8",
+      "expected": 8,
+      "actual": 8,
+      "pass": true
+    },
+    {
+      "id": "check.2",
+      "expr": "7 + 2 = 9",
+      "expected": 9,
+      "actual": 9,
+      "pass": true
+    },
+    {
+      "id": "check.3",
+      "expr": "2 + 9 = 11",
+      "expected": 11,
+      "actual": 11,
+      "pass": true
+    },
+    {
+      "id": "check.4",
+      "expr": "4 + 1 = 5",
+      "expected": 5,
+      "actual": 5,
+      "pass": true
+    },
+    {
+      "id": "check.5",
+      "expr": "최대값이 주스와 일치하는지 확인",
+      "expected": 3,
+      "actual": 3,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "multiple_choice",
+      "description": "가장 많은 학생이 좋아하는 음료",
+      "choices": [
+        "우유",
+        "탄산음료",
+        "주스",
+        "식혜"
+      ]
+    },
+    "value": 3,
+    "unit": ""
+  }
+}

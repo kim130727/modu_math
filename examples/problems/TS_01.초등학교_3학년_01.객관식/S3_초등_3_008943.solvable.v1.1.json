@@ -1,0 +1,90 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008943",
+  "problem_type": "picture_graph_ordering",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "가장 많이 팔린 음식부터 순서",
+    "target_ticks": 4,
+    "target_count": 4,
+    "unit": "그릇"
+  },
+  "given": [
+    {
+      "ref": "obj.foods",
+      "value": [
+        "김치찌개",
+        "된장찌개",
+        "비빔밥",
+        "냉면"
+      ]
+    },
+    {
+      "ref": "obj.legend.large_bowl",
+      "value": "100그릇"
+    },
+    {
+      "ref": "obj.legend.small_bowl",
+      "value": "10그릇"
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "descending_food_order"
+  },
+  "method": "graph_comparison",
+  "plan": [
+    "그림그래프에서 각 음식의 양을 비교한다.",
+    "가장 많이 팔린 음식부터 순서대로 배열한다.",
+    "보기와 일치하는 선택지를 고른다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "그림그래프의 음식별 양을 비교한다.",
+      "value": {
+        "order": [
+          "냉면",
+          "김치찌개",
+          "된장찌개",
+          "비빔밥"
+        ]
+      }
+    },
+    {
+      "id": "step.2",
+      "expr": "비교 결과와 같은 보기를 찾는다.",
+      "value": 1
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "선택지 ①의 순서가 비교 결과와 같은가?",
+      "expected": [
+        "냉면",
+        "김치찌개",
+        "된장찌개",
+        "비빔밥"
+      ],
+      "actual": [
+        "냉면",
+        "김치찌개",
+        "된장찌개",
+        "비빔밥"
+      ],
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "descending_food_order",
+      "description": "가장 많이 팔린 음식부터 순서대로 나열"
+    },
+    "value": 1,
+    "unit": ""
+  }
+}

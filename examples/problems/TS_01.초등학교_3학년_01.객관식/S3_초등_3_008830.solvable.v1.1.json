@@ -1,0 +1,74 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008830",
+  "problem_type": "선택형_들이_단위",
+  "inputs": {
+    "total_ticks": 1,
+    "target_label": "약 3 mL의 들이에 알맞은 물건",
+    "target_ticks": 1,
+    "target_count": 1,
+    "unit": "mL"
+  },
+  "given": [
+    {
+      "ref": "obj.syringe",
+      "value": {
+        "name": "주사기"
+      }
+    },
+    {
+      "ref": "obj.watering_can",
+      "value": {
+        "name": "물뿌리개"
+      }
+    },
+    {
+      "ref": "obj.jar",
+      "value": {
+        "name": "항아리"
+      }
+    },
+    {
+      "ref": "obj.volume",
+      "value": {
+        "value": 3,
+        "unit": "mL"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "selected_object"
+  },
+  "method": "compare_scale",
+  "plan": [
+    "보기의 물건들 중 약 3 mL와 가장 잘 맞는 작은 들이의 물건을 고른다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "주사기, 물뿌리개, 항아리 중 약 3 mL에 알맞은 물건을 비교한다.",
+      "value": "주사기"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "작은 들이의 물건인가?",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "selected_object",
+      "description": "약 3 mL의 들이에 알맞은 물건"
+    },
+    "value": "주사기",
+    "unit": ""
+  }
+}

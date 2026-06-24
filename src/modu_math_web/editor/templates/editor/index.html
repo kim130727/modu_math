@@ -1411,6 +1411,127 @@
       }
     }
 
+    function pointsBox(points) {
+      if (!points || !points.length) return null;
+      const xs = points.map((p) => p.x);
+      const ys = points.map((p) => p.y);
+      const minX = Math.min(...xs);
+      const minY = Math.min(...ys);
+      const maxX = Math.max(...xs);
+      const maxY = Math.max(...ys);
+      return { x: minX, y: minY, width: maxX - minX, height: maxY - minY };
+    }
+
+    function sampleCubic(p0, p1, p2, p3, steps = 18) {
+      const out = [];
+      for (let i = 0; i <= steps; i += 1) {
+        const t = i / steps;
+        const mt = 1 - t;
+        out.push({
+          x: mt * mt * mt * p0.x + 3 * mt * mt * t * p1.x + 3 * mt * t * t * p2.x + t * t * t * p3.x,
+          y: mt * mt * mt * p0.y + 3 * mt * mt * t * p1.y + 3 * mt * t * t * p2.y + t * t * t * p3.y,
+        });
+      }
+      return out;
+    }
+
+    function sampleQuadratic(p0, p1, p2, steps = 18) {
+      const out = [];
+      for (let i = 0; i <= steps; i += 1) {
+        const t = i / steps;
+        const mt = 1 - t;
+        out.push({
+          x: mt * mt * p0.x + 2 * mt * t * p1.x + t * t * p2.x,
+          y: mt * mt * p0.y + 2 * mt * t * p1.y + t * t * p2.y,
+        });
+      }
+      return out;
+    }
+
+    function pathSampledBox(d) {
+      const tokens = pathTokens(d);
+      const points = [];
+      let i = 0;
+      let cmd = null;
+      let current = { x: 0, y: 0 };
+      let subpathStart = { x: 0, y: 0 };
+      const isCommand = (token) => /^[a-zA-Z]$/.test(token);
+      const num = (token) => Number(token);
+      const addPoint = (x, y) => {
+        current = { x, y };
+        points.push(current);
+      };
+      while (i < tokens.length) {
+        if (isCommand(tokens[i])) {
+          cmd = tokens[i].toUpperCase();
+          i += 1;
+          if (cmd === "Z") {
+            addPoint(subpathStart.x, subpathStart.y);
+            continue;
+          }
+        }
+        if (!cmd) break;
+        const count = PATH_PARAM_COUNTS[cmd];
+        if (!count || i + count > tokens.length) break;
+        const vals = tokens.slice(i, i + count).map(num);
+        if (vals.some((v) => !Number.isFinite(v))) break;
+        if (cmd === "M") {
+          addPoint(vals[0], vals[1]);
+          subpathStart = { ...current };
+        } else if (cmd === "L" || cmd === "T") {
+          addPoint(vals[0], vals[1]);
+        } else if (cmd === "H") {
+          addPoint(vals[0], current.y);
+        } else if (cmd === "V") {
+          addPoint(current.x, vals[0]);
+        } else if (cmd === "C") {
+          const p0 = current;
+          const p1 = { x: vals[0], y: vals[1] };
+          const p2 = { x: vals[2], y: vals[3] };
+          const p3 = { x: vals[4], y: vals[5] };
+          points.push(...sampleCubic(p0, p1, p2, p3));
+          current = p3;
+        } else if (cmd === "S" || cmd === "Q") {
+          const p0 = current;
+          const p1 = { x: vals[0], y: vals[1] };
+          const p2 = { x: vals[vals.length - 2], y: vals[vals.length - 1] };
+          points.push(...sampleQuadratic(p0, p1, p2));
+          current = p2;
+        } else if (cmd === "A") {
+          addPoint(vals[5], vals[6]);
+        }
+        i += count;
+      }
+      return pointsBox(points);
+    }
+
+    function slotValueBox(el) {
+      if (!el) return null;
+      const value = readSlotPatchValue(el);
+      if (!value) return null;
+      const tag = el.tagName.toLowerCase();
+      let box = null;
+      if ((tag === "rect" || tag === "image" || tag === "text") && value.x !== undefined && value.y !== undefined) {
+        const width = value.width !== undefined ? Number(value.width) : 0;
+        const height = value.height !== undefined ? Number(value.height) : 0;
+        box = { x: Number(value.x), y: Number(value.y), width, height };
+      } else if (tag === "circle" && value.cx !== undefined && value.cy !== undefined && value.r !== undefined) {
+        const r = Number(value.r);
+        box = { x: Number(value.cx) - r, y: Number(value.cy) - r, width: r * 2, height: r * 2 };
+      } else if (tag === "line" && value.x1 !== undefined) {
+        const x1 = Number(value.x1);
+        const y1 = Number(value.y1);
+        const x2 = Number(value.x2);
+        const y2 = Number(value.y2);
+        box = { x: Math.min(x1, x2), y: Math.min(y1, y2), width: Math.abs(x2 - x1), height: Math.abs(y2 - y1) };
+      } else if (tag === "polygon" && Array.isArray(value.points)) {
+        box = pointsBox(value.points.map(([x, y]) => ({ x: Number(x), y: Number(y) })));
+      } else if (tag === "path" && typeof value.d === "string") {
+        box = pathSampledBox(value.d);
+      }
+      return inflatedBoxForStroke(el, box);
+    }
+
     function hideInlineTextEditor() {
       const editor = document.getElementById("inlineTextEditor");
       if (editor) editor.style.display = "none";
@@ -3627,7 +3748,7 @@
       const elements = item && (item.isFigureGroup || item.isPaperFoldGroup || item.isMeasurementGroup || item.isTableGroup || item.isGraphPaperGroup || item.isFraction || item.isGeneratedGroup || item.isCharacterGroup) ? (item.elements || []) : [item.el];
       const boxes = [];
       for (const el of elements) {
-        const box = visualSvgBox(el, svg);
+        const box = item?.isFigureGroup ? (slotValueBox(el) || visualSvgBox(el, svg)) : visualSvgBox(el, svg);
         if (box) boxes.push(box);
       }
       if (!boxes.length) return null;
@@ -3801,6 +3922,49 @@
       updateTableAdjustmentHandles(svg, layer, item);
       layer.style.display = "";
       svg.appendChild(layer);
+    }
+
+    function translateSelectionOverlay(dx, dy) {
+      const svg = document.getElementById("svgPreview").querySelector("svg");
+      if (!svg) return false;
+      const layer = svg.querySelector("#selectionOverlay");
+      if (!layer || layer.style.display === "none") return false;
+      const moveAttr = (node, xName, yName) => {
+        if (!node || node.style.display === "none") return;
+        const x = Number(node.getAttribute(xName) || 0);
+        const y = Number(node.getAttribute(yName) || 0);
+        if (Number.isFinite(x)) node.setAttribute(xName, String(x + dx));
+        if (Number.isFinite(y)) node.setAttribute(yName, String(y + dy));
+      };
+      const bounds = layer.querySelector(".selection-bounds");
+      if (bounds && bounds.style.display !== "none") {
+        moveAttr(bounds, "x", "y");
+      }
+      const line = layer.querySelector(".selection-line");
+      if (line && line.style.display !== "none") {
+        const x1 = Number(line.getAttribute("x1") || 0);
+        const y1 = Number(line.getAttribute("y1") || 0);
+        const x2 = Number(line.getAttribute("x2") || 0);
+        const y2 = Number(line.getAttribute("y2") || 0);
+        line.setAttribute("x1", String(x1 + dx));
+        line.setAttribute("y1", String(y1 + dy));
+        line.setAttribute("x2", String(x2 + dx));
+        line.setAttribute("y2", String(y2 + dy));
+      }
+      for (const handle of layer.querySelectorAll(".selection-handle")) {
+        moveAttr(handle, "cx", "cy");
+      }
+      for (const guide of layer.querySelectorAll(".path-edit-guide")) {
+        const x1 = Number(guide.getAttribute("x1") || 0);
+        const y1 = Number(guide.getAttribute("y1") || 0);
+        const x2 = Number(guide.getAttribute("x2") || 0);
+        const y2 = Number(guide.getAttribute("y2") || 0);
+        guide.setAttribute("x1", String(x1 + dx));
+        guide.setAttribute("y1", String(y1 + dy));
+        guide.setAttribute("x2", String(x2 + dx));
+        guide.setAttribute("y2", String(y2 + dy));
+      }
+      return true;
     }
 
     function cloneBBox(box) {
@@ -5511,7 +5675,7 @@
           }
           if (!lastValue) return;
           dragState.moved = true;
-          updateSelectionHandles();
+          if (!translateSelectionOverlay(pdx, pdy)) updateSelectionHandles();
           const now = Date.now();
           if (now - lastDragStatusAt > 90) {
             lastDragStatusAt = now;

@@ -1,0 +1,119 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008969",
+  "title": "700보다 작은 것 고르기",
+  "canvas": {
+    "width": 400.0,
+    "height": 140.0,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.box",
+        "slot.q1",
+        "slot.choice1",
+        "slot.choice2"
+      ]
+    },
+    {
+      "id": "region.explanation",
+      "role": "explanation",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.ex2",
+        "slot.ex3"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "3. 계산 결과가 700보다 작은 것을 선택하세요.",
+        "style_role": "question",
+        "x": 10.0,
+        "y": 18.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 170.0,
+        "y": 10.0,
+        "width": 220.0,
+        "height": 30.0
+      }
+    },
+    {
+      "id": "slot.choice1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "376 + 380",
+        "style_role": "body",
+        "x": 190.0,
+        "y": 32.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "351 + 290",
+        "style_role": "body",
+        "x": 300.0,
+        "y": 32.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.ex2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "641<700이므로 700보다 작은 것은 351 + 290입니다.",
+        "style_role": "body",
+        "x": 10.0,
+        "y": 124.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.ex3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "",
+        "style_role": "body",
+        "x": 10.0,
+        "y": 124.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.box",
+    "slot.q1",
+    "slot.choice1",
+    "slot.choice2",
+    "region.explanation",
+    "slot.ex2",
+    "slot.ex3"
+  ]
+}

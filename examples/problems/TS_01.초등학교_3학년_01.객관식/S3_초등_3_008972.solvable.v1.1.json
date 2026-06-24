@@ -1,0 +1,91 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008972",
+  "problem_type": "compare_subtraction_results",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "계산 결과가 더 큰 식",
+    "target_ticks": 0,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.expr1",
+      "value": {
+        "expression": "436 - 194"
+      }
+    },
+    {
+      "ref": "obj.expr2",
+      "value": {
+        "expression": "619 - 325"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "selected_expression"
+  },
+  "method": "calculate_and_compare",
+  "plan": [
+    "두 뺄셈식을 각각 계산한다.",
+    "계산 결과를 비교하여 더 큰 식을 선택한다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "436 - 194",
+      "value": 242
+    },
+    {
+      "id": "step.2",
+      "expr": "619 - 325",
+      "value": 294
+    },
+    {
+      "id": "step.3",
+      "expr": "242 < 294",
+      "value": true
+    },
+    {
+      "id": "step.4",
+      "expr": "더 큰 식은 619 - 325",
+      "value": "619 - 325"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "436 - 194 == 242",
+      "expected": 242,
+      "actual": 242,
+      "pass": true
+    },
+    {
+      "id": "check.2",
+      "expr": "619 - 325 == 294",
+      "expected": 294,
+      "actual": 294,
+      "pass": true
+    },
+    {
+      "id": "check.3",
+      "expr": "242 < 294",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "selected_expression",
+      "description": "계산 결과가 더 큰 식"
+    },
+    "value": "619 - 325",
+    "unit": ""
+  }
+}

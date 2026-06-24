@@ -1,0 +1,225 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008862",
+  "title": "보기에서 물건을 선택하여 문장을 완성하기",
+  "canvas": {
+    "width": 960,
+    "height": 484,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.box",
+        "slot.obj.milkcarton",
+        "slot.obj.juicebottle",
+        "slot.obj.drum",
+        "slot.obj.milkcarton.line1",
+        "slot.obj.milkcarton.line2",
+        "slot.q1",
+        "slot.box.title",
+        "slot.label.milkcarton",
+        "slot.label.juicebottle",
+        "slot.label.drum",
+        "slot.q2",
+        "slot.q3"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "□ 8. <보기>에서 물건을 선택하여 문장을 완성해 보세요.",
+        "style_role": "question",
+        "x": 6.0,
+        "y": 26.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 244.0,
+        "y": 47.0,
+        "width": 501.0,
+        "height": 271.0
+      }
+    },
+    {
+      "id": "slot.box.title",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "<보기>",
+        "style_role": "label",
+        "x": 259.0,
+        "y": 90.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.obj.milkcarton",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            354.0,
+            198.0
+          ],
+          [
+            366.0,
+            183.0
+          ],
+          [
+            380.0,
+            183.0
+          ],
+          [
+            388.0,
+            194.0
+          ],
+          [
+            388.0,
+            224.0
+          ],
+          [
+            353.0,
+            224.0
+          ]
+        ]
+      }
+    },
+    {
+      "id": "slot.obj.milkcarton.line1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 354.0,
+        "y1": 198.0,
+        "x2": 388.0,
+        "y2": 198.0
+      }
+    },
+    {
+      "id": "slot.obj.milkcarton.line2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 366.0,
+        "y1": 183.0,
+        "x2": 366.0,
+        "y2": 224.0
+      }
+    },
+    {
+      "id": "slot.obj.juicebottle",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 493.0 129.0 C 496.0 119.0, 512.0 119.0, 515.0 129.0 L 515.0 223.0 C 515.0 232.0, 493.0 232.0, 493.0 223.0 Z",
+        "x": 0.0,
+        "y": 0.0
+      }
+    },
+    {
+      "id": "slot.obj.drum",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 626.0,
+        "cy": 187.0,
+        "r": 34.0,
+        "fill": "#BDBDBD"
+      }
+    },
+    {
+      "id": "slot.label.milkcarton",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "우유갑",
+        "style_role": "label",
+        "x": 337.0,
+        "y": 293.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.label.juicebottle",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "주스병",
+        "style_role": "label",
+        "x": 474.0,
+        "y": 293.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.label.drum",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "드럼통",
+        "style_role": "label",
+        "x": 612.0,
+        "y": 293.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "(2) ( 우유갑, 주스병, 드럼통 )의 들이는 약 100L입니다.",
+        "style_role": "question",
+        "x": 6.0,
+        "y": 372.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "(2) 드럼통",
+        "style_role": "question",
+        "x": 6.0,
+        "y": 458.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.box",
+    "slot.obj.milkcarton",
+    "slot.obj.juicebottle",
+    "slot.obj.drum",
+    "slot.obj.milkcarton.line1",
+    "slot.obj.milkcarton.line2",
+    "slot.q1",
+    "slot.box.title",
+    "slot.label.milkcarton",
+    "slot.label.juicebottle",
+    "slot.label.drum",
+    "slot.q2",
+    "slot.q3"
+  ]
+}

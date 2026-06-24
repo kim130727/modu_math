@@ -1,0 +1,67 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008859",
+  "problem_type": "들이 비교",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "주전자와 그릇 중 들이가 더 많은 것",
+    "target_ticks": 0,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.주전자",
+      "value": {
+        "label": "주전자"
+      }
+    },
+    {
+      "ref": "obj.그릇",
+      "value": {
+        "label": "그릇"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "capacity_comparison_result"
+  },
+  "method": "compare_capacity_from_picture",
+  "plan": [
+    "그림에서 비교하는 두 용기를 찾는다.",
+    "해설 문장에서 들이가 더 많은 쪽을 확인한다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "그림의 비교 대상은 주전자와 그릇이다.",
+      "value": "주전자, 그릇"
+    },
+    {
+      "id": "step.2",
+      "expr": "해설에 따라 들이가 더 많은 쪽을 판단한다.",
+      "value": "주전자"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "정답 라벨과 판단 결과가 일치하는가",
+      "expected": "주전자",
+      "actual": "주전자",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "capacity_comparison_result",
+      "description": "주전자와 그릇 중 들이가 더 많은 것"
+    },
+    "value": "주전자",
+    "unit": ""
+  }
+}

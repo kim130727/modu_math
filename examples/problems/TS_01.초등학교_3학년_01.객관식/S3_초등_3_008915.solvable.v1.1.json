@@ -1,0 +1,96 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008915",
+  "problem_type": "comparison_selection",
+  "inputs": {
+    "total_ticks": 4,
+    "target_label": "백군이 가장 많은 점수를 얻은 종목",
+    "target_ticks": 1,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.team.baek",
+      "value": {
+        "name": "백군"
+      }
+    },
+    {
+      "ref": "obj.event.dalrigi",
+      "value": {
+        "name": "달리기",
+        "score": 100
+      }
+    },
+    {
+      "ref": "obj.event.juldarigi",
+      "value": {
+        "name": "줄다리기",
+        "score": 200
+      }
+    },
+    {
+      "ref": "obj.event.gonggulligi",
+      "value": {
+        "name": "공 굴리기",
+        "score": 100
+      }
+    },
+    {
+      "ref": "obj.event.baktteoddeurigi",
+      "value": {
+        "name": "박 터뜨리기",
+        "score": 50
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "event_name"
+  },
+  "method": "maximum_selection",
+  "plan": [
+    "백군의 각 경기 점수를 비교한다.",
+    "가장 큰 점수에 해당하는 종목을 고른다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "100, 200, 100, 50 중 가장 큰 수 찾기",
+      "value": 200
+    },
+    {
+      "id": "step.2",
+      "expr": "200에 해당하는 종목 고르기",
+      "value": "줄다리기"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "줄다리기의 점수가 200인지 확인",
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "id": "check.2",
+      "expr": "선택된 종목이 최댓값에 대응하는지 확인",
+      "expected": "줄다리기",
+      "actual": "줄다리기",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "event_name",
+      "description": "백군이 가장 많은 점수를 얻은 종목"
+    },
+    "value": "줄다리기",
+    "unit": ""
+  }
+}

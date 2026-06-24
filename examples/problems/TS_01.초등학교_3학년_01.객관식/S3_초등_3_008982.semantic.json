@@ -1,0 +1,89 @@
+{
+  "problem_id": "S3_초등_3_008982",
+  "problem_type": "geometry_vertex_selection",
+  "metadata": {
+    "title": "각의 꼭짓점",
+    "tags": [
+      "각",
+      "꼭짓점",
+      "도형"
+    ],
+    "question": "각을 보고 꼭짓점을 선택하세요.",
+    "required_layout_ids": [
+      "slot.line.base",
+      "slot.line.slant",
+      "slot.pt.vertex",
+      "slot.pt.left",
+      "slot.pt.top"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "보기에서 각의 꼭짓점에 해당하는 점을 고르기"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.angle",
+        "type": "angle"
+      },
+      {
+        "id": "obj.point.d",
+        "type": "point",
+        "name": "ㄷ"
+      },
+      {
+        "id": "obj.point.r",
+        "type": "point",
+        "name": "ㄹ"
+      },
+      {
+        "id": "obj.point.m",
+        "type": "point",
+        "name": "ㅁ"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.angle",
+          "obj.point.d",
+          "obj.point.r",
+          "obj.point.m"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.vertex"
+        ]
+      },
+      "plan": {
+        "method": "vertex_identification",
+        "description": "두 반직선이 만나는 점을 찾는다."
+      },
+      "execute": {
+        "expected_operations": [
+          "identify_intersection_point",
+          "match_point_label_to_vertex"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "intersection_consistency_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "vertex_label",
+      "description": "각의 꼭짓점에 해당하는 점"
+    },
+    "value": "ㄹ",
+    "unit": ""
+  }
+}

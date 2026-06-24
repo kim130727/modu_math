@@ -1,0 +1,77 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008831",
+  "problem_type": "selection_capacity_unit",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "약 40 L의 들이에 알맞은 물건",
+    "target_ticks": 0,
+    "target_count": 1,
+    "unit": "L"
+  },
+  "given": [
+    {
+      "ref": "obj.syringe",
+      "value": "주사기"
+    },
+    {
+      "ref": "obj.watering_can",
+      "value": "물뿌리개"
+    },
+    {
+      "ref": "obj.jar",
+      "value": "항아리"
+    },
+    {
+      "ref": "obj.capacity",
+      "value": {
+        "value": 40,
+        "unit": "L"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "selected_object"
+  },
+  "method": "unit_suitability_choice",
+  "plan": [
+    "보기의 물건들 중에서 L 단위를 쓰기에 알맞은 큰 들이의 물건을 고른다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "보기의 물건을 확인한다",
+      "value": [
+        "주사기",
+        "물뿌리개",
+        "항아리"
+      ]
+    },
+    {
+      "id": "step.2",
+      "expr": "40 L에 알맞은 물건을 선택한다",
+      "value": "항아리"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "선택한 물건이 L 단위에 알맞은 큰 들이의 물건인지 확인",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "selected_object",
+      "description": "약 40 L의 들이에 알맞은 물건"
+    },
+    "value": "항아리",
+    "unit": ""
+  }
+}

@@ -1,0 +1,498 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008897",
+  "title": "과수원별 포도 생산량",
+  "canvas": {
+    "width": 960,
+    "height": 432,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.tbl.r1",
+        "slot.tbl.r2",
+        "slot.tbl.r3",
+        "slot.q1",
+        "slot.title",
+        "slot.tbl.h1",
+        "slot.tbl.h2",
+        "slot.tbl.c1",
+        "slot.tbl.c2",
+        "slot.tbl.c3",
+        "slot.leg1.txt",
+        "slot.leg2.txt",
+        "slot.choice"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.tbl.outer",
+        "slot.tbl.head",
+        "slot.tbl.g1_1",
+        "slot.tbl.g1_2",
+        "slot.tbl.g1_3",
+        "slot.tbl.g1_4",
+        "slot.tbl.g2_1",
+        "slot.tbl.g2_2",
+        "slot.tbl.g3_1",
+        "slot.tbl.g3_2",
+        "slot.tbl.g3_3",
+        "slot.leg.big",
+        "slot.tbl.vline",
+        "slot.tbl.hline1",
+        "slot.tbl.hline2",
+        "slot.tbl.hline3",
+        "slot.tbl.g2_3",
+        "slot.tbl.g2_4",
+        "slot.tbl.g2_5",
+        "slot.tbl.g3_4",
+        "slot.leg.small"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "63. 과수원별 포도 생산량을 조사하여 나타낸 그림그래프입니다. 포도 생산량이 가장 많은 과수원을 선택해 보세요.",
+        "style_role": "question",
+        "x": 18.0,
+        "y": 38.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.title",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "과수원별 포도 생산량",
+        "style_role": "title",
+        "x": 330.0,
+        "y": 74.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.tbl.outer",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 194.0,
+        "y": 88.0,
+        "width": 430.0,
+        "height": 192.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.tbl.head",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 194.0,
+        "y": 88.0,
+        "width": 430.0,
+        "height": 38.0,
+        "fill": "#D6B9DD"
+      }
+    },
+    {
+      "id": "slot.tbl.vline",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 288.0,
+        "y1": 88.0,
+        "x2": 288.0,
+        "y2": 280.0,
+        "stroke": "#6D6170",
+        "stroke_width": 1.2
+      }
+    },
+    {
+      "id": "slot.tbl.hline1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 194.0,
+        "y1": 126.0,
+        "x2": 624.0,
+        "y2": 126.0,
+        "stroke": "#6D6170",
+        "stroke_width": 1.2
+      }
+    },
+    {
+      "id": "slot.tbl.hline2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 194.0,
+        "y1": 164.0,
+        "x2": 624.0,
+        "y2": 164.0,
+        "stroke": "#6D6170",
+        "stroke_width": 1.2
+      }
+    },
+    {
+      "id": "slot.tbl.hline3",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 194.0,
+        "y1": 222.0,
+        "x2": 624.0,
+        "y2": 222.0,
+        "stroke": "#6D6170",
+        "stroke_width": 1.2
+      }
+    },
+    {
+      "id": "slot.tbl.h1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "과수원",
+        "style_role": "label",
+        "x": 230.0,
+        "y": 112.0,
+        "font_size": 26
+      }
+    },
+    {
+      "id": "slot.tbl.h2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "생산량",
+        "style_role": "label",
+        "x": 404.0,
+        "y": 112.0,
+        "font_size": 26
+      }
+    },
+    {
+      "id": "slot.tbl.c1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "가",
+        "style_role": "label",
+        "x": 236.0,
+        "y": 148.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.tbl.c2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "나",
+        "style_role": "label",
+        "x": 236.0,
+        "y": 186.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.tbl.c3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "다",
+        "style_role": "label",
+        "x": 236.0,
+        "y": 244.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.tbl.r1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 332.0,
+        "cy": 144.0,
+        "r": 4.0,
+        "fill": "#5B4A91"
+      }
+    },
+    {
+      "id": "slot.tbl.r2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 362.0,
+        "cy": 144.0,
+        "r": 4.0,
+        "fill": "#5B4A91"
+      }
+    },
+    {
+      "id": "slot.tbl.r3",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 392.0,
+        "cy": 144.0,
+        "r": 4.0,
+        "fill": "#5B4A91"
+      }
+    },
+    {
+      "id": "slot.tbl.g1_1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 324.0,
+        "cy": 146.0,
+        "r": 13.0,
+        "fill": "#7A6AAE"
+      }
+    },
+    {
+      "id": "slot.tbl.g1_2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 356.0,
+        "cy": 146.0,
+        "r": 13.0,
+        "fill": "#7A6AAE"
+      }
+    },
+    {
+      "id": "slot.tbl.g1_3",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 388.0,
+        "cy": 146.0,
+        "r": 13.0,
+        "fill": "#7A6AAE"
+      }
+    },
+    {
+      "id": "slot.tbl.g1_4",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 420.0,
+        "cy": 146.0,
+        "r": 13.0,
+        "fill": "#7A6AAE"
+      }
+    },
+    {
+      "id": "slot.tbl.g2_1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 324.0,
+        "cy": 182.0,
+        "r": 13.0,
+        "fill": "#7A6AAE"
+      }
+    },
+    {
+      "id": "slot.tbl.g2_2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 356.0,
+        "cy": 182.0,
+        "r": 13.0,
+        "fill": "#7A6AAE"
+      }
+    },
+    {
+      "id": "slot.tbl.g2_3",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 388.0,
+        "cy": 182.0,
+        "r": 4.0,
+        "fill": "#5B4A91"
+      }
+    },
+    {
+      "id": "slot.tbl.g2_4",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 414.0,
+        "cy": 182.0,
+        "r": 4.0,
+        "fill": "#5B4A91"
+      }
+    },
+    {
+      "id": "slot.tbl.g2_5",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 440.0,
+        "cy": 182.0,
+        "r": 4.0,
+        "fill": "#5B4A91"
+      }
+    },
+    {
+      "id": "slot.tbl.g3_1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 324.0,
+        "cy": 240.0,
+        "r": 13.0,
+        "fill": "#7A6AAE"
+      }
+    },
+    {
+      "id": "slot.tbl.g3_2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 356.0,
+        "cy": 240.0,
+        "r": 13.0,
+        "fill": "#7A6AAE"
+      }
+    },
+    {
+      "id": "slot.tbl.g3_3",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 388.0,
+        "cy": 240.0,
+        "r": 13.0,
+        "fill": "#7A6AAE"
+      }
+    },
+    {
+      "id": "slot.tbl.g3_4",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 418.0,
+        "cy": 240.0,
+        "r": 4.0,
+        "fill": "#5B4A91"
+      }
+    },
+    {
+      "id": "slot.leg1.txt",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "10 kg",
+        "style_role": "label",
+        "x": 702.0,
+        "y": 226.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.leg2.txt",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "1 kg",
+        "style_role": "label",
+        "x": 702.0,
+        "y": 258.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.leg.big",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 674.0,
+        "cy": 218.0,
+        "r": 13.0,
+        "fill": "#7A6AAE"
+      }
+    },
+    {
+      "id": "slot.leg.small",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 674.0,
+        "cy": 252.0,
+        "r": 4.0,
+        "fill": "#5B4A91"
+      }
+    },
+    {
+      "id": "slot.choice",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "( 가 과수원 , 나 과수원 , 다 과수원 )",
+        "style_role": "label",
+        "x": 514.0,
+        "y": 315.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.tbl.r1",
+    "slot.tbl.r2",
+    "slot.tbl.r3",
+    "slot.q1",
+    "slot.title",
+    "slot.tbl.h1",
+    "slot.tbl.h2",
+    "slot.tbl.c1",
+    "slot.tbl.c2",
+    "slot.tbl.c3",
+    "slot.leg1.txt",
+    "slot.leg2.txt",
+    "slot.choice",
+    "region.diagram",
+    "slot.tbl.outer",
+    "slot.tbl.head",
+    "slot.tbl.g1_1",
+    "slot.tbl.g1_2",
+    "slot.tbl.g1_3",
+    "slot.tbl.g1_4",
+    "slot.tbl.g2_1",
+    "slot.tbl.g2_2",
+    "slot.tbl.g3_1",
+    "slot.tbl.g3_2",
+    "slot.tbl.g3_3",
+    "slot.leg.big",
+    "slot.tbl.vline",
+    "slot.tbl.hline1",
+    "slot.tbl.hline2",
+    "slot.tbl.hline3",
+    "slot.tbl.g2_3",
+    "slot.tbl.g2_4",
+    "slot.tbl.g2_5",
+    "slot.tbl.g3_4",
+    "slot.leg.small"
+  ]
+}

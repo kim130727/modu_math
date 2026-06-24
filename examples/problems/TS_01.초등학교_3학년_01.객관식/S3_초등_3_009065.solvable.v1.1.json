@@ -1,0 +1,73 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_009065",
+  "problem_type": "선택형_도형_정의",
+  "inputs": {
+    "total_ticks": 2,
+    "target_label": "빈칸",
+    "target_ticks": 2,
+    "target_count": 2,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.shape",
+      "value": {
+        "name": "사각형"
+      }
+    },
+    {
+      "ref": "obj.definition.property1",
+      "value": {
+        "name": "모든 각이 직각"
+      }
+    },
+    {
+      "ref": "obj.definition.property2",
+      "value": {
+        "name": "모든 변의 길이가 같음"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "choice_fill"
+  },
+  "method": "definition_matching",
+  "plan": [
+    "정사각형의 정의를 읽고 빈칸 두 곳에 들어갈 표현을 찾는다.",
+    "각에 해당하는 말과 변에 해당하는 말을 구분한다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "정의에서 각의 조건 확인",
+      "value": "네"
+    },
+    {
+      "id": "step.2",
+      "expr": "정의에서 변의 조건 확인",
+      "value": "네"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "각 조건과 변 조건이 정의와 일치하는가",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "choice_fill",
+      "description": "두 개의 빈칸에 들어갈 알맞은 말"
+    },
+    "value": 0,
+    "unit": ""
+  }
+}

@@ -1,0 +1,989 @@
+{
+  "problem_id": "S3_초등_3_008900",
+  "view_box": {
+    "width": 950.0,
+    "height": 700.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.title.text",
+      "type": "text",
+      "attributes": {
+        "x": 12.0,
+        "y": 28.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.title",
+      "refs": {
+        "layout_slot_id": "slot.title"
+      },
+      "text": "기태네 반 학생들이 좋아하는 과일을 조사하여 표로 나타내었습니다. 물음에 답하세요."
+    },
+    {
+      "id": "slot.diagram.title_text.text",
+      "type": "text",
+      "attributes": {
+        "x": 420.0,
+        "y": 98.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 26
+      },
+      "source_ref": "slot.diagram.title_text",
+      "refs": {
+        "layout_slot_id": "slot.diagram.title_text"
+      },
+      "text": "좋아하는 과일"
+    },
+    {
+      "id": "slot.diagram.frame.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 260.0,
+        "y": 92.0,
+        "width": 410.0,
+        "height": 240.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.diagram.frame",
+      "refs": {
+        "layout_slot_id": "slot.diagram.frame"
+      }
+    },
+    {
+      "id": "slot.diagram.title_box.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 395.0,
+        "y": 76.0,
+        "width": 140.0,
+        "height": 34.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.diagram.title_box",
+      "refs": {
+        "layout_slot_id": "slot.diagram.title_box"
+      }
+    },
+    {
+      "id": "slot.diagram.legend.blue_dot.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 535.0,
+        "cy": 346.0,
+        "r": 9.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#6BB7F0"
+      },
+      "source_ref": "slot.diagram.legend.blue_dot",
+      "refs": {
+        "layout_slot_id": "slot.diagram.legend.blue_dot"
+      }
+    },
+    {
+      "id": "slot.diagram.legend.red_dot.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 612.0,
+        "cy": 346.0,
+        "r": 9.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#FF8B7F"
+      },
+      "source_ref": "slot.diagram.legend.red_dot",
+      "refs": {
+        "layout_slot_id": "slot.diagram.legend.red_dot"
+      }
+    },
+    {
+      "id": "slot.diagram.divider.v.line",
+      "type": "line",
+      "attributes": {
+        "x1": 465.0,
+        "y1": 92.0,
+        "x2": 465.0,
+        "y2": 332.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.diagram.divider.v",
+      "refs": {
+        "layout_slot_id": "slot.diagram.divider.v"
+      }
+    },
+    {
+      "id": "slot.diagram.divider.h.line",
+      "type": "line",
+      "attributes": {
+        "x1": 260.0,
+        "y1": 212.0,
+        "x2": 670.0,
+        "y2": 212.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.diagram.divider.h",
+      "refs": {
+        "layout_slot_id": "slot.diagram.divider.h"
+      }
+    },
+    {
+      "id": "slot.diagram.dot.s1.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 322.0,
+        "cy": 146.0,
+        "r": 8.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#FF8B7F"
+      },
+      "source_ref": "slot.diagram.dot.s1",
+      "refs": {
+        "layout_slot_id": "slot.diagram.dot.s1"
+      }
+    },
+    {
+      "id": "slot.diagram.dot.s2.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 364.0,
+        "cy": 146.0,
+        "r": 8.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#FF8B7F"
+      },
+      "source_ref": "slot.diagram.dot.s2",
+      "refs": {
+        "layout_slot_id": "slot.diagram.dot.s2"
+      }
+    },
+    {
+      "id": "slot.diagram.dot.s3.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 314.0,
+        "cy": 178.0,
+        "r": 8.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#6BB7F0"
+      },
+      "source_ref": "slot.diagram.dot.s3",
+      "refs": {
+        "layout_slot_id": "slot.diagram.dot.s3"
+      }
+    },
+    {
+      "id": "slot.diagram.dot.s4.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 356.0,
+        "cy": 178.0,
+        "r": 8.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#FF8B7F"
+      },
+      "source_ref": "slot.diagram.dot.s4",
+      "refs": {
+        "layout_slot_id": "slot.diagram.dot.s4"
+      }
+    },
+    {
+      "id": "slot.diagram.dot.s5.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 385.0,
+        "cy": 178.0,
+        "r": 8.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#6BB7F0"
+      },
+      "source_ref": "slot.diagram.dot.s5",
+      "refs": {
+        "layout_slot_id": "slot.diagram.dot.s5"
+      }
+    },
+    {
+      "id": "slot.diagram.dot.s6.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 546.0,
+        "cy": 154.0,
+        "r": 8.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#FF8B7F"
+      },
+      "source_ref": "slot.diagram.dot.s6",
+      "refs": {
+        "layout_slot_id": "slot.diagram.dot.s6"
+      }
+    },
+    {
+      "id": "slot.diagram.dot.s7.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 598.0,
+        "cy": 144.0,
+        "r": 8.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#6BB7F0"
+      },
+      "source_ref": "slot.diagram.dot.s7",
+      "refs": {
+        "layout_slot_id": "slot.diagram.dot.s7"
+      }
+    },
+    {
+      "id": "slot.diagram.dot.s8.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 596.0,
+        "cy": 174.0,
+        "r": 8.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#FF8B7F"
+      },
+      "source_ref": "slot.diagram.dot.s8",
+      "refs": {
+        "layout_slot_id": "slot.diagram.dot.s8"
+      }
+    },
+    {
+      "id": "slot.diagram.dot.s9.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 636.0,
+        "cy": 157.0,
+        "r": 8.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#FF8B7F"
+      },
+      "source_ref": "slot.diagram.dot.s9",
+      "refs": {
+        "layout_slot_id": "slot.diagram.dot.s9"
+      }
+    },
+    {
+      "id": "slot.diagram.dot.s10.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 332.0,
+        "cy": 263.0,
+        "r": 8.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#6BB7F0"
+      },
+      "source_ref": "slot.diagram.dot.s10",
+      "refs": {
+        "layout_slot_id": "slot.diagram.dot.s10"
+      }
+    },
+    {
+      "id": "slot.diagram.dot.s11.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 379.0,
+        "cy": 262.0,
+        "r": 8.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#6BB7F0"
+      },
+      "source_ref": "slot.diagram.dot.s11",
+      "refs": {
+        "layout_slot_id": "slot.diagram.dot.s11"
+      }
+    },
+    {
+      "id": "slot.diagram.dot.s12.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 348.0,
+        "cy": 292.0,
+        "r": 8.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#FF8B7F"
+      },
+      "source_ref": "slot.diagram.dot.s12",
+      "refs": {
+        "layout_slot_id": "slot.diagram.dot.s12"
+      }
+    },
+    {
+      "id": "slot.diagram.dot.s13.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 314.0,
+        "cy": 325.0,
+        "r": 8.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#6BB7F0"
+      },
+      "source_ref": "slot.diagram.dot.s13",
+      "refs": {
+        "layout_slot_id": "slot.diagram.dot.s13"
+      }
+    },
+    {
+      "id": "slot.diagram.dot.s14.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 380.0,
+        "cy": 316.0,
+        "r": 8.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#6BB7F0"
+      },
+      "source_ref": "slot.diagram.dot.s14",
+      "refs": {
+        "layout_slot_id": "slot.diagram.dot.s14"
+      }
+    },
+    {
+      "id": "slot.diagram.dot.s15.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 523.0,
+        "cy": 264.0,
+        "r": 8.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#6BB7F0"
+      },
+      "source_ref": "slot.diagram.dot.s15",
+      "refs": {
+        "layout_slot_id": "slot.diagram.dot.s15"
+      }
+    },
+    {
+      "id": "slot.diagram.dot.s16.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 569.0,
+        "cy": 260.0,
+        "r": 8.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#6BB7F0"
+      },
+      "source_ref": "slot.diagram.dot.s16",
+      "refs": {
+        "layout_slot_id": "slot.diagram.dot.s16"
+      }
+    },
+    {
+      "id": "slot.diagram.dot.s17.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 630.0,
+        "cy": 262.0,
+        "r": 8.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#FF8B7F"
+      },
+      "source_ref": "slot.diagram.dot.s17",
+      "refs": {
+        "layout_slot_id": "slot.diagram.dot.s17"
+      }
+    },
+    {
+      "id": "slot.diagram.dot.s18.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 546.0,
+        "cy": 291.0,
+        "r": 8.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#FF8B7F"
+      },
+      "source_ref": "slot.diagram.dot.s18",
+      "refs": {
+        "layout_slot_id": "slot.diagram.dot.s18"
+      }
+    },
+    {
+      "id": "slot.diagram.dot.s19.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 596.0,
+        "cy": 290.0,
+        "r": 8.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#6BB7F0"
+      },
+      "source_ref": "slot.diagram.dot.s19",
+      "refs": {
+        "layout_slot_id": "slot.diagram.dot.s19"
+      }
+    },
+    {
+      "id": "slot.diagram.dot.s20.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 636.0,
+        "cy": 290.0,
+        "r": 8.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#6BB7F0"
+      },
+      "source_ref": "slot.diagram.dot.s20",
+      "refs": {
+        "layout_slot_id": "slot.diagram.dot.s20"
+      }
+    },
+    {
+      "id": "slot.diagram.dot.s21.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 504.0,
+        "cy": 319.0,
+        "r": 8.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#6BB7F0"
+      },
+      "source_ref": "slot.diagram.dot.s21",
+      "refs": {
+        "layout_slot_id": "slot.diagram.dot.s21"
+      }
+    },
+    {
+      "id": "slot.diagram.dot.s22.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 552.0,
+        "cy": 321.0,
+        "r": 8.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#FF8B7F"
+      },
+      "source_ref": "slot.diagram.dot.s22",
+      "refs": {
+        "layout_slot_id": "slot.diagram.dot.s22"
+      }
+    },
+    {
+      "id": "slot.diagram.dot.s23.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 592.0,
+        "cy": 323.0,
+        "r": 8.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#FF8B7F"
+      },
+      "source_ref": "slot.diagram.dot.s23",
+      "refs": {
+        "layout_slot_id": "slot.diagram.dot.s23"
+      }
+    },
+    {
+      "id": "slot.diagram.dot.s24.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 626.0,
+        "cy": 321.0,
+        "r": 8.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#6BB7F0"
+      },
+      "source_ref": "slot.diagram.dot.s24",
+      "refs": {
+        "layout_slot_id": "slot.diagram.dot.s24"
+      }
+    },
+    {
+      "id": "slot.diagram.dot.s25.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 653.0,
+        "cy": 319.0,
+        "r": 8.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#6BB7F0"
+      },
+      "source_ref": "slot.diagram.dot.s25",
+      "refs": {
+        "layout_slot_id": "slot.diagram.dot.s25"
+      }
+    },
+    {
+      "id": "slot.diagram.dot.s26.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 650.0,
+        "cy": 285.0,
+        "r": 8.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#FF8B7F"
+      },
+      "source_ref": "slot.diagram.dot.s26",
+      "refs": {
+        "layout_slot_id": "slot.diagram.dot.s26"
+      }
+    },
+    {
+      "id": "slot.diagram.label.strawberry.text",
+      "type": "text",
+      "attributes": {
+        "x": 275.0,
+        "y": 123.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 24
+      },
+      "source_ref": "slot.diagram.label.strawberry",
+      "refs": {
+        "layout_slot_id": "slot.diagram.label.strawberry"
+      },
+      "text": "딸기"
+    },
+    {
+      "id": "slot.diagram.label.tangerine.text",
+      "type": "text",
+      "attributes": {
+        "x": 495.0,
+        "y": 123.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 24
+      },
+      "source_ref": "slot.diagram.label.tangerine",
+      "refs": {
+        "layout_slot_id": "slot.diagram.label.tangerine"
+      },
+      "text": "귤"
+    },
+    {
+      "id": "slot.diagram.label.grape.text",
+      "type": "text",
+      "attributes": {
+        "x": 275.0,
+        "y": 243.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 24
+      },
+      "source_ref": "slot.diagram.label.grape",
+      "refs": {
+        "layout_slot_id": "slot.diagram.label.grape"
+      },
+      "text": "포도"
+    },
+    {
+      "id": "slot.diagram.label.apple.text",
+      "type": "text",
+      "attributes": {
+        "x": 495.0,
+        "y": 243.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 24
+      },
+      "source_ref": "slot.diagram.label.apple",
+      "refs": {
+        "layout_slot_id": "slot.diagram.label.apple"
+      },
+      "text": "사과"
+    },
+    {
+      "id": "slot.diagram.legend.blue_text.text",
+      "type": "text",
+      "attributes": {
+        "x": 548.0,
+        "y": 352.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 22
+      },
+      "source_ref": "slot.diagram.legend.blue_text",
+      "refs": {
+        "layout_slot_id": "slot.diagram.legend.blue_text"
+      },
+      "text": "남학생"
+    },
+    {
+      "id": "slot.diagram.legend.red_text.text",
+      "type": "text",
+      "attributes": {
+        "x": 625.0,
+        "y": 352.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 22
+      },
+      "source_ref": "slot.diagram.legend.red_text",
+      "refs": {
+        "layout_slot_id": "slot.diagram.legend.red_text"
+      },
+      "text": "여학생"
+    },
+    {
+      "id": "slot.table.grid.h1.line",
+      "type": "line",
+      "attributes": {
+        "x1": 128.0,
+        "y1": 414.0,
+        "x2": 798.0,
+        "y2": 414.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.table.grid.h1",
+      "refs": {
+        "layout_slot_id": "slot.table.grid.h1"
+      }
+    },
+    {
+      "id": "slot.table.grid.h2.line",
+      "type": "line",
+      "attributes": {
+        "x1": 128.0,
+        "y1": 453.0,
+        "x2": 798.0,
+        "y2": 453.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.table.grid.h2",
+      "refs": {
+        "layout_slot_id": "slot.table.grid.h2"
+      }
+    },
+    {
+      "id": "slot.table.grid.h3.line",
+      "type": "line",
+      "attributes": {
+        "x1": 128.0,
+        "y1": 494.0,
+        "x2": 798.0,
+        "y2": 494.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.table.grid.h3",
+      "refs": {
+        "layout_slot_id": "slot.table.grid.h3"
+      }
+    },
+    {
+      "id": "slot.table.grid.v1.line",
+      "type": "line",
+      "attributes": {
+        "x1": 128.0,
+        "y1": 414.0,
+        "x2": 128.0,
+        "y2": 534.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.table.grid.v1",
+      "refs": {
+        "layout_slot_id": "slot.table.grid.v1"
+      }
+    },
+    {
+      "id": "slot.table.grid.v2.line",
+      "type": "line",
+      "attributes": {
+        "x1": 306.0,
+        "y1": 414.0,
+        "x2": 306.0,
+        "y2": 534.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.table.grid.v2",
+      "refs": {
+        "layout_slot_id": "slot.table.grid.v2"
+      }
+    },
+    {
+      "id": "slot.table.grid.v3.line",
+      "type": "line",
+      "attributes": {
+        "x1": 396.0,
+        "y1": 414.0,
+        "x2": 396.0,
+        "y2": 534.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.table.grid.v3",
+      "refs": {
+        "layout_slot_id": "slot.table.grid.v3"
+      }
+    },
+    {
+      "id": "slot.table.grid.v4.line",
+      "type": "line",
+      "attributes": {
+        "x1": 486.0,
+        "y1": 414.0,
+        "x2": 486.0,
+        "y2": 534.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.table.grid.v4",
+      "refs": {
+        "layout_slot_id": "slot.table.grid.v4"
+      }
+    },
+    {
+      "id": "slot.table.grid.v5.line",
+      "type": "line",
+      "attributes": {
+        "x1": 576.0,
+        "y1": 414.0,
+        "x2": 576.0,
+        "y2": 534.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.table.grid.v5",
+      "refs": {
+        "layout_slot_id": "slot.table.grid.v5"
+      }
+    },
+    {
+      "id": "slot.table.grid.v6.line",
+      "type": "line",
+      "attributes": {
+        "x1": 666.0,
+        "y1": 414.0,
+        "x2": 666.0,
+        "y2": 534.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.table.grid.v6",
+      "refs": {
+        "layout_slot_id": "slot.table.grid.v6"
+      }
+    },
+    {
+      "id": "slot.table.title.text",
+      "type": "text",
+      "attributes": {
+        "x": 340.0,
+        "y": 396.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.title",
+      "refs": {
+        "layout_slot_id": "slot.table.title"
+      },
+      "text": "좋아하는 과일별 학생 수"
+    },
+    {
+      "id": "slot.table.head.0.text",
+      "type": "text",
+      "attributes": {
+        "x": 202.0,
+        "y": 440.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 24
+      },
+      "source_ref": "slot.table.head.0",
+      "refs": {
+        "layout_slot_id": "slot.table.head.0"
+      },
+      "text": "과일"
+    },
+    {
+      "id": "slot.table.head.1.text",
+      "type": "text",
+      "attributes": {
+        "x": 338.0,
+        "y": 440.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 24
+      },
+      "source_ref": "slot.table.head.1",
+      "refs": {
+        "layout_slot_id": "slot.table.head.1"
+      },
+      "text": "딸기"
+    },
+    {
+      "id": "slot.table.head.2.text",
+      "type": "text",
+      "attributes": {
+        "x": 432.0,
+        "y": 440.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 24
+      },
+      "source_ref": "slot.table.head.2",
+      "refs": {
+        "layout_slot_id": "slot.table.head.2"
+      },
+      "text": "귤"
+    },
+    {
+      "id": "slot.table.head.3.text",
+      "type": "text",
+      "attributes": {
+        "x": 520.0,
+        "y": 440.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 24
+      },
+      "source_ref": "slot.table.head.3",
+      "refs": {
+        "layout_slot_id": "slot.table.head.3"
+      },
+      "text": "포도"
+    },
+    {
+      "id": "slot.table.head.4.text",
+      "type": "text",
+      "attributes": {
+        "x": 610.0,
+        "y": 440.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 24
+      },
+      "source_ref": "slot.table.head.4",
+      "refs": {
+        "layout_slot_id": "slot.table.head.4"
+      },
+      "text": "사과"
+    },
+    {
+      "id": "slot.table.head.5.text",
+      "type": "text",
+      "attributes": {
+        "x": 704.0,
+        "y": 440.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 24
+      },
+      "source_ref": "slot.table.head.5",
+      "refs": {
+        "layout_slot_id": "slot.table.head.5"
+      },
+      "text": "합계"
+    },
+    {
+      "id": "slot.table.row.0.text",
+      "type": "text",
+      "attributes": {
+        "x": 142.0,
+        "y": 477.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 24
+      },
+      "source_ref": "slot.table.row.0",
+      "refs": {
+        "layout_slot_id": "slot.table.row.0"
+      },
+      "text": "남학생 수(명)"
+    },
+    {
+      "id": "slot.table.row.1.text",
+      "type": "text",
+      "attributes": {
+        "x": 142.0,
+        "y": 519.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 24
+      },
+      "source_ref": "slot.table.row.1",
+      "refs": {
+        "layout_slot_id": "slot.table.row.1"
+      },
+      "text": "여학생 수(명)"
+    },
+    {
+      "id": "slot.q.num.text",
+      "type": "text",
+      "attributes": {
+        "x": 10.0,
+        "y": 560.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q.num",
+      "refs": {
+        "layout_slot_id": "slot.q.num"
+      },
+      "text": "66."
+    },
+    {
+      "id": "slot.q.text.text",
+      "type": "text",
+      "attributes": {
+        "x": 52.0,
+        "y": 560.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q.text",
+      "refs": {
+        "layout_slot_id": "slot.q.text"
+      },
+      "text": "기태네 반에서 과일 간식을 한 가지만 준비하면 어떤 과일을 준비하면 좋을까요? 알맞은 것을 선택해보세요."
+    },
+    {
+      "id": "slot.choice.text",
+      "type": "text",
+      "attributes": {
+        "x": 626.0,
+        "y": 620.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice",
+      "refs": {
+        "layout_slot_id": "slot.choice"
+      },
+      "text": "( 딸기 , 귤 , 포도 , 사과 )"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

@@ -1,0 +1,181 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008856",
+  "title": "가장 무거운 것",
+  "canvas": {
+    "width": 846,
+    "height": 482,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q1",
+        "slot.q2"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.person",
+        "slot.box",
+        "slot.person_name",
+        "slot.box_text1",
+        "slot.box_text2",
+        "slot.box_text3",
+        "slot.box_text4",
+        "slot.choices"
+      ]
+    },
+    {
+      "id": "region.answer",
+      "role": "answer",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "□ 2. 은우가 가위, 풀, 지우개의 무게를 다음과 같이 비교하였습니다. 가위, 풀,",
+        "style_role": "question",
+        "x": 14.0,
+        "y": 30.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "지우개 중 가장 무거운 것은 어느 것인가요?",
+        "style_role": "question",
+        "x": 35.0,
+        "y": 63.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.person",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 70.0,
+        "y": 96.0,
+        "width": 110.0,
+        "height": 110.0
+      }
+    },
+    {
+      "id": "slot.person_name",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "은우",
+        "style_role": "label",
+        "x": 108.0,
+        "y": 227.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 258.0,
+        "y": 81.0,
+        "width": 412.0,
+        "height": 162.0
+      }
+    },
+    {
+      "id": "slot.box_text1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "가위와 풀을 양손에 각각 들면",
+        "style_role": "body",
+        "x": 323.0,
+        "y": 106.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.box_text2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "가위를 든 손에 힘이 더 많이 들고,",
+        "style_role": "body",
+        "x": 294.0,
+        "y": 140.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.box_text3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "풀과 지우개를 양손에 각각 들면",
+        "style_role": "body",
+        "x": 296.0,
+        "y": 174.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.box_text4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "풀을 든 손에 힘이 더 많이 들어.",
+        "style_role": "body",
+        "x": 297.0,
+        "y": 208.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choices",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "( 가위 , 풀 , 지우개 )",
+        "style_role": "body",
+        "x": 600.0,
+        "y": 258.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q1",
+    "slot.q2",
+    "region.diagram",
+    "slot.person",
+    "slot.box",
+    "slot.person_name",
+    "slot.box_text1",
+    "slot.box_text2",
+    "slot.box_text3",
+    "slot.box_text4",
+    "slot.choices",
+    "region.answer"
+  ]
+}

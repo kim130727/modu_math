@@ -1,0 +1,77 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008883",
+  "problem_type": "table_selection",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "여학생이 가장 많이 배우고 싶어 하는 운동",
+    "target_ticks": 0,
+    "target_count": 0,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.female_row",
+      "value": {
+        "축구": 18,
+        "골프": 10,
+        "야구": 27,
+        "스쿼시": 35,
+        "합계": 90
+      }
+    },
+    {
+      "ref": "obj.table",
+      "value": "여학생과 남학생이 배우고 싶어 하는 운동"
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "selected_sport"
+  },
+  "method": "compare_values_in_row",
+  "plan": [
+    "여학생 수를 운동별로 비교한다.",
+    "가장 큰 수가 있는 운동을 찾는다.",
+    "보기에서 그 운동 이름을 선택한다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "18, 10, 27, 35 중 가장 큰 수 찾기",
+      "value": 35
+    },
+    {
+      "id": "step.2",
+      "expr": "35가 있는 운동 찾기",
+      "value": "스쿼시"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "여학생 수의 최댓값이 35인지 확인",
+      "expected": 35,
+      "actual": 35,
+      "pass": true
+    },
+    {
+      "id": "check.2",
+      "expr": "최댓값 35가 스쿼시 열에 있는지 확인",
+      "expected": "스쿼시",
+      "actual": "스쿼시",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "selected_sport",
+      "description": "여학생이 가장 많이 배우고 싶어 하는 운동"
+    },
+    "value": "스쿼시",
+    "unit": ""
+  }
+}

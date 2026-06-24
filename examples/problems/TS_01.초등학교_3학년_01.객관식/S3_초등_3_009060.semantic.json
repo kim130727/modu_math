@@ -1,0 +1,86 @@
+{
+  "problem_id": "S3_초등_3_009060",
+  "problem_type": "도형_명칭_선택",
+  "metadata": {
+    "title": "도형을 보고 알맞은 말을 선택하세요.",
+    "tags": [],
+    "instruction": "도형의 종류를 고르기",
+    "question": "도형을 보고 알맞은 말을 선택하세요.",
+    "required_layout_ids": [
+      "slot.fig.line",
+      "slot.fig.p1",
+      "slot.fig.p2"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "points": 0
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.shape",
+        "type": "line_figure",
+        "label": "ㅅㅇ"
+      },
+      {
+        "id": "obj.option.segment",
+        "type": "name_option",
+        "label": "선분 ㅅㅇ"
+      },
+      {
+        "id": "obj.option.ray",
+        "type": "name_option",
+        "label": "반직선 ㅅㅇ"
+      },
+      {
+        "id": "obj.option.line",
+        "type": "name_option",
+        "label": "직선 ㅅㅇ"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.shape",
+          "obj.option.segment",
+          "obj.option.ray",
+          "obj.option.line"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.classify",
+          "rel.extend_segment_to_line"
+        ]
+      },
+      "plan": {
+        "method": "concept_identification",
+        "description": "그림의 도형 이름이 보기 중 무엇인지 판단한다."
+      },
+      "execute": {
+        "expected_operations": [
+          "identify_shape_type",
+          "match_with_options"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "definition_consistency_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "shape_name",
+      "description": "그림에 알맞은 도형의 이름"
+    },
+    "value": 1,
+    "unit": ""
+  }
+}

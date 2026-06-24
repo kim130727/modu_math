@@ -1,0 +1,113 @@
+{
+  "problem_id": "S3_초등_3_009064",
+  "problem_type": "도형_선택",
+  "metadata": {
+    "title": "직사각형을 모두 선택하세요",
+    "tags": [],
+    "instruction": "도형들 중 직사각형에 해당하는 것을 고른다.",
+    "question": "직사각형을 모두 선택하세요.",
+    "required_layout_ids": [
+      "slot.shape.a",
+      "slot.shape.b",
+      "slot.shape.c",
+      "slot.shape.d",
+      "slot.shape.e",
+      "slot.ex_shape.a",
+      "slot.ex_shape.b",
+      "slot.ex_shape.c",
+      "slot.ex_shape.d",
+      "slot.ex_shape.e",
+      "slot.corner.a1",
+      "slot.corner.a2",
+      "slot.corner.b1",
+      "slot.corner.b2",
+      "slot.corner.c1",
+      "slot.corner.c2",
+      "slot.corner.d1",
+      "slot.corner.d2",
+      "slot.corner.e1",
+      "slot.corner.e2"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.shape.a",
+        "type": "quadrilateral",
+        "label": "가"
+      },
+      {
+        "id": "obj.shape.b",
+        "type": "quadrilateral",
+        "label": "나"
+      },
+      {
+        "id": "obj.shape.c",
+        "type": "quadrilateral",
+        "label": "다"
+      },
+      {
+        "id": "obj.shape.d",
+        "type": "quadrilateral",
+        "label": "라"
+      },
+      {
+        "id": "obj.shape.e",
+        "type": "quadrilateral",
+        "label": "마"
+      },
+      {
+        "id": "obj.rectangle_definition",
+        "type": "definition",
+        "text": "네 각이 모두 직각인 사각형"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.shape.a",
+          "obj.shape.b",
+          "obj.shape.c",
+          "obj.shape.d",
+          "obj.shape.e",
+          "obj.rectangle_definition"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.selects"
+        ]
+      },
+      "plan": {
+        "method": "definition_matching",
+        "description": "직사각형의 정의와 각 도형의 모양을 대응해 본다."
+      },
+      "execute": {
+        "expected_operations": [
+          "compare_shapes",
+          "match_definition"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "definition_consistency_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "selected_shapes",
+      "description": "직사각형에 해당하는 도형을 고른다."
+    },
+    "value": 2,
+    "unit": ""
+  }
+}

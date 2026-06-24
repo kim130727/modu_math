@@ -1,0 +1,371 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008968",
+  "title": "두 나무의 높이 차",
+  "canvas": {
+    "width": 560.0,
+    "height": 350.0,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.table.outer",
+        "slot.table.v1",
+        "slot.table.v2",
+        "slot.table.v3",
+        "slot.table.v4",
+        "slot.table.h1",
+        "slot.table.h2",
+        "slot.q1",
+        "slot.q2",
+        "slot.q3",
+        "slot.table.r1c1",
+        "slot.table.r1c2",
+        "slot.table.r1c3",
+        "slot.table.r1c4",
+        "slot.table.r2c1",
+        "slot.table.r2c2",
+        "slot.table.r2c3",
+        "slot.table.r2c4",
+        "slot.choice",
+        "slot.a2",
+        "slot.a3",
+        "slot.a4",
+        "slot.a5",
+        "slot.a6",
+        "slot.a7"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "2.  현주는 집 주변 나무들의 높이를 조사했습니다. 두 나무의 높이 차가",
+        "style_role": "question",
+        "x": 12.0,
+        "y": 20.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "100 cm에 가장 가까운 나무는 어떤 나무와 어떤 나무인지 알맞은 것을 선택",
+        "style_role": "question",
+        "x": 12.0,
+        "y": 52.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "하세요.",
+        "style_role": "question",
+        "x": 12.0,
+        "y": 84.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.outer",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 114.0,
+        "y": 110.0,
+        "width": 330.0,
+        "height": 48.0
+      }
+    },
+    {
+      "id": "slot.table.v1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 204.0,
+        "y": 110.0,
+        "width": 0.0,
+        "height": 48.0
+      }
+    },
+    {
+      "id": "slot.table.v2",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 286.0,
+        "y": 110.0,
+        "width": 0.0,
+        "height": 48.0
+      }
+    },
+    {
+      "id": "slot.table.v3",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 369.0,
+        "y": 110.0,
+        "width": 0.0,
+        "height": 48.0
+      }
+    },
+    {
+      "id": "slot.table.v4",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 444.0,
+        "y": 110.0,
+        "width": 0.0,
+        "height": 48.0
+      }
+    },
+    {
+      "id": "slot.table.h1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 114.0,
+        "y": 134.0,
+        "width": 330.0,
+        "height": 0.0
+      }
+    },
+    {
+      "id": "slot.table.h2",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 114.0,
+        "y": 158.0,
+        "width": 330.0,
+        "height": 0.0
+      }
+    },
+    {
+      "id": "slot.table.r1c1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "나무 종류",
+        "style_role": "body",
+        "x": 138.0,
+        "y": 128.0,
+        "font_size": 20
+      }
+    },
+    {
+      "id": "slot.table.r1c2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "소나무",
+        "style_role": "body",
+        "x": 233.0,
+        "y": 128.0,
+        "font_size": 20
+      }
+    },
+    {
+      "id": "slot.table.r1c3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "전나무",
+        "style_role": "body",
+        "x": 314.0,
+        "y": 128.0,
+        "font_size": 20
+      }
+    },
+    {
+      "id": "slot.table.r1c4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "벚나무",
+        "style_role": "body",
+        "x": 394.0,
+        "y": 128.0,
+        "font_size": 20
+      }
+    },
+    {
+      "id": "slot.table.r2c1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "높이(cm)",
+        "style_role": "body",
+        "x": 138.0,
+        "y": 152.0,
+        "font_size": 20
+      }
+    },
+    {
+      "id": "slot.table.r2c2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "247",
+        "style_role": "body",
+        "x": 234.0,
+        "y": 152.0,
+        "font_size": 20
+      }
+    },
+    {
+      "id": "slot.table.r2c3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "356",
+        "style_role": "body",
+        "x": 316.0,
+        "y": 152.0,
+        "font_size": 20
+      }
+    },
+    {
+      "id": "slot.table.r2c4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "115",
+        "style_role": "body",
+        "x": 398.0,
+        "y": 152.0,
+        "font_size": 20
+      }
+    },
+    {
+      "id": "slot.choice",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "( 소나무, 전나무, 벚나무 )",
+        "style_role": "body",
+        "x": 365.0,
+        "y": 188.0,
+        "font_size": 20
+      }
+    },
+    {
+      "id": "slot.a2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "(풀이)",
+        "style_role": "body",
+        "x": 12.0,
+        "y": 258.0,
+        "font_size": 18
+      }
+    },
+    {
+      "id": "slot.a3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "(전나무) - (소나무) = 356 - 247 = 109(cm)",
+        "style_role": "body",
+        "x": 28.0,
+        "y": 281.0,
+        "font_size": 18
+      }
+    },
+    {
+      "id": "slot.a4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "(소나무) - (벚나무) = 247 - 115 = 132(cm)",
+        "style_role": "body",
+        "x": 28.0,
+        "y": 304.0,
+        "font_size": 18
+      }
+    },
+    {
+      "id": "slot.a5",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "(전나무) - (벚나무) = 356 - 115 = 241(cm)",
+        "style_role": "body",
+        "x": 28.0,
+        "y": 327.0,
+        "font_size": 18
+      }
+    },
+    {
+      "id": "slot.a6",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "두 나무의 높이의 차가 100 cm에 가장 가까운 나무는 소나무와 전나무입니다.",
+        "style_role": "body",
+        "x": 28.0,
+        "y": 350.0,
+        "font_size": 18
+      }
+    },
+    {
+      "id": "slot.a7",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "",
+        "style_role": "body",
+        "x": 0.0,
+        "y": 0.0,
+        "font_size": 18
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.table.outer",
+    "slot.table.v1",
+    "slot.table.v2",
+    "slot.table.v3",
+    "slot.table.v4",
+    "slot.table.h1",
+    "slot.table.h2",
+    "slot.q1",
+    "slot.q2",
+    "slot.q3",
+    "slot.table.r1c1",
+    "slot.table.r1c2",
+    "slot.table.r1c3",
+    "slot.table.r1c4",
+    "slot.table.r2c1",
+    "slot.table.r2c2",
+    "slot.table.r2c3",
+    "slot.table.r2c4",
+    "slot.choice",
+    "slot.a2",
+    "slot.a3",
+    "slot.a4",
+    "slot.a5",
+    "slot.a6",
+    "slot.a7"
+  ]
+}

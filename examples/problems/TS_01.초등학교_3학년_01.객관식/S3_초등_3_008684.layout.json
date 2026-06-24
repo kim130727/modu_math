@@ -24,6 +24,7 @@
       "slot_ids": [
         "slot.left.frame",
         "slot.left.circle",
+        "slot.inserted.rect.2",
         "slot.left.arrow.1",
         "slot.left.dot.1",
         "slot.left.dot.2",
@@ -64,10 +65,7 @@
       "role": "answer_explanation",
       "flow": "absolute",
       "slot_ids": [
-        "slot.inserted.rect.2",
-        "slot.inserted.rect.1",
-        "slot.inserted.rect.3",
-        "slot.inserted.triangle.1"
+        "slot.inserted.rect.1"
       ]
     }
   ],
@@ -107,16 +105,31 @@
       }
     },
     {
+      "id": "slot.inserted.rect.2",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 204.0,
+        "y": 223.0,
+        "width": 185.0,
+        "height": 30.0,
+        "stroke": "#111827",
+        "stroke_width": 1.5,
+        "fill": "#bfdbfe",
+        "transform": "rotate(-34 223 238)"
+      }
+    },
+    {
       "id": "slot.left.arrow.1",
       "kind": "path",
       "prompt": "",
       "content": {
-        "d": "M 170 285 C 90 220 45 240 25 335",
+        "d": "M 215 310 C 115 290 55 295 30 330",
         "x": 0.0,
         "y": 0.0,
         "stroke": "#111111",
         "stroke_width": 2.0,
-        "transform": "rotate(-35 125 300.43)"
+        "transform": "rotate(-35 130 295.43)"
       }
     },
     {
@@ -124,8 +137,8 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 264.0,
-        "cy": 213.0,
+        "cx": 262.0,
+        "cy": 211.0,
         "r": 4.0,
         "stroke": "#111111",
         "stroke_width": 2.0,
@@ -137,8 +150,8 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 297.0,
-        "cy": 188.0,
+        "cx": 293.0,
+        "cy": 191.0,
         "r": 4.0,
         "stroke": "#111111",
         "stroke_width": 2.0,
@@ -150,8 +163,8 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 328.0,
-        "cy": 171.0,
+        "cx": 320.0,
+        "cy": 173.0,
         "r": 4.0,
         "stroke": "#111111",
         "stroke_width": 2.0,
@@ -163,8 +176,8 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 357.0,
-        "cy": 150.0,
+        "cx": 345.0,
+        "cy": 156.0,
         "r": 4.0,
         "stroke": "#111111",
         "stroke_width": 2.0,
@@ -291,8 +304,8 @@
       "content": {
         "text": "② 다른 구멍에 연필을 꽂고 한 바퀴 돌려    원을 그려요.  ",
         "style_role": "annotation",
-        "x": 375.0,
-        "y": 375.0,
+        "x": 45.0,
+        "y": 470.0,
         "font_size": 30,
         "fill": "#111111"
       }
@@ -325,8 +338,8 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 229.0,
-        "cy": 234.0,
+        "cx": 227.0,
+        "cy": 237.0,
         "r": 8.0,
         "stroke": "#111111",
         "stroke_width": 2.0,
@@ -334,71 +347,17 @@
       }
     },
     {
-      "id": "slot.inserted.rect.2",
-      "kind": "rect",
-      "prompt": "",
-      "content": {
-        "x": 200.0,
-        "y": 200.0,
-        "width": 215.0,
-        "height": 30.0,
-        "stroke": "#111827",
-        "stroke_width": 1.5,
-        "fill": "#bfdbfe",
-        "transform": "rotate(-35 260 215)"
-      }
-    },
-    {
       "id": "slot.inserted.rect.1",
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 445.0,
-        "y": 65.0,
+        "x": 339.0,
+        "y": 75.0,
         "width": 15.0,
-        "height": 90.0,
+        "height": 65.0,
         "stroke": "#111827",
         "stroke_width": 1.5,
-        "fill": "#ffffff"
-      }
-    },
-    {
-      "id": "slot.inserted.rect.3",
-      "kind": "rect",
-      "prompt": "",
-      "content": {
-        "x": 410.0,
-        "y": 255.0,
-        "width": 20.0,
-        "height": 15.0,
-        "stroke": "#111827",
-        "stroke_width": 1.5,
-        "fill": "#ffffff"
-      }
-    },
-    {
-      "id": "slot.inserted.triangle.1",
-      "kind": "polygon",
-      "prompt": "",
-      "content": {
-        "points": [
-          [
-            180.0,
-            335.0
-          ],
-          [
-            190.0,
-            350.0
-          ],
-          [
-            170.0,
-            350.0
-          ]
-        ],
-        "stroke": "#111827",
-        "stroke_width": 1.5,
-        "fill": "#ffffff",
-        "transform": "rotate(180 130 310)"
+        "fill": "#fed7aa"
       }
     }
   ],
@@ -411,6 +370,7 @@
     "region.diagram.left",
     "slot.left.frame",
     "slot.left.circle",
+    "slot.inserted.rect.2",
     "slot.left.arrow.1",
     "slot.left.dot.1",
     "slot.left.dot.2",
@@ -433,9 +393,6 @@
     "slot.choice.frame",
     "slot.choice.text",
     "region.answer",
-    "slot.inserted.rect.2",
-    "slot.inserted.rect.1",
-    "slot.inserted.rect.3",
-    "slot.inserted.triangle.1"
+    "slot.inserted.rect.1"
   ]
 }

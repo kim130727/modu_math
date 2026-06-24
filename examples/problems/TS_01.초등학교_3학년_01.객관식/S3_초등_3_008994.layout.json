@@ -1,0 +1,171 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008994",
+  "title": "알맞은 말을 선택하세요",
+  "canvas": {
+    "width": 840.0,
+    "height": 360.0,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.header",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.header"
+      ]
+    },
+    {
+      "id": "region.figure",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.figure.square",
+        "slot.figure.corner1",
+        "slot.figure.corner2",
+        "slot.figure.corner3",
+        "slot.figure.corner4"
+      ]
+    },
+    {
+      "id": "region.body",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.body.box",
+        "slot.body.line1",
+        "slot.body.line2"
+      ]
+    },
+    {
+      "id": "region.footer",
+      "role": "answer",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.header",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "□ 32. 알맞은 말을 선택하세요.",
+        "style_role": "question",
+        "x": 8.0,
+        "y": 22.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.figure.square",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 383.0,
+        "y": 46.0,
+        "width": 103.0,
+        "height": 103.0
+      }
+    },
+    {
+      "id": "slot.figure.corner1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 385.0,
+        "y": 48.0,
+        "width": 12.0,
+        "height": 12.0
+      }
+    },
+    {
+      "id": "slot.figure.corner2",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 472.0,
+        "y": 48.0,
+        "width": 12.0,
+        "height": 12.0
+      }
+    },
+    {
+      "id": "slot.figure.corner3",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 385.0,
+        "y": 137.0,
+        "width": 12.0,
+        "height": 12.0
+      }
+    },
+    {
+      "id": "slot.figure.corner4",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 472.0,
+        "y": 137.0,
+        "width": 12.0,
+        "height": 12.0
+      }
+    },
+    {
+      "id": "slot.body.box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 35.0,
+        "y": 151.0,
+        "width": 770.0,
+        "height": 113.0
+      }
+    },
+    {
+      "id": "slot.body.line1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "( 한, 두, 네 ) 각이 모두 직각이고 ( 한, 두, 네 ) 변의 길이가",
+        "style_role": "question",
+        "x": 52.0,
+        "y": 196.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.body.line2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "모두 같은 사각형을 정사각형이라고 합니다.",
+        "style_role": "question",
+        "x": 52.0,
+        "y": 232.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.header",
+    "slot.header",
+    "region.figure",
+    "slot.figure.square",
+    "slot.figure.corner1",
+    "slot.figure.corner2",
+    "slot.figure.corner3",
+    "slot.figure.corner4",
+    "region.body",
+    "slot.body.box",
+    "slot.body.line1",
+    "slot.body.line2",
+    "region.footer"
+  ]
+}

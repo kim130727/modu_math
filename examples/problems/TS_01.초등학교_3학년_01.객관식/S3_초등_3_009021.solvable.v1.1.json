@@ -1,0 +1,72 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_009021",
+  "problem_type": "multiple_choice_concept",
+  "inputs": {
+    "total_ticks": 3,
+    "target_label": "옳은 설명의 기호",
+    "target_ticks": 1,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.statement.a",
+      "value": "두 점 중 어느 점을 먼저 읽어도 상관없다"
+    },
+    {
+      "ref": "obj.statement.b",
+      "value": "반직선 ㄴㄱ은 반직선 ㄴㄱ이라고 읽을 수 있다"
+    },
+    {
+      "ref": "obj.statement.c",
+      "value": "반직선은 반드시 시작점을 먼저 읽는다"
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "correct_choice"
+  },
+  "method": "statement_verification",
+  "plan": [
+    "각 문장을 반직선의 읽는 방법과 비교한다.",
+    "옳은 문장을 기호로 고른다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "㉠: 반직선은 두 점 중 어느 점을 먼저 읽어도 되는가?",
+      "value": false
+    },
+    {
+      "id": "step.2",
+      "expr": "㉡: 반직선 ㄴㄱ을 ㄴㄱ으로 읽는 것이 맞는가?",
+      "value": false
+    },
+    {
+      "id": "step.3",
+      "expr": "㉢: 반직선은 시작점을 먼저 읽는가?",
+      "value": true
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "옳은 문항이 ㉢인지 확인",
+      "expected": "㉢",
+      "actual": "㉢",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "correct_choice",
+      "description": "옳은 설명의 기호"
+    },
+    "value": 3,
+    "unit": ""
+  }
+}

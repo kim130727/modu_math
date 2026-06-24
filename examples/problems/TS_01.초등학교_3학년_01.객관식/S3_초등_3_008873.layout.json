@@ -1,0 +1,294 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008873",
+  "title": "수조에 물을 가득 채우기",
+  "canvas": {
+    "width": 940.0,
+    "height": 372.0,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.table.outer",
+        "slot.table.h1",
+        "slot.table.h2",
+        "slot.table.v1",
+        "slot.table.v2",
+        "slot.table.v3",
+        "slot.table.v4",
+        "slot.q_num",
+        "slot.q_text1",
+        "slot.q_text2",
+        "slot.table.c1r1",
+        "slot.table.c2r1",
+        "slot.table.c3r1",
+        "slot.table.c0r2",
+        "slot.table.c1r2",
+        "slot.table.c2r2",
+        "slot.table.c3r2",
+        "slot.choice_line"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q_num",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "26.",
+        "style_role": "question",
+        "x": 12.0,
+        "y": 28.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q_text1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "수조에 물을 가득 채우려면 다음과 같이 각각 부어야 합니다.",
+        "style_role": "question",
+        "x": 88.0,
+        "y": 28.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q_text2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "㉠ 그릇, ㉡ 그릇, ㉢ 그릇 중 들이가 가장 많은 것을 선택해 보세요.",
+        "style_role": "question",
+        "x": 28.0,
+        "y": 66.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.outer",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 188.0,
+        "y": 94.0,
+        "width": 582.0,
+        "height": 86.0,
+        "stroke": "#A9C36A",
+        "stroke_width": 1.2,
+        "fill": "#EEF4DB"
+      }
+    },
+    {
+      "id": "slot.table.h1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 188.0,
+        "y": 126.0,
+        "width": 582.0,
+        "height": 0.0,
+        "stroke": "#A9C36A",
+        "stroke_width": 1.2,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.table.h2",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 188.0,
+        "y": 164.0,
+        "width": 582.0,
+        "height": 0.0,
+        "stroke": "#A9C36A",
+        "stroke_width": 1.2,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.table.v1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 336.0,
+        "y": 94.0,
+        "width": 0.0,
+        "height": 86.0,
+        "stroke": "#A9C36A",
+        "stroke_width": 1.2,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.table.v2",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 485.0,
+        "y": 94.0,
+        "width": 0.0,
+        "height": 86.0,
+        "stroke": "#A9C36A",
+        "stroke_width": 1.2,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.table.v3",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 634.0,
+        "y": 94.0,
+        "width": 0.0,
+        "height": 86.0,
+        "stroke": "#A9C36A",
+        "stroke_width": 1.2,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.table.v4",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 770.0,
+        "y": 94.0,
+        "width": 0.0,
+        "height": 86.0,
+        "stroke": "#A9C36A",
+        "stroke_width": 1.2,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.table.c0r2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "그릇의 수",
+        "style_role": "body",
+        "x": 218.0,
+        "y": 151.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.c1r1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "㉠ 그릇",
+        "style_role": "body",
+        "x": 371.0,
+        "y": 119.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.c2r1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "㉡ 그릇",
+        "style_role": "body",
+        "x": 519.0,
+        "y": 119.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.c3r1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "㉢ 그릇",
+        "style_role": "body",
+        "x": 670.0,
+        "y": 119.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.c1r2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "3개",
+        "style_role": "body",
+        "x": 390.0,
+        "y": 156.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.c2r2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "6개",
+        "style_role": "body",
+        "x": 541.0,
+        "y": 156.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.c3r2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "4개",
+        "style_role": "body",
+        "x": 690.0,
+        "y": 156.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice_line",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "( ㉠ 그릇, ㉡ 그릇, ㉢ 그릇 )",
+        "style_role": "body",
+        "x": 303.0,
+        "y": 210.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.table.outer",
+    "slot.table.h1",
+    "slot.table.h2",
+    "slot.table.v1",
+    "slot.table.v2",
+    "slot.table.v3",
+    "slot.table.v4",
+    "slot.q_num",
+    "slot.q_text1",
+    "slot.q_text2",
+    "slot.table.c1r1",
+    "slot.table.c2r1",
+    "slot.table.c3r1",
+    "slot.table.c0r2",
+    "slot.table.c1r2",
+    "slot.table.c2r2",
+    "slot.table.c3r2",
+    "slot.choice_line"
+  ]
+}

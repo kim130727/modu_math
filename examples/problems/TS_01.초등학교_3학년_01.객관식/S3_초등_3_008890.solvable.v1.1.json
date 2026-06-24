@@ -1,0 +1,74 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008890",
+  "problem_type": "그림그래프_비교_선택",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "토마토 생산량이 다 붕장보다 적은 농장",
+    "target_ticks": 0,
+    "target_count": 0,
+    "unit": "상자"
+  },
+  "given": [
+    {
+      "ref": "obj.legend.big_tomato",
+      "value": {
+        "meaning": "10상자"
+      }
+    },
+    {
+      "ref": "obj.legend.small_tomato",
+      "value": {
+        "meaning": "1상자"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "select_farms"
+  },
+  "method": "그림그래프_비교",
+  "plan": [
+    "범례를 읽어 큰 토마토와 작은 토마토의 의미를 확인한다.",
+    "각 농장의 그림 수를 비교하여 조건에 맞는 농장을 찾는다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "범례 해석: 큰 토마토 = 10상자, 작은 토마토 = 1상자",
+      "value": 0
+    },
+    {
+      "id": "step.2",
+      "expr": "그림그래프의 각 농장 생산량을 비교하여 조건을 판단한다",
+      "value": 0
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "범례가 그림과 일치하는지 확인",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "id": "check.2",
+      "expr": "선택 결과가 화면의 정답 문구와 일치하는지 확인",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "select_farms",
+      "description": "토마토 생산량이 다 붕장보다 적은 농장"
+    },
+    "value": 0,
+    "unit": ""
+  }
+}

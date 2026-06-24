@@ -1,12 +1,5 @@
 from __future__ import annotations
-from modu_math.dsl import (
-    Canvas,
-    CircleSlot,
-    ProblemTemplate,
-    RectSlot,
-    Region,
-    TextSlot,
-)
+from modu_math.dsl import Canvas, CircleSlot, ProblemTemplate, RectSlot, Region, TextSlot, LineSlot
 
 
 def build_problem_template() -> ProblemTemplate:
@@ -19,7 +12,12 @@ def build_problem_template() -> ProblemTemplate:
                 id="region.header",
                 role="stem",
                 flow="absolute",
-                slot_ids=("slot.title",),
+                slot_ids=(
+                    "slot.title",
+                    "slot.math.fraction.num",
+                    "slot.math.fraction.bar",
+                    "slot.math.fraction.den",
+                ),
             ),
             Region(
                 id="region.diagram",
@@ -45,7 +43,7 @@ def build_problem_template() -> ProblemTemplate:
                 id="region.question",
                 role="stem",
                 flow="absolute",
-                slot_ids=("slot.stem",),
+                slot_ids=("slot.stem", "slot.stem.copy1"),
             ),
             Region(id="region.footer", role="note", flow="absolute", slot_ids=()),
         ),
@@ -195,9 +193,50 @@ def build_problem_template() -> ProblemTemplate:
             TextSlot(
                 id="slot.stem",
                 prompt="",
-                text="12의 1/3은 ( 초록색 , 분홍색 ) 구슬입니다.",
+                text="12의",
                 style_role="question",
                 x=110,
+                y=215,
+                font_size=28,
+                fill="#111111",
+            ),
+            TextSlot(
+                id="slot.math.fraction.num",
+                prompt="",
+                text="1",
+                x=((420) + (-270.0)) + (50.0),
+                y=((135) + (125.0)) + (-70.0),
+                font_size=30,
+                anchor="middle",
+                style_role="body",
+                fill="#222222",
+            ),
+            LineSlot(
+                id="slot.math.fraction.bar",
+                prompt="",
+                x1=((400) + (-270.0)) + (50.0),
+                y1=((150) + (125.0)) + (-70.0),
+                x2=((440) + (-270.0)) + (50.0),
+                y2=((150) + (125.0)) + (-70.0),
+                stroke="#222222",
+                stroke_width=2.2,
+            ),
+            TextSlot(
+                id="slot.math.fraction.den",
+                prompt="",
+                text="3",
+                x=((420) + (-270.0)) + (50.0),
+                y=((175) + (125.0)) + (-70.0),
+                font_size=30,
+                anchor="middle",
+                style_role="body",
+                fill="#222222",
+            ),
+            TextSlot(
+                id="slot.stem.copy1",
+                prompt="",
+                text="은 (초록색, 분홍색) 구슬입니다.",
+                x=235,
                 y=215,
                 font_size=28,
                 fill="#111111",

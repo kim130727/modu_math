@@ -1,0 +1,329 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008907",
+  "title": "태어난 계절별 학생 수",
+  "canvas": {
+    "width": 940,
+    "height": 399,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.table.outer",
+        "slot.table.v1",
+        "slot.table.v2",
+        "slot.table.v3",
+        "slot.table.v4",
+        "slot.table.v5",
+        "slot.table.h1",
+        "slot.q1",
+        "slot.title",
+        "slot.table.r1c1",
+        "slot.table.r1c2",
+        "slot.table.r1c3",
+        "slot.table.r1c4",
+        "slot.table.r1c5",
+        "slot.table.r1c6",
+        "slot.table.r2c1",
+        "slot.table.r2c2",
+        "slot.table.r2c3",
+        "slot.table.r2c4",
+        "slot.table.r2c5",
+        "slot.table.r2c6",
+        "slot.choice"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "73. 유라네 반 학생들이 태어난 계절을 조사하여 표로 나타내었습니다. 가장 많은 학생들이 태어난 계절을 선택해 보세요.",
+        "style_role": "question",
+        "x": 20.0,
+        "y": 20.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.title",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "태어난 계절별 학생 수",
+        "style_role": "title",
+        "x": 465.0,
+        "y": 108.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.outer",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 168.0,
+        "y": 121.0,
+        "width": 648.0,
+        "height": 80.0
+      }
+    },
+    {
+      "id": "slot.table.v1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 338.0,
+        "y": 121.0,
+        "width": 1.0,
+        "height": 80.0
+      }
+    },
+    {
+      "id": "slot.table.v2",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 435.0,
+        "y": 121.0,
+        "width": 1.0,
+        "height": 80.0
+      }
+    },
+    {
+      "id": "slot.table.v3",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 532.0,
+        "y": 121.0,
+        "width": 1.0,
+        "height": 80.0
+      }
+    },
+    {
+      "id": "slot.table.v4",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 629.0,
+        "y": 121.0,
+        "width": 1.0,
+        "height": 80.0
+      }
+    },
+    {
+      "id": "slot.table.v5",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 726.0,
+        "y": 121.0,
+        "width": 1.0,
+        "height": 80.0
+      }
+    },
+    {
+      "id": "slot.table.h1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 168.0,
+        "y": 161.0,
+        "width": 648.0,
+        "height": 1.0
+      }
+    },
+    {
+      "id": "slot.table.r1c1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "계절",
+        "style_role": "table",
+        "x": 222.0,
+        "y": 148.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.r1c2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "봄",
+        "style_role": "table",
+        "x": 373.0,
+        "y": 148.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.r1c3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "여름",
+        "style_role": "table",
+        "x": 464.0,
+        "y": 148.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.r1c4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "가을",
+        "style_role": "table",
+        "x": 558.0,
+        "y": 148.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.r1c5",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "겨울",
+        "style_role": "table",
+        "x": 655.0,
+        "y": 148.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.r1c6",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "합계",
+        "style_role": "table",
+        "x": 753.0,
+        "y": 148.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.r2c1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "학생 수(명)",
+        "style_role": "table",
+        "x": 223.0,
+        "y": 188.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.r2c2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "6",
+        "style_role": "table",
+        "x": 373.0,
+        "y": 188.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.r2c3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "10",
+        "style_role": "table",
+        "x": 468.0,
+        "y": 188.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.r2c4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "3",
+        "style_role": "table",
+        "x": 559.0,
+        "y": 188.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.r2c5",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "9",
+        "style_role": "table",
+        "x": 656.0,
+        "y": 188.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.r2c6",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "28",
+        "style_role": "table",
+        "x": 754.0,
+        "y": 188.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "( 봄, 여름, 가을, 겨울 )",
+        "style_role": "choice",
+        "x": 648.0,
+        "y": 237.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.table.outer",
+    "slot.table.v1",
+    "slot.table.v2",
+    "slot.table.v3",
+    "slot.table.v4",
+    "slot.table.v5",
+    "slot.table.h1",
+    "slot.q1",
+    "slot.title",
+    "slot.table.r1c1",
+    "slot.table.r1c2",
+    "slot.table.r1c3",
+    "slot.table.r1c4",
+    "slot.table.r1c5",
+    "slot.table.r1c6",
+    "slot.table.r2c1",
+    "slot.table.r2c2",
+    "slot.table.r2c3",
+    "slot.table.r2c4",
+    "slot.table.r2c5",
+    "slot.table.r2c6",
+    "slot.choice"
+  ]
+}

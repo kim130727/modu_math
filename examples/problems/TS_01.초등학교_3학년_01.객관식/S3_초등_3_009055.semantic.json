@@ -1,0 +1,226 @@
+{
+  "problem_id": "S3_초등_3_009055",
+  "problem_type": "도형_직각_판별",
+  "metadata": {
+    "title": "직각이 있는 삼각형을 모두 선택하세요",
+    "tags": [],
+    "question": "직각이 있는 삼각형을 모두 선택하세요.",
+    "required_layout_ids": [
+      "slot.top.grid.v1",
+      "slot.top.grid.v2",
+      "slot.top.grid.v3",
+      "slot.top.grid.v4",
+      "slot.top.grid.v5",
+      "slot.top.grid.v6",
+      "slot.top.grid.v7",
+      "slot.top.grid.v8",
+      "slot.top.grid.v9",
+      "slot.top.grid.v10",
+      "slot.top.grid.v11",
+      "slot.top.grid.v12",
+      "slot.top.grid.v13",
+      "slot.top.grid.v14",
+      "slot.top.grid.v15",
+      "slot.top.grid.v16",
+      "slot.top.grid.h1",
+      "slot.top.grid.h2",
+      "slot.top.grid.h3",
+      "slot.top.grid.h4",
+      "slot.top.grid.h5",
+      "slot.top.grid.h6",
+      "slot.top.grid.h7",
+      "slot.top.grid.h8",
+      "slot.top.grid.h9",
+      "slot.top.grid.h10",
+      "slot.top.grid.h11",
+      "slot.top.grid.h12",
+      "slot.top.grid.h13",
+      "slot.top.grid.h14",
+      "slot.top.grid.h15",
+      "slot.top.grid.h16",
+      "slot.top.grid.h17",
+      "slot.top.grid.h18",
+      "slot.top.grid.h19",
+      "slot.top.grid.h20",
+      "slot.top.grid.h21",
+      "slot.top.grid.h22",
+      "slot.top.grid.h23",
+      "slot.top.grid.h24",
+      "slot.top.grid.h25",
+      "slot.top.grid.h26",
+      "slot.top.grid.h27",
+      "slot.top.grid.h28",
+      "slot.top.grid.h29",
+      "slot.top.grid.h30",
+      "slot.top.grid.h31",
+      "slot.top.grid.h32",
+      "slot.top.a1",
+      "slot.top.a2",
+      "slot.top.a3",
+      "slot.top.b1",
+      "slot.top.b2",
+      "slot.top.b3",
+      "slot.top.c1",
+      "slot.top.c2",
+      "slot.top.c3",
+      "slot.top.d1",
+      "slot.top.d2",
+      "slot.top.d3",
+      "slot.top.e1",
+      "slot.top.e2",
+      "slot.top.e3",
+      "slot.top.f1",
+      "slot.top.f2",
+      "slot.top.f3",
+      "slot.bottom.grid.v1",
+      "slot.bottom.grid.v2",
+      "slot.bottom.grid.v3",
+      "slot.bottom.grid.v4",
+      "slot.bottom.grid.v5",
+      "slot.bottom.grid.v6",
+      "slot.bottom.grid.v7",
+      "slot.bottom.grid.v8",
+      "slot.bottom.grid.v9",
+      "slot.bottom.grid.v10",
+      "slot.bottom.grid.v11",
+      "slot.bottom.grid.v12",
+      "slot.bottom.grid.v13",
+      "slot.bottom.grid.v14",
+      "slot.bottom.grid.v15",
+      "slot.bottom.grid.v16",
+      "slot.bottom.grid.h1",
+      "slot.bottom.grid.h2",
+      "slot.bottom.grid.h3",
+      "slot.bottom.grid.h4",
+      "slot.bottom.grid.h5",
+      "slot.bottom.grid.h6",
+      "slot.bottom.grid.h7",
+      "slot.bottom.grid.h8",
+      "slot.bottom.grid.h9",
+      "slot.bottom.grid.h10",
+      "slot.bottom.grid.h11",
+      "slot.bottom.grid.h12",
+      "slot.bottom.grid.h13",
+      "slot.bottom.grid.h14",
+      "slot.bottom.grid.h15",
+      "slot.bottom.grid.h16",
+      "slot.bottom.grid.h17",
+      "slot.bottom.grid.h18",
+      "slot.bottom.grid.h19",
+      "slot.bottom.grid.h20",
+      "slot.bottom.grid.h21",
+      "slot.bottom.grid.h22",
+      "slot.bottom.grid.h23",
+      "slot.bottom.grid.h24",
+      "slot.bottom.grid.h25",
+      "slot.bottom.grid.h26",
+      "slot.bottom.grid.h27",
+      "slot.bottom.grid.h28",
+      "slot.bottom.grid.h29",
+      "slot.bottom.grid.h30",
+      "slot.bottom.grid.h31",
+      "slot.bottom.grid.h32",
+      "slot.bottom.a1",
+      "slot.bottom.a2",
+      "slot.bottom.a3",
+      "slot.bottom.b1",
+      "slot.bottom.b2",
+      "slot.bottom.b3",
+      "slot.bottom.c1",
+      "slot.bottom.c2",
+      "slot.bottom.c3",
+      "slot.bottom.d1",
+      "slot.bottom.d2",
+      "slot.bottom.d3",
+      "slot.bottom.e1",
+      "slot.bottom.e2",
+      "slot.bottom.e3",
+      "slot.bottom.f1",
+      "slot.bottom.f2",
+      "slot.bottom.f3"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "직각이 있는 삼각형을 모두 선택하세요.",
+    "points": 0
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.triangle.가",
+        "type": "triangle",
+        "label": "가"
+      },
+      {
+        "id": "obj.triangle.나",
+        "type": "triangle",
+        "label": "나"
+      },
+      {
+        "id": "obj.triangle.다",
+        "type": "triangle",
+        "label": "다"
+      },
+      {
+        "id": "obj.triangle.라",
+        "type": "triangle",
+        "label": "라"
+      },
+      {
+        "id": "obj.triangle.마",
+        "type": "triangle",
+        "label": "마"
+      },
+      {
+        "id": "obj.triangle.바",
+        "type": "triangle",
+        "label": "바"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.triangle.가",
+          "obj.triangle.나",
+          "obj.triangle.다",
+          "obj.triangle.라",
+          "obj.triangle.마",
+          "obj.triangle.바"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.select"
+        ]
+      },
+      "plan": {
+        "method": "shape_classification",
+        "description": "각 삼각형에서 서로 직각인 변이 있는지 살펴본다."
+      },
+      "execute": {
+        "expected_operations": [
+          "inspect_triangle_sides",
+          "identify_right_angle_candidates"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "compare_selected_triangles_with_visual_condition"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "selected_labels",
+      "description": "직각이 있는 삼각형의 라벨"
+    },
+    "value": 2,
+    "unit": ""
+  }
+}

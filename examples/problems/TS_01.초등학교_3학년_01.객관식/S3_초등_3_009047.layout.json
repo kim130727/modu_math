@@ -1,0 +1,265 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_009047",
+  "title": "반직선 ㄴ ㄱ 판독",
+  "canvas": {
+    "width": 760,
+    "height": 285,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.header",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.box",
+        "slot.no",
+        "slot.q"
+      ]
+    },
+    {
+      "id": "region.figures.top",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.top.left.line",
+        "slot.top.right.line",
+        "slot.top.left.pt1",
+        "slot.top.left.pt2",
+        "slot.top.right.pt1",
+        "slot.top.right.pt2",
+        "slot.top.left.lb1",
+        "slot.top.left.lb2",
+        "slot.top.right.lb1",
+        "slot.top.right.lb2"
+      ]
+    },
+    {
+      "id": "region.answer",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.answer.line",
+        "slot.answer.pt1",
+        "slot.answer.pt2"
+      ]
+    },
+    {
+      "id": "region.explanation",
+      "role": "explanation",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 16.0,
+        "y": 16.0,
+        "width": 12.0,
+        "height": 12.0
+      }
+    },
+    {
+      "id": "slot.no",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "85.",
+        "style_role": "question",
+        "x": 38.0,
+        "y": 27.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "반직선 ㄴ ㄱ으로 알맞은 것을 고르세요.",
+        "style_role": "question",
+        "x": 90.0,
+        "y": 27.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.top.left.line",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 116.0,
+        "y1": 90.0,
+        "x2": 404.0,
+        "y2": 90.0
+      }
+    },
+    {
+      "id": "slot.top.left.pt1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 156.0,
+        "cy": 90.0,
+        "r": 4.0,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.top.left.pt2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 400.0,
+        "cy": 90.0,
+        "r": 4.0,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.top.left.lb1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄱ",
+        "style_role": "label",
+        "x": 150.0,
+        "y": 74.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.top.left.lb2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄴ",
+        "style_role": "label",
+        "x": 395.0,
+        "y": 74.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.top.right.line",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 486.0,
+        "y1": 90.0,
+        "x2": 740.0,
+        "y2": 90.0
+      }
+    },
+    {
+      "id": "slot.top.right.pt1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 486.0,
+        "cy": 90.0,
+        "r": 4.0,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.top.right.pt2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 736.0,
+        "cy": 90.0,
+        "r": 4.0,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.top.right.lb1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄱ",
+        "style_role": "label",
+        "x": 480.0,
+        "y": 74.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.top.right.lb2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄴ",
+        "style_role": "label",
+        "x": 731.0,
+        "y": 74.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.answer.line",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 66.0,
+        "y1": 159.0,
+        "x2": 264.0,
+        "y2": 159.0
+      }
+    },
+    {
+      "id": "slot.answer.pt1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 74.0,
+        "cy": 159.0,
+        "r": 4.0,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.answer.pt2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 260.0,
+        "cy": 159.0,
+        "r": 4.0,
+        "fill": "#222222"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.header",
+    "slot.box",
+    "slot.no",
+    "slot.q",
+    "region.figures.top",
+    "slot.top.left.line",
+    "slot.top.right.line",
+    "slot.top.left.pt1",
+    "slot.top.left.pt2",
+    "slot.top.right.pt1",
+    "slot.top.right.pt2",
+    "slot.top.left.lb1",
+    "slot.top.left.lb2",
+    "slot.top.right.lb1",
+    "slot.top.right.lb2",
+    "region.answer",
+    "slot.answer.line",
+    "slot.answer.pt1",
+    "slot.answer.pt2",
+    "region.explanation"
+  ]
+}

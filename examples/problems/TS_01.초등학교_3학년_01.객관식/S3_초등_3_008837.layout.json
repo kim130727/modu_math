@@ -1,0 +1,180 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008837",
+  "title": "저울에서 더 무거운 쪽 판단",
+  "canvas": {
+    "width": 960,
+    "height": 476,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q1",
+        "slot.q2",
+        "slot.q3",
+        "slot.q4"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.ball",
+        "slot.cube",
+        "slot.child",
+        "slot.speech",
+        "slot.choice.o",
+        "slot.choice.x"
+      ]
+    },
+    {
+      "id": "region.answer",
+      "role": "answer",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "79.",
+        "style_role": "question",
+        "x": 32.0,
+        "y": 42.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "야구공과 큐브를 양손에 들어 보니 무게가 비슷하여 어느 것이 더 무거",
+        "style_role": "question",
+        "x": 64.0,
+        "y": 42.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "운지 알 수 없습니다. 두 물건의 무게를 비교할 수 있는 방법을 바르게 말했",
+        "style_role": "question",
+        "x": 64.0,
+        "y": 78.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "으면 ○표, 그렇지 않으면 ×표를 선택하세요.",
+        "style_role": "question",
+        "x": 64.0,
+        "y": 114.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.ball",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 222.0,
+        "cy": 190.0,
+        "r": 28.0,
+        "fill": "#F5F5F5"
+      }
+    },
+    {
+      "id": "slot.cube",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 300.0,
+        "y": 164.0,
+        "width": 56.0,
+        "height": 56.0
+      }
+    },
+    {
+      "id": "slot.speech",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "저울의 양쪽 접시에 각각\n올려놓았을 때 위로 올라간\n쪽의 물건이 더 무거워.",
+        "style_role": "note",
+        "x": 388.0,
+        "y": 148.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.child",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 780.0,
+        "cy": 198.0,
+        "r": 18.0,
+        "fill": "#F5F5F5"
+      }
+    },
+    {
+      "id": "slot.choice.o",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "○",
+        "style_role": "answer_choice",
+        "x": 34.0,
+        "y": 300.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice.x",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "×",
+        "style_role": "answer_choice",
+        "x": 34.0,
+        "y": 332.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q1",
+    "slot.q2",
+    "slot.q3",
+    "slot.q4",
+    "region.diagram",
+    "slot.ball",
+    "slot.cube",
+    "slot.child",
+    "slot.speech",
+    "slot.choice.o",
+    "slot.choice.x",
+    "region.answer"
+  ]
+}

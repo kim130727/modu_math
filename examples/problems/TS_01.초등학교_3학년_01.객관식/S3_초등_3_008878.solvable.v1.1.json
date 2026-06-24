@@ -1,0 +1,78 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008878",
+  "problem_type": "multiple_choice_science_math",
+  "inputs": {
+    "total_ticks": 2,
+    "target_label": "정답",
+    "target_ticks": 1,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.banana",
+      "value": {
+        "name": "바나나"
+      }
+    },
+    {
+      "ref": "obj.cucumber",
+      "value": {
+        "name": "오이"
+      }
+    },
+    {
+      "ref": "obj.scale",
+      "value": {
+        "name": "저울"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "correct_choice"
+  },
+  "method": "concept_selection",
+  "plan": [
+    "무게를 비교하는 데 알맞은 방법인지 보기의 의미를 확인한다.",
+    "길이를 재는 방법이 아니라 저울을 사용하는 방법을 고른다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "보기 ①: 길이를 재어 무게를 비교하는 방법인지 확인",
+      "value": "무게 비교에 부적절"
+    },
+    {
+      "id": "step.2",
+      "expr": "보기 ②: 저울로 양쪽의 무게를 비교하는 방법인지 확인",
+      "value": "무게 비교에 적절"
+    },
+    {
+      "id": "step.3",
+      "expr": "정답 선택",
+      "value": 2
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "무게 비교에 저울을 사용하는가",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "correct_choice",
+      "description": "바나나와 오이의 무게를 비교할 수 있는 방법"
+    },
+    "value": 2,
+    "unit": ""
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008900",
+  "problem_type": "multiple_choice",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "과일 간식으로 준비하면 좋을 과일",
+    "target_ticks": 1,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.chart.fruit_preferences",
+      "value": "survey_chart"
+    },
+    {
+      "ref": "obj.table.fruit_counts",
+      "value": "table"
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "fruit_choice"
+  },
+  "method": "compare_preferences",
+  "plan": [
+    "그림 자료와 표 자료를 함께 살펴 가장 많이 좋아하는 과일을 찾는다.",
+    "보기 중 해당 과일을 고른다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "표와 그림의 대응 관계를 확인한다.",
+      "value": "possible"
+    },
+    {
+      "id": "step.2",
+      "expr": "가장 많이 좋아하는 과일을 선택한다.",
+      "value": "사과"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "인쇄된 정답과 선택 결과가 같은가",
+      "expected": "사과",
+      "actual": "사과",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "fruit_choice",
+      "description": "과일 간식으로 준비하면 좋을 과일"
+    },
+    "value": "사과",
+    "unit": ""
+  }
+}

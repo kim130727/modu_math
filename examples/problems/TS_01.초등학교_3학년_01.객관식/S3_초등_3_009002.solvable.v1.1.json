@@ -1,0 +1,73 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_009002",
+  "problem_type": "shape_selection",
+  "inputs": {
+    "total_ticks": 4,
+    "target_label": "정사각형",
+    "target_ticks": 2,
+    "target_count": 2,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.shape.ga",
+      "value": {
+        "label": "가"
+      }
+    },
+    {
+      "ref": "obj.shape.na",
+      "value": {
+        "label": "나"
+      }
+    },
+    {
+      "ref": "obj.shape.da",
+      "value": {
+        "label": "다"
+      }
+    },
+    {
+      "ref": "obj.shape.ra",
+      "value": {
+        "label": "라"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "selected_labels"
+  },
+  "method": "shape_classification",
+  "plan": [
+    "각 도형의 네 변의 길이와 네 각을 살펴 정사각형인지 판단한다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "도형 4개를 정사각형의 성질로 분류한다.",
+      "value": 0
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "정답 표기가 이미지에 인쇄되어 있는지 확인한다.",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "selected_labels",
+      "description": "정사각형인 도형의 기호"
+    },
+    "value": 0,
+    "unit": ""
+  }
+}

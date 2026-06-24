@@ -1,0 +1,268 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_009045",
+  "title": "곧은 선을 모두 선택하세요.",
+  "canvas": {
+    "width": 706,
+    "height": 373,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.symbol",
+        "slot.num",
+        "slot.q"
+      ]
+    },
+    {
+      "id": "region.box",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.box",
+        "slot.line.na",
+        "slot.line.da",
+        "slot.line.ra",
+        "slot.line.ga",
+        "slot.line.ma",
+        "slot.line.ba",
+        "slot.lb.ga",
+        "slot.lb.na",
+        "slot.lb.da",
+        "slot.lb.ra",
+        "slot.lb.ma",
+        "slot.lb.ba"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.symbol",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "□",
+        "style_role": "question",
+        "x": 7.0,
+        "y": 22.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.num",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "83.",
+        "style_role": "question",
+        "x": 34.0,
+        "y": 24.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "곧은 선을 모두 선택하세요.",
+        "style_role": "question",
+        "x": 78.0,
+        "y": 24.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 157.0,
+        "y": 37.0,
+        "width": 528.0,
+        "height": 200.0,
+        "stroke": "#F5A7B8",
+        "stroke_width": 1.5,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.lb.ga",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "가",
+        "style_role": "label",
+        "x": 178.0,
+        "y": 70.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.line.ga",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 221.0,
+        "y1": 88.0,
+        "x2": 255.0,
+        "y2": 44.0,
+        "stroke": "#444444",
+        "stroke_width": 1.5
+      }
+    },
+    {
+      "id": "slot.lb.na",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "나",
+        "style_role": "label",
+        "x": 330.0,
+        "y": 70.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.line.na",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 345 93 C 372 56, 409 56, 436 93",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#444444",
+        "stroke_width": 1.5,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.lb.da",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "다",
+        "style_role": "label",
+        "x": 489.0,
+        "y": 70.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.line.da",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 505 114 C 500 77, 513 47, 529 47 C 547 47, 551 79, 549 100 C 547 125, 560 150, 579 150 C 595 150, 600 132, 600 109",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#444444",
+        "stroke_width": 1.5,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.lb.ra",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "라",
+        "style_role": "label",
+        "x": 179.0,
+        "y": 164.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.line.ra",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 211 176 C 195 168, 188 149, 195 133 C 205 111, 229 105, 246 120 C 260 133, 264 153, 255 170 C 243 192, 215 201, 191 193 C 164 184, 150 156, 156 129 C 164 97, 195 77, 228 81",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#444444",
+        "stroke_width": 1.5,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.lb.ma",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "마",
+        "style_role": "label",
+        "x": 329.0,
+        "y": 164.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.line.ma",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 370.0,
+        "y1": 179.0,
+        "x2": 472.0,
+        "y2": 179.0,
+        "stroke": "#444444",
+        "stroke_width": 1.5
+      }
+    },
+    {
+      "id": "slot.lb.ba",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "바",
+        "style_role": "label",
+        "x": 489.0,
+        "y": 164.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.line.ba",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 535.0,
+        "y1": 162.0,
+        "x2": 627.0,
+        "y2": 203.0,
+        "stroke": "#444444",
+        "stroke_width": 1.5
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.symbol",
+    "slot.num",
+    "slot.q",
+    "region.box",
+    "slot.box",
+    "slot.line.na",
+    "slot.line.da",
+    "slot.line.ra",
+    "slot.line.ga",
+    "slot.line.ma",
+    "slot.line.ba",
+    "slot.lb.ga",
+    "slot.lb.na",
+    "slot.lb.da",
+    "slot.lb.ra",
+    "slot.lb.ma",
+    "slot.lb.ba"
+  ]
+}

@@ -1,0 +1,93 @@
+{
+  "problem_id": "S3_초등_3_008903",
+  "problem_type": "표에서 비교하기",
+  "metadata": {
+    "title": "주말에 가고 싶은 장소별 남녀 학생 수",
+    "tags": [],
+    "instruction": "가장 많은 남학생이 가고 싶은 장소를 선택한다.",
+    "question": "주말에 가고 싶은 장소별 남녀 학생 수를 보고 가장 많은 남학생이 가고 싶은 장소를 찾는 문제",
+    "required_layout_ids": [
+      "slot.table.frame"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.place.zoo",
+        "type": "place",
+        "name": "동물원"
+      },
+      {
+        "id": "obj.place.palace",
+        "type": "place",
+        "name": "고궁"
+      },
+      {
+        "id": "obj.place.movie",
+        "type": "place",
+        "name": "영화관"
+      },
+      {
+        "id": "obj.place.amusement",
+        "type": "place",
+        "name": "놀이공원"
+      },
+      {
+        "id": "obj.group.boys",
+        "type": "student_group",
+        "name": "남학생"
+      },
+      {
+        "id": "obj.group.girls",
+        "type": "student_group",
+        "name": "여학생"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.group.boys",
+          "obj.place.zoo",
+          "obj.place.palace",
+          "obj.place.movie",
+          "obj.place.amusement"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.table.boys_counts"
+        ]
+      },
+      "plan": {
+        "method": "compare_counts",
+        "description": "남학생 수를 장소별로 비교하여 가장 큰 값을 찾는다."
+      },
+      "execute": {
+        "expected_operations": [
+          "compare_values",
+          "select_maximum"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "max_value_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "place_name",
+      "description": "가장 많은 남학생이 가고 싶은 장소"
+    },
+    "value": "영화관",
+    "unit": ""
+  }
+}

@@ -1,0 +1,282 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008824",
+  "title": "들이의 단위를 알아보기",
+  "canvas": {
+    "width": 960,
+    "height": 440,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q_num",
+        "slot.q_text1",
+        "slot.q_text2"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.bottle.body",
+        "slot.bottle.cap",
+        "slot.bottle.neck",
+        "slot.bottle.highlight",
+        "slot.zoom.circle",
+        "slot.zoom.base",
+        "slot.connector1",
+        "slot.connector2",
+        "slot.bottle.label",
+        "slot.bottle.unit",
+        "slot.zoom.unit"
+      ]
+    },
+    {
+      "id": "region.choice",
+      "role": "body",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice"
+      ]
+    },
+    {
+      "id": "region.answer",
+      "role": "answer",
+      "flow": "absolute",
+      "slot_ids": []
+    },
+    {
+      "id": "region.explanation",
+      "role": "explanation",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q_num",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "58.",
+        "style_role": "question",
+        "x": 12.0,
+        "y": 42.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q_text1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "물건에 표시되어 있는 들이의 단위를 알아보려고 합니다. 알맞은 것을 선택하세",
+        "style_role": "question",
+        "x": 54.0,
+        "y": 42.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q_text2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "요.",
+        "style_role": "question",
+        "x": 12.0,
+        "y": 74.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.bottle.body",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 364.0,
+        "y": 102.0,
+        "width": 54.0,
+        "height": 120.0,
+        "stroke": "#4C9B2E",
+        "stroke_width": 2.0,
+        "fill": "#D7F0C5"
+      }
+    },
+    {
+      "id": "slot.bottle.cap",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 373.0,
+        "y": 84.0,
+        "width": 36.0,
+        "height": 18.0,
+        "stroke": "#4C9B2E",
+        "stroke_width": 2.0,
+        "fill": "#4C9B2E"
+      }
+    },
+    {
+      "id": "slot.bottle.neck",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 378.0,
+        "y": 96.0,
+        "width": 26.0,
+        "height": 12.0,
+        "stroke": "#4C9B2E",
+        "stroke_width": 1.8,
+        "fill": "#76B83C"
+      }
+    },
+    {
+      "id": "slot.bottle.label",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "샴푸",
+        "style_role": "label",
+        "x": 374.0,
+        "y": 145.0,
+        "font_size": 24
+      }
+    },
+    {
+      "id": "slot.bottle.unit",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "1 L",
+        "style_role": "label",
+        "x": 375.0,
+        "y": 203.0,
+        "font_size": 20
+      }
+    },
+    {
+      "id": "slot.bottle.highlight",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 391.0,
+        "cy": 196.0,
+        "r": 18.0,
+        "stroke": "#FF3EA5",
+        "stroke_width": 2.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.zoom.circle",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 578.0,
+        "cy": 156.0,
+        "r": 58.0,
+        "stroke": "#FF3EA5",
+        "stroke_width": 2.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.zoom.unit",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "1 L",
+        "style_role": "label",
+        "x": 548.0,
+        "y": 165.0,
+        "font_size": 54
+      }
+    },
+    {
+      "id": "slot.zoom.base",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 521.0,
+        "y": 195.0,
+        "width": 114.0,
+        "height": 22.0,
+        "stroke": "none",
+        "stroke_width": 0.0,
+        "fill": "#9BCB4F"
+      }
+    },
+    {
+      "id": "slot.connector1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 392.0,
+        "y1": 122.0,
+        "x2": 519.0,
+        "y2": 112.0,
+        "stroke": "#FF3EA5",
+        "stroke_width": 1.8,
+        "stroke_dasharray": "4 4"
+      }
+    },
+    {
+      "id": "slot.connector2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 391.0,
+        "y1": 214.0,
+        "x2": 521.0,
+        "y2": 211.0,
+        "stroke": "#FF3EA5",
+        "stroke_width": 1.8,
+        "stroke_dasharray": "4 4"
+      }
+    },
+    {
+      "id": "slot.choice",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "샴푸통에 표시되어 있는 단위는 ( L , mL )입니다.",
+        "style_role": "question",
+        "x": 185.0,
+        "y": 305.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q_num",
+    "slot.q_text1",
+    "slot.q_text2",
+    "region.diagram",
+    "slot.bottle.body",
+    "slot.bottle.cap",
+    "slot.bottle.neck",
+    "slot.bottle.highlight",
+    "slot.zoom.circle",
+    "slot.zoom.base",
+    "slot.connector1",
+    "slot.connector2",
+    "slot.bottle.label",
+    "slot.bottle.unit",
+    "slot.zoom.unit",
+    "region.choice",
+    "slot.choice",
+    "region.answer",
+    "region.explanation"
+  ]
+}

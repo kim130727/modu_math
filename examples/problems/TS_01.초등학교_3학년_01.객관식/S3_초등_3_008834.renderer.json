@@ -1,0 +1,321 @@
+{
+  "problem_id": "S3_초등_3_008834",
+  "view_box": {
+    "width": 960.0,
+    "height": 431.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.qnum.text",
+      "type": "text",
+      "attributes": {
+        "x": 42.0,
+        "y": 28.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.qnum",
+      "refs": {
+        "layout_slot_id": "slot.qnum"
+      },
+      "text": "72."
+    },
+    {
+      "id": "slot.instruction.1.text",
+      "type": "text",
+      "attributes": {
+        "x": 72.0,
+        "y": 34.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.instruction.1",
+      "refs": {
+        "layout_slot_id": "slot.instruction.1"
+      },
+      "text": "저울을 사용하여 감자와 고구마의 무게를 비교했습니다. 바르게 비교하였으면 ○표,"
+    },
+    {
+      "id": "slot.instruction.2.text",
+      "type": "text",
+      "attributes": {
+        "x": 12.0,
+        "y": 70.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.instruction.2",
+      "refs": {
+        "layout_slot_id": "slot.instruction.2"
+      },
+      "text": "그렇지 않으면 ×표를 선택하세요."
+    },
+    {
+      "id": "slot.scale.base.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 384.0,
+        "y": 210.0,
+        "width": 204.0,
+        "height": 56.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.scale.base",
+      "refs": {
+        "layout_slot_id": "slot.scale.base"
+      }
+    },
+    {
+      "id": "slot.scale.pole.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 484.0,
+        "y": 106.0,
+        "width": 12.0,
+        "height": 106.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.scale.pole",
+      "refs": {
+        "layout_slot_id": "slot.scale.pole"
+      }
+    },
+    {
+      "id": "slot.scale.left.pan.polygon",
+      "type": "polygon",
+      "attributes": {
+        "points": [
+          [
+            401.0,
+            166.0
+          ],
+          [
+            454.0,
+            166.0
+          ],
+          [
+            444.0,
+            192.0
+          ],
+          [
+            411.0,
+            192.0
+          ]
+        ],
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "none"
+      },
+      "source_ref": "slot.scale.left.pan",
+      "refs": {
+        "layout_slot_id": "slot.scale.left.pan"
+      }
+    },
+    {
+      "id": "slot.scale.right.pan.polygon",
+      "type": "polygon",
+      "attributes": {
+        "points": [
+          [
+            526.0,
+            170.0
+          ],
+          [
+            579.0,
+            170.0
+          ],
+          [
+            571.0,
+            196.0
+          ],
+          [
+            536.0,
+            196.0
+          ]
+        ],
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "none"
+      },
+      "source_ref": "slot.scale.right.pan",
+      "refs": {
+        "layout_slot_id": "slot.scale.right.pan"
+      }
+    },
+    {
+      "id": "slot.potato.polygon",
+      "type": "polygon",
+      "attributes": {
+        "points": [
+          [
+            414.0,
+            149.0
+          ],
+          [
+            438.0,
+            141.0
+          ],
+          [
+            455.0,
+            149.0
+          ],
+          [
+            457.0,
+            162.0
+          ],
+          [
+            447.0,
+            172.0
+          ],
+          [
+            424.0,
+            171.0
+          ],
+          [
+            412.0,
+            160.0
+          ]
+        ],
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "none"
+      },
+      "source_ref": "slot.potato",
+      "refs": {
+        "layout_slot_id": "slot.potato"
+      }
+    },
+    {
+      "id": "slot.sweetpotato.polygon",
+      "type": "polygon",
+      "attributes": {
+        "points": [
+          [
+            537.0,
+            153.0
+          ],
+          [
+            566.0,
+            143.0
+          ],
+          [
+            586.0,
+            149.0
+          ],
+          [
+            593.0,
+            158.0
+          ],
+          [
+            586.0,
+            168.0
+          ],
+          [
+            566.0,
+            171.0
+          ],
+          [
+            545.0,
+            166.0
+          ]
+        ],
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "none"
+      },
+      "source_ref": "slot.sweetpotato",
+      "refs": {
+        "layout_slot_id": "slot.sweetpotato"
+      }
+    },
+    {
+      "id": "slot.scale.beam.line",
+      "type": "line",
+      "attributes": {
+        "x1": 412.0,
+        "y1": 164.0,
+        "x2": 568.0,
+        "y2": 164.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.scale.beam",
+      "refs": {
+        "layout_slot_id": "slot.scale.beam"
+      }
+    },
+    {
+      "id": "slot.scale.center.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 490.0,
+        "cy": 164.0,
+        "r": 5.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#222222"
+      },
+      "source_ref": "slot.scale.center",
+      "refs": {
+        "layout_slot_id": "slot.scale.center"
+      }
+    },
+    {
+      "id": "slot.label.potato.text",
+      "type": "text",
+      "attributes": {
+        "x": 415.0,
+        "y": 92.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.label.potato",
+      "refs": {
+        "layout_slot_id": "slot.label.potato"
+      },
+      "text": "감자"
+    },
+    {
+      "id": "slot.label.sweetpotato.text",
+      "type": "text",
+      "attributes": {
+        "x": 539.0,
+        "y": 94.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.label.sweetpotato",
+      "refs": {
+        "layout_slot_id": "slot.label.sweetpotato"
+      },
+      "text": "고구마"
+    },
+    {
+      "id": "slot.statement.text",
+      "type": "text",
+      "attributes": {
+        "x": 220.0,
+        "y": 282.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.statement",
+      "refs": {
+        "layout_slot_id": "slot.statement"
+      },
+      "text": "고구마가 감자보다 더 무겁습니다. ( ○, × )"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

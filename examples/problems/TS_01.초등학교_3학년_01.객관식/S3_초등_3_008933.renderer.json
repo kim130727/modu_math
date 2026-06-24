@@ -1,0 +1,284 @@
+{
+  "problem_id": "S3_초등_3_008933",
+  "view_box": {
+    "width": 960.0,
+    "height": 640.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.q.no.text",
+      "type": "text",
+      "attributes": {
+        "x": 12.0,
+        "y": 30.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q.no",
+      "refs": {
+        "layout_slot_id": "slot.q.no"
+      },
+      "text": "□ 1."
+    },
+    {
+      "id": "slot.q.text1.text",
+      "type": "text",
+      "attributes": {
+        "x": 66.0,
+        "y": 30.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q.text1",
+      "refs": {
+        "layout_slot_id": "slot.q.text1"
+      },
+      "text": "밭별 수박 생산량을 조사하여 그림그래프로 나타내었습니다. 수박 생산량이 가"
+    },
+    {
+      "id": "slot.q.text2.text",
+      "type": "text",
+      "attributes": {
+        "x": 20.0,
+        "y": 65.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q.text2",
+      "refs": {
+        "layout_slot_id": "slot.q.text2"
+      },
+      "text": "장 적은 밭을 선택해 보세요."
+    },
+    {
+      "id": "slot.table.outer.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 220.0,
+        "y": 120.0,
+        "width": 540.0,
+        "height": 204.0,
+        "fill": "#EEF4DD",
+        "stroke": "#9ACD32",
+        "stroke-width": 1.2
+      },
+      "source_ref": "slot.table.outer",
+      "refs": {
+        "layout_slot_id": "slot.table.outer"
+      }
+    },
+    {
+      "id": "slot.legend.big.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 565.0,
+        "cy": 355.0,
+        "r": 20.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#8BC34A"
+      },
+      "source_ref": "slot.legend.big",
+      "refs": {
+        "layout_slot_id": "slot.legend.big"
+      }
+    },
+    {
+      "id": "slot.legend.small.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 675.0,
+        "cy": 355.0,
+        "r": 13.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#8BC34A"
+      },
+      "source_ref": "slot.legend.small",
+      "refs": {
+        "layout_slot_id": "slot.legend.small"
+      }
+    },
+    {
+      "id": "slot.table.vline.line",
+      "type": "line",
+      "attributes": {
+        "x1": 306.0,
+        "y1": 120.0,
+        "x2": 306.0,
+        "y2": 324.0,
+        "stroke": "#9ACD32",
+        "stroke-width": 1.2
+      },
+      "source_ref": "slot.table.vline",
+      "refs": {
+        "layout_slot_id": "slot.table.vline"
+      }
+    },
+    {
+      "id": "slot.table.hline1.line",
+      "type": "line",
+      "attributes": {
+        "x1": 220.0,
+        "y1": 156.0,
+        "x2": 760.0,
+        "y2": 156.0,
+        "stroke": "#9ACD32",
+        "stroke-width": 1.2
+      },
+      "source_ref": "slot.table.hline1",
+      "refs": {
+        "layout_slot_id": "slot.table.hline1"
+      }
+    },
+    {
+      "id": "slot.table.hline2.line",
+      "type": "line",
+      "attributes": {
+        "x1": 220.0,
+        "y1": 220.0,
+        "x2": 760.0,
+        "y2": 220.0,
+        "stroke": "#9ACD32",
+        "stroke-width": 1.2
+      },
+      "source_ref": "slot.table.hline2",
+      "refs": {
+        "layout_slot_id": "slot.table.hline2"
+      }
+    },
+    {
+      "id": "slot.table.hline3.line",
+      "type": "line",
+      "attributes": {
+        "x1": 220.0,
+        "y1": 272.0,
+        "x2": 760.0,
+        "y2": 272.0,
+        "stroke": "#9ACD32",
+        "stroke-width": 1.2
+      },
+      "source_ref": "slot.table.hline3",
+      "refs": {
+        "layout_slot_id": "slot.table.hline3"
+      }
+    },
+    {
+      "id": "slot.table.hline4.line",
+      "type": "line",
+      "attributes": {
+        "x1": 220.0,
+        "y1": 324.0,
+        "x2": 760.0,
+        "y2": 324.0,
+        "stroke": "#9ACD32",
+        "stroke-width": 1.2
+      },
+      "source_ref": "slot.table.hline4",
+      "refs": {
+        "layout_slot_id": "slot.table.hline4"
+      }
+    },
+    {
+      "id": "slot.title.text",
+      "type": "text",
+      "attributes": {
+        "x": 360.0,
+        "y": 110.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.title",
+      "refs": {
+        "layout_slot_id": "slot.title"
+      },
+      "text": "밭별 수박 생산량"
+    },
+    {
+      "id": "slot.table.head_left.text",
+      "type": "text",
+      "attributes": {
+        "x": 262.0,
+        "y": 144.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.head_left",
+      "refs": {
+        "layout_slot_id": "slot.table.head_left"
+      },
+      "text": "밭"
+    },
+    {
+      "id": "slot.table.head_right.text",
+      "type": "text",
+      "attributes": {
+        "x": 482.0,
+        "y": 144.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.head_right",
+      "refs": {
+        "layout_slot_id": "slot.table.head_right"
+      },
+      "text": "수박 생산량"
+    },
+    {
+      "id": "slot.table.row_a.text",
+      "type": "text",
+      "attributes": {
+        "x": 260.0,
+        "y": 196.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.row_a",
+      "refs": {
+        "layout_slot_id": "slot.table.row_a"
+      },
+      "text": "가"
+    },
+    {
+      "id": "slot.table.row_b.text",
+      "type": "text",
+      "attributes": {
+        "x": 260.0,
+        "y": 248.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.row_b",
+      "refs": {
+        "layout_slot_id": "slot.table.row_b"
+      },
+      "text": "나"
+    },
+    {
+      "id": "slot.table.row_c.text",
+      "type": "text",
+      "attributes": {
+        "x": 260.0,
+        "y": 300.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.row_c",
+      "refs": {
+        "layout_slot_id": "slot.table.row_c"
+      },
+      "text": "다"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

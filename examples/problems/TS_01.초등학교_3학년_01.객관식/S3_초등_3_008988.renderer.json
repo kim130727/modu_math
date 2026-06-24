@@ -1,0 +1,204 @@
+{
+  "problem_id": "S3_초등_3_008988",
+  "view_box": {
+    "width": 720.0,
+    "height": 270.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.qbox.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 10.0,
+        "y": 16.0,
+        "width": 12.0,
+        "height": 12.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.qbox",
+      "refs": {
+        "layout_slot_id": "slot.qbox"
+      }
+    },
+    {
+      "id": "slot.q1.text",
+      "type": "text",
+      "attributes": {
+        "x": 34.0,
+        "y": 25.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q1",
+      "refs": {
+        "layout_slot_id": "slot.q1"
+      },
+      "text": "26."
+    },
+    {
+      "id": "slot.q2.text",
+      "type": "text",
+      "attributes": {
+        "x": 70.0,
+        "y": 25.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q2",
+      "refs": {
+        "layout_slot_id": "slot.q2"
+      },
+      "text": "직각삼각형이면"
+    },
+    {
+      "id": "slot.q3.text",
+      "type": "text",
+      "attributes": {
+        "x": 227.0,
+        "y": 25.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q3",
+      "refs": {
+        "layout_slot_id": "slot.q3"
+      },
+      "text": "○"
+    },
+    {
+      "id": "slot.q4.text",
+      "type": "text",
+      "attributes": {
+        "x": 252.0,
+        "y": 25.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q4",
+      "refs": {
+        "layout_slot_id": "slot.q4"
+      },
+      "text": ", 직각삼각형이 아니면"
+    },
+    {
+      "id": "slot.q5.text",
+      "type": "text",
+      "attributes": {
+        "x": 446.0,
+        "y": 25.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q5",
+      "refs": {
+        "layout_slot_id": "slot.q5"
+      },
+      "text": "×"
+    },
+    {
+      "id": "slot.q6.text",
+      "type": "text",
+      "attributes": {
+        "x": 470.0,
+        "y": 25.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q6",
+      "refs": {
+        "layout_slot_id": "slot.q6"
+      },
+      "text": "를 선택하세요."
+    },
+    {
+      "id": "slot.tri.1.line",
+      "type": "line",
+      "attributes": {
+        "x1": 438.0,
+        "y1": 43.0,
+        "x2": 386.0,
+        "y2": 113.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.tri.1",
+      "refs": {
+        "layout_slot_id": "slot.tri.1"
+      }
+    },
+    {
+      "id": "slot.tri.2.line",
+      "type": "line",
+      "attributes": {
+        "x1": 438.0,
+        "y1": 43.0,
+        "x2": 492.0,
+        "y2": 113.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.tri.2",
+      "refs": {
+        "layout_slot_id": "slot.tri.2"
+      }
+    },
+    {
+      "id": "slot.tri.3.line",
+      "type": "line",
+      "attributes": {
+        "x1": 386.0,
+        "y1": 113.0,
+        "x2": 492.0,
+        "y2": 113.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.tri.3",
+      "refs": {
+        "layout_slot_id": "slot.tri.3"
+      }
+    },
+    {
+      "id": "slot.tri.mark.text",
+      "type": "text",
+      "attributes": {
+        "x": 426.0,
+        "y": 123.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.tri.mark",
+      "refs": {
+        "layout_slot_id": "slot.tri.mark"
+      },
+      "text": "×"
+    },
+    {
+      "id": "slot.mark.circle.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 24.0,
+        "cy": 120.0,
+        "r": 7.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#ffffff"
+      },
+      "source_ref": "slot.mark.circle",
+      "refs": {
+        "layout_slot_id": "slot.mark.circle"
+      }
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

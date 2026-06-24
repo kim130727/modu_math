@@ -1,0 +1,185 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008989",
+  "title": "알맞은 말을 선택하세요",
+  "canvas": {
+    "width": 850.0,
+    "height": 337.0,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.header",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.header.num",
+        "slot.header.title"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.diagram.rect",
+        "slot.diagram.corner1",
+        "slot.diagram.corner2",
+        "slot.diagram.corner3",
+        "slot.diagram.corner4"
+      ]
+    },
+    {
+      "id": "region.body",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.body.box",
+        "slot.body.text1",
+        "slot.body.text2"
+      ]
+    },
+    {
+      "id": "region.ans_exp",
+      "role": "supporting",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.header.num",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "□ 27.",
+        "style_role": "question",
+        "x": 10.0,
+        "y": 29.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.header.title",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "알맞은 말을 선택하세요.",
+        "style_role": "question",
+        "x": 75.0,
+        "y": 29.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.diagram.rect",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 324.0,
+        "y": 47.0,
+        "width": 118.0,
+        "height": 54.0
+      }
+    },
+    {
+      "id": "slot.diagram.corner1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 326.0,
+        "y": 49.0,
+        "width": 9.0,
+        "height": 9.0
+      }
+    },
+    {
+      "id": "slot.diagram.corner2",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 433.0,
+        "y": 49.0,
+        "width": 9.0,
+        "height": 9.0
+      }
+    },
+    {
+      "id": "slot.diagram.corner3",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 326.0,
+        "y": 92.0,
+        "width": 9.0,
+        "height": 9.0
+      }
+    },
+    {
+      "id": "slot.diagram.corner4",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 433.0,
+        "y": 92.0,
+        "width": 9.0,
+        "height": 9.0
+      }
+    },
+    {
+      "id": "slot.body.box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 29.0,
+        "y": 124.0,
+        "width": 796.0,
+        "height": 115.0
+      }
+    },
+    {
+      "id": "slot.body.text1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "( 한 , 두 , 네 ) 각이 모두 직각인 사각형을 직사각형이라고 합니",
+        "style_role": "question",
+        "x": 91.0,
+        "y": 170.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.body.text2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "다.",
+        "style_role": "question",
+        "x": 409.0,
+        "y": 203.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.header",
+    "slot.header.num",
+    "slot.header.title",
+    "region.diagram",
+    "slot.diagram.rect",
+    "slot.diagram.corner1",
+    "slot.diagram.corner2",
+    "slot.diagram.corner3",
+    "slot.diagram.corner4",
+    "region.body",
+    "slot.body.box",
+    "slot.body.text1",
+    "slot.body.text2",
+    "region.ans_exp"
+  ]
+}

@@ -1,0 +1,383 @@
+{
+  "problem_id": "S3_초등_3_008833",
+  "view_box": {
+    "width": 920.0,
+    "height": 530.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.name.box.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 40.0,
+        "y": 110.0,
+        "width": 90.0,
+        "height": 38.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.name.box",
+      "refs": {
+        "layout_slot_id": "slot.name.box"
+      }
+    },
+    {
+      "id": "slot.bubble.box.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 150.0,
+        "y": 90.0,
+        "width": 430.0,
+        "height": 72.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.bubble.box",
+      "refs": {
+        "layout_slot_id": "slot.bubble.box"
+      }
+    },
+    {
+      "id": "slot.scale.right.apple_label.box.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 655.0,
+        "y": 172.0,
+        "width": 56.0,
+        "height": 30.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.scale.right.apple_label.box",
+      "refs": {
+        "layout_slot_id": "slot.scale.right.apple_label.box"
+      }
+    },
+    {
+      "id": "slot.scale.right.peach_label.box.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 790.0,
+        "y": 172.0,
+        "width": 42.0,
+        "height": 30.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.scale.right.peach_label.box",
+      "refs": {
+        "layout_slot_id": "slot.scale.right.peach_label.box"
+      }
+    },
+    {
+      "id": "slot.guide.arrow.line",
+      "type": "line",
+      "attributes": {
+        "x1": 412.0,
+        "y1": 200.0,
+        "x2": 370.0,
+        "y2": 150.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.guide.arrow",
+      "refs": {
+        "layout_slot_id": "slot.guide.arrow"
+      }
+    },
+    {
+      "id": "slot.top.qmark.text",
+      "type": "text",
+      "attributes": {
+        "x": 4.0,
+        "y": 30.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 24
+      },
+      "source_ref": "slot.top.qmark",
+      "refs": {
+        "layout_slot_id": "slot.top.qmark"
+      },
+      "text": "□"
+    },
+    {
+      "id": "slot.top.title.text",
+      "type": "text",
+      "attributes": {
+        "x": 42.0,
+        "y": 30.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.top.title",
+      "refs": {
+        "layout_slot_id": "slot.top.title"
+      },
+      "text": "71. 정현이가 자두와 배의 무게를 비교하려고 합니다. 알맞은 말을 선택하세요."
+    },
+    {
+      "id": "slot.name.text",
+      "type": "text",
+      "attributes": {
+        "x": 60.0,
+        "y": 130.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.name",
+      "refs": {
+        "layout_slot_id": "slot.name"
+      },
+      "text": "정현"
+    },
+    {
+      "id": "slot.bubble.text",
+      "type": "text",
+      "attributes": {
+        "x": 170.0,
+        "y": 122.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.bubble",
+      "refs": {
+        "layout_slot_id": "slot.bubble"
+      },
+      "text": "저울을 사용하여 자두와 배의 무게를 비교해아지."
+    },
+    {
+      "id": "slot.guide.text",
+      "type": "text",
+      "attributes": {
+        "x": 430.0,
+        "y": 195.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.guide",
+      "refs": {
+        "layout_slot_id": "slot.guide"
+      },
+      "text": "윗접시저울로 무게를 비교하려면 우선 저울의 영점을 맞춰야 해요."
+    },
+    {
+      "id": "slot.scale.right.apple.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 686.0,
+        "cy": 235.0,
+        "r": 13.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#d95555"
+      },
+      "source_ref": "slot.scale.right.apple",
+      "refs": {
+        "layout_slot_id": "slot.scale.right.apple"
+      }
+    },
+    {
+      "id": "slot.scale.right.peach.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 808.0,
+        "cy": 235.0,
+        "r": 15.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#f0b04b"
+      },
+      "source_ref": "slot.scale.right.peach",
+      "refs": {
+        "layout_slot_id": "slot.scale.right.peach"
+      }
+    },
+    {
+      "id": "slot.scale.left.base.line",
+      "type": "line",
+      "attributes": {
+        "x1": 330.0,
+        "y1": 388.0,
+        "x2": 430.0,
+        "y2": 388.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.scale.left.base",
+      "refs": {
+        "layout_slot_id": "slot.scale.left.base"
+      }
+    },
+    {
+      "id": "slot.scale.left.pan.left.line",
+      "type": "line",
+      "attributes": {
+        "x1": 360.0,
+        "y1": 250.0,
+        "x2": 330.0,
+        "y2": 250.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.scale.left.pan.left",
+      "refs": {
+        "layout_slot_id": "slot.scale.left.pan.left"
+      }
+    },
+    {
+      "id": "slot.scale.left.pan.right.line",
+      "type": "line",
+      "attributes": {
+        "x1": 430.0,
+        "y1": 250.0,
+        "x2": 460.0,
+        "y2": 250.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.scale.left.pan.right",
+      "refs": {
+        "layout_slot_id": "slot.scale.left.pan.right"
+      }
+    },
+    {
+      "id": "slot.scale.left.body.line",
+      "type": "line",
+      "attributes": {
+        "x1": 395.0,
+        "y1": 250.0,
+        "x2": 395.0,
+        "y2": 388.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.scale.left.body",
+      "refs": {
+        "layout_slot_id": "slot.scale.left.body"
+      }
+    },
+    {
+      "id": "slot.scale.right.base.line",
+      "type": "line",
+      "attributes": {
+        "x1": 645.0,
+        "y1": 388.0,
+        "x2": 745.0,
+        "y2": 388.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.scale.right.base",
+      "refs": {
+        "layout_slot_id": "slot.scale.right.base"
+      }
+    },
+    {
+      "id": "slot.scale.right.pan.left.line",
+      "type": "line",
+      "attributes": {
+        "x1": 675.0,
+        "y1": 250.0,
+        "x2": 645.0,
+        "y2": 250.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.scale.right.pan.left",
+      "refs": {
+        "layout_slot_id": "slot.scale.right.pan.left"
+      }
+    },
+    {
+      "id": "slot.scale.right.pan.right.line",
+      "type": "line",
+      "attributes": {
+        "x1": 745.0,
+        "y1": 250.0,
+        "x2": 775.0,
+        "y2": 250.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.scale.right.pan.right",
+      "refs": {
+        "layout_slot_id": "slot.scale.right.pan.right"
+      }
+    },
+    {
+      "id": "slot.scale.right.body.line",
+      "type": "line",
+      "attributes": {
+        "x1": 710.0,
+        "y1": 250.0,
+        "x2": 710.0,
+        "y2": 388.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.scale.right.body",
+      "refs": {
+        "layout_slot_id": "slot.scale.right.body"
+      }
+    },
+    {
+      "id": "slot.arrow.text",
+      "type": "text",
+      "attributes": {
+        "x": 505.0,
+        "y": 315.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 44
+      },
+      "source_ref": "slot.arrow",
+      "refs": {
+        "layout_slot_id": "slot.arrow"
+      },
+      "text": "→"
+    },
+    {
+      "id": "slot.scale.right.apple_label.text",
+      "type": "text",
+      "attributes": {
+        "x": 665.0,
+        "y": 190.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 24
+      },
+      "source_ref": "slot.scale.right.apple_label",
+      "refs": {
+        "layout_slot_id": "slot.scale.right.apple_label"
+      },
+      "text": "자두"
+    },
+    {
+      "id": "slot.scale.right.peach_label.text",
+      "type": "text",
+      "attributes": {
+        "x": 800.0,
+        "y": 190.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 24
+      },
+      "source_ref": "slot.scale.right.peach_label",
+      "refs": {
+        "layout_slot_id": "slot.scale.right.peach_label"
+      },
+      "text": "배"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

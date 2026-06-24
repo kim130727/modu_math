@@ -1,0 +1,466 @@
+{
+  "problem_id": "S3_초등_3_008952",
+  "view_box": {
+    "width": 960.0,
+    "height": 652.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.qnum.text",
+      "type": "text",
+      "attributes": {
+        "x": 18.0,
+        "y": 38.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.qnum",
+      "refs": {
+        "layout_slot_id": "slot.qnum"
+      },
+      "text": "22."
+    },
+    {
+      "id": "slot.stem.text",
+      "type": "text",
+      "attributes": {
+        "x": 62.0,
+        "y": 38.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.stem",
+      "refs": {
+        "layout_slot_id": "slot.stem"
+      },
+      "text": "목장별 우유 생산량을 조사하여 그림그래프로 나타내었습니다. 초록 목장의 우유 생산량은 430kg이라고 합니다. 초록 목장 우유 생산량을 바르게 나타낸 것은 어느 것일까요?"
+    },
+    {
+      "id": "slot.table_title.text",
+      "type": "text",
+      "attributes": {
+        "x": 382.0,
+        "y": 152.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table_title",
+      "refs": {
+        "layout_slot_id": "slot.table_title"
+      },
+      "text": "목장별 우유 생산량"
+    },
+    {
+      "id": "slot.table_col1.text",
+      "type": "text",
+      "attributes": {
+        "x": 298.0,
+        "y": 209.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table_col1",
+      "refs": {
+        "layout_slot_id": "slot.table_col1"
+      },
+      "text": "목장"
+    },
+    {
+      "id": "slot.table_col2.text",
+      "type": "text",
+      "attributes": {
+        "x": 468.0,
+        "y": 209.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table_col2",
+      "refs": {
+        "layout_slot_id": "slot.table_col2"
+      },
+      "text": "우유 생산량"
+    },
+    {
+      "id": "slot.row1_label.text",
+      "type": "text",
+      "attributes": {
+        "x": 296.0,
+        "y": 255.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.row1_label",
+      "refs": {
+        "layout_slot_id": "slot.row1_label"
+      },
+      "text": "신선"
+    },
+    {
+      "id": "slot.row2_label.text",
+      "type": "text",
+      "attributes": {
+        "x": 296.0,
+        "y": 309.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.row2_label",
+      "refs": {
+        "layout_slot_id": "slot.row2_label"
+      },
+      "text": "청정"
+    },
+    {
+      "id": "slot.row3_label.text",
+      "type": "text",
+      "attributes": {
+        "x": 296.0,
+        "y": 363.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.row3_label",
+      "refs": {
+        "layout_slot_id": "slot.row3_label"
+      },
+      "text": "초록"
+    },
+    {
+      "id": "slot.row4_label.text",
+      "type": "text",
+      "attributes": {
+        "x": 296.0,
+        "y": 417.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.row4_label",
+      "refs": {
+        "layout_slot_id": "slot.row4_label"
+      },
+      "text": "푸른"
+    },
+    {
+      "id": "slot.title_box.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 346.0,
+        "y": 126.0,
+        "width": 276.0,
+        "height": 52.0,
+        "fill": "#dbe9bf",
+        "stroke": "#d0d0d0",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.title_box",
+      "refs": {
+        "layout_slot_id": "slot.title_box"
+      }
+    },
+    {
+      "id": "slot.table_outer.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 278.0,
+        "y": 182.0,
+        "width": 434.0,
+        "height": 254.0,
+        "fill": "#ffffff",
+        "stroke": "#b8d889",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.table_outer",
+      "refs": {
+        "layout_slot_id": "slot.table_outer"
+      }
+    },
+    {
+      "id": "slot.table_header.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 278.0,
+        "y": 182.0,
+        "width": 434.0,
+        "height": 40.0,
+        "fill": "#dbe9bf",
+        "stroke": "#b8d889",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.table_header",
+      "refs": {
+        "layout_slot_id": "slot.table_header"
+      }
+    },
+    {
+      "id": "slot.table_row1.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 278.0,
+        "y": 222.0,
+        "width": 434.0,
+        "height": 54.0,
+        "fill": "#ffffff",
+        "stroke": "#b8d889",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.table_row1",
+      "refs": {
+        "layout_slot_id": "slot.table_row1"
+      }
+    },
+    {
+      "id": "slot.table_row2.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 278.0,
+        "y": 276.0,
+        "width": 434.0,
+        "height": 54.0,
+        "fill": "#ffffff",
+        "stroke": "#b8d889",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.table_row2",
+      "refs": {
+        "layout_slot_id": "slot.table_row2"
+      }
+    },
+    {
+      "id": "slot.table_row3.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 278.0,
+        "y": 330.0,
+        "width": 434.0,
+        "height": 54.0,
+        "fill": "#ffffff",
+        "stroke": "#b8d889",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.table_row3",
+      "refs": {
+        "layout_slot_id": "slot.table_row3"
+      }
+    },
+    {
+      "id": "slot.table_row4.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 278.0,
+        "y": 384.0,
+        "width": 434.0,
+        "height": 52.0,
+        "fill": "#ffffff",
+        "stroke": "#b8d889",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.table_row4",
+      "refs": {
+        "layout_slot_id": "slot.table_row4"
+      }
+    },
+    {
+      "id": "slot.table_vline.text",
+      "type": "text",
+      "attributes": {
+        "x": 352.0,
+        "y": 182.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table_vline",
+      "refs": {
+        "layout_slot_id": "slot.table_vline"
+      },
+      "text": ""
+    },
+    {
+      "id": "slot.table_hline1.text",
+      "type": "text",
+      "attributes": {
+        "x": 278.0,
+        "y": 222.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table_hline1",
+      "refs": {
+        "layout_slot_id": "slot.table_hline1"
+      },
+      "text": ""
+    },
+    {
+      "id": "slot.table_hline2.text",
+      "type": "text",
+      "attributes": {
+        "x": 278.0,
+        "y": 276.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table_hline2",
+      "refs": {
+        "layout_slot_id": "slot.table_hline2"
+      },
+      "text": ""
+    },
+    {
+      "id": "slot.table_hline3.text",
+      "type": "text",
+      "attributes": {
+        "x": 278.0,
+        "y": 330.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table_hline3",
+      "refs": {
+        "layout_slot_id": "slot.table_hline3"
+      },
+      "text": ""
+    },
+    {
+      "id": "slot.table_hline4.text",
+      "type": "text",
+      "attributes": {
+        "x": 278.0,
+        "y": 384.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table_hline4",
+      "refs": {
+        "layout_slot_id": "slot.table_hline4"
+      },
+      "text": ""
+    },
+    {
+      "id": "slot.leg_big.text",
+      "type": "text",
+      "attributes": {
+        "x": 606.0,
+        "y": 484.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.leg_big",
+      "refs": {
+        "layout_slot_id": "slot.leg_big"
+      },
+      "text": "100kg"
+    },
+    {
+      "id": "slot.leg_small.text",
+      "type": "text",
+      "attributes": {
+        "x": 682.0,
+        "y": 484.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.leg_small",
+      "refs": {
+        "layout_slot_id": "slot.leg_small"
+      },
+      "text": "10kg"
+    },
+    {
+      "id": "slot.choice1.text",
+      "type": "text",
+      "attributes": {
+        "x": 36.0,
+        "y": 520.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice1",
+      "refs": {
+        "layout_slot_id": "slot.choice1"
+      },
+      "text": "①"
+    },
+    {
+      "id": "slot.choice2.text",
+      "type": "text",
+      "attributes": {
+        "x": 366.0,
+        "y": 520.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice2",
+      "refs": {
+        "layout_slot_id": "slot.choice2"
+      },
+      "text": "②"
+    },
+    {
+      "id": "slot.choice3.text",
+      "type": "text",
+      "attributes": {
+        "x": 646.0,
+        "y": 520.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice3",
+      "refs": {
+        "layout_slot_id": "slot.choice3"
+      },
+      "text": "③"
+    },
+    {
+      "id": "slot.choice4.text",
+      "type": "text",
+      "attributes": {
+        "x": 36.0,
+        "y": 565.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice4",
+      "refs": {
+        "layout_slot_id": "slot.choice4"
+      },
+      "text": "④"
+    },
+    {
+      "id": "slot.choice5.text",
+      "type": "text",
+      "attributes": {
+        "x": 366.0,
+        "y": 565.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice5",
+      "refs": {
+        "layout_slot_id": "slot.choice5"
+      },
+      "text": "⑤"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

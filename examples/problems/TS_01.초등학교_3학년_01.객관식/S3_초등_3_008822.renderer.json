@@ -1,0 +1,254 @@
+{
+  "problem_id": "S3_초등_3_008822",
+  "view_box": {
+    "width": 960.0,
+    "height": 420.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.q1.text",
+      "type": "text",
+      "attributes": {
+        "x": 18.0,
+        "y": 42.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q1",
+      "refs": {
+        "layout_slot_id": "slot.q1"
+      },
+      "text": "□ 56. 물통에 물을 가득 채우기 위해 ㉠ 컵, ㉡ 컵, ㉢ 컵으로 물을 같은 간격 부어야 합니다. 들이가 많은 컵부터 순서대로 쓴 것을 고르세요."
+    },
+    {
+      "id": "slot.water_bottle.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 52.0,
+        "y": 112.0,
+        "width": 56.0,
+        "height": 96.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.water_bottle",
+      "refs": {
+        "layout_slot_id": "slot.water_bottle"
+      }
+    },
+    {
+      "id": "slot.table_outer.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 255.0,
+        "y": 112.0,
+        "width": 606.0,
+        "height": 86.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.table_outer",
+      "refs": {
+        "layout_slot_id": "slot.table_outer"
+      }
+    },
+    {
+      "id": "slot.table_hdr.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 255.0,
+        "y": 112.0,
+        "width": 606.0,
+        "height": 40.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.table_hdr",
+      "refs": {
+        "layout_slot_id": "slot.table_hdr"
+      }
+    },
+    {
+      "id": "slot.table_row_label.text",
+      "type": "text",
+      "attributes": {
+        "x": 292.0,
+        "y": 173.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table_row_label",
+      "refs": {
+        "layout_slot_id": "slot.table_row_label"
+      },
+      "text": "컵의 수"
+    },
+    {
+      "id": "slot.table_c1.text",
+      "type": "text",
+      "attributes": {
+        "x": 396.0,
+        "y": 146.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table_c1",
+      "refs": {
+        "layout_slot_id": "slot.table_c1"
+      },
+      "text": "㉠ 컵"
+    },
+    {
+      "id": "slot.table_c2.text",
+      "type": "text",
+      "attributes": {
+        "x": 540.0,
+        "y": 146.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table_c2",
+      "refs": {
+        "layout_slot_id": "slot.table_c2"
+      },
+      "text": "㉡ 컵"
+    },
+    {
+      "id": "slot.table_c3.text",
+      "type": "text",
+      "attributes": {
+        "x": 694.0,
+        "y": 146.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table_c3",
+      "refs": {
+        "layout_slot_id": "slot.table_c3"
+      },
+      "text": "㉢ 컵"
+    },
+    {
+      "id": "slot.table_v1.text",
+      "type": "text",
+      "attributes": {
+        "x": 401.0,
+        "y": 193.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table_v1",
+      "refs": {
+        "layout_slot_id": "slot.table_v1"
+      },
+      "text": "3개"
+    },
+    {
+      "id": "slot.table_v2.text",
+      "type": "text",
+      "attributes": {
+        "x": 547.0,
+        "y": 193.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table_v2",
+      "refs": {
+        "layout_slot_id": "slot.table_v2"
+      },
+      "text": "9개"
+    },
+    {
+      "id": "slot.table_v3.text",
+      "type": "text",
+      "attributes": {
+        "x": 701.0,
+        "y": 193.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table_v3",
+      "refs": {
+        "layout_slot_id": "slot.table_v3"
+      },
+      "text": "5개"
+    },
+    {
+      "id": "slot.opt1.text",
+      "type": "text",
+      "attributes": {
+        "x": 34.0,
+        "y": 258.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.opt1",
+      "refs": {
+        "layout_slot_id": "slot.opt1"
+      },
+      "text": "① ㉠ 컵, ㉡ 컵, ㉢ 컵"
+    },
+    {
+      "id": "slot.opt2.text",
+      "type": "text",
+      "attributes": {
+        "x": 518.0,
+        "y": 258.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.opt2",
+      "refs": {
+        "layout_slot_id": "slot.opt2"
+      },
+      "text": "② ㉠ 컵, ㉢ 컵, ㉡ 컵"
+    },
+    {
+      "id": "slot.opt3.text",
+      "type": "text",
+      "attributes": {
+        "x": 34.0,
+        "y": 310.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.opt3",
+      "refs": {
+        "layout_slot_id": "slot.opt3"
+      },
+      "text": "③ ㉡ 컵, ㉢ 컵, ㉠ 컵"
+    },
+    {
+      "id": "slot.opt4.text",
+      "type": "text",
+      "attributes": {
+        "x": 518.0,
+        "y": 310.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.opt4",
+      "refs": {
+        "layout_slot_id": "slot.opt4"
+      },
+      "text": "④ ㉢ 컵, ㉡ 컵, ㉠ 컵"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

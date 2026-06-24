@@ -1,0 +1,263 @@
+{
+  "problem_id": "S3_초등_3_009027",
+  "view_box": {
+    "width": 720.0,
+    "height": 233.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.num.text",
+      "type": "text",
+      "attributes": {
+        "x": 18.0,
+        "y": 24.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.num",
+      "refs": {
+        "layout_slot_id": "slot.num"
+      },
+      "text": "64."
+    },
+    {
+      "id": "slot.title.text",
+      "type": "text",
+      "attributes": {
+        "x": 58.0,
+        "y": 24.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.title",
+      "refs": {
+        "layout_slot_id": "slot.title"
+      },
+      "text": "삼각형을 보고 알맞은 기호를 모두 선택하세요."
+    },
+    {
+      "id": "slot.tri.ga.polygon",
+      "type": "polygon",
+      "attributes": {
+        "points": [
+          [
+            110.0,
+            110.0
+          ],
+          [
+            165.0,
+            40.0
+          ],
+          [
+            205.0,
+            110.0
+          ]
+        ],
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "none"
+      },
+      "source_ref": "slot.tri.ga",
+      "refs": {
+        "layout_slot_id": "slot.tri.ga"
+      }
+    },
+    {
+      "id": "slot.tri.na.polygon",
+      "type": "polygon",
+      "attributes": {
+        "points": [
+          [
+            295.0,
+            110.0
+          ],
+          [
+            295.0,
+            42.0
+          ],
+          [
+            360.0,
+            110.0
+          ]
+        ],
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "none"
+      },
+      "source_ref": "slot.tri.na",
+      "refs": {
+        "layout_slot_id": "slot.tri.na"
+      }
+    },
+    {
+      "id": "slot.tri.da.polygon",
+      "type": "polygon",
+      "attributes": {
+        "points": [
+          [
+            450.0,
+            103.0
+          ],
+          [
+            565.0,
+            43.0
+          ],
+          [
+            520.0,
+            110.0
+          ]
+        ],
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "none"
+      },
+      "source_ref": "slot.tri.da",
+      "refs": {
+        "layout_slot_id": "slot.tri.da"
+      }
+    },
+    {
+      "id": "slot.tri.ra.polygon",
+      "type": "polygon",
+      "attributes": {
+        "points": [
+          [
+            615.0,
+            42.0
+          ],
+          [
+            675.0,
+            42.0
+          ],
+          [
+            675.0,
+            110.0
+          ]
+        ],
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "none"
+      },
+      "source_ref": "slot.tri.ra",
+      "refs": {
+        "layout_slot_id": "slot.tri.ra"
+      }
+    },
+    {
+      "id": "slot.lb.ga.text",
+      "type": "text",
+      "attributes": {
+        "x": 96.0,
+        "y": 56.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.lb.ga",
+      "refs": {
+        "layout_slot_id": "slot.lb.ga"
+      },
+      "text": "가"
+    },
+    {
+      "id": "slot.lb.na.text",
+      "type": "text",
+      "attributes": {
+        "x": 254.0,
+        "y": 56.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.lb.na",
+      "refs": {
+        "layout_slot_id": "slot.lb.na"
+      },
+      "text": "나"
+    },
+    {
+      "id": "slot.lb.da.text",
+      "type": "text",
+      "attributes": {
+        "x": 430.0,
+        "y": 56.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.lb.da",
+      "refs": {
+        "layout_slot_id": "slot.lb.da"
+      },
+      "text": "다"
+    },
+    {
+      "id": "slot.lb.ra.text",
+      "type": "text",
+      "attributes": {
+        "x": 600.0,
+        "y": 56.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.lb.ra",
+      "refs": {
+        "layout_slot_id": "slot.lb.ra"
+      },
+      "text": "라"
+    },
+    {
+      "id": "slot.line1.text",
+      "type": "text",
+      "attributes": {
+        "x": 10.0,
+        "y": 150.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.line1",
+      "refs": {
+        "layout_slot_id": "slot.line1"
+      },
+      "text": "(3) 직각삼각형은 ( 가, 나, 다, 라 )입니다."
+    },
+    {
+      "id": "slot.line2.text",
+      "type": "text",
+      "attributes": {
+        "x": 10.0,
+        "y": 187.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.line2",
+      "refs": {
+        "layout_slot_id": "slot.line2"
+      },
+      "text": "(3) 직각삼각형은 나, 라입니다."
+    },
+    {
+      "id": "slot.line3.text",
+      "type": "text",
+      "attributes": {
+        "x": 10.0,
+        "y": 224.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.line3",
+      "refs": {
+        "layout_slot_id": "slot.line3"
+      },
+      "text": "(3) 나, 라"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

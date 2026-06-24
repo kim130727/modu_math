@@ -1,0 +1,155 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008814",
+  "title": "들이가 더 많은 그릇",
+  "canvas": {
+    "width": 948,
+    "height": 396,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q_num",
+        "slot.q_text_1",
+        "slot.q_text_2",
+        "slot.choice"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.bowl_a",
+        "slot.bowl_b",
+        "slot.label_a",
+        "slot.label_b"
+      ]
+    },
+    {
+      "id": "region.answer",
+      "role": "answer",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q_num",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "47.",
+        "style_role": "question",
+        "x": 9.0,
+        "y": 22.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q_text_1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "가 그릇과 나 그릇에 물을 가득 채운 후 모양과 크기가 같은 그릇에 옮겨 담았더",
+        "style_role": "question",
+        "x": 48.0,
+        "y": 22.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q_text_2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "니 그림과 같이 물이 채워졌습니다. 들어가 더 많은 그릇을 선택하세요.",
+        "style_role": "question",
+        "x": 18.0,
+        "y": 58.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.label_a",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "가",
+        "style_role": "label",
+        "x": 283.0,
+        "y": 77.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.label_b",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "나",
+        "style_role": "label",
+        "x": 439.0,
+        "y": 77.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.bowl_a",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 322.0,
+        "y": 85.0,
+        "width": 90.0,
+        "height": 108.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.bowl_b",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 478.0,
+        "y": 85.0,
+        "width": 90.0,
+        "height": 108.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.choice",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "( 가 , 나 ) 그릇",
+        "style_role": "choice",
+        "x": 745.0,
+        "y": 225.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q_num",
+    "slot.q_text_1",
+    "slot.q_text_2",
+    "slot.choice",
+    "region.diagram",
+    "slot.bowl_a",
+    "slot.bowl_b",
+    "slot.label_a",
+    "slot.label_b",
+    "region.answer"
+  ]
+}

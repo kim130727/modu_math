@@ -1,0 +1,79 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008834",
+  "problem_type": "comparison_judgment",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "고구마가 감자보다 더 무겁습니다. ( ○, × )",
+    "target_ticks": 0,
+    "target_count": 0,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.potato",
+      "value": {
+        "name": "감자"
+      }
+    },
+    {
+      "ref": "obj.sweetpotato",
+      "value": {
+        "name": "고구마"
+      }
+    },
+    {
+      "ref": "obj.balance",
+      "value": {
+        "observation": "오른쪽 접시가 더 아래로 내려감"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "truth_value"
+  },
+  "method": "observe_balance_tilt",
+  "plan": [
+    "저울의 기울어진 방향을 관찰한다.",
+    "더 아래로 내려간 쪽의 물체가 더 무거운지 판단한다.",
+    "문장이 관찰과 일치하는지 확인한다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "오른쪽 접시가 더 아래로 내려갔는지 관찰",
+      "value": "yes"
+    },
+    {
+      "id": "step.2",
+      "expr": "오른쪽의 고구마가 더 무거운지 판단",
+      "value": "yes"
+    },
+    {
+      "id": "step.3",
+      "expr": "고구마가 감자보다 더 무겁습니다. 문장의 참/거짓 판단",
+      "value": "참"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "저울의 아래쪽 접시와 문장의 무거운 대상이 일치하는지 확인",
+      "expected": "일치",
+      "actual": "일치",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "truth_value",
+      "description": "고구마가 감자보다 더 무겁습니다. 문장이 맞는지 판단"
+    },
+    "value": 1,
+    "unit": ""
+  }
+}

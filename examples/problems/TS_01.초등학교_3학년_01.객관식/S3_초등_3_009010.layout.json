@@ -1,0 +1,369 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_009010",
+  "title": "선분과 반직선",
+  "canvas": {
+    "width": 856.0,
+    "height": 300.0,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q3",
+        "slot.q8",
+        "slot.q14",
+        "slot.q4",
+        "slot.q5",
+        "slot.q9",
+        "slot.q10",
+        "slot.q15",
+        "slot.q16",
+        "slot.qnum",
+        "slot.q1",
+        "slot.q2",
+        "slot.q6",
+        "slot.q7",
+        "slot.q11",
+        "slot.q12",
+        "slot.q17",
+        "slot.q18",
+        "slot.q21",
+        "slot.q22",
+        "slot.q23",
+        "slot.q24",
+        "slot.q25",
+        "slot.q26",
+        "slot.q27"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.qnum",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "49.",
+        "style_role": "question",
+        "x": 22.0,
+        "y": 26.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "점 ㄴ에서 시작하여 점 ㄱ을 지나 왼쪽으로 길게 늘인 곧은 선을 알맞",
+        "style_role": "question",
+        "x": 76.0,
+        "y": 26.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "은 것을 선택하세요.",
+        "style_role": "question",
+        "x": 28.0,
+        "y": 60.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q3",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 293.0,
+        "y1": 95.0,
+        "x2": 576.0,
+        "y2": 95.0
+      }
+    },
+    {
+      "id": "slot.q4",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 348.0,
+        "cy": 95.0,
+        "r": 4.2,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.q5",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 571.0,
+        "cy": 95.0,
+        "r": 4.2,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.q6",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄱ",
+        "style_role": "label",
+        "x": 341.0,
+        "y": 70.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q7",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄴ",
+        "style_role": "label",
+        "x": 566.0,
+        "y": 70.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q8",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 313.0,
+        "y1": 148.0,
+        "x2": 576.0,
+        "y2": 148.0
+      }
+    },
+    {
+      "id": "slot.q9",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 316.0,
+        "cy": 148.0,
+        "r": 4.2,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.q10",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 571.0,
+        "cy": 148.0,
+        "r": 4.2,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.q11",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄱ",
+        "style_role": "label",
+        "x": 308.0,
+        "y": 123.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q12",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄴ",
+        "style_role": "label",
+        "x": 566.0,
+        "y": 123.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q14",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 93.0,
+        "y1": 190.0,
+        "x2": 272.0,
+        "y2": 190.0
+      }
+    },
+    {
+      "id": "slot.q15",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 94.0,
+        "cy": 190.0,
+        "r": 4.2,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.q16",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 273.0,
+        "cy": 190.0,
+        "r": 4.2,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.q17",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄱ",
+        "style_role": "label",
+        "x": 87.0,
+        "y": 165.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q18",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄴ",
+        "style_role": "label",
+        "x": 266.0,
+        "y": 165.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q21",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "",
+        "style_role": "label",
+        "x": 0.0,
+        "y": 0.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q22",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "",
+        "style_role": "label",
+        "x": 0.0,
+        "y": 0.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q23",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "",
+        "style_role": "label",
+        "x": 0.0,
+        "y": 0.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q24",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "",
+        "style_role": "label",
+        "x": 0.0,
+        "y": 0.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q25",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "",
+        "style_role": "label",
+        "x": 0.0,
+        "y": 0.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q26",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "",
+        "style_role": "label",
+        "x": 0.0,
+        "y": 0.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q27",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "",
+        "style_role": "label",
+        "x": 0.0,
+        "y": 0.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q3",
+    "slot.q8",
+    "slot.q14",
+    "slot.q4",
+    "slot.q5",
+    "slot.q9",
+    "slot.q10",
+    "slot.q15",
+    "slot.q16",
+    "slot.qnum",
+    "slot.q1",
+    "slot.q2",
+    "slot.q6",
+    "slot.q7",
+    "slot.q11",
+    "slot.q12",
+    "slot.q17",
+    "slot.q18",
+    "slot.q21",
+    "slot.q22",
+    "slot.q23",
+    "slot.q24",
+    "slot.q25",
+    "slot.q26",
+    "slot.q27"
+  ]
+}

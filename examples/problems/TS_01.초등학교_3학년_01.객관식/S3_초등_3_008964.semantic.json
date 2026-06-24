@@ -1,0 +1,104 @@
+{
+  "problem_id": "S3_초등_3_008964",
+  "problem_type": "그림그래프_합",
+  "metadata": {
+    "title": "모둠 학생들이 접은 종이꽃 수",
+    "tags": [],
+    "instruction": "그림그래프의 범례와 해설 관계를 읽고 알맞은 값을 찾는다.",
+    "question": "재경이와 채민이가 접은 종이꽃이 모두 67송이라면 채민이와 은서가 접은 종이꽃은 모두 몇 송이인지 묻는 문제",
+    "required_layout_ids": [
+      "slot.table.outer",
+      "slot.table.vline",
+      "slot.table.hline1",
+      "slot.table.hline2",
+      "slot.table.hline3"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "points": 5
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.group",
+        "type": "group",
+        "name": "재경이네 모둠 학생들"
+      },
+      {
+        "id": "obj.jaegyeong",
+        "type": "student",
+        "name": "재경"
+      },
+      {
+        "id": "obj.eunseo",
+        "type": "student",
+        "name": "은서"
+      },
+      {
+        "id": "obj.chaemin",
+        "type": "student",
+        "name": "채민"
+      },
+      {
+        "id": "obj.legend.big",
+        "type": "pictograph_unit",
+        "value": 10
+      },
+      {
+        "id": "obj.legend.small",
+        "type": "pictograph_unit",
+        "value": 1
+      },
+      {
+        "id": "obj.sum_jaegyeong_chaemin",
+        "type": "quantity",
+        "value": 67
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.sum_jaegyeong_chaemin",
+          "obj.legend.big",
+          "obj.legend.small"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.legend_meaning",
+          "rel.partial_sum"
+        ]
+      },
+      "plan": {
+        "method": "그림그래프_해석",
+        "description": "범례를 읽고 알려진 합과 한 사람의 수를 이용해 필요한 합을 찾는다."
+      },
+      "execute": {
+        "expected_operations": [
+          "범례 해석",
+          "부분 수량 관계 파악",
+          "합 관계 읽기"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "문장과 식의 대응 확인",
+          "단위 일치 확인"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "sum_of_counts",
+      "description": "채민이와 은서가 접은 종이꽃의 수"
+    },
+    "value": 59,
+    "unit": "송이"
+  }
+}

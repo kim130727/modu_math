@@ -1,0 +1,117 @@
+{
+  "problem_id": "S3_초등_3_008900",
+  "problem_type": "multiple_choice",
+  "metadata": {
+    "title": "좋아하는 과일",
+    "tags": [],
+    "question": "기태네 반 학생들이 좋아하는 과일을 조사하여 표로 나타낸 자료를 보고, 과일 간식으로 어떤 과일을 준비하면 좋을지 고르는 문제",
+    "required_layout_ids": [
+      "slot.diagram.frame",
+      "slot.diagram.divider.v",
+      "slot.diagram.divider.h",
+      "slot.diagram.title_box",
+      "slot.diagram.legend.blue_dot",
+      "slot.diagram.legend.red_dot",
+      "slot.diagram.dot.s1",
+      "slot.diagram.dot.s2",
+      "slot.diagram.dot.s3",
+      "slot.diagram.dot.s4",
+      "slot.diagram.dot.s5",
+      "slot.diagram.dot.s6",
+      "slot.diagram.dot.s7",
+      "slot.diagram.dot.s8",
+      "slot.diagram.dot.s9",
+      "slot.diagram.dot.s10",
+      "slot.diagram.dot.s11",
+      "slot.diagram.dot.s12",
+      "slot.diagram.dot.s13",
+      "slot.diagram.dot.s14",
+      "slot.diagram.dot.s15",
+      "slot.diagram.dot.s16",
+      "slot.diagram.dot.s17",
+      "slot.diagram.dot.s18",
+      "slot.diagram.dot.s19",
+      "slot.diagram.dot.s20",
+      "slot.diagram.dot.s21",
+      "slot.diagram.dot.s22",
+      "slot.diagram.dot.s23",
+      "slot.diagram.dot.s24",
+      "slot.diagram.dot.s25",
+      "slot.diagram.dot.s26",
+      "slot.table.grid.h1",
+      "slot.table.grid.h2",
+      "slot.table.grid.h3",
+      "slot.table.grid.v1",
+      "slot.table.grid.v2",
+      "slot.table.grid.v3",
+      "slot.table.grid.v4",
+      "slot.table.grid.v5",
+      "slot.table.grid.v6"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "알맞은 것을 선택해보세요."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.chart.fruit_preferences",
+        "type": "survey_chart",
+        "topic": "좋아하는 과일"
+      },
+      {
+        "id": "obj.table.fruit_counts",
+        "type": "table",
+        "topic": "좋아하는 과일별 학생 수"
+      },
+      {
+        "id": "obj.option.apple",
+        "type": "fruit",
+        "name": "사과"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.chart.fruit_preferences",
+          "obj.table.fruit_counts"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.supports_choice"
+        ]
+      },
+      "plan": {
+        "method": "compare_preferences",
+        "description": "그림과 표에서 가장 많이 좋아하는 과일을 찾고, 그 과일을 선택한다."
+      },
+      "execute": {
+        "expected_operations": [
+          "compare_counts",
+          "identify_maximum",
+          "select_option"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "match_with_printed_answer",
+          "consistency_between_chart_and_table"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "fruit_choice",
+      "description": "과일 간식으로 준비하면 좋을 과일"
+    },
+    "value": "사과",
+    "unit": ""
+  }
+}

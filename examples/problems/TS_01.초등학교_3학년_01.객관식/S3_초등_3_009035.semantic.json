@@ -1,0 +1,84 @@
+{
+  "problem_id": "S3_초등_3_009035",
+  "problem_type": "ox_judgment",
+  "metadata": {
+    "title": "직사각형 종이 접기와 자르기",
+    "tags": [],
+    "question": "직사각형 모양의 종이로 그림과 같이 만들었습니다. 다음을 읽고 ○, ×를 알맞게 선택해 보세요.",
+    "required_layout_ids": [
+      "slot.step1.rect",
+      "slot.step1.diag",
+      "slot.step1.note",
+      "slot.step2.rect",
+      "slot.step2.fold",
+      "slot.step2.fold_line",
+      "slot.step3.rect",
+      "slot.step4.rect",
+      "slot.step4.diag",
+      "slot.step4.curve",
+      "slot.step4.note",
+      "slot.center.box",
+      "slot.choice.o",
+      "slot.choice.x",
+      "slot.answer.circle"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "그림과 문장을 보고 판단한다."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.paper",
+        "type": "paper_shape",
+        "shape": "rectangle"
+      },
+      {
+        "id": "obj.final_shape",
+        "type": "shape_statement",
+        "statement": "만든 모양은 정사각형입니다."
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.paper",
+          "rel.sequence"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "obj.final_shape"
+        ]
+      },
+      "plan": {
+        "method": "ox_judgment",
+        "description": "그림의 변형 과정을 보고 문장이 맞는지 판단한다."
+      },
+      "execute": {
+        "expected_operations": [
+          "observe_sequence",
+          "compare_shape_property"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "statement_consistency_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "ox_choice",
+      "description": "만든 모양은 정사각형입니다."
+    },
+    "value": 0,
+    "unit": ""
+  }
+}

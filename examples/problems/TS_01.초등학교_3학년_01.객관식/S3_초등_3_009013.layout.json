@@ -1,0 +1,319 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_009013",
+  "title": "직선 알아보기",
+  "canvas": {
+    "width": 856,
+    "height": 354,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q1",
+        "slot.q2"
+      ]
+    },
+    {
+      "id": "region.choices",
+      "role": "choices",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice1.line",
+        "slot.choice2.line",
+        "slot.choice3.line",
+        "slot.choice1.p1",
+        "slot.choice1.p2",
+        "slot.choice2.p1",
+        "slot.choice2.p2",
+        "slot.choice3.p1",
+        "slot.choice3.p2",
+        "slot.choice1.lb1",
+        "slot.choice1.lb2",
+        "slot.choice2.lb1",
+        "slot.choice2.lb2",
+        "slot.choice3.lb1",
+        "slot.choice3.lb2"
+      ]
+    },
+    {
+      "id": "region.answer",
+      "role": "answer",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.ans.line",
+        "slot.ans.p1",
+        "slot.ans.p2"
+      ]
+    },
+    {
+      "id": "region.explanation",
+      "role": "explanation",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "□ 51. 직선을 알아보려고 합니다. 점 ㄱ과 점 ㄴ을 지나 양쪽으로 길게 늘인 직",
+        "style_role": "question",
+        "x": 16.0,
+        "y": 28.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "선으로 알맞은 것을 선택하세요.",
+        "style_role": "question",
+        "x": 32.0,
+        "y": 58.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice1.line",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 314.0,
+        "y1": 109.0,
+        "x2": 597.0,
+        "y2": 109.0
+      }
+    },
+    {
+      "id": "slot.choice1.p1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 337.0,
+        "cy": 108.0,
+        "r": 4.0,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.choice1.p2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 565.0,
+        "cy": 108.0,
+        "r": 4.0,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.choice1.lb1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄱ",
+        "style_role": "label",
+        "x": 324.0,
+        "y": 97.0,
+        "font_size": 22
+      }
+    },
+    {
+      "id": "slot.choice1.lb2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄴ",
+        "style_role": "label",
+        "x": 559.0,
+        "y": 97.0,
+        "font_size": 22
+      }
+    },
+    {
+      "id": "slot.choice2.line",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 316.0,
+        "y1": 164.0,
+        "x2": 590.0,
+        "y2": 164.0
+      }
+    },
+    {
+      "id": "slot.choice2.p1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 338.0,
+        "cy": 164.0,
+        "r": 4.0,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.choice2.p2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 559.0,
+        "cy": 164.0,
+        "r": 4.0,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.choice2.lb1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄱ",
+        "style_role": "label",
+        "x": 323.0,
+        "y": 152.0,
+        "font_size": 22
+      }
+    },
+    {
+      "id": "slot.choice2.lb2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄴ",
+        "style_role": "label",
+        "x": 556.0,
+        "y": 151.0,
+        "font_size": 22
+      }
+    },
+    {
+      "id": "slot.choice3.line",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 314.0,
+        "y1": 228.0,
+        "x2": 587.0,
+        "y2": 228.0
+      }
+    },
+    {
+      "id": "slot.choice3.p1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 330.0,
+        "cy": 229.0,
+        "r": 4.0,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.choice3.p2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 549.0,
+        "cy": 229.0,
+        "r": 4.0,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.choice3.lb1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄱ",
+        "style_role": "label",
+        "x": 323.0,
+        "y": 217.0,
+        "font_size": 22
+      }
+    },
+    {
+      "id": "slot.choice3.lb2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄴ",
+        "style_role": "label",
+        "x": 551.0,
+        "y": 217.0,
+        "font_size": 22
+      }
+    },
+    {
+      "id": "slot.ans.line",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 71.0,
+        "y1": 289.0,
+        "x2": 227.0,
+        "y2": 289.0
+      }
+    },
+    {
+      "id": "slot.ans.p1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 94.0,
+        "cy": 289.0,
+        "r": 3.5,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.ans.p2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 217.0,
+        "cy": 289.0,
+        "r": 3.5,
+        "fill": "#222222"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q1",
+    "slot.q2",
+    "region.choices",
+    "slot.choice1.line",
+    "slot.choice2.line",
+    "slot.choice3.line",
+    "slot.choice1.p1",
+    "slot.choice1.p2",
+    "slot.choice2.p1",
+    "slot.choice2.p2",
+    "slot.choice3.p1",
+    "slot.choice3.p2",
+    "slot.choice1.lb1",
+    "slot.choice1.lb2",
+    "slot.choice2.lb1",
+    "slot.choice2.lb2",
+    "slot.choice3.lb1",
+    "slot.choice3.lb2",
+    "region.answer",
+    "slot.ans.line",
+    "slot.ans.p1",
+    "slot.ans.p2",
+    "region.explanation"
+  ]
+}

@@ -1,0 +1,83 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_009050",
+  "problem_type": "shape_classification",
+  "inputs": {
+    "total_ticks": 3,
+    "target_label": "선분",
+    "target_ticks": 1,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.line_1",
+      "value": {
+        "kind": "straight"
+      }
+    },
+    {
+      "ref": "obj.line_2",
+      "value": {
+        "kind": "curved"
+      }
+    },
+    {
+      "ref": "obj.line_3",
+      "value": {
+        "kind": "curved"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "selected_line_segment"
+  },
+  "method": "shape_classification",
+  "plan": [
+    "그림의 모양이 곧은 선인지 굽은 선인지 구분한다.",
+    "선분에 해당하는 곧은 선을 찾는다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "obj.line_1.kind",
+      "value": "straight"
+    },
+    {
+      "id": "step.2",
+      "expr": "obj.line_2.kind",
+      "value": "curved"
+    },
+    {
+      "id": "step.3",
+      "expr": "obj.line_3.kind",
+      "value": "curved"
+    },
+    {
+      "id": "step.4",
+      "expr": "선분으로 분류되는 그림의 수",
+      "value": 1
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "둘째와 셋째는 굽은 선인가?",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "selected_line_segment",
+      "description": "선분"
+    },
+    "value": 1,
+    "unit": ""
+  }
+}

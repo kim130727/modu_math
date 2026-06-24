@@ -1,0 +1,256 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008854",
+  "title": "들이가 가장 적은 것",
+  "canvas": {
+    "width": 960,
+    "height": 720,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.left.water",
+        "slot.right.water",
+        "slot.no",
+        "slot.q1",
+        "slot.q2",
+        "slot.opt",
+        "slot.q3"
+      ]
+    },
+    {
+      "id": "region.diagram.left",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.left.bottle.top",
+        "slot.left.bottle.bottom",
+        "slot.left.label.top",
+        "slot.left.label.bottom"
+      ]
+    },
+    {
+      "id": "region.diagram.right",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.right.bottle.top",
+        "slot.right.bottle.bottom",
+        "slot.right.label.top",
+        "slot.right.label.bottom"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.no",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "100.",
+        "style_role": "question",
+        "x": 18.0,
+        "y": 34.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "윤재는 우유병에 물을 가득 채운 후 물병에 옮겨 담고, 다시 우유병에",
+        "style_role": "question",
+        "x": 78.0,
+        "y": 36.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "물을 가득 채운 후 주스병에 옮겨 담았습니다. 그러고 같이 물을 채웠을 때에 우유병과 물병, 주스병 중",
+        "style_role": "question",
+        "x": 18.0,
+        "y": 76.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "들이가 가장 적은 것은 어느 것인가요?",
+        "style_role": "question",
+        "x": 18.0,
+        "y": 116.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.left.bottle.top",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 245 128 C 230 132, 222 150, 226 164 C 230 179, 241 184, 260 191 C 281 198, 301 210, 316 221 C 325 227, 335 228, 340 222 C 345 216, 340 209, 332 204 C 320 197, 310 186, 300 177 C 286 165, 280 152, 270 143 C 260 135, 252 126, 245 128 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#57B7F4",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.left.bottle.bottom",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 354 231 C 344 231, 337 238, 337 248 L 337 365 C 337 388, 350 401, 372 401 L 388 401 C 409 401, 422 388, 422 365 L 422 248 C 422 238, 415 231, 405 231 Z M 361 248 C 361 244, 365 240, 369 240 L 391 240 C 395 240, 399 244, 399 248 C 399 252, 395 255, 391 255 L 369 255 C 365 255, 361 252, 361 248 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#7DBEF0",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.left.water",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 346.0,
+        "y": 286.0,
+        "width": 68.0,
+        "height": 114.0,
+        "stroke": "none",
+        "fill": "#B7DDF7"
+      }
+    },
+    {
+      "id": "slot.left.label.top",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "우유병",
+        "style_role": "label",
+        "x": 212.0,
+        "y": 224.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.left.label.bottom",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "물병",
+        "style_role": "label",
+        "x": 260.0,
+        "y": 384.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.right.bottle.top",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 645 128 C 630 132, 622 150, 626 164 C 630 179, 641 184, 660 191 C 681 198, 701 210, 716 221 C 725 227, 735 228, 740 222 C 745 216, 740 209, 732 204 C 720 197, 710 186, 700 177 C 686 165, 680 152, 670 143 C 660 135, 652 126, 645 128 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#57B7F4",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.right.bottle.bottom",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 754 231 C 744 231, 737 238, 737 248 L 737 365 C 737 388, 750 401, 772 401 L 788 401 C 809 401, 822 388, 822 365 L 822 248 C 822 238, 815 231, 805 231 Z M 761 248 C 761 244, 765 240, 769 240 L 791 240 C 795 240, 799 244, 799 248 C 799 252, 795 255, 791 255 L 769 255 C 765 255, 761 252, 761 248 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#F0B15A",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.right.water",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 746.0,
+        "y": 268.0,
+        "width": 68.0,
+        "height": 132.0,
+        "stroke": "none",
+        "fill": "#B7DDF7"
+      }
+    },
+    {
+      "id": "slot.right.label.top",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "우유병",
+        "style_role": "label",
+        "x": 612.0,
+        "y": 224.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.right.label.bottom",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "주스병",
+        "style_role": "label",
+        "x": 660.0,
+        "y": 384.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.opt",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "( 우유병 , 물병 , 주스병 )",
+        "style_role": "question",
+        "x": 650.0,
+        "y": 436.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.left.water",
+    "slot.right.water",
+    "slot.no",
+    "slot.q1",
+    "slot.q2",
+    "slot.opt",
+    "slot.q3",
+    "region.diagram.left",
+    "slot.left.bottle.top",
+    "slot.left.bottle.bottom",
+    "slot.left.label.top",
+    "slot.left.label.bottom",
+    "region.diagram.right",
+    "slot.right.bottle.top",
+    "slot.right.bottle.bottom",
+    "slot.right.label.top",
+    "slot.right.label.bottom"
+  ]
+}

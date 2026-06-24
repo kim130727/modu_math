@@ -1,0 +1,89 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_009027",
+  "problem_type": "도형_분류",
+  "inputs": {
+    "total_ticks": 4,
+    "target_label": "직각삼각형",
+    "target_ticks": 2,
+    "target_count": 2,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.triangle.ga",
+      "value": {
+        "label": "가"
+      }
+    },
+    {
+      "ref": "obj.triangle.na",
+      "value": {
+        "label": "나"
+      }
+    },
+    {
+      "ref": "obj.triangle.da",
+      "value": {
+        "label": "다"
+      }
+    },
+    {
+      "ref": "obj.triangle.ra",
+      "value": {
+        "label": "라"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "selected_labels"
+  },
+  "method": "도형의 각을 보고 직각삼각형을 고른다",
+  "plan": [
+    "네 삼각형을 살펴보고 직각이 있는 삼각형을 찾는다.",
+    "해당하는 기호를 선택한다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "삼각형 4개를 비교한다.",
+      "value": 4
+    },
+    {
+      "id": "step.2",
+      "expr": "직각삼각형으로 보이는 기호를 고른다.",
+      "value": [
+        "나",
+        "라"
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "선택한 기호의 개수가 2개인가?",
+      "expected": 2,
+      "actual": 2,
+      "pass": true
+    },
+    {
+      "id": "check.2",
+      "expr": "선택 기호가 직각삼각형에 해당하는가?",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "selected_labels",
+      "description": "직각삼각형에 해당하는 기호"
+    },
+    "value": 2,
+    "unit": ""
+  }
+}

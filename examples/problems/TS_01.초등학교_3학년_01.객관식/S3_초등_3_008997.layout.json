@@ -1,0 +1,287 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008997",
+  "title": "그림을 보고 알맞은 말을 선택하세요.",
+  "canvas": {
+    "width": 850.0,
+    "height": 406.0,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.header",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.no",
+        "slot.title"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.rect.left",
+        "slot.rect.right",
+        "slot.label.left",
+        "slot.label.right",
+        "slot.corner.lt",
+        "slot.corner.lb",
+        "slot.corner.rt",
+        "slot.corner.rb",
+        "slot.corner2.lt",
+        "slot.corner2.lb",
+        "slot.corner2.rt",
+        "slot.corner2.rb"
+      ]
+    },
+    {
+      "id": "region.body",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.s1",
+        "slot.s2",
+        "slot.s3"
+      ]
+    },
+    {
+      "id": "region.footer",
+      "role": "answer",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.no",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "□ 35.",
+        "style_role": "question",
+        "x": 10.0,
+        "y": 26.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.title",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "그림을 보고 알맞은 말을 선택하세요.",
+        "style_role": "question",
+        "x": 70.0,
+        "y": 26.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.rect.left",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 296.0,
+        "y": 41.0,
+        "width": 133.0,
+        "height": 80.0
+      }
+    },
+    {
+      "id": "slot.rect.right",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 463.0,
+        "y": 45.0,
+        "width": 69.0,
+        "height": 68.0
+      }
+    },
+    {
+      "id": "slot.label.left",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "직사각형",
+        "style_role": "label",
+        "x": 336.0,
+        "y": 127.0,
+        "font_size": 18
+      }
+    },
+    {
+      "id": "slot.label.right",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "정사각형",
+        "style_role": "label",
+        "x": 485.0,
+        "y": 127.0,
+        "font_size": 18
+      }
+    },
+    {
+      "id": "slot.corner.lt",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄴ",
+        "style_role": "annotation",
+        "x": 297.0,
+        "y": 43.0,
+        "font_size": 16
+      }
+    },
+    {
+      "id": "slot.corner.lb",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄴ",
+        "style_role": "annotation",
+        "x": 297.0,
+        "y": 114.0,
+        "font_size": 16
+      }
+    },
+    {
+      "id": "slot.corner.rt",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄴ",
+        "style_role": "annotation",
+        "x": 418.0,
+        "y": 43.0,
+        "font_size": 16
+      }
+    },
+    {
+      "id": "slot.corner.rb",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄴ",
+        "style_role": "annotation",
+        "x": 418.0,
+        "y": 114.0,
+        "font_size": 16
+      }
+    },
+    {
+      "id": "slot.corner2.lt",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄴ",
+        "style_role": "annotation",
+        "x": 466.0,
+        "y": 47.0,
+        "font_size": 16
+      }
+    },
+    {
+      "id": "slot.corner2.lb",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄴ",
+        "style_role": "annotation",
+        "x": 466.0,
+        "y": 109.0,
+        "font_size": 16
+      }
+    },
+    {
+      "id": "slot.corner2.rt",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄴ",
+        "style_role": "annotation",
+        "x": 524.0,
+        "y": 47.0,
+        "font_size": 16
+      }
+    },
+    {
+      "id": "slot.corner2.rb",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄴ",
+        "style_role": "annotation",
+        "x": 524.0,
+        "y": 109.0,
+        "font_size": 16
+      }
+    },
+    {
+      "id": "slot.s1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "직사각형은 ( 한, 두, 네 ) 각이 모두 직각입니다.",
+        "style_role": "question",
+        "x": 19.0,
+        "y": 168.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.s2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "정사각형은 ( 한, 두, 네 ) 각이 모두 직각입니다.",
+        "style_role": "question",
+        "x": 19.0,
+        "y": 208.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.s3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "→ 직사각형과 정사각형은 ( 한, 두, 네 ) 각이 모두 직각입니다.",
+        "style_role": "question",
+        "x": 17.0,
+        "y": 248.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.header",
+    "slot.no",
+    "slot.title",
+    "region.diagram",
+    "slot.rect.left",
+    "slot.rect.right",
+    "slot.label.left",
+    "slot.label.right",
+    "slot.corner.lt",
+    "slot.corner.lb",
+    "slot.corner.rt",
+    "slot.corner.rb",
+    "slot.corner2.lt",
+    "slot.corner2.lb",
+    "slot.corner2.rt",
+    "slot.corner2.rb",
+    "region.body",
+    "slot.s1",
+    "slot.s2",
+    "slot.s3",
+    "region.footer"
+  ]
+}

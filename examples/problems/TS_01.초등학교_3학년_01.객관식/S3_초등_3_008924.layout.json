@@ -1,0 +1,254 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008924",
+  "title": "모둠별 찬장 도장 수",
+  "canvas": {
+    "width": 960,
+    "height": 540,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.table.h1",
+        "slot.table.h2",
+        "slot.legend.big_stamp",
+        "slot.legend.small_stamp",
+        "slot.q.no",
+        "slot.q.s1",
+        "slot.q.s2",
+        "slot.title",
+        "slot.table.row1",
+        "slot.table.row2",
+        "slot.group.a",
+        "slot.group.b",
+        "slot.group.c",
+        "slot.legend.big_label",
+        "slot.legend.small_label",
+        "slot.choice"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q.no",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "90.",
+        "style_role": "question",
+        "x": 18.0,
+        "y": 28.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q.s1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "대성이네 반의 모둠별 찬장 도장 수를 조사하여 그림그래프로 나타내었습니다.",
+        "style_role": "question",
+        "x": 64.0,
+        "y": 28.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q.s2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "가장 많은 찬장 도장을 받은 모둠을 선택하세요.",
+        "style_role": "question",
+        "x": 64.0,
+        "y": 64.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.title",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "모둠별 찬장 도장 수",
+        "style_role": "title",
+        "x": 382.0,
+        "y": 118.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.h1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 200.0,
+        "y": 150.0,
+        "width": 86.0,
+        "height": 192.0,
+        "stroke": "#D8B08C",
+        "stroke_width": 1.2,
+        "fill": "#F7F1E8"
+      }
+    },
+    {
+      "id": "slot.table.h2",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 286.0,
+        "y": 150.0,
+        "width": 470.0,
+        "height": 192.0,
+        "stroke": "#D8B08C",
+        "stroke_width": 1.2,
+        "fill": "#FFFFFF"
+      }
+    },
+    {
+      "id": "slot.table.row1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "모둠",
+        "style_role": "label",
+        "x": 225.0,
+        "y": 176.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.row2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "찬장 도장 수",
+        "style_role": "label",
+        "x": 462.0,
+        "y": 176.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.group.a",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "가",
+        "style_role": "label",
+        "x": 226.0,
+        "y": 222.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.group.b",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "나",
+        "style_role": "label",
+        "x": 226.0,
+        "y": 274.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.group.c",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "다",
+        "style_role": "label",
+        "x": 226.0,
+        "y": 326.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.legend.big_stamp",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 590.0,
+        "cy": 332.0,
+        "r": 24.0,
+        "fill": "#C93B34"
+      }
+    },
+    {
+      "id": "slot.legend.small_stamp",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 694.0,
+        "cy": 332.0,
+        "r": 15.0,
+        "fill": "#C93B34"
+      }
+    },
+    {
+      "id": "slot.legend.big_label",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "10개",
+        "style_role": "label",
+        "x": 623.0,
+        "y": 342.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.legend.small_label",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "1개",
+        "style_role": "label",
+        "x": 729.0,
+        "y": 342.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "( 가 모둠, 나 모둠, 다 모둠 )",
+        "style_role": "label",
+        "x": 575.0,
+        "y": 392.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.table.h1",
+    "slot.table.h2",
+    "slot.legend.big_stamp",
+    "slot.legend.small_stamp",
+    "slot.q.no",
+    "slot.q.s1",
+    "slot.q.s2",
+    "slot.title",
+    "slot.table.row1",
+    "slot.table.row2",
+    "slot.group.a",
+    "slot.group.b",
+    "slot.group.c",
+    "slot.legend.big_label",
+    "slot.legend.small_label",
+    "slot.choice"
+  ]
+}

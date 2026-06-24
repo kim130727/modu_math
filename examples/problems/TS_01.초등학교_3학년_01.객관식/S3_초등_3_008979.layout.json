@@ -1,0 +1,110 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008979",
+  "title": "직각 판별",
+  "canvas": {
+    "width": 848,
+    "height": 294,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.angle.side1",
+        "slot.angle.side2",
+        "slot.qnum",
+        "slot.instruction",
+        "slot.choice.circle",
+        "slot.choice.cross"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.qnum",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "14.",
+        "style_role": "question",
+        "x": 16.0,
+        "y": 28.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.instruction",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "직각이면 ○, 직각이 아니면 ×를 선택하세요.",
+        "style_role": "question",
+        "x": 68.0,
+        "y": 28.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.angle.side1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 374.0,
+        "y1": 97.0,
+        "x2": 481.0,
+        "y2": 42.0
+      }
+    },
+    {
+      "id": "slot.angle.side2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 374.0,
+        "y1": 97.0,
+        "x2": 488.0,
+        "y2": 97.0
+      }
+    },
+    {
+      "id": "slot.choice.circle",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "○",
+        "style_role": "label",
+        "x": 16.0,
+        "y": 132.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice.cross",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "×",
+        "style_role": "label",
+        "x": 427.0,
+        "y": 139.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.angle.side1",
+    "slot.angle.side2",
+    "slot.qnum",
+    "slot.instruction",
+    "slot.choice.circle",
+    "slot.choice.cross"
+  ]
+}

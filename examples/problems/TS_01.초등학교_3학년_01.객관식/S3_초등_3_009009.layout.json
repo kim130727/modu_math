@@ -1,0 +1,226 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_009009",
+  "title": "반직선 고르기",
+  "canvas": {
+    "width": 852,
+    "height": 324,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q.no",
+        "slot.q.text"
+      ]
+    },
+    {
+      "id": "region.options",
+      "role": "body",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.opt1.line",
+        "slot.opt2.line",
+        "slot.opt1.pt.left",
+        "slot.opt1.pt.right",
+        "slot.opt2.pt.left",
+        "slot.opt2.pt.right",
+        "slot.opt1.lb.left",
+        "slot.opt1.lb.right",
+        "slot.opt2.lb.left",
+        "slot.opt2.lb.right"
+      ]
+    },
+    {
+      "id": "region.answer",
+      "role": "answer",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.answer.line"
+      ]
+    },
+    {
+      "id": "region.explanation",
+      "role": "explanation",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q.no",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "□ 48.",
+        "style_role": "question",
+        "x": 10.0,
+        "y": 26.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "점 ㄱ에서 시작하여 점 ㄴ을 지나 오른쪽으로 길게 늘인 곧은 선을 선택하세요.",
+        "style_role": "question",
+        "x": 64.0,
+        "y": 26.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.opt1.line",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 306.0,
+        "y1": 98.0,
+        "x2": 561.0,
+        "y2": 98.0
+      }
+    },
+    {
+      "id": "slot.opt1.pt.left",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 304.0,
+        "cy": 98.0,
+        "r": 4.0,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.opt1.pt.right",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 512.0,
+        "cy": 98.0,
+        "r": 4.0,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.opt1.lb.left",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄱ",
+        "style_role": "label",
+        "x": 296.0,
+        "y": 76.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.opt1.lb.right",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄴ",
+        "style_role": "label",
+        "x": 505.0,
+        "y": 76.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.opt2.line",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 304.0,
+        "y1": 143.0,
+        "x2": 560.0,
+        "y2": 143.0
+      }
+    },
+    {
+      "id": "slot.opt2.pt.left",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 304.0,
+        "cy": 143.0,
+        "r": 4.0,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.opt2.pt.right",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 559.0,
+        "cy": 143.0,
+        "r": 4.0,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.opt2.lb.left",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄱ",
+        "style_role": "label",
+        "x": 296.0,
+        "y": 120.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.opt2.lb.right",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄴ",
+        "style_role": "label",
+        "x": 553.0,
+        "y": 120.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.answer.line",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 67.0,
+        "y1": 215.0,
+        "x2": 232.0,
+        "y2": 215.0
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q.no",
+    "slot.q.text",
+    "region.options",
+    "slot.opt1.line",
+    "slot.opt2.line",
+    "slot.opt1.pt.left",
+    "slot.opt1.pt.right",
+    "slot.opt2.pt.left",
+    "slot.opt2.pt.right",
+    "slot.opt1.lb.left",
+    "slot.opt1.lb.right",
+    "slot.opt2.lb.left",
+    "slot.opt2.lb.right",
+    "region.answer",
+    "slot.answer.line",
+    "region.explanation"
+  ]
+}

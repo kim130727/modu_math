@@ -1,0 +1,93 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008863",
+  "problem_type": "multiple_choice",
+  "inputs": {
+    "total_ticks": 5,
+    "target_label": "incorrect_choice",
+    "target_ticks": 1,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.choice_1",
+      "value": "1900mL = 1L 900mL"
+    },
+    {
+      "ref": "obj.choice_2",
+      "value": "4005mL = 4L 5mL"
+    },
+    {
+      "ref": "obj.choice_3",
+      "value": "1L 900mL = 1900mL"
+    },
+    {
+      "ref": "obj.choice_4",
+      "value": "6L 20mL = 6020mL"
+    },
+    {
+      "ref": "obj.choice_5",
+      "value": "5L 100mL = 5010mL"
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "incorrect_choice"
+  },
+  "method": "equation_verification",
+  "plan": [
+    "각 보기의 왼쪽과 오른쪽이 같은 양을 나타내는지 확인한다.",
+    "L를 mL로 바꾸어 등식이 맞는지 점검한다.",
+    "틀린 보기를 찾는다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "5L 100mL = 5L + 100mL",
+      "value": "같은 양을 더하기로 나타냄"
+    },
+    {
+      "id": "step.2",
+      "expr": "5L + 100mL = 5000mL + 100mL",
+      "value": "5L = 5000mL"
+    },
+    {
+      "id": "step.3",
+      "expr": "5000mL + 100mL = 5100mL",
+      "value": 5100
+    },
+    {
+      "id": "step.4",
+      "expr": "⑤는 5010mL라고 되어 있어 5100mL와 다름",
+      "value": "incorrect"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "5L 100mL를 mL로 바꾸면 5100mL인가?",
+      "expected": 5100,
+      "actual": 5100,
+      "pass": true
+    },
+    {
+      "id": "check.2",
+      "expr": "⑤의 오른쪽 값이 5100mL와 같은가?",
+      "expected": false,
+      "actual": false,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "incorrect_choice",
+      "description": "L와 mL 사이의 관계를 잘못 나타낸 보기"
+    },
+    "value": 5,
+    "unit": ""
+  }
+}

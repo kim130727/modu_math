@@ -1,0 +1,54 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008975",
+  "problem_type": "도형_선의종류_선택",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "반직선",
+    "target_ticks": 0,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.definition",
+      "value": "한 점에서 한쪽으로 끝없이 늘인 곧은 선"
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "figure_selection"
+  },
+  "method": "definition_matching",
+  "plan": [
+    "정의에 맞는 선의 종류를 찾는다.",
+    "보기 중 해당하는 그림을 확인한다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "definition = 한 점에서 한쪽으로 끝없이 늘인 곧은 선",
+      "value": "반직선"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "definition_matches_target",
+      "expected": "반직선",
+      "actual": "반직선",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "figure_selection",
+      "description": "반직선"
+    },
+    "value": 0,
+    "unit": ""
+  }
+}

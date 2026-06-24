@@ -1,0 +1,95 @@
+{
+  "problem_id": "S3_초등_3_008916",
+  "problem_type": "selection",
+  "metadata": {
+    "title": "자료와 표",
+    "tags": [],
+    "question": "서윤이네 반 학생들이 좋아하는 음료수를 조사하여 자료와 표로 나타냈습니다. 서윤이네 반 학생 수를 알기 쉬운 것은 자료와 표 중 어느 것인지 알맞은 것을 선택하세요.",
+    "required_layout_ids": [
+      "slot.diagram.bg",
+      "slot.table.grid"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "자료와 표 중 알맞은 것을 선택하세요."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.drink_milk",
+        "type": "category",
+        "name": "우유",
+        "count": 5
+      },
+      {
+        "id": "obj.drink_juice",
+        "type": "category",
+        "name": "주스",
+        "count": 9
+      },
+      {
+        "id": "obj.drink_cola",
+        "type": "category",
+        "name": "콜라",
+        "count": 7
+      },
+      {
+        "id": "obj.drink_cider",
+        "type": "category",
+        "name": "사이다",
+        "count": 3
+      },
+      {
+        "id": "obj.total",
+        "type": "aggregate",
+        "name": "합계",
+        "count": 24
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.drink_milk",
+          "obj.drink_juice",
+          "obj.drink_cola",
+          "obj.drink_cider",
+          "obj.total"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.table_represents_counts"
+        ]
+      },
+      "plan": {
+        "method": "compare_representations",
+        "description": "자료와 표를 비교하여 학생 수를 한눈에 알기 쉬운 표현을 고른다."
+      },
+      "execute": {
+        "expected_operations": [
+          "read_counts",
+          "compare_aggregate_visibility"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "table_contains_total",
+          "representation_matches_counts"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "representation_choice",
+      "description": "반 학생 수를 알기 쉬운 것"
+    },
+    "value": "표",
+    "unit": ""
+  }
+}

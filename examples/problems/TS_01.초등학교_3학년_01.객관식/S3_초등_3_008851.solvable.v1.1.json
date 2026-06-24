@@ -1,0 +1,74 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008851",
+  "problem_type": "comparison_weight",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "더 무거운 것",
+    "target_ticks": 0,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.orange",
+      "value": {
+        "name": "오렌지"
+      }
+    },
+    {
+      "ref": "obj.banana",
+      "value": {
+        "name": "바나나"
+      }
+    },
+    {
+      "ref": "rel.left_side_down",
+      "value": {
+        "meaning": "왼쪽 접시가 아래로 내려감"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "heavier_object"
+  },
+  "method": "visual_comparison",
+  "plan": [
+    "저울의 기울어진 방향을 확인한다.",
+    "더 아래로 내려간 쪽의 물체가 더 무겁다고 판단한다.",
+    "해당 물체를 답으로 고른다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "저울의 왼쪽 접시가 더 아래에 보인다",
+      "value": "left_side_down"
+    },
+    {
+      "id": "step.2",
+      "expr": "더 아래로 내려간 쪽의 물체를 선택한다",
+      "value": "오렌지"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "선택한 대상이 저울이 더 내려간 쪽과 일치하는가",
+      "expected": "오렌지",
+      "actual": "오렌지",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "heavier_object",
+      "description": "오렌지와 바나나 중 더 무거운 것"
+    },
+    "value": "오렌지",
+    "unit": ""
+  }
+}

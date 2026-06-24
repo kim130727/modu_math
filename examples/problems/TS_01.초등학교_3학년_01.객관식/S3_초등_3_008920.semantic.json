@@ -1,0 +1,101 @@
+{
+  "problem_id": "S3_초등_3_008920",
+  "problem_type": "그림그래프_비교",
+  "metadata": {
+    "title": "마을별 돼지 수",
+    "tags": [
+      "그림그래프",
+      "비교",
+      "초등3"
+    ],
+    "instruction": "초록 마을보다 돼지를 더 많이 기르는 마을을 고르세요.",
+    "question": "마을별 기르고 있는 돼지 수를 그림그래프로 나타내었습니다. 초록 마을보다 돼지를 더 많이 기르는 마을을 고르세요.",
+    "required_layout_ids": [
+      "slot.table.outer",
+      "slot.table.header",
+      "slot.table.leftcol",
+      "slot.legend.big_dot",
+      "slot.legend.small_dot"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.legend.big_pig",
+        "type": "icon",
+        "meaning": "10마리"
+      },
+      {
+        "id": "obj.legend.small_pig",
+        "type": "icon",
+        "meaning": "1마리"
+      },
+      {
+        "id": "obj.village.green",
+        "type": "village",
+        "name": "초록"
+      },
+      {
+        "id": "obj.village.sky",
+        "type": "village",
+        "name": "하늘"
+      },
+      {
+        "id": "obj.village.gold",
+        "type": "village",
+        "name": "금빛"
+      },
+      {
+        "id": "obj.village.wind",
+        "type": "village",
+        "name": "바람"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.legend.big_pig",
+          "obj.legend.small_pig",
+          "obj.village.green"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.compare.green_to_others"
+        ]
+      },
+      "plan": {
+        "method": "그림그래프_비교",
+        "description": "범례를 보고 각 마을의 돼지 수를 비교한 뒤, 초록 마을보다 많은 마을을 찾는다."
+      },
+      "execute": {
+        "expected_operations": [
+          "범례_해석",
+          "마을별_비교",
+          "조건에_맞는_선택지_고르기"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "초록_마을보다_큰지_확인",
+          "선택지_번호_일치_확인"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "multiple_choice",
+      "description": "초록 마을보다 돼지를 더 많이 기르는 마을"
+    },
+    "value": 1,
+    "unit": ""
+  }
+}

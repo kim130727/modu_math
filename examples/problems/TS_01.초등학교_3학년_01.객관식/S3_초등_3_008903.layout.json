@@ -1,0 +1,349 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008903",
+  "title": "주말에 가고 싶은 장소별 남녀 학생 수",
+  "canvas": {
+    "width": 940,
+    "height": 440,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.table.frame",
+        "slot.qno",
+        "slot.qtext",
+        "slot.table.title",
+        "slot.table.h1",
+        "slot.table.h2",
+        "slot.table.h3",
+        "slot.table.h4",
+        "slot.table.h5",
+        "slot.table.r1",
+        "slot.table.r2",
+        "slot.table.r3",
+        "slot.table.r4",
+        "slot.table.r5",
+        "slot.choices",
+        "slot.table.r6",
+        "slot.table.r7",
+        "slot.table.r8",
+        "slot.table.r9",
+        "slot.table.r10",
+        "slot.table.r11",
+        "slot.table.r12",
+        "slot.table.r13"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.qno",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "69.",
+        "style_role": "question",
+        "x": 14.0,
+        "y": 26.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.qtext",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "영은이는 학교 학생들이 주말에 가고 싶은 장소를 남학생과 여학생으로 나누어 표로 나타내었습니다. 가장 많은 남학생이 가고 싶은 장소를 선택해 보세요.",
+        "style_role": "question",
+        "x": 52.0,
+        "y": 26.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.title",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "주말에 가고 싶은 장소별 남녀 학생 수",
+        "style_role": "title",
+        "x": 260.0,
+        "y": 122.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.frame",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 138.0,
+        "y": 153.0,
+        "width": 708.0,
+        "height": 115.0
+      }
+    },
+    {
+      "id": "slot.table.h1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "장소",
+        "style_role": "table_header",
+        "x": 184.0,
+        "y": 176.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.h2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "동물원",
+        "style_role": "table_header",
+        "x": 288.0,
+        "y": 176.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.h3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "고궁",
+        "style_role": "table_header",
+        "x": 396.0,
+        "y": 176.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.h4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "영화관",
+        "style_role": "table_header",
+        "x": 500.0,
+        "y": 176.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.h5",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "놀이공원",
+        "style_role": "table_header",
+        "x": 604.0,
+        "y": 176.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.r1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "합계",
+        "style_role": "table_header",
+        "x": 726.0,
+        "y": 176.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.r2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "남학생 수(명)",
+        "style_role": "table_header",
+        "x": 166.0,
+        "y": 212.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.r3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "여학생 수(명)",
+        "style_role": "table_header",
+        "x": 166.0,
+        "y": 250.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.r4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "27",
+        "style_role": "table_value",
+        "x": 288.0,
+        "y": 212.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.r5",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "15",
+        "style_role": "table_value",
+        "x": 392.0,
+        "y": 212.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.r6",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "42",
+        "style_role": "table_value",
+        "x": 496.0,
+        "y": 212.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.r7",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "33",
+        "style_role": "table_value",
+        "x": 602.0,
+        "y": 212.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.r8",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "117",
+        "style_role": "table_value",
+        "x": 716.0,
+        "y": 212.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.r9",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "17",
+        "style_role": "table_value",
+        "x": 288.0,
+        "y": 250.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.r10",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "26",
+        "style_role": "table_value",
+        "x": 392.0,
+        "y": 250.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.r11",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "21",
+        "style_role": "table_value",
+        "x": 496.0,
+        "y": 250.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.r12",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "39",
+        "style_role": "table_value",
+        "x": 602.0,
+        "y": 250.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.r13",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "103",
+        "style_role": "table_value",
+        "x": 716.0,
+        "y": 250.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choices",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "( 동물원 , 고궁 , 영화관 , 놀이공원 )",
+        "style_role": "note",
+        "x": 491.0,
+        "y": 301.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.table.frame",
+    "slot.qno",
+    "slot.qtext",
+    "slot.table.title",
+    "slot.table.h1",
+    "slot.table.h2",
+    "slot.table.h3",
+    "slot.table.h4",
+    "slot.table.h5",
+    "slot.table.r1",
+    "slot.table.r2",
+    "slot.table.r3",
+    "slot.table.r4",
+    "slot.table.r5",
+    "slot.choices",
+    "slot.table.r6",
+    "slot.table.r7",
+    "slot.table.r8",
+    "slot.table.r9",
+    "slot.table.r10",
+    "slot.table.r11",
+    "slot.table.r12",
+    "slot.table.r13"
+  ]
+}

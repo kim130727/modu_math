@@ -1,0 +1,82 @@
+{
+  "problem_id": "S3_초등_3_008834",
+  "problem_type": "comparison_judgment",
+  "metadata": {
+    "title": "저울로 무게 비교하기",
+    "tags": [],
+    "question": "저울 그림을 보고 고구마와 감자의 무게 비교 문장이 바른지 판단하는 문제",
+    "required_layout_ids": [
+      "slot.scale.base",
+      "slot.scale.pole",
+      "slot.scale.beam",
+      "slot.scale.left.pan",
+      "slot.scale.right.pan",
+      "slot.scale.center",
+      "slot.potato",
+      "slot.sweetpotato"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "바르게 비교하였으면 ○표, 그렇지 않으면 ×표를 선택하기"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.potato",
+        "type": "food",
+        "name": "감자"
+      },
+      {
+        "id": "obj.sweetpotato",
+        "type": "food",
+        "name": "고구마"
+      },
+      {
+        "id": "obj.balance",
+        "type": "balance_scale"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.potato",
+          "obj.sweetpotato",
+          "obj.balance"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.compare_weight"
+        ]
+      },
+      "plan": {
+        "method": "observe_balance_tilt",
+        "description": "저울의 기울어진 방향을 보고 어느 물체가 더 무거운지 판단한다."
+      },
+      "execute": {
+        "expected_operations": [
+          "observe_right_pan_lower",
+          "match_statement_to_observation"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "statement_truth_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "truth_value",
+      "description": "고구마가 감자보다 더 무겁습니다. 문장이 맞는지 판단"
+    },
+    "value": 1,
+    "unit": ""
+  }
+}

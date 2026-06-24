@@ -1,0 +1,185 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008826",
+  "title": "포도주스의 양을 어림해 보기",
+  "canvas": {
+    "width": 900,
+    "height": 360,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.top",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.milkbox.rect",
+        "slot.girl.head",
+        "slot.vase.path",
+        "slot.speech.tail",
+        "slot.title",
+        "slot.girl",
+        "slot.speech",
+        "slot.vase"
+      ]
+    },
+    {
+      "id": "region.body",
+      "role": "body",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.body1",
+        "slot.milkbox",
+        "slot.choice"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.title",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "□ 60. 포도주스의 양을 어림해 보고 답합니다. 알맞은 것을 선택해 보세요.",
+        "style_role": "question",
+        "x": 12.0,
+        "y": 28.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.girl",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "",
+        "style_role": "diagram",
+        "x": 140.0,
+        "y": 110.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.speech",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "1L와 200 mL 우유갑으로\n포도주스의 양을 어림해 볼까?",
+        "style_role": "diagram",
+        "x": 270.0,
+        "y": 95.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.vase",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "",
+        "style_role": "diagram",
+        "x": 765.0,
+        "y": 92.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.body1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "(1) 포도주스의 양은",
+        "style_role": "question",
+        "x": 22.0,
+        "y": 230.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.milkbox",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "1L",
+        "style_role": "diagram",
+        "x": 305.0,
+        "y": 206.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "과 비슷하므로 약 ( 1 L , 3 L )입니다.",
+        "style_role": "question",
+        "x": 355.0,
+        "y": 230.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.milkbox.rect",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 281.0,
+        "y": 170.0,
+        "width": 44.0,
+        "height": 100.0
+      }
+    },
+    {
+      "id": "slot.girl.head",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 165.0,
+        "cy": 106.0,
+        "r": 20.0,
+        "fill": "#FFFFFF"
+      }
+    },
+    {
+      "id": "slot.speech.tail",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 250.0,
+        "y1": 112.0,
+        "x2": 230.0,
+        "y2": 122.0
+      }
+    },
+    {
+      "id": "slot.vase.path",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "",
+        "x": 0.0,
+        "y": 0.0
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.top",
+    "slot.milkbox.rect",
+    "slot.girl.head",
+    "slot.vase.path",
+    "slot.speech.tail",
+    "slot.title",
+    "slot.girl",
+    "slot.speech",
+    "slot.vase",
+    "region.body",
+    "slot.body1",
+    "slot.milkbox",
+    "slot.choice"
+  ]
+}

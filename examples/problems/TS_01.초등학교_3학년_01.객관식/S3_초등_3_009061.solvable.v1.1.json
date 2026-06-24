@@ -1,0 +1,65 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_009061",
+  "problem_type": "도형_선의종류_선택",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "도형의 이름",
+    "target_ticks": 0,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.shape",
+      "value": {
+        "label_options": [
+          "선분",
+          "반직선",
+          "직선"
+        ]
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "shape_name"
+  },
+  "method": "도형 분류",
+  "plan": [
+    "도형의 끝 표시를 보고 종류를 판단한다.",
+    "보기 중 알맞은 말을 고른다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "도형의 양 끝 표시를 확인한다",
+      "value": "양 끝이 표시된 선"
+    },
+    {
+      "id": "step.2",
+      "expr": "보기와 비교하여 도형의 종류를 고른다",
+      "value": "선분"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "선분은 두 점을 이은 선과 일치하는가",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "shape_name",
+      "description": "도형의 이름"
+    },
+    "value": 0,
+    "unit": ""
+  }
+}

@@ -1,0 +1,397 @@
+{
+  "problem_id": "S3_초등_3_008916",
+  "view_box": {
+    "width": 940.0,
+    "height": 620.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.q1.text",
+      "type": "text",
+      "attributes": {
+        "x": 12.0,
+        "y": 26.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q1",
+      "refs": {
+        "layout_slot_id": "slot.q1"
+      },
+      "text": "82."
+    },
+    {
+      "id": "slot.q2.text",
+      "type": "text",
+      "attributes": {
+        "x": 48.0,
+        "y": 26.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q2",
+      "refs": {
+        "layout_slot_id": "slot.q2"
+      },
+      "text": "서윤이는 반 학생들이 좋아하는 음료수를 조사하여 자료와 표로 나타냈습니다."
+    },
+    {
+      "id": "slot.q3.text",
+      "type": "text",
+      "attributes": {
+        "x": 12.0,
+        "y": 62.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q3",
+      "refs": {
+        "layout_slot_id": "slot.q3"
+      },
+      "text": "서윤이는 반 학생 수를 알기 쉬운 것은 자료와 표 중 어느 것인지 알맞은 것을 선택하세요."
+    },
+    {
+      "id": "slot.diagram.bg.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 171.0,
+        "y": 111.0,
+        "width": 619.0,
+        "height": 206.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.diagram.bg",
+      "refs": {
+        "layout_slot_id": "slot.diagram.bg"
+      }
+    },
+    {
+      "id": "slot.diagram.title.text",
+      "type": "text",
+      "attributes": {
+        "x": 388.0,
+        "y": 132.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.diagram.title",
+      "refs": {
+        "layout_slot_id": "slot.diagram.title"
+      },
+      "text": "좋아하는 음료수"
+    },
+    {
+      "id": "slot.diagram.card1.text",
+      "type": "text",
+      "attributes": {
+        "x": 273.0,
+        "y": 170.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.diagram.card1",
+      "refs": {
+        "layout_slot_id": "slot.diagram.card1"
+      },
+      "text": "우유"
+    },
+    {
+      "id": "slot.diagram.card2.text",
+      "type": "text",
+      "attributes": {
+        "x": 394.0,
+        "y": 170.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.diagram.card2",
+      "refs": {
+        "layout_slot_id": "slot.diagram.card2"
+      },
+      "text": "주스"
+    },
+    {
+      "id": "slot.diagram.card3.text",
+      "type": "text",
+      "attributes": {
+        "x": 514.0,
+        "y": 170.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.diagram.card3",
+      "refs": {
+        "layout_slot_id": "slot.diagram.card3"
+      },
+      "text": "콜라"
+    },
+    {
+      "id": "slot.diagram.card4.text",
+      "type": "text",
+      "attributes": {
+        "x": 633.0,
+        "y": 170.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.diagram.card4",
+      "refs": {
+        "layout_slot_id": "slot.diagram.card4"
+      },
+      "text": "사이다"
+    },
+    {
+      "id": "slot.table.grid.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 123.0,
+        "y": 398.0,
+        "width": 703.0,
+        "height": 98.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.table.grid",
+      "refs": {
+        "layout_slot_id": "slot.table.grid"
+      }
+    },
+    {
+      "id": "slot.table.title.text",
+      "type": "text",
+      "attributes": {
+        "x": 390.0,
+        "y": 358.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.title",
+      "refs": {
+        "layout_slot_id": "slot.table.title"
+      },
+      "text": "좋아하는 음료수별 학생 수"
+    },
+    {
+      "id": "slot.table.h1.text",
+      "type": "text",
+      "attributes": {
+        "x": 161.0,
+        "y": 426.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.h1",
+      "refs": {
+        "layout_slot_id": "slot.table.h1"
+      },
+      "text": "음료수"
+    },
+    {
+      "id": "slot.table.h2.text",
+      "type": "text",
+      "attributes": {
+        "x": 312.0,
+        "y": 426.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.h2",
+      "refs": {
+        "layout_slot_id": "slot.table.h2"
+      },
+      "text": "우유"
+    },
+    {
+      "id": "slot.table.h3.text",
+      "type": "text",
+      "attributes": {
+        "x": 427.0,
+        "y": 426.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.h3",
+      "refs": {
+        "layout_slot_id": "slot.table.h3"
+      },
+      "text": "주스"
+    },
+    {
+      "id": "slot.table.h4.text",
+      "type": "text",
+      "attributes": {
+        "x": 535.0,
+        "y": 426.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.h4",
+      "refs": {
+        "layout_slot_id": "slot.table.h4"
+      },
+      "text": "콜라"
+    },
+    {
+      "id": "slot.table.h5.text",
+      "type": "text",
+      "attributes": {
+        "x": 649.0,
+        "y": 426.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.h5",
+      "refs": {
+        "layout_slot_id": "slot.table.h5"
+      },
+      "text": "사이다"
+    },
+    {
+      "id": "slot.table.h6.text",
+      "type": "text",
+      "attributes": {
+        "x": 757.0,
+        "y": 426.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.h6",
+      "refs": {
+        "layout_slot_id": "slot.table.h6"
+      },
+      "text": "합계"
+    },
+    {
+      "id": "slot.table.r2c1.text",
+      "type": "text",
+      "attributes": {
+        "x": 144.0,
+        "y": 469.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.r2c1",
+      "refs": {
+        "layout_slot_id": "slot.table.r2c1"
+      },
+      "text": "학생 수(명)"
+    },
+    {
+      "id": "slot.table.r2c2.text",
+      "type": "text",
+      "attributes": {
+        "x": 311.0,
+        "y": 469.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.r2c2",
+      "refs": {
+        "layout_slot_id": "slot.table.r2c2"
+      },
+      "text": "5"
+    },
+    {
+      "id": "slot.table.r2c3.text",
+      "type": "text",
+      "attributes": {
+        "x": 426.0,
+        "y": 469.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.r2c3",
+      "refs": {
+        "layout_slot_id": "slot.table.r2c3"
+      },
+      "text": "9"
+    },
+    {
+      "id": "slot.table.r2c4.text",
+      "type": "text",
+      "attributes": {
+        "x": 536.0,
+        "y": 469.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.r2c4",
+      "refs": {
+        "layout_slot_id": "slot.table.r2c4"
+      },
+      "text": "7"
+    },
+    {
+      "id": "slot.table.r2c5.text",
+      "type": "text",
+      "attributes": {
+        "x": 649.0,
+        "y": 469.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.r2c5",
+      "refs": {
+        "layout_slot_id": "slot.table.r2c5"
+      },
+      "text": "3"
+    },
+    {
+      "id": "slot.table.r2c6.text",
+      "type": "text",
+      "attributes": {
+        "x": 760.0,
+        "y": 469.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.r2c6",
+      "refs": {
+        "layout_slot_id": "slot.table.r2c6"
+      },
+      "text": "24"
+    },
+    {
+      "id": "slot.choice.text",
+      "type": "text",
+      "attributes": {
+        "x": 757.0,
+        "y": 538.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice",
+      "refs": {
+        "layout_slot_id": "slot.choice"
+      },
+      "text": "( 자료 , 표 )"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

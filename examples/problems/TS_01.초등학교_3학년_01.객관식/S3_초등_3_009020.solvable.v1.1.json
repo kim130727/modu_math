@@ -1,0 +1,79 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_009020",
+  "problem_type": "개념판별",
+  "inputs": {
+    "total_ticks": 1,
+    "target_label": "바르게 말한 사람의 이름",
+    "target_ticks": 1,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.ray",
+      "value": {
+        "name": "반직선"
+      }
+    },
+    {
+      "ref": "obj.line",
+      "value": {
+        "name": "직선"
+      }
+    },
+    {
+      "ref": "obj.sungjin",
+      "value": {
+        "name": "성진"
+      }
+    },
+    {
+      "ref": "obj.hiukyeong",
+      "value": {
+        "name": "희경"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "person_name"
+  },
+  "method": "개념판별",
+  "plan": [
+    "반직선과 직선의 성질 설명을 비교한다.",
+    "맞는 설명을 한 사람을 고른다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "반직선과 직선의 차이를 비교한다.",
+      "value": "시작점의 유무"
+    },
+    {
+      "id": "step.2",
+      "expr": "바르게 말한 사람을 선택한다.",
+      "value": "성진"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "선택한 이름이 해설의 결론과 일치하는가",
+      "expected": "성진",
+      "actual": "성진",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "person_name",
+      "description": "반직선과 직선의 다른 점을 바르게 말한 사람의 이름"
+    },
+    "value": 1,
+    "unit": ""
+  }
+}

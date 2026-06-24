@@ -1,0 +1,69 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008875",
+  "problem_type": "ox_judgment",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "말풍선 설명의 옳고 그름",
+    "target_ticks": 0,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.container_a",
+      "value": {
+        "label": "가 그릇",
+        "capacity": "4 L 200 mL"
+      }
+    },
+    {
+      "ref": "obj.container_b",
+      "value": {
+        "label": "나 그릇",
+        "capacity": "1 L 200 mL"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "ox_choice"
+  },
+  "method": "compare_and_judge",
+  "plan": [
+    "두 그릇의 들이를 비교한다.",
+    "말풍선 속 설명이 두 들이 관계와 맞는지 판단한다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "4 L 200 mL - 1 L 200 mL",
+      "value": "3 L"
+    },
+    {
+      "id": "step.2",
+      "expr": "말풍선 설명의 판단",
+      "value": "○"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "4 L 200 mL - 1 L 200 mL = 3 L",
+      "expected": "3 L",
+      "actual": "3 L",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "ox_choice",
+      "description": "말풍선 속 설명의 옳고 그름"
+    },
+    "value": "○",
+    "unit": ""
+  }
+}

@@ -1,0 +1,251 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008822",
+  "title": "들이가 많은 컵 순서 고르기",
+  "canvas": {
+    "width": 960,
+    "height": 420,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q1"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.water_bottle",
+        "slot.table_outer",
+        "slot.table_hdr",
+        "slot.table_row_label",
+        "slot.table_c1",
+        "slot.table_c2",
+        "slot.table_c3",
+        "slot.table_v1",
+        "slot.table_v2",
+        "slot.table_v3"
+      ]
+    },
+    {
+      "id": "region.options",
+      "role": "options",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.opt1",
+        "slot.opt2",
+        "slot.opt3",
+        "slot.opt4"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "□ 56. 물통에 물을 가득 채우기 위해 ㉠ 컵, ㉡ 컵, ㉢ 컵으로 물을 같은 간격 부어야 합니다. 들이가 많은 컵부터 순서대로 쓴 것을 고르세요.",
+        "style_role": "question",
+        "x": 18.0,
+        "y": 42.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.water_bottle",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 52.0,
+        "y": 112.0,
+        "width": 56.0,
+        "height": 96.0
+      }
+    },
+    {
+      "id": "slot.table_outer",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 255.0,
+        "y": 112.0,
+        "width": 606.0,
+        "height": 86.0
+      }
+    },
+    {
+      "id": "slot.table_hdr",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 255.0,
+        "y": 112.0,
+        "width": 606.0,
+        "height": 40.0
+      }
+    },
+    {
+      "id": "slot.table_row_label",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "컵의 수",
+        "style_role": "body",
+        "x": 292.0,
+        "y": 173.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table_c1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "㉠ 컵",
+        "style_role": "body",
+        "x": 396.0,
+        "y": 146.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table_c2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "㉡ 컵",
+        "style_role": "body",
+        "x": 540.0,
+        "y": 146.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table_c3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "㉢ 컵",
+        "style_role": "body",
+        "x": 694.0,
+        "y": 146.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table_v1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "3개",
+        "style_role": "body",
+        "x": 401.0,
+        "y": 193.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table_v2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "9개",
+        "style_role": "body",
+        "x": 547.0,
+        "y": 193.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table_v3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "5개",
+        "style_role": "body",
+        "x": 701.0,
+        "y": 193.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.opt1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "① ㉠ 컵, ㉡ 컵, ㉢ 컵",
+        "style_role": "body",
+        "x": 34.0,
+        "y": 258.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.opt2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "② ㉠ 컵, ㉢ 컵, ㉡ 컵",
+        "style_role": "body",
+        "x": 518.0,
+        "y": 258.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.opt3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "③ ㉡ 컵, ㉢ 컵, ㉠ 컵",
+        "style_role": "body",
+        "x": 34.0,
+        "y": 310.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.opt4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "④ ㉢ 컵, ㉡ 컵, ㉠ 컵",
+        "style_role": "body",
+        "x": 518.0,
+        "y": 310.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q1",
+    "region.diagram",
+    "slot.water_bottle",
+    "slot.table_outer",
+    "slot.table_hdr",
+    "slot.table_row_label",
+    "slot.table_c1",
+    "slot.table_c2",
+    "slot.table_c3",
+    "slot.table_v1",
+    "slot.table_v2",
+    "slot.table_v3",
+    "region.options",
+    "slot.opt1",
+    "slot.opt2",
+    "slot.opt3",
+    "slot.opt4"
+  ]
+}

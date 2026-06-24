@@ -1,0 +1,475 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_009062",
+  "title": "직각이 있는 사각형을 모두 선택하세요.",
+  "canvas": {
+    "width": 680.0,
+    "height": 500.0,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.header",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.top.grid.bg",
+        "slot.top.grid.v1",
+        "slot.top.grid.h1",
+        "slot.q_num",
+        "slot.q_text",
+        "slot.top.shape.ga",
+        "slot.top.shape.na",
+        "slot.top.shape.da",
+        "slot.top.shape.ra",
+        "slot.top.shape.ma",
+        "slot.top.label.ga",
+        "slot.top.label.na",
+        "slot.top.label.da",
+        "slot.top.label.ra",
+        "slot.top.label.ma",
+        "slot.choice.text"
+      ]
+    },
+    {
+      "id": "region.explanation",
+      "role": "support",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.bottom.grid.bg",
+        "slot.bottom.right_angle.ga",
+        "slot.bottom.right_angle.na",
+        "slot.bottom.right_angle.da",
+        "slot.bottom.right_angle.ra",
+        "slot.bottom.right_angle.ma",
+        "slot.bottom.shape.ga",
+        "slot.bottom.shape.na",
+        "slot.bottom.shape.da",
+        "slot.bottom.shape.ra",
+        "slot.bottom.shape.ma",
+        "slot.bottom.label.ga",
+        "slot.bottom.label.na",
+        "slot.bottom.label.da",
+        "slot.bottom.label.ra",
+        "slot.bottom.label.ma"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q_num",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "2.",
+        "style_role": "question",
+        "x": 10.0,
+        "y": 20.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q_text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "직각이 있는 사각형을 모두 선택하세요.",
+        "style_role": "question",
+        "x": 38.0,
+        "y": 20.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.top.grid.bg",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 122.0,
+        "y": 35.0,
+        "width": 540.0,
+        "height": 96.0
+      }
+    },
+    {
+      "id": "slot.top.grid.v1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 122.0,
+        "y1": 35.0,
+        "x2": 122.0,
+        "y2": 131.0
+      }
+    },
+    {
+      "id": "slot.top.grid.h1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 122.0,
+        "y1": 35.0,
+        "x2": 662.0,
+        "y2": 35.0
+      }
+    },
+    {
+      "id": "slot.top.shape.ga",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "가",
+        "style_role": "label",
+        "x": 178.0,
+        "y": 76.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.top.shape.na",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "나",
+        "style_role": "label",
+        "x": 274.0,
+        "y": 76.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.top.shape.da",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "다",
+        "style_role": "label",
+        "x": 365.0,
+        "y": 76.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.top.shape.ra",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "라",
+        "style_role": "label",
+        "x": 468.0,
+        "y": 76.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.top.shape.ma",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "마",
+        "style_role": "label",
+        "x": 589.0,
+        "y": 76.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.top.label.ga",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "가",
+        "style_role": "label",
+        "x": 174.0,
+        "y": 74.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.top.label.na",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "나",
+        "style_role": "label",
+        "x": 274.0,
+        "y": 74.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.top.label.da",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "다",
+        "style_role": "label",
+        "x": 365.0,
+        "y": 74.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.top.label.ra",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "라",
+        "style_role": "label",
+        "x": 468.0,
+        "y": 74.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.top.label.ma",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "마",
+        "style_role": "label",
+        "x": 589.0,
+        "y": 74.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "( 가 , 나 , 다 , 라 , 마 )",
+        "style_role": "question",
+        "x": 198.0,
+        "y": 160.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.bottom.grid.bg",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 49.0,
+        "y": 210.0,
+        "width": 540.0,
+        "height": 96.0
+      }
+    },
+    {
+      "id": "slot.bottom.shape.ga",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "가",
+        "style_role": "label",
+        "x": 107.0,
+        "y": 250.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.bottom.shape.na",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "나",
+        "style_role": "label",
+        "x": 201.0,
+        "y": 250.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.bottom.shape.da",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "다",
+        "style_role": "label",
+        "x": 297.0,
+        "y": 250.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.bottom.shape.ra",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "라",
+        "style_role": "label",
+        "x": 412.0,
+        "y": 250.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.bottom.shape.ma",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "마",
+        "style_role": "label",
+        "x": 521.0,
+        "y": 250.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.bottom.label.ga",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "가",
+        "style_role": "label",
+        "x": 105.0,
+        "y": 248.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.bottom.label.na",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "나",
+        "style_role": "label",
+        "x": 201.0,
+        "y": 248.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.bottom.label.da",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "다",
+        "style_role": "label",
+        "x": 297.0,
+        "y": 248.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.bottom.label.ra",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "라",
+        "style_role": "label",
+        "x": 412.0,
+        "y": 248.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.bottom.label.ma",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "마",
+        "style_role": "label",
+        "x": 521.0,
+        "y": 248.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.bottom.right_angle.ga",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 0.0,
+        "y1": 0.0,
+        "x2": 0.0,
+        "y2": 0.0
+      }
+    },
+    {
+      "id": "slot.bottom.right_angle.na",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 0.0,
+        "y1": 0.0,
+        "x2": 0.0,
+        "y2": 0.0
+      }
+    },
+    {
+      "id": "slot.bottom.right_angle.da",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 0.0,
+        "y1": 0.0,
+        "x2": 0.0,
+        "y2": 0.0
+      }
+    },
+    {
+      "id": "slot.bottom.right_angle.ra",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 0.0,
+        "y1": 0.0,
+        "x2": 0.0,
+        "y2": 0.0
+      }
+    },
+    {
+      "id": "slot.bottom.right_angle.ma",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 0.0,
+        "y1": 0.0,
+        "x2": 0.0,
+        "y2": 0.0
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.header",
+    "slot.top.grid.bg",
+    "slot.top.grid.v1",
+    "slot.top.grid.h1",
+    "slot.q_num",
+    "slot.q_text",
+    "slot.top.shape.ga",
+    "slot.top.shape.na",
+    "slot.top.shape.da",
+    "slot.top.shape.ra",
+    "slot.top.shape.ma",
+    "slot.top.label.ga",
+    "slot.top.label.na",
+    "slot.top.label.da",
+    "slot.top.label.ra",
+    "slot.top.label.ma",
+    "slot.choice.text",
+    "region.explanation",
+    "slot.bottom.grid.bg",
+    "slot.bottom.right_angle.ga",
+    "slot.bottom.right_angle.na",
+    "slot.bottom.right_angle.da",
+    "slot.bottom.right_angle.ra",
+    "slot.bottom.right_angle.ma",
+    "slot.bottom.shape.ga",
+    "slot.bottom.shape.na",
+    "slot.bottom.shape.da",
+    "slot.bottom.shape.ra",
+    "slot.bottom.shape.ma",
+    "slot.bottom.label.ga",
+    "slot.bottom.label.na",
+    "slot.bottom.label.da",
+    "slot.bottom.label.ra",
+    "slot.bottom.label.ma"
+  ]
+}

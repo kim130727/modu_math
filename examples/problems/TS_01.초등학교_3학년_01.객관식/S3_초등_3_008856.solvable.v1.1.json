@@ -1,0 +1,112 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008856",
+  "problem_type": "비교_무게_순서",
+  "inputs": {
+    "total_ticks": 1,
+    "target_label": "가장 무거운 것",
+    "target_ticks": 1,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.scissors",
+      "value": {
+        "name": "가위"
+      }
+    },
+    {
+      "ref": "obj.glue",
+      "value": {
+        "name": "풀"
+      }
+    },
+    {
+      "ref": "obj.eraser",
+      "value": {
+        "name": "지우개"
+      }
+    },
+    {
+      "ref": "rel.scissors_heavier_than_glue",
+      "value": {
+        "from": "가위",
+        "to": "풀"
+      }
+    },
+    {
+      "ref": "rel.glue_heavier_than_eraser",
+      "value": {
+        "from": "풀",
+        "to": "지우개"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "heaviest_object"
+  },
+  "method": "compare_heaviness_order",
+  "plan": [
+    "비교 문장에서 더 무거운 대상을 찾는다.",
+    "두 비교 결과를 연결하여 무게 순서를 정리한다.",
+    "가장 무거운 대상을 고른다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "가위와 풀을 비교하면 가위가 더 무겁다.",
+      "value": "가위 > 풀"
+    },
+    {
+      "id": "step.2",
+      "expr": "풀과 지우개를 비교하면 풀이 더 무겁다.",
+      "value": "풀 > 지우개"
+    },
+    {
+      "id": "step.3",
+      "expr": "두 관계를 합치면 가위 > 풀 > 지우개 이다.",
+      "value": "가위 > 풀 > 지우개"
+    },
+    {
+      "id": "step.4",
+      "expr": "가장 무거운 것을 선택한다.",
+      "value": "가위"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "가위가 풀보다 무거운가?",
+      "expected": "가위 > 풀",
+      "actual": "가위 > 풀",
+      "pass": true
+    },
+    {
+      "id": "check.2",
+      "expr": "풀이 지우개보다 무거운가?",
+      "expected": "풀 > 지우개",
+      "actual": "풀 > 지우개",
+      "pass": true
+    },
+    {
+      "id": "check.3",
+      "expr": "가장 무거운 대상이 가위인가?",
+      "expected": "가위",
+      "actual": "가위",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "heaviest_object",
+      "description": "가장 무거운 것"
+    },
+    "value": "가위",
+    "unit": ""
+  }
+}

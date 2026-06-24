@@ -1,0 +1,159 @@
+{
+  "problem_id": "S3_초등_3_008843",
+  "view_box": {
+    "width": 920.0,
+    "height": 560.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.obj.ga_angle.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 210.0,
+        "y": 86.0,
+        "width": 60.0,
+        "height": 30.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.obj.ga_angle",
+      "refs": {
+        "layout_slot_id": "slot.obj.ga_angle"
+      }
+    },
+    {
+      "id": "slot.obj.ga_compass.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 356.0,
+        "y": 86.0,
+        "width": 60.0,
+        "height": 30.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.obj.ga_compass",
+      "refs": {
+        "layout_slot_id": "slot.obj.ga_compass"
+      }
+    },
+    {
+      "id": "slot.obj.na_eraser.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 550.0,
+        "y": 86.0,
+        "width": 60.0,
+        "height": 30.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.obj.na_eraser",
+      "refs": {
+        "layout_slot_id": "slot.obj.na_eraser"
+      }
+    },
+    {
+      "id": "slot.obj.na_compass.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 700.0,
+        "y": 86.0,
+        "width": 60.0,
+        "height": 30.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.obj.na_compass",
+      "refs": {
+        "layout_slot_id": "slot.obj.na_compass"
+      }
+    },
+    {
+      "id": "slot.q_title.text",
+      "type": "text",
+      "attributes": {
+        "x": 16.0,
+        "y": 28.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q_title",
+      "refs": {
+        "layout_slot_id": "slot.q_title"
+      },
+      "text": "84. 저울로 각도기, 컴퍼스, 지우개의 무게를 비교하고 있습니다. 가장 가벼운 것은 무엇인지 알맞은 말을 선택해 보세요."
+    },
+    {
+      "id": "slot.ga_label.text",
+      "type": "text",
+      "attributes": {
+        "x": 170.0,
+        "y": 120.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.ga_label",
+      "refs": {
+        "layout_slot_id": "slot.ga_label"
+      },
+      "text": "가"
+    },
+    {
+      "id": "slot.na_label.text",
+      "type": "text",
+      "attributes": {
+        "x": 512.0,
+        "y": 120.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.na_label",
+      "refs": {
+        "layout_slot_id": "slot.na_label"
+      },
+      "text": "나"
+    },
+    {
+      "id": "slot.body1.text",
+      "type": "text",
+      "attributes": {
+        "x": 16.0,
+        "y": 365.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.body1",
+      "refs": {
+        "layout_slot_id": "slot.body1"
+      },
+      "text": "(1) 가에서 각도기와 컴퍼스 중 더 가벼운 것은 ( 각도기, 컴퍼스 )이고,"
+    },
+    {
+      "id": "slot.body2.text",
+      "type": "text",
+      "attributes": {
+        "x": 16.0,
+        "y": 410.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.body2",
+      "refs": {
+        "layout_slot_id": "slot.body2"
+      },
+      "text": "나에서 지우개와 컴퍼스 중 더 가벼운 것은 ( 지우개, 컴퍼스 )입니다."
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

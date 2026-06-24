@@ -1,0 +1,72 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008947",
+  "problem_type": "자료해석",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "재영",
+    "target_ticks": 0,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.table",
+      "value": "학생들이 좋아하는 운동 표"
+    },
+    {
+      "ref": "obj.legend",
+      "value": [
+        "축구",
+        "야구",
+        "농구",
+        "배구"
+      ]
+    },
+    {
+      "ref": "obj.student.재영",
+      "value": "재영"
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "학생이_좋아하는_운동"
+  },
+  "method": "표_읽기",
+  "plan": [
+    "표에서 재영이의 표시를 찾습니다.",
+    "범례를 보고 표시가 뜻하는 운동을 확인합니다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "표에서 '재영'의 칸을 찾는다",
+      "value": "확인됨"
+    },
+    {
+      "id": "step.2",
+      "expr": "해당 표시를 범례와 대응한다",
+      "value": "축구"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "범례 대응이 표의 표시와 일치하는가",
+      "expected": "축구",
+      "actual": "축구",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "학생이_좋아하는_운동",
+      "description": "좋아하는 운동"
+    },
+    "value": 0,
+    "unit": ""
+  }
+}

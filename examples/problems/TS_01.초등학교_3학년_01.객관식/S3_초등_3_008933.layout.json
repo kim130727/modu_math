@@ -1,0 +1,279 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008933",
+  "title": "밭별 수박 생산량",
+  "canvas": {
+    "width": 960.0,
+    "height": 640.0,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q.no",
+        "slot.q.text1",
+        "slot.q.text2"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.table.outer",
+        "slot.legend.big",
+        "slot.legend.small",
+        "slot.table.vline",
+        "slot.table.hline1",
+        "slot.table.hline2",
+        "slot.table.hline3",
+        "slot.table.hline4",
+        "slot.title",
+        "slot.table.head_left",
+        "slot.table.head_right",
+        "slot.table.row_a",
+        "slot.table.row_b",
+        "slot.table.row_c"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q.no",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "□ 1.",
+        "style_role": "question",
+        "x": 12.0,
+        "y": 30.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q.text1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "밭별 수박 생산량을 조사하여 그림그래프로 나타내었습니다. 수박 생산량이 가",
+        "style_role": "question",
+        "x": 66.0,
+        "y": 30.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q.text2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "장 적은 밭을 선택해 보세요.",
+        "style_role": "question",
+        "x": 20.0,
+        "y": 65.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.title",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "밭별 수박 생산량",
+        "style_role": "title",
+        "x": 360.0,
+        "y": 110.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.outer",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 220.0,
+        "y": 120.0,
+        "width": 540.0,
+        "height": 204.0,
+        "stroke": "#9ACD32",
+        "stroke_width": 1.2,
+        "fill": "#EEF4DD"
+      }
+    },
+    {
+      "id": "slot.table.vline",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 306.0,
+        "y1": 120.0,
+        "x2": 306.0,
+        "y2": 324.0,
+        "stroke": "#9ACD32",
+        "stroke_width": 1.2
+      }
+    },
+    {
+      "id": "slot.table.hline1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 220.0,
+        "y1": 156.0,
+        "x2": 760.0,
+        "y2": 156.0,
+        "stroke": "#9ACD32",
+        "stroke_width": 1.2
+      }
+    },
+    {
+      "id": "slot.table.hline2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 220.0,
+        "y1": 220.0,
+        "x2": 760.0,
+        "y2": 220.0,
+        "stroke": "#9ACD32",
+        "stroke_width": 1.2
+      }
+    },
+    {
+      "id": "slot.table.hline3",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 220.0,
+        "y1": 272.0,
+        "x2": 760.0,
+        "y2": 272.0,
+        "stroke": "#9ACD32",
+        "stroke_width": 1.2
+      }
+    },
+    {
+      "id": "slot.table.hline4",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 220.0,
+        "y1": 324.0,
+        "x2": 760.0,
+        "y2": 324.0,
+        "stroke": "#9ACD32",
+        "stroke_width": 1.2
+      }
+    },
+    {
+      "id": "slot.table.head_left",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "밭",
+        "style_role": "table",
+        "x": 262.0,
+        "y": 144.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.head_right",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "수박 생산량",
+        "style_role": "table",
+        "x": 482.0,
+        "y": 144.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.row_a",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "가",
+        "style_role": "table",
+        "x": 260.0,
+        "y": 196.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.row_b",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "나",
+        "style_role": "table",
+        "x": 260.0,
+        "y": 248.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.row_c",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "다",
+        "style_role": "table",
+        "x": 260.0,
+        "y": 300.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.legend.big",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 565.0,
+        "cy": 355.0,
+        "r": 20.0,
+        "fill": "#8BC34A"
+      }
+    },
+    {
+      "id": "slot.legend.small",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 675.0,
+        "cy": 355.0,
+        "r": 13.0,
+        "fill": "#8BC34A"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q.no",
+    "slot.q.text1",
+    "slot.q.text2",
+    "region.diagram",
+    "slot.table.outer",
+    "slot.legend.big",
+    "slot.legend.small",
+    "slot.table.vline",
+    "slot.table.hline1",
+    "slot.table.hline2",
+    "slot.table.hline3",
+    "slot.table.hline4",
+    "slot.title",
+    "slot.table.head_left",
+    "slot.table.head_right",
+    "slot.table.row_a",
+    "slot.table.row_b",
+    "slot.table.row_c"
+  ]
+}

@@ -1,0 +1,75 @@
+{
+  "problem_id": "S3_초등_3_008816",
+  "problem_type": "comparison_choice",
+  "metadata": {
+    "title": "더 많은 물이 들어가는 그릇 고르기",
+    "tags": [],
+    "question": "그림을 보고 더 많은 물이 들어가는 그릇을 고르는 문제",
+    "required_layout_ids": [
+      "slot.bottle.ga.outline",
+      "slot.bottle.ga.water",
+      "slot.bottle.na.outline",
+      "slot.bottle.na.water",
+      "slot.label.ga.circle",
+      "slot.label.na.circle"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "들어가 더 많은 그릇을 선택해 보세요."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.ga",
+        "type": "container",
+        "label": "가"
+      },
+      {
+        "id": "obj.na",
+        "type": "container",
+        "label": "나"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.ga",
+          "obj.na"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.water_level_compare"
+        ]
+      },
+      "plan": {
+        "method": "visual_comparison",
+        "description": "그림에서 물의 높이를 비교하여 더 많은 물이 들어간 쪽을 고른다."
+      },
+      "execute": {
+        "expected_operations": [
+          "compare_water_levels",
+          "choose_higher_level_container"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "image_consistency_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "selected_container",
+      "description": "더 많은 물이 들어가는 그릇"
+    },
+    "value": "가",
+    "unit": ""
+  }
+}

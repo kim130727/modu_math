@@ -1,0 +1,76 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008864",
+  "problem_type": "comparison_by_equivalence",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "물감, 붓",
+    "target_ticks": 0,
+    "target_count": 5,
+    "unit": "개"
+  },
+  "given": [
+    {
+      "ref": "rel.paint_equals_9",
+      "value": {
+        "item": "물감",
+        "equivalent_stones": 9
+      }
+    },
+    {
+      "ref": "rel.brush_equals_4",
+      "value": {
+        "item": "붓",
+        "equivalent_stones": 4
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "selection"
+  },
+  "method": "compare_reference_counts",
+  "plan": [
+    "그림에서 물감과 붓이 각각 몇 개의 바둑돌과 같은지 읽습니다.",
+    "두 수의 차이를 구해 비교 문장의 뜻을 확인합니다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "9 - 4",
+      "value": 5
+    },
+    {
+      "id": "step.2",
+      "expr": "물감이 붓보다 바둑돌 몇 개만큼 더 무거운지",
+      "value": 5
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "9 - 4 = 5",
+      "expected": 5,
+      "actual": 5,
+      "pass": true
+    },
+    {
+      "id": "check.2",
+      "expr": "물감 9개, 붓 4개의 차이는 5개",
+      "expected": 5,
+      "actual": 5,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "selection",
+      "description": "물감, 붓"
+    },
+    "value": 5,
+    "unit": ""
+  }
+}

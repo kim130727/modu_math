@@ -1,0 +1,223 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008983",
+  "title": "직각을 선택하세요",
+  "canvas": {
+    "width": 850,
+    "height": 398,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.header",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.num",
+        "slot.title"
+      ]
+    },
+    {
+      "id": "region.options",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.opt1.a",
+        "slot.opt1.b",
+        "slot.opt2.a",
+        "slot.opt2.b",
+        "slot.opt3.a",
+        "slot.opt3.b"
+      ]
+    },
+    {
+      "id": "region.answer",
+      "role": "answer",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.answer.shape.a",
+        "slot.answer.shape.b"
+      ]
+    },
+    {
+      "id": "region.explanation",
+      "role": "explanation",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.expl.square",
+        "slot.expl.shape.a",
+        "slot.expl.shape.b"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.num",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "18.",
+        "style_role": "question",
+        "x": 16.0,
+        "y": 28.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.title",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "직각을 선택하세요.",
+        "style_role": "question",
+        "x": 68.0,
+        "y": 28.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.opt1.a",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 164.0,
+        "y1": 49.0,
+        "x2": 199.0,
+        "y2": 107.0
+      }
+    },
+    {
+      "id": "slot.opt1.b",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 199.0,
+        "y1": 107.0,
+        "x2": 268.0,
+        "y2": 107.0
+      }
+    },
+    {
+      "id": "slot.opt2.a",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 403.0,
+        "y1": 46.0,
+        "x2": 403.0,
+        "y2": 107.0
+      }
+    },
+    {
+      "id": "slot.opt2.b",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 403.0,
+        "y1": 107.0,
+        "x2": 473.0,
+        "y2": 107.0
+      }
+    },
+    {
+      "id": "slot.opt3.a",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 636.0,
+        "y1": 85.0,
+        "x2": 704.0,
+        "y2": 47.0
+      }
+    },
+    {
+      "id": "slot.opt3.b",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 636.0,
+        "y1": 85.0,
+        "x2": 703.0,
+        "y2": 109.0
+      }
+    },
+    {
+      "id": "slot.answer.shape.a",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 51.0,
+        "y1": 128.0,
+        "x2": 51.0,
+        "y2": 206.0
+      }
+    },
+    {
+      "id": "slot.answer.shape.b",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 51.0,
+        "y1": 206.0,
+        "x2": 118.0,
+        "y2": 206.0
+      }
+    },
+    {
+      "id": "slot.expl.shape.a",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 33.0,
+        "y1": 325.0,
+        "x2": 33.0,
+        "y2": 361.0
+      }
+    },
+    {
+      "id": "slot.expl.shape.b",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 33.0,
+        "y1": 361.0,
+        "x2": 104.0,
+        "y2": 361.0
+      }
+    },
+    {
+      "id": "slot.expl.square",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 33.0,
+        "y": 351.0,
+        "width": 10.0,
+        "height": 10.0
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.header",
+    "slot.num",
+    "slot.title",
+    "region.options",
+    "slot.opt1.a",
+    "slot.opt1.b",
+    "slot.opt2.a",
+    "slot.opt2.b",
+    "slot.opt3.a",
+    "slot.opt3.b",
+    "region.answer",
+    "slot.answer.shape.a",
+    "slot.answer.shape.b",
+    "region.explanation",
+    "slot.expl.square",
+    "slot.expl.shape.a",
+    "slot.expl.shape.b"
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008848",
+  "problem_type": "unit_choice",
+  "inputs": {
+    "total_ticks": 3,
+    "target_label": "알맞은 단위",
+    "target_ticks": 1,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.rhino",
+      "value": {
+        "name": "코뿔소"
+      }
+    },
+    {
+      "ref": "obj.mass_value",
+      "value": 3
+    },
+    {
+      "ref": "obj.unit_g",
+      "value": {
+        "name": "g"
+      }
+    },
+    {
+      "ref": "obj.unit_kg",
+      "value": {
+        "name": "kg"
+      }
+    },
+    {
+      "ref": "obj.unit_t",
+      "value": {
+        "name": "t"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "unit_name"
+  },
+  "method": "compare_mass_units",
+  "plan": [
+    "무게의 크기에 맞는 단위 후보를 비교한다.",
+    "코뿔소처럼 무거운 대상에 알맞은 단위를 고른다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "g, kg, t 중 무거운 대상에 알맞은 단위 선택",
+      "value": "t"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "코뿔소의 무게는 3 kg보다 더 무겁다",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "unit_name",
+      "description": "코뿔소의 무게에 알맞은 단위"
+    },
+    "value": "t",
+    "unit": ""
+  }
+}

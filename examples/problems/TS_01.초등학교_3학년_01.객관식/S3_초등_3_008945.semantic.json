@@ -1,0 +1,105 @@
+{
+  "problem_id": "S3_초등_3_008945",
+  "problem_type": "table_reasoning",
+  "metadata": {
+    "title": "좋아하는 색깔별 학생 수",
+    "tags": [],
+    "question": "가장 많은 남학생이 좋아하는 색깔은 무엇인가요?",
+    "required_layout_ids": [
+      "slot.table.outer",
+      "slot.table.r1c1",
+      "slot.table.r1c2",
+      "slot.table.r1c3",
+      "slot.table.r1c4",
+      "slot.table.r1c5",
+      "slot.table.r1c6",
+      "slot.table.r2c1",
+      "slot.table.r2c2",
+      "slot.table.r2c3",
+      "slot.table.r2c4",
+      "slot.table.r2c5",
+      "slot.table.r2c6",
+      "slot.table.r3c1",
+      "slot.table.r3c2",
+      "slot.table.r3c3",
+      "slot.table.r3c4",
+      "slot.table.r3c5",
+      "slot.table.r3c6"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "표와 조건을 보고 가장 많은 남학생이 좋아하는 색깔을 찾는다."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.table",
+        "type": "table",
+        "subject": "서진이네 학교 3학년 학생들의 좋아하는 색깔별 학생 수"
+      },
+      {
+        "id": "obj.color.red",
+        "type": "color_group",
+        "name": "빨간색"
+      },
+      {
+        "id": "obj.color.green",
+        "type": "color_group",
+        "name": "초록색"
+      },
+      {
+        "id": "obj.color.blue",
+        "type": "color_group",
+        "name": "파란색"
+      },
+      {
+        "id": "obj.color.purple",
+        "type": "color_group",
+        "name": "보라색"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.table",
+          "rel.green_is_3x_red"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.max_male_prefers_green"
+        ]
+      },
+      "plan": {
+        "method": "table_relation_comparison",
+        "description": "표에 주어진 수와 조건을 이용해 각 색깔의 남학생 수를 비교한다."
+      },
+      "execute": {
+        "expected_operations": [
+          "read_given_counts",
+          "apply_multiplicative_relation",
+          "compare_male_counts"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "compare_candidates_by_value",
+          "confirm_largest_group"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "color_name",
+      "description": "가장 많은 남학생이 좋아하는 색깔"
+    },
+    "value": "초록색",
+    "unit": ""
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008991",
+  "problem_type": "도형_판별",
+  "inputs": {
+    "total_ticks": 1,
+    "target_label": "selection_symbol",
+    "target_ticks": 1,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.shape_right",
+      "value": {
+        "type": "quadrilateral",
+        "property": "rectangle_test_shape"
+      }
+    },
+    {
+      "ref": "obj.rect_explain",
+      "value": {
+        "type": "quadrilateral",
+        "property": "rectangle_example"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "selection_symbol"
+  },
+  "method": "definition_check",
+  "plan": [
+    "도형이 직사각형의 정의에 맞는지 확인한다.",
+    "판별 결과에 따라 ○ 또는 ×를 선택한다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "직사각형의 정의 확인",
+      "value": "네 각이 모두 직각인 사각형"
+    },
+    {
+      "id": "step.2",
+      "expr": "판별 대상 도형의 성질 확인",
+      "value": "TODO"
+    },
+    {
+      "id": "step.3",
+      "expr": "선택 기호 결정",
+      "value": "TODO"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "정의와 판별 결과가 일치하는지 확인",
+      "expected": "일치",
+      "actual": "TODO",
+      "pass": false
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "selection_symbol",
+      "description": "직사각형이면 ○, 직사각형이 아니면 × 중 선택"
+    },
+    "value": 0,
+    "unit": ""
+  }
+}

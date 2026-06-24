@@ -1,0 +1,167 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008831",
+  "title": "L 단위에 알맞은 물건 고르기",
+  "canvas": {
+    "width": 960,
+    "height": 570,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.box",
+        "slot.q1",
+        "slot.box.title",
+        "slot.pic1",
+        "slot.pic1.label",
+        "slot.pic2",
+        "slot.pic2.label",
+        "slot.pic3",
+        "slot.pic3.label",
+        "slot.sentence"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "67. <보기>를 보고 알맞은 물건을 선택하여 문장을 완성해 보세요.",
+        "style_role": "question",
+        "x": 12.0,
+        "y": 34.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 102.0,
+        "y": 51.0,
+        "width": 748.0,
+        "height": 226.0
+      }
+    },
+    {
+      "id": "slot.box.title",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "<보기>",
+        "style_role": "label",
+        "x": 130.0,
+        "y": 89.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.pic1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "주사기",
+        "style_role": "label",
+        "x": 242.0,
+        "y": 241.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.pic1.label",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "주사기",
+        "style_role": "label",
+        "x": 242.0,
+        "y": 239.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.pic2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "물뿌리개",
+        "style_role": "label",
+        "x": 467.0,
+        "y": 241.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.pic2.label",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "물뿌리개",
+        "style_role": "label",
+        "x": 467.0,
+        "y": 239.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.pic3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "항아리",
+        "style_role": "label",
+        "x": 698.0,
+        "y": 241.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.pic3.label",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "항아리",
+        "style_role": "label",
+        "x": 698.0,
+        "y": 239.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.sentence",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "( 주사기 , 물뿌리개 , 항아리 )의 들이는 약 40 L입니다.",
+        "style_role": "question",
+        "x": 154.0,
+        "y": 347.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.box",
+    "slot.q1",
+    "slot.box.title",
+    "slot.pic1",
+    "slot.pic1.label",
+    "slot.pic2",
+    "slot.pic2.label",
+    "slot.pic3",
+    "slot.pic3.label",
+    "slot.sentence"
+  ]
+}

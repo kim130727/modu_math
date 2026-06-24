@@ -1,0 +1,111 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008973",
+  "title": "계산 결과가 가장 큰 것을 찾아 기호를 선택해 보세요.",
+  "canvas": {
+    "width": 496,
+    "height": 203,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.box",
+        "slot.q1",
+        "slot.eq1",
+        "slot.eq2",
+        "slot.eq3",
+        "slot.choice"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "7. 계산 결과가 가장 큰 것을 찾아 기호를 선택해 보세요.",
+        "style_role": "question",
+        "x": 18.0,
+        "y": 20.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 110.0,
+        "y": 25.0,
+        "width": 375.0,
+        "height": 32.0
+      }
+    },
+    {
+      "id": "slot.eq1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "① 201 + 339",
+        "style_role": "body",
+        "x": 145.0,
+        "y": 44.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.eq2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "② 622 - 115",
+        "style_role": "body",
+        "x": 268.0,
+        "y": 44.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.eq3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "③ 746 - 228",
+        "style_role": "body",
+        "x": 390.0,
+        "y": 44.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "( ① , ② , ③ )",
+        "style_role": "body",
+        "x": 195.0,
+        "y": 74.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.box",
+    "slot.q1",
+    "slot.eq1",
+    "slot.eq2",
+    "slot.eq3",
+    "slot.choice"
+  ]
+}

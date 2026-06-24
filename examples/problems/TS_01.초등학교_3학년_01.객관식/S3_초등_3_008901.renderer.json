@@ -1,0 +1,270 @@
+{
+  "problem_id": "S3_초등_3_008901",
+  "view_box": {
+    "width": 940.0,
+    "height": 680.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.table.outer.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 244.0,
+        "y": 122.0,
+        "width": 480.0,
+        "height": 284.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.table.outer",
+      "refs": {
+        "layout_slot_id": "slot.table.outer"
+      }
+    },
+    {
+      "id": "slot.table.head_bg.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 244.0,
+        "y": 122.0,
+        "width": 480.0,
+        "height": 40.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.table.head_bg",
+      "refs": {
+        "layout_slot_id": "slot.table.head_bg"
+      }
+    },
+    {
+      "id": "slot.table.left_bg.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 244.0,
+        "y": 162.0,
+        "width": 140.0,
+        "height": 244.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.table.left_bg",
+      "refs": {
+        "layout_slot_id": "slot.table.left_bg"
+      }
+    },
+    {
+      "id": "slot.q_no.text",
+      "type": "text",
+      "attributes": {
+        "x": 12.0,
+        "y": 22.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q_no",
+      "refs": {
+        "layout_slot_id": "slot.q_no"
+      },
+      "text": "□ 67."
+    },
+    {
+      "id": "slot.q_text_1.text",
+      "type": "text",
+      "attributes": {
+        "x": 92.0,
+        "y": 22.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q_text_1",
+      "refs": {
+        "layout_slot_id": "slot.q_text_1"
+      },
+      "text": "어느 가게에서 일주일 동안 팔린 아이스크림 수를 조사하여 그림그래프로 나타내었습니다."
+    },
+    {
+      "id": "slot.q_text_2.text",
+      "type": "text",
+      "attributes": {
+        "x": 12.0,
+        "y": 56.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q_text_2",
+      "refs": {
+        "layout_slot_id": "slot.q_text_2"
+      },
+      "text": "딸기 맛과 바닐라 맛 아이스크림 중 더 많이 팔린 아이스크림을 선택해 보세요."
+    },
+    {
+      "id": "slot.title.text",
+      "type": "text",
+      "attributes": {
+        "x": 396.0,
+        "y": 110.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.title",
+      "refs": {
+        "layout_slot_id": "slot.title"
+      },
+      "text": "팔린 아이스크림 수"
+    },
+    {
+      "id": "slot.table.head1.text",
+      "type": "text",
+      "attributes": {
+        "x": 298.0,
+        "y": 149.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.head1",
+      "refs": {
+        "layout_slot_id": "slot.table.head1"
+      },
+      "text": "맛"
+    },
+    {
+      "id": "slot.table.head2.text",
+      "type": "text",
+      "attributes": {
+        "x": 470.0,
+        "y": 149.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.head2",
+      "refs": {
+        "layout_slot_id": "slot.table.head2"
+      },
+      "text": "아이스크림 수"
+    },
+    {
+      "id": "slot.table.row1.label.text",
+      "type": "text",
+      "attributes": {
+        "x": 294.0,
+        "y": 200.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.row1.label",
+      "refs": {
+        "layout_slot_id": "slot.table.row1.label"
+      },
+      "text": "멜론 맛"
+    },
+    {
+      "id": "slot.table.row2.label.text",
+      "type": "text",
+      "attributes": {
+        "x": 294.0,
+        "y": 248.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.row2.label",
+      "refs": {
+        "layout_slot_id": "slot.table.row2.label"
+      },
+      "text": "딸기 맛"
+    },
+    {
+      "id": "slot.table.row3.label.text",
+      "type": "text",
+      "attributes": {
+        "x": 286.0,
+        "y": 296.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.row3.label",
+      "refs": {
+        "layout_slot_id": "slot.table.row3.label"
+      },
+      "text": "초콜릿 맛"
+    },
+    {
+      "id": "slot.table.row4.label.text",
+      "type": "text",
+      "attributes": {
+        "x": 286.0,
+        "y": 344.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.table.row4.label",
+      "refs": {
+        "layout_slot_id": "slot.table.row4.label"
+      },
+      "text": "바닐라 맛"
+    },
+    {
+      "id": "slot.legend.big.text",
+      "type": "text",
+      "attributes": {
+        "x": 660.0,
+        "y": 438.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.legend.big",
+      "refs": {
+        "layout_slot_id": "slot.legend.big"
+      },
+      "text": "10개"
+    },
+    {
+      "id": "slot.legend.small.text",
+      "type": "text",
+      "attributes": {
+        "x": 758.0,
+        "y": 438.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.legend.small",
+      "refs": {
+        "layout_slot_id": "slot.legend.small"
+      },
+      "text": "1개"
+    },
+    {
+      "id": "slot.choice.text",
+      "type": "text",
+      "attributes": {
+        "x": 650.0,
+        "y": 520.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice",
+      "refs": {
+        "layout_slot_id": "slot.choice"
+      },
+      "text": "( 딸기 맛 , 바닐라 맛 )"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

@@ -1,0 +1,107 @@
+{
+  "problem_id": "S3_초등_3_008882",
+  "problem_type": "자료해석",
+  "metadata": {
+    "title": "배우고 싶어 하는 운동",
+    "tags": [],
+    "question": "표를 보고 가장 많은 학생이 배우고 싶어 하는 운동을 고르는 문제",
+    "required_layout_ids": [
+      "slot.table.cell.1.1",
+      "slot.table.cell.1.2",
+      "slot.table.cell.1.3",
+      "slot.table.cell.1.4",
+      "slot.table.cell.1.5",
+      "slot.table.cell.1.6",
+      "slot.table.cell.2.1",
+      "slot.table.cell.2.2",
+      "slot.table.cell.2.3",
+      "slot.table.cell.2.4",
+      "slot.table.cell.2.5",
+      "slot.table.cell.2.6"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "알맞은 말을 선택하시오.",
+    "points": 0
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.soccer",
+        "type": "sport",
+        "name": "축구",
+        "count": 50
+      },
+      {
+        "id": "obj.golf",
+        "type": "sport",
+        "name": "골프",
+        "count": 30
+      },
+      {
+        "id": "obj.baseball",
+        "type": "sport",
+        "name": "야구",
+        "count": 55
+      },
+      {
+        "id": "obj.squash",
+        "type": "sport",
+        "name": "스쿼시",
+        "count": 50
+      },
+      {
+        "id": "obj.total",
+        "type": "total",
+        "name": "합계",
+        "count": 185
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.soccer",
+          "obj.golf",
+          "obj.baseball",
+          "obj.squash",
+          "obj.total"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.max_count"
+        ]
+      },
+      "plan": {
+        "method": "compare_counts",
+        "description": "표의 학생 수를 비교하여 가장 큰 값을 찾는다."
+      },
+      "execute": {
+        "expected_operations": [
+          "read_table_values",
+          "compare_counts",
+          "match_sport_to_maximum"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "largest_value_check",
+          "table_value_match_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "sport_name",
+      "description": "가장 많은 학생이 배우고 싶어 하는 운동"
+    },
+    "value": "야구",
+    "unit": ""
+  }
+}

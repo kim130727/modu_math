@@ -1,0 +1,103 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008937",
+  "problem_type": "picture_graph_comparison",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "우유 생산량이 가장 적은 목장",
+    "target_ticks": 0,
+    "target_count": 4,
+    "unit": "L"
+  },
+  "given": [
+    {
+      "ref": "obj.legend.big",
+      "value": {
+        "unit_value": 10,
+        "unit": "L"
+      }
+    },
+    {
+      "ref": "obj.legend.small",
+      "value": {
+        "unit_value": 1,
+        "unit": "L"
+      }
+    },
+    {
+      "ref": "obj.farm.ga",
+      "value": {
+        "name": "가 목장"
+      }
+    },
+    {
+      "ref": "obj.farm.na",
+      "value": {
+        "name": "나 목장"
+      }
+    },
+    {
+      "ref": "obj.farm.da",
+      "value": {
+        "name": "다 목장"
+      }
+    },
+    {
+      "ref": "obj.farm.ra",
+      "value": {
+        "name": "라 목장"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "farm_name"
+  },
+  "method": "compare_picture_counts",
+  "plan": [
+    "범례를 읽어 큰 그림과 작은 그림의 의미를 확인한다.",
+    "각 목장의 그림 개수를 비교하여 가장 적은 생산량을 찾는다.",
+    "화면에 보이는 정답 표시는 검증용으로만 참고한다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "범례 확인",
+      "value": {
+        "big_symbol": 10,
+        "small_symbol": 1,
+        "unit": "L"
+      }
+    },
+    {
+      "id": "step.2",
+      "expr": "행 비교",
+      "value": "다 목장이 가장 적다"
+    },
+    {
+      "id": "step.3",
+      "expr": "정답 선택",
+      "value": "다 목장"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "가장 적은 목장과 선택한 답이 일치하는가",
+      "expected": "다 목장",
+      "actual": "다 목장",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "farm_name",
+      "description": "우유 생산량이 가장 적은 목장"
+    },
+    "value": "다 목장",
+    "unit": ""
+  }
+}

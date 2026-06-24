@@ -6,13 +6,13 @@ def build_problem_template() -> ProblemTemplate:
     return ProblemTemplate(
         id="S3_초등_3_008612",
         title="다음 나눗셈이 나누어떨어지는지 판단하기",
-        canvas=Canvas(width=940.0, height=364.0, coordinate_mode="logical"),
+        canvas=Canvas(width=700, height=300, coordinate_mode="logical"),
         regions=(
             Region(
                 id="region.stem",
                 role="stem",
                 flow="absolute",
-                slot_ids=("slot.q.text", "slot.expr.box", "slot.expr.text",'slot.q.text.copy2'),
+                slot_ids=("slot.q.text", "slot.expr.box", "slot.expr.text", "slot.q.text.copy2"),
             ),
             Region(
                 id="region.choice",
@@ -24,23 +24,41 @@ def build_problem_template() -> ProblemTemplate:
                 id="region.explanation",
                 role="explanation",
                 flow="absolute",
-                slot_ids=( ),
+                slot_ids=(),
             ),
         ),
-        slots=(TextSlot(
+        slots=(
+            TextSlot(
                 id="slot.q.text",
                 prompt="",
-                text = '다음 나눗셈이 나누어떨어지면 O표,', style_role="question",
-                x = 75, y = 55, font_size = 30, max_width = 810),
-            RectSlot(
-                id="slot.expr.box",
-                prompt="",
-                x = 230, y = 140, width = 190, height = 80),
+                text="다음 나눗셈이 나누어떨어지면 O표,",
+                style_role="question",
+                x=75,
+                y=55,
+                font_size=30,
+                max_width=810,
+            ),
+            RectSlot(id="slot.expr.box", prompt="", x=230, y=140, width=190, height=80),
             TextSlot(
                 id="slot.expr.text",
                 prompt="",
-                text = '28 ÷ 3', style_role="choice",
-                x = 280, y = 190, font_size = 30),TextSlot(id = 'slot.q.text.copy2', prompt = '', text = '나누어떨어지지 않으면 X표를 선택하세요.', x = 75, y = 100, font_size = 30, fill = '#111111', max_width = 810)),
+                text="28 ÷ 3",
+                style_role="choice",
+                x=280,
+                y=190,
+                font_size=30,
+            ),
+            TextSlot(
+                id="slot.q.text.copy2",
+                prompt="",
+                text="나누어떨어지지 않으면 X표를 선택하세요.",
+                x=75,
+                y=100,
+                font_size=30,
+                fill="#111111",
+                max_width=810,
+            ),
+        ),
         diagrams=(),
         groups=(),
         constraints=(),
@@ -75,9 +93,7 @@ SEMANTIC_OVERRIDE = {
                 "method": "division_remainder_check",
                 "description": "나눗셈의 나머지가 0인지 확인해 O/X를 판단한다.",
             },
-            "execute": {
-                "expected_operations": ["divide", "check_remainder", "select_symbol"]
-            },
+            "execute": {"expected_operations": ["divide", "check_remainder", "select_symbol"]},
             "review": {"check_methods": ["remainder_zero_check", "symbol_match_check"]},
         },
     },
@@ -95,7 +111,13 @@ SOLVABLE = {
     "schema": "modu.solvable.v1.1",
     "problem_id": "S3_초등_3_008612",
     "problem_type": "divisibility_judgment",
-    "inputs": {"target_label": "정답 기호", "unit": "", "target_ticks": 1, "target_count": 1, "total_ticks": 0},
+    "inputs": {
+        "target_label": "정답 기호",
+        "unit": "",
+        "target_ticks": 1,
+        "target_count": 1,
+        "total_ticks": 0,
+    },
     "given": [
         {"ref": "obj.dividend", "value": 28},
         {"ref": "obj.divisor", "value": 3},

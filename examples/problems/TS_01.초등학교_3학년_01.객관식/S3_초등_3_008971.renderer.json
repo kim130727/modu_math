@@ -1,0 +1,188 @@
+{
+  "problem_id": "S3_초등_3_008971",
+  "view_box": {
+    "width": 560.0,
+    "height": 240.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.box.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 112.0,
+        "y": 31.0,
+        "width": 318.0,
+        "height": 30.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.box",
+      "refs": {
+        "layout_slot_id": "slot.box"
+      }
+    },
+    {
+      "id": "slot.q1.text",
+      "type": "text",
+      "attributes": {
+        "x": 18.0,
+        "y": 22.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q1",
+      "refs": {
+        "layout_slot_id": "slot.q1"
+      },
+      "text": "5. 계산 결과가 가장 작은 것을 찾아 기호를 고르세요."
+    },
+    {
+      "id": "slot.eq1.text",
+      "type": "text",
+      "attributes": {
+        "x": 126.0,
+        "y": 51.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.eq1",
+      "refs": {
+        "layout_slot_id": "slot.eq1"
+      },
+      "text": "① 658 - 264"
+    },
+    {
+      "id": "slot.eq2.text",
+      "type": "text",
+      "attributes": {
+        "x": 229.0,
+        "y": 51.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.eq2",
+      "refs": {
+        "layout_slot_id": "slot.eq2"
+      },
+      "text": "② 503 - 119"
+    },
+    {
+      "id": "slot.eq3.text",
+      "type": "text",
+      "attributes": {
+        "x": 332.0,
+        "y": 51.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.eq3",
+      "refs": {
+        "layout_slot_id": "slot.eq3"
+      },
+      "text": "③ 947 - 472"
+    },
+    {
+      "id": "slot.choice.text",
+      "type": "text",
+      "attributes": {
+        "x": 422.0,
+        "y": 66.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice",
+      "refs": {
+        "layout_slot_id": "slot.choice"
+      },
+      "text": "( ① , ② , ③ )"
+    },
+    {
+      "id": "slot.calc1.text",
+      "type": "text",
+      "attributes": {
+        "x": 52.0,
+        "y": 128.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.calc1",
+      "refs": {
+        "layout_slot_id": "slot.calc1"
+      },
+      "text": "① 658 - 264 = 394"
+    },
+    {
+      "id": "slot.calc2.text",
+      "type": "text",
+      "attributes": {
+        "x": 210.0,
+        "y": 128.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.calc2",
+      "refs": {
+        "layout_slot_id": "slot.calc2"
+      },
+      "text": "② 503 - 119 = 384"
+    },
+    {
+      "id": "slot.calc3.text",
+      "type": "text",
+      "attributes": {
+        "x": 370.0,
+        "y": 128.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.calc3",
+      "refs": {
+        "layout_slot_id": "slot.calc3"
+      },
+      "text": "③ 947 - 472 = 475"
+    },
+    {
+      "id": "slot.compare.text",
+      "type": "text",
+      "attributes": {
+        "x": 16.0,
+        "y": 156.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.compare",
+      "refs": {
+        "layout_slot_id": "slot.compare"
+      },
+      "text": "384<394<475"
+    },
+    {
+      "id": "slot.conclusion.text",
+      "type": "text",
+      "attributes": {
+        "x": 128.0,
+        "y": 156.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.conclusion",
+      "refs": {
+        "layout_slot_id": "slot.conclusion"
+      },
+      "text": "이므로 계산 결과가 가장 작은 것은 ②입니다."
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

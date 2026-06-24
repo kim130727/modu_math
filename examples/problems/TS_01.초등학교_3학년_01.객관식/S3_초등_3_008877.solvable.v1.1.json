@@ -1,0 +1,73 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008877",
+  "problem_type": "ordering_by_weight",
+  "inputs": {
+    "total_ticks": 3,
+    "target_label": "무거운 것부터 순서",
+    "target_ticks": 3,
+    "target_count": 3,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.watermelon",
+      "value": {
+        "name": "수박"
+      }
+    },
+    {
+      "ref": "obj.balloon",
+      "value": {
+        "name": "풍선"
+      }
+    },
+    {
+      "ref": "obj.melon",
+      "value": {
+        "name": "참외"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "correct_choice"
+  },
+  "method": "ordering",
+  "plan": [
+    "무게가 더 무거운 것부터 보기의 순서를 확인한다.",
+    "주어진 보기 중 무거운 것→가벼운 것 순서와 일치하는 것을 찾는다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "수박, 참외, 풍선",
+      "value": "무거운 것부터 가벼운 것 순서"
+    },
+    {
+      "id": "step.2",
+      "expr": "보기 ③",
+      "value": 3
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "보기 ③이 수박, 참외, 풍선과 일치하는가",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "correct_choice",
+      "description": "무거운 것부터 순서대로 나열한 보기"
+    },
+    "value": 3,
+    "unit": ""
+  }
+}

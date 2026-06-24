@@ -1,0 +1,80 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008967",
+  "problem_type": "계산판단",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "바르게 계산한 보기",
+    "target_ticks": 0,
+    "target_count": 2,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.option.left",
+      "value": {
+        "expression": "188 + 456",
+        "result": 534
+      }
+    },
+    {
+      "ref": "obj.option.right",
+      "value": {
+        "expression": "265 + 347",
+        "result": 612
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "correct_option"
+  },
+  "method": "compare_vertical_addition_results",
+  "plan": [
+    "각 보기의 덧셈 결과가 식과 맞는지 확인한다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "188 + 456",
+      "value": 644
+    },
+    {
+      "id": "step.2",
+      "expr": "265 + 347",
+      "value": 612
+    },
+    {
+      "id": "step.3",
+      "expr": "보기의 표시값과 계산값을 비교한다.",
+      "value": "left_mismatch_right_match"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "188 + 456 == 534",
+      "expected": true,
+      "actual": false,
+      "pass": false
+    },
+    {
+      "id": "check.2",
+      "expr": "265 + 347 == 612",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "correct_option",
+      "description": "바르게 계산한 보기"
+    },
+    "value": 2,
+    "unit": ""
+  }
+}

@@ -1,0 +1,420 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008966",
+  "title": "두 번째로 많은 학생들이 받고 싶어 하는 생일 선물",
+  "canvas": {
+    "width": 945,
+    "height": 460,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.title_box",
+        "slot.table.outer",
+        "slot.table.c1r1",
+        "slot.table.c2r1",
+        "slot.table.c3r1",
+        "slot.table.c4r1",
+        "slot.table.c5r1",
+        "slot.table.c6r1",
+        "slot.table.c1r2",
+        "slot.table.c2r2",
+        "slot.table.c3r2",
+        "slot.table.c4r2",
+        "slot.table.c5r2",
+        "slot.table.c6r2",
+        "slot.q1",
+        "slot.table.caption",
+        "slot.title_box.text",
+        "slot.table.r1c1",
+        "slot.table.r1c2",
+        "slot.table.r1c3",
+        "slot.table.r1c4",
+        "slot.table.r1c5",
+        "slot.table.r1c6",
+        "slot.table.r2c1",
+        "slot.table.r2c2",
+        "slot.table.r2c3",
+        "slot.table.r2c4",
+        "slot.table.r2c5",
+        "slot.table.r2c6"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "36. 윤지네 반 학생들이 받고 싶어 하는 생일 선물을 조사하여 결과를 나타내었습니다. 두 번째로 많은 학생들이 받고 싶어 하는 생일 선물을 선택하세요.",
+        "style_role": "question",
+        "x": 14.0,
+        "y": 28.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.title_box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 241.0,
+        "y": 130.0,
+        "width": 487.0,
+        "height": 48.0
+      }
+    },
+    {
+      "id": "slot.title_box.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "학생들이 받고 싶어 하는 생일 선물",
+        "style_role": "title",
+        "x": 307.0,
+        "y": 162.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.outer",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 109.0,
+        "y": 182.0,
+        "width": 750.0,
+        "height": 120.0
+      }
+    },
+    {
+      "id": "slot.table.c1r1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 109.0,
+        "y": 182.0,
+        "width": 165.0,
+        "height": 48.0
+      }
+    },
+    {
+      "id": "slot.table.c2r1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 274.0,
+        "y": 182.0,
+        "width": 117.0,
+        "height": 48.0
+      }
+    },
+    {
+      "id": "slot.table.c3r1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 391.0,
+        "y": 182.0,
+        "width": 117.0,
+        "height": 48.0
+      }
+    },
+    {
+      "id": "slot.table.c4r1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 508.0,
+        "y": 182.0,
+        "width": 118.0,
+        "height": 48.0
+      }
+    },
+    {
+      "id": "slot.table.c5r1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 626.0,
+        "y": 182.0,
+        "width": 118.0,
+        "height": 48.0
+      }
+    },
+    {
+      "id": "slot.table.c6r1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 744.0,
+        "y": 182.0,
+        "width": 115.0,
+        "height": 48.0
+      }
+    },
+    {
+      "id": "slot.table.c1r2",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 109.0,
+        "y": 230.0,
+        "width": 165.0,
+        "height": 42.0
+      }
+    },
+    {
+      "id": "slot.table.c2r2",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 274.0,
+        "y": 230.0,
+        "width": 117.0,
+        "height": 42.0
+      }
+    },
+    {
+      "id": "slot.table.c3r2",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 391.0,
+        "y": 230.0,
+        "width": 117.0,
+        "height": 42.0
+      }
+    },
+    {
+      "id": "slot.table.c4r2",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 508.0,
+        "y": 230.0,
+        "width": 118.0,
+        "height": 42.0
+      }
+    },
+    {
+      "id": "slot.table.c5r2",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 626.0,
+        "y": 230.0,
+        "width": 118.0,
+        "height": 42.0
+      }
+    },
+    {
+      "id": "slot.table.c6r2",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 744.0,
+        "y": 230.0,
+        "width": 115.0,
+        "height": 42.0
+      }
+    },
+    {
+      "id": "slot.table.r1c1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "선물",
+        "style_role": "body",
+        "x": 180.0,
+        "y": 214.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.r1c2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "휴대전화",
+        "style_role": "body",
+        "x": 303.0,
+        "y": 214.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.r1c3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "학용품",
+        "style_role": "body",
+        "x": 426.0,
+        "y": 214.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.r1c4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "장난감",
+        "style_role": "body",
+        "x": 548.0,
+        "y": 214.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.r1c5",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "책",
+        "style_role": "body",
+        "x": 686.0,
+        "y": 214.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.r1c6",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "합계",
+        "style_role": "body",
+        "x": 810.0,
+        "y": 214.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.r2c1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "학생 수(명)",
+        "style_role": "body",
+        "x": 177.0,
+        "y": 258.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.r2c2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "11",
+        "style_role": "body",
+        "x": 303.0,
+        "y": 258.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.r2c3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "5",
+        "style_role": "body",
+        "x": 426.0,
+        "y": 258.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.r2c4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "8",
+        "style_role": "body",
+        "x": 548.0,
+        "y": 258.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.r2c5",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "4",
+        "style_role": "body",
+        "x": 686.0,
+        "y": 258.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.r2c6",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "28",
+        "style_role": "body",
+        "x": 810.0,
+        "y": 258.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.caption",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "( 휴대전화 , 학용품 , 장난감 , 책 )",
+        "style_role": "body",
+        "x": 287.0,
+        "y": 307.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.title_box",
+    "slot.table.outer",
+    "slot.table.c1r1",
+    "slot.table.c2r1",
+    "slot.table.c3r1",
+    "slot.table.c4r1",
+    "slot.table.c5r1",
+    "slot.table.c6r1",
+    "slot.table.c1r2",
+    "slot.table.c2r2",
+    "slot.table.c3r2",
+    "slot.table.c4r2",
+    "slot.table.c5r2",
+    "slot.table.c6r2",
+    "slot.q1",
+    "slot.table.caption",
+    "slot.title_box.text",
+    "slot.table.r1c1",
+    "slot.table.r1c2",
+    "slot.table.r1c3",
+    "slot.table.r1c4",
+    "slot.table.r1c5",
+    "slot.table.r1c6",
+    "slot.table.r2c1",
+    "slot.table.r2c2",
+    "slot.table.r2c3",
+    "slot.table.r2c4",
+    "slot.table.r2c5",
+    "slot.table.r2c6"
+  ]
+}

@@ -1,0 +1,257 @@
+{
+  "problem_id": "S3_초등_3_008824",
+  "view_box": {
+    "width": 960.0,
+    "height": 440.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.q_num.text",
+      "type": "text",
+      "attributes": {
+        "x": 12.0,
+        "y": 42.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q_num",
+      "refs": {
+        "layout_slot_id": "slot.q_num"
+      },
+      "text": "58."
+    },
+    {
+      "id": "slot.q_text1.text",
+      "type": "text",
+      "attributes": {
+        "x": 54.0,
+        "y": 42.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q_text1",
+      "refs": {
+        "layout_slot_id": "slot.q_text1"
+      },
+      "text": "물건에 표시되어 있는 들이의 단위를 알아보려고 합니다. 알맞은 것을 선택하세"
+    },
+    {
+      "id": "slot.q_text2.text",
+      "type": "text",
+      "attributes": {
+        "x": 12.0,
+        "y": 74.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q_text2",
+      "refs": {
+        "layout_slot_id": "slot.q_text2"
+      },
+      "text": "요."
+    },
+    {
+      "id": "slot.bottle.body.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 364.0,
+        "y": 102.0,
+        "width": 54.0,
+        "height": 120.0,
+        "fill": "#D7F0C5",
+        "stroke": "#4C9B2E",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.bottle.body",
+      "refs": {
+        "layout_slot_id": "slot.bottle.body"
+      }
+    },
+    {
+      "id": "slot.bottle.cap.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 373.0,
+        "y": 84.0,
+        "width": 36.0,
+        "height": 18.0,
+        "fill": "#4C9B2E",
+        "stroke": "#4C9B2E",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.bottle.cap",
+      "refs": {
+        "layout_slot_id": "slot.bottle.cap"
+      }
+    },
+    {
+      "id": "slot.bottle.neck.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 378.0,
+        "y": 96.0,
+        "width": 26.0,
+        "height": 12.0,
+        "fill": "#76B83C",
+        "stroke": "#4C9B2E",
+        "stroke-width": 1.8
+      },
+      "source_ref": "slot.bottle.neck",
+      "refs": {
+        "layout_slot_id": "slot.bottle.neck"
+      }
+    },
+    {
+      "id": "slot.bottle.highlight.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 391.0,
+        "cy": 196.0,
+        "r": 18.0,
+        "stroke": "#FF3EA5",
+        "stroke-width": 2.0,
+        "fill": "none"
+      },
+      "source_ref": "slot.bottle.highlight",
+      "refs": {
+        "layout_slot_id": "slot.bottle.highlight"
+      }
+    },
+    {
+      "id": "slot.zoom.circle.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 578.0,
+        "cy": 156.0,
+        "r": 58.0,
+        "stroke": "#FF3EA5",
+        "stroke-width": 2.0,
+        "fill": "none"
+      },
+      "source_ref": "slot.zoom.circle",
+      "refs": {
+        "layout_slot_id": "slot.zoom.circle"
+      }
+    },
+    {
+      "id": "slot.zoom.base.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 521.0,
+        "y": 195.0,
+        "width": 114.0,
+        "height": 22.0,
+        "fill": "#9BCB4F",
+        "stroke": "none",
+        "stroke-width": 0.0
+      },
+      "source_ref": "slot.zoom.base",
+      "refs": {
+        "layout_slot_id": "slot.zoom.base"
+      }
+    },
+    {
+      "id": "slot.connector1.line",
+      "type": "line",
+      "attributes": {
+        "x1": 392.0,
+        "y1": 122.0,
+        "x2": 519.0,
+        "y2": 112.0,
+        "stroke": "#FF3EA5",
+        "stroke-width": 1.8,
+        "stroke-dasharray": "4 4"
+      },
+      "source_ref": "slot.connector1",
+      "refs": {
+        "layout_slot_id": "slot.connector1"
+      }
+    },
+    {
+      "id": "slot.connector2.line",
+      "type": "line",
+      "attributes": {
+        "x1": 391.0,
+        "y1": 214.0,
+        "x2": 521.0,
+        "y2": 211.0,
+        "stroke": "#FF3EA5",
+        "stroke-width": 1.8,
+        "stroke-dasharray": "4 4"
+      },
+      "source_ref": "slot.connector2",
+      "refs": {
+        "layout_slot_id": "slot.connector2"
+      }
+    },
+    {
+      "id": "slot.bottle.label.text",
+      "type": "text",
+      "attributes": {
+        "x": 374.0,
+        "y": 145.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 24
+      },
+      "source_ref": "slot.bottle.label",
+      "refs": {
+        "layout_slot_id": "slot.bottle.label"
+      },
+      "text": "샴푸"
+    },
+    {
+      "id": "slot.bottle.unit.text",
+      "type": "text",
+      "attributes": {
+        "x": 375.0,
+        "y": 203.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 20
+      },
+      "source_ref": "slot.bottle.unit",
+      "refs": {
+        "layout_slot_id": "slot.bottle.unit"
+      },
+      "text": "1 L"
+    },
+    {
+      "id": "slot.zoom.unit.text",
+      "type": "text",
+      "attributes": {
+        "x": 548.0,
+        "y": 165.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 54
+      },
+      "source_ref": "slot.zoom.unit",
+      "refs": {
+        "layout_slot_id": "slot.zoom.unit"
+      },
+      "text": "1 L"
+    },
+    {
+      "id": "slot.choice.text",
+      "type": "text",
+      "attributes": {
+        "x": 185.0,
+        "y": 305.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice",
+      "refs": {
+        "layout_slot_id": "slot.choice"
+      },
+      "text": "샴푸통에 표시되어 있는 단위는 ( L , mL )입니다."
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

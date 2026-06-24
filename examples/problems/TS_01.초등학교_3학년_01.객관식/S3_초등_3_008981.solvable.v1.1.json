@@ -1,0 +1,73 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008981",
+  "problem_type": "도형_식별",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "한 점에서 그은 두 반직선으로 이루어진 도형",
+    "target_ticks": 0,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.shape_candidate_1",
+      "value": {
+        "type": "shape"
+      }
+    },
+    {
+      "ref": "obj.shape_candidate_2",
+      "value": {
+        "type": "shape"
+      }
+    },
+    {
+      "ref": "obj.shape_candidate_3",
+      "value": {
+        "type": "shape"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "shape"
+  },
+  "method": "shape_matching",
+  "plan": [
+    "설명 문장과 같은 도형의 성질을 찾는다.",
+    "보기 도형들과 설명을 비교한다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "설명 문장 확인",
+      "value": "한 점에서 그은 두 반직선으로 이루어진 도형"
+    },
+    {
+      "id": "step.2",
+      "expr": "보기 도형 비교",
+      "value": "TODO"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "설명 문장과 도형 성질이 일치하는지 확인",
+      "expected": true,
+      "actual": false,
+      "pass": false
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "shape",
+      "description": "한 점에서 그은 두 반직선으로 이루어진 도형"
+    },
+    "value": 0,
+    "unit": ""
+  }
+}

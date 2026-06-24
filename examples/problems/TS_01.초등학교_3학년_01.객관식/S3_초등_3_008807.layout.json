@@ -1,0 +1,112 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008807",
+  "title": "필통의 무게 단위 선택",
+  "canvas": {
+    "width": 943,
+    "height": 354,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q1",
+        "slot.diagram.scale",
+        "slot.diagram.animal.left",
+        "slot.diagram.animal.center",
+        "slot.diagram.animal.right",
+        "slot.choice"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "□ 36. 필통의 무게를 나타내는 데 알맞은 단위를 선택하세요.",
+        "style_role": "question",
+        "x": 12.0,
+        "y": 28.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.diagram.scale",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "TODO: 저울 삽화",
+        "style_role": "body",
+        "x": 380.0,
+        "y": 88.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.diagram.animal.left",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "TODO: 동물 그림",
+        "style_role": "body",
+        "x": 410.0,
+        "y": 80.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.diagram.animal.center",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "TODO: 동물 그림",
+        "style_role": "body",
+        "x": 468.0,
+        "y": 80.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.diagram.animal.right",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "TODO: 동물 그림",
+        "style_role": "body",
+        "x": 526.0,
+        "y": 80.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "( g , kg )",
+        "style_role": "choice",
+        "x": 785.0,
+        "y": 126.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q1",
+    "slot.diagram.scale",
+    "slot.diagram.animal.left",
+    "slot.diagram.animal.center",
+    "slot.diagram.animal.right",
+    "slot.choice"
+  ]
+}

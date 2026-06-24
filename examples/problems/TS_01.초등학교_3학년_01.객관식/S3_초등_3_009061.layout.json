@@ -1,0 +1,130 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_009061",
+  "title": "도형을 보고 알맞은 말을 선택하세요",
+  "canvas": {
+    "width": 760,
+    "height": 210,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.shape.line",
+        "slot.shape.left_point",
+        "slot.shape.right_point",
+        "slot.no",
+        "slot.q1",
+        "slot.shape.left_mark",
+        "slot.choice"
+      ]
+    },
+    {
+      "id": "region.answer",
+      "role": "answer",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.no",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "100.",
+        "style_role": "question",
+        "x": 10.0,
+        "y": 26.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "도형을 보고 알맞은 말을 선택하세요.",
+        "style_role": "question",
+        "x": 70.0,
+        "y": 26.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.shape.line",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 95.0,
+        "y1": 76.0,
+        "x2": 280.0,
+        "y2": 76.0
+      }
+    },
+    {
+      "id": "slot.shape.left_mark",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄷ",
+        "style_role": "diagram",
+        "x": 89.0,
+        "y": 68.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.shape.left_point",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 96.0,
+        "cy": 76.0,
+        "r": 3.2,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.shape.right_point",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 280.0,
+        "cy": 76.0,
+        "r": 3.2,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.choice",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "( 선분 ㅅ o , 반직선 ㅅ o , 직선 ㅅ o )",
+        "style_role": "question",
+        "x": 330.0,
+        "y": 82.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.shape.line",
+    "slot.shape.left_point",
+    "slot.shape.right_point",
+    "slot.no",
+    "slot.q1",
+    "slot.shape.left_mark",
+    "slot.choice",
+    "region.answer"
+  ]
+}

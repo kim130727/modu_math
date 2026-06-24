@@ -1,0 +1,95 @@
+{
+  "problem_id": "S3_초등_3_008890",
+  "problem_type": "그림그래프_비교_선택",
+  "metadata": {
+    "title": "농장별 토마토 생산량",
+    "tags": [],
+    "instruction": "조건에 맞는 농장을 모두 고르기",
+    "question": "그림그래프를 보고 토마토 생산량이 다 붕장보다 적은 농장을 모두 선택하는 문제",
+    "required_layout_ids": [
+      "slot.table.header_left",
+      "slot.table.header_right",
+      "slot.table.row.ga.left",
+      "slot.table.row.ga.right",
+      "slot.table.row.na.left",
+      "slot.table.row.na.right",
+      "slot.table.row.da.left",
+      "slot.table.row.da.right",
+      "slot.table.row.ra.left",
+      "slot.table.row.ra.right",
+      "slot.table.row.ma.left",
+      "slot.table.row.ma.right"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.legend.big_tomato",
+        "type": "symbol",
+        "meaning": "10상자"
+      },
+      {
+        "id": "obj.legend.small_tomato",
+        "type": "symbol",
+        "meaning": "1상자"
+      },
+      {
+        "id": "obj.farms",
+        "type": "collection",
+        "items": [
+          "가 농장",
+          "나 농장",
+          "다 농장",
+          "라 농장",
+          "마 농장"
+        ]
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.legend.big_tomato",
+          "obj.legend.small_tomato",
+          "obj.farms"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.select_less_than_threshold"
+        ]
+      },
+      "plan": {
+        "method": "그림그래프_비교",
+        "description": "범례를 이용해 각 농장의 생산량을 비교하고 조건에 맞는 농장을 찾는다."
+      },
+      "execute": {
+        "expected_operations": [
+          "범례 해석",
+          "농장별 그림 수 비교",
+          "조건에 맞는 농장 선택"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "범례 일치 확인",
+          "조건 충족 여부 확인"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "select_farms",
+      "description": "토마토 생산량이 다 붕장보다 적은 농장"
+    },
+    "value": 0,
+    "unit": ""
+  }
+}

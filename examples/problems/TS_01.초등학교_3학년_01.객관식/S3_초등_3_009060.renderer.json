@@ -1,0 +1,139 @@
+{
+  "problem_id": "S3_초등_3_009060",
+  "view_box": {
+    "width": 788.0,
+    "height": 240.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.fig.line.line",
+      "type": "line",
+      "attributes": {
+        "x1": 64.0,
+        "y1": 109.0,
+        "x2": 341.0,
+        "y2": 54.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.fig.line",
+      "refs": {
+        "layout_slot_id": "slot.fig.line"
+      }
+    },
+    {
+      "id": "slot.fig.p1.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 90.0,
+        "cy": 103.0,
+        "r": 3.8,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#222222"
+      },
+      "source_ref": "slot.fig.p1",
+      "refs": {
+        "layout_slot_id": "slot.fig.p1"
+      }
+    },
+    {
+      "id": "slot.fig.p2.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 287.0,
+        "cy": 63.0,
+        "r": 3.8,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#222222"
+      },
+      "source_ref": "slot.fig.p2",
+      "refs": {
+        "layout_slot_id": "slot.fig.p2"
+      }
+    },
+    {
+      "id": "slot.q1.text",
+      "type": "text",
+      "attributes": {
+        "x": 14.0,
+        "y": 24.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q1",
+      "refs": {
+        "layout_slot_id": "slot.q1"
+      },
+      "text": "99."
+    },
+    {
+      "id": "slot.q2.text",
+      "type": "text",
+      "attributes": {
+        "x": 60.0,
+        "y": 24.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q2",
+      "refs": {
+        "layout_slot_id": "slot.q2"
+      },
+      "text": "도형을 보고 알맞은 말을 선택하세요."
+    },
+    {
+      "id": "slot.fig.lb1.text",
+      "type": "text",
+      "attributes": {
+        "x": 75.0,
+        "y": 93.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 24
+      },
+      "source_ref": "slot.fig.lb1",
+      "refs": {
+        "layout_slot_id": "slot.fig.lb1"
+      },
+      "text": "ㅅ"
+    },
+    {
+      "id": "slot.fig.lb2.text",
+      "type": "text",
+      "attributes": {
+        "x": 283.0,
+        "y": 41.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 24
+      },
+      "source_ref": "slot.fig.lb2",
+      "refs": {
+        "layout_slot_id": "slot.fig.lb2"
+      },
+      "text": "ㅇ"
+    },
+    {
+      "id": "slot.choice.text",
+      "type": "text",
+      "attributes": {
+        "x": 382.0,
+        "y": 78.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice",
+      "refs": {
+        "layout_slot_id": "slot.choice"
+      },
+      "text": "( 선분 ㅅㅇ , 반직선 ㅅㅇ , 직선 ㅅㅇ )"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

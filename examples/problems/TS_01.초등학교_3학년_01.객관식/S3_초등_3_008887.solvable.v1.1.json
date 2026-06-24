@@ -1,0 +1,58 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008887",
+  "problem_type": "자료해석",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "더 편리한 것",
+    "target_ticks": 0,
+    "target_count": 0,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.diagram",
+      "value": "조사한 자료"
+    },
+    {
+      "ref": "obj.table",
+      "value": "학생들이 태어난 계절"
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "more_convenient_display"
+  },
+  "method": "compare_data_forms",
+  "plan": [
+    "조사한 자료와 표가 같은 내용을 다른 방식으로 나타내는지 확인한다.",
+    "여학생 수와 남학생 수를 한눈에 보기 쉬운 자료를 고른다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "조사한 자료와 표를 비교한다",
+      "value": "표가 더 직접적으로 수치를 확인하기 쉽다"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "표에는 계절별 여학생 수와 남학생 수가 정리되어 있는가",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "more_convenient_display",
+      "description": "조사한 자료와 표 중에서 더 편리한 것"
+    },
+    "value": 0,
+    "unit": ""
+  }
+}

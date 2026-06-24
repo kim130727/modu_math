@@ -1,0 +1,92 @@
+{
+  "problem_id": "S3_초등_3_008839",
+  "problem_type": "reason_selection",
+  "metadata": {
+    "title": "키위와 복숭아의 무게 비교",
+    "tags": [],
+    "question": "키위와 복숭아의 무게 비교를 보고 알맞은 이유를 선택하는 문제",
+    "required_layout_ids": [
+      "slot.balloon"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "알맞은 말을 선택하여 이유를 완성해 보세요."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.kiwi",
+        "type": "fruit",
+        "name": "키위"
+      },
+      {
+        "id": "obj.peach",
+        "type": "fruit",
+        "name": "복숭아"
+      },
+      {
+        "id": "obj.coin_100",
+        "type": "coin",
+        "name": "100원짜리 동전"
+      },
+      {
+        "id": "obj.coin_500",
+        "type": "coin",
+        "name": "500원짜리 동전"
+      },
+      {
+        "id": "obj.count_15",
+        "type": "count",
+        "value": 15
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.kiwi",
+          "obj.peach",
+          "obj.coin_100",
+          "obj.coin_500",
+          "obj.count_15"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.kiwi_compares_to_100",
+          "rel.peach_compares_to_500",
+          "rel.compare_reason"
+        ]
+      },
+      "plan": {
+        "method": "reason_selection",
+        "description": "그림에서 같은 수와 무게의 차이를 나타내는 말을 찾는다."
+      },
+      "execute": {
+        "expected_operations": [
+          "compare_counts",
+          "compare_weights",
+          "select_reason"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "statement_matches_image",
+          "meaning_consistency_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "reason_selection",
+      "description": "알맞은 이유 문장"
+    },
+    "value": 0,
+    "unit": ""
+  }
+}

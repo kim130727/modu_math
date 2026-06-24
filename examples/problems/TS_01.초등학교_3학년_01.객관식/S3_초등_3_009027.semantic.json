@@ -1,0 +1,87 @@
+{
+  "problem_id": "S3_초등_3_009027",
+  "problem_type": "도형_분류",
+  "metadata": {
+    "title": "삼각형을 보고 알맞은 기호를 모두 선택하세요.",
+    "tags": [],
+    "question": "삼각형을 보고 알맞은 기호를 모두 선택하세요.",
+    "required_layout_ids": [
+      "slot.tri.ga",
+      "slot.tri.na",
+      "slot.tri.da",
+      "slot.tri.ra"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "직각삼각형에 해당하는 기호를 고르는 문제"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.triangle.ga",
+        "type": "triangle",
+        "label": "가"
+      },
+      {
+        "id": "obj.triangle.na",
+        "type": "triangle",
+        "label": "나"
+      },
+      {
+        "id": "obj.triangle.da",
+        "type": "triangle",
+        "label": "다"
+      },
+      {
+        "id": "obj.triangle.ra",
+        "type": "triangle",
+        "label": "라"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.triangle.ga",
+          "obj.triangle.na",
+          "obj.triangle.da",
+          "obj.triangle.ra"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.choose_right_triangles"
+        ]
+      },
+      "plan": {
+        "method": "도형의 각을 보고 직각삼각형을 고른다",
+        "description": "네 삼각형을 비교하여 직각이 있는 삼각형의 기호를 찾는다."
+      },
+      "execute": {
+        "expected_operations": [
+          "compare_angles",
+          "identify_right_angle",
+          "select_matching_labels"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "visual_property_check",
+          "label_selection_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "selected_labels",
+      "description": "직각삼각형에 해당하는 기호"
+    },
+    "value": 2,
+    "unit": ""
+  }
+}

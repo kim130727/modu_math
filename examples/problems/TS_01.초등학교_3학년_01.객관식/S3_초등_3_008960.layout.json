@@ -1,0 +1,288 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008960",
+  "title": "학생들의 혈액형 그림그래프",
+  "canvas": {
+    "width": 945,
+    "height": 695,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q1",
+        "slot.q2",
+        "slot.q3"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.table.outer",
+        "slot.table.header_left",
+        "slot.table.header_right",
+        "slot.table.row.a",
+        "slot.table.row.b",
+        "slot.table.row.ab",
+        "slot.table.row.o",
+        "slot.title",
+        "slot.legend.face",
+        "slot.legend.dot",
+        "slot.choice.1.label",
+        "slot.choice.2.label",
+        "slot.choice.3.label",
+        "slot.choice.4.label",
+        "slot.choice.5.label"
+      ]
+    },
+    {
+      "id": "region.footer",
+      "role": "footer",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "30. 정호네 학교 학생 1250명의 혈액형을 조사하여 그림그래프로 나타내었습니다.",
+        "style_role": "question",
+        "x": 20.0,
+        "y": 28.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "혈액형이 AB형인 학생 수를 바르게 나타낸 것은 어느 것일까요?",
+        "style_role": "question",
+        "x": 20.0,
+        "y": 64.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "",
+        "style_role": "question",
+        "x": 0.0,
+        "y": 0.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.title",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "학생들의 혈액형",
+        "style_role": "title",
+        "x": 450.0,
+        "y": 124.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.outer",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 245.0,
+        "y": 158.0,
+        "width": 420.0,
+        "height": 246.0
+      }
+    },
+    {
+      "id": "slot.table.header_left",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 245.0,
+        "y": 158.0,
+        "width": 110.0,
+        "height": 44.0
+      }
+    },
+    {
+      "id": "slot.table.header_right",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 355.0,
+        "y": 158.0,
+        "width": 310.0,
+        "height": 44.0
+      }
+    },
+    {
+      "id": "slot.table.row.a",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 245.0,
+        "y": 202.0,
+        "width": 110.0,
+        "height": 50.0
+      }
+    },
+    {
+      "id": "slot.table.row.b",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 245.0,
+        "y": 252.0,
+        "width": 110.0,
+        "height": 50.0
+      }
+    },
+    {
+      "id": "slot.table.row.ab",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 245.0,
+        "y": 302.0,
+        "width": 110.0,
+        "height": 50.0
+      }
+    },
+    {
+      "id": "slot.table.row.o",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 245.0,
+        "y": 352.0,
+        "width": 110.0,
+        "height": 52.0
+      }
+    },
+    {
+      "id": "slot.legend.face",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "😊 100명",
+        "style_role": "label",
+        "x": 510.0,
+        "y": 386.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.legend.dot",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "• 10명",
+        "style_role": "label",
+        "x": 610.0,
+        "y": 386.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice.1.label",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "①",
+        "style_role": "label",
+        "x": 36.0,
+        "y": 420.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice.2.label",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "②",
+        "style_role": "label",
+        "x": 500.0,
+        "y": 420.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice.3.label",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "③",
+        "style_role": "label",
+        "x": 36.0,
+        "y": 472.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice.4.label",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "④",
+        "style_role": "label",
+        "x": 500.0,
+        "y": 472.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice.5.label",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "⑤",
+        "style_role": "label",
+        "x": 36.0,
+        "y": 524.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q1",
+    "slot.q2",
+    "slot.q3",
+    "region.diagram",
+    "slot.table.outer",
+    "slot.table.header_left",
+    "slot.table.header_right",
+    "slot.table.row.a",
+    "slot.table.row.b",
+    "slot.table.row.ab",
+    "slot.table.row.o",
+    "slot.title",
+    "slot.legend.face",
+    "slot.legend.dot",
+    "slot.choice.1.label",
+    "slot.choice.2.label",
+    "slot.choice.3.label",
+    "slot.choice.4.label",
+    "slot.choice.5.label",
+    "region.footer"
+  ]
+}

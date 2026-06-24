@@ -1,0 +1,370 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008835",
+  "title": "무게가 무거운 것부터 순서대로 고르기",
+  "canvas": {
+    "width": 960,
+    "height": 512,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.header",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.table.wavy",
+        "slot.table.legs.2",
+        "slot.table.legs.3",
+        "slot.table.legs.4",
+        "slot.q_num",
+        "slot.q_text"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "figure",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.table.top",
+        "slot.table.cloth",
+        "slot.fruit.pear",
+        "slot.fruit.pineapple",
+        "slot.table.legs",
+        "slot.arrow.table",
+        "slot.arrow.pear",
+        "slot.arrow.pineapple",
+        "slot.lb.table",
+        "slot.lb.pear",
+        "slot.lb.pineapple"
+      ]
+    },
+    {
+      "id": "region.options",
+      "role": "choices",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice.1",
+        "slot.choice.2",
+        "slot.choice.3",
+        "slot.choice.4"
+      ]
+    },
+    {
+      "id": "region.footer",
+      "role": "answer_explanation",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q_num",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "77.",
+        "style_role": "question",
+        "x": 24.0,
+        "y": 28.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q_text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "무게가 무거운 것부터 순서대로 바르게 나타낸 것을 고르세요.",
+        "style_role": "question",
+        "x": 70.0,
+        "y": 28.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.top",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 398.0,
+        "y": 121.0,
+        "width": 292.0,
+        "height": 96.0,
+        "stroke": "#2EA6D6",
+        "stroke_width": 2.0,
+        "fill": "#E8F6FF"
+      }
+    },
+    {
+      "id": "slot.table.cloth",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 398.0,
+        "y": 121.0,
+        "width": 292.0,
+        "height": 96.0,
+        "stroke": "#2EA6D6",
+        "stroke_width": 2.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.table.legs",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 406.0,
+        "y1": 214.0,
+        "x2": 406.0,
+        "y2": 284.0,
+        "stroke": "#B8894B",
+        "stroke_width": 12.0
+      }
+    },
+    {
+      "id": "slot.table.legs.2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 466.0,
+        "y1": 214.0,
+        "x2": 466.0,
+        "y2": 267.0,
+        "stroke": "#B8894B",
+        "stroke_width": 12.0
+      }
+    },
+    {
+      "id": "slot.table.legs.3",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 642.0,
+        "y1": 214.0,
+        "x2": 642.0,
+        "y2": 285.0,
+        "stroke": "#B8894B",
+        "stroke_width": 12.0
+      }
+    },
+    {
+      "id": "slot.table.legs.4",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 692.0,
+        "y1": 214.0,
+        "x2": 692.0,
+        "y2": 263.0,
+        "stroke": "#B8894B",
+        "stroke_width": 12.0
+      }
+    },
+    {
+      "id": "slot.table.wavy",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            398.0,
+            173.0
+          ],
+          [
+            690.0,
+            173.0
+          ],
+          [
+            690.0,
+            233.0
+          ],
+          [
+            398.0,
+            233.0
+          ]
+        ],
+        "stroke": "#62BDE3",
+        "stroke_width": 2.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.fruit.pear",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 521.0,
+        "cy": 144.0,
+        "r": 22.0,
+        "fill": "#F6B24B"
+      }
+    },
+    {
+      "id": "slot.fruit.pineapple",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 611.0,
+        "cy": 119.0,
+        "r": 26.0,
+        "fill": "#F3C623"
+      }
+    },
+    {
+      "id": "slot.lb.table",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "식탁",
+        "style_role": "label",
+        "x": 326.0,
+        "y": 171.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.lb.pear",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "배",
+        "style_role": "label",
+        "x": 482.0,
+        "y": 314.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.lb.pineapple",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "파인애플",
+        "style_role": "label",
+        "x": 556.0,
+        "y": 314.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.arrow.table",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 369.0,
+        "y1": 168.0,
+        "x2": 398.0,
+        "y2": 168.0,
+        "stroke": "#FF4FA3",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.arrow.pear",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 521.0,
+        "y1": 288.0,
+        "x2": 521.0,
+        "y2": 166.0,
+        "stroke": "#FF4FA3",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.arrow.pineapple",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 611.0,
+        "y1": 286.0,
+        "x2": 611.0,
+        "y2": 145.0,
+        "stroke": "#FF4FA3",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.choice.1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "① 식탁, 배, 파인애플",
+        "style_role": "choice",
+        "x": 18.0,
+        "y": 369.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice.2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "② 식탁, 파인애플, 배",
+        "style_role": "choice",
+        "x": 487.0,
+        "y": 369.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice.3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "③ 배, 파인애플, 식탁",
+        "style_role": "choice",
+        "x": 18.0,
+        "y": 414.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice.4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "④ 파인애플, 배, 식탁",
+        "style_role": "choice",
+        "x": 487.0,
+        "y": 414.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.header",
+    "slot.table.wavy",
+    "slot.table.legs.2",
+    "slot.table.legs.3",
+    "slot.table.legs.4",
+    "slot.q_num",
+    "slot.q_text",
+    "region.diagram",
+    "slot.table.top",
+    "slot.table.cloth",
+    "slot.fruit.pear",
+    "slot.fruit.pineapple",
+    "slot.table.legs",
+    "slot.arrow.table",
+    "slot.arrow.pear",
+    "slot.arrow.pineapple",
+    "slot.lb.table",
+    "slot.lb.pear",
+    "slot.lb.pineapple",
+    "region.options",
+    "slot.choice.1",
+    "slot.choice.2",
+    "slot.choice.3",
+    "slot.choice.4",
+    "region.footer"
+  ]
+}

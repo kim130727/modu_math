@@ -1,0 +1,348 @@
+{
+  "problem_id": "S3_초등_3_008925",
+  "view_box": {
+    "width": 951.0,
+    "height": 394.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.table.bg.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 185.0,
+        "y": 119.0,
+        "width": 634.0,
+        "height": 80.0,
+        "fill": "#E6EDC8",
+        "stroke": "#9DB55A",
+        "stroke-width": 1.2
+      },
+      "source_ref": "slot.table.bg",
+      "refs": {
+        "layout_slot_id": "slot.table.bg"
+      }
+    },
+    {
+      "id": "slot.q1.text",
+      "type": "text",
+      "attributes": {
+        "x": 16.0,
+        "y": 26.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q1",
+      "refs": {
+        "layout_slot_id": "slot.q1"
+      },
+      "text": "□ 91."
+    },
+    {
+      "id": "slot.q2.text",
+      "type": "text",
+      "attributes": {
+        "x": 58.0,
+        "y": 26.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q2",
+      "refs": {
+        "layout_slot_id": "slot.q2"
+      },
+      "text": "연수네 반 학생들이 학예회에서 하고 싶어 하는 종목을 조사하여 표로"
+    },
+    {
+      "id": "slot.table_title.text",
+      "type": "text",
+      "attributes": {
+        "x": 333.0,
+        "y": 98.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 26
+      },
+      "source_ref": "slot.table_title",
+      "refs": {
+        "layout_slot_id": "slot.table_title"
+      },
+      "text": "학예회에서 하고 싶어 하는 종목"
+    },
+    {
+      "id": "slot.table.h1.c1.text",
+      "type": "text",
+      "attributes": {
+        "x": 242.0,
+        "y": 152.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 26
+      },
+      "source_ref": "slot.table.h1.c1",
+      "refs": {
+        "layout_slot_id": "slot.table.h1.c1"
+      },
+      "text": "종목"
+    },
+    {
+      "id": "slot.table.h1.c2.text",
+      "type": "text",
+      "attributes": {
+        "x": 365.0,
+        "y": 152.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 26
+      },
+      "source_ref": "slot.table.h1.c2",
+      "refs": {
+        "layout_slot_id": "slot.table.h1.c2"
+      },
+      "text": "연극"
+    },
+    {
+      "id": "slot.table.h1.c3.text",
+      "type": "text",
+      "attributes": {
+        "x": 462.0,
+        "y": 152.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 26
+      },
+      "source_ref": "slot.table.h1.c3",
+      "refs": {
+        "layout_slot_id": "slot.table.h1.c3"
+      },
+      "text": "합주"
+    },
+    {
+      "id": "slot.table.h1.c4.text",
+      "type": "text",
+      "attributes": {
+        "x": 558.0,
+        "y": 152.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 26
+      },
+      "source_ref": "slot.table.h1.c4",
+      "refs": {
+        "layout_slot_id": "slot.table.h1.c4"
+      },
+      "text": "무용"
+    },
+    {
+      "id": "slot.table.h1.c5.text",
+      "type": "text",
+      "attributes": {
+        "x": 656.0,
+        "y": 152.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 26
+      },
+      "source_ref": "slot.table.h1.c5",
+      "refs": {
+        "layout_slot_id": "slot.table.h1.c5"
+      },
+      "text": "합창"
+    },
+    {
+      "id": "slot.table.h1.c6.text",
+      "type": "text",
+      "attributes": {
+        "x": 756.0,
+        "y": 152.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 26
+      },
+      "source_ref": "slot.table.h1.c6",
+      "refs": {
+        "layout_slot_id": "slot.table.h1.c6"
+      },
+      "text": "합계"
+    },
+    {
+      "id": "slot.table.h2.c1.text",
+      "type": "text",
+      "attributes": {
+        "x": 204.0,
+        "y": 182.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 26
+      },
+      "source_ref": "slot.table.h2.c1",
+      "refs": {
+        "layout_slot_id": "slot.table.h2.c1"
+      },
+      "text": "학생 수(명)"
+    },
+    {
+      "id": "slot.table.h2.c2.text",
+      "type": "text",
+      "attributes": {
+        "x": 382.0,
+        "y": 183.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 26
+      },
+      "source_ref": "slot.table.h2.c2",
+      "refs": {
+        "layout_slot_id": "slot.table.h2.c2"
+      },
+      "text": "6"
+    },
+    {
+      "id": "slot.table.h2.c3.text",
+      "type": "text",
+      "attributes": {
+        "x": 474.0,
+        "y": 183.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 26
+      },
+      "source_ref": "slot.table.h2.c3",
+      "refs": {
+        "layout_slot_id": "slot.table.h2.c3"
+      },
+      "text": "10"
+    },
+    {
+      "id": "slot.table.h2.c4.text",
+      "type": "text",
+      "attributes": {
+        "x": 573.0,
+        "y": 183.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 26
+      },
+      "source_ref": "slot.table.h2.c4",
+      "refs": {
+        "layout_slot_id": "slot.table.h2.c4"
+      },
+      "text": "5"
+    },
+    {
+      "id": "slot.table.h2.c5.text",
+      "type": "text",
+      "attributes": {
+        "x": 673.0,
+        "y": 183.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 26
+      },
+      "source_ref": "slot.table.h2.c5",
+      "refs": {
+        "layout_slot_id": "slot.table.h2.c5"
+      },
+      "text": "7"
+    },
+    {
+      "id": "slot.table.h2.c6.text",
+      "type": "text",
+      "attributes": {
+        "x": 766.0,
+        "y": 183.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 26
+      },
+      "source_ref": "slot.table.h2.c6",
+      "refs": {
+        "layout_slot_id": "slot.table.h2.c6"
+      },
+      "text": "28"
+    },
+    {
+      "id": "slot.choice.1.text",
+      "type": "text",
+      "attributes": {
+        "x": 40.0,
+        "y": 234.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice.1",
+      "refs": {
+        "layout_slot_id": "slot.choice.1"
+      },
+      "text": "① 연극"
+    },
+    {
+      "id": "slot.choice.2.text",
+      "type": "text",
+      "attributes": {
+        "x": 228.0,
+        "y": 234.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice.2",
+      "refs": {
+        "layout_slot_id": "slot.choice.2"
+      },
+      "text": "② 합주"
+    },
+    {
+      "id": "slot.choice.3.text",
+      "type": "text",
+      "attributes": {
+        "x": 418.0,
+        "y": 234.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice.3",
+      "refs": {
+        "layout_slot_id": "slot.choice.3"
+      },
+      "text": "③ 무용"
+    },
+    {
+      "id": "slot.choice.4.text",
+      "type": "text",
+      "attributes": {
+        "x": 593.0,
+        "y": 234.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice.4",
+      "refs": {
+        "layout_slot_id": "slot.choice.4"
+      },
+      "text": "④ 합창"
+    },
+    {
+      "id": "slot.q2_2.text",
+      "type": "text",
+      "attributes": {
+        "x": 58.0,
+        "y": 62.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q2_2",
+      "refs": {
+        "layout_slot_id": "slot.q2_2"
+      },
+      "text": "나타내었습니다. 가장 많은 학생이 하고 싶어 하는 종목은 무엇인가요?"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

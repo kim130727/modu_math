@@ -1,0 +1,108 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008908",
+  "problem_type": "comparison_table_choice",
+  "inputs": {
+    "total_ticks": 28,
+    "target_label": "가장 적은 학생들이 태어난 계절",
+    "target_ticks": 3,
+    "target_count": 1,
+    "unit": "명"
+  },
+  "given": [
+    {
+      "ref": "obj.spring",
+      "value": {
+        "label": "봄",
+        "count": 6
+      }
+    },
+    {
+      "ref": "obj.summer",
+      "value": {
+        "label": "여름",
+        "count": 10
+      }
+    },
+    {
+      "ref": "obj.autumn",
+      "value": {
+        "label": "가을",
+        "count": 3
+      }
+    },
+    {
+      "ref": "obj.winter",
+      "value": {
+        "label": "겨울",
+        "count": 9
+      }
+    },
+    {
+      "ref": "obj.total",
+      "value": {
+        "label": "합계",
+        "count": 28
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "season_name"
+  },
+  "method": "find_minimum",
+  "plan": [
+    "표에 있는 학생 수를 비교한다.",
+    "가장 작은 수를 찾는다.",
+    "그 수에 해당하는 계절을 고른다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "봄 6, 여름 10, 가을 3, 겨울 9를 비교한다.",
+      "value": {
+        "봄": 6,
+        "여름": 10,
+        "가을": 3,
+        "겨울": 9
+      }
+    },
+    {
+      "id": "step.2",
+      "expr": "가장 작은 수는 3이다.",
+      "value": 3
+    },
+    {
+      "id": "step.3",
+      "expr": "3명에 해당하는 계절은 가을이다.",
+      "value": "가을"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "3 < 6 and 3 < 10 and 3 < 9",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "id": "check.2",
+      "expr": "가을의 학생 수가 최소값과 일치하는가",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "season_name",
+      "description": "가장 적은 학생들이 태어난 계절"
+    },
+    "value": "가을",
+    "unit": ""
+  }
+}

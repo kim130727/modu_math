@@ -1,0 +1,91 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008997",
+  "problem_type": "개념선택",
+  "inputs": {
+    "total_ticks": 3,
+    "target_label": "빈칸 선택",
+    "target_ticks": 3,
+    "target_count": 3,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.rectangle",
+      "value": {
+        "name": "직사각형"
+      }
+    },
+    {
+      "ref": "obj.square",
+      "value": {
+        "name": "정사각형"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "choice_sequence"
+  },
+  "method": "개념 확인",
+  "plan": [
+    "그림의 두 도형이 모두 네 각이 직각인 사각형인지 확인한다.",
+    "문장 세 줄의 빈칸 선택지를 같은 기준으로 본다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "직사각형의 성질 확인",
+      "value": "네 각이 모두 직각"
+    },
+    {
+      "id": "step.2",
+      "expr": "정사각형의 성질 확인",
+      "value": "네 각이 모두 직각"
+    },
+    {
+      "id": "step.3",
+      "expr": "세 문장의 공통 빈칸 선택",
+      "value": [
+        "네",
+        "네",
+        "네"
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "해설의 성질 설명과 일치하는가",
+      "expected": "네 각이 모두 직각",
+      "actual": "네 각이 모두 직각",
+      "pass": true
+    },
+    {
+      "id": "check.2",
+      "expr": "정답 표시와 일치하는가",
+      "expected": [
+        "네",
+        "네",
+        "네"
+      ],
+      "actual": [
+        "네",
+        "네",
+        "네"
+      ],
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "choice_sequence",
+      "description": "세 문장의 빈칸에 들어갈 말"
+    },
+    "value": 0,
+    "unit": ""
+  }
+}

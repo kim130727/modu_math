@@ -1,0 +1,191 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008981",
+  "title": "같을 선택하세요.",
+  "canvas": {
+    "width": 720,
+    "height": 240,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.num",
+        "slot.title"
+      ]
+    },
+    {
+      "id": "region.shapes",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.shape.1c",
+        "slot.shape.3a",
+        "slot.shape.3c",
+        "slot.shape.1a",
+        "slot.shape.1b",
+        "slot.shape.2a",
+        "slot.shape.2b",
+        "slot.shape.3b",
+        "slot.shape.4a",
+        "slot.shape.4b"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.num",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "16.",
+        "style_role": "question",
+        "x": 16.0,
+        "y": 28.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.title",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "같을 선택하세요.",
+        "style_role": "question",
+        "x": 60.0,
+        "y": 28.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.shape.1a",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 154.0,
+        "y1": 56.0,
+        "x2": 186.0,
+        "y2": 88.0
+      }
+    },
+    {
+      "id": "slot.shape.1b",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 186.0,
+        "y1": 88.0,
+        "x2": 214.0,
+        "y2": 56.0
+      }
+    },
+    {
+      "id": "slot.shape.1c",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 154 56 Q 170 50 186 88 Q 202 50 214 56",
+        "x": 0.0,
+        "y": 0.0
+      }
+    },
+    {
+      "id": "slot.shape.2a",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 382.0,
+        "y1": 48.0,
+        "x2": 454.0,
+        "y2": 72.0
+      }
+    },
+    {
+      "id": "slot.shape.2b",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 382.0,
+        "y1": 96.0,
+        "x2": 454.0,
+        "y2": 72.0
+      }
+    },
+    {
+      "id": "slot.shape.3a",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 576 44 Q 594 80 630 96",
+        "x": 0.0,
+        "y": 0.0
+      }
+    },
+    {
+      "id": "slot.shape.3b",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 576.0,
+        "y1": 44.0,
+        "x2": 676.0,
+        "y2": 44.0
+      }
+    },
+    {
+      "id": "slot.shape.3c",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 630 96 Q 662 96 676 96",
+        "x": 0.0,
+        "y": 0.0
+      }
+    },
+    {
+      "id": "slot.shape.4a",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 46.0,
+        "y1": 124.0,
+        "x2": 132.0,
+        "y2": 146.0
+      }
+    },
+    {
+      "id": "slot.shape.4b",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 46.0,
+        "y1": 160.0,
+        "x2": 132.0,
+        "y2": 146.0
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.num",
+    "slot.title",
+    "region.shapes",
+    "slot.shape.1c",
+    "slot.shape.3a",
+    "slot.shape.3c",
+    "slot.shape.1a",
+    "slot.shape.1b",
+    "slot.shape.2a",
+    "slot.shape.2b",
+    "slot.shape.3b",
+    "slot.shape.4a",
+    "slot.shape.4b"
+  ]
+}

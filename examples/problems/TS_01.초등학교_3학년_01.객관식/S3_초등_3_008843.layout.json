@@ -1,0 +1,150 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008843",
+  "title": "저울로 무게 비교하기",
+  "canvas": {
+    "width": 920,
+    "height": 560,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.obj.ga_angle",
+        "slot.obj.ga_compass",
+        "slot.obj.na_eraser",
+        "slot.obj.na_compass",
+        "slot.q_title",
+        "slot.ga_label",
+        "slot.na_label",
+        "slot.body1",
+        "slot.body2"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q_title",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "84. 저울로 각도기, 컴퍼스, 지우개의 무게를 비교하고 있습니다. 가장 가벼운 것은 무엇인지 알맞은 말을 선택해 보세요.",
+        "style_role": "question",
+        "x": 16.0,
+        "y": 28.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.ga_label",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "가",
+        "style_role": "label",
+        "x": 170.0,
+        "y": 120.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.na_label",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "나",
+        "style_role": "label",
+        "x": 512.0,
+        "y": 120.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.obj.ga_angle",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 210.0,
+        "y": 86.0,
+        "width": 60.0,
+        "height": 30.0
+      }
+    },
+    {
+      "id": "slot.obj.ga_compass",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 356.0,
+        "y": 86.0,
+        "width": 60.0,
+        "height": 30.0
+      }
+    },
+    {
+      "id": "slot.obj.na_eraser",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 550.0,
+        "y": 86.0,
+        "width": 60.0,
+        "height": 30.0
+      }
+    },
+    {
+      "id": "slot.obj.na_compass",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 700.0,
+        "y": 86.0,
+        "width": 60.0,
+        "height": 30.0
+      }
+    },
+    {
+      "id": "slot.body1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "(1) 가에서 각도기와 컴퍼스 중 더 가벼운 것은 ( 각도기, 컴퍼스 )이고,",
+        "style_role": "body",
+        "x": 16.0,
+        "y": 365.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.body2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "나에서 지우개와 컴퍼스 중 더 가벼운 것은 ( 지우개, 컴퍼스 )입니다.",
+        "style_role": "body",
+        "x": 16.0,
+        "y": 410.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.obj.ga_angle",
+    "slot.obj.ga_compass",
+    "slot.obj.na_eraser",
+    "slot.obj.na_compass",
+    "slot.q_title",
+    "slot.ga_label",
+    "slot.na_label",
+    "slot.body1",
+    "slot.body2"
+  ]
+}

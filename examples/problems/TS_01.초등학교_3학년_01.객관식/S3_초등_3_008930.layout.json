@@ -1,0 +1,366 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008930",
+  "title": "민속놀이 표에서 가장 많고 적은 놀이 고르기",
+  "canvas": {
+    "width": 960,
+    "height": 520,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q1",
+        "slot.q2",
+        "slot.q3",
+        "slot.q4"
+      ]
+    },
+    {
+      "id": "region.table",
+      "role": "body",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.table.border",
+        "slot.table.cell1",
+        "slot.table.cell2",
+        "slot.table.cell3",
+        "slot.table.cell4",
+        "slot.table.cell5",
+        "slot.table.cell6",
+        "slot.table.cell7",
+        "slot.table.cell8",
+        "slot.table.cell9",
+        "slot.table.cell10",
+        "slot.table.cell11"
+      ]
+    },
+    {
+      "id": "region.choices",
+      "role": "body",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice1",
+        "slot.choice2",
+        "slot.choice3",
+        "slot.choice4"
+      ]
+    },
+    {
+      "id": "region.answer",
+      "role": "body",
+      "flow": "absolute",
+      "slot_ids": []
+    },
+    {
+      "id": "region.explanation",
+      "role": "body",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.ex2",
+        "slot.ex3"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "□ 98. 중기네 반 학생들이 좋아하는 민속놀이를 조사하여 표 나타내었습니다.",
+        "style_role": "question",
+        "x": 20.0,
+        "y": 42.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "좋아하는 학생이 가장 많은 민속놀이와 가장 적은 민속놀이를 바르게",
+        "style_role": "question",
+        "x": 20.0,
+        "y": 78.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "나열한 것을 고르세요.",
+        "style_role": "question",
+        "x": 20.0,
+        "y": 114.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "중기네 반 학생들이 좋아하는 민속놀이",
+        "style_role": "question",
+        "x": 270.0,
+        "y": 170.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.border",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 78.0,
+        "y": 200.0,
+        "width": 806.0,
+        "height": 100.0
+      }
+    },
+    {
+      "id": "slot.table.cell1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "민속놀이",
+        "style_role": "body",
+        "x": 102.0,
+        "y": 231.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.cell2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "그네타기",
+        "style_role": "body",
+        "x": 252.0,
+        "y": 231.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.cell3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "널뛰기",
+        "style_role": "body",
+        "x": 389.0,
+        "y": 231.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.cell4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "투호놀이",
+        "style_role": "body",
+        "x": 515.0,
+        "y": 231.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.cell5",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "씨름하기",
+        "style_role": "body",
+        "x": 640.0,
+        "y": 231.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.cell6",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "합계",
+        "style_role": "body",
+        "x": 767.0,
+        "y": 231.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.cell7",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "학생 수(명)",
+        "style_role": "body",
+        "x": 88.0,
+        "y": 266.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.cell8",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "",
+        "style_role": "body",
+        "x": 280.0,
+        "y": 266.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.cell9",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "8",
+        "style_role": "body",
+        "x": 415.0,
+        "y": 266.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.cell10",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "7",
+        "style_role": "body",
+        "x": 544.0,
+        "y": 266.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.table.cell11",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "6",
+        "style_role": "body",
+        "x": 671.0,
+        "y": 266.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "① 널뛰기, 투호놀이",
+        "style_role": "body",
+        "x": 24.0,
+        "y": 340.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "② 그네타기, 씨름하기",
+        "style_role": "body",
+        "x": 512.0,
+        "y": 340.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "③ 널뛰기, 그네타기",
+        "style_role": "body",
+        "x": 24.0,
+        "y": 384.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "④ 그네타기, 널뛰기",
+        "style_role": "body",
+        "x": 512.0,
+        "y": 384.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.ex2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "8>7>6>4이므로 좋아하는 학생이 가장 많은 민속놀이부터 순서대로 쓰면 널뛰기,",
+        "style_role": "body",
+        "x": 40.0,
+        "y": 506.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.ex3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "투호놀이, 씨름하기, 그네타기입니다",
+        "style_role": "body",
+        "x": 40.0,
+        "y": 542.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q1",
+    "slot.q2",
+    "slot.q3",
+    "slot.q4",
+    "region.table",
+    "slot.table.border",
+    "slot.table.cell1",
+    "slot.table.cell2",
+    "slot.table.cell3",
+    "slot.table.cell4",
+    "slot.table.cell5",
+    "slot.table.cell6",
+    "slot.table.cell7",
+    "slot.table.cell8",
+    "slot.table.cell9",
+    "slot.table.cell10",
+    "slot.table.cell11",
+    "region.choices",
+    "slot.choice1",
+    "slot.choice2",
+    "slot.choice3",
+    "slot.choice4",
+    "region.answer",
+    "region.explanation",
+    "slot.ex2",
+    "slot.ex3"
+  ]
+}

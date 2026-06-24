@@ -1,0 +1,246 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_009046",
+  "title": "반직선 ㄱㄴ",
+  "canvas": {
+    "width": 760,
+    "height": 270,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q1"
+      ]
+    },
+    {
+      "id": "region.diagram.left",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.left.line",
+        "slot.left.pt1",
+        "slot.left.pt2",
+        "slot.left.lb1",
+        "slot.left.lb2"
+      ]
+    },
+    {
+      "id": "region.diagram.right",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.right.line",
+        "slot.right.pt1",
+        "slot.right.pt2",
+        "slot.right.lb1",
+        "slot.right.lb2"
+      ]
+    },
+    {
+      "id": "region.answer",
+      "role": "answer",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.answer.line",
+        "slot.answer.pt1",
+        "slot.answer.pt2"
+      ]
+    },
+    {
+      "id": "region.explain",
+      "role": "explanation",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "84. 반직선 ㄱㄴ으로 알맞은 것을 고르세요.",
+        "style_role": "question",
+        "x": 18.0,
+        "y": 28.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.left.line",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 120.0,
+        "y1": 95.0,
+        "x2": 390.0,
+        "y2": 95.0
+      }
+    },
+    {
+      "id": "slot.left.pt1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 120.0,
+        "cy": 95.0,
+        "r": 3.8,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.left.pt2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 377.0,
+        "cy": 95.0,
+        "r": 3.8,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.left.lb1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄱ",
+        "style_role": "label",
+        "x": 108.0,
+        "y": 78.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.left.lb2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄴ",
+        "style_role": "label",
+        "x": 370.0,
+        "y": 78.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.right.line",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 490.0,
+        "y1": 95.0,
+        "x2": 740.0,
+        "y2": 95.0
+      }
+    },
+    {
+      "id": "slot.right.pt1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 490.0,
+        "cy": 95.0,
+        "r": 3.8,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.right.pt2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 739.0,
+        "cy": 95.0,
+        "r": 3.8,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.right.lb1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄱ",
+        "style_role": "label",
+        "x": 478.0,
+        "y": 78.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.right.lb2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄴ",
+        "style_role": "label",
+        "x": 732.0,
+        "y": 78.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.answer.line",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 64.0,
+        "y1": 166.0,
+        "x2": 280.0,
+        "y2": 166.0
+      }
+    },
+    {
+      "id": "slot.answer.pt1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 64.0,
+        "cy": 166.0,
+        "r": 3.8,
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.answer.pt2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 230.0,
+        "cy": 166.0,
+        "r": 3.8,
+        "fill": "#222222"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q1",
+    "region.diagram.left",
+    "slot.left.line",
+    "slot.left.pt1",
+    "slot.left.pt2",
+    "slot.left.lb1",
+    "slot.left.lb2",
+    "region.diagram.right",
+    "slot.right.line",
+    "slot.right.pt1",
+    "slot.right.pt2",
+    "slot.right.lb1",
+    "slot.right.lb2",
+    "region.answer",
+    "slot.answer.line",
+    "slot.answer.pt1",
+    "slot.answer.pt2",
+    "region.explain"
+  ]
+}

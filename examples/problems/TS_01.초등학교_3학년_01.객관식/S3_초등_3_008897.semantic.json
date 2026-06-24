@@ -1,0 +1,113 @@
+{
+  "problem_id": "S3_초등_3_008897",
+  "problem_type": "그림그래프_비교",
+  "metadata": {
+    "title": "과수원별 포도 생산량",
+    "tags": [],
+    "instruction": "포도 생산량이 가장 많은 과수원을 선택해 보세요.",
+    "question": "과수원별 포도 생산량을 조사하여 나타낸 그림그래프에서 포도 생산량이 가장 많은 과수원을 찾는 문제",
+    "required_layout_ids": [
+      "slot.tbl.outer",
+      "slot.tbl.head",
+      "slot.tbl.vline",
+      "slot.tbl.hline1",
+      "slot.tbl.hline2",
+      "slot.tbl.hline3",
+      "slot.tbl.r1",
+      "slot.tbl.r2",
+      "slot.tbl.r3",
+      "slot.tbl.g1_1",
+      "slot.tbl.g1_2",
+      "slot.tbl.g1_3",
+      "slot.tbl.g1_4",
+      "slot.tbl.g2_1",
+      "slot.tbl.g2_2",
+      "slot.tbl.g2_3",
+      "slot.tbl.g2_4",
+      "slot.tbl.g2_5",
+      "slot.tbl.g3_1",
+      "slot.tbl.g3_2",
+      "slot.tbl.g3_3",
+      "slot.tbl.g3_4",
+      "slot.leg.big",
+      "slot.leg.small"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.orchard.ga",
+        "type": "orchard",
+        "name": "가 과수원"
+      },
+      {
+        "id": "obj.orchard.na",
+        "type": "orchard",
+        "name": "나 과수원"
+      },
+      {
+        "id": "obj.orchard.da",
+        "type": "orchard",
+        "name": "다 과수원"
+      },
+      {
+        "id": "obj.legend.big",
+        "type": "symbol",
+        "meaning": "10 kg"
+      },
+      {
+        "id": "obj.legend.small",
+        "type": "symbol",
+        "meaning": "1 kg"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.legend.big",
+          "obj.legend.small",
+          "obj.orchard.ga",
+          "obj.orchard.na",
+          "obj.orchard.da"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.compare.production"
+        ]
+      },
+      "plan": {
+        "method": "그림그래프_비교",
+        "description": "각 과수원의 그림 개수와 범례의 뜻을 함께 읽어 가장 많은 과수원을 찾는다."
+      },
+      "execute": {
+        "expected_operations": [
+          "그림_개수_비교",
+          "범례_해석",
+          "가장_많은_과수원_선택"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "그림이_가장_많이_표시된_행_확인",
+          "하단_정답_표기_일치_확인"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "selected_orchard",
+      "description": "포도 생산량이 가장 많은 과수원"
+    },
+    "value": "가 과수원",
+    "unit": ""
+  }
+}

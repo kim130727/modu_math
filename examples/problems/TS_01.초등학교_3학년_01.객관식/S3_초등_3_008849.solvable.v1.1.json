@@ -1,0 +1,64 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008849",
+  "problem_type": "무게 비교",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "더 무거운 쪽",
+    "target_ticks": 0,
+    "target_count": 2,
+    "unit": "kg g"
+  },
+  "given": [
+    {
+      "ref": "obj.left_expression",
+      "value": "9 kg - 2 kg 600 g"
+    },
+    {
+      "ref": "obj.right_weight",
+      "value": "7 kg 600 g"
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "selected_weight"
+  },
+  "method": "weight_compare",
+  "plan": [
+    "왼쪽 식의 무게를 먼저 계산한다.",
+    "오른쪽 무게와 크기를 비교한다.",
+    "더 무거운 쪽을 확인한다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "9 kg - 2 kg 600 g",
+      "value": "6 kg 400 g"
+    },
+    {
+      "id": "step.2",
+      "expr": "6 kg 400 g < 7 kg 600 g",
+      "value": true
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "비교식이 참인지 확인",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "selected_weight",
+      "description": "더 무거운 쪽"
+    },
+    "value": "7 kg 600 g",
+    "unit": "kg g"
+  }
+}

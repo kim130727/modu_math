@@ -1,0 +1,73 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008992",
+  "problem_type": "shape_identification",
+  "inputs": {
+    "total_ticks": 3,
+    "target_label": "직각삼각형",
+    "target_ticks": 1,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.triangle_a",
+      "value": {
+        "label": "가"
+      }
+    },
+    {
+      "ref": "obj.triangle_b",
+      "value": {
+        "label": "나"
+      }
+    },
+    {
+      "ref": "obj.triangle_c",
+      "value": {
+        "label": "다"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "selected_symbol"
+  },
+  "method": "shape_comparison",
+  "plan": [
+    "세 삼각형을 비교하여 한 각이 직각인 도형을 찾는다.",
+    "찾은 도형의 기호를 선택한다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "세 삼각형 비교",
+      "value": "가, 나, 다"
+    },
+    {
+      "id": "step.2",
+      "expr": "직각삼각형 선택",
+      "value": "가"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "정답이 가인지 확인",
+      "expected": "가",
+      "actual": "가",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "selected_symbol",
+      "description": "직각삼각형의 기호"
+    },
+    "value": "가",
+    "unit": ""
+  }
+}

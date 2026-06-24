@@ -1,0 +1,83 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008839",
+  "problem_type": "reason_selection",
+  "inputs": {
+    "total_ticks": 15,
+    "target_label": "이유",
+    "target_ticks": 15,
+    "target_count": 2,
+    "unit": "개"
+  },
+  "given": [
+    {
+      "ref": "obj.kiwi",
+      "value": {
+        "name": "키위"
+      }
+    },
+    {
+      "ref": "obj.peach",
+      "value": {
+        "name": "복숭아"
+      }
+    },
+    {
+      "ref": "obj.coin_100",
+      "value": {
+        "name": "100원짜리 동전"
+      }
+    },
+    {
+      "ref": "obj.coin_500",
+      "value": {
+        "name": "500원짜리 동전"
+      }
+    },
+    {
+      "ref": "obj.count_15",
+      "value": 15
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "reason_selection"
+  },
+  "method": "reason_selection",
+  "plan": [
+    "그림에서 두 비교가 각각 어떤 동전과 연결되는지 확인한다.",
+    "같은 수와 다른 무게의 관계를 나타내는 문장을 고른다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "키위 ↔ 100원짜리 동전 15개, 복숭아 ↔ 500원짜리 동전 15개",
+      "value": "관계 확인"
+    },
+    {
+      "id": "step.2",
+      "expr": "이유 문장 선택",
+      "value": "수와 무게를 구분하는 이유"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "그림의 비교 관계와 문장의 의미가 일치하는가",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "reason_selection",
+      "description": "알맞은 이유 문장"
+    },
+    "value": 0,
+    "unit": ""
+  }
+}
