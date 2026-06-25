@@ -529,6 +529,78 @@ def _save_editor_slot_delete(paths: Any, target: str) -> None:
     path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
+def _clear_editor_slot_delete(paths: Any, target: str) -> None:
+    path = _editor_overrides_path(paths)
+    if not path.exists():
+        return
+    loaded = json.loads(path.read_text(encoding="utf-8-sig"))
+    if not isinstance(loaded, dict):
+        return
+    deleted = loaded.get("deleted_slots")
+    if not isinstance(deleted, list):
+        return
+
+    def conflicts(deleted_id: Any) -> bool:
+        if not isinstance(deleted_id, str):
+            return False
+        return (
+            target == deleted_id
+            or target.startswith(f"{deleted_id}.")
+            or deleted_id.startswith(f"{target}.")
+        )
+
+    cleaned = [slot_id for slot_id in deleted if not conflicts(slot_id)]
+    if cleaned == deleted:
+        return
+    if cleaned:
+        loaded["deleted_slots"] = cleaned
+    else:
+        loaded.pop("deleted_slots", None)
+    loaded["version"] = 1
+    path.write_text(json.dumps(loaded, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+
+def _clear_editor_slot_state(paths: Any, target: str) -> None:
+    path = _editor_overrides_path(paths)
+    if not path.exists():
+        return
+    loaded = json.loads(path.read_text(encoding="utf-8-sig"))
+    if not isinstance(loaded, dict):
+        return
+
+    changed = False
+    slots = loaded.get("slots")
+    if isinstance(slots, dict) and target in slots:
+        slots.pop(target, None)
+        changed = True
+        if not slots:
+            loaded.pop("slots", None)
+
+    deleted = loaded.get("deleted_slots")
+    if isinstance(deleted, list):
+        def conflicts(deleted_id: Any) -> bool:
+            if not isinstance(deleted_id, str):
+                return False
+            return (
+                target == deleted_id
+                or target.startswith(f"{deleted_id}.")
+                or deleted_id.startswith(f"{target}.")
+            )
+
+        cleaned = [slot_id for slot_id in deleted if not conflicts(slot_id)]
+        if cleaned != deleted:
+            changed = True
+            if cleaned:
+                loaded["deleted_slots"] = cleaned
+            else:
+                loaded.pop("deleted_slots", None)
+
+    if not changed:
+        return
+    loaded["version"] = 1
+    path.write_text(json.dumps(loaded, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+
 def _save_editor_region_slot_order(paths: Any, region_id: str, slot_ids: list[Any]) -> None:
     clean_slot_ids = [slot_id for slot_id in slot_ids if isinstance(slot_id, str) and slot_id]
     if not region_id or not clean_slot_ids:
@@ -1278,6 +1350,7 @@ def apply_layout_patches(problem_id: str, patches: list[dict[str, Any]]) -> tupl
             if not adder.added_slot:
                 raise DslPatchError("ProblemTemplate not found")
             transformed = _ensure_dsl_import(transformed, ctor)
+            _clear_editor_slot_state(paths, target)
             applied.append(AppliedPatch(target=target, op=op, fields=list(value.keys())))
             continue
 

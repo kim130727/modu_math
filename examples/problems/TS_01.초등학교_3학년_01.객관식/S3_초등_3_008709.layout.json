@@ -25,23 +25,23 @@
         "slot.circle.center_mark",
         "slot.circle.pink_dot",
         "slot.q1",
-        "slot.circle_label",
+        "slot.circle.label.giyeok",
+        "slot.circle.label.digeut",
+        "slot.circle.label.mieum",
+        "slot.circle.label.siot",
+        "slot.circle.label.nieun",
+        "slot.circle.label.rieul",
+        "slot.circle.label.bieup",
+        "slot.circle.label.jieut",
         "slot.note1",
+        "slot.note2.copy2",
         "slot.note_arrow",
         "slot.note2",
+        "slot.note2_tail",
         "slot.choice.1",
         "slot.choice.2",
         "slot.choice.3",
-        "slot.choice.4",
-        "slot.note2.copy2",
-        "slot.circle_label.copy3",
-        "slot.circle_label.copy4",
-        "slot.circle_label.copy5",
-        "slot.circle_label.copy6",
-        "slot.circle_label.copy7",
-        "slot.circle_label.copy7.copy8",
-        "slot.circle_label.copy6.copy9",
-        "slot.note2_tail"
+        "slot.choice.4"
       ]
     }
   ],
@@ -51,11 +51,11 @@
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "□ 안에 공통으로 들어갈 선분으로 알맞은 것은\n무엇인가요?  ",
+        "text": "□ 안에 공통으로 들어갈 선분으로 알맞은 것은 무엇인가요?",
         "style_role": "question",
-        "x": 50.0,
-        "y": 45.0,
-        "font_size": 30
+        "x": 30.0,
+        "y": 18.0,
+        "font_size": 22
       }
     },
     {
@@ -118,7 +118,7 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 460.0,
+        "cx": 456.0,
         "cy": 205.0,
         "r": 5.0,
         "fill": "none"
@@ -136,7 +136,7 @@
       }
     },
     {
-      "id": "slot.circle_label",
+      "id": "slot.circle.label.giyeok",
       "kind": "text",
       "prompt": "",
       "content": {
@@ -148,14 +148,100 @@
       }
     },
     {
+      "id": "slot.circle.label.digeut",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄷ",
+        "style_role": "label",
+        "x": 470.0,
+        "y": 70.0,
+        "font_size": 20
+      }
+    },
+    {
+      "id": "slot.circle.label.mieum",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㅁ",
+        "style_role": "label",
+        "x": 525.0,
+        "y": 80.0,
+        "font_size": 20
+      }
+    },
+    {
+      "id": "slot.circle.label.siot",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㅅ",
+        "style_role": "label",
+        "x": 595.0,
+        "y": 150.0,
+        "font_size": 20
+      }
+    },
+    {
+      "id": "slot.circle.label.nieun",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄴ",
+        "style_role": "label",
+        "x": 330.0,
+        "y": 260.0,
+        "font_size": 20
+      }
+    },
+    {
+      "id": "slot.circle.label.rieul",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄹ",
+        "style_role": "label",
+        "x": 350.0,
+        "y": 305.0,
+        "font_size": 20
+      }
+    },
+    {
+      "id": "slot.circle.label.bieup",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㅂ",
+        "style_role": "label",
+        "x": 390.0,
+        "y": 340.0,
+        "font_size": 20
+      }
+    },
+    {
+      "id": "slot.circle.label.jieut",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㅈ",
+        "style_role": "label",
+        "x": 510.0,
+        "y": 350.0,
+        "font_size": 20
+      }
+    },
+    {
       "id": "slot.note_box",
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 30.0,
-        "y": 355.0,
+        "x": 28,
+        "y": 351,
         "width": 760.0,
         "height": 125.0,
+        "stroke": "#7ac943",
+        "stroke_width": 2.0,
         "fill": "none"
       }
     },
@@ -166,8 +252,8 @@
       "content": {
         "text": "선분",
         "style_role": "note",
-        "x": 50.0,
-        "y": 400.0,
+        "x": 56.0,
+        "y": 399.0,
         "font_size": 30
       }
     },
@@ -176,11 +262,24 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 115.0,
-        "y": 375.0,
+        "x": 113,
+        "y": 371,
         "width": 65.0,
         "height": 30.0,
         "fill": "none"
+      }
+    },
+    {
+      "id": "slot.note2.copy2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "은 원 안에 그을 수 있는 가장 긴 선분입니다.",
+        "style_role": "body",
+        "x": 201.0,
+        "y": 399.0,
+        "font_size": 30,
+        "fill": "#111111"
       }
     },
     {
@@ -188,11 +287,12 @@
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "→",
+        "text": "⇒",
         "style_role": "note",
-        "x": 70.0,
-        "y": 455.0,
-        "font_size": 35
+        "x": 76.0,
+        "y": 454.0,
+        "font_size": 35,
+        "fill": "#9ca3af"
       }
     },
     {
@@ -202,8 +302,8 @@
       "content": {
         "text": "원의 지름은 선분",
         "style_role": "note",
-        "x": 120.0,
-        "y": 460.0,
+        "x": 126.0,
+        "y": 459.0,
         "font_size": 30
       }
     },
@@ -212,8 +312,8 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 342.0,
-        "y": 435.0,
+        "x": 342,
+        "y": 438,
         "width": 65.0,
         "height": 30.0,
         "fill": "none"
@@ -226,8 +326,8 @@
       "content": {
         "text": "입니다.",
         "style_role": "note",
-        "x": 420.0,
-        "y": 460.0,
+        "x": 426.0,
+        "y": 459.0,
         "font_size": 30
       }
     },
@@ -238,8 +338,8 @@
       "content": {
         "text": "① ㄱㄴ",
         "style_role": "choice",
-        "x": 25.0,
-        "y": 535.0,
+        "x": 31.0,
+        "y": 534.0,
         "font_size": 30
       }
     },
@@ -248,10 +348,10 @@
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "② ㄷㅁ",
+        "text": "② ㄷㄹ",
         "style_role": "choice",
-        "x": 150.0,
-        "y": 535.0,
+        "x": 472.0,
+        "y": 534.0,
         "font_size": 30
       }
     },
@@ -262,8 +362,8 @@
       "content": {
         "text": "③ ㅁㅂ",
         "style_role": "choice",
-        "x": 285.0,
-        "y": 535.0,
+        "x": 31.0,
+        "y": 590.0,
         "font_size": 30
       }
     },
@@ -274,113 +374,9 @@
       "content": {
         "text": "④ ㅅㅈ",
         "style_role": "choice",
-        "x": 433.0,
-        "y": 535.0,
+        "x": 472.0,
+        "y": 590.0,
         "font_size": 30
-      }
-    },
-    {
-      "id": "slot.note2.copy2",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "은 원안에서 그을 수 있는 가장 긴 선분입니다. ",
-        "style_role": "body",
-        "x": 195.0,
-        "y": 400.0,
-        "font_size": 30,
-        "fill": "#111111"
-      }
-    },
-    {
-      "id": "slot.circle_label.copy3",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "ㄷ",
-        "style_role": "body",
-        "x": 470.0,
-        "y": 70.0,
-        "font_size": 20,
-        "fill": "#111111"
-      }
-    },
-    {
-      "id": "slot.circle_label.copy4",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "ㄴ",
-        "style_role": "body",
-        "x": 330.0,
-        "y": 260.0,
-        "font_size": 20,
-        "fill": "#111111"
-      }
-    },
-    {
-      "id": "slot.circle_label.copy5",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "ㄹ",
-        "style_role": "body",
-        "x": 350.0,
-        "y": 305.0,
-        "font_size": 20,
-        "fill": "#111111"
-      }
-    },
-    {
-      "id": "slot.circle_label.copy6",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "ㅁ",
-        "style_role": "body",
-        "x": 525.0,
-        "y": 80.0,
-        "font_size": 20,
-        "fill": "#111111"
-      }
-    },
-    {
-      "id": "slot.circle_label.copy7",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "ㅅ",
-        "style_role": "body",
-        "x": 595.0,
-        "y": 150.0,
-        "font_size": 20,
-        "fill": "#111111"
-      }
-    },
-    {
-      "id": "slot.circle_label.copy7.copy8",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "ㅈ",
-        "style_role": "body",
-        "x": 510.0,
-        "y": 350.0,
-        "font_size": 20,
-        "fill": "#111111"
-      }
-    },
-    {
-      "id": "slot.circle_label.copy6.copy9",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "ㅂ",
-        "style_role": "body",
-        "x": 390.0,
-        "y": 340.0,
-        "font_size": 20,
-        "fill": "#111111"
       }
     }
   ],
@@ -400,22 +396,22 @@
     "slot.circle.center_mark",
     "slot.circle.pink_dot",
     "slot.q1",
-    "slot.circle_label",
+    "slot.circle.label.giyeok",
+    "slot.circle.label.digeut",
+    "slot.circle.label.mieum",
+    "slot.circle.label.siot",
+    "slot.circle.label.nieun",
+    "slot.circle.label.rieul",
+    "slot.circle.label.bieup",
+    "slot.circle.label.jieut",
     "slot.note1",
+    "slot.note2.copy2",
     "slot.note_arrow",
     "slot.note2",
+    "slot.note2_tail",
     "slot.choice.1",
     "slot.choice.2",
     "slot.choice.3",
-    "slot.choice.4",
-    "slot.note2.copy2",
-    "slot.circle_label.copy3",
-    "slot.circle_label.copy4",
-    "slot.circle_label.copy5",
-    "slot.circle_label.copy6",
-    "slot.circle_label.copy7",
-    "slot.circle_label.copy7.copy8",
-    "slot.circle_label.copy6.copy9",
-    "slot.note2_tail"
+    "slot.choice.4"
   ]
 }

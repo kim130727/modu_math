@@ -229,6 +229,114 @@ PROBLEM_TEMPLATE = ProblemTemplate(
     exec(updated, namespace)
 
 
+def test_layout_patch_add_clears_conflicting_deleted_slot_override(tmp_path: Path) -> None:
+    client = _setup_django(tmp_path)
+    dsl_text = """
+from modu_math.dsl import Canvas, ProblemTemplate, Region
+
+PROBLEM_TEMPLATE = ProblemTemplate(
+    id="p_fraction_restore",
+    title="fraction restore",
+    canvas=Canvas(width=300, height=200),
+    regions=(Region(id="region.diagram", role="diagram", flow="absolute", slot_ids=()),),
+    slots=(),
+)
+""".lstrip()
+    problem_dir = _write_problem(tmp_path, "0001", dsl_text)
+    overrides_path = problem_dir / "problem.editor_overrides.json"
+    overrides_path.write_text(
+        json.dumps({"deleted_slots": ["slot.math.fraction"], "version": 1}, ensure_ascii=False),
+        encoding="utf-8",
+    )
+
+    payload = {
+        "patches": [
+            {
+                "target": "slot.math.fraction.num",
+                "op": "add",
+                "value": {
+                    "kind": "text",
+                    "region_id": "region.diagram",
+                    "content": {"text": "1", "x": 100.0, "y": 80.0, "font_size": 30},
+                },
+            }
+        ]
+    }
+    response = client.post(
+        "/api/editor/problems/0001/layout-patch/",
+        data=json.dumps(payload),
+        content_type="application/json",
+    )
+
+    assert response.status_code == 200
+    overrides = json.loads(overrides_path.read_text(encoding="utf-8"))
+    assert "deleted_slots" not in overrides
+
+
+def test_layout_patch_add_clears_stale_slot_override_for_same_target(tmp_path: Path) -> None:
+    client = _setup_django(tmp_path)
+    dsl_text = """
+from modu_math.dsl import Canvas, ProblemTemplate, Region
+
+PROBLEM_TEMPLATE = ProblemTemplate(
+    id="p_image_restore",
+    title="image restore",
+    canvas=Canvas(width=300, height=200),
+    regions=(Region(id="region.diagram", role="diagram", flow="absolute", slot_ids=()),),
+    slots=(),
+)
+""".lstrip()
+    problem_dir = _write_problem(tmp_path, "0001", dsl_text)
+    overrides_path = problem_dir / "problem.editor_overrides.json"
+    overrides_path.write_text(
+        json.dumps(
+            {
+                "slots": {
+                    "slot.inserted.image.1": {
+                        "href": "data:image/png;base64,OLD",
+                        "x": 1,
+                        "y": 2,
+                    }
+                },
+                "version": 1,
+            },
+            ensure_ascii=False,
+        ),
+        encoding="utf-8",
+    )
+
+    payload = {
+        "patches": [
+            {
+                "target": "slot.inserted.image.1",
+                "op": "add",
+                "value": {
+                    "kind": "image",
+                    "region_id": "region.diagram",
+                    "content": {
+                        "href": "data:image/png;base64,NEW",
+                        "x": 10.0,
+                        "y": 20.0,
+                        "width": 80.0,
+                        "height": 60.0,
+                    },
+                },
+            }
+        ]
+    }
+    response = client.post(
+        "/api/editor/problems/0001/layout-patch/",
+        data=json.dumps(payload),
+        content_type="application/json",
+    )
+
+    assert response.status_code == 200
+    updated = (problem_dir / "problem.dsl.py").read_text(encoding="utf-8")
+    assert "data:image/png;base64,NEW" in updated
+    overrides = json.loads(overrides_path.read_text(encoding="utf-8"))
+    assert "slots" not in overrides
+
+
 def test_layout_patch_adds_table_slots_and_imports(tmp_path: Path) -> None:
     client = _setup_django(tmp_path)
     dsl_text = """
@@ -780,6 +888,86 @@ SLOTS = (
     updated = (problem_dir / "problem.dsl.py").read_text(encoding="utf-8")
     assert '_base_ten_model("slot.figure.top", x=(100.0) + (15.0), y=(50.0) + (25.0)' in updated
     assert '_partition_box("slot.figure.group1", x=(200.0) + (-5.0), y=(150.0) + (10.0))' in updated
+
+
+def test_layout_patch_moves_one_bar_model_bar(tmp_path: Path) -> None:
+    client = _setup_django(tmp_path)
+    dsl_text = """
+from modu_math.dsl import LineSlot, RectSlot
+
+SLOTS = (
+    RectSlot(id="slot.figure.bar_model_1.bar1.shade1", x=10.0, y=20.0, width=50, height=30),
+    RectSlot(id="slot.figure.bar_model_1.bar1.outline", x=10.0, y=20.0, width=150, height=30, fill="none"),
+    LineSlot(id="slot.figure.bar_model_1.bar1.div1", x1=60.0, y1=20.0, x2=60.0, y2=50.0),
+    RectSlot(id="slot.figure.bar_model_1.bar2.shade1", x=10.0, y=70.0, width=50, height=30),
+    RectSlot(id="slot.figure.bar_model_1.bar2.outline", x=10.0, y=70.0, width=150, height=30, fill="none"),
+)
+""".lstrip()
+    problem_dir = _write_problem(tmp_path, "0001", dsl_text)
+
+    payload = {
+        "patches": [
+            {
+                "target": "slot.figure.bar_model_1.bar1",
+                "op": "update",
+                "value": {"move_dx": 12.0, "move_dy": -5.0},
+            },
+        ]
+    }
+    response = client.post(
+        "/api/editor/problems/0001/layout-patch/",
+        data=json.dumps(payload),
+        content_type="application/json",
+    )
+
+    assert response.status_code == 200
+    updated = (problem_dir / "problem.dsl.py").read_text(encoding="utf-8")
+    assert 'id="slot.figure.bar_model_1.bar1.shade1"' in updated
+    assert "x=(10.0) + (12.0)" in updated
+    assert "y=(20.0) + (-5.0)" in updated
+    assert 'id="slot.figure.bar_model_1.bar1.div1"' in updated
+    assert "x1=(60.0) + (12.0)" in updated
+    assert "y1=(20.0) + (-5.0)" in updated
+    assert 'RectSlot(id="slot.figure.bar_model_1.bar2.shade1", x=10.0, y=70.0' in updated
+
+
+def test_layout_patch_moves_one_tick_bar_row(tmp_path: Path) -> None:
+    client = _setup_django(tmp_path)
+    dsl_text = """
+from modu_math.dsl import LineSlot, TextSlot
+
+SLOTS = (
+    TextSlot(id="slot.figure.tick_bar_1.row1.label", text="9/7 m", x=10.0, y=20.0),
+    LineSlot(id="slot.figure.tick_bar_1.row1.axis", x1=120.0, y1=30.0, x2=300.0, y2=30.0),
+    LineSlot(id="slot.figure.tick_bar_1.row1.fill", x1=120.0, y1=30.0, x2=240.0, y2=30.0, stroke="#2563eb"),
+    LineSlot(id="slot.figure.tick_bar_1.row1.tick0", x1=120.0, y1=20.0, x2=120.0, y2=40.0),
+    TextSlot(id="slot.figure.tick_bar_1.row2.label", text="1 3/7 m", x=10.0, y=80.0),
+    LineSlot(id="slot.figure.tick_bar_1.row2.axis", x1=120.0, y1=90.0, x2=300.0, y2=90.0),
+)
+""".lstrip()
+    problem_dir = _write_problem(tmp_path, "0001", dsl_text)
+
+    payload = {
+        "patches": [
+            {
+                "target": "slot.figure.tick_bar_1.row1",
+                "op": "update",
+                "value": {"move_dx": 6.0, "move_dy": 8.0},
+            },
+        ]
+    }
+    response = client.post(
+        "/api/editor/problems/0001/layout-patch/",
+        data=json.dumps(payload),
+        content_type="application/json",
+    )
+
+    assert response.status_code == 200
+    updated = (problem_dir / "problem.dsl.py").read_text(encoding="utf-8")
+    assert 'id="slot.figure.tick_bar_1.row1.axis"' in updated
+    assert "x1=(120.0) + (6.0)" in updated
+    assert "y1=(30.0) + (8.0)" in updated
+    assert 'TextSlot(id="slot.figure.tick_bar_1.row2.label", text="1 3/7 m", x=10.0, y=80.0)' in updated
 
 
 def test_layout_patch_moves_circle_fold_sequence_helper(tmp_path: Path) -> None:

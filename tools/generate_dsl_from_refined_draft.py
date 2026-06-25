@@ -184,12 +184,15 @@ COMPACT_DSL_RULES = """Compact DSL generation rules:
 - Include SEMANTIC_OVERRIDE and SOLVABLE.
 - SEMANTIC_OVERRIDE must include non-empty problem_id equal to the ProblemTemplate id.
 - SEMANTIC_OVERRIDE: meaning-only (no coordinates/style mirrors).
+- SOLVABLE must use schema "modu.solvable.v1.1".
 - SOLVABLE: include schema/problem_id/problem_type/inputs/plan/steps/checks/answer.
+- SEMANTIC_OVERRIDE["answer"] and SOLVABLE["answer"] must match for strict validation.
 - Do not infer hidden answers into visible blanks.
 - If uncertain, keep minimal valid structure and add TODO comments.
 - Hard rule: never use dict/list literals for ProblemTemplate structural fields.
 - Must use Canvas(...), regions=(Region(...), ...), slots=(TextSlot(...)/TextBoxSlot(...)/RectSlot(...), ...).
 - Use TextBoxSlot only when a fixed PowerPoint-like text box is needed; keep ordinary labels as TextSlot.
+- PathSlot, ImageSlot, ChoiceSlot, BlankSlot, LabelSlot, and modu_math.dsl helper slot factories are allowed when they match visible content.
 - Hard rule: import from modu_math.dsl only. Do not use `from modu_math import ProblemTemplate`.
 """
 
@@ -278,6 +281,9 @@ Rules:
 - Keep visible worksheet text exact.
 - Include `SEMANTIC_OVERRIDE` and `SOLVABLE`.
 - `SEMANTIC_OVERRIDE["problem_id"]` must exist and match `{problem_id}`.
+- `SOLVABLE["schema"]` must be "modu.solvable.v1.1".
+- `SOLVABLE["problem_id"]` must match `{problem_id}`.
+- `SEMANTIC_OVERRIDE["answer"]` and `SOLVABLE["answer"]` must match for strict validation.
 - Keep semantic meaning-focused, not renderer/layout mirrors.
 - Do not infer blank answers unless visibly printed.
 - Keep uncertain parts as TODO.
@@ -287,6 +293,7 @@ Rules:
 - Hard rule: never use dict/list literals for ProblemTemplate structural fields.
 - Must use Canvas(...), regions=(Region(...), ...), slots=(TextSlot(...)/TextBoxSlot(...)/RectSlot(...), ...).
 - Use TextBoxSlot only when a fixed PowerPoint-like text box is needed; keep ordinary labels as TextSlot.
+- PathSlot, ImageSlot, ChoiceSlot, BlankSlot, LabelSlot, and modu_math.dsl helper slot factories are allowed when they match visible content.
 - Hard rule: import from modu_math.dsl only. Do not use `from modu_math import ProblemTemplate`.
 
 Refined draft:
@@ -312,6 +319,9 @@ Safety and authoring rules:
 - Do not output JSON.
 - `SEMANTIC_OVERRIDE` and `SOLVABLE` are mandatory.
 - `SEMANTIC_OVERRIDE` must be concise domain/answer-centric semantics, not slot-by-slot mirror listing.
+- `SOLVABLE["schema"]` must be "modu.solvable.v1.1".
+- `ProblemTemplate.id`, `SEMANTIC_OVERRIDE["problem_id"]`, and `SOLVABLE["problem_id"]` must all match `{problem_id}`.
+- `SEMANTIC_OVERRIDE["answer"]` and `SOLVABLE["answer"]` must match for strict validation.
 - `SOLVABLE` must include: schema, problem_id, problem_type, inputs, plan, steps, checks, answer.
 - Every `SOLVABLE.steps[]` item MUST include exactly these required keys at minimum: id (string), expr (string), value (any).
 - Every `SOLVABLE.checks[]` item MUST include exactly these required keys at minimum: id (string), expr (string), expected, actual, pass (boolean).
@@ -331,6 +341,7 @@ Safety and authoring rules:
 - Hard rule: never use dict/list literals for ProblemTemplate structural fields.
 - Must use Canvas(...), regions=(Region(...), ...), slots=(TextSlot(...)/TextBoxSlot(...)/RectSlot(...), ...).
 - Use TextBoxSlot only when a fixed PowerPoint-like text box is needed; keep ordinary labels as TextSlot.
+- PathSlot, ImageSlot, ChoiceSlot, BlankSlot, LabelSlot, and modu_math.dsl helper slot factories are allowed when they match visible content.
 - Hard rule: import from modu_math.dsl only. Do not use `from modu_math import ProblemTemplate`.
 
 Refined draft content:

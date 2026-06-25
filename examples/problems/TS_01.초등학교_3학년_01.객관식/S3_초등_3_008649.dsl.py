@@ -78,7 +78,7 @@ def build_problem_template() -> ProblemTemplate:
                 id="slot.lb.r", prompt="", text="ㄹ", style_role="label", x=540, y=185, font_size=30
             ),
             LineSlot(id="slot.line.gr", prompt="", x1=410, y1=105, x2=535, y2=180),
-            LineSlot(id="slot.line.nr", prompt="", x1=320, y1=265, x2=535, y2=180),
+            LineSlot(id="slot.line.nr", prompt="", x1=318, y1=263, x2=533, y2=178),
             LineSlot(id="slot.line.cd", prompt="", x1=425, y1=220, x2=490, y2=315),
             TextSlot(
                 id="slot.lb.d.copy2",

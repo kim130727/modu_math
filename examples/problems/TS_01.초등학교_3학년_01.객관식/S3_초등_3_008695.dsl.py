@@ -246,7 +246,7 @@ def build_problem_template() -> ProblemTemplate:
             TextSlot(
                 id="slot.item1.q",
                 prompt="",
-                text="(1) 점 ○에서 원 위의 한 점까지의 길이는 모두(같습니다, 다릅니다 ).",
+                text="(1) 점 ㅇ에서 원 위의 한 점까지의 길이는 모두(같습니다, 다릅니다 ).",
                 style_role="question",
                 x=90,
                 y=455,

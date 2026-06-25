@@ -34,19 +34,23 @@
       },
       {
         "id": "obj.candidate_1",
-        "type": "segment"
+        "type": "segment",
+        "label": "ㄱㄴ"
       },
       {
         "id": "obj.candidate_2",
-        "type": "segment"
+        "type": "segment",
+        "label": "ㄷㄹ"
       },
       {
         "id": "obj.candidate_3",
-        "type": "segment"
+        "type": "segment",
+        "label": "ㅁㅂ"
       },
       {
         "id": "obj.candidate_4",
-        "type": "segment"
+        "type": "segment",
+        "label": "ㅅㅈ"
       }
     ],
     "relations": [],
@@ -80,9 +84,19 @@
     }
   },
   "answer": {
-    "blanks": [],
-    "choices": [],
-    "answer_key": [],
+    "blanks": [
+      "slot.note1_blank",
+      "slot.note2_blank"
+    ],
+    "choices": [
+      "ㄱㄴ",
+      "ㄷㄹ",
+      "ㅁㅂ",
+      "ㅅㅈ"
+    ],
+    "answer_key": [
+      3
+    ],
     "confidence": 1.0,
     "target": {
       "type": "matching_segment_name",

@@ -14,54 +14,45 @@
       "role": "stem",
       "flow": "absolute",
       "slot_ids": [
+        "slot.math.fraction.bar",
+        "slot.math.fraction_1.bar",
+        "slot.math.fraction_2.bar",
+        "slot.math.fraction_3.bar",
+        "slot.math.fraction_4.bar",
+        "slot.math.mixed_fraction.bar",
+        "slot.math.mixed_fraction_1.bar",
+        "slot.math.mixed_fraction_2.bar",
         "slot.q1",
         "slot.q2",
-        "slot.q3"
+        "slot.q3",
+        "slot.math.fraction.num",
+        "slot.math.fraction.den",
+        "slot.math.fraction_1.num",
+        "slot.math.fraction_1.den",
+        "slot.math.fraction_2.num",
+        "slot.math.fraction_2.den",
+        "slot.math.fraction_3.num",
+        "slot.math.fraction_3.den",
+        "slot.math.fraction_4.num",
+        "slot.math.fraction_4.den",
+        "slot.math.mixed_fraction.whole",
+        "slot.math.mixed_fraction.num",
+        "slot.math.mixed_fraction.den",
+        "slot.math.mixed_fraction_1.whole",
+        "slot.math.mixed_fraction_1.num",
+        "slot.math.mixed_fraction_1.den",
+        "slot.math.mixed_fraction_2.whole",
+        "slot.math.mixed_fraction_2.num",
+        "slot.math.mixed_fraction_2.den",
+        "slot.q1.copy1",
+        "slot.q1.copy1.copy3"
       ]
     },
     {
       "id": "region.diagram",
       "role": "diagram",
       "flow": "absolute",
-      "slot_ids": [
-        "slot.len1.axis",
-        "slot.len1.grid0",
-        "slot.len1.grid1",
-        "slot.len1.grid2",
-        "slot.len1.grid3",
-        "slot.len1.grid4",
-        "slot.len1.grid5",
-        "slot.len1.grid6",
-        "slot.len1.grid7",
-        "slot.len1.grid8",
-        "slot.len1.grid9",
-        "slot.len1.grid10",
-        "slot.len1.blue",
-        "slot.len2.axis",
-        "slot.len2.grid0",
-        "slot.len2.grid1",
-        "slot.len2.grid2",
-        "slot.len2.grid3",
-        "slot.len2.grid4",
-        "slot.len2.grid5",
-        "slot.len2.grid6",
-        "slot.len2.grid7",
-        "slot.len2.grid8",
-        "slot.len2.grid9",
-        "slot.len2.grid10",
-        "slot.len2.blue",
-        "slot.len1.label",
-        "slot.len1.zero",
-        "slot.len1.one",
-        "slot.len1.two",
-        "slot.len1.seven_over_seven",
-        "slot.len2.label",
-        "slot.len2.zero",
-        "slot.len2.one",
-        "slot.len2.two",
-        "slot.len2.seven_over_seven",
-        "slot.compare"
-      ]
+      "slot_ids": []
     }
   ],
   "slots": [
@@ -70,7 +61,7 @@
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "재영이는 노란색 털실을 9/7 m 가지고 있고 보라색 털실을 1 3/7 m 가지고",
+        "text": "재영이는 노란색 털실을",
         "style_role": "question",
         "x": 32.0,
         "y": 49.0,
@@ -86,7 +77,7 @@
         "text": "있습니다. 더 긴 털실은 무슨 색인지 알아보려고 합니다. 물음에 답하세요.",
         "style_role": "question",
         "x": 30.0,
-        "y": 87.0,
+        "y": 102.0,
         "font_size": 28,
         "fill": "#111111"
       }
@@ -99,488 +90,403 @@
         "text": "(1) 수직선을 보고, 더 큰 수를 선택해 보세요.",
         "style_role": "question",
         "x": 30.0,
-        "y": 137.0,
+        "y": 152.0,
         "font_size": 28,
         "fill": "#111111"
       }
     },
     {
-      "id": "slot.len1.label",
+      "id": "slot.math.fraction.num",
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "9/7 m",
-        "style_role": "label",
-        "x": 147.91995239257812,
-        "y": 285.8400573730469,
+        "text": "9",
+        "style_role": "body",
+        "x": 330.0,
+        "y": 25.0,
         "font_size": 30,
-        "fill": "#111111"
+        "anchor": "middle",
+        "fill": "#222222"
       }
     },
     {
-      "id": "slot.len1.axis",
+      "id": "slot.math.fraction.bar",
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 254.0,
-        "y1": 276.0,
-        "x2": 718.0,
-        "y2": 276.0,
-        "stroke": "#111111",
-        "stroke_width": 2.0
+        "x1": 310.0,
+        "y1": 40.0,
+        "x2": 350.0,
+        "y2": 40.0,
+        "stroke": "#222222",
+        "stroke_width": 2.2
       }
     },
     {
-      "id": "slot.len1.grid0",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 254.0,
-        "y1": 267.0,
-        "x2": 254.0,
-        "y2": 285.0,
-        "stroke": "#111111",
-        "stroke_width": 2.0
-      }
-    },
-    {
-      "id": "slot.len1.grid1",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 300.4,
-        "y1": 269.0,
-        "x2": 300.4,
-        "y2": 283.0,
-        "stroke": "#111111",
-        "stroke_width": 2.0
-      }
-    },
-    {
-      "id": "slot.len1.grid2",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 346.8,
-        "y1": 269.0,
-        "x2": 346.8,
-        "y2": 283.0,
-        "stroke": "#111111",
-        "stroke_width": 2.0
-      }
-    },
-    {
-      "id": "slot.len1.grid3",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 393.2,
-        "y1": 269.0,
-        "x2": 393.2,
-        "y2": 283.0,
-        "stroke": "#111111",
-        "stroke_width": 2.0
-      }
-    },
-    {
-      "id": "slot.len1.grid4",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 439.6,
-        "y1": 269.0,
-        "x2": 439.6,
-        "y2": 283.0,
-        "stroke": "#111111",
-        "stroke_width": 2.0
-      }
-    },
-    {
-      "id": "slot.len1.grid5",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 486.0,
-        "y1": 267.0,
-        "x2": 486.0,
-        "y2": 285.0,
-        "stroke": "#111111",
-        "stroke_width": 2.0
-      }
-    },
-    {
-      "id": "slot.len1.grid6",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 532.4,
-        "y1": 269.0,
-        "x2": 532.4,
-        "y2": 283.0,
-        "stroke": "#111111",
-        "stroke_width": 2.0
-      }
-    },
-    {
-      "id": "slot.len1.grid7",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 578.8,
-        "y1": 269.0,
-        "x2": 578.8,
-        "y2": 283.0,
-        "stroke": "#111111",
-        "stroke_width": 2.0
-      }
-    },
-    {
-      "id": "slot.len1.grid8",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 625.2,
-        "y1": 269.0,
-        "x2": 625.2,
-        "y2": 283.0,
-        "stroke": "#111111",
-        "stroke_width": 2.0
-      }
-    },
-    {
-      "id": "slot.len1.grid9",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 671.6,
-        "y1": 269.0,
-        "x2": 671.6,
-        "y2": 283.0,
-        "stroke": "#111111",
-        "stroke_width": 2.0
-      }
-    },
-    {
-      "id": "slot.len1.grid10",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 718.0,
-        "y1": 267.0,
-        "x2": 718.0,
-        "y2": 285.0,
-        "stroke": "#111111",
-        "stroke_width": 2.0
-      }
-    },
-    {
-      "id": "slot.len1.blue",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 254.0,
-        "y1": 276.0,
-        "x2": 556.0,
-        "y2": 276.0,
-        "stroke": "#111111",
-        "stroke_width": 2.0
-      }
-    },
-    {
-      "id": "slot.len1.zero",
+      "id": "slot.math.fraction.den",
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "0",
-        "style_role": "label",
-        "x": 248.0,
-        "y": 310.0,
-        "font_size": 28,
-        "fill": "#111111"
+        "text": "7",
+        "style_role": "body",
+        "x": 330.0,
+        "y": 65.0,
+        "font_size": 30,
+        "anchor": "middle",
+        "fill": "#222222"
       }
     },
     {
-      "id": "slot.len1.one",
+      "id": "slot.math.fraction_1.num",
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "1",
-        "style_role": "label",
-        "x": 480.0,
-        "y": 310.0,
-        "font_size": 28,
-        "fill": "#111111"
+        "text": "9",
+        "style_role": "body",
+        "x": 725.0,
+        "y": 220.0,
+        "font_size": 30,
+        "anchor": "middle",
+        "fill": "#222222"
       }
     },
     {
-      "id": "slot.len1.two",
-      "kind": "text",
+      "id": "slot.math.fraction_1.bar",
+      "kind": "line",
       "prompt": "",
       "content": {
-        "text": "2(m)",
-        "style_role": "label",
-        "x": 704.0,
-        "y": 310.0,
-        "font_size": 28,
-        "fill": "#111111"
+        "x1": 705.0,
+        "y1": 235.0,
+        "x2": 745.0,
+        "y2": 235.0,
+        "stroke": "#222222",
+        "stroke_width": 2.2
       }
     },
     {
-      "id": "slot.len1.seven_over_seven",
+      "id": "slot.math.fraction_1.den",
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "7/7",
-        "style_role": "label",
-        "x": 470.0,
+        "text": "7",
+        "style_role": "body",
+        "x": 725.0,
+        "y": 260.0,
+        "font_size": 30,
+        "anchor": "middle",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.math.fraction_2.num",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "9",
+        "style_role": "body",
+        "x": 885.0,
+        "y": 175.0,
+        "font_size": 30,
+        "anchor": "middle",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.math.fraction_2.bar",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 865.0,
+        "y1": 190.0,
+        "x2": 905.0,
+        "y2": 190.0,
+        "stroke": "#222222",
+        "stroke_width": 2.2
+      }
+    },
+    {
+      "id": "slot.math.fraction_2.den",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "7",
+        "style_role": "body",
+        "x": 885.0,
+        "y": 215.0,
+        "font_size": 30,
+        "anchor": "middle",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.math.fraction_3.num",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "7",
+        "style_role": "body",
+        "x": 840.0,
+        "y": 215.0,
+        "font_size": 30,
+        "anchor": "middle",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.math.fraction_3.bar",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 820.0,
+        "y1": 230.0,
+        "x2": 860.0,
+        "y2": 230.0,
+        "stroke": "#222222",
+        "stroke_width": 2.2
+      }
+    },
+    {
+      "id": "slot.math.fraction_3.den",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "7",
+        "style_role": "body",
+        "x": 840.0,
         "y": 255.0,
-        "font_size": 28,
-        "fill": "#111111"
+        "font_size": 30,
+        "anchor": "middle",
+        "fill": "#222222"
       }
     },
     {
-      "id": "slot.len2.label",
+      "id": "slot.math.fraction_4.num",
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "1 3/7 m",
-        "style_role": "label",
-        "x": 136.0,
-        "y": 391.0,
-        "font_size": 28,
-        "fill": "#111111"
+        "text": "7",
+        "style_role": "body",
+        "x": 800.0,
+        "y": 285.0,
+        "font_size": 30,
+        "anchor": "middle",
+        "fill": "#222222"
       }
     },
     {
-      "id": "slot.len2.axis",
+      "id": "slot.math.fraction_4.bar",
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 254.0,
-        "y1": 376.0,
-        "x2": 718.0,
-        "y2": 376.0,
-        "stroke": "#111111",
-        "stroke_width": 2.0
+        "x1": 780.0,
+        "y1": 300.0,
+        "x2": 820.0,
+        "y2": 300.0,
+        "stroke": "#222222",
+        "stroke_width": 2.2
       }
     },
     {
-      "id": "slot.len2.grid0",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 254.0,
-        "y1": 367.0,
-        "x2": 254.0,
-        "y2": 385.0,
-        "stroke": "#111111",
-        "stroke_width": 2.0
-      }
-    },
-    {
-      "id": "slot.len2.grid1",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 300.4,
-        "y1": 369.0,
-        "x2": 300.4,
-        "y2": 383.0,
-        "stroke": "#111111",
-        "stroke_width": 2.0
-      }
-    },
-    {
-      "id": "slot.len2.grid2",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 346.8,
-        "y1": 369.0,
-        "x2": 346.8,
-        "y2": 383.0,
-        "stroke": "#111111",
-        "stroke_width": 2.0
-      }
-    },
-    {
-      "id": "slot.len2.grid3",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 393.2,
-        "y1": 369.0,
-        "x2": 393.2,
-        "y2": 383.0,
-        "stroke": "#111111",
-        "stroke_width": 2.0
-      }
-    },
-    {
-      "id": "slot.len2.grid4",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 439.6,
-        "y1": 369.0,
-        "x2": 439.6,
-        "y2": 383.0,
-        "stroke": "#111111",
-        "stroke_width": 2.0
-      }
-    },
-    {
-      "id": "slot.len2.grid5",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 486.0,
-        "y1": 367.0,
-        "x2": 486.0,
-        "y2": 385.0,
-        "stroke": "#111111",
-        "stroke_width": 2.0
-      }
-    },
-    {
-      "id": "slot.len2.grid6",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 532.4,
-        "y1": 369.0,
-        "x2": 532.4,
-        "y2": 383.0,
-        "stroke": "#111111",
-        "stroke_width": 2.0
-      }
-    },
-    {
-      "id": "slot.len2.grid7",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 578.8,
-        "y1": 369.0,
-        "x2": 578.8,
-        "y2": 383.0,
-        "stroke": "#111111",
-        "stroke_width": 2.0
-      }
-    },
-    {
-      "id": "slot.len2.grid8",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 625.2,
-        "y1": 369.0,
-        "x2": 625.2,
-        "y2": 383.0,
-        "stroke": "#111111",
-        "stroke_width": 2.0
-      }
-    },
-    {
-      "id": "slot.len2.grid9",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 671.6,
-        "y1": 369.0,
-        "x2": 671.6,
-        "y2": 383.0,
-        "stroke": "#111111",
-        "stroke_width": 2.0
-      }
-    },
-    {
-      "id": "slot.len2.grid10",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 718.0,
-        "y1": 367.0,
-        "x2": 718.0,
-        "y2": 385.0,
-        "stroke": "#111111",
-        "stroke_width": 2.0
-      }
-    },
-    {
-      "id": "slot.len2.blue",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 254.0,
-        "y1": 376.0,
-        "x2": 581.0,
-        "y2": 376.0,
-        "stroke": "#111111",
-        "stroke_width": 2.0
-      }
-    },
-    {
-      "id": "slot.len2.zero",
+      "id": "slot.math.fraction_4.den",
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "0",
-        "style_role": "label",
-        "x": 248.0,
-        "y": 410.0,
-        "font_size": 28,
-        "fill": "#111111"
+        "text": "7",
+        "style_role": "body",
+        "x": 800.0,
+        "y": 325.0,
+        "font_size": 30,
+        "anchor": "middle",
+        "fill": "#222222"
       }
     },
     {
-      "id": "slot.len2.one",
+      "id": "slot.math.mixed_fraction.whole",
       "kind": "text",
       "prompt": "",
       "content": {
         "text": "1",
-        "style_role": "label",
-        "x": 480.0,
-        "y": 410.0,
-        "font_size": 28,
-        "fill": "#111111"
+        "style_role": "body",
+        "x": 720.0,
+        "y": 50.0,
+        "font_size": 30,
+        "anchor": "middle",
+        "fill": "#222222"
       }
     },
     {
-      "id": "slot.len2.two",
+      "id": "slot.math.mixed_fraction.num",
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "2(m)",
-        "style_role": "label",
-        "x": 704.0,
-        "y": 410.0,
-        "font_size": 28,
-        "fill": "#111111"
+        "text": "3",
+        "style_role": "body",
+        "x": 760.0,
+        "y": 25.0,
+        "font_size": 30,
+        "anchor": "middle",
+        "fill": "#222222"
       }
     },
     {
-      "id": "slot.len2.seven_over_seven",
+      "id": "slot.math.mixed_fraction.bar",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 740.0,
+        "y1": 40.0,
+        "x2": 780.0,
+        "y2": 40.0,
+        "stroke": "#222222",
+        "stroke_width": 2.2
+      }
+    },
+    {
+      "id": "slot.math.mixed_fraction.den",
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "7/7",
-        "style_role": "label",
-        "x": 470.0,
+        "text": "7",
+        "style_role": "body",
+        "x": 760.0,
+        "y": 65.0,
+        "font_size": 30,
+        "anchor": "middle",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.math.mixed_fraction_1.whole",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "1",
+        "style_role": "body",
+        "x": 815.0,
+        "y": 435.0,
+        "font_size": 30,
+        "anchor": "middle",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.math.mixed_fraction_1.num",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "3",
+        "style_role": "body",
+        "x": 855.0,
+        "y": 410.0,
+        "font_size": 30,
+        "anchor": "middle",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.math.mixed_fraction_1.bar",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 835.0,
+        "y1": 425.0,
+        "x2": 875.0,
+        "y2": 425.0,
+        "stroke": "#222222",
+        "stroke_width": 2.2
+      }
+    },
+    {
+      "id": "slot.math.mixed_fraction_1.den",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "7",
+        "style_role": "body",
+        "x": 855.0,
+        "y": 450.0,
+        "font_size": 30,
+        "anchor": "middle",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.math.mixed_fraction_2.whole",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "1",
+        "style_role": "body",
+        "x": 815.0,
         "y": 355.0,
+        "font_size": 30,
+        "anchor": "middle",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.math.mixed_fraction_2.num",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "3",
+        "style_role": "body",
+        "x": 855.0,
+        "y": 330.0,
+        "font_size": 30,
+        "anchor": "middle",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.math.mixed_fraction_2.bar",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 835.0,
+        "y1": 345.0,
+        "x2": 875.0,
+        "y2": 345.0,
+        "stroke": "#222222",
+        "stroke_width": 2.2
+      }
+    },
+    {
+      "id": "slot.math.mixed_fraction_2.den",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "7",
+        "style_role": "body",
+        "x": 855.0,
+        "y": 370.0,
+        "font_size": 30,
+        "anchor": "middle",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.q1.copy1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "m 가지고 있고 보라색 털실을",
+        "style_role": "body",
+        "x": 357.0,
+        "y": 49.0,
         "font_size": 28,
         "fill": "#111111"
       }
     },
     {
-      "id": "slot.compare",
+      "id": "slot.q1.copy1.copy3",
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "( 9/7 , 1 3/7 )",
-        "style_role": "label",
-        "x": 386.0,
-        "y": 457.0,
+        "text": "m 가지고",
+        "style_role": "body",
+        "x": 787.0,
+        "y": 49.0,
         "font_size": 28,
         "fill": "#111111"
       }
@@ -591,46 +497,38 @@
   "diagrams": [],
   "reading_order": [
     "region.top",
+    "slot.math.fraction.bar",
+    "slot.math.fraction_1.bar",
+    "slot.math.fraction_2.bar",
+    "slot.math.fraction_3.bar",
+    "slot.math.fraction_4.bar",
+    "slot.math.mixed_fraction.bar",
+    "slot.math.mixed_fraction_1.bar",
+    "slot.math.mixed_fraction_2.bar",
     "slot.q1",
     "slot.q2",
     "slot.q3",
-    "region.diagram",
-    "slot.len1.axis",
-    "slot.len1.grid0",
-    "slot.len1.grid1",
-    "slot.len1.grid2",
-    "slot.len1.grid3",
-    "slot.len1.grid4",
-    "slot.len1.grid5",
-    "slot.len1.grid6",
-    "slot.len1.grid7",
-    "slot.len1.grid8",
-    "slot.len1.grid9",
-    "slot.len1.grid10",
-    "slot.len1.blue",
-    "slot.len2.axis",
-    "slot.len2.grid0",
-    "slot.len2.grid1",
-    "slot.len2.grid2",
-    "slot.len2.grid3",
-    "slot.len2.grid4",
-    "slot.len2.grid5",
-    "slot.len2.grid6",
-    "slot.len2.grid7",
-    "slot.len2.grid8",
-    "slot.len2.grid9",
-    "slot.len2.grid10",
-    "slot.len2.blue",
-    "slot.len1.label",
-    "slot.len1.zero",
-    "slot.len1.one",
-    "slot.len1.two",
-    "slot.len1.seven_over_seven",
-    "slot.len2.label",
-    "slot.len2.zero",
-    "slot.len2.one",
-    "slot.len2.two",
-    "slot.len2.seven_over_seven",
-    "slot.compare"
+    "slot.math.fraction.num",
+    "slot.math.fraction.den",
+    "slot.math.fraction_1.num",
+    "slot.math.fraction_1.den",
+    "slot.math.fraction_2.num",
+    "slot.math.fraction_2.den",
+    "slot.math.fraction_3.num",
+    "slot.math.fraction_3.den",
+    "slot.math.fraction_4.num",
+    "slot.math.fraction_4.den",
+    "slot.math.mixed_fraction.whole",
+    "slot.math.mixed_fraction.num",
+    "slot.math.mixed_fraction.den",
+    "slot.math.mixed_fraction_1.whole",
+    "slot.math.mixed_fraction_1.num",
+    "slot.math.mixed_fraction_1.den",
+    "slot.math.mixed_fraction_2.whole",
+    "slot.math.mixed_fraction_2.num",
+    "slot.math.mixed_fraction_2.den",
+    "slot.q1.copy1",
+    "slot.q1.copy1.copy3",
+    "region.diagram"
   ]
 }

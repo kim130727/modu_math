@@ -4,30 +4,51 @@
   "metadata": {
     "title": "두 대분수 비교",
     "tags": [],
-    "question": "두 대분수의 크기를 그림을 보고 비교하는 문제",
+    "instruction": "알맞은 비교 부호를 선택한다.",
+    "question": "대분수의 크기를 그림을 보고 비교하는 문제",
     "required_layout_ids": [
-      "slot.bar1a",
-      "slot.bar1b",
-      "slot.bar1c",
-      "slot.bar2a",
-      "slot.bar2b",
-      "slot.bar2c",
-      "slot.grid1a1",
-      "slot.grid1a2",
-      "slot.grid1b1",
-      "slot.grid1b2",
-      "slot.grid1c1",
-      "slot.grid1c2",
-      "slot.grid2a1",
-      "slot.grid2a2",
-      "slot.grid2b1",
-      "slot.grid2b2",
-      "slot.grid2c1",
-      "slot.grid2c2"
+      "slot.math.fraction.bar",
+      "slot.math.mixed_fraction.bar",
+      "slot.math.mixed_fraction_1.bar",
+      "slot.math.mixed_fraction_2.bar",
+      "slot.math.mixed_fraction_3.bar",
+      "slot.math.mixed_fraction_4.bar",
+      "slot.math.mixed_fraction_5.bar",
+      "slot.math.mixed_fraction_6.bar",
+      "slot.math.mixed_fraction_7.bar",
+      "slot.figure.bar_model_1.bar1.shade1",
+      "slot.figure.bar_model_1.bar1.shade2",
+      "slot.figure.bar_model_1.bar1.shade3",
+      "slot.figure.bar_model_1.bar1.outline",
+      "slot.figure.bar_model_1.bar1.div1",
+      "slot.figure.bar_model_1.bar1.div2",
+      "slot.figure.bar_model_1.bar2.shade1",
+      "slot.figure.bar_model_1.bar2.shade2",
+      "slot.figure.bar_model_1.bar2.shade3",
+      "slot.figure.bar_model_1.bar2.outline",
+      "slot.figure.bar_model_1.bar2.div1",
+      "slot.figure.bar_model_1.bar2.div2",
+      "slot.figure.bar_model_1.bar3.shade1",
+      "slot.figure.bar_model_1.bar3.outline",
+      "slot.figure.bar_model_1.bar3.div1",
+      "slot.figure.bar_model_1.bar3.div2",
+      "slot.figure.bar_model_1.bar4.shade1",
+      "slot.figure.bar_model_1.bar4.shade2",
+      "slot.figure.bar_model_1.bar4.shade3",
+      "slot.figure.bar_model_1.bar4.outline",
+      "slot.figure.bar_model_1.bar4.div1",
+      "slot.figure.bar_model_1.bar4.div2",
+      "slot.figure.bar_model_1.bar5.shade1",
+      "slot.figure.bar_model_1.bar5.shade2",
+      "slot.figure.bar_model_1.bar5.outline",
+      "slot.figure.bar_model_1.bar5.div1",
+      "slot.figure.bar_model_1.bar5.div2",
+      "slot.figure.bar_model_1.bar6.outline",
+      "slot.figure.bar_model_1.bar6.div1",
+      "slot.figure.bar_model_1.bar6.div2"
     ],
     "extraction_confidence": 1.0,
-    "language": "ko",
-    "instruction": "알맞은 비교 부호를 선택한다."
+    "language": "ko"
   },
   "domain": {
     "objects": [
@@ -62,7 +83,7 @@
       },
       "plan": {
         "method": "visual_compare",
-        "description": "그림의 색칠된 길이를 비교하여 더 큰 분수를 고른다."
+        "description": "색칠된 막대의 길이를 비교하여 큰 대분수를 고른다."
       },
       "execute": {
         "expected_operations": [
@@ -84,7 +105,7 @@
     "confidence": 1.0,
     "target": {
       "type": "comparison_symbol",
-      "description": "두 대분수 사이의 비교 부호"
+      "description": "대분수 사이의 비교 부호"
     },
     "value": ">",
     "unit": ""

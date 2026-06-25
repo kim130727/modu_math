@@ -773,6 +773,8 @@
     <symbol id="icon-textbox" viewBox="0 0 24 24"><path d="M4 6h16v12H4z"/><path d="M8 9h8"/><path d="M12 9v7"/><path d="M9 16h6"/></symbol>
     <symbol id="icon-image" viewBox="0 0 24 24"><path d="M4 5h16v14H4z"/><circle cx="8" cy="9" r="1.5"/><path d="M4 16l5-5 4 4 2-2 5 5"/></symbol>
     <symbol id="icon-table" viewBox="0 0 24 24"><path d="M4 5h16v14H4z"/><path d="M4 10h16"/><path d="M4 15h16"/><path d="M10 5v14"/><path d="M16 5v14"/></symbol>
+    <symbol id="icon-bar-model" viewBox="0 0 24 24"><path d="M4 7h16v4H4z"/><path d="M4 14h16v4H4z"/><path d="M10 7v4"/><path d="M15 7v4"/><path d="M10 14v4"/><path d="M15 14v4"/></symbol>
+    <symbol id="icon-tick-bar" viewBox="0 0 24 24"><path d="M4 8h16"/><path d="M4 16h16"/><path d="M4 5v6"/><path d="M12 5v6"/><path d="M20 5v6"/><path d="M4 13v6"/><path d="M12 13v6"/><path d="M20 13v6"/><path d="M4 8h9"/><path d="M4 16h12"/></symbol>
     <symbol id="icon-graph-paper" viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="M8 4v16"/><path d="M12 4v16"/><path d="M16 4v16"/><path d="M4 8h16"/><path d="M4 12h16"/><path d="M4 16h16"/></symbol>
     <symbol id="icon-fraction" viewBox="0 0 24 24"><path d="M8 6h8"/><path d="M6 12h12"/><path d="M8 18h8"/></symbol>
     <symbol id="icon-mixed-fraction" viewBox="0 0 24 24"><path d="M4 8h3"/><path d="M4 16h3"/><path d="M12 6h8"/><path d="M10 12h12"/><path d="M12 18h8"/></symbol>
@@ -800,6 +802,8 @@
             <button id="insertTextBoxBtn" class="icon-btn" title="텍스트 삽입" aria-label="텍스트 삽입"><svg><use href="#icon-textbox"></use></svg></button>
             <button id="insertImageBtn" class="icon-btn" title="그림 삽입" aria-label="그림 삽입"><svg><use href="#icon-image"></use></svg></button>
             <button id="insertTableBtn" class="icon-btn" title="표 삽입" aria-label="표 삽입"><svg><use href="#icon-table"></use></svg></button>
+            <button id="insertBarModelBtn" class="icon-btn" title="막대 모델 삽입" aria-label="막대 모델 삽입"><svg><use href="#icon-bar-model"></use></svg></button>
+            <button id="insertTickBarBtn" class="icon-btn" title="눈금 막대 삽입" aria-label="눈금 막대 삽입"><svg><use href="#icon-tick-bar"></use></svg></button>
             <button id="insertGraphPaperBtn" class="icon-btn" title="모눈종이 삽입" aria-label="모눈종이 삽입"><svg><use href="#icon-graph-paper"></use></svg></button>
             <button id="insertFractionBtn" class="icon-btn" title="분수 삽입" aria-label="분수 삽입"><svg><use href="#icon-fraction"></use></svg></button>
             <button id="insertMixedFractionBtn" class="icon-btn" title="대분수 삽입" aria-label="대분수 삽입"><svg><use href="#icon-mixed-fraction"></use></svg></button>
@@ -884,6 +888,52 @@
                 <div class="table-dialog-actions">
                   <button id="graphPaperConfirmBtn" type="button" class="primary">확인</button>
                   <button id="graphPaperCancelBtn" type="button">취소</button>
+                </div>
+              </div>
+            </div>
+            <div id="barModelInsertDialog" class="table-dialog" role="dialog" aria-modal="true" aria-labelledby="barModelInsertTitle" hidden>
+              <div class="table-dialog-panel">
+                <div class="table-dialog-title">
+                  <span id="barModelInsertTitle">막대 모델 삽입</span>
+                  <span>?</span>
+                  <button id="barModelCancelXBtn" type="button" aria-label="닫기">&times;</button>
+                </div>
+                <div class="table-dialog-fields">
+                  <label>막대 수:<input id="barModelBarsInput" type="number" min="1" max="8" value="2"></label>
+                  <label>칸 수:<input id="barModelCellsInput" type="number" min="1" max="20" value="3"></label>
+                  <label>색칠 칸:<input id="barModelShadedInput" type="text" value="2,2" inputmode="text"></label>
+                  <label>색칠색:<input id="barModelFillInput" type="text" value="#f3d7ea" inputmode="text"></label>
+                  <label>테두리색:<input id="barModelStrokeInput" type="text" value="#666666" inputmode="text"></label>
+                  <label>칸 점선:<input id="barModelDashedInput" type="checkbox" checked></label>
+                </div>
+                <div class="table-dialog-actions">
+                  <button id="barModelConfirmBtn" type="button" class="primary">확인</button>
+                  <button id="barModelCancelBtn" type="button">취소</button>
+                </div>
+              </div>
+            </div>
+            <div id="tickBarInsertDialog" class="table-dialog" role="dialog" aria-modal="true" aria-labelledby="tickBarInsertTitle" hidden>
+              <div class="table-dialog-panel">
+                <div class="table-dialog-title">
+                  <span id="tickBarInsertTitle">눈금 막대 삽입</span>
+                  <span>?</span>
+                  <button id="tickBarCancelXBtn" type="button" aria-label="닫기">&times;</button>
+                </div>
+                <div class="table-dialog-fields">
+                  <label>막대 수:<input id="tickBarRowsInput" type="number" min="1" max="8" value="2"></label>
+                  <label>전체 눈금:<input id="tickBarTotalInput" type="number" min="1" max="40" value="14"></label>
+                  <label>색칠 눈금:<input id="tickBarFilledInput" type="text" value="9,10" inputmode="text"></label>
+                  <label>큰 눈금:<input id="tickBarMajorInput" type="number" min="0" max="40" value="7"></label>
+                  <label>라벨:<input id="tickBarLabelsInput" type="text" value="9/7 m,1 3/7 m" inputmode="text"></label>
+                  <label>단위:<input id="tickBarUnitInput" type="text" value="m" inputmode="text"></label>
+                  <label>눈금 라벨:<input id="tickBarScaleLabelsInput" type="checkbox" checked></label>
+                  <label>분할 라벨:<input id="tickBarFractionLabelInput" type="checkbox" checked></label>
+                  <label>눈금색:<input id="tickBarAxisColorInput" type="color" value="#111111"></label>
+                  <label>색칠색:<input id="tickBarFillColorInput" type="color" value="#2563eb"></label>
+                </div>
+                <div class="table-dialog-actions">
+                  <button id="tickBarConfirmBtn" type="button" class="primary">확인</button>
+                  <button id="tickBarCancelBtn" type="button">취소</button>
                 </div>
               </div>
             </div>
@@ -1051,6 +1101,7 @@
     let pendingDrawShape = null;
     let drawState = null;
     let inlineTextEditState = null;
+    let dslSlotIdCache = { layoutText: null, dsl: null, ids: null };
     let snapEnabled = true;
     let collapsedProblemFolders = new Set();
     const SNAP_STEP = 5;
@@ -1688,8 +1739,12 @@
     }
 
     function extractDslSlotIds() {
-      const ids = new Set();
       const layoutText = document.getElementById("layoutView")?.value || "";
+      const dsl = document.getElementById("dslEditor").value || "";
+      if (dslSlotIdCache.ids && dslSlotIdCache.layoutText === layoutText && dslSlotIdCache.dsl === dsl) {
+        return dslSlotIdCache.ids;
+      }
+      const ids = new Set();
       if (layoutText.trim()) {
         try {
           const layout = JSON.parse(layoutText);
@@ -1702,12 +1757,12 @@
         }
       }
 
-      const dsl = document.getElementById("dslEditor").value || "";
       const re = /\bid\s*=\s*["']([^"']+)["']/g;
       let m = null;
       while ((m = re.exec(dsl)) !== null) {
         ids.add(m[1]);
       }
+      dslSlotIdCache = { layoutText, dsl, ids };
       return ids;
     }
 
@@ -2016,6 +2071,252 @@
       return { base, patches };
     }
 
+    function configList(value) {
+      return String(value ?? "").split(",").map((item) => item.trim()).filter(Boolean);
+    }
+
+    function configListValue(items, index, fallback) {
+      if (!Array.isArray(items) || !items.length) return fallback;
+      return items[Math.min(index, items.length - 1)] || fallback;
+    }
+
+    function clampInt(value, min, max, fallback) {
+      const num = Number(value);
+      const clean = Number.isFinite(num) ? Math.trunc(num) : fallback;
+      return Math.max(min, Math.min(max, clean));
+    }
+
+    function barModelPatches({
+      bars = 2,
+      cells = 3,
+      shadedCounts = "2,2",
+      fillColors = "#f3d7ea",
+      stroke = "#666666",
+      dashed = true,
+    } = {}) {
+      const cleanBars = clampInt(bars, 1, 8, 2);
+      const cleanCells = clampInt(cells, 1, 20, 3);
+      const shadedList = configList(shadedCounts);
+      const colorList = configList(fillColors);
+      const cellWidth = 58;
+      const barHeight = 40;
+      const barGap = 54;
+      const width = cleanCells * cellWidth;
+      const height = cleanBars * barHeight + (cleanBars - 1) * barGap;
+      const { x, y } = defaultInsertOrigin(width, height);
+      const base = uniqueFigureBase("bar_model");
+      const regionId = firstUsableRegionId();
+      const withRegion = (value) => regionId ? { ...value, region_id: regionId } : value;
+      const strokeColor = String(stroke || "#666666").trim() || "#666666";
+      const patches = [];
+
+      for (let barIndex = 0; barIndex < cleanBars; barIndex += 1) {
+        const barY = snapValue(y + barIndex * (barHeight + barGap));
+        const shaded = clampInt(configListValue(shadedList, barIndex, "0"), 0, cleanCells, 0);
+        const fill = String(configListValue(colorList, barIndex, "#f3d7ea") || "#f3d7ea").trim() || "#f3d7ea";
+        for (let cellIndex = 0; cellIndex < shaded; cellIndex += 1) {
+          patches.push({
+            target: `${base}.bar${barIndex + 1}.shade${cellIndex + 1}`,
+            op: "add",
+            value: withRegion({
+              kind: "rect",
+              content: {
+                x: snapValue(x + cellIndex * cellWidth),
+                y: barY,
+                width: cellWidth,
+                height: barHeight,
+                fill,
+                stroke: "none",
+                stroke_width: 0,
+              },
+            }),
+          });
+        }
+        patches.push({
+          target: `${base}.bar${barIndex + 1}.outline`,
+          op: "add",
+          value: withRegion({
+            kind: "rect",
+            content: {
+              x,
+              y: barY,
+              width,
+              height: barHeight,
+              fill: "none",
+              stroke: strokeColor,
+              stroke_width: 1.5,
+            },
+          }),
+        });
+        for (let cellIndex = 1; cellIndex < cleanCells; cellIndex += 1) {
+          const px = snapValue(x + cellIndex * cellWidth);
+          const content = {
+            x1: px,
+            y1: barY,
+            x2: px,
+            y2: snapValue(barY + barHeight),
+            stroke: strokeColor,
+            stroke_width: 1,
+          };
+          if (dashed) content.stroke_dasharray = "5 3";
+          patches.push({
+            target: `${base}.bar${barIndex + 1}.div${cellIndex}`,
+            op: "add",
+            value: withRegion({ kind: "line", content }),
+          });
+        }
+      }
+
+      return { base, patches };
+    }
+
+    function tickBarPatches({
+      rows = 2,
+      totalTicks = 14,
+      filledTicks = "9,10",
+      majorEvery = 7,
+      labels = "9/7 m,1 3/7 m",
+      unit = "m",
+      showScaleLabels = true,
+      showFractionLabel = true,
+      axisColor = "#111111",
+      fillColor = "#2563eb",
+    } = {}) {
+      const cleanRows = clampInt(rows, 1, 8, 2);
+      const cleanTotal = clampInt(totalTicks, 1, 40, 14);
+      const cleanMajor = clampInt(majorEvery, 0, cleanTotal, 7);
+      const filledList = configList(filledTicks);
+      const labelList = configList(labels);
+      const width = 464;
+      const rowGap = 96;
+      const labelWidth = 118;
+      const height = Math.max(70, (cleanRows - 1) * rowGap + 82);
+      const { x, y } = defaultInsertOrigin(labelWidth + width, height);
+      const axisX = snapValue(x + labelWidth);
+      const base = uniqueFigureBase("tick_bar");
+      const regionId = firstUsableRegionId();
+      const withRegion = (value) => regionId ? { ...value, region_id: regionId } : value;
+      const patches = [];
+      const stroke = String(axisColor || "#111111").trim() || "#111111";
+      const fill = String(fillColor || "#2563eb").trim() || "#2563eb";
+      const step = width / cleanTotal;
+      const unitText = String(unit || "").trim();
+
+      for (let rowIndex = 0; rowIndex < cleanRows; rowIndex += 1) {
+        const rowBase = `${base}.row${rowIndex + 1}`;
+        const axisY = snapValue(y + 30 + rowIndex * rowGap);
+        const filled = clampInt(configListValue(filledList, rowIndex, "0"), 0, cleanTotal, 0);
+        const rowLabel = String(configListValue(labelList, rowIndex, "") || "").trim();
+        if (rowLabel) {
+          patches.push({
+            target: `${rowBase}.label`,
+            op: "add",
+            value: withRegion({
+              kind: "text",
+              content: {
+                text: rowLabel,
+                x: snapValue(x),
+                y: snapValue(axisY + 9),
+                font_size: 28,
+                style_role: "label",
+                fill: stroke,
+              },
+            }),
+          });
+        }
+        if (filled > 0) {
+          patches.push({
+            target: `${rowBase}.fill`,
+            op: "add",
+            value: withRegion({
+              kind: "line",
+              content: {
+                x1: axisX,
+                y1: axisY,
+                x2: snapValue(axisX + filled * step),
+                y2: axisY,
+                stroke: fill,
+                stroke_width: 8,
+              },
+            }),
+          });
+        }
+        patches.push({
+          target: `${rowBase}.axis`,
+          op: "add",
+          value: withRegion({
+            kind: "line",
+            content: {
+              x1: axisX,
+              y1: axisY,
+              x2: snapValue(axisX + width),
+              y2: axisY,
+              stroke,
+              stroke_width: 2,
+            },
+          }),
+        });
+        for (let tick = 0; tick <= cleanTotal; tick += 1) {
+          const isMajor = cleanMajor > 0 && tick % cleanMajor === 0;
+          const tickHeight = isMajor ? 18 : 14;
+          const px = snapValue(axisX + tick * step);
+          patches.push({
+            target: `${rowBase}.tick${tick}`,
+            op: "add",
+            value: withRegion({
+              kind: "line",
+              content: {
+                x1: px,
+                y1: snapValue(axisY - tickHeight / 2),
+                x2: px,
+                y2: snapValue(axisY + tickHeight / 2),
+                stroke,
+                stroke_width: 2,
+              },
+            }),
+          });
+          if (isMajor && showScaleLabels) {
+            const value = cleanMajor > 0 ? tick / cleanMajor : tick;
+            const label = tick === cleanTotal && unitText ? `${value}(${unitText})` : String(value);
+            patches.push({
+              target: `${rowBase}.label${tick}`,
+              op: "add",
+              value: withRegion({
+                kind: "text",
+                content: {
+                  text: label,
+                  x: snapValue(px - (tick === 0 ? 6 : tick === cleanTotal ? 14 : 8)),
+                  y: snapValue(axisY + 34),
+                  font_size: 26,
+                  style_role: "label",
+                  fill: stroke,
+                },
+              }),
+            });
+          }
+        }
+        if (showFractionLabel && cleanMajor > 0 && cleanMajor < cleanTotal) {
+          patches.push({
+            target: `${rowBase}.major_fraction`,
+            op: "add",
+            value: withRegion({
+              kind: "text",
+              content: {
+                text: `${cleanMajor}/${cleanMajor}`,
+                x: snapValue(axisX + cleanMajor * step - 18),
+                y: snapValue(axisY - 22),
+                font_size: 24,
+                style_role: "label",
+                fill: stroke,
+              },
+            }),
+          });
+        }
+      }
+
+      return { base, patches };
+    }
+
     function cleanMathText(value, fallback) {
       const text = String(value ?? "").trim();
       return text || fallback;
@@ -2120,6 +2421,20 @@
       const { base, patches } = graphPaperPatches(rows, cols);
       await commitPatches(patches, `모눈종이 삽입 완료: ${cols}칸 x ${rows}칸`);
       restoreSelection([`${base}.v0`]);
+    }
+
+    async function insertBarModel(options) {
+      if (!currentProblemId) throw new Error("문제를 먼저 여세요.");
+      const { base, patches } = barModelPatches(options);
+      await commitPatches(patches, `막대 모델 삽입 완료: ${patches.length}개`);
+      restoreSelection([`${base}.bar1.outline`]);
+    }
+
+    async function insertTickBar(options) {
+      if (!currentProblemId) throw new Error("문제를 먼저 여세요.");
+      const { base, patches } = tickBarPatches(options);
+      await commitPatches(patches, `눈금 막대 삽입 완료: ${patches.length}개`);
+      restoreSelection([`${base}.row1.axis`]);
     }
 
     async function insertFractionExpression(options) {
@@ -2522,10 +2837,10 @@
     function draggableSlotElements(svg, prefix = null) {
       if (!svg) return [];
       const out = [];
-      for (const node of svg.querySelectorAll("[id]")) {
-        if (!isDraggableSlotElement(node)) continue;
+      const nodes = svg.__draggableSlotElements || Array.from(svg.querySelectorAll("[id]")).filter((node) => isDraggableSlotElement(node) && slotIdFromElement(node));
+      svg.__draggableSlotElements = nodes;
+      for (const node of nodes) {
         const sid = slotIdFromElement(node);
-        if (!sid) continue;
         if (prefix && !sid.startsWith(prefix)) continue;
         out.push(node);
       }
@@ -2595,6 +2910,10 @@
 
     function figureBaseFromSlotId(slotId) {
       if (!slotId) return null;
+      const barModel = slotId.match(/^(slot\.figure\.bar_model_\d+\.bar\d+)\./);
+      if (barModel) return barModel[1];
+      const tickBar = slotId.match(/^(slot\.figure\.tick_bar_\d+\.row\d+)\./);
+      if (tickBar) return tickBar[1];
       const m = slotId.match(/^(slot\.figure\.[^.]+)\./);
       return m ? m[1] : null;
     }
@@ -3094,6 +3413,14 @@
     }
 
     function matchingSlotElementAtPoint(svg, clientX, clientY) {
+      const seen = new Set();
+      for (const node of document.elementsFromPoint(clientX, clientY)) {
+        if (!(node instanceof SVGElement) || !svg.contains(node)) continue;
+        const slotTarget = node.__slotProxyTarget || findDraggableSlotAncestor(node);
+        if (!slotTarget || seen.has(slotTarget)) continue;
+        seen.add(slotTarget);
+        if (matchesPickMode(slotTarget)) return slotTarget;
+      }
       const point = getSvgPoint(svg, clientX, clientY);
       const nodes = draggableSlotElements(svg);
       const candidates = [];
@@ -3111,14 +3438,6 @@
       if (candidates.length) {
         candidates.sort((a, b) => a.distance - b.distance || a.priority - b.priority || a.area - b.area || b.z - a.z);
         return candidates[0].node;
-      }
-      const seen = new Set();
-      for (const node of document.elementsFromPoint(clientX, clientY)) {
-        if (!(node instanceof SVGElement) || !svg.contains(node)) continue;
-        const slotTarget = findDraggableSlotAncestor(node);
-        if (!slotTarget || seen.has(slotTarget)) continue;
-        seen.add(slotTarget);
-        if (matchesPickMode(slotTarget)) return slotTarget;
       }
       return null;
     }
@@ -4934,6 +5253,8 @@
       if (!svg) return null;
       const nodes = draggableSlotElements(svg);
       for (const node of nodes) {
+        const grouped = slotIdFromElement(node);
+        if (grouped === slotId) return node;
         const mapped = toDslSlotId(node.getAttribute("id"));
         if (mapped === slotId) return node;
       }
@@ -5521,6 +5842,11 @@
       function addStrokeHitProxy(el) {
         const tag = el.tagName.toLowerCase();
         if (!(tag === "line" || tag === "path" || tag === "polygon")) return false;
+        const sourceStrokeWidth = Number(el.getAttribute("stroke-width") || 1);
+        if (tag === "line" && sourceStrokeWidth >= 4) {
+          el.style.pointerEvents = "stroke";
+          return false;
+        }
         const proxy = document.createElementNS("http://www.w3.org/2000/svg", tag);
         const copyAttrs = tag === "line" ? ["x1", "y1", "x2", "y2", "transform"] :
           tag === "path" ? ["d", "transform"] :
@@ -5529,7 +5855,6 @@
           const value = el.getAttribute(name);
           if (value !== null) proxy.setAttribute(name, value);
         }
-        const sourceStrokeWidth = Number(el.getAttribute("stroke-width") || 1);
         proxy.setAttribute("fill", "none");
         proxy.setAttribute("stroke", "#000");
         proxy.setAttribute("stroke-opacity", "0.001");
@@ -5546,6 +5871,9 @@
       }
 
       function addHitProxies() {
+        // Delegated pointer handling plus bbox fallback below covers thin lines
+        // and text boxes without doubling the SVG DOM with per-slot proxies.
+        return;
         for (const el of slotElements) {
           if (addStrokeHitProxy(el)) continue;
           if (el.tagName.toLowerCase() !== "text") continue;
@@ -5590,21 +5918,17 @@
         hideShapeFormatMenu();
       });
 
-      for (const el of slotElements) {
-        if (el.tagName.toLowerCase() === "text") {
-          el.addEventListener("dblclick", (ev) => {
-            if (!matchesPickMode(el)) return;
-            const rawId = el.getAttribute("id");
-            const resolvedSlotIds = toDslSlotIds(rawId);
-            if (resolvedSlotIds.length !== 1) return;
-            beginInlineTextEdit(el, resolvedSlotIds[0], ev);
-          });
-        }
-        el.addEventListener("pointerdown", (ev) => {
-          const matched = matchingSlotElementAtPoint(svg, ev.clientX, ev.clientY);
-          beginSlotPointerDown(matched || el, ev);
-        });
-      }
+      svg.addEventListener("dblclick", (ev) => {
+        const target = ev.target;
+        if (!(target instanceof SVGElement)) return;
+        const el = matchingSlotElementAtPoint(svg, ev.clientX, ev.clientY) || findDraggableSlotAncestor(target);
+        if (!el || el.tagName.toLowerCase() !== "text") return;
+        if (!matchesPickMode(el)) return;
+        const rawId = el.getAttribute("id");
+        const resolvedSlotIds = toDslSlotIds(rawId);
+        if (resolvedSlotIds.length !== 1) return;
+        beginInlineTextEdit(el, resolvedSlotIds[0], ev);
+      });
 
       svg.addEventListener("pointerdown", (ev) => {
         if (pendingDrawShape) return;
@@ -6237,6 +6561,78 @@
       await insertGraphPaper(rows, cols);
       closeGraphPaperDialog();
     }
+    function openBarModelDialog() {
+      const dialog = document.getElementById("barModelInsertDialog");
+      if (!dialog) return;
+      document.getElementById("barModelBarsInput").value = "2";
+      document.getElementById("barModelCellsInput").value = "3";
+      document.getElementById("barModelShadedInput").value = "2,2";
+      document.getElementById("barModelFillInput").value = "#f3d7ea";
+      document.getElementById("barModelStrokeInput").value = "#666666";
+      document.getElementById("barModelDashedInput").checked = true;
+      dialog.hidden = false;
+      setTimeout(() => document.getElementById("barModelBarsInput")?.focus(), 0);
+    }
+    function closeBarModelDialog() {
+      const dialog = document.getElementById("barModelInsertDialog");
+      if (dialog) dialog.hidden = true;
+    }
+    async function confirmBarModelDialog() {
+      const bars = clampInt(document.getElementById("barModelBarsInput")?.value || 2, 1, 8, 2);
+      const cells = clampInt(document.getElementById("barModelCellsInput")?.value || 3, 1, 20, 3);
+      document.getElementById("barModelBarsInput").value = String(bars);
+      document.getElementById("barModelCellsInput").value = String(cells);
+      await insertBarModel({
+        bars,
+        cells,
+        shadedCounts: document.getElementById("barModelShadedInput")?.value,
+        fillColors: document.getElementById("barModelFillInput")?.value,
+        stroke: document.getElementById("barModelStrokeInput")?.value,
+        dashed: Boolean(document.getElementById("barModelDashedInput")?.checked),
+      });
+      closeBarModelDialog();
+    }
+    function openTickBarDialog() {
+      const dialog = document.getElementById("tickBarInsertDialog");
+      if (!dialog) return;
+      document.getElementById("tickBarRowsInput").value = "2";
+      document.getElementById("tickBarTotalInput").value = "14";
+      document.getElementById("tickBarFilledInput").value = "9,10";
+      document.getElementById("tickBarMajorInput").value = "7";
+      document.getElementById("tickBarLabelsInput").value = "9/7 m,1 3/7 m";
+      document.getElementById("tickBarUnitInput").value = "m";
+      document.getElementById("tickBarScaleLabelsInput").checked = true;
+      document.getElementById("tickBarFractionLabelInput").checked = true;
+      document.getElementById("tickBarAxisColorInput").value = "#111111";
+      document.getElementById("tickBarFillColorInput").value = "#2563eb";
+      dialog.hidden = false;
+      setTimeout(() => document.getElementById("tickBarRowsInput")?.focus(), 0);
+    }
+    function closeTickBarDialog() {
+      const dialog = document.getElementById("tickBarInsertDialog");
+      if (dialog) dialog.hidden = true;
+    }
+    async function confirmTickBarDialog() {
+      const rows = clampInt(document.getElementById("tickBarRowsInput")?.value || 2, 1, 8, 2);
+      const totalTicks = clampInt(document.getElementById("tickBarTotalInput")?.value || 14, 1, 40, 14);
+      const majorEvery = clampInt(document.getElementById("tickBarMajorInput")?.value || 7, 0, totalTicks, 7);
+      document.getElementById("tickBarRowsInput").value = String(rows);
+      document.getElementById("tickBarTotalInput").value = String(totalTicks);
+      document.getElementById("tickBarMajorInput").value = String(majorEvery);
+      await insertTickBar({
+        rows,
+        totalTicks,
+        majorEvery,
+        filledTicks: document.getElementById("tickBarFilledInput")?.value,
+        labels: document.getElementById("tickBarLabelsInput")?.value,
+        unit: document.getElementById("tickBarUnitInput")?.value,
+        showScaleLabels: Boolean(document.getElementById("tickBarScaleLabelsInput")?.checked),
+        showFractionLabel: Boolean(document.getElementById("tickBarFractionLabelInput")?.checked),
+        axisColor: document.getElementById("tickBarAxisColorInput")?.value,
+        fillColor: document.getElementById("tickBarFillColorInput")?.value,
+      });
+      closeTickBarDialog();
+    }
     let pendingMathMixed = false;
     function openMathDialog(mixed = false) {
       const dialog = document.getElementById("mathInsertDialog");
@@ -6265,20 +6661,34 @@
     }
     document.getElementById("insertTableBtn").onclick = openTableDialog;
     document.getElementById("insertGraphPaperBtn").onclick = openGraphPaperDialog;
+    document.getElementById("insertBarModelBtn").onclick = openBarModelDialog;
+    document.getElementById("insertTickBarBtn").onclick = openTickBarDialog;
     document.getElementById("insertFractionBtn").onclick = () => openMathDialog(false);
     document.getElementById("insertMixedFractionBtn").onclick = () => openMathDialog(true);
+    let imageInsertInFlight = false;
+
     document.getElementById("insertImageBtn").onclick = () => {
-      document.getElementById("insertImageInput")?.click();
+      if (imageInsertInFlight) return;
+      const input = document.getElementById("insertImageInput");
+      if (!input) return;
+      input.value = "";
+      input.click();
     };
     document.getElementById("insertImageInput").addEventListener("change", async (ev) => {
       const input = ev.currentTarget;
       const file = input.files && input.files[0];
+      input.value = "";
+      if (!file || imageInsertInFlight) return;
+      imageInsertInFlight = true;
+      const button = document.getElementById("insertImageBtn");
+      if (button) button.disabled = true;
       try {
-        if (file) await insertImageFromFile(file);
+        await insertImageFromFile(file);
       } catch (e) {
         setStatus(String(e), false);
       } finally {
-        input.value = "";
+        imageInsertInFlight = false;
+        if (button) button.disabled = false;
       }
     });
     document.getElementById("shapeGalleryBtn").onclick = (ev) => {
@@ -6302,6 +6712,24 @@
     document.getElementById("graphPaperCancelXBtn").onclick = closeGraphPaperDialog;
     document.getElementById("graphPaperInsertDialog").addEventListener("click", (ev) => {
       if (ev.target === ev.currentTarget) closeGraphPaperDialog();
+    });
+    document.getElementById("barModelConfirmBtn").onclick = async () => {
+      try { await confirmBarModelDialog(); }
+      catch (e) { setStatus(String(e), false); }
+    };
+    document.getElementById("barModelCancelBtn").onclick = closeBarModelDialog;
+    document.getElementById("barModelCancelXBtn").onclick = closeBarModelDialog;
+    document.getElementById("barModelInsertDialog").addEventListener("click", (ev) => {
+      if (ev.target === ev.currentTarget) closeBarModelDialog();
+    });
+    document.getElementById("tickBarConfirmBtn").onclick = async () => {
+      try { await confirmTickBarDialog(); }
+      catch (e) { setStatus(String(e), false); }
+    };
+    document.getElementById("tickBarCancelBtn").onclick = closeTickBarDialog;
+    document.getElementById("tickBarCancelXBtn").onclick = closeTickBarDialog;
+    document.getElementById("tickBarInsertDialog").addEventListener("click", (ev) => {
+      if (ev.target === ev.currentTarget) closeTickBarDialog();
     });
     document.getElementById("mathConfirmBtn").onclick = async () => {
       try { await confirmMathDialog(); }
@@ -6330,6 +6758,26 @@
           catch (e) { setStatus(String(e), false); }
         }
         if (ev.key === "Escape") closeGraphPaperDialog();
+      });
+    }
+    for (const id of ["barModelBarsInput", "barModelCellsInput", "barModelShadedInput", "barModelFillInput", "barModelStrokeInput", "barModelDashedInput"]) {
+      document.getElementById(id).addEventListener("keydown", async (ev) => {
+        if (ev.key === "Enter") {
+          ev.preventDefault();
+          try { await confirmBarModelDialog(); }
+          catch (e) { setStatus(String(e), false); }
+        }
+        if (ev.key === "Escape") closeBarModelDialog();
+      });
+    }
+    for (const id of ["tickBarRowsInput", "tickBarTotalInput", "tickBarFilledInput", "tickBarMajorInput", "tickBarLabelsInput", "tickBarUnitInput", "tickBarScaleLabelsInput", "tickBarFractionLabelInput", "tickBarAxisColorInput", "tickBarFillColorInput"]) {
+      document.getElementById(id).addEventListener("keydown", async (ev) => {
+        if (ev.key === "Enter") {
+          ev.preventDefault();
+          try { await confirmTickBarDialog(); }
+          catch (e) { setStatus(String(e), false); }
+        }
+        if (ev.key === "Escape") closeTickBarDialog();
       });
     }
     for (const id of ["mathWholeInput", "mathNumeratorInput", "mathDenominatorInput"]) {

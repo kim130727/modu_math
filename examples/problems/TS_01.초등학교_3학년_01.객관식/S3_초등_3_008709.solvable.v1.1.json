@@ -3,10 +3,13 @@
   "problem_id": "S3_초등_3_008709",
   "problem_type": "concept_multiple_choice",
   "inputs": {
-    "total_ticks": 4,
     "target_label": "원의 지름",
-    "target_ticks": 1,
-    "target_count": 2,
+    "choices": [
+      "ㄱㄴ",
+      "ㄷㄹ",
+      "ㅁㅂ",
+      "ㅅㅈ"
+    ],
     "unit": ""
   },
   "given": [
@@ -41,12 +44,12 @@
     },
     {
       "id": "step.2",
-      "expr": "보기에서 지름에 해당하는 선분을 고른다",
+      "expr": "보기에서 지름에 해당하는 선분을 고른다.",
       "value": "ㅁㅂ"
     },
     {
       "id": "step.3",
-      "expr": "두 빈칸에 같은 선분 이름을 넣는다",
+      "expr": "두 빈칸에 같은 선분 이름을 넣는다.",
       "value": "ㅁㅂ"
     }
   ],
@@ -60,9 +63,19 @@
     }
   ],
   "answer": {
-    "blanks": [],
-    "choices": [],
-    "answer_key": [],
+    "blanks": [
+      "slot.note1_blank",
+      "slot.note2_blank"
+    ],
+    "choices": [
+      "ㄱㄴ",
+      "ㄷㄹ",
+      "ㅁㅂ",
+      "ㅅㅈ"
+    ],
+    "answer_key": [
+      3
+    ],
     "target": {
       "type": "matching_segment_name",
       "description": "두 빈칸에 공통으로 들어갈 선분 이름"

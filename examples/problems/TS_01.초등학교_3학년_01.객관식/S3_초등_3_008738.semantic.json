@@ -4,17 +4,28 @@
   "metadata": {
     "title": "진분수인 재료 고르기",
     "tags": [],
+    "instruction": "진분수인 재료를 모두 선택하기",
     "question": "블루베리 주스 2잔을 만드는 데 필요한 재료입니다. 필요한 양이 진분수인 재료를 모두 선택하세요.",
     "required_layout_ids": [
-      "slot.table.outer",
-      "slot.table.v1",
-      "slot.table.v2",
-      "slot.table.v3",
-      "slot.table.h1"
+      "slot.table.border",
+      "slot.math.fraction.bar",
+      "slot.math.fraction_1.bar",
+      "slot.math.fraction_2.bar",
+      "slot.math.fraction_3.bar",
+      "slot.math.fraction_4.bar",
+      "slot.math.fraction_5.bar",
+      "slot.math.fraction_6.bar",
+      "slot.inserted.image.1",
+      "slot.inserted.image.2",
+      "slot.inserted.image.3",
+      "slot.inserted.image.4",
+      "slot.math.fraction_7.bar",
+      "slot.math.fraction_8.bar",
+      "slot.math.fraction_9.bar",
+      "slot.math.fraction_10.bar"
     ],
     "extraction_confidence": 1.0,
-    "language": "ko",
-    "instruction": "진분수인 재료를 모두 선택하기"
+    "language": "ko"
   },
   "domain": {
     "objects": [
@@ -98,7 +109,7 @@
       "type": "selected_ingredients",
       "description": "진분수인 재료"
     },
-    "value": 2,
+    "value": "우유, 꿀",
     "unit": ""
   }
 }
