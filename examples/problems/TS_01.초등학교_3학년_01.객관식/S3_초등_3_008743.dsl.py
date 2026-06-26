@@ -1,5 +1,5 @@
 from __future__ import annotations
-from modu_math.dsl import Canvas, ProblemTemplate, Region, RectSlot, TextSlot, PolygonSlot
+from modu_math.dsl import Canvas, Group, ProblemTemplate, Region, RectSlot, TextSlot, PolygonSlot
 
 
 def build_problem_template() -> ProblemTemplate:
@@ -223,9 +223,10 @@ def build_problem_template() -> ProblemTemplate:
             prompt="",
             text="―",
             style_role="choice",
-            x=56.0,
-            y=277.0,
+            x=56,
+            y=277,
             font_size=28,
+            fill="#111111",
         ),
         TextSlot(
             id="slot.choice.1.den",
@@ -451,7 +452,39 @@ def build_problem_template() -> ProblemTemplate:
         ),
         slots=slots,
         diagrams=(),
-        groups=(),
+        groups=(
+            Group(
+                id="group.diagram",
+                role="diagram_block",
+                member_ids=(
+                    "slot.diagram.frame",
+                    "slot.dia.1",
+                    "slot.dia.2",
+                    "slot.dia.3",
+                    "slot.dia.4",
+                    "slot.dia.5",
+                    "slot.dia.6",
+                    "slot.dia.7",
+                    "slot.dia.8",
+                    "slot.dia.9",
+                    "slot.dia.10",
+                    "slot.dia.11",
+                    "slot.dia.12",
+                    "slot.dia.13",
+                    "slot.dia.14",
+                    "slot.dia.15",
+                    "slot.dia.16",
+                    "slot.dia.17",
+                    "slot.dia.18",
+                    "slot.dia.19",
+                    "slot.dia.20",
+                    "slot.dia.21",
+                    "slot.dia.22",
+                    "slot.dia.23",
+                    "slot.dia.24",
+                ),
+            ),
+        ),
         constraints=(),
         tags=(),
     )

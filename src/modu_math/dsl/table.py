@@ -18,7 +18,7 @@ def table_slots(
     font_size: int = 28,
     padding_x: float = 12,
     col_text_offsets: Sequence[float] | None = None,
-    align: str = "left",
+    align: str = "center",
     text_dy: float | None = None,
     stroke: str = "#111111",
     stroke_width: float = 1.5,
@@ -82,10 +82,14 @@ def table_slots(
             )
         )
 
-    baseline_dy = text_dy if text_dy is not None else font_size + 2
     row_y = y
     align = align if align in {"left", "center", "right"} else "left"
     for r, row_height in enumerate(row_heights, start=1):
+        baseline_dy = (
+            text_dy
+            if text_dy is not None
+            else float(row_height) / 2.0 + float(font_size) * 0.35
+        )
         col_x = x
         row = cells[r - 1] if r - 1 < len(cells) else ()
         for c, col_width in enumerate(col_widths, start=1):

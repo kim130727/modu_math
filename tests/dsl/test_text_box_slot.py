@@ -1,7 +1,7 @@
 from modu_math.dsl import Canvas, ImageSlot, ProblemTemplate, Region, TextBoxSlot, TextSlot, compile_problem_template_to_layout
 from modu_math.layout.validate import validate_layout_json
 from modu_math.renderer.compiler import compile_renderer_json
-from modu_math.renderer.svg.render import render_svg
+from modu_math.renderer.svg.render import inline_local_image_hrefs, render_svg
 from modu_math.renderer.validate import validate_renderer_json
 
 
@@ -95,6 +95,20 @@ def test_image_slot_renders_svg_image() -> None:
 
     svg = render_svg(renderer)
     assert "<image " in svg
+    assert 'xmlns:xlink="http://www.w3.org/1999/xlink"' in svg
     assert 'href="data:image/png;base64,AAAA"' in svg
+    assert 'xlink:href="data:image/png;base64,AAAA"' in svg
     assert 'preserveAspectRatio="xMidYMid meet"' in svg
     assert 'transform="rotate(15 80 70)"' in svg
+
+
+def test_inline_local_image_hrefs_embeds_saved_svg_assets(tmp_path) -> None:
+    image_path = tmp_path / "local.png"
+    image_path.write_bytes(b"\x89PNG\r\n\x1a\n")
+    svg = '<svg><image href="local.png" xlink:href="local.png" /></svg>'
+
+    inlined = inline_local_image_hrefs(svg, tmp_path)
+
+    assert inlined.count("data:image/png;base64,") == 2
+    assert 'href="local.png"' not in inlined
+    assert 'xlink:href="local.png"' not in inlined

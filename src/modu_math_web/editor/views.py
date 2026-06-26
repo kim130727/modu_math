@@ -1,15 +1,17 @@
 from __future__ import annotations
 
 import json
+import mimetypes
 from typing import Any
 
+from django.http import FileResponse
 from django.http import HttpRequest, JsonResponse
 from django.shortcuts import render
 from django.views.decorators.http import require_GET, require_POST
 
 from .services.build import build_with_artifacts
 from .services.dsl_patch import DslPatchError, apply_layout_patches
-from .services.problems import format_problem_dsl, list_problem_directories, read_problem_detail, save_problem_dsl
+from .services.problems import format_problem_dsl, list_problem_directories, read_problem_detail, resolve_problem_paths, save_problem_dsl
 
 
 def _json_body(request: HttpRequest) -> dict[str, Any]:
@@ -48,6 +50,28 @@ def problem_detail(_: HttpRequest, problem_id: str) -> JsonResponse:
     except Exception as exc:
         return _error(str(exc), status=500)
     return JsonResponse(detail)
+
+
+@require_GET
+def problem_asset(_: HttpRequest, problem_id: str, filename: str) -> FileResponse | JsonResponse:
+    try:
+        if not filename or "/" in filename or "\\" in filename or filename in {".", ".."}:
+            return _error("invalid asset filename", status=400)
+        paths = resolve_problem_paths(problem_id)
+        asset_path = (paths.base_dir / filename).resolve()
+        if asset_path.parent != paths.base_dir.resolve():
+            return _error("invalid asset path", status=400)
+        if not asset_path.exists() or not asset_path.is_file():
+            return _error("asset not found", status=404)
+    except ValueError as exc:
+        return _error(str(exc), status=400)
+    except FileNotFoundError as exc:
+        return _error(str(exc), status=404)
+    except Exception as exc:
+        return _error(str(exc), status=500)
+
+    content_type = mimetypes.guess_type(asset_path.name)[0] or "application/octet-stream"
+    return FileResponse(asset_path.open("rb"), content_type=content_type)
 
 
 @require_POST
@@ -113,7 +137,10 @@ def layout_patch(request: HttpRequest, problem_id: str) -> JsonResponse:
         patches = data.get("patches")
         if not isinstance(patches, list):
             return _error("'patches' must be a list", status=400)
-        dsl_text, applied = apply_layout_patches(problem_id, patches)
+        format_source = data.get("format", True)
+        if not isinstance(format_source, bool):
+            return _error("'format' must be a boolean", status=400)
+        dsl_text, applied = apply_layout_patches(problem_id, patches, format_source=format_source)
     except DslPatchError as exc:
         return _error(str(exc), status=400)
     except ValueError as exc:

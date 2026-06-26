@@ -5,6 +5,7 @@ import os
 from pathlib import Path
 
 import django
+import pytest
 from django.conf import settings
 from django.test import Client
 
@@ -110,6 +111,102 @@ SLOTS = (
     assert "x=120.0" in updated
     assert "y=80.0" in updated
     assert "font_size=28" in updated
+
+
+def test_layout_patch_can_skip_formatting_for_fast_drag_save(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    client = _setup_django(tmp_path)
+    dsl_text = """
+from modu_math.dsl import TextSlot
+
+SLOTS = (
+    TextSlot(id="slot.q1", text="A", x=10.0, y=20.0, font_size=12),
+)
+""".lstrip()
+    problem_dir = _write_problem(tmp_path, "0001", dsl_text)
+
+    from modu_math_web.editor.services import dsl_patch
+
+    def fail_format(_: str) -> str:
+        raise AssertionError("formatter should be skipped")
+
+    monkeypatch.setattr(dsl_patch, "format_dsl_source", fail_format)
+
+    response = client.post(
+        "/api/editor/problems/0001/layout-patch/",
+        data=json.dumps(
+            {
+                "format": False,
+                "patches": [
+                    {
+                        "target": "slot.q1",
+                        "op": "update",
+                        "value": {"x": 15.0, "y": 25.0},
+                    }
+                ],
+            }
+        ),
+        content_type="application/json",
+    )
+
+    assert response.status_code == 200
+    updated = (problem_dir / "problem.dsl.py").read_text(encoding="utf-8")
+    assert "x = 15.0" in updated
+    assert "y = 25.0" in updated
+
+
+def test_build_endpoint_generates_artifacts_without_shell_script(tmp_path: Path) -> None:
+    client = _setup_django(tmp_path)
+    dsl_text = """
+from modu_math.dsl import Canvas, ProblemTemplate, Region, TextSlot
+
+PROBLEM_TEMPLATE = ProblemTemplate(
+    id="p_build",
+    title="build",
+    canvas=Canvas(width=300, height=200),
+    regions=(Region(id="region.stem", role="stem", slot_ids=("slot.q",)),),
+    slots=(TextSlot(id="slot.q", text="2 + 3 = ?", x=20, y=40),),
+)
+""".lstrip()
+    problem_dir = _write_problem(tmp_path, "0001", dsl_text)
+
+    response = client.post("/api/editor/problems/0001/build/")
+
+    assert response.status_code == 200
+    body = response.json()
+    assert body["ok"] is True
+    assert "build_ok" in body["stdout"]
+    assert (problem_dir / "problem.layout.json").exists()
+    assert (problem_dir / "problem.renderer.json").exists()
+    assert (problem_dir / "problem.svg").exists()
+
+
+def test_detail_rewrites_relative_svg_image_assets(tmp_path: Path) -> None:
+    client = _setup_django(tmp_path)
+    dsl_text = "from modu_math.dsl import TextSlot\n"
+    problem_dir = _write_problem(tmp_path, "0001", dsl_text)
+    (problem_dir / "local.png").write_bytes(b"png")
+    (problem_dir / "problem.svg").write_text(
+        '<svg><image href="local.png" /><image href="data:image/png;base64,AAA" /></svg>',
+        encoding="utf-8",
+    )
+
+    response = client.get("/api/editor/problems/0001/")
+
+    assert response.status_code == 200
+    svg = response.json()["svg"]
+    assert 'href="/api/editor/assets/0001/local.png"' in svg
+    assert 'href="data:image/png;base64,AAA"' in svg
+
+
+def test_problem_asset_serves_file_from_problem_folder(tmp_path: Path) -> None:
+    client = _setup_django(tmp_path)
+    problem_dir = _write_problem(tmp_path, "0001", "from modu_math.dsl import TextSlot\n")
+    (problem_dir / "local.png").write_bytes(b"png")
+
+    response = client.get("/api/editor/assets/0001/local.png")
+
+    assert response.status_code == 200
+    assert b"".join(response.streaming_content) == b"png"
 
 
 def test_layout_patch_updates_textboxslot_box_fields(tmp_path: Path) -> None:

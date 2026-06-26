@@ -6,6 +6,7 @@ from . import views
 
 urlpatterns = [
     path("problems/", views.problems_list),
+    path("assets/<path:problem_id>/<str:filename>", views.problem_asset),
     path("problems/<path:problem_id>/dsl/", views.save_dsl),
     path("problems/<path:problem_id>/dsl/format/", views.format_dsl),
     path("problems/<path:problem_id>/build/", views.build_problem),

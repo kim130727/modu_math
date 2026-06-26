@@ -14,51 +14,27 @@
       "role": "stem",
       "flow": "absolute",
       "slot_ids": [
-        "slot.diagram.ga_bottle",
         "slot.diagram.na_bottle",
         "slot.diagram.ga_bottle.top1",
         "slot.diagram.ga_bottle.top2",
         "slot.diagram.ga_bottle.top3",
-        "slot.diagram.ga_bottle.label",
         "slot.diagram.na_bottle.top1",
         "slot.diagram.na_bottle.label",
-        "slot.diagram.ga_arrow",
         "slot.diagram.na_arrow",
-        "slot.qnum",
         "slot.qtext1",
         "slot.qtext2",
         "slot.qtext3",
-        "slot.diagram.ga_cups.1",
-        "slot.diagram.ga_cups.2",
-        "slot.diagram.ga_cups.3",
-        "slot.diagram.ga_cups.4",
-        "slot.diagram.ga_cups.5",
-        "slot.diagram.ga_cups.6",
-        "slot.diagram.ga_cups.7",
         "slot.diagram.na_cups.1",
         "slot.diagram.na_cups.2",
         "slot.diagram.na_cups.3",
         "slot.diagram.na_cups.4",
         "slot.choice.o",
         "slot.choice.x",
-        "slot.diagram.ga_bottle.label_text",
         "slot.diagram.na_bottle.label_text"
       ]
     }
   ],
   "slots": [
-    {
-      "id": "slot.qnum",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "44.",
-        "style_role": "question",
-        "x": 55.0,
-        "y": 42.0,
-        "font_size": 28
-      }
-    },
     {
       "id": "slot.qtext1",
       "kind": "text",
@@ -66,9 +42,10 @@
       "content": {
         "text": "두 병에 물을 가득 채운 후 모양과 크기가 같은 컵에 각각 물을 옮겼습니다.",
         "style_role": "question",
-        "x": 94.0,
-        "y": 42.0,
-        "font_size": 28
+        "x": 29.0,
+        "y": 77.0,
+        "font_size": 28,
+        "fill": "#111111"
       }
     },
     {
@@ -90,22 +67,10 @@
       "content": {
         "text": "르게 설명했으면 ○표, 그렇지 않으면 ×표를 선택하세요.",
         "style_role": "question",
-        "x": 20.0,
-        "y": 78.0,
-        "font_size": 28
-      }
-    },
-    {
-      "id": "slot.diagram.ga_bottle",
-      "kind": "rect",
-      "prompt": "",
-      "content": {
-        "x": 206.0,
-        "y": 87.0,
-        "width": 74.0,
-        "height": 124.0,
-        "rx": 14.0,
-        "ry": 14.0
+        "x": 25.0,
+        "y": 158.0,
+        "font_size": 28,
+        "fill": "#111111"
       }
     },
     {
@@ -113,9 +78,11 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 243.0,
-        "cy": 84.0,
+        "cx": 248.0,
+        "cy": 164.0,
         "r": 17.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0,
         "fill": "none"
       }
     },
@@ -124,9 +91,11 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 243.0,
-        "cy": 82.0,
+        "cx": 248.0,
+        "cy": 162.0,
         "r": 14.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0,
         "fill": "none"
       }
     },
@@ -135,128 +104,12 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 243.0,
-        "cy": 80.0,
+        "cx": 248.0,
+        "cy": 160.0,
         "r": 11.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0,
         "fill": "none"
-      }
-    },
-    {
-      "id": "slot.diagram.ga_bottle.label",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 243.0,
-        "cy": 145.0,
-        "r": 12.0,
-        "fill": "none"
-      }
-    },
-    {
-      "id": "slot.diagram.ga_bottle.label_text",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "가",
-        "style_role": "label",
-        "x": 237.0,
-        "y": 153.0,
-        "font_size": 24
-      }
-    },
-    {
-      "id": "slot.diagram.ga_arrow",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 301.0,
-        "y1": 143.0,
-        "x2": 350.0,
-        "y2": 143.0
-      }
-    },
-    {
-      "id": "slot.diagram.ga_cups.1",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "컵",
-        "style_role": "diagram",
-        "x": 369.0,
-        "y": 130.0,
-        "font_size": 28
-      }
-    },
-    {
-      "id": "slot.diagram.ga_cups.2",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "컵",
-        "style_role": "diagram",
-        "x": 409.0,
-        "y": 130.0,
-        "font_size": 28
-      }
-    },
-    {
-      "id": "slot.diagram.ga_cups.3",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "컵",
-        "style_role": "diagram",
-        "x": 449.0,
-        "y": 130.0,
-        "font_size": 28
-      }
-    },
-    {
-      "id": "slot.diagram.ga_cups.4",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "컵",
-        "style_role": "diagram",
-        "x": 489.0,
-        "y": 130.0,
-        "font_size": 28
-      }
-    },
-    {
-      "id": "slot.diagram.ga_cups.5",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "컵",
-        "style_role": "diagram",
-        "x": 369.0,
-        "y": 170.0,
-        "font_size": 28
-      }
-    },
-    {
-      "id": "slot.diagram.ga_cups.6",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "컵",
-        "style_role": "diagram",
-        "x": 409.0,
-        "y": 170.0,
-        "font_size": 28
-      }
-    },
-    {
-      "id": "slot.diagram.ga_cups.7",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "컵",
-        "style_role": "diagram",
-        "x": 449.0,
-        "y": 170.0,
-        "font_size": 28
       }
     },
     {
@@ -264,12 +117,15 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 639.0,
-        "y": 92.0,
+        "x": 644.0,
+        "y": 172.0,
         "width": 70.0,
         "height": 116.0,
+        "stroke": "#111111",
+        "stroke_width": 1.5,
         "rx": 14.0,
-        "ry": 14.0
+        "ry": 14.0,
+        "fill": "#ffffff"
       }
     },
     {
@@ -277,9 +133,11 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 674.0,
-        "cy": 87.0,
+        "cx": 679.0,
+        "cy": 167.0,
         "r": 12.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0,
         "fill": "none"
       }
     },
@@ -288,9 +146,11 @@
       "kind": "circle",
       "prompt": "",
       "content": {
-        "cx": 673.0,
-        "cy": 147.0,
+        "cx": 678.0,
+        "cy": 227.0,
         "r": 12.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0,
         "fill": "none"
       }
     },
@@ -301,9 +161,10 @@
       "content": {
         "text": "나",
         "style_role": "label",
-        "x": 667.0,
-        "y": 155.0,
-        "font_size": 24
+        "x": 672.0,
+        "y": 235.0,
+        "font_size": 24,
+        "fill": "#111111"
       }
     },
     {
@@ -311,10 +172,12 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 724.0,
-        "y1": 143.0,
-        "x2": 771.0,
-        "y2": 143.0
+        "x1": 729.0,
+        "y1": 223.0,
+        "x2": 776.0,
+        "y2": 223.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0
       }
     },
     {
@@ -324,9 +187,10 @@
       "content": {
         "text": "컵",
         "style_role": "diagram",
-        "x": 788.0,
-        "y": 130.0,
-        "font_size": 28
+        "x": 793.0,
+        "y": 210.0,
+        "font_size": 28,
+        "fill": "#111111"
       }
     },
     {
@@ -348,9 +212,10 @@
       "content": {
         "text": "컵",
         "style_role": "diagram",
-        "x": 788.0,
-        "y": 170.0,
-        "font_size": 28
+        "x": 793.0,
+        "y": 250.0,
+        "font_size": 28,
+        "fill": "#111111"
       }
     },
     {
@@ -395,34 +260,22 @@
   "diagrams": [],
   "reading_order": [
     "region.stem",
-    "slot.diagram.ga_bottle",
     "slot.diagram.na_bottle",
     "slot.diagram.ga_bottle.top1",
     "slot.diagram.ga_bottle.top2",
     "slot.diagram.ga_bottle.top3",
-    "slot.diagram.ga_bottle.label",
     "slot.diagram.na_bottle.top1",
     "slot.diagram.na_bottle.label",
-    "slot.diagram.ga_arrow",
     "slot.diagram.na_arrow",
-    "slot.qnum",
     "slot.qtext1",
     "slot.qtext2",
     "slot.qtext3",
-    "slot.diagram.ga_cups.1",
-    "slot.diagram.ga_cups.2",
-    "slot.diagram.ga_cups.3",
-    "slot.diagram.ga_cups.4",
-    "slot.diagram.ga_cups.5",
-    "slot.diagram.ga_cups.6",
-    "slot.diagram.ga_cups.7",
     "slot.diagram.na_cups.1",
     "slot.diagram.na_cups.2",
     "slot.diagram.na_cups.3",
     "slot.diagram.na_cups.4",
     "slot.choice.o",
     "slot.choice.x",
-    "slot.diagram.ga_bottle.label_text",
     "slot.diagram.na_bottle.label_text"
   ]
 }

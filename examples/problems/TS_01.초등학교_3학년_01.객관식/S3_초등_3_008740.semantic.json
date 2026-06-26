@@ -4,8 +4,13 @@
   "metadata": {
     "title": "두 분수의 크기 비교",
     "tags": [],
+    "instruction": "①에 들어갈 분수를 가장 아래 칸의 분수들 중에서 선택한다.",
     "question": "두 분수의 크기를 비교하여 더 큰 분수를 빈칸에 써 넣는 문제",
     "required_layout_ids": [
+      "slot.math.fraction.bar",
+      "slot.math.fraction_1.bar",
+      "slot.math.mixed_fraction.bar",
+      "slot.math.mixed_fraction_1.bar",
       "slot.top.box",
       "slot.top.line",
       "slot.mid.left.box",
@@ -14,11 +19,20 @@
       "slot.leaf.1",
       "slot.leaf.2",
       "slot.leaf.3",
-      "slot.leaf.4"
+      "slot.leaf.4",
+      "slot.top.line.copy10",
+      "slot.top.line.copy11",
+      "slot.mid.connector.copy12",
+      "slot.mid.connector.copy13",
+      "slot.top.line.copy14",
+      "slot.top.line.copy15",
+      "slot.top.line.copy14.copy16",
+      "slot.top.line.copy14.copy17",
+      "slot.top.line.copy14.copy18",
+      "slot.top.line.copy14.copy19"
     ],
     "extraction_confidence": 1.0,
-    "language": "ko",
-    "instruction": "①에 들어갈 분수를 가장 아래 칸의 분수들 중에서 선택한다."
+    "language": "ko"
   },
   "domain": {
     "objects": [

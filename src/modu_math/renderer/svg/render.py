@@ -1,6 +1,10 @@
 from __future__ import annotations
 
+import base64
 from html import escape
+import mimetypes
+from pathlib import Path
+import re
 from typing import Any
 
 from ...renderer.models.primitive import RenderElement, RenderGroup, RenderText, RendererAST
@@ -148,6 +152,9 @@ def _element_to_svg_lines(element: RenderElement, depth: int = 1) -> list[str]:
         return lines
 
     tag = "path" if element.type == "fill_path" else element.type
+    if tag == "image" and "href" in attrs and "xlink:href" not in attrs:
+        attrs["xlink:href"] = attrs["href"]
+        attrs_str = _attrs_to_str(attrs)
     if tag in {"rect", "circle", "line", "polygon", "path", "image"}:
         return [f"{indent}<{tag} {attrs_str} />"]
     return [f"{indent}<!-- Unsupported element type: {escape(tag)} -->"]
@@ -163,7 +170,7 @@ def render_svg(renderer: RendererAST | dict[str, Any]) -> str:
 
     lines: list[str] = [
         "<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
-        f"<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"{width}\" height=\"{height}\" viewBox=\"0 0 {width} {height}\">",
+        f"<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" width=\"{width}\" height=\"{height}\" viewBox=\"0 0 {width} {height}\">",
         f"  <metadata><problem_id>{escape(renderer_ast.problem_id)}</problem_id></metadata>",
     ]
     
@@ -177,3 +184,45 @@ def render_svg(renderer: RendererAST | dict[str, Any]) -> str:
 
     lines.append("</svg>")
     return "\n".join(lines) + "\n"
+
+
+def inline_local_image_hrefs(svg: str, base_dir: Path) -> str:
+    """Embed local image hrefs as data URIs so saved SVG files are standalone."""
+    resolved_base = base_dir.resolve()
+    cache: dict[str, str] = {}
+
+    def data_uri_for(href: str) -> str | None:
+        if (
+            not href
+            or href.startswith("#")
+            or href.startswith("/")
+            or href.startswith("data:")
+            or re.match(r"^[a-zA-Z][a-zA-Z0-9+.-]*:", href)
+        ):
+            return None
+        if "/" in href or "\\" in href:
+            return None
+        if href in cache:
+            return cache[href]
+        image_path = (resolved_base / href).resolve()
+        if image_path.parent != resolved_base or not image_path.is_file():
+            return None
+        mime = mimetypes.guess_type(image_path.name)[0] or "image/png"
+        encoded = base64.b64encode(image_path.read_bytes()).decode("ascii")
+        cache[href] = f"data:{mime};base64,{encoded}"
+        return cache[href]
+
+    def replace(match: re.Match[str]) -> str:
+        attr = match.group("attr")
+        quote = match.group("quote")
+        href = match.group("href")
+        embedded = data_uri_for(href)
+        if embedded is None:
+            return match.group(0)
+        return f"{attr}={quote}{embedded}{quote}"
+
+    return re.sub(
+        r"(?P<attr>\b(?:href|xlink:href))=(?P<quote>['\"])(?P<href>.*?)(?P=quote)",
+        replace,
+        svg,
+    )

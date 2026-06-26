@@ -100,7 +100,7 @@ from modu_math.dsl import (
 )
 from modu_math.layout.editor_overrides import apply_editor_overrides
 from modu_math.renderer.compiler import compile_renderer_json
-from modu_math.renderer.svg.render import render_svg
+from modu_math.renderer.svg.render import inline_local_image_hrefs, render_svg
 from modu_math.pipeline.validate_contracts import validate_semantic_solvable_answer_match
 
 repo = Path(os.environ["MODU_REPO_ROOT"])
@@ -131,7 +131,7 @@ if editor_overrides_path.exists():
     layout = apply_editor_overrides(layout, editor_overrides)
 
 renderer = compile_renderer_json(layout)
-svg = render_svg(renderer)
+svg = inline_local_image_hrefs(render_svg(renderer), base.parent)
 
 def deep_merge_dict(base: dict, override: dict) -> dict:
     out = dict(base)

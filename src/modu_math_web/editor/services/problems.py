@@ -1,9 +1,11 @@
 from __future__ import annotations
 
 import json
+import re
 from dataclasses import dataclass
 from pathlib import Path, PurePosixPath
 from typing import Any
+from urllib.parse import quote
 
 from django.conf import settings
 
@@ -129,6 +131,43 @@ def _read_text(path: Path) -> str | None:
     return path.read_text(encoding="utf-8")
 
 
+def _is_external_href(value: str) -> bool:
+    return (
+        not value
+        or value.startswith("#")
+        or value.startswith("/")
+        or value.startswith("data:")
+        or re.match(r"^[a-zA-Z][a-zA-Z0-9+.-]*:", value) is not None
+    )
+
+
+def _asset_url(problem_id: str, filename: str) -> str:
+    return f"/api/editor/assets/{quote(problem_id, safe='')}/{quote(filename)}"
+
+
+def _rewrite_svg_asset_hrefs(svg: str | None, paths: ProblemPaths) -> str | None:
+    if svg is None:
+        return None
+
+    def replace(match: re.Match[str]) -> str:
+        attr = match.group("attr")
+        quote_char = match.group("quote")
+        href = match.group("href")
+        if _is_external_href(href):
+            return match.group(0)
+        if "/" in href or "\\" in href:
+            return match.group(0)
+        if not (paths.base_dir / href).exists():
+            return match.group(0)
+        return f"{attr}={quote_char}{_asset_url(paths.problem_id, href)}{quote_char}"
+
+    return re.sub(
+        r"(?P<attr>\b(?:href|xlink:href))=(?P<quote>['\"])(?P<href>.*?)(?P=quote)",
+        replace,
+        svg,
+    )
+
+
 def list_problem_directories() -> list[dict[str, Any]]:
     problems: list[dict[str, Any]] = []
     for alias, root in problem_roots():
@@ -190,7 +229,7 @@ def read_problem_detail(problem_id: str) -> dict[str, Any]:
         "solvable": _read_json(solvable_path) if solvable_path else None,
         "layout": _read_json(paths.artifact_path("layout")),
         "renderer": _read_json(paths.artifact_path("renderer")),
-        "svg": _read_text(paths.artifact_path("svg")),
+        "svg": _rewrite_svg_asset_hrefs(_read_text(paths.artifact_path("svg")), paths),
     }
 
 
@@ -217,5 +256,5 @@ def read_artifacts(problem_id: str) -> dict[str, Any]:
         "solvable": _read_json(solvable_path) if solvable_path else None,
         "layout": _read_json(paths.artifact_path("layout")),
         "renderer": _read_json(paths.artifact_path("renderer")),
-        "svg": _read_text(paths.artifact_path("svg")),
+        "svg": _rewrite_svg_asset_hrefs(_read_text(paths.artifact_path("svg")), paths),
     }

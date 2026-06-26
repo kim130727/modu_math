@@ -78,7 +78,7 @@ def build_problem_template() -> ProblemTemplate:
                 height=65,
                 fill="#F6F0D3",
                 stroke="#D7CFA8",
-                stroke_width=1.0,
+                stroke_width=1,
             ),
             CircleSlot(id="slot.dot.1", prompt="", cx=265, cy=220, r=5, fill="#D8C89A"),
             CircleSlot(id="slot.dot.2", prompt="", cx=335, cy=220, r=5, fill="#D8C89A"),
@@ -114,7 +114,7 @@ def build_problem_template() -> ProblemTemplate:
                 x2=545,
                 y2=205,
                 stroke="#7A4A34",
-                stroke_width=2.0,
+                stroke_width=2,
             ),
             TextSlot(
                 id="slot.q2.copy1.copy2",

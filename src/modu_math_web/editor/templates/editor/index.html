@@ -1102,6 +1102,7 @@
     let drawState = null;
     let inlineTextEditState = null;
     let dslSlotIdCache = { layoutText: null, dsl: null, ids: null };
+    let layoutGroupCache = { layoutText: null, groups: null, byMember: null };
     let snapEnabled = true;
     let collapsedProblemFolders = new Set();
     const SNAP_STEP = 5;
@@ -1657,14 +1658,14 @@
       return true;
     }
 
-    async function commitPatches(patches, reason = "저장 완료", withBuild = true, problemId = currentProblemId) {
+    async function commitPatches(patches, reason = "저장 완료", withBuild = true, problemId = currentProblemId, formatSource = true) {
       if (!problemId) return;
       if (!patches || !patches.length) return;
       if (!(document.getElementById("dslEditor").value || "").trim()) {
         throw new Error("DSL 파일이 비어 있어 편집할 수 없습니다. 유효한 DSL을 먼저 복구하거나 저장하세요.");
       }
       const preserveSelection = Array.from(selectedSlots.keys());
-      const payload = { patches };
+      const payload = { patches, format: formatSource };
       const endpoint = withBuild ? "/layout-patch-and-build/" : "/layout-patch/";
       const savePromise = api(encodedProblemPath(problemId, endpoint), {
         method: "POST",
@@ -2010,6 +2011,8 @@
       }
       for (let r = 1; r <= cleanRows; r += 1) {
         for (let c = 1; c <= cleanCols; c += 1) {
+          const fontSize = 18;
+          const baselineOffset = cellHeight / 2 + fontSize * 0.35;
           patches.push({
             target: `${base}.r${r}c${c}`,
             op: "add",
@@ -2017,10 +2020,11 @@
               kind: "text",
               content: {
                 text: "",
-                x: snapValue(x + (c - 1) * cellWidth + 10),
-                y: snapValue(y + (r - 1) * cellHeight + 27),
-                font_size: 18,
+                x: snapValue(x + (c - 0.5) * cellWidth),
+                y: snapValue(y + (r - 1) * cellHeight + baselineOffset),
+                font_size: fontSize,
                 max_width: Math.max(8, cellWidth - 20),
+                anchor: "middle",
                 style_role: "table",
                 fill: "#111827",
               },
@@ -2953,6 +2957,39 @@
       return ids;
     }
 
+    function layoutGroups() {
+      const layoutText = document.getElementById("layoutView")?.value || "";
+      if (layoutGroupCache.layoutText === layoutText && layoutGroupCache.groups && layoutGroupCache.byMember) return layoutGroupCache;
+      const groups = [];
+      const byMember = new Map();
+      if (layoutText.trim()) {
+        try {
+          const layout = JSON.parse(layoutText);
+          for (const group of Array.isArray(layout.groups) ? layout.groups : []) {
+            const id = typeof group?.id === "string" ? group.id : "";
+            const memberIds = Array.isArray(group?.member_ids) ? group.member_ids.filter((sid) => typeof sid === "string" && sid) : [];
+            if (!id || memberIds.length < 2) continue;
+            const entry = { id, memberIds };
+            groups.push(entry);
+            for (const sid of memberIds) {
+              if (!byMember.has(sid)) byMember.set(sid, []);
+              byMember.get(sid).push(entry);
+            }
+          }
+        } catch (_) {
+          // Layout pane can be stale while a problem is loading.
+        }
+      }
+      layoutGroupCache = { layoutText, groups, byMember };
+      return layoutGroupCache;
+    }
+
+    function layoutGroupBaseFromSlotId(slotId) {
+      if (!slotId) return null;
+      const matches = layoutGroups().byMember.get(slotId) || [];
+      return matches.length ? matches[0].id : null;
+    }
+
     function tableBaseFromSlotId(slotId) {
       if (!slotId) return null;
       const ids = tableLayoutSlotIds();
@@ -3015,7 +3052,24 @@
     }
 
     function selectableGroupBaseFromSlotId(slotId) {
-      return figureBaseFromSlotId(slotId) || characterGroupBaseFromSlotId(slotId) || tableBaseFromSlotId(slotId) || graphPaperBaseFromSlotId(slotId) || paperFoldBaseFromSlotId(slotId) || measurementToolBaseFromSlotId(slotId) || generatedHelperBaseFromSlotId(slotId);
+      return layoutGroupBaseFromSlotId(slotId) || figureBaseFromSlotId(slotId) || characterGroupBaseFromSlotId(slotId) || tableBaseFromSlotId(slotId) || graphPaperBaseFromSlotId(slotId) || paperFoldBaseFromSlotId(slotId) || measurementToolBaseFromSlotId(slotId) || generatedHelperBaseFromSlotId(slotId);
+    }
+
+    function collectLayoutGroupSlotIds(slotId) {
+      const matches = layoutGroups().byMember.get(slotId) || [];
+      if (!matches.length) return null;
+      const svg = document.getElementById("svgPreview").querySelector("svg");
+      if (!svg) return null;
+      const visibleIds = new Set();
+      for (const node of draggableSlotElements(svg)) {
+        const sid = slotIdFromElement(node);
+        if (sid) visibleIds.add(sid);
+      }
+      for (const group of matches) {
+        const slotIds = group.memberIds.filter((sid) => visibleIds.has(sid));
+        if (slotIds.length > 1) return { base: group.id, slotIds, groupKind: "layout" };
+      }
+      return null;
     }
 
     function collectFigureGroupSlotIds(slotId) {
@@ -3095,7 +3149,7 @@
     }
 
     function collectSelectableGroupSlotIds(slotId) {
-      return collectFigureGroupSlotIds(slotId) || collectCharacterGroupSlotIds(slotId) || collectTableGroupSlotIds(slotId) || collectGraphPaperGroupSlotIds(slotId) || collectPaperFoldGroupSlotIds(slotId) || collectMeasurementToolGroupSlotIds(slotId) || collectGeneratedHelperGroupSlotIds(slotId);
+      return collectLayoutGroupSlotIds(slotId) || collectFigureGroupSlotIds(slotId) || collectCharacterGroupSlotIds(slotId) || collectTableGroupSlotIds(slotId) || collectGraphPaperGroupSlotIds(slotId) || collectPaperFoldGroupSlotIds(slotId) || collectMeasurementToolGroupSlotIds(slotId) || collectGeneratedHelperGroupSlotIds(slotId);
     }
 
     function elementsForSlotIds(slotIds) {
@@ -3542,7 +3596,7 @@
     function selectedShapeFormatItem() {
       if (selectedSlots.size !== 1) return null;
       const item = Array.from(selectedSlots.values())[0];
-      if (!item || item.isCanvas || item.isFraction || item.isFigureGroup || item.isPaperFoldGroup || item.isMeasurementGroup || item.isTableGroup || item.isGraphPaperGroup || item.isGeneratedGroup || item.isCharacterGroup) return null;
+      if (!item || item.isCanvas || item.isFraction || item.isFigureGroup || item.isPaperFoldGroup || item.isMeasurementGroup || item.isTableGroup || item.isGraphPaperGroup || item.isGeneratedGroup || item.isCharacterGroup || item.isLayoutGroup) return null;
       if (!item.el) return null;
       const tag = item.el.tagName.toLowerCase();
       if (!["rect", "circle", "line", "path", "polygon"].includes(tag)) return null;
@@ -4018,7 +4072,7 @@
       if (item.isCanvas) return item;
       if (item.isPaperFoldGroup || item.isMeasurementGroup || item.isGeneratedGroup) return null;
       if (item.isCharacterGroup) return item;
-      if (item.isFigureGroup || item.isTableGroup || item.isGraphPaperGroup) return item;
+      if (item.isFigureGroup || item.isTableGroup || item.isGraphPaperGroup || item.isLayoutGroup) return item;
       const tag = item.el.tagName.toLowerCase();
       if (!["text", "rect", "image", "circle", "line", "path", "polygon"].includes(tag)) return null;
       return item;
@@ -4059,12 +4113,12 @@
         const tableBox = tableOuterBox(item, svg);
         if (tableBox) return tableBox;
       }
-      if (item && !item.isFigureGroup && !item.isPaperFoldGroup && !item.isMeasurementGroup && !item.isTableGroup && !item.isGraphPaperGroup && !item.isFraction && item.el) {
+      if (item && !item.isFigureGroup && !item.isPaperFoldGroup && !item.isMeasurementGroup && !item.isTableGroup && !item.isGraphPaperGroup && !item.isLayoutGroup && !item.isFraction && item.el) {
         const rotation = parseRotateTransform(item.el.getAttribute("transform") || "");
         const rawBox = geometrySvgBox(item.el);
         if (rawBox && rotation.angle && rotation.cx !== null && rotation.cy !== null) return rawBox;
       }
-      const elements = item && (item.isFigureGroup || item.isPaperFoldGroup || item.isMeasurementGroup || item.isTableGroup || item.isGraphPaperGroup || item.isFraction || item.isGeneratedGroup || item.isCharacterGroup) ? (item.elements || []) : [item.el];
+      const elements = item && (item.isFigureGroup || item.isPaperFoldGroup || item.isMeasurementGroup || item.isTableGroup || item.isGraphPaperGroup || item.isLayoutGroup || item.isFraction || item.isGeneratedGroup || item.isCharacterGroup) ? (item.elements || []) : [item.el];
       const boxes = [];
       for (const el of elements) {
         const box = item?.isFigureGroup ? (slotValueBox(el) || visualSvgBox(el, svg)) : visualSvgBox(el, svg);
@@ -4079,7 +4133,7 @@
     }
 
     function selectionTransformForItem(item) {
-      if (!item || item.isCanvas || item.isFigureGroup || item.isPaperFoldGroup || item.isMeasurementGroup || item.isTableGroup || item.isGraphPaperGroup || item.isGeneratedGroup || item.isFraction || !item.el) return { transform: "", rotation: null };
+      if (!item || item.isCanvas || item.isFigureGroup || item.isPaperFoldGroup || item.isMeasurementGroup || item.isTableGroup || item.isGraphPaperGroup || item.isLayoutGroup || item.isGeneratedGroup || item.isFraction || !item.el) return { transform: "", rotation: null };
       const rotation = parseRotateTransform(item.el.getAttribute("transform") || "");
       if (!rotation.angle || rotation.cx === null || rotation.cy === null) return { transform: "", rotation: null };
       return { transform: rotateTransform(rotation.angle, rotation.cx, rotation.cy), rotation };
@@ -4182,7 +4236,7 @@
       const h = Math.max(box.height, minSize);
       const bounds = layer.querySelector(".selection-bounds");
       const line = layer.querySelector(".selection-line");
-      const isLine = !item.isCanvas && !item.isFigureGroup && !item.isPaperFoldGroup && !item.isGraphPaperGroup && item.el && item.el.tagName.toLowerCase() === "line";
+      const isLine = !item.isCanvas && !item.isFigureGroup && !item.isPaperFoldGroup && !item.isGraphPaperGroup && !item.isLayoutGroup && item.el && item.el.tagName.toLowerCase() === "line";
       bounds.classList.toggle("canvas-selected", !!item.isCanvas);
       bounds.setAttribute("x", String(x));
       bounds.setAttribute("y", String(y));
@@ -4840,6 +4894,7 @@
             isGraphPaperGroup: selectableGroup.groupKind === "graphPaper",
             isCharacterGroup: selectableGroup.groupKind === "character",
             isGeneratedGroup: selectableGroup.groupKind === "generated",
+            isLayoutGroup: selectableGroup.groupKind === "layout",
           });
           for (const node of elements) node.classList.add("slot-selected");
         }
@@ -4914,7 +4969,7 @@
 
     function updateInspectorControls() {
       const selected = selectedSlots.size === 1 ? Array.from(selectedSlots.values())[0] : null;
-      const canInspect = selected && !selected.isCanvas && !selected.isFigureGroup && !selected.isPaperFoldGroup && !selected.isMeasurementGroup && !selected.isTableGroup && !selected.isGraphPaperGroup && !selected.isGeneratedGroup && !selected.isCharacterGroup && !selected.isFraction && selected.el;
+      const canInspect = selected && !selected.isCanvas && !selected.isFigureGroup && !selected.isPaperFoldGroup && !selected.isMeasurementGroup && !selected.isTableGroup && !selected.isGraphPaperGroup && !selected.isGeneratedGroup && !selected.isCharacterGroup && !selected.isLayoutGroup && !selected.isFraction && selected.el;
       const value = canInspect ? readSlotPatchValue(selected.el) : null;
       updateCanvasControls();
       setInspectorField("slotId", selected ? selected.slotId : "");
@@ -4975,7 +5030,7 @@
     async function commitInspectorFields() {
       if (selectedSlots.size !== 1) throw new Error("요소 하나를 선택하세요.");
       const item = Array.from(selectedSlots.values())[0];
-      if (!item || item.isCanvas || item.isFigureGroup || item.isPaperFoldGroup || item.isMeasurementGroup || item.isTableGroup || item.isGraphPaperGroup || item.isGeneratedGroup || item.isCharacterGroup || item.isFraction || !item.el) {
+      if (!item || item.isCanvas || item.isFigureGroup || item.isPaperFoldGroup || item.isMeasurementGroup || item.isTableGroup || item.isGraphPaperGroup || item.isGeneratedGroup || item.isCharacterGroup || item.isLayoutGroup || item.isFraction || !item.el) {
         throw new Error("선택한 요소를 속성 패널에서 수정할 수 없습니다.");
       }
       const current = readSlotPatchValue(item.el) || {};
@@ -5044,7 +5099,7 @@
     function readSelectedStates() {
       const states = [];
       for (const item of selectedSlots.values()) {
-        if (item.isFigureGroup || item.isPaperFoldGroup || item.isMeasurementGroup || item.isTableGroup || item.isGraphPaperGroup || item.isGeneratedGroup) {
+        if (item.isFigureGroup || item.isPaperFoldGroup || item.isMeasurementGroup || item.isTableGroup || item.isGraphPaperGroup || item.isGeneratedGroup || item.isCharacterGroup || item.isLayoutGroup) {
           for (const node of item.elements || []) {
             const slotId = slotIdFromElement(node);
             const value = readSlotPatchValue(node);
@@ -5523,7 +5578,7 @@
       const svgClientRect = svg.getBoundingClientRect();
       const canvasScaleX = item.isCanvas && svgClientRect.width > 0 ? box.width / svgClientRect.width : 1;
       const canvasScaleY = item.isCanvas && svgClientRect.height > 0 ? box.height / svgClientRect.height : 1;
-      const startValue = (item.isCharacterGroup || item.isFigureGroup || item.isPaperFoldGroup || item.isMeasurementGroup || item.isTableGroup || item.isGraphPaperGroup || item.isGeneratedGroup)
+      const startValue = (item.isCharacterGroup || item.isLayoutGroup || item.isFigureGroup || item.isPaperFoldGroup || item.isMeasurementGroup || item.isTableGroup || item.isGraphPaperGroup || item.isGeneratedGroup)
         ? (item.elements || [])
             .map((el) => ({ el, slotId: slotIdFromElement(el), value: readSlotPatchValue(el) }))
             .filter((entry) => entry.slotId && entry.value)
@@ -5548,7 +5603,7 @@
         canvasScaleX,
         canvasScaleY,
         startBox: cloneBBox(box),
-        startValue: (item.isCharacterGroup || item.isFigureGroup || item.isPaperFoldGroup || item.isMeasurementGroup || item.isTableGroup || item.isGraphPaperGroup || item.isGeneratedGroup)
+        startValue: (item.isCharacterGroup || item.isLayoutGroup || item.isFigureGroup || item.isPaperFoldGroup || item.isMeasurementGroup || item.isTableGroup || item.isGraphPaperGroup || item.isGeneratedGroup)
           ? startValue.map((entry) => ({ ...entry, value: JSON.parse(JSON.stringify(entry.value)) }))
           : JSON.parse(JSON.stringify(startValue)),
         lastValue: null,
@@ -5581,7 +5636,7 @@
           return;
         }
       }
-      if (singleTag === "line" && !resizeState.item.isCanvas && !resizeState.item.isFigureGroup && !resizeState.item.isPaperFoldGroup && !resizeState.item.isMeasurementGroup && !resizeState.item.isGraphPaperGroup) {
+      if (singleTag === "line" && !resizeState.item.isCanvas && !resizeState.item.isFigureGroup && !resizeState.item.isPaperFoldGroup && !resizeState.item.isMeasurementGroup && !resizeState.item.isGraphPaperGroup && !resizeState.item.isLayoutGroup) {
         let value = null;
         if (resizeState.handle === "p1" || resizeState.handle === "p2") {
           value = linePatchFromEndpoint(resizeState.item.el, resizeState.handle, resizeState.startValue, p);
@@ -5597,7 +5652,7 @@
         }
       }
       if (resizeState.handle === "r" && !resizeState.item.isCanvas) {
-        const value = (resizeState.item.isCharacterGroup || resizeState.item.isFigureGroup || resizeState.item.isPaperFoldGroup || resizeState.item.isMeasurementGroup || resizeState.item.isTableGroup || resizeState.item.isGraphPaperGroup)
+        const value = (resizeState.item.isCharacterGroup || resizeState.item.isLayoutGroup || resizeState.item.isFigureGroup || resizeState.item.isPaperFoldGroup || resizeState.item.isMeasurementGroup || resizeState.item.isTableGroup || resizeState.item.isGraphPaperGroup)
           ? rotationValuesForGroup(resizeState.startValue, resizeState.startBox, resizeState.startGlobalPoint, rawPoint)
           : rotationValueFromPointer(resizeState.startValue, resizeState.startBox, resizeState.startGlobalPoint, rawPoint);
         if (Array.isArray(value)) {
@@ -5631,7 +5686,7 @@
         : adjustedBBox(resizeState.startBox, resizeState.handle, dx, dy);
       const value = resizeState.item.isGraphPaperGroup
         ? resizeGraphPaperGroup(resizeState, nextBox)
-        : (resizeState.item.isCharacterGroup || resizeState.item.isFigureGroup || resizeState.item.isPaperFoldGroup || resizeState.item.isMeasurementGroup || resizeState.item.isTableGroup)
+        : (resizeState.item.isCharacterGroup || resizeState.item.isLayoutGroup || resizeState.item.isFigureGroup || resizeState.item.isPaperFoldGroup || resizeState.item.isMeasurementGroup || resizeState.item.isTableGroup)
           ? resizeFigureGroup(resizeState, nextBox)
         : resizeState.item.isCanvas
           ? resizePatchForCanvas(resizeState.svg, resizeState.handle, resizeState.startValue, resizeState.startBox, nextBox)
@@ -5695,7 +5750,7 @@
         updateSelectionHandles();
         return;
       }
-      if (local.item.isCharacterGroup || local.item.isFigureGroup || local.item.isPaperFoldGroup || local.item.isMeasurementGroup || local.item.isTableGroup || local.item.isGraphPaperGroup) {
+      if (local.item.isCharacterGroup || local.item.isLayoutGroup || local.item.isFigureGroup || local.item.isPaperFoldGroup || local.item.isMeasurementGroup || local.item.isTableGroup || local.item.isGraphPaperGroup) {
         const before = [];
         const after = [];
         const patches = [];
@@ -5770,13 +5825,13 @@
         const keepGroupSelection = !appendSelection && selectedSlots.has(selectionKey);
         if (!keepGroupSelection) setSelectedElement(el, slotId, appendSelection);
         const selected = selectedSlots.get(selectionKey);
-        if (selected && !selected.isCharacterGroup && !selected.isFigureGroup && !selected.isPaperFoldGroup && !selected.isMeasurementGroup && !selected.isTableGroup && !selected.isGraphPaperGroup) selected.slotIds = resolvedSlotIds;
+        if (selected && !selected.isCharacterGroup && !selected.isLayoutGroup && !selected.isFigureGroup && !selected.isPaperFoldGroup && !selected.isMeasurementGroup && !selected.isTableGroup && !selected.isGraphPaperGroup) selected.slotIds = resolvedSlotIds;
         const start = getSvgPoint(svg, ev.clientX, ev.clientY);
         const beforeMap = new Map();
         for (const item of selectedSlots.values()) {
           if (item.isFraction) {
             beforeMap.set(item.slotId, { move_dx: 0, move_dy: 0 });
-          } else if (item.isCharacterGroup || item.isGeneratedGroup || item.isFigureGroup || item.isPaperFoldGroup || item.isMeasurementGroup || item.isTableGroup || item.isGraphPaperGroup) {
+          } else if (item.isCharacterGroup || item.isLayoutGroup || item.isGeneratedGroup || item.isFigureGroup || item.isPaperFoldGroup || item.isMeasurementGroup || item.isTableGroup || item.isGraphPaperGroup) {
             for (const node of item.elements || []) {
               const sid = slotIdFromElement(node);
               const value = readSlotPatchValue(node);
@@ -5991,7 +6046,7 @@
           for (const item of selectedSlots.values()) {
             if (item.isFraction) {
               for (const node of item.elements || []) lastValue = applyElementDelta(node, pdx, pdy, false);
-          } else if (item.isCharacterGroup || item.isFigureGroup || item.isPaperFoldGroup || item.isMeasurementGroup || item.isTableGroup || item.isGraphPaperGroup || item.isGeneratedGroup) {
+          } else if (item.isCharacterGroup || item.isLayoutGroup || item.isFigureGroup || item.isPaperFoldGroup || item.isMeasurementGroup || item.isTableGroup || item.isGraphPaperGroup || item.isGeneratedGroup) {
               for (const node of item.elements || []) lastValue = applyElementDelta(node, pdx, pdy, false);
             } else {
               lastValue = applyElementDelta(item.el, pdx, pdy, false);
@@ -6052,7 +6107,7 @@
             after.push({ slotId: item.slotId, value: snappedMove });
             continue;
           }
-          if (item.isCharacterGroup || item.isGeneratedGroup) {
+          if (item.isCharacterGroup || item.isLayoutGroup || item.isGeneratedGroup) {
             const snappedMove = snapPatchValue({ move_dx: local.totalDx, move_dy: local.totalDy });
             const fixDx = snappedMove.move_dx - local.totalDx;
             const fixDy = snappedMove.move_dy - local.totalDy;
@@ -6109,7 +6164,7 @@
         setStatus(`드래그 저장 중: ${patches.length}개`, true);
         queueDragCommit(async () => {
           try {
-            await commitPatches(patches, `드래그 저장 완료: ${patches.length}개`, false, local.problemId);
+            await commitPatches(patches, `드래그 저장 완료: ${patches.length}개`, false, local.problemId, false);
             if (!historyBusy) {
               for (const pch of patches) {
                 const found = local.beforeMap.get(pch.target);
@@ -6130,11 +6185,11 @@
       const items = [];
       for (const item of selectedSlots.values()) {
         if (item.isCanvas) continue;
-        const value = (item.isFraction || item.isFigureGroup || item.isPaperFoldGroup || item.isMeasurementGroup || item.isTableGroup || item.isGraphPaperGroup || item.isGeneratedGroup || item.isCharacterGroup) ? { move_dx: 0, move_dy: 0 } : readSlotPatchValue(item.el);
+        const value = (item.isFraction || item.isFigureGroup || item.isPaperFoldGroup || item.isMeasurementGroup || item.isTableGroup || item.isGraphPaperGroup || item.isGeneratedGroup || item.isCharacterGroup || item.isLayoutGroup) ? { move_dx: 0, move_dy: 0 } : readSlotPatchValue(item.el);
         if (!value) continue;
         let bbox = null;
         try {
-          if (item.isFraction || item.isFigureGroup || item.isPaperFoldGroup || item.isMeasurementGroup || item.isTableGroup || item.isGraphPaperGroup || item.isGeneratedGroup || item.isCharacterGroup) {
+          if (item.isFraction || item.isFigureGroup || item.isPaperFoldGroup || item.isMeasurementGroup || item.isTableGroup || item.isGraphPaperGroup || item.isGeneratedGroup || item.isCharacterGroup || item.isLayoutGroup) {
             bbox = itemBBox(item);
           } else {
             bbox = item.el.getBBox();
@@ -6156,6 +6211,7 @@
           isGraphPaperGroup: !!item.isGraphPaperGroup,
           isGeneratedGroup: !!item.isGeneratedGroup,
           isCharacterGroup: !!item.isCharacterGroup,
+          isLayoutGroup: !!item.isLayoutGroup,
           elements: item.elements || [item.el],
         });
       }
@@ -6242,7 +6298,7 @@
             for (const node of item.elements) applyElementDelta(node, fixDx, fixDy, false);
           }
           patches.push({ target: item.slotId, op: "update", value: snappedMove });
-        } else if (item.isTableGroup || item.isGraphPaperGroup) {
+        } else if (item.isTableGroup || item.isGraphPaperGroup || item.isLayoutGroup || item.isCharacterGroup) {
           for (const node of item.elements) applyElementDelta(node, dx, dy, true);
           for (const node of item.elements) {
             const slotId = slotIdFromElement(node);
@@ -6997,7 +7053,7 @@
       const patches = [];
       const handledFractionPrefixes = new Set();
       for (const item of selectedSlots.values()) {
-        if (item.isCharacterGroup) {
+        if (item.isCharacterGroup || item.isLayoutGroup) {
           for (const node of item.elements || []) applyElementDelta(node, dx, dy, false);
           for (const node of item.elements || []) {
             const slotId = slotIdFromElement(node);

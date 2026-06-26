@@ -1306,7 +1306,12 @@ class SlotDeleteTransformer(cst.CSTTransformer):
         return updated_node
 
 
-def apply_layout_patches(problem_id: str, patches: list[dict[str, Any]]) -> tuple[str, list[AppliedPatch]]:
+def apply_layout_patches(
+    problem_id: str,
+    patches: list[dict[str, Any]],
+    *,
+    format_source: bool = True,
+) -> tuple[str, list[AppliedPatch]]:
     paths = resolve_problem_paths(problem_id)
     source = paths.dsl_path.read_text(encoding="utf-8")
     if not source.strip():
@@ -1470,6 +1475,6 @@ def apply_layout_patches(problem_id: str, patches: list[dict[str, Any]]) -> tupl
 
         raise DslPatchError(f"target slot not found: {target}")
 
-    updated_code = format_dsl_source(transformed.code)
+    updated_code = format_dsl_source(transformed.code) if format_source else transformed.code
     paths.dsl_path.write_text(updated_code, encoding="utf-8")
     return updated_code, applied
