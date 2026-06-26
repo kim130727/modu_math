@@ -6,7 +6,7 @@ def build_problem_template() -> ProblemTemplate:
     return ProblemTemplate(
         id="S3_초등_3_008740",
         title="두 분수의 크기 비교",
-        canvas=Canvas(width=960, height=940, coordinate_mode="logical"),
+        canvas=Canvas(width=960, height=700, coordinate_mode="logical"),
         regions=(
             Region(id="region.stem", role="stem", flow="absolute", slot_ids=("slot.q2", "slot.q3")),
             Region(
