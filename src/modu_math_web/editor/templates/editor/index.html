@@ -1357,6 +1357,10 @@
       } catch (_) {
         return null;
       }
+      if (!box || (box.width <= 0 && box.height <= 0)) {
+        box = elementHitBox(el, svg);
+      }
+      if (!box) return null;
       const ctm = svg.getScreenCTM();
       if (!ctm) return null;
       const point = svg.createSVGPoint();
@@ -3407,6 +3411,70 @@
       return pointToBoxDistance(point, box);
     }
 
+    function tableCellPositionFromSlotId(slotId) {
+      const m = String(slotId || "").match(/^(slot\.table(?:_\d+)?)\.r(\d+)c(\d+)$/);
+      if (!m) return null;
+      return { base: m[1], row: Number(m[2]), col: Number(m[3]) };
+    }
+
+    function uniqueSortedNumbers(values) {
+      const sorted = values
+        .filter((value) => Number.isFinite(value))
+        .sort((a, b) => a - b);
+      const out = [];
+      for (const value of sorted) {
+        if (!out.length || Math.abs(out[out.length - 1] - value) > 0.01) out.push(value);
+      }
+      return out;
+    }
+
+    function escapedRegExp(value) {
+      return String(value || "").replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    }
+
+    function tableCellHitBox(node, svg) {
+      const cell = tableCellPositionFromSlotId(slotIdFromElement(node));
+      if (!cell || !svg) return null;
+      const nodes = draggableSlotElements(svg, `${cell.base}.`);
+      const outer = nodes.find((el) => slotIdFromElement(el) === `${cell.base}.outer` && el.tagName.toLowerCase() === "rect");
+      if (!outer) return null;
+      const outerValue = readSlotPatchValue(outer);
+      if (!outerValue) return null;
+      const left = Number(outerValue.x);
+      const top = Number(outerValue.y);
+      const right = left + Number(outerValue.width);
+      const bottom = top + Number(outerValue.height);
+      if (![left, top, right, bottom].every(Number.isFinite)) return null;
+
+      const xs = [left, right];
+      const ys = [top, bottom];
+      const vPattern = new RegExp(`^${escapedRegExp(cell.base)}\\.v\\d+$`);
+      const hPattern = new RegExp(`^${escapedRegExp(cell.base)}\\.h\\d+$`);
+      for (const el of nodes) {
+        const sid = slotIdFromElement(el);
+        if (!sid || el.tagName.toLowerCase() !== "line") continue;
+        const value = readSlotPatchValue(el);
+        if (!value) continue;
+        if (vPattern.test(sid)) {
+          xs.push(Number(value.x1));
+        } else if (hPattern.test(sid)) {
+          ys.push(Number(value.y1));
+        }
+      }
+
+      const colBounds = uniqueSortedNumbers(xs);
+      const rowBounds = uniqueSortedNumbers(ys);
+      if (cell.col < 1 || cell.col >= colBounds.length || cell.row < 1 || cell.row >= rowBounds.length) return null;
+      const x = colBounds[cell.col - 1];
+      const y = rowBounds[cell.row - 1];
+      return {
+        x,
+        y,
+        width: Math.max(1, colBounds[cell.col] - x),
+        height: Math.max(1, rowBounds[cell.row] - y),
+      };
+    }
+
     function elementHitBox(node, svg = null) {
       const tag = node.tagName.toLowerCase();
       if (tag === "rect" || tag === "image") {
@@ -3430,6 +3498,8 @@
         } catch (_) {
           // Fall back to a text estimate below.
         }
+        const cellBox = tableCellHitBox(node, svg);
+        if (cellBox) return cellBox;
         const text = node.textContent || "";
         const fontSize = Number(node.getAttribute("font-size") || node.getAttribute("font_size") || 28);
         const x = Number(node.getAttribute("x") || 0);
@@ -3486,12 +3556,12 @@
 
     function pickPriority(node) {
       const tag = node.tagName.toLowerCase();
+      if (tag === "text") return 0;
       if (tag === "line" || tag === "path") return 0;
       if (tag === "circle") return 1;
       if (tag === "polygon") return 1;
       if (tag === "image") return 2;
       if (tag === "rect") return 3;
-      if (tag === "text") return 4;
       return 4;
     }
 
