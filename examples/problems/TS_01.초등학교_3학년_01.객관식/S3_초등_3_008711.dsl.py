@@ -60,7 +60,7 @@ def build_problem_template() -> ProblemTemplate:
                 text="원을 가장 작게 그릴 때 연필심을 넣어야 하는 구멍의 기호를\n선택하세요.  ",
                 style_role="question",
                 x=40,
-                y=80,
+                y=66,
                 font_size=28,
                 fill="#111111",
             ),

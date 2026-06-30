@@ -7,70 +7,6 @@
   },
   "elements": [
     {
-      "id": "slot.math.fraction.bar.line",
-      "type": "line",
-      "attributes": {
-        "x1": 190.0,
-        "y1": 570.0,
-        "x2": 230.0,
-        "y2": 570.0,
-        "stroke": "#222222",
-        "stroke-width": 2.2
-      },
-      "source_ref": "slot.math.fraction.bar",
-      "refs": {
-        "layout_slot_id": "slot.math.fraction.bar"
-      }
-    },
-    {
-      "id": "slot.math.fraction_1.bar.line",
-      "type": "line",
-      "attributes": {
-        "x1": 320.0,
-        "y1": 585.0,
-        "x2": 360.0,
-        "y2": 585.0,
-        "stroke": "#222222",
-        "stroke-width": 2.2
-      },
-      "source_ref": "slot.math.fraction_1.bar",
-      "refs": {
-        "layout_slot_id": "slot.math.fraction_1.bar"
-      }
-    },
-    {
-      "id": "slot.math.mixed_fraction.bar.line",
-      "type": "line",
-      "attributes": {
-        "x1": 510.0,
-        "y1": 595.0,
-        "x2": 550.0,
-        "y2": 595.0,
-        "stroke": "#222222",
-        "stroke-width": 2.2
-      },
-      "source_ref": "slot.math.mixed_fraction.bar",
-      "refs": {
-        "layout_slot_id": "slot.math.mixed_fraction.bar"
-      }
-    },
-    {
-      "id": "slot.math.mixed_fraction_1.bar.line",
-      "type": "line",
-      "attributes": {
-        "x1": 660.0,
-        "y1": 565.0,
-        "x2": 700.0,
-        "y2": 565.0,
-        "stroke": "#222222",
-        "stroke-width": 2.2
-      },
-      "source_ref": "slot.math.mixed_fraction_1.bar",
-      "refs": {
-        "layout_slot_id": "slot.math.mixed_fraction_1.bar"
-      }
-    },
-    {
       "id": "slot.q2.text",
       "type": "text",
       "attributes": {
@@ -101,176 +37,6 @@
         "layout_slot_id": "slot.q3"
       },
       "text": "①에 들어갈 분수로 알맞은 것을 가장 아래 칸의 분수들 중에 선택해 보세요."
-    },
-    {
-      "id": "slot.math.fraction.num.text",
-      "type": "text",
-      "attributes": {
-        "x": 210.0,
-        "y": 555.0,
-        "fill": "#222222",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 30,
-        "text-anchor": "middle"
-      },
-      "source_ref": "slot.math.fraction.num",
-      "refs": {
-        "layout_slot_id": "slot.math.fraction.num"
-      },
-      "text": "23"
-    },
-    {
-      "id": "slot.math.fraction.den.text",
-      "type": "text",
-      "attributes": {
-        "x": 210.0,
-        "y": 595.0,
-        "fill": "#222222",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 30,
-        "text-anchor": "middle"
-      },
-      "source_ref": "slot.math.fraction.den",
-      "refs": {
-        "layout_slot_id": "slot.math.fraction.den"
-      },
-      "text": "6"
-    },
-    {
-      "id": "slot.math.fraction_1.num.text",
-      "type": "text",
-      "attributes": {
-        "x": 340.0,
-        "y": 570.0,
-        "fill": "#222222",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 30,
-        "text-anchor": "middle"
-      },
-      "source_ref": "slot.math.fraction_1.num",
-      "refs": {
-        "layout_slot_id": "slot.math.fraction_1.num"
-      },
-      "text": "21"
-    },
-    {
-      "id": "slot.math.fraction_1.den.text",
-      "type": "text",
-      "attributes": {
-        "x": 340.0,
-        "y": 610.0,
-        "fill": "#222222",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 30,
-        "text-anchor": "middle"
-      },
-      "source_ref": "slot.math.fraction_1.den",
-      "refs": {
-        "layout_slot_id": "slot.math.fraction_1.den"
-      },
-      "text": "6"
-    },
-    {
-      "id": "slot.math.mixed_fraction.whole.text",
-      "type": "text",
-      "attributes": {
-        "x": 490.0,
-        "y": 605.0,
-        "fill": "#222222",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 30,
-        "text-anchor": "middle"
-      },
-      "source_ref": "slot.math.mixed_fraction.whole",
-      "refs": {
-        "layout_slot_id": "slot.math.mixed_fraction.whole"
-      },
-      "text": "3"
-    },
-    {
-      "id": "slot.math.mixed_fraction.num.text",
-      "type": "text",
-      "attributes": {
-        "x": 530.0,
-        "y": 580.0,
-        "fill": "#222222",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 30,
-        "text-anchor": "middle"
-      },
-      "source_ref": "slot.math.mixed_fraction.num",
-      "refs": {
-        "layout_slot_id": "slot.math.mixed_fraction.num"
-      },
-      "text": "2"
-    },
-    {
-      "id": "slot.math.mixed_fraction.den.text",
-      "type": "text",
-      "attributes": {
-        "x": 530.0,
-        "y": 620.0,
-        "fill": "#222222",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 30,
-        "text-anchor": "middle"
-      },
-      "source_ref": "slot.math.mixed_fraction.den",
-      "refs": {
-        "layout_slot_id": "slot.math.mixed_fraction.den"
-      },
-      "text": "6"
-    },
-    {
-      "id": "slot.math.mixed_fraction_1.whole.text",
-      "type": "text",
-      "attributes": {
-        "x": 640.0,
-        "y": 575.0,
-        "fill": "#222222",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 30,
-        "text-anchor": "middle"
-      },
-      "source_ref": "slot.math.mixed_fraction_1.whole",
-      "refs": {
-        "layout_slot_id": "slot.math.mixed_fraction_1.whole"
-      },
-      "text": "3"
-    },
-    {
-      "id": "slot.math.mixed_fraction_1.num.text",
-      "type": "text",
-      "attributes": {
-        "x": 680.0,
-        "y": 550.0,
-        "fill": "#222222",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 30,
-        "text-anchor": "middle"
-      },
-      "source_ref": "slot.math.mixed_fraction_1.num",
-      "refs": {
-        "layout_slot_id": "slot.math.mixed_fraction_1.num"
-      },
-      "text": "4"
-    },
-    {
-      "id": "slot.math.mixed_fraction_1.den.text",
-      "type": "text",
-      "attributes": {
-        "x": 680.0,
-        "y": 590.0,
-        "fill": "#222222",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 30,
-        "text-anchor": "middle"
-      },
-      "source_ref": "slot.math.mixed_fraction_1.den",
-      "refs": {
-        "layout_slot_id": "slot.math.mixed_fraction_1.den"
-      },
-      "text": "6"
     },
     {
       "id": "slot.top.box.rect",
@@ -421,6 +187,70 @@
       "source_ref": "slot.mid.connector",
       "refs": {
         "layout_slot_id": "slot.mid.connector"
+      }
+    },
+    {
+      "id": "slot.math.fraction.bar.line",
+      "type": "line",
+      "attributes": {
+        "x1": 180.0,
+        "y1": 492.0,
+        "x2": 220.0,
+        "y2": 492.0,
+        "stroke": "#222222",
+        "stroke-width": 2.2
+      },
+      "source_ref": "slot.math.fraction.bar",
+      "refs": {
+        "layout_slot_id": "slot.math.fraction.bar"
+      }
+    },
+    {
+      "id": "slot.math.fraction_1.bar.line",
+      "type": "line",
+      "attributes": {
+        "x1": 317.0,
+        "y1": 492.0,
+        "x2": 357.0,
+        "y2": 492.0,
+        "stroke": "#222222",
+        "stroke-width": 2.2
+      },
+      "source_ref": "slot.math.fraction_1.bar",
+      "refs": {
+        "layout_slot_id": "slot.math.fraction_1.bar"
+      }
+    },
+    {
+      "id": "slot.math.mixed_fraction.bar.line",
+      "type": "line",
+      "attributes": {
+        "x1": 522.0,
+        "y1": 492.0,
+        "x2": 562.0,
+        "y2": 492.0,
+        "stroke": "#222222",
+        "stroke-width": 2.2
+      },
+      "source_ref": "slot.math.mixed_fraction.bar",
+      "refs": {
+        "layout_slot_id": "slot.math.mixed_fraction.bar"
+      }
+    },
+    {
+      "id": "slot.math.mixed_fraction_1.bar.line",
+      "type": "line",
+      "attributes": {
+        "x1": 657.0,
+        "y1": 492.0,
+        "x2": 697.0,
+        "y2": 492.0,
+        "stroke": "#222222",
+        "stroke-width": 2.2
+      },
+      "source_ref": "slot.math.mixed_fraction_1.bar",
+      "refs": {
+        "layout_slot_id": "slot.math.mixed_fraction_1.bar"
       }
     },
     {
@@ -598,6 +428,176 @@
         "layout_slot_id": "slot.top.text"
       },
       "text": "①"
+    },
+    {
+      "id": "slot.math.fraction.num.text",
+      "type": "text",
+      "attributes": {
+        "x": 200.0,
+        "y": 475.0,
+        "fill": "#222222",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.math.fraction.num",
+      "refs": {
+        "layout_slot_id": "slot.math.fraction.num"
+      },
+      "text": "23"
+    },
+    {
+      "id": "slot.math.fraction.den.text",
+      "type": "text",
+      "attributes": {
+        "x": 200.0,
+        "y": 520.0,
+        "fill": "#222222",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.math.fraction.den",
+      "refs": {
+        "layout_slot_id": "slot.math.fraction.den"
+      },
+      "text": "6"
+    },
+    {
+      "id": "slot.math.fraction_1.num.text",
+      "type": "text",
+      "attributes": {
+        "x": 337.0,
+        "y": 475.0,
+        "fill": "#222222",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.math.fraction_1.num",
+      "refs": {
+        "layout_slot_id": "slot.math.fraction_1.num"
+      },
+      "text": "21"
+    },
+    {
+      "id": "slot.math.fraction_1.den.text",
+      "type": "text",
+      "attributes": {
+        "x": 337.0,
+        "y": 520.0,
+        "fill": "#222222",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.math.fraction_1.den",
+      "refs": {
+        "layout_slot_id": "slot.math.fraction_1.den"
+      },
+      "text": "6"
+    },
+    {
+      "id": "slot.math.mixed_fraction.whole.text",
+      "type": "text",
+      "attributes": {
+        "x": 510.0,
+        "y": 500.0,
+        "fill": "#222222",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.math.mixed_fraction.whole",
+      "refs": {
+        "layout_slot_id": "slot.math.mixed_fraction.whole"
+      },
+      "text": "3"
+    },
+    {
+      "id": "slot.math.mixed_fraction.num.text",
+      "type": "text",
+      "attributes": {
+        "x": 542.0,
+        "y": 475.0,
+        "fill": "#222222",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.math.mixed_fraction.num",
+      "refs": {
+        "layout_slot_id": "slot.math.mixed_fraction.num"
+      },
+      "text": "2"
+    },
+    {
+      "id": "slot.math.mixed_fraction.den.text",
+      "type": "text",
+      "attributes": {
+        "x": 542.0,
+        "y": 520.0,
+        "fill": "#222222",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.math.mixed_fraction.den",
+      "refs": {
+        "layout_slot_id": "slot.math.mixed_fraction.den"
+      },
+      "text": "6"
+    },
+    {
+      "id": "slot.math.mixed_fraction_1.whole.text",
+      "type": "text",
+      "attributes": {
+        "x": 645.0,
+        "y": 500.0,
+        "fill": "#222222",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.math.mixed_fraction_1.whole",
+      "refs": {
+        "layout_slot_id": "slot.math.mixed_fraction_1.whole"
+      },
+      "text": "3"
+    },
+    {
+      "id": "slot.math.mixed_fraction_1.num.text",
+      "type": "text",
+      "attributes": {
+        "x": 677.0,
+        "y": 475.0,
+        "fill": "#222222",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.math.mixed_fraction_1.num",
+      "refs": {
+        "layout_slot_id": "slot.math.mixed_fraction_1.num"
+      },
+      "text": "4"
+    },
+    {
+      "id": "slot.math.mixed_fraction_1.den.text",
+      "type": "text",
+      "attributes": {
+        "x": 677.0,
+        "y": 520.0,
+        "fill": "#222222",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.math.mixed_fraction_1.den",
+      "refs": {
+        "layout_slot_id": "slot.math.mixed_fraction_1.den"
+      },
+      "text": "6"
     }
   ],
   "contract_version": "modu_math.renderer.v2"

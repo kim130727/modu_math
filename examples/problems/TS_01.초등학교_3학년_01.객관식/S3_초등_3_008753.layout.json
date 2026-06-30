@@ -21,7 +21,6 @@
         "slot.table.v2",
         "slot.table.v3",
         "slot.table.v4",
-        "slot.q.num",
         "slot.q1",
         "slot.q2",
         "slot.table.r1c1",
@@ -38,27 +37,16 @@
   ],
   "slots": [
     {
-      "id": "slot.q.num",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "50.",
-        "style_role": "question",
-        "x": 44.0,
-        "y": 42.0,
-        "font_size": 28
-      }
-    },
-    {
       "id": "slot.q1",
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "수조에 물을 가득 채우려면 다음과 같이 각각",
+        "text": "수조에 물을 가득 채우려면 다음과 같이 각각 그릇이 필요합니다.",
         "style_role": "question",
-        "x": 96.0,
-        "y": 42.0,
-        "font_size": 28
+        "x": 46.0,
+        "y": 50.0,
+        "font_size": 28,
+        "fill": "#111111"
       }
     },
     {
@@ -66,10 +54,10 @@
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "그릇이 필요합니다. ㉠ 그릇, ㉡ 그릇, ㉢ 그릇 중 들이가 가장 적은 것을 선택해보세요.",
+        "text": "㉠ 그릇, ㉡ 그릇, ㉢ 그릇 중 들이가 가장 적은 것을 선택해보세요.",
         "style_role": "question",
         "x": 44.0,
-        "y": 76.0,
+        "y": 93.0,
         "font_size": 28
       }
     },
@@ -78,8 +66,8 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 210.0,
-        "y": 88.0,
+        "x": 120.0,
+        "y": 143.0,
         "width": 580.0,
         "height": 118.0,
         "stroke": "#A7C36A",
@@ -92,8 +80,8 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 210.0,
-        "y": 88.0,
+        "x": 120.0,
+        "y": 143.0,
         "width": 580.0,
         "height": 44.0,
         "stroke": "#A7C36A",
@@ -106,8 +94,8 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 210.0,
-        "y": 132.0,
+        "x": 120.0,
+        "y": 187.0,
         "width": 580.0,
         "height": 74.0,
         "stroke": "#A7C36A",
@@ -120,8 +108,8 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 355.0,
-        "y": 88.0,
+        "x": 265.0,
+        "y": 143.0,
         "width": 0.0,
         "height": 118.0,
         "stroke": "#A7C36A",
@@ -134,8 +122,8 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 500.0,
-        "y": 88.0,
+        "x": 410.0,
+        "y": 143.0,
         "width": 0.0,
         "height": 118.0,
         "stroke": "#A7C36A",
@@ -148,8 +136,8 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 645.0,
-        "y": 88.0,
+        "x": 555.0,
+        "y": 143.0,
         "width": 0.0,
         "height": 118.0,
         "stroke": "#A7C36A",
@@ -162,8 +150,8 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 790.0,
-        "y": 88.0,
+        "x": 700.0,
+        "y": 143.0,
         "width": 0.0,
         "height": 118.0,
         "stroke": "#A7C36A",
@@ -178,9 +166,10 @@
       "content": {
         "text": "",
         "style_role": "question",
-        "x": 282.0,
-        "y": 115.0,
-        "font_size": 28
+        "x": 192.0,
+        "y": 170.0,
+        "font_size": 28,
+        "fill": "#111111"
       }
     },
     {
@@ -190,9 +179,10 @@
       "content": {
         "text": "㉠ 그릇",
         "style_role": "question",
-        "x": 394.0,
-        "y": 115.0,
-        "font_size": 28
+        "x": 304.0,
+        "y": 170.0,
+        "font_size": 28,
+        "fill": "#111111"
       }
     },
     {
@@ -202,9 +192,10 @@
       "content": {
         "text": "㉡ 그릇",
         "style_role": "question",
-        "x": 539.0,
-        "y": 115.0,
-        "font_size": 28
+        "x": 449.0,
+        "y": 170.0,
+        "font_size": 28,
+        "fill": "#111111"
       }
     },
     {
@@ -214,9 +205,10 @@
       "content": {
         "text": "㉢ 그릇",
         "style_role": "question",
-        "x": 684.0,
-        "y": 115.0,
-        "font_size": 28
+        "x": 594.0,
+        "y": 170.0,
+        "font_size": 28,
+        "fill": "#111111"
       }
     },
     {
@@ -226,9 +218,10 @@
       "content": {
         "text": "그릇의 수",
         "style_role": "question",
-        "x": 243.0,
-        "y": 170.0,
-        "font_size": 28
+        "x": 153.0,
+        "y": 225.0,
+        "font_size": 28,
+        "fill": "#111111"
       }
     },
     {
@@ -238,9 +231,10 @@
       "content": {
         "text": "5개",
         "style_role": "question",
-        "x": 413.0,
-        "y": 170.0,
-        "font_size": 28
+        "x": 323.0,
+        "y": 225.0,
+        "font_size": 28,
+        "fill": "#111111"
       }
     },
     {
@@ -250,9 +244,10 @@
       "content": {
         "text": "4개",
         "style_role": "question",
-        "x": 558.0,
-        "y": 170.0,
-        "font_size": 28
+        "x": 468.0,
+        "y": 225.0,
+        "font_size": 28,
+        "fill": "#111111"
       }
     },
     {
@@ -262,9 +257,10 @@
       "content": {
         "text": "7개",
         "style_role": "question",
-        "x": 703.0,
-        "y": 170.0,
-        "font_size": 28
+        "x": 613.0,
+        "y": 225.0,
+        "font_size": 28,
+        "fill": "#111111"
       }
     },
     {
@@ -274,9 +270,10 @@
       "content": {
         "text": "( ㉠ 그릇 , ㉡ 그릇 , ㉢ 그릇 )",
         "style_role": "question",
-        "x": 593.0,
-        "y": 258.0,
-        "font_size": 28
+        "x": 213.0,
+        "y": 373.0,
+        "font_size": 28,
+        "fill": "#111111"
       }
     }
   ],
@@ -292,7 +289,6 @@
     "slot.table.v2",
     "slot.table.v3",
     "slot.table.v4",
-    "slot.q.num",
     "slot.q1",
     "slot.q2",
     "slot.table.r1c1",
