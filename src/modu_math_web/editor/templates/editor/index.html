@@ -1355,7 +1355,7 @@
       try {
         box = el.getBBox();
       } catch (_) {
-        return null;
+        box = null;
       }
       if (!box || (box.width <= 0 && box.height <= 0)) {
         box = elementHitBox(el, svg);
@@ -1616,10 +1616,25 @@
         return;
       }
       state.el.textContent = text;
+      state.el.removeAttribute("data-raw-text");
       updateSelectionHandles();
       updateTextEditControls();
       try {
-        await commitPatches([{ target: state.slotId, op: "update", value: { text } }], `텍스트 수정 완료: ${state.slotId}`);
+        let patches = [{ target: state.slotId, op: "update", value: { text } }];
+        const tableBase = tableBaseFromSlotId(state.slotId);
+        const tableItem = tableBase ? selectedSlots.get(tableBase) : null;
+        if (tableItem && tableItem.isTableGroup) {
+          const layoutValues = tableTextCellLayoutValues(tableItem);
+          patches = layoutValues.map((entry) => ({
+            target: entry.slotId,
+            op: "update",
+            value: entry.slotId === state.slotId ? { ...entry.value, text } : entry.value,
+          }));
+          if (!patches.some((patch) => patch.target === state.slotId)) {
+            patches.push({ target: state.slotId, op: "update", value: { text } });
+          }
+        }
+        await commitPatches(patches, `텍스트 수정 완료: ${state.slotId}`);
       } catch (e) {
         setStatus(String(e), false);
       }
@@ -3595,6 +3610,29 @@
       return null;
     }
 
+    function matchingTextSlotElementAtPoint(svg, clientX, clientY) {
+      const point = getSvgPoint(svg, clientX, clientY);
+      const nodes = draggableSlotElements(svg);
+      const candidates = [];
+      for (let i = nodes.length - 1; i >= 0; i -= 1) {
+        const node = nodes[i];
+        if (node.tagName.toLowerCase() !== "text") continue;
+        if (!matchesPickMode(node)) continue;
+        const bb = elementHitBox(node, svg);
+        if (!bb) continue;
+        if (point.x >= bb.x && point.x <= bb.x + bb.width && point.y >= bb.y && point.y <= bb.y + bb.height) {
+          const area = Math.max(0, bb.width) * Math.max(0, bb.height);
+          const distance = pointToElementDistance(node, point, bb);
+          candidates.push({ node, distance, area, z: i });
+        }
+      }
+      if (candidates.length) {
+        candidates.sort((a, b) => a.distance - b.distance || a.area - b.area || b.z - a.z);
+        return candidates[0].node;
+      }
+      return null;
+    }
+
     function readSlotPatchValue(el) {
       const tag = el.tagName.toLowerCase();
       const transform = el.getAttribute("transform") || "";
@@ -4903,38 +4941,115 @@
       }
       applyPatchValueToElement(target.el, value);
       const out = [{ slotId: target.slotId, el: target.el, value }];
-      out.push(...tableTextMaxWidthValues(state.item));
+      out.push(...tableTextCellLayoutValues(state.item));
       return out;
     }
 
-    function tableTextMaxWidthValues(item) {
-      if (!item || !item.isTableGroup) return [];
+    function approximateTextWidth(text, fontSize) {
+      let width = 0;
+      for (const ch of String(text || "")) {
+        if (/\s/.test(ch)) width += fontSize * 0.35;
+        else width += ch.charCodeAt(0) < 128 ? fontSize * 0.58 : fontSize * 0.92;
+      }
+      return width;
+    }
+
+    function approximateWrappedLineCount(text, maxWidth, fontSize) {
+      const cleanMax = Number(maxWidth || 0);
+      if (!cleanMax || cleanMax <= 0) return Math.max(1, String(text || "").split(/\n/).length);
+      let count = 0;
+      for (const paragraph of String(text || "").split(/\n/)) {
+        if (!paragraph) {
+          count += 1;
+          continue;
+        }
+        let current = "";
+        const words = paragraph.split(" ");
+        for (const word of words) {
+          const pieces = [];
+          let piece = "";
+          for (const ch of word) {
+            const trialPiece = piece + ch;
+            if (piece && approximateTextWidth(trialPiece, fontSize) > cleanMax) {
+              pieces.push(piece);
+              piece = ch;
+            } else {
+              piece = trialPiece;
+            }
+          }
+          pieces.push(piece || word);
+          for (const nextPiece of pieces) {
+            const trial = current ? `${current} ${nextPiece}` : nextPiece;
+            if (current && approximateTextWidth(trial, fontSize) > cleanMax) {
+              count += 1;
+              current = nextPiece;
+            } else {
+              current = trial;
+            }
+          }
+        }
+        if (current) count += 1;
+      }
+      return Math.max(1, count);
+    }
+
+    function tableGridEdges(item) {
+      if (!item || !item.isTableGroup) return null;
       const base = item.slotId || "slot.table";
       const outer = (item.elements || []).find((el) => slotIdFromElement(el) === `${base}.outer`);
-      if (!outer) return [];
+      if (!outer) return null;
       const outerValue = readSlotPatchValue(outer);
-      if (!outerValue || outerValue.x === undefined || outerValue.width === undefined) return [];
+      if (!outerValue || outerValue.x === undefined || outerValue.y === undefined || outerValue.width === undefined || outerValue.height === undefined) return null;
       const left = Number(outerValue.x);
       const right = left + Number(outerValue.width);
-      const dividers = [];
+      const top = Number(outerValue.y);
+      const bottom = top + Number(outerValue.height);
+      const verticals = [];
+      const horizontals = [];
       for (const el of item.elements || []) {
         const info = tableDividerInfo(el);
-        if (info && info.axis === "v") dividers.push(Number(info.x1));
+        if (info && info.axis === "v") verticals.push(Number(info.x1));
+        if (info && info.axis === "h") horizontals.push(Number(info.y1));
       }
-      const edges = [left, ...dividers.sort((a, b) => a - b), right];
+      return {
+        cols: uniqueSortedNumbers([left, ...verticals, right]),
+        rows: uniqueSortedNumbers([top, ...horizontals, bottom]),
+      };
+    }
+
+    function tableTextCellLayoutValues(item) {
+      const grid = tableGridEdges(item);
+      if (!grid) return [];
+      const base = item.slotId || "slot.table";
+      const padding = 10;
       const values = [];
       for (const el of item.elements || []) {
         const slotId = slotIdFromElement(el);
-        const m = slotId && slotId.match(/^(slot\.table(?:_\d+)?)\.r\d+c(\d+)$/);
+        const m = slotId && slotId.match(/^(slot\.table(?:_\d+)?)\.r(\d+)c(\d+)$/);
         if (!m || el.tagName.toLowerCase() !== "text") continue;
         if (m[1] !== base) continue;
-        const col = Number(m[2]) - 1;
-        if (col < 0 || col + 1 >= edges.length) continue;
+        const row = Number(m[2]) - 1;
+        const col = Number(m[3]) - 1;
+        if (col < 0 || col + 1 >= grid.cols.length || row < 0 || row + 1 >= grid.rows.length) continue;
         const current = readSlotPatchValue(el);
-        if (!current || current.x === undefined) continue;
-        const cellRight = edges[col + 1];
-        const maxWidth = Math.max(8, cellRight - Number(current.x) - 8);
-        const value = { ...current, max_width: snapEnabled ? snapValue(maxWidth) : maxWidth };
+        if (!current) continue;
+        const left = grid.cols[col];
+        const right = grid.cols[col + 1];
+        const top = grid.rows[row];
+        const bottom = grid.rows[row + 1];
+        const maxWidth = Math.max(8, right - left - padding * 2);
+        const fontSize = Number(current.font_size || el.getAttribute("font-size") || 18);
+        const lineCount = approximateWrappedLineCount(current.text ?? el.getAttribute("data-raw-text") ?? el.textContent ?? "", maxWidth, fontSize);
+        const lineStep = fontSize * 1.2;
+        const totalTextHeight = Math.max(fontSize, fontSize + (lineCount - 1) * lineStep);
+        const y = Math.max(top + fontSize, top + (bottom - top - totalTextHeight) / 2 + fontSize);
+        const value = {
+          ...current,
+          x: snapEnabled ? snapValue((left + right) / 2) : (left + right) / 2,
+          y: snapEnabled ? snapValue(y) : y,
+          max_width: snapEnabled ? snapValue(maxWidth) : maxWidth,
+          anchor: current.anchor || el.getAttribute("text-anchor") || "middle",
+        };
         applyPatchValueToElement(el, value);
         values.push({ slotId, el, value });
       }
@@ -5271,7 +5386,10 @@
       };
       applyStyleAttrs();
       if (tag === "text") {
-        if (value.text !== undefined) el.textContent = String(value.text);
+        if (value.text !== undefined) {
+          el.textContent = String(value.text);
+          el.removeAttribute("data-raw-text");
+        }
         if (el.getAttribute("data-slot-kind") === "text_box") {
           const boxX = value.x !== undefined ? Number(value.x) : Number(el.getAttribute("data-box-x") || 0);
           const boxY = value.y !== undefined ? Number(value.y) : Number(el.getAttribute("data-box-y") || 0);
@@ -6028,11 +6146,12 @@
           if (beginSlotPointerDown(matched || el, ev)) ev.stopPropagation();
         });
         proxy.addEventListener("dblclick", (ev) => {
-          if (el.tagName.toLowerCase() !== "text") return;
-          if (!matchesPickMode(el)) return;
-          const resolvedSlotIds = toDslSlotIds(el.getAttribute("id"));
+          const editTarget = matchingTextSlotElementAtPoint(svg, ev.clientX, ev.clientY) || el;
+          if (editTarget.tagName.toLowerCase() !== "text") return;
+          if (!matchesPickMode(editTarget)) return;
+          const resolvedSlotIds = toDslSlotIds(editTarget.getAttribute("id"));
           if (resolvedSlotIds.length !== 1) return;
-          beginInlineTextEdit(el, resolvedSlotIds[0], ev);
+          beginInlineTextEdit(editTarget, resolvedSlotIds[0], ev);
         });
       }
 
@@ -6118,7 +6237,7 @@
       svg.addEventListener("dblclick", (ev) => {
         const target = ev.target;
         if (!(target instanceof SVGElement)) return;
-        const el = matchingSlotElementAtPoint(svg, ev.clientX, ev.clientY) || findDraggableSlotAncestor(target);
+        const el = matchingTextSlotElementAtPoint(svg, ev.clientX, ev.clientY) || findDraggableSlotAncestor(target);
         if (!el || el.tagName.toLowerCase() !== "text") return;
         if (!matchesPickMode(el)) return;
         const rawId = el.getAttribute("id");
@@ -6279,7 +6398,18 @@
             after.push({ slotId: item.slotId, value: snappedMove });
             continue;
           }
-          if (item.isTableGroup || item.isGraphPaperGroup) {
+          if (item.isTableGroup) {
+            const snappedMove = snapPatchValue({ move_dx: local.totalDx, move_dy: local.totalDy });
+            const fixDx = snappedMove.move_dx - local.totalDx;
+            const fixDy = snappedMove.move_dy - local.totalDy;
+            if (fixDx !== 0 || fixDy !== 0) {
+              for (const node of item.elements || []) applyElementDelta(node, fixDx, fixDy, false);
+            }
+            patches.push({ target: item.slotId, op: "update", value: snappedMove });
+            after.push({ slotId: item.slotId, value: snappedMove });
+            continue;
+          }
+          if (item.isGraphPaperGroup) {
             for (const node of item.elements || []) {
               const slotId = slotIdFromElement(node);
               const current = readSlotPatchValue(node);
@@ -6670,24 +6800,30 @@
     async function deleteSelectedSlots() {
       if (!selectedSlots.size) throw new Error("삭제할 요소를 먼저 선택하세요.");
       const ids = [];
+      const nodesToRemove = [];
       for (const item of selectedSlots.values()) {
         if (item.isCanvas) continue;
         if (item.elements && item.elements.length) {
           for (const node of item.elements) {
             const slotId = slotIdFromElement(node);
             if (slotId) ids.push(slotId);
+            nodesToRemove.push(node);
           }
           continue;
         }
         for (const slotId of item.slotIds || [item.slotId]) {
           if (slotId) ids.push(slotId);
         }
+        if (item.el) nodesToRemove.push(item.el);
       }
       const uniqueSlotIds = Array.from(new Set(ids));
       if (!uniqueSlotIds.length) throw new Error("캔버스는 삭제할 수 없습니다.");
       const patches = uniqueSlotIds.map((slotId) => ({ target: slotId, op: "delete" }));
-      await commitPatches(patches, `요소 삭제 완료: ${patches.length}개`);
+      for (const node of Array.from(new Set(nodesToRemove))) {
+        if (node && node.parentNode) node.parentNode.removeChild(node);
+      }
       clearSelection();
+      await commitPatches(patches, `요소 삭제 완료: ${patches.length}개`, false, currentProblemId, false);
     }
 
     document.getElementById("openBtn").onclick = async () => {

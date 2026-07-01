@@ -56,7 +56,7 @@ def build_problem_template() -> ProblemTemplate:
                 text="택하세요. (단, 리필용 샴푸 용기에는 샴푸가 가득 차 있었습니다.)",
                 style_role="question",
                 x=18,
-                y=142,
+                y=148,
                 font_size=28,
             ),
             TextSlot(

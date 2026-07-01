@@ -989,6 +989,40 @@ class FigureGroupMoveUpdater(cst.CSTTransformer):
         return updated_node
 
 
+class TableGroupMoveUpdater(cst.CSTTransformer):
+    def __init__(self, target: str, fields: dict[str, Any]):
+        self.target = target
+        self.fields = fields
+        self.updated = False
+
+    def leave_Call(self, original_node: cst.Call, updated_node: cst.Call) -> cst.BaseExpression:
+        call_name = _call_name(original_node)
+        if call_name not in SUPPORTED_SLOTS:
+            return updated_node
+
+        id_arg = _keyword_arg(original_node, "id")
+        if id_arg is None or not isinstance(id_arg.value, cst.SimpleString):
+            return updated_node
+        try:
+            slot_id = cst.parse_expression(id_arg.value.value).evaluated_value
+        except Exception:
+            return updated_node
+        if not isinstance(slot_id, str) or not slot_id.startswith(f"{self.target}."):
+            return updated_node
+
+        invalid = sorted(set(self.fields) - FIGURE_MOVE_FIELDS)
+        if invalid:
+            raise DslPatchError(f"unsupported field(s) for table group: {', '.join(invalid)}")
+
+        dx = float(self.fields.get("move_dx", 0.0))
+        dy = float(self.fields.get("move_dy", 0.0))
+        args = list(updated_node.args)
+        if _shift_slot_call_args(args, call_name, dx, dy):
+            self.updated = True
+            return updated_node.with_changes(args=tuple(args))
+        return updated_node
+
+
 class PaperFoldSequenceMoveUpdater(cst.CSTTransformer):
     def __init__(self, target: str, fields: dict[str, Any]):
         self.target = target
@@ -1392,6 +1426,13 @@ def apply_layout_patches(
 
         if target.startswith("slot.figure."):
             updater = FigureGroupMoveUpdater(target=target, fields=value)
+            transformed = transformed.visit(updater)
+            if updater.updated:
+                applied.append(AppliedPatch(target=target, op=op, fields=list(value.keys())))
+                continue
+
+        if re.match(r"^slot\.table(?:_\d+)?$", target):
+            updater = TableGroupMoveUpdater(target=target, fields=value)
             transformed = transformed.visit(updater)
             if updater.updated:
                 applied.append(AppliedPatch(target=target, op=op, fields=list(value.keys())))

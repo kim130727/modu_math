@@ -498,6 +498,50 @@ PROBLEM_TEMPLATE = ProblemTemplate(
     exec(updated, namespace)
 
 
+def test_layout_patch_moves_table_group(tmp_path: Path) -> None:
+    client = _setup_django(tmp_path)
+    dsl_text = """
+from modu_math.dsl import Canvas, LineSlot, ProblemTemplate, RectSlot, Region, TextSlot
+
+PROBLEM_TEMPLATE = ProblemTemplate(
+    id="p_table_move",
+    title="table move",
+    canvas=Canvas(width=300, height=200),
+    regions=(Region(id="region.diagram", role="diagram", flow="absolute", slot_ids=("slot.table.outer", "slot.table.v1", "slot.table.r1c1")),),
+    slots=(
+        RectSlot(id="slot.table.outer", prompt="", x=10.0, y=20.0, width=120.0, height=80.0),
+        LineSlot(id="slot.table.v1", prompt="", x1=70.0, y1=20.0, x2=70.0, y2=100.0),
+        TextSlot(id="slot.table.r1c1", prompt="", text="", x=20.0, y=45.0, style_role="table"),
+    ),
+)
+""".lstrip()
+    problem_dir = _write_problem(tmp_path, "0001", dsl_text)
+
+    payload = {
+        "patches": [
+            {
+                "target": "slot.table",
+                "op": "update",
+                "value": {"move_dx": 5.0, "move_dy": -3.0},
+            }
+        ]
+    }
+    response = client.post(
+        "/api/editor/problems/0001/layout-patch/",
+        data=json.dumps(payload),
+        content_type="application/json",
+    )
+
+    assert response.status_code == 200
+    updated = (problem_dir / "problem.dsl.py").read_text(encoding="utf-8")
+    assert "x=(10.0) + (5.0)" in updated
+    assert "y=(20.0) + (-3.0)" in updated
+    assert "x1=(70.0) + (5.0)" in updated
+    assert "y1=(20.0) + (-3.0)" in updated
+    assert "x=(20.0) + (5.0)" in updated
+    assert "y=(45.0) + (-3.0)" in updated
+
+
 def test_layout_patch_falls_back_to_editor_overrides_for_generated_slot(tmp_path: Path) -> None:
     client = _setup_django(tmp_path)
     dsl_text = """
