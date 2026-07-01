@@ -1,0 +1,743 @@
+﻿    :root {
+      --bg: #f4f6f8;
+      --panel: #ffffff;
+      --text: #111827;
+      --muted: #6b7280;
+      --line: #d1d5db;
+      --primary: #0f766e;
+      --danger: #b91c1c;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", "Pretendard", sans-serif;
+      color: var(--text);
+      background: radial-gradient(circle at 20% 0%, #e2f6f5, var(--bg));
+    }
+    .wrap { min-height: 100vh; padding: 12px; }
+    .main { display: grid; grid-template-rows: auto auto auto 1fr auto; gap: 10px; }
+    .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 12px; overflow: auto; }
+    h2 { margin: 0 0 8px; font-size: 14px; color: var(--muted); }
+    .row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+    .grow { flex: 1 1 420px; }
+    button {
+      border: 1px solid var(--line);
+      background: #fff;
+      border-radius: 8px;
+      padding: 8px 10px;
+      cursor: pointer;
+      color: var(--text);
+    }
+    button.primary { background: var(--primary); color: #fff; border-color: var(--primary); }
+    .toolbar {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      align-items: center;
+      padding: 8px;
+    }
+    .tool-group {
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+      padding: 3px;
+      border: 1px solid #e5e7eb;
+      border-radius: 9px;
+      background: #f9fafb;
+    }
+    .icon-btn {
+      width: 36px;
+      height: 34px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      border-color: transparent;
+      border-radius: 7px;
+      background: transparent;
+    }
+    .icon-btn:hover {
+      background: #eef6f5;
+      border-color: #c9dcda;
+    }
+    .icon-btn.primary,
+    .icon-btn.active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #fff;
+    }
+    .icon-btn.danger:hover {
+      background: #fef2f2;
+      border-color: #fecaca;
+      color: var(--danger);
+    }
+    .icon-btn svg {
+      width: 19px;
+      height: 19px;
+      stroke: currentColor;
+      stroke-width: 1.9;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      fill: none;
+      pointer-events: none;
+    }
+    textarea, input {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 8px;
+      font-family: Consolas, monospace;
+    }
+    textarea { min-height: 180px; }
+    .grid { display: grid; grid-template-columns: 1fr; gap: 10px; min-height: 420px; }
+    .svg-box {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 8px;
+      background: #fff;
+      overflow: hidden;
+      height: 72vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .svg-box svg {
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      display: block;
+      user-select: none;
+      -webkit-user-select: none;
+      -ms-user-select: none;
+    }
+    .svg-box, .svg-box svg text {
+      user-select: none;
+      -webkit-user-select: none;
+      -ms-user-select: none;
+    }
+    .svg-box svg [id] { cursor: move; }
+    .svg-box svg text[id] { pointer-events: bounding-box; }
+    .svg-box svg rect[id],
+    .svg-box svg image[id] { pointer-events: all; }
+    .svg-box svg circle[id],
+    .svg-box svg line[id],
+    .svg-box svg path[id],
+    .svg-box svg polygon[id] { pointer-events: visiblePainted; }
+    .svg-box svg .slot-selected { filter: drop-shadow(0 0 3px #0f766e); }
+    .svg-box svg .pick-disabled { pointer-events: none; opacity: 0.35; }
+    .svg-box svg .canvas-guide {
+      fill: none;
+      stroke: #64748b;
+      stroke-width: 1.25;
+      stroke-dasharray: 7 5;
+      pointer-events: none;
+    }
+    .svg-box svg .selection-bounds {
+      fill: none;
+      stroke: #0f766e;
+      stroke-width: 1.5;
+      stroke-dasharray: 5 3;
+      pointer-events: none;
+    }
+    .svg-box svg .selection-bounds.canvas-selected {
+      stroke: #2563eb;
+      stroke-dasharray: 8 4;
+    }
+    .svg-box svg .selection-line {
+      fill: none;
+      stroke: #0f766e;
+      stroke-width: 1.75;
+      stroke-dasharray: 5 3;
+      pointer-events: none;
+    }
+    .svg-box svg .selection-handle {
+      fill: #ffffff;
+      stroke: #0f766e;
+      stroke-width: 1.5;
+      cursor: pointer;
+    }
+    .svg-box svg .selection-handle[data-handle="n"],
+    .svg-box svg .selection-handle[data-handle="s"] { cursor: ns-resize; }
+    .svg-box svg .selection-handle[data-handle="e"],
+    .svg-box svg .selection-handle[data-handle="w"] { cursor: ew-resize; }
+    .svg-box svg .selection-handle[data-handle="nw"],
+    .svg-box svg .selection-handle[data-handle="se"] { cursor: nwse-resize; }
+    .svg-box svg .selection-handle[data-handle="ne"],
+    .svg-box svg .selection-handle[data-handle="sw"] { cursor: nesw-resize; }
+    .svg-box svg .selection-handle[data-handle="p1"],
+    .svg-box svg .selection-handle[data-handle="p2"] { cursor: crosshair; }
+    .svg-box svg .selection-handle[data-handle="c"] { cursor: move; fill: #0f766e; }
+    .svg-box svg .selection-handle[data-handle="r"] { cursor: grab; fill: #f59e0b; stroke: #92400e; }
+    .svg-box svg .path-edit-guide {
+      fill: none;
+      stroke: #2563eb;
+      stroke-width: 1.2;
+      stroke-dasharray: 4 3;
+      pointer-events: none;
+    }
+    .svg-box svg .path-point-handle {
+      fill: #ffffff;
+      stroke: #2563eb;
+      stroke-width: 1.8;
+      cursor: crosshair;
+    }
+    .svg-box svg .path-point-handle[data-point-type="control"] {
+      fill: #dbeafe;
+      stroke: #1d4ed8;
+    }
+    .svg-box svg .table-adjust-handle {
+      fill: none;
+      stroke: #f59e0b;
+      stroke-width: 7;
+      stroke-opacity: 0.38;
+      stroke-linecap: round;
+    }
+    .inline-text-editor {
+      position: absolute;
+      display: none;
+      z-index: 3;
+      min-width: 48px;
+      border: 1px solid #0f766e;
+      border-radius: 4px;
+      padding: 2px 4px;
+      background: #ffffff;
+      color: #111827;
+      box-shadow: 0 0 0 2px rgba(15, 118, 110, 0.12);
+      font-family: "Segoe UI", "Pretendard", sans-serif;
+      line-height: 1.2;
+    }
+    .marquee {
+      position: absolute;
+      border: 1px dashed #0f766e;
+      background: rgba(15, 118, 110, 0.12);
+      pointer-events: none;
+      display: none;
+      z-index: 2;
+    }
+    .shape-format-menu {
+      position: fixed;
+      z-index: 12;
+      display: none;
+      min-width: 226px;
+      border: 1px solid #b7bdc7;
+      border-radius: 4px;
+      background: #ffffff;
+      box-shadow: 0 14px 28px rgba(15, 23, 42, 0.18);
+      padding: 8px;
+      color: #1f2937;
+      font-size: 12px;
+    }
+    .shape-format-menu.open {
+      display: block;
+    }
+    .shape-format-title {
+      padding: 2px 4px 7px;
+      color: #475569;
+      font-weight: 700;
+    }
+    .shape-format-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px;
+    }
+    .shape-format-swatches {
+      display: grid;
+      grid-template-columns: repeat(8, 20px);
+      gap: 5px;
+      padding: 4px;
+    }
+    .shape-swatch {
+      width: 20px;
+      height: 20px;
+      border: 1px solid #cbd5e1;
+      border-radius: 3px;
+      padding: 0;
+    }
+    .shape-swatch.transparent {
+      background:
+        linear-gradient(45deg, transparent 46%, #ef4444 47%, #ef4444 53%, transparent 54%),
+        #ffffff;
+    }
+    .shape-format-btn {
+      flex: 1 1 0;
+      height: 30px;
+      border-radius: 4px;
+      padding: 4px 8px;
+      text-align: center;
+      font-size: 12px;
+    }
+    .shape-format-color {
+      width: 34px;
+      height: 28px;
+      min-width: 34px;
+      padding: 2px;
+      border-radius: 4px;
+      border: 1px solid #cbd5e1;
+      background: #fff;
+    }
+    .log {
+      white-space: pre-wrap;
+      font-family: Consolas, monospace;
+      font-size: 12px;
+      color: #111;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 8px;
+      background: #fff;
+    }
+    .artifact-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+      margin-top: 10px;
+    }
+    .artifact-grid textarea {
+      min-height: 160px;
+      font-size: 12px;
+    }
+    .err { color: var(--danger); }
+    .ok { color: #047857; }
+    .tree {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 8px;
+      max-height: 320px;
+      overflow: auto;
+      background: #fff;
+    }
+    .tree ul { list-style: none; margin: 0; padding-left: 14px; }
+    .tree li { margin: 3px 0; }
+    .tree .folder {
+      border: none;
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      font-weight: 600;
+      padding: 2px 4px;
+      text-align: left;
+      width: 100%;
+    }
+    .tree .folder:hover { background: #f8fafc; }
+    .tree .folder::before {
+      content: "▸";
+      display: inline-block;
+      margin-right: 4px;
+      width: 12px;
+    }
+    .tree .folder.open::before { content: "▾"; }
+    .tree .children.collapsed { display: none; }
+    .tree .file-btn {
+      border: none;
+      background: transparent;
+      padding: 2px 4px;
+      border-radius: 6px;
+      text-align: left;
+      width: auto;
+    }
+    .tree .file-btn:hover { background: #ecfeff; }
+    .tree .file-btn.active {
+      background: #ccfbf1;
+      color: #0f766e;
+      font-weight: 700;
+    }
+    .tree-tools {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+    .tree-tools input { min-width: 0; }
+    .tree-count {
+      color: var(--muted);
+      font-size: 12px;
+      margin-bottom: 6px;
+    }
+    .wrap.powerpoint {
+      height: 100vh;
+      padding: 0;
+      overflow: hidden;
+      background: #eef1f5;
+    }
+    .ppt-shell {
+      height: 100vh;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      min-width: 960px;
+    }
+    .ppt-titlebar {
+      height: 34px;
+      display: grid;
+      grid-template-columns: 280px 1fr 280px;
+      align-items: center;
+      gap: 12px;
+      padding: 0 12px;
+      background: #b7472a;
+      color: #fff;
+      font-size: 13px;
+    }
+    .ppt-titlebar .doc-name {
+      text-align: center;
+      font-weight: 600;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+    .ppt-titlebar input {
+      height: 24px;
+      border: 0;
+      border-radius: 4px;
+      padding: 3px 8px;
+      background: rgba(255,255,255,0.18);
+      color: #fff;
+      font-family: inherit;
+    }
+    .ppt-titlebar input::placeholder { color: rgba(255,255,255,0.78); }
+    .ppt-ribbon {
+      display: flex;
+      align-items: stretch;
+      gap: 0;
+      min-height: 92px;
+      padding: 8px 10px;
+      background: #ffffff;
+      border-bottom: 1px solid #cfd4dc;
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.05);
+    }
+    .ribbon-group {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      padding: 0 12px;
+      border-right: 1px solid #e5e7eb;
+      position: relative;
+    }
+    .ribbon-group::after {
+      content: attr(data-label);
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      text-align: center;
+      font-size: 11px;
+      color: #6b7280;
+    }
+    .ribbon-group .icon-btn {
+      width: 38px;
+      height: 38px;
+      border: 1px solid transparent;
+      border-radius: 4px;
+    }
+    .ribbon-group .icon-btn:hover {
+      border-color: #f2c6b7;
+      background: #fff4ef;
+    }
+    .ribbon-dropdown {
+      position: relative;
+    }
+    .shape-gallery {
+      position: absolute;
+      top: 44px;
+      left: 0;
+      z-index: 8;
+      display: none;
+      width: 356px;
+      max-height: min(620px, calc(100vh - 150px));
+      overflow: auto;
+      border: 1px solid #b7bdc7;
+      border-radius: 2px;
+      background: #ffffff;
+      box-shadow: 0 16px 32px rgba(15, 23, 42, 0.18);
+      padding-bottom: 6px;
+    }
+    .shape-gallery.open {
+      display: block;
+    }
+    .shape-category-title {
+      height: 26px;
+      display: flex;
+      align-items: center;
+      padding: 0 8px;
+      background: #e9e9e9;
+      color: #475569;
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .shape-grid {
+      display: grid;
+      grid-template-columns: repeat(10, 1fr);
+      gap: 4px;
+      padding: 7px 6px;
+    }
+    .shape-choice {
+      width: 28px;
+      height: 24px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid transparent;
+      border-radius: 2px;
+      padding: 0;
+      background: #fff;
+    }
+    .shape-choice:hover {
+      border-color: #f2c6b7;
+      background: #fff4ef;
+    }
+    .shape-choice svg {
+      width: 22px;
+      height: 18px;
+      stroke: #334155;
+      stroke-width: 1.25;
+      fill: none;
+      pointer-events: none;
+    }
+    .shape-choice .shape-fill {
+      fill: #ffffff;
+    }
+    .table-dialog {
+      position: fixed;
+      inset: 0;
+      z-index: 70;
+      display: grid;
+      place-items: center;
+      background: rgba(15, 23, 42, 0.18);
+    }
+    .table-dialog[hidden] { display: none; }
+    .table-dialog-panel {
+      width: 220px;
+      background: #f9fafb;
+      border: 1px solid #9ca3af;
+      border-radius: 8px;
+      box-shadow: 0 16px 40px rgba(15, 23, 42, 0.18);
+      padding: 10px;
+    }
+    .table-dialog-title {
+      display: grid;
+      grid-template-columns: 1fr auto auto;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+      font-size: 15px;
+    }
+    .table-dialog-title button {
+      width: 24px;
+      height: 24px;
+      border: 0;
+      background: transparent;
+      font-size: 18px;
+      line-height: 1;
+      cursor: pointer;
+    }
+    .table-dialog-fields {
+      display: grid;
+      gap: 6px;
+      margin-bottom: 10px;
+    }
+    .table-dialog-fields label {
+      display: grid;
+      grid-template-columns: 1fr 74px;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+    }
+    .table-dialog-fields input {
+      width: 74px;
+      height: 27px;
+      padding: 2px 6px;
+      background: white;
+    }
+    .table-dialog-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .table-dialog-actions button {
+      height: 30px;
+      border: 1px solid #cbd5e1;
+      border-radius: 4px;
+      background: white;
+      cursor: pointer;
+    }
+    .table-dialog-actions button.primary {
+      border-color: #0284c7;
+      color: #0f172a;
+    }
+    .ppt-workspace {
+      min-height: 0;
+      display: grid;
+      grid-template-columns: 260px minmax(520px, 1fr) 320px;
+      background: #dfe3ea;
+    }
+    .ppt-sidebar,
+    .ppt-inspector {
+      min-height: 0;
+      background: #f8fafc;
+      border-right: 1px solid #cfd4dc;
+      display: flex;
+      flex-direction: column;
+    }
+    .ppt-inspector {
+      border-right: 0;
+      border-left: 1px solid #cfd4dc;
+    }
+    .pane-title {
+      height: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 10px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #334155;
+      border-bottom: 1px solid #e5e7eb;
+      background: #fff;
+    }
+    .pane-body {
+      min-height: 0;
+      overflow: auto;
+      padding: 10px;
+    }
+    .ppt-stage {
+      min-width: 0;
+      min-height: 0;
+      display: grid;
+      grid-template-rows: 1fr auto;
+      padding: 18px;
+      gap: 10px;
+    }
+    .slide-frame {
+      min-height: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: auto;
+    }
+    .slide-frame .svg-box {
+      width: 100%;
+      height: 100%;
+      min-height: 420px;
+      border: 1px solid #b7bdc7;
+      border-radius: 2px;
+      background: #ffffff;
+      box-shadow: 0 16px 32px rgba(15, 23, 42, 0.18);
+    }
+    .ppt-notes {
+      min-height: 82px;
+      max-height: 180px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 220px;
+      gap: 10px;
+    }
+    .ppt-notes .log {
+      height: 100%;
+      min-height: 82px;
+      overflow: auto;
+      background: #fff;
+    }
+    .ppt-status-box {
+      border: 1px solid #cfd4dc;
+      background: #fff;
+      padding: 8px;
+      border-radius: 2px;
+      font-size: 12px;
+      overflow: auto;
+    }
+    .ppt-statusbar {
+      min-height: 26px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 10px;
+      background: #ffffff;
+      border-top: 1px solid #cfd4dc;
+      color: #475569;
+      font-size: 12px;
+    }
+    .inspector-section {
+      border-bottom: 1px solid #e5e7eb;
+      padding: 10px 0;
+    }
+    .inspector-section:first-child { padding-top: 0; }
+    .inspector-section h3 {
+      margin: 0 0 8px;
+      font-size: 12px;
+      color: #475569;
+    }
+    .field-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+    }
+    .field-grid label,
+    .single-field label {
+      display: grid;
+      gap: 4px;
+      font-size: 11px;
+      color: #64748b;
+    }
+    .field-grid input,
+    .single-field input,
+    .single-field textarea {
+      min-width: 0;
+      height: 30px;
+      padding: 5px 7px;
+      border-radius: 4px;
+      font-family: Consolas, monospace;
+      background: #fff;
+    }
+    .single-field textarea {
+      height: 86px;
+      resize: vertical;
+    }
+    .ppt-tabs {
+      display: flex;
+      gap: 4px;
+      padding: 8px 8px 0;
+      background: #fff;
+      border-bottom: 1px solid #e5e7eb;
+    }
+    .ppt-tab {
+      border: 1px solid #e5e7eb;
+      border-bottom: 0;
+      border-radius: 6px 6px 0 0;
+      padding: 6px 8px;
+      font-size: 12px;
+      background: #f8fafc;
+    }
+    .ppt-tab.active {
+      background: #fff;
+      color: #b7472a;
+      font-weight: 700;
+    }
+    .ppt-tab-panel { display: none; min-height: 0; }
+    .ppt-tab-panel.active { display: block; }
+    .ppt-tab-panel textarea {
+      min-height: 210px;
+      height: 34vh;
+      border-radius: 4px;
+      font-size: 12px;
+    }
+    .artifact-grid {
+      grid-template-columns: 1fr;
+      margin-top: 0;
+    }
+    .artifact-grid textarea {
+      min-height: 120px;
+      height: 18vh;
+    }
+    .tree {
+      max-height: none;
+      flex: 1 1 auto;
+      min-height: 0;
+      border-radius: 4px;
+    }
+    @media (max-width: 1180px) {
+      .ppt-shell { min-width: 0; }
+      .ppt-workspace { grid-template-columns: 220px minmax(420px, 1fr); }
+      .ppt-inspector { display: none; }
+    }
+
+    .icon-sprite { position: absolute; overflow: hidden; }
+
+    .mt-8 { margin-top: 8px; }

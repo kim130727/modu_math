@@ -43,6 +43,42 @@ def test_path_traversal_rejected(tmp_path: Path) -> None:
     assert response.status_code in (400, 404)
 
 
+def test_editor_index_uses_static_assets_without_inline_script(tmp_path: Path) -> None:
+    client = _setup_django(tmp_path)
+
+    response = client.get("/editor/")
+
+    assert response.status_code == 200
+    html = response.content.decode("utf-8")
+    assert 'href="editor/css/editor.css"' in html
+    assert 'type="module" src="editor/js/editor-app.js"' in html
+    assert "<script>" not in html
+    assert "<style>" not in html
+    static_root = Path("src/modu_math_web/editor/static/editor")
+    assert (static_root / "css" / "editor.css").exists()
+    for name in [
+        "editor-state.js",
+        "editor-api.js",
+        "editor-commands.js",
+        "editor-canvas.js",
+        "editor-properties.js",
+        "editor-app.js",
+    ]:
+        assert (static_root / "js" / name).exists()
+
+    canvas_js = (static_root / "js" / "editor-canvas.js").read_text(encoding="utf-8")
+    assert "export function beginMarqueeBox" in canvas_js
+    assert "export function updateMarqueeBox" in canvas_js
+    assert "export function finishMarqueeBox" in canvas_js
+    assert "export function ensureSelectionOverlay" in canvas_js
+    assert "export function updateSelectionOverlay" in canvas_js
+    assert "export function translateSelectionOverlay" in canvas_js
+    assert "export function renderTableAdjustmentHandles" in canvas_js
+    assert "export function renderPathPointHandles" in canvas_js
+    assert "export function adjustedBBox" in canvas_js
+    assert "export function pointToSegmentDistance" in canvas_js
+
+
 def test_list_endpoint_includes_0001_if_present(tmp_path: Path) -> None:
     client = _setup_django(tmp_path)
     _write_problem(tmp_path, "0001", "PROBLEM_TEMPLATE = None\n")

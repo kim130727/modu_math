@@ -42,7 +42,10 @@ def resolve_provider(cli_provider: str | None) -> Provider:
         return "openai"
 
     if os.isatty(0):
-        choice = input("Select provider [1] OpenAI [2] Google (default: OpenAI): ").strip()
+        try:
+            choice = input("Select provider [1] OpenAI [2] Google (default: OpenAI): ").strip()
+        except OSError:
+            return "openai"
         if choice == "2":
             return "google"
     return "openai"
