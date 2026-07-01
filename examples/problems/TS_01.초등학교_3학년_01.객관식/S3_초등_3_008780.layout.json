@@ -3,8 +3,8 @@
   "problem_id": "S3_초등_3_008780",
   "title": "계산하여 들이가 더 많은 것의 기호를 선택하세요",
   "canvas": {
-    "width": 706,
-    "height": 330,
+    "width": 705,
+    "height": 250,
     "coordinate_mode": "logical",
     "background": "#FFFFFF"
   },
@@ -14,8 +14,6 @@
       "role": "stem",
       "flow": "absolute",
       "slot_ids": [
-        "slot.q.symbol",
-        "slot.q.number",
         "slot.q.text"
       ]
     },
@@ -25,10 +23,8 @@
       "flow": "absolute",
       "slot_ids": [
         "slot.choice.box",
-        "slot.choice.a",
-        "slot.choice.b",
-        "slot.choice.a.text",
-        "slot.choice.b.text"
+        "slot.choice.b.text",
+        "slot.choice.a.text"
       ]
     },
     {
@@ -40,39 +36,16 @@
   ],
   "slots": [
     {
-      "id": "slot.q.symbol",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "□",
-        "style_role": "question",
-        "x": 10.0,
-        "y": 28.0,
-        "font_size": 26
-      }
-    },
-    {
-      "id": "slot.q.number",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "100.",
-        "style_role": "question",
-        "x": 46.0,
-        "y": 29.0,
-        "font_size": 28
-      }
-    },
-    {
       "id": "slot.q.text",
       "kind": "text",
       "prompt": "",
       "content": {
         "text": "계산하여 들이가 더 많은 것의 기호를 선택하세요.",
         "style_role": "question",
-        "x": 100.0,
-        "y": 29.0,
-        "font_size": 28
+        "x": 45.0,
+        "y": 39.0,
+        "font_size": 28,
+        "fill": "#111111"
       }
     },
     {
@@ -80,49 +53,13 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 255.0,
-        "y": 42.0,
-        "width": 398.0,
-        "height": 100.0,
+        "x": 110.0,
+        "y": 80.0,
+        "width": 455.0,
+        "height": 155.0,
         "stroke": "#F6A24A",
         "stroke_width": 1.5,
         "fill": "none"
-      }
-    },
-    {
-      "id": "slot.choice.a",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "①",
-        "style_role": "label",
-        "x": 280.0,
-        "y": 86.0,
-        "font_size": 28
-      }
-    },
-    {
-      "id": "slot.choice.a.text",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "4200 mL + 1400 mL",
-        "style_role": "question",
-        "x": 310.0,
-        "y": 88.0,
-        "font_size": 28
-      }
-    },
-    {
-      "id": "slot.choice.b",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "②",
-        "style_role": "label",
-        "x": 280.0,
-        "y": 124.0,
-        "font_size": 28
       }
     },
     {
@@ -130,11 +67,23 @@
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "2 L 800 mL + 3 L 300 mL",
-        "style_role": "question",
-        "x": 310.0,
-        "y": 126.0,
-        "font_size": 28
+        "text": "② 2 L 800 mL + 3 L 300 mL",
+        "x": 140,
+        "y": 194,
+        "font_size": 28,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.choice.a.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "① 4200mL + 1400 mL",
+        "x": 155,
+        "y": 131,
+        "font_size": 28,
+        "fill": "#111111"
       }
     }
   ],
@@ -143,15 +92,11 @@
   "diagrams": [],
   "reading_order": [
     "region.stem",
-    "slot.q.symbol",
-    "slot.q.number",
     "slot.q.text",
     "region.choices",
     "slot.choice.box",
-    "slot.choice.a",
-    "slot.choice.b",
-    "slot.choice.a.text",
+    "region.solution",
     "slot.choice.b.text",
-    "region.solution"
+    "slot.choice.a.text"
   ]
 }

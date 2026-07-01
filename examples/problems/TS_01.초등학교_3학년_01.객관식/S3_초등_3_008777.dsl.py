@@ -31,7 +31,7 @@ def build_problem_template() -> ProblemTemplate:
                 prompt="",
                 text="주전자의 들이는 약 1 ( mL , L )입니다.",
                 style_role="question",
-                x=130,
+                x=50,
                 y=311,
                 font_size=28,
                 fill="#111111",

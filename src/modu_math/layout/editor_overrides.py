@@ -3,6 +3,74 @@ from __future__ import annotations
 from typing import Any
 
 
+def _infer_override_slot_kind(content: dict[str, Any]) -> str:
+    if "text" in content or "font_size" in content or "max_width" in content:
+        return "text"
+    if "x1" in content or "y1" in content or "x2" in content or "y2" in content:
+        return "line"
+    if "cx" in content or "cy" in content or "r" in content:
+        return "circle"
+    if "href" in content or "src" in content:
+        return "image"
+    return "rect"
+
+
+def _slot_prefix_score(slot_id: str, candidate: str) -> int:
+    slot_parts = slot_id.split(".")
+    candidate_parts = candidate.split(".")
+    score = 0
+    for left, right in zip(slot_parts, candidate_parts):
+        if left != right:
+            break
+        score += 1
+    return score
+
+
+def _infer_region_id_for_slot(layout: dict[str, Any], slot_id: str) -> str | None:
+    best_region_id: str | None = None
+    best_score = 0
+    for region in layout.get("regions", []):
+        if not isinstance(region, dict) or not isinstance(region.get("slot_ids"), list):
+            continue
+        for existing_id in region["slot_ids"]:
+            if not isinstance(existing_id, str):
+                continue
+            score = _slot_prefix_score(slot_id, existing_id)
+            if score > best_score:
+                best_score = score
+                best_region_id = region.get("id") if isinstance(region.get("id"), str) else None
+    if best_region_id:
+        return best_region_id
+    for region in layout.get("regions", []):
+        if isinstance(region, dict) and region.get("role") == "diagram" and isinstance(region.get("id"), str):
+            return region["id"]
+    for region in layout.get("regions", []):
+        if isinstance(region, dict) and isinstance(region.get("id"), str):
+            return region["id"]
+    return None
+
+
+def _add_missing_override_slot(layout: dict[str, Any], slot_id: str, content: dict[str, Any]) -> None:
+    slots = layout.setdefault("slots", [])
+    if not isinstance(slots, list):
+        layout["slots"] = []
+        slots = layout["slots"]
+    slots.append({"id": slot_id, "kind": _infer_override_slot_kind(content), "prompt": "", "content": dict(content)})
+
+    region_id = _infer_region_id_for_slot(layout, slot_id)
+    for region in layout.get("regions", []):
+        if not isinstance(region, dict) or region.get("id") != region_id:
+            continue
+        slot_ids = region.setdefault("slot_ids", [])
+        if isinstance(slot_ids, list) and slot_id not in slot_ids:
+            slot_ids.append(slot_id)
+        break
+
+    reading_order = layout.get("reading_order")
+    if isinstance(reading_order, list) and slot_id not in reading_order:
+        reading_order.append(slot_id)
+
+
 def _deleted_slot_matches(slot_id: str, deleted: set[str], exact_deleted: set[str]) -> bool:
     if slot_id in deleted:
         return True
@@ -55,6 +123,22 @@ def apply_editor_overrides(layout: dict[str, Any], overrides: dict[str, Any] | N
 
     slot_overrides = overrides.get("slots")
     if isinstance(slot_overrides, dict):
+        slot_ids = {
+            slot.get("id")
+            for slot in layout.get("slots", [])
+            if isinstance(slot, dict) and isinstance(slot.get("id"), str)
+        }
+        for slot_id, patch in slot_overrides.items():
+            if (
+                isinstance(slot_id, str)
+                and slot_id
+                and slot_id not in slot_ids
+                and isinstance(patch, dict)
+                and not _deleted_slot_matches(slot_id, deleted, deleted & slot_ids)
+            ):
+                _add_missing_override_slot(layout, slot_id, patch)
+                slot_ids.add(slot_id)
+
         for slot in layout.get("slots", []):
             if not isinstance(slot, dict):
                 continue

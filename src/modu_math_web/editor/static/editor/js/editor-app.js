@@ -82,7 +82,10 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
     let drawState = null;
     let inlineTextEditState = null;
     let dslSlotIdCache = { layoutText: null, dsl: null, ids: null };
+    let sourceDslSlotIdCache = { dsl: null, ids: null };
+    let rendererSlotRefCache = { rendererText: null, byElementId: null };
     let layoutGroupCache = { layoutText: null, groups: null, byMember: null };
+    let selectedTableCells = [];
     let snapEnabled = true;
     let collapsedProblemFolders = new Set();
     const SNAP_STEP = 5;
@@ -301,6 +304,7 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
       inlineTextEditState = null;
       renderSvgContainer(preview, svgText);
       selectedSlots = new Map();
+      selectedTableCells = [];
       selectedSlotId = null;
       selectedElement = null;
       setState({ selectedIds: [], hoveredId: null });
@@ -582,8 +586,7 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
         updateTextEditControls();
         return;
       }
-      state.el.textContent = text;
-      state.el.removeAttribute("data-raw-text");
+      applyPatchValueToElement(state.el, { text });
       updateSelectionHandles();
       updateTextEditControls();
       try {
@@ -591,7 +594,7 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
         const tableBase = tableBaseFromSlotId(state.slotId);
         const tableItem = tableBase ? selectedSlots.get(tableBase) : null;
         if (tableItem && tableItem.isTableGroup) {
-          const layoutValues = tableTextCellLayoutValues(tableItem);
+          const layoutValues = tableRelayoutValues(tableItem);
           patches = layoutValues.map((entry) => ({
             target: entry.slotId,
             op: "update",
@@ -687,8 +690,11 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
       }
       if (withBuild) {
         if (problemId === currentProblemId) {
-          renderArtifacts(data.artifacts || null);
-          setState({ artifacts: data.artifacts || null, building: false, buildStatus: "built" });
+          const nextArtifacts = data.artifacts || getState().artifacts || null;
+          if (nextArtifacts && nextArtifacts.svg) {
+            renderArtifacts(nextArtifacts);
+          }
+          setState({ artifacts: nextArtifacts, building: false, buildStatus: "built" });
           renderLog(data.build?.stdout || "", data.build?.stderr || "");
           restoreSelection(preserveSelection);
         }
@@ -769,6 +775,53 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
       }
       dslSlotIdCache = { layoutText, dsl, ids };
       return ids;
+    }
+
+    function extractSourceDslSlotIds() {
+      const dsl = document.getElementById("dslEditor").value || "";
+      if (sourceDslSlotIdCache.ids && sourceDslSlotIdCache.dsl === dsl) {
+        return sourceDslSlotIdCache.ids;
+      }
+      const ids = new Set();
+      const re = /\bid\s*=\s*["']([^"']+)["']/g;
+      let m = null;
+      while ((m = re.exec(dsl)) !== null) {
+        ids.add(m[1]);
+      }
+      sourceDslSlotIdCache = { dsl, ids };
+      return ids;
+    }
+
+    function extractRendererSlotRefs() {
+      const rendererText = document.getElementById("rendererView")?.value || "";
+      if (rendererSlotRefCache.byElementId && rendererSlotRefCache.rendererText === rendererText) {
+        return rendererSlotRefCache.byElementId;
+      }
+      const byElementId = new Map();
+      if (rendererText.trim()) {
+        try {
+          const renderer = JSON.parse(rendererText);
+          const visit = (elements) => {
+            for (const element of Array.isArray(elements) ? elements : []) {
+              const id = typeof element?.id === "string" ? element.id : "";
+              if (id) {
+                const refs = element.refs && typeof element.refs === "object" ? element.refs : {};
+                const candidates = [
+                  typeof refs.layout_slot_id === "string" ? refs.layout_slot_id : "",
+                  typeof element.source_ref === "string" ? element.source_ref : "",
+                ].filter(Boolean);
+                if (candidates.length) byElementId.set(id, candidates);
+              }
+              if (Array.isArray(element?.elements)) visit(element.elements);
+            }
+          };
+          visit(renderer.elements);
+        } catch (_) {
+          // Renderer pane can be stale while a problem is loading.
+        }
+      }
+      rendererSlotRefCache = { rendererText, byElementId };
+      return byElementId;
     }
 
     function isDirectDslSlotId(slotId) {
@@ -998,8 +1051,8 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
     function tablePatches(rows, cols) {
       const cleanRows = Math.max(1, Math.min(20, Number(rows) || 1));
       const cleanCols = Math.max(1, Math.min(20, Number(cols) || 1));
-      const cellWidth = 95;
-      const cellHeight = 42;
+      const cellWidth = 105;
+      const cellHeight = 58;
       const width = cleanCols * cellWidth;
       const height = cleanRows * cellHeight;
       const { x, y } = defaultInsertOrigin(width, height);
@@ -1015,6 +1068,26 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
           content: { x, y, width, height, fill: "#ffffff", stroke: "#111827", stroke_width: 1 },
         }),
       });
+      for (let r = 1; r <= cleanRows; r += 1) {
+        for (let c = 1; c <= cleanCols; c += 1) {
+          patches.push({
+            target: `${base}.r${r}c${c}.fill`,
+            op: "add",
+            value: withRegion({
+              kind: "rect",
+              content: {
+                x: snapValue(x + (c - 1) * cellWidth),
+                y: snapValue(y + (r - 1) * cellHeight),
+                width: cellWidth,
+                height: cellHeight,
+                fill: "none",
+                stroke: "none",
+                stroke_width: 0,
+              },
+            }),
+          });
+        }
+      }
       for (let c = 1; c < cleanCols; c += 1) {
         const px = snapValue(x + c * cellWidth);
         patches.push({
@@ -1039,7 +1112,7 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
       }
       for (let r = 1; r <= cleanRows; r += 1) {
         for (let c = 1; c <= cleanCols; c += 1) {
-          const fontSize = 18;
+          const fontSize = 22;
           const baselineOffset = cellHeight / 2 + fontSize * 0.35;
           patches.push({
             target: `${base}.r${r}c${c}`,
@@ -1780,16 +1853,49 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
       return ids.length ? ids[0] : svgElementId;
     }
 
+    function rendererSlotIds(svgElementId) {
+      if (!svgElementId) return [];
+      const refs = extractRendererSlotRefs().get(svgElementId) || [];
+      const allIds = extractDslSlotIds();
+      const seen = new Set();
+      const out = [];
+      for (const ref of refs) {
+        if (!ref || seen.has(ref)) continue;
+        if (allIds.has(ref) || ref.startsWith("slot.")) {
+          seen.add(ref);
+          out.push(ref);
+        }
+      }
+      return out;
+    }
+
     function toDslSlotIds(svgElementId) {
       if (!svgElementId) return [];
-      const dslIds = extractDslSlotIds();
-      if (dslIds.has(svgElementId)) return [svgElementId];
+      const rendererIds = rendererSlotIds(svgElementId);
+      if (rendererIds.length) return rendererIds;
+      const allIds = extractDslSlotIds();
+      const sourceIds = extractSourceDslSlotIds();
+      if (sourceIds.has(svgElementId)) return [svgElementId];
       const parts = svgElementId.split(".");
+      const sourceMatches = [];
       while (parts.length > 1) {
         parts.pop();
         const candidate = parts.join(".");
-        if (dslIds.has(candidate)) return [candidate];
-        const splitCandidates = Array.from(dslIds)
+        if (sourceIds.has(candidate)) sourceMatches.push(candidate);
+        const splitCandidates = Array.from(sourceIds)
+          .filter((id) => id.startsWith(`${candidate}_`))
+          .sort((a, b) => a.localeCompare(b, "ko"));
+        if (splitCandidates.length > 0) return splitCandidates;
+      }
+      if (sourceMatches.length) return [sourceMatches[0]];
+
+      if (allIds.has(svgElementId)) return [svgElementId];
+      const layoutParts = svgElementId.split(".");
+      while (layoutParts.length > 1) {
+        layoutParts.pop();
+        const candidate = layoutParts.join(".");
+        if (allIds.has(candidate)) return [candidate];
+        const splitCandidates = Array.from(allIds)
           .filter((id) => id.startsWith(`${candidate}_`))
           .sort((a, b) => a.localeCompare(b, "ko"));
         if (splitCandidates.length > 0) return splitCandidates;
@@ -2279,12 +2385,6 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
       const tag = node.tagName.toLowerCase();
       if (node.getAttribute("transform")) return pointToBoxDistance(point, box);
       if (tag === "text") {
-        try {
-          const bb = node.getBBox();
-          if (bb && bb.width > 0 && bb.height > 0) return pointToBoxDistance(point, inflateHitBox(bb, 2));
-        } catch (_) {
-          // Fall back to the hit box.
-        }
         return pointToBoxDistance(point, box);
       }
       if (tag === "line") {
@@ -2379,6 +2479,51 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
       };
     }
 
+    function textHitBox(node, svg = null) {
+      if (node.getAttribute("data-slot-kind") === "text_box") {
+        const x = Number(node.getAttribute("data-box-x") || node.getAttribute("x") || 0);
+        const y = Number(node.getAttribute("data-box-y") || node.getAttribute("y") || 0);
+        const width = Number(node.getAttribute("data-box-width") || 0);
+        const height = Number(node.getAttribute("data-box-height") || 0);
+        return width > 0 && height > 0 ? { x, y, width, height } : null;
+      }
+
+      const text = node.textContent || "";
+      const fontSize = Number(node.getAttribute("font-size") || node.getAttribute("font_size") || 28);
+      const x = Number(node.getAttribute("x") || 0);
+      const y = Number(node.getAttribute("y") || 0);
+      const lineCount = Math.max(1, text.split(/\n/).length);
+      const maxLineLength = Math.max(1, ...text.split(/\n/).map((line) => line.length));
+      const estimated = {
+        x: x - 6,
+        y: y - fontSize,
+        width: Math.max(fontSize * 0.8, maxLineLength * fontSize * 0.62) + 12,
+        height: lineCount * fontSize * 1.25 + 8,
+      };
+
+      let box = null;
+      try {
+        box = svg ? visualSvgBox(node, svg) : node.getBBox();
+      } catch (_) {
+        box = null;
+      }
+      if (!box || box.width <= 0 || box.height <= 0) return estimated;
+
+      const padded = inflateHitBox(box, Math.max(6, fontSize * 0.25));
+      const minWidth = Math.max(fontSize * 1.35, estimated.width);
+      const minHeight = Math.max(fontSize * 1.35, estimated.height);
+      const width = Math.max(padded.width, minWidth);
+      const height = Math.max(padded.height, minHeight);
+      const centerX = padded.x + padded.width / 2;
+      const centerY = padded.y + padded.height / 2;
+      return {
+        x: centerX - width / 2,
+        y: centerY - height / 2,
+        width,
+        height,
+      };
+    }
+
     function elementHitBox(node, svg = null) {
       const tag = node.tagName.toLowerCase();
       if (tag === "rect" || tag === "image") {
@@ -2389,30 +2534,8 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
         return width > 0 && height > 0 ? { x, y, width, height } : null;
       }
       if (tag === "text") {
-        if (node.getAttribute("data-slot-kind") === "text_box") {
-          const x = Number(node.getAttribute("data-box-x") || node.getAttribute("x") || 0);
-          const y = Number(node.getAttribute("data-box-y") || node.getAttribute("y") || 0);
-          const width = Number(node.getAttribute("data-box-width") || 0);
-          const height = Number(node.getAttribute("data-box-height") || 0);
-          return width > 0 && height > 0 ? { x, y, width, height } : null;
-        }
-        try {
-          const bb = node.getBBox();
-          if (bb && bb.width > 0 && bb.height > 0) return inflateHitBox(bb, 2);
-        } catch (_) {
-          // Fall back to a text estimate below.
-        }
         const cellBox = tableCellHitBox(node, svg);
-        if (cellBox) return cellBox;
-        const text = node.textContent || "";
-        const fontSize = Number(node.getAttribute("font-size") || node.getAttribute("font_size") || 28);
-        const x = Number(node.getAttribute("x") || 0);
-        const y = Number(node.getAttribute("y") || 0);
-        const lineCount = Math.max(1, text.split(/\n/).length);
-        const maxLineLength = Math.max(1, ...text.split(/\n/).map((line) => line.length));
-        const width = Math.max(fontSize * 0.8, maxLineLength * fontSize * 0.62);
-        const height = lineCount * fontSize * 1.25;
-        return { x: x - 6, y: y - fontSize, width: width + 12, height: height + 8 };
+        return cellBox || textHitBox(node, svg);
       }
       if (tag === "line") {
         if (svg && node.getAttribute("transform")) {
@@ -2619,6 +2742,22 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
       document.getElementById("shapeFormatMenu")?.classList.remove("open");
     }
 
+    function positionShapeFormatMenu(ev) {
+      const menu = document.getElementById("shapeFormatMenu");
+      if (!menu) return false;
+      menu.classList.add("open");
+      const margin = 8;
+      const width = menu.offsetWidth || 226;
+      const height = menu.offsetHeight || 150;
+      const left = Math.min(Math.max(margin, ev.clientX), window.innerWidth - width - margin);
+      const top = Math.min(Math.max(margin, ev.clientY), window.innerHeight - height - margin);
+      menu.style.left = `${left}px`;
+      menu.style.top = `${top}px`;
+      ev.preventDefault();
+      ev.stopPropagation();
+      return true;
+    }
+
     function selectedShapeFormatItem() {
       if (selectedSlots.size !== 1) return null;
       const item = Array.from(selectedSlots.values())[0];
@@ -2639,6 +2778,23 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
       const slotId = slotIds[0] || fallbackSlotIdFromSvgId(rawId);
       if (!slotId) return false;
       setSelectedElement(el, slotId, false);
+      const tableItem = selectedSlots.size === 1 ? Array.from(selectedSlots.values())[0] : null;
+      if (tableItem && tableItem.isTableGroup) {
+        const svg = document.getElementById("svgPreview").querySelector("svg");
+        const cell = tableCellAtPoint(svg, tableItem, ev.clientX, ev.clientY);
+        if (cell) {
+          if (!selectedTableCells.some((selected) => sameTableCell(selected, cell))) {
+            setSelectedTableCell(tableItem, cell, false);
+          }
+          updateSelectionHandles();
+          const fillEntry = tableCellFillForCell(tableItem, cell);
+          const value = fillEntry ? readSlotPatchValue(fillEntry.el) || {} : {};
+          const fillInput = document.getElementById("shapeFillColorInput");
+          if (fillInput && validHexColor(value.fill)) fillInput.value = value.fill;
+          return positionShapeFormatMenu(ev);
+        }
+      }
+      selectedTableCells = [];
       const item = selectedShapeFormatItem();
       if (!item) return false;
       item.slotIds = slotIds.length ? slotIds : [slotId];
@@ -2651,19 +2807,7 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
       const strokeInput = document.getElementById("shapeStrokeColorInput");
       if (strokeInput && validHexColor(value.stroke)) strokeInput.value = value.stroke;
 
-      const menu = document.getElementById("shapeFormatMenu");
-      if (!menu) return false;
-      menu.classList.add("open");
-      const margin = 8;
-      const width = menu.offsetWidth || 226;
-      const height = menu.offsetHeight || 150;
-      const left = Math.min(Math.max(margin, ev.clientX), window.innerWidth - width - margin);
-      const top = Math.min(Math.max(margin, ev.clientY), window.innerHeight - height - margin);
-      menu.style.left = `${left}px`;
-      menu.style.top = `${top}px`;
-      ev.preventDefault();
-      ev.stopPropagation();
-      return true;
+      return positionShapeFormatMenu(ev);
     }
 
     async function applyShapeFormatPatch(stylePatch, label) {
@@ -2680,6 +2824,10 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
     }
 
     async function applyShapeFill(fill) {
+      if (selectedTableFillContextItem()) {
+        await applyTableCellFill(fill);
+        return;
+      }
       const item = selectedShapeFormatItem();
       if (!item) throw new Error("도형을 먼저 선택하세요.");
       if (item.el.tagName.toLowerCase() === "line") throw new Error("선에는 채우기를 적용할 수 없습니다.");
@@ -3242,10 +3390,21 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
     }
 
     function updateTableAdjustmentHandles(svg, layer, item) {
+      for (const old of layer.querySelectorAll(".table-cell-selected")) old.remove();
       const infos = item && item.isTableGroup
         ? (item.elements || []).map((el) => tableDividerInfo(el)).filter(Boolean)
         : [];
       canvasRenderTableAdjustmentHandles(layer, infos, beginResizeFromHandle);
+      if (!item || !item.isTableGroup || !selectedTableCells.length) return;
+      for (const cell of selectedTableCells.filter((entry) => entry.base === item.slotId)) {
+        const rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+        rect.setAttribute("class", "table-cell-selected");
+        rect.setAttribute("x", String(cell.left));
+        rect.setAttribute("y", String(cell.top));
+        rect.setAttribute("width", String(cell.right - cell.left));
+        rect.setAttribute("height", String(cell.bottom - cell.top));
+        layer.appendChild(rect);
+      }
     }
 
     function updatePathPointHandles(svg, layer, item) {
@@ -3651,8 +3810,8 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
       }
       applyPatchValueToElement(target.el, value);
       const out = [{ slotId: target.slotId, el: target.el, value }];
-      out.push(...tableTextCellLayoutValues(state.item));
-      return out;
+      out.push(...tableRelayoutValues(state.item));
+      return mergePatchEntries(out);
     }
 
     function approximateTextWidth(text, fontSize) {
@@ -3727,6 +3886,175 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
       };
     }
 
+    function tableTextCells(item) {
+      if (!item || !item.isTableGroup) return [];
+      const base = item.slotId || "slot.table";
+      const cells = [];
+      for (const el of item.elements || []) {
+        const slotId = slotIdFromElement(el);
+        const m = slotId && slotId.match(/^(slot\.table(?:_\d+)?)\.r(\d+)c(\d+)$/);
+        if (!m || m[1] !== base || el.tagName.toLowerCase() !== "text") continue;
+        cells.push({ el, slotId, row: Number(m[2]) - 1, col: Number(m[3]) - 1 });
+      }
+      return cells;
+    }
+
+    function tableCellFillSlotId(base, row, col) {
+      return `${base}.r${row + 1}c${col + 1}.fill`;
+    }
+
+    function tableCellKey(cell) {
+      return cell ? `${cell.base}:r${cell.row + 1}c${cell.col + 1}` : "";
+    }
+
+    function sameTableCell(a, b) {
+      return !!a && !!b && a.base === b.base && a.row === b.row && a.col === b.col;
+    }
+
+    function tableCellAtPoint(svg, item, clientX, clientY) {
+      const grid = tableGridEdges(item);
+      if (!svg || !grid) return null;
+      const point = getSvgPoint(svg, clientX, clientY);
+      const col = grid.cols.findIndex((left, index) => index < grid.cols.length - 1 && point.x >= left && point.x <= grid.cols[index + 1]);
+      const row = grid.rows.findIndex((top, index) => index < grid.rows.length - 1 && point.y >= top && point.y <= grid.rows[index + 1]);
+      if (row < 0 || col < 0) return null;
+      return {
+        base: item.slotId || "slot.table",
+        row,
+        col,
+        left: grid.cols[col],
+        right: grid.cols[col + 1],
+        top: grid.rows[row],
+        bottom: grid.rows[row + 1],
+      };
+    }
+
+    function tableCellByIndex(item, row, col) {
+      const grid = tableGridEdges(item);
+      if (!grid || row < 0 || col < 0 || row + 1 >= grid.rows.length || col + 1 >= grid.cols.length) return null;
+      return {
+        base: item.slotId || "slot.table",
+        row,
+        col,
+        left: grid.cols[col],
+        right: grid.cols[col + 1],
+        top: grid.rows[row],
+        bottom: grid.rows[row + 1],
+      };
+    }
+
+    function tableCellFillElements(item) {
+      if (!item || !item.isTableGroup) return [];
+      const base = item.slotId || "slot.table";
+      const fills = [];
+      for (const el of item.elements || []) {
+        const slotId = slotIdFromElement(el);
+        const m = slotId && slotId.match(/^(slot\.table(?:_\d+)?)\.r(\d+)c(\d+)\.fill$/);
+        if (!m || m[1] !== base || el.tagName.toLowerCase() !== "rect") continue;
+        fills.push({ el, slotId, row: Number(m[2]) - 1, col: Number(m[3]) - 1 });
+      }
+      return fills;
+    }
+
+    function tableCellFillForCell(item, cell) {
+      return tableCellFillElements(item).find((entry) => entry.row === cell.row && entry.col === cell.col) || null;
+    }
+
+    function setSelectedTableCell(item, cell, append = false) {
+      if (!item || !cell) {
+        selectedTableCells = [];
+        return;
+      }
+      if (!append) {
+        selectedTableCells = [cell];
+        return;
+      }
+      const exists = selectedTableCells.some((selected) => sameTableCell(selected, cell));
+      selectedTableCells = exists
+        ? selectedTableCells.filter((selected) => !sameTableCell(selected, cell))
+        : [...selectedTableCells.filter((selected) => selected.base === cell.base), cell];
+      if (!selectedTableCells.length) selectedTableCells = [cell];
+    }
+
+    function selectedTableFillContextItem() {
+      if (!selectedTableCells.length || selectedSlots.size !== 1) return null;
+      const item = Array.from(selectedSlots.values())[0];
+      return item && item.isTableGroup ? item : null;
+    }
+
+    function tableStructuralElements(item) {
+      const base = item?.slotId || "slot.table";
+      const outer = (item?.elements || []).find((el) => slotIdFromElement(el) === `${base}.outer`) || null;
+      const verticals = [];
+      const horizontals = [];
+      for (const el of item?.elements || []) {
+        const info = tableDividerInfo(el);
+        if (info && info.axis === "v") verticals.push({ el, slotId: info.slotId, value: readSlotPatchValue(el) });
+        if (info && info.axis === "h") horizontals.push({ el, slotId: info.slotId, value: readSlotPatchValue(el) });
+      }
+      verticals.sort((a, b) => Number(a.value?.x1 ?? 0) - Number(b.value?.x1 ?? 0));
+      horizontals.sort((a, b) => Number(a.value?.y1 ?? 0) - Number(b.value?.y1 ?? 0));
+      return { outer, verticals, horizontals };
+    }
+
+    function applyTableAutoFitRows(item, options = {}) {
+      const grid = tableGridEdges(item);
+      if (!grid || grid.rows.length < 2 || grid.cols.length < 2) return [];
+      const paddingY = Number(options.paddingY ?? 10);
+      const minRowHeight = Number(options.minRowHeight ?? 34);
+      const snap = (v) => (snapEnabled ? snapValue(v) : v);
+      const rowHeights = [];
+      for (let row = 0; row < grid.rows.length - 1; row += 1) {
+        rowHeights[row] = Math.max(minRowHeight, grid.rows[row + 1] - grid.rows[row]);
+      }
+
+      for (const cell of tableTextCells(item)) {
+        if (cell.row < 0 || cell.row >= rowHeights.length || cell.col < 0 || cell.col + 1 >= grid.cols.length) continue;
+        const current = readSlotPatchValue(cell.el);
+        if (!current) continue;
+        const fontSize = Number(current.font_size || cell.el.getAttribute("font-size") || 18);
+        const maxWidth = Math.max(8, grid.cols[cell.col + 1] - grid.cols[cell.col] - 20);
+        const lineCount = approximateWrappedLineCount(current.text ?? cell.el.getAttribute("data-raw-text") ?? cell.el.textContent ?? "", maxWidth, fontSize);
+        const required = Math.max(minRowHeight, fontSize + (lineCount - 1) * fontSize * 1.2 + paddingY * 2);
+        rowHeights[cell.row] = Math.max(rowHeights[cell.row], snap(required));
+      }
+
+      const nextRows = [grid.rows[0]];
+      for (const height of rowHeights) {
+        nextRows.push(snap(nextRows[nextRows.length - 1] + height));
+      }
+      const oldBottom = grid.rows[grid.rows.length - 1];
+      const nextBottom = nextRows[nextRows.length - 1];
+      const changed = nextRows.some((value, index) => Math.abs(value - grid.rows[index]) > 0.01);
+      if (!changed) return [];
+
+      const { outer, verticals, horizontals } = tableStructuralElements(item);
+      const values = [];
+      if (outer) {
+        const current = readSlotPatchValue(outer);
+        if (current) {
+          const value = { ...current, height: snap(Number(current.height || 0) + (nextBottom - oldBottom)) };
+          applyPatchValueToElement(outer, value);
+          values.push({ slotId: slotIdFromElement(outer), el: outer, value });
+        }
+      }
+      for (const entry of verticals) {
+        if (!entry.value) continue;
+        const value = { ...entry.value, y1: nextRows[0], y2: nextBottom };
+        applyPatchValueToElement(entry.el, value);
+        values.push({ slotId: entry.slotId, el: entry.el, value });
+      }
+      for (let i = 0; i < horizontals.length; i += 1) {
+        const entry = horizontals[i];
+        if (!entry.value || i + 1 >= nextRows.length - 1) continue;
+        const y = nextRows[i + 1];
+        const value = { ...entry.value, y1: y, y2: y };
+        applyPatchValueToElement(entry.el, value);
+        values.push({ slotId: entry.slotId, el: entry.el, value });
+      }
+      return values;
+    }
+
     function tableTextCellLayoutValues(item) {
       const grid = tableGridEdges(item);
       if (!grid) return [];
@@ -3764,6 +4092,154 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
         values.push({ slotId, el, value });
       }
       return values;
+    }
+
+    function tableCellFillLayoutValues(item) {
+      const grid = tableGridEdges(item);
+      if (!grid) return [];
+      const values = [];
+      for (const fill of tableCellFillElements(item)) {
+        if (fill.col < 0 || fill.col + 1 >= grid.cols.length || fill.row < 0 || fill.row + 1 >= grid.rows.length) continue;
+        const current = readSlotPatchValue(fill.el);
+        if (!current) continue;
+        const value = {
+          ...current,
+          x: grid.cols[fill.col],
+          y: grid.rows[fill.row],
+          width: grid.cols[fill.col + 1] - grid.cols[fill.col],
+          height: grid.rows[fill.row + 1] - grid.rows[fill.row],
+        };
+        applyPatchValueToElement(fill.el, value);
+        values.push({ slotId: fill.slotId, el: fill.el, value });
+      }
+      return values;
+    }
+
+    function mergePatchEntries(entries) {
+      const bySlot = new Map();
+      for (const entry of entries || []) {
+        if (!entry || !entry.slotId || !entry.value) continue;
+        bySlot.set(entry.slotId, entry);
+      }
+      return Array.from(bySlot.values());
+    }
+
+    function tableRelayoutValues(item, options = {}) {
+      return mergePatchEntries([
+        ...(options.autoFit === false ? [] : applyTableAutoFitRows(item, options)),
+        ...tableCellFillLayoutValues(item),
+        ...tableTextCellLayoutValues(item),
+      ]);
+    }
+
+    function tableFontSizeValues(item, fontSize) {
+      const cleanFontSize = Number(fontSize);
+      if (!item || !item.isTableGroup || !Number.isFinite(cleanFontSize) || cleanFontSize <= 0) return [];
+      const values = [];
+      for (const cell of tableTextCells(item)) {
+        const current = readSlotPatchValue(cell.el);
+        if (!current) continue;
+        const value = { ...current, font_size: cleanFontSize };
+        applyPatchValueToElement(cell.el, value);
+        values.push({ slotId: cell.slotId, el: cell.el, value });
+      }
+      return mergePatchEntries([...values, ...tableRelayoutValues(item)]);
+    }
+
+    function tableCellFillContent(cell, fill) {
+      return {
+        x: cell.left,
+        y: cell.top,
+        width: cell.right - cell.left,
+        height: cell.bottom - cell.top,
+        fill,
+        stroke: "none",
+        stroke_width: 0,
+      };
+    }
+
+    function tableLayerOrderPatch(item, ensureSlotIds = []) {
+      const base = item?.slotId || "slot.table";
+      const layoutText = document.getElementById("layoutView")?.value || "";
+      if (!layoutText.trim()) return null;
+      let layout = null;
+      try {
+        layout = JSON.parse(layoutText);
+      } catch (_) {
+        return null;
+      }
+      const allTableIds = new Set([...(item.slotIds || []), ...ensureSlotIds]);
+      for (const fill of tableCellFillElements(item)) allTableIds.add(fill.slotId);
+      const outerId = `${base}.outer`;
+      const fillIds = Array.from(allTableIds).filter((id) => /^slot\.table(?:_\d+)?\.r\d+c\d+\.fill$/.test(id)).sort();
+      const textIds = Array.from(allTableIds).filter((id) => /^slot\.table(?:_\d+)?\.r\d+c\d+$/.test(id)).sort();
+      const dividerIds = Array.from(allTableIds).filter((id) => /^slot\.table(?:_\d+)?\.[vh]\d+$/.test(id)).sort((a, b) => {
+        const ma = a.match(/\.([vh])(\d+)$/);
+        const mb = b.match(/\.([vh])(\d+)$/);
+        if (!ma || !mb) return a.localeCompare(b);
+        if (ma[1] !== mb[1]) return ma[1].localeCompare(mb[1]);
+        return Number(ma[2]) - Number(mb[2]);
+      });
+
+      for (const region of layout.regions || []) {
+        if (!region || !Array.isArray(region.slot_ids)) continue;
+        if (!region.slot_ids.includes(outerId) && !ensureSlotIds.some((id) => region.slot_ids.includes(id))) continue;
+        const regionIds = new Set([...region.slot_ids, ...ensureSlotIds]);
+        const tableOrdered = [
+          ...(regionIds.has(outerId) ? [outerId] : []),
+          ...fillIds.filter((id) => regionIds.has(id) || ensureSlotIds.includes(id)),
+          ...dividerIds.filter((id) => regionIds.has(id)),
+          ...textIds.filter((id) => regionIds.has(id)),
+        ];
+        const tableSet = new Set(tableOrdered);
+        const rest = region.slot_ids.filter((id) => !id.startsWith(`${base}.`) || !tableSet.has(id));
+        const insertAt = Math.max(0, region.slot_ids.indexOf(outerId));
+        const nextOrder = [...rest.slice(0, insertAt), ...tableOrdered, ...rest.slice(insertAt)];
+        return {
+          target: "__layer__",
+          op: "layer",
+          value: { region_id: region.id || firstUsableRegionId() || "region.diagram", slot_ids: nextOrder },
+        };
+      }
+      return null;
+    }
+
+    async function applyTableCellFill(fill) {
+      const item = selectedTableFillContextItem();
+      if (!item || !selectedTableCells.length) throw new Error("채울 표 셀을 먼저 선택하세요.");
+      const cells = selectedTableCells
+        .filter((cell) => cell.base === item.slotId)
+        .map((cell) => tableCellByIndex(item, cell.row, cell.col))
+        .filter(Boolean);
+      if (!cells.length) throw new Error("채울 표 셀을 먼저 선택하세요.");
+      const patches = [];
+      const addIds = [];
+      const regionId = layoutRegionBySlotId(`${item.slotId}.outer`) || firstUsableRegionId();
+      for (const cell of cells) {
+        const slotId = tableCellFillSlotId(cell.base, cell.row, cell.col);
+        const existing = tableCellFillForCell(item, cell);
+        const content = tableCellFillContent(cell, fill);
+        if (existing) {
+          const value = { ...(readSlotPatchValue(existing.el) || {}), ...content };
+          applyPatchValueToElement(existing.el, value);
+          patches.push({ target: existing.slotId, op: "update", value });
+        } else {
+          addIds.push(slotId);
+          patches.push({
+            target: slotId,
+            op: "add",
+            value: {
+              kind: "rect",
+              ...(regionId ? { region_id: regionId } : {}),
+              content,
+            },
+          });
+        }
+      }
+      const layerPatch = tableLayerOrderPatch(item, addIds);
+      if (layerPatch) patches.push(layerPatch);
+      await commitPatches(patches, `셀 채우기 적용 완료: ${cells.length}개`);
+      selectedTableCells = cells;
     }
 
     function tableColumnEdges(item) {
@@ -3892,7 +4368,11 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
       } else {
         for (const gid of arrowGroupIds) {
           let nodeForId = null;
+          if (gid === slotId && slotIdFromElement(el) === gid) {
+            nodeForId = el;
+          }
           for (const n of allNodes) {
+            if (nodeForId) break;
             if (slotIdFromElement(n) === gid) {
               nodeForId = n;
               break;
@@ -3938,13 +4418,17 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
       const selected = selectedSlots.size === 1 ? Array.from(selectedSlots.values())[0] : null;
       const canInspect = selected && !selected.isCanvas && !selected.isFigureGroup && !selected.isPaperFoldGroup && !selected.isMeasurementGroup && !selected.isTableGroup && !selected.isGraphPaperGroup && !selected.isGeneratedGroup && !selected.isCharacterGroup && !selected.isLayoutGroup && !selected.isFraction && selected.el;
       const value = canInspect ? readSlotPatchValue(selected.el) : null;
+      const tableCells = selected && selected.isTableGroup ? tableTextCells(selected) : [];
+      const tableFontSize = tableCells.length
+        ? readSlotPatchValue(tableCells[0].el)?.font_size
+        : "";
       updateCanvasControls();
       setInspectorField("slotId", selected ? selected.slotId : "");
       setInspectorField("propX", value?.x ?? value?.cx ?? value?.x1 ?? "");
       setInspectorField("propY", value?.y ?? value?.cy ?? value?.y1 ?? "");
       setInspectorField("propW", value?.width ?? "");
       setInspectorField("propH", value?.height ?? "");
-      setInspectorField("propFontSize", value?.font_size ?? "");
+      setInspectorField("propFontSize", selected?.isTableGroup ? tableFontSize : value?.font_size ?? "");
       setInspectorField("propRotate", value?.transform ?? "");
       const patch = document.getElementById("patchJson");
       if (patch && value) patch.value = JSON.stringify(value, null, 2);
@@ -3997,17 +4481,30 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
     async function commitInspectorFields() {
       if (selectedSlots.size !== 1) throw new Error("요소 하나를 선택하세요.");
       const item = Array.from(selectedSlots.values())[0];
-      if (!item || item.isCanvas || item.isFigureGroup || item.isPaperFoldGroup || item.isMeasurementGroup || item.isTableGroup || item.isGraphPaperGroup || item.isGeneratedGroup || item.isCharacterGroup || item.isLayoutGroup || item.isFraction || !item.el) {
-        throw new Error("선택한 요소를 속성 패널에서 수정할 수 없습니다.");
-      }
-      const current = readSlotPatchValue(item.el) || {};
-      const value = { ...current };
       const readNumber = (id) => {
         const raw = document.getElementById(id)?.value;
         if (raw === undefined || raw === null || raw === "") return undefined;
         const n = Number(raw);
         return Number.isFinite(n) ? n : undefined;
       };
+      if (item && item.isTableGroup) {
+        const font = readNumber("propFontSize");
+        if (font === undefined || font <= 0) throw new Error("표 텍스트 Font 값을 입력하세요.");
+        const before = readSelectedStates();
+        const values = tableFontSizeValues(item, font);
+        const patches = values.map((entry) => ({ target: entry.slotId, op: "update", value: entry.value }));
+        if (!patches.length) throw new Error("표 텍스트를 찾지 못했습니다.");
+        updateSelectionHandles();
+        await commitPatches(patches, `표 글꼴 크기 저장 완료: ${font}`);
+        const after = readSelectedStates();
+        if (!historyBusy && before.length === after.length) pushHistory(before, after, "표 글꼴 크기");
+        return;
+      }
+      if (!item || item.isCanvas || item.isFigureGroup || item.isPaperFoldGroup || item.isMeasurementGroup || item.isTableGroup || item.isGraphPaperGroup || item.isGeneratedGroup || item.isCharacterGroup || item.isLayoutGroup || item.isFraction || !item.el) {
+        throw new Error("선택한 요소를 속성 패널에서 수정할 수 없습니다.");
+      }
+      const current = readSlotPatchValue(item.el) || {};
+      const value = { ...current };
       const x = readNumber("propX");
       const y = readNumber("propY");
       const w = readNumber("propW");
@@ -4040,7 +4537,7 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
       const item = selectedTextItem();
       if (!item) throw new Error("텍스트 요소를 먼저 선택하세요.");
       const text = document.getElementById("textEditInput").value;
-      item.el.textContent = text;
+      applyPatchValueToElement(item.el, { text });
       updateSelectionHandles();
       await commitPatches([{ target: item.slotId, op: "update", value: { text } }], `텍스트 수정 완료: ${item.slotId}`);
     }
@@ -4061,6 +4558,21 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
       if (!patches.length) throw new Error("정렬할 텍스트를 찾지 못했습니다.");
       updateSelectionHandles();
       await commitPatches(patches, `텍스트 ${align} 정렬 완료`);
+    }
+
+    async function nudgeSelectedFontSize(delta) {
+      if (selectedSlots.size !== 1) throw new Error("텍스트 또는 표 하나를 선택하세요.");
+      const item = Array.from(selectedSlots.values())[0];
+      let currentFont = null;
+      if (item.isTableGroup) {
+        const cells = tableTextCells(item);
+        currentFont = cells.length ? readSlotPatchValue(cells[0].el)?.font_size : null;
+      } else if (item.el && item.el.tagName.toLowerCase() === "text") {
+        currentFont = readSlotPatchValue(item.el)?.font_size;
+      }
+      const next = Math.max(6, Math.min(96, Math.round(Number(currentFont || 18) + delta)));
+      setInspectorField("propFontSize", next);
+      await commitInspectorFields();
     }
 
     function readSelectedStates() {
@@ -4788,9 +5300,20 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
         }
         const appendSelection = ev.shiftKey || ev.ctrlKey || ev.metaKey;
         const selectionKey = selectableGroupBaseFromSlotId(slotId) || slotId;
-        const keepGroupSelection = !appendSelection && selectedSlots.has(selectionKey);
+        const existingSelection = selectedSlots.get(selectionKey);
+        const keepGroupSelection = !appendSelection && existingSelection && existingSelection.el === el;
         if (!keepGroupSelection) setSelectedElement(el, slotId, appendSelection);
         const selected = selectedSlots.get(selectionKey);
+        if (selected && selected.isTableGroup) {
+          const cell = tableCellAtPoint(svg, selected, ev.clientX, ev.clientY);
+          if (cell) {
+            setSelectedTableCell(selected, cell, appendSelection);
+            updateSelectionHandles();
+            setStatus(`표 셀 선택: ${cell.row + 1}행 ${cell.col + 1}열`, true);
+          }
+        } else {
+          selectedTableCells = [];
+        }
         if (selected && !selected.isCharacterGroup && !selected.isLayoutGroup && !selected.isFigureGroup && !selected.isPaperFoldGroup && !selected.isMeasurementGroup && !selected.isTableGroup && !selected.isGraphPaperGroup) selected.slotIds = resolvedSlotIds;
         const start = getSvgPoint(svg, ev.clientX, ev.clientY);
         const dragSnapshot = canvasCreateSlotDragSnapshot(selectedSlots, { slotIdFromElement, readSlotPatchValue, elementAnchor });
@@ -4852,7 +5375,11 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
         if (pendingDrawShape && beginShapeDrawOnCanvas(svg, ev)) return;
         const target = ev.target;
         if (target instanceof SVGElement && target.classList.contains("selection-handle")) return;
-        if (isEmptySvgClickTarget(svg, target)) return;
+        if (isEmptySvgClickTarget(svg, target)) {
+          const matched = matchingSlotElementAtPoint(svg, ev.clientX, ev.clientY);
+          if (matched && beginSlotPointerDown(matched, ev)) ev.stopPropagation();
+          return;
+        }
         if (target instanceof SVGElement && target.__slotProxyTarget) {
           const matched = matchingSlotElementAtPoint(svg, ev.clientX, ev.clientY);
           if (beginSlotPointerDown(matched || target.__slotProxyTarget, ev)) ev.stopPropagation();
@@ -5698,6 +6225,14 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
       try { await updateSelectedText(); }
       catch (e) { setStatus(String(e), false); }
     });
+    document.getElementById("fontDecreaseBtn").onclick = async () => {
+      try { await nudgeSelectedFontSize(-2); }
+      catch (e) { setStatus(String(e), false); }
+    };
+    document.getElementById("fontIncreaseBtn").onclick = async () => {
+      try { await nudgeSelectedFontSize(2); }
+      catch (e) { setStatus(String(e), false); }
+    };
     document.getElementById("textAlignLeftBtn").onclick = async () => {
       try { await alignSelectedTextInCell("left"); }
       catch (e) { setStatus(String(e), false); }

@@ -721,6 +721,29 @@ def test_apply_editor_overrides_updates_layout_slot_content() -> None:
     assert layout["slots"][1]["content"] == {"x": 9.0}
 
 
+def test_apply_editor_overrides_adds_missing_override_slot_to_matching_region() -> None:
+    layout = {
+        "regions": [
+            {"id": "region.stem", "role": "stem", "slot_ids": ["slot.q.text"]},
+            {"id": "region.choices", "role": "diagram", "slot_ids": ["slot.choice.box"]},
+        ],
+        "slots": [
+            {"id": "slot.q.text", "kind": "text", "content": {"text": "Question"}},
+            {"id": "slot.choice.box", "kind": "rect", "content": {"x": 1.0, "y": 2.0}},
+        ],
+        "reading_order": ["region.stem", "slot.q.text", "region.choices", "slot.choice.box"],
+    }
+    overrides = {"slots": {"slot.choice.a.text": {"text": "①", "x": 105.0, "y": 146.0, "font_size": 28}}}
+
+    apply_editor_overrides(layout, overrides)
+
+    added = next(slot for slot in layout["slots"] if slot["id"] == "slot.choice.a.text")
+    assert added["kind"] == "text"
+    assert added["content"]["text"] == "①"
+    assert "slot.choice.a.text" in layout["regions"][1]["slot_ids"]
+    assert layout["reading_order"][-1] == "slot.choice.a.text"
+
+
 def test_layout_patch_delete_falls_back_to_editor_overrides(tmp_path: Path) -> None:
     client = _setup_django(tmp_path)
     dsl_text = """
