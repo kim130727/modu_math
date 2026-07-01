@@ -188,7 +188,7 @@ SEMANTIC_OVERRIDE = {
             "type": "choice",
             "description": "종이컵의 들이는 500 mL 생수병의 들이보다 (많습니다, 적습니다). 종이컵의 들이는 약 (180 mL, 180 L)입니다.",
         },
-        "value": 180,
+        "value": "적습니다. 180 mL",
         "unit": "",
     },
 }
@@ -242,7 +242,7 @@ SOLVABLE = {
             "type": "choice",
             "description": "종이컵의 들이는 500 mL 생수병의 들이보다 (많습니다, 적습니다). 종이컵의 들이는 약 (180 mL, 180 L)입니다.",
         },
-        "value": 180,
+        "value": "적습니다. 180 mL",
         "unit": "",
     },
 }

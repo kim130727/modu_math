@@ -186,7 +186,7 @@ SEMANTIC_OVERRIDE = {
             "type": "unit_selection",
             "description": "체리 상자와 소고기 팩에 표시된 단위를 고르기",
         },
-        "value": 0,
+        "value": "kg g",
         "unit": "",
     },
 }
@@ -237,7 +237,7 @@ SOLVABLE = {
             "type": "unit_selection",
             "description": "체리 상자와 소고기 팩에 표시된 단위를 고르기",
         },
-        "value": 0,
+        "value": "kg g",
         "unit": "",
     },
 }

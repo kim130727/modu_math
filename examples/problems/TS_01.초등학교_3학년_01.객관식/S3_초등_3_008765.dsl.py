@@ -145,7 +145,7 @@ SEMANTIC_OVERRIDE = {
         "choices": [],
         "answer_key": [],
         "target": {"type": "selected_object", "description": "가장 가벼운 물건"},
-        "value": "숟가락",
+        "value": "포크, 숟가락, 숟가락",
         "unit": "",
     },
 }
@@ -197,7 +197,7 @@ SOLVABLE = {
         "choices": [],
         "answer_key": [],
         "target": {"type": "selected_object", "description": "가장 가벼운 물건"},
-        "value": "숟가락",
+        "value": "포크, 숟가락, 숟가락",
         "unit": "",
     },
 }

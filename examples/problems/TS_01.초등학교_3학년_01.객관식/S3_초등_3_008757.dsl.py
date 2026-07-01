@@ -184,7 +184,7 @@ SEMANTIC_OVERRIDE = {
             "type": "choice_selection",
             "description": "간장병의 들이 비교 결과와 어림한 단위를 고른다",
         },
-        "value": 2,
+        "value": "많습니다. 2L",
         "unit": "",
     },
 }
@@ -250,7 +250,7 @@ SOLVABLE = {
             "type": "choice_selection",
             "description": "간장병의 들이 비교 결과와 어림한 단위를 고른다",
         },
-        "value": 2,
+        "value": "많습니다. 2L",
         "unit": "",
     },
 }

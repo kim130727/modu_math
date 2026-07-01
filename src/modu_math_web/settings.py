@@ -10,6 +10,7 @@ ALLOWED_HOSTS = ["*"]
 ROOT_URLCONF = "modu_math_web.urls"
 MIDDLEWARE: list[str] = []
 INSTALLED_APPS = [
+    "django.contrib.staticfiles",
     "django.contrib.contenttypes",
     "django.contrib.auth",
     "modu_math_web.editor",
@@ -32,5 +33,6 @@ DATABASES = {
     }
 }
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+STATIC_URL = "/static/"
 PROBLEMS_ROOT = Path(os.environ.get("MODU_PROBLEMS_ROOT", BASE_DIR / "examples" / "problems"))
 GOLDEN_PROBLEMS_ROOT = Path(os.environ.get("MODU_GOLDEN_PROBLEMS_ROOT", BASE_DIR / "examples" / "golden"))

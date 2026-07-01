@@ -14,8 +14,8 @@
       "role": "stem",
       "flow": "absolute",
       "slot_ids": [
-        "slot.q1",
-        "slot.q2"
+        "slot.q2",
+        "slot.q2.copy1"
       ]
     },
     {
@@ -23,9 +23,7 @@
       "role": "diagram",
       "flow": "absolute",
       "slot_ids": [
-        "slot.box.frame",
-        "slot.cat",
-        "slot.choice"
+        "slot.cat"
       ]
     },
     {
@@ -37,39 +35,16 @@
   ],
   "slots": [
     {
-      "id": "slot.q1",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "□ 72.",
-        "style_role": "question",
-        "x": 10.0,
-        "y": 26.0,
-        "font_size": 28
-      }
-    },
-    {
       "id": "slot.q2",
       "kind": "text",
       "prompt": "",
       "content": {
         "text": "무게를 알맞게 어림한 것을 찾아 선택하세요.",
         "style_role": "question",
-        "x": 82.0,
-        "y": 26.0,
-        "font_size": 28
-      }
-    },
-    {
-      "id": "slot.box.frame",
-      "kind": "rect",
-      "prompt": "",
-      "content": {
-        "x": 280.0,
-        "y": 57.0,
-        "width": 374.0,
-        "height": 209.0,
-        "fill": "none"
+        "x": 97.0,
+        "y": 36.0,
+        "font_size": 28,
+        "fill": "#111111"
       }
     },
     {
@@ -85,15 +60,16 @@
       }
     },
     {
-      "id": "slot.choice",
+      "id": "slot.q2.copy1",
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "약 ( 3 g , 3 kg , 3 t )",
-        "style_role": "question",
-        "x": 391.0,
-        "y": 212.0,
-        "font_size": 28
+        "text": "무게를 알맞게 어림한 것을 찾아 선택하세요.",
+        "style_role": "body",
+        "x": 112.0,
+        "y": 51.0,
+        "font_size": 28,
+        "fill": "#111111"
       }
     }
   ],
@@ -102,12 +78,10 @@
   "diagrams": [],
   "reading_order": [
     "region.stem",
-    "slot.q1",
     "slot.q2",
+    "slot.q2.copy1",
     "region.box",
-    "slot.box.frame",
     "slot.cat",
-    "slot.choice",
     "region.ans"
   ]
 }

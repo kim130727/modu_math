@@ -50,10 +50,13 @@ def test_editor_index_uses_static_assets_without_inline_script(tmp_path: Path) -
 
     assert response.status_code == 200
     html = response.content.decode("utf-8")
-    assert 'href="editor/css/editor.css"' in html
-    assert 'type="module" src="editor/js/editor-app.js"' in html
+    assert 'href="/static/editor/css/editor.css"' in html
+    assert 'type="module" src="/static/editor/js/editor-app.js"' in html
     assert "<script>" not in html
     assert "<style>" not in html
+    css_response = client.get("/static/editor/css/editor.css")
+    assert css_response.status_code == 200
+    assert b".ppt-shell" in b"".join(css_response.streaming_content)
     static_root = Path("src/modu_math_web/editor/static/editor")
     assert (static_root / "css" / "editor.css").exists()
     for name in [
@@ -70,12 +73,34 @@ def test_editor_index_uses_static_assets_without_inline_script(tmp_path: Path) -
     assert "export function beginMarqueeBox" in canvas_js
     assert "export function updateMarqueeBox" in canvas_js
     assert "export function finishMarqueeBox" in canvas_js
+    assert "export function capturePointer" in canvas_js
+    assert "export function releasePointerCapture" in canvas_js
+    assert "export function ensureDrawPreview" in canvas_js
+    assert "export function removeDrawPreview" in canvas_js
+    assert "export function formatPathPoint" in canvas_js
+    assert "export function curvePathFromPoints" in canvas_js
+    assert "export function freeformPathFromPoints" in canvas_js
+    assert "export function drawPathFromState" in canvas_js
+    assert "export function createDrawState" in canvas_js
+    assert "export function updateDrawStatePoint" in canvas_js
+    assert "export function editablePathFromD" in canvas_js
+    assert "export function pathPointPatchFromHandle" in canvas_js
+    assert "export function appendStrokeHitProxy" in canvas_js
+    assert "export function appendTextHitProxy" in canvas_js
+    assert "export function syncSlotHitProxies" in canvas_js
+    assert "export function bindCanvasSlotInteractionEvents" in canvas_js
+    assert "export function createSlotDragSnapshot" in canvas_js
+    assert "export function scheduleDragFrame" in canvas_js
+    assert "export function consumePendingDragDelta" in canvas_js
     assert "export function ensureSelectionOverlay" in canvas_js
     assert "export function updateSelectionOverlay" in canvas_js
     assert "export function translateSelectionOverlay" in canvas_js
     assert "export function renderTableAdjustmentHandles" in canvas_js
     assert "export function renderPathPointHandles" in canvas_js
     assert "export function adjustedBBox" in canvas_js
+    assert "export function pointInRotatedFrame" in canvas_js
+    assert "export function linePatchFromEndpoint" in canvas_js
+    assert "export function linePatchFromRotation" in canvas_js
     assert "export function pointToSegmentDistance" in canvas_js
 
 

@@ -7,27 +7,11 @@
   },
   "elements": [
     {
-      "id": "slot.q1.text",
-      "type": "text",
-      "attributes": {
-        "x": 10.0,
-        "y": 26.0,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
-      },
-      "source_ref": "slot.q1",
-      "refs": {
-        "layout_slot_id": "slot.q1"
-      },
-      "text": "□ 72."
-    },
-    {
       "id": "slot.q2.text",
       "type": "text",
       "attributes": {
-        "x": 82.0,
-        "y": 26.0,
+        "x": 97.0,
+        "y": 36.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 28
@@ -39,21 +23,20 @@
       "text": "무게를 알맞게 어림한 것을 찾아 선택하세요."
     },
     {
-      "id": "slot.box.frame.rect",
-      "type": "rect",
+      "id": "slot.q2.copy1.text",
+      "type": "text",
       "attributes": {
-        "x": 280.0,
-        "y": 57.0,
-        "width": 374.0,
-        "height": 209.0,
-        "fill": "none",
-        "stroke": "#111111",
-        "stroke-width": 1.5
+        "x": 112.0,
+        "y": 51.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
       },
-      "source_ref": "slot.box.frame",
+      "source_ref": "slot.q2.copy1",
       "refs": {
-        "layout_slot_id": "slot.box.frame"
-      }
+        "layout_slot_id": "slot.q2.copy1"
+      },
+      "text": "무게를 알맞게 어림한 것을 찾아 선택하세요."
     },
     {
       "id": "slot.cat.text",
@@ -70,22 +53,6 @@
         "layout_slot_id": "slot.cat"
       },
       "text": ""
-    },
-    {
-      "id": "slot.choice.text",
-      "type": "text",
-      "attributes": {
-        "x": 391.0,
-        "y": 212.0,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
-      },
-      "source_ref": "slot.choice",
-      "refs": {
-        "layout_slot_id": "slot.choice"
-      },
-      "text": "약 ( 3 g , 3 kg , 3 t )"
     }
   ],
   "contract_version": "modu_math.renderer.v2"

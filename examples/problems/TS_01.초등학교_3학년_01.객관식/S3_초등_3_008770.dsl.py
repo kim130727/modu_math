@@ -1,5 +1,5 @@
 from __future__ import annotations
-from modu_math.dsl import Canvas, ProblemTemplate, Region, RectSlot, TextSlot
+from modu_math.dsl import Canvas, ProblemTemplate, Region, RectSlot, TextSlot, ImageSlot
 
 
 def build_problem_template() -> ProblemTemplate:
@@ -8,42 +8,30 @@ def build_problem_template() -> ProblemTemplate:
         title="무게를 알맞게 어림한 것을 찾아 선택하세요",
         canvas=Canvas(width=926, height=428, coordinate_mode="logical"),
         regions=(
-            Region(id="region.stem", role="stem", flow="absolute", slot_ids=("slot.q1", "slot.q2")),
+            Region(
+                id="region.stem",
+                role="stem",
+                flow="absolute",
+                slot_ids=("slot.q2", ),
+            ),
             Region(
                 id="region.box",
                 role="diagram",
                 flow="absolute",
-                slot_ids=("slot.box.frame", "slot.cat", "slot.choice"),
+                slot_ids=("slot.cat",),
             ),
             Region(id="region.ans", role="answer", flow="absolute", slot_ids=()),
         ),
         slots=(
             TextSlot(
-                id="slot.q1",
-                prompt="",
-                text="□ 72.",
-                style_role="question",
-                x=10.0,
-                y=26.0,
-                font_size=28,
-            ),
-            TextSlot(
                 id="slot.q2",
                 prompt="",
                 text="무게를 알맞게 어림한 것을 찾아 선택하세요.",
                 style_role="question",
-                x=82.0,
-                y=26.0,
+                x=97,
+                y=36,
                 font_size=28,
-            ),
-            RectSlot(
-                id="slot.box.frame",
-                prompt="",
-                x=280.0,
-                y=57.0,
-                width=374.0,
-                height=209.0,
-                fill="none",
+                fill="#111111",
             ),
             TextSlot(
                 id="slot.cat",
@@ -54,15 +42,7 @@ def build_problem_template() -> ProblemTemplate:
                 y=120.0,
                 font_size=28,
             ),
-            TextSlot(
-                id="slot.choice",
-                prompt="",
-                text="약 ( 3 g , 3 kg , 3 t )",
-                style_role="question",
-                x=391.0,
-                y=212.0,
-                font_size=28,
-            ),
+            
         ),
         diagrams=(),
         groups=(),

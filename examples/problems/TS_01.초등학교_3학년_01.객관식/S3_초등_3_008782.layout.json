@@ -14,7 +14,6 @@
       "role": "stem",
       "flow": "absolute",
       "slot_ids": [
-        "slot.q.num",
         "slot.q.text"
       ]
     },
@@ -47,18 +46,6 @@
   ],
   "slots": [
     {
-      "id": "slot.q.num",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "□ 2.",
-        "style_role": "question",
-        "x": 8.0,
-        "y": 24.0,
-        "font_size": 28
-      }
-    },
-    {
       "id": "slot.q.text",
       "kind": "text",
       "prompt": "",
@@ -75,10 +62,13 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 292.0,
-        "y": 51.0,
+        "x": 182.0,
+        "y": 66.0,
         "width": 365.0,
-        "height": 182.0
+        "height": 182.0,
+        "stroke": "#111111",
+        "stroke_width": 1.5,
+        "fill": "#ffffff"
       }
     },
     {
@@ -88,9 +78,10 @@
       "content": {
         "text": "㉠",
         "style_role": "body",
-        "x": 315.0,
-        "y": 95.0,
-        "font_size": 28
+        "x": 225.0,
+        "y": 115.0,
+        "font_size": 28,
+        "fill": "#111111"
       }
     },
     {
@@ -100,9 +91,10 @@
       "content": {
         "text": "3 kg 40 g = 3040 g",
         "style_role": "body",
-        "x": 343.0,
-        "y": 95.0,
-        "font_size": 28
+        "x": 264.0,
+        "y": 115.0,
+        "font_size": 28,
+        "fill": "#111111"
       }
     },
     {
@@ -112,9 +104,10 @@
       "content": {
         "text": "㉡",
         "style_role": "body",
-        "x": 315.0,
-        "y": 140.0,
-        "font_size": 28
+        "x": 225.0,
+        "y": 160.0,
+        "font_size": 28,
+        "fill": "#111111"
       }
     },
     {
@@ -124,9 +117,10 @@
       "content": {
         "text": "4000 kg = 4 t",
         "style_role": "body",
-        "x": 343.0,
-        "y": 140.0,
-        "font_size": 28
+        "x": 264.0,
+        "y": 160.0,
+        "font_size": 28,
+        "fill": "#111111"
       }
     },
     {
@@ -136,9 +130,10 @@
       "content": {
         "text": "㉢",
         "style_role": "body",
-        "x": 315.0,
-        "y": 184.0,
-        "font_size": 28
+        "x": 225.0,
+        "y": 204.0,
+        "font_size": 28,
+        "fill": "#111111"
       }
     },
     {
@@ -148,9 +143,10 @@
       "content": {
         "text": "2 kg 700 g = 2070 g",
         "style_role": "body",
-        "x": 343.0,
-        "y": 184.0,
-        "font_size": 28
+        "x": 264.0,
+        "y": 204.0,
+        "font_size": 28,
+        "fill": "#111111"
       }
     }
   ],
@@ -159,7 +155,6 @@
   "diagrams": [],
   "reading_order": [
     "region.stem",
-    "slot.q.num",
     "slot.q.text",
     "region.choices",
     "slot.choice.box",

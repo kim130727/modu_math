@@ -169,7 +169,7 @@ SEMANTIC_OVERRIDE = {
             "type": "selected_friend",
             "description": "주스병의 들이를 적절히 어림한 친구",
         },
-        "value": 0,
+        "value": "진영",
         "unit": "",
     },
 }
@@ -232,7 +232,7 @@ SOLVABLE = {
             "type": "selected_friend",
             "description": "주스병의 들이를 적절히 어림한 친구",
         },
-        "value": 0,
+        "value": "진영",
         "unit": "",
     },
 }

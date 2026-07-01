@@ -13,25 +13,46 @@ import { getState, resetState, setState, subscribe } from "./editor-state.js";
 import {
   adjustedBBox as canvasAdjustedBBox,
   adjustedCanvasBox as canvasAdjustedCanvasBox,
+  appendStrokeHitProxy as canvasAppendStrokeHitProxy,
+  appendTextHitProxy as canvasAppendTextHitProxy,
+  bindCanvasSlotInteractionEvents as canvasBindCanvasSlotInteractionEvents,
   beginMarqueeBox as canvasBeginMarqueeBox,
+  capturePointer as canvasCapturePointer,
   clientRectToSvgBox as canvasClientRectToSvgBox,
   cloneBBox as canvasCloneBBox,
   clamp as canvasClamp,
+  createSlotDragSnapshot as canvasCreateSlotDragSnapshot,
+  createDrawState as canvasCreateDrawState,
+  curvePathFromPoints as canvasCurvePathFromPoints,
   clearPathPointHandles as canvasClearPathPointHandles,
+  drawPathFromState as canvasDrawPathFromState,
+  editablePathFromD as canvasEditablePathFromD,
+  ensureDrawPreview as canvasEnsureDrawPreview,
   ensureSelectionOverlay as canvasEnsureSelectionOverlay,
+  formatPathPoint as canvasFormatPathPoint,
+  freeformPathFromPoints as canvasFreeformPathFromPoints,
   finishMarqueeBox as canvasFinishMarqueeBox,
   hideSelectionOverlay as canvasHideSelectionOverlay,
   inflateHitBox as canvasInflateHitBox,
   initCanvas,
+  linePatchFromEndpoint as canvasLinePatchFromEndpoint,
+  linePatchFromRotation as canvasLinePatchFromRotation,
+  pathPointPatchFromHandle as canvasPathPointPatchFromHandle,
   pointToBoxDistance as canvasPointToBoxDistance,
   pointToSegmentDistance as canvasPointToSegmentDistance,
+  pointInRotatedFrame as canvasPointInRotatedFrame,
   renderPathPointHandles as canvasRenderPathPointHandles,
   renderSvgContainer,
   renderTableAdjustmentHandles as canvasRenderTableAdjustmentHandles,
+  removeDrawPreview as canvasRemoveDrawPreview,
+  releasePointerCapture as canvasReleasePointerCapture,
   rotatePointAround as canvasRotatePointAround,
+  scheduleDragFrame as canvasScheduleDragFrame,
+  syncSlotHitProxies as canvasSyncSlotHitProxies,
   svgPoint as canvasSvgPoint,
   translateSelectionOverlay as canvasTranslateSelectionOverlay,
   updateMarqueeBox as canvasUpdateMarqueeBox,
+  updateDrawStatePoint as canvasUpdateDrawStatePoint,
   updateSelectionOverlay as canvasUpdateSelectionOverlay,
 } from "./editor-canvas.js";
 import { bindCommitInputs, initProperties } from "./editor-properties.js";
@@ -1631,75 +1652,44 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
     }
 
     function formatPathPoint(point) {
-      return `${Number(point.x.toFixed(1))} ${Number(point.y.toFixed(1))}`;
+      return canvasFormatPathPoint(point);
     }
 
     function curvePathFromPoints(start, end) {
-      const dx = end.x - start.x;
-      const dy = end.y - start.y;
-      const c1 = { x: start.x + dx * 0.35, y: start.y };
-      const c2 = { x: start.x + dx * 0.65, y: end.y };
-      if (Math.abs(dx) < 8 && Math.abs(dy) >= 8) {
-        c1.x = start.x + Math.max(20, Math.abs(dy) * 0.25);
-        c1.y = start.y + dy * 0.25;
-        c2.x = end.x - Math.max(20, Math.abs(dy) * 0.25);
-        c2.y = start.y + dy * 0.75;
-      }
-      return `M ${formatPathPoint(start)} C ${formatPathPoint(c1)}, ${formatPathPoint(c2)}, ${formatPathPoint(end)}`;
+      return canvasCurvePathFromPoints(start, end);
     }
 
     function freeformPathFromPoints(points) {
-      if (!points.length) return "";
-      if (points.length === 1) return `M ${formatPathPoint(points[0])}`;
-      const out = [`M ${formatPathPoint(points[0])}`];
-      for (let i = 1; i < points.length; i += 1) {
-        out.push(`L ${formatPathPoint(points[i])}`);
-      }
-      return out.join(" ");
+      return canvasFreeformPathFromPoints(points);
     }
 
     function drawPathFromState(state) {
-      if (!state || !state.def) return "";
-      if (state.def.draw_mode === "freeform") return freeformPathFromPoints(state.points || []);
-      return curvePathFromPoints(state.start, state.current || state.start);
+      return canvasDrawPathFromState(state);
+    }
+
+    function createDrawState(svg, def, start, pointerId) {
+      return canvasCreateDrawState(svg, def, start, pointerId);
+    }
+
+    function updateDrawStatePoint(state, point) {
+      canvasUpdateDrawStatePoint(state, point);
     }
 
     function ensureDrawPreview(svg) {
-      let preview = document.getElementById("drawShapePreview");
-      if (preview) return preview;
-      preview = document.createElementNS("http://www.w3.org/2000/svg", "path");
-      preview.setAttribute("id", "drawShapePreview");
-      preview.setAttribute("fill", "none");
-      preview.setAttribute("stroke", "#2563eb");
-      preview.setAttribute("stroke-width", "2");
-      preview.setAttribute("stroke-dasharray", "6 4");
-      preview.style.pointerEvents = "none";
-      svg.appendChild(preview);
-      return preview;
+      return canvasEnsureDrawPreview(svg);
     }
 
     function removeDrawPreview() {
-      document.getElementById("drawShapePreview")?.remove();
+      canvasRemoveDrawPreview();
     }
 
     function beginShapeDrawOnCanvas(svg, ev) {
       if (!pendingDrawShape || ev.button !== 0) return false;
       const start = getSvgPoint(svg, ev.clientX, ev.clientY);
-      drawState = {
-        svg,
-        def: pendingDrawShape,
-        start,
-        current: start,
-        points: [start],
-        pointerId: ev.pointerId,
-      };
+      drawState = createDrawState(svg, pendingDrawShape, start, ev.pointerId);
       const preview = ensureDrawPreview(svg);
       preview.setAttribute("d", drawPathFromState(drawState));
-      try {
-        svg.setPointerCapture(ev.pointerId);
-      } catch (_) {
-        // Pointer capture is optional for synthetic events.
-      }
+      canvasCapturePointer(svg, ev.pointerId);
       ev.preventDefault();
       ev.stopPropagation();
       return true;
@@ -1708,13 +1698,7 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
     function updateShapeDraw(ev) {
       if (!drawState) return;
       const point = getSvgPoint(drawState.svg, ev.clientX, ev.clientY);
-      drawState.current = point;
-      if (drawState.def.draw_mode === "freeform") {
-        const last = drawState.points[drawState.points.length - 1];
-        const dx = point.x - last.x;
-        const dy = point.y - last.y;
-        if (Math.hypot(dx, dy) >= 3) drawState.points.push(point);
-      }
+      updateDrawStatePoint(drawState, point);
       ensureDrawPreview(drawState.svg).setAttribute("d", drawPathFromState(drawState));
       ev.preventDefault();
     }
@@ -1724,11 +1708,7 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
       const local = drawState;
       drawState = null;
       pendingDrawShape = null;
-      try {
-        if (local.svg.hasPointerCapture(local.pointerId)) local.svg.releasePointerCapture(local.pointerId);
-      } catch (_) {
-        // Pointer capture may not be active.
-      }
+      canvasReleasePointerCapture(local.svg, local.pointerId);
       removeDrawPreview();
       const end = local.current || local.start;
       if (Math.hypot(end.x - local.start.x, end.y - local.start.y) < 4 && (local.points || []).length < 2) {
@@ -2777,16 +2757,7 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
     }
 
     function pointInRotatedFrame(point, rotation) {
-      if (!rotation || !rotation.angle || rotation.cx === null || rotation.cy === null) return point;
-      const radians = (-rotation.angle * Math.PI) / 180;
-      const cos = Math.cos(radians);
-      const sin = Math.sin(radians);
-      const dx = point.x - rotation.cx;
-      const dy = point.y - rotation.cy;
-      return {
-        x: rotation.cx + dx * cos - dy * sin,
-        y: rotation.cy + dx * sin + dy * cos,
-      };
+      return canvasPointInRotatedFrame(point, rotation);
     }
 
     function rotateTransform(angle, cx, cy) {
@@ -2942,46 +2913,7 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
     }
 
     function editablePathFromD(d) {
-      const tokens = pathTokens(d);
-      if (tokens.length < 4) return null;
-      const isCommand = (token) => /^[a-zA-Z]$/.test(token);
-      const num = (token) => Number(token);
-      if (tokens[0] !== "M") return null;
-      const start = { x: num(tokens[1]), y: num(tokens[2]), type: "anchor" };
-      if (!Number.isFinite(start.x) || !Number.isFinite(start.y)) return null;
-      if (tokens[3] === "C" && tokens.length === 10) {
-        const values = tokens.slice(4).map(num);
-        if (values.some((v) => !Number.isFinite(v))) return null;
-        return {
-          kind: "cubic",
-          points: [
-            start,
-            { x: values[0], y: values[1], type: "control" },
-            { x: values[2], y: values[3], type: "control" },
-            { x: values[4], y: values[5], type: "anchor" },
-          ],
-          build(points) {
-            return `M ${formatPathPoint(points[0])} C ${formatPathPoint(points[1])}, ${formatPathPoint(points[2])}, ${formatPathPoint(points[3])}`;
-          },
-        };
-      }
-      const points = [start];
-      let i = 3;
-      while (i < tokens.length) {
-        if (tokens[i] !== "L" || i + 2 >= tokens.length) return null;
-        const point = { x: num(tokens[i + 1]), y: num(tokens[i + 2]), type: "anchor" };
-        if (!Number.isFinite(point.x) || !Number.isFinite(point.y)) return null;
-        points.push(point);
-        i += 3;
-      }
-      if (points.length < 2 || points.length > 80) return null;
-      return {
-        kind: "polyline",
-        points,
-        build(nextPoints) {
-          return freeformPathFromPoints(nextPoints);
-        },
-      };
+      return canvasEditablePathFromD(d);
     }
 
     function clearPathPointHandles(layer) {
@@ -2989,14 +2921,8 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
     }
 
     function pathPointPatchFromHandle(startValue, handle, point) {
-      const index = Number(String(handle || "").replace("path:", ""));
-      if (!Number.isInteger(index)) return null;
-      const editable = editablePathFromD(startValue && startValue.d);
-      if (!editable || index < 0 || index >= editable.points.length) return null;
       const snap = (v) => snapEnabled ? snapValue(v) : v;
-      const points = editable.points.map((p) => ({ ...p }));
-      points[index] = { ...points[index], x: snap(point.x), y: snap(point.y) };
-      return { ...startValue, d: editable.build(points) };
+      return canvasPathPointPatchFromHandle(startValue, handle, point, snap);
     }
 
     function textBoxTextX(el, x, width) {
@@ -3014,20 +2940,7 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
     }
 
     function syncSlotHitProxies(el) {
-      const proxies = el && el.__slotHitProxies;
-      if (!Array.isArray(proxies)) return;
-      const tag = el.tagName.toLowerCase();
-      const copyAttrs = tag === "line" ? ["x1", "y1", "x2", "y2", "transform"] :
-        tag === "path" ? ["d", "transform"] :
-        tag === "polygon" ? ["points", "transform"] :
-        [];
-      for (const proxy of proxies) {
-        for (const name of copyAttrs) {
-          const value = el.getAttribute(name);
-          if (value !== null) proxy.setAttribute(name, value);
-          else proxy.removeAttribute(name);
-        }
-      }
+      canvasSyncSlotHitProxies(el);
     }
 
     function applyElementDelta(el, dx, dy, useSnap = true) {
@@ -3110,6 +3023,108 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
         return out;
       }
       return null;
+    }
+
+    function applyDragDeltaToSelection(dx, dy) {
+      let lastValue = null;
+      for (const item of selectedSlots.values()) {
+        if (item.isFraction || item.isCharacterGroup || item.isLayoutGroup || item.isFigureGroup || item.isPaperFoldGroup || item.isMeasurementGroup || item.isTableGroup || item.isGraphPaperGroup || item.isGeneratedGroup) {
+          for (const node of item.elements || []) lastValue = applyElementDelta(node, dx, dy, false);
+        } else {
+          lastValue = applyElementDelta(item.el, dx, dy, false);
+        }
+      }
+      return lastValue;
+    }
+
+    function markDragMoveApplied(dx, dy) {
+      if (!dragState) return false;
+      dragState.moved = true;
+      if (!translateSelectionOverlay(dx, dy)) updateSelectionHandles();
+      const now = Date.now();
+      if (now - lastDragStatusAt > 90) {
+        lastDragStatusAt = now;
+        setStatus(`드래그 중: ${selectedSlots.size}개 선택${snapEnabled ? " (snap 5px)" : ""}`, true);
+      }
+      return true;
+    }
+
+    function snapAndApplyMoveFix(elements, dx, dy) {
+      const snappedMove = snapPatchValue({ move_dx: dx, move_dy: dy });
+      const fixDx = snappedMove.move_dx - dx;
+      const fixDy = snappedMove.move_dy - dy;
+      if (fixDx !== 0 || fixDy !== 0) {
+        for (const node of elements || []) applyElementDelta(node, fixDx, fixDy, false);
+      }
+      return snappedMove;
+    }
+
+    function appendMovedElementPatch(node, local, patches, after) {
+      const slotId = slotIdFromElement(node);
+      const current = readSlotPatchValue(node);
+      const beforeValue = local.beforeMap.get(slotId);
+      const value = movedPatchValueFromBefore(beforeValue, current);
+      if (!slotId || !value) return false;
+      applyPatchValueToElement(node, value);
+      patches.push({ target: slotId, op: "update", value });
+      after.push({ slotId, value: JSON.parse(JSON.stringify(value)) });
+      return true;
+    }
+
+    function appendMovePatch(slotId, value, patches, after) {
+      patches.push({ target: slotId, op: "update", value });
+      after.push({ slotId, value });
+    }
+
+    function appendMultiTargetPatch(slotIds, value, patches, after) {
+      for (const id of slotIds) {
+        after.push({ slotId: id, value: JSON.parse(JSON.stringify(value)) });
+        patches.push({ target: id, op: "update", value });
+      }
+    }
+
+    function buildDragEndPatchSet(local) {
+      const after = [];
+      const patches = [];
+      for (const item of selectedSlots.values()) {
+        if (item.isFraction) {
+          const startAnchor = local.fractionStartAnchors ? local.fractionStartAnchors.get(item.slotId) : null;
+          const moved = fractionVisualDelta(item.slotId, startAnchor);
+          const snappedMove = snapAndApplyMoveFix(item.elements, moved.dx, moved.dy);
+          appendMovePatch(item.slotId, snappedMove, patches, after);
+          continue;
+        }
+        if (item.isCharacterGroup || item.isLayoutGroup || item.isGeneratedGroup) {
+          snapAndApplyMoveFix(item.elements, local.totalDx, local.totalDy);
+          for (const node of item.elements || []) {
+            appendMovedElementPatch(node, local, patches, after);
+          }
+          continue;
+        }
+        if (item.isFigureGroup || item.isPaperFoldGroup || item.isMeasurementGroup) {
+          const snappedMove = snapAndApplyMoveFix(item.elements, local.totalDx, local.totalDy);
+          appendMovePatch(item.slotId, snappedMove, patches, after);
+          continue;
+        }
+        if (item.isTableGroup) {
+          const snappedMove = snapAndApplyMoveFix(item.elements, local.totalDx, local.totalDy);
+          appendMovePatch(item.slotId, snappedMove, patches, after);
+          continue;
+        }
+        if (item.isGraphPaperGroup) {
+          for (const node of item.elements || []) {
+            appendMovedElementPatch(node, local, patches, after);
+          }
+          continue;
+        }
+        const current = readSlotPatchValue(item.el);
+        const beforeValue = local.beforeMap.get(item.slotId);
+        const value = movedPatchValueFromBefore(beforeValue, current);
+        if (!value) continue;
+        applyPatchValueToElement(item.el, value);
+        appendMultiTargetPatch(item.slotIds || [item.slotId], value, patches, after);
+      }
+      return { patches, after };
     }
 
     function ensureSelectionOverlay(svg) {
@@ -3299,24 +3314,7 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
 
     function linePatchFromEndpoint(el, handle, startValue, point) {
       const snap = (v) => (snapEnabled ? snapValue(v) : v);
-      const value = {
-        x1: startValue.x1,
-        y1: startValue.y1,
-        x2: startValue.x2,
-        y2: startValue.y2,
-      };
-      if (handle === "p1") {
-        value.x1 = snap(point.x);
-        value.y1 = snap(point.y);
-      } else {
-        value.x2 = snap(point.x);
-        value.y2 = snap(point.y);
-      }
-      el.setAttribute("x1", String(value.x1));
-      el.setAttribute("y1", String(value.y1));
-      el.setAttribute("x2", String(value.x2));
-      el.setAttribute("y2", String(value.y2));
-      return value;
+      return canvasLinePatchFromEndpoint(el, handle, startValue, point, snap);
     }
 
     function rotatePointAround(point, center, angleRadians) {
@@ -3325,22 +3323,7 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
 
     function linePatchFromRotation(el, startValue, startPoint, pointerPoint) {
       const snap = (v) => (snapEnabled ? snapValue(v) : v);
-      const center = {
-        x: (startValue.x1 + startValue.x2) / 2,
-        y: (startValue.y1 + startValue.y2) / 2,
-      };
-      const a0 = Math.atan2(startPoint.y - center.y, startPoint.x - center.x);
-      const a1 = Math.atan2(pointerPoint.y - center.y, pointerPoint.x - center.x);
-      let delta = a1 - a0;
-      if (snapEnabled) delta = (Math.round((delta * 180 / Math.PI) / 5) * 5) * Math.PI / 180;
-      const p1 = rotatePointAround({ x: startValue.x1, y: startValue.y1 }, center, delta);
-      const p2 = rotatePointAround({ x: startValue.x2, y: startValue.y2 }, center, delta);
-      const value = { x1: snap(p1.x), y1: snap(p1.y), x2: snap(p2.x), y2: snap(p2.y) };
-      el.setAttribute("x1", String(value.x1));
-      el.setAttribute("y1", String(value.y1));
-      el.setAttribute("x2", String(value.x2));
-      el.setAttribute("y2", String(value.y2));
-      return value;
+      return canvasLinePatchFromRotation(el, startValue, startPoint, pointerPoint, { snap, snapAngle: snapEnabled });
     }
 
     function resizePatchForElement(el, handle, startValue, startBox, nextBox) {
@@ -4600,11 +4583,7 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
         pointerId: ev.pointerId,
         handleEl: ev.currentTarget,
       };
-      try {
-        ev.currentTarget.setPointerCapture(ev.pointerId);
-      } catch (_) {
-        // Synthetic pointer events in tests may not have an active pointer.
-      }
+      canvasCapturePointer(ev.currentTarget, ev.pointerId);
       ev.preventDefault();
       ev.stopPropagation();
     }
@@ -4732,9 +4711,7 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
       resizeState = null;
       pendingResizePoint = null;
       resizeFrameRequested = false;
-      if (local.handleEl && local.pointerId !== undefined && local.handleEl.hasPointerCapture(local.pointerId)) {
-        local.handleEl.releasePointerCapture(local.pointerId);
-      }
+      canvasReleasePointerCapture(local.handleEl, local.pointerId);
       if (!local.moved || !local.lastValue) {
         updateSelectionHandles();
         return;
@@ -4816,103 +4793,42 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
         const selected = selectedSlots.get(selectionKey);
         if (selected && !selected.isCharacterGroup && !selected.isLayoutGroup && !selected.isFigureGroup && !selected.isPaperFoldGroup && !selected.isMeasurementGroup && !selected.isTableGroup && !selected.isGraphPaperGroup) selected.slotIds = resolvedSlotIds;
         const start = getSvgPoint(svg, ev.clientX, ev.clientY);
-        const beforeMap = new Map();
-        for (const item of selectedSlots.values()) {
-          if (item.isFraction) {
-            beforeMap.set(item.slotId, { move_dx: 0, move_dy: 0 });
-          } else if (item.isCharacterGroup || item.isLayoutGroup || item.isGeneratedGroup || item.isFigureGroup || item.isPaperFoldGroup || item.isMeasurementGroup || item.isTableGroup || item.isGraphPaperGroup) {
-            for (const node of item.elements || []) {
-              const sid = slotIdFromElement(node);
-              const value = readSlotPatchValue(node);
-              if (sid && value) beforeMap.set(sid, JSON.parse(JSON.stringify(value)));
-            }
-          } else {
-            const value = readSlotPatchValue(item.el);
-            if (value) {
-              for (const id of item.slotIds || [item.slotId]) {
-                beforeMap.set(id, JSON.parse(JSON.stringify(value)));
-              }
-            }
-          }
-        }
+        const dragSnapshot = canvasCreateSlotDragSnapshot(selectedSlots, { slotIdFromElement, readSlotPatchValue, elementAnchor });
         dragState = {
           problemId: currentProblemId,
           svg,
           slotId: selectionKey,
           start,
           moved: false,
-          beforeMap,
+          beforeMap: dragSnapshot.beforeMap,
           captureEl: el,
           pointerId: ev.pointerId,
           totalDx: 0,
           totalDy: 0,
-          fractionStartAnchors: (() => {
-            const m = new Map();
-            for (const s of selectedSlots.values()) {
-              if (!s.isFraction) continue;
-              const elems = s.elements || [];
-              if (!elems.length) continue;
-              const a = elementAnchor(elems[0]);
-              if (a) m.set(s.slotId, a);
-            }
-            return m;
-          })(),
+          fractionStartAnchors: dragSnapshot.fractionStartAnchors,
         };
-        try {
-          el.setPointerCapture(ev.pointerId);
-        } catch (_) {
-          // Synthetic pointer events in tests may not have an active pointer.
-        }
+        canvasCapturePointer(el, ev.pointerId);
         ev.preventDefault();
         return true;
       }
 
-      function addHitProxyEventHandlers(proxy, el) {
-        proxy.__slotProxyTarget = el;
-        proxy.style.cursor = "move";
-        proxy.addEventListener("pointerdown", (ev) => {
+      const hitProxyHandlers = {
+        onPointerDown(el, ev) {
           const matched = matchingSlotElementAtPoint(svg, ev.clientX, ev.clientY);
           if (beginSlotPointerDown(matched || el, ev)) ev.stopPropagation();
-        });
-        proxy.addEventListener("dblclick", (ev) => {
+        },
+        onDoubleClick(el, ev) {
           const editTarget = matchingTextSlotElementAtPoint(svg, ev.clientX, ev.clientY) || el;
           if (editTarget.tagName.toLowerCase() !== "text") return;
           if (!matchesPickMode(editTarget)) return;
           const resolvedSlotIds = toDslSlotIds(editTarget.getAttribute("id"));
           if (resolvedSlotIds.length !== 1) return;
           beginInlineTextEdit(editTarget, resolvedSlotIds[0], ev);
-        });
-      }
+        },
+      };
 
       function addStrokeHitProxy(el) {
-        const tag = el.tagName.toLowerCase();
-        if (!(tag === "line" || tag === "path" || tag === "polygon")) return false;
-        const sourceStrokeWidth = Number(el.getAttribute("stroke-width") || 1);
-        if (tag === "line" && sourceStrokeWidth >= 4) {
-          el.style.pointerEvents = "stroke";
-          return false;
-        }
-        const proxy = document.createElementNS("http://www.w3.org/2000/svg", tag);
-        const copyAttrs = tag === "line" ? ["x1", "y1", "x2", "y2", "transform"] :
-          tag === "path" ? ["d", "transform"] :
-          ["points", "transform"];
-        for (const name of copyAttrs) {
-          const value = el.getAttribute(name);
-          if (value !== null) proxy.setAttribute(name, value);
-        }
-        proxy.setAttribute("fill", "none");
-        proxy.setAttribute("stroke", "#000");
-        proxy.setAttribute("stroke-opacity", "0.001");
-        proxy.setAttribute("stroke-width", String(Math.max(18, sourceStrokeWidth * 6)));
-        proxy.setAttribute("stroke-linecap", el.getAttribute("stroke-linecap") || "round");
-        proxy.setAttribute("stroke-linejoin", el.getAttribute("stroke-linejoin") || "round");
-        proxy.style.pointerEvents = "stroke";
-        proxy.classList.add("slot-hit-proxy");
-        addHitProxyEventHandlers(proxy, el);
-        if (!Array.isArray(el.__slotHitProxies)) el.__slotHitProxies = [];
-        el.__slotHitProxies.push(proxy);
-        svg.appendChild(proxy);
-        return true;
+        return canvasAppendStrokeHitProxy(svg, el, hitProxyHandlers);
       }
 
       function addHitProxies() {
@@ -4925,23 +4841,14 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
           if (el.getAttribute("data-slot-kind") !== "text_box") continue;
           const bb = elementHitBox(el);
           if (!bb) continue;
-          const proxy = document.createElementNS("http://www.w3.org/2000/svg", "rect");
-          proxy.setAttribute("x", String(bb.x));
-          proxy.setAttribute("y", String(bb.y));
-          proxy.setAttribute("width", String(bb.width));
-          proxy.setAttribute("height", String(bb.height));
-          proxy.setAttribute("fill", "transparent");
-          proxy.setAttribute("stroke", "none");
-          proxy.style.pointerEvents = "all";
-          proxy.classList.add("text-hit-proxy");
-          addHitProxyEventHandlers(proxy, el);
-          svg.appendChild(proxy);
+          canvasAppendTextHitProxy(svg, el, bb, hitProxyHandlers);
         }
       }
 
       addHitProxies();
 
-      svg.addEventListener("pointerdown", (ev) => {
+      canvasBindCanvasSlotInteractionEvents(svg, container, {
+        onPointerDownCapture(ev) {
         if (pendingDrawShape && beginShapeDrawOnCanvas(svg, ev)) return;
         const target = ev.target;
         if (target instanceof SVGElement && target.classList.contains("selection-handle")) return;
@@ -4953,17 +4860,17 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
         }
         const matched = matchingSlotElementAtPoint(svg, ev.clientX, ev.clientY);
         if (matched && beginSlotPointerDown(matched, ev)) ev.stopPropagation();
-      }, true);
+      },
 
-      svg.addEventListener("contextmenu", (ev) => {
+        onContextMenu(ev) {
         const target = ev.target;
         const proxyTarget = target instanceof SVGElement ? target.__slotProxyTarget : null;
         const matched = matchingSlotElementAtPoint(svg, ev.clientX, ev.clientY) || proxyTarget;
         if (matched && openShapeFormatMenu(ev, matched)) return;
         hideShapeFormatMenu();
-      });
+      },
 
-      svg.addEventListener("dblclick", (ev) => {
+        onDoubleClick(ev) {
         const target = ev.target;
         if (!(target instanceof SVGElement)) return;
         const el = matchingTextSlotElementAtPoint(svg, ev.clientX, ev.clientY) || findDraggableSlotAncestor(target);
@@ -4973,9 +4880,9 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
         const resolvedSlotIds = toDslSlotIds(rawId);
         if (resolvedSlotIds.length !== 1) return;
         beginInlineTextEdit(el, resolvedSlotIds[0], ev);
-      });
+      },
 
-      svg.addEventListener("pointerdown", (ev) => {
+        onPointerDown(ev) {
         if (pendingDrawShape) return;
         const target = ev.target;
         if (!(target instanceof SVGElement)) return;
@@ -4990,17 +4897,14 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
           clearSelection();
           if (ev.button === 0) beginMarquee(svg, ev);
         }
-      });
+      },
 
-      if (container.dataset.blankClickBound !== "1") {
-        container.dataset.blankClickBound = "1";
-        container.addEventListener("pointerdown", (ev) => {
+        onContainerPointerDown(ev) {
           if (ev.button !== 0) return;
           if (ev.target === container) clearSelection();
-        });
-      }
+        },
 
-      svg.addEventListener("pointermove", (ev) => {
+        onPointerMove(ev) {
         if (drawState) {
           updateShapeDraw(ev);
           return;
@@ -5015,45 +4919,17 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
         }
         if (!dragState) return;
         const p = getSvgPoint(svg, ev.clientX, ev.clientY);
-        const dx = p.x - dragState.start.x;
-        const dy = p.y - dragState.start.y;
-        dragState.start = p;
-        dragState.totalDx += dx;
-        dragState.totalDy += dy;
-        dragState.pendingDx = (dragState.pendingDx || 0) + dx;
-        dragState.pendingDy = (dragState.pendingDy || 0) + dy;
-        if (dragFrameRequested) return;
-        dragFrameRequested = true;
-        requestAnimationFrame(() => {
+        dragFrameRequested = canvasScheduleDragFrame(dragState, p, dragFrameRequested, ({ dx: pdx, dy: pdy }) => {
           dragFrameRequested = false;
           if (!dragState) return;
-          const pdx = dragState.pendingDx || 0;
-          const pdy = dragState.pendingDy || 0;
-          dragState.pendingDx = 0;
-          dragState.pendingDy = 0;
           if (pdx === 0 && pdy === 0) return;
-          let lastValue = null;
-          for (const item of selectedSlots.values()) {
-            if (item.isFraction) {
-              for (const node of item.elements || []) lastValue = applyElementDelta(node, pdx, pdy, false);
-          } else if (item.isCharacterGroup || item.isLayoutGroup || item.isFigureGroup || item.isPaperFoldGroup || item.isMeasurementGroup || item.isTableGroup || item.isGraphPaperGroup || item.isGeneratedGroup) {
-              for (const node of item.elements || []) lastValue = applyElementDelta(node, pdx, pdy, false);
-            } else {
-              lastValue = applyElementDelta(item.el, pdx, pdy, false);
-            }
-          }
+          const lastValue = applyDragDeltaToSelection(pdx, pdy);
           if (!lastValue) return;
-          dragState.moved = true;
-          if (!translateSelectionOverlay(pdx, pdy)) updateSelectionHandles();
-          const now = Date.now();
-          if (now - lastDragStatusAt > 90) {
-            lastDragStatusAt = now;
-            setStatus(`드래그 중: ${selectedSlots.size}개 선택${snapEnabled ? " (snap 5px)" : ""}`, true);
-          }
+          markDragMoveApplied(pdx, pdy);
         });
-      });
+      },
 
-      svg.addEventListener("pointerup", async (ev) => {
+        async onPointerUp(ev) {
         if (drawState) {
           await endShapeDraw(ev);
           return;
@@ -5069,98 +4945,11 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
         if (!dragState) return;
         const local = dragState;
         dragState = null;
-        if (local.captureEl && local.pointerId !== undefined) {
-          try {
-            if (local.captureEl.hasPointerCapture(local.pointerId)) {
-              local.captureEl.releasePointerCapture(local.pointerId);
-            }
-          } catch (_) {
-            // Pointer capture may not exist when a proxy element started the drag.
-          }
-        }
+        canvasReleasePointerCapture(local.captureEl, local.pointerId);
         if (!local.moved) return;
         updateSelectionHandles();
         const before = [];
-        const after = [];
-        const patches = [];
-        for (const item of selectedSlots.values()) {
-          if (item.isFraction) {
-            const startAnchor = local.fractionStartAnchors ? local.fractionStartAnchors.get(item.slotId) : null;
-            const moved = fractionVisualDelta(item.slotId, startAnchor);
-            const snappedMove = snapPatchValue({ move_dx: moved.dx, move_dy: moved.dy });
-            const fixDx = snappedMove.move_dx - moved.dx;
-            const fixDy = snappedMove.move_dy - moved.dy;
-            if (fixDx !== 0 || fixDy !== 0) {
-              for (const node of item.elements || []) applyElementDelta(node, fixDx, fixDy, false);
-            }
-            patches.push({ target: item.slotId, op: "update", value: snappedMove });
-            after.push({ slotId: item.slotId, value: snappedMove });
-            continue;
-          }
-          if (item.isCharacterGroup || item.isLayoutGroup || item.isGeneratedGroup) {
-            const snappedMove = snapPatchValue({ move_dx: local.totalDx, move_dy: local.totalDy });
-            const fixDx = snappedMove.move_dx - local.totalDx;
-            const fixDy = snappedMove.move_dy - local.totalDy;
-            if (fixDx !== 0 || fixDy !== 0) {
-              for (const node of item.elements || []) applyElementDelta(node, fixDx, fixDy, false);
-            }
-            for (const node of item.elements || []) {
-              const slotId = slotIdFromElement(node);
-              const current = readSlotPatchValue(node);
-              const beforeValue = local.beforeMap.get(slotId);
-              const value = movedPatchValueFromBefore(beforeValue, current);
-              if (!slotId || !value) continue;
-              applyPatchValueToElement(node, value);
-              patches.push({ target: slotId, op: "update", value });
-              after.push({ slotId, value: JSON.parse(JSON.stringify(value)) });
-            }
-            continue;
-          }
-          if (item.isFigureGroup || item.isPaperFoldGroup || item.isMeasurementGroup) {
-            const snappedMove = snapPatchValue({ move_dx: local.totalDx, move_dy: local.totalDy });
-            const fixDx = snappedMove.move_dx - local.totalDx;
-            const fixDy = snappedMove.move_dy - local.totalDy;
-            if (fixDx !== 0 || fixDy !== 0) {
-              for (const node of item.elements || []) applyElementDelta(node, fixDx, fixDy, false);
-            }
-            patches.push({ target: item.slotId, op: "update", value: snappedMove });
-            after.push({ slotId: item.slotId, value: snappedMove });
-            continue;
-          }
-          if (item.isTableGroup) {
-            const snappedMove = snapPatchValue({ move_dx: local.totalDx, move_dy: local.totalDy });
-            const fixDx = snappedMove.move_dx - local.totalDx;
-            const fixDy = snappedMove.move_dy - local.totalDy;
-            if (fixDx !== 0 || fixDy !== 0) {
-              for (const node of item.elements || []) applyElementDelta(node, fixDx, fixDy, false);
-            }
-            patches.push({ target: item.slotId, op: "update", value: snappedMove });
-            after.push({ slotId: item.slotId, value: snappedMove });
-            continue;
-          }
-          if (item.isGraphPaperGroup) {
-            for (const node of item.elements || []) {
-              const slotId = slotIdFromElement(node);
-              const current = readSlotPatchValue(node);
-              const beforeValue = local.beforeMap.get(slotId);
-              const value = movedPatchValueFromBefore(beforeValue, current);
-              if (!slotId || !value) continue;
-              applyPatchValueToElement(node, value);
-              patches.push({ target: slotId, op: "update", value });
-              after.push({ slotId, value: JSON.parse(JSON.stringify(value)) });
-            }
-            continue;
-          }
-          const current = readSlotPatchValue(item.el);
-          const beforeValue = local.beforeMap.get(item.slotId);
-          const value = movedPatchValueFromBefore(beforeValue, current);
-          if (!value) continue;
-          applyPatchValueToElement(item.el, value);
-          for (const id of item.slotIds || [item.slotId]) {
-            after.push({ slotId: id, value: JSON.parse(JSON.stringify(value)) });
-            patches.push({ target: id, op: "update", value });
-          }
-        }
+        const { patches, after } = buildDragEndPatchSet(local);
         if (!patches.length) return;
         setStatus(`드래그 저장 중: ${patches.length}개`, true);
         queueDragCommit(async () => {
@@ -5179,6 +4968,7 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
             setStatus(String(e), false);
           }
         });
+      },
       });
     }
 

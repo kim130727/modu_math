@@ -230,7 +230,7 @@ SEMANTIC_OVERRIDE = {
         "choices": [],
         "answer_key": [],
         "target": {"type": "choice", "description": "○ 또는 ×"},
-        "value": 0,
+        "value": "○",
         "unit": "",
     },
 }
@@ -272,7 +272,7 @@ SOLVABLE = {
         "choices": [],
         "answer_key": [],
         "target": {"type": "choice", "description": "○ 또는 ×"},
-        "value": 0,
+        "value": "○",
         "unit": "",
     },
 }

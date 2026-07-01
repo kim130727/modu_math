@@ -115,7 +115,7 @@ SEMANTIC_OVERRIDE = {
         "choices": [],
         "answer_key": [],
         "target": {"type": "selection", "description": "(1), (2)에 들어갈 알맞은 말"},
-        "value": 2,
+        "value": "배, 배",
         "unit": "",
     },
 }
@@ -168,7 +168,7 @@ SOLVABLE = {
         "choices": [],
         "answer_key": [],
         "target": {"type": "selection", "description": "(1), (2)에 들어갈 알맞은 말"},
-        "value": 2,
+        "value": "배, 배",
         "unit": "",
     },
 }
