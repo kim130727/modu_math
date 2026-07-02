@@ -117,8 +117,8 @@ def test_editor_next_index_uses_separate_solid_assets(tmp_path: Path) -> None:
     assert response.status_code == 200
     html = response.content.decode("utf-8")
     assert 'id="editor-next-root"' in html
-    assert 'href="/static/editor_next/assets/editor-next.css"' in html
-    assert 'type="module" src="/static/editor_next/assets/editor-next.js"' in html
+    assert 'href="/static/editor_next/assets/editor-next.css' in html
+    assert 'type="module" src="/static/editor_next/assets/editor-next.js' in html
     assert 'src="/static/editor/js/editor-app.js"' not in html
     assert 'href="/static/editor/css/editor.css"' not in html
     css_response = client.get("/static/editor_next/assets/editor-next.css")

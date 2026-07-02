@@ -5,6 +5,7 @@ import { slotBounds } from "../editor-core/transform/bounds";
 import { clientPointToCanvasPoint } from "../editor-core/transform/coordinateTransform";
 import type { EditorStore } from "../stores/editorStore";
 import type { LayoutSlot } from "../types/layout";
+import { LayoutSvgPreview } from "./LayoutSvgPreview";
 import { SvgContent } from "./SvgContent";
 
 interface CanvasViewportProps {
@@ -56,7 +57,7 @@ export function CanvasViewport(props: CanvasViewportProps) {
     }
     const target = event.target instanceof Element ? event.target : null;
     const svgElement = target?.closest("[id]");
-    const slotId = matchSelectableSlotId(svgElement?.getAttribute("id") ?? null);
+    const slotId = matchSelectableSlotId(svgElement?.getAttribute("id") ?? null) ?? hitSlotIdFromPoint(event);
     if (!slotId) {
       props.store.clearSelectedSlots();
       return;
@@ -73,6 +74,21 @@ export function CanvasViewport(props: CanvasViewportProps) {
     const element = target instanceof Element ? target : null;
     const svgElement = element?.closest("[id]");
     return matchSelectableSlotId(svgElement?.getAttribute("id") ?? null);
+  }
+
+  function hitSlotIdFromPoint(event: MouseEvent | PointerEvent): string | null {
+    const surface = event.currentTarget instanceof HTMLElement ? event.currentTarget : null;
+    if (!surface) return null;
+    const point = clientPointToCanvasPoint(surface, event.clientX, event.clientY, props.store.state.zoom);
+    const slots = props.store.state.document?.slots ?? [];
+    const matchingSlot = [...slots]
+      .reverse()
+      .filter((slot) => matchesPickMode(slot))
+      .find((slot) => {
+        const bounds = slotBounds(slot);
+        return bounds ? boxesIntersect({ x: point.x, y: point.y, width: 1, height: 1 }, bounds) : false;
+      });
+    return matchingSlot?.id ?? null;
   }
 
   function matchSelectableSlotId(elementId: string | null): string | null {
@@ -115,7 +131,7 @@ export function CanvasViewport(props: CanvasViewportProps) {
       return;
     }
 
-    if (event.button !== 0 || hitSlotId(event.target)) return;
+    if (event.button !== 0 || hitSlotId(event.target) || hitSlotIdFromPoint(event)) return;
     event.preventDefault();
     surface.setPointerCapture(event.pointerId);
     const start = clientPointToCanvasPoint(surface, event.clientX, event.clientY, props.store.state.zoom);
@@ -184,30 +200,50 @@ export function CanvasViewport(props: CanvasViewportProps) {
         </button>
       </div>
       <div class="canvas-viewport">
-        <Show when={props.store.state.document?.detail.svg} fallback={<div class="empty-state">Select a problem with SVG output.</div>}>
-          {(svg) => (
-            <div
-              class="canvas-surface"
-              classList={{
-                "is-panning": interaction()?.kind === "pan",
-                "pan-tool": props.store.state.activeTool === "pan",
-              }}
-              style={{
-                width: `${canvasWidth()}px`,
-                height: `${canvasHeight()}px`,
-                transform: `translate(${props.store.state.panX}px, ${props.store.state.panY}px) scale(${props.store.state.zoom})`,
-              }}
-              onPointerDown={beginCanvasPointer}
-              onPointerMove={updateCanvasPointer}
-              onPointerUp={finishCanvasPointer}
-              onPointerCancel={finishCanvasPointer}
-              onClick={selectFromSvg}
-            >
-              <SvgContent svg={svg()} />
-              <Show when={marqueeBox()}>
-                {(box) => (
+        <Show
+          when={props.store.state.document?.detail.layout ?? props.store.state.document?.detail.svg}
+          fallback={<div class="empty-state">Select a problem with SVG output.</div>}
+        >
+          <div
+            class="canvas-surface"
+            classList={{
+              "is-panning": interaction()?.kind === "pan",
+              "pan-tool": props.store.state.activeTool === "pan",
+            }}
+            style={{
+              width: `${canvasWidth()}px`,
+              height: `${canvasHeight()}px`,
+              transform: `translate(${props.store.state.panX}px, ${props.store.state.panY}px) scale(${props.store.state.zoom})`,
+            }}
+            onPointerDown={beginCanvasPointer}
+            onPointerMove={updateCanvasPointer}
+            onPointerUp={finishCanvasPointer}
+            onPointerCancel={finishCanvasPointer}
+            onClick={selectFromSvg}
+          >
+            {props.store.state.document?.detail.layout ? (
+              <LayoutSvgPreview layout={props.store.state.document.detail.layout} />
+            ) : (
+              <SvgContent svg={props.store.state.document?.detail.svg ?? ""} />
+            )}
+            <Show when={marqueeBox()}>
+              {(box) => (
+                <div
+                  class="marquee-box"
+                  style={{
+                    left: `${box().x}px`,
+                    top: `${box().y}px`,
+                    width: `${box().width}px`,
+                    height: `${box().height}px`,
+                  }}
+                />
+              )}
+            </Show>
+            <Show when={selectedBounds()}>
+              {(box) => (
+                <>
                   <div
-                    class="marquee-box"
+                    class="selection-box"
                     style={{
                       left: `${box().x}px`,
                       top: `${box().y}px`,
@@ -215,37 +251,22 @@ export function CanvasViewport(props: CanvasViewportProps) {
                       height: `${box().height}px`,
                     }}
                   />
-                )}
-              </Show>
-              <Show when={selectedBounds()}>
-                {(box) => (
-                  <>
-                    <div
-                      class="selection-box"
-                      style={{
-                        left: `${box().x}px`,
-                        top: `${box().y}px`,
-                        width: `${box().width}px`,
-                        height: `${box().height}px`,
-                      }}
-                    />
-                    <For each={RESIZE_HANDLES}>
-                      {(handle) => (
-                        <div
-                          class={`resize-handle resize-handle-${handle.key}`}
-                          aria-hidden="true"
-                          style={{
-                            left: `${box().x + box().width * handle.x}px`,
-                            top: `${box().y + box().height * handle.y}px`,
-                          }}
-                        />
-                      )}
-                    </For>
-                  </>
-                )}
-              </Show>
-            </div>
-          )}
+                  <For each={RESIZE_HANDLES}>
+                    {(handle) => (
+                      <div
+                        class={`resize-handle resize-handle-${handle.key}`}
+                        aria-hidden="true"
+                        style={{
+                          left: `${box().x + box().width * handle.x}px`,
+                          top: `${box().y + box().height * handle.y}px`,
+                        }}
+                      />
+                    )}
+                  </For>
+                </>
+              )}
+            </Show>
+          </div>
         </Show>
       </div>
       <div class="slot-strip">
