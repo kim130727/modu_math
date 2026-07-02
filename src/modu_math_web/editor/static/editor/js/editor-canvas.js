@@ -208,6 +208,102 @@ export function pathPointPatchFromHandle(startValue, handle, point, snap = (v) =
   return { ...startValue, d: editable.build(points) };
 }
 
+export function parsePolygonPoints(raw) {
+  return (raw || "")
+    .trim()
+    .split(/\s+/)
+    .filter(Boolean)
+    .map((pair) => {
+      const [x, y] = pair.split(",");
+      return [Number(x), Number(y)];
+    })
+    .filter(([x, y]) => Number.isFinite(x) && Number.isFinite(y));
+}
+
+export function formatPolygonPoints(points) {
+  return points.map(([x, y]) => `${x},${y}`).join(" ");
+}
+
+export function transformPathD(d, mapCoord, mapRadius = null) {
+  const tokens = pathTokens(d);
+  const out = [];
+  let i = 0;
+  let cmd = null;
+  let firstMove = true;
+
+  const isCommand = (token) => /^[a-zA-Z]$/.test(token);
+  const num = (token) => Number(token);
+  const emit = (value) => out.push(String(value));
+
+  while (i < tokens.length) {
+    if (isCommand(tokens[i])) {
+      cmd = tokens[i];
+      out.push(cmd);
+      i += 1;
+      if (cmd === "M" || cmd === "m") firstMove = true;
+      if (cmd === "Z" || cmd === "z") continue;
+    }
+    if (!cmd) break;
+
+    const upper = cmd.toUpperCase();
+    const count = PATH_PARAM_COUNTS[upper];
+    if (!count) break;
+
+    while (i < tokens.length && !isCommand(tokens[i])) {
+      if (i + count > tokens.length) {
+        emit(tokens[i]);
+        i += 1;
+        continue;
+      }
+      const vals = tokens.slice(i, i + count).map(num);
+      if (vals.some((v) => !Number.isFinite(v))) {
+        emit(tokens[i]);
+        i += 1;
+        continue;
+      }
+
+      const relative = cmd === cmd.toLowerCase();
+      const shouldMap = !relative || (upper === "M" && firstMove);
+      const coord = (x, y) => shouldMap ? mapCoord(x, y) : [x, y];
+
+      if (upper === "H") {
+        const mapped = shouldMap ? mapCoord(vals[0], 0)[0] : vals[0];
+        emit(mapped);
+      } else if (upper === "V") {
+        const mapped = shouldMap ? mapCoord(0, vals[0])[1] : vals[0];
+        emit(mapped);
+      } else if (upper === "A") {
+        const radii = mapRadius ? mapRadius(vals[0], vals[1]) : [vals[0], vals[1]];
+        const end = coord(vals[5], vals[6]);
+        emit(radii[0]); emit(radii[1]); emit(vals[2]); emit(vals[3]); emit(vals[4]); emit(end[0]); emit(end[1]);
+      } else {
+        for (let j = 0; j < vals.length; j += 2) {
+          const p = coord(vals[j], vals[j + 1]);
+          emit(p[0]); emit(p[1]);
+        }
+      }
+
+      i += count;
+      if (upper === "M") firstMove = false;
+    }
+  }
+  return out.join(" ");
+}
+
+export function shiftPathD(d, dx, dy, snap = (v) => v) {
+  return transformPathD(d, (x, y) => [snap(x + dx), snap(y + dy)]);
+}
+
+export function scalePathD(d, startBox, nextBox, snap = (v) => v) {
+  const sx = nextBox.width / Math.max(startBox.width, 1);
+  const sy = nextBox.height / Math.max(startBox.height, 1);
+  return transformPathD(
+    d,
+    (x, y) => [snap(nextBox.x + (x - startBox.x) * sx), snap(nextBox.y + (y - startBox.y) * sy)],
+    (rx, ry) => [snap(rx * sx), snap(ry * sy)]
+  );
+}
+
 export function bindSlotHitProxy(proxy, target, { onPointerDown, onDoubleClick } = {}) {
   if (!proxy || !target) return proxy;
   proxy.__slotProxyTarget = target;
@@ -377,6 +473,8 @@ function clonePatchValue(value) {
 function pathTokens(d) {
   return (d || "").match(/[a-zA-Z]|-?\d*\.?\d+(?:e[-+]?\d+)?/g) || [];
 }
+
+const PATH_PARAM_COUNTS = { M: 2, L: 2, T: 2, H: 1, V: 1, C: 6, S: 4, Q: 4, A: 7 };
 
 function slotHitProxyAttrs(tag) {
   if (tag === "line") return ["x1", "y1", "x2", "y2", "transform"];

@@ -85,6 +85,11 @@ def test_editor_index_uses_static_assets_without_inline_script(tmp_path: Path) -
     assert "export function updateDrawStatePoint" in canvas_js
     assert "export function editablePathFromD" in canvas_js
     assert "export function pathPointPatchFromHandle" in canvas_js
+    assert "export function parsePolygonPoints" in canvas_js
+    assert "export function formatPolygonPoints" in canvas_js
+    assert "export function transformPathD" in canvas_js
+    assert "export function shiftPathD" in canvas_js
+    assert "export function scalePathD" in canvas_js
     assert "export function appendStrokeHitProxy" in canvas_js
     assert "export function appendTextHitProxy" in canvas_js
     assert "export function syncSlotHitProxies" in canvas_js
