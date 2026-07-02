@@ -14,6 +14,7 @@ INSTALLED_APPS = [
     "django.contrib.contenttypes",
     "django.contrib.auth",
     "modu_math_web.editor",
+    "modu_math_web.editor_next",
 ]
 TEMPLATES: list[dict] = [
     {

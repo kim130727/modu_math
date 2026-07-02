@@ -109,6 +109,26 @@ def test_editor_index_uses_static_assets_without_inline_script(tmp_path: Path) -
     assert "export function pointToSegmentDistance" in canvas_js
 
 
+def test_editor_next_index_uses_separate_solid_assets(tmp_path: Path) -> None:
+    client = _setup_django(tmp_path)
+
+    response = client.get("/editor-next/")
+
+    assert response.status_code == 200
+    html = response.content.decode("utf-8")
+    assert 'id="editor-next-root"' in html
+    assert 'href="/static/editor_next/assets/editor-next.css"' in html
+    assert 'type="module" src="/static/editor_next/assets/editor-next.js"' in html
+    assert 'src="/static/editor/js/editor-app.js"' not in html
+    assert 'href="/static/editor/css/editor.css"' not in html
+    css_response = client.get("/static/editor_next/assets/editor-next.css")
+    assert css_response.status_code == 200
+    assert b".editor-next-shell" in b"".join(css_response.streaming_content)
+    js_response = client.get("/static/editor_next/assets/editor-next.js")
+    assert js_response.status_code == 200
+    assert b"ModuMath Editor Next" in b"".join(js_response.streaming_content)
+
+
 def test_list_endpoint_includes_0001_if_present(tmp_path: Path) -> None:
     client = _setup_django(tmp_path)
     _write_problem(tmp_path, "0001", "PROBLEM_TEMPLATE = None\n")
