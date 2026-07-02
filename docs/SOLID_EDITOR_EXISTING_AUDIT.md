@@ -274,6 +274,19 @@ npm run typecheck
 
 npm run build
 -> passed; emitted editor-next.js and editor-next.css
+
+After Phase 2 selection, pan, and handle foundation:
+uv run pytest -q
+-> 111 passed, 1 warning
+
+uv run pytest tests\web\test_editor_api.py -q
+-> 47 passed, 1 warning
+
+npm run typecheck
+-> passed
+
+npm run build
+-> passed; emitted updated editor-next.js and editor-next.css
 ```
 
 Warning in both runs: Django `RemovedInDjango50Warning` about future `USE_TZ` default.
@@ -347,3 +360,24 @@ Implemented after this audit:
 - Kept `/editor/` and the legacy static assets unchanged.
 - Implemented read-only problem list, filter, problem selection, server SVG display, DSL display, artifacts JSON display, slot list, and basic inspector.
 - Added a Django regression test proving `/editor-next/` uses `editor_next` assets and does not load legacy `/static/editor/js/editor-app.js`.
+
+## Phase 2 Implementation Notes
+
+Implemented after Phase 1:
+
+- Added Solid selection-state toggling for single and Shift/Ctrl/Cmd multi-selection.
+- Added SVG click delegation that maps server-rendered SVG element IDs back to layout slot IDs without mutating the SVG markup.
+- Added empty canvas/SVG click selection clearing.
+- Added a read-only selection overlay based on layout bounds for selected slots.
+- Added basic canvas zoom controls and viewport reset state.
+- Added empty-canvas drag marquee selection using layout bounds.
+- Added a basic pan tool plus Alt-drag and middle-button drag panning.
+- Added type-restricted pick filters (`all`, `text`, `shape`, `linepath`) for SVG click and marquee selection.
+- Added display-only resize handles around selected layout bounds.
+
+Current intentional limits:
+
+- No visual edits are written to DSL in this phase.
+- Resize handle interaction, drag movement, and hit proxy parity remain pending.
+- Selection bounds are layout-derived and do not yet account for path bounds or transformed/rotated geometry.
+- Pick filters are layout-kind based and do not yet include the existing editor's invisible hit proxy behavior.

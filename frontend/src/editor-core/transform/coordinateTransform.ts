@@ -1,5 +1,14 @@
 import type { Point } from "../model/geometry";
 
+export function clientPointToCanvasPoint(surface: HTMLElement, clientX: number, clientY: number, zoom: number): Point {
+  const rect = surface.getBoundingClientRect();
+  const scale = zoom > 0 ? zoom : 1;
+  return {
+    x: (clientX - rect.left) / scale,
+    y: (clientY - rect.top) / scale,
+  };
+}
+
 export function screenToSvgPoint(svg: SVGSVGElement, clientX: number, clientY: number): Point {
   const point = svg.createSVGPoint();
   point.x = clientX;
@@ -9,4 +18,3 @@ export function screenToSvgPoint(svg: SVGSVGElement, clientX: number, clientY: n
   const mapped = point.matrixTransform(ctm.inverse());
   return { x: mapped.x, y: mapped.y };
 }
-

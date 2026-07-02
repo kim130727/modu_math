@@ -21,6 +21,12 @@ uv run pytest -> 111 passed, 1 warning
 uv run pytest tests\web\test_editor_api.py -> 47 passed, 1 warning
 npm run typecheck -> passed
 npm run build -> passed
+
+After Phase 2 selection, pan, and handle foundation:
+uv run pytest -q -> 111 passed, 1 warning
+uv run pytest tests\web\test_editor_api.py -q -> 47 passed, 1 warning
+npm run typecheck -> passed
+npm run build -> passed
 ```
 
 | ID | Feature | Existing Editor | SolidJS | Auto Test | Manual Test | Status |
@@ -40,17 +46,17 @@ npm run build -> passed
 | F013 | Build failure reporting | Yes | Planned Phase 6 | Existing partial pass | Not run | Planned |
 | F014 | Manual layout patch | Yes | Planned Phase 5 | Existing pass | Not run | Planned |
 | F015 | Patch + build | Yes | Planned Phase 5/6 | Existing pass | Not run | Planned |
-| F016 | Single selection | Yes | Read-only slot list selection only | Solid build pass | Not run | Partial Phase 1 |
-| F017 | Multi-selection | Yes | Planned Phase 2 | Not run | Not run | Planned |
-| F018 | Marquee selection | Yes | Planned Phase 2 | Not run | Not run | Planned |
-| F019 | Selection clear | Yes | Planned Phase 2 | Not run | Not run | Planned |
-| F020 | Pick modes | Yes | Planned Phase 2/3 | Not run | Not run | Planned |
+| F016 | Single selection | Yes | Implemented for slot strip and SVG element clicks using server SVG element IDs | Solid build/typecheck pass | Not run | Partial Phase 2 |
+| F017 | Multi-selection | Yes | Implemented for Shift/Ctrl/Cmd click in slot strip and SVG element clicks | Solid build/typecheck pass | Not run | Partial Phase 2 |
+| F018 | Marquee selection | Yes | Implemented for layout-bounds selection from empty-canvas drag | Solid build/typecheck pass | Not run | Partial Phase 2 |
+| F019 | Selection clear | Yes | Implemented for empty SVG/canvas click | Solid build/typecheck pass | Not run | Partial Phase 2 |
+| F020 | Pick modes | Yes | Basic `all`/`text`/`shape`/`linepath` filters implemented for SVG click and marquee selection | Solid build/typecheck pass | Not run | Partial Phase 2 |
 | F021 | SVG hit proxies | Yes | Planned Phase 2 | Existing static symbol check only | Not run | Planned |
 | F022 | Drag move | Yes | Planned Phase 3 | Existing server patch pass | Not run | Planned |
 | F023 | Drag throttling/local preview | Yes | Planned Phase 3 | Not run | Not run | Planned |
 | F024 | Keyboard move | Yes | Planned Phase 3/4 | Not run | Not run | Planned |
 | F025 | Snap toggle 5px | Yes | Planned Phase 2/3 | Not run | Not run | Planned |
-| F026 | Resize handles | Yes | Planned Phase 3 | Existing server patch pass | Not run | Planned |
+| F026 | Resize handles | Yes | Display-only handles shown around selected layout bounds; resize interaction planned Phase 3 | Existing server patch pass; Solid build/typecheck pass | Not run | Partial Phase 2 |
 | F027 | Line endpoint edit | Yes | Planned Phase 3 | Existing server patch pass | Not run | Planned |
 | F028 | Line/slot rotation | Yes | Planned Phase 3 | Existing server patch pass | Not run | Planned |
 | F029 | Path point editing | Yes | Planned Phase 3 | Existing static symbol check | Not run | Planned |
@@ -88,6 +94,26 @@ npm run build -> passed
 | F061 | Local image href inlining on build | Yes | Reuse server | Existing partial pass | Not run | Baseline |
 | F062 | Error category/status messaging | Yes | Implemented Phase 1 loading/error status | Existing partial pass; Solid build pass | Not run | Phase 1 implemented |
 | F063 | DSL/artifact slot ID caches | Yes | Planned typed equivalent | Not run | Not run | Planned |
+
+## Phase 2 Progress Notes
+
+Implemented after Phase 1:
+
+- SVG click selection now delegates from the server-rendered SVG and maps element IDs such as `slot.q.text` back to layout slot IDs.
+- Shift/Ctrl/Cmd click toggles multi-selection in both the SVG and slot strip.
+- Empty SVG/canvas click clears selection.
+- A read-only selection bounding box is drawn from layout slot bounds.
+- Basic zoom controls were added to the canvas surface. This is a Solid-only convenience foundation; the audit found no complete existing user-facing zoom/pan implementation to match yet.
+- Empty-canvas drag creates a marquee rectangle and selects slots whose layout bounds intersect it.
+- Pan tool, Alt-drag, and middle-button drag update the viewport pan state locally.
+- Type-restricted pick filters (`all`, `text`, `shape`, `linepath`) apply to SVG click selection and marquee selection.
+- Display-only resize handles are drawn around the selected bounding box.
+
+Still pending for Phase 2 parity:
+
+- Resize handle interaction.
+- Hit proxy parity for thin lines/text.
+- Transform-aware/path-aware selection bounds.
 
 ## Phase 1 Minimum Matrix
 

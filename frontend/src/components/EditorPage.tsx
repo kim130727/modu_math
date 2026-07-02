@@ -16,7 +16,15 @@ export function EditorPage() {
   });
 
   onMount(() => {
-    void store.refreshProblems();
+    void (async () => {
+      await store.refreshProblems();
+      const requestedProblem = new URLSearchParams(window.location.search).get("problem");
+      const fallbackProblem = store.state.problems.find((problem) => problem.has_svg)?.problem_id ?? store.state.problems[0]?.problem_id;
+      const problemId = requestedProblem?.trim() || fallbackProblem;
+      if (problemId) {
+        await store.openProblem(problemId);
+      }
+    })();
   });
 
   return (
@@ -37,4 +45,3 @@ export function EditorPage() {
     </div>
   );
 }
-

@@ -61,15 +61,28 @@ button:disabled {
   white-space: nowrap;
 }
 
-.toolbar-actions {
+.toolbar-actions,
+.toolbar-pickmodes {
   display: flex;
   gap: 8px;
 }
 
-.toolbar-actions button {
+.toolbar-actions button,
+.toolbar-pickmodes button {
   height: 32px;
   padding: 0 12px;
   border-radius: 4px;
+}
+
+.toolbar-actions button.active,
+.toolbar-pickmodes button.active {
+  border-color: #60a5fa;
+  background: #dbeafe;
+  color: #17202a;
+}
+
+.toolbar-pickmodes {
+  margin-left: auto;
 }
 
 .editor-next-workspace {
@@ -164,7 +177,7 @@ button:disabled {
 
 .canvas-section {
   display: grid;
-  grid-template-rows: auto minmax(220px, 1fr) minmax(88px, auto);
+  grid-template-rows: auto auto minmax(220px, 1fr) minmax(88px, auto);
   gap: 10px;
 }
 
@@ -183,6 +196,25 @@ button:disabled {
   color: #64748b;
 }
 
+.canvas-controls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.canvas-controls button {
+  min-width: 32px;
+  height: 30px;
+  border-radius: 4px;
+}
+
+.canvas-controls span {
+  min-width: 48px;
+  text-align: center;
+  color: #334155;
+  font-size: 13px;
+}
+
 .canvas-viewport {
   min-height: 0;
   overflow: auto;
@@ -192,15 +224,54 @@ button:disabled {
   place-items: center;
 }
 
+.canvas-surface {
+  position: relative;
+  transform-origin: top left;
+  touch-action: none;
+}
+
+.canvas-surface.pan-tool {
+  cursor: grab;
+}
+
+.canvas-surface.is-panning {
+  cursor: grabbing;
+}
+
 .svg-content {
-  padding: 24px;
   min-width: min-content;
 }
 
 .svg-content svg {
-  max-width: min(100%, 1100px);
+  width: 100%;
   height: auto;
   display: block;
+}
+
+.selection-box {
+  position: absolute;
+  pointer-events: none;
+  border: 2px solid #2563eb;
+  box-shadow: 0 0 0 1px #ffffff;
+}
+
+.resize-handle {
+  position: absolute;
+  width: 9px;
+  height: 9px;
+  margin-left: -4.5px;
+  margin-top: -4.5px;
+  pointer-events: none;
+  background: #ffffff;
+  border: 1px solid #2563eb;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.75);
+}
+
+.marquee-box {
+  position: absolute;
+  pointer-events: none;
+  border: 1px solid #2563eb;
+  background: rgba(37, 99, 235, 0.12);
 }
 
 .slot-strip {
@@ -312,4 +383,3 @@ button:disabled {
     max-height: 260px;
   }
 }
-

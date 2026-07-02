@@ -35,6 +35,15 @@ export function slotBounds(slot: LayoutSlot): Box | null {
         height: Math.abs(content.y2 - content.y1),
       };
     }
+    case "polygon": {
+      const points = slot.content.points;
+      if (!Array.isArray(points) || points.length === 0) return null;
+      const xs = points.map((point) => point[0]);
+      const ys = points.map((point) => point[1]);
+      const x = Math.min(...xs);
+      const y = Math.min(...ys);
+      return { x, y, width: Math.max(...xs) - x, height: Math.max(...ys) - y };
+    }
     default:
       return null;
   }
