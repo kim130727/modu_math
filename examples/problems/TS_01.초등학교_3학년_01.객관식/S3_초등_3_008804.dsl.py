@@ -1,5 +1,5 @@
 from __future__ import annotations
-from modu_math.dsl import Canvas, ProblemTemplate, Region, RectSlot, TextSlot
+from modu_math.dsl import Canvas, ProblemTemplate, Region, RectSlot, TextSlot, LineSlot
 
 
 def build_problem_template() -> ProblemTemplate:
@@ -13,7 +13,6 @@ def build_problem_template() -> ProblemTemplate:
                 role="stem",
                 flow="absolute",
                 slot_ids=(
-                    "slot.q_num",
                     "slot.q_text1",
                     "slot.q_text2",
                     "slot.table.border",
@@ -26,143 +25,147 @@ def build_problem_template() -> ProblemTemplate:
                     "slot.table.cell.r2c3",
                     "slot.table.cell.r2c4",
                     "slot.choice",
+                    
                 ),
             ),
         ),
         slots=(
             TextSlot(
-                id="slot.q_num",
-                prompt="",
-                text="33.",
-                style_role="question",
-                x=12.0,
-                y=31.0,
-                font_size=28,
-            ),
-            TextSlot(
                 id="slot.q_text1",
                 prompt="",
                 text="저울과 500원짜리 동전을 이용하여 지갑, 모자, 가방의 무게를 재었더니",
                 style_role="question",
-                x=86.0,
-                y=31.0,
+                x=16,
+                y=51,
                 font_size=28,
+                fill="#111111",
             ),
             TextSlot(
                 id="slot.q_text2",
                 prompt="",
                 text="다음과 같았습니다. 가장 가벼운 것을 선택하세요.",
                 style_role="question",
-                x=18.0,
-                y=65.0,
+                x=18,
+                y=95,
                 font_size=28,
-            ),
-            RectSlot(id="slot.table.border", prompt="", x=171.0, y=84.0, width=604.0, height=85.0),
-            RectSlot(
-                id="slot.table.cell.r1c1", prompt="", x=171.0, y=84.0, width=357.0, height=42.5
+                fill="#111111",
             ),
             RectSlot(
-                id="slot.table.cell.r1c2", prompt="", x=528.0, y=84.0, width=85.0, height=42.5
+                id="slot.table.border",
+                prompt="",
+                x = ((171.0) + (-105.0)) + (40.0), y = (((84.0) + (30.0)) + (145.0)) + (-115.0), width=604.0,
+                height=85.0,
             ),
             RectSlot(
-                id="slot.table.cell.r1c3", prompt="", x=613.0, y=84.0, width=85.0, height=42.5
+                id="slot.table.cell.r1c1",
+                prompt="",
+                x = ((171.0) + (-105.0)) + (40.0), y = (((84.0) + (30.0)) + (145.0)) + (-115.0), width=357.0,
+                height=42.5,
             ),
             RectSlot(
-                id="slot.table.cell.r1c4", prompt="", x=698.0, y=84.0, width=77.0, height=42.5
+                id="slot.table.cell.r1c2",
+                prompt="",
+                x = ((528.0) + (-105.0)) + (40.0), y = (((84.0) + (30.0)) + (145.0)) + (-115.0), width=85.0,
+                height=42.5,
             ),
             RectSlot(
-                id="slot.table.cell.r2c1", prompt="", x=171.0, y=126.5, width=357.0, height=42.5
+                id="slot.table.cell.r1c3",
+                prompt="",
+                x = ((613.0) + (-105.0)) + (40.0), y = (((84.0) + (30.0)) + (145.0)) + (-115.0), width=85.0,
+                height=42.5,
             ),
             RectSlot(
-                id="slot.table.cell.r2c2", prompt="", x=528.0, y=126.5, width=85.0, height=42.5
+                id="slot.table.cell.r1c4",
+                prompt="",
+                x = ((698.0) + (-105.0)) + (40.0), y = (((84.0) + (30.0)) + (145.0)) + (-115.0), width=77.0,
+                height=42.5,
             ),
             RectSlot(
-                id="slot.table.cell.r2c3", prompt="", x=613.0, y=126.5, width=85.0, height=42.5
+                id="slot.table.cell.r2c1",
+                prompt="",
+                x = ((171.0) + (-105.0)) + (40.0), y = (((126.5) + (30.0)) + (145.0)) + (-115.0), width=357.0,
+                height=42.5,
             ),
             RectSlot(
-                id="slot.table.cell.r2c4", prompt="", x=698.0, y=126.5, width=77.0, height=42.5
+                id="slot.table.cell.r2c2",
+                prompt="",
+                x = ((528.0) + (-105.0)) + (40.0), y = (((126.5) + (30.0)) + (145.0)) + (-115.0), width=85.0,
+                height=42.5,
+            ),
+            RectSlot(
+                id="slot.table.cell.r2c3",
+                prompt="",
+                x = ((613.0) + (-105.0)) + (40.0), y = (((126.5) + (30.0)) + (145.0)) + (-115.0), width=85.0,
+                height=42.5,
+            ),
+            RectSlot(
+                id="slot.table.cell.r2c4",
+                prompt="",
+                x = ((698.0) + (-105.0)) + (40.0), y = (((126.5) + (30.0)) + (145.0)) + (-115.0), width=77.0,
+                height=42.5,
             ),
             TextSlot(
                 id="slot.table.text.r1c1",
                 prompt="",
                 text="물건",
                 style_role="question",
-                x=348.0,
-                y=111.0,
-                font_size=28,
+                x = ((348.0) + (-105.0)) + (40.0), y = (((111.0) + (30.0)) + (145.0)) + (-115.0), font_size=28,
             ),
             TextSlot(
                 id="slot.table.text.r1c2",
                 prompt="",
                 text="지갑",
                 style_role="question",
-                x=548.0,
-                y=111.0,
-                font_size=28,
+                x = ((548.0) + (-105.0)) + (40.0), y = (((111.0) + (30.0)) + (145.0)) + (-115.0), font_size=28,
             ),
             TextSlot(
                 id="slot.table.text.r1c3",
                 prompt="",
                 text="모자",
                 style_role="question",
-                x=635.0,
-                y=111.0,
-                font_size=28,
+                x = ((635.0) + (-105.0)) + (40.0), y = (((111.0) + (30.0)) + (145.0)) + (-115.0), font_size=28,
             ),
             TextSlot(
                 id="slot.table.text.r1c4",
                 prompt="",
                 text="가방",
                 style_role="question",
-                x=719.0,
-                y=111.0,
-                font_size=28,
+                x = ((719.0) + (-105.0)) + (40.0), y = (((111.0) + (30.0)) + (145.0)) + (-115.0), font_size=28,
             ),
             TextSlot(
                 id="slot.table.text.r2c1",
                 prompt="",
                 text="500원짜리 동전의 수(개)",
                 style_role="question",
-                x=193.0,
-                y=154.0,
-                font_size=28,
+                x = ((193.0) + (-105.0)) + (40.0), y = (((154.0) + (30.0)) + (145.0)) + (-115.0), font_size=28,
             ),
             TextSlot(
                 id="slot.table.text.r2c2",
                 prompt="",
                 text="9",
                 style_role="question",
-                x=553.0,
-                y=154.0,
-                font_size=28,
+                x = ((553.0) + (-105.0)) + (40.0), y = (((154.0) + (30.0)) + (145.0)) + (-115.0), font_size=28,
             ),
             TextSlot(
                 id="slot.table.text.r2c3",
                 prompt="",
                 text="2",
                 style_role="question",
-                x=639.0,
-                y=154.0,
-                font_size=28,
+                x = ((639.0) + (-105.0)) + (40.0), y = (((154.0) + (30.0)) + (145.0)) + (-115.0), font_size=28,
             ),
             TextSlot(
                 id="slot.table.text.r2c4",
                 prompt="",
                 text="13",
                 style_role="question",
-                x=722.0,
-                y=154.0,
-                font_size=28,
+                x = ((722.0) + (-105.0)) + (40.0), y = (((154.0) + (30.0)) + (145.0)) + (-115.0), font_size=28,
             ),
             TextSlot(
                 id="slot.choice",
                 prompt="",
-                text="( 지갑 , 모자 , 가방 )",
-                style_role="question",
-                x=683.0,
-                y=204.0,
-                font_size=28,
-            ),
+                text = '( 지갑 , 모자 , 가방 )', style_role="question",
+                x = 298, y = 299, font_size = 28, fill = '#111111'),
+            
         ),
         diagrams=(),
         groups=(),

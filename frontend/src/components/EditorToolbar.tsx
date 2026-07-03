@@ -28,6 +28,28 @@ export function EditorToolbar(props: EditorToolbarProps) {
         >
           Pan
         </button>
+        <button
+          type="button"
+          classList={{ active: props.store.state.snapEnabled }}
+          onClick={() => props.store.setSnapEnabled(!props.store.state.snapEnabled)}
+          disabled={props.store.state.loading}
+        >
+          Snap 5px
+        </button>
+        <button
+          type="button"
+          onClick={() => void props.store.undo()}
+          disabled={props.store.state.loading || props.store.state.history.undoStack.length === 0}
+        >
+          Undo
+        </button>
+        <button
+          type="button"
+          onClick={() => void props.store.redo()}
+          disabled={props.store.state.loading || props.store.state.history.redoStack.length === 0}
+        >
+          Redo
+        </button>
         <button type="button" onClick={() => void props.store.refreshProblems()} disabled={props.store.state.loading}>
           Refresh
         </button>
@@ -37,6 +59,12 @@ export function EditorToolbar(props: EditorToolbarProps) {
           disabled={!props.store.state.problemId || props.store.state.loading}
         >
           Reload
+        </button>
+        <button type="button" onClick={() => void props.store.insertShape("text_box")} disabled={!props.store.state.document || props.store.state.loading}>
+          Text Box
+        </button>
+        <button type="button" onClick={() => void props.store.insertShape("rect")} disabled={!props.store.state.document || props.store.state.loading}>
+          Rect
         </button>
       </div>
       <div class="toolbar-pickmodes" aria-label="Selection target filters">

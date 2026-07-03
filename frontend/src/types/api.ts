@@ -35,6 +35,68 @@ export interface ProblemDetailResponse {
   layout: LayoutDocument | null;
   renderer: RendererDocument | null;
   svg: string | null;
+  svg_url?: string | null;
+}
+
+export interface LayoutPatch {
+  target: string;
+  op: "update" | "add" | "delete" | "layer" | string;
+  value?: Record<string, unknown>;
+}
+
+export interface LayoutPatchResponse {
+  ok: boolean;
+  problem_id: string;
+  dsl: string;
+  applied: Record<string, unknown>[];
+}
+
+export interface LayoutPatchBuildResponse {
+  ok: boolean;
+  problem_id: string;
+  dsl: string;
+  applied: Record<string, unknown>[];
+  build?: {
+    ok: boolean;
+    stdout: string;
+    stderr: string;
+    error?: string;
+  };
+  artifacts?: {
+    semantic?: Record<string, unknown> | null;
+    solvable?: Record<string, unknown> | null;
+    layout?: LayoutDocument | null;
+    renderer?: RendererDocument | null;
+    svg?: string | null;
+  };
+}
+
+export interface DslMutationResponse {
+  ok: boolean;
+  problem_id: string;
+  dsl: string;
+}
+
+export interface BuildProblemResponse {
+  ok: boolean;
+  problem_id: string;
+  stdout: string;
+  stderr: string;
+  error?: string;
+  artifacts?: {
+    semantic?: Record<string, unknown> | null;
+    solvable?: Record<string, unknown> | null;
+    layout?: LayoutDocument | null;
+    renderer?: RendererDocument | null;
+    svg?: string | null;
+  };
+}
+
+export interface BuildOutputState {
+  ok: boolean;
+  stdout: string;
+  stderr: string;
+  error?: string;
 }
 
 export interface EditorError {
@@ -42,4 +104,3 @@ export interface EditorError {
   category: ApiErrorCategory;
   status: number;
 }
-

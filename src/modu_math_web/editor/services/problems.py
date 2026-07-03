@@ -221,6 +221,7 @@ def read_problem_detail(problem_id: str) -> dict[str, Any]:
     paths = resolve_problem_paths(problem_id)
     dsl = paths.dsl_path.read_text(encoding="utf-8")
     solvable_path = _find_solvable_path(paths.base_dir, paths.artifact_base)
+    svg_path = paths.artifact_path("svg")
     return {
         "problem_id": paths.problem_id,
         "base_dir": str(paths.base_dir),
@@ -229,7 +230,8 @@ def read_problem_detail(problem_id: str) -> dict[str, Any]:
         "solvable": _read_json(solvable_path) if solvable_path else None,
         "layout": _read_json(paths.artifact_path("layout")),
         "renderer": _read_json(paths.artifact_path("renderer")),
-        "svg": _rewrite_svg_asset_hrefs(_read_text(paths.artifact_path("svg")), paths),
+        "svg": _rewrite_svg_asset_hrefs(_read_text(svg_path), paths),
+        "svg_url": _asset_url(paths.problem_id, svg_path.name) if svg_path.exists() else None,
     }
 
 
@@ -251,10 +253,12 @@ def format_problem_dsl(problem_id: str) -> tuple[ProblemPaths, str]:
 def read_artifacts(problem_id: str) -> dict[str, Any]:
     paths = resolve_problem_paths(problem_id)
     solvable_path = _find_solvable_path(paths.base_dir, paths.artifact_base)
+    svg_path = paths.artifact_path("svg")
     return {
         "semantic": _read_json(paths.artifact_path("semantic")),
         "solvable": _read_json(solvable_path) if solvable_path else None,
         "layout": _read_json(paths.artifact_path("layout")),
         "renderer": _read_json(paths.artifact_path("renderer")),
-        "svg": _rewrite_svg_asset_hrefs(_read_text(paths.artifact_path("svg")), paths),
+        "svg": _rewrite_svg_asset_hrefs(_read_text(svg_path), paths),
+        "svg_url": _asset_url(paths.problem_id, svg_path.name) if svg_path.exists() else None,
     }

@@ -287,6 +287,45 @@ npm run typecheck
 
 npm run build
 -> passed; emitted updated editor-next.js and editor-next.css
+
+After Phase 3 drag, keyboard-move, deletion, inspector-edit, basic resize, insertion, color-edit, and snap foundation:
+uv run pytest -q
+-> 111 passed, 1 warning
+
+uv run pytest tests\web\test_editor_api.py -q
+-> 47 passed, 1 warning
+
+npm run typecheck
+-> passed
+
+npm run build
+-> passed; emitted updated editor-next.js and editor-next.css
+
+After Phase 4 undo/redo foundation:
+uv run pytest -q
+-> 111 passed, 1 warning
+
+uv run pytest tests\web\test_editor_api.py -q
+-> 47 passed, 1 warning
+
+npm run typecheck
+-> passed
+
+npm run build
+-> passed; emitted updated editor-next.js and editor-next.css
+
+After Phase 5/6 DSL save, format, build, and manual patch foundation:
+uv run pytest -q
+-> 111 passed, 1 warning
+
+uv run pytest tests\web\test_editor_api.py -q
+-> 47 passed, 1 warning
+
+npm run typecheck
+-> passed
+
+npm run build
+-> passed; emitted updated editor-next.js and editor-next.css
 ```
 
 Warning in both runs: Django `RemovedInDjango50Warning` about future `USE_TZ` default.
@@ -377,7 +416,76 @@ Implemented after Phase 1:
 
 Current intentional limits:
 
-- No visual edits are written to DSL in this phase.
-- Resize handle interaction, drag movement, and hit proxy parity remain pending.
+- Resize handle interaction and hit proxy parity remain pending.
 - Selection bounds are layout-derived and do not yet account for path bounds or transformed/rotated geometry.
 - Pick filters are layout-kind based and do not yet include the existing editor's invisible hit proxy behavior.
+
+## Phase 3 Implementation Notes
+
+Implemented after Phase 2:
+
+- Added Solid API support for POST `/api/editor/problems/{id}/layout-patch-and-build/`.
+- Added CSRF and JSON content-type handling to the Solid HTTP client to match the existing editor API adapter.
+- Changed the Solid SVG preview from an isolated frame/image preview to sanitized inline SVG so element IDs remain available for selection and future edit previews.
+- Added selected-slot drag movement from the canvas surface.
+- During drag, the selection overlay follows the pointer locally; on pointerup, Solid sends one patch per selected slot with `move_dx` and `move_dy`.
+- Added a 5px snap toggle. When enabled, drag deltas and resize handle coordinates are snapped in the local preview and committed patch values.
+- Added keyboard movement for selected slots: Arrow keys move by 1px and Shift+Arrow moves by 10px, matching the existing editor's coarse movement convention.
+- Added Delete/Backspace removal for selected slots through the existing `delete` layout patch path; selection is cleared after a successful patch/build response.
+- Added primitive property editing in the Solid inspector. Number and string fields from the selected slot's layout `content` are editable and are committed through the existing update patch/build path on blur or Enter.
+- Added hex color swatches for inspector `fill` and `stroke` fields. Color picker changes commit through the same update patch/build path.
+- Added basic single-slot resize handle interaction for bbox-based slots (`rect`, `text_box`, `image`) and `circle`. The overlay previews the new box locally and commits one update patch on pointerup.
+- Added toolbar insertion for basic `TextBoxSlot` and `RectSlot` through the existing `add` patch/build path. Inserted slots use the preferred diagram/absolute region and are auto-selected after a successful response.
+- Reused the existing server LibCST DSL patch engine and build path; no DSL compiler, schema, renderer, or CLI behavior was changed.
+- After a successful patch/build response, Solid reconstructs its editor document from returned DSL/artifacts and refreshes SVG, layout, renderer, and inspector state.
+
+Current intentional limits:
+
+- Drag preview currently moves the selection overlay; the underlying SVG is refreshed after the server build returns.
+- Resize is limited to one selected supported slot at a time. Multi-selection resize, line endpoint resize, path point editing, polygon point scaling, and transform-aware resize remain pending.
+- Insertion is currently limited to toolbar-created text boxes and rectangles. Gallery drawing, image upload, table/graph/bar/fraction helpers, and drag-to-draw placement remain pending.
+- Color swatches are shown only for six-digit hex colors. Values such as `none`, named colors, inherited style roles, and dash presets remain text edits or pending controls.
+- Keyboard movement keeps the existing 1px and Shift+10px behavior rather than snapping to the grid.
+- Complex inspector values such as polygon point arrays remain display-only.
+
+## Phase 4 Implementation Notes
+
+Implemented after Phase 3:
+
+- Added a typed Solid history manager with undo/redo stacks and the same 100-entry cap used by the existing editor.
+- Reset history on problem switch and clear redo on any new patch-backed edit.
+- Recorded history for drag move, keyboard move, basic resize, inspector primitive edits, hex color changes, basic text/rect insertion, and deletion.
+- Stored both forward and inverse patch lists so undo/redo can reuse the existing `/api/editor/problems/{id}/layout-patch-and-build/` endpoint.
+- Added toolbar Undo/Redo buttons plus Ctrl/Cmd+Z, Ctrl/Cmd+Shift+Z, and Ctrl/Cmd+Y shortcuts.
+- Added undo/redo stack counts to the status bar for manual verification.
+- Kept all history writes inside the Solid editor; no legacy `/editor/` JavaScript, template, CSS, Django view, DSL compiler, schema, renderer, or CLI behavior was changed.
+
+Current intentional limits:
+
+- Undo/redo covers the Solid edit operations implemented so far, not future features such as inline text edit, path point editing, layer ordering, helper insertion, DSL save/format, or build.
+- Delete undo recreates direct slots with `add` patches; generated/helper-slot restoration needs targeted verification before claiming complete parity.
+- Undo/redo waits for server patch/build completion and refreshes artifacts, matching the existing editor's server-backed model rather than performing local-only state reversal.
+
+## Phase 5/6 Implementation Notes
+
+Implemented after Phase 4:
+
+- Added Solid API adapters for existing `/api/editor/problems/{id}/dsl/`, `/dsl/format/`, and `/build/` endpoints.
+- Added a Solid API adapter for the existing patch-only `/layout-patch/` endpoint.
+- Converted the Solid DSL panel from read-only display to an editable draft with dirty/saved status.
+- Added Save, Format, and Build controls in the DSL pane.
+- Save writes the draft through the existing server DSL save flow and refreshes the draft from the returned DSL.
+- Format follows the existing editor's sequence: save the draft first, then run the server formatter and refresh the draft.
+- Build invokes the existing build endpoint, records stdout/stderr/error output, refreshes returned semantic/layout/renderer/SVG artifacts, and refreshes the problem list.
+- Added Ctrl/Cmd+S save shortcut.
+- Added a manual patch panel using the existing editor's slot id + JSON value update flow.
+- Manual Apply calls `/layout-patch/` and refreshes returned DSL without rebuilding artifacts.
+- Manual Build calls `/layout-patch-and-build/` and refreshes DSL, artifacts, and SVG through the shared patch-and-build path.
+- Reused existing Django endpoints and server behavior; no DSL compiler, schema, renderer, CLI, or legacy editor route behavior was changed.
+
+Current intentional limits:
+
+- Build uses the saved DSL file, matching the existing editor; it does not automatically save a dirty draft immediately before build.
+- DSL save/format/build do not participate in visual undo/redo history.
+- Manual patch UI currently supports only the existing quick update flow. Full arbitrary patch arrays and add/delete/layer authoring remain pending.
+- Format/build parity screenshots and detailed failure-message comparison remain pending.

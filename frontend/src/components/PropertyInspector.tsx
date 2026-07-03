@@ -13,6 +13,34 @@ export function PropertyInspector(props: PropertyInspectorProps) {
   const contentEntries = () => Object.entries(props.selectedSlot?.content ?? {});
   const bounds = () => (props.selectedSlot ? slotBounds(props.selectedSlot) : null);
 
+  function commitPrimitiveField(slot: LayoutSlot, key: string, previous: unknown, input: HTMLInputElement): void {
+    if (props.store.state.loading) return;
+    if (typeof previous === "number") {
+      const next = Number(input.value);
+      if (!Number.isFinite(next) || next === previous) {
+        input.value = String(previous);
+        return;
+      }
+      void props.store.updateSlotProperties(slot.id, { [key]: next });
+      return;
+    }
+    if (typeof previous === "string") {
+      const next = input.value;
+      if (next === previous) return;
+      void props.store.updateSlotProperties(slot.id, { [key]: next });
+    }
+  }
+
+  function commitOnEnter(event: KeyboardEvent): void {
+    if (event.key !== "Enter") return;
+    const input = event.currentTarget instanceof HTMLInputElement ? event.currentTarget : null;
+    input?.blur();
+  }
+
+  function isColorField(key: string, value: unknown): value is string {
+    return (key === "fill" || key === "stroke") && typeof value === "string" && /^#[0-9a-f]{6}$/i.test(value);
+  }
+
   return (
     <section class="inspector-section">
       <div class="pane-heading">Inspector</div>
@@ -35,8 +63,33 @@ export function PropertyInspector(props: PropertyInspectorProps) {
               <For each={contentEntries()}>
                 {([key, value]) => (
                   <div>
-                    <span>{key}</span>
-                    <code>{typeof value === "string" || typeof value === "number" ? String(value) : JSON.stringify(value)}</code>
+                    <label for={`property-${slot().id}-${key}`}>{key}</label>
+                    <Show
+                      when={typeof value === "string" || typeof value === "number"}
+                      fallback={<code>{JSON.stringify(value)}</code>}
+                    >
+                      <div classList={{ "color-field": isColorField(key, value) }}>
+                        <Show when={isColorField(key, value)}>
+                          <input
+                            class="color-swatch"
+                            aria-label={`${key} color`}
+                            type="color"
+                            value={String(value)}
+                            disabled={props.store.state.loading}
+                            onChange={(event) => void props.store.updateSlotProperties(slot().id, { [key]: event.currentTarget.value })}
+                          />
+                        </Show>
+                        <input
+                          id={`property-${slot().id}-${key}`}
+                          type={typeof value === "number" ? "number" : "text"}
+                          step={typeof value === "number" ? "0.1" : undefined}
+                          value={String(value)}
+                          disabled={props.store.state.loading}
+                          onKeyDown={commitOnEnter}
+                          onBlur={(event) => commitPrimitiveField(slot(), key, value, event.currentTarget)}
+                        />
+                      </div>
+                    </Show>
                   </div>
                 )}
               </For>
@@ -47,4 +100,3 @@ export function PropertyInspector(props: PropertyInspectorProps) {
     </section>
   );
 }
-

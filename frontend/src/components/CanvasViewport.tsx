@@ -14,7 +14,9 @@ interface CanvasViewportProps {
 
 type CanvasInteraction =
   | { kind: "marquee"; pointerId: number; start: Point; current: Point; moved: boolean }
-  | { kind: "pan"; pointerId: number; startClient: Point; startPan: Point };
+  | { kind: "pan"; pointerId: number; startClient: Point; startPan: Point }
+  | { kind: "drag"; pointerId: number; start: Point; current: Point; selectedIds: string[]; moved: boolean }
+  | { kind: "resize"; pointerId: number; start: Point; current: Point; handle: ResizeHandleKey; slotId: string; startBox: Box; moved: boolean };
 
 const RESIZE_HANDLES = [
   { key: "nw", x: 0, y: 0 },
@@ -26,6 +28,10 @@ const RESIZE_HANDLES = [
   { key: "sw", x: 0, y: 1 },
   { key: "w", x: 0, y: 0.5 },
 ] as const;
+type ResizeHandleKey = (typeof RESIZE_HANDLES)[number]["key"];
+
+const MIN_RESIZE_SIZE = 4;
+const SNAP_SIZE = 5;
 
 export function CanvasViewport(props: CanvasViewportProps) {
   const [interaction, setInteraction] = createSignal<CanvasInteraction | null>(null);
@@ -37,8 +43,22 @@ export function CanvasViewport(props: CanvasViewportProps) {
     return unionBoxes(selected.map(slotBounds).filter((box): box is Box => box !== null));
   });
 
-  const canvasWidth = () => props.store.state.document?.detail.layout?.canvas?.width ?? svgDimension("width") ?? 900;
-  const canvasHeight = () => props.store.state.document?.detail.layout?.canvas?.height ?? svgDimension("height") ?? 420;
+  const overlayBounds = createMemo(() => {
+    const current = interaction();
+    if (current?.kind === "resize") {
+      return resizeBoxFromHandle(current.handle, current.startBox, snappedPoint(current.current));
+    }
+    return selectedBounds();
+  });
+
+  const dragOffset = createMemo(() => {
+    const current = interaction();
+    if (current?.kind !== "drag") return { x: 0, y: 0 };
+    return snappedDelta(current.start, current.current);
+  });
+
+  const canvasWidth = () => svgDimension("width") ?? props.store.state.document?.detail.layout?.canvas?.width ?? 900;
+  const canvasHeight = () => svgDimension("height") ?? props.store.state.document?.detail.layout?.canvas?.height ?? 420;
 
   function svgDimension(attribute: "width" | "height"): number | null {
     const svg = props.store.state.document?.detail.svg;
@@ -131,7 +151,30 @@ export function CanvasViewport(props: CanvasViewportProps) {
       return;
     }
 
-    if (event.button !== 0 || hitSlotId(event.target) || hitSlotIdFromPoint(event)) return;
+    if (event.button !== 0) return;
+
+    const slotId = hitSlotId(event.target) ?? hitSlotIdFromPoint(event);
+    if (slotId && props.store.state.activeTool === "select") {
+      event.preventDefault();
+      surface.setPointerCapture(event.pointerId);
+      const append = event.shiftKey || event.ctrlKey || event.metaKey;
+      const wasSelected = props.store.state.selectedIds.includes(slotId);
+      const selectedIds = append
+        ? wasSelected
+          ? props.store.state.selectedIds.filter((id) => id !== slotId)
+          : [...props.store.state.selectedIds, slotId]
+        : wasSelected
+          ? props.store.state.selectedIds
+          : [slotId];
+      if (!wasSelected || append) {
+        props.store.selectSlot(slotId, append);
+      }
+      const start = clientPointToCanvasPoint(surface, event.clientX, event.clientY, props.store.state.zoom);
+      setInteraction({ kind: "drag", pointerId: event.pointerId, start, current: start, selectedIds, moved: false });
+      return;
+    }
+    if (slotId) return;
+
     event.preventDefault();
     surface.setPointerCapture(event.pointerId);
     const start = clientPointToCanvasPoint(surface, event.clientX, event.clientY, props.store.state.zoom);
@@ -172,7 +215,110 @@ export function CanvasViewport(props: CanvasViewportProps) {
       props.store.setSelectedSlots(selectedIds);
       setSuppressClick(true);
     }
+    if (current.kind === "drag" && current.moved) {
+      const { x: dx, y: dy } = snappedDelta(current.start, current.current);
+      if (dx !== 0 || dy !== 0) {
+        void props.store.moveSlots(current.selectedIds, dx, dy, "Drag move");
+      }
+      setSuppressClick(true);
+    }
+    if (current.kind === "resize" && current.moved) {
+      const slot = props.store.state.document?.slots.find((candidate) => candidate.id === current.slotId);
+      const nextBox = resizeBoxFromHandle(current.handle, current.startBox, snappedPoint(current.current));
+      const properties = slot ? resizePropertiesForSlot(slot, nextBox) : null;
+      if (properties) {
+        void props.store.updateSlotProperties(current.slotId, properties);
+      }
+      setSuppressClick(true);
+    }
     setInteraction(null);
+  }
+
+  function roundedDelta(value: number): number {
+    return Math.round(value * 100) / 100;
+  }
+
+  function snappedDelta(start: Point, current: Point): Point {
+    const dx = current.x - start.x;
+    const dy = current.y - start.y;
+    if (!props.store.state.snapEnabled) return { x: roundedDelta(dx), y: roundedDelta(dy) };
+    return { x: snapNumber(dx), y: snapNumber(dy) };
+  }
+
+  function snappedPoint(point: Point): Point {
+    if (!props.store.state.snapEnabled) return { x: roundedDelta(point.x), y: roundedDelta(point.y) };
+    return { x: snapNumber(point.x), y: snapNumber(point.y) };
+  }
+
+  function snapNumber(value: number): number {
+    return Math.round(value / SNAP_SIZE) * SNAP_SIZE;
+  }
+
+  function beginResize(handle: ResizeHandleKey, event: PointerEvent): void {
+    event.preventDefault();
+    event.stopPropagation();
+    if (props.store.state.selectedIds.length !== 1 || props.store.state.loading) return;
+    const slotId = props.store.state.selectedIds[0];
+    const slot = props.store.state.document?.slots.find((candidate) => candidate.id === slotId);
+    const startBox = slot ? slotBounds(slot) : null;
+    if (!slot || !startBox || !resizePropertiesForSlot(slot, startBox)) return;
+    const surface = event.currentTarget instanceof HTMLElement ? event.currentTarget.closest<HTMLElement>(".canvas-surface") : null;
+    if (!surface) return;
+    surface.setPointerCapture(event.pointerId);
+    const start = clientPointToCanvasPoint(surface, event.clientX, event.clientY, props.store.state.zoom);
+    setInteraction({ kind: "resize", pointerId: event.pointerId, start, current: start, handle, slotId, startBox, moved: false });
+  }
+
+  function resizeBoxFromHandle(handle: ResizeHandleKey, startBox: Box, current: Point): Box {
+    let left = startBox.x;
+    let right = startBox.x + startBox.width;
+    let top = startBox.y;
+    let bottom = startBox.y + startBox.height;
+
+    if (handle.includes("w")) left = current.x;
+    if (handle.includes("e")) right = current.x;
+    if (handle.includes("n")) top = current.y;
+    if (handle.includes("s")) bottom = current.y;
+
+    if (right - left < MIN_RESIZE_SIZE) {
+      if (handle.includes("w")) left = right - MIN_RESIZE_SIZE;
+      else right = left + MIN_RESIZE_SIZE;
+    }
+    if (bottom - top < MIN_RESIZE_SIZE) {
+      if (handle.includes("n")) top = bottom - MIN_RESIZE_SIZE;
+      else bottom = top + MIN_RESIZE_SIZE;
+    }
+
+    return {
+      x: roundedDelta(left),
+      y: roundedDelta(top),
+      width: roundedDelta(right - left),
+      height: roundedDelta(bottom - top),
+    };
+  }
+
+  function resizePropertiesForSlot(slot: LayoutSlot, box: Box): Record<string, number> | null {
+    switch (slot.kind) {
+      case "rect":
+      case "text_box":
+      case "image":
+        return {
+          x: box.x,
+          y: box.y,
+          width: box.width,
+          height: box.height,
+        };
+      case "circle": {
+        const diameter = Math.max(box.width, box.height);
+        return {
+          cx: roundedDelta(box.x + box.width / 2),
+          cy: roundedDelta(box.y + box.height / 2),
+          r: roundedDelta(diameter / 2),
+        };
+      }
+      default:
+        return null;
+    }
   }
 
   return (
@@ -201,13 +347,14 @@ export function CanvasViewport(props: CanvasViewportProps) {
       </div>
       <div class="canvas-viewport">
         <Show
-          when={props.store.state.document?.detail.layout ?? props.store.state.document?.detail.svg}
+          when={props.store.state.document?.detail.svg ?? props.store.state.document?.detail.layout}
           fallback={<div class="empty-state">Select a problem with SVG output.</div>}
         >
           <div
             class="canvas-surface"
             classList={{
               "is-panning": interaction()?.kind === "pan",
+              "is-dragging": interaction()?.kind === "drag",
               "pan-tool": props.store.state.activeTool === "pan",
             }}
             style={{
@@ -221,10 +368,12 @@ export function CanvasViewport(props: CanvasViewportProps) {
             onPointerCancel={finishCanvasPointer}
             onClick={selectFromSvg}
           >
-            {props.store.state.document?.detail.layout ? (
+            {props.store.state.document?.detail.svg ? (
+              <SvgContent svg={props.store.state.document?.detail.svg ?? ""} />
+            ) : props.store.state.document?.detail.layout ? (
               <LayoutSvgPreview layout={props.store.state.document.detail.layout} />
             ) : (
-              <SvgContent svg={props.store.state.document?.detail.svg ?? ""} />
+              <div class="empty-state">No SVG or layout output.</div>
             )}
             <Show when={marqueeBox()}>
               {(box) => (
@@ -239,14 +388,14 @@ export function CanvasViewport(props: CanvasViewportProps) {
                 />
               )}
             </Show>
-            <Show when={selectedBounds()}>
+            <Show when={overlayBounds()}>
               {(box) => (
                 <>
                   <div
                     class="selection-box"
                     style={{
-                      left: `${box().x}px`,
-                      top: `${box().y}px`,
+                      left: `${box().x + dragOffset().x}px`,
+                      top: `${box().y + dragOffset().y}px`,
                       width: `${box().width}px`,
                       height: `${box().height}px`,
                     }}
@@ -256,9 +405,10 @@ export function CanvasViewport(props: CanvasViewportProps) {
                       <div
                         class={`resize-handle resize-handle-${handle.key}`}
                         aria-hidden="true"
+                        onPointerDown={(event) => beginResize(handle.key, event)}
                         style={{
-                          left: `${box().x + box().width * handle.x}px`,
-                          top: `${box().y + box().height * handle.y}px`,
+                          left: `${box().x + box().width * handle.x + dragOffset().x}px`,
+                          top: `${box().y + box().height * handle.y + dragOffset().y}px`,
                         }}
                       />
                     )}

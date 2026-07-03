@@ -27,6 +27,20 @@ function payloadMessage(payload: unknown): string | null {
   return null;
 }
 
+function getCookie(name: string): string {
+  return document.cookie
+    .split(";")
+    .map((item) => item.trim())
+    .find((item) => item.startsWith(`${name}=`))
+    ?.slice(name.length + 1) ?? "";
+}
+
+function csrfHeaders(method: string): Record<string, string> {
+  if (method.toUpperCase() === "GET") return {};
+  const token = getCookie("csrftoken");
+  return token ? { "X-CSRFToken": decodeURIComponent(token) } : {};
+}
+
 export function classifyApiError(message: string, status: number): ApiErrorCategory {
   if (status === 0 || /network|fetch/i.test(message)) return "NETWORK_ERROR";
   if (/patch|slot|layout-patch/i.test(message)) return "DSL_PATCH_ERROR";
@@ -39,11 +53,14 @@ export function classifyApiError(message: string, status: number): ApiErrorCateg
 export async function requestJson<T>(url: string, init: RequestInit = {}): Promise<T> {
   let response: Response;
   let payload: unknown;
+  const method = init.method ?? "GET";
   try {
     response = await fetch(url, {
       ...init,
       headers: {
         Accept: "application/json",
+        ...csrfHeaders(method),
+        ...(init.body ? { "Content-Type": "application/json" } : {}),
         ...(init.headers ?? {}),
       },
     });
@@ -60,4 +77,3 @@ export async function requestJson<T>(url: string, init: RequestInit = {}): Promi
   }
   return payload as T;
 }
-

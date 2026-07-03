@@ -1,9 +1,10 @@
-import { createMemo, onMount } from "solid-js";
+import { createMemo, onCleanup, onMount } from "solid-js";
 import { createEditorStore } from "../stores/editorStore";
 import { BuildOutput } from "./BuildOutput";
 import { CanvasViewport } from "./CanvasViewport";
 import { DslEditor } from "./DslEditor";
 import { EditorToolbar } from "./EditorToolbar";
+import { ManualPatchPanel } from "./ManualPatchPanel";
 import { ProblemList } from "./ProblemList";
 import { PropertyInspector } from "./PropertyInspector";
 import { StatusBar } from "./StatusBar";
@@ -16,6 +17,45 @@ export function EditorPage() {
   });
 
   onMount(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      const commandKey = event.ctrlKey || event.metaKey;
+      if (!isEditableTarget(event.target) && commandKey && !event.altKey) {
+        const key = event.key.toLowerCase();
+        if (key === "z") {
+          event.preventDefault();
+          if (event.shiftKey) void store.redo();
+          else void store.undo();
+          return;
+        }
+        if (key === "y") {
+          event.preventDefault();
+          void store.redo();
+          return;
+        }
+        if (key === "s") {
+          event.preventDefault();
+          void store.saveDslDraft();
+          return;
+        }
+      }
+      if (isEditableTarget(event.target) || event.altKey || event.ctrlKey || event.metaKey) return;
+      if (event.key === "Delete" || event.key === "Backspace") {
+        if (store.state.selectedIds.length === 0 || store.state.loading) return;
+        event.preventDefault();
+        void store.deleteSelectedSlots();
+        return;
+      }
+      const step = event.shiftKey ? 10 : 1;
+      const delta = arrowDelta(event.key, step);
+      if (!delta) return;
+      if (store.state.selectedIds.length === 0 || store.state.loading) return;
+      event.preventDefault();
+      void store.moveSelectedSlots(delta.x, delta.y);
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    onCleanup(() => document.removeEventListener("keydown", handleKeyDown));
+
     void (async () => {
       await store.refreshProblems();
       const requestedProblem = new URLSearchParams(window.location.search).get("problem");
@@ -34,14 +74,37 @@ export function EditorPage() {
         <ProblemList store={store} />
         <main class="editor-next-stage">
           <CanvasViewport store={store} />
-          <BuildOutput document={store.state.document} />
+          <BuildOutput document={store.state.document} buildOutput={store.state.buildOutput} />
         </main>
         <aside class="editor-next-inspector">
           <PropertyInspector store={store} selectedSlot={selectedSlot()} />
-          <DslEditor document={store.state.document} />
+          <ManualPatchPanel store={store} />
+          <DslEditor store={store} />
         </aside>
       </div>
       <StatusBar state={store.state} />
     </div>
   );
+}
+
+function arrowDelta(key: string, step: number): { x: number; y: number } | null {
+  switch (key) {
+    case "ArrowLeft":
+      return { x: -step, y: 0 };
+    case "ArrowRight":
+      return { x: step, y: 0 };
+    case "ArrowUp":
+      return { x: 0, y: -step };
+    case "ArrowDown":
+      return { x: 0, y: step };
+    default:
+      return null;
+  }
+}
+
+function isEditableTarget(target: EventTarget | null): boolean {
+  const element = target instanceof HTMLElement ? target : null;
+  if (!element) return false;
+  const tagName = element.tagName.toLowerCase();
+  return tagName === "input" || tagName === "textarea" || tagName === "select" || element.isContentEditable;
 }

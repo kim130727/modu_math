@@ -23,7 +23,6 @@
         "slot.table.cell.r2c2",
         "slot.table.cell.r2c3",
         "slot.table.cell.r2c4",
-        "slot.q_num",
         "slot.q_text1",
         "slot.q_text2",
         "slot.choice",
@@ -40,27 +39,16 @@
   ],
   "slots": [
     {
-      "id": "slot.q_num",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "33.",
-        "style_role": "question",
-        "x": 12.0,
-        "y": 31.0,
-        "font_size": 28
-      }
-    },
-    {
       "id": "slot.q_text1",
       "kind": "text",
       "prompt": "",
       "content": {
         "text": "저울과 500원짜리 동전을 이용하여 지갑, 모자, 가방의 무게를 재었더니",
         "style_role": "question",
-        "x": 86.0,
-        "y": 31.0,
-        "font_size": 28
+        "x": 16.0,
+        "y": 51.0,
+        "font_size": 28,
+        "fill": "#111111"
       }
     },
     {
@@ -71,8 +59,9 @@
         "text": "다음과 같았습니다. 가장 가벼운 것을 선택하세요.",
         "style_role": "question",
         "x": 18.0,
-        "y": 65.0,
-        "font_size": 28
+        "y": 95.0,
+        "font_size": 28,
+        "fill": "#111111"
       }
     },
     {
@@ -80,8 +69,8 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 171.0,
-        "y": 84.0,
+        "x": 106.0,
+        "y": 144.0,
         "width": 604.0,
         "height": 85.0
       }
@@ -91,8 +80,8 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 171.0,
-        "y": 84.0,
+        "x": 106.0,
+        "y": 144.0,
         "width": 357.0,
         "height": 42.5
       }
@@ -102,8 +91,8 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 528.0,
-        "y": 84.0,
+        "x": 463.0,
+        "y": 144.0,
         "width": 85.0,
         "height": 42.5
       }
@@ -113,8 +102,8 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 613.0,
-        "y": 84.0,
+        "x": 548.0,
+        "y": 144.0,
         "width": 85.0,
         "height": 42.5
       }
@@ -124,8 +113,8 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 698.0,
-        "y": 84.0,
+        "x": 633.0,
+        "y": 144.0,
         "width": 77.0,
         "height": 42.5
       }
@@ -135,8 +124,8 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 171.0,
-        "y": 126.5,
+        "x": 106.0,
+        "y": 186.5,
         "width": 357.0,
         "height": 42.5
       }
@@ -146,8 +135,8 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 528.0,
-        "y": 126.5,
+        "x": 463.0,
+        "y": 186.5,
         "width": 85.0,
         "height": 42.5
       }
@@ -157,8 +146,8 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 613.0,
-        "y": 126.5,
+        "x": 548.0,
+        "y": 186.5,
         "width": 85.0,
         "height": 42.5
       }
@@ -168,8 +157,8 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 698.0,
-        "y": 126.5,
+        "x": 633.0,
+        "y": 186.5,
         "width": 77.0,
         "height": 42.5
       }
@@ -181,8 +170,8 @@
       "content": {
         "text": "물건",
         "style_role": "question",
-        "x": 348.0,
-        "y": 111.0,
+        "x": 283.0,
+        "y": 171.0,
         "font_size": 28
       }
     },
@@ -193,8 +182,8 @@
       "content": {
         "text": "지갑",
         "style_role": "question",
-        "x": 548.0,
-        "y": 111.0,
+        "x": 483.0,
+        "y": 171.0,
         "font_size": 28
       }
     },
@@ -205,8 +194,8 @@
       "content": {
         "text": "모자",
         "style_role": "question",
-        "x": 635.0,
-        "y": 111.0,
+        "x": 570.0,
+        "y": 171.0,
         "font_size": 28
       }
     },
@@ -217,8 +206,8 @@
       "content": {
         "text": "가방",
         "style_role": "question",
-        "x": 719.0,
-        "y": 111.0,
+        "x": 654.0,
+        "y": 171.0,
         "font_size": 28
       }
     },
@@ -229,8 +218,8 @@
       "content": {
         "text": "500원짜리 동전의 수(개)",
         "style_role": "question",
-        "x": 193.0,
-        "y": 154.0,
+        "x": 128.0,
+        "y": 214.0,
         "font_size": 28
       }
     },
@@ -241,8 +230,8 @@
       "content": {
         "text": "9",
         "style_role": "question",
-        "x": 553.0,
-        "y": 154.0,
+        "x": 488.0,
+        "y": 214.0,
         "font_size": 28
       }
     },
@@ -253,8 +242,8 @@
       "content": {
         "text": "2",
         "style_role": "question",
-        "x": 639.0,
-        "y": 154.0,
+        "x": 574.0,
+        "y": 214.0,
         "font_size": 28
       }
     },
@@ -265,8 +254,8 @@
       "content": {
         "text": "13",
         "style_role": "question",
-        "x": 722.0,
-        "y": 154.0,
+        "x": 657.0,
+        "y": 214.0,
         "font_size": 28
       }
     },
@@ -277,9 +266,10 @@
       "content": {
         "text": "( 지갑 , 모자 , 가방 )",
         "style_role": "question",
-        "x": 683.0,
-        "y": 204.0,
-        "font_size": 28
+        "x": 298.0,
+        "y": 299.0,
+        "font_size": 28,
+        "fill": "#111111"
       }
     }
   ],
@@ -297,7 +287,6 @@
     "slot.table.cell.r2c2",
     "slot.table.cell.r2c3",
     "slot.table.cell.r2c4",
-    "slot.q_num",
     "slot.q_text1",
     "slot.q_text2",
     "slot.choice",
