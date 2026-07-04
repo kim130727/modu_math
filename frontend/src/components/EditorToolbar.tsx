@@ -5,6 +5,10 @@ interface EditorToolbarProps {
 }
 
 export function EditorToolbar(props: EditorToolbarProps) {
+  const hasSelection = () => props.store.state.selectedIds.length > 0;
+  const hasMultiSelection = () => props.store.state.selectedIds.length > 1;
+  const isBusy = () => props.store.state.loading;
+
   return (
     <header class="editor-next-toolbar">
       <div class="toolbar-title">
@@ -65,6 +69,38 @@ export function EditorToolbar(props: EditorToolbarProps) {
         </button>
         <button type="button" onClick={() => void props.store.insertShape("rect")} disabled={!props.store.state.document || props.store.state.loading}>
           Rect
+        </button>
+      </div>
+      <div class="toolbar-actions toolbar-align" aria-label="Alignment and layer controls">
+        <button type="button" onClick={() => void props.store.alignSelectedSlots("left")} disabled={isBusy() || !hasMultiSelection()}>
+          Align L
+        </button>
+        <button type="button" onClick={() => void props.store.alignSelectedSlots("center")} disabled={isBusy() || !hasMultiSelection()}>
+          Align C
+        </button>
+        <button type="button" onClick={() => void props.store.alignSelectedSlots("right")} disabled={isBusy() || !hasMultiSelection()}>
+          Align R
+        </button>
+        <button type="button" onClick={() => void props.store.alignSelectedSlots("top")} disabled={isBusy() || !hasMultiSelection()}>
+          Align T
+        </button>
+        <button type="button" onClick={() => void props.store.alignSelectedSlots("middle")} disabled={isBusy() || !hasMultiSelection()}>
+          Align M
+        </button>
+        <button type="button" onClick={() => void props.store.alignSelectedSlots("bottom")} disabled={isBusy() || !hasMultiSelection()}>
+          Align B
+        </button>
+        <button type="button" onClick={() => void props.store.layerSelectedSlots("front")} disabled={isBusy() || !hasSelection()}>
+          Front
+        </button>
+        <button type="button" onClick={() => void props.store.layerSelectedSlots("back")} disabled={isBusy() || !hasSelection()}>
+          Back
+        </button>
+        <button type="button" onClick={() => void props.store.layerSelectedSlots("forward")} disabled={isBusy() || !hasSelection()}>
+          Forward
+        </button>
+        <button type="button" onClick={() => void props.store.layerSelectedSlots("backward")} disabled={isBusy() || !hasSelection()}>
+          Backward
         </button>
       </div>
       <div class="toolbar-pickmodes" aria-label="Selection target filters">

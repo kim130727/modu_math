@@ -18,13 +18,17 @@ import {
   type HistoryState,
 } from "../editor-core/history/historyManager";
 import { createEditorDocument, type EditorDocument } from "../editor-core/model/editorDocument";
+import type { Box } from "../editor-core/model/geometry";
 import { clearSelection, toggleSelection } from "../editor-core/selection/selectionManager";
+import { slotBounds } from "../editor-core/transform/bounds";
 import type { BuildOutputState, BuildProblemResponse, EditorError, LayoutPatch, ProblemDetailResponse, ProblemSummary } from "../types/api";
 import type { LayoutSlot } from "../types/layout";
 
 export type EditorTool = "select" | "pan";
 export type EditorPickMode = "all" | "linepath" | "text" | "shape";
 export type InsertableShapeKind = "rect" | "text_box";
+export type AlignMode = "left" | "center" | "right" | "top" | "middle" | "bottom";
+export type LayerMode = "front" | "back" | "forward" | "backward";
 
 export interface EditorState {
   problemId: string | null;
@@ -217,6 +221,61 @@ export function createEditorStore() {
       [{ target: slotId, op: "update", value: inverse }],
       { format: false },
     );
+  }
+
+  async function alignSelectedSlots(mode: AlignMode): Promise<boolean> {
+    if (!state.document || state.loading || state.selectedIds.length < 2) return false;
+    const items = selectedSlotsWithBounds();
+    if (items.length < 2) return false;
+
+    const targetMetric = alignmentMetric(mode, items.map((item) => item.bounds));
+    const canvasBounds = canvasBox();
+    const patches: LayoutPatch[] = [];
+    const inversePatches: LayoutPatch[] = [];
+
+    for (const item of items) {
+      let dx = 0;
+      let dy = 0;
+      if (mode === "left") dx = targetMetric - item.bounds.x;
+      if (mode === "center") dx = targetMetric - (item.bounds.x + item.bounds.width / 2);
+      if (mode === "right") dx = targetMetric - (item.bounds.x + item.bounds.width);
+      if (mode === "top") dy = targetMetric - item.bounds.y;
+      if (mode === "middle") dy = targetMetric - (item.bounds.y + item.bounds.height / 2);
+      if (mode === "bottom") dy = targetMetric - (item.bounds.y + item.bounds.height);
+
+      if (canvasBounds) {
+        dx = clampDelta(dx, canvasBounds.x - item.bounds.x, canvasBounds.x + canvasBounds.width - (item.bounds.x + item.bounds.width));
+        dy = clampDelta(dy, canvasBounds.y - item.bounds.y, canvasBounds.y + canvasBounds.height - (item.bounds.y + item.bounds.height));
+      }
+
+      dx = roundedDelta(dx);
+      dy = roundedDelta(dy);
+      if (dx === 0 && dy === 0) continue;
+      patches.push({ target: item.slot.id, op: "update", value: { move_dx: dx, move_dy: dy } });
+      inversePatches.push({ target: item.slot.id, op: "update", value: { move_dx: -dx, move_dy: -dy } });
+    }
+
+    return commitHistoryPatches(`Align ${mode}`, patches, inversePatches, { format: false });
+  }
+
+  async function layerSelectedSlots(mode: LayerMode): Promise<boolean> {
+    if (!state.document || state.loading || state.selectedIds.length === 0) return false;
+    const layout = state.document.detail.layout;
+    const patches: LayoutPatch[] = [];
+    const inversePatches: LayoutPatch[] = [];
+
+    for (const region of layout?.regions ?? []) {
+      const currentOrder = region.slot_ids ?? [];
+      const selectedInRegion = state.selectedIds.filter((slotId) => currentOrder.includes(slotId));
+      if (!selectedInRegion.length) continue;
+      const nextOrder = reorderLayerIds(currentOrder, selectedInRegion, mode);
+      if (sameOrder(currentOrder, nextOrder)) continue;
+      const regionId = region.id || "region.stem";
+      patches.push({ target: "__layer__", op: "layer", value: { region_id: regionId, slot_ids: nextOrder } });
+      inversePatches.push({ target: "__layer__", op: "layer", value: { region_id: regionId, slot_ids: currentOrder } });
+    }
+
+    return commitHistoryPatches(`Layer ${mode}`, patches, inversePatches, { format: false });
   }
 
   async function insertShape(kind: InsertableShapeKind): Promise<boolean> {
@@ -478,6 +537,72 @@ export function createEditorStore() {
     );
   }
 
+  function selectedSlotsWithBounds(): { slot: LayoutSlot; bounds: Box }[] {
+    return state.selectedIds
+      .map((slotId) => {
+        const slot = findSlot(slotId);
+        const bounds = slot ? slotBounds(slot) : null;
+        return slot && bounds ? { slot, bounds } : null;
+      })
+      .filter((item): item is { slot: LayoutSlot; bounds: Box } => item !== null);
+  }
+
+  function alignmentMetric(mode: AlignMode, boxes: Box[]): number {
+    if (mode === "left") return Math.min(...boxes.map((box) => box.x));
+    if (mode === "center") return average(boxes.map((box) => box.x + box.width / 2));
+    if (mode === "right") return Math.max(...boxes.map((box) => box.x + box.width));
+    if (mode === "top") return Math.min(...boxes.map((box) => box.y));
+    if (mode === "middle") return average(boxes.map((box) => box.y + box.height / 2));
+    return Math.max(...boxes.map((box) => box.y + box.height));
+  }
+
+  function canvasBox(): Box | null {
+    const canvas = state.document?.detail.layout?.canvas;
+    if (typeof canvas?.width === "number" && typeof canvas.height === "number") {
+      return { x: 0, y: 0, width: canvas.width, height: canvas.height };
+    }
+    return null;
+  }
+
+  function average(values: number[]): number {
+    return values.reduce((sum, value) => sum + value, 0) / values.length;
+  }
+
+  function roundedDelta(value: number): number {
+    return Math.round(value * 100) / 100;
+  }
+
+  function clampDelta(value: number, min: number, max: number): number {
+    return Math.max(min, Math.min(max, value));
+  }
+
+  function reorderLayerIds(order: string[], selectedIds: string[], mode: LayerMode): string[] {
+    const selected = selectedIds.filter((id) => order.includes(id));
+    if (!selected.length) return order;
+    const selectedSet = new Set(selected);
+    const rest = order.filter((id) => !selectedSet.has(id));
+    if (mode === "front") return [...rest, ...selected];
+    if (mode === "back") return [...selected, ...rest];
+
+    const next = [...order];
+    if (mode === "forward") {
+      for (let i = next.length - 2; i >= 0; i -= 1) {
+        if (!selectedSet.has(next[i]) || selectedSet.has(next[i + 1])) continue;
+        [next[i], next[i + 1]] = [next[i + 1], next[i]];
+      }
+    } else {
+      for (let i = 1; i < next.length; i += 1) {
+        if (!selectedSet.has(next[i]) || selectedSet.has(next[i - 1])) continue;
+        [next[i - 1], next[i]] = [next[i], next[i - 1]];
+      }
+    }
+    return next;
+  }
+
+  function sameOrder(left: string[], right: string[]): boolean {
+    return left.length === right.length && left.every((id, index) => id === right[index]);
+  }
+
   function uniqueSlotId(kind: InsertableShapeKind): string {
     const existing = new Set(state.document?.slots.map((slot) => slot.id) ?? []);
     const suffix = kind === "text_box" ? "text_box" : "rect";
@@ -537,6 +662,8 @@ export function createEditorStore() {
     moveSelectedSlots,
     deleteSelectedSlots,
     updateSlotProperties,
+    alignSelectedSlots,
+    layerSelectedSlots,
     insertShape,
     setDslDraft,
     saveDslDraft,
