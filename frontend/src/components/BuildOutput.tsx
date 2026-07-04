@@ -1,3 +1,4 @@
+import { For } from "solid-js";
 import type { EditorDocument } from "../editor-core/model/editorDocument";
 import type { BuildOutputState } from "../types/api";
 
@@ -6,20 +7,20 @@ interface BuildOutputProps {
   buildOutput: BuildOutputState | null;
 }
 
+type ArtifactPane = {
+  title: string;
+  value: unknown;
+};
+
 export function BuildOutput(props: BuildOutputProps) {
-  const json = () => {
+  const panes = (): ArtifactPane[] => {
     const detail = props.document?.detail;
-    if (!detail) return "";
-    return JSON.stringify(
-      {
-        semantic: detail.semantic,
-        solvable: detail.solvable,
-        layout: detail.layout,
-        renderer: detail.renderer,
-      },
-      null,
-      2,
-    );
+    return [
+      { title: "Semantic", value: detail?.semantic ?? null },
+      { title: "Solvable", value: detail?.solvable ?? null },
+      { title: "Layout", value: detail?.layout ?? null },
+      { title: "Renderer", value: detail?.renderer ?? null },
+    ];
   };
 
   return (
@@ -33,7 +34,21 @@ export function BuildOutput(props: BuildOutputProps) {
           {[props.buildOutput.error, props.buildOutput.stdout, props.buildOutput.stderr].filter(Boolean).join("\n\n")}
         </pre>
       ) : null}
-      <pre>{json()}</pre>
+      <div class="artifact-grid">
+        <For each={panes()}>
+          {(pane) => (
+            <label class="artifact-pane">
+              <span>{pane.title}</span>
+              <textarea readonly value={formatArtifact(pane.value)} />
+            </label>
+          )}
+        </For>
+      </div>
     </section>
   );
+}
+
+function formatArtifact(value: unknown): string {
+  if (value === null || value === undefined) return "";
+  return JSON.stringify(value, null, 2);
 }

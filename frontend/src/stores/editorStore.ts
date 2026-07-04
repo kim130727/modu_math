@@ -26,7 +26,7 @@ import type { LayoutSlot } from "../types/layout";
 
 export type EditorTool = "select" | "pan";
 export type EditorPickMode = "all" | "linepath" | "text" | "shape";
-export type InsertableShapeKind = "rect" | "text_box";
+export type InsertableShapeKind = "rect" | "text_box" | "circle" | "line" | "triangle" | "path";
 export type AlignMode = "left" | "center" | "right" | "top" | "middle" | "bottom";
 export type LayerMode = "front" | "back" | "forward" | "backward";
 
@@ -85,6 +85,8 @@ function toEditorError(error: unknown): EditorError {
 
 export function createEditorStore() {
   const [state, setState] = createStore<EditorState>(initialState);
+  let copyBuffer: LayoutSlot[] = [];
+  let pasteSequence = 0;
 
   async function refreshProblems(): Promise<void> {
     setState({ loading: true, error: null });
@@ -223,6 +225,21 @@ export function createEditorStore() {
     );
   }
 
+  async function updateCanvasSize(width: number, height: number): Promise<boolean> {
+    if (!state.document || !state.problemId || state.loading) return false;
+    const canvas = state.document.detail.layout?.canvas;
+    if (!canvas) return false;
+    const nextWidth = Math.max(20, Math.round(width));
+    const nextHeight = Math.max(20, Math.round(height));
+    if (nextWidth === canvas.width && nextHeight === canvas.height) return false;
+    return commitHistoryPatches(
+      "Canvas resize",
+      [{ target: "__canvas__", op: "update", value: { width: nextWidth, height: nextHeight } }],
+      [{ target: "__canvas__", op: "update", value: { width: canvas.width, height: canvas.height } }],
+      { format: false },
+    );
+  }
+
   async function alignSelectedSlots(mode: AlignMode): Promise<boolean> {
     if (!state.document || state.loading || state.selectedIds.length < 2) return false;
     const items = selectedSlotsWithBounds();
@@ -287,17 +304,12 @@ export function createEditorStore() {
     }
     const slotId = uniqueSlotId(kind);
     const canvas = state.document.detail.layout?.canvas;
-    const x = Math.round(((canvas?.width ?? 900) / 2 - 60) * 10) / 10;
-    const y = Math.round(((canvas?.height ?? 420) / 2 - 24) * 10) / 10;
-    const content =
-      kind === "rect"
-        ? { x, y, width: 120, height: 48, fill: "none", stroke: "#2563eb", stroke_width: 2 }
-        : { text: "Text", x, y, width: 140, height: 40, font_size: 18, fill: "#17202a" };
+    const content = insertedShapeContent(kind, canvas?.width ?? 900, canvas?.height ?? 420);
     const addPatch: LayoutPatch = {
       target: slotId,
       op: "add",
       value: {
-        kind,
+        kind: patchKindForInsert(kind),
         region_id: regionId,
         content,
       },
@@ -307,6 +319,87 @@ export function createEditorStore() {
       setState({ selectedIds: [slotId], activeTool: "select" });
     }
     return inserted;
+  }
+
+  function copySelectedSlots(): boolean {
+    if (!state.document || state.selectedIds.length === 0) return false;
+    copyBuffer = state.selectedIds
+      .map((slotId) => findSlot(slotId))
+      .filter((slot): slot is LayoutSlot => slot !== null)
+      .map((slot) => structuredClone(slot));
+    pasteSequence = 0;
+    return copyBuffer.length > 0;
+  }
+
+  async function pasteCopiedSlots(): Promise<boolean> {
+    if (!state.document || state.loading || copyBuffer.length === 0) return false;
+    pasteSequence += 1;
+    const offset = 20 * pasteSequence;
+    const patches: LayoutPatch[] = [];
+    const inversePatches: LayoutPatch[] = [];
+    const pastedIds: string[] = [];
+
+    for (const slot of copyBuffer) {
+      if (slot.kind === "unknown") continue;
+      const regionId = regionIdForSlot(slot.id);
+      if (!regionId) continue;
+      const nextId = uniqueSlotId(slot.kind);
+      patches.push({
+        target: nextId,
+        op: "add",
+        value: {
+          kind: slot.kind,
+          region_id: regionId,
+          content: shiftCopiedContent(structuredClone(slot.content), offset, offset),
+        },
+      });
+      inversePatches.push({ target: nextId, op: "delete" });
+      pastedIds.push(nextId);
+    }
+
+    if (!patches.length) return false;
+    const pasted = await commitHistoryPatches("Paste", patches, inversePatches, { format: false });
+    if (pasted) setState({ selectedIds: pastedIds, activeTool: "select" });
+    return pasted;
+  }
+
+  async function insertImageFile(file: File): Promise<boolean> {
+    if (!state.document || state.loading) return false;
+    if (!file.type.startsWith("image/")) {
+      setState({ error: { message: "Choose an image file.", category: "DSL_PATCH_ERROR", status: 400 } });
+      return false;
+    }
+    const regionId = preferredRegionId();
+    if (!regionId) {
+      setState({ error: { message: "No layout region is available for insertion.", category: "DSL_PATCH_ERROR", status: 400 } });
+      return false;
+    }
+    try {
+      const href = await readFileAsDataUrl(file);
+      const size = await imageSizeFromDataUrl(href);
+      const maxWidth = 320;
+      const maxHeight = 240;
+      const scale = Math.min(1, maxWidth / Math.max(size.width, 1), maxHeight / Math.max(size.height, 1));
+      const width = Math.max(24, Math.round(size.width * scale));
+      const height = Math.max(24, Math.round(size.height * scale));
+      const { x, y } = centeredOrigin(width, height, state.document.detail.layout?.canvas?.width ?? 900, state.document.detail.layout?.canvas?.height ?? 420);
+      const slotId = uniqueSlotId("image");
+      const addPatch: LayoutPatch = {
+        target: slotId,
+        op: "add",
+        value: {
+          kind: "image",
+          region_id: regionId,
+          content: { href, x, y, width, height, preserve_aspect_ratio: "xMidYMid meet" },
+        },
+      };
+      const inserted = await commitHistoryPatches("Insert image", [addPatch], [{ target: slotId, op: "delete" }], { format: false });
+      if (inserted) setState({ selectedIds: [slotId], activeTool: "select" });
+      return inserted;
+    } catch (error) {
+      setState({ error: toEditorError(error) });
+      return false;
+    }
   }
 
   async function saveDslDraft(): Promise<boolean> {
@@ -603,9 +696,9 @@ export function createEditorStore() {
     return left.length === right.length && left.every((id, index) => id === right[index]);
   }
 
-  function uniqueSlotId(kind: InsertableShapeKind): string {
+  function uniqueSlotId(kind: string): string {
     const existing = new Set(state.document?.slots.map((slot) => slot.id) ?? []);
-    const suffix = kind === "text_box" ? "text_box" : "rect";
+    const suffix = (kind === "triangle" ? "polygon" : kind).replace(/[^a-z0-9_]+/gi, "_").toLowerCase() || "slot";
     let index = 1;
     let candidate = `slot.editor_next.${suffix}.${index}`;
     while (existing.has(candidate)) {
@@ -613,6 +706,101 @@ export function createEditorStore() {
       candidate = `slot.editor_next.${suffix}.${index}`;
     }
     return candidate;
+  }
+
+  function patchKindForInsert(kind: InsertableShapeKind): string {
+    return kind === "triangle" ? "polygon" : kind;
+  }
+
+  function shiftCopiedContent(content: Record<string, unknown>, dx: number, dy: number): Record<string, unknown> {
+    const shifted = { ...content };
+    for (const key of ["x", "x1", "x2", "cx"]) {
+      if (typeof shifted[key] === "number") shifted[key] = shifted[key] + dx;
+    }
+    for (const key of ["y", "y1", "y2", "cy"]) {
+      if (typeof shifted[key] === "number") shifted[key] = shifted[key] + dy;
+    }
+    if (Array.isArray(shifted.points)) {
+      shifted.points = shifted.points.map((point) => {
+        if (!Array.isArray(point) || point.length !== 2) return point;
+        const [x, y] = point;
+        return typeof x === "number" && typeof y === "number" ? [x + dx, y + dy] : point;
+      });
+    }
+    if (typeof shifted.d === "string") {
+      shifted.d = shiftPathData(shifted.d, dx, dy);
+    }
+    return shifted;
+  }
+
+  function shiftPathData(d: string, dx: number, dy: number): string {
+    let numberIndex = 0;
+    return d.replace(/[-+]?(?:\d+(?:\.\d*)?|\.\d+)/g, (raw) => {
+      const value = Number(raw);
+      if (!Number.isFinite(value)) return raw;
+      const shifted = value + (numberIndex % 2 === 0 ? dx : dy);
+      numberIndex += 1;
+      return Number.isInteger(shifted) ? String(shifted) : String(Math.round(shifted * 1000) / 1000);
+    });
+  }
+
+  function centeredOrigin(width: number, height: number, canvasWidth: number, canvasHeight: number): { x: number; y: number } {
+    return {
+      x: Math.round((canvasWidth / 2 - width / 2) * 10) / 10,
+      y: Math.round((canvasHeight / 2 - height / 2) * 10) / 10,
+    };
+  }
+
+  function insertedShapeContent(kind: InsertableShapeKind, canvasWidth: number, canvasHeight: number): Record<string, string | number | [number, number][]> {
+    if (kind === "text_box") {
+      const { x, y } = centeredOrigin(140, 40, canvasWidth, canvasHeight);
+      return { text: "Text", x, y, width: 140, height: 40, font_size: 18, fill: "#17202a" };
+    }
+    if (kind === "circle") {
+      const r = 34;
+      return { cx: Math.round(canvasWidth / 2), cy: Math.round(canvasHeight / 2), r, fill: "none", stroke: "#2563eb", stroke_width: 2 };
+    }
+    if (kind === "line") {
+      const { x, y } = centeredOrigin(120, 0, canvasWidth, canvasHeight);
+      return { x1: x, y1: y, x2: x + 120, y2: y, stroke: "#2563eb", stroke_width: 2 };
+    }
+    if (kind === "triangle") {
+      const { x, y } = centeredOrigin(120, 90, canvasWidth, canvasHeight);
+      return {
+        points: [
+          [x + 60, y],
+          [x + 120, y + 90],
+          [x, y + 90],
+        ],
+        fill: "none",
+        stroke: "#2563eb",
+        stroke_width: 2,
+      };
+    }
+    if (kind === "path") {
+      const { x, y } = centeredOrigin(120, 70, canvasWidth, canvasHeight);
+      return { d: `M ${x} ${y + 60} C ${x + 30} ${y}, ${x + 80} ${y + 90}, ${x + 120} ${y + 25}`, fill: "none", stroke: "#2563eb", stroke_width: 2 };
+    }
+    const { x, y } = centeredOrigin(120, 48, canvasWidth, canvasHeight);
+    return { x, y, width: 120, height: 48, fill: "none", stroke: "#2563eb", stroke_width: 2 };
+  }
+
+  function readFileAsDataUrl(file: File): Promise<string> {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(String(reader.result || ""));
+      reader.onerror = () => reject(reader.error || new Error("Could not read image file."));
+      reader.readAsDataURL(file);
+    });
+  }
+
+  function imageSizeFromDataUrl(href: string): Promise<{ width: number; height: number }> {
+    return new Promise((resolve) => {
+      const img = new Image();
+      img.onload = () => resolve({ width: img.naturalWidth || 240, height: img.naturalHeight || 160 });
+      img.onerror = () => resolve({ width: 240, height: 160 });
+      img.src = href;
+    });
   }
 
   function selectSlot(slotId: string, append = false): void {
@@ -662,9 +850,13 @@ export function createEditorStore() {
     moveSelectedSlots,
     deleteSelectedSlots,
     updateSlotProperties,
+    updateCanvasSize,
     alignSelectedSlots,
     layerSelectedSlots,
     insertShape,
+    insertImageFile,
+    copySelectedSlots,
+    pasteCopiedSlots,
     setDslDraft,
     saveDslDraft,
     formatDslDraft,

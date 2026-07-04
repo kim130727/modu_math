@@ -1,5 +1,5 @@
 from __future__ import annotations
-from modu_math.dsl import Canvas, ProblemTemplate, RectSlot, Region, TextSlot, LineSlot
+from modu_math.dsl import Canvas, ProblemTemplate, RectSlot, Region, TextSlot, LineSlot, PathSlot
 
 
 def build_problem_template() -> ProblemTemplate:

@@ -525,3 +525,165 @@ button:disabled {
     max-height: 260px;
   }
 }
+
+.toolbar-title {
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.toolbar-problem-input {
+  width: 240px;
+  min-width: 160px;
+  height: 28px;
+  border: 1px solid #607084;
+  border-radius: 4px;
+  background: #172536;
+  color: #f8fafc;
+  padding: 0 8px;
+}
+
+.toolbar-problem-input::placeholder {
+  color: #94a3b8;
+}
+
+.svg-content .slot-selected {
+  filter: drop-shadow(0 0 3px #0f766e);
+}
+
+.svg-content .pick-disabled {
+  pointer-events: none;
+  opacity: 0.35;
+}
+
+.field-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.field-grid label {
+  display: grid;
+  gap: 4px;
+  color: #64748b;
+  font-size: 12px;
+}
+
+.field-grid input {
+  width: 100%;
+  min-width: 0;
+  height: 30px;
+  border: 1px solid #b8c1ca;
+  border-radius: 4px;
+  padding: 0 7px;
+}
+
+.tree {
+  border: 1px solid #b8c1ca;
+  border-radius: 4px;
+  padding: 8px;
+  background: #ffffff;
+  overflow: auto;
+}
+
+.tree-node {
+  margin: 2px 0;
+}
+
+.tree .folder {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  color: #64748b;
+  cursor: pointer;
+  font-weight: 700;
+  padding: 3px 4px;
+  text-align: left;
+}
+
+.tree .folder:hover {
+  background: #f1f5f9;
+}
+
+.tree .folder::before {
+  content: ">";
+  display: inline-block;
+  width: 14px;
+  margin-right: 4px;
+}
+
+.tree .folder.open::before {
+  content: "v";
+}
+
+.tree .children {
+  margin-left: 14px;
+}
+
+.tree .children.collapsed {
+  display: none;
+}
+
+.tree .file-btn {
+  width: 100%;
+  min-width: 0;
+  display: grid;
+  gap: 2px;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  padding: 4px;
+  text-align: left;
+}
+
+.tree .file-btn:hover {
+  background: #ecfeff;
+}
+
+.tree .file-btn.active {
+  background: #ccfbf1;
+  color: #0f766e;
+  font-weight: 700;
+}
+
+.tree .file-btn span {
+  overflow-wrap: anywhere;
+}
+
+.tree .file-btn small {
+  color: #64748b;
+}
+
+.artifact-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.artifact-pane {
+  min-width: 0;
+  display: grid;
+  gap: 4px;
+  color: #334155;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.artifact-pane textarea {
+  width: 100%;
+  min-height: 130px;
+  resize: vertical;
+  border: 1px solid #c7d0da;
+  border-radius: 4px;
+  padding: 8px;
+  background: #ffffff;
+  font-family: Cascadia Mono, Consolas, monospace;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.45;
+}
+
+@media (max-width: 1180px) {
+  .artifact-grid {
+    grid-template-columns: 1fr;
+  }
+}

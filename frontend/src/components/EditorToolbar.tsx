@@ -1,19 +1,39 @@
 import type { EditorStore } from "../stores/editorStore";
+import { createSignal } from "solid-js";
 
 interface EditorToolbarProps {
   store: EditorStore;
 }
 
 export function EditorToolbar(props: EditorToolbarProps) {
+  const [problemPath, setProblemPath] = createSignal("");
+  let imageInputRef!: HTMLInputElement;
   const hasSelection = () => props.store.state.selectedIds.length > 0;
   const hasMultiSelection = () => props.store.state.selectedIds.length > 1;
   const isBusy = () => props.store.state.loading;
+  const currentProblemPath = () => problemPath() || props.store.state.problemId || "";
 
   return (
     <header class="editor-next-toolbar">
       <div class="toolbar-title">
         <strong>ModuMath Editor Next</strong>
         <span>{props.store.state.problemId ?? "No problem selected"}</span>
+        <input
+          class="toolbar-problem-input"
+          list="editorNextProblemOptions"
+          value={currentProblemPath()}
+          placeholder="Problem path"
+          onInput={(event) => setProblemPath(event.currentTarget.value)}
+          onKeyDown={(event) => {
+            if (event.key === "Enter") void props.store.openProblem(currentProblemPath());
+          }}
+          disabled={props.store.state.loading}
+        />
+        <datalist id="editorNextProblemOptions">
+          {props.store.state.problems.map((problem) => (
+            <option value={problem.problem_id} />
+          ))}
+        </datalist>
       </div>
       <div class="toolbar-actions">
         <button
@@ -59,6 +79,13 @@ export function EditorToolbar(props: EditorToolbarProps) {
         </button>
         <button
           type="button"
+          onClick={() => void props.store.openProblem(currentProblemPath())}
+          disabled={!currentProblemPath().trim() || props.store.state.loading}
+        >
+          Open
+        </button>
+        <button
+          type="button"
           onClick={() => props.store.state.problemId && void props.store.openProblem(props.store.state.problemId)}
           disabled={!props.store.state.problemId || props.store.state.loading}
         >
@@ -69,6 +96,42 @@ export function EditorToolbar(props: EditorToolbarProps) {
         </button>
         <button type="button" onClick={() => void props.store.insertShape("rect")} disabled={!props.store.state.document || props.store.state.loading}>
           Rect
+        </button>
+        <button type="button" onClick={() => void props.store.insertShape("circle")} disabled={!props.store.state.document || props.store.state.loading}>
+          Circle
+        </button>
+        <button type="button" onClick={() => void props.store.insertShape("line")} disabled={!props.store.state.document || props.store.state.loading}>
+          Line
+        </button>
+        <button type="button" onClick={() => void props.store.insertShape("triangle")} disabled={!props.store.state.document || props.store.state.loading}>
+          Triangle
+        </button>
+        <button type="button" onClick={() => void props.store.insertShape("path")} disabled={!props.store.state.document || props.store.state.loading}>
+          Curve
+        </button>
+        <button
+          type="button"
+          onClick={() => {
+            if (!props.store.state.document || props.store.state.loading) return;
+            imageInputRef.click();
+          }}
+          disabled={!props.store.state.document || props.store.state.loading}
+        >
+          Image
+        </button>
+        <input
+          ref={imageInputRef}
+          type="file"
+          accept="image/*"
+          hidden
+          onChange={(event) => {
+            const file = event.currentTarget.files?.[0];
+            event.currentTarget.value = "";
+            if (file) void props.store.insertImageFile(file);
+          }}
+        />
+        <button type="button" onClick={() => void props.store.deleteSelectedSlots()} disabled={isBusy() || !hasSelection()}>
+          Delete
         </button>
       </div>
       <div class="toolbar-actions toolbar-align" aria-label="Alignment and layer controls">

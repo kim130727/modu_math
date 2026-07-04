@@ -37,6 +37,16 @@ export function EditorPage() {
           void store.saveDslDraft();
           return;
         }
+        if (key === "c") {
+          event.preventDefault();
+          store.copySelectedSlots();
+          return;
+        }
+        if (key === "v") {
+          event.preventDefault();
+          void store.pasteCopiedSlots();
+          return;
+        }
       }
       if (isEditableTarget(event.target) || event.altKey || event.ctrlKey || event.metaKey) return;
       if (event.key === "Delete" || event.key === "Backspace") {
