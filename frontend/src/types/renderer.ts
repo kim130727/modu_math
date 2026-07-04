@@ -19,5 +19,6 @@ export interface RendererElement {
   };
   source_ref?: string;
   text?: string;
+  elements?: RendererElement[];
 }
 

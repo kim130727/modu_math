@@ -1,6 +1,10 @@
-import { For, Show, createMemo, createSignal } from "solid-js";
+import { For, Show, createMemo, createSignal, createEffect } from "solid-js";
 import { boxesIntersect, normalizeBox, unionBoxes, type Box, type Point } from "../editor-core/model/geometry";
-import { matchSlotIdFromSvgElement } from "../editor-core/selection/selectionManager";
+import {
+  matchSlotIdFromSvgElement,
+  slotIdFromElement,
+  isDraggableSlotElement,
+} from "../editor-core/selection/selectionManager";
 import { slotBounds } from "../editor-core/transform/bounds";
 import { clientPointToCanvasPoint } from "../editor-core/transform/coordinateTransform";
 import type { EditorStore } from "../stores/editorStore";
@@ -33,11 +37,432 @@ type ResizeHandleKey = (typeof RESIZE_HANDLES)[number]["key"];
 const MIN_RESIZE_SIZE = 4;
 const SNAP_SIZE = 5;
 
+function pointToSegmentDistance(point: Point, a: Point, b: Point): number {
+  const dx = b.x - a.x;
+  const dy = b.y - a.y;
+  const len2 = dx * dx + dy * dy;
+  if (!len2) return Math.hypot(point.x - a.x, point.y - a.y);
+  const t = Math.max(0, Math.min(1, ((point.x - a.x) * dx + (point.y - a.y) * dy) / len2));
+  return Math.hypot(point.x - (a.x + dx * t), point.y - (a.y + dy * t));
+}
+
+function pointToBoxDistance(point: Point, box: Box): number {
+  const insideX = point.x >= box.x && point.x <= box.x + box.width;
+  const insideY = point.y >= box.y && point.y <= box.y + box.height;
+  if (insideX && insideY) return 0;
+  const cx = Math.max(box.x, Math.min(box.x + box.width, point.x));
+  const cy = Math.max(box.y, Math.min(box.y + box.height, point.y));
+  return Math.hypot(point.x - cx, point.y - cy);
+}
+
+function inflateHitBox(box: Box | null, pad: number): Box | null {
+  if (!box) return null;
+  return {
+    x: box.x - pad,
+    y: box.y - pad,
+    width: box.width + pad * 2,
+    height: box.height + pad * 2,
+  };
+}
+
+function parsePolygonPoints(raw: string): [number, number][] {
+  return (raw || "")
+    .trim()
+    .split(/\s+/)
+    .filter(Boolean)
+    .map((pair) => {
+      const [x, y] = pair.split(",");
+      return [Number(x), Number(y)] as [number, number];
+    })
+    .filter(([x, y]) => Number.isFinite(x) && Number.isFinite(y));
+}
+
+function pathTokens(d: string): string[] {
+  return (d || "").match(/[a-zA-Z]|-?\d*\.?\d+(?:e[-+]?\d+)?/g) || [];
+}
+
+const PATH_PARAM_COUNTS: Record<string, number> = { M: 2, L: 2, T: 2, H: 1, V: 1, C: 6, S: 4, Q: 4, A: 7 };
+
+function pathAnchorPoints(d: string): Point[] {
+  const tokens = pathTokens(d);
+  const points: Point[] = [];
+  let i = 0;
+  let cmd: string | null = null;
+  const isCommand = (token: string) => /^[a-zA-Z]$/.test(token);
+  const num = (token: string) => Number(token);
+
+  while (i < tokens.length) {
+    if (isCommand(tokens[i])) {
+      cmd = tokens[i].toUpperCase();
+      i += 1;
+      if (cmd === "Z") continue;
+    }
+    if (!cmd) break;
+    const count = PATH_PARAM_COUNTS[cmd];
+    if (!count || i + count > tokens.length) break;
+    const vals = tokens.slice(i, i + count).map(num);
+    if (vals.some((v) => !Number.isFinite(v))) break;
+    if (cmd === "M" || cmd === "L" || cmd === "T") {
+      points.push({ x: vals[0], y: vals[1] });
+    } else if (cmd === "H" && points.length) {
+      points.push({ x: vals[0], y: points[points.length - 1].y });
+    } else if (cmd === "V" && points.length) {
+      points.push({ x: points[points.length - 1].x, y: vals[0] });
+    } else if (cmd === "C") {
+      points.push({ x: vals[4], y: vals[5] });
+    } else if (cmd === "S" || cmd === "Q") {
+      points.push({ x: vals[vals.length - 2], y: vals[vals.length - 1] });
+    } else if (cmd === "A") {
+      points.push({ x: vals[5], y: vals[6] });
+    }
+    i += count;
+  }
+  return points;
+}
+
+function visualSvgBox(node: Element, svg: SVGSVGElement): Box | null {
+  try {
+    const rect = node.getBoundingClientRect();
+    const ctm = svg.getScreenCTM();
+    if (!ctm || rect.width <= 0 || rect.height <= 0) return null;
+    const point = svg.createSVGPoint();
+    const inverse = ctm.inverse();
+    const corners = [
+      [rect.left, rect.top],
+      [rect.right, rect.top],
+      [rect.right, rect.bottom],
+      [rect.left, rect.bottom],
+    ].map(([x, y]) => {
+      point.x = x;
+      point.y = y;
+      return point.matrixTransform(inverse);
+    });
+    const xs = corners.map((p) => p.x);
+    const ys = corners.map((p) => p.y);
+    const minX = Math.min(...xs);
+    const minY = Math.min(...ys);
+    const maxX = Math.max(...xs);
+    const maxY = Math.max(...ys);
+    return { x: minX, y: minY, width: maxX - minX, height: maxY - minY };
+  } catch (_) {
+    return null;
+  }
+}
+
+function elementHitBox(node: Element, svg: SVGSVGElement | null): Box | null {
+  const tag = node.tagName.toLowerCase();
+  if (tag === "rect" || tag === "image") {
+    const x = Number(node.getAttribute("x") || 0);
+    const y = Number(node.getAttribute("y") || 0);
+    const width = Number(node.getAttribute("width") || 0);
+    const height = Number(node.getAttribute("height") || 0);
+    return width > 0 && height > 0 ? { x, y, width, height } : null;
+  }
+  if (tag === "text") {
+    try {
+      const bb = (node as SVGGraphicsElement).getBBox();
+      return bb ? { x: bb.x, y: bb.y, width: bb.width, height: bb.height } : null;
+    } catch (_) {
+      return null;
+    }
+  }
+  if (tag === "line") {
+    if (svg && node.getAttribute("transform")) {
+      const vBox = visualSvgBox(node, svg);
+      if (vBox) return inflateHitBox(vBox, 8);
+    }
+    const x1 = Number(node.getAttribute("x1") || 0);
+    const y1 = Number(node.getAttribute("y1") || 0);
+    const x2 = Number(node.getAttribute("x2") || 0);
+    const y2 = Number(node.getAttribute("y2") || 0);
+    const strokeWidth = Number(node.getAttribute("stroke-width") || 1);
+    const pad = Math.max(8, strokeWidth * 3);
+    return {
+      x: Math.min(x1, x2) - pad,
+      y: Math.min(y1, y2) - pad,
+      width: Math.abs(x2 - x1) + pad * 2,
+      height: Math.abs(y2 - y1) + pad * 2,
+    };
+  }
+  if (tag === "circle") {
+    if (svg && node.getAttribute("transform")) {
+      const vBox = visualSvgBox(node, svg);
+      if (vBox) return inflateHitBox(vBox, 8);
+    }
+    const cx = Number(node.getAttribute("cx") || 0);
+    const cy = Number(node.getAttribute("cy") || 0);
+    const r = Number(node.getAttribute("r") || 0);
+    if (!Number.isFinite(cx) || !Number.isFinite(cy) || !Number.isFinite(r)) return null;
+    const strokeWidth = Number(node.getAttribute("stroke-width") || 1);
+    const pad = Math.max(8, strokeWidth * 3);
+    const rr = Math.max(0, r) + pad;
+    return { x: cx - rr, y: cy - rr, width: rr * 2, height: rr * 2 };
+  }
+  try {
+    const bb = (node as SVGGraphicsElement).getBBox();
+    if (!bb) return null;
+    if (tag === "path" || tag === "polygon") {
+      if (svg && node.getAttribute("transform")) {
+        const vBox = visualSvgBox(node, svg);
+        if (vBox) return inflateHitBox(vBox, 8);
+      }
+      const strokeWidth = Number(node.getAttribute("stroke-width") || 1);
+      const pad = Math.max(8, strokeWidth * 3);
+      return { x: bb.x - pad, y: bb.y - pad, width: bb.width + pad * 2, height: bb.height + pad * 2 };
+    }
+    return { x: bb.x, y: bb.y, width: bb.width, height: bb.height };
+  } catch (_) {
+    return null;
+  }
+}
+
+function elementVisualBox(node: Element, svg: SVGSVGElement | null): Box | null {
+  const tag = node.tagName.toLowerCase();
+  if ((tag === "line" || tag === "path" || tag === "polygon" || tag === "circle") && svg && node.getAttribute("transform")) {
+    const transformed = visualSvgBox(node, svg);
+    if (transformed) return transformed;
+  }
+  if (tag === "rect" || tag === "image") {
+    const x = Number(node.getAttribute("x") || 0);
+    const y = Number(node.getAttribute("y") || 0);
+    const width = Number(node.getAttribute("width") || 0);
+    const height = Number(node.getAttribute("height") || 0);
+    return width > 0 && height > 0 ? { x, y, width, height } : null;
+  }
+  if (tag === "line") {
+    const x1 = Number(node.getAttribute("x1") || 0);
+    const y1 = Number(node.getAttribute("y1") || 0);
+    const x2 = Number(node.getAttribute("x2") || 0);
+    const y2 = Number(node.getAttribute("y2") || 0);
+    return {
+      x: Math.min(x1, x2),
+      y: Math.min(y1, y2),
+      width: Math.abs(x2 - x1),
+      height: Math.abs(y2 - y1),
+    };
+  }
+  if (tag === "circle") {
+    const cx = Number(node.getAttribute("cx") || 0);
+    const cy = Number(node.getAttribute("cy") || 0);
+    const r = Number(node.getAttribute("r") || 0);
+    return Number.isFinite(cx) && Number.isFinite(cy) && Number.isFinite(r)
+      ? { x: cx - r, y: cy - r, width: r * 2, height: r * 2 }
+      : null;
+  }
+  try {
+    const bb = (node as SVGGraphicsElement).getBBox();
+    return bb ? { x: bb.x, y: bb.y, width: bb.width, height: bb.height } : null;
+  } catch (_) {
+    return null;
+  }
+}
+
+function pointToElementDistance(node: Element, point: Point, box: Box): number {
+  const tag = node.tagName.toLowerCase();
+  if (node.getAttribute("transform")) return pointToBoxDistance(point, box);
+  if (tag === "text") return pointToBoxDistance(point, box);
+  if (tag === "line") {
+    return pointToSegmentDistance(
+      point,
+      { x: Number(node.getAttribute("x1") || 0), y: Number(node.getAttribute("y1") || 0) },
+      { x: Number(node.getAttribute("x2") || 0), y: Number(node.getAttribute("y2") || 0) }
+    );
+  }
+  if (tag === "circle") {
+    const cx = Number(node.getAttribute("cx") || 0);
+    const cy = Number(node.getAttribute("cy") || 0);
+    const r = Math.max(0, Number(node.getAttribute("r") || 0));
+    const fill = String(node.getAttribute("fill") || "").toLowerCase();
+    const centerDistance = Math.hypot(point.x - cx, point.y - cy);
+    return fill && fill !== "none" ? Math.max(0, centerDistance - r) : Math.abs(centerDistance - r);
+  }
+  if (tag === "path" || tag === "polygon") {
+    const points = tag === "polygon"
+      ? parsePolygonPoints(node.getAttribute("points") || "").map(([x, y]) => ({ x, y }))
+      : pathAnchorPoints(node.getAttribute("d") || "");
+    if (points.length >= 2) {
+      let best = Infinity;
+      for (let i = 1; i < points.length; i += 1) {
+        best = Math.min(best, pointToSegmentDistance(point, points[i - 1], points[i]));
+      }
+      return best;
+    }
+  }
+  return pointToBoxDistance(point, box);
+}
+
+function pickPriority(node: Element): number {
+  const tag = node.tagName.toLowerCase();
+  if (tag === "text") return 0;
+  if (tag === "line" || tag === "path") return 0;
+  if (tag === "circle") return 1;
+  if (tag === "polygon") return 1;
+  if (tag === "image") return 2;
+  if (tag === "rect") return 3;
+  return 4;
+}
+
 export function CanvasViewport(props: CanvasViewportProps) {
   const [interaction, setInteraction] = createSignal<CanvasInteraction | null>(null);
   const [suppressClick, setSuppressClick] = createSignal(false);
+  const [inlineTextEdit, setInlineTextEdit] = createSignal<{
+    slotId: string;
+    originalText: string;
+    rect: { left: number; top: number; width: number; height: number; fontSize: number; fontFamily: string };
+  } | null>(null);
+  let surfaceRef!: HTMLDivElement;
+
+  function handleDoubleClick(event: MouseEvent): void {
+    const target = event.target instanceof Element ? event.target : null;
+    if (!target) return;
+    const svg = target.closest("svg");
+    if (!svg) return;
+    const el = findDraggableSlotAncestor(target);
+    if (!el || el.tagName.toLowerCase() !== "text") return;
+
+    const slotId = slotIdFromElement(
+      el,
+      props.store.state.document?.detail.layout ?? null,
+      props.store.state.document?.detail.renderer ?? null,
+      props.store.state.dslDraft
+    );
+    if (!slotId) return;
+
+    const rect = el.getBoundingClientRect();
+    const surface = svg.closest(".canvas-surface");
+    const containerRect = surface?.getBoundingClientRect() ?? { left: 0, top: 0 };
+    const scale = props.store.state.zoom;
+    const fontSize = Number(el.getAttribute("font-size") || 28) * scale;
+
+    setInlineTextEdit({
+      slotId,
+      originalText: el.textContent || "",
+      rect: {
+        left: rect.left - containerRect.left - 2,
+        top: rect.top - containerRect.top - 2,
+        width: Math.max(48, rect.width + 12),
+        height: Math.max(24, rect.height + 8),
+        fontSize: Math.max(12, fontSize),
+        fontFamily: el.getAttribute("font-family") || '"Segoe UI", "Pretendard", sans-serif',
+      },
+    });
+
+    event.preventDefault();
+    event.stopPropagation();
+  }
+
+  function findDraggableSlotAncestor(el: Element | null): Element | null {
+    let curr = el;
+    while (curr && curr.tagName.toLowerCase() !== "svg") {
+      if (curr.getAttribute("id") && isDraggableSlotElement(curr)) {
+        return curr;
+      }
+      curr = curr.parentElement;
+    }
+    return null;
+  }
+
+  function draggableSlotElements(svg: SVGSVGElement): Element[] {
+    const layout = props.store.state.document?.detail.layout ?? null;
+    const renderer = props.store.state.document?.detail.renderer ?? null;
+    const dsl = props.store.state.dslDraft;
+    return Array.from(svg.querySelectorAll("[id]")).filter(
+      (node) => isDraggableSlotElement(node) && slotIdFromElement(node, layout, renderer, dsl)
+    );
+  }
+
+  function matchingSlotElementAtPoint(svg: SVGSVGElement, clientX: number, clientY: number): Element | null {
+    const seen = new Set<Element>();
+    const doc = svg.ownerDocument;
+
+    for (const node of doc.elementsFromPoint(clientX, clientY)) {
+      if (!(node instanceof SVGElement) || !svg.contains(node)) continue;
+      const slotTarget = findDraggableSlotAncestor(node);
+      if (!slotTarget || seen.has(slotTarget)) continue;
+      seen.add(slotTarget);
+      if (matchSelectableSlotId(slotTarget.getAttribute("id"))) return slotTarget;
+    }
+
+    const surface = svg.closest(".canvas-surface");
+    if (!surface) return null;
+    const point = clientPointToCanvasPoint(surface as HTMLElement, clientX, clientY, props.store.state.zoom);
+    const nodes = draggableSlotElements(svg);
+    const candidates: { node: Element; priority: number; distance: number; area: number; z: number }[] = [];
+
+    for (let i = nodes.length - 1; i >= 0; i -= 1) {
+      const node = nodes[i];
+      if (node.getAttribute("id")) {
+        const sid = slotIdFromElement(
+          node,
+          props.store.state.document?.detail.layout ?? null,
+          props.store.state.document?.detail.renderer ?? null,
+          props.store.state.dslDraft
+        );
+        const slot = props.store.state.document?.slots.find((s) => s.id === sid);
+        if (!slot || !matchesPickMode(slot)) continue;
+      }
+      const bb = elementHitBox(node, svg);
+      if (!bb) continue;
+      if (point.x >= bb.x && point.x <= bb.x + bb.width && point.y >= bb.y && point.y <= bb.y + bb.height) {
+        const area = Math.max(0, bb.width) * Math.max(0, bb.height);
+        const distance = pointToElementDistance(node, point, bb);
+        candidates.push({ node, priority: pickPriority(node), distance, area, z: i });
+      }
+    }
+
+    if (candidates.length) {
+      candidates.sort((a, b) => a.distance - b.distance || a.priority - b.priority || a.area - b.area || b.z - a.z);
+      return candidates[0].node;
+    }
+    return null;
+  }
+
+  createEffect(() => {
+    const selectedIds = props.store.state.selectedIds;
+    props.store.state.document?.detail.svg;
+
+    const svg = surfaceRef?.querySelector("svg");
+    if (!svg) return;
+
+    const elements = draggableSlotElements(svg);
+    for (const el of elements) {
+      const slotId = slotIdFromElement(
+        el,
+        props.store.state.document?.detail.layout ?? null,
+        props.store.state.document?.detail.renderer ?? null,
+        props.store.state.dslDraft
+      );
+      if (selectedIds.includes(slotId)) {
+        el.classList.add("slot-selected");
+      } else {
+        el.classList.remove("slot-selected");
+      }
+    }
+  });
+
+  function selectedSvgBounds(): Box | null {
+    const svg = surfaceRef?.querySelector("svg");
+    if (!svg) return null;
+    const selected = props.store.state.selectedIds;
+    if (!selected.length) return null;
+    const boxes = draggableSlotElements(svg)
+      .map((el) => {
+        const slotId = slotIdFromElement(
+          el,
+          props.store.state.document?.detail.layout ?? null,
+          props.store.state.document?.detail.renderer ?? null,
+          props.store.state.dslDraft
+        );
+        if (!selected.includes(slotId)) return null;
+        return elementVisualBox(el, svg);
+      })
+      .filter((box): box is Box => box !== null);
+    return unionBoxes(boxes);
+  }
 
   const selectedBounds = createMemo(() => {
+    const svgBounds = selectedSvgBounds();
+    if (svgBounds) return svgBounds;
     const slots = props.store.state.document?.slots ?? [];
     const selected = slots.filter((slot) => props.store.state.selectedIds.includes(slot.id));
     return unionBoxes(selected.map(slotBounds).filter((box): box is Box => box !== null));
@@ -75,9 +500,7 @@ export function CanvasViewport(props: CanvasViewportProps) {
       setSuppressClick(false);
       return;
     }
-    const target = event.target instanceof Element ? event.target : null;
-    const svgElement = target?.closest("[id]");
-    const slotId = matchSelectableSlotId(svgElement?.getAttribute("id") ?? null) ?? hitSlotIdFromPoint(event);
+    const slotId = hitSlotId(event.target) ?? hitSlotIdFromPoint(event);
     if (!slotId) {
       props.store.clearSelectedSlots();
       return;
@@ -92,23 +515,33 @@ export function CanvasViewport(props: CanvasViewportProps) {
 
   function hitSlotId(target: EventTarget | null): string | null {
     const element = target instanceof Element ? target : null;
-    const svgElement = element?.closest("[id]");
-    return matchSelectableSlotId(svgElement?.getAttribute("id") ?? null);
+    if (!element) return null;
+    const slotTarget = findDraggableSlotAncestor(element);
+    if (slotTarget && matchesPickModeElement(slotTarget)) {
+      return slotIdFromElement(
+        slotTarget,
+        props.store.state.document?.detail.layout ?? null,
+        props.store.state.document?.detail.renderer ?? null,
+        props.store.state.dslDraft
+      );
+    }
+    return null;
   }
 
   function hitSlotIdFromPoint(event: MouseEvent | PointerEvent): string | null {
     const surface = event.currentTarget instanceof HTMLElement ? event.currentTarget : null;
-    if (!surface) return null;
-    const point = clientPointToCanvasPoint(surface, event.clientX, event.clientY, props.store.state.zoom);
-    const slots = props.store.state.document?.slots ?? [];
-    const matchingSlot = [...slots]
-      .reverse()
-      .filter((slot) => matchesPickMode(slot))
-      .find((slot) => {
-        const bounds = slotBounds(slot);
-        return bounds ? boxesIntersect({ x: point.x, y: point.y, width: 1, height: 1 }, bounds) : false;
-      });
-    return matchingSlot?.id ?? null;
+    const svg = surface?.querySelector("svg");
+    if (!svg) return null;
+    const matched = matchingSlotElementAtPoint(svg, event.clientX, event.clientY);
+    if (matched) {
+      return slotIdFromElement(
+        matched,
+        props.store.state.document?.detail.layout ?? null,
+        props.store.state.document?.detail.renderer ?? null,
+        props.store.state.dslDraft
+      );
+    }
+    return null;
   }
 
   function matchSelectableSlotId(elementId: string | null): string | null {
@@ -128,6 +561,20 @@ export function CanvasViewport(props: CanvasViewportProps) {
         return slot.kind === "rect" || slot.kind === "circle" || slot.kind === "polygon" || slot.kind === "image";
       case "linepath":
         return slot.kind === "line" || slot.kind === "path";
+      case "all":
+        return true;
+    }
+  }
+
+  function matchesPickModeElement(el: Element): boolean {
+    const tag = el.tagName.toLowerCase();
+    switch (props.store.state.pickMode) {
+      case "text":
+        return tag === "text";
+      case "shape":
+        return tag === "rect" || tag === "circle" || tag === "polygon" || tag === "image";
+      case "linepath":
+        return tag === "line" || tag === "path";
       case "all":
         return true;
     }
@@ -351,6 +798,7 @@ export function CanvasViewport(props: CanvasViewportProps) {
           fallback={<div class="empty-state">Select a problem with SVG output.</div>}
         >
           <div
+            ref={surfaceRef}
             class="canvas-surface"
             classList={{
               "is-panning": interaction()?.kind === "pan",
@@ -367,6 +815,7 @@ export function CanvasViewport(props: CanvasViewportProps) {
             onPointerUp={finishCanvasPointer}
             onPointerCancel={finishCanvasPointer}
             onClick={selectFromSvg}
+            onDblClick={handleDoubleClick}
           >
             {props.store.state.document?.detail.svg ? (
               <SvgContent svg={props.store.state.document?.detail.svg ?? ""} />
@@ -415,6 +864,57 @@ export function CanvasViewport(props: CanvasViewportProps) {
                   </For>
                 </>
               )}
+            </Show>
+            <Show when={inlineTextEdit()}>
+              {(edit) => {
+                let inputRef!: HTMLInputElement;
+                setTimeout(() => {
+                  inputRef?.focus();
+                  inputRef?.select();
+                }, 20);
+
+                const handleKeyDown = (e: KeyboardEvent) => {
+                  if (e.key === "Enter") {
+                    e.preventDefault();
+                    const text = inputRef.value;
+                    if (text !== edit().originalText) {
+                      void props.store.updateSlotProperties(edit().slotId, { text });
+                    }
+                    setInlineTextEdit(null);
+                  } else if (e.key === "Escape") {
+                    e.preventDefault();
+                    setInlineTextEdit(null);
+                  }
+                };
+
+                return (
+                  <input
+                    ref={inputRef}
+                    type="text"
+                    class="inline-text-editor"
+                    value={edit().originalText}
+                    style={{
+                      position: "absolute",
+                      left: `${edit().rect.left}px`,
+                      top: `${edit().rect.top}px`,
+                      width: `${edit().rect.width}px`,
+                      height: `${edit().rect.height}px`,
+                      "font-size": `${edit().rect.fontSize}px`,
+                      "font-family": edit().rect.fontFamily,
+                      display: "block",
+                      "z-index": 100,
+                    }}
+                    onKeyDown={handleKeyDown}
+                    onBlur={() => {
+                      const text = inputRef.value;
+                      if (text !== edit().originalText) {
+                        void props.store.updateSlotProperties(edit().slotId, { text });
+                      }
+                      setInlineTextEdit(null);
+                    }}
+                  />
+                );
+              }}
             </Show>
           </div>
         </Show>
