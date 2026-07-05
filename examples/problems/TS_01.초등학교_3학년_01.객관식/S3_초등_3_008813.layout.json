@@ -24,7 +24,8 @@
       "role": "diagram",
       "flow": "absolute",
       "slot_ids": [
-        "slot.bottle.label"
+        "slot.bottle.label",
+        "slot.bottle.label.copy7"
       ]
     },
     {
@@ -87,9 +88,10 @@
       "content": {
         "text": "( 우유병, 컵 )",
         "style_role": "choice",
-        "x": 758.0,
-        "y": 317.0,
-        "font_size": 28
+        "x": 403.0,
+        "y": 377.0,
+        "font_size": 28,
+        "fill": "#111111"
       }
     },
     {
@@ -101,6 +103,19 @@
         "style_role": "body",
         "x": 14.0,
         "y": 87.0,
+        "font_size": 28,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.bottle.label.copy7",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "컵",
+        "style_role": "body",
+        "x": 582.0,
+        "y": 283.0,
         "font_size": 28,
         "fill": "#111111"
       }
@@ -116,6 +131,7 @@
     "slot.q1.copy6",
     "region.diagram",
     "slot.bottle.label",
+    "slot.bottle.label.copy7",
     "region.choice",
     "slot.choice",
     "region.answer"

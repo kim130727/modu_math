@@ -1,4 +1,4 @@
-import { createMemo, onCleanup, onMount } from "solid-js";
+import { Show, createMemo, createSignal, onCleanup, onMount } from "solid-js";
 import { createEditorStore } from "../stores/editorStore";
 import { BuildOutput } from "./BuildOutput";
 import { CanvasViewport } from "./CanvasViewport";
@@ -11,6 +11,7 @@ import { StatusBar } from "./StatusBar";
 
 export function EditorPage() {
   const store = createEditorStore();
+  const [inspectorTab, setInspectorTab] = createSignal<"properties" | "dsl" | "json">("properties");
   const selectedSlot = createMemo(() => {
     const selectedId = store.state.selectedIds[0];
     return store.state.document?.slots.find((slot) => slot.id === selectedId) ?? null;
@@ -78,18 +79,41 @@ export function EditorPage() {
   });
 
   return (
-    <div class="editor-next-shell">
+    <div class="editor-next-shell wrap powerpoint ppt-shell">
       <EditorToolbar store={store} />
-      <div class="editor-next-workspace">
+      <div class="editor-next-workspace ppt-workspace">
         <ProblemList store={store} />
-        <main class="editor-next-stage">
+        <main class="editor-next-stage ppt-stage">
           <CanvasViewport store={store} />
-          <BuildOutput document={store.state.document} buildOutput={store.state.buildOutput} />
         </main>
-        <aside class="editor-next-inspector">
-          <PropertyInspector store={store} selectedSlot={selectedSlot()} />
-          <ManualPatchPanel store={store} />
-          <DslEditor store={store} />
+        <aside class="editor-next-inspector ppt-inspector">
+          <div class="ppt-tabs" role="tablist" aria-label="Inspector tabs">
+            <button type="button" role="tab" aria-selected={inspectorTab() === "properties"} classList={{ active: inspectorTab() === "properties" }} onClick={() => setInspectorTab("properties")}>
+              Properties
+            </button>
+            <button type="button" role="tab" aria-selected={inspectorTab() === "dsl"} classList={{ active: inspectorTab() === "dsl" }} onClick={() => setInspectorTab("dsl")}>
+              DSL
+            </button>
+            <button type="button" role="tab" aria-selected={inspectorTab() === "json"} classList={{ active: inspectorTab() === "json" }} onClick={() => setInspectorTab("json")}>
+              JSON
+            </button>
+          </div>
+          <Show when={inspectorTab() === "properties"}>
+            <div class="ppt-tab-panel" role="tabpanel">
+              <PropertyInspector store={store} selectedSlot={selectedSlot()} />
+              <ManualPatchPanel store={store} />
+            </div>
+          </Show>
+          <Show when={inspectorTab() === "dsl"}>
+            <div class="ppt-tab-panel" role="tabpanel">
+              <DslEditor store={store} />
+            </div>
+          </Show>
+          <Show when={inspectorTab() === "json"}>
+            <div class="ppt-tab-panel" role="tabpanel">
+              <BuildOutput document={store.state.document} buildOutput={store.state.buildOutput} />
+            </div>
+          </Show>
         </aside>
       </div>
       <StatusBar state={store.state} />

@@ -133,8 +133,8 @@ export function EditorToolbar(props: EditorToolbarProps) {
 
   return (
     <>
-      <header class="editor-next-toolbar">
-        <div class="toolbar-title">
+      <header class="editor-next-toolbar ppt-titlebar ppt-ribbon">
+        <div class="toolbar-title ribbon-group">
           <strong>ModuMath Editor Next</strong>
           <span>{props.store.state.problemId ?? "No problem selected"}</span>
           <input
@@ -154,7 +154,7 @@ export function EditorToolbar(props: EditorToolbarProps) {
             ))}
           </datalist>
         </div>
-        <div class="toolbar-actions">
+        <div class="toolbar-actions ribbon-group">
           <button type="button" classList={{ active: props.store.state.activeTool === "select" }} onClick={() => props.store.setActiveTool("select")} disabled={props.store.state.loading}>
             Select
           </button>
@@ -286,7 +286,7 @@ export function EditorToolbar(props: EditorToolbarProps) {
             Delete
           </button>
         </div>
-        <div class="toolbar-actions toolbar-align" aria-label="Alignment and layer controls">
+        <div class="toolbar-actions toolbar-align ribbon-group" aria-label="Alignment and layer controls">
           <button type="button" onClick={() => void props.store.alignSelectedSlots("left")} disabled={isBusy() || !hasMultiSelection()}>
             Align L
           </button>
@@ -318,7 +318,7 @@ export function EditorToolbar(props: EditorToolbarProps) {
             Backward
           </button>
         </div>
-        <div class="toolbar-pickmodes" aria-label="Selection target filters">
+        <div class="toolbar-pickmodes ribbon-group" aria-label="Selection target filters">
           <button type="button" classList={{ active: props.store.state.pickMode === "all" }} onClick={() => props.store.setPickMode("all")} disabled={props.store.state.loading}>
             All
           </button>

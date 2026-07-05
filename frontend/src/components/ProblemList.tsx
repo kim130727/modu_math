@@ -34,8 +34,8 @@ export function ProblemList(props: ProblemListProps) {
   }
 
   return (
-    <aside class="editor-next-problems">
-      <div class="pane-heading">Problems</div>
+    <aside class="editor-next-problems ppt-sidebar">
+      <div class="pane-heading pane-title">Problems</div>
       <input
         class="problem-filter"
         value={filter()}

@@ -78,9 +78,9 @@ Additional comparison notes:
 | Blank click clears selection. | Supported. | implemented | editor-next clears selection on empty click. |
 | Pan canvas. | Not a reference behavior. | implemented | editor-next supports pan by tool, middle button, or Alt. |
 | Zoom canvas. | Not a reference behavior. | implemented | editor-next supports zoom/reset. |
-| Context menu shape formatting. | Right-click or context behavior opens shape format menu for shapes. | partially implemented | Inspector now exposes fill/stroke/no-border/dash controls, but the right-click popup behavior is still missing. |
+| Context menu shape formatting. | Right-click or context behavior opens shape format menu for shapes. | implemented | Right-click opens a shape/table-cell format popup backed by the same fill/stroke/dash patch actions as the inspector. |
 | Draw-to-place shapes. | Some line/path/freeform shape types are drawn by pointer. | partially implemented | editor-next now supports drag-to-draw for line, elbow connector, curve, and freeform path with preview/cancel; full reference draw-state/path editing behavior remains incomplete. |
-| Canvas selection. | Select canvas, show canvas guide, edit W/H. | partially implemented | editor-next now edits canvas W/H in inspector; explicit canvas selection/guide is still missing. |
+| Canvas selection. | Select canvas, show canvas guide, edit W/H. | implemented | Inspector has Select Canvas, canvas guide overlay, and patch-backed W/H editing. |
 
 ## 3. SVG Rendering Behavior
 
@@ -92,7 +92,7 @@ Additional comparison notes:
 | Preserve line/path hit behavior. | Adds thick invisible stroke proxies for thin strokes. | partially implemented | editor-next has distance-based fallback but no actual SVG hit proxies. |
 | Selection overlay inside SVG. | SVG overlay group with bounds, line handles, rotate handle, path handles, table handles. | partially implemented | editor-next uses absolutely positioned HTML selection box and 8 resize handles only. |
 | Selected visual class. | `.slot-selected` drop shadow on selected SVG elements. | implemented | editor-next toggles `slot-selected` and now includes matching CSS. |
-| Pick disabled visual class. | `.pick-disabled` dims non-pickable elements. | missing | No equivalent class/behavior observed. |
+| Pick disabled visual class. | `.pick-disabled` dims non-pickable elements. | implemented | editor-next now applies `.pick-disabled` to SVG slot elements that do not match the active pick mode. |
 
 ## 4. Slot Selection Behavior
 
@@ -100,9 +100,9 @@ Additional comparison notes:
 | --- | --- | --- | --- |
 | Resolve slot IDs from SVG element IDs. | Uses renderer refs, DSL ID cache, layout cache, fractions, generated groups. | partially implemented | editor-next has renderer ref, DSL source, fraction, and fallback matching, but less coverage. |
 | Select fraction as one logical object. | Fraction part IDs map to a prefix and move/update as group. | partially implemented | `parseFractionPartId` exists; resize/edit coverage is limited. |
-| Select character/layout/generated/figure/paper-fold/measurement/graph-paper groups. | Group-aware selection and patching. | missing | editor-next treats slots primarily as individual layout slots. |
+| Select character/layout/generated/figure/paper-fold/measurement/graph-paper groups. | Group-aware selection and patching. | partially implemented | editor-next now selects generated graph-paper, bar-model, tick-bar, fraction, and mixed-fraction slot groups together; table cells stay individually selectable and broader figure/paper-fold/measurement semantics remain incomplete. |
 | Slot list/strip selection. | Editor has problem tree, not slot strip; selection mostly via canvas/inspector. | implemented | editor-next slot strip is extra and supports selection. |
-| Pick filters update active button states. | All/Text/Shape/LinePath active state and pointer behavior. | partially implemented | Active states exist; no `.pick-disabled` visual behavior. |
+| Pick filters update active button states. | All/Text/Shape/LinePath active state and pointer behavior. | implemented | Active states, pointer filtering, and `.pick-disabled` visuals now update from the active pick mode. |
 
 ## 5. Drag Behavior
 
@@ -111,8 +111,8 @@ Additional comparison notes:
 | Drag selected slot(s). | Live SVG move, overlay move, patch on pointer up. | partially implemented | editor-next shows overlay offset and commits move patches, but does not live-transform actual SVG elements. |
 | Drag multiple selected slots. | Supported with group-specialized patching. | partially implemented | Basic multi-slot move patch exists; group-specific movement is missing. |
 | Snap-aware drag. | 5px snap toggle. | implemented | editor-next snaps drag deltas when enabled. |
-| Drag line/path/group special cases. | Handles line endpoints, generated groups, fractions, measurements, etc. | missing | editor-next move uses `{move_dx, move_dy}` for selected IDs only. |
-| Drag commit throttling/status. | Drag status, queued/debounced patch persistence. | missing | editor-next commits at pointer up and status is generic loading/ready. |
+| Drag line/path/group special cases. | Handles line endpoints, generated groups, fractions, measurements, etc. | partially implemented | editor-next expands drag/keyboard movement for generated table, graph-paper, bar-model, tick-bar, fraction, and mixed-fraction slot prefixes; selection overlay and reference-specific group semantics are still incomplete. |
+| Drag commit throttling/status. | Drag status, queued/debounced patch persistence. | partially implemented | editor-next reports drag/marquee/resize/pan start/cancel/commit messages and commits at pointer up, but no queued/debounced persistence. |
 
 ## 6. Resize Behavior
 
@@ -120,13 +120,13 @@ Additional comparison notes:
 | --- | --- | --- | --- |
 | Rect/text/image resize. | Handles all sides/corners with snap. | implemented | editor-next supports rect/text_box/image via content x/y/width/height. |
 | Circle resize. | Supported. | implemented | editor-next maps resized box to center/radius. |
-| Line endpoint resize. | `p1`/`p2` endpoint handles. | missing | editor-next has only rectangular handles and no line endpoint edit. |
-| Line rotation. | `r` rotation handle and angle snapping. | missing | No rotate handle. |
-| Generic transform/rotate edit. | Inspector can edit `Rotate` transform string; resize can update transform-aware elements. | missing | No rotate inspector field. |
-| Polygon/path resize. | Path/polygon coordinate scaling. | missing | Bounds can be selected, but no resize patch for polygon/path. |
-| Path point editing. | Cubic/polyline anchor/control point handles. | missing | No path point handles. |
-| Canvas resize. | Select canvas and edit W/H. | partially implemented | Inspector W/H edits are patch-backed; no canvas select overlay/handles yet. |
-| Table divider resize. | Table adjustment handles for row/column dividers. | missing | No table editing handles. |
+| Line endpoint resize. | `p1`/`p2` endpoint handles. | implemented | editor-next now shows line endpoint handles for selected line slots and patches `x1/y1` or `x2/y2` on drag. |
+| Line rotation. | `r` rotation handle and angle snapping. | partially implemented | editor-next now exposes a line rotation handle with optional Shift 15-degree snapping; reference keyboard/handle semantics still need verification. |
+| Generic transform/rotate edit. | Inspector can edit `Rotate` transform string; resize can update transform-aware elements. | partially implemented | Inspector now has a dedicated Rotate/transform string field; transform-aware resize and rotate handles are still missing. |
+| Polygon/path resize. | Path/polygon coordinate scaling. | partially implemented | Inspector X/Y/W/H edits now scale polygon points and path data to the target bounds; selected paths also expose anchor point handles for supported absolute commands. |
+| Path point editing. | Cubic/polyline anchor/control point handles. | partially implemented | editor-next now shows `.path-edit-guide` and draggable `.path-point-handle` anchors for supported absolute `M/L/C/S/Q/A/T` endpoints; full cubic control point editing and relative command editing remain incomplete. |
+| Canvas resize. | Select canvas and edit W/H. | implemented | Inspector Select Canvas shows a canvas guide and W/H edits are patch-backed. |
+| Table divider resize. | Table adjustment handles for row/column dividers. | partially implemented | Generated tables now show `.table-adjust-handle` controls for row/column dividers and patch adjacent cell fill/text geometry; full reference table editor semantics remain incomplete. |
 | Group resize. | Figure/graph-paper/group-specific resize support. | missing | No group resize support. |
 
 ## 7. Text Editing Behavior
@@ -148,7 +148,7 @@ Additional comparison notes:
 | Insert lines/curves/freeform. | Gallery plus draw-mode for some shapes. | partially implemented | editor-next gallery now supports click-to-insert simple line variants and drag-to-draw line, elbow, curve, and freeform paths. |
 | Insert common polygons/basic shapes. | Many gallery options. | partially implemented | editor-next gallery now supports common polygons/basic shapes, arrows, math symbols, flowchart shapes, stars/banners, callouts, and teaching aids; some reference-only draw/path editing behavior is still missing. |
 | Insert composite teaching objects. | Boy/girl/school/house/playground/etc. | implemented | editor-next now inserts boy, girl, school, house, and playground as multi-slot composite shapes, plus push pin as a path shape. |
-| Shape fill/stroke menu and swatches. | Fill/stroke colors, no border, dash styles. | partially implemented | Inspector now supports fill, stroke, no border, solid, and dash styles; swatches/popup menu are still missing. |
+| Shape fill/stroke menu and swatches. | Fill/stroke colors, no border, dash styles. | implemented | Inspector and right-click popup now support fill swatches, stroke, no border, solid, and dash styles. |
 | Image insertion from file. | Reads image file and inserts image payload. | implemented | editor-next now provides file input and image slot insertion. |
 
 ## 9. Table Insertion/Editing Behavior
@@ -157,25 +157,25 @@ Additional comparison notes:
 | --- | --- | --- | --- |
 | Table insertion dialog. | Rows/columns with validation and Enter/Escape handling. | implemented | Dialog supports rows/columns, Enter submit, Escape/overlay close. |
 | Table slot creation. | Adds table layout content. | implemented | Store generates outer rect, cell fills, dividers, and text slots. |
-| Table cell selection. | Shows `.table-cell-selected`. | missing | No table cell selection. |
-| Table row/column divider handles. | `.table-adjust-handle` resize controls. | missing | No table divider handles. |
-| Table auto-fit/fill editing. | Functions exist in editor for fill/autofit behavior. | missing | No table edit panel. |
+| Table cell selection. | Shows `.table-cell-selected`. | partially implemented | Selecting generated table text/fill slots now shows a `.table-cell-selected` overlay; reference-style table group/cell hit behavior is still incomplete. |
+| Table row/column divider handles. | `.table-adjust-handle` resize controls. | partially implemented | Generated table row/column divider handles are now rendered and draggable; advanced table editing parity remains incomplete. |
+| Table auto-fit/fill editing. | Functions exist in editor for fill/autofit behavior. | partially implemented | Inspector now exposes table cell fill/clear for selected generated table cells; auto-fit and full table edit panel are still missing. |
 
 ## 10. Inspector Panel Fields
 
 | Item | Editor reference behavior | editor-next status | Notes |
 | --- | --- | --- | --- |
 | Canvas X/Y/W/H. | X/Y readonly, W/H editable. | implemented | Canvas inspector fields are now present and W/H commit patch-backed canvas updates. |
-| Select Canvas button. | Selects canvas for resize/edit. | missing | No canvas selection. |
+| Select Canvas button. | Selects canvas for resize/edit. | implemented | Canvas section now has Select Canvas and highlights the selected canvas state. |
 | Slot ID field. | Shows selected slot ID and can be used for patch target. | partially implemented | Inspector shows ID read-only; manual patch panel has editable Slot ID. |
-| Position/size X/Y/W/H. | Dedicated numeric fields commit layout patches. | partially implemented | Generic inspector edits primitive content fields if present; no normalized slot X/Y/W/H section yet. |
+| Position/size X/Y/W/H. | Dedicated numeric fields commit layout patches. | implemented | editor-next now has normalized X/Y/W/H fields for rect, text_box, image, text, circle, line, polygon, and path slots. |
 | Font field. | Dedicated font size numeric field. | partially implemented | Generic primitive `font_size` edit if present. |
-| Rotate field. | Dedicated transform/rotate field. | missing | No rotation field. |
+| Rotate field. | Dedicated transform/rotate field. | implemented | Inspector now exposes a dedicated Rotate field that patches the slot `transform` string and can clear it. |
 | Text edit field and Update Text. | Dedicated text section. | implemented | Dedicated text section now exists. |
 | Font smaller/larger. | A-/A+ buttons. | implemented | Dedicated controls now exist. |
 | Text align left/center/right. | Buttons. | partially implemented | Buttons exist for selected text/text_box; table-aware alignment remains missing. |
 | Patch JSON. | JSON textarea with Patch and Patch + Build. | implemented | editor-next has manual patch Apply and Build. |
-| DSL/JSON tabs. | Inspector tabs switch between DSL and artifacts. | partially implemented | editor-next has separate inspector DSL and stage artifact section, not tabs. |
+| DSL/JSON tabs. | Inspector tabs switch between DSL and artifacts. | implemented | editor-next inspector now switches between Properties, DSL, and JSON tabs. |
 | Artifact textareas. | Separate semantic/solvable/layout/renderer read-only textareas. | implemented | editor-next now renders separate read-only artifact panes. |
 
 ## 11. Problem Tree Behavior
@@ -212,7 +212,7 @@ Additional comparison notes:
 | Solvable view. | Dedicated read-only textarea. | implemented | Separate pane now exists. |
 | Layout view. | Dedicated read-only textarea. | implemented | Separate pane now exists. |
 | Renderer view. | Dedicated read-only textarea. | implemented | Separate pane now exists. |
-| JSON tab switching. | DSL/JSON tabs in inspector. | missing | No tabs. |
+| JSON tab switching. | DSL/JSON tabs in inspector. | implemented | Inspector now has Properties, DSL, and JSON tabs; JSON hosts generated artifacts/output. |
 
 ## 14. Build/Save/Format/Patch API Calls
 
@@ -255,42 +255,42 @@ Additional comparison notes:
 | Invalid manual patch JSON. | Caught and shown. | implemented | editor-next validates JSON object. |
 | Empty DSL save. | Backend rejects; UI surfaces error. | implemented | Via API client/footer. |
 | Dialog validation. | Clamps table/graph/model inputs. | implemented | New insert dialogs clamp numeric fields before patch generation. |
-| Per-action localized success/error messages. | Editor has specific `setStatus` messages. | missing | editor-next mostly shows generic loading/ready/error. |
+| Per-action localized success/error messages. | Editor has specific `setStatus` messages. | partially implemented | editor-next now stores action-specific footer messages for load/open/save/format/build/patch/tools/pick/snap/selection; message coverage and localization still differ from editor. |
 
 ## 17. Status Messages
 
 | Item | Editor reference behavior | editor-next status | Notes |
 | --- | --- | --- | --- |
-| Status text area. | Dedicated status box with operation-specific Korean messages. | partially implemented | Footer status is generic: Loading/Saving/Formatting/Building/Ready. |
+| Status text area. | Dedicated status box with operation-specific Korean messages. | partially implemented | Footer now includes operation-specific messages, but it is not the same dedicated editor status box and localization is incomplete. |
 | Build log. | Persistent stdout/stderr log. | partially implemented | Present only in artifact section after build output. |
-| Status bar hints. | Shows "Drag, resize, align, edit text" and shortcuts. | missing | Footer instead shows counts/history/dirty. |
-| Snap toggle message. | Shows enabled/disabled message. | missing | Active state only. |
-| Pick mode message. | Shows selected mode message. | missing | Active state only. |
-| Drag/keyboard save messages. | Shows movement/save progress. | missing | Generic loading only. |
-| Error class styling. | `.err`, `.ok` classes. | partially implemented | Footer error uses `<strong>`; no equivalent ok/error status classes. |
+| Status bar hints. | Shows "Drag, resize, align, edit text" and shortcuts. | partially implemented | Footer now shows tool/selection hints for select/pan/draw/pick/snap, but not the full reference shortcut help. |
+| Snap toggle message. | Shows enabled/disabled message. | implemented | Footer reports enabled/disabled snap behavior. |
+| Pick mode message. | Shows selected mode message. | implemented | Footer reports active pick mode. |
+| Drag/keyboard save messages. | Shows movement/save progress. | partially implemented | Keyboard and drag patches now surface live start/cancel and post-commit labels; no queued-save status. |
+| Error class styling. | `.err`, `.ok` classes. | implemented | Footer status and errors now use `.ok`/`.err` classes. |
 
 ## 18. CSS Classes Required For Visual Parity
 
 | Class/selector | Editor reference behavior | editor-next status | Notes |
 | --- | --- | --- | --- |
-| `.wrap.powerpoint`, `.ppt-shell`, `.ppt-titlebar`, `.ppt-ribbon`, `.ribbon-group`, `.ribbon-dropdown` | PowerPoint-like shell and ribbon. | missing | editor-next uses `.editor-next-shell` and a different dark toolbar. |
-| `.ppt-workspace`, `.ppt-sidebar`, `.ppt-stage`, `.ppt-inspector`, `.ppt-notes`, `.ppt-statusbar` | Three-pane layout with notes/statusbar. | partially implemented | Three-pane layout exists, but dimensions/styling differ and no notes/statusbar parity. |
+| `.wrap.powerpoint`, `.ppt-shell`, `.ppt-titlebar`, `.ppt-ribbon`, `.ribbon-group`, `.ribbon-dropdown` | PowerPoint-like shell and ribbon. | partially implemented | editor-next now carries the reference shell/ribbon class names alongside its own layout classes, but visual treatment still differs from editor. |
+| `.ppt-workspace`, `.ppt-sidebar`, `.ppt-stage`, `.ppt-inspector`, `.ppt-notes`, `.ppt-statusbar` | Three-pane layout with notes/statusbar. | partially implemented | Workspace/sidebar/stage/inspector/statusbar class aliases now exist; dimensions/styling differ and notes parity is still missing. |
 | `.pane-title`, `.pane-body` | Stable panel headers/bodies. | partially implemented | editor-next uses `.pane-heading`. |
 | `.icon-sprite`, `.icon-btn` | SVG icon toolbar buttons. | missing | editor-next uses text buttons. |
 | `.svg-box` and nested SVG pointer-event rules | Centered slide frame and interactive SVG hit behavior. | partially implemented | editor-next uses `.canvas-viewport`, `.canvas-surface`, `.svg-content`. |
 | `.slot-selected` | Selected SVG drop shadow. | implemented | CSS now exists for editor-next selected SVG elements. |
-| `.pick-disabled` | Dim/disable unpickable items. | partially implemented | CSS now exists; behavior that applies the class is still missing. |
-| `.canvas-guide` | Canvas selection guide. | missing | No canvas selection. |
-| `.selection-overlay`, `.selection-bounds`, `.selection-line`, `.selection-handle` | SVG selection overlay. | missing | editor-next uses HTML `.selection-box` and `.resize-handle`. |
-| `.path-edit-guide`, `.path-point-handle` | Path point editing. | missing | No path handles. |
-| `.table-adjust-handle`, `.table-cell-selected` | Table editing visuals. | missing | No table editing. |
+| `.pick-disabled` | Dim/disable unpickable items. | implemented | CSS exists and CanvasViewport applies the class to non-pickable SVG slot elements. |
+| `.canvas-guide` | Canvas selection guide. | implemented | CanvasViewport now renders `.canvas-guide` when `__canvas__` is selected. |
+| `.selection-overlay`, `.selection-bounds`, `.selection-line`, `.selection-handle` | SVG selection overlay. | partially implemented | editor-next uses HTML `.selection-box`, `.resize-handle`, and `.selection-line`; SVG overlay group and `.selection-handle` parity remain incomplete. |
+| `.path-edit-guide`, `.path-point-handle` | Path point editing. | implemented | Path guide and anchor handles now exist for selected supported path slots. |
+| `.table-adjust-handle`, `.table-cell-selected` | Table editing visuals. | partially implemented | `.table-cell-selected` overlay and draggable `.table-adjust-handle` controls now exist; exact reference styling/behavior still needs verification. |
 | `.inline-text-editor` | Inline text input. | partially implemented | Same class exists in editor-next, but CSS differs and is inline-styled. |
 | `.marquee` | Marquee selection rectangle. | partially implemented | editor-next uses `.marquee-box`. |
 | `.shape-gallery`, `.shape-category-title`, `.shape-grid`, `.shape-choice` | Shape gallery. | implemented | editor-next now defines and uses these gallery classes. |
-| `.shape-format-menu`, `.shape-format-row`, `.shape-swatch`, `.shape-format-btn` | Shape formatting popup. | partially implemented | `.shape-format-row`, `.shape-format-btn`, and color control styling exist in inspector; popup menu and swatches are still missing. |
+| `.shape-format-menu`, `.shape-format-row`, `.shape-swatch`, `.shape-format-btn` | Shape formatting popup. | implemented | Popup menu, swatches, format rows, and buttons now exist in editor-next. |
 | `.table-dialog`, `.table-dialog-panel`, `.table-dialog-fields`, `.table-dialog-actions` | Insertion dialogs. | implemented | Dialog classes and responsive styling now exist in editor-next. |
 | `.tree`, `.folder`, `.children.collapsed`, `.file-btn`, `.tree-tools`, `.tree-count` | Hierarchical problem tree. | partially implemented | Tree/folder/children/file classes now exist; `tree-tools` naming is still represented by editor-next filter controls rather than exact class parity. |
-| `.inspector-section`, `.field-grid`, `.single-field`, `.ppt-tabs`, `.ppt-tab-panel`, `.artifact-grid`, `.log`, `.err`, `.ok` | Inspector, tabs, artifacts, log/status styling. | partially implemented | `.field-grid`, canvas inspector styling, and `.artifact-grid` now exist; tabs/log status classes remain incomplete. |
+| `.inspector-section`, `.field-grid`, `.single-field`, `.ppt-tabs`, `.ppt-tab-panel`, `.artifact-grid`, `.log`, `.err`, `.ok` | Inspector, tabs, artifacts, log/status styling. | partially implemented | `.field-grid`, canvas inspector styling, `.ppt-tabs`, `.ppt-tab-panel`, `.artifact-grid`, `.err`, and `.ok` now exist; `.log` and exact inspector-section/single-field parity remain incomplete. |
 
 ## Short Technical Plan
 

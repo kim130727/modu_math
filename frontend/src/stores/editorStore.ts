@@ -32,6 +32,7 @@ export type GalleryShapeDefinitionKind = GalleryShapeKind | "composite";
 export type AlignMode = "left" | "center" | "right" | "top" | "middle" | "bottom";
 export type LayerMode = "front" | "back" | "forward" | "backward";
 export type TextAlignMode = "left" | "center" | "right";
+export type TableDividerAxis = "v" | "h";
 
 export interface GalleryShapeDefinition {
   id: string;
@@ -127,6 +128,7 @@ export interface EditorState {
   building: boolean;
   buildOutput: BuildOutputState | null;
   error: EditorError | null;
+  statusMessage: string;
   pendingDrawShape: GalleryShapeDefinition | null;
 }
 
@@ -151,6 +153,7 @@ const initialState: EditorState = {
   building: false,
   buildOutput: null,
   error: null,
+  statusMessage: "Ready",
   pendingDrawShape: null,
 };
 
@@ -167,18 +170,18 @@ export function createEditorStore() {
   let pasteSequence = 0;
 
   async function refreshProblems(): Promise<void> {
-    setState({ loading: true, error: null });
+    setState({ loading: true, error: null, statusMessage: "Loading problem list..." });
     try {
       const response = await listProblems();
-      setState({ problems: response.problems, loading: false });
+      setState({ problems: response.problems, loading: false, statusMessage: `Loaded ${response.problems.length} problems.` });
     } catch (error) {
-      setState({ loading: false, error: toEditorError(error) });
+      setState({ loading: false, error: toEditorError(error), statusMessage: "Could not load problem list." });
     }
   }
 
   async function openProblem(problemId: string): Promise<void> {
     if (!problemId.trim()) return;
-    setState({ loading: true, error: null, selectedIds: clearSelection() });
+    setState({ loading: true, error: null, selectedIds: clearSelection(), statusMessage: "Opening problem..." });
     try {
       const detail = await loadProblem(problemId.trim());
       setState({
@@ -197,18 +200,19 @@ export function createEditorStore() {
         formatting: false,
         building: false,
         buildOutput: null,
+        statusMessage: "Problem opened.",
       });
       const url = new URL(window.location.href);
       url.searchParams.set("problem", detail.problem_id);
       window.history.replaceState(null, "", url);
     } catch (error) {
-      setState({ loading: false, error: toEditorError(error) });
+      setState({ loading: false, error: toEditorError(error), statusMessage: "Could not open problem." });
     }
   }
 
   async function patchAndBuild(patches: LayoutPatch[], options: { format?: boolean } = {}): Promise<boolean> {
     if (!state.problemId || patches.length === 0) return false;
-    setState({ loading: true, error: null });
+    setState({ loading: true, error: null, statusMessage: "Applying changes..." });
     try {
       const response = await applyLayoutPatchesAndBuild(state.problemId, patches, options);
       const current = state.document?.detail;
@@ -225,10 +229,10 @@ export function createEditorStore() {
         svg_url: current?.svg_url ?? null,
       };
       applyProblemDetail(detail);
-      setState({ dirty: false, loading: false });
+      setState({ dirty: false, loading: false, statusMessage: "Changes applied." });
       return true;
     } catch (error) {
-      setState({ loading: false, error: toEditorError(error) });
+      setState({ loading: false, error: toEditorError(error), statusMessage: "Could not apply changes." });
       return false;
     }
   }
@@ -244,18 +248,21 @@ export function createEditorStore() {
     if (committed) {
       const entry: HistorySnapshot<LayoutPatch[]> = { label, before: inversePatches, after: patches };
       setState("history", pushHistoryEntry(state.history, entry));
+      setState({ statusMessage: `${label} complete.` });
     }
     return committed;
   }
 
   async function moveSlots(slotIds: string[], dx: number, dy: number, label = "Move"): Promise<boolean> {
     if (slotIds.length === 0 || state.loading) return false;
-    const patches: LayoutPatch[] = slotIds.map((slotId) => ({
+    const movableIds = expandGeneratedMoveIds(slotIds).filter((slotId) => !!findSlot(slotId));
+    if (!movableIds.length) return false;
+    const patches: LayoutPatch[] = movableIds.map((slotId) => ({
       target: slotId,
       op: "update",
       value: { move_dx: dx, move_dy: dy },
     }));
-    const inversePatches: LayoutPatch[] = slotIds.map((slotId) => ({
+    const inversePatches: LayoutPatch[] = movableIds.map((slotId) => ({
       target: slotId,
       op: "update",
       value: { move_dx: -dx, move_dy: -dy },
@@ -312,6 +319,13 @@ export function createEditorStore() {
     return commitSlotPropertyPatch("Bounds edit", slot, properties);
   }
 
+  async function updateSelectedTransform(transform: string): Promise<boolean> {
+    if (state.selectedIds.length !== 1 || state.loading) return false;
+    const slot = findSlot(state.selectedIds[0]);
+    if (!slot) return false;
+    return commitSlotPropertyPatch("Transform edit", slot, { transform: transform.trim() });
+  }
+
   async function updateSelectedText(text: string): Promise<boolean> {
     if (state.selectedIds.length !== 1 || state.loading) return false;
     const slot = findSlot(state.selectedIds[0]);
@@ -354,6 +368,71 @@ export function createEditorStore() {
     if (!slots.length || state.loading) return false;
     const value = strokeDasharray ? { stroke_dasharray: strokeDasharray, stroke_width: 1.5 } : { stroke_dasharray: "" };
     return commitMultiSlotPropertyPatch("Shape dash", slots, value);
+  }
+
+  async function applySelectedTableCellFill(fill: string): Promise<boolean> {
+    if (!state.selectedIds.length || state.loading) return false;
+    const fillSlots = state.selectedIds
+      .map((slotId) => tableCellFillSlotId(slotId))
+      .filter((slotId): slotId is string => !!slotId)
+      .map((slotId) => findSlot(slotId))
+      .filter((slot): slot is LayoutSlot => !!slot);
+    if (!fillSlots.length) return false;
+    return commitMultiSlotPropertyPatch("Table cell fill", fillSlots, { fill });
+  }
+
+  async function updateTableDivider(base: string, axis: TableDividerAxis, index: number, position: number): Promise<boolean> {
+    if (!state.document || state.loading || !base.startsWith("slot.table")) return false;
+    const lineSlot = findSlot(`${base}.${axis}${index}`);
+    if (!lineSlot || lineSlot.kind !== "line") return false;
+    const nextPosition = roundedDelta(position);
+    const patches: LayoutPatch[] = [];
+    const inversePatches: LayoutPatch[] = [];
+    const addUpdate = (slotId: string, properties: Record<string, unknown>) => {
+      const slot = findSlot(slotId);
+      if (!slot || !Object.keys(properties).length) return;
+      patches.push({ target: slotId, op: "update", value: properties });
+      inversePatches.push({ target: slotId, op: "update", value: inverseAnyProperties(slot, properties) });
+    };
+
+    if (axis === "v") {
+      const rows = tableRowsForBase(base);
+      const clamped = clampTableVerticalDivider(base, index, nextPosition, rows);
+      addUpdate(lineSlot.id, { x1: clamped, x2: clamped });
+      for (const row of rows) {
+        const leftFill = findSlot(`${base}.r${row}c${index}.fill`);
+        const rightFill = findSlot(`${base}.r${row}c${index + 1}.fill`);
+        const leftBox = leftFill ? slotBounds(leftFill) : null;
+        const rightBox = rightFill ? slotBounds(rightFill) : null;
+        if (!leftFill || !rightFill || !leftBox || !rightBox) continue;
+        const rightEdge = rightBox.x + rightBox.width;
+        const leftWidth = Math.max(4, roundedDelta(clamped - leftBox.x));
+        const rightWidth = Math.max(4, roundedDelta(rightEdge - clamped));
+        addUpdate(leftFill.id, { width: leftWidth });
+        addUpdate(rightFill.id, { x: clamped, width: rightWidth });
+        addUpdate(`${base}.r${row}c${index}`, { x: roundedDelta(leftBox.x + leftWidth / 2), max_width: Math.max(8, roundedDelta(leftWidth - 20)) });
+        addUpdate(`${base}.r${row}c${index + 1}`, { x: roundedDelta(clamped + rightWidth / 2), max_width: Math.max(8, roundedDelta(rightWidth - 20)) });
+      }
+    } else {
+      const cols = tableColsForBase(base);
+      const clamped = clampTableHorizontalDivider(base, index, nextPosition, cols);
+      addUpdate(lineSlot.id, { y1: clamped, y2: clamped });
+      for (const col of cols) {
+        const topFill = findSlot(`${base}.r${index}c${col}.fill`);
+        const bottomFill = findSlot(`${base}.r${index + 1}c${col}.fill`);
+        const topBox = topFill ? slotBounds(topFill) : null;
+        const bottomBox = bottomFill ? slotBounds(bottomFill) : null;
+        if (!topFill || !bottomFill || !topBox || !bottomBox) continue;
+        const bottomEdge = bottomBox.y + bottomBox.height;
+        const topHeight = Math.max(4, roundedDelta(clamped - topBox.y));
+        const bottomHeight = Math.max(4, roundedDelta(bottomEdge - clamped));
+        addUpdate(topFill.id, { height: topHeight });
+        addUpdate(bottomFill.id, { y: clamped, height: bottomHeight });
+        addUpdate(`${base}.r${index}c${col}`, { y: roundedDelta(topBox.y + topHeight / 2 + tableTextBaselineOffset(`${base}.r${index}c${col}`)) });
+        addUpdate(`${base}.r${index + 1}c${col}`, { y: roundedDelta(clamped + bottomHeight / 2 + tableTextBaselineOffset(`${base}.r${index + 1}c${col}`)) });
+      }
+    }
+    return commitHistoryPatches("Table divider resize", patches, inversePatches, { format: false });
   }
 
   async function updateCanvasSize(width: number, height: number): Promise<boolean> {
@@ -482,11 +561,11 @@ export function createEditorStore() {
 
   function beginDrawShape(definition: GalleryShapeDefinition): void {
     if (!state.document || state.loading || definition.kind === "composite") return;
-    setState({ pendingDrawShape: definition, activeTool: "select", selectedIds: clearSelection() });
+    setState({ pendingDrawShape: definition, activeTool: "select", selectedIds: clearSelection(), statusMessage: `Draw ${definition.label}: drag on the canvas.` });
   }
 
   function cancelDrawShape(): void {
-    setState({ pendingDrawShape: null });
+    setState({ pendingDrawShape: null, statusMessage: "Drawing canceled." });
   }
 
   async function insertDrawnShape(definition: GalleryShapeDefinition, points: Point[]): Promise<boolean> {
@@ -549,6 +628,7 @@ export function createEditorStore() {
       .filter((slot): slot is LayoutSlot => slot !== null)
       .map((slot) => structuredClone(slot));
     pasteSequence = 0;
+    if (copyBuffer.length > 0) setState({ statusMessage: `Copied ${copyBuffer.length} slot${copyBuffer.length === 1 ? "" : "s"}.` });
     return copyBuffer.length > 0;
   }
 
@@ -625,27 +705,27 @@ export function createEditorStore() {
 
   async function saveDslDraft(): Promise<boolean> {
     if (!state.problemId || state.saving || state.loading) return false;
-    setState({ saving: true, error: null });
+    setState({ saving: true, error: null, statusMessage: "Saving DSL..." });
     try {
       const response = await saveDsl(state.problemId, state.dslDraft);
       const current = state.document?.detail;
       if (current) {
         applyProblemDetail({ ...current, problem_id: response.problem_id, dsl: response.dsl });
       }
-      setState({ saving: false, dirty: false });
+      setState({ saving: false, dirty: false, statusMessage: "DSL saved." });
       return true;
     } catch (error) {
-      setState({ saving: false, error: toEditorError(error) });
+      setState({ saving: false, error: toEditorError(error), statusMessage: "Could not save DSL." });
       return false;
     }
   }
 
   async function formatDslDraft(): Promise<boolean> {
     if (!state.problemId || state.formatting || state.loading) return false;
-    setState({ formatting: true, error: null });
+    setState({ formatting: true, error: null, statusMessage: "Formatting DSL..." });
     const saved = await saveDslDraft();
     if (!saved) {
-      setState({ formatting: false });
+      setState({ formatting: false, statusMessage: "Could not format DSL." });
       return false;
     }
     try {
@@ -654,26 +734,26 @@ export function createEditorStore() {
       if (current) {
         applyProblemDetail({ ...current, problem_id: response.problem_id, dsl: response.dsl });
       }
-      setState({ formatting: false, dirty: false });
+      setState({ formatting: false, dirty: false, statusMessage: "DSL formatted." });
       return true;
     } catch (error) {
-      setState({ formatting: false, error: toEditorError(error) });
+      setState({ formatting: false, error: toEditorError(error), statusMessage: "Could not format DSL." });
       return false;
     }
   }
 
   async function buildCurrentProblem(): Promise<boolean> {
     if (!state.problemId || state.building || state.loading) return false;
-    setState({ building: true, error: null, buildOutput: null });
+    setState({ building: true, error: null, buildOutput: null, statusMessage: "Building artifacts..." });
     try {
       const response = await buildProblem(state.problemId);
       applyBuildResponse(response);
-      setState({ building: false });
+      setState({ building: false, statusMessage: response.ok ? "Build complete." : "Build finished with errors." });
       await refreshProblems();
       return true;
     } catch (error) {
       const apiError = toEditorError(error);
-      setState({ building: false, error: apiError });
+      setState({ building: false, error: apiError, statusMessage: "Build failed." });
       if (error instanceof EditorApiError) {
         const payload = error.payload as Partial<BuildProblemResponse> | null;
         if (payload?.stdout !== undefined || payload?.stderr !== undefined || payload?.error) {
@@ -695,24 +775,24 @@ export function createEditorStore() {
     if (!state.problemId || state.loading) return false;
     const slotId = target.trim();
     if (!slotId) {
-      setState({ error: { message: "Slot id is required.", category: "DSL_PATCH_ERROR", status: 400 } });
+      setState({ error: { message: "Slot id is required.", category: "DSL_PATCH_ERROR", status: 400 }, statusMessage: "Patch needs a slot id." });
       return false;
     }
     let value: unknown;
     try {
       value = JSON.parse(valueSource);
     } catch (error) {
-      setState({ error: { message: `Invalid patch JSON: ${String(error)}`, category: "DSL_PATCH_ERROR", status: 400 } });
+      setState({ error: { message: `Invalid patch JSON: ${String(error)}`, category: "DSL_PATCH_ERROR", status: 400 }, statusMessage: "Patch JSON is invalid." });
       return false;
     }
     if (!isRecord(value)) {
-      setState({ error: { message: "Patch value must be a JSON object.", category: "DSL_PATCH_ERROR", status: 400 } });
+      setState({ error: { message: "Patch value must be a JSON object.", category: "DSL_PATCH_ERROR", status: 400 }, statusMessage: "Patch value must be an object." });
       return false;
     }
     const patches: LayoutPatch[] = [{ target: slotId, op: "update", value }];
     if (build) return patchAndBuild(patches, { format: false });
 
-    setState({ loading: true, error: null });
+    setState({ loading: true, error: null, statusMessage: "Applying manual patch..." });
     try {
       const response = await applyLayoutPatches(state.problemId, patches, { format: false });
       const current = state.document?.detail;
@@ -728,9 +808,10 @@ export function createEditorStore() {
           stderr: "",
         },
       });
+      setState({ statusMessage: "Manual patch applied." });
       return true;
     } catch (error) {
-      setState({ loading: false, error: toEditorError(error) });
+      setState({ loading: false, error: toEditorError(error), statusMessage: "Could not apply manual patch." });
       return false;
     }
   }
@@ -740,13 +821,14 @@ export function createEditorStore() {
     const previousHistory = state.history;
     const { entry, history } = popUndoEntry(state.history);
     if (!entry) return false;
-    setState({ history, historyBusy: true });
+    setState({ history, historyBusy: true, statusMessage: `Undoing ${entry.label}...` });
     const applied = await patchAndBuild(entry.before, { format: false });
     setState({ historyBusy: false });
     if (!applied) {
       setState("history", previousHistory);
       return false;
     }
+    setState({ statusMessage: `Undid ${entry.label}.` });
     return true;
   }
 
@@ -755,13 +837,14 @@ export function createEditorStore() {
     const previousHistory = state.history;
     const { entry, history } = popRedoEntry(state.history);
     if (!entry) return false;
-    setState({ history, historyBusy: true });
+    setState({ history, historyBusy: true, statusMessage: `Redoing ${entry.label}...` });
     const applied = await patchAndBuild(entry.after, { format: false });
     setState({ historyBusy: false });
     if (!applied) {
       setState("history", previousHistory);
       return false;
     }
+    setState({ statusMessage: `Redid ${entry.label}.` });
     return true;
   }
 
@@ -844,6 +927,36 @@ export function createEditorStore() {
     return commitHistoryPatches(label, patches, inversePatches, { format: false });
   }
 
+  function expandGeneratedMoveIds(slotIds: string[]): string[] {
+    const expanded = new Set<string>();
+    const slots = state.document?.slots ?? [];
+    for (const slotId of slotIds) {
+      const base = generatedGroupBase(slotId);
+      if (!base) {
+        expanded.add(slotId);
+        continue;
+      }
+      const groupIds = slots.filter((slot) => slot.id === base || slot.id.startsWith(`${base}.`)).map((slot) => slot.id);
+      if (groupIds.length) groupIds.forEach((id) => expanded.add(id));
+      else expanded.add(slotId);
+    }
+    return [...expanded];
+  }
+
+  function generatedGroupBase(slotId: string): string | null {
+    const match = slotId.match(/^(slot\.(?:table|graph_paper|bar_model|tick_bar|mixed_fraction|fraction)(?:_\d+)?)(?:\.|$)/);
+    return match?.[1] ?? null;
+  }
+
+  function generatedSelectionIds(slotId: string): string[] {
+    const match = slotId.match(/^(slot\.(?:graph_paper|bar_model|tick_bar|mixed_fraction|fraction)(?:_\d+)?)(?:\.|$)/);
+    const base = match?.[1];
+    if (!base) return [];
+    return (state.document?.slots ?? [])
+      .filter((slot) => slot.id === base || slot.id.startsWith(`${base}.`))
+      .map((slot) => slot.id);
+  }
+
   function inverseAnyProperties(slot: LayoutSlot, properties: Record<string, unknown>): Record<string, unknown> {
     const inverse: Record<string, unknown> = {};
     const content = slot.content as Record<string, unknown>;
@@ -881,6 +994,75 @@ export function createEditorStore() {
       .filter((slot): slot is LayoutSlot => !!slot && ["rect", "circle", "line", "polygon", "path", "text_box"].includes(slot.kind));
   }
 
+  function tableCellFillSlotId(slotId: string): string | null {
+    const fillMatch = slotId.match(/^(slot\.table(?:_\d+)?\.r\d+c\d+)\.fill$/);
+    if (fillMatch) return slotId;
+    const textMatch = slotId.match(/^(slot\.table(?:_\d+)?\.r\d+c\d+)$/);
+    if (textMatch) return `${textMatch[1]}.fill`;
+    return null;
+  }
+
+  function tableRowsForBase(base: string): number[] {
+    return tableIndicesForBase(base, "row");
+  }
+
+  function tableColsForBase(base: string): number[] {
+    return tableIndicesForBase(base, "col");
+  }
+
+  function tableIndicesForBase(base: string, axis: "row" | "col"): number[] {
+    const pattern = new RegExp(`^${escapeRegExp(base)}\\.r(\\d+)c(\\d+)\\.fill$`);
+    const values = new Set<number>();
+    for (const slot of state.document?.slots ?? []) {
+      const match = slot.id.match(pattern);
+      if (!match) continue;
+      values.add(Number(match[axis === "row" ? 1 : 2]));
+    }
+    return [...values].filter(Number.isFinite).sort((a, b) => a - b);
+  }
+
+  function clampTableVerticalDivider(base: string, col: number, position: number, rows: number[]): number {
+    let min = -Infinity;
+    let max = Infinity;
+    for (const row of rows) {
+      const leftSlot = findSlot(`${base}.r${row}c${col}.fill`);
+      const rightSlot = findSlot(`${base}.r${row}c${col + 1}.fill`);
+      const left = leftSlot ? slotBounds(leftSlot) : null;
+      const right = rightSlot ? slotBounds(rightSlot) : null;
+      if (!left || !right) continue;
+      min = Math.max(min, left.x + 12);
+      max = Math.min(max, right.x + right.width - 12);
+    }
+    if (!Number.isFinite(min) || !Number.isFinite(max) || min > max) return roundedDelta(position);
+    return roundedDelta(Math.max(min, Math.min(max, position)));
+  }
+
+  function clampTableHorizontalDivider(base: string, row: number, position: number, cols: number[]): number {
+    let min = -Infinity;
+    let max = Infinity;
+    for (const col of cols) {
+      const topSlot = findSlot(`${base}.r${row}c${col}.fill`);
+      const bottomSlot = findSlot(`${base}.r${row + 1}c${col}.fill`);
+      const top = topSlot ? slotBounds(topSlot) : null;
+      const bottom = bottomSlot ? slotBounds(bottomSlot) : null;
+      if (!top || !bottom) continue;
+      min = Math.max(min, top.y + 12);
+      max = Math.min(max, bottom.y + bottom.height - 12);
+    }
+    if (!Number.isFinite(min) || !Number.isFinite(max) || min > max) return roundedDelta(position);
+    return roundedDelta(Math.max(min, Math.min(max, position)));
+  }
+
+  function tableTextBaselineOffset(slotId: string): number {
+    const slot = findSlot(slotId);
+    const fontSize = Number((slot?.content as Record<string, unknown> | undefined)?.font_size ?? 22);
+    return Number.isFinite(fontSize) ? fontSize * 0.35 : 7.7;
+  }
+
+  function escapeRegExp(value: string): string {
+    return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  }
+
   function preferredRegionId(): string | null {
     const regions = state.document?.detail.layout?.regions ?? [];
     return (
@@ -904,7 +1086,7 @@ export function createEditorStore() {
       .filter((item): item is { slot: LayoutSlot; bounds: Box } => item !== null);
   }
 
-  function boundsPropertiesForSlot(slot: LayoutSlot, box: Box): Record<string, number> | null {
+  function boundsPropertiesForSlot(slot: LayoutSlot, box: Box): Record<string, unknown> | null {
     const x = roundedDelta(box.x);
     const y = roundedDelta(box.y);
     const width = Math.max(1, roundedDelta(box.width));
@@ -938,7 +1120,78 @@ export function createEditorStore() {
         y2: topToBottom ? y + height : y,
       };
     }
+    if (slot.kind === "polygon") {
+      const content = slot.content as Record<string, unknown>;
+      const current = slotBounds(slot);
+      const points = Array.isArray(content.points) ? content.points : [];
+      if (!current || !points.length) return null;
+      return {
+        points: points
+          .map((point) => (Array.isArray(point) && point.length === 2 ? [Number(point[0]), Number(point[1])] : null))
+          .filter((point): point is [number, number] => !!point && point.every(Number.isFinite))
+          .map(([px, py]) => scalePointBetweenBoxes(px, py, current, { x, y, width, height })),
+      };
+    }
+    if (slot.kind === "path") {
+      const content = slot.content as Record<string, unknown>;
+      const current = slotBounds(slot);
+      if (!current || typeof content.d !== "string") return null;
+      return { d: transformPathBetweenBoxes(content.d, current, { x, y, width, height }) };
+    }
     return null;
+  }
+
+  function scalePointBetweenBoxes(px: number, py: number, from: Box, to: Box): [number, number] {
+    const sx = to.width / Math.max(from.width, 1);
+    const sy = to.height / Math.max(from.height, 1);
+    return [roundedDelta(to.x + (px - from.x) * sx), roundedDelta(to.y + (py - from.y) * sy)];
+  }
+
+  function transformPathBetweenBoxes(d: string, from: Box, to: Box): string {
+    const sx = to.width / Math.max(from.width, 1);
+    const sy = to.height / Math.max(from.height, 1);
+    const tokens = d.match(/[a-zA-Z]|[-+]?(?:\d+(?:\.\d*)?|\.\d+)/g) ?? [];
+    const output: string[] = [];
+    let index = 0;
+    let command = "";
+    const isCommand = (token: string) => /^[a-zA-Z]$/.test(token);
+    const readNumber = () => Number(tokens[index++]);
+    const fmt = (value: number) => String(roundedDelta(value));
+    const mapX = (value: number, relative: boolean) => fmt(relative ? value * sx : to.x + (value - from.x) * sx);
+    const mapY = (value: number, relative: boolean) => fmt(relative ? value * sy : to.y + (value - from.y) * sy);
+    const mapRx = (value: number) => fmt(value * sx);
+    const mapRy = (value: number) => fmt(value * sy);
+
+    while (index < tokens.length) {
+      const token = tokens[index++];
+      if (isCommand(token)) {
+        command = token;
+        output.push(token);
+      } else {
+        index -= 1;
+      }
+
+      const upper = command.toUpperCase();
+      const relative = command !== upper;
+      if (upper === "M" || upper === "L" || upper === "T") {
+        while (index < tokens.length && !isCommand(tokens[index])) output.push(mapX(readNumber(), relative), mapY(readNumber(), relative));
+      } else if (upper === "H") {
+        while (index < tokens.length && !isCommand(tokens[index])) output.push(mapX(readNumber(), relative));
+      } else if (upper === "V") {
+        while (index < tokens.length && !isCommand(tokens[index])) output.push(mapY(readNumber(), relative));
+      } else if (upper === "C") {
+        while (index < tokens.length && !isCommand(tokens[index])) output.push(mapX(readNumber(), relative), mapY(readNumber(), relative), mapX(readNumber(), relative), mapY(readNumber(), relative), mapX(readNumber(), relative), mapY(readNumber(), relative));
+      } else if (upper === "S" || upper === "Q") {
+        while (index < tokens.length && !isCommand(tokens[index])) output.push(mapX(readNumber(), relative), mapY(readNumber(), relative), mapX(readNumber(), relative), mapY(readNumber(), relative));
+      } else if (upper === "A") {
+        while (index < tokens.length && !isCommand(tokens[index])) output.push(mapRx(readNumber()), mapRy(readNumber()), fmt(readNumber()), fmt(readNumber()), fmt(readNumber()), mapX(readNumber(), relative), mapY(readNumber(), relative));
+      } else if (upper === "Z") {
+        continue;
+      } else {
+        while (index < tokens.length && !isCommand(tokens[index])) output.push(tokens[index++]);
+      }
+    }
+    return output.join(" ");
   }
 
   function alignmentMetric(mode: AlignMode, boxes: Box[]): number {
@@ -1646,15 +1899,23 @@ export function createEditorStore() {
   }
 
   function selectSlot(slotId: string, append = false): void {
+    if (!append) {
+      const groupIds = generatedSelectionIds(slotId);
+      if (groupIds.length > 1) {
+        setState({ selectedIds: groupIds, statusMessage: `Selected ${groupIds.length} generated slots.` });
+        return;
+      }
+    }
     setState("selectedIds", (current) => toggleSelection(current, slotId, append));
+    setState({ statusMessage: append ? `Toggled ${slotId}.` : `Selected ${slotId}.` });
   }
 
   function clearSelectedSlots(): void {
-    setState({ selectedIds: clearSelection() });
+    setState({ selectedIds: clearSelection(), statusMessage: "Selection cleared." });
   }
 
   function setSelectedSlots(slotIds: string[]): void {
-    setState({ selectedIds: slotIds });
+    setState({ selectedIds: slotIds, statusMessage: slotIds.length ? `Selected ${slotIds.length} slots.` : "Selection cleared." });
   }
 
   function setZoom(zoom: number): void {
@@ -1667,19 +1928,36 @@ export function createEditorStore() {
   }
 
   function setActiveTool(activeTool: EditorTool): void {
-    setState({ activeTool });
+    setState({ activeTool, statusMessage: activeTool === "pan" ? "Pan tool active. Drag the canvas to move the view." : "Select tool active. Drag objects to move or resize them." });
   }
 
   function setPickMode(pickMode: EditorPickMode): void {
-    setState({ pickMode, activeTool: "select" });
+    setState({ pickMode, activeTool: "select", statusMessage: pickModeStatus(pickMode) });
   }
 
   function setSnapEnabled(snapEnabled: boolean): void {
-    setState({ snapEnabled });
+    setState({ snapEnabled, statusMessage: snapEnabled ? "Snap enabled: movement uses 5px increments." : "Snap disabled: movement uses free positioning." });
   }
 
   function resetViewport(): void {
-    setState({ zoom: 1, panX: 0, panY: 0 });
+    setState({ zoom: 1, panX: 0, panY: 0, statusMessage: "Viewport reset." });
+  }
+
+  function setStatusMessage(statusMessage: string): void {
+    setState({ statusMessage });
+  }
+
+  function pickModeStatus(pickMode: EditorPickMode): string {
+    switch (pickMode) {
+      case "text":
+        return "Pick mode: text only.";
+      case "shape":
+        return "Pick mode: shapes only.";
+      case "linepath":
+        return "Pick mode: lines and paths only.";
+      default:
+        return "Pick mode: all objects.";
+    }
   }
 
   return {
@@ -1693,12 +1971,15 @@ export function createEditorStore() {
     deleteSelectedSlots,
     updateSlotProperties,
     updateSelectedBounds,
+    updateSelectedTransform,
     updateSelectedText,
     nudgeSelectedFontSize,
     alignSelectedText,
     applyShapeFill,
     applyShapeStroke,
     applyShapeDash,
+    applySelectedTableCellFill,
+    updateTableDivider,
     updateCanvasSize,
     alignSelectedSlots,
     layerSelectedSlots,
@@ -1731,6 +2012,7 @@ export function createEditorStore() {
     setPickMode,
     setSnapEnabled,
     resetViewport,
+    setStatusMessage,
   };
 }
 

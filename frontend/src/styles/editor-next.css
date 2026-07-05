@@ -47,6 +47,21 @@ button:disabled {
   color: #f8fafc;
 }
 
+.editor-next-status {
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.editor-next-status .ok {
+  color: #bbf7d0;
+  font-weight: 700;
+}
+
+.editor-next-status .err {
+  color: #fecaca;
+  font-weight: 700;
+}
+
 .toolbar-title {
   display: flex;
   align-items: baseline;
@@ -66,6 +81,14 @@ button:disabled {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
+}
+
+.ppt-ribbon {
+  flex-wrap: wrap;
+}
+
+.ribbon-group {
+  min-width: 0;
 }
 
 .ribbon-dropdown {
@@ -235,8 +258,41 @@ button:disabled {
   min-width: 0;
   min-height: 0;
   display: grid;
-  grid-template-rows: minmax(320px, 1fr) minmax(160px, 30vh);
+  grid-template-rows: minmax(320px, 1fr);
   background: #e7ebf0;
+}
+
+.ppt-tabs {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #c7d0da;
+}
+
+.ppt-tabs button {
+  height: 32px;
+  padding: 0 10px;
+  border-radius: 4px 4px 0 0;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.ppt-tabs button.active,
+.ppt-tabs button[aria-selected="true"] {
+  border-color: #2563eb;
+  background: #e8f0ff;
+  color: #17202a;
+}
+
+.ppt-tab-panel {
+  display: grid;
+  gap: 12px;
+}
+
+.ppt-tab-panel .artifact-section {
+  padding: 0;
+  border-top: 0;
+  background: transparent;
 }
 
 .pane-heading,
@@ -429,6 +485,35 @@ button:disabled {
   stroke-dasharray: 6 4;
 }
 
+.table-cell-selected {
+  position: absolute;
+  border: 2px solid #f97316;
+  background: rgba(249, 115, 22, 0.14);
+  pointer-events: none;
+  z-index: 5;
+}
+
+.table-adjust-handle {
+  position: absolute;
+  pointer-events: auto;
+  z-index: 7;
+  background: rgba(37, 99, 235, 0.16);
+  border: 1px solid #2563eb;
+  border-radius: 2px;
+}
+
+.table-adjust-handle-v {
+  margin-left: -7px;
+  transform: translateY(-50%);
+  cursor: col-resize;
+}
+
+.table-adjust-handle-h {
+  margin-top: -7px;
+  transform: translateX(-50%);
+  cursor: row-resize;
+}
+
 .canvas-surface.is-dragging {
   cursor: move;
 }
@@ -467,6 +552,14 @@ button:disabled {
   box-shadow: 0 0 0 1px #ffffff;
 }
 
+.canvas-guide {
+  position: absolute;
+  border: 2px dashed #0f766e;
+  background: rgba(15, 118, 110, 0.1);
+  pointer-events: none;
+  z-index: 4;
+}
+
 .resize-handle {
   position: absolute;
   width: 9px;
@@ -497,6 +590,84 @@ button:disabled {
 .resize-handle-ne,
 .resize-handle-sw {
   cursor: nesw-resize;
+}
+
+.selection-line {
+  position: absolute;
+  height: 0;
+  border-top: 2px dashed #2563eb;
+  pointer-events: none;
+  transform-origin: 0 50%;
+}
+
+.line-endpoint-handle {
+  position: absolute;
+  width: 11px;
+  height: 11px;
+  margin-left: -5.5px;
+  margin-top: -5.5px;
+  pointer-events: auto;
+  cursor: crosshair;
+  background: #ffffff;
+  border: 2px solid #2563eb;
+  border-radius: 999px;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.75);
+}
+
+.line-rotate-stem {
+  position: absolute;
+  height: 0;
+  border-top: 1px dashed #0f766e;
+  pointer-events: none;
+  transform-origin: 0 50%;
+}
+
+.line-rotate-handle {
+  position: absolute;
+  width: 13px;
+  height: 13px;
+  margin-left: -6.5px;
+  margin-top: -6.5px;
+  pointer-events: auto;
+  cursor: grab;
+  background: #ffffff;
+  border: 2px solid #0f766e;
+  border-radius: 999px;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.75);
+}
+
+.line-rotate-handle:active {
+  cursor: grabbing;
+}
+
+.path-edit-guide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.path-edit-guide polyline {
+  fill: none;
+  stroke: #0f766e;
+  stroke-width: 1.5;
+  stroke-dasharray: 4 4;
+}
+
+.path-point-handle {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  margin-left: -5px;
+  margin-top: -5px;
+  pointer-events: auto;
+  cursor: crosshair;
+  background: #ffffff;
+  border: 2px solid #0f766e;
+  border-radius: 999px;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.75);
 }
 
 .marquee-box {
@@ -640,6 +811,51 @@ button:disabled {
   border: 1px solid #b8c1ca;
   border-radius: 4px;
   background: #ffffff;
+}
+
+.shape-format-menu {
+  position: fixed;
+  z-index: 120;
+  display: none;
+  min-width: 226px;
+  border: 1px solid #b7bdc7;
+  border-radius: 4px;
+  background: #ffffff;
+  box-shadow: 0 14px 28px rgba(15, 23, 42, 0.18);
+  padding: 8px;
+  color: #1f2937;
+  font-size: 12px;
+}
+
+.shape-format-menu.open {
+  display: block;
+}
+
+.shape-format-title {
+  padding: 2px 4px 7px;
+  color: #475569;
+  font-weight: 700;
+}
+
+.shape-format-swatches {
+  display: grid;
+  grid-template-columns: repeat(8, 20px);
+  gap: 5px;
+  padding: 4px;
+}
+
+.shape-swatch {
+  width: 20px;
+  height: 20px;
+  border: 1px solid #cbd5e1;
+  border-radius: 3px;
+  padding: 0;
+}
+
+.shape-swatch.transparent {
+  background:
+    linear-gradient(45deg, transparent 46%, #ef4444 47%, #ef4444 53%, transparent 54%),
+    #ffffff;
 }
 
 .dsl-section textarea {
@@ -790,6 +1006,10 @@ button:disabled {
 
 .slot-bounds-grid {
   margin: 10px 0;
+}
+
+.slot-transform-field {
+  margin: 0 0 10px;
 }
 
 .tree {

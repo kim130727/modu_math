@@ -7,7 +7,7 @@ import {
 } from "../editor-core/selection/selectionManager";
 import { slotBounds } from "../editor-core/transform/bounds";
 import { clientPointToCanvasPoint } from "../editor-core/transform/coordinateTransform";
-import type { EditorStore } from "../stores/editorStore";
+import type { EditorStore, TableDividerAxis } from "../stores/editorStore";
 import type { LayoutSlot } from "../types/layout";
 import { LayoutSvgPreview } from "./LayoutSvgPreview";
 import { SvgContent } from "./SvgContent";
@@ -21,6 +21,8 @@ type CanvasInteraction =
   | { kind: "pan"; pointerId: number; startClient: Point; startPan: Point }
   | { kind: "drag"; pointerId: number; start: Point; current: Point; selectedIds: string[]; moved: boolean }
   | { kind: "draw"; pointerId: number; start: Point; current: Point; points: Point[]; moved: boolean }
+  | { kind: "rotate-line"; pointerId: number; start: Point; current: Point; slotId: string; center: Point; length: number; snapAngle: boolean; moved: boolean }
+  | { kind: "table-divider"; pointerId: number; start: Point; current: Point; base: string; axis: TableDividerAxis; index: number; moved: boolean }
   | { kind: "resize"; pointerId: number; start: Point; current: Point; handle: ResizeHandleKey; slotId: string; startBox: Box; moved: boolean };
 
 const RESIZE_HANDLES = [
@@ -33,7 +35,9 @@ const RESIZE_HANDLES = [
   { key: "sw", x: 0, y: 1 },
   { key: "w", x: 0, y: 0.5 },
 ] as const;
-type ResizeHandleKey = (typeof RESIZE_HANDLES)[number]["key"];
+type BoxResizeHandleKey = (typeof RESIZE_HANDLES)[number]["key"];
+type PathPointHandleKey = `path:${number}`;
+type ResizeHandleKey = BoxResizeHandleKey | "p1" | "p2" | PathPointHandleKey;
 
 const MIN_RESIZE_SIZE = 4;
 const SNAP_SIZE = 5;
@@ -217,6 +221,79 @@ function elementHitBox(node: Element, svg: SVGSVGElement | null): Box | null {
   }
 }
 
+interface EditablePathPoint extends Point {
+  index: number;
+  xToken: number;
+  yToken: number;
+}
+
+function editablePathPoints(d: string): EditablePathPoint[] {
+  const tokens = pathTokens(d);
+  const points: EditablePathPoint[] = [];
+  let i = 0;
+  let cmd = "";
+  let pointIndex = 0;
+  const isCommand = (token: string) => /^[a-zA-Z]$/.test(token);
+  const num = (token: string) => Number(token);
+  const addPoint = (xToken: number, yToken: number) => {
+    const x = num(tokens[xToken]);
+    const y = num(tokens[yToken]);
+    if (Number.isFinite(x) && Number.isFinite(y)) points.push({ index: pointIndex, xToken, yToken, x, y });
+    pointIndex += 1;
+  };
+
+  while (i < tokens.length) {
+    if (isCommand(tokens[i])) {
+      cmd = tokens[i];
+      i += 1;
+      if (cmd.toUpperCase() === "Z") continue;
+    }
+    const upper = cmd.toUpperCase();
+    const relative = cmd !== upper;
+    if (relative) {
+      const count = PATH_PARAM_COUNTS[upper];
+      if (!count) break;
+      while (i < tokens.length && !isCommand(tokens[i])) i += count;
+      continue;
+    }
+    if (upper === "M" || upper === "L" || upper === "T") {
+      while (i + 1 < tokens.length && !isCommand(tokens[i])) {
+        addPoint(i, i + 1);
+        i += 2;
+      }
+    } else if (upper === "C") {
+      while (i + 5 < tokens.length && !isCommand(tokens[i])) {
+        addPoint(i + 4, i + 5);
+        i += 6;
+      }
+    } else if (upper === "S" || upper === "Q") {
+      while (i + 3 < tokens.length && !isCommand(tokens[i])) {
+        addPoint(i + 2, i + 3);
+        i += 4;
+      }
+    } else if (upper === "A") {
+      while (i + 6 < tokens.length && !isCommand(tokens[i])) {
+        addPoint(i + 5, i + 6);
+        i += 7;
+      }
+    } else {
+      const count = PATH_PARAM_COUNTS[upper];
+      if (!count) break;
+      while (i < tokens.length && !isCommand(tokens[i])) i += count;
+    }
+  }
+  return points;
+}
+
+function updateEditablePathPoint(d: string, pointIndex: number, point: Point): string | null {
+  const tokens = pathTokens(d);
+  const editable = editablePathPoints(d).find((candidate) => candidate.index === pointIndex);
+  if (!editable) return null;
+  tokens[editable.xToken] = String(Math.round(point.x * 100) / 100);
+  tokens[editable.yToken] = String(Math.round(point.y * 100) / 100);
+  return tokens.join(" ");
+}
+
 function elementVisualBox(node: Element, svg: SVGSVGElement | null): Box | null {
   const tag = node.tagName.toLowerCase();
   if ((tag === "line" || tag === "path" || tag === "polygon" || tag === "circle") && svg && node.getAttribute("transform")) {
@@ -303,9 +380,12 @@ function pickPriority(node: Element): number {
   return 4;
 }
 
+const SHAPE_FILL_SWATCHES = ["#ffffff", "#f8fafc", "#fef3c7", "#fed7aa", "#fecaca", "#bfdbfe", "#bbf7d0", "#ddd6fe", "#111827", "#6b7280", "#dc2626", "#2563eb", "#16a34a", "#7c3aed", "#f59e0b", "none"];
+
 export function CanvasViewport(props: CanvasViewportProps) {
   const [interaction, setInteraction] = createSignal<CanvasInteraction | null>(null);
   const [suppressClick, setSuppressClick] = createSignal(false);
+  const [shapeFormatMenu, setShapeFormatMenu] = createSignal<{ x: number; y: number; slotId: string; kind: LayoutSlot["kind"]; tableCell: boolean } | null>(null);
   const [inlineTextEdit, setInlineTextEdit] = createSignal<{
     slotId: string;
     originalText: string;
@@ -420,6 +500,7 @@ export function CanvasViewport(props: CanvasViewportProps) {
 
   createEffect(() => {
     const selectedIds = props.store.state.selectedIds;
+    const pickMode = props.store.state.pickMode;
     props.store.state.document?.detail.svg;
 
     const svg = surfaceRef?.querySelector("svg");
@@ -437,6 +518,12 @@ export function CanvasViewport(props: CanvasViewportProps) {
         el.classList.add("slot-selected");
       } else {
         el.classList.remove("slot-selected");
+      }
+      const slot = props.store.state.document?.slots.find((candidate) => candidate.id === slotId);
+      if (slot && pickMode !== "all" && !matchesPickMode(slot)) {
+        el.classList.add("pick-disabled");
+      } else {
+        el.classList.remove("pick-disabled");
       }
     }
   });
@@ -471,10 +558,61 @@ export function CanvasViewport(props: CanvasViewportProps) {
 
   const overlayBounds = createMemo(() => {
     const current = interaction();
-    if (current?.kind === "resize") {
+    if (current?.kind === "resize" && isBoxResizeHandle(current.handle)) {
       return resizeBoxFromHandle(current.handle, current.startBox, snappedPoint(current.current));
     }
     return selectedBounds();
+  });
+
+  const selectedLineSlot = createMemo(() => {
+    if (props.store.state.selectedIds.length !== 1) return null;
+    const slot = props.store.state.document?.slots.find((candidate) => candidate.id === props.store.state.selectedIds[0]);
+    return slot?.kind === "line" ? slot : null;
+  });
+
+  const selectedPathSlot = createMemo(() => {
+    if (props.store.state.selectedIds.length !== 1) return null;
+    const slot = props.store.state.document?.slots.find((candidate) => candidate.id === props.store.state.selectedIds[0]);
+    return slot?.kind === "path" ? slot : null;
+  });
+
+  const lineEndpoints = createMemo(() => {
+    const slot = selectedLineSlot();
+    if (!slot) return null;
+    const content = slot.content as Record<string, unknown>;
+    let p1 = {
+      x: Number(content.x1 ?? 0),
+      y: Number(content.y1 ?? 0),
+    };
+    let p2 = {
+      x: Number(content.x2 ?? 0),
+      y: Number(content.y2 ?? 0),
+    };
+    const current = interaction();
+    if (current?.kind === "resize" && current.slotId === slot.id && (current.handle === "p1" || current.handle === "p2")) {
+      const point = snappedPoint(current.current);
+      if (current.handle === "p1") p1 = point;
+      else p2 = point;
+    }
+    if (current?.kind === "rotate-line" && current.slotId === slot.id) {
+      const rotated = rotatedLineEndpoints(current.center, current.length, current.current);
+      p1 = rotated.p1;
+      p2 = rotated.p2;
+    }
+    return Number.isFinite(p1.x) && Number.isFinite(p1.y) && Number.isFinite(p2.x) && Number.isFinite(p2.y) ? { p1, p2 } : null;
+  });
+
+  const pathEditPoints = createMemo(() => {
+    const slot = selectedPathSlot();
+    const d = typeof slot?.content.d === "string" ? slot.content.d : "";
+    if (!slot || !d || typeof slot.content.transform === "string") return [];
+    const current = interaction();
+    const draggedIndex = current?.kind === "resize" && current.slotId === slot.id && isPathPointHandle(current.handle) ? pathPointHandleIndex(current.handle) : null;
+    const draggedPoint = current?.kind === "resize" && draggedIndex !== null ? snappedPoint(current.current) : null;
+    return editablePathPoints(d).map((point) => {
+      if (draggedIndex === point.index && draggedPoint) return { ...point, x: draggedPoint.x, y: draggedPoint.y };
+      return point;
+    });
   });
 
   const dragOffset = createMemo(() => {
@@ -485,6 +623,7 @@ export function CanvasViewport(props: CanvasViewportProps) {
 
   const canvasWidth = () => svgDimension("width") ?? props.store.state.document?.detail.layout?.canvas?.width ?? 900;
   const canvasHeight = () => svgDimension("height") ?? props.store.state.document?.detail.layout?.canvas?.height ?? 420;
+  const isCanvasSelected = () => props.store.state.selectedIds.length === 1 && props.store.state.selectedIds[0] === "__canvas__";
 
   function svgDimension(attribute: "width" | "height"): number | null {
     const svg = props.store.state.document?.detail.svg;
@@ -509,9 +648,72 @@ export function CanvasViewport(props: CanvasViewportProps) {
     props.store.selectSlot(slotId, event.shiftKey || event.ctrlKey || event.metaKey);
   }
 
+  function handleContextMenu(event: MouseEvent): void {
+    const slotId = hitSlotId(event.target) ?? hitSlotIdFromPoint(event);
+    if (!slotId) {
+      setShapeFormatMenu(null);
+      return;
+    }
+    const slot = props.store.state.document?.slots.find((candidate) => candidate.id === slotId);
+    const tableCell = !!tableCellFillSlotId(slotId);
+    if (!slot || (!isFormatMenuSlot(slot) && !tableCell)) {
+      setShapeFormatMenu(null);
+      return;
+    }
+    event.preventDefault();
+    event.stopPropagation();
+    props.store.setSelectedSlots([slotId]);
+    setShapeFormatMenu({ x: event.clientX, y: event.clientY, slotId, kind: slot.kind, tableCell });
+  }
+
   const marqueeBox = createMemo(() => {
     const current = interaction();
     return current?.kind === "marquee" ? normalizeBox(current.start, current.current) : null;
+  });
+
+  const tableSelectionBoxes = createMemo(() => {
+    const slots = props.store.state.document?.slots ?? [];
+    const byId = new Map(slots.map((slot) => [slot.id, slot]));
+    const seen = new Set<string>();
+    const boxes: { id: string; box: Box }[] = [];
+    for (const slotId of props.store.state.selectedIds) {
+      const fillSlotId = tableCellFillSlotId(slotId);
+      if (!fillSlotId || seen.has(fillSlotId)) continue;
+      const slot = byId.get(fillSlotId) ?? byId.get(slotId);
+      const box = slot ? slotBounds(slot) : null;
+      if (!box) continue;
+      seen.add(fillSlotId);
+      boxes.push({ id: fillSlotId, box });
+    }
+    return boxes;
+  });
+
+  const tableDividerHandles = createMemo(() => {
+    const base = selectedTableBase();
+    if (!base) return [];
+    const current = interaction();
+    const slots = props.store.state.document?.slots ?? [];
+    return slots
+      .map((slot) => {
+        const match = slot.id.match(new RegExp(`^${escapeRegExp(base)}\\.([vh])(\\d+)$`));
+        if (!match) return null;
+        const box = slotBounds(slot);
+        if (!box) return null;
+        const axis = match[1] as TableDividerAxis;
+        const index = Number(match[2]);
+        if (!Number.isFinite(index)) return null;
+        const offset = current?.kind === "table-divider" && current.base === base && current.axis === axis && current.index === index ? snappedDelta(current.start, current.current) : { x: 0, y: 0 };
+        return {
+          base,
+          axis,
+          index,
+          x: axis === "v" ? box.x + offset.x : box.x,
+          y: axis === "h" ? box.y + offset.y : box.y,
+          width: box.width,
+          height: box.height,
+        };
+      })
+      .filter((handle): handle is { base: string; axis: TableDividerAxis; index: number; x: number; y: number; width: number; height: number } => handle !== null);
   });
 
   function hitSlotId(target: EventTarget | null): string | null {
@@ -581,11 +783,16 @@ export function CanvasViewport(props: CanvasViewportProps) {
     }
   }
 
+  function isFormatMenuSlot(slot: LayoutSlot): boolean {
+    return ["rect", "circle", "line", "polygon", "path", "text_box"].includes(slot.kind);
+  }
+
   function beginCanvasPointer(event: PointerEvent): void {
     if (!props.store.state.document) return;
     const shouldPan = props.store.state.activeTool === "pan" || event.button === 1 || event.altKey;
     const surface = event.currentTarget instanceof HTMLElement ? event.currentTarget : null;
     if (!surface) return;
+    setShapeFormatMenu(null);
 
     if (shouldPan) {
       event.preventDefault();
@@ -596,6 +803,7 @@ export function CanvasViewport(props: CanvasViewportProps) {
         startClient: { x: event.clientX, y: event.clientY },
         startPan: { x: props.store.state.panX, y: props.store.state.panY },
       });
+      props.store.setStatusMessage("Panning canvas...");
       return;
     }
 
@@ -606,6 +814,7 @@ export function CanvasViewport(props: CanvasViewportProps) {
       surface.setPointerCapture(event.pointerId);
       const start = clientPointToCanvasPoint(surface, event.clientX, event.clientY, props.store.state.zoom);
       setInteraction({ kind: "draw", pointerId: event.pointerId, start, current: start, points: [start], moved: false });
+      props.store.setStatusMessage(`Drawing ${props.store.state.pendingDrawShape.label}...`);
       return;
     }
 
@@ -627,6 +836,7 @@ export function CanvasViewport(props: CanvasViewportProps) {
       }
       const start = clientPointToCanvasPoint(surface, event.clientX, event.clientY, props.store.state.zoom);
       setInteraction({ kind: "drag", pointerId: event.pointerId, start, current: start, selectedIds, moved: false });
+      props.store.setStatusMessage(`Dragging ${selectedIds.length} slot${selectedIds.length === 1 ? "" : "s"}...`);
       return;
     }
     if (slotId) return;
@@ -635,6 +845,7 @@ export function CanvasViewport(props: CanvasViewportProps) {
     surface.setPointerCapture(event.pointerId);
     const start = clientPointToCanvasPoint(surface, event.clientX, event.clientY, props.store.state.zoom);
     setInteraction({ kind: "marquee", pointerId: event.pointerId, start, current: start, moved: false });
+    props.store.setStatusMessage("Marquee selecting...");
   }
 
   function updateCanvasPointer(event: PointerEvent): void {
@@ -656,7 +867,31 @@ export function CanvasViewport(props: CanvasViewportProps) {
       setInteraction({ ...current, current: point, points, moved });
       return;
     }
+    if (current.kind === "rotate-line") {
+      setInteraction({ ...current, current: point, snapAngle: event.shiftKey, moved });
+      return;
+    }
     setInteraction({ ...current, current: point, moved });
+  }
+
+  function tableCellFillSlotId(slotId: string): string | null {
+    const fillMatch = slotId.match(/^(slot\.table(?:_\d+)?\.r\d+c\d+)\.fill$/);
+    if (fillMatch) return slotId;
+    const textMatch = slotId.match(/^(slot\.table(?:_\d+)?\.r\d+c\d+)$/);
+    if (textMatch) return `${textMatch[1]}.fill`;
+    return null;
+  }
+
+  function selectedTableBase(): string | null {
+    for (const slotId of props.store.state.selectedIds) {
+      const match = slotId.match(/^(slot\.table(?:_\d+)?)(?:\.|$)/);
+      if (match) return match[1];
+    }
+    return null;
+  }
+
+  function escapeRegExp(value: string): string {
+    return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
   }
 
   function finishCanvasPointer(event: PointerEvent): void {
@@ -695,13 +930,30 @@ export function CanvasViewport(props: CanvasViewportProps) {
     }
     if (current.kind === "resize" && current.moved) {
       const slot = props.store.state.document?.slots.find((candidate) => candidate.id === current.slotId);
-      const nextBox = resizeBoxFromHandle(current.handle, current.startBox, snappedPoint(current.current));
-      const properties = slot ? resizePropertiesForSlot(slot, nextBox) : null;
+      const point = snappedPoint(current.current);
+      const nextBox = isBoxResizeHandle(current.handle) ? resizeBoxFromHandle(current.handle, current.startBox, point) : current.startBox;
+      const properties = slot ? resizePropertiesForSlot(slot, nextBox, current.handle, point) : null;
       if (properties) {
         void props.store.updateSlotProperties(current.slotId, properties);
       }
       setSuppressClick(true);
     }
+    if (current.kind === "rotate-line" && current.moved) {
+      const next = rotatedLineEndpoints(current.center, current.length, current.current);
+      void props.store.updateSlotProperties(current.slotId, { x1: next.p1.x, y1: next.p1.y, x2: next.p2.x, y2: next.p2.y });
+      setSuppressClick(true);
+    }
+    if (current.kind === "table-divider" && current.moved) {
+      const point = snappedPoint(current.current);
+      void props.store.updateTableDivider(current.base, current.axis, current.index, current.axis === "v" ? point.x : point.y);
+      setSuppressClick(true);
+    }
+    if (current.kind === "pan") props.store.setStatusMessage("Pan finished.");
+    if (current.kind !== "pan" && !current.moved && current.kind === "marquee") props.store.setStatusMessage("No marquee selection.");
+    if (current.kind !== "pan" && !current.moved && current.kind === "drag") props.store.setStatusMessage("Drag canceled.");
+    if (current.kind !== "pan" && !current.moved && current.kind === "resize") props.store.setStatusMessage("Resize canceled.");
+    if (current.kind !== "pan" && !current.moved && current.kind === "rotate-line") props.store.setStatusMessage("Line rotation canceled.");
+    if (current.kind !== "pan" && !current.moved && current.kind === "table-divider") props.store.setStatusMessage("Table divider resize canceled.");
     setInteraction(null);
   }
 
@@ -745,6 +997,18 @@ export function CanvasViewport(props: CanvasViewportProps) {
     return `M ${start.x} ${start.y} C ${c1.x} ${c1.y}, ${c2.x} ${c2.y}, ${end.x} ${end.y}`;
   }
 
+  function isBoxResizeHandle(handle: ResizeHandleKey): handle is BoxResizeHandleKey {
+    return handle !== "p1" && handle !== "p2" && !isPathPointHandle(handle);
+  }
+
+  function isPathPointHandle(handle: ResizeHandleKey): handle is PathPointHandleKey {
+    return handle.startsWith("path:");
+  }
+
+  function pathPointHandleIndex(handle: PathPointHandleKey): number {
+    return Number(handle.slice("path:".length));
+  }
+
   function beginResize(handle: ResizeHandleKey, event: PointerEvent): void {
     event.preventDefault();
     event.stopPropagation();
@@ -752,15 +1016,80 @@ export function CanvasViewport(props: CanvasViewportProps) {
     const slotId = props.store.state.selectedIds[0];
     const slot = props.store.state.document?.slots.find((candidate) => candidate.id === slotId);
     const startBox = slot ? slotBounds(slot) : null;
-    if (!slot || !startBox || !resizePropertiesForSlot(slot, startBox)) return;
+    if (!slot || !startBox) return;
+    if ((handle === "p1" || handle === "p2") && slot.kind !== "line") return;
+    if (isPathPointHandle(handle) && slot.kind !== "path") return;
+    if (isBoxResizeHandle(handle) && !resizePropertiesForSlot(slot, startBox, handle, startBox)) return;
     const surface = event.currentTarget instanceof HTMLElement ? event.currentTarget.closest<HTMLElement>(".canvas-surface") : null;
     if (!surface) return;
     surface.setPointerCapture(event.pointerId);
     const start = clientPointToCanvasPoint(surface, event.clientX, event.clientY, props.store.state.zoom);
     setInteraction({ kind: "resize", pointerId: event.pointerId, start, current: start, handle, slotId, startBox, moved: false });
+    props.store.setStatusMessage(isBoxResizeHandle(handle) ? `Resizing ${slotId}...` : `Editing ${slotId} point...`);
   }
 
-  function resizeBoxFromHandle(handle: ResizeHandleKey, startBox: Box, current: Point): Box {
+  function beginLineRotate(event: PointerEvent): void {
+    event.preventDefault();
+    event.stopPropagation();
+    const line = lineEndpoints();
+    const slot = selectedLineSlot();
+    const surface = event.currentTarget instanceof HTMLElement ? event.currentTarget.closest<HTMLElement>(".canvas-surface") : null;
+    if (!line || !slot || !surface || props.store.state.loading) return;
+    const center = {
+      x: (line.p1.x + line.p2.x) / 2,
+      y: (line.p1.y + line.p2.y) / 2,
+    };
+    const length = Math.hypot(line.p2.x - line.p1.x, line.p2.y - line.p1.y);
+    if (!Number.isFinite(length) || length <= 0) return;
+    surface.setPointerCapture(event.pointerId);
+    const start = clientPointToCanvasPoint(surface, event.clientX, event.clientY, props.store.state.zoom);
+    setInteraction({ kind: "rotate-line", pointerId: event.pointerId, start, current: start, slotId: slot.id, center, length, snapAngle: event.shiftKey, moved: false });
+    props.store.setStatusMessage(`Rotating ${slot.id}...`);
+  }
+
+  function beginTableDividerResize(handle: { base: string; axis: TableDividerAxis; index: number }, event: PointerEvent): void {
+    event.preventDefault();
+    event.stopPropagation();
+    const surface = event.currentTarget instanceof HTMLElement ? event.currentTarget.closest<HTMLElement>(".canvas-surface") : null;
+    if (!surface || props.store.state.loading) return;
+    surface.setPointerCapture(event.pointerId);
+    const start = clientPointToCanvasPoint(surface, event.clientX, event.clientY, props.store.state.zoom);
+    setInteraction({ kind: "table-divider", pointerId: event.pointerId, start, current: start, base: handle.base, axis: handle.axis, index: handle.index, moved: false });
+    props.store.setStatusMessage(`Resizing table ${handle.axis === "v" ? "column" : "row"} divider...`);
+  }
+
+  function lineRotationHandlePoint(line: { p1: Point; p2: Point }): Point {
+    const center = {
+      x: (line.p1.x + line.p2.x) / 2,
+      y: (line.p1.y + line.p2.y) / 2,
+    };
+    const dx = line.p2.x - line.p1.x;
+    const dy = line.p2.y - line.p1.y;
+    const length = Math.max(Math.hypot(dx, dy), 1);
+    return {
+      x: roundedDelta(center.x - (dy / length) * 28),
+      y: roundedDelta(center.y + (dx / length) * 28),
+    };
+  }
+
+  function rotatedLineEndpoints(center: Point, length: number, pointer: Point): { p1: Point; p2: Point } {
+    let angle = Math.atan2(pointer.y - center.y, pointer.x - center.x);
+    const current = interaction();
+    if (current?.kind === "rotate-line" && current.snapAngle) {
+      const step = Math.PI / 12;
+      angle = Math.round(angle / step) * step;
+    }
+    const half = length / 2;
+    const dx = Math.cos(angle) * half;
+    const dy = Math.sin(angle) * half;
+    return {
+      p1: { x: roundedDelta(center.x - dx), y: roundedDelta(center.y - dy) },
+      p2: { x: roundedDelta(center.x + dx), y: roundedDelta(center.y + dy) },
+    };
+  }
+
+
+  function resizeBoxFromHandle(handle: BoxResizeHandleKey, startBox: Box, current: Point): Box {
     let left = startBox.x;
     let right = startBox.x + startBox.width;
     let top = startBox.y;
@@ -788,7 +1117,14 @@ export function CanvasViewport(props: CanvasViewportProps) {
     };
   }
 
-  function resizePropertiesForSlot(slot: LayoutSlot, box: Box): Record<string, number> | null {
+  function resizePropertiesForSlot(slot: LayoutSlot, box: Box, handle: ResizeHandleKey, point: Point): Record<string, number | string> | null {
+    if (slot.kind === "line" && handle === "p1") return { x1: point.x, y1: point.y };
+    if (slot.kind === "line" && handle === "p2") return { x2: point.x, y2: point.y };
+    if (slot.kind === "path" && isPathPointHandle(handle)) {
+      const d = typeof slot.content.d === "string" ? slot.content.d : "";
+      const next = updateEditablePathPoint(d, pathPointHandleIndex(handle), point);
+      return next ? { d: next } : null;
+    }
     switch (slot.kind) {
       case "rect":
       case "text_box":
@@ -805,6 +1141,21 @@ export function CanvasViewport(props: CanvasViewportProps) {
           cx: roundedDelta(box.x + box.width / 2),
           cy: roundedDelta(box.y + box.height / 2),
           r: roundedDelta(diameter / 2),
+        };
+      }
+      case "line": {
+        const content = slot.content as Record<string, unknown>;
+        const x1 = typeof content.x1 === "number" ? content.x1 : box.x;
+        const y1 = typeof content.y1 === "number" ? content.y1 : box.y;
+        const x2 = typeof content.x2 === "number" ? content.x2 : box.x + box.width;
+        const y2 = typeof content.y2 === "number" ? content.y2 : box.y + box.height;
+        const leftToRight = x2 >= x1;
+        const topToBottom = y2 >= y1;
+        return {
+          x1: leftToRight ? box.x : box.x + box.width,
+          y1: topToBottom ? box.y : box.y + box.height,
+          x2: leftToRight ? box.x + box.width : box.x,
+          y2: topToBottom ? box.y + box.height : box.y,
         };
       }
       default:
@@ -869,6 +1220,7 @@ export function CanvasViewport(props: CanvasViewportProps) {
             onPointerUp={finishCanvasPointer}
             onPointerCancel={finishCanvasPointer}
             onClick={selectFromSvg}
+            onContextMenu={handleContextMenu}
             onDblClick={handleDoubleClick}
           >
             {props.store.state.document?.detail.svg ? (
@@ -878,6 +1230,18 @@ export function CanvasViewport(props: CanvasViewportProps) {
             ) : (
               <div class="empty-state">No SVG or layout output.</div>
             )}
+            <Show when={isCanvasSelected()}>
+              <div
+                class="canvas-guide"
+                aria-hidden="true"
+                style={{
+                  left: "0px",
+                  top: "0px",
+                  width: `${canvasWidth()}px`,
+                  height: `${canvasHeight()}px`,
+                }}
+              />
+            </Show>
             <Show when={marqueeBox()}>
               {(box) => (
                 <div
@@ -898,6 +1262,35 @@ export function CanvasViewport(props: CanvasViewportProps) {
                 </svg>
               )}
             </Show>
+            <For each={tableSelectionBoxes()}>
+              {(item) => (
+                <div
+                  class="table-cell-selected"
+                  aria-hidden="true"
+                  style={{
+                    left: `${item.box.x}px`,
+                    top: `${item.box.y}px`,
+                    width: `${item.box.width}px`,
+                    height: `${item.box.height}px`,
+                  }}
+                />
+              )}
+            </For>
+            <For each={tableDividerHandles()}>
+              {(handle) => (
+                <div
+                  class={`table-adjust-handle table-adjust-handle-${handle.axis}`}
+                  aria-hidden="true"
+                  onPointerDown={(event) => beginTableDividerResize(handle, event)}
+                  style={{
+                    left: `${handle.axis === "v" ? handle.x : handle.x + handle.width / 2}px`,
+                    top: `${handle.axis === "h" ? handle.y : handle.y + handle.height / 2}px`,
+                    width: `${handle.axis === "h" ? handle.width : 14}px`,
+                    height: `${handle.axis === "v" ? handle.height : 14}px`,
+                  }}
+                />
+              )}
+            </For>
             <Show when={overlayBounds()}>
               {(box) => (
                 <>
@@ -910,21 +1303,82 @@ export function CanvasViewport(props: CanvasViewportProps) {
                       height: `${box().height}px`,
                     }}
                   />
-                  <For each={RESIZE_HANDLES}>
-                    {(handle) => (
-                      <div
-                        class={`resize-handle resize-handle-${handle.key}`}
-                        aria-hidden="true"
-                        onPointerDown={(event) => beginResize(handle.key, event)}
-                        style={{
-                          left: `${box().x + box().width * handle.x + dragOffset().x}px`,
-                          top: `${box().y + box().height * handle.y + dragOffset().y}px`,
-                        }}
-                      />
-                    )}
-                  </For>
+                  <Show when={!selectedLineSlot()}>
+                    <For each={RESIZE_HANDLES}>
+                      {(handle) => (
+                        <div
+                          class={`resize-handle resize-handle-${handle.key}`}
+                          aria-hidden="true"
+                          onPointerDown={(event) => beginResize(handle.key, event)}
+                          style={{
+                            left: `${box().x + box().width * handle.x + dragOffset().x}px`,
+                            top: `${box().y + box().height * handle.y + dragOffset().y}px`,
+                          }}
+                        />
+                      )}
+                    </For>
+                  </Show>
                 </>
               )}
+            </Show>
+            <Show when={lineEndpoints()}>
+              {(line) => (
+                <>
+                  <div
+                    class="selection-line"
+                    aria-hidden="true"
+                    style={{
+                      left: `${line().p1.x}px`,
+                      top: `${line().p1.y}px`,
+                      width: `${Math.hypot(line().p2.x - line().p1.x, line().p2.y - line().p1.y)}px`,
+                      transform: `rotate(${Math.atan2(line().p2.y - line().p1.y, line().p2.x - line().p1.x)}rad)`,
+                    }}
+                  />
+                  <div
+                    class="line-endpoint-handle"
+                    aria-hidden="true"
+                    onPointerDown={(event) => beginResize("p1", event)}
+                    style={{ left: `${line().p1.x}px`, top: `${line().p1.y}px` }}
+                  />
+                  <div
+                    class="line-endpoint-handle"
+                    aria-hidden="true"
+                    onPointerDown={(event) => beginResize("p2", event)}
+                    style={{ left: `${line().p2.x}px`, top: `${line().p2.y}px` }}
+                  />
+                  <div
+                    class="line-rotate-stem"
+                    aria-hidden="true"
+                    style={{
+                      left: `${(line().p1.x + line().p2.x) / 2}px`,
+                      top: `${(line().p1.y + line().p2.y) / 2}px`,
+                      width: "28px",
+                      transform: `rotate(${Math.atan2(lineRotationHandlePoint(line()).y - (line().p1.y + line().p2.y) / 2, lineRotationHandlePoint(line()).x - (line().p1.x + line().p2.x) / 2)}rad)`,
+                    }}
+                  />
+                  <div
+                    class="line-rotate-handle"
+                    aria-hidden="true"
+                    onPointerDown={beginLineRotate}
+                    style={{ left: `${lineRotationHandlePoint(line()).x}px`, top: `${lineRotationHandlePoint(line()).y}px` }}
+                  />
+                </>
+              )}
+            </Show>
+            <Show when={pathEditPoints().length > 0}>
+              <svg class="path-edit-guide" viewBox={`0 0 ${canvasWidth()} ${canvasHeight()}`} aria-hidden="true">
+                <polyline points={pathEditPoints().map((point) => `${point.x},${point.y}`).join(" ")} />
+              </svg>
+              <For each={pathEditPoints()}>
+                {(point) => (
+                  <div
+                    class="path-point-handle"
+                    aria-hidden="true"
+                    onPointerDown={(event) => beginResize(`path:${point.index}`, event)}
+                    style={{ left: `${point.x}px`, top: `${point.y}px` }}
+                  />
+                )}
+              </For>
             </Show>
             <Show when={inlineTextEdit()}>
               {(edit) => {
@@ -978,6 +1432,57 @@ export function CanvasViewport(props: CanvasViewportProps) {
               }}
             </Show>
           </div>
+        </Show>
+        <Show when={shapeFormatMenu()}>
+          {(menu) => (
+            <div
+              class="shape-format-menu open"
+              style={{ left: `${menu().x}px`, top: `${menu().y}px` }}
+              onPointerDown={(event) => event.stopPropagation()}
+              onClick={(event) => event.stopPropagation()}
+            >
+              <div class="shape-format-title">{menu().tableCell ? "Table Cell" : "Shape Format"}</div>
+              <div class="shape-format-swatches">
+                <For each={SHAPE_FILL_SWATCHES}>
+                  {(color) => (
+                    <button
+                      type="button"
+                      classList={{ "shape-swatch": true, transparent: color === "none" }}
+                      style={color === "none" ? undefined : { background: color }}
+                      title={color}
+                      disabled={props.store.state.loading || (!menu().tableCell && menu().kind === "line")}
+                      onClick={() => {
+                        if (menu().tableCell) void props.store.applySelectedTableCellFill(color);
+                        else void props.store.applyShapeFill(color);
+                        setShapeFormatMenu(null);
+                      }}
+                    />
+                  )}
+                </For>
+              </div>
+              <Show when={!menu().tableCell}>
+                <div class="shape-format-row">
+                  <button type="button" class="shape-format-btn" disabled={props.store.state.loading} onClick={() => { void props.store.applyShapeStroke("#111827"); setShapeFormatMenu(null); }}>
+                    Stroke
+                  </button>
+                  <button type="button" class="shape-format-btn" disabled={props.store.state.loading} onClick={() => { void props.store.applyShapeStroke("none"); setShapeFormatMenu(null); }}>
+                    No Border
+                  </button>
+                </div>
+                <div class="shape-format-row">
+                  <button type="button" class="shape-format-btn" disabled={props.store.state.loading} onClick={() => { void props.store.applyShapeDash(""); setShapeFormatMenu(null); }}>
+                    Solid
+                  </button>
+                  <button type="button" class="shape-format-btn" disabled={props.store.state.loading} onClick={() => { void props.store.applyShapeDash("4 3"); setShapeFormatMenu(null); }}>
+                    Dash
+                  </button>
+                  <button type="button" class="shape-format-btn" disabled={props.store.state.loading} onClick={() => { void props.store.applyShapeDash("2 5"); setShapeFormatMenu(null); }}>
+                    Dot
+                  </button>
+                </div>
+              </Show>
+            </div>
+          )}
         </Show>
       </div>
       <div class="slot-strip">

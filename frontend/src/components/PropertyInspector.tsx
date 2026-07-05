@@ -12,10 +12,13 @@ interface PropertyInspectorProps {
 export function PropertyInspector(props: PropertyInspectorProps) {
   const contentEntries = () => Object.entries(props.selectedSlot?.content ?? {});
   const bounds = () => (props.selectedSlot ? slotBounds(props.selectedSlot) : null);
+  const isCanvasSelected = () => props.store.state.selectedIds.length === 1 && props.store.state.selectedIds[0] === "__canvas__";
   const [textValue, setTextValue] = createSignal("");
   const [fillColor, setFillColor] = createSignal("#ffffff");
   const [strokeColor, setStrokeColor] = createSignal("#111827");
+  const [tableFillColor, setTableFillColor] = createSignal("#fef3c7");
   const [boundsDraft, setBoundsDraft] = createSignal({ x: "", y: "", width: "", height: "" });
+  const [transformValue, setTransformValue] = createSignal("");
   let canvasWidthRef!: HTMLInputElement;
   let canvasHeightRef!: HTMLInputElement;
 
@@ -25,6 +28,8 @@ export function PropertyInspector(props: PropertyInspectorProps) {
     setTextValue(typeof content.text === "string" ? content.text : "");
     setFillColor(isHexColor(content.fill) ? String(content.fill) : "#ffffff");
     setStrokeColor(isHexColor(content.stroke) ? String(content.stroke) : "#111827");
+    setTableFillColor(isHexColor(content.fill) ? String(content.fill) : "#fef3c7");
+    setTransformValue(typeof content.transform === "string" ? content.transform : "");
     const box = bounds();
     setBoundsDraft({
       x: box ? String(formatNumber(box.x)) : "",
@@ -75,7 +80,11 @@ export function PropertyInspector(props: PropertyInspectorProps) {
   }
 
   function canEditBounds(slot: LayoutSlot | null): boolean {
-    return !!slot && ["rect", "text_box", "image", "text", "circle", "line"].includes(slot.kind);
+    return !!slot && ["rect", "text_box", "image", "text", "circle", "line", "polygon", "path"].includes(slot.kind);
+  }
+
+  function isTableCell(slot: LayoutSlot | null): boolean {
+    return !!slot && /^slot\.table(?:_\d+)?\.r\d+c\d+(?:\.fill)?$/.test(slot.id);
   }
 
   function commitBounds(): void {
@@ -100,6 +109,14 @@ export function PropertyInspector(props: PropertyInspectorProps) {
     void props.store.updateSelectedBounds({ x, y, width, height });
   }
 
+  function commitTransform(): void {
+    if (!props.selectedSlot || props.store.state.loading) return;
+    const current = typeof props.selectedSlot.content.transform === "string" ? props.selectedSlot.content.transform : "";
+    const next = transformValue().trim();
+    if (next === current) return;
+    void props.store.updateSelectedTransform(next);
+  }
+
   function commitCanvasSize(): void {
     const width = Number(canvasWidthRef?.value);
     const height = Number(canvasHeightRef?.value);
@@ -120,48 +137,55 @@ export function PropertyInspector(props: PropertyInspectorProps) {
         <div class="pane-heading">Canvas</div>
         <Show when={props.store.state.document?.detail.layout?.canvas} fallback={<p class="muted">No canvas loaded.</p>}>
           {(canvas) => (
-            <div class="field-grid">
-              <label>
-                X
-                <input type="number" value="0" readonly />
-              </label>
-              <label>
-                Y
-                <input type="number" value="0" readonly />
-              </label>
-              <label>
-                W
-                <input
-                  ref={canvasWidthRef}
-                  type="number"
-                  min="20"
-                  step="1"
-                  value={canvas().width}
-                  disabled={props.store.state.loading}
-                  onKeyDown={commitOnEnter}
-                  onBlur={commitCanvasSize}
-                />
-              </label>
-              <label>
-                H
-                <input
-                  ref={canvasHeightRef}
-                  type="number"
-                  min="20"
-                  step="1"
-                  value={canvas().height}
-                  disabled={props.store.state.loading}
-                  onKeyDown={commitOnEnter}
-                  onBlur={commitCanvasSize}
-                />
-              </label>
-            </div>
+            <>
+              <div class="row mt-8">
+                <button type="button" classList={{ active: isCanvasSelected() }} disabled={props.store.state.loading} onClick={() => props.store.setSelectedSlots(["__canvas__"])}>
+                  Select Canvas
+                </button>
+              </div>
+              <div class="field-grid mt-8">
+                <label>
+                  X
+                  <input type="number" value="0" readonly />
+                </label>
+                <label>
+                  Y
+                  <input type="number" value="0" readonly />
+                </label>
+                <label>
+                  W
+                  <input
+                    ref={canvasWidthRef}
+                    type="number"
+                    min="20"
+                    step="1"
+                    value={canvas().width}
+                    disabled={props.store.state.loading}
+                    onKeyDown={commitOnEnter}
+                    onBlur={commitCanvasSize}
+                  />
+                </label>
+                <label>
+                  H
+                  <input
+                    ref={canvasHeightRef}
+                    type="number"
+                    min="20"
+                    step="1"
+                    value={canvas().height}
+                    disabled={props.store.state.loading}
+                    onKeyDown={commitOnEnter}
+                    onBlur={commitCanvasSize}
+                  />
+                </label>
+              </div>
+            </>
           )}
         </Show>
       </section>
       <section class="inspector-section">
         <div class="pane-heading">Inspector</div>
-        <Show when={props.selectedSlot} fallback={<p class="muted">Select a slot from the slot list.</p>}>
+        <Show when={props.selectedSlot} fallback={<p class="muted">{isCanvasSelected() ? "Canvas selected. Edit size in the Canvas section." : "Select a slot from the slot list."}</p>}>
           {(slot) => (
             <>
               <dl class="property-list">
@@ -225,6 +249,19 @@ export function PropertyInspector(props: PropertyInspectorProps) {
                     onInput={(event) => setBoundsDraft((draft) => ({ ...draft, height: event.currentTarget.value }))}
                     onKeyDown={commitOnEnter}
                     onBlur={commitBounds}
+                  />
+                </label>
+              </div>
+              <div class="single-field slot-transform-field">
+                <label>
+                  Rotate
+                  <input
+                    value={transformValue()}
+                    placeholder="rotate(0 0 0)"
+                    disabled={props.store.state.loading}
+                    onInput={(event) => setTransformValue(event.currentTarget.value)}
+                    onKeyDown={commitOnEnter}
+                    onBlur={commitTransform}
                   />
                 </label>
               </div>
@@ -342,6 +379,20 @@ export function PropertyInspector(props: PropertyInspectorProps) {
             </button>
             <button type="button" class="shape-format-btn" disabled={props.store.state.loading} onClick={() => void props.store.applyShapeDash("2 5")}>
               Dotted
+            </button>
+          </div>
+        </section>
+      </Show>
+      <Show when={isTableCell(props.selectedSlot)}>
+        <section class="inspector-section">
+          <div class="pane-heading">Table Cell</div>
+          <div class="shape-format-row">
+            <input class="shape-format-color" type="color" value={tableFillColor()} disabled={props.store.state.loading} onInput={(event) => setTableFillColor(event.currentTarget.value)} />
+            <button type="button" class="shape-format-btn" disabled={props.store.state.loading} onClick={() => void props.store.applySelectedTableCellFill(tableFillColor())}>
+              Fill Cell
+            </button>
+            <button type="button" class="shape-format-btn" disabled={props.store.state.loading} onClick={() => void props.store.applySelectedTableCellFill("none")}>
+              Clear
             </button>
           </div>
         </section>
