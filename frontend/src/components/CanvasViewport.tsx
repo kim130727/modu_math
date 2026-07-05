@@ -20,6 +20,7 @@ type CanvasInteraction =
   | { kind: "marquee"; pointerId: number; start: Point; current: Point; moved: boolean }
   | { kind: "pan"; pointerId: number; startClient: Point; startPan: Point }
   | { kind: "drag"; pointerId: number; start: Point; current: Point; selectedIds: string[]; moved: boolean }
+  | { kind: "draw"; pointerId: number; start: Point; current: Point; points: Point[]; moved: boolean }
   | { kind: "resize"; pointerId: number; start: Point; current: Point; handle: ResizeHandleKey; slotId: string; startBox: Box; moved: boolean };
 
 const RESIZE_HANDLES = [
@@ -600,6 +601,14 @@ export function CanvasViewport(props: CanvasViewportProps) {
 
     if (event.button !== 0) return;
 
+    if (props.store.state.pendingDrawShape) {
+      event.preventDefault();
+      surface.setPointerCapture(event.pointerId);
+      const start = clientPointToCanvasPoint(surface, event.clientX, event.clientY, props.store.state.zoom);
+      setInteraction({ kind: "draw", pointerId: event.pointerId, start, current: start, points: [start], moved: false });
+      return;
+    }
+
     const slotId = hitSlotId(event.target) ?? hitSlotIdFromPoint(event);
     if (slotId && props.store.state.activeTool === "select") {
       event.preventDefault();
@@ -641,6 +650,12 @@ export function CanvasViewport(props: CanvasViewportProps) {
 
     const point = clientPointToCanvasPoint(surface, event.clientX, event.clientY, props.store.state.zoom);
     const moved = current.moved || Math.abs(point.x - current.start.x) > 3 || Math.abs(point.y - current.start.y) > 3;
+    if (current.kind === "draw") {
+      const last = current.points[current.points.length - 1] ?? current.start;
+      const points = Math.hypot(point.x - last.x, point.y - last.y) >= 3 ? [...current.points, point] : current.points;
+      setInteraction({ ...current, current: point, points, moved });
+      return;
+    }
     setInteraction({ ...current, current: point, moved });
   }
 
@@ -666,6 +681,15 @@ export function CanvasViewport(props: CanvasViewportProps) {
       const { x: dx, y: dy } = snappedDelta(current.start, current.current);
       if (dx !== 0 || dy !== 0) {
         void props.store.moveSlots(current.selectedIds, dx, dy, "Drag move");
+      }
+      setSuppressClick(true);
+    }
+    if (current.kind === "draw") {
+      const definition = props.store.state.pendingDrawShape;
+      if (definition && current.moved) {
+        void props.store.insertDrawnShape(definition, [...current.points, current.current]);
+      } else {
+        props.store.cancelDrawShape();
       }
       setSuppressClick(true);
     }
@@ -699,6 +723,26 @@ export function CanvasViewport(props: CanvasViewportProps) {
 
   function snapNumber(value: number): number {
     return Math.round(value / SNAP_SIZE) * SNAP_SIZE;
+  }
+
+  function drawPreviewPath(): string | null {
+    const current = interaction();
+    const definition = props.store.state.pendingDrawShape;
+    if (!current || current.kind !== "draw" || !definition) return null;
+    const start = snappedPoint(current.start);
+    const end = snappedPoint(current.current);
+    if (definition.kind === "line") return `M ${start.x} ${start.y} L ${end.x} ${end.y}`;
+    if (definition.id === "elbow") return `M ${start.x} ${start.y} L ${end.x} ${start.y} L ${end.x} ${end.y}`;
+    if (definition.id === "freeform") {
+      const points = [...current.points, current.current].map(snappedPoint);
+      const [first, ...rest] = points;
+      return first ? [`M ${first.x} ${first.y}`, ...rest.map((point) => `L ${point.x} ${point.y}`)].join(" ") : null;
+    }
+    const dx = end.x - start.x;
+    const dy = end.y - start.y;
+    const c1 = { x: snapNumber(start.x + dx * 0.25), y: snapNumber(start.y - Math.max(20, Math.abs(dy) * 0.6)) };
+    const c2 = { x: snapNumber(start.x + dx * 0.75), y: snapNumber(end.y + Math.max(20, Math.abs(dy) * 0.6)) };
+    return `M ${start.x} ${start.y} C ${c1.x} ${c1.y}, ${c2.x} ${c2.y}, ${end.x} ${end.y}`;
   }
 
   function beginResize(handle: ResizeHandleKey, event: PointerEvent): void {
@@ -778,7 +822,16 @@ export function CanvasViewport(props: CanvasViewportProps) {
             {props.store.state.document?.detail.layout?.canvas?.height ?? "-"}
           </span>
         </div>
-        <div>{props.store.state.selectedIds.length} selected</div>
+        <Show when={props.store.state.pendingDrawShape} fallback={<div>{props.store.state.selectedIds.length} selected</div>}>
+          {(shape) => (
+            <div class="draw-mode-status">
+              <span>Draw {shape().label}</span>
+              <button type="button" onClick={() => props.store.cancelDrawShape()}>
+                Cancel
+              </button>
+            </div>
+          )}
+        </Show>
       </div>
       <div class="canvas-controls" aria-label="Canvas zoom controls">
         <button type="button" onClick={() => props.store.setZoom(props.store.state.zoom - 0.1)} disabled={!props.store.state.document}>
@@ -803,6 +856,7 @@ export function CanvasViewport(props: CanvasViewportProps) {
             classList={{
               "is-panning": interaction()?.kind === "pan",
               "is-dragging": interaction()?.kind === "drag",
+              "is-drawing": !!props.store.state.pendingDrawShape,
               "pan-tool": props.store.state.activeTool === "pan",
             }}
             style={{
@@ -835,6 +889,13 @@ export function CanvasViewport(props: CanvasViewportProps) {
                     height: `${box().height}px`,
                   }}
                 />
+              )}
+            </Show>
+            <Show when={drawPreviewPath()}>
+              {(path) => (
+                <svg class="draw-preview-svg" viewBox={`0 0 ${canvasWidth()} ${canvasHeight()}`} aria-hidden="true">
+                  <path d={path()} />
+                </svg>
               )}
             </Show>
             <Show when={overlayBounds()}>

@@ -18,7 +18,7 @@ import {
   type HistoryState,
 } from "../editor-core/history/historyManager";
 import { createEditorDocument, type EditorDocument } from "../editor-core/model/editorDocument";
-import type { Box } from "../editor-core/model/geometry";
+import type { Box, Point } from "../editor-core/model/geometry";
 import { clearSelection, toggleSelection } from "../editor-core/selection/selectionManager";
 import { slotBounds } from "../editor-core/transform/bounds";
 import type { BuildOutputState, BuildProblemResponse, EditorError, LayoutPatch, ProblemDetailResponse, ProblemSummary } from "../types/api";
@@ -27,8 +27,84 @@ import type { LayoutSlot } from "../types/layout";
 export type EditorTool = "select" | "pan";
 export type EditorPickMode = "all" | "linepath" | "text" | "shape";
 export type InsertableShapeKind = "rect" | "text_box" | "circle" | "line" | "triangle" | "path";
+export type GalleryShapeKind = "line" | "rect" | "circle" | "polygon" | "path";
+export type GalleryShapeDefinitionKind = GalleryShapeKind | "composite";
 export type AlignMode = "left" | "center" | "right" | "top" | "middle" | "bottom";
 export type LayerMode = "front" | "back" | "forward" | "backward";
+export type TextAlignMode = "left" | "center" | "right";
+
+export interface GalleryShapeDefinition {
+  id: string;
+  label: string;
+  kind: GalleryShapeDefinitionKind;
+  w?: number;
+  h?: number;
+  r?: number;
+  rx?: number;
+  ry?: number;
+  line?: "horizontal" | "vertical";
+  points?: [number, number][];
+  d?: string;
+  sourceWidth?: number;
+  sourceHeight?: number;
+  fill?: string;
+  stroke?: string;
+  stroke_width?: number;
+  parts?: GalleryShapePart[];
+  drawMode?: boolean;
+}
+
+export interface GalleryShapePart {
+  id: string;
+  kind: GalleryShapeKind;
+  x?: number;
+  y?: number;
+  width?: number;
+  height?: number;
+  cx?: number;
+  cy?: number;
+  r?: number;
+  rx?: number;
+  ry?: number;
+  x1?: number;
+  y1?: number;
+  x2?: number;
+  y2?: number;
+  points?: [number, number][];
+  d?: string;
+  fill?: string;
+  stroke?: string;
+  stroke_width?: number;
+}
+
+export interface BarModelOptions {
+  bars?: number;
+  cells?: number;
+  shadedCounts?: string;
+  fillColors?: string;
+  stroke?: string;
+  dashed?: boolean;
+}
+
+export interface TickBarOptions {
+  rows?: number;
+  totalTicks?: number;
+  filledTicks?: string;
+  majorEvery?: number;
+  labels?: string;
+  unit?: string;
+  showScaleLabels?: boolean;
+  showFractionLabel?: boolean;
+  axisColor?: string;
+  fillColor?: string;
+}
+
+export interface FractionInsertOptions {
+  mixed?: boolean;
+  whole?: string;
+  numerator?: string;
+  denominator?: string;
+}
 
 export interface EditorState {
   problemId: string | null;
@@ -51,6 +127,7 @@ export interface EditorState {
   building: boolean;
   buildOutput: BuildOutputState | null;
   error: EditorError | null;
+  pendingDrawShape: GalleryShapeDefinition | null;
 }
 
 const initialState: EditorState = {
@@ -74,6 +151,7 @@ const initialState: EditorState = {
   building: false,
   buildOutput: null,
   error: null,
+  pendingDrawShape: null,
 };
 
 function toEditorError(error: unknown): EditorError {
@@ -225,6 +303,59 @@ export function createEditorStore() {
     );
   }
 
+  async function updateSelectedBounds(box: Box): Promise<boolean> {
+    if (state.selectedIds.length !== 1 || state.loading) return false;
+    const slot = findSlot(state.selectedIds[0]);
+    if (!slot) return false;
+    const properties = boundsPropertiesForSlot(slot, box);
+    if (!properties) return false;
+    return commitSlotPropertyPatch("Bounds edit", slot, properties);
+  }
+
+  async function updateSelectedText(text: string): Promise<boolean> {
+    if (state.selectedIds.length !== 1 || state.loading) return false;
+    const slot = findSlot(state.selectedIds[0]);
+    if (!slot || !isTextLikeSlot(slot)) return false;
+    return commitSlotPropertyPatch("Update text", slot, { text });
+  }
+
+  async function nudgeSelectedFontSize(delta: number): Promise<boolean> {
+    if (state.selectedIds.length !== 1 || state.loading) return false;
+    const slot = findSlot(state.selectedIds[0]);
+    if (!slot || !isTextLikeSlot(slot)) return false;
+    const current = Number((slot.content as Record<string, unknown>).font_size ?? 18);
+    const next = Math.max(6, Math.min(96, Math.round(current + delta)));
+    return commitSlotPropertyPatch("Font size", slot, { font_size: next });
+  }
+
+  async function alignSelectedText(mode: TextAlignMode): Promise<boolean> {
+    if (state.selectedIds.length !== 1 || state.loading) return false;
+    const slot = findSlot(state.selectedIds[0]);
+    if (!slot || !isTextLikeSlot(slot)) return false;
+    if (slot.kind === "text_box") return commitSlotPropertyPatch(`Text ${mode}`, slot, { align: mode });
+    const anchor = mode === "center" ? "middle" : mode === "right" ? "end" : "start";
+    return commitSlotPropertyPatch(`Text ${mode}`, slot, { anchor });
+  }
+
+  async function applyShapeFill(fill: string): Promise<boolean> {
+    const slots = selectedShapeSlots().filter((slot) => slot.kind !== "line");
+    if (!slots.length || state.loading) return false;
+    return commitMultiSlotPropertyPatch("Shape fill", slots, { fill });
+  }
+
+  async function applyShapeStroke(stroke: string): Promise<boolean> {
+    const slots = selectedShapeSlots();
+    if (!slots.length || state.loading) return false;
+    return commitMultiSlotPropertyPatch("Shape stroke", slots, { stroke, stroke_width: stroke === "none" ? 0 : 1.5 });
+  }
+
+  async function applyShapeDash(strokeDasharray: string): Promise<boolean> {
+    const slots = selectedShapeSlots();
+    if (!slots.length || state.loading) return false;
+    const value = strokeDasharray ? { stroke_dasharray: strokeDasharray, stroke_width: 1.5 } : { stroke_dasharray: "" };
+    return commitMultiSlotPropertyPatch("Shape dash", slots, value);
+  }
+
   async function updateCanvasSize(width: number, height: number): Promise<boolean> {
     if (!state.document || !state.problemId || state.loading) return false;
     const canvas = state.document.detail.layout?.canvas;
@@ -318,6 +449,96 @@ export function createEditorStore() {
     if (inserted) {
       setState({ selectedIds: [slotId], activeTool: "select" });
     }
+    return inserted;
+  }
+
+  async function insertGalleryShape(definition: GalleryShapeDefinition): Promise<boolean> {
+    if (!state.document || state.loading) return false;
+    const regionId = preferredRegionId();
+    if (!regionId) {
+      setState({ error: { message: "No layout region is available for insertion.", category: "DSL_PATCH_ERROR", status: 400 } });
+      return false;
+    }
+    if (definition.kind === "composite") {
+      const { patches, selectId } = compositeShapePatches(definition, regionId);
+      return insertGeneratedPatches(`Insert ${definition.label}`, patches, selectId);
+    }
+    const slotId = uniqueSlotId(definition.id);
+    const canvas = state.document.detail.layout?.canvas;
+    const payload = galleryShapePayload(definition, canvas?.width ?? 900, canvas?.height ?? 420);
+    const addPatch: LayoutPatch = {
+      target: slotId,
+      op: "add",
+      value: {
+        kind: payload.kind,
+        region_id: regionId,
+        content: payload.content,
+      },
+    };
+    const inserted = await commitHistoryPatches(`Insert ${definition.label}`, [addPatch], [{ target: slotId, op: "delete" }], { format: false });
+    if (inserted) setState({ selectedIds: [slotId], activeTool: "select" });
+    return inserted;
+  }
+
+  function beginDrawShape(definition: GalleryShapeDefinition): void {
+    if (!state.document || state.loading || definition.kind === "composite") return;
+    setState({ pendingDrawShape: definition, activeTool: "select", selectedIds: clearSelection() });
+  }
+
+  function cancelDrawShape(): void {
+    setState({ pendingDrawShape: null });
+  }
+
+  async function insertDrawnShape(definition: GalleryShapeDefinition, points: Point[]): Promise<boolean> {
+    if (!state.document || state.loading || definition.kind === "composite" || points.length < 2) return false;
+    const regionId = preferredRegionId();
+    if (!regionId) {
+      setState({ error: { message: "No layout region is available for insertion.", category: "DSL_PATCH_ERROR", status: 400 }, pendingDrawShape: null });
+      return false;
+    }
+    const content = drawnShapeContent(definition, points);
+    if (!content) return false;
+    const slotId = uniqueSlotId(definition.id);
+    const addPatch: LayoutPatch = {
+      target: slotId,
+      op: "add",
+      value: { kind: content.kind, region_id: regionId, content: content.content },
+    };
+    const inserted = await commitHistoryPatches(`Draw ${definition.label}`, [addPatch], [{ target: slotId, op: "delete" }], { format: false });
+    if (inserted) setState({ selectedIds: [slotId], activeTool: "select", pendingDrawShape: null });
+    return inserted;
+  }
+
+  async function insertTable(rows: number, cols: number): Promise<boolean> {
+    const { base, patches } = tablePatches(rows, cols);
+    return insertGeneratedPatches(`Insert table`, patches, `${base}.outer`);
+  }
+
+  async function insertGraphPaper(rows: number, cols: number): Promise<boolean> {
+    const { base, patches } = graphPaperPatches(rows, cols);
+    return insertGeneratedPatches(`Insert graph paper`, patches, `${base}.v0`);
+  }
+
+  async function insertBarModel(options: BarModelOptions = {}): Promise<boolean> {
+    const { base, patches } = barModelPatches(options);
+    return insertGeneratedPatches(`Insert bar model`, patches, `${base}.bar1.outline`);
+  }
+
+  async function insertTickBar(options: TickBarOptions = {}): Promise<boolean> {
+    const { base, patches } = tickBarPatches(options);
+    return insertGeneratedPatches(`Insert tick bar`, patches, `${base}.row1.axis`);
+  }
+
+  async function insertFractionExpression(options: FractionInsertOptions = {}): Promise<boolean> {
+    const { base, patches } = fractionPatches(options);
+    return insertGeneratedPatches(options.mixed ? "Insert mixed fraction" : "Insert fraction", patches, `${base}.num`);
+  }
+
+  async function insertGeneratedPatches(label: string, patches: LayoutPatch[], selectId: string): Promise<boolean> {
+    if (!state.document || state.loading || patches.length === 0) return false;
+    const inversePatches = patches.map((patch) => ({ target: patch.target, op: "delete" }));
+    const inserted = await commitHistoryPatches(label, patches, inversePatches, { format: false });
+    if (inserted) setState({ selectedIds: [selectId], activeTool: "select" });
     return inserted;
   }
 
@@ -609,6 +830,35 @@ export function createEditorStore() {
     };
   }
 
+  function commitSlotPropertyPatch(label: string, slot: LayoutSlot, properties: Record<string, unknown>): Promise<boolean> {
+    return commitMultiSlotPropertyPatch(label, [slot], properties);
+  }
+
+  function commitMultiSlotPropertyPatch(label: string, slots: LayoutSlot[], properties: Record<string, unknown>): Promise<boolean> {
+    const patches: LayoutPatch[] = [];
+    const inversePatches: LayoutPatch[] = [];
+    for (const slot of slots) {
+      patches.push({ target: slot.id, op: "update", value: properties });
+      inversePatches.push({ target: slot.id, op: "update", value: inverseAnyProperties(slot, properties) });
+    }
+    return commitHistoryPatches(label, patches, inversePatches, { format: false });
+  }
+
+  function inverseAnyProperties(slot: LayoutSlot, properties: Record<string, unknown>): Record<string, unknown> {
+    const inverse: Record<string, unknown> = {};
+    const content = slot.content as Record<string, unknown>;
+    for (const key of Object.keys(properties)) {
+      const previous = content[key];
+      inverse[key] = previous ?? defaultInverseValue(key);
+    }
+    return inverse;
+  }
+
+  function defaultInverseValue(key: string): string | number {
+    if (key === "stroke_width" || key === "font_size") return 0;
+    return "";
+  }
+
   function inverseProperties(slot: LayoutSlot, properties: Record<string, string | number>): Record<string, string | number> {
     const inverse: Record<string, string | number> = {};
     const content = slot.content as Record<string, unknown>;
@@ -621,6 +871,16 @@ export function createEditorStore() {
     return inverse;
   }
 
+  function isTextLikeSlot(slot: LayoutSlot): boolean {
+    return slot.kind === "text" || slot.kind === "text_box";
+  }
+
+  function selectedShapeSlots(): LayoutSlot[] {
+    return state.selectedIds
+      .map((slotId) => findSlot(slotId))
+      .filter((slot): slot is LayoutSlot => !!slot && ["rect", "circle", "line", "polygon", "path", "text_box"].includes(slot.kind));
+  }
+
   function preferredRegionId(): string | null {
     const regions = state.document?.detail.layout?.regions ?? [];
     return (
@@ -628,6 +888,10 @@ export function createEditorStore() {
       regions.find((region) => typeof region.id === "string" && region.id.trim())?.id ??
       null
     );
+  }
+
+  function withRegion(value: Record<string, unknown>, regionId = preferredRegionId()): Record<string, unknown> {
+    return regionId ? { ...value, region_id: regionId } : value;
   }
 
   function selectedSlotsWithBounds(): { slot: LayoutSlot; bounds: Box }[] {
@@ -638,6 +902,43 @@ export function createEditorStore() {
         return slot && bounds ? { slot, bounds } : null;
       })
       .filter((item): item is { slot: LayoutSlot; bounds: Box } => item !== null);
+  }
+
+  function boundsPropertiesForSlot(slot: LayoutSlot, box: Box): Record<string, number> | null {
+    const x = roundedDelta(box.x);
+    const y = roundedDelta(box.y);
+    const width = Math.max(1, roundedDelta(box.width));
+    const height = Math.max(1, roundedDelta(box.height));
+    if (slot.kind === "rect" || slot.kind === "text_box" || slot.kind === "image") {
+      return { x, y, width, height };
+    }
+    if (slot.kind === "text") {
+      const content = slot.content as Record<string, unknown>;
+      const next: Record<string, number> = { x, y };
+      if (typeof content.max_width === "number") next.max_width = width;
+      if (typeof content.font_size === "number") next.font_size = Math.max(1, height);
+      return next;
+    }
+    if (slot.kind === "circle") {
+      const r = Math.max(1, Math.min(width, height) / 2);
+      return { cx: roundedDelta(x + width / 2), cy: roundedDelta(y + height / 2), r: roundedDelta(r) };
+    }
+    if (slot.kind === "line") {
+      const content = slot.content as Record<string, unknown>;
+      const x1 = typeof content.x1 === "number" ? content.x1 : x;
+      const y1 = typeof content.y1 === "number" ? content.y1 : y;
+      const x2 = typeof content.x2 === "number" ? content.x2 : x + width;
+      const y2 = typeof content.y2 === "number" ? content.y2 : y + height;
+      const leftToRight = x2 >= x1;
+      const topToBottom = y2 >= y1;
+      return {
+        x1: leftToRight ? x : x + width,
+        y1: topToBottom ? y : y + height,
+        x2: leftToRight ? x + width : x,
+        y2: topToBottom ? y + height : y,
+      };
+    }
+    return null;
   }
 
   function alignmentMetric(mode: AlignMode, boxes: Box[]): number {
@@ -704,6 +1005,19 @@ export function createEditorStore() {
     while (existing.has(candidate)) {
       index += 1;
       candidate = `slot.editor_next.${suffix}.${index}`;
+    }
+    return candidate;
+  }
+
+  function uniqueBase(prefix: string): string {
+    const existing = new Set(state.document?.slots.map((slot) => slot.id) ?? []);
+    const cleanPrefix = prefix.replace(/[^a-z0-9_.]+/gi, "_").replace(/^_+|_+$/g, "") || "slot.generated";
+    if (![...existing].some((id) => id === cleanPrefix || id.startsWith(`${cleanPrefix}.`))) return cleanPrefix;
+    let index = 1;
+    let candidate = `${cleanPrefix}_${index}`;
+    while ([...existing].some((id) => id === candidate || id.startsWith(`${candidate}.`))) {
+      index += 1;
+      candidate = `${cleanPrefix}_${index}`;
     }
     return candidate;
   }
@@ -785,6 +1099,534 @@ export function createEditorStore() {
     return { x, y, width: 120, height: 48, fill: "none", stroke: "#2563eb", stroke_width: 2 };
   }
 
+  function galleryShapePayload(definition: GalleryShapeDefinition, canvasWidth: number, canvasHeight: number): { kind: GalleryShapeKind; content: Record<string, unknown> } {
+    const width = Number(definition.w ?? 120);
+    const height = Number(definition.h ?? (definition.kind === "line" ? 70 : 86));
+    const { x, y } = centeredOrigin(width, height, canvasWidth, canvasHeight);
+    const stroke = definition.stroke ?? "#111827";
+    const fill = definition.fill ?? "#ffffff";
+    const stroke_width = definition.stroke_width ?? 1.5;
+
+    if (definition.kind === "line") {
+      const horizontal = definition.line === "horizontal";
+      const vertical = definition.line === "vertical";
+      return {
+        kind: "line",
+        content: horizontal
+          ? { x1: x, y1: y + height / 2, x2: x + width, y2: y + height / 2, stroke, stroke_width }
+          : vertical
+            ? { x1: x + width / 2, y1: y, x2: x + width / 2, y2: y + height, stroke, stroke_width }
+            : { x1: x, y1: y + height, x2: x + width, y2: y, stroke, stroke_width },
+      };
+    }
+    if (definition.kind === "rect") {
+      return { kind: "rect", content: { x, y, width, height, rx: definition.rx, ry: definition.ry, fill, stroke, stroke_width } };
+    }
+    if (definition.kind === "circle") {
+      const r = Number(definition.r ?? Math.min(width, height) / 2);
+      return { kind: "circle", content: { cx: x + r, cy: y + r, r, fill, stroke, stroke_width } };
+    }
+    if (definition.kind === "polygon") {
+      return {
+        kind: "polygon",
+        content: {
+          points: scalePoints(definition.points ?? [], x, y, width, height, definition.sourceWidth ?? 64, definition.sourceHeight ?? 52),
+          fill,
+          stroke,
+          stroke_width,
+        },
+      };
+    }
+    return {
+      kind: "path",
+      content: {
+        d: scaleShapePath(definition.d ?? "", x, y, width, height, definition.sourceWidth ?? 64, definition.sourceHeight ?? 52),
+        fill,
+        stroke,
+        stroke_width,
+      },
+    };
+  }
+
+  function compositeShapePatches(definition: GalleryShapeDefinition, regionId: string): { patches: LayoutPatch[]; selectId: string } {
+    const fallbackWidth = Number(definition.w ?? definition.sourceWidth ?? 80);
+    const fallbackHeight = Number(definition.h ?? definition.sourceHeight ?? fallbackWidth);
+    const { x, y } = centeredOrigin(fallbackWidth, fallbackHeight, state.document?.detail.layout?.canvas?.width ?? 900, state.document?.detail.layout?.canvas?.height ?? 420);
+    const base = uniqueBase(`slot.${definition.id}`);
+    const patches = (definition.parts ?? []).map((part) => {
+      const value = scaledCompositePart(part, x, y, fallbackWidth, fallbackHeight, definition.sourceWidth ?? fallbackWidth, definition.sourceHeight ?? fallbackHeight);
+      return {
+        target: `${base}.${part.id}`,
+        op: "add" as const,
+        value: {
+          kind: value.kind,
+          region_id: regionId,
+          content: value.content,
+        },
+      };
+    });
+    return { patches, selectId: patches[0]?.target ?? base };
+  }
+
+  function drawnShapeContent(definition: GalleryShapeDefinition, points: Point[]): { kind: GalleryShapeKind; content: Record<string, unknown> } | null {
+    const start = snappedCanvasPoint(points[0]);
+    const end = snappedCanvasPoint(points[points.length - 1]);
+    const stroke = definition.stroke ?? "#111827";
+    const fill = definition.fill ?? "none";
+    const stroke_width = definition.stroke_width ?? 1.5;
+    if (definition.kind === "line") {
+      return { kind: "line", content: { x1: start.x, y1: start.y, x2: end.x, y2: end.y, stroke, stroke_width } };
+    }
+    if (definition.id === "elbow") {
+      return { kind: "path", content: { d: `M ${start.x} ${start.y} L ${end.x} ${start.y} L ${end.x} ${end.y}`, fill: "none", stroke, stroke_width } };
+    }
+    if (definition.id === "freeform") {
+      const cleanPoints = points.map(snappedCanvasPoint).filter((point, index, list) => index === 0 || point.x !== list[index - 1].x || point.y !== list[index - 1].y);
+      if (cleanPoints.length < 2) return null;
+      const [first, ...rest] = cleanPoints;
+      return { kind: "path", content: { d: [`M ${first.x} ${first.y}`, ...rest.map((point) => `L ${point.x} ${point.y}`)].join(" "), fill: "none", stroke, stroke_width } };
+    }
+    if (definition.kind === "path") {
+      const dx = end.x - start.x;
+      const dy = end.y - start.y;
+      const c1 = { x: snappedCanvasNumber(start.x + dx * 0.25), y: snappedCanvasNumber(start.y - Math.max(20, Math.abs(dy) * 0.6)) };
+      const c2 = { x: snappedCanvasNumber(start.x + dx * 0.75), y: snappedCanvasNumber(end.y + Math.max(20, Math.abs(dy) * 0.6)) };
+      return { kind: "path", content: { d: `M ${start.x} ${start.y} C ${c1.x} ${c1.y}, ${c2.x} ${c2.y}, ${end.x} ${end.y}`, fill, stroke, stroke_width } };
+    }
+    return null;
+  }
+
+  function snappedCanvasPoint(point: Point): Point {
+    return { x: snappedCanvasNumber(point.x), y: snappedCanvasNumber(point.y) };
+  }
+
+  function snappedCanvasNumber(value: number): number {
+    if (!state.snapEnabled) return Math.round(value * 100) / 100;
+    return Math.round(value / 5) * 5;
+  }
+
+  function scaledCompositePart(part: GalleryShapePart, x: number, y: number, width: number, height: number, sourceWidth: number, sourceHeight: number): { kind: GalleryShapeKind; content: Record<string, unknown> } {
+    const sx = width / sourceWidth;
+    const sy = height / sourceHeight;
+    const content: Record<string, unknown> = {};
+    for (const [key, value] of Object.entries(part)) {
+      if (key === "id" || key === "kind") continue;
+      content[key] = value;
+    }
+    if (part.kind === "rect") {
+      content.x = snapValue(x + Number(part.x ?? 0) * sx);
+      content.y = snapValue(y + Number(part.y ?? 0) * sy);
+      content.width = snapValue(Number(part.width ?? 0) * sx);
+      content.height = snapValue(Number(part.height ?? 0) * sy);
+      if (part.rx !== undefined) content.rx = snapValue(Number(part.rx || 0) * sx);
+      if (part.ry !== undefined) content.ry = snapValue(Number(part.ry || 0) * sy);
+    } else if (part.kind === "circle") {
+      content.cx = snapValue(x + Number(part.cx ?? 0) * sx);
+      content.cy = snapValue(y + Number(part.cy ?? 0) * sy);
+      content.r = snapValue(Number(part.r ?? 0) * Math.min(sx, sy));
+    } else if (part.kind === "line") {
+      content.x1 = snapValue(x + Number(part.x1 ?? 0) * sx);
+      content.y1 = snapValue(y + Number(part.y1 ?? 0) * sy);
+      content.x2 = snapValue(x + Number(part.x2 ?? 0) * sx);
+      content.y2 = snapValue(y + Number(part.y2 ?? 0) * sy);
+    } else if (part.kind === "polygon") {
+      content.points = scalePoints(part.points ?? [], x, y, width, height, sourceWidth, sourceHeight);
+    } else if (part.kind === "path") {
+      content.d = scaleShapePath(part.d ?? "", x, y, width, height, sourceWidth, sourceHeight);
+    }
+    return { kind: part.kind, content };
+  }
+
+  function scalePoints(points: [number, number][], x: number, y: number, width: number, height: number, sourceWidth: number, sourceHeight: number): [number, number][] {
+    return points.map(([px, py]) => [snapValue(x + (px / sourceWidth) * width), snapValue(y + (py / sourceHeight) * height)]);
+  }
+
+  function scaleShapePath(d: string, x: number, y: number, width: number, height: number, sourceWidth: number, sourceHeight: number): string {
+    const sx = width / sourceWidth;
+    const sy = height / sourceHeight;
+    const tokens = d.match(/[a-zA-Z]|[-+]?(?:\d+(?:\.\d*)?|\.\d+)/g) ?? [];
+    const output: string[] = [];
+    let index = 0;
+    let command = "";
+    const readNumber = () => Number(tokens[index++]);
+    const scaled = (value: number, axis: "x" | "y" | "rx" | "ry") => {
+      const next = axis === "x" ? x + value * sx : axis === "y" ? y + value * sy : axis === "rx" ? value * sx : value * sy;
+      return Number.isInteger(next) ? String(next) : String(Math.round(next * 1000) / 1000);
+    };
+
+    while (index < tokens.length) {
+      const token = tokens[index++];
+      if (/^[a-zA-Z]$/.test(token)) {
+        command = token;
+        output.push(token);
+      } else {
+        index -= 1;
+      }
+
+      const upper = command.toUpperCase();
+      const relative = command !== upper;
+      const scaleX = (value: number) => (relative ? scaled(value, "rx") : scaled(value, "x"));
+      const scaleY = (value: number) => (relative ? scaled(value, "ry") : scaled(value, "y"));
+      if (upper === "M" || upper === "L" || upper === "T") {
+        while (index < tokens.length && !/^[a-zA-Z]$/.test(tokens[index])) output.push(scaleX(readNumber()), scaleY(readNumber()));
+      } else if (upper === "H") {
+        while (index < tokens.length && !/^[a-zA-Z]$/.test(tokens[index])) output.push(scaleX(readNumber()));
+      } else if (upper === "V") {
+        while (index < tokens.length && !/^[a-zA-Z]$/.test(tokens[index])) output.push(scaleY(readNumber()));
+      } else if (upper === "C") {
+        while (index < tokens.length && !/^[a-zA-Z]$/.test(tokens[index])) output.push(scaleX(readNumber()), scaleY(readNumber()), scaleX(readNumber()), scaleY(readNumber()), scaleX(readNumber()), scaleY(readNumber()));
+      } else if (upper === "S" || upper === "Q") {
+        while (index < tokens.length && !/^[a-zA-Z]$/.test(tokens[index])) output.push(scaleX(readNumber()), scaleY(readNumber()), scaleX(readNumber()), scaleY(readNumber()));
+      } else if (upper === "A") {
+        while (index < tokens.length && !/^[a-zA-Z]$/.test(tokens[index])) output.push(scaled(readNumber(), "rx"), scaled(readNumber(), "ry"), String(readNumber()), String(readNumber()), String(readNumber()), scaleX(readNumber()), scaleY(readNumber()));
+      } else if (upper === "Z") {
+        continue;
+      } else {
+        while (index < tokens.length && !/^[a-zA-Z]$/.test(tokens[index])) output.push(tokens[index++]);
+      }
+    }
+    return output.join(" ");
+  }
+
+  function tablePatches(rows: number, cols: number): { base: string; patches: LayoutPatch[] } {
+    const cleanRows = clampInt(rows, 1, 20, 2);
+    const cleanCols = clampInt(cols, 1, 20, 5);
+    const cellWidth = 105;
+    const cellHeight = 58;
+    const width = cleanCols * cellWidth;
+    const height = cleanRows * cellHeight;
+    const { x, y } = defaultInsertOrigin(width, height);
+    const base = uniqueBase("slot.table");
+    const regionId = preferredRegionId();
+    const patches: LayoutPatch[] = [
+      {
+        target: `${base}.outer`,
+        op: "add",
+        value: withRegion({ kind: "rect", content: { x, y, width, height, fill: "#ffffff", stroke: "#111827", stroke_width: 1 } }, regionId),
+      },
+    ];
+
+    for (let row = 1; row <= cleanRows; row += 1) {
+      for (let col = 1; col <= cleanCols; col += 1) {
+        patches.push({
+          target: `${base}.r${row}c${col}.fill`,
+          op: "add",
+          value: withRegion({
+            kind: "rect",
+            content: {
+              x: snapValue(x + (col - 1) * cellWidth),
+              y: snapValue(y + (row - 1) * cellHeight),
+              width: cellWidth,
+              height: cellHeight,
+              fill: "none",
+              stroke: "none",
+              stroke_width: 0,
+            },
+          }, regionId),
+        });
+      }
+    }
+    for (let col = 1; col < cleanCols; col += 1) {
+      const px = snapValue(x + col * cellWidth);
+      patches.push({
+        target: `${base}.v${col}`,
+        op: "add",
+        value: withRegion({ kind: "line", content: { x1: px, y1: y, x2: px, y2: y + height, stroke: "#111827", stroke_width: 1 } }, regionId),
+      });
+    }
+    for (let row = 1; row < cleanRows; row += 1) {
+      const py = snapValue(y + row * cellHeight);
+      patches.push({
+        target: `${base}.h${row}`,
+        op: "add",
+        value: withRegion({ kind: "line", content: { x1: x, y1: py, x2: x + width, y2: py, stroke: "#111827", stroke_width: 1 } }, regionId),
+      });
+    }
+    for (let row = 1; row <= cleanRows; row += 1) {
+      for (let col = 1; col <= cleanCols; col += 1) {
+        const fontSize = 22;
+        const baselineOffset = cellHeight / 2 + fontSize * 0.35;
+        patches.push({
+          target: `${base}.r${row}c${col}`,
+          op: "add",
+          value: withRegion({
+            kind: "text",
+            content: {
+              text: "",
+              x: snapValue(x + (col - 0.5) * cellWidth),
+              y: snapValue(y + (row - 1) * cellHeight + baselineOffset),
+              font_size: fontSize,
+              max_width: Math.max(8, cellWidth - 20),
+              anchor: "middle",
+              style_role: "table",
+              fill: "#111827",
+            },
+          }, regionId),
+        });
+      }
+    }
+    return { base, patches };
+  }
+
+  function graphPaperPatches(rows: number, cols: number): { base: string; patches: LayoutPatch[] } {
+    const cleanRows = clampInt(rows, 1, 40, 8);
+    const cleanCols = clampInt(cols, 1, 40, 10);
+    const cellSize = 25;
+    const width = cleanCols * cellSize;
+    const height = cleanRows * cellSize;
+    const { x, y } = defaultInsertOrigin(width, height);
+    const originX = snapValue(x);
+    const originY = snapValue(y);
+    const base = uniqueBase("slot.graph_paper");
+    const regionId = preferredRegionId();
+    const patches: LayoutPatch[] = [];
+    for (let col = 0; col <= cleanCols; col += 1) {
+      const px = originX + col * cellSize;
+      patches.push({
+        target: `${base}.v${col}`,
+        op: "add",
+        value: withRegion({ kind: "line", content: { x1: px, y1: originY, x2: px, y2: originY + height, stroke: "#2563eb", stroke_width: 1 } }, regionId),
+      });
+    }
+    for (let row = 0; row <= cleanRows; row += 1) {
+      const py = originY + row * cellSize;
+      patches.push({
+        target: `${base}.h${row}`,
+        op: "add",
+        value: withRegion({ kind: "line", content: { x1: originX, y1: py, x2: originX + width, y2: py, stroke: "#2563eb", stroke_width: 1 } }, regionId),
+      });
+    }
+    return { base, patches };
+  }
+
+  function barModelPatches(options: BarModelOptions): { base: string; patches: LayoutPatch[] } {
+    const cleanBars = clampInt(options.bars, 1, 8, 2);
+    const cleanCells = clampInt(options.cells, 1, 20, 3);
+    const shadedList = configList(options.shadedCounts ?? "2,2");
+    const colorList = configList(options.fillColors ?? "#f3d7ea");
+    const cellWidth = 58;
+    const barHeight = 40;
+    const barGap = 54;
+    const width = cleanCells * cellWidth;
+    const height = cleanBars * barHeight + (cleanBars - 1) * barGap;
+    const { x, y } = defaultInsertOrigin(width, height);
+    const base = uniqueBase("slot.bar_model");
+    const regionId = preferredRegionId();
+    const strokeColor = String(options.stroke || "#666666").trim() || "#666666";
+    const dashed = options.dashed ?? true;
+    const patches: LayoutPatch[] = [];
+
+    for (let barIndex = 0; barIndex < cleanBars; barIndex += 1) {
+      const barY = snapValue(y + barIndex * (barHeight + barGap));
+      const shaded = clampInt(configListValue(shadedList, barIndex, "0"), 0, cleanCells, 0);
+      const fill = String(configListValue(colorList, barIndex, "#f3d7ea") || "#f3d7ea").trim() || "#f3d7ea";
+      for (let cellIndex = 0; cellIndex < shaded; cellIndex += 1) {
+        patches.push({
+          target: `${base}.bar${barIndex + 1}.shade${cellIndex + 1}`,
+          op: "add",
+          value: withRegion({
+            kind: "rect",
+            content: {
+              x: snapValue(x + cellIndex * cellWidth),
+              y: barY,
+              width: cellWidth,
+              height: barHeight,
+              fill,
+              stroke: "none",
+              stroke_width: 0,
+            },
+          }, regionId),
+        });
+      }
+      patches.push({
+        target: `${base}.bar${barIndex + 1}.outline`,
+        op: "add",
+        value: withRegion({ kind: "rect", content: { x, y: barY, width, height: barHeight, fill: "none", stroke: strokeColor, stroke_width: 1.5 } }, regionId),
+      });
+      for (let cellIndex = 1; cellIndex < cleanCells; cellIndex += 1) {
+        const px = snapValue(x + cellIndex * cellWidth);
+        patches.push({
+          target: `${base}.bar${barIndex + 1}.div${cellIndex}`,
+          op: "add",
+          value: withRegion({
+            kind: "line",
+            content: {
+              x1: px,
+              y1: barY,
+              x2: px,
+              y2: snapValue(barY + barHeight),
+              stroke: strokeColor,
+              stroke_width: 1,
+              ...(dashed ? { stroke_dasharray: "5 3" } : {}),
+            },
+          }, regionId),
+        });
+      }
+    }
+    return { base, patches };
+  }
+
+  function tickBarPatches(options: TickBarOptions): { base: string; patches: LayoutPatch[] } {
+    const cleanRows = clampInt(options.rows, 1, 8, 2);
+    const cleanTotal = clampInt(options.totalTicks, 1, 40, 14);
+    const cleanMajor = clampInt(options.majorEvery, 0, cleanTotal, 7);
+    const filledList = configList(options.filledTicks ?? "9,10");
+    const labelList = configList(options.labels ?? "");
+    const width = 464;
+    const rowGap = 96;
+    const labelWidth = 118;
+    const height = Math.max(70, (cleanRows - 1) * rowGap + 82);
+    const { x, y } = defaultInsertOrigin(labelWidth + width, height);
+    const axisX = snapValue(x + labelWidth);
+    const base = uniqueBase("slot.tick_bar");
+    const regionId = preferredRegionId();
+    const stroke = String(options.axisColor || "#111111").trim() || "#111111";
+    const fill = String(options.fillColor || "#2563eb").trim() || "#2563eb";
+    const step = width / cleanTotal;
+    const unitText = String(options.unit || "").trim();
+    const showScaleLabels = options.showScaleLabels ?? true;
+    const showFractionLabel = options.showFractionLabel ?? true;
+    const patches: LayoutPatch[] = [];
+
+    for (let rowIndex = 0; rowIndex < cleanRows; rowIndex += 1) {
+      const rowBase = `${base}.row${rowIndex + 1}`;
+      const axisY = snapValue(y + 30 + rowIndex * rowGap);
+      const filled = clampInt(configListValue(filledList, rowIndex, "0"), 0, cleanTotal, 0);
+      const rowLabel = String(configListValue(labelList, rowIndex, "") || "").trim();
+      if (rowLabel) {
+        patches.push({
+          target: `${rowBase}.label`,
+          op: "add",
+          value: withRegion({ kind: "text", content: { text: rowLabel, x: snapValue(x), y: snapValue(axisY + 9), font_size: 28, style_role: "label", fill: stroke } }, regionId),
+        });
+      }
+      if (filled > 0) {
+        patches.push({
+          target: `${rowBase}.fill`,
+          op: "add",
+          value: withRegion({ kind: "line", content: { x1: axisX, y1: axisY, x2: snapValue(axisX + filled * step), y2: axisY, stroke: fill, stroke_width: 8 } }, regionId),
+        });
+      }
+      patches.push({
+        target: `${rowBase}.axis`,
+        op: "add",
+        value: withRegion({ kind: "line", content: { x1: axisX, y1: axisY, x2: snapValue(axisX + width), y2: axisY, stroke, stroke_width: 2 } }, regionId),
+      });
+      for (let tick = 0; tick <= cleanTotal; tick += 1) {
+        const isMajor = cleanMajor > 0 && tick % cleanMajor === 0;
+        const tickHeight = isMajor ? 18 : 14;
+        const px = snapValue(axisX + tick * step);
+        patches.push({
+          target: `${rowBase}.tick${tick}`,
+          op: "add",
+          value: withRegion({ kind: "line", content: { x1: px, y1: snapValue(axisY - tickHeight / 2), x2: px, y2: snapValue(axisY + tickHeight / 2), stroke, stroke_width: 2 } }, regionId),
+        });
+        if (isMajor && showScaleLabels) {
+          const value = cleanMajor > 0 ? tick / cleanMajor : tick;
+          const label = tick === cleanTotal && unitText ? `${value}(${unitText})` : String(value);
+          patches.push({
+            target: `${rowBase}.label${tick}`,
+            op: "add",
+            value: withRegion({ kind: "text", content: { text: label, x: snapValue(px - (tick === 0 ? 6 : tick === cleanTotal ? 14 : 8)), y: snapValue(axisY + 34), font_size: 26, style_role: "label", fill: stroke } }, regionId),
+          });
+        }
+      }
+      if (showFractionLabel && cleanMajor > 0 && cleanMajor < cleanTotal) {
+        patches.push({
+          target: `${rowBase}.major_fraction`,
+          op: "add",
+          value: withRegion({ kind: "text", content: { text: `${cleanMajor}/${cleanMajor}`, x: snapValue(axisX + cleanMajor * step - 18), y: snapValue(axisY - 22), font_size: 24, style_role: "label", fill: stroke } }, regionId),
+        });
+      }
+    }
+    return { base, patches };
+  }
+
+  function fractionPatches(options: FractionInsertOptions): { base: string; patches: LayoutPatch[] } {
+    const mixed = options.mixed ?? false;
+    const wholeText = cleanMathText(options.whole, "1");
+    const numeratorText = cleanMathText(options.numerator, "1");
+    const denominatorText = cleanMathText(options.denominator, "2");
+    const fontSize = 30;
+    const barWidth = 42;
+    const width = mixed ? 88 : 54;
+    const height = 72;
+    const { x, y } = selectedInsertOrigin(width, height) ?? defaultInsertOrigin(width, height);
+    const fractionX = mixed ? snapValue(x + 58) : snapValue(x + width / 2);
+    const base = uniqueBase(mixed ? "slot.mixed_fraction" : "slot.fraction");
+    const regionId = regionIdForSelection() ?? preferredRegionId();
+    const patches: LayoutPatch[] = [];
+
+    if (mixed) {
+      patches.push({
+        target: `${base}.whole`,
+        op: "add",
+        value: withRegion({ kind: "text", content: { text: wholeText, x: snapValue(x + 18), y: snapValue(y + 44), font_size: fontSize, anchor: "middle", style_role: "body", fill: "#222222" } }, regionId),
+      });
+    }
+    patches.push({
+      target: `${base}.num`,
+      op: "add",
+      value: withRegion({ kind: "text", content: { text: numeratorText, x: fractionX, y: snapValue(y + 22), font_size: fontSize, anchor: "middle", style_role: "body", fill: "#222222" } }, regionId),
+    });
+    patches.push({
+      target: `${base}.bar`,
+      op: "add",
+      value: withRegion({ kind: "line", content: { x1: snapValue(fractionX - barWidth / 2), y1: snapValue(y + 36), x2: snapValue(fractionX + barWidth / 2), y2: snapValue(y + 36), stroke: "#222222", stroke_width: 2.2 } }, regionId),
+    });
+    patches.push({
+      target: `${base}.den`,
+      op: "add",
+      value: withRegion({ kind: "text", content: { text: denominatorText, x: fractionX, y: snapValue(y + 58), font_size: fontSize, anchor: "middle", style_role: "body", fill: "#222222" } }, regionId),
+    });
+    return { base, patches };
+  }
+
+  function defaultInsertOrigin(width: number, height: number): { x: number; y: number } {
+    const canvas = state.document?.detail.layout?.canvas;
+    return {
+      x: snapValue(Math.max(10, ((canvas?.width ?? 900) - width) / 2)),
+      y: snapValue(Math.max(10, ((canvas?.height ?? 420) - height) / 2)),
+    };
+  }
+
+  function selectedInsertOrigin(width: number, height: number): { x: number; y: number } | null {
+    if (state.selectedIds.length !== 1) return null;
+    const slot = findSlot(state.selectedIds[0]);
+    const box = slot ? slotBounds(slot) : null;
+    if (!box) return null;
+    return { x: snapValue(box.x + box.width / 2 - width / 2), y: snapValue(box.y + box.height / 2 - height / 2) };
+  }
+
+  function regionIdForSelection(): string | null {
+    return state.selectedIds.length === 1 ? regionIdForSlot(state.selectedIds[0]) : null;
+  }
+
+  function snapValue(value: number): number {
+    if (!state.snapEnabled) return Math.round(value * 100) / 100;
+    return Math.round(value / 5) * 5;
+  }
+
+  function clampInt(value: unknown, min: number, max: number, fallback: number): number {
+    const numeric = Number(value);
+    const clean = Number.isFinite(numeric) ? Math.trunc(numeric) : fallback;
+    return Math.max(min, Math.min(max, clean));
+  }
+
+  function configList(value: unknown): string[] {
+    return String(value ?? "").split(",").map((item) => item.trim()).filter(Boolean);
+  }
+
+  function configListValue(items: string[], index: number, fallback: string): string {
+    if (!items.length) return fallback;
+    return items[Math.min(index, items.length - 1)] || fallback;
+  }
+
+  function cleanMathText(value: unknown, fallback: string): string {
+    const text = String(value ?? "").trim();
+    return text || fallback;
+  }
+
   function readFileAsDataUrl(file: File): Promise<string> {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
@@ -850,10 +1692,26 @@ export function createEditorStore() {
     moveSelectedSlots,
     deleteSelectedSlots,
     updateSlotProperties,
+    updateSelectedBounds,
+    updateSelectedText,
+    nudgeSelectedFontSize,
+    alignSelectedText,
+    applyShapeFill,
+    applyShapeStroke,
+    applyShapeDash,
     updateCanvasSize,
     alignSelectedSlots,
     layerSelectedSlots,
     insertShape,
+    insertGalleryShape,
+    beginDrawShape,
+    cancelDrawShape,
+    insertDrawnShape,
+    insertTable,
+    insertGraphPaper,
+    insertBarModel,
+    insertTickBar,
+    insertFractionExpression,
     insertImageFile,
     copySelectedSlots,
     pasteCopiedSlots,

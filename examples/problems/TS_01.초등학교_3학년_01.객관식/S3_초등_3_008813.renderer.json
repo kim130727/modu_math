@@ -11,7 +11,7 @@
       "type": "text",
       "attributes": {
         "x": 14.0,
-        "y": 22.0,
+        "y": 47.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 28
@@ -20,7 +20,7 @@
       "refs": {
         "layout_slot_id": "slot.q1"
       },
-      "text": "46. 우유병에 물을 가득 채운 후 컵에 옮겨 담았더니 우유병에 물이 남았습니다. 우유병과 컵 중에서 들이가 더 적은 것을 선택해 보세요."
+      "text": "우유병에 물을 가득 채운 후 컵에 옮겨 담았더니 우유병에 물이 남았습니다."
     },
     {
       "id": "slot.q2.text",
@@ -39,199 +39,20 @@
       "text": ""
     },
     {
-      "id": "slot.bottle.body.rect",
-      "type": "rect",
+      "id": "slot.q1.copy6.text",
+      "type": "text",
       "attributes": {
-        "x": 268.0,
-        "y": 78.0,
-        "width": 38.0,
-        "height": 92.0,
-        "fill": "#ffffff",
-        "stroke": "#111111",
-        "stroke-width": 1.5
+        "x": 14.0,
+        "y": 87.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
       },
-      "source_ref": "slot.bottle.body",
+      "source_ref": "slot.q1.copy6",
       "refs": {
-        "layout_slot_id": "slot.bottle.body"
-      }
-    },
-    {
-      "id": "slot.bottle.neck.rect",
-      "type": "rect",
-      "attributes": {
-        "x": 279.0,
-        "y": 58.0,
-        "width": 16.0,
-        "height": 26.0,
-        "fill": "#ffffff",
-        "stroke": "#111111",
-        "stroke-width": 1.5
+        "layout_slot_id": "slot.q1.copy6"
       },
-      "source_ref": "slot.bottle.neck",
-      "refs": {
-        "layout_slot_id": "slot.bottle.neck"
-      }
-    },
-    {
-      "id": "slot.bottle.fill.rect",
-      "type": "rect",
-      "attributes": {
-        "x": 270.0,
-        "y": 118.0,
-        "width": 34.0,
-        "height": 48.0,
-        "fill": "#ffffff",
-        "stroke": "#111111",
-        "stroke-width": 1.5
-      },
-      "source_ref": "slot.bottle.fill",
-      "refs": {
-        "layout_slot_id": "slot.bottle.fill"
-      }
-    },
-    {
-      "id": "slot.cup.body.rect",
-      "type": "rect",
-      "attributes": {
-        "x": 600.0,
-        "y": 112.0,
-        "width": 44.0,
-        "height": 84.0,
-        "fill": "#ffffff",
-        "stroke": "#111111",
-        "stroke-width": 1.5
-      },
-      "source_ref": "slot.cup.body",
-      "refs": {
-        "layout_slot_id": "slot.cup.body"
-      }
-    },
-    {
-      "id": "slot.cup.handle.path",
-      "type": "path",
-      "attributes": {
-        "d": "M 644.0 126.0 C 666.0 126.0, 666.0 170.0, 644.0 170.0",
-        "stroke": "#111111",
-        "stroke-width": 2.0,
-        "fill": "none"
-      },
-      "source_ref": "slot.cup.handle",
-      "refs": {
-        "layout_slot_id": "slot.cup.handle"
-      }
-    },
-    {
-      "id": "slot.cup.fill.rect",
-      "type": "rect",
-      "attributes": {
-        "x": 606.0,
-        "y": 112.0,
-        "width": 32.0,
-        "height": 18.0,
-        "fill": "#ffffff",
-        "stroke": "#111111",
-        "stroke-width": 1.5
-      },
-      "source_ref": "slot.cup.fill",
-      "refs": {
-        "layout_slot_id": "slot.cup.fill"
-      }
-    },
-    {
-      "id": "slot.cap1.circle",
-      "type": "circle",
-      "attributes": {
-        "cx": 285.0,
-        "cy": 50.0,
-        "r": 8.0,
-        "stroke": "#111111",
-        "stroke-width": 2.0,
-        "fill": "#ffffff"
-      },
-      "source_ref": "slot.cap1",
-      "refs": {
-        "layout_slot_id": "slot.cap1"
-      }
-    },
-    {
-      "id": "slot.cap2.circle",
-      "type": "circle",
-      "attributes": {
-        "cx": 285.0,
-        "cy": 50.0,
-        "r": 5.0,
-        "stroke": "#111111",
-        "stroke-width": 2.0,
-        "fill": "#ffffff"
-      },
-      "source_ref": "slot.cap2",
-      "refs": {
-        "layout_slot_id": "slot.cap2"
-      }
-    },
-    {
-      "id": "slot.cap3.circle",
-      "type": "circle",
-      "attributes": {
-        "cx": 285.0,
-        "cy": 50.0,
-        "r": 3.0,
-        "stroke": "#111111",
-        "stroke-width": 2.0,
-        "fill": "#ffffff"
-      },
-      "source_ref": "slot.cap3",
-      "refs": {
-        "layout_slot_id": "slot.cap3"
-      }
-    },
-    {
-      "id": "slot.cap4.circle",
-      "type": "circle",
-      "attributes": {
-        "cx": 285.0,
-        "cy": 50.0,
-        "r": 2.0,
-        "stroke": "#111111",
-        "stroke-width": 2.0,
-        "fill": "#ffffff"
-      },
-      "source_ref": "slot.cap4",
-      "refs": {
-        "layout_slot_id": "slot.cap4"
-      }
-    },
-    {
-      "id": "slot.cap5.circle",
-      "type": "circle",
-      "attributes": {
-        "cx": 285.0,
-        "cy": 50.0,
-        "r": 1.5,
-        "stroke": "#111111",
-        "stroke-width": 2.0,
-        "fill": "#ffffff"
-      },
-      "source_ref": "slot.cap5",
-      "refs": {
-        "layout_slot_id": "slot.cap5"
-      }
-    },
-    {
-      "id": "slot.cap6.circle",
-      "type": "circle",
-      "attributes": {
-        "cx": 285.0,
-        "cy": 50.0,
-        "r": 1.0,
-        "stroke": "#111111",
-        "stroke-width": 2.0,
-        "fill": "#ffffff"
-      },
-      "source_ref": "slot.cap6",
-      "refs": {
-        "layout_slot_id": "slot.cap6"
-      }
+      "text": "우유병과 컵 중에서 들이가 더 적은 것을 선택해 보세요."
     },
     {
       "id": "slot.bottle.label.text",
@@ -248,22 +69,6 @@
         "layout_slot_id": "slot.bottle.label"
       },
       "text": "우유병"
-    },
-    {
-      "id": "slot.arrow.text",
-      "type": "text",
-      "attributes": {
-        "x": 476.0,
-        "y": 152.0,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 40
-      },
-      "source_ref": "slot.arrow",
-      "refs": {
-        "layout_slot_id": "slot.arrow"
-      },
-      "text": "→"
     },
     {
       "id": "slot.choice.text",

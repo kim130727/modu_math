@@ -4,7 +4,9 @@ Reference implementation: `/editor/`
 
 Target implementation: `/editor-next/`
 
-Scope for this document: inventory the stable editor behavior and compare it against the current editor-next Solid implementation. Do not remove or modify `/editor/`; future implementation should stay in `/editor-next/` unless a shared extraction is demonstrably safe.
+Audit date: 2026-07-05
+
+Scope for this document: inventory the stable editor behavior and compare it against the current editor-next Solid implementation. The initial audit pass was documentation-only; subsequent implementation passes should update the status rows as parity improves. Do not remove or modify `/editor/`. Future implementation should stay in `/editor-next/` unless a shared extraction is demonstrably safe.
 
 Status values:
 
@@ -28,6 +30,12 @@ Status values:
 - `src/modu_math_web/editor_next/`
 - `src/modu_math_web/urls.py`
 
+Additional comparison notes:
+
+- `editor-next` is currently served by `src/modu_math_web/editor_next/views.py` at `/editor-next/`.
+- `editor-next` uses the shared `/api/editor/` URL namespace; there is no separate editor-next API namespace.
+- The inspected editor-next bundle source map references Solid/TypeScript modules under `frontend/src/`, including `api/editorApi.ts`, `stores/editorStore.ts`, `components/EditorToolbar.tsx`, `components/CanvasViewport.tsx`, `components/DslEditor.tsx`, `components/ProblemList.tsx`, `components/PropertyInspector.tsx`, and `components/EditorPage.tsx`.
+
 ## 1. Toolbar Buttons In Editor
 
 | Item | Editor reference behavior | editor-next status | Notes |
@@ -40,13 +48,13 @@ Status values:
 | Refresh List | Reloads problem list. | implemented | Toolbar Refresh exists. |
 | Insert Text Box | Adds text box slot. | implemented | Present as Text Box. |
 | Insert Image | File picker and image slot insertion. | implemented | editor-next now reads image files as data URLs and inserts scaled image slots. |
-| Insert Table | Dialog with rows/columns and table insertion. | missing | No table insertion UI. |
-| Insert Bar Model | Dialog with bars/cells/shading/fill/stroke/dashed options. | missing | No bar model UI. |
-| Insert Tick Bar | Dialog with rows/ticks/fill/labels/unit/colors options. | missing | No tick bar UI. |
-| Insert Graph Paper | Dialog with columns/rows. | missing | No graph paper insertion UI. |
-| Insert Fraction | Dialog for numerator/denominator. | missing | No fraction insertion UI. |
-| Insert Mixed Fraction | Dialog for whole/numerator/denominator. | missing | No mixed fraction insertion UI. |
-| Shape Gallery | PowerPoint-like categorized gallery of lines, rectangles, shapes, teaching objects, arrows, etc. | partially implemented | editor-next now exposes direct insertion for text box, rect, circle, line, triangle, curve, and image; categorized gallery is still missing. |
+| Insert Table | Dialog with rows/columns and table insertion. | implemented | editor-next now has a rows/columns dialog and patch-backed table slot generation. |
+| Insert Bar Model | Dialog with bars/cells/shading/fill/stroke/dashed options. | implemented | editor-next now has a matching dialog and generated bar model patches. |
+| Insert Tick Bar | Dialog with rows/ticks/fill/labels/unit/colors options. | implemented | editor-next now has a matching dialog and generated tick bar patches. |
+| Insert Graph Paper | Dialog with columns/rows. | implemented | editor-next now has a rows/columns dialog and generated graph paper patches. |
+| Insert Fraction | Dialog for numerator/denominator. | implemented | editor-next now inserts fraction text/line slots from a dialog. |
+| Insert Mixed Fraction | Dialog for whole/numerator/denominator. | implemented | editor-next now inserts mixed fraction text/line slots from a dialog. |
+| Shape Gallery | PowerPoint-like categorized gallery of lines, rectangles, shapes, teaching objects, arrows, etc. | partially implemented | editor-next now has a categorized click-to-insert gallery for lines, rectangles, basic shapes, teaching aids, block arrows, math shapes, flowchart shapes, stars/banners, and callouts. Draw-mode placement is still missing. |
 | Snap Toggle | Toggle 5px snap with active state. | implemented | Present as Snap 5px. |
 | Pick All | Selection filter for all elements. | implemented | Present. |
 | Pick Line/Path | Selection filter for lines/paths. | partially implemented | Present, but editor-next matching is simpler than editor's SVG/slot/group logic. |
@@ -70,8 +78,8 @@ Status values:
 | Blank click clears selection. | Supported. | implemented | editor-next clears selection on empty click. |
 | Pan canvas. | Not a reference behavior. | implemented | editor-next supports pan by tool, middle button, or Alt. |
 | Zoom canvas. | Not a reference behavior. | implemented | editor-next supports zoom/reset. |
-| Context menu shape formatting. | Right-click or context behavior opens shape format menu for shapes. | missing | No context menu/shape format menu in editor-next. |
-| Draw-to-place shapes. | Some line/path/freeform shape types are drawn by pointer. | missing | editor-next inserts centered rect/text only. |
+| Context menu shape formatting. | Right-click or context behavior opens shape format menu for shapes. | partially implemented | Inspector now exposes fill/stroke/no-border/dash controls, but the right-click popup behavior is still missing. |
+| Draw-to-place shapes. | Some line/path/freeform shape types are drawn by pointer. | partially implemented | editor-next now supports drag-to-draw for line, elbow connector, curve, and freeform path with preview/cancel; full reference draw-state/path editing behavior remains incomplete. |
 | Canvas selection. | Select canvas, show canvas guide, edit W/H. | partially implemented | editor-next now edits canvas W/H in inspector; explicit canvas selection/guide is still missing. |
 
 ## 3. SVG Rendering Behavior
@@ -125,11 +133,11 @@ Status values:
 
 | Item | Editor reference behavior | editor-next status | Notes |
 | --- | --- | --- | --- |
-| Inspector text input and Update Text. | `textEditInput` plus Update Text button. | partially implemented | editor-next generic inspector edits any primitive `text` field, but lacks dedicated text section/button. |
+| Inspector text input and Update Text. | `textEditInput` plus Update Text button. | implemented | editor-next now has a dedicated Text section with Content input and Update Text button. |
 | Double-click inline text editor. | Opens positioned inline input; Enter commits, Escape cancels, blur commits. | implemented | editor-next has inline editor for SVG `text` elements. |
-| Font size increase/decrease buttons. | A-/A+ adjust selected text font size. | missing | No dedicated buttons. Primitive `font_size` can be edited if present. |
-| Text alignment left/center/right. | Aligns selected text inside cell/table context. | missing | No dedicated text alignment controls. |
-| Enter in inspector text input commits. | Supported. | partially implemented | Generic inspector blurs on Enter; manual text panel absent. |
+| Font size increase/decrease buttons. | A-/A+ adjust selected text font size. | implemented | Dedicated A-/A+ controls now patch selected text/text_box font size. |
+| Text alignment left/center/right. | Aligns selected text inside cell/table context. | partially implemented | Dedicated controls now patch text anchor/text_box align; table-cell batch alignment is still missing. |
+| Enter in inspector text input commits. | Supported. | partially implemented | Generic inspector blurs on Enter; manual text panel absent. Insert dialogs also commit on Enter. |
 
 ## 8. Shape Insertion Behavior
 
@@ -137,18 +145,18 @@ Status values:
 | --- | --- | --- | --- |
 | Insert text box. | Adds DSL/layout slot and rebuilds. | implemented | editor-next supports `text_box`. |
 | Insert rectangle. | Shape gallery rectangle insertion. | implemented | editor-next supports centered `rect`. |
-| Insert lines/curves/freeform. | Gallery plus draw-mode for some shapes. | partially implemented | editor-next supports centered line and curve insertion; draw-mode/freeform placement is still missing. |
-| Insert common polygons/basic shapes. | Many gallery options. | partially implemented | editor-next supports circle and triangle; broader gallery remains missing. |
-| Insert composite teaching objects. | Boy/girl/school/house/playground/etc. | missing | No composite insertion. |
-| Shape fill/stroke menu and swatches. | Fill/stroke colors, no border, dash styles. | missing | No shape format UI. |
+| Insert lines/curves/freeform. | Gallery plus draw-mode for some shapes. | partially implemented | editor-next gallery now supports click-to-insert simple line variants and drag-to-draw line, elbow, curve, and freeform paths. |
+| Insert common polygons/basic shapes. | Many gallery options. | partially implemented | editor-next gallery now supports common polygons/basic shapes, arrows, math symbols, flowchart shapes, stars/banners, callouts, and teaching aids; some reference-only draw/path editing behavior is still missing. |
+| Insert composite teaching objects. | Boy/girl/school/house/playground/etc. | implemented | editor-next now inserts boy, girl, school, house, and playground as multi-slot composite shapes, plus push pin as a path shape. |
+| Shape fill/stroke menu and swatches. | Fill/stroke colors, no border, dash styles. | partially implemented | Inspector now supports fill, stroke, no border, solid, and dash styles; swatches/popup menu are still missing. |
 | Image insertion from file. | Reads image file and inserts image payload. | implemented | editor-next now provides file input and image slot insertion. |
 
 ## 9. Table Insertion/Editing Behavior
 
 | Item | Editor reference behavior | editor-next status | Notes |
 | --- | --- | --- | --- |
-| Table insertion dialog. | Rows/columns with validation and Enter/Escape handling. | missing | No table UI. |
-| Table slot creation. | Adds table layout content. | missing | No table insertion store action. |
+| Table insertion dialog. | Rows/columns with validation and Enter/Escape handling. | implemented | Dialog supports rows/columns, Enter submit, Escape/overlay close. |
+| Table slot creation. | Adds table layout content. | implemented | Store generates outer rect, cell fills, dividers, and text slots. |
 | Table cell selection. | Shows `.table-cell-selected`. | missing | No table cell selection. |
 | Table row/column divider handles. | `.table-adjust-handle` resize controls. | missing | No table divider handles. |
 | Table auto-fit/fill editing. | Functions exist in editor for fill/autofit behavior. | missing | No table edit panel. |
@@ -163,9 +171,9 @@ Status values:
 | Position/size X/Y/W/H. | Dedicated numeric fields commit layout patches. | partially implemented | Generic inspector edits primitive content fields if present; no normalized slot X/Y/W/H section yet. |
 | Font field. | Dedicated font size numeric field. | partially implemented | Generic primitive `font_size` edit if present. |
 | Rotate field. | Dedicated transform/rotate field. | missing | No rotation field. |
-| Text edit field and Update Text. | Dedicated text section. | partially implemented | Generic content editor and inline edit only. |
-| Font smaller/larger. | A-/A+ buttons. | missing | No controls. |
-| Text align left/center/right. | Buttons. | missing | No controls. |
+| Text edit field and Update Text. | Dedicated text section. | implemented | Dedicated text section now exists. |
+| Font smaller/larger. | A-/A+ buttons. | implemented | Dedicated controls now exist. |
+| Text align left/center/right. | Buttons. | partially implemented | Buttons exist for selected text/text_box; table-aware alignment remains missing. |
 | Patch JSON. | JSON textarea with Patch and Patch + Build. | implemented | editor-next has manual patch Apply and Build. |
 | DSL/JSON tabs. | Inspector tabs switch between DSL and artifacts. | partially implemented | editor-next has separate inspector DSL and stage artifact section, not tabs. |
 | Artifact textareas. | Separate semantic/solvable/layout/renderer read-only textareas. | implemented | editor-next now renders separate read-only artifact panes. |
@@ -233,9 +241,9 @@ Status values:
 | Ctrl/Cmd+S save. | Not in reference. | implemented | Extra editor-next behavior. |
 | Delete/Backspace delete selection. | Supported. | implemented | Present. |
 | Arrow keys move selection. | 1px, Shift=10px, queued save. | partially implemented | Movement exists, but no queued/debounced save/status and group behavior differs. |
-| Escape cancel drawing / close shape UI. | Supported. | partially implemented | Inline editor Escape cancels; no drawing/gallery/format menu to close. |
-| Enter commits dialog fields. | Table/graph/bar/tick/math dialogs support Enter. | missing | Dialogs absent. |
-| Escape closes dialogs. | Supported in editor dialogs. | missing | Dialogs absent. |
+| Escape cancel drawing / close shape UI. | Supported. | partially implemented | Inline editor Escape cancels; insert dialogs close on Escape; shape gallery closes on Escape/outside click; draw mode cancels on Escape or too-short drag. |
+| Enter commits dialog fields. | Table/graph/bar/tick/math dialogs support Enter. | implemented | New insert dialogs submit on Enter. |
+| Escape closes dialogs. | Supported in editor dialogs. | implemented | New insert dialogs close on Escape and overlay click. |
 
 ## 16. Error Handling
 
@@ -246,7 +254,7 @@ Status values:
 | Build failure output. | Shows stdout/stderr/error and failed status. | partially implemented | Build failure payload is captured; display is less detailed than editor log/status pairing. |
 | Invalid manual patch JSON. | Caught and shown. | implemented | editor-next validates JSON object. |
 | Empty DSL save. | Backend rejects; UI surfaces error. | implemented | Via API client/footer. |
-| Dialog validation. | Clamps table/graph/model inputs. | missing | Dialogs absent. |
+| Dialog validation. | Clamps table/graph/model inputs. | implemented | New insert dialogs clamp numeric fields before patch generation. |
 | Per-action localized success/error messages. | Editor has specific `setStatus` messages. | missing | editor-next mostly shows generic loading/ready/error. |
 
 ## 17. Status Messages
@@ -278,9 +286,9 @@ Status values:
 | `.table-adjust-handle`, `.table-cell-selected` | Table editing visuals. | missing | No table editing. |
 | `.inline-text-editor` | Inline text input. | partially implemented | Same class exists in editor-next, but CSS differs and is inline-styled. |
 | `.marquee` | Marquee selection rectangle. | partially implemented | editor-next uses `.marquee-box`. |
-| `.shape-gallery`, `.shape-category-title`, `.shape-grid`, `.shape-choice` | Shape gallery. | missing | No gallery. |
-| `.shape-format-menu`, `.shape-format-row`, `.shape-swatch`, `.shape-format-btn` | Shape formatting popup. | missing | No popup. |
-| `.table-dialog`, `.table-dialog-panel`, `.table-dialog-fields`, `.table-dialog-actions` | Insertion dialogs. | missing | No dialogs. |
+| `.shape-gallery`, `.shape-category-title`, `.shape-grid`, `.shape-choice` | Shape gallery. | implemented | editor-next now defines and uses these gallery classes. |
+| `.shape-format-menu`, `.shape-format-row`, `.shape-swatch`, `.shape-format-btn` | Shape formatting popup. | partially implemented | `.shape-format-row`, `.shape-format-btn`, and color control styling exist in inspector; popup menu and swatches are still missing. |
+| `.table-dialog`, `.table-dialog-panel`, `.table-dialog-fields`, `.table-dialog-actions` | Insertion dialogs. | implemented | Dialog classes and responsive styling now exist in editor-next. |
 | `.tree`, `.folder`, `.children.collapsed`, `.file-btn`, `.tree-tools`, `.tree-count` | Hierarchical problem tree. | partially implemented | Tree/folder/children/file classes now exist; `tree-tools` naming is still represented by editor-next filter controls rather than exact class parity. |
 | `.inspector-section`, `.field-grid`, `.single-field`, `.ppt-tabs`, `.ppt-tab-panel`, `.artifact-grid`, `.log`, `.err`, `.ok` | Inspector, tabs, artifacts, log/status styling. | partially implemented | `.field-grid`, canvas inspector styling, and `.artifact-grid` now exist; tabs/log status classes remain incomplete. |
 

@@ -68,6 +68,10 @@ button:disabled {
   gap: 8px;
 }
 
+.ribbon-dropdown {
+  position: relative;
+}
+
 .toolbar-align {
   max-width: 460px;
 }
@@ -84,6 +88,123 @@ button:disabled {
   border-color: #60a5fa;
   background: #dbeafe;
   color: #17202a;
+}
+
+.shape-gallery {
+  position: absolute;
+  top: 38px;
+  left: 0;
+  z-index: 80;
+  display: none;
+  width: 356px;
+  max-height: min(620px, calc(100vh - 150px));
+  overflow: auto;
+  border: 1px solid #b7bdc7;
+  border-radius: 2px;
+  background: #ffffff;
+  color: #17202a;
+  box-shadow: 0 16px 32px rgba(15, 23, 42, 0.18);
+  padding-bottom: 6px;
+}
+
+.shape-gallery.open {
+  display: block;
+}
+
+.shape-category-title {
+  height: 26px;
+  display: flex;
+  align-items: center;
+  padding: 0 8px;
+  background: #e9e9e9;
+  color: #475569;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.shape-grid {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 4px;
+  padding: 7px 6px;
+}
+
+.toolbar-actions .shape-choice,
+.shape-choice {
+  width: 28px;
+  height: 24px;
+  min-width: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  padding: 0;
+  background: #ffffff;
+}
+
+.toolbar-actions .shape-choice:hover,
+.shape-choice:hover {
+  border-color: #f2c6b7;
+  background: #fff4ef;
+}
+
+.shape-preview {
+  position: relative;
+  width: 18px;
+  height: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #475569;
+  font-size: 8px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.shape-preview-line::before,
+.shape-preview-horizontal::before,
+.shape-preview-vertical::before,
+.shape-preview-path::before {
+  content: "";
+  position: absolute;
+  inset: auto 1px 7px 1px;
+  border-top: 1.5px solid #334155;
+  transform: rotate(-28deg);
+}
+
+.shape-preview-horizontal::before {
+  transform: none;
+}
+
+.shape-preview-vertical::before {
+  inset: 1px auto 1px 8px;
+  border-top: 0;
+  border-left: 1.5px solid #334155;
+}
+
+.shape-preview-circle {
+  border: 1.5px solid #334155;
+  border-radius: 50%;
+}
+
+.shape-preview-rect {
+  border: 1.5px solid #334155;
+}
+
+.shape-preview-poly {
+  border: 1.5px solid #334155;
+  clip-path: polygon(50% 0, 100% 36%, 82% 100%, 18% 100%, 0 36%);
+}
+
+.shape-preview-path {
+  border: 1.5px solid #334155;
+  border-radius: 45% 18% 45% 18%;
+}
+
+.shape-preview-composite {
+  border: 1.5px solid #334155;
+  border-radius: 50% 50% 4px 4px;
 }
 
 .toolbar-pickmodes {
@@ -272,6 +393,42 @@ button:disabled {
   cursor: grabbing;
 }
 
+.canvas-surface.is-drawing {
+  cursor: crosshair;
+}
+
+.draw-mode-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #475569;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.draw-mode-status button {
+  height: 26px;
+  padding: 0 8px;
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+.draw-preview-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.draw-preview-svg path {
+  fill: none;
+  stroke: #2563eb;
+  stroke-width: 2;
+  stroke-dasharray: 6 4;
+}
+
 .canvas-surface.is-dragging {
   cursor: move;
 }
@@ -431,6 +588,60 @@ button:disabled {
   overflow-wrap: anywhere;
 }
 
+.row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.wrap-row {
+  flex-wrap: wrap;
+}
+
+.mt-8 {
+  margin-top: 8px;
+}
+
+.single-field label {
+  display: grid;
+  gap: 4px;
+  color: #64748b;
+  font-size: 13px;
+}
+
+.single-field input {
+  width: 100%;
+  min-width: 0;
+  height: 30px;
+  border: 1px solid #b8c1ca;
+  border-radius: 4px;
+  padding: 0 7px;
+}
+
+.shape-format-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.shape-format-btn {
+  min-height: 30px;
+  padding: 0 10px;
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+.shape-format-color {
+  width: 34px;
+  height: 30px;
+  padding: 2px;
+  border: 1px solid #b8c1ca;
+  border-radius: 4px;
+  background: #ffffff;
+}
+
 .dsl-section textarea {
   width: 100%;
   min-height: 280px;
@@ -577,6 +788,10 @@ button:disabled {
   padding: 0 7px;
 }
 
+.slot-bounds-grid {
+  margin: 10px 0;
+}
+
 .tree {
   border: 1px solid #b8c1ca;
   border-radius: 4px;
@@ -682,8 +897,104 @@ button:disabled {
   line-height: 1.45;
 }
 
+.table-dialog {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: rgba(15, 23, 42, 0.28);
+}
+
+.table-dialog-panel {
+  width: min(520px, 100%);
+  max-height: min(720px, calc(100vh - 48px));
+  overflow: auto;
+  border: 1px solid #c7d0da;
+  border-radius: 6px;
+  background: #ffffff;
+  box-shadow: 0 16px 50px rgba(15, 23, 42, 0.22);
+}
+
+.table-dialog-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 14px;
+  border-bottom: 1px solid #e2e8f0;
+  font-weight: 700;
+}
+
+.table-dialog-title button {
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border-radius: 4px;
+  font-size: 18px;
+  line-height: 1;
+}
+
+.table-dialog-fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  padding: 14px;
+}
+
+.table-dialog-fields label {
+  display: grid;
+  gap: 5px;
+  color: #475569;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.table-dialog-fields input {
+  width: 100%;
+  min-width: 0;
+  height: 32px;
+  border: 1px solid #b8c1ca;
+  border-radius: 4px;
+  padding: 0 8px;
+  color: #17202a;
+}
+
+.table-dialog-fields input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  padding: 0;
+}
+
+.table-dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 12px 14px;
+  border-top: 1px solid #e2e8f0;
+}
+
+.table-dialog-actions button {
+  min-width: 74px;
+  height: 32px;
+  border-radius: 4px;
+}
+
+.table-dialog-actions button.primary {
+  border-color: #2563eb;
+  background: #2563eb;
+  color: #ffffff;
+}
+
 @media (max-width: 1180px) {
   .artifact-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .table-dialog-fields {
     grid-template-columns: 1fr;
   }
 }

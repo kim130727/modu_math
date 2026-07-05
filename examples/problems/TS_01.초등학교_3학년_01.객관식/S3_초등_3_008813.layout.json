@@ -15,7 +15,8 @@
       "flow": "absolute",
       "slot_ids": [
         "slot.q1",
-        "slot.q2"
+        "slot.q2",
+        "slot.q1.copy6"
       ]
     },
     {
@@ -23,20 +24,7 @@
       "role": "diagram",
       "flow": "absolute",
       "slot_ids": [
-        "slot.bottle.body",
-        "slot.bottle.neck",
-        "slot.bottle.fill",
-        "slot.cup.body",
-        "slot.cup.handle",
-        "slot.cup.fill",
-        "slot.cap1",
-        "slot.cap2",
-        "slot.cap3",
-        "slot.cap4",
-        "slot.cap5",
-        "slot.cap6",
-        "slot.bottle.label",
-        "slot.arrow"
+        "slot.bottle.label"
       ]
     },
     {
@@ -60,11 +48,12 @@
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "46. 우유병에 물을 가득 채운 후 컵에 옮겨 담았더니 우유병에 물이 남았습니다. 우유병과 컵 중에서 들이가 더 적은 것을 선택해 보세요.",
+        "text": "우유병에 물을 가득 채운 후 컵에 옮겨 담았더니 우유병에 물이 남았습니다.",
         "style_role": "question",
         "x": 14.0,
-        "y": 22.0,
-        "font_size": 28
+        "y": 47.0,
+        "font_size": 28,
+        "fill": "#111111"
       }
     },
     {
@@ -80,28 +69,6 @@
       }
     },
     {
-      "id": "slot.bottle.body",
-      "kind": "rect",
-      "prompt": "",
-      "content": {
-        "x": 268.0,
-        "y": 78.0,
-        "width": 38.0,
-        "height": 92.0
-      }
-    },
-    {
-      "id": "slot.bottle.neck",
-      "kind": "rect",
-      "prompt": "",
-      "content": {
-        "x": 279.0,
-        "y": 58.0,
-        "width": 16.0,
-        "height": 26.0
-      }
-    },
-    {
       "id": "slot.bottle.label",
       "kind": "text",
       "prompt": "",
@@ -111,127 +78,6 @@
         "x": 262.0,
         "y": 278.0,
         "font_size": 28
-      }
-    },
-    {
-      "id": "slot.bottle.fill",
-      "kind": "rect",
-      "prompt": "",
-      "content": {
-        "x": 270.0,
-        "y": 118.0,
-        "width": 34.0,
-        "height": 48.0
-      }
-    },
-    {
-      "id": "slot.cup.body",
-      "kind": "rect",
-      "prompt": "",
-      "content": {
-        "x": 600.0,
-        "y": 112.0,
-        "width": 44.0,
-        "height": 84.0
-      }
-    },
-    {
-      "id": "slot.cup.handle",
-      "kind": "path",
-      "prompt": "",
-      "content": {
-        "d": "M 644.0 126.0 C 666.0 126.0, 666.0 170.0, 644.0 170.0",
-        "x": 0.0,
-        "y": 0.0
-      }
-    },
-    {
-      "id": "slot.cup.fill",
-      "kind": "rect",
-      "prompt": "",
-      "content": {
-        "x": 606.0,
-        "y": 112.0,
-        "width": 32.0,
-        "height": 18.0
-      }
-    },
-    {
-      "id": "slot.arrow",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "→",
-        "style_role": "diagram",
-        "x": 476.0,
-        "y": 152.0,
-        "font_size": 40
-      }
-    },
-    {
-      "id": "slot.cap1",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 285.0,
-        "cy": 50.0,
-        "r": 8.0,
-        "fill": "#ffffff"
-      }
-    },
-    {
-      "id": "slot.cap2",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 285.0,
-        "cy": 50.0,
-        "r": 5.0,
-        "fill": "#ffffff"
-      }
-    },
-    {
-      "id": "slot.cap3",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 285.0,
-        "cy": 50.0,
-        "r": 3.0,
-        "fill": "#ffffff"
-      }
-    },
-    {
-      "id": "slot.cap4",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 285.0,
-        "cy": 50.0,
-        "r": 2.0,
-        "fill": "#ffffff"
-      }
-    },
-    {
-      "id": "slot.cap5",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 285.0,
-        "cy": 50.0,
-        "r": 1.5,
-        "fill": "#ffffff"
-      }
-    },
-    {
-      "id": "slot.cap6",
-      "kind": "circle",
-      "prompt": "",
-      "content": {
-        "cx": 285.0,
-        "cy": 50.0,
-        "r": 1.0,
-        "fill": "#ffffff"
       }
     },
     {
@@ -245,6 +91,19 @@
         "y": 317.0,
         "font_size": 28
       }
+    },
+    {
+      "id": "slot.q1.copy6",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "우유병과 컵 중에서 들이가 더 적은 것을 선택해 보세요.",
+        "style_role": "body",
+        "x": 14.0,
+        "y": 87.0,
+        "font_size": 28,
+        "fill": "#111111"
+      }
     }
   ],
   "groups": [],
@@ -254,21 +113,9 @@
     "region.stem",
     "slot.q1",
     "slot.q2",
+    "slot.q1.copy6",
     "region.diagram",
-    "slot.bottle.body",
-    "slot.bottle.neck",
-    "slot.bottle.fill",
-    "slot.cup.body",
-    "slot.cup.handle",
-    "slot.cup.fill",
-    "slot.cap1",
-    "slot.cap2",
-    "slot.cap3",
-    "slot.cap4",
-    "slot.cap5",
-    "slot.cap6",
     "slot.bottle.label",
-    "slot.arrow",
     "region.choice",
     "slot.choice",
     "region.answer"

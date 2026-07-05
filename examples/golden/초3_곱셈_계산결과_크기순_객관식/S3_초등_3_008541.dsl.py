@@ -77,8 +77,7 @@ def build_problem_template() -> ProblemTemplate:
             TextSlot(
                 id="slot.opt1",
                 prompt="",
-                text="① ㄱ ㄴ ㄷ",
-                style_role="body",
+                text = '① ㄱ ㄴ ㄷ', style_role="body",
                 x = 105, y = 190, font_size=28,
             ),
             TextSlot(
