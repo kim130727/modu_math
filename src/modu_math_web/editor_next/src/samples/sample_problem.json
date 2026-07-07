@@ -1,0 +1,57 @@
+{
+  "id": "sample_001",
+  "title": "색칠한 부분은 전체의 얼마인가요?",
+  "canvas": {
+    "width": 1280,
+    "height": 720
+  },
+  "objects": [
+    {
+      "id": "obj_1",
+      "type": "math_text",
+      "x": 120,
+      "y": 80,
+      "props": {
+        "latex": "3 + 4 = □",
+        "text": "3 + 4 = □",
+        "fontSize": 36
+      }
+    },
+    {
+      "id": "obj_2",
+      "type": "fraction_bar",
+      "x": 120,
+      "y": 180,
+      "props": {
+        "denominator": 5,
+        "colored": 3,
+        "width": 400,
+        "height": 60
+      }
+    },
+    {
+      "id": "obj_3",
+      "type": "number_line",
+      "x": 120,
+      "y": 320,
+      "props": {
+        "start": 0,
+        "end": 10,
+        "step": 1,
+        "width": 600
+      }
+    },
+    {
+      "id": "obj_4",
+      "type": "group_objects",
+      "x": 120,
+      "y": 440,
+      "props": {
+        "item": "circle",
+        "groups": 3,
+        "countPerGroup": 4,
+        "gap": 16
+      }
+    }
+  ]
+}

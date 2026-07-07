@@ -1,0 +1,21 @@
+{
+  "name": "modu-math-editor-next-tldraw",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "build": "vite build",
+    "dev": "vite --host 127.0.0.1 --port 5174",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "^5.1.2",
+    "react": "^19.2.1",
+    "react-dom": "^19.2.1",
+    "tldraw": "^5.2.3"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.3",
+    "vite": "^6.4.3"
+  }
+}

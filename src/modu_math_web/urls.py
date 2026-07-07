@@ -12,6 +12,7 @@ urlpatterns = [
     path("", lambda request: redirect("/editor/")),
     path("editor/", editor_views.editor_index),
     path("editor-next/", editor_next_views.editor_next_index),
+    path("editor-next/tldraw/", editor_next_views.editor_next_tldraw),
     path("api/editor/", include("modu_math_web.editor.urls")),
 ]
 
