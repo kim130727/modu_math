@@ -1,0 +1,64 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008815",
+  "problem_type": "comparison_selection",
+  "inputs": {
+    "total_ticks": 2,
+    "target_label": "들이가 더 많은 그릇",
+    "target_ticks": 1,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.container.ga",
+      "value": {
+        "label": "가"
+      }
+    },
+    {
+      "ref": "obj.container.na",
+      "value": {
+        "label": "나"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "selected_container"
+  },
+  "plan": [
+    "그림에서 두 그릇의 물 높이를 비교한다.",
+    "더 많이 차 있는 그릇을 선택한다."
+  ],
+  "method": "visual_comparison",
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "가 그릇의 물 높이와 나 그릇의 물 높이를 비교한다.",
+      "value": "가가 더 높게 보임"
+    },
+    {
+      "id": "step.2",
+      "expr": "더 많이 차 있는 그릇을 선택한다.",
+      "value": "가"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "해설 문장과 선택 결과가 일치하는지 확인한다.",
+      "expected": "가",
+      "actual": "가",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "value": 1,
+    "unit": "",
+    "derived_from": "step.2"
+  }
+}

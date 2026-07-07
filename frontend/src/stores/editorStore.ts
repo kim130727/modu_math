@@ -21,8 +21,9 @@ import { createEditorDocument, type EditorDocument } from "../editor-core/model/
 import type { Box, Point } from "../editor-core/model/geometry";
 import { clearSelection, toggleSelection } from "../editor-core/selection/selectionManager";
 import { slotBounds } from "../editor-core/transform/bounds";
-import type { BuildOutputState, BuildProblemResponse, EditorError, LayoutPatch, ProblemDetailResponse, ProblemSummary } from "../types/api";
-import type { LayoutSlot } from "../types/layout";
+import type { BuildOutputState, BuildProblemResponse, EditorError, LayoutPatch, LayoutPatchBuildResponse, ProblemDetailResponse, ProblemSummary } from "../types/api";
+import type { LayoutDocument, LayoutSlot } from "../types/layout";
+import type { RendererDocument, RendererElement } from "../types/renderer";
 
 export type EditorTool = "select" | "pan";
 export type EditorPickMode = "all" | "linepath" | "text" | "shape";
@@ -130,6 +131,7 @@ export interface EditorState {
   error: EditorError | null;
   statusMessage: string;
   pendingDrawShape: GalleryShapeDefinition | null;
+  hasCopyBuffer: boolean;
 }
 
 const initialState: EditorState = {
@@ -155,6 +157,7 @@ const initialState: EditorState = {
   error: null,
   statusMessage: "Ready",
   pendingDrawShape: null,
+  hasCopyBuffer: false,
 };
 
 function toEditorError(error: unknown): EditorError {
@@ -212,26 +215,24 @@ export function createEditorStore() {
 
   async function patchAndBuild(patches: LayoutPatch[], options: { format?: boolean } = {}): Promise<boolean> {
     if (!state.problemId || patches.length === 0) return false;
+    const deletedIds = patches.filter((patch) => patch.op === "delete").map((patch) => patch.target);
     setState({ loading: true, error: null, statusMessage: "Applying changes..." });
     try {
       const response = await applyLayoutPatchesAndBuild(state.problemId, patches, options);
-      const current = state.document?.detail;
-      const artifacts = response.artifacts ?? {};
-      const detail: ProblemDetailResponse = {
-        problem_id: response.problem_id,
-        base_dir: current?.base_dir ?? "",
-        dsl: response.dsl,
-        semantic: artifacts.semantic ?? current?.semantic ?? null,
-        solvable: artifacts.solvable ?? current?.solvable ?? null,
-        layout: artifacts.layout ?? current?.layout ?? null,
-        renderer: artifacts.renderer ?? current?.renderer ?? null,
-        svg: artifacts.svg ?? current?.svg ?? null,
-        svg_url: current?.svg_url ?? null,
-      };
-      applyProblemDetail(detail);
+      applyPatchBuildResponse(response, deletedIds);
       setState({ dirty: false, loading: false, statusMessage: "Changes applied." });
       return true;
     } catch (error) {
+      if (error instanceof EditorApiError && isPatchBuildResponse(error.payload)) {
+        applyPatchBuildResponse(error.payload, deletedIds);
+        setState({
+          dirty: false,
+          loading: false,
+          error: toEditorError(error),
+          statusMessage: "Changes applied, but build failed.",
+        });
+        return true;
+      }
       setState({ loading: false, error: toEditorError(error), statusMessage: "Could not apply changes." });
       return false;
     }
@@ -255,18 +256,17 @@ export function createEditorStore() {
 
   async function moveSlots(slotIds: string[], dx: number, dy: number, label = "Move"): Promise<boolean> {
     if (slotIds.length === 0 || state.loading) return false;
-    const movableIds = expandGeneratedMoveIds(slotIds).filter((slotId) => !!findSlot(slotId));
+    const movableIds = expandGeneratedMoveIds(slotIds.map(resolveSlotId)).filter((slotId) => !!findSlot(slotId));
     if (!movableIds.length) return false;
-    const patches: LayoutPatch[] = movableIds.map((slotId) => ({
-      target: slotId,
-      op: "update",
-      value: { move_dx: dx, move_dy: dy },
-    }));
-    const inversePatches: LayoutPatch[] = movableIds.map((slotId) => ({
-      target: slotId,
-      op: "update",
-      value: { move_dx: -dx, move_dy: -dy },
-    }));
+    const patches: LayoutPatch[] = [];
+    const inversePatches: LayoutPatch[] = [];
+    for (const slotId of movableIds) {
+      const slot = findSlot(slotId);
+      const value = slot ? movePropertiesForSlot(slot, dx, dy) : null;
+      if (!slot || !value) continue;
+      patches.push({ target: slotId, op: "update", value });
+      inversePatches.push({ target: slotId, op: "update", value: inverseAnyProperties(slot, value) });
+    }
     return commitHistoryPatches(label, patches, inversePatches, { format: false });
   }
 
@@ -276,27 +276,30 @@ export function createEditorStore() {
   }
 
   async function deleteSelectedSlots(): Promise<boolean> {
-    if (state.selectedIds.length === 0 || state.loading) return false;
-    const inversePatches = state.selectedIds
+    if (state.selectedIds.length === 0) return false;
+    const selectedIds = uniqueIds(state.selectedIds.map(resolveSlotId));
+    const inversePatches = selectedIds
       .map((slotId) => {
         const slot = findSlot(slotId);
         if (!slot) return null;
         return addPatchForSlot(slot);
       })
       .filter((patch): patch is LayoutPatch => patch !== null);
-    if (inversePatches.length !== state.selectedIds.length) return false;
-    const patches: LayoutPatch[] = state.selectedIds.map((slotId) => ({
+    const patches: LayoutPatch[] = selectedIds.map((slotId) => ({
       target: slotId,
       op: "delete",
     }));
-    const deleted = await commitHistoryPatches("Delete", patches, inversePatches, { format: false });
+    optimisticallyRemoveDeletedSlots(selectedIds);
+    const deleted = inversePatches.length === patches.length
+      ? await commitHistoryPatches("Delete", patches, inversePatches, { format: false })
+      : await patchAndBuild(patches, { format: false });
     if (deleted) {
       setState({ selectedIds: clearSelection() });
     }
     return deleted;
   }
 
-  async function updateSlotProperties(slotId: string, properties: Record<string, string | number>): Promise<boolean> {
+  async function updateSlotProperties(slotId: string, properties: Record<string, unknown>): Promise<boolean> {
     if (!slotId || state.loading) return false;
     const slot = findSlot(slotId);
     if (!slot) return false;
@@ -478,8 +481,10 @@ export function createEditorStore() {
       dx = roundedDelta(dx);
       dy = roundedDelta(dy);
       if (dx === 0 && dy === 0) continue;
-      patches.push({ target: item.slot.id, op: "update", value: { move_dx: dx, move_dy: dy } });
-      inversePatches.push({ target: item.slot.id, op: "update", value: { move_dx: -dx, move_dy: -dy } });
+      const value = movePropertiesForSlot(item.slot, dx, dy);
+      if (!value) continue;
+      patches.push({ target: item.slot.id, op: "update", value });
+      inversePatches.push({ target: item.slot.id, op: "update", value: inverseAnyProperties(item.slot, value) });
     }
 
     return commitHistoryPatches(`Align ${mode}`, patches, inversePatches, { format: false });
@@ -623,17 +628,24 @@ export function createEditorStore() {
 
   function copySelectedSlots(): boolean {
     if (!state.document || state.selectedIds.length === 0) return false;
-    copyBuffer = state.selectedIds
+    copyBuffer = uniqueIds(state.selectedIds.map(resolveSlotId))
       .map((slotId) => findSlot(slotId))
       .filter((slot): slot is LayoutSlot => slot !== null)
       .map((slot) => structuredClone(slot));
     pasteSequence = 0;
-    if (copyBuffer.length > 0) setState({ statusMessage: `Copied ${copyBuffer.length} slot${copyBuffer.length === 1 ? "" : "s"}.` });
+    setState({
+      hasCopyBuffer: copyBuffer.length > 0,
+      statusMessage: copyBuffer.length > 0 ? `Copied ${copyBuffer.length} slot${copyBuffer.length === 1 ? "" : "s"}.` : "Nothing selected to copy.",
+    });
     return copyBuffer.length > 0;
   }
 
   async function pasteCopiedSlots(): Promise<boolean> {
-    if (!state.document || state.loading || copyBuffer.length === 0) return false;
+    if (!state.document || state.loading) return false;
+    if (copyBuffer.length === 0) {
+      setState({ statusMessage: "Nothing copied to paste." });
+      return false;
+    }
     pasteSequence += 1;
     const offset = 20 * pasteSequence;
     const patches: LayoutPatch[] = [];
@@ -658,7 +670,10 @@ export function createEditorStore() {
       pastedIds.push(nextId);
     }
 
-    if (!patches.length) return false;
+    if (!patches.length) {
+      setState({ statusMessage: "No copyable slots in clipboard." });
+      return false;
+    }
     const pasted = await commitHistoryPatches("Paste", patches, inversePatches, { format: false });
     if (pasted) setState({ selectedIds: pastedIds, activeTool: "select" });
     return pasted;
@@ -849,7 +864,28 @@ export function createEditorStore() {
   }
 
   function findSlot(slotId: string): LayoutSlot | null {
-    return state.document?.slots.find((slot) => slot.id === slotId) ?? null;
+    const resolved = resolveSlotId(slotId);
+    return state.document?.slots.find((slot) => slot.id === resolved) ?? null;
+  }
+
+  function resolveSlotId(slotId: string): string {
+    const slots = state.document?.slots ?? [];
+    if (slots.some((slot) => slot.id === slotId)) return slotId;
+    const stripped = rendererElementSlotTarget(slotId);
+    if (slots.some((slot) => slot.id === stripped)) return stripped;
+    const match = [...slots]
+      .map((slot) => slot.id)
+      .sort((left, right) => right.length - left.length)
+      .find((candidate) => slotId.startsWith(`${candidate}.`));
+    return match ?? stripped;
+  }
+
+  function rendererElementSlotTarget(slotId: string): string {
+    return slotId.replace(/\.(text|line|rect|path|polygon|circle|image)$/i, "");
+  }
+
+  function uniqueIds(slotIds: string[]): string[] {
+    return [...new Set(slotIds.filter(Boolean))];
   }
 
   function applyProblemDetail(detail: ProblemDetailResponse): void {
@@ -858,6 +894,107 @@ export function createEditorStore() {
       document: createEditorDocument(detail),
       dslDraft: detail.dsl,
     });
+  }
+
+  function optimisticallyRemoveDeletedSlots(deletedIds: string[]): void {
+    const current = state.document?.detail;
+    if (!current) return;
+    applyProblemDetail(applyDeletedSlotsToDetail(current, deletedIds));
+    setState({ selectedIds: clearSelection() });
+  }
+
+  function applyPatchBuildResponse(response: LayoutPatchBuildResponse, deletedIds: string[] = []): void {
+    const current = state.document?.detail;
+    const artifacts = response.artifacts ?? {};
+    const detail = applyDeletedSlotsToDetail({
+      problem_id: response.problem_id,
+      base_dir: current?.base_dir ?? "",
+      dsl: response.dsl,
+      semantic: artifacts.semantic ?? current?.semantic ?? null,
+      solvable: artifacts.solvable ?? current?.solvable ?? null,
+      layout: artifacts.layout ?? current?.layout ?? null,
+      renderer: artifacts.renderer ?? current?.renderer ?? null,
+      svg: artifacts.svg ?? current?.svg ?? null,
+      svg_url: current?.svg_url ?? null,
+    }, deletedIds);
+    applyProblemDetail(detail);
+  }
+
+  function applyDeletedSlotsToDetail(detail: ProblemDetailResponse, deletedIds: string[]): ProblemDetailResponse {
+    const cleanIds = normalizeDeletedSlotIds(deletedIds);
+    if (!cleanIds.length) return detail;
+    return {
+      ...detail,
+      layout: removeDeletedSlotsFromLayout(detail.layout, cleanIds),
+      renderer: removeDeletedSlotsFromRenderer(detail.renderer, cleanIds),
+      svg: removeDeletedSlotsFromSvg(detail.svg, cleanIds),
+    };
+  }
+
+  function normalizeDeletedSlotIds(deletedIds: string[]): string[] {
+    const ids = new Set<string>();
+    for (const slotId of deletedIds) {
+      if (!slotId || slotId === "__canvas__") continue;
+      ids.add(slotId);
+      ids.add(slotId.replace(/\.(text|line|rect|path|polygon|circle|image)$/i, ""));
+    }
+    return [...ids].filter(Boolean);
+  }
+
+  function deletedSlotMatches(slotId: unknown, deletedIds: string[]): boolean {
+    return typeof slotId === "string" && deletedIds.some((deletedId) => slotId === deletedId || slotId.startsWith(`${deletedId}.`));
+  }
+
+  function removeDeletedSlotsFromLayout(layout: LayoutDocument | null, deletedIds: string[]): LayoutDocument | null {
+    if (!layout) return layout;
+    return {
+      ...layout,
+      slots: layout.slots?.filter((slot) => !deletedSlotMatches(slot.id, deletedIds)) ?? layout.slots,
+      regions: layout.regions?.map((region) => ({
+        ...region,
+        slot_ids: region.slot_ids?.filter((slotId) => !deletedSlotMatches(slotId, deletedIds)),
+      })),
+    };
+  }
+
+  function removeDeletedSlotsFromRenderer(renderer: RendererDocument | null, deletedIds: string[]): RendererDocument | null {
+    if (!renderer) return renderer;
+    const filterElements = (elements: RendererElement[] | undefined): RendererElement[] | undefined => {
+      if (!elements) return elements;
+      return elements
+        .filter((element) => !rendererElementMatchesDeletedSlot(element, deletedIds))
+        .map((element) => ({ ...element, elements: filterElements(element.elements) }));
+    };
+    return { ...renderer, elements: filterElements(renderer.elements) };
+  }
+
+  function rendererElementMatchesDeletedSlot(element: RendererElement, deletedIds: string[]): boolean {
+    return (
+      deletedSlotMatches(element.id, deletedIds) ||
+      deletedSlotMatches(element.source_ref, deletedIds) ||
+      deletedSlotMatches(element.refs?.layout_slot_id, deletedIds) ||
+      deletedSlotMatches(element.attributes?.source_ref, deletedIds)
+    );
+  }
+
+  function removeDeletedSlotsFromSvg(svg: string | null, deletedIds: string[]): string | null {
+    if (!svg) return svg;
+    try {
+      const doc = new DOMParser().parseFromString(svg, "image/svg+xml");
+      const root = doc.documentElement;
+      if (!root || root.nodeName.toLowerCase() !== "svg") return svg;
+      const nodes = Array.from(root.querySelectorAll("[id], [data-slot-id], [data-layout-slot-id]"));
+      for (const node of nodes) {
+        const id = node.getAttribute("id");
+        const slotId = node.getAttribute("data-slot-id") ?? node.getAttribute("data-layout-slot-id");
+        if (deletedSlotMatches(id, deletedIds) || deletedSlotMatches(slotId, deletedIds)) {
+          node.parentNode?.removeChild(node);
+        }
+      }
+      return new XMLSerializer().serializeToString(root);
+    } catch {
+      return svg;
+    }
   }
 
   function applyBuildResponse(response: BuildProblemResponse): void {
@@ -894,9 +1031,14 @@ export function createEditorStore() {
     return typeof value === "object" && value !== null && !Array.isArray(value);
   }
 
+  function isPatchBuildResponse(value: unknown): value is LayoutPatchBuildResponse {
+    return isRecord(value) && typeof value.problem_id === "string" && typeof value.dsl === "string";
+  }
+
   function regionIdForSlot(slotId: string): string | null {
+    const resolved = resolveSlotId(slotId);
     const regions = state.document?.detail.layout?.regions ?? [];
-    return regions.find((region) => region.slot_ids?.includes(slotId))?.id ?? preferredRegionId();
+    return regions.find((region) => region.slot_ids?.includes(resolved))?.id ?? preferredRegionId();
   }
 
   function addPatchForSlot(slot: LayoutSlot): LayoutPatch | null {
@@ -972,14 +1114,12 @@ export function createEditorStore() {
     return "";
   }
 
-  function inverseProperties(slot: LayoutSlot, properties: Record<string, string | number>): Record<string, string | number> {
-    const inverse: Record<string, string | number> = {};
+  function inverseProperties(slot: LayoutSlot, properties: Record<string, unknown>): Record<string, unknown> {
+    const inverse: Record<string, unknown> = {};
     const content = slot.content as Record<string, unknown>;
     for (const key of Object.keys(properties)) {
       const previous = content[key];
-      if (typeof previous === "string" || typeof previous === "number") {
-        inverse[key] = previous;
-      }
+      if (previous !== undefined) inverse[key] = previous;
     }
     return inverse;
   }
@@ -1298,6 +1438,52 @@ export function createEditorStore() {
       shifted.d = shiftPathData(shifted.d, dx, dy);
     }
     return shifted;
+  }
+
+  function movePropertiesForSlot(slot: LayoutSlot, dx: number, dy: number): Record<string, unknown> | null {
+    const content = slot.content as Record<string, unknown>;
+    const xDelta = roundedDelta(dx);
+    const yDelta = roundedDelta(dy);
+    const num = (key: string): number | null => {
+      const value = content[key];
+      return typeof value === "number" && Number.isFinite(value) ? value : null;
+    };
+    const shiftedNumber = (key: string, delta: number): number | null => {
+      const value = num(key);
+      return value === null ? null : roundedDelta(value + delta);
+    };
+
+    if (slot.kind === "text" || slot.kind === "text_box" || slot.kind === "rect" || slot.kind === "image") {
+      const x = shiftedNumber("x", xDelta);
+      const y = shiftedNumber("y", yDelta);
+      return x === null || y === null ? null : { x, y };
+    }
+    if (slot.kind === "line") {
+      const x1 = shiftedNumber("x1", xDelta);
+      const y1 = shiftedNumber("y1", yDelta);
+      const x2 = shiftedNumber("x2", xDelta);
+      const y2 = shiftedNumber("y2", yDelta);
+      return x1 === null || y1 === null || x2 === null || y2 === null ? null : { x1, y1, x2, y2 };
+    }
+    if (slot.kind === "circle") {
+      const cx = shiftedNumber("cx", xDelta);
+      const cy = shiftedNumber("cy", yDelta);
+      return cx === null || cy === null ? null : { cx, cy };
+    }
+    if (slot.kind === "polygon") {
+      const points = content.points;
+      if (!Array.isArray(points)) return null;
+      return {
+        points: points.map((point) => {
+          if (!Array.isArray(point) || typeof point[0] !== "number" || typeof point[1] !== "number") return point;
+          return [roundedDelta(point[0] + xDelta), roundedDelta(point[1] + yDelta)];
+        }),
+      };
+    }
+    if (slot.kind === "path" && typeof content.d === "string") {
+      return { d: shiftPathData(content.d, xDelta, yDelta) };
+    }
+    return null;
   }
 
   function shiftPathData(d: string, dx: number, dy: number): string {

@@ -1,4 +1,4 @@
-import { For, Show, createMemo, createSignal, createEffect } from "solid-js";
+import { For, Show, createMemo, createSignal, createEffect, onCleanup, onMount } from "solid-js";
 import { boxesIntersect, normalizeBox, unionBoxes, type Box, type Point } from "../editor-core/model/geometry";
 import {
   matchSlotIdFromSvgElement,
@@ -6,6 +6,7 @@ import {
   isDraggableSlotElement,
 } from "../editor-core/selection/selectionManager";
 import { slotBounds } from "../editor-core/transform/bounds";
+import { SvgEditEngine, type SvgPathEditPoint } from "../editor-core/svg-engine/svgEditEngine";
 import { clientPointToCanvasPoint } from "../editor-core/transform/coordinateTransform";
 import type { EditorStore, TableDividerAxis } from "../stores/editorStore";
 import type { LayoutSlot } from "../types/layout";
@@ -19,27 +20,9 @@ interface CanvasViewportProps {
 type CanvasInteraction =
   | { kind: "marquee"; pointerId: number; start: Point; current: Point; moved: boolean }
   | { kind: "pan"; pointerId: number; startClient: Point; startPan: Point }
-  | { kind: "drag"; pointerId: number; start: Point; current: Point; selectedIds: string[]; moved: boolean }
   | { kind: "draw"; pointerId: number; start: Point; current: Point; points: Point[]; moved: boolean }
-  | { kind: "rotate-line"; pointerId: number; start: Point; current: Point; slotId: string; center: Point; length: number; snapAngle: boolean; moved: boolean }
-  | { kind: "table-divider"; pointerId: number; start: Point; current: Point; base: string; axis: TableDividerAxis; index: number; moved: boolean }
-  | { kind: "resize"; pointerId: number; start: Point; current: Point; handle: ResizeHandleKey; slotId: string; startBox: Box; moved: boolean };
+  | { kind: "table-divider"; pointerId: number; start: Point; current: Point; base: string; axis: TableDividerAxis; index: number; moved: boolean };
 
-const RESIZE_HANDLES = [
-  { key: "nw", x: 0, y: 0 },
-  { key: "n", x: 0.5, y: 0 },
-  { key: "ne", x: 1, y: 0 },
-  { key: "e", x: 1, y: 0.5 },
-  { key: "se", x: 1, y: 1 },
-  { key: "s", x: 0.5, y: 1 },
-  { key: "sw", x: 0, y: 1 },
-  { key: "w", x: 0, y: 0.5 },
-] as const;
-type BoxResizeHandleKey = (typeof RESIZE_HANDLES)[number]["key"];
-type PathPointHandleKey = `path:${number}`;
-type ResizeHandleKey = BoxResizeHandleKey | "p1" | "p2" | PathPointHandleKey;
-
-const MIN_RESIZE_SIZE = 4;
 const SNAP_SIZE = 5;
 
 function pointToSegmentDistance(point: Point, a: Point, b: Point): number {
@@ -385,51 +368,159 @@ const SHAPE_FILL_SWATCHES = ["#ffffff", "#f8fafc", "#fef3c7", "#fed7aa", "#fecac
 export function CanvasViewport(props: CanvasViewportProps) {
   const [interaction, setInteraction] = createSignal<CanvasInteraction | null>(null);
   const [suppressClick, setSuppressClick] = createSignal(false);
+  const [slotStripOpen, setSlotStripOpen] = createSignal(false);
   const [shapeFormatMenu, setShapeFormatMenu] = createSignal<{ x: number; y: number; slotId: string; kind: LayoutSlot["kind"]; tableCell: boolean } | null>(null);
+  const [selectedSvgElements, setSelectedSvgElements] = createSignal<Element[]>([]);
   const [inlineTextEdit, setInlineTextEdit] = createSignal<{
     slotId: string;
     originalText: string;
     rect: { left: number; top: number; width: number; height: number; fontSize: number; fontFamily: string };
   } | null>(null);
   let surfaceRef!: HTMLDivElement;
+  let inlineInputRef: HTMLInputElement | undefined;
+  let lastDeleteRequestAt = 0;
+  let transformedDragElements: SVGElement[] = [];
+  let svgEditEngine: SvgEditEngine | null = null;
+
+  onMount(() => {
+    const handleNativeDeletePointer = (event: PointerEvent | MouseEvent) => {
+      const target = event.target instanceof Element ? event.target : null;
+      if (!target?.closest(".selection-delete-button")) return;
+      requestDeleteSelected(event);
+    };
+    const handleNativeDeleteKey = (event: KeyboardEvent) => {
+      if (event.key !== "Delete" && event.key !== "Backspace") return;
+      const target = event.target instanceof HTMLElement ? event.target : null;
+      if (target) {
+        const tagName = target.tagName.toLowerCase();
+        if (tagName === "input" || tagName === "textarea" || tagName === "select" || target.isContentEditable) return;
+      }
+      if (!props.store.state.selectedIds.length) return;
+      requestDeleteSelected(event);
+    };
+    document.addEventListener("pointerdown", handleNativeDeletePointer, true);
+    document.addEventListener("mousedown", handleNativeDeletePointer, true);
+    document.addEventListener("click", handleNativeDeletePointer, true);
+    document.addEventListener("keydown", handleNativeDeleteKey, true);
+    onCleanup(() => {
+      document.removeEventListener("pointerdown", handleNativeDeletePointer, true);
+      document.removeEventListener("mousedown", handleNativeDeletePointer, true);
+      document.removeEventListener("click", handleNativeDeletePointer, true);
+      document.removeEventListener("keydown", handleNativeDeleteKey, true);
+    });
+  });
+
+  createEffect(() => {
+    if (!inlineTextEdit()) return;
+    const handleOutsidePointerDown = (event: PointerEvent) => {
+      const target = event.target instanceof Node ? event.target : null;
+      if (target && inlineInputRef?.contains(target)) return;
+      closeInlineTextEditor(true);
+    };
+    document.addEventListener("pointerdown", handleOutsidePointerDown, true);
+    onCleanup(() => document.removeEventListener("pointerdown", handleOutsidePointerDown, true));
+  });
 
   function handleDoubleClick(event: MouseEvent): void {
     const target = event.target instanceof Element ? event.target : null;
-    if (!target) return;
-    const svg = target.closest("svg");
-    if (!svg) return;
-    const el = findDraggableSlotAncestor(target);
-    if (!el || el.tagName.toLowerCase() !== "text") return;
+    const slotId = target ? textSlotIdFromEventTarget(target, event.clientX, event.clientY) : null;
+    if (!slotId) return;
+    openInlineTextEditor(slotId, target);
 
+    event.preventDefault();
+    event.stopPropagation();
+  }
+
+  function textSlotIdFromEventTarget(target: Element, clientX: number, clientY: number): string | null {
+    const el = findDraggableSlotAncestor(target);
+    if (el?.tagName.toLowerCase() === "text") {
+      const slotId = slotIdFromElement(
+        el,
+        props.store.state.document?.detail.layout ?? null,
+        props.store.state.document?.detail.renderer ?? null,
+        props.store.state.dslDraft
+      );
+      const slot = slotId ? props.store.state.document?.slots.find((candidate) => candidate.id === slotId) : null;
+      if (slot?.kind === "text" || slot?.kind === "text_box") return slotId;
+    }
+    const surface = target.closest<HTMLElement>(".canvas-surface");
+    const svg = surface?.querySelector("svg");
+    if (!svg) return null;
+    const matched = matchingSlotElementAtPoint(svg, clientX, clientY);
+    if (!matched) return null;
     const slotId = slotIdFromElement(
-      el,
+      matched,
       props.store.state.document?.detail.layout ?? null,
       props.store.state.document?.detail.renderer ?? null,
       props.store.state.dslDraft
     );
-    if (!slotId) return;
+    const slot = slotId ? props.store.state.document?.slots.find((candidate) => candidate.id === slotId) : null;
+    return slot?.kind === "text" || slot?.kind === "text_box" ? slotId : null;
+  }
 
-    const rect = el.getBoundingClientRect();
-    const surface = svg.closest(".canvas-surface");
+  function openInlineTextEditor(slotId: string, element: Element | null): boolean {
+    const slot = props.store.state.document?.slots.find((candidate) => candidate.id === slotId);
+    if (!slot || (slot.kind !== "text" && slot.kind !== "text_box")) return false;
+    const targetElement = element ? findDraggableSlotAncestor(element) : null;
+    const textElement = targetElement?.tagName.toLowerCase() === "text" ? targetElement : textElementForSlotId(slotId, surfaceRef);
+    if (!textElement) return false;
+
+    const rect = textElement.getBoundingClientRect();
+    const surface = textElement.closest(".canvas-surface");
     const containerRect = surface?.getBoundingClientRect() ?? { left: 0, top: 0 };
     const scale = props.store.state.zoom;
-    const fontSize = Number(el.getAttribute("font-size") || 28) * scale;
+    const fontSize = Number(textElement.getAttribute("font-size") || slot.content.font_size || 28) * scale;
 
     setInlineTextEdit({
       slotId,
-      originalText: el.textContent || "",
+      originalText: textElement.textContent || String(slot.content.text ?? ""),
       rect: {
         left: rect.left - containerRect.left - 2,
         top: rect.top - containerRect.top - 2,
         width: Math.max(48, rect.width + 12),
         height: Math.max(24, rect.height + 8),
         fontSize: Math.max(12, fontSize),
-        fontFamily: el.getAttribute("font-family") || '"Segoe UI", "Pretendard", sans-serif',
+        fontFamily: textElement.getAttribute("font-family") || '"Segoe UI", "Pretendard", sans-serif',
       },
     });
+    props.store.setStatusMessage(`Editing ${slotId}.`);
+    return true;
+  }
 
+  function closeInlineTextEditor(save: boolean): void {
+    const edit = inlineTextEdit();
+    if (!edit) return;
+    const text = inlineInputRef?.value ?? edit.originalText;
+    setInlineTextEdit(null);
+    inlineInputRef = undefined;
+    if (save && text !== edit.originalText) {
+      void props.store.updateSlotProperties(edit.slotId, { text });
+    }
+  }
+
+  function textElementForSlotId(slotId: string, surface: HTMLElement | null): Element | null {
+    const svg = surface?.querySelector("svg");
+    if (!svg) return null;
+    for (const node of draggableSlotElements(svg)) {
+      if (node.tagName.toLowerCase() !== "text") continue;
+      const matched = slotIdFromElement(
+        node,
+        props.store.state.document?.detail.layout ?? null,
+        props.store.state.document?.detail.renderer ?? null,
+        props.store.state.dslDraft
+      );
+      if (matched === slotId) return node;
+    }
+    return null;
+  }
+
+  function requestDeleteSelected(event: Event): void {
     event.preventDefault();
     event.stopPropagation();
+    const now = performance.now();
+    if (now - lastDeleteRequestAt < 250) return;
+    lastDeleteRequestAt = now;
+    void props.store.deleteSelectedSlots();
   }
 
   function findDraggableSlotAncestor(el: Element | null): Element | null {
@@ -507,6 +598,7 @@ export function CanvasViewport(props: CanvasViewportProps) {
     if (!svg) return;
 
     const elements = draggableSlotElements(svg);
+    const nextSelectedElements: Element[] = [];
     for (const el of elements) {
       const slotId = slotIdFromElement(
         el,
@@ -516,6 +608,7 @@ export function CanvasViewport(props: CanvasViewportProps) {
       );
       if (selectedIds.includes(slotId)) {
         el.classList.add("slot-selected");
+        nextSelectedElements.push(el);
       } else {
         el.classList.remove("slot-selected");
       }
@@ -526,12 +619,144 @@ export function CanvasViewport(props: CanvasViewportProps) {
         el.classList.remove("pick-disabled");
       }
     }
+    setSelectedSvgElements(nextSelectedElements);
   });
 
-  function selectedSvgBounds(): Box | null {
+  createEffect(() => {
+    props.store.state.document?.detail.svg;
+    props.store.state.zoom;
+    props.store.state.selectedIds.join("|");
+    const current = interaction();
+    if (current?.kind === "draw" || current?.kind === "pan" || current?.kind === "marquee") {
+      removeSvgEditEngine();
+      return;
+    }
+    syncSvgEditEngine();
+  });
+
+  onCleanup(() => removeSvgEditEngine());
+
+  function removeSvgEditEngine(): void {
+    svgEditEngine?.destroy();
+    svgEditEngine = null;
+  }
+
+  function syncSvgEditEngine(): void {
+    const svg = surfaceRef?.querySelector("svg");
+    if (!svg || props.store.state.activeTool !== "select") {
+      removeSvgEditEngine();
+      return;
+    }
+    if (!svgEditEngine) {
+      svgEditEngine = new SvgEditEngine(svg, {
+        getSelectionBox: () => {
+          const selected = props.store.state.selectedIds.filter((slotId) => slotId !== "__canvas__");
+          return selectedSvgBoundsForIds(selected) ?? slotBoundsForIds(selected);
+        },
+        getSelectedIds: () => [...props.store.state.selectedIds],
+        canResizeSelection: () => {
+          if (props.store.state.selectedIds.length !== 1) return false;
+          const slot = props.store.state.document?.slots.find((candidate) => candidate.id === props.store.state.selectedIds[0]);
+          return !!slot && ["rect", "circle", "line", "image", "text_box"].includes(slot.kind);
+        },
+        getPointEditableElement: () => pointEditableSvgElement(),
+        commitPointEdit: (slotId, element) => {
+          const patch = pointEditPatchFromElement(element);
+          if (patch) void props.store.updateSlotProperties(slotId, patch);
+        },
+        getPathEditPoints: () => pathEditPointsForEngine(),
+        commitPathPoint: (slotId, pointIndex, x, y) => {
+          const slot = props.store.state.document?.slots.find((candidate) => candidate.id === slotId);
+          const content = slot?.content as Record<string, unknown> | undefined;
+          const d = typeof content?.d === "string" ? content.d : "";
+          const next = updateEditablePathPoint(d, pointIndex, { x, y });
+          if (next) void props.store.updateSlotProperties(slotId, { d: next });
+        },
+        previewMove: applyEngineDragPreview,
+        clearPreview: clearEngineDragPreview,
+        commitMove: (slotIds, dx, dy) => {
+          void props.store.moveSlots(slotIds, dx, dy, "SVG move");
+        },
+        commitResize: (box) => {
+          void props.store.updateSelectedBounds(box);
+        },
+      });
+    }
+    svgEditEngine.sync();
+  }
+
+  function applyEngineDragPreview(dx: number, dy: number): void {
+    const elements = selectedSvgElements().filter((el): el is SVGElement => el instanceof SVGElement);
+    transformedDragElements = elements;
+    for (const el of elements) {
+      if (!(el instanceof SVGElement)) continue;
+      el.style.transform = `translate(${roundedDelta(dx)}px, ${roundedDelta(dy)}px)`;
+      el.style.transformBox = "fill-box";
+      el.style.transformOrigin = "0 0";
+    }
+  }
+
+  function clearEngineDragPreview(): void {
+    const elements = transformedDragElements.length ? transformedDragElements : selectedSvgElements();
+    for (const el of elements) {
+      if (!(el instanceof SVGElement)) continue;
+      el.style.transform = "";
+      el.style.transformBox = "";
+      el.style.transformOrigin = "";
+    }
+    transformedDragElements = [];
+  }
+
+  function pointEditableSvgElement(): SVGElement | null {
+    if (props.store.state.selectedIds.length !== 1) return null;
+    const slotId = props.store.state.selectedIds[0];
+    const slot = props.store.state.document?.slots.find((candidate) => candidate.id === slotId);
+    if (!slot || (slot.kind !== "polygon" && slot.kind !== "line")) return null;
     const svg = surfaceRef?.querySelector("svg");
     if (!svg) return null;
-    const selected = props.store.state.selectedIds;
+    for (const node of draggableSlotElements(svg)) {
+      if (!(node instanceof SVGElement)) continue;
+      const matched = slotIdFromElement(
+        node,
+        props.store.state.document?.detail.layout ?? null,
+        props.store.state.document?.detail.renderer ?? null,
+        props.store.state.dslDraft,
+      );
+      if (matched === slotId) return node;
+    }
+    return null;
+  }
+
+  function pathEditPointsForEngine(): { slotId: string; points: SvgPathEditPoint[] } | null {
+    if (props.store.state.selectedIds.length !== 1) return null;
+    const slotId = props.store.state.selectedIds[0];
+    const slot = props.store.state.document?.slots.find((candidate) => candidate.id === slotId);
+    const content = slot?.content as Record<string, unknown> | undefined;
+    const d = typeof content?.d === "string" ? content.d : "";
+    if (!slot || slot.kind !== "path" || !d || typeof content?.transform === "string") return null;
+    const points = editablePathPoints(d).map((point) => ({ index: point.index, x: point.x, y: point.y }));
+    return points.length ? { slotId, points } : null;
+  }
+
+  function pointEditPatchFromElement(element: SVGElement): Record<string, unknown> | null {
+    const tag = element.tagName.toLowerCase();
+    if (tag === "line") {
+      const x1 = Number(element.getAttribute("x1"));
+      const y1 = Number(element.getAttribute("y1"));
+      const x2 = Number(element.getAttribute("x2"));
+      const y2 = Number(element.getAttribute("y2"));
+      return [x1, y1, x2, y2].every(Number.isFinite) ? { x1, y1, x2, y2 } : null;
+    }
+    if (tag === "polygon" || tag === "polyline") {
+      const points = parsePolygonPoints(element.getAttribute("points") ?? "");
+      return points.length ? { points } : null;
+    }
+    return null;
+  }
+
+  function selectedSvgBoundsForIds(selected: string[]): Box | null {
+    const svg = surfaceRef?.querySelector("svg");
+    if (!svg) return null;
     if (!selected.length) return null;
     const boxes = draggableSlotElements(svg)
       .map((el) => {
@@ -548,77 +773,20 @@ export function CanvasViewport(props: CanvasViewportProps) {
     return unionBoxes(boxes);
   }
 
-  const selectedBounds = createMemo(() => {
-    const svgBounds = selectedSvgBounds();
-    if (svgBounds) return svgBounds;
+  function slotBoundsForIds(selectedIds: string[]): Box | null {
     const slots = props.store.state.document?.slots ?? [];
-    const selected = slots.filter((slot) => props.store.state.selectedIds.includes(slot.id));
+    const selected = slots.filter((slot) => selectedIds.includes(slot.id));
     return unionBoxes(selected.map(slotBounds).filter((box): box is Box => box !== null));
+  }
+
+  const selectedBounds = createMemo(() => {
+    const svgBounds = selectedSvgBoundsForIds(props.store.state.selectedIds);
+    if (svgBounds) return svgBounds;
+    return slotBoundsForIds(props.store.state.selectedIds);
   });
 
   const overlayBounds = createMemo(() => {
-    const current = interaction();
-    if (current?.kind === "resize" && isBoxResizeHandle(current.handle)) {
-      return resizeBoxFromHandle(current.handle, current.startBox, snappedPoint(current.current));
-    }
     return selectedBounds();
-  });
-
-  const selectedLineSlot = createMemo(() => {
-    if (props.store.state.selectedIds.length !== 1) return null;
-    const slot = props.store.state.document?.slots.find((candidate) => candidate.id === props.store.state.selectedIds[0]);
-    return slot?.kind === "line" ? slot : null;
-  });
-
-  const selectedPathSlot = createMemo(() => {
-    if (props.store.state.selectedIds.length !== 1) return null;
-    const slot = props.store.state.document?.slots.find((candidate) => candidate.id === props.store.state.selectedIds[0]);
-    return slot?.kind === "path" ? slot : null;
-  });
-
-  const lineEndpoints = createMemo(() => {
-    const slot = selectedLineSlot();
-    if (!slot) return null;
-    const content = slot.content as Record<string, unknown>;
-    let p1 = {
-      x: Number(content.x1 ?? 0),
-      y: Number(content.y1 ?? 0),
-    };
-    let p2 = {
-      x: Number(content.x2 ?? 0),
-      y: Number(content.y2 ?? 0),
-    };
-    const current = interaction();
-    if (current?.kind === "resize" && current.slotId === slot.id && (current.handle === "p1" || current.handle === "p2")) {
-      const point = snappedPoint(current.current);
-      if (current.handle === "p1") p1 = point;
-      else p2 = point;
-    }
-    if (current?.kind === "rotate-line" && current.slotId === slot.id) {
-      const rotated = rotatedLineEndpoints(current.center, current.length, current.current);
-      p1 = rotated.p1;
-      p2 = rotated.p2;
-    }
-    return Number.isFinite(p1.x) && Number.isFinite(p1.y) && Number.isFinite(p2.x) && Number.isFinite(p2.y) ? { p1, p2 } : null;
-  });
-
-  const pathEditPoints = createMemo(() => {
-    const slot = selectedPathSlot();
-    const d = typeof slot?.content.d === "string" ? slot.content.d : "";
-    if (!slot || !d || typeof slot.content.transform === "string") return [];
-    const current = interaction();
-    const draggedIndex = current?.kind === "resize" && current.slotId === slot.id && isPathPointHandle(current.handle) ? pathPointHandleIndex(current.handle) : null;
-    const draggedPoint = current?.kind === "resize" && draggedIndex !== null ? snappedPoint(current.current) : null;
-    return editablePathPoints(d).map((point) => {
-      if (draggedIndex === point.index && draggedPoint) return { ...point, x: draggedPoint.x, y: draggedPoint.y };
-      return point;
-    });
-  });
-
-  const dragOffset = createMemo(() => {
-    const current = interaction();
-    if (current?.kind !== "drag") return { x: 0, y: 0 };
-    return snappedDelta(current.start, current.current);
   });
 
   const canvasWidth = () => svgDimension("width") ?? props.store.state.document?.detail.layout?.canvas?.width ?? 900;
@@ -634,6 +802,7 @@ export function CanvasViewport(props: CanvasViewportProps) {
   }
 
   function selectFromSvg(event: MouseEvent): void {
+    if (isSvgEngineElement(event.target)) return;
     if (suppressClick()) {
       event.preventDefault();
       event.stopPropagation();
@@ -789,6 +958,7 @@ export function CanvasViewport(props: CanvasViewportProps) {
 
   function beginCanvasPointer(event: PointerEvent): void {
     if (!props.store.state.document) return;
+    if (isSvgEngineElement(event.target)) return;
     const shouldPan = props.store.state.activeTool === "pan" || event.button === 1 || event.altKey;
     const surface = event.currentTarget instanceof HTMLElement ? event.currentTarget : null;
     if (!surface) return;
@@ -821,7 +991,7 @@ export function CanvasViewport(props: CanvasViewportProps) {
     const slotId = hitSlotId(event.target) ?? hitSlotIdFromPoint(event);
     if (slotId && props.store.state.activeTool === "select") {
       event.preventDefault();
-      surface.setPointerCapture(event.pointerId);
+      surface.focus();
       const append = event.shiftKey || event.ctrlKey || event.metaKey;
       const wasSelected = props.store.state.selectedIds.includes(slotId);
       const selectedIds = append
@@ -834,9 +1004,7 @@ export function CanvasViewport(props: CanvasViewportProps) {
       if (!wasSelected || append) {
         props.store.selectSlot(slotId, append);
       }
-      const start = clientPointToCanvasPoint(surface, event.clientX, event.clientY, props.store.state.zoom);
-      setInteraction({ kind: "drag", pointerId: event.pointerId, start, current: start, selectedIds, moved: false });
-      props.store.setStatusMessage(`Dragging ${selectedIds.length} slot${selectedIds.length === 1 ? "" : "s"}...`);
+      props.store.setStatusMessage(`Selected ${selectedIds.length} slot${selectedIds.length === 1 ? "" : "s"}. Drag the selection box to move.`);
       return;
     }
     if (slotId) return;
@@ -846,6 +1014,10 @@ export function CanvasViewport(props: CanvasViewportProps) {
     const start = clientPointToCanvasPoint(surface, event.clientX, event.clientY, props.store.state.zoom);
     setInteraction({ kind: "marquee", pointerId: event.pointerId, start, current: start, moved: false });
     props.store.setStatusMessage("Marquee selecting...");
+  }
+
+  function isSvgEngineElement(target: EventTarget | null): boolean {
+    return target instanceof Element && !!target.closest(".svg-edit-drag-proxy, .svg-edit-path-layer");
   }
 
   function updateCanvasPointer(event: PointerEvent): void {
@@ -865,10 +1037,6 @@ export function CanvasViewport(props: CanvasViewportProps) {
       const last = current.points[current.points.length - 1] ?? current.start;
       const points = Math.hypot(point.x - last.x, point.y - last.y) >= 3 ? [...current.points, point] : current.points;
       setInteraction({ ...current, current: point, points, moved });
-      return;
-    }
-    if (current.kind === "rotate-line") {
-      setInteraction({ ...current, current: point, snapAngle: event.shiftKey, moved });
       return;
     }
     setInteraction({ ...current, current: point, moved });
@@ -912,13 +1080,6 @@ export function CanvasViewport(props: CanvasViewportProps) {
       props.store.setSelectedSlots(selectedIds);
       setSuppressClick(true);
     }
-    if (current.kind === "drag" && current.moved) {
-      const { x: dx, y: dy } = snappedDelta(current.start, current.current);
-      if (dx !== 0 || dy !== 0) {
-        void props.store.moveSlots(current.selectedIds, dx, dy, "Drag move");
-      }
-      setSuppressClick(true);
-    }
     if (current.kind === "draw") {
       const definition = props.store.state.pendingDrawShape;
       if (definition && current.moved) {
@@ -928,21 +1089,6 @@ export function CanvasViewport(props: CanvasViewportProps) {
       }
       setSuppressClick(true);
     }
-    if (current.kind === "resize" && current.moved) {
-      const slot = props.store.state.document?.slots.find((candidate) => candidate.id === current.slotId);
-      const point = snappedPoint(current.current);
-      const nextBox = isBoxResizeHandle(current.handle) ? resizeBoxFromHandle(current.handle, current.startBox, point) : current.startBox;
-      const properties = slot ? resizePropertiesForSlot(slot, nextBox, current.handle, point) : null;
-      if (properties) {
-        void props.store.updateSlotProperties(current.slotId, properties);
-      }
-      setSuppressClick(true);
-    }
-    if (current.kind === "rotate-line" && current.moved) {
-      const next = rotatedLineEndpoints(current.center, current.length, current.current);
-      void props.store.updateSlotProperties(current.slotId, { x1: next.p1.x, y1: next.p1.y, x2: next.p2.x, y2: next.p2.y });
-      setSuppressClick(true);
-    }
     if (current.kind === "table-divider" && current.moved) {
       const point = snappedPoint(current.current);
       void props.store.updateTableDivider(current.base, current.axis, current.index, current.axis === "v" ? point.x : point.y);
@@ -950,9 +1096,6 @@ export function CanvasViewport(props: CanvasViewportProps) {
     }
     if (current.kind === "pan") props.store.setStatusMessage("Pan finished.");
     if (current.kind !== "pan" && !current.moved && current.kind === "marquee") props.store.setStatusMessage("No marquee selection.");
-    if (current.kind !== "pan" && !current.moved && current.kind === "drag") props.store.setStatusMessage("Drag canceled.");
-    if (current.kind !== "pan" && !current.moved && current.kind === "resize") props.store.setStatusMessage("Resize canceled.");
-    if (current.kind !== "pan" && !current.moved && current.kind === "rotate-line") props.store.setStatusMessage("Line rotation canceled.");
     if (current.kind !== "pan" && !current.moved && current.kind === "table-divider") props.store.setStatusMessage("Table divider resize canceled.");
     setInteraction(null);
   }
@@ -997,56 +1140,6 @@ export function CanvasViewport(props: CanvasViewportProps) {
     return `M ${start.x} ${start.y} C ${c1.x} ${c1.y}, ${c2.x} ${c2.y}, ${end.x} ${end.y}`;
   }
 
-  function isBoxResizeHandle(handle: ResizeHandleKey): handle is BoxResizeHandleKey {
-    return handle !== "p1" && handle !== "p2" && !isPathPointHandle(handle);
-  }
-
-  function isPathPointHandle(handle: ResizeHandleKey): handle is PathPointHandleKey {
-    return handle.startsWith("path:");
-  }
-
-  function pathPointHandleIndex(handle: PathPointHandleKey): number {
-    return Number(handle.slice("path:".length));
-  }
-
-  function beginResize(handle: ResizeHandleKey, event: PointerEvent): void {
-    event.preventDefault();
-    event.stopPropagation();
-    if (props.store.state.selectedIds.length !== 1 || props.store.state.loading) return;
-    const slotId = props.store.state.selectedIds[0];
-    const slot = props.store.state.document?.slots.find((candidate) => candidate.id === slotId);
-    const startBox = slot ? slotBounds(slot) : null;
-    if (!slot || !startBox) return;
-    if ((handle === "p1" || handle === "p2") && slot.kind !== "line") return;
-    if (isPathPointHandle(handle) && slot.kind !== "path") return;
-    if (isBoxResizeHandle(handle) && !resizePropertiesForSlot(slot, startBox, handle, startBox)) return;
-    const surface = event.currentTarget instanceof HTMLElement ? event.currentTarget.closest<HTMLElement>(".canvas-surface") : null;
-    if (!surface) return;
-    surface.setPointerCapture(event.pointerId);
-    const start = clientPointToCanvasPoint(surface, event.clientX, event.clientY, props.store.state.zoom);
-    setInteraction({ kind: "resize", pointerId: event.pointerId, start, current: start, handle, slotId, startBox, moved: false });
-    props.store.setStatusMessage(isBoxResizeHandle(handle) ? `Resizing ${slotId}...` : `Editing ${slotId} point...`);
-  }
-
-  function beginLineRotate(event: PointerEvent): void {
-    event.preventDefault();
-    event.stopPropagation();
-    const line = lineEndpoints();
-    const slot = selectedLineSlot();
-    const surface = event.currentTarget instanceof HTMLElement ? event.currentTarget.closest<HTMLElement>(".canvas-surface") : null;
-    if (!line || !slot || !surface || props.store.state.loading) return;
-    const center = {
-      x: (line.p1.x + line.p2.x) / 2,
-      y: (line.p1.y + line.p2.y) / 2,
-    };
-    const length = Math.hypot(line.p2.x - line.p1.x, line.p2.y - line.p1.y);
-    if (!Number.isFinite(length) || length <= 0) return;
-    surface.setPointerCapture(event.pointerId);
-    const start = clientPointToCanvasPoint(surface, event.clientX, event.clientY, props.store.state.zoom);
-    setInteraction({ kind: "rotate-line", pointerId: event.pointerId, start, current: start, slotId: slot.id, center, length, snapAngle: event.shiftKey, moved: false });
-    props.store.setStatusMessage(`Rotating ${slot.id}...`);
-  }
-
   function beginTableDividerResize(handle: { base: string; axis: TableDividerAxis; index: number }, event: PointerEvent): void {
     event.preventDefault();
     event.stopPropagation();
@@ -1056,111 +1149,6 @@ export function CanvasViewport(props: CanvasViewportProps) {
     const start = clientPointToCanvasPoint(surface, event.clientX, event.clientY, props.store.state.zoom);
     setInteraction({ kind: "table-divider", pointerId: event.pointerId, start, current: start, base: handle.base, axis: handle.axis, index: handle.index, moved: false });
     props.store.setStatusMessage(`Resizing table ${handle.axis === "v" ? "column" : "row"} divider...`);
-  }
-
-  function lineRotationHandlePoint(line: { p1: Point; p2: Point }): Point {
-    const center = {
-      x: (line.p1.x + line.p2.x) / 2,
-      y: (line.p1.y + line.p2.y) / 2,
-    };
-    const dx = line.p2.x - line.p1.x;
-    const dy = line.p2.y - line.p1.y;
-    const length = Math.max(Math.hypot(dx, dy), 1);
-    return {
-      x: roundedDelta(center.x - (dy / length) * 28),
-      y: roundedDelta(center.y + (dx / length) * 28),
-    };
-  }
-
-  function rotatedLineEndpoints(center: Point, length: number, pointer: Point): { p1: Point; p2: Point } {
-    let angle = Math.atan2(pointer.y - center.y, pointer.x - center.x);
-    const current = interaction();
-    if (current?.kind === "rotate-line" && current.snapAngle) {
-      const step = Math.PI / 12;
-      angle = Math.round(angle / step) * step;
-    }
-    const half = length / 2;
-    const dx = Math.cos(angle) * half;
-    const dy = Math.sin(angle) * half;
-    return {
-      p1: { x: roundedDelta(center.x - dx), y: roundedDelta(center.y - dy) },
-      p2: { x: roundedDelta(center.x + dx), y: roundedDelta(center.y + dy) },
-    };
-  }
-
-
-  function resizeBoxFromHandle(handle: BoxResizeHandleKey, startBox: Box, current: Point): Box {
-    let left = startBox.x;
-    let right = startBox.x + startBox.width;
-    let top = startBox.y;
-    let bottom = startBox.y + startBox.height;
-
-    if (handle.includes("w")) left = current.x;
-    if (handle.includes("e")) right = current.x;
-    if (handle.includes("n")) top = current.y;
-    if (handle.includes("s")) bottom = current.y;
-
-    if (right - left < MIN_RESIZE_SIZE) {
-      if (handle.includes("w")) left = right - MIN_RESIZE_SIZE;
-      else right = left + MIN_RESIZE_SIZE;
-    }
-    if (bottom - top < MIN_RESIZE_SIZE) {
-      if (handle.includes("n")) top = bottom - MIN_RESIZE_SIZE;
-      else bottom = top + MIN_RESIZE_SIZE;
-    }
-
-    return {
-      x: roundedDelta(left),
-      y: roundedDelta(top),
-      width: roundedDelta(right - left),
-      height: roundedDelta(bottom - top),
-    };
-  }
-
-  function resizePropertiesForSlot(slot: LayoutSlot, box: Box, handle: ResizeHandleKey, point: Point): Record<string, number | string> | null {
-    if (slot.kind === "line" && handle === "p1") return { x1: point.x, y1: point.y };
-    if (slot.kind === "line" && handle === "p2") return { x2: point.x, y2: point.y };
-    if (slot.kind === "path" && isPathPointHandle(handle)) {
-      const d = typeof slot.content.d === "string" ? slot.content.d : "";
-      const next = updateEditablePathPoint(d, pathPointHandleIndex(handle), point);
-      return next ? { d: next } : null;
-    }
-    switch (slot.kind) {
-      case "rect":
-      case "text_box":
-      case "image":
-        return {
-          x: box.x,
-          y: box.y,
-          width: box.width,
-          height: box.height,
-        };
-      case "circle": {
-        const diameter = Math.max(box.width, box.height);
-        return {
-          cx: roundedDelta(box.x + box.width / 2),
-          cy: roundedDelta(box.y + box.height / 2),
-          r: roundedDelta(diameter / 2),
-        };
-      }
-      case "line": {
-        const content = slot.content as Record<string, unknown>;
-        const x1 = typeof content.x1 === "number" ? content.x1 : box.x;
-        const y1 = typeof content.y1 === "number" ? content.y1 : box.y;
-        const x2 = typeof content.x2 === "number" ? content.x2 : box.x + box.width;
-        const y2 = typeof content.y2 === "number" ? content.y2 : box.y + box.height;
-        const leftToRight = x2 >= x1;
-        const topToBottom = y2 >= y1;
-        return {
-          x1: leftToRight ? box.x : box.x + box.width,
-          y1: topToBottom ? box.y : box.y + box.height,
-          x2: leftToRight ? box.x + box.width : box.x,
-          y2: topToBottom ? box.y + box.height : box.y,
-        };
-      }
-      default:
-        return null;
-    }
   }
 
   return (
@@ -1206,7 +1194,6 @@ export function CanvasViewport(props: CanvasViewportProps) {
             class="canvas-surface"
             classList={{
               "is-panning": interaction()?.kind === "pan",
-              "is-dragging": interaction()?.kind === "drag",
               "is-drawing": !!props.store.state.pendingDrawShape,
               "pan-tool": props.store.state.activeTool === "pan",
             }}
@@ -1222,6 +1209,7 @@ export function CanvasViewport(props: CanvasViewportProps) {
             onClick={selectFromSvg}
             onContextMenu={handleContextMenu}
             onDblClick={handleDoubleClick}
+            tabIndex={0}
           >
             {props.store.state.document?.detail.svg ? (
               <SvgContent svg={props.store.state.document?.detail.svg ?? ""} />
@@ -1297,114 +1285,50 @@ export function CanvasViewport(props: CanvasViewportProps) {
                   <div
                     class="selection-box"
                     style={{
-                      left: `${box().x + dragOffset().x}px`,
-                      top: `${box().y + dragOffset().y}px`,
+                      left: `${box().x}px`,
+                      top: `${box().y}px`,
                       width: `${box().width}px`,
                       height: `${box().height}px`,
                     }}
                   />
-                  <Show when={!selectedLineSlot()}>
-                    <For each={RESIZE_HANDLES}>
-                      {(handle) => (
-                        <div
-                          class={`resize-handle resize-handle-${handle.key}`}
-                          aria-hidden="true"
-                          onPointerDown={(event) => beginResize(handle.key, event)}
-                          style={{
-                            left: `${box().x + box().width * handle.x + dragOffset().x}px`,
-                            top: `${box().y + box().height * handle.y + dragOffset().y}px`,
-                          }}
-                        />
-                      )}
-                    </For>
-                  </Show>
+                  <button
+                    type="button"
+                    class="selection-delete-button"
+                    aria-label="Delete selected slot"
+                    title="Delete"
+                    onPointerDown={requestDeleteSelected}
+                    onMouseDown={requestDeleteSelected}
+                    onClick={requestDeleteSelected}
+                    style={{
+                      left: `${box().x + box().width + 8}px`,
+                      top: `${Math.max(0, box().y - 8)}px`,
+                    }}
+                  >
+                    Del
+                  </button>
                 </>
               )}
-            </Show>
-            <Show when={lineEndpoints()}>
-              {(line) => (
-                <>
-                  <div
-                    class="selection-line"
-                    aria-hidden="true"
-                    style={{
-                      left: `${line().p1.x}px`,
-                      top: `${line().p1.y}px`,
-                      width: `${Math.hypot(line().p2.x - line().p1.x, line().p2.y - line().p1.y)}px`,
-                      transform: `rotate(${Math.atan2(line().p2.y - line().p1.y, line().p2.x - line().p1.x)}rad)`,
-                    }}
-                  />
-                  <div
-                    class="line-endpoint-handle"
-                    aria-hidden="true"
-                    onPointerDown={(event) => beginResize("p1", event)}
-                    style={{ left: `${line().p1.x}px`, top: `${line().p1.y}px` }}
-                  />
-                  <div
-                    class="line-endpoint-handle"
-                    aria-hidden="true"
-                    onPointerDown={(event) => beginResize("p2", event)}
-                    style={{ left: `${line().p2.x}px`, top: `${line().p2.y}px` }}
-                  />
-                  <div
-                    class="line-rotate-stem"
-                    aria-hidden="true"
-                    style={{
-                      left: `${(line().p1.x + line().p2.x) / 2}px`,
-                      top: `${(line().p1.y + line().p2.y) / 2}px`,
-                      width: "28px",
-                      transform: `rotate(${Math.atan2(lineRotationHandlePoint(line()).y - (line().p1.y + line().p2.y) / 2, lineRotationHandlePoint(line()).x - (line().p1.x + line().p2.x) / 2)}rad)`,
-                    }}
-                  />
-                  <div
-                    class="line-rotate-handle"
-                    aria-hidden="true"
-                    onPointerDown={beginLineRotate}
-                    style={{ left: `${lineRotationHandlePoint(line()).x}px`, top: `${lineRotationHandlePoint(line()).y}px` }}
-                  />
-                </>
-              )}
-            </Show>
-            <Show when={pathEditPoints().length > 0}>
-              <svg class="path-edit-guide" viewBox={`0 0 ${canvasWidth()} ${canvasHeight()}`} aria-hidden="true">
-                <polyline points={pathEditPoints().map((point) => `${point.x},${point.y}`).join(" ")} />
-              </svg>
-              <For each={pathEditPoints()}>
-                {(point) => (
-                  <div
-                    class="path-point-handle"
-                    aria-hidden="true"
-                    onPointerDown={(event) => beginResize(`path:${point.index}`, event)}
-                    style={{ left: `${point.x}px`, top: `${point.y}px` }}
-                  />
-                )}
-              </For>
             </Show>
             <Show when={inlineTextEdit()}>
               {(edit) => {
-                let inputRef!: HTMLInputElement;
                 setTimeout(() => {
-                  inputRef?.focus();
-                  inputRef?.select();
+                  inlineInputRef?.focus();
+                  inlineInputRef?.select();
                 }, 20);
 
                 const handleKeyDown = (e: KeyboardEvent) => {
                   if (e.key === "Enter") {
                     e.preventDefault();
-                    const text = inputRef.value;
-                    if (text !== edit().originalText) {
-                      void props.store.updateSlotProperties(edit().slotId, { text });
-                    }
-                    setInlineTextEdit(null);
+                    closeInlineTextEditor(true);
                   } else if (e.key === "Escape") {
                     e.preventDefault();
-                    setInlineTextEdit(null);
+                    closeInlineTextEditor(false);
                   }
                 };
 
                 return (
                   <input
-                    ref={inputRef}
+                    ref={inlineInputRef}
                     type="text"
                     class="inline-text-editor"
                     value={edit().originalText}
@@ -1420,13 +1344,7 @@ export function CanvasViewport(props: CanvasViewportProps) {
                       "z-index": 100,
                     }}
                     onKeyDown={handleKeyDown}
-                    onBlur={() => {
-                      const text = inputRef.value;
-                      if (text !== edit().originalText) {
-                        void props.store.updateSlotProperties(edit().slotId, { text });
-                      }
-                      setInlineTextEdit(null);
-                    }}
+                    onBlur={() => closeInlineTextEditor(true)}
                   />
                 );
               }}
@@ -1485,22 +1403,35 @@ export function CanvasViewport(props: CanvasViewportProps) {
           )}
         </Show>
       </div>
-      <div class="slot-strip">
-        <For each={props.store.state.document?.slots ?? []}>
-          {(slot) => (
-            <button
-              type="button"
-              classList={{ active: props.store.state.selectedIds.includes(slot.id) }}
-              onClick={(event) => {
-                event.stopPropagation();
-                props.store.selectSlot(slot.id, event.shiftKey || event.ctrlKey || event.metaKey);
-              }}
-            >
-              <span>{slot.id}</span>
-              <small>{slot.kind}</small>
-            </button>
-          )}
-        </For>
+      <div class="slot-strip" classList={{ open: slotStripOpen() }}>
+        <button
+          type="button"
+          class="slot-strip-toggle"
+          aria-expanded={slotStripOpen()}
+          onClick={() => setSlotStripOpen((open) => !open)}
+        >
+          <span>Slots ({props.store.state.document?.slots.length ?? 0})</span>
+          <small>{props.store.state.selectedIds.length ? props.store.state.selectedIds.join(", ") : "none selected"}</small>
+        </button>
+        <Show when={slotStripOpen()}>
+          <div class="slot-strip-list">
+            <For each={props.store.state.document?.slots ?? []}>
+              {(slot) => (
+                <button
+                  type="button"
+                  classList={{ active: props.store.state.selectedIds.includes(slot.id) }}
+                  onClick={(event) => {
+                    event.stopPropagation();
+                    props.store.selectSlot(slot.id, event.shiftKey || event.ctrlKey || event.metaKey);
+                  }}
+                >
+                  <span>{slot.id}</span>
+                  <small>{slot.kind}</small>
+                </button>
+              )}
+            </For>
+          </div>
+        </Show>
       </div>
     </section>
   );

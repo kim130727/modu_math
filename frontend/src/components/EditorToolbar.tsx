@@ -155,54 +155,31 @@ export function EditorToolbar(props: EditorToolbarProps) {
           </datalist>
         </div>
         <div class="toolbar-actions ribbon-group">
-          <button type="button" classList={{ active: props.store.state.activeTool === "select" }} onClick={() => props.store.setActiveTool("select")} disabled={props.store.state.loading}>
-            Select
-          </button>
-          <button type="button" classList={{ active: props.store.state.activeTool === "pan" }} onClick={() => props.store.setActiveTool("pan")} disabled={props.store.state.loading}>
-            Pan
-          </button>
-          <button type="button" classList={{ active: props.store.state.snapEnabled }} onClick={() => props.store.setSnapEnabled(!props.store.state.snapEnabled)} disabled={props.store.state.loading}>
-            Snap 5px
-          </button>
-          <button type="button" onClick={() => void props.store.undo()} disabled={props.store.state.loading || props.store.state.history.undoStack.length === 0}>
-            Undo
-          </button>
-          <button type="button" onClick={() => void props.store.redo()} disabled={props.store.state.loading || props.store.state.history.redoStack.length === 0}>
-            Redo
-          </button>
-          <button type="button" onClick={() => void props.store.refreshProblems()} disabled={props.store.state.loading}>
-            Refresh
-          </button>
-          <button type="button" onClick={() => void props.store.openProblem(currentProblemPath())} disabled={!currentProblemPath().trim() || props.store.state.loading}>
-            Open
-          </button>
-          <button type="button" onClick={() => props.store.state.problemId && void props.store.openProblem(props.store.state.problemId)} disabled={!props.store.state.problemId || props.store.state.loading}>
-            Reload
-          </button>
-          <button type="button" onClick={() => void props.store.insertShape("text_box")} disabled={!canInsert()}>
-            Text Box
-          </button>
-          <button type="button" onClick={() => openDialog("table")} disabled={!canInsert()}>
-            Table
-          </button>
-          <button type="button" onClick={() => openDialog("bar")} disabled={!canInsert()}>
-            Bar Model
-          </button>
-          <button type="button" onClick={() => openDialog("tick")} disabled={!canInsert()}>
-            Tick Bar
-          </button>
-          <button type="button" onClick={() => openDialog("graph")} disabled={!canInsert()}>
-            Graph Paper
-          </button>
-          <button type="button" onClick={() => openDialog("fraction")} disabled={!canInsert()}>
-            Fraction
-          </button>
-          <button type="button" onClick={() => openDialog("mixedFraction")} disabled={!canInsert()}>
-            Mixed Fraction
-          </button>
+          <IconButton icon="pointer" label="Select" active={props.store.state.activeTool === "select"} onClick={() => props.store.setActiveTool("select")} disabled={props.store.state.loading} />
+          <IconButton icon="hand" label="Pan" active={props.store.state.activeTool === "pan"} onClick={() => props.store.setActiveTool("pan")} disabled={props.store.state.loading} />
+          <IconButton icon="magnet" label="Snap 5px" active={props.store.state.snapEnabled} onClick={() => props.store.setSnapEnabled(!props.store.state.snapEnabled)} disabled={props.store.state.loading} />
+          <IconButton icon="undo" label="Undo" onClick={() => void props.store.undo()} disabled={props.store.state.loading || props.store.state.history.undoStack.length === 0} />
+          <IconButton icon="redo" label="Redo" onClick={() => void props.store.redo()} disabled={props.store.state.loading || props.store.state.history.redoStack.length === 0} />
+          <IconButton icon="copy" label="Copy" onClick={() => props.store.copySelectedSlots()} disabled={isBusy() || !hasSelection()} />
+          <IconButton icon="paste" label="Paste" onClick={() => void props.store.pasteCopiedSlots()} disabled={isBusy() || !props.store.state.hasCopyBuffer} />
+          <IconButton icon="refresh" label="Refresh problems" onClick={() => void props.store.refreshProblems()} disabled={props.store.state.loading} />
+          <IconButton icon="folder" label="Open problem" onClick={() => void props.store.openProblem(currentProblemPath())} disabled={!currentProblemPath().trim() || props.store.state.loading} />
+          <IconButton icon="reload" label="Reload problem" onClick={() => props.store.state.problemId && void props.store.openProblem(props.store.state.problemId)} disabled={!props.store.state.problemId || props.store.state.loading} />
+          <IconButton icon="save" label="Save DSL" onClick={() => void props.store.saveDslDraft()} disabled={!props.store.state.problemId || props.store.state.saving || props.store.state.loading} />
+          <IconButton icon="build" label="Build" onClick={() => void props.store.buildCurrentProblem()} disabled={!props.store.state.problemId || props.store.state.building || props.store.state.loading} />
+          <IconButton icon="text" label="Text Box" onClick={() => void props.store.insertShape("text_box")} disabled={!canInsert()} />
+          <IconButton icon="table" label="Table" onClick={() => openDialog("table")} disabled={!canInsert()} />
+          <IconButton icon="bar" label="Bar Model" onClick={() => openDialog("bar")} disabled={!canInsert()} />
+          <IconButton icon="tick" label="Tick Bar" onClick={() => openDialog("tick")} disabled={!canInsert()} />
+          <IconButton icon="grid" label="Graph Paper" onClick={() => openDialog("graph")} disabled={!canInsert()} />
+          <IconButton icon="fraction" label="Fraction" onClick={() => openDialog("fraction")} disabled={!canInsert()} />
+          <IconButton icon="mixedFraction" label="Mixed Fraction" onClick={() => openDialog("mixedFraction")} disabled={!canInsert()} />
           <div class="ribbon-dropdown" ref={shapeDropdownRef}>
             <button
               type="button"
+              class="icon-btn"
+              title="Shapes"
+              aria-label="Shapes"
               aria-haspopup="menu"
               aria-expanded={shapeGalleryOpen()}
               classList={{ active: shapeGalleryOpen() }}
@@ -212,7 +189,7 @@ export function EditorToolbar(props: EditorToolbarProps) {
               }}
               disabled={!canInsert()}
             >
-              Shapes
+              <Icon name="shapes" />
             </button>
             <div classList={{ "shape-gallery": true, open: shapeGalleryOpen() }} role="menu" aria-label="Shapes">
               <For each={SHAPE_CATEGORIES}>
@@ -246,30 +223,23 @@ export function EditorToolbar(props: EditorToolbarProps) {
               </For>
             </div>
           </div>
-          <button type="button" onClick={() => void props.store.insertShape("rect")} disabled={!canInsert()}>
-            Rect
-          </button>
-          <button type="button" onClick={() => void props.store.insertShape("circle")} disabled={!canInsert()}>
-            Circle
-          </button>
-          <button type="button" onClick={() => void props.store.insertShape("line")} disabled={!canInsert()}>
-            Line
-          </button>
-          <button type="button" onClick={() => void props.store.insertShape("triangle")} disabled={!canInsert()}>
-            Triangle
-          </button>
-          <button type="button" onClick={() => void props.store.insertShape("path")} disabled={!canInsert()}>
-            Curve
-          </button>
+          <IconButton icon="rect" label="Rect" onClick={() => void props.store.insertShape("rect")} disabled={!canInsert()} />
+          <IconButton icon="circle" label="Circle" onClick={() => void props.store.insertShape("circle")} disabled={!canInsert()} />
+          <IconButton icon="line" label="Line" onClick={() => void props.store.insertShape("line")} disabled={!canInsert()} />
+          <IconButton icon="triangle" label="Triangle" onClick={() => void props.store.insertShape("triangle")} disabled={!canInsert()} />
+          <IconButton icon="curve" label="Curve" onClick={() => void props.store.insertShape("path")} disabled={!canInsert()} />
           <button
             type="button"
+            class="icon-btn"
+            title="Image"
+            aria-label="Image"
             onClick={() => {
               if (!canInsert()) return;
               imageInputRef.click();
             }}
             disabled={!canInsert()}
           >
-            Image
+            <Icon name="image" />
           </button>
           <input
             ref={imageInputRef}
@@ -282,41 +252,19 @@ export function EditorToolbar(props: EditorToolbarProps) {
               if (file) void props.store.insertImageFile(file);
             }}
           />
-          <button type="button" onClick={() => void props.store.deleteSelectedSlots()} disabled={isBusy() || !hasSelection()}>
-            Delete
-          </button>
+          <IconButton icon="trash" label="Delete" onClick={() => void props.store.deleteSelectedSlots()} disabled={isBusy() || !hasSelection()} />
         </div>
         <div class="toolbar-actions toolbar-align ribbon-group" aria-label="Alignment and layer controls">
-          <button type="button" onClick={() => void props.store.alignSelectedSlots("left")} disabled={isBusy() || !hasMultiSelection()}>
-            Align L
-          </button>
-          <button type="button" onClick={() => void props.store.alignSelectedSlots("center")} disabled={isBusy() || !hasMultiSelection()}>
-            Align C
-          </button>
-          <button type="button" onClick={() => void props.store.alignSelectedSlots("right")} disabled={isBusy() || !hasMultiSelection()}>
-            Align R
-          </button>
-          <button type="button" onClick={() => void props.store.alignSelectedSlots("top")} disabled={isBusy() || !hasMultiSelection()}>
-            Align T
-          </button>
-          <button type="button" onClick={() => void props.store.alignSelectedSlots("middle")} disabled={isBusy() || !hasMultiSelection()}>
-            Align M
-          </button>
-          <button type="button" onClick={() => void props.store.alignSelectedSlots("bottom")} disabled={isBusy() || !hasMultiSelection()}>
-            Align B
-          </button>
-          <button type="button" onClick={() => void props.store.layerSelectedSlots("front")} disabled={isBusy() || !hasSelection()}>
-            Front
-          </button>
-          <button type="button" onClick={() => void props.store.layerSelectedSlots("back")} disabled={isBusy() || !hasSelection()}>
-            Back
-          </button>
-          <button type="button" onClick={() => void props.store.layerSelectedSlots("forward")} disabled={isBusy() || !hasSelection()}>
-            Forward
-          </button>
-          <button type="button" onClick={() => void props.store.layerSelectedSlots("backward")} disabled={isBusy() || !hasSelection()}>
-            Backward
-          </button>
+          <IconButton icon="alignLeft" label="Align left" onClick={() => void props.store.alignSelectedSlots("left")} disabled={isBusy() || !hasMultiSelection()} />
+          <IconButton icon="alignCenter" label="Align center" onClick={() => void props.store.alignSelectedSlots("center")} disabled={isBusy() || !hasMultiSelection()} />
+          <IconButton icon="alignRight" label="Align right" onClick={() => void props.store.alignSelectedSlots("right")} disabled={isBusy() || !hasMultiSelection()} />
+          <IconButton icon="alignTop" label="Align top" onClick={() => void props.store.alignSelectedSlots("top")} disabled={isBusy() || !hasMultiSelection()} />
+          <IconButton icon="alignMiddle" label="Align middle" onClick={() => void props.store.alignSelectedSlots("middle")} disabled={isBusy() || !hasMultiSelection()} />
+          <IconButton icon="alignBottom" label="Align bottom" onClick={() => void props.store.alignSelectedSlots("bottom")} disabled={isBusy() || !hasMultiSelection()} />
+          <IconButton icon="front" label="Bring to front" onClick={() => void props.store.layerSelectedSlots("front")} disabled={isBusy() || !hasSelection()} />
+          <IconButton icon="back" label="Send to back" onClick={() => void props.store.layerSelectedSlots("back")} disabled={isBusy() || !hasSelection()} />
+          <IconButton icon="forward" label="Bring forward" onClick={() => void props.store.layerSelectedSlots("forward")} disabled={isBusy() || !hasSelection()} />
+          <IconButton icon="backward" label="Send backward" onClick={() => void props.store.layerSelectedSlots("backward")} disabled={isBusy() || !hasSelection()} />
         </div>
         <div class="toolbar-pickmodes ribbon-group" aria-label="Selection target filters">
           <button type="button" classList={{ active: props.store.state.pickMode === "all" }} onClick={() => props.store.setPickMode("all")} disabled={props.store.state.loading}>
@@ -624,6 +572,116 @@ function ShapePreview(props: { shape: GalleryShapeDefinition }) {
   if (props.shape.kind === "polygon") return <span class="shape-preview shape-preview-poly">{label}</span>;
   if (props.shape.kind === "composite") return <span class="shape-preview shape-preview-composite">{label}</span>;
   return <span class="shape-preview shape-preview-path">{label}</span>;
+}
+
+function IconButton(props: {
+  icon: string;
+  label: string;
+  active?: boolean;
+  disabled?: boolean;
+  onClick: () => void;
+}) {
+  return (
+    <button
+      type="button"
+      class="icon-btn"
+      classList={{ active: !!props.active }}
+      title={props.label}
+      aria-label={props.label}
+      onClick={props.onClick}
+      disabled={props.disabled}
+    >
+      <Icon name={props.icon} />
+    </button>
+  );
+}
+
+function Icon(props: { name: string }) {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      {iconContent(props.name)}
+    </svg>
+  );
+}
+
+function iconContent(name: string) {
+  switch (name) {
+    case "pointer":
+      return <path d="M5 3 L18 14 L12 15 L9 21 L5 3 Z" />;
+    case "hand":
+      return <path d="M7 12 V7 M10 12 V4 M13 12 V6 M16 13 V9 M7 12 C5 12 4 13 5 15 L8 20 H15 C17 20 19 18 19 15 V11" />;
+    case "magnet":
+      return <path d="M6 4 V12 C6 16 9 19 12 19 C15 19 18 16 18 12 V4 M6 8 H10 M14 8 H18" />;
+    case "undo":
+      return <path d="M9 7 H5 V3 M5 7 C8 4 13 4 16 7 C19 10 19 15 16 18 C14 20 10 20 8 18" />;
+    case "redo":
+      return <path d="M15 7 H19 V3 M19 7 C16 4 11 4 8 7 C5 10 5 15 8 18 C10 20 14 20 16 18" />;
+    case "copy":
+      return <path d="M8 8 H18 V20 H8 Z M6 16 H4 V4 H14 V6" />;
+    case "paste":
+      return <path d="M8 5 H16 M9 3 H15 L16 5 H20 V21 H4 V5 H8 Z M8 10 H16 M8 14 H16 M8 18 H13" />;
+    case "refresh":
+    case "reload":
+      return <path d="M20 7 V3 H16 M19 4 C16 2 11 2 8 5 C5 8 5 13 8 16 C11 19 16 19 19 16 M4 17 V21 H8" />;
+    case "folder":
+      return <path d="M3 6 H9 L11 8 H21 V18 H3 Z" />;
+    case "save":
+      return <path d="M5 4 H17 L20 7 V20 H4 V4 H5 Z M8 4 V10 H16 V4 M8 20 V14 H16 V20" />;
+    case "build":
+      return <path d="M7 4 H17 L20 8 L12 21 L4 8 Z M7 4 L12 21 M17 4 L12 21 M4 8 H20" />;
+    case "text":
+      return <path d="M5 6 H19 M12 6 V19 M9 19 H15" />;
+    case "table":
+      return <path d="M4 5 H20 V19 H4 Z M4 10 H20 M4 15 H20 M10 5 V19 M16 5 V19" />;
+    case "bar":
+      return <path d="M5 17 H19 M7 17 V10 H10 V17 M12 17 V6 H15 V17 M17 17 V12 H20" />;
+    case "tick":
+      return <path d="M4 12 H20 M6 8 V16 M10 9 V15 M14 8 V16 M18 9 V15" />;
+    case "grid":
+      return <path d="M4 4 H20 V20 H4 Z M4 9 H20 M4 14 H20 M9 4 V20 M14 4 V20" />;
+    case "fraction":
+      return <path d="M9 6 H15 M8 12 H16 M9 18 H15" />;
+    case "mixedFraction":
+      return <path d="M4 15 V9 M7 15 V9 M11 6 H17 M10 12 H18 M11 18 H17" />;
+    case "shapes":
+      return <path d="M5 15 L10 5 L15 15 Z M14 7 H20 V13 H14 Z M8 18 H18" />;
+    case "rect":
+      return <rect x="5" y="7" width="14" height="10" />;
+    case "circle":
+      return <circle cx="12" cy="12" r="7" />;
+    case "line":
+      return <path d="M5 18 L19 6" />;
+    case "triangle":
+      return <path d="M12 5 L20 18 H4 Z" />;
+    case "curve":
+      return <path d="M4 17 C8 4 14 20 20 7" />;
+    case "image":
+      return <path d="M4 5 H20 V19 H4 Z M7 15 L10 12 L13 15 L15 13 L19 17 M8 9 H8.5" />;
+    case "trash":
+      return <path d="M5 7 H19 M9 7 V5 H15 V7 M8 7 L9 20 H15 L16 7" />;
+    case "alignLeft":
+      return <path d="M5 5 V19 M8 7 H19 M8 12 H15 M8 17 H19" />;
+    case "alignCenter":
+      return <path d="M12 5 V19 M6 7 H18 M8 12 H16 M6 17 H18" />;
+    case "alignRight":
+      return <path d="M19 5 V19 M5 7 H16 M9 12 H16 M5 17 H16" />;
+    case "alignTop":
+      return <path d="M5 5 H19 M7 8 V19 M12 8 V15 M17 8 V19" />;
+    case "alignMiddle":
+      return <path d="M5 12 H19 M7 5 V19 M12 8 V16 M17 5 V19" />;
+    case "alignBottom":
+      return <path d="M5 19 H19 M7 5 V16 M12 9 V16 M17 5 V16" />;
+    case "front":
+      return <path d="M8 8 H18 V18 H8 Z M5 5 H15 V8 M5 5 V15 H8" />;
+    case "back":
+      return <path d="M6 6 H16 V16 H6 Z M9 9 H19 V19 H9" />;
+    case "forward":
+      return <path d="M7 9 H17 V19 H7 Z M10 5 H21 V16 M10 5 V9" />;
+    case "backward":
+      return <path d="M7 5 H17 V15 H7 Z M10 9 H21 V20 M10 15 V20" />;
+    default:
+      return <circle cx="12" cy="12" r="7" />;
+  }
 }
 
 function toInt(value: string, min: number, max: number, fallback: number): number {

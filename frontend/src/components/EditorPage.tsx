@@ -18,10 +18,22 @@ export function EditorPage() {
   });
 
   onMount(() => {
+    const handleCopy = (event: ClipboardEvent) => {
+      if (isEditableTarget(event.target)) return;
+      if (!store.state.selectedIds.length || store.state.loading) return;
+      event.preventDefault();
+      store.copySelectedSlots();
+    };
+    const handlePaste = (event: ClipboardEvent) => {
+      if (isEditableTarget(event.target)) return;
+      if (store.state.loading) return;
+      event.preventDefault();
+      void store.pasteCopiedSlots();
+    };
     const handleKeyDown = (event: KeyboardEvent) => {
       const commandKey = event.ctrlKey || event.metaKey;
       if (!isEditableTarget(event.target) && commandKey && !event.altKey) {
-        const key = event.key.toLowerCase();
+        const key = shortcutKey(event);
         if (key === "z") {
           event.preventDefault();
           if (event.shiftKey) void store.redo();
@@ -64,8 +76,14 @@ export function EditorPage() {
       void store.moveSelectedSlots(delta.x, delta.y);
     };
 
-    document.addEventListener("keydown", handleKeyDown);
-    onCleanup(() => document.removeEventListener("keydown", handleKeyDown));
+    window.addEventListener("copy", handleCopy, true);
+    window.addEventListener("paste", handlePaste, true);
+    window.addEventListener("keydown", handleKeyDown, true);
+    onCleanup(() => {
+      window.removeEventListener("copy", handleCopy, true);
+      window.removeEventListener("paste", handlePaste, true);
+      window.removeEventListener("keydown", handleKeyDown, true);
+    });
 
     void (async () => {
       await store.refreshProblems();
@@ -119,6 +137,15 @@ export function EditorPage() {
       <StatusBar state={store.state} />
     </div>
   );
+}
+
+function shortcutKey(event: KeyboardEvent): string {
+  if (event.code === "KeyC") return "c";
+  if (event.code === "KeyV") return "v";
+  if (event.code === "KeyZ") return "z";
+  if (event.code === "KeyY") return "y";
+  if (event.code === "KeyS") return "s";
+  return event.key.toLowerCase();
 }
 
 function arrowDelta(key: string, step: number): { x: number; y: number } | null {

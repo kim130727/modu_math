@@ -787,6 +787,32 @@ from modu_math.dsl import ProblemTemplate
     assert overrides["deleted_slots"] == ["slot.generated.body"]
 
 
+def test_layout_patch_delete_accepts_renderer_element_id(tmp_path: Path) -> None:
+    client = _setup_django(tmp_path)
+    dsl_text = """
+from modu_math.dsl import Canvas, CircleSlot, ProblemTemplate, Region
+
+PROBLEM_TEMPLATE = ProblemTemplate(
+    id="p",
+    canvas=Canvas(width=100, height=100),
+    regions=(Region(id="region.diagram", role="diagram", slot_ids=("slot.editor_next.circle.1",)),),
+    slots=(CircleSlot(id="slot.editor_next.circle.1", cx=20, cy=20, r=10),),
+)
+""".lstrip()
+    problem_dir = _write_problem(tmp_path, "0001", dsl_text)
+
+    payload = {"patches": [{"target": "slot.editor_next.circle.1.circle", "op": "delete"}]}
+    response = client.post(
+        "/api/editor/problems/0001/layout-patch/",
+        data=json.dumps(payload),
+        content_type="application/json",
+    )
+
+    assert response.status_code == 200
+    updated = (problem_dir / "problem.dsl.py").read_text(encoding="utf-8")
+    assert "slot.editor_next.circle.1" not in updated
+
+
 def test_apply_editor_overrides_removes_deleted_slots() -> None:
     layout = {
         "regions": [{"id": "region.diagram", "slot_ids": ["slot.keep", "slot.delete"]}],

@@ -64,6 +64,10 @@ def _normalize_slot_id(value: str) -> str:
     return "".join(ch for ch in value.lower() if ch.isalnum())
 
 
+def _renderer_element_slot_target(value: str) -> str:
+    return re.sub(r"\.(?:text|line|rect|path|polygon|circle|image)$", "", value)
+
+
 def _measurement_tool_base_from_slot_id(slot_id: str) -> str | None:
     match = re.match(r"^(slot\..+)\.(?:ruler|compass)(?:\.|$)", slot_id)
     return match.group(1) if match else None
@@ -1363,7 +1367,7 @@ def apply_layout_patches(
             raise DslPatchError("patch target must be a non-empty string")
 
         if op == "delete":
-            target = _resolve_target_slot_id(transformed, target)
+            target = _resolve_target_slot_id(transformed, _renderer_element_slot_target(target))
             deleter = SlotDeleteTransformer(target=target)
             transformed = transformed.visit(deleter)
             if not deleter.deleted_slot:

@@ -4,22 +4,26 @@
   "metadata": {
     "title": "어항에 물을 가득 채우기",
     "tags": [],
+    "instruction": "들이가 작은 그릇부터 순서대로 쓴 것을 고르기",
     "question": "어항에 물을 가득 채우기 위해 부은 그릇의 수를 바탕으로 들이가 작은 그릇부터 순서를 고르는 문제",
     "required_layout_ids": [
-      "slot.fishbowl",
+      "slot.inserted.image.1",
       "slot.table.outer",
-      "slot.table.cell.1",
-      "slot.table.cell.2",
-      "slot.table.cell.3",
-      "slot.table.cell.4",
-      "slot.table.cell.5",
-      "slot.table.cell.6",
-      "slot.table.cell.7",
-      "slot.table.cell.8"
+      "slot.table.r1c1.fill",
+      "slot.table.r1c2.fill",
+      "slot.table.r1c3.fill",
+      "slot.table.r1c4.fill",
+      "slot.table.r2c1.fill",
+      "slot.table.r2c2.fill",
+      "slot.table.r2c3.fill",
+      "slot.table.r2c4.fill",
+      "slot.table.v1",
+      "slot.table.v2",
+      "slot.table.v3",
+      "slot.table.h1"
     ],
     "extraction_confidence": 1.0,
-    "language": "ko",
-    "instruction": "들이가 작은 그릇부터 순서대로 쓴 것을 고르기"
+    "language": "ko"
   },
   "domain": {
     "objects": [
