@@ -125,11 +125,12 @@ def _element_to_svg_lines(element: RenderElement, depth: int = 1) -> list[str]:
             res.append(f"{indent}</text>")
             return res
 
-        max_width_raw = attrs.get("max_width", attrs.get("max-width", None))
-        max_width = float(max_width_raw) if isinstance(max_width_raw, (int, float)) else None
         font_size_raw = attrs.get("font-size", attrs.get("font_size", 26))
         font_size = float(font_size_raw) if isinstance(font_size_raw, (int, float)) else 26.0
-        text_lines = _wrap_text(element.text, max_width, font_size)
+        # Plain TextSlot is positioned text, not a text box. Keep SVG output in
+        # sync with tldraw by honoring only explicit newlines here; automatic
+        # width-based wrapping belongs to text_box.
+        text_lines = element.text.split("\n")
         attrs_str = _attrs_to_str(attrs)
         if len(text_lines) <= 1:
             return [f"{indent}<text {attrs_str}>{escape(element.text)}</text>"]

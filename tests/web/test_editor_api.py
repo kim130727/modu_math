@@ -199,6 +199,37 @@ SLOTS = (
     assert "font_size=28" in updated
 
 
+def test_layout_patch_removes_textslot_max_width(tmp_path: Path) -> None:
+    client = _setup_django(tmp_path)
+    dsl_text = """
+from modu_math.dsl import TextSlot
+
+SLOTS = (
+    TextSlot(id="slot.q1", text="A", x=10.0, y=20.0, font_size=12, max_width=30),
+)
+""".lstrip()
+    problem_dir = _write_problem(tmp_path, "0001", dsl_text)
+
+    payload = {
+        "patches": [
+            {
+                "target": "slot.q1",
+                "op": "update",
+                "value": {"x": 120.0, "max_width": None},
+            }
+        ]
+    }
+    response = client.post(
+        "/api/editor/problems/0001/layout-patch/",
+        data=json.dumps(payload),
+        content_type="application/json",
+    )
+    assert response.status_code == 200
+    updated = (problem_dir / "problem.dsl.py").read_text(encoding="utf-8")
+    assert "x=120.0" in updated
+    assert "max_width" not in updated
+
+
 def test_layout_patch_can_skip_formatting_for_fast_drag_save(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
     client = _setup_django(tmp_path)
     dsl_text = """
@@ -238,6 +269,92 @@ SLOTS = (
     updated = (problem_dir / "problem.dsl.py").read_text(encoding="utf-8")
     assert "x = 15.0" in updated
     assert "y = 25.0" in updated
+
+
+def test_layout_patch_reports_dsl_syntax_error_as_bad_request(tmp_path: Path) -> None:
+    client = _setup_django(tmp_path)
+    _write_problem(
+        tmp_path,
+        "0001",
+        """
+from modu_math.dsl import TextSlot
+
+SLOTS = (
+    TextSlot(id="slot.q1", text="A", x=10.0, y=20.0, font_size=12),
+)
+00123
+""".lstrip(),
+    )
+
+    response = client.post(
+        "/api/editor/problems/0001/layout-patch/",
+        data=json.dumps(
+            {
+                "patches": [
+                    {
+                        "target": "slot.q1",
+                        "op": "update",
+                        "value": {"x": 15.0},
+                    }
+                ],
+            }
+        ),
+        content_type="application/json",
+    )
+
+    assert response.status_code == 400
+    payload = response.json()
+    assert payload["ok"] is False
+    assert "DSL syntax error" in payload["error"]
+
+
+def test_layout_patch_add_slot_falls_back_to_first_region_when_no_diagram_region(tmp_path: Path) -> None:
+    client = _setup_django(tmp_path)
+    problem_dir = _write_problem(
+        tmp_path,
+        "0001",
+        """
+from modu_math.dsl import ProblemTemplate, Region, TextSlot
+
+PROBLEM_TEMPLATE = ProblemTemplate(
+    id="p",
+    title="p",
+    regions=(Region(id="region.stem", role="stem", flow="absolute", slot_ids=("slot.q1",)),),
+    slots=(TextSlot(id="slot.q1", text="A", x=10, y=20, font_size=12),),
+)
+""".lstrip(),
+    )
+
+    response = client.post(
+        "/api/editor/problems/0001/layout-patch/",
+        data=json.dumps(
+            {
+                "patches": [
+                    {
+                        "target": "slot.editor_next.rect.1",
+                        "op": "add",
+                        "value": {
+                            "kind": "rect",
+                            "content": {
+                                "x": 30,
+                                "y": 40,
+                                "width": 50,
+                                "height": 60,
+                                "fill": "none",
+                                "stroke": "#111827",
+                            },
+                        },
+                    }
+                ],
+            }
+        ),
+        content_type="application/json",
+    )
+
+    assert response.status_code == 200
+    updated = (problem_dir / "problem.dsl.py").read_text(encoding="utf-8")
+    assert "slot.editor_next.rect.1" in updated
+    assert '"slot.q1", "slot.editor_next.rect.1"' in updated
 
 
 def test_build_endpoint_generates_artifacts_without_shell_script(tmp_path: Path) -> None:

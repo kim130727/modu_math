@@ -10,15 +10,23 @@ export class MathTextShapeUtil extends ShapeUtil<MathTextShape> {
     fontSize: T.number,
     w: T.number,
     h: T.number,
+    color: T.string,
+    textAlign: T.literalEnum("left", "center", "right"),
+    lineHeight: T.number,
+    sourceKind: T.literalEnum("text", "text_box"),
   };
 
   override getDefaultProps(): MathTextShape["props"] {
     return {
-      latex: "3 + 4 = □",
-      text: "3 + 4 = □",
+      latex: "3 + 4 = []",
+      text: "3 + 4 = []",
       fontSize: 36,
       w: 260,
       h: 64,
+      color: "#050816",
+      textAlign: "left",
+      lineHeight: 1.25,
+      sourceKind: "text_box",
     };
   }
 
@@ -27,10 +35,29 @@ export class MathTextShapeUtil extends ShapeUtil<MathTextShape> {
   }
 
   override component(shape: MathTextShape) {
+    const lines = (shape.props.text || shape.props.latex || "").split(/\n/g);
+    const anchor = shape.props.textAlign === "center" ? "middle" : shape.props.textAlign === "right" ? "end" : "start";
+    const x = shape.props.textAlign === "center" ? shape.props.w / 2 : shape.props.textAlign === "right" ? shape.props.w : 0;
+    const lineStep = shape.props.fontSize * shape.props.lineHeight;
     return (
       <HTMLContainer className="math-shape math-text-shape" style={{ width: shape.props.w, height: shape.props.h }}>
         {/* TODO: replace plain text with KaTeX/MathJax rendering while preserving props.latex. */}
-        <div style={{ fontSize: shape.props.fontSize }}>{shape.props.text || shape.props.latex}</div>
+        <svg width={shape.props.w} height={Math.max(shape.props.h, lines.length * lineStep)} viewBox={`0 0 ${shape.props.w} ${Math.max(shape.props.h, lines.length * lineStep)}`}>
+          <text
+            x={x}
+            y={shape.props.fontSize}
+            fill={shape.props.color}
+            fontSize={shape.props.fontSize}
+            textAnchor={anchor}
+            fontFamily={'"Segoe UI", "Pretendard", Arial, sans-serif'}
+          >
+            {lines.map((line, index) => (
+              <tspan key={`${line}-${index}`} x={x} dy={index === 0 ? 0 : lineStep}>
+                {line}
+              </tspan>
+            ))}
+          </text>
+        </svg>
       </HTMLContainer>
     );
   }

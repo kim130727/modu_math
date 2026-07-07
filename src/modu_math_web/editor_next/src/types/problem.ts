@@ -8,7 +8,9 @@ export type ProblemObject =
   | FractionBarObject
   | NumberLineObject
   | GroupObjectsObject
+  | TableObject
   | BasicShapeObject
+  | PathObject
   | ImageObject;
 
 export interface ProblemJson {
@@ -32,6 +34,10 @@ export interface MathTextProps extends Record<string, unknown> {
   fontSize: number;
   width?: number;
   height?: number;
+  color?: string;
+  textAlign?: "left" | "center" | "right";
+  lineHeight?: number;
+  sourceKind?: "text" | "text_box";
 }
 
 export type MathTextObject = BaseProblemObject<"math_text", MathTextProps>;
@@ -63,15 +69,48 @@ export interface GroupObjectsProps extends Record<string, unknown> {
 
 export type GroupObjectsObject = BaseProblemObject<"group_objects", GroupObjectsProps>;
 
+export interface TableCell {
+  row: number;
+  col: number;
+  text: string;
+  fontSize: number;
+  color: string;
+}
+
+export interface TableProps extends Record<string, unknown> {
+  columnWidths: number[];
+  rowHeights: number[];
+  cells: TableCell[];
+  fill?: string;
+  stroke?: string;
+  strokeWidth?: number;
+  sourceSlotIds?: string[];
+  dividerKinds?: Record<string, "line" | "rect">;
+}
+
+export type TableObject = BaseProblemObject<"table", TableProps>;
+
 export interface BasicShapeProps extends Record<string, unknown> {
-  shape: "rectangle" | "ellipse";
+  shape: "rectangle" | "ellipse" | "line";
   width: number;
   height: number;
   fill?: string;
   stroke?: string;
+  strokeWidth?: number;
 }
 
 export type BasicShapeObject = BaseProblemObject<"basic_shape", BasicShapeProps>;
+
+export interface PathProps extends Record<string, unknown> {
+  d: string;
+  width: number;
+  height: number;
+  fill?: string;
+  stroke?: string;
+  strokeWidth?: number;
+}
+
+export type PathObject = BaseProblemObject<"path", PathProps>;
 
 export interface ImageProps extends Record<string, unknown> {
   src: string;

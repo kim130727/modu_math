@@ -41,7 +41,7 @@ def test_text_box_slot_renders_fixed_box_metadata() -> None:
     assert 'data-raw-text="가나다 라마바사"' in svg
 
 
-def test_text_slot_max_width_wraps_without_changing_raw_text() -> None:
+def test_text_slot_max_width_does_not_auto_wrap() -> None:
     problem = ProblemTemplate(
         id="text_no_wrap_demo",
         title="Text no wrap demo",
@@ -61,9 +61,9 @@ def test_text_slot_max_width_wraps_without_changing_raw_text() -> None:
 
     svg = render_svg(compile_renderer_json(compile_problem_template_to_layout(problem)))
 
-    assert "<tspan" in svg
+    assert "<tspan" not in svg
     assert 'max_width="30"' in svg
-    assert 'data-raw-text="long text should stay on one rendered line"' in svg
+    assert ">long text should stay on one rendered line</text>" in svg
 
 
 def test_image_slot_renders_svg_image() -> None:

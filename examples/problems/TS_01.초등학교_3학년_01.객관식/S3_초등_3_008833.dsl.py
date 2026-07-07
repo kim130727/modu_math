@@ -12,7 +12,7 @@ def build_problem_template() -> ProblemTemplate:
                 id="region.top",
                 role="stem",
                 flow="absolute",
-                slot_ids=("slot.top.qmark", "slot.top.title"),
+                slot_ids=("slot.top.title",),
             ),
             Region(
                 id="region.character",
@@ -44,23 +44,10 @@ def build_problem_template() -> ProblemTemplate:
         ),
         slots=(
             TextSlot(
-                id="slot.top.qmark",
-                prompt="",
-                text="□",
-                style_role="question",
-                x=4.0,
-                y=30.0,
-                font_size=24,
-            ),
-            TextSlot(
                 id="slot.top.title",
                 prompt="",
-                text="71. 정현이가 자두와 배의 무게를 비교하려고 합니다. 알맞은 말을 선택하세요.",
-                style_role="question",
-                x=42.0,
-                y=30.0,
-                font_size=28,
-            ),
+                text = '정현이가 자두와 배의 무게를 비교하려고 합니다. 알맞은 말을 선택하세요.', style_role="question",
+                x = 22, y = 45, font_size = 28, fill = '#111111'),
             TextSlot(
                 id="slot.name",
                 prompt="",

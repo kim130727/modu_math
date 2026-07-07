@@ -1,5 +1,5 @@
 from __future__ import annotations
-from modu_math.dsl import Canvas, ProblemTemplate, Region, TextSlot, ImageSlot
+from modu_math.dsl import Canvas, ProblemTemplate, Region, TextSlot, ImageSlot, TextBoxSlot
 
 
 def build_problem_template() -> ProblemTemplate:
@@ -18,7 +18,7 @@ def build_problem_template() -> ProblemTemplate:
                 id="region.options",
                 role="diagram",
                 flow="absolute",
-                slot_ids=(),
+                slot_ids=("W3EV6BmUFcjGss8847K6m",),
             ),
             Region(id="region.answer", role="support", flow="absolute", slot_ids=()),
             Region(id="region.explanation", role="support", flow="absolute", slot_ids=()),
@@ -43,6 +43,19 @@ def build_problem_template() -> ProblemTemplate:
                 width=565,
                 height=180,
                 preserve_aspect_ratio="xMidYMid meet",
+            ),
+            TextBoxSlot(
+                id="W3EV6BmUFcjGss8847K6m",
+                prompt="",
+                text="(전자레인지, 호박, 칫솔)",
+                x=212.931,
+                y=284.786,
+                font_size=28,
+                fill="#111111",
+                width=281.191,
+                height=28.358,
+                align="left",
+                line_height=1.05,
             ),
         ),
         diagrams=(),

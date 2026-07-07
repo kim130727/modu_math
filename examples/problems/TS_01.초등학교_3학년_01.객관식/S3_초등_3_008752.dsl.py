@@ -54,6 +54,7 @@ def build_problem_template() -> ProblemTemplate:
                 x=50,
                 y=34,
                 font_size=28,
+                fill="#111111",
             ),
             TextSlot(
                 id="slot.q2",
@@ -63,8 +64,19 @@ def build_problem_template() -> ProblemTemplate:
                 x=50,
                 y=76,
                 font_size=28,
+                fill="#111111",
             ),
-            RectSlot(id="slot.box1", prompt="", x=87, y=314, width=795.0, height=157.0),
+            RectSlot(
+                id="slot.box1",
+                prompt="",
+                x=87,
+                y=317.22,
+                width=714.497,
+                height=153.78,
+                fill="#ffffff",
+                stroke="#111111",
+                stroke_width=1.5,
+            ),
             TextSlot(
                 id="slot.stmt1",
                 prompt="",
@@ -73,6 +85,7 @@ def build_problem_template() -> ProblemTemplate:
                 x=118,
                 y=364,
                 font_size=28,
+                fill="#111111",
             ),
             TextSlot(
                 id="slot.stmt2",
@@ -82,6 +95,7 @@ def build_problem_template() -> ProblemTemplate:
                 x=118,
                 y=405,
                 font_size=28,
+                fill="#111111",
             ),
             TextSlot(
                 id="slot.stmt3",
@@ -91,6 +105,7 @@ def build_problem_template() -> ProblemTemplate:
                 x=118,
                 y=446,
                 font_size=28,
+                fill="#111111",
             ),
             RectSlot(
                 id="slot.table_2.outer",

@@ -245,6 +245,9 @@ class SlotUpdater(cst.CSTTransformer):
 
         args = list(updated_node.args)
         for field_name, field_value in self.fields.items():
+            if field_value is None:
+                args = [arg for arg in args if not (arg.keyword and arg.keyword.value == field_name)]
+                continue
             replacement = cst.Arg(keyword=cst.Name(field_name), value=_arg_value_to_cst(field_value))
             replaced = False
             for idx, arg in enumerate(args):
@@ -508,7 +511,15 @@ def _save_editor_slot_override(paths: Any, target: str, fields: dict[str, Any]) 
     if not isinstance(current, dict):
         current = {}
         slots[target] = current
-    current.update(fields)
+    for key, value in fields.items():
+        if value is None:
+            current.pop(key, None)
+        else:
+            current[key] = value
+    if not current:
+        slots.pop(target, None)
+    if not slots:
+        data.pop("slots", None)
     data["version"] = 1
     path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
@@ -1208,6 +1219,24 @@ def _region_matches(region_call: cst.Call, region_id: str | None) -> bool:
     return role == "diagram"
 
 
+def _region_with_appended_slot_id(region_call: cst.Call, slot_id: str) -> cst.Call:
+    region_args = list(region_call.args)
+    slot_ids_idx = _keyword_index(region_args, "slot_ids")
+    if slot_ids_idx is None:
+        region_args.append(
+            cst.Arg(
+                keyword=cst.Name("slot_ids"),
+                value=cst.Tuple(elements=(cst.Element(_arg_value_to_cst(slot_id)),)),
+            )
+        )
+    else:
+        slot_ids_arg = region_args[slot_ids_idx]
+        region_args[slot_ids_idx] = slot_ids_arg.with_changes(
+            value=_tuple_with_appended_value(slot_ids_arg.value, _arg_value_to_cst(slot_id))
+        )
+    return region_call.with_changes(args=tuple(region_args))
+
+
 class SlotAddTransformer(cst.CSTTransformer):
     def __init__(self, target: str, value: dict[str, Any]):
         self.target = target
@@ -1238,29 +1267,26 @@ class SlotAddTransformer(cst.CSTTransformer):
         if regions_idx is not None and isinstance(args[regions_idx].value, cst.Tuple):
             regions_arg = args[regions_idx]
             new_region_elements: list[cst.Element] = []
+            first_region_index: int | None = None
             for el in regions_arg.value.elements:
                 region_value = el.value
                 if not isinstance(region_value, cst.Call) or _call_name(region_value) != "Region":
                     new_region_elements.append(el)
                     continue
+                if first_region_index is None:
+                    first_region_index = len(new_region_elements)
                 if not self.added_region_ref and _region_matches(region_value, region_id):
-                    region_args = list(region_value.args)
-                    slot_ids_idx = _keyword_index(region_args, "slot_ids")
-                    if slot_ids_idx is None:
-                        region_args.append(
-                            cst.Arg(
-                                keyword=cst.Name("slot_ids"),
-                                value=cst.Tuple(elements=(cst.Element(_arg_value_to_cst(self.target)),)),
-                            )
-                        )
-                    else:
-                        slot_ids_arg = region_args[slot_ids_idx]
-                        region_args[slot_ids_idx] = slot_ids_arg.with_changes(
-                            value=_tuple_with_appended_value(slot_ids_arg.value, _arg_value_to_cst(self.target))
-                        )
-                    region_value = region_value.with_changes(args=tuple(region_args))
+                    region_value = _region_with_appended_slot_id(region_value, self.target)
                     self.added_region_ref = True
                 new_region_elements.append(el.with_changes(value=region_value))
+            if not self.added_region_ref and region_id is None and first_region_index is not None:
+                first_region_el = new_region_elements[first_region_index]
+                first_region_value = first_region_el.value
+                if isinstance(first_region_value, cst.Call):
+                    new_region_elements[first_region_index] = first_region_el.with_changes(
+                        value=_region_with_appended_slot_id(first_region_value, self.target)
+                    )
+                    self.added_region_ref = True
             args[regions_idx] = regions_arg.with_changes(
                 value=regions_arg.value.with_changes(elements=tuple(new_region_elements))
             )
@@ -1354,7 +1380,10 @@ def apply_layout_patches(
     source = paths.dsl_path.read_text(encoding="utf-8")
     if not source.strip():
         raise DslPatchError("DSL file is empty; restore or save a valid DSL before editing layout")
-    module = cst.parse_module(source)
+    try:
+        module = cst.parse_module(source)
+    except cst.ParserSyntaxError as exc:
+        raise DslPatchError(f"DSL syntax error; fix the DSL file before applying layout patches: {exc}") from exc
 
     applied: list[AppliedPatch] = []
     transformed = module
