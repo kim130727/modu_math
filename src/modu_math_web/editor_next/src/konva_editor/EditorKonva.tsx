@@ -500,6 +500,23 @@ function createShapeFromPreset(preset: ShapePreset, id: string): EditorShape {
       return { id, type: "rect", x, y, width: 180, height: 96, fill, stroke, strokeWidth, cornerRadius: 14 };
     case "circle":
       return { id, type: "circle", x: x + 70, y: y + 70, radius: 70, fill, stroke, strokeWidth };
+    case "arc":
+    case "semicircle":
+    case "quarterArc":
+      return {
+        id,
+        type: "path",
+        x: x + 90,
+        y: y + 60,
+        offsetX: 90,
+        offsetY: 60,
+        d: pathForShapePreset(preset),
+        width: 180,
+        height: 120,
+        fill: "none",
+        stroke,
+        strokeWidth,
+      };
     default:
       return {
         id,
@@ -517,7 +534,7 @@ function createShapeFromPreset(preset: ShapePreset, id: string): EditorShape {
 }
 
 function lineLikePreset(preset: ShapePreset): boolean {
-  return preset === "arrow" || preset === "doubleArrow" || preset === "elbow";
+  return preset === "arrow" || preset === "doubleArrow" || preset === "elbow" || preset === "arc" || preset === "semicircle" || preset === "quarterArc";
 }
 
 function pathForShapePreset(preset: ShapePreset): string {
@@ -528,6 +545,12 @@ function pathForShapePreset(preset: ShapePreset): string {
       return "M20 100 L160 20 M20 100 L68 102 M20 100 L44 58 M160 20 L112 18 M160 20 L136 62";
     case "elbow":
       return "M20 20 L20 90 L160 90";
+    case "arc":
+      return "M10 82 A80 58 0 0 1 170 82";
+    case "semicircle":
+      return "M10 96 A80 80 0 0 1 170 96";
+    case "quarterArc":
+      return "M24 104 A80 80 0 0 1 104 24";
     case "triangle":
       return "M90 8 L172 112 L8 112 Z";
     case "rightTriangle":

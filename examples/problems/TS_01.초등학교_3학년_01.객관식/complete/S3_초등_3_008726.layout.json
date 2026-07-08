@@ -29,8 +29,6 @@
         "slot.line.dm",
         "slot.line.ro",
         "slot.line.mo",
-        "slot.line.dm.copy25",
-        "slot.line.dm.copy26",
         "slot.pt.center",
         "slot.lb.g",
         "slot.lb.n",
@@ -69,7 +67,8 @@
         "style_role": "question",
         "x": 12.0,
         "y": 30.0,
-        "font_size": 28
+        "font_size": 28,
+        "fill": "#111111"
       }
     },
     {
@@ -80,6 +79,8 @@
         "cx": 345.0,
         "cy": 181.0,
         "r": 110.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0,
         "fill": "none"
       }
     },
@@ -91,7 +92,9 @@
         "x1": 235.0,
         "y1": 195.0,
         "x2": 415.0,
-        "y2": 265.0
+        "y2": 265.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0
       }
     },
     {
@@ -102,7 +105,9 @@
         "x1": 250.0,
         "y1": 130.0,
         "x2": 440.0,
-        "y2": 230.0
+        "y2": 230.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0
       }
     },
     {
@@ -113,7 +118,9 @@
         "x1": 345.0,
         "y1": 180.0,
         "x2": 405.0,
-        "y2": 90.0
+        "y2": 90.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0
       }
     },
     {
@@ -124,7 +131,9 @@
         "x1": 500.0,
         "y1": 155.0,
         "x2": 500.0,
-        "y2": 155.0
+        "y2": 155.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0
       }
     },
     {
@@ -135,7 +144,9 @@
         "x1": 500.0,
         "y1": 155.0,
         "x2": 500.0,
-        "y2": 155.0
+        "y2": 155.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0
       }
     },
     {
@@ -160,7 +171,8 @@
         "style_role": "label",
         "x": 215.0,
         "y": 130.0,
-        "font_size": 30
+        "font_size": 30,
+        "fill": "#111111"
       }
     },
     {
@@ -172,7 +184,8 @@
         "style_role": "label",
         "x": 205.0,
         "y": 205.0,
-        "font_size": 30
+        "font_size": 30,
+        "fill": "#111111"
       }
     },
     {
@@ -184,7 +197,8 @@
         "style_role": "label",
         "x": 420.0,
         "y": 285.0,
-        "font_size": 30
+        "font_size": 30,
+        "fill": "#111111"
       }
     },
     {
@@ -196,7 +210,8 @@
         "style_role": "label",
         "x": 455.0,
         "y": 255.0,
-        "font_size": 30
+        "font_size": 30,
+        "fill": "#111111"
       }
     },
     {
@@ -208,7 +223,8 @@
         "style_role": "label",
         "x": 410.0,
         "y": 85.0,
-        "font_size": 30
+        "font_size": 30,
+        "fill": "#111111"
       }
     },
     {
@@ -220,7 +236,8 @@
         "style_role": "label",
         "x": 315.0,
         "y": 200.0,
-        "font_size": 30
+        "font_size": 30,
+        "fill": "#111111"
       }
     },
     {
@@ -232,7 +249,8 @@
         "style_role": "choice",
         "x": 20.0,
         "y": 352.0,
-        "font_size": 28
+        "font_size": 28,
+        "fill": "#111111"
       }
     },
     {
@@ -244,7 +262,8 @@
         "style_role": "choice",
         "x": 213.0,
         "y": 352.0,
-        "font_size": 28
+        "font_size": 28,
+        "fill": "#111111"
       }
     },
     {
@@ -256,7 +275,8 @@
         "style_role": "choice",
         "x": 407.0,
         "y": 353.0,
-        "font_size": 30
+        "font_size": 30,
+        "fill": "#111111"
       }
     },
     {
@@ -268,7 +288,8 @@
         "style_role": "choice",
         "x": 20.0,
         "y": 396.0,
-        "font_size": 28
+        "font_size": 28,
+        "fill": "#111111"
       }
     },
     {
@@ -280,33 +301,8 @@
         "style_role": "choice",
         "x": 213.0,
         "y": 396.0,
-        "font_size": 28
-      }
-    },
-    {
-      "id": "slot.line.dm.copy25",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 899.0,
-        "y1": 611.0,
-        "x2": 927.0,
-        "y2": 454.0,
-        "stroke": "#111111",
-        "stroke_width": 2.0
-      }
-    },
-    {
-      "id": "slot.line.dm.copy26",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 515.0,
-        "y1": 605.0,
-        "x2": 545.0,
-        "y2": 450.0,
-        "stroke": "#111111",
-        "stroke_width": 2.0
+        "font_size": 28,
+        "fill": "#111111"
       }
     },
     {
@@ -337,8 +333,6 @@
     "slot.line.dm",
     "slot.line.ro",
     "slot.line.mo",
-    "slot.line.dm.copy25",
-    "slot.line.dm.copy26",
     "slot.pt.center",
     "slot.lb.g",
     "slot.lb.n",

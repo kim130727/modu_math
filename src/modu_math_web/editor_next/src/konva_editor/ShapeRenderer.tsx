@@ -22,6 +22,8 @@ export function ShapeRenderer({ shape, nodeRef, onSelect, onDragStart, onDragMov
     x: shape.x,
     y: shape.y,
     rotation: shape.rotation ?? 0,
+    offsetX: shape.offsetX ?? 0,
+    offsetY: shape.offsetY ?? 0,
     opacity: shape.opacity ?? 1,
     visible: shape.visible ?? true,
     draggable: !shape.locked,

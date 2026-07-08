@@ -36,7 +36,8 @@ function problemObjectToEditorShape(object: ProblemObject): EditorShape[] {
       const width = isTextBox || needsAlignmentBox ? object.props.width ?? estimateTextWidth(text, fontSize) : undefined;
 
       return [
-        {
+        applySvgRotateTransform(
+          {
           id: object.id,
           type: "text",
           x: object.x,
@@ -50,13 +51,16 @@ function problemObjectToEditorShape(object: ProblemObject): EditorShape[] {
           lineHeight,
           sourceKind: object.props.sourceKind ?? "text",
           visible: true,
-        },
+          },
+          stringProp(object.props.transform),
+        ),
       ];
     }
     case "basic_shape":
       if (object.props.shape === "ellipse") {
         return [
-          {
+          applySvgRotateTransform(
+            {
             id: object.id,
             type: "circle",
             x: object.x + object.props.width / 2,
@@ -66,12 +70,15 @@ function problemObjectToEditorShape(object: ProblemObject): EditorShape[] {
             stroke: object.props.stroke ?? "#111827",
             strokeWidth: object.props.strokeWidth ?? 1,
             visible: true,
-          },
+            },
+            stringProp(object.props.transform),
+          ),
         ];
       }
       if (object.props.shape === "line") {
         return [
-          {
+          applySvgRotateTransform(
+            {
             id: object.id,
             type: "line",
             x: object.x,
@@ -80,11 +87,14 @@ function problemObjectToEditorShape(object: ProblemObject): EditorShape[] {
             stroke: object.props.stroke ?? "#111827",
             strokeWidth: object.props.strokeWidth ?? 1,
             visible: true,
-          },
+            },
+            stringProp(object.props.transform),
+          ),
         ];
       }
       return [
-        {
+        applySvgRotateTransform(
+          {
           id: object.id,
           type: "rect",
           x: object.x,
@@ -95,11 +105,14 @@ function problemObjectToEditorShape(object: ProblemObject): EditorShape[] {
           stroke: object.props.stroke ?? "#111827",
           strokeWidth: object.props.strokeWidth ?? 1,
           visible: true,
-        },
+          },
+          stringProp(object.props.transform),
+        ),
       ];
     case "image":
       return [
-        {
+        applySvgRotateTransform(
+          {
           id: object.id,
           type: "image",
           x: object.x,
@@ -109,11 +122,14 @@ function problemObjectToEditorShape(object: ProblemObject): EditorShape[] {
           height: object.props.height,
           preserveAspectRatio: object.props.preserveAspectRatio ?? "xMidYMid meet",
           visible: true,
-        },
+          },
+          stringProp(object.props.transform),
+        ),
       ];
     case "path":
       return [
-        {
+        applySvgRotateTransform(
+          {
           id: object.id,
           type: "path",
           x: object.x,
@@ -125,11 +141,40 @@ function problemObjectToEditorShape(object: ProblemObject): EditorShape[] {
           stroke: object.props.stroke ?? "#111827",
           strokeWidth: object.props.strokeWidth ?? 1,
           visible: true,
-        },
+          },
+          stringProp(object.props.transform),
+        ),
       ];
     default:
       return [];
   }
+}
+
+function stringProp(value: unknown): string | undefined {
+  return typeof value === "string" && value.trim() ? value : undefined;
+}
+
+function applySvgRotateTransform<T extends EditorShape>(shape: T, transform: string | undefined): T {
+  const rotate = parseSvgRotate(transform);
+  if (!rotate) return shape;
+  return {
+    ...shape,
+    x: rotate.cx,
+    y: rotate.cy,
+    rotation: (shape.rotation ?? 0) + rotate.angle,
+    offsetX: rotate.cx - shape.x,
+    offsetY: rotate.cy - shape.y,
+  };
+}
+
+function parseSvgRotate(transform: string | undefined): { angle: number; cx: number; cy: number } | null {
+  if (!transform) return null;
+  const match = transform.match(/^\s*rotate\(\s*([-+]?(?:\d*\.\d+|\d+)(?:e[-+]?\d+)?)\s+([-+]?(?:\d*\.\d+|\d+)(?:e[-+]?\d+)?)\s+([-+]?(?:\d*\.\d+|\d+)(?:e[-+]?\d+)?)\s*\)\s*$/i);
+  if (!match) return null;
+  const angle = Number(match[1]);
+  const cx = Number(match[2]);
+  const cy = Number(match[3]);
+  return Number.isFinite(angle) && Number.isFinite(cx) && Number.isFinite(cy) ? { angle, cx, cy } : null;
 }
 
 function isSupportedProblemObject(object: ProblemObject): boolean {
@@ -143,8 +188,8 @@ function editorShapeToProblemObject(shape: EditorShape): ProblemObject[] {
         {
           id: shape.id,
           type: "math_text",
-          x: shape.x,
-          y: shape.y,
+          x: shapeBaseX(shape),
+          y: shapeBaseY(shape),
           props: {
             latex: shape.latex,
             text: shape.latex,
@@ -155,6 +200,7 @@ function editorShapeToProblemObject(shape: EditorShape): ProblemObject[] {
             textAlign: "left",
             lineHeight: 1.25,
             sourceKind: "text_box",
+            ...transformProps(shape),
           },
         },
       ];
@@ -163,8 +209,8 @@ function editorShapeToProblemObject(shape: EditorShape): ProblemObject[] {
         {
           id: shape.id,
           type: "math_text",
-          x: shape.x,
-          y: shape.y,
+          x: shapeBaseX(shape),
+          y: shapeBaseY(shape),
           props: {
             latex: shape.text,
             text: shape.text,
@@ -175,6 +221,7 @@ function editorShapeToProblemObject(shape: EditorShape): ProblemObject[] {
             textAlign: shape.align ?? "left",
             lineHeight: shape.lineHeight ?? 1.25,
             sourceKind: shape.sourceKind ?? (shape.width ? "text_box" : "text"),
+            ...transformProps(shape),
           },
         },
       ];
@@ -183,8 +230,8 @@ function editorShapeToProblemObject(shape: EditorShape): ProblemObject[] {
         {
           id: shape.id,
           type: "basic_shape",
-          x: shape.x,
-          y: shape.y,
+          x: shapeBaseX(shape),
+          y: shapeBaseY(shape),
           props: {
             shape: "rectangle",
             width: shape.width,
@@ -192,6 +239,7 @@ function editorShapeToProblemObject(shape: EditorShape): ProblemObject[] {
             fill: shape.fill ?? "none",
             stroke: shape.stroke ?? "#111827",
             strokeWidth: shape.strokeWidth ?? 1,
+            ...transformProps(shape),
           },
         },
       ];
@@ -200,8 +248,8 @@ function editorShapeToProblemObject(shape: EditorShape): ProblemObject[] {
         {
           id: shape.id,
           type: "basic_shape",
-          x: shape.x - shape.radius,
-          y: shape.y - shape.radius,
+          x: shapeBaseX(shape) - shape.radius,
+          y: shapeBaseY(shape) - shape.radius,
           props: {
             shape: "ellipse",
             width: shape.radius * 2,
@@ -209,6 +257,7 @@ function editorShapeToProblemObject(shape: EditorShape): ProblemObject[] {
             fill: shape.fill ?? "none",
             stroke: shape.stroke ?? "#111827",
             strokeWidth: shape.strokeWidth ?? 1,
+            ...transformProps(shape),
           },
         },
       ];
@@ -217,14 +266,15 @@ function editorShapeToProblemObject(shape: EditorShape): ProblemObject[] {
         {
           id: shape.id,
           type: "basic_shape",
-          x: shape.x,
-          y: shape.y,
+          x: shapeBaseX(shape),
+          y: shapeBaseY(shape),
           props: {
             shape: "line",
             width: shape.points[2] ?? 0,
             height: shape.points[3] ?? 0,
             stroke: shape.stroke ?? "#111827",
             strokeWidth: shape.strokeWidth ?? 1,
+            ...transformProps(shape),
           },
         },
       ];
@@ -233,8 +283,8 @@ function editorShapeToProblemObject(shape: EditorShape): ProblemObject[] {
         {
           id: shape.id,
           type: "path",
-          x: shape.x,
-          y: shape.y,
+          x: shapeBaseX(shape),
+          y: shapeBaseY(shape),
           props: {
             d: shape.d,
             width: shape.width,
@@ -242,6 +292,7 @@ function editorShapeToProblemObject(shape: EditorShape): ProblemObject[] {
             fill: shape.fill ?? "none",
             stroke: shape.stroke ?? "#111827",
             strokeWidth: shape.strokeWidth ?? 1,
+            ...transformProps(shape),
           },
         },
       ];
@@ -250,17 +301,36 @@ function editorShapeToProblemObject(shape: EditorShape): ProblemObject[] {
         {
           id: shape.id,
           type: "image",
-          x: shape.x,
-          y: shape.y,
+          x: shapeBaseX(shape),
+          y: shapeBaseY(shape),
           props: {
             src: shape.src,
             width: shape.width,
             height: shape.height,
             preserveAspectRatio: shape.preserveAspectRatio,
+            ...transformProps(shape),
           },
         },
       ];
   }
+}
+
+function shapeBaseX(shape: EditorShape): number {
+  return shape.x - (shape.offsetX ?? 0);
+}
+
+function shapeBaseY(shape: EditorShape): number {
+  return shape.y - (shape.offsetY ?? 0);
+}
+
+function transformProps(shape: EditorShape): { transform?: string } {
+  const rotation = shape.rotation ?? 0;
+  if (!rotation) return {};
+  return { transform: `rotate(${roundForTransform(rotation)} ${roundForTransform(shape.x)} ${roundForTransform(shape.y)})` };
+}
+
+function roundForTransform(value: number): number {
+  return Math.round(value * 1000) / 1000;
 }
 
 export function estimateTextWidth(text: string, fontSize: number): number {

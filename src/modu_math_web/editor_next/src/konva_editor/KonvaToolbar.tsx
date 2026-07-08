@@ -5,6 +5,9 @@ export type ShapePreset =
   | "arrow"
   | "doubleArrow"
   | "elbow"
+  | "arc"
+  | "semicircle"
+  | "quarterArc"
   | "rect"
   | "roundRect"
   | "circle"
@@ -86,6 +89,9 @@ const SHAPE_SECTIONS: ShapePaletteSection[] = [
       { preset: "arrow", label: "화살표" },
       { preset: "doubleArrow", label: "양방향 화살표" },
       { preset: "elbow", label: "꺾은선" },
+      { preset: "arc", label: "Arc" },
+      { preset: "semicircle", label: "Semicircle" },
+      { preset: "quarterArc", label: "Quarter arc" },
     ],
   },
   {
@@ -370,6 +376,13 @@ function ShapePresetIcon({ preset }: { preset: ShapePreset }) {
     return (
       <svg viewBox="0 0 32 24" aria-hidden="true">
         <path d="M6 6v10h20" />
+      </svg>
+    );
+  }
+  if (preset === "arc" || preset === "semicircle" || preset === "quarterArc") {
+    return (
+      <svg viewBox="0 0 32 24" aria-hidden="true">
+        <path d={preset === "quarterArc" ? "M9 18 A10 10 0 0 1 21 6" : "M5 17 A12 10 0 0 1 27 17"} />
       </svg>
     );
   }

@@ -6,6 +6,8 @@ export type BaseShape = {
   x: number;
   y: number;
   rotation?: number;
+  offsetX?: number;
+  offsetY?: number;
   opacity?: number;
   locked?: boolean;
   visible?: boolean;

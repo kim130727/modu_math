@@ -331,6 +331,7 @@ function rendererElementToProblemObject(problemId: string, element: RendererElem
             textAlign: anchor === "middle" ? "center" : anchor === "end" ? "right" : "left",
             lineHeight: 1.2,
             sourceKind: "text",
+            transform: stringValue(attrs.transform, ""),
           },
         },
       ];
@@ -359,6 +360,7 @@ function rendererElementToProblemObject(problemId: string, element: RendererElem
             textAlign: align === "middle" || align === "center" ? "center" : align === "end" || align === "right" ? "right" : "left",
             lineHeight,
             sourceKind: "text_box",
+            transform: stringValue(attrs.transform, ""),
           },
         },
       ];
@@ -377,6 +379,7 @@ function rendererElementToProblemObject(problemId: string, element: RendererElem
             fill: stringValue(attrs.fill, "transparent"),
             stroke: stringValue(attrs.stroke, "#111827"),
             strokeWidth: numberValue(attrs["stroke-width"], 1),
+            transform: stringValue(attrs.transform, ""),
           },
         },
       ];
@@ -389,17 +392,48 @@ function rendererElementToProblemObject(problemId: string, element: RendererElem
         {
           id: sourceId(element),
           type: "basic_shape",
-          x: Math.min(x1, x2),
-          y: Math.min(y1, y2),
+          x: x1,
+          y: y1,
           props: {
             shape: "line",
-            width: Math.abs(x2 - x1),
-            height: Math.abs(y2 - y1),
+            width: x2 - x1,
+            height: y2 - y1,
             stroke: stringValue(attrs.stroke, "#111827"),
             strokeWidth: numberValue(attrs["stroke-width"], 1),
+            transform: stringValue(attrs.transform, ""),
           },
         },
       ];
+    }
+    case "circle": {
+      const r = numberValue(attrs.r, 40);
+      const cx = numberValue(attrs.cx, r);
+      const cy = numberValue(attrs.cy, r);
+      return [
+        {
+          id: sourceId(element),
+          type: "basic_shape",
+          x: cx - r,
+          y: cy - r,
+          props: {
+            shape: "ellipse",
+            width: r * 2,
+            height: r * 2,
+            fill: stringValue(attrs.fill, "none"),
+            stroke: stringValue(attrs.stroke, "#111827"),
+            strokeWidth: numberValue(attrs["stroke-width"], 1),
+            transform: stringValue(attrs.transform, ""),
+          },
+        },
+      ];
+    }
+    case "polygon": {
+      return polygonElementToPathObject(sourceId(element), attrs.points, {
+        fill: stringValue(attrs.fill, "none"),
+        stroke: stringValue(attrs.stroke, "#111827"),
+        strokeWidth: numberValue(attrs["stroke-width"], 1),
+        transform: stringValue(attrs.transform, ""),
+      });
     }
     case "image": {
       const href = stringValue(attrs.href, stringValue(attrs["xlink:href"], ""));
@@ -415,6 +449,7 @@ function rendererElementToProblemObject(problemId: string, element: RendererElem
           height: numberValue(attrs.height, 80),
           alt: sourceId(element),
           preserveAspectRatio: stringValue(attrs.preserveAspectRatio, stringValue(attrs.preserve_aspect_ratio, "xMidYMid meet")),
+          transform: stringValue(attrs.transform, ""),
         },
       },
       ];
@@ -434,6 +469,7 @@ function rendererElementToProblemObject(problemId: string, element: RendererElem
             fill: stringValue(attrs.fill, "none"),
             stroke: stringValue(attrs.stroke, "#111827"),
             strokeWidth: numberValue(attrs["stroke-width"], 1),
+            transform: stringValue(attrs.transform, ""),
           },
         },
       ];
@@ -469,6 +505,7 @@ function layoutSlotToProblemObject(problemId: string, slot: LayoutSlot): Problem
             textAlign: anchor === "middle" ? "center" : anchor === "end" ? "right" : "left",
             lineHeight: 1.2,
             sourceKind: "text",
+            transform: stringValue(content.transform, ""),
           },
         },
       ];
@@ -496,6 +533,7 @@ function layoutSlotToProblemObject(problemId: string, slot: LayoutSlot): Problem
             textAlign: stringValue(content.anchor, "start") === "middle" ? "center" : "left",
             lineHeight,
             sourceKind: "text_box",
+            transform: stringValue(content.transform, ""),
           },
         },
       ];
@@ -514,6 +552,7 @@ function layoutSlotToProblemObject(problemId: string, slot: LayoutSlot): Problem
             fill: stringValue(content.fill, "none"),
             stroke: stringValue(content.stroke, "#111827"),
             strokeWidth: numberValue(content.stroke_width, 1),
+            transform: stringValue(content.transform, ""),
           },
         },
       ];
@@ -526,14 +565,15 @@ function layoutSlotToProblemObject(problemId: string, slot: LayoutSlot): Problem
         {
           id: slot.id,
           type: "basic_shape",
-          x: Math.min(x1, x2),
-          y: Math.min(y1, y2),
+          x: x1,
+          y: y1,
           props: {
             shape: "line",
-            width: Math.abs(x2 - x1),
-            height: Math.abs(y2 - y1),
+            width: x2 - x1,
+            height: y2 - y1,
             stroke: stringValue(content.stroke, "#111827"),
             strokeWidth: numberValue(content.stroke_width, 1),
+            transform: stringValue(content.transform, ""),
           },
         },
       ];
@@ -554,9 +594,19 @@ function layoutSlotToProblemObject(problemId: string, slot: LayoutSlot): Problem
             height: r * 2,
             fill: stringValue(content.fill, "none"),
             stroke: stringValue(content.stroke, "#111827"),
+            strokeWidth: numberValue(content.stroke_width, 1),
+            transform: stringValue(content.transform, ""),
           },
         },
       ];
+    }
+    case "polygon": {
+      return polygonElementToPathObject(slot.id, content.points, {
+        fill: stringValue(content.fill, "none"),
+        stroke: stringValue(content.stroke, "#111827"),
+        strokeWidth: numberValue(content.stroke_width, 1),
+        transform: stringValue(content.transform, ""),
+      });
     }
     case "image":
       return [
@@ -570,6 +620,7 @@ function layoutSlotToProblemObject(problemId: string, slot: LayoutSlot): Problem
             width: numberValue(content.width, 120),
             height: numberValue(content.height, 80),
             preserveAspectRatio: stringValue(content.preserve_aspect_ratio, "xMidYMid meet"),
+            transform: stringValue(content.transform, ""),
           },
         },
       ];
@@ -588,6 +639,7 @@ function layoutSlotToProblemObject(problemId: string, slot: LayoutSlot): Problem
             fill: stringValue(content.fill, "none"),
             stroke: stringValue(content.stroke, "#111827"),
             strokeWidth: numberValue(content.stroke_width, 1),
+            transform: stringValue(content.transform, ""),
           },
         },
       ];
@@ -673,7 +725,73 @@ function stringValue(value: unknown, fallback: string): string {
 }
 
 function sourceId(element: RendererElement): string {
-  return element.source_ref || element.id.replace(/\.(text|rect|line|path|image)$/, "");
+  return element.source_ref || element.id.replace(/\.(text|rect|line|circle|polygon|path|image)$/, "");
+}
+
+function polygonElementToPathObject(
+  id: string,
+  rawPoints: unknown,
+  style: { fill: string; stroke: string; strokeWidth: number; transform?: string },
+): ProblemObject[] {
+  const points = parsePolygonPoints(rawPoints);
+  if (points.length < 2) return [];
+  const d = polygonPointsToPathData(points);
+  const path = localizePathData(d);
+  return [
+    {
+      id,
+      type: "path",
+      x: path.x,
+      y: path.y,
+      props: {
+        d: path.d,
+        width: path.width,
+        height: path.height,
+        fill: style.fill,
+        stroke: style.stroke,
+        strokeWidth: style.strokeWidth,
+        transform: style.transform ?? "",
+      },
+    },
+  ];
+}
+
+function parsePolygonPoints(rawPoints: unknown): Array<{ x: number; y: number }> {
+  if (Array.isArray(rawPoints)) {
+    return rawPoints
+      .map((point) => {
+        if (Array.isArray(point) && point.length >= 2) {
+          const x = Number(point[0]);
+          const y = Number(point[1]);
+          return Number.isFinite(x) && Number.isFinite(y) ? { x, y } : null;
+        }
+        if (isRecord(point)) {
+          const x = Number(point.x);
+          const y = Number(point.y);
+          return Number.isFinite(x) && Number.isFinite(y) ? { x, y } : null;
+        }
+        return null;
+      })
+      .filter((point): point is { x: number; y: number } => Boolean(point));
+  }
+
+  if (typeof rawPoints === "string") {
+    const numbers = rawPoints.match(/[-+]?(?:\d*\.\d+|\d+)(?:e[-+]?\d+)?/gi)?.map(Number) ?? [];
+    const points: Array<{ x: number; y: number }> = [];
+    for (let i = 0; i + 1 < numbers.length; i += 2) {
+      const x = numbers[i];
+      const y = numbers[i + 1];
+      if (Number.isFinite(x) && Number.isFinite(y)) points.push({ x, y });
+    }
+    return points;
+  }
+
+  return [];
+}
+
+function polygonPointsToPathData(points: Array<{ x: number; y: number }>): string {
+  const [first, ...rest] = points;
+  return [`M ${first.x} ${first.y}`, ...rest.map((point) => `L ${point.x} ${point.y}`), "Z"].join(" ");
 }
 
 function resolveProblemAssetUrl(problemId: string, href: string): string {
