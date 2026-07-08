@@ -254,7 +254,7 @@ function imageFields(object: ImageObject): Record<string, unknown> {
     y: round(object.y),
     width: round(object.props.width),
     height: round(object.props.height),
-    preserve_aspect_ratio: "xMidYMid meet",
+    preserve_aspect_ratio: object.props.preserveAspectRatio ?? "xMidYMid meet",
   };
 }
 

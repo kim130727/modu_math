@@ -26,11 +26,14 @@
       "role": "diagram",
       "flow": "absolute",
       "slot_ids": [
-        "slot.left.speech",
         "slot.left.name",
-        "tr8YvmUi6ZnuyChUrZhgf",
-        "7YhqQ7atny95jS000mK7i",
-        "VafHSxaOlJa31_nCm2Cm6"
+        "VafHSxaOlJa31_nCm2Cm6",
+        "konva_1783471014110_text_236636",
+        "konva_1783471014110_text_324971",
+        "konva_1783471014110_text_355292",
+        "konva_1783471014110_text_402643",
+        "konva_1783471014110_text_439524",
+        "konva_1783471014110_text_479420"
       ]
     },
     {
@@ -38,7 +41,6 @@
       "role": "diagram",
       "flow": "absolute",
       "slot_ids": [
-        "slot.right.speech",
         "slot.right.name"
       ]
     },
@@ -57,8 +59,8 @@
       "content": {
         "text": "고구마와 감자를 양손에 들어 보니 어느 것이 더 무거운지 알 수 없었습니다.",
         "style_role": "question",
-        "x": 12.0,
-        "y": 24.0,
+        "x": 14.001,
+        "y": 38.0,
         "font_size": 28,
         "fill": "#111111"
       }
@@ -71,7 +73,7 @@
         "text": "고구마와 감자의 무게를 비교할 수 있는 방법을 바르게 말한 사람을",
         "style_role": "question",
         "x": 12.0,
-        "y": 58.0,
+        "y": 71.0,
         "font_size": 28,
         "fill": "#111111"
       }
@@ -83,23 +85,9 @@
       "content": {
         "text": "선택해 보세요.",
         "style_role": "question",
-        "x": 12.0,
-        "y": 92.0,
+        "x": 11.0,
+        "y": 108.0,
         "font_size": 28,
-        "fill": "#111111"
-      }
-    },
-    {
-      "id": "slot.left.speech",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "눈으로 크기를\n비교해 보면",
-        "style_role": "speech",
-        "x": 36.8,
-        "y": 162.157,
-        "font_size": 30,
-        "max_width": 330.0,
         "fill": "#111111"
       }
     },
@@ -113,19 +101,6 @@
         "x": 221.493,
         "y": 570.213,
         "font_size": 30,
-        "fill": "#111111"
-      }
-    },
-    {
-      "id": "slot.right.speech",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "저울의 양쪽 접시에\n고구마와 감자를",
-        "style_role": "speech",
-        "x": 583.38,
-        "y": 151.517,
-        "font_size": 25,
         "fill": "#111111"
       }
     },
@@ -147,7 +122,7 @@
       "kind": "path",
       "prompt": "",
       "content": {
-        "d": "M 22.89 112.607 L 547.537 112.607 L 547.537 242.607 L 367.658 242.607 L 270.224 282.607 L 285.214 242.607 L 22.89 242.607 Z",
+        "d": "M 30.893 122.607 L 448.505 122.607 L 448.505 252.607 L 305.323 252.607 L 227.767 292.607 L 239.699 252.607 L 30.893 252.607 Z",
         "x": 0.0,
         "y": 0.0,
         "stroke": "#111827",
@@ -160,48 +135,12 @@
       "kind": "path",
       "prompt": "",
       "content": {
-        "d": "M 565 110 L 1083.131 110 L 1083.131 240.997 L 905.486 240.997 L 809.262 281.303 L 824.065 240.997 L 565 240.997 Z",
+        "d": "M 468.968 121 L 923.078 121 L 923.078 251.997 L 767.383 251.997 L 683.049 292.303 L 696.022 251.997 L 468.968 251.997 Z",
         "x": 0.0,
         "y": 0.0,
         "stroke": "#111827",
         "stroke_width": 1.5,
         "fill": "#ffffff"
-      }
-    },
-    {
-      "id": "tr8YvmUi6ZnuyChUrZhgf",
-      "kind": "text_box",
-      "prompt": "",
-      "content": {
-        "text": "크기가\n조금이라도 더 큰 것이\n더 무거워.",
-        "style_role": "body",
-        "x": 35.496,
-        "y": 173.863,
-        "width": 330.0,
-        "height": 37.5,
-        "align": "left",
-        "valign": "top",
-        "font_size": 30,
-        "line_height": 1.05,
-        "fill": "#111111"
-      }
-    },
-    {
-      "id": "7YhqQ7atny95jS000mK7i",
-      "kind": "text_box",
-      "prompt": "",
-      "content": {
-        "text": "각각 올려\n접시가 아래로 내려온 것이\n더 무거워.",
-        "style_role": "body",
-        "x": 582.077,
-        "y": 183.864,
-        "width": 509.739,
-        "height": 24.0,
-        "align": "left",
-        "valign": "top",
-        "font_size": 25,
-        "line_height": 1.05,
-        "fill": "#111111"
       }
     },
     {
@@ -211,15 +150,123 @@
       "content": {
         "text": "크기가 조금이라도 더 큰 것이 더 무거워",
         "style_role": "body",
-        "x": 33.691,
-        "y": 177.759,
+        "x": 157.732,
+        "y": 321.759,
         "width": 330.0,
-        "height": 37.5,
+        "height": 87.0,
         "align": "left",
         "valign": "top",
         "font_size": 30,
-        "line_height": 1.05,
+        "line_height": 1.25,
         "fill": "#111111"
+      }
+    },
+    {
+      "id": "konva_1783471014110_text_236636",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "눈으로 크기를 비교해보면",
+        "style_role": "body",
+        "x": 526.115,
+        "y": 325.0,
+        "width": 350.0,
+        "height": 95.0,
+        "align": "left",
+        "valign": "top",
+        "font_size": 30,
+        "line_height": 1.25,
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "konva_1783471014110_text_324971",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "크기가 조금이라도 더 큰 것이",
+        "style_role": "body",
+        "x": 95.972,
+        "y": 420.0,
+        "width": 400.0,
+        "height": 48.0,
+        "align": "left",
+        "valign": "top",
+        "font_size": 28,
+        "line_height": 1.25,
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "konva_1783471014110_text_355292",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "더 무거워.",
+        "style_role": "body",
+        "x": 58.96,
+        "y": 201.0,
+        "width": 220.0,
+        "height": 48.0,
+        "align": "left",
+        "valign": "top",
+        "font_size": 28,
+        "line_height": 1.25,
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "konva_1783471014110_text_402643",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "저울의 양쪽 접시에 고구마와 감자를",
+        "style_role": "body",
+        "x": 472.097,
+        "y": 385.0,
+        "width": 450.0,
+        "height": 81.2,
+        "align": "left",
+        "valign": "top",
+        "font_size": 28,
+        "line_height": 1.25,
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "konva_1783471014110_text_439524",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "각각 올려 접시가 아래로 내려온 것이",
+        "style_role": "body",
+        "x": 307.042,
+        "y": 486.0,
+        "width": 450.0,
+        "height": 81.2,
+        "align": "left",
+        "valign": "top",
+        "font_size": 28,
+        "line_height": 1.25,
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "konva_1783471014110_text_479420",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "더 무거워.",
+        "style_role": "body",
+        "x": 339.053,
+        "y": 268.0,
+        "width": 220.0,
+        "height": 48.0,
+        "align": "left",
+        "valign": "top",
+        "font_size": 28,
+        "line_height": 1.25,
+        "fill": "#111827"
       }
     }
   ],
@@ -234,13 +281,15 @@
     "slot.q2",
     "slot.q3",
     "region.dialogue_left",
-    "slot.left.speech",
     "slot.left.name",
-    "tr8YvmUi6ZnuyChUrZhgf",
-    "7YhqQ7atny95jS000mK7i",
     "VafHSxaOlJa31_nCm2Cm6",
+    "konva_1783471014110_text_236636",
+    "konva_1783471014110_text_324971",
+    "konva_1783471014110_text_355292",
+    "konva_1783471014110_text_402643",
+    "konva_1783471014110_text_439524",
+    "konva_1783471014110_text_479420",
     "region.dialogue_right",
-    "slot.right.speech",
     "slot.right.name",
     "region.footer"
   ]

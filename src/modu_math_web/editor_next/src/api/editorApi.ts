@@ -69,6 +69,15 @@ export interface LayoutPatchResponse {
   dsl: string;
 }
 
+export interface BuildProblemResponse {
+  ok: boolean;
+  problem_id: string;
+  stdout: string;
+  stderr: string;
+  artifacts: Record<string, unknown>;
+  error?: string;
+}
+
 function encodedProblemPath(problemId: string, suffix = ""): string {
   const safe = problemId
     .split("/")
@@ -77,16 +86,37 @@ function encodedProblemPath(problemId: string, suffix = ""): string {
   return `/api/editor/problems/${safe}${suffix}`;
 }
 
+function getCookie(name: string): string {
+  return (
+    document.cookie
+      .split(";")
+      .map((part) => part.trim())
+      .find((part) => part.startsWith(`${name}=`))
+      ?.slice(name.length + 1) ?? ""
+  );
+}
+
+function csrfHeaders(method: string): Record<string, string> {
+  if (method.toUpperCase() === "GET") return {};
+  const token = getCookie("csrftoken");
+  return token ? { "X-CSRFToken": decodeURIComponent(token) } : {};
+}
+
 async function requestJson<T>(url: string, init?: RequestInit): Promise<T> {
+  const method = init?.method ?? "GET";
   const response = await fetch(url, {
     ...init,
-    headers: { Accept: "application/json", ...init?.headers },
+    headers: { Accept: "application/json", ...csrfHeaders(method), ...init?.headers },
   });
   const body = (await response.json()) as unknown;
-  if (!response.ok) {
+  if (!response.ok || (isRecord(body) && body.ok === false)) {
     throw new Error(`HTTP ${response.status}: ${JSON.stringify(body)}`);
   }
   return body as T;
+}
+
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return typeof value === "object" && value !== null && !Array.isArray(value);
 }
 
 export function listProblems(): Promise<ProblemsListResponse> {
@@ -106,6 +136,12 @@ export async function applyLayoutPatches(
     method: "POST",
     headers: { "Content-Type": "application/json", Accept: "application/json" },
     body: JSON.stringify({ patches, format: options.format ?? true }),
+  });
+}
+
+export function buildProblem(problemId: string): Promise<BuildProblemResponse> {
+  return requestJson<BuildProblemResponse>(encodedProblemPath(problemId, "/build/"), {
+    method: "POST",
   });
 }
 
@@ -299,6 +335,38 @@ function rendererElementToProblemObject(problemId: string, element: RendererElem
         },
       ];
     }
+    case "text_box": {
+      const text = stringValue(element.text, "");
+      if (!text) return [];
+      const fontSize = numberValue(attrs["font-size"], 28);
+      const width = numberValue(attrs.width, numberValue(attrs.max_width, textWidthEstimate(text, fontSize)));
+      const lineHeight = numberValue(attrs["data-line-height"], 1.25);
+      const visualHeight = text
+        .split(/\n/g)
+        .map((line) => Math.max(1, Math.ceil(textWidthEstimate(line, fontSize) / Math.max(fontSize, width))))
+        .reduce((total, count) => total + count, 0) * fontSize * lineHeight;
+      const height = Math.max(numberValue(attrs.height, 0), visualHeight, fontSize * 1.25);
+      const align = stringValue(attrs["data-text-align"], stringValue(attrs["text-anchor"], "left"));
+      return [
+        {
+          id: sourceId(element),
+          type: "math_text",
+          x: numberValue(attrs.x, numberValue(attrs["data-box-x"], 0)),
+          y: numberValue(attrs.y, numberValue(attrs["data-box-y"], 0)),
+          props: {
+            latex: text,
+            text,
+            fontSize,
+            width,
+            height,
+            color: stringValue(attrs.fill, "#111111"),
+            textAlign: align === "middle" || align === "center" ? "center" : align === "end" || align === "right" ? "right" : "left",
+            lineHeight,
+            sourceKind: "text_box",
+          },
+        },
+      ];
+    }
     case "rect":
       return [
         {
@@ -345,13 +413,14 @@ function rendererElementToProblemObject(problemId: string, element: RendererElem
           type: "image",
           x: numberValue(attrs.x, 0),
           y: numberValue(attrs.y, 0),
-          props: {
-            src: resolveProblemAssetUrl(problemId, href),
-            width: numberValue(attrs.width, 120),
-            height: numberValue(attrs.height, 80),
-            alt: sourceId(element),
-          },
+        props: {
+          src: resolveProblemAssetUrl(problemId, href),
+          width: numberValue(attrs.width, 120),
+          height: numberValue(attrs.height, 80),
+          alt: sourceId(element),
+          preserveAspectRatio: stringValue(attrs.preserveAspectRatio, stringValue(attrs.preserve_aspect_ratio, "xMidYMid meet")),
         },
+      },
       ];
     }
     case "path": {
@@ -501,6 +570,7 @@ function layoutSlotToProblemObject(problemId: string, slot: LayoutSlot): Problem
             src: resolveProblemAssetUrl(problemId, stringValue(content.href, "")),
             width: numberValue(content.width, 120),
             height: numberValue(content.height, 80),
+            preserveAspectRatio: stringValue(content.preserve_aspect_ratio, "xMidYMid meet"),
           },
         },
       ];

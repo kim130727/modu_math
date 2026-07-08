@@ -117,6 +117,7 @@ export interface ImageProps extends Record<string, unknown> {
   width: number;
   height: number;
   alt?: string;
+  preserveAspectRatio?: string;
 }
 
 export type ImageObject = BaseProblemObject<"image", ImageProps>;

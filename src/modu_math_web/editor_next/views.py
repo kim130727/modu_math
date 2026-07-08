@@ -13,3 +13,8 @@ def editor_next_index(request: HttpRequest):
 @require_GET
 def editor_next_tldraw(request: HttpRequest):
     return render(request, "editor_next/tldraw.html")
+
+
+@require_GET
+def editor_konva(request: HttpRequest):
+    return render(request, "editor_next/konva.html")
