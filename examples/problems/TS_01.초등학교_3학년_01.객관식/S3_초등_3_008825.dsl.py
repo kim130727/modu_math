@@ -15,7 +15,7 @@ def build_problem_template() -> ProblemTemplate:
     return ProblemTemplate(
         id="S3_초등_3_008825",
         title="들이의 단위를 알아보기",
-        canvas=Canvas(width=960, height=440, coordinate_mode="logical"),
+        canvas=Canvas(width=729, height=440, coordinate_mode="logical"),
         regions=(
             Region(
                 id="region.stem",

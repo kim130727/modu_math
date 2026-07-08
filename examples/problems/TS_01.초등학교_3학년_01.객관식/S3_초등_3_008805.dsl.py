@@ -28,9 +28,10 @@ def build_problem_template() -> ProblemTemplate:
                 prompt="",
                 text="3 kg을 바르게 쓴 것을 선택하세요.",
                 style_role="question",
-                x=86.0,
-                y=24.0,
+                x=67.78,
+                y=46.593,
                 font_size=28,
+                fill="#111111",
             ),
             ImageSlot(
                 id="slot.inserted.image.1",
