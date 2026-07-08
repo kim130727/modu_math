@@ -3,6 +3,7 @@ import { Circle, Layer, Rect, Stage, Transformer } from "react-konva";
 import type Konva from "konva";
 import type { EditorShape, LineShape } from "../types/editorShape";
 import { scalePathData } from "../utils/pathData";
+import { KONVA_PREVIEW_FONT_LOAD_SPEC } from "./fonts";
 import { ShapeRenderer } from "./ShapeRenderer";
 
 interface KonvaStageProps {
@@ -29,6 +30,7 @@ export function KonvaStage({
   const selectionStartRef = useRef<{ x: number; y: number; additive: boolean } | null>(null);
   const [viewport, setViewport] = useState({ width: 900, height: 640 });
   const [selectionRect, setSelectionRect] = useState<CanvasRect | null>(null);
+  const [, setFontLoadRevision] = useState(0);
 
   useEffect(() => {
     if (!wrapRef.current) return;
@@ -40,6 +42,16 @@ export function KonvaStage({
     });
     observer.observe(wrapRef.current);
     return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    let cancelled = false;
+    void document.fonts?.load(KONVA_PREVIEW_FONT_LOAD_SPEC).then(() => {
+      if (!cancelled) setFontLoadRevision((revision) => revision + 1);
+    });
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
   useEffect(() => {

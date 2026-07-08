@@ -6,6 +6,7 @@ import type { EditorShape, EditorShapeDocument } from "../types/editorShape";
 import type { ProblemJson } from "../types/problem";
 import sampleProblem from "../samples/sample_problem.json";
 import { editorDocumentToProblemJson, estimateTextWidth, fittedTextHeight, problemJsonToEditorDocument } from "./converters";
+import { KONVA_PREVIEW_FONT_FAMILY } from "./fonts";
 import { JsonImportExport } from "./JsonImportExport";
 import { KonvaStage } from "./KonvaStage";
 import { KonvaToolbar, type ShapePreset } from "./KonvaToolbar";
@@ -102,6 +103,7 @@ export function EditorKonva() {
       y: 400,
       text,
       fontSize,
+      fontFamily: KONVA_PREVIEW_FONT_FAMILY,
       fill: "#111827",
       width: autoTextWidth(text, fontSize),
       height: fittedTextHeight(text, fontSize, autoTextWidth(text, fontSize)),

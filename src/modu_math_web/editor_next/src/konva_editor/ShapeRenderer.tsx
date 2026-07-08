@@ -3,6 +3,7 @@ import { Circle, Group, Image as KonvaImage, Line, Path, Rect, Text } from "reac
 import type Konva from "konva";
 import type { EditorShape } from "../types/editorShape";
 import { estimateWrappedTextHeight } from "./converters";
+import { KONVA_PREVIEW_FONT_FAMILY } from "./fonts";
 import { renderLatexToSvgDataUrl } from "./latexRenderer";
 
 interface ShapeRendererProps {
@@ -75,7 +76,7 @@ export function ShapeRenderer({ shape, nodeRef, onSelect, onDragStart, onDragMov
           {...common}
           text={shape.text}
           fontSize={shape.fontSize}
-          fontFamily={shape.fontFamily ?? "Segoe UI, Arial"}
+          fontFamily={shape.fontFamily ?? KONVA_PREVIEW_FONT_FAMILY}
           fill={shape.fill ?? "#111827"}
           width={shape.width}
           height={shape.height}
@@ -138,7 +139,7 @@ function MathShapeRenderer({ shape, common }: { shape: Extract<EditorShape, { ty
         height={textHeight}
         text={shape.latex || "ƒ(x)"}
         fontSize={fontSize}
-        fontFamily="Segoe UI, Arial"
+        fontFamily={KONVA_PREVIEW_FONT_FAMILY}
         fill="#111827"
         verticalAlign="top"
       />
@@ -187,7 +188,7 @@ function FractionShapeRenderer({
           y={startY + (contentHeight - smallFont) / 2}
           text={fraction.whole}
           fontSize={smallFont}
-          fontFamily="Segoe UI, Arial"
+          fontFamily={KONVA_PREVIEW_FONT_FAMILY}
           fill="#111827"
         />
       ) : null}
@@ -197,7 +198,7 @@ function FractionShapeRenderer({
         width={fractionWidth}
         text={fraction.numerator}
         fontSize={smallFont}
-        fontFamily="Segoe UI, Arial"
+        fontFamily={KONVA_PREVIEW_FONT_FAMILY}
         fill="#111827"
         align="center"
       />
@@ -208,7 +209,7 @@ function FractionShapeRenderer({
         width={fractionWidth}
         text={fraction.denominator}
         fontSize={smallFont}
-        fontFamily="Segoe UI, Arial"
+        fontFamily={KONVA_PREVIEW_FONT_FAMILY}
         fill="#111827"
         align="center"
       />

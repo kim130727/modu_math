@@ -1,5 +1,6 @@
 import type { EditorShape, EditorShapeDocument } from "../types/editorShape";
 import type { ProblemJson, ProblemObject } from "../types/problem";
+import { KONVA_PREVIEW_FONT_FAMILY } from "./fonts";
 
 export function problemJsonToEditorDocument(problem: ProblemJson): EditorShapeDocument {
   return {
@@ -44,6 +45,7 @@ function problemObjectToEditorShape(object: ProblemObject): EditorShape[] {
           y: object.y,
           text,
           fontSize,
+          fontFamily: stringProp(object.props.fontFamily) ?? KONVA_PREVIEW_FONT_FAMILY,
           fill: object.props.color ?? "#111827",
           width,
           height: isTextBox ? fittedTextHeight(text, fontSize, width ?? estimateTextWidth(text, fontSize), lineHeight) : undefined,
@@ -215,6 +217,7 @@ function editorShapeToProblemObject(shape: EditorShape): ProblemObject[] {
             latex: shape.text,
             text: shape.text,
             fontSize: shape.fontSize,
+            fontFamily: shape.fontFamily ?? KONVA_PREVIEW_FONT_FAMILY,
             width: shape.width,
             height: shape.height,
             color: shape.fill ?? "#111827",

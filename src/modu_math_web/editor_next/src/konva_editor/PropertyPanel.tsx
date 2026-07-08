@@ -1,4 +1,5 @@
 import type { EditorShape } from "../types/editorShape";
+import { KONVA_PREVIEW_FONT_FAMILY } from "./fonts";
 
 interface PropertyPanelProps {
   shape: EditorShape | null;
@@ -50,6 +51,11 @@ export function PropertyPanel({ shape, onChange }: PropertyPanelProps) {
           <>
             <TextAreaField label="text" value={shape.text} onChange={(text) => onChange({ text } as Partial<EditorShape>)} />
             <NumberField label="font" value={shape.fontSize} onChange={(fontSize) => onChange({ fontSize } as Partial<EditorShape>)} />
+            <TextField
+              label="fontFamily"
+              value={shape.fontFamily ?? KONVA_PREVIEW_FONT_FAMILY}
+              onChange={(fontFamily) => onChange({ fontFamily } as Partial<EditorShape>)}
+            />
             <NumberField label="width" value={shape.width ?? 220} onChange={(width) => onChange({ width } as Partial<EditorShape>)} />
           </>
         ) : null}

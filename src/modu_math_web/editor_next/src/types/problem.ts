@@ -35,6 +35,7 @@ export interface MathTextProps extends Record<string, unknown> {
   width?: number;
   height?: number;
   color?: string;
+  fontFamily?: string;
   textAlign?: "left" | "center" | "right";
   lineHeight?: number;
   sourceKind?: "text" | "text_box";
