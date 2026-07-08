@@ -5,7 +5,7 @@ import { problemJsonToLayoutPatches } from "../tldraw/converters/problemJsonToLa
 import type { EditorShape, EditorShapeDocument } from "../types/editorShape";
 import type { ProblemJson } from "../types/problem";
 import sampleProblem from "../samples/sample_problem.json";
-import { editorDocumentToProblemJson, estimateTextWidth, problemJsonToEditorDocument } from "./converters";
+import { editorDocumentToProblemJson, estimateTextWidth, fittedTextHeight, problemJsonToEditorDocument } from "./converters";
 import { JsonImportExport } from "./JsonImportExport";
 import { KonvaStage } from "./KonvaStage";
 import { KonvaToolbar } from "./KonvaToolbar";
@@ -135,7 +135,8 @@ export function EditorKonva() {
       fontSize,
       fill: "#111827",
       width: autoTextWidth(text, fontSize),
-      height: 48,
+      height: fittedTextHeight(text, fontSize, autoTextWidth(text, fontSize)),
+      lineHeight: 1.25,
       sourceKind: "text",
     });
   }, [addShape, nextId]);
@@ -242,14 +243,15 @@ export function EditorKonva() {
           type: "text",
           x: x + col * cellWidth,
           y: y + row * cellHeight + 12,
-          text: "",
-          fontSize: 24,
-          fill: "#111827",
-          width: cellWidth,
-          height: cellHeight - 12,
-          align: "center",
-          sourceKind: "text_box",
-        });
+        text: "",
+        fontSize: 24,
+        fill: "#111827",
+        width: cellWidth,
+        height: fittedTextHeight("", 24, cellWidth),
+        align: "center",
+        lineHeight: 1.25,
+        sourceKind: "text_box",
+      });
       }
     }
 
@@ -478,12 +480,26 @@ function applyAutoSizing(nextShape: EditorShape, previousShape: EditorShape): Ed
 }
 
 function applyAutoTextSizing(nextShape: Extract<EditorShape, { type: "text" }>, previousShape: Extract<EditorShape, { type: "text" }>): EditorShape {
-  if (nextShape.sourceKind === "text_box") return nextShape;
-  if (nextShape.text === previousShape.text && nextShape.fontSize === previousShape.fontSize) return nextShape;
+  if (
+    nextShape.text === previousShape.text &&
+    nextShape.fontSize === previousShape.fontSize &&
+    nextShape.width === previousShape.width &&
+    nextShape.lineHeight === previousShape.lineHeight
+  ) {
+    return nextShape;
+  }
+  if (nextShape.sourceKind === "text_box") {
+    const width = nextShape.width ?? autoTextWidth(nextShape.text, nextShape.fontSize);
+    return {
+      ...nextShape,
+      width,
+      height: fittedTextHeight(nextShape.text, nextShape.fontSize, width, nextShape.lineHeight ?? 1.25),
+    };
+  }
   return {
     ...nextShape,
     width: Math.max(nextShape.width ?? 0, autoTextWidth(nextShape.text, nextShape.fontSize)),
-    height: Math.max(nextShape.height ?? 0, nextShape.fontSize * 1.6),
+    height: fittedTextHeight(nextShape.text, nextShape.fontSize, autoTextWidth(nextShape.text, nextShape.fontSize), nextShape.lineHeight ?? 1.25),
   };
 }
 

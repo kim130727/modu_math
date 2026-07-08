@@ -341,11 +341,7 @@ function rendererElementToProblemObject(problemId: string, element: RendererElem
       const fontSize = numberValue(attrs["font-size"], 28);
       const width = numberValue(attrs.width, numberValue(attrs.max_width, textWidthEstimate(text, fontSize)));
       const lineHeight = numberValue(attrs["data-line-height"], 1.25);
-      const visualHeight = text
-        .split(/\n/g)
-        .map((line) => Math.max(1, Math.ceil(textWidthEstimate(line, fontSize) / Math.max(fontSize, width))))
-        .reduce((total, count) => total + count, 0) * fontSize * lineHeight;
-      const height = Math.max(numberValue(attrs.height, 0), visualHeight, fontSize * 1.25);
+      const height = fittedTextBoxHeight(text, fontSize, width, lineHeight);
       const align = stringValue(attrs["data-text-align"], stringValue(attrs["text-anchor"], "left"));
       return [
         {
@@ -481,6 +477,9 @@ function layoutSlotToProblemObject(problemId: string, slot: LayoutSlot): Problem
       const text = stringValue(content.text, slot.id);
       const x = numberValue(content.x, 0);
       const y = numberValue(content.y, 0);
+      const fontSize = numberValue(content.font_size, 28);
+      const width = numberValue(content.width, 280);
+      const lineHeight = numberValue(content.line_height, 1.25);
       return [
         {
           id: slot.id,
@@ -490,12 +489,12 @@ function layoutSlotToProblemObject(problemId: string, slot: LayoutSlot): Problem
           props: {
             latex: text,
             text,
-            fontSize: numberValue(content.font_size, 28),
-            width: numberValue(content.width, 280),
-            height: numberValue(content.height, 48),
+            fontSize,
+            width,
+            height: fittedTextBoxHeight(text, fontSize, width, lineHeight),
             color: stringValue(content.fill, "#111111"),
             textAlign: stringValue(content.anchor, "start") === "middle" ? "center" : "left",
-            lineHeight: numberValue(content.line_height, 1.25),
+            lineHeight,
             sourceKind: "text_box",
           },
         },
@@ -658,6 +657,15 @@ function optionalNumberValue(value: unknown): number | undefined {
 function textWidthEstimate(text: string, fontSize: number, maxWidth?: number): number {
   if (typeof maxWidth === "number" && Number.isFinite(maxWidth) && maxWidth > 0) return maxWidth;
   return Math.max(fontSize, text.length * fontSize * 0.72);
+}
+
+function fittedTextBoxHeight(text: string, fontSize: number, width: number, lineHeight: number): number {
+  const usableWidth = Math.max(fontSize, width);
+  const lineCount = text
+    .split(/\n/g)
+    .map((line) => Math.max(1, Math.ceil(textWidthEstimate(line, fontSize) / usableWidth)))
+    .reduce((total, count) => total + count, 0);
+  return Math.max(24, Math.ceil(lineCount * fontSize * lineHeight + 8));
 }
 
 function stringValue(value: unknown, fallback: string): string {

@@ -78,6 +78,7 @@ export function ShapeRenderer({ shape, nodeRef, onSelect, onDragStart, onDragMov
           width={shape.width}
           height={shape.height}
           align={shape.align ?? "left"}
+          lineHeight={shape.lineHeight ?? 1.25}
         />
       );
     case "image":
