@@ -102,6 +102,32 @@ def test_image_slot_renders_svg_image() -> None:
     assert 'transform="rotate(15 80 70)"' in svg
 
 
+def test_svg_renders_text_above_images_even_when_slots_are_mixed() -> None:
+    problem = ProblemTemplate(
+        id="text_above_image_demo",
+        title="Text above image demo",
+        canvas=Canvas(width=300, height=180),
+        regions=(
+            Region(
+                id="region.diagram",
+                role="diagram",
+                flow="absolute",
+                slot_ids=("slot.text", "slot.image"),
+            ),
+        ),
+        slots=(
+            TextSlot(id="slot.text", text="visible text", x=30, y=60, font_size=20),
+            ImageSlot(id="slot.image", href="data:image/png;base64,AAAA", x=20, y=30, width=160, height=90),
+        ),
+    )
+
+    layout = compile_problem_template_to_layout(problem)
+    renderer = compile_renderer_json(layout)
+    svg = render_svg(renderer)
+
+    assert svg.index('<image id="slot.image.image"') < svg.index('<text id="slot.text.text"')
+
+
 def test_inline_local_image_hrefs_embeds_saved_svg_assets(tmp_path) -> None:
     image_path = tmp_path / "local.png"
     image_path.write_bytes(b"\x89PNG\r\n\x1a\n")

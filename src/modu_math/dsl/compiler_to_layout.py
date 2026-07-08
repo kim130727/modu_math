@@ -165,6 +165,7 @@ def _get_z_priority(slot: dict[str, Any]) -> int:
         if "center" in slot_id or "point" in slot_id or (isinstance(radius, int | float) and radius <= 8):
             return 25
     priorities = {
+        "image": 0,
         "rect": 10,
         "circle": 10,
         "polygon": 10,

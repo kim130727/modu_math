@@ -86,6 +86,14 @@ def _parse_solvable_schema_tag(solvable: dict[str, Any]) -> str:
     return tag
 
 
+def _normalize_solvable_for_schema(solvable: dict[str, Any]) -> dict[str, Any]:
+    normalized = dict(solvable)
+    plan = normalized.get("plan")
+    if isinstance(plan, str):
+        normalized["plan"] = [plan]
+    return normalized
+
+
 def _build_problem_artifacts(problem_id: str) -> str:
     safe_problem_id = validate_problem_id(problem_id)
     problem_paths = resolve_problem_paths(safe_problem_id)
@@ -137,6 +145,9 @@ def _build_problem_artifacts(problem_id: str) -> str:
     problem_paths.artifact_path("svg").write_text(svg, encoding="utf-8")
 
     if solvable:
+        if not isinstance(solvable, dict):
+            raise ValueError("SOLVABLE must be a dict when provided.")
+        solvable = _normalize_solvable_for_schema(solvable)
         solvable_tag = _parse_solvable_schema_tag(solvable)
         schema_relative = f"schema/solvable/solvable.{solvable_tag}.json"
         schema_path = _repo_root() / schema_relative

@@ -93,6 +93,14 @@ def _resolve_solvable_object(module: ModuleType) -> dict[str, Any] | None:
     return None
 
 
+def _normalize_solvable_for_schema(solvable: dict[str, Any]) -> dict[str, Any]:
+    normalized = dict(solvable)
+    plan = normalized.get("plan")
+    if isinstance(plan, str):
+        normalized["plan"] = [plan]
+    return normalized
+
+
 def _assert_semantic_override_required(module: ModuleType) -> None:
     value = getattr(module, "SEMANTIC_OVERRIDE", None)
     if not isinstance(value, dict):
@@ -369,6 +377,7 @@ def _build_from_problem_template(
         solvable = _resolve_solvable_object(module)
         if not isinstance(solvable, dict):
             raise ValueError("DSL must define SOLVABLE dict or build_solvable() dict.")
+        solvable = _normalize_solvable_for_schema(solvable)
         solvable_schema = json.loads(
             Path("schema/solvable/solvable.v1.1.json").read_text(encoding="utf-8-sig")
         )

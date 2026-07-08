@@ -383,6 +383,49 @@ PROBLEM_TEMPLATE = ProblemTemplate(
     assert (problem_dir / "problem.svg").exists()
 
 
+def test_build_endpoint_normalizes_solvable_plan_string(tmp_path: Path) -> None:
+    client = _setup_django(tmp_path)
+    dsl_text = """
+from modu_math.dsl import Canvas, ProblemTemplate, Region, TextSlot
+
+PROBLEM_TEMPLATE = ProblemTemplate(
+    id="p_plan",
+    title="build",
+    canvas=Canvas(width=300, height=200),
+    regions=(Region(id="region.stem", role="stem", slot_ids=("slot.q",)),),
+    slots=(TextSlot(id="slot.q", text="2 + 3 = ?", x=20, y=40),),
+)
+
+SEMANTIC_OVERRIDE = {
+    "problem_id": "p_plan",
+    "answer": {"blanks": [], "choices": [], "answer_key": [], "value": 5, "unit": ""},
+}
+
+SOLVABLE = {
+    "schema": "modu.solvable.v1.1",
+    "problem_id": "p_plan",
+    "problem_type": "addition",
+    "inputs": {"target_label": "sum", "unit": ""},
+    "given": [{"ref": "input.a", "value": 2}, {"ref": "input.b", "value": 3}],
+    "target": {"ref": "answer.value", "type": "number"},
+    "method": "addition",
+    "plan": "Add the two numbers.",
+    "steps": [{"id": "step.1", "expr": "2 + 3", "value": 5}],
+    "checks": [{"id": "check.1", "expr": "5 == 5", "expected": True, "actual": True, "pass": True}],
+    "answer": {"blanks": [], "choices": [], "answer_key": [], "value": 5, "unit": ""},
+}
+""".lstrip()
+    problem_dir = _write_problem(tmp_path, "0001", dsl_text)
+
+    response = client.post("/api/editor/problems/0001/build/")
+
+    assert response.status_code == 200
+    body = response.json()
+    assert body["ok"] is True
+    solvable = json.loads((problem_dir / "problem.solvable.v1.1.json").read_text(encoding="utf-8"))
+    assert solvable["plan"] == ["Add the two numbers."]
+
+
 def test_detail_rewrites_relative_svg_image_assets(tmp_path: Path) -> None:
     client = _setup_django(tmp_path)
     dsl_text = "from modu_math.dsl import TextSlot\n"

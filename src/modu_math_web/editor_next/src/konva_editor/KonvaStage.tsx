@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
-import { Layer, Rect, Stage, Transformer } from "react-konva";
+import { Circle, Layer, Rect, Stage, Transformer } from "react-konva";
 import type Konva from "konva";
-import type { EditorShape } from "../types/editorShape";
+import type { EditorShape, LineShape } from "../types/editorShape";
 import { scalePathData } from "../utils/pathData";
 import { ShapeRenderer } from "./ShapeRenderer";
 
@@ -56,6 +56,10 @@ export function KonvaStage({
   const offsetY = Math.max(20, (stageHeight - height * scale) / 2);
   const selectedIdSet = new Set(selectedShapeIds);
   const renderedShapes = [...shapes].sort(compareRenderOrder);
+  const selectedLine =
+    selectedShapeIds.length === 1
+      ? shapes.find((shape): shape is LineShape => shape.id === selectedShapeIds[0] && shape.type === "line" && !shape.locked) ?? null
+      : null;
 
   const pointFromEvent = (event: Konva.KonvaEventObject<MouseEvent | TouchEvent>) => {
     const stage = event.target.getStage();
@@ -112,6 +116,26 @@ export function KonvaStage({
 
   const finishSelectedDrag = () => {
     dragStartRef.current = null;
+  };
+
+  const updateLineEndpoint = (
+    line: LineShape,
+    endpoint: "start" | "end",
+    event: Konva.KonvaEventObject<DragEvent>,
+  ) => {
+    event.cancelBubble = true;
+    const point = pointFromEvent(event);
+    if (!point || line.points.length < 4) return;
+    const localPoint = canvasPointToLocalLinePoint(line, point);
+    const nextPoints = [...line.points];
+    if (endpoint === "start") {
+      nextPoints[0] = localPoint.x;
+      nextPoints[1] = localPoint.y;
+    } else {
+      nextPoints[nextPoints.length - 2] = localPoint.x;
+      nextPoints[nextPoints.length - 1] = localPoint.y;
+    }
+    onChangeShapes([{ ...line, points: nextPoints }]);
   };
 
   return (
@@ -179,6 +203,13 @@ export function KonvaStage({
               strokeWidth={1}
               dash={[5, 4]}
               listening={false}
+            />
+          ) : null}
+          {selectedLine ? (
+            <LineEndpointHandles
+              line={selectedLine}
+              onDragMove={(endpoint, event) => updateLineEndpoint(selectedLine, endpoint, event)}
+              onDragEnd={(endpoint, event) => updateLineEndpoint(selectedLine, endpoint, event)}
             />
           ) : null}
           <Transformer
@@ -260,6 +291,88 @@ function shapeBounds(shape: EditorShape): CanvasRect {
     return { x: shape.x, y: shape.y, width: shape.width, height: shape.height };
   }
   return { x: shape.x, y: shape.y, width: shape.width, height: shape.height };
+}
+
+function LineEndpointHandles({
+  line,
+  onDragMove,
+  onDragEnd,
+}: {
+  line: LineShape;
+  onDragMove: (endpoint: "start" | "end", event: Konva.KonvaEventObject<DragEvent>) => void;
+  onDragEnd: (endpoint: "start" | "end", event: Konva.KonvaEventObject<DragEvent>) => void;
+}) {
+  if (line.points.length < 4) return null;
+  const start = localLinePointToCanvasPoint(line, { x: line.points[0], y: line.points[1] });
+  const end = localLinePointToCanvasPoint(line, {
+    x: line.points[line.points.length - 2],
+    y: line.points[line.points.length - 1],
+  });
+
+  return (
+    <>
+      <Circle
+        x={start.x}
+        y={start.y}
+        radius={6}
+        fill="#ffffff"
+        stroke="#2563eb"
+        strokeWidth={2}
+        draggable
+        onMouseDown={(event) => {
+          event.cancelBubble = true;
+        }}
+        onTouchStart={(event) => {
+          event.cancelBubble = true;
+        }}
+        onDragMove={(event) => onDragMove("start", event)}
+        onDragEnd={(event) => onDragEnd("start", event)}
+      />
+      <Circle
+        x={end.x}
+        y={end.y}
+        radius={6}
+        fill="#ffffff"
+        stroke="#2563eb"
+        strokeWidth={2}
+        draggable
+        onMouseDown={(event) => {
+          event.cancelBubble = true;
+        }}
+        onTouchStart={(event) => {
+          event.cancelBubble = true;
+        }}
+        onDragMove={(event) => onDragMove("end", event)}
+        onDragEnd={(event) => onDragEnd("end", event)}
+      />
+    </>
+  );
+}
+
+function localLinePointToCanvasPoint(line: LineShape, point: { x: number; y: number }): { x: number; y: number } {
+  const rotation = degreesToRadians(line.rotation ?? 0);
+  const cos = Math.cos(rotation);
+  const sin = Math.sin(rotation);
+  return {
+    x: line.x + point.x * cos - point.y * sin,
+    y: line.y + point.x * sin + point.y * cos,
+  };
+}
+
+function canvasPointToLocalLinePoint(line: LineShape, point: { x: number; y: number }): { x: number; y: number } {
+  const rotation = degreesToRadians(-(line.rotation ?? 0));
+  const dx = point.x - line.x;
+  const dy = point.y - line.y;
+  const cos = Math.cos(rotation);
+  const sin = Math.sin(rotation);
+  return {
+    x: dx * cos - dy * sin,
+    y: dx * sin + dy * cos,
+  };
+}
+
+function degreesToRadians(degrees: number): number {
+  return (degrees * Math.PI) / 180;
 }
 
 function shapeFromNode(shape: EditorShape, node: Konva.Node): EditorShape {

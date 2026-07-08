@@ -343,6 +343,19 @@ export function EditorKonva() {
       const key = event.key.toLowerCase();
       const commandKey = event.ctrlKey || event.metaKey;
 
+      if (isArrowKey(event.key) && selectedShapeIds.length) {
+        event.preventDefault();
+        const distance = event.shiftKey ? 10 : 1;
+        const delta = arrowKeyDelta(event.key, distance);
+        const selected = new Set(selectedShapeIds);
+        updateShapes(
+          document.shapes
+            .filter((shape) => selected.has(shape.id) && !shape.locked)
+            .map((shape) => ({ ...shape, x: shape.x + delta.dx, y: shape.y + delta.dy }) as EditorShape),
+        );
+        return;
+      }
+
       if (event.key === "Delete" || event.key === "Backspace") {
         if (!selectedShapeIds.length) return;
         event.preventDefault();
@@ -365,7 +378,7 @@ export function EditorKonva() {
 
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
-  }, [copySelected, deleteSelected, duplicateSelected, pasteClipboard, selectedShapeIds.length]);
+  }, [copySelected, deleteSelected, document.shapes, duplicateSelected, pasteClipboard, selectedShapeIds, updateShapes]);
 
   const refreshJson = useCallback(() => {
     setDocument((current) => ({ ...current }));
@@ -663,6 +676,25 @@ function isEditableTarget(target: EventTarget | null): boolean {
   if (!(target instanceof HTMLElement)) return false;
   const tagName = target.tagName.toLowerCase();
   return tagName === "input" || tagName === "textarea" || tagName === "select" || target.isContentEditable;
+}
+
+function isArrowKey(key: string): boolean {
+  return key === "ArrowLeft" || key === "ArrowRight" || key === "ArrowUp" || key === "ArrowDown";
+}
+
+function arrowKeyDelta(key: string, distance: number): { dx: number; dy: number } {
+  switch (key) {
+    case "ArrowLeft":
+      return { dx: -distance, dy: 0 };
+    case "ArrowRight":
+      return { dx: distance, dy: 0 };
+    case "ArrowUp":
+      return { dx: 0, dy: -distance };
+    case "ArrowDown":
+      return { dx: 0, dy: distance };
+    default:
+      return { dx: 0, dy: 0 };
+  }
 }
 
 function promptInteger(label: string, fallback: number, min: number, max: number): number | null {

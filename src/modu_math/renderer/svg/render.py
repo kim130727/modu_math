@@ -75,6 +75,18 @@ def _wrap_text(text: str, max_width: float | None, font_size: float) -> list[str
             out.append(current)
     return out or [""]
 
+def _svg_paint_order(element: RenderElement) -> int:
+    if isinstance(element, RenderText):
+        return 100
+    if isinstance(element, RenderGroup):
+        return 80
+    if element.type == "image":
+        return 0
+    return 50
+
+def _ordered_for_svg(elements: list[RenderElement]) -> list[RenderElement]:
+    return [element for _, element in sorted(enumerate(elements), key=lambda item: (_svg_paint_order(item[1]), item[0]))]
+
 def _element_to_svg_lines(element: RenderElement, depth: int = 1) -> list[str]:
     indent = "  " * depth
     attrs = {"id": element.id, **element.attributes}
@@ -147,7 +159,7 @@ def _element_to_svg_lines(element: RenderElement, depth: int = 1) -> list[str]:
     attrs_str = _attrs_to_str(attrs)
     if isinstance(element, RenderGroup):
         lines = [f"{indent}<g {attrs_str}>"] if attrs_str else [f"{indent}<g>"]
-        for child in element.elements:
+        for child in _ordered_for_svg(element.elements):
             lines.extend(_element_to_svg_lines(child, depth + 1))
         lines.append(f"{indent}</g>")
         return lines
@@ -180,7 +192,7 @@ def render_svg(renderer: RendererAST | dict[str, Any]) -> str:
             f"  <rect x=\"0\" y=\"0\" width=\"{width}\" height=\"{height}\" fill=\"{escape(renderer_ast.view_box.background, quote=True)}\" />"
         )
 
-    for element in renderer_ast.elements:
+    for element in _ordered_for_svg(renderer_ast.elements):
         lines.extend(_element_to_svg_lines(element, depth=1))
 
     lines.append("</svg>")
