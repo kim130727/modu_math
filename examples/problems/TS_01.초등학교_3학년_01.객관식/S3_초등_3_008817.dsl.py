@@ -41,7 +41,7 @@ def build_problem_template() -> ProblemTemplate:
             TextSlot(
                 id="slot.q2",
                 prompt="",
-                text="가 그릇과 나 그릇에 물을 가득 채운 후 모양과 크기가 같은 그릇에 옮겨",
+                text="㉮ 그릇과 ㉯ 그릇에 물을 가득 채운 후 모양과 크기가 같은 그릇에 옮겨",
                 style_role="question",
                 x=21,
                 y=44,

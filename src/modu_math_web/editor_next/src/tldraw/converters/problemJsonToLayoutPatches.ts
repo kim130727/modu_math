@@ -48,7 +48,7 @@ function objectPatches(baseObject: ProblemObject | undefined, object: ProblemObj
     if (baseObject?.type === "table") return tableUpdatePatches(baseObject, object);
     return tableSlotPatches(object);
   }
-  return [baseObject ? updatePatch(object) : addPatch(object)];
+  return [baseObject ? updatePatch(baseObject, object) : addPatch(object)];
 }
 
 function deletePatches(object: ProblemObject): LayoutPatch[] {
@@ -58,11 +58,11 @@ function deletePatches(object: ProblemObject): LayoutPatch[] {
   return [{ target: object.id, op: "delete" }];
 }
 
-function updatePatch(object: ProblemObject): LayoutPatch {
+function updatePatch(baseObject: ProblemObject, object: ProblemObject): LayoutPatch {
   return {
     target: object.id,
     op: "update",
-    value: updateValue(object),
+    value: updateValue(baseObject, object),
   };
 }
 
@@ -75,10 +75,13 @@ function addPatch(object: ProblemObject): LayoutPatch {
   };
 }
 
-function updateValue(object: ProblemObject): Record<string, unknown> {
+function updateValue(baseObject: ProblemObject, object: ProblemObject): Record<string, unknown> {
   switch (object.type) {
-    case "math_text":
-      return mathTextFields(object, object.props.sourceKind === "text_box");
+    case "math_text": {
+      const isTextBoxTarget =
+        baseObject.type === "math_text" ? baseObject.props.sourceKind === "text_box" : object.props.sourceKind === "text_box";
+      return mathTextFields(object, isTextBoxTarget);
+    }
     case "basic_shape":
       return basicShapeFields(object);
     case "image":

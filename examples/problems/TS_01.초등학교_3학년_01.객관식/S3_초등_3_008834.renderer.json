@@ -7,27 +7,11 @@
   },
   "elements": [
     {
-      "id": "slot.qnum.text",
-      "type": "text",
-      "attributes": {
-        "x": 42.0,
-        "y": 28.0,
-        "fill": "#111111",
-        "font-family": "Noto Sans KR, sans-serif",
-        "font-size": 28
-      },
-      "source_ref": "slot.qnum",
-      "refs": {
-        "layout_slot_id": "slot.qnum"
-      },
-      "text": "72."
-    },
-    {
       "id": "slot.instruction.1.text",
       "type": "text",
       "attributes": {
-        "x": 72.0,
-        "y": 34.0,
+        "x": 23.984,
+        "y": 35.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 28
@@ -36,7 +20,7 @@
       "refs": {
         "layout_slot_id": "slot.instruction.1"
       },
-      "text": "저울을 사용하여 감자와 고구마의 무게를 비교했습니다. 바르게 비교하였으면 ○표,"
+      "text": "저울을 사용하여 감자와 고구마의 무게를 비교했습니다."
     },
     {
       "id": "slot.instruction.2.text",
@@ -52,41 +36,7 @@
       "refs": {
         "layout_slot_id": "slot.instruction.2"
       },
-      "text": "그렇지 않으면 ×표를 선택하세요."
-    },
-    {
-      "id": "slot.scale.base.rect",
-      "type": "rect",
-      "attributes": {
-        "x": 384.0,
-        "y": 210.0,
-        "width": 204.0,
-        "height": 56.0,
-        "fill": "#ffffff",
-        "stroke": "#111111",
-        "stroke-width": 1.5
-      },
-      "source_ref": "slot.scale.base",
-      "refs": {
-        "layout_slot_id": "slot.scale.base"
-      }
-    },
-    {
-      "id": "slot.scale.pole.rect",
-      "type": "rect",
-      "attributes": {
-        "x": 484.0,
-        "y": 106.0,
-        "width": 12.0,
-        "height": 106.0,
-        "fill": "#ffffff",
-        "stroke": "#111111",
-        "stroke-width": 1.5
-      },
-      "source_ref": "slot.scale.pole",
-      "refs": {
-        "layout_slot_id": "slot.scale.pole"
-      }
+      "text": "바르게 비교하였으면 ○표,그렇지 않으면 ×표를 선택하세요."
     },
     {
       "id": "slot.scale.left.pan.polygon",
@@ -237,22 +187,6 @@
       }
     },
     {
-      "id": "slot.scale.beam.line",
-      "type": "line",
-      "attributes": {
-        "x1": 412.0,
-        "y1": 164.0,
-        "x2": 568.0,
-        "y2": 164.0,
-        "stroke": "#111111",
-        "stroke-width": 2.0
-      },
-      "source_ref": "slot.scale.beam",
-      "refs": {
-        "layout_slot_id": "slot.scale.beam"
-      }
-    },
-    {
       "id": "slot.scale.center.circle",
       "type": "circle",
       "attributes": {
@@ -272,8 +206,8 @@
       "id": "slot.label.potato.text",
       "type": "text",
       "attributes": {
-        "x": 415.0,
-        "y": 92.0,
+        "x": 361.982,
+        "y": 326.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 28
@@ -288,8 +222,8 @@
       "id": "slot.label.sweetpotato.text",
       "type": "text",
       "attributes": {
-        "x": 539.0,
-        "y": 94.0,
+        "x": 485.982,
+        "y": 328.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 28
@@ -304,8 +238,8 @@
       "id": "slot.statement.text",
       "type": "text",
       "attributes": {
-        "x": 220.0,
-        "y": 282.0,
+        "x": 221.0,
+        "y": 422.0,
         "fill": "#111111",
         "font-family": "Noto Sans KR, sans-serif",
         "font-size": 28

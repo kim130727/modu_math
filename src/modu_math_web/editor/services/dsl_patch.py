@@ -47,6 +47,10 @@ MEASUREMENT_TOOL_HELPERS = {"compass_on_ruler_slots"}
 CANVAS_TARGETS = {"__canvas__", "canvas"}
 CANVAS_FIELDS = {"width", "height"}
 EDITOR_OVERRIDE_FIELDS = set().union(*SUPPORTED_SLOTS.values()) - {"move_dx", "move_dy"}
+TEXT_SLOT_COMPAT_FIELDS = {
+    "TextSlot": {"width", "height", "align", "valign", "line_height"},
+    "TextBoxSlot": {"max_width", "anchor"},
+}
 
 
 @dataclass
@@ -239,12 +243,13 @@ class SlotUpdater(cst.CSTTransformer):
             return updated_node
 
         allowed = SUPPORTED_SLOTS[slot_type]
-        invalid = sorted(set(self.fields) - allowed)
+        fields = _compatible_slot_fields(slot_type, self.fields)
+        invalid = sorted(set(fields) - allowed)
         if invalid:
             raise DslPatchError(f"unsupported field(s) for {slot_type}: {', '.join(invalid)}")
 
         args = list(updated_node.args)
-        for field_name, field_value in self.fields.items():
+        for field_name, field_value in fields.items():
             if field_value is None:
                 args = [arg for arg in args if not (arg.keyword and arg.keyword.value == field_name)]
                 continue
@@ -260,6 +265,16 @@ class SlotUpdater(cst.CSTTransformer):
 
         self.updated = True
         return updated_node.with_changes(args=tuple(args))
+
+
+def _compatible_slot_fields(slot_type: str, fields: dict[str, Any]) -> dict[str, Any]:
+    """Drop known text-box/text-slot compatibility fields before updating an existing slot."""
+    allowed = SUPPORTED_SLOTS[slot_type]
+    invalid = set(fields) - allowed
+    removable = TEXT_SLOT_COMPAT_FIELDS.get(slot_type, set())
+    if invalid and invalid.issubset(removable):
+        return {name: value for name, value in fields.items() if name not in invalid}
+    return fields
 
 
 class CanvasUpdater(cst.CSTTransformer):

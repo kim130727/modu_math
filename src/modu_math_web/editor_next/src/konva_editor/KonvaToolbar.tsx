@@ -1,10 +1,45 @@
+import { useEffect, useRef, useState } from "react";
+
+export type ShapePreset =
+  | "line"
+  | "arrow"
+  | "doubleArrow"
+  | "elbow"
+  | "rect"
+  | "roundRect"
+  | "circle"
+  | "triangle"
+  | "rightTriangle"
+  | "diamond"
+  | "pentagon"
+  | "hexagon"
+  | "plus"
+  | "rightArrow"
+  | "leftArrow"
+  | "upArrow"
+  | "downArrow"
+  | "leftRightArrow"
+  | "mathPlus"
+  | "mathMinus"
+  | "mathMultiply"
+  | "mathDivide"
+  | "flowProcess"
+  | "flowDecision"
+  | "flowDocument"
+  | "flowDatabase"
+  | "star"
+  | "burst"
+  | "ribbon"
+  | "calloutRect"
+  | "calloutRound"
+  | "calloutOval"
+  | "calloutCloud";
+
 type ToolName =
+  | "shapes"
   | "math"
   | "properFraction"
   | "mixedFraction"
-  | "rect"
-  | "circle"
-  | "line"
   | "text"
   | "image"
   | "table"
@@ -16,12 +51,10 @@ type ToolName =
 
 interface KonvaToolbarProps {
   hasSelection: boolean;
+  onInsertShape: (preset: ShapePreset) => void;
   onAddMath: () => void;
   onAddProperFraction: () => void;
   onAddMixedFraction: () => void;
-  onAddRectangle: () => void;
-  onAddCircle: () => void;
-  onAddLine: () => void;
   onAddText: () => void;
   onAddImage: () => void;
   onAddTable: () => void;
@@ -40,6 +73,87 @@ interface IconButtonProps {
   onClick?: () => void;
 }
 
+interface ShapePaletteSection {
+  title: string;
+  items: Array<{ preset: ShapePreset; label: string }>;
+}
+
+const SHAPE_SECTIONS: ShapePaletteSection[] = [
+  {
+    title: "선",
+    items: [
+      { preset: "line", label: "선" },
+      { preset: "arrow", label: "화살표" },
+      { preset: "doubleArrow", label: "양방향 화살표" },
+      { preset: "elbow", label: "꺾은선" },
+    ],
+  },
+  {
+    title: "사각형",
+    items: [
+      { preset: "rect", label: "사각형" },
+      { preset: "roundRect", label: "둥근 사각형" },
+    ],
+  },
+  {
+    title: "기본 도형",
+    items: [
+      { preset: "circle", label: "원" },
+      { preset: "triangle", label: "삼각형" },
+      { preset: "rightTriangle", label: "직각 삼각형" },
+      { preset: "diamond", label: "마름모" },
+      { preset: "pentagon", label: "오각형" },
+      { preset: "hexagon", label: "육각형" },
+      { preset: "plus", label: "십자" },
+    ],
+  },
+  {
+    title: "블록 화살표",
+    items: [
+      { preset: "rightArrow", label: "오른쪽 화살표" },
+      { preset: "leftArrow", label: "왼쪽 화살표" },
+      { preset: "upArrow", label: "위쪽 화살표" },
+      { preset: "downArrow", label: "아래쪽 화살표" },
+      { preset: "leftRightArrow", label: "좌우 화살표" },
+    ],
+  },
+  {
+    title: "수식 도형",
+    items: [
+      { preset: "mathPlus", label: "더하기" },
+      { preset: "mathMinus", label: "빼기" },
+      { preset: "mathMultiply", label: "곱하기" },
+      { preset: "mathDivide", label: "나누기" },
+    ],
+  },
+  {
+    title: "순서도",
+    items: [
+      { preset: "flowProcess", label: "프로세스" },
+      { preset: "flowDecision", label: "판단" },
+      { preset: "flowDocument", label: "문서" },
+      { preset: "flowDatabase", label: "데이터" },
+    ],
+  },
+  {
+    title: "별 및 현수막",
+    items: [
+      { preset: "star", label: "별" },
+      { preset: "burst", label: "폭발형" },
+      { preset: "ribbon", label: "리본" },
+    ],
+  },
+  {
+    title: "설명선",
+    items: [
+      { preset: "calloutRect", label: "사각 설명선" },
+      { preset: "calloutRound", label: "둥근 설명선" },
+      { preset: "calloutOval", label: "타원 설명선" },
+      { preset: "calloutCloud", label: "구름 설명선" },
+    ],
+  },
+];
+
 function IconButton({ label, icon, disabled, primary, onClick }: IconButtonProps) {
   return (
     <button
@@ -57,6 +171,14 @@ function IconButton({ label, icon, disabled, primary, onClick }: IconButtonProps
 
 function ToolbarIcon({ name }: { name: ToolName }) {
   switch (name) {
+    case "shapes":
+      return (
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <rect x="4" y="5" width="7" height="7" rx="1" />
+          <circle cx="16.5" cy="8.5" r="3.5" />
+          <path d="M5 19h14l-4-6-3 4-2-3Z" />
+        </svg>
+      );
     case "math":
       return (
         <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -89,24 +211,6 @@ function ToolbarIcon({ name }: { name: ToolName }) {
           <text x="15" y="19" textAnchor="middle" fontSize="6" stroke="none" fill="currentColor">
             2
           </text>
-        </svg>
-      );
-    case "rect":
-      return (
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <rect x="5" y="6" width="14" height="12" rx="1" />
-        </svg>
-      );
-    case "circle":
-      return (
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <circle cx="12" cy="12" r="7" />
-        </svg>
-      );
-    case "line":
-      return (
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M5 18 19 6" />
         </svg>
       );
     case "text":
@@ -170,14 +274,62 @@ function ToolbarIcon({ name }: { name: ToolName }) {
 }
 
 export function KonvaToolbar(props: KonvaToolbarProps) {
+  const [isShapeMenuOpen, setShapeMenuOpen] = useState(false);
+  const shapeMenuRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    if (!isShapeMenuOpen) return;
+    const onPointerDown = (event: PointerEvent) => {
+      if (shapeMenuRef.current?.contains(event.target as Node)) return;
+      setShapeMenuOpen(false);
+    };
+    window.addEventListener("pointerdown", onPointerDown);
+    return () => window.removeEventListener("pointerdown", onPointerDown);
+  }, [isShapeMenuOpen]);
+
   return (
     <div className="mvp-toolbar">
+      <div className="shape-menu-wrap" ref={shapeMenuRef}>
+        <button
+          type="button"
+          className={isShapeMenuOpen ? "icon-button shape-menu-trigger active" : "icon-button shape-menu-trigger"}
+          title="Insert shape"
+          aria-label="Insert shape"
+          aria-expanded={isShapeMenuOpen}
+          onClick={() => setShapeMenuOpen((open) => !open)}
+        >
+          <ToolbarIcon name="shapes" />
+        </button>
+        {isShapeMenuOpen ? (
+          <div className="shape-palette" role="menu" aria-label="Insert shape">
+            {SHAPE_SECTIONS.map((section) => (
+              <div className="shape-palette-section" key={section.title}>
+                <div className="shape-palette-title">{section.title}</div>
+                <div className="shape-palette-grid">
+                  {section.items.map((item) => (
+                    <button
+                      type="button"
+                      className="shape-palette-item"
+                      key={item.preset}
+                      title={item.label}
+                      aria-label={item.label}
+                      onClick={() => {
+                        props.onInsertShape(item.preset);
+                        setShapeMenuOpen(false);
+                      }}
+                    >
+                      <ShapePresetIcon preset={item.preset} />
+                    </button>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : null}
+      </div>
       <IconButton label="Math expression" icon="math" onClick={props.onAddMath} />
       <IconButton label="Proper fraction" icon="properFraction" onClick={props.onAddProperFraction} />
       <IconButton label="Mixed fraction" icon="mixedFraction" onClick={props.onAddMixedFraction} />
-      <IconButton label="Rectangle" icon="rect" onClick={props.onAddRectangle} />
-      <IconButton label="Circle" icon="circle" onClick={props.onAddCircle} />
-      <IconButton label="Line" icon="line" onClick={props.onAddLine} />
       <IconButton label="Text" icon="text" onClick={props.onAddText} />
       <IconButton label="Image" icon="image" onClick={props.onAddImage} />
       <IconButton label="Table" icon="table" onClick={props.onAddTable} />
@@ -189,4 +341,118 @@ export function KonvaToolbar(props: KonvaToolbarProps) {
       <IconButton label="Build" icon="build" onClick={props.onBuild} />
     </div>
   );
+}
+
+function ShapePresetIcon({ preset }: { preset: ShapePreset }) {
+  const d = shapePreviewPath(preset);
+  if (preset === "line") {
+    return (
+      <svg viewBox="0 0 32 24" aria-hidden="true">
+        <path d="M4 18 28 6" />
+      </svg>
+    );
+  }
+  if (preset === "arrow") {
+    return (
+      <svg viewBox="0 0 32 24" aria-hidden="true">
+        <path d="M4 18 24 6M24 6h-7M24 6l-2 7" />
+      </svg>
+    );
+  }
+  if (preset === "doubleArrow") {
+    return (
+      <svg viewBox="0 0 32 24" aria-hidden="true">
+        <path d="M6 18 26 6M6 18h7M6 18l2-7M26 6h-7M26 6l-2 7" />
+      </svg>
+    );
+  }
+  if (preset === "elbow") {
+    return (
+      <svg viewBox="0 0 32 24" aria-hidden="true">
+        <path d="M6 6v10h20" />
+      </svg>
+    );
+  }
+  if (preset === "rect") {
+    return (
+      <svg viewBox="0 0 32 24" aria-hidden="true">
+        <rect x="5" y="6" width="22" height="12" />
+      </svg>
+    );
+  }
+  if (preset === "roundRect") {
+    return (
+      <svg viewBox="0 0 32 24" aria-hidden="true">
+        <rect x="5" y="6" width="22" height="12" rx="4" />
+      </svg>
+    );
+  }
+  if (preset === "circle" || preset === "calloutOval") {
+    return (
+      <svg viewBox="0 0 32 24" aria-hidden="true">
+        <ellipse cx="16" cy="12" rx="10" ry="7" />
+        {preset === "calloutOval" ? <path d="M13 18 9 22l1-6" /> : null}
+      </svg>
+    );
+  }
+  return (
+    <svg viewBox="0 0 100 80" aria-hidden="true">
+      <path d={d} />
+    </svg>
+  );
+}
+
+function shapePreviewPath(preset: ShapePreset): string {
+  switch (preset) {
+    case "triangle":
+      return "M50 12 L88 68 L12 68 Z";
+    case "rightTriangle":
+      return "M16 14 L84 68 L16 68 Z";
+    case "diamond":
+    case "flowDecision":
+      return "M50 8 L92 40 L50 72 L8 40 Z";
+    case "pentagon":
+      return "M50 8 L90 34 L74 72 L26 72 L10 34 Z";
+    case "hexagon":
+      return "M28 10 L72 10 L94 40 L72 70 L28 70 L6 40 Z";
+    case "plus":
+    case "mathPlus":
+      return "M38 10 L62 10 L62 30 L84 30 L84 52 L62 52 L62 72 L38 72 L38 52 L16 52 L16 30 L38 30 Z";
+    case "rightArrow":
+      return "M8 28 L58 28 L58 12 L92 40 L58 68 L58 52 L8 52 Z";
+    case "leftArrow":
+      return "M92 28 L42 28 L42 12 L8 40 L42 68 L42 52 L92 52 Z";
+    case "upArrow":
+      return "M38 72 L38 30 L22 30 L50 8 L78 30 L62 30 L62 72 Z";
+    case "downArrow":
+      return "M38 8 L62 8 L62 50 L78 50 L50 72 L22 50 L38 50 Z";
+    case "leftRightArrow":
+      return "M8 40 L28 18 L28 30 L72 30 L72 18 L92 40 L72 62 L72 50 L28 50 L28 62 Z";
+    case "mathMinus":
+      return "M18 34 L82 34 L82 50 L18 50 Z";
+    case "mathMultiply":
+      return "M30 14 L50 34 L70 14 L86 30 L66 50 L86 70 L70 76 L50 56 L30 76 L14 60 L34 40 L14 30 Z";
+    case "mathDivide":
+      return "M18 34 L82 34 L82 48 L18 48 Z M44 12 A6 6 0 1 0 56 12 A6 6 0 1 0 44 12 M44 68 A6 6 0 1 0 56 68 A6 6 0 1 0 44 68";
+    case "flowProcess":
+      return "M10 16 L90 16 L90 64 L10 64 Z";
+    case "flowDocument":
+      return "M10 12 L90 12 L90 58 C70 72 30 48 10 64 Z";
+    case "flowDatabase":
+      return "M16 22 C16 8 84 8 84 22 L84 58 C84 72 16 72 16 58 Z M16 22 C16 36 84 36 84 22";
+    case "star":
+      return "M50 8 L60 30 L84 30 L65 46 L72 70 L50 56 L28 70 L35 46 L16 30 L40 30 Z";
+    case "burst":
+      return "M50 8 L58 26 L76 14 L72 34 L94 36 L76 48 L88 66 L66 62 L58 76 L50 58 L38 76 L34 58 L12 66 L24 48 L6 36 L28 34 L24 14 L42 26 Z";
+    case "ribbon":
+      return "M12 18 L88 18 L78 40 L88 62 L12 62 L22 40 Z";
+    case "calloutRect":
+      return "M8 12 L92 12 L92 56 L62 56 L48 72 L52 56 L8 56 Z";
+    case "calloutRound":
+      return "M18 12 L82 12 Q92 12 92 22 L92 50 Q92 60 82 60 L62 60 L48 72 L52 60 L18 60 Q8 60 8 50 L8 22 Q8 12 18 12 Z";
+    case "calloutCloud":
+      return "M28 58 C10 58 8 42 22 36 C18 20 40 14 50 26 C62 12 84 20 80 38 C94 42 88 60 70 58 L54 58 L42 72 L44 58 Z";
+    default:
+      return "M10 16 L90 16 L90 64 L10 64 Z";
+  }
 }

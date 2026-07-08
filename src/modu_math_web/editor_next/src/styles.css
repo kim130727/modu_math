@@ -89,6 +89,85 @@ input {
   flex: 1 1 auto;
 }
 
+.shape-menu-wrap {
+  position: relative;
+  display: inline-flex;
+}
+
+.mvp-toolbar button.shape-menu-trigger.active {
+  border-color: #2563eb;
+  background: #eff6ff;
+}
+
+.shape-palette {
+  position: absolute;
+  z-index: 50;
+  top: calc(100% + 6px);
+  left: 0;
+  width: 286px;
+  max-height: min(620px, calc(100vh - 72px));
+  overflow: auto;
+  padding: 0 0 8px;
+  border: 1px solid #b8c4d2;
+  border-radius: 6px;
+  background: #ffffff;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.2);
+}
+
+.shape-palette-section {
+  display: grid;
+  gap: 4px;
+}
+
+.shape-palette-title {
+  padding: 4px 8px;
+  background: #eef0f3;
+  color: #334155;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 18px;
+}
+
+.shape-palette-grid {
+  display: grid;
+  grid-template-columns: repeat(10, 24px);
+  gap: 3px;
+  padding: 3px 6px 5px;
+}
+
+.mvp-toolbar .shape-palette-item {
+  width: 24px;
+  height: 22px;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  background: #ffffff;
+  color: #64748b;
+}
+
+.mvp-toolbar .shape-palette-item:hover {
+  border-color: #60a5fa;
+  background: #eff6ff;
+  color: #0f172a;
+}
+
+.mvp-toolbar .shape-palette-item svg {
+  width: 20px;
+  height: 18px;
+  display: block;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.mvp-toolbar .shape-palette-item svg rect,
+.mvp-toolbar .shape-palette-item svg circle,
+.mvp-toolbar .shape-palette-item svg ellipse,
+.mvp-toolbar .shape-palette-item svg path {
+  vector-effect: non-scaling-stroke;
+}
+
 .editor-body {
   min-height: 0;
   display: grid;

@@ -8,7 +8,7 @@ import sampleProblem from "../samples/sample_problem.json";
 import { editorDocumentToProblemJson, estimateTextWidth, fittedTextHeight, problemJsonToEditorDocument } from "./converters";
 import { JsonImportExport } from "./JsonImportExport";
 import { KonvaStage } from "./KonvaStage";
-import { KonvaToolbar } from "./KonvaToolbar";
+import { KonvaToolbar, type ShapePreset } from "./KonvaToolbar";
 import { PropertyPanel } from "./PropertyPanel";
 
 const initialProblem = sampleProblem as ProblemJson;
@@ -20,6 +20,7 @@ export function EditorKonva() {
   const [selectedProblemId, setSelectedProblemId] = useState(initialProblem.id);
   const [message, setMessage] = useState("Loaded sample problem in Konva editor.");
   const clipboardRef = useRef<EditorShape[]>([]);
+  const imageFileInputRef = useRef<HTMLInputElement | null>(null);
   const idPrefix = useMemo(() => `konva_${Date.now()}`, []);
 
   const selectedShape = selectedShapeIds.length === 1 ? document.shapes.find((shape) => shape.id === selectedShapeIds[0]) ?? null : null;
@@ -84,44 +85,12 @@ export function EditorKonva() {
 
   const nextId = useCallback((kind: string) => `${idPrefix}_${kind}_${Math.round(performance.now())}`, [idPrefix]);
 
-  const addRectangle = useCallback(() => {
-    addShape({
-      id: nextId("rect"),
-      type: "rect",
-      x: 160,
-      y: 120,
-      width: 180,
-      height: 100,
-      fill: "transparent",
-      stroke: "#111827",
-      strokeWidth: 2,
-    });
-  }, [addShape, nextId]);
-
-  const addCircle = useCallback(() => {
-    addShape({
-      id: nextId("circle"),
-      type: "circle",
-      x: 420,
-      y: 180,
-      radius: 60,
-      fill: "transparent",
-      stroke: "#111827",
-      strokeWidth: 2,
-    });
-  }, [addShape, nextId]);
-
-  const addLine = useCallback(() => {
-    addShape({
-      id: nextId("line"),
-      type: "line",
-      x: 180,
-      y: 320,
-      points: [0, 0, 220, 0],
-      stroke: "#111827",
-      strokeWidth: 3,
-    });
-  }, [addShape, nextId]);
+  const insertShape = useCallback(
+    (preset: ShapePreset) => {
+      addShape(createShapeFromPreset(preset, nextId(preset)));
+    },
+    [addShape, nextId],
+  );
 
   const addText = useCallback(() => {
     const text = "Text";
@@ -172,18 +141,37 @@ export function EditorKonva() {
   }, [addMathShape]);
 
   const addImage = useCallback(() => {
-    const src = window.prompt("Image URL or data URL", "");
-    if (src === null) return;
-    addShape({
-      id: nextId("image"),
-      type: "image",
-      x: 520,
-      y: 280,
-      src,
-      width: 180,
-      height: 120,
-    });
-  }, [addShape, nextId]);
+    imageFileInputRef.current?.click();
+  }, []);
+
+  const importLocalImage = useCallback(
+    async (file: File) => {
+      if (!file.type.startsWith("image/")) {
+        setMessage(`Unsupported image file: ${file.name}`);
+        return;
+      }
+
+      try {
+        const src = await readFileAsDataUrl(file);
+        const size = await loadImageSize(src);
+        const fit = fitImageSize(size.width, size.height, 360, 260);
+        addShape({
+          id: nextId("image"),
+          type: "image",
+          x: 520,
+          y: 280,
+          src,
+          width: fit.width,
+          height: fit.height,
+          preserveAspectRatio: "xMidYMid meet",
+        });
+        setMessage(`Inserted local image: ${file.name}`);
+      } catch (error) {
+        setMessage(`Could not insert image ${file.name}: ${String(error)}`);
+      }
+    },
+    [addShape, nextId],
+  );
 
   const addTable = useCallback(() => {
     const rows = promptInteger("Rows", 3, 1, 20);
@@ -435,12 +423,10 @@ export function EditorKonva() {
     <div className="math-problem-editor konva-editor">
       <KonvaToolbar
         hasSelection={selectedShapeIds.length > 0}
+        onInsertShape={insertShape}
         onAddMath={addMath}
         onAddProperFraction={addProperFraction}
         onAddMixedFraction={addMixedFraction}
-        onAddRectangle={addRectangle}
-        onAddCircle={addCircle}
-        onAddLine={addLine}
         onAddText={addText}
         onAddImage={addImage}
         onAddTable={addTable}
@@ -449,6 +435,17 @@ export function EditorKonva() {
         onRefreshJson={refreshJson}
         onSave={saveJson}
         onBuild={buildCurrentProblem}
+      />
+      <input
+        ref={imageFileInputRef}
+        type="file"
+        accept="image/*"
+        style={{ display: "none" }}
+        onChange={(event) => {
+          const file = event.target.files?.[0];
+          event.target.value = "";
+          if (file) void importLocalImage(file);
+        }}
       />
       <div className="editor-body konva-editor-body">
         <ProblemList selectedProblemId={selectedProblemId} onOpenProblem={openProblem} />
@@ -471,6 +468,104 @@ export function EditorKonva() {
 
 function cloneShape<T extends EditorShape>(shape: T): T {
   return JSON.parse(JSON.stringify(shape)) as T;
+}
+
+function createShapeFromPreset(preset: ShapePreset, id: string): EditorShape {
+  const x = 220;
+  const y = 180;
+  const stroke = "#111827";
+  const fill = "#ffffff";
+  const strokeWidth = 2;
+
+  switch (preset) {
+    case "line":
+      return { id, type: "line", x, y, points: [0, 0, 220, 0], stroke, strokeWidth: 3 };
+    case "rect":
+    case "flowProcess":
+      return { id, type: "rect", x, y, width: 180, height: 96, fill, stroke, strokeWidth };
+    case "roundRect":
+      return { id, type: "rect", x, y, width: 180, height: 96, fill, stroke, strokeWidth, cornerRadius: 14 };
+    case "circle":
+      return { id, type: "circle", x: x + 70, y: y + 70, radius: 70, fill, stroke, strokeWidth };
+    default:
+      return {
+        id,
+        type: "path",
+        x,
+        y,
+        d: pathForShapePreset(preset),
+        width: 180,
+        height: 120,
+        fill: lineLikePreset(preset) ? "none" : fill,
+        stroke,
+        strokeWidth,
+      };
+  }
+}
+
+function lineLikePreset(preset: ShapePreset): boolean {
+  return preset === "arrow" || preset === "doubleArrow" || preset === "elbow";
+}
+
+function pathForShapePreset(preset: ShapePreset): string {
+  switch (preset) {
+    case "arrow":
+      return "M0 100 L160 20 M160 20 L112 18 M160 20 L136 62";
+    case "doubleArrow":
+      return "M20 100 L160 20 M20 100 L68 102 M20 100 L44 58 M160 20 L112 18 M160 20 L136 62";
+    case "elbow":
+      return "M20 20 L20 90 L160 90";
+    case "triangle":
+      return "M90 8 L172 112 L8 112 Z";
+    case "rightTriangle":
+      return "M20 10 L168 112 L20 112 Z";
+    case "diamond":
+    case "flowDecision":
+      return "M90 6 L174 60 L90 114 L6 60 Z";
+    case "pentagon":
+      return "M90 6 L174 44 L142 114 L38 114 L6 44 Z";
+    case "hexagon":
+      return "M48 8 L132 8 L176 60 L132 112 L48 112 L4 60 Z";
+    case "plus":
+    case "mathPlus":
+      return "M68 8 L112 8 L112 42 L166 42 L166 78 L112 78 L112 112 L68 112 L68 78 L14 78 L14 42 L68 42 Z";
+    case "rightArrow":
+      return "M8 42 L110 42 L110 12 L176 60 L110 108 L110 78 L8 78 Z";
+    case "leftArrow":
+      return "M172 42 L70 42 L70 12 L4 60 L70 108 L70 78 L172 78 Z";
+    case "upArrow":
+      return "M68 112 L68 48 L36 48 L90 8 L144 48 L112 48 L112 112 Z";
+    case "downArrow":
+      return "M68 8 L112 8 L112 72 L144 72 L90 112 L36 72 L68 72 Z";
+    case "leftRightArrow":
+      return "M4 60 L44 20 L44 42 L136 42 L136 20 L176 60 L136 100 L136 78 L44 78 L44 100 Z";
+    case "mathMinus":
+      return "M24 48 L156 48 L156 76 L24 76 Z";
+    case "mathMultiply":
+      return "M50 10 L90 48 L130 10 L164 44 L124 82 L164 120 L130 154 L90 116 L50 154 L16 120 L56 82 L16 44 Z";
+    case "mathDivide":
+      return "M24 50 L156 50 L156 76 L24 76 Z M78 8 A12 12 0 1 0 102 8 A12 12 0 1 0 78 8 M78 118 A12 12 0 1 0 102 118 A12 12 0 1 0 78 118";
+    case "flowDocument":
+      return "M8 12 L172 12 L172 88 C132 126 52 76 8 108 Z";
+    case "flowDatabase":
+      return "M16 28 C16 4 164 4 164 28 L164 92 C164 116 16 116 16 92 Z M16 28 C16 52 164 52 164 28";
+    case "star":
+      return "M90 6 L112 42 L154 42 L120 68 L134 112 L90 86 L46 112 L60 68 L26 42 L68 42 Z";
+    case "burst":
+      return "M90 4 L106 34 L144 14 L136 48 L178 54 L142 74 L166 110 L124 102 L108 132 L90 94 L66 132 L58 100 L16 110 L38 74 L2 54 L44 48 L36 14 L74 34 Z";
+    case "ribbon":
+      return "M10 24 L170 24 L148 60 L170 96 L10 96 L32 60 Z";
+    case "calloutRect":
+      return "M8 12 L172 12 L172 86 L112 86 L86 118 L94 86 L8 86 Z";
+    case "calloutRound":
+      return "M28 12 L152 12 Q172 12 172 32 L172 76 Q172 96 152 96 L112 96 L86 118 L94 96 L28 96 Q8 96 8 76 L8 32 Q8 12 28 12 Z";
+    case "calloutOval":
+      return "M8 52 C8 8 172 8 172 52 C172 96 8 96 8 52 Z M74 92 L52 118 L58 88";
+    case "calloutCloud":
+      return "M42 94 C10 94 6 60 34 52 C28 18 72 8 92 32 C116 4 164 22 154 58 C184 66 172 100 132 96 L104 96 L82 120 L88 96 Z";
+    default:
+      return "M8 12 L172 12 L172 108 L8 108 Z";
+  }
 }
 
 function applyAutoSizing(nextShape: EditorShape, previousShape: EditorShape): EditorShape {
@@ -532,6 +627,36 @@ function fractionMathSize(latex: string, fontSize: number): { width: number; hei
 function autoTextWidth(text: string, fontSize: number): number {
   const longestLine = text.split(/\n/g).reduce((longest, line) => (line.length > longest.length ? line : longest), "");
   return Math.min(860, Math.ceil(estimateTextWidth(longestLine || text, fontSize) + fontSize * 0.6));
+}
+
+function readFileAsDataUrl(file: File): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => {
+      if (typeof reader.result === "string") resolve(reader.result);
+      else reject(new Error("Could not read file as data URL."));
+    };
+    reader.onerror = () => reject(reader.error ?? new Error("Could not read file."));
+    reader.readAsDataURL(file);
+  });
+}
+
+function loadImageSize(src: string): Promise<{ width: number; height: number }> {
+  return new Promise((resolve, reject) => {
+    const image = new window.Image();
+    image.onload = () => resolve({ width: image.naturalWidth || image.width, height: image.naturalHeight || image.height });
+    image.onerror = () => reject(new Error("Could not load image."));
+    image.src = src;
+  });
+}
+
+function fitImageSize(width: number, height: number, maxWidth: number, maxHeight: number): { width: number; height: number } {
+  if (!width || !height) return { width: 180, height: 120 };
+  const scale = Math.min(maxWidth / width, maxHeight / height, 1);
+  return {
+    width: Math.max(12, Math.round(width * scale)),
+    height: Math.max(12, Math.round(height * scale)),
+  };
 }
 
 function isEditableTarget(target: EventTarget | null): boolean {

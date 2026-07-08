@@ -14,7 +14,6 @@
       "role": "stem",
       "flow": "absolute",
       "slot_ids": [
-        "slot.qnum",
         "slot.instruction.1",
         "slot.instruction.2"
       ]
@@ -24,13 +23,10 @@
       "role": "diagram",
       "flow": "absolute",
       "slot_ids": [
-        "slot.scale.base",
-        "slot.scale.pole",
         "slot.scale.left.pan",
         "slot.scale.right.pan",
         "slot.potato",
         "slot.sweetpotato",
-        "slot.scale.beam",
         "slot.scale.center",
         "slot.label.potato",
         "slot.label.sweetpotato"
@@ -53,27 +49,16 @@
   ],
   "slots": [
     {
-      "id": "slot.qnum",
-      "kind": "text",
-      "prompt": "",
-      "content": {
-        "text": "72.",
-        "style_role": "question",
-        "x": 42.0,
-        "y": 28.0,
-        "font_size": 28
-      }
-    },
-    {
       "id": "slot.instruction.1",
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "저울을 사용하여 감자와 고구마의 무게를 비교했습니다. 바르게 비교하였으면 ○표,",
+        "text": "저울을 사용하여 감자와 고구마의 무게를 비교했습니다.",
         "style_role": "question",
-        "x": 72.0,
-        "y": 34.0,
-        "font_size": 28
+        "x": 23.984,
+        "y": 35.0,
+        "font_size": 28,
+        "fill": "#111111"
       }
     },
     {
@@ -81,44 +66,12 @@
       "kind": "text",
       "prompt": "",
       "content": {
-        "text": "그렇지 않으면 ×표를 선택하세요.",
+        "text": "바르게 비교하였으면 ○표,그렇지 않으면 ×표를 선택하세요.",
         "style_role": "question",
         "x": 12.0,
         "y": 70.0,
-        "font_size": 28
-      }
-    },
-    {
-      "id": "slot.scale.base",
-      "kind": "rect",
-      "prompt": "",
-      "content": {
-        "x": 384.0,
-        "y": 210.0,
-        "width": 204.0,
-        "height": 56.0
-      }
-    },
-    {
-      "id": "slot.scale.pole",
-      "kind": "rect",
-      "prompt": "",
-      "content": {
-        "x": 484.0,
-        "y": 106.0,
-        "width": 12.0,
-        "height": 106.0
-      }
-    },
-    {
-      "id": "slot.scale.beam",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 412.0,
-        "y1": 164.0,
-        "x2": 568.0,
-        "y2": 164.0
+        "font_size": 28,
+        "fill": "#111111"
       }
     },
     {
@@ -263,9 +216,10 @@
       "content": {
         "text": "감자",
         "style_role": "label",
-        "x": 415.0,
-        "y": 92.0,
-        "font_size": 28
+        "x": 361.982,
+        "y": 326.0,
+        "font_size": 28,
+        "fill": "#111111"
       }
     },
     {
@@ -275,9 +229,10 @@
       "content": {
         "text": "고구마",
         "style_role": "label",
-        "x": 539.0,
-        "y": 94.0,
-        "font_size": 28
+        "x": 485.982,
+        "y": 328.0,
+        "font_size": 28,
+        "fill": "#111111"
       }
     },
     {
@@ -287,9 +242,10 @@
       "content": {
         "text": "고구마가 감자보다 더 무겁습니다. ( ○, × )",
         "style_role": "question",
-        "x": 220.0,
-        "y": 282.0,
-        "font_size": 28
+        "x": 221.0,
+        "y": 422.0,
+        "font_size": 28,
+        "fill": "#111111"
       }
     }
   ],
@@ -298,17 +254,13 @@
   "diagrams": [],
   "reading_order": [
     "region.header",
-    "slot.qnum",
     "slot.instruction.1",
     "slot.instruction.2",
     "region.diagram",
-    "slot.scale.base",
-    "slot.scale.pole",
     "slot.scale.left.pan",
     "slot.scale.right.pan",
     "slot.potato",
     "slot.sweetpotato",
-    "slot.scale.beam",
     "slot.scale.center",
     "slot.label.potato",
     "slot.label.sweetpotato",
