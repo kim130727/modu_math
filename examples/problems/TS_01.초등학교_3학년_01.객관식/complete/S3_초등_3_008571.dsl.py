@@ -7,18 +7,59 @@ def build_problem_template() -> ProblemTemplate:
     return ProblemTemplate(
         id="S3_초등_3_008571",
         title="값이 더 작은 것을 선택하세요.",
-        canvas=Canvas(width = 610, height = 245, coordinate_mode="logical"),
+        canvas=Canvas(width=610, height=245, coordinate_mode="logical"),
         regions=(
             Region(id="region.top", role="stem", flow="absolute", slot_ids=("slot.qtext",)),
-            Region(id="region.main", role="diagram", flow="absolute", slot_ids=("slot.box", "slot.choice1", "slot.choice2")),
+            Region(
+                id="region.main",
+                role="diagram",
+                flow="absolute",
+                slot_ids=("slot.box", "slot.choice1", "slot.choice2"),
+            ),
             Region(id="region.note", role="supporting", flow="absolute", slot_ids=()),
         ),
         slots=(
-            TextSlot(id="slot.qtext", prompt="", text = '값이 더 작은 것을 선택하세요.', style_role="question", x = 120, y = 45, font_size = 25),
-            RectSlot(id="slot.box", prompt="", x = 35, y = 75, width = 520, height = 110),
-            TextSlot(id="slot.choice1", prompt="", text = '54 × 80', style_role="diagram", x = 120, y = 140, font_size = 25),
-            TextSlot(id="slot.choice2", prompt="", text = '4410', style_role="diagram", x = 360, y = 140, font_size = 25),
-            
+            TextSlot(
+                id="slot.qtext",
+                prompt="",
+                text="값이 더 작은 것을 선택하세요.",
+                style_role="question",
+                x=120,
+                y=54,
+                font_size=25,
+                fill="#111111",
+            ),
+            RectSlot(
+                id="slot.box",
+                prompt="",
+                x=133.033,
+                y=121,
+                width=377.953,
+                height=65,
+                fill="#ffffff",
+                stroke="#111111",
+                stroke_width=1.5,
+            ),
+            TextSlot(
+                id="slot.choice1",
+                prompt="",
+                text="54 × 80",
+                style_role="diagram",
+                x=174.018,
+                y=164,
+                font_size=25,
+                fill="#111111",
+            ),
+            TextSlot(
+                id="slot.choice2",
+                prompt="",
+                text="4410",
+                style_role="diagram",
+                x=414.018,
+                y=164,
+                font_size=25,
+                fill="#111111",
+            ),
         ),
         diagrams=(),
         groups=(),
@@ -80,8 +121,20 @@ SOLVABLE = {
         {"id": "step.2", "expr": "정답 선택", "value": "54 × 80"},
     ],
     "checks": [
-        {"id": "check.1", "expr": "선택값 존재 여부", "expected": True, "actual": True, "pass": True},
-        {"id": "check.2", "expr": "정답 일치", "expected": "54 × 80", "actual": "54 × 80", "pass": True},
+        {
+            "id": "check.1",
+            "expr": "선택값 존재 여부",
+            "expected": True,
+            "actual": True,
+            "pass": True,
+        },
+        {
+            "id": "check.2",
+            "expr": "정답 일치",
+            "expected": "54 × 80",
+            "actual": "54 × 80",
+            "pass": True,
+        },
     ],
     "answer": {
         "blanks": [],
@@ -92,5 +145,3 @@ SOLVABLE = {
         "unit": "",
     },
 }
-
-

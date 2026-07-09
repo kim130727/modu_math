@@ -16,11 +16,6 @@
       "slot_ids": [
         "slot.hl",
         "slot.choice.box",
-        "slot.v1",
-        "slot.v2",
-        "slot.v3",
-        "slot.v4",
-        "slot.v5",
         "slot.bar1",
         "slot.bar2",
         "slot.q.text",
@@ -66,77 +61,8 @@
         "style_role": "question",
         "x": 40.0,
         "y": 40.0,
-        "font_size": 36
-      }
-    },
-    {
-      "id": "slot.v1",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 425.0,
-        "y1": 60.0,
-        "x2": 425.0,
-        "y2": 315.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.v2",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 465.0,
-        "y1": 60.0,
-        "x2": 465.0,
-        "y2": 315.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.v3",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 505.0,
-        "y1": 60.0,
-        "x2": 505.0,
-        "y2": 315.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.v4",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 545.0,
-        "y1": 60.0,
-        "x2": 545.0,
-        "y2": 315.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
-      }
-    },
-    {
-      "id": "slot.v5",
-      "kind": "line",
-      "prompt": "",
-      "content": {
-        "x1": 585.0,
-        "y1": 60.0,
-        "x2": 585.0,
-        "y2": 315.0,
-        "stroke": "#9AA0A6",
-        "stroke_width": 1.2,
-        "stroke_dasharray": "5 3"
+        "font_size": 36,
+        "fill": "#111111"
       }
     },
     {
@@ -148,7 +74,8 @@
         "style_role": "diagram",
         "x": 480.0,
         "y": 95.0,
-        "font_size": 44
+        "font_size": 44,
+        "fill": "#111111"
       }
     },
     {
@@ -160,7 +87,8 @@
         "style_role": "diagram",
         "x": 425.0,
         "y": 135.0,
-        "font_size": 44
+        "font_size": 44,
+        "fill": "#111111"
       }
     },
     {
@@ -170,9 +98,10 @@
       "content": {
         "text": "3",
         "style_role": "diagram",
-        "x": 555.0,
-        "y": 135.0,
-        "font_size": 45
+        "x": 546.49,
+        "y": 134.0,
+        "font_size": 45,
+        "fill": "#111111"
       }
     },
     {
@@ -183,7 +112,9 @@
         "x1": 415.0,
         "y1": 140.0,
         "x2": 585.0,
-        "y2": 140.0
+        "y2": 140.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0
       }
     },
     {
@@ -193,9 +124,10 @@
       "content": {
         "text": "9",
         "style_role": "diagram",
-        "x": 555.0,
-        "y": 185.0,
-        "font_size": 44
+        "x": 545.997,
+        "y": 180.0,
+        "font_size": 44,
+        "fill": "#111111"
       }
     },
     {
@@ -203,10 +135,12 @@
       "kind": "rect",
       "prompt": "",
       "content": {
-        "x": 434.4956970214844,
-        "y": 190.0,
-        "width": 148.50430297851562,
+        "x": 434.496,
+        "y": 187.0,
+        "width": 148.504,
         "height": 40.0,
+        "stroke": "#111111",
+        "stroke_width": 1.5,
         "fill": "#efc8b9"
       }
     },
@@ -217,7 +151,7 @@
       "content": {
         "text": "2 1 0",
         "style_role": "diagram",
-        "x": 480.0,
+        "x": 489.0,
         "y": 225.0,
         "font_size": 45,
         "fill": "#111111"
@@ -230,9 +164,10 @@
       "content": {
         "text": "1 2 0 0",
         "style_role": "diagram",
-        "x": 445.0,
+        "x": 459.0,
         "y": 265.0,
-        "font_size": 44
+        "font_size": 44,
+        "fill": "#111111"
       }
     },
     {
@@ -243,7 +178,9 @@
         "x1": 415.0,
         "y1": 270.0,
         "x2": 585.0,
-        "y2": 270.0
+        "y2": 270.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0
       }
     },
     {
@@ -253,9 +190,10 @@
       "content": {
         "text": "1 4 1 9",
         "style_role": "diagram",
-        "x": 445.0,
+        "x": 459.0,
         "y": 310.0,
-        "font_size": 44
+        "font_size": 44,
+        "fill": "#111111"
       }
     },
     {
@@ -281,7 +219,8 @@
         "style_role": "choice",
         "x": 120.0,
         "y": 385.0,
-        "font_size": 40
+        "font_size": 40,
+        "fill": "#111111"
       }
     },
     {
@@ -293,7 +232,8 @@
         "style_role": "choice",
         "x": 295.0,
         "y": 385.0,
-        "font_size": 40
+        "font_size": 40,
+        "fill": "#111111"
       }
     },
     {
@@ -305,7 +245,8 @@
         "style_role": "choice",
         "x": 490.0,
         "y": 385.0,
-        "font_size": 40
+        "font_size": 40,
+        "fill": "#111111"
       }
     },
     {
@@ -317,7 +258,8 @@
         "style_role": "choice",
         "x": 685.0,
         "y": 385.0,
-        "font_size": 40
+        "font_size": 40,
+        "fill": "#111111"
       }
     }
   ],
@@ -328,11 +270,6 @@
     "region.stem",
     "slot.hl",
     "slot.choice.box",
-    "slot.v1",
-    "slot.v2",
-    "slot.v3",
-    "slot.v4",
-    "slot.v5",
     "slot.bar1",
     "slot.bar2",
     "slot.q.text",
