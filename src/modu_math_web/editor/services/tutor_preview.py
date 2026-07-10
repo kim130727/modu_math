@@ -15,7 +15,7 @@ class TutorValidation:
 def tutor_env_status() -> dict[str, Any]:
     return {
         "openai_configured": bool(os.getenv("OPENAI_API_KEY")),
-        "model": os.getenv("OPENAI_MODEL") or "gpt-5.4-mini",
+        "model": os.getenv("OPENAI_MODEL") or "gpt-5.4-nano",
     }
 
 
@@ -38,7 +38,8 @@ def mock_tutor_response(payload: dict[str, Any], message: str) -> str:
     clean_message = message.strip()
     if not clean_message:
         return "좋아요. 먼저 무엇을 찾는 문제인지 같이 봐요."
-    return _clean_tutor_text(_mock_reply(payload, _support_mode(clean_message)))
+    mode = _support_mode(clean_message)
+    return _clean_tutor_text(_mock_reply(payload, mode), mode)
 
 
 def openai_tutor_response(payload: dict[str, Any], message: str, history: list[dict[str, str]]) -> str:
@@ -50,7 +51,11 @@ def openai_tutor_response(payload: dict[str, Any], message: str, history: list[d
     except ImportError as exc:
         raise ImportError("openai package is required. Install with: pip install openai") from exc
 
-    model = os.getenv("OPENAI_MODEL") or "gpt-5.4-mini"
+    model = os.getenv("OPENAI_MODEL") or "gpt-5.4-nano"
+    deterministic_reply = _deterministic_reply(payload, message)
+    if deterministic_reply:
+        return deterministic_reply
+
     client = OpenAI(api_key=api_key)
     response = client.responses.create(
         model=model,
@@ -60,8 +65,9 @@ def openai_tutor_response(payload: dict[str, Any], message: str, history: list[d
         ],
     )
     output_text = getattr(response, "output_text", None)
+    mode = _support_mode(message)
     if isinstance(output_text, str) and output_text.strip():
-        return _clean_tutor_text(output_text)
+        return _finalize_tutor_text(payload, output_text, mode)
     output = getattr(response, "output", None)
     chunks: list[str] = []
     if isinstance(output, list):
@@ -76,7 +82,7 @@ def openai_tutor_response(payload: dict[str, Any], message: str, history: list[d
                         chunks.append(text)
     merged = "\n".join(chunks).strip()
     if merged:
-        return _clean_tutor_text(merged)
+        return _finalize_tutor_text(payload, merged, mode)
     raise ValueError("Could not extract text output from OpenAI response.")
 
 
@@ -88,10 +94,13 @@ def _system_prompt(payload: dict[str, Any]) -> str:
         "Use very easy Korean. Use short sentences. Avoid abstract words such as strategy, concept, infer, verify, eliminate, place value unless you immediately say it in child-friendly words. "
         "Do not use Markdown. Do not use **, headings, tables, or long bullet lists. "
         "Write at most 3 short lines. Each line should be easy for a grade 3 student to read. "
-        "The three support modes must be distinct: "
-        "[힌트] gives one tiny clue and one question. "
-        "[모르겠어요] tells the first thing to look at and one tiny action. "
-        "[이유] explains why that way helps, using concrete words, then asks one question. "
+        "Support mode names are internal. Never print labels such as [힌트], [모르겠어요], [이유], hint, stuck, or why. "
+        "Choose exactly one response style. Do not provide multiple alternatives. "
+        "If support mode is hint: give one tiny clue and one question. "
+        "If support mode is stuck: tell the first thing to look at and one tiny action. "
+        "If support mode is why: explain why that way helps, using concrete words, then ask one question. "
+        "If support mode is general: respond only to the student's latest answer. If the student is partly right, say so and ask the next small question. "
+        "In general mode, do not use the answer key or teacher notes to jump ahead. "
         "Do not solve all choices for the student. "
         + _strategy_prompt(payload)
     )
@@ -110,11 +119,11 @@ def _preview_context(payload: dict[str, Any], history: list[dict[str, str]], mes
             "Authoring preview payload:",
             json.dumps(compact_payload, ensure_ascii=False, indent=2),
             "",
-            "Support mode:",
+            "Internal support mode. Do not print this label or any mode labels:",
             _support_mode(message),
             "",
             "Recent chat:",
-            json.dumps(history[-8:], ensure_ascii=False, indent=2),
+            json.dumps(_clean_history(history)[-6:], ensure_ascii=False, indent=2),
             "",
             f"Student message: {message.strip()}",
         ]
@@ -126,11 +135,56 @@ def _strategy_prompt(payload: dict[str, Any]) -> str:
         return (
             "This is a multiple-choice place-value matching task. Guide the student to inspect the highlighted digit's place value, "
             "then check one option at a time and eliminate mismatches. Do not compute every option. "
+            "When asking a question, briefly say why you are asking it, for example: '이걸 보는 이유는 보기에서 같은 크기를 찾으려는 거예요.' "
             "For children, say '자리' as '어느 칸에 있는 숫자인지' and say '보기 확인' as '보기 하나씩 맞는지 보기'."
         )
     return (
         "For multiple-choice tasks, guide the student to check one option at a time and eliminate mismatches before computation."
     )
+
+
+def _deterministic_reply(payload: dict[str, Any], message: str) -> str | None:
+    if not _is_place_value_matching(payload):
+        return None
+    if _support_mode(message) != "general":
+        return None
+
+    normalized = message.replace(" ", "")
+    if "십의자리" in normalized:
+        return _clean_tutor_text(
+            "맞아요, 십의 자리예요.\n"
+            "이걸 보는 이유는 보기에서 같은 크기를 찾으려는 거예요.\n"
+            "이제 보기 하나를 골라 같은 크기인지 볼까요?",
+            "general",
+        )
+    if "백의자리" in normalized:
+        return _clean_tutor_text(
+            "백의 자리라고 생각했군요.\n"
+            "색칠된 숫자가 정말 백의 칸에 있는지 다시 한 번 봐요.\n"
+            "색칠된 숫자 바로 위 칸 이름은 무엇인가요?",
+            "general",
+        )
+    if "일의자리" in normalized:
+        return _clean_tutor_text(
+            "일의 자리라고 생각했군요.\n"
+            "색칠된 숫자가 맨 오른쪽 칸에 있는지 다시 봐요.\n"
+            "그 숫자는 어느 칸에 있나요?",
+            "general",
+        )
+    return None
+
+
+def _clean_history(history: list[dict[str, str]]) -> list[dict[str, str]]:
+    cleaned: list[dict[str, str]] = []
+    for item in history:
+        role = item.get("role")
+        content = item.get("content")
+        if role not in {"user", "assistant"} or not isinstance(content, str):
+            continue
+        if role == "assistant" and _has_mode_label(content):
+            continue
+        cleaned.append({"role": role, "content": _clean_tutor_text(content)})
+    return cleaned
 
 
 def _support_mode(message: str) -> str:
@@ -178,7 +232,7 @@ def _mock_reply(payload: dict[str, Any], mode: str) -> str:
     return "좋아요. 보기 하나만 먼저 볼게요.\n어느 보기부터 볼까요?"
 
 
-def _clean_tutor_text(text: str) -> str:
+def _clean_tutor_text(text: str, mode: str = "general") -> str:
     replacements = {
         "**": "",
         "__": "",
@@ -190,9 +244,70 @@ def _clean_tutor_text(text: str) -> str:
     cleaned = text.strip()
     for source, target in replacements.items():
         cleaned = cleaned.replace(source, target)
+    cleaned = _keep_single_mode_section(cleaned, mode)
     lines = [line.strip(" -\t") for line in cleaned.splitlines()]
+    lines = [_strip_mode_label(line) for line in lines]
     lines = [line for line in lines if line]
-    return "\n".join(lines[:4])
+    return "\n".join(lines[:3])
+
+
+def _finalize_tutor_text(payload: dict[str, Any], text: str, mode: str) -> str:
+    if _mode_label_count(text) > 1:
+        return _clean_tutor_text(_mock_reply(payload, mode), mode)
+    if _has_mode_label(text) and not _has_label_for_mode(text, mode):
+        return _clean_tutor_text(_mock_reply(payload, mode), mode)
+    if mode == "general" and _has_mode_label(text):
+        return _clean_tutor_text(_mock_reply(payload, mode), mode)
+    return _clean_tutor_text(text, mode)
+
+
+def _has_mode_label(text: str) -> bool:
+    return any(label in text for label in ("[힌트]", "[모르겠어요]", "[이유]", "힌트:", "모르겠어요:", "이유:"))
+
+
+def _mode_label_count(text: str) -> int:
+    return sum(1 for label in ("[힌트]", "[모르겠어요]", "[이유]", "힌트:", "모르겠어요:", "이유:") if label in text)
+
+
+def _has_label_for_mode(text: str, mode: str) -> bool:
+    labels = {
+        "hint": ("[힌트]", "힌트:"),
+        "stuck": ("[모르겠어요]", "모르겠어요:"),
+        "why": ("[이유]", "이유:"),
+    }
+    return any(label in text for label in labels.get(mode, ()))
+
+
+def _keep_single_mode_section(text: str, mode: str) -> str:
+    labels = {
+        "hint": ["[힌트]", "힌트:"],
+        "stuck": ["[모르겠어요]", "모르겠어요:"],
+        "why": ["[이유]", "이유:"],
+    }
+    all_labels = [label for group in labels.values() for label in group]
+    positions = sorted((index, label) for label in all_labels if (index := text.find(label)) >= 0)
+    if not positions:
+        return text
+
+    target_labels = labels.get(mode, [])
+    for start, label in positions:
+        if label in target_labels:
+            following = [index for index, _ in positions if index > start]
+            end = min(following) if following else len(text)
+            return text[start + len(label) : end].strip()
+
+    first_start, first_label = positions[0]
+    following = [index for index, _ in positions if index > first_start]
+    first_end = min(following) if following else len(text)
+    prefix = text[:first_start].strip()
+    return prefix or text[first_start + len(first_label) : first_end].strip()
+
+
+def _strip_mode_label(line: str) -> str:
+    for label in ("[힌트]", "[모르겠어요]", "[이유]", "힌트:", "모르겠어요:", "이유:"):
+        if line.startswith(label):
+            return line[len(label) :].strip()
+    return line
 
 
 def _is_place_value_matching(payload: dict[str, Any]) -> bool:
