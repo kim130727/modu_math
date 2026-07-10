@@ -20,50 +20,25 @@ def tutor_env_status() -> dict[str, Any]:
 
 
 def validate_tutor_payload(payload: dict[str, Any]) -> list[TutorValidation]:
-    checks: list[TutorValidation] = []
     semantic = _record_or_none(payload.get("semantic"))
     solvable = _record_or_none(payload.get("solvable"))
-
-    if semantic:
-        checks.append(TutorValidation("ok", "semantic JSON is available."))
-    else:
-        checks.append(TutorValidation("warn", "semantic JSON is missing."))
-
-    if solvable:
-        checks.append(TutorValidation("ok", "solvable JSON is available."))
-    else:
-        checks.append(TutorValidation("warn", "solvable JSON is missing."))
-
     question = _extract_question(semantic)
-    if question:
-        checks.append(TutorValidation("ok", "question text was found."))
-    else:
-        checks.append(TutorValidation("warn", "question text could not be found."))
-
     answer = _extract_answer(semantic, solvable)
-    if answer:
-        checks.append(TutorValidation("ok", "answer data was found."))
-    else:
-        checks.append(TutorValidation("warn", "answer data could not be found."))
-
     steps = _extract_steps(solvable)
-    if steps:
-        checks.append(TutorValidation("ok", f"{len(steps)} solvable step(s) found."))
-    else:
-        checks.append(TutorValidation("warn", "solvable steps are missing."))
-
-    return checks
+    return [
+        TutorValidation("ok" if semantic else "warn", "semantic JSON is available." if semantic else "semantic JSON is missing."),
+        TutorValidation("ok" if solvable else "warn", "solvable JSON is available." if solvable else "solvable JSON is missing."),
+        TutorValidation("ok" if question else "warn", "question text was found." if question else "question text could not be found."),
+        TutorValidation("ok" if answer else "warn", "answer data was found." if answer else "answer data could not be found."),
+        TutorValidation("ok" if steps else "warn", f"{len(steps)} solvable step(s) found." if steps else "solvable steps are missing."),
+    ]
 
 
 def mock_tutor_response(payload: dict[str, Any], message: str) -> str:
-    semantic = _record_or_none(payload.get("semantic"))
-    solvable = _record_or_none(payload.get("solvable"))
-    answer = _extract_answer(semantic, solvable) or "정답 정보 없음"
-    first_step = (_extract_steps(solvable) or ["문제의 조건을 먼저 정리해 봅시다."])[0]
     clean_message = message.strip()
     if not clean_message:
-        return "안녕하세요. 이 문제를 함께 풀어볼게요. 먼저 어떤 점이 헷갈리는지 말해 주세요."
-    return f"좋아요. 지금 말한 내용은 '{clean_message}'로 이해했어요. 첫 단계는 {first_step} 정답 검사용 값은 {answer}입니다."
+        return "좋아요. 먼저 무엇을 찾는 문제인지 같이 봐요."
+    return _clean_tutor_text(_mock_reply(payload, _support_mode(clean_message)))
 
 
 def openai_tutor_response(payload: dict[str, Any], message: str, history: list[dict[str, str]]) -> str:
@@ -80,21 +55,13 @@ def openai_tutor_response(payload: dict[str, Any], message: str, history: list[d
     response = client.responses.create(
         model=model,
         input=[
-            {"role": "system", "content": [{"type": "input_text", "text": _system_prompt()}]},
-            {
-                "role": "user",
-                "content": [
-                    {
-                        "type": "input_text",
-                        "text": _preview_context(payload, history, message),
-                    }
-                ],
-            },
+            {"role": "system", "content": [{"type": "input_text", "text": _system_prompt(payload)}]},
+            {"role": "user", "content": [{"type": "input_text", "text": _preview_context(payload, history, message)}]},
         ],
     )
     output_text = getattr(response, "output_text", None)
     if isinstance(output_text, str) and output_text.strip():
-        return output_text.strip()
+        return _clean_tutor_text(output_text)
     output = getattr(response, "output", None)
     chunks: list[str] = []
     if isinstance(output, list):
@@ -109,22 +76,31 @@ def openai_tutor_response(payload: dict[str, Any], message: str, history: list[d
                         chunks.append(text)
     merged = "\n".join(chunks).strip()
     if merged:
-        return merged
+        return _clean_tutor_text(merged)
     raise ValueError("Could not extract text output from OpenAI response.")
 
 
-def _system_prompt() -> str:
+def _system_prompt(payload: dict[str, Any]) -> str:
     return (
-        "You are a Korean elementary math tutor embedded in an authoring preview. "
-        "Help the student reason step by step without revealing the final answer immediately. "
-        "Use short Korean replies. If the student is correct, acknowledge it and ask for the reasoning. "
-        "If the problem data is incomplete, explain what authoring field is missing."
+        "You are a Korean tutor for grade 3 elementary students. "
+        "Use authoring JSON privately. Treat answer keys, exact computed values, and solvable steps as teacher-only notes. "
+        "Never reveal the final answer or exact intermediate results in hint/stuck/why responses. "
+        "Use very easy Korean. Use short sentences. Avoid abstract words such as strategy, concept, infer, verify, eliminate, place value unless you immediately say it in child-friendly words. "
+        "Do not use Markdown. Do not use **, headings, tables, or long bullet lists. "
+        "Write at most 3 short lines. Each line should be easy for a grade 3 student to read. "
+        "The three support modes must be distinct: "
+        "[힌트] gives one tiny clue and one question. "
+        "[모르겠어요] tells the first thing to look at and one tiny action. "
+        "[이유] explains why that way helps, using concrete words, then asks one question. "
+        "Do not solve all choices for the student. "
+        + _strategy_prompt(payload)
     )
 
 
 def _preview_context(payload: dict[str, Any], history: list[dict[str, str]], message: str) -> str:
     compact_payload = {
         "problem_id": payload.get("problem_id"),
+        "problem_type": _problem_type(payload),
         "semantic": payload.get("semantic"),
         "solvable": payload.get("solvable"),
         "layout_summary": _layout_summary(_record_or_none(payload.get("layout"))),
@@ -134,6 +110,9 @@ def _preview_context(payload: dict[str, Any], history: list[dict[str, str]], mes
             "Authoring preview payload:",
             json.dumps(compact_payload, ensure_ascii=False, indent=2),
             "",
+            "Support mode:",
+            _support_mode(message),
+            "",
             "Recent chat:",
             json.dumps(history[-8:], ensure_ascii=False, indent=2),
             "",
@@ -142,14 +121,104 @@ def _preview_context(payload: dict[str, Any], history: list[dict[str, str]], mes
     )
 
 
+def _strategy_prompt(payload: dict[str, Any]) -> str:
+    if _is_place_value_matching(payload):
+        return (
+            "This is a multiple-choice place-value matching task. Guide the student to inspect the highlighted digit's place value, "
+            "then check one option at a time and eliminate mismatches. Do not compute every option. "
+            "For children, say '자리' as '어느 칸에 있는 숫자인지' and say '보기 확인' as '보기 하나씩 맞는지 보기'."
+        )
+    return (
+        "For multiple-choice tasks, guide the student to check one option at a time and eliminate mismatches before computation."
+    )
+
+
+def _support_mode(message: str) -> str:
+    if "[힌트]" in message or "힌트" in message:
+        return "hint"
+    if "[모르겠어요]" in message or "모르" in message or "어디서" in message:
+        return "stuck"
+    if "[이유]" in message or "왜" in message or "이유" in message:
+        return "why"
+    return "general"
+
+
+def _mock_reply(payload: dict[str, Any], mode: str) -> str:
+    if _is_place_value_matching(payload):
+        if mode == "hint":
+            return "힌트예요.\n색칠된 숫자가 어느 칸에 있는지 먼저 보세요.\n보기 하나가 맞는지 볼까요?"
+        if mode == "stuck":
+            return (
+                "괜찮아요. 아직 계산하지 않아도 돼요.\n"
+                "먼저 색칠된 숫자만 찾아보세요.\n"
+                "그 숫자는 어느 칸에 있나요?"
+            )
+        if mode == "why":
+            return (
+                "같은 숫자라도 어느 칸에 있느냐에 따라 크기가 달라요.\n"
+                "그래서 색칠된 숫자의 칸을 먼저 봐야 해요.\n"
+                "보기 하나를 골라 같은 칸의 수인지 볼까요?"
+            )
+        return "보기 하나만 먼저 볼게요.\n색칠된 숫자의 칸과 맞는지 확인해 볼까요?"
+
+    if mode == "hint":
+        return "힌트예요.\n보기 하나만 골라 문제 말과 맞는지 보세요.\n맞지 않는 곳이 있나요?"
+    if mode == "stuck":
+        return (
+            "괜찮아요. 다 풀려고 하지 않아도 돼요.\n"
+            "문제에서 무엇을 고르라고 했는지 먼저 보세요.\n"
+            "어느 보기부터 볼까요?"
+        )
+    if mode == "why":
+        return (
+            "보기 문제는 하나씩 맞는지 보면 쉬워져요.\n"
+            "틀린 보기를 지우면 남은 보기가 줄어요.\n"
+            "보기 하나를 같이 볼까요?"
+        )
+    return "좋아요. 보기 하나만 먼저 볼게요.\n어느 보기부터 볼까요?"
+
+
+def _clean_tutor_text(text: str) -> str:
+    replacements = {
+        "**": "",
+        "__": "",
+        "###": "",
+        "##": "",
+        "#": "",
+        "`": "",
+    }
+    cleaned = text.strip()
+    for source, target in replacements.items():
+        cleaned = cleaned.replace(source, target)
+    lines = [line.strip(" -\t") for line in cleaned.splitlines()]
+    lines = [line for line in lines if line]
+    return "\n".join(lines[:4])
+
+
+def _is_place_value_matching(payload: dict[str, Any]) -> bool:
+    problem_type = _problem_type(payload)
+    return "place_value" in problem_type or "matching_expression" in problem_type
+
+
+def _problem_type(payload: dict[str, Any]) -> str:
+    semantic = _record_or_none(payload.get("semantic"))
+    solvable = _record_or_none(payload.get("solvable"))
+    values = [
+        payload.get("problem_type"),
+        solvable.get("problem_type") if solvable else None,
+        semantic.get("problem_type") if semantic else None,
+        _nested_get(semantic, ["answer", "target", "type"]),
+        _nested_get(solvable, ["target", "type"]),
+        _nested_get(solvable, ["answer", "target", "type"]),
+    ]
+    return " ".join(str(value) for value in values if isinstance(value, str)).lower()
+
+
 def _layout_summary(layout: dict[str, Any] | None) -> dict[str, Any] | None:
     if not layout:
         return None
     slots = layout.get("slots")
-    return {
-        "canvas": layout.get("canvas"),
-        "slot_count": len(slots) if isinstance(slots, list) else 0,
-    }
+    return {"canvas": layout.get("canvas"), "slot_count": len(slots) if isinstance(slots, list) else 0}
 
 
 def _record_or_none(value: Any) -> dict[str, Any] | None:
@@ -186,19 +255,22 @@ def _extract_steps(solvable: dict[str, Any] | None) -> list[str]:
         return []
     raw_steps = solvable.get("steps") or solvable.get("solution_steps")
     if not isinstance(raw_steps, list):
+        raw_steps = solvable.get("plan")
+    if not isinstance(raw_steps, list):
         return []
     steps: list[str] = []
     for step in raw_steps:
         if isinstance(step, str) and step.strip():
             steps.append(step.strip())
         elif isinstance(step, dict):
-            text = step.get("text") or step.get("explanation") or step.get("description")
+            text = step.get("text") or step.get("explanation") or step.get("description") or step.get("expr")
             if isinstance(text, str) and text.strip():
-                steps.append(text.strip())
+                value = step.get("value")
+                steps.append(text.strip() if value is None else f"{text.strip()} -> {_stringify_answer(value)}")
     return steps
 
 
-def _nested_get(value: dict[str, Any], path: list[str]) -> Any:
+def _nested_get(value: dict[str, Any] | None, path: list[str]) -> Any:
     current: Any = value
     for key in path:
         if not isinstance(current, dict):

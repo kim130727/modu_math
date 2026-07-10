@@ -19,6 +19,12 @@ interface TutorPreviewPanelProps {
   renderer: RendererDocument | null;
 }
 
+const tutorPrompts = {
+  hint: "[힌트] 정답이나 계산 결과는 말하지 말고, 학생이 다음에 관찰할 작은 단서 하나만 주세요.",
+  stuck: "[모르겠어요] 학생이 시작할 수 있게 첫 관찰 지점과 아주 작은 행동 하나를 안내해 주세요.",
+  why: "[이유] 답을 공개하지 말고, 왜 그런 전략을 쓰는지 개념적으로 설명한 뒤 학생에게 확인 질문을 해 주세요.",
+};
+
 export function TutorPreviewPanel({ problemId, shapeDocument, semantic, solvable, layout, renderer }: TutorPreviewPanelProps) {
   const [mode, setMode] = useState<TutorPreviewMode>("mock");
   const [input, setInput] = useState("");
@@ -68,12 +74,12 @@ export function TutorPreviewPanel({ problemId, shapeDocument, semantic, solvable
     setError(null);
   }, [problemId]);
 
-  const submitMessage = async (text: string) => {
+  const submitMessage = async (text: string, displayText = text) => {
     const message = text.trim();
     if (!message || busy) return;
     setBusy(true);
     setError(null);
-    const nextMessages: TutorPreviewMessage[] = [...messages, { role: "user", content: message }];
+    const nextMessages: TutorPreviewMessage[] = [...messages, { role: "user", content: displayText.trim() }];
     setMessages(nextMessages);
     setInput("");
     try {
@@ -86,8 +92,9 @@ export function TutorPreviewPanel({ problemId, shapeDocument, semantic, solvable
       setOpenaiConfigured(response.openai_configured);
       setModel(response.model);
       setChecks(response.checks);
-      setMessages([...nextMessages, { role: "assistant", content: response.reply }]);
-      if (voiceEnabled) speakKorean(response.reply);
+      const reply = formatTutorText(response.reply);
+      setMessages([...nextMessages, { role: "assistant", content: reply }]);
+      if (voiceEnabled) speakKorean(reply);
     } catch (err) {
       setError(err instanceof Error ? err.message : String(err));
     } finally {
@@ -133,13 +140,13 @@ export function TutorPreviewPanel({ problemId, shapeDocument, semantic, solvable
       </div>
 
       <div className="konva-tutor-actions">
-        <button type="button" onClick={() => void submitMessage("힌트 주세요")} disabled={busy}>
+        <button type="button" title="작은 단서 하나만 제공합니다." onClick={() => void submitMessage(tutorPrompts.hint, "힌트 주세요")} disabled={busy}>
           힌트
         </button>
-        <button type="button" onClick={() => void submitMessage("모르겠어요")} disabled={busy}>
+        <button type="button" title="시작 지점을 잡아 줍니다." onClick={() => void submitMessage(tutorPrompts.stuck, "모르겠어요")} disabled={busy}>
           모르겠어요
         </button>
-        <button type="button" onClick={() => void submitMessage("왜 그렇게 돼요?")} disabled={busy}>
+        <button type="button" title="전략의 이유를 설명합니다." onClick={() => void submitMessage(tutorPrompts.why, "이유가 궁금해요")} disabled={busy}>
           이유
         </button>
         <button
@@ -157,7 +164,7 @@ export function TutorPreviewPanel({ problemId, shapeDocument, semantic, solvable
 
       <div className="konva-tutor-chat" aria-live="polite">
         {messages.length === 0 ? (
-          <div className="konva-tutor-empty">Mock은 API 없이 구조를 빠르게 확인하고, OpenAI는 실제 GPT 응답을 확인합니다.</div>
+          <div className="konva-tutor-empty">힌트는 단서, 모르겠어요는 시작점, 이유는 개념 설명을 점검합니다.</div>
         ) : (
           messages.map((message, index) => (
             <div className={`konva-tutor-bubble ${message.role}`} key={`${message.role}-${index}`}>
@@ -204,4 +211,16 @@ function speakKorean(text: string): void {
   utterance.lang = "ko-KR";
   utterance.rate = 1;
   window.speechSynthesis.speak(utterance);
+}
+
+function formatTutorText(text: string): string {
+  return text
+    .replaceAll("**", "")
+    .replaceAll("__", "")
+    .replaceAll("`", "")
+    .split("\n")
+    .map((line) => line.replace(/^\s*[-*]\s*/, "").trim())
+    .filter(Boolean)
+    .slice(0, 4)
+    .join("\n");
 }
