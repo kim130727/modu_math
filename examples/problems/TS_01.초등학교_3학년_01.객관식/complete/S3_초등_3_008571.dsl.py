@@ -112,13 +112,17 @@ SOLVABLE = {
     "given": [
         {"ref": "expr_1", "value": "54 × 80"},
         {"ref": "expr_2", "value": "4410"},
+        {"ref": "obj.choice_set", "value": ["54 × 80", "4410"]},
+        {"ref": "obj.condition", "value": "값이 더 작은 것"},
     ],
     "target": {"ref": "answer.target", "type": "selected_option"},
     "method": "compare_and_select",
     "plan": ["조건을 확인한다.", "대상을 비교한다.", "알맞은 답을 선택한다."],
     "steps": [
-        {"id": "step.1", "expr": "비교 조건 확인", "value": "완료"},
-        {"id": "step.2", "expr": "정답 선택", "value": "54 × 80"},
+        {"id": "step.1", "expr": "54 × 80", "value": 4320},
+        {"id": "step.2", "expr": "4410은 그대로 4410이다", "value": 4410},
+        {"id": "step.3", "expr": "4320 < 4410", "value": True},
+        {"id": "step.4", "expr": "값이 더 작은 것 선택", "value": "54 × 80"},
     ],
     "checks": [
         {

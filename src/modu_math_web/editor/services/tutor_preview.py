@@ -42,6 +42,47 @@ def mock_tutor_response(payload: dict[str, Any], message: str) -> str:
     return _clean_tutor_text(_mock_reply(payload, mode), mode)
 
 
+def rule_tutor_response(payload: dict[str, Any], message: str, history: list[dict[str, str]]) -> dict[str, Any]:
+    solvable = _record_or_none(payload.get("solvable"))
+    if not solvable:
+        return {"reply": "이 문제에는 solvable JSON이 아직 없어요.\n먼저 문제를 빌드해서 풀이 단계를 만든 뒤 다시 시작해 주세요.", "choices": []}
+
+    steps = _tutor_steps(payload, solvable)
+    if not steps:
+        return {"reply": "solvable JSON은 있지만 풀이 단계가 비어 있어요.\nsteps 또는 plan이 만들어지면 단계별 튜터를 시작할 수 있어요.", "choices": []}
+
+    clean_message = message.strip()
+    waiting_index = _last_rule_step_index(history)
+    if waiting_index is None:
+        return _rule_response(solvable, steps, 0, _rule_intro(solvable, steps))
+
+    waiting_step = steps[min(waiting_index, len(steps) - 1)]
+    if _student_wants_restart(clean_message):
+        return _rule_response(solvable, steps, 0, _rule_intro(solvable, steps))
+    if _student_asks_for_next(clean_message):
+        next_index = min(waiting_index + 1, len(steps) - 1)
+        return _rule_response(solvable, steps, next_index, _render_rule_step(solvable, steps, next_index, prefix="좋아요. 다음 단계로 가 볼게요."))
+    if _student_is_confused(clean_message):
+        return _rule_response(solvable, steps, waiting_index, _rule_confusion_reply(solvable, waiting_step, waiting_index))
+    if _answer_matches_step(clean_message, waiting_step):
+        next_index = waiting_index + 1
+        if next_index >= len(steps):
+            return {"reply": _rule_complete(solvable), "choices": []}
+        return _rule_response(solvable, steps, next_index, _render_rule_step(solvable, steps, next_index, prefix="좋아요, 맞았어요."))
+
+    expected_hint = _step_expected_hint(solvable, waiting_step, waiting_index)
+    if expected_hint:
+        return _rule_response(solvable, steps, waiting_index, (
+            "조금 다르게 본 것 같아요.\n"
+            f"{waiting_index + 1}단계: {waiting_step['prompt']}\n"
+            f"{expected_hint} 다시 입력해 볼까요?"
+        ))
+    return _rule_response(solvable, steps, waiting_index, (
+        "좋아요. 이 단계에서 생각한 값을 입력해 주세요.\n"
+        f"{waiting_index + 1}단계: {waiting_step['prompt']}"
+    ))
+
+
 def openai_tutor_response(payload: dict[str, Any], message: str, history: list[dict[str, str]]) -> str:
     api_key = os.getenv("OPENAI_API_KEY")
     if not api_key:
@@ -104,6 +145,443 @@ def _system_prompt(payload: dict[str, Any]) -> str:
         "Do not solve all choices for the student. "
         + _strategy_prompt(payload)
     )
+
+
+def _tutor_steps(payload: dict[str, Any], solvable: dict[str, Any]) -> list[dict[str, str]]:
+    derived_steps = _derive_tutor_steps(payload, solvable)
+    if derived_steps:
+        return derived_steps
+
+    raw_steps = solvable.get("steps")
+    if not isinstance(raw_steps, list) or not raw_steps:
+        raw_steps = solvable.get("plan")
+    if not isinstance(raw_steps, list):
+        return []
+
+    steps: list[dict[str, str]] = []
+    for index, raw_step in enumerate(raw_steps, start=1):
+        prompt = ""
+        expected = ""
+        if isinstance(raw_step, str):
+            prompt = raw_step.strip()
+        elif isinstance(raw_step, dict):
+            prompt = _first_string(raw_step, ["question", "prompt", "expr", "text", "description", "id"])
+            if "value" in raw_step:
+                expected = _stringify_answer(raw_step["value"])
+            elif "expected" in raw_step:
+                expected = _stringify_answer(raw_step["expected"])
+        if not prompt:
+            prompt = f"{index}번째 풀이 단계를 확인해요."
+        steps.append({"prompt": prompt, "expected": expected})
+    return steps
+
+
+def _derive_tutor_steps(payload: dict[str, Any], solvable: dict[str, Any]) -> list[dict[str, str]]:
+    method = str(solvable.get("method") or "").lower()
+    problem_type = str(solvable.get("problem_type") or "").lower()
+    if "place_value" in method or "place_value" in problem_type:
+        target = _given_value(solvable, "obj.target")
+        if isinstance(target, str) and target.strip():
+            return [
+                {
+                    "prompt": "색칠된 부분이 실제로 어떤 곱셈식인지 보기에서 골라요.",
+                    "expected": target.strip(),
+                    "choices": _place_value_expression_choices(target.strip()),
+                }
+            ]
+
+    if "compare" not in method and "비교" not in problem_type:
+        return []
+
+    expressions = _comparison_expressions(solvable)
+    if len(expressions) < 2:
+        return []
+
+    evaluated = [(label, expr, _evaluate_arithmetic(expr)) for label, expr in expressions]
+    if any(value is None for _, _, value in evaluated):
+        return []
+
+    semantic = _record_or_none(payload.get("semantic"))
+    question = _extract_question(semantic) or ""
+    choose_smaller = "작" in question or "small" in question.lower()
+    choose_larger = "크" in question or "큰" in question or "large" in question.lower()
+    answer_record = _record_or_none(solvable.get("answer"))
+    answer_value = _stringify_answer(answer_record.get("value")) if answer_record and "value" in answer_record else ""
+
+    steps: list[dict[str, str]] = []
+    for _, expr, value in evaluated:
+        if str(expr).strip() == str(value):
+            prompt = f"{expr}은 이미 수로 주어졌어요."
+        else:
+            prompt = f"{expr}의 값을 먼저 구해요."
+        steps.append({"prompt": prompt, "expected": str(value)})
+
+    values_text = ", ".join(f"{expr} = {value}" for _, expr, value in evaluated)
+    if choose_smaller:
+        compare_prompt = f"계산한 값을 비교해요. {values_text} 중 더 작은 것은 무엇일까요?"
+    elif choose_larger:
+        compare_prompt = f"계산한 값을 비교해요. {values_text} 중 더 큰 것은 무엇일까요?"
+    else:
+        compare_prompt = f"계산한 값을 비교해요. {values_text} 중 조건에 맞는 것은 무엇일까요?"
+    steps.append({"prompt": compare_prompt, "expected": answer_value})
+    return steps
+
+
+def _comparison_expressions(solvable: dict[str, Any]) -> list[tuple[str, str]]:
+    quantities = _record_or_none(_record_or_none(solvable.get("inputs")).get("quantities") if _record_or_none(solvable.get("inputs")) else None)
+    expressions: list[tuple[str, str]] = []
+    if quantities:
+        for key, value in quantities.items():
+            if isinstance(value, str) and value.strip():
+                expressions.append((str(key), value.strip()))
+
+    if not expressions:
+        given = solvable.get("given")
+        if isinstance(given, list):
+            for item in given:
+                if not isinstance(item, dict):
+                    continue
+                value = item.get("value")
+                if isinstance(value, str) and value.strip():
+                    expressions.append((str(item.get("ref") or len(expressions) + 1), value.strip()))
+    return expressions
+
+
+def _evaluate_arithmetic(expression: str) -> int | float | None:
+    import ast
+    import operator
+    import re
+
+    text = expression.replace("×", "*").replace("x", "*").replace("X", "*").replace("÷", "/")
+    if not re.fullmatch(r"[\d\s+\-*/().]+", text):
+        return None
+    operators = {
+        ast.Add: operator.add,
+        ast.Sub: operator.sub,
+        ast.Mult: operator.mul,
+        ast.Div: operator.truediv,
+        ast.USub: operator.neg,
+        ast.UAdd: operator.pos,
+    }
+
+    def eval_node(node: ast.AST) -> int | float:
+        if isinstance(node, ast.Expression):
+            return eval_node(node.body)
+        if isinstance(node, ast.Constant) and isinstance(node.value, (int, float)):
+            return node.value
+        if isinstance(node, ast.BinOp) and type(node.op) in operators:
+            return operators[type(node.op)](eval_node(node.left), eval_node(node.right))
+        if isinstance(node, ast.UnaryOp) and type(node.op) in operators:
+            return operators[type(node.op)](eval_node(node.operand))
+        raise ValueError("unsupported expression")
+
+    try:
+        value = eval_node(ast.parse(text, mode="eval"))
+    except Exception:
+        return None
+    if isinstance(value, float) and value.is_integer():
+        return int(value)
+    return value
+
+
+def _rule_intro(solvable: dict[str, Any], steps: list[dict[str, str]]) -> str:
+    if _is_place_value_matching({"solvable": solvable}):
+        multiple = _given_value(solvable, "obj.multiple")
+        highlighted = _given_value(solvable, "obj.highlighted_value")
+        lead = "Rule Tutor로 자리값을 보면서 풀어 볼게요."
+        if multiple and highlighted:
+            lead = f"{multiple}에서 색칠한 부분 {highlighted}이 어떤 보기와 같은지 찾는 문제예요."
+        return _render_rule_step(solvable, steps, 0, prefix=lead)
+    method = str(solvable.get("method") or solvable.get("problem_type") or "풀이").replace("_", " ")
+    return _render_rule_step(solvable, steps, 0, prefix=f"Rule Tutor로 단계별 풀이를 시작할게요.\n풀이 방법: {method}")
+
+
+def _rule_response(solvable: dict[str, Any], steps: list[dict[str, str]], index: int, reply: str) -> dict[str, Any]:
+    return {"reply": reply, "choices": _step_choices(solvable, steps, index)}
+
+
+def _step_choices(solvable: dict[str, Any], steps: list[dict[str, str]], index: int) -> list[str]:
+    step = steps[index]
+    expected = step.get("expected", "").strip()
+    if not expected:
+        return []
+    step_choices = step.get("choices")
+    if isinstance(step_choices, list):
+        return _unique_choices([str(choice) for choice in step_choices])
+
+    if _is_place_value_matching({"solvable": solvable}):
+        if index == 0 and _given_value(solvable, "obj.multiple") and _given_value(solvable, "obj.highlighted_value"):
+            return _unique_choices(["6", expected, "600", "869"])
+        if index == 1:
+            return _numeric_choices(expected)
+        choice_set = _given_value(solvable, "obj.choice_set")
+        if isinstance(choice_set, list):
+            return _unique_choices([str(choice) for choice in choice_set])
+        return _unique_choices([expected])
+
+    if "중 더 " in step.get("prompt", "") or "조건에 맞는" in step.get("prompt", ""):
+        expressions = [expr for _, expr in _comparison_expressions(solvable)]
+        if expressions:
+            return _unique_choices([expected, *expressions])
+
+    if _looks_number(expected):
+        return _numeric_choices(expected)
+    return _unique_choices([expected])
+
+
+def _numeric_choices(expected: str) -> list[str]:
+    value = _number_or_none(expected)
+    if value is None:
+        return _unique_choices([expected])
+    if isinstance(value, float) and not value.is_integer():
+        candidates = [value + 1, value, value - 1, value * 10]
+        return _unique_choices([_format_number(candidate) for candidate in candidates])
+
+    number = int(value)
+    if number == 0:
+        candidates = [0, 1, 10, 100]
+    else:
+        candidates = [
+            number // 10 if abs(number) >= 10 else number + 10,
+            number,
+            number * 10,
+            number + (100 if abs(number) >= 100 else 10),
+        ]
+    return _unique_choices([str(candidate) for candidate in candidates])
+
+
+def _place_value_expression_choices(expression: str) -> list[str]:
+    import re
+
+    match = re.fullmatch(r"\s*(\d+)\s*[×xX*]\s*(\d+)\s*", expression)
+    if not match:
+        return _unique_choices([expression])
+    left = int(match.group(1))
+    right = int(match.group(2))
+    if left % 10 == 0 and left != 0:
+        base = left
+        while base % 10 == 0:
+            base //= 10
+        return _unique_choices([f"{base} × {right}", f"{base} × {right * 10}", f"{left} × {right}", f"{left * 10} × {right}"])
+    else:
+        candidates = [left, left * 10, left * 100, max(1, left // 10)]
+    return _unique_choices([f"{candidate} × {right}" for candidate in candidates])
+
+
+def _unique_choices(values: list[str]) -> list[str]:
+    seen: set[str] = set()
+    choices: list[str] = []
+    for value in values:
+        text = str(value).strip()
+        if not text:
+            continue
+        key = _normalize_answer_text(text)
+        if key in seen:
+            continue
+        seen.add(key)
+        choices.append(text)
+    return choices[:4]
+
+
+def _looks_number(value: str) -> bool:
+    import re
+
+    return bool(re.fullmatch(r"-?\d+(?:\.\d+)?", value.strip()))
+
+
+def _number_or_none(value: str) -> int | float | None:
+    if not _looks_number(value):
+        return None
+    number = float(value)
+    return int(number) if number.is_integer() else number
+
+
+def _format_number(value: int | float) -> str:
+    return str(int(value)) if isinstance(value, float) and value.is_integer() else str(value)
+
+
+def _render_rule_step(solvable: dict[str, Any], steps: list[dict[str, str]], index: int, *, prefix: str = "") -> str:
+    step = steps[index]
+    if _is_place_value_matching({"solvable": solvable}):
+        return _render_place_value_step(solvable, steps, index, prefix=prefix)
+
+    expected_hint = _step_expected_hint(solvable, step, index)
+    lines = [line for line in prefix.splitlines() if line.strip()]
+    lines.append(f"{index + 1}단계: {step['prompt']}")
+    lines.append(expected_hint or "이 단계에서 알 수 있는 값을 입력해 보세요.")
+    return "\n".join(lines[:4])
+
+
+def _render_place_value_step(solvable: dict[str, Any], steps: list[dict[str, str]], index: int, *, prefix: str = "") -> str:
+    step = steps[index]
+    lines = [line for line in prefix.splitlines() if line.strip()]
+    has_highlighted_value = bool(_given_value(solvable, "obj.multiple") and _given_value(solvable, "obj.highlighted_value"))
+    if not has_highlighted_value:
+        lines.append(f"{index + 1}단계: {step['prompt']}")
+        lines.append("색칠된 부분의 자리값을 보고 같은 곱셈식을 고르면 돼요.")
+        lines.append("아래 보기 중 알맞은 식을 선택해 보세요.")
+        return "\n".join(lines[:4])
+
+    if index == 0:
+        lines.append("1단계: 먼저 869의 6이 얼마를 뜻하는지 봐요.")
+        lines.append("6은 십의 자리라서 6이 아니라 60을 뜻해요.")
+        lines.append("그래서 색칠한 부분은 몇에 4를 곱한 걸까요?")
+    elif index == 1:
+        lines.append(f"2단계: {step['prompt']}")
+        lines.append("이제 60에 4를 곱해 색칠한 부분의 값을 확인해요.")
+        lines.append("60 × 4는 얼마일까요?")
+    else:
+        choices = _given_value(solvable, "obj.choice_set")
+        lines.append(f"{index + 1}단계: {step['prompt']}")
+        if isinstance(choices, list):
+            lines.append("보기: " + ", ".join(str(choice) for choice in choices))
+        lines.append("240과 같은 값을 만드는 보기를 골라 입력해 보세요.")
+    return "\n".join(lines[:4])
+
+
+def _rule_complete(solvable: dict[str, Any]) -> str:
+    answer_record = _record_or_none(solvable.get("answer"))
+    answer = _stringify_answer(answer_record.get("value")) if answer_record and "value" in answer_record else ""
+    if answer:
+        return f"좋아요. 풀이 단계가 모두 끝났어요.\n최종 답은 {answer}입니다.\n이제 보기나 답칸에 맞게 표시하면 돼요."
+    return "좋아요. 풀이 단계가 모두 끝났어요.\n이제 문제의 답칸이나 보기에 맞게 정리해 보세요."
+
+
+def _last_rule_step_index(history: list[dict[str, str]]) -> int | None:
+    import re
+
+    for item in reversed(history):
+        if item.get("role") != "assistant":
+            continue
+        content = item.get("content", "")
+        if not isinstance(content, str):
+            continue
+        match = re.search(r"(\d+)단계:", content)
+        if match:
+            return max(0, int(match.group(1)) - 1)
+    return None
+
+
+def _answer_matches_step(message: str, step: dict[str, str]) -> bool:
+    import re
+
+    expected = step.get("expected", "").strip()
+    if not expected:
+        return False
+    normalized_message = _normalize_answer_text(message)
+    normalized_expected = _normalize_answer_text(expected)
+    if normalized_expected and normalized_expected in normalized_message:
+        return True
+    expected_numbers = re.findall(r"-?\d+(?:\.\d+)?", expected)
+    if expected_numbers:
+        message_numbers = set(re.findall(r"-?\d+(?:\.\d+)?", message))
+        return any(number in message_numbers for number in expected_numbers)
+    return False
+
+
+def _normalize_answer_text(value: str) -> str:
+    return (
+        value.lower()
+        .replace(" ", "")
+        .replace("×", "x")
+        .replace("*", "x")
+        .replace("횞", "x")
+        .replace("=", "")
+    )
+
+
+def _step_expected_hint(solvable: dict[str, Any], step: dict[str, str], index: int) -> str:
+    import re
+
+    expected = step.get("expected", "").strip()
+    if not expected:
+        return ""
+    if "이미 수로 주어졌어요" in step.get("prompt", ""):
+        return "그 수를 그대로 입력해 보세요."
+    if _is_place_value_matching({"solvable": solvable}):
+        if index == 0:
+            return "6은 십의 자리에 있으니 60이라고 볼 수 있어요."
+        if index == 1:
+            return "60을 네 번 더하면 얼마인지 계산해 보세요."
+        return "보기 중 240과 같은 값을 만드는 곱셈식을 찾아보세요."
+    if re.fullmatch(r"-?\d+(?:\.\d+)?", expected):
+        return "계산한 수를 입력해 보세요."
+    return "이 단계에서 찾은 식이나 값을 입력해 보세요."
+
+
+def _student_wants_restart(message: str) -> bool:
+    normalized = message.replace(" ", "").lower()
+    return any(token in normalized for token in ("처음", "다시", "시작", "reset", "restart"))
+
+
+def _student_asks_for_next(message: str) -> bool:
+    normalized = message.replace(" ", "").lower()
+    return any(token in normalized for token in ("다음", "넘어", "next"))
+
+
+def _student_is_confused(message: str) -> bool:
+    normalized = message.replace(" ", "").lower()
+    return any(
+        token in normalized
+        for token in (
+            "모르",
+            "이해",
+            "무슨말",
+            "헷갈",
+            "어려",
+            "왜",
+            "설명",
+            "help",
+            "confus",
+        )
+    )
+
+
+def _rule_confusion_reply(solvable: dict[str, Any], step: dict[str, str], index: int) -> str:
+    if _is_place_value_matching({"solvable": solvable}):
+        if index == 0:
+            return (
+                "좋아요, 다시 쉽게 볼게요.\n"
+                "1단계: 869에서 6은 오른쪽에서 둘째 자리, 즉 십의 자리에 있어요.\n"
+                "그래서 6은 6개가 아니라 60을 뜻해요.\n"
+                "그럼 색칠한 부분은 몇에 4를 곱한 걸까요?"
+            )
+        if index == 1:
+            return (
+                "앞에서 색칠된 수가 60이라는 걸 확인했어요.\n"
+                "이제 869 × 4에서 그 부분만 보면 60 × 4예요.\n"
+                "60을 4번 더하면 얼마일까요?"
+            )
+        return (
+            "이제 새 계산을 하는 단계가 아니에요.\n"
+            "앞에서 60 × 4 = 240을 확인했어요.\n"
+            "보기 중에서 240과 같은 곱셈식을 찾아보세요."
+        )
+
+    hint = _step_expected_hint(solvable, step, index)
+    return (
+        "좋아요, 이 단계만 다시 볼게요.\n"
+        f"{index + 1}단계: {step['prompt']}\n"
+        f"{hint or '문제에서 확인할 수 있는 값을 하나만 찾아보세요.'}"
+    )
+
+
+def _given_value(solvable: dict[str, Any], ref: str) -> Any:
+    given = solvable.get("given")
+    if not isinstance(given, list):
+        return None
+    for item in given:
+        if isinstance(item, dict) and item.get("ref") == ref:
+            return item.get("value")
+    return None
+
+
+def _first_string(source: dict[str, Any], keys: list[str]) -> str:
+    for key in keys:
+        value = source.get(key)
+        if isinstance(value, str) and value.strip():
+            return value.strip()
+    return ""
 
 
 def _preview_context(payload: dict[str, Any], history: list[dict[str, str]], message: str) -> str:

@@ -12,7 +12,7 @@ from django.views.decorators.http import require_GET, require_POST
 from .services.build import build_with_artifacts
 from .services.dsl_patch import DslPatchError, apply_layout_patches
 from .services.problems import format_problem_dsl, list_problem_directories, read_problem_detail, resolve_problem_paths, save_problem_dsl
-from .services.tutor_preview import mock_tutor_response, openai_tutor_response, tutor_env_status, validate_tutor_payload
+from .services.tutor_preview import mock_tutor_response, openai_tutor_response, rule_tutor_response, tutor_env_status, validate_tutor_payload
 
 
 def _json_body(request: HttpRequest) -> dict[str, Any]:
@@ -55,8 +55,8 @@ def tutor_preview(request: HttpRequest) -> JsonResponse:
         history = data.get("history", [])
         if not isinstance(message, str):
             return _error("'message' must be a string", status=400)
-        if mode not in {"mock", "openai"}:
-            return _error("'mode' must be 'mock' or 'openai'", status=400)
+        if mode not in {"rule", "mock", "openai"}:
+            return _error("'mode' must be 'rule', 'mock', or 'openai'", status=400)
         if not isinstance(payload, dict):
             return _error("'payload' must be an object", status=400)
         if not isinstance(history, list):
@@ -67,11 +67,19 @@ def tutor_preview(request: HttpRequest) -> JsonResponse:
             if isinstance(item, dict)
         ]
         validations = validate_tutor_payload(payload)
-        reply = (
-            openai_tutor_response(payload, message, clean_history)
-            if mode == "openai"
-            else mock_tutor_response(payload, message)
-        )
+        choices: list[str] = []
+        if mode == "openai":
+            reply = openai_tutor_response(payload, message, clean_history)
+        elif mode == "rule":
+            rule_response = rule_tutor_response(payload, message, clean_history)
+            if isinstance(rule_response, dict):
+                reply = str(rule_response.get("reply", ""))
+                raw_choices = rule_response.get("choices", [])
+                choices = [str(choice) for choice in raw_choices] if isinstance(raw_choices, list) else []
+            else:
+                reply = rule_response
+        else:
+            reply = mock_tutor_response(payload, message)
     except EnvironmentError as exc:
         return _error(str(exc), status=400)
     except ImportError as exc:
@@ -82,6 +90,7 @@ def tutor_preview(request: HttpRequest) -> JsonResponse:
         {
             "ok": True,
             "reply": reply,
+            "choices": choices,
             "checks": [check.__dict__ for check in validations],
             **tutor_env_status(),
         }

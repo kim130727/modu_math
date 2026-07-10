@@ -78,7 +78,7 @@ export interface BuildProblemResponse {
   error?: string;
 }
 
-export type TutorPreviewMode = "mock" | "openai";
+export type TutorPreviewMode = "rule" | "mock" | "openai";
 
 export interface TutorPreviewMessage {
   role: "user" | "assistant";
@@ -98,6 +98,7 @@ export interface TutorPreviewStatusResponse {
 
 export interface TutorPreviewResponse extends TutorPreviewStatusResponse {
   reply: string;
+  choices?: string[];
   checks: TutorPreviewCheck[];
 }
 

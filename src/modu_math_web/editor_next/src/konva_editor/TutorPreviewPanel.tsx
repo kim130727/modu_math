@@ -19,16 +19,11 @@ interface TutorPreviewPanelProps {
   renderer: RendererDocument | null;
 }
 
-const tutorPrompts = {
-  hint: "[힌트] 정답이나 계산 결과는 말하지 말고, 학생이 다음에 관찰할 작은 단서 하나만 주세요.",
-  stuck: "[모르겠어요] 학생이 시작할 수 있게 첫 관찰 지점과 아주 작은 행동 하나를 안내해 주세요.",
-  why: "[이유] 답을 공개하지 말고, 왜 그런 전략을 쓰는지 개념적으로 설명한 뒤 학생에게 확인 질문을 해 주세요.",
-};
-
 export function TutorPreviewPanel({ problemId, shapeDocument, semantic, solvable, layout, renderer }: TutorPreviewPanelProps) {
-  const [mode, setMode] = useState<TutorPreviewMode>("mock");
+  const [mode, setMode] = useState<TutorPreviewMode>("rule");
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState<TutorPreviewMessage[]>([]);
+  const [choices, setChoices] = useState<string[]>([]);
   const [checks, setChecks] = useState<TutorPreviewCheck[]>([]);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -70,6 +65,7 @@ export function TutorPreviewPanel({ problemId, shapeDocument, semantic, solvable
 
   useEffect(() => {
     setMessages([]);
+    setChoices([]);
     setChecks([]);
     setError(null);
   }, [problemId]);
@@ -79,6 +75,7 @@ export function TutorPreviewPanel({ problemId, shapeDocument, semantic, solvable
     if (!message || busy) return;
     setBusy(true);
     setError(null);
+    setChoices([]);
     const nextMessages: TutorPreviewMessage[] = [...messages, { role: "user", content: displayText.trim() }];
     setMessages(nextMessages);
     setInput("");
@@ -92,6 +89,7 @@ export function TutorPreviewPanel({ problemId, shapeDocument, semantic, solvable
       setOpenaiConfigured(response.openai_configured);
       setModel(response.model);
       setChecks(response.checks);
+      setChoices(response.choices ?? []);
       const reply = formatTutorText(response.reply);
       setMessages([...nextMessages, { role: "assistant", content: reply }]);
       if (voiceEnabled) speakKorean(reply);
@@ -110,14 +108,19 @@ export function TutorPreviewPanel({ problemId, shapeDocument, semantic, solvable
   const latestTutorMessage = [...messages].reverse().find((message) => message.role === "assistant")?.content;
 
   return (
-    <section className="konva-tutor-panel" aria-label="GPT tutor preview">
+    <section className="konva-tutor-panel" aria-label="Rule tutor preview">
       <div className="konva-tutor-head">
         <div>
-          <div className="panel-title compact">GPT Tutor Preview</div>
-          <div className="konva-tutor-subtitle">{mode === "openai" ? `${model || "OpenAI"} 실전 응답` : "Mock 빠른 점검"}</div>
+          <div className="panel-title compact">Rule Tutor Preview</div>
+          <div className="konva-tutor-subtitle">
+            {mode === "rule" ? "solvable JSON 기반 선택형 진행" : mode === "openai" ? `${model || "OpenAI"} 실전 응답` : "Mock 빠른 점검"}
+          </div>
         </div>
         <div className="konva-tutor-controls">
           <div className="konva-tutor-mode" role="tablist" aria-label="Tutor mode">
+            <button type="button" className={mode === "rule" ? "active" : ""} onClick={() => setMode("rule")}>
+              Rule
+            </button>
             <button type="button" className={mode === "mock" ? "active" : ""} onClick={() => setMode("mock")}>
               Mock
             </button>
@@ -140,19 +143,20 @@ export function TutorPreviewPanel({ problemId, shapeDocument, semantic, solvable
       </div>
 
       <div className="konva-tutor-actions">
-        <button type="button" title="작은 단서 하나만 제공합니다." onClick={() => void submitMessage(tutorPrompts.hint, "힌트 주세요")} disabled={busy}>
-          힌트
+        <button type="button" onClick={() => void submitMessage("시작", "시작")} disabled={busy}>
+          시작
         </button>
-        <button type="button" title="시작 지점을 잡아 줍니다." onClick={() => void submitMessage(tutorPrompts.stuck, "모르겠어요")} disabled={busy}>
-          모르겠어요
+        <button type="button" onClick={() => void submitMessage("다음", "다음 단계")} disabled={busy || messages.length === 0}>
+          다음 단계
         </button>
-        <button type="button" title="전략의 이유를 설명합니다." onClick={() => void submitMessage(tutorPrompts.why, "이유가 궁금해요")} disabled={busy}>
-          이유
+        <button type="button" onClick={() => void submitMessage("처음부터", "처음부터")} disabled={busy || messages.length === 0}>
+          처음부터
         </button>
         <button
           type="button"
           onClick={() => {
             setMessages([]);
+            setChoices([]);
             setChecks([]);
             setError(null);
           }}
@@ -164,7 +168,7 @@ export function TutorPreviewPanel({ problemId, shapeDocument, semantic, solvable
 
       <div className="konva-tutor-chat" aria-live="polite">
         {messages.length === 0 ? (
-          <div className="konva-tutor-empty">힌트는 단서, 모르겠어요는 시작점, 이유는 개념 설명을 점검합니다.</div>
+          <div className="konva-tutor-empty">solvable JSON을 바탕으로 단계별 선택지를 자동 생성합니다.</div>
         ) : (
           messages.map((message, index) => (
             <div className={`konva-tutor-bubble ${message.role}`} key={`${message.role}-${index}`}>
@@ -178,10 +182,20 @@ export function TutorPreviewPanel({ problemId, shapeDocument, semantic, solvable
       <div className="konva-tutor-side">
         {latestTutorMessage ? (
           <button type="button" className="konva-tutor-read" onClick={() => speakKorean(latestTutorMessage)}>
-            답변 읽기
+            듣기
           </button>
         ) : null}
-        {!openaiConfigured ? <div className="konva-tutor-notice">OPENAI_API_KEY가 .env에서 확인되지 않았습니다.</div> : null}
+        {choices.length ? (
+          <div className="konva-tutor-choices" aria-label="Tutor choices">
+            {choices.map((choice, index) => (
+              <button type="button" key={`${choice}-${index}`} onClick={() => void submitMessage(choice, choice)} disabled={busy}>
+                <span>{index + 1}</span>
+                {choice}
+              </button>
+            ))}
+          </div>
+        ) : null}
+        {mode === "openai" && !openaiConfigured ? <div className="konva-tutor-notice">OPENAI_API_KEY가 .env에서 확인되지 않았습니다.</div> : null}
         {checks.length ? (
           <div className="konva-tutor-checks">
             {checks.map((check, index) => (
@@ -195,7 +209,7 @@ export function TutorPreviewPanel({ problemId, shapeDocument, semantic, solvable
       </div>
 
       <form className="konva-tutor-compose" onSubmit={onSubmit}>
-        <input value={input} onChange={(event) => setInput(event.target.value)} placeholder="학생 답변 입력" />
+        <input value={input} onChange={(event) => setInput(event.target.value)} placeholder="직접 입력하거나 선택지를 클릭하세요" />
         <button type="submit" disabled={busy || !input.trim()}>
           Send
         </button>

@@ -9,7 +9,7 @@ export type ApiErrorCategory =
   | "NETWORK_ERROR"
   | "UNKNOWN_ERROR";
 
-export type TutorPreviewMode = "mock" | "openai";
+export type TutorPreviewMode = "rule" | "mock" | "openai";
 
 export interface TutorPreviewMessage {
   role: "user" | "assistant";
@@ -29,6 +29,7 @@ export interface TutorPreviewStatusResponse {
 
 export interface TutorPreviewResponse extends TutorPreviewStatusResponse {
   reply: string;
+  choices?: string[];
   checks: TutorPreviewCheck[];
 }
 
