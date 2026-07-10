@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState, type PointerEvent as ReactPointerEvent } from "react";
 import { ProblemList } from "../components/ProblemList";
 import { applyLayoutPatches, buildProblem, loadProblem, problemDetailToCanonicalProblem } from "../api/editorApi";
 import { problemJsonToLayoutPatches } from "../tldraw/converters/problemJsonToLayoutPatches";
@@ -11,35 +11,101 @@ import { JsonImportExport } from "./JsonImportExport";
 import { KonvaStage } from "./KonvaStage";
 import { KonvaToolbar, type ShapePreset } from "./KonvaToolbar";
 import { PropertyPanel } from "./PropertyPanel";
+import { TutorPreviewPanel } from "./TutorPreviewPanel";
 
 const initialProblem = sampleProblem as ProblemJson;
 
 export function EditorKonva() {
   const [baseProblemJson, setBaseProblemJson] = useState<ProblemJson>(initialProblem);
   const [document, setDocument] = useState<EditorShapeDocument>(() => problemJsonToEditorDocument(initialProblem));
+  const [previewArtifacts, setPreviewArtifacts] = useState<{
+    semantic: Record<string, unknown> | null;
+    solvable: Record<string, unknown> | null;
+    layout: import("../api/editorApi").LayoutDocument | null;
+    renderer: import("../api/editorApi").RendererDocument | null;
+  }>({ semantic: null, solvable: null, layout: null, renderer: null });
   const [selectedShapeIds, setSelectedShapeIds] = useState<string[]>([]);
   const [selectedProblemId, setSelectedProblemId] = useState(initialProblem.id);
   const [message, setMessage] = useState("Loaded sample problem in Konva editor.");
+  const [propertyPanelHeight, setPropertyPanelHeight] = useState(270);
+  const [tutorPanelHeight, setTutorPanelHeight] = useState(300);
   const clipboardRef = useRef<EditorShape[]>([]);
   const imageFileInputRef = useRef<HTMLInputElement | null>(null);
+  const sidePanelRef = useRef<HTMLDivElement | null>(null);
   const idPrefix = useMemo(() => `konva_${Date.now()}`, []);
 
   const selectedShape = selectedShapeIds.length === 1 ? document.shapes.find((shape) => shape.id === selectedShapeIds[0]) ?? null : null;
+  const sidePanelGridRows = useMemo(
+    () => `${propertyPanelHeight}px 8px ${tutorPanelHeight}px 8px minmax(0, 1fr)`,
+    [propertyPanelHeight, tutorPanelHeight],
+  );
 
-  const setProblem = useCallback((problem: ProblemJson, nextMessage: string) => {
+  const startSidePanelResize = useCallback(
+    (target: "property" | "tutor", event: ReactPointerEvent<HTMLDivElement>) => {
+      event.preventDefault();
+      const sidePanel = sidePanelRef.current;
+      if (!sidePanel) return;
+
+      const startY = event.clientY;
+      const startPropertyHeight = propertyPanelHeight;
+      const startTutorHeight = tutorPanelHeight;
+      const panelHeight = sidePanel.getBoundingClientRect().height;
+      const minPropertyHeight = 132;
+      const minTutorHeight = 220;
+      const minJsonHeight = 160;
+      const handlesHeight = 16;
+
+      const onPointerMove = (moveEvent: PointerEvent) => {
+        const delta = moveEvent.clientY - startY;
+        if (target === "property") {
+          const maxPropertyHeight = Math.max(
+            minPropertyHeight,
+            panelHeight - startTutorHeight - minJsonHeight - handlesHeight,
+          );
+          setPropertyPanelHeight(clamp(startPropertyHeight + delta, minPropertyHeight, maxPropertyHeight));
+          return;
+        }
+
+        const maxTutorHeight = Math.max(
+          minTutorHeight,
+          panelHeight - startPropertyHeight - minJsonHeight - handlesHeight,
+        );
+        setTutorPanelHeight(clamp(startTutorHeight + delta, minTutorHeight, maxTutorHeight));
+      };
+
+      const onPointerUp = () => {
+        window.removeEventListener("pointermove", onPointerMove);
+        window.removeEventListener("pointerup", onPointerUp);
+        window.document.body.classList.remove("is-resizing-konva-side-panel");
+      };
+
+      window.document.body.classList.add("is-resizing-konva-side-panel");
+      window.addEventListener("pointermove", onPointerMove);
+      window.addEventListener("pointerup", onPointerUp, { once: true });
+    },
+    [propertyPanelHeight, tutorPanelHeight],
+  );
+
+  const setProblem = useCallback((problem: ProblemJson, nextMessage: string, artifacts = previewArtifacts) => {
     setBaseProblemJson(problem);
+    setPreviewArtifacts(artifacts);
     setDocument(problemJsonToEditorDocument(problem));
     setSelectedProblemId(problem.id);
     setSelectedShapeIds([]);
     setMessage(nextMessage);
-  }, []);
+  }, [previewArtifacts]);
 
   const openProblem = useCallback(
     async (problemId: string) => {
       setMessage(`Loading ${problemId}...`);
       try {
         const detail = await loadProblem(problemId);
-        setProblem(problemDetailToCanonicalProblem(detail), `Loaded ${problemId}.`);
+        setProblem(problemDetailToCanonicalProblem(detail), `Loaded ${problemId}.`, {
+          semantic: detail.semantic,
+          solvable: detail.solvable,
+          layout: detail.layout,
+          renderer: detail.renderer,
+        });
       } catch (error) {
         setMessage(`Could not load ${problemId}: ${String(error)}`);
       }
@@ -464,16 +530,40 @@ export function EditorKonva() {
       />
       <div className="editor-body konva-editor-body">
         <ProblemList selectedProblemId={selectedProblemId} onOpenProblem={openProblem} />
-        <KonvaStage
-          width={document.canvas.width}
-          height={document.canvas.height}
-          shapes={document.shapes}
-          selectedShapeIds={selectedShapeIds}
-          onSelectShapes={setSelectedShapeIds}
-          onChangeShapes={updateShapes}
-        />
-        <div className="konva-side-panel">
+        <div className="konva-main-panel">
+          <KonvaStage
+            width={document.canvas.width}
+            height={document.canvas.height}
+            shapes={document.shapes}
+            selectedShapeIds={selectedShapeIds}
+            onSelectShapes={setSelectedShapeIds}
+            onChangeShapes={updateShapes}
+          />
+        </div>
+        <div className="konva-side-panel" ref={sidePanelRef} style={{ gridTemplateRows: sidePanelGridRows }}>
           <PropertyPanel shape={selectedShape} onChange={patchSelectedShape} />
+          <div
+            className="konva-side-resizer"
+            role="separator"
+            aria-label="Resize properties panel"
+            aria-orientation="horizontal"
+            onPointerDown={(event) => startSidePanelResize("property", event)}
+          />
+          <TutorPreviewPanel
+            problemId={selectedProblemId}
+            shapeDocument={document}
+            semantic={previewArtifacts.semantic}
+            solvable={previewArtifacts.solvable}
+            layout={previewArtifacts.layout}
+            renderer={previewArtifacts.renderer}
+          />
+          <div
+            className="konva-side-resizer"
+            role="separator"
+            aria-label="Resize tutor panel"
+            aria-orientation="horizontal"
+            onPointerDown={(event) => startSidePanelResize("tutor", event)}
+          />
           <JsonImportExport document={document} message={message} onImport={importDocument} />
         </div>
       </div>
@@ -483,6 +573,10 @@ export function EditorKonva() {
 
 function cloneShape<T extends EditorShape>(shape: T): T {
   return JSON.parse(JSON.stringify(shape)) as T;
+}
+
+function clamp(value: number, min: number, max: number): number {
+  return Math.min(max, Math.max(min, value));
 }
 
 function createShapeFromPreset(preset: ShapePreset, id: string): EditorShape {

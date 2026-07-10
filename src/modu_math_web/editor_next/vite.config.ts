@@ -15,8 +15,8 @@ export default defineConfig({
     rollupOptions: {
       input: "index.html",
       output: {
-        entryFileNames: "editor-next-app.js",
-        chunkFileNames: "editor-next-[name].js",
+        entryFileNames: "editor-next-app-tutor.js",
+        chunkFileNames: "editor-next-[name]-[hash].js",
         assetFileNames: (assetInfo) => {
           if (assetInfo.names?.some((name) => name.endsWith(".css"))) return "editor-next-app[extname]";
           return "editor-next-[name][extname]";

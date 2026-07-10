@@ -78,6 +78,29 @@ export interface BuildProblemResponse {
   error?: string;
 }
 
+export type TutorPreviewMode = "mock" | "openai";
+
+export interface TutorPreviewMessage {
+  role: "user" | "assistant";
+  content: string;
+}
+
+export interface TutorPreviewCheck {
+  level: "ok" | "warn" | "error" | string;
+  message: string;
+}
+
+export interface TutorPreviewStatusResponse {
+  ok: boolean;
+  openai_configured: boolean;
+  model: string;
+}
+
+export interface TutorPreviewResponse extends TutorPreviewStatusResponse {
+  reply: string;
+  checks: TutorPreviewCheck[];
+}
+
 function encodedProblemPath(problemId: string, suffix = ""): string {
   const safe = problemId
     .split("/")
@@ -142,6 +165,23 @@ export async function applyLayoutPatches(
 export function buildProblem(problemId: string): Promise<BuildProblemResponse> {
   return requestJson<BuildProblemResponse>(encodedProblemPath(problemId, "/build/"), {
     method: "POST",
+  });
+}
+
+export function tutorPreviewStatus(): Promise<TutorPreviewStatusResponse> {
+  return requestJson<TutorPreviewStatusResponse>("/api/editor/tutor-preview/status/");
+}
+
+export function sendTutorPreviewMessage(options: {
+  mode: TutorPreviewMode;
+  message: string;
+  history: TutorPreviewMessage[];
+  payload: Record<string, unknown>;
+}): Promise<TutorPreviewResponse> {
+  return requestJson<TutorPreviewResponse>("/api/editor/tutor-preview/", {
+    method: "POST",
+    headers: { "Content-Type": "application/json", Accept: "application/json" },
+    body: JSON.stringify(options),
   });
 }
 

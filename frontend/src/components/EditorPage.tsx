@@ -8,10 +8,11 @@ import { ManualPatchPanel } from "./ManualPatchPanel";
 import { ProblemList } from "./ProblemList";
 import { PropertyInspector } from "./PropertyInspector";
 import { StatusBar } from "./StatusBar";
+import { TutorPreviewPanel } from "./TutorPreviewPanel";
 
 export function EditorPage() {
   const store = createEditorStore();
-  const [inspectorTab, setInspectorTab] = createSignal<"properties" | "dsl" | "json">("properties");
+  const [inspectorTab, setInspectorTab] = createSignal<"properties" | "dsl" | "json" | "tutor">("properties");
   const selectedSlot = createMemo(() => {
     const selectedId = store.state.selectedIds[0];
     return store.state.document?.slots.find((slot) => slot.id === selectedId) ?? null;
@@ -115,6 +116,9 @@ export function EditorPage() {
             <button type="button" role="tab" aria-selected={inspectorTab() === "json"} classList={{ active: inspectorTab() === "json" }} onClick={() => setInspectorTab("json")}>
               JSON
             </button>
+            <button type="button" role="tab" aria-selected={inspectorTab() === "tutor"} classList={{ active: inspectorTab() === "tutor" }} onClick={() => setInspectorTab("tutor")}>
+              Tutor
+            </button>
           </div>
           <Show when={inspectorTab() === "properties"}>
             <div class="ppt-tab-panel" role="tabpanel">
@@ -130,6 +134,11 @@ export function EditorPage() {
           <Show when={inspectorTab() === "json"}>
             <div class="ppt-tab-panel" role="tabpanel">
               <BuildOutput document={store.state.document} buildOutput={store.state.buildOutput} />
+            </div>
+          </Show>
+          <Show when={inspectorTab() === "tutor"}>
+            <div class="ppt-tab-panel" role="tabpanel">
+              <TutorPreviewPanel store={store} />
             </div>
           </Show>
         </aside>

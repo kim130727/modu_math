@@ -7,6 +7,10 @@ import type {
   LayoutPatchBuildResponse,
   ProblemDetailResponse,
   ProblemsListResponse,
+  TutorPreviewMessage,
+  TutorPreviewMode,
+  TutorPreviewResponse,
+  TutorPreviewStatusResponse,
 } from "../types/api";
 
 function encodedProblemPath(problemId: string, suffix = ""): string {
@@ -52,4 +56,20 @@ export function formatDsl(problemId: string): Promise<DslMutationResponse> {
 
 export function buildProblem(problemId: string): Promise<BuildProblemResponse> {
   return requestJson<BuildProblemResponse>(encodedProblemPath(problemId, "/build/"), { method: "POST" });
+}
+
+export function tutorPreviewStatus(): Promise<TutorPreviewStatusResponse> {
+  return requestJson<TutorPreviewStatusResponse>("/api/editor/tutor-preview/status/");
+}
+
+export function sendTutorPreviewMessage(options: {
+  mode: TutorPreviewMode;
+  message: string;
+  history: TutorPreviewMessage[];
+  payload: Record<string, unknown>;
+}): Promise<TutorPreviewResponse> {
+  return requestJson<TutorPreviewResponse>("/api/editor/tutor-preview/", {
+    method: "POST",
+    body: JSON.stringify(options),
+  });
 }
