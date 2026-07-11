@@ -1,0 +1,192 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "circle_hexagon_perimeter_difference_001",
+  "title": "원과 정육각형의 둘레의 차",
+  "canvas": {
+    "width": 700,
+    "height": 420,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "vertical",
+      "slot_ids": [
+        "slot.question"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.circle",
+        "slot.hexagon",
+        "konva_1783767050396_paste_321289_0",
+        "slot.diameter_line",
+        "slot.center_point",
+        "slot.label_30"
+      ]
+    },
+    {
+      "id": "region.answer",
+      "role": "answer",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.question",
+      "kind": "text_box",
+      "prompt": "원과 정육각형의 둘레의 차를 묻는 문제",
+      "content": {
+        "text": "오른쪽 도형에서 원과 정육각형의 둘레의 차는 몇 cm입니까? (원주율: 3.14)",
+        "style_role": "body",
+        "x": 17.0,
+        "y": 20.0,
+        "width": 430.0,
+        "height": 126.0,
+        "align": "left",
+        "valign": "top",
+        "font_size": 27,
+        "line_height": 1.45,
+        "fill": "#111111",
+        "semantic_role": "question"
+      }
+    },
+    {
+      "id": "slot.circle",
+      "kind": "circle",
+      "prompt": "지름이 30cm인 원",
+      "content": {
+        "cx": 336.0,
+        "cy": 264.0,
+        "r": 100.0,
+        "stroke": "#202020",
+        "stroke_width": 2.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.hexagon",
+      "kind": "polygon",
+      "prompt": "원에 내접한 정육각형",
+      "content": {
+        "points": [
+          [
+            436.0,
+            264.0
+          ],
+          [
+            386.0,
+            177.4
+          ],
+          [
+            286.0,
+            177.4
+          ],
+          [
+            236.0,
+            264.0
+          ],
+          [
+            286.0,
+            350.6
+          ],
+          [
+            386.0,
+            350.6
+          ]
+        ],
+        "stroke": "#202020",
+        "stroke_width": 2.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.diameter_line",
+      "kind": "line",
+      "prompt": "원의 지름 30cm",
+      "content": {
+        "x1": 236.0,
+        "y1": 264.0,
+        "x2": 436.0,
+        "y2": 264.0,
+        "stroke": "#202020",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.center_point",
+      "kind": "circle",
+      "prompt": "원의 중심",
+      "content": {
+        "cx": 336.0,
+        "cy": 264.0,
+        "r": 4.5,
+        "stroke": "none",
+        "stroke_width": 0.0,
+        "fill": "#ff3f7f"
+      }
+    },
+    {
+      "id": "slot.label_30",
+      "kind": "text",
+      "prompt": "지름의 길이 표시",
+      "content": {
+        "text": "30 cm",
+        "style_role": "body",
+        "x": 336.0,
+        "y": 230.0,
+        "font_size": 24,
+        "anchor": "middle",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "konva_1783767050396_paste_321289_0",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 234 267 Q 336.5 207 439 267",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#555555",
+        "stroke_width": 1.8,
+        "stroke_dasharray": "6 5",
+        "fill": "none"
+      }
+    }
+  ],
+  "groups": [
+    {
+      "id": "group.diagram.circle_hexagon",
+      "role": "diagram_block",
+      "member_ids": [
+        "slot.circle",
+        "slot.hexagon",
+        "slot.diameter_line",
+        "slot.center_point",
+        "slot.label_30",
+        "konva_1783767050396_paste_321289_0"
+      ]
+    }
+  ],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.question",
+    "region.diagram",
+    "slot.circle",
+    "slot.hexagon",
+    "konva_1783767050396_paste_321289_0",
+    "slot.diameter_line",
+    "slot.center_point",
+    "slot.label_30",
+    "region.answer"
+  ]
+}

@@ -51,6 +51,10 @@ TEXT_SLOT_COMPAT_FIELDS = {
     "TextSlot": {"width", "height", "align", "valign", "line_height"},
     "TextBoxSlot": {"max_width", "anchor"},
 }
+SLOT_COMPAT_FIELDS = {
+    **TEXT_SLOT_COMPAT_FIELDS,
+    "PolygonSlot": {"d"},
+}
 
 
 @dataclass
@@ -268,10 +272,10 @@ class SlotUpdater(cst.CSTTransformer):
 
 
 def _compatible_slot_fields(slot_type: str, fields: dict[str, Any]) -> dict[str, Any]:
-    """Drop known text-box/text-slot compatibility fields before updating an existing slot."""
+    """Drop known compatibility fields before updating an existing slot."""
     allowed = SUPPORTED_SLOTS[slot_type]
     invalid = set(fields) - allowed
-    removable = TEXT_SLOT_COMPAT_FIELDS.get(slot_type, set())
+    removable = SLOT_COMPAT_FIELDS.get(slot_type, set())
     if invalid and invalid.issubset(removable):
         return {name: value for name, value in fields.items() if name not in invalid}
     return fields
@@ -1201,6 +1205,7 @@ def _slot_call_from_value(slot_id: str, value: dict[str, Any]) -> cst.Call:
         raise DslPatchError("add patch value.content must be an object")
 
     allowed = SUPPORTED_SLOTS[ctor]
+    content = _compatible_slot_fields(ctor, content)
     invalid = sorted(set(content) - allowed)
     if invalid:
         raise DslPatchError(f"unsupported field(s) for {ctor}: {', '.join(invalid)}")

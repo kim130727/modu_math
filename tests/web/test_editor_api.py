@@ -230,6 +230,41 @@ SLOTS = (
     assert "max_width" not in updated
 
 
+def test_layout_patch_ignores_polygon_path_d_compat_field(tmp_path: Path) -> None:
+    client = _setup_django(tmp_path)
+    dsl_text = """
+from modu_math.dsl import PolygonSlot
+
+SLOTS = (
+    PolygonSlot(id="slot.poly", points=((0, 0), (10, 0), (0, 10)), stroke="#111111"),
+)
+""".lstrip()
+    problem_dir = _write_problem(tmp_path, "0001", dsl_text)
+
+    payload = {
+        "patches": [
+            {
+                "target": "slot.poly",
+                "op": "update",
+                "value": {
+                    "points": [[1, 2], [11, 2], [1, 12]],
+                    "d": "M 1 2 L 11 2 L 1 12 Z",
+                },
+            }
+        ]
+    }
+    response = client.post(
+        "/api/editor/problems/0001/layout-patch/",
+        data=json.dumps(payload),
+        content_type="application/json",
+    )
+
+    assert response.status_code == 200
+    updated = (problem_dir / "problem.dsl.py").read_text(encoding="utf-8")
+    assert "points=[[1, 2], [11, 2], [1, 12]]" in updated
+    assert "d=\"M 1 2 L 11 2 L 1 12 Z\"" not in updated
+
+
 def test_layout_patch_can_skip_formatting_for_fast_drag_save(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
     client = _setup_django(tmp_path)
     dsl_text = """
@@ -355,6 +390,55 @@ PROBLEM_TEMPLATE = ProblemTemplate(
     updated = (problem_dir / "problem.dsl.py").read_text(encoding="utf-8")
     assert "slot.editor_next.rect.1" in updated
     assert '"slot.q1", "slot.editor_next.rect.1"' in updated
+
+
+def test_layout_patch_add_polygon_ignores_path_d_compat_field(tmp_path: Path) -> None:
+    client = _setup_django(tmp_path)
+    problem_dir = _write_problem(
+        tmp_path,
+        "0001",
+        """
+from modu_math.dsl import Canvas, ProblemTemplate, Region
+
+PROBLEM_TEMPLATE = ProblemTemplate(
+    id="p",
+    title="p",
+    canvas=Canvas(width=100, height=100),
+    regions=(Region(id="region.diagram", role="diagram", flow="absolute", slot_ids=()),),
+    slots=(),
+)
+""".lstrip(),
+    )
+
+    response = client.post(
+        "/api/editor/problems/0001/layout-patch/",
+        data=json.dumps(
+            {
+                "patches": [
+                    {
+                        "target": "slot.poly",
+                        "op": "add",
+                        "value": {
+                            "kind": "polygon",
+                            "region_id": "region.diagram",
+                            "content": {
+                                "points": [[1, 2], [11, 2], [1, 12]],
+                                "d": "M 1 2 L 11 2 L 1 12 Z",
+                                "stroke": "#111111",
+                            },
+                        },
+                    }
+                ]
+            }
+        ),
+        content_type="application/json",
+    )
+
+    assert response.status_code == 200
+    updated = (problem_dir / "problem.dsl.py").read_text(encoding="utf-8")
+    assert "PolygonSlot" in updated
+    assert "points=[[1, 2], [11, 2], [1, 12]]" in updated
+    assert "d=\"M 1 2 L 11 2 L 1 12 Z\"" not in updated
 
 
 def test_build_endpoint_generates_artifacts_without_shell_script(tmp_path: Path) -> None:

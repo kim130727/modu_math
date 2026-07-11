@@ -428,6 +428,7 @@ function rendererElementToProblemObject(problemId: string, element: RendererElem
             fill: stringValue(attrs.fill, "transparent"),
             stroke: stringValue(attrs.stroke, "#111827"),
             strokeWidth: numberValue(attrs["stroke-width"], 1),
+            strokeDasharray: stringValue(attrs["stroke-dasharray"], ""),
             transform: stringValue(attrs.transform, ""),
           },
         },
@@ -481,6 +482,7 @@ function rendererElementToProblemObject(problemId: string, element: RendererElem
         fill: stringValue(attrs.fill, "none"),
         stroke: stringValue(attrs.stroke, "#111827"),
         strokeWidth: numberValue(attrs["stroke-width"], 1),
+        strokeDasharray: stringValue(attrs["stroke-dasharray"], ""),
         transform: stringValue(attrs.transform, ""),
       });
     }
@@ -518,6 +520,7 @@ function rendererElementToProblemObject(problemId: string, element: RendererElem
             fill: stringValue(attrs.fill, "none"),
             stroke: stringValue(attrs.stroke, "#111827"),
             strokeWidth: numberValue(attrs["stroke-width"], 1),
+            strokeDasharray: stringValue(attrs["stroke-dasharray"], ""),
             transform: stringValue(attrs.transform, ""),
           },
         },
@@ -601,6 +604,7 @@ function layoutSlotToProblemObject(problemId: string, slot: LayoutSlot): Problem
             fill: stringValue(content.fill, "none"),
             stroke: stringValue(content.stroke, "#111827"),
             strokeWidth: numberValue(content.stroke_width, 1),
+            strokeDasharray: stringValue(content.stroke_dasharray, ""),
             transform: stringValue(content.transform, ""),
           },
         },
@@ -654,6 +658,7 @@ function layoutSlotToProblemObject(problemId: string, slot: LayoutSlot): Problem
         fill: stringValue(content.fill, "none"),
         stroke: stringValue(content.stroke, "#111827"),
         strokeWidth: numberValue(content.stroke_width, 1),
+        strokeDasharray: stringValue(content.stroke_dasharray, ""),
         transform: stringValue(content.transform, ""),
       });
     }
@@ -780,7 +785,7 @@ function sourceId(element: RendererElement): string {
 function polygonElementToPathObject(
   id: string,
   rawPoints: unknown,
-  style: { fill: string; stroke: string; strokeWidth: number; transform?: string },
+  style: { fill: string; stroke: string; strokeWidth: number; strokeDasharray?: string; transform?: string },
 ): ProblemObject[] {
   const points = parsePolygonPoints(rawPoints);
   if (points.length < 2) return [];
@@ -799,6 +804,7 @@ function polygonElementToPathObject(
         fill: style.fill,
         stroke: style.stroke,
         strokeWidth: style.strokeWidth,
+        strokeDasharray: style.strokeDasharray,
         transform: style.transform ?? "",
       },
     },

@@ -14,9 +14,10 @@ interface ShapeRendererProps {
   onDragStart: (event: Konva.KonvaEventObject<DragEvent>) => void;
   onDragMove: (event: Konva.KonvaEventObject<DragEvent>) => void;
   onDragEnd: (event: Konva.KonvaEventObject<DragEvent>) => void;
+  onContextMenu: (event: Konva.KonvaEventObject<MouseEvent>) => void;
 }
 
-export function ShapeRenderer({ shape, nodeRef, onSelect, onDragStart, onDragMove, onDragEnd }: ShapeRendererProps) {
+export function ShapeRenderer({ shape, nodeRef, onSelect, onDragStart, onDragMove, onDragEnd, onContextMenu }: ShapeRendererProps) {
   const common = {
     id: shape.id,
     ref: nodeRef,
@@ -33,6 +34,7 @@ export function ShapeRenderer({ shape, nodeRef, onSelect, onDragStart, onDragMov
     onDragStart,
     onDragMove,
     onDragEnd,
+    onContextMenu,
   };
 
   switch (shape.type) {
@@ -59,7 +61,16 @@ export function ShapeRenderer({ shape, nodeRef, onSelect, onDragStart, onDragMov
         />
       );
     case "line":
-      return <Line {...common} points={shape.points} stroke={shape.stroke ?? "#111827"} strokeWidth={shape.strokeWidth ?? 2} lineCap="round" />;
+      return (
+        <Line
+          {...common}
+          points={shape.points}
+          stroke={shape.stroke ?? "#111827"}
+          strokeWidth={shape.strokeWidth ?? 2}
+          dash={dashArray(shape.strokeDasharray)}
+          lineCap="round"
+        />
+      );
     case "path":
       return (
         <Path
@@ -68,6 +79,7 @@ export function ShapeRenderer({ shape, nodeRef, onSelect, onDragStart, onDragMov
           fill={normalizeFill(shape.fill)}
           stroke={shape.stroke ?? "#111827"}
           strokeWidth={shape.strokeWidth ?? 1}
+          dash={dashArray(shape.strokeDasharray)}
         />
       );
     case "text":
@@ -279,6 +291,15 @@ function useLoadedImage(src: string): HTMLImageElement | null {
   }, [src]);
 
   return image;
+}
+
+function dashArray(value: string | undefined): number[] | undefined {
+  if (!value) return undefined;
+  const dash = value
+    .split(/[\s,]+/)
+    .map((part) => Number(part))
+    .filter((part) => Number.isFinite(part) && part > 0);
+  return dash.length ? dash : undefined;
 }
 
 function normalizeFill(fill: string | undefined): string {

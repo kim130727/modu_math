@@ -30,6 +30,7 @@ export function KonvaStage({
   const selectionStartRef = useRef<{ x: number; y: number; additive: boolean } | null>(null);
   const [viewport, setViewport] = useState({ width: 900, height: 640 });
   const [selectionRect, setSelectionRect] = useState<CanvasRect | null>(null);
+  const [contextMenu, setContextMenu] = useState<{ x: number; y: number; shapeId: string } | null>(null);
   const [, setFontLoadRevision] = useState(0);
 
   useEffect(() => {
@@ -53,6 +54,17 @@ export function KonvaStage({
       cancelled = true;
     };
   }, []);
+
+  useEffect(() => {
+    if (!contextMenu) return;
+    const closeMenu = () => setContextMenu(null);
+    window.addEventListener("pointerdown", closeMenu);
+    window.addEventListener("keydown", closeMenu);
+    return () => {
+      window.removeEventListener("pointerdown", closeMenu);
+      window.removeEventListener("keydown", closeMenu);
+    };
+  }, [contextMenu]);
 
   useEffect(() => {
     if (!transformerRef.current) return;
@@ -93,6 +105,21 @@ export function KonvaStage({
     onSelectShapes(
       selectedIdSet.has(shapeId) ? selectedShapeIds.filter((id) => id !== shapeId) : [...selectedShapeIds, shapeId],
     );
+  };
+
+  const openShapeContextMenu = (shape: EditorShape, event: Konva.KonvaEventObject<MouseEvent>) => {
+    if (shape.type !== "line") return;
+    event.evt.preventDefault();
+    event.cancelBubble = true;
+    if (!selectedIdSet.has(shape.id)) onSelectShapes([shape.id]);
+    setContextMenu({ x: event.evt.clientX, y: event.evt.clientY, shapeId: shape.id });
+  };
+
+  const setLineDash = (shapeId: string, strokeDasharray: string | undefined) => {
+    const shape = shapes.find((candidate): candidate is LineShape => candidate.id === shapeId && candidate.type === "line");
+    if (!shape) return;
+    onChangeShapes([{ ...shape, strokeDasharray }]);
+    setContextMenu(null);
   };
 
   const startShapeDrag = (shapeId: string) => {
@@ -202,6 +229,7 @@ export function KonvaStage({
               onDragStart={() => startShapeDrag(shape.id)}
               onDragMove={(event) => moveSelectedShapes(shape.id, event)}
               onDragEnd={finishSelectedDrag}
+              onContextMenu={(event) => openShapeContextMenu(shape, event)}
             />
           ))}
           {selectionRect ? (
@@ -245,6 +273,16 @@ export function KonvaStage({
           />
         </Layer>
       </Stage>
+      {contextMenu ? (
+        <div className="konva-context-menu" style={{ left: contextMenu.x, top: contextMenu.y }} onPointerDown={(event) => event.stopPropagation()}>
+          <button type="button" onClick={() => setLineDash(contextMenu.shapeId, "8 7")}>
+            점선으로 변경
+          </button>
+          <button type="button" onClick={() => setLineDash(contextMenu.shapeId, undefined)}>
+            실선으로 변경
+          </button>
+        </div>
+      ) : null}
     </div>
   );
 }
@@ -454,10 +492,14 @@ function shapeFromNode(shape: EditorShape, node: Konva.Node): EditorShape {
       radius: Math.max(4, shape.radius * ((Math.abs(scaleX) + Math.abs(scaleY)) / 2)),
     };
   }
-  return {
-    ...shape,
-    x: node.x(),
-    y: node.y(),
-    rotation: node.rotation(),
-  };
+  if (shape.type === "line") {
+    return {
+      ...shape,
+      x: node.x(),
+      y: node.y(),
+      rotation: node.rotation(),
+      points: shape.points.map((point, index) => point * (index % 2 === 0 ? scaleX : scaleY)),
+    };
+  }
+  return shape;
 }

@@ -182,6 +182,7 @@ Rules:
 - Every check must include at least `id`, `expr`, `expected`, `actual`, and `pass`.
 - Use conservative explicit placeholders plus TODO comments when a value is uncertain.
 - Keep `SOLVABLE` small and verifiable.
+- For geometry problems, include the geometric reason behind any non-obvious relation in `SOLVABLE["steps"][].explanation` or `SOLVABLE["plan"]`; for example, explain why an inscribed regular hexagon has side length equal to the circle radius before using that relation.
 
 ## 7) Answer Synchronization
 

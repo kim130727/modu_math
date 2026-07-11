@@ -217,7 +217,7 @@ function mathTextFields(object: MathTextObject, includeBoxSize: boolean): Record
 
 function basicShapeFields(object: BasicShapeObject): Record<string, unknown> {
   if (object.props.shape === "line") {
-    return {
+    const fields: Record<string, unknown> = {
       x1: round(object.x),
       y1: round(object.y),
       x2: round(object.x + object.props.width),
@@ -225,11 +225,13 @@ function basicShapeFields(object: BasicShapeObject): Record<string, unknown> {
       stroke: object.props.stroke ?? "#111827",
       stroke_width: round(object.props.strokeWidth ?? 1),
     };
+    fields.stroke_dasharray = object.props.strokeDasharray || null;
+    return fields;
   }
 
   if (object.props.shape === "ellipse") {
     const radius = Math.min(object.props.width, object.props.height) / 2;
-    return {
+    const fields: Record<string, unknown> = {
       cx: round(object.x + object.props.width / 2),
       cy: round(object.y + object.props.height / 2),
       r: round(radius),
@@ -237,9 +239,11 @@ function basicShapeFields(object: BasicShapeObject): Record<string, unknown> {
       stroke: object.props.stroke ?? "#111827",
       stroke_width: round(object.props.strokeWidth ?? 1),
     };
+    fields.stroke_dasharray = object.props.strokeDasharray || null;
+    return fields;
   }
 
-  return {
+  const fields: Record<string, unknown> = {
     x: round(object.x),
     y: round(object.y),
     width: round(object.props.width),
@@ -248,6 +252,8 @@ function basicShapeFields(object: BasicShapeObject): Record<string, unknown> {
     stroke: object.props.stroke ?? "#111827",
     stroke_width: round(object.props.strokeWidth ?? 1),
   };
+  fields.stroke_dasharray = object.props.strokeDasharray || null;
+  return fields;
 }
 
 function imageFields(object: ImageObject): Record<string, unknown> {
@@ -262,12 +268,14 @@ function imageFields(object: ImageObject): Record<string, unknown> {
 }
 
 function pathFields(object: PathObject): Record<string, unknown> {
-  return {
+  const fields: Record<string, unknown> = {
     d: offsetPathData(object.props.d, object.x, object.y),
     fill: object.props.fill ?? "none",
     stroke: object.props.stroke ?? "#111827",
     stroke_width: round(object.props.strokeWidth ?? 1),
   };
+  fields.stroke_dasharray = object.props.strokeDasharray || null;
+  return fields;
 }
 
 function tableUpdatePatches(base: TableObject, next: TableObject): LayoutPatch[] {

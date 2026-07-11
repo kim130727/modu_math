@@ -1,0 +1,362 @@
+{
+  "problem_id": "nested_semicircle_triangles_20260711",
+  "problem_type": "diagram_problem",
+  "metadata": {
+    "title": "겹쳐진 반원과 삼각형",
+    "tags": [
+      "geometry",
+      "semicircle",
+      "triangle",
+      "nested-shapes",
+      "schema-compliant"
+    ],
+    "instruction": "겹쳐진 반원과 삼각형의 관계를 살펴보세요.",
+    "question": "그림을 보고 물음에 답하세요.",
+    "required_layout_ids": [
+      "slot.outer_triangle",
+      "slot.middle_triangle",
+      "slot.inner_triangle",
+      "slot.outer_semicircle",
+      "slot.middle_semicircle",
+      "slot.inner_semicircle",
+      "slot.left_dashed_line",
+      "slot.right_dashed_line",
+      "slot.center_point"
+    ],
+    "extraction_confidence": 1.0
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "slot.answer",
+        "type": "blank",
+        "properties": {
+          "prompt": "단답형 정답",
+          "placeholder": "정답"
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.answer"
+          },
+          {
+            "kind": "region",
+            "id": "region.answer"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.center_point",
+        "type": "circle_slot",
+        "properties": {
+          "cx": 450,
+          "cy": 422,
+          "r": 7,
+          "stroke": "none",
+          "stroke_width": null,
+          "fill": "#222222",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.center_point"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.inner_semicircle",
+        "type": "path_slot",
+        "properties": {
+          "d": "M 335 422 A 115 115 0 0 1 565 422",
+          "stroke": "#222222",
+          "stroke_width": 2,
+          "stroke_dasharray": null,
+          "fill": "none",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.inner_semicircle"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.inner_triangle",
+        "type": "polygon_slot",
+        "properties": {
+          "points": [
+            [
+              335,
+              422
+            ],
+            [
+              450,
+              307
+            ],
+            [
+              565,
+              422
+            ]
+          ],
+          "stroke": "#222222",
+          "stroke_width": 2,
+          "fill": "#ffffff",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.inner_triangle"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.instruction",
+        "type": "instruction",
+        "properties": {
+          "text": "겹쳐진 반원과 삼각형의 관계를 살펴보세요.",
+          "width": 804,
+          "height": 42
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.instruction"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.left_dashed_line",
+        "type": "line_slot",
+        "properties": {
+          "x1": 450,
+          "y1": 422,
+          "x2": 368,
+          "y2": 340,
+          "stroke": "#222222",
+          "stroke_width": 2,
+          "stroke_dasharray": "8 7",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.left_dashed_line"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.middle_semicircle",
+        "type": "path_slot",
+        "properties": {
+          "d": "M 285 422 A 165 165 0 0 1 615 422",
+          "stroke": "#222222",
+          "stroke_width": 2,
+          "stroke_dasharray": null,
+          "fill": "none",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.middle_semicircle"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.middle_triangle",
+        "type": "polygon_slot",
+        "properties": {
+          "points": [
+            [
+              285,
+              422
+            ],
+            [
+              450,
+              257
+            ],
+            [
+              615,
+              422
+            ]
+          ],
+          "stroke": "#222222",
+          "stroke_width": 2,
+          "fill": "#eeeeee",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.middle_triangle"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.outer_semicircle",
+        "type": "path_slot",
+        "properties": {
+          "d": "M 215 422 A 235 235 0 0 1 685 422",
+          "stroke": "#222222",
+          "stroke_width": 2,
+          "stroke_dasharray": null,
+          "fill": "none",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.outer_semicircle"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.outer_triangle",
+        "type": "polygon_slot",
+        "properties": {
+          "points": [
+            [
+              215,
+              422
+            ],
+            [
+              450,
+              187
+            ],
+            [
+              685,
+              422
+            ]
+          ],
+          "stroke": "#222222",
+          "stroke_width": 2,
+          "fill": "#dddddd",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.outer_triangle"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.question",
+        "type": "question",
+        "properties": {
+          "text": "그림을 보고 물음에 답하세요.",
+          "width": 804,
+          "height": 54
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.question"
+          },
+          {
+            "kind": "region",
+            "id": "region.stem"
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "id": "slot.right_dashed_line",
+        "type": "line_slot",
+        "properties": {
+          "x1": 450,
+          "y1": 422,
+          "x2": 532,
+          "y2": 340,
+          "stroke": "#222222",
+          "stroke_width": 2,
+          "stroke_dasharray": "8 7",
+          "semantic_role": null
+        },
+        "refs": [
+          {
+            "kind": "slot",
+            "id": "slot.right_dashed_line"
+          },
+          {
+            "kind": "region",
+            "id": "region.diagram"
+          }
+        ],
+        "layout_required": true,
+        "confidence": 1.0
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0
+  },
+  "answer": {
+    "blanks": [
+      {
+        "id": "slot.answer",
+        "slot_id": "slot.answer",
+        "expected": ""
+      }
+    ],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0
+  }
+}

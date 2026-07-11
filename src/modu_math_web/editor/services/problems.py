@@ -22,7 +22,7 @@ ARTIFACT_FILES = {
 
 BLANK_PROBLEM_DSL = '''from __future__ import annotations
 
-from modu_math.dsl import BlankSlot, Canvas, ChoiceSlot, ProblemTemplate, Region, TextBoxSlot
+from modu_math.dsl import BlankSlot, Canvas, ProblemTemplate, Region, TextBoxSlot
 
 
 PROBLEM_ID = "{problem_id}"
@@ -95,12 +95,6 @@ def build_problem_template() -> ProblemTemplate:
                 slot_ids=("slot.work_area",),
             ),
             Region(
-                id="region.choices",
-                role="choices",
-                flow="vertical",
-                slot_ids=("slot.choices",),
-            ),
-            Region(
                 id="region.answer",
                 role="answer",
                 flow="vertical",
@@ -144,15 +138,9 @@ def build_problem_template() -> ProblemTemplate:
                 font_size=22,
                 line_height=1.35,
             ),
-            ChoiceSlot(
-                id="slot.choices",
-                prompt="객관식 보기. 필요 없으면 비워 두세요.",
-                choices=("A. ", "B. ", "C. ", "D. "),
-                answer_key=(),
-            ),
             BlankSlot(
                 id="slot.answer",
-                prompt="단답형 정답. 객관식 문제만 만들 경우 비워 두세요.",
+                prompt="단답형 정답",
                 answer_key="",
                 placeholder="정답",
             ),
@@ -511,6 +499,8 @@ def create_blank_problem(problem_id: str, title: str | None = None) -> dict[str,
 
     if dsl_path.exists():
         raise FileExistsError(f"problem already exists: {display_id}")
+    if not create_parent_only and base_dir.exists():
+        raise FileExistsError(f"problem folder already exists: {display_id}")
 
     base_dir.mkdir(parents=True, exist_ok=create_parent_only)
     clean_title = (title or template_problem_id or "New problem").replace('"', '\\"')

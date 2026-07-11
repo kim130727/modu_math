@@ -115,7 +115,7 @@ export function EditorKonva() {
   );
 
   const createNewProblem = useCallback(async () => {
-    const rawName = window.prompt("새 문제 이름 또는 경로", "drafts/new_problem");
+    const rawName = window.prompt("새 문제 이름 또는 경로", defaultNewProblemId());
     if (rawName === null) return;
     const problemId = normalizeNewProblemId(rawName);
     if (!problemId) {
@@ -613,6 +613,16 @@ function normalizeNewProblemId(value: string): string {
     .replace(/\s+/g, "_")
     .replace(/\/(?:\.|\.\.)(?=\/|$)/g, "")
     .replace(/^(?:\.|\.\.)\/?/, "");
+}
+
+function defaultNewProblemId(): string {
+  const now = new Date();
+  const stamp = [
+    now.getFullYear(),
+    String(now.getMonth() + 1).padStart(2, "0"),
+    String(now.getDate()).padStart(2, "0"),
+  ].join("");
+  return `drafts/new_problem_${stamp}`;
 }
 
 function fileTitleFromProblemId(problemId: string): string {

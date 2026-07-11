@@ -38,6 +38,13 @@ export function PropertyPanel({ shape, onChange }: PropertyPanelProps) {
             onChange={(strokeWidth) => onChange({ strokeWidth } as Partial<EditorShape>)}
           />
         ) : null}
+        {shape.type === "line" || shape.type === "path" || shape.type === "rect" || shape.type === "circle" ? (
+          <TextField
+            label="dash"
+            value={shape.strokeDasharray ?? ""}
+            onChange={(strokeDasharray) => onChange({ strokeDasharray } as Partial<EditorShape>)}
+          />
+        ) : null}
         {shape.type === "rect" || shape.type === "image" || shape.type === "math" ? (
           <>
             <NumberField label="width" value={shape.width} onChange={(width) => onChange({ width } as Partial<EditorShape>)} />

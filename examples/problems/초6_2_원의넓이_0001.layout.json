@@ -1,0 +1,304 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "three_circle_circumference_001",
+  "title": "세 원의 원주의 합",
+  "canvas": {
+    "width": 700,
+    "height": 420,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "vertical",
+      "slot_ids": [
+        "slot.question"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.circle_left",
+        "slot.circle_middle",
+        "slot.circle_right",
+        "slot.distance_14_arc",
+        "slot.distance_18_arc",
+        "konva_1783766230573_paste_122425_0",
+        "slot.center_line",
+        "slot.radius_10_line",
+        "slot.center_left",
+        "slot.center_middle",
+        "slot.center_right",
+        "slot.label_14",
+        "slot.label_18",
+        "slot.label_10"
+      ]
+    },
+    {
+      "id": "region.answer",
+      "role": "answer",
+      "flow": "vertical",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.question",
+      "kind": "text_box",
+      "prompt": "세 원의 원주의 합을 묻는 문제",
+      "content": {
+        "text": "세 원의 원주의 합은 몇 cm입니까? (원주율: 3)",
+        "style_role": "body",
+        "x": 40.0,
+        "y": 30.0,
+        "width": 820.0,
+        "height": 47.0,
+        "align": "left",
+        "valign": "top",
+        "font_size": 30,
+        "line_height": 1.3,
+        "fill": "#111111",
+        "semantic_role": "question"
+      }
+    },
+    {
+      "id": "slot.circle_left",
+      "kind": "circle",
+      "prompt": "반지름이 6cm인 왼쪽 원",
+      "content": {
+        "cx": 210.0,
+        "cy": 244.0,
+        "r": 48.0,
+        "stroke": "#202020",
+        "stroke_width": 2.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.circle_middle",
+      "kind": "circle",
+      "prompt": "반지름이 8cm인 가운데 원",
+      "content": {
+        "cx": 323.0,
+        "cy": 244.0,
+        "r": 64.0,
+        "stroke": "#202020",
+        "stroke_width": 2.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.circle_right",
+      "kind": "circle",
+      "prompt": "반지름이 10cm인 오른쪽 원",
+      "content": {
+        "cx": 466.0,
+        "cy": 245.0,
+        "r": 80.0,
+        "stroke": "#202020",
+        "stroke_width": 2.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.center_line",
+      "kind": "line",
+      "prompt": "세 원의 중심을 잇는 선",
+      "content": {
+        "x1": 210.0,
+        "y1": 245.0,
+        "x2": 466.0,
+        "y2": 245.0,
+        "stroke": "#303030",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.radius_10_line",
+      "kind": "line",
+      "prompt": "오른쪽 원의 반지름 10cm",
+      "content": {
+        "x1": 466.0,
+        "y1": 245.0,
+        "x2": 466.0,
+        "y2": 325.0,
+        "stroke": "#303030",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.distance_14_arc",
+      "kind": "path",
+      "prompt": "왼쪽 원과 가운데 원의 중심 사이 거리 14cm",
+      "content": {
+        "d": "M 207 240 Q 266 300 325 240",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#555555",
+        "stroke_width": 1.8,
+        "stroke_dasharray": "6 5",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.distance_18_arc",
+      "kind": "path",
+      "prompt": "가운데 원과 오른쪽 원의 중심 사이 거리 18cm",
+      "content": {
+        "d": "M 320 248 Q 396 188 472 248",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#555555",
+        "stroke_width": 1.8,
+        "stroke_dasharray": "6 5",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.center_left",
+      "kind": "circle",
+      "prompt": "왼쪽 원의 중심",
+      "content": {
+        "cx": 210.0,
+        "cy": 245.0,
+        "r": 4.5,
+        "stroke": "none",
+        "stroke_width": 2.0,
+        "fill": "#ff3f7f"
+      }
+    },
+    {
+      "id": "slot.center_middle",
+      "kind": "circle",
+      "prompt": "가운데 원의 중심",
+      "content": {
+        "cx": 322.0,
+        "cy": 245.0,
+        "r": 4.5,
+        "stroke": "none",
+        "stroke_width": 2.0,
+        "fill": "#ff3f7f"
+      }
+    },
+    {
+      "id": "slot.center_right",
+      "kind": "circle",
+      "prompt": "오른쪽 원의 중심",
+      "content": {
+        "cx": 466.0,
+        "cy": 245.0,
+        "r": 4.5,
+        "stroke": "none",
+        "stroke_width": 2.0,
+        "fill": "#ff3f7f"
+      }
+    },
+    {
+      "id": "slot.label_14",
+      "kind": "text",
+      "prompt": "두 원의 중심 사이 거리 14cm",
+      "content": {
+        "text": "14cm",
+        "style_role": "body",
+        "x": 256.0,
+        "y": 308.0,
+        "font_size": 25,
+        "anchor": "middle",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.label_18",
+      "kind": "text",
+      "prompt": "두 원의 중심 사이 거리 18cm",
+      "content": {
+        "text": "18cm",
+        "style_role": "body",
+        "x": 428.0,
+        "y": 213.0,
+        "font_size": 25,
+        "anchor": "middle",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.label_10",
+      "kind": "text",
+      "prompt": "오른쪽 원의 반지름 10cm",
+      "content": {
+        "text": "10cm",
+        "style_role": "body",
+        "x": 499.0,
+        "y": 286.0,
+        "font_size": 24,
+        "anchor": "middle",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "konva_1783766230573_paste_122425_0",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 427.794 340.073 Q 464.841 331.153 482.679 285.188",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#555555",
+        "stroke_width": 1.8,
+        "stroke_dasharray": "6 5",
+        "fill": "none"
+      }
+    }
+  ],
+  "groups": [
+    {
+      "id": "group.diagram.three_circles",
+      "role": "diagram_block",
+      "member_ids": [
+        "slot.circle_left",
+        "slot.circle_middle",
+        "slot.circle_right",
+        "slot.center_line",
+        "slot.radius_10_line",
+        "slot.distance_14_arc",
+        "slot.distance_18_arc",
+        "slot.center_left",
+        "slot.center_middle",
+        "slot.center_right",
+        "slot.label_14",
+        "slot.label_18",
+        "slot.label_10",
+        "konva_1783766230573_paste_122425_0",
+        "konva_1783766230573_arrow_592743",
+        "konva_1783766230573_arrow_617127",
+        "konva_1783766230573_paste_678750_0"
+      ]
+    }
+  ],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.question",
+    "region.diagram",
+    "slot.circle_left",
+    "slot.circle_middle",
+    "slot.circle_right",
+    "slot.distance_14_arc",
+    "slot.distance_18_arc",
+    "konva_1783766230573_paste_122425_0",
+    "slot.center_line",
+    "slot.radius_10_line",
+    "slot.center_left",
+    "slot.center_middle",
+    "slot.center_right",
+    "slot.label_14",
+    "slot.label_18",
+    "slot.label_10",
+    "region.answer"
+  ]
+}

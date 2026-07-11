@@ -1,0 +1,263 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "nested_semicircle_triangles_20260711",
+  "title": "겹쳐진 반원과 삼각형",
+  "canvas": {
+    "width": 900,
+    "height": 520,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "vertical",
+      "slot_ids": [
+        "slot.question",
+        "slot.instruction"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.outer_triangle",
+        "slot.middle_triangle",
+        "slot.inner_triangle",
+        "slot.outer_semicircle",
+        "slot.middle_semicircle",
+        "slot.inner_semicircle",
+        "slot.left_dashed_line",
+        "slot.right_dashed_line",
+        "slot.center_point"
+      ]
+    },
+    {
+      "id": "region.answer",
+      "role": "answer",
+      "flow": "vertical",
+      "slot_ids": [
+        "slot.answer"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.question",
+      "kind": "text_box",
+      "prompt": "학생에게 제시할 문제 문장",
+      "content": {
+        "text": "그림을 보고 물음에 답하세요.",
+        "style_role": "body",
+        "x": 48.0,
+        "y": 32.0,
+        "width": 804.0,
+        "height": 54.0,
+        "align": "left",
+        "valign": "top",
+        "font_size": 28,
+        "line_height": 1.35,
+        "semantic_role": "question"
+      }
+    },
+    {
+      "id": "slot.instruction",
+      "kind": "text_box",
+      "prompt": "풀이 또는 응답 지시문",
+      "content": {
+        "text": "겹쳐진 반원과 삼각형의 관계를 살펴보세요.",
+        "style_role": "body",
+        "x": 48.0,
+        "y": 92.0,
+        "width": 804.0,
+        "height": 42.0,
+        "align": "left",
+        "valign": "top",
+        "font_size": 20,
+        "line_height": 1.35,
+        "semantic_role": "instruction"
+      }
+    },
+    {
+      "id": "slot.outer_triangle",
+      "kind": "polygon",
+      "prompt": "가장 바깥쪽 회색 이등변삼각형",
+      "content": {
+        "points": [
+          [
+            215.0,
+            422.0
+          ],
+          [
+            450.0,
+            187.0
+          ],
+          [
+            685.0,
+            422.0
+          ]
+        ],
+        "stroke": "#222222",
+        "stroke_width": 2.0,
+        "fill": "#dddddd"
+      }
+    },
+    {
+      "id": "slot.middle_triangle",
+      "kind": "polygon",
+      "prompt": "가운데의 연한 회색 이등변삼각형",
+      "content": {
+        "points": [
+          [
+            285.0,
+            422.0
+          ],
+          [
+            450.0,
+            257.0
+          ],
+          [
+            615.0,
+            422.0
+          ]
+        ],
+        "stroke": "#222222",
+        "stroke_width": 2.0,
+        "fill": "#eeeeee"
+      }
+    },
+    {
+      "id": "slot.inner_triangle",
+      "kind": "polygon",
+      "prompt": "가장 안쪽의 흰색 이등변삼각형",
+      "content": {
+        "points": [
+          [
+            335.0,
+            422.0
+          ],
+          [
+            450.0,
+            307.0
+          ],
+          [
+            565.0,
+            422.0
+          ]
+        ],
+        "stroke": "#222222",
+        "stroke_width": 2.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.outer_semicircle",
+      "kind": "path",
+      "prompt": "반지름이 235인 가장 바깥쪽 반원",
+      "content": {
+        "d": "M 215 422 A 235 235 0 0 1 685 422",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#222222",
+        "stroke_width": 2.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.middle_semicircle",
+      "kind": "path",
+      "prompt": "반지름이 165인 가운데 반원",
+      "content": {
+        "d": "M 285 422 A 165 165 0 0 1 615 422",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#222222",
+        "stroke_width": 2.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.inner_semicircle",
+      "kind": "path",
+      "prompt": "반지름이 115인 가장 안쪽 반원",
+      "content": {
+        "d": "M 335 422 A 115 115 0 0 1 565 422",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#222222",
+        "stroke_width": 2.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.left_dashed_line",
+      "kind": "line",
+      "prompt": "중심점에서 왼쪽 위로 이어지는 점선",
+      "content": {
+        "x1": 450.0,
+        "y1": 422.0,
+        "x2": 368.0,
+        "y2": 340.0,
+        "stroke": "#222222",
+        "stroke_width": 2.0,
+        "stroke_dasharray": "8 7"
+      }
+    },
+    {
+      "id": "slot.right_dashed_line",
+      "kind": "line",
+      "prompt": "중심점에서 오른쪽 위로 이어지는 점선",
+      "content": {
+        "x1": 450.0,
+        "y1": 422.0,
+        "x2": 532.0,
+        "y2": 340.0,
+        "stroke": "#222222",
+        "stroke_width": 2.0,
+        "stroke_dasharray": "8 7"
+      }
+    },
+    {
+      "id": "slot.center_point",
+      "kind": "circle",
+      "prompt": "세 반원의 공통 중심점",
+      "content": {
+        "cx": 450.0,
+        "cy": 422.0,
+        "r": 7.0,
+        "stroke": "none",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.answer",
+      "kind": "blank",
+      "prompt": "단답형 정답",
+      "content": {
+        "placeholder": "정답"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.question",
+    "slot.instruction",
+    "region.diagram",
+    "slot.outer_triangle",
+    "slot.middle_triangle",
+    "slot.inner_triangle",
+    "slot.outer_semicircle",
+    "slot.middle_semicircle",
+    "slot.inner_semicircle",
+    "slot.left_dashed_line",
+    "slot.right_dashed_line",
+    "slot.center_point",
+    "region.answer",
+    "slot.answer"
+  ]
+}

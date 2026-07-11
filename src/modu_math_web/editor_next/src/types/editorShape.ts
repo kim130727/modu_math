@@ -20,6 +20,7 @@ export type RectShape = BaseShape & {
   fill?: string;
   stroke?: string;
   strokeWidth?: number;
+  strokeDasharray?: string;
   cornerRadius?: number;
 };
 
@@ -29,6 +30,7 @@ export type CircleShape = BaseShape & {
   fill?: string;
   stroke?: string;
   strokeWidth?: number;
+  strokeDasharray?: string;
 };
 
 export type LineShape = BaseShape & {
@@ -36,6 +38,7 @@ export type LineShape = BaseShape & {
   points: number[];
   stroke?: string;
   strokeWidth?: number;
+  strokeDasharray?: string;
 };
 
 export type PathShape = BaseShape & {
@@ -46,6 +49,7 @@ export type PathShape = BaseShape & {
   fill?: string;
   stroke?: string;
   strokeWidth?: number;
+  strokeDasharray?: string;
 };
 
 export type TextShape = BaseShape & {

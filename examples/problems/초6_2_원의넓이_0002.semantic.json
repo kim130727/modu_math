@@ -1,0 +1,109 @@
+{
+  "problem_id": "circle_hexagon_perimeter_difference_001",
+  "problem_type": "numeric_answer_perimeter_difference",
+  "metadata": {
+    "title": "원과 정육각형의 둘레의 차",
+    "tags": [
+      "circle",
+      "regular-hexagon",
+      "circumference",
+      "perimeter",
+      "inscribed-polygon",
+      "elementary-math",
+      "schema-compliant"
+    ],
+    "question": "오른쪽 도형에서 원과 정육각형의 둘레의 차는 몇 cm입니까? (원주율: 3.14)",
+    "required_layout_ids": [
+      "slot.circle",
+      "slot.hexagon",
+      "slot.diameter_line",
+      "slot.center_point",
+      "konva_1783767050396_paste_321289_0"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "원의 지름으로 반지름을 구하고, 원에 내접한 정육각형의 한 변의 길이가 원의 반지름과 같음을 이용합니다."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.circle",
+        "type": "circle",
+        "label": "원",
+        "center_ref": "point.center",
+        "diameter": 30,
+        "radius": 15,
+        "unit": "cm"
+      },
+      {
+        "id": "obj.hexagon",
+        "type": "regular_polygon",
+        "label": "정육각형",
+        "sides": 6,
+        "inscribed_in": "obj.circle",
+        "side_length": 15,
+        "unit": "cm"
+      },
+      {
+        "id": "point.center",
+        "type": "point",
+        "label": "원의 중심"
+      },
+      {
+        "id": "measure.diameter",
+        "type": "length",
+        "label": "원의 지름",
+        "value": 30,
+        "unit": "cm"
+      },
+      {
+        "id": "const.pi",
+        "type": "constant",
+        "label": "원주율",
+        "value": 3.14
+      }
+    ],
+    "relations": [
+      {
+        "id": "rel.hexagon_inscribed",
+        "type": "inscribed_in",
+        "from_id": "obj.hexagon",
+        "to_id": "obj.circle"
+      },
+      {
+        "id": "rel.hexagon_side_equals_radius",
+        "type": "side_length_equals_radius",
+        "from_id": "obj.hexagon",
+        "to_id": "obj.circle",
+        "equation": "s = r"
+      },
+      {
+        "id": "rel.diameter_measure",
+        "type": "diameter_measure",
+        "from_id": "obj.circle",
+        "to_id": "measure.diameter",
+        "equation": "d = 30"
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "blanks": [
+      {
+        "id": "slot.answer",
+        "type": "number",
+        "value": 4.2,
+        "unit": "cm"
+      }
+    ],
+    "choices": [],
+    "answer_key": "4.2cm",
+    "confidence": 1.0,
+    "target": {
+      "type": "perimeter_difference",
+      "description": "원의 둘레에서 정육각형의 둘레를 뺀 값"
+    },
+    "value": 4.2,
+    "unit": "cm"
+  }
+}

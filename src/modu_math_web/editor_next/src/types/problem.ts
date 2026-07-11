@@ -98,6 +98,7 @@ export interface BasicShapeProps extends Record<string, unknown> {
   fill?: string;
   stroke?: string;
   strokeWidth?: number;
+  strokeDasharray?: string;
 }
 
 export type BasicShapeObject = BaseProblemObject<"basic_shape", BasicShapeProps>;
@@ -109,6 +110,7 @@ export interface PathProps extends Record<string, unknown> {
   fill?: string;
   stroke?: string;
   strokeWidth?: number;
+  strokeDasharray?: string;
 }
 
 export type PathObject = BaseProblemObject<"path", PathProps>;

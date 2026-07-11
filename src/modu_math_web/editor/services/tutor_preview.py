@@ -166,13 +166,17 @@ def _tutor_steps(payload: dict[str, Any], solvable: dict[str, Any]) -> list[dict
             prompt = raw_step.strip()
         elif isinstance(raw_step, dict):
             prompt = _first_string(raw_step, ["question", "prompt", "expr", "text", "description", "id"])
+            explanation = _first_string(raw_step, ["explanation"])
             if "value" in raw_step:
-                expected = _stringify_answer(raw_step["value"])
+                expected = _student_expected_answer(raw_step["value"])
             elif "expected" in raw_step:
-                expected = _stringify_answer(raw_step["expected"])
+                expected = _student_expected_answer(raw_step["expected"])
         if not prompt:
             prompt = f"{index}번째 풀이 단계를 확인해요."
-        steps.append({"prompt": prompt, "expected": expected})
+        step = {"prompt": prompt, "expected": expected}
+        if isinstance(raw_step, dict) and explanation:
+            step["explanation"] = explanation
+        steps.append(step)
     return steps
 
 
@@ -292,6 +296,13 @@ def _rule_intro(solvable: dict[str, Any], steps: list[dict[str, str]]) -> str:
         if multiple and highlighted:
             lead = f"{multiple}에서 색칠한 부분 {highlighted}이 어떤 보기와 같은지 찾는 문제예요."
         return _render_rule_step(solvable, steps, 0, prefix=lead)
+    if _is_inscribed_regular_hexagon_perimeter({"solvable": solvable}):
+        return _render_rule_step(
+            solvable,
+            steps,
+            0,
+            prefix="Rule Tutor로 도형의 이유를 확인하면서 풀어 볼게요.\n먼저 지름으로 반지름을 구합니다.",
+        )
     method = str(solvable.get("method") or solvable.get("problem_type") or "풀이").replace("_", " ")
     return _render_rule_step(solvable, steps, 0, prefix=f"Rule Tutor로 단계별 풀이를 시작할게요.\n풀이 방법: {method}")
 
@@ -408,6 +419,8 @@ def _render_rule_step(solvable: dict[str, Any], steps: list[dict[str, str]], ind
     expected_hint = _step_expected_hint(solvable, step, index)
     lines = [line for line in prefix.splitlines() if line.strip()]
     lines.append(f"{index + 1}단계: {step['prompt']}")
+    if step.get("explanation"):
+        lines.append(step["explanation"])
     lines.append(expected_hint or "이 단계에서 알 수 있는 값을 입력해 보세요.")
     return "\n".join(lines[:4])
 
@@ -616,8 +629,41 @@ def _strategy_prompt(payload: dict[str, Any]) -> str:
             "When asking a question, briefly say why you are asking it, for example: '이걸 보는 이유는 보기에서 같은 크기를 찾으려는 거예요.' "
             "For children, say '자리' as '어느 칸에 있는 숫자인지' and say '보기 확인' as '보기 하나씩 맞는지 보기'."
         )
+    if _is_inscribed_regular_hexagon_perimeter(payload):
+        return (
+            "This is a circle and inscribed regular hexagon perimeter-difference task. "
+            "Do not merely ask whether the hexagon side equals the radius. Before using that fact, explain the reason in child-friendly Korean: "
+            "connect the circle center to two neighboring hexagon vertices; the two radii and the hexagon side form an equilateral triangle, so one side of the regular hexagon equals the radius. "
+            "Then continue with diameter divided by 2, hexagon perimeter = radius times 6, circle circumference = diameter times pi, and subtract. "
+            "Keep the reply short, but never skip the geometric reason for side = radius."
+        )
     return (
         "For multiple-choice tasks, guide the student to check one option at a time and eliminate mismatches before computation."
+    )
+
+
+def _is_inscribed_regular_hexagon_perimeter(payload: dict[str, Any]) -> bool:
+    problem_type = _problem_type(payload)
+    semantic = _record_or_none(payload.get("semantic"))
+    solvable = _record_or_none(payload.get("solvable"))
+    method = str(solvable.get("method") if solvable else "").lower()
+    refs: set[str] = set()
+    if solvable and isinstance(solvable.get("given"), list):
+        refs = {str(item.get("ref") or "") for item in solvable["given"] if isinstance(item, dict)}
+    text = " ".join(
+        value
+        for value in (
+            problem_type,
+            method,
+            str(_nested_get(semantic, ["answer", "target", "type"]) or "").lower(),
+            str(_nested_get(solvable, ["target", "type"]) or "").lower() if solvable else "",
+        )
+        if value
+    )
+    return (
+        "hexagon" in text
+        and ("perimeter" in text or "circumference" in text)
+        and ("rel.hexagon_inscribed" in refs or "rel.hexagon_side_equals_radius" in refs or "inscribed" in text)
     )
 
 
@@ -876,3 +922,11 @@ def _stringify_answer(value: Any) -> str:
     if isinstance(value, str):
         return value.strip()
     return json.dumps(value, ensure_ascii=False)
+
+
+def _student_expected_answer(value: Any) -> str:
+    if isinstance(value, dict):
+        for key in ("result", "value", "answer"):
+            if key in value:
+                return _stringify_answer(value[key])
+    return _stringify_answer(value)
