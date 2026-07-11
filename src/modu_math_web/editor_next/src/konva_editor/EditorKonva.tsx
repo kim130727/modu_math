@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState, type PointerEvent as ReactPointerEvent } from "react";
 import { ProblemList } from "../components/ProblemList";
-import { applyLayoutPatches, buildProblem, loadProblem, problemDetailToCanonicalProblem } from "../api/editorApi";
+import { applyLayoutPatches, buildProblem, createProblem, loadProblem, problemDetailToCanonicalProblem } from "../api/editorApi";
 import { problemJsonToLayoutPatches } from "../tldraw/converters/problemJsonToLayoutPatches";
 import type { EditorShape, EditorShapeDocument } from "../types/editorShape";
 import type { ProblemJson } from "../types/problem";
@@ -27,8 +27,9 @@ export function EditorKonva() {
   const [selectedShapeIds, setSelectedShapeIds] = useState<string[]>([]);
   const [selectedProblemId, setSelectedProblemId] = useState(initialProblem.id);
   const [message, setMessage] = useState("Loaded sample problem in Konva editor.");
-  const [propertyPanelHeight, setPropertyPanelHeight] = useState(270);
-  const [tutorPanelHeight, setTutorPanelHeight] = useState(300);
+  const [problemListVersion, setProblemListVersion] = useState(0);
+  const [propertyPanelHeight, setPropertyPanelHeight] = useState(240);
+  const [tutorPanelHeight, setTutorPanelHeight] = useState(360);
   const clipboardRef = useRef<EditorShape[]>([]);
   const imageFileInputRef = useRef<HTMLInputElement | null>(null);
   const sidePanelRef = useRef<HTMLDivElement | null>(null);
@@ -51,7 +52,7 @@ export function EditorKonva() {
       const startTutorHeight = tutorPanelHeight;
       const panelHeight = sidePanel.getBoundingClientRect().height;
       const minPropertyHeight = 132;
-      const minTutorHeight = 220;
+      const minTutorHeight = 280;
       const minJsonHeight = 160;
       const handlesHeight = 16;
 
@@ -112,6 +113,30 @@ export function EditorKonva() {
     },
     [setProblem],
   );
+
+  const createNewProblem = useCallback(async () => {
+    const rawName = window.prompt("새 문제 이름 또는 경로", "drafts/new_problem");
+    if (rawName === null) return;
+    const problemId = normalizeNewProblemId(rawName);
+    if (!problemId) {
+      setMessage("새 문제 이름을 입력해 주세요.");
+      return;
+    }
+
+    setMessage(`Creating ${problemId}...`);
+    try {
+      const detail = await createProblem(problemId, fileTitleFromProblemId(problemId));
+      setProblem(problemDetailToCanonicalProblem(detail), `Created ${detail.problem_id}. Start filling slots, then save/build when ready.`, {
+        semantic: detail.semantic,
+        solvable: detail.solvable,
+        layout: detail.layout,
+        renderer: detail.renderer,
+      });
+      setProblemListVersion((version) => version + 1);
+    } catch (error) {
+      setMessage(`Could not create ${problemId}: ${String(error)}`);
+    }
+  }, [setProblem]);
 
   const updateShape = useCallback((nextShape: EditorShape) => {
     setDocument((current) => ({
@@ -494,6 +519,12 @@ export function EditorKonva() {
     try {
       const response = await buildProblem(document.id);
       const detail = [response.stdout, response.stderr].filter(Boolean).join("\n").trim();
+      setPreviewArtifacts({
+        semantic: (response.artifacts.semantic as Record<string, unknown> | null | undefined) ?? null,
+        solvable: (response.artifacts.solvable as Record<string, unknown> | null | undefined) ?? null,
+        layout: (response.artifacts.layout as import("../api/editorApi").LayoutDocument | null | undefined) ?? null,
+        renderer: (response.artifacts.renderer as import("../api/editorApi").RendererDocument | null | undefined) ?? null,
+      });
       setMessage(detail ? `Build complete for ${document.id}.\n${detail}` : `Build complete for ${document.id}.`);
     } catch (error) {
       setMessage(`Could not build ${document.id}: ${String(error)}`);
@@ -516,6 +547,7 @@ export function EditorKonva() {
         onRefreshJson={refreshJson}
         onSave={saveJson}
         onBuild={buildCurrentProblem}
+        onNewFile={createNewProblem}
       />
       <input
         ref={imageFileInputRef}
@@ -529,7 +561,7 @@ export function EditorKonva() {
         }}
       />
       <div className="editor-body konva-editor-body">
-        <ProblemList selectedProblemId={selectedProblemId} onOpenProblem={openProblem} />
+        <ProblemList key={problemListVersion} selectedProblemId={selectedProblemId} onOpenProblem={openProblem} />
         <div className="konva-main-panel">
           <KonvaStage
             width={document.canvas.width}
@@ -569,6 +601,27 @@ export function EditorKonva() {
       </div>
     </div>
   );
+}
+
+function normalizeNewProblemId(value: string): string {
+  return value
+    .trim()
+    .replace(/\\/g, "/")
+    .replace(/^\/+/, "")
+    .replace(/\/+/g, "/")
+    .replace(/[<>:"|?*]/g, "_")
+    .replace(/\s+/g, "_")
+    .replace(/\/(?:\.|\.\.)(?=\/|$)/g, "")
+    .replace(/^(?:\.|\.\.)\/?/, "");
+}
+
+function fileTitleFromProblemId(problemId: string): string {
+  const last = problemId.split("/").filter(Boolean).at(-1) ?? "New problem";
+  return last.endsWith(".dsl.py") ? last.slice(0, -lenDslSuffix()) : last;
+}
+
+function lenDslSuffix(): number {
+  return ".dsl.py".length;
 }
 
 function cloneShape<T extends EditorShape>(shape: T): T {

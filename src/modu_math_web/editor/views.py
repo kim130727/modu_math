@@ -11,7 +11,14 @@ from django.views.decorators.http import require_GET, require_POST
 
 from .services.build import build_with_artifacts
 from .services.dsl_patch import DslPatchError, apply_layout_patches
-from .services.problems import format_problem_dsl, list_problem_directories, read_problem_detail, resolve_problem_paths, save_problem_dsl
+from .services.problems import (
+    create_blank_problem,
+    format_problem_dsl,
+    list_problem_directories,
+    read_problem_detail,
+    resolve_problem_paths,
+    save_problem_dsl,
+)
 from .services.tutor_preview import mock_tutor_response, openai_tutor_response, rule_tutor_response, tutor_env_status, validate_tutor_payload
 
 
@@ -38,6 +45,26 @@ def editor_index(request: HttpRequest):
 @require_GET
 def problems_list(_: HttpRequest) -> JsonResponse:
     return JsonResponse({"problems": list_problem_directories()})
+
+
+@require_POST
+def create_problem(request: HttpRequest) -> JsonResponse:
+    try:
+        data = _json_body(request)
+        problem_id = data.get("problem_id")
+        title = data.get("title")
+        if not isinstance(problem_id, str):
+            return _error("'problem_id' must be a string", status=400)
+        if title is not None and not isinstance(title, str):
+            return _error("'title' must be a string", status=400)
+        detail = create_blank_problem(problem_id, title=title)
+    except ValueError as exc:
+        return _error(str(exc), status=400)
+    except FileExistsError as exc:
+        return _error(str(exc), status=409)
+    except Exception as exc:
+        return _error(str(exc), status=500)
+    return JsonResponse({"ok": True, **detail})
 
 
 @require_GET

@@ -151,6 +151,14 @@ export function loadProblem(problemId: string): Promise<ProblemDetailResponse> {
   return requestJson<ProblemDetailResponse>(encodedProblemPath(problemId, "/"));
 }
 
+export function createProblem(problemId: string, title?: string): Promise<ProblemDetailResponse> {
+  return requestJson<ProblemDetailResponse>("/api/editor/problems/create/", {
+    method: "POST",
+    headers: { "Content-Type": "application/json", Accept: "application/json" },
+    body: JSON.stringify({ problem_id: problemId, title }),
+  });
+}
+
 export async function applyLayoutPatches(
   problemId: string,
   patches: LayoutPatch[],

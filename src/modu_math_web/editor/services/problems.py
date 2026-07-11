@@ -20,6 +20,83 @@ ARTIFACT_FILES = {
 }
 
 
+BLANK_PROBLEM_DSL = '''from __future__ import annotations
+
+from modu_math.dsl import Canvas, ProblemTemplate, Region
+
+
+PROBLEM_ID = "{problem_id}"
+
+
+def build_problem_template() -> ProblemTemplate:
+    return ProblemTemplate(
+        id=PROBLEM_ID,
+        title="{title}",
+        canvas=Canvas(width=900, height=420, coordinate_mode="logical"),
+        regions=(
+            Region(id="region.diagram", role="diagram", flow="absolute", slot_ids=()),
+        ),
+        slots=(),
+        diagrams=(),
+        groups=(),
+        constraints=(),
+        tags=("draft",),
+    )
+
+
+PROBLEM_TEMPLATE = build_problem_template()
+
+SEMANTIC_OVERRIDE = {{
+    "problem_id": PROBLEM_ID,
+    "problem_type": "draft_math_problem",
+    "metadata": {{
+        "language": "ko",
+        "question": "",
+        "instruction": "",
+    }},
+    "domain": {{
+        "objects": [],
+        "relations": [],
+    }},
+    "answer": {{
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "value": "",
+        "unit": "",
+    }},
+}}
+
+SOLVABLE = {{
+    "schema": "modu.solvable.v1.1",
+    "problem_id": PROBLEM_ID,
+    "problem_type": "draft_math_problem",
+    "inputs": {{
+        "target_label": "",
+        "unit": "",
+        "quantities": {{}},
+        "conditions": [],
+    }},
+    "given": [],
+    "target": {{
+        "ref": "answer.value",
+        "type": "unknown",
+    }},
+    "method": "",
+    "plan": [],
+    "steps": [],
+    "checks": [],
+    "answer": {{
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "value": "",
+        "unit": "",
+    }},
+}}
+'''
+
+
 @dataclass(frozen=True)
 class ProblemPaths:
     problem_id: str
@@ -233,6 +310,41 @@ def read_problem_detail(problem_id: str) -> dict[str, Any]:
         "svg": _rewrite_svg_asset_hrefs(_read_text(svg_path), paths),
         "svg_url": _asset_url(paths.problem_id, svg_path.name) if svg_path.exists() else None,
     }
+
+
+def create_blank_problem(problem_id: str, title: str | None = None) -> dict[str, Any]:
+    safe_problem_id = validate_problem_id(problem_id)
+    alias, relative_id, root = _split_problem_root(safe_problem_id)
+    if alias:
+        raise ValueError("new problems can only be created under the main problems root")
+
+    target = (root / relative_id).resolve()
+    if target != root and root not in target.parents:
+        raise ValueError("invalid problem path")
+
+    if target.name.endswith(".dsl.py"):
+        dsl_path = target
+        base_dir = target.parent
+        display_id = relative_id
+        template_problem_id = target.name[: -len(".dsl.py")]
+        create_parent_only = True
+    else:
+        base_dir = target
+        dsl_path = base_dir / "problem.dsl.py"
+        display_id = relative_id
+        template_problem_id = PurePosixPath(relative_id).name
+        create_parent_only = False
+
+    if dsl_path.exists():
+        raise FileExistsError(f"problem already exists: {display_id}")
+
+    base_dir.mkdir(parents=True, exist_ok=create_parent_only)
+    clean_title = (title or template_problem_id or "New problem").replace('"', '\\"')
+    dsl_path.write_text(
+        BLANK_PROBLEM_DSL.format(problem_id=template_problem_id, title=clean_title),
+        encoding="utf-8",
+    )
+    return read_problem_detail(display_id)
 
 
 def save_problem_dsl(problem_id: str, dsl: str) -> tuple[ProblemPaths, str]:

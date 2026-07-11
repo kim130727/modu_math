@@ -39,6 +39,7 @@ export type ShapePreset =
   | "calloutCloud";
 
 type ToolName =
+  | "newFile"
   | "shapes"
   | "math"
   | "properFraction"
@@ -66,6 +67,7 @@ interface KonvaToolbarProps {
   onRefreshJson: () => void;
   onSave: () => void;
   onBuild: () => void;
+  onNewFile: () => void;
 }
 
 interface IconButtonProps {
@@ -177,6 +179,17 @@ function IconButton({ label, icon, disabled, primary, onClick }: IconButtonProps
 
 function ToolbarIcon({ name }: { name: ToolName }) {
   switch (name) {
+    case "newFile":
+      return (
+        <svg viewBox="0 0 24 24" aria-hidden="true" className="new-file-icon">
+          <path className="document-shadow" d="M7.2 3.4h7.4l4.2 4.2v12.8H7.2z" />
+          <path className="document-page" d="M6 2.8h7.6L18 7.2v12.6a1.4 1.4 0 0 1-1.4 1.4H6A1.4 1.4 0 0 1 4.6 19.8V4.2A1.4 1.4 0 0 1 6 2.8Z" />
+          <path className="document-fold" d="M13.5 3v4.4h4.3" />
+          <path className="document-line" d="M7.6 10.4h6.9M7.6 13.4h5.4M7.6 16.4h4.2" />
+          <circle className="document-plus-bg" cx="17.2" cy="17.1" r="4" />
+          <path className="document-plus" d="M17.2 14.9v4.4M15 17.1h4.4" />
+        </svg>
+      );
     case "shapes":
       return (
         <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -295,6 +308,10 @@ export function KonvaToolbar(props: KonvaToolbarProps) {
 
   return (
     <div className="mvp-toolbar">
+      <button type="button" className="new-file-button" title="새파일" aria-label="새파일" onClick={props.onNewFile}>
+        <ToolbarIcon name="newFile" />
+        <span>새파일</span>
+      </button>
       <div className="shape-menu-wrap" ref={shapeMenuRef}>
         <button
           type="button"
