@@ -37,6 +37,7 @@ FRACTION_MOVE_FIELDS = {"move_dx", "move_dy"}
 PERSON_SLOT_PARTS = {"body", "head", "eye1", "eye2", "mouth"}
 CHARACTER_MOVE_FIELDS = {"move_dx", "move_dy"}
 FIGURE_MOVE_FIELDS = {"move_dx", "move_dy"}
+SLOT_MOVE_FIELDS = {"move_dx", "move_dy"}
 BASE_TEN_HELPERS = {"_base_ten_model", "_partition_box"}
 PLACE_HELPERS = {"school_slots", "house_slots", "playground_slots"}
 PAPER_FOLD_SEQUENCE_HELPERS = {"circle_fold_sequence_slots"}
@@ -244,6 +245,15 @@ class SlotUpdater(cst.CSTTransformer):
             return updated_node
 
         if slot_id != self.target:
+            return updated_node
+
+        if set(self.fields).issubset(SLOT_MOVE_FIELDS):
+            dx = float(self.fields.get("move_dx", 0.0))
+            dy = float(self.fields.get("move_dy", 0.0))
+            args = list(updated_node.args)
+            if _shift_slot_call_args(args, slot_type, dx, dy):
+                self.updated = True
+                return updated_node.with_changes(args=tuple(args))
             return updated_node
 
         allowed = SUPPORTED_SLOTS[slot_type]

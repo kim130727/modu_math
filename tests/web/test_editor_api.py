@@ -872,6 +872,43 @@ PROBLEM_TEMPLATE = ProblemTemplate(
     assert "y=(45.0) + (-3.0)" in updated
 
 
+def test_layout_patch_moves_direct_path_slot_with_delta(tmp_path: Path) -> None:
+    client = _setup_django(tmp_path)
+    dsl_text = """
+from modu_math.dsl import Canvas, PathSlot, ProblemTemplate, Region
+
+PROBLEM_TEMPLATE = ProblemTemplate(
+    id="p_path_move",
+    title="path move",
+    canvas=Canvas(width=300, height=200),
+    regions=(Region(id="region.diagram", role="diagram", flow="absolute", slot_ids=("slot.path",)),),
+    slots=(
+        PathSlot(id="slot.path", prompt="", d="M 10 20 Q 30 40 50 60", fill="none", stroke="#111111"),
+    ),
+)
+""".lstrip()
+    problem_dir = _write_problem(tmp_path, "0001", dsl_text)
+
+    payload = {
+        "patches": [
+            {
+                "target": "slot.path",
+                "op": "update",
+                "value": {"move_dx": 5.0, "move_dy": -3.0},
+            }
+        ]
+    }
+    response = client.post(
+        "/api/editor/problems/0001/layout-patch/",
+        data=json.dumps(payload),
+        content_type="application/json",
+    )
+
+    assert response.status_code == 200
+    updated = (problem_dir / "problem.dsl.py").read_text(encoding="utf-8")
+    assert 'd="M 15 17 Q 35 37 55 57"' in updated
+
+
 def test_layout_patch_falls_back_to_editor_overrides_for_generated_slot(tmp_path: Path) -> None:
     client = _setup_django(tmp_path)
     dsl_text = """

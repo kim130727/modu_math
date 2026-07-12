@@ -55,7 +55,7 @@ def build_problem_template() -> ProblemTemplate:
                     "slot.label_14",
                     "slot.label_18",
                     "slot.label_10",
-                    "konva_1783766230573_paste_122425_0",
+                    "slot.radius_10_arc",
                 ),
             ),
             Region(
@@ -220,8 +220,8 @@ def build_problem_template() -> ProblemTemplate:
                 id="slot.label_10",
                 prompt="오른쪽 원의 반지름 10cm",
                 text="10cm",
-                x=499,
-                y=286,
+                x=507,
+                y=274,
                 font_size=24,
                 anchor="middle",
                 fill="#222222",
@@ -233,9 +233,9 @@ def build_problem_template() -> ProblemTemplate:
                 placeholder="정답",
             ),
             PathSlot(
-                id="konva_1783766230573_paste_122425_0",
-                prompt="",
-                d="M 427.794 340.073 Q 464.841 331.153 482.679 285.188",
+                id="slot.radius_10_arc",
+                prompt="오른쪽 원의 반지름 10cm를 보조 표시하는 점선 곡선",
+                d="M 465 251 Q 495 286 465 321",
                 fill="none",
                 stroke="#555555",
                 stroke_width=1.8,
@@ -261,7 +261,7 @@ def build_problem_template() -> ProblemTemplate:
                     "slot.label_14",
                     "slot.label_18",
                     "slot.label_10",
-                    "konva_1783766230573_paste_122425_0",
+                    "slot.radius_10_arc",
                     "konva_1783766230573_arrow_592743",
                     "konva_1783766230573_arrow_617127",
                     "konva_1783766230573_paste_678750_0",
@@ -410,7 +410,13 @@ SEMANTIC_OVERRIDE = {
             }
         ],
         "choices": [],
-        "answer_key": "144cm",
+        "answer_key": [
+            {
+                "blank_id": "slot.answer",
+                "value": 144,
+                "unit": "cm",
+            }
+        ],
         "target": {
             "type": "total_circumference",
             "description": "세 원의 원주의 합",
@@ -575,7 +581,13 @@ SOLVABLE = {
             }
         ],
         "choices": [],
-        "answer_key": "144cm",
+        "answer_key": [
+            {
+                "blank_id": "slot.answer",
+                "value": 144,
+                "unit": "cm",
+            }
+        ],
         "target": {
             "type": "total_circumference",
             "description": "세 원의 원주의 합",

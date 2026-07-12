@@ -80,7 +80,7 @@ export function PropertyInspector(props: PropertyInspectorProps) {
   }
 
   function canEditBounds(slot: LayoutSlot | null): boolean {
-    return !!slot && ["rect", "text_box", "image", "text", "circle", "line", "polygon", "path"].includes(slot.kind);
+    return !!slot && ["rect", "text_box", "image", "text", "circle", "line", "polygon"].includes(slot.kind);
   }
 
   function isTableCell(slot: LayoutSlot | null): boolean {

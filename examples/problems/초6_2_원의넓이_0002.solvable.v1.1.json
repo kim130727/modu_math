@@ -1,6 +1,6 @@
 {
   "schema": "modu.solvable.v1.1",
-  "problem_id": "circle_hexagon_perimeter_difference_001",
+  "problem_id": "초6_2_원의넓이_0002",
   "problem_type": "numeric_answer_perimeter_difference",
   "inputs": {
     "diameter": 30,
@@ -36,10 +36,10 @@
   },
   "method": "compare_circle_and_inscribed_hexagon_perimeters",
   "plan": [
-    "원의 지름 30cm를 2로 나누어 반지름을 구합니다.",
-    "원에 내접한 정육각형의 한 변은 원의 반지름과 같습니다.",
+    "원의 지름 30cm를 2로 나누어 반지름 15cm를 구합니다.",
+    "원에 내접한 정육각형의 한 변은 원의 반지름과 같으므로 15cm입니다.",
     "원의 둘레와 정육각형의 둘레를 각각 구합니다.",
-    "원의 둘레에서 정육각형의 둘레를 뺍니다."
+    "원의 둘레에서 정육각형의 둘레를 빼서 차를 구합니다."
   ],
   "steps": [
     {
@@ -49,16 +49,18 @@
         "result": 15,
         "meaning": "원의 반지름",
         "unit": "cm"
-      }
+      },
+      "explanation": "지름 30cm를 2로 나누면 반지름은 15cm입니다."
     },
     {
       "id": "step.2",
       "expr": "정육각형의 한 변 = 원의 반지름",
       "value": {
         "result": 15,
+        "meaning": "정육각형의 한 변",
         "unit": "cm"
       },
-      "explanation": "원에 내접한 정육각형에서 중심과 이웃한 두 꼭짓점을 이으면 정삼각형이 됩니다. 그래서 정육각형의 한 변은 원의 반지름과 같습니다."
+      "explanation": "원에 내접한 정육각형의 한 변은 원의 반지름과 같습니다."
     },
     {
       "id": "step.3",
@@ -67,7 +69,8 @@
         "result": 94.2,
         "meaning": "원의 둘레",
         "unit": "cm"
-      }
+      },
+      "explanation": "원의 둘레는 지름에 원주율을 곱해 94.2cm입니다."
     },
     {
       "id": "step.4",
@@ -76,16 +79,18 @@
         "result": 90,
         "meaning": "정육각형의 둘레",
         "unit": "cm"
-      }
+      },
+      "explanation": "정육각형은 변이 6개이므로 둘레는 90cm입니다."
     },
     {
       "id": "step.5",
       "expr": "94.2 - 90",
       "value": {
         "result": 4.2,
-        "meaning": "두 둘레의 차",
+        "meaning": "원과 정육각형의 둘레의 차",
         "unit": "cm"
-      }
+      },
+      "explanation": "원의 둘레 94.2cm에서 정육각형의 둘레 90cm를 빼면 4.2cm입니다."
     }
   ],
   "checks": [
@@ -128,7 +133,13 @@
       }
     ],
     "choices": [],
-    "answer_key": "4.2cm",
+    "answer_key": [
+      {
+        "blank_id": "slot.answer",
+        "value": 4.2,
+        "unit": "cm"
+      }
+    ],
     "target": {
       "type": "perimeter_difference",
       "description": "원의 둘레에서 정육각형의 둘레를 뺀 값"

@@ -97,9 +97,9 @@ function pathAnchorPoints(d: string): Point[] {
     } else if (cmd === "V" && points.length) {
       points.push({ x: points[points.length - 1].x, y: vals[0] });
     } else if (cmd === "C") {
-      points.push({ x: vals[4], y: vals[5] });
+      points.push({ x: vals[0], y: vals[1] }, { x: vals[2], y: vals[3] }, { x: vals[4], y: vals[5] });
     } else if (cmd === "S" || cmd === "Q") {
-      points.push({ x: vals[vals.length - 2], y: vals[vals.length - 1] });
+      points.push({ x: vals[0], y: vals[1] }, { x: vals[2], y: vals[3] });
     } else if (cmd === "A") {
       points.push({ x: vals[5], y: vals[6] });
     }
@@ -246,11 +246,14 @@ function editablePathPoints(d: string): EditablePathPoint[] {
       }
     } else if (upper === "C") {
       while (i + 5 < tokens.length && !isCommand(tokens[i])) {
+        addPoint(i, i + 1);
+        addPoint(i + 2, i + 3);
         addPoint(i + 4, i + 5);
         i += 6;
       }
     } else if (upper === "S" || upper === "Q") {
       while (i + 3 < tokens.length && !isCommand(tokens[i])) {
+        addPoint(i, i + 1);
         addPoint(i + 2, i + 3);
         i += 4;
       }
