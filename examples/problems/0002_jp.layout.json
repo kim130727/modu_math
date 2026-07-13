@@ -1,0 +1,212 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "小6_円と正六角形の周りの長さの差_0002",
+  "title": "円周と正六角形の周りの長さの差",
+  "canvas": {
+    "width": 700,
+    "height": 420,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "vertical",
+      "slot_ids": [
+        "slot.question"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.circle",
+        "slot.hexagon",
+        "konva_1783767050396_paste_321289_0",
+        "slot.diameter_line",
+        "slot.center_point",
+        "slot.label_30",
+        "konva_1783908403385_paste_1136183_0"
+      ]
+    },
+    {
+      "id": "region.answer",
+      "role": "answer",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.question",
+      "kind": "text_box",
+      "prompt": "円周と正六角形の周りの長さの差を求める問題",
+      "content": {
+        "text": "右の図で、円周と正六角形の周りの長さの差は何cmですか。",
+        "style_role": "body",
+        "x": 15.0,
+        "y": 18.0,
+        "width": 656.0,
+        "height": 36.0,
+        "align": "left",
+        "valign": "top",
+        "font_size": 22,
+        "line_height": 1.25,
+        "fill": "#111111",
+        "semantic_role": "question"
+      }
+    },
+    {
+      "id": "slot.circle",
+      "kind": "circle",
+      "prompt": "直径が30cmの円",
+      "content": {
+        "cx": 336.0,
+        "cy": 264.0,
+        "r": 100.0,
+        "stroke": "#202020",
+        "stroke_width": 2.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.hexagon",
+      "kind": "polygon",
+      "prompt": "円に内接する正六角形",
+      "content": {
+        "points": [
+          [
+            436.0,
+            264.0
+          ],
+          [
+            386.0,
+            177.4
+          ],
+          [
+            286.0,
+            177.4
+          ],
+          [
+            236.0,
+            264.0
+          ],
+          [
+            286.0,
+            350.6
+          ],
+          [
+            386.0,
+            350.6
+          ]
+        ],
+        "stroke": "#202020",
+        "stroke_width": 2.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.diameter_line",
+      "kind": "line",
+      "prompt": "円の直径は30cm",
+      "content": {
+        "x1": 236.0,
+        "y1": 264.0,
+        "x2": 436.0,
+        "y2": 264.0,
+        "stroke": "#202020",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.center_point",
+      "kind": "circle",
+      "prompt": "円の中心",
+      "content": {
+        "cx": 336.0,
+        "cy": 264.0,
+        "r": 4.5,
+        "stroke": "none",
+        "stroke_width": 0.0,
+        "fill": "#ff3f7f"
+      }
+    },
+    {
+      "id": "slot.label_30",
+      "kind": "text",
+      "prompt": "直径の長さの表示",
+      "content": {
+        "text": "30 cm",
+        "style_role": "body",
+        "x": 336.0,
+        "y": 230.0,
+        "font_size": 24,
+        "anchor": "middle",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "konva_1783767050396_paste_321289_0",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 234 267 Q 336.5 207 439 267",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#555555",
+        "stroke_width": 1.8,
+        "stroke_dasharray": "6 5",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "konva_1783908403385_paste_1136183_0",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "(円周率は3.14とします。）",
+        "style_role": "body",
+        "x": 14.008,
+        "y": 54.006,
+        "width": 656.0,
+        "height": 36.0,
+        "align": "left",
+        "valign": "top",
+        "font_size": 22,
+        "line_height": 1.25,
+        "fill": "#111111"
+      }
+    }
+  ],
+  "groups": [
+    {
+      "id": "group.diagram.circle_hexagon",
+      "role": "diagram_block",
+      "member_ids": [
+        "slot.circle",
+        "slot.hexagon",
+        "slot.diameter_line",
+        "slot.center_point",
+        "slot.label_30",
+        "konva_1783767050396_paste_321289_0"
+      ]
+    }
+  ],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.question",
+    "region.diagram",
+    "slot.circle",
+    "slot.hexagon",
+    "konva_1783767050396_paste_321289_0",
+    "slot.diameter_line",
+    "slot.center_point",
+    "slot.label_30",
+    "konva_1783908403385_paste_1136183_0",
+    "region.answer"
+  ]
+}

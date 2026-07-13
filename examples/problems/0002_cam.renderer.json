@@ -1,0 +1,158 @@
+{
+  "problem_id": "ថ្នាក់ទី៦_២_ផ្ទៃក្រឡារង្វង់_០០០២",
+  "view_box": {
+    "width": 700.0,
+    "height": 420.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.question.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 15.0,
+        "y": 18.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 22,
+        "width": 656.0,
+        "height": 63.0,
+        "max_width": 656.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 15.0,
+        "data-box-y": 18.0,
+        "data-box-width": 656.0,
+        "data-box-height": 63.0,
+        "data-text-align": "left",
+        "data-vertical-align": "top",
+        "data-line-height": 1.25,
+        "data-semantic-role": "question"
+      },
+      "source_ref": "slot.question",
+      "refs": {
+        "layout_slot_id": "slot.question"
+      },
+      "text": "ក្នុងរូបខាងស្តាំ តើផលខុសគ្នារវាងបរិមាត្ររង្វង់ និងឆកោនទៀងទាត់ស្មើប៉ុន្មានសង់ទីម៉ែត្រ? (តម្លៃ π: 3.14)"
+    },
+    {
+      "id": "slot.circle.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 336.0,
+        "cy": 264.0,
+        "r": 100.0,
+        "stroke": "#202020",
+        "stroke-width": 2.0,
+        "fill": "#ffffff"
+      },
+      "source_ref": "slot.circle",
+      "refs": {
+        "layout_slot_id": "slot.circle"
+      }
+    },
+    {
+      "id": "slot.hexagon.polygon",
+      "type": "polygon",
+      "attributes": {
+        "points": [
+          [
+            436.0,
+            264.0
+          ],
+          [
+            386.0,
+            177.4
+          ],
+          [
+            286.0,
+            177.4
+          ],
+          [
+            236.0,
+            264.0
+          ],
+          [
+            286.0,
+            350.6
+          ],
+          [
+            386.0,
+            350.6
+          ]
+        ],
+        "stroke": "#202020",
+        "stroke-width": 2.0,
+        "fill": "none"
+      },
+      "source_ref": "slot.hexagon",
+      "refs": {
+        "layout_slot_id": "slot.hexagon"
+      }
+    },
+    {
+      "id": "konva_1783767050396_paste_321289_0.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 234 267 Q 336.5 207 439 267",
+        "stroke": "#555555",
+        "stroke-width": 1.8,
+        "fill": "none",
+        "stroke-dasharray": "6 5"
+      },
+      "source_ref": "konva_1783767050396_paste_321289_0",
+      "refs": {
+        "layout_slot_id": "konva_1783767050396_paste_321289_0"
+      }
+    },
+    {
+      "id": "slot.diameter_line.line",
+      "type": "line",
+      "attributes": {
+        "x1": 236.0,
+        "y1": 264.0,
+        "x2": 436.0,
+        "y2": 264.0,
+        "stroke": "#202020",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.diameter_line",
+      "refs": {
+        "layout_slot_id": "slot.diameter_line"
+      }
+    },
+    {
+      "id": "slot.center_point.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 336.0,
+        "cy": 264.0,
+        "r": 4.5,
+        "stroke": "none",
+        "stroke-width": 0.0,
+        "fill": "#ff3f7f"
+      },
+      "source_ref": "slot.center_point",
+      "refs": {
+        "layout_slot_id": "slot.center_point"
+      }
+    },
+    {
+      "id": "slot.label_30.text",
+      "type": "text",
+      "attributes": {
+        "x": 336.0,
+        "y": 230.0,
+        "fill": "#222222",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 24,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.label_30",
+      "refs": {
+        "layout_slot_id": "slot.label_30"
+      },
+      "text": "30 cm"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

@@ -94,6 +94,8 @@ export interface TutorPreviewStatusResponse {
   ok: boolean;
   openai_configured: boolean;
   model: string;
+  tts_configured?: boolean;
+  tts_model?: string;
 }
 
 export interface TutorPreviewResponse extends TutorPreviewStatusResponse {
@@ -192,6 +194,20 @@ export function sendTutorPreviewMessage(options: {
     headers: { "Content-Type": "application/json", Accept: "application/json" },
     body: JSON.stringify(options),
   });
+}
+
+export async function synthesizeTutorSpeech(options: { text: string; locale: string; payload?: Record<string, unknown> }): Promise<Blob> {
+  const response = await fetch("/api/editor/tutor-preview/speech/", {
+    method: "POST",
+    headers: { "Content-Type": "application/json", Accept: "audio/mpeg, application/json", ...csrfHeaders("POST") },
+    body: JSON.stringify(options),
+  });
+  if (!response.ok) {
+    const contentType = response.headers.get("content-type") ?? "";
+    const body = contentType.includes("application/json") ? await response.json() : await response.text();
+    throw new Error(`HTTP ${response.status}: ${typeof body === "string" ? body : JSON.stringify(body)}`);
+  }
+  return response.blob();
 }
 
 export function problemDetailToCanonicalProblem(detail: ProblemDetailResponse): ProblemJson {
@@ -389,16 +405,16 @@ function rendererElementToProblemObject(problemId: string, element: RendererElem
       const text = stringValue(element.text, "");
       if (!text) return [];
       const fontSize = numberValue(attrs["font-size"], 28);
-      const width = numberValue(attrs.width, numberValue(attrs.max_width, textWidthEstimate(text, fontSize)));
+      const width = numberValue(attrs["data-box-width"], numberValue(attrs.width, numberValue(attrs.max_width, textWidthEstimate(text, fontSize))));
       const lineHeight = numberValue(attrs["data-line-height"], 1.25);
-      const height = fittedTextBoxHeight(text, fontSize, width, lineHeight);
+      const height = numberValue(attrs["data-box-height"], fittedTextBoxHeight(text, fontSize, width, lineHeight));
       const align = stringValue(attrs["data-text-align"], stringValue(attrs["text-anchor"], "left"));
       return [
         {
           id: sourceId(element),
           type: "math_text",
-          x: numberValue(attrs.x, numberValue(attrs["data-box-x"], 0)),
-          y: numberValue(attrs.y, numberValue(attrs["data-box-y"], 0)),
+          x: numberValue(attrs["data-box-x"], numberValue(attrs.x, 0)),
+          y: numberValue(attrs["data-box-y"], numberValue(attrs.y, 0)),
           props: {
             latex: text,
             text,

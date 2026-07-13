@@ -16,6 +16,8 @@ def tutor_env_status() -> dict[str, Any]:
     return {
         "openai_configured": bool(os.getenv("OPENAI_API_KEY")),
         "model": os.getenv("OPENAI_MODEL") or "gpt-5.4-nano",
+        "tts_configured": bool(os.getenv("OPENAI_API_KEY")),
+        "tts_model": os.getenv("OPENAI_TTS_MODEL") or "gpt-4o-mini-tts",
     }
 
 
@@ -37,49 +39,50 @@ def validate_tutor_payload(payload: dict[str, Any]) -> list[TutorValidation]:
 def mock_tutor_response(payload: dict[str, Any], message: str) -> str:
     clean_message = message.strip()
     if not clean_message:
-        return "좋아요. 먼저 무엇을 찾는 문제인지 같이 봐요."
+        return _localized_text(payload, "empty_message")
     mode = _support_mode(clean_message)
     return _clean_tutor_text(_mock_reply(payload, mode), mode)
 
 
 def rule_tutor_response(payload: dict[str, Any], message: str, history: list[dict[str, str]]) -> dict[str, Any]:
+    lang = _payload_language(payload)
     solvable = _record_or_none(payload.get("solvable"))
     if not solvable:
-        return {"reply": "이 문제에는 solvable JSON이 아직 없어요.\n먼저 문제를 빌드해서 풀이 단계를 만든 뒤 다시 시작해 주세요.", "choices": []}
+        return {"reply": _localized_text(payload, "missing_solvable"), "choices": []}
 
     steps = _tutor_steps(payload, solvable)
     if not steps:
-        return {"reply": "solvable JSON은 있지만 풀이 단계가 비어 있어요.\nsteps 또는 plan이 만들어지면 단계별 튜터를 시작할 수 있어요.", "choices": []}
+        return {"reply": _localized_text(payload, "missing_steps"), "choices": []}
 
     clean_message = message.strip()
     waiting_index = _last_rule_step_index(history)
     if waiting_index is None:
-        return _rule_response(solvable, steps, 0, _rule_intro(solvable, steps))
+        return _rule_response(solvable, steps, 0, _rule_intro(solvable, steps, lang=lang))
 
     waiting_step = steps[min(waiting_index, len(steps) - 1)]
     if _student_wants_restart(clean_message):
-        return _rule_response(solvable, steps, 0, _rule_intro(solvable, steps))
+        return _rule_response(solvable, steps, 0, _rule_intro(solvable, steps, lang=lang))
     if _student_asks_for_next(clean_message):
         next_index = min(waiting_index + 1, len(steps) - 1)
-        return _rule_response(solvable, steps, next_index, _render_rule_step(solvable, steps, next_index, prefix="좋아요. 다음 단계로 가 볼게요."))
+        return _rule_response(solvable, steps, next_index, _render_rule_step(solvable, steps, next_index, prefix=_localized_phrase(lang, "next"), lang=lang))
     if _student_is_confused(clean_message):
-        return _rule_response(solvable, steps, waiting_index, _rule_confusion_reply(solvable, waiting_step, waiting_index))
+        return _rule_response(solvable, steps, waiting_index, _rule_confusion_reply(solvable, waiting_step, waiting_index, lang=lang))
     if _answer_matches_step(clean_message, waiting_step):
         next_index = waiting_index + 1
         if next_index >= len(steps):
-            return {"reply": _rule_complete(solvable), "choices": []}
-        return _rule_response(solvable, steps, next_index, _render_rule_step(solvable, steps, next_index, prefix="좋아요, 맞았어요."))
+            return {"reply": _rule_complete(solvable, lang=lang), "choices": []}
+        return _rule_response(solvable, steps, next_index, _render_rule_step(solvable, steps, next_index, prefix=_localized_phrase(lang, "correct"), lang=lang))
 
-    expected_hint = _step_expected_hint(solvable, waiting_step, waiting_index)
+    expected_hint = _step_expected_hint(solvable, waiting_step, waiting_index, lang=lang)
     if expected_hint:
         return _rule_response(solvable, steps, waiting_index, (
-            "조금 다르게 본 것 같아요.\n"
-            f"{waiting_index + 1}단계: {waiting_step['prompt']}\n"
-            f"{expected_hint} 다시 입력해 볼까요?"
+            f"{_localized_phrase(lang, 'try_again')}\n"
+            f"{_localized_step_label(lang, waiting_index)}: {waiting_step['prompt']}\n"
+            f"{expected_hint} {_localized_phrase(lang, 'enter_again')}"
         ))
     return _rule_response(solvable, steps, waiting_index, (
-        "좋아요. 이 단계에서 생각한 값을 입력해 주세요.\n"
-        f"{waiting_index + 1}단계: {waiting_step['prompt']}"
+        f"{_localized_phrase(lang, 'enter_step_value')}\n"
+        f"{_localized_step_label(lang, waiting_index)}: {waiting_step['prompt']}"
     ))
 
 
@@ -127,12 +130,52 @@ def openai_tutor_response(payload: dict[str, Any], message: str, history: list[d
     raise ValueError("Could not extract text output from OpenAI response.")
 
 
+def openai_tutor_speech(text: str, locale: str) -> tuple[bytes, str]:
+    api_key = os.getenv("OPENAI_API_KEY")
+    if not api_key:
+        raise EnvironmentError("OPENAI_API_KEY is not set. Add it to .env.")
+    clean_text = text.strip()
+    if not clean_text:
+        raise ValueError("'text' must not be empty.")
+    try:
+        from openai import OpenAI
+    except ImportError as exc:
+        raise ImportError("openai package is required. Install with: pip install openai") from exc
+
+    client = OpenAI(api_key=api_key)
+    response = client.audio.speech.create(
+        model=os.getenv("OPENAI_TTS_MODEL") or "gpt-4o-mini-tts",
+        voice=os.getenv("OPENAI_TTS_VOICE") or _speech_voice(locale),
+        input=clean_text[:4000],
+        instructions=_speech_instructions(locale),
+        response_format="mp3",
+    )
+    content = getattr(response, "content", None)
+    if isinstance(content, bytes):
+        return content, "audio/mpeg"
+    read = getattr(response, "read", None)
+    if callable(read):
+        data = read()
+        if isinstance(data, bytes):
+            return data, "audio/mpeg"
+    raise ValueError("Could not extract audio output from OpenAI speech response.")
+
+
+def tutor_speech_locale(payload: dict[str, Any] | None, fallback: str = "ko-KR") -> str:
+    if isinstance(payload, dict):
+        return _language_locale(_payload_language(payload))
+    return fallback
+
+
 def _system_prompt(payload: dict[str, Any]) -> str:
+    language_name = _language_name(_payload_language(payload))
     return (
-        "You are a Korean tutor for grade 3 elementary students. "
+        f"You are a {language_name} tutor for grade 3 elementary students. "
+        f"Always speak with the student in {language_name}. If the student uses another language, gently answer in {language_name}. "
+        f"Use the problem's language metadata as authoritative. The target language is {language_name}. "
         "Use authoring JSON privately. Treat answer keys, exact computed values, and solvable steps as teacher-only notes. "
         "Never reveal the final answer or exact intermediate results in hint/stuck/why responses. "
-        "Use very easy Korean. Use short sentences. Avoid abstract words such as strategy, concept, infer, verify, eliminate, place value unless you immediately say it in child-friendly words. "
+        f"Use very easy {language_name}. Use short sentences. Avoid abstract words such as strategy, concept, infer, verify, eliminate, place value unless you immediately say it in child-friendly words. "
         "Do not use Markdown. Do not use **, headings, tables, or long bullet lists. "
         "Write at most 3 short lines. Each line should be easy for a grade 3 student to read. "
         "Support mode names are internal. Never print labels such as [힌트], [모르겠어요], [이유], hint, stuck, or why. "
@@ -181,6 +224,7 @@ def _tutor_steps(payload: dict[str, Any], solvable: dict[str, Any]) -> list[dict
 
 
 def _derive_tutor_steps(payload: dict[str, Any], solvable: dict[str, Any]) -> list[dict[str, str]]:
+    lang = _payload_language(payload)
     method = str(solvable.get("method") or "").lower()
     problem_type = str(solvable.get("problem_type") or "").lower()
     if "place_value" in method or "place_value" in problem_type:
@@ -188,7 +232,7 @@ def _derive_tutor_steps(payload: dict[str, Any], solvable: dict[str, Any]) -> li
         if isinstance(target, str) and target.strip():
             return [
                 {
-                    "prompt": "색칠된 부분이 실제로 어떤 곱셈식인지 보기에서 골라요.",
+                    "prompt": _localized_phrase(lang, "step_place_value_select"),
                     "expected": target.strip(),
                     "choices": _place_value_expression_choices(target.strip()),
                 }
@@ -215,19 +259,19 @@ def _derive_tutor_steps(payload: dict[str, Any], solvable: dict[str, Any]) -> li
     steps: list[dict[str, str]] = []
     for _, expr, value in evaluated:
         if str(expr).strip() == str(value):
-            prompt = f"{expr}은 이미 수로 주어졌어요."
+            prompt = _localized_phrase(lang, "step_copy_given_expression").format(expr=expr)
         else:
-            prompt = f"{expr}의 값을 먼저 구해요."
-        steps.append({"prompt": prompt, "expected": str(value)})
+            prompt = _localized_phrase(lang, "step_calculate_expression").format(expr=expr)
+        steps.append({"prompt": prompt, "expected": str(value), "kind": "calculate"})
 
     values_text = ", ".join(f"{expr} = {value}" for _, expr, value in evaluated)
     if choose_smaller:
-        compare_prompt = f"계산한 값을 비교해요. {values_text} 중 더 작은 것은 무엇일까요?"
+        compare_prompt = _localized_phrase(lang, "step_compare_smaller").format(values=values_text)
     elif choose_larger:
-        compare_prompt = f"계산한 값을 비교해요. {values_text} 중 더 큰 것은 무엇일까요?"
+        compare_prompt = _localized_phrase(lang, "step_compare_larger").format(values=values_text)
     else:
-        compare_prompt = f"계산한 값을 비교해요. {values_text} 중 조건에 맞는 것은 무엇일까요?"
-    steps.append({"prompt": compare_prompt, "expected": answer_value})
+        compare_prompt = _localized_phrase(lang, "step_compare_condition").format(values=values_text)
+    steps.append({"prompt": compare_prompt, "expected": answer_value, "kind": "compare"})
     return steps
 
 
@@ -288,23 +332,24 @@ def _evaluate_arithmetic(expression: str) -> int | float | None:
     return value
 
 
-def _rule_intro(solvable: dict[str, Any], steps: list[dict[str, str]]) -> str:
+def _rule_intro(solvable: dict[str, Any], steps: list[dict[str, str]], *, lang: str = "ko") -> str:
     if _is_place_value_matching({"solvable": solvable}):
         multiple = _given_value(solvable, "obj.multiple")
         highlighted = _given_value(solvable, "obj.highlighted_value")
-        lead = "Rule Tutor로 자리값을 보면서 풀어 볼게요."
+        lead = _localized_phrase(lang, "intro_place_value")
         if multiple and highlighted:
-            lead = f"{multiple}에서 색칠한 부분 {highlighted}이 어떤 보기와 같은지 찾는 문제예요."
-        return _render_rule_step(solvable, steps, 0, prefix=lead)
+            lead = _localized_phrase(lang, "intro_highlighted").format(multiple=multiple, highlighted=highlighted)
+        return _render_rule_step(solvable, steps, 0, prefix=lead, lang=lang)
     if _is_inscribed_regular_hexagon_perimeter({"solvable": solvable}):
         return _render_rule_step(
             solvable,
             steps,
             0,
-            prefix="Rule Tutor로 도형의 이유를 확인하면서 풀어 볼게요.\n먼저 지름으로 반지름을 구합니다.",
+            prefix=_localized_phrase(lang, "intro_hexagon"),
+            lang=lang,
         )
     method = str(solvable.get("method") or solvable.get("problem_type") or "풀이").replace("_", " ")
-    return _render_rule_step(solvable, steps, 0, prefix=f"Rule Tutor로 단계별 풀이를 시작할게요.\n풀이 방법: {method}")
+    return _render_rule_step(solvable, steps, 0, prefix=_localized_phrase(lang, "intro_general").format(method=method), lang=lang)
 
 
 def _rule_response(solvable: dict[str, Any], steps: list[dict[str, str]], index: int, reply: str) -> dict[str, Any]:
@@ -330,7 +375,7 @@ def _step_choices(solvable: dict[str, Any], steps: list[dict[str, str]], index: 
             return _unique_choices([str(choice) for choice in choice_set])
         return _unique_choices([expected])
 
-    if "중 더 " in step.get("prompt", "") or "조건에 맞는" in step.get("prompt", ""):
+    if step.get("kind") == "compare":
         expressions = [expr for _, expr in _comparison_expressions(solvable)]
         if expressions:
             return _unique_choices([expected, *expressions])
@@ -411,28 +456,33 @@ def _format_number(value: int | float) -> str:
     return str(int(value)) if isinstance(value, float) and value.is_integer() else str(value)
 
 
-def _render_rule_step(solvable: dict[str, Any], steps: list[dict[str, str]], index: int, *, prefix: str = "") -> str:
+def _render_rule_step(solvable: dict[str, Any], steps: list[dict[str, str]], index: int, *, prefix: str = "", lang: str = "ko") -> str:
     step = steps[index]
     if _is_place_value_matching({"solvable": solvable}):
-        return _render_place_value_step(solvable, steps, index, prefix=prefix)
+        return _render_place_value_step(solvable, steps, index, prefix=prefix, lang=lang)
 
-    expected_hint = _step_expected_hint(solvable, step, index)
+    expected_hint = _step_expected_hint(solvable, step, index, lang=lang)
     lines = [line for line in prefix.splitlines() if line.strip()]
-    lines.append(f"{index + 1}단계: {step['prompt']}")
+    lines.append(f"{_localized_step_label(lang, index)}: {step['prompt']}")
     if step.get("explanation"):
         lines.append(step["explanation"])
-    lines.append(expected_hint or "이 단계에서 알 수 있는 값을 입력해 보세요.")
+    lines.append(expected_hint or _localized_phrase(lang, "enter_step_value"))
     return "\n".join(lines[:4])
 
 
-def _render_place_value_step(solvable: dict[str, Any], steps: list[dict[str, str]], index: int, *, prefix: str = "") -> str:
+def _render_place_value_step(solvable: dict[str, Any], steps: list[dict[str, str]], index: int, *, prefix: str = "", lang: str = "ko") -> str:
     step = steps[index]
     lines = [line for line in prefix.splitlines() if line.strip()]
     has_highlighted_value = bool(_given_value(solvable, "obj.multiple") and _given_value(solvable, "obj.highlighted_value"))
     if not has_highlighted_value:
-        lines.append(f"{index + 1}단계: {step['prompt']}")
-        lines.append("색칠된 부분의 자리값을 보고 같은 곱셈식을 고르면 돼요.")
-        lines.append("아래 보기 중 알맞은 식을 선택해 보세요.")
+        lines.append(f"{_localized_step_label(lang, index)}: {step['prompt']}")
+        lines.append(_localized_phrase(lang, "place_value_hint"))
+        lines.append(_localized_phrase(lang, "choose_option"))
+        return "\n".join(lines[:4])
+
+    if lang != "ko":
+        lines.append(f"{_localized_step_label(lang, index)}: {step['prompt']}")
+        lines.append(_localized_phrase(lang, "enter_step_value"))
         return "\n".join(lines[:4])
 
     if index == 0:
@@ -452,12 +502,12 @@ def _render_place_value_step(solvable: dict[str, Any], steps: list[dict[str, str
     return "\n".join(lines[:4])
 
 
-def _rule_complete(solvable: dict[str, Any]) -> str:
+def _rule_complete(solvable: dict[str, Any], *, lang: str = "ko") -> str:
     answer_record = _record_or_none(solvable.get("answer"))
     answer = _stringify_answer(answer_record.get("value")) if answer_record and "value" in answer_record else ""
     if answer:
-        return f"좋아요. 풀이 단계가 모두 끝났어요.\n최종 답은 {answer}입니다.\n이제 보기나 답칸에 맞게 표시하면 돼요."
-    return "좋아요. 풀이 단계가 모두 끝났어요.\n이제 문제의 답칸이나 보기에 맞게 정리해 보세요."
+        return _localized_phrase(lang, "complete_with_answer").format(answer=answer)
+    return _localized_phrase(lang, "complete")
 
 
 def _last_rule_step_index(history: list[dict[str, str]]) -> int | None:
@@ -469,7 +519,7 @@ def _last_rule_step_index(history: list[dict[str, str]]) -> int | None:
         content = item.get("content", "")
         if not isinstance(content, str):
             continue
-        match = re.search(r"(\d+)단계:", content)
+        match = re.search(r"(?:Step|ステップ|第|ជំហាន|အဆင့်)?\s*(\d+)\s*(?:단계|步)?\s*:", content)
         if match:
             return max(0, int(match.group(1)) - 1)
     return None
@@ -503,23 +553,25 @@ def _normalize_answer_text(value: str) -> str:
     )
 
 
-def _step_expected_hint(solvable: dict[str, Any], step: dict[str, str], index: int) -> str:
+def _step_expected_hint(solvable: dict[str, Any], step: dict[str, str], index: int, *, lang: str = "ko") -> str:
     import re
 
     expected = step.get("expected", "").strip()
     if not expected:
         return ""
     if "이미 수로 주어졌어요" in step.get("prompt", ""):
-        return "그 수를 그대로 입력해 보세요."
+        return _localized_phrase(lang, "copy_given_number")
     if _is_place_value_matching({"solvable": solvable}):
+        if lang != "ko":
+            return _localized_phrase(lang, "enter_step_value")
         if index == 0:
             return "6은 십의 자리에 있으니 60이라고 볼 수 있어요."
         if index == 1:
             return "60을 네 번 더하면 얼마인지 계산해 보세요."
         return "보기 중 240과 같은 값을 만드는 곱셈식을 찾아보세요."
     if re.fullmatch(r"-?\d+(?:\.\d+)?", expected):
-        return "계산한 수를 입력해 보세요."
-    return "이 단계에서 찾은 식이나 값을 입력해 보세요."
+        return _localized_phrase(lang, "enter_calculated_number")
+    return _localized_phrase(lang, "enter_step_value")
 
 
 def _student_wants_restart(message: str) -> bool:
@@ -550,8 +602,8 @@ def _student_is_confused(message: str) -> bool:
     )
 
 
-def _rule_confusion_reply(solvable: dict[str, Any], step: dict[str, str], index: int) -> str:
-    if _is_place_value_matching({"solvable": solvable}):
+def _rule_confusion_reply(solvable: dict[str, Any], step: dict[str, str], index: int, *, lang: str = "ko") -> str:
+    if _is_place_value_matching({"solvable": solvable}) and lang == "ko":
         if index == 0:
             return (
                 "좋아요, 다시 쉽게 볼게요.\n"
@@ -571,11 +623,11 @@ def _rule_confusion_reply(solvable: dict[str, Any], step: dict[str, str], index:
             "보기 중에서 240과 같은 곱셈식을 찾아보세요."
         )
 
-    hint = _step_expected_hint(solvable, step, index)
+    hint = _step_expected_hint(solvable, step, index, lang=lang)
     return (
-        "좋아요, 이 단계만 다시 볼게요.\n"
-        f"{index + 1}단계: {step['prompt']}\n"
-        f"{hint or '문제에서 확인할 수 있는 값을 하나만 찾아보세요.'}"
+        f"{_localized_phrase(lang, 'confusion')}\n"
+        f"{_localized_step_label(lang, index)}: {step['prompt']}\n"
+        f"{hint or _localized_phrase(lang, 'enter_step_value')}"
     )
 
 
@@ -722,6 +774,10 @@ def _support_mode(message: str) -> str:
 
 
 def _mock_reply(payload: dict[str, Any], mode: str) -> str:
+    lang = _payload_language(payload)
+    if lang != "ko":
+        return _localized_text(payload, f"mock_{mode}")
+
     if _is_place_value_matching(payload):
         if mode == "hint":
             return "힌트예요.\n색칠된 숫자가 어느 칸에 있는지 먼저 보세요.\n보기 하나가 맞는지 볼까요?"
@@ -862,6 +918,296 @@ def _layout_summary(layout: dict[str, Any] | None) -> dict[str, Any] | None:
 
 def _record_or_none(value: Any) -> dict[str, Any] | None:
     return value if isinstance(value, dict) else None
+
+
+def _payload_language(payload: dict[str, Any]) -> str:
+    semantic = _record_or_none(payload.get("semantic"))
+    candidates = [
+        _nested_get(semantic, ["metadata", "language"]),
+        _nested_get(semantic, ["metadata", "locale"]),
+        payload.get("language"),
+        payload.get("locale"),
+    ]
+    for candidate in candidates:
+        if isinstance(candidate, str) and candidate.strip():
+            value = candidate.strip().lower().replace("_", "-")
+            if value in {"ko", "kr", "ko-kr", "korean"}:
+                return "ko"
+            if value in {"en", "en-us", "en-gb", "english"}:
+                return "en"
+            if value in {"ja", "jp", "ja-jp", "japanese"}:
+                return "ja"
+            if value in {"zh", "zh-cn", "zh-hans", "ch", "cn", "chinese"}:
+                return "zh"
+            if value in {"km", "kh", "km-kh", "khmer", "cambodian", "cam"}:
+                return "km"
+            if value in {"my", "my-mm", "burmese", "myanmar"}:
+                return "my"
+            return value.split("-", 1)[0]
+    return "ko"
+
+
+def _language_name(lang: str) -> str:
+    return {
+        "ko": "Korean",
+        "en": "English",
+        "ja": "Japanese",
+        "zh": "Simplified Chinese",
+        "km": "Khmer",
+        "my": "Burmese",
+    }.get(lang, lang)
+
+
+def _speech_language(locale: str) -> str:
+    value = locale.strip().lower().replace("_", "-")
+    if value in {"ko", "kr", "ko-kr", "korean"}:
+        return "ko"
+    if value in {"en", "en-us", "en-gb", "english"}:
+        return "en"
+    if value in {"ja", "jp", "ja-jp", "japanese"}:
+        return "ja"
+    if value in {"zh", "zh-cn", "zh-hans", "ch", "cn", "chinese"}:
+        return "zh"
+    if value in {"km", "kh", "km-kh", "khmer", "cambodian", "cam"}:
+        return "km"
+    if value in {"my", "my-mm", "burmese", "myanmar"}:
+        return "my"
+    return value.split("-", 1)[0] or "ko"
+
+
+def _language_locale(language: str) -> str:
+    return {
+        "ko": "ko-KR",
+        "en": "en-US",
+        "ja": "ja-JP",
+        "zh": "zh-CN",
+        "km": "km-KH",
+        "my": "my-MM",
+    }.get(language, language)
+
+
+def _speech_voice(locale: str) -> str:
+    return {
+        "ko": "nova",
+        "en": "alloy",
+        "ja": "shimmer",
+        "zh": "sage",
+        "km": "coral",
+        "my": "fable",
+    }.get(_speech_language(locale), "alloy")
+
+
+def _speech_instructions(locale: str) -> str:
+    language = {
+        "ko": "Korean with a natural Korean accent",
+        "en": "English with a natural native-speaker accent",
+        "ja": "Japanese with a natural Japanese accent",
+        "zh": "Simplified Chinese Mandarin with a natural mainland Chinese accent",
+        "km": "Khmer with a natural Cambodian accent",
+        "my": "Burmese with a natural Myanmar accent",
+    }.get(_speech_language(locale), "the requested language with a natural local accent")
+    return (
+        f"Speak in {language}. "
+        "Sound like a warm local elementary math tutor. "
+        "Use a clear, friendly, child-paced voice. "
+        "Do not translate the text; pronounce the given text naturally."
+    )
+
+
+_LOCALIZED_TEXT: dict[str, dict[str, str]] = {
+    "ko": {
+        "empty_message": "좋아요. 먼저 무엇을 찾는 문제인지 같이 봐요.",
+        "missing_solvable": "이 문제에는 solvable JSON이 아직 없어요.\n먼저 문제를 빌드해서 풀이 단계를 만든 뒤 다시 시작해 주세요.",
+        "missing_steps": "solvable JSON은 있지만 풀이 단계가 비어 있어요.\nsteps 또는 plan이 만들어지면 단계별 튜터를 시작할 수 있어요.",
+        "mock_hint": "힌트예요.\n문제에서 묻는 것을 먼저 찾아봐요.\n어느 부분부터 볼까요?",
+        "mock_stuck": "괜찮아요.\n먼저 주어진 숫자 하나를 찾아봐요.\n같이 한 단계만 볼까요?",
+        "mock_why": "작은 단계로 나누면 더 쉬워요.\n한 번에 다 풀지 않아도 돼요.\n먼저 무엇을 찾아야 할까요?",
+        "mock_general": "좋아요.\n보기 하나만 먼저 확인해 볼게요.\n어느 보기부터 볼까요?",
+    },
+    "en": {
+        "empty_message": "Good. First, let's see what the problem is asking.",
+        "missing_solvable": "This problem does not have solvable JSON yet.\nBuild the problem first, then start the tutor again.",
+        "missing_steps": "The solvable JSON exists, but the solution steps are empty.\nAdd steps or a plan, then the tutor can start.",
+        "mock_hint": "Here is a small hint.\nLook at what the problem asks first.\nWhich part should we check?",
+        "mock_stuck": "That's okay.\nFind one given number first.\nShall we do just one small step?",
+        "mock_why": "Small steps make it easier.\nWe do not need to solve everything at once.\nWhat should we find first?",
+        "mock_general": "Good.\nLet's check one choice first.\nWhich choice should we try?",
+    },
+    "ja": {
+        "empty_message": "いいですね。まず、何を求める問題か見てみましょう。",
+        "missing_solvable": "この問題にはまだ solvable JSON がありません。\n先に問題をビルドしてから、もう一度始めてください。",
+        "missing_steps": "solvable JSON はありますが、解き方の手順が空です。\nsteps または plan を作ると始められます。",
+        "mock_hint": "小さなヒントです。\nまず問題が何を聞いているか見ましょう。\nどこから確認しますか。",
+        "mock_stuck": "大丈夫です。\nまず、与えられた数を一つ見つけましょう。\n一つだけ一緒にやってみますか。",
+        "mock_why": "小さく分けると簡単になります。\n一度に全部解かなくていいです。\nまず何を見つけますか。",
+        "mock_general": "いいですね。\nまず選択肢を一つ確認しましょう。\nどれから見ますか。",
+    },
+    "zh": {
+        "empty_message": "很好。我们先看看题目要我们求什么。",
+        "missing_solvable": "这道题还没有 solvable JSON。\n请先构建题目，然后再启动辅导。",
+        "missing_steps": "solvable JSON 已存在，但解题步骤是空的。\n添加 steps 或 plan 后就可以开始。",
+        "mock_hint": "给你一个小提示。\n先看题目在问什么。\n我们先检查哪一部分？",
+        "mock_stuck": "没关系。\n先找出一个已知的数。\n我们只做一个小步骤，好吗？",
+        "mock_why": "分成小步骤会更容易。\n不用一次解完整题。\n先要找什么？",
+        "mock_general": "很好。\n我们先检查一个选项。\n从哪一个开始？",
+    },
+    "km": {
+        "empty_message": "ល្អណាស់។ មុនដំបូង យើងមើលថាលំហាត់សួររកអ្វី។",
+        "missing_solvable": "លំហាត់នេះមិនទាន់មាន solvable JSON ទេ។\nសូម build លំហាត់ជាមុន រួចចាប់ផ្តើមគ្រូជាថ្មី។",
+        "missing_steps": "មាន solvable JSON ប៉ុន្តែជំហានដោះស្រាយនៅទទេ។\nបន្ថែម steps ឬ plan សិន។",
+        "mock_hint": "នេះជាគន្លឹះតូចមួយ។\nមើលសិនថាលំហាត់សួរអ្វី។\nយើងគួរមើលផ្នែកណាមុន?",
+        "mock_stuck": "មិនអីទេ។\nរកចំនួនដែលបានឱ្យមួយសិន។\nយើងធ្វើតែជំហានតូចមួយជាមួយគ្នា?",
+        "mock_why": "បំបែកជាជំហានតូចៗ នឹងងាយជាង។\nមិនចាំបាច់ដោះស្រាយទាំងអស់ក្នុងពេលតែមួយទេ។\nមុនដំបូងត្រូវរកអ្វី?",
+        "mock_general": "ល្អណាស់។\nយើងពិនិត្យជម្រើសមួយសិន។\nចាប់ផ្តើមពីជម្រើសណា?",
+    },
+    "my": {
+        "empty_message": "ကောင်းပါတယ်။ ပထမဆုံး မေးခွန်းက ဘာကိုရှာခိုင်းလဲ ကြည့်ကြမယ်။",
+        "missing_solvable": "ဒီမေးခွန်းမှာ solvable JSON မရှိသေးပါ။\nပထမဆုံး build လုပ်ပြီးမှ tutor ကို ပြန်စပါ။",
+        "missing_steps": "solvable JSON ရှိပေမဲ့ ဖြေရှင်းမှုအဆင့်တွေ မရှိသေးပါ။\nsteps သို့မဟုတ် plan ထည့်ပြီးမှ စနိုင်ပါတယ်။",
+        "mock_hint": "အရိပ်အမြွက်လေးပါ။\nမေးခွန်းက ဘာကိုမေးလဲ အရင်ကြည့်ပါ။\nဘယ်အပိုင်းကို အရင်စစ်မလဲ?",
+        "mock_stuck": "ရပါတယ်။\nပေးထားတဲ့ ကိန်းတစ်ခုကို အရင်ရှာပါ။\nအဆင့်သေးသေးလေးတစ်ခု အတူလုပ်မလား?",
+        "mock_why": "အဆင့်သေးသေးလေးခွဲရင် ပိုလွယ်ပါတယ်။\nတစ်ခါတည်း အကုန်မဖြေရှင်းရပါဘူး။\nပထမဆုံး ဘာကိုရှာမလဲ?",
+        "mock_general": "ကောင်းပါတယ်။\nရွေးချယ်စရာတစ်ခုကို အရင်စစ်ကြည့်မယ်။\nဘယ်ဟာက စမလဲ?",
+    },
+}
+
+
+_LOCALIZED_PHRASES: dict[str, dict[str, str]] = {
+    "ko": {
+        "step": "{n}단계", "next": "좋아요. 다음 단계로 가 볼게요.", "correct": "좋아요, 맞았어요.",
+        "try_again": "조금 다르게 본 것 같아요.", "enter_again": "다시 입력해 볼까요?",
+        "enter_step_value": "이 단계에서 생각한 값을 입력해 주세요.", "enter_calculated_number": "계산한 수를 입력해 보세요.",
+        "copy_given_number": "그 수를 그대로 입력해 보세요.", "confusion": "좋아요, 이 단계만 다시 볼게요.",
+        "intro_place_value": "Rule Tutor로 자리값을 보면서 풀어 볼게요.",
+        "intro_highlighted": "{multiple}에서 색칠한 부분 {highlighted}이 어떤 보기와 같은지 찾는 문제예요.",
+        "intro_hexagon": "Rule Tutor로 도형의 이유를 확인하면서 풀어 볼게요.\n먼저 지름으로 반지름을 구합니다.",
+        "intro_general": "Rule Tutor로 단계별 풀이를 시작할게요.\n풀이 방법: {method}",
+        "place_value_hint": "색칠된 부분의 자리값을 보고 같은 곱셈식을 고르면 돼요.",
+        "choose_option": "아래 보기 중 알맞은 식을 선택해 보세요.",
+        "complete_with_answer": "좋아요. 풀이 단계가 모두 끝났어요.\n최종 답은 {answer}입니다.\n이제 보기나 답칸에 맞게 표시하면 돼요.",
+        "complete": "좋아요. 풀이 단계가 모두 끝났어요.\n이제 문제의 답칸이나 보기에 맞게 정리해 보세요.",
+        "step_place_value_select": "색칠된 부분이 실제로 어떤 곱셈식인지 보기에서 골라요.",
+        "step_copy_given_expression": "{expr}은 이미 수로 주어졌어요.",
+        "step_calculate_expression": "{expr}의 값을 먼저 구해요.",
+        "step_compare_smaller": "계산한 값을 비교해요. {values} 중 더 작은 것은 무엇일까요?",
+        "step_compare_larger": "계산한 값을 비교해요. {values} 중 더 큰 것은 무엇일까요?",
+        "step_compare_condition": "계산한 값을 비교해요. {values} 중 조건에 맞는 것은 무엇일까요?",
+    },
+    "en": {
+        "step": "Step {n}", "next": "Good. Let's go to the next step.", "correct": "Good, that's right.",
+        "try_again": "I think we looked at it a little differently.", "enter_again": "Try entering it again.",
+        "enter_step_value": "Enter the value for this step.", "enter_calculated_number": "Enter the number you calculated.",
+        "copy_given_number": "Enter that number as it is.", "confusion": "Good. Let's look at just this step again.",
+        "intro_place_value": "Let's solve it by looking at place value.",
+        "intro_highlighted": "Find which choice matches the colored part {highlighted} in {multiple}.",
+        "intro_hexagon": "Let's check the shape reason first.\nFirst, use the diameter to find the radius.",
+        "intro_general": "Let's start step by step.\nMethod: {method}",
+        "place_value_hint": "Look at the place value of the colored part and choose the matching expression.",
+        "choose_option": "Choose the correct expression from the choices.",
+        "complete_with_answer": "Good. All steps are done.\nThe final answer is {answer}.\nNow mark it in the answer box or choices.",
+        "complete": "Good. All steps are done.\nNow write it in the answer box or choices.",
+        "step_place_value_select": "Choose which multiplication expression matches the colored part.",
+        "step_copy_given_expression": "{expr} is already given as a number.",
+        "step_calculate_expression": "First, find the value of {expr}.",
+        "step_compare_smaller": "Compare the values. From {values}, which one is smaller?",
+        "step_compare_larger": "Compare the values. From {values}, which one is larger?",
+        "step_compare_condition": "Compare the values. From {values}, which one matches the condition?",
+    },
+    "ja": {
+        "step": "ステップ{n}", "next": "いいですね。次のステップに進みましょう。", "correct": "いいですね、正解です。",
+        "try_again": "少し違う見方をしたようです。", "enter_again": "もう一度入力してみましょう。",
+        "enter_step_value": "このステップで考えた値を入力してください。", "enter_calculated_number": "計算した数を入力してください。",
+        "copy_given_number": "その数をそのまま入力してください。", "confusion": "いいですね。このステップだけもう一度見ましょう。",
+        "intro_place_value": "位の値を見ながら解いてみましょう。",
+        "intro_highlighted": "{multiple} の色の部分 {highlighted} がどの選択肢と同じか探す問題です。",
+        "intro_hexagon": "まず図形の理由を確認しながら解きましょう。\nはじめに直径から半径を求めます。",
+        "intro_general": "ステップごとに始めましょう。\n方法: {method}",
+        "place_value_hint": "色の部分の位の値を見て、同じ式を選びます。",
+        "choose_option": "下の選択肢から合う式を選んでください。",
+        "complete_with_answer": "いいですね。すべてのステップが終わりました。\n答えは {answer} です。\n答えの欄や選択肢に合わせて書きましょう。",
+        "complete": "いいですね。すべてのステップが終わりました。\n答えの欄や選択肢に合わせてまとめましょう。",
+        "step_place_value_select": "色の部分に合うかけ算の式を選びましょう。",
+        "step_copy_given_expression": "{expr} は、もう数として与えられています。",
+        "step_calculate_expression": "まず {expr} の値を求めましょう。",
+        "step_compare_smaller": "値を比べましょう。{values} の中で小さいのはどれですか。",
+        "step_compare_larger": "値を比べましょう。{values} の中で大きいのはどれですか。",
+        "step_compare_condition": "値を比べましょう。{values} の中で条件に合うのはどれですか。",
+    },
+    "zh": {
+        "step": "第{n}步", "next": "很好。我们进入下一步。", "correct": "很好，答对了。",
+        "try_again": "好像看得有一点不同。", "enter_again": "请再输入一次。",
+        "enter_step_value": "请输入这一步得到的值。", "enter_calculated_number": "请输入你算出的数。",
+        "copy_given_number": "请直接输入这个数。", "confusion": "好，我们只重新看这一步。",
+        "intro_place_value": "我们看位值来解题。",
+        "intro_highlighted": "这道题要找出 {multiple} 中涂色部分 {highlighted} 和哪个选项相同。",
+        "intro_hexagon": "我们先确认图形中的理由。\n先用直径求半径。",
+        "intro_general": "我们一步一步开始。\n方法：{method}",
+        "place_value_hint": "看涂色部分的位值，选择相同的乘法式。",
+        "choose_option": "请从下面的选项中选择合适的式子。",
+        "complete_with_answer": "很好。所有步骤都完成了。\n最终答案是 {answer}。\n现在把它填到答案框或选项中。",
+        "complete": "很好。所有步骤都完成了。\n现在按题目的答案框或选项整理一下。",
+        "step_place_value_select": "请选择和涂色部分相同的乘法式。",
+        "step_copy_given_expression": "{expr} 已经是题目给出的数。",
+        "step_calculate_expression": "先求出 {expr} 的值。",
+        "step_compare_smaller": "比较这些值。{values} 中哪一个更小？",
+        "step_compare_larger": "比较这些值。{values} 中哪一个更大？",
+        "step_compare_condition": "比较这些值。{values} 中哪一个符合条件？",
+    },
+}
+
+_LOCALIZED_PHRASES["km"] = _LOCALIZED_PHRASES["en"] | {
+    "step": "ជំហាន {n}", "next": "ល្អណាស់។ យើងទៅជំហានបន្ទាប់។", "correct": "ល្អណាស់ ត្រឹមត្រូវហើយ។",
+    "try_again": "មើលទៅយើងគិតខុសបន្តិចហើយ។", "enter_again": "សូមបញ្ចូលម្តងទៀត។",
+    "enter_step_value": "បញ្ចូលតម្លៃសម្រាប់ជំហាននេះ។", "enter_calculated_number": "បញ្ចូលចំនួនដែលបានគណនា។",
+    "copy_given_number": "សូមបញ្ចូលចំនួននោះដូចដើម។", "confusion": "ល្អណាស់។ យើងមើលតែជំហាននេះម្តងទៀត។",
+    "intro_place_value": "យើងនឹងប្រើ Rule Tutor មើលតម្លៃតាមខ្ទង់។",
+    "intro_highlighted": "នេះជាលំហាត់រកថាផ្នែកដែលបានពណ៌ {highlighted} ក្នុង {multiple} ស្មើនឹងជម្រើសណា។",
+    "intro_hexagon": "យើងនឹងពិនិត្យហេតុផលរបស់រូបរាងជាមួយ Rule Tutor។\nមុនដំបូង រកកាំពីអង្កត់ផ្ចិត។",
+    "intro_general": "យើងចាប់ផ្តើមដោះស្រាយជាជំហានៗជាមួយ Rule Tutor។\nវិធីដោះស្រាយ: {method}",
+    "place_value_hint": "មើលតម្លៃតាមខ្ទង់នៃផ្នែកដែលបានពណ៌ ហើយជ្រើសសមីការគុណដែលដូចគ្នា។",
+    "choose_option": "សូមជ្រើសសមីការដែលត្រឹមត្រូវពីជម្រើសខាងក្រោម។",
+    "complete_with_answer": "ល្អណាស់។ ជំហានទាំងអស់បានបញ្ចប់ហើយ។\nចម្លើយចុងក្រោយគឺ {answer}។\nឥឡូវសម្គាល់វាក្នុងជម្រើស ឬប្រអប់ចម្លើយ។",
+    "complete": "ល្អណាស់។ ជំហានទាំងអស់បានបញ្ចប់ហើយ។\nឥឡូវរៀបចំចម្លើយក្នុងប្រអប់ ឬជម្រើស។",
+    "step_place_value_select": "សូមជ្រើសសមីការគុណដែលដូចនឹងផ្នែកដែលបានពណ៌។",
+    "step_copy_given_expression": "{expr} ត្រូវបានផ្តល់ជាចំនួនរួចហើយ។",
+    "step_calculate_expression": "មុនដំបូង រកតម្លៃនៃ {expr}។",
+    "step_compare_smaller": "ប្រៀបធៀបតម្លៃ។ ក្នុង {values} មួយណាតូចជាង?",
+    "step_compare_larger": "ប្រៀបធៀបតម្លៃ។ ក្នុង {values} មួយណាធំជាង?",
+    "step_compare_condition": "ប្រៀបធៀបតម្លៃ។ ក្នុង {values} មួយណាត្រូវនឹងលក្ខខណ្ឌ?",
+}
+_LOCALIZED_PHRASES["my"] = _LOCALIZED_PHRASES["en"] | {
+    "step": "အဆင့် {n}", "next": "ကောင်းပါတယ်။ နောက်အဆင့်သို့ သွားကြမယ်။", "correct": "ကောင်းပါတယ်၊ မှန်ပါတယ်။",
+    "try_again": "နည်းနည်း မတူတဲ့ဘက်ကနေ ကြည့်မိသလိုပါပဲ။", "enter_again": "ထပ်ထည့်ကြည့်ပါ။",
+    "enter_step_value": "ဒီအဆင့်အတွက် တန်ဖိုးကို ထည့်ပါ။", "enter_calculated_number": "တွက်ထားတဲ့ ကိန်းကို ထည့်ပါ။",
+    "copy_given_number": "အဲဒီကိန်းကို မပြောင်းဘဲ ထည့်ပါ။", "confusion": "ကောင်းပါတယ်။ ဒီအဆင့်ကိုပဲ ပြန်ကြည့်မယ်။",
+    "intro_place_value": "Rule Tutor နဲ့ နေရာတန်ဖိုးကို ကြည့်ပြီး ဖြေကြမယ်။",
+    "intro_highlighted": "{multiple} ထဲက အရောင်ခြယ်ထားတဲ့ {highlighted} က ဘယ်ရွေးချယ်မှုနဲ့ တူလဲ ရှာရမယ့် မေးခွန်းပါ။",
+    "intro_hexagon": "Rule Tutor နဲ့ ပုံသဏ္ဍာန်အကြောင်းရင်းကို စစ်ကြမယ်။\nပထမဆုံး အချင်းကနေ အချင်းဝက်ကို ရှာပါ။",
+    "intro_general": "Rule Tutor နဲ့ အဆင့်လိုက် စတင်ဖြေရှင်းမယ်။\nဖြေရှင်းနည်း: {method}",
+    "place_value_hint": "အရောင်ခြယ်ထားတဲ့ အပိုင်းရဲ့ နေရာတန်ဖိုးကို ကြည့်ပြီး တူတဲ့ မြှောက်ဖော်ပြချက်ကို ရွေးပါ။",
+    "choose_option": "အောက်က ရွေးချယ်စရာတွေထဲက မှန်တဲ့ ဖော်ပြချက်ကို ရွေးပါ။",
+    "complete_with_answer": "ကောင်းပါတယ်။ ဖြေရှင်းမှုအဆင့်အားလုံး ပြီးသွားပါပြီ။\nနောက်ဆုံးအဖြေက {answer} ပါ။\nအခု ရွေးချယ်မှု ဒါမှမဟုတ် အဖြေကွက်မှာ မှတ်ပါ။",
+    "complete": "ကောင်းပါတယ်။ ဖြေရှင်းမှုအဆင့်အားလုံး ပြီးသွားပါပြီ။\nအခု မေးခွန်းရဲ့ အဖြေကွက် ဒါမှမဟုတ် ရွေးချယ်မှုမှာ စီစဉ်ပါ။",
+    "step_place_value_select": "အရောင်ခြယ်ထားတဲ့ အပိုင်းနဲ့ တူတဲ့ မြှောက်ဖော်ပြချက်ကို ရွေးပါ။",
+    "step_copy_given_expression": "{expr} ကို ကိန်းအဖြစ် ပေးထားပြီးသားပါ။",
+    "step_calculate_expression": "ပထမဆုံး {expr} ရဲ့ တန်ဖိုးကို ရှာပါ။",
+    "step_compare_smaller": "တန်ဖိုးတွေကို နှိုင်းယှဉ်ပါ။ {values} ထဲမှာ ဘယ်ဟာ ပိုသေးလဲ?",
+    "step_compare_larger": "တန်ဖိုးတွေကို နှိုင်းယှဉ်ပါ။ {values} ထဲမှာ ဘယ်ဟာ ပိုကြီးလဲ?",
+    "step_compare_condition": "တန်ဖိုးတွေကို နှိုင်းယှဉ်ပါ။ {values} ထဲမှာ ဘယ်ဟာ အခြေအနေနဲ့ ကိုက်ညီလဲ?",
+}
+
+
+def _localized_text(payload: dict[str, Any], key: str) -> str:
+    lang = _payload_language(payload)
+    return _LOCALIZED_TEXT.get(lang, _LOCALIZED_TEXT["ko"]).get(key) or _LOCALIZED_TEXT["ko"][key]
+
+
+def _localized_phrase(lang: str, key: str) -> str:
+    return _LOCALIZED_PHRASES.get(lang, _LOCALIZED_PHRASES["ko"]).get(key) or _LOCALIZED_PHRASES["ko"][key]
+
+
+def _localized_step_label(lang: str, index: int) -> str:
+    return _localized_phrase(lang, "step").format(n=index + 1)
 
 
 def _extract_question(semantic: dict[str, Any] | None) -> str | None:

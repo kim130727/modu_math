@@ -1,0 +1,115 @@
+{
+  "problem_id": "grade6_circle_hexagon_perimeter_difference_0002",
+  "problem_type": "numeric_answer_perimeter_difference",
+  "metadata": {
+    "title": "Difference between the circle's circumference and the regular hexagon's perimeter",
+    "tags": [
+      "circle",
+      "regular-hexagon",
+      "circumference",
+      "perimeter",
+      "inscribed-polygon",
+      "elementary-math",
+      "schema-compliant"
+    ],
+    "question": "In the figure on the right, what is the difference, in centimeters, between the circumference of the circle and the perimeter of the regular hexagon? (Use 3.14 for pi.)",
+    "required_layout_ids": [
+      "slot.circle",
+      "slot.hexagon",
+      "slot.diameter_line",
+      "slot.center_point",
+      "konva_1783767050396_paste_321289_0"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "en",
+    "instruction": "Find the radius from the circle's diameter, and use the fact that each side of a regular hexagon inscribed in a circle is equal to the circle's radius."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.circle",
+        "type": "circle",
+        "label": "circle",
+        "center_ref": "point.center",
+        "diameter": 30,
+        "radius": 15,
+        "unit": "cm"
+      },
+      {
+        "id": "obj.hexagon",
+        "type": "regular_polygon",
+        "label": "regular hexagon",
+        "sides": 6,
+        "inscribed_in": "obj.circle",
+        "side_length": 15,
+        "unit": "cm"
+      },
+      {
+        "id": "point.center",
+        "type": "point",
+        "label": "Center of the circle"
+      },
+      {
+        "id": "measure.diameter",
+        "type": "length",
+        "label": "diameter of the circle",
+        "value": 30,
+        "unit": "cm"
+      },
+      {
+        "id": "const.pi",
+        "type": "constant",
+        "label": "pi",
+        "value": 3.14
+      }
+    ],
+    "relations": [
+      {
+        "id": "rel.hexagon_inscribed",
+        "type": "inscribed_in",
+        "from_id": "obj.hexagon",
+        "to_id": "obj.circle"
+      },
+      {
+        "id": "rel.hexagon_side_equals_radius",
+        "type": "side_length_equals_radius",
+        "from_id": "obj.hexagon",
+        "to_id": "obj.circle",
+        "equation": "s = r"
+      },
+      {
+        "id": "rel.diameter_measure",
+        "type": "diameter_measure",
+        "from_id": "obj.circle",
+        "to_id": "measure.diameter",
+        "equation": "d = 30"
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "blanks": [
+      {
+        "id": "slot.answer",
+        "type": "number",
+        "value": 4.2,
+        "unit": "cm"
+      }
+    ],
+    "choices": [],
+    "answer_key": [
+      {
+        "blank_id": "slot.answer",
+        "value": 4.2,
+        "unit": "cm"
+      }
+    ],
+    "confidence": 1.0,
+    "target": {
+      "type": "perimeter_difference",
+      "description": "The circle's circumference minus the regular hexagon's perimeter"
+    },
+    "value": 4.2,
+    "unit": "cm"
+  }
+}

@@ -8,6 +8,7 @@ urlpatterns = [
     path("problems/", views.problems_list),
     path("problems/create/", views.create_problem),
     path("tutor-preview/status/", views.tutor_preview_status),
+    path("tutor-preview/speech/", views.tutor_preview_speech),
     path("tutor-preview/", views.tutor_preview),
     path("assets/<path:problem_id>/<str:filename>", views.problem_asset),
     path("problems/<path:problem_id>/dsl/", views.save_dsl),

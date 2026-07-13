@@ -1,0 +1,115 @@
+{
+  "problem_id": "小6_円と正六角形の周りの長さの差_0002",
+  "problem_type": "numeric_answer_perimeter_difference",
+  "metadata": {
+    "title": "円周と正六角形の周りの長さの差",
+    "tags": [
+      "circle",
+      "regular-hexagon",
+      "circumference",
+      "perimeter",
+      "inscribed-polygon",
+      "elementary-math",
+      "schema-compliant"
+    ],
+    "question": "右の図で、円周と正六角形の周りの長さの差は何cmですか。（円周率は3.14とします。）",
+    "required_layout_ids": [
+      "slot.circle",
+      "slot.hexagon",
+      "slot.diameter_line",
+      "slot.center_point",
+      "konva_1783767050396_paste_321289_0"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ja",
+    "instruction": "円の直径から半径を求め、円に内接する正六角形の1辺の長さが円の半径と等しいことを利用します。"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.circle",
+        "type": "circle",
+        "label": "円",
+        "center_ref": "point.center",
+        "diameter": 30,
+        "radius": 15,
+        "unit": "cm"
+      },
+      {
+        "id": "obj.hexagon",
+        "type": "regular_polygon",
+        "label": "正六角形",
+        "sides": 6,
+        "inscribed_in": "obj.circle",
+        "side_length": 15,
+        "unit": "cm"
+      },
+      {
+        "id": "point.center",
+        "type": "point",
+        "label": "円の中心"
+      },
+      {
+        "id": "measure.diameter",
+        "type": "length",
+        "label": "円の直径",
+        "value": 30,
+        "unit": "cm"
+      },
+      {
+        "id": "const.pi",
+        "type": "constant",
+        "label": "円周率",
+        "value": 3.14
+      }
+    ],
+    "relations": [
+      {
+        "id": "rel.hexagon_inscribed",
+        "type": "inscribed_in",
+        "from_id": "obj.hexagon",
+        "to_id": "obj.circle"
+      },
+      {
+        "id": "rel.hexagon_side_equals_radius",
+        "type": "side_length_equals_radius",
+        "from_id": "obj.hexagon",
+        "to_id": "obj.circle",
+        "equation": "s = r"
+      },
+      {
+        "id": "rel.diameter_measure",
+        "type": "diameter_measure",
+        "from_id": "obj.circle",
+        "to_id": "measure.diameter",
+        "equation": "d = 30"
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "blanks": [
+      {
+        "id": "slot.answer",
+        "type": "number",
+        "value": 4.2,
+        "unit": "cm"
+      }
+    ],
+    "choices": [],
+    "answer_key": [
+      {
+        "blank_id": "slot.answer",
+        "value": 4.2,
+        "unit": "cm"
+      }
+    ],
+    "confidence": 1.0,
+    "target": {
+      "type": "perimeter_difference",
+      "description": "円周から正六角形の周りの長さを引いた値"
+    },
+    "value": 4.2,
+    "unit": "cm"
+  }
+}

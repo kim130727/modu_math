@@ -1,6 +1,7 @@
-import { FormEvent, useEffect, useMemo, useState } from "react";
+import { FormEvent, useEffect, useMemo, useRef, useState, type MutableRefObject } from "react";
 import {
   sendTutorPreviewMessage,
+  synthesizeTutorSpeech,
   tutorPreviewStatus,
   type LayoutDocument,
   type RendererDocument,
@@ -30,10 +31,15 @@ export function TutorPreviewPanel({ problemId, shapeDocument, semantic, solvable
   const [openaiConfigured, setOpenaiConfigured] = useState(false);
   const [model, setModel] = useState("");
   const [voiceEnabled, setVoiceEnabled] = useState(false);
+  const tutorLanguage = useMemo(() => problemLanguage(semantic), [semantic]);
+  const tutorLocale = useMemo(() => languageToSpeechLocale(tutorLanguage), [tutorLanguage]);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
   const payload = useMemo(
     () => ({
       problem_id: problemId,
+      language: tutorLanguage,
+      locale: tutorLocale,
       semantic,
       solvable,
       layout,
@@ -44,7 +50,7 @@ export function TutorPreviewPanel({ problemId, shapeDocument, semantic, solvable
         selected_source: "konva",
       },
     }),
-    [layout, problemId, renderer, semantic, shapeDocument.canvas, shapeDocument.shapes.length, solvable],
+    [layout, problemId, renderer, semantic, shapeDocument.canvas, shapeDocument.shapes.length, solvable, tutorLanguage, tutorLocale],
   );
 
   useEffect(() => {
@@ -68,7 +74,10 @@ export function TutorPreviewPanel({ problemId, shapeDocument, semantic, solvable
     setChoices([]);
     setChecks([]);
     setError(null);
+    stopTutorSpeech(audioRef);
   }, [problemId]);
+
+  useEffect(() => () => stopTutorSpeech(audioRef), []);
 
   const submitMessage = async (text: string, displayText = text) => {
     const message = text.trim();
@@ -92,7 +101,7 @@ export function TutorPreviewPanel({ problemId, shapeDocument, semantic, solvable
       setChoices(response.choices ?? []);
       const reply = formatTutorText(response.reply);
       setMessages([...nextMessages, { role: "assistant", content: reply }]);
-      if (voiceEnabled) speakKorean(reply);
+      if (voiceEnabled) void playTutorSpeech(reply, tutorLocale, payload, setError, audioRef);
     } catch (err) {
       setError(err instanceof Error ? err.message : String(err));
     } finally {
@@ -134,7 +143,7 @@ export function TutorPreviewPanel({ problemId, shapeDocument, semantic, solvable
             onClick={() => {
               const next = !voiceEnabled;
               setVoiceEnabled(next);
-              if (!next) window.speechSynthesis?.cancel();
+              if (!next) stopTutorSpeech(audioRef);
             }}
           >
             음성
@@ -181,7 +190,7 @@ export function TutorPreviewPanel({ problemId, shapeDocument, semantic, solvable
 
       <div className="konva-tutor-side">
         {latestTutorMessage ? (
-          <button type="button" className="konva-tutor-read" onClick={() => speakKorean(latestTutorMessage)}>
+          <button type="button" className="konva-tutor-read" onClick={() => void playTutorSpeech(latestTutorMessage, tutorLocale, payload, setError, audioRef)}>
             듣기
           </button>
         ) : null}
@@ -218,13 +227,73 @@ export function TutorPreviewPanel({ problemId, shapeDocument, semantic, solvable
   );
 }
 
-function speakKorean(text: string): void {
+async function playTutorSpeech(
+  text: string,
+  locale: string,
+  payload: Record<string, unknown>,
+  setError: (message: string | null) => void,
+  audioRef: MutableRefObject<HTMLAudioElement | null>,
+): Promise<void> {
+  stopTutorSpeech(audioRef);
+  try {
+    const audioBlob = await synthesizeTutorSpeech({ text, locale, payload });
+    const url = URL.createObjectURL(audioBlob);
+    const audio = new Audio(url);
+    audio.dataset.objectUrl = url;
+    audioRef.current = audio;
+    audio.onended = () => URL.revokeObjectURL(url);
+    audio.onerror = () => {
+      URL.revokeObjectURL(url);
+      setError("서버 TTS 오디오를 재생하지 못했습니다.");
+    };
+    await audio.play();
+  } catch (err) {
+    setError(`서버 TTS 실패: ${err instanceof Error ? err.message : String(err)}`);
+  }
+}
+
+function stopTutorSpeech(audioRef: MutableRefObject<HTMLAudioElement | null>): void {
+  if (audioRef.current) {
+    const objectUrl = audioRef.current.dataset.objectUrl;
+    audioRef.current.pause();
+    audioRef.current.currentTime = 0;
+    if (objectUrl) URL.revokeObjectURL(objectUrl);
+    audioRef.current = null;
+  }
   if (!("speechSynthesis" in window)) return;
   window.speechSynthesis.cancel();
-  const utterance = new SpeechSynthesisUtterance(text);
-  utterance.lang = "ko-KR";
-  utterance.rate = 1;
-  window.speechSynthesis.speak(utterance);
+}
+
+function problemLanguage(semantic: Record<string, unknown> | null): string {
+  const metadata = recordValue(semantic?.metadata);
+  const raw = stringValue(metadata?.language) ?? stringValue(metadata?.locale) ?? stringValue(semantic?.language) ?? stringValue(semantic?.locale);
+  const value = (raw ?? "ko").trim().toLowerCase().replace("_", "-");
+  if (["ko", "kr", "ko-kr", "korean"].includes(value)) return "ko";
+  if (["en", "en-us", "en-gb", "english"].includes(value)) return "en";
+  if (["ja", "jp", "ja-jp", "japanese"].includes(value)) return "ja";
+  if (["zh", "zh-cn", "zh-hans", "ch", "cn", "chinese"].includes(value)) return "zh";
+  if (["km", "kh", "km-kh", "khmer", "cambodian", "cam"].includes(value)) return "km";
+  if (["my", "my-mm", "burmese", "myanmar"].includes(value)) return "my";
+  return value.split("-", 1)[0] || "ko";
+}
+
+function languageToSpeechLocale(language: string): string {
+  return {
+    ko: "ko-KR",
+    en: "en-US",
+    ja: "ja-JP",
+    zh: "zh-CN",
+    km: "km-KH",
+    my: "my-MM",
+  }[language] ?? language;
+}
+
+function recordValue(value: unknown): Record<string, unknown> | null {
+  return typeof value === "object" && value !== null && !Array.isArray(value) ? (value as Record<string, unknown>) : null;
+}
+
+function stringValue(value: unknown): string | null {
+  return typeof value === "string" && value.trim() ? value : null;
 }
 
 function formatTutorText(text: string): string {

@@ -1,0 +1,115 @@
+{
+  "problem_id": "六年级_圆与正六边形周长之差_0002",
+  "problem_type": "numeric_answer_perimeter_difference",
+  "metadata": {
+    "title": "圆与正六边形的周长之差",
+    "tags": [
+      "circle",
+      "regular-hexagon",
+      "circumference",
+      "perimeter",
+      "inscribed-polygon",
+      "elementary-math",
+      "schema-compliant"
+    ],
+    "question": "在右图中，圆与正六边形的周长相差多少厘米？（圆周率：3.14）",
+    "required_layout_ids": [
+      "slot.circle",
+      "slot.hexagon",
+      "slot.diameter_line",
+      "slot.center_point",
+      "konva_1783767050396_paste_321289_0"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "zh-CN",
+    "instruction": "先根据圆的直径求出半径，并利用圆内接正六边形的边长等于圆的半径这一性质。"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.circle",
+        "type": "circle",
+        "label": "圆",
+        "center_ref": "point.center",
+        "diameter": 30,
+        "radius": 15,
+        "unit": "cm"
+      },
+      {
+        "id": "obj.hexagon",
+        "type": "regular_polygon",
+        "label": "正六边形",
+        "sides": 6,
+        "inscribed_in": "obj.circle",
+        "side_length": 15,
+        "unit": "cm"
+      },
+      {
+        "id": "point.center",
+        "type": "point",
+        "label": "圆心"
+      },
+      {
+        "id": "measure.diameter",
+        "type": "length",
+        "label": "圆的直径",
+        "value": 30,
+        "unit": "cm"
+      },
+      {
+        "id": "const.pi",
+        "type": "constant",
+        "label": "圆周率",
+        "value": 3.14
+      }
+    ],
+    "relations": [
+      {
+        "id": "rel.hexagon_inscribed",
+        "type": "inscribed_in",
+        "from_id": "obj.hexagon",
+        "to_id": "obj.circle"
+      },
+      {
+        "id": "rel.hexagon_side_equals_radius",
+        "type": "side_length_equals_radius",
+        "from_id": "obj.hexagon",
+        "to_id": "obj.circle",
+        "equation": "s = r"
+      },
+      {
+        "id": "rel.diameter_measure",
+        "type": "diameter_measure",
+        "from_id": "obj.circle",
+        "to_id": "measure.diameter",
+        "equation": "d = 30"
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "blanks": [
+      {
+        "id": "slot.answer",
+        "type": "number",
+        "value": 4.2,
+        "unit": "cm"
+      }
+    ],
+    "choices": [],
+    "answer_key": [
+      {
+        "blank_id": "slot.answer",
+        "value": 4.2,
+        "unit": "cm"
+      }
+    ],
+    "confidence": 1.0,
+    "target": {
+      "type": "perimeter_difference",
+      "description": "圆的周长减去正六边形周长所得的值"
+    },
+    "value": 4.2,
+    "unit": "cm"
+  }
+}

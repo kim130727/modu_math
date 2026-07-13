@@ -4,7 +4,7 @@ import json
 import mimetypes
 from typing import Any
 
-from django.http import FileResponse
+from django.http import FileResponse, HttpResponse
 from django.http import HttpRequest, JsonResponse
 from django.shortcuts import render
 from django.views.decorators.http import require_GET, require_POST
@@ -19,7 +19,15 @@ from .services.problems import (
     resolve_problem_paths,
     save_problem_dsl,
 )
-from .services.tutor_preview import mock_tutor_response, openai_tutor_response, rule_tutor_response, tutor_env_status, validate_tutor_payload
+from .services.tutor_preview import (
+    mock_tutor_response,
+    openai_tutor_response,
+    openai_tutor_speech,
+    rule_tutor_response,
+    tutor_env_status,
+    tutor_speech_locale,
+    validate_tutor_payload,
+)
 
 
 def _json_body(request: HttpRequest) -> dict[str, Any]:
@@ -122,6 +130,34 @@ def tutor_preview(request: HttpRequest) -> JsonResponse:
             **tutor_env_status(),
         }
     )
+
+
+@require_POST
+def tutor_preview_speech(request: HttpRequest) -> HttpResponse | JsonResponse:
+    try:
+        data = _json_body(request)
+        text = data.get("text")
+        locale = data.get("locale", "ko-KR")
+        payload = data.get("payload")
+        if not isinstance(text, str):
+            return _error("'text' must be a string", status=400)
+        if not isinstance(locale, str):
+            return _error("'locale' must be a string", status=400)
+        if payload is not None and not isinstance(payload, dict):
+            return _error("'payload' must be an object", status=400)
+        locale = tutor_speech_locale(payload, fallback=locale)
+        audio, content_type = openai_tutor_speech(text, locale)
+    except EnvironmentError as exc:
+        return _error(str(exc), status=400)
+    except ImportError as exc:
+        return _error(str(exc), status=500)
+    except ValueError as exc:
+        return _error(str(exc), status=400)
+    except Exception as exc:
+        return _error(str(exc), status=500)
+    response = HttpResponse(audio, content_type=content_type)
+    response["Cache-Control"] = "no-store"
+    return response
 
 
 @require_GET

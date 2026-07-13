@@ -1,0 +1,192 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "grade6_circle_hexagon_perimeter_difference_0002",
+  "title": "Difference between the circle's circumference and the regular hexagon's perimeter",
+  "canvas": {
+    "width": 700,
+    "height": 420,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "vertical",
+      "slot_ids": [
+        "slot.question"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.circle",
+        "slot.hexagon",
+        "konva_1783767050396_paste_321289_0",
+        "slot.diameter_line",
+        "slot.center_point",
+        "slot.label_30"
+      ]
+    },
+    {
+      "id": "region.answer",
+      "role": "answer",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.question",
+      "kind": "text_box",
+      "prompt": "A problem asking for the difference between the circumference of a circle and the perimeter of a regular hexagon",
+      "content": {
+        "text": "In the figure on the right, what is the difference, in centimeters, between the circumference of the circle and the perimeter of the regular hexagon? (Use 3.14 for pi.)",
+        "style_role": "body",
+        "x": 15.0,
+        "y": 18.0,
+        "width": 656.0,
+        "height": 118.0,
+        "align": "left",
+        "valign": "top",
+        "font_size": 22,
+        "line_height": 1.25,
+        "fill": "#111111",
+        "semantic_role": "question"
+      }
+    },
+    {
+      "id": "slot.circle",
+      "kind": "circle",
+      "prompt": "A circle with a diameter of 30 cm",
+      "content": {
+        "cx": 336.0,
+        "cy": 264.0,
+        "r": 100.0,
+        "stroke": "#202020",
+        "stroke_width": 2.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.hexagon",
+      "kind": "polygon",
+      "prompt": "A regular hexagon inscribed in the circle",
+      "content": {
+        "points": [
+          [
+            436.0,
+            264.0
+          ],
+          [
+            386.0,
+            177.4
+          ],
+          [
+            286.0,
+            177.4
+          ],
+          [
+            236.0,
+            264.0
+          ],
+          [
+            286.0,
+            350.6
+          ],
+          [
+            386.0,
+            350.6
+          ]
+        ],
+        "stroke": "#202020",
+        "stroke_width": 2.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.diameter_line",
+      "kind": "line",
+      "prompt": "The circle's diameter is 30 cm",
+      "content": {
+        "x1": 236.0,
+        "y1": 264.0,
+        "x2": 436.0,
+        "y2": 264.0,
+        "stroke": "#202020",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.center_point",
+      "kind": "circle",
+      "prompt": "Center of the circle",
+      "content": {
+        "cx": 336.0,
+        "cy": 264.0,
+        "r": 4.5,
+        "stroke": "none",
+        "stroke_width": 0.0,
+        "fill": "#ff3f7f"
+      }
+    },
+    {
+      "id": "slot.label_30",
+      "kind": "text",
+      "prompt": "Diameter length label",
+      "content": {
+        "text": "30 cm",
+        "style_role": "body",
+        "x": 336.0,
+        "y": 230.0,
+        "font_size": 24,
+        "anchor": "middle",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "konva_1783767050396_paste_321289_0",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 234 267 Q 336.5 207 439 267",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#555555",
+        "stroke_width": 1.8,
+        "stroke_dasharray": "6 5",
+        "fill": "none"
+      }
+    }
+  ],
+  "groups": [
+    {
+      "id": "group.diagram.circle_hexagon",
+      "role": "diagram_block",
+      "member_ids": [
+        "slot.circle",
+        "slot.hexagon",
+        "slot.diameter_line",
+        "slot.center_point",
+        "slot.label_30",
+        "konva_1783767050396_paste_321289_0"
+      ]
+    }
+  ],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.question",
+    "region.diagram",
+    "slot.circle",
+    "slot.hexagon",
+    "konva_1783767050396_paste_321289_0",
+    "slot.diameter_line",
+    "slot.center_point",
+    "slot.label_30",
+    "region.answer"
+  ]
+}

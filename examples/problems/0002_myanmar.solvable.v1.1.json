@@ -1,0 +1,150 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "အတန်း၆_၂_စက်ဝိုင်းဧရိယာ_၀၀၀၂",
+  "problem_type": "numeric_answer_perimeter_difference",
+  "inputs": {
+    "diameter": 30,
+    "pi": 3.14,
+    "polygon_sides": 6,
+    "target_label": "စက်ဝိုင်းနှင့် ပုံမှန်ဆဋ္ဌဂံတို့၏ ပတ်လည်အလျား ကွာခြားချက်",
+    "unit": "cm"
+  },
+  "given": [
+    {
+      "ref": "measure.diameter",
+      "value": {
+        "length": 30,
+        "unit": "cm"
+      }
+    },
+    {
+      "ref": "const.pi",
+      "value": 3.14
+    },
+    {
+      "ref": "rel.hexagon_inscribed",
+      "value": true
+    },
+    {
+      "ref": "rel.hexagon_side_equals_radius",
+      "value": true
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "perimeter_difference"
+  },
+  "method": "compare_circle_and_inscribed_hexagon_perimeters",
+  "plan": [
+    "စက်ဝိုင်း၏ အချင်း 30cm ကို 2 ဖြင့်စား၍ အချင်းဝက် 15cm ကို ရှာပါ။",
+    "စက်ဝိုင်းအတွင်း ထိစပ်ရေးဆွဲထားသော ပုံမှန်ဆဋ္ဌဂံ၏ အနားတစ်ဖက်သည် စက်ဝိုင်း၏ အချင်းဝက်နှင့် တူသောကြောင့် 15cm ဖြစ်သည်။",
+    "စက်ဝိုင်း၏ ပတ်လည်အလျားနှင့် ပုံမှန်ဆဋ္ဌဂံ၏ ပတ်လည်အလျားကို သီးခြားစီ ရှာပါ။",
+    "စက်ဝိုင်း၏ ပတ်လည်အလျားမှ ပုံမှန်ဆဋ္ဌဂံ၏ ပတ်လည်အလျားကို နုတ်၍ ကွာခြားချက်ကို ရှာပါ။"
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "30 ÷ 2",
+      "value": {
+        "result": 15,
+        "meaning": "စက်ဝိုင်း၏ အချင်းဝက်",
+        "unit": "cm"
+      },
+      "explanation": "အချင်း 30cm ကို 2 ဖြင့်စားလျှင် အချင်းဝက်သည် 15cm ဖြစ်သည်။"
+    },
+    {
+      "id": "step.2",
+      "expr": "ပုံမှန်ဆဋ္ဌဂံ၏ အနားတစ်ဖက် = စက်ဝိုင်း၏ အချင်းဝက်",
+      "value": {
+        "result": 15,
+        "meaning": "ပုံမှန်ဆဋ္ဌဂံ၏ အနားတစ်ဖက်",
+        "unit": "cm"
+      },
+      "explanation": "စက်ဝိုင်းအတွင်း ထိစပ်ရေးဆွဲထားသော ပုံမှန်ဆဋ္ဌဂံ၏ အနားတစ်ဖက်သည် စက်ဝိုင်း၏ အချင်းဝက်နှင့် တူညီသည်။"
+    },
+    {
+      "id": "step.3",
+      "expr": "30 × 3.14",
+      "value": {
+        "result": 94.2,
+        "meaning": "စက်ဝိုင်း၏ ပတ်လည်အလျား",
+        "unit": "cm"
+      },
+      "explanation": "စက်ဝိုင်း၏ ပတ်လည်အလျားသည် အချင်းကို π တန်ဖိုးဖြင့် မြှောက်၍ 94.2cm ဖြစ်သည်။"
+    },
+    {
+      "id": "step.4",
+      "expr": "15 × 6",
+      "value": {
+        "result": 90,
+        "meaning": "ပုံမှန်ဆဋ္ဌဂံ၏ ပတ်လည်အလျား",
+        "unit": "cm"
+      },
+      "explanation": "ပုံမှန်ဆဋ္ဌဂံတွင် အနား 6 ဖက်ရှိသောကြောင့် ပတ်လည်အလျားသည် 90cm ဖြစ်သည်။"
+    },
+    {
+      "id": "step.5",
+      "expr": "94.2 - 90",
+      "value": {
+        "result": 4.2,
+        "meaning": "စက်ဝိုင်းနှင့် ပုံမှန်ဆဋ္ဌဂံတို့၏ ပတ်လည်အလျား ကွာခြားချက်",
+        "unit": "cm"
+      },
+      "explanation": "စက်ဝိုင်း၏ ပတ်လည်အလျား 94.2cm မှ ပုံမှန်ဆဋ္ဌဂံ၏ ပတ်လည်အလျား 90cm ကို နုတ်လျှင် 4.2cm ဖြစ်သည်။"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "15 × 2",
+      "expected": 30,
+      "actual": 30,
+      "pass": true
+    },
+    {
+      "id": "check.2",
+      "expr": "15 × 6",
+      "expected": 90,
+      "actual": 90,
+      "pass": true
+    },
+    {
+      "id": "check.3",
+      "expr": "30 × 3.14",
+      "expected": 94.2,
+      "actual": 94.2,
+      "pass": true
+    },
+    {
+      "id": "check.4",
+      "expr": "94.2 - 90",
+      "expected": 4.2,
+      "actual": 4.2,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [
+      {
+        "id": "slot.answer",
+        "type": "number",
+        "value": 4.2,
+        "unit": "cm"
+      }
+    ],
+    "choices": [],
+    "answer_key": [
+      {
+        "blank_id": "slot.answer",
+        "value": 4.2,
+        "unit": "cm"
+      }
+    ],
+    "target": {
+      "type": "perimeter_difference",
+      "description": "စက်ဝိုင်း၏ ပတ်လည်အလျားမှ ပုံမှန်ဆဋ္ဌဂံ၏ ပတ်လည်အလျားကို နုတ်ထားသော တန်ဖိုး"
+    },
+    "value": 4.2,
+    "unit": "cm"
+  }
+}

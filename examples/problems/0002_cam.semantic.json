@@ -1,0 +1,115 @@
+{
+  "problem_id": "ថ្នាក់ទី៦_២_ផ្ទៃក្រឡារង្វង់_០០០២",
+  "problem_type": "numeric_answer_perimeter_difference",
+  "metadata": {
+    "title": "ផលខុសគ្នារវាងបរិមាត្ររង្វង់ និងឆកោនទៀងទាត់",
+    "tags": [
+      "circle",
+      "regular-hexagon",
+      "circumference",
+      "perimeter",
+      "inscribed-polygon",
+      "elementary-math",
+      "schema-compliant"
+    ],
+    "question": "ក្នុងរូបខាងស្តាំ តើផលខុសគ្នារវាងបរិមាត្ររង្វង់ និងឆកោនទៀងទាត់ស្មើប៉ុន្មានសង់ទីម៉ែត្រ? (តម្លៃ π: 3.14)",
+    "required_layout_ids": [
+      "slot.circle",
+      "slot.hexagon",
+      "slot.diameter_line",
+      "slot.center_point",
+      "konva_1783767050396_paste_321289_0"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "km",
+    "instruction": "រកកាំពីអង្កត់ផ្ចិតរង្វង់ ហើយប្រើការពិតថាប្រវែងជ្រុងមួយនៃឆកោនទៀងទាត់ដែលចារឹកក្នុងរង្វង់ ស្មើនឹងកាំរង្វង់។"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.circle",
+        "type": "circle",
+        "label": "រង្វង់",
+        "center_ref": "point.center",
+        "diameter": 30,
+        "radius": 15,
+        "unit": "cm"
+      },
+      {
+        "id": "obj.hexagon",
+        "type": "regular_polygon",
+        "label": "ឆកោនទៀងទាត់",
+        "sides": 6,
+        "inscribed_in": "obj.circle",
+        "side_length": 15,
+        "unit": "cm"
+      },
+      {
+        "id": "point.center",
+        "type": "point",
+        "label": "ផ្ចិតរង្វង់"
+      },
+      {
+        "id": "measure.diameter",
+        "type": "length",
+        "label": "អង្កត់ផ្ចិតរង្វង់",
+        "value": 30,
+        "unit": "cm"
+      },
+      {
+        "id": "const.pi",
+        "type": "constant",
+        "label": "តម្លៃ π",
+        "value": 3.14
+      }
+    ],
+    "relations": [
+      {
+        "id": "rel.hexagon_inscribed",
+        "type": "inscribed_in",
+        "from_id": "obj.hexagon",
+        "to_id": "obj.circle"
+      },
+      {
+        "id": "rel.hexagon_side_equals_radius",
+        "type": "side_length_equals_radius",
+        "from_id": "obj.hexagon",
+        "to_id": "obj.circle",
+        "equation": "s = r"
+      },
+      {
+        "id": "rel.diameter_measure",
+        "type": "diameter_measure",
+        "from_id": "obj.circle",
+        "to_id": "measure.diameter",
+        "equation": "d = 30"
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "blanks": [
+      {
+        "id": "slot.answer",
+        "type": "number",
+        "value": 4.2,
+        "unit": "cm"
+      }
+    ],
+    "choices": [],
+    "answer_key": [
+      {
+        "blank_id": "slot.answer",
+        "value": 4.2,
+        "unit": "cm"
+      }
+    ],
+    "confidence": 1.0,
+    "target": {
+      "type": "perimeter_difference",
+      "description": "តម្លៃដែលបានពីការដកបរិមាត្រឆកោនទៀងទាត់ចេញពីបរិមាត្ររង្វង់"
+    },
+    "value": 4.2,
+    "unit": "cm"
+  }
+}

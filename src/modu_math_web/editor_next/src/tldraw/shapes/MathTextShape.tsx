@@ -35,21 +35,23 @@ export class MathTextShapeUtil extends ShapeUtil<MathTextShape> {
   }
 
   override component(shape: MathTextShape) {
-    const lines = (shape.props.text || shape.props.latex || "").split(/\n/g);
+    const rawText = shape.props.text || shape.props.latex || "";
+    const lines = shape.props.sourceKind === "text_box" ? wrapText(rawText, shape.props.w, shape.props.fontSize) : rawText.split(/\n/g);
     const anchor = shape.props.textAlign === "center" ? "middle" : shape.props.textAlign === "right" ? "end" : "start";
     const x = shape.props.textAlign === "center" ? shape.props.w / 2 : shape.props.textAlign === "right" ? shape.props.w : 0;
     const lineStep = shape.props.fontSize * shape.props.lineHeight;
+    const svgHeight = Math.max(shape.props.h, shape.props.fontSize + Math.max(lines.length - 1, 0) * lineStep);
     return (
       <HTMLContainer className="math-shape math-text-shape" style={{ width: shape.props.w, height: shape.props.h }}>
         {/* TODO: replace plain text with KaTeX/MathJax rendering while preserving props.latex. */}
-        <svg width={shape.props.w} height={Math.max(shape.props.h, lines.length * lineStep)} viewBox={`0 0 ${shape.props.w} ${Math.max(shape.props.h, lines.length * lineStep)}`}>
+        <svg width={shape.props.w} height={svgHeight} viewBox={`0 0 ${shape.props.w} ${svgHeight}`}>
           <text
             x={x}
             y={shape.props.fontSize}
             fill={shape.props.color}
             fontSize={shape.props.fontSize}
             textAnchor={anchor}
-            fontFamily={'"Segoe UI", "Pretendard", Arial, sans-serif'}
+            fontFamily={'"Noto Sans KR", "Segoe UI", "Pretendard", Arial, sans-serif'}
           >
             {lines.map((line, index) => (
               <tspan key={`${line}-${index}`} x={x} dy={index === 0 ? 0 : lineStep}>
@@ -74,4 +76,56 @@ export class MathTextShapeUtil extends ShapeUtil<MathTextShape> {
       },
     };
   }
+}
+
+function textUnitWidth(ch: string, fontSize: number): number {
+  if (/\s/.test(ch)) return fontSize * 0.35;
+  if (ch.codePointAt(0)! < 128) return fontSize * 0.58;
+  return fontSize * 0.92;
+}
+
+function textWidth(text: string, fontSize: number): number {
+  let width = 0;
+  for (const ch of text) width += textUnitWidth(ch, fontSize);
+  return width;
+}
+
+function wrapLongToken(token: string, maxWidth: number, fontSize: number): string[] {
+  const lines: string[] = [];
+  let current = "";
+  for (const ch of token) {
+    const trial = current + ch;
+    if (current && textWidth(trial, fontSize) > maxWidth) {
+      lines.push(current);
+      current = ch;
+    } else {
+      current = trial;
+    }
+  }
+  return current ? [...lines, current] : lines.length ? lines : [token];
+}
+
+function wrapText(text: string, maxWidth: number, fontSize: number): string[] {
+  if (!Number.isFinite(maxWidth) || maxWidth <= 0) return text.split(/\n/g);
+  const out: string[] = [];
+  for (const paragraph of text.split(/\n/g)) {
+    if (!paragraph) {
+      out.push("");
+      continue;
+    }
+    let current = "";
+    for (const word of paragraph.split(" ")) {
+      for (const piece of wrapLongToken(word, maxWidth, fontSize)) {
+        const trial = current ? `${current} ${piece}` : piece;
+        if (current && textWidth(trial, fontSize) > maxWidth) {
+          out.push(current);
+          current = piece;
+        } else {
+          current = trial;
+        }
+      }
+    }
+    if (current) out.push(current);
+  }
+  return out.length ? out : [""];
 }

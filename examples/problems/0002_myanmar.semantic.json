@@ -1,0 +1,115 @@
+{
+  "problem_id": "အတန်း၆_၂_စက်ဝိုင်းဧရိယာ_၀၀၀၂",
+  "problem_type": "numeric_answer_perimeter_difference",
+  "metadata": {
+    "title": "စက်ဝိုင်းနှင့် ပုံမှန်ဆဋ္ဌဂံတို့၏ ပတ်လည်အလျား ကွာခြားချက်",
+    "tags": [
+      "circle",
+      "regular-hexagon",
+      "circumference",
+      "perimeter",
+      "inscribed-polygon",
+      "elementary-math",
+      "schema-compliant"
+    ],
+    "question": "ညာဘက်ရှိ ပုံတွင် စက်ဝိုင်းနှင့် ပုံမှန်ဆဋ္ဌဂံတို့၏ ပတ်လည်အလျား ကွာခြားချက်သည် စင်တီမီတာ မည်မျှဖြစ်သနည်း။ (π တန်ဖိုး: 3.14)",
+    "required_layout_ids": [
+      "slot.circle",
+      "slot.hexagon",
+      "slot.diameter_line",
+      "slot.center_point",
+      "konva_1783767050396_paste_321289_0"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "my",
+    "instruction": "စက်ဝိုင်း၏ အချင်းမှ အချင်းဝက်ကို ရှာပြီး၊ စက်ဝိုင်းအတွင်း ထိစပ်ရေးဆွဲထားသော ပုံမှန်ဆဋ္ဌဂံ၏ အနားတစ်ဖက်၏ အလျားသည် စက်ဝိုင်း၏ အချင်းဝက်နှင့် တူညီသည်ကို အသုံးပြုပါ။"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.circle",
+        "type": "circle",
+        "label": "စက်ဝိုင်း",
+        "center_ref": "point.center",
+        "diameter": 30,
+        "radius": 15,
+        "unit": "cm"
+      },
+      {
+        "id": "obj.hexagon",
+        "type": "regular_polygon",
+        "label": "ပုံမှန်ဆဋ္ဌဂံ",
+        "sides": 6,
+        "inscribed_in": "obj.circle",
+        "side_length": 15,
+        "unit": "cm"
+      },
+      {
+        "id": "point.center",
+        "type": "point",
+        "label": "စက်ဝိုင်း၏ ဗဟိုချက်"
+      },
+      {
+        "id": "measure.diameter",
+        "type": "length",
+        "label": "စက်ဝိုင်း၏ အချင်း",
+        "value": 30,
+        "unit": "cm"
+      },
+      {
+        "id": "const.pi",
+        "type": "constant",
+        "label": "π တန်ဖိုး",
+        "value": 3.14
+      }
+    ],
+    "relations": [
+      {
+        "id": "rel.hexagon_inscribed",
+        "type": "inscribed_in",
+        "from_id": "obj.hexagon",
+        "to_id": "obj.circle"
+      },
+      {
+        "id": "rel.hexagon_side_equals_radius",
+        "type": "side_length_equals_radius",
+        "from_id": "obj.hexagon",
+        "to_id": "obj.circle",
+        "equation": "s = r"
+      },
+      {
+        "id": "rel.diameter_measure",
+        "type": "diameter_measure",
+        "from_id": "obj.circle",
+        "to_id": "measure.diameter",
+        "equation": "d = 30"
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "blanks": [
+      {
+        "id": "slot.answer",
+        "type": "number",
+        "value": 4.2,
+        "unit": "cm"
+      }
+    ],
+    "choices": [],
+    "answer_key": [
+      {
+        "blank_id": "slot.answer",
+        "value": 4.2,
+        "unit": "cm"
+      }
+    ],
+    "confidence": 1.0,
+    "target": {
+      "type": "perimeter_difference",
+      "description": "စက်ဝိုင်း၏ ပတ်လည်အလျားမှ ပုံမှန်ဆဋ္ဌဂံ၏ ပတ်လည်အလျားကို နုတ်ထားသော တန်ဖိုး"
+    },
+    "value": 4.2,
+    "unit": "cm"
+  }
+}
