@@ -1,13 +1,13 @@
 import { lazy, Suspense } from "react";
+import { EditorKonva } from "./konva_editor/EditorKonva";
 
 const MathProblemEditor = lazy(() =>
   import("./components/MathProblemEditor").then((module) => ({ default: module.MathProblemEditor })),
 );
-const EditorKonva = lazy(() => import("./konva_editor/EditorKonva").then((module) => ({ default: module.EditorKonva })));
 
 export default function App() {
   const rootMode = document.getElementById("root")?.dataset.editorMode;
-  const EditorComponent = rootMode === "konva" || window.location.pathname.includes("editor-konva") ? EditorKonva : MathProblemEditor;
+  const EditorComponent = rootMode === "tldraw" ? MathProblemEditor : EditorKonva;
   return (
     <Suspense fallback={<div className="editor-loading">Loading editor...</div>}>
       <EditorComponent />
