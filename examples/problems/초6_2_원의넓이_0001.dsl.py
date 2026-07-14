@@ -426,19 +426,24 @@ SEMANTIC_OVERRIDE = {
     },
 }
 
-
 SOLVABLE = {
     "schema": "modu.solvable.v1.1",
     "problem_id": "three_circle_circumference_001",
     "problem_type": "numeric_answer_circle_circumference",
     "inputs": {
-        "left_middle_center_distance": 14,
-        "middle_right_center_distance": 18,
-        "right_radius": 10,
-        "pi": 3,
-        "circle_count": 3,
         "target_label": "세 원의 원주의 합",
         "unit": "cm",
+        "quantities": {
+            "left_middle_center_distance": 14,
+            "middle_right_center_distance": 18,
+            "right_radius": 10,
+            "pi": 3,
+            "circle_count": 3,
+        },
+        "conditions": [
+            "왼쪽 원과 가운데 원은 서로 접합니다.",
+            "가운데 원과 오른쪽 원은 서로 접합니다.",
+        ],
     },
     "given": [
         {
@@ -487,85 +492,78 @@ SOLVABLE = {
         "ref": "answer.target",
         "type": "total_circumference",
     },
-    "method": "derive_radii_and_sum_circumferences",
+    "method": "derive_radii_then_sum_circumferences",
     "plan": [
-        "서로 접하는 두 원의 중심 사이 거리는 두 원의 반지름의 합과 같습니다.",
-        "가운데 원의 반지름은 18cm에서 오른쪽 원의 반지름 10cm를 뺍니다.",
-        "왼쪽 원의 반지름은 14cm에서 가운데 원의 반지름을 뺍니다.",
-        "세 원의 반지름의 합을 구합니다.",
-        "원주율 3을 사용하여 세 원의 원주의 합을 계산합니다.",
+        "서로 접하는 두 원의 중심 사이 거리가 두 원의 반지름의 합임을 이용합니다.",
+        "가운데 원과 오른쪽 원의 중심 사이 거리에서 오른쪽 원의 반지름을 빼어 가운데 원의 반지름을 구합니다.",
+        "왼쪽 원과 가운데 원의 중심 사이 거리에서 가운데 원의 반지름을 빼어 왼쪽 원의 반지름을 구합니다.",
+        "세 원의 반지름을 모두 더합니다.",
+        "반지름의 합에 2와 원주율을 곱하여 세 원의 원주의 합을 구합니다.",
     ],
     "steps": [
         {
             "id": "step.1",
-            "expr": "r_middle + 10 = 18",
+            "expr": "r_middle = 18 - 10",
             "value": {
-                "r_middle": 8,
+                "radius": 8,
                 "unit": "cm",
             },
+            "explanation": (
+                "가운데 원과 오른쪽 원이 서로 접하므로 "
+                "두 원의 중심 사이 거리에서 오른쪽 원의 반지름을 뺍니다."
+            ),
         },
         {
             "id": "step.2",
-            "expr": "r_middle = 18 - 10",
-            "value": 8,
+            "expr": "r_left = 14 - 8",
+            "value": {
+                "radius": 6,
+                "unit": "cm",
+            },
+            "explanation": (
+                "왼쪽 원과 가운데 원이 서로 접하므로 "
+                "두 원의 중심 사이 거리에서 가운데 원의 반지름을 뺍니다."
+            ),
         },
         {
             "id": "step.3",
-            "expr": "r_left + 8 = 14",
+            "expr": "r_left + r_middle + r_right = 6 + 8 + 10",
             "value": {
-                "r_left": 6,
+                "radius_sum": 24,
                 "unit": "cm",
             },
+            "explanation": "세 원의 반지름을 모두 더합니다.",
         },
         {
             "id": "step.4",
-            "expr": "r_left = 14 - 8",
-            "value": 6,
-        },
-        {
-            "id": "step.5",
-            "expr": "r_left + r_middle + r_right",
+            "expr": "2 × 3 × 24",
             "value": {
-                "substitution": "6 + 8 + 10",
-                "result": 24,
+                "total_circumference": 144,
                 "unit": "cm",
             },
-        },
-        {
-            "id": "step.6",
-            "expr": "2 × π × (r_left + r_middle + r_right)",
-            "value": {
-                "substitution": "2 × 3 × 24",
-                "result": 144,
-                "unit": "cm",
-            },
+            "explanation": (
+                "각 원의 원주를 더한 식을 " "2 × π × 세 원의 반지름의 합으로 정리하여 계산합니다."
+            ),
         },
     ],
     "checks": [
         {
             "id": "check.1",
-            "expr": "6 + 8 = 14",
-            "expected": 14,
-            "actual": 14,
-            "pass": True,
-        },
-        {
-            "id": "check.2",
-            "expr": "8 + 10 = 18",
+            "expr": "8 + 10",
             "expected": 18,
             "actual": 18,
             "pass": True,
         },
         {
-            "id": "check.3",
-            "expr": "2 × 3 × 6 + 2 × 3 × 8 + 2 × 3 × 10",
-            "expected": 144,
-            "actual": 144,
+            "id": "check.2",
+            "expr": "6 + 8",
+            "expected": 14,
+            "actual": 14,
             "pass": True,
         },
         {
-            "id": "check.4",
-            "expr": "2 × 3 × (6 + 8 + 10)",
+            "id": "check.3",
+            "expr": "2 × 3 × 6 + 2 × 3 × 8 + 2 × 3 × 10",
             "expected": 144,
             "actual": 144,
             "pass": True,
@@ -596,3 +594,135 @@ SOLVABLE = {
         "unit": "cm",
     },
 }
+TUTOR_RENDERER_FLOW = [
+    {
+        "step_id": "step.1",
+        "frames": [
+            {
+                "id": "step.1.distance",
+                "overlays": [
+                    {"type": "highlight", "target_ref": "slot.distance_18_arc"},
+                    {"type": "highlight", "target_ref": "slot.label_18"},
+                    {"type": "highlight", "target_ref": "slot.radius_10_line"},
+                    {"type": "highlight", "target_ref": "slot.radius_10_arc"},
+                    {"type": "highlight", "target_ref": "slot.label_10"},
+                    {
+                        "type": "label",
+                        "text": "가운데 원의 반지름:",
+                        "x": 314,
+                        "y": 360,
+                        "style": {"fill": "#0f766e", "font_size": 20},
+                    },
+                ],
+            },
+            {
+                "id": "step.1.subtract",
+                "overlays": [
+                    {"type": "highlight", "target_ref": "slot.distance_18_arc"},
+                    {"type": "highlight", "target_ref": "slot.radius_10_line"},
+                    {
+                        "type": "label",
+                        "text": "18 - 10 = 8",
+                        "x": 412,
+                        "y": 124.03,
+                        "style": {"fill": "#0f766e", "font_size": 24},
+                    },
+                ],
+            },
+            {
+                "id": "step.1.result",
+                "overlays": [
+                    {"type": "highlight", "target_ref": "slot.circle_middle"},
+                    {
+                        "type": "label",
+                        "text": "가운데 원의 반지름은 8cm",
+                        "x": 298,
+                        "y": 360,
+                        "style": {"fill": "#0f766e", "font_size": 20},
+                    },
+                ],
+            },
+        ],
+    },
+    {
+        "step_id": "step.2",
+        "frames": [
+            {
+                "id": "step.2.distance",
+                "overlays": [
+                    {"type": "highlight", "target_ref": "slot.distance_14_arc"},
+                    {"type": "highlight", "target_ref": "slot.label_14"},
+                    {"type": "highlight", "target_ref": "slot.circle_middle"},
+                ],
+            },
+            {
+                "id": "step.2.subtract",
+                "overlays": [
+                    {"type": "highlight", "target_ref": "slot.distance_14_arc"},
+                    {
+                        "type": "label",
+                        "text": "14 - 8 = 6",
+                        "x": 208,
+                        "y": 330,
+                        "style": {"fill": "#0f766e", "font_size": 24},
+                    },
+                ],
+            },
+            {
+                "id": "step.2.result",
+                "overlays": [
+                    {"type": "highlight", "target_ref": "slot.circle_left"},
+                    {
+                        "type": "label",
+                        "text": "왼쪽 원의 반지름은 6cm",
+                        "x": 188,
+                        "y": 360,
+                        "style": {"fill": "#0f766e", "font_size": 20},
+                    },
+                ],
+            },
+        ],
+    },
+    {
+        "step_id": "step.3",
+        "frames": [
+            {
+                "id": "step.3.radii",
+                "overlays": [
+                    {"type": "highlight", "target_ref": "slot.circle_left"},
+                    {"type": "highlight", "target_ref": "slot.circle_middle"},
+                    {"type": "highlight", "target_ref": "slot.circle_right"},
+                ],
+            },
+            {
+                "id": "step.3.sum",
+                "overlays": [
+                    {
+                        "type": "label",
+                        "text": "6 + 8 + 10 = 24",
+                        "x": 286,
+                        "y": 166,
+                        "style": {"fill": "#0f766e", "font_size": 24},
+                    }
+                ],
+            },
+        ],
+    },
+    {
+        "step_id": "step.4",
+        "frames": [
+            {
+                "id": "step.4.formula",
+                "overlays": [
+                    {
+                        "type": "label",
+                        "text": "2 x 3 x 24 = 144",
+                        "x": 278,
+                        "y": 166,
+                        "style": {"fill": "#0f766e", "font_size": 24},
+                    }
+                ],
+            }
+        ],
+    },
+]

@@ -102,6 +102,7 @@ from modu_math.layout.editor_overrides import apply_editor_overrides
 from modu_math.renderer.compiler import compile_renderer_json
 from modu_math.renderer.svg.render import inline_local_image_hrefs, render_svg
 from modu_math.pipeline.validate_contracts import validate_semantic_solvable_answer_match
+from modu_math.pipeline.tutor_renderer_flow import attach_tutor_renderer_flow, validate_tutor_renderer_flow
 
 repo = Path(os.environ["MODU_REPO_ROOT"])
 dsl_path = Path(os.environ["MODU_DSL_PATH"])
@@ -131,6 +132,8 @@ if editor_overrides_path.exists():
     layout = apply_editor_overrides(layout, editor_overrides)
 
 renderer = compile_renderer_json(layout)
+if hasattr(module, "TUTOR_RENDERER_FLOW"):
+    renderer = attach_tutor_renderer_flow(renderer, module.TUTOR_RENDERER_FLOW)
 svg = inline_local_image_hrefs(render_svg(renderer), base.parent)
 
 def deep_merge_dict(base: dict, override: dict) -> dict:
@@ -181,6 +184,7 @@ renderer_schema = json.loads((repo / "schema/renderer/renderer.v1.json").read_te
 Draft202012Validator(semantic_schema).validate(semantic)
 Draft202012Validator(layout_schema).validate(layout)
 Draft202012Validator(renderer_schema).validate(renderer)
+validate_tutor_renderer_flow(renderer, solvable if isinstance(solvable, dict) else None)
 
 # Save Outputs
 base.with_suffix(".semantic.json").write_text(json.dumps(semantic, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")

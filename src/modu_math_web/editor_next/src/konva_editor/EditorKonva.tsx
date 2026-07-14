@@ -1,6 +1,15 @@
-import { useCallback, useEffect, useMemo, useRef, useState, type PointerEvent as ReactPointerEvent } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { ProblemList } from "../components/ProblemList";
-import { applyLayoutPatches, buildProblem, createProblem, loadProblem, problemDetailToCanonicalProblem } from "../api/editorApi";
+import {
+  applyLayoutPatches,
+  buildProblem,
+  createProblem,
+  loadProblem,
+  problemDetailToCanonicalProblem,
+  saveTutorFlow,
+  type TutorRendererStep,
+  type TutorRendererOverlay,
+} from "../api/editorApi";
 import { problemJsonToLayoutPatches } from "../tldraw/converters/problemJsonToLayoutPatches";
 import type { EditorShape, EditorShapeDocument } from "../types/editorShape";
 import type { ProblemJson } from "../types/problem";
@@ -11,9 +20,11 @@ import { JsonImportExport } from "./JsonImportExport";
 import { KonvaStage } from "./KonvaStage";
 import { KonvaToolbar, type ShapePreset } from "./KonvaToolbar";
 import { PropertyPanel } from "./PropertyPanel";
+import { TutorFlowPanel } from "./TutorFlowPanel";
 import { TutorPreviewPanel } from "./TutorPreviewPanel";
 
 const initialProblem = sampleProblem as ProblemJson;
+type SidePanelView = "properties" | "tutor" | "flow" | "json";
 
 export function EditorKonva() {
   const [baseProblemJson, setBaseProblemJson] = useState<ProblemJson>(initialProblem);
@@ -28,64 +39,38 @@ export function EditorKonva() {
   const [selectedProblemId, setSelectedProblemId] = useState(initialProblem.id);
   const [message, setMessage] = useState("Loaded sample problem in Konva editor.");
   const [problemListVersion, setProblemListVersion] = useState(0);
-  const [propertyPanelHeight, setPropertyPanelHeight] = useState(240);
-  const [tutorPanelHeight, setTutorPanelHeight] = useState(360);
+  const [sidePanelView, setSidePanelView] = useState<SidePanelView>("properties");
+  const [activeTutorStepId, setActiveTutorStepId] = useState<string | null>(null);
+  const [activeTutorFrameIndex, setActiveTutorFrameIndex] = useState(0);
+  const [activeTutorOverlayIndex, setActiveTutorOverlayIndex] = useState<number | null>(null);
+  const [draftTutorFlow, setDraftTutorFlow] = useState<TutorRendererStep[] | null>(null);
   const clipboardRef = useRef<EditorShape[]>([]);
   const imageFileInputRef = useRef<HTMLInputElement | null>(null);
-  const sidePanelRef = useRef<HTMLDivElement | null>(null);
   const idPrefix = useMemo(() => `konva_${Date.now()}`, []);
 
   const selectedShape = selectedShapeIds.length === 1 ? document.shapes.find((shape) => shape.id === selectedShapeIds[0]) ?? null : null;
-  const sidePanelGridRows = useMemo(
-    () => `${propertyPanelHeight}px 8px ${tutorPanelHeight}px 8px minmax(0, 1fr)`,
-    [propertyPanelHeight, tutorPanelHeight],
-  );
-
-  const startSidePanelResize = useCallback(
-    (target: "property" | "tutor", event: ReactPointerEvent<HTMLDivElement>) => {
-      event.preventDefault();
-      const sidePanel = sidePanelRef.current;
-      if (!sidePanel) return;
-
-      const startY = event.clientY;
-      const startPropertyHeight = propertyPanelHeight;
-      const startTutorHeight = tutorPanelHeight;
-      const panelHeight = sidePanel.getBoundingClientRect().height;
-      const minPropertyHeight = 132;
-      const minTutorHeight = 280;
-      const minJsonHeight = 160;
-      const handlesHeight = 16;
-
-      const onPointerMove = (moveEvent: PointerEvent) => {
-        const delta = moveEvent.clientY - startY;
-        if (target === "property") {
-          const maxPropertyHeight = Math.max(
-            minPropertyHeight,
-            panelHeight - startTutorHeight - minJsonHeight - handlesHeight,
-          );
-          setPropertyPanelHeight(clamp(startPropertyHeight + delta, minPropertyHeight, maxPropertyHeight));
-          return;
-        }
-
-        const maxTutorHeight = Math.max(
-          minTutorHeight,
-          panelHeight - startPropertyHeight - minJsonHeight - handlesHeight,
-        );
-        setTutorPanelHeight(clamp(startTutorHeight + delta, minTutorHeight, maxTutorHeight));
-      };
-
-      const onPointerUp = () => {
-        window.removeEventListener("pointermove", onPointerMove);
-        window.removeEventListener("pointerup", onPointerUp);
-        window.document.body.classList.remove("is-resizing-konva-side-panel");
-      };
-
-      window.document.body.classList.add("is-resizing-konva-side-panel");
-      window.addEventListener("pointermove", onPointerMove);
-      window.addEventListener("pointerup", onPointerUp, { once: true });
-    },
-    [propertyPanelHeight, tutorPanelHeight],
-  );
+  const effectiveTutorFlow = draftTutorFlow ?? previewArtifacts.renderer?.tutor_flow ?? [];
+  const activeTutorFrames = useMemo(() => {
+    if (!activeTutorStepId) return [];
+    const step = effectiveTutorFlow.find((item) => item.step_id === activeTutorStepId);
+    if (!step) return [];
+    return step.frames?.length ? step.frames : [{ id: `${activeTutorStepId}.frame.1`, overlays: step.overlays ?? [] }];
+  }, [activeTutorStepId, effectiveTutorFlow]);
+  const activeTutorOverlays = activeTutorFrames[activeTutorFrameIndex]?.overlays ?? [];
+  const setTutorStep = useCallback((stepId: string | null) => {
+    setActiveTutorStepId(stepId);
+    setActiveTutorFrameIndex(0);
+    setActiveTutorOverlayIndex(null);
+  }, []);
+  const selectTutorFrame = useCallback((stepId: string, frameIndex: number) => {
+    setActiveTutorStepId(stepId);
+    setActiveTutorFrameIndex(Math.max(0, frameIndex));
+    setActiveTutorOverlayIndex(null);
+  }, []);
+  const selectTutorOverlay = useCallback((overlayIndex: number | null) => {
+    setActiveTutorOverlayIndex(overlayIndex);
+    if (overlayIndex !== null) setSidePanelView("flow");
+  }, []);
 
   const setProblem = useCallback((problem: ProblemJson, nextMessage: string, artifacts = previewArtifacts) => {
     setBaseProblemJson(problem);
@@ -93,6 +78,9 @@ export function EditorKonva() {
     setDocument(problemJsonToEditorDocument(problem));
     setSelectedProblemId(problem.id);
     setSelectedShapeIds([]);
+    setActiveTutorStepId(null);
+    setActiveTutorOverlayIndex(null);
+    setDraftTutorFlow(null);
     setMessage(nextMessage);
   }, [previewArtifacts]);
 
@@ -488,36 +476,123 @@ export function EditorKonva() {
 
   const saveJson = useCallback(async () => {
     const nextProblem = editorDocumentToProblemJson(document, baseProblemJson);
-    if (nextProblem.id === initialProblem.id) {
+    if (selectedProblemId === initialProblem.id) {
       setMessage("Sample problem is local only. Open a real problem before saving to DSL.");
       return;
     }
 
     const patches = problemJsonToLayoutPatches(baseProblemJson, nextProblem);
-    if (!patches.length) {
-      setMessage(`No DSL changes to save for ${nextProblem.id}.`);
+    if (!patches.length && !draftTutorFlow) {
+      setMessage(`No DSL changes to save for ${selectedProblemId}.`);
       return;
     }
 
-    setMessage(`Saving ${patches.length} patch(es) to DSL...`);
+    setMessage(`Saving ${selectedProblemId}...`);
     try {
-      const response = await applyLayoutPatches(nextProblem.id, patches, { format: true });
-      setBaseProblemJson(nextProblem);
-      setMessage(`Saved to DSL: ${response.applied.length} patch(es). Rebuild to refresh artifacts.`);
+      const savedParts: string[] = [];
+      if (patches.length) {
+        const response = await applyLayoutPatches(selectedProblemId, patches, { format: true });
+        setBaseProblemJson(nextProblem);
+        savedParts.push(`${response.applied.length} layout patch(es)`);
+      }
+      if (draftTutorFlow) {
+        const response = await saveTutorFlow(selectedProblemId, draftTutorFlow, { format: true });
+        setDraftTutorFlow(response.tutor_flow);
+        savedParts.push("tutor flow");
+      }
+      setMessage(`Saved ${savedParts.join(" and ")} for ${selectedProblemId}. Build to refresh artifacts.`);
     } catch (error) {
-      setMessage(`Could not save DSL: ${String(error)}`);
+      setMessage(`Could not save ${selectedProblemId}: ${String(error)}`);
     }
-  }, [baseProblemJson, document]);
+  }, [baseProblemJson, document, draftTutorFlow, selectedProblemId]);
+
+  const saveCurrentTutorFlow = useCallback(
+    async (tutorFlow: TutorRendererStep[]) => {
+      if (selectedProblemId === initialProblem.id) {
+        setMessage("Sample problem is local only. Open a real problem before saving tutor flow.");
+        return;
+      }
+
+      setMessage(`Saving tutor flow for ${selectedProblemId}...`);
+      try {
+        const response = await saveTutorFlow(selectedProblemId, tutorFlow, { format: true });
+        setMessage(`Saved tutor flow for ${selectedProblemId}. Building...`);
+        const buildResponse = await buildProblem(selectedProblemId);
+        const detail = [buildResponse.stdout, buildResponse.stderr].filter(Boolean).join("\n").trim();
+        setPreviewArtifacts((current) => ({
+          ...current,
+          semantic: (buildResponse.artifacts.semantic as Record<string, unknown> | null | undefined) ?? current.semantic,
+          solvable: (buildResponse.artifacts.solvable as Record<string, unknown> | null | undefined) ?? current.solvable,
+          layout: (buildResponse.artifacts.layout as import("../api/editorApi").LayoutDocument | null | undefined) ?? current.layout,
+          renderer:
+            (buildResponse.artifacts.renderer as import("../api/editorApi").RendererDocument | null | undefined) ??
+            (current.renderer ? { ...current.renderer, tutor_flow: response.tutor_flow } : current.renderer),
+        }));
+        const nextRenderer = buildResponse.artifacts.renderer as import("../api/editorApi").RendererDocument | null | undefined;
+        setDraftTutorFlow(nextRenderer?.tutor_flow ?? response.tutor_flow);
+        setActiveTutorFrameIndex(0);
+        setMessage(
+          detail
+            ? `Saved tutor flow and built ${selectedProblemId}.\n${detail}`
+            : `Saved tutor flow and built ${selectedProblemId}.`,
+        );
+      } catch (error) {
+        setMessage(`Could not save/build tutor flow for ${selectedProblemId}: ${String(error)}`);
+      }
+    },
+    [selectedProblemId],
+  );
+
+  const patchTutorOverlay = useCallback(
+    (overlayIndex: number, patch: Partial<TutorRendererOverlay>, nextMessage?: string) => {
+      if (!activeTutorStepId) return;
+      const nextFlow = effectiveTutorFlow.map((step) => {
+        if (step.step_id !== activeTutorStepId) return step;
+        const frames = (step.frames?.length ? step.frames : [{ id: `${step.step_id}.frame.1`, overlays: step.overlays ?? [] }]).map(
+          (frame, frameIndex) => {
+            if (frameIndex !== activeTutorFrameIndex) return frame;
+            return {
+              ...frame,
+              overlays: frame.overlays.map((overlay, index) => (index === overlayIndex ? { ...overlay, ...patch } : overlay)),
+            };
+          },
+        );
+        return { step_id: step.step_id, frames };
+      });
+      setDraftTutorFlow(nextFlow);
+      setActiveTutorOverlayIndex(overlayIndex);
+      if (nextMessage) setMessage(nextMessage);
+    },
+    [activeTutorFrameIndex, activeTutorStepId, effectiveTutorFlow],
+  );
+
+  const moveActiveTutorOverlay = useCallback(
+    (overlayIndex: number, x: number, y: number) => {
+      patchTutorOverlay(overlayIndex, { x, y }, `Moved tutor overlay ${overlayIndex + 1}. Save to persist it.`);
+    },
+    [patchTutorOverlay],
+  );
+
+  const changeActiveTutorOverlay = useCallback(
+    (overlayIndex: number, patch: Partial<TutorRendererOverlay>) => {
+      patchTutorOverlay(overlayIndex, patch);
+    },
+    [patchTutorOverlay],
+  );
 
   const buildCurrentProblem = useCallback(async () => {
-    if (document.id === initialProblem.id) {
+    if (selectedProblemId === initialProblem.id) {
       setMessage("Sample problem is local only. Open a real problem before building.");
       return;
     }
 
-    setMessage(`Building ${document.id}...`);
+    setMessage(`Building ${selectedProblemId}...`);
     try {
-      const response = await buildProblem(document.id);
+      if (draftTutorFlow) {
+        setMessage(`Saving tutor flow for ${selectedProblemId} before build...`);
+        await saveTutorFlow(selectedProblemId, draftTutorFlow, { format: true });
+      }
+      const response = await buildProblem(selectedProblemId);
       const detail = [response.stdout, response.stderr].filter(Boolean).join("\n").trim();
       setPreviewArtifacts({
         semantic: (response.artifacts.semantic as Record<string, unknown> | null | undefined) ?? null,
@@ -525,11 +600,12 @@ export function EditorKonva() {
         layout: (response.artifacts.layout as import("../api/editorApi").LayoutDocument | null | undefined) ?? null,
         renderer: (response.artifacts.renderer as import("../api/editorApi").RendererDocument | null | undefined) ?? null,
       });
-      setMessage(detail ? `Build complete for ${document.id}.\n${detail}` : `Build complete for ${document.id}.`);
+      setDraftTutorFlow(null);
+      setMessage(detail ? `Build complete for ${selectedProblemId}.\n${detail}` : `Build complete for ${selectedProblemId}.`);
     } catch (error) {
-      setMessage(`Could not build ${document.id}: ${String(error)}`);
+      setMessage(`Could not build ${selectedProblemId}: ${String(error)}`);
     }
-  }, [document.id]);
+  }, [draftTutorFlow, selectedProblemId]);
 
   return (
     <div className="math-problem-editor konva-editor">
@@ -568,35 +644,79 @@ export function EditorKonva() {
             height={document.canvas.height}
             shapes={document.shapes}
             selectedShapeIds={selectedShapeIds}
+            tutorOverlays={activeTutorOverlays}
+            activeTutorOverlayIndex={activeTutorOverlayIndex}
             onSelectShapes={setSelectedShapeIds}
             onChangeShapes={updateShapes}
+            onTutorOverlaySelect={selectTutorOverlay}
+            onTutorOverlayChange={changeActiveTutorOverlay}
+            onTutorOverlayMove={moveActiveTutorOverlay}
           />
         </div>
-        <div className="konva-side-panel" ref={sidePanelRef} style={{ gridTemplateRows: sidePanelGridRows }}>
-          <PropertyPanel shape={selectedShape} onChange={patchSelectedShape} />
-          <div
-            className="konva-side-resizer"
-            role="separator"
-            aria-label="Resize properties panel"
-            aria-orientation="horizontal"
-            onPointerDown={(event) => startSidePanelResize("property", event)}
-          />
-          <TutorPreviewPanel
-            problemId={selectedProblemId}
-            shapeDocument={document}
-            semantic={previewArtifacts.semantic}
-            solvable={previewArtifacts.solvable}
-            layout={previewArtifacts.layout}
-            renderer={previewArtifacts.renderer}
-          />
-          <div
-            className="konva-side-resizer"
-            role="separator"
-            aria-label="Resize tutor panel"
-            aria-orientation="horizontal"
-            onPointerDown={(event) => startSidePanelResize("tutor", event)}
-          />
-          <JsonImportExport document={document} message={message} onImport={importDocument} />
+        <div className="konva-side-panel">
+          <div className="konva-side-switcher" role="tablist" aria-label="Right panel">
+            <button
+              type="button"
+              className={sidePanelView === "properties" ? "active" : ""}
+              onClick={() => setSidePanelView("properties")}
+            >
+              Properties
+            </button>
+            <button
+              type="button"
+              className={sidePanelView === "tutor" ? "active" : ""}
+              onClick={() => setSidePanelView("tutor")}
+            >
+              Tutor
+            </button>
+            <button
+              type="button"
+              className={sidePanelView === "flow" ? "active" : ""}
+              onClick={() => setSidePanelView("flow")}
+            >
+              Flow
+            </button>
+            <button
+              type="button"
+              className={sidePanelView === "json" ? "active" : ""}
+              onClick={() => setSidePanelView("json")}
+            >
+              JSON
+            </button>
+          </div>
+          <div className="konva-side-content">
+            {sidePanelView === "properties" ? <PropertyPanel shape={selectedShape} onChange={patchSelectedShape} /> : null}
+            {sidePanelView === "tutor" ? (
+              <TutorPreviewPanel
+                problemId={selectedProblemId}
+                shapeDocument={document}
+                semantic={previewArtifacts.semantic}
+                solvable={previewArtifacts.solvable}
+                layout={previewArtifacts.layout}
+                renderer={previewArtifacts.renderer}
+                tutorFrameIndex={activeTutorFrameIndex}
+                tutorFrameCount={activeTutorFrames.length}
+                onTutorFrameChange={setActiveTutorFrameIndex}
+                onTutorStepChange={setTutorStep}
+              />
+            ) : null}
+            {sidePanelView === "flow" ? (
+              <TutorFlowPanel
+                problemId={selectedProblemId}
+                tutorFlow={effectiveTutorFlow}
+                message={message}
+                activeStepId={activeTutorStepId}
+                activeFrameIndex={activeTutorFrameIndex}
+                activeOverlayIndex={activeTutorOverlayIndex}
+                selectedShapeIds={selectedShapeIds}
+                onDraftChange={setDraftTutorFlow}
+                onSelectFrame={selectTutorFrame}
+                onSelectOverlay={selectTutorOverlay}
+                onSave={saveCurrentTutorFlow}
+              />
+            ) : null}
+            {sidePanelView === "json" ? <JsonImportExport document={document} message={message} onImport={importDocument} /> : null}
+          </div>
         </div>
       </div>
     </div>
@@ -636,10 +756,6 @@ function lenDslSuffix(): number {
 
 function cloneShape<T extends EditorShape>(shape: T): T {
   return JSON.parse(JSON.stringify(shape)) as T;
-}
-
-function clamp(value: number, min: number, max: number): number {
-  return Math.min(max, Math.max(min, value));
 }
 
 function createShapeFromPreset(preset: ShapePreset, id: string): EditorShape {

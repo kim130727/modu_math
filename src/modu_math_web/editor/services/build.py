@@ -18,6 +18,7 @@ from modu_math.dsl import (
 )
 from modu_math.layout.editor_overrides import apply_editor_overrides
 from modu_math.pipeline.validate_contracts import validate_semantic_solvable_answer_match
+from modu_math.pipeline.tutor_renderer_flow import attach_tutor_renderer_flow, validate_tutor_renderer_flow
 from modu_math.renderer.compiler import compile_renderer_json
 from modu_math.renderer.svg.render import inline_local_image_hrefs, render_svg
 
@@ -109,6 +110,8 @@ def _build_problem_artifacts(problem_id: str) -> str:
         layout = apply_editor_overrides(layout, editor_overrides)
 
     renderer = compile_renderer_json(layout)
+    if hasattr(module, "TUTOR_RENDERER_FLOW"):
+        renderer = attach_tutor_renderer_flow(renderer, module.TUTOR_RENDERER_FLOW)
     svg = inline_local_image_hrefs(render_svg(renderer), problem_paths.base_dir)
 
     if hasattr(module, "SEMANTIC_OVERRIDE"):
@@ -129,6 +132,7 @@ def _build_problem_artifacts(problem_id: str) -> str:
     _schema_validator("schema/semantic/semantic.v1.json").validate(semantic)
     _schema_validator("schema/layout/layout.v1.json").validate(layout)
     _schema_validator("schema/renderer/renderer.v1.json").validate(renderer)
+    validate_tutor_renderer_flow(renderer, solvable if isinstance(solvable, dict) else None)
 
     problem_paths.artifact_path("semantic").write_text(
         json.dumps(semantic, ensure_ascii=False, indent=2) + "\n",

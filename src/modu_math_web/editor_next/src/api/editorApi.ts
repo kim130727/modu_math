@@ -46,6 +46,7 @@ export interface RendererDocument {
   problem_id?: string;
   canvas?: { width: number; height: number };
   elements?: RendererElement[];
+  tutor_flow?: TutorRendererStep[];
 }
 
 export interface RendererElement {
@@ -54,6 +55,26 @@ export interface RendererElement {
   attributes: Record<string, unknown>;
   source_ref?: string;
   text?: string;
+}
+
+export interface TutorRendererStep {
+  step_id: string;
+  overlays?: TutorRendererOverlay[];
+  frames?: TutorRendererFrame[];
+}
+
+export interface TutorRendererFrame {
+  id: string;
+  overlays: TutorRendererOverlay[];
+}
+
+export interface TutorRendererOverlay {
+  type: string;
+  target_ref?: string;
+  text?: string;
+  x?: number;
+  y?: number;
+  style?: Record<string, unknown>;
 }
 
 export interface LayoutPatch {
@@ -66,6 +87,13 @@ export interface LayoutPatchResponse {
   ok: boolean;
   problem_id: string;
   applied: Array<{ target: string; op: string; fields: string[] }>;
+  dsl: string;
+}
+
+export interface TutorFlowSaveResponse {
+  ok: boolean;
+  problem_id: string;
+  tutor_flow: TutorRendererStep[];
   dsl: string;
 }
 
@@ -101,6 +129,7 @@ export interface TutorPreviewStatusResponse {
 export interface TutorPreviewResponse extends TutorPreviewStatusResponse {
   reply: string;
   choices?: string[];
+  current_step_id?: string | null;
   checks: TutorPreviewCheck[];
 }
 
@@ -170,6 +199,18 @@ export async function applyLayoutPatches(
     method: "POST",
     headers: { "Content-Type": "application/json", Accept: "application/json" },
     body: JSON.stringify({ patches, format: options.format ?? true }),
+  });
+}
+
+export async function saveTutorFlow(
+  problemId: string,
+  tutorFlow: TutorRendererStep[],
+  options: { format?: boolean } = {},
+): Promise<TutorFlowSaveResponse> {
+  return requestJson<TutorFlowSaveResponse>(encodedProblemPath(problemId, "/tutor-flow/"), {
+    method: "POST",
+    headers: { "Content-Type": "application/json", Accept: "application/json" },
+    body: JSON.stringify({ tutor_flow: tutorFlow, format: options.format ?? true }),
   });
 }
 

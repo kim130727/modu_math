@@ -259,5 +259,206 @@
       "text": "10cm"
     }
   ],
+  "tutor_flow": [
+    {
+      "step_id": "step.1",
+      "frames": [
+        {
+          "id": "step.1.distance",
+          "overlays": [
+            {
+              "type": "highlight",
+              "target_ref": "slot.distance_18_arc"
+            },
+            {
+              "type": "highlight",
+              "target_ref": "slot.label_18"
+            },
+            {
+              "type": "highlight",
+              "target_ref": "slot.radius_10_line"
+            },
+            {
+              "type": "highlight",
+              "target_ref": "slot.radius_10_arc"
+            },
+            {
+              "type": "highlight",
+              "target_ref": "slot.label_10"
+            },
+            {
+              "type": "label",
+              "text": "가운데 원의 반지름:",
+              "x": 314,
+              "y": 360,
+              "style": {
+                "fill": "#0f766e",
+                "font_size": 20
+              }
+            }
+          ]
+        },
+        {
+          "id": "step.1.subtract",
+          "overlays": [
+            {
+              "type": "highlight",
+              "target_ref": "slot.distance_18_arc"
+            },
+            {
+              "type": "highlight",
+              "target_ref": "slot.radius_10_line"
+            },
+            {
+              "type": "label",
+              "text": "18 - 10 = 8",
+              "x": 412,
+              "y": 124.03,
+              "style": {
+                "fill": "#0f766e",
+                "font_size": 24
+              }
+            }
+          ]
+        },
+        {
+          "id": "step.1.result",
+          "overlays": [
+            {
+              "type": "highlight",
+              "target_ref": "slot.circle_middle"
+            },
+            {
+              "type": "label",
+              "text": "가운데 원의 반지름은 8cm",
+              "x": 298,
+              "y": 360,
+              "style": {
+                "fill": "#0f766e",
+                "font_size": 20
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "step_id": "step.2",
+      "frames": [
+        {
+          "id": "step.2.distance",
+          "overlays": [
+            {
+              "type": "highlight",
+              "target_ref": "slot.distance_14_arc"
+            },
+            {
+              "type": "highlight",
+              "target_ref": "slot.label_14"
+            },
+            {
+              "type": "highlight",
+              "target_ref": "slot.circle_middle"
+            }
+          ]
+        },
+        {
+          "id": "step.2.subtract",
+          "overlays": [
+            {
+              "type": "highlight",
+              "target_ref": "slot.distance_14_arc"
+            },
+            {
+              "type": "label",
+              "text": "14 - 8 = 6",
+              "x": 208,
+              "y": 330,
+              "style": {
+                "fill": "#0f766e",
+                "font_size": 24
+              }
+            }
+          ]
+        },
+        {
+          "id": "step.2.result",
+          "overlays": [
+            {
+              "type": "highlight",
+              "target_ref": "slot.circle_left"
+            },
+            {
+              "type": "label",
+              "text": "왼쪽 원의 반지름은 6cm",
+              "x": 188,
+              "y": 360,
+              "style": {
+                "fill": "#0f766e",
+                "font_size": 20
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "step_id": "step.3",
+      "frames": [
+        {
+          "id": "step.3.radii",
+          "overlays": [
+            {
+              "type": "highlight",
+              "target_ref": "slot.circle_left"
+            },
+            {
+              "type": "highlight",
+              "target_ref": "slot.circle_middle"
+            },
+            {
+              "type": "highlight",
+              "target_ref": "slot.circle_right"
+            }
+          ]
+        },
+        {
+          "id": "step.3.sum",
+          "overlays": [
+            {
+              "type": "label",
+              "text": "6 + 8 + 10 = 24",
+              "x": 286,
+              "y": 166,
+              "style": {
+                "fill": "#0f766e",
+                "font_size": 24
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "step_id": "step.4",
+      "frames": [
+        {
+          "id": "step.4.formula",
+          "overlays": [
+            {
+              "type": "label",
+              "text": "2 x 3 x 24 = 144",
+              "x": 278,
+              "y": 166,
+              "style": {
+                "fill": "#0f766e",
+                "font_size": 24
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
   "contract_version": "modu_math.renderer.v2"
 }

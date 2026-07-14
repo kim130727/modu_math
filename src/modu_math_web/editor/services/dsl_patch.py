@@ -4,10 +4,13 @@ import math
 import re
 import json
 import ast
+import pprint
 from dataclasses import dataclass
 from typing import Any
 
 import libcst as cst
+
+from modu_math.pipeline.tutor_renderer_flow import normalize_tutor_renderer_flow
 
 from .dsl_format import format_dsl_source
 from .problems import resolve_problem_paths
@@ -67,6 +70,40 @@ class AppliedPatch:
 
 class DslPatchError(ValueError):
     pass
+
+
+class TutorRendererFlowUpdater(cst.CSTTransformer):
+    def __init__(self, flow: list[dict[str, Any]]):
+        self.flow = flow
+        self.updated = False
+
+    def _assignment(self) -> cst.SimpleStatementLine:
+        literal = pprint.pformat(self.flow, width=100, sort_dicts=False)
+        return cst.parse_statement(f"TUTOR_RENDERER_FLOW = {literal}\n")
+
+    def leave_SimpleStatementLine(
+        self,
+        original_node: cst.SimpleStatementLine,
+        updated_node: cst.SimpleStatementLine,
+    ) -> cst.SimpleStatementLine:
+        if len(original_node.body) != 1:
+            return updated_node
+        statement = original_node.body[0]
+        if not isinstance(statement, cst.Assign) or len(statement.targets) != 1:
+            return updated_node
+        target = statement.targets[0].target
+        if not isinstance(target, cst.Name) or target.value != "TUTOR_RENDERER_FLOW":
+            return updated_node
+        self.updated = True
+        return self._assignment()
+
+    def leave_Module(self, original_node: cst.Module, updated_node: cst.Module) -> cst.Module:
+        if self.updated:
+            return updated_node
+        body = list(updated_node.body)
+        body.append(self._assignment())
+        self.updated = True
+        return updated_node.with_changes(body=tuple(body))
 
 
 def _normalize_slot_id(value: str) -> str:
@@ -1582,3 +1619,26 @@ def apply_layout_patches(
     updated_code = format_dsl_source(transformed.code) if format_source else transformed.code
     paths.dsl_path.write_text(updated_code, encoding="utf-8")
     return updated_code, applied
+
+
+def save_tutor_renderer_flow(
+    problem_id: str,
+    flow: Any,
+    *,
+    format_source: bool = True,
+) -> tuple[str, list[dict[str, Any]]]:
+    paths = resolve_problem_paths(problem_id)
+    source = paths.dsl_path.read_text(encoding="utf-8")
+    if not source.strip():
+        raise DslPatchError("DSL file is empty; restore or save a valid DSL before editing tutor flow")
+    try:
+        module = cst.parse_module(source)
+    except cst.ParserSyntaxError as exc:
+        raise DslPatchError(f"DSL syntax error; fix the DSL file before saving tutor flow: {exc}") from exc
+
+    normalized = normalize_tutor_renderer_flow(flow)
+    updater = TutorRendererFlowUpdater(normalized)
+    transformed = module.visit(updater)
+    updated_code = format_dsl_source(transformed.code) if format_source else transformed.code
+    paths.dsl_path.write_text(updated_code, encoding="utf-8")
+    return updated_code, normalized

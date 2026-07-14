@@ -18,9 +18,24 @@ interface TutorPreviewPanelProps {
   solvable: Record<string, unknown> | null;
   layout: LayoutDocument | null;
   renderer: RendererDocument | null;
+  tutorFrameIndex?: number;
+  tutorFrameCount?: number;
+  onTutorFrameChange?: (frameIndex: number) => void;
+  onTutorStepChange?: (stepId: string | null) => void;
 }
 
-export function TutorPreviewPanel({ problemId, shapeDocument, semantic, solvable, layout, renderer }: TutorPreviewPanelProps) {
+export function TutorPreviewPanel({
+  problemId,
+  shapeDocument,
+  semantic,
+  solvable,
+  layout,
+  renderer,
+  tutorFrameIndex = 0,
+  tutorFrameCount = 0,
+  onTutorFrameChange,
+  onTutorStepChange,
+}: TutorPreviewPanelProps) {
   const [mode, setMode] = useState<TutorPreviewMode>("rule");
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState<TutorPreviewMessage[]>([]);
@@ -74,8 +89,9 @@ export function TutorPreviewPanel({ problemId, shapeDocument, semantic, solvable
     setChoices([]);
     setChecks([]);
     setError(null);
+    onTutorStepChange?.(null);
     stopTutorSpeech(audioRef);
-  }, [problemId]);
+  }, [onTutorStepChange, problemId]);
 
   useEffect(() => () => stopTutorSpeech(audioRef), []);
 
@@ -99,6 +115,7 @@ export function TutorPreviewPanel({ problemId, shapeDocument, semantic, solvable
       setModel(response.model);
       setChecks(response.checks);
       setChoices(response.choices ?? []);
+      onTutorStepChange?.(response.current_step_id ?? null);
       const reply = formatTutorText(response.reply);
       setMessages([...nextMessages, { role: "assistant", content: reply }]);
       if (voiceEnabled) void playTutorSpeech(reply, tutorLocale, payload, setError, audioRef);
@@ -168,12 +185,35 @@ export function TutorPreviewPanel({ problemId, shapeDocument, semantic, solvable
             setChoices([]);
             setChecks([]);
             setError(null);
+            onTutorStepChange?.(null);
           }}
           disabled={busy || messages.length === 0}
         >
           초기화
         </button>
       </div>
+
+      {tutorFrameCount > 1 ? (
+        <div className="konva-tutor-frames" aria-label="Tutor visual frames">
+          <button
+            type="button"
+            onClick={() => onTutorFrameChange?.(Math.max(0, tutorFrameIndex - 1))}
+            disabled={tutorFrameIndex <= 0}
+          >
+            화면 이전
+          </button>
+          <span>
+            화면 {tutorFrameIndex + 1}/{tutorFrameCount}
+          </span>
+          <button
+            type="button"
+            onClick={() => onTutorFrameChange?.(Math.min(tutorFrameCount - 1, tutorFrameIndex + 1))}
+            disabled={tutorFrameIndex >= tutorFrameCount - 1}
+          >
+            화면 다음
+          </button>
+        </div>
+      ) : null}
 
       <div className="konva-tutor-chat" aria-live="polite">
         {messages.length === 0 ? (

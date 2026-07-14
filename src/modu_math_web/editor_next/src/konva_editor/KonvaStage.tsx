@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
-import { Circle, Layer, Rect, Stage, Transformer } from "react-konva";
+import { Circle, Layer, Line, Path, Rect, Stage, Text, Transformer } from "react-konva";
 import type Konva from "konva";
+import type { TutorRendererOverlay } from "../api/editorApi";
 import type { EditorShape, LineShape } from "../types/editorShape";
 import { scalePathData } from "../utils/pathData";
 import { KONVA_PREVIEW_FONT_LOAD_SPEC } from "./fonts";
@@ -11,8 +12,13 @@ interface KonvaStageProps {
   height: number;
   shapes: EditorShape[];
   selectedShapeIds: string[];
+  tutorOverlays?: TutorRendererOverlay[];
+  activeTutorOverlayIndex?: number | null;
   onSelectShapes: (ids: string[]) => void;
   onChangeShapes: (shapes: EditorShape[]) => void;
+  onTutorOverlaySelect?: (overlayIndex: number | null) => void;
+  onTutorOverlayChange?: (overlayIndex: number, patch: Partial<TutorRendererOverlay>) => void;
+  onTutorOverlayMove?: (overlayIndex: number, x: number, y: number) => void;
 }
 
 export function KonvaStage({
@@ -20,17 +26,32 @@ export function KonvaStage({
   height,
   shapes,
   selectedShapeIds,
+  tutorOverlays = [],
+  activeTutorOverlayIndex = null,
   onSelectShapes,
   onChangeShapes,
+  onTutorOverlaySelect,
+  onTutorOverlayChange,
+  onTutorOverlayMove,
 }: KonvaStageProps) {
   const wrapRef = useRef<HTMLDivElement | null>(null);
   const transformerRef = useRef<Konva.Transformer | null>(null);
   const shapeRefs = useRef<Record<string, Konva.Node | null>>({});
   const dragStartRef = useRef<{ activeId: string; ids: string[]; positions: Map<string, { x: number; y: number }> } | null>(null);
   const selectionStartRef = useRef<{ x: number; y: number; additive: boolean } | null>(null);
+  const tutorTextEditorRef = useRef<HTMLTextAreaElement | null>(null);
   const [viewport, setViewport] = useState({ width: 900, height: 640 });
   const [selectionRect, setSelectionRect] = useState<CanvasRect | null>(null);
   const [contextMenu, setContextMenu] = useState<{ x: number; y: number; shapeId: string } | null>(null);
+  const [editingTutorLabel, setEditingTutorLabel] = useState<{
+    index: number;
+    text: string;
+    left: number;
+    top: number;
+    width: number;
+    fontSize: number;
+    color: string;
+  } | null>(null);
   const [, setFontLoadRevision] = useState(0);
 
   useEffect(() => {
@@ -73,6 +94,12 @@ export function KonvaStage({
     transformerRef.current.getLayer()?.batchDraw();
   }, [selectedShapeIds, shapes]);
 
+  useEffect(() => {
+    if (!editingTutorLabel) return;
+    tutorTextEditorRef.current?.focus();
+    tutorTextEditorRef.current?.select();
+  }, [editingTutorLabel?.index]);
+
   const scale = Math.min((viewport.width - 40) / width, (viewport.height - 40) / height, 1);
   const stageWidth = Math.max(viewport.width, width * scale + 40);
   const stageHeight = Math.max(viewport.height, height * scale + 40);
@@ -80,6 +107,7 @@ export function KonvaStage({
   const offsetY = Math.max(20, (stageHeight - height * scale) / 2);
   const selectedIdSet = new Set(selectedShapeIds);
   const renderedShapes = [...shapes].sort(compareRenderOrder);
+  const shapesById = new Map(shapes.map((shape) => [shape.id, shape]));
   const selectedLine =
     selectedShapeIds.length === 1
       ? shapes.find((shape): shape is LineShape => shape.id === selectedShapeIds[0] && shape.type === "line" && !shape.locked) ?? null
@@ -232,6 +260,25 @@ export function KonvaStage({
               onContextMenu={(event) => openShapeContextMenu(shape, event)}
             />
           ))}
+          <TutorOverlayLayer
+            overlays={tutorOverlays}
+            shapesById={shapesById}
+            activeOverlayIndex={activeTutorOverlayIndex}
+            onOverlaySelect={onTutorOverlaySelect}
+            onOverlayTextEditStart={(index, overlay, metrics) => {
+              onTutorOverlaySelect?.(index);
+              setEditingTutorLabel({
+                index,
+                text: overlay.text ?? "",
+                left: offsetX + (overlay.x ?? 0) * scale,
+                top: offsetY + (overlay.y ?? 0) * scale,
+                width: Math.max(160, metrics.width * scale),
+                fontSize: Math.max(14, metrics.fontSize * scale),
+                color: metrics.fill,
+              });
+            }}
+            onOverlayMove={onTutorOverlayMove}
+          />
           {selectionRect ? (
             <Rect
               x={selectionRect.x}
@@ -273,6 +320,33 @@ export function KonvaStage({
           />
         </Layer>
       </Stage>
+      {editingTutorLabel ? (
+        <textarea
+          ref={tutorTextEditorRef}
+          className="konva-overlay-text-editor"
+          value={editingTutorLabel.text}
+          style={{
+            left: editingTutorLabel.left,
+            top: editingTutorLabel.top,
+            width: editingTutorLabel.width,
+            fontSize: editingTutorLabel.fontSize,
+            color: editingTutorLabel.color,
+          }}
+          onChange={(event) => {
+            const text = event.target.value;
+            setEditingTutorLabel((current) => (current ? { ...current, text } : current));
+            onTutorOverlayChange?.(editingTutorLabel.index, { text });
+          }}
+          onBlur={() => setEditingTutorLabel(null)}
+          onPointerDown={(event) => event.stopPropagation()}
+          onKeyDown={(event) => {
+            if (event.key === "Escape" || (event.key === "Enter" && (event.ctrlKey || event.metaKey))) {
+              event.preventDefault();
+              setEditingTutorLabel(null);
+            }
+          }}
+        />
+      ) : null}
       {contextMenu ? (
         <div className="konva-context-menu" style={{ left: contextMenu.x, top: contextMenu.y }} onPointerDown={(event) => event.stopPropagation()}>
           <button type="button" onClick={() => setLineDash(contextMenu.shapeId, "8 7")}>
@@ -284,6 +358,147 @@ export function KonvaStage({
         </div>
       ) : null}
     </div>
+  );
+}
+
+function TutorOverlayLayer({
+  overlays,
+  shapesById,
+  activeOverlayIndex,
+  onOverlaySelect,
+  onOverlayTextEditStart,
+  onOverlayMove,
+}: {
+  overlays: TutorRendererOverlay[];
+  shapesById: Map<string, EditorShape>;
+  activeOverlayIndex: number | null;
+  onOverlaySelect?: (overlayIndex: number | null) => void;
+  onOverlayTextEditStart?: (
+    overlayIndex: number,
+    overlay: TutorRendererOverlay,
+    metrics: { width: number; fontSize: number; fill: string },
+  ) => void;
+  onOverlayMove?: (overlayIndex: number, x: number, y: number) => void;
+}) {
+  if (!overlays.length) return null;
+  return (
+    <>
+      {overlays.map((overlay, index) => {
+        if (overlay.type === "highlight" && overlay.target_ref) {
+          const shape = shapesById.get(overlay.target_ref);
+          if (!shape) return null;
+          return <TutorHighlight key={`highlight-${overlay.target_ref}-${index}`} shape={shape} />;
+        }
+        if (overlay.type === "label" && typeof overlay.text === "string" && typeof overlay.x === "number" && typeof overlay.y === "number") {
+          const style = isRecord(overlay.style) ? overlay.style : {};
+          const fontSize = numberStyle(style.font_size, 22);
+          const fill = stringStyle(style.fill, "#0f766e");
+          const width = Math.max(120, overlay.text.length * fontSize * 0.62 + 24);
+          const isActive = activeOverlayIndex === index;
+          const canEdit = Boolean(onOverlayMove);
+          return (
+            <Text
+              key={`label-${index}`}
+              x={overlay.x}
+              y={overlay.y}
+              text={overlay.text}
+              fontSize={fontSize}
+              fontFamily="Noto Sans KR, sans-serif"
+              fill={fill}
+              width={width}
+              height={fontSize * 1.45}
+              padding={4}
+              draggable={canEdit}
+              listening={canEdit}
+              stroke={isActive ? "#0f766e" : undefined}
+              strokeWidth={isActive ? 0.5 : 0}
+              onMouseDown={(event) => {
+                event.cancelBubble = true;
+                onOverlaySelect?.(index);
+              }}
+              onTouchStart={(event) => {
+                event.cancelBubble = true;
+                onOverlaySelect?.(index);
+              }}
+              onDblClick={(event) => {
+                event.cancelBubble = true;
+                onOverlayTextEditStart?.(index, overlay, { width, fontSize, fill });
+              }}
+              onDblTap={(event) => {
+                event.cancelBubble = true;
+                onOverlayTextEditStart?.(index, overlay, { width, fontSize, fill });
+              }}
+              onDragStart={(event) => {
+                event.cancelBubble = true;
+                onOverlaySelect?.(index);
+              }}
+              onDragEnd={(event) => {
+                onOverlaySelect?.(index);
+                onOverlayMove?.(index, roundCanvasNumber(event.target.x()), roundCanvasNumber(event.target.y()));
+              }}
+            />
+          );
+        }
+        return null;
+      })}
+    </>
+  );
+}
+
+function roundCanvasNumber(value: number): number {
+  return Math.round(value * 100) / 100;
+}
+
+function TutorHighlight({ shape }: { shape: EditorShape }) {
+  const common = {
+    stroke: "#0f766e",
+    strokeWidth: 5,
+    dash: [8, 5],
+    opacity: 0.92,
+    listening: false,
+  };
+  if (shape.type === "circle") {
+    return <Circle x={shape.x} y={shape.y} radius={shape.radius + 5} {...common} fill="rgba(15, 118, 110, 0.08)" />;
+  }
+  if (shape.type === "line") {
+    return (
+      <Line
+        x={shape.x}
+        y={shape.y}
+        points={shape.points}
+        rotation={shape.rotation ?? 0}
+        offsetX={shape.offsetX ?? 0}
+        offsetY={shape.offsetY ?? 0}
+        lineCap="round"
+        {...common}
+      />
+    );
+  }
+  if (shape.type === "path") {
+    return (
+      <Path
+        x={shape.x}
+        y={shape.y}
+        data={shape.d}
+        rotation={shape.rotation ?? 0}
+        offsetX={shape.offsetX ?? 0}
+        offsetY={shape.offsetY ?? 0}
+        fill="rgba(15, 118, 110, 0.04)"
+        {...common}
+      />
+    );
+  }
+  const bounds = paddedRect(shapeBounds(shape), 6);
+  return (
+    <Rect
+      x={bounds.x}
+      y={bounds.y}
+      width={bounds.width}
+      height={bounds.height}
+      fill="rgba(15, 118, 110, 0.10)"
+      cornerRadius={8}
+      {...common}
+    />
   );
 }
 
@@ -341,6 +556,27 @@ function shapeBounds(shape: EditorShape): CanvasRect {
     return { x: shape.x, y: shape.y, width: shape.width, height: shape.height };
   }
   return { x: shape.x, y: shape.y, width: shape.width, height: shape.height };
+}
+
+function paddedRect(rect: CanvasRect, padding: number): CanvasRect {
+  return {
+    x: rect.x - padding,
+    y: rect.y - padding,
+    width: rect.width + padding * 2,
+    height: rect.height + padding * 2,
+  };
+}
+
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return typeof value === "object" && value !== null && !Array.isArray(value);
+}
+
+function numberStyle(value: unknown, fallback: number): number {
+  return typeof value === "number" && Number.isFinite(value) ? value : fallback;
+}
+
+function stringStyle(value: unknown, fallback: string): string {
+  return typeof value === "string" && value.trim() ? value : fallback;
 }
 
 function LineEndpointHandles({

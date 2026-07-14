@@ -217,6 +217,8 @@ def _tutor_steps(payload: dict[str, Any], solvable: dict[str, Any]) -> list[dict
         if not prompt:
             prompt = f"{index}번째 풀이 단계를 확인해요."
         step = {"prompt": prompt, "expected": expected}
+        if isinstance(raw_step, dict) and isinstance(raw_step.get("id"), str):
+            step["id"] = raw_step["id"]
         if isinstance(raw_step, dict) and explanation:
             step["explanation"] = explanation
         steps.append(step)
@@ -353,7 +355,9 @@ def _rule_intro(solvable: dict[str, Any], steps: list[dict[str, str]], *, lang: 
 
 
 def _rule_response(solvable: dict[str, Any], steps: list[dict[str, str]], index: int, reply: str) -> dict[str, Any]:
-    return {"reply": reply, "choices": _step_choices(solvable, steps, index)}
+    step = steps[index] if 0 <= index < len(steps) else {}
+    step_id = step.get("id") if isinstance(step.get("id"), str) else f"step.{index + 1}"
+    return {"reply": reply, "choices": _step_choices(solvable, steps, index), "current_step_id": step_id}
 
 
 def _step_choices(solvable: dict[str, Any], steps: list[dict[str, str]], index: int) -> list[str]:

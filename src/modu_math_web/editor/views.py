@@ -10,7 +10,7 @@ from django.shortcuts import render
 from django.views.decorators.http import require_GET, require_POST
 
 from .services.build import build_with_artifacts
-from .services.dsl_patch import DslPatchError, apply_layout_patches
+from .services.dsl_patch import DslPatchError, apply_layout_patches, save_tutor_renderer_flow
 from .services.problems import (
     create_blank_problem,
     format_problem_dsl,
@@ -103,6 +103,7 @@ def tutor_preview(request: HttpRequest) -> JsonResponse:
         ]
         validations = validate_tutor_payload(payload)
         choices: list[str] = []
+        current_step_id: str | None = None
         if mode == "openai":
             reply = openai_tutor_response(payload, message, clean_history)
         elif mode == "rule":
@@ -111,6 +112,8 @@ def tutor_preview(request: HttpRequest) -> JsonResponse:
                 reply = str(rule_response.get("reply", ""))
                 raw_choices = rule_response.get("choices", [])
                 choices = [str(choice) for choice in raw_choices] if isinstance(raw_choices, list) else []
+                raw_step_id = rule_response.get("current_step_id")
+                current_step_id = raw_step_id if isinstance(raw_step_id, str) else None
             else:
                 reply = rule_response
         else:
@@ -126,6 +129,7 @@ def tutor_preview(request: HttpRequest) -> JsonResponse:
             "ok": True,
             "reply": reply,
             "choices": choices,
+            "current_step_id": current_step_id,
             "checks": [check.__dict__ for check in validations],
             **tutor_env_status(),
         }
@@ -276,6 +280,34 @@ def layout_patch(request: HttpRequest, problem_id: str) -> JsonResponse:
             "ok": True,
             "problem_id": problem_id,
             "applied": [a.__dict__ for a in applied],
+            "dsl": dsl_text,
+        }
+    )
+
+
+@require_POST
+def tutor_flow(request: HttpRequest, problem_id: str) -> JsonResponse:
+    try:
+        data = _json_body(request)
+        flow = data.get("tutor_flow")
+        format_source = data.get("format", True)
+        if not isinstance(format_source, bool):
+            return _error("'format' must be a boolean", status=400)
+        dsl_text, normalized = save_tutor_renderer_flow(problem_id, flow, format_source=format_source)
+    except DslPatchError as exc:
+        return _error(str(exc), status=400)
+    except ValueError as exc:
+        return _error(str(exc), status=400)
+    except FileNotFoundError as exc:
+        return _error(str(exc), status=404)
+    except Exception as exc:
+        return _error(str(exc), status=500)
+
+    return JsonResponse(
+        {
+            "ok": True,
+            "problem_id": problem_id,
+            "tutor_flow": normalized,
             "dsl": dsl_text,
         }
     )
