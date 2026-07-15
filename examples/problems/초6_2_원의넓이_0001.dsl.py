@@ -73,8 +73,8 @@ def build_problem_template() -> ProblemTemplate:
                 semantic_role="question",
                 x=40,
                 y=30,
-                width=820,
-                height=47,
+                width=527,
+                height=86,
                 font_size=30,
                 line_height=1.3,
                 fill="#111111",
@@ -700,8 +700,8 @@ TUTOR_RENDERER_FLOW = [
                     {
                         "type": "label",
                         "text": "6 + 8 + 10 = 24",
-                        "x": 286,
-                        "y": 166,
+                        "x": 293,
+                        "y": 115,
                         "style": {"fill": "#0f766e", "font_size": 24},
                     }
                 ],
@@ -717,8 +717,8 @@ TUTOR_RENDERER_FLOW = [
                     {
                         "type": "label",
                         "text": "2 x 3 x 24 = 144",
-                        "x": 278,
-                        "y": 166,
+                        "x": 277,
+                        "y": 116,
                         "style": {"fill": "#0f766e", "font_size": 24},
                     }
                 ],

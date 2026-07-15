@@ -24,7 +24,7 @@ import { TutorFlowPanel } from "./TutorFlowPanel";
 import { TutorPreviewPanel } from "./TutorPreviewPanel";
 
 const initialProblem = sampleProblem as ProblemJson;
-type SidePanelView = "properties" | "tutor" | "flow" | "json";
+type SidePanelTab = "properties" | "tutor" | "flow" | "json";
 
 export function EditorKonva() {
   const [baseProblemJson, setBaseProblemJson] = useState<ProblemJson>(initialProblem);
@@ -39,7 +39,7 @@ export function EditorKonva() {
   const [selectedProblemId, setSelectedProblemId] = useState(initialProblem.id);
   const [message, setMessage] = useState("Loaded sample problem in Konva editor.");
   const [problemListVersion, setProblemListVersion] = useState(0);
-  const [sidePanelView, setSidePanelView] = useState<SidePanelView>("properties");
+  const [activeSidePanel, setActiveSidePanel] = useState<SidePanelTab>("properties");
   const [activeTutorStepId, setActiveTutorStepId] = useState<string | null>(null);
   const [activeTutorFrameIndex, setActiveTutorFrameIndex] = useState(0);
   const [activeTutorOverlayIndex, setActiveTutorOverlayIndex] = useState<number | null>(null);
@@ -69,7 +69,7 @@ export function EditorKonva() {
   }, []);
   const selectTutorOverlay = useCallback((overlayIndex: number | null) => {
     setActiveTutorOverlayIndex(overlayIndex);
-    if (overlayIndex !== null) setSidePanelView("flow");
+    if (overlayIndex !== null) setActiveSidePanel("flow");
   }, []);
 
   const setProblem = useCallback((problem: ProblemJson, nextMessage: string, artifacts = previewArtifacts) => {
@@ -654,39 +654,35 @@ export function EditorKonva() {
           />
         </div>
         <div className="konva-side-panel">
-          <div className="konva-side-switcher" role="tablist" aria-label="Right panel">
-            <button
-              type="button"
-              className={sidePanelView === "properties" ? "active" : ""}
-              onClick={() => setSidePanelView("properties")}
-            >
-              Properties
-            </button>
-            <button
-              type="button"
-              className={sidePanelView === "tutor" ? "active" : ""}
-              onClick={() => setSidePanelView("tutor")}
-            >
-              Tutor
-            </button>
-            <button
-              type="button"
-              className={sidePanelView === "flow" ? "active" : ""}
-              onClick={() => setSidePanelView("flow")}
-            >
-              Flow
-            </button>
-            <button
-              type="button"
-              className={sidePanelView === "json" ? "active" : ""}
-              onClick={() => setSidePanelView("json")}
-            >
-              JSON
-            </button>
+          <div className="konva-side-tabs" role="tablist" aria-label="Editor side panels">
+            <SidePanelButton
+              active={activeSidePanel === "properties"}
+              label="Properties"
+              onClick={() => setActiveSidePanel("properties")}
+              icon="properties"
+            />
+            <SidePanelButton
+              active={activeSidePanel === "tutor"}
+              label="Rule Tutor Preview"
+              onClick={() => setActiveSidePanel("tutor")}
+              icon="tutor"
+            />
+            <SidePanelButton
+              active={activeSidePanel === "flow"}
+              label="Tutor Flow"
+              onClick={() => setActiveSidePanel("flow")}
+              icon="flow"
+            />
+            <SidePanelButton
+              active={activeSidePanel === "json"}
+              label="Shape JSON"
+              onClick={() => setActiveSidePanel("json")}
+              icon="json"
+            />
           </div>
           <div className="konva-side-content">
-            {sidePanelView === "properties" ? <PropertyPanel shape={selectedShape} onChange={patchSelectedShape} /> : null}
-            {sidePanelView === "tutor" ? (
+            {activeSidePanel === "properties" ? <PropertyPanel shape={selectedShape} onChange={patchSelectedShape} /> : null}
+            {activeSidePanel === "tutor" ? (
               <TutorPreviewPanel
                 problemId={selectedProblemId}
                 shapeDocument={document}
@@ -700,7 +696,7 @@ export function EditorKonva() {
                 onTutorStepChange={setTutorStep}
               />
             ) : null}
-            {sidePanelView === "flow" ? (
+            {activeSidePanel === "flow" ? (
               <TutorFlowPanel
                 problemId={selectedProblemId}
                 tutorFlow={effectiveTutorFlow}
@@ -715,11 +711,81 @@ export function EditorKonva() {
                 onSave={saveCurrentTutorFlow}
               />
             ) : null}
-            {sidePanelView === "json" ? <JsonImportExport document={document} message={message} onImport={importDocument} /> : null}
+            {activeSidePanel === "json" ? <JsonImportExport document={document} message={message} onImport={importDocument} /> : null}
           </div>
         </div>
       </div>
     </div>
+  );
+}
+
+function SidePanelButton({
+  active,
+  label,
+  icon,
+  onClick,
+}: {
+  active: boolean;
+  label: string;
+  icon: SidePanelTab;
+  onClick: () => void;
+}) {
+  return (
+    <button
+      type="button"
+      role="tab"
+      aria-label={label}
+      aria-selected={active}
+      title={label}
+      className={active ? "konva-side-tab active" : "konva-side-tab"}
+      onClick={onClick}
+    >
+      <SidePanelIcon icon={icon} />
+    </button>
+  );
+}
+
+function SidePanelIcon({ icon }: { icon: SidePanelTab }) {
+  if (icon === "properties") {
+    return (
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M4 5h16" />
+        <path d="M4 12h16" />
+        <path d="M4 19h16" />
+        <circle cx="8" cy="5" r="2" />
+        <circle cx="16" cy="12" r="2" />
+        <circle cx="10" cy="19" r="2" />
+      </svg>
+    );
+  }
+  if (icon === "tutor") {
+    return (
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M5 6.5h14a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2h-7l-4 3v-3H5a2 2 0 0 1-2-2v-6a2 2 0 0 1 2-2Z" />
+        <path d="M8 10h8" />
+        <path d="M8 13h5" />
+      </svg>
+    );
+  }
+  if (icon === "flow") {
+    return (
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="6" cy="7" r="2" />
+        <circle cx="18" cy="7" r="2" />
+        <circle cx="12" cy="17" r="2" />
+        <path d="M8 7h8" />
+        <path d="M7.5 8.7 11 15" />
+        <path d="m16.5 8.7-3.5 6.3" />
+      </svg>
+    );
+  }
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M8 4H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h2" />
+      <path d="M16 4h2a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-2" />
+      <path d="m10 9-3 3 3 3" />
+      <path d="m14 9 3 3-3 3" />
+    </svg>
   );
 }
 
