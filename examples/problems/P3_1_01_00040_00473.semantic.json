@@ -1,0 +1,76 @@
+{
+  "problem_id": "P3_1_01_00040_00473",
+  "problem_type": "numeric_answer_addition_word_problem",
+  "metadata": {
+    "title": "미란이가 모은 우표의 수",
+    "tags": [],
+    "instruction": "식",
+    "question": "미란이는 우표를 모으고 있습니다. 작년까지는 634장을 모았고, 올해는 279장을 모았습니다. 미란이는 우표를 모두 몇 장 모았습니까?",
+    "required_layout_ids": [],
+    "extraction_confidence": 1.0,
+    "grade": 3,
+    "semester": 1,
+    "subject": "수학",
+    "topic": "세 자리 수의 덧셈",
+    "language": "ko-KR"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "person.miran",
+        "type": "person",
+        "label": "미란이"
+      },
+      {
+        "id": "collection.stamps_until_last_year",
+        "type": "stamp_collection",
+        "label": "작년까지 모은 우표",
+        "count": 634,
+        "unit": "장"
+      },
+      {
+        "id": "collection.stamps_this_year",
+        "type": "stamp_collection",
+        "label": "올해 모은 우표",
+        "count": 279,
+        "unit": "장"
+      },
+      {
+        "id": "collection.total_stamps",
+        "type": "stamp_collection",
+        "label": "미란이가 모은 전체 우표",
+        "count": 913,
+        "unit": "장"
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.miran_owns_previous_stamps",
+        "type": "owns",
+        "subject": "person.miran",
+        "object": "collection.stamps_until_last_year"
+      },
+      {
+        "id": "relation.miran_owns_this_year_stamps",
+        "type": "owns",
+        "subject": "person.miran",
+        "object": "collection.stamps_this_year"
+      },
+      {
+        "id": "relation.total_stamps_sum",
+        "type": "sum_of",
+        "subject": "collection.total_stamps",
+        "objects": [
+          "collection.stamps_until_last_year",
+          "collection.stamps_this_year"
+        ]
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "value": 913,
+    "unit": "장",
+    "expression": "634 + 279 = 913"
+  }
+}

@@ -1,0 +1,131 @@
+{
+  "problem_id": "P3_1_01_00040_02135",
+  "problem_type": "multi_blank_vertical_addition",
+  "metadata": {
+    "title": "받아올림이 있는 세 자리 수의 덧셈",
+    "tags": [],
+    "instruction": "□",
+    "question": "□ 안에 알맞은 수를 써넣으시오.",
+    "required_layout_ids": [],
+    "extraction_confidence": 1.0,
+    "grade": 3,
+    "semester": 1,
+    "subject": "수학",
+    "topic": "받아올림이 있는 세 자리 수의 덧셈",
+    "language": "ko-KR"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "number.addend_1",
+        "type": "number",
+        "label": "첫 번째 수",
+        "value": 664
+      },
+      {
+        "id": "number.addend_2",
+        "type": "number",
+        "label": "두 번째 수",
+        "value": 257
+      },
+      {
+        "id": "carry.ones_to_tens",
+        "type": "carry",
+        "label": "일의 자리에서 십의 자리로 받아올림한 수",
+        "value": 1
+      },
+      {
+        "id": "carry.tens_to_hundreds",
+        "type": "carry",
+        "label": "십의 자리에서 백의 자리로 받아올림한 수",
+        "value": 1
+      },
+      {
+        "id": "digit.answer_hundreds",
+        "type": "place_value_digit",
+        "label": "답의 백의 자리 숫자",
+        "place": "hundreds",
+        "value": 9
+      },
+      {
+        "id": "digit.answer_tens",
+        "type": "place_value_digit",
+        "label": "답의 십의 자리 숫자",
+        "place": "tens",
+        "value": 2
+      },
+      {
+        "id": "digit.answer_ones",
+        "type": "place_value_digit",
+        "label": "답의 일의 자리 숫자",
+        "place": "ones",
+        "value": 1
+      },
+      {
+        "id": "number.sum",
+        "type": "number",
+        "label": "664와 257의 합",
+        "value": 921
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.sum_of_addends",
+        "type": "sum_of",
+        "subject": "number.sum",
+        "objects": [
+          "number.addend_1",
+          "number.addend_2"
+        ]
+      },
+      {
+        "id": "relation.ones_carry",
+        "type": "carry_to",
+        "subject": "carry.ones_to_tens",
+        "from_place": "ones",
+        "to_place": "tens"
+      },
+      {
+        "id": "relation.tens_carry",
+        "type": "carry_to",
+        "subject": "carry.tens_to_hundreds",
+        "from_place": "tens",
+        "to_place": "hundreds"
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "value": [
+      1,
+      1,
+      9,
+      2,
+      1
+    ],
+    "unit": "",
+    "expression": "664 + 257 = 921",
+    "items": [
+      {
+        "id": "answer.carry_hundreds",
+        "value": 1
+      },
+      {
+        "id": "answer.carry_tens",
+        "value": 1
+      },
+      {
+        "id": "answer.hundreds",
+        "value": 9
+      },
+      {
+        "id": "answer.tens",
+        "value": 2
+      },
+      {
+        "id": "answer.ones",
+        "value": 1
+      }
+    ]
+  }
+}

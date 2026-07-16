@@ -1,0 +1,141 @@
+{
+  "problem_id": "P3_1_01_00040_00472",
+  "view_box": {
+    "width": 900.0,
+    "height": 220.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.question.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 38.0,
+        "y": 22.0,
+        "fill": "#202124",
+        "font-family": "Noto Sans KR",
+        "font-size": 24,
+        "width": 824.0,
+        "height": 58.0,
+        "max_width": 824.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 38.0,
+        "data-box-y": 22.0,
+        "data-box-width": 824.0,
+        "data-box-height": 58.0,
+        "data-text-align": "left",
+        "data-vertical-align": "middle"
+      },
+      "source_ref": "slot.question",
+      "refs": {
+        "layout_slot_id": "slot.question"
+      },
+      "text": "도서관에서 어른 648명, 어린이 476명이 책을 읽고 있습니다. 책 읽는 사람은 모두 몇 명입니까?"
+    },
+    {
+      "id": "slot.expression_label.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 38.0,
+        "y": 88.0,
+        "fill": "#202124",
+        "font-family": "Noto Sans KR",
+        "font-size": 24,
+        "width": 42.0,
+        "height": 38.0,
+        "max_width": 42.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 38.0,
+        "data-box-y": 88.0,
+        "data-box-width": 42.0,
+        "data-box-height": 38.0,
+        "data-text-align": "left",
+        "data-vertical-align": "middle"
+      },
+      "source_ref": "slot.expression_label",
+      "refs": {
+        "layout_slot_id": "slot.expression_label"
+      },
+      "text": "식"
+    },
+    {
+      "id": "slot.expression_blank.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 82.0,
+        "y": 88.0,
+        "fill": "#202124",
+        "font-family": "Noto Sans KR",
+        "font-size": 24,
+        "width": 170.0,
+        "height": 38.0,
+        "max_width": 170.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 82.0,
+        "data-box-y": 88.0,
+        "data-box-width": 170.0,
+        "data-box-height": 38.0,
+        "data-text-align": "left",
+        "data-vertical-align": "middle"
+      },
+      "source_ref": "slot.expression_blank",
+      "refs": {
+        "layout_slot_id": "slot.expression_blank"
+      },
+      "text": "____________"
+    },
+    {
+      "id": "slot.answer_label.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 38.0,
+        "y": 134.0,
+        "fill": "#202124",
+        "font-family": "Noto Sans KR",
+        "font-size": 24,
+        "width": 42.0,
+        "height": 38.0,
+        "max_width": 42.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 38.0,
+        "data-box-y": 134.0,
+        "data-box-width": 42.0,
+        "data-box-height": 38.0,
+        "data-text-align": "left",
+        "data-vertical-align": "middle"
+      },
+      "source_ref": "slot.answer_label",
+      "refs": {
+        "layout_slot_id": "slot.answer_label"
+      },
+      "text": "답"
+    },
+    {
+      "id": "slot.answer_blank.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 82.0,
+        "y": 134.0,
+        "fill": "#202124",
+        "font-family": "Noto Sans KR",
+        "font-size": 24,
+        "width": 130.0,
+        "height": 38.0,
+        "max_width": 130.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 82.0,
+        "data-box-y": 134.0,
+        "data-box-width": 130.0,
+        "data-box-height": 38.0,
+        "data-text-align": "left",
+        "data-vertical-align": "middle"
+      },
+      "source_ref": "slot.answer_blank",
+      "refs": {
+        "layout_slot_id": "slot.answer_blank"
+      },
+      "text": "_________"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

@@ -1,0 +1,734 @@
+from __future__ import annotations
+
+from modu_math.dsl import (
+    Canvas,
+    ProblemTemplate,
+    Region,
+    TextBoxSlot,
+)
+
+
+PROBLEM_ID = "P3_1_01_00040_02150"
+PROBLEM_TITLE = "받아올림이 있는 세 자리 수의 덧셈"
+
+
+def build_problem_template() -> ProblemTemplate:
+    return ProblemTemplate(
+        id=PROBLEM_ID,
+        title=PROBLEM_TITLE,
+        canvas=Canvas(
+            width=900,
+            height=300,
+            coordinate_mode="logical",
+        ),
+        regions=(
+            Region(
+                id="region.stem",
+                role="stem",
+                flow="absolute",
+                slot_ids=(
+                    "slot.instruction",
+                ),
+            ),
+            Region(
+                id="region.problem_1",
+                role="question",
+                flow="absolute",
+                slot_ids=(
+                    "slot.problem_1_number",
+                    "slot.problem_1_carry_hundreds",
+                    "slot.problem_1_carry_tens",
+                    "slot.problem_1_first_addend",
+                    "slot.problem_1_plus_sign",
+                    "slot.problem_1_second_addend",
+                    "slot.problem_1_line",
+                    "slot.problem_1_answer_hundreds",
+                    "slot.problem_1_answer_tens",
+                    "slot.problem_1_answer_ones",
+                ),
+            ),
+            Region(
+                id="region.problem_2",
+                role="question",
+                flow="absolute",
+                slot_ids=(
+                    "slot.problem_2_number",
+                    "slot.problem_2_carry_hundreds",
+                    "slot.problem_2_carry_tens",
+                    "slot.problem_2_first_addend",
+                    "slot.problem_2_plus_sign",
+                    "slot.problem_2_second_addend",
+                    "slot.problem_2_line",
+                    "slot.problem_2_answer_hundreds",
+                    "slot.problem_2_answer_tens",
+                    "slot.problem_2_answer_ones",
+                ),
+            ),
+        ),
+        slots=(
+            TextBoxSlot(
+                id="slot.instruction",
+                x=30,
+                y=18,
+                width=840,
+                height=42,
+                text="□ 안에 알맞은 수를 써넣으시오.",
+                font_size=24,
+                font_family="Noto Sans KR",
+                fill="#202124",
+                align="left",
+                valign="middle",
+            ),
+
+            # (1) 326 + 297
+            TextBoxSlot(
+                id="slot.problem_1_number",
+                x=30,
+                y=112,
+                width=48,
+                height=38,
+                text="(1)",
+                font_size=24,
+                font_family="Noto Sans KR",
+                fill="#202124",
+                align="left",
+                valign="middle",
+            ),
+            TextBoxSlot(
+                id="slot.problem_1_carry_hundreds",
+                x=108,
+                y=58,
+                width=32,
+                height=34,
+                text="□",
+                font_size=32,
+                font_family="Noto Sans KR",
+                fill="#111111",
+                align="center",
+                valign="middle",
+            ),
+            TextBoxSlot(
+                id="slot.problem_1_carry_tens",
+                x=145,
+                y=58,
+                width=32,
+                height=34,
+                text="□",
+                font_size=32,
+                font_family="Noto Sans KR",
+                fill="#111111",
+                align="center",
+                valign="middle",
+            ),
+            TextBoxSlot(
+                id="slot.problem_1_first_addend",
+                x=104,
+                y=88,
+                width=116,
+                height=40,
+                text="3 2 6",
+                font_size=27,
+                font_family="Noto Sans KR",
+                fill="#202124",
+                align="left",
+                valign="middle",
+            ),
+            TextBoxSlot(
+                id="slot.problem_1_plus_sign",
+                x=76,
+                y=132,
+                width=30,
+                height=40,
+                text="+",
+                font_size=27,
+                font_family="Noto Sans KR",
+                fill="#202124",
+                align="center",
+                valign="middle",
+            ),
+            TextBoxSlot(
+                id="slot.problem_1_second_addend",
+                x=104,
+                y=132,
+                width=116,
+                height=40,
+                text="2 9 7",
+                font_size=27,
+                font_family="Noto Sans KR",
+                fill="#202124",
+                align="left",
+                valign="middle",
+            ),
+            TextBoxSlot(
+                id="slot.problem_1_line",
+                x=76,
+                y=168,
+                width=145,
+                height=22,
+                text="────────",
+                font_size=22,
+                font_family="Noto Sans KR",
+                fill="#111111",
+                align="left",
+                valign="middle",
+            ),
+            TextBoxSlot(
+                id="slot.problem_1_answer_hundreds",
+                x=103,
+                y=192,
+                width=40,
+                height=46,
+                text="□",
+                font_size=40,
+                font_family="Noto Sans KR",
+                fill="#111111",
+                align="center",
+                valign="middle",
+            ),
+            TextBoxSlot(
+                id="slot.problem_1_answer_tens",
+                x=143,
+                y=192,
+                width=40,
+                height=46,
+                text="□",
+                font_size=40,
+                font_family="Noto Sans KR",
+                fill="#111111",
+                align="center",
+                valign="middle",
+            ),
+            TextBoxSlot(
+                id="slot.problem_1_answer_ones",
+                x=183,
+                y=192,
+                width=40,
+                height=46,
+                text="□",
+                font_size=40,
+                font_family="Noto Sans KR",
+                fill="#111111",
+                align="center",
+                valign="middle",
+            ),
+
+            # (2) 458 + 356
+            TextBoxSlot(
+                id="slot.problem_2_number",
+                x=300,
+                y=112,
+                width=48,
+                height=38,
+                text="(2)",
+                font_size=24,
+                font_family="Noto Sans KR",
+                fill="#202124",
+                align="left",
+                valign="middle",
+            ),
+            TextBoxSlot(
+                id="slot.problem_2_carry_hundreds",
+                x=378,
+                y=58,
+                width=32,
+                height=34,
+                text="□",
+                font_size=32,
+                font_family="Noto Sans KR",
+                fill="#111111",
+                align="center",
+                valign="middle",
+            ),
+            TextBoxSlot(
+                id="slot.problem_2_carry_tens",
+                x=415,
+                y=58,
+                width=32,
+                height=34,
+                text="□",
+                font_size=32,
+                font_family="Noto Sans KR",
+                fill="#111111",
+                align="center",
+                valign="middle",
+            ),
+            TextBoxSlot(
+                id="slot.problem_2_first_addend",
+                x=374,
+                y=88,
+                width=116,
+                height=40,
+                text="4 5 8",
+                font_size=27,
+                font_family="Noto Sans KR",
+                fill="#202124",
+                align="left",
+                valign="middle",
+            ),
+            TextBoxSlot(
+                id="slot.problem_2_plus_sign",
+                x=346,
+                y=132,
+                width=30,
+                height=40,
+                text="+",
+                font_size=27,
+                font_family="Noto Sans KR",
+                fill="#202124",
+                align="center",
+                valign="middle",
+            ),
+            TextBoxSlot(
+                id="slot.problem_2_second_addend",
+                x=374,
+                y=132,
+                width=116,
+                height=40,
+                text="3 5 6",
+                font_size=27,
+                font_family="Noto Sans KR",
+                fill="#202124",
+                align="left",
+                valign="middle",
+            ),
+            TextBoxSlot(
+                id="slot.problem_2_line",
+                x=346,
+                y=168,
+                width=145,
+                height=22,
+                text="────────",
+                font_size=22,
+                font_family="Noto Sans KR",
+                fill="#111111",
+                align="left",
+                valign="middle",
+            ),
+            TextBoxSlot(
+                id="slot.problem_2_answer_hundreds",
+                x=373,
+                y=192,
+                width=40,
+                height=46,
+                text="□",
+                font_size=40,
+                font_family="Noto Sans KR",
+                fill="#111111",
+                align="center",
+                valign="middle",
+            ),
+            TextBoxSlot(
+                id="slot.problem_2_answer_tens",
+                x=413,
+                y=192,
+                width=40,
+                height=46,
+                text="□",
+                font_size=40,
+                font_family="Noto Sans KR",
+                fill="#111111",
+                align="center",
+                valign="middle",
+            ),
+            TextBoxSlot(
+                id="slot.problem_2_answer_ones",
+                x=453,
+                y=192,
+                width=40,
+                height=46,
+                text="□",
+                font_size=40,
+                font_family="Noto Sans KR",
+                fill="#111111",
+                align="center",
+                valign="middle",
+            ),
+        ),
+    )
+
+
+PROBLEM_TEMPLATE = build_problem_template()
+
+
+SEMANTIC = {
+    "problem_id": PROBLEM_ID,
+    "problem_type": "multi_answer_vertical_addition",
+    "metadata": {
+        "grade": 3,
+        "semester": 1,
+        "subject": "수학",
+        "topic": "받아올림이 있는 세 자리 수의 덧셈",
+        "language": "ko-KR",
+    },
+    "domain": {
+        "objects": [
+            {
+                "id": "addition.problem_1",
+                "type": "vertical_addition",
+                "label": "첫 번째 세로셈",
+                "first_addend": 326,
+                "second_addend": 297,
+                "sum": 623,
+            },
+            {
+                "id": "carry.problem_1.ones_to_tens",
+                "type": "carry",
+                "label": "첫 번째 세로셈의 일의 자리 받아올림",
+                "from_place": "ones",
+                "to_place": "tens",
+                "value": 1,
+            },
+            {
+                "id": "carry.problem_1.tens_to_hundreds",
+                "type": "carry",
+                "label": "첫 번째 세로셈의 십의 자리 받아올림",
+                "from_place": "tens",
+                "to_place": "hundreds",
+                "value": 1,
+            },
+            {
+                "id": "addition.problem_2",
+                "type": "vertical_addition",
+                "label": "두 번째 세로셈",
+                "first_addend": 458,
+                "second_addend": 356,
+                "sum": 814,
+            },
+            {
+                "id": "carry.problem_2.ones_to_tens",
+                "type": "carry",
+                "label": "두 번째 세로셈의 일의 자리 받아올림",
+                "from_place": "ones",
+                "to_place": "tens",
+                "value": 1,
+            },
+            {
+                "id": "carry.problem_2.tens_to_hundreds",
+                "type": "carry",
+                "label": "두 번째 세로셈의 십의 자리 받아올림",
+                "from_place": "tens",
+                "to_place": "hundreds",
+                "value": 1,
+            },
+        ],
+        "relations": [
+            {
+                "id": "relation.problem_1_sum",
+                "type": "sum_of",
+                "subject": "addition.problem_1",
+                "values": [
+                    326,
+                    297,
+                ],
+            },
+            {
+                "id": "relation.problem_2_sum",
+                "type": "sum_of",
+                "subject": "addition.problem_2",
+                "values": [
+                    458,
+                    356,
+                ],
+            },
+        ],
+    },
+    "answer": {
+        "value": [
+            1,
+            1,
+            6,
+            2,
+            3,
+            1,
+            1,
+            8,
+            1,
+            4,
+        ],
+        "unit": "",
+        "items": [
+            {
+                "id": "answer.problem_1.carry_hundreds",
+                "value": 1,
+            },
+            {
+                "id": "answer.problem_1.carry_tens",
+                "value": 1,
+            },
+            {
+                "id": "answer.problem_1.hundreds",
+                "value": 6,
+            },
+            {
+                "id": "answer.problem_1.tens",
+                "value": 2,
+            },
+            {
+                "id": "answer.problem_1.ones",
+                "value": 3,
+            },
+            {
+                "id": "answer.problem_2.carry_hundreds",
+                "value": 1,
+            },
+            {
+                "id": "answer.problem_2.carry_tens",
+                "value": 1,
+            },
+            {
+                "id": "answer.problem_2.hundreds",
+                "value": 8,
+            },
+            {
+                "id": "answer.problem_2.tens",
+                "value": 1,
+            },
+            {
+                "id": "answer.problem_2.ones",
+                "value": 4,
+            },
+        ],
+    },
+}
+
+SEMANTIC_OVERRIDE = SEMANTIC
+
+
+SOLVABLE = {
+    "schema": "modu.solvable.v1.1",
+    "problem_id": PROBLEM_ID,
+    "problem_type": "multi_answer_vertical_addition",
+    "inputs": {
+        "target_label": "두 세로셈의 받아올림한 수와 계산 결과",
+        "unit": "",
+        "answer_type": "digit_list",
+        "quantities": {
+            "problem_1": {
+                "first_addend": 326,
+                "second_addend": 297,
+            },
+            "problem_2": {
+                "first_addend": 458,
+                "second_addend": 356,
+            },
+        },
+        "conditions": [
+            "일의 자리부터 차례대로 계산합니다.",
+            "각 자리의 합이 10 이상이면 바로 윗자리로 1을 받아올림합니다.",
+            "받아올림한 수와 덧셈 결과의 각 자리 숫자를 네모 안에 씁니다.",
+        ],
+    },
+    "given": [
+        {
+            "ref": "addition.problem_1",
+            "value": {
+                "first_addend": 326,
+                "second_addend": 297,
+            },
+        },
+        {
+            "ref": "addition.problem_2",
+            "value": {
+                "first_addend": 458,
+                "second_addend": 356,
+            },
+        },
+    ],
+    "target": {
+        "ref": "answer.vertical_addition_blanks",
+        "type": "digit_list",
+    },
+    "method": (
+        "각 세로셈에서 일의 자리부터 더하고, 받아올림한 수를 "
+        "바로 윗자리 계산에 포함한다."
+    ),
+    "plan": [
+        "첫 번째 세로셈 326+297을 일의 자리부터 계산한다.",
+        "첫 번째 세로셈의 받아올림한 수와 결과를 쓴다.",
+        "두 번째 세로셈 458+356을 일의 자리부터 계산한다.",
+        "두 번째 세로셈의 받아올림한 수와 결과를 쓴다.",
+    ],
+    "steps": [
+        {
+            "id": "step.problem_1.add_ones",
+            "expr": "6 + 7",
+            "value": 13,
+            "explanation": (
+                "첫 번째 세로셈의 일의 자리에서 6과 7을 더하면 "
+                "13이므로 3을 쓰고 1을 받아올림합니다."
+            ),
+        },
+        {
+            "id": "step.problem_1.add_tens",
+            "expr": "2 + 9 + 1",
+            "value": 12,
+            "explanation": (
+                "십의 자리에서 2와 9에 받아올림한 1을 더하면 "
+                "12이므로 2를 쓰고 1을 받아올림합니다."
+            ),
+        },
+        {
+            "id": "step.problem_1.add_hundreds",
+            "expr": "3 + 2 + 1",
+            "value": 6,
+            "explanation": (
+                "백의 자리에서 3과 2에 받아올림한 1을 더하면 6입니다."
+            ),
+        },
+        {
+            "id": "step.problem_1.compose_sum",
+            "expr": "326 + 297",
+            "value": 623,
+            "explanation": "첫 번째 세로셈의 결과는 623입니다.",
+        },
+        {
+            "id": "step.problem_2.add_ones",
+            "expr": "8 + 6",
+            "value": 14,
+            "explanation": (
+                "두 번째 세로셈의 일의 자리에서 8과 6을 더하면 "
+                "14이므로 4를 쓰고 1을 받아올림합니다."
+            ),
+        },
+        {
+            "id": "step.problem_2.add_tens",
+            "expr": "5 + 5 + 1",
+            "value": 11,
+            "explanation": (
+                "십의 자리에서 5와 5에 받아올림한 1을 더하면 "
+                "11이므로 1을 쓰고 1을 받아올림합니다."
+            ),
+        },
+        {
+            "id": "step.problem_2.add_hundreds",
+            "expr": "4 + 3 + 1",
+            "value": 8,
+            "explanation": (
+                "백의 자리에서 4와 3에 받아올림한 1을 더하면 8입니다."
+            ),
+        },
+        {
+            "id": "step.problem_2.compose_sum",
+            "expr": "458 + 356",
+            "value": 814,
+            "explanation": "두 번째 세로셈의 결과는 814입니다.",
+        },
+    ],
+    "checks": [
+        {
+            "id": "check.problem_1.ones",
+            "expr": "6 + 7",
+            "expected": 13,
+            "actual": 13,
+            "pass": True,
+        },
+        {
+            "id": "check.problem_1.tens",
+            "expr": "2 + 9 + 1",
+            "expected": 12,
+            "actual": 12,
+            "pass": True,
+        },
+        {
+            "id": "check.problem_1.total",
+            "expr": "326 + 297",
+            "expected": 623,
+            "actual": 623,
+            "pass": True,
+        },
+        {
+            "id": "check.problem_2.ones",
+            "expr": "8 + 6",
+            "expected": 14,
+            "actual": 14,
+            "pass": True,
+        },
+        {
+            "id": "check.problem_2.tens",
+            "expr": "5 + 5 + 1",
+            "expected": 11,
+            "actual": 11,
+            "pass": True,
+        },
+        {
+            "id": "check.problem_2.total",
+            "expr": "458 + 356",
+            "expected": 814,
+            "actual": 814,
+            "pass": True,
+        },
+        {
+            "id": "check.problem_1.inverse",
+            "expr": "623 - 297",
+            "expected": 326,
+            "actual": 326,
+            "pass": True,
+        },
+        {
+            "id": "check.problem_2.inverse",
+            "expr": "814 - 356",
+            "expected": 458,
+            "actual": 458,
+            "pass": True,
+        },
+    ],
+    "answer": {
+        "value": [
+            1,
+            1,
+            6,
+            2,
+            3,
+            1,
+            1,
+            8,
+            1,
+            4,
+        ],
+        "unit": "",
+        "items": [
+            {
+                "id": "answer.problem_1.carry_hundreds",
+                "value": 1,
+            },
+            {
+                "id": "answer.problem_1.carry_tens",
+                "value": 1,
+            },
+            {
+                "id": "answer.problem_1.hundreds",
+                "value": 6,
+            },
+            {
+                "id": "answer.problem_1.tens",
+                "value": 2,
+            },
+            {
+                "id": "answer.problem_1.ones",
+                "value": 3,
+            },
+            {
+                "id": "answer.problem_2.carry_hundreds",
+                "value": 1,
+            },
+            {
+                "id": "answer.problem_2.carry_tens",
+                "value": 1,
+            },
+            {
+                "id": "answer.problem_2.hundreds",
+                "value": 8,
+            },
+            {
+                "id": "answer.problem_2.tens",
+                "value": 1,
+            },
+            {
+                "id": "answer.problem_2.ones",
+                "value": 4,
+            },
+        ],
+    },
+}
+
+SEMANTIC_ANSWER = SOLVABLE["answer"]

@@ -1,0 +1,208 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "P3_1_01_00040_00471",
+  "title": "덧셈식의 크기 비교",
+  "canvas": {
+    "width": 900,
+    "height": 220,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.instruction",
+        "slot.problem_1_number",
+        "slot.problem_1_left",
+        "slot.problem_1_blank",
+        "slot.problem_1_right",
+        "slot.problem_2_number",
+        "slot.problem_2_left",
+        "slot.problem_2_blank",
+        "slot.problem_2_right"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.instruction",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "크기를 비교하여 ○ 안에 >, =, <를 알맞게 써넣으시오.",
+        "style_role": "body",
+        "x": 38.0,
+        "y": 22.0,
+        "width": 824.0,
+        "height": 38.0,
+        "align": "left",
+        "valign": "middle",
+        "font_size": 24,
+        "font_family": "Noto Sans KR",
+        "fill": "#202124"
+      }
+    },
+    {
+      "id": "slot.problem_1_number",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "(1)",
+        "style_role": "body",
+        "x": 40.0,
+        "y": 76.0,
+        "width": 55.0,
+        "height": 38.0,
+        "align": "left",
+        "valign": "middle",
+        "font_size": 24,
+        "font_family": "Noto Sans KR",
+        "fill": "#202124"
+      }
+    },
+    {
+      "id": "slot.problem_1_left",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "532",
+        "style_role": "body",
+        "x": 105.0,
+        "y": 76.0,
+        "width": 90.0,
+        "height": 38.0,
+        "align": "center",
+        "valign": "middle",
+        "font_size": 24,
+        "font_family": "Noto Sans KR",
+        "fill": "#202124"
+      }
+    },
+    {
+      "id": "slot.problem_1_blank",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "○",
+        "style_role": "body",
+        "x": 202.0,
+        "y": 71.0,
+        "width": 52.0,
+        "height": 48.0,
+        "align": "center",
+        "valign": "middle",
+        "font_size": 40,
+        "font_family": "Noto Sans KR",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.problem_1_right",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "248+274",
+        "style_role": "body",
+        "x": 264.0,
+        "y": 76.0,
+        "width": 160.0,
+        "height": 38.0,
+        "align": "left",
+        "valign": "middle",
+        "font_size": 24,
+        "font_family": "Noto Sans KR",
+        "fill": "#202124"
+      }
+    },
+    {
+      "id": "slot.problem_2_number",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "(2)",
+        "style_role": "body",
+        "x": 40.0,
+        "y": 132.0,
+        "width": 55.0,
+        "height": 38.0,
+        "align": "left",
+        "valign": "middle",
+        "font_size": 24,
+        "font_family": "Noto Sans KR",
+        "fill": "#202124"
+      }
+    },
+    {
+      "id": "slot.problem_2_left",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "346+667",
+        "style_role": "body",
+        "x": 105.0,
+        "y": 132.0,
+        "width": 135.0,
+        "height": 38.0,
+        "align": "center",
+        "valign": "middle",
+        "font_size": 24,
+        "font_family": "Noto Sans KR",
+        "fill": "#202124"
+      }
+    },
+    {
+      "id": "slot.problem_2_blank",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "○",
+        "style_role": "body",
+        "x": 247.0,
+        "y": 127.0,
+        "width": 52.0,
+        "height": 48.0,
+        "align": "center",
+        "valign": "middle",
+        "font_size": 40,
+        "font_family": "Noto Sans KR",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.problem_2_right",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "428+585",
+        "style_role": "body",
+        "x": 309.0,
+        "y": 132.0,
+        "width": 160.0,
+        "height": 38.0,
+        "align": "left",
+        "valign": "middle",
+        "font_size": 24,
+        "font_family": "Noto Sans KR",
+        "fill": "#202124"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.instruction",
+    "slot.problem_1_number",
+    "slot.problem_1_left",
+    "slot.problem_1_blank",
+    "slot.problem_1_right",
+    "slot.problem_2_number",
+    "slot.problem_2_left",
+    "slot.problem_2_blank",
+    "slot.problem_2_right"
+  ]
+}
