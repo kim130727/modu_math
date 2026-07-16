@@ -73,7 +73,7 @@ def build_problem_template() -> ProblemTemplate:
                 semantic_role="question",
                 x=40,
                 y=30,
-                width=527,
+                width=579,
                 height=86,
                 font_size=30,
                 line_height=1.3,
