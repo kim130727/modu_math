@@ -1,0 +1,146 @@
+{
+  "problem_id": "P3_1_01_00040_02151",
+  "problem_type": "multi_answer_vertical_addition",
+  "metadata": {
+    "title": "받아올림이 있는 세 자리 수의 덧셈",
+    "tags": [],
+    "question": "□ 안에 알맞은 수를 써넣으시오.",
+    "required_layout_ids": [],
+    "extraction_confidence": 1.0,
+    "grade": 3,
+    "semester": 1,
+    "subject": "수학",
+    "topic": "받아올림이 있는 세 자리 수의 덧셈",
+    "language": "ko-KR"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "addition.problem_1",
+        "type": "vertical_addition",
+        "label": "첫 번째 세로셈",
+        "first_addend": 326,
+        "second_addend": 297,
+        "sum": 623
+      },
+      {
+        "id": "carry.problem_1.ones_to_tens",
+        "type": "carry",
+        "label": "첫 번째 세로셈의 일의 자리 받아올림",
+        "from_place": "ones",
+        "to_place": "tens",
+        "value": 1
+      },
+      {
+        "id": "carry.problem_1.tens_to_hundreds",
+        "type": "carry",
+        "label": "첫 번째 세로셈의 십의 자리 받아올림",
+        "from_place": "tens",
+        "to_place": "hundreds",
+        "value": 1
+      },
+      {
+        "id": "addition.problem_2",
+        "type": "vertical_addition",
+        "label": "두 번째 세로셈",
+        "first_addend": 458,
+        "second_addend": 356,
+        "sum": 814
+      },
+      {
+        "id": "carry.problem_2.ones_to_tens",
+        "type": "carry",
+        "label": "두 번째 세로셈의 일의 자리 받아올림",
+        "from_place": "ones",
+        "to_place": "tens",
+        "value": 1
+      },
+      {
+        "id": "carry.problem_2.tens_to_hundreds",
+        "type": "carry",
+        "label": "두 번째 세로셈의 십의 자리 받아올림",
+        "from_place": "tens",
+        "to_place": "hundreds",
+        "value": 1
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.problem_1_sum",
+        "type": "sum_of",
+        "subject": "addition.problem_1",
+        "values": [
+          326,
+          297
+        ]
+      },
+      {
+        "id": "relation.problem_2_sum",
+        "type": "sum_of",
+        "subject": "addition.problem_2",
+        "values": [
+          458,
+          356
+        ]
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "value": [
+      1,
+      1,
+      6,
+      2,
+      3,
+      1,
+      1,
+      8,
+      1,
+      4
+    ],
+    "unit": "",
+    "items": [
+      {
+        "id": "answer.problem_1.carry_hundreds",
+        "value": 1
+      },
+      {
+        "id": "answer.problem_1.carry_tens",
+        "value": 1
+      },
+      {
+        "id": "answer.problem_1.hundreds",
+        "value": 6
+      },
+      {
+        "id": "answer.problem_1.tens",
+        "value": 2
+      },
+      {
+        "id": "answer.problem_1.ones",
+        "value": 3
+      },
+      {
+        "id": "answer.problem_2.carry_hundreds",
+        "value": 1
+      },
+      {
+        "id": "answer.problem_2.carry_tens",
+        "value": 1
+      },
+      {
+        "id": "answer.problem_2.hundreds",
+        "value": 8
+      },
+      {
+        "id": "answer.problem_2.tens",
+        "value": 1
+      },
+      {
+        "id": "answer.problem_2.ones",
+        "value": 4
+      }
+    ]
+  }
+}

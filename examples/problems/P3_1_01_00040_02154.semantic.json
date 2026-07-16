@@ -1,0 +1,124 @@
+{
+  "problem_id": "P3_1_01_00040_02154",
+  "problem_type": "multi_answer_vertical_addition",
+  "metadata": {
+    "title": "받아올림이 있는 세 자리 수의 덧셈",
+    "tags": [],
+    "question": "□ 안에 알맞은 수를 써넣으시오.",
+    "required_layout_ids": [],
+    "extraction_confidence": 1.0,
+    "grade": 3,
+    "semester": 1,
+    "subject": "수학",
+    "topic": "받아올림이 있는 세 자리 수의 덧셈",
+    "language": "ko-KR"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "addition.problem_1",
+        "type": "vertical_addition",
+        "label": "첫 번째 세로셈",
+        "first_addend": 529,
+        "second_addend": 775,
+        "sum": 1304
+      },
+      {
+        "id": "addition.problem_2",
+        "type": "vertical_addition",
+        "label": "두 번째 세로셈",
+        "first_addend": 257,
+        "second_addend": 769,
+        "sum": 1026
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.problem_1_sum",
+        "type": "sum_of",
+        "subject": "addition.problem_1",
+        "values": [
+          529,
+          775
+        ]
+      },
+      {
+        "id": "relation.problem_2_sum",
+        "type": "sum_of",
+        "subject": "addition.problem_2",
+        "values": [
+          257,
+          769
+        ]
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "value": [
+      1,
+      1,
+      1,
+      3,
+      0,
+      4,
+      1,
+      1,
+      1,
+      0,
+      2,
+      6
+    ],
+    "unit": "",
+    "items": [
+      {
+        "id": "answer.problem_1.carry_hundreds",
+        "value": 1
+      },
+      {
+        "id": "answer.problem_1.carry_tens",
+        "value": 1
+      },
+      {
+        "id": "answer.problem_1.thousands",
+        "value": 1
+      },
+      {
+        "id": "answer.problem_1.hundreds",
+        "value": 3
+      },
+      {
+        "id": "answer.problem_1.tens",
+        "value": 0
+      },
+      {
+        "id": "answer.problem_1.ones",
+        "value": 4
+      },
+      {
+        "id": "answer.problem_2.carry_hundreds",
+        "value": 1
+      },
+      {
+        "id": "answer.problem_2.carry_tens",
+        "value": 1
+      },
+      {
+        "id": "answer.problem_2.thousands",
+        "value": 1
+      },
+      {
+        "id": "answer.problem_2.hundreds",
+        "value": 0
+      },
+      {
+        "id": "answer.problem_2.tens",
+        "value": 2
+      },
+      {
+        "id": "answer.problem_2.ones",
+        "value": 6
+      }
+    ]
+  }
+}
