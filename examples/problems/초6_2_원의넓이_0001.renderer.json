@@ -261,62 +261,233 @@
   ],
   "tutor_flow": [
     {
-      "step_id": "step.1",
+      "phase": "understand",
+      "title": "문제 이해",
+      "source_refs": [
+        "inputs",
+        "given",
+        "target"
+      ],
       "frames": [
         {
-          "id": "step.1.distance",
+          "id": "understand.given_distances",
           "overlays": [
             {
-              "type": "highlight",
-              "target_ref": "slot.distance_18_arc"
+              "type": "dim",
+              "target_ref": "slot.circle_left"
+            },
+            {
+              "type": "dim",
+              "target_ref": "slot.circle_middle"
+            },
+            {
+              "type": "dim",
+              "target_ref": "slot.circle_right"
             },
             {
               "type": "highlight",
-              "target_ref": "slot.label_18"
+              "target_ref": "slot.distance_14_arc",
+              "variant": "given"
             },
             {
               "type": "highlight",
-              "target_ref": "slot.radius_10_line"
+              "target_ref": "slot.label_14",
+              "variant": "given"
             },
             {
               "type": "highlight",
-              "target_ref": "slot.radius_10_arc"
+              "target_ref": "slot.distance_18_arc",
+              "variant": "given"
             },
             {
               "type": "highlight",
-              "target_ref": "slot.label_10"
+              "target_ref": "slot.label_18",
+              "variant": "given"
             },
             {
               "type": "label",
-              "text": "가운데 원의 반지름:",
-              "x": 314,
-              "y": 360,
+              "text": "주어진 중심 사이 거리: 14cm, 18cm",
+              "x": 350,
+              "y": 120,
               "style": {
-                "fill": "#0f766e",
-                "font_size": 20
+                "fill": "#1d4ed8",
+                "font_size": 22,
+                "font_weight": 700
               }
             }
           ]
         },
         {
-          "id": "step.1.subtract",
+          "id": "understand.given_radius",
           "overlays": [
             {
               "type": "highlight",
-              "target_ref": "slot.distance_18_arc"
+              "target_ref": "slot.radius_10_line",
+              "variant": "given"
             },
             {
               "type": "highlight",
-              "target_ref": "slot.radius_10_line"
+              "target_ref": "slot.radius_10_arc",
+              "variant": "given"
+            },
+            {
+              "type": "highlight",
+              "target_ref": "slot.label_10",
+              "variant": "given"
             },
             {
               "type": "label",
-              "text": "18 - 10 = 8",
-              "x": 412,
-              "y": 124.03,
+              "text": "오른쪽 원의 반지름은 10cm입니다.",
+              "x": 350,
+              "y": 120,
               "style": {
-                "fill": "#0f766e",
-                "font_size": 24
+                "fill": "#1d4ed8",
+                "font_size": 22,
+                "font_weight": 700
+              }
+            }
+          ]
+        },
+        {
+          "id": "understand.target",
+          "overlays": [
+            {
+              "type": "highlight",
+              "target_ref": "slot.circle_left",
+              "variant": "target"
+            },
+            {
+              "type": "highlight",
+              "target_ref": "slot.circle_middle",
+              "variant": "target"
+            },
+            {
+              "type": "highlight",
+              "target_ref": "slot.circle_right",
+              "variant": "target"
+            },
+            {
+              "type": "label",
+              "text": "구할 것: 세 원의 원주의 합",
+              "x": 350,
+              "y": 120,
+              "style": {
+                "fill": "#b45309",
+                "font_size": 24,
+                "font_weight": 700
+              }
+            }
+          ]
+        }
+      ],
+      "step_id": "understand"
+    },
+    {
+      "phase": "plan",
+      "title": "계획 세우기",
+      "source_refs": [
+        "method",
+        "plan"
+      ],
+      "frames": [
+        {
+          "id": "plan.principle",
+          "overlays": [
+            {
+              "type": "highlight",
+              "target_ref": "slot.center_line",
+              "variant": "method"
+            },
+            {
+              "type": "label",
+              "text": "서로 접한 두 원의 중심 사이 거리\n= 두 원의 반지름의 합",
+              "x": 350,
+              "y": 115,
+              "style": {
+                "fill": "#7c3aed",
+                "font_size": 22,
+                "font_weight": 700,
+                "align": "center"
+              }
+            }
+          ]
+        },
+        {
+          "id": "plan.sequence",
+          "overlays": [
+            {
+              "type": "label",
+              "text": "① 가운데 반지름 구하기\n② 왼쪽 반지름 구하기\n③ 세 반지름 더하기\n④ 원주의 합 구하기",
+              "x": 350,
+              "y": 135,
+              "style": {
+                "fill": "#374151",
+                "font_size": 21,
+                "line_height": 1.5,
+                "align": "center"
+              }
+            }
+          ]
+        }
+      ],
+      "step_id": "plan"
+    },
+    {
+      "phase": "execute",
+      "title": "계획 실행",
+      "source_refs": [
+        "steps"
+      ],
+      "step_id": "step.1",
+      "frames": [
+        {
+          "id": "step.1.relation",
+          "overlays": [
+            {
+              "type": "highlight",
+              "target_ref": "slot.distance_18_arc",
+              "variant": "given"
+            },
+            {
+              "type": "highlight",
+              "target_ref": "slot.label_18",
+              "variant": "given"
+            },
+            {
+              "type": "highlight",
+              "target_ref": "slot.radius_10_line",
+              "variant": "given"
+            },
+            {
+              "type": "highlight",
+              "target_ref": "slot.label_10",
+              "variant": "given"
+            },
+            {
+              "type": "label",
+              "text": "가운데 반지름 + 10 = 18",
+              "x": 350,
+              "y": 120,
+              "style": {
+                "fill": "#374151",
+                "font_size": 24,
+                "font_weight": 700
+              }
+            }
+          ]
+        },
+        {
+          "id": "step.1.question",
+          "overlays": [
+            {
+              "type": "label",
+              "text": "□ + 10 = 18",
+              "x": 350,
+              "y": 120,
+              "style": {
+                "fill": "#b45309",
+                "font_size": 28,
+                "font_weight": 700
               }
             }
           ]
@@ -325,17 +496,25 @@
           "id": "step.1.result",
           "overlays": [
             {
-              "type": "highlight",
-              "target_ref": "slot.circle_middle"
+              "type": "label",
+              "text": "18 - 10 = 8cm",
+              "x": 350,
+              "y": 120,
+              "style": {
+                "fill": "#0f766e",
+                "font_size": 26,
+                "font_weight": 700
+              }
             },
             {
               "type": "label",
-              "text": "가운데 원의 반지름은 8cm",
-              "x": 298,
-              "y": 360,
+              "text": "8cm",
+              "x": 353,
+              "y": 265,
               "style": {
                 "fill": "#0f766e",
-                "font_size": 20
+                "font_size": 22,
+                "font_weight": 700
               }
             }
           ]
@@ -343,40 +522,67 @@
       ]
     },
     {
+      "phase": "execute",
+      "title": "계획 실행",
+      "source_refs": [
+        "steps"
+      ],
       "step_id": "step.2",
       "frames": [
         {
-          "id": "step.2.distance",
+          "id": "step.2.relation",
           "overlays": [
             {
               "type": "highlight",
-              "target_ref": "slot.distance_14_arc"
+              "target_ref": "slot.distance_14_arc",
+              "variant": "given"
             },
             {
               "type": "highlight",
-              "target_ref": "slot.label_14"
+              "target_ref": "slot.label_14",
+              "variant": "given"
             },
             {
               "type": "highlight",
-              "target_ref": "slot.circle_middle"
+              "target_ref": "slot.circle_middle",
+              "variant": "derived"
+            },
+            {
+              "type": "label",
+              "text": "왼쪽 반지름 + 8 = 14",
+              "x": 350,
+              "y": 120,
+              "style": {
+                "fill": "#374151",
+                "font_size": 24,
+                "font_weight": 700
+              }
+            },
+            {
+              "type": "label",
+              "text": "8cm",
+              "x": 353,
+              "y": 265,
+              "style": {
+                "fill": "#0f766e",
+                "font_size": 22,
+                "font_weight": 700
+              }
             }
           ]
         },
         {
-          "id": "step.2.subtract",
+          "id": "step.2.question",
           "overlays": [
             {
-              "type": "highlight",
-              "target_ref": "slot.distance_14_arc"
-            },
-            {
               "type": "label",
-              "text": "14 - 8 = 6",
-              "x": 208,
-              "y": 330,
+              "text": "□ + 8 = 14",
+              "x": 350,
+              "y": 120,
               "style": {
-                "fill": "#0f766e",
-                "font_size": 24
+                "fill": "#b45309",
+                "font_size": 28,
+                "font_weight": 700
               }
             }
           ]
@@ -385,17 +591,36 @@
           "id": "step.2.result",
           "overlays": [
             {
-              "type": "highlight",
-              "target_ref": "slot.circle_left"
+              "type": "label",
+              "text": "14 - 8 = 6cm",
+              "x": 350,
+              "y": 120,
+              "style": {
+                "fill": "#0f766e",
+                "font_size": 26,
+                "font_weight": 700
+              }
             },
             {
               "type": "label",
-              "text": "왼쪽 원의 반지름은 6cm",
-              "x": 188,
-              "y": 360,
+              "text": "6cm",
+              "x": 210,
+              "y": 265,
               "style": {
                 "fill": "#0f766e",
-                "font_size": 20
+                "font_size": 22,
+                "font_weight": 700
+              }
+            },
+            {
+              "type": "label",
+              "text": "8cm",
+              "x": 353,
+              "y": 265,
+              "style": {
+                "fill": "#0f766e",
+                "font_size": 22,
+                "font_weight": 700
               }
             }
           ]
@@ -403,6 +628,11 @@
       ]
     },
     {
+      "phase": "execute",
+      "title": "계획 실행",
+      "source_refs": [
+        "steps"
+      ],
       "step_id": "step.3",
       "frames": [
         {
@@ -410,15 +640,51 @@
           "overlays": [
             {
               "type": "highlight",
-              "target_ref": "slot.circle_left"
+              "target_ref": "slot.circle_left",
+              "variant": "derived"
             },
             {
               "type": "highlight",
-              "target_ref": "slot.circle_middle"
+              "target_ref": "slot.circle_middle",
+              "variant": "derived"
             },
             {
               "type": "highlight",
-              "target_ref": "slot.circle_right"
+              "target_ref": "slot.circle_right",
+              "variant": "given"
+            },
+            {
+              "type": "label",
+              "text": "6cm",
+              "x": 210,
+              "y": 265,
+              "style": {
+                "fill": "#0f766e",
+                "font_size": 22,
+                "font_weight": 700
+              }
+            },
+            {
+              "type": "label",
+              "text": "8cm",
+              "x": 353,
+              "y": 265,
+              "style": {
+                "fill": "#0f766e",
+                "font_size": 22,
+                "font_weight": 700
+              }
+            },
+            {
+              "type": "label",
+              "text": "10cm",
+              "x": 500,
+              "y": 265,
+              "style": {
+                "fill": "#1d4ed8",
+                "font_size": 22,
+                "font_weight": 700
+              }
             }
           ]
         },
@@ -427,12 +693,13 @@
           "overlays": [
             {
               "type": "label",
-              "text": "6 + 8 + 10 = 24",
-              "x": 293,
-              "y": 115,
+              "text": "6 + 8 + 10 = 24cm",
+              "x": 350,
+              "y": 120,
               "style": {
                 "fill": "#0f766e",
-                "font_size": 24
+                "font_size": 26,
+                "font_weight": 700
               }
             }
           ]
@@ -440,6 +707,11 @@
       ]
     },
     {
+      "phase": "execute",
+      "title": "계획 실행",
+      "source_refs": [
+        "steps"
+      ],
       "step_id": "step.4",
       "frames": [
         {
@@ -447,17 +719,150 @@
           "overlays": [
             {
               "type": "label",
-              "text": "2 x 3 x 24 = 144",
-              "x": 277,
-              "y": 116,
+              "text": "원주의 합 = 2 × 원주율 × 반지름의 합",
+              "x": 350,
+              "y": 110,
+              "style": {
+                "fill": "#374151",
+                "font_size": 22,
+                "font_weight": 700
+              }
+            }
+          ]
+        },
+        {
+          "id": "step.4.substitute",
+          "overlays": [
+            {
+              "type": "label",
+              "text": "2 × 3 × 24",
+              "x": 350,
+              "y": 120,
+              "style": {
+                "fill": "#374151",
+                "font_size": 28,
+                "font_weight": 700
+              }
+            }
+          ]
+        },
+        {
+          "id": "step.4.result",
+          "overlays": [
+            {
+              "type": "label",
+              "text": "2 × 3 × 24 = 144cm",
+              "x": 350,
+              "y": 120,
               "style": {
                 "fill": "#0f766e",
-                "font_size": 24
+                "font_size": 28,
+                "font_weight": 700
               }
             }
           ]
         }
       ]
+    },
+    {
+      "phase": "review",
+      "title": "되돌아보기",
+      "source_refs": [
+        "checks",
+        "answer"
+      ],
+      "frames": [
+        {
+          "id": "review.check_middle_right",
+          "overlays": [
+            {
+              "type": "highlight",
+              "target_ref": "slot.distance_18_arc",
+              "variant": "check"
+            },
+            {
+              "type": "label",
+              "text": "8 + 10 = 18  ✓",
+              "x": 350,
+              "y": 120,
+              "style": {
+                "fill": "#15803d",
+                "font_size": 25,
+                "font_weight": 700
+              }
+            }
+          ]
+        },
+        {
+          "id": "review.check_left_middle",
+          "overlays": [
+            {
+              "type": "highlight",
+              "target_ref": "slot.distance_14_arc",
+              "variant": "check"
+            },
+            {
+              "type": "label",
+              "text": "6 + 8 = 14  ✓",
+              "x": 350,
+              "y": 120,
+              "style": {
+                "fill": "#15803d",
+                "font_size": 25,
+                "font_weight": 700
+              }
+            }
+          ]
+        },
+        {
+          "id": "review.check_circumference",
+          "overlays": [
+            {
+              "type": "label",
+              "text": "36 + 48 + 60 = 144  ✓",
+              "x": 350,
+              "y": 120,
+              "style": {
+                "fill": "#15803d",
+                "font_size": 25,
+                "font_weight": 700
+              }
+            }
+          ]
+        },
+        {
+          "id": "review.answer",
+          "overlays": [
+            {
+              "type": "highlight",
+              "target_ref": "slot.circle_left",
+              "variant": "answer"
+            },
+            {
+              "type": "highlight",
+              "target_ref": "slot.circle_middle",
+              "variant": "answer"
+            },
+            {
+              "type": "highlight",
+              "target_ref": "slot.circle_right",
+              "variant": "answer"
+            },
+            {
+              "type": "label",
+              "text": "답: 144cm",
+              "x": 350,
+              "y": 120,
+              "style": {
+                "fill": "#111827",
+                "font_size": 32,
+                "font_weight": 800
+              }
+            }
+          ]
+        }
+      ],
+      "step_id": "review"
     }
   ],
   "contract_version": "modu_math.renderer.v2"

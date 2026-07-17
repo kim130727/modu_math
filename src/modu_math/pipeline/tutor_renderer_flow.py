@@ -26,7 +26,12 @@ def normalize_tutor_renderer_flow(flow: Any) -> list[dict[str, Any]]:
     for index, item in enumerate(flow):
         if not isinstance(item, dict):
             raise TutorRendererFlowError(f"TUTOR_RENDERER_FLOW[{index}] must be an object")
+        phase = item.get("phase")
+        if phase is not None and (not isinstance(phase, str) or not phase.strip()):
+            raise TutorRendererFlowError(f"TUTOR_RENDERER_FLOW[{index}].phase must be a non-empty string")
         step_id = item.get("step_id")
+        if step_id is None and isinstance(phase, str) and phase.strip() and phase != "execute":
+            step_id = phase
         if not isinstance(step_id, str) or not step_id.strip():
             raise TutorRendererFlowError(f"TUTOR_RENDERER_FLOW[{index}].step_id must be a non-empty string")
         frames = item.get("frames")
@@ -38,7 +43,11 @@ def normalize_tutor_renderer_flow(flow: Any) -> list[dict[str, Any]]:
         if not isinstance(frames, list):
             raise TutorRendererFlowError(f"TUTOR_RENDERER_FLOW[{index}].frames must be an array")
         normalized_frames = [_normalize_frame(frame, index, frame_index, step_id) for frame_index, frame in enumerate(frames)]
-        normalized.append({"step_id": step_id, "frames": normalized_frames})
+        normalized_item = dict(item)
+        normalized_item["step_id"] = step_id
+        normalized_item["frames"] = normalized_frames
+        normalized_item.pop("overlays", None)
+        normalized.append(normalized_item)
     return normalized
 
 
@@ -71,7 +80,9 @@ def validate_tutor_renderer_flow(renderer: dict[str, Any], solvable: dict[str, A
     known_refs = _collect_renderer_refs(renderer)
     for index, item in enumerate(normalized):
         step_id = item["step_id"]
-        if known_step_ids and step_id not in known_step_ids:
+        phase = item.get("phase")
+        is_solving_step = phase in (None, "execute")
+        if known_step_ids and is_solving_step and step_id not in known_step_ids:
             raise TutorRendererFlowError(f"renderer.tutor_flow[{index}].step_id '{step_id}' does not match solvable.steps")
         for frame_index, frame in enumerate(item["frames"]):
             for overlay_index, overlay in enumerate(frame["overlays"]):

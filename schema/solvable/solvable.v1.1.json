@@ -145,6 +145,18 @@
           "id": {
             "type": "string"
           },
+          "goal": {
+            "type": "string"
+          },
+          "uses": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "relation_expr": {
+            "type": "string"
+          },
           "expr": {
             "type": "string"
           },
@@ -169,6 +181,9 @@
         "additionalProperties": false,
         "properties": {
           "id": {
+            "type": "string"
+          },
+          "description": {
             "type": "string"
           },
           "expr": {
