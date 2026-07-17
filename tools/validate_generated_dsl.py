@@ -68,8 +68,8 @@ def _collect_generated_files(out_prefix: Path) -> list[str]:
         out_prefix.with_suffix(".layout.json"),
         out_prefix.with_suffix(".renderer.json"),
         out_prefix.with_suffix(".svg"),
-        out_prefix.with_suffix(".solvable.v1.1.json"),
     ]
+    candidates.extend(sorted(out_prefix.parent.glob(f"{out_prefix.name}.solvable.v*.json")))
     return [str(path.resolve()) for path in candidates if path.exists()]
 
 
@@ -99,6 +99,21 @@ def _normalize_solvable_for_schema(solvable: dict[str, Any]) -> dict[str, Any]:
     if isinstance(plan, str):
         normalized["plan"] = [plan]
     return normalized
+
+
+def _parse_solvable_schema_tag(solvable: dict[str, Any]) -> str:
+    schema_value = solvable.get("schema")
+    if not isinstance(schema_value, str):
+        raise ValueError(
+            "SOLVABLE['schema'] must be a string like 'modu.solvable.v1.1' or 'modu.solvable.v1.2'."
+        )
+    prefix = "modu.solvable."
+    if not schema_value.startswith(prefix):
+        raise ValueError(f"Unsupported solvable schema format: {schema_value}")
+    tag = schema_value[len(prefix) :]
+    if not tag:
+        raise ValueError(f"Invalid solvable schema tag: {schema_value}")
+    return tag
 
 
 def _assert_semantic_override_required(module: ModuleType) -> None:
@@ -139,8 +154,9 @@ def _assert_semantic_concise(semantic: dict[str, Any]) -> None:
 
 
 def _assert_solvable_enriched(solvable: dict[str, Any], problem_id: str) -> None:
-    if solvable.get("schema") != "modu.solvable.v1.1":
-        raise ValueError("SOLVABLE.schema must be 'modu.solvable.v1.1'.")
+    schema = solvable.get("schema")
+    if schema not in {"modu.solvable.v1.1", "modu.solvable.v1.2"}:
+        raise ValueError("SOLVABLE.schema must be 'modu.solvable.v1.1' or 'modu.solvable.v1.2'.")
     if solvable.get("problem_id") != problem_id:
         raise ValueError("SOLVABLE.problem_id must match semantic/problem id.")
     if not isinstance(solvable.get("answer"), dict):
@@ -378,8 +394,14 @@ def _build_from_problem_template(
         if not isinstance(solvable, dict):
             raise ValueError("DSL must define SOLVABLE dict or build_solvable() dict.")
         solvable = _normalize_solvable_for_schema(solvable)
+        solvable_tag = _parse_solvable_schema_tag(solvable)
+        solvable_schema_path = Path("schema/solvable") / f"solvable.{solvable_tag}.json"
+        if not solvable_schema_path.exists():
+            raise FileNotFoundError(
+                f"Solvable schema file not found for '{solvable.get('schema')}': {solvable_schema_path}"
+            )
         solvable_schema = json.loads(
-            Path("schema/solvable/solvable.v1.1.json").read_text(encoding="utf-8-sig")
+            solvable_schema_path.read_text(encoding="utf-8-sig")
         )
         Draft202012Validator(solvable_schema).validate(solvable)
         _assert_solvable_enriched(solvable, str(semantic.get("problem_id", "")))
@@ -421,7 +443,8 @@ def _build_from_problem_template(
     out_prefix.with_suffix(".svg").write_text(render_svg(renderer), encoding="utf-8")
 
     if solvable is not None:
-        out_prefix.with_suffix(".solvable.v1.1.json").write_text(
+        solvable_tag = _parse_solvable_schema_tag(solvable)
+        out_prefix.with_suffix(f".solvable.{solvable_tag}.json").write_text(
             json.dumps(solvable, ensure_ascii=False, indent=2) + "\n",
             encoding="utf-8",
         )

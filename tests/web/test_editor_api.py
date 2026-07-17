@@ -486,12 +486,36 @@ SEMANTIC_OVERRIDE = {
 }
 
 SOLVABLE = {
-    "schema": "modu.solvable.v1.1",
+    "schema": "modu.solvable.v1.2",
     "problem_id": "p_plan",
     "problem_type": "addition",
     "inputs": {"target_label": "sum", "unit": ""},
     "given": [{"ref": "input.a", "value": 2}, {"ref": "input.b", "value": 3}],
     "target": {"ref": "answer.value", "type": "number"},
+    "understanding": {
+        "summary": "Find the total by adding two given numbers.",
+        "facts": [
+            {"ref": "input.a", "label": "first number", "value": 2, "unit": "", "source": "explicit"},
+            {"ref": "input.b", "label": "second number", "value": 3, "unit": "", "source": "explicit"},
+        ],
+        "unknowns": [
+            {"ref": "answer.value", "label": "sum", "unit": ""}
+        ],
+        "relation": {
+            "type": "part_part_whole",
+            "statement": "Add the two parts to get the whole.",
+            "symbolic": "input.a + input.b = answer.value",
+        },
+        "diagnostic_questions": [
+            {
+                "id": "understand.target",
+                "type": "multiple_choice",
+                "prompt": "What should we find?",
+                "choices": ["first number", "second number", "sum"],
+                "answer_index": 2,
+            }
+        ],
+    },
     "method": "addition",
     "plan": "Add the two numbers.",
     "steps": [{"id": "step.1", "expr": "2 + 3", "value": 5}],
@@ -506,7 +530,7 @@ SOLVABLE = {
     assert response.status_code == 200
     body = response.json()
     assert body["ok"] is True
-    solvable = json.loads((problem_dir / "problem.solvable.v1.1.json").read_text(encoding="utf-8"))
+    solvable = json.loads((problem_dir / "problem.solvable.v1.2.json").read_text(encoding="utf-8"))
     assert solvable["plan"] == ["Add the two numbers."]
 
 

@@ -15,7 +15,12 @@ REQUIRED_EXACT = [
     "problem.svg",
     "build_report.json",
 ]
-SOLVABLE_ALIASES = ["problem.solvable.json", "problem.solvable.v1.json", "problem.solvable.v1.1.json"]
+SOLVABLE_ALIASES = [
+    "problem.solvable.json",
+    "problem.solvable.v1.json",
+    "problem.solvable.v1.1.json",
+    "problem.solvable.v1.2.json",
+]
 
 
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
@@ -65,7 +70,7 @@ def _select_problem_dirs(root: Path, explicit: list[str] | None, limit: int) -> 
 def _missing_items(problem_dir: Path) -> list[str]:
     missing = [name for name in REQUIRED_EXACT if not (problem_dir / name).exists()]
     if not any((problem_dir / alias).exists() for alias in SOLVABLE_ALIASES):
-        missing.append("problem.solvable.json|problem.solvable.v1.json|problem.solvable.v1.1.json")
+        missing.append("problem.solvable.json|problem.solvable.v1.json|problem.solvable.v1.1.json|problem.solvable.v1.2.json")
     return missing
 
 

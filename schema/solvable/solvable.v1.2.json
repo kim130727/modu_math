@@ -1,0 +1,316 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "modu.solvable.v1.2.schema.json",
+  "title": "Modu Solvable Schema v1.2",
+  "type": "object",
+  "additionalProperties": false,
+  "$defs": {
+    "understanding_item": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "ref": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
+        },
+        "value": {},
+        "unit": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string",
+          "enum": ["explicit", "derived", "inferred", "unknown"]
+        },
+        "meaning": {
+          "type": "string"
+        }
+      },
+      "required": ["ref", "label"]
+    },
+    "diagnostic_question": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "enum": ["multiple_choice", "single_select", "free_response", "classification"]
+        },
+        "prompt": {
+          "type": "string"
+        },
+        "choices": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "answer_index": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "answer": {},
+        "checks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        }
+      },
+      "required": ["id", "type", "prompt"]
+    }
+  },
+  "properties": {
+    "schema": {
+      "type": "string",
+      "const": "modu.solvable.v1.2"
+    },
+    "problem_id": {
+      "type": "string"
+    },
+    "problem_type": {
+      "type": "string"
+    },
+    "inputs": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "target_label": {
+          "type": "string"
+        },
+        "unit": {
+          "type": "string"
+        },
+        "total_ticks": {
+          "type": "number"
+        },
+        "target_ticks": {
+          "type": "number"
+        },
+        "target_count": {
+          "type": "number"
+        },
+        "sequence_cycle": {
+          "type": "array",
+          "items": {
+            "type": ["number", "string"]
+          }
+        },
+        "cycle_length": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "target_positions": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "quantities": {
+          "type": "object",
+          "additionalProperties": {
+            "type": ["number", "string", "boolean", "array", "object", "null"]
+          }
+        },
+        "conditions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": ["target_label", "unit"]
+    },
+    "given": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "ref": {
+            "type": "string"
+          },
+          "value": {}
+        },
+        "required": ["ref", "value"]
+      }
+    },
+    "target": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "ref": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        }
+      },
+      "required": ["ref", "type"]
+    },
+    "understanding": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "summary": {
+          "type": "string"
+        },
+        "facts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/understanding_item"
+          }
+        },
+        "unknowns": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/understanding_item"
+          }
+        },
+        "relation": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "type": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "symbolic": {
+              "type": "string"
+            },
+            "uses": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "result": {
+              "type": "string"
+            }
+          },
+          "required": ["type", "statement"]
+        },
+        "diagnostic_questions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/diagnostic_question"
+          }
+        },
+        "student_restatement": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "prompt": {
+              "type": "string"
+            },
+            "template": {
+              "type": "string"
+            },
+            "answer": {
+              "type": "string"
+            }
+          },
+          "required": ["prompt"]
+        }
+      },
+      "required": ["summary", "facts", "unknowns", "relation"]
+    },
+    "method": {
+      "type": "string"
+    },
+    "plan": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "steps": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "goal": {
+            "type": "string"
+          },
+          "uses": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "relation_expr": {
+            "type": "string"
+          },
+          "expr": {
+            "type": "string"
+          },
+          "value": {},
+          "explanation": {
+            "type": "string"
+          }
+        },
+        "required": ["id", "expr", "value"]
+      }
+    },
+    "checks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "expr": {
+            "type": "string"
+          },
+          "expected": {},
+          "actual": {},
+          "pass": {
+            "type": "boolean"
+          }
+        },
+        "required": ["id", "expr", "expected", "actual", "pass"]
+      }
+    },
+    "answer": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "value": {},
+        "unit": {
+          "type": "string"
+        }
+      },
+      "required": ["value", "unit"]
+    }
+  },
+  "required": [
+    "schema",
+    "problem_id",
+    "problem_type",
+    "inputs",
+    "given",
+    "target",
+    "method",
+    "plan",
+    "steps",
+    "checks",
+    "answer"
+  ]
+}

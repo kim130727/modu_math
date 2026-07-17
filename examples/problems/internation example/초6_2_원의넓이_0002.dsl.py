@@ -60,8 +60,8 @@ def build_problem_template() -> ProblemTemplate:
                 text="오른쪽 도형에서 원과 정육각형의 둘레의 차는 몇 cm입니까? (원주율: 3.14)",
                 prompt="원과 정육각형의 둘레의 차를 묻는 문제",
                 semantic_role="question",
-                x=17,
-                y=20,
+                x=26.997,
+                y=9.995,
                 width=656,
                 height=87,
                 font_size=27,
@@ -304,7 +304,7 @@ SEMANTIC_OVERRIDE["problem_id"] = PROBLEM_ID
 SEMANTIC_OVERRIDE["answer"] = ANSWER
 
 SOLVABLE = {
-    "schema": "modu.solvable.v1.1",
+    "schema": "modu.solvable.v1.2",
     "problem_id": PROBLEM_ID,
     "problem_type": "numeric_answer_perimeter_difference",
     "inputs": {
@@ -324,6 +324,98 @@ SOLVABLE = {
         "ref": "answer.target",
         "type": "perimeter_difference",
     },
+    "understanding": {
+        "summary": (
+            "지름이 30cm인 원과 그 안에 그려진 정육각형을 비교하여 "
+            "원의 둘레에서 정육각형의 둘레를 뺀 차를 구하는 문제입니다."
+        ),
+        "facts": [
+            {
+                "ref": "measure.diameter",
+                "label": "원의 지름",
+                "value": 30,
+                "unit": "cm",
+                "source": "explicit",
+                "meaning": "반지름은 지름의 절반입니다.",
+            },
+            {
+                "ref": "const.pi",
+                "label": "사용할 원주율",
+                "value": 3.14,
+                "unit": "",
+                "source": "explicit",
+            },
+            {
+                "ref": "rel.hexagon_inscribed",
+                "label": "정육각형은 원 안에 그려져 있음",
+                "value": True,
+                "unit": "",
+                "source": "explicit",
+                "meaning": "내접 정육각형의 한 변은 원의 반지름과 같습니다.",
+            },
+        ],
+        "unknowns": [
+            {
+                "ref": "derived.radius",
+                "label": "원의 반지름",
+                "unit": "cm",
+            },
+            {
+                "ref": "derived.circle_perimeter",
+                "label": "원의 둘레",
+                "unit": "cm",
+            },
+            {
+                "ref": "derived.hexagon_perimeter",
+                "label": "정육각형의 둘레",
+                "unit": "cm",
+            },
+            {
+                "ref": "answer.target",
+                "label": "원과 정육각형의 둘레의 차",
+                "unit": "cm",
+            },
+        ],
+        "relation": {
+            "type": "circle_inscribed_regular_hexagon",
+            "statement": "원에 내접한 정육각형의 한 변은 원의 반지름과 같습니다.",
+            "symbolic": (
+                "radius = diameter / 2; hexagon_side = radius; "
+                "difference = circle_perimeter - hexagon_perimeter"
+            ),
+            "uses": [
+                "measure.diameter",
+                "const.pi",
+                "rel.hexagon_inscribed",
+                "rel.hexagon_side_equals_radius",
+            ],
+            "result": "answer.target",
+        },
+        "diagnostic_questions": [
+            {
+                "id": "understand.target",
+                "type": "multiple_choice",
+                "prompt": "이 문제에서 구해야 하는 것은 무엇인가요?",
+                "choices": [
+                    "원의 반지름",
+                    "정육각형 한 변의 길이",
+                    "원과 정육각형의 둘레의 차",
+                ],
+                "answer_index": 2,
+            },
+            {
+                "id": "understand.relation",
+                "type": "multiple_choice",
+                "prompt": "원에 내접한 정육각형의 한 변은 무엇과 같나요?",
+                "choices": [
+                    "원의 반지름",
+                    "원의 지름",
+                    "원의 둘레",
+                ],
+                "answer_index": 0,
+            },
+        ],
+    },
     "method": "compare_circle_and_inscribed_hexagon_perimeters",
     "plan": [
         "원의 지름 30cm를 2로 나누어 반지름 15cm를 구합니다.",
@@ -334,30 +426,35 @@ SOLVABLE = {
     "steps": [
         {
             "id": "step.1",
+            "goal": "원의 반지름을 구합니다.",
             "expr": "30 ÷ 2",
             "value": {"result": 15, "meaning": "원의 반지름", "unit": "cm"},
             "explanation": "지름 30cm를 2로 나누면 반지름은 15cm입니다.",
         },
         {
             "id": "step.2",
+            "goal": "정육각형의 한 변의 길이를 확인합니다.",
             "expr": "정육각형의 한 변 = 원의 반지름",
             "value": {"result": 15, "meaning": "정육각형의 한 변", "unit": "cm"},
             "explanation": "원에 내접한 정육각형의 한 변은 원의 반지름과 같습니다.",
         },
         {
             "id": "step.3",
+            "goal": "원의 둘레를 구합니다.",
             "expr": "30 × 3.14",
             "value": {"result": 94.2, "meaning": "원의 둘레", "unit": "cm"},
             "explanation": "원의 둘레는 지름에 원주율을 곱해 94.2cm입니다.",
         },
         {
             "id": "step.4",
+            "goal": "정육각형의 둘레를 구합니다.",
             "expr": "15 × 6",
             "value": {"result": 90, "meaning": "정육각형의 둘레", "unit": "cm"},
             "explanation": "정육각형은 변이 6개이므로 둘레는 90cm입니다.",
         },
         {
             "id": "step.5",
+            "goal": "두 둘레의 차를 구합니다.",
             "expr": "94.2 - 90",
             "value": {"result": 4.2, "meaning": "원과 정육각형의 둘레의 차", "unit": "cm"},
             "explanation": "원의 둘레 94.2cm에서 정육각형의 둘레 90cm를 빼면 4.2cm입니다.",

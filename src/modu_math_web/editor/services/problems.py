@@ -192,7 +192,7 @@ SEMANTIC_OVERRIDE = {{
 }}
 
 SOLVABLE = {{
-    "schema": "modu.solvable.v1.1",
+    "schema": "modu.solvable.v1.2",
     "problem_id": PROBLEM_ID,
     "problem_type": "draft_math_problem",
     "inputs": {{
@@ -218,6 +218,38 @@ SOLVABLE = {{
     "target": {{
         "ref": "answer.value",
         "type": "draft_answer",
+    }},
+    "understanding": {{
+        "summary": "臾몄젣?먯꽌 二쇱뼱吏?寃껉낵 援ы빐???섎뒗 寃껋쓣 援щ텇?섎뒗 珥덇린 ?댄빐 ?④퀎",
+        "facts": [
+            {{
+                "ref": "obj.problem",
+                "label": "臾몄젣?먯꽌 二쇱뼱吏?寃?",
+                "value": "臾몄젣瑜??낅젰?섏꽭??",
+                "unit": "",
+                "source": "explicit",
+            }},
+        ],
+        "unknowns": [
+            {{
+                "ref": "answer.value",
+                "label": "援ы빐???섎뒗 寃?",
+                "unit": "",
+            }},
+        ],
+        "relation": {{
+            "type": "author_defined",
+            "statement": "二쇱뼱吏??뺣낫瑜?蹂닿퀬 援ы빐???섎뒗 寃껋쓣 ?먮떒?⑸땲??",
+            "uses": ["obj.problem"],
+            "result": "answer.value",
+        }},
+        "diagnostic_questions": [
+            {{
+                "id": "understand.target",
+                "type": "free_response",
+                "prompt": "이 문제에서 구해야 하는 것은 무엇인가요?",
+            }},
+        ],
     }},
     "method": "author_defined_solution",
     "plan": [

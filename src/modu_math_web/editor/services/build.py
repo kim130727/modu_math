@@ -77,7 +77,7 @@ def _deep_merge_dict(base: dict[str, Any], override: dict[str, Any]) -> dict[str
 def _parse_solvable_schema_tag(solvable: dict[str, Any]) -> str:
     schema_value = solvable.get("schema")
     if not isinstance(schema_value, str):
-        raise ValueError("SOLVABLE['schema'] must be a string like 'modu.solvable.v1' or 'modu.solvable.v1.1'.")
+        raise ValueError("SOLVABLE['schema'] must be a string like 'modu.solvable.v1.1' or 'modu.solvable.v1.2'.")
     prefix = "modu.solvable."
     if not schema_value.startswith(prefix):
         raise ValueError(f"Unsupported solvable schema format: {schema_value}")

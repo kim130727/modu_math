@@ -1,5 +1,5 @@
 {
-  "schema": "modu.solvable.v1.1",
+  "schema": "modu.solvable.v1.2",
   "problem_id": "three_circle_circumference_001",
   "problem_type": "numeric_answer_circle_circumference",
   "inputs": {
@@ -64,6 +64,95 @@
   "target": {
     "ref": "answer.target",
     "type": "total_circumference"
+  },
+  "understanding": {
+    "summary": "서로 맞닿은 세 원에서 중심 사이 거리와 오른쪽 원의 반지름을 이용해 나머지 반지름을 찾고, 세 원의 원주의 합을 구하는 문제입니다.",
+    "facts": [
+      {
+        "ref": "measure.center_distance_left_middle",
+        "label": "왼쪽 원과 가운데 원의 중심 사이 거리",
+        "value": 14,
+        "unit": "cm",
+        "source": "explicit",
+        "meaning": "왼쪽 원의 반지름과 가운데 원의 반지름을 더하면 14cm입니다."
+      },
+      {
+        "ref": "measure.center_distance_middle_right",
+        "label": "가운데 원과 오른쪽 원의 중심 사이 거리",
+        "value": 18,
+        "unit": "cm",
+        "source": "explicit",
+        "meaning": "가운데 원의 반지름과 오른쪽 원의 반지름을 더하면 18cm입니다."
+      },
+      {
+        "ref": "measure.right_radius",
+        "label": "오른쪽 원의 반지름",
+        "value": 10,
+        "unit": "cm",
+        "source": "explicit",
+        "meaning": "오른쪽 원의 반지름은 10cm입니다."
+      },
+      {
+        "ref": "const.pi",
+        "label": "사용할 원주율",
+        "value": 3,
+        "unit": "",
+        "source": "explicit"
+      }
+    ],
+    "unknowns": [
+      {
+        "ref": "derived.radius_middle",
+        "label": "가운데 원의 반지름",
+        "unit": "cm"
+      },
+      {
+        "ref": "derived.radius_left",
+        "label": "왼쪽 원의 반지름",
+        "unit": "cm"
+      },
+      {
+        "ref": "answer.target",
+        "label": "세 원의 원주의 합",
+        "unit": "cm"
+      }
+    ],
+    "relation": {
+      "type": "tangent_circles_center_distance",
+      "statement": "두 원이 서로 맞닿아 있으면 두 원의 중심 사이 거리는 두 반지름의 합과 같습니다.",
+      "symbolic": "r_middle + 10 = 18; r_left + r_middle = 14; total = 2 x 3 x (r_left + r_middle + r_right)",
+      "uses": [
+        "measure.center_distance_left_middle",
+        "measure.center_distance_middle_right",
+        "measure.right_radius",
+        "const.pi"
+      ],
+      "result": "answer.target"
+    },
+    "diagnostic_questions": [
+      {
+        "id": "understand.target",
+        "type": "multiple_choice",
+        "prompt": "이 문제에서 구해야 하는 것은 무엇인가요?",
+        "choices": [
+          "오른쪽 원의 반지름만",
+          "두 중심 사이 거리",
+          "세 원의 원주의 합"
+        ],
+        "answer_index": 2
+      },
+      {
+        "id": "understand.relation",
+        "type": "multiple_choice",
+        "prompt": "두 원이 맞닿을 때 중심 사이 거리는 무엇을 뜻하나요?",
+        "choices": [
+          "두 반지름의 합",
+          "두 반지름의 차",
+          "한 원의 원주"
+        ],
+        "answer_index": 0
+      }
+    ]
   },
   "method": "derive_radii_then_sum_circumferences",
   "plan": [

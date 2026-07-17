@@ -68,37 +68,40 @@
       {
         "id": "relation.sanghyeon_belongs_to_family",
         "type": "member_of",
-        "subject": "person.sanghyeon",
-        "object": "group.sanghyeon_family"
+        "from_id": "person.sanghyeon",
+        "to_id": "group.sanghyeon_family"
       },
       {
         "id": "relation.yongjin_belongs_to_family",
         "type": "member_of",
-        "subject": "person.yongjin",
-        "object": "group.yongjin_family"
+        "from_id": "person.yongjin",
+        "to_id": "group.yongjin_family"
       },
       {
         "id": "relation.sanghyeon_family_collected",
         "type": "collected",
-        "subject": "group.sanghyeon_family",
-        "object": "object.sweet_potato",
+        "from_id": "group.sanghyeon_family",
+        "to_id": "object.sweet_potato",
         "quantity": "quantity.sanghyeon_family_sweet_potatoes"
       },
       {
         "id": "relation.yongjin_family_collected",
         "type": "collected",
-        "subject": "group.yongjin_family",
-        "object": "object.sweet_potato",
+        "from_id": "group.yongjin_family",
+        "to_id": "object.sweet_potato",
         "quantity": "quantity.yongjin_family_sweet_potatoes"
       },
       {
-        "id": "relation.total_is_sum",
-        "type": "sum_of",
-        "subject": "quantity.total_sweet_potatoes",
-        "objects": [
-          "quantity.sanghyeon_family_sweet_potatoes",
-          "quantity.yongjin_family_sweet_potatoes"
-        ]
+        "id": "relation.sanghyeon_count_part_of_total",
+        "type": "part_of_sum",
+        "from_id": "quantity.sanghyeon_family_sweet_potatoes",
+        "to_id": "quantity.total_sweet_potatoes"
+      },
+      {
+        "id": "relation.yongjin_count_part_of_total",
+        "type": "part_of_sum",
+        "from_id": "quantity.yongjin_family_sweet_potatoes",
+        "to_id": "quantity.total_sweet_potatoes"
       }
     ],
     "confidence": 1.0

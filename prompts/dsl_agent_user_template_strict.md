@@ -14,7 +14,8 @@ Hard requirements:
 - include PROBLEM_TEMPLATE = build_problem_template()
 - include SEMANTIC_OVERRIDE dict after PROBLEM_TEMPLATE
 - include SOLVABLE dict after SEMANTIC_OVERRIDE
-- use SOLVABLE["schema"] = "modu.solvable.v1.1"
+- use SOLVABLE["schema"] = "modu.solvable.v1.2"
+- include SOLVABLE["understanding"] with summary, facts, unknowns, relation, and diagnostic questions before calculation steps
 - ProblemTemplate.id, SEMANTIC_OVERRIDE["problem_id"], and SOLVABLE["problem_id"] must all equal "{problem_id}"
 - SEMANTIC_OVERRIDE["answer"] and SOLVABLE["answer"] must match for strict validation
 - if unsure, prefer fewer slots but valid code

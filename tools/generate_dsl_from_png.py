@@ -249,7 +249,7 @@ def _sanitize_semantic_and_region_refs(source: str) -> str:
 
 
 def _normalize_solvable_schema_fields(source: str) -> str:
-    """Backfill SOLVABLE required keys to match schema/solvable/solvable.v1.1.json."""
+    """Backfill SOLVABLE required keys to match the current solvable schema."""
     try:
         tree = ast.parse(source)
     except SyntaxError:
@@ -281,7 +281,7 @@ def _normalize_solvable_schema_fields(source: str) -> str:
             continue
 
         # Canonicalize solvable schema to current target version.
-        data["schema"] = "modu.solvable.v1.1"
+        data["schema"] = "modu.solvable.v1.2"
 
         steps = data.get("steps")
         if isinstance(steps, list):

@@ -148,7 +148,7 @@ def deep_merge_dict(base: dict, override: dict) -> dict:
 def parse_solvable_schema_tag(solvable: dict) -> str:
     schema_value = solvable.get("schema")
     if not isinstance(schema_value, str):
-        raise ValueError("SOLVABLE['schema'] must be a string like 'modu.solvable.v1' or 'modu.solvable.v1.1'.")
+        raise ValueError("SOLVABLE['schema'] must be a string like 'modu.solvable.v1.1' or 'modu.solvable.v1.2'.")
     prefix = "modu.solvable."
     if not schema_value.startswith(prefix):
         raise ValueError(f"Unsupported solvable schema format: {schema_value}")
@@ -156,6 +156,12 @@ def parse_solvable_schema_tag(solvable: dict) -> str:
     if not tag:
         raise ValueError(f"Invalid solvable schema tag: {schema_value}")
     return tag
+
+def normalize_solvable_for_schema(solvable: dict) -> dict:
+    normalized = dict(solvable)
+    if isinstance(normalized.get("plan"), str):
+        normalized["plan"] = [normalized["plan"]]
+    return normalized
 
 # Optional: Semantic override (inject/replace selected semantic fields from DSL)
 if hasattr(module, "SEMANTIC_OVERRIDE"):
@@ -193,6 +199,9 @@ base.with_suffix(".renderer.json").write_text(json.dumps(renderer, ensure_ascii=
 base.with_suffix(".svg").write_text(svg, encoding="utf-8")
 
 if solvable:
+    if not isinstance(solvable, dict):
+        raise ValueError("SOLVABLE must be a dict when provided.")
+    solvable = normalize_solvable_for_schema(solvable)
     solvable_tag = parse_solvable_schema_tag(solvable)
     solvable_schema_path = repo / "schema/solvable" / f"solvable.{solvable_tag}.json"
     if not solvable_schema_path.exists():

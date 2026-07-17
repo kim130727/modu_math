@@ -144,10 +144,34 @@ Rules:
 
 ```python
 SOLVABLE = {
-    "schema": "modu.solvable.v1.1",
+    "schema": "modu.solvable.v1.2",
     "problem_id": "...",
     "problem_type": "...",
     "inputs": {},
+    "given": [],
+    "target": {"ref": "...", "type": "..."},
+    "understanding": {
+        "summary": "...",
+        "facts": [
+            {"ref": "...", "label": "...", "value": "...", "unit": "", "source": "explicit"}
+        ],
+        "unknowns": [
+            {"ref": "...", "label": "...", "unit": ""}
+        ],
+        "relation": {
+            "type": "...",
+            "statement": "..."
+        },
+        "diagnostic_questions": [
+            {
+                "id": "understand.target",
+                "type": "multiple_choice",
+                "prompt": "...",
+                "choices": ["...", "..."],
+                "answer_index": 0,
+            }
+        ],
+    },
     "plan": [],
     "steps": [
         {
@@ -175,9 +199,10 @@ SOLVABLE = {
 
 Rules:
 
-- `SOLVABLE["schema"]` must be exactly `"modu.solvable.v1.1"`.
+- `SOLVABLE["schema"]` must be exactly `"modu.solvable.v1.2"`.
 - `SOLVABLE["problem_id"]` must match `ProblemTemplate.id`.
-- `inputs`, `plan`, `steps`, `checks`, and `answer` must be present.
+- `inputs`, `given`, `target`, `understanding`, `plan`, `steps`, `checks`, and `answer` must be present.
+- `understanding` is for the student's first look at the problem: facts are directly given information, unknowns are what must be found, relation is how the information connects, and diagnostic questions check the gist before computation.
 - Every step must include at least `id`, `expr`, and `value`.
 - Every check must include at least `id`, `expr`, `expected`, `actual`, and `pass`.
 - Use conservative explicit placeholders plus TODO comments when a value is uncertain.
@@ -224,7 +249,7 @@ uv run python tools/validate_generated_dsl.py --dsl <problem.dsl.py> --strict --
 This means:
 
 - `ProblemTemplate.id`, `SEMANTIC_OVERRIDE["problem_id"]`, and `SOLVABLE["problem_id"]` match.
-- `SOLVABLE` validates against `schema/solvable/solvable.v1.1.json`.
+- `SOLVABLE` validates against `schema/solvable/solvable.v1.2.json`.
 - semantic answer and solvable answer match.
 - semantic remains meaning-only.
 - layout/renderer/SVG remain generated artifacts.

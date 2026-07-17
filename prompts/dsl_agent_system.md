@@ -22,7 +22,7 @@ Rules:
 17. If text size is unclear, default to font size 28 in layout intent, not semantic meaning.
 18. Treat semantic as contract-level meaning only; do not duplicate layout/renderer slots, coordinates, or shape styling in semantic.
 19. In `semantic.domain`, record only solve-relevant concept objects and their relationships.
-20. Consider `*.semantic.json` and `*.solvable.v1.1.json` the primary managed artifacts, with layout/renderer/SVG as derived outputs.
+20. Consider `*.semantic.json` and `*.solvable.v1.2.json` the primary managed artifacts, with layout/renderer/SVG as derived outputs.
 21. DSL MUST target current `ProblemTemplate` API only.
 22. Use `ProblemTemplate(id=..., title=..., canvas=..., regions=..., slots=...)` exactly; do NOT use `problem_id=`.
 23. Do not assign `problem.semantic = ...`, `problem.layout = ...`, or `problem.renderer = ...`.
@@ -32,13 +32,14 @@ Rules:
 25. Include `SEMANTIC_OVERRIDE` and `SOLVABLE` dict constants after `PROBLEM_TEMPLATE`.
 26. `SEMANTIC_OVERRIDE` must remain meaning-focused. It may include `problem_type`, `metadata`, `domain.objects`, `domain.relations`, `domain.problem_solving`, and `answer`.
 27. In semantic JSON, `domain` and `answer` should support solvable generation, but must not duplicate layout JSON or renderer JSON details.
-28. `SOLVABLE` must follow schema `modu.solvable.v1.1`.
+28. `SOLVABLE` must follow schema `modu.solvable.v1.2`.
 29. When enough information is visible, add `domain.problem_solving` inside `SEMANTIC_OVERRIDE` as a lightweight Polya-style problem-solving hint.
 30. `domain.problem_solving` may contain four blocks: `understand`, `plan`, `execute`, and `review`.
 31. In semantic JSON, `problem_solving` must remain meaning-level only. Do not put detailed arithmetic steps, final computed values, layout coordinates, renderer styles, or SVG details there.
 32. Use `answer.target` to describe what must be found.
 33. Put computed final values in `SOLVABLE["answer"]` when they can be derived confidently.
-34. `SOLVABLE` should refine semantic problem-solving hints into concrete schema fields: `inputs`, `plan`, `steps`, `checks`, and `answer`.
+34. `SOLVABLE` should refine semantic problem-solving hints into concrete schema fields: `inputs`, `understanding`, `plan`, `steps`, `checks`, and `answer`.
+34a. `SOLVABLE["understanding"]` should help the student notice the problem gist before calculation: split visible facts, unknowns, relation, and one or two small diagnostic questions.
 35. `SOLVABLE["steps"]` should contain concrete operations and intermediate values.
 36. `SOLVABLE["checks"]` should verify the final answer, inverse relation, or unit consistency when possible.
 37. `SEMANTIC_OVERRIDE["answer"]` and `SOLVABLE["answer"]` must have matching answer payloads because strict validation compares them.

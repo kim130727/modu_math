@@ -71,8 +71,8 @@ def build_problem_template() -> ProblemTemplate:
                 text="세 원의 원주의 합은 몇 cm입니까? (원주율: 3)",
                 prompt="세 원의 원주의 합을 묻는 문제",
                 semantic_role="question",
-                x=40,
-                y=30,
+                x=20.006,
+                y=10.991,
                 width=579,
                 height=86,
                 font_size=30,
@@ -428,10 +428,9 @@ SEMANTIC_OVERRIDE = {
 }
 
 SOLVABLE = {
-    "schema": "modu.solvable.v1.1",
+    "schema": "modu.solvable.v1.2",
     "problem_id": "three_circle_circumference_001",
     "problem_type": "numeric_answer_circle_circumference",
-
     # =========================================================
     # 1. 문제 이해: inputs + given + target
     # =========================================================
@@ -498,7 +497,103 @@ SOLVABLE = {
         "ref": "answer.target",
         "type": "total_circumference",
     },
-
+    "understanding": {
+        "summary": (
+            "서로 맞닿은 세 원에서 중심 사이 거리와 오른쪽 원의 반지름을 이용해 "
+            "나머지 반지름을 찾고, 세 원의 원주의 합을 구하는 문제입니다."
+        ),
+        "facts": [
+            {
+                "ref": "measure.center_distance_left_middle",
+                "label": "왼쪽 원과 가운데 원의 중심 사이 거리",
+                "value": 14,
+                "unit": "cm",
+                "source": "explicit",
+                "meaning": "왼쪽 원의 반지름과 가운데 원의 반지름을 더하면 14cm입니다.",
+            },
+            {
+                "ref": "measure.center_distance_middle_right",
+                "label": "가운데 원과 오른쪽 원의 중심 사이 거리",
+                "value": 18,
+                "unit": "cm",
+                "source": "explicit",
+                "meaning": "가운데 원의 반지름과 오른쪽 원의 반지름을 더하면 18cm입니다.",
+            },
+            {
+                "ref": "measure.right_radius",
+                "label": "오른쪽 원의 반지름",
+                "value": 10,
+                "unit": "cm",
+                "source": "explicit",
+                "meaning": "오른쪽 원의 반지름은 10cm입니다.",
+            },
+            {
+                "ref": "const.pi",
+                "label": "사용할 원주율",
+                "value": 3,
+                "unit": "",
+                "source": "explicit",
+            },
+        ],
+        "unknowns": [
+            {
+                "ref": "derived.radius_middle",
+                "label": "가운데 원의 반지름",
+                "unit": "cm",
+            },
+            {
+                "ref": "derived.radius_left",
+                "label": "왼쪽 원의 반지름",
+                "unit": "cm",
+            },
+            {
+                "ref": "answer.target",
+                "label": "세 원의 원주의 합",
+                "unit": "cm",
+            },
+        ],
+        "relation": {
+            "type": "tangent_circles_center_distance",
+            "statement": (
+                "두 원이 서로 맞닿아 있으면 두 원의 중심 사이 거리는 " "두 반지름의 합과 같습니다."
+            ),
+            "symbolic": (
+                "r_middle + 10 = 18; r_left + r_middle = 14; "
+                "total = 2 x 3 x (r_left + r_middle + r_right)"
+            ),
+            "uses": [
+                "measure.center_distance_left_middle",
+                "measure.center_distance_middle_right",
+                "measure.right_radius",
+                "const.pi",
+            ],
+            "result": "answer.target",
+        },
+        "diagnostic_questions": [
+            {
+                "id": "understand.target",
+                "type": "multiple_choice",
+                "prompt": "이 문제에서 구해야 하는 것은 무엇인가요?",
+                "choices": [
+                    "오른쪽 원의 반지름만",
+                    "두 중심 사이 거리",
+                    "세 원의 원주의 합",
+                ],
+                "answer_index": 2,
+            },
+            {
+                "id": "understand.relation",
+                "type": "multiple_choice",
+                "prompt": "두 원이 맞닿을 때 중심 사이 거리는 무엇을 뜻하나요?",
+                "choices": [
+                    "두 반지름의 합",
+                    "두 반지름의 차",
+                    "한 원의 원주",
+                ],
+                "answer_index": 0,
+            },
+        ],
+    },
     # =========================================================
     # 2. 계획 세우기: method + plan
     # =========================================================
@@ -510,7 +605,6 @@ SOLVABLE = {
         "세 원의 반지름을 모두 더합니다.",
         "반지름의 합에 2와 원주율 3을 곱하여 세 원의 원주의 합을 구합니다.",
     ],
-
     # =========================================================
     # 3. 계획 실행: steps
     # =========================================================
@@ -572,8 +666,7 @@ SOLVABLE = {
                 "ref": "derived.radius_sum",
             },
             "explanation": (
-                "왼쪽 원, 가운데 원, 오른쪽 원의 반지름을 모두 더하면 "
-                "6 + 8 + 10 = 24cm입니다."
+                "왼쪽 원, 가운데 원, 오른쪽 원의 반지름을 모두 더하면 " "6 + 8 + 10 = 24cm입니다."
             ),
         },
         {
@@ -600,7 +693,6 @@ SOLVABLE = {
             ),
         },
     ],
-
     # =========================================================
     # 4. 되돌아보기: checks + answer
     # =========================================================
@@ -608,8 +700,7 @@ SOLVABLE = {
         {
             "id": "check.1",
             "description": (
-                "가운데 원과 오른쪽 원의 반지름의 합이 "
-                "두 중심 사이 거리와 같은지 확인합니다."
+                "가운데 원과 오른쪽 원의 반지름의 합이 " "두 중심 사이 거리와 같은지 확인합니다."
             ),
             "expr": "8 + 10",
             "expected": 18,
@@ -619,8 +710,7 @@ SOLVABLE = {
         {
             "id": "check.2",
             "description": (
-                "왼쪽 원과 가운데 원의 반지름의 합이 "
-                "두 중심 사이 거리와 같은지 확인합니다."
+                "왼쪽 원과 가운데 원의 반지름의 합이 " "두 중심 사이 거리와 같은지 확인합니다."
             ),
             "expr": "6 + 8",
             "expected": 14,
@@ -630,8 +720,7 @@ SOLVABLE = {
         {
             "id": "check.3",
             "description": (
-                "각 원의 원주를 따로 구하여 더한 결과가 "
-                "최종 답과 같은지 확인합니다."
+                "각 원의 원주를 따로 구하여 더한 결과가 " "최종 답과 같은지 확인합니다."
             ),
             "expr": "2 × 3 × 6 + 2 × 3 × 8 + 2 × 3 × 10",
             "expected": 144,
@@ -793,7 +882,6 @@ TUTOR_RENDERER_FLOW = [
             },
         ],
     },
-
     # =========================================================
     # 2. 계획 세우기
     # method + plan
@@ -816,10 +904,7 @@ TUTOR_RENDERER_FLOW = [
                     },
                     {
                         "type": "label",
-                        "text": (
-                            "서로 접한 두 원의 중심 사이 거리\n"
-                            "= 두 원의 반지름의 합"
-                        ),
+                        "text": ("서로 접한 두 원의 중심 사이 거리\n" "= 두 원의 반지름의 합"),
                         "x": 350,
                         "y": 115,
                         "style": {
@@ -855,7 +940,6 @@ TUTOR_RENDERER_FLOW = [
             },
         ],
     },
-
     # =========================================================
     # 3. 계획 실행
     # steps
@@ -1192,7 +1276,6 @@ TUTOR_RENDERER_FLOW = [
             },
         ],
     },
-
     # =========================================================
     # 4. 되돌아보기
     # checks + answer

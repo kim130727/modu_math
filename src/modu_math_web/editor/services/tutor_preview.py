@@ -55,7 +55,7 @@ def rule_tutor_response(payload: dict[str, Any], message: str, history: list[dic
         return {"reply": _localized_text(payload, "missing_steps"), "choices": []}
 
     clean_message = message.strip()
-    waiting_index = _last_rule_step_index(history)
+    waiting_index = _last_rule_step_index(history, steps)
     if waiting_index is None:
         return _rule_response(solvable, steps, 0, _rule_intro(solvable, steps, lang=lang))
 
@@ -70,19 +70,32 @@ def rule_tutor_response(payload: dict[str, Any], message: str, history: list[dic
     if _answer_matches_step(clean_message, waiting_step):
         next_index = waiting_index + 1
         if next_index >= len(steps):
-            return {"reply": _rule_complete(solvable, lang=lang), "choices": []}
-        return _rule_response(solvable, steps, next_index, _render_rule_step(solvable, steps, next_index, prefix=_localized_phrase(lang, "correct"), lang=lang))
+            return {"reply": _rule_complete(solvable, prefix=_correct_prefix(waiting_step, lang=lang), lang=lang), "choices": []}
+        return _rule_response(
+            solvable,
+            steps,
+            next_index,
+            _render_rule_step(solvable, steps, next_index, prefix=_correct_prefix(waiting_step, lang=lang), lang=lang),
+        )
+
+    if waiting_step.get("kind") == "understanding":
+        return _rule_response(
+            solvable,
+            steps,
+            waiting_index,
+            _render_rule_step(solvable, steps, waiting_index, prefix=_localized_phrase(lang, "try_again"), lang=lang),
+        )
 
     expected_hint = _step_expected_hint(solvable, waiting_step, waiting_index, lang=lang)
     if expected_hint:
         return _rule_response(solvable, steps, waiting_index, (
             f"{_localized_phrase(lang, 'try_again')}\n"
-            f"{_localized_step_label(lang, waiting_index)}: {waiting_step['prompt']}\n"
+            f"{_display_step_label(steps, waiting_index, lang=lang)}: {waiting_step['prompt']}\n"
             f"{expected_hint} {_localized_phrase(lang, 'enter_again')}"
         ))
     return _rule_response(solvable, steps, waiting_index, (
         f"{_localized_phrase(lang, 'enter_step_value')}\n"
-        f"{_localized_step_label(lang, waiting_index)}: {waiting_step['prompt']}"
+        f"{_display_step_label(steps, waiting_index, lang=lang)}: {waiting_step['prompt']}"
     ))
 
 
@@ -193,7 +206,7 @@ def _system_prompt(payload: dict[str, Any]) -> str:
 def _tutor_steps(payload: dict[str, Any], solvable: dict[str, Any]) -> list[dict[str, str]]:
     derived_steps = _derive_tutor_steps(payload, solvable)
     if derived_steps:
-        return derived_steps
+        return _understanding_steps(solvable, derived_steps) + derived_steps
 
     raw_steps = solvable.get("steps")
     if not isinstance(raw_steps, list) or not raw_steps:
@@ -205,24 +218,101 @@ def _tutor_steps(payload: dict[str, Any], solvable: dict[str, Any]) -> list[dict
     for index, raw_step in enumerate(raw_steps, start=1):
         prompt = ""
         expected = ""
+        unit = ""
         if isinstance(raw_step, str):
             prompt = raw_step.strip()
         elif isinstance(raw_step, dict):
-            prompt = _first_string(raw_step, ["question", "prompt", "expr", "text", "description", "id"])
+            prompt = _first_string(raw_step, ["question", "prompt", "goal", "text", "description", "expr", "id"])
             explanation = _first_string(raw_step, ["explanation"])
             if "value" in raw_step:
                 expected = _student_expected_answer(raw_step["value"])
+                unit = _student_expected_unit(raw_step["value"])
             elif "expected" in raw_step:
                 expected = _student_expected_answer(raw_step["expected"])
+                unit = _student_expected_unit(raw_step["expected"])
         if not prompt:
             prompt = f"{index}번째 풀이 단계를 확인해요."
         step = {"prompt": prompt, "expected": expected}
+        if unit:
+            step["unit"] = unit
         if isinstance(raw_step, dict) and isinstance(raw_step.get("id"), str):
             step["id"] = raw_step["id"]
         if isinstance(raw_step, dict) and explanation:
             step["explanation"] = explanation
         steps.append(step)
+    return _understanding_steps(solvable, steps) + steps
+
+
+def _understanding_steps(solvable: dict[str, Any], solve_steps: list[dict[str, str]]) -> list[dict[str, str]]:
+    understanding = _record_or_none(solvable.get("understanding"))
+    if not understanding:
+        return []
+
+    steps: list[dict[str, str]] = []
+    diagnostic_questions = understanding.get("diagnostic_questions")
+    if isinstance(diagnostic_questions, list):
+        for raw_question in diagnostic_questions:
+            question = _record_or_none(raw_question)
+            if not question:
+                continue
+            prompt = _first_string(question, ["prompt"])
+            if not prompt:
+                continue
+            choices = question.get("choices")
+            answer_index = question.get("answer_index")
+            expected = ""
+            if isinstance(choices, list) and isinstance(answer_index, int) and 0 <= answer_index < len(choices):
+                expected = str(choices[answer_index])
+            elif "answer" in question:
+                expected = _student_expected_answer(question["answer"])
+            step = {
+                "id": _first_string(question, ["id"]) or f"understand.{len(steps) + 1}",
+                "prompt": prompt,
+                "expected": expected,
+                "kind": "understanding",
+            }
+            if isinstance(choices, list):
+                step["choices"] = [str(choice) for choice in choices]
+            steps.append(step)
+
+    if solve_steps:
+        first_step_prompt = _first_step_target_text(solve_steps[0].get("prompt", "").strip())
+        if first_step_prompt:
+            choices = _first_step_target_choices(understanding, first_step_prompt)
+            steps.append(
+                {
+                    "id": "understand.first_step",
+                    "prompt": "첫 풀이 단계에서 무엇을 구해야 할까요?",
+                    "expected": first_step_prompt,
+                    "choices": choices,
+                    "kind": "understanding",
+                }
+            )
     return steps
+
+
+def _first_step_target_text(prompt: str) -> str:
+    import re
+
+    text = prompt.strip()
+    text = re.sub(r"\s*(을|를)\s*구합니다\.?$", "", text)
+    text = re.sub(r"\s*(을|를)\s*구해요\.?$", "", text)
+    text = re.sub(r"\s*(을|를)\s*구한다\.?$", "", text)
+    return text.strip()
+
+
+def _first_step_target_choices(understanding: dict[str, Any], expected: str) -> list[str]:
+    candidates = [expected]
+    unknowns = understanding.get("unknowns")
+    if isinstance(unknowns, list):
+        for unknown in unknowns:
+            item = _record_or_none(unknown)
+            if not item:
+                continue
+            label = _first_string(item, ["label"])
+            if label and label not in candidates:
+                candidates.append(label)
+    return _unique_choices(candidates)
 
 
 def _derive_tutor_steps(payload: dict[str, Any], solvable: dict[str, Any]) -> list[dict[str, str]]:
@@ -342,6 +432,8 @@ def _rule_intro(solvable: dict[str, Any], steps: list[dict[str, str]], *, lang: 
         if multiple and highlighted:
             lead = _localized_phrase(lang, "intro_highlighted").format(multiple=multiple, highlighted=highlighted)
         return _render_rule_step(solvable, steps, 0, prefix=lead, lang=lang)
+    if steps and steps[0].get("kind") == "understanding":
+        return _render_rule_step(solvable, steps, 0, prefix=_understanding_intro(solvable, lang=lang), lang=lang)
     if _is_inscribed_regular_hexagon_perimeter({"solvable": solvable}):
         return _render_rule_step(
             solvable,
@@ -352,6 +444,15 @@ def _rule_intro(solvable: dict[str, Any], steps: list[dict[str, str]], *, lang: 
         )
     method = str(solvable.get("method") or solvable.get("problem_type") or "풀이").replace("_", " ")
     return _render_rule_step(solvable, steps, 0, prefix=_localized_phrase(lang, "intro_general").format(method=method), lang=lang)
+
+
+def _understanding_intro(solvable: dict[str, Any], *, lang: str = "ko") -> str:
+    understanding = _record_or_none(solvable.get("understanding"))
+    if not understanding:
+        return ""
+    if lang == "ko":
+        return "먼저 문제의 요지를 같이 잡아볼게요."
+    return "First, let's understand what the problem is asking."
 
 
 def _rule_response(solvable: dict[str, Any], steps: list[dict[str, str]], index: int, reply: str) -> dict[str, Any]:
@@ -467,11 +568,45 @@ def _render_rule_step(solvable: dict[str, Any], steps: list[dict[str, str]], ind
 
     expected_hint = _step_expected_hint(solvable, step, index, lang=lang)
     lines = [line for line in prefix.splitlines() if line.strip()]
-    lines.append(f"{_localized_step_label(lang, index)}: {step['prompt']}")
-    if step.get("explanation"):
-        lines.append(step["explanation"])
-    lines.append(expected_hint or _localized_phrase(lang, "enter_step_value"))
-    return "\n".join(lines[:4])
+    lines.append(f"{_display_step_label(steps, index, lang=lang)}: {step['prompt']}")
+    if step.get("kind") == "understanding":
+        if step.get("choices"):
+            lines.append("알맞은 것을 골라볼까요?" if lang == "ko" else "Choose the best answer.")
+        return "\n".join(lines[:4])
+    question = _step_question(step, lang=lang)
+    lines.append(question or expected_hint or _localized_phrase(lang, "enter_step_value"))
+    return "\n".join(lines[:5])
+
+
+def _correct_prefix(step: dict[str, str], *, lang: str = "ko") -> str:
+    lines = [_localized_phrase(lang, "correct")]
+    explanation = step.get("explanation", "").strip()
+    if explanation:
+        lines.append(explanation)
+    return "\n".join(lines)
+
+
+def _display_step_label(steps: list[dict[str, str]], index: int, *, lang: str = "ko") -> str:
+    step = steps[index]
+    if step.get("kind") == "understanding":
+        n = sum(1 for item in steps[: index + 1] if item.get("kind") == "understanding")
+        return f"확인 {n}" if lang == "ko" else f"Check {n}"
+    n = sum(1 for item in steps[: index + 1] if item.get("kind") != "understanding")
+    return _localized_step_label(lang, n - 1)
+
+
+def _step_question(step: dict[str, str], *, lang: str = "ko") -> str:
+    expected = step.get("expected", "").strip()
+    if not expected:
+        return ""
+    unit = step.get("unit", "").strip()
+    if _looks_number(expected):
+        if lang == "ko":
+            return f"그러면 이 값은 몇 {unit}일까요?".replace("  ", " ").strip()
+        return f"What value do we get{f' in {unit}' if unit else ''}?"
+    if lang == "ko":
+        return "어떤 값이 들어갈까요?"
+    return "What should go here?"
 
 
 def _render_place_value_step(solvable: dict[str, Any], steps: list[dict[str, str]], index: int, *, prefix: str = "", lang: str = "ko") -> str:
@@ -506,15 +641,18 @@ def _render_place_value_step(solvable: dict[str, Any], steps: list[dict[str, str
     return "\n".join(lines[:4])
 
 
-def _rule_complete(solvable: dict[str, Any], *, lang: str = "ko") -> str:
+def _rule_complete(solvable: dict[str, Any], *, prefix: str = "", lang: str = "ko") -> str:
     answer_record = _record_or_none(solvable.get("answer"))
-    answer = _stringify_answer(answer_record.get("value")) if answer_record and "value" in answer_record else ""
+    answer = _answer_display(answer_record)
+    lines = [line for line in prefix.splitlines() if line.strip()]
     if answer:
-        return _localized_phrase(lang, "complete_with_answer").format(answer=answer)
-    return _localized_phrase(lang, "complete")
+        lines.extend(_localized_phrase(lang, "complete_with_answer").format(answer=answer).splitlines())
+    else:
+        lines.extend(_localized_phrase(lang, "complete").splitlines())
+    return "\n".join(lines[:5])
 
 
-def _last_rule_step_index(history: list[dict[str, str]]) -> int | None:
+def _last_rule_step_index(history: list[dict[str, str]], steps: list[dict[str, str]]) -> int | None:
     import re
 
     for item in reversed(history):
@@ -523,9 +661,26 @@ def _last_rule_step_index(history: list[dict[str, str]]) -> int | None:
         content = item.get("content", "")
         if not isinstance(content, str):
             continue
-        match = re.search(r"(?:Step|ステップ|第|ជំហាន|အဆင့်)?\s*(\d+)\s*(?:단계|步)?\s*:", content)
-        if match:
-            return max(0, int(match.group(1)) - 1)
+
+        check_match = re.search(r"(?:확인|Check)\s*(\d+)\s*:", content)
+        if check_match:
+            target = int(check_match.group(1))
+            seen = 0
+            for index, step in enumerate(steps):
+                if step.get("kind") == "understanding":
+                    seen += 1
+                    if seen == target:
+                        return index
+
+        step_match = re.search(r"(?:Step\s*(\d+)|(\d+)\s*단계)", content)
+        if step_match:
+            number = next(int(group) for group in step_match.groups() if group)
+            seen = 0
+            for index, step in enumerate(steps):
+                if step.get("kind") != "understanding":
+                    seen += 1
+                    if seen == number:
+                        return index
     return None
 
 
@@ -1274,9 +1429,44 @@ def _stringify_answer(value: Any) -> str:
     return json.dumps(value, ensure_ascii=False)
 
 
+def _answer_display(answer_record: dict[str, Any] | None) -> str:
+    if not answer_record or "value" not in answer_record:
+        return ""
+    value = _stringify_answer(answer_record.get("value"))
+    unit = answer_record.get("unit")
+    if isinstance(unit, str) and unit.strip():
+        return f"{value}{unit.strip()}"
+    return value
+
+
 def _student_expected_answer(value: Any) -> str:
     if isinstance(value, dict):
         for key in ("result", "value", "answer"):
             if key in value:
                 return _stringify_answer(value[key])
+        for key in (
+            "radius",
+            "radius_sum",
+            "total_circumference",
+            "circumference",
+            "area",
+            "length",
+            "distance",
+            "count",
+        ):
+            if key in value:
+                return _stringify_answer(value[key])
+        for key, item in value.items():
+            if key in {"unit", "ref", "meaning", "label", "description"}:
+                continue
+            if isinstance(item, (int, float, str)) and str(item).strip():
+                return _stringify_answer(item)
     return _stringify_answer(value)
+
+
+def _student_expected_unit(value: Any) -> str:
+    if isinstance(value, dict):
+        unit = value.get("unit")
+        if isinstance(unit, str):
+            return unit.strip()
+    return ""
