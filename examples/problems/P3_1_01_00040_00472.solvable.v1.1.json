@@ -1,0 +1,110 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "P3_1_01_00040_00472",
+  "problem_type": "numeric_answer_addition_word_problem",
+  "inputs": {
+    "target_label": "도서관에서 책을 읽고 있는 사람의 전체 수",
+    "unit": "명",
+    "answer_type": "integer",
+    "quantities": {
+      "adult_count": 648,
+      "child_count": 476
+    },
+    "conditions": [
+      "도서관에서 책을 읽고 있는 어른은 648명입니다.",
+      "도서관에서 책을 읽고 있는 어린이는 476명입니다.",
+      "어른과 어린이의 수를 모두 더합니다."
+    ]
+  },
+  "given": [
+    {
+      "ref": "group.adults",
+      "value": {
+        "count": 648,
+        "unit": "명",
+        "label": "어른"
+      }
+    },
+    {
+      "ref": "group.children",
+      "value": {
+        "count": 476,
+        "unit": "명",
+        "label": "어린이"
+      }
+    }
+  ],
+  "target": {
+    "ref": "group.all_readers",
+    "type": "count"
+  },
+  "method": "어른의 수와 어린이의 수를 더한다.",
+  "plan": [
+    "책을 읽고 있는 어른의 수를 확인한다.",
+    "책을 읽고 있는 어린이의 수를 확인한다.",
+    "두 수를 덧셈식으로 나타낸다.",
+    "648과 476을 더하여 전체 사람 수를 구한다."
+  ],
+  "steps": [
+    {
+      "id": "step.identify_adult_count",
+      "expr": "adult_count = 648",
+      "value": 648,
+      "explanation": "책을 읽고 있는 어른은 648명입니다."
+    },
+    {
+      "id": "step.identify_child_count",
+      "expr": "child_count = 476",
+      "value": 476,
+      "explanation": "책을 읽고 있는 어린이는 476명입니다."
+    },
+    {
+      "id": "step.add_reader_counts",
+      "expr": "648 + 476",
+      "value": 1124,
+      "explanation": "어른과 어린이의 수를 더하면 1124명입니다."
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.ones_place",
+      "expr": "8 + 6",
+      "expected": 14,
+      "actual": 14,
+      "pass": true
+    },
+    {
+      "id": "check.tens_place",
+      "expr": "4 + 7 + 1",
+      "expected": 12,
+      "actual": 12,
+      "pass": true
+    },
+    {
+      "id": "check.hundreds_place",
+      "expr": "6 + 4 + 1",
+      "expected": 11,
+      "actual": 11,
+      "pass": true
+    },
+    {
+      "id": "check.total",
+      "expr": "648 + 476",
+      "expected": 1124,
+      "actual": 1124,
+      "pass": true
+    },
+    {
+      "id": "check.inverse_operation",
+      "expr": "1124 - 476",
+      "expected": 648,
+      "actual": 648,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "value": 1124,
+    "unit": "명",
+    "expression": "648 + 476 = 1124"
+  }
+}

@@ -1,0 +1,661 @@
+{
+  "problem_id": "P3_1_01_00040_02153",
+  "view_box": {
+    "width": 900.0,
+    "height": 210.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.instruction.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 25.0,
+        "y": 10.0,
+        "fill": "#202124",
+        "font-family": "Noto Sans KR",
+        "font-size": 23,
+        "width": 840.0,
+        "height": 34.0,
+        "max_width": 840.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 25.0,
+        "data-box-y": 10.0,
+        "data-box-width": 840.0,
+        "data-box-height": 34.0,
+        "data-text-align": "left",
+        "data-vertical-align": "middle"
+      },
+      "source_ref": "slot.instruction",
+      "refs": {
+        "layout_slot_id": "slot.instruction"
+      },
+      "text": "□ 안에 알맞은 수를 써넣으시오."
+    },
+    {
+      "id": "slot.step_1_carry_tens.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 87.0,
+        "y": 42.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR",
+        "font-size": 27,
+        "width": 28.0,
+        "height": 28.0,
+        "max_width": 28.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 87.0,
+        "data-box-y": 42.0,
+        "data-box-width": 28.0,
+        "data-box-height": 28.0,
+        "data-text-align": "center",
+        "data-vertical-align": "middle"
+      },
+      "source_ref": "slot.step_1_carry_tens",
+      "refs": {
+        "layout_slot_id": "slot.step_1_carry_tens"
+      },
+      "text": "□"
+    },
+    {
+      "id": "slot.step_1_first_addend.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 55.0,
+        "y": 68.0,
+        "fill": "#202124",
+        "font-family": "Noto Sans KR",
+        "font-size": 25,
+        "width": 112.0,
+        "height": 32.0,
+        "max_width": 112.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 55.0,
+        "data-box-y": 68.0,
+        "data-box-width": 112.0,
+        "data-box-height": 32.0,
+        "data-text-align": "center",
+        "data-vertical-align": "middle"
+      },
+      "source_ref": "slot.step_1_first_addend",
+      "refs": {
+        "layout_slot_id": "slot.step_1_first_addend"
+      },
+      "text": "5 8 7"
+    },
+    {
+      "id": "slot.step_1_plus_sign.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 35.0,
+        "y": 100.0,
+        "fill": "#202124",
+        "font-family": "Noto Sans KR",
+        "font-size": 25,
+        "width": 26.0,
+        "height": 32.0,
+        "max_width": 26.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 35.0,
+        "data-box-y": 100.0,
+        "data-box-width": 26.0,
+        "data-box-height": 32.0,
+        "data-text-align": "center",
+        "data-vertical-align": "middle"
+      },
+      "source_ref": "slot.step_1_plus_sign",
+      "refs": {
+        "layout_slot_id": "slot.step_1_plus_sign"
+      },
+      "text": "+"
+    },
+    {
+      "id": "slot.step_1_second_addend.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 55.0,
+        "y": 100.0,
+        "fill": "#202124",
+        "font-family": "Noto Sans KR",
+        "font-size": 25,
+        "width": 112.0,
+        "height": 32.0,
+        "max_width": 112.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 55.0,
+        "data-box-y": 100.0,
+        "data-box-width": 112.0,
+        "data-box-height": 32.0,
+        "data-text-align": "center",
+        "data-vertical-align": "middle"
+      },
+      "source_ref": "slot.step_1_second_addend",
+      "refs": {
+        "layout_slot_id": "slot.step_1_second_addend"
+      },
+      "text": "6 4 9"
+    },
+    {
+      "id": "slot.step_1_line.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 38.0,
+        "y": 127.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR",
+        "font-size": 19,
+        "width": 132.0,
+        "height": 18.0,
+        "max_width": 132.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 38.0,
+        "data-box-y": 127.0,
+        "data-box-width": 132.0,
+        "data-box-height": 18.0,
+        "data-text-align": "center",
+        "data-vertical-align": "middle"
+      },
+      "source_ref": "slot.step_1_line",
+      "refs": {
+        "layout_slot_id": "slot.step_1_line"
+      },
+      "text": "────────"
+    },
+    {
+      "id": "slot.step_1_answer_ones.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 128.0,
+        "y": 146.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR",
+        "font-size": 34,
+        "width": 34.0,
+        "height": 38.0,
+        "max_width": 34.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 128.0,
+        "data-box-y": 146.0,
+        "data-box-width": 34.0,
+        "data-box-height": 38.0,
+        "data-text-align": "center",
+        "data-vertical-align": "middle"
+      },
+      "source_ref": "slot.step_1_answer_ones",
+      "refs": {
+        "layout_slot_id": "slot.step_1_answer_ones"
+      },
+      "text": "□"
+    },
+    {
+      "id": "slot.arrow_1.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 183.0,
+        "y": 100.0,
+        "fill": "#333333",
+        "font-family": "Noto Sans KR",
+        "font-size": 31,
+        "width": 54.0,
+        "height": 40.0,
+        "max_width": 54.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 183.0,
+        "data-box-y": 100.0,
+        "data-box-width": 54.0,
+        "data-box-height": 40.0,
+        "data-text-align": "center",
+        "data-vertical-align": "middle"
+      },
+      "source_ref": "slot.arrow_1",
+      "refs": {
+        "layout_slot_id": "slot.arrow_1"
+      },
+      "text": "⇒"
+    },
+    {
+      "id": "slot.step_2_carry_hundreds.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 275.0,
+        "y": 42.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR",
+        "font-size": 27,
+        "width": 28.0,
+        "height": 28.0,
+        "max_width": 28.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 275.0,
+        "data-box-y": 42.0,
+        "data-box-width": 28.0,
+        "data-box-height": 28.0,
+        "data-text-align": "center",
+        "data-vertical-align": "middle"
+      },
+      "source_ref": "slot.step_2_carry_hundreds",
+      "refs": {
+        "layout_slot_id": "slot.step_2_carry_hundreds"
+      },
+      "text": "□"
+    },
+    {
+      "id": "slot.step_2_carry_tens.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 309.0,
+        "y": 42.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR",
+        "font-size": 27,
+        "width": 28.0,
+        "height": 28.0,
+        "max_width": 28.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 309.0,
+        "data-box-y": 42.0,
+        "data-box-width": 28.0,
+        "data-box-height": 28.0,
+        "data-text-align": "center",
+        "data-vertical-align": "middle"
+      },
+      "source_ref": "slot.step_2_carry_tens",
+      "refs": {
+        "layout_slot_id": "slot.step_2_carry_tens"
+      },
+      "text": "□"
+    },
+    {
+      "id": "slot.step_2_first_addend.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 252.0,
+        "y": 68.0,
+        "fill": "#202124",
+        "font-family": "Noto Sans KR",
+        "font-size": 25,
+        "width": 112.0,
+        "height": 32.0,
+        "max_width": 112.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 252.0,
+        "data-box-y": 68.0,
+        "data-box-width": 112.0,
+        "data-box-height": 32.0,
+        "data-text-align": "center",
+        "data-vertical-align": "middle"
+      },
+      "source_ref": "slot.step_2_first_addend",
+      "refs": {
+        "layout_slot_id": "slot.step_2_first_addend"
+      },
+      "text": "5 8 7"
+    },
+    {
+      "id": "slot.step_2_plus_sign.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 232.0,
+        "y": 100.0,
+        "fill": "#202124",
+        "font-family": "Noto Sans KR",
+        "font-size": 25,
+        "width": 26.0,
+        "height": 32.0,
+        "max_width": 26.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 232.0,
+        "data-box-y": 100.0,
+        "data-box-width": 26.0,
+        "data-box-height": 32.0,
+        "data-text-align": "center",
+        "data-vertical-align": "middle"
+      },
+      "source_ref": "slot.step_2_plus_sign",
+      "refs": {
+        "layout_slot_id": "slot.step_2_plus_sign"
+      },
+      "text": "+"
+    },
+    {
+      "id": "slot.step_2_second_addend.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 252.0,
+        "y": 100.0,
+        "fill": "#202124",
+        "font-family": "Noto Sans KR",
+        "font-size": 25,
+        "width": 112.0,
+        "height": 32.0,
+        "max_width": 112.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 252.0,
+        "data-box-y": 100.0,
+        "data-box-width": 112.0,
+        "data-box-height": 32.0,
+        "data-text-align": "center",
+        "data-vertical-align": "middle"
+      },
+      "source_ref": "slot.step_2_second_addend",
+      "refs": {
+        "layout_slot_id": "slot.step_2_second_addend"
+      },
+      "text": "6 4 9"
+    },
+    {
+      "id": "slot.step_2_line.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 235.0,
+        "y": 127.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR",
+        "font-size": 19,
+        "width": 132.0,
+        "height": 18.0,
+        "max_width": 132.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 235.0,
+        "data-box-y": 127.0,
+        "data-box-width": 132.0,
+        "data-box-height": 18.0,
+        "data-text-align": "center",
+        "data-vertical-align": "middle"
+      },
+      "source_ref": "slot.step_2_line",
+      "refs": {
+        "layout_slot_id": "slot.step_2_line"
+      },
+      "text": "────────"
+    },
+    {
+      "id": "slot.step_2_answer_tens.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 291.0,
+        "y": 146.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR",
+        "font-size": 34,
+        "width": 34.0,
+        "height": 38.0,
+        "max_width": 34.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 291.0,
+        "data-box-y": 146.0,
+        "data-box-width": 34.0,
+        "data-box-height": 38.0,
+        "data-text-align": "center",
+        "data-vertical-align": "middle"
+      },
+      "source_ref": "slot.step_2_answer_tens",
+      "refs": {
+        "layout_slot_id": "slot.step_2_answer_tens"
+      },
+      "text": "□"
+    },
+    {
+      "id": "slot.step_2_answer_ones.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 325.0,
+        "y": 146.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR",
+        "font-size": 34,
+        "width": 34.0,
+        "height": 38.0,
+        "max_width": 34.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 325.0,
+        "data-box-y": 146.0,
+        "data-box-width": 34.0,
+        "data-box-height": 38.0,
+        "data-text-align": "center",
+        "data-vertical-align": "middle"
+      },
+      "source_ref": "slot.step_2_answer_ones",
+      "refs": {
+        "layout_slot_id": "slot.step_2_answer_ones"
+      },
+      "text": "□"
+    },
+    {
+      "id": "slot.arrow_2.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 380.0,
+        "y": 100.0,
+        "fill": "#333333",
+        "font-family": "Noto Sans KR",
+        "font-size": 31,
+        "width": 54.0,
+        "height": 40.0,
+        "max_width": 54.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 380.0,
+        "data-box-y": 100.0,
+        "data-box-width": 54.0,
+        "data-box-height": 40.0,
+        "data-text-align": "center",
+        "data-vertical-align": "middle"
+      },
+      "source_ref": "slot.arrow_2",
+      "refs": {
+        "layout_slot_id": "slot.arrow_2"
+      },
+      "text": "⇒"
+    },
+    {
+      "id": "slot.step_3_first_addend.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 470.0,
+        "y": 68.0,
+        "fill": "#202124",
+        "font-family": "Noto Sans KR",
+        "font-size": 25,
+        "width": 112.0,
+        "height": 32.0,
+        "max_width": 112.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 470.0,
+        "data-box-y": 68.0,
+        "data-box-width": 112.0,
+        "data-box-height": 32.0,
+        "data-text-align": "center",
+        "data-vertical-align": "middle"
+      },
+      "source_ref": "slot.step_3_first_addend",
+      "refs": {
+        "layout_slot_id": "slot.step_3_first_addend"
+      },
+      "text": "5 8 7"
+    },
+    {
+      "id": "slot.step_3_plus_sign.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 450.0,
+        "y": 100.0,
+        "fill": "#202124",
+        "font-family": "Noto Sans KR",
+        "font-size": 25,
+        "width": 26.0,
+        "height": 32.0,
+        "max_width": 26.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 450.0,
+        "data-box-y": 100.0,
+        "data-box-width": 26.0,
+        "data-box-height": 32.0,
+        "data-text-align": "center",
+        "data-vertical-align": "middle"
+      },
+      "source_ref": "slot.step_3_plus_sign",
+      "refs": {
+        "layout_slot_id": "slot.step_3_plus_sign"
+      },
+      "text": "+"
+    },
+    {
+      "id": "slot.step_3_second_addend.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 470.0,
+        "y": 100.0,
+        "fill": "#202124",
+        "font-family": "Noto Sans KR",
+        "font-size": 25,
+        "width": 112.0,
+        "height": 32.0,
+        "max_width": 112.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 470.0,
+        "data-box-y": 100.0,
+        "data-box-width": 112.0,
+        "data-box-height": 32.0,
+        "data-text-align": "center",
+        "data-vertical-align": "middle"
+      },
+      "source_ref": "slot.step_3_second_addend",
+      "refs": {
+        "layout_slot_id": "slot.step_3_second_addend"
+      },
+      "text": "6 4 9"
+    },
+    {
+      "id": "slot.step_3_line.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 453.0,
+        "y": 127.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR",
+        "font-size": 19,
+        "width": 132.0,
+        "height": 18.0,
+        "max_width": 132.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 453.0,
+        "data-box-y": 127.0,
+        "data-box-width": 132.0,
+        "data-box-height": 18.0,
+        "data-text-align": "center",
+        "data-vertical-align": "middle"
+      },
+      "source_ref": "slot.step_3_line",
+      "refs": {
+        "layout_slot_id": "slot.step_3_line"
+      },
+      "text": "────────"
+    },
+    {
+      "id": "slot.step_3_answer_thousands.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 445.0,
+        "y": 146.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR",
+        "font-size": 34,
+        "width": 34.0,
+        "height": 38.0,
+        "max_width": 34.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 445.0,
+        "data-box-y": 146.0,
+        "data-box-width": 34.0,
+        "data-box-height": 38.0,
+        "data-text-align": "center",
+        "data-vertical-align": "middle"
+      },
+      "source_ref": "slot.step_3_answer_thousands",
+      "refs": {
+        "layout_slot_id": "slot.step_3_answer_thousands"
+      },
+      "text": "□"
+    },
+    {
+      "id": "slot.step_3_answer_hundreds.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 479.0,
+        "y": 146.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR",
+        "font-size": 34,
+        "width": 34.0,
+        "height": 38.0,
+        "max_width": 34.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 479.0,
+        "data-box-y": 146.0,
+        "data-box-width": 34.0,
+        "data-box-height": 38.0,
+        "data-text-align": "center",
+        "data-vertical-align": "middle"
+      },
+      "source_ref": "slot.step_3_answer_hundreds",
+      "refs": {
+        "layout_slot_id": "slot.step_3_answer_hundreds"
+      },
+      "text": "□"
+    },
+    {
+      "id": "slot.step_3_answer_tens.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 513.0,
+        "y": 146.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR",
+        "font-size": 34,
+        "width": 34.0,
+        "height": 38.0,
+        "max_width": 34.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 513.0,
+        "data-box-y": 146.0,
+        "data-box-width": 34.0,
+        "data-box-height": 38.0,
+        "data-text-align": "center",
+        "data-vertical-align": "middle"
+      },
+      "source_ref": "slot.step_3_answer_tens",
+      "refs": {
+        "layout_slot_id": "slot.step_3_answer_tens"
+      },
+      "text": "□"
+    },
+    {
+      "id": "slot.step_3_answer_ones.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 547.0,
+        "y": 146.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR",
+        "font-size": 34,
+        "width": 34.0,
+        "height": 38.0,
+        "max_width": 34.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 547.0,
+        "data-box-y": 146.0,
+        "data-box-width": 34.0,
+        "data-box-height": 38.0,
+        "data-text-align": "center",
+        "data-vertical-align": "middle"
+      },
+      "source_ref": "slot.step_3_answer_ones",
+      "refs": {
+        "layout_slot_id": "slot.step_3_answer_ones"
+      },
+      "text": "□"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

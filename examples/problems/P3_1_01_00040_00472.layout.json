@@ -1,0 +1,128 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "P3_1_01_00040_00472",
+  "title": "도서관에서 책을 읽고 있는 사람 수",
+  "canvas": {
+    "width": 900,
+    "height": 220,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.question",
+        "slot.expression_label",
+        "slot.expression_blank",
+        "slot.answer_label",
+        "slot.answer_blank"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.question",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "도서관에서 어른 648명, 어린이 476명이 책을 읽고 있습니다. 책 읽는 사람은 모두 몇 명입니까?",
+        "style_role": "body",
+        "x": 38.0,
+        "y": 22.0,
+        "width": 824.0,
+        "height": 58.0,
+        "align": "left",
+        "valign": "middle",
+        "font_size": 24,
+        "font_family": "Noto Sans KR",
+        "fill": "#202124"
+      }
+    },
+    {
+      "id": "slot.expression_label",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "식",
+        "style_role": "body",
+        "x": 38.0,
+        "y": 88.0,
+        "width": 42.0,
+        "height": 38.0,
+        "align": "left",
+        "valign": "middle",
+        "font_size": 24,
+        "font_family": "Noto Sans KR",
+        "fill": "#202124"
+      }
+    },
+    {
+      "id": "slot.expression_blank",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "____________",
+        "style_role": "body",
+        "x": 82.0,
+        "y": 88.0,
+        "width": 170.0,
+        "height": 38.0,
+        "align": "left",
+        "valign": "middle",
+        "font_size": 24,
+        "font_family": "Noto Sans KR",
+        "fill": "#202124"
+      }
+    },
+    {
+      "id": "slot.answer_label",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "답",
+        "style_role": "body",
+        "x": 38.0,
+        "y": 134.0,
+        "width": 42.0,
+        "height": 38.0,
+        "align": "left",
+        "valign": "middle",
+        "font_size": 24,
+        "font_family": "Noto Sans KR",
+        "fill": "#202124"
+      }
+    },
+    {
+      "id": "slot.answer_blank",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "_________",
+        "style_role": "body",
+        "x": 82.0,
+        "y": 134.0,
+        "width": 130.0,
+        "height": 38.0,
+        "align": "left",
+        "valign": "middle",
+        "font_size": 24,
+        "font_family": "Noto Sans KR",
+        "fill": "#202124"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.question",
+    "slot.expression_label",
+    "slot.expression_blank",
+    "slot.answer_label",
+    "slot.answer_blank"
+  ]
+}

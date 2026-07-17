@@ -1,0 +1,113 @@
+{
+  "problem_id": "P3_1_01_00040_02153",
+  "problem_type": "stepwise_vertical_addition_fill_blanks",
+  "metadata": {
+    "title": "받아올림 과정을 나타낸 세 자리 수의 덧셈",
+    "tags": [],
+    "question": "□ 안에 알맞은 수를 써넣으시오.",
+    "required_layout_ids": [],
+    "extraction_confidence": 1.0,
+    "grade": 3,
+    "semester": 1,
+    "subject": "수학",
+    "topic": "받아올림이 있는 세 자리 수의 덧셈",
+    "language": "ko-KR"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "addition.main",
+        "type": "vertical_addition",
+        "label": "587과 649의 덧셈",
+        "first_addend": 587,
+        "second_addend": 649,
+        "sum": 1236
+      },
+      {
+        "id": "carry.ones_to_tens",
+        "type": "carry",
+        "label": "일의 자리에서 십의 자리로 받아올림",
+        "from_place": "ones",
+        "to_place": "tens",
+        "value": 1
+      },
+      {
+        "id": "carry.tens_to_hundreds",
+        "type": "carry",
+        "label": "십의 자리에서 백의 자리로 받아올림",
+        "from_place": "tens",
+        "to_place": "hundreds",
+        "value": 1
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.main_sum",
+        "type": "sum_of",
+        "subject": "addition.main",
+        "values": [
+          587,
+          649
+        ]
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "value": [
+      1,
+      6,
+      1,
+      1,
+      3,
+      6,
+      1,
+      2,
+      3,
+      6
+    ],
+    "unit": "",
+    "items": [
+      {
+        "id": "answer.step_1.carry_tens",
+        "value": 1
+      },
+      {
+        "id": "answer.step_1.ones",
+        "value": 6
+      },
+      {
+        "id": "answer.step_2.carry_hundreds",
+        "value": 1
+      },
+      {
+        "id": "answer.step_2.carry_tens",
+        "value": 1
+      },
+      {
+        "id": "answer.step_2.tens",
+        "value": 3
+      },
+      {
+        "id": "answer.step_2.ones",
+        "value": 6
+      },
+      {
+        "id": "answer.step_3.thousands",
+        "value": 1
+      },
+      {
+        "id": "answer.step_3.hundreds",
+        "value": 2
+      },
+      {
+        "id": "answer.step_3.tens",
+        "value": 3
+      },
+      {
+        "id": "answer.step_3.ones",
+        "value": 6
+      }
+    ]
+  }
+}

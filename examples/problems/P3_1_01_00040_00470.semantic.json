@@ -1,0 +1,86 @@
+{
+  "problem_id": "P3_1_01_00040_00470",
+  "problem_type": "numeric_answer_addition_word_problem",
+  "metadata": {
+    "title": "올해 수확한 사과 수",
+    "tags": [],
+    "instruction": "식",
+    "question": "진이네 과수원에서는 작년에 사과 725개를 수확하였고, 올해는 작년보다 287개를 더 수확하였습니다. 올\n해에 수확한 사과는 모두 몇 개입니까?",
+    "required_layout_ids": [],
+    "extraction_confidence": 1.0,
+    "grade": 3,
+    "semester": 1,
+    "subject": "수학",
+    "topic": "세 자리 수의 덧셈",
+    "language": "ko-KR"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "place.jini_orchard",
+        "type": "orchard",
+        "label": "진이네 과수원"
+      },
+      {
+        "id": "object.apple",
+        "type": "countable_object",
+        "label": "사과",
+        "unit": "개"
+      },
+      {
+        "id": "quantity.last_year_apple_count",
+        "type": "quantity",
+        "label": "작년에 수확한 사과 수",
+        "value": 725,
+        "unit": "개"
+      },
+      {
+        "id": "quantity.increased_apple_count",
+        "type": "quantity",
+        "label": "올해 더 수확한 사과 수",
+        "value": 287,
+        "unit": "개"
+      },
+      {
+        "id": "quantity.this_year_apple_count",
+        "type": "quantity",
+        "label": "올해 수확한 사과 수",
+        "value": 1012,
+        "unit": "개"
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.last_year_harvest",
+        "type": "harvested",
+        "subject": "place.jini_orchard",
+        "object": "object.apple",
+        "quantity": "quantity.last_year_apple_count",
+        "time": "last_year"
+      },
+      {
+        "id": "relation.this_year_more_than_last_year",
+        "type": "greater_by",
+        "subject": "quantity.this_year_apple_count",
+        "object": "quantity.last_year_apple_count",
+        "difference": "quantity.increased_apple_count"
+      },
+      {
+        "id": "relation.this_year_is_sum",
+        "type": "sum_of",
+        "subject": "quantity.this_year_apple_count",
+        "objects": [
+          "quantity.last_year_apple_count",
+          "quantity.increased_apple_count"
+        ]
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "type": "numeric",
+    "value": 1012,
+    "unit": "개",
+    "target_ref": "quantity.this_year_apple_count"
+  }
+}

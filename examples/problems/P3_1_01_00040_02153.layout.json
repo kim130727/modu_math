@@ -1,0 +1,568 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "P3_1_01_00040_02153",
+  "title": "받아올림 과정을 나타낸 세 자리 수의 덧셈",
+  "canvas": {
+    "width": 900,
+    "height": 210,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.instruction"
+      ]
+    },
+    {
+      "id": "region.step_1",
+      "role": "question",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.step_1_carry_tens",
+        "slot.step_1_first_addend",
+        "slot.step_1_plus_sign",
+        "slot.step_1_second_addend",
+        "slot.step_1_line",
+        "slot.step_1_answer_ones"
+      ]
+    },
+    {
+      "id": "region.arrow_1",
+      "role": "connector",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.arrow_1"
+      ]
+    },
+    {
+      "id": "region.step_2",
+      "role": "question",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.step_2_carry_hundreds",
+        "slot.step_2_carry_tens",
+        "slot.step_2_first_addend",
+        "slot.step_2_plus_sign",
+        "slot.step_2_second_addend",
+        "slot.step_2_line",
+        "slot.step_2_answer_tens",
+        "slot.step_2_answer_ones"
+      ]
+    },
+    {
+      "id": "region.arrow_2",
+      "role": "connector",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.arrow_2"
+      ]
+    },
+    {
+      "id": "region.step_3",
+      "role": "question",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.step_3_first_addend",
+        "slot.step_3_plus_sign",
+        "slot.step_3_second_addend",
+        "slot.step_3_line",
+        "slot.step_3_answer_thousands",
+        "slot.step_3_answer_hundreds",
+        "slot.step_3_answer_tens",
+        "slot.step_3_answer_ones"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.instruction",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "□ 안에 알맞은 수를 써넣으시오.",
+        "style_role": "body",
+        "x": 25.0,
+        "y": 10.0,
+        "width": 840.0,
+        "height": 34.0,
+        "align": "left",
+        "valign": "middle",
+        "font_size": 23,
+        "font_family": "Noto Sans KR",
+        "fill": "#202124"
+      }
+    },
+    {
+      "id": "slot.step_1_carry_tens",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "□",
+        "style_role": "body",
+        "x": 87.0,
+        "y": 42.0,
+        "width": 28.0,
+        "height": 28.0,
+        "align": "center",
+        "valign": "middle",
+        "font_size": 27,
+        "font_family": "Noto Sans KR",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.step_1_first_addend",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "5 8 7",
+        "style_role": "body",
+        "x": 55.0,
+        "y": 68.0,
+        "width": 112.0,
+        "height": 32.0,
+        "align": "center",
+        "valign": "middle",
+        "font_size": 25,
+        "font_family": "Noto Sans KR",
+        "fill": "#202124"
+      }
+    },
+    {
+      "id": "slot.step_1_plus_sign",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "+",
+        "style_role": "body",
+        "x": 35.0,
+        "y": 100.0,
+        "width": 26.0,
+        "height": 32.0,
+        "align": "center",
+        "valign": "middle",
+        "font_size": 25,
+        "font_family": "Noto Sans KR",
+        "fill": "#202124"
+      }
+    },
+    {
+      "id": "slot.step_1_second_addend",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "6 4 9",
+        "style_role": "body",
+        "x": 55.0,
+        "y": 100.0,
+        "width": 112.0,
+        "height": 32.0,
+        "align": "center",
+        "valign": "middle",
+        "font_size": 25,
+        "font_family": "Noto Sans KR",
+        "fill": "#202124"
+      }
+    },
+    {
+      "id": "slot.step_1_line",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "────────",
+        "style_role": "body",
+        "x": 38.0,
+        "y": 127.0,
+        "width": 132.0,
+        "height": 18.0,
+        "align": "center",
+        "valign": "middle",
+        "font_size": 19,
+        "font_family": "Noto Sans KR",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.step_1_answer_ones",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "□",
+        "style_role": "body",
+        "x": 128.0,
+        "y": 146.0,
+        "width": 34.0,
+        "height": 38.0,
+        "align": "center",
+        "valign": "middle",
+        "font_size": 34,
+        "font_family": "Noto Sans KR",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.arrow_1",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "⇒",
+        "style_role": "body",
+        "x": 183.0,
+        "y": 100.0,
+        "width": 54.0,
+        "height": 40.0,
+        "align": "center",
+        "valign": "middle",
+        "font_size": 31,
+        "font_family": "Noto Sans KR",
+        "fill": "#333333"
+      }
+    },
+    {
+      "id": "slot.step_2_carry_hundreds",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "□",
+        "style_role": "body",
+        "x": 275.0,
+        "y": 42.0,
+        "width": 28.0,
+        "height": 28.0,
+        "align": "center",
+        "valign": "middle",
+        "font_size": 27,
+        "font_family": "Noto Sans KR",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.step_2_carry_tens",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "□",
+        "style_role": "body",
+        "x": 309.0,
+        "y": 42.0,
+        "width": 28.0,
+        "height": 28.0,
+        "align": "center",
+        "valign": "middle",
+        "font_size": 27,
+        "font_family": "Noto Sans KR",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.step_2_first_addend",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "5 8 7",
+        "style_role": "body",
+        "x": 252.0,
+        "y": 68.0,
+        "width": 112.0,
+        "height": 32.0,
+        "align": "center",
+        "valign": "middle",
+        "font_size": 25,
+        "font_family": "Noto Sans KR",
+        "fill": "#202124"
+      }
+    },
+    {
+      "id": "slot.step_2_plus_sign",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "+",
+        "style_role": "body",
+        "x": 232.0,
+        "y": 100.0,
+        "width": 26.0,
+        "height": 32.0,
+        "align": "center",
+        "valign": "middle",
+        "font_size": 25,
+        "font_family": "Noto Sans KR",
+        "fill": "#202124"
+      }
+    },
+    {
+      "id": "slot.step_2_second_addend",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "6 4 9",
+        "style_role": "body",
+        "x": 252.0,
+        "y": 100.0,
+        "width": 112.0,
+        "height": 32.0,
+        "align": "center",
+        "valign": "middle",
+        "font_size": 25,
+        "font_family": "Noto Sans KR",
+        "fill": "#202124"
+      }
+    },
+    {
+      "id": "slot.step_2_line",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "────────",
+        "style_role": "body",
+        "x": 235.0,
+        "y": 127.0,
+        "width": 132.0,
+        "height": 18.0,
+        "align": "center",
+        "valign": "middle",
+        "font_size": 19,
+        "font_family": "Noto Sans KR",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.step_2_answer_tens",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "□",
+        "style_role": "body",
+        "x": 291.0,
+        "y": 146.0,
+        "width": 34.0,
+        "height": 38.0,
+        "align": "center",
+        "valign": "middle",
+        "font_size": 34,
+        "font_family": "Noto Sans KR",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.step_2_answer_ones",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "□",
+        "style_role": "body",
+        "x": 325.0,
+        "y": 146.0,
+        "width": 34.0,
+        "height": 38.0,
+        "align": "center",
+        "valign": "middle",
+        "font_size": 34,
+        "font_family": "Noto Sans KR",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.arrow_2",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "⇒",
+        "style_role": "body",
+        "x": 380.0,
+        "y": 100.0,
+        "width": 54.0,
+        "height": 40.0,
+        "align": "center",
+        "valign": "middle",
+        "font_size": 31,
+        "font_family": "Noto Sans KR",
+        "fill": "#333333"
+      }
+    },
+    {
+      "id": "slot.step_3_first_addend",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "5 8 7",
+        "style_role": "body",
+        "x": 470.0,
+        "y": 68.0,
+        "width": 112.0,
+        "height": 32.0,
+        "align": "center",
+        "valign": "middle",
+        "font_size": 25,
+        "font_family": "Noto Sans KR",
+        "fill": "#202124"
+      }
+    },
+    {
+      "id": "slot.step_3_plus_sign",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "+",
+        "style_role": "body",
+        "x": 450.0,
+        "y": 100.0,
+        "width": 26.0,
+        "height": 32.0,
+        "align": "center",
+        "valign": "middle",
+        "font_size": 25,
+        "font_family": "Noto Sans KR",
+        "fill": "#202124"
+      }
+    },
+    {
+      "id": "slot.step_3_second_addend",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "6 4 9",
+        "style_role": "body",
+        "x": 470.0,
+        "y": 100.0,
+        "width": 112.0,
+        "height": 32.0,
+        "align": "center",
+        "valign": "middle",
+        "font_size": 25,
+        "font_family": "Noto Sans KR",
+        "fill": "#202124"
+      }
+    },
+    {
+      "id": "slot.step_3_line",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "────────",
+        "style_role": "body",
+        "x": 453.0,
+        "y": 127.0,
+        "width": 132.0,
+        "height": 18.0,
+        "align": "center",
+        "valign": "middle",
+        "font_size": 19,
+        "font_family": "Noto Sans KR",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.step_3_answer_thousands",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "□",
+        "style_role": "body",
+        "x": 445.0,
+        "y": 146.0,
+        "width": 34.0,
+        "height": 38.0,
+        "align": "center",
+        "valign": "middle",
+        "font_size": 34,
+        "font_family": "Noto Sans KR",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.step_3_answer_hundreds",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "□",
+        "style_role": "body",
+        "x": 479.0,
+        "y": 146.0,
+        "width": 34.0,
+        "height": 38.0,
+        "align": "center",
+        "valign": "middle",
+        "font_size": 34,
+        "font_family": "Noto Sans KR",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.step_3_answer_tens",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "□",
+        "style_role": "body",
+        "x": 513.0,
+        "y": 146.0,
+        "width": 34.0,
+        "height": 38.0,
+        "align": "center",
+        "valign": "middle",
+        "font_size": 34,
+        "font_family": "Noto Sans KR",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.step_3_answer_ones",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "□",
+        "style_role": "body",
+        "x": 547.0,
+        "y": 146.0,
+        "width": 34.0,
+        "height": 38.0,
+        "align": "center",
+        "valign": "middle",
+        "font_size": 34,
+        "font_family": "Noto Sans KR",
+        "fill": "#111111"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.instruction",
+    "region.step_1",
+    "slot.step_1_carry_tens",
+    "slot.step_1_first_addend",
+    "slot.step_1_plus_sign",
+    "slot.step_1_second_addend",
+    "slot.step_1_line",
+    "slot.step_1_answer_ones",
+    "region.arrow_1",
+    "slot.arrow_1",
+    "region.step_2",
+    "slot.step_2_carry_hundreds",
+    "slot.step_2_carry_tens",
+    "slot.step_2_first_addend",
+    "slot.step_2_plus_sign",
+    "slot.step_2_second_addend",
+    "slot.step_2_line",
+    "slot.step_2_answer_tens",
+    "slot.step_2_answer_ones",
+    "region.arrow_2",
+    "slot.arrow_2",
+    "region.step_3",
+    "slot.step_3_first_addend",
+    "slot.step_3_plus_sign",
+    "slot.step_3_second_addend",
+    "slot.step_3_line",
+    "slot.step_3_answer_thousands",
+    "slot.step_3_answer_hundreds",
+    "slot.step_3_answer_tens",
+    "slot.step_3_answer_ones"
+  ]
+}

@@ -1,0 +1,298 @@
+from __future__ import annotations
+
+from modu_math.dsl import (
+    Canvas,
+    ProblemTemplate,
+    Region,
+    TextBoxSlot,
+)
+
+
+PROBLEM_ID = "P3_1_01_00040_00473"
+PROBLEM_TITLE = "미란이가 모은 우표의 수"
+
+
+def build_problem_template() -> ProblemTemplate:
+    return ProblemTemplate(
+        id=PROBLEM_ID,
+        title=PROBLEM_TITLE,
+        canvas=Canvas(
+            width=900,
+            height=220,
+            coordinate_mode="logical",
+        ),
+        regions=(
+            Region(
+                id="region.stem",
+                role="stem",
+                flow="absolute",
+                slot_ids=(
+                    "slot.question",
+                    "slot.expression_label",
+                    "slot.expression_blank",
+                    "slot.answer_label",
+                    "slot.answer_blank",
+                ),
+            ),
+        ),
+        slots=(
+            TextBoxSlot(
+                id="slot.question",
+                x=38,
+                y=18,
+                width=824,
+                height=74,
+                text=(
+                    "미란이는 우표를 모으고 있습니다. 작년까지는 634장을 모았고, "
+                    "올해는 279장을 모았습니다. 미란이는 우표를 모두 몇 장 모았습니까?"
+                ),
+                font_size=24,
+                font_family="Noto Sans KR",
+                fill="#202124",
+                align="left",
+                valign="middle",
+            ),
+            TextBoxSlot(
+                id="slot.expression_label",
+                x=38,
+                y=96,
+                width=42,
+                height=38,
+                text="식",
+                font_size=24,
+                font_family="Noto Sans KR",
+                fill="#202124",
+                align="left",
+                valign="middle",
+            ),
+            TextBoxSlot(
+                id="slot.expression_blank",
+                x=82,
+                y=96,
+                width=170,
+                height=38,
+                text="____________",
+                font_size=24,
+                font_family="Noto Sans KR",
+                fill="#202124",
+                align="left",
+                valign="middle",
+            ),
+            TextBoxSlot(
+                id="slot.answer_label",
+                x=290,
+                y=96,
+                width=42,
+                height=38,
+                text="답",
+                font_size=24,
+                font_family="Noto Sans KR",
+                fill="#202124",
+                align="left",
+                valign="middle",
+            ),
+            TextBoxSlot(
+                id="slot.answer_blank",
+                x=334,
+                y=96,
+                width=130,
+                height=38,
+                text="_________",
+                font_size=24,
+                font_family="Noto Sans KR",
+                fill="#202124",
+                align="left",
+                valign="middle",
+            ),
+        ),
+    )
+
+
+PROBLEM_TEMPLATE = build_problem_template()
+
+
+SEMANTIC = {
+    "problem_id": PROBLEM_ID,
+    "problem_type": "numeric_answer_addition_word_problem",
+    "metadata": {
+        "grade": 3,
+        "semester": 1,
+        "subject": "수학",
+        "topic": "세 자리 수의 덧셈",
+        "language": "ko-KR",
+    },
+    "domain": {
+        "objects": [
+            {
+                "id": "person.miran",
+                "type": "person",
+                "label": "미란이",
+            },
+            {
+                "id": "collection.stamps_until_last_year",
+                "type": "stamp_collection",
+                "label": "작년까지 모은 우표",
+                "count": 634,
+                "unit": "장",
+            },
+            {
+                "id": "collection.stamps_this_year",
+                "type": "stamp_collection",
+                "label": "올해 모은 우표",
+                "count": 279,
+                "unit": "장",
+            },
+            {
+                "id": "collection.total_stamps",
+                "type": "stamp_collection",
+                "label": "미란이가 모은 전체 우표",
+                "count": 913,
+                "unit": "장",
+            },
+        ],
+        "relations": [
+            {
+                "id": "relation.miran_owns_previous_stamps",
+                "type": "owns",
+                "subject": "person.miran",
+                "object": "collection.stamps_until_last_year",
+            },
+            {
+                "id": "relation.miran_owns_this_year_stamps",
+                "type": "owns",
+                "subject": "person.miran",
+                "object": "collection.stamps_this_year",
+            },
+            {
+                "id": "relation.total_stamps_sum",
+                "type": "sum_of",
+                "subject": "collection.total_stamps",
+                "objects": [
+                    "collection.stamps_until_last_year",
+                    "collection.stamps_this_year",
+                ],
+            },
+        ],
+    },
+    "answer": {
+        "value": 913,
+        "unit": "장",
+        "expression": "634 + 279 = 913",
+    },
+}
+
+SEMANTIC_OVERRIDE = SEMANTIC
+
+
+SOLVABLE = {
+    "schema": "modu.solvable.v1.1",
+    "problem_id": PROBLEM_ID,
+    "problem_type": "numeric_answer_addition_word_problem",
+    "inputs": {
+        "target_label": "미란이가 모은 우표의 전체 수",
+        "unit": "장",
+        "answer_type": "integer",
+        "quantities": {
+            "stamps_until_last_year": 634,
+            "stamps_this_year": 279,
+        },
+        "conditions": [
+            "미란이는 작년까지 우표를 634장 모았습니다.",
+            "미란이는 올해 우표를 279장 모았습니다.",
+            "작년까지 모은 우표와 올해 모은 우표를 모두 더합니다.",
+        ],
+    },
+    "given": [
+        {
+            "ref": "collection.stamps_until_last_year",
+            "value": {
+                "count": 634,
+                "unit": "장",
+                "label": "작년까지 모은 우표",
+            },
+        },
+        {
+            "ref": "collection.stamps_this_year",
+            "value": {
+                "count": 279,
+                "unit": "장",
+                "label": "올해 모은 우표",
+            },
+        },
+    ],
+    "target": {
+        "ref": "collection.total_stamps",
+        "type": "count",
+    },
+    "method": "작년까지 모은 우표의 수와 올해 모은 우표의 수를 더한다.",
+    "plan": [
+        "작년까지 모은 우표의 수를 확인한다.",
+        "올해 모은 우표의 수를 확인한다.",
+        "두 우표의 수를 덧셈식으로 나타낸다.",
+        "634와 279를 더하여 전체 우표 수를 구한다.",
+    ],
+    "steps": [
+        {
+            "id": "step.identify_previous_stamp_count",
+            "expr": "stamps_until_last_year = 634",
+            "value": 634,
+            "explanation": "작년까지 모은 우표는 634장입니다.",
+        },
+        {
+            "id": "step.identify_this_year_stamp_count",
+            "expr": "stamps_this_year = 279",
+            "value": 279,
+            "explanation": "올해 모은 우표는 279장입니다.",
+        },
+        {
+            "id": "step.add_stamp_counts",
+            "expr": "634 + 279",
+            "value": 913,
+            "explanation": "작년까지 모은 우표와 올해 모은 우표를 더하면 913장입니다.",
+        },
+    ],
+    "checks": [
+        {
+            "id": "check.ones_place",
+            "expr": "4 + 9",
+            "expected": 13,
+            "actual": 13,
+            "pass": True,
+        },
+        {
+            "id": "check.tens_place",
+            "expr": "3 + 7 + 1",
+            "expected": 11,
+            "actual": 11,
+            "pass": True,
+        },
+        {
+            "id": "check.hundreds_place",
+            "expr": "6 + 2 + 1",
+            "expected": 9,
+            "actual": 9,
+            "pass": True,
+        },
+        {
+            "id": "check.total",
+            "expr": "634 + 279",
+            "expected": 913,
+            "actual": 913,
+            "pass": True,
+        },
+        {
+            "id": "check.inverse_operation",
+            "expr": "913 - 279",
+            "expected": 634,
+            "actual": 634,
+            "pass": True,
+        },
+    ],
+    "answer": {
+        "value": 913,
+        "unit": "장",
+        "expression": "634 + 279 = 913",
+    },
+}
+
+SEMANTIC_ANSWER = SOLVABLE["answer"]

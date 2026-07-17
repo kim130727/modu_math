@@ -1,0 +1,76 @@
+{
+  "problem_id": "P3_1_01_00040_00472",
+  "problem_type": "numeric_answer_addition_word_problem",
+  "metadata": {
+    "title": "도서관에서 책을 읽고 있는 사람 수",
+    "tags": [],
+    "instruction": "식",
+    "question": "도서관에서 어른 648명, 어린이 476명이 책을 읽고 있습니다. 책 읽는 사람은 모두 몇 명입니까?",
+    "required_layout_ids": [],
+    "extraction_confidence": 1.0,
+    "grade": 3,
+    "semester": 1,
+    "subject": "수학",
+    "topic": "세 자리 수의 덧셈",
+    "language": "ko-KR"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "place.library",
+        "type": "place",
+        "label": "도서관"
+      },
+      {
+        "id": "group.adults",
+        "type": "person_group",
+        "label": "책을 읽고 있는 어른",
+        "count": 648,
+        "unit": "명"
+      },
+      {
+        "id": "group.children",
+        "type": "person_group",
+        "label": "책을 읽고 있는 어린이",
+        "count": 476,
+        "unit": "명"
+      },
+      {
+        "id": "group.all_readers",
+        "type": "person_group",
+        "label": "책을 읽고 있는 모든 사람",
+        "count": 1124,
+        "unit": "명"
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.adults_in_library",
+        "type": "located_in",
+        "subject": "group.adults",
+        "object": "place.library"
+      },
+      {
+        "id": "relation.children_in_library",
+        "type": "located_in",
+        "subject": "group.children",
+        "object": "place.library"
+      },
+      {
+        "id": "relation.all_readers_composed_of_groups",
+        "type": "sum_of",
+        "subject": "group.all_readers",
+        "objects": [
+          "group.adults",
+          "group.children"
+        ]
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "value": 1124,
+    "unit": "명",
+    "expression": "648 + 476 = 1124"
+  }
+}

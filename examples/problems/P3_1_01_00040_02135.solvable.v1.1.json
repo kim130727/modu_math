@@ -1,0 +1,168 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "P3_1_01_00040_02135",
+  "problem_type": "multi_blank_vertical_addition",
+  "inputs": {
+    "target_label": "받아올림한 수와 덧셈 결과의 각 자리 숫자",
+    "unit": "",
+    "answer_type": "digit_list",
+    "quantities": {
+      "first_addend": 664,
+      "second_addend": 257
+    },
+    "place_values": {
+      "first_addend": {
+        "hundreds": 6,
+        "tens": 6,
+        "ones": 4
+      },
+      "second_addend": {
+        "hundreds": 2,
+        "tens": 5,
+        "ones": 7
+      }
+    },
+    "conditions": [
+      "일의 자리부터 차례대로 계산합니다.",
+      "각 자리의 합이 10 이상이면 바로 윗자리로 1을 받아올림합니다.",
+      "받아올림한 수와 계산 결과를 각 네모 안에 씁니다."
+    ]
+  },
+  "given": [
+    {
+      "ref": "number.addend_1",
+      "value": 664
+    },
+    {
+      "ref": "number.addend_2",
+      "value": 257
+    }
+  ],
+  "target": {
+    "ref": "answer.vertical_addition_blanks",
+    "type": "digit_list"
+  },
+  "method": "일의 자리부터 더하고 받아올림한 수를 다음 자리의 계산에 포함한다.",
+  "plan": [
+    "일의 자리의 숫자 4와 7을 더한다.",
+    "일의 자리에서 생긴 받아올림을 십의 자리에 표시한다.",
+    "십의 자리의 숫자 6과 5에 받아올림한 1을 더한다.",
+    "십의 자리에서 생긴 받아올림을 백의 자리에 표시한다.",
+    "백의 자리의 숫자 6과 2에 받아올림한 1을 더한다.",
+    "계산 결과의 백의 자리, 십의 자리, 일의 자리 숫자를 쓴다."
+  ],
+  "steps": [
+    {
+      "id": "step.add_ones",
+      "expr": "4 + 7",
+      "value": 11,
+      "explanation": "일의 자리에서 4와 7을 더하면 11입니다."
+    },
+    {
+      "id": "step.write_ones_and_carry",
+      "expr": "11 = 1 × 10 + 1",
+      "value": {
+        "carry": 1,
+        "digit": 1
+      },
+      "explanation": "일의 자리에 1을 쓰고 십의 자리로 1을 받아올림합니다."
+    },
+    {
+      "id": "step.add_tens",
+      "expr": "6 + 5 + 1",
+      "value": 12,
+      "explanation": "십의 자리에서 6과 5에 받아올림한 1을 더하면 12입니다."
+    },
+    {
+      "id": "step.write_tens_and_carry",
+      "expr": "12 = 1 × 10 + 2",
+      "value": {
+        "carry": 1,
+        "digit": 2
+      },
+      "explanation": "십의 자리에 2를 쓰고 백의 자리로 1을 받아올림합니다."
+    },
+    {
+      "id": "step.add_hundreds",
+      "expr": "6 + 2 + 1",
+      "value": 9,
+      "explanation": "백의 자리에서 6과 2에 받아올림한 1을 더하면 9입니다."
+    },
+    {
+      "id": "step.compose_answer",
+      "expr": "900 + 20 + 1",
+      "value": 921,
+      "explanation": "각 자리 숫자를 차례대로 쓰면 921입니다."
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.ones_place",
+      "expr": "4 + 7",
+      "expected": 11,
+      "actual": 11,
+      "pass": true
+    },
+    {
+      "id": "check.tens_place",
+      "expr": "6 + 5 + 1",
+      "expected": 12,
+      "actual": 12,
+      "pass": true
+    },
+    {
+      "id": "check.hundreds_place",
+      "expr": "6 + 2 + 1",
+      "expected": 9,
+      "actual": 9,
+      "pass": true
+    },
+    {
+      "id": "check.total",
+      "expr": "664 + 257",
+      "expected": 921,
+      "actual": 921,
+      "pass": true
+    },
+    {
+      "id": "check.inverse_operation",
+      "expr": "921 - 257",
+      "expected": 664,
+      "actual": 664,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "value": [
+      1,
+      1,
+      9,
+      2,
+      1
+    ],
+    "unit": "",
+    "expression": "664 + 257 = 921",
+    "items": [
+      {
+        "id": "answer.carry_hundreds",
+        "value": 1
+      },
+      {
+        "id": "answer.carry_tens",
+        "value": 1
+      },
+      {
+        "id": "answer.hundreds",
+        "value": 9
+      },
+      {
+        "id": "answer.tens",
+        "value": 2
+      },
+      {
+        "id": "answer.ones",
+        "value": 1
+      }
+    ]
+  }
+}

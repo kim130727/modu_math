@@ -1,0 +1,76 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "P3_1_01_00040_00469",
+  "problem_type": "numeric_answer_addition_word_problem",
+  "inputs": {
+    "target_label": "두 가족이 캔 고구마의 수",
+    "unit": "개",
+    "quantities": {
+      "sanghyeon_family_count": 259,
+      "yongjin_family_count": 248
+    },
+    "conditions": [
+      "상현이네 가족은 고구마를 259개 캤습니다.",
+      "용진이네 가족은 고구마를 248개 캤습니다.",
+      "두 가족이 캔 고구마 수를 모두 구합니다."
+    ]
+  },
+  "given": [
+    {
+      "ref": "quantity.sanghyeon_family_sweet_potatoes",
+      "value": {
+        "count": 259,
+        "unit": "개",
+        "owner": "group.sanghyeon_family",
+        "object": "object.sweet_potato"
+      }
+    },
+    {
+      "ref": "quantity.yongjin_family_sweet_potatoes",
+      "value": {
+        "count": 248,
+        "unit": "개",
+        "owner": "group.yongjin_family",
+        "object": "object.sweet_potato"
+      }
+    }
+  ],
+  "target": {
+    "ref": "quantity.total_sweet_potatoes",
+    "type": "number"
+  },
+  "method": "두 가족이 캔 고구마 수를 덧셈으로 구한다.",
+  "plan": [
+    "상현이네 가족이 캔 고구마 수를 확인한다.",
+    "용진이네 가족이 캔 고구마 수를 확인한다.",
+    "두 수를 더하여 전체 고구마 수를 구한다."
+  ],
+  "steps": [
+    {
+      "id": "step.add_counts",
+      "expr": "259 + 248",
+      "value": 507,
+      "explanation": "두 가족이 캔 고구마 수를 모두 구해야 하므로 259와 248을 더합니다."
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.inverse_subtraction",
+      "expr": "507 - 248",
+      "expected": 259,
+      "actual": 259,
+      "pass": true
+    },
+    {
+      "id": "check.minimum_total",
+      "expr": "507 > 259 and 507 > 248",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "value": 507,
+    "unit": "개"
+  }
+}
