@@ -1,0 +1,137 @@
+{
+  "schema": "modu.solvable.v1.2",
+  "problem_id": "S3_초등_3_008810",
+  "problem_type": "unit_selection",
+  "inputs": {
+    "total_ticks": 1,
+    "target_label": "알맞은 단위",
+    "target_ticks": 1,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.fridge",
+      "value": {
+        "name": "냉장고"
+      }
+    },
+    {
+      "ref": "obj.mass_value",
+      "value": {
+        "value": 80
+      }
+    },
+    {
+      "ref": "obj.options",
+      "value": {
+        "values": [
+          "g",
+          "kg",
+          "t"
+        ]
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "selected_unit"
+  },
+  "method": "unit_selection",
+  "plan": [
+    "무게 80이 어떤 단위에 어울리는지 보기에서 판단한다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "80에 알맞은 단위 후보를 비교한다.",
+      "value": "kg"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "냉장고의 무게는 약 80kg으로 자연스럽다.",
+      "expected": "kg",
+      "actual": "kg",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "selected_unit",
+      "description": "냉장고의 무게 80에 알맞은 단위"
+    },
+    "value": "kg",
+    "unit": ""
+  },
+  "understanding": {
+    "summary": "Find 알맞은 단위 using the given information.",
+    "facts": [
+      {
+        "ref": "obj.fridge",
+        "label": "fridge",
+        "value": {
+          "name": "냉장고"
+        },
+        "unit": "",
+        "source": "explicit"
+      },
+      {
+        "ref": "obj.mass_value",
+        "label": "mass value",
+        "value": 80,
+        "unit": "",
+        "source": "explicit"
+      },
+      {
+        "ref": "obj.options",
+        "label": "options",
+        "value": {
+          "values": [
+            "g",
+            "kg",
+            "t"
+          ]
+        },
+        "unit": "",
+        "source": "explicit"
+      }
+    ],
+    "unknowns": [
+      {
+        "ref": "answer.target",
+        "label": "알맞은 단위",
+        "unit": "",
+        "source": "unknown"
+      }
+    ],
+    "relation": {
+      "type": "unit_selection",
+      "statement": "무게 80이 어떤 단위에 어울리는지 보기에서 판단한다.",
+      "symbolic": "80에 알맞은 단위 후보를 비교한다.",
+      "uses": [
+        "obj.fridge",
+        "obj.mass_value",
+        "obj.options"
+      ],
+      "result": "answer.target"
+    },
+    "diagnostic_questions": [
+      {
+        "id": "understand.target",
+        "type": "multiple_choice",
+        "prompt": "What should we find?",
+        "choices": [
+          "fridge",
+          "mass value",
+          "알맞은 단위"
+        ],
+        "answer_index": 2
+      }
+    ]
+  }
+}

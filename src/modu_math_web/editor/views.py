@@ -51,8 +51,9 @@ def editor_index(request: HttpRequest):
 
 
 @require_GET
-def problems_list(_: HttpRequest) -> JsonResponse:
-    return JsonResponse({"problems": list_problem_directories()})
+def problems_list(request: HttpRequest) -> JsonResponse:
+    include_artifacts = request.GET.get("artifacts") in {"1", "true", "yes"}
+    return JsonResponse({"problems": list_problem_directories(include_artifacts=include_artifacts)})
 
 
 @require_POST
@@ -208,14 +209,14 @@ def save_dsl(request: HttpRequest, problem_id: str) -> JsonResponse:
             return _error("'dsl' must be a string", status=400)
         if not dsl.strip():
             return _error("'dsl' must not be empty", status=400)
-        _, saved_dsl = save_problem_dsl(problem_id, dsl)
+        save_problem_dsl(problem_id, dsl)
     except ValueError as exc:
         return _error(str(exc), status=400)
     except FileNotFoundError as exc:
         return _error(str(exc), status=404)
     except Exception as exc:
         return _error(str(exc), status=500)
-    return JsonResponse({"ok": True, "problem_id": problem_id, "dsl": saved_dsl})
+    return JsonResponse({"ok": True, "problem_id": problem_id})
 
 
 @require_POST
@@ -262,7 +263,7 @@ def layout_patch(request: HttpRequest, problem_id: str) -> JsonResponse:
         patches = data.get("patches")
         if not isinstance(patches, list):
             return _error("'patches' must be a list", status=400)
-        format_source = data.get("format", True)
+        format_source = data.get("format", False)
         if not isinstance(format_source, bool):
             return _error("'format' must be a boolean", status=400)
         dsl_text, applied = apply_layout_patches(problem_id, patches, format_source=format_source)
@@ -290,7 +291,7 @@ def tutor_flow(request: HttpRequest, problem_id: str) -> JsonResponse:
     try:
         data = _json_body(request)
         flow = data.get("tutor_flow")
-        format_source = data.get("format", True)
+        format_source = data.get("format", False)
         if not isinstance(format_source, bool):
             return _error("'format' must be a boolean", status=400)
         dsl_text, normalized = save_tutor_renderer_flow(problem_id, flow, format_source=format_source)

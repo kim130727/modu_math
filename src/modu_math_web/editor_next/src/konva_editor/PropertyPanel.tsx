@@ -3,14 +3,15 @@ import { KONVA_PREVIEW_FONT_FAMILY } from "./fonts";
 
 interface PropertyPanelProps {
   shape: EditorShape | null;
+  saveStatus: "saved" | "saving" | "unsaved" | "building" | "built" | "error";
   onChange: (patch: Partial<EditorShape>) => void;
 }
 
-export function PropertyPanel({ shape, onChange }: PropertyPanelProps) {
+export function PropertyPanel({ shape, saveStatus, onChange }: PropertyPanelProps) {
   if (!shape) {
     return (
       <section className="konva-property-panel">
-        <div className="panel-title">Properties</div>
+        <PropertyPanelTitle saveStatus={saveStatus} />
         <div className="konva-empty-state">Select a shape.</div>
       </section>
     );
@@ -18,7 +19,7 @@ export function PropertyPanel({ shape, onChange }: PropertyPanelProps) {
 
   return (
     <section className="konva-property-panel">
-      <div className="panel-title">Properties</div>
+      <PropertyPanelTitle saveStatus={saveStatus} />
       <div className="konva-field-grid">
         <ReadOnlyField label="id" value={shape.id} />
         <ReadOnlyField label="type" value={shape.type} />
@@ -76,6 +77,26 @@ export function PropertyPanel({ shape, onChange }: PropertyPanelProps) {
       </div>
     </section>
   );
+}
+
+function PropertyPanelTitle({ saveStatus }: { saveStatus: PropertyPanelProps["saveStatus"] }) {
+  return (
+    <div className="panel-title konva-property-title">
+      <span>Properties</span>
+      <span className={`konva-save-status ${saveStatus}`} aria-live="polite">
+        {statusLabel(saveStatus)}
+      </span>
+    </div>
+  );
+}
+
+function statusLabel(saveStatus: PropertyPanelProps["saveStatus"]): string {
+  if (saveStatus === "saving") return "Saving...";
+  if (saveStatus === "unsaved") return "Unsaved";
+  if (saveStatus === "building") return "Building...";
+  if (saveStatus === "built") return "Build complete";
+  if (saveStatus === "error") return "Error";
+  return "Saved";
 }
 
 function ReadOnlyField({ label, value }: { label: string; value: string }) {

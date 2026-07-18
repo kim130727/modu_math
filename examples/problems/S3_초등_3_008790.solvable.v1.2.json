@@ -1,0 +1,112 @@
+{
+  "schema": "modu.solvable.v1.2",
+  "problem_id": "S3_초등_3_008790",
+  "problem_type": "비교",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "들이가 더 많은 용기",
+    "target_ticks": 0,
+    "target_count": 0,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "rel.kettle_capacity",
+      "value": 7
+    },
+    {
+      "ref": "rel.bottle_capacity",
+      "value": 4
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "container_name"
+  },
+  "plan": [
+    "컵의 개수를 비교하여 더 큰 값을 가진 용기를 고른다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "7 > 4",
+      "value": true
+    },
+    {
+      "id": "step.2",
+      "expr": "더 큰 용기 = 주전자",
+      "value": "주전자"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "주전자 7컵, 물병 4컵",
+      "expected": "주전자",
+      "actual": "주전자",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "container_name",
+      "description": "들이가 더 많은 용기"
+    },
+    "value": "주전자",
+    "unit": ""
+  },
+  "understanding": {
+    "summary": "Find 들이가 더 많은 용기 using the given information.",
+    "facts": [
+      {
+        "ref": "rel.kettle_capacity",
+        "label": "kettle capacity",
+        "value": 7,
+        "unit": "",
+        "source": "explicit"
+      },
+      {
+        "ref": "rel.bottle_capacity",
+        "label": "bottle capacity",
+        "value": 4,
+        "unit": "",
+        "source": "explicit"
+      }
+    ],
+    "unknowns": [
+      {
+        "ref": "answer.target",
+        "label": "들이가 더 많은 용기",
+        "unit": "",
+        "source": "unknown"
+      }
+    ],
+    "relation": {
+      "type": "비교",
+      "statement": "컵의 개수를 비교하여 더 큰 값을 가진 용기를 고른다.",
+      "symbolic": "7 > 4",
+      "uses": [
+        "rel.kettle_capacity",
+        "rel.bottle_capacity"
+      ],
+      "result": "answer.target"
+    },
+    "diagnostic_questions": [
+      {
+        "id": "understand.target",
+        "type": "multiple_choice",
+        "prompt": "What should we find?",
+        "choices": [
+          "kettle capacity",
+          "bottle capacity",
+          "들이가 더 많은 용기"
+        ],
+        "answer_index": 2
+      }
+    ]
+  },
+  "method": "비교"
+}

@@ -1,0 +1,135 @@
+{
+  "schema": "modu.solvable.v1.2",
+  "problem_id": "S3_초등_3_008822",
+  "problem_type": "choice_ordering",
+  "inputs": {
+    "total_ticks": 1,
+    "target_label": "들이가 많은 컵부터 순서대로",
+    "target_ticks": 1,
+    "target_count": 3,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.cup_a",
+      "value": {
+        "label": "㉠ 컵",
+        "count": 3
+      }
+    },
+    {
+      "ref": "obj.cup_b",
+      "value": {
+        "label": "㉡ 컵",
+        "count": 9
+      }
+    },
+    {
+      "ref": "obj.cup_c",
+      "value": {
+        "label": "㉢ 컵",
+        "count": 5
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "ordered_choice"
+  },
+  "method": "inverse_relation_ordering",
+  "plan": [
+    "같은 물통을 채우는 데 필요한 컵 수를 비교한다.",
+    "컵 수가 적을수록 들이가 많으므로, 적은 순서로 나열한다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "㉠: 3개, ㉡: 9개, ㉢: 5개",
+      "value": {
+        "order_by_count_asc": [
+          "㉠ 컵",
+          "㉢ 컵",
+          "㉡ 컵"
+        ]
+      }
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "컵의 수가 적을수록 들이가 많다",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "ordered_choice",
+      "description": "들이가 많은 컵부터 순서대로"
+    },
+    "value": 2,
+    "unit": ""
+  },
+  "understanding": {
+    "summary": "Find 들이가 많은 컵부터 순서대로 using the given information.",
+    "facts": [
+      {
+        "ref": "obj.cup_a",
+        "label": "cup a",
+        "value": 3,
+        "unit": "",
+        "source": "explicit"
+      },
+      {
+        "ref": "obj.cup_b",
+        "label": "cup b",
+        "value": 9,
+        "unit": "",
+        "source": "explicit"
+      },
+      {
+        "ref": "obj.cup_c",
+        "label": "cup c",
+        "value": 5,
+        "unit": "",
+        "source": "explicit"
+      }
+    ],
+    "unknowns": [
+      {
+        "ref": "answer.target",
+        "label": "들이가 많은 컵부터 순서대로",
+        "unit": "",
+        "source": "unknown"
+      }
+    ],
+    "relation": {
+      "type": "inverse_relation_ordering",
+      "statement": "같은 물통을 채우는 데 필요한 컵 수를 비교한다.",
+      "symbolic": "㉠: 3개, ㉡: 9개, ㉢: 5개",
+      "uses": [
+        "obj.cup_a",
+        "obj.cup_b",
+        "obj.cup_c"
+      ],
+      "result": "answer.target"
+    },
+    "diagnostic_questions": [
+      {
+        "id": "understand.target",
+        "type": "multiple_choice",
+        "prompt": "What should we find?",
+        "choices": [
+          "cup a",
+          "cup b",
+          "들이가 많은 컵부터 순서대로"
+        ],
+        "answer_index": 2
+      }
+    ]
+  }
+}

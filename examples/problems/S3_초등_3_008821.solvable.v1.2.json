@@ -1,0 +1,150 @@
+{
+  "schema": "modu.solvable.v1.2",
+  "problem_id": "S3_초등_3_008821",
+  "problem_type": "comparison_reasoning",
+  "inputs": {
+    "total_ticks": 2,
+    "target_label": "바르게 이야기한 친구",
+    "target_ticks": 1,
+    "target_count": 2,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.cup_a",
+      "value": {
+        "label": "㉠ 컵"
+      }
+    },
+    {
+      "ref": "obj.cup_b",
+      "value": {
+        "label": "㉡ 컵"
+      }
+    },
+    {
+      "ref": "rel.cup_count",
+      "value": {
+        "left_count": 8,
+        "right_count": 4
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "speaker_selection"
+  },
+  "method": "역관계 판단",
+  "plan": [
+    "물은 적게 부을수록 컵의 들이가 더 크다는 관계를 확인한다.",
+    "말풍선의 설명이 이 관계와 맞는지 비교한다.",
+    "바르게 말한 친구를 선택한다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "8개와 4개를 비교하여 더 적게 붓는 쪽이 더 큰 들이를 가짐을 확인",
+      "value": {
+        "less_count": 4,
+        "greater_capacity": "㉡ 컵"
+      }
+    },
+    {
+      "id": "step.2",
+      "expr": "㉠ 컵이 더 많다는 주장과 비교",
+      "value": {
+        "is_correct": false
+      }
+    },
+    {
+      "id": "step.3",
+      "expr": "바르게 이야기한 친구 선택",
+      "value": "재석"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "역관계 문장과 정답이 일치하는지 확인",
+      "expected": "재석",
+      "actual": "재석",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "speaker_selection",
+      "description": "바르게 이야기한 친구"
+    },
+    "value": "재석",
+    "unit": ""
+  },
+  "understanding": {
+    "summary": "Find 바르게 이야기한 친구 using the given information.",
+    "facts": [
+      {
+        "ref": "obj.cup_a",
+        "label": "cup a",
+        "value": {
+          "label": "㉠ 컵"
+        },
+        "unit": "",
+        "source": "explicit"
+      },
+      {
+        "ref": "obj.cup_b",
+        "label": "cup b",
+        "value": {
+          "label": "㉡ 컵"
+        },
+        "unit": "",
+        "source": "explicit"
+      },
+      {
+        "ref": "rel.cup_count",
+        "label": "cup count",
+        "value": {
+          "left_count": 8,
+          "right_count": 4
+        },
+        "unit": "",
+        "source": "explicit"
+      }
+    ],
+    "unknowns": [
+      {
+        "ref": "answer.target",
+        "label": "바르게 이야기한 친구",
+        "unit": "",
+        "source": "unknown"
+      }
+    ],
+    "relation": {
+      "type": "역관계 판단",
+      "statement": "물은 적게 부을수록 컵의 들이가 더 크다는 관계를 확인한다.",
+      "symbolic": "8개와 4개를 비교하여 더 적게 붓는 쪽이 더 큰 들이를 가짐을 확인",
+      "uses": [
+        "obj.cup_a",
+        "obj.cup_b",
+        "rel.cup_count"
+      ],
+      "result": "answer.target"
+    },
+    "diagnostic_questions": [
+      {
+        "id": "understand.target",
+        "type": "multiple_choice",
+        "prompt": "What should we find?",
+        "choices": [
+          "cup a",
+          "cup b",
+          "바르게 이야기한 친구"
+        ],
+        "answer_index": 2
+      }
+    ]
+  }
+}

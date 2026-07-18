@@ -1,0 +1,138 @@
+{
+  "problem_id": "P3_1_01_00040_02155",
+  "problem_type": "multi_numeric_answer_vertical_addition",
+  "metadata": {
+    "title": "세 자리 수의 덧셈 계산",
+    "tags": [
+      "grade-3",
+      "addition",
+      "three-digit-addition",
+      "vertical-calculation",
+      "numeric-answer"
+    ],
+    "question": "다음을 계산하세요.",
+    "required_layout_ids": [
+      "slot.line_1",
+      "slot.line_2",
+      "slot.line_3"
+    ],
+    "extraction_confidence": 1.0,
+    "grade": 3,
+    "semester": 1,
+    "subject": "수학",
+    "topic": "세 자리 수의 덧셈",
+    "language": "ko-KR"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "calculation.1",
+        "type": "vertical_addition",
+        "label": "첫 번째 덧셈",
+        "addends": [
+          379,
+          855
+        ]
+      },
+      {
+        "id": "calculation.2",
+        "type": "vertical_addition",
+        "label": "두 번째 덧셈",
+        "addends": [
+          654,
+          758
+        ]
+      },
+      {
+        "id": "calculation.3",
+        "type": "vertical_addition",
+        "label": "세 번째 덧셈",
+        "addends": [
+          296,
+          758
+        ]
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.1",
+        "type": "addition",
+        "from_ids": [
+          "number.379",
+          "number.855"
+        ],
+        "to_id": "answer.1",
+        "equation": "379 + 855 = 1234"
+      },
+      {
+        "id": "relation.2",
+        "type": "addition",
+        "from_ids": [
+          "number.654",
+          "number.758"
+        ],
+        "to_id": "answer.2",
+        "equation": "654 + 758 = 1412"
+      },
+      {
+        "id": "relation.3",
+        "type": "addition",
+        "from_ids": [
+          "number.296",
+          "number.758"
+        ],
+        "to_id": "answer.3",
+        "equation": "296 + 758 = 1054"
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "blanks": [
+      {
+        "id": "slot.answer_1",
+        "type": "number",
+        "value": 1234,
+        "unit": ""
+      },
+      {
+        "id": "slot.answer_2",
+        "type": "number",
+        "value": 1412,
+        "unit": ""
+      },
+      {
+        "id": "slot.answer_3",
+        "type": "number",
+        "value": 1054,
+        "unit": ""
+      }
+    ],
+    "choices": [],
+    "answer_key": [
+      {
+        "blank_id": "slot.answer_1",
+        "value": 1234,
+        "unit": ""
+      },
+      {
+        "blank_id": "slot.answer_2",
+        "value": 1412,
+        "unit": ""
+      },
+      {
+        "blank_id": "slot.answer_3",
+        "value": 1054,
+        "unit": ""
+      }
+    ],
+    "confidence": 1.0,
+    "value": [
+      1234,
+      1412,
+      1054
+    ],
+    "unit": "",
+    "sentence": "(1) 1234, (2) 1412, (3) 1054입니다."
+  }
+}

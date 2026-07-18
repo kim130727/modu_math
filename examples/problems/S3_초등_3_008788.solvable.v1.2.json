@@ -1,0 +1,130 @@
+{
+  "schema": "modu.solvable.v1.2",
+  "problem_id": "S3_초등_3_008788",
+  "problem_type": "compare_capacity",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "들이가 더 많은 용기",
+    "target_ticks": 0,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.bottle",
+      "value": "물병"
+    },
+    {
+      "ref": "obj.bucket",
+      "value": "물통"
+    },
+    {
+      "ref": "rel.leftover_water",
+      "value": true
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "container_name"
+  },
+  "method": "상황 비교",
+  "plan": [
+    "물병의 물을 물통에 옮겨 담은 뒤 남는 물이 있는지 확인한다.",
+    "남는 물이 있으면 물병의 들이가 더 많다고 판단한다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "물병의 물을 물통에 옮겨 담는다",
+      "value": "옮겨 담음"
+    },
+    {
+      "id": "step.2",
+      "expr": "물병에 물이 남아 있는지 확인한다",
+      "value": true
+    },
+    {
+      "id": "step.3",
+      "expr": "들이가 더 큰 용기를 선택한다",
+      "value": "물병"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "물병에 물이 남아 있으면 물병의 들이가 더 큰가",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "container_name",
+      "description": "들이가 더 많은 용기"
+    },
+    "value": "물병",
+    "unit": ""
+  },
+  "understanding": {
+    "summary": "Find 들이가 더 많은 용기 using the given information.",
+    "facts": [
+      {
+        "ref": "obj.bottle",
+        "label": "bottle",
+        "value": "물병",
+        "unit": "",
+        "source": "explicit"
+      },
+      {
+        "ref": "obj.bucket",
+        "label": "bucket",
+        "value": "물통",
+        "unit": "",
+        "source": "explicit"
+      },
+      {
+        "ref": "rel.leftover_water",
+        "label": "leftover water",
+        "value": true,
+        "unit": "",
+        "source": "explicit"
+      }
+    ],
+    "unknowns": [
+      {
+        "ref": "answer.target",
+        "label": "들이가 더 많은 용기",
+        "unit": "",
+        "source": "unknown"
+      }
+    ],
+    "relation": {
+      "type": "상황 비교",
+      "statement": "물병의 물을 물통에 옮겨 담은 뒤 남는 물이 있는지 확인한다.",
+      "symbolic": "물병의 물을 물통에 옮겨 담는다",
+      "uses": [
+        "obj.bottle",
+        "obj.bucket",
+        "rel.leftover_water"
+      ],
+      "result": "answer.target"
+    },
+    "diagnostic_questions": [
+      {
+        "id": "understand.target",
+        "type": "multiple_choice",
+        "prompt": "What should we find?",
+        "choices": [
+          "bottle",
+          "bucket",
+          "들이가 더 많은 용기"
+        ],
+        "answer_index": 2
+      }
+    ]
+  }
+}

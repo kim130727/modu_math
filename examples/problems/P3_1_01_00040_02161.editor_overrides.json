@@ -1,0 +1,253 @@
+{
+  "deleted_slots": [
+    "slot.expression_blank",
+    "slot.answer_blank"
+  ],
+  "version": 1,
+  "slots": {
+    "slot.instruction": {
+      "text": "송은이가 문방구를 들러 학교에 가려고 합니다. 집에서 학교까지의 거리를 구하시오.",
+      "x": 20,
+      "y": 8,
+      "font_size": 18,
+      "fill": "#111111",
+      "width": 610,
+      "height": 52,
+      "align": "left",
+      "line_height": 1.2
+    },
+    "slot.house_body": {
+      "x": 42,
+      "y": 64,
+      "width": 42,
+      "height": 34,
+      "fill": "#E9A068",
+      "stroke": "#B46F44",
+      "stroke_width": 1.5
+    },
+    "slot.house_roof": {
+      "d": "M 34 67 L 63 45 L 92 67 Z",
+      "fill": "#D9674E",
+      "stroke": "#B94E3C",
+      "stroke_width": 1.5
+    },
+    "slot.house_door": {
+      "x": 58,
+      "y": 78,
+      "width": 11,
+      "height": 20,
+      "fill": "#8B5A3C",
+      "stroke": "#6E442E",
+      "stroke_width": 1
+    },
+    "slot.house_window": {
+      "x": 74,
+      "y": 73,
+      "width": 9,
+      "height": 9,
+      "fill": "#BFE5F7",
+      "stroke": "#5D91A8",
+      "stroke_width": 1
+    },
+    "slot.house_chimney": {
+      "x": 66,
+      "y": 43,
+      "width": 6,
+      "height": 11,
+      "fill": "#9B4B3C",
+      "stroke": "#7A372E",
+      "stroke_width": 1
+    },
+    "slot.store_body": {
+      "x": 226,
+      "y": 47,
+      "width": 50,
+      "height": 56,
+      "fill": "#D8EEF4",
+      "stroke": "#6C929E",
+      "stroke_width": 1.5
+    },
+    "slot.store_sign": {
+      "x": 229,
+      "y": 50,
+      "width": 44,
+      "height": 15,
+      "fill": "#F5E6CB",
+      "stroke": "#B68E58",
+      "stroke_width": 1
+    },
+    "slot.store_awning": {
+      "d": "M 229 66 L 273 66 L 268 76 L 234 76 Z",
+      "fill": "#E56E6E",
+      "stroke": "#B94E4E",
+      "stroke_width": 1
+    },
+    "slot.store_door": {
+      "x": 252,
+      "y": 77,
+      "width": 17,
+      "height": 26,
+      "fill": "#8EC4D5",
+      "stroke": "#5E93A2",
+      "stroke_width": 1
+    },
+    "slot.store_window": {
+      "x": 232,
+      "y": 78,
+      "width": 15,
+      "height": 15,
+      "fill": "#BDE5F2",
+      "stroke": "#5E93A2",
+      "stroke_width": 1
+    },
+    "slot.school_body": {
+      "x": 248,
+      "y": 156,
+      "width": 49,
+      "height": 37,
+      "fill": "#F4D37A",
+      "stroke": "#B79A4E",
+      "stroke_width": 1.5
+    },
+    "slot.school_roof": {
+      "d": "M 242 158 L 272 139 L 303 158 Z",
+      "fill": "#8FC487",
+      "stroke": "#62975A",
+      "stroke_width": 1.5
+    },
+    "slot.school_door": {
+      "x": 266,
+      "y": 174,
+      "width": 13,
+      "height": 19,
+      "fill": "#8AB8C8",
+      "stroke": "#5C8998",
+      "stroke_width": 1
+    },
+    "slot.school_window_1": {
+      "x": 253,
+      "y": 164,
+      "width": 8,
+      "height": 8,
+      "fill": "#BFE5F7",
+      "stroke": "#5D91A8",
+      "stroke_width": 1
+    },
+    "slot.school_window_2": {
+      "x": 284,
+      "y": 164,
+      "width": 8,
+      "height": 8,
+      "fill": "#BFE5F7",
+      "stroke": "#5D91A8",
+      "stroke_width": 1
+    },
+    "slot.route_home_store": {
+      "x1": 87,
+      "y1": 83,
+      "x2": 232,
+      "y2": 93,
+      "stroke": "#8A6A58",
+      "stroke_width": 1.5
+    },
+    "slot.route_store_school": {
+      "x1": 232,
+      "y1": 93,
+      "x2": 268,
+      "y2": 143,
+      "stroke": "#8A6A58",
+      "stroke_width": 2
+    },
+    "slot.expression_line": {
+      "x1": 38,
+      "y1": 197,
+      "x2": 154,
+      "y2": 197,
+      "stroke": "#333333",
+      "stroke_width": 1
+    },
+    "slot.answer_line": {
+      "x1": 38,
+      "y1": 220,
+      "x2": 115,
+      "y2": 220,
+      "stroke": "#333333",
+      "stroke_width": 1
+    },
+    "slot.point_home": {
+      "cx": 87,
+      "cy": 83,
+      "r": 3,
+      "fill": "#7A4A35",
+      "stroke": "#7A4A35",
+      "stroke_width": 1
+    },
+    "slot.point_store": {
+      "cx": 232,
+      "cy": 93,
+      "r": 3,
+      "fill": "#7A4A35",
+      "stroke": "#7A4A35",
+      "stroke_width": 1
+    },
+    "slot.point_school": {
+      "cx": 268,
+      "cy": 143,
+      "r": 3,
+      "fill": "#7A4A35",
+      "stroke": "#7A4A35",
+      "stroke_width": 1
+    },
+    "slot.house_label": {
+      "text": "송은이네 집",
+      "x": 24,
+      "y": 116,
+      "font_size": 14,
+      "fill": "#444444"
+    },
+    "slot.store_label": {
+      "text": "문방구",
+      "x": 283,
+      "y": 86,
+      "font_size": 14,
+      "fill": "#444444"
+    },
+    "slot.school_label": {
+      "text": "학교",
+      "x": 305,
+      "y": 187,
+      "font_size": 14,
+      "fill": "#444444"
+    },
+    "slot.distance_487": {
+      "text": "487 m",
+      "x": 157,
+      "y": 73,
+      "font_size": 16,
+      "fill": "#222222",
+      "anchor": "middle"
+    },
+    "slot.distance_295": {
+      "text": "295 m",
+      "x": 272,
+      "y": 118,
+      "font_size": 16,
+      "fill": "#222222",
+      "anchor": "middle"
+    },
+    "slot.expression_label": {
+      "text": "식",
+      "x": 20,
+      "y": 193,
+      "font_size": 16,
+      "fill": "#222222"
+    },
+    "slot.answer_label": {
+      "text": "답",
+      "x": 20,
+      "y": 216,
+      "font_size": 16,
+      "fill": "#222222"
+    }
+  }
+}

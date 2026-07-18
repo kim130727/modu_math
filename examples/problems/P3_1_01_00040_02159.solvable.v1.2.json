@@ -1,0 +1,206 @@
+{
+  "schema": "modu.solvable.v1.2",
+  "problem_id": "P3_1_01_00040_02159",
+  "problem_type": "sequential_addition_fill_blank",
+  "inputs": {
+    "target_label": "두 빈칸에 들어갈 수",
+    "unit": "",
+    "quantities": {
+      "start_value": 156,
+      "first_addend": 278,
+      "second_addend": 697
+    },
+    "conditions": [
+      "156에서 시작합니다.",
+      "첫 번째 화살표에서는 278을 더합니다.",
+      "두 번째 화살표에서는 앞에서 구한 수에 697을 더합니다."
+    ]
+  },
+  "given": [
+    {
+      "ref": "number.start",
+      "value": 156
+    },
+    {
+      "ref": "operation.add_278",
+      "value": 278
+    },
+    {
+      "ref": "operation.add_697",
+      "value": 697
+    }
+  ],
+  "target": {
+    "ref": "answer.all",
+    "type": "sequential_addition_results"
+  },
+  "understanding": {
+    "summary": "156에서 시작해 화살표 순서대로 278과 697을 더하고, 각 단계의 결과를 빈칸에 쓰는 문제입니다.",
+    "facts": [
+      {
+        "ref": "number.start",
+        "label": "처음 수",
+        "value": 156,
+        "unit": "",
+        "source": "explicit"
+      },
+      {
+        "ref": "operation.add_278",
+        "label": "첫 번째로 더할 수",
+        "value": 278,
+        "unit": "",
+        "source": "explicit"
+      },
+      {
+        "ref": "operation.add_697",
+        "label": "두 번째로 더할 수",
+        "value": 697,
+        "unit": "",
+        "source": "explicit"
+      }
+    ],
+    "unknowns": [
+      {
+        "ref": "number.middle",
+        "label": "156에 278을 더한 값",
+        "unit": "",
+        "source": "unknown"
+      },
+      {
+        "ref": "number.end",
+        "label": "첫 번째 결과에 697을 더한 값",
+        "unit": "",
+        "source": "unknown"
+      }
+    ],
+    "relation": {
+      "type": "sequential_addition",
+      "statement": "앞에서 구한 결과를 다음 덧셈의 시작 수로 사용합니다.",
+      "symbolic": "156 + 278 = middle; middle + 697 = end",
+      "uses": [
+        "number.start",
+        "operation.add_278",
+        "operation.add_697"
+      ],
+      "result": "answer.all"
+    },
+    "diagnostic_questions": [
+      {
+        "id": "understand.first_operation",
+        "type": "multiple_choice",
+        "prompt": "156에 가장 먼저 더해야 하는 수는 무엇인가요?",
+        "choices": [
+          "278",
+          "697",
+          "156"
+        ],
+        "answer_index": 0
+      },
+      {
+        "id": "understand.second_start",
+        "type": "multiple_choice",
+        "prompt": "697은 어느 수에 더해야 하나요?",
+        "choices": [
+          "첫 번째 빈칸에서 구한 수",
+          "처음 수 156",
+          "278"
+        ],
+        "answer_index": 0
+      }
+    ],
+    "student_restatement": {
+      "prompt": "문제의 뜻을 말해 볼까요?",
+      "template": "{start}에서 시작해 {first}를 더하고, 그 결과에 {second}를 더합니다.",
+      "answer": "156에 278을 더해 첫 번째 빈칸을 구하고, 그 수에 697을 더해 두 번째 빈칸을 구합니다."
+    }
+  },
+  "method": "화살표 방향을 따라 앞 단계의 결과에 표시된 수를 차례대로 더합니다.",
+  "plan": [
+    "156에 278을 더해 첫 번째 빈칸의 수를 구합니다.",
+    "첫 번째 빈칸의 수에 697을 더해 두 번째 빈칸의 수를 구합니다.",
+    "두 계산 결과를 각각 알맞은 빈칸에 씁니다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "goal": "첫 번째 빈칸의 수를 구합니다.",
+      "uses": [
+        "number.start",
+        "operation.add_278"
+      ],
+      "expr": "156 + 278",
+      "value": {
+        "sum": 434,
+        "ref": "number.middle"
+      },
+      "explanation": "156에 278을 더하면 434이므로 첫 번째 빈칸에는 434를 씁니다."
+    },
+    {
+      "id": "step.2",
+      "goal": "두 번째 빈칸의 수를 구합니다.",
+      "uses": [
+        "number.middle",
+        "operation.add_697"
+      ],
+      "expr": "434 + 697",
+      "value": {
+        "sum": 1131,
+        "ref": "number.end"
+      },
+      "explanation": "앞에서 구한 434에 697을 더하면 1131이므로 두 번째 빈칸에는 1131을 씁니다."
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "description": "첫 번째 결과 434에서 278을 빼면 처음 수 156이 됩니다.",
+      "expr": "434 - 278",
+      "expected": 156,
+      "actual": 156,
+      "pass": true
+    },
+    {
+      "id": "check.2",
+      "description": "두 번째 결과 1131에서 697을 빼면 첫 번째 결과 434가 됩니다.",
+      "expr": "1131 - 697",
+      "expected": 434,
+      "actual": 434,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [
+      {
+        "id": "slot.answer_1",
+        "type": "number",
+        "value": 434,
+        "unit": ""
+      },
+      {
+        "id": "slot.answer_2",
+        "type": "number",
+        "value": 1131,
+        "unit": ""
+      }
+    ],
+    "choices": [],
+    "answer_key": [
+      {
+        "blank_id": "slot.answer_1",
+        "value": 434,
+        "unit": ""
+      },
+      {
+        "blank_id": "slot.answer_2",
+        "value": 1131,
+        "unit": ""
+      }
+    ],
+    "value": [
+      434,
+      1131
+    ],
+    "unit": "",
+    "sentence": "첫 번째 빈칸은 434, 두 번째 빈칸은 1131입니다."
+  }
+}

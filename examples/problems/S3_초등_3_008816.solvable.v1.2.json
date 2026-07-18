@@ -1,0 +1,121 @@
+{
+  "schema": "modu.solvable.v1.2",
+  "problem_id": "S3_초등_3_008816",
+  "problem_type": "comparison_choice",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "더 많은 물이 들어가는 그릇",
+    "target_ticks": 0,
+    "target_count": 2,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.ga",
+      "value": {
+        "label": "가"
+      }
+    },
+    {
+      "ref": "obj.na",
+      "value": {
+        "label": "나"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "selected_container"
+  },
+  "method": "visual_comparison",
+  "plan": [
+    "그림에서 두 그릇의 물 높이를 비교한다.",
+    "물 높이가 더 높은 그릇을 선택한다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "가 그릇의 물 높이와 나 그릇의 물 높이를 비교한다.",
+      "value": "가가 더 높아 보임"
+    },
+    {
+      "id": "step.2",
+      "expr": "더 많은 물이 들어가는 쪽을 선택한다.",
+      "value": "가"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "선택 결과가 그림의 물 높이 비교와 일치하는가",
+      "expected": "가",
+      "actual": "가",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "selected_container",
+      "description": "더 많은 물이 들어가는 그릇"
+    },
+    "value": "가",
+    "unit": ""
+  },
+  "understanding": {
+    "summary": "Find 더 많은 물이 들어가는 그릇 using the given information.",
+    "facts": [
+      {
+        "ref": "obj.ga",
+        "label": "ga",
+        "value": {
+          "label": "가"
+        },
+        "unit": "",
+        "source": "explicit"
+      },
+      {
+        "ref": "obj.na",
+        "label": "na",
+        "value": {
+          "label": "나"
+        },
+        "unit": "",
+        "source": "explicit"
+      }
+    ],
+    "unknowns": [
+      {
+        "ref": "answer.target",
+        "label": "더 많은 물이 들어가는 그릇",
+        "unit": "",
+        "source": "unknown"
+      }
+    ],
+    "relation": {
+      "type": "visual_comparison",
+      "statement": "그림에서 두 그릇의 물 높이를 비교한다.",
+      "symbolic": "가 그릇의 물 높이와 나 그릇의 물 높이를 비교한다.",
+      "uses": [
+        "obj.ga",
+        "obj.na"
+      ],
+      "result": "answer.target"
+    },
+    "diagnostic_questions": [
+      {
+        "id": "understand.target",
+        "type": "multiple_choice",
+        "prompt": "What should we find?",
+        "choices": [
+          "ga",
+          "na",
+          "더 많은 물이 들어가는 그릇"
+        ],
+        "answer_index": 2
+      }
+    ]
+  }
+}

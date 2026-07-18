@@ -1,0 +1,289 @@
+{
+  "schema": "modu.solvable.v1.2",
+  "problem_id": "P3_1_01_00040_02156",
+  "problem_type": "stepwise_vertical_addition_with_carrying",
+  "inputs": {
+    "target_label": "554와 269의 합",
+    "unit": "",
+    "quantities": {
+      "first_addend": 554,
+      "second_addend": 269
+    },
+    "conditions": [
+      "같은 자리의 숫자끼리 맞추어 더합니다.",
+      "일의 자리부터 차례대로 계산합니다.",
+      "각 자리의 합이 10 이상이면 바로 윗자리로 1을 받아올림합니다."
+    ]
+  },
+  "given": [
+    {
+      "ref": "number.554",
+      "value": 554
+    },
+    {
+      "ref": "number.269",
+      "value": 269
+    }
+  ],
+  "target": {
+    "ref": "answer.total",
+    "type": "sum"
+  },
+  "understanding": {
+    "summary": "554와 269를 세로셈으로 더하면서 받아올림을 반영해 합을 구하는 문제입니다.",
+    "facts": [
+      {
+        "ref": "number.554",
+        "label": "첫 번째 수",
+        "value": 554,
+        "unit": "",
+        "source": "explicit"
+      },
+      {
+        "ref": "number.269",
+        "label": "두 번째 수",
+        "value": 269,
+        "unit": "",
+        "source": "explicit"
+      },
+      {
+        "ref": "rule.carrying",
+        "label": "받아올림",
+        "value": "각 자리의 합이 10 이상이면 십의 자리 숫자는 바로 윗자리로 올립니다.",
+        "unit": "",
+        "source": "inferred"
+      }
+    ],
+    "unknowns": [
+      {
+        "ref": "answer.total",
+        "label": "554와 269의 합",
+        "unit": "",
+        "source": "unknown"
+      }
+    ],
+    "relation": {
+      "type": "place_value_addition",
+      "statement": "일의 자리, 십의 자리, 백의 자리 순서로 더하고 받아올림을 다음 자리에 더합니다.",
+      "symbolic": "554 + 269",
+      "uses": [
+        "number.554",
+        "number.269",
+        "rule.carrying"
+      ],
+      "result": "answer.total"
+    },
+    "diagnostic_questions": [
+      {
+        "id": "understand.target",
+        "type": "multiple_choice",
+        "prompt": "이 문제에서 구해야 하는 것은 무엇인가요?",
+        "choices": [
+          "554와 269의 합",
+          "554와 269의 차",
+          "두 수의 곱"
+        ],
+        "answer_index": 0
+      },
+      {
+        "id": "understand.start_place",
+        "type": "multiple_choice",
+        "prompt": "세로셈 덧셈은 어느 자리부터 계산하나요?",
+        "choices": [
+          "일의 자리",
+          "십의 자리",
+          "백의 자리"
+        ],
+        "answer_index": 0
+      }
+    ],
+    "student_restatement": {
+      "prompt": "문제의 뜻을 말해 볼까요?",
+      "template": "{a}와 {b}를 같은 자리끼리 맞추어 더하고 받아올림을 반영해 합을 구합니다.",
+      "answer": "554와 269를 같은 자리끼리 맞추어 더하고 받아올림을 반영해 합을 구합니다."
+    }
+  },
+  "method": "세로셈에서 같은 자리끼리 더하고 받아올림을 다음 자리에 더합니다.",
+  "plan": [
+    "일의 자리 4와 9를 더해 일의 자리 숫자와 받아올림을 정합니다.",
+    "십의 자리 5와 6에 받아올림 1을 더해 십의 자리 숫자와 받아올림을 정합니다.",
+    "백의 자리 5와 2에 받아올림 1을 더해 백의 자리 숫자를 정합니다.",
+    "각 자리 숫자를 모아 합을 완성합니다."
+  ],
+  "steps": [
+    {
+      "id": "step.ones",
+      "goal": "일의 자리를 계산합니다.",
+      "uses": [
+        "number.554",
+        "number.269"
+      ],
+      "expr": "4 + 9",
+      "value": 13,
+      "explanation": "일의 자리에서 4 + 9 = 13이므로 3을 쓰고 1을 십의 자리로 받아올림합니다."
+    },
+    {
+      "id": "step.tens",
+      "goal": "십의 자리를 계산합니다.",
+      "uses": [
+        "number.554",
+        "number.269",
+        "step.ones"
+      ],
+      "expr": "5 + 6 + 1",
+      "value": 12,
+      "explanation": "십의 자리에서 5 + 6에 받아올림 1을 더하면 12이므로 2를 쓰고 1을 백의 자리로 받아올림합니다."
+    },
+    {
+      "id": "step.hundreds",
+      "goal": "백의 자리를 계산합니다.",
+      "uses": [
+        "number.554",
+        "number.269",
+        "step.tens"
+      ],
+      "expr": "5 + 2 + 1",
+      "value": 8,
+      "explanation": "백의 자리에서 5 + 2에 받아올림 1을 더하면 8입니다."
+    },
+    {
+      "id": "step.total",
+      "goal": "합을 완성합니다.",
+      "uses": [
+        "step.ones",
+        "step.tens",
+        "step.hundreds"
+      ],
+      "expr": "554 + 269",
+      "value": 823,
+      "explanation": "백의 자리부터 8, 2, 3을 차례로 쓰면 554 + 269 = 823입니다."
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.subtract",
+      "description": "합 823에서 269를 빼면 554가 되는지 확인합니다.",
+      "expr": "823 - 269",
+      "expected": 554,
+      "actual": 554,
+      "pass": true
+    },
+    {
+      "id": "check.estimate",
+      "description": "554 + 269는 550 + 270과 가까우므로 823은 알맞은 크기의 답입니다.",
+      "expr": "550 + 270",
+      "expected": 820,
+      "actual": 820,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [
+      {
+        "id": "answer.stage1.carry",
+        "type": "digit",
+        "value": 1
+      },
+      {
+        "id": "answer.stage1.ones",
+        "type": "digit",
+        "value": 3
+      },
+      {
+        "id": "answer.stage2.carry_hundreds",
+        "type": "digit",
+        "value": 1
+      },
+      {
+        "id": "answer.stage2.carry_tens",
+        "type": "digit",
+        "value": 1
+      },
+      {
+        "id": "answer.stage2.tens",
+        "type": "digit",
+        "value": 2
+      },
+      {
+        "id": "answer.stage2.ones",
+        "type": "digit",
+        "value": 3
+      },
+      {
+        "id": "answer.stage3.carry_hundreds",
+        "type": "digit",
+        "value": 1
+      },
+      {
+        "id": "answer.stage3.carry_tens",
+        "type": "digit",
+        "value": 1
+      },
+      {
+        "id": "answer.stage3.hundreds",
+        "type": "digit",
+        "value": 8
+      },
+      {
+        "id": "answer.stage3.tens",
+        "type": "digit",
+        "value": 2
+      },
+      {
+        "id": "answer.stage3.ones",
+        "type": "digit",
+        "value": 3
+      }
+    ],
+    "choices": [],
+    "answer_key": [
+      {
+        "blank_id": "answer.stage1.carry",
+        "value": 1
+      },
+      {
+        "blank_id": "answer.stage1.ones",
+        "value": 3
+      },
+      {
+        "blank_id": "answer.stage2.carry_hundreds",
+        "value": 1
+      },
+      {
+        "blank_id": "answer.stage2.carry_tens",
+        "value": 1
+      },
+      {
+        "blank_id": "answer.stage2.tens",
+        "value": 2
+      },
+      {
+        "blank_id": "answer.stage2.ones",
+        "value": 3
+      },
+      {
+        "blank_id": "answer.stage3.carry_hundreds",
+        "value": 1
+      },
+      {
+        "blank_id": "answer.stage3.carry_tens",
+        "value": 1
+      },
+      {
+        "blank_id": "answer.stage3.hundreds",
+        "value": 8
+      },
+      {
+        "blank_id": "answer.stage3.tens",
+        "value": 2
+      },
+      {
+        "blank_id": "answer.stage3.ones",
+        "value": 3
+      }
+    ],
+    "value": 823,
+    "unit": "",
+    "sentence": "554와 269의 합은 823입니다."
+  }
+}

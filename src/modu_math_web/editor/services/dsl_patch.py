@@ -590,6 +590,31 @@ def _save_editor_slot_override(paths: Any, target: str, fields: dict[str, Any]) 
     path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
+def _save_editor_canvas_override(paths: Any, fields: dict[str, Any]) -> None:
+    invalid = sorted(set(fields) - CANVAS_FIELDS)
+    if invalid:
+        raise DslPatchError(f"unsupported canvas override field(s): {', '.join(invalid)}")
+    path = _editor_overrides_path(paths)
+    data: dict[str, Any] = {}
+    if path.exists():
+        loaded = json.loads(path.read_text(encoding="utf-8-sig"))
+        if isinstance(loaded, dict):
+            data = loaded
+    canvas = data.setdefault("canvas", {})
+    if not isinstance(canvas, dict):
+        canvas = {}
+        data["canvas"] = canvas
+    for key, value in fields.items():
+        if value is None:
+            canvas.pop(key, None)
+        else:
+            canvas[key] = value
+    if not canvas:
+        data.pop("canvas", None)
+    data["version"] = 1
+    path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+
 def _save_editor_slot_delete(paths: Any, target: str) -> None:
     path = _editor_overrides_path(paths)
     data: dict[str, Any] = {}
@@ -608,6 +633,63 @@ def _save_editor_slot_delete(paths: Any, target: str) -> None:
         slots.pop(target, None)
     data["version"] = 1
     path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+
+def _try_apply_fast_editor_overrides(paths: Any, patches: list[dict[str, Any]]) -> list[AppliedPatch] | None:
+    actions: list[tuple[str, str, dict[str, Any] | list[Any] | None]] = []
+    applied: list[AppliedPatch] = []
+
+    for patch in patches:
+        target = patch.get("target")
+        op = patch.get("op")
+        value = patch.get("value")
+        if not isinstance(target, str) or not target:
+            raise DslPatchError("patch target must be a non-empty string")
+
+        if op == "delete":
+            actions.append((op, target, None))
+            applied.append(AppliedPatch(target=target, op=op, fields=[]))
+            continue
+
+        if op == "layer":
+            if not isinstance(value, dict):
+                raise DslPatchError("patch value must be an object")
+            region_id = value.get("region_id")
+            slot_ids = value.get("slot_ids")
+            if not isinstance(region_id, str) or not isinstance(slot_ids, list):
+                raise DslPatchError("layer patch requires value.region_id and value.slot_ids")
+            actions.append((op, region_id, slot_ids))
+            applied.append(AppliedPatch(target=target, op=op, fields=["region_id", "slot_ids"]))
+            continue
+
+        if op != "update":
+            return None
+        if not isinstance(value, dict):
+            raise DslPatchError("patch value must be an object")
+
+        if target in CANVAS_TARGETS:
+            if not set(value).issubset(CANVAS_FIELDS):
+                return None
+            actions.append(("canvas", target, value))
+            applied.append(AppliedPatch(target="__canvas__", op=op, fields=list(value.keys())))
+            continue
+
+        if not set(value).issubset(EDITOR_OVERRIDE_FIELDS):
+            return None
+        actions.append((op, target, value))
+        applied.append(AppliedPatch(target=target, op=op, fields=list(value.keys())))
+
+    for op, target, value in actions:
+        if op == "delete":
+            _save_editor_slot_delete(paths, target)
+        elif op == "layer":
+            _save_editor_region_slot_order(paths, target, value if isinstance(value, list) else [])
+        elif op == "canvas":
+            _save_editor_canvas_override(paths, value if isinstance(value, dict) else {})
+        else:
+            _save_editor_slot_override(paths, target, value if isinstance(value, dict) else {})
+
+    return applied
 
 
 def _clear_editor_slot_delete(paths: Any, target: str) -> None:
@@ -1447,6 +1529,11 @@ def apply_layout_patches(
     source = paths.dsl_path.read_text(encoding="utf-8")
     if not source.strip():
         raise DslPatchError("DSL file is empty; restore or save a valid DSL before editing layout")
+
+    fast_applied = _try_apply_fast_editor_overrides(paths, patches)
+    if fast_applied is not None:
+        return source, fast_applied
+
     try:
         module = cst.parse_module(source)
     except cst.ParserSyntaxError as exc:

@@ -1,0 +1,132 @@
+{
+  "schema": "modu.solvable.v1.2",
+  "problem_id": "S3_초등_3_008767",
+  "problem_type": "단위 식별",
+  "inputs": {
+    "total_ticks": 2,
+    "target_label": "무게의 단위",
+    "target_ticks": 2,
+    "target_count": 2,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.cherry_box",
+      "value": {
+        "name": "체리 상자",
+        "unit_mark": "kg"
+      }
+    },
+    {
+      "ref": "obj.beef_pack",
+      "value": {
+        "name": "소고기 팩",
+        "unit_mark": "g"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "unit_selection"
+  },
+  "method": "단위 식별",
+  "plan": [
+    "각 물체에 적힌 단위 표기를 읽는다.",
+    "체리 상자와 소고기 팩의 단위를 각각 고른다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "체리 상자에 적힌 단위 읽기",
+      "value": "kg"
+    },
+    {
+      "id": "step.2",
+      "expr": "소고기 팩에 적힌 단위 읽기",
+      "value": "g"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "체리 상자 단위가 kg인지 확인",
+      "expected": "kg",
+      "actual": "kg",
+      "pass": true
+    },
+    {
+      "id": "check.2",
+      "expr": "소고기 팩 단위가 g인지 확인",
+      "expected": "g",
+      "actual": "g",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "unit_selection",
+      "description": "체리 상자와 소고기 팩에 표시된 단위를 고르기"
+    },
+    "value": "kg g",
+    "unit": ""
+  },
+  "understanding": {
+    "summary": "Find 무게의 단위 using the given information.",
+    "facts": [
+      {
+        "ref": "obj.cherry_box",
+        "label": "cherry box",
+        "value": {
+          "name": "체리 상자",
+          "unit_mark": "kg"
+        },
+        "unit": "",
+        "source": "explicit"
+      },
+      {
+        "ref": "obj.beef_pack",
+        "label": "beef pack",
+        "value": {
+          "name": "소고기 팩",
+          "unit_mark": "g"
+        },
+        "unit": "",
+        "source": "explicit"
+      }
+    ],
+    "unknowns": [
+      {
+        "ref": "answer.target",
+        "label": "무게의 단위",
+        "unit": "",
+        "source": "unknown"
+      }
+    ],
+    "relation": {
+      "type": "단위 식별",
+      "statement": "각 물체에 적힌 단위 표기를 읽는다.",
+      "symbolic": "체리 상자에 적힌 단위 읽기",
+      "uses": [
+        "obj.cherry_box",
+        "obj.beef_pack"
+      ],
+      "result": "answer.target"
+    },
+    "diagnostic_questions": [
+      {
+        "id": "understand.target",
+        "type": "multiple_choice",
+        "prompt": "What should we find?",
+        "choices": [
+          "cherry box",
+          "beef pack",
+          "무게의 단위"
+        ],
+        "answer_index": 2
+      }
+    ]
+  }
+}

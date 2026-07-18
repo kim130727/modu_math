@@ -1,0 +1,125 @@
+{
+  "schema": "modu.solvable.v1.2",
+  "problem_id": "S3_초등_3_008777",
+  "problem_type": "unit_selection",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "주전자의 들이에 알맞은 단위",
+    "target_ticks": 0,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.kettle",
+      "value": {
+        "name": "주전자"
+      }
+    },
+    {
+      "ref": "obj.quantity",
+      "value": {
+        "value": 1,
+        "unit_candidates": [
+          "mL",
+          "L"
+        ]
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "unit"
+  },
+  "method": "unit_selection",
+  "plan": [
+    "대상의 들이 크기를 보고 알맞은 단위를 고른다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "주전자의 들이 단위 후보를 확인한다.",
+      "value": [
+        "mL",
+        "L"
+      ]
+    },
+    {
+      "id": "step.2",
+      "expr": "주전자에 알맞은 단위를 선택한다.",
+      "value": "L"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "문장과 해설에 제시된 단위가 일치하는지 확인한다.",
+      "expected": "L",
+      "actual": "L",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "unit",
+      "description": "주전자의 들이에 알맞은 단위"
+    },
+    "value": "L",
+    "unit": ""
+  },
+  "understanding": {
+    "summary": "Find 주전자의 들이에 알맞은 단위 using the given information.",
+    "facts": [
+      {
+        "ref": "obj.kettle",
+        "label": "kettle",
+        "value": {
+          "name": "주전자"
+        },
+        "unit": "",
+        "source": "explicit"
+      },
+      {
+        "ref": "obj.quantity",
+        "label": "quantity",
+        "value": 1,
+        "unit": "",
+        "source": "explicit"
+      }
+    ],
+    "unknowns": [
+      {
+        "ref": "answer.target",
+        "label": "주전자의 들이에 알맞은 단위",
+        "unit": "",
+        "source": "unknown"
+      }
+    ],
+    "relation": {
+      "type": "unit_selection",
+      "statement": "대상의 들이 크기를 보고 알맞은 단위를 고른다.",
+      "symbolic": "주전자의 들이 단위 후보를 확인한다.",
+      "uses": [
+        "obj.kettle",
+        "obj.quantity"
+      ],
+      "result": "answer.target"
+    },
+    "diagnostic_questions": [
+      {
+        "id": "understand.target",
+        "type": "multiple_choice",
+        "prompt": "What should we find?",
+        "choices": [
+          "kettle",
+          "quantity",
+          "주전자의 들이에 알맞은 단위"
+        ],
+        "answer_index": 2
+      }
+    ]
+  }
+}

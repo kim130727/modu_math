@@ -20,6 +20,8 @@ interface TutorPreviewPanelProps {
   renderer: RendererDocument | null;
   tutorFrameIndex?: number;
   tutorFrameCount?: number;
+  saveStatus: "saved" | "saving" | "unsaved" | "building" | "built" | "error";
+  message: string;
   onTutorFrameChange?: (frameIndex: number) => void;
   onTutorStepChange?: (stepId: string | null) => void;
 }
@@ -33,6 +35,8 @@ export function TutorPreviewPanel({
   renderer,
   tutorFrameIndex = 0,
   tutorFrameCount = 0,
+  saveStatus,
+  message,
   onTutorFrameChange,
   onTutorStepChange,
 }: TutorPreviewPanelProps) {
@@ -137,7 +141,12 @@ export function TutorPreviewPanel({
     <section className="konva-tutor-panel" aria-label="Rule tutor preview">
       <div className="konva-tutor-head">
         <div>
-          <div className="panel-title compact">Rule Tutor Preview</div>
+          <div className="panel-title compact konva-panel-title-with-status">
+            <span>Rule Tutor Preview</span>
+            <span className={`konva-save-status ${saveStatus}`} aria-live="polite">
+              {statusLabel(saveStatus)}
+            </span>
+          </div>
           <div className="konva-tutor-subtitle">
             {mode === "rule" ? "solvable JSON 기반 선택형 진행" : mode === "openai" ? `${model || "OpenAI"} 실전 응답` : "Mock 빠른 점검"}
           </div>
@@ -166,6 +175,10 @@ export function TutorPreviewPanel({
             음성
           </button>
         </div>
+      </div>
+
+      <div className={saveStatus === "error" ? "problem-list-error" : "panel-message"} aria-live="polite">
+        {message}
       </div>
 
       <div className="konva-tutor-actions">
@@ -346,4 +359,13 @@ function formatTutorText(text: string): string {
     .filter(Boolean)
     .slice(0, 4)
     .join("\n");
+}
+
+function statusLabel(saveStatus: TutorPreviewPanelProps["saveStatus"]): string {
+  if (saveStatus === "saving") return "Saving...";
+  if (saveStatus === "unsaved") return "Unsaved";
+  if (saveStatus === "building") return "Building...";
+  if (saveStatus === "built") return "Build complete";
+  if (saveStatus === "error") return "Error";
+  return "Saved";
 }

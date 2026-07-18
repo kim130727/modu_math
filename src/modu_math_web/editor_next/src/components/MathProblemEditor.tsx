@@ -381,7 +381,7 @@ export function MathProblemEditor() {
 
     setLoadMessage(`Saving ${patches.length} patch(es) to DSL...`);
     try {
-      const response = await applyLayoutPatches(nextProblem.id, patches, { format: true });
+      const response = await applyLayoutPatches(nextProblem.id, patches, { format: false });
       setBaseProblemJson(nextProblem);
       setLoadMessage(`Saved to DSL: ${response.applied.length} patch(es). Rebuild to refresh artifacts.`);
       // TODO: optionally call layout-patch-and-build after save when the UI has an explicit Build toggle.

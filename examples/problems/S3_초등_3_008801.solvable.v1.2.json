@@ -1,0 +1,136 @@
+{
+  "schema": "modu.solvable.v1.2",
+  "problem_id": "S3_초등_3_008801",
+  "problem_type": "multiple_choice",
+  "inputs": {
+    "total_ticks": 3,
+    "target_label": "무게를 비교하는 데 사용할 수 있는 단위",
+    "target_ticks": 2,
+    "target_count": 2,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.clip",
+      "value": {
+        "name": "클립"
+      }
+    },
+    {
+      "ref": "obj.watermelon",
+      "value": {
+        "name": "수박"
+      }
+    },
+    {
+      "ref": "obj.coin100",
+      "value": {
+        "name": "100원 동전"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "selected_units"
+  },
+  "plan": [
+    "무게를 비교하는 데 알맞은 물체인지 판단한다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "선택지 3개를 확인한다",
+      "value": 3
+    },
+    {
+      "id": "step.2",
+      "expr": "무게 비교에 적절한 작은 단위인지 판단한다",
+      "value": "클립, 100원 동전"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "정답 예시와 일치하는지 확인",
+      "expected": "클립, 100원 동전",
+      "actual": "클립, 100원 동전",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "selected_units",
+      "description": "무게를 비교하는 데 사용할 수 있는 단위"
+    },
+    "value": "1번 클립, 3번 100원 동전",
+    "unit": ""
+  },
+  "understanding": {
+    "summary": "Find 무게를 비교하는 데 사용할 수 있는 단위 using the given information.",
+    "facts": [
+      {
+        "ref": "obj.clip",
+        "label": "clip",
+        "value": {
+          "name": "클립"
+        },
+        "unit": "",
+        "source": "explicit"
+      },
+      {
+        "ref": "obj.watermelon",
+        "label": "watermelon",
+        "value": {
+          "name": "수박"
+        },
+        "unit": "",
+        "source": "explicit"
+      },
+      {
+        "ref": "obj.coin100",
+        "label": "coin100",
+        "value": {
+          "name": "100원 동전"
+        },
+        "unit": "",
+        "source": "explicit"
+      }
+    ],
+    "unknowns": [
+      {
+        "ref": "answer.target",
+        "label": "무게를 비교하는 데 사용할 수 있는 단위",
+        "unit": "",
+        "source": "unknown"
+      }
+    ],
+    "relation": {
+      "type": "multiple_choice",
+      "statement": "무게를 비교하는 데 알맞은 물체인지 판단한다.",
+      "symbolic": "선택지 3개를 확인한다",
+      "uses": [
+        "obj.clip",
+        "obj.watermelon",
+        "obj.coin100"
+      ],
+      "result": "answer.target"
+    },
+    "diagnostic_questions": [
+      {
+        "id": "understand.target",
+        "type": "multiple_choice",
+        "prompt": "What should we find?",
+        "choices": [
+          "clip",
+          "watermelon",
+          "무게를 비교하는 데 사용할 수 있는 단위"
+        ],
+        "answer_index": 2
+      }
+    ]
+  },
+  "method": "multiple_choice"
+}

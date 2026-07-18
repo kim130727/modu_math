@@ -1,0 +1,212 @@
+{
+  "schema": "modu.solvable.v1.2",
+  "problem_id": "P3_1_01_00040_02162",
+  "problem_type": "multi_numeric_answer_addition",
+  "inputs": {
+    "target_label": "각 덧셈의 계산 결과",
+    "unit": "",
+    "quantities": {
+      "problem_1": {
+        "addends": [
+          235,
+          486
+        ]
+      },
+      "problem_2": {
+        "addends": [
+          529,
+          898
+        ]
+      }
+    },
+    "conditions": [
+      "같은 자리의 숫자끼리 맞추어 더합니다.",
+      "일의 자리부터 차례대로 계산합니다.",
+      "각 자리의 합이 10 이상이면 바로 윗자리로 1을 받아올림합니다."
+    ]
+  },
+  "given": [
+    {
+      "ref": "calculation.1",
+      "value": {
+        "addends": [
+          235,
+          486
+        ]
+      }
+    },
+    {
+      "ref": "calculation.2",
+      "value": {
+        "addends": [
+          529,
+          898
+        ]
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.all",
+    "type": "addition_results"
+  },
+  "understanding": {
+    "summary": "두 개의 세 자리 수 덧셈을 계산해 각각의 답을 구하는 문제입니다.",
+    "facts": [
+      {
+        "ref": "calculation.1",
+        "label": "첫 번째 덧셈식",
+        "value": "235 + 486",
+        "unit": "",
+        "source": "explicit"
+      },
+      {
+        "ref": "calculation.2",
+        "label": "두 번째 덧셈식",
+        "value": "529 + 898",
+        "unit": "",
+        "source": "explicit"
+      }
+    ],
+    "unknowns": [
+      {
+        "ref": "answer.1",
+        "label": "235 + 486의 계산 결과",
+        "unit": "",
+        "source": "unknown"
+      },
+      {
+        "ref": "answer.2",
+        "label": "529 + 898의 계산 결과",
+        "unit": "",
+        "source": "unknown"
+      }
+    ],
+    "relation": {
+      "type": "place_value_addition",
+      "statement": "일의 자리부터 더하고, 합이 10 이상이면 받아올림하여 다음 자리 계산에 더합니다.",
+      "symbolic": "ones -> tens -> hundreds -> thousands",
+      "uses": [
+        "calculation.1",
+        "calculation.2"
+      ],
+      "result": "answer.all"
+    },
+    "diagnostic_questions": [
+      {
+        "id": "understand.target",
+        "type": "multiple_choice",
+        "prompt": "이 문제에서 구해야 하는 것은 무엇인가요?",
+        "choices": [
+          "각 덧셈식의 계산 결과",
+          "두 수의 차",
+          "가장 큰 수"
+        ],
+        "answer_index": 0
+      },
+      {
+        "id": "understand.method",
+        "type": "multiple_choice",
+        "prompt": "세 자리 수 덧셈은 어느 자리부터 계산하나요?",
+        "choices": [
+          "일의 자리",
+          "백의 자리",
+          "가장 큰 숫자가 있는 자리"
+        ],
+        "answer_index": 0
+      }
+    ],
+    "student_restatement": {
+      "prompt": "문제의 뜻을 말해 볼까요?",
+      "template": "두 덧셈식 {exprs}의 값을 각각 계산합니다.",
+      "answer": "235 + 486과 529 + 898을 각각 계산합니다."
+    }
+  },
+  "method": "같은 자리끼리 맞추어 일의 자리부터 더하고, 받아올림을 반영해 계산합니다.",
+  "plan": [
+    "각 덧셈식의 숫자를 같은 자리끼리 맞춥니다.",
+    "일의 자리부터 차례로 더합니다.",
+    "합이 10 이상이면 받아올림을 다음 자리 계산에 더합니다.",
+    "각 덧셈식의 결과를 답으로 씁니다."
+  ],
+  "steps": [
+    {
+      "id": "step.problem_1",
+      "goal": "235 + 486을 계산합니다.",
+      "uses": [
+        "calculation.1"
+      ],
+      "expr": "235 + 486",
+      "value": {
+        "sum": 721,
+        "ref": "answer.1"
+      },
+      "explanation": "일의 자리 5 + 6 = 11에서 1을 쓰고 1을 받아올림합니다. 십의 자리 3 + 8 + 1 = 12에서 2를 쓰고 1을 받아올림합니다. 백의 자리 2 + 4 + 1 = 7이므로 235 + 486 = 721입니다."
+    },
+    {
+      "id": "step.problem_2",
+      "goal": "529 + 898을 계산합니다.",
+      "uses": [
+        "calculation.2"
+      ],
+      "expr": "529 + 898",
+      "value": {
+        "sum": 1427,
+        "ref": "answer.2"
+      },
+      "explanation": "일의 자리 9 + 8 = 17에서 7을 쓰고 1을 받아올림합니다. 십의 자리 2 + 9 + 1 = 12에서 2를 쓰고 1을 받아올림합니다. 백의 자리 5 + 8 + 1 = 14이므로 529 + 898 = 1427입니다."
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.problem_1",
+      "description": "721에서 486을 빼면 235가 되는지 확인합니다.",
+      "expr": "721 - 486",
+      "expected": 235,
+      "actual": 235,
+      "pass": true
+    },
+    {
+      "id": "check.problem_2",
+      "description": "1427에서 898을 빼면 529가 되는지 확인합니다.",
+      "expr": "1427 - 898",
+      "expected": 529,
+      "actual": 529,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [
+      {
+        "id": "slot.answer_1",
+        "type": "number",
+        "value": 721,
+        "unit": ""
+      },
+      {
+        "id": "slot.answer_2",
+        "type": "number",
+        "value": 1427,
+        "unit": ""
+      }
+    ],
+    "choices": [],
+    "answer_key": [
+      {
+        "blank_id": "slot.answer_1",
+        "value": 721,
+        "unit": ""
+      },
+      {
+        "blank_id": "slot.answer_2",
+        "value": 1427,
+        "unit": ""
+      }
+    ],
+    "value": [
+      721,
+      1427
+    ],
+    "unit": "",
+    "sentence": "(1) 721, (2) 1427입니다."
+  }
+}

@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 import re
+import time
 from dataclasses import dataclass
 from pathlib import Path, PurePosixPath
 from typing import Any
@@ -18,6 +19,9 @@ ARTIFACT_FILES = {
     "renderer": ".renderer.json",
     "svg": ".svg",
 }
+
+_PROBLEM_LIST_CACHE_TTL_SECONDS = 5.0
+_PROBLEM_LIST_CACHE: dict[bool, tuple[float, list[dict[str, Any]]]] = {}
 
 
 BLANK_PROBLEM_DSL = '''from __future__ import annotations
@@ -439,53 +443,58 @@ def _rewrite_svg_asset_hrefs(svg: str | None, paths: ProblemPaths) -> str | None
     )
 
 
-def list_problem_directories() -> list[dict[str, Any]]:
+def invalidate_problem_list_cache() -> None:
+    _PROBLEM_LIST_CACHE.clear()
+
+
+def list_problem_directories(*, include_artifacts: bool = False) -> list[dict[str, Any]]:
+    now = time.monotonic()
+    cached = _PROBLEM_LIST_CACHE.get(include_artifacts)
+    if cached and now - cached[0] < _PROBLEM_LIST_CACHE_TTL_SECONDS:
+        return [dict(problem) for problem in cached[1]]
+
     problems: list[dict[str, Any]] = []
     for alias, root in problem_roots():
         if not root.exists():
             continue
-        for dsl_path in sorted(root.rglob("problem.dsl.py")):
-            child = dsl_path.parent
-            artifact_base = "problem"
-            solvable_path = _find_solvable_path(child, artifact_base)
-            relative_id = child.relative_to(root).as_posix()
-            problems.append(
-                {
-                    "problem_id": _display_problem_id(alias, relative_id),
-                    "root": alias or "problems",
-                    "path": str(child.relative_to(root.parent)).replace("\\", "/"),
-                    "has_input_png": (child / "input.png").exists(),
-                    "has_dsl": True,
-                    "has_semantic": (child / f"{artifact_base}{ARTIFACT_FILES['semantic']}").exists(),
-                    "has_solvable": solvable_path is not None,
-                    "has_layout": (child / f"{artifact_base}{ARTIFACT_FILES['layout']}").exists(),
-                    "has_renderer": (child / f"{artifact_base}{ARTIFACT_FILES['renderer']}").exists(),
-                    "has_svg": (child / f"{artifact_base}{ARTIFACT_FILES['svg']}").exists(),
-                }
-            )
-
         for dsl_path in sorted(root.rglob("*.dsl.py")):
-            if dsl_path.name == "problem.dsl.py":
-                continue
             child = dsl_path.parent
-            artifact_base = dsl_path.name[: -len(".dsl.py")]
-            solvable_path = _find_solvable_path(child, artifact_base)
-            relative_id = dsl_path.relative_to(root).as_posix()
+            if dsl_path.name == "problem.dsl.py":
+                artifact_base = "problem"
+                relative_id = child.relative_to(root).as_posix()
+            else:
+                artifact_base = dsl_path.name[: -len(".dsl.py")]
+                relative_id = dsl_path.relative_to(root).as_posix()
+            problem = {
+                "problem_id": _display_problem_id(alias, relative_id),
+                "root": alias or "problems",
+                "path": str(child.relative_to(root.parent)).replace("\\", "/"),
+                "has_input_png": False,
+                "has_dsl": True,
+                "has_semantic": False,
+                "has_solvable": False,
+                "has_layout": False,
+                "has_renderer": False,
+                "has_svg": False,
+            }
+            if include_artifacts:
+                solvable_path = _find_solvable_path(child, artifact_base)
+                problem.update(
+                    {
+                        "has_input_png": (child / "input.png").exists(),
+                        "has_semantic": (child / f"{artifact_base}{ARTIFACT_FILES['semantic']}").exists(),
+                        "has_solvable": solvable_path is not None,
+                        "has_layout": (child / f"{artifact_base}{ARTIFACT_FILES['layout']}").exists(),
+                        "has_renderer": (child / f"{artifact_base}{ARTIFACT_FILES['renderer']}").exists(),
+                        "has_svg": (child / f"{artifact_base}{ARTIFACT_FILES['svg']}").exists(),
+                    }
+                )
             problems.append(
-                {
-                    "problem_id": _display_problem_id(alias, relative_id),
-                    "root": alias or "problems",
-                    "path": str(child.relative_to(root.parent)).replace("\\", "/"),
-                    "has_input_png": (child / "input.png").exists(),
-                    "has_dsl": True,
-                    "has_semantic": (child / f"{artifact_base}{ARTIFACT_FILES['semantic']}").exists(),
-                    "has_solvable": solvable_path is not None,
-                    "has_layout": (child / f"{artifact_base}{ARTIFACT_FILES['layout']}").exists(),
-                    "has_renderer": (child / f"{artifact_base}{ARTIFACT_FILES['renderer']}").exists(),
-                    "has_svg": (child / f"{artifact_base}{ARTIFACT_FILES['svg']}").exists(),
-                }
+                problem
             )
-    return sorted(problems, key=lambda p: p["problem_id"])
+    result = sorted(problems, key=lambda p: p["problem_id"])
+    _PROBLEM_LIST_CACHE[include_artifacts] = (now, result)
+    return [dict(problem) for problem in result]
 
 
 def read_problem_detail(problem_id: str) -> dict[str, Any]:
@@ -540,14 +549,14 @@ def create_blank_problem(problem_id: str, title: str | None = None) -> dict[str,
         BLANK_PROBLEM_DSL.format(problem_id=template_problem_id, title=clean_title),
         encoding="utf-8",
     )
+    invalidate_problem_list_cache()
     return read_problem_detail(display_id)
 
 
 def save_problem_dsl(problem_id: str, dsl: str) -> tuple[ProblemPaths, str]:
     paths = resolve_problem_paths(problem_id)
-    formatted = format_dsl_source(dsl)
-    paths.dsl_path.write_text(formatted, encoding="utf-8")
-    return paths, formatted
+    paths.dsl_path.write_text(dsl, encoding="utf-8")
+    return paths, dsl
 
 
 def format_problem_dsl(problem_id: str) -> tuple[ProblemPaths, str]:

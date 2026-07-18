@@ -1,0 +1,262 @@
+{
+  "schema": "modu.solvable.v1.2",
+  "problem_id": "P3_1_01_00040_02163",
+  "problem_type": "multi_missing_digit_addition",
+  "inputs": {
+    "target_label": "각 빈칸에 들어갈 숫자",
+    "unit": "",
+    "quantities": {
+      "problem_1": {
+        "expression_pattern": "653 + 2□8 = □31"
+      },
+      "problem_2": {
+        "expression_pattern": "□25 + 3□9 = 804"
+      }
+    },
+    "conditions": [
+      "각 □에는 0부터 9까지의 숫자 하나가 들어갑니다.",
+      "같은 자리끼리 더합니다.",
+      "각 자리의 합이 10 이상이면 바로 윗자리로 1을 받아올림합니다."
+    ]
+  },
+  "given": [
+    {
+      "ref": "calculation.1",
+      "value": {
+        "expression_pattern": "653 + 2□8 = □31"
+      }
+    },
+    {
+      "ref": "calculation.2",
+      "value": {
+        "expression_pattern": "□25 + 3□9 = 804"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.all_blanks",
+    "type": "missing_digits"
+  },
+  "understanding": {
+    "summary": "세로 덧셈의 각 자리 계산과 받아올림을 이용하여 네 개의 빈칸에 들어갈 숫자를 찾는 문제입니다.",
+    "facts": [
+      {
+        "ref": "calculation.1",
+        "label": "첫 번째 덧셈",
+        "value": "653 + 2□8 = □31",
+        "unit": "",
+        "source": "explicit"
+      },
+      {
+        "ref": "calculation.2",
+        "label": "두 번째 덧셈",
+        "value": "□25 + 3□9 = 804",
+        "unit": "",
+        "source": "explicit"
+      }
+    ],
+    "unknowns": [
+      {
+        "ref": "answer.problem_1.tens",
+        "label": "첫 번째 식의 아래 수 십의 자리",
+        "unit": "",
+        "source": "unknown"
+      },
+      {
+        "ref": "answer.problem_1.result_hundreds",
+        "label": "첫 번째 식의 결과 백의 자리",
+        "unit": "",
+        "source": "unknown"
+      },
+      {
+        "ref": "answer.problem_2.top_hundreds",
+        "label": "두 번째 식의 위 수 백의 자리",
+        "unit": "",
+        "source": "unknown"
+      },
+      {
+        "ref": "answer.problem_2.bottom_tens",
+        "label": "두 번째 식의 아래 수 십의 자리",
+        "unit": "",
+        "source": "unknown"
+      }
+    ],
+    "relation": {
+      "type": "column_addition_with_carry",
+      "statement": "일의 자리부터 계산하고, 받아올림을 다음 자리의 합에 포함하여 빈칸의 숫자를 찾습니다.",
+      "symbolic": "ones -> carry -> tens -> carry -> hundreds",
+      "uses": [
+        "calculation.1",
+        "calculation.2"
+      ],
+      "result": "answer.all_blanks"
+    },
+    "diagnostic_questions": [
+      {
+        "id": "understand.start_place",
+        "type": "multiple_choice",
+        "prompt": "빈칸이 있는 세로 덧셈은 어느 자리부터 살펴보는 것이 좋나요?",
+        "choices": [
+          "일의 자리",
+          "백의 자리",
+          "아무 자리"
+        ],
+        "answer_index": 0
+      },
+      {
+        "id": "understand.carry",
+        "type": "multiple_choice",
+        "prompt": "한 자리의 합이 10 이상이면 무엇을 해야 하나요?",
+        "choices": [
+          "다음 윗자리로 1을 받아올림한다.",
+          "그 자리의 계산을 생략한다.",
+          "항상 0을 쓴다."
+        ],
+        "answer_index": 0
+      }
+    ],
+    "student_restatement": {
+      "prompt": "문제의 뜻을 말해 볼까요?",
+      "template": "각 자리의 덧셈과 받아올림을 이용하여 {blank_count}개의 빈칸을 채웁니다.",
+      "answer": "각 자리의 덧셈과 받아올림을 이용하여 네 개의 빈칸에 알맞은 숫자를 씁니다."
+    }
+  },
+  "method": "일의 자리부터 같은 자리끼리 계산하고, 받아올림을 반영하여 빈칸의 숫자를 역으로 찾습니다.",
+  "plan": [
+    "각 식의 일의 자리 계산에서 받아올림이 있는지 확인합니다.",
+    "받아올림을 포함하여 십의 자리의 빈칸을 찾습니다.",
+    "십의 자리에서 생긴 받아올림을 포함하여 백의 자리의 빈칸을 찾습니다.",
+    "완성된 수를 원래 덧셈식에 넣어 검산합니다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "goal": "첫 번째 식의 아래 수 십의 자리 숫자를 찾습니다.",
+      "uses": [
+        "calculation.1"
+      ],
+      "expr": "5 + □ + 1 = 13",
+      "value": {
+        "digit": 7,
+        "ref": "answer.problem_1.tens"
+      },
+      "explanation": "일의 자리에서 3+8=11이므로 1을 받아올림합니다. 십의 자리 결과가 3이므로 5+□+1=13입니다. 따라서 빈칸은 7입니다."
+    },
+    {
+      "id": "step.2",
+      "goal": "첫 번째 식의 결과 백의 자리 숫자를 찾습니다.",
+      "uses": [
+        "calculation.1"
+      ],
+      "expr": "6 + 2 + 1 = 9",
+      "value": {
+        "digit": 9,
+        "ref": "answer.problem_1.result_hundreds"
+      },
+      "explanation": "십의 자리에서 5+7+1=13이므로 1을 받아올림합니다. 백의 자리에서 6+2+1=9이므로 결과의 백의 자리 빈칸은 9입니다."
+    },
+    {
+      "id": "step.3",
+      "goal": "두 번째 식의 아래 수 십의 자리 숫자를 찾습니다.",
+      "uses": [
+        "calculation.2"
+      ],
+      "expr": "2 + □ + 1 = 10",
+      "value": {
+        "digit": 7,
+        "ref": "answer.problem_2.bottom_tens"
+      },
+      "explanation": "일의 자리에서 5+9=14이므로 1을 받아올림합니다. 결과의 십의 자리가 0이므로 2+□+1=10입니다. 따라서 빈칸은 7입니다."
+    },
+    {
+      "id": "step.4",
+      "goal": "두 번째 식의 위 수 백의 자리 숫자를 찾습니다.",
+      "uses": [
+        "calculation.2"
+      ],
+      "expr": "□ + 3 + 1 = 8",
+      "value": {
+        "digit": 4,
+        "ref": "answer.problem_2.top_hundreds"
+      },
+      "explanation": "십의 자리에서 2+7+1=10이므로 1을 받아올림합니다. 백의 자리에서 □+3+1=8이므로 빈칸은 4입니다."
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "description": "첫 번째 식에 찾은 숫자를 넣으면 653+278=931이 됩니다.",
+      "expr": "653 + 278",
+      "expected": 931,
+      "actual": 931,
+      "pass": true
+    },
+    {
+      "id": "check.2",
+      "description": "두 번째 식에 찾은 숫자를 넣으면 425+379=804가 됩니다.",
+      "expr": "425 + 379",
+      "expected": 804,
+      "actual": 804,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [
+      {
+        "id": "answer.problem_1.tens",
+        "type": "digit",
+        "value": 7,
+        "unit": ""
+      },
+      {
+        "id": "answer.problem_1.result_hundreds",
+        "type": "digit",
+        "value": 9,
+        "unit": ""
+      },
+      {
+        "id": "answer.problem_2.top_hundreds",
+        "type": "digit",
+        "value": 4,
+        "unit": ""
+      },
+      {
+        "id": "answer.problem_2.bottom_tens",
+        "type": "digit",
+        "value": 7,
+        "unit": ""
+      }
+    ],
+    "choices": [],
+    "answer_key": [
+      {
+        "blank_id": "answer.problem_1.tens",
+        "value": 7,
+        "unit": ""
+      },
+      {
+        "blank_id": "answer.problem_1.result_hundreds",
+        "value": 9,
+        "unit": ""
+      },
+      {
+        "blank_id": "answer.problem_2.top_hundreds",
+        "value": 4,
+        "unit": ""
+      },
+      {
+        "blank_id": "answer.problem_2.bottom_tens",
+        "value": 7,
+        "unit": ""
+      }
+    ],
+    "value": [
+      7,
+      9,
+      4,
+      7
+    ],
+    "unit": "",
+    "sentence": "(1)의 빈칸은 7, 9이고, (2)의 빈칸은 4, 7입니다."
+  }
+}

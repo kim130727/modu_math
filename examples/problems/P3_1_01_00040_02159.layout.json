@@ -1,0 +1,211 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "P3_1_01_00040_02159",
+  "title": "연속 덧셈의 빈칸 채우기",
+  "canvas": {
+    "width": 365,
+    "height": 125,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "vertical",
+      "slot_ids": [
+        "slot.instruction"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.start_oval",
+        "slot.operation_1_box",
+        "slot.answer_1_oval",
+        "slot.operation_2_box",
+        "slot.answer_2_oval",
+        "slot.start_value",
+        "slot.operation_1",
+        "slot.operation_2"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.instruction",
+      "kind": "text_box",
+      "prompt": "연속 덧셈의 계산 결과를 빈칸에 쓰라는 안내",
+      "content": {
+        "text": "빈 곳에 알맞은 수를 써넣으시오.",
+        "style_role": "body",
+        "x": 18,
+        "y": 1,
+        "width": 250,
+        "height": 26,
+        "align": "left",
+        "valign": "top",
+        "font_size": 15,
+        "line_height": 1.15,
+        "fill": "#111111",
+        "semantic_role": "instruction"
+      }
+    },
+    {
+      "id": "slot.start_oval",
+      "kind": "path",
+      "prompt": "시작 수 156이 들어 있는 타원",
+      "content": {
+        "d": "M 22 96.072 C 22 81.072 78 81.072 78 96.072 C 78 111.072 22 111.072 22 96.072 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#ead5e9",
+        "stroke_width": 1.2,
+        "fill": "#fff7ff",
+        "semantic_role": "given_value"
+      }
+    },
+    {
+      "id": "slot.start_value",
+      "kind": "text",
+      "prompt": "연속 계산을 시작하는 수 156",
+      "content": {
+        "text": "156",
+        "style_role": "body",
+        "x": 50,
+        "y": 102.072,
+        "font_size": 15,
+        "anchor": "middle",
+        "fill": "#111111",
+        "semantic_role": "given_value"
+      }
+    },
+    {
+      "id": "slot.operation_1_box",
+      "kind": "rect",
+      "prompt": "첫 번째 덧셈 +278이 들어 있는 상자",
+      "content": {
+        "x": 80,
+        "y": 45.072,
+        "width": 64,
+        "height": 28,
+        "stroke": "#a9ce93",
+        "stroke_width": 1.2,
+        "fill": "#e9f8dd",
+        "semantic_role": "operation"
+      }
+    },
+    {
+      "id": "slot.operation_1",
+      "kind": "text",
+      "prompt": "첫 번째 연산 278 더하기",
+      "content": {
+        "text": "+278",
+        "style_role": "body",
+        "x": 112,
+        "y": 64.072,
+        "font_size": 15,
+        "anchor": "middle",
+        "fill": "#111111",
+        "semantic_role": "operation"
+      }
+    },
+    {
+      "id": "slot.answer_1_oval",
+      "kind": "path",
+      "prompt": "156에 278을 더한 결과를 쓰는 첫 번째 빈 타원",
+      "content": {
+        "d": "M 146 96.072 C 146 81.072 202 81.072 202 96.072 C 202 111.072 146 111.072 146 96.072 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#ead5e9",
+        "stroke_width": 1.2,
+        "fill": "#ffffff",
+        "semantic_role": "answer_blank"
+      }
+    },
+    {
+      "id": "slot.operation_2_box",
+      "kind": "rect",
+      "prompt": "두 번째 덧셈 +697이 들어 있는 상자",
+      "content": {
+        "x": 204,
+        "y": 45.072,
+        "width": 64,
+        "height": 28,
+        "stroke": "#a9ce93",
+        "stroke_width": 1.2,
+        "fill": "#e9f8dd",
+        "semantic_role": "operation"
+      }
+    },
+    {
+      "id": "slot.operation_2",
+      "kind": "text",
+      "prompt": "두 번째 연산 697 더하기",
+      "content": {
+        "text": "+697",
+        "style_role": "body",
+        "x": 236,
+        "y": 64.072,
+        "font_size": 15,
+        "anchor": "middle",
+        "fill": "#111111",
+        "semantic_role": "operation"
+      }
+    },
+    {
+      "id": "slot.answer_2_oval",
+      "kind": "path",
+      "prompt": "첫 번째 결과에 697을 더한 결과를 쓰는 두 번째 빈 타원",
+      "content": {
+        "d": "M 270 96.072 C 270 81.072 326 81.072 326 96.072 C 326 111.072 270 111.072 270 96.072 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#ead5e9",
+        "stroke_width": 1.2,
+        "fill": "#ffffff",
+        "semantic_role": "answer_blank"
+      }
+    }
+  ],
+  "groups": [
+    {
+      "id": "group.calculation_chain",
+      "role": "sequential_addition",
+      "member_ids": [
+        "slot.start_oval",
+        "slot.start_value",
+        "slot.operation_1_box",
+        "slot.operation_1",
+        "slot.arrow_1_curve",
+        "slot.arrow_1_head",
+        "slot.answer_1_oval",
+        "slot.answer_1",
+        "slot.operation_2_box",
+        "slot.operation_2",
+        "slot.arrow_2_curve",
+        "slot.arrow_2_head",
+        "slot.answer_2_oval",
+        "slot.answer_2"
+      ]
+    }
+  ],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.instruction",
+    "region.diagram",
+    "slot.start_oval",
+    "slot.operation_1_box",
+    "slot.answer_1_oval",
+    "slot.operation_2_box",
+    "slot.answer_2_oval",
+    "slot.start_value",
+    "slot.operation_1",
+    "slot.operation_2"
+  ]
+}

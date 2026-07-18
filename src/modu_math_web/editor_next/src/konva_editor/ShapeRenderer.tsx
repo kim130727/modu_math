@@ -66,7 +66,7 @@ export function ShapeRenderer({ shape, nodeRef, onSelect, onDragStart, onDragMov
           {...common}
           points={shape.points}
           stroke={shape.stroke ?? "#111827"}
-          strokeWidth={shape.strokeWidth ?? 2}
+          strokeWidth={shape.strokeWidth ?? 1.2}
           dash={dashArray(shape.strokeDasharray)}
           lineCap="round"
         />
@@ -78,8 +78,10 @@ export function ShapeRenderer({ shape, nodeRef, onSelect, onDragStart, onDragMov
           data={shape.d}
           fill={normalizeFill(shape.fill)}
           stroke={shape.stroke ?? "#111827"}
-          strokeWidth={shape.strokeWidth ?? 1}
+          strokeWidth={shape.strokeWidth ?? 1.2}
           dash={dashArray(shape.strokeDasharray)}
+          lineCap="round"
+          lineJoin="round"
         />
       );
     case "text":

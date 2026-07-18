@@ -198,7 +198,7 @@ export async function applyLayoutPatches(
   return requestJson<LayoutPatchResponse>(encodedProblemPath(problemId, "/layout-patch/"), {
     method: "POST",
     headers: { "Content-Type": "application/json", Accept: "application/json" },
-    body: JSON.stringify({ patches, format: options.format ?? true }),
+    body: JSON.stringify({ patches, format: options.format ?? false }),
   });
 }
 
@@ -210,7 +210,7 @@ export async function saveTutorFlow(
   return requestJson<TutorFlowSaveResponse>(encodedProblemPath(problemId, "/tutor-flow/"), {
     method: "POST",
     headers: { "Content-Type": "application/json", Accept: "application/json" },
-    body: JSON.stringify({ tutor_flow: tutorFlow, format: options.format ?? true }),
+    body: JSON.stringify({ tutor_flow: tutorFlow, format: options.format ?? false }),
   });
 }
 

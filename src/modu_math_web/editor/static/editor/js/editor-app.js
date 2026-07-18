@@ -657,7 +657,7 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
       return true;
     }
 
-    async function commitPatches(patches, reason = "저장 완료", withBuild = true, problemId = currentProblemId, formatSource = true) {
+    async function commitPatches(patches, reason = "저장 완료", withBuild = false, problemId = currentProblemId, formatSource = false) {
       if (!problemId) return;
       if (!patches || !patches.length) return;
       if (!(document.getElementById("dslEditor").value || "").trim()) {
@@ -726,7 +726,7 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
       updateTextEditControls();
     }
 
-    async function commitSlotPatch(slotId, value, reason = "저장 완료", withBuild = true) {
+    async function commitSlotPatch(slotId, value, reason = "저장 완료", withBuild = false) {
       await commitPatches([{ target: slotId, op: "update", value }], reason, withBuild);
     }
 
@@ -5703,7 +5703,6 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
 
     async function saveDsl() {
       if (!currentProblemId) throw new Error("먼저 문제를 선택하세요.");
-      await flushPendingPatchSaves();
       const dsl = document.getElementById("dslEditor").value;
       setState({ saving: true, saveStatus: "saving", error: null });
       await withApiErrors(() => requestSaveDsl(currentProblemId, dsl)).then((data) => {
@@ -5730,7 +5729,6 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
       setState({ artifacts: data.artifacts || null, building: false, buildStatus: "built" });
       renderLog(data.stdout, data.stderr);
       setStatus("빌드 완료", true);
-      await loadProblems();
     }
 
     function readPatchPayload() {
@@ -5756,7 +5754,6 @@ import { bindCommitInputs, initProperties } from "./editor-properties.js";
       renderArtifacts(data.artifacts || null);
       renderLog(data.build?.stdout || "", data.build?.stderr || "");
       setStatus("패치 + 빌드 완료", true);
-      await loadProblems();
     }
 
     async function deleteSelectedSlots() {

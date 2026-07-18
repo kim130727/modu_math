@@ -1,0 +1,186 @@
+{
+  "problem_id": "P3_1_01_00040_02156",
+  "problem_type": "stepwise_vertical_addition_with_carrying",
+  "metadata": {
+    "title": "받아올림하며 세 자리 수의 덧셈 계산",
+    "tags": [
+      "grade-3",
+      "addition",
+      "three-digit-addition",
+      "carrying",
+      "step-by-step",
+      "vertical-calculation"
+    ],
+    "question": "554와 269를 받아올림하며 차례대로 계산합니다.",
+    "required_layout_ids": [
+      "slot.stage1.line",
+      "slot.stage2.line",
+      "slot.stage3.line"
+    ],
+    "extraction_confidence": 1.0,
+    "grade": 3,
+    "semester": 1,
+    "subject": "수학",
+    "topic": "세 자리 수의 덧셈",
+    "language": "ko-KR"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "calculation.main",
+        "type": "vertical_addition",
+        "label": "554와 269의 덧셈",
+        "addends": [
+          554,
+          269
+        ]
+      },
+      {
+        "id": "stage.ones",
+        "type": "place_value_step",
+        "place": "ones",
+        "equation": "4 + 9 = 13",
+        "written_digit": 3,
+        "carry": 1
+      },
+      {
+        "id": "stage.tens",
+        "type": "place_value_step",
+        "place": "tens",
+        "equation": "5 + 6 + 1 = 12",
+        "written_digit": 2,
+        "carry": 1
+      },
+      {
+        "id": "stage.hundreds",
+        "type": "place_value_step",
+        "place": "hundreds",
+        "equation": "5 + 2 + 1 = 8",
+        "written_digit": 8,
+        "carry": 0
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.sum",
+        "type": "addition",
+        "from_ids": [
+          "number.554",
+          "number.269"
+        ],
+        "to_id": "answer.total",
+        "equation": "554 + 269 = 823"
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "blanks": [
+      {
+        "id": "answer.stage1.carry",
+        "type": "digit",
+        "value": 1
+      },
+      {
+        "id": "answer.stage1.ones",
+        "type": "digit",
+        "value": 3
+      },
+      {
+        "id": "answer.stage2.carry_hundreds",
+        "type": "digit",
+        "value": 1
+      },
+      {
+        "id": "answer.stage2.carry_tens",
+        "type": "digit",
+        "value": 1
+      },
+      {
+        "id": "answer.stage2.tens",
+        "type": "digit",
+        "value": 2
+      },
+      {
+        "id": "answer.stage2.ones",
+        "type": "digit",
+        "value": 3
+      },
+      {
+        "id": "answer.stage3.carry_hundreds",
+        "type": "digit",
+        "value": 1
+      },
+      {
+        "id": "answer.stage3.carry_tens",
+        "type": "digit",
+        "value": 1
+      },
+      {
+        "id": "answer.stage3.hundreds",
+        "type": "digit",
+        "value": 8
+      },
+      {
+        "id": "answer.stage3.tens",
+        "type": "digit",
+        "value": 2
+      },
+      {
+        "id": "answer.stage3.ones",
+        "type": "digit",
+        "value": 3
+      }
+    ],
+    "choices": [],
+    "answer_key": [
+      {
+        "blank_id": "answer.stage1.carry",
+        "value": 1
+      },
+      {
+        "blank_id": "answer.stage1.ones",
+        "value": 3
+      },
+      {
+        "blank_id": "answer.stage2.carry_hundreds",
+        "value": 1
+      },
+      {
+        "blank_id": "answer.stage2.carry_tens",
+        "value": 1
+      },
+      {
+        "blank_id": "answer.stage2.tens",
+        "value": 2
+      },
+      {
+        "blank_id": "answer.stage2.ones",
+        "value": 3
+      },
+      {
+        "blank_id": "answer.stage3.carry_hundreds",
+        "value": 1
+      },
+      {
+        "blank_id": "answer.stage3.carry_tens",
+        "value": 1
+      },
+      {
+        "blank_id": "answer.stage3.hundreds",
+        "value": 8
+      },
+      {
+        "blank_id": "answer.stage3.tens",
+        "value": 2
+      },
+      {
+        "blank_id": "answer.stage3.ones",
+        "value": 3
+      }
+    ],
+    "value": 823,
+    "unit": "",
+    "sentence": "554와 269의 합은 823입니다."
+  }
+}

@@ -1,0 +1,139 @@
+{
+  "schema": "modu.solvable.v1.2",
+  "problem_id": "S3_초등_3_008755",
+  "problem_type": "unit_choice",
+  "inputs": {
+    "total_ticks": 2,
+    "target_label": "단위",
+    "target_ticks": 2,
+    "target_count": 2,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.juice_bottle",
+      "value": {
+        "printed_capacity": "1L"
+      }
+    },
+    {
+      "ref": "obj.milk_carton",
+      "value": {
+        "printed_capacity": "200mL"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "unit_matching"
+  },
+  "method": "단위 대응",
+  "plan": [
+    "그림에 적힌 용량 표기를 읽는다.",
+    "각 표기에 들어 있는 단위를 확인한다.",
+    "주스병과 우유갑에 알맞은 단위를 대응시킨다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "주스병의 표시를 읽기",
+      "value": "1L"
+    },
+    {
+      "id": "step.2",
+      "expr": "우유갑의 표시를 읽기",
+      "value": "200mL"
+    },
+    {
+      "id": "step.3",
+      "expr": "주스병의 단위 확인",
+      "value": "L"
+    },
+    {
+      "id": "step.4",
+      "expr": "우유갑의 단위 확인",
+      "value": "mL"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "주스병의 단위가 L인지 확인",
+      "expected": "L",
+      "actual": "L",
+      "pass": true
+    },
+    {
+      "id": "check.2",
+      "expr": "우유갑의 단위가 mL인지 확인",
+      "expected": "mL",
+      "actual": "mL",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "unit_matching",
+      "description": "주스병과 우유갑에 알맞은 단위"
+    },
+    "value": "주스병: L, 우유갑: mL",
+    "unit": ""
+  },
+  "understanding": {
+    "summary": "Find 단위 using the given information.",
+    "facts": [
+      {
+        "ref": "obj.juice_bottle",
+        "label": "juice bottle",
+        "value": {
+          "printed_capacity": "1L"
+        },
+        "unit": "",
+        "source": "explicit"
+      },
+      {
+        "ref": "obj.milk_carton",
+        "label": "milk carton",
+        "value": {
+          "printed_capacity": "200mL"
+        },
+        "unit": "",
+        "source": "explicit"
+      }
+    ],
+    "unknowns": [
+      {
+        "ref": "answer.target",
+        "label": "단위",
+        "unit": "",
+        "source": "unknown"
+      }
+    ],
+    "relation": {
+      "type": "단위 대응",
+      "statement": "그림에 적힌 용량 표기를 읽는다.",
+      "symbolic": "주스병의 표시를 읽기",
+      "uses": [
+        "obj.juice_bottle",
+        "obj.milk_carton"
+      ],
+      "result": "answer.target"
+    },
+    "diagnostic_questions": [
+      {
+        "id": "understand.target",
+        "type": "multiple_choice",
+        "prompt": "What should we find?",
+        "choices": [
+          "juice bottle",
+          "milk carton",
+          "단위"
+        ],
+        "answer_index": 2
+      }
+    ]
+  }
+}

@@ -1,0 +1,202 @@
+{
+  "schema": "modu.solvable.v1.2",
+  "problem_id": "P3_1_01_00040_02153",
+  "problem_type": "stepwise_vertical_addition_fill_blanks",
+  "inputs": {
+    "target_label": "받아올림한 수와 각 단계의 계산 결과",
+    "unit": "",
+    "answer_type": "digit_list",
+    "quantities": {
+      "first_addend": 587,
+      "second_addend": 649
+    },
+    "conditions": [
+      "일의 자리부터 차례대로 계산합니다.",
+      "각 자리의 합이 10 이상이면 바로 윗자리로 1을 받아올림합니다.",
+      "각 단계에서 새로 구한 받아올림 수와 계산 결과를 네모 안에 씁니다."
+    ]
+  },
+  "given": [
+    {
+      "ref": "addition.main",
+      "value": {
+        "first_addend": 587,
+        "second_addend": 649
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.stepwise_vertical_addition_blanks",
+    "type": "digit_list"
+  },
+  "method": "일의 자리, 십의 자리, 백의 자리 순서로 더하고 각 단계의 받아올림을 다음 자리 계산에 포함한다.",
+  "plan": [
+    "7과 9를 더하여 일의 자리 수와 받아올림 수를 구한다.",
+    "8과 4에 받아올림한 1을 더하여 십의 자리 수와 받아올림 수를 구한다.",
+    "5와 6에 받아올림한 1을 더하여 최종 합을 완성한다."
+  ],
+  "steps": [
+    {
+      "id": "step.add_ones",
+      "expr": "7 + 9",
+      "value": 16,
+      "explanation": "일의 자리에서 7과 9를 더하면 16이므로 6을 쓰고 십의 자리로 1을 받아올림합니다."
+    },
+    {
+      "id": "step.add_tens",
+      "expr": "8 + 4 + 1",
+      "value": 13,
+      "explanation": "십의 자리에서 8과 4에 받아올림한 1을 더하면 13이므로 3을 쓰고 백의 자리로 1을 받아올림합니다."
+    },
+    {
+      "id": "step.add_hundreds",
+      "expr": "5 + 6 + 1",
+      "value": 12,
+      "explanation": "백의 자리에서 5와 6에 받아올림한 1을 더하면 12이므로 백의 자리에 2, 천의 자리에 1을 씁니다."
+    },
+    {
+      "id": "step.compose_sum",
+      "expr": "587 + 649",
+      "value": 1236,
+      "explanation": "따라서 587과 649의 합은 1236입니다."
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.ones",
+      "expr": "7 + 9",
+      "expected": 16,
+      "actual": 16,
+      "pass": true
+    },
+    {
+      "id": "check.tens",
+      "expr": "8 + 4 + 1",
+      "expected": 13,
+      "actual": 13,
+      "pass": true
+    },
+    {
+      "id": "check.hundreds",
+      "expr": "5 + 6 + 1",
+      "expected": 12,
+      "actual": 12,
+      "pass": true
+    },
+    {
+      "id": "check.total",
+      "expr": "587 + 649",
+      "expected": 1236,
+      "actual": 1236,
+      "pass": true
+    },
+    {
+      "id": "check.inverse",
+      "expr": "1236 - 649",
+      "expected": 587,
+      "actual": 587,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "value": [
+      1,
+      6,
+      1,
+      1,
+      3,
+      6,
+      1,
+      2,
+      3,
+      6
+    ],
+    "unit": "",
+    "items": [
+      {
+        "id": "answer.step_1.carry_tens",
+        "value": 1
+      },
+      {
+        "id": "answer.step_1.ones",
+        "value": 6
+      },
+      {
+        "id": "answer.step_2.carry_hundreds",
+        "value": 1
+      },
+      {
+        "id": "answer.step_2.carry_tens",
+        "value": 1
+      },
+      {
+        "id": "answer.step_2.tens",
+        "value": 3
+      },
+      {
+        "id": "answer.step_2.ones",
+        "value": 6
+      },
+      {
+        "id": "answer.step_3.thousands",
+        "value": 1
+      },
+      {
+        "id": "answer.step_3.hundreds",
+        "value": 2
+      },
+      {
+        "id": "answer.step_3.tens",
+        "value": 3
+      },
+      {
+        "id": "answer.step_3.ones",
+        "value": 6
+      }
+    ]
+  },
+  "understanding": {
+    "summary": "Find 받아올림한 수와 각 단계의 계산 결과 using the given information.",
+    "facts": [
+      {
+        "ref": "addition.main",
+        "label": "main",
+        "value": {
+          "first_addend": 587,
+          "second_addend": 649
+        },
+        "unit": "",
+        "source": "explicit"
+      }
+    ],
+    "unknowns": [
+      {
+        "ref": "answer.stepwise_vertical_addition_blanks",
+        "label": "받아올림한 수와 각 단계의 계산 결과",
+        "unit": "",
+        "source": "unknown"
+      }
+    ],
+    "relation": {
+      "type": "일의 자리, 십의 자리, 백의 자리 순서로 더하고 각 단계의 받아올림을 다음 자리 계산에 포함한다.",
+      "statement": "7과 9를 더하여 일의 자리 수와 받아올림 수를 구한다.",
+      "symbolic": "7 + 9",
+      "uses": [
+        "addition.main"
+      ],
+      "result": "answer.stepwise_vertical_addition_blanks"
+    },
+    "diagnostic_questions": [
+      {
+        "id": "understand.target",
+        "type": "multiple_choice",
+        "prompt": "What should we find?",
+        "choices": [
+          "main",
+          "받아올림한 수와 각 단계의 계산 결과"
+        ],
+        "answer_index": 1
+      }
+    ]
+  }
+}

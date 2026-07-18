@@ -14,9 +14,7 @@
       "role": "stem",
       "flow": "vertical",
       "slot_ids": [
-        "slot.question",
-        "slot.expression",
-        "slot.answer"
+        "slot.question"
       ]
     }
   ],
@@ -26,44 +24,18 @@
       "kind": "text_box",
       "prompt": "",
       "content": {
-        "text": "진이네 과수원에서는 작년에 사과 725개를 수확하였고, 올해는 작년보다 287개를 더 수확하였습니다. 올\n해에 수확한 사과는 모두 몇 개입니까?",
+        "text": "진이네 과수원에서는 작년에 사과 725개를 수확하였고, 올해는 작년보다 287개를 더 수확하였습니다. 올해에 수확한 사과는 모두 몇 개입니까?",
         "style_role": "body",
         "x": 48.0,
         "y": 30.0,
         "width": 804.0,
-        "height": 76.0,
+        "height": 80.0,
         "align": "left",
         "valign": "top",
         "font_size": 24,
         "font_family": "Noto Sans KR",
         "line_height": 1.5,
         "fill": "#202124"
-      }
-    },
-    {
-      "id": "slot.expression",
-      "kind": "text_box",
-      "prompt": "",
-      "content": {
-        "text": "식",
-        "style_role": "body",
-        "x": 48.0,
-        "y": 125.0,
-        "width": 804.0,
-        "height": 34.0,
-        "align": "left",
-        "valign": "middle",
-        "font_size": 24,
-        "font_family": "Noto Sans KR",
-        "fill": "#202124"
-      }
-    },
-    {
-      "id": "slot.answer",
-      "kind": "blank",
-      "prompt": "답",
-      "content": {
-        "placeholder": "개"
       }
     }
   ],
@@ -72,8 +44,6 @@
   "diagrams": [],
   "reading_order": [
     "region.stem",
-    "slot.question",
-    "slot.expression",
-    "slot.answer"
+    "slot.question"
   ]
 }

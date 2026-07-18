@@ -1,0 +1,113 @@
+{
+  "schema": "modu.solvable.v1.2",
+  "problem_id": "S3_초등_3_008791",
+  "problem_type": "comparison_capacity",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "들이가 더 많은 컵의 기호",
+    "target_ticks": 0,
+    "target_count": 2,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.count.a",
+      "value": 6
+    },
+    {
+      "ref": "obj.count.b",
+      "value": 9
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "cup_symbol"
+  },
+  "method": "compare_pour_counts",
+  "plan": [
+    "같은 양을 채우는 데 필요한 횟수를 비교한다.",
+    "더 적은 횟수로 채워지는 컵을 선택한다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "6 < 9",
+      "value": true
+    },
+    {
+      "id": "step.2",
+      "expr": "더 적은 횟수에 해당하는 컵 선택",
+      "value": "가"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "선택한 컵의 횟수가 더 적은지 확인",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "cup_symbol",
+      "description": "들이가 더 많은 컵의 기호"
+    },
+    "value": "가",
+    "unit": ""
+  },
+  "understanding": {
+    "summary": "Find 들이가 더 많은 컵의 기호 using the given information.",
+    "facts": [
+      {
+        "ref": "obj.count.a",
+        "label": "a",
+        "value": 6,
+        "unit": "",
+        "source": "explicit"
+      },
+      {
+        "ref": "obj.count.b",
+        "label": "b",
+        "value": 9,
+        "unit": "",
+        "source": "explicit"
+      }
+    ],
+    "unknowns": [
+      {
+        "ref": "answer.target",
+        "label": "들이가 더 많은 컵의 기호",
+        "unit": "",
+        "source": "unknown"
+      }
+    ],
+    "relation": {
+      "type": "compare_pour_counts",
+      "statement": "같은 양을 채우는 데 필요한 횟수를 비교한다.",
+      "symbolic": "6 < 9",
+      "uses": [
+        "obj.count.a",
+        "obj.count.b"
+      ],
+      "result": "answer.target"
+    },
+    "diagnostic_questions": [
+      {
+        "id": "understand.target",
+        "type": "multiple_choice",
+        "prompt": "What should we find?",
+        "choices": [
+          "a",
+          "b",
+          "들이가 더 많은 컵의 기호"
+        ],
+        "answer_index": 2
+      }
+    ]
+  }
+}

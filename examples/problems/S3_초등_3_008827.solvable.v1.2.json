@@ -1,0 +1,155 @@
+{
+  "schema": "modu.solvable.v1.2",
+  "problem_id": "S3_초등_3_008827",
+  "problem_type": "어림하기",
+  "inputs": {
+    "total_ticks": 4,
+    "target_label": "포도주스의 양",
+    "target_ticks": 4,
+    "target_count": 4,
+    "unit": "mL"
+  },
+  "given": [
+    {
+      "ref": "obj.unit_milk",
+      "value": {
+        "value": 200,
+        "unit": "mL"
+      }
+    },
+    {
+      "ref": "rel.estimate_by_repetition",
+      "value": {
+        "count": 4
+      }
+    },
+    {
+      "ref": "obj.choice_1",
+      "value": {
+        "value": 800,
+        "unit": "mL"
+      }
+    },
+    {
+      "ref": "obj.choice_2",
+      "value": {
+        "value": 8000,
+        "unit": "mL"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "estimated_capacity"
+  },
+  "method": "multiple_estimation",
+  "plan": [
+    "200 mL가 4번쯤 들어간다는 설명을 읽는다.",
+    "어림값 후보 중 4번에 맞는 값을 고른다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "200 mL × 4",
+      "value": 800
+    },
+    {
+      "id": "step.2",
+      "expr": "800 mL 와 8000 mL 중 어림값 비교",
+      "value": 800
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "800 ÷ 200 = 4",
+      "expected": 4,
+      "actual": 4,
+      "pass": true
+    },
+    {
+      "id": "check.2",
+      "expr": "단위가 mL인지 확인",
+      "expected": "mL",
+      "actual": "mL",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "estimated_capacity",
+      "description": "포도주스의 양의 어림값"
+    },
+    "value": 800,
+    "unit": "mL"
+  },
+  "understanding": {
+    "summary": "Find 포도주스의 양 using the given information.",
+    "facts": [
+      {
+        "ref": "obj.unit_milk",
+        "label": "unit milk",
+        "value": 200,
+        "unit": "mL",
+        "source": "explicit"
+      },
+      {
+        "ref": "rel.estimate_by_repetition",
+        "label": "estimate by repetition",
+        "value": 4,
+        "unit": "mL",
+        "source": "explicit"
+      },
+      {
+        "ref": "obj.choice_1",
+        "label": "choice 1",
+        "value": 800,
+        "unit": "mL",
+        "source": "explicit"
+      },
+      {
+        "ref": "obj.choice_2",
+        "label": "choice 2",
+        "value": 8000,
+        "unit": "mL",
+        "source": "explicit"
+      }
+    ],
+    "unknowns": [
+      {
+        "ref": "answer.target",
+        "label": "포도주스의 양",
+        "unit": "mL",
+        "source": "unknown"
+      }
+    ],
+    "relation": {
+      "type": "multiple_estimation",
+      "statement": "200 mL가 4번쯤 들어간다는 설명을 읽는다.",
+      "symbolic": "200 mL × 4",
+      "uses": [
+        "obj.unit_milk",
+        "rel.estimate_by_repetition",
+        "obj.choice_1",
+        "obj.choice_2"
+      ],
+      "result": "answer.target"
+    },
+    "diagnostic_questions": [
+      {
+        "id": "understand.target",
+        "type": "multiple_choice",
+        "prompt": "What should we find?",
+        "choices": [
+          "unit milk",
+          "estimate by repetition",
+          "포도주스의 양"
+        ],
+        "answer_index": 2
+      }
+    ]
+  }
+}

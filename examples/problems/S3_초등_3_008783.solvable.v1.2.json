@@ -1,0 +1,153 @@
+{
+  "schema": "modu.solvable.v1.2",
+  "problem_id": "S3_초등_3_008783",
+  "problem_type": "어림하기",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "ㄱ ㄴ ㄷ",
+    "target_ticks": 3,
+    "target_count": 3,
+    "unit": "g"
+  },
+  "given": [
+    {
+      "ref": "obj.melon_weight",
+      "value": {
+        "value": 3,
+        "unit": "kg"
+      }
+    },
+    {
+      "ref": "obj.choice.g1",
+      "value": {
+        "value": 3300,
+        "unit": "g"
+      }
+    },
+    {
+      "ref": "obj.choice.g2",
+      "value": {
+        "value": 2700,
+        "unit": "g"
+      }
+    },
+    {
+      "ref": "obj.choice.g3",
+      "value": {
+        "value": 3100,
+        "unit": "g"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "choice_label"
+  },
+  "method": "difference_comparison",
+  "plan": [
+    "실제 무게와 각 보기를 비교하여 차이가 가장 작은 것을 찾는다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "보기 ㄱ과 3 kg의 차이를 비교한다",
+      "value": "300 g"
+    },
+    {
+      "id": "step.2",
+      "expr": "보기 ㄴ과 3 kg의 차이를 비교한다",
+      "value": "300 g"
+    },
+    {
+      "id": "step.3",
+      "expr": "보기 ㄷ과 3 kg의 차이를 비교한다",
+      "value": "100 g"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "세 보기 중 차이가 가장 작은 값을 확인한다",
+      "expected": "100 g",
+      "actual": "100 g",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "choice_label",
+      "description": "가장 가깝게 어림한 기호"
+    },
+    "value": "ㄷ",
+    "unit": ""
+  },
+  "understanding": {
+    "summary": "Find ㄱ ㄴ ㄷ using the given information.",
+    "facts": [
+      {
+        "ref": "obj.melon_weight",
+        "label": "melon weight",
+        "value": 3,
+        "unit": "kg",
+        "source": "explicit"
+      },
+      {
+        "ref": "obj.choice.g1",
+        "label": "g1",
+        "value": 3300,
+        "unit": "g",
+        "source": "explicit"
+      },
+      {
+        "ref": "obj.choice.g2",
+        "label": "g2",
+        "value": 2700,
+        "unit": "g",
+        "source": "explicit"
+      },
+      {
+        "ref": "obj.choice.g3",
+        "label": "g3",
+        "value": 3100,
+        "unit": "g",
+        "source": "explicit"
+      }
+    ],
+    "unknowns": [
+      {
+        "ref": "answer.target",
+        "label": "ㄱ ㄴ ㄷ",
+        "unit": "g",
+        "source": "unknown"
+      }
+    ],
+    "relation": {
+      "type": "difference_comparison",
+      "statement": "실제 무게와 각 보기를 비교하여 차이가 가장 작은 것을 찾는다.",
+      "symbolic": "보기 ㄱ과 3 kg의 차이를 비교한다",
+      "uses": [
+        "obj.melon_weight",
+        "obj.choice.g1",
+        "obj.choice.g2",
+        "obj.choice.g3"
+      ],
+      "result": "answer.target"
+    },
+    "diagnostic_questions": [
+      {
+        "id": "understand.target",
+        "type": "multiple_choice",
+        "prompt": "What should we find?",
+        "choices": [
+          "melon weight",
+          "g1",
+          "ㄱ ㄴ ㄷ"
+        ],
+        "answer_index": 2
+      }
+    ]
+  }
+}

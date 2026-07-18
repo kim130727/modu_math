@@ -1,0 +1,218 @@
+{
+  "schema": "modu.solvable.v1.2",
+  "problem_id": "P3_1_01_00040_02149",
+  "problem_type": "multi_blank_vertical_addition",
+  "inputs": {
+    "target_label": "받아올림한 수와 덧셈 결과의 각 자리 숫자",
+    "unit": "",
+    "answer_type": "digit_list",
+    "quantities": {
+      "first_addend": 165,
+      "second_addend": 258
+    },
+    "place_values": {
+      "first_addend": {
+        "hundreds": 1,
+        "tens": 6,
+        "ones": 5
+      },
+      "second_addend": {
+        "hundreds": 2,
+        "tens": 5,
+        "ones": 8
+      }
+    },
+    "conditions": [
+      "일의 자리부터 차례대로 계산합니다.",
+      "각 자리의 합이 10 이상이면 바로 윗자리로 1을 받아올림합니다.",
+      "받아올림한 수와 계산 결과를 각 네모 안에 씁니다."
+    ]
+  },
+  "given": [
+    {
+      "ref": "number.addend_1",
+      "value": 165
+    },
+    {
+      "ref": "number.addend_2",
+      "value": 258
+    }
+  ],
+  "target": {
+    "ref": "answer.vertical_addition_blanks",
+    "type": "digit_list"
+  },
+  "method": "일의 자리부터 더하고 받아올림한 수를 다음 자리의 계산에 포함한다.",
+  "plan": [
+    "일의 자리의 숫자 5와 8을 더한다.",
+    "일의 자리에서 생긴 받아올림을 십의 자리에 표시한다.",
+    "십의 자리의 숫자 6과 5에 받아올림한 1을 더한다.",
+    "십의 자리에서 생긴 받아올림을 백의 자리에 표시한다.",
+    "백의 자리의 숫자 1과 2에 받아올림한 1을 더한다.",
+    "계산 결과의 백의 자리, 십의 자리, 일의 자리 숫자를 쓴다."
+  ],
+  "steps": [
+    {
+      "id": "step.add_ones",
+      "expr": "5 + 8",
+      "value": 13,
+      "explanation": "일의 자리에서 5와 8을 더하면 13입니다."
+    },
+    {
+      "id": "step.write_ones_and_carry",
+      "expr": "13 = 1 × 10 + 3",
+      "value": {
+        "carry": 1,
+        "digit": 3
+      },
+      "explanation": "일의 자리에 3을 쓰고 십의 자리로 1을 받아올림합니다."
+    },
+    {
+      "id": "step.add_tens",
+      "expr": "6 + 5 + 1",
+      "value": 12,
+      "explanation": "십의 자리에서 6과 5에 받아올림한 1을 더하면 12입니다."
+    },
+    {
+      "id": "step.write_tens_and_carry",
+      "expr": "12 = 1 × 10 + 2",
+      "value": {
+        "carry": 1,
+        "digit": 2
+      },
+      "explanation": "십의 자리에 2를 쓰고 백의 자리로 1을 받아올림합니다."
+    },
+    {
+      "id": "step.add_hundreds",
+      "expr": "1 + 2 + 1",
+      "value": 4,
+      "explanation": "백의 자리에서 1과 2에 받아올림한 1을 더하면 4입니다."
+    },
+    {
+      "id": "step.compose_answer",
+      "expr": "400 + 20 + 3",
+      "value": 423,
+      "explanation": "각 자리 숫자를 차례대로 쓰면 423입니다."
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.ones_place",
+      "expr": "5 + 8",
+      "expected": 13,
+      "actual": 13,
+      "pass": true
+    },
+    {
+      "id": "check.tens_place",
+      "expr": "6 + 5 + 1",
+      "expected": 12,
+      "actual": 12,
+      "pass": true
+    },
+    {
+      "id": "check.hundreds_place",
+      "expr": "1 + 2 + 1",
+      "expected": 4,
+      "actual": 4,
+      "pass": true
+    },
+    {
+      "id": "check.total",
+      "expr": "165 + 258",
+      "expected": 423,
+      "actual": 423,
+      "pass": true
+    },
+    {
+      "id": "check.inverse_operation",
+      "expr": "423 - 258",
+      "expected": 165,
+      "actual": 165,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "value": [
+      1,
+      1,
+      4,
+      2,
+      3
+    ],
+    "unit": "",
+    "expression": "165 + 258 = 423",
+    "items": [
+      {
+        "id": "answer.carry_hundreds",
+        "value": 1
+      },
+      {
+        "id": "answer.carry_tens",
+        "value": 1
+      },
+      {
+        "id": "answer.hundreds",
+        "value": 4
+      },
+      {
+        "id": "answer.tens",
+        "value": 2
+      },
+      {
+        "id": "answer.ones",
+        "value": 3
+      }
+    ]
+  },
+  "understanding": {
+    "summary": "Find 받아올림한 수와 덧셈 결과의 각 자리 숫자 using the given information.",
+    "facts": [
+      {
+        "ref": "number.addend_1",
+        "label": "addend 1",
+        "value": 165,
+        "unit": "",
+        "source": "explicit"
+      },
+      {
+        "ref": "number.addend_2",
+        "label": "addend 2",
+        "value": 258,
+        "unit": "",
+        "source": "explicit"
+      }
+    ],
+    "unknowns": [
+      {
+        "ref": "answer.vertical_addition_blanks",
+        "label": "받아올림한 수와 덧셈 결과의 각 자리 숫자",
+        "unit": "",
+        "source": "unknown"
+      }
+    ],
+    "relation": {
+      "type": "일의 자리부터 더하고 받아올림한 수를 다음 자리의 계산에 포함한다.",
+      "statement": "일의 자리의 숫자 5와 8을 더한다.",
+      "symbolic": "5 + 8",
+      "uses": [
+        "number.addend_1",
+        "number.addend_2"
+      ],
+      "result": "answer.vertical_addition_blanks"
+    },
+    "diagnostic_questions": [
+      {
+        "id": "understand.target",
+        "type": "multiple_choice",
+        "prompt": "What should we find?",
+        "choices": [
+          "addend 1",
+          "addend 2",
+          "받아올림한 수와 덧셈 결과의 각 자리 숫자"
+        ],
+        "answer_index": 2
+      }
+    ]
+  }
+}

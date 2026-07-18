@@ -17,7 +17,7 @@ import sampleProblem from "../samples/sample_problem.json";
 import { editorDocumentToProblemJson, estimateTextWidth, fittedTextHeight, problemJsonToEditorDocument } from "./converters";
 import { KONVA_PREVIEW_FONT_FAMILY } from "./fonts";
 import { JsonImportExport } from "./JsonImportExport";
-import { KonvaStage } from "./KonvaStage";
+import { KonvaStage, type CanvasPoint } from "./KonvaStage";
 import { KonvaToolbar, type ShapePreset } from "./KonvaToolbar";
 import { PropertyPanel } from "./PropertyPanel";
 import { TutorFlowPanel } from "./TutorFlowPanel";
@@ -25,6 +25,7 @@ import { TutorPreviewPanel } from "./TutorPreviewPanel";
 
 const initialProblem = sampleProblem as ProblemJson;
 type SidePanelTab = "properties" | "tutor" | "flow" | "json";
+type SaveStatus = "saved" | "saving" | "unsaved" | "building" | "built" | "error";
 
 export function EditorKonva() {
   const [baseProblemJson, setBaseProblemJson] = useState<ProblemJson>(initialProblem);
@@ -38,6 +39,8 @@ export function EditorKonva() {
   const [selectedShapeIds, setSelectedShapeIds] = useState<string[]>([]);
   const [selectedProblemId, setSelectedProblemId] = useState(initialProblem.id);
   const [message, setMessage] = useState("Loaded sample problem in Konva editor.");
+  const [saveStatus, setSaveStatus] = useState<SaveStatus>("saved");
+  const [drawingPreset, setDrawingPreset] = useState<ShapePreset | null>(null);
   const [problemListVersion, setProblemListVersion] = useState(0);
   const [activeSidePanel, setActiveSidePanel] = useState<SidePanelTab>("properties");
   const [activeTutorStepId, setActiveTutorStepId] = useState<string | null>(null);
@@ -82,6 +85,7 @@ export function EditorKonva() {
     setActiveTutorOverlayIndex(null);
     setDraftTutorFlow(null);
     setMessage(nextMessage);
+    setSaveStatus("saved");
   }, [previewArtifacts]);
 
   const openProblem = useCallback(
@@ -127,6 +131,7 @@ export function EditorKonva() {
   }, [setProblem]);
 
   const updateShape = useCallback((nextShape: EditorShape) => {
+    setSaveStatus("unsaved");
     setDocument((current) => ({
       ...current,
       shapes: current.shapes.map((shape) => (shape.id === nextShape.id ? nextShape : shape)),
@@ -135,6 +140,7 @@ export function EditorKonva() {
 
   const updateShapes = useCallback((nextShapes: EditorShape[]) => {
     const nextShapeById = new Map(nextShapes.map((shape) => [shape.id, shape]));
+    if (nextShapeById.size) setSaveStatus("unsaved");
     setDocument((current) => ({
       ...current,
       shapes: current.shapes.map((shape) => nextShapeById.get(shape.id) ?? shape),
@@ -151,6 +157,7 @@ export function EditorKonva() {
 
   const addShape = useCallback(
     (shape: EditorShape) => {
+      setSaveStatus("unsaved");
       setDocument((current) => ({ ...current, shapes: [...current.shapes, shape] }));
       setSelectedShapeIds([shape.id]);
     },
@@ -159,6 +166,7 @@ export function EditorKonva() {
 
   const addShapes = useCallback((shapes: EditorShape[]) => {
     if (!shapes.length) return;
+    setSaveStatus("unsaved");
     setDocument((current) => ({ ...current, shapes: [...current.shapes, ...shapes] }));
     setSelectedShapeIds(shapes.map((shape) => shape.id));
   }, []);
@@ -167,7 +175,19 @@ export function EditorKonva() {
 
   const insertShape = useCallback(
     (preset: ShapePreset) => {
+      if (isDragDrawPreset(preset)) {
+        setDrawingPreset(preset);
+        setMessage(`${shapePresetLabel(preset)}: 캔버스에서 드래그해서 그리세요.`);
+        return;
+      }
       addShape(createShapeFromPreset(preset, nextId(preset)));
+    },
+    [addShape, nextId],
+  );
+
+  const addDrawnShape = useCallback(
+    (preset: ShapePreset, start: CanvasPoint, end: CanvasPoint, points?: CanvasPoint[]) => {
+      addShape(createShapeFromDrag(preset, nextId(preset), start, end, points));
     },
     [addShape, nextId],
   );
@@ -373,6 +393,7 @@ export function EditorKonva() {
   const deleteSelected = useCallback(() => {
     if (!selectedShapeIds.length) return;
     const selected = new Set(selectedShapeIds);
+    setSaveStatus("unsaved");
     setDocument((current) => ({
       ...current,
       shapes: current.shapes.filter((shape) => !selected.has(shape.id)),
@@ -395,6 +416,7 @@ export function EditorKonva() {
       x: shape.x + 24,
       y: shape.y + 24,
     })) as EditorShape[];
+    setSaveStatus("unsaved");
     setDocument((current) => ({ ...current, shapes: [...current.shapes, ...pasted] }));
     setSelectedShapeIds(pasted.map((shape) => shape.id));
     clipboardRef.current = pasted.map(cloneShape);
@@ -412,6 +434,7 @@ export function EditorKonva() {
       x: shape.x + 24,
       y: shape.y + 24,
     })) as EditorShape[];
+    setSaveStatus("unsaved");
     setDocument((current) => ({ ...current, shapes: [...current.shapes, ...duplicated] }));
     setSelectedShapeIds(duplicated.map((shape) => shape.id));
     clipboardRef.current = duplicated.map(cloneShape);
@@ -468,6 +491,7 @@ export function EditorKonva() {
 
   const importDocument = useCallback((nextDocument: EditorShapeDocument) => {
     if (!Array.isArray(nextDocument.shapes) || !nextDocument.canvas) return;
+    setSaveStatus("unsaved");
     setDocument(nextDocument);
     setSelectedProblemId(nextDocument.id);
     setSelectedShapeIds([]);
@@ -478,30 +502,35 @@ export function EditorKonva() {
     const nextProblem = editorDocumentToProblemJson(document, baseProblemJson);
     if (selectedProblemId === initialProblem.id) {
       setMessage("Sample problem is local only. Open a real problem before saving to DSL.");
+      setSaveStatus("error");
       return;
     }
 
     const patches = problemJsonToLayoutPatches(baseProblemJson, nextProblem);
     if (!patches.length && !draftTutorFlow) {
       setMessage(`No DSL changes to save for ${selectedProblemId}.`);
+      setSaveStatus("saved");
       return;
     }
 
+    setSaveStatus("saving");
     setMessage(`Saving ${selectedProblemId}...`);
     try {
       const savedParts: string[] = [];
       if (patches.length) {
-        const response = await applyLayoutPatches(selectedProblemId, patches, { format: true });
+        const response = await applyLayoutPatches(selectedProblemId, patches, { format: false });
         setBaseProblemJson(nextProblem);
         savedParts.push(`${response.applied.length} layout patch(es)`);
       }
       if (draftTutorFlow) {
-        const response = await saveTutorFlow(selectedProblemId, draftTutorFlow, { format: true });
+        const response = await saveTutorFlow(selectedProblemId, draftTutorFlow, { format: false });
         setDraftTutorFlow(response.tutor_flow);
         savedParts.push("tutor flow");
       }
+      setSaveStatus("saved");
       setMessage(`Saved ${savedParts.join(" and ")} for ${selectedProblemId}. Build to refresh artifacts.`);
     } catch (error) {
+      setSaveStatus("error");
       setMessage(`Could not save ${selectedProblemId}: ${String(error)}`);
     }
   }, [baseProblemJson, document, draftTutorFlow, selectedProblemId]);
@@ -510,34 +539,26 @@ export function EditorKonva() {
     async (tutorFlow: TutorRendererStep[]) => {
       if (selectedProblemId === initialProblem.id) {
         setMessage("Sample problem is local only. Open a real problem before saving tutor flow.");
+        setSaveStatus("error");
         return;
       }
 
+      setSaveStatus("saving");
       setMessage(`Saving tutor flow for ${selectedProblemId}...`);
       try {
-        const response = await saveTutorFlow(selectedProblemId, tutorFlow, { format: true });
-        setMessage(`Saved tutor flow for ${selectedProblemId}. Building...`);
-        const buildResponse = await buildProblem(selectedProblemId);
-        const detail = [buildResponse.stdout, buildResponse.stderr].filter(Boolean).join("\n").trim();
+        const response = await saveTutorFlow(selectedProblemId, tutorFlow, { format: false });
         setPreviewArtifacts((current) => ({
           ...current,
-          semantic: (buildResponse.artifacts.semantic as Record<string, unknown> | null | undefined) ?? current.semantic,
-          solvable: (buildResponse.artifacts.solvable as Record<string, unknown> | null | undefined) ?? current.solvable,
-          layout: (buildResponse.artifacts.layout as import("../api/editorApi").LayoutDocument | null | undefined) ?? current.layout,
           renderer:
-            (buildResponse.artifacts.renderer as import("../api/editorApi").RendererDocument | null | undefined) ??
-            (current.renderer ? { ...current.renderer, tutor_flow: response.tutor_flow } : current.renderer),
+            current.renderer ? { ...current.renderer, tutor_flow: response.tutor_flow } : current.renderer,
         }));
-        const nextRenderer = buildResponse.artifacts.renderer as import("../api/editorApi").RendererDocument | null | undefined;
-        setDraftTutorFlow(nextRenderer?.tutor_flow ?? response.tutor_flow);
+        setDraftTutorFlow(response.tutor_flow);
         setActiveTutorFrameIndex(0);
-        setMessage(
-          detail
-            ? `Saved tutor flow and built ${selectedProblemId}.\n${detail}`
-            : `Saved tutor flow and built ${selectedProblemId}.`,
-        );
+        setSaveStatus("saved");
+        setMessage(`Saved tutor flow for ${selectedProblemId}. Build to refresh artifacts.`);
       } catch (error) {
-        setMessage(`Could not save/build tutor flow for ${selectedProblemId}: ${String(error)}`);
+        setSaveStatus("error");
+        setMessage(`Could not save tutor flow for ${selectedProblemId}: ${String(error)}`);
       }
     },
     [selectedProblemId],
@@ -559,6 +580,7 @@ export function EditorKonva() {
         );
         return { step_id: step.step_id, frames };
       });
+      setSaveStatus("unsaved");
       setDraftTutorFlow(nextFlow);
       setActiveTutorOverlayIndex(overlayIndex);
       if (nextMessage) setMessage(nextMessage);
@@ -583,14 +605,18 @@ export function EditorKonva() {
   const buildCurrentProblem = useCallback(async () => {
     if (selectedProblemId === initialProblem.id) {
       setMessage("Sample problem is local only. Open a real problem before building.");
+      setSaveStatus("error");
       return;
     }
 
+    setSaveStatus("building");
     setMessage(`Building ${selectedProblemId}...`);
     try {
       if (draftTutorFlow) {
+        setSaveStatus("saving");
         setMessage(`Saving tutor flow for ${selectedProblemId} before build...`);
-        await saveTutorFlow(selectedProblemId, draftTutorFlow, { format: true });
+        await saveTutorFlow(selectedProblemId, draftTutorFlow, { format: false });
+        setSaveStatus("building");
       }
       const response = await buildProblem(selectedProblemId);
       const detail = [response.stdout, response.stderr].filter(Boolean).join("\n").trim();
@@ -601,8 +627,10 @@ export function EditorKonva() {
         renderer: (response.artifacts.renderer as import("../api/editorApi").RendererDocument | null | undefined) ?? null,
       });
       setDraftTutorFlow(null);
+      setSaveStatus("built");
       setMessage(detail ? `Build complete for ${selectedProblemId}.\n${detail}` : `Build complete for ${selectedProblemId}.`);
     } catch (error) {
+      setSaveStatus("error");
       setMessage(`Could not build ${selectedProblemId}: ${String(error)}`);
     }
   }, [draftTutorFlow, selectedProblemId]);
@@ -646,8 +674,11 @@ export function EditorKonva() {
             selectedShapeIds={selectedShapeIds}
             tutorOverlays={activeTutorOverlays}
             activeTutorOverlayIndex={activeTutorOverlayIndex}
+            drawingPreset={drawingPreset}
             onSelectShapes={setSelectedShapeIds}
             onChangeShapes={updateShapes}
+            onDrawShape={addDrawnShape}
+            onDrawingComplete={() => setDrawingPreset(null)}
             onTutorOverlaySelect={selectTutorOverlay}
             onTutorOverlayChange={changeActiveTutorOverlay}
             onTutorOverlayMove={moveActiveTutorOverlay}
@@ -681,7 +712,9 @@ export function EditorKonva() {
             />
           </div>
           <div className="konva-side-content">
-            {activeSidePanel === "properties" ? <PropertyPanel shape={selectedShape} onChange={patchSelectedShape} /> : null}
+            {activeSidePanel === "properties" ? (
+              <PropertyPanel shape={selectedShape} saveStatus={saveStatus} onChange={patchSelectedShape} />
+            ) : null}
             {activeSidePanel === "tutor" ? (
               <TutorPreviewPanel
                 problemId={selectedProblemId}
@@ -692,6 +725,8 @@ export function EditorKonva() {
                 renderer={previewArtifacts.renderer}
                 tutorFrameIndex={activeTutorFrameIndex}
                 tutorFrameCount={activeTutorFrames.length}
+                saveStatus={saveStatus}
+                message={message}
                 onTutorFrameChange={setActiveTutorFrameIndex}
                 onTutorStepChange={setTutorStep}
               />
@@ -705,7 +740,10 @@ export function EditorKonva() {
                 activeFrameIndex={activeTutorFrameIndex}
                 activeOverlayIndex={activeTutorOverlayIndex}
                 selectedShapeIds={selectedShapeIds}
-                onDraftChange={setDraftTutorFlow}
+                onDraftChange={(flow) => {
+                  setDraftTutorFlow(flow);
+                  setSaveStatus("unsaved");
+                }}
                 onSelectFrame={selectTutorFrame}
                 onSelectOverlay={selectTutorOverlay}
                 onSave={saveCurrentTutorFlow}
@@ -824,16 +862,86 @@ function cloneShape<T extends EditorShape>(shape: T): T {
   return JSON.parse(JSON.stringify(shape)) as T;
 }
 
+function isDragDrawPreset(preset: ShapePreset): boolean {
+  return [
+    "line",
+    "arrow",
+    "doubleArrow",
+    "elbow",
+    "elbowArrow",
+    "elbowDoubleArrow",
+    "curvedConnector",
+    "curvedArrow",
+    "curvedDoubleArrow",
+    "curve",
+    "freeformShape",
+    "freeformScribble",
+  ].includes(preset);
+}
+
+function shapePresetLabel(preset: ShapePreset): string {
+  const labels: Partial<Record<ShapePreset, string>> = {
+    line: "선",
+    arrow: "선 화살표",
+    doubleArrow: "선 화살표: 양방향",
+    elbow: "연결선: 꺾임",
+    elbowArrow: "연결선: 꺾인 화살표",
+    elbowDoubleArrow: "연결선: 꺾인 양쪽 화살표",
+    curvedConnector: "연결선: 구부러짐",
+    curvedArrow: "연결선: 구부러진 화살표",
+    curvedDoubleArrow: "연결선: 구부러진 양쪽 화살표",
+    curve: "곡선",
+    freeformShape: "자유형: 도형",
+    freeformScribble: "자유형: 자유 곡선",
+  };
+  return labels[preset] ?? "도형";
+}
+
+function createShapeFromDrag(
+  preset: ShapePreset,
+  id: string,
+  start: CanvasPoint,
+  end: CanvasPoint,
+  points: CanvasPoint[] = [],
+): EditorShape {
+  const stroke = "#111827";
+  const strokeWidth = 1.2;
+  if (preset === "line") {
+    return {
+      id,
+      type: "line",
+      x: roundCanvasNumber(start.x),
+      y: roundCanvasNumber(start.y),
+      points: [0, 0, roundCanvasNumber(end.x - start.x), roundCanvasNumber(end.y - start.y)],
+      stroke,
+      strokeWidth,
+    };
+  }
+  const bounds = normalizeDragBounds(start, end, points);
+  return {
+    id,
+    type: "path",
+    x: roundCanvasNumber(bounds.x),
+    y: roundCanvasNumber(bounds.y),
+    width: roundCanvasNumber(Math.max(1, bounds.width)),
+    height: roundCanvasNumber(Math.max(1, bounds.height)),
+    d: pathForDrawnShape(preset, start, end, points, bounds),
+    fill: preset === "freeformShape" ? "none" : "none",
+    stroke,
+    strokeWidth,
+  };
+}
+
 function createShapeFromPreset(preset: ShapePreset, id: string): EditorShape {
   const x = 220;
   const y = 180;
   const stroke = "#111827";
   const fill = "#ffffff";
-  const strokeWidth = 2;
+  const strokeWidth = 1.2;
 
   switch (preset) {
     case "line":
-      return { id, type: "line", x, y, points: [0, 0, 220, 0], stroke, strokeWidth: 3 };
+      return { id, type: "line", x, y, points: [0, 0, 220, 0], stroke, strokeWidth };
     case "rect":
     case "flowProcess":
       return { id, type: "rect", x, y, width: 180, height: 96, fill, stroke, strokeWidth };
@@ -875,7 +983,21 @@ function createShapeFromPreset(preset: ShapePreset, id: string): EditorShape {
 }
 
 function lineLikePreset(preset: ShapePreset): boolean {
-  return preset === "arrow" || preset === "doubleArrow" || preset === "elbow" || preset === "arc" || preset === "semicircle" || preset === "quarterArc";
+  return (
+    preset === "arrow" ||
+    preset === "doubleArrow" ||
+    preset === "elbow" ||
+    preset === "elbowArrow" ||
+    preset === "elbowDoubleArrow" ||
+    preset === "curvedConnector" ||
+    preset === "curvedArrow" ||
+    preset === "curvedDoubleArrow" ||
+    preset === "curve" ||
+    preset === "freeformScribble" ||
+    preset === "arc" ||
+    preset === "semicircle" ||
+    preset === "quarterArc"
+  );
 }
 
 function pathForShapePreset(preset: ShapePreset): string {
@@ -943,6 +1065,86 @@ function pathForShapePreset(preset: ShapePreset): string {
     default:
       return "M8 12 L172 12 L172 108 L8 108 Z";
   }
+}
+
+function normalizeDragBounds(start: CanvasPoint, end: CanvasPoint, points: CanvasPoint[] = []): { x: number; y: number; width: number; height: number } {
+  const all = points.length ? points : [start, end];
+  const xs = all.map((point) => point.x).concat([start.x, end.x]);
+  const ys = all.map((point) => point.y).concat([start.y, end.y]);
+  const minX = Math.min(...xs);
+  const maxX = Math.max(...xs);
+  const minY = Math.min(...ys);
+  const maxY = Math.max(...ys);
+  return { x: minX, y: minY, width: maxX - minX, height: maxY - minY };
+}
+
+function pathForDrawnShape(
+  preset: ShapePreset,
+  start: CanvasPoint,
+  end: CanvasPoint,
+  points: CanvasPoint[],
+  bounds: { x: number; y: number; width: number; height: number },
+): string {
+  const a = localPoint(start, bounds);
+  const b = localPoint(end, bounds);
+  const dx = b.x - a.x;
+  const dy = b.y - a.y;
+  if (preset === "elbow" || preset === "elbowArrow" || preset === "elbowDoubleArrow") {
+    const mid = { x: a.x, y: b.y };
+    return withArrowHeads(`M ${a.x} ${a.y} L ${mid.x} ${mid.y} L ${b.x} ${b.y}`, [a, mid, b], arrowMode(preset));
+  }
+  if (preset === "curvedConnector" || preset === "curvedArrow" || preset === "curvedDoubleArrow" || preset === "curve") {
+    const lift = Math.max(20, Math.min(90, Math.hypot(dx, dy) * 0.28));
+    const c1 = { x: a.x + dx * 0.34, y: a.y - lift };
+    const c2 = { x: a.x + dx * 0.66, y: b.y - lift };
+    return withArrowHeads(`M ${a.x} ${a.y} C ${c1.x} ${c1.y}, ${c2.x} ${c2.y}, ${b.x} ${b.y}`, [a, c1, c2, b], arrowMode(preset));
+  }
+  if (preset === "freeformScribble" && points.length > 1) {
+    return points.map((point, index) => `${index === 0 ? "M" : "L"} ${roundCanvasNumber(point.x - bounds.x)} ${roundCanvasNumber(point.y - bounds.y)}`).join(" ");
+  }
+  if (preset === "freeformShape") {
+    const c = { x: a.x + dx * 0.48, y: a.y + dy * 0.18 - 22 };
+    const d = { x: a.x + dx * 0.84, y: a.y + dy * 0.78 };
+    return `M ${a.x} ${a.y} L ${c.x} ${c.y} L ${b.x} ${b.y} L ${d.x} ${d.y} Z`;
+  }
+  return withArrowHeads(`M ${a.x} ${a.y} L ${b.x} ${b.y}`, [a, b], arrowMode(preset));
+}
+
+function localPoint(point: CanvasPoint, bounds: { x: number; y: number }): CanvasPoint {
+  return { x: roundCanvasNumber(point.x - bounds.x), y: roundCanvasNumber(point.y - bounds.y) };
+}
+
+function arrowMode(preset: ShapePreset): "none" | "end" | "both" {
+  if (preset === "doubleArrow" || preset === "elbowDoubleArrow" || preset === "curvedDoubleArrow") return "both";
+  if (preset === "arrow" || preset === "elbowArrow" || preset === "curvedArrow") return "end";
+  return "none";
+}
+
+function withArrowHeads(path: string, points: CanvasPoint[], mode: "none" | "end" | "both"): string {
+  if (mode === "none" || points.length < 2) return path;
+  const parts = [path];
+  if (mode === "end" || mode === "both") parts.push(arrowHeadPath(points[points.length - 2], points[points.length - 1]));
+  if (mode === "both") parts.push(arrowHeadPath(points[1], points[0]));
+  return parts.join(" ");
+}
+
+function arrowHeadPath(from: CanvasPoint, to: CanvasPoint): string {
+  const angle = Math.atan2(to.y - from.y, to.x - from.x);
+  const length = 11;
+  const spread = Math.PI / 7;
+  const left = {
+    x: roundCanvasNumber(to.x - Math.cos(angle - spread) * length),
+    y: roundCanvasNumber(to.y - Math.sin(angle - spread) * length),
+  };
+  const right = {
+    x: roundCanvasNumber(to.x - Math.cos(angle + spread) * length),
+    y: roundCanvasNumber(to.y - Math.sin(angle + spread) * length),
+  };
+  return `M ${to.x} ${to.y} L ${left.x} ${left.y} M ${to.x} ${to.y} L ${right.x} ${right.y}`;
+}
+
+function roundCanvasNumber(value: number): number {
+  return Math.round(value * 100) / 100;
 }
 
 function applyAutoSizing(nextShape: EditorShape, previousShape: EditorShape): EditorShape {

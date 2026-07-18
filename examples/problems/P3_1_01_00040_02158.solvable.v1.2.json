@@ -1,0 +1,335 @@
+{
+  "schema": "modu.solvable.v1.2",
+  "problem_id": "P3_1_01_00040_02158",
+  "problem_type": "multi_numeric_answer_addition",
+  "inputs": {
+    "target_label": "각 덧셈의 계산 결과",
+    "unit": "",
+    "quantities": {
+      "problem_1": {
+        "addends": [
+          286,
+          435
+        ]
+      },
+      "problem_2": {
+        "addends": [
+          479,
+          837
+        ]
+      },
+      "problem_3": {
+        "addends": [
+          296,
+          638
+        ]
+      },
+      "problem_4": {
+        "addends": [
+          864,
+          459
+        ]
+      }
+    },
+    "conditions": [
+      "같은 자리의 숫자끼리 맞추어 더합니다.",
+      "각 자리의 합이 10 이상이면 바로 윗자리로 받아올림합니다."
+    ]
+  },
+  "given": [
+    {
+      "ref": "calculation.1",
+      "value": {
+        "addends": [
+          286,
+          435
+        ]
+      }
+    },
+    {
+      "ref": "calculation.2",
+      "value": {
+        "addends": [
+          479,
+          837
+        ]
+      }
+    },
+    {
+      "ref": "calculation.3",
+      "value": {
+        "addends": [
+          296,
+          638
+        ]
+      }
+    },
+    {
+      "ref": "calculation.4",
+      "value": {
+        "addends": [
+          864,
+          459
+        ]
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.all",
+    "type": "addition_results"
+  },
+  "understanding": {
+    "summary": "네 개의 세 자리 수 덧셈을 계산하여 각각의 답을 구하는 문제입니다.",
+    "facts": [
+      {
+        "ref": "calculation.1",
+        "label": "첫 번째 덧셈식",
+        "value": "286 + 435",
+        "unit": "",
+        "source": "explicit"
+      },
+      {
+        "ref": "calculation.2",
+        "label": "두 번째 덧셈식",
+        "value": "479 + 837",
+        "unit": "",
+        "source": "explicit"
+      },
+      {
+        "ref": "calculation.3",
+        "label": "세 번째 덧셈식",
+        "value": "296 + 638",
+        "unit": "",
+        "source": "explicit"
+      },
+      {
+        "ref": "calculation.4",
+        "label": "네 번째 덧셈식",
+        "value": "864 + 459",
+        "unit": "",
+        "source": "explicit"
+      }
+    ],
+    "unknowns": [
+      {
+        "ref": "answer.1",
+        "label": "286 + 435의 계산 결과",
+        "unit": "",
+        "source": "unknown"
+      },
+      {
+        "ref": "answer.2",
+        "label": "479 + 837의 계산 결과",
+        "unit": "",
+        "source": "unknown"
+      },
+      {
+        "ref": "answer.3",
+        "label": "296 + 638의 계산 결과",
+        "unit": "",
+        "source": "unknown"
+      },
+      {
+        "ref": "answer.4",
+        "label": "864 + 459의 계산 결과",
+        "unit": "",
+        "source": "unknown"
+      }
+    ],
+    "relation": {
+      "type": "place_value_addition",
+      "statement": "일의 자리부터 더하고, 합이 10 이상이면 받아올림하여 다음 자리 계산에 더합니다.",
+      "symbolic": "ones -> tens -> hundreds -> thousands",
+      "uses": [
+        "calculation.1",
+        "calculation.2",
+        "calculation.3",
+        "calculation.4"
+      ],
+      "result": "answer.all"
+    },
+    "diagnostic_questions": [
+      {
+        "id": "understand.target",
+        "type": "multiple_choice",
+        "prompt": "이 문제에서 구해야 하는 것은 무엇인가요?",
+        "choices": [
+          "각 덧셈식의 계산 결과",
+          "가장 큰 수 하나",
+          "덧셈식의 개수"
+        ],
+        "answer_index": 0
+      },
+      {
+        "id": "understand.method",
+        "type": "multiple_choice",
+        "prompt": "세 자리 수 덧셈은 어느 자리부터 계산하나요?",
+        "choices": [
+          "일의 자리",
+          "백의 자리",
+          "가장 큰 숫자가 있는 자리"
+        ],
+        "answer_index": 0
+      }
+    ],
+    "student_restatement": {
+      "prompt": "문제의 뜻을 말해 볼까요?",
+      "template": "네 덧셈식 {exprs}의 값을 각각 계산합니다.",
+      "answer": "286+435, 479+837, 296+638, 864+459를 각각 계산합니다."
+    }
+  },
+  "method": "같은 자리끼리 맞추어 일의 자리부터 더하고, 받아올림을 반영해 계산합니다.",
+  "plan": [
+    "각 덧셈식의 숫자를 같은 자리끼리 맞춥니다.",
+    "일의 자리부터 차례로 더합니다.",
+    "합이 10 이상이면 받아올림을 다음 자리 계산에 더합니다.",
+    "각 덧셈식의 결과를 답으로 씁니다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "goal": "286 + 435를 계산합니다.",
+      "uses": [
+        "calculation.1"
+      ],
+      "expr": "286 + 435",
+      "value": {
+        "sum": 721,
+        "ref": "answer.1"
+      },
+      "explanation": "일의 자리 6+5=11에서 1을 쓰고 1을 받아올림합니다. 십의 자리 8+3+1=12에서 2를 쓰고 1을 받아올림합니다. 백의 자리 2+4+1=7이므로 721입니다."
+    },
+    {
+      "id": "step.2",
+      "goal": "479 + 837을 계산합니다.",
+      "uses": [
+        "calculation.2"
+      ],
+      "expr": "479 + 837",
+      "value": {
+        "sum": 1316,
+        "ref": "answer.2"
+      },
+      "explanation": "일의 자리 9+7=16에서 6을 쓰고 1을 받아올림합니다. 십의 자리 7+3+1=11에서 1을 쓰고 1을 받아올림합니다. 백의 자리 4+8+1=13이므로 1316입니다."
+    },
+    {
+      "id": "step.3",
+      "goal": "296 + 638을 계산합니다.",
+      "uses": [
+        "calculation.3"
+      ],
+      "expr": "296 + 638",
+      "value": {
+        "sum": 934,
+        "ref": "answer.3"
+      },
+      "explanation": "일의 자리 6+8=14에서 4를 쓰고 1을 받아올림합니다. 십의 자리 9+3+1=13에서 3을 쓰고 1을 받아올림합니다. 백의 자리 2+6+1=9이므로 934입니다."
+    },
+    {
+      "id": "step.4",
+      "goal": "864 + 459를 계산합니다.",
+      "uses": [
+        "calculation.4"
+      ],
+      "expr": "864 + 459",
+      "value": {
+        "sum": 1323,
+        "ref": "answer.4"
+      },
+      "explanation": "일의 자리 4+9=13에서 3을 쓰고 1을 받아올림합니다. 십의 자리 6+5+1=12에서 2를 쓰고 1을 받아올림합니다. 백의 자리 8+4+1=13이므로 1323입니다."
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "description": "721에서 435를 빼면 286이 됩니다.",
+      "expr": "721 - 435",
+      "expected": 286,
+      "actual": 286,
+      "pass": true
+    },
+    {
+      "id": "check.2",
+      "description": "1316에서 837을 빼면 479가 됩니다.",
+      "expr": "1316 - 837",
+      "expected": 479,
+      "actual": 479,
+      "pass": true
+    },
+    {
+      "id": "check.3",
+      "description": "934에서 638을 빼면 296이 됩니다.",
+      "expr": "934 - 638",
+      "expected": 296,
+      "actual": 296,
+      "pass": true
+    },
+    {
+      "id": "check.4",
+      "description": "1323에서 459를 빼면 864가 됩니다.",
+      "expr": "1323 - 459",
+      "expected": 864,
+      "actual": 864,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [
+      {
+        "id": "slot.answer_1",
+        "type": "number",
+        "value": 721,
+        "unit": ""
+      },
+      {
+        "id": "slot.answer_2",
+        "type": "number",
+        "value": 1316,
+        "unit": ""
+      },
+      {
+        "id": "slot.answer_3",
+        "type": "number",
+        "value": 934,
+        "unit": ""
+      },
+      {
+        "id": "slot.answer_4",
+        "type": "number",
+        "value": 1323,
+        "unit": ""
+      }
+    ],
+    "choices": [],
+    "answer_key": [
+      {
+        "blank_id": "slot.answer_1",
+        "value": 721,
+        "unit": ""
+      },
+      {
+        "blank_id": "slot.answer_2",
+        "value": 1316,
+        "unit": ""
+      },
+      {
+        "blank_id": "slot.answer_3",
+        "value": 934,
+        "unit": ""
+      },
+      {
+        "blank_id": "slot.answer_4",
+        "value": 1323,
+        "unit": ""
+      }
+    ],
+    "value": [
+      721,
+      1316,
+      934,
+      1323
+    ],
+    "unit": "",
+    "sentence": "(1) 721, (2) 1316, (3) 934, (4) 1323입니다."
+  }
+}

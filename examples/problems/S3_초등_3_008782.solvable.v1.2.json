@@ -1,0 +1,162 @@
+{
+  "schema": "modu.solvable.v1.2",
+  "problem_id": "S3_초등_3_008782",
+  "problem_type": "unit_conversion_mcq",
+  "inputs": {
+    "total_ticks": 3,
+    "target_label": "incorrect_weight_statement",
+    "target_ticks": 1,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.choice.1",
+      "value": {
+        "symbol": "㉠",
+        "expression": "3 kg 40 g = 3040 g"
+      }
+    },
+    {
+      "ref": "obj.choice.2",
+      "value": {
+        "symbol": "㉡",
+        "expression": "4000 kg = 4 t"
+      }
+    },
+    {
+      "ref": "obj.choice.3",
+      "value": {
+        "symbol": "㉢",
+        "expression": "2 kg 700 g = 2070 g"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "incorrect_weight_statement"
+  },
+  "method": "unit_conversion_check",
+  "plan": [
+    "각 보기의 좌변을 g 또는 t로 바꾸어 우변과 같은지 확인한다.",
+    "같지 않은 보기를 정답으로 고른다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "3 kg 40 g = 3000 g + 40 g",
+      "value": 3040
+    },
+    {
+      "id": "step.2",
+      "expr": "4000 kg = 4 t",
+      "value": 4
+    },
+    {
+      "id": "step.3",
+      "expr": "2 kg 700 g = 2000 g + 700 g",
+      "value": 2700
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "3 kg 40 g와 3040 g은 같은 무게인지 확인",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "id": "check.2",
+      "expr": "4000 kg와 4 t는 같은 무게인지 확인",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "id": "check.3",
+      "expr": "2 kg 700 g와 2070 g은 같은 무게인지 확인",
+      "expected": true,
+      "actual": false,
+      "pass": false
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "incorrect_weight_statement",
+      "description": "무게의 단위를 잘못 나타낸 보기의 기호"
+    },
+    "value": "㉢",
+    "unit": ""
+  },
+  "understanding": {
+    "summary": "Find incorrect_weight_statement using the given information.",
+    "facts": [
+      {
+        "ref": "obj.choice.1",
+        "label": "1",
+        "value": {
+          "symbol": "㉠",
+          "expression": "3 kg 40 g = 3040 g"
+        },
+        "unit": "",
+        "source": "explicit"
+      },
+      {
+        "ref": "obj.choice.2",
+        "label": "2",
+        "value": {
+          "symbol": "㉡",
+          "expression": "4000 kg = 4 t"
+        },
+        "unit": "",
+        "source": "explicit"
+      },
+      {
+        "ref": "obj.choice.3",
+        "label": "3",
+        "value": {
+          "symbol": "㉢",
+          "expression": "2 kg 700 g = 2070 g"
+        },
+        "unit": "",
+        "source": "explicit"
+      }
+    ],
+    "unknowns": [
+      {
+        "ref": "answer.target",
+        "label": "incorrect_weight_statement",
+        "unit": "",
+        "source": "unknown"
+      }
+    ],
+    "relation": {
+      "type": "unit_conversion_check",
+      "statement": "각 보기의 좌변을 g 또는 t로 바꾸어 우변과 같은지 확인한다.",
+      "symbolic": "3 kg 40 g = 3000 g + 40 g",
+      "uses": [
+        "obj.choice.1",
+        "obj.choice.2",
+        "obj.choice.3"
+      ],
+      "result": "answer.target"
+    },
+    "diagnostic_questions": [
+      {
+        "id": "understand.target",
+        "type": "multiple_choice",
+        "prompt": "What should we find?",
+        "choices": [
+          "1",
+          "2",
+          "incorrect_weight_statement"
+        ],
+        "answer_index": 2
+      }
+    ]
+  }
+}

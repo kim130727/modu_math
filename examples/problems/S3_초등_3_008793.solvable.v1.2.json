@@ -1,0 +1,102 @@
+{
+  "schema": "modu.solvable.v1.2",
+  "problem_id": "S3_초등_3_008793",
+  "problem_type": "comparison_selection",
+  "inputs": {
+    "total_ticks": 1,
+    "target_label": "100 mL보다 더 많은 것",
+    "target_ticks": 1,
+    "target_count": 1,
+    "unit": "mL"
+  },
+  "given": [
+    {
+      "ref": "obj.reference_capacity",
+      "value": {
+        "value": 100,
+        "unit": "mL"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "selected_object"
+  },
+  "plan": [
+    "100 mL와 각 대상을 비교하여 더 큰 용량을 고른다."
+  ],
+  "method": "capacity_comparison",
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "기준 용량 확인",
+      "value": 100
+    },
+    {
+      "id": "step.2",
+      "expr": "100 mL보다 큰 대상을 선택",
+      "value": 0
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "선택한 대상의 용량 > 100 mL",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "selected_object",
+      "description": "100 mL보다 더 많은 것"
+    },
+    "value": "2번 간장병",
+    "unit": ""
+  },
+  "understanding": {
+    "summary": "Find 100 mL보다 더 많은 것 using the given information.",
+    "facts": [
+      {
+        "ref": "obj.reference_capacity",
+        "label": "reference capacity",
+        "value": 100,
+        "unit": "mL",
+        "source": "explicit"
+      }
+    ],
+    "unknowns": [
+      {
+        "ref": "answer.target",
+        "label": "100 mL보다 더 많은 것",
+        "unit": "mL",
+        "source": "unknown"
+      }
+    ],
+    "relation": {
+      "type": "capacity_comparison",
+      "statement": "100 mL와 각 대상을 비교하여 더 큰 용량을 고른다.",
+      "symbolic": "기준 용량 확인",
+      "uses": [
+        "obj.reference_capacity"
+      ],
+      "result": "answer.target"
+    },
+    "diagnostic_questions": [
+      {
+        "id": "understand.target",
+        "type": "multiple_choice",
+        "prompt": "What should we find?",
+        "choices": [
+          "reference capacity",
+          "100 mL보다 더 많은 것"
+        ],
+        "answer_index": 1
+      }
+    ]
+  }
+}

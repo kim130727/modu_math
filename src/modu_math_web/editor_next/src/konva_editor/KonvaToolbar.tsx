@@ -5,6 +5,14 @@ export type ShapePreset =
   | "arrow"
   | "doubleArrow"
   | "elbow"
+  | "elbowArrow"
+  | "elbowDoubleArrow"
+  | "curvedConnector"
+  | "curvedArrow"
+  | "curvedDoubleArrow"
+  | "curve"
+  | "freeformShape"
+  | "freeformScribble"
   | "arc"
   | "semicircle"
   | "quarterArc"
@@ -85,15 +93,37 @@ interface ShapePaletteSection {
 
 const SHAPE_SECTIONS: ShapePaletteSection[] = [
   {
+    title: "\uc120",
+    items: [
+      { preset: "line", label: "\uc120" },
+      { preset: "arrow", label: "\uc120 \ud654\uc0b4\ud45c" },
+      { preset: "doubleArrow", label: "\uc120 \ud654\uc0b4\ud45c: \uc591\ubc29\ud5a5" },
+      { preset: "elbow", label: "\uc5f0\uacb0\uc120: \uaebe\uc784" },
+      { preset: "elbowArrow", label: "\uc5f0\uacb0\uc120: \uaebe\uc778 \ud654\uc0b4\ud45c" },
+      { preset: "elbowDoubleArrow", label: "\uc5f0\uacb0\uc120: \uaebe\uc778 \uc591\ucabd \ud654\uc0b4\ud45c" },
+      { preset: "curvedConnector", label: "\uc5f0\uacb0\uc120: \uad6c\ubd80\ub7ec\uc9d0" },
+      { preset: "curvedArrow", label: "\uc5f0\uacb0\uc120: \uad6c\ubd80\ub7ec\uc9c4 \ud654\uc0b4\ud45c" },
+      { preset: "curvedDoubleArrow", label: "\uc5f0\uacb0\uc120: \uad6c\ubd80\ub7ec\uc9c4 \uc591\ucabd \ud654\uc0b4\ud45c" },
+      { preset: "curve", label: "\uace1\uc120" },
+      { preset: "freeformShape", label: "\uc790\uc720\ud615: \ub3c4\ud615" },
+      { preset: "freeformScribble", label: "\uc790\uc720\ud615: \uc790\uc720 \uace1\uc120" },
+    ],
+  },
+  {
     title: "선",
     items: [
       { preset: "line", label: "선" },
-      { preset: "arrow", label: "화살표" },
-      { preset: "doubleArrow", label: "양방향 화살표" },
-      { preset: "elbow", label: "꺾은선" },
-      { preset: "arc", label: "Arc" },
-      { preset: "semicircle", label: "Semicircle" },
-      { preset: "quarterArc", label: "Quarter arc" },
+      { preset: "arrow", label: "선 화살표" },
+      { preset: "doubleArrow", label: "선 화살표: 양방향" },
+      { preset: "elbow", label: "연결선: 꺾임" },
+      { preset: "elbowArrow", label: "연결선: 꺾인 화살표" },
+      { preset: "elbowDoubleArrow", label: "연결선: 꺾인 양쪽 화살표" },
+      { preset: "curvedConnector", label: "연결선: 구부러짐" },
+      { preset: "curvedArrow", label: "연결선: 구부러진 화살표" },
+      { preset: "curvedDoubleArrow", label: "연결선: 구부러진 양쪽 화살표" },
+      { preset: "curve", label: "곡선" },
+      { preset: "freeformShape", label: "자유형: 도형" },
+      { preset: "freeformScribble", label: "자유형: 자유 곡선" },
     ],
   },
   {
@@ -325,7 +355,7 @@ export function KonvaToolbar(props: KonvaToolbarProps) {
         </button>
         {isShapeMenuOpen ? (
           <div className="shape-palette" role="menu" aria-label="Insert shape">
-            {SHAPE_SECTIONS.map((section) => (
+            {SHAPE_SECTIONS.filter((_, index) => index !== 1).map((section) => (
               <div className="shape-palette-section" key={section.title}>
                 <div className="shape-palette-title">{section.title}</div>
                 <div className="shape-palette-grid">
@@ -393,6 +423,29 @@ function ShapePresetIcon({ preset }: { preset: ShapePreset }) {
     return (
       <svg viewBox="0 0 32 24" aria-hidden="true">
         <path d="M6 6v10h20" />
+      </svg>
+    );
+  }
+  if (preset === "elbowArrow" || preset === "elbowDoubleArrow") {
+    return (
+      <svg viewBox="0 0 32 24" aria-hidden="true">
+        <path d={preset === "elbowArrow" ? "M6 6v10h20M26 16l-6-4M26 16l-6 4" : "M6 6v10h20M6 6l4 6M6 6l-4 6M26 16l-6-4M26 16l-6 4"} />
+      </svg>
+    );
+  }
+  if (preset === "curvedConnector" || preset === "curvedArrow" || preset === "curvedDoubleArrow" || preset === "curve") {
+    return (
+      <svg viewBox="0 0 32 24" aria-hidden="true">
+        <path d="M5 18 C10 4, 22 4, 27 18" />
+        {preset === "curvedArrow" || preset === "curvedDoubleArrow" ? <path d="M27 18l-7-1M27 18l-3-6" /> : null}
+        {preset === "curvedDoubleArrow" ? <path d="M5 18l7 1M5 18l3-6" /> : null}
+      </svg>
+    );
+  }
+  if (preset === "freeformShape" || preset === "freeformScribble") {
+    return (
+      <svg viewBox="0 0 32 24" aria-hidden="true">
+        <path d={preset === "freeformShape" ? "M6 18 L12 7 L20 9 L26 18 Z" : "M5 16 C9 5, 13 20, 18 9 S25 13, 27 7"} />
       </svg>
     );
   }

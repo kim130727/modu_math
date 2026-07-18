@@ -1,0 +1,127 @@
+{
+  "schema": "modu.solvable.v1.2",
+  "problem_id": "S3_초등_3_008825",
+  "problem_type": "unit_reading",
+  "inputs": {
+    "total_ticks": 1,
+    "target_label": "mL",
+    "target_ticks": 1,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.label",
+      "value": {
+        "text": "200 mL"
+      }
+    },
+    {
+      "ref": "obj.choice",
+      "value": {
+        "options": [
+          "L",
+          "mL"
+        ]
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "selected_unit"
+  },
+  "method": "label_reading",
+  "plan": [
+    "그림에 표시된 글자를 읽고 단위를 확인한다.",
+    "선택지 중 같은 단위를 고른다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "그림의 표기 읽기",
+      "value": "200 mL"
+    },
+    {
+      "id": "step.2",
+      "expr": "표기에서 단위 확인",
+      "value": "mL"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "200 mL의 단위가 mL인지 확인",
+      "expected": "mL",
+      "actual": "mL",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "selected_unit",
+      "description": "두유팩에 표시되어 있는 단위"
+    },
+    "value": "mL",
+    "unit": ""
+  },
+  "understanding": {
+    "summary": "Find mL using the given information.",
+    "facts": [
+      {
+        "ref": "obj.label",
+        "label": "label",
+        "value": {
+          "text": "200 mL"
+        },
+        "unit": "",
+        "source": "explicit"
+      },
+      {
+        "ref": "obj.choice",
+        "label": "choice",
+        "value": {
+          "options": [
+            "L",
+            "mL"
+          ]
+        },
+        "unit": "",
+        "source": "explicit"
+      }
+    ],
+    "unknowns": [
+      {
+        "ref": "answer.target",
+        "label": "mL",
+        "unit": "",
+        "source": "unknown"
+      }
+    ],
+    "relation": {
+      "type": "label_reading",
+      "statement": "그림에 표시된 글자를 읽고 단위를 확인한다.",
+      "symbolic": "그림의 표기 읽기",
+      "uses": [
+        "obj.label",
+        "obj.choice"
+      ],
+      "result": "answer.target"
+    },
+    "diagnostic_questions": [
+      {
+        "id": "understand.target",
+        "type": "multiple_choice",
+        "prompt": "What should we find?",
+        "choices": [
+          "label",
+          "choice",
+          "mL"
+        ],
+        "answer_index": 2
+      }
+    ]
+  }
+}

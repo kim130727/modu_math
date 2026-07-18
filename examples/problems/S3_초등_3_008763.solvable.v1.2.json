@@ -1,0 +1,126 @@
+{
+  "schema": "modu.solvable.v1.2",
+  "problem_id": "S3_초등_3_008763",
+  "problem_type": "weight_comparison",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "더 가벼운 것",
+    "target_ticks": 0,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.potato",
+      "value": "감자"
+    },
+    {
+      "ref": "obj.sweet_potato",
+      "value": "고구마"
+    },
+    {
+      "ref": "obj.balance",
+      "value": "저울"
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "lighter_object"
+  },
+  "method": "visual_balance_comparison",
+  "plan": [
+    "저울의 기울어진 방향을 확인한다.",
+    "위로 올라간 접시에 놓인 물건이 더 가벼운지 판단한다.",
+    "더 가벼운 물건을 선택한다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "고구마가 놓인 접시가 위로 올라가 보인다.",
+      "value": "고구마"
+    },
+    {
+      "id": "step.2",
+      "expr": "위로 올라간 쪽은 더 가볍다.",
+      "value": "고구마"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "정답이 그림의 시각적 비교와 일치하는가",
+      "expected": "고구마",
+      "actual": "고구마",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "lighter_object",
+      "description": "더 가벼운 것"
+    },
+    "value": "고구마",
+    "unit": ""
+  },
+  "understanding": {
+    "summary": "Find 더 가벼운 것 using the given information.",
+    "facts": [
+      {
+        "ref": "obj.potato",
+        "label": "potato",
+        "value": "감자",
+        "unit": "",
+        "source": "explicit"
+      },
+      {
+        "ref": "obj.sweet_potato",
+        "label": "sweet potato",
+        "value": "고구마",
+        "unit": "",
+        "source": "explicit"
+      },
+      {
+        "ref": "obj.balance",
+        "label": "balance",
+        "value": "저울",
+        "unit": "",
+        "source": "explicit"
+      }
+    ],
+    "unknowns": [
+      {
+        "ref": "answer.target",
+        "label": "더 가벼운 것",
+        "unit": "",
+        "source": "unknown"
+      }
+    ],
+    "relation": {
+      "type": "visual_balance_comparison",
+      "statement": "저울의 기울어진 방향을 확인한다.",
+      "symbolic": "고구마가 놓인 접시가 위로 올라가 보인다.",
+      "uses": [
+        "obj.potato",
+        "obj.sweet_potato",
+        "obj.balance"
+      ],
+      "result": "answer.target"
+    },
+    "diagnostic_questions": [
+      {
+        "id": "understand.target",
+        "type": "multiple_choice",
+        "prompt": "What should we find?",
+        "choices": [
+          "potato",
+          "sweet potato",
+          "더 가벼운 것"
+        ],
+        "answer_index": 2
+      }
+    ]
+  }
+}

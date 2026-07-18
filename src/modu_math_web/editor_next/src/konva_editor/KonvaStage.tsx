@@ -6,6 +6,7 @@ import type { EditorShape, LineShape } from "../types/editorShape";
 import { scalePathData } from "../utils/pathData";
 import { KONVA_PREVIEW_FONT_LOAD_SPEC } from "./fonts";
 import { ShapeRenderer } from "./ShapeRenderer";
+import type { ShapePreset } from "./KonvaToolbar";
 
 interface KonvaStageProps {
   width: number;
@@ -14,8 +15,11 @@ interface KonvaStageProps {
   selectedShapeIds: string[];
   tutorOverlays?: TutorRendererOverlay[];
   activeTutorOverlayIndex?: number | null;
+  drawingPreset?: ShapePreset | null;
   onSelectShapes: (ids: string[]) => void;
   onChangeShapes: (shapes: EditorShape[]) => void;
+  onDrawShape?: (preset: ShapePreset, start: CanvasPoint, end: CanvasPoint, points?: CanvasPoint[]) => void;
+  onDrawingComplete?: () => void;
   onTutorOverlaySelect?: (overlayIndex: number | null) => void;
   onTutorOverlayChange?: (overlayIndex: number, patch: Partial<TutorRendererOverlay>) => void;
   onTutorOverlayMove?: (overlayIndex: number, x: number, y: number) => void;
@@ -28,8 +32,11 @@ export function KonvaStage({
   selectedShapeIds,
   tutorOverlays = [],
   activeTutorOverlayIndex = null,
+  drawingPreset = null,
   onSelectShapes,
   onChangeShapes,
+  onDrawShape,
+  onDrawingComplete,
   onTutorOverlaySelect,
   onTutorOverlayChange,
   onTutorOverlayMove,
@@ -39,9 +46,12 @@ export function KonvaStage({
   const shapeRefs = useRef<Record<string, Konva.Node | null>>({});
   const dragStartRef = useRef<{ activeId: string; ids: string[]; positions: Map<string, { x: number; y: number }> } | null>(null);
   const selectionStartRef = useRef<{ x: number; y: number; additive: boolean } | null>(null);
+  const drawStartRef = useRef<CanvasPoint | null>(null);
+  const drawPointsRef = useRef<CanvasPoint[]>([]);
   const tutorTextEditorRef = useRef<HTMLTextAreaElement | null>(null);
   const [viewport, setViewport] = useState({ width: 900, height: 640 });
   const [selectionRect, setSelectionRect] = useState<CanvasRect | null>(null);
+  const [drawingPreview, setDrawingPreview] = useState<EditorShape | null>(null);
   const [contextMenu, setContextMenu] = useState<{ x: number; y: number; shapeId: string } | null>(null);
   const [editingTutorLabel, setEditingTutorLabel] = useState<{
     index: number;
@@ -100,7 +110,8 @@ export function KonvaStage({
     tutorTextEditorRef.current?.select();
   }, [editingTutorLabel?.index]);
 
-  const scale = Math.min((viewport.width - 40) / width, (viewport.height - 40) / height, 1);
+  const fitScale = Math.min((viewport.width - 40) / width, (viewport.height - 40) / height);
+  const scale = Math.min(fitScale, 2.5);
   const stageWidth = Math.max(viewport.width, width * scale + 40);
   const stageHeight = Math.max(viewport.height, height * scale + 40);
   const offsetX = Math.max(20, (stageWidth - width * scale) / 2);
@@ -214,17 +225,45 @@ export function KonvaStage({
           if (event.target !== event.target.getStage()) return;
           const point = pointFromEvent(event);
           if (!point) return;
+          if (drawingPreset && onDrawShape) {
+            drawStartRef.current = point;
+            drawPointsRef.current = [point];
+            setDrawingPreview(previewShapeForDrawing(drawingPreset, point, point, drawPointsRef.current));
+            onSelectShapes([]);
+            return;
+          }
           selectionStartRef.current = { ...point, additive: isAdditiveSelection(event.evt) };
           setSelectionRect({ x: point.x, y: point.y, width: 0, height: 0 });
         }}
         onMouseMove={(event) => {
+          if (drawStartRef.current && drawingPreset) {
+            const point = pointFromEvent(event);
+            if (!point) return;
+            if (drawingPreset === "freeformScribble") drawPointsRef.current = appendFreeformPoint(drawPointsRef.current, point);
+            setDrawingPreview(previewShapeForDrawing(drawingPreset, drawStartRef.current, point, drawPointsRef.current));
+            return;
+          }
           const start = selectionStartRef.current;
           if (!start) return;
           const point = pointFromEvent(event);
           if (!point) return;
           setSelectionRect(normalizeRect(start.x, start.y, point.x - start.x, point.y - start.y));
         }}
-        onMouseUp={() => {
+        onMouseUp={(event) => {
+          if (drawStartRef.current && drawingPreset && onDrawShape) {
+            const start = drawStartRef.current;
+            const points = drawPointsRef.current;
+            const end = pointFromEvent(event) ?? drawingEndPoint(drawingPreview ?? previewShapeForDrawing(drawingPreset, start, start, points));
+            drawStartRef.current = null;
+            drawPointsRef.current = [];
+            const preview = drawingPreview;
+            setDrawingPreview(null);
+            if (preview && shapeLongEnough(preview)) {
+              onDrawShape(drawingPreset, start, end, points);
+            }
+            onDrawingComplete?.();
+            return;
+          }
           const start = selectionStartRef.current;
           const rect = selectionRect;
           selectionStartRef.current = null;
@@ -290,6 +329,22 @@ export function KonvaStage({
               strokeWidth={1}
               dash={[5, 4]}
               listening={false}
+            />
+          ) : null}
+          {drawingPreview ? (
+            <ShapeRenderer
+              shape={drawingPreview}
+              isSelected={false}
+              nodeRef={() => undefined}
+              onSelect={(event) => {
+                event.cancelBubble = true;
+              }}
+              onDragStart={() => undefined}
+              onDragMove={() => undefined}
+              onDragEnd={() => undefined}
+              onContextMenu={(event) => {
+                event.cancelBubble = true;
+              }}
             />
           ) : null}
           {selectedLine ? (
@@ -519,6 +574,11 @@ interface CanvasRect {
   height: number;
 }
 
+export interface CanvasPoint {
+  x: number;
+  y: number;
+}
+
 function normalizeRect(x: number, y: number, width: number, height: number): CanvasRect {
   return {
     x: width < 0 ? x + width : x,
@@ -577,6 +637,125 @@ function numberStyle(value: unknown, fallback: number): number {
 
 function stringStyle(value: unknown, fallback: string): string {
   return typeof value === "string" && value.trim() ? value : fallback;
+}
+
+function previewShapeForDrawing(preset: ShapePreset, start: CanvasPoint, end: CanvasPoint, points: CanvasPoint[] = []): EditorShape {
+  const stroke = "#111827";
+  const strokeWidth = 1.2;
+  if (preset === "line") {
+    return {
+      id: "drawing.preview",
+      type: "line",
+      x: start.x,
+      y: start.y,
+      points: [0, 0, end.x - start.x, end.y - start.y],
+      stroke,
+      strokeWidth,
+    };
+  }
+  const bounds = normalizeRect(start.x, start.y, end.x - start.x, end.y - start.y);
+  const width = Math.max(1, bounds.width);
+  const height = Math.max(1, bounds.height);
+  return {
+    id: "drawing.preview",
+    type: "path",
+    x: bounds.x,
+    y: bounds.y,
+    width,
+    height,
+    d: pathForDrawingPreset(preset, start, end, points, bounds),
+    fill: preset === "freeformShape" ? "rgba(255,255,255,0.01)" : "none",
+    stroke,
+    strokeWidth,
+  };
+}
+
+function pathForDrawingPreset(
+  preset: ShapePreset,
+  start: CanvasPoint,
+  end: CanvasPoint,
+  points: CanvasPoint[],
+  bounds: CanvasRect,
+): string {
+  const a = { x: start.x - bounds.x, y: start.y - bounds.y };
+  const b = { x: end.x - bounds.x, y: end.y - bounds.y };
+  const dx = b.x - a.x;
+  const dy = b.y - a.y;
+  if (preset === "elbow" || preset === "elbowArrow" || preset === "elbowDoubleArrow") {
+    const mid = { x: a.x, y: b.y };
+    return withArrowHeads(`M ${a.x} ${a.y} L ${mid.x} ${mid.y} L ${b.x} ${b.y}`, [a, mid, b], arrowMode(preset));
+  }
+  if (preset === "curvedConnector" || preset === "curvedArrow" || preset === "curvedDoubleArrow" || preset === "curve") {
+    const lift = Math.max(20, Math.min(90, Math.hypot(dx, dy) * 0.28));
+    const c1 = { x: a.x + dx * 0.34, y: a.y - lift };
+    const c2 = { x: a.x + dx * 0.66, y: b.y - lift };
+    return withArrowHeads(`M ${a.x} ${a.y} C ${c1.x} ${c1.y}, ${c2.x} ${c2.y}, ${b.x} ${b.y}`, [a, c1, c2, b], arrowMode(preset));
+  }
+  if (preset === "freeformScribble" && points.length > 1) {
+    const local = points.map((point) => ({ x: point.x - bounds.x, y: point.y - bounds.y }));
+    return local.map((point, index) => `${index === 0 ? "M" : "L"} ${point.x} ${point.y}`).join(" ");
+  }
+  if (preset === "freeformShape") {
+    const c = { x: a.x + dx * 0.48, y: a.y + dy * 0.18 - 22 };
+    const d = { x: a.x + dx * 0.84, y: a.y + dy * 0.78 };
+    return `M ${a.x} ${a.y} L ${c.x} ${c.y} L ${b.x} ${b.y} L ${d.x} ${d.y} Z`;
+  }
+  return withArrowHeads(`M ${a.x} ${a.y} L ${b.x} ${b.y}`, [a, b], arrowMode(preset));
+}
+
+function arrowMode(preset: ShapePreset): "none" | "end" | "both" {
+  if (preset === "doubleArrow" || preset === "elbowDoubleArrow" || preset === "curvedDoubleArrow") return "both";
+  if (preset === "arrow" || preset === "elbowArrow" || preset === "curvedArrow") return "end";
+  return "none";
+}
+
+function withArrowHeads(path: string, points: CanvasPoint[], mode: "none" | "end" | "both"): string {
+  if (mode === "none" || points.length < 2) return path;
+  const parts = [path];
+  if (mode === "end" || mode === "both") parts.push(arrowHeadPath(points[points.length - 2], points[points.length - 1]));
+  if (mode === "both") parts.push(arrowHeadPath(points[1], points[0]));
+  return parts.join(" ");
+}
+
+function arrowHeadPath(from: CanvasPoint, to: CanvasPoint): string {
+  const angle = Math.atan2(to.y - from.y, to.x - from.x);
+  const length = 11;
+  const spread = Math.PI / 7;
+  const left = {
+    x: to.x - Math.cos(angle - spread) * length,
+    y: to.y - Math.sin(angle - spread) * length,
+  };
+  const right = {
+    x: to.x - Math.cos(angle + spread) * length,
+    y: to.y - Math.sin(angle + spread) * length,
+  };
+  return `M ${to.x} ${to.y} L ${left.x} ${left.y} M ${to.x} ${to.y} L ${right.x} ${right.y}`;
+}
+
+function appendFreeformPoint(points: CanvasPoint[], point: CanvasPoint): CanvasPoint[] {
+  const last = points[points.length - 1];
+  if (last && Math.hypot(point.x - last.x, point.y - last.y) < 3) return points;
+  return [...points, point];
+}
+
+function shapeLongEnough(shape: EditorShape): boolean {
+  if (shape.type === "line") return Math.hypot(shape.points[2] ?? 0, shape.points[3] ?? 0) >= 4;
+  if (shape.type === "path" || shape.type === "rect" || shape.type === "image" || shape.type === "math") {
+    return Math.max(shape.width, shape.height) >= 4;
+  }
+  if (shape.type === "text") return Math.max(shape.width ?? 0, shape.height ?? 0) >= 4;
+  if (shape.type === "circle") return shape.radius >= 2;
+  return false;
+}
+
+function drawingEndPoint(shape: EditorShape): CanvasPoint {
+  if (shape.type === "line") {
+    return { x: shape.x + (shape.points[2] ?? 0), y: shape.y + (shape.points[3] ?? 0) };
+  }
+  if (shape.type === "path" || shape.type === "rect" || shape.type === "image" || shape.type === "math") {
+    return { x: shape.x + shape.width, y: shape.y + shape.height };
+  }
+  return { x: shape.x, y: shape.y };
 }
 
 function LineEndpointHandles({

@@ -1,0 +1,125 @@
+{
+  "problem_id": "P3_1_01_00040_02159",
+  "problem_type": "sequential_addition_fill_blank",
+  "metadata": {
+    "title": "연속 덧셈의 빈칸 채우기",
+    "tags": [
+      "grade-3",
+      "addition",
+      "three-digit-addition",
+      "sequential-calculation",
+      "fill-in-the-blank",
+      "diagram"
+    ],
+    "question": "빈 곳에 알맞은 수를 써넣으시오.",
+    "required_layout_ids": [
+      "slot.start_oval",
+      "slot.operation_1_box",
+      "slot.arrow_1_curve",
+      "slot.arrow_1_head",
+      "slot.answer_1_oval",
+      "slot.operation_2_box",
+      "slot.arrow_2_curve",
+      "slot.arrow_2_head",
+      "slot.answer_2_oval"
+    ],
+    "extraction_confidence": 1.0,
+    "grade": 3,
+    "semester": 1,
+    "subject": "수학",
+    "topic": "세 자리 수의 덧셈",
+    "language": "ko-KR"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "number.start",
+        "type": "number",
+        "label": "처음 수",
+        "value": 156
+      },
+      {
+        "id": "operation.add_278",
+        "type": "addition_operation",
+        "label": "278 더하기",
+        "value": 278
+      },
+      {
+        "id": "number.middle",
+        "type": "number",
+        "label": "첫 번째 빈칸의 수",
+        "value": 434
+      },
+      {
+        "id": "operation.add_697",
+        "type": "addition_operation",
+        "label": "697 더하기",
+        "value": 697
+      },
+      {
+        "id": "number.end",
+        "type": "number",
+        "label": "두 번째 빈칸의 수",
+        "value": 1131
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.step_1",
+        "type": "addition",
+        "from_ids": [
+          "number.start",
+          "operation.add_278"
+        ],
+        "to_id": "number.middle",
+        "equation": "156 + 278 = 434"
+      },
+      {
+        "id": "relation.step_2",
+        "type": "addition",
+        "from_ids": [
+          "number.middle",
+          "operation.add_697"
+        ],
+        "to_id": "number.end",
+        "equation": "434 + 697 = 1131"
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "blanks": [
+      {
+        "id": "slot.answer_1",
+        "type": "number",
+        "value": 434,
+        "unit": ""
+      },
+      {
+        "id": "slot.answer_2",
+        "type": "number",
+        "value": 1131,
+        "unit": ""
+      }
+    ],
+    "choices": [],
+    "answer_key": [
+      {
+        "blank_id": "slot.answer_1",
+        "value": 434,
+        "unit": ""
+      },
+      {
+        "blank_id": "slot.answer_2",
+        "value": 1131,
+        "unit": ""
+      }
+    ],
+    "value": [
+      434,
+      1131
+    ],
+    "unit": "",
+    "sentence": "첫 번째 빈칸은 434, 두 번째 빈칸은 1131입니다."
+  }
+}

@@ -1,0 +1,142 @@
+{
+  "schema": "modu.solvable.v1.2",
+  "problem_id": "S3_초등_3_008785",
+  "problem_type": "비교",
+  "inputs": {
+    "total_ticks": 3,
+    "target_label": "가장 무거운 학용품",
+    "target_ticks": 1,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.beads.notebook",
+      "value": 11
+    },
+    {
+      "ref": "obj.beads.crayons",
+      "value": 17
+    },
+    {
+      "ref": "obj.beads.scissors",
+      "value": 13
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "school_supply_name"
+  },
+  "method": "비교",
+  "plan": [
+    "쇠구슬의 수를 비교합니다.",
+    "가장 큰 수에 대응하는 학용품을 찾습니다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "17 > 13",
+      "value": true
+    },
+    {
+      "id": "step.2",
+      "expr": "13 > 11",
+      "value": true
+    },
+    {
+      "id": "step.3",
+      "expr": "가장 큰 쇠구슬 수는 17",
+      "value": 17
+    },
+    {
+      "id": "step.4",
+      "expr": "17에 대응하는 학용품은 크레파스",
+      "value": "크레파스"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "17 > 13 > 11",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "id": "check.2",
+      "expr": "최댓값 17의 대응 항목",
+      "expected": "크레파스",
+      "actual": "크레파스",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "school_supply_name",
+      "description": "가장 무거운 학용품"
+    },
+    "value": "크레파스",
+    "unit": ""
+  },
+  "understanding": {
+    "summary": "Find 가장 무거운 학용품 using the given information.",
+    "facts": [
+      {
+        "ref": "obj.beads.notebook",
+        "label": "notebook",
+        "value": 11,
+        "unit": "",
+        "source": "explicit"
+      },
+      {
+        "ref": "obj.beads.crayons",
+        "label": "crayons",
+        "value": 17,
+        "unit": "",
+        "source": "explicit"
+      },
+      {
+        "ref": "obj.beads.scissors",
+        "label": "scissors",
+        "value": 13,
+        "unit": "",
+        "source": "explicit"
+      }
+    ],
+    "unknowns": [
+      {
+        "ref": "answer.target",
+        "label": "가장 무거운 학용품",
+        "unit": "",
+        "source": "unknown"
+      }
+    ],
+    "relation": {
+      "type": "비교",
+      "statement": "쇠구슬의 수를 비교합니다.",
+      "symbolic": "17 > 13",
+      "uses": [
+        "obj.beads.notebook",
+        "obj.beads.crayons",
+        "obj.beads.scissors"
+      ],
+      "result": "answer.target"
+    },
+    "diagnostic_questions": [
+      {
+        "id": "understand.target",
+        "type": "multiple_choice",
+        "prompt": "What should we find?",
+        "choices": [
+          "notebook",
+          "crayons",
+          "가장 무거운 학용품"
+        ],
+        "answer_index": 2
+      }
+    ]
+  }
+}

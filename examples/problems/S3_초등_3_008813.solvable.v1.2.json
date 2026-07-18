@@ -1,0 +1,130 @@
+{
+  "schema": "modu.solvable.v1.2",
+  "problem_id": "S3_초등_3_008813",
+  "problem_type": "capacity_comparison",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "들이가 더 적은 것",
+    "target_ticks": 0,
+    "target_count": 2,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.bottle",
+      "value": "우유병"
+    },
+    {
+      "ref": "obj.cup",
+      "value": "컵"
+    },
+    {
+      "ref": "rel.transfer",
+      "value": "우유병의 물을 컵에 옮겨 담았더니 우유병에 물이 남음"
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "container_name"
+  },
+  "method": "compare_container_capacity",
+  "plan": [
+    "옮겨 담은 뒤에도 남는 용기가 더 큰 들이를 가진다.",
+    "남는 물이 있는 쪽과 비교하여 들이가 더 적은 용기를 고른다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "우유병의 물을 컵에 옮겨 담는다.",
+      "value": "옮겨 담기"
+    },
+    {
+      "id": "step.2",
+      "expr": "우유병에 물이 남는다.",
+      "value": "남음"
+    },
+    {
+      "id": "step.3",
+      "expr": "따라서 들이가 더 적은 용기를 선택한다.",
+      "value": "컵"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "정답이 화면의 (정답) 표기와 일치하는가",
+      "expected": "컵",
+      "actual": "컵",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "container_name",
+      "description": "들이가 더 적은 것"
+    },
+    "value": "컵",
+    "unit": ""
+  },
+  "understanding": {
+    "summary": "Find 들이가 더 적은 것 using the given information.",
+    "facts": [
+      {
+        "ref": "obj.bottle",
+        "label": "bottle",
+        "value": "우유병",
+        "unit": "",
+        "source": "explicit"
+      },
+      {
+        "ref": "obj.cup",
+        "label": "cup",
+        "value": "컵",
+        "unit": "",
+        "source": "explicit"
+      },
+      {
+        "ref": "rel.transfer",
+        "label": "transfer",
+        "value": "우유병의 물을 컵에 옮겨 담았더니 우유병에 물이 남음",
+        "unit": "",
+        "source": "explicit"
+      }
+    ],
+    "unknowns": [
+      {
+        "ref": "answer.target",
+        "label": "들이가 더 적은 것",
+        "unit": "",
+        "source": "unknown"
+      }
+    ],
+    "relation": {
+      "type": "compare_container_capacity",
+      "statement": "옮겨 담은 뒤에도 남는 용기가 더 큰 들이를 가진다.",
+      "symbolic": "우유병의 물을 컵에 옮겨 담는다.",
+      "uses": [
+        "obj.bottle",
+        "obj.cup",
+        "rel.transfer"
+      ],
+      "result": "answer.target"
+    },
+    "diagnostic_questions": [
+      {
+        "id": "understand.target",
+        "type": "multiple_choice",
+        "prompt": "What should we find?",
+        "choices": [
+          "bottle",
+          "cup",
+          "들이가 더 적은 것"
+        ],
+        "answer_index": 2
+      }
+    ]
+  }
+}

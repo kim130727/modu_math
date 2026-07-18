@@ -1,0 +1,120 @@
+{
+  "schema": "modu.solvable.v1.2",
+  "problem_id": "S3_초등_3_008760",
+  "problem_type": "true_false_selection",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "정답",
+    "target_ticks": 1,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.capacity.a",
+      "value": "1 L 500 mL"
+    },
+    {
+      "ref": "obj.capacity.b",
+      "value": "3 L 500 mL"
+    },
+    {
+      "ref": "obj.statement",
+      "value": "나 그릇에 물을 가득 담은 후 그 물을 가 그릇이 가득 찰 때까지 붓고 남는 물을 수조에 부어."
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "choice"
+  },
+  "method": "compare_capacities",
+  "plan": [
+    "두 그릇의 들이 차이를 비교한다.",
+    "차이가 2L인지 확인한 뒤 말의 타당성을 판단한다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "3 L 500 mL - 1 L 500 mL",
+      "value": "2 L"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "차이가 2 L인지 확인",
+      "expected": "2 L",
+      "actual": "2 L",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "choice",
+      "description": "○ 또는 ×"
+    },
+    "value": "○",
+    "unit": ""
+  },
+  "understanding": {
+    "summary": "Find 정답 using the given information.",
+    "facts": [
+      {
+        "ref": "obj.capacity.a",
+        "label": "a",
+        "value": "1 L 500 mL",
+        "unit": "",
+        "source": "explicit"
+      },
+      {
+        "ref": "obj.capacity.b",
+        "label": "b",
+        "value": "3 L 500 mL",
+        "unit": "",
+        "source": "explicit"
+      },
+      {
+        "ref": "obj.statement",
+        "label": "statement",
+        "value": "나 그릇에 물을 가득 담은 후 그 물을 가 그릇이 가득 찰 때까지 붓고 남는 물을 수조에 부어.",
+        "unit": "",
+        "source": "explicit"
+      }
+    ],
+    "unknowns": [
+      {
+        "ref": "answer.target",
+        "label": "정답",
+        "unit": "",
+        "source": "unknown"
+      }
+    ],
+    "relation": {
+      "type": "compare_capacities",
+      "statement": "두 그릇의 들이 차이를 비교한다.",
+      "symbolic": "3 L 500 mL - 1 L 500 mL",
+      "uses": [
+        "obj.capacity.a",
+        "obj.capacity.b",
+        "obj.statement"
+      ],
+      "result": "answer.target"
+    },
+    "diagnostic_questions": [
+      {
+        "id": "understand.target",
+        "type": "multiple_choice",
+        "prompt": "What should we find?",
+        "choices": [
+          "a",
+          "b",
+          "정답"
+        ],
+        "answer_index": 2
+      }
+    ]
+  }
+}

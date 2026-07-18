@@ -1,0 +1,106 @@
+{
+  "problem_id": "P3_1_01_00040_02162",
+  "problem_type": "multi_numeric_answer_addition",
+  "metadata": {
+    "title": "세 자리 수의 덧셈 계산",
+    "tags": [
+      "grade-3",
+      "addition",
+      "three-digit-addition",
+      "vertical-calculation",
+      "numeric-answer"
+    ],
+    "question": "다음 덧셈을 하시오.",
+    "required_layout_ids": [
+      "slot.line_1",
+      "slot.line_2"
+    ],
+    "extraction_confidence": 1.0,
+    "grade": 3,
+    "semester": 1,
+    "subject": "수학",
+    "topic": "세 자리 수의 덧셈",
+    "language": "ko-KR"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "calculation.1",
+        "type": "vertical_addition",
+        "label": "첫 번째 덧셈",
+        "addends": [
+          235,
+          486
+        ]
+      },
+      {
+        "id": "calculation.2",
+        "type": "vertical_addition",
+        "label": "두 번째 덧셈",
+        "addends": [
+          529,
+          898
+        ]
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.1",
+        "type": "addition",
+        "from_ids": [
+          "number.235",
+          "number.486"
+        ],
+        "to_id": "answer.1",
+        "equation": "235 + 486 = 721"
+      },
+      {
+        "id": "relation.2",
+        "type": "addition",
+        "from_ids": [
+          "number.529",
+          "number.898"
+        ],
+        "to_id": "answer.2",
+        "equation": "529 + 898 = 1427"
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "blanks": [
+      {
+        "id": "slot.answer_1",
+        "type": "number",
+        "value": 721,
+        "unit": ""
+      },
+      {
+        "id": "slot.answer_2",
+        "type": "number",
+        "value": 1427,
+        "unit": ""
+      }
+    ],
+    "choices": [],
+    "answer_key": [
+      {
+        "blank_id": "slot.answer_1",
+        "value": 721,
+        "unit": ""
+      },
+      {
+        "blank_id": "slot.answer_2",
+        "value": 1427,
+        "unit": ""
+      }
+    ],
+    "confidence": 1.0,
+    "value": [
+      721,
+      1427
+    ],
+    "unit": "",
+    "sentence": "(1) 721, (2) 1427입니다."
+  }
+}

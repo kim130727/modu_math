@@ -1,0 +1,374 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "P3_1_01_00040_02163",
+  "title": "덧셈식의 빈칸에 알맞은 수 쓰기",
+  "canvas": {
+    "width": 430,
+    "height": 165,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "vertical",
+      "slot_ids": [
+        "slot.instruction"
+      ]
+    },
+    {
+      "id": "region.problems",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.line_1",
+        "slot.line_2",
+        "slot.label_1",
+        "slot.number_1_top",
+        "slot.plus_1",
+        "slot.number_1_bottom_hundreds",
+        "slot.blank_1_tens",
+        "slot.number_1_bottom_ones",
+        "slot.blank_1_answer_hundreds",
+        "slot.number_1_answer_rest",
+        "slot.label_2",
+        "slot.blank_2_top_hundreds",
+        "slot.number_2_top_rest",
+        "slot.plus_2",
+        "slot.number_2_bottom_hundreds",
+        "slot.blank_2_bottom_tens",
+        "slot.number_2_bottom_ones",
+        "slot.number_2_answer"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.instruction",
+      "kind": "text_box",
+      "prompt": "덧셈식이 성립하도록 네 개의 빈칸에 알맞은 숫자를 쓰라는 안내",
+      "content": {
+        "text": "다음 계산이 맞도록 □ 안에 알맞은 수를 써넣으시오.",
+        "style_role": "body",
+        "x": 14.914,
+        "y": 7.514,
+        "width": 390,
+        "height": 49,
+        "align": "left",
+        "valign": "top",
+        "font_size": 17,
+        "line_height": 1.2,
+        "fill": "#111111",
+        "semantic_role": "instruction"
+      }
+    },
+    {
+      "id": "slot.label_1",
+      "kind": "text",
+      "prompt": "첫 번째 계산 번호",
+      "content": {
+        "text": "(1)",
+        "style_role": "body",
+        "x": 30.287,
+        "y": 70.618,
+        "font_size": 18,
+        "anchor": "start",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.number_1_top",
+      "kind": "text",
+      "prompt": "첫 번째 덧셈의 위 수 653",
+      "content": {
+        "text": "653",
+        "style_role": "body",
+        "x": 121.287,
+        "y": 70.618,
+        "font_size": 22,
+        "anchor": "end",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.plus_1",
+      "kind": "text",
+      "prompt": "첫 번째 덧셈 기호",
+      "content": {
+        "text": "+",
+        "style_role": "body",
+        "x": 59.287,
+        "y": 101.618,
+        "font_size": 22,
+        "anchor": "middle",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.number_1_bottom_hundreds",
+      "kind": "text",
+      "prompt": "첫 번째 덧셈 아래 수의 백의 자리 2",
+      "content": {
+        "text": "2",
+        "style_role": "body",
+        "x": 86.287,
+        "y": 101.618,
+        "font_size": 22,
+        "anchor": "middle",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.blank_1_tens",
+      "kind": "text",
+      "prompt": "첫 번째 덧셈 아래 수의 십의 자리 빈칸",
+      "content": {
+        "text": "□",
+        "style_role": "body",
+        "x": 100.287,
+        "y": 101.618,
+        "font_size": 22,
+        "anchor": "middle",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.number_1_bottom_ones",
+      "kind": "text",
+      "prompt": "첫 번째 덧셈 아래 수의 일의 자리 8",
+      "content": {
+        "text": "8",
+        "style_role": "body",
+        "x": 114.287,
+        "y": 101.618,
+        "font_size": 22,
+        "anchor": "middle",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.line_1",
+      "kind": "line",
+      "prompt": "첫 번째 세로셈의 계산선",
+      "content": {
+        "x1": 53.287,
+        "y1": 116.618,
+        "x2": 126.287,
+        "y2": 116.618,
+        "stroke": "#111111",
+        "stroke_width": 1.5
+      }
+    },
+    {
+      "id": "slot.blank_1_answer_hundreds",
+      "kind": "text",
+      "prompt": "첫 번째 덧셈 결과의 백의 자리 빈칸",
+      "content": {
+        "text": "□",
+        "style_role": "body",
+        "x": 86.287,
+        "y": 148.618,
+        "font_size": 22,
+        "anchor": "middle",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.number_1_answer_rest",
+      "kind": "text",
+      "prompt": "첫 번째 덧셈 결과의 십의 자리와 일의 자리 31",
+      "content": {
+        "text": "31",
+        "style_role": "body",
+        "x": 120.287,
+        "y": 148.618,
+        "font_size": 22,
+        "anchor": "end",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.label_2",
+      "kind": "text",
+      "prompt": "두 번째 계산 번호",
+      "content": {
+        "text": "(2)",
+        "style_role": "body",
+        "x": 155.287,
+        "y": 70.618,
+        "font_size": 18,
+        "anchor": "start",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.blank_2_top_hundreds",
+      "kind": "text",
+      "prompt": "두 번째 덧셈 위 수의 백의 자리 빈칸",
+      "content": {
+        "text": "□",
+        "style_role": "body",
+        "x": 211.287,
+        "y": 70.618,
+        "font_size": 22,
+        "anchor": "middle",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.number_2_top_rest",
+      "kind": "text",
+      "prompt": "두 번째 덧셈 위 수의 십의 자리와 일의 자리 25",
+      "content": {
+        "text": "25",
+        "style_role": "body",
+        "x": 245.287,
+        "y": 70.618,
+        "font_size": 22,
+        "anchor": "end",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.plus_2",
+      "kind": "text",
+      "prompt": "두 번째 덧셈 기호",
+      "content": {
+        "text": "+",
+        "style_role": "body",
+        "x": 184.287,
+        "y": 101.618,
+        "font_size": 22,
+        "anchor": "middle",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.number_2_bottom_hundreds",
+      "kind": "text",
+      "prompt": "두 번째 덧셈 아래 수의 백의 자리 3",
+      "content": {
+        "text": "3",
+        "style_role": "body",
+        "x": 211.287,
+        "y": 101.618,
+        "font_size": 22,
+        "anchor": "middle",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.blank_2_bottom_tens",
+      "kind": "text",
+      "prompt": "두 번째 덧셈 아래 수의 십의 자리 빈칸",
+      "content": {
+        "text": "□",
+        "style_role": "body",
+        "x": 225.287,
+        "y": 101.618,
+        "font_size": 22,
+        "anchor": "middle",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.number_2_bottom_ones",
+      "kind": "text",
+      "prompt": "두 번째 덧셈 아래 수의 일의 자리 9",
+      "content": {
+        "text": "9",
+        "style_role": "body",
+        "x": 239.287,
+        "y": 101.618,
+        "font_size": 22,
+        "anchor": "middle",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.line_2",
+      "kind": "line",
+      "prompt": "두 번째 세로셈의 계산선",
+      "content": {
+        "x1": 178.287,
+        "y1": 116.618,
+        "x2": 251.287,
+        "y2": 116.618,
+        "stroke": "#111111",
+        "stroke_width": 1.5
+      }
+    },
+    {
+      "id": "slot.number_2_answer",
+      "kind": "text",
+      "prompt": "두 번째 덧셈의 결과 804",
+      "content": {
+        "text": "804",
+        "style_role": "body",
+        "x": 245.287,
+        "y": 148.618,
+        "font_size": 22,
+        "anchor": "end",
+        "fill": "#111111"
+      }
+    }
+  ],
+  "groups": [
+    {
+      "id": "group.problem_1",
+      "role": "vertical_addition_with_blanks",
+      "member_ids": [
+        "slot.label_1",
+        "slot.number_1_top",
+        "slot.plus_1",
+        "slot.number_1_bottom_hundreds",
+        "slot.blank_1_tens",
+        "slot.number_1_bottom_ones",
+        "slot.line_1",
+        "slot.blank_1_answer_hundreds",
+        "slot.number_1_answer_rest"
+      ]
+    },
+    {
+      "id": "group.problem_2",
+      "role": "vertical_addition_with_blanks",
+      "member_ids": [
+        "slot.label_2",
+        "slot.blank_2_top_hundreds",
+        "slot.number_2_top_rest",
+        "slot.plus_2",
+        "slot.number_2_bottom_hundreds",
+        "slot.blank_2_bottom_tens",
+        "slot.number_2_bottom_ones",
+        "slot.line_2",
+        "slot.number_2_answer"
+      ]
+    }
+  ],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.instruction",
+    "region.problems",
+    "slot.line_1",
+    "slot.line_2",
+    "slot.label_1",
+    "slot.number_1_top",
+    "slot.plus_1",
+    "slot.number_1_bottom_hundreds",
+    "slot.blank_1_tens",
+    "slot.number_1_bottom_ones",
+    "slot.blank_1_answer_hundreds",
+    "slot.number_1_answer_rest",
+    "slot.label_2",
+    "slot.blank_2_top_hundreds",
+    "slot.number_2_top_rest",
+    "slot.plus_2",
+    "slot.number_2_bottom_hundreds",
+    "slot.blank_2_bottom_tens",
+    "slot.number_2_bottom_ones",
+    "slot.number_2_answer"
+  ]
+}

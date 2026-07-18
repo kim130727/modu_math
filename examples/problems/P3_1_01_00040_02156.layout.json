@@ -1,0 +1,488 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "P3_1_01_00040_02156",
+  "title": "받아올림하며 세 자리 수의 덧셈 계산",
+  "canvas": {
+    "width": 600,
+    "height": 250,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.process",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.stage1.line",
+        "slot.stage2.line",
+        "slot.stage3.line",
+        "slot.instruction",
+        "slot.stage1.carry",
+        "slot.stage1.top",
+        "slot.stage1.plus",
+        "slot.stage1.bottom",
+        "slot.stage1.answer_ones",
+        "slot.arrow_1",
+        "slot.stage2.carry_hundreds",
+        "slot.stage2.carry_tens",
+        "slot.stage2.top",
+        "slot.stage2.plus",
+        "slot.stage2.bottom",
+        "slot.stage2.answer_tens",
+        "slot.stage2.answer_ones",
+        "slot.arrow_2",
+        "slot.stage3.carry_hundreds",
+        "slot.stage3.carry_tens",
+        "slot.stage3.top",
+        "slot.stage3.plus",
+        "slot.stage3.bottom",
+        "slot.stage3.answer_hundreds",
+        "slot.stage3.answer_tens",
+        "slot.stage3.answer_ones"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.instruction",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "□ 안에 알맞은 수를 써넣으시오.",
+        "style_role": "body",
+        "x": 24,
+        "y": 18.994,
+        "width": 497.091,
+        "height": 37,
+        "align": "left",
+        "valign": "middle",
+        "font_size": 23,
+        "font_family": "Noto Sans KR",
+        "line_height": 1.25,
+        "fill": "#202124"
+      }
+    },
+    {
+      "id": "slot.stage1.carry",
+      "kind": "text",
+      "prompt": "일의 자리에서 십의 자리로 받아올림할 수",
+      "content": {
+        "text": "□",
+        "style_role": "body",
+        "x": 139,
+        "y": 96.955,
+        "font_size": 24,
+        "anchor": "middle",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.stage1.top",
+      "kind": "text",
+      "prompt": "첫 번째 단계의 위 수 554",
+      "content": {
+        "text": "554",
+        "style_role": "body",
+        "x": 161,
+        "y": 132.959,
+        "font_size": 29,
+        "anchor": "end",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.stage1.plus",
+      "kind": "text",
+      "prompt": "첫 번째 단계의 덧셈 기호",
+      "content": {
+        "text": "+",
+        "style_role": "body",
+        "x": 85,
+        "y": 181.959,
+        "font_size": 28,
+        "anchor": "middle",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.stage1.bottom",
+      "kind": "text",
+      "prompt": "첫 번째 단계의 아래 수 269",
+      "content": {
+        "text": "269",
+        "style_role": "body",
+        "x": 161,
+        "y": 181.959,
+        "font_size": 29,
+        "anchor": "end",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.stage1.line",
+      "kind": "line",
+      "prompt": "첫 번째 단계의 계산선",
+      "content": {
+        "x1": 62,
+        "y1": 200.959,
+        "x2": 175,
+        "y2": 200.959,
+        "stroke": "#111111",
+        "stroke_width": 2
+      }
+    },
+    {
+      "id": "slot.stage1.answer_ones",
+      "kind": "text",
+      "prompt": "첫 번째 단계에서 구한 일의 자리 숫자",
+      "content": {
+        "text": "□",
+        "style_role": "body",
+        "x": 151,
+        "y": 240.959,
+        "font_size": 29,
+        "anchor": "middle",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.arrow_1",
+      "kind": "text",
+      "prompt": "첫 번째 단계에서 두 번째 단계로 진행하는 화살표",
+      "content": {
+        "text": "⇒",
+        "style_role": "body",
+        "x": 217,
+        "y": 178.959,
+        "font_size": 31,
+        "anchor": "middle",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.stage2.carry_hundreds",
+      "kind": "text",
+      "prompt": "십의 자리에서 백의 자리로 받아올림할 수",
+      "content": {
+        "text": "□",
+        "style_role": "body",
+        "x": 314,
+        "y": 97.955,
+        "font_size": 24,
+        "anchor": "middle",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.stage2.carry_tens",
+      "kind": "text",
+      "prompt": "일의 자리에서 십의 자리로 받아올림한 수",
+      "content": {
+        "text": "□",
+        "style_role": "body",
+        "x": 337,
+        "y": 97.954,
+        "font_size": 24,
+        "anchor": "middle",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.stage2.top",
+      "kind": "text",
+      "prompt": "두 번째 단계의 위 수 554",
+      "content": {
+        "text": "554",
+        "style_role": "body",
+        "x": 355,
+        "y": 132.959,
+        "font_size": 29,
+        "anchor": "end",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.stage2.plus",
+      "kind": "text",
+      "prompt": "두 번째 단계의 덧셈 기호",
+      "content": {
+        "text": "+",
+        "style_role": "body",
+        "x": 279,
+        "y": 181.959,
+        "font_size": 28,
+        "anchor": "middle",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.stage2.bottom",
+      "kind": "text",
+      "prompt": "두 번째 단계의 아래 수 269",
+      "content": {
+        "text": "269",
+        "style_role": "body",
+        "x": 355,
+        "y": 181.959,
+        "font_size": 29,
+        "anchor": "end",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.stage2.line",
+      "kind": "line",
+      "prompt": "두 번째 단계의 계산선",
+      "content": {
+        "x1": 256,
+        "y1": 200.959,
+        "x2": 369,
+        "y2": 200.959,
+        "stroke": "#111111",
+        "stroke_width": 2
+      }
+    },
+    {
+      "id": "slot.stage2.answer_tens",
+      "kind": "text",
+      "prompt": "두 번째 단계에서 구한 십의 자리 숫자",
+      "content": {
+        "text": "□",
+        "style_role": "body",
+        "x": 315,
+        "y": 240.959,
+        "font_size": 29,
+        "anchor": "middle",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.stage2.answer_ones",
+      "kind": "text",
+      "prompt": "두 번째 단계에서 이미 구한 일의 자리 숫자",
+      "content": {
+        "text": "□",
+        "style_role": "body",
+        "x": 347,
+        "y": 240.959,
+        "font_size": 29,
+        "anchor": "middle",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.arrow_2",
+      "kind": "text",
+      "prompt": "두 번째 단계에서 세 번째 단계로 진행하는 화살표",
+      "content": {
+        "text": "⇒",
+        "style_role": "body",
+        "x": 411,
+        "y": 178.959,
+        "font_size": 31,
+        "anchor": "middle",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.stage3.carry_hundreds",
+      "kind": "text",
+      "prompt": "십의 자리에서 백의 자리로 받아올림한 수",
+      "content": {
+        "text": "□",
+        "style_role": "body",
+        "x": 501,
+        "y": 103.951,
+        "font_size": 24,
+        "anchor": "middle",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.stage3.carry_tens",
+      "kind": "text",
+      "prompt": "일의 자리에서 십의 자리로 받아올림한 수",
+      "content": {
+        "text": "□",
+        "style_role": "body",
+        "x": 526,
+        "y": 103.951,
+        "font_size": 24,
+        "anchor": "middle",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.stage3.top",
+      "kind": "text",
+      "prompt": "세 번째 단계의 위 수 554",
+      "content": {
+        "text": "554",
+        "style_role": "body",
+        "x": 549,
+        "y": 132.959,
+        "font_size": 29,
+        "anchor": "end",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.stage3.plus",
+      "kind": "text",
+      "prompt": "세 번째 단계의 덧셈 기호",
+      "content": {
+        "text": "+",
+        "style_role": "body",
+        "x": 473,
+        "y": 181.959,
+        "font_size": 28,
+        "anchor": "middle",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.stage3.bottom",
+      "kind": "text",
+      "prompt": "세 번째 단계의 아래 수 269",
+      "content": {
+        "text": "269",
+        "style_role": "body",
+        "x": 549,
+        "y": 181.959,
+        "font_size": 29,
+        "anchor": "end",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.stage3.line",
+      "kind": "line",
+      "prompt": "세 번째 단계의 계산선",
+      "content": {
+        "x1": 450,
+        "y1": 200.959,
+        "x2": 563,
+        "y2": 200.959,
+        "stroke": "#111111",
+        "stroke_width": 2
+      }
+    },
+    {
+      "id": "slot.stage3.answer_hundreds",
+      "kind": "text",
+      "prompt": "최종 답의 백의 자리 숫자",
+      "content": {
+        "text": "□",
+        "style_role": "body",
+        "x": 479,
+        "y": 240.959,
+        "font_size": 29,
+        "anchor": "middle",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.stage3.answer_tens",
+      "kind": "text",
+      "prompt": "최종 답의 십의 자리 숫자",
+      "content": {
+        "text": "□",
+        "style_role": "body",
+        "x": 511,
+        "y": 240.959,
+        "font_size": 29,
+        "anchor": "middle",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.stage3.answer_ones",
+      "kind": "text",
+      "prompt": "최종 답의 일의 자리 숫자",
+      "content": {
+        "text": "□",
+        "style_role": "body",
+        "x": 543,
+        "y": 240.959,
+        "font_size": 29,
+        "anchor": "middle",
+        "fill": "#111111"
+      }
+    }
+  ],
+  "groups": [
+    {
+      "id": "group.stage1",
+      "role": "vertical_addition_step",
+      "member_ids": [
+        "slot.stage1.carry",
+        "slot.stage1.top",
+        "slot.stage1.plus",
+        "slot.stage1.bottom",
+        "slot.stage1.line",
+        "slot.stage1.answer_ones"
+      ]
+    },
+    {
+      "id": "group.stage2",
+      "role": "vertical_addition_step",
+      "member_ids": [
+        "slot.stage2.carry_hundreds",
+        "slot.stage2.carry_tens",
+        "slot.stage2.top",
+        "slot.stage2.plus",
+        "slot.stage2.bottom",
+        "slot.stage2.line",
+        "slot.stage2.answer_tens",
+        "slot.stage2.answer_ones"
+      ]
+    },
+    {
+      "id": "group.stage3",
+      "role": "vertical_addition_step",
+      "member_ids": [
+        "slot.stage3.carry_hundreds",
+        "slot.stage3.carry_tens",
+        "slot.stage3.top",
+        "slot.stage3.plus",
+        "slot.stage3.bottom",
+        "slot.stage3.line",
+        "slot.stage3.answer_hundreds",
+        "slot.stage3.answer_tens",
+        "slot.stage3.answer_ones"
+      ]
+    }
+  ],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.process",
+    "slot.stage1.line",
+    "slot.stage2.line",
+    "slot.stage3.line",
+    "slot.instruction",
+    "slot.stage1.carry",
+    "slot.stage1.top",
+    "slot.stage1.plus",
+    "slot.stage1.bottom",
+    "slot.stage1.answer_ones",
+    "slot.arrow_1",
+    "slot.stage2.carry_hundreds",
+    "slot.stage2.carry_tens",
+    "slot.stage2.top",
+    "slot.stage2.plus",
+    "slot.stage2.bottom",
+    "slot.stage2.answer_tens",
+    "slot.stage2.answer_ones",
+    "slot.arrow_2",
+    "slot.stage3.carry_hundreds",
+    "slot.stage3.carry_tens",
+    "slot.stage3.top",
+    "slot.stage3.plus",
+    "slot.stage3.bottom",
+    "slot.stage3.answer_hundreds",
+    "slot.stage3.answer_tens",
+    "slot.stage3.answer_ones"
+  ]
+}

@@ -1,0 +1,137 @@
+{
+  "schema": "modu.solvable.v1.2",
+  "problem_id": "S3_초등_3_008757",
+  "problem_type": "들이_비교와_어림",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "간장병의 들이와 500 mL 생수병의 들이 비교",
+    "target_ticks": 0,
+    "target_count": 2,
+    "unit": "mL/L"
+  },
+  "given": [
+    {
+      "ref": "obj.water_bottle",
+      "value": {
+        "name": "생수병",
+        "capacity_value": 500,
+        "capacity_unit": "mL"
+      }
+    },
+    {
+      "ref": "obj.soy_bottle",
+      "value": {
+        "name": "간장병"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "choice_selection"
+  },
+  "method": "compare_and_estimate",
+  "plan": [
+    "간장병의 들이가 500 mL 생수병보다 큰지 작은지를 읽는다.",
+    "비교 결과에 맞는 문장을 고르고, 어림한 단위를 선택한다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "간장병의 들이 ? 500 mL 생수병의 들이",
+      "value": "more"
+    },
+    {
+      "id": "step.2",
+      "expr": "선택지 비교: (많습니다, 적습니다)",
+      "value": "많습니다"
+    },
+    {
+      "id": "step.3",
+      "expr": "선택지 비교: (2 mL, 2 L)",
+      "value": "2 L"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "비교 결과가 500 mL보다 큼과 일치하는가",
+      "expected": "more",
+      "actual": "more",
+      "pass": true
+    },
+    {
+      "id": "check.2",
+      "expr": "어림 단위가 큰 들이에 맞는가",
+      "expected": "2 L",
+      "actual": "2 L",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "choice_selection",
+      "description": "간장병의 들이 비교 결과와 어림한 단위를 고른다"
+    },
+    "value": "많습니다. 2L",
+    "unit": ""
+  },
+  "understanding": {
+    "summary": "Find 간장병의 들이와 500 mL 생수병의 들이 비교 using the given information.",
+    "facts": [
+      {
+        "ref": "obj.water_bottle",
+        "label": "water bottle",
+        "value": {
+          "name": "생수병",
+          "capacity_value": 500,
+          "capacity_unit": "mL"
+        },
+        "unit": "mL/L",
+        "source": "explicit"
+      },
+      {
+        "ref": "obj.soy_bottle",
+        "label": "soy bottle",
+        "value": {
+          "name": "간장병"
+        },
+        "unit": "mL/L",
+        "source": "explicit"
+      }
+    ],
+    "unknowns": [
+      {
+        "ref": "answer.target",
+        "label": "간장병의 들이와 500 mL 생수병의 들이 비교",
+        "unit": "mL/L",
+        "source": "unknown"
+      }
+    ],
+    "relation": {
+      "type": "compare_and_estimate",
+      "statement": "간장병의 들이가 500 mL 생수병보다 큰지 작은지를 읽는다.",
+      "symbolic": "간장병의 들이 ? 500 mL 생수병의 들이",
+      "uses": [
+        "obj.water_bottle",
+        "obj.soy_bottle"
+      ],
+      "result": "answer.target"
+    },
+    "diagnostic_questions": [
+      {
+        "id": "understand.target",
+        "type": "multiple_choice",
+        "prompt": "What should we find?",
+        "choices": [
+          "water bottle",
+          "soy bottle",
+          "간장병의 들이와 500 mL 생수병의 들이 비교"
+        ],
+        "answer_index": 2
+      }
+    ]
+  }
+}

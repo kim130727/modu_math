@@ -1,0 +1,116 @@
+{
+  "schema": "modu.solvable.v1.2",
+  "problem_id": "S3_초등_3_008792",
+  "problem_type": "unit_notation_choice",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "2L의 바른 표기",
+    "target_ticks": 0,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.quantity",
+      "value": {
+        "value": 2,
+        "unit": "L"
+      }
+    },
+    {
+      "ref": "rel.correct_unit_notation",
+      "value": "리터는 숫자와 같은 크기의 알파벳 대문자 L로 쓴다."
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "correct_notation"
+  },
+  "method": "notation_selection",
+  "plan": [
+    "리터의 표기 규칙을 확인한다.",
+    "보기 중 숫자 2와 대문자 L이 바르게 붙은 표기를 찾는다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "리터의 표기 규칙 확인",
+      "value": "숫자와 같은 크기의 알파벳 대문자 L"
+    },
+    {
+      "id": "step.2",
+      "expr": "보기의 표기 확인",
+      "value": "2L"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "표기 규칙과 일치하는가",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "correct_notation",
+      "description": "2L의 바른 표기"
+    },
+    "value": 0,
+    "unit": ""
+  },
+  "understanding": {
+    "summary": "Find 2L의 바른 표기 using the given information.",
+    "facts": [
+      {
+        "ref": "obj.quantity",
+        "label": "quantity",
+        "value": 2,
+        "unit": "L",
+        "source": "explicit"
+      },
+      {
+        "ref": "rel.correct_unit_notation",
+        "label": "correct unit notation",
+        "value": "리터는 숫자와 같은 크기의 알파벳 대문자 L로 쓴다.",
+        "unit": "",
+        "source": "explicit"
+      }
+    ],
+    "unknowns": [
+      {
+        "ref": "answer.target",
+        "label": "2L의 바른 표기",
+        "unit": "",
+        "source": "unknown"
+      }
+    ],
+    "relation": {
+      "type": "notation_selection",
+      "statement": "리터의 표기 규칙을 확인한다.",
+      "symbolic": "리터의 표기 규칙 확인",
+      "uses": [
+        "obj.quantity",
+        "rel.correct_unit_notation"
+      ],
+      "result": "answer.target"
+    },
+    "diagnostic_questions": [
+      {
+        "id": "understand.target",
+        "type": "multiple_choice",
+        "prompt": "What should we find?",
+        "choices": [
+          "quantity",
+          "correct unit notation",
+          "2L의 바른 표기"
+        ],
+        "answer_index": 2
+      }
+    ]
+  }
+}

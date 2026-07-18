@@ -1,0 +1,190 @@
+{
+  "schema": "modu.solvable.v1.2",
+  "problem_id": "P3_1_01_00040_02161",
+  "problem_type": "numeric_answer_route_distance_addition",
+  "inputs": {
+    "target_label": "집에서 문구점을 거쳐 학교까지 간 전체 거리",
+    "unit": "m",
+    "quantities": {
+      "home_to_store_distance": 487,
+      "store_to_school_distance": 295
+    },
+    "conditions": [
+      "집에서 문구점까지의 거리는 487 m입니다.",
+      "문구점에서 학교까지의 거리는 295 m입니다.",
+      "문구점을 거쳐 학교까지 가므로 두 구간의 거리를 더합니다."
+    ]
+  },
+  "given": [
+    {
+      "ref": "relation.distance_home_store",
+      "value": {
+        "distance": 487,
+        "unit": "m",
+        "from": "place.home",
+        "to": "place.stationery_store"
+      }
+    },
+    {
+      "ref": "relation.distance_store_school",
+      "value": {
+        "distance": 295,
+        "unit": "m",
+        "from": "place.stationery_store",
+        "to": "place.school"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.total_distance",
+    "type": "distance"
+  },
+  "understanding": {
+    "summary": "집에서 문구점까지 간 거리와 문구점에서 학교까지 간 거리를 더해 전체 이동 거리를 구하는 문제입니다.",
+    "facts": [
+      {
+        "ref": "relation.distance_home_store",
+        "label": "집에서 문구점까지의 거리",
+        "value": 487,
+        "unit": "m",
+        "source": "explicit"
+      },
+      {
+        "ref": "relation.distance_store_school",
+        "label": "문구점에서 학교까지의 거리",
+        "value": 295,
+        "unit": "m",
+        "source": "explicit"
+      }
+    ],
+    "unknowns": [
+      {
+        "ref": "answer.total_distance",
+        "label": "집에서 문구점을 거쳐 학교까지 간 전체 거리",
+        "unit": "m",
+        "source": "unknown"
+      }
+    ],
+    "relation": {
+      "type": "part_part_whole",
+      "statement": "전체 거리는 지나간 두 구간의 거리를 합한 값입니다.",
+      "symbolic": "487 m + 295 m = total_distance",
+      "uses": [
+        "relation.distance_home_store",
+        "relation.distance_store_school"
+      ],
+      "result": "answer.total_distance"
+    },
+    "diagnostic_questions": [
+      {
+        "id": "understand.target",
+        "type": "multiple_choice",
+        "prompt": "이 문제에서 구해야 하는 것은 무엇인가요?",
+        "choices": [
+          "집에서 문구점까지의 거리",
+          "문구점에서 학교까지의 거리",
+          "집에서 문구점을 거쳐 학교까지 간 전체 거리"
+        ],
+        "answer_index": 2
+      },
+      {
+        "id": "understand.operation",
+        "type": "multiple_choice",
+        "prompt": "전체 거리를 구하려면 어떤 계산을 해야 하나요?",
+        "choices": [
+          "487과 295를 더합니다.",
+          "487에서 295를 뺍니다.",
+          "487과 295를 곱합니다."
+        ],
+        "answer_index": 0
+      }
+    ],
+    "student_restatement": {
+      "prompt": "문제의 뜻을 말해 볼까요?",
+      "template": "{first_distance}와 {second_distance}를 더해 전체 거리를 구합니다.",
+      "answer": "집에서 문구점까지 487 m와 문구점에서 학교까지 295 m를 더해 전체 거리를 구합니다."
+    }
+  },
+  "method": "문구점을 거쳐 가는 길이므로 두 이동 구간의 거리를 더해 전체 거리를 구합니다.",
+  "plan": [
+    "집에서 문구점까지의 거리 487 m를 확인합니다.",
+    "문구점에서 학교까지의 거리 295 m를 확인합니다.",
+    "두 거리를 더하는 식을 세웁니다.",
+    "487 + 295를 계산하고 단위 m를 붙입니다."
+  ],
+  "steps": [
+    {
+      "id": "step.expression",
+      "goal": "전체 거리를 구하는 식을 세웁니다.",
+      "uses": [
+        "relation.distance_home_store",
+        "relation.distance_store_school"
+      ],
+      "expr": "487 + 295",
+      "value": {
+        "expression": "487 + 295"
+      },
+      "explanation": "집에서 학교까지 가는 동안 문구점을 거치므로, 집에서 문구점까지의 거리와 문구점에서 학교까지의 거리를 모두 더합니다."
+    },
+    {
+      "id": "step.calculate",
+      "goal": "487 + 295를 계산합니다.",
+      "uses": [
+        "step.expression"
+      ],
+      "expr": "487 + 295",
+      "value": 782,
+      "explanation": "487 + 295 = 782이므로 전체 거리는 782 m입니다."
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.subtract",
+      "description": "전체 거리 782 m에서 두 번째 구간 295 m를 빼면 첫 번째 구간 487 m가 됩니다.",
+      "expr": "782 - 295",
+      "expected": 487,
+      "actual": 487,
+      "pass": true
+    },
+    {
+      "id": "check.size",
+      "description": "두 구간이 모두 양수이므로 전체 거리는 각 구간보다 커야 합니다.",
+      "expr": "782 > 487 and 782 > 295",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [
+      {
+        "id": "slot.expression_blank",
+        "type": "expression",
+        "value": "487 + 295 = 782",
+        "unit": ""
+      },
+      {
+        "id": "slot.answer_blank",
+        "type": "number",
+        "value": 782,
+        "unit": "m"
+      }
+    ],
+    "choices": [],
+    "answer_key": [
+      {
+        "blank_id": "slot.expression_blank",
+        "value": "487 + 295 = 782",
+        "unit": ""
+      },
+      {
+        "blank_id": "slot.answer_blank",
+        "value": 782,
+        "unit": "m"
+      }
+    ],
+    "value": 782,
+    "unit": "m",
+    "sentence": "집에서 문구점을 거쳐 학교까지 간 거리는 782 m입니다."
+  }
+}

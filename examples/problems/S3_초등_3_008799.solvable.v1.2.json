@@ -1,0 +1,141 @@
+{
+  "schema": "modu.solvable.v1.2",
+  "problem_id": "S3_초등_3_008799",
+  "problem_type": "comparison_selection",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "무게가 더 무거운 것",
+    "target_ticks": 0,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.scissors",
+      "value": {
+        "name": "가위"
+      }
+    },
+    {
+      "ref": "obj.bag.left",
+      "value": {
+        "name": "책가방"
+      }
+    },
+    {
+      "ref": "obj.bag.right",
+      "value": {
+        "name": "책가방"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "heavier_object"
+  },
+  "method": "visual_weight_comparison",
+  "plan": [
+    "그림에 있는 물체들을 확인한다.",
+    "더 무거운 대상을 선택한다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "그림의 대상 확인",
+      "value": [
+        "가위",
+        "책가방",
+        "책가방"
+      ]
+    },
+    {
+      "id": "step.2",
+      "expr": "더 무거운 대상 선택",
+      "value": "TODO"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "정답 표시와 선택 대상 일치 여부 확인",
+      "expected": "TODO",
+      "actual": "TODO",
+      "pass": false
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "heavier_object",
+      "description": "무게가 더 무거운 것"
+    },
+    "value": "2번 책가방",
+    "unit": ""
+  },
+  "understanding": {
+    "summary": "Find 무게가 더 무거운 것 using the given information.",
+    "facts": [
+      {
+        "ref": "obj.scissors",
+        "label": "scissors",
+        "value": {
+          "name": "가위"
+        },
+        "unit": "",
+        "source": "explicit"
+      },
+      {
+        "ref": "obj.bag.left",
+        "label": "left",
+        "value": {
+          "name": "책가방"
+        },
+        "unit": "",
+        "source": "explicit"
+      },
+      {
+        "ref": "obj.bag.right",
+        "label": "right",
+        "value": {
+          "name": "책가방"
+        },
+        "unit": "",
+        "source": "explicit"
+      }
+    ],
+    "unknowns": [
+      {
+        "ref": "answer.target",
+        "label": "무게가 더 무거운 것",
+        "unit": "",
+        "source": "unknown"
+      }
+    ],
+    "relation": {
+      "type": "visual_weight_comparison",
+      "statement": "그림에 있는 물체들을 확인한다.",
+      "symbolic": "그림의 대상 확인",
+      "uses": [
+        "obj.scissors",
+        "obj.bag.left",
+        "obj.bag.right"
+      ],
+      "result": "answer.target"
+    },
+    "diagnostic_questions": [
+      {
+        "id": "understand.target",
+        "type": "multiple_choice",
+        "prompt": "What should we find?",
+        "choices": [
+          "scissors",
+          "left",
+          "무게가 더 무거운 것"
+        ],
+        "answer_index": 2
+      }
+    ]
+  }
+}

@@ -1,0 +1,158 @@
+{
+  "schema": "modu.solvable.v1.2",
+  "problem_id": "S3_초등_3_008761",
+  "problem_type": "comparison_by_balance_scale",
+  "inputs": {
+    "total_ticks": 1,
+    "target_label": "알맞은 말 선택",
+    "target_ticks": 1,
+    "target_count": 2,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.apple",
+      "value": {
+        "name": "사과"
+      }
+    },
+    {
+      "ref": "obj.pear",
+      "value": {
+        "name": "배"
+      }
+    },
+    {
+      "ref": "obj.scale",
+      "value": {
+        "type": "balance_scale"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "selection"
+  },
+  "method": "balance_scale_comparison",
+  "plan": [
+    "저울에서 더 내려간 쪽에 놓인 과일을 찾는다.",
+    "그 과일이 더 무겁다고 판단하여 문장의 빈칸에 맞는 말을 고른다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "오른쪽 접시가 더 아래로 내려감",
+      "value": "right_pan_lower"
+    },
+    {
+      "id": "step.2",
+      "expr": "더 무거운 과일 = 배",
+      "value": "배"
+    },
+    {
+      "id": "step.3",
+      "expr": "(1), (2)에 들어갈 말 선택",
+      "value": [
+        "배",
+        "배"
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "해설의 문장과 일치하는지 확인",
+      "expected": "배가 더 무겁다",
+      "actual": "배가 더 무겁다",
+      "pass": true
+    },
+    {
+      "id": "check.2",
+      "expr": "(1), (2) 선택값이 동일한지 확인",
+      "expected": [
+        "배",
+        "배"
+      ],
+      "actual": [
+        "배",
+        "배"
+      ],
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "selection",
+      "description": "(1), (2)에 들어갈 알맞은 말"
+    },
+    "value": "배, 배",
+    "unit": ""
+  },
+  "understanding": {
+    "summary": "Find 알맞은 말 선택 using the given information.",
+    "facts": [
+      {
+        "ref": "obj.apple",
+        "label": "apple",
+        "value": {
+          "name": "사과"
+        },
+        "unit": "",
+        "source": "explicit"
+      },
+      {
+        "ref": "obj.pear",
+        "label": "pear",
+        "value": {
+          "name": "배"
+        },
+        "unit": "",
+        "source": "explicit"
+      },
+      {
+        "ref": "obj.scale",
+        "label": "scale",
+        "value": {
+          "type": "balance_scale"
+        },
+        "unit": "",
+        "source": "explicit"
+      }
+    ],
+    "unknowns": [
+      {
+        "ref": "answer.target",
+        "label": "알맞은 말 선택",
+        "unit": "",
+        "source": "unknown"
+      }
+    ],
+    "relation": {
+      "type": "balance_scale_comparison",
+      "statement": "저울에서 더 내려간 쪽에 놓인 과일을 찾는다.",
+      "symbolic": "오른쪽 접시가 더 아래로 내려감",
+      "uses": [
+        "obj.apple",
+        "obj.pear",
+        "obj.scale"
+      ],
+      "result": "answer.target"
+    },
+    "diagnostic_questions": [
+      {
+        "id": "understand.target",
+        "type": "multiple_choice",
+        "prompt": "What should we find?",
+        "choices": [
+          "apple",
+          "pear",
+          "알맞은 말 선택"
+        ],
+        "answer_index": 2
+      }
+    ]
+  }
+}
