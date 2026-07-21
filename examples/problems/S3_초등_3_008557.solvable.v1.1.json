@@ -1,0 +1,55 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008557",
+  "problem_type": "multiplication_place_value_choice",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "색칠된 부분이 나타내는 곱",
+    "target_ticks": 0,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.target",
+      "value": "300 × 4"
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "selected_expression"
+  },
+  "method": "place_value_matching",
+  "plan": [
+    "색칠된 부분의 자리값을 확인합니다.",
+    "색칠된 부분은 300과 4의 곱을 나타냅니다.",
+    "보기에서 300 × 4를 선택합니다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "색칠된 부분 = 300 × 4",
+      "value": "300 × 4"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "색칠된 부분이 나타내는 곱",
+      "expected": "300 × 4",
+      "actual": "300 × 4",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "selected_expression",
+      "description": "색칠된 부분이 나타내는 곱"
+    },
+    "value": "300 × 4",
+    "unit": ""
+  }
+}

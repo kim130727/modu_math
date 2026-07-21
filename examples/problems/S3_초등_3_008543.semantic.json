@@ -1,0 +1,86 @@
+{
+  "problem_id": "S3_초등_3_008543",
+  "problem_type": "comparison_order",
+  "metadata": {
+    "title": "계산 결과가 큰 것부터 순서대로 나열한 것을 고르세요.",
+    "tags": [
+      "초등3",
+      "비교",
+      "곱셈",
+      "객관식"
+    ],
+    "instruction": "계산 결과가 큰 것부터 순서대로 나열한 것을 고르세요.",
+    "question": "계산 결과가 큰 것부터 순서대로 나열한 것을 고르세요.",
+    "required_layout_ids": [
+      "slot.box"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.a",
+        "type": "expression",
+        "symbol": "ㄱ",
+        "operation": "multiplication"
+      },
+      {
+        "id": "obj.b",
+        "type": "expression",
+        "symbol": "ㄴ",
+        "operation": "multiplication"
+      },
+      {
+        "id": "obj.c",
+        "type": "expression",
+        "symbol": "ㄷ",
+        "operation": "multiplication"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.a",
+          "obj.b",
+          "obj.c"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.order"
+        ]
+      },
+      "plan": {
+        "method": "compare_expression_values",
+        "description": "각 곱셈식의 계산 결과를 비교해 큰 것부터 순서를 찾는다."
+      },
+      "execute": {
+        "expected_operations": [
+          "compute_each_product",
+          "compare_values",
+          "select_matching_order"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "descending_order_check",
+          "choice_match_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "choice_order",
+      "description": "계산 결과가 큰 것부터 순서대로 나열한 보기"
+    },
+    "value": 3,
+    "unit": ""
+  }
+}

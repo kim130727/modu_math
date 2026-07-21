@@ -1,0 +1,73 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008739",
+  "problem_type": "comparison_minimum",
+  "inputs": {
+    "total_ticks": 3,
+    "target_label": "가장 가까운 곳",
+    "target_ticks": 1,
+    "target_count": 3,
+    "unit": "km"
+  },
+  "given": [
+    {
+      "ref": "obj.dist_bookstore",
+      "value": "7 1/10 km"
+    },
+    {
+      "ref": "obj.dist_bank",
+      "value": "69/10 km"
+    },
+    {
+      "ref": "obj.dist_school",
+      "value": "7 3/10 km"
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "nearest_place"
+  },
+  "method": "compare_distances",
+  "plan": [
+    "세 장소의 거리를 읽는다.",
+    "표기된 값을 비교하여 가장 작은 거리를 찾는다.",
+    "가장 작은 거리의 장소를 답으로 고른다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "서점 거리 읽기",
+      "value": "7 1/10 km"
+    },
+    {
+      "id": "step.2",
+      "expr": "은행 거리 읽기",
+      "value": "69/10 km"
+    },
+    {
+      "id": "step.3",
+      "expr": "학교 거리 읽기",
+      "value": "7 3/10 km"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "세 값 중 가장 작은 값을 선택했는지 확인",
+      "expected": "은행",
+      "actual": "은행",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "nearest_place",
+      "description": "집에서 가장 가까운 곳"
+    },
+    "value": 0,
+    "unit": ""
+  }
+}

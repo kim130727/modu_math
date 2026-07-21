@@ -1,0 +1,134 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008628",
+  "title": "나머지가 가장 큰 것",
+  "canvas": {
+    "width": 944,
+    "height": 376,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.header",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.stem"
+      ]
+    },
+    {
+      "id": "region.choice_box",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.box",
+        "slot.choice.a",
+        "slot.choice.b",
+        "slot.choice.c"
+      ]
+    },
+    {
+      "id": "region.choice_list",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice_list"
+      ]
+    },
+    {
+      "id": "region.answer_explanation",
+      "role": "solution",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.stem",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "나머지가 가장 큰 것을 찾는 기호를 선택하세요.",
+        "style_role": "question",
+        "x": 85.0,
+        "y": 60.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 85.0,
+        "y": 80.0,
+        "width": 610.0,
+        "height": 75.0
+      }
+    },
+    {
+      "id": "slot.choice.a",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "㉠ 583 ÷ 5",
+        "style_role": "question",
+        "x": 115.0,
+        "y": 130.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.choice.b",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "㉡ 584 ÷ 6",
+        "style_role": "question",
+        "x": 325.0,
+        "y": 130.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.choice.c",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "㉢ 585 ÷ 7",
+        "style_role": "question",
+        "x": 530.0,
+        "y": 130.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.choice_list",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "( ㄱ , ㄴ , ㄷ )",
+        "style_role": "label",
+        "x": 95.0,
+        "y": 215.0,
+        "font_size": 30
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.header",
+    "slot.stem",
+    "region.choice_box",
+    "slot.box",
+    "slot.choice.a",
+    "slot.choice.b",
+    "slot.choice.c",
+    "region.choice_list",
+    "slot.choice_list",
+    "region.answer_explanation"
+  ]
+}

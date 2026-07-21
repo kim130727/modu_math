@@ -1,0 +1,80 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008657",
+  "problem_type": "diagram_choice",
+  "inputs": {
+    "target_label": "컴퍼스를 바르게 사용한 보기",
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.choice.a",
+      "value": {
+        "label": "가",
+        "needle_position": "not_center"
+      }
+    },
+    {
+      "ref": "obj.choice.b",
+      "value": {
+        "label": "나",
+        "needle_position": "center"
+      }
+    },
+    {
+      "ref": "obj.choice.c",
+      "value": {
+        "label": "다",
+        "needle_position": "not_center"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "selected_option"
+  },
+  "method": "visual_choice",
+  "plan": [
+    "원의 중심을 확인한다.",
+    "각 보기에서 컴퍼스의 침 위치를 확인한다.",
+    "침이 원의 중심에 꽂힌 보기를 선택한다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "가: 침이 중심이 아닌 곳에 있음",
+      "value": "incorrect"
+    },
+    {
+      "id": "step.2",
+      "expr": "나: 침이 원의 중심에 있음",
+      "value": "correct"
+    },
+    {
+      "id": "step.3",
+      "expr": "다: 연필 끝이 중심 쪽에 있고 침이 중심이 아님",
+      "value": "incorrect"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "선택한 보기의 침이 원의 중심에 있는가",
+      "expected": "나",
+      "actual": "나",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "selected_option",
+      "description": "원을 그릴 때 컴퍼스를 바르게 사용한 보기"
+    },
+    "value": "나",
+    "unit": ""
+  }
+}

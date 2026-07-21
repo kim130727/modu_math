@@ -1,0 +1,78 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008598",
+  "problem_type": "division_remainder_comparison",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "나머지가 더 큰 나눗셈식",
+    "target_ticks": 0,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.left_division",
+      "value": {
+        "expression": "504 ÷ 5"
+      }
+    },
+    {
+      "ref": "obj.right_division",
+      "value": {
+        "expression": "467 ÷ 3"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "selected_expression"
+  },
+  "method": "compare_remainders",
+  "plan": [
+    "두 나눗셈의 나머지를 구한다.",
+    "나머지 4와 2를 비교해 큰 쪽을 고른다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "504 ÷ 5",
+      "value": {
+        "quotient": 100,
+        "remainder": 4
+      }
+    },
+    {
+      "id": "step.2",
+      "expr": "467 ÷ 3",
+      "value": {
+        "quotient": 155,
+        "remainder": 2
+      }
+    },
+    {
+      "id": "step.3",
+      "expr": "비교",
+      "value": "4 > 2"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "4 > 2",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "selected_expression",
+      "description": "나머지가 더 큰 나눗셈식"
+    },
+    "value": "504 ÷ 5",
+    "unit": ""
+  }
+}

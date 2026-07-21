@@ -1,0 +1,261 @@
+from __future__ import annotations
+from modu_math.dsl import Canvas, ProblemTemplate, Region, TextSlot, RectSlot, CircleSlot
+
+
+def build_problem_template() -> ProblemTemplate:
+    return ProblemTemplate(
+        id="S3_초등_3_008718",
+        title="원의 중심을 옮겨 가며 그린 모양이 아닌 것",
+        canvas=Canvas(width=940, height=425, coordinate_mode="logical"),
+        regions=(
+            Region(
+                id="region.header",
+                role="stem",
+                flow="absolute",
+                slot_ids=(
+                    "slot.q_text",
+                    "slot.choice.ur.diagram.p3.copy10",
+                    "slot.choice.ur.diagram.p3.copy12",
+                    "slot.choice.ur.diagram.p3.copy13",
+                    "slot.choice.ur.diagram.p3.copy14",
+                    "slot.choice.ur.diagram.p3.copy15",
+                ),
+            ),
+            Region(
+                id="region.choice_box",
+                role="body",
+                flow="absolute",
+                slot_ids=(
+                    "slot.choice.list",
+                    "slot.choice.list.copy18",
+                    "slot.choice.list.copy18.copy19",
+                    "slot.choice.list.copy18.copy20",
+                    "slot.choice.list.copy18.copy21",
+                ),
+            ),
+            Region(id="region.answer", role="footer", flow="absolute", slot_ids=()),
+        ),
+        slots=(
+            TextSlot(
+                id="slot.q_text",
+                prompt="",
+                text="원의 중심을 옮겨 가며 그린 모양이 아닌 것을 찾아 기호를 고르세요.",
+                style_role="question",
+                x=76.0,
+                y=27.0,
+                font_size=28,
+            ),
+            CircleSlot(
+                id="slot.choice.ur.diagram.p3", prompt="", cx=265, cy=125, r=30, fill="none"
+            ),
+            CircleSlot(
+                id="slot.choice.ll.diagram.p1", prompt="", cx=285, cy=275, r=50, fill="none"
+            ),
+            CircleSlot(
+                id="slot.choice.ll.diagram.p2", prompt="", cx=285, cy=275, r=35, fill="none"
+            ),
+            CircleSlot(
+                id="slot.choice.ll.diagram.p3", prompt="", cx=285, cy=275, r=20, fill="none"
+            ),
+            CircleSlot(
+                id="slot.choice.lr.diagram.p1", prompt="", cx=520, cy=275, r=45, fill="none"
+            ),
+            CircleSlot(
+                id="slot.choice.lr.diagram.p2", prompt="", cx=520, cy=295, r=25, fill="none"
+            ),
+            CircleSlot(
+                id="slot.choice.lr.diagram.p3", prompt="", cx=520, cy=305, r=15, fill="none"
+            ),
+            TextSlot(
+                id="slot.choice.list",
+                prompt="",
+                text="( ㄱ , ㄴ , ㄷ , ㄹ )",
+                style_role="body",
+                x=290,
+                y=385,
+                font_size=30,
+                fill="#111111",
+            ),
+            CircleSlot(
+                id="slot.choice.ur.diagram.p3.copy10",
+                prompt="",
+                cx=495,
+                cy=135,
+                r=30,
+                stroke="#111111",
+                stroke_width=2,
+            ),
+            CircleSlot(
+                id="slot.choice.ur.diagram.p3.copy12",
+                prompt="",
+                cx=530,
+                cy=135,
+                r=30,
+                stroke="#111111",
+                stroke_width=2,
+            ),
+            CircleSlot(
+                id="slot.choice.ur.diagram.p3.copy13",
+                prompt="",
+                cx=515,
+                cy=135,
+                r=30,
+                stroke="#111111",
+                stroke_width=2,
+            ),
+            CircleSlot(
+                id="slot.choice.ur.diagram.p3.copy14",
+                prompt="",
+                cx=280,
+                cy=150,
+                r=30,
+                stroke="#111111",
+                stroke_width=2,
+            ),
+            CircleSlot(
+                id="slot.choice.ur.diagram.p3.copy15",
+                prompt="",
+                cx=295,
+                cy=125,
+                r=30,
+                stroke="#111111",
+                stroke_width=2,
+            ),
+            TextSlot(
+                id="slot.choice.list.copy18",
+                prompt="",
+                text="ㄱ",
+                x=180,
+                y=96.3333740234375,
+                font_size=30,
+                fill="#111111",
+            ),
+            TextSlot(
+                id="slot.choice.list.copy18.copy19",
+                prompt="",
+                text="ㄴ",
+                x=430,
+                y=96.3333740234375,
+                font_size=30,
+                fill="#111111",
+            ),
+            TextSlot(
+                id="slot.choice.list.copy18.copy20",
+                prompt="",
+                text="ㄷ",
+                x=185,
+                y=241.3333740234375,
+                font_size=30,
+                fill="#111111",
+            ),
+            TextSlot(
+                id="slot.choice.list.copy18.copy21",
+                prompt="",
+                text="ㄹ",
+                x=435,
+                y=241.3333740234375,
+                font_size=30,
+                fill="#111111",
+            ),
+        ),
+        diagrams=(),
+        groups=(),
+        constraints=(),
+        tags=(),
+    )
+
+
+PROBLEM_TEMPLATE = build_problem_template()
+
+SEMANTIC_OVERRIDE = {
+    "problem_id": "S3_초등_3_008718",
+    "problem_type": "도형_판별",
+    "metadata": {
+        "language": "ko",
+        "question": "원의 중심을 옮겨 가며 그린 모양이 아닌 것을 찾아 기호를 고르세요.",
+        "instruction": "보기 중에서 원의 중심이 같지 않은 모양을 찾는다.",
+    },
+    "domain": {
+        "objects": [
+            {"id": "obj.options", "type": "choices", "count": 4},
+            {"id": "obj.answer_mark", "type": "marked_choice"},
+        ],
+        "relations": [],
+        "problem_solving": {
+            "understand": {
+                "given_refs": ["obj.options"],
+                "target_ref": "answer.target",
+                "condition_refs": ["rel.compare_center"],
+            },
+            "plan": {
+                "method": "도형_비교",
+                "description": "각 보기의 원이 같은 중심을 공유하는지, 중심을 옮겨 그린 모양인지 비교한다.",
+            },
+            "execute": {
+                "expected_operations": ["compare_circle_centers", "identify_nonmatching_pattern"]
+            },
+            "review": {"check_methods": ["visual_pattern_check"]},
+        },
+    },
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {
+            "type": "choice_symbol",
+            "description": "원의 중심을 옮겨 가며 그린 모양이 아닌 보기의 기호",
+        },
+        "value": 0,
+        "unit": "",
+    },
+}
+
+SOLVABLE = {
+    "schema": "modu.solvable.v1.1",
+    "problem_id": "S3_초등_3_008718",
+    "problem_type": "도형_판별",
+    "inputs": {
+        "total_ticks": 4,
+        "target_label": "원의 중심을 옮겨 가며 그린 모양이 아닌 것",
+        "target_ticks": 1,
+        "target_count": 1,
+        "unit": "",
+    },
+    "given": [
+        {"ref": "obj.options", "value": {"count": 4}},
+        {"ref": "obj.answer_mark", "value": {"present": True}},
+    ],
+    "target": {"ref": "answer.target", "type": "choice_symbol"},
+    "method": "도형_비교",
+    "plan": [
+        "각 보기의 원이 같은 중심을 공유하는지 살펴본다.",
+        "중심이 같은 모양이 아니라면 정답 후보로 분류한다.",
+        "원본에 인쇄된 정답 표시는 관찰 사실로만 참고한다.",
+    ],
+    "steps": [
+        {"id": "step.1", "expr": "보기 4개를 확인한다.", "value": 4},
+        {"id": "step.2", "expr": "중심이 같은 원의 집합인지 비교한다.", "value": "비교"},
+        {"id": "step.3", "expr": "정답 표시를 관찰한다.", "value": "관찰됨"},
+    ],
+    "checks": [
+        {"id": "check.1", "expr": "보기 수가 4개인가", "expected": 4, "actual": 4, "pass": True},
+        {
+            "id": "check.2",
+            "expr": "정답 표기가 보이는가",
+            "expected": True,
+            "actual": True,
+            "pass": True,
+        },
+    ],
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {
+            "type": "choice_symbol",
+            "description": "원의 중심을 옮겨 가며 그린 모양이 아닌 보기의 기호",
+        },
+        "value": 0,
+        "unit": "",
+    },
+}

@@ -1,0 +1,60 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008559",
+  "problem_type": "multiplication_place_value_choice",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "색칠된 부분이 나타내는 곱",
+    "target_ticks": 0,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.target",
+      "value": "60 × 4"
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "selected_expression"
+  },
+  "method": "place_value_matching",
+  "plan": [
+    "색칠된 부분의 자리값을 확인합니다.",
+    "762에서 6은 십의 자리 숫자이므로 실제로는 60을 뜻합니다.",
+    "색칠된 부분은 60 × 4를 나타냅니다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "762의 6 = 60",
+      "value": 60
+    },
+    {
+      "id": "step.2",
+      "expr": "색칠된 부분 = 60 × 4",
+      "value": "60 × 4"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "색칠된 부분이 나타내는 곱",
+      "expected": "60 × 4",
+      "actual": "60 × 4",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "selected_expression",
+      "description": "색칠된 부분이 나타내는 곱"
+    },
+    "value": "60 × 4",
+    "unit": ""
+  }
+}

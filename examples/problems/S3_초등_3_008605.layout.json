@@ -1,0 +1,132 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008605",
+  "title": "3으로 나누어떨어지는 수가 아닌 것",
+  "canvas": {
+    "width": 855,
+    "height": 420,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.title",
+        "slot.opt1",
+        "slot.opt2",
+        "slot.opt3",
+        "slot.opt4",
+        "slot.opt5"
+      ]
+    },
+    {
+      "id": "region.answer",
+      "role": "answer",
+      "flow": "absolute",
+      "slot_ids": []
+    },
+    {
+      "id": "region.explanation",
+      "role": "explanation",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.title",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "3으로 나누어떨어지는 수가 아닌 것을 모두 고르세요.",
+        "style_role": "question",
+        "x": 44.011,
+        "y": 71.0,
+        "font_size": 30,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.opt1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "① 27",
+        "style_role": "question",
+        "x": 44.011,
+        "y": 126.0,
+        "font_size": 30,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.opt2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "② 56",
+        "style_role": "question",
+        "x": 185.011,
+        "y": 126.0,
+        "font_size": 30,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.opt3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "③ 84",
+        "style_role": "question",
+        "x": 332.011,
+        "y": 126.0,
+        "font_size": 30,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.opt4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "④ 63",
+        "style_role": "question",
+        "x": 476.011,
+        "y": 126.0,
+        "font_size": 30,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.opt5",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "⑤ 70",
+        "style_role": "question",
+        "x": 627.011,
+        "y": 126.0,
+        "font_size": 30,
+        "fill": "#111111"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.title",
+    "slot.opt1",
+    "slot.opt2",
+    "slot.opt3",
+    "slot.opt4",
+    "slot.opt5",
+    "region.answer",
+    "region.explanation"
+  ]
+}

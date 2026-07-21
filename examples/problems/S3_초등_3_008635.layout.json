@@ -1,0 +1,175 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008635",
+  "title": "두 식의 계산 결과가 같을 때 알맞은 수",
+  "canvas": {
+    "width": 841,
+    "height": 374,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.expr.left",
+        "slot.expr.right",
+        "slot.qtext",
+        "slot.opt.1",
+        "slot.opt.2",
+        "slot.opt.3",
+        "slot.opt.4",
+        "slot.opt.5",
+        "slot.qtext.copy2",
+        "slot.qtext.copy3"
+      ]
+    },
+    {
+      "id": "region.answer_explanation",
+      "role": "explanation",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.qtext",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "다음 두 식의 계산 결과가 같을 때 □ 안에 알맞은 수를 고르세요.",
+        "style_role": "question",
+        "x": 35.0,
+        "y": 55.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.expr.left",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 220.0,
+        "y": 83.0,
+        "width": 175.0,
+        "height": 45.0
+      }
+    },
+    {
+      "id": "slot.expr.right",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 460.0,
+        "y": 83.0,
+        "width": 185.0,
+        "height": 45.0
+      }
+    },
+    {
+      "id": "slot.opt.1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "① 2",
+        "style_role": "question",
+        "x": 40.0,
+        "y": 185.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.opt.2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "② 3",
+        "style_role": "question",
+        "x": 175.0,
+        "y": 185.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.opt.3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "③ 4",
+        "style_role": "question",
+        "x": 310.0,
+        "y": 185.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.opt.4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "④ 6",
+        "style_role": "question",
+        "x": 455.0,
+        "y": 185.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.opt.5",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "⑤ 8",
+        "style_role": "question",
+        "x": 600.0,
+        "y": 185.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.qtext.copy2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "□ × 4",
+        "style_role": "body",
+        "x": 505.0,
+        "y": 118.0,
+        "font_size": 30,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.qtext.copy3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "80 ÷ 5",
+        "style_role": "body",
+        "x": 260.0,
+        "y": 118.0,
+        "font_size": 30,
+        "fill": "#111111"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.expr.left",
+    "slot.expr.right",
+    "slot.qtext",
+    "slot.opt.1",
+    "slot.opt.2",
+    "slot.opt.3",
+    "slot.opt.4",
+    "slot.opt.5",
+    "slot.qtext.copy2",
+    "slot.qtext.copy3",
+    "region.answer_explanation"
+  ]
+}

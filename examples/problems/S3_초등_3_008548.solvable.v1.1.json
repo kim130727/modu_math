@@ -1,0 +1,84 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008548",
+  "problem_type": "compare_products",
+  "inputs": {
+    "total_ticks": 2,
+    "target_label": "곱이 더 큰 보기",
+    "target_ticks": 1,
+    "target_count": 2,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.choice_1",
+      "value": {
+        "factors": [
+          5,
+          63
+        ]
+      }
+    },
+    {
+      "ref": "obj.choice_2",
+      "value": {
+        "factors": [
+          7,
+          42
+        ]
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "choice"
+  },
+  "method": "compare_product_values",
+  "plan": [
+    "각 보기의 곱을 구한 뒤 더 큰 값을 선택한다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "5 × 63",
+      "value": 315
+    },
+    {
+      "id": "step.2",
+      "expr": "7 × 42",
+      "value": 294
+    },
+    {
+      "id": "step.3",
+      "expr": "315 > 294",
+      "value": true
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "315 > 294",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "id": "check.2",
+      "expr": "선택한 보기 = ①",
+      "expected": 1,
+      "actual": 1,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "choice",
+      "description": "곱이 더 큰 보기"
+    },
+    "value": 1,
+    "unit": ""
+  }
+}

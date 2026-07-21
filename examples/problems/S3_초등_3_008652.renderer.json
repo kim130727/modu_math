@@ -1,0 +1,966 @@
+{
+  "problem_id": "S3_초등_3_008652",
+  "view_box": {
+    "width": 960.0,
+    "height": 620.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.qtext1.text",
+      "type": "text",
+      "attributes": {
+        "x": 35.0,
+        "y": 35.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 25
+      },
+      "source_ref": "slot.qtext1",
+      "refs": {
+        "layout_slot_id": "slot.qtext1"
+      },
+      "text": "규칙에 따라 원을 그린 것입니다. 그린 규칙을 바르게 말한 사람을 선택"
+    },
+    {
+      "id": "slot.qtext2.text",
+      "type": "text",
+      "attributes": {
+        "x": 36.0,
+        "y": 70.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 24
+      },
+      "source_ref": "slot.qtext2",
+      "refs": {
+        "layout_slot_id": "slot.qtext2"
+      },
+      "text": "해 보세요."
+    },
+    {
+      "id": "slot.grid.frame.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 118.0 150.0 L 400.0 150.0 L 400.0 432.0 L 118.0 432.0 Z",
+        "stroke": "#37C7FF",
+        "stroke-width": 1.4,
+        "fill": "#ffffff",
+        "stroke-dasharray": "4 3"
+      },
+      "source_ref": "slot.grid.frame",
+      "refs": {
+        "layout_slot_id": "slot.grid.frame"
+      }
+    },
+    {
+      "id": "slot.grid.v1.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 141.50 150.0 L 141.50 432.0",
+        "stroke": "#37C7FF",
+        "stroke-width": 1.0,
+        "fill": "none",
+        "stroke-dasharray": "4 3"
+      },
+      "source_ref": "slot.grid.v1",
+      "refs": {
+        "layout_slot_id": "slot.grid.v1"
+      }
+    },
+    {
+      "id": "slot.grid.h1.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 118.0 173.50 L 400.0 173.50",
+        "stroke": "#37C7FF",
+        "stroke-width": 1.0,
+        "fill": "none",
+        "stroke-dasharray": "4 3"
+      },
+      "source_ref": "slot.grid.h1",
+      "refs": {
+        "layout_slot_id": "slot.grid.h1"
+      }
+    },
+    {
+      "id": "slot.grid.v2.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 165.00 150.0 L 165.00 432.0",
+        "stroke": "#37C7FF",
+        "stroke-width": 1.0,
+        "fill": "none",
+        "stroke-dasharray": "4 3"
+      },
+      "source_ref": "slot.grid.v2",
+      "refs": {
+        "layout_slot_id": "slot.grid.v2"
+      }
+    },
+    {
+      "id": "slot.grid.h2.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 118.0 197.00 L 400.0 197.00",
+        "stroke": "#37C7FF",
+        "stroke-width": 1.0,
+        "fill": "none",
+        "stroke-dasharray": "4 3"
+      },
+      "source_ref": "slot.grid.h2",
+      "refs": {
+        "layout_slot_id": "slot.grid.h2"
+      }
+    },
+    {
+      "id": "slot.grid.v3.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 188.50 150.0 L 188.50 432.0",
+        "stroke": "#37C7FF",
+        "stroke-width": 1.0,
+        "fill": "none",
+        "stroke-dasharray": "4 3"
+      },
+      "source_ref": "slot.grid.v3",
+      "refs": {
+        "layout_slot_id": "slot.grid.v3"
+      }
+    },
+    {
+      "id": "slot.grid.h3.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 118.0 220.50 L 400.0 220.50",
+        "stroke": "#37C7FF",
+        "stroke-width": 1.0,
+        "fill": "none",
+        "stroke-dasharray": "4 3"
+      },
+      "source_ref": "slot.grid.h3",
+      "refs": {
+        "layout_slot_id": "slot.grid.h3"
+      }
+    },
+    {
+      "id": "slot.grid.v4.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 212.00 150.0 L 212.00 432.0",
+        "stroke": "#37C7FF",
+        "stroke-width": 1.0,
+        "fill": "none",
+        "stroke-dasharray": "4 3"
+      },
+      "source_ref": "slot.grid.v4",
+      "refs": {
+        "layout_slot_id": "slot.grid.v4"
+      }
+    },
+    {
+      "id": "slot.grid.h4.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 118.0 244.00 L 400.0 244.00",
+        "stroke": "#37C7FF",
+        "stroke-width": 1.0,
+        "fill": "none",
+        "stroke-dasharray": "4 3"
+      },
+      "source_ref": "slot.grid.h4",
+      "refs": {
+        "layout_slot_id": "slot.grid.h4"
+      }
+    },
+    {
+      "id": "slot.grid.v5.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 235.50 150.0 L 235.50 432.0",
+        "stroke": "#37C7FF",
+        "stroke-width": 1.0,
+        "fill": "none",
+        "stroke-dasharray": "4 3"
+      },
+      "source_ref": "slot.grid.v5",
+      "refs": {
+        "layout_slot_id": "slot.grid.v5"
+      }
+    },
+    {
+      "id": "slot.grid.h5.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 118.0 267.50 L 400.0 267.50",
+        "stroke": "#37C7FF",
+        "stroke-width": 1.0,
+        "fill": "none",
+        "stroke-dasharray": "4 3"
+      },
+      "source_ref": "slot.grid.h5",
+      "refs": {
+        "layout_slot_id": "slot.grid.h5"
+      }
+    },
+    {
+      "id": "slot.grid.v6.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 259.00 150.0 L 259.00 432.0",
+        "stroke": "#37C7FF",
+        "stroke-width": 1.0,
+        "fill": "none",
+        "stroke-dasharray": "4 3"
+      },
+      "source_ref": "slot.grid.v6",
+      "refs": {
+        "layout_slot_id": "slot.grid.v6"
+      }
+    },
+    {
+      "id": "slot.grid.h6.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 118.0 291.00 L 400.0 291.00",
+        "stroke": "#37C7FF",
+        "stroke-width": 1.0,
+        "fill": "none",
+        "stroke-dasharray": "4 3"
+      },
+      "source_ref": "slot.grid.h6",
+      "refs": {
+        "layout_slot_id": "slot.grid.h6"
+      }
+    },
+    {
+      "id": "slot.grid.v7.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 282.50 150.0 L 282.50 432.0",
+        "stroke": "#37C7FF",
+        "stroke-width": 1.0,
+        "fill": "none",
+        "stroke-dasharray": "4 3"
+      },
+      "source_ref": "slot.grid.v7",
+      "refs": {
+        "layout_slot_id": "slot.grid.v7"
+      }
+    },
+    {
+      "id": "slot.grid.h7.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 118.0 314.50 L 400.0 314.50",
+        "stroke": "#37C7FF",
+        "stroke-width": 1.0,
+        "fill": "none",
+        "stroke-dasharray": "4 3"
+      },
+      "source_ref": "slot.grid.h7",
+      "refs": {
+        "layout_slot_id": "slot.grid.h7"
+      }
+    },
+    {
+      "id": "slot.grid.v8.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 306.00 150.0 L 306.00 432.0",
+        "stroke": "#37C7FF",
+        "stroke-width": 1.0,
+        "fill": "none",
+        "stroke-dasharray": "4 3"
+      },
+      "source_ref": "slot.grid.v8",
+      "refs": {
+        "layout_slot_id": "slot.grid.v8"
+      }
+    },
+    {
+      "id": "slot.grid.h8.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 118.0 338.00 L 400.0 338.00",
+        "stroke": "#37C7FF",
+        "stroke-width": 1.0,
+        "fill": "none",
+        "stroke-dasharray": "4 3"
+      },
+      "source_ref": "slot.grid.h8",
+      "refs": {
+        "layout_slot_id": "slot.grid.h8"
+      }
+    },
+    {
+      "id": "slot.grid.v9.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 329.50 150.0 L 329.50 432.0",
+        "stroke": "#37C7FF",
+        "stroke-width": 1.0,
+        "fill": "none",
+        "stroke-dasharray": "4 3"
+      },
+      "source_ref": "slot.grid.v9",
+      "refs": {
+        "layout_slot_id": "slot.grid.v9"
+      }
+    },
+    {
+      "id": "slot.grid.h9.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 118.0 361.50 L 400.0 361.50",
+        "stroke": "#37C7FF",
+        "stroke-width": 1.0,
+        "fill": "none",
+        "stroke-dasharray": "4 3"
+      },
+      "source_ref": "slot.grid.h9",
+      "refs": {
+        "layout_slot_id": "slot.grid.h9"
+      }
+    },
+    {
+      "id": "slot.grid.v10.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 353.00 150.0 L 353.00 432.0",
+        "stroke": "#37C7FF",
+        "stroke-width": 1.0,
+        "fill": "none",
+        "stroke-dasharray": "4 3"
+      },
+      "source_ref": "slot.grid.v10",
+      "refs": {
+        "layout_slot_id": "slot.grid.v10"
+      }
+    },
+    {
+      "id": "slot.grid.h10.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 118.0 385.00 L 400.0 385.00",
+        "stroke": "#37C7FF",
+        "stroke-width": 1.0,
+        "fill": "none",
+        "stroke-dasharray": "4 3"
+      },
+      "source_ref": "slot.grid.h10",
+      "refs": {
+        "layout_slot_id": "slot.grid.h10"
+      }
+    },
+    {
+      "id": "slot.grid.v11.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 376.50 150.0 L 376.50 432.0",
+        "stroke": "#37C7FF",
+        "stroke-width": 1.0,
+        "fill": "none",
+        "stroke-dasharray": "4 3"
+      },
+      "source_ref": "slot.grid.v11",
+      "refs": {
+        "layout_slot_id": "slot.grid.v11"
+      }
+    },
+    {
+      "id": "slot.grid.h11.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 118.0 408.50 L 400.0 408.50",
+        "stroke": "#37C7FF",
+        "stroke-width": 1.0,
+        "fill": "none",
+        "stroke-dasharray": "4 3"
+      },
+      "source_ref": "slot.grid.h11",
+      "refs": {
+        "layout_slot_id": "slot.grid.h11"
+      }
+    },
+    {
+      "id": "slot.circle.outer.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 259.0,
+        "cy": 291.0,
+        "r": 118.0,
+        "stroke": "#444444",
+        "stroke-width": 1.4,
+        "fill": "none"
+      },
+      "source_ref": "slot.circle.outer",
+      "refs": {
+        "layout_slot_id": "slot.circle.outer"
+      }
+    },
+    {
+      "id": "slot.circle.middle.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 259.0,
+        "cy": 291.0,
+        "r": 71.0,
+        "stroke": "#444444",
+        "stroke-width": 1.4,
+        "fill": "none"
+      },
+      "source_ref": "slot.circle.middle",
+      "refs": {
+        "layout_slot_id": "slot.circle.middle"
+      }
+    },
+    {
+      "id": "slot.circle.inner.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 259.0,
+        "cy": 291.0,
+        "r": 23.5,
+        "stroke": "#444444",
+        "stroke-width": 1.4,
+        "fill": "none"
+      },
+      "source_ref": "slot.circle.inner",
+      "refs": {
+        "layout_slot_id": "slot.circle.inner"
+      }
+    },
+    {
+      "id": "slot.center.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 259.0,
+        "cy": 291.0,
+        "r": 4.0,
+        "stroke": "none",
+        "stroke-width": 2.0,
+        "fill": "#E11A86"
+      },
+      "source_ref": "slot.center",
+      "refs": {
+        "layout_slot_id": "slot.center"
+      }
+    },
+    {
+      "id": "slot.sunga.character.body.polygon",
+      "type": "polygon",
+      "attributes": {
+        "points": [
+          [
+            497.0,
+            259.0
+          ],
+          [
+            567.0,
+            259.0
+          ],
+          [
+            556.0,
+            206.0
+          ],
+          [
+            508.0,
+            206.0
+          ]
+        ],
+        "stroke": "none",
+        "stroke-width": 2.0,
+        "fill": "#F16078"
+      },
+      "source_ref": "slot.sunga.character.body",
+      "refs": {
+        "layout_slot_id": "slot.sunga.character.body"
+      }
+    },
+    {
+      "id": "slot.sunga.character.ear.left.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 501.0,
+        "cy": 167.0,
+        "r": 9.0,
+        "stroke": "none",
+        "stroke-width": 2.0,
+        "fill": "#ffd8b3"
+      },
+      "source_ref": "slot.sunga.character.ear.left",
+      "refs": {
+        "layout_slot_id": "slot.sunga.character.ear.left"
+      }
+    },
+    {
+      "id": "slot.sunga.character.ear.right.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 563.0,
+        "cy": 167.0,
+        "r": 9.0,
+        "stroke": "none",
+        "stroke-width": 2.0,
+        "fill": "#ffd8b3"
+      },
+      "source_ref": "slot.sunga.character.ear.right",
+      "refs": {
+        "layout_slot_id": "slot.sunga.character.ear.right"
+      }
+    },
+    {
+      "id": "slot.sunga.character.head.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 532.0,
+        "cy": 164.0,
+        "r": 29.0,
+        "stroke": "none",
+        "stroke-width": 2.0,
+        "fill": "#ffd8b3"
+      },
+      "source_ref": "slot.sunga.character.head",
+      "refs": {
+        "layout_slot_id": "slot.sunga.character.head"
+      }
+    },
+    {
+      "id": "slot.sunga.character.hair.cap.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 503.0 163.0 C 505.0 132.0, 560.0 129.0, 562.0 163.0 C 547.0 146.0, 535.0 156.0, 528.0 144.0 C 520.0 157.0, 510.0 146.0, 503.0 163.0 Z",
+        "stroke": "none",
+        "stroke-width": 2.0,
+        "fill": "#3A2116"
+      },
+      "source_ref": "slot.sunga.character.hair.cap",
+      "refs": {
+        "layout_slot_id": "slot.sunga.character.hair.cap"
+      }
+    },
+    {
+      "id": "slot.sunga.character.smile.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 524.0 182.0 Q 532.0 189.0 540.0 182.0",
+        "stroke": "#b76b3a",
+        "stroke-width": 1.6,
+        "fill": "none"
+      },
+      "source_ref": "slot.sunga.character.smile",
+      "refs": {
+        "layout_slot_id": "slot.sunga.character.smile"
+      }
+    },
+    {
+      "id": "slot.sunga.namebox.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 493.0,
+        "y": 236.0,
+        "width": 74.0,
+        "height": 38.0,
+        "fill": "#FCE6F5",
+        "stroke": "#D77BBE",
+        "stroke-width": 1.4,
+        "rx": 10.0,
+        "ry": 10.0
+      },
+      "source_ref": "slot.sunga.namebox",
+      "refs": {
+        "layout_slot_id": "slot.sunga.namebox"
+      }
+    },
+    {
+      "id": "slot.sunga.bubble.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 605.0 181.0 C 605.0 113.14, 655.4 94.0, 725.0 94.0 C 794.6 94.0, 845.0 113.14, 845.0 181.0 C 845.0 248.86, 794.6 268.0, 725.0 268.0 C 655.4 268.0, 605.0 248.86, 605.0 181.0 Z",
+        "stroke": "#222222",
+        "stroke-width": 1.6,
+        "fill": "#ffffff"
+      },
+      "source_ref": "slot.sunga.bubble",
+      "refs": {
+        "layout_slot_id": "slot.sunga.bubble"
+      }
+    },
+    {
+      "id": "slot.jaewon.character.body.polygon",
+      "type": "polygon",
+      "attributes": {
+        "points": [
+          [
+            497.0,
+            433.0
+          ],
+          [
+            567.0,
+            433.0
+          ],
+          [
+            556.0,
+            380.0
+          ],
+          [
+            508.0,
+            380.0
+          ]
+        ],
+        "stroke": "none",
+        "stroke-width": 2.0,
+        "fill": "#1E8AD6"
+      },
+      "source_ref": "slot.jaewon.character.body",
+      "refs": {
+        "layout_slot_id": "slot.jaewon.character.body"
+      }
+    },
+    {
+      "id": "slot.jaewon.character.ear.left.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 501.0,
+        "cy": 341.0,
+        "r": 9.0,
+        "stroke": "none",
+        "stroke-width": 2.0,
+        "fill": "#ffd8b3"
+      },
+      "source_ref": "slot.jaewon.character.ear.left",
+      "refs": {
+        "layout_slot_id": "slot.jaewon.character.ear.left"
+      }
+    },
+    {
+      "id": "slot.jaewon.character.ear.right.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 563.0,
+        "cy": 341.0,
+        "r": 9.0,
+        "stroke": "none",
+        "stroke-width": 2.0,
+        "fill": "#ffd8b3"
+      },
+      "source_ref": "slot.jaewon.character.ear.right",
+      "refs": {
+        "layout_slot_id": "slot.jaewon.character.ear.right"
+      }
+    },
+    {
+      "id": "slot.jaewon.character.head.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 532.0,
+        "cy": 338.0,
+        "r": 29.0,
+        "stroke": "none",
+        "stroke-width": 2.0,
+        "fill": "#ffd8b3"
+      },
+      "source_ref": "slot.jaewon.character.head",
+      "refs": {
+        "layout_slot_id": "slot.jaewon.character.head"
+      }
+    },
+    {
+      "id": "slot.jaewon.character.hair.cap.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 503.0 337.0 C 505.0 306.0, 560.0 303.0, 562.0 337.0 C 547.0 320.0, 535.0 330.0, 528.0 318.0 C 520.0 331.0, 510.0 320.0, 503.0 337.0 Z",
+        "stroke": "none",
+        "stroke-width": 2.0,
+        "fill": "#4B260B"
+      },
+      "source_ref": "slot.jaewon.character.hair.cap",
+      "refs": {
+        "layout_slot_id": "slot.jaewon.character.hair.cap"
+      }
+    },
+    {
+      "id": "slot.jaewon.character.smile.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 524.0 356.0 Q 532.0 363.0 540.0 356.0",
+        "stroke": "#b76b3a",
+        "stroke-width": 1.6,
+        "fill": "none"
+      },
+      "source_ref": "slot.jaewon.character.smile",
+      "refs": {
+        "layout_slot_id": "slot.jaewon.character.smile"
+      }
+    },
+    {
+      "id": "slot.jaewon.namebox.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 493.0,
+        "y": 416.0,
+        "width": 74.0,
+        "height": 38.0,
+        "fill": "#FCE6F5",
+        "stroke": "#D77BBE",
+        "stroke-width": 1.4,
+        "rx": 10.0,
+        "ry": 10.0
+      },
+      "source_ref": "slot.jaewon.namebox",
+      "refs": {
+        "layout_slot_id": "slot.jaewon.namebox"
+      }
+    },
+    {
+      "id": "slot.jaewon.bubble.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 605.0 363.0 C 605.0 295.14, 655.4 276.0, 725.0 276.0 C 794.6 276.0, 845.0 295.14, 845.0 363.0 C 845.0 430.86, 794.6 450.0, 725.0 450.0 C 655.4 450.0, 605.0 430.86, 605.0 363.0 Z",
+        "stroke": "#222222",
+        "stroke-width": 1.6,
+        "fill": "#ffffff"
+      },
+      "source_ref": "slot.jaewon.bubble",
+      "refs": {
+        "layout_slot_id": "slot.jaewon.bubble"
+      }
+    },
+    {
+      "id": "slot.sunga.character.eye.left.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 522.0,
+        "cy": 170.0,
+        "r": 3.8,
+        "stroke": "none",
+        "stroke-width": 2.0,
+        "fill": "#2b2118"
+      },
+      "source_ref": "slot.sunga.character.eye.left",
+      "refs": {
+        "layout_slot_id": "slot.sunga.character.eye.left"
+      }
+    },
+    {
+      "id": "slot.sunga.character.eye.right.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 542.0,
+        "cy": 170.0,
+        "r": 3.8,
+        "stroke": "none",
+        "stroke-width": 2.0,
+        "fill": "#2b2118"
+      },
+      "source_ref": "slot.sunga.character.eye.right",
+      "refs": {
+        "layout_slot_id": "slot.sunga.character.eye.right"
+      }
+    },
+    {
+      "id": "slot.jaewon.character.eye.left.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 522.0,
+        "cy": 344.0,
+        "r": 3.8,
+        "stroke": "none",
+        "stroke-width": 2.0,
+        "fill": "#2b2118"
+      },
+      "source_ref": "slot.jaewon.character.eye.left",
+      "refs": {
+        "layout_slot_id": "slot.jaewon.character.eye.left"
+      }
+    },
+    {
+      "id": "slot.jaewon.character.eye.right.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 542.0,
+        "cy": 344.0,
+        "r": 3.8,
+        "stroke": "none",
+        "stroke-width": 2.0,
+        "fill": "#2b2118"
+      },
+      "source_ref": "slot.jaewon.character.eye.right",
+      "refs": {
+        "layout_slot_id": "slot.jaewon.character.eye.right"
+      }
+    },
+    {
+      "id": "slot.sunga.name.text",
+      "type": "text",
+      "attributes": {
+        "x": 530.0,
+        "y": 263.0,
+        "fill": "#333333",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 23,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.sunga.name",
+      "refs": {
+        "layout_slot_id": "slot.sunga.name"
+      },
+      "text": "승아"
+    },
+    {
+      "id": "slot.sunga.text1.text",
+      "type": "text",
+      "attributes": {
+        "x": 725.0,
+        "y": 137.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 23,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.sunga.text1",
+      "refs": {
+        "layout_slot_id": "slot.sunga.text1"
+      },
+      "text": "원의 중심이 모두"
+    },
+    {
+      "id": "slot.sunga.text2.text",
+      "type": "text",
+      "attributes": {
+        "x": 725.0,
+        "y": 172.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 23,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.sunga.text2",
+      "refs": {
+        "layout_slot_id": "slot.sunga.text2"
+      },
+      "text": "다르고 원의 반지름이"
+    },
+    {
+      "id": "slot.sunga.text3.text",
+      "type": "text",
+      "attributes": {
+        "x": 725.0,
+        "y": 207.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 23,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.sunga.text3",
+      "refs": {
+        "layout_slot_id": "slot.sunga.text3"
+      },
+      "text": "모눈 1칸씩 늘어나게"
+    },
+    {
+      "id": "slot.sunga.text4.text",
+      "type": "text",
+      "attributes": {
+        "x": 725.0,
+        "y": 242.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 23,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.sunga.text4",
+      "refs": {
+        "layout_slot_id": "slot.sunga.text4"
+      },
+      "text": "그렸어요."
+    },
+    {
+      "id": "slot.jaewon.name.text",
+      "type": "text",
+      "attributes": {
+        "x": 530.0,
+        "y": 443.0,
+        "fill": "#333333",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 23,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.jaewon.name",
+      "refs": {
+        "layout_slot_id": "slot.jaewon.name"
+      },
+      "text": "재원"
+    },
+    {
+      "id": "slot.jaewon.text1.text",
+      "type": "text",
+      "attributes": {
+        "x": 725.0,
+        "y": 319.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 23,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.jaewon.text1",
+      "refs": {
+        "layout_slot_id": "slot.jaewon.text1"
+      },
+      "text": "원의 중심이 모두"
+    },
+    {
+      "id": "slot.jaewon.text2.text",
+      "type": "text",
+      "attributes": {
+        "x": 725.0,
+        "y": 354.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 23,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.jaewon.text2",
+      "refs": {
+        "layout_slot_id": "slot.jaewon.text2"
+      },
+      "text": "같고 원의 반지름이"
+    },
+    {
+      "id": "slot.jaewon.text3.text",
+      "type": "text",
+      "attributes": {
+        "x": 725.0,
+        "y": 389.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 23,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.jaewon.text3",
+      "refs": {
+        "layout_slot_id": "slot.jaewon.text3"
+      },
+      "text": "모눈 2칸씩 늘어나게"
+    },
+    {
+      "id": "slot.jaewon.text4.text",
+      "type": "text",
+      "attributes": {
+        "x": 725.0,
+        "y": 424.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 23,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.jaewon.text4",
+      "refs": {
+        "layout_slot_id": "slot.jaewon.text4"
+      },
+      "text": "그렸어요."
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

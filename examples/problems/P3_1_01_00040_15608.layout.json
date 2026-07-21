@@ -1,0 +1,148 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "P3_1_01_00040_15608",
+  "title": "합이 가장 큰 덧셈식",
+  "canvas": {
+    "width": 900,
+    "height": 300,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.question",
+        "slot.option_1",
+        "slot.option_2",
+        "slot.option_3",
+        "slot.option_4",
+        "slot.option_5"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.question",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "다음 중 합이 가장 큰 것은 어느 것입니까?",
+        "style_role": "body",
+        "x": 20.0,
+        "y": 12.0,
+        "width": 860.0,
+        "height": 35,
+        "align": "left",
+        "valign": "middle",
+        "font_size": 21,
+        "font_family": "Noto Sans KR",
+        "fill": "#202124"
+      }
+    },
+    {
+      "id": "slot.option_1",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "① 530+140",
+        "style_role": "body",
+        "x": 20.0,
+        "y": 48.0,
+        "width": 300.0,
+        "height": 35,
+        "align": "left",
+        "valign": "middle",
+        "font_size": 21,
+        "font_family": "Noto Sans KR",
+        "fill": "#202124"
+      }
+    },
+    {
+      "id": "slot.option_2",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "② 420+220",
+        "style_role": "body",
+        "x": 20.0,
+        "y": 80.0,
+        "width": 300.0,
+        "height": 35,
+        "align": "left",
+        "valign": "middle",
+        "font_size": 21,
+        "font_family": "Noto Sans KR",
+        "fill": "#202124"
+      }
+    },
+    {
+      "id": "slot.option_3",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "③ 610+100",
+        "style_role": "body",
+        "x": 20.0,
+        "y": 112.0,
+        "width": 300.0,
+        "height": 35,
+        "align": "left",
+        "valign": "middle",
+        "font_size": 21,
+        "font_family": "Noto Sans KR",
+        "fill": "#202124"
+      }
+    },
+    {
+      "id": "slot.option_4",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "④ 140+550",
+        "style_role": "body",
+        "x": 20.0,
+        "y": 144.0,
+        "width": 300.0,
+        "height": 35,
+        "align": "left",
+        "valign": "middle",
+        "font_size": 21,
+        "font_family": "Noto Sans KR",
+        "fill": "#202124"
+      }
+    },
+    {
+      "id": "slot.option_5",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "⑤ 545+235",
+        "style_role": "body",
+        "x": 20.0,
+        "y": 176.0,
+        "width": 300.0,
+        "height": 35,
+        "align": "left",
+        "valign": "middle",
+        "font_size": 21,
+        "font_family": "Noto Sans KR",
+        "fill": "#202124"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.question",
+    "slot.option_1",
+    "slot.option_2",
+    "slot.option_3",
+    "slot.option_4",
+    "slot.option_5"
+  ]
+}

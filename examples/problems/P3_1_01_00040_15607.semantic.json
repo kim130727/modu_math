@@ -1,0 +1,86 @@
+{
+  "problem_id": "P3_1_01_00040_15607",
+  "problem_type": "numeric_answer_initial_quantity_addition_word_problem",
+  "metadata": {
+    "title": "처음 주차장에 있던 차의 수",
+    "tags": [],
+    "instruction": "식",
+    "question": "처음 주차장에 있던 차는 모두 몇 대입니까?",
+    "required_layout_ids": [],
+    "extraction_confidence": 1.0,
+    "grade": 3,
+    "semester": 1,
+    "subject": "수학",
+    "topic": "세 자리 수의 덧셈",
+    "language": "ko-KR"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "place.parking_lot",
+        "type": "place",
+        "label": "주차장"
+      },
+      {
+        "id": "object.car",
+        "type": "countable_object",
+        "label": "차",
+        "unit": "대"
+      },
+      {
+        "id": "quantity.departed_cars",
+        "type": "quantity",
+        "label": "주차장에서 나간 차의 수",
+        "value": 146,
+        "unit": "대"
+      },
+      {
+        "id": "quantity.remaining_cars",
+        "type": "quantity",
+        "label": "주차장에 남은 차의 수",
+        "value": 231,
+        "unit": "대"
+      },
+      {
+        "id": "quantity.initial_cars",
+        "type": "quantity",
+        "label": "처음 주차장에 있던 차의 수",
+        "value": 377,
+        "unit": "대"
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.cars_departed",
+        "type": "departed_from",
+        "subject": "quantity.departed_cars",
+        "object": "object.car",
+        "place": "place.parking_lot"
+      },
+      {
+        "id": "relation.cars_remained",
+        "type": "remained_at",
+        "subject": "quantity.remaining_cars",
+        "object": "object.car",
+        "place": "place.parking_lot"
+      },
+      {
+        "id": "relation.initial_count_is_sum",
+        "type": "sum_of",
+        "subject": "quantity.initial_cars",
+        "objects": [
+          "quantity.departed_cars",
+          "quantity.remaining_cars"
+        ]
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "type": "numeric",
+    "value": 377,
+    "unit": "대",
+    "target_ref": "quantity.initial_cars",
+    "derived_from": "step.reconstruct_initial_count"
+  }
+}

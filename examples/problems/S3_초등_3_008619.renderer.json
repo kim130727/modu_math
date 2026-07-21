@@ -1,0 +1,93 @@
+{
+  "problem_id": "S3_초등_3_008619",
+  "view_box": {
+    "width": 700.0,
+    "height": 200.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.instruction.text",
+      "type": "text",
+      "attributes": {
+        "x": 75.0,
+        "y": 35.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30
+      },
+      "source_ref": "slot.instruction",
+      "refs": {
+        "layout_slot_id": "slot.instruction"
+      },
+      "text": "나머지가 더 큰 것을 찾아 선택하세요."
+    },
+    {
+      "id": "slot.choice.left.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 75.0,
+        "y": 73.0,
+        "width": 180.0,
+        "height": 75.0,
+        "fill": "#FFF6F6",
+        "stroke": "#F4B7B7",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.choice.left",
+      "refs": {
+        "layout_slot_id": "slot.choice.left"
+      }
+    },
+    {
+      "id": "slot.choice.right.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 335.0,
+        "y": 73.0,
+        "width": 180.0,
+        "height": 75.0,
+        "fill": "#FFF6F6",
+        "stroke": "#F4B7B7",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.choice.right",
+      "refs": {
+        "layout_slot_id": "slot.choice.right"
+      }
+    },
+    {
+      "id": "slot.choice.left.text.text",
+      "type": "text",
+      "attributes": {
+        "x": 110.0,
+        "y": 120.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30
+      },
+      "source_ref": "slot.choice.left.text",
+      "refs": {
+        "layout_slot_id": "slot.choice.left.text"
+      },
+      "text": "517 ÷ 4"
+    },
+    {
+      "id": "slot.choice.right.text.text",
+      "type": "text",
+      "attributes": {
+        "x": 370.0,
+        "y": 120.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30
+      },
+      "source_ref": "slot.choice.right.text",
+      "refs": {
+        "layout_slot_id": "slot.choice.right.text"
+      },
+      "text": "519 ÷ 6"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

@@ -1,0 +1,72 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008678",
+  "problem_type": "circle_paper_folding_choice",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "괄호 안에 들어갈 알맞은 말",
+    "target_ticks": 0,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.circle_paper",
+      "value": {
+        "shape": "circle"
+      }
+    },
+    {
+      "ref": "obj.fold_line",
+      "value": {
+        "type": "line_segment",
+        "created_by": "fold_and_open"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "choice_word"
+  },
+  "method": "concept_matching",
+  "plan": [
+    "반으로 접었다가 폈을 때 생긴 선분을 관찰한다.",
+    "보기의 두 용어 중 알맞은 말을 고른다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "접힌 선분이 원을 둘로 똑같이 나누는지 확인한다.",
+      "value": ""
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "정답과 해설 문장이 렌더링되지 않는다.",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [
+      {
+        "id": "choice.diameter",
+        "value": "지름"
+      },
+      {
+        "id": "choice.radius",
+        "value": "반지름"
+      }
+    ],
+    "answer_key": [],
+    "target": {
+      "type": "choice_word",
+      "description": "괄호 안에 들어갈 알맞은 말"
+    },
+    "value": "",
+    "unit": ""
+  }
+}

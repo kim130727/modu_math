@@ -1,0 +1,89 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008622",
+  "title": "나눗셈의 나머지가 될 수 있는 수를 모두 선택해 보세요.",
+  "canvas": {
+    "width": 800,
+    "height": 270,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.box",
+        "slot.prompt",
+        "slot.box.text",
+        "slot.candidates"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.prompt",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "나눗셈의 나머지가 될 수 있는 수를 모두 선택해 보세요.",
+        "style_role": "question",
+        "x": 65.0,
+        "y": 55.0,
+        "font_size": 28,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 290.0,
+        "y": 95.0,
+        "width": 195.0,
+        "height": 75.0,
+        "stroke": "#111111",
+        "stroke_width": 1.5,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.box.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "□ ÷ 5",
+        "style_role": "choice",
+        "x": 340.0,
+        "y": 145.0,
+        "font_size": 30,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.candidates",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "( 1 , 2 , 3 , 4 , 5 , 6 )",
+        "style_role": "question",
+        "x": 255.0,
+        "y": 225.0,
+        "font_size": 30,
+        "fill": "#111111"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.box",
+    "slot.prompt",
+    "slot.box.text",
+    "slot.candidates"
+  ]
+}

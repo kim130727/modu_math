@@ -1,0 +1,399 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008725",
+  "title": "원의 중심의 개수가 가장 많은 모양",
+  "canvas": {
+    "width": 820,
+    "height": 620,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice.1.shape",
+        "slot.choice.2.shape",
+        "slot.choice.3.shape",
+        "slot.choice.4.shape",
+        "slot.choice.5.shape",
+        "slot.choice.2.shape.copy15",
+        "slot.choice.2.shape.copy16",
+        "slot.choice.2.shape.copy17",
+        "slot.choice.2.shape.copy18",
+        "slot.choice.2.shape.copy19",
+        "slot.choice.2.shape.copy20",
+        "slot.choice.2.shape.copy21",
+        "slot.choice.4.shape.copy22",
+        "slot.choice.2.shape.copy16.copy24",
+        "slot.inserted.quarterArc.1",
+        "slot.inserted.quarterArc.1.copy1",
+        "slot.inserted.quarterArc.1.copy1.copy2",
+        "slot.inserted.quarterArc.1.copy1.copy3",
+        "slot.q_text",
+        "slot.choice.1.label",
+        "slot.choice.2.label",
+        "slot.choice.3.label",
+        "slot.choice.4.label",
+        "slot.choice.5.label"
+      ]
+    },
+    {
+      "id": "region.explanation",
+      "role": "explanation",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q_text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "원의 중심의 개수가 가장 많은 모양을 고르세요.",
+        "style_role": "question",
+        "x": 45.0,
+        "y": 70.0,
+        "font_size": 30,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.choice.1.label",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "①",
+        "style_role": "label",
+        "x": 45.0,
+        "y": 165.0,
+        "font_size": 30,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.choice.1.shape",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 105.0,
+        "y": 140.0,
+        "width": 185.0,
+        "height": 180.0,
+        "stroke": "#111111",
+        "stroke_width": 1.5,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.choice.2.label",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "②",
+        "style_role": "label",
+        "x": 319.0,
+        "y": 165.0,
+        "font_size": 30,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.choice.2.shape",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 464.0,
+        "cy": 235.0,
+        "r": 90.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.choice.3.label",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "③",
+        "style_role": "label",
+        "x": 572.0,
+        "y": 165.0,
+        "font_size": 30,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.choice.3.shape",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 728.0,
+        "cy": 198.0,
+        "r": 45.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.choice.4.label",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "④",
+        "style_role": "label",
+        "x": 50.0,
+        "y": 410.0,
+        "font_size": 30,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.choice.4.shape",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 170.0,
+        "cy": 445.0,
+        "r": 60.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.choice.5.label",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "⑤",
+        "style_role": "label",
+        "x": 318.0,
+        "y": 410.0,
+        "font_size": 30,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.choice.5.shape",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 465.0,
+        "cy": 410.0,
+        "r": 50.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.choice.2.shape.copy15",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 200.0,
+        "cy": 445.0,
+        "r": 90.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.choice.2.shape.copy16",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 465.0,
+        "cy": 235.0,
+        "r": 45.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.choice.2.shape.copy17",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 755.0,
+        "cy": 235.0,
+        "r": 45.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.choice.2.shape.copy18",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 465.0,
+        "cy": 235.0,
+        "r": 65.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.choice.2.shape.copy19",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 465.0,
+        "cy": 450.0,
+        "r": 90.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.choice.2.shape.copy20",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 230.0,
+        "cy": 445.0,
+        "r": 60.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.choice.2.shape.copy21",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 700.0,
+        "cy": 235.0,
+        "r": 45.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.choice.4.shape.copy22",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 500.0,
+        "cy": 775.0,
+        "r": 60.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.choice.2.shape.copy16.copy24",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 465.0,
+        "cy": 408.0,
+        "r": 30.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.inserted.quarterArc.1",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 200 320 A 95 90 0 0 1 290 230",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#111827",
+        "stroke_width": 1.5,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.inserted.quarterArc.1.copy1",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 100 230 A 105 90 0 0 1 195 140",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#111827",
+        "stroke_width": 1.5,
+        "fill": "none",
+        "transform": "rotate(180 150.88 184.08)"
+      }
+    },
+    {
+      "id": "slot.inserted.quarterArc.1.copy1.copy2",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 200 230 A 95 90 0 0 1 290 140",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#111827",
+        "stroke_width": 1.5,
+        "fill": "none",
+        "transform": "rotate(270 245 185)"
+      }
+    },
+    {
+      "id": "slot.inserted.quarterArc.1.copy1.copy3",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 105 320 A 105 95 0 0 1 200 225",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#111827",
+        "stroke_width": 1.5,
+        "fill": "none",
+        "transform": "rotate(450 152.5 275)"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.choice.1.shape",
+    "slot.choice.2.shape",
+    "slot.choice.3.shape",
+    "slot.choice.4.shape",
+    "slot.choice.5.shape",
+    "slot.choice.2.shape.copy15",
+    "slot.choice.2.shape.copy16",
+    "slot.choice.2.shape.copy17",
+    "slot.choice.2.shape.copy18",
+    "slot.choice.2.shape.copy19",
+    "slot.choice.2.shape.copy20",
+    "slot.choice.2.shape.copy21",
+    "slot.choice.4.shape.copy22",
+    "slot.choice.2.shape.copy16.copy24",
+    "slot.inserted.quarterArc.1",
+    "slot.inserted.quarterArc.1.copy1",
+    "slot.inserted.quarterArc.1.copy1.copy2",
+    "slot.inserted.quarterArc.1.copy1.copy3",
+    "slot.q_text",
+    "slot.choice.1.label",
+    "slot.choice.2.label",
+    "slot.choice.3.label",
+    "slot.choice.4.label",
+    "slot.choice.5.label",
+    "region.explanation"
+  ]
+}

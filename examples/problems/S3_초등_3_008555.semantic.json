@@ -1,0 +1,49 @@
+{
+  "problem_id": "S3_초등_3_008555",
+  "problem_type": "multiple_choice_comparison",
+  "metadata": {
+    "title": "500보다 큰 계산 결과 찾기",
+    "tags": [],
+    "question": "계산 결과가 500보다 큰 것을 선택해 보세요.",
+    "required_layout_ids": [
+      "slot.choice1_box",
+      "slot.choice2_box"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "두 계산 결과를 500과 비교해 큰 것을 선택한다."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.choice1",
+        "type": "multiplication_expression",
+        "expression": "35 × 13"
+      },
+      {
+        "id": "obj.choice2",
+        "type": "multiplication_expression",
+        "expression": "28 × 19"
+      },
+      {
+        "id": "obj.threshold",
+        "type": "number",
+        "value": 500
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "correct_choice",
+      "description": "500보다 큰 계산 결과"
+    },
+    "value": "28 × 19",
+    "unit": ""
+  }
+}

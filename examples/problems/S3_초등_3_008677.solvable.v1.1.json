@@ -1,0 +1,73 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008677",
+  "problem_type": "geometry_circle_radius_selection",
+  "inputs": {
+    "total_ticks": 1,
+    "target_label": "반지름",
+    "target_ticks": 1,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.circle",
+      "value": {
+        "type": "circle"
+      }
+    },
+    {
+      "ref": "obj.center",
+      "value": {
+        "label": "O"
+      }
+    },
+    {
+      "ref": "obj.segment.on",
+      "value": {
+        "label": "Oㄴ"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "segment"
+  },
+  "method": "definition_matching",
+  "plan": [
+    "원의 중심과 원 위의 한 점을 이은 선분이 반지름인지 확인한다.",
+    "보기 중 해당하는 선분을 고른다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "원의 중심 O와 원 위의 한 점 ㄴ을 이은 선분 확인",
+      "value": "Oㄴ"
+    },
+    {
+      "id": "step.2",
+      "expr": "반지름의 정의와 일치하는 보기 선택",
+      "value": "선분 Oㄴ"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "중심 O에서 원 위의 점 ㄴ으로 이어지는가",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "segment",
+      "description": "원의 반지름을 나타내는 선분"
+    },
+    "value": 2,
+    "unit": ""
+  }
+}

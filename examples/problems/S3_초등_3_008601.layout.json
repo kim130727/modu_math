@@ -1,0 +1,239 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008601",
+  "title": "나머지가 3이 될 수 없는 나눗셈식",
+  "canvas": {
+    "width": 960,
+    "height": 380,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q_text"
+      ]
+    },
+    {
+      "id": "region.options",
+      "role": "body",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.box",
+        "slot.opt1.blank",
+        "slot.opt2.blank",
+        "slot.opt3.blank",
+        "slot.opt1.sym",
+        "slot.opt1.div",
+        "slot.opt1.num",
+        "slot.opt2.sym",
+        "slot.opt2.div",
+        "slot.opt2.num",
+        "slot.opt3.sym",
+        "slot.opt3.div",
+        "slot.opt3.num"
+      ]
+    },
+    {
+      "id": "region.answer",
+      "role": "answer",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q_text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "나머지가 3이 될 수 없는 나눗셈식을 찾아 기호를 선택해 보세요.",
+        "style_role": "question",
+        "x": 75.0,
+        "y": 50.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 75.0,
+        "y": 95.0,
+        "width": 760.0,
+        "height": 80.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.opt1.sym",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "㉠",
+        "style_role": "body",
+        "x": 165.0,
+        "y": 150.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.opt1.blank",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 210.0,
+        "y": 125.0,
+        "width": 25.0,
+        "height": 25.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.opt1.div",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "÷",
+        "style_role": "body",
+        "x": 245.0,
+        "y": 150.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.opt1.num",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "2",
+        "style_role": "body",
+        "x": 285.0,
+        "y": 150.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.opt2.sym",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "㉡",
+        "style_role": "body",
+        "x": 380.0,
+        "y": 150.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.opt2.blank",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 425.0,
+        "y": 125.0,
+        "width": 25.0,
+        "height": 25.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.opt2.div",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "÷",
+        "style_role": "body",
+        "x": 455.0,
+        "y": 150.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.opt2.num",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "7",
+        "style_role": "body",
+        "x": 490.0,
+        "y": 150.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.opt3.sym",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "㉢",
+        "style_role": "body",
+        "x": 585.0,
+        "y": 150.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.opt3.blank",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 635.0,
+        "y": 125.0,
+        "width": 25.0,
+        "height": 25.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.opt3.div",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "÷",
+        "style_role": "body",
+        "x": 670.0,
+        "y": 150.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.opt3.num",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "5",
+        "style_role": "body",
+        "x": 705.0,
+        "y": 150.0,
+        "font_size": 30
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q_text",
+    "region.options",
+    "slot.box",
+    "slot.opt1.blank",
+    "slot.opt2.blank",
+    "slot.opt3.blank",
+    "slot.opt1.sym",
+    "slot.opt1.div",
+    "slot.opt1.num",
+    "slot.opt2.sym",
+    "slot.opt2.div",
+    "slot.opt2.num",
+    "slot.opt3.sym",
+    "slot.opt3.div",
+    "slot.opt3.num",
+    "region.answer"
+  ]
+}

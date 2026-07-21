@@ -1,0 +1,75 @@
+{
+  "problem_id": "S3_초등_3_008674",
+  "problem_type": "circle_completion_choice",
+  "metadata": {
+    "title": "원을 바르게 완성한 것을 선택하세요.",
+    "tags": [],
+    "instruction": "정답과 해설 영역은 렌더링하지 않는다.",
+    "question": "원을 바르게 완성한 것을 선택하세요.",
+    "required_layout_ids": [
+      "slot.ref.square",
+      "slot.ref.arc",
+      "slot.ref.center",
+      "slot.choice.left.square",
+      "slot.choice.left.base",
+      "slot.choice.left.red",
+      "slot.choice.left.center",
+      "slot.choice.middle.square",
+      "slot.choice.middle.base",
+      "slot.choice.middle.red",
+      "slot.choice.middle.center",
+      "slot.choice.right.square",
+      "slot.choice.right.base",
+      "slot.choice.right.red",
+      "slot.choice.right.center"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.circle_completion_choices",
+        "type": "circle_completion_choices",
+        "description": "제시된 원의 빈 부분을 보기의 빨간 선으로 완성하는 시각 선택 문제"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.circle_completion_choices"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": []
+      },
+      "plan": {
+        "method": "visual_comparison",
+        "description": "각 보기의 빨간 선이 원호와 자연스럽게 이어지는지 비교한다."
+      },
+      "execute": {
+        "expected_operations": [
+          "compare_shapes"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "curve_continuity"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "selected_picture",
+      "description": "원을 바르게 완성한 그림"
+    },
+    "value": "다",
+    "unit": ""
+  }
+}

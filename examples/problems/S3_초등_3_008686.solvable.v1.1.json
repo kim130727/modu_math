@@ -1,0 +1,68 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008686",
+  "problem_type": "ox_judgment",
+  "inputs": {
+    "total_ticks": 1,
+    "target_label": "선분 ㄱㄴ이 원의 지름인지 판단",
+    "target_ticks": 1,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.circle",
+      "value": {
+        "type": "circle"
+      }
+    },
+    {
+      "ref": "obj.segment_gn",
+      "value": {
+        "type": "segment",
+        "label": "ㄱㄴ"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "ox_judgment"
+  },
+  "method": "ox_judgment",
+  "plan": [
+    "문장에서 선분 ㄱㄴ이 원의 지름이라고 말하는지 확인한다.",
+    "도형의 성질과 문장의 내용이 같으면 ○, 다르면 ×로 판단한다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "선분 ㄱㄴ의 위치와 원의 중심을 지난다는 관계를 확인한다.",
+      "value": "중심을 지나는 선분"
+    },
+    {
+      "id": "step.2",
+      "expr": "문장 '선분 ㄱㄴ은 원의 지름을 나타냅니다.'의 진위 판단",
+      "value": "○"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "문장 내용이 도형의 지름 성질과 일치하는가",
+      "expected": "○",
+      "actual": "○",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "ox_judgment",
+      "description": "선분 ㄱㄴ이 원의 지름을 나타낸다는 설명이 맞는지"
+    },
+    "value": "○",
+    "unit": ""
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008681",
+  "problem_type": "선택형_도형_비교",
+  "inputs": {
+    "total_ticks": 3,
+    "target_label": "3 cm",
+    "target_ticks": 3,
+    "target_count": 1,
+    "unit": "cm"
+  },
+  "given": [
+    {
+      "ref": "obj.radius",
+      "value": {
+        "value": 3,
+        "unit": "cm"
+      }
+    },
+    {
+      "ref": "obj.options",
+      "value": {
+        "count": 3
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "selected_figure"
+  },
+  "method": "visual_comparison",
+  "plan": [
+    "각 보기의 컴퍼스 벌림을 자의 눈금과 비교한다.",
+    "3 cm와 같은 벌림을 가진 그림을 찾는다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "보기 1, 2, 3의 벌림 정도를 자 눈금과 비교한다.",
+      "value": "비교 수행"
+    },
+    {
+      "id": "step.2",
+      "expr": "3 cm에 해당하는 보기 선택",
+      "value": "미정"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "선택된 그림의 벌림이 3 cm와 일치하는가",
+      "expected": true,
+      "actual": false,
+      "pass": false
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "selected_figure",
+      "description": "반지름이 3 cm인 원을 그리도록 컴퍼스를 벌린 그림"
+    },
+    "value": 3,
+    "unit": ""
+  }
+}

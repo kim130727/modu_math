@@ -1,0 +1,109 @@
+{
+  "problem_id": "S3_초등_3_008589",
+  "view_box": {
+    "width": 720.0,
+    "height": 352.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.box.left.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 105.0,
+        "y": 85.0,
+        "width": 190.0,
+        "height": 80.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.box.left",
+      "refs": {
+        "layout_slot_id": "slot.box.left"
+      }
+    },
+    {
+      "id": "slot.box.right.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 365.0,
+        "y": 85.0,
+        "width": 190.0,
+        "height": 80.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.box.right",
+      "refs": {
+        "layout_slot_id": "slot.box.right"
+      }
+    },
+    {
+      "id": "slot.q1.text",
+      "type": "text",
+      "attributes": {
+        "x": 45.0,
+        "y": 45.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30
+      },
+      "source_ref": "slot.q1",
+      "refs": {
+        "layout_slot_id": "slot.q1"
+      },
+      "text": "나머지가 더 큰 것을 선택하세요."
+    },
+    {
+      "id": "slot.q2.text",
+      "type": "text",
+      "attributes": {
+        "x": 155.0,
+        "y": 130.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30
+      },
+      "source_ref": "slot.q2",
+      "refs": {
+        "layout_slot_id": "slot.q2"
+      },
+      "text": "24 ÷ 7"
+    },
+    {
+      "id": "slot.q3.text",
+      "type": "text",
+      "attributes": {
+        "x": 415.0,
+        "y": 130.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30
+      },
+      "source_ref": "slot.q3",
+      "refs": {
+        "layout_slot_id": "slot.q3"
+      },
+      "text": "49 ÷ 5"
+    },
+    {
+      "id": "slot.q7.text",
+      "type": "text",
+      "attributes": {
+        "x": 0.0,
+        "y": 0.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q7",
+      "refs": {
+        "layout_slot_id": "slot.q7"
+      },
+      "text": ""
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

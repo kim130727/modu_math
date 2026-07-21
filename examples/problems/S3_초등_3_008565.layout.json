@@ -1,0 +1,190 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008565",
+  "title": "계산 결과가 2000보다 큰 곱셈식을 선택해 보세요.",
+  "canvas": {
+    "width": 786,
+    "height": 360,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.top",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.qtext"
+      ]
+    },
+    {
+      "id": "region.main",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.cloud1.core",
+        "slot.cloud2.core",
+        "slot.cloud3.core",
+        "slot.cloud4.core",
+        "slot.cloud1.text",
+        "slot.cloud2.text",
+        "slot.cloud3.text",
+        "slot.cloud4.text"
+      ]
+    },
+    {
+      "id": "region.note",
+      "role": "supporting",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.qtext",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "계산 결과가 2000보다 큰 곱셈식을 선택해 보세요.",
+        "style_role": "question",
+        "x": 166.022,
+        "y": 87.0,
+        "font_size": 25,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.cloud1.core",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 246.004,
+        "y": 131.0,
+        "width": 120.0,
+        "height": 50.0,
+        "stroke": "#111111",
+        "stroke_width": 1.5,
+        "rx": 20.0,
+        "ry": 20.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.cloud1.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "19 × 90",
+        "style_role": "diagram",
+        "x": 260.002,
+        "y": 166.0,
+        "font_size": 28,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.cloud2.core",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 401.01,
+        "y": 130.0,
+        "width": 120.0,
+        "height": 50.0,
+        "stroke": "#111111",
+        "stroke_width": 1.5,
+        "rx": 20.0,
+        "ry": 20.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.cloud2.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "20 × 70",
+        "style_role": "diagram",
+        "x": 421.01,
+        "y": 168.0,
+        "font_size": 28,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.cloud3.core",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 247.004,
+        "y": 201.0,
+        "width": 120.0,
+        "height": 50.0,
+        "stroke": "#111111",
+        "stroke_width": 1.5,
+        "rx": 20.0,
+        "ry": 20.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.cloud3.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "40 × 50",
+        "style_role": "diagram",
+        "x": 267.004,
+        "y": 237.0,
+        "font_size": 28,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.cloud4.core",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 400.01,
+        "y": 200.0,
+        "width": 120.0,
+        "height": 50.0,
+        "stroke": "#111111",
+        "stroke_width": 1.5,
+        "rx": 20.0,
+        "ry": 20.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.cloud4.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "36 × 60",
+        "style_role": "diagram",
+        "x": 417.01,
+        "y": 234.0,
+        "font_size": 28,
+        "fill": "#111111"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.top",
+    "slot.qtext",
+    "region.main",
+    "slot.cloud1.core",
+    "slot.cloud2.core",
+    "slot.cloud3.core",
+    "slot.cloud4.core",
+    "slot.cloud1.text",
+    "slot.cloud2.text",
+    "slot.cloud3.text",
+    "slot.cloud4.text",
+    "region.note"
+  ]
+}

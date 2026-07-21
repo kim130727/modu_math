@@ -1,0 +1,293 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008718",
+  "title": "원의 중심을 옮겨 가며 그린 모양이 아닌 것",
+  "canvas": {
+    "width": 940,
+    "height": 425,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.header",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice.ur.diagram.p3.copy10",
+        "slot.choice.ur.diagram.p3.copy12",
+        "slot.choice.ur.diagram.p3.copy13",
+        "slot.choice.ur.diagram.p3.copy14",
+        "slot.choice.ur.diagram.p3.copy15",
+        "slot.choice.ur.diagram.p3",
+        "slot.choice.ll.diagram.p1",
+        "slot.choice.ll.diagram.p2",
+        "slot.choice.ll.diagram.p3",
+        "slot.choice.lr.diagram.p1",
+        "slot.choice.lr.diagram.p2",
+        "slot.choice.lr.diagram.p3",
+        "slot.q_text"
+      ]
+    },
+    {
+      "id": "region.choice_box",
+      "role": "body",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice.list",
+        "slot.choice.list.copy18",
+        "slot.choice.list.copy18.copy19",
+        "slot.choice.list.copy18.copy20",
+        "slot.choice.list.copy18.copy21"
+      ]
+    },
+    {
+      "id": "region.answer",
+      "role": "footer",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q_text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "원의 중심을 옮겨 가며 그린 모양이 아닌 것을 찾아 기호를 고르세요.",
+        "style_role": "question",
+        "x": 76.0,
+        "y": 27.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice.ur.diagram.p3",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 265.0,
+        "cy": 125.0,
+        "r": 30.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.choice.ll.diagram.p1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 285.0,
+        "cy": 275.0,
+        "r": 50.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.choice.ll.diagram.p2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 285.0,
+        "cy": 275.0,
+        "r": 35.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.choice.ll.diagram.p3",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 285.0,
+        "cy": 275.0,
+        "r": 20.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.choice.lr.diagram.p1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 520.0,
+        "cy": 275.0,
+        "r": 45.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.choice.lr.diagram.p2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 520.0,
+        "cy": 295.0,
+        "r": 25.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.choice.lr.diagram.p3",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 520.0,
+        "cy": 305.0,
+        "r": 15.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.choice.list",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "( ㄱ , ㄴ , ㄷ , ㄹ )",
+        "style_role": "body",
+        "x": 290.0,
+        "y": 385.0,
+        "font_size": 30,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.choice.ur.diagram.p3.copy10",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 495.0,
+        "cy": 135.0,
+        "r": 30.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.choice.ur.diagram.p3.copy12",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 530.0,
+        "cy": 135.0,
+        "r": 30.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.choice.ur.diagram.p3.copy13",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 515.0,
+        "cy": 135.0,
+        "r": 30.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.choice.ur.diagram.p3.copy14",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 280.0,
+        "cy": 150.0,
+        "r": 30.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.choice.ur.diagram.p3.copy15",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 295.0,
+        "cy": 125.0,
+        "r": 30.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.choice.list.copy18",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄱ",
+        "style_role": "body",
+        "x": 180.0,
+        "y": 96.3333740234375,
+        "font_size": 30,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.choice.list.copy18.copy19",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄴ",
+        "style_role": "body",
+        "x": 430.0,
+        "y": 96.3333740234375,
+        "font_size": 30,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.choice.list.copy18.copy20",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄷ",
+        "style_role": "body",
+        "x": 185.0,
+        "y": 241.3333740234375,
+        "font_size": 30,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.choice.list.copy18.copy21",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄹ",
+        "style_role": "body",
+        "x": 435.0,
+        "y": 241.3333740234375,
+        "font_size": 30,
+        "fill": "#111111"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.header",
+    "slot.choice.ur.diagram.p3.copy10",
+    "slot.choice.ur.diagram.p3.copy12",
+    "slot.choice.ur.diagram.p3.copy13",
+    "slot.choice.ur.diagram.p3.copy14",
+    "slot.choice.ur.diagram.p3.copy15",
+    "slot.choice.ur.diagram.p3",
+    "slot.choice.ll.diagram.p1",
+    "slot.choice.ll.diagram.p2",
+    "slot.choice.ll.diagram.p3",
+    "slot.choice.lr.diagram.p1",
+    "slot.choice.lr.diagram.p2",
+    "slot.choice.lr.diagram.p3",
+    "slot.q_text",
+    "region.choice_box",
+    "slot.choice.list",
+    "slot.choice.list.copy18",
+    "slot.choice.list.copy18.copy19",
+    "slot.choice.list.copy18.copy20",
+    "slot.choice.list.copy18.copy21",
+    "region.answer"
+  ]
+}

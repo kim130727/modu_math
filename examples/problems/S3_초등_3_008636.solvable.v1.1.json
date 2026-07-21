@@ -1,0 +1,77 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008636",
+  "problem_type": "도형_성질_판단",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "같습니다 / 다릅니다",
+    "target_ticks": 0,
+    "target_count": 2,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.circle",
+      "value": "원"
+    },
+    {
+      "ref": "obj.center",
+      "value": "중심"
+    },
+    {
+      "ref": "obj.point_on_circle_1",
+      "value": "원 위의 점"
+    },
+    {
+      "ref": "obj.point_on_circle_2",
+      "value": "원 위의 점"
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "choice"
+  },
+  "method": "원의 성질 확인",
+  "plan": [
+    "원의 중심에서 원 위의 점까지의 거리는 반지름이다.",
+    "같은 원에서는 반지름의 길이가 모두 같은지 확인한다.",
+    "보기에서 알맞은 말을 고른다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "원 위의 두 점은 같은 원에 있다",
+      "value": "같은 원"
+    },
+    {
+      "id": "step.2",
+      "expr": "중심에서 원 위의 점까지의 길이 = 반지름",
+      "value": "반지름"
+    },
+    {
+      "id": "step.3",
+      "expr": "같은 원의 반지름은 서로 같다",
+      "value": "같습니다"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "원의 성질에 따라 중심에서 원 위의 점까지의 거리가 같은가",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "choice",
+      "description": "같습니다 / 다릅니다 중 알맞은 말"
+    },
+    "value": "같습니다",
+    "unit": ""
+  }
+}

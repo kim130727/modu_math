@@ -1,0 +1,579 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008654",
+  "title": "가와 나의 원 그리기 규칙",
+  "canvas": {
+    "width": 940,
+    "height": 350,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q1",
+        "slot.q2"
+      ]
+    },
+    {
+      "id": "region.diagram.ga",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.ga.grid.frame",
+        "slot.ga.grid.v1",
+        "slot.ga.grid.h1",
+        "slot.ga.grid.v2",
+        "slot.ga.grid.h2",
+        "slot.ga.grid.v3",
+        "slot.ga.grid.h3",
+        "slot.ga.grid.v4",
+        "slot.ga.grid.h4",
+        "slot.ga.grid.v5",
+        "slot.ga.grid.h5",
+        "slot.ga.circle1.r1",
+        "slot.ga.circle2.r2",
+        "slot.ga.circle3.r3",
+        "slot.label.ga"
+      ]
+    },
+    {
+      "id": "region.diagram.na",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.na.grid.frame",
+        "slot.na.grid.v1",
+        "slot.na.grid.h1",
+        "slot.na.grid.v2",
+        "slot.na.grid.h2",
+        "slot.na.grid.v3",
+        "slot.na.grid.h3",
+        "slot.na.grid.v4",
+        "slot.na.grid.h4",
+        "slot.na.grid.v5",
+        "slot.na.grid.h5",
+        "slot.na.circle1.r1",
+        "slot.na.circle2.r2",
+        "slot.na.circle3.r3",
+        "slot.label.na"
+      ]
+    },
+    {
+      "id": "region.choice",
+      "role": "choices",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice1",
+        "slot.choice1.copy1"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "가와 나는 규칙에 따라 원을 그린 것입니다. 알맞은 것을 선택해 두 모양",
+        "style_role": "question",
+        "x": 10.0,
+        "y": 30.0,
+        "font_size": 25
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "을 그린 규칙의 같은 점과 다른 점을 설명해 보세요.",
+        "style_role": "question",
+        "x": 8.0,
+        "y": 66.0,
+        "font_size": 24
+      }
+    },
+    {
+      "id": "slot.label.ga",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "가",
+        "style_role": "label",
+        "x": 220.0,
+        "y": 103.0,
+        "font_size": 24
+      }
+    },
+    {
+      "id": "slot.ga.grid.frame",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 250.0 84.0 L 430.0 84.0 L 430.0 264.0 L 250.0 264.0 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#37C7FF",
+        "stroke_width": 1.2,
+        "stroke_dasharray": "4 3",
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.ga.grid.v1",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 280.0 84.0 L 280.0 264.0",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#37C7FF",
+        "stroke_width": 1.0,
+        "stroke_dasharray": "4 3",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.ga.grid.h1",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 250.0 114.0 L 430.0 114.0",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#37C7FF",
+        "stroke_width": 1.0,
+        "stroke_dasharray": "4 3",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.ga.grid.v2",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 310.0 84.0 L 310.0 264.0",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#37C7FF",
+        "stroke_width": 1.0,
+        "stroke_dasharray": "4 3",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.ga.grid.h2",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 250.0 144.0 L 430.0 144.0",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#37C7FF",
+        "stroke_width": 1.0,
+        "stroke_dasharray": "4 3",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.ga.grid.v3",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 340.0 84.0 L 340.0 264.0",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#37C7FF",
+        "stroke_width": 1.0,
+        "stroke_dasharray": "4 3",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.ga.grid.h3",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 250.0 174.0 L 430.0 174.0",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#37C7FF",
+        "stroke_width": 1.0,
+        "stroke_dasharray": "4 3",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.ga.grid.v4",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 370.0 84.0 L 370.0 264.0",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#37C7FF",
+        "stroke_width": 1.0,
+        "stroke_dasharray": "4 3",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.ga.grid.h4",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 250.0 204.0 L 430.0 204.0",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#37C7FF",
+        "stroke_width": 1.0,
+        "stroke_dasharray": "4 3",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.ga.grid.v5",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 400.0 84.0 L 400.0 264.0",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#37C7FF",
+        "stroke_width": 1.0,
+        "stroke_dasharray": "4 3",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.ga.grid.h5",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 250.0 234.0 L 430.0 234.0",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#37C7FF",
+        "stroke_width": 1.0,
+        "stroke_dasharray": "4 3",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.ga.circle1.r1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 280.0,
+        "cy": 174.0,
+        "r": 30.0,
+        "stroke": "#444444",
+        "stroke_width": 1.4,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.ga.circle2.r2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 310.0,
+        "cy": 174.0,
+        "r": 60.0,
+        "stroke": "#444444",
+        "stroke_width": 1.4,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.ga.circle3.r3",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 340.0,
+        "cy": 174.0,
+        "r": 90.0,
+        "stroke": "#444444",
+        "stroke_width": 1.4,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.label.na",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "나",
+        "style_role": "label",
+        "x": 505.0,
+        "y": 103.0,
+        "font_size": 24
+      }
+    },
+    {
+      "id": "slot.na.grid.frame",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 535.0 84.0 L 715.0 84.0 L 715.0 264.0 L 535.0 264.0 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#37C7FF",
+        "stroke_width": 1.2,
+        "stroke_dasharray": "4 3",
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.na.grid.v1",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 565.0 84.0 L 565.0 264.0",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#37C7FF",
+        "stroke_width": 1.0,
+        "stroke_dasharray": "4 3",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.na.grid.h1",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 535.0 114.0 L 715.0 114.0",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#37C7FF",
+        "stroke_width": 1.0,
+        "stroke_dasharray": "4 3",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.na.grid.v2",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 595.0 84.0 L 595.0 264.0",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#37C7FF",
+        "stroke_width": 1.0,
+        "stroke_dasharray": "4 3",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.na.grid.h2",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 535.0 144.0 L 715.0 144.0",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#37C7FF",
+        "stroke_width": 1.0,
+        "stroke_dasharray": "4 3",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.na.grid.v3",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 625.0 84.0 L 625.0 264.0",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#37C7FF",
+        "stroke_width": 1.0,
+        "stroke_dasharray": "4 3",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.na.grid.h3",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 535.0 174.0 L 715.0 174.0",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#37C7FF",
+        "stroke_width": 1.0,
+        "stroke_dasharray": "4 3",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.na.grid.v4",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 655.0 84.0 L 655.0 264.0",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#37C7FF",
+        "stroke_width": 1.0,
+        "stroke_dasharray": "4 3",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.na.grid.h4",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 535.0 204.0 L 715.0 204.0",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#37C7FF",
+        "stroke_width": 1.0,
+        "stroke_dasharray": "4 3",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.na.grid.v5",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 685.0 84.0 L 685.0 264.0",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#37C7FF",
+        "stroke_width": 1.0,
+        "stroke_dasharray": "4 3",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.na.grid.h5",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 535.0 234.0 L 715.0 234.0",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#37C7FF",
+        "stroke_width": 1.0,
+        "stroke_dasharray": "4 3",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.na.circle1.r1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 625.0,
+        "cy": 174.0,
+        "r": 30.0,
+        "stroke": "#444444",
+        "stroke_width": 1.4,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.na.circle2.r2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 625.0,
+        "cy": 174.0,
+        "r": 60.0,
+        "stroke": "#444444",
+        "stroke_width": 1.4,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.na.circle3.r3",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 625.0,
+        "cy": 174.0,
+        "r": 90.0,
+        "stroke": "#444444",
+        "stroke_width": 1.4,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.choice1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "    다른 점: (가,나)는 원의 중심을 옮겨가며 그렸고, (가,나)는 원의 중심이 모두",
+        "style_role": "answer_option",
+        "x": 15.0,
+        "y": 300.0,
+        "font_size": 25
+      }
+    },
+    {
+      "id": "slot.choice1.copy1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "같게 그렸습니다.  ",
+        "style_role": "body",
+        "x": 15.0,
+        "y": 335.0,
+        "font_size": 25,
+        "fill": "#111111"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q1",
+    "slot.q2",
+    "region.diagram.ga",
+    "slot.ga.grid.frame",
+    "slot.ga.grid.v1",
+    "slot.ga.grid.h1",
+    "slot.ga.grid.v2",
+    "slot.ga.grid.h2",
+    "slot.ga.grid.v3",
+    "slot.ga.grid.h3",
+    "slot.ga.grid.v4",
+    "slot.ga.grid.h4",
+    "slot.ga.grid.v5",
+    "slot.ga.grid.h5",
+    "slot.ga.circle1.r1",
+    "slot.ga.circle2.r2",
+    "slot.ga.circle3.r3",
+    "slot.label.ga",
+    "region.diagram.na",
+    "slot.na.grid.frame",
+    "slot.na.grid.v1",
+    "slot.na.grid.h1",
+    "slot.na.grid.v2",
+    "slot.na.grid.h2",
+    "slot.na.grid.v3",
+    "slot.na.grid.h3",
+    "slot.na.grid.v4",
+    "slot.na.grid.h4",
+    "slot.na.grid.v5",
+    "slot.na.grid.h5",
+    "slot.na.circle1.r1",
+    "slot.na.circle2.r2",
+    "slot.na.circle3.r3",
+    "slot.label.na",
+    "region.choice",
+    "slot.choice1",
+    "slot.choice1.copy1"
+  ]
+}

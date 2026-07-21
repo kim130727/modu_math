@@ -1,0 +1,119 @@
+{
+  "problem_id": "S3_초등_3_008734",
+  "problem_type": "fraction_classification",
+  "metadata": {
+    "title": "진분수인 재료 고르기",
+    "tags": [],
+    "instruction": "빈 칸에 진분수인 재료를 모두 선택해 보세요.",
+    "question": "블루베리 즙 2잔을 만드는 데 필요한 재료 중 진분수인 재료를 고르는 문제",
+    "required_layout_ids": [
+      "slot.table.border",
+      "slot.math.fraction.bar",
+      "slot.math.fraction_1.bar",
+      "slot.math.fraction_2.bar",
+      "slot.math.fraction_3.bar",
+      "slot.math.fraction_4.bar",
+      "slot.math.fraction_5.bar",
+      "slot.math.fraction_6.bar",
+      "slot.inserted.image.1",
+      "slot.inserted.image.2",
+      "slot.inserted.image.3",
+      "slot.inserted.image.4"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.blueberry",
+        "type": "ingredient",
+        "name": "블루베리"
+      },
+      {
+        "id": "obj.water",
+        "type": "ingredient",
+        "name": "물"
+      },
+      {
+        "id": "obj.milk",
+        "type": "ingredient",
+        "name": "우유"
+      },
+      {
+        "id": "obj.honey",
+        "type": "ingredient",
+        "name": "꿀"
+      },
+      {
+        "id": "obj.frac.blueberry",
+        "type": "fraction",
+        "value": "7/4",
+        "unit": "컵"
+      },
+      {
+        "id": "obj.frac.water",
+        "type": "fraction",
+        "value": "6/6",
+        "unit": "컵"
+      },
+      {
+        "id": "obj.frac.milk",
+        "type": "fraction",
+        "value": "3/8",
+        "unit": "컵"
+      },
+      {
+        "id": "obj.frac.honey",
+        "type": "fraction",
+        "value": "5/14",
+        "unit": "컵"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.frac.blueberry",
+          "obj.frac.water",
+          "obj.frac.milk",
+          "obj.frac.honey"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.milk_is_proper_fraction",
+          "rel.honey_is_proper_fraction"
+        ]
+      },
+      "plan": {
+        "method": "fraction_classification",
+        "description": "각 분수가 진분수인지 확인한 뒤 해당하는 재료를 고른다."
+      },
+      "execute": {
+        "expected_operations": [
+          "compare_numerator_and_denominator",
+          "select_proper_fractions"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "numerator_smaller_than_denominator",
+          "selection_matches_example"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "selected_ingredients",
+      "description": "진분수인 재료"
+    },
+    "value": "우유, 꿀",
+    "unit": ""
+  }
+}

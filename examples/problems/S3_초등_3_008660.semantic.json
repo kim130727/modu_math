@@ -1,0 +1,88 @@
+{
+  "problem_id": "S3_초등_3_008660",
+  "problem_type": "geometry_radius_selection",
+  "metadata": {
+    "title": "원의 반지름 찾기",
+    "tags": [],
+    "question": "그림에서 원의 반지름을 나타내는 선분을 찾아 기호를 모두 선택해 보세요.",
+    "required_layout_ids": [
+      "slot.circle",
+      "slot.center",
+      "slot.pt.a",
+      "slot.pt.c",
+      "slot.seg.1",
+      "slot.seg.2",
+      "slot.seg.3",
+      "slot.seg.4",
+      "slot.pt.c.copy5",
+      "slot.pt.c.copy6"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "기호를 모두 선택하시오."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.circle",
+        "type": "circle"
+      },
+      {
+        "id": "obj.center",
+        "type": "center",
+        "label": "ㅇ"
+      },
+      {
+        "id": "obj.radius_candidate_1",
+        "type": "segment",
+        "label": "ㅇㄱ"
+      },
+      {
+        "id": "obj.radius_candidate_2",
+        "type": "segment",
+        "label": "ㅇㄴ"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.circle",
+          "obj.center"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.radius_from_center_to_point"
+        ]
+      },
+      "plan": {
+        "method": "identify_radius_by_center_and_point",
+        "description": "원의 중심과 원 위의 점을 잇는 선분을 반지름으로 찾는다."
+      },
+      "execute": {
+        "expected_operations": [
+          "compare_center_to_boundary_segments",
+          "select_radius_labels"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "center_to_circle_boundary_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "multiple_choice_labels",
+      "description": "원의 반지름을 나타내는 선분의 보기 기호"
+    },
+    "value": "⑴  선분  ㅇㄱ, ⑵  선분  ㅇㄴ",
+    "unit": ""
+  }
+}

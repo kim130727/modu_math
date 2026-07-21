@@ -1,0 +1,63 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008643",
+  "problem_type": "geometry_circle_center",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "원의 중심",
+    "target_ticks": 0,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.circle",
+      "value": "circle"
+    },
+    {
+      "ref": "obj.points_on_figure",
+      "value": [
+        "ㄱ",
+        "ㄷ",
+        "ㄹ",
+        "ㅁ"
+      ]
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "selected_point"
+  },
+  "method": "circle_center_identification",
+  "plan": [
+    "원의 중심과 원 위의 점 사이의 거리가 같다는 성질을 이용한다.",
+    "그림에서 중심처럼 보이는 점을 찾는다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "원의 중심 후보를 찾는다",
+      "value": "ㄴ"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "원의 중심은 원 위의 점들과 같은 거리를 가져야 한다",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "selected_point",
+      "description": "원의 중심"
+    },
+    "value": "ㄴ",
+    "unit": ""
+  }
+}

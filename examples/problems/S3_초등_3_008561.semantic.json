@@ -1,0 +1,107 @@
+{
+  "problem_id": "S3_초등_3_008561",
+  "problem_type": "multiplication_comparison_selection",
+  "metadata": {
+    "title": "계산 결과가 2000보다 큰 곱셈식을 모두 선택해 보세요.",
+    "tags": [
+      "곱셈",
+      "비교",
+      "선택",
+      "2000보다큰수"
+    ],
+    "question": "계산 결과가 2000보다 큰 곱셈식을 모두 선택해 보세요.",
+    "required_layout_ids": [
+      "slot.road",
+      "slot.road_dash",
+      "slot.car1.body",
+      "slot.car1.roof",
+      "slot.car1.wheel1",
+      "slot.car1.wheel2",
+      "slot.car1.window",
+      "slot.car2.body",
+      "slot.car2.roof",
+      "slot.car2.wheel1",
+      "slot.car2.wheel2",
+      "slot.car2.window",
+      "slot.car3.body",
+      "slot.car3.roof",
+      "slot.car3.wheel1",
+      "slot.car3.wheel2",
+      "slot.car3.window"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "보이는 곱셈식들 중에서 계산 결과가 2000보다 큰 것을 고르는 문제이다."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.expr1",
+        "type": "multiplication_expression",
+        "expression": "37×60"
+      },
+      {
+        "id": "obj.expr2",
+        "type": "multiplication_expression",
+        "expression": "80×20"
+      },
+      {
+        "id": "obj.expr3",
+        "type": "multiplication_expression",
+        "expression": "70×40"
+      },
+      {
+        "id": "obj.threshold",
+        "type": "number",
+        "value": 2000
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.expr1",
+          "obj.expr2",
+          "obj.expr3",
+          "obj.threshold"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.compare1",
+          "rel.compare2",
+          "rel.compare3"
+        ]
+      },
+      "plan": {
+        "method": "compute_and_compare",
+        "description": "각 곱셈식의 계산 결과를 구한 뒤 2000과 비교한다."
+      },
+      "execute": {
+        "expected_operations": [
+          "multiply",
+          "compare_to_threshold",
+          "select_valid_expressions"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "compare_result_with_2000",
+          "confirm_selected_expressions_match_condition"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "selected_expressions",
+      "description": "계산 결과가 2000보다 큰 곱셈식"
+    },
+    "value": 2,
+    "unit": ""
+  }
+}

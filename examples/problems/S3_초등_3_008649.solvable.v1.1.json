@@ -1,0 +1,61 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008649",
+  "problem_type": "circle_concept_choice",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "원을 둘로 똑같이 나누는 말",
+    "target_ticks": 0,
+    "target_count": 0,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.circle",
+      "value": "circle"
+    },
+    {
+      "ref": "obj.diameter",
+      "value": "segment"
+    },
+    {
+      "ref": "obj.radius",
+      "value": "segment"
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "concept_name"
+  },
+  "method": "concept_choice",
+  "plan": [
+    "그림과 문장을 보고 원을 둘로 똑같이 나누는 말을 찾는다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "문장 속 빈칸에 들어갈 개념 확인",
+      "value": "지름"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "원의 지름은 원을 둘로 똑같이 나누는가",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "concept_name",
+      "description": "원을 둘로 똑같이 나누는 말"
+    },
+    "value": "지름",
+    "unit": ""
+  }
+}

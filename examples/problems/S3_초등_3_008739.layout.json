@@ -1,0 +1,499 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008739",
+  "title": "집에서 가장 가까운 곳",
+  "canvas": {
+    "width": 960,
+    "height": 700,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.header",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.inserted.arc.1",
+        "slot.inserted.arc.1.copy5",
+        "slot.inserted.arc.1.copy5.copy6",
+        "slot.inserted.arc.1.copy5.copy9",
+        "slot.math.mixed_fraction.bar",
+        "slot.math.mixed_fraction_1.bar",
+        "slot.math.mixed_fraction_2.bar",
+        "slot.question",
+        "slot.question.copy1",
+        "slot.math.mixed_fraction.whole",
+        "slot.math.mixed_fraction.num",
+        "slot.math.mixed_fraction.den",
+        "slot.math.mixed_fraction_1.whole",
+        "slot.math.mixed_fraction_1.num",
+        "slot.math.mixed_fraction_1.den",
+        "slot.math.mixed_fraction_2.whole",
+        "slot.math.mixed_fraction_2.num",
+        "slot.math.mixed_fraction_2.den",
+        "slot.inserted.image.1",
+        "slot.inserted.image.2",
+        "slot.inserted.image.3",
+        "slot.inserted.image.4"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.line.bookstore",
+        "slot.line.bank",
+        "slot.line.school",
+        "slot.dist.bookstore",
+        "slot.dist.bank",
+        "slot.dist.school",
+        "slot.option"
+      ]
+    },
+    {
+      "id": "region.answer",
+      "role": "answer",
+      "flow": "absolute",
+      "slot_ids": []
+    },
+    {
+      "id": "region.explanation",
+      "role": "explanation",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.question",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "집에서 각 장소까지의 거리를 나타낸 것입니다.",
+        "style_role": "question",
+        "x": 76.0,
+        "y": 86.0,
+        "font_size": 28,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.line.bookstore",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 430.0,
+        "y1": 285.0,
+        "x2": 265.0,
+        "y2": 465.0,
+        "stroke": "#222222",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.line.bank",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 435.0,
+        "y1": 285.0,
+        "x2": 665.0,
+        "y2": 500.0,
+        "stroke": "#222222",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.line.school",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 430.0,
+        "y1": 285.0,
+        "x2": 680.0,
+        "y2": 315.0,
+        "stroke": "#222222",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.dist.bookstore",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "km",
+        "style_role": "diagram_label",
+        "x": 280.0,
+        "y": 326.0,
+        "font_size": 28,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.dist.bank",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "km",
+        "style_role": "diagram_label",
+        "x": 481.0,
+        "y": 477.0,
+        "font_size": 28,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.dist.school",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "km",
+        "style_role": "diagram_label",
+        "x": 608.0,
+        "y": 213.0,
+        "font_size": 28,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.option",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "( 서점 , 은행 , 학교 )",
+        "style_role": "choice",
+        "x": 337.0,
+        "y": 640.0,
+        "font_size": 28,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.question.copy1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "집에서 가장 가까운 곳은 어디인지 선택하세요.",
+        "style_role": "body",
+        "x": 76.0,
+        "y": 130.0,
+        "font_size": 28,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.inserted.image.1",
+      "kind": "image",
+      "prompt": "",
+      "content": {
+        "href": "S3_초등_3_008739_inserted.image.1.png",
+        "x": 345.0,
+        "y": 135.0,
+        "width": 165.0,
+        "height": 140.0,
+        "preserve_aspect_ratio": "xMidYMid meet"
+      }
+    },
+    {
+      "id": "slot.inserted.image.2",
+      "kind": "image",
+      "prompt": "",
+      "content": {
+        "href": "S3_초등_3_008739_inserted.image.2.png",
+        "x": 655.0,
+        "y": 465.0,
+        "width": 170.0,
+        "height": 125.0,
+        "preserve_aspect_ratio": "xMidYMid meet"
+      }
+    },
+    {
+      "id": "slot.inserted.image.3",
+      "kind": "image",
+      "prompt": "",
+      "content": {
+        "href": "S3_초등_3_008739_inserted.image.3.png",
+        "x": 670.0,
+        "y": 240.0,
+        "width": 155.0,
+        "height": 160.0,
+        "preserve_aspect_ratio": "xMidYMid meet"
+      }
+    },
+    {
+      "id": "slot.inserted.image.4",
+      "kind": "image",
+      "prompt": "",
+      "content": {
+        "href": "S3_초등_3_008739_inserted.image.4.png",
+        "x": 105.0,
+        "y": 415.0,
+        "width": 180.0,
+        "height": 180.0,
+        "preserve_aspect_ratio": "xMidYMid meet"
+      }
+    },
+    {
+      "id": "slot.math.mixed_fraction.whole",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "7",
+        "style_role": "body",
+        "x": 210.0,
+        "y": 325.0,
+        "font_size": 30,
+        "anchor": "middle",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.math.mixed_fraction.num",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "1",
+        "style_role": "body",
+        "x": 250.0,
+        "y": 300.0,
+        "font_size": 30,
+        "anchor": "middle",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.math.mixed_fraction.bar",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 230.0,
+        "y1": 315.0,
+        "x2": 270.0,
+        "y2": 315.0,
+        "stroke": "#222222",
+        "stroke_width": 2.2
+      }
+    },
+    {
+      "id": "slot.math.mixed_fraction.den",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "10",
+        "style_role": "body",
+        "x": 250.0,
+        "y": 340.0,
+        "font_size": 30,
+        "anchor": "middle",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.math.mixed_fraction_1.whole",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "7",
+        "style_role": "body",
+        "x": 535.0,
+        "y": 215.0,
+        "font_size": 30,
+        "anchor": "middle",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.math.mixed_fraction_1.num",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "3",
+        "style_role": "body",
+        "x": 575.0,
+        "y": 190.0,
+        "font_size": 30,
+        "anchor": "middle",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.math.mixed_fraction_1.bar",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 555.0,
+        "y1": 205.0,
+        "x2": 595.0,
+        "y2": 205.0,
+        "stroke": "#222222",
+        "stroke_width": 2.2
+      }
+    },
+    {
+      "id": "slot.math.mixed_fraction_1.den",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "10",
+        "style_role": "body",
+        "x": 575.0,
+        "y": 230.0,
+        "font_size": 30,
+        "anchor": "middle",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.math.mixed_fraction_2.whole",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "6",
+        "style_role": "body",
+        "x": 415.0,
+        "y": 480.0,
+        "font_size": 30,
+        "anchor": "middle",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.math.mixed_fraction_2.num",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "9",
+        "style_role": "body",
+        "x": 455.0,
+        "y": 455.0,
+        "font_size": 30,
+        "anchor": "middle",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.math.mixed_fraction_2.bar",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 435.0,
+        "y1": 470.0,
+        "x2": 475.0,
+        "y2": 470.0,
+        "stroke": "#222222",
+        "stroke_width": 2.2
+      }
+    },
+    {
+      "id": "slot.math.mixed_fraction_2.den",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "10",
+        "style_role": "body",
+        "x": 455.0,
+        "y": 495.0,
+        "font_size": 30,
+        "anchor": "middle",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.inserted.arc.1",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 210 380 A 130 45 0 0 1 460 380",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#111827",
+        "stroke_width": 1.5,
+        "stroke_dasharray": "10 6",
+        "fill": "none",
+        "transform": "rotate(-45 332.5 364.21)"
+      }
+    },
+    {
+      "id": "slot.inserted.arc.1.copy5",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 444 303 A 130 30 0 0 1 694 303",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#111827",
+        "stroke_width": 1.5,
+        "stroke_dasharray": "10 6",
+        "transform": "rotate(10 569 292.12)"
+      }
+    },
+    {
+      "id": "slot.inserted.arc.1.copy5.copy6",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 469 769 A 130 45 0 0 1 719 769",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#111827",
+        "stroke_width": 1.5,
+        "stroke_dasharray": "10 6",
+        "transform": "rotate(185 594 752.68)"
+      }
+    },
+    {
+      "id": "slot.inserted.arc.1.copy5.copy9",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 325 390 A 160 30 0 0 1 640 390",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#111827",
+        "stroke_width": 1.5,
+        "stroke_dasharray": "10 6",
+        "transform": "rotate(225 514 377.12)"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.header",
+    "slot.inserted.arc.1",
+    "slot.inserted.arc.1.copy5",
+    "slot.inserted.arc.1.copy5.copy6",
+    "slot.inserted.arc.1.copy5.copy9",
+    "slot.math.mixed_fraction.bar",
+    "slot.math.mixed_fraction_1.bar",
+    "slot.math.mixed_fraction_2.bar",
+    "slot.question",
+    "slot.question.copy1",
+    "slot.math.mixed_fraction.whole",
+    "slot.math.mixed_fraction.num",
+    "slot.math.mixed_fraction.den",
+    "slot.math.mixed_fraction_1.whole",
+    "slot.math.mixed_fraction_1.num",
+    "slot.math.mixed_fraction_1.den",
+    "slot.math.mixed_fraction_2.whole",
+    "slot.math.mixed_fraction_2.num",
+    "slot.math.mixed_fraction_2.den",
+    "slot.inserted.image.1",
+    "slot.inserted.image.2",
+    "slot.inserted.image.3",
+    "slot.inserted.image.4",
+    "region.diagram",
+    "slot.line.bookstore",
+    "slot.line.bank",
+    "slot.line.school",
+    "slot.dist.bookstore",
+    "slot.dist.bank",
+    "slot.dist.school",
+    "slot.option",
+    "region.answer",
+    "region.explanation"
+  ]
+}

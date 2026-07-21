@@ -1,0 +1,167 @@
+from __future__ import annotations
+from modu_math.dsl import Canvas, CircleSlot, LineSlot, ProblemTemplate, Region, TextSlot
+
+
+def build_problem_template() -> ProblemTemplate:
+    return ProblemTemplate(
+        id="S3_초등_3_008685",
+        title="원의 반지름 판단",
+        canvas=Canvas(width=940.0, height=424.0, coordinate_mode="logical"),
+        regions=(
+            Region(id="region.stem", role="stem", flow="absolute", slot_ids=("slot.q1",)),
+            Region(
+                id="region.diagram",
+                role="diagram",
+                flow="absolute",
+                slot_ids=("slot.circle", "slot.radius", "slot.label.end", "slot.label.end.copy5"),
+            ),
+            Region(
+                id="region.statement",
+                role="statement",
+                flow="absolute",
+                slot_ids=("slot.statement",),
+            ),
+            Region(id="region.choices", role="choices", flow="absolute", slot_ids=()),
+            Region(
+                id="region.answer_explanation",
+                role="answer_explanation",
+                flow="absolute",
+                slot_ids=(),
+            ),
+        ),
+        slots=(
+            TextSlot(
+                id="slot.q1",
+                prompt="",
+                text="\n다음을 읽고 바르게 설명하였으면 ○표, 그렇지 않으면 ×표를\n선택하세요.",
+                style_role="question",
+                x=25,
+                y=30,
+                font_size=30,
+            ),
+            CircleSlot(id="slot.circle", prompt="", cx=420, cy=220, r=90, fill="none"),
+            CircleSlot(id="slot.pt.center", prompt="", cx=420, cy=220, r=5, fill="#ff2aa8"),
+            LineSlot(id="slot.radius", prompt="", x1=420, y1=220, x2=510, y2=220),
+            TextSlot(
+                id="slot.label.end",
+                prompt="",
+                text="ㄱ",
+                style_role="label",
+                x=520,
+                y=215,
+                font_size=30,
+            ),
+            TextSlot(
+                id="slot.statement",
+                prompt="",
+                text="원의 반지름을 나타내는 선분은 선분 ㅇㄱ입니다.",
+                style_role="question",
+                x=30,
+                y=360,
+                font_size=30,
+            ),
+            TextSlot(
+                id="slot.label.end.copy5",
+                prompt="",
+                text="ㅇ",
+                x=390,
+                y=215,
+                font_size=30,
+                fill="#111111",
+            ),
+        ),
+        diagrams=(),
+        groups=(),
+        constraints=(),
+        tags=(),
+    )
+
+
+PROBLEM_TEMPLATE = build_problem_template()
+SEMANTIC_OVERRIDE = {
+    "problem_id": "S3_초등_3_008685",
+    "problem_type": "true_false_geometry",
+    "metadata": {
+        "language": "ko",
+        "question": "그림을 보고 설명이 맞는지 ○, ×로 판단하는 문제",
+        "instruction": "원의 반지름과 관련된 설명이 그림과 일치하는지 판단한다.",
+    },
+    "domain": {
+        "objects": [
+            {"id": "obj.circle", "type": "circle"},
+            {"id": "obj.radius_segment", "type": "segment"},
+            {"id": "obj.center_marker", "type": "point_marker"},
+        ],
+        "relations": [],
+        "problem_solving": {
+            "understand": {
+                "given_refs": ["obj.circle", "obj.radius_segment"],
+                "target_ref": "answer.target",
+                "condition_refs": ["rel.radius_of_circle"],
+            },
+            "plan": {
+                "method": "visual_truth_judgment",
+                "description": "그림의 선분이 원의 반지름인지 확인하고 문장의 참/거짓을 판단한다.",
+            },
+            "execute": {
+                "expected_operations": [
+                    "identify_center_to_boundary_segment",
+                    "compare_statement_with_diagram",
+                ]
+            },
+            "review": {"check_methods": ["diagram_statement_match"]},
+        },
+    },
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {"type": "truth_value", "description": "주어진 설명이 맞는지 ○ 또는 ×로 판단"},
+        "value": 1,
+        "unit": "",
+    },
+}
+SOLVABLE = {
+    "schema": "modu.solvable.v1.1",
+    "problem_id": "S3_초등_3_008685",
+    "problem_type": "true_false_geometry",
+    "inputs": {
+        "total_ticks": 1,
+        "target_label": "○/× 판단",
+        "target_ticks": 1,
+        "target_count": 1,
+        "unit": "",
+    },
+    "given": [
+        {"ref": "obj.circle", "value": {"type": "circle"}},
+        {"ref": "obj.radius_segment", "value": {"type": "segment"}},
+    ],
+    "target": {"ref": "answer.target", "type": "truth_value"},
+    "method": "visual_truth_judgment",
+    "plan": [
+        "그림에서 중심에서 원둘레로 이어지는 선분이 있는지 확인한다.",
+        "문장이 그림을 올바르게 설명하는지 판단한다.",
+    ],
+    "steps": [
+        {"id": "step.1", "expr": "그림의 선분은 원의 중심에서 원둘레까지 이어진다.", "value": True},
+        {"id": "step.2", "expr": "중심에서 원둘레까지의 선분은 반지름이다.", "value": True},
+        {"id": "step.3", "expr": "문장은 그림과 일치한다.", "value": True},
+    ],
+    "checks": [
+        {
+            "id": "check.1",
+            "expr": "statement_matches_diagram",
+            "expected": True,
+            "actual": True,
+            "pass": True,
+        }
+    ],
+    "answer": {
+        "blanks": [],
+        "choices": [],
+        "answer_key": [],
+        "target": {"type": "truth_value", "description": "주어진 설명이 맞는지 ○ 또는 ×로 판단"},
+        "value": 1,
+        "unit": "",
+    },
+}

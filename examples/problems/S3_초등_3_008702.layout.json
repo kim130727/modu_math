@@ -1,0 +1,499 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008702",
+  "title": "원의 지름과 중심",
+  "canvas": {
+    "width": 896.0,
+    "height": 480.0,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.graphpaper.v0",
+        "slot.graphpaper.v1",
+        "slot.graphpaper.v2",
+        "slot.graphpaper.v3",
+        "slot.graphpaper.v4",
+        "slot.graphpaper.v5",
+        "slot.graphpaper.v6",
+        "slot.graphpaper.v7",
+        "slot.graphpaper.v8",
+        "slot.graphpaper.v9",
+        "slot.graphpaper.v10",
+        "slot.graphpaper.h0",
+        "slot.graphpaper.h1",
+        "slot.graphpaper.h2",
+        "slot.graphpaper.h3",
+        "slot.graphpaper.h4",
+        "slot.graphpaper.h5",
+        "slot.graphpaper.h6",
+        "slot.graphpaper.h7",
+        "slot.graphpaper.h8",
+        "slot.q1",
+        "slot.q2"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.circle",
+        "slot.pt.g",
+        "slot.pt.n",
+        "slot.pt.d",
+        "slot.pt.r",
+        "slot.lb.g",
+        "slot.lb.n",
+        "slot.lb.d",
+        "slot.lb.r"
+      ]
+    },
+    {
+      "id": "region.answer",
+      "role": "answer",
+      "flow": "absolute",
+      "slot_ids": []
+    },
+    {
+      "id": "region.explain",
+      "role": "explanation",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "원에 지름을 그을 때 반드시 지나는 점을 찾아 선택해 보세요.  ",
+        "style_role": "question",
+        "x": 18.0,
+        "y": 44.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "",
+        "style_role": "question",
+        "x": 0.0,
+        "y": 0.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.circle",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 355.0,
+        "cy": 245.0,
+        "r": 130.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.pt.g",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 270.0,
+        "cy": 200.0,
+        "r": 5.0,
+        "fill": "#d94b89"
+      }
+    },
+    {
+      "id": "slot.pt.n",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 355.0,
+        "cy": 241.0,
+        "r": 5.0,
+        "fill": "#d94b89"
+      }
+    },
+    {
+      "id": "slot.pt.d",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 355.0,
+        "cy": 375.0,
+        "r": 5.0,
+        "fill": "#d94b89"
+      }
+    },
+    {
+      "id": "slot.pt.r",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 447.0,
+        "cy": 241.0,
+        "r": 5.0,
+        "fill": "#d94b89"
+      }
+    },
+    {
+      "id": "slot.lb.g",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄱ",
+        "style_role": "label",
+        "x": 275.0,
+        "y": 200.0,
+        "font_size": 20
+      }
+    },
+    {
+      "id": "slot.lb.n",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄴ",
+        "style_role": "label",
+        "x": 360.0,
+        "y": 265.0,
+        "font_size": 20
+      }
+    },
+    {
+      "id": "slot.lb.d",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄷ",
+        "style_role": "label",
+        "x": 360.0,
+        "y": 395.0,
+        "font_size": 20
+      }
+    },
+    {
+      "id": "slot.lb.r",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄹ",
+        "style_role": "label",
+        "x": 450.0,
+        "y": 265.0,
+        "font_size": 20
+      }
+    },
+    {
+      "id": "slot.graphpaper.v0",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 140.0,
+        "y1": 70.0,
+        "x2": 140.0,
+        "y2": 420.0,
+        "stroke": "#2563eb",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.graphpaper.v1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 185.0,
+        "y1": 70.0,
+        "x2": 185.0,
+        "y2": 420.0,
+        "stroke": "#2563eb",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.graphpaper.v2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 225.0,
+        "y1": 70.0,
+        "x2": 225.0,
+        "y2": 420.0,
+        "stroke": "#2563eb",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.graphpaper.v3",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 270.0,
+        "y1": 70.0,
+        "x2": 270.0,
+        "y2": 420.0,
+        "stroke": "#2563eb",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.graphpaper.v4",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 310.0,
+        "y1": 70.0,
+        "x2": 310.0,
+        "y2": 420.0,
+        "stroke": "#2563eb",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.graphpaper.v5",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 355.0,
+        "y1": 70.0,
+        "x2": 355.0,
+        "y2": 420.0,
+        "stroke": "#2563eb",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.graphpaper.v6",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 405.0,
+        "y1": 70.0,
+        "x2": 405.0,
+        "y2": 420.0,
+        "stroke": "#2563eb",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.graphpaper.v7",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 445.0,
+        "y1": 70.0,
+        "x2": 445.0,
+        "y2": 420.0,
+        "stroke": "#2563eb",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.graphpaper.v8",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 485.0,
+        "y1": 70.0,
+        "x2": 485.0,
+        "y2": 420.0,
+        "stroke": "#2563eb",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.graphpaper.v9",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 525.0,
+        "y1": 70.0,
+        "x2": 525.0,
+        "y2": 420.0,
+        "stroke": "#2563eb",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.graphpaper.v10",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 570.0,
+        "y1": 70.0,
+        "x2": 570.0,
+        "y2": 420.0,
+        "stroke": "#2563eb",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.graphpaper.h0",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 140.0,
+        "y1": 70.0,
+        "x2": 570.0,
+        "y2": 70.0,
+        "stroke": "#2563eb",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.graphpaper.h1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 140.0,
+        "y1": 115.0,
+        "x2": 570.0,
+        "y2": 115.0,
+        "stroke": "#2563eb",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.graphpaper.h2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 140.0,
+        "y1": 155.0,
+        "x2": 570.0,
+        "y2": 155.0,
+        "stroke": "#2563eb",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.graphpaper.h3",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 140.0,
+        "y1": 200.0,
+        "x2": 570.0,
+        "y2": 200.0,
+        "stroke": "#2563eb",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.graphpaper.h4",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 140.0,
+        "y1": 240.0,
+        "x2": 570.0,
+        "y2": 240.0,
+        "stroke": "#2563eb",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.graphpaper.h5",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 140.0,
+        "y1": 290.0,
+        "x2": 570.0,
+        "y2": 290.0,
+        "stroke": "#2563eb",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.graphpaper.h6",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 140.0,
+        "y1": 330.0,
+        "x2": 570.0,
+        "y2": 330.0,
+        "stroke": "#2563eb",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.graphpaper.h7",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 140.0,
+        "y1": 375.0,
+        "x2": 570.0,
+        "y2": 375.0,
+        "stroke": "#2563eb",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.graphpaper.h8",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 140.0,
+        "y1": 420.0,
+        "x2": 570.0,
+        "y2": 420.0,
+        "stroke": "#2563eb",
+        "stroke_width": 1.0
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.graphpaper.v0",
+    "slot.graphpaper.v1",
+    "slot.graphpaper.v2",
+    "slot.graphpaper.v3",
+    "slot.graphpaper.v4",
+    "slot.graphpaper.v5",
+    "slot.graphpaper.v6",
+    "slot.graphpaper.v7",
+    "slot.graphpaper.v8",
+    "slot.graphpaper.v9",
+    "slot.graphpaper.v10",
+    "slot.graphpaper.h0",
+    "slot.graphpaper.h1",
+    "slot.graphpaper.h2",
+    "slot.graphpaper.h3",
+    "slot.graphpaper.h4",
+    "slot.graphpaper.h5",
+    "slot.graphpaper.h6",
+    "slot.graphpaper.h7",
+    "slot.graphpaper.h8",
+    "slot.q1",
+    "slot.q2",
+    "region.diagram",
+    "slot.circle",
+    "slot.pt.g",
+    "slot.pt.n",
+    "slot.pt.d",
+    "slot.pt.r",
+    "slot.lb.g",
+    "slot.lb.n",
+    "slot.lb.d",
+    "slot.lb.r",
+    "region.answer",
+    "region.explain"
+  ]
+}

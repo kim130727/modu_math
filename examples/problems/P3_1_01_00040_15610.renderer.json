@@ -1,0 +1,93 @@
+{
+  "problem_id": "P3_1_01_00040_15610",
+  "view_box": {
+    "width": 960.0,
+    "height": 150.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.question.text",
+      "type": "text",
+      "attributes": {
+        "x": 20.0,
+        "y": 24.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 22
+      },
+      "source_ref": "slot.question",
+      "refs": {
+        "layout_slot_id": "slot.question"
+      },
+      "text": "○ 안에 >, =, <를 알맞게 써넣으시오."
+    },
+    {
+      "id": "slot.comparison.background.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 26.89,
+        "y": 52.92,
+        "width": 492.823,
+        "height": 58.0,
+        "fill": "#eeeeee",
+        "stroke": "#111111",
+        "stroke-width": 1.0
+      },
+      "source_ref": "slot.comparison.background",
+      "refs": {
+        "layout_slot_id": "slot.comparison.background"
+      }
+    },
+    {
+      "id": "slot.comparison.circle.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 272.78,
+        "cy": 84.067,
+        "r": 15.0,
+        "stroke": "#111111",
+        "stroke-width": 1.5,
+        "fill": "#ffffff"
+      },
+      "source_ref": "slot.comparison.circle",
+      "refs": {
+        "layout_slot_id": "slot.comparison.circle"
+      }
+    },
+    {
+      "id": "slot.left.expression.text",
+      "type": "text",
+      "attributes": {
+        "x": 225.78,
+        "y": 91.067,
+        "fill": "#333333",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 22,
+        "text-anchor": "end"
+      },
+      "source_ref": "slot.left.expression",
+      "refs": {
+        "layout_slot_id": "slot.left.expression"
+      },
+      "text": "400+156"
+    },
+    {
+      "id": "slot.right.number.text",
+      "type": "text",
+      "attributes": {
+        "x": 325.78,
+        "y": 91.067,
+        "fill": "#333333",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 22
+      },
+      "source_ref": "slot.right.number",
+      "refs": {
+        "layout_slot_id": "slot.right.number"
+      },
+      "text": "501"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

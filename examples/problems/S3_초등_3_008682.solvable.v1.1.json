@@ -1,0 +1,70 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008682",
+  "problem_type": "geometry_construction_term_selection",
+  "inputs": {
+    "target_label": "알맞은 말",
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.large_circle",
+      "value": {
+        "radius_cells": 4
+      }
+    },
+    {
+      "ref": "obj.small_circle.left",
+      "value": {
+        "radius_cells": 2
+      }
+    },
+    {
+      "ref": "obj.small_circle.right",
+      "value": {
+        "radius_cells": 2
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "selected_term"
+  },
+  "method": "term_matching",
+  "plan": [
+    "큰 원의 반지름과 작은 원의 지름을 모눈 칸 수로 확인한다.",
+    "작은 원에서 큰 원의 반지름과 같은 값을 고른다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "큰 원의 반지름",
+      "value": "4칸"
+    },
+    {
+      "id": "step.2",
+      "expr": "작은 원의 지름",
+      "value": "4칸"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "작은 원의 지름이 큰 원의 반지름과 같은가",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "selected_term",
+      "description": "지름과 반지름 중 알맞은 말"
+    },
+    "value": "지름",
+    "unit": ""
+  }
+}

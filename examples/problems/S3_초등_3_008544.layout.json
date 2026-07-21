@@ -1,0 +1,164 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008544",
+  "title": "계산 결과가 큰 것부터 순서대로 나열한 것 고르기",
+  "canvas": {
+    "width": 940,
+    "height": 400,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.box",
+        "slot.q.text",
+        "slot.expr1.body",
+        "slot.expr2.body",
+        "slot.expr3.body",
+        "slot.choice1.num",
+        "slot.choice2.num",
+        "slot.choice3.num",
+        "slot.choice4.num"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "계산 결과가 큰 것부터 순서대로 나열한 것을 고르세요.",
+        "style_role": "question",
+        "x": 121.002,
+        "y": 81.0,
+        "font_size": 28,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 134.002,
+        "y": 125.0,
+        "width": 690.0,
+        "height": 78.0,
+        "stroke": "#A79CDC",
+        "stroke_width": 2.0,
+        "fill": "#D9DDF3"
+      }
+    },
+    {
+      "id": "slot.expr1.body",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄱ. 9 × 85",
+        "style_role": "question",
+        "x": 211.002,
+        "y": 175.0,
+        "font_size": 28,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.expr2.body",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄴ. 8 × 65",
+        "style_role": "question",
+        "x": 416.002,
+        "y": 175.0,
+        "font_size": 28,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.expr3.body",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄷ. 6 × 73",
+        "style_role": "question",
+        "x": 611.002,
+        "y": 175.0,
+        "font_size": 28,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.choice1.num",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "① ㄱ ㄴ ㄷ",
+        "style_role": "question",
+        "x": 166.002,
+        "y": 245.0,
+        "font_size": 28,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.choice2.num",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "② ㄷ ㄴ ㄱ",
+        "style_role": "question",
+        "x": 541.002,
+        "y": 245.0,
+        "font_size": 28,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.choice3.num",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "③ ㄷ ㄱ ㄴ",
+        "style_role": "question",
+        "x": 166.002,
+        "y": 295.0,
+        "font_size": 28,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.choice4.num",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "④ ㄴ ㄱ ㄷ",
+        "style_role": "question",
+        "x": 541.002,
+        "y": 295.0,
+        "font_size": 28,
+        "fill": "#111111"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.box",
+    "slot.q.text",
+    "slot.expr1.body",
+    "slot.expr2.body",
+    "slot.expr3.body",
+    "slot.choice1.num",
+    "slot.choice2.num",
+    "slot.choice3.num",
+    "slot.choice4.num"
+  ]
+}

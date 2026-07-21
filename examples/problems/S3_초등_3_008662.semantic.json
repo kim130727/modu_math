@@ -1,0 +1,94 @@
+{
+  "problem_id": "S3_초등_3_008662",
+  "problem_type": "geometry_multiple_choice",
+  "metadata": {
+    "title": "원의 지름은 어떤 선분인가요?",
+    "tags": [],
+    "question": "원의 지름은 어느 선분인가요?",
+    "required_layout_ids": [
+      "slot.circle.outer",
+      "slot.circle.center",
+      "slot.line.top",
+      "slot.line.middle1",
+      "slot.line.middle2",
+      "slot.line.bottom",
+      "slot.dot.center"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "보기에서 알맞은 선분을 고르시오."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.circle",
+        "type": "circle"
+      },
+      {
+        "id": "obj.segment.gn",
+        "type": "segment",
+        "label": "ㄱㄴ"
+      },
+      {
+        "id": "obj.segment.dl",
+        "type": "segment",
+        "label": "ㄷㄹ"
+      },
+      {
+        "id": "obj.segment.mb",
+        "type": "segment",
+        "label": "ㅁㅂ"
+      },
+      {
+        "id": "obj.segment.sj",
+        "type": "segment",
+        "label": "ㅅㅈ"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.circle",
+          "obj.segment.gn",
+          "obj.segment.dl",
+          "obj.segment.mb",
+          "obj.segment.sj"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.diameter_candidate"
+        ]
+      },
+      "plan": {
+        "method": "diagram_classification",
+        "description": "원 안의 선분들 중 중심을 지나는 선분을 찾는다."
+      },
+      "execute": {
+        "expected_operations": [
+          "compare_segments_to_circle_center",
+          "select_matching_choice"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "center_pass_check",
+          "choice_label_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "choice",
+      "description": "원의 지름에 해당하는 보기"
+    },
+    "value": "② 선분 ㄷㄹ",
+    "unit": ""
+  }
+}

@@ -1,0 +1,124 @@
+{
+  "problem_id": "S3_초등_3_008590",
+  "problem_type": "division_explanation_choice",
+  "metadata": {
+    "title": "문제를 바르게 설명한 사람을 선택하세요.",
+    "tags": [
+      "초등",
+      "수학",
+      "나눗셈",
+      "몫",
+      "나머지",
+      "선택형"
+    ],
+    "instruction": "68 ÷ 5의 결과를 설명한 내용 중 맞는 사람을 선택하세요.",
+    "question": "문제를 바르게 설명한 사람을 선택하는 문항",
+    "required_layout_ids": [
+      "slot.eq.bg",
+      "slot.opt1.bubble",
+      "slot.opt1.tail",
+      "slot.opt1.person.body",
+      "slot.opt1.person.head",
+      "slot.opt1.person.hair.cap",
+      "slot.opt1.person.eye.left",
+      "slot.opt1.person.eye.right",
+      "slot.opt1.person.smile",
+      "slot.name.opt1.box",
+      "slot.opt2.bubble",
+      "slot.opt2.tail",
+      "slot.opt2.person.body",
+      "slot.opt2.person.head",
+      "slot.opt2.person.hair.cap",
+      "slot.opt2.person.eye.left",
+      "slot.opt2.person.eye.right",
+      "slot.opt2.person.smile",
+      "slot.name.opt2.box",
+      "slot.opt3.bubble",
+      "slot.opt3.tail",
+      "slot.opt3.person.body",
+      "slot.opt3.person.head",
+      "slot.opt3.person.hair.cap",
+      "slot.opt3.person.eye.left",
+      "slot.opt3.person.eye.right",
+      "slot.opt3.person.smile",
+      "slot.name.opt3.box",
+      "konva_1783560530888_image_5343694",
+      "konva_1783560530888_image_5355517",
+      "konva_1783560530888_image_5374742"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.dividend",
+        "type": "number",
+        "value": 68
+      },
+      {
+        "id": "obj.divisor",
+        "type": "number",
+        "value": 5
+      },
+      {
+        "id": "obj.person.left",
+        "type": "person",
+        "name": "형우"
+      },
+      {
+        "id": "obj.person.middle",
+        "type": "person",
+        "name": "희영"
+      },
+      {
+        "id": "obj.person.right",
+        "type": "person",
+        "name": "성태"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.dividend",
+          "obj.divisor"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.choose_correct_explanation"
+        ]
+      },
+      "plan": {
+        "method": "division_result_check",
+        "description": "몫과 나머지의 성질을 이용해 맞는 설명을 고른다."
+      },
+      "execute": {
+        "expected_operations": [
+          "compute_quotient_remainder",
+          "check_statements",
+          "select_person"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "remainder_less_than_divisor",
+          "selected_person_match"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "person_selection",
+      "description": "문제를 바르게 설명한 사람"
+    },
+    "value": "성태",
+    "unit": ""
+  }
+}

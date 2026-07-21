@@ -1,0 +1,81 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008731",
+  "problem_type": "fraction_comparison_selection",
+  "inputs": {
+    "total_ticks": 4,
+    "target_label": "㉠",
+    "target_ticks": 1,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.candidate_a",
+      "value": "15/7"
+    },
+    {
+      "ref": "obj.candidate_b",
+      "value": "22/7"
+    },
+    {
+      "ref": "obj.candidate_c",
+      "value": "2 3/7"
+    },
+    {
+      "ref": "obj.candidate_d",
+      "value": "2 6/7"
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "fraction_selection"
+  },
+  "method": "compare_values",
+  "plan": [
+    "후보로 제시된 분수와 대분수를 비교하여 가장 큰 수를 고른다.",
+    "해설에 보이는 비교식을 참고해 ㉠에 들어갈 수를 선택한다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "15/7 < 22/7",
+      "value": true
+    },
+    {
+      "id": "step.2",
+      "expr": "2 3/7 < 2 6/7",
+      "value": true
+    },
+    {
+      "id": "step.3",
+      "expr": "22/7 과 2 6/7의 비교 관계 확인",
+      "value": "22/7 > 2 6/7"
+    },
+    {
+      "id": "step.4",
+      "expr": "㉠에 들어갈 후보 선택",
+      "value": "22/7"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "선택한 수가 빈칸 ㉠의 답으로 제시된 수와 일치하는가",
+      "expected": "22/7",
+      "actual": "22/7",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "fraction_selection",
+      "description": "㉠에 들어갈 분수"
+    },
+    "value": "22/7",
+    "unit": ""
+  }
+}

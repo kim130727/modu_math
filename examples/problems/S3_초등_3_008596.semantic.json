@@ -1,0 +1,110 @@
+{
+  "problem_id": "S3_초등_3_008596",
+  "problem_type": "division_quotient_remainder_choice",
+  "metadata": {
+    "title": "문제를 바르게 설명한 사람의 이름을 선택해 보세요.",
+    "tags": [
+      "초등",
+      "수학",
+      "나눗셈",
+      "몫",
+      "나머지",
+      "선택형"
+    ],
+    "instruction": "나눗셈의 몫과 나머지를 바르게 설명한 사람을 고르세요.",
+    "question": "문제를 바르게 설명한 사람의 이름을 선택해 보세요.",
+    "required_layout_ids": [
+      "slot.box",
+      "slot.left.bubble",
+      "slot.left.tail",
+      "slot.left.person.body",
+      "slot.left.person.head",
+      "slot.left.person.hair.cap",
+      "slot.left.person.eye.left",
+      "slot.left.person.eye.right",
+      "slot.left.person.smile",
+      "slot.name.left.box",
+      "slot.right.bubble",
+      "slot.right.tail",
+      "slot.right.person.body",
+      "slot.right.person.head",
+      "slot.right.person.hair.cap",
+      "slot.right.person.eye.left",
+      "slot.right.person.eye.right",
+      "slot.right.person.smile",
+      "slot.name.right.box",
+      "konva_1783560530888_image_6107107"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.dividend",
+        "type": "number",
+        "value": 83
+      },
+      {
+        "id": "obj.divisor",
+        "type": "number",
+        "value": 6
+      },
+      {
+        "id": "obj.person.jongwoo",
+        "type": "person",
+        "name": "종우"
+      },
+      {
+        "id": "obj.person.eunah",
+        "type": "person",
+        "name": "은아"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.dividend",
+          "obj.divisor",
+          "obj.person.jongwoo",
+          "obj.person.eunah"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.division_statement",
+          "rel.correct_explainer"
+        ]
+      },
+      "plan": {
+        "method": "quotient_remainder_check",
+        "description": "나눗셈의 몫과 나머지 설명이 맞는 사람을 고른다."
+      },
+      "execute": {
+        "expected_operations": [
+          "interpret_division_expression",
+          "compare_explanations",
+          "select_correct_person"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "quotient_remainder_consistency"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "person_name",
+      "description": "문제를 바르게 설명한 사람의 이름"
+    },
+    "value": "종우",
+    "unit": ""
+  }
+}

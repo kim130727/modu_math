@@ -1,0 +1,127 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008626",
+  "title": "나머지가 4가 될 수 없는 식",
+  "canvas": {
+    "width": 784.0,
+    "height": 274.0,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.question"
+      ]
+    },
+    {
+      "id": "region.options",
+      "role": "choices",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice.1",
+        "slot.choice.2",
+        "slot.choice.3",
+        "slot.choice.4",
+        "slot.choice.5"
+      ]
+    },
+    {
+      "id": "region.answer_explanation",
+      "role": "explanation",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.question",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "나머지가 4가 될 수 없는 식은 어느 것일까요?",
+        "style_role": "question",
+        "x": 25.0,
+        "y": 40.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.choice.1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "① □ ÷ 5",
+        "style_role": "choice",
+        "x": 25.0,
+        "y": 95.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.choice.2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "② □ ÷ 9",
+        "style_role": "choice",
+        "x": 220.0,
+        "y": 95.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.choice.3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "③ □ ÷ 4",
+        "style_role": "choice",
+        "x": 395.0,
+        "y": 95.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.choice.4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "④ □ ÷ 8",
+        "style_role": "choice",
+        "x": 25.0,
+        "y": 140.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.choice.5",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "⑤ □ ÷ 6",
+        "style_role": "choice",
+        "x": 220.0,
+        "y": 140.0,
+        "font_size": 30
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.question",
+    "region.options",
+    "slot.choice.1",
+    "slot.choice.2",
+    "slot.choice.3",
+    "slot.choice.4",
+    "slot.choice.5",
+    "region.answer_explanation"
+  ]
+}

@@ -1,0 +1,152 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008658",
+  "problem_type": "geometry_compass_centers",
+  "inputs": {
+    "target_label": "컴퍼스의 침을 꽂아야 할 곳",
+    "target_count": 4,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.point.giyeok",
+      "value": {
+        "label": "ㄱ",
+        "coordinate": [
+          2,
+          5
+        ],
+        "circle_radius": 1
+      }
+    },
+    {
+      "ref": "obj.point.nieun",
+      "value": {
+        "label": "ㄴ",
+        "coordinate": [
+          3,
+          5
+        ],
+        "circle_radius": 2
+      }
+    },
+    {
+      "ref": "obj.point.digeut",
+      "value": {
+        "label": "ㄷ",
+        "coordinate": [
+          4,
+          5
+        ],
+        "circle_radius": 3
+      }
+    },
+    {
+      "ref": "obj.point.rieul",
+      "value": {
+        "label": "ㄹ",
+        "coordinate": [
+          5,
+          5
+        ],
+        "circle_radius": 4
+      }
+    },
+    {
+      "ref": "obj.point.mieum",
+      "value": {
+        "label": "ㅁ",
+        "coordinate": [
+          6,
+          5
+        ],
+        "circle_radius": null
+      }
+    },
+    {
+      "ref": "obj.point.bieup",
+      "value": {
+        "label": "ㅂ",
+        "coordinate": [
+          7,
+          5
+        ],
+        "circle_radius": null
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "selected_points"
+  },
+  "method": "center_matching",
+  "plan": [
+    "각 원의 중심을 확인한다.",
+    "원 중심에 해당하는 후보점의 이름을 찾는다.",
+    "ㄱ, ㄴ, ㄷ, ㄹ을 모두 선택한다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "반지름 1 원의 중심은 ㄱ (2,5)",
+      "value": "ㄱ"
+    },
+    {
+      "id": "step.2",
+      "expr": "반지름 2 원의 중심은 ㄴ (3,5)",
+      "value": "ㄴ"
+    },
+    {
+      "id": "step.3",
+      "expr": "반지름 3 원의 중심은 ㄷ (4,5)",
+      "value": "ㄷ"
+    },
+    {
+      "id": "step.4",
+      "expr": "반지름 4 원의 중심은 ㄹ (5,5)",
+      "value": "ㄹ"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "선택한 점의 수",
+      "expected": 4,
+      "actual": 4,
+      "pass": true
+    },
+    {
+      "id": "check.2",
+      "expr": "선택한 점",
+      "expected": [
+        "ㄱ",
+        "ㄴ",
+        "ㄷ",
+        "ㄹ"
+      ],
+      "actual": [
+        "ㄱ",
+        "ㄴ",
+        "ㄷ",
+        "ㄹ"
+      ],
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "selected_points",
+      "description": "컴퍼스의 침을 꽂아야 할 곳"
+    },
+    "value": [
+      "ㄱ",
+      "ㄴ",
+      "ㄷ",
+      "ㄹ"
+    ],
+    "unit": ""
+  }
+}

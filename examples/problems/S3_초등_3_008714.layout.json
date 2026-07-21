@@ -1,0 +1,254 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008714",
+  "title": "원의 중심",
+  "canvas": {
+    "width": 944,
+    "height": 376,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q1",
+        "slot.q2",
+        "slot.q3"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.circle",
+        "slot.tool",
+        "slot.tool.dot1",
+        "slot.tool.dot2",
+        "slot.tool.dot3",
+        "slot.tool.dot4"
+      ]
+    },
+    {
+      "id": "region.footer",
+      "role": "footer",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.inserted.pencil.1.eraser",
+        "slot.inserted.pencil.1.body",
+        "slot.inserted.pencil.1.tip",
+        "slot.inserted.circle.1"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "그림과 같이 띠 종이를 이용하여 원을 그릴 때, 누름 못이 꽂혔던 점을  ",
+        "style_role": "question",
+        "x": 20.0,
+        "y": 42.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "무엇이라고 할까요?",
+        "style_role": "question",
+        "x": 15.0,
+        "y": 90.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.circle",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 365.0,
+        "cy": 180.0,
+        "r": 100.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.tool",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 345.0,
+        "y": 168.0,
+        "width": 150.0,
+        "height": 25.0,
+        "stroke": "#111111",
+        "stroke_width": 1.5,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.tool.dot1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "•",
+        "style_role": "diagram",
+        "x": 385.0,
+        "y": 187.0,
+        "font_size": 20,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.tool.dot2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "•",
+        "style_role": "diagram",
+        "x": 405.0,
+        "y": 187.0,
+        "font_size": 20,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.tool.dot3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "•",
+        "style_role": "diagram",
+        "x": 425.0,
+        "y": 187.0,
+        "font_size": 20,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.tool.dot4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "•",
+        "style_role": "diagram",
+        "x": 445.0,
+        "y": 187.0,
+        "font_size": 20,
+        "max_width": 135.0,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.q3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "원의 ( 중심 , 반지름 , 지름 )",
+        "style_role": "question",
+        "x": 35.0,
+        "y": 325.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.inserted.circle.1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 366.0,
+        "cy": 181.0,
+        "r": 5.0,
+        "stroke": "#111827",
+        "stroke_width": 1.5,
+        "fill": "#6b7280"
+      }
+    },
+    {
+      "id": "slot.inserted.pencil.1.eraser",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 455.0,
+        "y": 65.0,
+        "width": 10.0,
+        "height": 15.0,
+        "stroke": "#b98160",
+        "stroke_width": 1.0,
+        "fill": "#d9a27f",
+        "transform": "rotate(5 460 70)"
+      }
+    },
+    {
+      "id": "slot.inserted.pencil.1.body",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 450.0,
+        "y": 80.0,
+        "width": 10.0,
+        "height": 85.0,
+        "stroke": "#ee7777",
+        "stroke_width": 1.0,
+        "fill": "#ffb5b5",
+        "transform": "rotate(5 455 122.5)"
+      }
+    },
+    {
+      "id": "slot.inserted.pencil.1.tip",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            442.0,
+            160.0
+          ],
+          [
+            457.0,
+            160.0
+          ],
+          [
+            452.0,
+            174.0
+          ]
+        ],
+        "stroke": "#c49b62",
+        "stroke_width": 1.0,
+        "fill": "#e6c08b",
+        "transform": "rotate(130 449.5 167)"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q1",
+    "slot.q2",
+    "slot.q3",
+    "region.diagram",
+    "slot.circle",
+    "slot.tool",
+    "slot.tool.dot1",
+    "slot.tool.dot2",
+    "slot.tool.dot3",
+    "slot.tool.dot4",
+    "region.footer",
+    "slot.inserted.pencil.1.eraser",
+    "slot.inserted.pencil.1.body",
+    "slot.inserted.pencil.1.tip",
+    "slot.inserted.circle.1"
+  ]
+}

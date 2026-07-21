@@ -1,0 +1,113 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "P3_1_01_00040_15610",
+  "title": "덧셈식과 수의 크기 비교",
+  "canvas": {
+    "width": 960,
+    "height": 150,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.question"
+      ]
+    },
+    {
+      "id": "region.comparison",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.comparison.background",
+        "slot.comparison.circle",
+        "slot.left.expression",
+        "slot.right.number"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.question",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "○ 안에 >, =, <를 알맞게 써넣으시오.",
+        "style_role": "question",
+        "x": 20.0,
+        "y": 24.0,
+        "font_size": 22,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.comparison.background",
+      "kind": "rect",
+      "prompt": "비교식을 담는 상자",
+      "content": {
+        "x": 26.89,
+        "y": 52.92,
+        "width": 492.823,
+        "height": 58.0,
+        "stroke": "#111111",
+        "stroke_width": 1.0,
+        "fill": "#eeeeee"
+      }
+    },
+    {
+      "id": "slot.left.expression",
+      "kind": "text",
+      "prompt": "왼쪽 덧셈식",
+      "content": {
+        "text": "400+156",
+        "style_role": "body",
+        "x": 225.78,
+        "y": 91.067,
+        "font_size": 22,
+        "anchor": "end",
+        "fill": "#333333"
+      }
+    },
+    {
+      "id": "slot.comparison.circle",
+      "kind": "circle",
+      "prompt": "비교 기호를 쓰는 곳",
+      "content": {
+        "cx": 272.78,
+        "cy": 84.067,
+        "r": 15.0,
+        "stroke": "#111111",
+        "stroke_width": 1.5,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.right.number",
+      "kind": "text",
+      "prompt": "오른쪽 수",
+      "content": {
+        "text": "501",
+        "style_role": "body",
+        "x": 325.78,
+        "y": 91.067,
+        "font_size": 22,
+        "fill": "#333333"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.question",
+    "region.comparison",
+    "slot.comparison.background",
+    "slot.comparison.circle",
+    "slot.left.expression",
+    "slot.right.number"
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "problem_id": "S3_초등_3_008556",
+  "problem_type": "multiplication_place_value_choice",
+  "metadata": {
+    "title": "색칠된 부분은 실제 어떤 수의 곱인지를 찾아 선택하세요.",
+    "tags": [
+      "초등",
+      "수학",
+      "곱셈",
+      "세로셈",
+      "자리값"
+    ],
+    "question": "색칠된 부분은 실제 어떤 수의 곱인지를 찾아 선택하세요.",
+    "required_layout_ids": [
+      "slot.bar1",
+      "slot.hl",
+      "slot.bar2",
+      "slot.choice.box"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "보기에서 알맞은 식을 고르세요."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.target",
+        "type": "expression",
+        "text": "10 × 3"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "selected_expression",
+      "description": "색칠된 부분에 해당하는 식"
+    },
+    "value": "10 × 3",
+    "unit": ""
+  }
+}

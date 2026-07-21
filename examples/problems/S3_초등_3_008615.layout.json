@@ -1,0 +1,151 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008615",
+  "title": "나머지가 가장 큰 것",
+  "canvas": {
+    "width": 896.0,
+    "height": 252.0,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q_text"
+      ]
+    },
+    {
+      "id": "region.options",
+      "role": "content",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.opt.1.box",
+        "slot.opt.2.box",
+        "slot.opt.3.box",
+        "slot.opt.1.text",
+        "slot.opt.2.text",
+        "slot.opt.3.text"
+      ]
+    },
+    {
+      "id": "region.answer",
+      "role": "answer",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q_text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "나머지가 가장 큰 것을 찾아 선택하세요.",
+        "style_role": "question",
+        "x": 79.0,
+        "y": 58.0,
+        "font_size": 28,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.opt.1.box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 95.0,
+        "y": 115.0,
+        "width": 190.0,
+        "height": 45.0,
+        "stroke": "#FFB6B6",
+        "stroke_width": 1.5,
+        "fill": "#FFF7F7"
+      }
+    },
+    {
+      "id": "slot.opt.1.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "35 ÷ 4",
+        "style_role": "content",
+        "x": 140.0,
+        "y": 150.0,
+        "font_size": 30,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.opt.2.box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 310.0,
+        "y": 115.0,
+        "width": 190.0,
+        "height": 45.0,
+        "stroke": "#FFB6B6",
+        "stroke_width": 1.5,
+        "fill": "#FFF7F7"
+      }
+    },
+    {
+      "id": "slot.opt.2.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "20 ÷ 7",
+        "style_role": "content",
+        "x": 355.0,
+        "y": 150.0,
+        "font_size": 30,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.opt.3.box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 525.0,
+        "y": 115.0,
+        "width": 190.0,
+        "height": 45.0,
+        "stroke": "#FFB6B6",
+        "stroke_width": 1.5,
+        "fill": "#FFF7F7"
+      }
+    },
+    {
+      "id": "slot.opt.3.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "65 ÷ 9",
+        "style_role": "content",
+        "x": 575.0,
+        "y": 150.0,
+        "font_size": 30,
+        "fill": "#111111"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q_text",
+    "region.options",
+    "slot.opt.1.box",
+    "slot.opt.2.box",
+    "slot.opt.3.box",
+    "slot.opt.1.text",
+    "slot.opt.2.text",
+    "slot.opt.3.text",
+    "region.answer"
+  ]
+}

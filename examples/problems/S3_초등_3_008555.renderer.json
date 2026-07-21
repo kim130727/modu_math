@@ -1,0 +1,121 @@
+{
+  "problem_id": "S3_초등_3_008555",
+  "view_box": {
+    "width": 600.0,
+    "height": 250.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.question.text",
+      "type": "text",
+      "attributes": {
+<<<<<<< HEAD:examples/problems/TS_01.초등학교_3학년_01.객관식/S3_초등_3_008555.renderer.json
+        "x": 70.0,
+        "y": 35.0,
+=======
+        "x": 40.0,
+        "y": 60.0,
+>>>>>>> 71a328bd333ac522efc2b16e3372d00a762fe4a9:examples/problems/TS_01.초등학교_3학년_01.객관식/complete/S3_초등_3_008555.renderer.json
+        "max_width": 472.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.question",
+      "refs": {
+        "layout_slot_id": "slot.question"
+      },
+      "text": "계산 결과가 500보다 큰 것을 선택해 보세요."
+    },
+    {
+      "id": "slot.choice1_box.rect",
+      "type": "rect",
+      "attributes": {
+<<<<<<< HEAD:examples/problems/TS_01.초등학교_3학년_01.객관식/S3_초등_3_008555.renderer.json
+        "x": 105.0,
+        "y": 70.0,
+=======
+        "x": 60.0,
+        "y": 120.0,
+>>>>>>> 71a328bd333ac522efc2b16e3372d00a762fe4a9:examples/problems/TS_01.초등학교_3학년_01.객관식/complete/S3_초등_3_008555.renderer.json
+        "width": 178.0,
+        "height": 76.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.choice1_box",
+      "refs": {
+        "layout_slot_id": "slot.choice1_box"
+      }
+    },
+    {
+      "id": "slot.choice2_box.rect",
+      "type": "rect",
+      "attributes": {
+<<<<<<< HEAD:examples/problems/TS_01.초등학교_3학년_01.객관식/S3_초등_3_008555.renderer.json
+        "x": 365.0,
+        "y": 70.0,
+=======
+        "x": 300.0,
+        "y": 120.0,
+>>>>>>> 71a328bd333ac522efc2b16e3372d00a762fe4a9:examples/problems/TS_01.초등학교_3학년_01.객관식/complete/S3_초등_3_008555.renderer.json
+        "width": 178.0,
+        "height": 76.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.choice2_box",
+      "refs": {
+        "layout_slot_id": "slot.choice2_box"
+      }
+    },
+    {
+      "id": "slot.choice1_text.text",
+      "type": "text",
+      "attributes": {
+<<<<<<< HEAD:examples/problems/TS_01.초등학교_3학년_01.객관식/S3_초등_3_008555.renderer.json
+        "x": 140.0,
+        "y": 120.0,
+=======
+        "x": 100.0,
+        "y": 163.0,
+>>>>>>> 71a328bd333ac522efc2b16e3372d00a762fe4a9:examples/problems/TS_01.초등학교_3학년_01.객관식/complete/S3_초등_3_008555.renderer.json
+        "max_width": 472.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice1_text",
+      "refs": {
+        "layout_slot_id": "slot.choice1_text"
+      },
+      "text": "35 × 13"
+    },
+    {
+      "id": "slot.choice2_text.text",
+      "type": "text",
+      "attributes": {
+<<<<<<< HEAD:examples/problems/TS_01.초등학교_3학년_01.객관식/S3_초등_3_008555.renderer.json
+        "x": 400.0,
+        "y": 120.0,
+=======
+        "x": 340.0,
+        "y": 163.0,
+>>>>>>> 71a328bd333ac522efc2b16e3372d00a762fe4a9:examples/problems/TS_01.초등학교_3학년_01.객관식/complete/S3_초등_3_008555.renderer.json
+        "max_width": 472.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice2_text",
+      "refs": {
+        "layout_slot_id": "slot.choice2_text"
+      },
+      "text": "28 × 19"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

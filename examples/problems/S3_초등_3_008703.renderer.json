@@ -1,0 +1,2445 @@
+{
+  "problem_id": "S3_초등_3_008703",
+  "view_box": {
+    "width": 920.0,
+    "height": 300.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.q.text.text",
+      "type": "text",
+      "attributes": {
+        "x": 10.0,
+        "y": 31.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 24
+      },
+      "source_ref": "slot.q.text",
+      "refs": {
+        "layout_slot_id": "slot.q.text"
+      },
+      "text": "컴퍼스를 2 cm가 되도록 벌린 것을 찾아 선택하세요."
+    },
+    {
+      "id": "slot.choice1.ruler.body.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 74.0,
+        "y": 211.0,
+        "width": 186.0,
+        "height": 32.0,
+        "fill": "#DDF6FF",
+        "stroke": "#19B5F2",
+        "stroke-width": 1.2
+      },
+      "source_ref": "slot.choice1.ruler.body",
+      "refs": {
+        "layout_slot_id": "slot.choice1.ruler.body"
+      }
+    },
+    {
+      "id": "slot.choice1.compass.head.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 134.16,
+        "y": 62.64,
+        "width": 10.8,
+        "height": 19.44,
+        "fill": "#8B9195",
+        "stroke": "#42474B",
+        "stroke-width": 1.0,
+        "rx": 2.16,
+        "ry": 2.16
+      },
+      "source_ref": "slot.choice1.compass.head",
+      "refs": {
+        "layout_slot_id": "slot.choice1.compass.head"
+      }
+    },
+    {
+      "id": "slot.choice1.compass.knob.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 137.4,
+        "y": 48.599999999999994,
+        "width": 4.32,
+        "height": 12.96,
+        "fill": "#7F8589",
+        "stroke": "#42474B",
+        "stroke-width": 0.8
+      },
+      "source_ref": "slot.choice1.compass.knob",
+      "refs": {
+        "layout_slot_id": "slot.choice1.compass.knob"
+      }
+    },
+    {
+      "id": "slot.choice1.compass.clamp.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 190.44,
+        "y": 167.8,
+        "width": 15.120000000000001,
+        "height": 8.64,
+        "fill": "#6D7378",
+        "stroke": "#42474B",
+        "stroke-width": 0.8
+      },
+      "source_ref": "slot.choice1.compass.clamp",
+      "refs": {
+        "layout_slot_id": "slot.choice1.compass.clamp"
+      }
+    },
+    {
+      "id": "slot.choice1.compass.pencil.body.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 194.76,
+        "y": 118.12,
+        "width": 6.48,
+        "height": 81.0,
+        "fill": "#A9B84B",
+        "stroke": "#879036",
+        "stroke-width": 0.9
+      },
+      "source_ref": "slot.choice1.compass.pencil.body",
+      "refs": {
+        "layout_slot_id": "slot.choice1.compass.pencil.body"
+      }
+    },
+    {
+      "id": "slot.choice1.compass.pencil.tip.polygon",
+      "type": "polygon",
+      "attributes": {
+        "points": [
+          [
+            192.6,
+            198.04000000000002
+          ],
+          [
+            203.4,
+            198.04000000000002
+          ],
+          [
+            198.0,
+            212.08
+          ]
+        ],
+        "stroke": "#9E7130",
+        "stroke-width": 0.8,
+        "fill": "#E8B55D"
+      },
+      "source_ref": "slot.choice1.compass.pencil.tip",
+      "refs": {
+        "layout_slot_id": "slot.choice1.compass.pencil.tip"
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.body.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 369.0,
+        "y": 211.0,
+        "width": 186.0,
+        "height": 32.0,
+        "fill": "#DDF6FF",
+        "stroke": "#19B5F2",
+        "stroke-width": 1.2
+      },
+      "source_ref": "slot.choice2.ruler.body",
+      "refs": {
+        "layout_slot_id": "slot.choice2.ruler.body"
+      }
+    },
+    {
+      "id": "slot.choice2.compass.head.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 439.6,
+        "y": 62.64,
+        "width": 10.8,
+        "height": 19.44,
+        "fill": "#8B9195",
+        "stroke": "#42474B",
+        "stroke-width": 1.0,
+        "rx": 2.16,
+        "ry": 2.16
+      },
+      "source_ref": "slot.choice2.compass.head",
+      "refs": {
+        "layout_slot_id": "slot.choice2.compass.head"
+      }
+    },
+    {
+      "id": "slot.choice2.compass.knob.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 442.84,
+        "y": 48.599999999999994,
+        "width": 4.32,
+        "height": 12.96,
+        "fill": "#7F8589",
+        "stroke": "#42474B",
+        "stroke-width": 0.8
+      },
+      "source_ref": "slot.choice2.compass.knob",
+      "refs": {
+        "layout_slot_id": "slot.choice2.compass.knob"
+      }
+    },
+    {
+      "id": "slot.choice2.compass.clamp.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 485.44,
+        "y": 167.8,
+        "width": 15.120000000000001,
+        "height": 8.64,
+        "fill": "#6D7378",
+        "stroke": "#42474B",
+        "stroke-width": 0.8
+      },
+      "source_ref": "slot.choice2.compass.clamp",
+      "refs": {
+        "layout_slot_id": "slot.choice2.compass.clamp"
+      }
+    },
+    {
+      "id": "slot.choice2.compass.pencil.body.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 489.76,
+        "y": 118.12,
+        "width": 6.48,
+        "height": 81.0,
+        "fill": "#A9B84B",
+        "stroke": "#879036",
+        "stroke-width": 0.9
+      },
+      "source_ref": "slot.choice2.compass.pencil.body",
+      "refs": {
+        "layout_slot_id": "slot.choice2.compass.pencil.body"
+      }
+    },
+    {
+      "id": "slot.choice2.compass.pencil.tip.polygon",
+      "type": "polygon",
+      "attributes": {
+        "points": [
+          [
+            487.6,
+            198.04000000000002
+          ],
+          [
+            498.4,
+            198.04000000000002
+          ],
+          [
+            493.0,
+            212.08
+          ]
+        ],
+        "stroke": "#9E7130",
+        "stroke-width": 0.8,
+        "fill": "#E8B55D"
+      },
+      "source_ref": "slot.choice2.compass.pencil.tip",
+      "refs": {
+        "layout_slot_id": "slot.choice2.compass.pencil.tip"
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.body.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 666.0,
+        "y": 211.0,
+        "width": 186.0,
+        "height": 32.0,
+        "fill": "#DDF6FF",
+        "stroke": "#19B5F2",
+        "stroke-width": 1.2
+      },
+      "source_ref": "slot.choice3.ruler.body",
+      "refs": {
+        "layout_slot_id": "slot.choice3.ruler.body"
+      }
+    },
+    {
+      "id": "slot.choice3.compass.head.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 764.6,
+        "y": 62.64,
+        "width": 10.8,
+        "height": 19.44,
+        "fill": "#8B9195",
+        "stroke": "#42474B",
+        "stroke-width": 1.0,
+        "rx": 2.16,
+        "ry": 2.16
+      },
+      "source_ref": "slot.choice3.compass.head",
+      "refs": {
+        "layout_slot_id": "slot.choice3.compass.head"
+      }
+    },
+    {
+      "id": "slot.choice3.compass.knob.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 767.84,
+        "y": 48.599999999999994,
+        "width": 4.32,
+        "height": 12.96,
+        "fill": "#7F8589",
+        "stroke": "#42474B",
+        "stroke-width": 0.8
+      },
+      "source_ref": "slot.choice3.compass.knob",
+      "refs": {
+        "layout_slot_id": "slot.choice3.compass.knob"
+      }
+    },
+    {
+      "id": "slot.choice3.compass.clamp.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 844.44,
+        "y": 167.8,
+        "width": 15.120000000000001,
+        "height": 8.64,
+        "fill": "#6D7378",
+        "stroke": "#42474B",
+        "stroke-width": 0.8
+      },
+      "source_ref": "slot.choice3.compass.clamp",
+      "refs": {
+        "layout_slot_id": "slot.choice3.compass.clamp"
+      }
+    },
+    {
+      "id": "slot.choice3.compass.pencil.body.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 848.76,
+        "y": 118.12,
+        "width": 6.48,
+        "height": 81.0,
+        "fill": "#A9B84B",
+        "stroke": "#879036",
+        "stroke-width": 0.9
+      },
+      "source_ref": "slot.choice3.compass.pencil.body",
+      "refs": {
+        "layout_slot_id": "slot.choice3.compass.pencil.body"
+      }
+    },
+    {
+      "id": "slot.choice3.compass.pencil.tip.polygon",
+      "type": "polygon",
+      "attributes": {
+        "points": [
+          [
+            846.6,
+            198.04000000000002
+          ],
+          [
+            857.4,
+            198.04000000000002
+          ],
+          [
+            852.0,
+            212.08
+          ]
+        ],
+        "stroke": "#9E7130",
+        "stroke-width": 0.8,
+        "fill": "#E8B55D"
+      },
+      "source_ref": "slot.choice3.compass.pencil.tip",
+      "refs": {
+        "layout_slot_id": "slot.choice3.compass.pencil.tip"
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.top.line",
+      "type": "line",
+      "attributes": {
+        "x1": 74.0,
+        "y1": 219.0,
+        "x2": 260.0,
+        "y2": 219.0,
+        "stroke": "#19B5F2",
+        "stroke-width": 1.1
+      },
+      "source_ref": "slot.choice1.ruler.top",
+      "refs": {
+        "layout_slot_id": "slot.choice1.ruler.top"
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.tick.00.line",
+      "type": "line",
+      "attributes": {
+        "x1": 74.0,
+        "y1": 219.0,
+        "x2": 74.0,
+        "y2": 231.0,
+        "stroke": "#19B5F2",
+        "stroke-width": 1.0
+      },
+      "source_ref": "slot.choice1.ruler.tick.00",
+      "refs": {
+        "layout_slot_id": "slot.choice1.ruler.tick.00"
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.tick.01.line",
+      "type": "line",
+      "attributes": {
+        "x1": 80.2,
+        "y1": 219.0,
+        "x2": 80.2,
+        "y2": 225.0,
+        "stroke": "#19B5F2",
+        "stroke-width": 0.7
+      },
+      "source_ref": "slot.choice1.ruler.tick.01",
+      "refs": {
+        "layout_slot_id": "slot.choice1.ruler.tick.01"
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.tick.02.line",
+      "type": "line",
+      "attributes": {
+        "x1": 86.4,
+        "y1": 219.0,
+        "x2": 86.4,
+        "y2": 225.0,
+        "stroke": "#19B5F2",
+        "stroke-width": 0.7
+      },
+      "source_ref": "slot.choice1.ruler.tick.02",
+      "refs": {
+        "layout_slot_id": "slot.choice1.ruler.tick.02"
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.tick.03.line",
+      "type": "line",
+      "attributes": {
+        "x1": 92.6,
+        "y1": 219.0,
+        "x2": 92.6,
+        "y2": 225.0,
+        "stroke": "#19B5F2",
+        "stroke-width": 0.7
+      },
+      "source_ref": "slot.choice1.ruler.tick.03",
+      "refs": {
+        "layout_slot_id": "slot.choice1.ruler.tick.03"
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.tick.04.line",
+      "type": "line",
+      "attributes": {
+        "x1": 98.8,
+        "y1": 219.0,
+        "x2": 98.8,
+        "y2": 225.0,
+        "stroke": "#19B5F2",
+        "stroke-width": 0.7
+      },
+      "source_ref": "slot.choice1.ruler.tick.04",
+      "refs": {
+        "layout_slot_id": "slot.choice1.ruler.tick.04"
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.tick.05.line",
+      "type": "line",
+      "attributes": {
+        "x1": 105.0,
+        "y1": 219.0,
+        "x2": 105.0,
+        "y2": 228.0,
+        "stroke": "#19B5F2",
+        "stroke-width": 0.85
+      },
+      "source_ref": "slot.choice1.ruler.tick.05",
+      "refs": {
+        "layout_slot_id": "slot.choice1.ruler.tick.05"
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.tick.06.line",
+      "type": "line",
+      "attributes": {
+        "x1": 111.2,
+        "y1": 219.0,
+        "x2": 111.2,
+        "y2": 225.0,
+        "stroke": "#19B5F2",
+        "stroke-width": 0.7
+      },
+      "source_ref": "slot.choice1.ruler.tick.06",
+      "refs": {
+        "layout_slot_id": "slot.choice1.ruler.tick.06"
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.tick.07.line",
+      "type": "line",
+      "attributes": {
+        "x1": 117.4,
+        "y1": 219.0,
+        "x2": 117.4,
+        "y2": 225.0,
+        "stroke": "#19B5F2",
+        "stroke-width": 0.7
+      },
+      "source_ref": "slot.choice1.ruler.tick.07",
+      "refs": {
+        "layout_slot_id": "slot.choice1.ruler.tick.07"
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.tick.08.line",
+      "type": "line",
+      "attributes": {
+        "x1": 123.6,
+        "y1": 219.0,
+        "x2": 123.6,
+        "y2": 225.0,
+        "stroke": "#19B5F2",
+        "stroke-width": 0.7
+      },
+      "source_ref": "slot.choice1.ruler.tick.08",
+      "refs": {
+        "layout_slot_id": "slot.choice1.ruler.tick.08"
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.tick.09.line",
+      "type": "line",
+      "attributes": {
+        "x1": 129.8,
+        "y1": 219.0,
+        "x2": 129.8,
+        "y2": 225.0,
+        "stroke": "#19B5F2",
+        "stroke-width": 0.7
+      },
+      "source_ref": "slot.choice1.ruler.tick.09",
+      "refs": {
+        "layout_slot_id": "slot.choice1.ruler.tick.09"
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.tick.10.line",
+      "type": "line",
+      "attributes": {
+        "x1": 136.0,
+        "y1": 219.0,
+        "x2": 136.0,
+        "y2": 231.0,
+        "stroke": "#19B5F2",
+        "stroke-width": 1.0
+      },
+      "source_ref": "slot.choice1.ruler.tick.10",
+      "refs": {
+        "layout_slot_id": "slot.choice1.ruler.tick.10"
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.tick.11.line",
+      "type": "line",
+      "attributes": {
+        "x1": 142.2,
+        "y1": 219.0,
+        "x2": 142.2,
+        "y2": 225.0,
+        "stroke": "#19B5F2",
+        "stroke-width": 0.7
+      },
+      "source_ref": "slot.choice1.ruler.tick.11",
+      "refs": {
+        "layout_slot_id": "slot.choice1.ruler.tick.11"
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.tick.12.line",
+      "type": "line",
+      "attributes": {
+        "x1": 148.4,
+        "y1": 219.0,
+        "x2": 148.4,
+        "y2": 225.0,
+        "stroke": "#19B5F2",
+        "stroke-width": 0.7
+      },
+      "source_ref": "slot.choice1.ruler.tick.12",
+      "refs": {
+        "layout_slot_id": "slot.choice1.ruler.tick.12"
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.tick.13.line",
+      "type": "line",
+      "attributes": {
+        "x1": 154.6,
+        "y1": 219.0,
+        "x2": 154.6,
+        "y2": 225.0,
+        "stroke": "#19B5F2",
+        "stroke-width": 0.7
+      },
+      "source_ref": "slot.choice1.ruler.tick.13",
+      "refs": {
+        "layout_slot_id": "slot.choice1.ruler.tick.13"
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.tick.14.line",
+      "type": "line",
+      "attributes": {
+        "x1": 160.8,
+        "y1": 219.0,
+        "x2": 160.8,
+        "y2": 225.0,
+        "stroke": "#19B5F2",
+        "stroke-width": 0.7
+      },
+      "source_ref": "slot.choice1.ruler.tick.14",
+      "refs": {
+        "layout_slot_id": "slot.choice1.ruler.tick.14"
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.tick.15.line",
+      "type": "line",
+      "attributes": {
+        "x1": 167.0,
+        "y1": 219.0,
+        "x2": 167.0,
+        "y2": 228.0,
+        "stroke": "#19B5F2",
+        "stroke-width": 0.85
+      },
+      "source_ref": "slot.choice1.ruler.tick.15",
+      "refs": {
+        "layout_slot_id": "slot.choice1.ruler.tick.15"
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.tick.16.line",
+      "type": "line",
+      "attributes": {
+        "x1": 173.2,
+        "y1": 219.0,
+        "x2": 173.2,
+        "y2": 225.0,
+        "stroke": "#19B5F2",
+        "stroke-width": 0.7
+      },
+      "source_ref": "slot.choice1.ruler.tick.16",
+      "refs": {
+        "layout_slot_id": "slot.choice1.ruler.tick.16"
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.tick.17.line",
+      "type": "line",
+      "attributes": {
+        "x1": 179.4,
+        "y1": 219.0,
+        "x2": 179.4,
+        "y2": 225.0,
+        "stroke": "#19B5F2",
+        "stroke-width": 0.7
+      },
+      "source_ref": "slot.choice1.ruler.tick.17",
+      "refs": {
+        "layout_slot_id": "slot.choice1.ruler.tick.17"
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.tick.18.line",
+      "type": "line",
+      "attributes": {
+        "x1": 185.6,
+        "y1": 219.0,
+        "x2": 185.6,
+        "y2": 225.0,
+        "stroke": "#19B5F2",
+        "stroke-width": 0.7
+      },
+      "source_ref": "slot.choice1.ruler.tick.18",
+      "refs": {
+        "layout_slot_id": "slot.choice1.ruler.tick.18"
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.tick.19.line",
+      "type": "line",
+      "attributes": {
+        "x1": 191.8,
+        "y1": 219.0,
+        "x2": 191.8,
+        "y2": 225.0,
+        "stroke": "#19B5F2",
+        "stroke-width": 0.7
+      },
+      "source_ref": "slot.choice1.ruler.tick.19",
+      "refs": {
+        "layout_slot_id": "slot.choice1.ruler.tick.19"
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.tick.20.line",
+      "type": "line",
+      "attributes": {
+        "x1": 198.0,
+        "y1": 219.0,
+        "x2": 198.0,
+        "y2": 231.0,
+        "stroke": "#19B5F2",
+        "stroke-width": 1.0
+      },
+      "source_ref": "slot.choice1.ruler.tick.20",
+      "refs": {
+        "layout_slot_id": "slot.choice1.ruler.tick.20"
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.tick.21.line",
+      "type": "line",
+      "attributes": {
+        "x1": 204.2,
+        "y1": 219.0,
+        "x2": 204.2,
+        "y2": 225.0,
+        "stroke": "#19B5F2",
+        "stroke-width": 0.7
+      },
+      "source_ref": "slot.choice1.ruler.tick.21",
+      "refs": {
+        "layout_slot_id": "slot.choice1.ruler.tick.21"
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.tick.22.line",
+      "type": "line",
+      "attributes": {
+        "x1": 210.4,
+        "y1": 219.0,
+        "x2": 210.4,
+        "y2": 225.0,
+        "stroke": "#19B5F2",
+        "stroke-width": 0.7
+      },
+      "source_ref": "slot.choice1.ruler.tick.22",
+      "refs": {
+        "layout_slot_id": "slot.choice1.ruler.tick.22"
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.tick.23.line",
+      "type": "line",
+      "attributes": {
+        "x1": 216.6,
+        "y1": 219.0,
+        "x2": 216.6,
+        "y2": 225.0,
+        "stroke": "#19B5F2",
+        "stroke-width": 0.7
+      },
+      "source_ref": "slot.choice1.ruler.tick.23",
+      "refs": {
+        "layout_slot_id": "slot.choice1.ruler.tick.23"
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.tick.24.line",
+      "type": "line",
+      "attributes": {
+        "x1": 222.8,
+        "y1": 219.0,
+        "x2": 222.8,
+        "y2": 225.0,
+        "stroke": "#19B5F2",
+        "stroke-width": 0.7
+      },
+      "source_ref": "slot.choice1.ruler.tick.24",
+      "refs": {
+        "layout_slot_id": "slot.choice1.ruler.tick.24"
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.tick.25.line",
+      "type": "line",
+      "attributes": {
+        "x1": 229.0,
+        "y1": 219.0,
+        "x2": 229.0,
+        "y2": 228.0,
+        "stroke": "#19B5F2",
+        "stroke-width": 0.85
+      },
+      "source_ref": "slot.choice1.ruler.tick.25",
+      "refs": {
+        "layout_slot_id": "slot.choice1.ruler.tick.25"
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.tick.26.line",
+      "type": "line",
+      "attributes": {
+        "x1": 235.2,
+        "y1": 219.0,
+        "x2": 235.2,
+        "y2": 225.0,
+        "stroke": "#19B5F2",
+        "stroke-width": 0.7
+      },
+      "source_ref": "slot.choice1.ruler.tick.26",
+      "refs": {
+        "layout_slot_id": "slot.choice1.ruler.tick.26"
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.tick.27.line",
+      "type": "line",
+      "attributes": {
+        "x1": 241.4,
+        "y1": 219.0,
+        "x2": 241.4,
+        "y2": 225.0,
+        "stroke": "#19B5F2",
+        "stroke-width": 0.7
+      },
+      "source_ref": "slot.choice1.ruler.tick.27",
+      "refs": {
+        "layout_slot_id": "slot.choice1.ruler.tick.27"
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.tick.28.line",
+      "type": "line",
+      "attributes": {
+        "x1": 247.6,
+        "y1": 219.0,
+        "x2": 247.6,
+        "y2": 225.0,
+        "stroke": "#19B5F2",
+        "stroke-width": 0.7
+      },
+      "source_ref": "slot.choice1.ruler.tick.28",
+      "refs": {
+        "layout_slot_id": "slot.choice1.ruler.tick.28"
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.tick.29.line",
+      "type": "line",
+      "attributes": {
+        "x1": 253.8,
+        "y1": 219.0,
+        "x2": 253.8,
+        "y2": 225.0,
+        "stroke": "#19B5F2",
+        "stroke-width": 0.7
+      },
+      "source_ref": "slot.choice1.ruler.tick.29",
+      "refs": {
+        "layout_slot_id": "slot.choice1.ruler.tick.29"
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.tick.30.line",
+      "type": "line",
+      "attributes": {
+        "x1": 260.0,
+        "y1": 219.0,
+        "x2": 260.0,
+        "y2": 231.0,
+        "stroke": "#19B5F2",
+        "stroke-width": 1.0
+      },
+      "source_ref": "slot.choice1.ruler.tick.30",
+      "refs": {
+        "layout_slot_id": "slot.choice1.ruler.tick.30"
+      }
+    },
+    {
+      "id": "slot.choice1.compass.leg.left.outer.line",
+      "type": "line",
+      "attributes": {
+        "x1": 135.24,
+        "y1": 89.64,
+        "x2": 66.56,
+        "y2": 202.36,
+        "stroke": "#42474B",
+        "stroke-width": 1.2
+      },
+      "source_ref": "slot.choice1.compass.leg.left.outer",
+      "refs": {
+        "layout_slot_id": "slot.choice1.compass.leg.left.outer"
+      }
+    },
+    {
+      "id": "slot.choice1.compass.leg.left.inner.line",
+      "type": "line",
+      "attributes": {
+        "x1": 140.64000000000001,
+        "y1": 89.64,
+        "x2": 71.96000000000001,
+        "y2": 202.36,
+        "stroke": "#C7DCE3",
+        "stroke-width": 3.0
+      },
+      "source_ref": "slot.choice1.compass.leg.left.inner",
+      "refs": {
+        "layout_slot_id": "slot.choice1.compass.leg.left.inner"
+      }
+    },
+    {
+      "id": "slot.choice1.compass.leg.right.outer.line",
+      "type": "line",
+      "attributes": {
+        "x1": 143.88,
+        "y1": 89.64,
+        "x2": 198.0,
+        "y2": 196.96,
+        "stroke": "#42474B",
+        "stroke-width": 1.2
+      },
+      "source_ref": "slot.choice1.compass.leg.right.outer",
+      "refs": {
+        "layout_slot_id": "slot.choice1.compass.leg.right.outer"
+      }
+    },
+    {
+      "id": "slot.choice1.compass.leg.right.inner.line",
+      "type": "line",
+      "attributes": {
+        "x1": 138.48,
+        "y1": 89.64,
+        "x2": 191.52,
+        "y2": 182.92000000000002,
+        "stroke": "#C7DCE3",
+        "stroke-width": 3.0
+      },
+      "source_ref": "slot.choice1.compass.leg.right.inner",
+      "refs": {
+        "layout_slot_id": "slot.choice1.compass.leg.right.inner"
+      }
+    },
+    {
+      "id": "slot.choice1.compass.bar.left.line",
+      "type": "line",
+      "attributes": {
+        "x1": 92.84,
+        "y1": 158.67040000000003,
+        "x2": 178.7148,
+        "y2": 162.3112,
+        "stroke": "#6D7378",
+        "stroke-width": 1.2
+      },
+      "source_ref": "slot.choice1.compass.bar.left",
+      "refs": {
+        "layout_slot_id": "slot.choice1.compass.bar.left"
+      }
+    },
+    {
+      "id": "slot.choice1.compass.needle.tip.line",
+      "type": "line",
+      "attributes": {
+        "x1": 66.56,
+        "y1": 193.72000000000003,
+        "x2": 66.56,
+        "y2": 211.0,
+        "stroke": "#42474B",
+        "stroke-width": 1.2
+      },
+      "source_ref": "slot.choice1.compass.needle.tip",
+      "refs": {
+        "layout_slot_id": "slot.choice1.compass.needle.tip"
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.top.line",
+      "type": "line",
+      "attributes": {
+        "x1": 369.0,
+        "y1": 219.0,
+        "x2": 555.0,
+        "y2": 219.0,
+        "stroke": "#19B5F2",
+        "stroke-width": 1.1
+      },
+      "source_ref": "slot.choice2.ruler.top",
+      "refs": {
+        "layout_slot_id": "slot.choice2.ruler.top"
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.tick.00.line",
+      "type": "line",
+      "attributes": {
+        "x1": 369.0,
+        "y1": 219.0,
+        "x2": 369.0,
+        "y2": 231.0,
+        "stroke": "#19B5F2",
+        "stroke-width": 1.0
+      },
+      "source_ref": "slot.choice2.ruler.tick.00",
+      "refs": {
+        "layout_slot_id": "slot.choice2.ruler.tick.00"
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.tick.01.line",
+      "type": "line",
+      "attributes": {
+        "x1": 375.2,
+        "y1": 219.0,
+        "x2": 375.2,
+        "y2": 225.0,
+        "stroke": "#19B5F2",
+        "stroke-width": 0.7
+      },
+      "source_ref": "slot.choice2.ruler.tick.01",
+      "refs": {
+        "layout_slot_id": "slot.choice2.ruler.tick.01"
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.tick.02.line",
+      "type": "line",
+      "attributes": {
+        "x1": 381.4,
+        "y1": 219.0,
+        "x2": 381.4,
+        "y2": 225.0,
+        "stroke": "#19B5F2",
+        "stroke-width": 0.7
+      },
+      "source_ref": "slot.choice2.ruler.tick.02",
+      "refs": {
+        "layout_slot_id": "slot.choice2.ruler.tick.02"
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.tick.03.line",
+      "type": "line",
+      "attributes": {
+        "x1": 387.6,
+        "y1": 219.0,
+        "x2": 387.6,
+        "y2": 225.0,
+        "stroke": "#19B5F2",
+        "stroke-width": 0.7
+      },
+      "source_ref": "slot.choice2.ruler.tick.03",
+      "refs": {
+        "layout_slot_id": "slot.choice2.ruler.tick.03"
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.tick.04.line",
+      "type": "line",
+      "attributes": {
+        "x1": 393.8,
+        "y1": 219.0,
+        "x2": 393.8,
+        "y2": 225.0,
+        "stroke": "#19B5F2",
+        "stroke-width": 0.7
+      },
+      "source_ref": "slot.choice2.ruler.tick.04",
+      "refs": {
+        "layout_slot_id": "slot.choice2.ruler.tick.04"
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.tick.05.line",
+      "type": "line",
+      "attributes": {
+        "x1": 400.0,
+        "y1": 219.0,
+        "x2": 400.0,
+        "y2": 228.0,
+        "stroke": "#19B5F2",
+        "stroke-width": 0.85
+      },
+      "source_ref": "slot.choice2.ruler.tick.05",
+      "refs": {
+        "layout_slot_id": "slot.choice2.ruler.tick.05"
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.tick.06.line",
+      "type": "line",
+      "attributes": {
+        "x1": 406.2,
+        "y1": 219.0,
+        "x2": 406.2,
+        "y2": 225.0,
+        "stroke": "#19B5F2",
+        "stroke-width": 0.7
+      },
+      "source_ref": "slot.choice2.ruler.tick.06",
+      "refs": {
+        "layout_slot_id": "slot.choice2.ruler.tick.06"
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.tick.07.line",
+      "type": "line",
+      "attributes": {
+        "x1": 412.4,
+        "y1": 219.0,
+        "x2": 412.4,
+        "y2": 225.0,
+        "stroke": "#19B5F2",
+        "stroke-width": 0.7
+      },
+      "source_ref": "slot.choice2.ruler.tick.07",
+      "refs": {
+        "layout_slot_id": "slot.choice2.ruler.tick.07"
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.tick.08.line",
+      "type": "line",
+      "attributes": {
+        "x1": 418.6,
+        "y1": 219.0,
+        "x2": 418.6,
+        "y2": 225.0,
+        "stroke": "#19B5F2",
+        "stroke-width": 0.7
+      },
+      "source_ref": "slot.choice2.ruler.tick.08",
+      "refs": {
+        "layout_slot_id": "slot.choice2.ruler.tick.08"
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.tick.09.line",
+      "type": "line",
+      "attributes": {
+        "x1": 424.8,
+        "y1": 219.0,
+        "x2": 424.8,
+        "y2": 225.0,
+        "stroke": "#19B5F2",
+        "stroke-width": 0.7
+      },
+      "source_ref": "slot.choice2.ruler.tick.09",
+      "refs": {
+        "layout_slot_id": "slot.choice2.ruler.tick.09"
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.tick.10.line",
+      "type": "line",
+      "attributes": {
+        "x1": 431.0,
+        "y1": 219.0,
+        "x2": 431.0,
+        "y2": 231.0,
+        "stroke": "#19B5F2",
+        "stroke-width": 1.0
+      },
+      "source_ref": "slot.choice2.ruler.tick.10",
+      "refs": {
+        "layout_slot_id": "slot.choice2.ruler.tick.10"
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.tick.11.line",
+      "type": "line",
+      "attributes": {
+        "x1": 437.2,
+        "y1": 219.0,
+        "x2": 437.2,
+        "y2": 225.0,
+        "stroke": "#19B5F2",
+        "stroke-width": 0.7
+      },
+      "source_ref": "slot.choice2.ruler.tick.11",
+      "refs": {
+        "layout_slot_id": "slot.choice2.ruler.tick.11"
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.tick.12.line",
+      "type": "line",
+      "attributes": {
+        "x1": 443.4,
+        "y1": 219.0,
+        "x2": 443.4,
+        "y2": 225.0,
+        "stroke": "#19B5F2",
+        "stroke-width": 0.7
+      },
+      "source_ref": "slot.choice2.ruler.tick.12",
+      "refs": {
+        "layout_slot_id": "slot.choice2.ruler.tick.12"
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.tick.13.line",
+      "type": "line",
+      "attributes": {
+        "x1": 449.6,
+        "y1": 219.0,
+        "x2": 449.6,
+        "y2": 225.0,
+        "stroke": "#19B5F2",
+        "stroke-width": 0.7
+      },
+      "source_ref": "slot.choice2.ruler.tick.13",
+      "refs": {
+        "layout_slot_id": "slot.choice2.ruler.tick.13"
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.tick.14.line",
+      "type": "line",
+      "attributes": {
+        "x1": 455.8,
+        "y1": 219.0,
+        "x2": 455.8,
+        "y2": 225.0,
+        "stroke": "#19B5F2",
+        "stroke-width": 0.7
+      },
+      "source_ref": "slot.choice2.ruler.tick.14",
+      "refs": {
+        "layout_slot_id": "slot.choice2.ruler.tick.14"
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.tick.15.line",
+      "type": "line",
+      "attributes": {
+        "x1": 462.0,
+        "y1": 219.0,
+        "x2": 462.0,
+        "y2": 228.0,
+        "stroke": "#19B5F2",
+        "stroke-width": 0.85
+      },
+      "source_ref": "slot.choice2.ruler.tick.15",
+      "refs": {
+        "layout_slot_id": "slot.choice2.ruler.tick.15"
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.tick.16.line",
+      "type": "line",
+      "attributes": {
+        "x1": 468.2,
+        "y1": 219.0,
+        "x2": 468.2,
+        "y2": 225.0,
+        "stroke": "#19B5F2",
+        "stroke-width": 0.7
+      },
+      "source_ref": "slot.choice2.ruler.tick.16",
+      "refs": {
+        "layout_slot_id": "slot.choice2.ruler.tick.16"
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.tick.17.line",
+      "type": "line",
+      "attributes": {
+        "x1": 474.4,
+        "y1": 219.0,
+        "x2": 474.4,
+        "y2": 225.0,
+        "stroke": "#19B5F2",
+        "stroke-width": 0.7
+      },
+      "source_ref": "slot.choice2.ruler.tick.17",
+      "refs": {
+        "layout_slot_id": "slot.choice2.ruler.tick.17"
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.tick.18.line",
+      "type": "line",
+      "attributes": {
+        "x1": 480.6,
+        "y1": 219.0,
+        "x2": 480.6,
+        "y2": 225.0,
+        "stroke": "#19B5F2",
+        "stroke-width": 0.7
+      },
+      "source_ref": "slot.choice2.ruler.tick.18",
+      "refs": {
+        "layout_slot_id": "slot.choice2.ruler.tick.18"
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.tick.19.line",
+      "type": "line",
+      "attributes": {
+        "x1": 486.8,
+        "y1": 219.0,
+        "x2": 486.8,
+        "y2": 225.0,
+        "stroke": "#19B5F2",
+        "stroke-width": 0.7
+      },
+      "source_ref": "slot.choice2.ruler.tick.19",
+      "refs": {
+        "layout_slot_id": "slot.choice2.ruler.tick.19"
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.tick.20.line",
+      "type": "line",
+      "attributes": {
+        "x1": 493.0,
+        "y1": 219.0,
+        "x2": 493.0,
+        "y2": 231.0,
+        "stroke": "#19B5F2",
+        "stroke-width": 1.0
+      },
+      "source_ref": "slot.choice2.ruler.tick.20",
+      "refs": {
+        "layout_slot_id": "slot.choice2.ruler.tick.20"
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.tick.21.line",
+      "type": "line",
+      "attributes": {
+        "x1": 499.2,
+        "y1": 219.0,
+        "x2": 499.2,
+        "y2": 225.0,
+        "stroke": "#19B5F2",
+        "stroke-width": 0.7
+      },
+      "source_ref": "slot.choice2.ruler.tick.21",
+      "refs": {
+        "layout_slot_id": "slot.choice2.ruler.tick.21"
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.tick.22.line",
+      "type": "line",
+      "attributes": {
+        "x1": 505.4,
+        "y1": 219.0,
+        "x2": 505.4,
+        "y2": 225.0,
+        "stroke": "#19B5F2",
+        "stroke-width": 0.7
+      },
+      "source_ref": "slot.choice2.ruler.tick.22",
+      "refs": {
+        "layout_slot_id": "slot.choice2.ruler.tick.22"
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.tick.23.line",
+      "type": "line",
+      "attributes": {
+        "x1": 511.6,
+        "y1": 219.0,
+        "x2": 511.6,
+        "y2": 225.0,
+        "stroke": "#19B5F2",
+        "stroke-width": 0.7
+      },
+      "source_ref": "slot.choice2.ruler.tick.23",
+      "refs": {
+        "layout_slot_id": "slot.choice2.ruler.tick.23"
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.tick.24.line",
+      "type": "line",
+      "attributes": {
+        "x1": 517.8,
+        "y1": 219.0,
+        "x2": 517.8,
+        "y2": 225.0,
+        "stroke": "#19B5F2",
+        "stroke-width": 0.7
+      },
+      "source_ref": "slot.choice2.ruler.tick.24",
+      "refs": {
+        "layout_slot_id": "slot.choice2.ruler.tick.24"
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.tick.25.line",
+      "type": "line",
+      "attributes": {
+        "x1": 524.0,
+        "y1": 219.0,
+        "x2": 524.0,
+        "y2": 228.0,
+        "stroke": "#19B5F2",
+        "stroke-width": 0.85
+      },
+      "source_ref": "slot.choice2.ruler.tick.25",
+      "refs": {
+        "layout_slot_id": "slot.choice2.ruler.tick.25"
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.tick.26.line",
+      "type": "line",
+      "attributes": {
+        "x1": 530.2,
+        "y1": 219.0,
+        "x2": 530.2,
+        "y2": 225.0,
+        "stroke": "#19B5F2",
+        "stroke-width": 0.7
+      },
+      "source_ref": "slot.choice2.ruler.tick.26",
+      "refs": {
+        "layout_slot_id": "slot.choice2.ruler.tick.26"
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.tick.27.line",
+      "type": "line",
+      "attributes": {
+        "x1": 536.4,
+        "y1": 219.0,
+        "x2": 536.4,
+        "y2": 225.0,
+        "stroke": "#19B5F2",
+        "stroke-width": 0.7
+      },
+      "source_ref": "slot.choice2.ruler.tick.27",
+      "refs": {
+        "layout_slot_id": "slot.choice2.ruler.tick.27"
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.tick.28.line",
+      "type": "line",
+      "attributes": {
+        "x1": 542.6,
+        "y1": 219.0,
+        "x2": 542.6,
+        "y2": 225.0,
+        "stroke": "#19B5F2",
+        "stroke-width": 0.7
+      },
+      "source_ref": "slot.choice2.ruler.tick.28",
+      "refs": {
+        "layout_slot_id": "slot.choice2.ruler.tick.28"
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.tick.29.line",
+      "type": "line",
+      "attributes": {
+        "x1": 548.8,
+        "y1": 219.0,
+        "x2": 548.8,
+        "y2": 225.0,
+        "stroke": "#19B5F2",
+        "stroke-width": 0.7
+      },
+      "source_ref": "slot.choice2.ruler.tick.29",
+      "refs": {
+        "layout_slot_id": "slot.choice2.ruler.tick.29"
+      }
+    },
+    {
+      "id": "slot.choice2.ruler.tick.30.line",
+      "type": "line",
+      "attributes": {
+        "x1": 555.0,
+        "y1": 219.0,
+        "x2": 555.0,
+        "y2": 231.0,
+        "stroke": "#19B5F2",
+        "stroke-width": 1.0
+      },
+      "source_ref": "slot.choice2.ruler.tick.30",
+      "refs": {
+        "layout_slot_id": "slot.choice2.ruler.tick.30"
+      }
+    },
+    {
+      "id": "slot.choice2.compass.leg.left.outer.line",
+      "type": "line",
+      "attributes": {
+        "x1": 440.68,
+        "y1": 89.64,
+        "x2": 369.0,
+        "y2": 202.36,
+        "stroke": "#42474B",
+        "stroke-width": 1.2
+      },
+      "source_ref": "slot.choice2.compass.leg.left.outer",
+      "refs": {
+        "layout_slot_id": "slot.choice2.compass.leg.left.outer"
+      }
+    },
+    {
+      "id": "slot.choice2.compass.leg.left.inner.line",
+      "type": "line",
+      "attributes": {
+        "x1": 446.08,
+        "y1": 89.64,
+        "x2": 374.4,
+        "y2": 202.36,
+        "stroke": "#C7DCE3",
+        "stroke-width": 3.0
+      },
+      "source_ref": "slot.choice2.compass.leg.left.inner",
+      "refs": {
+        "layout_slot_id": "slot.choice2.compass.leg.left.inner"
+      }
+    },
+    {
+      "id": "slot.choice2.compass.leg.right.outer.line",
+      "type": "line",
+      "attributes": {
+        "x1": 449.32,
+        "y1": 89.64,
+        "x2": 493.0,
+        "y2": 196.96,
+        "stroke": "#42474B",
+        "stroke-width": 1.2
+      },
+      "source_ref": "slot.choice2.compass.leg.right.outer",
+      "refs": {
+        "layout_slot_id": "slot.choice2.compass.leg.right.outer"
+      }
+    },
+    {
+      "id": "slot.choice2.compass.leg.right.inner.line",
+      "type": "line",
+      "attributes": {
+        "x1": 443.92,
+        "y1": 89.64,
+        "x2": 486.52,
+        "y2": 182.92000000000002,
+        "stroke": "#C7DCE3",
+        "stroke-width": 3.0
+      },
+      "source_ref": "slot.choice2.compass.leg.right.inner",
+      "refs": {
+        "layout_slot_id": "slot.choice2.compass.leg.right.inner"
+      }
+    },
+    {
+      "id": "slot.choice2.compass.bar.left.line",
+      "type": "line",
+      "attributes": {
+        "x1": 396.36,
+        "y1": 158.67040000000003,
+        "x2": 477.16,
+        "y2": 162.3112,
+        "stroke": "#6D7378",
+        "stroke-width": 1.2
+      },
+      "source_ref": "slot.choice2.compass.bar.left",
+      "refs": {
+        "layout_slot_id": "slot.choice2.compass.bar.left"
+      }
+    },
+    {
+      "id": "slot.choice2.compass.needle.tip.line",
+      "type": "line",
+      "attributes": {
+        "x1": 369.0,
+        "y1": 193.72000000000003,
+        "x2": 369.0,
+        "y2": 211.0,
+        "stroke": "#42474B",
+        "stroke-width": 1.2
+      },
+      "source_ref": "slot.choice2.compass.needle.tip",
+      "refs": {
+        "layout_slot_id": "slot.choice2.compass.needle.tip"
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.top.line",
+      "type": "line",
+      "attributes": {
+        "x1": 666.0,
+        "y1": 219.0,
+        "x2": 852.0,
+        "y2": 219.0,
+        "stroke": "#19B5F2",
+        "stroke-width": 1.1
+      },
+      "source_ref": "slot.choice3.ruler.top",
+      "refs": {
+        "layout_slot_id": "slot.choice3.ruler.top"
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.tick.00.line",
+      "type": "line",
+      "attributes": {
+        "x1": 666.0,
+        "y1": 219.0,
+        "x2": 666.0,
+        "y2": 231.0,
+        "stroke": "#19B5F2",
+        "stroke-width": 1.0
+      },
+      "source_ref": "slot.choice3.ruler.tick.00",
+      "refs": {
+        "layout_slot_id": "slot.choice3.ruler.tick.00"
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.tick.01.line",
+      "type": "line",
+      "attributes": {
+        "x1": 672.2,
+        "y1": 219.0,
+        "x2": 672.2,
+        "y2": 225.0,
+        "stroke": "#19B5F2",
+        "stroke-width": 0.7
+      },
+      "source_ref": "slot.choice3.ruler.tick.01",
+      "refs": {
+        "layout_slot_id": "slot.choice3.ruler.tick.01"
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.tick.02.line",
+      "type": "line",
+      "attributes": {
+        "x1": 678.4,
+        "y1": 219.0,
+        "x2": 678.4,
+        "y2": 225.0,
+        "stroke": "#19B5F2",
+        "stroke-width": 0.7
+      },
+      "source_ref": "slot.choice3.ruler.tick.02",
+      "refs": {
+        "layout_slot_id": "slot.choice3.ruler.tick.02"
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.tick.03.line",
+      "type": "line",
+      "attributes": {
+        "x1": 684.6,
+        "y1": 219.0,
+        "x2": 684.6,
+        "y2": 225.0,
+        "stroke": "#19B5F2",
+        "stroke-width": 0.7
+      },
+      "source_ref": "slot.choice3.ruler.tick.03",
+      "refs": {
+        "layout_slot_id": "slot.choice3.ruler.tick.03"
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.tick.04.line",
+      "type": "line",
+      "attributes": {
+        "x1": 690.8,
+        "y1": 219.0,
+        "x2": 690.8,
+        "y2": 225.0,
+        "stroke": "#19B5F2",
+        "stroke-width": 0.7
+      },
+      "source_ref": "slot.choice3.ruler.tick.04",
+      "refs": {
+        "layout_slot_id": "slot.choice3.ruler.tick.04"
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.tick.05.line",
+      "type": "line",
+      "attributes": {
+        "x1": 697.0,
+        "y1": 219.0,
+        "x2": 697.0,
+        "y2": 228.0,
+        "stroke": "#19B5F2",
+        "stroke-width": 0.85
+      },
+      "source_ref": "slot.choice3.ruler.tick.05",
+      "refs": {
+        "layout_slot_id": "slot.choice3.ruler.tick.05"
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.tick.06.line",
+      "type": "line",
+      "attributes": {
+        "x1": 703.2,
+        "y1": 219.0,
+        "x2": 703.2,
+        "y2": 225.0,
+        "stroke": "#19B5F2",
+        "stroke-width": 0.7
+      },
+      "source_ref": "slot.choice3.ruler.tick.06",
+      "refs": {
+        "layout_slot_id": "slot.choice3.ruler.tick.06"
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.tick.07.line",
+      "type": "line",
+      "attributes": {
+        "x1": 709.4,
+        "y1": 219.0,
+        "x2": 709.4,
+        "y2": 225.0,
+        "stroke": "#19B5F2",
+        "stroke-width": 0.7
+      },
+      "source_ref": "slot.choice3.ruler.tick.07",
+      "refs": {
+        "layout_slot_id": "slot.choice3.ruler.tick.07"
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.tick.08.line",
+      "type": "line",
+      "attributes": {
+        "x1": 715.6,
+        "y1": 219.0,
+        "x2": 715.6,
+        "y2": 225.0,
+        "stroke": "#19B5F2",
+        "stroke-width": 0.7
+      },
+      "source_ref": "slot.choice3.ruler.tick.08",
+      "refs": {
+        "layout_slot_id": "slot.choice3.ruler.tick.08"
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.tick.09.line",
+      "type": "line",
+      "attributes": {
+        "x1": 721.8,
+        "y1": 219.0,
+        "x2": 721.8,
+        "y2": 225.0,
+        "stroke": "#19B5F2",
+        "stroke-width": 0.7
+      },
+      "source_ref": "slot.choice3.ruler.tick.09",
+      "refs": {
+        "layout_slot_id": "slot.choice3.ruler.tick.09"
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.tick.10.line",
+      "type": "line",
+      "attributes": {
+        "x1": 728.0,
+        "y1": 219.0,
+        "x2": 728.0,
+        "y2": 231.0,
+        "stroke": "#19B5F2",
+        "stroke-width": 1.0
+      },
+      "source_ref": "slot.choice3.ruler.tick.10",
+      "refs": {
+        "layout_slot_id": "slot.choice3.ruler.tick.10"
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.tick.11.line",
+      "type": "line",
+      "attributes": {
+        "x1": 734.2,
+        "y1": 219.0,
+        "x2": 734.2,
+        "y2": 225.0,
+        "stroke": "#19B5F2",
+        "stroke-width": 0.7
+      },
+      "source_ref": "slot.choice3.ruler.tick.11",
+      "refs": {
+        "layout_slot_id": "slot.choice3.ruler.tick.11"
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.tick.12.line",
+      "type": "line",
+      "attributes": {
+        "x1": 740.4,
+        "y1": 219.0,
+        "x2": 740.4,
+        "y2": 225.0,
+        "stroke": "#19B5F2",
+        "stroke-width": 0.7
+      },
+      "source_ref": "slot.choice3.ruler.tick.12",
+      "refs": {
+        "layout_slot_id": "slot.choice3.ruler.tick.12"
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.tick.13.line",
+      "type": "line",
+      "attributes": {
+        "x1": 746.6,
+        "y1": 219.0,
+        "x2": 746.6,
+        "y2": 225.0,
+        "stroke": "#19B5F2",
+        "stroke-width": 0.7
+      },
+      "source_ref": "slot.choice3.ruler.tick.13",
+      "refs": {
+        "layout_slot_id": "slot.choice3.ruler.tick.13"
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.tick.14.line",
+      "type": "line",
+      "attributes": {
+        "x1": 752.8,
+        "y1": 219.0,
+        "x2": 752.8,
+        "y2": 225.0,
+        "stroke": "#19B5F2",
+        "stroke-width": 0.7
+      },
+      "source_ref": "slot.choice3.ruler.tick.14",
+      "refs": {
+        "layout_slot_id": "slot.choice3.ruler.tick.14"
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.tick.15.line",
+      "type": "line",
+      "attributes": {
+        "x1": 759.0,
+        "y1": 219.0,
+        "x2": 759.0,
+        "y2": 228.0,
+        "stroke": "#19B5F2",
+        "stroke-width": 0.85
+      },
+      "source_ref": "slot.choice3.ruler.tick.15",
+      "refs": {
+        "layout_slot_id": "slot.choice3.ruler.tick.15"
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.tick.16.line",
+      "type": "line",
+      "attributes": {
+        "x1": 765.2,
+        "y1": 219.0,
+        "x2": 765.2,
+        "y2": 225.0,
+        "stroke": "#19B5F2",
+        "stroke-width": 0.7
+      },
+      "source_ref": "slot.choice3.ruler.tick.16",
+      "refs": {
+        "layout_slot_id": "slot.choice3.ruler.tick.16"
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.tick.17.line",
+      "type": "line",
+      "attributes": {
+        "x1": 771.4,
+        "y1": 219.0,
+        "x2": 771.4,
+        "y2": 225.0,
+        "stroke": "#19B5F2",
+        "stroke-width": 0.7
+      },
+      "source_ref": "slot.choice3.ruler.tick.17",
+      "refs": {
+        "layout_slot_id": "slot.choice3.ruler.tick.17"
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.tick.18.line",
+      "type": "line",
+      "attributes": {
+        "x1": 777.6,
+        "y1": 219.0,
+        "x2": 777.6,
+        "y2": 225.0,
+        "stroke": "#19B5F2",
+        "stroke-width": 0.7
+      },
+      "source_ref": "slot.choice3.ruler.tick.18",
+      "refs": {
+        "layout_slot_id": "slot.choice3.ruler.tick.18"
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.tick.19.line",
+      "type": "line",
+      "attributes": {
+        "x1": 783.8,
+        "y1": 219.0,
+        "x2": 783.8,
+        "y2": 225.0,
+        "stroke": "#19B5F2",
+        "stroke-width": 0.7
+      },
+      "source_ref": "slot.choice3.ruler.tick.19",
+      "refs": {
+        "layout_slot_id": "slot.choice3.ruler.tick.19"
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.tick.20.line",
+      "type": "line",
+      "attributes": {
+        "x1": 790.0,
+        "y1": 219.0,
+        "x2": 790.0,
+        "y2": 231.0,
+        "stroke": "#19B5F2",
+        "stroke-width": 1.0
+      },
+      "source_ref": "slot.choice3.ruler.tick.20",
+      "refs": {
+        "layout_slot_id": "slot.choice3.ruler.tick.20"
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.tick.21.line",
+      "type": "line",
+      "attributes": {
+        "x1": 796.2,
+        "y1": 219.0,
+        "x2": 796.2,
+        "y2": 225.0,
+        "stroke": "#19B5F2",
+        "stroke-width": 0.7
+      },
+      "source_ref": "slot.choice3.ruler.tick.21",
+      "refs": {
+        "layout_slot_id": "slot.choice3.ruler.tick.21"
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.tick.22.line",
+      "type": "line",
+      "attributes": {
+        "x1": 802.4,
+        "y1": 219.0,
+        "x2": 802.4,
+        "y2": 225.0,
+        "stroke": "#19B5F2",
+        "stroke-width": 0.7
+      },
+      "source_ref": "slot.choice3.ruler.tick.22",
+      "refs": {
+        "layout_slot_id": "slot.choice3.ruler.tick.22"
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.tick.23.line",
+      "type": "line",
+      "attributes": {
+        "x1": 808.6,
+        "y1": 219.0,
+        "x2": 808.6,
+        "y2": 225.0,
+        "stroke": "#19B5F2",
+        "stroke-width": 0.7
+      },
+      "source_ref": "slot.choice3.ruler.tick.23",
+      "refs": {
+        "layout_slot_id": "slot.choice3.ruler.tick.23"
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.tick.24.line",
+      "type": "line",
+      "attributes": {
+        "x1": 814.8,
+        "y1": 219.0,
+        "x2": 814.8,
+        "y2": 225.0,
+        "stroke": "#19B5F2",
+        "stroke-width": 0.7
+      },
+      "source_ref": "slot.choice3.ruler.tick.24",
+      "refs": {
+        "layout_slot_id": "slot.choice3.ruler.tick.24"
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.tick.25.line",
+      "type": "line",
+      "attributes": {
+        "x1": 821.0,
+        "y1": 219.0,
+        "x2": 821.0,
+        "y2": 228.0,
+        "stroke": "#19B5F2",
+        "stroke-width": 0.85
+      },
+      "source_ref": "slot.choice3.ruler.tick.25",
+      "refs": {
+        "layout_slot_id": "slot.choice3.ruler.tick.25"
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.tick.26.line",
+      "type": "line",
+      "attributes": {
+        "x1": 827.2,
+        "y1": 219.0,
+        "x2": 827.2,
+        "y2": 225.0,
+        "stroke": "#19B5F2",
+        "stroke-width": 0.7
+      },
+      "source_ref": "slot.choice3.ruler.tick.26",
+      "refs": {
+        "layout_slot_id": "slot.choice3.ruler.tick.26"
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.tick.27.line",
+      "type": "line",
+      "attributes": {
+        "x1": 833.4,
+        "y1": 219.0,
+        "x2": 833.4,
+        "y2": 225.0,
+        "stroke": "#19B5F2",
+        "stroke-width": 0.7
+      },
+      "source_ref": "slot.choice3.ruler.tick.27",
+      "refs": {
+        "layout_slot_id": "slot.choice3.ruler.tick.27"
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.tick.28.line",
+      "type": "line",
+      "attributes": {
+        "x1": 839.6,
+        "y1": 219.0,
+        "x2": 839.6,
+        "y2": 225.0,
+        "stroke": "#19B5F2",
+        "stroke-width": 0.7
+      },
+      "source_ref": "slot.choice3.ruler.tick.28",
+      "refs": {
+        "layout_slot_id": "slot.choice3.ruler.tick.28"
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.tick.29.line",
+      "type": "line",
+      "attributes": {
+        "x1": 845.8,
+        "y1": 219.0,
+        "x2": 845.8,
+        "y2": 225.0,
+        "stroke": "#19B5F2",
+        "stroke-width": 0.7
+      },
+      "source_ref": "slot.choice3.ruler.tick.29",
+      "refs": {
+        "layout_slot_id": "slot.choice3.ruler.tick.29"
+      }
+    },
+    {
+      "id": "slot.choice3.ruler.tick.30.line",
+      "type": "line",
+      "attributes": {
+        "x1": 852.0,
+        "y1": 219.0,
+        "x2": 852.0,
+        "y2": 231.0,
+        "stroke": "#19B5F2",
+        "stroke-width": 1.0
+      },
+      "source_ref": "slot.choice3.ruler.tick.30",
+      "refs": {
+        "layout_slot_id": "slot.choice3.ruler.tick.30"
+      }
+    },
+    {
+      "id": "slot.choice3.compass.leg.left.outer.line",
+      "type": "line",
+      "attributes": {
+        "x1": 765.68,
+        "y1": 89.64,
+        "x2": 666.0,
+        "y2": 202.36,
+        "stroke": "#42474B",
+        "stroke-width": 1.2
+      },
+      "source_ref": "slot.choice3.compass.leg.left.outer",
+      "refs": {
+        "layout_slot_id": "slot.choice3.compass.leg.left.outer"
+      }
+    },
+    {
+      "id": "slot.choice3.compass.leg.left.inner.line",
+      "type": "line",
+      "attributes": {
+        "x1": 771.08,
+        "y1": 89.64,
+        "x2": 671.4,
+        "y2": 202.36,
+        "stroke": "#C7DCE3",
+        "stroke-width": 3.0
+      },
+      "source_ref": "slot.choice3.compass.leg.left.inner",
+      "refs": {
+        "layout_slot_id": "slot.choice3.compass.leg.left.inner"
+      }
+    },
+    {
+      "id": "slot.choice3.compass.leg.right.outer.line",
+      "type": "line",
+      "attributes": {
+        "x1": 774.32,
+        "y1": 89.64,
+        "x2": 852.0,
+        "y2": 196.96,
+        "stroke": "#42474B",
+        "stroke-width": 1.2
+      },
+      "source_ref": "slot.choice3.compass.leg.right.outer",
+      "refs": {
+        "layout_slot_id": "slot.choice3.compass.leg.right.outer"
+      }
+    },
+    {
+      "id": "slot.choice3.compass.leg.right.inner.line",
+      "type": "line",
+      "attributes": {
+        "x1": 768.92,
+        "y1": 89.64,
+        "x2": 845.52,
+        "y2": 182.92000000000002,
+        "stroke": "#C7DCE3",
+        "stroke-width": 3.0
+      },
+      "source_ref": "slot.choice3.compass.leg.right.inner",
+      "refs": {
+        "layout_slot_id": "slot.choice3.compass.leg.right.inner"
+      }
+    },
+    {
+      "id": "slot.choice3.compass.bar.left.line",
+      "type": "line",
+      "attributes": {
+        "x1": 703.44,
+        "y1": 158.67040000000003,
+        "x2": 824.94,
+        "y2": 162.3112,
+        "stroke": "#6D7378",
+        "stroke-width": 1.2
+      },
+      "source_ref": "slot.choice3.compass.bar.left",
+      "refs": {
+        "layout_slot_id": "slot.choice3.compass.bar.left"
+      }
+    },
+    {
+      "id": "slot.choice3.compass.needle.tip.line",
+      "type": "line",
+      "attributes": {
+        "x1": 666.0,
+        "y1": 193.72000000000003,
+        "x2": 666.0,
+        "y2": 211.0,
+        "stroke": "#42474B",
+        "stroke-width": 1.2
+      },
+      "source_ref": "slot.choice3.compass.needle.tip",
+      "refs": {
+        "layout_slot_id": "slot.choice3.compass.needle.tip"
+      }
+    },
+    {
+      "id": "slot.choice1.compass.hinge.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 139.56,
+        "cy": 81.0,
+        "r": 6.48,
+        "stroke": "#42474B",
+        "stroke-width": 1.0,
+        "fill": "#AEB4B7"
+      },
+      "source_ref": "slot.choice1.compass.hinge",
+      "refs": {
+        "layout_slot_id": "slot.choice1.compass.hinge"
+      }
+    },
+    {
+      "id": "slot.choice2.compass.hinge.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 445.0,
+        "cy": 81.0,
+        "r": 6.48,
+        "stroke": "#42474B",
+        "stroke-width": 1.0,
+        "fill": "#AEB4B7"
+      },
+      "source_ref": "slot.choice2.compass.hinge",
+      "refs": {
+        "layout_slot_id": "slot.choice2.compass.hinge"
+      }
+    },
+    {
+      "id": "slot.choice3.compass.hinge.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 770.0,
+        "cy": 81.0,
+        "r": 6.48,
+        "stroke": "#42474B",
+        "stroke-width": 1.0,
+        "fill": "#AEB4B7"
+      },
+      "source_ref": "slot.choice3.compass.hinge",
+      "refs": {
+        "layout_slot_id": "slot.choice3.compass.hinge"
+      }
+    },
+    {
+      "id": "slot.choice1.ruler.label.0.text",
+      "type": "text",
+      "attributes": {
+        "x": 74.0,
+        "y": 235.0,
+        "fill": "#333333",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 15,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.choice1.ruler.label.0",
+      "refs": {
+        "layout_slot_id": "slot.choice1.ruler.label.0"
+      },
+      "text": "0"
+    },
+    {
+      "id": "slot.choice1.ruler.label.1.text",
+      "type": "text",
+      "attributes": {
+        "x": 136.0,
+        "y": 235.0,
+        "fill": "#333333",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 15,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.choice1.ruler.label.1",
+      "refs": {
+        "layout_slot_id": "slot.choice1.ruler.label.1"
+      },
+      "text": "1"
+    },
+    {
+      "id": "slot.choice1.ruler.label.2.text",
+      "type": "text",
+      "attributes": {
+        "x": 198.0,
+        "y": 235.0,
+        "fill": "#333333",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 15,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.choice1.ruler.label.2",
+      "refs": {
+        "layout_slot_id": "slot.choice1.ruler.label.2"
+      },
+      "text": "2"
+    },
+    {
+      "id": "slot.choice1.ruler.label.3.text",
+      "type": "text",
+      "attributes": {
+        "x": 260.0,
+        "y": 235.0,
+        "fill": "#333333",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 15,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.choice1.ruler.label.3",
+      "refs": {
+        "layout_slot_id": "slot.choice1.ruler.label.3"
+      },
+      "text": "3"
+    },
+    {
+      "id": "slot.choice2.ruler.label.0.text",
+      "type": "text",
+      "attributes": {
+        "x": 369.0,
+        "y": 235.0,
+        "fill": "#333333",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 15,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.choice2.ruler.label.0",
+      "refs": {
+        "layout_slot_id": "slot.choice2.ruler.label.0"
+      },
+      "text": "0"
+    },
+    {
+      "id": "slot.choice2.ruler.label.1.text",
+      "type": "text",
+      "attributes": {
+        "x": 431.0,
+        "y": 235.0,
+        "fill": "#333333",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 15,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.choice2.ruler.label.1",
+      "refs": {
+        "layout_slot_id": "slot.choice2.ruler.label.1"
+      },
+      "text": "1"
+    },
+    {
+      "id": "slot.choice2.ruler.label.2.text",
+      "type": "text",
+      "attributes": {
+        "x": 493.0,
+        "y": 235.0,
+        "fill": "#333333",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 15,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.choice2.ruler.label.2",
+      "refs": {
+        "layout_slot_id": "slot.choice2.ruler.label.2"
+      },
+      "text": "2"
+    },
+    {
+      "id": "slot.choice2.ruler.label.3.text",
+      "type": "text",
+      "attributes": {
+        "x": 555.0,
+        "y": 235.0,
+        "fill": "#333333",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 15,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.choice2.ruler.label.3",
+      "refs": {
+        "layout_slot_id": "slot.choice2.ruler.label.3"
+      },
+      "text": "3"
+    },
+    {
+      "id": "slot.choice3.ruler.label.0.text",
+      "type": "text",
+      "attributes": {
+        "x": 666.0,
+        "y": 235.0,
+        "fill": "#333333",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 15,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.choice3.ruler.label.0",
+      "refs": {
+        "layout_slot_id": "slot.choice3.ruler.label.0"
+      },
+      "text": "0"
+    },
+    {
+      "id": "slot.choice3.ruler.label.1.text",
+      "type": "text",
+      "attributes": {
+        "x": 728.0,
+        "y": 235.0,
+        "fill": "#333333",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 15,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.choice3.ruler.label.1",
+      "refs": {
+        "layout_slot_id": "slot.choice3.ruler.label.1"
+      },
+      "text": "1"
+    },
+    {
+      "id": "slot.choice3.ruler.label.2.text",
+      "type": "text",
+      "attributes": {
+        "x": 790.0,
+        "y": 235.0,
+        "fill": "#333333",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 15,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.choice3.ruler.label.2",
+      "refs": {
+        "layout_slot_id": "slot.choice3.ruler.label.2"
+      },
+      "text": "2"
+    },
+    {
+      "id": "slot.choice3.ruler.label.3.text",
+      "type": "text",
+      "attributes": {
+        "x": 852.0,
+        "y": 235.0,
+        "fill": "#333333",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 15,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.choice3.ruler.label.3",
+      "refs": {
+        "layout_slot_id": "slot.choice3.ruler.label.3"
+      },
+      "text": "3"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

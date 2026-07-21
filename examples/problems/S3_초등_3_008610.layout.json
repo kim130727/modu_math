@@ -1,0 +1,130 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008610",
+  "title": "바르게 계산한 것을 찾아 기호를 선택해 보세요.",
+  "canvas": {
+    "width": 880,
+    "height": 340,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q.text"
+      ]
+    },
+    {
+      "id": "region.choices",
+      "role": "choices",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice.box",
+        "slot.choice.1.symbol",
+        "slot.choice.1.expr",
+        "slot.choice.2.symbol",
+        "slot.choice.2.expr"
+      ]
+    },
+    {
+      "id": "region.explanation",
+      "role": "explanation",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "바르게 계산한 것을 찾아 기호를 선택해 보세요.",
+        "style_role": "question",
+        "x": 66.0,
+        "y": 30.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice.box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 65.0,
+        "y": 75.0,
+        "width": 675.0,
+        "height": 80.0
+      }
+    },
+    {
+      "id": "slot.choice.1.symbol",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "㉠",
+        "style_role": "choice",
+        "x": 127.0,
+        "y": 125.0,
+        "font_size": 30,
+        "max_width": 750.0
+      }
+    },
+    {
+      "id": "slot.choice.1.expr",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "54 ÷ 3 = 17",
+        "style_role": "choice",
+        "x": 167.0,
+        "y": 125.0,
+        "font_size": 30,
+        "max_width": 750.0
+      }
+    },
+    {
+      "id": "slot.choice.2.symbol",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "㉡",
+        "style_role": "choice",
+        "x": 470.0,
+        "y": 125.0,
+        "font_size": 30,
+        "max_width": 750.0
+      }
+    },
+    {
+      "id": "slot.choice.2.expr",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "96 ÷ 8 = 12",
+        "style_role": "choice",
+        "x": 515.0,
+        "y": 125.0,
+        "font_size": 30,
+        "max_width": 750.0
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q.text",
+    "region.choices",
+    "slot.choice.box",
+    "slot.choice.1.symbol",
+    "slot.choice.1.expr",
+    "slot.choice.2.symbol",
+    "slot.choice.2.expr",
+    "region.explanation"
+  ]
+}

@@ -1,0 +1,109 @@
+{
+  "problem_id": "S3_초등_3_008724",
+  "problem_type": "geometry_circle_length",
+  "metadata": {
+    "title": "geometry_circle_length",
+    "tags": [],
+    "instruction": "보기에서 알맞은 답을 고르시오.",
+    "question": "점 ㄱ, 점 ㄴ은 원의 중심입니다. 선분 ㄱㄷ의 길이는 몇 cm인지 구하시오.",
+    "required_layout_ids": [
+      "slot.diagram.circle",
+      "slot.diagram.center",
+      "slot.diagram.line3",
+      "slot.diagram.line1.copy7",
+      "slot.diagram.circle.copy8",
+      "slot.diagram.center.copy9",
+      "slot.inserted.arc.1",
+      "slot.inserted.arc.1.copy12"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.big_circle",
+        "type": "circle",
+        "role": "큰 원"
+      },
+      {
+        "id": "obj.small_circle",
+        "type": "circle",
+        "role": "작은 원"
+      },
+      {
+        "id": "obj.point_g",
+        "type": "point",
+        "label": "ㄱ",
+        "role": "center"
+      },
+      {
+        "id": "obj.point_n",
+        "type": "point",
+        "label": "ㄴ",
+        "role": "center"
+      },
+      {
+        "id": "obj.point_d",
+        "type": "point",
+        "label": "ㄷ",
+        "role": "endpoint"
+      },
+      {
+        "id": "obj.len_big_radius",
+        "type": "length",
+        "value": 12,
+        "unit": "cm"
+      },
+      {
+        "id": "obj.len_small_diameter",
+        "type": "length",
+        "value": 18,
+        "unit": "cm"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.len_big_radius",
+          "obj.len_small_diameter"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.length_relation"
+        ]
+      },
+      "plan": {
+        "method": "part_sum",
+        "description": "선분 ㄱㄷ를 이루는 두 길이의 합 관계를 이용한다."
+      },
+      "execute": {
+        "expected_operations": [
+          "identify_lengths",
+          "add_parts",
+          "read_choice"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "unit_check",
+          "choice_match_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "length_of_segment",
+      "description": "선분 ㄱㄷ의 길이"
+    },
+    "value": 30,
+    "unit": "cm"
+  }
+}

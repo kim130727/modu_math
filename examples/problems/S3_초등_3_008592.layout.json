@@ -1,0 +1,363 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008592",
+  "title": "나머지가 5가 될 수 없는 식",
+  "canvas": {
+    "width": 700,
+    "height": 276,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.header",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.question"
+      ]
+    },
+    {
+      "id": "region.choices",
+      "role": "body",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice.1.box",
+        "slot.choice.2.box",
+        "slot.choice.3.box",
+        "slot.choice.4.box",
+        "slot.choice.5.box",
+        "slot.choice.1.no",
+        "slot.choice.1.div",
+        "slot.choice.1.den",
+        "slot.choice.2.no",
+        "slot.choice.2.div",
+        "slot.choice.2.den",
+        "slot.choice.3.no",
+        "slot.choice.3.div",
+        "slot.choice.3.den",
+        "slot.choice.4.no",
+        "slot.choice.4.div",
+        "slot.choice.4.den",
+        "slot.choice.5.no",
+        "slot.choice.5.div",
+        "slot.choice.5.den"
+      ]
+    },
+    {
+      "id": "region.footer",
+      "role": "answer_explanation",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.question",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "나머지가 5가 될 수 없는 식을 모두 고르세요.",
+        "style_role": "question",
+        "x": 75.0,
+        "y": 40.0,
+        "font_size": 30,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.choice.1.no",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "①",
+        "style_role": "question",
+        "x": 75.846,
+        "y": 105.0,
+        "font_size": 30,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.choice.1.box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 123.008,
+        "y": 80.0,
+        "width": 25.0,
+        "height": 25.0,
+        "stroke": "#111111",
+        "stroke_width": 1.5,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.choice.1.div",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "÷",
+        "style_role": "question",
+        "x": 161.996,
+        "y": 106.0,
+        "font_size": 30,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.choice.1.den",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "5",
+        "style_role": "question",
+        "x": 200.032,
+        "y": 103.0,
+        "font_size": 28,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.choice.2.no",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "②",
+        "style_role": "question",
+        "x": 276.994,
+        "y": 105.0,
+        "font_size": 30,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.choice.2.box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 321.0,
+        "y": 80.0,
+        "width": 24.0,
+        "height": 24.0,
+        "stroke": "#111111",
+        "stroke_width": 1.5,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.choice.2.div",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "÷",
+        "style_role": "question",
+        "x": 360.0,
+        "y": 103.0,
+        "font_size": 28,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.choice.2.den",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "4",
+        "style_role": "question",
+        "x": 396.998,
+        "y": 102.0,
+        "font_size": 28,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.choice.3.no",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "③",
+        "style_role": "question",
+        "x": 463.984,
+        "y": 104.0,
+        "font_size": 30,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.choice.3.box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 510.953,
+        "y": 80.0,
+        "width": 24.0,
+        "height": 24.0,
+        "stroke": "#111111",
+        "stroke_width": 1.5,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.choice.3.div",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "÷",
+        "style_role": "question",
+        "x": 545.953,
+        "y": 101.0,
+        "font_size": 28,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.choice.3.den",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "8",
+        "style_role": "question",
+        "x": 577.953,
+        "y": 101.0,
+        "font_size": 28,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.choice.4.no",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "④",
+        "style_role": "question",
+        "x": 75.888,
+        "y": 184.0,
+        "font_size": 30,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.choice.4.box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 122.0,
+        "y": 160.0,
+        "width": 25.0,
+        "height": 25.0,
+        "stroke": "#111111",
+        "stroke_width": 1.5,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.choice.4.div",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "÷",
+        "style_role": "question",
+        "x": 162.999,
+        "y": 184.0,
+        "font_size": 30,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.choice.4.den",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "7",
+        "style_role": "question",
+        "x": 200.032,
+        "y": 181.0,
+        "font_size": 28,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.choice.5.no",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "⑤",
+        "style_role": "question",
+        "x": 279.0,
+        "y": 183.0,
+        "font_size": 30,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.choice.5.box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 319.992,
+        "y": 158.0,
+        "width": 25.0,
+        "height": 25.0,
+        "stroke": "#111111",
+        "stroke_width": 1.5,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.choice.5.div",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "÷",
+        "style_role": "question",
+        "x": 362.0,
+        "y": 182.0,
+        "font_size": 28,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.choice.5.den",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "6",
+        "style_role": "question",
+        "x": 399.0,
+        "y": 179.0,
+        "font_size": 28,
+        "fill": "#111111"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.header",
+    "slot.question",
+    "region.choices",
+    "slot.choice.1.box",
+    "slot.choice.2.box",
+    "slot.choice.3.box",
+    "slot.choice.4.box",
+    "slot.choice.5.box",
+    "slot.choice.1.no",
+    "slot.choice.1.div",
+    "slot.choice.1.den",
+    "slot.choice.2.no",
+    "slot.choice.2.div",
+    "slot.choice.2.den",
+    "slot.choice.3.no",
+    "slot.choice.3.div",
+    "slot.choice.3.den",
+    "slot.choice.4.no",
+    "slot.choice.4.div",
+    "slot.choice.4.den",
+    "slot.choice.5.no",
+    "slot.choice.5.div",
+    "slot.choice.5.den",
+    "region.footer"
+  ]
+}

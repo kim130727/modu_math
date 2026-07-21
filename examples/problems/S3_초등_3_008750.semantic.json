@@ -1,0 +1,83 @@
+{
+  "problem_id": "S3_초등_3_008750",
+  "problem_type": "comparison_choice",
+  "metadata": {
+    "title": "들이가 더 적은 병 고르기",
+    "tags": [],
+    "question": "가 병과 나 병의 들이를 비교하여 더 적은 병을 고르는 문제",
+    "required_layout_ids": [
+      "slot.inserted.image.1"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "그림을 보고 들이가 더 적은 병을 선택한다."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.bottle_a",
+        "type": "bottle",
+        "name": "가 병"
+      },
+      {
+        "id": "obj.bottle_b",
+        "type": "bottle",
+        "name": "나 병"
+      },
+      {
+        "id": "obj.container_left",
+        "type": "container",
+        "name": "왼쪽 그릇"
+      },
+      {
+        "id": "obj.container_right",
+        "type": "container",
+        "name": "오른쪽 그릇"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.bottle_a",
+          "obj.bottle_b",
+          "obj.container_left",
+          "obj.container_right"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.compare_volume"
+        ]
+      },
+      "plan": {
+        "method": "visual_comparison",
+        "description": "같은 그릇에 옮겨 담았을 때 물 높이가 더 낮은 쪽의 들이가 더 적다고 비교한다."
+      },
+      "execute": {
+        "expected_operations": [
+          "compare_water_levels",
+          "choose_smaller_capacity_bottle"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "same_container_comparison",
+          "level_lower_means_less_volume"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "choice",
+      "description": "들이가 더 적은 병"
+    },
+    "value": 0,
+    "unit": ""
+  }
+}

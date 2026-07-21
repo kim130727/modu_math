@@ -1,0 +1,61 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008688",
+  "problem_type": "multiple_choice_circle_property",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "selected_words",
+    "target_ticks": 0,
+    "target_count": 2,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.circle",
+      "value": {
+        "type": "circle"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "selected_words"
+  },
+  "method": "circle_property_selection",
+  "plan": [
+    "원의 성질을 확인한다.",
+    "두 문장에 들어갈 알맞은 말을 고른다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "원의 지름은 여러 개 그을 수 있는가",
+      "value": "무수히 많이"
+    },
+    {
+      "id": "step.2",
+      "expr": "지름의 길이는 모두 같은가",
+      "value": "같습니다"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "원의 지름 개수와 길이 성질이 문장과 일치하는가",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "selected_words",
+      "description": "문장 괄호 안에서 알맞은 말"
+    },
+    "value": "무수히 많이, 같습니다",
+    "unit": ""
+  }
+}

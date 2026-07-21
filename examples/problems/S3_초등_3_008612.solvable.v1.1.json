@@ -1,0 +1,70 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008612",
+  "problem_type": "divisibility_judgment",
+  "inputs": {
+    "target_label": "정답 기호",
+    "unit": "",
+    "target_ticks": 1,
+    "target_count": 1,
+    "total_ticks": 0
+  },
+  "given": [
+    {
+      "ref": "obj.dividend",
+      "value": 28
+    },
+    {
+      "ref": "obj.divisor",
+      "value": 3
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "selection_symbol"
+  },
+  "method": "division_remainder_check",
+  "plan": [
+    "28 ÷ 3의 나머지를 확인해 나누어떨어짐 여부를 판단한다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "28 ÷ 3",
+      "value": {
+        "quotient": 9,
+        "remainder": 1
+      }
+    },
+    {
+      "id": "step.2",
+      "expr": "remainder == 0",
+      "value": false
+    },
+    {
+      "id": "step.3",
+      "expr": "선택 기호",
+      "value": "X"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "symbol_check",
+      "expected": "X",
+      "actual": "X",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "selection_symbol",
+      "description": "정답 기호"
+    },
+    "value": "X",
+    "unit": ""
+  }
+}

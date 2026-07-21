@@ -1,0 +1,114 @@
+{
+  "problem_id": "S3_초등_3_008722",
+  "problem_type": "도형_규칙_판단",
+  "metadata": {
+    "title": "원을 그린 규칙을 바르게 설명한 친구의 이름을 선택하세요",
+    "tags": [],
+    "instruction": "그림과 설명을 비교하여 알맞은 친구의 이름을 고른다.",
+    "question": "원을 그린 규칙을 바르게 설명한 친구의 이름을 선택하세요.",
+    "required_layout_ids": [
+      "slot.circle.l1",
+      "slot.circle.l2",
+      "slot.circle.c1",
+      "slot.circle.r2",
+      "slot.circle.r1",
+      "slot.pt.l",
+      "slot.pt.a",
+      "slot.pt.c",
+      "slot.pt.d",
+      "slot.pt.r",
+      "slot.desc_box",
+      "slot.graphpaper.v0",
+      "slot.graphpaper.v1",
+      "slot.graphpaper.v2",
+      "slot.graphpaper.v3",
+      "slot.graphpaper.v4",
+      "slot.graphpaper.v5",
+      "slot.graphpaper.v6",
+      "slot.graphpaper.v7",
+      "slot.graphpaper.v8",
+      "slot.graphpaper.v9",
+      "slot.graphpaper.v10",
+      "slot.graphpaper.v11",
+      "slot.graphpaper.v12",
+      "slot.graphpaper.v13",
+      "slot.graphpaper.v14",
+      "slot.graphpaper.v15",
+      "slot.graphpaper.v16",
+      "slot.graphpaper.h0",
+      "slot.graphpaper.h1",
+      "slot.graphpaper.h2",
+      "slot.graphpaper.h3",
+      "slot.graphpaper.h4",
+      "slot.graphpaper.h5",
+      "slot.graphpaper.h6",
+      "slot.graphpaper.h7",
+      "slot.graphpaper.h8",
+      "slot.graphpaper.h9",
+      "slot.graphpaper.h10"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.diagram",
+        "type": "circle_pattern"
+      },
+      {
+        "id": "obj.yunji_statement",
+        "type": "rule_statement",
+        "speaker": "윤지"
+      },
+      {
+        "id": "obj.sujin_statement",
+        "type": "rule_statement",
+        "speaker": "수진"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.diagram",
+          "obj.yunji_statement",
+          "obj.sujin_statement"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.compare_rules"
+        ]
+      },
+      "plan": {
+        "method": "rule_matching",
+        "description": "그림의 원 배열 규칙과 각 친구의 설명이 일치하는지 비교한다."
+      },
+      "execute": {
+        "expected_operations": [
+          "inspect_circle_spacing",
+          "compare_center_shift",
+          "compare_radius_pattern"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "statement_consistency_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "correct_friend_name",
+      "description": "원을 그린 규칙을 바르게 설명한 친구의 이름"
+    },
+    "value": "윤지",
+    "unit": ""
+  }
+}

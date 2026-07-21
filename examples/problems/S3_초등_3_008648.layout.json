@@ -1,0 +1,221 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008648",
+  "title": "그림을 보고 알맞은 말을 선택하세요",
+  "canvas": {
+    "width": 900,
+    "height": 450,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q1",
+        "slot.q2",
+        "slot.q3"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.circle",
+        "slot.line.gr",
+        "slot.line.nr",
+        "slot.line.cd",
+        "slot.center",
+        "slot.lb.g",
+        "slot.lb.n",
+        "slot.lb.d",
+        "slot.lb.r",
+        "slot.lb.d.copy2"
+      ]
+    },
+    {
+      "id": "region.explain",
+      "role": "explanation",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "그림을 보고 알맞은 말을 선택하세요.",
+        "style_role": "question",
+        "x": 40.0,
+        "y": 35.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "길이가 가장 긴 선분은 선분 ( ㄱㄹ, ㄴㄹ, ㅇㄹ )이고,",
+        "style_role": "question",
+        "x": 40.0,
+        "y": 345.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.q3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": " 이 선분을 원의 (지름, 반지름 )이라고 합니다.",
+        "style_role": "question",
+        "x": 40.0,
+        "y": 390.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.circle",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 430.0,
+        "cy": 190.0,
+        "r": 115.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.center",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 430.0,
+        "cy": 190.0,
+        "r": 5.0,
+        "fill": "#d81b60"
+      }
+    },
+    {
+      "id": "slot.lb.g",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄱ",
+        "style_role": "label",
+        "x": 375.0,
+        "y": 75.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.lb.n",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄴ",
+        "style_role": "label",
+        "x": 295.0,
+        "y": 250.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.lb.d",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄷ",
+        "style_role": "label",
+        "x": 495.0,
+        "y": 310.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.lb.r",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄹ",
+        "style_role": "label",
+        "x": 545.0,
+        "y": 155.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.line.gr",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 415.0,
+        "y1": 75.0,
+        "x2": 540.0,
+        "y2": 150.0
+      }
+    },
+    {
+      "id": "slot.line.nr",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 323.0,
+        "y1": 232.0,
+        "x2": 538.0,
+        "y2": 147.0
+      }
+    },
+    {
+      "id": "slot.line.cd",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 430.0,
+        "y1": 190.0,
+        "x2": 495.0,
+        "y2": 285.0
+      }
+    },
+    {
+      "id": "slot.lb.d.copy2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㅇ",
+        "style_role": "body",
+        "x": 415.0,
+        "y": 185.0,
+        "font_size": 30,
+        "fill": "#111111"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q1",
+    "slot.q2",
+    "slot.q3",
+    "region.diagram",
+    "slot.circle",
+    "slot.line.gr",
+    "slot.line.nr",
+    "slot.line.cd",
+    "slot.center",
+    "slot.lb.g",
+    "slot.lb.n",
+    "slot.lb.d",
+    "slot.lb.r",
+    "slot.lb.d.copy2",
+    "region.explain"
+  ]
+}

@@ -1,0 +1,216 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008672",
+  "title": "원의 반지름",
+  "canvas": {
+    "width": 700,
+    "height": 450,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.header",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.header.text"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.circle.outer",
+        "slot.line.g1",
+        "slot.line.g2",
+        "slot.line.g3",
+        "slot.pt.center",
+        "slot.lb.ga",
+        "slot.lb.na",
+        "slot.lb.da",
+        "slot.lb.ga.copy1"
+      ]
+    },
+    {
+      "id": "region.question",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q1",
+        "slot.q1.copy2"
+      ]
+    },
+    {
+      "id": "region.answer",
+      "role": "answer",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.header.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "알맞은 말을 선택해 보시오.",
+        "style_role": "question",
+        "x": 34.0,
+        "y": 32.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.circle.outer",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 376.0,
+        "cy": 180.0,
+        "r": 125.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.line.g1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 375.0,
+        "y1": 180.0,
+        "x2": 265.0,
+        "y2": 125.0
+      }
+    },
+    {
+      "id": "slot.line.g2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 375.0,
+        "y1": 180.0,
+        "x2": 445.0,
+        "y2": 285.0
+      }
+    },
+    {
+      "id": "slot.line.g3",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 375.0,
+        "y1": 180.0,
+        "x2": 465.0,
+        "y2": 95.0
+      }
+    },
+    {
+      "id": "slot.pt.center",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 375.0,
+        "cy": 180.0,
+        "r": 5.0,
+        "fill": "#d4006a"
+      }
+    },
+    {
+      "id": "slot.lb.ga",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄱ",
+        "style_role": "label",
+        "x": 235.0,
+        "y": 120.0,
+        "font_size": 20
+      }
+    },
+    {
+      "id": "slot.lb.na",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄴ",
+        "style_role": "label",
+        "x": 450.0,
+        "y": 300.0,
+        "font_size": 20
+      }
+    },
+    {
+      "id": "slot.lb.da",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄷ",
+        "style_role": "label",
+        "x": 475.0,
+        "y": 95.0,
+        "font_size": 20
+      }
+    },
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "모두 원의 (지름, 반지름, 중심)입니다.    ",
+        "style_role": "question",
+        "x": 55.0,
+        "y": 395.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.lb.ga.copy1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㅇ",
+        "style_role": "body",
+        "x": 350.0,
+        "y": 205.0,
+        "font_size": 20,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.q1.copy2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "        선분 ㄱㅇ, 선분 ㄴㅇ, 선분 ㄷㅇ은",
+        "style_role": "body",
+        "x": 55.0,
+        "y": 355.0,
+        "font_size": 30,
+        "fill": "#111111"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.header",
+    "slot.header.text",
+    "region.diagram",
+    "slot.circle.outer",
+    "slot.line.g1",
+    "slot.line.g2",
+    "slot.line.g3",
+    "slot.pt.center",
+    "slot.lb.ga",
+    "slot.lb.na",
+    "slot.lb.da",
+    "slot.lb.ga.copy1",
+    "region.question",
+    "slot.q1",
+    "slot.q1.copy2",
+    "region.answer"
+  ]
+}

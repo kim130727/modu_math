@@ -1,0 +1,105 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008623",
+  "problem_type": "multiple_choice_division",
+  "inputs": {
+    "total_ticks": 5,
+    "target_label": "②",
+    "target_ticks": 1,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.opt1",
+      "value": {
+        "expression": "11 ÷ 2"
+      }
+    },
+    {
+      "ref": "obj.opt2",
+      "value": {
+        "expression": "27 ÷ 3"
+      }
+    },
+    {
+      "ref": "obj.opt3",
+      "value": {
+        "expression": "35 ÷ 6"
+      }
+    },
+    {
+      "ref": "obj.opt4",
+      "value": {
+        "expression": "42 ÷ 5"
+      }
+    },
+    {
+      "ref": "obj.opt5",
+      "value": {
+        "expression": "66 ÷ 7"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "divisible_choice"
+  },
+  "method": "divisibility_check",
+  "plan": [
+    "각 보기의 나눗셈 결과를 확인한다.",
+    "나머지가 0인 보기를 찾는다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "11 ÷ 2",
+      "value": "5···1"
+    },
+    {
+      "id": "step.2",
+      "expr": "27 ÷ 3",
+      "value": "9"
+    },
+    {
+      "id": "step.3",
+      "expr": "35 ÷ 6",
+      "value": "5···5"
+    },
+    {
+      "id": "step.4",
+      "expr": "42 ÷ 5",
+      "value": "8···2"
+    },
+    {
+      "id": "step.5",
+      "expr": "66 ÷ 7",
+      "value": "9···3"
+    },
+    {
+      "id": "step.6",
+      "expr": "나머지가 0인 보기 선택",
+      "value": "②"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "27 ÷ 3 는 나머지가 없다",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "divisible_choice",
+      "description": "나누어떨어지는 나눗셈"
+    },
+    "value": 2,
+    "unit": ""
+  }
+}

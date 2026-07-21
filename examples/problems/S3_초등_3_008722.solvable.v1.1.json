@@ -1,0 +1,80 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008722",
+  "problem_type": "도형_규칙_판단",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "친구의 이름",
+    "target_ticks": 0,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.diagram",
+      "value": {
+        "kind": "circle_pattern"
+      }
+    },
+    {
+      "ref": "obj.yunji_statement",
+      "value": {
+        "speaker": "윤지",
+        "statement": "원의 중심이 오른쪽으로 모눈 3칸씩 옮겨 갔어."
+      }
+    },
+    {
+      "ref": "obj.sujin_statement",
+      "value": {
+        "speaker": "수진",
+        "statement": "원의 반지름이 모눈 1칸, 2칸인 원을 반복하여 겹치도록 그렸어."
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "correct_friend_name"
+  },
+  "method": "rule_matching",
+  "plan": [
+    "그림에서 원의 배치 규칙을 보고 각 설명과 맞는지 비교한다.",
+    "정확한 판정이 가능한 부분만 반영하고, 불확실한 부분은 TODO로 남긴다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "그림의 원 배치 규칙 확인",
+      "value": "TODO"
+    },
+    {
+      "id": "step.2",
+      "expr": "윤지 설명과 그림 비교",
+      "value": "TODO"
+    },
+    {
+      "id": "step.3",
+      "expr": "수진 설명과 그림 비교",
+      "value": "TODO"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "설명과 그림의 규칙이 일치하는지 비교",
+      "expected": "TODO",
+      "actual": "TODO",
+      "pass": false
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "correct_friend_name",
+      "description": "원을 그린 규칙을 바르게 설명한 친구의 이름"
+    },
+    "value": "윤지",
+    "unit": ""
+  }
+}

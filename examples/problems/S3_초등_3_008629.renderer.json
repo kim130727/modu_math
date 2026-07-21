@@ -1,0 +1,76 @@
+{
+  "problem_id": "S3_초등_3_008629",
+  "view_box": {
+    "width": 652.0,
+    "height": 260.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.prompt.text",
+      "type": "text",
+      "attributes": {
+        "x": 65.0,
+        "y": 50.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30
+      },
+      "source_ref": "slot.prompt",
+      "refs": {
+        "layout_slot_id": "slot.prompt"
+      },
+      "text": "몫이 더 작은 것을 선택하세요."
+    },
+    {
+      "id": "slot.prompt.copy1.text",
+      "type": "text",
+      "attributes": {
+        "x": 150.0,
+        "y": 125.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30
+      },
+      "source_ref": "slot.prompt.copy1",
+      "refs": {
+        "layout_slot_id": "slot.prompt.copy1"
+      },
+      "text": "96 ÷ 3"
+    },
+    {
+      "id": "slot.prompt.copy1.copy2.text",
+      "type": "text",
+      "attributes": {
+        "x": 355.0,
+        "y": 125.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30
+      },
+      "source_ref": "slot.prompt.copy1.copy2",
+      "refs": {
+        "layout_slot_id": "slot.prompt.copy1.copy2"
+      },
+      "text": "84 ÷ 2"
+    },
+    {
+      "id": "slot.compare_box.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 65.0,
+        "y": 75.0,
+        "width": 460.0,
+        "height": 75.0,
+        "fill": "none",
+        "stroke": "#EE9AD3",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.compare_box",
+      "refs": {
+        "layout_slot_id": "slot.compare_box"
+      }
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

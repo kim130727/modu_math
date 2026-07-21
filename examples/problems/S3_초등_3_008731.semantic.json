@@ -1,0 +1,113 @@
+{
+  "problem_id": "S3_초등_3_008731",
+  "problem_type": "fraction_comparison_selection",
+  "metadata": {
+    "title": "두 분수의 크기 비교",
+    "tags": [],
+    "instruction": "㉠에 들어갈 분수로 알맞은 것을 선택해 보세요.",
+    "question": "두 분수의 크기를 비교하여 더 큰 분수를 빈칸에 써넣으려고 합니다. ㉠에 들어갈 분수로 알맞은 것을 선택해 보세요.",
+    "required_layout_ids": [
+      "slot.diagram.top.box1",
+      "slot.diagram.top.box2",
+      "slot.diagram.top.box3",
+      "slot.diagram.top.box4",
+      "slot.diagram.top.box5",
+      "slot.diagram.top.box6",
+      "slot.diagram.top.box7",
+      "slot.diagram.top.line1",
+      "slot.diagram.top.line2",
+      "slot.diagram.top.line3",
+      "slot.diagram.top.line4",
+      "slot.diagram.top.line5",
+      "slot.diagram.top.line6",
+      "slot.diagram.top.line7",
+      "slot.diagram.top.line8",
+      "slot.diagram.top.line2.copy1",
+      "slot.diagram.top.line2.copy2",
+      "slot.diagram.top.line1.copy3",
+      "slot.diagram.top.line1.copy3.copy4",
+      "slot.math.fraction.bar",
+      "slot.math.fraction_1.bar",
+      "slot.math.mixed_fraction.bar",
+      "slot.math.mixed_fraction_1.bar"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.candidate_a",
+        "type": "fraction",
+        "value": "15/7"
+      },
+      {
+        "id": "obj.candidate_b",
+        "type": "fraction",
+        "value": "22/7"
+      },
+      {
+        "id": "obj.candidate_c",
+        "type": "mixed_number",
+        "value": "2 3/7"
+      },
+      {
+        "id": "obj.candidate_d",
+        "type": "mixed_number",
+        "value": "2 6/7"
+      },
+      {
+        "id": "obj.target_blank",
+        "type": "blank",
+        "label": "㉠"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.candidate_a",
+          "obj.candidate_b",
+          "obj.candidate_c",
+          "obj.candidate_d"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.compare_1",
+          "rel.compare_2",
+          "rel.equal_form"
+        ]
+      },
+      "plan": {
+        "method": "compare_values",
+        "description": "후보 분수들을 비교하여 더 큰 수를 빈칸 ㉠에 들어갈 답으로 고른다."
+      },
+      "execute": {
+        "expected_operations": [
+          "compare_fraction_pairs",
+          "interpret_mixed_number",
+          "select_largest_candidate"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "comparison_consistency_check",
+          "candidate_selection_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "fraction_selection",
+      "description": "㉠에 들어갈 분수"
+    },
+    "value": "22/7",
+    "unit": ""
+  }
+}

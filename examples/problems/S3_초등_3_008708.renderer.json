@@ -1,0 +1,107 @@
+{
+  "problem_id": "S3_초등_3_008708",
+  "view_box": {
+    "width": 960.0,
+    "height": 620.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.q1.text",
+      "type": "text",
+      "attributes": {
+        "x": 30.0,
+        "y": 65.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30
+      },
+      "source_ref": "slot.q1",
+      "refs": {
+        "layout_slot_id": "slot.q1"
+      },
+      "text": "    원의 지름을 그림과 같이 그렸습니다. 바르게 그렸으면 ○,"
+    },
+    {
+      "id": "slot.q2.text",
+      "type": "text",
+      "attributes": {
+        "x": 30.0,
+        "y": 120.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30
+      },
+      "source_ref": "slot.q2",
+      "refs": {
+        "layout_slot_id": "slot.q2"
+      },
+      "text": "틀리게 그렸으면 ×표를 선택하세요."
+    },
+    {
+      "id": "slot.top.circle.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 415.0,
+        "cy": 305.0,
+        "r": 150.0,
+        "stroke": "#222222",
+        "stroke-width": 2.0,
+        "fill": "none"
+      },
+      "source_ref": "slot.top.circle",
+      "refs": {
+        "layout_slot_id": "slot.top.circle"
+      }
+    },
+    {
+      "id": "slot.top.diameter.line",
+      "type": "line",
+      "attributes": {
+        "x1": 265.0,
+        "y1": 305.0,
+        "x2": 570.0,
+        "y2": 305.0,
+        "stroke": "#222222",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.top.diameter",
+      "refs": {
+        "layout_slot_id": "slot.top.diameter"
+      }
+    },
+    {
+      "id": "slot.top.dot1.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 420.0,
+        "cy": 285.0,
+        "r": 5.0,
+        "stroke": "#666666",
+        "stroke-width": 2.0,
+        "fill": "none"
+      },
+      "source_ref": "slot.top.dot1",
+      "refs": {
+        "layout_slot_id": "slot.top.dot1"
+      }
+    },
+    {
+      "id": "slot.top.dot2.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 417.0,
+        "cy": 305.0,
+        "r": 5.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#ff3aa7"
+      },
+      "source_ref": "slot.top.dot2",
+      "refs": {
+        "layout_slot_id": "slot.top.dot2"
+      }
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

@@ -1,0 +1,73 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008660",
+  "problem_type": "geometry_radius_selection",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "원의 반지름을 나타내는 선분",
+    "target_ticks": 0,
+    "target_count": 2,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.center",
+      "value": {
+        "label": "ㅇ"
+      }
+    },
+    {
+      "ref": "obj.radius_candidate_1",
+      "value": {
+        "label": "ㅇㄱ"
+      }
+    },
+    {
+      "ref": "obj.radius_candidate_2",
+      "value": {
+        "label": "ㅇㄴ"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "multiple_choice_labels"
+  },
+  "method": "identify_radius_by_center_and_point",
+  "plan": [
+    "원의 중심 ㅇ에서 원 위의 점으로 이어진 선분을 찾는다.",
+    "반지름에 해당하는 보기 기호를 고른다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "원의 중심 ㅇ과 원 위의 점을 잇는 선분 확인",
+      "value": "ㅇㄱ, ㅇㄴ"
+    },
+    {
+      "id": "step.2",
+      "expr": "반지름에 해당하는 보기 기호 선택",
+      "value": "가, 나"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "중심 ㅇ을 포함하고 원 위의 점까지 이어지는 선분인지 확인",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "multiple_choice_labels",
+      "description": "원의 반지름을 나타내는 선분의 보기 기호"
+    },
+    "value": "⑴  선분  ㅇㄱ, ⑵  선분  ㅇㄴ",
+    "unit": ""
+  }
+}

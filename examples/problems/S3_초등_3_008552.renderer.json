@@ -1,0 +1,156 @@
+{
+  "problem_id": "S3_초등_3_008552",
+  "view_box": {
+    "width": 750.0,
+    "height": 360.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.q.text.text",
+      "type": "text",
+      "attributes": {
+        "x": 50.0,
+        "y": 58.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q.text",
+      "refs": {
+        "layout_slot_id": "slot.q.text"
+      },
+      "text": "곱이 큰 것부터 차례대로 나열한 것을 고르세요."
+    },
+    {
+      "id": "slot.box.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 60.0,
+        "y": 88.0,
+        "width": 600.0,
+        "height": 80.0,
+        "fill": "none",
+        "stroke": "#f6b3bf",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.box",
+      "refs": {
+        "layout_slot_id": "slot.box"
+      }
+    },
+    {
+      "id": "slot.a.expr.text",
+      "type": "text",
+      "attributes": {
+        "x": 150.0,
+        "y": 138.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.a.expr",
+      "refs": {
+        "layout_slot_id": "slot.a.expr"
+      },
+      "text": "ㄱ. 7 × 56"
+    },
+    {
+      "id": "slot.b.expr.text",
+      "type": "text",
+      "attributes": {
+        "x": 300.0,
+        "y": 138.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.b.expr",
+      "refs": {
+        "layout_slot_id": "slot.b.expr"
+      },
+      "text": "ㄴ. 8 × 18"
+    },
+    {
+      "id": "slot.c.expr.text",
+      "type": "text",
+      "attributes": {
+        "x": 450.0,
+        "y": 138.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.c.expr",
+      "refs": {
+        "layout_slot_id": "slot.c.expr"
+      },
+      "text": "ㄷ. 9 × 73"
+    },
+    {
+      "id": "slot.opt1.text.text",
+      "type": "text",
+      "attributes": {
+        "x": 100.0,
+        "y": 228.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.opt1.text",
+      "refs": {
+        "layout_slot_id": "slot.opt1.text"
+      },
+      "text": "① ㄱ ㄴ ㄷ"
+    },
+    {
+      "id": "slot.opt2.text.text",
+      "type": "text",
+      "attributes": {
+        "x": 350.0,
+        "y": 228.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.opt2.text",
+      "refs": {
+        "layout_slot_id": "slot.opt2.text"
+      },
+      "text": "② ㄴ ㄱ ㄷ"
+    },
+    {
+      "id": "slot.opt3.text.text",
+      "type": "text",
+      "attributes": {
+        "x": 100.0,
+        "y": 278.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.opt3.text",
+      "refs": {
+        "layout_slot_id": "slot.opt3.text"
+      },
+      "text": "③ ㄷ ㄴ ㄱ"
+    },
+    {
+      "id": "slot.opt4.text.text",
+      "type": "text",
+      "attributes": {
+        "x": 350.0,
+        "y": 278.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.opt4.text",
+      "refs": {
+        "layout_slot_id": "slot.opt4.text"
+      },
+      "text": "④ ㄷ ㄱ ㄴ"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

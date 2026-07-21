@@ -1,0 +1,126 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008708",
+  "title": "원의 지름",
+  "canvas": {
+    "width": 960,
+    "height": 620,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q1",
+        "slot.q2"
+      ]
+    },
+    {
+      "id": "region.diagram.top",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.top.circle",
+        "slot.top.diameter",
+        "slot.top.dot1",
+        "slot.top.dot2"
+      ]
+    },
+    {
+      "id": "region.diagram.bottom",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "    원의 지름을 그림과 같이 그렸습니다. 바르게 그렸으면 ○,",
+        "style_role": "question",
+        "x": 30.0,
+        "y": 65.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "틀리게 그렸으면 ×표를 선택하세요.",
+        "style_role": "question",
+        "x": 30.0,
+        "y": 120.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.top.circle",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 415.0,
+        "cy": 305.0,
+        "r": 150.0,
+        "stroke": "#222222",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.top.diameter",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 265.0,
+        "y1": 305.0,
+        "x2": 570.0,
+        "y2": 305.0,
+        "stroke": "#222222"
+      }
+    },
+    {
+      "id": "slot.top.dot1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 420.0,
+        "cy": 285.0,
+        "r": 5.0,
+        "stroke": "#666666",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.top.dot2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 417.0,
+        "cy": 305.0,
+        "r": 5.0,
+        "fill": "#ff3aa7"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q1",
+    "slot.q2",
+    "region.diagram.top",
+    "slot.top.circle",
+    "slot.top.diameter",
+    "slot.top.dot1",
+    "slot.top.dot2",
+    "region.diagram.bottom"
+  ]
+}

@@ -1,0 +1,88 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008588",
+  "problem_type": "multiple_choice",
+  "inputs": {
+    "total_ticks": 4,
+    "target_label": "나머지가 4가 될 수 없는 식",
+    "target_ticks": 1,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.choice1",
+      "value": {
+        "divisor": 6
+      }
+    },
+    {
+      "ref": "obj.choice2",
+      "value": {
+        "divisor": 5
+      }
+    },
+    {
+      "ref": "obj.choice3",
+      "value": {
+        "divisor": 9
+      }
+    },
+    {
+      "ref": "obj.choice4",
+      "value": {
+        "divisor": 4
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "select_expression"
+  },
+  "method": "compare_divisors",
+  "plan": [
+    "보기의 나누는 수를 비교하여 나머지 4가 될 수 없는 식을 고른다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "6은 4보다 큼",
+      "value": true
+    },
+    {
+      "id": "step.2",
+      "expr": "5는 4보다 큼",
+      "value": true
+    },
+    {
+      "id": "step.3",
+      "expr": "9는 4보다 큼",
+      "value": true
+    },
+    {
+      "id": "step.4",
+      "expr": "4는 4보다 작지 않음",
+      "value": true
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "보기 중 조건에 맞지 않는 식이 하나인지 확인",
+      "expected": 1,
+      "actual": 1,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "select_expression",
+      "description": "나머지가 4가 될 수 없는 식"
+    },
+    "value": 4,
+    "unit": ""
+  }
+}

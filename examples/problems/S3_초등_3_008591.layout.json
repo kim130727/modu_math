@@ -1,0 +1,138 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008591",
+  "title": "나머지가 가장 큰 것 찾기",
+  "canvas": {
+    "width": 840,
+    "height": 320,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.qtext"
+      ]
+    },
+    {
+      "id": "region.choices",
+      "role": "body",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice.1.box",
+        "slot.choice.2.box",
+        "slot.choice.3.box",
+        "slot.choice.1.text",
+        "slot.choice.2.text",
+        "slot.choice.3.text"
+      ]
+    },
+    {
+      "id": "region.answer",
+      "role": "answer",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.qtext",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "나머지가 가장 큰 것을 찾아 선택해보세요.",
+        "style_role": "question",
+        "x": 58.0,
+        "y": 32.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice.1.box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 112.0,
+        "y": 90.0,
+        "width": 182.0,
+        "height": 80.0
+      }
+    },
+    {
+      "id": "slot.choice.1.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "583 ÷ 5",
+        "style_role": "body",
+        "x": 150.0,
+        "y": 140.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.choice.2.box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 369.0,
+        "y": 90.0,
+        "width": 182.0,
+        "height": 80.0
+      }
+    },
+    {
+      "id": "slot.choice.2.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "584 ÷ 6",
+        "style_role": "body",
+        "x": 410.0,
+        "y": 140.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.choice.3.box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 625.0,
+        "y": 90.0,
+        "width": 182.0,
+        "height": 80.0
+      }
+    },
+    {
+      "id": "slot.choice.3.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "585 ÷ 7",
+        "style_role": "body",
+        "x": 670.0,
+        "y": 140.0,
+        "font_size": 30
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.qtext",
+    "region.choices",
+    "slot.choice.1.box",
+    "slot.choice.2.box",
+    "slot.choice.3.box",
+    "slot.choice.1.text",
+    "slot.choice.2.text",
+    "slot.choice.3.text",
+    "region.answer"
+  ]
+}

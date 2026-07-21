@@ -1,0 +1,104 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008562",
+  "title": "계산 결과가 더 큰 것을 찾아 기호를 선택하세요.",
+  "canvas": {
+    "width": 670,
+    "height": 300,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.qtext"
+      ]
+    },
+    {
+      "id": "region.choices",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice_box",
+        "slot.opt1",
+        "slot.opt2"
+      ]
+    },
+    {
+      "id": "region.work",
+      "role": "supporting",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.qtext",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "계산 결과가 더 큰 것을 찾아 기호를 선택하세요.",
+        "style_role": "question",
+        "x": 89.006,
+        "y": 78.0,
+        "font_size": 28,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.choice_box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 142.006,
+        "y": 117.0,
+        "width": 430.0,
+        "height": 100.0,
+        "stroke": "#8F6ED5",
+        "stroke_width": 2.0,
+        "fill": "#FFFFFF"
+      }
+    },
+    {
+      "id": "slot.opt1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "㉠ 4 × 93",
+        "style_role": "diagram",
+        "x": 187.006,
+        "y": 182.0,
+        "font_size": 30,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.opt2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "㉡ 7 × 54",
+        "style_role": "diagram",
+        "x": 382.006,
+        "y": 182.0,
+        "font_size": 30,
+        "fill": "#111111"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.qtext",
+    "region.choices",
+    "slot.choice_box",
+    "slot.opt1",
+    "slot.opt2",
+    "region.work"
+  ]
+}

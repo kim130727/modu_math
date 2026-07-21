@@ -1,0 +1,87 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008663",
+  "problem_type": "multiple_choice_geometry",
+  "inputs": {
+    "target_label": "반지름 3 cm에 맞는 컴퍼스 폭",
+    "target_count": 1,
+    "unit": "cm"
+  },
+  "given": [
+    {
+      "ref": "obj.radius",
+      "value": {
+        "value": 3,
+        "unit": "cm"
+      }
+    },
+    {
+      "ref": "obj.choice.1",
+      "value": {
+        "spread": 1,
+        "unit": "cm"
+      }
+    },
+    {
+      "ref": "obj.choice.2",
+      "value": {
+        "spread": 2,
+        "unit": "cm"
+      }
+    },
+    {
+      "ref": "obj.choice.3",
+      "value": {
+        "spread": 3,
+        "unit": "cm"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "correct_choice"
+  },
+  "method": "compare_spread_to_radius",
+  "plan": [
+    "왼쪽부터 컴퍼스의 폭을 자의 눈금으로 확인한다.",
+    "각각 1 cm, 2 cm, 3 cm임을 비교한다.",
+    "반지름 3 cm와 같은 세 번째 그림을 고른다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "첫 번째 컴퍼스 폭 = 1 cm",
+      "value": 1
+    },
+    {
+      "id": "step.2",
+      "expr": "두 번째 컴퍼스 폭 = 2 cm",
+      "value": 2
+    },
+    {
+      "id": "step.3",
+      "expr": "세 번째 컴퍼스 폭 = 3 cm",
+      "value": 3
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "정답 보기의 컴퍼스 폭이 3 cm인가",
+      "expected": 3,
+      "actual": 3,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "correct_choice",
+      "description": "반지름 3 cm만큼 컴퍼스를 벌린 그림"
+    },
+    "value": "㉢",
+    "unit": ""
+  }
+}

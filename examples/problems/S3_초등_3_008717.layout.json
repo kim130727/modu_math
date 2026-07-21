@@ -1,0 +1,581 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008717",
+  "title": "원의 규칙을 바르게 말한 사람",
+  "canvas": {
+    "width": 940,
+    "height": 530,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.graphpaper.v0",
+        "slot.graphpaper.v1",
+        "slot.graphpaper.v2",
+        "slot.graphpaper.v3",
+        "slot.graphpaper.v4",
+        "slot.graphpaper.v5",
+        "slot.graphpaper.v6",
+        "slot.graphpaper.v7",
+        "slot.graphpaper.v8",
+        "slot.graphpaper.v9",
+        "slot.graphpaper.v10",
+        "slot.graphpaper.v11",
+        "slot.graphpaper.v12",
+        "slot.graphpaper.h0",
+        "slot.graphpaper.h1",
+        "slot.graphpaper.h2",
+        "slot.graphpaper.h3",
+        "slot.graphpaper.h4",
+        "slot.graphpaper.h5",
+        "slot.graphpaper.h6",
+        "slot.graphpaper.h7",
+        "slot.graphpaper.h8",
+        "slot.graphpaper.h9",
+        "slot.graphpaper.h10",
+        "slot.graphpaper.h11",
+        "slot.graphpaper.h12",
+        "slot.q1",
+        "slot.q2"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.circle1",
+        "slot.circle2",
+        "slot.circle3",
+        "slot.pt.center"
+      ]
+    },
+    {
+      "id": "region.statements",
+      "role": "body",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.box",
+        "slot.s1",
+        "slot.s2",
+        "slot.s3"
+      ]
+    },
+    {
+      "id": "region.answer",
+      "role": "footer",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "규칙에 따라 원을 그린 것입니다. 그린 규칙을 바르게 말한 사람을  ",
+        "style_role": "question",
+        "x": 14.0,
+        "y": 28.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "선택하세요.",
+        "style_role": "question",
+        "x": 14.0,
+        "y": 62.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.circle1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 475.0,
+        "cy": 206.0,
+        "r": 20.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.circle2",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 475.0,
+        "cy": 206.0,
+        "r": 60.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.circle3",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 475.0,
+        "cy": 206.0,
+        "r": 100.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.pt.center",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 476.0,
+        "cy": 207.0,
+        "r": 4.0,
+        "stroke": "#111111",
+        "stroke_width": 2.0,
+        "fill": "#ff4aa2"
+      }
+    },
+    {
+      "id": "slot.box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 20.0,
+        "y": 345.0,
+        "width": 885.0,
+        "height": 90.0,
+        "stroke": "#7DAA00",
+        "stroke_width": 1.4,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.s1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "정은: 원의 중심이 모두 다르고 반지름이 모두 1칸씩 늘어나게 그렸어.",
+        "style_role": "body",
+        "x": 35.0,
+        "y": 380.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.s2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "민수: 원의 중심이 모두 같고 반지름이 모두 2칸씩 늘어나게 그렸어.",
+        "style_role": "body",
+        "x": 35.0,
+        "y": 420.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.s3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "( 정은 , 민수 )",
+        "style_role": "body",
+        "x": 350.0,
+        "y": 475.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.graphpaper.v0",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 355.0,
+        "y1": 86.0,
+        "x2": 355.0,
+        "y2": 326.0,
+        "stroke": "#2563eb",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.graphpaper.v1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 375.0,
+        "y1": 86.0,
+        "x2": 375.0,
+        "y2": 326.0,
+        "stroke": "#2563eb",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.graphpaper.v2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 395.0,
+        "y1": 86.0,
+        "x2": 395.0,
+        "y2": 326.0,
+        "stroke": "#2563eb",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.graphpaper.v3",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 415.0,
+        "y1": 86.0,
+        "x2": 415.0,
+        "y2": 326.0,
+        "stroke": "#2563eb",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.graphpaper.v4",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 435.0,
+        "y1": 86.0,
+        "x2": 435.0,
+        "y2": 326.0,
+        "stroke": "#2563eb",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.graphpaper.v5",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 455.0,
+        "y1": 86.0,
+        "x2": 455.0,
+        "y2": 326.0,
+        "stroke": "#2563eb",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.graphpaper.v6",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 475.0,
+        "y1": 86.0,
+        "x2": 475.0,
+        "y2": 326.0,
+        "stroke": "#2563eb",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.graphpaper.v7",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 495.0,
+        "y1": 86.0,
+        "x2": 495.0,
+        "y2": 326.0,
+        "stroke": "#2563eb",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.graphpaper.v8",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 515.0,
+        "y1": 86.0,
+        "x2": 515.0,
+        "y2": 326.0,
+        "stroke": "#2563eb",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.graphpaper.v9",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 535.0,
+        "y1": 86.0,
+        "x2": 535.0,
+        "y2": 326.0,
+        "stroke": "#2563eb",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.graphpaper.v10",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 555.0,
+        "y1": 86.0,
+        "x2": 555.0,
+        "y2": 326.0,
+        "stroke": "#2563eb",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.graphpaper.v11",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 575.0,
+        "y1": 86.0,
+        "x2": 575.0,
+        "y2": 326.0,
+        "stroke": "#2563eb",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.graphpaper.v12",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 595.0,
+        "y1": 86.0,
+        "x2": 595.0,
+        "y2": 326.0,
+        "stroke": "#2563eb",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.graphpaper.h0",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 355.0,
+        "y1": 86.0,
+        "x2": 595.0,
+        "y2": 86.0,
+        "stroke": "#2563eb",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.graphpaper.h1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 355.0,
+        "y1": 106.0,
+        "x2": 595.0,
+        "y2": 106.0,
+        "stroke": "#2563eb",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.graphpaper.h2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 355.0,
+        "y1": 126.0,
+        "x2": 595.0,
+        "y2": 126.0,
+        "stroke": "#2563eb",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.graphpaper.h3",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 355.0,
+        "y1": 146.0,
+        "x2": 595.0,
+        "y2": 146.0,
+        "stroke": "#2563eb",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.graphpaper.h4",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 355.0,
+        "y1": 166.0,
+        "x2": 595.0,
+        "y2": 166.0,
+        "stroke": "#2563eb",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.graphpaper.h5",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 355.0,
+        "y1": 186.0,
+        "x2": 595.0,
+        "y2": 186.0,
+        "stroke": "#2563eb",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.graphpaper.h6",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 355.0,
+        "y1": 206.0,
+        "x2": 595.0,
+        "y2": 206.0,
+        "stroke": "#2563eb",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.graphpaper.h7",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 355.0,
+        "y1": 226.0,
+        "x2": 595.0,
+        "y2": 226.0,
+        "stroke": "#2563eb",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.graphpaper.h8",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 355.0,
+        "y1": 246.0,
+        "x2": 595.0,
+        "y2": 246.0,
+        "stroke": "#2563eb",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.graphpaper.h9",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 355.0,
+        "y1": 266.0,
+        "x2": 595.0,
+        "y2": 266.0,
+        "stroke": "#2563eb",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.graphpaper.h10",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 355.0,
+        "y1": 286.0,
+        "x2": 595.0,
+        "y2": 286.0,
+        "stroke": "#2563eb",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.graphpaper.h11",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 355.0,
+        "y1": 306.0,
+        "x2": 595.0,
+        "y2": 306.0,
+        "stroke": "#2563eb",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.graphpaper.h12",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 355.0,
+        "y1": 326.0,
+        "x2": 595.0,
+        "y2": 326.0,
+        "stroke": "#2563eb",
+        "stroke_width": 1.0
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.graphpaper.v0",
+    "slot.graphpaper.v1",
+    "slot.graphpaper.v2",
+    "slot.graphpaper.v3",
+    "slot.graphpaper.v4",
+    "slot.graphpaper.v5",
+    "slot.graphpaper.v6",
+    "slot.graphpaper.v7",
+    "slot.graphpaper.v8",
+    "slot.graphpaper.v9",
+    "slot.graphpaper.v10",
+    "slot.graphpaper.v11",
+    "slot.graphpaper.v12",
+    "slot.graphpaper.h0",
+    "slot.graphpaper.h1",
+    "slot.graphpaper.h2",
+    "slot.graphpaper.h3",
+    "slot.graphpaper.h4",
+    "slot.graphpaper.h5",
+    "slot.graphpaper.h6",
+    "slot.graphpaper.h7",
+    "slot.graphpaper.h8",
+    "slot.graphpaper.h9",
+    "slot.graphpaper.h10",
+    "slot.graphpaper.h11",
+    "slot.graphpaper.h12",
+    "slot.q1",
+    "slot.q2",
+    "region.diagram",
+    "slot.circle1",
+    "slot.circle2",
+    "slot.circle3",
+    "slot.pt.center",
+    "region.statements",
+    "slot.box",
+    "slot.s1",
+    "slot.s2",
+    "slot.s3",
+    "region.answer"
+  ]
+}

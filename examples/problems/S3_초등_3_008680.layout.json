@@ -1,0 +1,194 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008680",
+  "title": "원을 똑같이 둘로 나누는 선분 찾기",
+  "canvas": {
+    "width": 900,
+    "height": 343,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q1"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.circle",
+        "slot.seg.h",
+        "slot.seg.v",
+        "slot.center.dot",
+        "slot.label.center",
+        "slot.label.left",
+        "slot.label.right",
+        "slot.label.bottom"
+      ]
+    },
+    {
+      "id": "region.choice",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice"
+      ]
+    },
+    {
+      "id": "region.answer",
+      "role": "answer",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "원을 똑같이 둘로 나누는 선분을 찾아 기호를 선택하세요.",
+        "style_role": "question",
+        "x": 10.0,
+        "y": 28.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.circle",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 380.0,
+        "cy": 146.0,
+        "r": 85.0,
+        "stroke": "#222222",
+        "stroke_width": 1.8,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.seg.h",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 295.0,
+        "y1": 145.0,
+        "x2": 465.0,
+        "y2": 145.0,
+        "stroke": "#333333",
+        "stroke_width": 1.8
+      }
+    },
+    {
+      "id": "slot.seg.v",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 380.0,
+        "y1": 145.0,
+        "x2": 380.0,
+        "y2": 230.0,
+        "stroke": "#333333",
+        "stroke_width": 1.8
+      }
+    },
+    {
+      "id": "slot.center.dot",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 380.0,
+        "cy": 145.0,
+        "r": 5.0,
+        "fill": "#d61f9d"
+      }
+    },
+    {
+      "id": "slot.label.center",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㅇ",
+        "style_role": "diagram",
+        "x": 385.0,
+        "y": 130.0,
+        "font_size": 25
+      }
+    },
+    {
+      "id": "slot.label.left",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄱ",
+        "style_role": "diagram",
+        "x": 260.0,
+        "y": 160.0,
+        "font_size": 25
+      }
+    },
+    {
+      "id": "slot.label.right",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄷ",
+        "style_role": "diagram",
+        "x": 480.0,
+        "y": 160.0,
+        "font_size": 25
+      }
+    },
+    {
+      "id": "slot.label.bottom",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄴ",
+        "style_role": "diagram",
+        "x": 385.0,
+        "y": 255.0,
+        "font_size": 25
+      }
+    },
+    {
+      "id": "slot.choice",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "① 선분 ㅇㄱ      ② 선분 ㅇㄷ      ③ 선분 ㅇㄴ      ④ 선분 ㄱㄷ",
+        "style_role": "question",
+        "x": 35.0,
+        "y": 295.0,
+        "font_size": 28,
+        "fill": "#111111"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q1",
+    "region.diagram",
+    "slot.circle",
+    "slot.seg.h",
+    "slot.seg.v",
+    "slot.center.dot",
+    "slot.label.center",
+    "slot.label.left",
+    "slot.label.right",
+    "slot.label.bottom",
+    "region.choice",
+    "slot.choice",
+    "region.answer"
+  ]
+}

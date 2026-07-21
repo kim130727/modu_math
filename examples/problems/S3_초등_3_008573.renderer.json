@@ -1,0 +1,188 @@
+{
+  "problem_id": "S3_초등_3_008573",
+  "view_box": {
+    "width": 735.0,
+    "height": 325.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.q_text.text",
+      "type": "text",
+      "attributes": {
+        "x": 64.0,
+        "y": 28.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 26
+      },
+      "source_ref": "slot.q_text",
+      "refs": {
+        "layout_slot_id": "slot.q_text"
+      },
+      "text": "계산 결과가 큰 것부터 차례대로 나타낸 것을 고르세요."
+    },
+    {
+      "id": "slot.main_box.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 155.0,
+        "y": 65.0,
+        "width": 420.0,
+        "height": 130.0,
+        "fill": "#FFFFFF",
+        "stroke": "#EAB5C2",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.main_box",
+      "refs": {
+        "layout_slot_id": "slot.main_box"
+      }
+    },
+    {
+      "id": "slot.expr_g.text",
+      "type": "text",
+      "attributes": {
+        "x": 200.0,
+        "y": 110.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 25
+      },
+      "source_ref": "slot.expr_g",
+      "refs": {
+        "layout_slot_id": "slot.expr_g"
+      },
+      "text": "ㄱ 42 × 83"
+    },
+    {
+      "id": "slot.expr_n.text",
+      "type": "text",
+      "attributes": {
+        "x": 375.0,
+        "y": 105.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 25
+      },
+      "source_ref": "slot.expr_n",
+      "refs": {
+        "layout_slot_id": "slot.expr_n"
+      },
+      "text": "ㄴ 58 × 55"
+    },
+    {
+      "id": "slot.expr_d.text",
+      "type": "text",
+      "attributes": {
+        "x": 200.0,
+        "y": 160.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 25
+      },
+      "source_ref": "slot.expr_d",
+      "refs": {
+        "layout_slot_id": "slot.expr_d"
+      },
+      "text": "ㄷ 67 × 54"
+    },
+    {
+      "id": "slot.expr_r.text",
+      "type": "text",
+      "attributes": {
+        "x": 375.0,
+        "y": 155.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 25
+      },
+      "source_ref": "slot.expr_r",
+      "refs": {
+        "layout_slot_id": "slot.expr_r"
+      },
+      "text": "ㄹ 91 × 37"
+    },
+    {
+      "id": "slot.choice1.text",
+      "type": "text",
+      "attributes": {
+        "x": 96.0,
+        "y": 242.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 24
+      },
+      "source_ref": "slot.choice1",
+      "refs": {
+        "layout_slot_id": "slot.choice1"
+      },
+      "text": "① ㄱ, ㄷ, ㄴ, ㄹ"
+    },
+    {
+      "id": "slot.choice2.text",
+      "type": "text",
+      "attributes": {
+        "x": 316.0,
+        "y": 242.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 24
+      },
+      "source_ref": "slot.choice2",
+      "refs": {
+        "layout_slot_id": "slot.choice2"
+      },
+      "text": "② ㄴ, ㄱ, ㄷ, ㄹ"
+    },
+    {
+      "id": "slot.choice3.text",
+      "type": "text",
+      "attributes": {
+        "x": 536.0,
+        "y": 242.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 24
+      },
+      "source_ref": "slot.choice3",
+      "refs": {
+        "layout_slot_id": "slot.choice3"
+      },
+      "text": "③ ㄷ, ㄱ, ㄹ, ㄴ"
+    },
+    {
+      "id": "slot.choice4.text",
+      "type": "text",
+      "attributes": {
+        "x": 206.0,
+        "y": 278.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 24
+      },
+      "source_ref": "slot.choice4",
+      "refs": {
+        "layout_slot_id": "slot.choice4"
+      },
+      "text": "④ ㄷ, ㄱ, ㄴ, ㄹ"
+    },
+    {
+      "id": "slot.choice5.text",
+      "type": "text",
+      "attributes": {
+        "x": 446.0,
+        "y": 278.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 24
+      },
+      "source_ref": "slot.choice5",
+      "refs": {
+        "layout_slot_id": "slot.choice5"
+      },
+      "text": "⑤ ㄹ, ㄷ, ㄴ, ㄷ"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

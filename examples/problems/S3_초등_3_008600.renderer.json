@@ -1,0 +1,92 @@
+{
+  "problem_id": "S3_초등_3_008600",
+  "view_box": {
+    "width": 880.0,
+    "height": 366.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.choice_box.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 146.024,
+        "y": 151.0,
+        "width": 617.958,
+        "height": 80.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.choice_box",
+      "refs": {
+        "layout_slot_id": "slot.choice_box"
+      }
+    },
+    {
+      "id": "slot.question.text",
+      "type": "text",
+      "attributes": {
+        "x": 61.997,
+        "y": 65.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30
+      },
+      "source_ref": "slot.question",
+      "refs": {
+        "layout_slot_id": "slot.question"
+      },
+      "text": "몫이 다른 나눗셈식을 찾아 기호를 선택해 보세요."
+    },
+    {
+      "id": "slot.choice.a.text",
+      "type": "text",
+      "attributes": {
+        "x": 206.004,
+        "y": 196.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30
+      },
+      "source_ref": "slot.choice.a",
+      "refs": {
+        "layout_slot_id": "slot.choice.a"
+      },
+      "text": "① 39 ÷ 5"
+    },
+    {
+      "id": "slot.choice.b.text",
+      "type": "text",
+      "attributes": {
+        "x": 406.004,
+        "y": 196.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30
+      },
+      "source_ref": "slot.choice.b",
+      "refs": {
+        "layout_slot_id": "slot.choice.b"
+      },
+      "text": "② 45 ÷ 6"
+    },
+    {
+      "id": "slot.choice.c.text",
+      "type": "text",
+      "attributes": {
+        "x": 596.004,
+        "y": 196.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30
+      },
+      "source_ref": "slot.choice.c",
+      "refs": {
+        "layout_slot_id": "slot.choice.c"
+      },
+      "text": "③ 62 ÷ 9"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

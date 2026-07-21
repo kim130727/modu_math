@@ -1,0 +1,320 @@
+{
+  "problem_id": "S3_초등_3_008729",
+  "view_box": {
+    "width": 840.0,
+    "height": 300.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.math.fraction.bar.line",
+      "type": "line",
+      "attributes": {
+        "x1": 180.0,
+        "y1": 205.0,
+        "x2": 220.0,
+        "y2": 205.0,
+        "stroke": "#222222",
+        "stroke-width": 2.2
+      },
+      "source_ref": "slot.math.fraction.bar",
+      "refs": {
+        "layout_slot_id": "slot.math.fraction.bar"
+      }
+    },
+    {
+      "id": "slot.title.text",
+      "type": "text",
+      "attributes": {
+        "x": 80.0,
+        "y": 28.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.title",
+      "refs": {
+        "layout_slot_id": "slot.title"
+      },
+      "text": "그림을 보고 알맞은 말을 선택하세요."
+    },
+    {
+      "id": "slot.math.fraction.num.text",
+      "type": "text",
+      "attributes": {
+        "x": 200.0,
+        "y": 190.0,
+        "fill": "#222222",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.math.fraction.num",
+      "refs": {
+        "layout_slot_id": "slot.math.fraction.num"
+      },
+      "text": "1"
+    },
+    {
+      "id": "slot.math.fraction.den.text",
+      "type": "text",
+      "attributes": {
+        "x": 200.0,
+        "y": 230.0,
+        "fill": "#222222",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.math.fraction.den",
+      "refs": {
+        "layout_slot_id": "slot.math.fraction.den"
+      },
+      "text": "3"
+    },
+    {
+      "id": "slot.card.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 85.0,
+        "y": 65.0,
+        "width": 615.0,
+        "height": 80.0,
+        "fill": "none",
+        "stroke": "#ffa4c0",
+        "stroke-width": 2.0,
+        "rx": 12.0,
+        "ry": 12.0
+      },
+      "source_ref": "slot.card",
+      "refs": {
+        "layout_slot_id": "slot.card"
+      }
+    },
+    {
+      "id": "slot.bead.1.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 125.0,
+        "cy": 107.0,
+        "r": 18.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#43c16f"
+      },
+      "source_ref": "slot.bead.1",
+      "refs": {
+        "layout_slot_id": "slot.bead.1"
+      }
+    },
+    {
+      "id": "slot.bead.2.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 173.0,
+        "cy": 107.0,
+        "r": 18.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#43c16f"
+      },
+      "source_ref": "slot.bead.2",
+      "refs": {
+        "layout_slot_id": "slot.bead.2"
+      }
+    },
+    {
+      "id": "slot.bead.3.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 221.0,
+        "cy": 107.0,
+        "r": 18.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#43c16f"
+      },
+      "source_ref": "slot.bead.3",
+      "refs": {
+        "layout_slot_id": "slot.bead.3"
+      }
+    },
+    {
+      "id": "slot.bead.4.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 269.0,
+        "cy": 107.0,
+        "r": 18.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#43c16f"
+      },
+      "source_ref": "slot.bead.4",
+      "refs": {
+        "layout_slot_id": "slot.bead.4"
+      }
+    },
+    {
+      "id": "slot.bead.5.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 317.0,
+        "cy": 107.0,
+        "r": 18.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#f7a8b4"
+      },
+      "source_ref": "slot.bead.5",
+      "refs": {
+        "layout_slot_id": "slot.bead.5"
+      }
+    },
+    {
+      "id": "slot.bead.6.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 365.0,
+        "cy": 107.0,
+        "r": 18.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#f7a8b4"
+      },
+      "source_ref": "slot.bead.6",
+      "refs": {
+        "layout_slot_id": "slot.bead.6"
+      }
+    },
+    {
+      "id": "slot.bead.7.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 413.0,
+        "cy": 107.0,
+        "r": 18.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#f7a8b4"
+      },
+      "source_ref": "slot.bead.7",
+      "refs": {
+        "layout_slot_id": "slot.bead.7"
+      }
+    },
+    {
+      "id": "slot.bead.8.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 461.0,
+        "cy": 107.0,
+        "r": 18.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#f7a8b4"
+      },
+      "source_ref": "slot.bead.8",
+      "refs": {
+        "layout_slot_id": "slot.bead.8"
+      }
+    },
+    {
+      "id": "slot.bead.9.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 509.0,
+        "cy": 107.0,
+        "r": 18.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#f7a8b4"
+      },
+      "source_ref": "slot.bead.9",
+      "refs": {
+        "layout_slot_id": "slot.bead.9"
+      }
+    },
+    {
+      "id": "slot.bead.10.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 557.0,
+        "cy": 107.0,
+        "r": 18.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#f7a8b4"
+      },
+      "source_ref": "slot.bead.10",
+      "refs": {
+        "layout_slot_id": "slot.bead.10"
+      }
+    },
+    {
+      "id": "slot.bead.11.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 605.0,
+        "cy": 107.0,
+        "r": 18.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#f7a8b4"
+      },
+      "source_ref": "slot.bead.11",
+      "refs": {
+        "layout_slot_id": "slot.bead.11"
+      }
+    },
+    {
+      "id": "slot.bead.12.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 653.0,
+        "cy": 107.0,
+        "r": 18.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#f7a8b4"
+      },
+      "source_ref": "slot.bead.12",
+      "refs": {
+        "layout_slot_id": "slot.bead.12"
+      }
+    },
+    {
+      "id": "slot.stem.text",
+      "type": "text",
+      "attributes": {
+        "x": 110.0,
+        "y": 215.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.stem",
+      "refs": {
+        "layout_slot_id": "slot.stem"
+      },
+      "text": "12의"
+    },
+    {
+      "id": "slot.stem.copy1.text",
+      "type": "text",
+      "attributes": {
+        "x": 235.0,
+        "y": 215.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.stem.copy1",
+      "refs": {
+        "layout_slot_id": "slot.stem.copy1"
+      },
+      "text": "은 (초록색, 분홍색) 구슬입니다."
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

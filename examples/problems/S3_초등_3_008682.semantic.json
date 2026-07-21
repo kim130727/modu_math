@@ -1,0 +1,145 @@
+{
+  "problem_id": "S3_초등_3_008682",
+  "problem_type": "geometry_construction_term_selection",
+  "metadata": {
+    "title": "알맞은 말 선택하기",
+    "tags": [
+      "geometry",
+      "circle",
+      "grid",
+      "term_selection"
+    ],
+    "question": "주어진 모양과 똑같은 그림을 그리는 방법에서 알맞은 말을 선택한다.",
+    "required_layout_ids": [
+      "slot.grid.left.frame",
+      "slot.grid.left.v1",
+      "slot.grid.left.h1",
+      "slot.grid.left.v2",
+      "slot.grid.left.h2",
+      "slot.grid.left.v3",
+      "slot.grid.left.h3",
+      "slot.grid.left.v4",
+      "slot.grid.left.h4",
+      "slot.grid.left.v5",
+      "slot.grid.left.h5",
+      "slot.grid.left.v6",
+      "slot.grid.left.h6",
+      "slot.grid.left.v7",
+      "slot.grid.left.h7",
+      "slot.left.outer_circle",
+      "slot.left.inner_circle_1",
+      "slot.left.inner_circle_2",
+      "slot.arrow",
+      "slot.grid.right.frame",
+      "slot.grid.right.v1",
+      "slot.grid.right.h1",
+      "slot.grid.right.v2",
+      "slot.grid.right.h2",
+      "slot.grid.right.v3",
+      "slot.grid.right.h3",
+      "slot.grid.right.v4",
+      "slot.grid.right.h4",
+      "slot.grid.right.v5",
+      "slot.grid.right.h5",
+      "slot.grid.right.v6",
+      "slot.grid.right.h6",
+      "slot.grid.right.v7",
+      "slot.grid.right.h7",
+      "slot.boy.bubble",
+      "slot.boy.tail",
+      "slot.boy.person.body",
+      "slot.boy.person.head",
+      "slot.boy.person.hair.cap",
+      "slot.boy.person.eye.left",
+      "slot.boy.person.eye.right",
+      "slot.boy.person.smile",
+      "slot.name.boy.box",
+      "slot.girl.bubble",
+      "slot.girl.tail",
+      "slot.girl.person.body",
+      "slot.girl.person.head",
+      "slot.girl.person.hair.cap",
+      "slot.girl.person.eye.left",
+      "slot.girl.person.eye.right",
+      "slot.girl.person.smile",
+      "slot.girl.person.tail.left",
+      "slot.girl.person.tail.right",
+      "slot.girl.person.bow.left",
+      "slot.girl.person.bow.right",
+      "slot.name.girl.box"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "큰 원의 반지름을 무엇으로 하는 작은 원을 그리는지 고른다."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.large_circle",
+        "type": "circle",
+        "radius_cells": 4
+      },
+      {
+        "id": "obj.small_circle.left",
+        "type": "circle",
+        "radius_cells": 2
+      },
+      {
+        "id": "obj.small_circle.right",
+        "type": "circle",
+        "radius_cells": 2
+      }
+    ],
+    "relations": [
+      {
+        "id": "rel.small_diameter_equals_large_radius",
+        "type": "equals",
+        "from_id": "obj.small_circle.left",
+        "to_id": "obj.large_circle",
+        "left": "small circle diameter",
+        "right": "large circle radius"
+      }
+    ],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.large_circle",
+          "obj.small_circle.left",
+          "obj.small_circle.right"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.small_diameter_equals_large_radius"
+        ]
+      },
+      "plan": {
+        "method": "term_matching",
+        "description": "큰 원의 반지름은 4칸이고 작은 원의 지름도 4칸이므로, 작은 원은 큰 원의 반지름을 지름으로 하여 그린 것이다."
+      },
+      "execute": {
+        "expected_operations": [
+          "compare_grid_radius",
+          "select_matching_term"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "grid_cell_count_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "selected_term",
+      "description": "지름과 반지름 중 알맞은 말"
+    },
+    "value": "지름",
+    "unit": ""
+  }
+}

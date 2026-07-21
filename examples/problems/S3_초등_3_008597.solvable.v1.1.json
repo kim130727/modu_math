@@ -1,0 +1,122 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008597",
+  "problem_type": "multiple_choice_divisibility",
+  "inputs": {
+    "total_ticks": 5,
+    "target_label": "4로 나누어떨어지는 수가 아닌 보기",
+    "target_ticks": 2,
+    "target_count": 2,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.divisor",
+      "value": 4
+    },
+    {
+      "ref": "obj.choice_1",
+      "value": 28
+    },
+    {
+      "ref": "obj.choice_2",
+      "value": 56
+    },
+    {
+      "ref": "obj.choice_3",
+      "value": 84
+    },
+    {
+      "ref": "obj.choice_4",
+      "value": 62
+    },
+    {
+      "ref": "obj.choice_5",
+      "value": 70
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "multiple_choice_selection"
+  },
+  "method": "divisibility_check",
+  "plan": [
+    "각 보기의 수를 4로 나누어 나머지가 있는지 확인한다.",
+    "나누어떨어지지 않는 보기를 고른다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "28 ÷ 4",
+      "value": 7
+    },
+    {
+      "id": "step.2",
+      "expr": "56 ÷ 4",
+      "value": 14
+    },
+    {
+      "id": "step.3",
+      "expr": "84 ÷ 4",
+      "value": 21
+    },
+    {
+      "id": "step.4",
+      "expr": "62 ÷ 4",
+      "value": "15··2"
+    },
+    {
+      "id": "step.5",
+      "expr": "70 ÷ 4",
+      "value": "17··2"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "28 is divisible by 4",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "id": "check.2",
+      "expr": "56 is divisible by 4",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "id": "check.3",
+      "expr": "84 is divisible by 4",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "id": "check.4",
+      "expr": "62 is divisible by 4",
+      "expected": false,
+      "actual": false,
+      "pass": true
+    },
+    {
+      "id": "check.5",
+      "expr": "70 is divisible by 4",
+      "expected": false,
+      "actual": false,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "multiple_choice_selection",
+      "description": "4로 나누어떨어지는 수가 아닌 보기"
+    },
+    "value": 2,
+    "unit": ""
+  }
+}

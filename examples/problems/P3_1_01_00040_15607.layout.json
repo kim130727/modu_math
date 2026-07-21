@@ -1,0 +1,49 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "P3_1_01_00040_15607",
+  "title": "처음 주차장에 있던 차의 수",
+  "canvas": {
+    "width": 900,
+    "height": 180,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "vertical",
+      "slot_ids": [
+        "slot.question"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.question",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "주차장에 있던 차 중에서 146대가 나가고 231대가 남았습니다. 처음 주차장에 있던 차는 모두 몇 대입니까?",
+        "style_role": "body",
+        "x": 20.0,
+        "y": 18.0,
+        "width": 860.0,
+        "height": 69,
+        "align": "left",
+        "valign": "top",
+        "font_size": 21,
+        "font_family": "Noto Sans KR",
+        "line_height": 1.45,
+        "fill": "#202124"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.question"
+  ]
+}

@@ -1,0 +1,93 @@
+{
+  "problem_id": "S3_초등_3_008645",
+  "problem_type": "circle_diameter_comparison",
+  "metadata": {
+    "title": "원의 지름",
+    "tags": [],
+    "instruction": "한 원에서 원의 지름은 모두 (같습니다, 다릅니다).",
+    "question": "지름을 나타내는 선분을 찾아 길이를 잰 값을 보고, 맞는 말을 선택해 보세요.",
+    "required_layout_ids": [
+      "slot.circle.outer",
+      "slot.circle.center",
+      "slot.line.gm",
+      "slot.line.nb",
+      "slot.line.ls",
+      "slot.line.d",
+      "slot.table.outer",
+      "slot.table.v1",
+      "slot.table.v2",
+      "slot.table.v3",
+      "slot.table.h1"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.circle",
+        "type": "circle"
+      },
+      {
+        "id": "obj.segment.gm",
+        "type": "segment",
+        "label": "ㄱㅁ"
+      },
+      {
+        "id": "obj.segment.nb",
+        "type": "segment",
+        "label": "ㄴㅂ"
+      },
+      {
+        "id": "obj.segment.ls",
+        "type": "segment",
+        "label": "ㄹㅅ"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.circle",
+          "obj.segment.gm",
+          "obj.segment.nb",
+          "obj.segment.ls"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.diameter_candidates",
+          "rel.diameter_candidates_2",
+          "rel.diameter_candidates_3"
+        ]
+      },
+      "plan": {
+        "method": "property_check",
+        "description": "원의 중심을 지나며 원 위의 두 점을 잇는 선분이 지름인지 확인한다."
+      },
+      "execute": {
+        "expected_operations": [
+          "identify_diameter_candidates",
+          "compare_diameter_property"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "property_consistency_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "multiple_choice_completion",
+      "description": "한 원에서 원의 지름은 모두 (같습니다, 다릅니다)."
+    },
+    "value": "같습니다",
+    "unit": ""
+  }
+}

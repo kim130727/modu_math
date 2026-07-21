@@ -1,0 +1,243 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008669",
+  "title": "원의 중심과 반지름",
+  "canvas": {
+    "width": 960,
+    "height": 500,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice_box",
+        "slot.choice.a.outer",
+        "slot.choice.a.left",
+        "slot.choice.a.right",
+        "slot.choice.b.outer",
+        "slot.choice.b.middle",
+        "slot.choice.b.inner",
+        "slot.choice.c.outer",
+        "slot.choice.c.inner",
+        "slot.choice.b.inner.copy1",
+        "slot.q1",
+        "slot.q1.copy2",
+        "slot.q1.copy2.copy3",
+        "slot.q1.copy2.copy3.copy4",
+        "slot.q1.copy2.copy3.copy5"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "    원의 중심을 옮기지 않고 반지름만 다르게 하여 그린 것을 찾아",
+        "style_role": "question",
+        "x": 20.0,
+        "y": 75.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.choice_box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 75.0,
+        "y": 195.0,
+        "width": 690.0,
+        "height": 130.0,
+        "stroke": "#A89BEA",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.choice.a.outer",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 240.0,
+        "cy": 263.0,
+        "r": 50.0,
+        "stroke": "#333333",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.choice.a.left",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 215.0,
+        "cy": 264.0,
+        "r": 25.0,
+        "stroke": "#333333",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.choice.a.right",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 264.0,
+        "cy": 264.0,
+        "r": 25.0,
+        "stroke": "#333333",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.choice.b.outer",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 435.0,
+        "cy": 265.0,
+        "r": 45.0,
+        "stroke": "#333333",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.choice.b.middle",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 435.0,
+        "cy": 265.0,
+        "r": 30.0,
+        "stroke": "#333333",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.choice.b.inner",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 435.0,
+        "cy": 265.0,
+        "r": 15.0,
+        "stroke": "#333333",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.choice.c.outer",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 620.0,
+        "cy": 260.0,
+        "r": 45.0,
+        "stroke": "#333333",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.choice.c.inner",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 620.0,
+        "cy": 275.0,
+        "r": 30.0,
+        "stroke": "#333333",
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.choice.b.inner.copy1",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 620.0,
+        "cy": 290.0,
+        "r": 15.0,
+        "stroke": "#333333",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.q1.copy2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "   선택하세요.    ",
+        "style_role": "body",
+        "x": 20.0,
+        "y": 125.0,
+        "font_size": 30,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.q1.copy2.copy3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "㉠",
+        "style_role": "body",
+        "x": 140.0,
+        "y": 235.0,
+        "font_size": 30,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.q1.copy2.copy3.copy4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "㉡",
+        "style_role": "body",
+        "x": 340.0,
+        "y": 235.0,
+        "font_size": 30,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.q1.copy2.copy3.copy5",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "㉢",
+        "style_role": "body",
+        "x": 525.0,
+        "y": 235.0,
+        "font_size": 30,
+        "fill": "#111111"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.choice_box",
+    "slot.choice.a.outer",
+    "slot.choice.a.left",
+    "slot.choice.a.right",
+    "slot.choice.b.outer",
+    "slot.choice.b.middle",
+    "slot.choice.b.inner",
+    "slot.choice.c.outer",
+    "slot.choice.c.inner",
+    "slot.choice.b.inner.copy1",
+    "slot.q1",
+    "slot.q1.copy2",
+    "slot.q1.copy2.copy3",
+    "slot.q1.copy2.copy3.copy4",
+    "slot.q1.copy2.copy3.copy5"
+  ]
+}

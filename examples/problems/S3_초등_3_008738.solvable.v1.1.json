@@ -1,0 +1,112 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008738",
+  "problem_type": "fraction_classification",
+  "inputs": {
+    "total_ticks": 4,
+    "target_label": "진분수인 재료",
+    "target_ticks": 2,
+    "target_count": 2,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.bluberry",
+      "value": "블루베리"
+    },
+    {
+      "ref": "obj.water",
+      "value": "물"
+    },
+    {
+      "ref": "obj.milk",
+      "value": "우유"
+    },
+    {
+      "ref": "obj.honey",
+      "value": "꿀"
+    },
+    {
+      "ref": "obj.f1",
+      "value": "7/4"
+    },
+    {
+      "ref": "obj.f2",
+      "value": "5/5"
+    },
+    {
+      "ref": "obj.f3",
+      "value": "7/9"
+    },
+    {
+      "ref": "obj.f4",
+      "value": "6/13"
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "selected_ingredients"
+  },
+  "method": "fraction_classification",
+  "plan": [
+    "각 분수의 분자와 분모를 비교한다.",
+    "분자가 분모보다 작은 재료를 진분수로 분류한다.",
+    "진분수인 재료를 모두 고른다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "7/4",
+      "value": "가분수"
+    },
+    {
+      "id": "step.2",
+      "expr": "5/5",
+      "value": "가분수"
+    },
+    {
+      "id": "step.3",
+      "expr": "7/9",
+      "value": "진분수"
+    },
+    {
+      "id": "step.4",
+      "expr": "6/13",
+      "value": "진분수"
+    },
+    {
+      "id": "step.5",
+      "expr": "진분수에 해당하는 재료 선택",
+      "value": [
+        "우유",
+        "꿀"
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "선택한 재료가 진분수에 해당하는가",
+      "expected": [
+        "우유",
+        "꿀"
+      ],
+      "actual": [
+        "우유",
+        "꿀"
+      ],
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "selected_ingredients",
+      "description": "진분수인 재료"
+    },
+    "value": "우유, 꿀",
+    "unit": ""
+  }
+}

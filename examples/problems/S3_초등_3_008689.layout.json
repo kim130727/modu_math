@@ -1,0 +1,257 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008689",
+  "title": "원의 반지름과 지름",
+  "canvas": {
+    "width": 960,
+    "height": 392,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.inserted.arc.1",
+        "slot.inserted.arc.1.copy5",
+        "slot.inserted.arc.1.copy6",
+        "slot.q1",
+        "slot.q1.copy6"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.circle.outer",
+        "slot.line.a",
+        "slot.line.c",
+        "slot.pt.center",
+        "slot.lb.o",
+        "slot.lb.ga",
+        "slot.lb.na",
+        "slot.lb.da"
+      ]
+    },
+    {
+      "id": "region.choice",
+      "role": "choice",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice"
+      ]
+    },
+    {
+      "id": "region.answer",
+      "role": "answer",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "        원의 반지름과 지름을 나타내는 선분을 각각 찾아      ",
+        "style_role": "question",
+        "x": 65.0,
+        "y": 40.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.circle.outer",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 390.0,
+        "cy": 235.0,
+        "r": 105.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.line.a",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 315.0,
+        "y1": 160.0,
+        "x2": 310.0,
+        "y2": 305.0
+      }
+    },
+    {
+      "id": "slot.line.c",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 470.0,
+        "y1": 165.0,
+        "x2": 310.0,
+        "y2": 305.0
+      }
+    },
+    {
+      "id": "slot.pt.center",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 390.0,
+        "cy": 235.0,
+        "r": 5.0,
+        "fill": "#d81b60"
+      }
+    },
+    {
+      "id": "slot.lb.o",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㅇ",
+        "style_role": "label",
+        "x": 400.0,
+        "y": 245.0,
+        "font_size": 20,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.lb.ga",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄱ",
+        "style_role": "label",
+        "x": 330.0,
+        "y": 235.0,
+        "font_size": 25,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.lb.na",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄴ",
+        "style_role": "label",
+        "x": 400.0,
+        "y": 280.0,
+        "font_size": 25,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.lb.da",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄷ",
+        "style_role": "label",
+        "x": 390.0,
+        "y": 180.0,
+        "font_size": 25,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.choice",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "원의 반지름 ( ㄱ , ㄴ , ㄷ ), 원의 지름 ( ㄱ , ㄴ , ㄷ )",
+        "style_role": "question",
+        "x": 60.0,
+        "y": 380.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.q1.copy6",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "기호를 선택해       보세요      ",
+        "style_role": "body",
+        "x": 65.0,
+        "y": 85.0,
+        "font_size": 30,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.inserted.arc.1",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 250 235 A 70 20 0 0 1 385 235",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#111827",
+        "stroke_width": 1.5,
+        "stroke_dasharray": "10 6",
+        "fill": "#ffffff",
+        "transform": "rotate(90 317.5 231.32)"
+      }
+    },
+    {
+      "id": "slot.inserted.arc.1.copy5",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 375 207 A 45 20 0 0 1 475 207",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#111827",
+        "stroke_width": 1.5,
+        "stroke_dasharray": "10 6",
+        "fill": "#ffffff",
+        "transform": "rotate(-40 418 199)"
+      }
+    },
+    {
+      "id": "slot.inserted.arc.1.copy6",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 290 250 A 105 30 0 0 1 495 250",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#111827",
+        "stroke_width": 1.5,
+        "stroke_dasharray": "10 6",
+        "fill": "#ffffff",
+        "transform": "rotate(-220 392.5 242.17)"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.inserted.arc.1",
+    "slot.inserted.arc.1.copy5",
+    "slot.inserted.arc.1.copy6",
+    "slot.q1",
+    "slot.q1.copy6",
+    "region.diagram",
+    "slot.circle.outer",
+    "slot.line.a",
+    "slot.line.c",
+    "slot.pt.center",
+    "slot.lb.o",
+    "slot.lb.ga",
+    "slot.lb.na",
+    "slot.lb.da",
+    "region.choice",
+    "slot.choice",
+    "region.answer"
+  ]
+}

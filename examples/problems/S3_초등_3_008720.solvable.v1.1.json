@@ -1,0 +1,62 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008720",
+  "problem_type": "selection_geometry",
+  "inputs": {
+    "total_ticks": 5,
+    "target_label": "가장 작은 원을 그리기 위한 구멍",
+    "target_ticks": 1,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.tool.pin",
+      "value": {
+        "name": "누름 못"
+      }
+    },
+    {
+      "ref": "obj.options",
+      "value": {
+        "count": 5
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "choice_symbol"
+  },
+  "method": "compare_distance",
+  "plan": [
+    "누름 못과 각 구멍의 상대적 거리를 비교한다.",
+    "누름 못에 가장 가까운 구멍을 선택한다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "구멍들의 위치를 비교한다",
+      "value": "왼쪽에서 오른쪽으로 배열된 선택지 중 가장 왼쪽 구멍이 누름 못에 가장 가깝다"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "가까울수록 원이 작아진다는 해설과 선택이 일치하는가",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "choice_symbol",
+      "description": "가장 작은 원을 그리기 위한 구멍의 기호"
+    },
+    "value": "ㄱ",
+    "unit": ""
+  }
+}

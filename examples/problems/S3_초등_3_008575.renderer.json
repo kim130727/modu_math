@@ -1,0 +1,269 @@
+{
+  "problem_id": "S3_초등_3_008575",
+  "view_box": {
+    "width": 900.0,
+    "height": 420.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.hl.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 434.496,
+        "y": 187.0,
+        "width": 148.504,
+        "height": 40.0,
+        "fill": "#efc8b9",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.hl",
+      "refs": {
+        "layout_slot_id": "slot.hl"
+      }
+    },
+    {
+      "id": "slot.choice.box.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 40.0,
+        "y": 335.0,
+        "width": 835.0,
+        "height": 75.0,
+        "fill": "none",
+        "stroke": "#D8A100",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.choice.box",
+      "refs": {
+        "layout_slot_id": "slot.choice.box"
+      }
+    },
+    {
+      "id": "slot.bar1.line",
+      "type": "line",
+      "attributes": {
+        "x1": 415.0,
+        "y1": 140.0,
+        "x2": 585.0,
+        "y2": 140.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.bar1",
+      "refs": {
+        "layout_slot_id": "slot.bar1"
+      }
+    },
+    {
+      "id": "slot.bar2.line",
+      "type": "line",
+      "attributes": {
+        "x1": 415.0,
+        "y1": 270.0,
+        "x2": 585.0,
+        "y2": 270.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.bar2",
+      "refs": {
+        "layout_slot_id": "slot.bar2"
+      }
+    },
+    {
+      "id": "slot.q.text.text",
+      "type": "text",
+      "attributes": {
+        "x": 40.0,
+        "y": 40.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 36
+      },
+      "source_ref": "slot.q.text",
+      "refs": {
+        "layout_slot_id": "slot.q.text"
+      },
+      "text": "색칠된 부분은 실제 어떤 수의 곱인지를 찾아 선택하세요."
+    },
+    {
+      "id": "slot.top2.text",
+      "type": "text",
+      "attributes": {
+        "x": 480.0,
+        "y": 95.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 44
+      },
+      "source_ref": "slot.top2",
+      "refs": {
+        "layout_slot_id": "slot.top2"
+      },
+      "text": "4 7 3"
+    },
+    {
+      "id": "slot.mulx.text",
+      "type": "text",
+      "attributes": {
+        "x": 425.0,
+        "y": 135.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 44
+      },
+      "source_ref": "slot.mulx",
+      "refs": {
+        "layout_slot_id": "slot.mulx"
+      },
+      "text": "×"
+    },
+    {
+      "id": "slot.mul0.text",
+      "type": "text",
+      "attributes": {
+        "x": 546.49,
+        "y": 134.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 45
+      },
+      "source_ref": "slot.mul0",
+      "refs": {
+        "layout_slot_id": "slot.mul0"
+      },
+      "text": "3"
+    },
+    {
+      "id": "slot.p0.text",
+      "type": "text",
+      "attributes": {
+        "x": 545.997,
+        "y": 180.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 44
+      },
+      "source_ref": "slot.p0",
+      "refs": {
+        "layout_slot_id": "slot.p0"
+      },
+      "text": "9"
+    },
+    {
+      "id": "slot.p11.text",
+      "type": "text",
+      "attributes": {
+        "x": 489.0,
+        "y": 225.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 45
+      },
+      "source_ref": "slot.p11",
+      "refs": {
+        "layout_slot_id": "slot.p11"
+      },
+      "text": "2 1 0"
+    },
+    {
+      "id": "slot.p23.text",
+      "type": "text",
+      "attributes": {
+        "x": 459.0,
+        "y": 265.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 44
+      },
+      "source_ref": "slot.p23",
+      "refs": {
+        "layout_slot_id": "slot.p23"
+      },
+      "text": "1 2 0 0"
+    },
+    {
+      "id": "slot.f3.text",
+      "type": "text",
+      "attributes": {
+        "x": 459.0,
+        "y": 310.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 44
+      },
+      "source_ref": "slot.f3",
+      "refs": {
+        "layout_slot_id": "slot.f3"
+      },
+      "text": "1 4 1 9"
+    },
+    {
+      "id": "slot.c1.text",
+      "type": "text",
+      "attributes": {
+        "x": 120.0,
+        "y": 385.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 40
+      },
+      "source_ref": "slot.c1",
+      "refs": {
+        "layout_slot_id": "slot.c1"
+      },
+      "text": "7 × 3"
+    },
+    {
+      "id": "slot.c2.text",
+      "type": "text",
+      "attributes": {
+        "x": 295.0,
+        "y": 385.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 40
+      },
+      "source_ref": "slot.c2",
+      "refs": {
+        "layout_slot_id": "slot.c2"
+      },
+      "text": "73 × 3"
+    },
+    {
+      "id": "slot.c3.text",
+      "type": "text",
+      "attributes": {
+        "x": 490.0,
+        "y": 385.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 40
+      },
+      "source_ref": "slot.c3",
+      "refs": {
+        "layout_slot_id": "slot.c3"
+      },
+      "text": "70 × 3"
+    },
+    {
+      "id": "slot.c4.text",
+      "type": "text",
+      "attributes": {
+        "x": 685.0,
+        "y": 385.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 40
+      },
+      "source_ref": "slot.c4",
+      "refs": {
+        "layout_slot_id": "slot.c4"
+      },
+      "text": "700 × 3"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

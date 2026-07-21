@@ -1,0 +1,133 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008580",
+  "title": "계산한 값이 옳지 않은 것을 고르세요",
+  "canvas": {
+    "width": 680,
+    "height": 360,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.question"
+      ]
+    },
+    {
+      "id": "region.options",
+      "role": "options",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.opt1",
+        "slot.opt2",
+        "slot.opt3",
+        "slot.opt4",
+        "slot.opt5"
+      ]
+    },
+    {
+      "id": "region.answer",
+      "role": "answer",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.question",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "계산한 값이 옳지 않은 것을 고르세요.",
+        "style_role": "question",
+        "x": 44.011,
+        "y": 68.0,
+        "font_size": 30,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.opt1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "① 30 × 20 = 600",
+        "style_role": "question",
+        "x": 44.011,
+        "y": 123.0,
+        "font_size": 30,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.opt2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "② 21 × 20 = 420",
+        "style_role": "question",
+        "x": 379.011,
+        "y": 123.0,
+        "font_size": 30,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.opt3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "③ 24 × 80 = 1820",
+        "style_role": "question",
+        "x": 44.011,
+        "y": 173.0,
+        "font_size": 30,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.opt4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "④ 20 × 60 = 1200",
+        "style_role": "question",
+        "x": 379.011,
+        "y": 173.0,
+        "font_size": 30,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.opt5",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "⑤ 42 × 30 = 1260",
+        "style_role": "question",
+        "x": 44.011,
+        "y": 223.0,
+        "font_size": 30,
+        "fill": "#111111"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.question",
+    "region.options",
+    "slot.opt1",
+    "slot.opt2",
+    "slot.opt3",
+    "slot.opt4",
+    "slot.opt5",
+    "region.answer"
+  ]
+}

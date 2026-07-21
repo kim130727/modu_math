@@ -1,0 +1,109 @@
+{
+  "problem_id": "S3_초등_3_008678",
+  "problem_type": "circle_paper_folding_choice",
+  "metadata": {
+    "title": "반을 접어 생긴 선분",
+    "tags": [
+      "geometry",
+      "circle",
+      "paper_folding"
+    ],
+    "question": "원 모양 종이를 똑같이 둘로 나누어지도록 반을 접었다가 폈더니 선이 생겼습니다. 알맞은 말을 선택하세요.",
+    "required_layout_ids": [
+      "slot.folded.paper",
+      "slot.folded.back_circle",
+      "slot.folded.front_circle",
+      "slot.folded.lower_mask",
+      "slot.folded.edge",
+      "slot.arrow.body",
+      "slot.arrow.head",
+      "slot.opened.paper",
+      "slot.opened.fold_line"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "보이는 선택 문장만 렌더링하고 정답/해설성 하단 문장은 생략한다."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.circle_paper",
+        "type": "circle_paper",
+        "description": "원 모양 종이"
+      },
+      {
+        "id": "obj.fold_line",
+        "type": "line_segment",
+        "description": "반을 접었다가 펴서 생긴 선분"
+      },
+      {
+        "id": "obj.choice_diameter",
+        "type": "term",
+        "text": "지름"
+      },
+      {
+        "id": "obj.choice_radius",
+        "type": "term",
+        "text": "반지름"
+      }
+    ],
+    "relations": [
+      {
+        "id": "rel.equal_halves",
+        "type": "equal_partition",
+        "from_id": "obj.fold_line",
+        "to_id": "obj.circle_paper",
+        "description": "접힌 선이 원을 둘로 똑같이 나눈다."
+      }
+    ],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.circle_paper",
+          "obj.fold_line"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.equal_halves"
+        ]
+      },
+      "plan": {
+        "method": "concept_matching",
+        "description": "원을 둘로 똑같이 나누는 선분의 이름을 보기에서 고른다."
+      },
+      "execute": {
+        "expected_operations": [
+          "observe_fold_line",
+          "match_circle_term"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "visible_choice_only_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [
+      {
+        "id": "choice.diameter",
+        "value": "지름"
+      },
+      {
+        "id": "choice.radius",
+        "value": "반지름"
+      }
+    ],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "choice_word",
+      "description": "괄호 안에 들어갈 알맞은 말"
+    },
+    "value": "",
+    "unit": ""
+  }
+}

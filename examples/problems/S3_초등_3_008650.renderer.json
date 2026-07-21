@@ -1,0 +1,186 @@
+{
+  "problem_id": "S3_초등_3_008650",
+  "view_box": {
+    "width": 960.0,
+    "height": 514.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.q1.text",
+      "type": "text",
+      "attributes": {
+        "x": 20.0,
+        "y": 15.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30
+      },
+      "source_ref": "slot.q1",
+      "refs": {
+        "layout_slot_id": "slot.q1"
+      },
+      "text": "\n    \n    그림을 보고 지름과 반지름 사이의 관계를 알아보려고 합니다.\n    알맞은 것을 선택하세요.\n  "
+    },
+    {
+      "id": "slot.circle.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 430.0,
+        "cy": 260.0,
+        "r": 120.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "none"
+      },
+      "source_ref": "slot.circle",
+      "refs": {
+        "layout_slot_id": "slot.circle"
+      }
+    },
+    {
+      "id": "slot.guide.diameter.curve.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 370 360 C 335 300 360 210 495 160",
+        "stroke": "#37bdf8",
+        "stroke-width": 1.6,
+        "fill": "none",
+        "stroke-dasharray": "5 4"
+      },
+      "source_ref": "slot.guide.diameter.curve",
+      "refs": {
+        "layout_slot_id": "slot.guide.diameter.curve"
+      }
+    },
+    {
+      "id": "slot.guide.radius.curve.path",
+      "type": "path",
+      "attributes": {
+        "d": "M 440 265 C 470 285 520 285 550 260",
+        "stroke": "#37bdf8",
+        "stroke-width": 1.6,
+        "fill": "none",
+        "stroke-dasharray": "5 4"
+      },
+      "source_ref": "slot.guide.radius.curve",
+      "refs": {
+        "layout_slot_id": "slot.guide.radius.curve"
+      }
+    },
+    {
+      "id": "slot.diameter.line",
+      "type": "line",
+      "attributes": {
+        "x1": 370.0,
+        "y1": 360.0,
+        "x2": 495.0,
+        "y2": 160.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.diameter",
+      "refs": {
+        "layout_slot_id": "slot.diameter"
+      }
+    },
+    {
+      "id": "slot.arc.right.line",
+      "type": "line",
+      "attributes": {
+        "x1": 430.0,
+        "y1": 260.0,
+        "x2": 550.0,
+        "y2": 260.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.arc.right",
+      "refs": {
+        "layout_slot_id": "slot.arc.right"
+      }
+    },
+    {
+      "id": "slot.center.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 433.0,
+        "cy": 260.0,
+        "r": 5.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#d81b60"
+      },
+      "source_ref": "slot.center",
+      "refs": {
+        "layout_slot_id": "slot.center"
+      }
+    },
+    {
+      "id": "slot.len4.text",
+      "type": "text",
+      "attributes": {
+        "x": 345.0,
+        "y": 210.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 25
+      },
+      "source_ref": "slot.len4",
+      "refs": {
+        "layout_slot_id": "slot.len4"
+      },
+      "text": "4 cm"
+    },
+    {
+      "id": "slot.len2.text",
+      "type": "text",
+      "attributes": {
+        "x": 460.0,
+        "y": 310.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 25
+      },
+      "source_ref": "slot.len2",
+      "refs": {
+        "layout_slot_id": "slot.len2"
+      },
+      "text": "2 cm"
+    },
+    {
+      "id": "slot.choice.box.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 30.0,
+        "y": 410.0,
+        "width": 795.0,
+        "height": 80.0,
+        "fill": "none",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.choice.box",
+      "refs": {
+        "layout_slot_id": "slot.choice.box"
+      }
+    },
+    {
+      "id": "slot.choice.text.text",
+      "type": "text",
+      "attributes": {
+        "x": 65.0,
+        "y": 455.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30
+      },
+      "source_ref": "slot.choice.text",
+      "refs": {
+        "layout_slot_id": "slot.choice.text"
+      },
+      "text": "한 원에서 ( 지름 , 반지름 )은 ( 지름 , 반지름 )의 2배입니다."
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

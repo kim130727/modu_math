@@ -1,0 +1,126 @@
+{
+  "problem_id": "S3_초등_3_008578",
+  "view_box": {
+    "width": 808.0,
+    "height": 340.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.choice1_box.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 116.014,
+        "y": 161.0,
+        "width": 165.0,
+        "height": 70.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.choice1_box",
+      "refs": {
+        "layout_slot_id": "slot.choice1_box"
+      }
+    },
+    {
+      "id": "slot.choice2_box.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 326.014,
+        "y": 161.0,
+        "width": 165.0,
+        "height": 70.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.choice2_box",
+      "refs": {
+        "layout_slot_id": "slot.choice2_box"
+      }
+    },
+    {
+      "id": "slot.choice3_box.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 536.014,
+        "y": 161.0,
+        "width": 165.0,
+        "height": 70.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.choice3_box",
+      "refs": {
+        "layout_slot_id": "slot.choice3_box"
+      }
+    },
+    {
+      "id": "slot.q1.text",
+      "type": "text",
+      "attributes": {
+        "x": 51.002,
+        "y": 73.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30
+      },
+      "source_ref": "slot.q1",
+      "refs": {
+        "layout_slot_id": "slot.q1"
+      },
+      "text": "계산 결과가 가장 작은 것을 찾아 선택하세요."
+    },
+    {
+      "id": "slot.choice1_text.text",
+      "type": "text",
+      "attributes": {
+        "x": 141.014,
+        "y": 206.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30
+      },
+      "source_ref": "slot.choice1_text",
+      "refs": {
+        "layout_slot_id": "slot.choice1_text"
+      },
+      "text": "328 × 8"
+    },
+    {
+      "id": "slot.choice2_text.text",
+      "type": "text",
+      "attributes": {
+        "x": 356.014,
+        "y": 206.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30
+      },
+      "source_ref": "slot.choice2_text",
+      "refs": {
+        "layout_slot_id": "slot.choice2_text"
+      },
+      "text": "524 × 5"
+    },
+    {
+      "id": "slot.choice3_text.text",
+      "type": "text",
+      "attributes": {
+        "x": 561.014,
+        "y": 206.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30
+      },
+      "source_ref": "slot.choice3_text",
+      "refs": {
+        "layout_slot_id": "slot.choice3_text"
+      },
+      "text": "752 × 3"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

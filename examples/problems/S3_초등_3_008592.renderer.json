@@ -1,0 +1,352 @@
+{
+  "problem_id": "S3_초등_3_008592",
+  "view_box": {
+    "width": 700.0,
+    "height": 276.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.question.text",
+      "type": "text",
+      "attributes": {
+        "x": 75.0,
+        "y": 40.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30
+      },
+      "source_ref": "slot.question",
+      "refs": {
+        "layout_slot_id": "slot.question"
+      },
+      "text": "나머지가 5가 될 수 없는 식을 모두 고르세요."
+    },
+    {
+      "id": "slot.choice.1.box.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 123.008,
+        "y": 80.0,
+        "width": 25.0,
+        "height": 25.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.choice.1.box",
+      "refs": {
+        "layout_slot_id": "slot.choice.1.box"
+      }
+    },
+    {
+      "id": "slot.choice.2.box.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 321.0,
+        "y": 80.0,
+        "width": 24.0,
+        "height": 24.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.choice.2.box",
+      "refs": {
+        "layout_slot_id": "slot.choice.2.box"
+      }
+    },
+    {
+      "id": "slot.choice.3.box.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 510.953,
+        "y": 80.0,
+        "width": 24.0,
+        "height": 24.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.choice.3.box",
+      "refs": {
+        "layout_slot_id": "slot.choice.3.box"
+      }
+    },
+    {
+      "id": "slot.choice.4.box.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 122.0,
+        "y": 160.0,
+        "width": 25.0,
+        "height": 25.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.choice.4.box",
+      "refs": {
+        "layout_slot_id": "slot.choice.4.box"
+      }
+    },
+    {
+      "id": "slot.choice.5.box.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 319.992,
+        "y": 158.0,
+        "width": 25.0,
+        "height": 25.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.choice.5.box",
+      "refs": {
+        "layout_slot_id": "slot.choice.5.box"
+      }
+    },
+    {
+      "id": "slot.choice.1.no.text",
+      "type": "text",
+      "attributes": {
+        "x": 75.846,
+        "y": 105.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30
+      },
+      "source_ref": "slot.choice.1.no",
+      "refs": {
+        "layout_slot_id": "slot.choice.1.no"
+      },
+      "text": "①"
+    },
+    {
+      "id": "slot.choice.1.div.text",
+      "type": "text",
+      "attributes": {
+        "x": 161.996,
+        "y": 106.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30
+      },
+      "source_ref": "slot.choice.1.div",
+      "refs": {
+        "layout_slot_id": "slot.choice.1.div"
+      },
+      "text": "÷"
+    },
+    {
+      "id": "slot.choice.1.den.text",
+      "type": "text",
+      "attributes": {
+        "x": 200.032,
+        "y": 103.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice.1.den",
+      "refs": {
+        "layout_slot_id": "slot.choice.1.den"
+      },
+      "text": "5"
+    },
+    {
+      "id": "slot.choice.2.no.text",
+      "type": "text",
+      "attributes": {
+        "x": 276.994,
+        "y": 105.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30
+      },
+      "source_ref": "slot.choice.2.no",
+      "refs": {
+        "layout_slot_id": "slot.choice.2.no"
+      },
+      "text": "②"
+    },
+    {
+      "id": "slot.choice.2.div.text",
+      "type": "text",
+      "attributes": {
+        "x": 360.0,
+        "y": 103.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice.2.div",
+      "refs": {
+        "layout_slot_id": "slot.choice.2.div"
+      },
+      "text": "÷"
+    },
+    {
+      "id": "slot.choice.2.den.text",
+      "type": "text",
+      "attributes": {
+        "x": 396.998,
+        "y": 102.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice.2.den",
+      "refs": {
+        "layout_slot_id": "slot.choice.2.den"
+      },
+      "text": "4"
+    },
+    {
+      "id": "slot.choice.3.no.text",
+      "type": "text",
+      "attributes": {
+        "x": 463.984,
+        "y": 104.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30
+      },
+      "source_ref": "slot.choice.3.no",
+      "refs": {
+        "layout_slot_id": "slot.choice.3.no"
+      },
+      "text": "③"
+    },
+    {
+      "id": "slot.choice.3.div.text",
+      "type": "text",
+      "attributes": {
+        "x": 545.953,
+        "y": 101.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice.3.div",
+      "refs": {
+        "layout_slot_id": "slot.choice.3.div"
+      },
+      "text": "÷"
+    },
+    {
+      "id": "slot.choice.3.den.text",
+      "type": "text",
+      "attributes": {
+        "x": 577.953,
+        "y": 101.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice.3.den",
+      "refs": {
+        "layout_slot_id": "slot.choice.3.den"
+      },
+      "text": "8"
+    },
+    {
+      "id": "slot.choice.4.no.text",
+      "type": "text",
+      "attributes": {
+        "x": 75.888,
+        "y": 184.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30
+      },
+      "source_ref": "slot.choice.4.no",
+      "refs": {
+        "layout_slot_id": "slot.choice.4.no"
+      },
+      "text": "④"
+    },
+    {
+      "id": "slot.choice.4.div.text",
+      "type": "text",
+      "attributes": {
+        "x": 162.999,
+        "y": 184.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30
+      },
+      "source_ref": "slot.choice.4.div",
+      "refs": {
+        "layout_slot_id": "slot.choice.4.div"
+      },
+      "text": "÷"
+    },
+    {
+      "id": "slot.choice.4.den.text",
+      "type": "text",
+      "attributes": {
+        "x": 200.032,
+        "y": 181.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice.4.den",
+      "refs": {
+        "layout_slot_id": "slot.choice.4.den"
+      },
+      "text": "7"
+    },
+    {
+      "id": "slot.choice.5.no.text",
+      "type": "text",
+      "attributes": {
+        "x": 279.0,
+        "y": 183.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30
+      },
+      "source_ref": "slot.choice.5.no",
+      "refs": {
+        "layout_slot_id": "slot.choice.5.no"
+      },
+      "text": "⑤"
+    },
+    {
+      "id": "slot.choice.5.div.text",
+      "type": "text",
+      "attributes": {
+        "x": 362.0,
+        "y": 182.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice.5.div",
+      "refs": {
+        "layout_slot_id": "slot.choice.5.div"
+      },
+      "text": "÷"
+    },
+    {
+      "id": "slot.choice.5.den.text",
+      "type": "text",
+      "attributes": {
+        "x": 399.0,
+        "y": 179.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice.5.den",
+      "refs": {
+        "layout_slot_id": "slot.choice.5.den"
+      },
+      "text": "6"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

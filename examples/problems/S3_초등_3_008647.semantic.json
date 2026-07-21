@@ -1,0 +1,103 @@
+{
+  "problem_id": "S3_초등_3_008647",
+  "problem_type": "geometry_comparison",
+  "metadata": {
+    "title": "원 안의 선분 중 길이가 가장 긴 선분 찾기",
+    "tags": [
+      "geometry",
+      "circle",
+      "diameter",
+      "segment_comparison"
+    ],
+    "question": "원 안의 선분 중 길이가 가장 긴 선분을 찾아 기호를 선택하세요.",
+    "required_layout_ids": [
+      "slot.diagram.top.circle",
+      "slot.diagram.top.segment.a",
+      "slot.diagram.top.segment.b",
+      "slot.diagram.top.segment.c",
+      "slot.diagram.top.segment.d",
+      "slot.diagram.top.segment.e",
+      "slot.diagram.top.label.a.circle",
+      "slot.diagram.top.label.b.circle",
+      "slot.diagram.top.label.c.circle",
+      "slot.diagram.top.label.d.circle",
+      "slot.diagram.top.label.e.circle"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "길이가 가장 긴 선분의 기호를 고른다.",
+    "points": 5
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.circle",
+        "type": "circle"
+      },
+      {
+        "id": "obj.segment.c",
+        "type": "segment",
+        "symbol": "㉢",
+        "role": "diameter"
+      },
+      {
+        "id": "obj.center",
+        "type": "point",
+        "label": "O"
+      }
+    ],
+    "relations": [
+      {
+        "id": "rel.segment_c_passes_center",
+        "type": "incidence",
+        "from_id": "obj.segment.c",
+        "to_id": "obj.center",
+        "description": "㉢ 선분은 원의 중심 O를 지난다."
+      },
+      {
+        "id": "rel.diameter_longest",
+        "type": "circle_property",
+        "from_id": "obj.segment.c",
+        "to_id": "obj.circle",
+        "description": "원 안에서 가장 긴 선분은 지름이다."
+      }
+    ],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.circle",
+          "obj.center"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.diameter_longest"
+        ]
+      },
+      "plan": {
+        "method": "compare_segments_by_circle_property",
+        "description": "원 안의 선분 중 중심을 지나는 지름을 찾는다."
+      },
+      "execute": {
+        "expected_operations": [
+          "identify_center_passing_segment",
+          "match_symbol_to_segment"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "property_check_longest_segment_is_diameter"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "type": "symbol_choice",
+    "value": "㉢",
+    "unit": ""
+  }
+}

@@ -1,0 +1,207 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008649",
+  "title": "그림을 보고 알맞은 말을 선택하세요",
+  "canvas": {
+    "width": 900,
+    "height": 450,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q1",
+        "slot.q2"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.circle",
+        "slot.line.gr",
+        "slot.line.nr",
+        "slot.line.cd",
+        "slot.center",
+        "slot.lb.g",
+        "slot.lb.n",
+        "slot.lb.d",
+        "slot.lb.r",
+        "slot.lb.d.copy2"
+      ]
+    },
+    {
+      "id": "region.explain",
+      "role": "explanation",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "그림을 보고 알맞은 말을 선택하세요.",
+        "style_role": "question",
+        "x": 40.0,
+        "y": 35.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "원의 (지름, 반지름)은 원을 둘로 똑같이 나눕니다.",
+        "style_role": "question",
+        "x": 45.0,
+        "y": 395.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.circle",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 425.0,
+        "cy": 220.0,
+        "r": 115.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.center",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 425.0,
+        "cy": 220.0,
+        "r": 5.0,
+        "fill": "#d81b60"
+      }
+    },
+    {
+      "id": "slot.lb.g",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄱ",
+        "style_role": "label",
+        "x": 380.0,
+        "y": 105.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.lb.n",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄴ",
+        "style_role": "label",
+        "x": 290.0,
+        "y": 280.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.lb.d",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄷ",
+        "style_role": "label",
+        "x": 490.0,
+        "y": 340.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.lb.r",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄹ",
+        "style_role": "label",
+        "x": 540.0,
+        "y": 185.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.line.gr",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 410.0,
+        "y1": 105.0,
+        "x2": 535.0,
+        "y2": 180.0
+      }
+    },
+    {
+      "id": "slot.line.nr",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 318.0,
+        "y1": 263.0,
+        "x2": 533.0,
+        "y2": 178.0
+      }
+    },
+    {
+      "id": "slot.line.cd",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 425.0,
+        "y1": 220.0,
+        "x2": 490.0,
+        "y2": 315.0
+      }
+    },
+    {
+      "id": "slot.lb.d.copy2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㅇ",
+        "style_role": "body",
+        "x": 410.0,
+        "y": 215.0,
+        "font_size": 30,
+        "fill": "#111111"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q1",
+    "slot.q2",
+    "region.diagram",
+    "slot.circle",
+    "slot.line.gr",
+    "slot.line.nr",
+    "slot.line.cd",
+    "slot.center",
+    "slot.lb.g",
+    "slot.lb.n",
+    "slot.lb.d",
+    "slot.lb.r",
+    "slot.lb.d.copy2",
+    "region.explain"
+  ]
+}

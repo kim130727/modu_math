@@ -1,0 +1,269 @@
+{
+  "problem_id": "S3_초등_3_008553",
+  "view_box": {
+    "width": 900.0,
+    "height": 420.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.highlight.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 314.005,
+        "y": 234.0,
+        "width": 100.0,
+        "height": 50.0,
+        "fill": "#d9ddb7",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.highlight",
+      "refs": {
+        "layout_slot_id": "slot.highlight"
+      }
+    },
+    {
+      "id": "slot.choice.box.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 524.005,
+        "y": 106.0,
+        "width": 214.0,
+        "height": 252.0,
+        "fill": "none",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.choice.box",
+      "refs": {
+        "layout_slot_id": "slot.choice.box"
+      }
+    },
+    {
+      "id": "slot.bar.1.line",
+      "type": "line",
+      "attributes": {
+        "x1": 289.005,
+        "y1": 189.0,
+        "x2": 409.005,
+        "y2": 189.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.bar.1",
+      "refs": {
+        "layout_slot_id": "slot.bar.1"
+      }
+    },
+    {
+      "id": "slot.bar.2.line",
+      "type": "line",
+      "attributes": {
+        "x1": 284.005,
+        "y1": 329.0,
+        "x2": 406.005,
+        "y2": 329.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.bar.2",
+      "refs": {
+        "layout_slot_id": "slot.bar.2"
+      }
+    },
+    {
+      "id": "slot.q.text.text",
+      "type": "text",
+      "attributes": {
+        "x": 36.005,
+        "y": 58.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 32
+      },
+      "source_ref": "slot.q.text",
+      "refs": {
+        "layout_slot_id": "slot.q.text"
+      },
+      "text": "색칠된 부분은 실제 어떤 수의 곱인지 찾아 기호를 선택해 보세요."
+    },
+    {
+      "id": "slot.top.d0.text",
+      "type": "text",
+      "attributes": {
+        "x": 329.005,
+        "y": 134.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 36
+      },
+      "source_ref": "slot.top.d0",
+      "refs": {
+        "layout_slot_id": "slot.top.d0"
+      },
+      "text": "5 7 4"
+    },
+    {
+      "id": "slot.mul.sign.text",
+      "type": "text",
+      "attributes": {
+        "x": 288.005,
+        "y": 175.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 36
+      },
+      "source_ref": "slot.mul.sign",
+      "refs": {
+        "layout_slot_id": "slot.mul.sign"
+      },
+      "text": "×"
+    },
+    {
+      "id": "slot.mul.d0.text",
+      "type": "text",
+      "attributes": {
+        "x": 388.005,
+        "y": 175.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 36
+      },
+      "source_ref": "slot.mul.d0",
+      "refs": {
+        "layout_slot_id": "slot.mul.d0"
+      },
+      "text": "3"
+    },
+    {
+      "id": "slot.part0.d0.text",
+      "type": "text",
+      "attributes": {
+        "x": 354.005,
+        "y": 229.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 36
+      },
+      "source_ref": "slot.part0.d0",
+      "refs": {
+        "layout_slot_id": "slot.part0.d0"
+      },
+      "text": "1 2"
+    },
+    {
+      "id": "slot.part1.d0.text",
+      "type": "text",
+      "attributes": {
+        "x": 324.005,
+        "y": 274.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 36
+      },
+      "source_ref": "slot.part1.d0",
+      "refs": {
+        "layout_slot_id": "slot.part1.d0"
+      },
+      "text": "2 1 0"
+    },
+    {
+      "id": "slot.part2.d0.text",
+      "type": "text",
+      "attributes": {
+        "x": 294.005,
+        "y": 319.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 36
+      },
+      "source_ref": "slot.part2.d0",
+      "refs": {
+        "layout_slot_id": "slot.part2.d0"
+      },
+      "text": "1 5 0 0"
+    },
+    {
+      "id": "slot.final.d0.text",
+      "type": "text",
+      "attributes": {
+        "x": 294.005,
+        "y": 369.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 36
+      },
+      "source_ref": "slot.final.d0",
+      "refs": {
+        "layout_slot_id": "slot.final.d0"
+      },
+      "text": "1 7 2 2"
+    },
+    {
+      "id": "slot.choice.1.text",
+      "type": "text",
+      "attributes": {
+        "x": 534.005,
+        "y": 171.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 36
+      },
+      "source_ref": "slot.choice.1",
+      "refs": {
+        "layout_slot_id": "slot.choice.1"
+      },
+      "text": "㉠ 7 × 3"
+    },
+    {
+      "id": "slot.choice.2.text",
+      "type": "text",
+      "attributes": {
+        "x": 534.005,
+        "y": 215.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 36
+      },
+      "source_ref": "slot.choice.2",
+      "refs": {
+        "layout_slot_id": "slot.choice.2"
+      },
+      "text": "㉡ 7 × 30"
+    },
+    {
+      "id": "slot.choice.3.text",
+      "type": "text",
+      "attributes": {
+        "x": 534.005,
+        "y": 259.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 36
+      },
+      "source_ref": "slot.choice.3",
+      "refs": {
+        "layout_slot_id": "slot.choice.3"
+      },
+      "text": "㉢ 70 × 3"
+    },
+    {
+      "id": "slot.choice.4.text",
+      "type": "text",
+      "attributes": {
+        "x": 534.005,
+        "y": 303.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 36
+      },
+      "source_ref": "slot.choice.4",
+      "refs": {
+        "layout_slot_id": "slot.choice.4"
+      },
+      "text": "㉣ 700 × 3"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

@@ -1,0 +1,541 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008683",
+  "title": "원을 그리는 방법",
+  "canvas": {
+    "width": 940,
+    "height": 900,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.box1",
+        "slot.diagram1.frame",
+        "slot.diagram1.circle",
+        "slot.box3",
+        "slot.girl.person.body",
+        "slot.girl.person.head",
+        "slot.girl.person.hair.cap",
+        "slot.girl.person.smile",
+        "slot.girl.person.tail.left",
+        "slot.girl.person.tail.right",
+        "slot.girl.person.bow.left",
+        "slot.girl.person.bow.right",
+        "slot.diagram1.ray1",
+        "slot.diagram1.ray2",
+        "slot.diagram1.ray3",
+        "slot.diagram1.ray4",
+        "slot.diagram1.ray5",
+        "slot.diagram1.center",
+        "slot.girl.person.eye.left",
+        "slot.girl.person.eye.right",
+        "slot.q1",
+        "slot.q2",
+        "slot.box2",
+        "slot.box2_2",
+        "slot.diagram1.label1",
+        "slot.diagram1.label2",
+        "slot.diagram1.label3",
+        "slot.diagram1.label4",
+        "slot.diagram1.label5",
+        "slot.bubble1",
+        "slot.choice1",
+        "slot.choice2",
+        "slot.bubble1.copy3"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "    다음과 같은 방법으로 원을 그렸습니다. 그린 원을 보고 ",
+        "style_role": "question",
+        "x": 75.0,
+        "y": 120.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "알맞은 말을 선택하세요.",
+        "style_role": "question",
+        "x": 75.0,
+        "y": 165.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.box1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 80.0,
+        "y": 195.0,
+        "width": 760.0,
+        "height": 120.0,
+        "fill": "#dcd7ef"
+      }
+    },
+    {
+      "id": "slot.box2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "① 빨간색 점에서 2 cm 떨어진 위치에 점을 찍습니다.",
+        "style_role": "question",
+        "x": 115.0,
+        "y": 240.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.box2_2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "② 찍은 점들을 이어 원을 그립니다.",
+        "style_role": "question",
+        "x": 115.0,
+        "y": 286.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.diagram1.frame",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 605.0,
+        "y": 345.0,
+        "width": 235.0,
+        "height": 240.0
+      }
+    },
+    {
+      "id": "slot.diagram1.circle",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 725.0,
+        "cy": 465.0,
+        "r": 120.0,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.diagram1.center",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 725.0,
+        "cy": 465.0,
+        "r": 5.0,
+        "fill": "#ff4db8"
+      }
+    },
+    {
+      "id": "slot.diagram1.ray1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 725.0,
+        "y1": 465.0,
+        "x2": 725.0,
+        "y2": 345.0,
+        "stroke": "#5dbbff",
+        "stroke_dasharray": "6 6"
+      }
+    },
+    {
+      "id": "slot.diagram1.ray2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 725.0,
+        "y1": 465.0,
+        "x2": 785.0,
+        "y2": 360.0,
+        "stroke": "#5dbbff",
+        "stroke_dasharray": "6 6"
+      }
+    },
+    {
+      "id": "slot.diagram1.ray3",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 725.0,
+        "y1": 465.0,
+        "x2": 825.0,
+        "y2": 405.0,
+        "stroke": "#5dbbff",
+        "stroke_dasharray": "6 6"
+      }
+    },
+    {
+      "id": "slot.diagram1.ray4",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 725.0,
+        "y1": 465.0,
+        "x2": 840.0,
+        "y2": 465.0,
+        "stroke": "#5dbbff",
+        "stroke_dasharray": "6 6"
+      }
+    },
+    {
+      "id": "slot.diagram1.ray5",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 725.0,
+        "y1": 465.0,
+        "x2": 825.0,
+        "y2": 525.0,
+        "stroke": "#9aa0a6",
+        "stroke_dasharray": "6 6"
+      }
+    },
+    {
+      "id": "slot.diagram1.label1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "2 cm",
+        "style_role": "question",
+        "x": 730.0,
+        "y": 380.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.diagram1.label2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "2 cm",
+        "style_role": "question",
+        "x": 685.0,
+        "y": 415.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.diagram1.label3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "2 cm",
+        "style_role": "question",
+        "x": 765.0,
+        "y": 420.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.diagram1.label4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "2 cm",
+        "style_role": "question",
+        "x": 780.0,
+        "y": 470.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.diagram1.label5",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "2 cm",
+        "style_role": "question",
+        "x": 770.0,
+        "y": 500.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.bubble1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "        줄로 연결한 막대를 돌려",
+        "style_role": "question",
+        "x": 230.0,
+        "y": 375.0,
+        "font_size": 30,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.box3",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 85.0,
+        "y": 672.0,
+        "width": 760.0,
+        "height": 115.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.choice1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "자를 이용하여 점을 더 ( 많이 , 적게 ) 찍은 다음, 점들을 이",
+        "style_role": "question",
+        "x": 120.0,
+        "y": 717.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.choice2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "으면 원을 좀 더 정확하게 그릴 수 있습니다.",
+        "style_role": "question",
+        "x": 115.0,
+        "y": 762.0,
+        "font_size": 30
+      }
+    },
+    {
+      "id": "slot.bubble1.copy3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "그린 원과 비슷한 원이 그려지는구나.  ",
+        "style_role": "body",
+        "x": 130.0,
+        "y": 430.0,
+        "font_size": 30,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.girl.person.body",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            320,
+            645
+          ],
+          [
+            420,
+            645
+          ],
+          [
+            405,
+            580
+          ],
+          [
+            335,
+            580
+          ]
+        ],
+        "stroke": "none",
+        "fill": "#F16078",
+        "stroke_width": 2
+      }
+    },
+    {
+      "id": "slot.girl.person.head",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 370,
+        "cy": 515,
+        "r": 50,
+        "stroke": "none",
+        "fill": "#ffd9ad",
+        "stroke_width": 2
+      }
+    },
+    {
+      "id": "slot.girl.person.hair.cap",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 320 515 C 320 465 415 455 425 515 C 390 485 350 500 320 515 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "none",
+        "fill": "#4B260B",
+        "stroke_width": 2
+      }
+    },
+    {
+      "id": "slot.girl.person.eye.left",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 350,
+        "cy": 525,
+        "r": 5,
+        "stroke": "none",
+        "fill": "#2b2118",
+        "stroke_width": 2
+      }
+    },
+    {
+      "id": "slot.girl.person.eye.right",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 390,
+        "cy": 525,
+        "r": 5,
+        "stroke": "none",
+        "fill": "#2b2118",
+        "stroke_width": 2
+      }
+    },
+    {
+      "id": "slot.girl.person.smile",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 355 545 Q 370 555 385 545",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#b86e39",
+        "stroke_width": 1.3,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.girl.person.tail.left",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 320 510 C 275 520 300 590 280 600",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#4B260B",
+        "stroke_width": 7,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.girl.person.tail.right",
+      "kind": "path",
+      "prompt": "",
+      "content": {
+        "d": "M 420 510 C 465 520 440 590 460 600",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#4B260B",
+        "stroke_width": 7,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.girl.person.bow.left",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            355,
+            590
+          ],
+          [
+            320,
+            575
+          ],
+          [
+            345,
+            615
+          ]
+        ],
+        "stroke": "none",
+        "fill": "#E85BA6",
+        "stroke_width": 2
+      }
+    },
+    {
+      "id": "slot.girl.person.bow.right",
+      "kind": "polygon",
+      "prompt": "",
+      "content": {
+        "points": [
+          [
+            385,
+            590
+          ],
+          [
+            420,
+            575
+          ],
+          [
+            395,
+            615
+          ]
+        ],
+        "stroke": "none",
+        "fill": "#E85BA6",
+        "stroke_width": 2
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.box1",
+    "slot.diagram1.frame",
+    "slot.diagram1.circle",
+    "slot.box3",
+    "slot.girl.person.body",
+    "slot.girl.person.head",
+    "slot.girl.person.hair.cap",
+    "slot.girl.person.smile",
+    "slot.girl.person.tail.left",
+    "slot.girl.person.tail.right",
+    "slot.girl.person.bow.left",
+    "slot.girl.person.bow.right",
+    "slot.diagram1.ray1",
+    "slot.diagram1.ray2",
+    "slot.diagram1.ray3",
+    "slot.diagram1.ray4",
+    "slot.diagram1.ray5",
+    "slot.diagram1.center",
+    "slot.girl.person.eye.left",
+    "slot.girl.person.eye.right",
+    "slot.q1",
+    "slot.q2",
+    "slot.box2",
+    "slot.box2_2",
+    "slot.diagram1.label1",
+    "slot.diagram1.label2",
+    "slot.diagram1.label3",
+    "slot.diagram1.label4",
+    "slot.diagram1.label5",
+    "slot.bubble1",
+    "slot.choice1",
+    "slot.choice2",
+    "slot.bubble1.copy3"
+  ]
+}

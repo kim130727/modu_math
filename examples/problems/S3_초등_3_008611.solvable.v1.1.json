@@ -1,0 +1,83 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008611",
+  "problem_type": "multiple_choice_division",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "묶이 다른 하나",
+    "target_ticks": 0,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.opt1",
+      "value": {
+        "expression": "36 ÷ 3"
+      }
+    },
+    {
+      "ref": "obj.opt2",
+      "value": {
+        "expression": "55 ÷ 5"
+      }
+    },
+    {
+      "ref": "obj.opt3",
+      "value": {
+        "expression": "77 ÷ 7"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "selected_option"
+  },
+  "method": "compare_division_expressions",
+  "plan": [
+    "각 보기의 나눗셈 식을 확인한다.",
+    "해설에 적힌 계산 결과를 참고하여 보기들의 묶음 차이를 확인한다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "36 ÷ 3",
+      "value": 12
+    },
+    {
+      "id": "step.2",
+      "expr": "55 ÷ 5",
+      "value": 11
+    },
+    {
+      "id": "step.3",
+      "expr": "77 ÷ 7",
+      "value": 11
+    },
+    {
+      "id": "step.4",
+      "expr": "비교 결과",
+      "value": "36 ÷ 3이 다른 묶이로 표시됨"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "해설에 적힌 결과와 일치하는지 확인",
+      "expected": "36 ÷ 3 = 12, 55 ÷ 5 = 11, 77 ÷ 7 = 11",
+      "actual": "36 ÷ 3 = 12, 55 ÷ 5 = 11, 77 ÷ 7 = 11",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "selected_option",
+      "description": "묶이 다른 하나"
+    },
+    "value": 1,
+    "unit": ""
+  }
+}

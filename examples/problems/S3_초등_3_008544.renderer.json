@@ -1,0 +1,156 @@
+{
+  "problem_id": "S3_초등_3_008544",
+  "view_box": {
+    "width": 940.0,
+    "height": 400.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.box.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 134.002,
+        "y": 125.0,
+        "width": 690.0,
+        "height": 78.0,
+        "fill": "#D9DDF3",
+        "stroke": "#A79CDC",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.box",
+      "refs": {
+        "layout_slot_id": "slot.box"
+      }
+    },
+    {
+      "id": "slot.q.text.text",
+      "type": "text",
+      "attributes": {
+        "x": 121.002,
+        "y": 81.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q.text",
+      "refs": {
+        "layout_slot_id": "slot.q.text"
+      },
+      "text": "계산 결과가 큰 것부터 순서대로 나열한 것을 고르세요."
+    },
+    {
+      "id": "slot.expr1.body.text",
+      "type": "text",
+      "attributes": {
+        "x": 211.002,
+        "y": 175.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.expr1.body",
+      "refs": {
+        "layout_slot_id": "slot.expr1.body"
+      },
+      "text": "ㄱ. 9 × 85"
+    },
+    {
+      "id": "slot.expr2.body.text",
+      "type": "text",
+      "attributes": {
+        "x": 416.002,
+        "y": 175.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.expr2.body",
+      "refs": {
+        "layout_slot_id": "slot.expr2.body"
+      },
+      "text": "ㄴ. 8 × 65"
+    },
+    {
+      "id": "slot.expr3.body.text",
+      "type": "text",
+      "attributes": {
+        "x": 611.002,
+        "y": 175.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.expr3.body",
+      "refs": {
+        "layout_slot_id": "slot.expr3.body"
+      },
+      "text": "ㄷ. 6 × 73"
+    },
+    {
+      "id": "slot.choice1.num.text",
+      "type": "text",
+      "attributes": {
+        "x": 166.002,
+        "y": 245.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice1.num",
+      "refs": {
+        "layout_slot_id": "slot.choice1.num"
+      },
+      "text": "① ㄱ ㄴ ㄷ"
+    },
+    {
+      "id": "slot.choice2.num.text",
+      "type": "text",
+      "attributes": {
+        "x": 541.002,
+        "y": 245.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice2.num",
+      "refs": {
+        "layout_slot_id": "slot.choice2.num"
+      },
+      "text": "② ㄷ ㄴ ㄱ"
+    },
+    {
+      "id": "slot.choice3.num.text",
+      "type": "text",
+      "attributes": {
+        "x": 166.002,
+        "y": 295.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice3.num",
+      "refs": {
+        "layout_slot_id": "slot.choice3.num"
+      },
+      "text": "③ ㄷ ㄱ ㄴ"
+    },
+    {
+      "id": "slot.choice4.num.text",
+      "type": "text",
+      "attributes": {
+        "x": 541.002,
+        "y": 295.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.choice4.num",
+      "refs": {
+        "layout_slot_id": "slot.choice4.num"
+      },
+      "text": "④ ㄴ ㄱ ㄷ"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

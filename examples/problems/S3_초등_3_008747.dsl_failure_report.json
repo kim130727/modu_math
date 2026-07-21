@@ -1,0 +1,15 @@
+{
+  "status": "validation_failed",
+  "timestamp_utc": "2026-06-10T04:33:43.138209+00:00",
+  "problem_id": "S3_초등_3_008747",
+  "draft": "examples\\problems\\TS_01.초등학교_3학년_01.객관식\\S3_초등_3_008747.refined_draft.md",
+  "image": "examples\\problems\\TS_01.초등학교_3학년_01.객관식\\S3_초등_3_008747.png",
+  "out": "examples\\problems\\TS_01.초등학교_3학년_01.객관식\\S3_초등_3_008747.dsl.py",
+  "provider": "openai",
+  "mode": "api",
+  "model": "gpt-5.4-mini",
+  "max_attempts": 1,
+  "validation_errors": [
+    "Build validation failed: ValidationError: '두 물병의 컵 개수를 비교하고, 제시된 문장이 맞는지 확인한다.' is not of type 'array'\n\nFailed validating 'type' in schema['properties']['plan']:\n    {'type': 'array', 'description': '풀이 계획', 'items': {'type': 'string'}}\n\nOn instance['plan']:\n    '두 물병의 컵 개수를 비교하고, 제시된 문장이 맞는지 확인한다.'"
+  ]
+}

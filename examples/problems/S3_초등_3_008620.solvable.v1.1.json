@@ -1,0 +1,77 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008620",
+  "problem_type": "selection_comparison",
+  "inputs": {
+    "total_ticks": 3,
+    "target_label": "70보다 큰 것",
+    "target_ticks": 1,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.choice1",
+      "value": {
+        "expr": "268 ÷ 5"
+      }
+    },
+    {
+      "ref": "obj.choice2",
+      "value": {
+        "expr": "402 ÷ 4"
+      }
+    },
+    {
+      "ref": "obj.choice3",
+      "value": {
+        "expr": "397 ÷ 6"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "selected_expression"
+  },
+  "method": "compare_results",
+  "plan": [
+    "각 나눗셈의 결과를 비교하여 70보다 큰 식을 찾는다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "268 ÷ 5",
+      "value": null
+    },
+    {
+      "id": "step.2",
+      "expr": "402 ÷ 4",
+      "value": null
+    },
+    {
+      "id": "step.3",
+      "expr": "397 ÷ 6",
+      "value": null
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "선택한 식이 70보다 큰지 확인",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "selected_expression",
+      "description": "70보다 큰 것"
+    },
+    "value": null,
+    "unit": ""
+  }
+}

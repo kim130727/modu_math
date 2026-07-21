@@ -1,0 +1,112 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008550",
+  "title": "□ 안의 수가 다른 하나를 찾아 기호를 선택해보세요.",
+  "canvas": {
+    "width": 700.0,
+    "height": 300.0,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q.text"
+      ]
+    },
+    {
+      "id": "region.choices",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.box",
+        "slot.choice.1",
+        "slot.choice.2",
+        "slot.choice.3"
+      ]
+    },
+    {
+      "id": "region.answer",
+      "role": "note",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "□ 안의 수가 다른 하나를 찾아 기호를 선택해보세요.",
+        "style_role": "question",
+        "x": 20.0,
+        "y": 35.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 145.0,
+        "y": 55.0,
+        "width": 370.0,
+        "height": 186.0
+      }
+    },
+    {
+      "id": "slot.choice.1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄱ. 60 × 40 = □ 00",
+        "style_role": "question",
+        "x": 205.0,
+        "y": 110.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice.2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄴ. 90 × 30 = □ 00",
+        "style_role": "question",
+        "x": 205.0,
+        "y": 160.0,
+        "font_size": 28
+      }
+    },
+    {
+      "id": "slot.choice.3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄷ. 30 × 80 = □ 00",
+        "style_role": "question",
+        "x": 205.0,
+        "y": 210.0,
+        "font_size": 28
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q.text",
+    "region.choices",
+    "slot.box",
+    "slot.choice.1",
+    "slot.choice.2",
+    "slot.choice.3",
+    "region.answer"
+  ]
+}

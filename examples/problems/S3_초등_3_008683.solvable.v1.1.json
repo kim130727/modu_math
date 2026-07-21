@@ -1,0 +1,58 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008683",
+  "problem_type": "sentence_choice",
+  "inputs": {
+    "total_ticks": 1,
+    "target_label": "빈칸",
+    "target_ticks": 1,
+    "target_count": 2,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.circle_drawing",
+      "value": "점을 찍고 이어 원을 그리는 방법"
+    },
+    {
+      "ref": "rel.distance",
+      "value": "같은 거리"
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "choice_word"
+  },
+  "method": "visual_comparison",
+  "plan": [
+    "그림에서 점을 찍는 개수와 밀도를 비교한다.",
+    "더 정확한 원을 그리는 데 필요한 말을 고른다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "그림 비교: 점을 더 많이 찍은 경우가 더 정확함",
+      "value": "많이"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "빈칸 선택이 그림의 의미와 맞는가",
+      "expected": "많이",
+      "actual": "많이",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "choice_word",
+      "description": "빈칸에 들어갈 알맞은 말"
+    },
+    "value": "많이",
+    "unit": ""
+  }
+}

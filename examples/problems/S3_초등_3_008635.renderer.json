@@ -1,0 +1,173 @@
+{
+  "problem_id": "S3_초등_3_008635",
+  "view_box": {
+    "width": 841.0,
+    "height": 374.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.expr.left.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 220.0,
+        "y": 83.0,
+        "width": 175.0,
+        "height": 45.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.expr.left",
+      "refs": {
+        "layout_slot_id": "slot.expr.left"
+      }
+    },
+    {
+      "id": "slot.expr.right.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 460.0,
+        "y": 83.0,
+        "width": 185.0,
+        "height": 45.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.expr.right",
+      "refs": {
+        "layout_slot_id": "slot.expr.right"
+      }
+    },
+    {
+      "id": "slot.qtext.text",
+      "type": "text",
+      "attributes": {
+        "x": 35.0,
+        "y": 55.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30
+      },
+      "source_ref": "slot.qtext",
+      "refs": {
+        "layout_slot_id": "slot.qtext"
+      },
+      "text": "다음 두 식의 계산 결과가 같을 때 □ 안에 알맞은 수를 고르세요."
+    },
+    {
+      "id": "slot.opt.1.text",
+      "type": "text",
+      "attributes": {
+        "x": 40.0,
+        "y": 185.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30
+      },
+      "source_ref": "slot.opt.1",
+      "refs": {
+        "layout_slot_id": "slot.opt.1"
+      },
+      "text": "① 2"
+    },
+    {
+      "id": "slot.opt.2.text",
+      "type": "text",
+      "attributes": {
+        "x": 175.0,
+        "y": 185.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30
+      },
+      "source_ref": "slot.opt.2",
+      "refs": {
+        "layout_slot_id": "slot.opt.2"
+      },
+      "text": "② 3"
+    },
+    {
+      "id": "slot.opt.3.text",
+      "type": "text",
+      "attributes": {
+        "x": 310.0,
+        "y": 185.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30
+      },
+      "source_ref": "slot.opt.3",
+      "refs": {
+        "layout_slot_id": "slot.opt.3"
+      },
+      "text": "③ 4"
+    },
+    {
+      "id": "slot.opt.4.text",
+      "type": "text",
+      "attributes": {
+        "x": 455.0,
+        "y": 185.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30
+      },
+      "source_ref": "slot.opt.4",
+      "refs": {
+        "layout_slot_id": "slot.opt.4"
+      },
+      "text": "④ 6"
+    },
+    {
+      "id": "slot.opt.5.text",
+      "type": "text",
+      "attributes": {
+        "x": 600.0,
+        "y": 185.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30
+      },
+      "source_ref": "slot.opt.5",
+      "refs": {
+        "layout_slot_id": "slot.opt.5"
+      },
+      "text": "⑤ 8"
+    },
+    {
+      "id": "slot.qtext.copy2.text",
+      "type": "text",
+      "attributes": {
+        "x": 505.0,
+        "y": 118.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30
+      },
+      "source_ref": "slot.qtext.copy2",
+      "refs": {
+        "layout_slot_id": "slot.qtext.copy2"
+      },
+      "text": "□ × 4"
+    },
+    {
+      "id": "slot.qtext.copy3.text",
+      "type": "text",
+      "attributes": {
+        "x": 260.0,
+        "y": 118.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30
+      },
+      "source_ref": "slot.qtext.copy3",
+      "refs": {
+        "layout_slot_id": "slot.qtext.copy3"
+      },
+      "text": "80 ÷ 5"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

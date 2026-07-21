@@ -1,0 +1,90 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008572",
+  "problem_type": "multiple_choice",
+  "inputs": {
+    "target_label": "도식이 실제로 나타내는 곱의 값",
+    "unit": "",
+    "quantities": {
+      "expression_meaning": "3은 30, 4는 4를 나타낸다.",
+      "visible_result": "30 × 4 = 120",
+      "choices": [
+        10,
+        12,
+        100,
+        120,
+        1000
+      ]
+    }
+  },
+  "given": [
+    {
+      "ref": "diagram",
+      "value": "3은 30, 4는 4를 나타낸다."
+    },
+    {
+      "ref": "choices",
+      "value": [
+        10,
+        12,
+        100,
+        120,
+        1000
+      ]
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "selected_option"
+  },
+  "method": "compare_and_select",
+  "plan": [
+    "도식 속 숫자의 자리값을 해석한다.",
+    "해설 문장에 인쇄된 계산식을 확인한다.",
+    "정답 선택지와 계산 결과를 대응시킨다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "자리값 해석",
+      "value": "3 → 30, 4 → 4"
+    },
+    {
+      "id": "step.2",
+      "expr": "곱 계산",
+      "value": "30 × 4 = 120"
+    },
+    {
+      "id": "step.3",
+      "expr": "선택지 대응",
+      "value": "④"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "120이 선택지에 존재하는지 확인",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "id": "check.2",
+      "expr": "정답 값 일치",
+      "expected": 120,
+      "actual": 120,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "selected_option",
+      "description": "도식이 실제로 나타내는 곱의 값"
+    },
+    "value": 120,
+    "unit": ""
+  }
+}

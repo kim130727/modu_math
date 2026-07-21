@@ -1,0 +1,477 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008659",
+  "title": "원의 중심 찾기",
+  "canvas": {
+    "width": 550.0,
+    "height": 400.0,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.question"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.circle",
+        "slot.grid.v0",
+        "slot.grid.v1",
+        "slot.grid.v2",
+        "slot.grid.v3",
+        "slot.grid.v4",
+        "slot.grid.v5",
+        "slot.grid.v6",
+        "slot.grid.v7",
+        "slot.grid.v8",
+        "slot.grid.h0",
+        "slot.grid.h1",
+        "slot.grid.h2",
+        "slot.grid.h3",
+        "slot.grid.h4",
+        "slot.grid.h5",
+        "slot.grid.h6",
+        "slot.grid.h7",
+        "slot.grid.h8",
+        "slot.pt.giyeok.point",
+        "slot.pt.nieun.point",
+        "slot.pt.digeut.point",
+        "slot.pt.rieul.point",
+        "slot.pt.giyeok.label",
+        "slot.pt.nieun.label",
+        "slot.pt.digeut.label",
+        "slot.pt.rieul.label"
+      ]
+    },
+    {
+      "id": "region.answer",
+      "role": "answer",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.question",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "그림에서 원의 중심을 선택해 보세요.",
+        "style_role": "question",
+        "x": 72.0,
+        "y": 26.0,
+        "font_size": 26
+      }
+    },
+    {
+      "id": "slot.grid.v0",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 170.0,
+        "y1": 56.0,
+        "x2": 170.0,
+        "y2": 272.0,
+        "stroke": "#19BDF2",
+        "stroke_width": 1.1,
+        "stroke_dasharray": "4 3"
+      }
+    },
+    {
+      "id": "slot.grid.v1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 197.0,
+        "y1": 56.0,
+        "x2": 197.0,
+        "y2": 272.0,
+        "stroke": "#19BDF2",
+        "stroke_width": 1.1,
+        "stroke_dasharray": "4 3"
+      }
+    },
+    {
+      "id": "slot.grid.v2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 224.0,
+        "y1": 56.0,
+        "x2": 224.0,
+        "y2": 272.0,
+        "stroke": "#19BDF2",
+        "stroke_width": 1.1,
+        "stroke_dasharray": "4 3"
+      }
+    },
+    {
+      "id": "slot.grid.v3",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 251.0,
+        "y1": 56.0,
+        "x2": 251.0,
+        "y2": 272.0,
+        "stroke": "#19BDF2",
+        "stroke_width": 1.1,
+        "stroke_dasharray": "4 3"
+      }
+    },
+    {
+      "id": "slot.grid.v4",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 278.0,
+        "y1": 56.0,
+        "x2": 278.0,
+        "y2": 272.0,
+        "stroke": "#19BDF2",
+        "stroke_width": 1.1,
+        "stroke_dasharray": "4 3"
+      }
+    },
+    {
+      "id": "slot.grid.v5",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 305.0,
+        "y1": 56.0,
+        "x2": 305.0,
+        "y2": 272.0,
+        "stroke": "#19BDF2",
+        "stroke_width": 1.1,
+        "stroke_dasharray": "4 3"
+      }
+    },
+    {
+      "id": "slot.grid.v6",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 332.0,
+        "y1": 56.0,
+        "x2": 332.0,
+        "y2": 272.0,
+        "stroke": "#19BDF2",
+        "stroke_width": 1.1,
+        "stroke_dasharray": "4 3"
+      }
+    },
+    {
+      "id": "slot.grid.v7",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 359.0,
+        "y1": 56.0,
+        "x2": 359.0,
+        "y2": 272.0,
+        "stroke": "#19BDF2",
+        "stroke_width": 1.1,
+        "stroke_dasharray": "4 3"
+      }
+    },
+    {
+      "id": "slot.grid.v8",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 386.0,
+        "y1": 56.0,
+        "x2": 386.0,
+        "y2": 272.0,
+        "stroke": "#19BDF2",
+        "stroke_width": 1.1,
+        "stroke_dasharray": "4 3"
+      }
+    },
+    {
+      "id": "slot.grid.h0",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 170.0,
+        "y1": 56.0,
+        "x2": 386.0,
+        "y2": 56.0,
+        "stroke": "#19BDF2",
+        "stroke_width": 1.1,
+        "stroke_dasharray": "4 3"
+      }
+    },
+    {
+      "id": "slot.grid.h1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 170.0,
+        "y1": 83.0,
+        "x2": 386.0,
+        "y2": 83.0,
+        "stroke": "#19BDF2",
+        "stroke_width": 1.1,
+        "stroke_dasharray": "4 3"
+      }
+    },
+    {
+      "id": "slot.grid.h2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 170.0,
+        "y1": 110.0,
+        "x2": 386.0,
+        "y2": 110.0,
+        "stroke": "#19BDF2",
+        "stroke_width": 1.1,
+        "stroke_dasharray": "4 3"
+      }
+    },
+    {
+      "id": "slot.grid.h3",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 170.0,
+        "y1": 137.0,
+        "x2": 386.0,
+        "y2": 137.0,
+        "stroke": "#19BDF2",
+        "stroke_width": 1.1,
+        "stroke_dasharray": "4 3"
+      }
+    },
+    {
+      "id": "slot.grid.h4",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 170.0,
+        "y1": 164.0,
+        "x2": 386.0,
+        "y2": 164.0,
+        "stroke": "#19BDF2",
+        "stroke_width": 1.1,
+        "stroke_dasharray": "4 3"
+      }
+    },
+    {
+      "id": "slot.grid.h5",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 170.0,
+        "y1": 191.0,
+        "x2": 386.0,
+        "y2": 191.0,
+        "stroke": "#19BDF2",
+        "stroke_width": 1.1,
+        "stroke_dasharray": "4 3"
+      }
+    },
+    {
+      "id": "slot.grid.h6",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 170.0,
+        "y1": 218.0,
+        "x2": 386.0,
+        "y2": 218.0,
+        "stroke": "#19BDF2",
+        "stroke_width": 1.1,
+        "stroke_dasharray": "4 3"
+      }
+    },
+    {
+      "id": "slot.grid.h7",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 170.0,
+        "y1": 245.0,
+        "x2": 386.0,
+        "y2": 245.0,
+        "stroke": "#19BDF2",
+        "stroke_width": 1.1,
+        "stroke_dasharray": "4 3"
+      }
+    },
+    {
+      "id": "slot.grid.h8",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 170.0,
+        "y1": 272.0,
+        "x2": 386.0,
+        "y2": 272.0,
+        "stroke": "#19BDF2",
+        "stroke_width": 1.1,
+        "stroke_dasharray": "4 3"
+      }
+    },
+    {
+      "id": "slot.circle",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 278.0,
+        "cy": 164.0,
+        "r": 81.0,
+        "stroke": "#222222",
+        "stroke_width": 1.5,
+        "fill": "none"
+      }
+    },
+    {
+      "id": "slot.pt.giyeok.point",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 197,
+        "cy": 164,
+        "r": 4,
+        "stroke": "#E91E63",
+        "stroke_width": 1,
+        "fill": "#E91E63"
+      }
+    },
+    {
+      "id": "slot.pt.giyeok.label",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄱ",
+        "style_role": "label",
+        "x": 179,
+        "y": 182,
+        "font_size": 24,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.pt.nieun.point",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 224.0,
+        "cy": 137.0,
+        "r": 4.0,
+        "stroke": "#E91E63",
+        "stroke_width": 1.0,
+        "fill": "#E91E63"
+      }
+    },
+    {
+      "id": "slot.pt.nieun.label",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄴ",
+        "style_role": "label",
+        "x": 232.0,
+        "y": 155.0,
+        "font_size": 24
+      }
+    },
+    {
+      "id": "slot.pt.digeut.point",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 278.0,
+        "cy": 110.0,
+        "r": 4.0,
+        "stroke": "#E91E63",
+        "stroke_width": 1.0,
+        "fill": "#E91E63"
+      }
+    },
+    {
+      "id": "slot.pt.digeut.label",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄷ",
+        "style_role": "label",
+        "x": 286.0,
+        "y": 126.0,
+        "font_size": 24
+      }
+    },
+    {
+      "id": "slot.pt.rieul.point",
+      "kind": "circle",
+      "prompt": "",
+      "content": {
+        "cx": 278.0,
+        "cy": 164.0,
+        "r": 4.0,
+        "stroke": "#E91E63",
+        "stroke_width": 1.0,
+        "fill": "#E91E63"
+      }
+    },
+    {
+      "id": "slot.pt.rieul.label",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "ㄹ",
+        "style_role": "label",
+        "x": 286.0,
+        "y": 182.0,
+        "font_size": 24
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.question",
+    "region.diagram",
+    "slot.circle",
+    "slot.grid.v0",
+    "slot.grid.v1",
+    "slot.grid.v2",
+    "slot.grid.v3",
+    "slot.grid.v4",
+    "slot.grid.v5",
+    "slot.grid.v6",
+    "slot.grid.v7",
+    "slot.grid.v8",
+    "slot.grid.h0",
+    "slot.grid.h1",
+    "slot.grid.h2",
+    "slot.grid.h3",
+    "slot.grid.h4",
+    "slot.grid.h5",
+    "slot.grid.h6",
+    "slot.grid.h7",
+    "slot.grid.h8",
+    "slot.pt.giyeok.point",
+    "slot.pt.nieun.point",
+    "slot.pt.digeut.point",
+    "slot.pt.rieul.point",
+    "slot.pt.giyeok.label",
+    "slot.pt.nieun.label",
+    "slot.pt.digeut.label",
+    "slot.pt.rieul.label",
+    "region.answer"
+  ]
+}

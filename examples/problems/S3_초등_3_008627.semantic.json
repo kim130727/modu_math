@@ -1,0 +1,87 @@
+{
+  "problem_id": "S3_초등_3_008627",
+  "problem_type": "division_remainder_comparison",
+  "metadata": {
+    "title": "나머지가 다른 하나는 어느 것일까요?",
+    "tags": [],
+    "question": "나머지가 다른 하나는 어느 것일까요?",
+    "required_layout_ids": [],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "보기 중 나머지가 다른 하나를 찾는다."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.div1",
+        "type": "division_expression",
+        "expression": "37 ÷ 7"
+      },
+      {
+        "id": "obj.div2",
+        "type": "division_expression",
+        "expression": "22 ÷ 5"
+      },
+      {
+        "id": "obj.div3",
+        "type": "division_expression",
+        "expression": "26 ÷ 4"
+      },
+      {
+        "id": "obj.div4",
+        "type": "division_expression",
+        "expression": "58 ÷ 9"
+      },
+      {
+        "id": "obj.div5",
+        "type": "division_expression",
+        "expression": "66 ÷ 8"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.div1",
+          "obj.div2",
+          "obj.div3",
+          "obj.div4",
+          "obj.div5"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.compare_remainders"
+        ]
+      },
+      "plan": {
+        "method": "compare_remainders",
+        "description": "각 나눗셈식의 나머지를 비교해서 다른 항목을 찾는다."
+      },
+      "execute": {
+        "expected_operations": [
+          "identify_remainders",
+          "compare_values",
+          "select_unique_item"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "remainder_consistency_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "option_number",
+      "description": "나머지가 다른 보기"
+    },
+    "value": 4,
+    "unit": ""
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "problem_id": "S3_초등_3_008673",
+  "problem_type": "도형_비교",
+  "metadata": {
+    "title": "원의 중심과 반지름",
+    "tags": [],
+    "instruction": "원의 중심을 옮기지 않고 반지름만 다르게 하여 그린 것을 선택하세요.",
+    "question": "원의 중심을 옮기지 않고 반지름만 다르게 하여 그린 것을 선택하는 문제",
+    "required_layout_ids": [
+      "slot.box",
+      "slot.top.left.c1",
+      "slot.top.left.c2",
+      "slot.top.left.c3",
+      "slot.top.mid.big",
+      "slot.top.mid.small1",
+      "slot.top.mid.small2",
+      "slot.top.right.o1",
+      "slot.top.right.o2",
+      "slot.top.right.o3"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.circle_group",
+        "type": "circle_set"
+      },
+      {
+        "id": "obj.center",
+        "type": "center"
+      },
+      {
+        "id": "obj.radius",
+        "type": "radius"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.circle_group"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.center_fixed",
+          "rel.radius_varies"
+        ]
+      },
+      "plan": {
+        "method": "도형의 중심과 반지름 비교",
+        "description": "중심이 같은지, 반지름이 달라지는지를 비교한다."
+      },
+      "execute": {
+        "expected_operations": [
+          "중심 비교",
+          "반지름 비교",
+          "조건에 맞는 그림 선택"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "중심 동일 여부 확인",
+          "반지름 변화 여부 확인"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "circle_diagram_selection",
+      "description": "원의 중심을 옮기지 않고 반지름만 다르게 하여 그린 것"
+    },
+    "value": 3,
+    "unit": ""
+  }
+}

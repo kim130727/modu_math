@@ -1,0 +1,90 @@
+{
+  "schema": "modu.solvable.v1.1",
+  "problem_id": "S3_초등_3_008590",
+  "problem_type": "division_explanation_choice",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "문제를 바르게 설명한 사람",
+    "target_ticks": 0,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.dividend",
+      "value": 68
+    },
+    {
+      "ref": "obj.divisor",
+      "value": 5
+    },
+    {
+      "ref": "obj.person.left",
+      "value": "형우"
+    },
+    {
+      "ref": "obj.person.middle",
+      "value": "희영"
+    },
+    {
+      "ref": "obj.person.right",
+      "value": "성태"
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "person_selection"
+  },
+  "method": "division_result_check",
+  "plan": [
+    "68 ÷ 5의 몫과 나머지를 구한다.",
+    "세 설명과 비교하여 맞는 사람을 고른다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "68 ÷ 5",
+      "value": {
+        "quotient": 13,
+        "remainder": 3
+      }
+    },
+    {
+      "id": "step.2",
+      "expr": "나머지 < 나누는 수",
+      "value": true
+    },
+    {
+      "id": "step.3",
+      "expr": "선택한 사람",
+      "value": "성태"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "68 = 5 × 13 + 3",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "id": "check.2",
+      "expr": "3 < 5",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "person_selection",
+      "description": "문제를 바르게 설명한 사람"
+    },
+    "value": "성태",
+    "unit": ""
+  }
+}

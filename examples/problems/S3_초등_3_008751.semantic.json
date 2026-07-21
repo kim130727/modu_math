@@ -1,0 +1,83 @@
+{
+  "problem_id": "S3_초등_3_008751",
+  "problem_type": "판단형",
+  "metadata": {
+    "title": "물병과 우유병의 높이 비교",
+    "tags": [
+      "판단형",
+      "초등수학",
+      "비교",
+      "그림문항"
+    ],
+    "question": "물병과 우유병의 높이를 비교하려고 합니다. 두 병의 높이를 비교하는 방법을 바르게 설명했으면 ○표, 그렇지 않으면 ×를 선택하세요.",
+    "required_layout_ids": [
+      "slot.inserted.image.1"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "비교 방법의 타당성을 판단한다."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.bottle_water",
+        "type": "container",
+        "name": "물병"
+      },
+      {
+        "id": "obj.bottle_milk",
+        "type": "container",
+        "name": "우유병"
+      },
+      {
+        "id": "obj.speech",
+        "type": "statement",
+        "content": "물병에 물을 가득 채운 후 우유병에 옮겨 담아 보면 돼."
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.bottle_water",
+          "obj.bottle_milk",
+          "obj.speech"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.compare_height",
+          "rel.statement_about_method"
+        ]
+      },
+      "plan": {
+        "method": "판단하기",
+        "description": "제시된 방법이 병의 높이를 비교하는 데 적절한지 확인한다."
+      },
+      "execute": {
+        "expected_operations": [
+          "compare_statement_with_goal",
+          "judge_method_validity"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "statement_matches_target",
+          "answer_symbol_consistency"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "symbol_judgment",
+      "description": "제시된 방법이 높이 비교 방법으로 바른지 판단하기"
+    },
+    "value": 0,
+    "unit": ""
+  }
+}

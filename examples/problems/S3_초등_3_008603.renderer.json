@@ -1,0 +1,76 @@
+{
+  "problem_id": "S3_초등_3_008603",
+  "view_box": {
+    "width": 760.0,
+    "height": 330.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.box.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 197.011,
+        "y": 112.0,
+        "width": 380.0,
+        "height": 80.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.box",
+      "refs": {
+        "layout_slot_id": "slot.box"
+      }
+    },
+    {
+      "id": "slot.q1.text",
+      "type": "text",
+      "attributes": {
+        "x": 52.011,
+        "y": 71.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30
+      },
+      "source_ref": "slot.q1",
+      "refs": {
+        "layout_slot_id": "slot.q1"
+      },
+      "text": "나누어떨어지는 나눗셈식을 찾아 기호를 선택해 보세요."
+    },
+    {
+      "id": "slot.v1.text",
+      "type": "text",
+      "attributes": {
+        "x": 227.011,
+        "y": 162.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30
+      },
+      "source_ref": "slot.v1",
+      "refs": {
+        "layout_slot_id": "slot.v1"
+      },
+      "text": "㉠ 64 ÷ 6"
+    },
+    {
+      "id": "slot.v2.text",
+      "type": "text",
+      "attributes": {
+        "x": 407.011,
+        "y": 162.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30
+      },
+      "source_ref": "slot.v2",
+      "refs": {
+        "layout_slot_id": "slot.v2"
+      },
+      "text": "㉡ 92 ÷ 4"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

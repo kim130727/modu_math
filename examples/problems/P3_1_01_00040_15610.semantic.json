@@ -1,0 +1,80 @@
+{
+  "problem_id": "P3_1_01_00040_15610",
+  "problem_type": "text_answer_compare_addition_expression_and_number",
+  "metadata": {
+    "title": "덧셈식과 수의 크기 비교",
+    "tags": [],
+    "question": "○ 안에 >, =, <를 알맞게 써넣으시오.",
+    "required_layout_ids": [
+      "slot.comparison.background",
+      "slot.comparison.circle"
+    ],
+    "extraction_confidence": 1.0,
+    "grade": 3,
+    "semester": 1,
+    "subject": "수학",
+    "topic": "세 자리 수의 덧셈과 크기 비교",
+    "language": "ko-KR",
+    "instruction": "덧셈식의 결과와 주어진 수를 비교하여 알맞은 기호를 씁니다."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "number.addend_1",
+        "type": "number",
+        "label": "첫 번째 더하는 수",
+        "value": 400
+      },
+      {
+        "id": "number.addend_2",
+        "type": "number",
+        "label": "두 번째 더하는 수",
+        "value": 156
+      },
+      {
+        "id": "quantity.sum",
+        "type": "derived_number",
+        "label": "400과 156의 합",
+        "value": 556
+      },
+      {
+        "id": "number.comparison_value",
+        "type": "number",
+        "label": "비교할 수",
+        "value": 501
+      },
+      {
+        "id": "comparison.sum_and_number",
+        "type": "comparison_symbol",
+        "label": "덧셈 결과와 501의 비교 기호",
+        "value": ">"
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.addition",
+        "type": "sum_of",
+        "subject": "quantity.sum",
+        "objects": [
+          "number.addend_1",
+          "number.addend_2"
+        ]
+      },
+      {
+        "id": "relation.compare",
+        "type": "greater_than",
+        "left": "quantity.sum",
+        "right": "number.comparison_value",
+        "result": "comparison.sum_and_number"
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "type": "text",
+    "value": ">",
+    "unit": "",
+    "target_ref": "comparison.sum_and_number",
+    "derived_from": "step.compare_values"
+  }
+}

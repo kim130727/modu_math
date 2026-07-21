@@ -1,0 +1,329 @@
+{
+  "problem_id": "S3_초등_3_008719",
+  "view_box": {
+    "width": 940.0,
+    "height": 370.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.q1.text",
+      "type": "text",
+      "attributes": {
+        "x": 56.0,
+        "y": 36.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q1",
+      "refs": {
+        "layout_slot_id": "slot.q1"
+      },
+      "text": "그림과 같이 띠 종이를 나 못으로 고정한 후 연필을 구멍에 넣어 원을"
+    },
+    {
+      "id": "slot.q2.text",
+      "type": "text",
+      "attributes": {
+        "x": 55.0,
+        "y": 80.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q2",
+      "refs": {
+        "layout_slot_id": "slot.q2"
+      },
+      "text": "그리려고 합니다. 원의 중심이 되는 곳을 선택하세요."
+    },
+    {
+      "id": "slot.band.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 255.0,
+        "y": 215.0,
+        "width": 435.0,
+        "height": 105.0,
+        "fill": "#f3efcf",
+        "stroke": "#c9bf93",
+        "stroke-width": 1.2
+      },
+      "source_ref": "slot.band",
+      "refs": {
+        "layout_slot_id": "slot.band"
+      }
+    },
+    {
+      "id": "slot.pin_head.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 482.0,
+        "cy": 209.0,
+        "r": 10.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#d8d8d8"
+      },
+      "source_ref": "slot.pin_head",
+      "refs": {
+        "layout_slot_id": "slot.pin_head"
+      }
+    },
+    {
+      "id": "slot.pencil_body.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 648.0,
+        "y": 158.0,
+        "width": 10.0,
+        "height": 80.0,
+        "fill": "#ffb5b5",
+        "stroke": "#ee7777",
+        "stroke-width": 1.0
+      },
+      "source_ref": "slot.pencil_body",
+      "refs": {
+        "layout_slot_id": "slot.pencil_body"
+      }
+    },
+    {
+      "id": "slot.pencil_tip.polygon",
+      "type": "polygon",
+      "attributes": {
+        "points": [
+          [
+            647.666748046875,
+            238.99996948242188
+          ],
+          [
+            659.666748046875,
+            238.99996948242188
+          ],
+          [
+            653.666748046875,
+            252.99996948242188
+          ]
+        ],
+        "stroke": "#c49b62",
+        "stroke-width": 1.0,
+        "fill": "#e6c08b"
+      },
+      "source_ref": "slot.pencil_tip",
+      "refs": {
+        "layout_slot_id": "slot.pencil_tip"
+      }
+    },
+    {
+      "id": "slot.pencil_eraser.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 648.0,
+        "y": 146.0,
+        "width": 10.0,
+        "height": 10.0,
+        "fill": "#d9a27f",
+        "stroke": "#b98160",
+        "stroke-width": 1.0
+      },
+      "source_ref": "slot.pencil_eraser",
+      "refs": {
+        "layout_slot_id": "slot.pencil_eraser"
+      }
+    },
+    {
+      "id": "slot.pin_body.line",
+      "type": "line",
+      "attributes": {
+        "x1": 482.0,
+        "y1": 219.0,
+        "x2": 482.0,
+        "y2": 259.0,
+        "stroke": "#8e8e8e",
+        "stroke-width": 5.0
+      },
+      "source_ref": "slot.pin_body",
+      "refs": {
+        "layout_slot_id": "slot.pin_body"
+      }
+    },
+    {
+      "id": "slot.pt1.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 305.0,
+        "cy": 260.0,
+        "r": 5.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#d6c79a"
+      },
+      "source_ref": "slot.pt1",
+      "refs": {
+        "layout_slot_id": "slot.pt1"
+      }
+    },
+    {
+      "id": "slot.pt2.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 390.0,
+        "cy": 260.0,
+        "r": 5.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#d6c79a"
+      },
+      "source_ref": "slot.pt2",
+      "refs": {
+        "layout_slot_id": "slot.pt2"
+      }
+    },
+    {
+      "id": "slot.pt3.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 482.0,
+        "cy": 260.0,
+        "r": 5.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#d6c79a"
+      },
+      "source_ref": "slot.pt3",
+      "refs": {
+        "layout_slot_id": "slot.pt3"
+      }
+    },
+    {
+      "id": "slot.pt4.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 572.0,
+        "cy": 260.0,
+        "r": 5.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#d6c79a"
+      },
+      "source_ref": "slot.pt4",
+      "refs": {
+        "layout_slot_id": "slot.pt4"
+      }
+    },
+    {
+      "id": "slot.pt5.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 654.0,
+        "cy": 260.0,
+        "r": 5.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#d6c79a"
+      },
+      "source_ref": "slot.pt5",
+      "refs": {
+        "layout_slot_id": "slot.pt5"
+      }
+    },
+    {
+      "id": "slot.pin_tip.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 482.0,
+        "cy": 209.0,
+        "r": 5.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#a7a7a7"
+      },
+      "source_ref": "slot.pin_tip",
+      "refs": {
+        "layout_slot_id": "slot.pin_tip"
+      }
+    },
+    {
+      "id": "slot.lb1.text",
+      "type": "text",
+      "attributes": {
+        "x": 290.0,
+        "y": 300.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30
+      },
+      "source_ref": "slot.lb1",
+      "refs": {
+        "layout_slot_id": "slot.lb1"
+      },
+      "text": "①"
+    },
+    {
+      "id": "slot.lb2.text",
+      "type": "text",
+      "attributes": {
+        "x": 375.0,
+        "y": 300.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30
+      },
+      "source_ref": "slot.lb2",
+      "refs": {
+        "layout_slot_id": "slot.lb2"
+      },
+      "text": "②"
+    },
+    {
+      "id": "slot.lb3.text",
+      "type": "text",
+      "attributes": {
+        "x": 467.0,
+        "y": 300.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30
+      },
+      "source_ref": "slot.lb3",
+      "refs": {
+        "layout_slot_id": "slot.lb3"
+      },
+      "text": "③"
+    },
+    {
+      "id": "slot.lb4.text",
+      "type": "text",
+      "attributes": {
+        "x": 557.0,
+        "y": 300.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30
+      },
+      "source_ref": "slot.lb4",
+      "refs": {
+        "layout_slot_id": "slot.lb4"
+      },
+      "text": "④"
+    },
+    {
+      "id": "slot.lb5.text",
+      "type": "text",
+      "attributes": {
+        "x": 640.0,
+        "y": 300.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30
+      },
+      "source_ref": "slot.lb5",
+      "refs": {
+        "layout_slot_id": "slot.lb5"
+      },
+      "text": "⑤"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

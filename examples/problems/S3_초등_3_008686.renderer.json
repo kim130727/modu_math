@@ -1,0 +1,155 @@
+{
+  "problem_id": "S3_초등_3_008686",
+  "view_box": {
+    "width": 940.0,
+    "height": 469.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.diagram.circle.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 444.0,
+        "cy": 189.0,
+        "r": 90.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "none"
+      },
+      "source_ref": "slot.diagram.circle",
+      "refs": {
+        "layout_slot_id": "slot.diagram.circle"
+      }
+    },
+    {
+      "id": "slot.diagram.diameter.line",
+      "type": "line",
+      "attributes": {
+        "x1": 355.0,
+        "y1": 190.0,
+        "x2": 535.0,
+        "y2": 190.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0
+      },
+      "source_ref": "slot.diagram.diameter",
+      "refs": {
+        "layout_slot_id": "slot.diagram.diameter"
+      }
+    },
+    {
+      "id": "slot.diagram.center_mark.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 450.0,
+        "cy": 170.0,
+        "r": 5.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "none"
+      },
+      "source_ref": "slot.diagram.center_mark",
+      "refs": {
+        "layout_slot_id": "slot.diagram.center_mark"
+      }
+    },
+    {
+      "id": "slot.diagram.pink_dot.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 445.0,
+        "cy": 185.0,
+        "r": 0.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "none"
+      },
+      "source_ref": "slot.diagram.pink_dot",
+      "refs": {
+        "layout_slot_id": "slot.diagram.pink_dot"
+      }
+    },
+    {
+      "id": "slot.pt.center.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 445.0,
+        "cy": 190.0,
+        "r": 5.0,
+        "stroke": "#111111",
+        "stroke-width": 2.0,
+        "fill": "#ff2aa8"
+      },
+      "source_ref": "slot.pt.center",
+      "refs": {
+        "layout_slot_id": "slot.pt.center"
+      }
+    },
+    {
+      "id": "slot.qnum.text",
+      "type": "text",
+      "attributes": {
+        "x": 10.0,
+        "y": 50.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30
+      },
+      "source_ref": "slot.qnum",
+      "refs": {
+        "layout_slot_id": "slot.qnum"
+      },
+      "text": "    다음을 읽고 바르게 설명하였으면 ○표, 그렇지 않으면 ×표를 선택하세요.    "
+    },
+    {
+      "id": "slot.diagram.left_label.text",
+      "type": "text",
+      "attributes": {
+        "x": 310.0,
+        "y": 195.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30
+      },
+      "source_ref": "slot.diagram.left_label",
+      "refs": {
+        "layout_slot_id": "slot.diagram.left_label"
+      },
+      "text": "ㄱ"
+    },
+    {
+      "id": "slot.diagram.right_label.text",
+      "type": "text",
+      "attributes": {
+        "x": 560.0,
+        "y": 190.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30
+      },
+      "source_ref": "slot.diagram.right_label",
+      "refs": {
+        "layout_slot_id": "slot.diagram.right_label"
+      },
+      "text": "ㄴ"
+    },
+    {
+      "id": "slot.statement.text",
+      "type": "text",
+      "attributes": {
+        "x": 160.0,
+        "y": 350.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 30
+      },
+      "source_ref": "slot.statement",
+      "refs": {
+        "layout_slot_id": "slot.statement"
+      },
+      "text": "원의 지름을 나타내는 선분은 선분 ㄱㄴ입니다."
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

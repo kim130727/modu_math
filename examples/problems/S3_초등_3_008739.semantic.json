@@ -1,0 +1,111 @@
+{
+  "problem_id": "S3_초등_3_008739",
+  "problem_type": "comparison_minimum",
+  "metadata": {
+    "title": "집에서 가장 가까운 곳",
+    "tags": [],
+    "instruction": "가장 가까운 곳을 고르시오.",
+    "question": "집에서 각 장소까지의 거리를 나타낸 것입니다. 집에서 가장 가까운 곳은 어디인지 선택하세요.",
+    "required_layout_ids": [
+      "slot.line.bookstore",
+      "slot.line.bank",
+      "slot.line.school",
+      "slot.inserted.image.1",
+      "slot.inserted.image.2",
+      "slot.inserted.image.3",
+      "slot.inserted.image.4",
+      "slot.math.mixed_fraction.bar",
+      "slot.math.mixed_fraction_1.bar",
+      "slot.math.mixed_fraction_2.bar",
+      "slot.inserted.arc.1",
+      "slot.inserted.arc.1.copy5",
+      "slot.inserted.arc.1.copy5.copy6",
+      "slot.inserted.arc.1.copy5.copy9"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.house",
+        "type": "place",
+        "name": "집"
+      },
+      {
+        "id": "obj.bookstore",
+        "type": "place",
+        "name": "서점"
+      },
+      {
+        "id": "obj.bank",
+        "type": "place",
+        "name": "은행"
+      },
+      {
+        "id": "obj.school",
+        "type": "place",
+        "name": "학교"
+      },
+      {
+        "id": "obj.dist_bookstore",
+        "type": "distance",
+        "value_text": "7 1/10 km"
+      },
+      {
+        "id": "obj.dist_bank",
+        "type": "distance",
+        "value_text": "69/10 km"
+      },
+      {
+        "id": "obj.dist_school",
+        "type": "distance",
+        "value_text": "7 3/10 km"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.dist_bookstore",
+          "obj.dist_bank",
+          "obj.dist_school"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.compare_distances"
+        ]
+      },
+      "plan": {
+        "method": "compare_distances",
+        "description": "세 장소까지의 거리를 비교하여 가장 작은 값을 찾는다."
+      },
+      "execute": {
+        "expected_operations": [
+          "read_distances",
+          "compare_values",
+          "select_minimum"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "minimum_check",
+          "label_match_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "nearest_place",
+      "description": "집에서 가장 가까운 곳"
+    },
+    "value": 0,
+    "unit": ""
+  }
+}

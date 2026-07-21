@@ -1,0 +1,614 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008740",
+  "title": "두 분수의 크기 비교",
+  "canvas": {
+    "width": 960,
+    "height": 700,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.q2",
+        "slot.q3"
+      ]
+    },
+    {
+      "id": "region.diagram.top",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.top.box",
+        "slot.mid.left.box",
+        "slot.mid.right.box",
+        "slot.leaf.1",
+        "slot.leaf.2",
+        "slot.leaf.3",
+        "slot.leaf.4",
+        "slot.top.line",
+        "slot.mid.connector",
+        "slot.math.fraction.bar",
+        "slot.math.fraction_1.bar",
+        "slot.math.mixed_fraction.bar",
+        "slot.math.mixed_fraction_1.bar",
+        "slot.top.line.copy10",
+        "slot.top.line.copy11",
+        "slot.mid.connector.copy12",
+        "slot.mid.connector.copy13",
+        "slot.top.line.copy14",
+        "slot.top.line.copy15",
+        "slot.top.line.copy14.copy16",
+        "slot.top.line.copy14.copy17",
+        "slot.top.line.copy14.copy18",
+        "slot.top.line.copy14.copy19",
+        "slot.top.text",
+        "slot.math.fraction.num",
+        "slot.math.fraction.den",
+        "slot.math.fraction_1.num",
+        "slot.math.fraction_1.den",
+        "slot.math.mixed_fraction.whole",
+        "slot.math.mixed_fraction.num",
+        "slot.math.mixed_fraction.den",
+        "slot.math.mixed_fraction_1.whole",
+        "slot.math.mixed_fraction_1.num",
+        "slot.math.mixed_fraction_1.den"
+      ]
+    },
+    {
+      "id": "region.note",
+      "role": "annotation",
+      "flow": "absolute",
+      "slot_ids": []
+    },
+    {
+      "id": "region.diagram.bottom",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": []
+    },
+    {
+      "id": "region.solution.text",
+      "role": "explanation",
+      "flow": "absolute",
+      "slot_ids": []
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.math.fraction.num",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "23",
+        "style_role": "body",
+        "x": 200.0,
+        "y": 475.0,
+        "font_size": 30,
+        "anchor": "middle",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.math.fraction.bar",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 180.0,
+        "y1": 492.0,
+        "x2": 220.0,
+        "y2": 492.0,
+        "stroke": "#222222",
+        "stroke_width": 2.2
+      }
+    },
+    {
+      "id": "slot.math.fraction.den",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "6",
+        "style_role": "body",
+        "x": 200.0,
+        "y": 520.0,
+        "font_size": 30,
+        "anchor": "middle",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.math.fraction_1.num",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "21",
+        "style_role": "body",
+        "x": 337.0,
+        "y": 475.0,
+        "font_size": 30,
+        "anchor": "middle",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.math.fraction_1.bar",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 317.0,
+        "y1": 492.0,
+        "x2": 357.0,
+        "y2": 492.0,
+        "stroke": "#222222",
+        "stroke_width": 2.2
+      }
+    },
+    {
+      "id": "slot.math.fraction_1.den",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "6",
+        "style_role": "body",
+        "x": 337.0,
+        "y": 520.0,
+        "font_size": 30,
+        "anchor": "middle",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.math.mixed_fraction.whole",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "3",
+        "style_role": "body",
+        "x": 510.0,
+        "y": 500.0,
+        "font_size": 30,
+        "anchor": "middle",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.math.mixed_fraction.num",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "2",
+        "style_role": "body",
+        "x": 542.0,
+        "y": 475.0,
+        "font_size": 30,
+        "anchor": "middle",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.math.mixed_fraction.bar",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 522.0,
+        "y1": 492.0,
+        "x2": 562.0,
+        "y2": 492.0,
+        "stroke": "#222222",
+        "stroke_width": 2.2
+      }
+    },
+    {
+      "id": "slot.math.mixed_fraction.den",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "6",
+        "style_role": "body",
+        "x": 542.0,
+        "y": 520.0,
+        "font_size": 30,
+        "anchor": "middle",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.math.mixed_fraction_1.whole",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "3",
+        "style_role": "body",
+        "x": 645.0,
+        "y": 500.0,
+        "font_size": 30,
+        "anchor": "middle",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.math.mixed_fraction_1.num",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "4",
+        "style_role": "body",
+        "x": 677.0,
+        "y": 475.0,
+        "font_size": 30,
+        "anchor": "middle",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.math.mixed_fraction_1.bar",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 657.0,
+        "y1": 492.0,
+        "x2": 697.0,
+        "y2": 492.0,
+        "stroke": "#222222",
+        "stroke_width": 2.2
+      }
+    },
+    {
+      "id": "slot.math.mixed_fraction_1.den",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "6",
+        "style_role": "body",
+        "x": 677.0,
+        "y": 520.0,
+        "font_size": 30,
+        "anchor": "middle",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "두 분수의 크기를 비교하여 더 큰 분수를 빈칸에 써 넣으려고 합니다. ",
+        "style_role": "question",
+        "x": 25.0,
+        "y": 80.0,
+        "font_size": 30,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.q3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "①에 들어갈 분수로 알맞은 것을 가장 아래 칸의 분수들 중에 선택해 보세요.",
+        "style_role": "question",
+        "x": 20.0,
+        "y": 130.0,
+        "font_size": 30,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.top.box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 380.0,
+        "y": 163.0,
+        "width": 100.0,
+        "height": 95.0,
+        "stroke": "#D8C2E6",
+        "stroke_width": 1.5,
+        "fill": "#FFFFFF"
+      }
+    },
+    {
+      "id": "slot.top.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "①",
+        "style_role": "label",
+        "x": 415.0,
+        "y": 220.0,
+        "font_size": 30,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.top.line",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 429.0,
+        "y1": 258.0,
+        "x2": 429.0,
+        "y2": 278.0,
+        "stroke": "#666666",
+        "stroke_width": 1.6
+      }
+    },
+    {
+      "id": "slot.mid.left.box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 218.0,
+        "y": 301.0,
+        "width": 100.0,
+        "height": 95.0,
+        "stroke": "#D8C2E6",
+        "stroke_width": 1.5,
+        "fill": "#FFFFFF"
+      }
+    },
+    {
+      "id": "slot.mid.right.box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 540.0,
+        "y": 298.0,
+        "width": 100.0,
+        "height": 95.0,
+        "stroke": "#D8C2E6",
+        "stroke_width": 1.5,
+        "fill": "#FFFFFF"
+      }
+    },
+    {
+      "id": "slot.mid.connector",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 265.0,
+        "y1": 278.0,
+        "x2": 590.0,
+        "y2": 278.0,
+        "stroke": "#666666",
+        "stroke_width": 1.6
+      }
+    },
+    {
+      "id": "slot.leaf.1",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 150.0,
+        "y": 440.0,
+        "width": 100.0,
+        "height": 95.0,
+        "stroke": "#D8C2E6",
+        "stroke_width": 1.5,
+        "fill": "#EBDFF3"
+      }
+    },
+    {
+      "id": "slot.leaf.2",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 287.0,
+        "y": 441.0,
+        "width": 100.0,
+        "height": 95.0,
+        "stroke": "#D8C2E6",
+        "stroke_width": 1.5,
+        "fill": "#EBDFF3"
+      }
+    },
+    {
+      "id": "slot.leaf.3",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 475.0,
+        "y": 439.0,
+        "width": 100.0,
+        "height": 95.0,
+        "stroke": "#D8C2E6",
+        "stroke_width": 1.5,
+        "fill": "#EBDFF3"
+      }
+    },
+    {
+      "id": "slot.leaf.4",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 610.0,
+        "y": 439.0,
+        "width": 100.0,
+        "height": 95.0,
+        "stroke": "#D8C2E6",
+        "stroke_width": 1.5,
+        "fill": "#EBDFF3"
+      }
+    },
+    {
+      "id": "slot.top.line.copy10",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 590.0,
+        "y1": 277.0,
+        "x2": 590.0,
+        "y2": 297.0,
+        "stroke": "#666666",
+        "stroke_width": 1.6
+      }
+    },
+    {
+      "id": "slot.top.line.copy11",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 267.0,
+        "y1": 280.0,
+        "x2": 267.0,
+        "y2": 300.0,
+        "stroke": "#666666",
+        "stroke_width": 1.6
+      }
+    },
+    {
+      "id": "slot.mid.connector.copy12",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 200.0,
+        "y1": 421.0,
+        "x2": 335.0,
+        "y2": 421.0,
+        "stroke": "#666666",
+        "stroke_width": 1.6
+      }
+    },
+    {
+      "id": "slot.mid.connector.copy13",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 521.0,
+        "y1": 413.0,
+        "x2": 661.0,
+        "y2": 413.0,
+        "stroke": "#666666",
+        "stroke_width": 1.6
+      }
+    },
+    {
+      "id": "slot.top.line.copy14",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 265.0,
+        "y1": 399.0,
+        "x2": 265.0,
+        "y2": 419.0,
+        "stroke": "#666666",
+        "stroke_width": 1.6
+      }
+    },
+    {
+      "id": "slot.top.line.copy15",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 591.0,
+        "y1": 392.0,
+        "x2": 591.0,
+        "y2": 412.0,
+        "stroke": "#666666",
+        "stroke_width": 1.6
+      }
+    },
+    {
+      "id": "slot.top.line.copy14.copy16",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 200.0,
+        "y1": 421.0,
+        "x2": 200.0,
+        "y2": 441.0,
+        "stroke": "#666666",
+        "stroke_width": 1.6
+      }
+    },
+    {
+      "id": "slot.top.line.copy14.copy17",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 334.0,
+        "y1": 421.0,
+        "x2": 334.0,
+        "y2": 441.0,
+        "stroke": "#666666",
+        "stroke_width": 1.6
+      }
+    },
+    {
+      "id": "slot.top.line.copy14.copy18",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 521.0,
+        "y1": 413.0,
+        "x2": 521.0,
+        "y2": 438.0,
+        "stroke": "#666666",
+        "stroke_width": 1.6
+      }
+    },
+    {
+      "id": "slot.top.line.copy14.copy19",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 661.0,
+        "y1": 413.0,
+        "x2": 661.0,
+        "y2": 438.0,
+        "stroke": "#666666",
+        "stroke_width": 1.6
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.q2",
+    "slot.q3",
+    "region.diagram.top",
+    "slot.top.box",
+    "slot.mid.left.box",
+    "slot.mid.right.box",
+    "slot.leaf.1",
+    "slot.leaf.2",
+    "slot.leaf.3",
+    "slot.leaf.4",
+    "slot.top.line",
+    "slot.mid.connector",
+    "slot.math.fraction.bar",
+    "slot.math.fraction_1.bar",
+    "slot.math.mixed_fraction.bar",
+    "slot.math.mixed_fraction_1.bar",
+    "slot.top.line.copy10",
+    "slot.top.line.copy11",
+    "slot.mid.connector.copy12",
+    "slot.mid.connector.copy13",
+    "slot.top.line.copy14",
+    "slot.top.line.copy15",
+    "slot.top.line.copy14.copy16",
+    "slot.top.line.copy14.copy17",
+    "slot.top.line.copy14.copy18",
+    "slot.top.line.copy14.copy19",
+    "slot.top.text",
+    "slot.math.fraction.num",
+    "slot.math.fraction.den",
+    "slot.math.fraction_1.num",
+    "slot.math.fraction_1.den",
+    "slot.math.mixed_fraction.whole",
+    "slot.math.mixed_fraction.num",
+    "slot.math.mixed_fraction.den",
+    "slot.math.mixed_fraction_1.whole",
+    "slot.math.mixed_fraction_1.num",
+    "slot.math.mixed_fraction_1.den",
+    "region.note",
+    "region.diagram.bottom",
+    "region.solution.text"
+  ]
+}

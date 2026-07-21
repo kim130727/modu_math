@@ -1,0 +1,89 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008587",
+  "title": "나누어떨어지는 나눗셈을 찾아 선택하세요",
+  "canvas": {
+    "width": 720,
+    "height": 300,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.choice_box",
+        "slot.qtext",
+        "slot.choice.1",
+        "slot.choice.2"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.qtext",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "나누어 떨어지는 나눗셈을 찾아 선택하세요.",
+        "style_role": "question",
+        "x": 53.997,
+        "y": 59.0,
+        "font_size": 28,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.choice_box",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 111.997,
+        "y": 96.0,
+        "width": 390.0,
+        "height": 80.0,
+        "stroke": "#111111",
+        "stroke_width": 1.5,
+        "fill": "#DCD9EE"
+      }
+    },
+    {
+      "id": "slot.choice.1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "① 72 ÷ 4",
+        "style_role": "body",
+        "x": 156.997,
+        "y": 146.0,
+        "font_size": 30,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.choice.2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "② 52 ÷ 8",
+        "style_role": "body",
+        "x": 331.997,
+        "y": 146.0,
+        "font_size": 30,
+        "fill": "#111111"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.choice_box",
+    "slot.qtext",
+    "slot.choice.1",
+    "slot.choice.2"
+  ]
+}
