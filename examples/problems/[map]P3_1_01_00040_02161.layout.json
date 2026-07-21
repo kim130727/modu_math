@@ -14,9 +14,7 @@
       "role": "stem",
       "flow": "vertical",
       "slot_ids": [
-        "slot.instruction",
-        "slot.expression_blank",
-        "slot.answer_blank"
+        "slot.instruction"
       ]
     },
     {
@@ -450,22 +448,6 @@
         "anchor": "middle",
         "fill": "#222222"
       }
-    },
-    {
-      "id": "slot.expression_blank",
-      "kind": "blank",
-      "prompt": "집에서 학교까지의 거리를 구하는 식",
-      "content": {
-        "placeholder": ""
-      }
-    },
-    {
-      "id": "slot.answer_blank",
-      "kind": "blank",
-      "prompt": "집에서 학교까지의 전체 거리",
-      "content": {
-        "placeholder": ""
-      }
     }
   ],
   "groups": [
@@ -524,8 +506,6 @@
   "reading_order": [
     "region.stem",
     "slot.instruction",
-    "slot.expression_blank",
-    "slot.answer_blank",
     "region.diagram",
     "slot.house_body",
     "slot.house_roof",

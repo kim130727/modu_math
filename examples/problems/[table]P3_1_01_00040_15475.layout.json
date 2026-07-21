@@ -14,8 +14,7 @@
       "role": "stem",
       "flow": "absolute",
       "slot_ids": [
-        "slot.question",
-        "slot.answer"
+        "slot.question"
       ]
     },
     {
@@ -284,14 +283,6 @@
         "anchor": "middle",
         "fill": "#111827"
       }
-    },
-    {
-      "id": "slot.answer",
-      "kind": "blank",
-      "prompt": "답",
-      "content": {
-        "placeholder": "권"
-      }
     }
   ],
   "groups": [],
@@ -300,7 +291,6 @@
   "reading_order": [
     "region.stem",
     "slot.question",
-    "slot.answer",
     "region.table",
     "slot.table.outer",
     "slot.table.v1",

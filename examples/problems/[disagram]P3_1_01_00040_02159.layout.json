@@ -14,9 +14,7 @@
       "role": "stem",
       "flow": "vertical",
       "slot_ids": [
-        "slot.instruction",
-        "slot.answer_1",
-        "slot.answer_2"
+        "slot.instruction"
       ]
     },
     {
@@ -26,12 +24,8 @@
       "slot_ids": [
         "slot.start_oval",
         "slot.operation_1_box",
-        "slot.arrow_1_curve",
-        "slot.arrow_1_head",
         "slot.answer_1_oval",
         "slot.operation_2_box",
-        "slot.arrow_2_curve",
-        "slot.arrow_2_head",
         "slot.answer_2_oval",
         "konva_1784592333289_arrow_2136844",
         "konva_1784592333289_arrow_2144100",
@@ -114,51 +108,12 @@
       "content": {
         "text": "+278",
         "style_role": "body",
-        "x": 112.0,
-        "y": 64.072,
+        "x": 116.803,
+        "y": 62.763,
         "font_size": 15,
         "anchor": "middle",
         "fill": "#111111",
         "semantic_role": "operation"
-      }
-    },
-    {
-      "id": "slot.arrow_1_curve",
-      "kind": "path",
-      "prompt": "156에서 첫 번째 빈칸으로 이어지는 곡선 화살표",
-      "content": {
-        "d": "M 77 74 C 91 58, 108 55, 127 63",
-        "x": 0.0,
-        "y": 0.0,
-        "stroke": "#111111",
-        "stroke_width": 1.1,
-        "fill": "none",
-        "semantic_role": "flow_arrow"
-      }
-    },
-    {
-      "id": "slot.arrow_1_head",
-      "kind": "polygon",
-      "prompt": "첫 번째 화살표 머리",
-      "content": {
-        "points": [
-          [
-            127.0,
-            63.0
-          ],
-          [
-            118.0,
-            58.0
-          ],
-          [
-            120.0,
-            68.0
-          ]
-        ],
-        "stroke": "#111111",
-        "stroke_width": 1.0,
-        "fill": "#111111",
-        "semantic_role": "flow_arrow"
       }
     },
     {
@@ -173,14 +128,6 @@
         "stroke_width": 1.2,
         "fill": "#ffffff",
         "semantic_role": "answer_blank"
-      }
-    },
-    {
-      "id": "slot.answer_1",
-      "kind": "blank",
-      "prompt": "156과 278의 합",
-      "content": {
-        "placeholder": ""
       }
     },
     {
@@ -205,51 +152,12 @@
       "content": {
         "text": "+697",
         "style_role": "body",
-        "x": 236.0,
+        "x": 239.493,
         "y": 64.072,
         "font_size": 15,
         "anchor": "middle",
         "fill": "#111111",
         "semantic_role": "operation"
-      }
-    },
-    {
-      "id": "slot.arrow_2_curve",
-      "kind": "path",
-      "prompt": "첫 번째 빈칸에서 두 번째 빈칸으로 이어지는 곡선 화살표",
-      "content": {
-        "d": "M 201 74 C 215 58, 232 55, 251 63",
-        "x": 0.0,
-        "y": 0.0,
-        "stroke": "#111111",
-        "stroke_width": 1.1,
-        "fill": "none",
-        "semantic_role": "flow_arrow"
-      }
-    },
-    {
-      "id": "slot.arrow_2_head",
-      "kind": "polygon",
-      "prompt": "두 번째 화살표 머리",
-      "content": {
-        "points": [
-          [
-            251.0,
-            63.0
-          ],
-          [
-            242.0,
-            58.0
-          ],
-          [
-            244.0,
-            68.0
-          ]
-        ],
-        "stroke": "#111111",
-        "stroke_width": 1.0,
-        "fill": "#111111",
-        "semantic_role": "flow_arrow"
       }
     },
     {
@@ -264,14 +172,6 @@
         "stroke_width": 1.2,
         "fill": "#ffffff",
         "semantic_role": "answer_blank"
-      }
-    },
-    {
-      "id": "slot.answer_2",
-      "kind": "blank",
-      "prompt": "434와 697의 합",
-      "content": {
-        "placeholder": ""
       }
     },
     {
@@ -354,17 +254,11 @@
   "reading_order": [
     "region.stem",
     "slot.instruction",
-    "slot.answer_1",
-    "slot.answer_2",
     "region.diagram",
     "slot.start_oval",
     "slot.operation_1_box",
-    "slot.arrow_1_curve",
-    "slot.arrow_1_head",
     "slot.answer_1_oval",
     "slot.operation_2_box",
-    "slot.arrow_2_curve",
-    "slot.arrow_2_head",
     "slot.answer_2_oval",
     "konva_1784592333289_arrow_2136844",
     "konva_1784592333289_arrow_2144100",

@@ -14,9 +14,7 @@
       "role": "stem",
       "flow": "vertical",
       "slot_ids": [
-        "slot.instruction",
-        "slot.answer_1",
-        "slot.answer_2"
+        "slot.instruction"
       ]
     },
     {
@@ -65,7 +63,7 @@
         "x": 20.0,
         "y": 2.0,
         "width": 410.0,
-        "height": 24.0,
+        "height": 26,
         "align": "left",
         "valign": "top",
         "font_size": 15,
@@ -279,14 +277,6 @@
       }
     },
     {
-      "id": "slot.answer_1",
-      "kind": "blank",
-      "prompt": "236과 465의 합",
-      "content": {
-        "placeholder": ""
-      }
-    },
-    {
       "id": "slot.item_2_label",
       "kind": "text",
       "prompt": "두 번째 문항 번호",
@@ -372,14 +362,6 @@
         "fill": "#222222",
         "semantic_role": "given_value"
       }
-    },
-    {
-      "id": "slot.answer_2",
-      "kind": "blank",
-      "prompt": "756과 549의 합",
-      "content": {
-        "placeholder": ""
-      }
     }
   ],
   "groups": [
@@ -426,8 +408,6 @@
   "reading_order": [
     "region.stem",
     "slot.instruction",
-    "slot.answer_1",
-    "slot.answer_2",
     "region.example",
     "slot.example_box",
     "slot.example_circle",
