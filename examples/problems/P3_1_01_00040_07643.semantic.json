@@ -1,0 +1,90 @@
+{
+  "problem_id": "P3_1_01_00040_07643",
+  "problem_type": "numeric_answer_addition_word_problem",
+  "metadata": {
+    "title": "미정이와 하윤이가 읽은 동화책 쪽수",
+    "tags": [],
+    "question": "어제까지 동화책을 미정이는 129쪽 읽었고, 하윤이는 188쪽 읽었습니다. 미정이와 하윤이가 어제까지 읽은 동화책은 모두 몇 쪽입니까?",
+    "required_layout_ids": [],
+    "extraction_confidence": 1.0,
+    "grade": 3,
+    "semester": 1,
+    "subject": "수학",
+    "topic": "세 자리 수의 덧셈",
+    "language": "ko-KR"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "person.mijeong",
+        "type": "person",
+        "label": "미정이"
+      },
+      {
+        "id": "person.hayoon",
+        "type": "person",
+        "label": "하윤이"
+      },
+      {
+        "id": "object.storybook",
+        "type": "book",
+        "label": "동화책"
+      },
+      {
+        "id": "quantity.mijeong_pages_read",
+        "type": "quantity",
+        "label": "미정이가 어제까지 읽은 쪽수",
+        "value": 129,
+        "unit": "쪽"
+      },
+      {
+        "id": "quantity.hayoon_pages_read",
+        "type": "quantity",
+        "label": "하윤이가 어제까지 읽은 쪽수",
+        "value": 188,
+        "unit": "쪽"
+      },
+      {
+        "id": "quantity.total_pages_read",
+        "type": "quantity",
+        "label": "두 사람이 어제까지 읽은 전체 쪽수",
+        "value": 317,
+        "unit": "쪽"
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.mijeong_read_storybook",
+        "type": "read",
+        "subject": "person.mijeong",
+        "object": "object.storybook",
+        "quantity": "quantity.mijeong_pages_read",
+        "time": "until_yesterday"
+      },
+      {
+        "id": "relation.hayoon_read_storybook",
+        "type": "read",
+        "subject": "person.hayoon",
+        "object": "object.storybook",
+        "quantity": "quantity.hayoon_pages_read",
+        "time": "until_yesterday"
+      },
+      {
+        "id": "relation.total_pages_is_sum",
+        "type": "sum_of",
+        "subject": "quantity.total_pages_read",
+        "objects": [
+          "quantity.mijeong_pages_read",
+          "quantity.hayoon_pages_read"
+        ]
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "type": "numeric",
+    "value": 317,
+    "unit": "쪽",
+    "target_ref": "quantity.total_pages_read"
+  }
+}

@@ -1,6 +1,8 @@
 import type { EditorShape, EditorShapeDocument } from "../types/editorShape";
 import type { ProblemJson, ProblemObject } from "../types/problem";
+import { connectorToPathObject } from "./connectorGeometry";
 import { KONVA_PREVIEW_FONT_FAMILY } from "./fonts";
+import { inferAdjustableShapePreset, pathDataForShape } from "./shapeGeometry";
 
 export function problemJsonToEditorDocument(problem: ProblemJson): EditorShapeDocument {
   return {
@@ -109,6 +111,16 @@ function problemObjectToEditorShape(object: ProblemObject): EditorShape[] {
           stroke: object.props.stroke ?? "#111827",
           strokeWidth: object.props.strokeWidth ?? 1,
           strokeDasharray: object.props.strokeDasharray,
+          shapePreset: stringProp(object.props.shapePreset) ?? inferAdjustableShapePreset({
+            id: object.id,
+            type: "path",
+            x: object.x,
+            y: object.y,
+            d: stringProp(object.props.d) ?? "",
+            width: object.props.width,
+            height: object.props.height,
+          }),
+          adjustment: pointProp(object.props.adjustment),
           visible: true,
           },
           stringProp(object.props.transform),
@@ -132,6 +144,26 @@ function problemObjectToEditorShape(object: ProblemObject): EditorShape[] {
         ),
       ];
     case "path":
+      if (object.props.connectorKind === "straight" || object.props.connectorKind === "elbow" || object.props.connectorKind === "curve") {
+        return [
+          {
+            id: object.id,
+            type: "connector",
+            kind: object.props.connectorKind,
+            x: numberProp(object.props.connectorX, object.x),
+            y: numberProp(object.props.connectorY, object.y),
+            start: pointProp(object.props.connectorStart) ?? { x: 0, y: 0 },
+            end: pointProp(object.props.connectorEnd) ?? { x: object.props.width, y: object.props.height },
+            control: pointProp(object.props.connectorControl),
+            arrowStart: booleanProp(object.props.connectorArrowStart),
+            arrowEnd: booleanProp(object.props.connectorArrowEnd),
+            stroke: object.props.stroke ?? "#111827",
+            strokeWidth: object.props.strokeWidth ?? 1,
+            strokeDasharray: object.props.strokeDasharray,
+            visible: true,
+          },
+        ];
+      }
       return [
         applySvgRotateTransform(
           {
@@ -146,6 +178,8 @@ function problemObjectToEditorShape(object: ProblemObject): EditorShape[] {
           stroke: object.props.stroke ?? "#111827",
           strokeWidth: object.props.strokeWidth ?? 1,
           strokeDasharray: object.props.strokeDasharray,
+          shapePreset: stringProp(object.props.shapePreset),
+          adjustment: pointProp(object.props.adjustment),
           visible: true,
           },
           stringProp(object.props.transform),
@@ -158,6 +192,22 @@ function problemObjectToEditorShape(object: ProblemObject): EditorShape[] {
 
 function stringProp(value: unknown): string | undefined {
   return typeof value === "string" && value.trim() ? value : undefined;
+}
+
+function numberProp(value: unknown, fallback: number): number {
+  return typeof value === "number" && Number.isFinite(value) ? value : fallback;
+}
+
+function booleanProp(value: unknown): boolean | undefined {
+  return typeof value === "boolean" ? value : undefined;
+}
+
+function pointProp(value: unknown): { x: number; y: number } | undefined {
+  if (!value || typeof value !== "object" || Array.isArray(value)) return undefined;
+  const point = value as Record<string, unknown>;
+  return typeof point.x === "number" && Number.isFinite(point.x) && typeof point.y === "number" && Number.isFinite(point.y)
+    ? { x: point.x, y: point.y }
+    : undefined;
 }
 
 function applySvgRotateTransform<T extends EditorShape>(shape: T, transform: string | undefined): T {
@@ -288,6 +338,34 @@ function editorShapeToProblemObject(shape: EditorShape): ProblemObject[] {
           },
         },
       ];
+    case "connector": {
+      const path = connectorToPathObject(shape);
+      return [
+        {
+          id: shape.id,
+          type: "path",
+          x: path.x,
+          y: path.y,
+          props: {
+            d: path.d,
+            width: path.width,
+            height: path.height,
+            fill: "none",
+            stroke: shape.stroke ?? "#111827",
+            strokeWidth: shape.strokeWidth ?? 1,
+            strokeDasharray: shape.strokeDasharray,
+            connectorKind: shape.kind,
+            connectorX: shape.x,
+            connectorY: shape.y,
+            connectorStart: shape.start,
+            connectorEnd: shape.end,
+            connectorControl: shape.control,
+            connectorArrowStart: Boolean(shape.arrowStart),
+            connectorArrowEnd: Boolean(shape.arrowEnd),
+          },
+        },
+      ];
+    }
     case "path":
       return [
         {
@@ -296,13 +374,15 @@ function editorShapeToProblemObject(shape: EditorShape): ProblemObject[] {
           x: shapeBaseX(shape),
           y: shapeBaseY(shape),
           props: {
-            d: shape.d,
+            d: pathDataForShape(shape),
             width: shape.width,
             height: shape.height,
             fill: shape.fill ?? "none",
             stroke: shape.stroke ?? "#111827",
             strokeWidth: shape.strokeWidth ?? 1,
             strokeDasharray: shape.strokeDasharray,
+            shapePreset: shape.shapePreset,
+            adjustment: shape.adjustment,
             ...transformProps(shape),
           },
         },

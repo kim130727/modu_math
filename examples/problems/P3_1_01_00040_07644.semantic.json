@@ -1,0 +1,143 @@
+{
+  "problem_id": "P3_1_01_00040_07644",
+  "problem_type": "multi_numeric_answer_stamp_count_problem",
+  "metadata": {
+    "title": "상훈이가 산 100원짜리와 50원짜리 우표 수",
+    "tags": [],
+    "question": "상훈이는 1000원짜리 우표 1장을 사고, 100원짜리와 50원짜리 두 종류의 우표를 합해서 20장을 샀습니다. 우표값으로 2550원을 냈다면 상훈이는 100원짜리와 50원짜리 우표를 각각 몇 장 샀습니까?",
+    "required_layout_ids": [],
+    "extraction_confidence": 1.0,
+    "grade": 3,
+    "semester": 1,
+    "subject": "수학",
+    "topic": "덧셈과 뺄셈을 활용한 문제 해결",
+    "language": "ko-KR"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "person.sanghoon",
+        "type": "person",
+        "label": "상훈이"
+      },
+      {
+        "id": "stamp.1000won",
+        "type": "stamp_type",
+        "label": "1000원짜리 우표",
+        "unit_price": 1000,
+        "currency": "원"
+      },
+      {
+        "id": "stamp.100won",
+        "type": "stamp_type",
+        "label": "100원짜리 우표",
+        "unit_price": 100,
+        "currency": "원"
+      },
+      {
+        "id": "stamp.50won",
+        "type": "stamp_type",
+        "label": "50원짜리 우표",
+        "unit_price": 50,
+        "currency": "원"
+      },
+      {
+        "id": "quantity.1000won_stamp_count",
+        "type": "quantity",
+        "label": "1000원짜리 우표 수",
+        "value": 1,
+        "unit": "장"
+      },
+      {
+        "id": "quantity.100won_stamp_count",
+        "type": "quantity",
+        "label": "100원짜리 우표 수",
+        "value": 11,
+        "unit": "장"
+      },
+      {
+        "id": "quantity.50won_stamp_count",
+        "type": "quantity",
+        "label": "50원짜리 우표 수",
+        "value": 9,
+        "unit": "장"
+      },
+      {
+        "id": "quantity.100won_50won_total_count",
+        "type": "quantity",
+        "label": "100원짜리와 50원짜리 우표의 합계 수",
+        "value": 20,
+        "unit": "장"
+      },
+      {
+        "id": "amount.total_payment",
+        "type": "money",
+        "label": "전체 우표값",
+        "value": 2550,
+        "unit": "원"
+      },
+      {
+        "id": "amount.100won_50won_payment",
+        "type": "money",
+        "label": "100원짜리와 50원짜리 우표값",
+        "value": 1550,
+        "unit": "원"
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.bought_1000won_stamp",
+        "type": "purchased",
+        "subject": "person.sanghoon",
+        "object": "stamp.1000won",
+        "quantity": "quantity.1000won_stamp_count"
+      },
+      {
+        "id": "relation.bought_100won_stamp",
+        "type": "purchased",
+        "subject": "person.sanghoon",
+        "object": "stamp.100won",
+        "quantity": "quantity.100won_stamp_count"
+      },
+      {
+        "id": "relation.bought_50won_stamp",
+        "type": "purchased",
+        "subject": "person.sanghoon",
+        "object": "stamp.50won",
+        "quantity": "quantity.50won_stamp_count"
+      },
+      {
+        "id": "relation.two_stamp_counts_sum",
+        "type": "sum_of",
+        "subject": "quantity.100won_50won_total_count",
+        "objects": [
+          "quantity.100won_stamp_count",
+          "quantity.50won_stamp_count"
+        ]
+      },
+      {
+        "id": "relation.remaining_payment",
+        "type": "difference_of",
+        "subject": "amount.100won_50won_payment",
+        "minuend": "amount.total_payment",
+        "subtrahend_value": 1000
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "type": "multi_numeric",
+    "values": [
+      {
+        "value": 11,
+        "unit": "장",
+        "target_ref": "quantity.100won_stamp_count"
+      },
+      {
+        "value": 9,
+        "unit": "장",
+        "target_ref": "quantity.50won_stamp_count"
+      }
+    ]
+  }
+}

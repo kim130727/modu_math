@@ -2,9 +2,11 @@ import { useEffect, useState } from "react";
 import { Circle, Group, Image as KonvaImage, Line, Path, Rect, Text } from "react-konva";
 import type Konva from "konva";
 import type { EditorShape } from "../types/editorShape";
+import { connectorPathData } from "./connectorGeometry";
 import { estimateWrappedTextHeight } from "./converters";
 import { KONVA_PREVIEW_FONT_FAMILY } from "./fonts";
 import { renderLatexToSvgDataUrl } from "./latexRenderer";
+import { pathDataForShape } from "./shapeGeometry";
 
 interface ShapeRendererProps {
   shape: EditorShape;
@@ -68,14 +70,29 @@ export function ShapeRenderer({ shape, nodeRef, onSelect, onDragStart, onDragMov
           stroke={shape.stroke ?? "#111827"}
           strokeWidth={shape.strokeWidth ?? 1.2}
           dash={dashArray(shape.strokeDasharray)}
+          hitStrokeWidth={Math.max(12, (shape.strokeWidth ?? 1.2) + 8)}
           lineCap="round"
+        />
+      );
+    case "connector":
+      return (
+        <Path
+          {...common}
+          data={connectorPathData(shape)}
+          fill="transparent"
+          stroke={shape.stroke ?? "#111827"}
+          strokeWidth={shape.strokeWidth ?? 1.2}
+          dash={dashArray(shape.strokeDasharray)}
+          hitStrokeWidth={Math.max(12, (shape.strokeWidth ?? 1.2) + 8)}
+          lineCap="round"
+          lineJoin="round"
         />
       );
     case "path":
       return (
         <Path
           {...common}
-          data={shape.d}
+          data={pathDataForShape(shape)}
           fill={normalizeFill(shape.fill)}
           stroke={shape.stroke ?? "#111827"}
           strokeWidth={shape.strokeWidth ?? 1.2}

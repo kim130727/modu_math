@@ -39,7 +39,7 @@ export function PropertyPanel({ shape, saveStatus, onChange }: PropertyPanelProp
             onChange={(strokeWidth) => onChange({ strokeWidth } as Partial<EditorShape>)}
           />
         ) : null}
-        {shape.type === "line" || shape.type === "path" || shape.type === "rect" || shape.type === "circle" ? (
+        {shape.type === "line" || shape.type === "connector" || shape.type === "path" || shape.type === "rect" || shape.type === "circle" ? (
           <TextField
             label="dash"
             value={shape.strokeDasharray ?? ""}

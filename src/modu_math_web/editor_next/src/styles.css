@@ -392,6 +392,10 @@ input {
   background: #e8edf5;
 }
 
+.konva-stage-wrap.drawing canvas {
+  cursor: crosshair;
+}
+
 .konva-context-menu {
   position: fixed;
   z-index: 50;

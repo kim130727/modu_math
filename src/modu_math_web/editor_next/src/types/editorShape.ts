@@ -1,4 +1,4 @@
-export type EditorShape = RectShape | CircleShape | LineShape | PathShape | TextShape | ImageShape | MathShape;
+export type EditorShape = RectShape | CircleShape | LineShape | ConnectorShape | PathShape | TextShape | ImageShape | MathShape;
 
 export type BaseShape = {
   id: string;
@@ -41,11 +41,28 @@ export type LineShape = BaseShape & {
   strokeDasharray?: string;
 };
 
+export type ConnectorKind = "straight" | "elbow" | "curve";
+
+export type ConnectorShape = BaseShape & {
+  type: "connector";
+  kind: ConnectorKind;
+  start: { x: number; y: number };
+  end: { x: number; y: number };
+  control?: { x: number; y: number };
+  arrowStart?: boolean;
+  arrowEnd?: boolean;
+  stroke?: string;
+  strokeWidth?: number;
+  strokeDasharray?: string;
+};
+
 export type PathShape = BaseShape & {
   type: "path";
   d: string;
   width: number;
   height: number;
+  shapePreset?: string;
+  adjustment?: { x: number; y: number };
   fill?: string;
   stroke?: string;
   strokeWidth?: number;

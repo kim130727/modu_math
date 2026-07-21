@@ -1,0 +1,49 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "P3_1_01_00040_07643",
+  "title": "미정이와 하윤이가 읽은 동화책 쪽수",
+  "canvas": {
+    "width": 900,
+    "height": 230,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "vertical",
+      "slot_ids": [
+        "slot.question"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.question",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "어제까지 동화책을 미정이는 129쪽 읽었고, 하윤이는 188쪽 읽었습니다. 미정이와 하윤이가 어제까지 읽은 동화책은 모두 몇 쪽입니까?",
+        "style_role": "body",
+        "x": 28.622,
+        "y": 47.215,
+        "width": 804,
+        "height": 80,
+        "align": "left",
+        "valign": "top",
+        "font_size": 24,
+        "font_family": "Noto Sans KR",
+        "line_height": 1.5,
+        "fill": "#202124"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.question"
+  ]
+}

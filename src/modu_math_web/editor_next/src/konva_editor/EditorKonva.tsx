@@ -14,6 +14,7 @@ import { problemJsonToLayoutPatches } from "../tldraw/converters/problemJsonToLa
 import type { EditorShape, EditorShapeDocument } from "../types/editorShape";
 import type { ProblemJson } from "../types/problem";
 import sampleProblem from "../samples/sample_problem.json";
+import { connectorArrowForPreset, connectorKindForPreset } from "./connectorGeometry";
 import { editorDocumentToProblemJson, estimateTextWidth, fittedTextHeight, problemJsonToEditorDocument } from "./converters";
 import { KONVA_PREVIEW_FONT_FAMILY } from "./fonts";
 import { JsonImportExport } from "./JsonImportExport";
@@ -906,6 +907,22 @@ function createShapeFromDrag(
 ): EditorShape {
   const stroke = "#111827";
   const strokeWidth = 1.2;
+  const connectorKind = connectorKindForPreset(preset);
+  if (connectorKind) {
+    return {
+      id,
+      type: "connector",
+      kind: connectorKind,
+      x: roundCanvasNumber(start.x),
+      y: roundCanvasNumber(start.y),
+      start: { x: 0, y: 0 },
+      end: { x: roundCanvasNumber(end.x - start.x), y: roundCanvasNumber(end.y - start.y) },
+      control: defaultConnectorControl(connectorKind, start, end),
+      ...connectorArrowForPreset(preset),
+      stroke,
+      strokeWidth,
+    };
+  }
   if (preset === "line") {
     return {
       id,
@@ -942,6 +959,31 @@ function createShapeFromPreset(preset: ShapePreset, id: string): EditorShape {
   switch (preset) {
     case "line":
       return { id, type: "line", x, y, points: [0, 0, 220, 0], stroke, strokeWidth };
+    case "arrow":
+    case "doubleArrow":
+    case "elbow":
+    case "elbowArrow":
+    case "elbowDoubleArrow":
+    case "curvedConnector":
+    case "curvedArrow":
+    case "curvedDoubleArrow":
+    case "curve": {
+      const connectorKind = connectorKindForPreset(preset) ?? "straight";
+      const end = { x: 180, y: connectorKind === "straight" ? 0 : 120 };
+      return {
+        id,
+        type: "connector",
+        kind: connectorKind,
+        x,
+        y,
+        start: { x: 0, y: 0 },
+        end,
+        control: defaultConnectorControlFromDelta(connectorKind, end.x, end.y),
+        ...connectorArrowForPreset(preset),
+        stroke,
+        strokeWidth,
+      };
+    }
     case "rect":
     case "flowProcess":
       return { id, type: "rect", x, y, width: 180, height: 96, fill, stroke, strokeWidth };
@@ -975,11 +1017,32 @@ function createShapeFromPreset(preset: ShapePreset, id: string): EditorShape {
         d: pathForShapePreset(preset),
         width: 180,
         height: 120,
+        shapePreset: preset,
+        adjustment: defaultShapeAdjustment(preset, 180, 120),
         fill: lineLikePreset(preset) ? "none" : fill,
         stroke,
         strokeWidth,
       };
   }
+}
+
+function defaultShapeAdjustment(preset: ShapePreset, width: number, height: number): { x: number; y: number } | undefined {
+  if (preset === "triangle") return { x: width / 2, y: 8 };
+  if (preset === "rightTriangle") return { x: width - 12, y: 12 };
+  return undefined;
+}
+
+function defaultConnectorControl(kind: "straight" | "elbow" | "curve", start: CanvasPoint, end: CanvasPoint): { x: number; y: number } | undefined {
+  return defaultConnectorControlFromDelta(kind, roundCanvasNumber(end.x - start.x), roundCanvasNumber(end.y - start.y));
+}
+
+function defaultConnectorControlFromDelta(kind: "straight" | "elbow" | "curve", dx: number, dy: number): { x: number; y: number } | undefined {
+  if (kind === "straight") return undefined;
+  if (kind === "curve") {
+    const lift = Math.max(24, Math.min(90, Math.hypot(dx, dy) * 0.22));
+    return { x: roundCanvasNumber(dx / 2), y: roundCanvasNumber(dy / 2 - lift) };
+  }
+  return { x: roundCanvasNumber(dx / 2), y: roundCanvasNumber(dy / 2) };
 }
 
 function lineLikePreset(preset: ShapePreset): boolean {

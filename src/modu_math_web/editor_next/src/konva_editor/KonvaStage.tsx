@@ -2,10 +2,12 @@ import { useEffect, useRef, useState } from "react";
 import { Circle, Layer, Line, Path, Rect, Stage, Text, Transformer } from "react-konva";
 import type Konva from "konva";
 import type { TutorRendererOverlay } from "../api/editorApi";
-import type { EditorShape, LineShape } from "../types/editorShape";
+import type { ConnectorShape, EditorShape, LineShape } from "../types/editorShape";
 import { scalePathData } from "../utils/pathData";
+import { connectorArrowForPreset, connectorBounds, connectorControl, connectorEnd, connectorKindForPreset, connectorPathData, connectorStart } from "./connectorGeometry";
 import { KONVA_PREVIEW_FONT_LOAD_SPEC } from "./fonts";
 import { ShapeRenderer } from "./ShapeRenderer";
+import { adjustableShapePoint } from "./shapeGeometry";
 import type { ShapePreset } from "./KonvaToolbar";
 
 interface KonvaStageProps {
@@ -99,7 +101,13 @@ export function KonvaStage({
 
   useEffect(() => {
     if (!transformerRef.current) return;
-    const selectedNodes = selectedShapeIds.map((id) => shapeRefs.current[id]).filter((node): node is Konva.Node => Boolean(node));
+    const selectedNodes = selectedShapeIds
+      .map((id) => {
+        const shape = shapes.find((candidate) => candidate.id === id);
+        if (shape?.type === "line" || shape?.type === "connector") return null;
+        return shapeRefs.current[id];
+      })
+      .filter((node): node is Konva.Node => Boolean(node));
     transformerRef.current.nodes(selectedNodes);
     transformerRef.current.getLayer()?.batchDraw();
   }, [selectedShapeIds, shapes]);
@@ -122,6 +130,17 @@ export function KonvaStage({
   const selectedLine =
     selectedShapeIds.length === 1
       ? shapes.find((shape): shape is LineShape => shape.id === selectedShapeIds[0] && shape.type === "line" && !shape.locked) ?? null
+      : null;
+  const selectedConnector =
+    selectedShapeIds.length === 1
+      ? shapes.find((shape): shape is ConnectorShape => shape.id === selectedShapeIds[0] && shape.type === "connector" && !shape.locked) ?? null
+      : null;
+  const selectedAdjustablePath =
+    selectedShapeIds.length === 1
+      ? shapes.find(
+          (shape): shape is Extract<EditorShape, { type: "path" }> =>
+            shape.id === selectedShapeIds[0] && shape.type === "path" && !shape.locked && Boolean(adjustableShapePoint(shape)),
+        ) ?? null
       : null;
 
   const pointFromEvent = (event: Konva.KonvaEventObject<MouseEvent | TouchEvent>) => {
@@ -147,7 +166,7 @@ export function KonvaStage({
   };
 
   const openShapeContextMenu = (shape: EditorShape, event: Konva.KonvaEventObject<MouseEvent>) => {
-    if (shape.type !== "line") return;
+    if (shape.type !== "line" && shape.type !== "connector") return;
     event.evt.preventDefault();
     event.cancelBubble = true;
     if (!selectedIdSet.has(shape.id)) onSelectShapes([shape.id]);
@@ -155,7 +174,10 @@ export function KonvaStage({
   };
 
   const setLineDash = (shapeId: string, strokeDasharray: string | undefined) => {
-    const shape = shapes.find((candidate): candidate is LineShape => candidate.id === shapeId && candidate.type === "line");
+    const shape = shapes.find(
+      (candidate): candidate is LineShape | ConnectorShape =>
+        candidate.id === shapeId && (candidate.type === "line" || candidate.type === "connector"),
+    );
     if (!shape) return;
     onChangeShapes([{ ...shape, strokeDasharray }]);
     setContextMenu(null);
@@ -204,20 +226,86 @@ export function KonvaStage({
     event.cancelBubble = true;
     const point = pointFromEvent(event);
     if (!point || line.points.length < 4) return;
-    const localPoint = canvasPointToLocalLinePoint(line, point);
-    const nextPoints = [...line.points];
-    if (endpoint === "start") {
-      nextPoints[0] = localPoint.x;
-      nextPoints[1] = localPoint.y;
-    } else {
-      nextPoints[nextPoints.length - 2] = localPoint.x;
-      nextPoints[nextPoints.length - 1] = localPoint.y;
-    }
-    onChangeShapes([{ ...line, points: nextPoints }]);
+    const start = localLinePointToCanvasPoint(line, { x: line.points[0], y: line.points[1] });
+    const end = localLinePointToCanvasPoint(line, {
+      x: line.points[line.points.length - 2],
+      y: line.points[line.points.length - 1],
+    });
+    const nextStart = endpoint === "start" ? point : start;
+    const nextEnd = endpoint === "end" ? point : end;
+    onChangeShapes([
+      {
+        ...line,
+        x: nextStart.x,
+        y: nextStart.y,
+        rotation: 0,
+        offsetX: 0,
+        offsetY: 0,
+        points: [0, 0, roundStageNumber(nextEnd.x - nextStart.x), roundStageNumber(nextEnd.y - nextStart.y)],
+      },
+    ]);
+  };
+
+  const updateConnectorEndpoint = (
+    connector: ConnectorShape,
+    endpoint: "start" | "end",
+    event: Konva.KonvaEventObject<DragEvent>,
+  ) => {
+    event.cancelBubble = true;
+    const point = pointFromEvent(event);
+    if (!point) return;
+    const start = connectorPointToCanvasPoint(connector, connectorStart(connector));
+    const end = connectorPointToCanvasPoint(connector, connectorEnd(connector));
+    const control = connector.kind === "straight" ? undefined : connectorPointToCanvasPoint(connector, connectorControl(connector));
+    const nextStart = endpoint === "start" ? point : start;
+    const nextEnd = endpoint === "end" ? point : end;
+    onChangeShapes([
+      {
+        ...connector,
+        x: nextStart.x,
+        y: nextStart.y,
+        rotation: 0,
+        offsetX: 0,
+        offsetY: 0,
+        start: { x: 0, y: 0 },
+        end: { x: roundStageNumber(nextEnd.x - nextStart.x), y: roundStageNumber(nextEnd.y - nextStart.y) },
+        control: control
+          ? { x: roundStageNumber(control.x - nextStart.x), y: roundStageNumber(control.y - nextStart.y) }
+          : undefined,
+      },
+    ]);
+  };
+
+  const updateConnectorControl = (connector: ConnectorShape, event: Konva.KonvaEventObject<DragEvent>) => {
+    event.cancelBubble = true;
+    const point = pointFromEvent(event);
+    if (!point || connector.kind === "straight") return;
+    onChangeShapes([
+      {
+        ...connector,
+        control: { x: roundStageNumber(point.x - connector.x), y: roundStageNumber(point.y - connector.y) },
+      },
+    ]);
+  };
+
+  const updatePathAdjustment = (shape: Extract<EditorShape, { type: "path" }>, event: Konva.KonvaEventObject<DragEvent>) => {
+    event.cancelBubble = true;
+    const point = pointFromEvent(event);
+    if (!point) return;
+    const localPoint = canvasPointToLocalPathPoint(shape, point);
+    onChangeShapes([
+      {
+        ...shape,
+        adjustment: {
+          x: roundStageNumber(clamp(localPoint.x, 0, shape.width)),
+          y: roundStageNumber(clamp(localPoint.y, 0, shape.height)),
+        },
+      },
+    ]);
   };
 
   return (
-    <div className="konva-stage-wrap" ref={wrapRef}>
+    <div className={drawingPreset ? "konva-stage-wrap drawing" : "konva-stage-wrap"} ref={wrapRef}>
       <Stage
         width={stageWidth}
         height={stageHeight}
@@ -354,10 +442,26 @@ export function KonvaStage({
               onDragEnd={(endpoint, event) => updateLineEndpoint(selectedLine, endpoint, event)}
             />
           ) : null}
+          {selectedConnector ? (
+            <ConnectorHandles
+              connector={selectedConnector}
+              onEndpointDrag={(endpoint, event) => updateConnectorEndpoint(selectedConnector, endpoint, event)}
+              onControlDrag={(event) => updateConnectorControl(selectedConnector, event)}
+            />
+          ) : null}
           <Transformer
             ref={transformerRef}
             rotateEnabled
             ignoreStroke
+            borderStroke="#6b7280"
+            borderStrokeWidth={1}
+            anchorFill="#ffffff"
+            anchorStroke="#6b7280"
+            anchorStrokeWidth={2}
+            anchorSize={10}
+            anchorCornerRadius={10}
+            rotateAnchorOffset={34}
+            rotateAnchorCursor="grab"
             boundBoxFunc={(_oldBox, newBox) => {
               if (newBox.width < 6 || newBox.height < 6) return _oldBox;
               return newBox;
@@ -373,6 +477,13 @@ export function KonvaStage({
               if (transformed.length) onChangeShapes(transformed);
             }}
           />
+          {selectedAdjustablePath ? (
+            <PathAdjustmentHandle
+              shape={selectedAdjustablePath}
+              onDragMove={(event) => updatePathAdjustment(selectedAdjustablePath, event)}
+              onDragEnd={(event) => updatePathAdjustment(selectedAdjustablePath, event)}
+            />
+          ) : null}
         </Layer>
       </Stage>
       {editingTutorLabel ? (
@@ -543,6 +654,20 @@ function TutorHighlight({ shape }: { shape: EditorShape }) {
       />
     );
   }
+  if (shape.type === "connector") {
+    return (
+      <Path
+        x={shape.x}
+        y={shape.y}
+        data={connectorPathData(shape)}
+        rotation={shape.rotation ?? 0}
+        offsetX={shape.offsetX ?? 0}
+        offsetY={shape.offsetY ?? 0}
+        fill="rgba(15, 118, 110, 0.04)"
+        {...common}
+      />
+    );
+  }
   const bounds = paddedRect(shapeBounds(shape), 6);
   return (
     <Rect
@@ -563,7 +688,7 @@ function compareRenderOrder(a: EditorShape, b: EditorShape): number {
 
 function renderPriority(shape: EditorShape): number {
   if (shape.type === "text" || shape.type === "math") return 2;
-  if (shape.type === "line") return 1;
+  if (shape.type === "line" || shape.type === "connector") return 1;
   return 0;
 }
 
@@ -609,6 +734,9 @@ function shapeBounds(shape: EditorShape): CanvasRect {
     const maxY = Math.max(...ys);
     return { x: shape.x + minX, y: shape.y + minY, width: Math.max(1, maxX - minX), height: Math.max(1, maxY - minY) };
   }
+  if (shape.type === "connector") {
+    return connectorBounds(shape);
+  }
   if (shape.type === "text") {
     return { x: shape.x, y: shape.y, width: shape.width ?? Math.max(24, shape.text.length * shape.fontSize * 0.55), height: shape.height ?? shape.fontSize * 1.3 };
   }
@@ -642,6 +770,22 @@ function stringStyle(value: unknown, fallback: string): string {
 function previewShapeForDrawing(preset: ShapePreset, start: CanvasPoint, end: CanvasPoint, points: CanvasPoint[] = []): EditorShape {
   const stroke = "#111827";
   const strokeWidth = 1.2;
+  const connectorKind = connectorKindForPreset(preset);
+  if (connectorKind) {
+    return {
+      id: "drawing.preview",
+      type: "connector",
+      kind: connectorKind,
+      x: start.x,
+      y: start.y,
+      start: { x: 0, y: 0 },
+      end: { x: end.x - start.x, y: end.y - start.y },
+      control: defaultPreviewConnectorControl(connectorKind, start, end),
+      ...connectorArrowForPreset(preset),
+      stroke,
+      strokeWidth,
+    };
+  }
   if (preset === "line") {
     return {
       id: "drawing.preview",
@@ -668,6 +812,17 @@ function previewShapeForDrawing(preset: ShapePreset, start: CanvasPoint, end: Ca
     stroke,
     strokeWidth,
   };
+}
+
+function defaultPreviewConnectorControl(kind: "straight" | "elbow" | "curve", start: CanvasPoint, end: CanvasPoint): { x: number; y: number } | undefined {
+  const dx = end.x - start.x;
+  const dy = end.y - start.y;
+  if (kind === "straight") return undefined;
+  if (kind === "curve") {
+    const lift = Math.max(24, Math.min(90, Math.hypot(dx, dy) * 0.22));
+    return { x: dx / 2, y: dy / 2 - lift };
+  }
+  return { x: dx / 2, y: dy / 2 };
 }
 
 function pathForDrawingPreset(
@@ -740,6 +895,7 @@ function appendFreeformPoint(points: CanvasPoint[], point: CanvasPoint): CanvasP
 
 function shapeLongEnough(shape: EditorShape): boolean {
   if (shape.type === "line") return Math.hypot(shape.points[2] ?? 0, shape.points[3] ?? 0) >= 4;
+  if (shape.type === "connector") return Math.hypot(shape.end.x - shape.start.x, shape.end.y - shape.start.y) >= 4;
   if (shape.type === "path" || shape.type === "rect" || shape.type === "image" || shape.type === "math") {
     return Math.max(shape.width, shape.height) >= 4;
   }
@@ -751,6 +907,9 @@ function shapeLongEnough(shape: EditorShape): boolean {
 function drawingEndPoint(shape: EditorShape): CanvasPoint {
   if (shape.type === "line") {
     return { x: shape.x + (shape.points[2] ?? 0), y: shape.y + (shape.points[3] ?? 0) };
+  }
+  if (shape.type === "connector") {
+    return connectorPointToCanvasPoint(shape, connectorEnd(shape));
   }
   if (shape.type === "path" || shape.type === "rect" || shape.type === "image" || shape.type === "math") {
     return { x: shape.x + shape.width, y: shape.y + shape.height };
@@ -779,9 +938,9 @@ function LineEndpointHandles({
       <Circle
         x={start.x}
         y={start.y}
-        radius={6}
+        radius={5}
         fill="#ffffff"
-        stroke="#2563eb"
+        stroke="#6b7280"
         strokeWidth={2}
         draggable
         onMouseDown={(event) => {
@@ -796,9 +955,9 @@ function LineEndpointHandles({
       <Circle
         x={end.x}
         y={end.y}
-        radius={6}
+        radius={5}
         fill="#ffffff"
-        stroke="#2563eb"
+        stroke="#6b7280"
         strokeWidth={2}
         draggable
         onMouseDown={(event) => {
@@ -814,30 +973,168 @@ function LineEndpointHandles({
   );
 }
 
-function localLinePointToCanvasPoint(line: LineShape, point: { x: number; y: number }): { x: number; y: number } {
-  const rotation = degreesToRadians(line.rotation ?? 0);
+function ConnectorHandles({
+  connector,
+  onEndpointDrag,
+  onControlDrag,
+}: {
+  connector: ConnectorShape;
+  onEndpointDrag: (endpoint: "start" | "end", event: Konva.KonvaEventObject<DragEvent>) => void;
+  onControlDrag: (event: Konva.KonvaEventObject<DragEvent>) => void;
+}) {
+  const start = connectorPointToCanvasPoint(connector, connectorStart(connector));
+  const end = connectorPointToCanvasPoint(connector, connectorEnd(connector));
+  const control = connector.kind === "straight" ? null : connectorPointToCanvasPoint(connector, connectorControl(connector));
+  return (
+    <>
+      <Circle
+        x={start.x}
+        y={start.y}
+        radius={5}
+        fill="#ffffff"
+        stroke="#6b7280"
+        strokeWidth={2}
+        draggable
+        onMouseDown={(event) => {
+          event.cancelBubble = true;
+        }}
+        onTouchStart={(event) => {
+          event.cancelBubble = true;
+        }}
+        onDragMove={(event) => onEndpointDrag("start", event)}
+        onDragEnd={(event) => onEndpointDrag("start", event)}
+      />
+      <Circle
+        x={end.x}
+        y={end.y}
+        radius={5}
+        fill="#ffffff"
+        stroke="#6b7280"
+        strokeWidth={2}
+        draggable
+        onMouseDown={(event) => {
+          event.cancelBubble = true;
+        }}
+        onTouchStart={(event) => {
+          event.cancelBubble = true;
+        }}
+        onDragMove={(event) => onEndpointDrag("end", event)}
+        onDragEnd={(event) => onEndpointDrag("end", event)}
+      />
+      {control ? (
+        <Circle
+          x={control.x}
+          y={control.y}
+          radius={6}
+          fill="#facc15"
+          stroke="#6b7280"
+          strokeWidth={2}
+          draggable
+          onMouseDown={(event) => {
+            event.cancelBubble = true;
+          }}
+          onTouchStart={(event) => {
+            event.cancelBubble = true;
+          }}
+          onDragMove={onControlDrag}
+          onDragEnd={onControlDrag}
+        />
+      ) : null}
+    </>
+  );
+}
+
+function PathAdjustmentHandle({
+  shape,
+  onDragMove,
+  onDragEnd,
+}: {
+  shape: Extract<EditorShape, { type: "path" }>;
+  onDragMove: (event: Konva.KonvaEventObject<DragEvent>) => void;
+  onDragEnd: (event: Konva.KonvaEventObject<DragEvent>) => void;
+}) {
+  const point = adjustableShapePoint(shape);
+  if (!point) return null;
+  const canvasPoint = localPathPointToCanvasPoint(shape, point);
+  return (
+    <Circle
+      x={canvasPoint.x}
+      y={canvasPoint.y}
+      radius={6}
+      fill="#facc15"
+      stroke="#6b7280"
+      strokeWidth={2}
+      draggable
+      onMouseDown={(event) => {
+        event.cancelBubble = true;
+      }}
+      onTouchStart={(event) => {
+        event.cancelBubble = true;
+      }}
+      onDragMove={onDragMove}
+      onDragEnd={onDragEnd}
+    />
+  );
+}
+
+function localPathPointToCanvasPoint(shape: Extract<EditorShape, { type: "path" }>, point: { x: number; y: number }): { x: number; y: number } {
+  const rotation = degreesToRadians(shape.rotation ?? 0);
+  const localX = point.x - (shape.offsetX ?? 0);
+  const localY = point.y - (shape.offsetY ?? 0);
   const cos = Math.cos(rotation);
   const sin = Math.sin(rotation);
   return {
-    x: line.x + point.x * cos - point.y * sin,
-    y: line.y + point.x * sin + point.y * cos,
+    x: shape.x + localX * cos - localY * sin,
+    y: shape.y + localX * sin + localY * cos,
   };
 }
 
-function canvasPointToLocalLinePoint(line: LineShape, point: { x: number; y: number }): { x: number; y: number } {
-  const rotation = degreesToRadians(-(line.rotation ?? 0));
-  const dx = point.x - line.x;
-  const dy = point.y - line.y;
+function canvasPointToLocalPathPoint(shape: Extract<EditorShape, { type: "path" }>, point: { x: number; y: number }): { x: number; y: number } {
+  const rotation = degreesToRadians(-(shape.rotation ?? 0));
+  const dx = point.x - shape.x;
+  const dy = point.y - shape.y;
   const cos = Math.cos(rotation);
   const sin = Math.sin(rotation);
   return {
-    x: dx * cos - dy * sin,
-    y: dx * sin + dy * cos,
+    x: dx * cos - dy * sin + (shape.offsetX ?? 0),
+    y: dx * sin + dy * cos + (shape.offsetY ?? 0),
+  };
+}
+
+function connectorPointToCanvasPoint(connector: ConnectorShape, point: { x: number; y: number }): { x: number; y: number } {
+  const rotation = degreesToRadians(connector.rotation ?? 0);
+  const localX = point.x - (connector.offsetX ?? 0);
+  const localY = point.y - (connector.offsetY ?? 0);
+  const cos = Math.cos(rotation);
+  const sin = Math.sin(rotation);
+  return {
+    x: connector.x + localX * cos - localY * sin,
+    y: connector.y + localX * sin + localY * cos,
+  };
+}
+
+function localLinePointToCanvasPoint(line: LineShape, point: { x: number; y: number }): { x: number; y: number } {
+  const rotation = degreesToRadians(line.rotation ?? 0);
+  const localX = point.x - (line.offsetX ?? 0);
+  const localY = point.y - (line.offsetY ?? 0);
+  const cos = Math.cos(rotation);
+  const sin = Math.sin(rotation);
+  return {
+    x: line.x + localX * cos - localY * sin,
+    y: line.y + localX * sin + localY * cos,
   };
 }
 
 function degreesToRadians(degrees: number): number {
   return (degrees * Math.PI) / 180;
+}
+
+function roundStageNumber(value: number): number {
+  return Math.round(value * 100) / 100;
+}
+
+function clamp(value: number, min: number, max: number): number {
+  return Math.max(min, Math.min(max, value));
 }
 
 function shapeFromNode(shape: EditorShape, node: Konva.Node): EditorShape {
@@ -896,6 +1193,7 @@ function shapeFromNode(shape: EditorShape, node: Konva.Node): EditorShape {
       d: scalePathData(shape.d, scaleX, scaleY),
       width: Math.max(1, shape.width * Math.abs(scaleX)),
       height: Math.max(1, shape.height * Math.abs(scaleY)),
+      adjustment: shape.adjustment ? { x: shape.adjustment.x * scaleX, y: shape.adjustment.y * scaleY } : undefined,
     };
   }
   if (shape.type === "circle") {
@@ -914,6 +1212,17 @@ function shapeFromNode(shape: EditorShape, node: Konva.Node): EditorShape {
       y: node.y(),
       rotation: node.rotation(),
       points: shape.points.map((point, index) => point * (index % 2 === 0 ? scaleX : scaleY)),
+    };
+  }
+  if (shape.type === "connector") {
+    return {
+      ...shape,
+      x: node.x(),
+      y: node.y(),
+      rotation: node.rotation(),
+      start: { x: shape.start.x * scaleX, y: shape.start.y * scaleY },
+      end: { x: shape.end.x * scaleX, y: shape.end.y * scaleY },
+      control: shape.control ? { x: shape.control.x * scaleX, y: shape.control.y * scaleY } : undefined,
     };
   }
   return shape;

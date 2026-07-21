@@ -1,0 +1,160 @@
+{
+  "problem_id": "P3_1_01_00040_02164",
+  "problem_type": "addition_rule_circle_fill_blank",
+  "metadata": {
+    "title": "원 안의 두 수를 더하는 규칙",
+    "tags": [
+      "grade-3",
+      "addition",
+      "three-digit-addition",
+      "find-the-rule",
+      "fill-in-the-blank",
+      "diagram"
+    ],
+    "question": "다음 <보기>와 같이 빈 곳에 알맞은 수를 써넣으시오.",
+    "required_layout_ids": [
+      "slot.example_box",
+      "slot.example_circle",
+      "slot.example_horizontal_line",
+      "slot.example_vertical_line",
+      "slot.item_1_circle",
+      "slot.item_1_horizontal_line",
+      "slot.item_1_vertical_line",
+      "slot.item_2_circle",
+      "slot.item_2_horizontal_line",
+      "slot.item_2_vertical_line"
+    ],
+    "extraction_confidence": 1.0,
+    "grade": 3,
+    "semester": 1,
+    "subject": "수학",
+    "topic": "세 자리 수의 덧셈",
+    "language": "ko-KR"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "example.addend_left",
+        "type": "number",
+        "label": "보기의 왼쪽 수",
+        "value": 259
+      },
+      {
+        "id": "example.addend_right",
+        "type": "number",
+        "label": "보기의 오른쪽 수",
+        "value": 287
+      },
+      {
+        "id": "example.sum",
+        "type": "number",
+        "label": "보기의 아래 수",
+        "value": 546
+      },
+      {
+        "id": "item_1.addend_left",
+        "type": "number",
+        "label": "(1)의 왼쪽 수",
+        "value": 236
+      },
+      {
+        "id": "item_1.addend_right",
+        "type": "number",
+        "label": "(1)의 오른쪽 수",
+        "value": 465
+      },
+      {
+        "id": "item_1.sum",
+        "type": "number",
+        "label": "(1)의 아래 빈칸 수",
+        "value": 701
+      },
+      {
+        "id": "item_2.addend_left",
+        "type": "number",
+        "label": "(2)의 왼쪽 수",
+        "value": 756
+      },
+      {
+        "id": "item_2.addend_right",
+        "type": "number",
+        "label": "(2)의 오른쪽 수",
+        "value": 549
+      },
+      {
+        "id": "item_2.sum",
+        "type": "number",
+        "label": "(2)의 아래 빈칸 수",
+        "value": 1305
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.example",
+        "type": "addition",
+        "from_ids": [
+          "example.addend_left",
+          "example.addend_right"
+        ],
+        "to_id": "example.sum",
+        "equation": "259 + 287 = 546"
+      },
+      {
+        "id": "relation.item_1",
+        "type": "addition",
+        "from_ids": [
+          "item_1.addend_left",
+          "item_1.addend_right"
+        ],
+        "to_id": "item_1.sum",
+        "equation": "236 + 465 = 701"
+      },
+      {
+        "id": "relation.item_2",
+        "type": "addition",
+        "from_ids": [
+          "item_2.addend_left",
+          "item_2.addend_right"
+        ],
+        "to_id": "item_2.sum",
+        "equation": "756 + 549 = 1305"
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "blanks": [
+      {
+        "id": "slot.answer_1",
+        "type": "number",
+        "value": 701,
+        "unit": ""
+      },
+      {
+        "id": "slot.answer_2",
+        "type": "number",
+        "value": 1305,
+        "unit": ""
+      }
+    ],
+    "choices": [],
+    "answer_key": [
+      {
+        "blank_id": "slot.answer_1",
+        "value": 701,
+        "unit": ""
+      },
+      {
+        "blank_id": "slot.answer_2",
+        "value": 1305,
+        "unit": ""
+      }
+    ],
+    "value": [
+      701,
+      1305
+    ],
+    "unit": "",
+    "sentence": "(1)은 701, (2)는 1305입니다."
+  }
+}
