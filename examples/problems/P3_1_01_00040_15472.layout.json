@@ -1,0 +1,111 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "P3_1_01_00040_15472",
+  "title": "합이 749가 되는 두 수 찾기",
+  "canvas": {
+    "width": 900,
+    "height": 230,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "vertical",
+      "slot_ids": [
+        "slot.instruction",
+        "slot.options",
+        "slot.equation",
+        "slot.answer.first",
+        "slot.answer.second"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.instruction",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "다음 <보기>의 수들을 빈칸에 알맞게 써넣으시오.",
+        "style_role": "body",
+        "x": 24.0,
+        "y": 18.0,
+        "width": 840.0,
+        "height": 35.0,
+        "align": "left",
+        "valign": "top",
+        "font_size": 22,
+        "font_family": "Noto Sans KR",
+        "line_height": 1.3,
+        "fill": "#202124"
+      }
+    },
+    {
+      "id": "slot.options",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "<보기>    325,   532,   334,   985,   415",
+        "style_role": "body",
+        "x": 24.0,
+        "y": 58.0,
+        "width": 840.0,
+        "height": 52.0,
+        "align": "left",
+        "valign": "middle",
+        "font_size": 22,
+        "font_family": "Noto Sans KR",
+        "line_height": 1.3,
+        "fill": "#202124"
+      }
+    },
+    {
+      "id": "slot.equation",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "(       )+(       )=749",
+        "style_role": "body",
+        "x": 24.0,
+        "y": 130.0,
+        "width": 360.0,
+        "height": 45.0,
+        "align": "left",
+        "valign": "middle",
+        "font_size": 24,
+        "font_family": "Noto Sans KR",
+        "line_height": 1.3,
+        "fill": "#202124"
+      }
+    },
+    {
+      "id": "slot.answer.first",
+      "kind": "blank",
+      "prompt": "첫 번째 빈칸",
+      "content": {
+        "placeholder": "수"
+      }
+    },
+    {
+      "id": "slot.answer.second",
+      "kind": "blank",
+      "prompt": "두 번째 빈칸",
+      "content": {
+        "placeholder": "수"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.instruction",
+    "slot.options",
+    "slot.equation",
+    "slot.answer.first",
+    "slot.answer.second"
+  ]
+}

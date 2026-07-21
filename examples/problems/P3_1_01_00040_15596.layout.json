@@ -1,0 +1,53 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "P3_1_01_00040_15596",
+  "title": "자리 숫자로 만든 수보다 534 큰 수",
+  "canvas": {
+    "width": 960,
+    "height": 210,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.question",
+        "slot.answer"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.question",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "백의 자리 숫자가 4, 십의 자리 숫자가 3, 일의 자리 숫자가 5인 수보다 534 많은 수는 얼마입니까?",
+        "style_role": "question",
+        "x": 30.0,
+        "y": 35.0,
+        "font_size": 24,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.answer",
+      "kind": "blank",
+      "prompt": "답",
+      "content": {
+        "placeholder": "수"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.question",
+    "slot.answer"
+  ]
+}

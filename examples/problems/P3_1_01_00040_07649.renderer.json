@@ -1,0 +1,55 @@
+{
+  "problem_id": "P3_1_01_00040_07649",
+  "view_box": {
+    "width": 900.0,
+    "height": 250.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.question.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 48.0,
+        "y": 30.0,
+        "fill": "#202124",
+        "font-family": "Noto Sans KR",
+        "font-size": 24,
+        "width": 804.0,
+        "height": 120.0,
+        "max_width": 804.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 48.0,
+        "data-box-y": 30.0,
+        "data-box-width": 804.0,
+        "data-box-height": 120.0,
+        "data-text-align": "left",
+        "data-vertical-align": "top",
+        "data-line-height": 1.5
+      },
+      "source_ref": "slot.question",
+      "refs": {
+        "layout_slot_id": "slot.question"
+      },
+      "text": "경진이네 학교 3학년 학생은 남학생이 87명, 여학생이 66명입니다. 3학년 학생 모두에게 연필을 2자루씩 나누어 주려고 합니다. 학생들에게 나누어 주기 위해 필요한 연필은 모두 몇 자루입니까?"
+    },
+    {
+      "id": "slot.answer.blank",
+      "type": "rect",
+      "attributes": {
+        "x": 64.0,
+        "y": 62.0,
+        "width": 120.0,
+        "height": 32.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.answer",
+      "refs": {
+        "layout_slot_id": "slot.answer"
+      }
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

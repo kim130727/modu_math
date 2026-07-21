@@ -1,0 +1,167 @@
+{
+  "schema": "modu.solvable.v1.2",
+  "problem_id": "P3_1_01_00040_07645",
+  "problem_type": "numeric_answer_part_whole_addition_word_problem",
+  "inputs": {
+    "target_label": "미정이가 읽는 동화책의 전체 쪽수",
+    "unit": "쪽",
+    "quantities": {
+      "pages_read": 119,
+      "pages_remaining": 167
+    },
+    "conditions": [
+      "미정이는 동화책을 처음부터 119쪽까지 읽었습니다.",
+      "읽고 나서 167쪽이 남았습니다.",
+      "읽은 쪽수와 남은 쪽수를 합하여 전체 쪽수를 구합니다."
+    ]
+  },
+  "given": [
+    {
+      "ref": "quantity.pages_read",
+      "value": {
+        "count": 119,
+        "unit": "쪽",
+        "person": "person.mijeong",
+        "object": "object.storybook",
+        "range": {
+          "start_page": 1,
+          "end_page": 119
+        },
+        "time": "yesterday"
+      }
+    },
+    {
+      "ref": "quantity.pages_remaining",
+      "value": {
+        "count": 167,
+        "unit": "쪽",
+        "object": "object.storybook"
+      }
+    }
+  ],
+  "target": {
+    "ref": "quantity.total_pages",
+    "type": "number"
+  },
+  "method": "처음부터 읽은 쪽수와 읽고 남은 쪽수를 더합니다.",
+  "plan": [
+    "미정이가 처음부터 119쪽까지 읽었음을 확인합니다.",
+    "읽고 나서 167쪽이 남았음을 확인합니다.",
+    "읽은 쪽수와 남은 쪽수를 더하여 동화책의 전체 쪽수를 구합니다."
+  ],
+  "steps": [
+    {
+      "id": "step.add_read_and_remaining_pages",
+      "goal": "동화책의 전체 쪽수를 구합니다.",
+      "uses": [
+        "quantity.pages_read",
+        "quantity.pages_remaining"
+      ],
+      "relation_expr": "전체 쪽수 = 읽은 쪽수 + 남은 쪽수",
+      "expr": "119 + 167",
+      "value": 286,
+      "explanation": "동화책 전체는 미정이가 읽은 119쪽과 아직 읽지 않은 167쪽으로 이루어져 있으므로 두 수를 더합니다."
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.subtract_read_pages",
+      "description": "전체 쪽수에서 읽은 쪽수를 빼면 남은 쪽수가 됩니다.",
+      "expr": "286 - 119",
+      "expected": 167,
+      "actual": 167,
+      "pass": true
+    },
+    {
+      "id": "check.subtract_remaining_pages",
+      "description": "전체 쪽수에서 남은 쪽수를 빼면 읽은 쪽수가 됩니다.",
+      "expr": "286 - 167",
+      "expected": 119,
+      "actual": 119,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "type": "numeric",
+    "value": 286,
+    "unit": "쪽",
+    "target_ref": "quantity.total_pages"
+  },
+  "understanding": {
+    "summary": "미정이가 처음부터 읽은 119쪽과 아직 남아 있는 167쪽을 합하여 동화책의 전체 쪽수를 구하는 문제입니다.",
+    "facts": [
+      {
+        "ref": "quantity.pages_read",
+        "label": "미정이가 처음부터 읽은 쪽수",
+        "value": 119,
+        "unit": "쪽",
+        "source": "explicit"
+      },
+      {
+        "ref": "quantity.pages_remaining",
+        "label": "읽고 남은 쪽수",
+        "value": 167,
+        "unit": "쪽",
+        "source": "explicit"
+      }
+    ],
+    "unknowns": [
+      {
+        "ref": "quantity.total_pages",
+        "label": "동화책의 전체 쪽수",
+        "unit": "쪽",
+        "source": "unknown"
+      }
+    ],
+    "relation": {
+      "type": "part_part_whole_addition",
+      "statement": "읽은 쪽수와 남은 쪽수를 합하면 동화책의 전체 쪽수가 됩니다.",
+      "symbolic": "119 + 167 = 286",
+      "uses": [
+        "quantity.pages_read",
+        "quantity.pages_remaining"
+      ],
+      "result": "quantity.total_pages"
+    },
+    "diagnostic_questions": [
+      {
+        "id": "understand.target",
+        "type": "multiple_choice",
+        "prompt": "이 문제에서 구해야 하는 것은 무엇인가요?",
+        "choices": [
+          "미정이가 읽은 쪽수",
+          "읽고 남은 쪽수",
+          "동화책의 전체 쪽수"
+        ],
+        "answer_index": 2
+      },
+      {
+        "id": "understand.parts",
+        "type": "multiple_choice",
+        "prompt": "동화책의 전체 쪽수를 이루는 두 부분은 무엇인가요?",
+        "choices": [
+          "읽은 쪽수와 남은 쪽수",
+          "읽은 쪽수와 전체 쪽수",
+          "남은 쪽수와 전체 쪽수"
+        ],
+        "answer_index": 0
+      },
+      {
+        "id": "understand.operation",
+        "type": "multiple_choice",
+        "prompt": "동화책의 전체 쪽수를 구하려면 어떻게 계산해야 하나요?",
+        "choices": [
+          "119와 167을 더합니다.",
+          "167에서 119를 뺍니다.",
+          "119에서 167을 뺍니다."
+        ],
+        "answer_index": 0
+      }
+    ],
+    "student_restatement": {
+      "prompt": "문제의 뜻을 말해 볼까요?",
+      "template": "미정이가 처음부터 {read}쪽까지 읽었고 {remaining}쪽이 남았으므로, 읽은 쪽수와 남은 쪽수를 더하여 동화책의 {target}를 구합니다.",
+      "answer": "미정이가 처음부터 119쪽까지 읽었고 167쪽이 남았으므로, 읽은 쪽수와 남은 쪽수를 더하여 동화책의 전체 쪽수를 구합니다."
+    }
+  }
+}

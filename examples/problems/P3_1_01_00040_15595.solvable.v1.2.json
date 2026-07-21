@@ -1,0 +1,178 @@
+{
+  "schema": "modu.solvable.v1.2",
+  "problem_id": "P3_1_01_00040_15595",
+  "problem_type": "multi_numeric_answer_vertical_addition_problem",
+  "inputs": {
+    "target_label": "두 덧셈의 답",
+    "unit": "",
+    "calculations": [
+      {
+        "id": "calculation.1",
+        "addends": [
+          270,
+          125
+        ]
+      },
+      {
+        "id": "calculation.2",
+        "addends": [
+          394,
+          205
+        ]
+      }
+    ]
+  },
+  "given": [
+    {
+      "ref": "calculation.1",
+      "value": {
+        "operator": "+",
+        "left": 270,
+        "right": 125
+      }
+    },
+    {
+      "ref": "calculation.2",
+      "value": {
+        "operator": "+",
+        "left": 394,
+        "right": 205
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.values",
+    "type": "number_pair"
+  },
+  "method": "각 세로셈에서 같은 자리의 수끼리 더해 두 계산의 답을 각각 구합니다.",
+  "understanding": {
+    "summary": "주어진 두 세 자리 수의 덧셈을 각각 계산하는 문제입니다.",
+    "facts": [
+      {
+        "ref": "calculation.1",
+        "label": "첫 번째 계산",
+        "value": "270 + 125",
+        "unit": "",
+        "source": "explicit"
+      },
+      {
+        "ref": "calculation.2",
+        "label": "두 번째 계산",
+        "value": "394 + 205",
+        "unit": "",
+        "source": "explicit"
+      }
+    ],
+    "unknowns": [
+      {
+        "ref": "answer.calculation_1",
+        "label": "270과 125의 합",
+        "unit": ""
+      },
+      {
+        "ref": "answer.calculation_2",
+        "label": "394와 205의 합",
+        "unit": ""
+      }
+    ],
+    "relation": {
+      "type": "independent_additions",
+      "statement": "각 식에서 두 수를 더하여 각각의 답을 구합니다.",
+      "symbolic": "270 + 125 = □, 394 + 205 = □",
+      "uses": [
+        "calculation.1",
+        "calculation.2"
+      ],
+      "result": "answer.values"
+    },
+    "diagnostic_questions": [
+      {
+        "id": "understand.operation",
+        "type": "multiple_choice",
+        "prompt": "두 식에서 공통으로 해야 하는 계산은 무엇인가요?",
+        "choices": [
+          "덧셈",
+          "뺄셈",
+          "곱셈"
+        ],
+        "answer_index": 0
+      },
+      {
+        "id": "understand.place_value",
+        "type": "multiple_choice",
+        "prompt": "세로셈에서는 어떤 수끼리 먼저 더하나요?",
+        "choices": [
+          "같은 자리의 수끼리 더합니다.",
+          "가장 큰 숫자끼리 더합니다.",
+          "서로 다른 자리의 수끼리 더합니다."
+        ],
+        "answer_index": 0
+      }
+    ]
+  },
+  "plan": [
+    "각 식에서 일의 자리부터 같은 자리의 수끼리 더합니다.",
+    "십의 자리와 백의 자리도 차례로 더합니다.",
+    "각 덧셈의 결과를 뺄셈으로 검산합니다."
+  ],
+  "steps": [
+    {
+      "id": "step.calculate_1",
+      "expr": "270 + 125",
+      "value": 395,
+      "explanation": "일의 자리, 십의 자리, 백의 자리 순서로 더하면 395입니다."
+    },
+    {
+      "id": "step.calculate_2",
+      "expr": "394 + 205",
+      "value": 599,
+      "explanation": "일의 자리, 십의 자리, 백의 자리 순서로 더하면 599입니다."
+    },
+    {
+      "id": "step.calculate_both",
+      "expr": "[270 + 125, 394 + 205]",
+      "value": [
+        395,
+        599
+      ],
+      "explanation": "두 계산의 결과를 문제 번호 순서대로 정리합니다."
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.calculation_1",
+      "expr": "395 - 125",
+      "expected": 270,
+      "actual": 270,
+      "pass": true
+    },
+    {
+      "id": "check.calculation_2",
+      "expr": "599 - 205",
+      "expected": 394,
+      "actual": 394,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "type": "multi_numeric",
+    "value": [
+      395,
+      599
+    ],
+    "unit": "",
+    "values": [
+      {
+        "value": 395,
+        "unit": "",
+        "target_ref": "answer.calculation_1"
+      },
+      {
+        "value": 599,
+        "unit": "",
+        "target_ref": "answer.calculation_2"
+      }
+    ],
+    "derived_from": "step.calculate_both"
+  }
+}

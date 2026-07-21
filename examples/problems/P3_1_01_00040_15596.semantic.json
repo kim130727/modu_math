@@ -1,0 +1,112 @@
+{
+  "problem_id": "P3_1_01_00040_15596",
+  "problem_type": "numeric_answer_place_value_then_addition_problem",
+  "metadata": {
+    "title": "자리 숫자로 만든 수보다 534 큰 수",
+    "tags": [],
+    "question": "백의 자리 숫자가 4, 십의 자리 숫자가 3, 일의 자리 숫자가 5인 수보다 534 많은 수는 얼마입니까?",
+    "required_layout_ids": [],
+    "extraction_confidence": 1.0,
+    "language": "ko-KR",
+    "instruction": "자리 숫자로 수를 만든 뒤 534만큼 큰 수를 구합니다."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "digit.hundreds",
+        "type": "place_digit",
+        "label": "백의 자리 숫자",
+        "place": "hundreds",
+        "value": 4
+      },
+      {
+        "id": "digit.tens",
+        "type": "place_digit",
+        "label": "십의 자리 숫자",
+        "place": "tens",
+        "value": 3
+      },
+      {
+        "id": "digit.ones",
+        "type": "place_digit",
+        "label": "일의 자리 숫자",
+        "place": "ones",
+        "value": 5
+      },
+      {
+        "id": "number.base",
+        "type": "place_value_number",
+        "label": "세 자리 숫자로 만든 수"
+      },
+      {
+        "id": "quantity.increase",
+        "type": "quantity",
+        "label": "더 많은 수량",
+        "value": 534,
+        "unit": ""
+      },
+      {
+        "id": "number.target",
+        "type": "unknown_number",
+        "label": "기준 수보다 534 큰 수"
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.base_from_digits",
+        "type": "composed_by_place_value",
+        "subject": "number.base",
+        "digits": [
+          "digit.hundreds",
+          "digit.tens",
+          "digit.ones"
+        ]
+      },
+      {
+        "id": "relation.target_is_greater_by",
+        "type": "greater_by",
+        "subject": "number.target",
+        "object": "number.base",
+        "difference": "quantity.increase"
+      }
+    ],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "digit.hundreds",
+          "digit.tens",
+          "digit.ones",
+          "quantity.increase"
+        ],
+        "target_ref": "number.target",
+        "condition_refs": [
+          "relation.base_from_digits",
+          "relation.target_is_greater_by"
+        ]
+      },
+      "plan": {
+        "method": "compose_number_then_add",
+        "description": "각 자리 숫자로 기준 수를 만든 다음 534를 더합니다."
+      },
+      "execute": {
+        "expected_operations": [
+          "place_value_composition",
+          "addition"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "subtraction_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "type": "numeric",
+    "value": 969,
+    "unit": "",
+    "target_ref": "number.target",
+    "derived_from": "step.add_534"
+  }
+}

@@ -191,6 +191,8 @@ SEMANTIC = {
     },
     "answer": {
         "type": "multi_numeric",
+        "value": [11, 9],
+        "unit": "장",
         "values": [
             {
                 "value": 11,
@@ -261,10 +263,7 @@ SOLVABLE = {
         },
     ],
     "target": {
-        "refs": [
-            "quantity.100won_stamp_count",
-            "quantity.50won_stamp_count",
-        ],
+        "ref": "answer.stamp_counts",
         "type": "number_pair",
     },
     "method": (
@@ -354,6 +353,8 @@ SOLVABLE = {
     ],
     "answer": {
         "type": "multi_numeric",
+        "value": [11, 9],
+        "unit": "장",
         "values": [
             {
                 "value": 11,
@@ -427,10 +428,7 @@ SOLVABLE = {
                 "quantity.100won_stamp_count",
                 "quantity.50won_stamp_count",
             ],
-            "results": [
-                "quantity.100won_stamp_count",
-                "quantity.50won_stamp_count",
-            ],
+            "result": "answer.stamp_counts",
         },
         "diagnostic_questions": [
             {

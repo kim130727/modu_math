@@ -1,0 +1,126 @@
+{
+  "problem_id": "P3_1_01_00040_15472",
+  "view_box": {
+    "width": 900.0,
+    "height": 230.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.instruction.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 24.0,
+        "y": 18.0,
+        "fill": "#202124",
+        "font-family": "Noto Sans KR",
+        "font-size": 22,
+        "width": 840.0,
+        "height": 35.0,
+        "max_width": 840.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 24.0,
+        "data-box-y": 18.0,
+        "data-box-width": 840.0,
+        "data-box-height": 35.0,
+        "data-text-align": "left",
+        "data-vertical-align": "top",
+        "data-line-height": 1.3
+      },
+      "source_ref": "slot.instruction",
+      "refs": {
+        "layout_slot_id": "slot.instruction"
+      },
+      "text": "다음 <보기>의 수들을 빈칸에 알맞게 써넣으시오."
+    },
+    {
+      "id": "slot.options.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 24.0,
+        "y": 58.0,
+        "fill": "#202124",
+        "font-family": "Noto Sans KR",
+        "font-size": 22,
+        "width": 840.0,
+        "height": 52.0,
+        "max_width": 840.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 24.0,
+        "data-box-y": 58.0,
+        "data-box-width": 840.0,
+        "data-box-height": 52.0,
+        "data-text-align": "left",
+        "data-vertical-align": "middle",
+        "data-line-height": 1.3
+      },
+      "source_ref": "slot.options",
+      "refs": {
+        "layout_slot_id": "slot.options"
+      },
+      "text": "<보기>    325,   532,   334,   985,   415"
+    },
+    {
+      "id": "slot.equation.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 24.0,
+        "y": 130.0,
+        "fill": "#202124",
+        "font-family": "Noto Sans KR",
+        "font-size": 24,
+        "width": 360.0,
+        "height": 45.0,
+        "max_width": 360.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 24.0,
+        "data-box-y": 130.0,
+        "data-box-width": 360.0,
+        "data-box-height": 45.0,
+        "data-text-align": "left",
+        "data-vertical-align": "middle",
+        "data-line-height": 1.3
+      },
+      "source_ref": "slot.equation",
+      "refs": {
+        "layout_slot_id": "slot.equation"
+      },
+      "text": "(       )+(       )=749"
+    },
+    {
+      "id": "slot.answer.first.blank",
+      "type": "rect",
+      "attributes": {
+        "x": 64.0,
+        "y": 162.0,
+        "width": 120.0,
+        "height": 32.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.answer.first",
+      "refs": {
+        "layout_slot_id": "slot.answer.first"
+      }
+    },
+    {
+      "id": "slot.answer.second.blank",
+      "type": "rect",
+      "attributes": {
+        "x": 64.0,
+        "y": 210.0,
+        "width": 120.0,
+        "height": 32.0,
+        "fill": "#ffffff",
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.answer.second",
+      "refs": {
+        "layout_slot_id": "slot.answer.second"
+      }
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

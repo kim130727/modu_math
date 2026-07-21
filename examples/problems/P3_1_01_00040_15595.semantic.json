@@ -1,0 +1,116 @@
+{
+  "problem_id": "P3_1_01_00040_15595",
+  "problem_type": "multi_numeric_answer_vertical_addition_problem",
+  "metadata": {
+    "title": "세 자리 수의 덧셈 계산하기",
+    "tags": [],
+    "question": "다음 계산을 하시오.",
+    "required_layout_ids": [
+      "slot.calculation.1.line",
+      "slot.calculation.2.line"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko-KR",
+    "instruction": "두 세 자리 수의 덧셈을 각각 계산합니다."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "calculation.1",
+        "type": "addition_expression",
+        "label": "첫 번째 덧셈",
+        "addends": [
+          270,
+          125
+        ]
+      },
+      {
+        "id": "calculation.2",
+        "type": "addition_expression",
+        "label": "두 번째 덧셈",
+        "addends": [
+          394,
+          205
+        ]
+      },
+      {
+        "id": "answer.calculation_1",
+        "type": "unknown_number",
+        "label": "첫 번째 계산의 답"
+      },
+      {
+        "id": "answer.calculation_2",
+        "type": "unknown_number",
+        "label": "두 번째 계산의 답"
+      },
+      {
+        "id": "answer.values",
+        "type": "number_pair",
+        "label": "두 덧셈의 답"
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.calculation_1_sum",
+        "type": "sum_result",
+        "subject": "answer.calculation_1",
+        "object": "calculation.1"
+      },
+      {
+        "id": "relation.calculation_2_sum",
+        "type": "sum_result",
+        "subject": "answer.calculation_2",
+        "object": "calculation.2"
+      }
+    ],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "calculation.1",
+          "calculation.2"
+        ],
+        "target_ref": "answer.values",
+        "condition_refs": [
+          "relation.calculation_1_sum",
+          "relation.calculation_2_sum"
+        ]
+      },
+      "plan": {
+        "method": "vertical_addition_by_place_value",
+        "description": "각 계산에서 같은 자리의 수끼리 더합니다."
+      },
+      "execute": {
+        "expected_operations": [
+          "addition"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "subtraction_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "type": "multi_numeric",
+    "value": [
+      395,
+      599
+    ],
+    "unit": "",
+    "values": [
+      {
+        "value": 395,
+        "unit": "",
+        "target_ref": "answer.calculation_1"
+      },
+      {
+        "value": 599,
+        "unit": "",
+        "target_ref": "answer.calculation_2"
+      }
+    ],
+    "derived_from": "step.calculate_both"
+  }
+}

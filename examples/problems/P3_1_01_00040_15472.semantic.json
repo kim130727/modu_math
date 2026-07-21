@@ -1,0 +1,121 @@
+{
+  "problem_id": "P3_1_01_00040_15472",
+  "problem_type": "multi_numeric_answer_select_addends_problem",
+  "metadata": {
+    "title": "합이 749가 되는 두 수 찾기",
+    "tags": [],
+    "instruction": "<보기>의 수 중 합이 749가 되는 두 수를 고릅니다.",
+    "question": "두 빈칸에 들어갈 수를 구합니다.",
+    "required_layout_ids": [],
+    "extraction_confidence": 1.0,
+    "language": "ko-KR"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "set.options",
+        "type": "number_set",
+        "label": "보기의 수",
+        "values": [
+          325,
+          532,
+          334,
+          985,
+          415
+        ]
+      },
+      {
+        "id": "number.target_sum",
+        "type": "number",
+        "label": "목표 합",
+        "value": 749
+      },
+      {
+        "id": "answer.first_blank",
+        "type": "unknown_number",
+        "label": "첫 번째 빈칸의 수"
+      },
+      {
+        "id": "answer.second_blank",
+        "type": "unknown_number",
+        "label": "두 번째 빈칸의 수"
+      },
+      {
+        "id": "answer.values",
+        "type": "number_pair",
+        "label": "두 빈칸의 수"
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.answers_are_from_options",
+        "type": "selected_from",
+        "subjects": [
+          "answer.first_blank",
+          "answer.second_blank"
+        ],
+        "object": "set.options"
+      },
+      {
+        "id": "relation.answers_sum_to_target",
+        "type": "sum_equals",
+        "subjects": [
+          "answer.first_blank",
+          "answer.second_blank"
+        ],
+        "object": "number.target_sum"
+      }
+    ],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "set.options",
+          "number.target_sum"
+        ],
+        "target_ref": "answer.values",
+        "condition_refs": [
+          "relation.answers_are_from_options",
+          "relation.answers_sum_to_target"
+        ]
+      },
+      "plan": {
+        "method": "complement_search",
+        "description": "목표 합에서 보기의 수를 빼어 나머지도 보기에 있는지 확인합니다."
+      },
+      "execute": {
+        "expected_operations": [
+          "subtraction",
+          "addition"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "option_membership",
+          "addition_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "type": "multi_numeric",
+    "value": [
+      334,
+      415
+    ],
+    "unit": "",
+    "values": [
+      {
+        "value": 334,
+        "unit": "",
+        "target_ref": "answer.first_blank"
+      },
+      {
+        "value": 415,
+        "unit": "",
+        "target_ref": "answer.second_blank"
+      }
+    ],
+    "derived_from": "step.select_pair"
+  }
+}

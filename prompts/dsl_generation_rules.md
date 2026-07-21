@@ -209,6 +209,96 @@ Rules:
 - Keep `SOLVABLE` small and verifiable.
 - For geometry problems, include the geometric reason behind any non-obvious relation in `SOLVABLE["steps"][].explanation` or `SOLVABLE["plan"]`; for example, explain why an inscribed regular hexagon has side length equal to the circle radius before using that relation.
 
+### Solvable v1.2 Schema Guardrails
+
+Before finalizing any generated DSL, check these exact schema constraints. These are common build blockers.
+
+- `SOLVABLE["target"]` must be an object with exactly these required keys:
+  - `ref`: string
+  - `type`: string
+- Do not use `SOLVABLE["target"]["refs"]`, even for multi-answer problems.
+- For multi-answer problems, use one representative target ref such as `"answer.values"` or `"answer.all"`, and put the individual answer refs in `SOLVABLE["answer"]`.
+
+Correct:
+
+```python
+"target": {"ref": "answer.values", "type": "number_pair"}
+```
+
+Incorrect:
+
+```python
+"target": {
+    "refs": ["quantity.left", "quantity.right"],
+    "type": "number_pair",
+}
+```
+
+- `SOLVABLE["understanding"]["relation"]` may contain only:
+  - `type`
+  - `statement`
+  - `symbolic`
+  - `uses`
+  - `result`
+- Do not use `results` in `understanding.relation`.
+- For multiple results, set `result` to the same representative ref used by `target.ref`.
+
+Correct:
+
+```python
+"relation": {
+    "type": "system",
+    "statement": "...",
+    "symbolic": "x + y = 20",
+    "uses": ["quantity.x", "quantity.y"],
+    "result": "answer.values",
+}
+```
+
+Incorrect:
+
+```python
+"relation": {
+    "type": "system",
+    "statement": "...",
+    "results": ["quantity.x", "quantity.y"],
+}
+```
+
+- `SOLVABLE["answer"]` must always include top-level `value` and `unit`.
+- Text answers must use `unit: ""`.
+- Multi-answer payloads may include `values`, `blanks`, or `answer_key`, but still must include top-level `value` and `unit`.
+- `SOLVABLE["inputs"]` must always include `target_label` and `unit`.
+- `SOLVABLE["method"]` is required and must be a string. Do not rely on `plan` alone.
+
+Correct text answer:
+
+```python
+"answer": {
+    "type": "text",
+    "value": "소방서",
+    "unit": "",
+    "target_ref": "place.fire_station",
+}
+```
+
+Correct multi-answer:
+
+```python
+"answer": {
+    "type": "multi_numeric",
+    "value": [11, 9],
+    "unit": "장",
+    "values": [
+        {"value": 11, "unit": "장", "target_ref": "quantity.100won_stamp_count"},
+        {"value": 9, "unit": "장", "target_ref": "quantity.50won_stamp_count"},
+    ],
+}
+```
+
+- `SEMANTIC_OVERRIDE["answer"]` should follow the same answer shape as `SOLVABLE["answer"]` when strict validation is expected.
+- If a field name is not shown in this section or in the contract example above, assume the schema may reject it.
+
 ## 7) Answer Synchronization
 
 Strict validation compares `SEMANTIC_OVERRIDE["answer"]` and `SOLVABLE["answer"]`.

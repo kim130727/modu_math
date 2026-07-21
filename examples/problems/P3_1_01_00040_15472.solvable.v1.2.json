@@ -1,0 +1,169 @@
+{
+  "schema": "modu.solvable.v1.2",
+  "problem_id": "P3_1_01_00040_15472",
+  "problem_type": "multi_numeric_answer_select_addends_problem",
+  "inputs": {
+    "target_label": "빈칸에 들어갈 두 수",
+    "unit": "",
+    "options": [
+      325,
+      532,
+      334,
+      985,
+      415
+    ],
+    "target_sum": 749,
+    "blank_count": 2
+  },
+  "given": [
+    {
+      "ref": "set.options",
+      "value": [
+        325,
+        532,
+        334,
+        985,
+        415
+      ]
+    },
+    {
+      "ref": "number.target_sum",
+      "value": 749
+    }
+  ],
+  "target": {
+    "ref": "answer.values",
+    "type": "number_pair"
+  },
+  "method": "목표 합 749에서 보기의 수를 하나씩 빼고, 남은 수가 보기에 있는지 확인하여 두 수를 고릅니다.",
+  "understanding": {
+    "summary": "보기의 다섯 수 중 두 수를 골라 합이 749가 되도록 하는 문제입니다.",
+    "facts": [
+      {
+        "ref": "set.options",
+        "label": "고를 수 있는 수",
+        "value": [
+          325,
+          532,
+          334,
+          985,
+          415
+        ],
+        "unit": "",
+        "source": "explicit"
+      },
+      {
+        "ref": "number.target_sum",
+        "label": "두 수의 합",
+        "value": 749,
+        "unit": "",
+        "source": "explicit"
+      }
+    ],
+    "unknowns": [
+      {
+        "ref": "answer.first_blank",
+        "label": "첫 번째 빈칸의 수",
+        "unit": ""
+      },
+      {
+        "ref": "answer.second_blank",
+        "label": "두 번째 빈칸의 수",
+        "unit": ""
+      }
+    ],
+    "relation": {
+      "type": "select_two_addends",
+      "statement": "두 빈칸의 수는 모두 보기에 있으며 두 수의 합은 749입니다.",
+      "symbolic": "□ + □ = 749",
+      "uses": [
+        "set.options",
+        "number.target_sum"
+      ],
+      "result": "answer.values"
+    },
+    "diagnostic_questions": [
+      {
+        "id": "understand.target",
+        "type": "multiple_choice",
+        "prompt": "이 문제에서 찾아야 하는 것은 무엇인가요?",
+        "choices": [
+          "보기에서 합이 749가 되는 두 수",
+          "보기에서 가장 큰 수",
+          "보기의 모든 수의 합"
+        ],
+        "answer_index": 0
+      },
+      {
+        "id": "understand.condition",
+        "type": "multiple_choice",
+        "prompt": "빈칸에 넣을 수는 어디에서 골라야 하나요?",
+        "choices": [
+          "749보다 큰 수 중에서 고릅니다.",
+          "<보기>에 있는 수 중에서 고릅니다.",
+          "아무 수나 만들어 넣습니다."
+        ],
+        "answer_index": 1
+      }
+    ]
+  },
+  "plan": [
+    "목표 합 749에서 보기의 수를 하나씩 빼 봅니다.",
+    "뺀 결과가 보기에 있는 수인지 확인합니다.",
+    "찾은 두 수를 더하여 합이 749인지 검산합니다."
+  ],
+  "steps": [
+    {
+      "id": "step.find_complement",
+      "expr": "749 - 334",
+      "value": 415,
+      "explanation": "보기의 334를 749에서 빼면 415이고, 415도 보기에 있습니다."
+    },
+    {
+      "id": "step.select_pair",
+      "expr": "334 + 415",
+      "value": [
+        334,
+        415
+      ],
+      "explanation": "보기의 334와 415를 두 빈칸에 넣으면 합이 749가 됩니다."
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.option_membership",
+      "expr": "334 in options and 415 in options",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "id": "check.target_sum",
+      "expr": "334 + 415",
+      "expected": 749,
+      "actual": 749,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "type": "multi_numeric",
+    "value": [
+      334,
+      415
+    ],
+    "unit": "",
+    "values": [
+      {
+        "value": 334,
+        "unit": "",
+        "target_ref": "answer.first_blank"
+      },
+      {
+        "value": 415,
+        "unit": "",
+        "target_ref": "answer.second_blank"
+      }
+    ],
+    "derived_from": "step.select_pair"
+  }
+}

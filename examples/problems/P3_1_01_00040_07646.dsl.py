@@ -1,0 +1,444 @@
+from __future__ import annotations
+
+from modu_math.dsl import (
+    BlankSlot,
+    Canvas,
+    ProblemTemplate,
+    Region,
+    TextBoxSlot,
+)
+
+
+PROBLEM_ID = "P3_1_01_00040_07646"
+PROBLEM_TITLE = "학교까지 더 먼 길 비교하기"
+
+
+def build_problem_template() -> ProblemTemplate:
+    return ProblemTemplate(
+        id=PROBLEM_ID,
+        title=PROBLEM_TITLE,
+        canvas=Canvas(
+            width=900,
+            height=320,
+            coordinate_mode="logical",
+        ),
+        regions=(
+            Region(
+                id="region.stem",
+                role="stem",
+                flow="vertical",
+                slot_ids=("slot.question",),
+            ),
+        ),
+        slots=(
+            TextBoxSlot(
+                id="slot.question",
+                x=48,
+                y=30,
+                width=804,
+                height=190,
+                text=(
+                    "집에서 학교로 가는 길은 소방서를 거쳐 가는 것과 주민센터를 "
+                    "거쳐서 가는 것 두 가지입니다. 집에서 소방서까지 168m이고 "
+                    "소방서에서 학교까지는 726m입니다. 그리고 집에서 주민센터까지는 "
+                    "625m이고 주민센터에서 학교까지의 거리는 186m입니다. 소방서를 "
+                    "거쳐서 가는 것과 주민센터를 거쳐서 가는 것 중 어느 곳을 거쳐서 "
+                    "가는 것이 더 멀겠습니까?"
+                ),
+                font_size=24,
+                font_family="Noto Sans KR",
+                fill="#202124",
+                line_height=1.5,
+                align="left",
+                valign="top",
+            ),
+            BlankSlot(
+                id="slot.answer",
+                prompt="답",
+                answer_key="소방서",
+                placeholder="를 거쳐서 가는 길",
+            ),
+        ),
+    )
+
+
+PROBLEM_TEMPLATE = build_problem_template()
+
+
+SEMANTIC = {
+    "problem_id": PROBLEM_ID,
+    "problem_type": "text_answer_route_distance_comparison_problem",
+    "metadata": {
+        "grade": 3,
+        "semester": 1,
+        "subject": "수학",
+        "topic": "세 자리 수의 덧셈과 크기 비교",
+        "language": "ko-KR",
+    },
+    "domain": {
+        "objects": [
+            {
+                "id": "place.home",
+                "type": "place",
+                "label": "집",
+            },
+            {
+                "id": "place.school",
+                "type": "place",
+                "label": "학교",
+            },
+            {
+                "id": "place.fire_station",
+                "type": "place",
+                "label": "소방서",
+            },
+            {
+                "id": "place.community_center",
+                "type": "place",
+                "label": "주민센터",
+            },
+            {
+                "id": "distance.home_to_fire_station",
+                "type": "distance",
+                "label": "집에서 소방서까지의 거리",
+                "value": 168,
+                "unit": "m",
+            },
+            {
+                "id": "distance.fire_station_to_school",
+                "type": "distance",
+                "label": "소방서에서 학교까지의 거리",
+                "value": 726,
+                "unit": "m",
+            },
+            {
+                "id": "distance.home_to_community_center",
+                "type": "distance",
+                "label": "집에서 주민센터까지의 거리",
+                "value": 625,
+                "unit": "m",
+            },
+            {
+                "id": "distance.community_center_to_school",
+                "type": "distance",
+                "label": "주민센터에서 학교까지의 거리",
+                "value": 186,
+                "unit": "m",
+            },
+            {
+                "id": "distance.fire_station_route",
+                "type": "distance",
+                "label": "소방서를 거쳐 학교로 가는 전체 거리",
+                "value": 894,
+                "unit": "m",
+            },
+            {
+                "id": "distance.community_center_route",
+                "type": "distance",
+                "label": "주민센터를 거쳐 학교로 가는 전체 거리",
+                "value": 811,
+                "unit": "m",
+            },
+            {
+                "id": "distance.route_difference",
+                "type": "distance",
+                "label": "두 경로의 거리 차이",
+                "value": 83,
+                "unit": "m",
+            },
+        ],
+        "relations": [
+            {
+                "id": "relation.fire_station_route_sum",
+                "type": "path_distance_sum",
+                "subject": "distance.fire_station_route",
+                "via": "place.fire_station",
+                "segments": [
+                    "distance.home_to_fire_station",
+                    "distance.fire_station_to_school",
+                ],
+            },
+            {
+                "id": "relation.community_center_route_sum",
+                "type": "path_distance_sum",
+                "subject": "distance.community_center_route",
+                "via": "place.community_center",
+                "segments": [
+                    "distance.home_to_community_center",
+                    "distance.community_center_to_school",
+                ],
+            },
+            {
+                "id": "relation.fire_station_route_is_farther",
+                "type": "greater_than",
+                "subject": "distance.fire_station_route",
+                "object": "distance.community_center_route",
+                "difference": "distance.route_difference",
+            },
+        ],
+    },
+    "answer": {
+        "type": "text",
+        "value": "소방서",
+        "unit": "",
+        "target_ref": "place.fire_station",
+    },
+}
+
+SEMANTIC_OVERRIDE = SEMANTIC
+
+
+SOLVABLE = {
+    "schema": "modu.solvable.v1.2",
+    "problem_id": PROBLEM_ID,
+    "problem_type": "text_answer_route_distance_comparison_problem",
+    "inputs": {
+        "target_label": "학교까지 가는 두 길 중 더 먼 경로의 경유지",
+        "unit": "m",
+        "quantities": {
+            "home_to_fire_station": 168,
+            "fire_station_to_school": 726,
+            "home_to_community_center": 625,
+            "community_center_to_school": 186,
+        },
+        "conditions": [
+            "첫 번째 길은 집에서 소방서를 거쳐 학교로 갑니다.",
+            "두 번째 길은 집에서 주민센터를 거쳐 학교로 갑니다.",
+            "각 경로의 두 구간을 더한 뒤 전체 거리를 비교합니다.",
+        ],
+    },
+    "given": [
+        {
+            "ref": "distance.home_to_fire_station",
+            "value": {
+                "distance": 168,
+                "unit": "m",
+                "from": "place.home",
+                "to": "place.fire_station",
+            },
+        },
+        {
+            "ref": "distance.fire_station_to_school",
+            "value": {
+                "distance": 726,
+                "unit": "m",
+                "from": "place.fire_station",
+                "to": "place.school",
+            },
+        },
+        {
+            "ref": "distance.home_to_community_center",
+            "value": {
+                "distance": 625,
+                "unit": "m",
+                "from": "place.home",
+                "to": "place.community_center",
+            },
+        },
+        {
+            "ref": "distance.community_center_to_school",
+            "value": {
+                "distance": 186,
+                "unit": "m",
+                "from": "place.community_center",
+                "to": "place.school",
+            },
+        },
+    ],
+    "target": {
+        "ref": "place.fire_station",
+        "type": "text",
+    },
+    "method": "각 경로의 두 구간 거리를 더한 뒤 두 전체 거리를 비교합니다.",
+    "plan": [
+        "집에서 소방서를 거쳐 학교까지 가는 전체 거리를 구합니다.",
+        "집에서 주민센터를 거쳐 학교까지 가는 전체 거리를 구합니다.",
+        "두 경로의 전체 거리를 비교하여 더 먼 길의 경유지를 찾습니다.",
+    ],
+    "steps": [
+        {
+            "id": "step.find_fire_station_route",
+            "goal": "소방서를 거쳐 학교로 가는 전체 거리를 구합니다.",
+            "uses": [
+                "distance.home_to_fire_station",
+                "distance.fire_station_to_school",
+            ],
+            "relation_expr": "소방서 경로 = 집→소방서 + 소방서→학교",
+            "expr": "168 + 726",
+            "value": 894,
+            "explanation": "소방서를 거치는 길의 두 구간 거리 168m와 726m를 더합니다.",
+        },
+        {
+            "id": "step.find_community_center_route",
+            "goal": "주민센터를 거쳐 학교로 가는 전체 거리를 구합니다.",
+            "uses": [
+                "distance.home_to_community_center",
+                "distance.community_center_to_school",
+            ],
+            "relation_expr": "주민센터 경로 = 집→주민센터 + 주민센터→학교",
+            "expr": "625 + 186",
+            "value": 811,
+            "explanation": "주민센터를 거치는 길의 두 구간 거리 625m와 186m를 더합니다.",
+        },
+        {
+            "id": "step.compare_route_distances",
+            "goal": "두 경로 중 더 먼 길을 찾습니다.",
+            "uses": [
+                "distance.fire_station_route",
+                "distance.community_center_route",
+            ],
+            "relation_expr": "소방서 경로의 거리 > 주민센터 경로의 거리",
+            "expr": "894 > 811",
+            "value": True,
+            "explanation": "894m가 811m보다 크므로 소방서를 거쳐 가는 길이 더 멉니다.",
+        },
+        {
+            "id": "step.find_route_difference",
+            "goal": "두 경로의 거리 차이를 확인합니다.",
+            "uses": [
+                "distance.fire_station_route",
+                "distance.community_center_route",
+            ],
+            "relation_expr": "거리 차이 = 더 먼 경로 - 더 짧은 경로",
+            "expr": "894 - 811",
+            "value": 83,
+            "explanation": "소방서를 거치는 길이 주민센터를 거치는 길보다 83m 더 멉니다.",
+        },
+    ],
+    "checks": [
+        {
+            "id": "check.fire_station_route_sum",
+            "description": "소방서 경로의 두 구간을 더하면 894m인지 확인합니다.",
+            "expr": "168 + 726",
+            "expected": 894,
+            "actual": 894,
+            "pass": True,
+        },
+        {
+            "id": "check.community_center_route_sum",
+            "description": "주민센터 경로의 두 구간을 더하면 811m인지 확인합니다.",
+            "expr": "625 + 186",
+            "expected": 811,
+            "actual": 811,
+            "pass": True,
+        },
+        {
+            "id": "check_distance_difference",
+            "description": "짧은 경로에 거리 차이를 더하면 긴 경로와 같아지는지 확인합니다.",
+            "expr": "811 + 83",
+            "expected": 894,
+            "actual": 894,
+            "pass": True,
+        },
+    ],
+    "answer": {
+        "type": "text",
+        "value": "소방서",
+        "unit": "",
+        "target_ref": "place.fire_station",
+    },
+    "understanding": {
+        "summary": (
+            "소방서를 거치는 길과 주민센터를 거치는 길의 전체 거리를 각각 더하여 "
+            "어느 길이 더 먼지 비교하는 문제입니다."
+        ),
+        "facts": [
+            {
+                "ref": "distance.home_to_fire_station",
+                "label": "집에서 소방서까지의 거리",
+                "value": 168,
+                "unit": "m",
+                "source": "explicit",
+            },
+            {
+                "ref": "distance.fire_station_to_school",
+                "label": "소방서에서 학교까지의 거리",
+                "value": 726,
+                "unit": "m",
+                "source": "explicit",
+            },
+            {
+                "ref": "distance.home_to_community_center",
+                "label": "집에서 주민센터까지의 거리",
+                "value": 625,
+                "unit": "m",
+                "source": "explicit",
+            },
+            {
+                "ref": "distance.community_center_to_school",
+                "label": "주민센터에서 학교까지의 거리",
+                "value": 186,
+                "unit": "m",
+                "source": "explicit",
+            },
+        ],
+        "unknowns": [
+            {
+                "ref": "place.fire_station",
+                "label": "학교까지 가는 데 더 먼 길의 경유지",
+                "source": "unknown",
+            },
+        ],
+        "relation": {
+            "type": "route_sum_then_compare",
+            "statement": "각 경로의 두 구간을 더한 뒤 두 전체 거리의 크기를 비교합니다.",
+            "symbolic": "168 + 726 = 894, 625 + 186 = 811, 894 > 811",
+            "uses": [
+                "distance.home_to_fire_station",
+                "distance.fire_station_to_school",
+                "distance.home_to_community_center",
+                "distance.community_center_to_school",
+            ],
+            "result": "place.fire_station",
+        },
+        "diagnostic_questions": [
+            {
+                "id": "understand.target",
+                "type": "multiple_choice",
+                "prompt": "이 문제에서 구해야 하는 것은 무엇인가요?",
+                "choices": [
+                    "두 길 중 더 먼 길의 경유지",
+                    "집에서 소방서까지의 거리",
+                    "두 길의 거리의 합",
+                ],
+                "answer_index": 0,
+            },
+            {
+                "id": "understand.fire_station_route",
+                "type": "multiple_choice",
+                "prompt": "소방서를 거쳐 학교까지 가는 전체 거리는 어떻게 구하나요?",
+                "choices": [
+                    "168 + 726",
+                    "726 - 168",
+                    "625 + 186",
+                ],
+                "answer_index": 0,
+            },
+            {
+                "id": "understand.comparison",
+                "type": "multiple_choice",
+                "prompt": "두 경로의 전체 거리를 구한 다음 무엇을 해야 하나요?",
+                "choices": [
+                    "두 거리를 다시 더합니다.",
+                    "두 거리의 크기를 비교합니다.",
+                    "두 거리를 같은 수로 나눕니다.",
+                ],
+                "answer_index": 1,
+            },
+        ],
+        "student_restatement": {
+            "prompt": "문제의 뜻을 말해 볼까요?",
+            "template": (
+                "{first_via}를 거치는 길과 {second_via}를 거치는 길의 전체 거리를 "
+                "각각 구하여 어느 길이 {target}지 비교합니다."
+            ),
+            "answer": (
+                "소방서를 거치는 길과 주민센터를 거치는 길의 전체 거리를 "
+                "각각 구하여 어느 길이 더 먼지 비교합니다."
+            ),
+        },
+    },
+}
+
+
+SEMANTIC_ANSWER = SOLVABLE["answer"]

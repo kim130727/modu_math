@@ -1,0 +1,165 @@
+{
+  "schema": "modu.solvable.v1.2",
+  "problem_id": "P3_1_01_00040_15596",
+  "problem_type": "numeric_answer_place_value_then_addition_problem",
+  "inputs": {
+    "digits": {
+      "hundreds": 4,
+      "tens": 3,
+      "ones": 5
+    },
+    "increase": 534,
+    "target_label": "자리 숫자로 만든 수보다 534 큰 수",
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "digit.hundreds",
+      "value": {
+        "digit": 4,
+        "place": "hundreds"
+      }
+    },
+    {
+      "ref": "digit.tens",
+      "value": {
+        "digit": 3,
+        "place": "tens"
+      }
+    },
+    {
+      "ref": "digit.ones",
+      "value": {
+        "digit": 5,
+        "place": "ones"
+      }
+    },
+    {
+      "ref": "quantity.increase",
+      "value": 534
+    }
+  ],
+  "target": {
+    "ref": "number.target",
+    "type": "number"
+  },
+  "method": "백의 자리, 십의 자리, 일의 자리 숫자로 기준 수를 만든 뒤 534를 더합니다.",
+  "understanding": {
+    "summary": "백의 자리, 십의 자리, 일의 자리 숫자로 세 자리 수를 만든 뒤, 그 수보다 534 큰 수를 구하는 문제입니다.",
+    "facts": [
+      {
+        "ref": "digit.hundreds",
+        "label": "백의 자리 숫자",
+        "value": 4,
+        "unit": "",
+        "source": "explicit"
+      },
+      {
+        "ref": "digit.tens",
+        "label": "십의 자리 숫자",
+        "value": 3,
+        "unit": "",
+        "source": "explicit"
+      },
+      {
+        "ref": "digit.ones",
+        "label": "일의 자리 숫자",
+        "value": 5,
+        "unit": "",
+        "source": "explicit"
+      },
+      {
+        "ref": "quantity.increase",
+        "label": "기준 수보다 큰 정도",
+        "value": 534,
+        "unit": "",
+        "source": "explicit"
+      }
+    ],
+    "unknowns": [
+      {
+        "ref": "number.target",
+        "label": "자리 숫자로 만든 수보다 534 큰 수",
+        "unit": ""
+      }
+    ],
+    "relation": {
+      "type": "place_value_composition_then_increase",
+      "statement": "각 자리 숫자로 기준 수를 만들고, '534 많은 수'는 기준 수에 534를 더하여 구합니다.",
+      "symbolic": "(4×100 + 3×10 + 5) + 534 = □",
+      "uses": [
+        "digit.hundreds",
+        "digit.tens",
+        "digit.ones",
+        "quantity.increase"
+      ],
+      "result": "number.target"
+    },
+    "diagnostic_questions": [
+      {
+        "id": "understand.base_number",
+        "type": "multiple_choice",
+        "prompt": "주어진 자리 숫자로 만든 세 자리 수는 무엇인가요?",
+        "choices": [
+          "435",
+          "453",
+          "345"
+        ],
+        "answer_index": 0
+      },
+      {
+        "id": "understand.operation",
+        "type": "multiple_choice",
+        "prompt": "435보다 534 많은 수를 구하려면 어떻게 계산해야 하나요?",
+        "choices": [
+          "435 + 534",
+          "534 - 435",
+          "435 - 534"
+        ],
+        "answer_index": 0
+      }
+    ]
+  },
+  "plan": [
+    "백의 자리 숫자 4, 십의 자리 숫자 3, 일의 자리 숫자 5로 세 자리 수를 만듭니다.",
+    "만든 수에 534를 더합니다.",
+    "구한 수에서 534를 빼서 기준 수가 되는지 확인합니다."
+  ],
+  "steps": [
+    {
+      "id": "step.compose_base_number",
+      "expr": "4 * 100 + 3 * 10 + 5",
+      "value": 435,
+      "explanation": "4는 백의 자리, 3은 십의 자리, 5는 일의 자리이므로 만든 수는 435입니다."
+    },
+    {
+      "id": "step.add_534",
+      "expr": "435 + 534",
+      "value": 969,
+      "explanation": "435보다 534 많은 수를 구해야 하므로 435에 534를 더합니다."
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.subtract_increase",
+      "expr": "969 - 534",
+      "expected": 435,
+      "actual": 435,
+      "pass": true
+    },
+    {
+      "id": "check.place_digits",
+      "expr": "hundreds(435) == 4 and tens(435) == 3 and ones(435) == 5",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "type": "numeric",
+    "value": 969,
+    "unit": "",
+    "target_ref": "number.target",
+    "derived_from": "step.add_534"
+  }
+}

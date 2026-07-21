@@ -1,0 +1,114 @@
+{
+  "problem_id": "P3_1_01_00040_07649",
+  "problem_type": "numeric_answer_total_then_multiply_word_problem",
+  "metadata": {
+    "title": "3학년 학생들에게 필요한 연필 수",
+    "tags": [],
+    "question": "경진이네 학교 3학년 학생은 남학생이 87명, 여학생이 66명입니다. 3학년 학생 모두에게 연필을 2자루씩 나누어 주려고 합니다. 학생들에게 나누어 주기 위해 필요한 연필은 모두 몇 자루입니까?",
+    "required_layout_ids": [],
+    "extraction_confidence": 1.0,
+    "grade": 3,
+    "semester": 1,
+    "subject": "수학",
+    "topic": "덧셈과 곱셈을 활용한 문제 해결",
+    "language": "ko-KR"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "school.gyeongjin",
+        "type": "school",
+        "label": "경진이네 학교"
+      },
+      {
+        "id": "group.grade3_male_students",
+        "type": "student_group",
+        "label": "3학년 남학생"
+      },
+      {
+        "id": "group.grade3_female_students",
+        "type": "student_group",
+        "label": "3학년 여학생"
+      },
+      {
+        "id": "group.grade3_all_students",
+        "type": "student_group",
+        "label": "3학년 전체 학생"
+      },
+      {
+        "id": "object.pencil",
+        "type": "school_supply",
+        "label": "연필"
+      },
+      {
+        "id": "quantity.male_student_count",
+        "type": "quantity",
+        "label": "3학년 남학생 수",
+        "value": 87,
+        "unit": "명"
+      },
+      {
+        "id": "quantity.female_student_count",
+        "type": "quantity",
+        "label": "3학년 여학생 수",
+        "value": 66,
+        "unit": "명"
+      },
+      {
+        "id": "quantity.total_student_count",
+        "type": "quantity",
+        "label": "3학년 전체 학생 수",
+        "value": 153,
+        "unit": "명"
+      },
+      {
+        "id": "quantity.pencils_per_student",
+        "type": "quantity",
+        "label": "학생 한 명에게 주는 연필 수",
+        "value": 2,
+        "unit": "자루/명"
+      },
+      {
+        "id": "quantity.total_pencil_count",
+        "type": "quantity",
+        "label": "필요한 전체 연필 수",
+        "value": 306,
+        "unit": "자루"
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.total_students_is_sum",
+        "type": "sum_of",
+        "subject": "quantity.total_student_count",
+        "objects": [
+          "quantity.male_student_count",
+          "quantity.female_student_count"
+        ]
+      },
+      {
+        "id": "relation.pencils_distributed_equally",
+        "type": "equal_distribution_per_person",
+        "subject": "object.pencil",
+        "recipient_group": "group.grade3_all_students",
+        "quantity_per_person": "quantity.pencils_per_student"
+      },
+      {
+        "id": "relation.total_pencils_is_product",
+        "type": "product_of",
+        "subject": "quantity.total_pencil_count",
+        "factors": [
+          "quantity.total_student_count",
+          "quantity.pencils_per_student"
+        ]
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "type": "numeric",
+    "value": 306,
+    "unit": "자루",
+    "target_ref": "quantity.total_pencil_count"
+  }
+}

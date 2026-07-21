@@ -1,0 +1,59 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "P3_1_01_00040_07646",
+  "title": "학교까지 더 먼 길 비교하기",
+  "canvas": {
+    "width": 900,
+    "height": 320,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "vertical",
+      "slot_ids": [
+        "slot.question",
+        "slot.answer"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.question",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "집에서 학교로 가는 길은 소방서를 거쳐 가는 것과 주민센터를 거쳐서 가는 것 두 가지입니다. 집에서 소방서까지 168m이고 소방서에서 학교까지는 726m입니다. 그리고 집에서 주민센터까지는 625m이고 주민센터에서 학교까지의 거리는 186m입니다. 소방서를 거쳐서 가는 것과 주민센터를 거쳐서 가는 것 중 어느 곳을 거쳐서 가는 것이 더 멀겠습니까?",
+        "style_role": "body",
+        "x": 48.0,
+        "y": 30.0,
+        "width": 804.0,
+        "height": 190.0,
+        "align": "left",
+        "valign": "top",
+        "font_size": 24,
+        "font_family": "Noto Sans KR",
+        "line_height": 1.5,
+        "fill": "#202124"
+      }
+    },
+    {
+      "id": "slot.answer",
+      "kind": "blank",
+      "prompt": "답",
+      "content": {
+        "placeholder": "를 거쳐서 가는 길"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.question",
+    "slot.answer"
+  ]
+}

@@ -1,0 +1,93 @@
+{
+  "problem_id": "P3_1_01_00040_07648",
+  "problem_type": "numeric_answer_ratio_part_whole_problem",
+  "metadata": {
+    "title": "작은 수의 2배인 큰 수 구하기",
+    "tags": [],
+    "question": "서로 다른 두 수가 있습니다. 두 수 중 큰 수는 작은 수의 2배입니다. 두 수의 합이 735라면 큰 수는 얼마입니까?",
+    "required_layout_ids": [],
+    "extraction_confidence": 1.0,
+    "grade": 3,
+    "semester": 1,
+    "subject": "수학",
+    "topic": "곱셈과 나눗셈을 활용한 문제 해결",
+    "language": "ko-KR"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "number.smaller",
+        "type": "number",
+        "label": "작은 수",
+        "value": 245
+      },
+      {
+        "id": "number.larger",
+        "type": "number",
+        "label": "큰 수",
+        "value": 490
+      },
+      {
+        "id": "number.sum",
+        "type": "number",
+        "label": "두 수의 합",
+        "value": 735
+      },
+      {
+        "id": "quantity.smaller_part_count",
+        "type": "quantity",
+        "label": "작은 수의 묶음 수",
+        "value": 1,
+        "unit": "묶음"
+      },
+      {
+        "id": "quantity.larger_part_count",
+        "type": "quantity",
+        "label": "큰 수의 묶음 수",
+        "value": 2,
+        "unit": "묶음"
+      },
+      {
+        "id": "quantity.total_part_count",
+        "type": "quantity",
+        "label": "두 수를 나타내는 전체 묶음 수",
+        "value": 3,
+        "unit": "묶음"
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.larger_is_double",
+        "type": "multiple_of",
+        "subject": "number.larger",
+        "object": "number.smaller",
+        "multiplier": 2
+      },
+      {
+        "id": "relation.sum_of_two_numbers",
+        "type": "sum_of",
+        "subject": "number.sum",
+        "objects": [
+          "number.smaller",
+          "number.larger"
+        ]
+      },
+      {
+        "id": "relation.total_parts",
+        "type": "sum_of",
+        "subject": "quantity.total_part_count",
+        "objects": [
+          "quantity.smaller_part_count",
+          "quantity.larger_part_count"
+        ]
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "type": "numeric",
+    "value": 490,
+    "unit": "",
+    "target_ref": "number.larger"
+  }
+}

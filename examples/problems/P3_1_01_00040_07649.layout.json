@@ -1,0 +1,59 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "P3_1_01_00040_07649",
+  "title": "3학년 학생들에게 필요한 연필 수",
+  "canvas": {
+    "width": 900,
+    "height": 250,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "vertical",
+      "slot_ids": [
+        "slot.question",
+        "slot.answer"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.question",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "경진이네 학교 3학년 학생은 남학생이 87명, 여학생이 66명입니다. 3학년 학생 모두에게 연필을 2자루씩 나누어 주려고 합니다. 학생들에게 나누어 주기 위해 필요한 연필은 모두 몇 자루입니까?",
+        "style_role": "body",
+        "x": 48.0,
+        "y": 30.0,
+        "width": 804.0,
+        "height": 120.0,
+        "align": "left",
+        "valign": "top",
+        "font_size": 24,
+        "font_family": "Noto Sans KR",
+        "line_height": 1.5,
+        "fill": "#202124"
+      }
+    },
+    {
+      "id": "slot.answer",
+      "kind": "blank",
+      "prompt": "답",
+      "content": {
+        "placeholder": "자루"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.question",
+    "slot.answer"
+  ]
+}

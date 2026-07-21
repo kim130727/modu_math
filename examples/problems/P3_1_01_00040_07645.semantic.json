@@ -1,0 +1,87 @@
+{
+  "problem_id": "P3_1_01_00040_07645",
+  "problem_type": "numeric_answer_part_whole_addition_word_problem",
+  "metadata": {
+    "title": "미정이가 읽는 동화책의 전체 쪽수",
+    "tags": [],
+    "question": "미정이는 어제 동화책을 처음부터 119쪽까지 읽었더니 167쪽이 남았습니다. 미정이가 읽는 동화책의 전체 쪽수를 구하시오.",
+    "required_layout_ids": [],
+    "extraction_confidence": 1.0,
+    "grade": 3,
+    "semester": 1,
+    "subject": "수학",
+    "topic": "세 자리 수의 덧셈",
+    "language": "ko-KR"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "person.mijeong",
+        "type": "person",
+        "label": "미정이"
+      },
+      {
+        "id": "object.storybook",
+        "type": "book",
+        "label": "동화책"
+      },
+      {
+        "id": "quantity.pages_read",
+        "type": "quantity",
+        "label": "처음부터 읽은 쪽수",
+        "value": 119,
+        "unit": "쪽"
+      },
+      {
+        "id": "quantity.pages_remaining",
+        "type": "quantity",
+        "label": "남은 쪽수",
+        "value": 167,
+        "unit": "쪽"
+      },
+      {
+        "id": "quantity.total_pages",
+        "type": "quantity",
+        "label": "동화책의 전체 쪽수",
+        "value": 286,
+        "unit": "쪽"
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.mijeong_read_storybook",
+        "type": "read",
+        "subject": "person.mijeong",
+        "object": "object.storybook",
+        "quantity": "quantity.pages_read",
+        "time": "yesterday",
+        "range": {
+          "start_page": 1,
+          "end_page": 119
+        }
+      },
+      {
+        "id": "relation.storybook_has_remaining_pages",
+        "type": "has_remaining_quantity",
+        "subject": "object.storybook",
+        "quantity": "quantity.pages_remaining"
+      },
+      {
+        "id": "relation.total_pages_is_sum",
+        "type": "sum_of",
+        "subject": "quantity.total_pages",
+        "objects": [
+          "quantity.pages_read",
+          "quantity.pages_remaining"
+        ]
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "type": "numeric",
+    "value": 286,
+    "unit": "쪽",
+    "target_ref": "quantity.total_pages"
+  }
+}
