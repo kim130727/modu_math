@@ -8,7 +8,7 @@ from modu_math.dsl import (
     LineSlot,
     CircleSlot,
     PathSlot,
-)
+TextBoxSlot)
 
 
 def build_problem_template() -> ProblemTemplate:
@@ -33,7 +33,7 @@ def build_problem_template() -> ProblemTemplate:
                     "slot.label.jina",
                     "slot.label.hyeonjun",
                     "slot.note.arrow",
-                    "slot.note.text",'slot.note.text.copy6'),
+                    "slot.note.text",'slot.note.text.copy6', 'konva_1784612321567_text_499650', 'konva_1784612321567_paste_549272_0', 'konva_1784612321567_paste_636359_0'),
             ),
             Region(
                 id="region.choice",
@@ -98,7 +98,7 @@ def build_problem_template() -> ProblemTemplate:
                 id="slot.choice.text",
                 prompt="",
                 text = '한 원에서 원의 지름은 모두 ( 같습니다, 다릅니다 ).', style_role="choice",
-                x = 90, y = 540, font_size = 30),TextSlot(id = 'slot.q1.copy5', prompt = '', text = '지름을 재어 알맞은 말을 선택하세요.', x = 20, y = 100, font_size = 30, fill = '#111111'), TextSlot(id = 'slot.note.text.copy6', prompt = '', text = 'ㅇ', x = 365, y = 310, font_size = 25, fill = '#111111')),
+                x = 90, y = 540, font_size = 30),TextSlot(id = 'slot.q1.copy5', prompt = '', text = '지름을 재어 알맞은 말을 선택하세요.', x = 20, y = 100, font_size = 30, fill = '#111111'), TextSlot(id = 'slot.note.text.copy6', prompt = '', text = 'ㅇ', x = 365, y = 310, font_size = 25, fill = '#111111'), TextBoxSlot(id = 'konva_1784612321567_text_499650', prompt = '', text = '지름은 모두 원의 중심을 지나요.', x = 629.761, y = 275.264, font_size = 30, fill = '#111827', width = 214.383, height = 121, align = 'left', line_height = 1.25), TextBoxSlot(id = 'konva_1784612321567_paste_549272_0', prompt = '', text = 'ㅇ', x = 367, y = 286, font_size = 32, fill = '#111111', width = 100, height = 47, align = 'left', line_height = 1.2), PathSlot(id = 'konva_1784612321567_paste_636359_0', prompt = '', d = 'M 391.292 329.901 L 621.792 318.661 M 621.792 318.661 L 612.122 323.911 M 621.792 318.661 L 611.662 314.381', fill = 'none', stroke = '#111827', stroke_width = 1.2)),
         diagrams=(),
         groups=(),
         constraints=(),

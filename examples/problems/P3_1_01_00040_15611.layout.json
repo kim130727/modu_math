@@ -1,0 +1,370 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "P3_1_01_00040_15611",
+  "title": "숫자 카드로 덧셈식 완성하기",
+  "canvas": {
+    "width": 760,
+    "height": 220,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.question"
+      ]
+    },
+    {
+      "id": "region.cards",
+      "role": "choices",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.card1.rect",
+        "slot.card5.rect",
+        "slot.card2.rect",
+        "slot.card7.rect",
+        "slot.card1.text",
+        "slot.card5.text",
+        "slot.card2.text",
+        "slot.card7.text"
+      ]
+    },
+    {
+      "id": "region.addition",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.top.blank_tens.rect",
+        "slot.top.blank_ones.rect",
+        "slot.bottom.blank_hundreds.rect",
+        "slot.result.blank_ones.rect",
+        "slot.addition.line",
+        "slot.top.fixed",
+        "slot.plus",
+        "slot.bottom.fixed",
+        "slot.result.fixed",
+        "slot.blank.top_tens",
+        "slot.blank.top_ones",
+        "slot.blank.bottom_hundreds",
+        "slot.blank.result_ones"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.question",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "□ 안에 알맞은 수를 주어진 숫자 카드에서 찾아 쓰시오.",
+        "style_role": "question",
+        "x": 20.0,
+        "y": 28.0,
+        "font_size": 22,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.card1.rect",
+      "kind": "rect",
+      "prompt": "숫자 카드 1",
+      "content": {
+        "x": 22.0,
+        "y": 48.0,
+        "width": 28.0,
+        "height": 32.0,
+        "stroke": "#111111",
+        "stroke_width": 1.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.card1.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "1",
+        "style_role": "body",
+        "x": 36.0,
+        "y": 72.0,
+        "font_size": 21,
+        "anchor": "middle",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.card5.rect",
+      "kind": "rect",
+      "prompt": "숫자 카드 5",
+      "content": {
+        "x": 58.0,
+        "y": 48.0,
+        "width": 28.0,
+        "height": 32.0,
+        "stroke": "#111111",
+        "stroke_width": 1.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.card5.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "5",
+        "style_role": "body",
+        "x": 72.0,
+        "y": 72.0,
+        "font_size": 21,
+        "anchor": "middle",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.card2.rect",
+      "kind": "rect",
+      "prompt": "숫자 카드 2",
+      "content": {
+        "x": 94.0,
+        "y": 48.0,
+        "width": 28.0,
+        "height": 32.0,
+        "stroke": "#111111",
+        "stroke_width": 1.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.card2.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "2",
+        "style_role": "body",
+        "x": 108.0,
+        "y": 72.0,
+        "font_size": 21,
+        "anchor": "middle",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.card7.rect",
+      "kind": "rect",
+      "prompt": "숫자 카드 7",
+      "content": {
+        "x": 130.0,
+        "y": 48.0,
+        "width": 28.0,
+        "height": 32.0,
+        "stroke": "#111111",
+        "stroke_width": 1.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.card7.text",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "7",
+        "style_role": "body",
+        "x": 144.0,
+        "y": 72.0,
+        "font_size": 21,
+        "anchor": "middle",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.top.fixed",
+      "kind": "text",
+      "prompt": "첫 번째 수의 백의 자리",
+      "content": {
+        "text": "2",
+        "style_role": "body",
+        "x": 222.0,
+        "y": 70.0,
+        "font_size": 24,
+        "anchor": "middle",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.top.blank_tens.rect",
+      "kind": "rect",
+      "prompt": "첫 번째 수의 십의 자리 빈칸",
+      "content": {
+        "x": 235.0,
+        "y": 48.0,
+        "width": 22.0,
+        "height": 28.0,
+        "stroke": "#111111",
+        "stroke_width": 1.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.top.blank_ones.rect",
+      "kind": "rect",
+      "prompt": "첫 번째 수의 일의 자리 빈칸",
+      "content": {
+        "x": 261.0,
+        "y": 48.0,
+        "width": 22.0,
+        "height": 28.0,
+        "stroke": "#111111",
+        "stroke_width": 1.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.plus",
+      "kind": "text",
+      "prompt": "덧셈 기호",
+      "content": {
+        "text": "+",
+        "style_role": "body",
+        "x": 194.0,
+        "y": 111.0,
+        "font_size": 24,
+        "anchor": "middle",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.bottom.blank_hundreds.rect",
+      "kind": "rect",
+      "prompt": "두 번째 수의 백의 자리 빈칸",
+      "content": {
+        "x": 209.0,
+        "y": 84.0,
+        "width": 22.0,
+        "height": 28.0,
+        "stroke": "#111111",
+        "stroke_width": 1.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.bottom.fixed",
+      "kind": "text",
+      "prompt": "두 번째 수의 십의 자리와 일의 자리",
+      "content": {
+        "text": "35",
+        "style_role": "body",
+        "x": 283.0,
+        "y": 108.0,
+        "font_size": 24,
+        "anchor": "end",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.addition.line",
+      "kind": "line",
+      "prompt": "세로셈의 밑줄",
+      "content": {
+        "x1": 184.0,
+        "y1": 120.0,
+        "x2": 287.0,
+        "y2": 120.0,
+        "stroke": "#111111",
+        "stroke_width": 1.5
+      }
+    },
+    {
+      "id": "slot.result.fixed",
+      "kind": "text",
+      "prompt": "계산 결과의 백의 자리와 십의 자리",
+      "content": {
+        "text": "38",
+        "style_role": "body",
+        "x": 257.0,
+        "y": 153.0,
+        "font_size": 24,
+        "anchor": "end",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.result.blank_ones.rect",
+      "kind": "rect",
+      "prompt": "계산 결과의 일의 자리 빈칸",
+      "content": {
+        "x": 261.0,
+        "y": 128.0,
+        "width": 22.0,
+        "height": 28.0,
+        "stroke": "#111111",
+        "stroke_width": 1.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.blank.top_tens",
+      "kind": "blank",
+      "prompt": "첫 번째 수의 십의 자리",
+      "content": {
+        "placeholder": "숫자 카드"
+      }
+    },
+    {
+      "id": "slot.blank.top_ones",
+      "kind": "blank",
+      "prompt": "첫 번째 수의 일의 자리",
+      "content": {
+        "placeholder": "숫자 카드"
+      }
+    },
+    {
+      "id": "slot.blank.bottom_hundreds",
+      "kind": "blank",
+      "prompt": "두 번째 수의 백의 자리",
+      "content": {
+        "placeholder": "숫자 카드"
+      }
+    },
+    {
+      "id": "slot.blank.result_ones",
+      "kind": "blank",
+      "prompt": "계산 결과의 일의 자리",
+      "content": {
+        "placeholder": "숫자 카드"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.question",
+    "region.cards",
+    "slot.card1.rect",
+    "slot.card5.rect",
+    "slot.card2.rect",
+    "slot.card7.rect",
+    "slot.card1.text",
+    "slot.card5.text",
+    "slot.card2.text",
+    "slot.card7.text",
+    "region.addition",
+    "slot.top.blank_tens.rect",
+    "slot.top.blank_ones.rect",
+    "slot.bottom.blank_hundreds.rect",
+    "slot.result.blank_ones.rect",
+    "slot.addition.line",
+    "slot.top.fixed",
+    "slot.plus",
+    "slot.bottom.fixed",
+    "slot.result.fixed",
+    "slot.blank.top_tens",
+    "slot.blank.top_ones",
+    "slot.blank.bottom_hundreds",
+    "slot.blank.result_ones"
+  ]
+}

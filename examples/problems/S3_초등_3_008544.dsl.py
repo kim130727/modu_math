@@ -239,3 +239,39 @@ SOLVABLE = {
         "unit": "",
     },
 }
+
+SOLVABLE["schema"] = "modu.solvable.v1.2"
+SOLVABLE["understanding"] = {
+    "summary": "Compute the three products and match the choice that lists them from greatest to least.",
+    "facts": [
+        {"ref": "obj.expr1", "label": "expression 1", "value": "9 x 85", "unit": "", "source": "explicit"},
+        {"ref": "obj.expr2", "label": "expression 2", "value": "8 x 65", "unit": "", "source": "explicit"},
+        {"ref": "obj.expr3", "label": "expression 3", "value": "6 x 73", "unit": "", "source": "explicit"},
+    ],
+    "unknowns": [
+        {"ref": "answer.target", "label": "choice order", "unit": ""},
+    ],
+    "relation": {
+        "type": "compare_products_descending",
+        "statement": "The products are 765, 520, and 438, so the correct descending order is expression 1, expression 2, expression 3.",
+        "symbolic": "9 x 85 > 8 x 65 > 6 x 73",
+        "uses": ["obj.expr1", "obj.expr2", "obj.expr3"],
+        "result": "answer.target",
+    },
+    "diagnostic_questions": [
+        {
+            "id": "understand.compute_first",
+            "type": "multiple_choice",
+            "prompt": "What is 9 x 85?",
+            "choices": ["438", "520", "765"],
+            "answer_index": 2,
+        },
+        {
+            "id": "understand.descending",
+            "type": "multiple_choice",
+            "prompt": "Which list is greatest to least?",
+            "choices": ["765, 520, 438", "520, 765, 438", "438, 520, 765"],
+            "answer_index": 0,
+        },
+    ],
+}

@@ -251,3 +251,39 @@ SOLVABLE = {
         "unit": "",
     },
 }
+
+SOLVABLE["schema"] = "modu.solvable.v1.2"
+SOLVABLE["understanding"] = {
+    "summary": "Compute three multiplication expressions and choose the option that orders their results from greatest to least.",
+    "facts": [
+        {"ref": "obj.a", "label": "expression A", "value": "397 x 6", "unit": "", "source": "explicit"},
+        {"ref": "obj.b", "label": "expression B", "value": "549 x 4", "unit": "", "source": "explicit"},
+        {"ref": "obj.c", "label": "expression C", "value": "456 x 5", "unit": "", "source": "explicit"},
+    ],
+    "unknowns": [
+        {"ref": "answer.target", "label": "choice number for descending order", "unit": ""},
+    ],
+    "relation": {
+        "type": "compare_products_descending",
+        "statement": "The products are 2382, 2196, and 2280, so the descending order is A, C, B.",
+        "symbolic": "397 x 6 > 456 x 5 > 549 x 4",
+        "uses": ["obj.a", "obj.b", "obj.c"],
+        "result": "answer.target",
+    },
+    "diagnostic_questions": [
+        {
+            "id": "understand.compute_a",
+            "type": "multiple_choice",
+            "prompt": "What is 397 x 6?",
+            "choices": ["2196", "2280", "2382"],
+            "answer_index": 2,
+        },
+        {
+            "id": "understand.order",
+            "type": "multiple_choice",
+            "prompt": "Which order is greatest to least?",
+            "choices": ["A, B, C", "A, C, B", "C, A, B"],
+            "answer_index": 1,
+        },
+    ],
+}

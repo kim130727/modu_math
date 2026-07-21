@@ -202,3 +202,39 @@ SOLVABLE = {
         "unit": "",
     },
 }
+
+SOLVABLE["schema"] = "modu.solvable.v1.2"
+SOLVABLE["understanding"] = {
+    "summary": "Compute three products and select the symbol for the greatest result.",
+    "facts": [
+        {"ref": "obj.choice_a", "label": "choice A", "value": "18 x 50", "unit": "", "source": "explicit"},
+        {"ref": "obj.choice_b", "label": "choice B", "value": "66 x 20", "unit": "", "source": "explicit"},
+        {"ref": "obj.choice_c", "label": "choice C", "value": "42 x 30", "unit": "", "source": "explicit"},
+    ],
+    "unknowns": [
+        {"ref": "answer.target", "label": "symbol with greatest product", "unit": ""},
+    ],
+    "relation": {
+        "type": "select_max_product",
+        "statement": "The products are 900, 1320, and 1260, so choice B is greatest.",
+        "symbolic": "66 x 20 > 42 x 30 > 18 x 50",
+        "uses": ["obj.choice_a", "obj.choice_b", "obj.choice_c"],
+        "result": "answer.target",
+    },
+    "diagnostic_questions": [
+        {
+            "id": "understand.compute_b",
+            "type": "multiple_choice",
+            "prompt": "What is 66 x 20?",
+            "choices": ["900", "1260", "1320"],
+            "answer_index": 2,
+        },
+        {
+            "id": "understand.greatest",
+            "type": "multiple_choice",
+            "prompt": "Which symbol has the greatest product?",
+            "choices": ["A", "B", "C"],
+            "answer_index": 1,
+        },
+    ],
+}

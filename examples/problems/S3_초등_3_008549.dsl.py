@@ -109,3 +109,39 @@ SOLVABLE = {
         "unit": "",
     },
 }
+
+SOLVABLE["schema"] = "modu.solvable.v1.2"
+SOLVABLE["understanding"] = {
+    "summary": "Compute two products and select the expression whose result is greater than 500.",
+    "facts": [
+        {"ref": "obj.option1", "label": "option 1", "value": "37 x 12", "unit": "", "source": "explicit"},
+        {"ref": "obj.option2", "label": "option 2", "value": "25 x 21", "unit": "", "source": "explicit"},
+        {"ref": "obj.threshold", "label": "threshold", "value": 500, "unit": "", "source": "explicit"},
+    ],
+    "unknowns": [
+        {"ref": "answer.target", "label": "expression greater than 500", "unit": ""},
+    ],
+    "relation": {
+        "type": "filter_product_by_threshold",
+        "statement": "37 x 12 equals 444, but 25 x 21 equals 525, so only 25 x 21 is greater than 500.",
+        "symbolic": "444 < 500 < 525",
+        "uses": ["obj.option1", "obj.option2", "obj.threshold"],
+        "result": "answer.target",
+    },
+    "diagnostic_questions": [
+        {
+            "id": "understand.option_products",
+            "type": "multiple_choice",
+            "prompt": "Which product is greater than 500?",
+            "choices": ["37 x 12 = 444", "25 x 21 = 525", "Both are greater than 500"],
+            "answer_index": 1,
+        },
+        {
+            "id": "understand.threshold",
+            "type": "multiple_choice",
+            "prompt": "Why is 25 x 21 selected?",
+            "choices": ["It equals 525, which is greater than 500", "It equals 444, which is less than 500", "It has the smaller product"],
+            "answer_index": 0,
+        },
+    ],
+}

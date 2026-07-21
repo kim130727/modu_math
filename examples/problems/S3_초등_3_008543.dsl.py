@@ -272,3 +272,39 @@ SOLVABLE = {
         "unit": "",
     },
 }
+
+SOLVABLE["schema"] = "modu.solvable.v1.2"
+SOLVABLE["understanding"] = {
+    "summary": "Compute the three products and choose the order from greatest to least.",
+    "facts": [
+        {"ref": "obj.a", "label": "expression A", "value": "4 x 28", "unit": "", "source": "explicit"},
+        {"ref": "obj.b", "label": "expression B", "value": "3 x 34", "unit": "", "source": "explicit"},
+        {"ref": "obj.c", "label": "expression C", "value": "2 x 76", "unit": "", "source": "explicit"},
+    ],
+    "unknowns": [
+        {"ref": "answer.target", "label": "choice order", "unit": ""},
+    ],
+    "relation": {
+        "type": "compare_products_descending",
+        "statement": "The products are 112, 102, and 152, so the descending order is C, A, B.",
+        "symbolic": "2 x 76 > 4 x 28 > 3 x 34",
+        "uses": ["obj.a", "obj.b", "obj.c"],
+        "result": "answer.target",
+    },
+    "diagnostic_questions": [
+        {
+            "id": "understand.largest",
+            "type": "multiple_choice",
+            "prompt": "Which product is largest?",
+            "choices": ["4 x 28 = 112", "3 x 34 = 102", "2 x 76 = 152"],
+            "answer_index": 2,
+        },
+        {
+            "id": "understand.order",
+            "type": "multiple_choice",
+            "prompt": "Which order is greatest to least?",
+            "choices": ["A, B, C", "C, A, B", "C, B, A"],
+            "answer_index": 1,
+        },
+    ],
+}

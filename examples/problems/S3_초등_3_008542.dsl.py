@@ -323,3 +323,41 @@ SOLVABLE = {
         "unit": "",
     },
 }
+
+SOLVABLE["schema"] = "modu.solvable.v1.2"
+SOLVABLE["understanding"] = {
+    "summary": "Select the multiplication expressions whose products are greater than 3000.",
+    "facts": [
+        {"ref": "obj.expr1", "label": "expression 1", "value": "80 x 40", "unit": "", "source": "explicit"},
+        {"ref": "obj.expr2", "label": "expression 2", "value": "62 x 50", "unit": "", "source": "explicit"},
+        {"ref": "obj.expr3", "label": "expression 3", "value": "90 x 30", "unit": "", "source": "explicit"},
+        {"ref": "obj.expr4", "label": "expression 4", "value": "43 x 60", "unit": "", "source": "explicit"},
+        {"ref": "obj.threshold", "label": "comparison threshold", "value": 3000, "unit": "", "source": "explicit"},
+    ],
+    "unknowns": [
+        {"ref": "answer.target", "label": "expressions greater than 3000", "unit": ""},
+    ],
+    "relation": {
+        "type": "filter_products_by_threshold",
+        "statement": "Compute each product and keep only the expressions with product greater than 3000.",
+        "symbolic": "{3200, 3100} > 3000 and {2700, 2580} <= 3000",
+        "uses": ["obj.expr1", "obj.expr2", "obj.expr3", "obj.expr4", "obj.threshold"],
+        "result": "answer.target",
+    },
+    "diagnostic_questions": [
+        {
+            "id": "understand.threshold",
+            "type": "multiple_choice",
+            "prompt": "Which products are greater than 3000?",
+            "choices": ["3200 and 3100", "2700 and 2580", "3100 and 2700"],
+            "answer_index": 0,
+        },
+        {
+            "id": "understand.product_90_30",
+            "type": "multiple_choice",
+            "prompt": "Is 90 x 30 greater than 3000?",
+            "choices": ["Yes, because it is 3200", "No, because it is 2700", "Yes, because it is 3100"],
+            "answer_index": 1,
+        },
+    ],
+}

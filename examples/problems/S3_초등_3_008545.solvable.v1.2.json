@@ -1,0 +1,152 @@
+{
+  "schema": "modu.solvable.v1.2",
+  "problem_id": "S3_초등_3_008545",
+  "problem_type": "비교_곱셈_선택",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "같은 계산 결과를 갖는 식",
+    "target_ticks": 0,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.view_expr",
+      "value": {
+        "expression": "789 × 2"
+      }
+    },
+    {
+      "ref": "obj.choice_1",
+      "value": {
+        "expression": "412 × 4"
+      }
+    },
+    {
+      "ref": "obj.choice_2",
+      "value": {
+        "expression": "526 × 3"
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "selected_expression"
+  },
+  "method": "compare_calculated_results",
+  "plan": [
+    "보기의 곱셈 결과를 구한다.",
+    "각 선택지의 곱셈 결과를 구한다.",
+    "보기와 같은 결과를 가진 식을 찾는다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "789 × 2",
+      "value": 1578
+    },
+    {
+      "id": "step.2",
+      "expr": "412 × 4",
+      "value": 1648
+    },
+    {
+      "id": "step.3",
+      "expr": "526 × 3",
+      "value": 1578
+    },
+    {
+      "id": "step.4",
+      "expr": "보기와 같은 계산 결과를 가진 식 확인",
+      "value": "526 × 3"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "789 × 2 == 526 × 3",
+      "expected": 1578,
+      "actual": 1578,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "selected_expression",
+      "description": "보기와 계산 결과가 같은 식"
+    },
+    "value": "526 × 3",
+    "unit": ""
+  },
+  "understanding": {
+    "summary": "Find which candidate expression has the same product as 789 x 2.",
+    "facts": [
+      {
+        "ref": "obj.view_expr",
+        "label": "reference expression",
+        "value": "789 x 2",
+        "unit": "",
+        "source": "explicit"
+      },
+      {
+        "ref": "obj.choice_1",
+        "label": "choice 1",
+        "value": "412 x 4",
+        "unit": "",
+        "source": "explicit"
+      },
+      {
+        "ref": "obj.choice_2",
+        "label": "choice 2",
+        "value": "526 x 3",
+        "unit": "",
+        "source": "explicit"
+      }
+    ],
+    "unknowns": [
+      {
+        "ref": "answer.target",
+        "label": "expression with the same product",
+        "unit": ""
+      }
+    ],
+    "relation": {
+      "type": "match_equal_products",
+      "statement": "789 x 2 and 526 x 3 both equal 1578, while 412 x 4 equals 1648.",
+      "symbolic": "789 x 2 = 526 x 3 = 1578",
+      "uses": [
+        "obj.view_expr",
+        "obj.choice_1",
+        "obj.choice_2"
+      ],
+      "result": "answer.target"
+    },
+    "diagnostic_questions": [
+      {
+        "id": "understand.reference_product",
+        "type": "multiple_choice",
+        "prompt": "What is 789 x 2?",
+        "choices": [
+          "1578",
+          "1648",
+          "1587"
+        ],
+        "answer_index": 0
+      },
+      {
+        "id": "understand.same_product",
+        "type": "multiple_choice",
+        "prompt": "Which expression has the same product?",
+        "choices": [
+          "412 x 4",
+          "526 x 3",
+          "Both choices"
+        ],
+        "answer_index": 1
+      }
+    ]
+  }
+}

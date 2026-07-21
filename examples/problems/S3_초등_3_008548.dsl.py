@@ -171,3 +171,38 @@ SOLVABLE = {
         "unit": "",
     },
 }
+
+SOLVABLE["schema"] = "modu.solvable.v1.2"
+SOLVABLE["understanding"] = {
+    "summary": "Compare the two products and choose the larger one.",
+    "facts": [
+        {"ref": "obj.choice_1", "label": "choice 1", "value": "5 x 63", "unit": "", "source": "explicit"},
+        {"ref": "obj.choice_2", "label": "choice 2", "value": "7 x 42", "unit": "", "source": "explicit"},
+    ],
+    "unknowns": [
+        {"ref": "answer.target", "label": "larger product choice", "unit": ""},
+    ],
+    "relation": {
+        "type": "compare_two_products",
+        "statement": "5 x 63 equals 315 and 7 x 42 equals 294, so choice 1 is larger.",
+        "symbolic": "5 x 63 > 7 x 42",
+        "uses": ["obj.choice_1", "obj.choice_2"],
+        "result": "answer.target",
+    },
+    "diagnostic_questions": [
+        {
+            "id": "understand.compute_products",
+            "type": "multiple_choice",
+            "prompt": "Which pair of products is correct?",
+            "choices": ["315 and 294", "294 and 315", "305 and 294"],
+            "answer_index": 0,
+        },
+        {
+            "id": "understand.larger",
+            "type": "multiple_choice",
+            "prompt": "Which choice has the larger product?",
+            "choices": ["choice 1", "choice 2", "same"],
+            "answer_index": 0,
+        },
+    ],
+}

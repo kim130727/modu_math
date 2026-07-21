@@ -377,3 +377,39 @@ SOLVABLE = {
         "unit": "",
     },
 }
+
+SOLVABLE["schema"] = "modu.solvable.v1.2"
+SOLVABLE["understanding"] = {
+    "summary": "Find which choice represents the highlighted partial product in 869 x 4.",
+    "facts": [
+        {"ref": "obj.multiple", "label": "whole multiplication", "value": "869 x 4", "unit": "", "source": "explicit"},
+        {"ref": "obj.highlighted_value", "label": "highlighted partial product", "value": 240, "unit": "", "source": "explicit"},
+        {"ref": "obj.choice_set", "label": "choices", "value": ["6 x 4", "69 x 4", "60 x 4", "600 x 4"], "unit": "", "source": "explicit"},
+    ],
+    "unknowns": [
+        {"ref": "answer.target", "label": "choice matching the highlighted part", "unit": ""},
+    ],
+    "relation": {
+        "type": "place_value_partial_product",
+        "statement": "The digit 6 in 869 has value 60, so the highlighted partial product 240 is 60 x 4.",
+        "symbolic": "60 x 4 = 240",
+        "uses": ["obj.multiple", "obj.highlighted_value", "obj.choice_set"],
+        "result": "answer.target",
+    },
+    "diagnostic_questions": [
+        {
+            "id": "understand.place_value",
+            "type": "multiple_choice",
+            "prompt": "What value does the digit 6 have in 869?",
+            "choices": ["6", "60", "600"],
+            "answer_index": 1,
+        },
+        {
+            "id": "understand.partial_product",
+            "type": "multiple_choice",
+            "prompt": "Which expression gives the highlighted partial product 240?",
+            "choices": ["6 x 4", "60 x 4", "600 x 4"],
+            "answer_index": 1,
+        },
+    ],
+}

@@ -8,7 +8,7 @@ from modu_math.dsl import (
     Region,
     TextSlot,
     PathSlot,
-)
+TextBoxSlot)
 
 
 def build_problem_template() -> ProblemTemplate:
@@ -33,7 +33,7 @@ def build_problem_template() -> ProblemTemplate:
                     "slot.label.jina",
                     "slot.label.hyeonjun",
                     "slot.note.arrow",
-                    "slot.note.text",'slot.note.text.copy6'),
+                    "slot.note.text",'slot.note.text.copy6', 'konva_1784612321567_paste_583821_0', 'konva_1784612321567_arrow_620234'),
             ),
             Region(
                 id="region.choice",
@@ -65,7 +65,7 @@ def build_problem_template() -> ProblemTemplate:
             LineSlot(
                 id="slot.diameter.purple",
                 prompt="",
-                x1 = 251, y1 = 382, x2 = 521, y2 = 272),
+                x1 = 251.124, y1 = 382.629, x2 = 521.124, y2 = 272.629),
             TextSlot(
                 id="slot.label.eunji",
                 prompt="",
@@ -98,7 +98,7 @@ def build_problem_template() -> ProblemTemplate:
                 id="slot.choice.text",
                 prompt="",
                 text = '(무수히 많이 그릴 수 있습니다., 3개)', style_role="choice",
-                x = 90, y = 540, font_size = 30),TextSlot(id = 'slot.q1.copy5', prompt = '', text = '지름을 재어 알맞은 말을 선택하세요.', x = 20, y = 100, font_size = 30, fill = '#111111'), TextSlot(id = 'slot.note.text.copy6', prompt = '', text = 'ㅇ', x = 365, y = 310, font_size = 25, fill = '#111111')),
+                x = 90, y = 540, font_size = 30),TextSlot(id = 'slot.q1.copy5', prompt = '', text = '지름을 재어 알맞은 말을 선택하세요.', x = 20, y = 100, font_size = 30, fill = '#111111'), TextSlot(id = 'slot.note.text.copy6', prompt = '', text = 'ㅇ', x = 365, y = 310, font_size = 25, fill = '#111111'), TextBoxSlot(id = 'konva_1784612321567_paste_583821_0', prompt = '', text = '지름은 모두 원의 중심을 지나요.', x = 653.761, y = 299.264, font_size = 30, fill = '#111827', width = 214.383, height = 121, align = 'left', line_height = 1.25), PathSlot(id = 'konva_1784612321567_arrow_620234', prompt = '', d = 'M 399.163 326.53 L 643.163 340.02 M 643.163 340.02 L 633.003 344.24 M 643.163 340.02 L 633.533 334.71', fill = 'none', stroke = '#111827', stroke_width = 1.2)),
         diagrams=(),
         groups=(),
         constraints=(),

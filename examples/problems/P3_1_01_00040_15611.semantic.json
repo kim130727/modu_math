@@ -1,0 +1,127 @@
+{
+  "problem_id": "P3_1_01_00040_15611",
+  "problem_type": "multi_numeric_digit_card_addition_completion",
+  "metadata": {
+    "title": "숫자 카드로 덧셈식 완성하기",
+    "tags": [],
+    "question": "□ 안에 알맞은 수를 주어진 숫자 카드에서 찾아 쓰시오.",
+    "required_layout_ids": [
+      "slot.card1.rect",
+      "slot.card5.rect",
+      "slot.card2.rect",
+      "slot.card7.rect",
+      "slot.top.blank_tens.rect",
+      "slot.top.blank_ones.rect",
+      "slot.bottom.blank_hundreds.rect",
+      "slot.addition.line",
+      "slot.result.blank_ones.rect"
+    ],
+    "extraction_confidence": 1.0,
+    "grade": 3,
+    "semester": 1,
+    "subject": "수학",
+    "topic": "세 자리 수의 덧셈",
+    "language": "ko-KR",
+    "instruction": "주어진 숫자 카드를 한 번씩 사용하여 덧셈식을 완성합니다."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "set.digit_cards",
+        "type": "digit_card_set",
+        "label": "주어진 숫자 카드",
+        "values": [
+          1,
+          5,
+          2,
+          7
+        ],
+        "use_each_once": true
+      },
+      {
+        "id": "number.first_addend",
+        "type": "partially_hidden_number",
+        "label": "첫 번째 수",
+        "pattern": "2□□",
+        "value": 252
+      },
+      {
+        "id": "number.second_addend",
+        "type": "partially_hidden_number",
+        "label": "두 번째 수",
+        "pattern": "□35",
+        "value": 135
+      },
+      {
+        "id": "number.sum",
+        "type": "partially_hidden_number",
+        "label": "덧셈 결과",
+        "pattern": "38□",
+        "value": 387
+      },
+      {
+        "id": "answer.blank_digits",
+        "type": "ordered_digit_list",
+        "label": "위에서 왼쪽부터 빈칸에 들어갈 수",
+        "values": [
+          5,
+          2,
+          1,
+          7
+        ]
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.addition",
+        "type": "sum_of",
+        "subject": "number.sum",
+        "objects": [
+          "number.first_addend",
+          "number.second_addend"
+        ]
+      },
+      {
+        "id": "relation.cards_used_once",
+        "type": "permutation_of",
+        "subject": "answer.blank_digits",
+        "object": "set.digit_cards"
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "type": "multi_numeric",
+    "value": [
+      5,
+      2,
+      1,
+      7
+    ],
+    "unit": "",
+    "values": [
+      {
+        "value": 5,
+        "unit": "",
+        "target_ref": "answer.top_tens"
+      },
+      {
+        "value": 2,
+        "unit": "",
+        "target_ref": "answer.top_ones"
+      },
+      {
+        "value": 1,
+        "unit": "",
+        "target_ref": "answer.bottom_hundreds"
+      },
+      {
+        "value": 7,
+        "unit": "",
+        "target_ref": "answer.result_ones"
+      }
+    ],
+    "target_ref": "answer.blank_digits",
+    "derived_from": "step.complete_addition"
+  }
+}

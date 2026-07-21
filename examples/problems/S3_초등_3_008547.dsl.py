@@ -96,3 +96,39 @@ SOLVABLE = {
         "unit": "",
     },
 }
+
+SOLVABLE["schema"] = "modu.solvable.v1.2"
+SOLVABLE["understanding"] = {
+    "summary": "Match the highlighted partial product in 324 x 6 to the correct expression.",
+    "facts": [
+        {"ref": "obj.target", "label": "target expression", "value": "20 x 6", "unit": "", "source": "derived"},
+        {"ref": "obj.highlighted_value", "label": "highlighted partial product", "value": 120, "unit": "", "source": "explicit"},
+        {"ref": "obj.choice_set", "label": "choices", "value": ["2 x 6", "2 x 60", "20 x 6", "200 x 6"], "unit": "", "source": "explicit"},
+    ],
+    "unknowns": [
+        {"ref": "answer.target", "label": "selected expression", "unit": ""},
+    ],
+    "relation": {
+        "type": "place_value_partial_product",
+        "statement": "The digit 2 in 324 is in the tens place, so it represents 20 and the partial product is 20 x 6.",
+        "symbolic": "20 x 6 = 120",
+        "uses": ["obj.target", "obj.highlighted_value", "obj.choice_set"],
+        "result": "answer.target",
+    },
+    "diagnostic_questions": [
+        {
+            "id": "understand.place_value",
+            "type": "multiple_choice",
+            "prompt": "What value does the digit 2 have in 324?",
+            "choices": ["2", "20", "200"],
+            "answer_index": 1,
+        },
+        {
+            "id": "understand.partial_product",
+            "type": "multiple_choice",
+            "prompt": "Which expression equals the highlighted partial product 120?",
+            "choices": ["2 x 6", "20 x 6", "200 x 6"],
+            "answer_index": 1,
+        },
+    ],
+}

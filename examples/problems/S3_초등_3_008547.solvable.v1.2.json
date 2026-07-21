@@ -1,0 +1,150 @@
+{
+  "schema": "modu.solvable.v1.2",
+  "problem_id": "S3_초등_3_008547",
+  "problem_type": "multiplication_place_value_choice",
+  "inputs": {
+    "total_ticks": 0,
+    "target_label": "색칠된 부분에 해당하는 식",
+    "target_ticks": 0,
+    "target_count": 1,
+    "unit": ""
+  },
+  "given": [
+    {
+      "ref": "obj.target",
+      "value": "20 × 6"
+    },
+    {
+      "ref": "obj.highlighted_value",
+      "value": 120
+    },
+    {
+      "ref": "obj.choice_set",
+      "value": [
+        "2 × 6",
+        "2 × 60",
+        "20 × 6",
+        "200 × 6"
+      ]
+    }
+  ],
+  "target": {
+    "ref": "answer.target",
+    "type": "selected_expression"
+  },
+  "method": "place_value_matching",
+  "plan": [
+    "세로셈에서 색칠된 120이 어떤 자리값 곱인지 확인한다.",
+    "보기 중 같은 식을 고른다."
+  ],
+  "steps": [
+    {
+      "id": "step.1",
+      "expr": "324에서 십의 자리 2는 20을 나타낸다",
+      "value": 20
+    },
+    {
+      "id": "step.2",
+      "expr": "20 × 6",
+      "value": 120
+    },
+    {
+      "id": "step.3",
+      "expr": "색칠된 부분 120에 해당하는 보기 찾기",
+      "value": "20 × 6"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.1",
+      "expr": "선택한 식 검산",
+      "expected": "일치",
+      "actual": "일치",
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "target": {
+      "type": "selected_expression",
+      "description": "색칠된 부분에 해당하는 식"
+    },
+    "value": "㉢ 20 × 6",
+    "unit": ""
+  },
+  "understanding": {
+    "summary": "Match the highlighted partial product in 324 x 6 to the correct expression.",
+    "facts": [
+      {
+        "ref": "obj.target",
+        "label": "target expression",
+        "value": "20 x 6",
+        "unit": "",
+        "source": "derived"
+      },
+      {
+        "ref": "obj.highlighted_value",
+        "label": "highlighted partial product",
+        "value": 120,
+        "unit": "",
+        "source": "explicit"
+      },
+      {
+        "ref": "obj.choice_set",
+        "label": "choices",
+        "value": [
+          "2 x 6",
+          "2 x 60",
+          "20 x 6",
+          "200 x 6"
+        ],
+        "unit": "",
+        "source": "explicit"
+      }
+    ],
+    "unknowns": [
+      {
+        "ref": "answer.target",
+        "label": "selected expression",
+        "unit": ""
+      }
+    ],
+    "relation": {
+      "type": "place_value_partial_product",
+      "statement": "The digit 2 in 324 is in the tens place, so it represents 20 and the partial product is 20 x 6.",
+      "symbolic": "20 x 6 = 120",
+      "uses": [
+        "obj.target",
+        "obj.highlighted_value",
+        "obj.choice_set"
+      ],
+      "result": "answer.target"
+    },
+    "diagnostic_questions": [
+      {
+        "id": "understand.place_value",
+        "type": "multiple_choice",
+        "prompt": "What value does the digit 2 have in 324?",
+        "choices": [
+          "2",
+          "20",
+          "200"
+        ],
+        "answer_index": 1
+      },
+      {
+        "id": "understand.partial_product",
+        "type": "multiple_choice",
+        "prompt": "Which expression equals the highlighted partial product 120?",
+        "choices": [
+          "2 x 6",
+          "20 x 6",
+          "200 x 6"
+        ],
+        "answer_index": 1
+      }
+    ]
+  }
+}

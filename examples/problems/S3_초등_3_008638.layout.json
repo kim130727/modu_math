@@ -21,9 +21,7 @@
       "id": "region.answer",
       "role": "answer",
       "flow": "absolute",
-      "slot_ids": [
-        "slot.answer_blank"
-      ]
+      "slot_ids": []
     },
     {
       "id": "region.explain",
@@ -82,19 +80,6 @@
         "y": 70.0,
         "font_size": 30,
         "fill": "#111111"
-      }
-    },
-    {
-      "id": "slot.answer_blank",
-      "kind": "rect",
-      "prompt": "",
-      "content": {
-        "x": 72.0,
-        "y": 269.0,
-        "width": 22.0,
-        "height": 22.0,
-        "stroke": "none",
-        "fill": "none"
       }
     },
     {
@@ -439,7 +424,6 @@
     "region.stem",
     "slot.qtext",
     "region.answer",
-    "slot.answer_blank",
     "region.explain",
     "region.diagram.top",
     "slot.top.circle",

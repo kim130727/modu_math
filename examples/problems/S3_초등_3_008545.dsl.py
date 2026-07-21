@@ -1,5 +1,5 @@
 from __future__ import annotations
-from modu_math.dsl import Canvas, ProblemTemplate, Region, TextSlot, RectSlot
+from modu_math.dsl import Canvas, PathSlot, ProblemTemplate, RectSlot, Region, TextBoxSlot, TextSlot
 
 
 def build_problem_template() -> ProblemTemplate:
@@ -230,4 +230,40 @@ SOLVABLE = {
         "value": "526 × 3",
         "unit": "",
     },
+}
+
+SOLVABLE["schema"] = "modu.solvable.v1.2"
+SOLVABLE["understanding"] = {
+    "summary": "Find which candidate expression has the same product as 789 x 2.",
+    "facts": [
+        {"ref": "obj.view_expr", "label": "reference expression", "value": "789 x 2", "unit": "", "source": "explicit"},
+        {"ref": "obj.choice_1", "label": "choice 1", "value": "412 x 4", "unit": "", "source": "explicit"},
+        {"ref": "obj.choice_2", "label": "choice 2", "value": "526 x 3", "unit": "", "source": "explicit"},
+    ],
+    "unknowns": [
+        {"ref": "answer.target", "label": "expression with the same product", "unit": ""},
+    ],
+    "relation": {
+        "type": "match_equal_products",
+        "statement": "789 x 2 and 526 x 3 both equal 1578, while 412 x 4 equals 1648.",
+        "symbolic": "789 x 2 = 526 x 3 = 1578",
+        "uses": ["obj.view_expr", "obj.choice_1", "obj.choice_2"],
+        "result": "answer.target",
+    },
+    "diagnostic_questions": [
+        {
+            "id": "understand.reference_product",
+            "type": "multiple_choice",
+            "prompt": "What is 789 x 2?",
+            "choices": ["1578", "1648", "1587"],
+            "answer_index": 0,
+        },
+        {
+            "id": "understand.same_product",
+            "type": "multiple_choice",
+            "prompt": "Which expression has the same product?",
+            "choices": ["412 x 4", "526 x 3", "Both choices"],
+            "answer_index": 1,
+        },
+    ],
 }
