@@ -1,0 +1,91 @@
+{
+  "problem_id": "P3_1_01_00040_15605",
+  "problem_type": "numeric_answer_addition_word_problem",
+  "metadata": {
+    "title": "동민이와 가희가 가진 구슬 수",
+    "tags": [],
+    "instruction": "식",
+    "question": "두 사람이 가지고 있는 구슬은 모두 몇 개입니까?",
+    "required_layout_ids": [],
+    "extraction_confidence": 1.0,
+    "grade": 3,
+    "semester": 1,
+    "subject": "수학",
+    "topic": "세 자리 수의 덧셈",
+    "language": "ko-KR"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "person.dongmin",
+        "type": "person",
+        "label": "동민이"
+      },
+      {
+        "id": "person.gahui",
+        "type": "person",
+        "label": "가희"
+      },
+      {
+        "id": "object.marble",
+        "type": "countable_object",
+        "label": "구슬",
+        "unit": "개"
+      },
+      {
+        "id": "quantity.dongmin_marbles",
+        "type": "quantity",
+        "label": "동민이가 가진 구슬 수",
+        "value": 215,
+        "unit": "개"
+      },
+      {
+        "id": "quantity.gahui_marbles",
+        "type": "quantity",
+        "label": "가희가 가진 구슬 수",
+        "value": 132,
+        "unit": "개"
+      },
+      {
+        "id": "quantity.total_marbles",
+        "type": "quantity",
+        "label": "두 사람이 가진 구슬 수",
+        "value": 347,
+        "unit": "개"
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.dongmin_has_marbles",
+        "type": "has_quantity",
+        "subject": "person.dongmin",
+        "object": "object.marble",
+        "quantity": "quantity.dongmin_marbles"
+      },
+      {
+        "id": "relation.gahui_has_marbles",
+        "type": "has_quantity",
+        "subject": "person.gahui",
+        "object": "object.marble",
+        "quantity": "quantity.gahui_marbles"
+      },
+      {
+        "id": "relation.total_is_sum",
+        "type": "sum_of",
+        "subject": "quantity.total_marbles",
+        "objects": [
+          "quantity.dongmin_marbles",
+          "quantity.gahui_marbles"
+        ]
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "type": "numeric",
+    "value": 347,
+    "unit": "개",
+    "target_ref": "quantity.total_marbles",
+    "derived_from": "step.add_marbles"
+  }
+}

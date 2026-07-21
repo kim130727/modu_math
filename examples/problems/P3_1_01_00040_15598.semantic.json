@@ -1,0 +1,154 @@
+{
+  "problem_id": "P3_1_01_00040_15598",
+  "problem_type": "multi_numeric_answer_expanded_vertical_addition_problem",
+  "metadata": {
+    "title": "자리값별 부분합으로 덧셈하기",
+    "tags": [],
+    "question": "□ 안에 알맞은 수를 써넣으시오.",
+    "required_layout_ids": [
+      "slot.calculation.1.line.top",
+      "slot.calculation.1.box.ones",
+      "slot.calculation.1.box.tens",
+      "slot.calculation.1.box.hundreds",
+      "slot.calculation.1.line.bottom",
+      "slot.calculation.1.box.total",
+      "slot.calculation.2.line.top",
+      "slot.calculation.2.box.ones",
+      "slot.calculation.2.box.tens",
+      "slot.calculation.2.box.hundreds",
+      "slot.calculation.2.line.bottom",
+      "slot.calculation.2.box.total"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko-KR",
+    "instruction": "각 자리의 부분합과 전체 합을 차례로 씁니다."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "calculation.1",
+        "type": "expanded_addition",
+        "label": "첫 번째 덧셈",
+        "addends": [
+          217,
+          542
+        ]
+      },
+      {
+        "id": "calculation.2",
+        "type": "expanded_addition",
+        "label": "두 번째 덧셈",
+        "addends": [
+          386,
+          211
+        ]
+      },
+      {
+        "id": "answer.values",
+        "type": "number_list",
+        "label": "두 덧셈의 자리별 부분합과 전체 합"
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.calculation_1_expansion",
+        "type": "sum_by_place_value",
+        "subject": "calculation.1",
+        "result": "answer.values"
+      },
+      {
+        "id": "relation.calculation_2_expansion",
+        "type": "sum_by_place_value",
+        "subject": "calculation.2",
+        "result": "answer.values"
+      }
+    ],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "calculation.1",
+          "calculation.2"
+        ],
+        "target_ref": "answer.values",
+        "condition_refs": [
+          "relation.calculation_1_expansion",
+          "relation.calculation_2_expansion"
+        ]
+      },
+      "plan": {
+        "method": "expanded_addition_by_place_value",
+        "description": "일, 십, 백의 자리 부분합을 각각 구한 뒤 모두 더합니다."
+      },
+      "execute": {
+        "expected_operations": [
+          "place_value_decomposition",
+          "addition"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "partial_sum_total_check",
+          "direct_addition_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "type": "multi_numeric",
+    "value": [
+      9,
+      50,
+      700,
+      759,
+      7,
+      90,
+      500,
+      597
+    ],
+    "unit": "",
+    "values": [
+      {
+        "value": 9,
+        "unit": "",
+        "target_ref": "answer.1.ones"
+      },
+      {
+        "value": 50,
+        "unit": "",
+        "target_ref": "answer.1.tens"
+      },
+      {
+        "value": 700,
+        "unit": "",
+        "target_ref": "answer.1.hundreds"
+      },
+      {
+        "value": 759,
+        "unit": "",
+        "target_ref": "answer.1.total"
+      },
+      {
+        "value": 7,
+        "unit": "",
+        "target_ref": "answer.2.ones"
+      },
+      {
+        "value": 90,
+        "unit": "",
+        "target_ref": "answer.2.tens"
+      },
+      {
+        "value": 500,
+        "unit": "",
+        "target_ref": "answer.2.hundreds"
+      },
+      {
+        "value": 597,
+        "unit": "",
+        "target_ref": "answer.2.total"
+      }
+    ],
+    "derived_from": "step.collect_answers"
+  }
+}

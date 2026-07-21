@@ -14,8 +14,7 @@
       "role": "stem",
       "flow": "vertical",
       "slot_ids": [
-        "slot.question",
-        "slot.answer"
+        "slot.question"
       ]
     }
   ],
@@ -27,24 +26,16 @@
       "content": {
         "text": "미정이는 어제 동화책을 처음부터 119쪽까지 읽었더니 167쪽이 남았습니다. 미정이가 읽는 동화책의 전체 쪽수를 구하시오.",
         "style_role": "body",
-        "x": 48.0,
-        "y": 30.0,
-        "width": 804.0,
-        "height": 90.0,
+        "x": 41.541,
+        "y": 49.367,
+        "width": 804,
+        "height": 80,
         "align": "left",
         "valign": "top",
         "font_size": 24,
         "font_family": "Noto Sans KR",
         "line_height": 1.5,
         "fill": "#202124"
-      }
-    },
-    {
-      "id": "slot.answer",
-      "kind": "blank",
-      "prompt": "답",
-      "content": {
-        "placeholder": "쪽"
       }
     }
   ],
@@ -53,7 +44,6 @@
   "diagrams": [],
   "reading_order": [
     "region.stem",
-    "slot.question",
-    "slot.answer"
+    "slot.question"
   ]
 }

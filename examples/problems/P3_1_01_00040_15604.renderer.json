@@ -1,0 +1,177 @@
+{
+  "problem_id": "P3_1_01_00040_15604",
+  "view_box": {
+    "width": 720.0,
+    "height": 180.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.question.text",
+      "type": "text",
+      "attributes": {
+        "x": 20.0,
+        "y": 30.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 23
+      },
+      "source_ref": "slot.question",
+      "refs": {
+        "layout_slot_id": "slot.question"
+      },
+      "text": "크기를 비교하여 ○ 안에 >, <, =를 알맞게 써넣으시오."
+    },
+    {
+      "id": "slot.comparison.circle.circle",
+      "type": "circle",
+      "attributes": {
+        "cx": 154.196,
+        "cy": 100.95,
+        "r": 16.0,
+        "stroke": "#111111",
+        "stroke-width": 1.5,
+        "fill": "#ffffff"
+      },
+      "source_ref": "slot.comparison.circle",
+      "refs": {
+        "layout_slot_id": "slot.comparison.circle"
+      }
+    },
+    {
+      "id": "slot.left.line.line",
+      "type": "line",
+      "attributes": {
+        "x1": 28.0,
+        "y1": 148.0,
+        "x2": 110.0,
+        "y2": 148.0,
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.left.line",
+      "refs": {
+        "layout_slot_id": "slot.left.line"
+      }
+    },
+    {
+      "id": "slot.right.line.line",
+      "type": "line",
+      "attributes": {
+        "x1": 183.282,
+        "y1": 148.861,
+        "x2": 265.282,
+        "y2": 148.861,
+        "stroke": "#111111",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.right.line",
+      "refs": {
+        "layout_slot_id": "slot.right.line"
+      }
+    },
+    {
+      "id": "slot.left.top.text",
+      "type": "text",
+      "attributes": {
+        "x": 100.0,
+        "y": 82.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 25,
+        "text-anchor": "end"
+      },
+      "source_ref": "slot.left.top",
+      "refs": {
+        "layout_slot_id": "slot.left.top"
+      },
+      "text": "450"
+    },
+    {
+      "id": "slot.left.plus.text",
+      "type": "text",
+      "attributes": {
+        "x": 45.0,
+        "y": 128.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 25,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.left.plus",
+      "refs": {
+        "layout_slot_id": "slot.left.plus"
+      },
+      "text": "+"
+    },
+    {
+      "id": "slot.left.bottom.text",
+      "type": "text",
+      "attributes": {
+        "x": 100.0,
+        "y": 128.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 25,
+        "text-anchor": "end"
+      },
+      "source_ref": "slot.left.bottom",
+      "refs": {
+        "layout_slot_id": "slot.left.bottom"
+      },
+      "text": "146"
+    },
+    {
+      "id": "slot.right.top.text",
+      "type": "text",
+      "attributes": {
+        "x": 255.282,
+        "y": 82.861,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 25,
+        "text-anchor": "end"
+      },
+      "source_ref": "slot.right.top",
+      "refs": {
+        "layout_slot_id": "slot.right.top"
+      },
+      "text": "347"
+    },
+    {
+      "id": "slot.right.plus.text",
+      "type": "text",
+      "attributes": {
+        "x": 200.282,
+        "y": 128.861,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 25,
+        "text-anchor": "middle"
+      },
+      "source_ref": "slot.right.plus",
+      "refs": {
+        "layout_slot_id": "slot.right.plus"
+      },
+      "text": "+"
+    },
+    {
+      "id": "slot.right.bottom.text",
+      "type": "text",
+      "attributes": {
+        "x": 255.282,
+        "y": 128.861,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 25,
+        "text-anchor": "end"
+      },
+      "source_ref": "slot.right.bottom",
+      "refs": {
+        "layout_slot_id": "slot.right.bottom"
+      },
+      "text": "250"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

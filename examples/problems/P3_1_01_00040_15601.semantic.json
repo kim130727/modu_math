@@ -1,0 +1,129 @@
+{
+  "problem_id": "P3_1_01_00040_15601",
+  "problem_type": "numeric_answer_addition_word_problem",
+  "metadata": {
+    "title": "동민이의 우표 수",
+    "tags": [],
+    "instruction": "외국 우표 수와 한국 우표 수를 더합니다.",
+    "question": "동민이가 가지고 있는 우표책에는 327장의 외국 우표와 321장의 한국 우표가 있습니다. 우표는 모두 몇 장입니까?",
+    "required_layout_ids": [],
+    "extraction_confidence": 1.0,
+    "grade": 3,
+    "semester": 1,
+    "subject": "수학",
+    "topic": "세 자리 수의 덧셈",
+    "language": "ko-KR"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "person.dongmin",
+        "type": "person",
+        "label": "동민이"
+      },
+      {
+        "id": "object.stamp_album",
+        "type": "container",
+        "label": "우표책"
+      },
+      {
+        "id": "object.foreign_stamp",
+        "type": "countable_object",
+        "label": "외국 우표",
+        "unit": "장"
+      },
+      {
+        "id": "object.korean_stamp",
+        "type": "countable_object",
+        "label": "한국 우표",
+        "unit": "장"
+      },
+      {
+        "id": "quantity.foreign_stamp_count",
+        "type": "quantity",
+        "label": "외국 우표 수",
+        "value": 327,
+        "unit": "장"
+      },
+      {
+        "id": "quantity.korean_stamp_count",
+        "type": "quantity",
+        "label": "한국 우표 수",
+        "value": 321,
+        "unit": "장"
+      },
+      {
+        "id": "quantity.total_stamp_count",
+        "type": "unknown_quantity",
+        "label": "우표의 전체 수",
+        "unit": "장"
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.dongmin_owns_album",
+        "type": "owns",
+        "from_id": "person.dongmin",
+        "to_id": "object.stamp_album"
+      },
+      {
+        "id": "relation.album_contains_foreign_stamps",
+        "type": "contains",
+        "from_id": "object.stamp_album",
+        "to_id": "object.foreign_stamp",
+        "quantity": "quantity.foreign_stamp_count"
+      },
+      {
+        "id": "relation.album_contains_korean_stamps",
+        "type": "contains",
+        "from_id": "object.stamp_album",
+        "to_id": "object.korean_stamp",
+        "quantity": "quantity.korean_stamp_count"
+      },
+      {
+        "id": "relation.total_is_sum",
+        "type": "sum_of",
+        "subject": "quantity.total_stamp_count",
+        "objects": [
+          "quantity.foreign_stamp_count",
+          "quantity.korean_stamp_count"
+        ]
+      }
+    ],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "quantity.foreign_stamp_count",
+          "quantity.korean_stamp_count"
+        ],
+        "target_ref": "quantity.total_stamp_count",
+        "condition_refs": [
+          "relation.total_is_sum"
+        ]
+      },
+      "plan": {
+        "method": "part_part_whole_addition",
+        "description": "두 종류의 우표 수를 더하여 전체 우표 수를 구합니다."
+      },
+      "execute": {
+        "expected_operations": [
+          "addition"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "subtraction_check",
+          "column_addition_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "type": "numeric",
+    "value": 648,
+    "unit": "장",
+    "target_ref": "quantity.total_stamp_count",
+    "derived_from": "step.add_stamp_counts"
+  }
+}

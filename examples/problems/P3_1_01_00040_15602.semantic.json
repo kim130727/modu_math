@@ -1,0 +1,122 @@
+{
+  "problem_id": "P3_1_01_00040_15602",
+  "problem_type": "numeric_answer_addition_word_problem",
+  "metadata": {
+    "title": "사진첩에 있는 사진의 수",
+    "tags": [],
+    "question": "동윤이의 사진첩에 있는 사진은 모두 몇 장입니까?",
+    "required_layout_ids": [],
+    "extraction_confidence": 1.0,
+    "grade": 3,
+    "semester": 1,
+    "subject": "수학",
+    "topic": "세 자리 수의 덧셈",
+    "language": "ko-KR",
+    "instruction": "가족 사진 수와 친구 사진 수를 더합니다."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "person.dongyun",
+        "type": "person",
+        "label": "동윤이"
+      },
+      {
+        "id": "collection.dongyun_photo_album",
+        "type": "photo_album",
+        "label": "동윤이의 사진첩",
+        "owner": "person.dongyun"
+      },
+      {
+        "id": "object.family_photo",
+        "type": "photo_category",
+        "label": "가족 사진"
+      },
+      {
+        "id": "object.friend_photo",
+        "type": "photo_category",
+        "label": "친구 사진"
+      },
+      {
+        "id": "quantity.family_photos",
+        "type": "quantity",
+        "label": "가족 사진 수",
+        "value": 527,
+        "unit": "장"
+      },
+      {
+        "id": "quantity.friend_photos",
+        "type": "quantity",
+        "label": "친구 사진 수",
+        "value": 315,
+        "unit": "장"
+      },
+      {
+        "id": "quantity.total_photos",
+        "type": "unknown_quantity",
+        "label": "사진첩에 있는 전체 사진 수",
+        "unit": "장"
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.album_contains_family_photos",
+        "type": "contains",
+        "subject": "collection.dongyun_photo_album",
+        "object": "object.family_photo",
+        "quantity": "quantity.family_photos"
+      },
+      {
+        "id": "relation.album_contains_friend_photos",
+        "type": "contains",
+        "subject": "collection.dongyun_photo_album",
+        "object": "object.friend_photo",
+        "quantity": "quantity.friend_photos"
+      },
+      {
+        "id": "relation.total_is_sum",
+        "type": "sum_of",
+        "subject": "quantity.total_photos",
+        "objects": [
+          "quantity.family_photos",
+          "quantity.friend_photos"
+        ]
+      }
+    ],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "quantity.family_photos",
+          "quantity.friend_photos"
+        ],
+        "target_ref": "quantity.total_photos",
+        "condition_refs": [
+          "relation.total_is_sum"
+        ]
+      },
+      "plan": {
+        "method": "part_part_whole_addition",
+        "description": "가족 사진 수와 친구 사진 수를 더합니다."
+      },
+      "execute": {
+        "expected_operations": [
+          "addition"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "subtraction_check",
+          "magnitude_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "type": "numeric",
+    "value": 842,
+    "unit": "장",
+    "target_ref": "quantity.total_photos",
+    "derived_from": "step.add_photo_counts"
+  }
+}

@@ -4,6 +4,7 @@ from modu_math.dsl import (
     Canvas,
     CircleSlot,
     LineSlot,
+    PathSlot,
     PolygonSlot,
     ProblemTemplate,
     RectSlot,
@@ -20,14 +21,21 @@ def _rect_slot(id: str, x: float, y: float, width: float, height: float, fill: s
     return RectSlot(id=id, x=x, y=y, width=width, height=height, fill=fill, stroke=stroke, stroke_width=stroke_width)
 
 
+def _segments_path(segments: list[tuple[float, float, float, float]]) -> str:
+    return " ".join(f"M {x1:g} {y1:g} L {x2:g} {y2:g}" for x1, y1, x2, y2 in segments)
+
+
 def _hundred_flat(prefix: str, x: float, y: float, size: float = 34.0) -> tuple:
     slots = [
         _rect_slot(f"{prefix}.body", x, y, size, size, fill="#e7f5d8", stroke="#9cc37f", stroke_width=1.0),
     ]
     step = size / 10
+    segments = []
     for i in range(1, 10):
-        slots.append(LineSlot(id=f"{prefix}.v{i}", x1=x + step * i, y1=y, x2=x + step * i, y2=y + size, stroke="#c9dfb9", stroke_width=0.45))
-        slots.append(LineSlot(id=f"{prefix}.h{i}", x1=x, y1=y + step * i, x2=x + size, y2=y + step * i, stroke="#c9dfb9", stroke_width=0.45))
+        offset = step * i
+        segments.append((x + offset, y, x + offset, y + size))
+        segments.append((x, y + offset, x + size, y + offset))
+    slots.append(PathSlot(id=f"{prefix}.grid", d=_segments_path(segments), fill="none", stroke="#c9dfb9", stroke_width=0.45))
     return tuple(slots)
 
 
@@ -36,8 +44,11 @@ def _ten_rod(prefix: str, x: float, y: float, width: float = 9.0, height: float 
         _rect_slot(f"{prefix}.body", x, y, width, height, fill="#d9efff", stroke="#6fb6df", stroke_width=1.0),
     ]
     step = height / 10
+    segments = []
     for i in range(1, 10):
-        slots.append(LineSlot(id=f"{prefix}.s{i}", x1=x, y1=y + step * i, x2=x + width, y2=y + step * i, stroke="#9fd0ed", stroke_width=0.55))
+        offset = step * i
+        segments.append((x, y + offset, x + width, y + offset))
+    slots.append(PathSlot(id=f"{prefix}.grid", d=_segments_path(segments), fill="none", stroke="#9fd0ed", stroke_width=0.55))
     return tuple(slots)
 
 
@@ -73,19 +84,25 @@ def _thousand_cube(prefix: str, x: float, y: float, size: float = 38.0) -> tuple
     grid = "#a8cc90"
     step = size / 10
     dstep = depth / 10
+    front_segments = []
+    top_segments = []
+    side_segments = []
     for i in range(1, 10):
         offset = step * i
         doffset = dstep * i
-        slots.extend(
-            (
-                LineSlot(id=f"{prefix}.front.v{i}", x1=x + offset, y1=y + depth, x2=x + offset, y2=y + depth + size, stroke=grid, stroke_width=0.45),
-                LineSlot(id=f"{prefix}.front.h{i}", x1=x, y1=y + depth + offset, x2=x + size, y2=y + depth + offset, stroke=grid, stroke_width=0.45),
-                LineSlot(id=f"{prefix}.top.depth{i}", x1=x + doffset, y1=y + depth - doffset, x2=x + size + doffset, y2=y + depth - doffset, stroke=grid, stroke_width=0.45),
-                LineSlot(id=f"{prefix}.top.width{i}", x1=x + offset, y1=y + depth, x2=x + offset + depth, y2=y, stroke=grid, stroke_width=0.45),
-                LineSlot(id=f"{prefix}.side.depth{i}", x1=x + size + doffset, y1=y + depth - doffset, x2=x + size + doffset, y2=y + depth + size - doffset, stroke=grid, stroke_width=0.45),
-                LineSlot(id=f"{prefix}.side.height{i}", x1=x + size, y1=y + depth + offset, x2=x + size + depth, y2=y + offset, stroke=grid, stroke_width=0.45),
-            )
+        front_segments.append((x + offset, y + depth, x + offset, y + depth + size))
+        front_segments.append((x, y + depth + offset, x + size, y + depth + offset))
+        top_segments.append((x + doffset, y + depth - doffset, x + size + doffset, y + depth - doffset))
+        top_segments.append((x + offset, y + depth, x + offset + depth, y))
+        side_segments.append((x + size + doffset, y + depth - doffset, x + size + doffset, y + depth + size - doffset))
+        side_segments.append((x + size, y + depth + offset, x + size + depth, y + offset))
+    slots.extend(
+        (
+            PathSlot(id=f"{prefix}.front.grid", d=_segments_path(front_segments), fill="none", stroke=grid, stroke_width=0.45),
+            PathSlot(id=f"{prefix}.top.grid", d=_segments_path(top_segments), fill="none", stroke=grid, stroke_width=0.45),
+            PathSlot(id=f"{prefix}.side.grid", d=_segments_path(side_segments), fill="none", stroke=grid, stroke_width=0.45),
         )
+    )
     return tuple(slots)
 
 

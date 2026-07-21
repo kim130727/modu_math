@@ -1,0 +1,379 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "P3_1_01_00040_15598",
+  "title": "자리값별 부분합으로 덧셈하기",
+  "canvas": {
+    "width": 760,
+    "height": 350,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.instruction"
+      ]
+    },
+    {
+      "id": "region.calculation.1",
+      "role": "body",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.calculation.1.box.ones",
+        "slot.calculation.1.box.tens",
+        "slot.calculation.1.box.hundreds",
+        "slot.calculation.1.box.total",
+        "slot.calculation.1.line.top",
+        "slot.calculation.1.line.bottom",
+        "slot.calculation.1.label",
+        "slot.calculation.1.top",
+        "slot.calculation.1.plus",
+        "slot.calculation.1.bottom"
+      ]
+    },
+    {
+      "id": "region.calculation.2",
+      "role": "body",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.calculation.2.box.ones",
+        "slot.calculation.2.box.tens",
+        "slot.calculation.2.box.hundreds",
+        "slot.calculation.2.box.total",
+        "slot.calculation.2.line.top",
+        "slot.calculation.2.line.bottom",
+        "slot.calculation.2.label",
+        "slot.calculation.2.top",
+        "slot.calculation.2.plus",
+        "slot.calculation.2.bottom"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.instruction",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "□ 안에 알맞은 수를 써넣으시오.",
+        "style_role": "question",
+        "x": 25,
+        "y": 30,
+        "font_size": 24,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.calculation.1.label",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "(1)",
+        "style_role": "label",
+        "x": 25,
+        "y": 78,
+        "font_size": 22,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.calculation.1.top",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "217",
+        "style_role": "math",
+        "x": 117,
+        "y": 78,
+        "font_size": 25,
+        "max_width": 80.0,
+        "anchor": "middle",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.calculation.1.plus",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "+",
+        "style_role": "math",
+        "x": 70,
+        "y": 120,
+        "font_size": 25,
+        "max_width": 30.0,
+        "anchor": "middle",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.calculation.1.bottom",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "542",
+        "style_role": "math",
+        "x": 117,
+        "y": 120,
+        "font_size": 25,
+        "max_width": 80.0,
+        "anchor": "middle",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.calculation.1.line.top",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 69,
+        "y1": 143,
+        "x2": 161,
+        "y2": 143,
+        "stroke": "#111111",
+        "stroke_width": 1.5
+      }
+    },
+    {
+      "id": "slot.calculation.1.box.ones",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 129,
+        "y": 157,
+        "width": 28,
+        "height": 27,
+        "stroke": "#111111",
+        "stroke_width": 1,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.calculation.1.box.tens",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 114,
+        "y": 198,
+        "width": 43,
+        "height": 27,
+        "stroke": "#111111",
+        "stroke_width": 1,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.calculation.1.box.hundreds",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 99,
+        "y": 239,
+        "width": 58,
+        "height": 27,
+        "stroke": "#111111",
+        "stroke_width": 1,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.calculation.1.line.bottom",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 69,
+        "y1": 278,
+        "x2": 161,
+        "y2": 278,
+        "stroke": "#111111",
+        "stroke_width": 1.5
+      }
+    },
+    {
+      "id": "slot.calculation.1.box.total",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 99,
+        "y": 291,
+        "width": 58,
+        "height": 29,
+        "stroke": "#111111",
+        "stroke_width": 1,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.calculation.2.label",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "(2)",
+        "style_role": "label",
+        "x": 225,
+        "y": 78,
+        "font_size": 22,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.calculation.2.top",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "386",
+        "style_role": "math",
+        "x": 317,
+        "y": 78,
+        "font_size": 25,
+        "max_width": 80.0,
+        "anchor": "middle",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.calculation.2.plus",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "+",
+        "style_role": "math",
+        "x": 270,
+        "y": 120,
+        "font_size": 25,
+        "max_width": 30.0,
+        "anchor": "middle",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.calculation.2.bottom",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "211",
+        "style_role": "math",
+        "x": 317,
+        "y": 120,
+        "font_size": 25,
+        "max_width": 80.0,
+        "anchor": "middle",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.calculation.2.line.top",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 269,
+        "y1": 143,
+        "x2": 361,
+        "y2": 143,
+        "stroke": "#111111",
+        "stroke_width": 1.5
+      }
+    },
+    {
+      "id": "slot.calculation.2.box.ones",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 329,
+        "y": 157,
+        "width": 28,
+        "height": 27,
+        "stroke": "#111111",
+        "stroke_width": 1,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.calculation.2.box.tens",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 314,
+        "y": 198,
+        "width": 43,
+        "height": 27,
+        "stroke": "#111111",
+        "stroke_width": 1,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.calculation.2.box.hundreds",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 299,
+        "y": 239,
+        "width": 58,
+        "height": 27,
+        "stroke": "#111111",
+        "stroke_width": 1,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.calculation.2.line.bottom",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 269,
+        "y1": 278,
+        "x2": 361,
+        "y2": 278,
+        "stroke": "#111111",
+        "stroke_width": 1.5
+      }
+    },
+    {
+      "id": "slot.calculation.2.box.total",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 299,
+        "y": 291,
+        "width": 58,
+        "height": 29,
+        "stroke": "#111111",
+        "stroke_width": 1,
+        "fill": "#ffffff"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.instruction",
+    "region.calculation.1",
+    "slot.calculation.1.box.ones",
+    "slot.calculation.1.box.tens",
+    "slot.calculation.1.box.hundreds",
+    "slot.calculation.1.box.total",
+    "slot.calculation.1.line.top",
+    "slot.calculation.1.line.bottom",
+    "slot.calculation.1.label",
+    "slot.calculation.1.top",
+    "slot.calculation.1.plus",
+    "slot.calculation.1.bottom",
+    "region.calculation.2",
+    "slot.calculation.2.box.ones",
+    "slot.calculation.2.box.tens",
+    "slot.calculation.2.box.hundreds",
+    "slot.calculation.2.box.total",
+    "slot.calculation.2.line.top",
+    "slot.calculation.2.line.bottom",
+    "slot.calculation.2.label",
+    "slot.calculation.2.top",
+    "slot.calculation.2.plus",
+    "slot.calculation.2.bottom"
+  ]
+}

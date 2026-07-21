@@ -1,0 +1,65 @@
+{
+  "problem_id": "P3_1_01_00040_15601",
+  "view_box": {
+    "width": 900.0,
+    "height": 180.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.question.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 24.0,
+        "y": 20.0,
+        "fill": "#202124",
+        "font-family": "Noto Sans KR",
+        "font-size": 22,
+        "width": 852.0,
+        "height": 70.0,
+        "max_width": 852.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 24.0,
+        "data-box-y": 20.0,
+        "data-box-width": 852.0,
+        "data-box-height": 70.0,
+        "data-text-align": "left",
+        "data-vertical-align": "top",
+        "data-line-height": 1.4
+      },
+      "source_ref": "slot.question",
+      "refs": {
+        "layout_slot_id": "slot.question"
+      },
+      "text": "동민이가 가지고 있는 우표책에는 327장의 외국 우표와 321장의 한국 우표가 있습니다. 우표는 모두 몇 장입니까?"
+    },
+    {
+      "id": "slot.expression.text",
+      "type": "text_box",
+      "attributes": {
+        "x": 24.0,
+        "y": 88.0,
+        "fill": "#202124",
+        "font-family": "Noto Sans KR",
+        "font-size": 22,
+        "width": 852.0,
+        "height": 36.0,
+        "max_width": 852.0,
+        "data-slot-kind": "text_box",
+        "data-box-x": 24.0,
+        "data-box-y": 88.0,
+        "data-box-width": 852.0,
+        "data-box-height": 36.0,
+        "data-text-align": "left",
+        "data-vertical-align": "middle",
+        "data-line-height": 1.25
+      },
+      "source_ref": "slot.expression",
+      "refs": {
+        "layout_slot_id": "slot.expression"
+      },
+      "text": "식 ____________________    답 ____________________ 장"
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

@@ -48,7 +48,9 @@ function objectPatches(baseObject: ProblemObject | undefined, object: ProblemObj
     if (baseObject?.type === "table") return tableUpdatePatches(baseObject, object);
     return tableSlotPatches(object);
   }
-  return [baseObject ? updatePatch(baseObject, object) : addPatch(object)];
+  if (!baseObject) return [addPatch(object)];
+  const patch = updatePatch(baseObject, object);
+  return patch ? [patch] : [];
 }
 
 function deletePatches(object: ProblemObject): LayoutPatch[] {
@@ -58,11 +60,13 @@ function deletePatches(object: ProblemObject): LayoutPatch[] {
   return [{ target: object.id, op: "delete" }];
 }
 
-function updatePatch(baseObject: ProblemObject, object: ProblemObject): LayoutPatch {
+function updatePatch(baseObject: ProblemObject, object: ProblemObject): LayoutPatch | null {
+  const value = changedFields(updateValue(baseObject, baseObject), updateValue(baseObject, object));
+  if (!Object.keys(value).length) return null;
   return {
     target: object.id,
     op: "update",
-    value: updateValue(baseObject, object),
+    value,
   };
 }
 
@@ -276,6 +280,18 @@ function pathFields(object: PathObject): Record<string, unknown> {
   };
   fields.stroke_dasharray = object.props.strokeDasharray || null;
   return fields;
+}
+
+function changedFields(base: Record<string, unknown>, next: Record<string, unknown>): Record<string, unknown> {
+  const value: Record<string, unknown> = {};
+  for (const [key, nextValue] of Object.entries(next)) {
+    if (!samePatchValue(base[key], nextValue)) value[key] = nextValue;
+  }
+  return value;
+}
+
+function samePatchValue(a: unknown, b: unknown): boolean {
+  return JSON.stringify(a) === JSON.stringify(b);
 }
 
 function tableUpdatePatches(base: TableObject, next: TableObject): LayoutPatch[] {

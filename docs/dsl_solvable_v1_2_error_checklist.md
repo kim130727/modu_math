@@ -280,6 +280,48 @@ SEMANTIC_ANSWER = SOLVABLE["answer"]
 
 `SEMANTIC_ANSWER = SOLVABLE["answer"]`는 반드시 `SOLVABLE` 정의 뒤에 둡니다.
 
+### 9. `diagnostic_questions[].choices`에 숫자 사용
+
+오류 예:
+
+```text
+595 is not of type 'string'
+```
+
+원인:
+
+`SOLVABLE["understanding"]["diagnostic_questions"][].choices`의 각 항목은 문자열이어야 합니다.
+
+숫자 선택지도 문자열로 작성합니다.
+
+올바른 형태:
+
+```python
+"diagnostic_questions": [
+    {
+        "id": "understand.left_sum",
+        "type": "multiple_choice",
+        "prompt": "450+146의 계산 결과는 얼마인가요?",
+        "choices": ["595", "596", "597"],
+        "answer_index": 1,
+    }
+]
+```
+
+잘못된 형태:
+
+```python
+"diagnostic_questions": [
+    {
+        "id": "understand.left_sum",
+        "type": "multiple_choice",
+        "prompt": "450+146의 계산 결과는 얼마인가요?",
+        "choices": [595, 596, 597],
+        "answer_index": 1,
+    }
+]
+```
+
 ## 생성 전 최종 점검
 
 새 DSL을 만들기 전에 아래를 확인합니다.
@@ -292,6 +334,7 @@ SEMANTIC_ANSWER = SOLVABLE["answer"]
 - `SOLVABLE["plan"]`, `steps`, `checks`가 있습니다.
 - 모든 `steps` 항목에는 최소 `id`, `expr`, `value`가 있습니다.
 - 모든 `checks` 항목에는 최소 `id`, `expr`, `expected`, `actual`, `pass`가 있습니다.
+- `diagnostic_questions[].choices`의 모든 항목은 문자열입니다.
 - `SOLVABLE["answer"]`에는 최상위 `value`, `unit`이 있습니다.
 - 텍스트 답 또는 단위 없는 답은 `unit: ""`을 사용합니다.
 - `SEMANTIC_OVERRIDE["answer"]`와 `SOLVABLE["answer"]`는 같은 객체 또는 완전히 같은 값입니다.

@@ -1,0 +1,49 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "P3_1_01_00040_15602",
+  "title": "사진첩에 있는 사진의 수",
+  "canvas": {
+    "width": 960,
+    "height": 180,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "vertical",
+      "slot_ids": [
+        "slot.question"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.question",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "동윤이의 사진첩에는 527장의 가족 사진과 315장의 친구 사진이 있습니다. 사진은 모두 몇 장입니까?",
+        "style_role": "body",
+        "x": 40.077,
+        "y": 29.181,
+        "width": 912,
+        "height": 70,
+        "align": "left",
+        "valign": "top",
+        "font_size": 22,
+        "font_family": "Noto Sans KR",
+        "line_height": 1.4,
+        "fill": "#202124"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.question"
+  ]
+}

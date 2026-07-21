@@ -14,9 +14,7 @@
       "role": "stem",
       "flow": "vertical",
       "slot_ids": [
-        "slot.question",
-        "slot.answer_100won",
-        "slot.answer_50won"
+        "slot.question"
       ]
     }
   ],
@@ -28,32 +26,16 @@
       "content": {
         "text": "상훈이는 1000원짜리 우표 1장을 사고, 100원짜리와 50원짜리 두 종류의 우표를 합해서 20장을 샀습니다. 우표값으로 2550원을 냈다면 상훈이는 100원짜리와 50원짜리 우표를 각각 몇 장 샀습니까?",
         "style_role": "body",
-        "x": 48.0,
-        "y": 30.0,
-        "width": 804.0,
-        "height": 125.0,
+        "x": 44.77,
+        "y": 43.987,
+        "width": 804,
+        "height": 116,
         "align": "left",
         "valign": "top",
         "font_size": 24,
         "font_family": "Noto Sans KR",
         "line_height": 1.5,
         "fill": "#202124"
-      }
-    },
-    {
-      "id": "slot.answer_100won",
-      "kind": "blank",
-      "prompt": "100원짜리 우표",
-      "content": {
-        "placeholder": "장"
-      }
-    },
-    {
-      "id": "slot.answer_50won",
-      "kind": "blank",
-      "prompt": "50원짜리 우표",
-      "content": {
-        "placeholder": "장"
       }
     }
   ],
@@ -62,8 +44,6 @@
   "diagrams": [],
   "reading_order": [
     "region.stem",
-    "slot.question",
-    "slot.answer_100won",
-    "slot.answer_50won"
+    "slot.question"
   ]
 }

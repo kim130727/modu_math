@@ -14,9 +14,7 @@
       "role": "stem",
       "flow": "absolute",
       "slot_ids": [
-        "slot.instruction",
-        "slot.answer.1",
-        "slot.answer.2"
+        "slot.instruction"
       ]
     },
     {
@@ -52,8 +50,8 @@
       "content": {
         "text": "다음 계산을 하시오.",
         "style_role": "question",
-        "x": 25.0,
-        "y": 28.0,
+        "x": 25,
+        "y": 28,
         "font_size": 24,
         "fill": "#111111"
       }
@@ -65,8 +63,8 @@
       "content": {
         "text": "(1)",
         "style_role": "label",
-        "x": 28.0,
-        "y": 77.0,
+        "x": 28,
+        "y": 77,
         "font_size": 22,
         "fill": "#111111"
       }
@@ -78,8 +76,8 @@
       "content": {
         "text": "270",
         "style_role": "math",
-        "x": 120.0,
-        "y": 77.0,
+        "x": 120,
+        "y": 77,
         "font_size": 25,
         "max_width": 80.0,
         "anchor": "middle",
@@ -93,8 +91,8 @@
       "content": {
         "text": "+",
         "style_role": "math",
-        "x": 73.0,
-        "y": 119.0,
+        "x": 73,
+        "y": 119,
         "font_size": 25,
         "max_width": 30.0,
         "anchor": "middle",
@@ -108,8 +106,8 @@
       "content": {
         "text": "125",
         "style_role": "math",
-        "x": 120.0,
-        "y": 119.0,
+        "x": 120,
+        "y": 119,
         "font_size": 25,
         "max_width": 80.0,
         "anchor": "middle",
@@ -121,10 +119,10 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 72.0,
-        "y1": 142.0,
-        "x2": 162.0,
-        "y2": 142.0,
+        "x1": 72,
+        "y1": 142,
+        "x2": 162,
+        "y2": 142,
         "stroke": "#111111",
         "stroke_width": 1.5
       }
@@ -136,8 +134,8 @@
       "content": {
         "text": "(2)",
         "style_role": "label",
-        "x": 205.0,
-        "y": 77.0,
+        "x": 205,
+        "y": 77,
         "font_size": 22,
         "fill": "#111111"
       }
@@ -149,8 +147,8 @@
       "content": {
         "text": "394",
         "style_role": "math",
-        "x": 297.0,
-        "y": 77.0,
+        "x": 297,
+        "y": 77,
         "font_size": 25,
         "max_width": 80.0,
         "anchor": "middle",
@@ -164,8 +162,8 @@
       "content": {
         "text": "+",
         "style_role": "math",
-        "x": 250.0,
-        "y": 119.0,
+        "x": 250,
+        "y": 119,
         "font_size": 25,
         "max_width": 30.0,
         "anchor": "middle",
@@ -179,8 +177,8 @@
       "content": {
         "text": "205",
         "style_role": "math",
-        "x": 297.0,
-        "y": 119.0,
+        "x": 297,
+        "y": 119,
         "font_size": 25,
         "max_width": 80.0,
         "anchor": "middle",
@@ -192,28 +190,12 @@
       "kind": "line",
       "prompt": "",
       "content": {
-        "x1": 249.0,
-        "y1": 142.0,
-        "x2": 339.0,
-        "y2": 142.0,
+        "x1": 249,
+        "y1": 142,
+        "x2": 339,
+        "y2": 142,
         "stroke": "#111111",
         "stroke_width": 1.5
-      }
-    },
-    {
-      "id": "slot.answer.1",
-      "kind": "blank",
-      "prompt": "(1)",
-      "content": {
-        "placeholder": "답"
-      }
-    },
-    {
-      "id": "slot.answer.2",
-      "kind": "blank",
-      "prompt": "(2)",
-      "content": {
-        "placeholder": "답"
       }
     }
   ],
@@ -223,8 +205,6 @@
   "reading_order": [
     "region.stem",
     "slot.instruction",
-    "slot.answer.1",
-    "slot.answer.2",
     "region.calculation.1",
     "slot.calculation.1.line",
     "slot.calculation.1.label",

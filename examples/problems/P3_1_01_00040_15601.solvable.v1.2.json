@@ -1,0 +1,151 @@
+{
+  "schema": "modu.solvable.v1.2",
+  "problem_id": "P3_1_01_00040_15601",
+  "problem_type": "numeric_answer_addition_word_problem",
+  "inputs": {
+    "target_label": "우표의 전체 수",
+    "unit": "장",
+    "quantities": {
+      "foreign_stamp_count": 327,
+      "korean_stamp_count": 321
+    },
+    "conditions": [
+      "동민이의 우표책에는 외국 우표가 327장 있습니다.",
+      "동민이의 우표책에는 한국 우표가 321장 있습니다.",
+      "두 종류의 우표를 합한 전체 수를 구합니다."
+    ]
+  },
+  "given": [
+    {
+      "ref": "quantity.foreign_stamp_count",
+      "value": {
+        "count": 327,
+        "unit": "장",
+        "object": "object.foreign_stamp",
+        "container": "object.stamp_album"
+      }
+    },
+    {
+      "ref": "quantity.korean_stamp_count",
+      "value": {
+        "count": 321,
+        "unit": "장",
+        "object": "object.korean_stamp",
+        "container": "object.stamp_album"
+      }
+    }
+  ],
+  "target": {
+    "ref": "quantity.total_stamp_count",
+    "type": "number"
+  },
+  "understanding": {
+    "summary": "외국 우표 327장과 한국 우표 321장을 합해 전체 우표 수를 구하는 문제입니다.",
+    "facts": [
+      {
+        "ref": "quantity.foreign_stamp_count",
+        "label": "외국 우표 수",
+        "value": 327,
+        "unit": "장",
+        "source": "explicit"
+      },
+      {
+        "ref": "quantity.korean_stamp_count",
+        "label": "한국 우표 수",
+        "value": 321,
+        "unit": "장",
+        "source": "explicit"
+      }
+    ],
+    "unknowns": [
+      {
+        "ref": "quantity.total_stamp_count",
+        "label": "우표의 전체 수",
+        "unit": "장",
+        "source": "unknown"
+      }
+    ],
+    "relation": {
+      "type": "part_part_whole_addition",
+      "statement": "외국 우표 수와 한국 우표 수를 더하면 우표의 전체 수가 됩니다.",
+      "symbolic": "327 + 321 = □",
+      "uses": [
+        "quantity.foreign_stamp_count",
+        "quantity.korean_stamp_count"
+      ],
+      "result": "quantity.total_stamp_count"
+    },
+    "diagnostic_questions": [
+      {
+        "id": "understand.target",
+        "type": "multiple_choice",
+        "prompt": "이 문제에서 구해야 하는 것은 무엇인가요?",
+        "choices": [
+          "외국 우표 수",
+          "한국 우표 수",
+          "우표의 전체 수"
+        ],
+        "answer_index": 2
+      },
+      {
+        "id": "understand.operation",
+        "type": "multiple_choice",
+        "prompt": "우표의 전체 수를 구하려면 어떻게 해야 하나요?",
+        "choices": [
+          "327과 321을 더합니다.",
+          "327에서 321을 뺍니다.",
+          "327과 321을 비교합니다."
+        ],
+        "answer_index": 0
+      }
+    ],
+    "student_restatement": {
+      "prompt": "문제의 뜻을 자신의 말로 나타내어 보세요.",
+      "template": "{foreign_count}장과 {korean_count}장을 더해 {target_label}를 구합니다.",
+      "answer": "외국 우표 327장과 한국 우표 321장을 더해 우표의 전체 수를 구합니다."
+    }
+  },
+  "method": "외국 우표 수와 한국 우표 수를 덧셈하여 전체 우표 수를 구합니다.",
+  "plan": [
+    "외국 우표 수 327장을 확인합니다.",
+    "한국 우표 수 321장을 확인합니다.",
+    "두 수를 더하여 우표의 전체 수를 구합니다."
+  ],
+  "steps": [
+    {
+      "id": "step.add_stamp_counts",
+      "goal": "우표의 전체 수를 구합니다.",
+      "uses": [
+        "quantity.foreign_stamp_count",
+        "quantity.korean_stamp_count"
+      ],
+      "relation_expr": "전체 우표 수 = 외국 우표 수 + 한국 우표 수",
+      "expr": "327 + 321",
+      "value": 648,
+      "explanation": "두 종류의 우표를 모두 세어야 하므로 327과 321을 더합니다."
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.inverse_subtraction",
+      "expr": "648 - 321",
+      "expected": 327,
+      "actual": 327,
+      "pass": true
+    },
+    {
+      "id": "check.column_addition",
+      "expr": "7 + 1 = 8, 2 + 2 = 4, 3 + 3 = 6",
+      "expected": 648,
+      "actual": 648,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "type": "numeric",
+    "value": 648,
+    "unit": "장",
+    "target_ref": "quantity.total_stamp_count",
+    "derived_from": "step.add_stamp_counts"
+  }
+}

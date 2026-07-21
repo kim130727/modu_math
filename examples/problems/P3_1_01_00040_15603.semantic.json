@@ -1,0 +1,119 @@
+{
+  "problem_id": "P3_1_01_00040_15603",
+  "problem_type": "numeric_answer_addition_word_problem",
+  "metadata": {
+    "title": "기영이가 처음 가지고 있던 구슬 수",
+    "tags": [],
+    "instruction": "식",
+    "question": "기영이가 가지고 있던 구슬 중 120개를 호근이에게 주고, 형우에게 130개를 주었더니 남은 구슬은\n220개가 되었습니다. 기영이가 처음에 가지고 있던 구슬은 몇 개입니까?",
+    "required_layout_ids": [],
+    "extraction_confidence": 1.0,
+    "grade": 3,
+    "semester": 1,
+    "subject": "수학",
+    "topic": "세 자리 수의 덧셈",
+    "language": "ko-KR"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "person.giyeong",
+        "type": "person",
+        "label": "기영이"
+      },
+      {
+        "id": "person.hogeun",
+        "type": "person",
+        "label": "호근이"
+      },
+      {
+        "id": "person.hyeongu",
+        "type": "person",
+        "label": "형우"
+      },
+      {
+        "id": "object.marble",
+        "type": "countable_object",
+        "label": "구슬",
+        "unit": "개"
+      },
+      {
+        "id": "quantity.given_to_hogeun",
+        "type": "quantity",
+        "label": "호근이에게 준 구슬 수",
+        "value": 120,
+        "unit": "개"
+      },
+      {
+        "id": "quantity.given_to_hyeongu",
+        "type": "quantity",
+        "label": "형우에게 준 구슬 수",
+        "value": 130,
+        "unit": "개"
+      },
+      {
+        "id": "quantity.remaining_marbles",
+        "type": "quantity",
+        "label": "남은 구슬 수",
+        "value": 220,
+        "unit": "개"
+      },
+      {
+        "id": "quantity.total_given_marbles",
+        "type": "quantity",
+        "label": "두 사람에게 준 구슬 수",
+        "value": 250,
+        "unit": "개"
+      },
+      {
+        "id": "quantity.initial_marbles",
+        "type": "quantity",
+        "label": "처음 가지고 있던 구슬 수",
+        "value": 470,
+        "unit": "개"
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.give_to_hogeun",
+        "type": "transfer_out",
+        "from_id": "person.giyeong",
+        "to_id": "person.hogeun",
+        "object_id": "object.marble",
+        "quantity": "quantity.given_to_hogeun"
+      },
+      {
+        "id": "relation.give_to_hyeongu",
+        "type": "transfer_out",
+        "from_id": "person.giyeong",
+        "to_id": "person.hyeongu",
+        "object_id": "object.marble",
+        "quantity": "quantity.given_to_hyeongu"
+      },
+      {
+        "id": "relation.total_given_marbles",
+        "type": "part_part_whole",
+        "parts": [
+          "quantity.given_to_hogeun",
+          "quantity.given_to_hyeongu"
+        ],
+        "whole": "quantity.total_given_marbles"
+      },
+      {
+        "id": "relation.initial_decomposition",
+        "type": "part_part_whole",
+        "parts": [
+          "quantity.given_to_hogeun",
+          "quantity.given_to_hyeongu",
+          "quantity.remaining_marbles"
+        ],
+        "whole": "quantity.initial_marbles"
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "value": 470,
+    "unit": "개"
+  }
+}

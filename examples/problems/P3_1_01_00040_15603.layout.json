@@ -1,0 +1,49 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "P3_1_01_00040_15603",
+  "title": "기영이가 처음 가지고 있던 구슬 수",
+  "canvas": {
+    "width": 900,
+    "height": 210,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "vertical",
+      "slot_ids": [
+        "slot.question"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.question",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "기영이가 가지고 있던 구슬 중 120개를 호근이에게 주고, 형우에게 130개를 주었더니 남은 구슬은\n220개가 되었습니다. 기영이가 처음에 가지고 있던 구슬은 몇 개입니까?",
+        "style_role": "body",
+        "x": 20,
+        "y": 18,
+        "width": 860,
+        "height": 100,
+        "align": "left",
+        "valign": "top",
+        "font_size": 21,
+        "font_family": "Noto Sans KR",
+        "line_height": 1.45,
+        "fill": "#202124"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.question"
+  ]
+}

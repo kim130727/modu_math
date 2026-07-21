@@ -1,0 +1,49 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "P3_1_01_00040_15605",
+  "title": "동민이와 가희가 가진 구슬 수",
+  "canvas": {
+    "width": 900,
+    "height": 190,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "vertical",
+      "slot_ids": [
+        "slot.question"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.question",
+      "kind": "text_box",
+      "prompt": "",
+      "content": {
+        "text": "동민이는 구슬을 215개 가지고 있고, 가희는 구슬을 132개 가지고 있습니다. 두 사람이 가지고 있는 구슬은 모두 몇 개입니까?",
+        "style_role": "body",
+        "x": 20.0,
+        "y": 18.0,
+        "width": 860.0,
+        "height": 69,
+        "align": "left",
+        "valign": "top",
+        "font_size": 21,
+        "font_family": "Noto Sans KR",
+        "line_height": 1.45,
+        "fill": "#202124"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.question"
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "problem_id": "P3_1_01_00040_15606",
+  "problem_type": "numeric_answer_more_than_addition_word_problem",
+  "metadata": {
+    "title": "지영이가 가지고 있는 구슬 수",
+    "tags": [],
+    "question": "지영이가 가지고 있는 구슬은 모두 몇 개입니까?",
+    "required_layout_ids": [],
+    "extraction_confidence": 1.0,
+    "grade": 3,
+    "semester": 1,
+    "subject": "수학",
+    "topic": "세 자리 수의 덧셈",
+    "language": "ko-KR"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "person.gyeongmin",
+        "type": "person",
+        "label": "경민이"
+      },
+      {
+        "id": "person.jiyeong",
+        "type": "person",
+        "label": "지영이"
+      },
+      {
+        "id": "object.marble",
+        "type": "countable_object",
+        "label": "구슬",
+        "unit": "개"
+      },
+      {
+        "id": "quantity.gyeongmin_marbles",
+        "type": "quantity",
+        "label": "경민이가 가진 구슬 수",
+        "value": 254,
+        "unit": "개"
+      },
+      {
+        "id": "quantity.more_marbles",
+        "type": "quantity",
+        "label": "지영이가 더 가진 구슬 수",
+        "value": 123,
+        "unit": "개"
+      },
+      {
+        "id": "quantity.jiyeong_marbles",
+        "type": "quantity",
+        "label": "지영이가 가진 구슬 수",
+        "value": 377,
+        "unit": "개"
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.gyeongmin_has_marbles",
+        "type": "has_quantity",
+        "subject": "person.gyeongmin",
+        "object": "object.marble",
+        "quantity": "quantity.gyeongmin_marbles"
+      },
+      {
+        "id": "relation.jiyeong_more_than_gyeongmin",
+        "type": "more_than",
+        "subject": "quantity.jiyeong_marbles",
+        "reference": "quantity.gyeongmin_marbles",
+        "difference": "quantity.more_marbles"
+      },
+      {
+        "id": "relation.jiyeong_count_is_sum",
+        "type": "sum_of",
+        "subject": "quantity.jiyeong_marbles",
+        "objects": [
+          "quantity.gyeongmin_marbles",
+          "quantity.more_marbles"
+        ]
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "type": "numeric",
+    "value": 377,
+    "unit": "개",
+    "target_ref": "quantity.jiyeong_marbles",
+    "derived_from": "step.add_difference"
+  }
+}

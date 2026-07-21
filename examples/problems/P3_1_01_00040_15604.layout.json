@@ -1,0 +1,192 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "P3_1_01_00040_15604",
+  "title": "두 덧셈 결과의 크기 비교",
+  "canvas": {
+    "width": 720,
+    "height": 180,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.question"
+      ]
+    },
+    {
+      "id": "region.comparison",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.comparison.circle",
+        "slot.left.line",
+        "slot.right.line",
+        "slot.left.top",
+        "slot.left.plus",
+        "slot.left.bottom",
+        "slot.right.top",
+        "slot.right.plus",
+        "slot.right.bottom"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.question",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "크기를 비교하여 ○ 안에 >, <, =를 알맞게 써넣으시오.",
+        "style_role": "question",
+        "x": 20.0,
+        "y": 30.0,
+        "font_size": 23,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.left.top",
+      "kind": "text",
+      "prompt": "왼쪽 덧셈의 첫 번째 수",
+      "content": {
+        "text": "450",
+        "style_role": "body",
+        "x": 100.0,
+        "y": 82.0,
+        "font_size": 25,
+        "anchor": "end",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.left.plus",
+      "kind": "text",
+      "prompt": "덧셈 기호",
+      "content": {
+        "text": "+",
+        "style_role": "body",
+        "x": 45.0,
+        "y": 128.0,
+        "font_size": 25,
+        "anchor": "middle",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.left.bottom",
+      "kind": "text",
+      "prompt": "왼쪽 덧셈의 두 번째 수",
+      "content": {
+        "text": "146",
+        "style_role": "body",
+        "x": 100.0,
+        "y": 128.0,
+        "font_size": 25,
+        "anchor": "end",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.left.line",
+      "kind": "line",
+      "prompt": "왼쪽 세로셈의 밑줄",
+      "content": {
+        "x1": 28.0,
+        "y1": 148.0,
+        "x2": 110.0,
+        "y2": 148.0,
+        "stroke": "#111111",
+        "stroke_width": 1.5
+      }
+    },
+    {
+      "id": "slot.comparison.circle",
+      "kind": "circle",
+      "prompt": "두 덧셈 결과를 비교하는 기호를 쓰는 곳",
+      "content": {
+        "cx": 154.196,
+        "cy": 100.95,
+        "r": 16.0,
+        "stroke": "#111111",
+        "stroke_width": 1.5,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.right.top",
+      "kind": "text",
+      "prompt": "오른쪽 덧셈의 첫 번째 수",
+      "content": {
+        "text": "347",
+        "style_role": "body",
+        "x": 255.282,
+        "y": 82.861,
+        "font_size": 25,
+        "anchor": "end",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.right.plus",
+      "kind": "text",
+      "prompt": "덧셈 기호",
+      "content": {
+        "text": "+",
+        "style_role": "body",
+        "x": 200.282,
+        "y": 128.861,
+        "font_size": 25,
+        "anchor": "middle",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.right.bottom",
+      "kind": "text",
+      "prompt": "오른쪽 덧셈의 두 번째 수",
+      "content": {
+        "text": "250",
+        "style_role": "body",
+        "x": 255.282,
+        "y": 128.861,
+        "font_size": 25,
+        "anchor": "end",
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.right.line",
+      "kind": "line",
+      "prompt": "오른쪽 세로셈의 밑줄",
+      "content": {
+        "x1": 183.282,
+        "y1": 148.861,
+        "x2": 265.282,
+        "y2": 148.861,
+        "stroke": "#111111",
+        "stroke_width": 1.5
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.question",
+    "region.comparison",
+    "slot.comparison.circle",
+    "slot.left.line",
+    "slot.right.line",
+    "slot.left.top",
+    "slot.left.plus",
+    "slot.left.bottom",
+    "slot.right.top",
+    "slot.right.plus",
+    "slot.right.bottom"
+  ]
+}
