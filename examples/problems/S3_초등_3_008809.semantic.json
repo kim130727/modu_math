@@ -1,0 +1,83 @@
+{
+  "problem_id": "S3_초등_3_008809",
+  "problem_type": "comparison_selection",
+  "metadata": {
+    "title": "무게가 1 kg보다 더 가벼운 것을 선택하세요",
+    "tags": [],
+    "question": "무게가 1 kg보다 더 가벼운 것을 선택하세요.",
+    "required_layout_ids": [
+      "slot.inserted.image.1"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "주어진 보기에서 조건에 맞는 물건을 선택하는 문제"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.ref_1kg",
+        "type": "weight_reference",
+        "label": "1 kg"
+      },
+      {
+        "id": "obj.microwave",
+        "type": "object",
+        "label": "전자레인지"
+      },
+      {
+        "id": "obj.pumpkin",
+        "type": "object",
+        "label": "호박"
+      },
+      {
+        "id": "obj.toothbrush",
+        "type": "object",
+        "label": "칫솔"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.ref_1kg",
+          "obj.microwave",
+          "obj.pumpkin",
+          "obj.toothbrush"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.toothbrush_lt_1kg"
+        ]
+      },
+      "plan": {
+        "method": "compare_weight_to_reference",
+        "description": "기준인 1 kg보다 더 가벼운 물건을 찾는다."
+      },
+      "execute": {
+        "expected_operations": [
+          "compare_each_object_with_reference",
+          "select_matching_object"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "condition_satisfaction_check",
+          "reference_comparison_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "selected_object",
+      "description": "1 kg보다 더 가벼운 것"
+    },
+    "value": "칫솔",
+    "unit": ""
+  }
+}

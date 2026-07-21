@@ -1,0 +1,141 @@
+{
+  "problem_id": "P3_1_01_00040_02161",
+  "problem_type": "numeric_answer_route_distance_addition",
+  "metadata": {
+    "title": "문방구를 들러 학교까지 간 거리",
+    "tags": [
+      "grade-3",
+      "addition",
+      "three-digit-addition",
+      "distance",
+      "route",
+      "word-problem",
+      "numeric-answer"
+    ],
+    "question": "송은이가 문방구를 들러 학교에 가려고 합니다. 집에서 학교까지의 거리를 구하시오.",
+    "required_layout_ids": [
+      "slot.house_body",
+      "slot.house_roof",
+      "slot.house_door",
+      "slot.house_window",
+      "slot.house_chimney",
+      "slot.point_home",
+      "slot.store_body",
+      "slot.store_sign",
+      "slot.store_awning",
+      "slot.store_door",
+      "slot.store_window",
+      "slot.point_store",
+      "slot.school_body",
+      "slot.school_roof",
+      "slot.school_door",
+      "slot.school_window_1",
+      "slot.school_window_2",
+      "slot.point_school",
+      "slot.route_home_store",
+      "slot.route_store_school"
+    ],
+    "extraction_confidence": 1.0,
+    "grade": 3,
+    "semester": 1,
+    "subject": "수학",
+    "topic": "세 자리 수의 덧셈",
+    "language": "ko-KR"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "person.songeun",
+        "type": "person",
+        "label": "송은이"
+      },
+      {
+        "id": "place.home",
+        "type": "place",
+        "label": "송은이네 집"
+      },
+      {
+        "id": "place.stationery_store",
+        "type": "place",
+        "label": "문방구"
+      },
+      {
+        "id": "place.school",
+        "type": "place",
+        "label": "학교"
+      },
+      {
+        "id": "route.home_to_store",
+        "type": "route_segment",
+        "label": "집에서 문방구까지의 길"
+      },
+      {
+        "id": "route.store_to_school",
+        "type": "route_segment",
+        "label": "문방구에서 학교까지의 길"
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.distance_home_store",
+        "type": "distance",
+        "from_id": "place.home",
+        "to_id": "place.stationery_store",
+        "value": 487,
+        "unit": "m"
+      },
+      {
+        "id": "relation.distance_store_school",
+        "type": "distance",
+        "from_id": "place.stationery_store",
+        "to_id": "place.school",
+        "value": 295,
+        "unit": "m"
+      },
+      {
+        "id": "relation.total_distance",
+        "type": "sum",
+        "from_ids": [
+          "relation.distance_home_store",
+          "relation.distance_store_school"
+        ],
+        "to_id": "answer.total_distance",
+        "equation": "487 + 295 = 782"
+      }
+    ],
+    "confidence": 1.0
+  },
+  "answer": {
+    "blanks": [
+      {
+        "id": "slot.expression_blank",
+        "type": "expression",
+        "value": "487 + 295 = 782",
+        "unit": ""
+      },
+      {
+        "id": "slot.answer_blank",
+        "type": "number",
+        "value": 782,
+        "unit": "m"
+      }
+    ],
+    "choices": [],
+    "answer_key": [
+      {
+        "blank_id": "slot.expression_blank",
+        "value": "487 + 295 = 782",
+        "unit": ""
+      },
+      {
+        "blank_id": "slot.answer_blank",
+        "value": 782,
+        "unit": "m"
+      }
+    ],
+    "confidence": 1.0,
+    "value": 782,
+    "unit": "m",
+    "sentence": "집에서 문구점을 거쳐 학교까지 간 거리는 782 m입니다."
+  }
+}

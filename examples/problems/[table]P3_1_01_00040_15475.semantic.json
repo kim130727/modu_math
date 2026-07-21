@@ -1,0 +1,110 @@
+{
+  "problem_id": "P3_1_01_00040_15475",
+  "problem_type": "numeric_answer_table_addition_problem",
+  "metadata": {
+    "title": "동화책과 위인전의 수",
+    "tags": [],
+    "question": "동화책과 위인전을 더하면 모두 몇 권입니까?",
+    "required_layout_ids": [
+      "slot.table.outer",
+      "slot.table.v1",
+      "slot.table.v2",
+      "slot.table.v3",
+      "slot.table.v4",
+      "slot.table.h1"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko-KR",
+    "instruction": "표에서 필요한 두 수를 찾아 더합니다."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "collection.class_library",
+        "type": "book_collection",
+        "label": "지희네 반 학급 문고"
+      },
+      {
+        "id": "quantity.biography_count",
+        "type": "quantity",
+        "label": "위인전 수",
+        "value": 324,
+        "unit": "권"
+      },
+      {
+        "id": "quantity.storybook_count",
+        "type": "quantity",
+        "label": "동화책 수",
+        "value": 210,
+        "unit": "권"
+      },
+      {
+        "id": "quantity.picture_book_count",
+        "type": "quantity",
+        "label": "그림책 수",
+        "value": 103,
+        "unit": "권"
+      },
+      {
+        "id": "quantity.reference_book_count",
+        "type": "quantity",
+        "label": "참고서 수",
+        "value": 101,
+        "unit": "권"
+      },
+      {
+        "id": "quantity.biography_storybook_total",
+        "type": "unknown_quantity",
+        "label": "위인전과 동화책의 전체 수",
+        "unit": "권"
+      }
+    ],
+    "relations": [
+      {
+        "id": "relation.target_is_sum",
+        "type": "sum_of",
+        "subject": "quantity.biography_storybook_total",
+        "objects": [
+          "quantity.biography_count",
+          "quantity.storybook_count"
+        ]
+      }
+    ],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "quantity.biography_count",
+          "quantity.storybook_count",
+          "quantity.picture_book_count",
+          "quantity.reference_book_count"
+        ],
+        "target_ref": "quantity.biography_storybook_total",
+        "condition_refs": [
+          "relation.target_is_sum"
+        ]
+      },
+      "plan": {
+        "method": "select_table_values_and_add",
+        "description": "표에서 위인전과 동화책의 수를 찾아 더합니다."
+      },
+      "execute": {
+        "expected_operations": [
+          "addition"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "subtraction_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "type": "numeric",
+    "value": 534,
+    "unit": "권",
+    "target_ref": "quantity.biography_storybook_total",
+    "derived_from": "step.add_target_books"
+  }
+}

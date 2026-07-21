@@ -1,0 +1,240 @@
+{
+  "schema": "modu.solvable.v1.2",
+  "problem_id": "P3_1_01_00040_02164",
+  "problem_type": "addition_rule_circle_fill_blank",
+  "inputs": {
+    "target_label": "두 원의 아래 빈칸에 들어갈 수",
+    "unit": "",
+    "quantities": {
+      "example_left": 259,
+      "example_right": 287,
+      "example_result": 546,
+      "item_1_left": 236,
+      "item_1_right": 465,
+      "item_2_left": 756,
+      "item_2_right": 549
+    },
+    "conditions": [
+      "보기에서 위쪽 두 수 259와 287을 더하면 아래 수 546이 됩니다.",
+      "각 원의 아래 빈칸에는 위쪽 두 수의 합을 씁니다."
+    ]
+  },
+  "given": [
+    {
+      "ref": "relation.example",
+      "value": {
+        "left": 259,
+        "right": 287,
+        "result": 546
+      }
+    },
+    {
+      "ref": "item_1.addends",
+      "value": {
+        "left": 236,
+        "right": 465
+      }
+    },
+    {
+      "ref": "item_2.addends",
+      "value": {
+        "left": 756,
+        "right": 549
+      }
+    }
+  ],
+  "target": {
+    "ref": "answer.all",
+    "type": "addition_rule_results"
+  },
+  "understanding": {
+    "summary": "보기에서 원의 위쪽 두 수를 더한 값이 아래 수가 되는 규칙을 찾아 두 빈칸을 구하는 문제입니다.",
+    "facts": [
+      {
+        "ref": "relation.example",
+        "label": "보기의 수 관계",
+        "value": "259 + 287 = 546",
+        "unit": "",
+        "source": "explicit"
+      },
+      {
+        "ref": "item_1.addends",
+        "label": "(1)의 위쪽 두 수",
+        "value": [
+          236,
+          465
+        ],
+        "unit": "",
+        "source": "explicit"
+      },
+      {
+        "ref": "item_2.addends",
+        "label": "(2)의 위쪽 두 수",
+        "value": [
+          756,
+          549
+        ],
+        "unit": "",
+        "source": "explicit"
+      }
+    ],
+    "unknowns": [
+      {
+        "ref": "item_1.sum",
+        "label": "(1)의 아래 빈칸 수",
+        "unit": "",
+        "source": "unknown"
+      },
+      {
+        "ref": "item_2.sum",
+        "label": "(2)의 아래 빈칸 수",
+        "unit": "",
+        "source": "unknown"
+      }
+    ],
+    "relation": {
+      "type": "addition_rule",
+      "statement": "원의 위쪽 왼쪽 수와 오른쪽 수를 더하면 아래쪽 수가 됩니다.",
+      "symbolic": "bottom = top_left + top_right",
+      "uses": [
+        "item_1.addends",
+        "item_2.addends"
+      ],
+      "result": "answer.all"
+    },
+    "diagnostic_questions": [
+      {
+        "id": "understand.example_rule",
+        "type": "multiple_choice",
+        "prompt": "보기에서 546은 어떻게 구했나요?",
+        "choices": [
+          "259와 287을 더했습니다.",
+          "287에서 259를 뺐습니다.",
+          "259에 2를 곱했습니다."
+        ],
+        "answer_index": 0
+      },
+      {
+        "id": "understand.apply_rule",
+        "type": "multiple_choice",
+        "prompt": "(1)의 빈칸을 구하는 식은 무엇인가요?",
+        "choices": [
+          "236 + 465",
+          "465 - 236",
+          "236 + 236"
+        ],
+        "answer_index": 0
+      }
+    ],
+    "student_restatement": {
+      "prompt": "문제의 규칙을 말해 볼까요?",
+      "template": "원의 위쪽 두 수 {left}와 {right}를 {operation}하여 아래 수를 구합니다.",
+      "answer": "원의 위쪽 두 수를 더하여 아래 빈칸에 그 합을 씁니다."
+    }
+  },
+  "method": "보기에서 찾은 규칙에 따라 각 원의 위쪽 두 수를 더합니다.",
+  "plan": [
+    "보기의 259, 287, 546 사이에서 덧셈 규칙을 찾습니다.",
+    "(1)의 위쪽 두 수 236과 465를 더합니다.",
+    "(2)의 위쪽 두 수 756과 549를 더합니다.",
+    "구한 합을 각각 아래 빈칸에 씁니다."
+  ],
+  "steps": [
+    {
+      "id": "step.find_rule",
+      "goal": "보기의 수 관계에서 규칙을 찾습니다.",
+      "uses": [
+        "example.addend_left",
+        "example.addend_right",
+        "example.sum"
+      ],
+      "expr": "259 + 287",
+      "value": {
+        "sum": 546,
+        "ref": "example.sum"
+      },
+      "explanation": "259와 287을 더하면 546이므로 위쪽 두 수의 합을 아래에 쓰는 규칙입니다."
+    },
+    {
+      "id": "step.item_1",
+      "goal": "(1)의 빈칸에 들어갈 수를 구합니다.",
+      "uses": [
+        "item_1.addend_left",
+        "item_1.addend_right"
+      ],
+      "expr": "236 + 465",
+      "value": {
+        "sum": 701,
+        "ref": "item_1.sum"
+      },
+      "explanation": "236과 465를 더하면 701이므로 (1)의 빈칸에는 701을 씁니다."
+    },
+    {
+      "id": "step.item_2",
+      "goal": "(2)의 빈칸에 들어갈 수를 구합니다.",
+      "uses": [
+        "item_2.addend_left",
+        "item_2.addend_right"
+      ],
+      "expr": "756 + 549",
+      "value": {
+        "sum": 1305,
+        "ref": "item_2.sum"
+      },
+      "explanation": "756과 549를 더하면 1305이므로 (2)의 빈칸에는 1305를 씁니다."
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.item_1",
+      "description": "(1)의 합에서 465를 빼면 236이 됩니다.",
+      "expr": "701 - 465",
+      "expected": 236,
+      "actual": 236,
+      "pass": true
+    },
+    {
+      "id": "check.item_2",
+      "description": "(2)의 합에서 549를 빼면 756이 됩니다.",
+      "expr": "1305 - 549",
+      "expected": 756,
+      "actual": 756,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "blanks": [
+      {
+        "id": "slot.answer_1",
+        "type": "number",
+        "value": 701,
+        "unit": ""
+      },
+      {
+        "id": "slot.answer_2",
+        "type": "number",
+        "value": 1305,
+        "unit": ""
+      }
+    ],
+    "choices": [],
+    "answer_key": [
+      {
+        "blank_id": "slot.answer_1",
+        "value": 701,
+        "unit": ""
+      },
+      {
+        "blank_id": "slot.answer_2",
+        "value": 1305,
+        "unit": ""
+      }
+    ],
+    "value": [
+      701,
+      1305
+    ],
+    "unit": "",
+    "sentence": "(1)은 701, (2)는 1305입니다."
+  }
+}

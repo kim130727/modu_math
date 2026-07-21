@@ -1,0 +1,44 @@
+{
+  "problem_id": "S3_초등_3_008780",
+  "view_box": {
+    "width": 705.0,
+    "height": 250.0,
+    "background": "#FFFFFF"
+  },
+  "elements": [
+    {
+      "id": "slot.q.text.text",
+      "type": "text",
+      "attributes": {
+        "x": 45.0,
+        "y": 39.0,
+        "fill": "#111111",
+        "font-family": "Noto Sans KR, sans-serif",
+        "font-size": 28
+      },
+      "source_ref": "slot.q.text",
+      "refs": {
+        "layout_slot_id": "slot.q.text"
+      },
+      "text": "계산하여 들이가 더 많은 것의 기호를 선택하세요."
+    },
+    {
+      "id": "slot.choice.box.rect",
+      "type": "rect",
+      "attributes": {
+        "x": 110.0,
+        "y": 80.0,
+        "width": 455.0,
+        "height": 155.0,
+        "fill": "none",
+        "stroke": "#F6A24A",
+        "stroke-width": 1.5
+      },
+      "source_ref": "slot.choice.box",
+      "refs": {
+        "layout_slot_id": "slot.choice.box"
+      }
+    }
+  ],
+  "contract_version": "modu_math.renderer.v2"
+}

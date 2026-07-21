@@ -1,0 +1,81 @@
+{
+  "problem_id": "S3_초등_3_008819",
+  "problem_type": "비교_들이",
+  "metadata": {
+    "title": "그릇에 담긴 물의 높이 비교",
+    "tags": [],
+    "instruction": "그림을 보고 들이가 더 많은 것을 선택하시오.",
+    "question": "같은 그릇에 옮겨 담았을 때 꽃병과 음료수병 중 들이가 더 많은 것을 고르는 문제",
+    "required_layout_ids": [
+      "slot.inserted.image.1"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.flower_vase",
+        "type": "container",
+        "name": "꽃병"
+      },
+      {
+        "id": "obj.drink_bottle",
+        "type": "container",
+        "name": "음료수병"
+      },
+      {
+        "id": "obj.left_bowl_water",
+        "type": "water_in_bowl",
+        "name": "왼쪽 그릇의 물"
+      },
+      {
+        "id": "obj.right_bowl_water",
+        "type": "water_in_bowl",
+        "name": "오른쪽 그릇의 물"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.flower_vase",
+          "obj.drink_bottle",
+          "rel.compare_water_height"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.more_capacity"
+        ]
+      },
+      "plan": {
+        "method": "시각비교",
+        "description": "같은 그릇에 옮겨 담았을 때 물 높이가 더 높은 쪽을 더 많은 들이로 판단한다."
+      },
+      "execute": {
+        "expected_operations": [
+          "compare_bowl_water_heights",
+          "select_container_with_higher_water_level"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "visual_height_comparison"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "선택",
+      "description": "꽃병과 음료수병 중 들이가 더 많은 것"
+    },
+    "value": "꽃병",
+    "unit": ""
+  }
+}

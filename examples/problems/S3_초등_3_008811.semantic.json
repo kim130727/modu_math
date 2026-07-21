@@ -1,0 +1,73 @@
+{
+  "problem_id": "S3_초등_3_008811",
+  "problem_type": "들이 비교",
+  "metadata": {
+    "title": "들이 비교",
+    "tags": [],
+    "question": "주스병과 물병의 들이를 비교하는 문제",
+    "required_layout_ids": [
+      "slot.bubble",
+      "slot.bubble.tail",
+      "slot.inserted.image.1",
+      "slot.inserted.image.2",
+      "slot.inserted.rightArrow.1"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "알맞은 말을 선택하세요."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.juice_bottle",
+        "type": "container",
+        "name": "주스병"
+      },
+      {
+        "id": "obj.water_bottle",
+        "type": "container",
+        "name": "물병"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.juice_bottle",
+          "obj.water_bottle",
+          "rel.compare_capacity"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": []
+      },
+      "plan": {
+        "method": "비교하기",
+        "description": "주스병의 물을 물병에 모두 옮겨 담을 수 있는지 보고 들이가 더 큰 쪽을 찾는다."
+      },
+      "execute": {
+        "expected_operations": [
+          "그림과 설명을 바탕으로 비교 관계 확인하기",
+          "더 많은 들이를 가진 용기 선택하기"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "설명 문장과 정답 표기 일치 여부 확인"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "choice",
+      "description": "들이가 더 많은 용기"
+    },
+    "value": "물병",
+    "unit": ""
+  }
+}

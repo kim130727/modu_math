@@ -1,0 +1,80 @@
+{
+  "problem_id": "S3_초등_3_008820",
+  "problem_type": "comparison_choice",
+  "metadata": {
+    "title": "들이가 가장 적은 그릇 고르기",
+    "tags": [],
+    "question": "그림을 보고 들이가 가장 적은 그릇을 고르는 문제",
+    "required_layout_ids": [
+      "slot.inserted.image.1"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "들이가 가장 적은 것을 선택하세요.",
+    "points": 5
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.ga_bowl",
+        "type": "container",
+        "label": "가 그릇"
+      },
+      {
+        "id": "obj.na_bowl",
+        "type": "container",
+        "label": "나 그릇"
+      },
+      {
+        "id": "obj.da_bowl",
+        "type": "container",
+        "label": "다 그릇"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.ga_bowl",
+          "obj.na_bowl",
+          "obj.da_bowl",
+          "rel.compare_water_level"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.choose_min_capacity"
+        ]
+      },
+      "plan": {
+        "method": "visual_comparison",
+        "description": "그릇에 담긴 물의 높이를 비교하여 들이를 판단한다."
+      },
+      "execute": {
+        "expected_operations": [
+          "compare_water_levels",
+          "identify_lowest_level",
+          "select_min_capacity_bowl"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "water_level_consistency_check",
+          "choice_matches_printed_explanation"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "selected_container",
+      "description": "들이가 가장 적은 그릇"
+    },
+    "value": 2,
+    "unit": ""
+  }
+}

@@ -1,0 +1,160 @@
+{
+  "schema": "modu.solvable.v1.2",
+  "problem_id": "P3_1_01_00040_15475",
+  "problem_type": "numeric_answer_table_addition_problem",
+  "inputs": {
+    "target_label": "위인전과 동화책의 전체 수",
+    "unit": "권",
+    "book_counts": {
+      "biography": 324,
+      "storybook": 210,
+      "picture_book": 103,
+      "reference_book": 101
+    }
+  },
+  "given": [
+    {
+      "ref": "quantity.biography_count",
+      "value": {
+        "count": 324,
+        "unit": "권"
+      }
+    },
+    {
+      "ref": "quantity.storybook_count",
+      "value": {
+        "count": 210,
+        "unit": "권"
+      }
+    },
+    {
+      "ref": "quantity.picture_book_count",
+      "value": {
+        "count": 103,
+        "unit": "권"
+      }
+    },
+    {
+      "ref": "quantity.reference_book_count",
+      "value": {
+        "count": 101,
+        "unit": "권"
+      }
+    }
+  ],
+  "target": {
+    "ref": "quantity.biography_storybook_total",
+    "type": "number"
+  },
+  "method": "표에서 위인전 수 324권과 동화책 수 210권을 찾아 두 수를 더합니다.",
+  "understanding": {
+    "summary": "표에서 위인전과 동화책의 수를 찾아 두 수의 합을 구하는 문제입니다.",
+    "facts": [
+      {
+        "ref": "quantity.biography_count",
+        "label": "위인전 수",
+        "value": 324,
+        "unit": "권",
+        "source": "explicit"
+      },
+      {
+        "ref": "quantity.storybook_count",
+        "label": "동화책 수",
+        "value": 210,
+        "unit": "권",
+        "source": "explicit"
+      },
+      {
+        "ref": "quantity.picture_book_count",
+        "label": "그림책 수",
+        "value": 103,
+        "unit": "권",
+        "source": "explicit"
+      },
+      {
+        "ref": "quantity.reference_book_count",
+        "label": "참고서 수",
+        "value": 101,
+        "unit": "권",
+        "source": "explicit"
+      }
+    ],
+    "unknowns": [
+      {
+        "ref": "quantity.biography_storybook_total",
+        "label": "위인전과 동화책의 전체 수",
+        "unit": "권"
+      }
+    ],
+    "relation": {
+      "type": "part_part_whole_addition",
+      "statement": "위인전 수와 동화책 수를 더하면 두 종류의 책 전체 수가 됩니다.",
+      "symbolic": "324 + 210 = □",
+      "uses": [
+        "quantity.biography_count",
+        "quantity.storybook_count"
+      ],
+      "result": "quantity.biography_storybook_total"
+    },
+    "diagnostic_questions": [
+      {
+        "id": "understand.target",
+        "type": "multiple_choice",
+        "prompt": "이 문제에서 더해야 하는 두 종류의 책은 무엇인가요?",
+        "choices": [
+          "위인전과 동화책",
+          "동화책과 그림책",
+          "그림책과 참고서"
+        ],
+        "answer_index": 0
+      },
+      {
+        "id": "understand.values",
+        "type": "multiple_choice",
+        "prompt": "표에서 위인전과 동화책의 수를 바르게 찾은 것은 무엇인가요?",
+        "choices": [
+          "위인전 324권, 동화책 210권",
+          "위인전 210권, 동화책 103권",
+          "위인전 103권, 동화책 101권"
+        ],
+        "answer_index": 0
+      }
+    ]
+  },
+  "plan": [
+    "표에서 위인전의 수 324권을 찾습니다.",
+    "표에서 동화책의 수 210권을 찾습니다.",
+    "두 종류의 책 수를 더합니다."
+  ],
+  "steps": [
+    {
+      "id": "step.add_target_books",
+      "expr": "324 + 210",
+      "value": 534,
+      "explanation": "동화책과 위인전을 모두 세어야 하므로 324와 210을 더합니다."
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.subtract_storybooks",
+      "expr": "534 - 210",
+      "expected": 324,
+      "actual": 324,
+      "pass": true
+    },
+    {
+      "id": "check.subtract_biographies",
+      "expr": "534 - 324",
+      "expected": 210,
+      "actual": 210,
+      "pass": true
+    }
+  ],
+  "answer": {
+    "type": "numeric",
+    "value": 534,
+    "unit": "권",
+    "target_ref": "quantity.biography_storybook_total",
+    "derived_from": "step.add_target_books"
+  }
+}

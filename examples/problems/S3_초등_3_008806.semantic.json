@@ -1,0 +1,81 @@
+{
+  "problem_id": "S3_초등_3_008806",
+  "problem_type": "weight_comparison_selection",
+  "metadata": {
+    "title": "무게가 100 g보다 더 가벼운 것을 선택하세요",
+    "tags": [],
+    "question": "무게가 100 g보다 더 가벼운 것을 선택하세요.",
+    "required_layout_ids": [
+      "slot.inserted.image.1",
+      "slot.inserted.image.2",
+      "slot.inserted.image.3",
+      "slot.inserted.rect.1"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "무게가 100 g보다 더 가벼운 것을 선택하세요."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.reference_weight",
+        "type": "weight",
+        "value": 100,
+        "unit": "g"
+      },
+      {
+        "id": "obj.choice.strawberry",
+        "type": "object",
+        "name": "딸기"
+      },
+      {
+        "id": "obj.choice.pineapple",
+        "type": "object",
+        "name": "파인애플"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.reference_weight",
+          "obj.choice.strawberry",
+          "obj.choice.pineapple"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.compare.weight",
+          "rel.compare.weight.2"
+        ]
+      },
+      "plan": {
+        "method": "comparison_selection",
+        "description": "기준 무게 100 g과 그림의 대상을 비교하여 더 가벼운 대상을 찾는다."
+      },
+      "execute": {
+        "expected_operations": [
+          "compare_with_reference",
+          "select_lighter_object"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "selection_matches_comparison_condition"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "selected_object",
+      "description": "100 g보다 더 가벼운 것"
+    },
+    "value": 0,
+    "unit": ""
+  }
+}

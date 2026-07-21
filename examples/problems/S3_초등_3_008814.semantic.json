@@ -1,0 +1,71 @@
+{
+  "problem_id": "S3_초등_3_008814",
+  "problem_type": "compare_capacity",
+  "metadata": {
+    "title": "들이가 더 많은 그릇",
+    "tags": [],
+    "instruction": "들어가 더 많은 그릇을 선택하세요.",
+    "question": "같은 모양과 크기의 그릇에 옮겨 담았을 때 더 들이가 많은 그릇을 고르는 문제",
+    "required_layout_ids": [
+      "slot.inserted.image.1"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko"
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.bowl_a",
+        "type": "container",
+        "label": "가"
+      },
+      {
+        "id": "obj.bowl_b",
+        "type": "container",
+        "label": "나"
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.bowl_a",
+          "obj.bowl_b"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.same_shape_size",
+          "rel.height_compare"
+        ]
+      },
+      "plan": {
+        "method": "compare_water_level",
+        "description": "같은 모양과 크기의 그릇에서 물 높이가 더 높은 쪽을 고른다."
+      },
+      "execute": {
+        "expected_operations": [
+          "compare_levels",
+          "select_higher_level_container"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "visual_comparison"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "select_container",
+      "description": "들이가 더 많은 그릇"
+    },
+    "value": "나",
+    "unit": ""
+  }
+}

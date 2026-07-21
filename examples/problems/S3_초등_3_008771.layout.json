@@ -1,0 +1,288 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "S3_초등_3_008771",
+  "title": "실제 무게에 가장 가깝게 어림한 사람",
+  "canvas": {
+    "width": 960,
+    "height": 392,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.table_1.outer",
+        "slot.table_1.v1",
+        "slot.table_1.v2",
+        "slot.table_1.v3",
+        "slot.table_1.h1",
+        "slot.q1",
+        "slot.q2",
+        "slot.choice",
+        "slot.table_1.r1c1",
+        "slot.table_1.r1c2",
+        "slot.table_1.r1c3",
+        "slot.table_1.r1c4",
+        "slot.table_1.r2c1",
+        "slot.table_1.r2c2",
+        "slot.table_1.r2c3",
+        "slot.table_1.r2c4"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.q1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "주연, 선우, 다혜는 실제 무게가 2 kg 100 g인 고양이의 무게를 다음과 같이",
+        "style_role": "question",
+        "x": 18.0,
+        "y": 44.0,
+        "font_size": 28,
+        "max_width": 927.36,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.q2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "어림하였습니다. 실제 무게에 가장 가깝게 어림한 사람은 누구인가요?",
+        "style_role": "question",
+        "x": 18.0,
+        "y": 84.0,
+        "font_size": 28,
+        "max_width": 745.92,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.choice",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "( 주연 , 선우 , 다혜 )",
+        "style_role": "note",
+        "x": 335.0,
+        "y": 379.0,
+        "font_size": 28,
+        "max_width": 322.56,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.table_1.outer",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 60.0,
+        "y": 115.0,
+        "width": 705.0,
+        "height": 165.0,
+        "stroke": "#111827",
+        "stroke_width": 1.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.table_1.v1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 240.0,
+        "y1": 115.0,
+        "x2": 240.0,
+        "y2": 280.0,
+        "stroke": "#111827",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.table_1.v2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 430.0,
+        "y1": 115.0,
+        "x2": 430.0,
+        "y2": 280.0,
+        "stroke": "#111827",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.table_1.v3",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 605.0,
+        "y1": 115.0,
+        "x2": 605.0,
+        "y2": 280.0,
+        "stroke": "#111827",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.table_1.h1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 60.0,
+        "y1": 195.0,
+        "x2": 765.0,
+        "y2": 195.0,
+        "stroke": "#111827",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.table_1.r1c1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "이름",
+        "style_role": "table",
+        "x": 150.0,
+        "y": 167.0,
+        "font_size": 28,
+        "max_width": 160.0,
+        "anchor": "middle",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.table_1.r1c2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "주연",
+        "style_role": "table",
+        "x": 335.0,
+        "y": 167.0,
+        "font_size": 28,
+        "max_width": 170.0,
+        "anchor": "middle",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.table_1.r1c3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "선우",
+        "style_role": "table",
+        "x": 520.0,
+        "y": 167.0,
+        "font_size": 28,
+        "max_width": 155.0,
+        "anchor": "middle",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.table_1.r1c4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "다혜",
+        "style_role": "table",
+        "x": 685.0,
+        "y": 167.0,
+        "font_size": 28,
+        "max_width": 140.0,
+        "anchor": "middle",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.table_1.r2c1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "어림한 무게",
+        "style_role": "table",
+        "x": 150.0,
+        "y": 249.0,
+        "font_size": 28,
+        "max_width": 160.0,
+        "anchor": "middle",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.table_1.r2c2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "약 2kg",
+        "style_role": "table",
+        "x": 335.0,
+        "y": 249.0,
+        "font_size": 28,
+        "max_width": 170.0,
+        "anchor": "middle",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.table_1.r2c3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "약 2kg 300g",
+        "style_role": "table",
+        "x": 520.897,
+        "y": 248.665,
+        "font_size": 28,
+        "max_width": 155.0,
+        "anchor": "middle",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.table_1.r2c4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "약 1kg 800g",
+        "style_role": "table",
+        "x": 684.103,
+        "y": 247.768,
+        "font_size": 28,
+        "max_width": 140.0,
+        "anchor": "middle",
+        "fill": "#111827"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.table_1.outer",
+    "slot.table_1.v1",
+    "slot.table_1.v2",
+    "slot.table_1.v3",
+    "slot.table_1.h1",
+    "slot.q1",
+    "slot.q2",
+    "slot.choice",
+    "slot.table_1.r1c1",
+    "slot.table_1.r1c2",
+    "slot.table_1.r1c3",
+    "slot.table_1.r1c4",
+    "slot.table_1.r2c1",
+    "slot.table_1.r2c2",
+    "slot.table_1.r2c3",
+    "slot.table_1.r2c4"
+  ]
+}

@@ -1,0 +1,81 @@
+{
+  "problem_id": "S3_초등_3_008810",
+  "problem_type": "unit_selection",
+  "metadata": {
+    "title": "알맞은 단위 선택",
+    "tags": [],
+    "question": "냉장고의 무게에 알맞은 단위를 고르는 문제",
+    "required_layout_ids": [
+      "slot.inserted.image.1"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "알맞은 단위를 선택하세요."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.fridge",
+        "type": "object",
+        "name": "냉장고"
+      },
+      {
+        "id": "obj.mass_value",
+        "type": "quantity",
+        "attribute": "무게",
+        "value": 80
+      },
+      {
+        "id": "obj.options",
+        "type": "choices",
+        "values": [
+          "g",
+          "kg",
+          "t"
+        ]
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.fridge",
+          "obj.mass_value",
+          "obj.options"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.mass_matches_unit"
+        ]
+      },
+      "plan": {
+        "method": "unit_selection",
+        "description": "무게 80에 어울리는 단위를 보기에서 고른다."
+      },
+      "execute": {
+        "expected_operations": [
+          "compare_units",
+          "select_appropriate_unit"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "reasonableness_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "selected_unit",
+      "description": "냉장고의 무게 80에 알맞은 단위"
+    },
+    "value": "kg",
+    "unit": ""
+  }
+}

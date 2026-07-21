@@ -1,0 +1,556 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "P3_1_01_00040_02161",
+  "title": "문방구를 들러 학교까지 간 거리",
+  "canvas": {
+    "width": 650,
+    "height": 240,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "vertical",
+      "slot_ids": [
+        "slot.instruction",
+        "slot.expression_blank",
+        "slot.answer_blank"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.house_body",
+        "slot.house_roof",
+        "slot.house_door",
+        "slot.house_window",
+        "slot.house_chimney",
+        "slot.store_body",
+        "slot.store_sign",
+        "slot.store_awning",
+        "slot.store_door",
+        "slot.store_window",
+        "slot.school_body",
+        "slot.school_roof",
+        "slot.school_door",
+        "slot.school_window_1",
+        "slot.school_window_2",
+        "slot.route_home_store",
+        "slot.route_store_school",
+        "slot.point_home",
+        "slot.point_store",
+        "slot.point_school",
+        "slot.house_label",
+        "slot.store_label",
+        "slot.school_label",
+        "slot.distance_487",
+        "slot.distance_295"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.instruction",
+      "kind": "text_box",
+      "prompt": "문방구를 거쳐 학교까지 간 전체 거리를 구하라는 문제",
+      "content": {
+        "text": "송은이가 문방구를 들러 학교에 가려고 합니다. 집에서 학교까지의 거리를 구하시오.",
+        "style_role": "body",
+        "x": 20.0,
+        "y": 8.0,
+        "width": 610.0,
+        "height": 52.0,
+        "align": "left",
+        "valign": "top",
+        "font_size": 18,
+        "line_height": 1.2,
+        "fill": "#111111",
+        "semantic_role": "instruction"
+      }
+    },
+    {
+      "id": "slot.house_body",
+      "kind": "rect",
+      "prompt": "송은이네 집 건물",
+      "content": {
+        "x": 42.0,
+        "y": 64.0,
+        "width": 42.0,
+        "height": 34.0,
+        "stroke": "#B46F44",
+        "stroke_width": 1.5,
+        "fill": "#E9A068"
+      }
+    },
+    {
+      "id": "slot.house_roof",
+      "kind": "polygon",
+      "prompt": "송은이네 집 지붕",
+      "content": {
+        "points": [
+          [
+            34.0,
+            67.0
+          ],
+          [
+            63.0,
+            45.0
+          ],
+          [
+            92.0,
+            67.0
+          ]
+        ],
+        "stroke": "#B94E3C",
+        "stroke_width": 1.5,
+        "fill": "#D9674E"
+      }
+    },
+    {
+      "id": "slot.house_door",
+      "kind": "rect",
+      "prompt": "송은이네 집 문",
+      "content": {
+        "x": 58.0,
+        "y": 78.0,
+        "width": 11.0,
+        "height": 20.0,
+        "stroke": "#6E442E",
+        "stroke_width": 1.0,
+        "fill": "#8B5A3C"
+      }
+    },
+    {
+      "id": "slot.house_window",
+      "kind": "rect",
+      "prompt": "송은이네 집 창문",
+      "content": {
+        "x": 74.0,
+        "y": 73.0,
+        "width": 9.0,
+        "height": 9.0,
+        "stroke": "#5D91A8",
+        "stroke_width": 1.0,
+        "fill": "#BFE5F7"
+      }
+    },
+    {
+      "id": "slot.house_chimney",
+      "kind": "rect",
+      "prompt": "송은이네 집 굴뚝",
+      "content": {
+        "x": 66.0,
+        "y": 43.0,
+        "width": 6.0,
+        "height": 11.0,
+        "stroke": "#7A372E",
+        "stroke_width": 1.0,
+        "fill": "#9B4B3C"
+      }
+    },
+    {
+      "id": "slot.house_label",
+      "kind": "text",
+      "prompt": "출발 장소 이름",
+      "content": {
+        "text": "송은이네 집",
+        "style_role": "body",
+        "x": 24.0,
+        "y": 116.0,
+        "font_size": 14,
+        "anchor": "start",
+        "fill": "#444444"
+      }
+    },
+    {
+      "id": "slot.point_home",
+      "kind": "circle",
+      "prompt": "집 위치를 나타내는 점",
+      "content": {
+        "cx": 87.0,
+        "cy": 83.0,
+        "r": 3.0,
+        "stroke": "#7A4A35",
+        "stroke_width": 1.0,
+        "fill": "#7A4A35"
+      }
+    },
+    {
+      "id": "slot.store_body",
+      "kind": "rect",
+      "prompt": "문방구 건물",
+      "content": {
+        "x": 226.0,
+        "y": 47.0,
+        "width": 50.0,
+        "height": 56.0,
+        "stroke": "#6C929E",
+        "stroke_width": 1.5,
+        "fill": "#D8EEF4"
+      }
+    },
+    {
+      "id": "slot.store_sign",
+      "kind": "rect",
+      "prompt": "문방구 간판",
+      "content": {
+        "x": 229.0,
+        "y": 50.0,
+        "width": 44.0,
+        "height": 15.0,
+        "stroke": "#B68E58",
+        "stroke_width": 1.0,
+        "fill": "#F5E6CB"
+      }
+    },
+    {
+      "id": "slot.store_awning",
+      "kind": "polygon",
+      "prompt": "문방구 차양",
+      "content": {
+        "points": [
+          [
+            229.0,
+            66.0
+          ],
+          [
+            273.0,
+            66.0
+          ],
+          [
+            268.0,
+            76.0
+          ],
+          [
+            234.0,
+            76.0
+          ]
+        ],
+        "stroke": "#B94E4E",
+        "stroke_width": 1.0,
+        "fill": "#E56E6E"
+      }
+    },
+    {
+      "id": "slot.store_door",
+      "kind": "rect",
+      "prompt": "문방구 문",
+      "content": {
+        "x": 252.0,
+        "y": 77.0,
+        "width": 17.0,
+        "height": 26.0,
+        "stroke": "#5E93A2",
+        "stroke_width": 1.0,
+        "fill": "#8EC4D5"
+      }
+    },
+    {
+      "id": "slot.store_window",
+      "kind": "rect",
+      "prompt": "문방구 창문",
+      "content": {
+        "x": 232.0,
+        "y": 78.0,
+        "width": 15.0,
+        "height": 15.0,
+        "stroke": "#5E93A2",
+        "stroke_width": 1.0,
+        "fill": "#BDE5F2"
+      }
+    },
+    {
+      "id": "slot.store_label",
+      "kind": "text",
+      "prompt": "중간 장소 이름",
+      "content": {
+        "text": "문방구",
+        "style_role": "body",
+        "x": 283.0,
+        "y": 86.0,
+        "font_size": 14,
+        "anchor": "start",
+        "fill": "#444444"
+      }
+    },
+    {
+      "id": "slot.point_store",
+      "kind": "circle",
+      "prompt": "문방구 위치를 나타내는 점",
+      "content": {
+        "cx": 232.0,
+        "cy": 93.0,
+        "r": 3.0,
+        "stroke": "#7A4A35",
+        "stroke_width": 1.0,
+        "fill": "#7A4A35"
+      }
+    },
+    {
+      "id": "slot.school_body",
+      "kind": "rect",
+      "prompt": "학교 건물",
+      "content": {
+        "x": 248.0,
+        "y": 156.0,
+        "width": 49.0,
+        "height": 37.0,
+        "stroke": "#B79A4E",
+        "stroke_width": 1.5,
+        "fill": "#F4D37A"
+      }
+    },
+    {
+      "id": "slot.school_roof",
+      "kind": "polygon",
+      "prompt": "학교 지붕",
+      "content": {
+        "points": [
+          [
+            242.0,
+            158.0
+          ],
+          [
+            272.0,
+            139.0
+          ],
+          [
+            303.0,
+            158.0
+          ]
+        ],
+        "stroke": "#62975A",
+        "stroke_width": 1.5,
+        "fill": "#8FC487"
+      }
+    },
+    {
+      "id": "slot.school_door",
+      "kind": "rect",
+      "prompt": "학교 출입문",
+      "content": {
+        "x": 266.0,
+        "y": 174.0,
+        "width": 13.0,
+        "height": 19.0,
+        "stroke": "#5C8998",
+        "stroke_width": 1.0,
+        "fill": "#8AB8C8"
+      }
+    },
+    {
+      "id": "slot.school_window_1",
+      "kind": "rect",
+      "prompt": "학교 왼쪽 창문",
+      "content": {
+        "x": 253.0,
+        "y": 164.0,
+        "width": 8.0,
+        "height": 8.0,
+        "stroke": "#5D91A8",
+        "stroke_width": 1.0,
+        "fill": "#BFE5F7"
+      }
+    },
+    {
+      "id": "slot.school_window_2",
+      "kind": "rect",
+      "prompt": "학교 오른쪽 창문",
+      "content": {
+        "x": 284.0,
+        "y": 164.0,
+        "width": 8.0,
+        "height": 8.0,
+        "stroke": "#5D91A8",
+        "stroke_width": 1.0,
+        "fill": "#BFE5F7"
+      }
+    },
+    {
+      "id": "slot.school_label",
+      "kind": "text",
+      "prompt": "도착 장소 이름",
+      "content": {
+        "text": "학교",
+        "style_role": "body",
+        "x": 305.0,
+        "y": 187.0,
+        "font_size": 14,
+        "anchor": "start",
+        "fill": "#444444"
+      }
+    },
+    {
+      "id": "slot.point_school",
+      "kind": "circle",
+      "prompt": "학교 위치를 나타내는 점",
+      "content": {
+        "cx": 268.0,
+        "cy": 143.0,
+        "r": 3.0,
+        "stroke": "#7A4A35",
+        "stroke_width": 1.0,
+        "fill": "#7A4A35"
+      }
+    },
+    {
+      "id": "slot.route_home_store",
+      "kind": "line",
+      "prompt": "집에서 문방구까지의 이동 경로",
+      "content": {
+        "x1": 87.0,
+        "y1": 83.0,
+        "x2": 232.0,
+        "y2": 93.0,
+        "stroke": "#8A6A58",
+        "stroke_width": 1.5
+      }
+    },
+    {
+      "id": "slot.route_store_school",
+      "kind": "line",
+      "prompt": "문방구에서 학교까지의 이동 경로",
+      "content": {
+        "x1": 232.0,
+        "y1": 93.0,
+        "x2": 268.0,
+        "y2": 143.0,
+        "stroke": "#8A6A58",
+        "stroke_width": 2.0
+      }
+    },
+    {
+      "id": "slot.distance_487",
+      "kind": "text",
+      "prompt": "집에서 문방구까지의 거리 487미터",
+      "content": {
+        "text": "487 m",
+        "style_role": "body",
+        "x": 157.0,
+        "y": 73.0,
+        "font_size": 16,
+        "anchor": "middle",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.distance_295",
+      "kind": "text",
+      "prompt": "문방구에서 학교까지의 거리 295미터",
+      "content": {
+        "text": "295 m",
+        "style_role": "body",
+        "x": 272.0,
+        "y": 118.0,
+        "font_size": 16,
+        "anchor": "middle",
+        "fill": "#222222"
+      }
+    },
+    {
+      "id": "slot.expression_blank",
+      "kind": "blank",
+      "prompt": "집에서 학교까지의 거리를 구하는 식",
+      "content": {
+        "placeholder": ""
+      }
+    },
+    {
+      "id": "slot.answer_blank",
+      "kind": "blank",
+      "prompt": "집에서 학교까지의 전체 거리",
+      "content": {
+        "placeholder": ""
+      }
+    }
+  ],
+  "groups": [
+    {
+      "id": "group.home",
+      "role": "place_home",
+      "member_ids": [
+        "slot.house_body",
+        "slot.house_roof",
+        "slot.house_door",
+        "slot.house_window",
+        "slot.house_chimney",
+        "slot.house_label",
+        "slot.point_home"
+      ]
+    },
+    {
+      "id": "group.store",
+      "role": "place_stationery_store",
+      "member_ids": [
+        "slot.store_body",
+        "slot.store_sign",
+        "slot.store_awning",
+        "slot.store_door",
+        "slot.store_window",
+        "slot.store_label",
+        "slot.point_store"
+      ]
+    },
+    {
+      "id": "group.school",
+      "role": "place_school",
+      "member_ids": [
+        "slot.school_body",
+        "slot.school_roof",
+        "slot.school_door",
+        "slot.school_window_1",
+        "slot.school_window_2",
+        "slot.school_label",
+        "slot.point_school"
+      ]
+    },
+    {
+      "id": "group.route",
+      "role": "two_segment_route",
+      "member_ids": [
+        "slot.route_home_store",
+        "slot.route_store_school",
+        "slot.distance_487",
+        "slot.distance_295"
+      ]
+    }
+  ],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.instruction",
+    "slot.expression_blank",
+    "slot.answer_blank",
+    "region.diagram",
+    "slot.house_body",
+    "slot.house_roof",
+    "slot.house_door",
+    "slot.house_window",
+    "slot.house_chimney",
+    "slot.store_body",
+    "slot.store_sign",
+    "slot.store_awning",
+    "slot.store_door",
+    "slot.store_window",
+    "slot.school_body",
+    "slot.school_roof",
+    "slot.school_door",
+    "slot.school_window_1",
+    "slot.school_window_2",
+    "slot.route_home_store",
+    "slot.route_store_school",
+    "slot.point_home",
+    "slot.point_store",
+    "slot.point_school",
+    "slot.house_label",
+    "slot.store_label",
+    "slot.school_label",
+    "slot.distance_487",
+    "slot.distance_295"
+  ]
+}

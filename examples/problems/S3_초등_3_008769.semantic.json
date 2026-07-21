@@ -1,0 +1,75 @@
+{
+  "problem_id": "S3_초등_3_008769",
+  "problem_type": "weight_estimation_choice",
+  "metadata": {
+    "title": "무게를 알맞게 어림한 것을 찾아 선택하세요.",
+    "tags": [],
+    "question": "무게를 알맞게 어림한 것을 찾아 선택하세요.",
+    "required_layout_ids": [
+      "slot.inserted.image.1"
+    ],
+    "extraction_confidence": 1.0,
+    "language": "ko",
+    "instruction": "그림을 보고 알맞은 무게 단위를 고른다."
+  },
+  "domain": {
+    "objects": [
+      {
+        "id": "obj.vehicle",
+        "type": "vehicle",
+        "name": "경찰차"
+      },
+      {
+        "id": "obj.choices",
+        "type": "weight_choices",
+        "values": [
+          "1 g",
+          "1 kg",
+          "1 t"
+        ]
+      }
+    ],
+    "relations": [],
+    "confidence": 1.0,
+    "problem_solving": {
+      "understand": {
+        "given_refs": [
+          "obj.vehicle",
+          "obj.choices"
+        ],
+        "target_ref": "answer.target",
+        "condition_refs": [
+          "rel.compare_weight"
+        ]
+      },
+      "plan": {
+        "method": "relative_weight_choice",
+        "description": "그림의 물체가 사람보다 매우 무거운 물체인지 보고, 제시된 단위 중 알맞은 것을 고른다."
+      },
+      "execute": {
+        "expected_operations": [
+          "compare_with_gram",
+          "compare_with_kilogram",
+          "compare_with_ton"
+        ]
+      },
+      "review": {
+        "check_methods": [
+          "choice_reasonableness_check"
+        ]
+      }
+    }
+  },
+  "answer": {
+    "blanks": [],
+    "choices": [],
+    "answer_key": [],
+    "confidence": 1.0,
+    "target": {
+      "type": "weight_choice",
+      "description": "그림에 알맞은 무게 어림값"
+    },
+    "value": "1t",
+    "unit": ""
+  }
+}

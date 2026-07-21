@@ -1,0 +1,454 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "P3_1_01_00040_02164",
+  "title": "원 안의 두 수를 더하는 규칙",
+  "canvas": {
+    "width": 619,
+    "height": 300,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "vertical",
+      "slot_ids": [
+        "slot.instruction",
+        "slot.answer_1",
+        "slot.answer_2"
+      ]
+    },
+    {
+      "id": "region.example",
+      "role": "example",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.example_box",
+        "slot.example_circle",
+        "slot.example_horizontal_line",
+        "slot.example_vertical_line",
+        "slot.example_label",
+        "slot.example_left_value",
+        "slot.example_right_value",
+        "slot.example_sum"
+      ]
+    },
+    {
+      "id": "region.diagram",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.item_1_circle",
+        "slot.item_1_horizontal_line",
+        "slot.item_1_vertical_line",
+        "slot.item_2_circle",
+        "slot.item_2_horizontal_line",
+        "slot.item_2_vertical_line",
+        "slot.item_1_label",
+        "slot.item_1_left_value",
+        "slot.item_1_right_value",
+        "slot.item_2_label",
+        "slot.item_2_left_value",
+        "slot.item_2_right_value"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.instruction",
+      "kind": "text_box",
+      "prompt": "보기의 규칙을 찾아 두 빈칸에 알맞은 수를 쓰라는 안내",
+      "content": {
+        "text": "다음 <보기>와 같이 빈 곳에 알맞은 수를 써넣으시오.",
+        "style_role": "body",
+        "x": 20.0,
+        "y": 2.0,
+        "width": 410.0,
+        "height": 24.0,
+        "align": "left",
+        "valign": "top",
+        "font_size": 15,
+        "line_height": 1.15,
+        "fill": "#222222",
+        "semantic_role": "instruction"
+      }
+    },
+    {
+      "id": "slot.example_label",
+      "kind": "text",
+      "prompt": "보기 표시",
+      "content": {
+        "text": "<보기>",
+        "style_role": "body",
+        "x": 82.0,
+        "y": 35.0,
+        "font_size": 14,
+        "anchor": "middle",
+        "fill": "#333333",
+        "semantic_role": "example_label"
+      }
+    },
+    {
+      "id": "slot.example_box",
+      "kind": "rect",
+      "prompt": "덧셈 규칙을 보여 주는 보기 상자",
+      "content": {
+        "x": 22.0,
+        "y": 32.0,
+        "width": 120.0,
+        "height": 121.0,
+        "stroke": "#888888",
+        "stroke_width": 1.2,
+        "fill": "#ffffff",
+        "semantic_role": "example_container"
+      }
+    },
+    {
+      "id": "slot.example_circle",
+      "kind": "path",
+      "prompt": "보기의 세 부분으로 나뉜 원",
+      "content": {
+        "d": "M 32 96 C 32 68.38576251, 54.385762510000006 46, 82 46 C 109.61423749 46, 132 68.38576251, 132 96 C 132 123.61423749, 109.61423749 146, 82 146 C 54.385762510000006 146, 32 123.61423749, 32 96 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#efc66a",
+        "stroke_width": 1.1,
+        "fill": "#fff5d9",
+        "semantic_role": "addition_rule_diagram"
+      }
+    },
+    {
+      "id": "slot.example_horizontal_line",
+      "kind": "path",
+      "prompt": "보기 원의 위쪽과 아래쪽을 나누는 선",
+      "content": {
+        "d": "M 32 96 L 132 96",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#efc66a",
+        "stroke_width": 1.1,
+        "fill": "none",
+        "semantic_role": "partition_line"
+      }
+    },
+    {
+      "id": "slot.example_vertical_line",
+      "kind": "path",
+      "prompt": "보기 원의 위쪽 두 수를 나누는 선",
+      "content": {
+        "d": "M 82 46 L 82 96",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#efc66a",
+        "stroke_width": 1.1,
+        "fill": "none",
+        "semantic_role": "partition_line"
+      }
+    },
+    {
+      "id": "slot.example_left_value",
+      "kind": "text",
+      "prompt": "보기의 첫 번째 수 259",
+      "content": {
+        "text": "259",
+        "style_role": "body",
+        "x": 58.0,
+        "y": 82.0,
+        "font_size": 15,
+        "anchor": "middle",
+        "fill": "#222222",
+        "semantic_role": "given_value"
+      }
+    },
+    {
+      "id": "slot.example_right_value",
+      "kind": "text",
+      "prompt": "보기의 두 번째 수 287",
+      "content": {
+        "text": "287",
+        "style_role": "body",
+        "x": 106.0,
+        "y": 82.0,
+        "font_size": 15,
+        "anchor": "middle",
+        "fill": "#222222",
+        "semantic_role": "given_value"
+      }
+    },
+    {
+      "id": "slot.example_sum",
+      "kind": "text",
+      "prompt": "보기의 두 수를 더한 값 546",
+      "content": {
+        "text": "546",
+        "style_role": "body",
+        "x": 82.0,
+        "y": 126.0,
+        "font_size": 15,
+        "anchor": "middle",
+        "fill": "#222222",
+        "semantic_role": "example_result"
+      }
+    },
+    {
+      "id": "slot.item_1_label",
+      "kind": "text",
+      "prompt": "첫 번째 문항 번호",
+      "content": {
+        "text": "(1)",
+        "style_role": "body",
+        "x": 20.0,
+        "y": 171.0,
+        "font_size": 14,
+        "anchor": "start",
+        "fill": "#222222",
+        "semantic_role": "item_label"
+      }
+    },
+    {
+      "id": "slot.item_1_circle",
+      "kind": "path",
+      "prompt": "236과 465의 합을 쓰는 첫 번째 원",
+      "content": {
+        "d": "M 35 210 C 35 182.9380472598, 56.9380472598 161, 84 161 C 111.0619527402 161, 133 182.9380472598, 133 210 C 133 237.0619527402, 111.0619527402 259, 84 259 C 56.9380472598 259, 35 237.0619527402, 35 210 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#efc66a",
+        "stroke_width": 1.1,
+        "fill": "#ffffff",
+        "semantic_role": "answer_diagram"
+      }
+    },
+    {
+      "id": "slot.item_1_horizontal_line",
+      "kind": "path",
+      "prompt": "첫 번째 원의 위쪽과 아래쪽을 나누는 선",
+      "content": {
+        "d": "M 35 210 L 133 210",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#efc66a",
+        "stroke_width": 1.1,
+        "fill": "none",
+        "semantic_role": "partition_line"
+      }
+    },
+    {
+      "id": "slot.item_1_vertical_line",
+      "kind": "path",
+      "prompt": "첫 번째 원의 위쪽 두 수를 나누는 선",
+      "content": {
+        "d": "M 84 161 L 84 210",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#efc66a",
+        "stroke_width": 1.1,
+        "fill": "none",
+        "semantic_role": "partition_line"
+      }
+    },
+    {
+      "id": "slot.item_1_left_value",
+      "kind": "text",
+      "prompt": "첫 번째 문항의 첫 번째 수 236",
+      "content": {
+        "text": "236",
+        "style_role": "body",
+        "x": 60.0,
+        "y": 196.0,
+        "font_size": 15,
+        "anchor": "middle",
+        "fill": "#222222",
+        "semantic_role": "given_value"
+      }
+    },
+    {
+      "id": "slot.item_1_right_value",
+      "kind": "text",
+      "prompt": "첫 번째 문항의 두 번째 수 465",
+      "content": {
+        "text": "465",
+        "style_role": "body",
+        "x": 108.0,
+        "y": 196.0,
+        "font_size": 15,
+        "anchor": "middle",
+        "fill": "#222222",
+        "semantic_role": "given_value"
+      }
+    },
+    {
+      "id": "slot.answer_1",
+      "kind": "blank",
+      "prompt": "236과 465의 합",
+      "content": {
+        "placeholder": ""
+      }
+    },
+    {
+      "id": "slot.item_2_label",
+      "kind": "text",
+      "prompt": "두 번째 문항 번호",
+      "content": {
+        "text": "(2)",
+        "style_role": "body",
+        "x": 168.0,
+        "y": 171.0,
+        "font_size": 14,
+        "anchor": "start",
+        "fill": "#222222",
+        "semantic_role": "item_label"
+      }
+    },
+    {
+      "id": "slot.item_2_circle",
+      "kind": "path",
+      "prompt": "756과 549의 합을 쓰는 두 번째 원",
+      "content": {
+        "d": "M 189 210 C 189 182.9380472598, 210.9380472598 161, 238 161 C 265.0619527402 161, 287 182.9380472598, 287 210 C 287 237.0619527402, 265.0619527402 259, 238 259 C 210.9380472598 259, 189 237.0619527402, 189 210 Z",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#efc66a",
+        "stroke_width": 1.1,
+        "fill": "#ffffff",
+        "semantic_role": "answer_diagram"
+      }
+    },
+    {
+      "id": "slot.item_2_horizontal_line",
+      "kind": "path",
+      "prompt": "두 번째 원의 위쪽과 아래쪽을 나누는 선",
+      "content": {
+        "d": "M 189 210 L 287 210",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#efc66a",
+        "stroke_width": 1.1,
+        "fill": "none",
+        "semantic_role": "partition_line"
+      }
+    },
+    {
+      "id": "slot.item_2_vertical_line",
+      "kind": "path",
+      "prompt": "두 번째 원의 위쪽 두 수를 나누는 선",
+      "content": {
+        "d": "M 238 161 L 238 210",
+        "x": 0.0,
+        "y": 0.0,
+        "stroke": "#efc66a",
+        "stroke_width": 1.1,
+        "fill": "none",
+        "semantic_role": "partition_line"
+      }
+    },
+    {
+      "id": "slot.item_2_left_value",
+      "kind": "text",
+      "prompt": "두 번째 문항의 첫 번째 수 756",
+      "content": {
+        "text": "756",
+        "style_role": "body",
+        "x": 214.0,
+        "y": 196.0,
+        "font_size": 15,
+        "anchor": "middle",
+        "fill": "#222222",
+        "semantic_role": "given_value"
+      }
+    },
+    {
+      "id": "slot.item_2_right_value",
+      "kind": "text",
+      "prompt": "두 번째 문항의 두 번째 수 549",
+      "content": {
+        "text": "549",
+        "style_role": "body",
+        "x": 262.0,
+        "y": 196.0,
+        "font_size": 15,
+        "anchor": "middle",
+        "fill": "#222222",
+        "semantic_role": "given_value"
+      }
+    },
+    {
+      "id": "slot.answer_2",
+      "kind": "blank",
+      "prompt": "756과 549의 합",
+      "content": {
+        "placeholder": ""
+      }
+    }
+  ],
+  "groups": [
+    {
+      "id": "group.example",
+      "role": "addition_rule_example",
+      "member_ids": [
+        "slot.example_box",
+        "slot.example_circle",
+        "slot.example_horizontal_line",
+        "slot.example_vertical_line",
+        "slot.example_left_value",
+        "slot.example_right_value",
+        "slot.example_sum"
+      ]
+    },
+    {
+      "id": "group.item_1",
+      "role": "addition_rule_item",
+      "member_ids": [
+        "slot.item_1_circle",
+        "slot.item_1_horizontal_line",
+        "slot.item_1_vertical_line",
+        "slot.item_1_left_value",
+        "slot.item_1_right_value",
+        "slot.answer_1"
+      ]
+    },
+    {
+      "id": "group.item_2",
+      "role": "addition_rule_item",
+      "member_ids": [
+        "slot.item_2_circle",
+        "slot.item_2_horizontal_line",
+        "slot.item_2_vertical_line",
+        "slot.item_2_left_value",
+        "slot.item_2_right_value",
+        "slot.answer_2"
+      ]
+    }
+  ],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.instruction",
+    "slot.answer_1",
+    "slot.answer_2",
+    "region.example",
+    "slot.example_box",
+    "slot.example_circle",
+    "slot.example_horizontal_line",
+    "slot.example_vertical_line",
+    "slot.example_label",
+    "slot.example_left_value",
+    "slot.example_right_value",
+    "slot.example_sum",
+    "region.diagram",
+    "slot.item_1_circle",
+    "slot.item_1_horizontal_line",
+    "slot.item_1_vertical_line",
+    "slot.item_2_circle",
+    "slot.item_2_horizontal_line",
+    "slot.item_2_vertical_line",
+    "slot.item_1_label",
+    "slot.item_1_left_value",
+    "slot.item_1_right_value",
+    "slot.item_2_label",
+    "slot.item_2_left_value",
+    "slot.item_2_right_value"
+  ]
+}

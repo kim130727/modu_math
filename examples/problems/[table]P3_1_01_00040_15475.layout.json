@@ -1,0 +1,322 @@
+{
+  "schema": "modu.layout.v1",
+  "problem_id": "P3_1_01_00040_15475",
+  "title": "동화책과 위인전의 수",
+  "canvas": {
+    "width": 960,
+    "height": 260,
+    "coordinate_mode": "logical",
+    "background": "#FFFFFF"
+  },
+  "regions": [
+    {
+      "id": "region.stem",
+      "role": "stem",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.question",
+        "slot.answer"
+      ]
+    },
+    {
+      "id": "region.table",
+      "role": "diagram",
+      "flow": "absolute",
+      "slot_ids": [
+        "slot.table.outer",
+        "slot.table.v1",
+        "slot.table.v2",
+        "slot.table.v3",
+        "slot.table.v4",
+        "slot.table.h1",
+        "slot.table.r1c1",
+        "slot.table.r1c2",
+        "slot.table.r1c3",
+        "slot.table.r1c4",
+        "slot.table.r1c5",
+        "slot.table.r2c1",
+        "slot.table.r2c2",
+        "slot.table.r2c3",
+        "slot.table.r2c4",
+        "slot.table.r2c5"
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot.question",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "다음은 지희네 반 학급 문고의 책의 수를 조사한 것입니다. 동화책과 위인전을 더하면 모두 몇 권입니까?",
+        "style_role": "question",
+        "x": 30.0,
+        "y": 28.0,
+        "font_size": 24,
+        "fill": "#111111"
+      }
+    },
+    {
+      "id": "slot.table.outer",
+      "kind": "rect",
+      "prompt": "",
+      "content": {
+        "x": 30.0,
+        "y": 80.0,
+        "width": 600.0,
+        "height": 90.0,
+        "stroke": "#111827",
+        "stroke_width": 1.0,
+        "fill": "#ffffff"
+      }
+    },
+    {
+      "id": "slot.table.v1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 150.0,
+        "y1": 80.0,
+        "x2": 150.0,
+        "y2": 170.0,
+        "stroke": "#111827",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.table.v2",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 270.0,
+        "y1": 80.0,
+        "x2": 270.0,
+        "y2": 170.0,
+        "stroke": "#111827",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.table.v3",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 390.0,
+        "y1": 80.0,
+        "x2": 390.0,
+        "y2": 170.0,
+        "stroke": "#111827",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.table.v4",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 510.0,
+        "y1": 80.0,
+        "x2": 510.0,
+        "y2": 170.0,
+        "stroke": "#111827",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.table.h1",
+      "kind": "line",
+      "prompt": "",
+      "content": {
+        "x1": 30.0,
+        "y1": 125.0,
+        "x2": 630.0,
+        "y2": 125.0,
+        "stroke": "#111827",
+        "stroke_width": 1.0
+      }
+    },
+    {
+      "id": "slot.table.r1c1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "책 종류",
+        "style_role": "table",
+        "x": 90.0,
+        "y": 108.0,
+        "font_size": 22,
+        "max_width": 110.0,
+        "anchor": "middle",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.table.r1c2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "위인전",
+        "style_role": "table",
+        "x": 210.0,
+        "y": 108.0,
+        "font_size": 22,
+        "max_width": 110.0,
+        "anchor": "middle",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.table.r1c3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "동화책",
+        "style_role": "table",
+        "x": 330.0,
+        "y": 108.0,
+        "font_size": 22,
+        "max_width": 110.0,
+        "anchor": "middle",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.table.r1c4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "그림책",
+        "style_role": "table",
+        "x": 450.0,
+        "y": 108.0,
+        "font_size": 22,
+        "max_width": 110.0,
+        "anchor": "middle",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.table.r1c5",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "참고서",
+        "style_role": "table",
+        "x": 570.0,
+        "y": 108.0,
+        "font_size": 22,
+        "max_width": 110.0,
+        "anchor": "middle",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.table.r2c1",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "수(권)",
+        "style_role": "table",
+        "x": 90.0,
+        "y": 153.0,
+        "font_size": 22,
+        "max_width": 110.0,
+        "anchor": "middle",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.table.r2c2",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "324",
+        "style_role": "table",
+        "x": 210.0,
+        "y": 153.0,
+        "font_size": 22,
+        "max_width": 110.0,
+        "anchor": "middle",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.table.r2c3",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "210",
+        "style_role": "table",
+        "x": 330.0,
+        "y": 153.0,
+        "font_size": 22,
+        "max_width": 110.0,
+        "anchor": "middle",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.table.r2c4",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "103",
+        "style_role": "table",
+        "x": 450.0,
+        "y": 153.0,
+        "font_size": 22,
+        "max_width": 110.0,
+        "anchor": "middle",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.table.r2c5",
+      "kind": "text",
+      "prompt": "",
+      "content": {
+        "text": "101",
+        "style_role": "table",
+        "x": 570.0,
+        "y": 153.0,
+        "font_size": 22,
+        "max_width": 110.0,
+        "anchor": "middle",
+        "fill": "#111827"
+      }
+    },
+    {
+      "id": "slot.answer",
+      "kind": "blank",
+      "prompt": "답",
+      "content": {
+        "placeholder": "권"
+      }
+    }
+  ],
+  "groups": [],
+  "constraints": [],
+  "diagrams": [],
+  "reading_order": [
+    "region.stem",
+    "slot.question",
+    "slot.answer",
+    "region.table",
+    "slot.table.outer",
+    "slot.table.v1",
+    "slot.table.v2",
+    "slot.table.v3",
+    "slot.table.v4",
+    "slot.table.h1",
+    "slot.table.r1c1",
+    "slot.table.r1c2",
+    "slot.table.r1c3",
+    "slot.table.r1c4",
+    "slot.table.r1c5",
+    "slot.table.r2c1",
+    "slot.table.r2c2",
+    "slot.table.r2c3",
+    "slot.table.r2c4",
+    "slot.table.r2c5"
+  ]
+}
